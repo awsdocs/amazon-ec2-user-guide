@@ -1,4 +1,4 @@
-## Amazon Ec2 User Guide
+## Amazon EC2 User Guide for Linux
 
 The open source version of the Amazon EC2 User Guide for Linux. To submit feedback or requests for changes, submit an issue or make changes and submit a pull request.
 
