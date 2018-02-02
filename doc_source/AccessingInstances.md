@@ -1,0 +1,14 @@
+# Connect to Your Linux Instance<a name="AccessingInstances"></a>
+
+Learn how to connect to the Linux instances that you launched and transfer files between your local computer and your instance\.
+
+To connect to a Windows instance, see [Connecting to Your Windows Instance](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/connecting_to_windows_instance.html) in the *Amazon EC2 User Guide for Windows Instances*\.
+
+
+| Your Computer | Topic | 
+| --- | --- | 
+|  Linux  |  [Connecting to Your Linux Instance Using SSH](AccessingInstancesLinux.md)  | 
+|  Windows  |  [Connecting to Your Linux Instance from Windows Using PuTTY](putty.md)  | 
+|  All  |  [Connecting to Your Linux Instance Using MindTerm](mindterm.md)  | 
+
+After you connect to your instance, you can try one of our tutorials, such as [Tutorial: Install a LAMP Web Server with the Amazon Linux AMI](install-LAMP.md) or [Tutorial: Hosting a WordPress Blog with Amazon Linux](hosting-wordpress.md)\.
