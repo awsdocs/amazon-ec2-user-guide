@@ -72,7 +72,7 @@ You can assign the secondary private IPv4 address to the network interface for a
 
 + [To assign a secondary private IPv4 address to a network interface](#assignIP-existing)
 
-+ [To assign a secondary private IPv4 to an existing instance using the command line](#assignIP-existing-cmd)
++ [To assign a secondary private IPv4 to an existing instance using the command line](#assignIP-existing-cmd)<a name="assignIP-launch"></a>
 
 **To assign a secondary private IPv4 address when launching an instance in EC2\-VPC**
 
@@ -101,7 +101,7 @@ When you add a second network interface, the system can no longer auto\-assign a
 1. On the **Review Instance Launch** page, review your settings, and then choose **Launch** to choose a key pair and launch your instance\. If you're new to Amazon EC2 and haven't created any key pairs, the wizard prompts you to create one\.
 
 **Important**  
-After you have added a secondary private IP address to a network interface, you must connect to the instance and configure the secondary private IP address on the instance itself\. For more information, see [Configuring the Operating System on Your Instance to Recognize the Secondary Private IPv4 Address ](#StepTwoConfigOS)\.
+After you have added a secondary private IP address to a network interface, you must connect to the instance and configure the secondary private IP address on the instance itself\. For more information, see [Configuring the Operating System on Your Instance to Recognize the Secondary Private IPv4 Address ](#StepTwoConfigOS)\.<a name="assignIP-launch-cmd"></a>
 
 **To assign a secondary IPv4 address during launch using the command line**
 
@@ -109,7 +109,7 @@ After you have added a secondary private IP address to a network interface, you 
 
   + The `--secondary-private-ip-addresses` option with the [run\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command \(AWS CLI\)
 
-  + Define `-NetworkInterface` and specify the `PrivateIpAddresses` parameter with the [New\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) command \(AWS Tools for Windows PowerShell\)\.
+  + Define `-NetworkInterface` and specify the `PrivateIpAddresses` parameter with the [New\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) command \(AWS Tools for Windows PowerShell\)\.<a name="assignIP-existing"></a>
 
 **To assign a secondary private IPv4 address to a network interface**
 
@@ -127,7 +127,7 @@ After you have added a secondary private IP address to a network interface, you 
 
 1. Choose **Yes, Update**\.
 
-Alternatively, you can assign a secondary private IPv4 address to an instance\. Choose **Instances** in the navigation pane, select the instance, and then choose **Actions**, **Networking**, **Manage IP Addresses**\. You can configure the same information as you did in the steps above\. The IP address is assigned to the primary network interface \(eth0\) for the instance\. 
+Alternatively, you can assign a secondary private IPv4 address to an instance\. Choose **Instances** in the navigation pane, select the instance, and then choose **Actions**, **Networking**, **Manage IP Addresses**\. You can configure the same information as you did in the steps above\. The IP address is assigned to the primary network interface \(eth0\) for the instance\. <a name="assignIP-existing-cmd"></a>
 
 **To assign a secondary private IPv4 to an existing instance using the command line**
 

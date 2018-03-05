@@ -18,13 +18,13 @@ If you are using resource\-level permissions, the following table describes the 
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-iam-actions-resources.html)
 
-We recommend that you also specify the key pair resource in your policy — even though it's not required to launch an instance, you can't connect to your instance without a key pair\. For examples of using resource\-level permissions with the `ec2:RunInstances` action, see [5: Launching Instances \(RunInstances\)](ExamplePolicies_EC2.md#iam-example-runinstances)\.
+We recommend that you also specify the key pair resource in your policy — even though it's not required to launch an instance, you can't connect to your instance without a key pair\. For examples of using resource\-level permissions with the `ec2:RunInstances` action, see [6: Launching Instances \(RunInstances\)](ExamplePolicies_EC2.md#iam-example-runinstances)\.
 
 For additional information about resource\-level permissions in Amazon EC2, see the following AWS Security Blog post: [Demystifying EC2 Resource\-Level Permissions](https://aws.amazon.com/blogs/security/demystifying-ec2-resource-level-permissions/)\.
 
 ### Resource\-Level Permissions for RunInstances and Launch Templates<a name="supported-iam-actions-runinstances-launch-templates"></a>
 
-You can create a launch template that contains the parameters to launch an instance\. When users use the `ec2:RunInstances` action, they can specify the launch template to use to launch instances\. You can apply resource\-level permissions for the launch template resource for the `ec2:RunInstances` action\. For example, you can specify that users can only launch instances using a launch template, and that they must use a specific launch template\. You can also control the parameters that users can or cannot override in the launch template\. This enables you to manage the parameters for launching an instance in a launch template rather than an IAM policy\. For example policies, see [Launch Templates](ExamplePolicies_EC2.md#iam-example-runinstances-launch-templates)\.
+You can create a [launch template](ec2-launch-templates.md) that contains the parameters to launch an instance\. When users use the `ec2:RunInstances` action, they can specify the launch template to use to launch instances\. You can apply resource\-level permissions for the launch template resource for the `ec2:RunInstances` action\. For example, you can specify that users can only launch instances using a launch template, and that they must use a specific launch template\. You can also control the parameters that users can or cannot override in the launch template\. This enables you to manage the parameters for launching an instance in a launch template rather than an IAM policy\. For example policies, see [Launch Templates](ExamplePolicies_EC2.md#iam-example-runinstances-launch-templates)\.
 
 ## Resource\-Level Permissions for Tagging<a name="supported-iam-actions-tagging"></a>
 

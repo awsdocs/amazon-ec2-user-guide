@@ -73,7 +73,7 @@ To ensure that you don't accidentally lose access to your instance, we recommend
    [ec2-user ~]$ sudo find / -name "authorized_keys" -print -exec cat {} \;
    ```
 
-1. Disable password\-based authentication for the root user\. Open the `ssh_config` file and edit the `PermitRootLogin` line as follows:
+1. Disable password\-based authentication for the root user\. Open the `sshd_config` file and edit the `PermitRootLogin` line as follows:
 
    ```
    PermitRootLogin without-password

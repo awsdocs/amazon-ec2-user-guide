@@ -4,7 +4,7 @@ The Amazon EC2 console provides a **Launch More Like This** wizard option that e
 
 **Note**  
 The **Launch More Like This** wizard option does not clone your selected instance; it only replicates some configuration details\. To create a copy of your instance, first create an AMI from it, then launch more instances from the AMI\.  
-Alternatively, create a launch template to store the launch parameters for your instances\.
+Alternatively, create a [launch template](ec2-launch-templates.md) to store the launch parameters for your instances\.
 
 The following configuration details are copied from the selected instance into the launch wizard:
 

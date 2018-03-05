@@ -38,7 +38,7 @@ Developers can use the FPGA Developer AMI and AWS Hardware Developer Kit to crea
 For more information, see [Amazon EC2 F1 Instances](https://aws.amazon.com/ec2/instance-types/f1/)\.
 
 **P3 Instances**  
-P3 instances use NVIDIA Tesla V100 GPUs and are designed for general purpose GPU computing using the CUDA or OpenCL programming models or through a machine learning framework\. P3 instances provide high\-bandwidth networking, powerful half, single, and double\-precision floating\-point capabilities, and 16 GiB of memory per GPU, which makes them ideal for deep learning, computational fluid dynamics, computational finance, seismic analysis, molecular modeling, genomics, rendering, and other server\-side GPU compute workloads\.
+P3 instances use NVIDIA Tesla V100 GPUs and are designed for general purpose GPU computing using the CUDA or OpenCL programming models or through a machine learning framework\. P3 instances provide high\-bandwidth networking, powerful half, single, and double\-precision floating\-point capabilities, and 16 GiB of memory per GPU, which makes them ideal for deep learning, computational fluid dynamics, computational finance, seismic analysis, molecular modeling, genomics, rendering, and other server\-side GPU compute workloads\. Tesla V100 GPUs do not support graphics mode\.
 
 P3 instances support NVIDIA NVLink peer to peer transfers\. For more information, see [NVIDIA NVLink](https://devblogs.nvidia.com/parallelforall/how-nvlink-will-enable-faster-easier-multi-gpu-computing/)\.
 
@@ -96,9 +96,9 @@ The following is a summary of network performance for accelerated computing inst
 
 | Instance type | Network performance | Enhanced networking | 
 | --- | --- | --- | 
-|  `f1.2xlarge`, `g3.4xlarge`, `p3.2xlarge`  |  Up to 10 Gbps  |  ENA  | 
-|  `g3.8xlarge`, `p2.8xlarge`, `p3.8xlarge`  |  10 Gbps  |  ENA  | 
-|  `f1.16xlarge`, `g3.16.xlarge`, `g3.16.xlarge`, `p2.16xlarge`, `p3.16xlarge`  |  25 Gbps  |  ENA  | 
+|  `f1.2xlarge`, `g3.4xlarge`, `p3.2xlarge`  |  Up to 10 Gbps  |  [ENA](enhanced-networking-ena.md)  | 
+|  `g3.8xlarge`, `p2.8xlarge`, `p3.8xlarge`  |  10 Gbps  |  [ENA](enhanced-networking-ena.md)  | 
+|  `f1.16xlarge`, `g3.16.xlarge`, `g3.16.xlarge`, `p2.16xlarge`, `p3.16xlarge`  |  25 Gbps  |  [ENA](enhanced-networking-ena.md)  | 
 
 ## Instance Features<a name="gpu-instances-features"></a>
 

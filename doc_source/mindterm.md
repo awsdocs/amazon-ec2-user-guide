@@ -42,7 +42,7 @@ The Chrome browser does not support the NPAPI plugin, and therefore cannot run t
 
    1. In **User name**, enter the user name to log in to your instance\.
 **Tip**  
-For Amazon Linux, the user name is `ec2-user`\. For RHEL, the user name is `ec2-user` or `root`\. For Ubuntu, the user name is `ubuntu` or `root`\. For Centos, the user name is `centos`\. For Fedora, the user name is `ec2-user`\. For SUSE, the user name is `ec2-user` or `root`\. Otherwise, if `ec2-user` and `root` don't work, check with your AMI provider\.
+For Amazon Linux, the user name is `ec2-user`\. For Centos, the user name is `centos`\. For Debian, the user name is `admin` or `root`\. For Fedora, the user name is `ec2-user`\. For RHEL, the user name is `ec2-user` or `root`\. For SUSE, the user name is `ec2-user` or `root`\. For Ubuntu, the user name is `ubuntu` or `root`\. Otherwise, if `ec2-user` and `root` don't work, check with your AMI provider\.
 
    1. In **Private key path**, enter the fully qualified path to your private key \(`.pem`\) file, including the key pair name; for example:
 

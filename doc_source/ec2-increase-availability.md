@@ -2,9 +2,9 @@
 
 Suppose that you start out running your app or website on a single EC2 instance, and over time, traffic increases to the point that you require more than one instance to meet the demand\. You can launch multiple EC2 instances from your AMI and then use Elastic Load Balancing to distribute incoming traffic for your application across these EC2 instances\. This increases the availability of your application\. Placing your instances in multiple Availability Zones also improves the fault tolerance in your application\. If one Availability Zone experiences an outage, traffic is routed to the other Availability Zone\.
 
-You can use Auto Scaling to maintain a minimum number of running instances for your application at all times\. Auto Scaling can detect when your instance or application is unhealthy and replace it automatically to maintain the availability of your application\. You can also use Auto Scaling to scale your Amazon EC2 capacity up or down automatically based on demand, using criteria that you specify\.
+You can use Amazon EC2 Auto Scaling to maintain a minimum number of running instances for your application at all times\. Amazon EC2 Auto Scaling can detect when your instance or application is unhealthy and replace it automatically to maintain the availability of your application\. You can also use Amazon EC2 Auto Scaling to scale your Amazon EC2 capacity up or down automatically based on demand, using criteria that you specify\.
 
-In this tutorial, we use Auto Scaling with Elastic Load Balancing to ensure that you maintain a specified number of healthy EC2 instances behind your load balancer\. Note that these instances do not need public IP addresses, because traffic goes to the load balancer and is then routed to the instances\. For more information, see [Auto Scaling](https://aws.amazon.com/autoscaling/) and [Elastic Load Balancing](https://aws.amazon.com/elasticloadbalancing/)\.
+In this tutorial, we use Amazon EC2 Auto Scaling with Elastic Load Balancing to ensure that you maintain a specified number of healthy EC2 instances behind your load balancer\. Note that these instances do not need public IP addresses, because traffic goes to the load balancer and is then routed to the instances\. For more information, see [Amazon EC2 Auto Scaling](https://aws.amazon.com/ec2/autoscaling/) and [Elastic Load Balancing](https://aws.amazon.com/elasticloadbalancing/)\.
 
 ![\[Architecture with Auto Scaling and Elastic Load Balancing\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/tutorial_as_elb_architecture.png)
 
@@ -79,13 +79,13 @@ Use the following procedure to create a load balancer, create a launch configura
 
    1. Choose **Next: Register Targets**\.
 
-1. On the **Register Targets** page, choose **Next: Review** to continue to the next page, as we'll use Auto Scaling to add EC2 instances to the target group\.
+1. On the **Register Targets** page, choose **Next: Review** to continue to the next page, as we'll use Amazon EC2 Auto Scaling to add EC2 instances to the target group\.
 
 1. On the **Review** page, choose **Create**\. After the load balancer is created, choose **Close**\.
 
 1. On the navigation pane, under **AUTO SCALING**, choose **Launch Configurations**\.
 
-   + If you are new to Auto Scaling, you see a welcome page\. Choose **Create Auto Scaling group** to start the Create Auto Scaling Group wizard, and then choose **Create launch configuration**\.
+   + If you are new to Amazon EC2 Auto Scaling, you see a welcome page\. Choose **Create Auto Scaling group** to start the Create Auto Scaling Group wizard, and then choose **Create launch configuration**\.
 
    + Otherwise, choose **Create launch configuration**\.
 
@@ -111,7 +111,7 @@ Use the following procedure to create a load balancer, create a launch configura
 
 1. After the launch configuration is created, you must create an Auto Scaling group\.
 
-   + If you are new to Auto Scaling and you are using the Create Auto Scaling group wizard, you are taken to the next step automatically\.
+   + If you are new to Amazon EC2 Auto Scaling and you are using the Create Auto Scaling group wizard, you are taken to the next step automatically\.
 
    + Otherwise, choose **Create an Auto Scaling group using this launch configuration**\.
 
@@ -127,7 +127,7 @@ Use the following procedure to create a load balancer, create a launch configura
 
    1. Choose **Next: Configure scaling policies**\.
 
-1. On the **Configure scaling policies** page, choose **Review**, as we will let Auto Scaling maintain the group at the specified size\. Note that later on, you can manually scale this Auto Scaling group, configure the group to scale on a schedule, or configure the group to scale based on demand\.
+1. On the **Configure scaling policies** page, choose **Review**, as we will let Amazon EC2 Auto Scaling maintain the group at the specified size\. Note that later on, you can manually scale this Auto Scaling group, configure the group to scale on a schedule, or configure the group to scale based on demand\.
 
 1. On the **Review** page, choose **Create Auto Scaling group**\.
 

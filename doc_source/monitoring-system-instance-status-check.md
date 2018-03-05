@@ -135,7 +135,7 @@ You can create instance status and system status alarms to notify you when an in
 
 ### Creating a Status Check Alarm Using the Console<a name="using-cloudwatch-new-console2"></a>
 
-You can create status check alarms for an existing instance to monitor instance status or system status\. You can configure the alarm to send you a notification by email or stop, terminate, or recover an instance when it fails an instance status check or system status check\.
+You can create status check alarms for an existing instance to monitor instance status or system status\. You can configure the alarm to send you a notification by email or stop, terminate, or recover an instance when it fails an [instance status check or system status check](#types-of-instance-status-checks)\.
 
 **To create a status check alarm**
 

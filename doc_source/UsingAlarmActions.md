@@ -169,7 +169,7 @@ The following problems can cause system status checks to fail:
 
 The recover action is supported only on instances with the following characteristics:
 
-+ Use a C3, C4, C5, M3, M4, R3, R4, T2, or X1 instance type
++ Use a C3, C4, C5, M3, M4, M5, R3, R4, T2, or X1 instance type
 
 + Run in a VPC \(not EC2\-Classic\)
 

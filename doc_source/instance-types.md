@@ -78,13 +78,19 @@ When you select an instance type, this determines the networking and storage fea
 
 + Some instance types are not available in EC2\-Classic, so you must launch them in a VPC\. By launching an instance in a VPC, you can leverage features that are not available in EC2\-Classic, such as enhanced networking, assigning multiple private IPv4 addresses to an instance, assigning IPv6 addresses to an instance, and changing the security groups assigned to an instance\. For more information, see [Instance Types Available Only in a VPC](using-vpc.md#vpc-only-instance-types)\.
 
-+ All current generation instance types support IPv6\.
++ IPv6 is supported on all current generation instance types and the C3, R3, and I2 previous generation instance types\.
 
 + To maximize the networking and bandwidth performance of your instance type, you can do the following:
 
-  + Launch supported instance types into a cluster placement group to optimize your instances for high performance computing \(HPC\) applications\. Instances in a common cluster placement group can benefit from high\-bandwidth \(up to 25 Gbps\), low\-latency networking\. For more information, see [Placement Groups](placement-groups.md)\.
+  + Launch supported instance types into a cluster placement group to optimize your instances for high performance computing \(HPC\) applications\. Instances in a common cluster placement group can benefit from high\-bandwidth, low\-latency networking\. For more information, see [Placement Groups](placement-groups.md)\.
 
-  + Enable enhanced networking for supported current generation instance types to get significantly higher packet per second \(PPS\) performance, lower network jitter, and lower latencies\. For more information, see [Enhanced Networking on Linux](enhanced-networking.md)\.
+  + Enable enhanced networking for supported current generation instance types to get significantly higher packet per second \(PPS\) performance, lower network jitter, and lower latencies\. For more information, see [Enhanced Networking on Linux](enhanced-networking.md)\. 
+
++ Current generation instance types that are enabled for enhanced networking have the following networking performance attributes:
+
+  + Traffic within the same AWS Region over private IPv4 or IPv6 can support 5 Gbps for single\-flow traffic and up to 25 Gbps for multi\-flow traffic \(depending on the instance type\)\.
+
+  + Traffic to and from Amazon S3 buckets within the same AWS Region over the public IP address space or through a VPC endpoint can use all available instance aggregate bandwidth\.
 
 + The maximum supported MTU varies across instance types\. All Amazon EC2 instance types support standard Ethernet V2 1500 MTU frames\. All current generation instances support 9001 MTU, or jumbo frames, and some previous generation instances support them as well\. For more information, see [Network Maximum Transmission Unit \(MTU\) for Your EC2 Instance](network_mtu.md)\.
 

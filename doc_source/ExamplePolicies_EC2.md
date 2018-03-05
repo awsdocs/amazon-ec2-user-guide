@@ -7,14 +7,15 @@ The following examples show policy statements that you could use to control the 
 + [2: Restricting Access to a Specific Region](#iam-example-region)
 + [3: Working with Instances](#iam-example-instances)
 + [4\. Working with Volumes](#iam-example-manage-volumes)
-+ [5: Launching Instances \(RunInstances\)](#iam-example-runinstances)
-+ [6\. Working with ClassicLink](#iam-example-classiclink)
-+ [7\. Working with Reserved Instances](#iam-example-reservedinstances)
-+ [8\. Tagging Resources](#iam-example-taggingresources)
-+ [9: Working with IAM Roles](#iam-example-iam-roles)
-+ [10: Working with Route Tables](#iam-example-route-tables)
-+ [11: Allowing a Specific Instance to View Resources in Other AWS Services](#iam-example-source-instance)
-+ [12\. Working with Launch Templates](#iam-example-launch-templates)
++ [5\. Working with Snapshots](#iam-example-manage-snapshots)
++ [6: Launching Instances \(RunInstances\)](#iam-example-runinstances)
++ [7\. Working with ClassicLink](#iam-example-classiclink)
++ [8\. Working with Reserved Instances](#iam-example-reservedinstances)
++ [9\. Tagging Resources](#iam-example-taggingresources)
++ [10: Working with IAM Roles](#iam-example-iam-roles)
++ [11: Working with Route Tables](#iam-example-route-tables)
++ [12: Allowing a Specific Instance to View Resources in Other AWS Services](#iam-example-source-instance)
++ [13\. Working with Launch Templates](#iam-example-launch-templates)
 
 ## 1: Read\-Only Access<a name="iam-example-read-only"></a>
 
@@ -276,7 +277,203 @@ The following policy allows users to create a volume without having to specify t
 }
 ```
 
-## 5: Launching Instances \(RunInstances\)<a name="iam-example-runinstances"></a>
+## 5\. Working with Snapshots<a name="iam-example-manage-snapshots"></a>
+
+
++ [Creating a Snapshot](#iam-creating-snapshop)
++ [Creating a Snapshot with Tags](#iam-creating-snapshot-with-tags)
+
+### Creating a Snapshot<a name="iam-creating-snapshop"></a>
+
+The following policy allows customers to use the [CreateSnapshot](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateSnapshot.html) API action\. The customer may create a snapshot only if the volume is encrypted and only if the volume size is less than 20 GiB\.
+
+```
+{
+   "Version":"2012-10-17",
+   "Statement":[
+      {
+         "Effect":"Allow",
+         "Action":"ec2:CreateSnapshot",
+         "Resource":"arn:aws:ec2:us-east-1::snapshot/*"
+      },
+      {
+         "Effect":"Allow",
+         "Action":"ec2:CreateSnapshot",
+         "Resource":"arn:aws:ec2:us-east-1:123456789012:volume/*",
+         "Condition":{
+            "NumericLessThan":{
+               "ec2:VolumeSize":"20"
+            },
+            "Bool":{
+               "ec2:Encrypted":"true"
+            }
+         }
+      }
+   ]
+}
+```
+
+### Creating a Snapshot with Tags<a name="iam-creating-snapshot-with-tags"></a>
+
+The following policy includes the `aws:RequestTag` condition key that requires the customer to apply the tags `costcenter=115` and `stack=prod` to any new snapshot\. The `aws:TagKeys` condition key uses the `ForAllValues` modifier to indicate that only the keys `costcenter` and `stack` may be specified in the request\. The request fails if either of these conditions is not met\.
+
+For resource\-creating actions that apply tags, customers must also have permissions to use the `CreateTags` action\. The third statement uses the `ec2:CreateAction` condition key to allow customers to create tags only in the context of `CreateSnapshot` \. Customers cannot tag existing volumes or any other resources\. For more information, see [Resource\-Level Permissions for Tagging](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-iam-actions-resources.html#supported-iam-actions-tagging)\.
+
+```
+{
+   "Version":"2012-10-17",
+   "Statement":[
+      {
+         "Effect":"Allow",
+         "Action":"ec2:CreateSnapshot",
+         "Resource":"arn:aws:ec2:us-east-1:123456789012:volume/*"
+      },
+      {
+         "Sid":"AllowCreateTaggedSnapshots",
+         "Effect":"Allow",
+         "Action":"ec2:CreateSnapshot",
+         "Resource":"arn:aws:ec2:us-east-1::snapshot/*",
+         "Condition":{
+            "StringEquals":{
+               "aws:RequestTag/costcenter":"115",
+               "aws:RequestTag/stack":"prod"
+            },
+            "ForAllValues:StringEquals":{
+               "aws:TagKeys":[
+                  "costcenter",
+                  "stack"
+               ]
+            }
+         }
+      },
+      {
+         "Effect":"Allow",
+         "Action":"ec2:CreateTags",
+         "Resource":"arn:aws:ec2:us-east-1::snapshot/*",
+         "Condition":{
+            "StringEquals":{
+               "ec2:CreateAction":"CreateSnapshot"
+            }
+         }
+      }
+   ]
+}
+```
+
+The following policy allows customers to create a snapshot without having to specify tags\. The `CreateTags` action is evaluated only if tags are specified in the `CreateSnapshot` request\. If a tag is specified, the tag must be `purpose=test`\. No other tags are allowed in the request\.
+
+```
+{
+   "Version":"2012-10-17",
+   "Statement":[
+      {
+         "Effect":"Allow",
+         "Action":"ec2:CreateSnapshot",
+         "Resource":"*"
+      },
+      {
+         "Effect":"Allow",
+         "Action":"ec2:CreateTags",
+         "Resource":"arn:aws:ec2:us-east-1::snapshot/*",
+         "Condition":{
+            "StringEquals":{
+               "aws:RequestTag/purpose":"test",
+               "ec2:CreateAction":"CreateSnapshot"
+            },
+            "ForAllValues:StringEquals":{
+               "aws:TagKeys":"purpose"
+            }
+         }
+      }
+   ]
+}
+```
+
+The following policy allows a snapshot to be created only if the source volume is tagged with `User:username` for the customer, and the snapshot itself is tagged with `Environment:Dev` and `User:username`\. The customer may add additional tags to the snapshot\.
+
+```
+{
+   "Version":"2012-10-17",
+   "Statement":[
+      {
+         "Effect":"Allow",
+         "Action":"ec2:CreateSnapshot",
+         "Resource":"arn:aws:ec2:us-east-1:123456789012:volume/*",
+         "Condition":{
+            "StringEquals":{
+               "ec2:ResourceTag/User":"${aws:username}"
+            }
+         }
+      },
+      {
+         "Effect":"Allow",
+         "Action":"ec2:CreateSnapshot",
+         "Resource":"arn:aws:ec2:us-east-1::snapshot/*",
+         "Condition":{
+            "StringEquals":{
+               "aws:RequestTag/Environment":"Dev",
+               "aws:RequestTag/User":"${aws:username}"
+            }
+         }
+      },
+      {
+         "Effect":"Allow",
+         "Action":"ec2:CreateTags",
+         "Resource":"arn:aws:ec2:us-east-1::snapshot/*"
+      }
+   ]
+}
+```
+
+The following policy allows deletion of a snapshot only if the snapshot is tagged with User:*username* for the customer\.
+
+```
+{
+   "Version":"2012-10-17",
+   "Statement":[
+      {
+         "Effect":"Allow",
+         "Action":"ec2:DeleteSnapshot",
+         "Resource":"arn:aws:ec2:us-east-1::snapshot/*",
+         "Condition":{
+            "StringEquals":{
+               "ec2:ResourceTag/User":"${aws:username}"
+            }
+         }
+      }
+   ]
+}
+```
+
+The following policy allows a customer to create a snapshot but denies the action if the snapshot being created has a tag key `value=stack`\.
+
+```
+{
+   "Version":"2012-10-17",
+   "Statement":[
+      {
+         "Effect":"Allow",
+         "Action":[
+            "ec2:CreateSnapshot",
+            "ec2:CreateTags"
+         ],
+         "Resource":"*"
+      },
+      {
+         "Effect":"Deny",
+         "Action":"ec2:CreateSnapshot",
+         "Resource":"arn:aws:ec2:us-east-1::snapshot/*",
+         "Condition":{
+            "ForAnyValue:StringEquals":{
+               "aws:TagKeys":"stack"
+            }
+         }
+      }
+   ]
+}
+```
+
+## 6: Launching Instances \(RunInstances\)<a name="iam-example-runinstances"></a>
 
 The [RunInstances](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-RunInstances.html) API action launches one or more instances\. `RunInstances` requires an AMI and creates an instance; and users can specify a key pair and security group in the request\. Launching into EC2\-VPC requires a subnet, and creates a network interface\. Launching from an Amazon EBS\-backed AMI creates a volume\. Therefore, the user must have permissions to use these Amazon EC2 resources\. You can create a policy statement that requires users to specify an optional parameter on `RunInstances`, or restricts users to particular values for a parameter\.
 
@@ -913,7 +1110,7 @@ The following example allows users to launch instances only if they use a launch
 }
 ```
 
-## 6\. Working with ClassicLink<a name="iam-example-classiclink"></a>
+## 7\. Working with ClassicLink<a name="iam-example-classiclink"></a>
 
 You can enable a VPC for ClassicLink and then link an EC2\-Classic instance to the VPC\. You can also view your ClassicLink\-enabled VPCs, and all of your EC2\-Classic instances that are linked to a VPC\. You can create policies with resource\-level permission for the `ec2:EnableVpcClassicLink`, `ec2:DisableVpcClassicLink`, `ec2:AttachClassicLinkVpc`, and `ec2:DetachClassicLinkVpc` actions to control how users are able to use those actions\. Resource\-level permissions are not supported for `ec2:Describe*` actions\.
 
@@ -1045,7 +1242,7 @@ The following grants users permission to unlink any linked EC2\-Classic instance
 }
 ```
 
-## 7\. Working with Reserved Instances<a name="iam-example-reservedinstances"></a>
+## 8\. Working with Reserved Instances<a name="iam-example-reservedinstances"></a>
 
 The following policy gives users permission to view, modify, and purchase Reserved Instances in your account\.
 
@@ -1086,7 +1283,7 @@ To allow users to view and modify the Reserved Instances in your account, but no
 }
 ```
 
-## 8\. Tagging Resources<a name="iam-example-taggingresources"></a>
+## 9\. Tagging Resources<a name="iam-example-taggingresources"></a>
 
 The following policy allows users to use the `CreateTags` action to apply tags to an instance only if the tag contains the key `environment` and the value `production`\. The `ForAllValues` modifier is used with the `aws:TagKeys` condition key to indicate that only the key `environment` is allowed in the request \(no other tags are allowed\)\. The user cannot tag any other resource types\.
 
@@ -1187,7 +1384,7 @@ This policy allows users to delete only the `environment=prod` tag on any resour
 }
 ```
 
-## 9: Working with IAM Roles<a name="iam-example-iam-roles"></a>
+## 10: Working with IAM Roles<a name="iam-example-iam-roles"></a>
 
 The following policy allows users to attach, replace, and detach an IAM role to instances that have the tag `department=test`\. Replacing or detaching an IAM role requires an association ID, therefore the policy also grants users permission to use the `ec2:DescribeIamInstanceProfileAssociations` action\. 
 
@@ -1253,7 +1450,7 @@ The following policy allows users to attach or replace an IAM role for any insta
 }
 ```
 
-## 10: Working with Route Tables<a name="iam-example-route-tables"></a>
+## 11: Working with Route Tables<a name="iam-example-route-tables"></a>
 
 The following policy allows users to add, remove, and replace routes for route tables that are associated with VPC `vpc-ec43eb89` only\. To specify a VPC for the `ec2:Vpc` condition key, you must specify the full ARN of the VPC\.
 
@@ -1281,7 +1478,7 @@ The following policy allows users to add, remove, and replace routes for route t
 }
 ```
 
-## 11: Allowing a Specific Instance to View Resources in Other AWS Services<a name="iam-example-source-instance"></a>
+## 12: Allowing a Specific Instance to View Resources in Other AWS Services<a name="iam-example-source-instance"></a>
 
 The following is an example of a policy that you might attach to an IAM role\. The policy allows an instance to view resources in various AWS services\. It uses the `ec2:SourceInstanceARN` condition key to specify that the instance from which the request is made must be instance `i-093452212644b0dd6`\. If the same IAM role is associated with another instance, the other instance cannot perform any of these actions\.
 
@@ -1312,7 +1509,7 @@ The `ec2:SourceInstanceARN` key is an AWS\-wide condition key, therefore it can 
 }
 ```
 
-## 12\. Working with Launch Templates<a name="iam-example-launch-templates"></a>
+## 13\. Working with Launch Templates<a name="iam-example-launch-templates"></a>
 
 The following policy allows users to create a launch template version and modify a launch template, but only for a specific launch template \(`lt-09477bcd97b0d3abc`\)\. Users cannot work with other launch templates\.
 

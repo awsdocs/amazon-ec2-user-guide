@@ -41,7 +41,7 @@ The AMIs that AWS community members have made available for others to use\. To f
 
    1. Choose an AMI that meets your needs, and then choose **Select**\.
 
-1. On the **Choose an Instance Type** page, select the hardware configuration and size of the instance to launch\. Larger instance types have more CPU and memory\. For more information, see [Instance Types](instance-types.md)\.
+1. <a name="choose-an-instance-type-page"></a>On the **Choose an Instance Type** page, select the hardware configuration and size of the instance to launch\. Larger instance types have more CPU and memory\. For more information, see [Instance Types](instance-types.md)\.
 
    To remain eligible for the free tier, choose the **t2\.micro** instance type\. For more information, see [T2 Instances](t2-instances.md)\.
 
@@ -49,7 +49,7 @@ The AMIs that AWS community members have made available for others to use\. To f
 **Note**  
 To set up an instance quickly for testing purposes, choose **Review and Launch** to accept the default configuration settings, and launch your instance\. Otherwise, to configure your instance further, choose **Next: Configure Instance Details**\.
 
-1. On the **Configure Instance Details** page, change the following settings as necessary \(expand **Advanced Details** to see all the settings\), and then choose **Next: Add Storage**:
+1. <a name="configure_instance_details_step"></a>On the **Configure Instance Details** page, change the following settings as necessary \(expand **Advanced Details** to see all the settings\), and then choose **Next: Add Storage**:
 
    + **Number of instances**: Enter the number of instances to launch\.
 **Note**  
@@ -113,7 +113,7 @@ Some instance types must be launched into a VPC\. If you don't have a VPC, you c
 
    + **User data**: You can specify user data to configure an instance during launch, or to run a configuration script\. To attach a file, select the **As file** option and browse for the file to attach\.
 
-1. On the **Add Storage** page, you can specify volumes to attach to the instance besides the volumes specified by the AMI \(such as the root device volume\)\. You can change the following options, then choose **Next: Add Tags** when you have finished:
+1. The AMI you selected includes one or more volumes of storage, including the root device volume\. On the **Add Storage** page, you can specify additional volumes to attach to the instance by choosing **Add New Volume**\. You can configure the following options for each volume:
 
    + **Type**: Select instance store or Amazon EBS volumes to associate with your instance\. The type of volume available in the list depends on the instance type you've chosen\. For more information, see [Amazon EC2 Instance Store](InstanceStorage.md) and [Amazon EBS Volumes](EBSVolumes.md)\.
 
@@ -137,33 +137,27 @@ Some AWS accounts created before 2012 might have access to Availability Zones in
 
    + **Delete on Termination**: For Amazon EBS volumes, select this check box to delete the volume when the instance is terminated\. For more information, see [Preserving Amazon EBS Volumes on Instance Termination](terminating-instances.md#preserving-volumes-on-termination)\.
 
-   + **Encrypted**: Select this check box to encrypt new Amazon EBS volumes\. Amazon EBS volumes that are restored from encrypted snapshots are automatically encrypted\. Encrypted volumes may only be attached to supported instance types\.
+   + **Encrypted**: Select a value in this menu to configure the encryption state of new Amazon EBS volumes\. The default value is **Not encrypted**\. Additional options include using your AWS\-managed Customer Master Key \(CMK\) or a customer\-managed CMK that you have created\. Available keys are listed in the menu\. You can also hover over the field and paste the Amazon Resource Name \(ARN\) of a key directly into the text box\. For information about creating customer\-managed CMKs, see [AWS Key Management Service Developer Guide](http://docs.aws.amazon.com/kms/latest/developerguide/EBSEncryption.html)\. 
+**Note**  
+Encrypted volumes may only be attached to [supported instance types](EBSEncryption.md#EBSEncryption_supported_instances)\.
 
-1. On the **Add Tags** page, specify tags by providing key and value combinations\. You can tag the instance, the volumes, or both\. Choose **Add another tag** to add more than one tag to your resources\. Choose **Next: Configure Security Group** when you are done\. 
+   When done configuring your volumes, choose **Next: Add Tags**\.
+
+1. On the **Add Tags** page, specify [tags](Using_Tags.md) by providing key and value combinations\. You can tag the instance, the volumes, or both\. For Spot Instances, you can tag the Spot Instance request only\. Choose **Add another tag** to add more than one tag to your resources\. Choose **Next: Configure Security Group** when you are done\. 
 
 1. On the **Configure Security Group** page, use a security group to define firewall rules for your instance\. These rules specify which incoming network traffic is delivered to your instance\. All other traffic is ignored\. \(For more information about security groups, see [Amazon EC2 Security Groups for Linux Instances](using-network-security.md)\.\) Select or create a security group as follows, and then choose **Review and Launch**\.
 
-   To select an existing security group:
+   1. To select an existing security group, choose **Select an existing security group**, and select your security group\. \(If you are launching into EC2\-Classic, the security groups are for EC2\-Classic\. If you are launching into a VPC, the security groups are for that VPC\.\)
+**Note**  
+\(Optional\) You can't edit the rules of an existing security group, but you can copy them to a new group by choosing **Copy to new**\. Then you can add rules as described in the next step\.
 
-   1. Choose **Select an existing security group**\. Your security groups are displayed\. \(If you are launching into EC2\-Classic, these are security groups for EC2\-Classic\. If you are launching into a VPC, these are security group for that VPC\.\)
-
-   1. Select a security group from the list\.
-
-   1. \(Optional\) You can't edit the rules of an existing security group, but you can copy them to a new group by choosing **Copy to new**\. Then you can add rules as described in the next procedure\.
-
-   To create a new security group:
-
-   1. Choose **Create a new security group**\. The wizard automatically defines the launch\-wizard\-*x* security group\.
-
-   1. \(Optional\) You can edit the name and description of the security group\.
-
-   1. The wizard automatically defines an inbound rule to allow you to connect to your instance over SSH \(port 22\) for Linux or RDP \(port 3389\) for Windows\.
-**Warning**  
-This rule enables all IP addresses \(`0.0.0.0/0`\) to access your instance over the specified port\. This is acceptable for this short exercise, but it's unsafe for production environments\. You should authorize only a specific IP address or range of addresses to access your instance\.
+   1. To create a new security group, choose **Create a new security group**\. The wizard automatically defines the launch\-wizard\-*x* security group and creates an inbound rule to allow you to connect to your instance over SSH \(port 22\)\.
 
    1. You can add rules to suit your needs\. For example, if your instance is a web server, open ports 80 \(HTTP\) and 443 \(HTTPS\) to allow internet traffic\.
 
       To add a rule, choose **Add Rule**, select the protocol to open to network traffic, and then specify the source\. Choose **My IP** from the **Source** list to let the wizard add your computer's public IP address\. However, if you are connecting through an ISP or from behind your firewall without a static IP address, you need to find out the range of IP addresses used by client computers\.
+**Warning**  
+Rules that enable all IP addresses \(`0.0.0.0/0`\) to access your instance over SSH or RDP are acceptable for this short exercise, but are unsafe for production environments\. You should authorize only a specific IP address or range of addresses to access your instance\.
 
 1. On the **Review Instance Launch** page, check the details of your instance, and make any necessary changes by choosing the appropriate **Edit** link\. 
 

@@ -8,7 +8,7 @@ When you stop and start an instance, be aware of the following:
 
 + If your instance is running in EC2\-Classic, we give it new public and private IPv4 addresses, and disassociate any Elastic IP address that's associated with the instance\. You must re\-associate any Elastic IP address after you restart your instance\.
 
-+ If your instance is in an Auto Scaling group, Auto Scaling marks the stopped instance as unhealthy, and may terminate it and launch a replacement instance\. To prevent this, you can temporarily suspend the Auto Scaling processes for the group\. For more information, see [Suspend and Resume Auto Scaling Processes](http://docs.aws.amazon.com/autoscaling/latest/userguide/US_SuspendResume.html) in the *Amazon EC2 Auto Scaling User Guide*\.
++ If your instance is in an Auto Scaling group, Amazon EC2 Auto Scaling marks the stopped instance as unhealthy, and may terminate it and launch a replacement instance\. To prevent this, you can temporarily suspend the Auto Scaling processes for the group\. For more information, see [Suspending and Resuming Scaling Processes](http://docs.aws.amazon.com/autoscaling/latest/userguide/as-suspend-resume-processes.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 
 **To modify the root volume of an instance**
 

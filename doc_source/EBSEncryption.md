@@ -64,7 +64,7 @@ You cannot remove encryption from an encrypted snapshot\.
 
 ### Migrate Data between Encrypted and Unencrypted Volumes<a name="migrate-data-encrypted-unencrypted"></a>
 
-When you have access to both an encrypted and unencrypted volume, you can freely transfer data between them\. EC2 carries out the encryption and decryption operations transparently\.
+When you have access to both an encrypted and unencrypted volume, you can freely transfer data between them\. EC2 carries out the encryption and decryption operations transparently\.<a name="procedure_migrating_data_encryption"></a>
 
 **To migrate data between encrypted and unencrypted volumes**
 
@@ -89,8 +89,10 @@ When you have access to both an encrypted and unencrypted volume, you can freely
    At a command prompt, use the robocopy command to copy the data from your source to the destination volume\. In this example, the source data is located in `D:\` and the destination volume is mounted at `E:\`\.
 
    ```
-   PS C:\> robocopy D:\ E:\ /e /copyall /eta
+   PS C:\> robocopy D:\<sourcefolder> E:\<destinationfolder> /e /copyall /eta
    ```
+**Note**  
+We recommend explicitly naming folders rather than copying the entire volume in order to avoid potential problems with hidden folders\.
 
 ### Apply Encryption While Copying a Snapshot<a name="apply-encryption-copy-snapshot"></a>
 

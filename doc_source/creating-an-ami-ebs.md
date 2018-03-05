@@ -53,7 +53,7 @@ You can create an AMI using the AWS Management Console or the command line\. The
 **Tip**  
 If this option is disabled, your instance isn't an Amazon EBS\-backed instance\.
 
-   In the **Create Image** dialog box, specify the following information, and then choose **Create Image**\.
+1. In the **Create Image** dialog box, specify the following information, and then choose **Create Image**\.
 
    + **Image name** – A unique name for the image\.
 

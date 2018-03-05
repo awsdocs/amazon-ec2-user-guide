@@ -30,7 +30,7 @@ If your workload uses sequential I/Os on HDD\-backed `st1` and `sc1` volumes, yo
 Whatever your EBS volume type, if you are not experiencing the IOPS or throughput you expect in your configuration, ensure that your EC2 instance bandwidth is not the limiting factor\. You should always use a current\-generation, EBS\-optimized instance \(or one that includes 10 Gb/s network connectivity\) for optimal performance\. For more information, see [Amazon EC2 Instance Configuration](ebs-ec2-config.md)\. Another possible cause for not experiencing the expected IOPS is that you are not driving enough I/O to the EBS volumes\.
 
 **Monitor I/O Characteristics with CloudWatch**  
-You can monitor these I/O characteristics with each volume's CloudWatch metrics\. Important metrics to consider include:
+You can monitor these I/O characteristics with each volume's [CloudWatch metrics](monitoring-volume-status.md)\. Important metrics to consider include:
 
 + `BurstBalance`
 

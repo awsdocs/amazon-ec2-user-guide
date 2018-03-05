@@ -26,7 +26,7 @@ New EBS volumes receive their maximum performance the moment that they are avail
 
    Here you can see that the new volume, `/dev/xvdf`, is attached, but not mounted \(because there is no path listed under the `MOUNTPOINT` column\)\.
 
-1. Use the dd or fio utilities to read all of the blocks on the device\. The dd command is installed by default on Linux systems, but fio is considerably faster because it allows multi\-threaded reads\.
+1. <a name="initialize-snapshot-step"></a>Use the dd or fio utilities to read all of the blocks on the device\. The dd command is installed by default on Linux systems, but fio is considerably faster because it allows multi\-threaded reads\.
 **Note**  
 This step may take several minutes up to several hours, depending on your EC2 instance bandwidth, the IOPS provisioned for the volume, and the size of the volume\.
 

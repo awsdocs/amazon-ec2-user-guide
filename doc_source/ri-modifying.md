@@ -131,7 +131,7 @@ You can modify your Reserved Instances using the Amazon EC2 console, the Amazon 
 
 ### Amazon EC2 Console<a name="ri-modification-process-console"></a>
 
-Before you modify your Reserved Instances, ensure that you have read the applicable restrictions\. If you are modifying instance size, ensure that you've calculated the total instance size footprint of the reservations that you want to modify and ensure that it matches the total instance size footprint of your target configurations\.
+Before you modify your Reserved Instances, ensure that you have read the applicable [restrictions](#ri-modification-limits)\. If you are modifying instance size, ensure that you've calculated the total [instance size footprint](#ri-modification-instancemove) of the reservations that you want to modify and ensure that it matches the total instance size footprint of your target configurations\.
 
 **To modify your Reserved Instances using the AWS Management Console**
 
@@ -193,7 +193,7 @@ The state returned shows your request as `processing`, `fulfilled`, or `failed`\
 
 If the target configuration settings that you requested were unique, you receive a message that your request is being processed\. At this point, Amazon EC2 has only determined that the parameters of your modification request are valid\. Your modification request can still fail during processing due to unavailable capacity\.
 
-In some situations, you might get a message indicating incomplete or failed modification requests instead of a confirmation\. Use the information in such messages as a starting point for resubmitting another modification request\. Ensure that you have read the applicable restrictions before submitting the request\.
+In some situations, you might get a message indicating incomplete or failed modification requests instead of a confirmation\. Use the information in such messages as a starting point for resubmitting another modification request\. Ensure that you have read the applicable [restrictions](#ri-modification-limits) before submitting the request\.
 
 **Not all selected Reserved Instances can be processed for modification**  
 Amazon EC2 identifies and lists the Reserved Instances that cannot be modified\. If you receive a message like this, go to the **Reserved Instances** page in the Amazon EC2 console and check the information for the Reserved Instances\.

@@ -28,7 +28,7 @@ This checklist is intended to help you get the maximum benefit from and satisfac
 
 **Backup and Recovery**
 
-+ Regularly back up your EBS volumes using Amazon EBS snapshots, and create an Amazon Machine Image \(AMI\) from your instance to save the configuration as a template for launching future instances\.
++ Regularly back up your EBS volumes using [Amazon EBS snapshots](EBSSnapshots.md), and create an [Amazon Machine Image \(AMI\)](AMIs.md) from your instance to save the configuration as a template for launching future instances\.
 
 + Deploy critical components of your application across multiple Availability Zones, and replicate your data appropriately\.
 
@@ -36,6 +36,6 @@ This checklist is intended to help you get the maximum benefit from and satisfac
 
 + Monitor and respond to events\. For more information, see [Monitoring Amazon EC2](monitoring_ec2.md)\.
 
-+ Ensure that you are prepared to handle failover\. For a basic solution, you can manually attach a network interface or Elastic IP address to a replacement instance\. For more information, see [Elastic Network Interfaces](using-eni.md)\. For an automated solution, you can use Auto Scaling\. For more information, see the [Amazon EC2 Auto Scaling User Guide](http://docs.aws.amazon.com/autoscaling/latest/userguide/)\.
++ Ensure that you are prepared to handle failover\. For a basic solution, you can manually attach a network interface or Elastic IP address to a replacement instance\. For more information, see [Elastic Network Interfaces](using-eni.md)\. For an automated solution, you can use Amazon EC2 Auto Scaling\. For more information, see the [Amazon EC2 Auto Scaling User Guide](http://docs.aws.amazon.com/autoscaling/latest/userguide/)\.
 
 + Regularly test the process of recovering your instances and Amazon EBS volumes if they fail\.

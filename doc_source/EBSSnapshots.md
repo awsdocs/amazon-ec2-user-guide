@@ -28,8 +28,7 @@ In the diagram below, Volume 1 is shown at three points in time\. A snapshot is 
 
  **Relations among Multiple Snapshots of a Volume** 
 
-![\[Snapshots capturing an initial volume state and two subsequent states after data has
-          been changed.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/snapshot_1a.png)
+![\[Snapshots capturing an initial volume state and two subsequent states after data has been changed.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/snapshot_1a.png)
 
 For more information about how data is managed when you delete a snapshot, see [Deleting an Amazon EBS Snapshot](ebs-deleting-snapshot.md)\.
 

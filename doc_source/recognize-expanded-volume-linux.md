@@ -18,7 +18,7 @@ You can begin resizing the file system as soon as the volume enters the `Optimiz
 **Important**  
 Before extending a file system that contains valuable data, it is a best practice to create a snapshot of the volume that contains it in case you need to roll back your changes\. For information about EBS snapshots, see [Creating an Amazon EBS Snapshot](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-creating-snapshot.html)\.
 
-For information about extending a Windows file system, see [Extending a Windows File System after Resizing the Volume](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/recognize-expanded-volume-windows.html) in the *Amazon EC2 User Guide for Windows Instances*\.
+For information about extending a Windows file system, see [Extending a Windows File System after Resizing the Volume](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/recognize-expanded-volume-windows.html) in the *Amazon EC2 User Guide for Windows Instances*\.<a name="procedure_partition_check"></a>
 
 **To check if your volume partition needs resizing**
 

@@ -6,7 +6,7 @@ This tutorial shows you how to remotely manage an Amazon EC2 instance using Syst
 With Run Command, you can also manage your servers and virtual machines \(VMs\) in your on\-premises environment or in an environment provided by other cloud providers\. For more information, see [Setting Up Systems Manager in Hybrid Environments](http://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-managedinstances.html)\.
 
 **Before you Begin**  
-You must configure an AWS Identity and Access Management \(IAM\) instance profile role for Systems Manager\. Attach the **AmazonEC2RoleforSSM** role to an Amazon EC2 instance\. This role enables the instance to communicate with the Systems Manager API\. For more information about how to attach the role to an existing instance, see [Attaching an IAM Role to an Instance](iam-roles-for-amazon-ec2.md#attach-iam-role)\.
+You must configure an AWS Identity and Access Management \(IAM\) instance profile role for Systems Manager\. Attach an IAM role with the **AmazonEC2RoleforSSM** managed policy to an Amazon EC2 instance\. This role enables the instance to communicate with the Systems Manager API\. For more information about how to attach the role to an existing instance, see [Attaching an IAM Role to an Instance](iam-roles-for-amazon-ec2.md#attach-iam-role)\.
 
 You must also configure your IAM user account for Systems Manager, as described in the next section\.
 
@@ -150,8 +150,8 @@ For more information about Run Command and Systems Manager, see the following to
 
 + [Amazon EC2 Systems Manager API Reference](http://docs.aws.amazon.com/ssm/latest/APIReference/)
 
-+ [Systems Manager AWS Tools for Windows PowerShell Reference](http://docs.aws.amazon.com/powershell/latest/reference/items/Amazon_Simple_Systems_Management_cmdlets.html)
++ [Systems Manager AWS Tools for PowerShell Cmdlet Reference](http://docs.aws.amazon.com/powershell/latest/reference/items/Amazon_Simple_Systems_Management_cmdlets.html)
 
-+ [Systems Manager AWS Command Line Interface Reference](http://docs.aws.amazon.com/cli/latest/reference/ssm/index.html)
++ [Systems Manager AWS CLI Command Reference](http://docs.aws.amazon.com/cli/latest/reference/ssm/index.html)
 
 +  [AWS SDKs](http://aws.amazon.com/tools/#SDKs)

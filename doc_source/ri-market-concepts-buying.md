@@ -293,7 +293,7 @@ You can view the Reserved Instances you've purchased using the Amazon EC2 consol
 
 1. Your active and retired Reserved Instances are listed\. The **State** column displays the state\. 
 
-1. If you are a seller in the Reserved Instance Marketplace the **My Listings** tab displays the status of a reservation that's listed in the Reserved Instance Marketplace\. For more information, see [Reserved Instance Listing States](ri-market-general.md#ri-listing-states)\.
+1. If you are a seller in the Reserved Instance Marketplace the **My Listings** tab displays the status of a reservation that's listed in the [Reserved Instance Marketplace](ri-market-general.md)\. For more information, see [Reserved Instance Listing States](ri-market-general.md#ri-listing-states)\.
 
 **To view your Reserved Instances using the command line**
 
@@ -317,4 +317,4 @@ If you're launching an instance to take advantage of the billing benefit of a Re
 
 For more information, see [Launching an Instance Using the Launch Instance Wizard](launching-instance.md)\. For examples of how Reserved Instances are applied to your running instances, see [How Reserved Instances Are Applied](apply_ri.md)\.
 
-You can use Auto Scaling or other AWS services to launch the On\-Demand Instances that use your Reserved Instance benefits\. For more information, see the [Amazon EC2 Auto Scaling User Guide](http://docs.aws.amazon.com/autoscaling/latest/userguide/WhatIsAutoScaling.html)\.
+You can use Amazon EC2 Auto Scaling or other AWS services to launch the On\-Demand Instances that use your Reserved Instance benefits\. For more information, see the [Amazon EC2 Auto Scaling User Guide](http://docs.aws.amazon.com/autoscaling/latest/userguide/WhatIsAutoScaling.html)\.

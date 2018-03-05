@@ -130,12 +130,12 @@ Use the following [describe\-instance\-status](http://docs.aws.amazon.com/cli/la
 ```
 aws ec2 describe-instance-status --instance-ids i-1234567890abcdef0
 ```
-
+<a name="schedevents_actions_instancereboot"></a>
 **Actions for Instance Reboot**  
 You can wait for the instance reboot to occur within its scheduled maintenance window\. Alternatively, you can reboot your instance yourself at a time that is convenient for you\. For more information, see [Reboot Your Instance](ec2-instance-reboot.md)\.
 
 After you reboot your instance, the scheduled event for the instance reboot is canceled immediately and the event's description is updated\. The pending maintenance to the underlying host computer is completed, and you can begin using your instance again after it has fully booted\. 
-
+<a name="schedevents_actions_systemreboot"></a>
 **Actions for System Reboot**  
 It is not possible for you to reboot the system yourself\. We recommend that you wait for the system reboot to occur during its scheduled maintenance window\. A system reboot typically completes in a matter of minutes, the instance retains its IP address and DNS name, and any data on local instance store volumes is preserved\. After the system reboot has occurred, the scheduled event for the instance is cleared, and you can verify that the software on your instance is operating as you expect\.
 

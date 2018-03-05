@@ -1,6 +1,6 @@
 # Storage Optimized Instances<a name="storage-optimized-instances"></a>
 
-Storage optimized instances are designed for workloads that require high, sequential read and write access to very large data sets on local storage\. They are optimized to deliver tens of thousands of low\-latency, random I/O operations per second \(IOPS\) to applications\.
+Storage optimized instances are designed for workloads that require high, sequential read and write access to very large data sets on local storage\. They are optimized to deliver tens of thousands of low\-latency, random I/O operations per second \(IOPS\) to applications\.<a name="d2-instances"></a>
 
 **D2 Instances**
 
@@ -10,7 +10,7 @@ D2 instances are well suited for the following applications:
 
 + MapReduce and Hadoop distributed computing
 
-+ Log or data processing applications
++ Log or data processing applications<a name="h1-instances"></a>
 
 **H1 Instances**
 
@@ -20,7 +20,7 @@ H1 instances are well suited for the following applications:
 
 + Applications requiring sequential access to large amounts of data on direct\-attached instance storage
 
-+ Applications that require high\-throughput access to large quantities of data
++ Applications that require high\-throughput access to large quantities of data<a name="i3-instances"></a>
 
 **I3 Instances**
 
@@ -102,12 +102,12 @@ The following is a summary of network performance for Storage optimized instance
 
 | Instance type | Network performance | Enhanced networking | 
 | --- | --- | --- | 
-|  `i3.4xlarge` and smaller  |  Up to 10 Gbps, use network I/O credit mechanism  | ENA | 
-|  `i3.8xlarge`, `h1.8xlarge`  |  10 Gbps  | ENA | 
-|  `i3.16xlarge`, `h1.16xlarge`  |  25 Gbps  | ENA | 
-|  `d2.xlarge`  |  Moderate  | Intel 82599 VF | 
-| d2\.2xlarge, d2\.4xlarge |  High  | Intel 82599 VF | 
-| d2\.8xlarge |  10 Gbps  | Intel 82599 VF | 
+|  `i3.4xlarge` and smaller  |  Up to 10 Gbps, use network I/O credit mechanism  | [ENA](enhanced-networking-ena.md) | 
+|  `i3.8xlarge`, `h1.8xlarge`  |  10 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `i3.16xlarge`, `h1.16xlarge`  |  25 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `d2.xlarge`  |  Moderate  | [Intel 82599 VF](sriov-networking.md) | 
+| d2\.2xlarge, d2\.4xlarge |  High  | [Intel 82599 VF](sriov-networking.md) | 
+| d2\.8xlarge |  10 Gbps  | [Intel 82599 VF](sriov-networking.md) | 
 
 ## SSD I/O Performance<a name="i2-instances-diskperf"></a>
 
@@ -138,9 +138,9 @@ The following is a summary of features for Storage optimized instances:
 
 |  | VPC only | SSD volumes | Placement group | Enhanced networking | 
 | --- | --- | --- | --- | --- | 
-|  D2  |   |   |  Yes  |  Intel 82599 VF  | 
-|  H1  |  Yes  |   |  Yes  |  ENA  | 
-|  I3  |  Yes  |  NVMe  |  Yes  |  ENA  | 
+|  D2  |   |   |  Yes  |  [Intel 82599 VF](sriov-networking.md)  | 
+|  H1  |  Yes  |   |  Yes  |  [ENA](enhanced-networking-ena.md)  | 
+|  I3  |  Yes  |  NVMe  |  Yes  |  [ENA](enhanced-networking-ena.md)  | 
 
 For more information, see the following:
 

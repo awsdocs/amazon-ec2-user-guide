@@ -26,7 +26,7 @@ After you launch an instance, there are some limitations to changing its tenancy
 
 + You cannot change the tenancy of an instance from `dedicated` or `host` to `default` after you've launched it\.
 
-+ You can change the tenancy of an instance from `dedicated` to `host`, or from `host` to `dedicated` after you've launched it\. For more information, see [Changing the Tenancy of an Instance](#dedicated-change-tenancy)\.
+You can change the tenancy of an instance from `dedicated` to `host`, or from `host` to `dedicated` after you've launched it\. For more information, see [Changing the Tenancy of an Instance](#dedicated-change-tenancy)\.
 
 Each VPC has a related instance tenancy attribute\. This attribute has the following values\.
 
@@ -197,7 +197,7 @@ For more information about launching an instance with a tenancy of `host`, see [
 
 ### Changing the Tenancy of an Instance<a name="dedicated-change-tenancy"></a>
 
-Depending on your instance type and platform, you can change the tenancy of a stopped Dedicated Instance to `host` after launching it\. The next time the instance starts, it's started on a Dedicated Host that's allocated to your account\. For more information about allocating and working with Dedicated Hosts, and the instance types that can be used with Dedicated Hosts, see [Using Dedicated Hosts](how-dedicated-hosts-work.md)\. Similarly, you can change the tenancy of a stopped Dedicated Host instance to `dedicated` after launching it\. The next time the instance starts, it's started on single\-tenant hardware that we control\.
+Depending on your instance type and platform, you can change the tenancy of a stopped Dedicated Instance to `host` after launching it\. The next time the instance starts, it's started on a Dedicated Host that's allocated to your account\. For more information about allocating and working with Dedicated Hosts, and the instance types that can be used with Dedicated Hosts, see [Working with Dedicated Hosts](how-dedicated-hosts-work.md)\. Similarly, you can change the tenancy of a stopped Dedicated Host instance to `dedicated` after launching it\. The next time the instance starts, it's started on single\-tenant hardware that we control\.
 
 **To change the tenancy of an instance using the console**
 

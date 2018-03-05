@@ -22,11 +22,11 @@ The instance is an Amazon EBS\-backed instance \(meaning that the root volume is
 
 To complete this tutorial, perform the following tasks:
 
-1. Launch an Instance
+1. [Launch an Instance](#ec2-launch-instance)
 
-1. Connect to Your Instance
+1. [Connect to Your Instance](#ec2-connect-to-instance-linux)
 
-1. Clean Up Your Instance
+1. [Clean Up Your Instance](#ec2-clean-up-your-instance)
 
 **Related Tutorials**
 

@@ -14,4 +14,4 @@ Some resources can be used in all regions \(global\), and some resources are spe
 |  Security groups  |  Regional  |  A security group is tied to a region and can be assigned only to instances in the same region\. You can't enable an instance to communicate with an instance outside its region using security group rules\. Traffic from an instance in another region is seen as WAN bandwidth\.  | 
 |  EBS snapshots  |  Regional  |  An EBS snapshot is tied to its region and can only be used to create volumes in the same region\. You can copy a snapshot from one region to another\. For more information, see [Copying an Amazon EBS Snapshot](ebs-copy-snapshot.md)\.  | 
 |  EBS volumes  |  Availability Zone  |  An Amazon EBS volume is tied to its Availability Zone and can be attached only to instances in the same Availability Zone\.  | 
-|  Instances  |  Availability Zone  |  An instance is tied to the Availability Zones in which you launched it\. However, note that its instance ID is tied to the region\.  | 
+|  Instances  |  Availability Zone  |  An instance is tied to the Availability Zones in which you launched it\. However, its instance ID is tied to the region\.  | 

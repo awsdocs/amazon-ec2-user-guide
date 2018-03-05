@@ -10,7 +10,7 @@ It may take up to 24 hours for a new configuration to take effect, and in some c
 
 While the volume is in the `optimizing` state, your volume performance is in between the source and target configuration specifications\. Transitional volume performance will be no less than the source volume performance\. If you are downgrading IOPS, transitional volume performance is no less than the target volume performance\.
 
-You can monitor the progress of a modification by inspecting the AWS Management Console, by querying the volume's state with the Amazon EC2 API/CLI, or by accessing metrics sent to Amazon CloudWatch Events\. The following procedures demonstrate these approaches\.
+You can monitor the progress of a modification by inspecting the AWS Management Console, by querying the volume's state with the Amazon EC2 API/CLI, or by accessing metrics sent to Amazon CloudWatch Events\. The following procedures demonstrate these approaches\.<a name="console_monitoring"></a>
 
 **To monitor progress of a modification from the console**
 
@@ -21,8 +21,8 @@ You can monitor the progress of a modification by inspecting the AWS Management 
 1. Open the information icon next to the **State** field to display complete before and after information about the most recent modification action, as illustrated below\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/monitor_modifications.png)
 
-**Example To monitor progress of a modification from the command line**  
-Use describe\-volumes\-modifications to view the progress of the modifications\. In this example, volume `vol-11111111111111111` from above and another volume, `vol-22222222222222222`, are called\.  
+**Example To monitor progress of a modification from the command line**  <a name="api_cli_monitoring"></a>
+Use [describe\-volumes\-modifications](cli-modify.md) to view the progress of the modifications\. In this example, volume `vol-11111111111111111` from above and another volume, `vol-22222222222222222`, are called\.  
 
 ```
 aws ec2 describe-volumes-modifications --region us-east-1 --volume-id vol-11111111111111111 vol-22222222222222222
@@ -76,7 +76,7 @@ In this case the query returns information about two volumes:
         "ID": "vol-bEXAMPLE"
     }
 ]
-```
+```<a name="cwe_monitoring"></a>
 
 **To monitor progress of a modification with CloudWatch Events**
 
@@ -132,4 +132,4 @@ With CloudWatch Events, you can create a notification rule for volume modificati
    }
    ```
 
-You can use your rule to generate a notification message with [Amazon SNS](http://docs.aws.amazon.com/sns/latest/dg/) or to invoke an [Lambda function](http://docs.aws.amazon.com/lambda/latest/dg/) in response to matching events\.
+You can use your rule to generate a notification message with [Amazon SNS](http://docs.aws.amazon.com/sns/latest/dg/) or to invoke a [Lambda function](http://docs.aws.amazon.com/lambda/latest/dg/) in response to matching events\.

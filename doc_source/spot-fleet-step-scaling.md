@@ -24,7 +24,7 @@ Note that when a Spot Fleet terminates an instance because the target capacity w
 
 + For the AWS metrics that you will use in your scaling policies, enable CloudWatch metrics collection if the service that provides the metrics does not enable it by default\.
 
-+ If you use the AWS Management Console to enable automatic scaling for your Spot Fleet, it creates a role named `aws-ec2-spot-fleet-autoscale-role` that grants Auto Scaling permission to describe the alarms for your policies, monitor the current capacity of the fleet, and modify the capacity of the fleet\. If you configure automatic scaling using the AWS CLI or an API, you can use this role if it exists, or manually create your own role for this purpose\.
++ If you use the AWS Management Console to enable automatic scaling for your Spot Fleet, it creates a role named `aws-ec2-spot-fleet-autoscale-role` that grants Amazon EC2 Auto Scaling permission to describe the alarms for your policies, monitor the current capacity of the fleet, and modify the capacity of the fleet\. If you configure automatic scaling using the AWS CLI or an API, you can use this role if it exists, or manually create your own role for this purpose\.
 
 **To create a role manually**
 
@@ -32,21 +32,13 @@ Note that when a Spot Fleet terminates an instance because the target capacity w
 
   1. In the navigation pane, choose **Roles**\.
 
-  1. Choose **Create New Role**\.
+  1. Choose **Create role**\.
 
-  1. On the **Set Role Name** page, type a name for the role and then choose **Next Step**\.
+  1. On the **Select type of trusted entity** page, choose **AWS service**, **EC2**, **EC2 \- Spot Fleet Auto Scaling**, and then choose **Next: Permissions**\.
 
-  1. On the **Select Role Type** page, choose **Select** next to **Amazon EC2**\.
+  1. On the **Attached permissions policy** page, choose **Next:Review**\.
 
-  1. On the **Attach Policy** page, select the `AmazonEC2SpotFleetAutoscaleRole` policy and then choose **Next Step**\.
-
-  1. On the **Review** page, choose **Create Role**\.
-
-  1. Select the role that you just created\.
-
-  1. On the **Trust Relationships** tab, choose **Edit Trust Relationship**\.
-
-  1. Change `ec2.amazonaws.com` to `application-autoscaling.amazonaws.com` and then choose **Update Trust Policy**\.
+  1. On the **Review** page, type a name for the role and then choose **Create role**\.
 
 **To create a CloudWatch alarm**
 

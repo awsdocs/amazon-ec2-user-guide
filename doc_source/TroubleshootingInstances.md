@@ -7,7 +7,7 @@
 + [Out of memory: kill process](#MemoryOOM)
 + [ERROR: mmu\_update failed \(Memory management update failed\)](#MemoryMMU)
 + [I/O Error \(Block Device Failure\)](#DeviceBlock)
-+ [IO ERROR: neither local nor remote disk \(Broken distributed block device\)](#DeviceDistributed)
++ [I/O ERROR: neither local nor remote disk \(Broken distributed block device\)](#DeviceDistributed)
 + [request\_module: runaway loop modprobe \(Looping legacy kernel modprobe on older Linux versions\)](#KernelLoop)
 + ["FATAL: kernel too old" and "fsck: No such file or directory while trying to open /dev" \(Kernel and AMI mismatch\)](#KernelOld)
 + ["FATAL: Could not load /lib/modules" or "BusyBox" \(Missing kernel modules\)](#KernelMissing)
@@ -87,7 +87,7 @@ For Linux\-based instances that have failed an instance status check, such as th
 
 + [I/O Error \(Block Device Failure\)](#DeviceBlock)
 
-+ [IO ERROR: neither local nor remote disk \(Broken distributed block device\)](#DeviceDistributed)
++ [I/O ERROR: neither local nor remote disk \(Broken distributed block device\)](#DeviceDistributed)
 
 **Kernel Errors**
 
@@ -223,7 +223,7 @@ An input/output error is indicated by a system log entry similar to the followin
 |  Amazon EBS\-backed  |  Use the following procedure: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstances.html)  | 
 |  Instance store\-backed  |   Terminate the instance and launch a new instance\.  Data cannot be recovered\. Recover from backups\.   It's a good practice to use either Amazon S3 or Amazon EBS for backups\. Instance store volumes are directly tied to single host and single disk failures\.   | 
 
-## IO ERROR: neither local nor remote disk \(Broken distributed block device\)<a name="DeviceDistributed"></a>
+## I/O ERROR: neither local nor remote disk \(Broken distributed block device\)<a name="DeviceDistributed"></a>
 
 An input/output error on the device is indicated by a system log entry similar to the following example:
 

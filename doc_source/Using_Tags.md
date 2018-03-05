@@ -26,7 +26,7 @@ If you're using AWS Identity and Access Management \(IAM\), you can control whic
 
 ## Tagging Your Resources<a name="tag-resources"></a>
 
-You can tag most Amazon EC2 resources that already exist in your account\. The table below lists the resources that support tagging\.
+You can tag most Amazon EC2 resources that already exist in your account\. The [table](#tag-ec2-resources-table) below lists the resources that support tagging\.
 
 If you're using the Amazon EC2 console, you can apply tags to resources by using the **Tags** tab on the relevant resource screen, or you can use the **Tags** screen\. Some resource screens enable you to specify tags for a resource when you create the resource; for example, a tag with a key of `Name` and a value that you specify\. In most cases, the console applies the tags immediately after the resource is created \(rather than during resource creation\)\. The console may organize resources according to the `Name` tag, but this tag doesn't have any semantic meaning to the Amazon EC2 service\.
 
@@ -45,7 +45,7 @@ The following table describes the Amazon EC2 resources that can be tagged, and t
 |  Customer gateway  |  Yes  | No | 
 |  Dedicated Host  |  No  | No | 
 |  DHCP option  |  Yes  | No | 
-|  EBS snapshot  |  Yes  | No | 
+|  EBS snapshot  |  Yes  | Yes | 
 |  EBS volume  |  Yes  | Yes | 
 |  Egress\-only internet gateway  |  No  | No | 
 |  Elastic IP address  |  Yes  | No | 
@@ -262,6 +262,9 @@ Use the following to add, update, list, and delete the tags for your resources\.
 |  Describe one or more tags\.  |  [describe\-tags](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-tags.html)  |  [Get\-EC2Tag](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Tag.html)  |  [DescribeTags](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeTags.html)  | 
 
 You can also filter a list of resources according to their tags\. The following examples demonstrate how to filter your instances using tags with the [describe\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command\.
+
+**Note**  
+The way you enter JSON\-formatted parameters on the command line differs depending on your operating system\. Linux, macOS, or Unix and Windows PowerShell use the single quote \('\) to enclose the JSON data structure\. Omit the single quotes when using the commands with the Windows command line\. For more information, see [Specifying Parameter Values for the AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/cli-using-param.html)\.
 
 **Example 1: Describe instances with the specified tag key**  
 The following command describes the instances with a Stack tag, regardless of the value of the tag\.

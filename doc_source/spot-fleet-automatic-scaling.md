@@ -8,6 +8,6 @@ You can also configure the cooldown period for a scaling policy\. This is the nu
 
 Spot Fleet supports the following types of scaling policies:
 
-+ Target tracking scaling—Increase or decrease  the current capacity of the fleet based on a target value for a specific metric\. This is similar to the way that your thermostat maintains the temperature of your home – you select temperature and the thermostat does the rest\.
++ [Target tracking scaling](spot-fleet-target-tracking.md)—Increase or decrease  the current capacity of the fleet based on a target value for a specific metric\. This is similar to the way that your thermostat maintains the temperature of your home – you select temperature and the thermostat does the rest\.
 
-+ Step scaling—Increase or decrease the current capacity of the fleet based on a set of scaling adjustments, known as step adjustments, that vary based on the size of the alarm breach\.
++ [Step scaling](spot-fleet-step-scaling.md)—Increase or decrease the current capacity of the fleet based on a set of scaling adjustments, known as step adjustments, that vary based on the size of the alarm breach\.

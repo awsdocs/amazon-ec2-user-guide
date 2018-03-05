@@ -1,36 +1,72 @@
 # Troubleshooting Stopping Your Instance<a name="TroubleshootingInstancesStopping"></a>
 
-If you have stopped your Amazon EBS\-backed instance and it appears "stuck" in the `stopping` state, there may be an issue with the underlying host computer\.
+If you have stopped your Amazon EBS\-backed instance and it appears stuck in the `stopping` state, there may be an issue with the underlying host computer\.
 
-First, try stopping the instance again\. If you are using the [stop\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) \(AWS CLI\) command be sure to use the `--force` option\.
+There is no cost for any instance usage while an instance is not in the `running` state\.
 
-If you can't force the instance to stop, you can create an AMI from the instance and launch a replacement instance\.
+Force the instance to stop using either the console or the AWS CLI\.
 
-You are not billed for any instance usage while an instance is not in the `running` state\.
++ To force the instance to stop using the console, select the stuck instance, and choose **Actions**, **Instance State**, **Stop**, and **Yes, Forcefully Stop**\.
 
-**To create a replacement instance**
++ To force the instance to stop using the AWS CLI, use the [stop\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) command and the `--force` option as follows:
+
+  ```
+  aws ec2 stop-instances --instance-ids i-0123ab456c789d01e --force
+  ```
+
+If, after 10 minutes, the instance has not stopped, post a request for help in the [Amazon EC2 forum](https://forums.aws.amazon.com/forum.jspa?forumID=30)\. To help expedite a resolution, include the instance ID, and describe the steps that you've already taken\. Alternatively, if you have a support plan, create a technical support case in the [Support Center](https://console.aws.amazon.com/support/home#/)\.
+
+## Creating a Replacement Instance<a name="Creating_Replacement_Instance"></a>
+
+To attempt to resolve the problem while you are waiting for assistance from the [Amazon EC2 forum](https://forums.aws.amazon.com/forum.jspa?forumID=30) or the [Support Center](https://console.aws.amazon.com/support/home#/), create a replacement instance\. Create an AMI of the stuck instance, and launch a new instance using the new AMI\. 
+
+**To create a replacement instance using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation pane, choose **Instances** and select the instance\.
+1. In the navigation pane, choose **Instances** and select the stuck instance\.
 
 1. Choose **Actions**, **Image**, **Create Image**\.
 
-1. In the **Create Image** dialog box, fill in the following fields and then choose **Create Image**:
+1. In the **Create Image** dialog box, fill in the following fields, and then choose **Create Image**:
 
    1. Specify a name and description for the AMI\.
 
    1. Choose **No reboot**\.
 
-1. Launch an instance from the AMI and verify that the instance is working\.
+   For more information, see [Creating a Linux AMI from an Instance](creating-an-ami-ebs.md#how-to-create-ebs-ami)
 
-1. Select the stuck instance, choose **Actions**, **Instance State**, **Terminate**\. If the instance also gets stuck terminating, Amazon EC2 automatically forces it to terminate within a few hours\.
+1. Launch a new instance from the AMI and verify that the new instance is working\.
 
-If you are unable to create an AMI from the instance as described in the previous procedure, you can set up a replacement instance as follows:
+1. Select the stuck instance, and choose **Actions**, **Instance State**, **Terminate**\. If the instance also gets stuck terminating, Amazon EC2 automatically forces it to terminate within a few hours\.
 
-**To create a replacement instance \(if the previous procedure fails\)**
+**To create a replacement instance using the CLI**
 
-1. Select the instance, open the **Description** tab, and view the **Block devices** list\. Select each volume and write down its volume ID\. Be sure to note which volume is the root volume\.
+1. Create an AMI from the stuck instance using the [create\-image](http://docs.aws.amazon.com/cli/latest/reference/ec2/create-image.html) \(AWS CLI\) command and the `--no-reboot` option as follows:\.
+
+   ```
+   aws ec2 create-image --instance-id i-0123ab456c789d01e --name "AMI" --description "AMI for replacement instance" --no-reboot
+   ```
+
+1. Launch a new instance from the AMI using the [run\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) \(AWS CLI\) command as follows:
+
+   ```
+   aws ec2 run-instances --image-id ami-1a2b3c4d --count 1 --instance-type c3.large --key-name MyKeyPair --security-groups MySecurityGroup
+   ```
+
+1. Verify that the new instance is working\.
+
+1. Terminate the stuck instance using the [terminate\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/terminate-instances.html) \(AWS CLI\) command as follows:
+
+   ```
+   aws ec2 terminate-instances --instance-ids i-1234567890abcdef0
+   ```
+
+If you are unable to create an AMI from the instance as described in the previous procedures, you can set up a replacement instance as follows:
+
+**\(Alternate\) To create a replacement instance using the console**
+
+1. Select the instance and choose **Description**, **Block devices**\. Select each volume and write down its volume ID\. Be sure to note which volume is the root volume\.
 
 1. In the navigation pane, choose **Volumes**\. Select each volume for the instance, and choose **Actions**, **Create Snapshot**\.
 
@@ -47,5 +83,3 @@ If you are unable to create an AMI from the instance as described in the previou
 1. In the navigation pane, choose **Instances** and select the replacement instance\. Choose **Actions**, **Instance State**, **Start**\. Verify that the instance is working\.
 
 1. Select the stuck instance, choose **Actions**, **Instance State**, **Terminate**\. If the instance also gets stuck terminating, Amazon EC2 automatically forces it to terminate within a few hours\.
-
-If you're unable to complete these procedures, you can post a request for help to the [Amazon EC2 forum](https://forums.aws.amazon.com/forum.jspa?forumID=30)\. To help expedite a resolution, include the instance ID and describe the steps that you've already taken\.

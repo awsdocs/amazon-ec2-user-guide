@@ -63,7 +63,7 @@ Use the following procedure to connect to your Linux instance using an SSH clien
    chmod 400 /path/my-key-pair.pem
    ```
 
-1. Use the ssh command to connect to the instance\. You specify the private key \(`.pem`\) file and *user\_name*@*public\_dns\_name*\. For Amazon Linux, the user name is `ec2-user`\. For RHEL, the user name is `ec2-user` or `root`\. For Ubuntu, the user name is `ubuntu` or `root`\. For Centos, the user name is `centos`\. For Fedora, the user name is `ec2-user`\. For SUSE, the user name is `ec2-user` or `root`\. Otherwise, if `ec2-user` and `root` don't work, check with your AMI provider\.
+1. Use the ssh command to connect to the instance\. You specify the private key \(`.pem`\) file and *user\_name*@*public\_dns\_name*\. For Amazon Linux, the user name is `ec2-user`\. For Centos, the user name is `centos`\. For Debian, the user name is `admin` or `root`\. For Fedora, the user name is `ec2-user`\. For RHEL, the user name is `ec2-user` or `root`\. For SUSE, the user name is `ec2-user` or `root`\. For Ubuntu, the user name is `ubuntu` or `root`\. Otherwise, if `ec2-user` and `root` don't work, check with your AMI provider\.
 
    ```
    ssh -i /path/my-key-pair.pem ec2-user@ec2-198-51-100-1.compute-1.amazonaws.com
@@ -78,7 +78,7 @@ Use the following procedure to connect to your Linux instance using an SSH clien
    Are you sure you want to continue connecting (yes/no)?
    ```
 
-1. \(IPv6 only\) Alternatively, you can connect to the instance using its IPv6 address\. Specify the ssh command with the path to the private key \(\.pem\) file and the appropriate user name\. For Amazon Linux, the user name is `ec2-user`\. For RHEL, the user name is `ec2-user` or `root`\. For Ubuntu, the user name is `ubuntu` or `root`\. For Centos, the user name is `centos`\. For Fedora, the user name is `ec2-user`\. For SUSE, the user name is `ec2-user` or `root`\. Otherwise, if `ec2-user` and `root` don't work, check with your AMI provider\.
+1. \(IPv6 only\) Alternatively, you can connect to the instance using its IPv6 address\. Specify the ssh command with the path to the private key \(\.pem\) file and the appropriate user name\. For Amazon Linux, the user name is `ec2-user`\. For Centos, the user name is `centos`\. For Debian, the user name is `admin` or `root`\. For Fedora, the user name is `ec2-user`\. For RHEL, the user name is `ec2-user` or `root`\. For SUSE, the user name is `ec2-user` or `root`\. For Ubuntu, the user name is `ubuntu` or `root`\. Otherwise, if `ec2-user` and `root` don't work, check with your AMI provider\.
 
    ```
    ssh -i /path/my-key-pair.pem ec2-user@2001:db8:1234:1a00:9691:9503:25ad:1761
@@ -153,7 +153,7 @@ The following procedure steps you through using SCP to transfer a file\. If you'
    scp -i /path/my-key-pair.pem /path/SampleFile.txt ec2-user@ec2-198-51-100-1.compute-1.amazonaws.com:~
    ```
 **Tip**  
-For Amazon Linux, the user name is `ec2-user`\. For RHEL, the user name is `ec2-user` or `root`\. For Ubuntu, the user name is `ubuntu` or `root`\. For Centos, the user name is `centos`\. For Fedora, the user name is `ec2-user`\. For SUSE, the user name is `ec2-user` or `root`\. Otherwise, if `ec2-user` and `root` don't work, check with your AMI provider\.
+For Amazon Linux, the user name is `ec2-user`\. For Centos, the user name is `centos`\. For Debian, the user name is `admin` or `root`\. For Fedora, the user name is `ec2-user`\. For RHEL, the user name is `ec2-user` or `root`\. For SUSE, the user name is `ec2-user` or `root`\. For Ubuntu, the user name is `ubuntu` or `root`\. Otherwise, if `ec2-user` and `root` don't work, check with your AMI provider\.
 
    You see a response like the following\.
 

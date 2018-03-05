@@ -2,13 +2,13 @@
 
 The following examples show launch configurations that you can use with the [request\-spot\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-instances.html) command to create a Spot Instance request\. For more information, see [Creating a Spot Instance Request](spot-requests.md#using-spot-instances-request)\.
 
-1. Launch Spot Instances
+1. [Launch Spot Instances](#spot-launch-specification1)
 
-1. Launch Spot Instances in the specified Availability Zone
+1. [Launch Spot Instances in the specified Availability Zone](#spot-launch-specification2)
 
-1. Launch Spot Instances in the specified subnet
+1. [Launch Spot Instances in the specified subnet](#spot-launch-specification3)
 
-1. Launch a Dedicated Spot Instance
+1. [Launch a Dedicated Spot Instance](#spot-launch-specification4)
 
 ## Example 1: Launch Spot Instances<a name="spot-launch-specification1"></a>
 

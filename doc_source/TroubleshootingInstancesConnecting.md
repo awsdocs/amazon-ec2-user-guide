@@ -32,7 +32,7 @@ If you try to connect to your instance and get an error message `Network error: 
 
      For Windows instances: Verify that there is a rule that allows traffic from your computer to port 3389 \(RDP\)\.
 
-     If your security group has a rule that allows inbound traffic from a single IP address, this address may not be static if your computer is on a corporate network or if you are connecting through an internet service provider \(ISP\)\. Instead, specify the range of IP addresses used by client computers\. If your security group does not have a rule that allows inbound traffic as described in the previous step, add a rule to your security group\. For more information, see Authorizing Network Access to Your Instances\.
+     If your security group has a rule that allows inbound traffic from a single IP address, this address may not be static if your computer is on a corporate network or if you are connecting through an internet service provider \(ISP\)\. Instead, specify the range of IP addresses used by client computers\. If your security group does not have a rule that allows inbound traffic as described in the previous step, add a rule to your security group\. For more information, see [Authorizing Network Access to Your Instances](authorizing-access-to-an-instance.md)\.
 
 + \[EC2\-VPC\] Check the route table for the subnet\. You need a route that sends all traffic destined outside the VPC to the internet gateway for the VPC\.
 
@@ -146,19 +146,21 @@ In PuTTYgen, load your private key file and select **Save Private Key** rather t
 
   + For an Amazon Linux AMI, the user name is `ec2-user`\.
 
-  + For a RHEL AMI, the user name is `ec2-user` or `root`\.
-
-  + For an Ubuntu AMI, the user name is `ubuntu` or `root`\.
-
   + For a Centos AMI, the user name is `centos`\.
+
+  + For a Debian AMI, the user name is `admin` or `root`\.
 
   + For a Fedora AMI, the user name is `ec2-user`\.
 
-  + For SUSE, the user name is `ec2-user` or `root`\.
+  + For a RHEL AMI, the user name is `ec2-user` or `root`\.
+
+  + For a SUSE AMI, the user name is `ec2-user` or `root`\.
+
+  + For an Ubuntu AMI, the user name is `ubuntu` or `root`\.
 
   + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
 
-+ Verify that you have an inbound security group rule to allow inbound traffic to the appropriate port\. For more information, see Authorizing Network Access to Your Instances\. 
++ Verify that you have an inbound security group rule to allow inbound traffic to the appropriate port\. For more information, see [Authorizing Network Access to Your Instances](authorizing-access-to-an-instance.md)\. 
 
 ## Error: Host key not found, Permission denied \(publickey\), *or* Authentication failed, permission denied<a name="TroubleshootingInstancesConnectingMindTerm"></a>
 
@@ -168,15 +170,17 @@ The appropriate user names are as follows:
 
 + For an Amazon Linux AMI, the user name is `ec2-user`\.
 
-+ For a RHEL AMI, the user name is `ec2-user` or `root`\.
-
-+ For an Ubuntu AMI, the user name is `ubuntu` or `root`\.
-
 + For a Centos AMI, the user name is `centos`\.
+
++ For a Debian AMI, the user name is `admin` or `root`\.
 
 + For a Fedora AMI, the user name is `ec2-user`\.
 
-+ For SUSE, the user name is `ec2-user` or `root`\.
++ For a RHEL AMI, the user name is `ec2-user` or `root`\.
+
++ For a SUSE AMI, the user name is `ec2-user` or `root`\.
+
++ For an Ubuntu AMI, the user name is `ubuntu` or `root`\.
 
 + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
 
@@ -247,15 +251,17 @@ The appropriate user names are as follows:
 
 + For an Amazon Linux AMI, the user name is `ec2-user`\.
 
-+ For a RHEL AMI, the user name is `ec2-user` or `root`\.
-
-+ For an Ubuntu AMI, the user name is `ubuntu` or `root`\.
-
 + For a Centos AMI, the user name is `centos`\.
+
++ For a Debian AMI, the user name is `admin` or `root`\.
 
 + For a Fedora AMI, the user name is `ec2-user`\.
 
-+ For SUSE, the user name is `ec2-user` or `root`\.
++ For a RHEL AMI, the user name is `ec2-user` or `root`\.
+
++ For a SUSE AMI, the user name is `ec2-user` or `root`\.
+
++ For an Ubuntu AMI, the user name is `ubuntu` or `root`\.
 
 + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
 

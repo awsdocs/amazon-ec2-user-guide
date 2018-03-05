@@ -61,9 +61,7 @@ Before you detach an NVMe EBS volume, you should sync and unmount it\. When you 
 
 ## I/O Operation Timeout<a name="timeout-nvme-ebs-volumes"></a>
 
-NVMe EBS volumes use the default NVMe driver provided by the operating system\. Most operating systems specify a timeout for I/O operations submitted to NVMe devices\. 
-
-On Linux systems, the default timeout is 30 seconds and can be changed using the `nvme_core.io_timeout` boot parameter\. For an experience similar to EBS volumes attached to Xen instances, we recommend setting this to the maximum value possible\. For Amazon Linux AMI 2017\.09\.01 \(or greater\), and for Linux kernels with version 4\.15 or greater, the maximum is 4294967295\. Prior to Linux 4\.15, the maximum value is 255 seconds\. If you are using a current version of the Amazon Linux AMI, we have already increased the timeout\.
+NVMe EBS volumes use the default NVMe driver provided by the operating system\. Most operating systems specify a timeout for I/O operations submitted to NVMe devices\. The default timeout is 30 seconds and can be changed using the `nvme_core.io_timeout` boot parameter\. For an experience similar to EBS volumes attached to Xen instances, we recommend setting this to the maximum value possible\. For Amazon Linux AMI 2017\.09\.01 \(or greater\), and for Linux kernels with version 4\.15 or greater, the maximum is 4294967295\. Prior to Linux 4\.15, the maximum value is 255 seconds\. If you are using a current version of the Amazon Linux AMI, we have already increased the timeout\.
 
 With Linux kernel 4\.14 and later, you can also configure the number of times that I/O operations can be retried\. The default is five retries\. You can configure a different value using the `nvme_core.nvme_max_retries` kernel boot parameter, or at runtime using the following command:
 

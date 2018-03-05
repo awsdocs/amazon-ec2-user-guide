@@ -28,7 +28,7 @@ The following table describes the use cases and performance characteristics for 
 
 \*\*\* An `io1` volume created before 12/6/2017 will not achieve this throughput until modified in some way\. For more information, see [Modifying the Size, IOPS, or Type of an EBS Volume on Linux](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-modify-volume.html)\.
 
-† To achieve this throughput, you must have an instance that supports it, such as `r4.8xlarge` or `x1.32xlarge`\. For more information, see [Amazon EBS–Optimized Instances](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html)\.
+† To achieve this throughput, you must have an instance that supports it\. For more information, see [Amazon EBS–Optimized Instances](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html)\.
 
 The following table describes previous\-generation EBS volume types\. If you need higher performance or performance consistency than previous\-generation volumes can provide, we recommend that you consider using General Purpose SSD \(`gp2`\) or other current volume types\. For more information, see [Previous Generation Volumes](https://aws.amazon.com/ebs/previous-generation/)\.
 

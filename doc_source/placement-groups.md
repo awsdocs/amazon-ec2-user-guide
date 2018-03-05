@@ -1,6 +1,6 @@
 # Placement Groups<a name="placement-groups"></a>
 
-You can launch instances in a *placement group*, which determines how instances are placed on underlying hardware\. When you create a placement group, you specify one of the following strategies for the group:
+You can launch or start instances in a *placement group*, which determines how instances are placed on underlying hardware\. When you create a placement group, you specify one of the following strategies for the group:
 
 + *Cluster*—clusters instances into a low\-latency group in a single Availability Zone
 
@@ -14,11 +14,12 @@ There is no charge for creating a placement group\.
 + [Placement Group Rules and Limitations](#concepts-placement-groups)
 + [Creating a Placement Group](#create-placement-group)
 + [Launching Instances in a Placement Group](#launch-instance-placement-group)
++ [Changing the Placement Group for an Instance](#change-instance-placement-group)
 + [Deleting a Placement Group](#delete-placement-group)
 
 ## Cluster Placement Groups<a name="placement-groups-cluster"></a>
 
-A cluster placement group is a logical grouping of instances within a single Availability Zone\. Placement groups are recommended for applications that benefit from low network latency, high network throughput, or both\. To provide the lowest latency, and the highest packet\-per\-second network performance for your placement group, choose an instance type that supports enhanced networking\. For more information, see Enhanced Networking\.
+A cluster placement group is a logical grouping of instances within a single Availability Zone\. Placement groups are recommended for applications that benefit from low network latency, high network throughput, or both\. To provide the lowest latency, and the highest packet\-per\-second network performance for your placement group, choose an instance type that supports enhanced networking\. For more information, see [Enhanced Networking](enhanced-networking.md)\.
 
 We recommend that you launch the number of instances that you need in the placement group in a single launch request and that you use the same instance type for all instances in the placement group\. If you try to add more instances to the placement group later, or if you try to launch more than one instance type in the placement group, you increase your chances of getting an insufficient capacity error\.
 
@@ -46,19 +47,21 @@ Before you use placement groups, be aware of the following rules:
 
   + General purpose: `m4.large` | `m4.xlarge` | `m4.2xlarge` | `m4.4xlarge` | `m4.10xlarge` | `m4.16xlarge` | `m5.large` | `m5.xlarge` | `m5.2xlarge` | `m5.4xlarge` | `m5.12xlarge` | `m5.24xlarge`
 
-  + Compute optimized: `c4.large` | `c4.xlarge` | `c4.2xlarge` | `c4.4xlarge` | `c4.8xlarge` | `c5.large` | `c5.xlarge` | `c5.2xlarge` | `c5.4xlarge` | `c5.9xlarge` | `c5.18xlarge` | `cc2.8xlarge`
+  + Compute optimized: `c3.large` | `c3.xlarge` | `c3.2xlarge` | `c3.4xlarge` | `c3.8xlarge` | `c4.large` | `c4.xlarge` | `c4.2xlarge` | `c4.4xlarge` | `c4.8xlarge` | `c5.large` | `c5.xlarge` | `c5.2xlarge` | `c5.4xlarge` | `c5.9xlarge` | `c5.18xlarge` | `cc2.8xlarge`
 
-  + Memory optimized: `r4.large` | `r4.xlarge` | `r4.2xlarge` | `r4.4xlarge` | `r4.8xlarge` | `r4.16xlarge` | `x1.16xlarge` | `x1.32xlarge` | `x1e.xlarge` | `x1e.2xlarge` | `x1e.4xlarge` | `x1e.8xlarge` | `x1e.16xlarge` | `x1e.32xlarge` | `cr1.8xlarge`
+  + Memory optimized: `r3.large` | `r3.xlarge` | `r3.2xlarge` | `r3.4xlarge` | `r3.8xlarge` | `r4.large` | `r4.xlarge` | `r4.2xlarge` | `r4.4xlarge` | `r4.8xlarge` | `r4.16xlarge` | `x1.16xlarge` | `x1.32xlarge` | `x1e.xlarge` | `x1e.2xlarge` | `x1e.4xlarge` | `x1e.8xlarge` | `x1e.16xlarge` | `x1e.32xlarge`| `cr1.8xlarge`
 
-  + Storage optimized: `d2.xlarge` | `d2.2xlarge` | `d2.4xlarge` | `d2.8xlarge` | `h1.2xlarge` | `h1.4xlarge` | `h1.8xlarge` | `h1.16xlarge` | `i3.large` | `i3.xlarge` | `i3.2xlarge` | `i3.4xlarge` | `i3.8xlarge` | `i3.16xlarge` | `hs1.8xlarge` | `i2.xlarge` | `i2.2xlarge` | `i2.4xlarge` | `i2.8xlarge`
+  + Storage optimized: `d2.xlarge` | `d2.2xlarge` | `d2.4xlarge` | `d2.8xlarge` | `h1.2xlarge` | `h1.4xlarge` | `h1.8xlarge` | `h1.16xlarge` | `i2.xlarge` | `i2.2xlarge` | `i2.4xlarge` | `i2.8xlarge` `i3.large` | `i3.xlarge` | `i3.2xlarge` | `i3.4xlarge` | `i3.8xlarge` | `i3.16xlarge` | `hs1.8xlarge`
 
-  + Accelerated computing: `f1.2xlarge` | `f1.16xlarge` | `g3.4xlarge` | `g3.8xlarge` | `g3.16xlarge` | `p2.xlarge` | `p2.8xlarge` | `p2.16xlarge` | `p3.2xlarge` | `p3.8xlarge` | `p3.16xlarge`
+  + Accelerated computing: `f1.2xlarge` | `f1.16xlarge` | `g2.2xlarge` | `g2.8xlarge` | `g3.4xlarge` | `g3.8xlarge` | `g3.16xlarge` | `p2.xlarge` | `p2.8xlarge` | `p2.16xlarge` | `p3.2xlarge` | `p3.8xlarge` | `p3.16xlarge`
 
-+ You can't merge placement groups\. Instead, you must terminate the instances in one placement group, and then relaunch those instances into the other placement group\.
++ You can't merge placement groups\.
 
-+ You can't move an existing instance into a placement group\. You can create an AMI from your existing instance, and then launch a new instance from the AMI into a placement group\.
++ An instance can be launched in one placement group at a time; it cannot span multiple placement groups\.
 
 + Reserved Instances provide a capacity reservation for EC2 instances in a specific Availability Zone\. The capacity reservation can be used by instances in a placement group\. However, it is not possible to explicitly reserve capacity for a placement group\.
+
++ Instances with a tenancy of `host` cannot be launched in placement groups\.
 
 The following rules apply to cluster placement groups:
 
@@ -106,7 +109,7 @@ You can create a placement group using the Amazon EC2 console or the command lin
 
 ## Launching Instances in a Placement Group<a name="launch-instance-placement-group"></a>
 
-You can create an AMI specifically for the instances to be launched in a placement group\. To do this, launch an instance and install the required software and applications on the instance\. Then, create an AMI from the instance\. For more information, see [Creating an Amazon EBS\-Backed Linux AMI](creating-an-ami-ebs.md)\.
+You can create an AMI specifically for the instances to be launched in a placement group\. To do this, launch an instance and install the required software and applications on the instance\. Then, create an AMI from the instance\. For more information, see [Creating an Amazon EBS\-Backed Linux AMI](creating-an-ami-ebs.md)\.<a name="launch_cluster_instance"></a>
 
 **To launch instances into a placement group using the console**
 
@@ -138,17 +141,69 @@ You can create an AMI specifically for the instances to be launched in a placeme
 
    + `-PlacementGroup` with [New\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
 
+## Changing the Placement Group for an Instance<a name="change-instance-placement-group"></a>
+
+You can move an existing instance to a placement group, move an instance from one placement group to another, or remove an instance from a placement group\. Before you begin, the instance must be in the `stopped` state\.
+
+You can change the placement group for an instance using the command line or an AWS SDK\.
+
+**To move an instance to a placement group using the command line**
+
+1. Stop the instance using one of the following commands:
+
+   + [stop\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) \(AWS CLI\)
+
+   + [Stop\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/Stop-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
+
+1. Use the [modify\-instance\-placement](http://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-placement.html) command \(AWS CLI\) and specify the name of the placement group to which to move the instance\.
+
+   ```
+   aws ec2 modify-instance-placement --instance-id i-0aa51192b00939a40 --group-name MySpreadGroup
+   ```
+
+   Alternatively, use the [Edit\-EC2InstancePlacement](http://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2InstancePlacement.html) command \(AWS Tools for Windows PowerShell\)\.
+
+1. Restart the instance using one of the following commands:
+
+   + [start\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/start-instances.html) \(AWS CLI\)
+
+   + [Start\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/Start-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
+
+**To remove an instance from a placement group using the command line**
+
+1. Stop the instance using one of the following commands:
+
+   + [stop\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) \(AWS CLI\)
+
+   + [Stop\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/Stop-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
+
+1. Use the [modify\-instance\-placement](http://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-placement.html) command \(AWS CLI\) and specify an empty string for the group name\.
+
+   ```
+   aws ec2 modify-instance-placement --instance-id i-0aa51192b00939a40 --group-name ""
+   ```
+
+   Alternatively, use the [Edit\-EC2InstancePlacement](http://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2InstancePlacement.html) command \(AWS Tools for Windows PowerShell\)\.
+
+1. Restart the instance using one of the following commands:
+
+   + [start\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/start-instances.html) \(AWS CLI\)
+
+   + [Start\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/Start-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
+
 ## Deleting a Placement Group<a name="delete-placement-group"></a>
 
-If you need to replace a placement group or no longer need one, you can delete it\. Before you can delete your placement group, you must terminate all instances that you launched into the placement group\.
+If you need to replace a placement group or no longer need one, you can delete it\. Before you can delete your placement group, you must terminate all instances that you launched into the placement group, or move them to another placement group\.
 
-**To terminate instances and delete a placement group using the console**
+**To terminate or move instances and delete a placement group using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
 1. In the navigation pane, choose **Instances**\.
 
 1. Select and terminate all instances in the placement group\. You can verify that the instance is in a placement group before you terminate it by checking the value of **Placement Group** in the details pane\.
+
+   Alternatively, follow the steps in [Changing the Placement Group for an Instance](#change-instance-placement-group) to move the instances to a different placement group\.
 
 1. In the navigation pane, choose **Placement Groups**\.
 

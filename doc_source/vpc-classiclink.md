@@ -59,7 +59,7 @@ You can use the Amazon EC2 console to find the private IP addresses of your Amaz
 
 By default, IAM users do not have permission to work with ClassicLink\. You can create an IAM policy that grants users permissions to enable or disable a VPC for ClassicLink, link or unlink an instance to a ClassicLink\-enabled VPC, and to view ClassicLink\-enabled VPCs and linked EC2\-Classic instances\. For more information about IAM policies for Amazon EC2, see [IAM Policies for Amazon EC2](iam-policies-for-amazon-ec2.md)\. 
 
-For more information about policies for working with ClassicLink, see the following example: [6\. Working with ClassicLink](ExamplePolicies_EC2.md#iam-example-classiclink)\.
+For more information about policies for working with ClassicLink, see the following example: [7\. Working with ClassicLink](ExamplePolicies_EC2.md#iam-example-classiclink)\.
 
 ### Security Groups in ClassicLink<a name="classiclink-security-groups"></a>
 
@@ -109,6 +109,8 @@ EC2\-Classic instances are run on shared hardware\. If you've set the tenancy of
 + You cannot use ClassicLink to link a VPC instance to a different VPC, or to a EC2\-Classic resource\. To establish a private connection between VPCs, you can use a VPC peering connection\. For more information, see the [Amazon VPC Peering Guide](http://docs.aws.amazon.com/AmazonVPC/latest/PeeringGuide/)\.
 
 + If you link your EC2\-Classic instance to a VPC in the `172.16.0.0/16` range, and you have a DNS server running on the `172.16.0.23/32` IP address within the VPC, then your linked EC2\-Classic instance will not be able to access the VPC DNS server\. To work around this issue, run your DNS server on a different IP address within the VPC\.
+
++ You cannot use ClassicLink to link an EC2\-Classic instance to a C5 or M5 instance in a VPC\.
 
 ## Working with ClassicLink<a name="working-with-classiclink"></a>
 

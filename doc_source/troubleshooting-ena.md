@@ -38,7 +38,7 @@ If you are using an instance store\-backed instance, you can't stop the instance
 1. From your local computer, start the instance using the Amazon EC2 console or one of the following commands: [start\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/start-instances.html) \(AWS CLI\), [Start\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/Start-EC2Instance.html) \(AWS Tools for Windows PowerShell\)\. If your instance is managed by AWS OpsWorks, you should start the instance in the AWS OpsWorks console so that the instance state remains in sync\.
 
 1. \(Optional\) Connect to your instance and try reinstalling the `ena` module with your current kernel version by following the steps in [Enabling Enhanced Networking with the Elastic Network Adapter \(ENA\) on Linux Instances in a VPC](enhanced-networking-ena.md)\.
-
+<a name="disable-enhanced-networking-ena-instance-store"></a>
 **To disable enhanced networking with ENA \(instance store\-backed instances\)**  
 If your instance is an instance store\-backed instance, create a new AMI as described in [Creating an Instance Store\-Backed Linux AMI](creating-an-ami-instance-store.md)\. Be sure to disable the enhanced networking `enaSupport` attribute when you register the AMI\.
 
@@ -282,6 +282,8 @@ The referenced feature is not supported by the Elastic Network Adapter\. Possibl
 + **18**: RSS Hash Input configuration is not supported for this device\.
 
 + **20**: Interrupt moderation is not supported for this device\.
+
++ **27**: The Elastic Network Adapter driver does not support polling the Ethernet capabilities from snmpd\.
 
 Failed to config AENQ  
 The Elastic Network Adapter does not support AENQ configuration\.

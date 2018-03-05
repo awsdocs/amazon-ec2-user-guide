@@ -2,17 +2,17 @@
 
 The following examples show launch configurations that you can use with the [request\-spot\-fleet](http://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-fleet.html) command to create a Spot Fleet request\. For more information, see [Creating a Spot Fleet Request](spot-fleet-requests.md#create-spot-fleet)\.
 
-1. Launch Spot Instances using the lowest\-priced Availability Zone or subnet in the region
+1. [Launch Spot Instances using the lowest\-priced Availability Zone or subnet in the region](#fleet-config1)
 
-1. Launch Spot Instances using the lowest\-priced Availability Zone or subnet in a specified list
+1. [Launch Spot Instances using the lowest\-priced Availability Zone or subnet in a specified list](#fleet-config2)
 
-1. Launch Spot Instances using the lowest\-priced instance type in a specified list
+1. [Launch Spot Instances using the lowest\-priced instance type in a specified list](#fleet-config3)
 
-1. Override the price for the request
+1. [Override the price for the request](#fleet-config4)
 
-1. Launch a Spot Fleet using the diversified allocation strategy
+1. [Launch a Spot Fleet using the diversified allocation strategy](#fleet-config5)
 
-1. Launch a Spot Fleet using instance weighting
+1. [Launch a Spot Fleet using instance weighting](#fleet-config6)
 
 ## Example 1: Launch Spot Instances Using the Lowest\-Priced Availability Zone or Subnet in the Region<a name="fleet-config1"></a>
 

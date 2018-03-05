@@ -17,7 +17,7 @@ You can't convert an instance store\-backed Windows AMI to an Amazon EBS\-backed
       [ec2-user ~]$ mkdir /tmp/cert
       ```
 
-   1. Copy your X\.509 private key from your computer to the `/tmp/cert` directory on your instance, using a secure copy tool such as scp\. The *my\-private\-key* parameter in the following command is the private key you use to connect to your instance with SSH\. For example:
+   1. Copy your X\.509 private key from your computer to the `/tmp/cert` directory on your instance, using a secure copy tool such as [scp](AccessingInstancesLinux.md#AccessingInstancesLinuxSCP)\. The *my\-private\-key* parameter in the following command is the private key you use to connect to your instance with SSH\. For example:
 
       ```
       you@your_computer:~ $ scp -i my-private-key.pem /path/to/pk-HKZYKTAIG2ECMXYIBH3HXV4ZBEXAMPLE.pem ec2-user@ec2-203-0-113-25.compute-1.amazonaws.com:/tmp/cert/

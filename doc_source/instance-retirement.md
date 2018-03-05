@@ -10,7 +10,7 @@ For more information about types of instance events, see [Scheduled Events for Y
 
 ## Identifying Instances Scheduled for Retirement<a name="instance-retirement-identify"></a>
 
-If your instance is scheduled for retirement, you'll receive an email prior to the event with the instance ID and retirement date\. This email is sent to the address that's associated with your account; the same email address that you use to log in to the AWS Management Console\. If you use an email account that you do not check regularly, then you can use the Amazon EC2 console or the command line to determine if any of your instances are scheduled for retirement\. To update the contact information for your account, go to the [Account Settings](https://console.aws.amazon.com/billing/home?#/account) page\.
+If your instance is scheduled for retirement, you'll receive an email prior to the event with the instance ID and retirement date\. This email is sent to the address that's associated with your account; the same email address that you use to log in to the AWS Management Console\. If you use an email account that you do not check regularly, then you can use the Amazon EC2 console or the command line to determine if any of your instances are scheduled for retirement\. To update the contact information for your account, go to the [Account Settings](https://console.aws.amazon.com/billing/home?#/account) page\.<a name="identify-retiring-instances"></a>
 
 **To identify instances scheduled for retirement using the console**
 
@@ -41,7 +41,7 @@ There are a number of actions available to you when your instance is scheduled f
 
 **To determine your instance root device type using the console**
 
-1. In the navigation pane, select **Events**\. Use the filter lists to identify retiring instances, as demonstrated in the procedure above, Identifying instances scheduled for retirement\.
+1. In the navigation pane, select **Events**\. Use the filter lists to identify retiring instances, as demonstrated in the procedure above, [Identifying instances scheduled for retirement](#identify-retiring-instances)\.
 
 1. In the **Resource Id** column, select the instance ID to go to the **Instances** page\. 
 

@@ -11,7 +11,7 @@ The following documentation can help you troubleshoot problems that you might ha
 + [Troubleshooting Instances with Failed Status Checks](TroubleshootingInstances.md)
 + [Troubleshooting Instance Capacity](instance-capacity.md)
 + [Getting Console Output and Rebooting Instances](instance-console.md)
-+ [My Instance Is Booting from the Wrong Volume](instance-booting-from-wrong-volume.md)
++ [Booting from the Wrong Volume](instance-booting-from-wrong-volume.md)
 
 For additional help with Windows instances, see [Troubleshooting Windows Instances](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/troubleshooting-windows-instances.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 

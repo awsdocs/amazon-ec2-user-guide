@@ -18,7 +18,7 @@ For example, you can use IAM roles to grant permissions to applications running 
 
 You cannot attach multiple IAM roles to a single instance, but you can attach a single IAM role to multiple instances\. For more information about creating and using IAM roles, see [Roles](http://docs.aws.amazon.com/IAM/latest/UserGuide/WorkingWithRoles.html) in the *IAM User Guide*\.
 
-You can apply resource\-level permissions to your IAM policies to control the users' ability to attach, replace, or detach IAM roles for an instance\. For more information, see [Supported Resource\-Level Permissions for Amazon EC2 API Actions](ec2-supported-iam-actions-resources.md) and the following example: [9: Working with IAM Roles](ExamplePolicies_EC2.md#iam-example-iam-roles)\.
+You can apply resource\-level permissions to your IAM policies to control the users' ability to attach, replace, or detach IAM roles for an instance\. For more information, see [Supported Resource\-Level Permissions for Amazon EC2 API Actions](ec2-supported-iam-actions-resources.md) and the following example: [10: Working with IAM Roles](ExamplePolicies_EC2.md#iam-example-iam-roles)\.
 
 
 + [Instance Profiles](#ec2-instance-profile)
@@ -110,7 +110,7 @@ You can create an IAM role and attach it to an instance during or after launch\.
 
 ### Creating an IAM Role<a name="create-iam-role"></a>
 
-You must create an IAM role before you can launch an instance with that role or attach it to an instance\.
+You must create an IAM role before you can launch an instance with that role or attach it to an instance\.<a name="create-iam-role-console"></a>
 
 **To create an IAM role using the IAM console**
 
@@ -124,7 +124,7 @@ You must create an IAM role before you can launch an instance with that role or 
 
 1. On the **Review** page, type a name for the role and choose **Create role**\.
 
-Alternatively, you can use the AWS CLI to create an IAM role\.
+Alternatively, you can use the AWS CLI to create an IAM role\.<a name="create-iam-role-cli"></a>
 
 **To create an IAM role and instance profile using the AWS CLI**
 
@@ -215,7 +215,7 @@ Alternatively, you can use the AWS CLI to create an IAM role\.
      aws iam add-role-to-instance-profile --instance-profile-name s3access-profile --role-name s3access
      ```
 
-  For more information about these commands, see [create\-role](http://docs.aws.amazon.com/cli/latest/reference/iam/create-role.html), [put\-role\-policy](http://docs.aws.amazon.com/cli/latest/reference/iam/put-role-policy.html), and [create\-instance\-profile](http://docs.aws.amazon.com/cli/latest/reference/iam/create-instance-profile.html) in the *AWS Command Line Interface Reference*\. 
+  For more information about these commands, see [create\-role](http://docs.aws.amazon.com/cli/latest/reference/iam/create-role.html), [put\-role\-policy](http://docs.aws.amazon.com/cli/latest/reference/iam/put-role-policy.html), and [create\-instance\-profile](http://docs.aws.amazon.com/cli/latest/reference/iam/create-instance-profile.html) in the *AWS CLI Command Reference*\. 
 
   Alternatively, you can use the following AWS Tools for Windows PowerShell commands:
 
@@ -230,7 +230,7 @@ Alternatively, you can use the AWS CLI to create an IAM role\.
 After you've created an IAM role, you can launch an instance, and associate that role with the instance during launch\.
 
 **Important**  
-After you create an IAM role, it may take several seconds for the permissions to propagate\. If your first attempt to launch an instance with a role fails, wait a few seconds before trying again\. For more information, see [Troubleshooting Working with Roles](http://docs.aws.amazon.com/IAM/latest/UserGuide/RolesTroubleshooting.html) in the *IAM User Guide*\.
+After you create an IAM role, it may take several seconds for the permissions to propagate\. If your first attempt to launch an instance with a role fails, wait a few seconds before trying again\. For more information, see [Troubleshooting Working with Roles](http://docs.aws.amazon.com/IAM/latest/UserGuide/RolesTroubleshooting.html) in the *IAM User Guide*\.<a name="launch-instance-with-role-console"></a>
 
 **To launch an instance with an IAM role using the console**
 
@@ -254,7 +254,7 @@ The **IAM role** list displays the name of the instance profile that you created
    curl http://169.254.169.254/latest/meta-data/iam/security-credentials/role_name
    ```
 
-Alternatively, you can use the AWS CLI to associate a role with an instance during launch\. You must specify the instance profile in the command\.
+Alternatively, you can use the AWS CLI to associate a role with an instance during launch\. You must specify the instance profile in the command\.<a name="launch-instance-with-role-cli"></a>
 
 **To launch an instance with an IAM role using the AWS CLI**
 
@@ -274,7 +274,7 @@ Alternatively, you can use the AWS CLI to associate a role with an instance duri
 
 ### Attaching an IAM Role to an Instance<a name="attach-iam-role"></a>
 
-After you've created an IAM role, you can attach it to a running or stopped instance\.
+After you've created an IAM role, you can attach it to a running or stopped instance\.<a name="attach-iam-role-console"></a>
 
 **To attach an IAM role to an instance using the console**
 
@@ -284,7 +284,7 @@ After you've created an IAM role, you can attach it to a running or stopped inst
 
 1. Select the instance, choose **Actions**, **Instance Settings**, **Attach/Replace IAM role**\.
 
-1. Select the IAM role to attach to your instance, and choose **Apply**\.
+1. Select the IAM role to attach to your instance, and choose **Apply**\.<a name="attach-iam-role-instance-cli"></a>
 
 **To attach an IAM role to an instance using the AWS CLI**
 
@@ -320,7 +320,7 @@ Alternatively, use the following Tools for Windows PowerShell commands:
 
 ### Detaching an IAM Role<a name="detach-iam-role"></a>
 
-You can detach an IAM role from a running or stopped instance\. 
+You can detach an IAM role from a running or stopped instance\. <a name="detach-iam-role-console"></a>
 
 **To detach an IAM role from an instance using the console**
 
@@ -332,7 +332,7 @@ You can detach an IAM role from a running or stopped instance\.
 
 1. For **IAM role**, choose **No Role**\. Choose **Apply**\.
 
-1. In the confirmation dialog box, choose **Yes, Detach**\.
+1. In the confirmation dialog box, choose **Yes, Detach**\.<a name="detach-iam-role-cli"></a>
 
 **To detach an IAM role from an instance using the AWS CLI**
 
@@ -382,7 +382,7 @@ Alternatively, use the following Tools for Windows PowerShell commands:
 
 ### Replacing an IAM Role<a name="replace-iam-role"></a>
 
-You can replace an IAM role for a running instance\. You can do this if you want to change the IAM role for an instance without detaching the existing one first; for example, to ensure that API actions performed by applications running on the instance are not interrupted\.
+You can replace an IAM role for a running instance\. You can do this if you want to change the IAM role for an instance without detaching the existing one first; for example, to ensure that API actions performed by applications running on the instance are not interrupted\.<a name="replace-iam-role-console"></a>
 
 **To replace an IAM role for an instance using the console**
 
@@ -392,7 +392,7 @@ You can replace an IAM role for a running instance\. You can do this if you want
 
 1. Select the instance, choose **Actions**, **Instance Settings**, **Attach/Replace IAM role**\.
 
-1. Select the IAM role to attach to your instance, and choose **Apply**\.
+1. Select the IAM role to attach to your instance, and choose **Apply**\.<a name="replace-iam-role-cli"></a>
 
 **To replace an IAM role for an instance using the AWS CLI**
 

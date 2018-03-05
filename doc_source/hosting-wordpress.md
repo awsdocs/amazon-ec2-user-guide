@@ -31,7 +31,7 @@ Connect to your instance, and download the WordPress installation package\.
 
    ```
    [ec2-user ~]$ tar -xzf latest.tar.gz
-   ```
+   ```<a name="create_user_and_database"></a>
 
 **To create a database user and database for your WordPress installation**
 
@@ -51,7 +51,7 @@ If you have not secured your database server yet, it is very important that you 
    [ec2-user ~]$ mysql -u root -p
    ```
 
-1. Create a user and password for your MySQL database\. Your WordPress installation uses these values to communicate with your MySQL database\. Enter the following command, substituting a unique user name and password\.
+1. <a name="create_database_user"></a>Create a user and password for your MySQL database\. Your WordPress installation uses these values to communicate with your MySQL database\. Enter the following command, substituting a unique user name and password\.
 
    ```
    CREATE USER 'wordpress-user'@'localhost' IDENTIFIED BY 'your_strong_password';
@@ -59,7 +59,7 @@ If you have not secured your database server yet, it is very important that you 
 
    Make sure that you create a strong password for your user\. Do not use the single quote character \( ' \) in your password, because this will break the preceding command\. For more information about creating a secure password, go to [http://www\.pctools\.com/guides/password/](http://www.pctools.com/guides/password/)\. Do not reuse an existing password, and make sure to store this password in a safe place\.
 
-1. Create your database\. Give your database a descriptive, meaningful name, such as `wordpress-db`\.
+1. <a name="create_database"></a>Create your database\. Give your database a descriptive, meaningful name, such as `wordpress-db`\.
 **Note**  
 The punctuation marks surrounding the database name in the command below are called backticks\. The backtick \(```\) key is usually located above the `Tab` key on a standard keyboard\. Backticks are not always required, but they allow you to use otherwise illegal characters, such as hyphens, in database names\.
 
@@ -101,19 +101,19 @@ The WordPress installation folder contains a sample configuration file called `w
    [ec2-user wordpress]$ nano wordpress/wp-config.php
    ```
 
-   1. Find the line that defines `DB_NAME` and change `database_name_here` to the database name that you created in [[ERROR] BAD/MISSING LINK TEXT](#create_database) of [To create a database user and database for your WordPress installation](#create_user_and_database)\.
+   1. Find the line that defines `DB_NAME` and change `database_name_here` to the database name that you created in [Step 4](#create_database) of [To create a database user and database for your WordPress installation](#create_user_and_database)\.
 
       ```
       define('DB_NAME', 'wordpress-db');
       ```
 
-   1. Find the line that defines `DB_USER` and change `username_here` to the database user that you created in [[ERROR] BAD/MISSING LINK TEXT](#create_database_user) of [To create a database user and database for your WordPress installation](#create_user_and_database)\.
+   1. Find the line that defines `DB_USER` and change `username_here` to the database user that you created in [Step 3](#create_database_user) of [To create a database user and database for your WordPress installation](#create_user_and_database)\.
 
       ```
       define('DB_USER', 'wordpress-user');
       ```
 
-   1. Find the line that defines `DB_PASSWORD` and change `password_here` to the strong password that you created in [[ERROR] BAD/MISSING LINK TEXT](#create_database_user) of [To create a database user and database for your WordPress installation](#create_user_and_database)\.
+   1. Find the line that defines `DB_PASSWORD` and change `password_here` to the strong password that you created in [Step 3](#create_database_user) of [To create a database user and database for your WordPress installation](#create_user_and_database)\.
 
       ```
       define('DB_PASSWORD', 'your_strong_password');
@@ -212,7 +212,7 @@ There are multiple `AllowOverride` lines in this file; be sure you change the li
 
 **To fix file permissions for the Apache web server**
 
-Some of the available features in WordPress require write access to the Apache document root \(such as uploading media though the Administration screens\)\. If you have not already done so, apply the following group memberships and permissions \(as described in greater detail in the LAMP web server tutorial\)\.
+Some of the available features in WordPress require write access to the Apache document root \(such as uploading media though the Administration screens\)\. If you have not already done so, apply the following group memberships and permissions \(as described in greater detail in the [LAMP web server tutorial](install-LAMP.md)\)\.
 
 1. Change the file ownership of `/var/www` and its contents to the `apache` user\.
 

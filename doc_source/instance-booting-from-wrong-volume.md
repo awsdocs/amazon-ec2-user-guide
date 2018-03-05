@@ -1,4 +1,4 @@
-# My Instance Is Booting from the Wrong Volume<a name="instance-booting-from-wrong-volume"></a>
+# Booting from the Wrong Volume<a name="instance-booting-from-wrong-volume"></a>
 
 In some situations, you may find that a volume other than the volume attached to `/dev/xvda` or `/dev/sda` has become the root volume of your instance\. This can happen when you have attached the root volume of another instance, or a volume created from the snapshot of a root volume, to an instance with an existing root volume\.
 
@@ -12,7 +12,7 @@ sysfs /sys sysfs defaults 0 0
 proc /proc proc defaults 0 0
 ```
 
-And if you were to check the label of both volumes, you would see that they both contain the `/` label: 
+If you check the label of both volumes, you see that they both contain the `/` label: 
 
 ```
 [ec2-user ~]$ sudo e2label /dev/xvda1 
@@ -21,7 +21,7 @@ And if you were to check the label of both volumes, you would see that they both
 /
 ```
 
-In this example, you could end up having `/dev/xvdf1` become the root device that your instance boots to after the initial ramdisk runs, instead of the `/dev/xvda1` volume you had intended to boot from\. Solving this is fairly simple; you can use the same e2label command to change the label of the attached volume that you do not want to boot from\.
+In this example, you could end up having `/dev/xvdf1` become the root device that your instance boots to after the initial ramdisk runs, instead of the `/dev/xvda1` volume from which you had intended to boot\. To solve this, use the same e2label command to change the label of the attached volume that you do not want to boot from\.
 
 In some cases, specifying a UUID in `/etc/fstab` can resolve this\. However, if both volumes come from the same snapshot, or the secondary is created from a snapshot of the primary volume, they share a UUID\.
 

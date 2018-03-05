@@ -120,7 +120,7 @@ Enhanced networking is supported only for HVM instances\. Enabling enhanced netw
 
 **To enable enhanced networking \(EBS\-backed instances\)**
 
-1. Connect to your instance\.
+1. <a name="amazon-linux-enhanced-networking-start-step"></a>Connect to your instance\.
 
 1. From the instance, run the following command to update your instance with the newest kernel and kernel modules, including `ixgbevf`:
 
@@ -130,7 +130,7 @@ Enhanced networking is supported only for HVM instances\. Enabling enhanced netw
 
 1. From your local computer, reboot your instance using the Amazon EC2 console or one of the following commands: [reboot\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/reboot-instances.html) \(AWS CLI\), [Restart\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/Restart-EC2Instance.html) \(AWS Tools for Windows PowerShell\)\.
 
-1. Connect to your instance again and verify that the `ixgbevf` module is installed and at the minimum recommended version using the modinfo ixgbevf command from [Testing Whether Enhanced Networking with the Intel 82599 VF Interface is Enabled](#test-enhanced-networking)\.
+1. <a name="amazon-linux-enhanced-networking-stop-step"></a>Connect to your instance again and verify that the `ixgbevf` module is installed and at the minimum recommended version using the modinfo ixgbevf command from [Testing Whether Enhanced Networking with the Intel 82599 VF Interface is Enabled](#test-enhanced-networking)\.
 
 1. From your local computer, stop the instance using the Amazon EC2 console or one of the following commands: [stop\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) \(AWS CLI\), [Stop\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/Stop-EC2Instance.html) \(AWS Tools for Windows PowerShell\)\. If your instance is managed by AWS OpsWorks, you should stop the instance in the AWS OpsWorks console so that the instance state remains in sync\.
 **Important**  
@@ -154,34 +154,35 @@ If you are using an instance store\-backed instance, you can't stop the instance
 
 1. From your local computer, start the instance using the Amazon EC2 console or one of the following commands: [start\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/start-instances.html) \(AWS CLI\), [Start\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/Start-EC2Instance.html) \(AWS Tools for Windows PowerShell\)\. If your instance is managed by AWS OpsWorks, you should start the instance in the AWS OpsWorks console so that the instance state remains in sync\.
 
-1. Connect to your instance and verify that the `ixgbevf` module is installed and loaded on your network interface using the ethtool \-i eth*n* command from [Testing Whether Enhanced Networking with the Intel 82599 VF Interface is Enabled](#test-enhanced-networking)\.
+1. Connect to your instance and verify that the `ixgbevf` module is installed and loaded on your network interface using the ethtool \-i eth*n* command from [Testing Whether Enhanced Networking with the Intel 82599 VF Interface is Enabled](#test-enhanced-networking)\.<a name="enhanced-networking-instance-store"></a>
 
-**To enable enhanced networking \(instance store\-backed instances\)**  
-If your instance is an instance store–backed instance, follow [[ERROR] BAD/MISSING LINK TEXT](#amazon-linux-enhanced-networking-start-step) through [[ERROR] BAD/MISSING LINK TEXT](#amazon-linux-enhanced-networking-stop-step) in the previous procedure, and then  create a new AMI as described in [Creating an Instance Store\-Backed Linux AMI](creating-an-ami-instance-store.md)\. Be sure to enable the enhanced networking attribute when you register the AMI\.
+**To enable enhanced networking \(instance store\-backed instances\)**
 
-+ [register\-image](http://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) \(AWS CLI\)
++ If your instance is an instance store–backed instance, follow [Step 1](#amazon-linux-enhanced-networking-start-step) through [Step 4](#amazon-linux-enhanced-networking-stop-step) in the previous procedure, and then  create a new AMI as described in [Creating an Instance Store\-Backed Linux AMI](creating-an-ami-instance-store.md)\. Be sure to enable the enhanced networking attribute when you register the AMI\.
 
-  ```
-  aws ec2 register-image --sriov-net-support simple ...
-  ```
+  + [register\-image](http://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) \(AWS CLI\)
 
-+ [Register\-EC2Image](http://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2Image.html) \(AWS Tools for Windows PowerShell\)
+    ```
+    aws ec2 register-image --sriov-net-support simple ...
+    ```
 
-  ```
-  Register-EC2Image -SriovNetSupport "simple" ...
-  ```
+  + [Register\-EC2Image](http://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2Image.html) \(AWS Tools for Windows PowerShell\)
+
+    ```
+    Register-EC2Image -SriovNetSupport "simple" ...
+    ```
 
 ## Enabling Enhanced Networking with the Intel 82599 VF Interface on Ubuntu<a name="enhanced-networking-ubuntu"></a>
 
-Before you begin, check if enhanced networking is already enabled on your instance\. The latest Quick Start Ubuntu HVM AMIs \(14\.04 and later\) include the necessary drivers for enhanced networking\. You do not have to compile a different version of the `ixgbevf` module unless you want the additional functionality that's provided in a newer version\.
+Before you begin, [check if enhanced networking is already enabled](#test-enhanced-networking) on your instance\. The latest Quick Start Ubuntu HVM AMIs \(14\.04 and later\) include the necessary drivers for enhanced networking\. You do not have to compile a different version of the `ixgbevf` module unless you want the additional functionality that's provided in a newer version\.
 
 If you've launched an instance from a different Ubuntu AMI, contact the AMI provider to confirm if you need a newer version of the enhanced networking drivers\. 
 
-The following procedure provides the general steps for compiling the `ixgbevf` module on an Ubuntu instance\.
+The following procedure provides the general steps for compiling the `ixgbevf` module on an Ubuntu instance\.<a name="ubuntu-enhanced-networking-procedure"></a>
 
 **To enable enhanced networking on Ubuntu \(EBS\-backed instances\)**
 
-1. Connect to your instance\.
+1. <a name="ubuntu-enhanced-networking-start-step"></a>Connect to your instance\.
 
 1. Update the package cache and packages\.
 
@@ -191,16 +192,16 @@ The following procedure provides the general steps for compiling the `ixgbevf` m
 **Important**  
 If during the update process, you are prompted to install `grub`, use `/dev/xvda` to install `grub` onto, and then choose to keep the current version of `/boot/grub/menu.lst`\.
 
-1. Install the dkms package so that your `ixgbevf` module is rebuilt every time your kernel is updated\.
+1. <a name="ixgbevf_start_step"></a>Install the dkms package so that your `ixgbevf` module is rebuilt every time your kernel is updated\.
 
    ```
    ubuntu:~$ sudo apt-get install -y dkms
    ```
 
-1. Download the source of the `ixgbevf` module appropriate for the kernel version of your instance from Sourceforge at [http://sourceforge\.net/projects/e1000/files/ixgbevf%20stable/](http://sourceforge.net/projects/e1000/files/ixgbevf%20stable/); for example:
+1. Download the source of the `ixgbevf` module appropriate for the kernel version of your instance from Sourceforge at [https://sourceforge\.net/projects/e1000/files/ixgbevf%20stable/](https://sourceforge.net/projects/e1000/files/ixgbevf%20stable/); for example:
 
    ```
-   ubuntu:~$ wget "sourceforge.net/projects/e1000/files/ixgbevf stable/4.3.3/ixgbevf-4.3.3.tar.gz"
+   ubuntu:~$ wget "https://sourceforge.net/projects/e1000/files/ixgbevf stable/4.3.3/ixgbevf-4.3.3.tar.gz"
    ```
 **Note**  
 Use the `uname -r` command to get the kernel version for your instance\.
@@ -211,7 +212,7 @@ Use the `uname -r` command to get the kernel version for your instance\.
    ubuntu:~$ tar -xzf ixgbevf-4.3.3.tar.gz
    ```
 
-1. Move the `ixgbevf` package to the `/usr/src/` directory so that dkms can find it and build it for each kernel update\.
+1. <a name="enhanced-networking-dkms-start-step"></a>Move the `ixgbevf` package to the `/usr/src/` directory so that dkms can find it and build it for each kernel update\.
 
    ```
    ubuntu:~$ sudo mv ixgbevf-4.3.3 /usr/src/
@@ -240,7 +241,7 @@ Use the `uname -r` command to get the kernel version for your instance\.
       AUTOINSTALL="yes"
       ```
 
-1. Add, build, and install the `ixgbevf` module on your instance using dkms\.
+1. <a name="enhanced-networking-dkms-stop-step"></a>Add, build, and install the `ixgbevf` module on your instance using dkms\.
 
    1. Add the module to dkms\.
 
@@ -248,7 +249,7 @@ Use the `uname -r` command to get the kernel version for your instance\.
       ubuntu:~$ sudo dkms add -m ixgbevf -v 4.3.3
       ```
 
-   1. Build the module with dkms\.
+   1. <a name="ubuntu_ixgbevf_build_step"></a>Build the module with dkms\.
 
       ```
       ubuntu:~$ sudo dkms build -m ixgbevf -v 4.3.3
@@ -268,13 +269,13 @@ For Ubuntu 16\.04, you may need to open the `/usr/src/ixgbevf-x.x.x/src/kcompat.
       ubuntu:~$ sudo dkms install -m ixgbevf -v 4.3.3
       ```
 
-1. Rebuild `initramfs` so the correct module is loaded at boot time\.
+1. <a name="ixgbevf_stop_step"></a>Rebuild `initramfs` so the correct module is loaded at boot time\.
 
    ```
    ubuntu:~$ sudo update-initramfs -c -k all
    ```
 
-1. Verify that the `ixgbevf` module is installed and at the minimum recommended version using the modinfo ixgbevf command\.
+1. <a name="ubuntu-enhanced-networking-stop-step"></a>Verify that the `ixgbevf` module is installed and at the minimum recommended version using the modinfo ixgbevf command\.
 
    ```
    ubuntu:~$ modinfo ixgbevf
@@ -309,52 +310,53 @@ If you are using an instance store\-backed instance, you can't stop the instance
      Edit-EC2InstanceAttribute -InstanceId instance_id -SriovNetSupport "simple"
      ```
 
-1. \(Optional\) Create an AMI from the instance, as described in [Creating an Amazon EBS\-Backed Linux AMI](creating-an-ami-ebs.md) \. The AMI inherits the enhanced networking `sriovNetSupport` attribute from the instance\. Therefore, you can use this AMI to launch another instance with enhanced networking enabled by default\.
+1. \(Optional\) Create an AMI from the instance, as described in [Creating an Amazon EBS\-Backed Linux AMI](creating-an-ami-ebs.md)\. The AMI inherits the enhanced networking `sriovNetSupport` attribute from the instance\. Therefore, you can use this AMI to launch another instance with enhanced networking enabled by default\.
 
 1. From your local computer, start the instance using the Amazon EC2 console or one of the following commands: [start\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/start-instances.html) \(AWS CLI\), [Start\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/Start-EC2Instance.html) \(AWS Tools for Windows PowerShell\)\. If your instance is managed by AWS OpsWorks, you should start the instance in the AWS OpsWorks console so that the instance state remains in sync\.
 
-1. \(Optional\) Connect to your instance and verify that the module is installed\.
+1. \(Optional\) Connect to your instance and verify that the module is installed\.<a name="ubuntu-enhanced-networking-instance-store"></a>
 
-**To enable enhanced networking on Ubuntu \(instance store\-backed instances\)**  
-If your instance is an instance store\-backed instance, follow [[ERROR] BAD/MISSING LINK TEXT](#ubuntu-enhanced-networking-start-step) through [[ERROR] BAD/MISSING LINK TEXT](#ubuntu-enhanced-networking-stop-step) in the previous procedure, and then create a new AMI as described in [Creating an Instance Store\-Backed Linux AMI](creating-an-ami-instance-store.md)\. Be sure to enable the enhanced networking attribute when you register the AMI\.
+**To enable enhanced networking on Ubuntu \(instance store\-backed instances\)**
 
-+ [register\-image](http://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) \(AWS CLI\)
++ If your instance is an instance store\-backed instance, follow [Step 1](#ubuntu-enhanced-networking-start-step) through [Step 10](#ubuntu-enhanced-networking-stop-step) in the previous procedure, and then create a new AMI as described in [Creating an Instance Store\-Backed Linux AMI](creating-an-ami-instance-store.md)\. Be sure to enable the enhanced networking attribute when you register the AMI\.
 
-  ```
-  aws ec2 register-image --sriov-net-support simple ...
-  ```
+  + [register\-image](http://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) \(AWS CLI\)
 
-+ [Register\-EC2Image](http://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2Image.html) \(AWS Tools for Windows PowerShell\)
+    ```
+    aws ec2 register-image --sriov-net-support simple ...
+    ```
 
-  ```
-  Register-EC2Image -SriovNetSupport "simple" ...
-  ```
+  + [Register\-EC2Image](http://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2Image.html) \(AWS Tools for Windows PowerShell\)
+
+    ```
+    Register-EC2Image -SriovNetSupport "simple" ...
+    ```
 
 ## Enabling Enhanced Networking with the Intel 82599 VF Interface on Other Linux Distributions<a name="enhanced-networking-linux"></a>
 
-Before you begin, check if enhanced networking is already enabled on your instance\. The latest Quick Start HVM AMIs include the necessary drivers for enhanced networking, therefore you do not need to perform additional steps\. 
+Before you begin, [check if enhanced networking is already enabled](#test-enhanced-networking) on your instance\. The latest Quick Start HVM AMIs include the necessary drivers for enhanced networking, therefore you do not need to perform additional steps\. 
 
 The following procedure provides the general steps if you need to enable enhanced networking with the Intel 82599 VF interface on a Linux distribution other than Amazon Linux or Ubuntu\. For more information, such as detailed syntax for commands, file locations, or package and tool support, see the specific documentation for your Linux distribution\.
 
 **To enable enhanced networking on Linux \(EBS\-backed instances\)**
 
-1. Connect to your instance\.
+1. <a name="other-linux-enhanced-networking-start-step"></a>Connect to your instance\.
 
-1. Download the source for the `ixgbevf` module on your instance from Sourceforge at [http://sourceforge\.net/projects/e1000/files/ixgbevf%20stable/](http://sourceforge.net/projects/e1000/files/ixgbevf%20stable/)\.
+1. Download the source for the `ixgbevf` module on your instance from Sourceforge at [https://sourceforge\.net/projects/e1000/files/ixgbevf%20stable/](https://sourceforge.net/projects/e1000/files/ixgbevf%20stable/)\.
 
    Versions of `ixgbevf` earlier than 2\.16\.4, including version 2\.14\.2, do not build properly on some Linux distributions, including certain versions of Ubuntu\.
 
 1. Compile and install the `ixgbevf` module on your instance\. 
 
-   If your distribution supports dkms, then you should consider configuring dkms to recompile the `ixgbevf` module whenever your system's kernel is updated\. If your distribution does not support dkms natively, you can find it in the EPEL repository \([https://fedoraproject\.org/wiki/EPEL](https://fedoraproject.org/wiki/EPEL)\) for Red Hat Enterprise Linux variants, or you can download the software at [http://linux\.dell\.com/dkms/](http://linux.dell.com/dkms/)\. Use [[ERROR] BAD/MISSING LINK TEXT](#enhanced-networking-dkms-start-step) through [[ERROR] BAD/MISSING LINK TEXT](#enhanced-networking-dkms-stop-step) in [To enable enhanced networking on Ubuntu \(EBS\-backed instances\)](#ubuntu-enhanced-networking-procedure) for help configuring dkms\.
+   If your distribution supports dkms, then you should consider configuring dkms to recompile the `ixgbevf` module whenever your system's kernel is updated\. If your distribution does not support dkms natively, you can find it in the EPEL repository \([https://fedoraproject\.org/wiki/EPEL](https://fedoraproject.org/wiki/EPEL)\) for Red Hat Enterprise Linux variants, or you can download the software at [https://linux\.dell\.com/dkms/](https://linux.dell.com/dkms/)\. Use [Step 6](#enhanced-networking-dkms-start-step) through [Step 8](#enhanced-networking-dkms-stop-step) in [To enable enhanced networking on Ubuntu \(EBS\-backed instances\)](#ubuntu-enhanced-networking-procedure) for help configuring dkms\.
 **Warning**  
 If you compile the `ixgbevf` module for your current kernel and then upgrade your kernel without rebuilding the driver for the new kernel, your system may revert to the distribution\-specific `ixgbevf` module at the next reboot, which could make your system unreachable if the distribution\-specific version is incompatible with enhanced networking\.
 
 1. Run the sudo depmod command to update module dependencies\.
 
-1. Update `initramfs` on your instance to ensure that the new module loads at boot time\.
+1. <a name="other-linux-enhanced-networking-stop-step"></a>Update `initramfs` on your instance to ensure that the new module loads at boot time\.
 
-1. Determine if your system uses predictable network interface names by default\. Systems that use systemd or udev versions 197 or greater can rename Ethernet devices and they do not guarantee that a single network interface will be named `eth0`\. This behavior can cause problems connecting to your instance\. For more information and to see other configuration options, see [Predictable Network Interface Names](http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/) on the freedesktop\.org website\.
+1. Determine if your system uses predictable network interface names by default\. Systems that use systemd or udev versions 197 or greater can rename Ethernet devices and they do not guarantee that a single network interface will be named `eth0`\. This behavior can cause problems connecting to your instance\. For more information and to see other configuration options, see [Predictable Network Interface Names](https://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/) on the freedesktop\.org website\.
 
    1. You can check the systemd or udev versions on RPM\-based systems with the following command:
 
@@ -379,7 +381,7 @@ If you compile the `ixgbevf` module for your current kernel and then upgrade you
 
 1. From your local computer, stop the instance using the Amazon EC2 console or one of the following commands: [stop\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) \(AWS CLI\), [Stop\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/Stop-EC2Instance.html) \(AWS Tools for Windows PowerShell\)\. If your instance is managed by AWS OpsWorks, you should stop the instance in the AWS OpsWorks console so that the instance state remains in sync\.
 **Important**  
-If you are using an instance store\-backed instance, you can't stop the instance\. Instead, proceed to [To enabled enhanced networking \(instance store–backed instances\)](#other-linux-enhanced-networking-instance-store)
+If you are using an instance store\-backed instance, you can't stop the instance\. Instead, proceed to [To enable enhanced networking \(instance store–backed instances\)](#other-linux-enhanced-networking-instance-store)
 
 1. From your local computer, enable the enhanced networking attribute using one of the following commands:
 
@@ -401,22 +403,23 @@ If your instance operating system contains an `/etc/udev/rules.d/70-persistent-n
 
 1. From your local computer, start the instance using the Amazon EC2 console or one of the following commands: [start\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/start-instances.html) \(AWS CLI\), [Start\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/Start-EC2Instance.html) \(AWS Tools for Windows PowerShell\)\. If your instance is managed by AWS OpsWorks, you should start the instance in the AWS OpsWorks console so that the instance state remains in sync\.
 
-1. \(Optional\) Connect to your instance and verify that the module is installed\.
+1. \(Optional\) Connect to your instance and verify that the module is installed\.<a name="other-linux-enhanced-networking-instance-store"></a>
 
-**To enabled enhanced networking \(instance store–backed instances\)**  
-If your instance is an instance store–backed instance, follow [[ERROR] BAD/MISSING LINK TEXT](#other-linux-enhanced-networking-start-step) through [[ERROR] BAD/MISSING LINK TEXT](#other-linux-enhanced-networking-stop-step) in the previous procedure, and then create a new AMI as described in [Creating an Instance Store\-Backed Linux AMI](creating-an-ami-instance-store.md)\. Be sure to enable the enhanced networking attribute when you register the AMI\.
+**To enable enhanced networking \(instance store–backed instances\)**
 
-+ [register\-image](http://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) \(AWS CLI\)
++ If your instance is an instance store–backed instance, follow [Step 1](#other-linux-enhanced-networking-start-step) through [Step 5](#other-linux-enhanced-networking-stop-step) in the previous procedure, and then create a new AMI as described in [Creating an Instance Store\-Backed Linux AMI](creating-an-ami-instance-store.md)\. Be sure to enable the enhanced networking attribute when you register the AMI\.
 
-  ```
-  aws ec2 register-image --sriov-net-support simple ...
-  ```
+  + [register\-image](http://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) \(AWS CLI\)
 
-+ [Register\-EC2Image](http://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2Image.html) \(AWS Tools for Windows PowerShell\)
+    ```
+    aws ec2 register-image --sriov-net-support simple ...
+    ```
 
-  ```
-  Register-EC2Image -SriovNetSupport "simple" ...
-  ```
+  + [Register\-EC2Image](http://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2Image.html) \(AWS Tools for Windows PowerShell\)
+
+    ```
+    Register-EC2Image -SriovNetSupport "simple" ...
+    ```
 
 ## Troubleshooting Connectivity Issues<a name="enhanced-networking-troubleshooting"></a>
 

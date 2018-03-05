@@ -34,16 +34,16 @@ Use the following procedure to make the volume available\. You can get direction
    /dev/xvdf: data
    ```
 
-   If the output of the previous command shows simply `data` for the device, then there is no file system on the device and you must create one\. You can go on to [[ERROR] BAD/MISSING LINK TEXT](#create_file_system_step)\. If you run this command on a device that contains a file system, then your output will be different\.
+   If the output of the previous command shows simply `data` for the device, then there is no file system on the device and you must create one\. You can go on to [Step 4](#create_file_system_step)\. If you run this command on a device that contains a file system, then your output will be different\.
 
    ```
    [ec2-user ~]$ sudo file -s /dev/xvda1
    /dev/xvda1: Linux rev 1.0 ext4 filesystem data, UUID=1701d228-e1bd-4094-a14c-8c64d6819362 (needs journal recovery) (extents) (large files) (huge files)
    ```
 
-   In the previous example, the device contains Linux rev 1\.0 ext4 filesystem data, so this volume does not need a file system created \(you can skip [[ERROR] BAD/MISSING LINK TEXT](#create_file_system_step) if your output shows file system data\)\.
+   In the previous example, the device contains Linux rev 1\.0 ext4 filesystem data, so this volume does not need a file system created \(you can skip [Step 4](#create_file_system_step) if your output shows file system data\)\.
 
-1. \(Conditional\) Use the following command to create an ext4 file system on the volume\. Substitute the device name \(such as `/dev/xvdf`\) for *device\_name*\. Depending on the requirements of your application or the limitations of your operating system, you can choose a different file system type, such as ext3 or XFS\.
+1. <a name="create_file_system_step"></a>\(Conditional\) Use the following command to create an ext4 file system on the volume\. Substitute the device name \(such as `/dev/xvdf`\) for *device\_name*\. Depending on the requirements of your application or the limitations of your operating system, you can choose a different file system type, such as ext3 or XFS\.
 **Warning**  
 This step assumes that you're mounting an empty volume\. If you're mounting a volume that already has data on it \(for example, a volume that was restored from a snapshot\), don't use mkfs before mounting the volume \(skip to the next step instead\)\. Otherwise, you'll format the volume and delete the existing data\.
 

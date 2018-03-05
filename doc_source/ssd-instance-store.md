@@ -12,7 +12,11 @@ I3 and F1 instances offer non\-volatile memory express \(NVMe\) SSD instance sto
 
 + The current Amazon Linux AMI
 
-+ Ubuntu version 16\.10 provided by AWS\. If you are using a different version, we recommend that you turn off memory hot add\.
++ Ubuntu version 16\.04 or latest LTS release provided by AWS\. 
+
+  We should be recommending: latest LTS \(16\.04\) or latest regular release\.\.\.which will change every 6 months and those releases are only supported for 9 months as opposed to 5 years for LTS releases\. 
+
+  If you are using a different version, we recommend that you turn off memory hot add\.
 
 + Red Hat Enterprise Linux version 7\.4
 

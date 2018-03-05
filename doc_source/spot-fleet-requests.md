@@ -57,15 +57,11 @@ If you use the Amazon EC2 console to create a Spot Fleet, it creates a role name
 
 1. In the navigation pane, choose **Roles**\.
 
-1. Choose **Create new role**\.
+1. On the **Select type of trusted entity** page, choose **AWS service**, **EC2**, **EC2 \- Spot Fleet Tagging**, and then choose **Next: Permissions**\.
 
-1. On the **Select role type** page, choose **Select** next to **Amazon EC2 Spot Fleet Role**\.
+1. On the **Attached permissions policy** page, choose **Next:Review**\.
 
-1. On the **Attach Policy** page, select the **AmazonEC2SpotFleetRole** policy, and then choose **Next Step**\.
-
-1. On the **Set role name and review** page, type a name for the role \(for example, **aws\-ec2\-spot\-fleet\-tagging\-role**\) and then choose **Create role**\.
-
-1. To grant the Spot Fleet permission to automatically tag the instances it launches, click the row for the new role, choose **Attach Policy**, select the **AmazonEC2SpotFleetTaggingRole** policy, and then choose **Attach Policy**\. Choose **Detach Policy** next to the **AmazonEC2SpotFleetRole** policy\.
+1. On the **Review** page, type a name for the role \(for example, **aws\-ec2\-spot\-fleet\-tagging\-role**\) and then choose **Create role**\.
 
 ## Spot Fleet and IAM Users<a name="spot-fleet-iam-users"></a>
 
@@ -77,9 +73,7 @@ If your IAM users will create or manage a Spot Fleet, be sure to grant them the 
 
 1. In the navigation pane, choose **Policies**, and then choose **Create policy**\.
 
-1. On the **Create Policy** page, choose **Select** next to **Create Your Own Policy**\.
-
-1. On the **Review Policy** page, type a policy name and add the following text to **Policy Document**\.
+1. On the **Create policy** page, choose the **JSON** tab, replace the text with the following, and choose **Review policy**\.
 
    ```
    {
@@ -123,13 +117,15 @@ If your IAM users will create or manage a Spot Fleet, be sure to grant them the 
 
    + `iam:ListPolicies`
 
-1. Choose **Create Policy**\.
+1. On the **Review policy** page, type a policy name and description, and then choose **Create policy**\.
 
-1. In the navigation pane, choose **Users**, and then choose the user to submit the Spot Fleet request\.
+1. In the navigation pane, choose **Users**, and then choose the user\.
 
 1. On the **Permissions** tab, choose **Add permissions**\.
 
-1. Choose **Attach existing policies directly**\. Select the policy you created above, choose **Next: Review**, then **Add permissions**\.
+1. Choose **Attach existing policies directly**\. Select the policy you created above and choose **Next: Review**\.
+
+1. Choose **Add permissions**\.
 
 ## Spot Fleet Health Checks<a name="spot-fleet-health-checks"></a>
 
@@ -157,7 +153,7 @@ Before you create a Spot Fleet request, review [Spot Best Practices](https://aws
 
 + Determine your price per unit, if you are using instance weighting\. To calculate the price per unit, divide the price per instance hour by the number of units \(or weight\) that this instance represents\. \(If you are not using instance weighting, the default price per unit is the price per instance hour\.\)
 
-+ Review the possible options for your Spot Fleet request\. For more information, see the [request\-spot\-fleet](http://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-fleet.html) command in the *AWS Command Line Interface Reference*\. For additional examples, see [Spot Fleet Example Configurations](spot-fleet-examples.md)\.
++ Review the possible options for your Spot Fleet request\. For more information, see the [request\-spot\-fleet](http://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-fleet.html) command in the *AWS CLI Command Reference*\. For additional examples, see [Spot Fleet Example Configurations](spot-fleet-examples.md)\.
 
 ## Service\-Linked Role for Spot Fleet Requests<a name="service-linked-roles-spot-fleet-requests"></a>
 

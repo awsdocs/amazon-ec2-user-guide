@@ -28,7 +28,7 @@ In addition, a Reserved Instance has a number of attributes that determine how i
 
 Reserved Instances do not renew automatically; when they expire, you can continue using the EC2 instance without interruption, but you are charged On\-Demand rates\. In the above example, when the Reserved Instances that cover the T2 and C4 instances expire, you go back to paying the On\-Demand rates until you terminate the instances or purchase new Reserved Instances that match the instance attributes\.
 
-After you purchase a Reserved Instance, you cannot cancel your purchase\. However, you may be able to modify, exchange, or sell your Reserved Instance if your needs change\.
+After you purchase a Reserved Instance, you cannot cancel your purchase\. However, you may be able to [modify](ri-modifying.md), [exchange](ri-convertible-exchange.md), or [sell](ri-market-general.md) your Reserved Instance if your needs change\.
 
 ## Payment Options<a name="ri-payment-options"></a>
 

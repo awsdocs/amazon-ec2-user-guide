@@ -87,13 +87,13 @@ The following is a summary of network performance for General purpose instances 
 
 | Instance type | Network performance | Enhanced networking | 
 | --- | --- | --- | 
-|  `m4.large`  |  Moderate  |  Intel 82599 VF  | 
-|  `m4.xlarge`, `m4.2xlarge`, `m4.4xlarge`  |  High  |  Intel 82599 VF  | 
-|  `m4.10xlarge`  |  10 Gbps  |  Intel 82599 VF  | 
-|  `m4.16xlarge`  |  25 Gbps  |  ENA  | 
-|  `m5.large`, `m5.xlarge`, `m5.2xlarge`, `m5.4xlarge`  |  Up to 10 Gbps  | ENA | 
-|  `m5.12xlarge`  |  10 Gbps  | ENA | 
-|  `m5.24xlarge`  |  25 Gbps  | ENA | 
+|  `m4.large`  |  Moderate  |  [Intel 82599 VF](sriov-networking.md)  | 
+|  `m4.xlarge`, `m4.2xlarge`, `m4.4xlarge`  |  High  |  [Intel 82599 VF](sriov-networking.md)  | 
+|  `m4.10xlarge`  |  10 Gbps  |  [Intel 82599 VF](sriov-networking.md)  | 
+|  `m4.16xlarge`  |  25 Gbps  |  [ENA](enhanced-networking-ena.md)  | 
+|  `m5.large`, `m5.xlarge`, `m5.2xlarge`, `m5.4xlarge`  |  Up to 10 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `m5.12xlarge`  |  10 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `m5.24xlarge`  |  25 Gbps  | [ENA](enhanced-networking-ena.md) | 
 
 ## Instance Features<a name="general-purpose-features"></a>
 
@@ -122,7 +122,13 @@ For more information, see the following:
 
 + M4, M5, and `t2.large` and larger T2 instance types require 64\-bit HVM AMIs\. They have high\-memory, and require a 64\-bit operating system to take advantage of that capacity\. HVM AMIs provide superior performance in comparison to paravirtual \(PV\) AMIs on high\-memory instance types\. In addition, you must use an HVM AMI to take advantage of enhanced networking\.
 
-+ With M5 instances, EBS volumes are exposed as NVMe block devices\. M5 instances require EBS\-backed AMIs with the NVMe and Elastic Network Adapter \(ENA\) drivers installed\. The following AMIs meet these requirements:
++ M5 instances have the following requirements: 
+
+  + Must have the NVMe drivers installed\. EBS volumes are exposed as [NVMe block devices](nvme-ebs-volumes.md)\.
+
+  + Must have the Elastic Network Adapter \([ENA](enhanced-networking-ena.md)\) drivers installed\.
+
+  The following AMIs meet these requirements:
 
   + Amazon Linux 2014\.03 or later
 
@@ -136,12 +142,12 @@ For more information, see the following:
 
   + FreeBSD 11\.1\-RELEASE
 
-  + Windows Server 2012 R2
-
-  + Windows Server 2016
+  + Windows Server 2008 R2 or later
 
 + M5 instances support a maximum of 27 EBS volumes plus elastic network interface attachments\. For example, `m5.2xlarge` instances support four network interfaces\. Every instance has at least one network interface\. If you have a `m5.2xlarge` instance with three additional elastic network interface attachments, you can attach 24 EBS volumes to that instance\.
 
 + M5 instances should have acpid installed to support clean shutdown through API requests\.
+
++ ClassicLink is not supported for M5 instances—you cannot use ClassicLink to link your EC2\-Classic instances to M5 instances in your VPC\.
 
 + There is a limit on the total number of instances that you can launch in a region, and there are additional limits on some instance types\. For more information, see [How many instances can I run in Amazon EC2?](https://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2)\. To request a limit increase, use the [Amazon EC2 Instance Request Form](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-instances)\.

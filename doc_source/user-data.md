@@ -6,7 +6,7 @@ If you are interested in more complex automation scenarios, consider using AWS C
 
 For information about running commands on your Windows instance at launch, see [Running Commands on Your Windows Instance at Launch](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-windows-user-data.html) and [Managing Windows Instance Configuration](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-configuration-manage.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
-In the following examples, the commands from the Installing a LAMP Web Server tutorial are converted to a shell script and a set of cloud\-init directives that executes when the instance launches\. In each example, the following tasks are executed by the user data:
+In the following examples, the commands from the [Installing a LAMP Web Server tutorial](install-LAMP.md) are converted to a shell script and a set of cloud\-init directives that executes when the instance launches\. In each example, the following tasks are executed by the user data:
 
 + The distribution software packages are updated\.
 
@@ -49,7 +49,7 @@ Adding these tasks at boot time adds to the amount of time it takes to boot the 
 
 **To pass a shell script to an instance with user data**
 
-1. Follow the procedure for launching an instance at [Launching Your Instance from an AMI](launching-instance.md#launch-instance-console), but when you get to [[ERROR] BAD/MISSING LINK TEXT](launching-instance.md#configure_instance_details_step) in that procedure, enter your shell script in the **User data** field, and then complete the launch procedure\.
+1. Follow the procedure for launching an instance at [Launching Your Instance from an AMI](launching-instance.md#launch-instance-console), but when you get to [Step 6](launching-instance.md#configure_instance_details_step) in that procedure, enter your shell script in the **User data** field, and then complete the launch procedure\.
 
    In the example script below, the script creates and configures our web server\.
 
@@ -103,7 +103,7 @@ Adding these tasks at boot time adds to the amount of time it takes to boot an i
 
 **To pass cloud\-init directives to an instance with user data**
 
-1. Follow the procedure for launching an instance at [Launching Your Instance from an AMI](launching-instance.md#launch-instance-console), but when you get to [[ERROR] BAD/MISSING LINK TEXT](launching-instance.md#configure_instance_details_step) in that procedure, enter your cloud\-init directive text in the **User data** field, and then complete the launch procedure\.
+1. Follow the procedure for launching an instance at [Launching Your Instance from an AMI](launching-instance.md#launch-instance-console), but when you get to [Step 6](launching-instance.md#configure_instance_details_step) in that procedure, enter your cloud\-init directive text in the **User data** field, and then complete the launch procedure\.
 
    In the example below, the directives create and configure a web server\. The `#cloud-config` line at the top is required in order to identify the commands as cloud\-init directives\.
 

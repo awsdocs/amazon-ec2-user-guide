@@ -58,8 +58,8 @@ The first thing you need to do is get set up to use Amazon EC2\. It can also be 
 
 You can provision Spot Instances directly using Amazon EC2\. You can also provision Spot Instances using other services in AWS\. For more information, see the following documentation\.
 
-Auto Scaling and Spot Instances  
-You can create launch configurations with the maximum price you are willing to pay, so that Auto Scaling can launch Spot Instances\. For more information, see [Launching Spot Instances in Your Auto Scaling Group](http://docs.aws.amazon.com/autoscaling/latest/userguide/US-SpotInstances.html) in the *Amazon EC2 Auto Scaling User Guide*\.
+Amazon EC2 Auto Scaling and Spot Instances  
+You can create launch configurations with the maximum price you are willing to pay, so that Amazon EC2 Auto Scaling can launch Spot Instances\. For more information, see [Launching Spot Instances in Your Auto Scaling Group](http://docs.aws.amazon.com/autoscaling/latest/userguide/asg-launch-spot-instances.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 
 Amazon EMR and Spot Instances  
 There are scenarios where it can be useful to run Spot Instances in an Amazon EMR cluster\. For more information, see [Spot Instances](http://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-instance-purchasing-options.html#emr-spot-instances) and [When Should You Use Spot Instances](http://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-instances-guidelines.html#emr-plan-spot-instances) in the *Amazon EMR Management Guide*\.

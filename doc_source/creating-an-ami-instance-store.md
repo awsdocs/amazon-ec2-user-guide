@@ -2,7 +2,7 @@
 
 To create an instance store\-backed Linux AMI, start from an instance that you've launched from an existing instance store\-backed Linux AMI\. After you've customized the instance to suit your needs, bundle the volume and register a new AMI, which you can use to launch new instances with these customizations\.
 
-The AMI creation process is different for instance store\-backed AMIs\. For more information about the differences between Amazon EBS\-backed and instance store\-backed instances, and how to determine the root device type for your instance, see [Storage for the Root Device](ComponentsAMIs.md#storage-for-the-root-device)\. If you need to create an Amazon EBS\-backed Linux AMI, see [Creating an Amazon EBS\-Backed Linux AMI](creating-an-ami-ebs.md)\.
+The AMI creation process is different for Amazon EBS\-backed AMIs\. For more information about the differences between Amazon EBS\-backed and instance store\-backed instances, and how to determine the root device type for your instance, see [Storage for the Root Device](ComponentsAMIs.md#storage-for-the-root-device)\. If you need to create an Amazon EBS\-backed Linux AMI, see [Creating an Amazon EBS\-Backed Linux AMI](creating-an-ami-ebs.md)\.
 
 ## Overview of the Creation Process for Instance Store\-Backed AMIs<a name="process-creating-an-ami-instance-store"></a>
 

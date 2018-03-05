@@ -8,11 +8,11 @@ To set up a LAMP web server on Amazon Linux 2, see [Tutorial: Install a LAMP Web
 If you are trying to set up a LAMP web server on an Ubuntu or Red Hat Enterprise Linux instance, this tutorial will not work for you\. For more information about other distributions, see their specific documentation\. For information about LAMP web servers on Ubuntu, see the Ubuntu community documentation [ApacheMySQLPHP](https://help.ubuntu.com/community/ApacheMySQLPHP) topic\. 
 
 **Prerequisites**  
-This tutorial assumes that you have already launched a new instance using the Amazon Linux AMI, with a public DNS name that is reachable from the internet\. For more information, see [Step 1: Launch an Instance](EC2_GetStarted.md#ec2-launch-instance)\. You must also have configured your security group to allow SSH \(port 22\), HTTP \(port 80\), and HTTPS \(port 443\) connections\. For more information about these prerequisites, see [Setting Up with Amazon EC2](get-set-up-for-amazon-ec2.md)\.
+This tutorial assumes that you have already launched a new instance using the Amazon Linux AMI, with a public DNS name that is reachable from the internet\. For more information, see [Step 1: Launch an Instance](EC2_GetStarted.md#ec2-launch-instance)\. You must also have configured your security group to allow SSH \(port 22\), HTTP \(port 80\), and HTTPS \(port 443\) connections\. For more information about these prerequisites, see [Setting Up with Amazon EC2](get-set-up-for-amazon-ec2.md)\.<a name="install_apache"></a>
 
 **To install and start the LAMP web server with the Amazon Linux AMI**
 
-1. Connect to your instance\.
+1. [Connect to your instance](EC2_GetStarted.md#ec2-connect-to-instance-linux)\.
 
 1. To ensure that all of your software packages are up to date, perform a quick software update on your instance\. This process may take a few minutes, but it is important to make sure that you have the latest security updates and bug fixes\.
 
@@ -103,7 +103,7 @@ drwxr-xr-x 3 root root 4096 Aug  7 00:02 icons
 drwxr-xr-x 2 root root 4096 Aug  7 21:17 noindex
 ```
 
-To allow the ec2\-user account to manipulate files in this directory, you must modify the ownership and permissions of the directory\. There are many ways to accomplish this task\. In this tutorial, you add the ec2\-user user to the `apache` group, to give the `apache` group ownership of the `/var/www` directory and assign write permissions to the group\.
+To allow the ec2\-user account to manipulate files in this directory, you must modify the ownership and permissions of the directory\. There are many ways to accomplish this task\. In this tutorial, you add the ec2\-user user to the `apache` group, to give the `apache` group ownership of the `/var/www` directory and assign write permissions to the group\.<a name="SettingFilePermissions"></a>
 
 **To set file permissions**
 
@@ -193,7 +193,7 @@ If your server is installed and running, and your file permissions are set corre
 
    ```
    [ec2-user ~]$ rm /var/www/html/phpinfo.php
-   ```
+   ```<a name="SecuringMySQLProcedure"></a>
 
 **To secure the database server**
 

@@ -15,7 +15,7 @@ Reserved Instances purchased for a region \(regional Reserved Instances\) provid
 Regional Reserved Instances on the Linux/Unix platform with default tenancy also provide instance size flexibility, where the Reserved Instance discount applies to instance usage within that instance type, regardless of size\.
 
 **Note**  
-Instance size flexibility does not apply to Reserved Instances that are purchased for a specific Availability Zone, and does not apply to Windows, Windows with SQL Standard, Windows with SQL Server Enterprise, Windows with SQL Server Web, RHEL, and SLES Reserved Instances\.
+Instance size flexibility does not apply to Reserved Instances that are purchased for a specific Availability Zone, Reserved Instances with dedicated tenancy, and Reserved Instances for Windows, Windows with SQL Standard, Windows with SQL Server Enterprise, Windows with SQL Server Web, RHEL, and SLES\.
 
 Instance size flexibility is determined by the normalization factor of the instance size\. The discount applies either fully or partially to running instances of the same instance type, depending on the instance size of the reservation, in any Availability Zone in the region\. The only attributes that must be matched are the instance type, tenancy, and platform\.
 

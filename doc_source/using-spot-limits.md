@@ -5,6 +5,7 @@ Spot Instance requests are subject to the following limits:
 
 + [Spot Request Limits](#spot-limits-general)
 + [Spot Fleet Limits](#spot-fleet-limitations)
++ [T2 Instances](#t2-spot-instances)
 
 ## Spot Request Limits<a name="spot-limits-general"></a>
 
@@ -29,3 +30,7 @@ The usual Amazon EC2 limits apply to instances launched by a Spot Fleet, such as
 + A Spot Fleet request can't span regions\.
 
 + A Spot Fleet request can't span different subnets from the same Availability Zone\.
+
+## T2 Instances<a name="t2-spot-instances"></a>
+
+Launch credits are meant to provide a productive initial launch experience for T2 instances by providing sufficient compute resources to configure the instance\. Repeated launches of T2 instances to access new launch credits is not permitted\. If you require sustained CPU, you can earn credits \(by idling over some period\), use [T2 Unlimited](t2-unlimited.md), or use an instance type with dedicated CPU \(for example, `c4.large`\)\.

@@ -14,9 +14,6 @@ Alternatively, you can use external NTP sources\. For more information about NTP
 
 The Amazon Time Sync Service is available through NTP at the `169.254.169.123` IP address for any instance running in a VPC\. Your instance does not require access to the internet, and you do not have to configure your security group rules or your network ACL rules to allow access\. Use the following procedures to configure the Amazon Time Sync Service on your instance using the `chrony` client\.
 
-**Note**  
-Support for the Amazon Time Sync Service on C5 and M5 instances is coming soon\. When available, the default `chrony` configuration on these instance types will automatically start using the `169.254.169.123` time source\. Until then, ensure that your instance's security group rules allow outbound UDP traffic on port 123 \(NTP\)\.
-
 **Important**  
 On Amazon Linux 2, the default `chrony` configuration is already set up to use the Amazon Time Sync Service IP address\. For Amazon Linux, Red Hat Enterprise Linux \(RHEL\), CentOS, Fedora, and Ubuntu distributions, you must edit the `chrony` configuration file to add a server entry for the Amazon Time Sync Service\.
 

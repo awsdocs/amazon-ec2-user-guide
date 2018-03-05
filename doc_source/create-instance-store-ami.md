@@ -1,6 +1,6 @@
 # Creating an AMI from an Instance Store\-Backed Instance<a name="create-instance-store-ami"></a>
 
-The following procedures are for creating an instance store\-backed AMI from an instance store\-backed instance\. Before you begin, ensure that you've read the Prerequisites\.
+The following procedures are for creating an instance store\-backed AMI from an instance store\-backed instance\. Before you begin, ensure that you've read the [Prerequisites](creating-an-ami-instance-store.md#bundle-ami-prerequisites)\.
 
 
 + [Creating an AMI from an Instance Store\-Backed Amazon Linux Instance](#amazon_linux_instructions)
@@ -38,7 +38,7 @@ This procedure assumes that you have satisfied the prerequisites in [Prerequisit
 
       This enables you to exclude your credentials from the created image\.
 
-   1. Copy your X\.509 certificate and corresponding private key from your computer to the `/tmp/cert` directory on your instance using a secure copy tool such as scp\. The `-i my-private-key.pem` option in the following scp command is the private key you use to connect to your instance with SSH, not the X\.509 private key\. For example:
+   1. Copy your X\.509 certificate and corresponding private key from your computer to the `/tmp/cert` directory on your instance using a secure copy tool such as [scp](AccessingInstancesLinux.md#AccessingInstancesLinuxSCP)\. The `-i my-private-key.pem` option in the following scp command is the private key you use to connect to your instance with SSH, not the X\.509 private key\. For example:
 
       ```
       you@your_computer:~ $ scp -i my-private-key.pem /path/to/pk-HKZYKTAIG2ECMXYIBH3HXV4ZBEXAMPLE.pem /path/to/cert-HKZYKTAIG2ECMXYIBH3HXV4ZBEXAMPLE.pem ec2-user@ec2-203-0-113-25.compute-1.amazonaws.com:/tmp/cert/
@@ -48,9 +48,9 @@ This procedure assumes that you have satisfied the prerequisites in [Prerequisit
 
    Alternatively, because these are plain text files, you can open the certificate and key in a text editor and copy their contents into new files in `/tmp/cert`\.
 
-1. Prepare the bundle to upload to Amazon S3 by running the [ec2\-bundle\-vol](ami-tools-commands.md#ami-bundle-vol) command from inside your instance\. Be sure to specify the `-e` option to exclude the directory where your credentials are stored\. By default, the bundle process excludes files that might contain sensitive information\. These files include `*.sw`, `*.swo`, `*.swp`, `*.pem`, `*.priv`, `*id_rsa*`, `*id_dsa*` `*.gpg`, `*.jks`, `*/.ssh/authorized_keys`, and `*/.bash_history`\. To include all of these files, use the `--no-filter` option\. To include some of these files, use the `--include` option\.
+1. <a name="step_with_bundle_path_amazon_linux"></a>Prepare the bundle to upload to Amazon S3 by running the [ec2\-bundle\-vol](ami-tools-commands.md#ami-bundle-vol) command from inside your instance\. Be sure to specify the `-e` option to exclude the directory where your credentials are stored\. By default, the bundle process excludes files that might contain sensitive information\. These files include `*.sw`, `*.swo`, `*.swp`, `*.pem`, `*.priv`, `*id_rsa*`, `*id_dsa*` `*.gpg`, `*.jks`, `*/.ssh/authorized_keys`, and `*/.bash_history`\. To include all of these files, use the `--no-filter` option\. To include some of these files, use the `--include` option\.
 **Important**  
-By default, the AMI bundling process creates a compressed, encrypted collection of files in the `/tmp` directory that represents your root volume\. If you do not have enough free disk space in `/tmp` to store the bundle, you need to specify a different location for the bundle to be stored with the `-d /path/to/bundle/storage` option\. Some instances have ephemeral storage mounted at `/mnt` or `/media/ephemeral0` that you can use, or you can also create, attach, and mount a new Amazon EBS volume to store the bundle\.
+By default, the AMI bundling process creates a compressed, encrypted collection of files in the `/tmp` directory that represents your root volume\. If you do not have enough free disk space in `/tmp` to store the bundle, you need to specify a different location for the bundle to be stored with the `-d /path/to/bundle/storage` option\. Some instances have ephemeral storage mounted at `/mnt` or `/media/ephemeral0` that you can use, or you can also [create](ebs-creating-volume.md), [attach](ebs-attaching-volume.md), and [mount](ebs-using-volumes.md) a new Amazon EBS volume to store the bundle\.
 
    1. You must run the ec2\-bundle\-vol command as root\. For most commands, you can use sudo to gain elevated permissions, but in this case, you should run sudo \-E su to keep your environment variables\.
 
@@ -70,7 +70,7 @@ By default, the AMI bundling process creates a compressed, encrypted collection 
       [root ec2-user]# ec2-bundle-vol -k /tmp/cert/pk-HKZYKTAIG2ECMXYIBH3HXV4ZBEXAMPLE.pem -c /tmp/cert/cert-HKZYKTAIG2ECMXYIBH3HXV4ZBEXAMPLE.pem -u 123456789012 -r x86_64 -e /tmp/cert --partition gpt
       ```
 **Note**  
-For the China \(Beijing\) and AWS GovCloud \(US\) regions, use the `--ec2cert` parameter and specify the certificates as per the prerequisites\.
+For the China \(Beijing\) and AWS GovCloud \(US\) regions, use the `--ec2cert` parameter and specify the certificates as per the [prerequisites](creating-an-ami-instance-store.md#bundle-ami-prerequisites)\.
 
       It can take a few minutes to create the image\. When this command completes, your `/tmp` \(or non\-default\) directory contains the bundle \(`image.manifest.xml`, plus multiple `image.part.`*xx* files\)\.
 
@@ -133,7 +133,7 @@ To register your AMI in a region other than US East \(N\. Virginia\), you must s
    [ec2-user ~]$ sudo rm /tmp/image.manifest.xml /tmp/image.part.* /tmp/image
    ```
 **Important**  
-If you specified a path with the `-d /path/to/bundle/storage` option in [[ERROR] BAD/MISSING LINK TEXT](#step_with_bundle_path_amazon_linux), use that path instead of `/tmp`\.
+If you specified a path with the `-d /path/to/bundle/storage` option in [Step 2](#step_with_bundle_path_amazon_linux), use that path instead of `/tmp`\.
 
 1. To register your AMI, run the [register\-image](http://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) command as follows\.
 
@@ -162,9 +162,9 @@ HVM instances also require partitioning tools to be installed for the AMI tools 
       grub-install (GRUB) 1.99-21ubuntu3.10
       ```
 
-      In this example, the GRUB version is greater than 0\.9*x*, so GRUB Legacy must be installed\. Proceed to [[ERROR] BAD/MISSING LINK TEXT](#grub-install-step)\. If GRUB Legacy is already present, you can skip to [[ERROR] BAD/MISSING LINK TEXT](#partition)\.
+      In this example, the GRUB version is greater than 0\.9*x*, so GRUB Legacy must be installed\. Proceed to [Step 2](#grub-install-step)\. If GRUB Legacy is already present, you can skip to [Step 2](#partition)\.
 
-   1. Install the `grub` package using the following command\.
+   1. <a name="grub-install-step"></a>Install the `grub` package using the following command\.
 
       ```
       ubuntu:~$ sudo apt-get install -y grub
@@ -177,7 +177,7 @@ HVM instances also require partitioning tools to be installed for the AMI tools 
       grub (GNU GRUB 0.97)
       ```
 
-1. Install the following partition management packages using the package manager for your distribution\. 
+1. <a name="partition"></a>Install the following partition management packages using the package manager for your distribution\. 
 
    + `gdisk` \(some distributions may call this package `gptfdisk` instead\) 
 
@@ -260,7 +260,7 @@ This procedure assumes that you have satisfied the prerequisites in [Prerequisit
 
       This enables you to exclude your credentials from the created image\.
 
-   1. Copy your X\.509 certificate and private key from your computer to the `/tmp/cert` directory on your instance, using a secure copy tool such as scp\. The `-i my-private-key.pem` option in the following scp command is the private key you use to connect to your instance with SSH, not the X\.509 private key\. For example:
+   1. Copy your X\.509 certificate and private key from your computer to the `/tmp/cert` directory on your instance, using a secure copy tool such as [scp](AccessingInstancesLinux.md#AccessingInstancesLinuxSCP)\. The `-i my-private-key.pem` option in the following scp command is the private key you use to connect to your instance with SSH, not the X\.509 private key\. For example:
 
       ```
       you@your_computer:~ $ scp -i my-private-key.pem /path/to/pk-HKZYKTAIG2ECMXYIBH3HXV4ZBEXAMPLE.pem /path/to/cert-HKZYKTAIG2ECMXYIBH3HXV4ZBEXAMPLE.pem ec2-user@ec2-203-0-113-25.compute-1.amazonaws.com:/tmp/cert/
@@ -270,9 +270,9 @@ This procedure assumes that you have satisfied the prerequisites in [Prerequisit
 
    Alternatively, because these are plain text files, you can open the certificate and key in a text editor and copy their contents into new files in `/tmp/cert`\.
 
-1. Prepare the bundle to upload to Amazon S3 by running the [ec2\-bundle\-vol](ami-tools-commands.md#ami-bundle-vol) command from your instance\. Be sure to specify the `-e` option to exclude the directory where your credentials are stored\. By default, the bundle process excludes files that might contain sensitive information\. These files include `*.sw`, `*.swo`, `*.swp`, `*.pem`, `*.priv`, `*id_rsa*`, `*id_dsa*` `*.gpg`, `*.jks`, `*/.ssh/authorized_keys`, and `*/.bash_history`\. To include all of these files, use the `--no-filter` option\. To include some of these files, use the `--include` option\.
+1. <a name="step_with_bundle_path_ubuntu"></a>Prepare the bundle to upload to Amazon S3 by running the [ec2\-bundle\-vol](ami-tools-commands.md#ami-bundle-vol) command from your instance\. Be sure to specify the `-e` option to exclude the directory where your credentials are stored\. By default, the bundle process excludes files that might contain sensitive information\. These files include `*.sw`, `*.swo`, `*.swp`, `*.pem`, `*.priv`, `*id_rsa*`, `*id_dsa*` `*.gpg`, `*.jks`, `*/.ssh/authorized_keys`, and `*/.bash_history`\. To include all of these files, use the `--no-filter` option\. To include some of these files, use the `--include` option\.
 **Important**  
-By default, the AMI bundling process creates a compressed, encrypted collection of files in the `/tmp` directory that represents your root volume\. If you do not have enough free disk space in `/tmp` to store the bundle, you need to specify a different location for the bundle to be stored with the `-d /path/to/bundle/storage` option\. Some instances have ephemeral storage mounted at `/mnt` or `/media/ephemeral0` that you can use, or you can also create, attach, and mount a new Amazon EBS volume to store the bundle\.
+By default, the AMI bundling process creates a compressed, encrypted collection of files in the `/tmp` directory that represents your root volume\. If you do not have enough free disk space in `/tmp` to store the bundle, you need to specify a different location for the bundle to be stored with the `-d /path/to/bundle/storage` option\. Some instances have ephemeral storage mounted at `/mnt` or `/media/ephemeral0` that you can use, or you can also [create](ebs-creating-volume.md), [attach](ebs-attaching-volume.md), and [mount](ebs-using-volumes.md) a new Amazon EBS volume to store the bundle\.
 
    1. You must run the ec2\-bundle\-vol command needs as root\. For most commands, you can use sudo to gain elevated permissions, but in this case, you should run sudo \-E su to keep your environment variables\.
 
@@ -286,7 +286,7 @@ By default, the AMI bundling process creates a compressed, encrypted collection 
       root@ubuntu:#
       ```
 
-   1. To create the AMI bundle, run the [ec2\-bundle\-vol](ami-tools-commands.md#ami-bundle-vol) command as follows\.
+   1. <a name="create_bundle_Ubuntu_Linux_step"></a>To create the AMI bundle, run the [ec2\-bundle\-vol](ami-tools-commands.md#ami-bundle-vol) command as follows\.
 
       ```
       root@ubuntu:# ec2-bundle-vol -k /tmp/cert/pk-HKZYKTAIG2ECMXYIBH3HXV4ZBEXAMPLE.pem -c /tmp/cert/cert-HKZYKTAIG2ECMXYIBH3HXV4ZBEXAMPLE.pem -u your_aws_account_id -r x86_64 -e /tmp/cert --partition gpt
@@ -355,7 +355,7 @@ If you intend to register your AMI in a region other than US East \(N\. Virginia
    ubuntu:~$ sudo rm /tmp/image.manifest.xml /tmp/image.part.* /tmp/image
    ```
 **Important**  
-If you specified a path with the `-d /path/to/bundle/storage` option in [[ERROR] BAD/MISSING LINK TEXT](#step_with_bundle_path_ubuntu), use that same path below, instead of `/tmp`\.
+If you specified a path with the `-d /path/to/bundle/storage` option in [Step 2](#step_with_bundle_path_ubuntu), use that same path below, instead of `/tmp`\.
 
 1. To register your AMI, run the [register\-image](http://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) AWS CLI command as follows\.
 

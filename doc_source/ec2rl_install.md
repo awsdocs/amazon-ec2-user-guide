@@ -29,6 +29,18 @@ For instances with earlier versions of Python installed, there is a [binary vers
    [ec2-user ~]$ wget https://s3.amazonaws.com/ec2rescuelinux/ec2rl.tgz
    ```
 
+1. Download the sha256 hash file:
+
+   ```
+   [ec2-user ~]$  wget https://s3.amazonaws.com/ec2rescuelinux/ec2rl.tgz.sha256
+   ```
+
+1. Verify the integrity of the tarball:
+
+   ```
+   [ec2-user ~]$  sha256sum -c ec2rl.tgz.sha256
+   ```
+
 1. Unpack the tarball:
 
    ```
@@ -38,6 +50,6 @@ For instances with earlier versions of Python installed, there is a [binary vers
 1. Verify the installation by listing out the help file:
 
    ```
-   [ec2-user ~]$ cd ec2rl
+   [ec2-user ~]$ cd ec2rl-<version_number>
    [ec2-user ~]$ ./ec2rl help
    ```

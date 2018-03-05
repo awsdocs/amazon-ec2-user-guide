@@ -1,6 +1,6 @@
 # Managing User Accounts on Your Linux Instance<a name="managing-users"></a>
 
-Each Linux instance type launches with a default Linux system user account\. For Amazon Linux, the user name is `ec2-user`\. For RHEL, the user name is `ec2-user` or `root`\. For Ubuntu, the user name is `ubuntu` or `root`\. For Centos, the user name is `centos`\. For Fedora, the user name is `ec2-user`\. For SUSE, the user name is `ec2-user` or `root`\. Otherwise, if `ec2-user` and `root` don't work, check with your AMI provider\.
+Each Linux instance type launches with a default Linux system user account\. For Amazon Linux, the user name is `ec2-user`\. For Centos, the user name is `centos`\. For Debian, the user name is `admin` or `root`\. For Fedora, the user name is `ec2-user`\. For RHEL, the user name is `ec2-user` or `root`\. For SUSE, the user name is `ec2-user` or `root`\. For Ubuntu, the user name is `ubuntu` or `root`\. Otherwise, if `ec2-user` and `root` don't work, check with your AMI provider\.
 
 **Note**  
 Linux system users should not be confused with AWS Identity and Access Management \(IAM\) users\. For more information, see [IAM Users and Groups](http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_WorkingWithGroupsAndUsers.html) in the *IAM User Guide*\.
@@ -53,7 +53,13 @@ Without these exact file permissions, the user will not be able to log in\.
 **Important**  
 Without these exact file permissions, the user will not be able to log in\.
 
-1. Open the `authorized_keys` file using your favorite text editor\. Paste the public key for your key pair into the file\. For example:
+1. <a name="edit_auth_keys"></a>Open the `authorized_keys` file using your favorite text editor \(such as **vim** or **nano**\)\.
+
+   ```
+   [newuser ~]$ nano .ssh/authorized_keys
+   ```
+
+   Paste the public key for your key pair into the file and save the changes\. For example:
 
    ```
    ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQClKsfkNkuSevGj3eYhCe53pcjqP3maAhDFcvBS7O6V

@@ -103,7 +103,7 @@ In this example, you have a `t2.large` Convertible Reserved Instance\. To change
 
 For more information, see [Modifying the Instance Size of Your Reservations](ri-modifying.md#ri-modification-instancemove) and [Submitting Exchange Requests](#ri-exchange-process)\.
 
-Not all Reserved Instances can be modified\. Ensure that you read the applicable restrictions\.
+Not all Reserved Instances can be modified\. Ensure that you read the applicable [restrictions](ri-modifying.md#ri-modification-limits)\.
 
 ## Submitting Exchange Requests<a name="ri-exchange-process"></a>
 

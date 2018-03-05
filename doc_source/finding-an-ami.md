@@ -48,7 +48,7 @@ You can find Linux AMIs using the Amazon EC2 console\. You can search through al
 
 1. Before you select an AMI, it's important that you check whether it's backed by instance store or by Amazon EBS and that you are aware of the effects of this difference\. For more information, see [Storage for the Root Device](ComponentsAMIs.md#storage-for-the-root-device)\.
 
-1. To launch an instance from this AMI, select it and then choose **Launch**\. For more information about launching an instance using the console, see Launching Your Instance from an AMI\. If you're not ready to launch the instance now, make note of the AMI ID for later\.
+1. To launch an instance from this AMI, select it and then choose **Launch**\. For more information about launching an instance using the console, see [Launching Your Instance from an AMI](launching-instance.md#choose-an-instance-type-page)\. If you're not ready to launch the instance now, make note of the AMI ID for later\.
 
 ## Finding an AMI Using the AWS CLI<a name="finding-an-ami-aws-cli"></a>
 

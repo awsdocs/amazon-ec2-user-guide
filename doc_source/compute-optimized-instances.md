@@ -65,12 +65,12 @@ The following is a summary of network performance for Compute optimized instance
 
 | Instance type | Network performance | Enhanced networking | 
 | --- | --- | --- | 
-| c5\.4xlarge and smaller | Up to 10 Gbps | ENA | 
-| c5\.9xlarge | 10 Gbps | ENA | 
-| c5\.18xlarge | 25 Gbps | ENA | 
-| c4\.large | Moderate | Intel 82599 VF | 
-| c4\.xlarge, c4\.2xlarge, c4\.4xlarge | High | Intel 82599 VF | 
-| c4\.8xlarge | 10 Gbps | Intel 82599 VF | 
+| c5\.4xlarge and smaller | Up to 10 Gbps | [ENA](enhanced-networking-ena.md) | 
+| c5\.9xlarge | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
+| c5\.18xlarge | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
+| c4\.large | Moderate | [Intel 82599 VF](sriov-networking.md) | 
+| c4\.xlarge, c4\.2xlarge, c4\.4xlarge | High | [Intel 82599 VF](sriov-networking.md) | 
+| c4\.8xlarge | 10 Gbps | [Intel 82599 VF](sriov-networking.md) | 
 
 ## Instance Features<a name="compute-instances-features"></a>
 
@@ -96,9 +96,15 @@ For more information, see the following:
 
 ## Release Notes<a name="compute-instance-limits"></a>
 
-+ C4 and C5 instances require 64\-bit HVM AMIs\. They have high\-memory \(up to 144 GiB of RAM\), and require a 64\-bit operating system to take advantage of that capacity\. HVM AMIs provide superior performance in comparison to paravirtual \(PV\) AMIs on high\-memory instance types\. In addition, you must use an HVM AMI to take advantage of enhanced networking\.
++ C4 and C5 instances require 64\-bit EBS\-backed HVM AMIs\. They have high\-memory \(up to 144 GiB of RAM\), and require a 64\-bit operating system to take advantage of that capacity\. HVM AMIs provide superior performance in comparison to paravirtual \(PV\) AMIs on high\-memory instance types\. In addition, you must use an HVM AMI to take advantage of enhanced networking\.
 
-+ With C5 instances, EBS volumes are exposed as NVMe block devices\. C5 instances require EBS\-backed AMIs with the NVMe and Elastic Network Adapter \(ENA\) drivers installed\. The following AMIs meet these requirements:
++ C5 instances have the following requirements: 
+
+  + Must have the NVMe drivers installed\. EBS volumes are exposed as [NVMe block devices](nvme-ebs-volumes.md)\.
+
+  + Must have the Elastic Network Adapter \([ENA](enhanced-networking-ena.md)\) drivers installed\.
+
+  The following AMIs meet these requirements:
 
   + Amazon Linux 2014\.03 or later
 
@@ -112,12 +118,12 @@ For more information, see the following:
 
   + FreeBSD 11\.1\-RELEASE
 
-  + Windows Server 2012 R2
-
-  + Windows Server 2016
+  + Windows Server 2008 R2 or later
 
 + C5 instances support a maximum of 27 EBS volumes plus elastic network interface attachments\. For example, `c5.2xlarge` instances support four network interfaces\. Every instance has at least one network interface\. If you have a `c5.2xlarge` instance with three additional elastic network interface attachments, you can attach 24 EBS volumes to that instance\.
 
 + C5 instances should have acpid installed to support clean shutdown through API requests\.
+
++ ClassicLink is not supported for C5 instances—you cannot use ClassicLink to link your EC2\-Classic instances to C5 instances in your VPC\.
 
 + There is a limit on the total number of instances that you can launch in a region, and there are additional limits on some instance types\. For more information, see [How many instances can I run in Amazon EC2?](https://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2)\. To request a limit increase, use the [Amazon EC2 Instance Request Form](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-instances)\.

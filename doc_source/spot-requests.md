@@ -76,17 +76,9 @@ The following instance types support Dedicated Spot Instances\.
 
 **Current Generation**
 
-+ `c3.8xlarge`
-
 + `c4.8xlarge`
 
-+ `c5.18xlarge`
-
 + `d2.8xlarge`
-
-+ `g2.8xlarge`
-
-+ `i2.8xlarge`
 
 + `i3.16xlarge`
 
@@ -96,17 +88,23 @@ The following instance types support Dedicated Spot Instances\.
 
 + `p2.16xlarge`
 
-+ `r3.8xlarge`
-
 + `r4.16xlarge`
 
 + `x1.32xlarge`
 
 **Previous Generation**
 
++ `c3.8xlarge`
+
 + `cc2.8xlarge`
 
 + `cr1.8xlarge`
+
++ `g2.8xlarge`
+
++ `i2.8xlarge`
+
++ `r3.8xlarge`
 
 ## Service\-Linked Role for Spot Instance Requests<a name="service-linked-roles-spot-instance-requests"></a>
 
@@ -120,7 +118,7 @@ Amazon EC2 uses the service\-linked role named **AWSServiceRoleForEC2Spot** to c
 
 + `ec2:StartInstances` \- Start Spot Instances
 
-If you specify encrypted EBS snapshots for your Spot Instances and you use custom KMS keys for the encryption, you must grant the **AWSServiceRoleForEC2Spot** role access to those KMS keys so that Amazon EC2 can launch Spot Instances on your behalf\. The principal is the Amazon Resource Name \(ARN\) of the **AWSServiceRoleForEC2Spot** role\. For more information, see [Using Key Policies in AWS KMS](http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html)\.
+If you specify encrypted EBS snapshots for your Spot Instances and you use customer managed CMKs for encryption, you must grant the **AWSServiceRoleForEC2Spot** role access to the CMKs so that Amazon EC2 can launch Spot Instances on your behalf\. The principal is the Amazon Resource Name \(ARN\) of the **AWSServiceRoleForEC2Spot** role\. For more information, see [Using Key Policies in AWS KMS](http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html)\.
 
 If you had an active Spot Instance request before October 2017, when Amazon EC2 began supporting this service\-linked role, Amazon EC2 created the **AWSServiceRoleForEC2Spot** role in your AWS account\. For more information, see [A New Role Appeared in My Account](http://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_roles.html#troubleshoot_roles_new-role-appeared) in the *IAM User Guide*\.
 

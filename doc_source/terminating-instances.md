@@ -59,13 +59,13 @@ The `DisableApiTermination` attribute does not prevent you from terminating an i
 **Limits**  
 You can't enable termination protection for Spot instances — a Spot instance is terminated when the Spot price exceeds your bid price\. However, you can prepare your application to handle Spot instance interruptions\. For more information, see [Spot Instance Interruptions](spot-interruptions.md)\.
 
-The `DisableApiTermination` attribute does not prevent Auto Scaling from terminating an instance\. For instances in an Auto Scaling group, use the following Auto Scaling features instead of Amazon EC2 termination protection:
+The `DisableApiTermination` attribute does not prevent Amazon EC2 Auto Scaling from terminating an instance\. For instances in an Auto Scaling group, use the following Amazon EC2 Auto Scaling features instead of Amazon EC2 termination protection:
 
 + To prevent instances that are part of an Auto Scaling group from terminating on scale in, use instance protection\. For more information, see [Instance Protection](http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-instance-termination.html#instance-protection) in the *Amazon EC2 Auto Scaling User Guide*\.
 
-+ To prevent Auto Scaling from terminating unhealthy instances, suspend the `ReplaceUnhealthy` process\. For more information, see [Suspending and Resuming Auto Scaling Processes](http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-suspend-resume-processes.html) in the *Amazon EC2 Auto Scaling User Guide*\.
++ To prevent Amazon EC2 Auto Scaling from terminating unhealthy instances, suspend the `ReplaceUnhealthy` process\. For more information, see [Suspending and Resuming Scaling Processes](http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-suspend-resume-processes.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 
-+ To specify which instances Auto Scaling should terminate first, choose a termination policy\. For more information, see [Customizing the Termination Policy](http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-instance-termination.html#custom-termination-policy) in the *Amazon EC2 Auto Scaling User Guide*\.
++ To specify which instances Amazon EC2 Auto Scaling should terminate first, choose a termination policy\. For more information, see [Customizing the Termination Policy](http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-instance-termination.html#custom-termination-policy) in the *Amazon EC2 Auto Scaling User Guide*\.
 
 **To enable termination protection for an instance at launch time**
 

@@ -6,7 +6,7 @@ For information about identifying Windows instances, see [Identify EC2 Windows I
 
 ## Inspecting the System UUID<a name="inspect-uuid"></a>
 
-You can get the system UUID and look for the presence of the characters "ec2" or "EC2" in the beginning octet of the UUID\. This method to determine whether a system is an EC2 instance is quick but potentially inaccurate because there is a small chance that a system that is not an EC2 instance could have a UUID that starts with these characters\. For a definitive approach, see [Inspecting the Instance Identity Document](#inspect-document)\.
+You can get the system UUID and look for the presence of the characters "ec2" or "EC2" in the beginning octet of the UUID\. This method to determine whether a system is an EC2 instance is quick but potentially inaccurate because there is a small chance that a system that is not an EC2 instance could have a UUID that starts with these characters\. Furthermore, for EC2 instances that are not using Amazon Linux, the distribution's implementation of SMBIOS might represent the UUID in little\-endian format, therefore the "EC2" characters do not appear at the beginning of the UUID\. For a definitive approach, see [Inspecting the Instance Identity Document](#inspect-document)\.
 
 **Example : Get the UUID from the hypervisor**  
 If `/sys/hypervisor/uuid` exists, you can use the following command:  
@@ -41,6 +41,11 @@ In the following example output, the UUID starts with "EC2", which indicates tha
 
 ```
 EC2E1916-9099-7CAF-FD21-01234ABCDEF
+```
+In the following example output, the UUID is represented in little\-endian format\.  
+
+```
+45E12AEC-DCD1-B213-94ED-01234ABCDEF
 ```
 
 ## Inspecting the Instance Identity Document<a name="inspect-document"></a>

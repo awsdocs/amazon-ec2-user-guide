@@ -136,7 +136,7 @@ The following procedures help you prepare a Linux instance\. For directions to p
 
 The best way to protect against Spot Instance interruption is to architect your application to be fault tolerant\. In addition, you can take advantage of *Spot Instance interruption notices*, which provide a two\-minute warning before Amazon EC2 must interrupt your Spot Instance\. We recommend that you check for these warnings every 5 seconds\.
 
-This warning is made available as a CloudWatch event and as item in the instance metadata on the Spot Instance\.
+This warning is made available as a CloudWatch event and as item in the [instance metadata](ec2-instance-metadata.md) on the Spot Instance\.
 
 ### EC2 Spot Instance Interruption Warning<a name="ec2-spot-instance-interruption-warning-event"></a>
 

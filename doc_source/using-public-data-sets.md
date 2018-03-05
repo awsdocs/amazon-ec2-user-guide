@@ -66,7 +66,7 @@ To use a public data set that is in snapshot format, you create a new volume, sp
 
    If the snapshot that you are expecting to see does not appear, you might not have selected the region it is in\. If the data set you identified in [Finding Public Data Sets](#using-public-data-sets-finding) does not specify a region on its detail page, it is likely contained in the `us-east-1` US East \(N\. Virginia\) region\.
 
-1. For **Size \(GiB\)**, type the size of the volume, or verify the that the default size of the snapshot is adequate\.
+1. <a name="data_set_select_size_step_gwt"></a>For **Size \(GiB\)**, type the size of the volume, or verify the that the default size of the snapshot is adequate\.
 **Note**  
 If you specify both a volume size and a snapshot, the size must be equal to or greater than the snapshot size\. When you select a volume type and a snapshot, the minimum and maximum sizes for the volume are shown next to **Size**\.
 

@@ -20,7 +20,7 @@ R4 instances are well suited for the following applications:
 
 X1 instances are well suited for the following applications:
 
-+ In\-memory databases such SAP HANA, including SAP\-certified support for Business Suite S/4HANA, Business Suite on HANA \(SoH\), Business Warehouse on HANA \(BW\), and Data Mart Solutions on HANA\. For more information, see [SAP HANA on the AWS Cloud](https://aws.amazon.com//sap/solutions/saphana/)\.
++ In\-memory databases such as SAP HANA, including SAP\-certified support for Business Suite S/4HANA, Business Suite on HANA \(SoH\), Business Warehouse on HANA \(BW\), and Data Mart Solutions on HANA\. For more information, see [SAP HANA on the AWS Cloud](https://aws.amazon.com//sap/solutions/saphana/)\.
 
 + Big\-data processing engines such as Apache Spark or Presto\.
 
@@ -32,9 +32,18 @@ X1e instances are well suited for the following applications:
 
 + High\-performance databases\.
 
-+ In\-memory databases such SAP HANA, For more information, see [SAP HANA on the AWS Cloud](https://aws.amazon.com//sap/solutions/saphana/)\.
++ In\-memory databases such as SAP HANA\. For more information, see [SAP HANA on the AWS Cloud](https://aws.amazon.com//sap/solutions/saphana/)\.
 
 + Memory\-intensive enterprise applications\.
+
+
++ [Hardware Specifications](#memory-instances-hardware)
++ [Memory Performance](#memory-perf)
++ [Instance Performance](#memory-compute-perf)
++ [Network Performance](#memory-network-perf)
++ [Instance Features](#memory-instances-features)
++ [Support for vCPUs](#high-cpu-support)
++ [Release Notes](#memory-instance-limits)
 
 ## Hardware Specifications<a name="memory-instances-hardware"></a>
 
@@ -93,9 +102,9 @@ The following is a summary of network performance for Memory optimized instances
 
 | Instance type | Network performance | Enhanced networking | 
 | --- | --- | --- | 
-|  `r4.4xlarge` and smaller `x1e.8large` and smaller  |  Up to 10 Gbps  | ENA | 
-|  `r4.8xlarge`, `x1.16xlarge`, `x1e.16xlarge`  |  10 Gbps  | ENA | 
-|  `r4.16xlarge`, `x1.32xlarge`, `x1e.32xlarge`  |  25 Gbps  | ENA | 
+|  `r4.4xlarge` and smaller `x1e.8large` and smaller  |  Up to 10 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `r4.8xlarge`, `x1.16xlarge`, `x1e.16xlarge`  |  10 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `r4.16xlarge`, `x1.32xlarge`, `x1e.32xlarge`  |  25 Gbps  | [ENA](enhanced-networking-ena.md) | 
 
 ## Instance Features<a name="memory-instances-features"></a>
 

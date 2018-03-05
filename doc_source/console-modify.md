@@ -1,6 +1,6 @@
 # Modifying an EBS Volume from the Console<a name="console-modify"></a>
 
-The following procedure shows how to apply available volume modifications from the Amazon EC2 console\.
+The following procedure shows how to apply available volume modifications from the Amazon EC2 console\.<a name="console-modify-size"></a>
 
 **To modify an EBS volume using the console**
 

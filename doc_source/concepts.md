@@ -46,29 +46,29 @@ The first thing you need to do is get set up to use Amazon EC2\. After you are s
 
 **Basics**
 
-+ Instances and AMIs
++ [Instances and AMIs](ec2-instances-and-amis.md)
 
-+ Regions and Availability Zones
++ [Regions and Availability Zones](using-regions-availability-zones.md)
 
 + [Instance Types](instance-types.md)
 
-+ Tags
++ [Tags](Using_Tags.md)
 
 **Networking and Security**
 
 + [Amazon EC2 Key Pairs](ec2-key-pairs.md)
 
-+ Security Groups
++ [Security Groups](using-network-security.md)
 
 + [Elastic IP Addresses](elastic-ip-addresses-eip.md)
 
-+ Amazon EC2 and Amazon VPC
++ [Amazon EC2 and Amazon VPC](using-vpc.md)
 
 **Storage**
 
-+ Amazon EBS
++ [Amazon EBS](AmazonEBS.md)
 
-+ Instance Store
++ [Instance Store](InstanceStorage.md)
 
 **Working with Linux Instances**
 
@@ -76,7 +76,7 @@ The first thing you need to do is get set up to use Amazon EC2\. After you are s
 
 + [Tutorial: Install a LAMP Web Server with the Amazon Linux AMI](install-LAMP.md)
 
-+ [Tutorial: Configure Apache Web Server on Amazon Linux to Use SSL/TLS](SSL-on-an-instance.md)
++ [Tutorial: Configure Apache Web Server on Amazon Linux 2 to Use SSL/TLS](SSL-on-an-instance.md)
 
 + [Getting Started with AWS: Hosting a Web App for Linux](http://docs.aws.amazon.com/gettingstarted/latest/wah-linux/)
 
@@ -113,10 +113,10 @@ Amazon EC2 provides a web\-based user interface, the Amazon EC2 console\. If you
 If you prefer to use a command line interface, you have the following options:
 
 **AWS Command Line Interface \(CLI\)**  
-Provides commands for a broad set of AWS products, and is supported on Windows, Mac, and Linux\. To get started, see [AWS Command Line Interface User Guide](http://docs.aws.amazon.com/cli/latest/userguide/)\. For more information about the commands for Amazon EC2, see [ec2](http://docs.aws.amazon.com/cli/latest/reference/ec2/index.html) in the *AWS Command Line Interface Reference*\.
+Provides commands for a broad set of AWS products, and is supported on Windows, Mac, and Linux\. To get started, see [AWS Command Line Interface User Guide](http://docs.aws.amazon.com/cli/latest/userguide/)\. For more information about the commands for Amazon EC2, see [ec2](http://docs.aws.amazon.com/cli/latest/reference/ec2/index.html) in the *AWS CLI Command Reference*\.
 
 **AWS Tools for Windows PowerShell**  
-Provides commands for a broad set of AWS products for those who script in the PowerShell environment\. To get started, see the [AWS Tools for Windows PowerShell User Guide](http://docs.aws.amazon.com/powershell/latest/userguide/)\. For more information about the cmdlets for Amazon EC2, see the [AWS Tools for Windows PowerShell Reference](http://docs.aws.amazon.com/powershell/latest/reference/Index.html)\.
+Provides commands for a broad set of AWS products for those who script in the PowerShell environment\. To get started, see the [AWS Tools for Windows PowerShell User Guide](http://docs.aws.amazon.com/powershell/latest/userguide/)\. For more information about the cmdlets for Amazon EC2, see the [AWS Tools for PowerShell Cmdlet Reference](http://docs.aws.amazon.com/powershell/latest/reference/Index.html)\.
 
 Amazon EC2 provides a Query API\. These requests are HTTP or HTTPS requests that use the HTTP verbs GET or POST and a Query parameter named `Action`\. For more information about the API actions for Amazon EC2, see [Actions](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/query-apis.html) in the *Amazon EC2 API Reference*\.
 

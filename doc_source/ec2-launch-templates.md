@@ -15,7 +15,7 @@ The following diagram shows a launch template with three versions\. The first ve
 + [Creating a Launch Template](#create-launch-template)
 + [Managing Launch Template Versions](#manage-launch-template-versions)
 + [Launching an Instance from a Launch Template](#launch-instance-from-launch-template)
-+ [Using Launch Templates with Auto Scaling](#launch-templates-as)
++ [Using Launch Templates with Amazon EC2 Auto Scaling](#launch-templates-as)
 + [Using Launch Templates with Spot Fleet](#launch-templates-spot-fleet)
 + [Deleting a Launch Template](#delete-launch-template)
 
@@ -44,7 +44,7 @@ To launch instances, IAM users must have permission to use the `ec2:RunInstances
 
 ## Controlling the Use of Launch Templates<a name="launch-template-permissions"></a>
 
-By default, IAM users do not have permissions to work with launch templates\. You can create an IAM user policy that grants users permissions to create, modify, describe, and delete launch templates and launch template versions\. You can also apply resource\-level permissions to some launch template actions to control a user's ability to use specific resources for those actions\. For more information, see [Supported Resource\-Level Permissions for Amazon EC2 API Actions](ec2-supported-iam-actions-resources.md) and the following example policies: [12\. Working with Launch Templates](ExamplePolicies_EC2.md#iam-example-launch-templates)\.
+By default, IAM users do not have permissions to work with launch templates\. You can create an IAM user policy that grants users permissions to create, modify, describe, and delete launch templates and launch template versions\. You can also apply resource\-level permissions to some launch template actions to control a user's ability to use specific resources for those actions\. For more information, see [Supported Resource\-Level Permissions for Amazon EC2 API Actions](ec2-supported-iam-actions-resources.md) and the following example policies: [13\. Working with Launch Templates](ExamplePolicies_EC2.md#iam-example-launch-templates)\.
 
 Take care when granting users permissions to use the `ec2:CreateLaunchTemplate` and `ec2:CreateLaunchTemplateVersion` actions\. These actions do not support resource\-level permissions that enable you to control which resources users can specify in the launch template\. To restrict the resources that are used to launch an instance, ensure that you grant permissions to create launch templates and launch template versions only to appropriate administrators\.
 
@@ -62,7 +62,7 @@ You can create a new launch template using parameters that you define, or you ca
 
 1. For **Launch template contents**, provide the following information\.
 
-   + **AMI ID**: Specify an AMI ID from which to launch the instance\. You can use an AMI that you own, or you can find a suitable AMI\.
+   + **AMI ID**: Specify an AMI ID from which to launch the instance\. You can use an AMI that you own, or you can [find a suitable AMI](finding-an-ami.md)\.
 
    + **Instance type**: Choose the instance type\. Ensure that the instance type is compatible with the AMI you've specified\. For more information, see [Instance Types](instance-types.md)\. 
 
@@ -70,7 +70,7 @@ You can create a new launch template using parameters that you define, or you ca
 
    + **Network type**: If applicable, choose whether to launch the instance into EC2\-Classic or a VPC\. This option is not available if your account supports EC2\-VPC only\. If you choose EC2\-Classic, ensure that the specified instance type is supported in EC2\-Classic and specify the Availability Zone for the instance\. If you choose EC2\-VPC, specify the subnet in the **Network interfaces** section\.
 
-1. For **Network interfaces**, you can specify up to two network interfaces for the instance\.
+1. For **Network interfaces**, you can specify up to two [network interfaces](using-eni.md) for the instance\.
 
    + **Device**: Specify the device number for the network interface; for example, `eth0` for the primary network interface\. If you leave the field blank, AWS creates the primary network interface\.
 
@@ -108,9 +108,9 @@ You can create a new launch template using parameters that you define, or you ca
 
    + **Delete on termination**: For Amazon EBS volumes, select this check box to delete the volume when the instance is terminated\. For more information, see [Preserving Amazon EBS Volumes on Instance Termination](terminating-instances.md#preserving-volumes-on-termination)\.
 
-   + **Encrypted**: Select this check box to encrypt new Amazon EBS volumes\. Amazon EBS volumes that are restored from encrypted snapshots are automatically encrypted\. Encrypted volumes may only be attached to supported instance types\.
+   + **Encrypted**: Select this check box to encrypt new Amazon EBS volumes\. Amazon EBS volumes that are restored from encrypted snapshots are automatically encrypted\. Encrypted volumes may only be attached to [supported instance types](EBSEncryption.md#EBSEncryption_supported_instances)\.
 
-1. For **Tags**, specify tags by providing key and value combinations\. You can tag the instance, the volumes, or both\.
+1. For **Tags**, specify [tags](Using_Tags.md) by providing key and value combinations\. You can tag the instance, the volumes, or both\.
 
 1. For **Security groups**, specify one or more security groups to associate with the instance\. For more information, see [Amazon EC2 Security Groups for Linux Instances](using-network-security.md)\.
 
@@ -362,13 +362,13 @@ Instances that are launched using a launch template are automatically assigned t
   aws ec2 run-instances --launch-template LaunchTemplateId=lt-0abcd290751193123 --block-device-mappings "DeviceName=/dev/xvdb,Ebs={VolumeSize=20,VolumeType=gp2}"
   ```
 
-## Using Launch Templates with Auto Scaling<a name="launch-templates-as"></a>
+## Using Launch Templates with Amazon EC2 Auto Scaling<a name="launch-templates-as"></a>
 
-You can create an Auto Scaling group and specify a launch template to use for the group\. When Auto Scaling launches instances in the Auto Scaling group, it uses the launch parameters defined in the associated launch template\.
+You can create an Auto Scaling group and specify a launch template to use for the group\. When Amazon EC2 Auto Scaling launches instances in the Auto Scaling group, it uses the launch parameters defined in the associated launch template\.
 
 For more information, see [Creating an Auto Scaling Group Using a Launch Template](http://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg-launch-template.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 
-**To create or update an Auto Scaling group with a launch template using the command line**
+**To create or update an Amazon EC2 Auto Scaling group with a launch template using the command line**
 
 + Use the [create\-auto\-scaling\-group](http://docs.aws.amazon.com/cli/latest/reference/autoscaling/create-auto-scaling-group.html) or the [update\-auto\-scaling\-group](http://docs.aws.amazon.com/cli/latest/reference/autoscaling/update-auto-scaling-group.html) AWS CLI command and specify the `--launch-template` parameter\.
 

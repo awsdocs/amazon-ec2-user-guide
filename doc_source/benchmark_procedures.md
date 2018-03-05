@@ -27,7 +27,7 @@ To create an EBS\-optimized instance, choose **Launch as an EBS\-Optimized insta
 
 ### Setting up Provisioned IOPS SSD \(`io1`\) volumes<a name="setupPIOPS"></a>
 
-To create an `io1` volume, choose **Provisioned IOPS SSD** when creating the volume using the Amazon EC2 console, or, at the command line, specify \-\-type io1 \-\-iops *n* where *n* is an integer between 100 and 20000\. For information about creating EBS volumes, see [Creating an Amazon EBS Volume](ebs-creating-volume.md)\. For information about attaching these volumes to your instance, see [Attaching an Amazon EBS Volume to an Instance](ebs-attaching-volume.md)\.
+To create an `io1` volume, choose **Provisioned IOPS SSD** when creating the volume using the Amazon EC2 console, or, at the command line, specify \-\-type io1 \-\-iops *n* where *n* is an integer between 100 and 32000\. For information about creating EBS volumes, see [Creating an Amazon EBS Volume](ebs-creating-volume.md)\. For information about attaching these volumes to your instance, see [Attaching an Amazon EBS Volume to an Instance](ebs-attaching-volume.md)\.
 
 For the example tests, we recommend that you create a RAID array with 6 volumes, which offers a high level of performance\. Because you are charged by gigabytes provisioned \(and the number of provisioned IOPS for `io1` volumes\), not the number of volumes, there is no additional cost for creating multiple, smaller volumes and using them to create a stripe set\. If you're using Oracle Orion to benchmark your volumes, it can simulate striping the same way that Oracle ASM does, so we recommend that you let Orion do the striping\. If you are using a different benchmarking tool, you need to stripe the volumes yourself\.
 
@@ -82,15 +82,7 @@ The following table lists some of the possible tools you can use to benchmark th
 
 | Tool | Description | 
 | --- | --- | 
-|  [fio](http://freecode.com/projects/fio)  |  For benchmarking I/O performance\. \(Note that fio has a dependency on `libaio-devel`\.\) To install fio on Amazon Linux, run the following command: 
-
-```
-[ec2-user ~]$ sudo yum install -y fio
-``` To install fio on Ubuntu, run the following command: 
-
-```
-sudo apt-get install -y fio
-```  | 
+|  fio  |  For benchmarking I/O performance\. \(Note that fio has a dependency on `libaio-devel`\.\) To install fio on Amazon Linux, run the following command: <pre>[ec2-user ~]$ sudo yum install -y fio</pre> To install fio on Ubuntu, run the following command: <pre>sudo apt-get install -y fio</pre>  | 
 |  [Oracle Orion Calibration Tool](https://docs.oracle.com/cd/E18283_01/server.112/e16638/iodesign.htm#BABFCFBC)  |  For calibrating the I/O performance of storage systems to be used with Oracle databases\.  | 
 
 These benchmarking tools support a wide variety of test parameters\. You should use commands that approximate the workloads your volumes will support\. These commands provided below are intended as examples to help you get started\.

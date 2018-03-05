@@ -1,6 +1,6 @@
 # Amazon EC2 Security Groups for Linux Instances<a name="using-network-security"></a>
 
-A *security group* acts as a virtual firewall that controls the traffic for one or more instances\. When you launch an instance, you associate one or more security groups with the instance\. You add rules to each security group that allow traffic to or from its associated instances\. You can modify the rules for a security group at any time; the new rules are automatically applied to all instances that are associated with the security group\. When we decide whether to allow traffic to reach an instance, we evaluate all the rules from all the security groups that are associated with the instance\.
+A *security group* acts as a virtual firewall that controls the traffic for one or more instances\. When you launch an instance, you associate one or more security groups with the instance\. You add rules to each security group that allow traffic to or from its associated instances\. You can modify the rules for a security group at any time; the new rules are automatically applied to all instances that are associated with the security group after a short period\. When we decide whether to allow traffic to reach an instance, we evaluate all the rules from all the security groups that are associated with the instance\.
 
 If you need to allow traffic to a Windows instance, see [Amazon EC2 Security Groups for Windows Instances](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/using-network-security.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
@@ -21,7 +21,7 @@ Your account may support EC2\-Classic in some regions, depending on when you cre
 
 If you're using EC2\-Classic, you must use security groups created specifically for EC2\-Classic\. When you launch an instance in EC2\-Classic, you must specify a security group in the same region as the instance\. You can't specify a security group that you created for a VPC when you launch an instance in EC2\-Classic\.
 
-After you launch an instance in EC2\-Classic, you can't change its security groups\. However, you can add rules to or remove rules from a security group, and those changes are automatically applied to all instances that are associated with the security group\.
+After you launch an instance in EC2\-Classic, you can't change its security groups\. However, you can add rules to or remove rules from a security group, and those changes are automatically applied to all instances that are associated with the security group after a short period\.
 
 In EC2\-Classic, you can have up to 500 security groups in each region for each account\. You can associate an instance with up to 500 security groups and add up to 100 rules to a security group\.
 
@@ -249,7 +249,7 @@ You can view information about your security groups using the Amazon EC2 console
 
 ### Adding Rules to a Security Group<a name="adding-security-group-rule"></a>
 
-When you add a rule to a security group, the new rule is automatically applied to any instances associated with the security group\.
+When you add a rule to a security group, the new rule is automatically applied to any instances associated with the security group after a short period\.
 
 For more information about choosing security group rules for specific types of access, see [Security Group Rules Reference](security-group-rules-reference.md)\.
 
@@ -349,7 +349,7 @@ To update the protocol, port range, or source or destination of an existing rule
 
 ### Deleting Rules from a Security Group<a name="deleting-security-group-rule"></a>
 
-When you delete a rule from a security group, the change is automatically applied to any instances associated with the security group\.
+When you delete a rule from a security group, the change is automatically applied to any instances associated with the security group after a short period\.
 
 **To delete a security group rule using the console**
 

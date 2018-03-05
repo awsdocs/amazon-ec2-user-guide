@@ -1,6 +1,6 @@
 # How You Are Billed<a name="concepts-reserved-instances-application"></a>
 
-All Reserved Instances provide you with a discount compared to On\-Demand pricing\. With Reserved Instances, you pay for the entire term regardless of actual use\. You can choose to pay for your Reserved Instance upfront, partially upfront, or monthly, depending on the payment option specified for the Reserved Instance\. 
+All Reserved Instances provide you with a discount compared to On\-Demand pricing\. With Reserved Instances, you pay for the entire term regardless of actual use\. You can choose to pay for your Reserved Instance upfront, partially upfront, or monthly, depending on the [payment option](ec2-reserved-instances.md#ri-payment-options) specified for the Reserved Instance\. 
 
 When Reserved Instances expire, you are charged On\-Demand rates for EC2 instance usage\. You can set up a billing alert to warn you when your bill exceeds a threshold you define\. For more information, see [Monitoring Charges with Alerts and Notifications](http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/monitor-charges.html) in the *AWS Billing and Cost Management User Guide*\.
 

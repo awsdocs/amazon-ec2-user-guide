@@ -42,7 +42,7 @@ When an instance is in a stopped state, you can attach or detach Amazon EBS volu
 
  **Terminating an instance** 
 
-When an instance is terminated, the instance performs a normal shutdown, then the attached Amazon EBS volumes are deleted unless the volume's `deleteOnTermination` attribute is set to `false`\. The instance itself is also deleted, and you can't start the instance again at a later time\. 
+When an instance is terminated, the instance performs a normal shutdown\. The root device volume is deleted by default, but any attached Amazon EBS volumes are preserved by default, determined by each volume's `deleteOnTermination` attribute setting\. The instance itself is also deleted, and you can't start the instance again at a later time\. 
 
 To prevent accidental termination, you can disable instance termination\. If you do so, ensure that the `disableApiTermination` attribute is set to `true` for the instance\. To control the behavior of an instance shutdown, such as `shutdown -h` in Linux or `shutdown` in Windows, set the `instanceInitiatedShutdownBehavior` instance attribute to `stop` or `terminate` as desired\. Instances with Amazon EBS volumes for the root device default to `stop`, and instances with instance\-store root devices are always terminated as the result of an instance shutdown\.
 

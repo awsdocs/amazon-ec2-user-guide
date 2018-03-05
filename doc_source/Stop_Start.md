@@ -38,9 +38,7 @@ When you stop a running instance, the following happens:
 
 + When you stop and start a Windows instance, the EC2Config service performs tasks on the instance, such as changing the drive letters for any attached Amazon EBS volumes\. For more information about these defaults and how you can change them, see [Configuring a Windows Instance Using the EC2Config Service](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/UsingConfig_WinAMI.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
-+ If you've registered the instance with a load balancer, it's likely that the load balancer won't be able to route traffic to your instance after you've stopped and restarted it\. You must de\-register the instance from the load balancer after stopping the instance, and then re\-register after starting the instance\. For more information, see [Register or Deregister EC2 Instances for Your Classic Load Balancer](http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-deregister-register-instances.html) in the *User Guide for Classic Load Balancers*\. 
-
-+ If your instance is in an Auto Scaling group, the Auto Scaling service marks the stopped instance as unhealthy, and may terminate it and launch a replacement instance\. For more information, see [Health Checks for Auto Scaling Instances](http://docs.aws.amazon.com/autoscaling/latest/userguide/healthcheck.html) in the *Amazon EC2 Auto Scaling User Guide*\.
++ If your instance is in an Auto Scaling group, the Amazon EC2 Auto Scaling service marks the stopped instance as unhealthy, and may terminate it and launch a replacement instance\. For more information, see [Health Checks for Auto Scaling Instances](http://docs.aws.amazon.com/autoscaling/latest/userguide/healthcheck.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 
 + When you stop a ClassicLink instance, it's unlinked from the VPC to which it was linked\. You must link the instance to the VPC again after restarting it\. For more information about ClassicLink, see [ClassicLink](vpc-classiclink.md)\.
 
@@ -114,7 +112,7 @@ You can change the instance type, user data, and EBS\-optimization attributes of
 
 + To change the user data for your instance, see [Configuring Instances with User Data](ec2-instance-metadata.md#instancedata-add-user-data)\.
 
-+ To enable or disable EBS–optimization for your instance, see Modifying EBS–Optimization\.
++ To enable or disable EBS–optimization for your instance, see [Modifying EBS–Optimization](EBSOptimized.md#modify-ebs-optimized-attribute)\.
 
 + To change the `DeleteOnTermination` attribute of the root volume for your instance, see [Updating the Block Device Mapping of a Running Instance](block-device-mapping-concepts.md#update-instance-bdm)\.
 

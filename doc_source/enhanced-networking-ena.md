@@ -133,7 +133,7 @@ If you launched your instance using an older Amazon Linux AMI and it does not ha
 
 **To enable enhanced networking with ENA \(EBS\-backed instances\)**
 
-1. Connect to your instance\.
+1. <a name="amazon-linux-enhanced-networking-ena-start-step-AL"></a>Connect to your instance\.
 
 1. From the instance, run the following command to update your instance with the newest kernel and kernel modules, including `ena`:
 
@@ -143,7 +143,7 @@ If you launched your instance using an older Amazon Linux AMI and it does not ha
 
 1. From your local computer, reboot your instance using the Amazon EC2 console or one of the following commands: [reboot\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/reboot-instances.html) \(AWS CLI\), [Restart\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/Restart-EC2Instance.html) \(AWS Tools for Windows PowerShell\)\.
 
-1. Connect to your instance again and verify that the `ena` module is installed and at the minimum recommended version using the modinfo ena command from [Testing Whether Enhanced Networking with ENA Is Enabled](#test-enhanced-networking-ena)\.
+1. <a name="amazon-linux-enhanced-networking-ena-stop-step-AL"></a>Connect to your instance again and verify that the `ena` module is installed and at the minimum recommended version using the modinfo ena command from [Testing Whether Enhanced Networking with ENA Is Enabled](#test-enhanced-networking-ena)\.
 
 1. From your local computer, stop the instance using the Amazon EC2 console or one of the following commands: [stop\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) \(AWS CLI\), [Stop\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/Stop-EC2Instance.html) \(AWS Tools for Windows PowerShell\)\. If your instance is managed by AWS OpsWorks, you should stop the instance in the AWS OpsWorks console so that the instance state remains in sync\.
 **Important**  
@@ -170,9 +170,9 @@ If you are using an instance store\-backed instance, you can't stop the instance
 1. Connect to your instance and verify that the `ena` module is installed and loaded on your network interface using the ethtool \-i eth*n* command from [Testing Whether Enhanced Networking with ENA Is Enabled](#test-enhanced-networking-ena)\.
 
    If you are unable to connect to your instance after enabling enhanced networking with ENA, see [Troubleshooting the Elastic Network Adapter \(ENA\)](troubleshooting-ena.md)\.
-
+<a name="enhanced-networking-ena-instance-store-AL"></a>
 **To enable enhanced networking with ENA \(instance store\-backed instances\)**  
-If your instance is an instance store–backed instance, follow [[ERROR] BAD/MISSING LINK TEXT](#amazon-linux-enhanced-networking-ena-start-step-AL) through [[ERROR] BAD/MISSING LINK TEXT](#amazon-linux-enhanced-networking-ena-stop-step-AL) in the previous procedure, and then create a new AMI as described in [Creating an Instance Store\-Backed Linux AMI](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-instance-store.html)\. Be sure to enable the enhanced networking `enaSupport` attribute when you register the AMI\.
+If your instance is an instance store–backed instance, follow [Step 1](#amazon-linux-enhanced-networking-ena-start-step-AL) through [Step 4](#amazon-linux-enhanced-networking-ena-stop-step-AL) in the previous procedure, and then create a new AMI as described in [Creating an Instance Store\-Backed Linux AMI](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-instance-store.html)\. Be sure to enable the enhanced networking `enaSupport` attribute when you register the AMI\.
 
 + [register\-image](http://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) \(AWS CLI\)
 
@@ -190,11 +190,11 @@ If your instance is an instance store–backed instance, follow [[ERROR] BAD/MIS
 
 The latest Ubuntu HVM AMIs have the module required for enhanced networking with ENA installed and have the required `enaSupport` attribute set\. Therefore, if you launch an instance with the latest Ubuntu HVM AMI on a supported instance type, enhanced networking with ENA is already enabled for your instance\. For more information, see [Testing Whether Enhanced Networking with ENA Is Enabled](#test-enhanced-networking-ena)\.
 
-If you launched your instance using an older AMI and it does not have enhanced networking enabled already, the following are the general steps to enable enhanced networking with ENA on an Ubuntu instance\.
+If you launched your instance using an older AMI and it does not have enhanced networking enabled already, the following are the general steps to enable enhanced networking with ENA on an Ubuntu instance\.<a name="ubuntu-enhanced-networking-ena-procedure"></a>
 
 **To enable enhanced networking with ENA on Ubuntu \(EBS\-backed instances\)**
 
-1. Connect to your instance\.
+1. <a name="ubuntu-enhanced-networking-ena-start-step"></a>Connect to your instance\.
 
 1. Update the package cache and packages\.
 
@@ -204,7 +204,7 @@ If you launched your instance using an older AMI and it does not have enhanced n
 **Important**  
 If during the update process you are prompted to install `grub`, use `/dev/xvda` to install `grub` onto, and then choose to keep the current version of `/boot/grub/menu.lst`\.
 
-1. Install the `build-essential` packages to compile the kernel module and the `dkms` package so that your `ena` module is rebuilt every time your kernel is updated\.
+1. <a name="ena_start_step"></a>Install the `build-essential` packages to compile the kernel module and the `dkms` package so that your `ena` module is rebuilt every time your kernel is updated\.
 
    ```
    ubuntu:~$ sudo apt-get install -y build-essential dkms
@@ -216,7 +216,7 @@ If during the update process you are prompted to install `grub`, use `/dev/xvda`
    ubuntu:~$ git clone https://github.com/amzn/amzn-drivers
    ```
 
-1. Move the `amzn-drivers` package to the `/usr/src/` directory so dkms can find it and build it for each kernel update\. Append the version number \(you can find the current version number in the release notes\) of the source code to the directory name\. For example, version `1.0.0` is shown in the example below\.
+1. <a name="enhanced-networking-ena-dkms-start-step"></a>Move the `amzn-drivers` package to the `/usr/src/` directory so dkms can find it and build it for each kernel update\. Append the version number \(you can find the current version number in the release notes\) of the source code to the directory name\. For example, version `1.0.0` is shown in the example below\.
 
    ```
    ubuntu:~$ sudo mv amzn-drivers /usr/src/amzn-drivers-1.0.0
@@ -245,7 +245,7 @@ If during the update process you are prompted to install `grub`, use `/dev/xvda`
       AUTOINSTALL="yes"
       ```
 
-1. Add, build, and install the `ena` module on your instance using dkms\.
+1. <a name="enhanced-networking-ena-dkms-stop-step"></a>Add, build, and install the `ena` module on your instance using dkms\.
 
    1. Add the module to dkms\.
 
@@ -253,7 +253,7 @@ If during the update process you are prompted to install `grub`, use `/dev/xvda`
       ubuntu:~$ sudo dkms add -m amzn-drivers -v 1.0.0
       ```
 
-   1. Build the module using dkms\.
+   1. <a name="ubuntu_ena_build_step"></a>Build the module using dkms\.
 
       ```
       ubuntu:~$ sudo dkms build -m amzn-drivers -v 1.0.0
@@ -265,13 +265,13 @@ If during the update process you are prompted to install `grub`, use `/dev/xvda`
       ubuntu:~$ sudo dkms install -m amzn-drivers -v 1.0.0
       ```
 
-1. Rebuild `initramfs` so the correct module is loaded at boot time\.
+1. <a name="ena_stop_step"></a>Rebuild `initramfs` so the correct module is loaded at boot time\.
 
    ```
    ubuntu:~$ sudo update-initramfs -c -k all
    ```
 
-1. Verify that the `ena` module is installed using the modinfo ena command from [Testing Whether Enhanced Networking with ENA Is Enabled](#test-enhanced-networking-ena)\.
+1. <a name="ubuntu-enhanced-networking-ena-stop-step"></a>Verify that the `ena` module is installed using the modinfo ena command from [Testing Whether Enhanced Networking with ENA Is Enabled](#test-enhanced-networking-ena)\.
 
    ```
    ubuntu:~$ modinfo ena
@@ -325,9 +325,9 @@ If you are using an instance store\-backed instance, you can't stop the instance
 1. \(Optional\) Connect to your instance and verify that the module is installed\.
 
    If you are unable to connect to your instance after enabling enhanced networking with ENA, see [Troubleshooting the Elastic Network Adapter \(ENA\)](troubleshooting-ena.md)\.
-
+<a name="ubuntu-enhanced-networking-ena-instance-store"></a>
 **To enable enhanced networking with ENA on Ubuntu \(instance store\-backed instances\)**  
-If your instance is an instance store\-backed instance, follow [[ERROR] BAD/MISSING LINK TEXT](#ubuntu-enhanced-networking-ena-start-step) through [[ERROR] BAD/MISSING LINK TEXT](#ubuntu-enhanced-networking-ena-stop-step) in the previous procedure, and then create a new AMI as described in [Creating an Instance Store\-Backed Linux AMI](creating-an-ami-instance-store.md)\. Be sure to enable the enhanced networking `enaSupport` attribute when you register the AMI\.
+If your instance is an instance store\-backed instance, follow [Step 1](#ubuntu-enhanced-networking-ena-start-step) through [Step 9](#ubuntu-enhanced-networking-ena-stop-step) in the previous procedure, and then create a new AMI as described in [Creating an Instance Store\-Backed Linux AMI](creating-an-ami-instance-store.md)\. Be sure to enable the enhanced networking `enaSupport` attribute when you register the AMI\.
 
 + [register\-image](http://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) \(AWS CLI\)
 
@@ -347,28 +347,32 @@ The following procedure provides the general steps for enabling enhanced network
 
 **To enable enhanced networking with ENA on Linux \(EBS\-backed instances\)**
 
-1. Connect to your instance\.
+1. <a name="other-linux-enhanced-networking-ena-start-step"></a>Connect to your instance\.
 
 1. Clone the source code for the `ena` module on your instance from GitHub at [https://github.com/amzn/amzn-drivers](https://github.com/amzn/amzn-drivers)\.
 
    ```
-   ubuntu:~$ git clone https://github.com/amzn/amzn-drivers
+   git clone https://github.com/amzn/amzn-drivers
    ```
 
 1. Compile and install the `ena` module on your instance\. 
 
-   If your distribution supports dkms, then you should consider configuring dkms to recompile the `ena` module whenever your system's kernel is updated\. If your distribution does not support dkms natively, you can find it in the EPEL repository \([https://fedoraproject\.org/wiki/EPEL](https://fedoraproject.org/wiki/EPEL)\) for Red Hat Enterprise Linux variants, or you can download the software at [http://linux\.dell\.com/dkms/](http://linux.dell.com/dkms/)\. Use [[ERROR] BAD/MISSING LINK TEXT](#enhanced-networking-ena-dkms-start-step) through [[ERROR] BAD/MISSING LINK TEXT](#enhanced-networking-ena-dkms-stop-step) in [To enable enhanced networking with ENA on Ubuntu \(EBS\-backed instances\)](#ubuntu-enhanced-networking-ena-procedure) for help configuring dkms\.
+   If your distribution supports dkms, then you should consider configuring dkms to recompile the `ena` module whenever your system's kernel is updated\. If your distribution does not support dkms natively, you can find it in the EPEL repository \([https://fedoraproject\.org/wiki/EPEL](https://fedoraproject.org/wiki/EPEL)\) for Red Hat Enterprise Linux variants, or you can download the software at [https://linux\.dell\.com/dkms/](https://linux.dell.com/dkms/)\. Use [Step 5](#enhanced-networking-ena-dkms-start-step) through [Step 7](#enhanced-networking-ena-dkms-stop-step) in [To enable enhanced networking with ENA on Ubuntu \(EBS\-backed instances\)](#ubuntu-enhanced-networking-ena-procedure) for help configuring dkms\.
 
 1. Run the sudo depmod command to update module dependencies\.
 
-1. Update `initramfs` on your instance to ensure that the new module loads at boot time\.
+1. <a name="other-linux-enhanced-networking-ena-stop-step"></a>Update `initramfs` on your instance to ensure that the new module loads at boot time\. For example, if your distribution supports dracut, you can use the following command:
 
-1. Determine if your system uses predictable network interface names by default\. Systems that use systemd or udev versions 197 or greater can rename Ethernet devices and they do not guarantee that a single network interface will be named `eth0`\. This behavior can cause problems connecting to your instance\. For more information and to see other configuration options, see [Predictable Network Interface Names](http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/) on the freedesktop\.org website\.
+   ```
+   dracut -f -v
+   ```
+
+1. Determine if your system uses predictable network interface names by default\. Systems that use systemd or udev versions 197 or greater can rename Ethernet devices and they do not guarantee that a single network interface will be named `eth0`\. This behavior can cause problems connecting to your instance\. For more information and to see other configuration options, see [Predictable Network Interface Names](https://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/) on the freedesktop\.org website\.
 
    1. You can check the systemd or udev versions on RPM\-based systems with the following command:
 
       ```
-      [ec2-user ~]$ rpm -qa | grep -e '^systemd-[0-9]\+\|^udev-[0-9]\+'
+      rpm -qa | grep -e '^systemd-[0-9]\+\|^udev-[0-9]\+'
       systemd-208-11.el7_0.2.x86_64
       ```
 
@@ -377,13 +381,13 @@ The following procedure provides the general steps for enabling enhanced network
    1. Disable predictable network interface names by adding the `net.ifnames=0` option to the `GRUB_CMDLINE_LINUX` line in `/etc/default/grub`\.
 
       ```
-      [ec2-user ~]$ sudo sed -i '/^GRUB\_CMDLINE\_LINUX/s/\"$/\ net\.ifnames\=0\"/' /etc/default/grub
+      sudo sed -i '/^GRUB\_CMDLINE\_LINUX/s/\"$/\ net\.ifnames\=0\"/' /etc/default/grub
       ```
 
    1. Rebuild the grub configuration file\.
 
       ```
-      [ec2-user ~]$ sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+      sudo grub2-mkconfig -o /boot/grub2/grub.cfg
       ```
 
 1. From your local computer, stop the instance using the Amazon EC2 console or one of the following commands: [stop\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) \(AWS CLI\), [Stop\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/Stop-EC2Instance.html) \(AWS Tools for Windows PowerShell\)\. If your instance is managed by AWS OpsWorks, you should stop the instance in the AWS OpsWorks console so that the instance state remains in sync\.
@@ -413,9 +417,9 @@ If your instance operating system contains an `/etc/udev/rules.d/70-persistent-n
 1. \(Optional\) Connect to your instance and verify that the module is installed\.
 
    If you are unable to connect to your instance after enabling enhanced networking with ENA, see [Troubleshooting the Elastic Network Adapter \(ENA\)](troubleshooting-ena.md)\.
-
+<a name="other-linux-enhanced-networking-ena-instance-store"></a>
 **To enabled enhanced networking with ENA \(instance store–backed instances\)**  
-If your instance is an instance store–backed instance, follow the [[ERROR] BAD/MISSING LINK TEXT](#other-linux-enhanced-networking-ena-start-step) through the [[ERROR] BAD/MISSING LINK TEXT](#other-linux-enhanced-networking-ena-stop-step) in the previous procedure, and then create a new AMI as described in [Creating an Instance Store\-Backed Linux AMI](creating-an-ami-instance-store.md)\. Be sure to enable the enhanced networking `enaSupport` attribute when you register the AMI\.
+If your instance is an instance store–backed instance, follow the [Step 1](#other-linux-enhanced-networking-ena-start-step) through the [Step 5](#other-linux-enhanced-networking-ena-stop-step) in the previous procedure, and then create a new AMI as described in [Creating an Instance Store\-Backed Linux AMI](creating-an-ami-instance-store.md)\. Be sure to enable the enhanced networking `enaSupport` attribute when you register the AMI\.
 
 + [register\-image](http://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) \(AWS CLI\)
 

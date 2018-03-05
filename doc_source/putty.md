@@ -91,15 +91,17 @@ Use the following procedure to connect to your Linux instance using PuTTY\. You 
 
       + For an Amazon Linux AMI, the user name is `ec2-user`\.
 
-      + For a RHEL AMI, the user name is `ec2-user` or `root`\.
-
-      + For an Ubuntu AMI, the user name is `ubuntu` or `root`\.
-
       + For a Centos AMI, the user name is `centos`\.
+
+      + For a Debian AMI, the user name is `admin` or `root`\.
 
       + For a Fedora AMI, the user name is `ec2-user`\.
 
-      + For SUSE, the user name is `ec2-user` or `root`\.
+      + For a RHEL AMI, the user name is `ec2-user` or `root`\.
+
+      + For a SUSE AMI, the user name is `ec2-user` or `root`\.
+
+      + For an Ubuntu AMI, the user name is `ubuntu` or `root`\.
 
       + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
 
@@ -107,15 +109,17 @@ Use the following procedure to connect to your Linux instance using PuTTY\. You 
 
       + For an Amazon Linux AMI, the user name is `ec2-user`\.
 
-      + For a RHEL AMI, the user name is `ec2-user` or `root`\.
-
-      + For an Ubuntu AMI, the user name is `ubuntu` or `root`\.
-
       + For a Centos AMI, the user name is `centos`\.
+
+      + For a Debian AMI, the user name is `admin` or `root`\.
 
       + For a Fedora AMI, the user name is `ec2-user`\.
 
-      + For SUSE, the user name is `ec2-user` or `root`\.
+      + For a RHEL AMI, the user name is `ec2-user` or `root`\.
+
+      + For a SUSE AMI, the user name is `ec2-user` or `root`\.
+
+      + For an Ubuntu AMI, the user name is `ubuntu` or `root`\.
 
       + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
 

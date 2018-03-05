@@ -69,6 +69,7 @@ The following table lists the regions provided by an AWS account\. You can't des
 | `eu-west-3` | EU \(Paris\) | 
 | `ap-northeast-1` | Asia Pacific \(Tokyo\) | 
 | `ap-northeast-2` | Asia Pacific \(Seoul\) | 
+| `ap-northeast-3` | Asia Pacific \(Osaka\-Local\) | 
 | `ap-southeast-1` | Asia Pacific \(Singapore\) | 
 | `ap-southeast-2` | Asia Pacific \(Sydney\) | 
 | `ap-south-1` | Asia Pacific \(Mumbai\) | 

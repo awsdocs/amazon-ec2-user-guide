@@ -18,7 +18,7 @@ The following procedures were written for and tested on Amazon Linux\. Other dis
 
 ## Preparing a Linux Root Partition for Expansion<a name="prepare-linux-root-part"></a>
 
-There are several steps to take to expand the root partition of an instance\. If the partition to expand is not the root partition, then this procedure is not necessary\. 
+There are several steps to take to expand the root partition of an instance\. If the partition to expand is not the root partition, then this procedure is not necessary\. <a name="root_partition_prepare"></a>
 
 **To prepare a Linux root partition for expansion**
 
@@ -28,7 +28,7 @@ There are several steps to take to expand the root partition of an instance\. If
 
 1. Take a snapshot of your volume\. It can be easy to corrupt or lose your data in the following procedures\. If you have a fresh snapshot, you can always start over in case of a mistake and your data is still safe\. For more information, see [Creating an Amazon EBS Snapshot](ebs-creating-snapshot.md)\.
 
-1. Record the device name that the volume is attached to\. You can find this information on the **Root device** field of the instance's details pane\. The value is likely `/dev/sda1` or `/dev/xvda`\.
+1. <a name="identify_root_device_step"></a>Record the device name that the volume is attached to\. You can find this information on the **Root device** field of the instance's details pane\. The value is likely `/dev/sda1` or `/dev/xvda`\.
 
 1. Detach the volume from the primary instance\. For more information, see [Detaching an Amazon EBS Volume from an Instance](ebs-detaching-volume.md)\.
 
@@ -60,7 +60,7 @@ If the partition to expand is the root partition, be sure to follow the steps in
 
    In this example, the `xvdf` device has 100 GiB of available storage and it contains an 8\-GiB partition\.
 
-1. Unmount the partition if it is mounted\. Run the umount command with the value of `MOUNTPOINT` from the lsblk command\. In this example, the `MOUNTPOINT` value for the partition is `/mnt`\.
+1. <a name="partition_unmount_step_parted"></a>Unmount the partition if it is mounted\. Run the umount command with the value of `MOUNTPOINT` from the lsblk command\. In this example, the `MOUNTPOINT` value for the partition is `/mnt`\.
 
    ```
    [ec2-user ~]$ sudo umount /mnt
@@ -249,7 +249,7 @@ Because you removed a partition and added a partition, parted may warn that you 
 
 1. The next steps differ depending on whether the expanded partition belongs on the current instance or if it is the root partition for another instance\. 
 
-   + If this partition belongs on the current instance, remount the partition at the `MOUNTPOINT` identified in [[ERROR] BAD/MISSING LINK TEXT](#partition_unmount_step_parted)\.
+   + If this partition belongs on the current instance, remount the partition at the `MOUNTPOINT` identified in [Step 2](#partition_unmount_step_parted)\.
 
      ```
      [ec2-user ~]$ sudo mount /dev/xvdf1 /mnt
@@ -261,7 +261,7 @@ Because you removed a partition and added a partition, parted may warn that you 
 
 ## Expanding a Linux Partition Using gdisk<a name="expanding-partition-gdisk"></a>
 
-The gdisk utility \(sometimes called GPT fdisk\) is a text\-based, menu\-driven tool for creating and editing partition tables, and it has better support for GPT partition tables than parted in some distributions\. Many common Linux distributions \(such as Amazon Linux and Ubuntu\) provide gdisk by default\. If your distribution does not provide the gdisk command, you can find out how to get it by visiting [Obtaining GPT fdisk](http://www.rodsbooks.com/gdisk/download.html); in many cases, it is much easier to launch an Amazon Linux instance to use as a secondary instance because the gdisk command is already available\.
+The gdisk utility \(sometimes called GPT fdisk\) is a text\-based, menu\-driven tool for creating and editing partition tables, and it has better support for GPT partition tables than parted in some distributions\. Many common Linux distributions \(such as Amazon Linux and Ubuntu\) provide gdisk by default\. If your distribution does not provide the gdisk command, you can find out how to get it by visiting [Obtaining GPT fdisk](http://www.rodsbooks.com/gdisk/download.html); in many cases, it is much easier to launch an Amazon Linux instance to use as a secondary instance because the gdisk command is already available\.<a name="part-resize-gdisk"></a>
 
 **To expand a Linux partition using gdisk**
 
@@ -279,7 +279,7 @@ If the partition to expand is the root partition, be sure to follow the steps in
 
    In this example, the `xvdf` device has 100 GiB of available storage and it contains a 9\.9\-GiB partition\.
 
-1. Unmount the partition if it is mounted\. Run the umount command with the value of `MOUNTPOINT` from the lsblk command\. In this example, the `MOUNTPOINT` value for the partition is `/mnt`\.
+1. <a name="partition_unmount_step_gdisk"></a>Unmount the partition if it is mounted\. Run the umount command with the value of `MOUNTPOINT` from the lsblk command\. In this example, the `MOUNTPOINT` value for the partition is `/mnt`\.
 
    ```
    [ec2-user ~]$ sudo umount /mnt
@@ -462,7 +462,7 @@ You may need to install the `xfsprogs` package to work with XFS file systems\. U
 
 1. The next steps differ depending on whether the expanded partition belongs on the current instance or if it is the root partition for another instance\. 
 
-   + If this partition belongs on the current instance, remount the partition at the `MOUNTPOINT` identified in [[ERROR] BAD/MISSING LINK TEXT](#partition_unmount_step_gdisk)\.
+   + If this partition belongs on the current instance, remount the partition at the `MOUNTPOINT` identified in [Step 2](#partition_unmount_step_gdisk)\.
 
      ```
      [ec2-user ~]$ sudo mount /dev/xvdf1 /mnt
@@ -480,7 +480,7 @@ If you expanded a root partition from another instance, follow this procedure to
 
 1. Detach the expanded partition from its secondary instance\. For more information, see [Detaching an Amazon EBS Volume from an Instance](ebs-detaching-volume.md)\.
 
-1. Reattach the volume to the primary instance using the device name that you identified in [[ERROR] BAD/MISSING LINK TEXT](#identify_root_device_step) of the preparation procedure\. For more information, see [Attaching an Amazon EBS Volume to an Instance](ebs-attaching-volume.md)\.
+1. Reattach the volume to the primary instance using the device name that you identified in [Step 4](#identify_root_device_step) of the [preparation procedure](#root_partition_prepare)\. For more information, see [Attaching an Amazon EBS Volume to an Instance](ebs-attaching-volume.md)\.
 
 1. Start the primary instance\. For more information, see [Stop and Start Your Instance](Stop_Start.md)\.
 

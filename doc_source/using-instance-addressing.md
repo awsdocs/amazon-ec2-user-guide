@@ -233,7 +233,7 @@ You cannot auto\-assign a public IP address if you specify more than one network
 
 1. On the **Instances** page, select your new instance and view its public IP address in **IPv4 Public IP** field in the details pane\.
 
-The public IP addressing feature is only available during launch\. However, whether you assign a public IP address to your instance during launch or not, you can associate an Elastic IP address with your instance after it's launched\. For more information, see [Elastic IP Addresses](elastic-ip-addresses-eip.md)\. You can also modify your subnet's public IPv4 addressing behavior\. For more information, see [Modifying the Public IPv4 Addressing Attribute for Your Subnet](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-ip-addressing.html#subnet-public-ip)\.
+The public IP addressing feature is only available during launch\. However, whether you assign a public IP address to your instance during launch or not, you can associate an Elastic IP address with your instance after it's launched\. For more information, see [Elastic IP Addresses](elastic-ip-addresses-eip.md)\. You can also modify your subnet's public IPv4 addressing behavior\. For more information, see [Modifying the Public IPv4 Addressing Attribute for Your Subnet](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-ip-addressing.html#subnet-public-ip)\.<a name="publicip-cli"></a>
 
 **To enable or disable the public IP addressing feature using the command line**
 
@@ -274,7 +274,7 @@ Alternatively, you can assign an IPv6 address to your instance after launch\.
 1. Choose **Save**\.
 
 **Note**  
-If you launched your instance using Amazon Linux 2016\.09\.0 or later, or Windows Server 2008 R2 or later, your instance is configured for IPv6, and no additional steps are needed to ensure that the IPv6 address is recognized on the instance\. If you launched your instance from an older AMI, you may have to configure your instance manually\. For more information, see [Configure IPv6 on Your Instances](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-migrate-ipv6.html#vpc-migrate-ipv6-dhcpv6) in the *Amazon VPC User Guide*\.
+If you launched your instance using Amazon Linux 2016\.09\.0 or later, or Windows Server 2008 R2 or later, your instance is configured for IPv6, and no additional steps are needed to ensure that the IPv6 address is recognized on the instance\. If you launched your instance from an older AMI, you may have to configure your instance manually\. For more information, see [Configure IPv6 on Your Instances](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-migrate-ipv6.html#vpc-migrate-ipv6-dhcpv6) in the *Amazon VPC User Guide*\.<a name="assign-ipv6-cli"></a>
 
 **To assign an IPv6 address using the command line**
 

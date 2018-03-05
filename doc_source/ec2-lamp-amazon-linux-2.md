@@ -10,11 +10,11 @@ If you are trying to set up a LAMP web server on an Ubuntu or Red Hat Enterprise
 ## Step 1: Prepare the LAMP Server<a name="prepare-lamp-server"></a>
 
 **Prerequisites**  
-This tutorial assumes that you have already launched a new instance using Amazon Linux 2, with a public DNS name that is reachable from the internet\. For more information, see [Step 1: Launch an Instance](EC2_GetStarted.md#ec2-launch-instance)\. You must also have configured your security group to allow SSH \(port 22\), HTTP \(port 80\), and HTTPS \(port 443\) connections\. For more information about these prerequisites, see [Setting Up with Amazon EC2](get-set-up-for-amazon-ec2.md)\.
+This tutorial assumes that you have already launched a new instance using Amazon Linux 2, with a public DNS name that is reachable from the internet\. For more information, see [Step 1: Launch an Instance](EC2_GetStarted.md#ec2-launch-instance)\. You must also have configured your security group to allow SSH \(port 22\), HTTP \(port 80\), and HTTPS \(port 443\) connections\. For more information about these prerequisites, see [Setting Up with Amazon EC2](get-set-up-for-amazon-ec2.md)\.<a name="install_apache-2"></a>
 
 **To prepare the LAMP server**
 
-1. Connect to your instance\.
+1. [Connect to your instance](EC2_GetStarted.md#ec2-connect-to-instance-linux)\.
 
 1. To ensure that all of your software packages are up to date, perform a quick software update on your instance\. This process may take a few minutes, but it is important to make sure that you have the latest security updates and bug fixes\.
 
@@ -91,7 +91,7 @@ If you are not using Amazon Linux, you may also need to configure the firewall o
 
 Apache httpd serves files that are kept in a directory called the Apache document root\. The Amazon Linux Apache document root is `/var/www/html`, which by default is owned by root\.
 
-To allow the ec2\-user account to manipulate files in this directory, you must modify the ownership and permissions of the directory\. There are many ways to accomplish this task\. In this tutorial, you add the ec2\-user user to the `apache` group, to give the `apache` group ownership of the `/var/www` directory and assign write permissions to the group\.
+To allow the ec2\-user account to manipulate files in this directory, you must modify the ownership and permissions of the directory\. There are many ways to accomplish this task\. In this tutorial, you add the ec2\-user user to the `apache` group, to give the `apache` group ownership of the `/var/www` directory and assign write permissions to the group\.<a name="setting-file-permissions-2"></a>
 
 **To set file permissions**
 
@@ -181,7 +181,7 @@ You should now have a fully functional LAMP web server\. If you add content to t
 
 ## Step 3: Secure the Database Server<a name="secure-mariadb-lamp-server"></a>
 
-The default installation of the MariaDB server has several features that are great for testing and development, but they should be disabled or removed for production servers\. The mysql\_secure\_installation command walks you through the process of setting a root password and removing the insecure features from your installation\. Even if you are not planning on using the MariaDB server, we recommend performing this procedure\.
+The default installation of the MariaDB server has several features that are great for testing and development, but they should be disabled or removed for production servers\. The mysql\_secure\_installation command walks you through the process of setting a root password and removing the insecure features from your installation\. Even if you are not planning on using the MariaDB server, we recommend performing this procedure\.<a name="securing-maria-db"></a>
 
 **To secure the MariaDB server**
 
@@ -201,7 +201,7 @@ The default installation of the MariaDB server has several features that are gre
 
       1. Type the current root password\. By default, the root account does not have a password set\. Press Enter\.
 
-      1. Type **Y** to set a password, and type a secure password twice\. For more information about creating a secure password, see [http://www\.pctools\.com/guides/password/](http://www.pctools.com/guides/password/)\. Make sure to store this password in a safe place\.
+      1. Type **Y** to set a password, and type a secure password twice\. For more information about creating a secure password, see [https://identitysafe\.norton\.com/password\-generator/](https://identitysafe.norton.com/password-generator/)\. Make sure to store this password in a safe place\.
 **Note**  
 Setting a root password for MariaDB is only the most basic measure for securing your database\. When you build or install a database\-driven application, you typically create a database service user for that application and avoid using the root account for anything but database administration\. 
 
