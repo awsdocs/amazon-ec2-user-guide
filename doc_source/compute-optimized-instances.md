@@ -12,7 +12,7 @@ Compute optimized instances are ideal for compute\-bound applications that benef
 
 + Scientific modeling
 
-+ Massively multiplayer online \(MMO\) gaming servers and ad serving engines
++ Dedicated gaming servers and ad serving engines
 
 + Machine learning inference and other compute\-intensive applications
 
