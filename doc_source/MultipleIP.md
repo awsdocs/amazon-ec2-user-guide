@@ -117,7 +117,7 @@ After you have added a secondary private IP address to a network interface, you 
 
 1. In the navigation pane, choose **Network Interfaces**, and then select the network interface attached to the instance\.
 
-1. Choose **Actions**, **Manage IP Addresses**\.
+1. Choose **Actions**, **Networking**, **Manage IP Addresses**\.
 
 1. Under **IPv4 Addresses**, choose **Assign new IP**\.
 
@@ -213,7 +213,7 @@ If you no longer require a secondary private IPv4 address, you can unassign it f
 
 1. In the navigation pane, choose **Network Interfaces**\.
 
-1. Select the network interface, choose **Actions**, **Manage IP Addresses**\.
+1. Select the network interface, choose **Actions**, **Networking**, **Manage IP Addresses**\.
 
 1. Under **IPv4 Addresses**, choose **Unassign** for the IPv4 address to unassign\.
 
@@ -270,7 +270,7 @@ You can use the **Instances** screen Amazon EC2 console to assign multiple IPv6 
 
 1. In the navigation pane, choose **Instances**\.
 
-1. Select your instance, choose **Actions**, **Manage IP Addresses**\.
+1. Select your instance, choose **Actions**, **Networking**, **Manage IP Addresses**\.
 
 1. Under **IPv6 Addresses**, choose **Assign new IP** for each IPv6 address you want to add\. You can specify an IPv6 address from the range of the subnet, or leave the **Auto\-assign** value to let Amazon choose an IPv6 address for you\.
 
@@ -284,7 +284,7 @@ Alternatively, you can assign multiple IPv6 addresses to an existing network int
 
 1. In the navigation pane, choose **Network Interfaces**\.
 
-1. Select your network interface, choose **Actions**, **Manage IP Addresses**\.
+1. Select your network interface, choose **Actions**, **Networking**, **Manage IP Addresses**\.
 
 1. Under **IPv6 Addresses**, choose **Assign new IP** for each IPv6 address you want to add\. You can specify an IPv6 address from the range of the subnet, or leave the **Auto\-assign** value to let Amazon choose an IPv6 address for you\.
 
@@ -352,7 +352,7 @@ You can unassign an IPv6 address from the primary network interface of an instan
 
 1. In the navigation pane, choose **Instances**\.
 
-1. Select your instance, choose **Actions**, **Manage IP Addresses**\.
+1. Select your instance, choose **Actions**, **Networking**, **Manage IP Addresses**\.
 
 1. Under **IPv6 Addresses**, choose **Unassign** for the IPv6 address to unassign\.
 
@@ -364,7 +364,7 @@ You can unassign an IPv6 address from the primary network interface of an instan
 
 1. In the navigation pane, choose **Network Interfaces**\.
 
-1. Select your network interface, choose **Actions**, **Manage IP Addresses**\.
+1. Select your network interface, choose **Actions**, **Networking**, **Manage IP Addresses**\.
 
 1. Under **IPv6 Addresses**, choose **Unassign** for the IPv6 address to unassign\.
 
