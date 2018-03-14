@@ -56,7 +56,7 @@ Use the Amazon Linux 2 virtual machine images for on\-premises development and t
           ssh-authorized-keys:
                   - ssh-public-key-information
           lock_passwd: true
-      
+      ssh_pwauth: True
       chpasswd:
         list: |
           ec2-user:plain-text-password
