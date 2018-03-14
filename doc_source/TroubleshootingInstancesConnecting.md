@@ -170,17 +170,35 @@ The appropriate user names are as follows:
 
 + For an Amazon Linux AMI, the user name is `ec2-user`\.
 
+  ssh -i <my_key>.pem ec2-user@<instance_public_dns_ipv4>
+
 + For a Centos AMI, the user name is `centos`\.
+
+  ssh -i <my_key>.pem centos@<instance_public_dns_ipv4>
 
 + For a Debian AMI, the user name is `admin` or `root`\.
 
+  ssh -i <my_key>.pem admin@<instance_public_dns_ipv4>
+  ssh -i <my_key>.pem root@<instance_public_dns_ipv4>
+
 + For a Fedora AMI, the user name is `ec2-user`\.
+
+  ssh -i <my_key>.pem ec2-user@<instance_public_dns_ipv4>
 
 + For a RHEL AMI, the user name is `ec2-user` or `root`\.
 
+  ssh -i <my_key>.pem ec2-user@<instance_public_dns_ipv4>
+  ssh -i <my_key>.pem root@<instance_public_dns_ipv4>
+
 + For a SUSE AMI, the user name is `ec2-user` or `root`\.
 
+  ssh -i <my_key>.pem ec2-user@<instance_public_dns_ipv4>
+  ssh -i <my_key>.pem root@<instance_public_dns_ipv4>
+
 + For an Ubuntu AMI, the user name is `ubuntu` or `root`\.
+
+  ssh -i <my_key>.pem ubuntu@<instance_public_dns_ipv4>
+  ssh -i <my_key>.pem root@<instance_public_dns_ipv4>
 
 + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
 
