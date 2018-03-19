@@ -87,6 +87,6 @@ To view the Spot price history for the past three months, use the Amazon EC2 con
 We independently map Availability Zones to codes for each AWS account\. Therefore, you can get different results for the same Availability Zone code \(for example, `us-west-2a`\) between different accounts\.
 
 **View Billing**  
-To review your bill, go to your [AWS Account Activity page](http://aws.amazon.com/account-activity)\. Your bill contains links to usage reports that provide details about your bill\. For more information, see [AWS Account Billing](http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/)\.
+To review your bill, go to your [AWS Account Activity page](https://aws.amazon.com/account-activity)\. Your bill contains links to usage reports that provide details about your bill\. For more information, see [AWS Account Billing](http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/)\.
 
-If you have questions concerning AWS billing, accounts, and events, [contact AWS Support](http://aws.amazon.com/contact-us/)\.
+If you have questions concerning AWS billing, accounts, and events, [contact AWS Support](https://aws.amazon.com/contact-us/)\.

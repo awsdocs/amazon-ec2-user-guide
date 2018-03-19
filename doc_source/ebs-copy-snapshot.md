@@ -6,7 +6,7 @@ For information about copying an Amazon RDS snapshot, see [Copying a DB Snapshot
 
 If you would like another account to be able to copy your snapshot, you must either modify the snapshot permissions to allow access to that account or make the snapshot public so that all AWS accounts may copy it\. For more information, see [Sharing an Amazon EBS Snapshot](ebs-modifying-snapshot-permissions.md)\.
 
-For pricing information about copying snapshots across regions and accounts, see [Amazon EBS Pricing](https://aws.amazon.com/ebs/pricing/)\. Note that snapshot copy operations within a single account and region do not copy any data and are cost\-free as long as the following conditions apply:
+For pricing information about copying snapshots across regions and accounts, see [Amazon EBS Pricing](https://aws.amazon.com/ebs/pricing/)\. Note that snapshot copy operations within a single account and region do not copy any actual data and therefore are cost\-free as long as the following conditions apply:
 
 + The encryption status of the snapshot copy does not change\.
 

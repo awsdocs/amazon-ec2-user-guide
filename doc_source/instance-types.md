@@ -66,7 +66,7 @@ Amazon EC2 instances run on 64\-bit virtual Intel processors as specified in the
 
 ## Virtualization Types<a name="instance-virtualization-type"></a>
 
-<a name="virtualization"></a>The virtualization type of your instance is determined by the AMI that you use to launch it\. Current generation instance types support hardware virtual machine \(HVM\) only\. Some previous generation instance types support paravirtual \(PV\)\. 
+<a name="virtualization"></a>The virtualization type of your instance is determined by the AMI that you use to launch it\. Current generation instance types support hardware virtual machine \(HVM\) only\. Some previous generation instance types support paravirtual \(PV\)\. The EU \(Paris\) Region does not support PV type instances\. 
 
 For best performance, we recommend that you use an HVM AMI\. In addition, HVM AMIs are required to take advantage of enhanced networking\. HVM virtualization uses hardware\-assist technology provided by the AWS platform\. With HVM virtualization, the guest VM runs as if it were on a native hardware platform, except that it still uses PV network and storage drivers for improved performance\. For more information, see [Linux AMI Virtualization Types](virtualization_types.md)\.
 

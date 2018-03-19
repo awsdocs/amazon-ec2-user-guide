@@ -27,7 +27,19 @@ The following rules apply:
 
 + To exchange a portion of a Convertible Reserved Instance, you can modify it into two or more reservations, and then exchange one or more of the reservations for a new Convertible Reserved Instance\. For more information, see [Exchanging a Portion of a Convertible Reserved Instance](#ri-split-convertible)\. For more information about modifying your Reserved Instances, see [Modifying Reserved Instances](ri-modifying.md)\.
 
-+ A Convertible Reserved Instance can only be exchanged for one with same or higher payment option\. For example, a Partial Upfront Convertible Reserved Instance can be exchanged for another Partial Upfront Convertible Reserved Instance or an All Upfront Convertible Reserved Instance—but it cannot be exchanged for a No Upfront Convertible Reserved Instance\.
++ All Upfront Convertible Reserved Instances can be exchanged for Partial Upfront Convertible Reserved Instances, and vice versa\.
+**Note**  
+If the total upfront payment required for the exchange \(true\-up cost\) is less than $0\.00, AWS automatically gives you a quantity of instances in the Convertible Reserved Instance that ensures that true\-up cost is $0\.00 or more\.
+**Note**  
+If the total value \(upfront price \+ hourly price \* number of remaining hours\) of the new Convertible Reserved Instance is less than the total value of the exchanged Convertible Reserved Instance, AWS automatically gives you a quantity of instances in the Convertible Reserved Instance that ensures that the total value is the same or higher than that of the exchanged Convertible Reserved Instance\.
+
++ To benefit from better pricing, you can exchange a No Upfront Convertible Reserved Instance for an All Upfront or Partial Upfront Convertible Reserved Instance\.
+
++ You cannot exchange All Upfront and Partial Upfront Convertible Reserved Instances for No Upfront Convertible Reserved Instances\.
+
++ You can exchange a No Upfront Convertible Reserved Instance for another No Upfront Convertible Reserved Instance only if the new Convertible Reserved Instance's hourly price is the same or higher than the exchanged Convertible Reserved Instance's hourly price\. 
+**Note**  
+If the total value \(hourly price \* number of remaining hours\) of the new Convertible Reserved Instance is less than the total value of the exchanged Convertible Reserved Instance, AWS automatically gives you a quantity of instances in the Convertible Reserved Instance that ensures that the total value is the same or higher than that of the exchanged Convertible Reserved Instance\.
 
 + If you exchange multiple Convertible Reserved Instances that have different expiration dates, the expiration date for the new Convertible Reserved Instance is the date that's furthest in the future\.
 
@@ -45,7 +57,7 @@ For example: You have 1 x $35\-list value Convertible Reserved Instance that you
 $35/$10 = 3.5
 ```
 
-You can exchange your Convertible Reserved Instance for three $10 Convertible Reserved Instances\. It's not possible to purchase half reservations; therefore you must purchase an additional Convertible Reserved Instance covers the remainder:
+You can exchange your Convertible Reserved Instance for three $10 Convertible Reserved Instances\. It's not possible to purchase half reservations; therefore you must purchase an additional Convertible Reserved Instance to cover the remainder:
 
 ```
 3.5 = 3 whole Convertible Reserved Instances + 1 additional Convertible Reserved Instance.

@@ -18,7 +18,7 @@ If you haven't signed up for AWS yet, or if you need assistance launching your f
 
 When you sign up for Amazon Web Services \(AWS\), your AWS account is automatically signed up for all services in AWS, including Amazon EC2\. You are charged only for the services that you use\.
 
-With Amazon EC2, you pay only for what you use\. If you are a new AWS customer, you can get started with Amazon EC2 for free\. For more information, see [AWS Free Tier](http://aws.amazon.com/free/)\.
+With Amazon EC2, you pay only for what you use\. If you are a new AWS customer, you can get started with Amazon EC2 for free\. For more information, see [AWS Free Tier](https://aws.amazon.com/free/)\.
 
 If you have an AWS account already, skip to the next task\. If you don't have an AWS account, use the following procedure to create one\.
 

@@ -2,7 +2,7 @@
 
 An instance is a virtual server in the AWS Cloud\. You launch an instance from an Amazon Machine Image \(AMI\)\. The AMI provides the operating system, application server, and applications for your instance\.
 
-When you sign up for AWS, you can get started with Amazon EC2 for free using the [AWS Free Tier](https://aws.amazon.com/)\. You can use the free tier to launch and use a micro instance for free for 12 months\. If you launch an instance that is not within the free tier, you incur the standard Amazon EC2 usage fees for the instance\. For more information, see the [Amazon EC2 Pricing](http://aws.amazon.com/ec2/pricing)\.
+When you sign up for AWS, you can get started with Amazon EC2 for free using the [AWS Free Tier](https://aws.amazon.com/)\. You can use the free tier to launch and use a micro instance for free for 12 months\. If you launch an instance that is not within the free tier, you incur the standard Amazon EC2 usage fees for the instance\. For more information, see the [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing)\.
 
 You can launch an instance using the following methods\.
 

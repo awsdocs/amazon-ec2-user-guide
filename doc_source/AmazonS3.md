@@ -8,7 +8,7 @@ Amazon EC2 also uses Amazon S3 to store snapshots \(backup copies\) of the data 
 
 Objects are the fundamental entities stored in Amazon S3\. Every object stored in Amazon S3 is contained in a bucket\. Buckets organize the Amazon S3 namespace at the highest level and identify the account responsible for that storage\. Amazon S3 buckets are similar to Internet domain names\. Objects stored in the buckets have a unique key value and are retrieved using a HTTP URL address\. For example, if an object with a key value `/photos/mygarden.jpg` is stored in the `myawsbucket` bucket, then it is addressable using the URL `http://myawsbucket.s3.amazonaws.com/photos/mygarden.jpg`\. 
 
-For more information about the features of Amazon S3, see the [Amazon S3 product page](http://aws.amazon.com/s3)\.
+For more information about the features of Amazon S3, see the [Amazon S3 product page](https://aws.amazon.com/s3)\.
 
 ## Amazon S3 and Amazon EC2<a name="S3UsageScenarios"></a>
 
@@ -26,7 +26,7 @@ The wget utility is an HTTP and FTP client that allows you to download public ob
 This method requires that the object you request is public; if the object is not public, you receive an "ERROR 403: Forbidden" message\. If you receive this error, open the Amazon S3 console and change the permissions of the object to public\. For more information, see the [Amazon Simple Storage Service Developer Guide](http://docs.aws.amazon.com/AmazonS3/latest/dev/)\.
 
 **AWS Command Line Interface**  
-The AWS Command Line Interface \(AWS CLI\) is a unified tool to manage your AWS services\. The AWS CLI enables users to authenticate themselves and download restricted items from Amazon S3 and also to upload items\. For more information, such as how to install and configure the tools, see the [AWS Command Line Interface detail page](http://aws.amazon.com/cli/)\.
+The AWS Command Line Interface \(AWS CLI\) is a unified tool to manage your AWS services\. The AWS CLI enables users to authenticate themselves and download restricted items from Amazon S3 and also to upload items\. For more information, such as how to install and configure the tools, see the [AWS Command Line Interface detail page](https://aws.amazon.com/cli/)\.
 
 The aws s3 cp command is similar to the Unix cp command\. You can copy files from Amazon S3 to your instance, copy files from your instance to Amazon S3, and copy files from one Amazon S3 location to another\.
 

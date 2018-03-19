@@ -305,7 +305,7 @@ If your WordPress blog becomes popular and you need more compute power or storag
 
 + Expand the storage space on your instance\. For more information, see [Modifying the Size, IOPS, or Type of an EBS Volume on Linux](ebs-modify-volume.md)\.
 
-+ Move your MySQL database to [Amazon RDS](http://aws.amazon.com/rds) to take advantage of the service's ability to scale easily\.
++ Move your MySQL database to [Amazon RDS](https://aws.amazon.com/rds) to take advantage of the service's ability to scale easily\.
 
 + Migrate to a larger instance type\. For more information, see [Resizing Your Instance](ec2-instance-resize.md)\.
 

@@ -2,7 +2,7 @@
 
 Amazon Elastic Compute Cloud \(Amazon EC2\) provides scalable computing capacity in the Amazon Web Services \(AWS\) cloud\. Using Amazon EC2 eliminates your need to invest in hardware up front, so you can develop and deploy applications faster\. You can use Amazon EC2 to launch as many or as few virtual servers as you need, configure security and networking, and manage storage\. Amazon EC2 enables you to scale up or down to handle changes in requirements or spikes in popularity, reducing your need to forecast traffic\.
 
-For more information about cloud computing, see [What is Cloud Computing?](http://aws.amazon.com/what-is-cloud-computing/)
+For more information about cloud computing, see [What is Cloud Computing?](https://aws.amazon.com/what-is-cloud-computing/)
 
 ## Features of Amazon EC2<a name="ec2-features"></a>
 
@@ -30,9 +30,9 @@ Amazon EC2 provides the following features:
 
 + Virtual networks you can create that are logically isolated from the rest of the AWS cloud, and that you can optionally connect to your own network, known as *virtual private clouds* \(VPCs\)
 
-For more information about the features of Amazon EC2, see the [Amazon EC2 product page](http://aws.amazon.com/ec2)\.
+For more information about the features of Amazon EC2, see the [Amazon EC2 product page](https://aws.amazon.com/ec2)\.
 
-For more information about running your website on AWS, see [Websites & Website Hosting](http://aws.amazon.com/websites/)\.
+For more information about running your website on AWS, see [Web Hosting](https://aws.amazon.com/websites/)\.
 
 ## How to Get Started with Amazon EC2<a name="how-to-get-started"></a>
 
@@ -80,7 +80,7 @@ The first thing you need to do is get set up to use Amazon EC2\. After you are s
 
 + [Getting Started with AWS: Hosting a Web App for Linux](http://docs.aws.amazon.com/gettingstarted/latest/wah-linux/)
 
-If you have questions about whether AWS is right for you, [contact AWS Sales](http://aws.amazon.com/contact-us/)\. If you have technical questions about Amazon EC2, use the [Amazon EC2 forum](https://forums.aws.amazon.com/forum.jspa?forumID=30)\. 
+If you have questions about whether AWS is right for you, [contact AWS Sales](https://aws.amazon.com/contact-us/)\. If you have technical questions about Amazon EC2, use the [Amazon EC2 forum](https://forums.aws.amazon.com/forum.jspa?forumID=30)\. 
 
 ## Related Services<a name="related-services"></a>
 
@@ -120,11 +120,11 @@ Provides commands for a broad set of AWS products for those who script in the Po
 
 Amazon EC2 provides a Query API\. These requests are HTTP or HTTPS requests that use the HTTP verbs GET or POST and a Query parameter named `Action`\. For more information about the API actions for Amazon EC2, see [Actions](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/query-apis.html) in the *Amazon EC2 API Reference*\.
 
-If you prefer to build applications using language\-specific APIs instead of submitting a request over HTTP or HTTPS, AWS provides libraries, sample code, tutorials, and other resources for software developers\. These libraries provide basic functions that automate tasks such as cryptographically signing your requests, retrying requests, and handling error responses, making it is easier for you to get started\. For more information, see [AWS SDKs and Tools](http://aws.amazon.com/tools/)\.
+If you prefer to build applications using language\-specific APIs instead of submitting a request over HTTP or HTTPS, AWS provides libraries, sample code, tutorials, and other resources for software developers\. These libraries provide basic functions that automate tasks such as cryptographically signing your requests, retrying requests, and handling error responses, making it is easier for you to get started\. For more information, see [AWS SDKs and Tools](https://aws.amazon.com/tools/)\.
 
 ## Pricing for Amazon EC2<a name="ec2-pricing"></a>
 
-When you sign up for AWS, you can get started with Amazon EC2 for free using the [AWS Free Tier](http://aws.amazon.com/free/)\.
+When you sign up for AWS, you can get started with Amazon EC2 for free using the [AWS Free Tier](https://aws.amazon.com/free/)\.
 
 Amazon EC2 provides the following purchasing options for instances:
 
@@ -137,13 +137,13 @@ Make a low, one\-time, up\-front payment for an instance, reserve it for a one\-
 Spot Instances  
 Request unused EC2 instances, which can lower your costs significantly\.
 
-For a complete list of charges and specific prices for Amazon EC2, see [Amazon EC2 Pricing](http://aws.amazon.com/ec2/pricing)\.
+For a complete list of charges and specific prices for Amazon EC2, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing)\.
 
-To calculate the cost of a sample provisioned environment, see [AWS Economics Center](http://aws.amazon.com/economics/)\.
+To calculate the cost of a sample provisioned environment, see [Cloud Economics Center](https://aws.amazon.com/economics/)\.
 
-To see your bill, go to your [AWS Account Activity page](http://aws.amazon.com/account-activity)\. Your bill contains links to usage reports that provide details about your bill\. To learn more about AWS account billing, see [AWS Account Billing](http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/)\.
+To see your bill, go to your [AWS Account Activity page](https://aws.amazon.com/account-activity)\. Your bill contains links to usage reports that provide details about your bill\. To learn more about AWS account billing, see [AWS Account Billing](http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/)\.
 
-If you have questions concerning AWS billing, accounts, and events, [contact AWS Support](http://aws.amazon.com/contact-us/)\.
+If you have questions concerning AWS billing, accounts, and events, [contact AWS Support](https://aws.amazon.com/contact-us/)\.
 
 For an overview of Trusted Advisor, a service that helps you optimize the costs, security, and performance of your AWS environment, see [AWS Trusted Advisor](https://aws.amazon.com/premiumsupport/trustedadvisor/)\.
 

@@ -4,11 +4,11 @@ Demand for Spot Instances can vary significantly from moment to moment, and the 
 
 The following are the possible reasons that Amazon EC2 will interrupt your Spot Instances:
 
-+ Price—The Spot price is greater than your maximum price\.
++ Price – The Spot price is greater than your maximum price\.
 
-+ Capacity—If there are not enough unused EC2 instances to meet the demand for Spot Instances, Amazon EC2 interrupts Spot Instances\. The order in which the instances are interrupted is determined by Amazon EC2\.
++ Capacity – If there are not enough unused EC2 instances to meet the demand for Spot Instances, Amazon EC2 interrupts Spot Instances\. The order in which the instances are interrupted is determined by Amazon EC2\.
 
-+ Constraints—If your request includes a constraint such as a launch group or an Availability Zone group, these Spot Instances are terminated as a group when the constraint can no longer be met\.
++ Constraints – If your request includes a constraint such as a launch group or an Availability Zone group, these Spot Instances are terminated as a group when the constraint can no longer be met\.
 
 ## Interruption Behavior<a name="interruption-behavior"></a>
 
@@ -70,7 +70,7 @@ You can change the behavior so that Amazon EC2 hibernates Spot Instances when th
 
 When a Spot Instance is hibernated by the Spot service, the EBS volumes are preserved and instance memory \(RAM\) is preserved on the root volume\. The private IP addresses of the instance are also preserved\. Instance storage volumes and public IP addresses, other than Elastic IP addresses, are not preserved\. While the instance is hibernating, you are charged only for the EBS volumes\. With Spot Fleet, if you have many hibernated instances, you can exceed the limit on the number of EBS volumes for your account\.
 
-The agent prompts the operating system to hibernate when the instance receive a signal from the Spot service\. If the agent is not installed, the underlying operating system doesn't support hibernation, or there isn't enough volume space to save the instance memory, hibernation fails and the Spot service stops the instance instead\.
+The agent prompts the operating system to hibernate when the instance receives a signal from the Spot service\. If the agent is not installed, the underlying operating system doesn't support hibernation, or there isn't enough volume space to save the instance memory, hibernation fails and the Spot service stops the instance instead\.
 
 When the Spot service hibernates a Spot Instance, you receive an interruption notice, but you do not have two minutes before the Spot Instance is interrupted\. Hibernation begins immediately\. While the instance is in the process of hibernating, instance health checks might fail\. When the hibernation process completes, the state of the instance is `stopped`\.
 

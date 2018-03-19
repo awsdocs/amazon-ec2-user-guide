@@ -7,6 +7,7 @@ The following table describes important additions to the Amazon EC2 documentatio
 
 | Feature | API Version | Description | Release Date | 
 | --- | --- | --- | --- | 
+|  Change placement groups  |  2016\-11\-15  |  You can move an instance in or out of a placement group, or change its placement group\. For more information, see [Changing the Placement Group for an Instance](placement-groups.md#change-instance-placement-group)\.  | 1 March 2018 | 
 |  Longer resource IDs  |  2016\-11\-15  |  You can enable the longer ID format for more resource types\. For more information, see [Resource IDs](resource-ids.md)\.  | 9 February 2018 | 
 |  Network performance improvements  |  2016\-11\-15  |  Instances outside of a cluster placement group can now benefit from increased bandwidth when sending or receiving network traffic between other instances or Amazon S3\. For more information, see [Networking and Storage Features](instance-types.md#instance-networking-storage)\.  | 24 January 2018 | 
 |  Tag Elastic IP addresses  |  2016\-11\-15  |  You can tag your Elastic IP addresses\. For more information, see [Tagging an Elastic IP Address](elastic-ip-addresses-eip.md#using-instance-addressing-eips-tagging)\.  | 21 December 2017 | 

@@ -12,17 +12,11 @@ I3 and F1 instances offer non\-volatile memory express \(NVMe\) SSD instance sto
 
 + The current Amazon Linux AMI
 
-+ Ubuntu version 16\.04 or latest LTS release provided by AWS\. 
-
-  We should be recommending: latest LTS \(16\.04\) or latest regular release\.\.\.which will change every 6 months and those releases are only supported for 9 months as opposed to 5 years for LTS releases\. 
-
-  If you are using a different version, we recommend that you turn off memory hot add\.
++ Ubuntu version 16\.04 or latest LTS release provided by AWS\. If you are using a different version, we recommend that you turn off memory hot add\.
 
 + Red Hat Enterprise Linux version 7\.4
 
 + CentOS 7 version 1708\_11
-
-+ Windows Server 2016, Windows Server 2012 R2, or Windows Server 2008 R2\. Windows Server 2012 and Windows Server 2008 are not supported\.
 
 SUSE Linux Enterprise Server 12 is not recommended at this time due to pending kernel updates\.
 
@@ -58,4 +52,4 @@ The following instances support SSD volumes with TRIM: F1, I2, I3, and R3\.
 
 Instance store volumes that support TRIM are fully trimmed before they are allocated to your instance\. These volumes are not formatted with a file system when an instance launches, so you must format them before they can be mounted and used\. For faster access to these volumes, you should skip the TRIM operation when you format them\.
 
-With instance store volumes that support TRIM, you can use the TRIM command to notify the SSD controller when you no longer need data that you've written\. This provides the controller with more free space, which can reduce write amplification and increase performance\. On Linux, you can use the `fstrim` command to enable periodic TRIM\. On Windows, you can use the `fsutil behavior set DisableDeleteNotify 1` command\. For more information, see the documentation for your operating system\.
+With instance store volumes that support TRIM, you can use the TRIM command to notify the SSD controller when you no longer need data that you've written\. This provides the controller with more free space, which can reduce write amplification and increase performance\. On Linux, use the `fstrim` command to enable periodic TRIM\. \.

@@ -40,7 +40,7 @@ You can use a tool such as cURL, or if your instance supports it, the GET comman
 [ec2-user ~]$ GET http://169.254.169.254/latest/meta-data/
 ```
 
-You can also download the [Instance Metadata Query tool](http://aws.amazon.com/code/1825), which allows you to query the instance metadata without having to type out the full URI or category names\.
+You can also download the [Instance Metadata Query tool](https://aws.amazon.com//code/1825), which allows you to query the instance metadata without having to type out the full URI or category names\.
 
 All instance metadata is returned as text \(content type `text/plain`\)\. A request for a specific metadata resource returns the appropriate value, or a `404 - Not Found` HTTP error code if the resource is not available\. 
 

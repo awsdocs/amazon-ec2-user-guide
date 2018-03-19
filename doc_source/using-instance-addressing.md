@@ -267,7 +267,7 @@ Alternatively, you can assign an IPv6 address to your instance after launch\.
 
 1. In the navigation pane, choose **Instances**\.
 
-1. Select your instance, choose **Actions**, **Manage IP Addresses**\.
+1. Select your instance, choose **Actions**, **Networking**, **Manage IP Addresses**\.
 
 1. Under **IPv6 Addresses**, choose **Assign new IP**\. You can specify an IPv6 address from the range of the subnet, or leave the **Auto\-assign** value to let Amazon choose an IPv6 address for you\.
 
@@ -298,7 +298,7 @@ You can unassign an IPv6 address from an instance using the Amazon EC2 console\.
 
 1. In the navigation pane, choose **Instances**\.
 
-1. Select your instance, choose **Actions**, **Manage IP Addresses**\.
+1. Select your instance, choose **Actions**, **Networking**, **Manage IP Addresses**\.
 
 1. Under **IPv6 Addresses**, choose **Unassign** for the IPv6 address to unassign\.
 

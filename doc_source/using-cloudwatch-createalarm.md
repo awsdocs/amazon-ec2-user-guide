@@ -15,7 +15,7 @@ For examples, see [Creating Amazon CloudWatch Alarms](http://docs.aws.amazon.com
 
 1. On the **Monitoring** tab, choose **Create Alarm**\.
 
-1. On the **Create Alarm** page, do the following:
+1. In the **Create Alarm** dialog box, do the following:
 
    1. Choose **create topic**\. For **Send a notification to**, type a name for the SNS topic\. For **With these recipients**, type one or more email addresses to receive notification\.
 

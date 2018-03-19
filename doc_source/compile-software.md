@@ -11,7 +11,7 @@ Because software compilation is not a task that every Amazon EC2 instance requir
 [ec2-user ~]$ sudo yum groupinstall "Development Tools"
 ```
 
-Software source code packages are often available for download \(from web sites such as [https://github\.com/](https://github.com/) and [http://sourceforge\.net/](http://sourceforge.net/)\) as a compressed archive file, called a tarball\. These tarballs will usually have the `.tar.gz` file extension\. You can decompress these archives with the tar command\.
+Software source code packages are often available for download \(from web sites such as [https://github\.com/](https://github.com/) and [http://sourceforge\.net/](https://sourceforge.net/)\) as a compressed archive file, called a tarball\. These tarballs will usually have the `.tar.gz` file extension\. You can decompress these archives with the tar command\.
 
 ```
 [ec2-user ~]$ tar -xzf software.tar.gz

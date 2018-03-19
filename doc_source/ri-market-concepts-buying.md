@@ -12,10 +12,17 @@ Before you confirm your purchase, review the details of the Reserved Instance th
 To purchase and modify Reserved Instances, ensure that your IAM user account has the appropriate permissions, such as the ability to describe Availability Zones\. For information, see [Example Policies for Working With the AWS CLI or an AWS SDK](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ExamplePolicies_EC2.html#iam-example-reservedinstances) and [Example Policies for Working in the Amazon EC2 Console](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-policies-ec2-console.html#ex-reservedinstances)\.
 
 
++ [Choosing a Platform](#ri-choosing-platform)
 + [Buying Standard Reserved Instances](#ri-buying-standard)
 + [Buying Convertible Reserved Instances](#ri-buying-convertible)
 + [Viewing Your Reserved Instances](#view-reserved-instances)
 + [Using Your Reserved Instances](#reserved-instances-process)
+
+## Choosing a Platform<a name="ri-choosing-platform"></a>
+
+When you purchase a Reserved Instance, you must choose an offering for a *platform* that represents the operating system for your instance\.
+
+For SUSE Linux and RHEL distributions, you must choose offerings for those specific platforms\. For all other Linux distributions \(including Ubuntu\), choose an offering for the **Linux/UNIX** platform\.
 
 ## Buying Standard Reserved Instances<a name="ri-buying-standard"></a>
 
@@ -307,7 +314,7 @@ Reserved Instances are automatically applied to running On\-Demand Instances pro
 
 If you're launching an instance to take advantage of the billing benefit of a Reserved Instance, ensure that you specify the following information during launch:
 
-+ Platform: You must choose an Amazon Machine Image \(AMI\) that matches the platform \(product description\) of your Reserved Instance\. For example, if you specified `Linux/UNIX`, you can launch an instance from an Amazon Linux AMI\.
++ Platform: You must choose an Amazon Machine Image \(AMI\) that matches the platform \(product description\) of your Reserved Instance\. For example, if you specified `Linux/UNIX`, you can launch an instance from an Amazon Linux AMI or an Ubuntu AMI\.
 
 + Instance type: Specify the same instance type as your Reserved Instance; for example, `t2.large`\.
 

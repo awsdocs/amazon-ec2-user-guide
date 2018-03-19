@@ -100,4 +100,4 @@ To ensure that you don't accidentally lose access to your instance, we recommend
 
 1. Verify that all cron jobs are legitimate\.
 
-If you discover a public AMI that you feel presents a security risk, contact the AWS security team\. For more information, see the [AWS Security Center](http://aws.amazon.com/security/)\.
+If you discover a public AMI that you feel presents a security risk, contact the AWS security team\. For more information, see the [AWS Security Center](https://aws.amazon.com/security/)\.

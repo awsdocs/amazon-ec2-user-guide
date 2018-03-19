@@ -24,6 +24,24 @@ The Chrome browser does not support the NPAPI plugin, and therefore cannot run t
 
   Get the fully qualified path to the location on your computer of the `.pem` file for the key pair that you specified when you launched the instance\.
 
++ **Get the default user name for the AMI that you used to launch your instance**
+
+  + For an Amazon Linux AMI, the user name is `ec2-user`\.
+
+  + For a Centos AMI, the user name is `centos`\.
+
+  + For a Debian AMI, the user name is `admin` or `root`\.
+
+  + For a Fedora AMI, the user name is `ec2-user`\.
+
+  + For a RHEL AMI, the user name is `ec2-user` or `root`\.
+
+  + For a SUSE AMI, the user name is `ec2-user` or `root`\.
+
+  + For an Ubuntu AMI, the user name is `ubuntu` or `root`\.
+
+  + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
+
 + **Enable inbound SSH traffic from your IP address to your instance**
 
   Ensure that the security group associated with your instance allows incoming SSH traffic from your IP address\. The default security group does not allow incoming SSH traffic by default\. For more information, see [Authorizing Inbound Traffic for Your Linux Instances](authorizing-access-to-an-instance.md)\.
@@ -41,8 +59,22 @@ The Chrome browser does not support the NPAPI plugin, and therefore cannot run t
 1. Amazon EC2 automatically detects the public DNS name of your instance and then populates **Public DNS** for you\. It also detects the name of the key pair that you specified when you launched the instance\. Complete the following, and then choose **Launch SSH Client**\.
 
    1. In **User name**, enter the user name to log in to your instance\.
-**Tip**  
-For Amazon Linux, the user name is `ec2-user`\. For Centos, the user name is `centos`\. For Debian, the user name is `admin` or `root`\. For Fedora, the user name is `ec2-user`\. For RHEL, the user name is `ec2-user` or `root`\. For SUSE, the user name is `ec2-user` or `root`\. For Ubuntu, the user name is `ubuntu` or `root`\. Otherwise, if `ec2-user` and `root` don't work, check with your AMI provider\.
+
+      + For an Amazon Linux AMI, the user name is `ec2-user`\.
+
+      + For a Centos AMI, the user name is `centos`\.
+
+      + For a Debian AMI, the user name is `admin` or `root`\.
+
+      + For a Fedora AMI, the user name is `ec2-user`\.
+
+      + For a RHEL AMI, the user name is `ec2-user` or `root`\.
+
+      + For a SUSE AMI, the user name is `ec2-user` or `root`\.
+
+      + For an Ubuntu AMI, the user name is `ubuntu` or `root`\.
+
+      + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
 
    1. In **Private key path**, enter the fully qualified path to your private key \(`.pem`\) file, including the key pair name; for example:
 

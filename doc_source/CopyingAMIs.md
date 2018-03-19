@@ -71,8 +71,11 @@ When you first copy an instance store\-backed AMI to a region, we create an Amaz
 **Prerequisite**  
 Prior to copying an AMI, you must ensure that the contents of the source AMI are updated to support running in a different region\. For example, you should update any database connection strings or similar application configuration data to point to the appropriate resources\. Otherwise, instances launched from the new AMI in the destination region may still use the resources from the source region, which can impact performance and cost\.
 
-**Limit**  
-Destination regions are limited to 50 concurrent AMI copies at a time, with no more than 25 of those coming from a single source region\.
+**Limits**
+
++ Destination regions are limited to 50 concurrent AMI copies at a time, with no more than 25 of those coming from a single source region\.
+
++ The EU \(Paris\) Region does not support PV AMIs; therefore, you cannot copy a PV AMI to the EU \(Paris\) Region\. 
 
 ## Cross\-Account AMI Copy<a name="copy-ami-across-accounts"></a>
 

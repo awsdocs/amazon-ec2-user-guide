@@ -89,7 +89,7 @@ AMI creation is much easier for AMIs backed by Amazon EBS\. The `CreateImage` AP
 
 ### How You're Charged<a name="ec2-bootfromebs-how-you-are-charged"></a>
 
-With AMIs backed by instance store, you're charged for AMI storage and instance usage\. With AMIs backed by Amazon EBS, you're charged for volume storage and usage in addition to the AMI and instance usage charges\.
+With AMIs backed by instance store, you're charged for instance usage and storing your AMI in Amazon S3\. With AMIs backed by Amazon EBS, you're charged for instance usage, Amazon Amazon EBS volume storage and usage, and storing your AMI as an Amazon EBS snapshot\.
 
 With Amazon EC2 instance store\-backed AMIs, each time you customize an AMI and create a new one, all of the parts are stored in Amazon S3 for each AMI\. So, the storage footprint for each customized AMI is the full size of the AMI\. For Amazon EBS\-backed AMIs, each time you customize an AMI and create a new one, only the changes are stored\. So the storage footprint for subsequent AMIs you customize after the first is much smaller, resulting in lower AMI storage charges\. 
 

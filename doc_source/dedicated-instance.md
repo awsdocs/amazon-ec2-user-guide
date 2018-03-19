@@ -48,7 +48,7 @@ To create Dedicated Instances, you can do the following:
 
 Some AWS services or their features won't work with a VPC with the instance tenancy set to `dedicated`\. Check the service's documentation to confirm if there are any limitations\.
 
-Some instance types cannot be launched into a VPC with the instance tenancy set to `dedicated`\. For more information about supported instances types, see [Amazon EC2 Dedicated Instances](http://aws.amazon.com/ec2/purchasing-options/dedicated-instances/)\.
+Some instance types cannot be launched into a VPC with the instance tenancy set to `dedicated`\. For more information about supported instances types, see [Amazon EC2 Dedicated Instances](https://aws.amazon.com/ec2/purchasing-options/dedicated-instances/)\.
 
 ### Amazon EBS with Dedicated Instances<a name="dedicated-instance-ebs"></a>
 
@@ -72,7 +72,7 @@ You can run a Dedicated Spot Instance by specifying a tenancy of `dedicated` whe
 
 ### Pricing for Dedicated Instances<a name="dedicated-instance-pricing"></a>
 
-Pricing for Dedicated Instances is different to pricing for On\-Demand Instances\. For more information, see the [Amazon EC2 Dedicated Instances product page](http://aws.amazon.com/dedicated-instances)\.
+Pricing for Dedicated Instances is different to pricing for On\-Demand Instances\. For more information, see the [Amazon EC2 Dedicated Instances product page](https://aws.amazon.com/dedicated-instances)\.
 
 ## Working with Dedicated Instances<a name="dedicated-usage-overview"></a>
 
@@ -131,7 +131,7 @@ You can launch a Dedicated Instance using the Amazon EC2 launch instance wizard\
 
 1. On the **Choose an Instance Type** page, select the instance type and choose **Next: Configure Instance Details**\.
 **Note**  
-Ensure that you choose an instance type that's supported as a Dedicated Instance\. For more information, see [Amazon EC2 Dedicated Instances](http://aws.amazon.com/ec2/purchasing-options/dedicated-instances/)\.
+Ensure that you choose an instance type that's supported as a Dedicated Instance\. For more information, see [Amazon EC2 Dedicated Instances](https://aws.amazon.com/ec2/purchasing-options/dedicated-instances/)\.
 
 1. On the **Configure Instance Details** page, select a VPC and subnet\. Choose **Dedicated \- Run a dedicated instance** from the **Tenancy** list, and then **Next: Add Storage**\.
 

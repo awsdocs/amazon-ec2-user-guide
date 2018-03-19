@@ -56,8 +56,6 @@ Instance store volumes persist only for the life of the instance\. When you stop
 The following is a summary of the hardware specifications for Storage optimized instances\.
 
 
-****  
-
 | Instance type | vCPUs | Memory \(GiB\) | 
 | --- | --- | --- | 
 | d2\.xlarge | 4 | 30\.5 | 
@@ -97,8 +95,6 @@ Instance types that use the Elastic Network Adapter \(ENA\) for enhanced network
 
 The following is a summary of network performance for Storage optimized instances that support enhanced networking\.
 
-
-****  
 
 | Instance type | Network performance | Enhanced networking | 
 | --- | --- | --- | 

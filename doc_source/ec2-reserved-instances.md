@@ -24,7 +24,7 @@ In addition, a Reserved Instance has a number of attributes that determine how i
 
 + **Tenancy**: Whether your instance runs on shared \(default\) or single\-tenant \(dedicated\) hardware\. For more information, see [Dedicated Instances](dedicated-instance.md)\. 
 
-+ **Platform**: The operating system; for example, Windows or Linux/Unix\.
++ **Platform**: The operating system; for example, Windows or Linux/Unix\. For more information, see [Choosing a Platform](ri-market-concepts-buying.md#ri-choosing-platform)\.
 
 Reserved Instances do not renew automatically; when they expire, you can continue using the EC2 instance without interruption, but you are charged On\-Demand rates\. In the above example, when the Reserved Instances that cover the T2 and C4 instances expire, you go back to paying the On\-Demand rates until you terminate the instances or purchase new Reserved Instances that match the instance attributes\.
 

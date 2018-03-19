@@ -154,4 +154,4 @@ For more information about Run Command and Systems Manager, see the following to
 
 + [Systems Manager AWS CLI Command Reference](http://docs.aws.amazon.com/cli/latest/reference/ssm/index.html)
 
-+  [AWS SDKs](http://aws.amazon.com/tools/#SDKs)
++  [AWS SDKs](https://aws.amazon.com/tools/#SDKs)

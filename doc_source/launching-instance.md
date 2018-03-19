@@ -5,7 +5,7 @@ Before you launch your instance, be sure that you are set up\. For more informat
 Your AWS account might support both the EC2\-Classic and EC2\-VPC platforms, depending on when you created your account and which regions you've used\. To find out which platform your account supports, see [Supported Platforms](ec2-supported-platforms.md)\. If your account supports EC2\-Classic, you can launch an instance into either platform\. If your account supports EC2\-VPC only, you can launch an instance into a VPC only\. 
 
 **Important**  
-When you launch an instance that's not within the [AWS Free Tier](http://aws.amazon.com/free/), you are charged for the time that the instance is running, even if it remains idle\.
+When you launch an instance that's not within the [AWS Free Tier](https://aws.amazon.com/free/), you are charged for the time that the instance is running, even if it remains idle\.
 
 ## Launching Your Instance from an AMI<a name="launch-instance-console"></a>
 

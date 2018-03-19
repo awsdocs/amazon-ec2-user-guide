@@ -12,7 +12,7 @@ Amazon Web Services provides a repository of public data sets that can be seamle
 
 Previously, large data sets such as the mapping of the Human Genome and the US Census data required hours or days to locate, download, customize, and analyze\. Now, anyone can access these data sets from an EC2 instance and start computing on the data within minutes\. You can also leverage the entire AWS ecosystem and easily collaborate with other AWS users\. For example, you can produce or use prebuilt server images with tools and applications to analyze the data sets\. By hosting this important and useful data with cost\-efficient services such as Amazon EC2, AWS hopes to provide researchers across a variety of disciplines and industries with tools to enable more innovation, more quickly\. 
 
-For more information, go to the [Public Data Sets on AWS Page\.](http://aws.amazon.com/publicdatasets/)
+For more information, go to the [AWS Public Datasets](https://aws.amazon.com/publicdatasets/) page\.
 
 ### Available Public Data Sets<a name="concepts-public-data-sets-available"></a>
 
@@ -32,7 +32,7 @@ Before you can use a public data set, you must locate the data set and determine
 
 **To find a public data set and determine its format**
 
-1. Go to the [Public Data Sets Page](http://aws.amazon.com/datasets/) to see a listing of all available public data sets\. You can also enter a search phrase on this page to query the available public data set listings\.
+1. Go to the [AWS Public Datasets](https://aws.amazon.com/datasets/) page to see a listing of all available public data sets\. You can also enter a search phrase on this page to query the available public data set listings\.
 
 1. Click the name of a data set to see its detail page\.
 

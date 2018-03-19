@@ -27,7 +27,7 @@ For additional information about sharing AMIs safely, see the following articles
 
 For AMIs backed by instance store, we recommend that your AMIs download and upgrade the Amazon EC2 AMI creation tools during startup\. This ensures that new AMIs based on your shared AMIs have the latest AMI tools\. 
 
-For [Amazon Linux](http://aws.amazon.com/amazon-linux-ami), add the following to `/etc/rc.local`:
+For [Amazon Linux](https://aws.amazon.com/amazon-linux-ami), add the following to `/etc/rc.local`:
 
 ```
 # Update the Amazon EC2 AMI tools
@@ -168,7 +168,7 @@ The location of this configuration file can differ for your distribution or if y
 
 Currently, there is no easy way to know who provided a shared AMI, because each AMI is represented by an account ID\. 
 
-We recommend that you post a description of your AMI, and the AMI ID, in the [Amazon EC2 forum](https://forums.aws.amazon.com/forum.jspa?forumID=30)\. This provides a convenient central location for users who are interested in trying new shared AMIs\. You can also post the AMI to the [Amazon Machine Images \(AMIs\)](http://aws.amazon.com) page\.
+We recommend that you post a description of your AMI, and the AMI ID, in the [Amazon EC2 forum](https://forums.aws.amazon.com/forum.jspa?forumID=30)\. This provides a convenient central location for users who are interested in trying new shared AMIs\.
 
 ## Protect Yourself<a name="public-amis-protect-yourself"></a>
 

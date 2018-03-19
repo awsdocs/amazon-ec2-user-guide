@@ -9,9 +9,9 @@ These procedures are intended for use with Amazon Linux\. For more information a
 
 **To use dynamic DNS with Amazon EC2**
 
-1. Sign up with a dynamic DNS service provider and register a public DNS name with their service\. This procedure uses the free service from [noip\.com/free](http://www.noip.com/free) as an example\.
+1. Sign up with a dynamic DNS service provider and register a public DNS name with their service\. This procedure uses the free service from [noip\.com/free](https://www.noip.com/free) as an example\.
 
-1. Configure the dynamic DNS update client\. After you have a dynamic DNS service provider and a public DNS name registered with their service, point the DNS name to the IP address for your instance\. Many providers \(including [noip\.com](http://noip.com)\) allow you to do this manually from your account page on their website, but many also support software update clients\. If an update client is running on your EC2 instance, your dynamic DNS record is updated each time the IP address changes, as after a shutdown and restart\. In this example, you install the noip2 client, which works with the service provided by [noip\.com](http://noip.com)\.
+1. Configure the dynamic DNS update client\. After you have a dynamic DNS service provider and a public DNS name registered with their service, point the DNS name to the IP address for your instance\. Many providers \(including [noip\.com](https://noip.com)\) allow you to do this manually from your account page on their website, but many also support software update clients\. If an update client is running on your EC2 instance, your dynamic DNS record is updated each time the IP address changes, as after a shutdown and restart\. In this example, you install the noip2 client, which works with the service provided by [noip\.com](https://noip.com)\.
 
    1. Enable the Extra Packages for Enterprise Linux \(EPEL\) repository to gain access to the noip2 client\.
 **Note**  

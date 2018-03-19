@@ -4,7 +4,7 @@
 
 A new multi\-platform CloudWatch agent is available\. You can use a single agent to collect both system metrics and log files from Amazon EC2 instances and on\-premises servers\. The new agent supports both Windows Server and Linux and enables you to select the metrics to be collected, including sub\-resource metrics such as per\-CPU core\. We recommend you use the new agent instead of the older monitoring scripts to collect metrics and logs\. For more information about the CloudWatch agent, see [Collect Metrics from Amazon EC2 Instances and On\-Premises Servers with the CloudWatch Agent](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Install-CloudWatch-Agent.html) in the *Amazon CloudWatch User Guide*\.
 
-The rest of this section is informational for customers who are still using the older Perl scripts for monitoring\. You can download these [Amazon CloudWatch Monitoring Scripts for Linux](http://aws.amazon.com/code/8720044071969977) from the AWS sample code library\.
+The rest of this section is informational for customers who are still using the older Perl scripts for monitoring\. You can download these [Amazon CloudWatch Monitoring Scripts for Linux](https://aws.amazon.com/code/8720044071969977) from the AWS sample code library\.
 
 ## CloudWatch Monitoring Scripts<a name="monitoring-scripts-intro"></a>
 
@@ -159,7 +159,7 @@ The following steps show you how to download, uncompress, and configure the Clou
 1. At a command prompt, move to a folder where you want to store the monitoring scripts and run the following command to download them:
 
    ```
-   curl http://aws-cloudwatch.s3.amazonaws.com/downloads/CloudWatchMonitoringScripts-1.2.1.zip -O
+   curl https://aws-cloudwatch.s3.amazonaws.com/downloads/CloudWatchMonitoringScripts-1.2.1.zip -O
    ```
 
 1. Run the following commands to install the monitoring scripts you downloaded:

@@ -1,8 +1,8 @@
 # Authorizing Inbound Traffic for Your Linux Instances<a name="authorizing-access-to-an-instance"></a>
 
-Security groups enable you to control traffic to your instance, including the kind of traffic that can reach your instance\. For example, you can allow computers from only your home network to access your instance using SSH\. If your instance is a web server, you can allow all IP addresses to access your instance via HTTP, so that external users can browse the content on your web server\.
+Security groups enable you to control traffic to your instance, including the kind of traffic that can reach your instance\. For example, you can allow computers from only your home network to access your instance using SSH\. If your instance is a web server, you can allow all IP addresses to access your instance using HTTP or HTTPS, so that external users can browse the content on your web server\.
 
-To enable network access to your instance, you must allow inbound traffic to your instance\. To open a port for inbound traffic, add a rule to a security group that you associated with your instance when you launched it\.
+Your default security groups and newly created security groups include default rules that do not enable you to access your instance from the Internet\. For more information, see [Default Security Groups](using-network-security.md#default-security-group) and [Custom Security Groups](using-network-security.md#creating-your-own-security-groups)\. To enable network access to your instance, you must allow inbound traffic to your instance\. To open a port for inbound traffic, add a rule to a security group that you associated with your instance when you launched it\.
 
 To connect to your instance, you must set up a rule to authorize SSH traffic from your computer's public IPv4 address\. To allow SSH traffic from additional IP address ranges, add another rule for each range you need to authorize\.
 

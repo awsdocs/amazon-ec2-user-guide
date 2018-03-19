@@ -143,6 +143,8 @@ This download is available to AWS customers only\. By downloading, you agree tha
    sudo /bin/bash ./NVIDIA-Linux-x86_64-367.106.run
    ```
 
+   When prompted, accept the license agreement and specify the installation options as required \(you can accept the default options\)\.
+
 1. Reboot the instance\.
 
    ```

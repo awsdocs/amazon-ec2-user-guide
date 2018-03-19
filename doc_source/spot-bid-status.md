@@ -149,7 +149,7 @@ Your instance was terminated from a stopped state\.
 You terminated a Spot Instance that had been fulfilled, so the request state is `closed` \(unless it's a persistent request\) and the instance state is `terminated`\.
 
  `instance-terminated-capacity-oversubscribed`   
-Your instance is terminated because the number of Spot requests with maximum prices equal to or higher than your maximum price exceeded the available capacity in this Spot Instance pool\. \(Note that the Spot price might not have changed\.\)
+Your instance is terminated because the number of Spot requests with maximum prices equal to or higher than the Spot price exceeded the available capacity in this Spot Instance pool\. \(Note that the Spot price might not have changed\.\)
 
 `instance-terminated-launch-group-constraint`  
 One or more of the instances in your launch group was terminated, so the launch group constraint is no longer fulfilled\.

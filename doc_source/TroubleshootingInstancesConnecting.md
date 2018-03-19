@@ -72,7 +72,7 @@ If you try to connect to your instance and get an error message `Network error: 
 
 + Check the CPU load on your instance; the server may be overloaded\. AWS automatically provides data such as Amazon CloudWatch metrics and instance status, which you can use to see how much CPU load is on your instance and, if necessary, adjust how your loads are handled\. For more information, see [Monitoring Your Instances Using CloudWatch](using-cloudwatch.md)\. 
 
-  + If your load is variable, you can automatically scale your instances up or down using [Auto Scaling](http://aws.amazon.com/autoscaling/) and [Elastic Load Balancing](http://aws.amazon.com/elasticloadbalancing/)\. 
+  + If your load is variable, you can automatically scale your instances up or down using [Auto Scaling](https://aws.amazon.com/autoscaling/) and [Elastic Load Balancing](https://aws.amazon.com/elasticloadbalancing/)\. 
 
   + If your load is steadily growing, you can move to a larger instance type\. For more information, see [Resizing Your Instance](ec2-instance-resize.md)\. 
 
@@ -183,6 +183,12 @@ The appropriate user names are as follows:
 + For an Ubuntu AMI, the user name is `ubuntu` or `root`\.
 
 + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
+
+For example, to use an SSH client to connect to an instance launched from an Amazon Linux AMI, use the following command:
+
+```
+ssh -i /path/my-key-pair.pem ec2-user@public-dns-hostname
+```
 
 Confirm that you are using the private key file that corresponds to the key pair that you selected when you launched the instance\.
 

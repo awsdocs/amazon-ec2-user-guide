@@ -50,7 +50,7 @@ Amazon EBS encryption is available on the instance types listed in the table bel
 |  Storage optimized  |  `d2.xlarge` | `d2.2xlarge` | `d2.4xlarge` | `d2.8xlarge` | `h1.2xlarge` | `h1.4xlarge` | `h1.8xlarge` | `h1.16xlarge` | `i3.large` | `i3.xlarge` | `i3.2xlarge` | `i3.4xlarge` | `i3.8xlarge` | `i3.16xlarge`  | 
 |  Accelerated computing  |  `f1.2xlarge` | `f1.16xlarge` | `g3.4xlarge` | `g3.8xlarge` | `g3.16xlarge` | `p2.xlarge` | `p2.8xlarge` | `p2.16xlarge` | `p3.2xlarge` | `p3.8xlarge` | `p3.16xlarge`  | 
 
-For more information about these instance types, see [Instance Type Details](http://aws.amazon.com/ec2/instance-types/)\.
+For more information about these instance types, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
 ## Changing the Encryption State of Your Data<a name="EBSEncryption_considerations"></a>
 

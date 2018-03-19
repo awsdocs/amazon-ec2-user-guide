@@ -2,7 +2,7 @@
 
 Let's get started with Amazon Elastic Compute Cloud \(Amazon EC2\) by launching, connecting to, and using a Linux instance\. An *instance* is a virtual server in the AWS cloud\. With Amazon EC2, you can set up and configure the operating system and applications that run on your instance\.
 
-When you sign up for AWS, you can get started with Amazon EC2 for free using the [AWS Free Tier](http://aws.amazon.com/free/)\. If you created your AWS account less than 12 months ago, and have not already exceeded the free tier benefits for Amazon EC2, it will not cost you anything to complete this tutorial, because we help you select options that are within the free tier benefits\. Otherwise, you'll incur the standard Amazon EC2 usage fees from the time that you launch the instance until you terminate the instance \(which is the final task of this tutorial\), even if it remains idle\.
+When you sign up for AWS, you can get started with Amazon EC2 for free using the [AWS Free Tier](https://aws.amazon.com/free/)\. If you created your AWS account less than 12 months ago, and have not already exceeded the free tier benefits for Amazon EC2, it will not cost you anything to complete this tutorial, because we help you select options that are within the free tier benefits\. Otherwise, you'll incur the standard Amazon EC2 usage fees from the time that you launch the instance until you terminate the instance \(which is the final task of this tutorial\), even if it remains idle\.
 
 
 + [Overview](#ec2-get-started-overview)
@@ -126,7 +126,7 @@ After you've finished with the instance that you created for this tutorial, you 
 **Important**  
 Terminating an instance effectively deletes it; you can't reconnect to an instance after you've terminated it\.
 
-If you launched an instance that is not within the [AWS Free Tier](http://aws.amazon.com/free/), you'll stop incurring charges for that instance as soon as the instance status changes to `shutting down` or `terminated`\. If you'd like to keep your instance for later, but not incur charges, you can stop the instance now and then start it again later\. For more information, see [Stopping Instances](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Stop_Start.html)\.
+If you launched an instance that is not within the [AWS Free Tier](https://aws.amazon.com/free/), you'll stop incurring charges for that instance as soon as the instance status changes to `shutting down` or `terminated`\. If you'd like to keep your instance for later, but not incur charges, you can stop the instance now and then start it again later\. For more information, see [Stopping Instances](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Stop_Start.html)\.
 
 **To terminate your instance**
 

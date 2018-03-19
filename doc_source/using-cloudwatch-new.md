@@ -6,7 +6,7 @@ By default, your instance is enabled for basic monitoring\. You can optionally e
 | Type | Description | 
 | --- | --- | 
 |  Basic  |  Data is available automatically in 5\-minute periods at no charge\.  | 
-|  Detailed  |  Data is available in 1\-minute periods for an additional cost\. To get this level of data, you must specifically enable it for the instance\. For the instances where you've enabled detailed monitoring, you can also get aggregated data across groups of similar instances\. For information about pricing, see the [Amazon CloudWatch product page](http://aws.amazon.com/cloudwatch)\.  | 
+|  Detailed  |  Data is available in 1\-minute periods for an additional cost\. To get this level of data, you must specifically enable it for the instance\. For the instances where you've enabled detailed monitoring, you can also get aggregated data across groups of similar instances\. For information about pricing, see the [Amazon CloudWatch product page](https://aws.amazon.com/cloudwatch)\.  | 
 
 ## Enabling Detailed Monitoring<a name="enable-detailed-monitoring"></a>
 
