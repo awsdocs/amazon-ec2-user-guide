@@ -50,6 +50,8 @@ Some AWS services or their features won't work with a VPC with the instance tena
 
 Some instance types cannot be launched into a VPC with the instance tenancy set to `dedicated`\. For more information about supported instances types, see [Amazon EC2 Dedicated Instances](https://aws.amazon.com/ec2/purchasing-options/dedicated-instances/)\.
 
+Dedicated instances are physically isolated at an AWS account level\. Therefore, if you have multiple AWS accounts that are connected via a payer account, instances provisioned within the separate accounts will also be isolated (despite being connected via a payer account). 
+
 ### Amazon EBS with Dedicated Instances<a name="dedicated-instance-ebs"></a>
 
 When you launch an Amazon EBS\-backed Dedicated Instance, the EBS volume doesn't run on single\-tenant hardware\.
