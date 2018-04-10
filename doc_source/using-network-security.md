@@ -77,7 +77,7 @@ For each rule, you specify the following:
 
   + Another security group\. This allows instances associated with the specified security group to access instances associated with this security group\. This does not add rules from the source security group to this security group\. You can specify one of the following security groups:
   
-  + \(VPC only\) Prefix list ID of the VPC Endpoint, fo example, `pl-1234abcd`\.
+  + \(VPC only\) Prefix list ID of the VPC Endpoint, for example, `pl-1234abcd`\.
 
     + The current security group\.
 
