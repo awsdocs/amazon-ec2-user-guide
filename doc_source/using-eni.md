@@ -30,7 +30,7 @@ All network interfaces have the *eni\-xxxxxxxx* resource identifier\.
 The term 'elastic network interface' is sometimes shortened to 'ENI'\. This is not the same as the Elastic Network Adapter \(ENA\), which is a custom interface that optimizes network performance on some instance types\. For more information, see [Enhanced Networking on Linux](enhanced-networking.md)\.
 
 
-+ [Network Interface Basics](#eni-basics)primary
++ [Network Interface Basics](#eni-basics)
 + [IP Addresses Per Network Interface Per Instance Type](#AvailableIpPerENI)
 + [Scenarios for Network Interfaces](#scenarios-enis)
 + [Best Practices for Configuring Network Interfaces](#best-practices-for-configuring-network-interfaces)
@@ -186,7 +186,7 @@ Attaching multiple network interfaces to an instance is useful when you want to:
 
 ### Creating a Management Network<a name="creating-a-management-network"></a>
 
-You can create a management network using network interfaces\. In this scenario, the primary network interface on the instance handles public traffic and the secondary network interface handles backend management traffic and is connected to a separate subnet in your VPC that has more restrictive access controls\. The public interface, which may or may not be behind a load balancer, has an associated security group that allows access to the server from the internet \(for example, allow TCP port 80 and 443 from `0.0.0.0/0`, or from the load balancer\) while the private facing interface has an associated security group allowing SSH access only from an allowed range of IP addresses either within the VPC or from the internet, a private subnet within the VPC or a virtual private gateway\.
+You can create a management network using network interfaces\. In this scenario, the primary network interface \(`eth0`\) on the instance handles public traffic and the secondary network interface \(`eth1`\) handles backend management traffic and is connected to a separate subnet in your VPC that has more restrictive access controls\. The public interface, which may or may not be behind a load balancer, has an associated security group that allows access to the server from the internet \(for example, allow TCP port 80 and 443 from `0.0.0.0/0`, or from the load balancer\) while the private facing interface has an associated security group allowing SSH access only from an allowed range of IP addresses either within the VPC or from the internet, a private subnet within the VPC or a virtual private gateway\.
 
 To ensure failover capabilities, consider using a secondary private IPv4 for incoming traffic on a network interface\. In the event of an instance failure, you can move the interface and/or secondary private IPv4 address to a standby instance\.
 
