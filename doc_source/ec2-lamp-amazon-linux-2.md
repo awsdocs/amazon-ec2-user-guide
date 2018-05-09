@@ -95,7 +95,7 @@ To allow the `ec2\-user` account to manipulate files in this directory, you must
 
 **To set file permissions**
 
-1. Add your user \(in this case, `ec2\-user\`) to the `apache` group\.
+1. Add your user \(in this case, `ec2\-user`\) to the `apache` group\.
 
    ```
    [ec2-user ~]$ sudo usermod -a -G apache ec2-user
