@@ -23,7 +23,7 @@ Any data on the instance store volumes persists as long as the instance is runni
 
 ![\[Root device on an Amazon EC2 instance store-backed instance\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/instance_store_backed_instance.png)
 
-After an instance store\-backed instance fails or terminates, it cannot be restored\. If you plan to use Amazon EC2 instance store\-backed instances, we highly recommend that you distribute the data on your instance stores across multiple Availability Zones\. You should also back up critical data on your instance store volumes to persistent storage on a regular basis\.
+After an instance store\-backed instance fails or terminates, it cannot be restored\. If you plan to use Amazon EC2 instance store\-backed instances, we highly recommend that you distribute the data on your instance stores across multiple Availability Zones\. You should also back up critical data from your instance store volumes to persistent storage on a regular basis\.
 
 For more information, see [Amazon EC2 Instance Store](InstanceStorage.md)\.
 
@@ -32,7 +32,7 @@ Instances that use Amazon EBS for the root device automatically have an Amazon E
 
 ![\[Root device volume and other Amazon EBS volumes of an Amazon EBS-backed instance\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ebs_backed_instance.png)
 
-An Amazon EBS\-backed instance can be stopped and later restarted without affecting data stored in the attached volumes\. There are various instance– and volume\-related tasks you can do when an Amazon EBS\-backed instance is in a stopped state\. For example, you can modify the properties of the instance, you can change the size of your instance or update the kernel it is using, or you can attach your root volume to a different running instance for debugging or any other purpose\. 
+An Amazon EBS\-backed instance can be stopped and later restarted without affecting data stored in the attached volumes\. There are various instance– and volume\-related tasks you can do when an Amazon EBS\-backed instance is in a stopped state\. For example, you can modify the properties of the instance, change its size, or update the kernel it is using, or you can attach your root volume to a different running instance for debugging or any other purpose\. 
 
 If an Amazon EBS\-backed instance fails, you can restore your session by following one of these methods:
 
