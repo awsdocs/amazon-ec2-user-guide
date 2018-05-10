@@ -35,7 +35,7 @@ Connect to your instance, and download the WordPress installation package\.
 
 **To create a database user and database for your WordPress installation**
 
-Your WordPress installation needs to store information, such as blog post entries and user comments, in a database\. This procedure helps you create a database for your blog and a user that is authorized to read and save information to that database\. 
+Your WordPress installation needs to store information, such as blog posts and user comments, in a database\. This procedure helps you create your blog's database and a user that is authorized to read and save information to it\. 
 
 1. Start the database server\.
 
@@ -95,7 +95,7 @@ The WordPress installation folder contains a sample configuration file called `w
    [ec2-user wordpress]$ cp wordpress/wp-config-sample.php wordpress/wp-config.php
    ```
 
-1. Edit the `wp-config.php` file with your favorite text editor \(such as nano or vim\) and enter values for your installation\. If you do not have a favorite text editor, `nano` is much easier for beginners to use\.
+1. Edit the `wp-config.php` file with your favorite text editor \(such as nano or vim\) and enter values for your installation\. If you do not have a favorite text editor, `nano` is suitable for beginners\.
 
    ```
    [ec2-user wordpress]$ nano wordpress/wp-config.php
@@ -142,13 +142,13 @@ The values below are for example purposes only; do not use these values for your
 
 1. Now that you've unzipped the installation folder, created a MySQL database and user, and customized the WordPress configuration file, you are ready to copy your installation files to your web server document root so you can run the installation script that completes your installation\. The location of these files depends on whether you want your WordPress blog to be available at the actual root of your web server \(for example, `my.public.dns.amazonaws.com`\) or in a subdirectory or folder under the root \(for example, `my.public.dns.amazonaws.com/blog`\)\.
 
-1. If you want Wordpress to run at your document root, copy the contents of the wordpress installation directory \(but not the directory itself\) as follows: 
+1. If you want Wordpress to run at your document root, copy the contents of the `wordpress` installation directory \(but not the directory itself\) as follows: 
 
    ```
    [ec2-user ~]$ cp -r wordpress/* /var/www/html/
    ```
 
-1. If you want Wordpress to run in an alternative directory under the document root, first create that directory, and then copy the files to it\. In this example, Wordpress will run from the directory `blog`:
+1. If you want WordPress to run in an alternative directory under the document root, first create that directory, and then copy the files to it\. In this example, WordPress will run from the directory `blog`:
 
    ```
    [ec2-user ~]$ mkdir /var/www/html/blog
@@ -162,7 +162,7 @@ For security purposes, if you are not moving on to the next procedure immediatel
 
 WordPress permalinks need to use Apache `.htaccess` files to work properly, but this is not enabled by default on Amazon Linux\. Use this procedure to allow all overrides in the Apache document root\.
 
-1. Open the `httpd.conf` file with your favorite text editor \(such as nano or vim\)\. If you do not have a favorite text editor, `nano` is much easier for beginners to use\.
+1. Open the `httpd.conf` file with your favorite text editor \(such as nano or vim\)\. If you do not have a favorite text editor, `nano` is suitable for beginners\.
 
    ```
    [ec2-user wordpress]$ sudo vim /etc/httpd/conf/httpd.conf
@@ -214,13 +214,13 @@ There are multiple `AllowOverride` lines in this file; be sure you change the li
 
 Some of the available features in WordPress require write access to the Apache document root \(such as uploading media though the Administration screens\)\. If you have not already done so, apply the following group memberships and permissions \(as described in greater detail in the [LAMP web server tutorial](install-LAMP.md)\)\.
 
-1. Change the file ownership of `/var/www` and its contents to the `apache` user\.
+1. Grant file ownership of `/var/www` and its contents to the `apache` user\.
 
    ```
    [ec2-user wordpress]$ sudo chown -R apache /var/www
    ```
 
-1. Change the group ownership of `/var/www` and its contents to the `apache` group\.
+1. Grant group ownership of `/var/www` and its contents to the `apache` group\.
 
    ```
    [ec2-user wordpress]$ sudo chgrp -R apache /var/www
