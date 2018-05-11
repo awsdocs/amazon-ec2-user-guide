@@ -71,6 +71,12 @@ Without these exact file permissions, the user will not be able to log in\.
 
    The user should now be able to log into the `newuser` account on your instance using the private key that corresponds to the public key that you added to the `authorized_keys` file\.
 
+1. The last step would be to make sure you restart the SSH server\.
+
+   ```
+   [ec2-user ~]$ sudo service ssh restart
+   ```
+   
 **To remove a user from the system**  
 If a user account is no longer needed, you can remove that account so that it may no longer be used\. When you specify the `-r` option, the user's home directory and mail spool are deleted\. To keep the user's home directory and mail spool, omit the `-r` option\.
 
