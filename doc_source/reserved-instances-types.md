@@ -15,9 +15,7 @@ The following are the differences between Standard and Convertible offering clas
 Standard and Convertible Reserved Instances can be purchased to apply to instances in a specific Availability Zone, or to instances in a region\. When you purchase a Reserved Instance in a specific Availability Zone, it provides a capacity reservation\. When you purchase a Reserved Instance for a region, it's referred to as a *regional Reserved Instance*\. Regional Reserved Instances do not provide a capacity reservation\. 
 
 Regional Reserved Instances have the following attributes:
-
 + **Availability Zone flexibility**: the Reserved Instance discount applies to instance usage in any Availability Zone in a region\.
-
 + **Instance size flexibility**: the Reserved Instance discount applies to instance usage regardless of size, within that instance family\. Only supported on Linux/Unix Reserved Instances with default tenancy\.
 
 For more information and examples, see [How Reserved Instances Are Applied](apply_ri.md)\. 

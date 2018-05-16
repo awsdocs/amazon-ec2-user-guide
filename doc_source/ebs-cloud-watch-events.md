@@ -4,9 +4,9 @@ Amazon EBS emits notifications based on Amazon CloudWatch Events for a variety o
 
 For more information, see [Using Events](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/WhatIsCloudWatchEvents.html) in the *Amazon CloudWatch User Guide*\.
 
-## Event Definitions and Examples<a name="definitions"></a>
+## EBS Volume Events<a name="volume-events"></a>
 
-This section defines the supported Amazon EBS events and provides examples of event output for specific scenarios\. Events in CloudWatch are represented as JSON objects\. For more information about the format and content of event objects, see [Events and Event Patterns](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CloudWatchEventsandEventPatterns.html) in the *Amazon CloudWatch Events User Guide*\.
+This section defines the supported Amazon EBS volume events and provides examples of event output for specific scenarios\. Events in CloudWatch are represented as JSON objects\. For more information about the format and content of event objects, see [Events and Event Patterns](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CloudWatchEventsandEventPatterns.html) in the *Amazon CloudWatch Events User Guide*\.
 
 **Note**  
 Additional information about EBS volumes that is not captured by Cloudwatch is available through the   
@@ -14,107 +14,111 @@ Additional information about EBS volumes that is not captured by Cloudwatch is a
 
 The fields that are unique to EBS events are contained in the "detail" section of the JSON objects shown below\. The "event" field contains the event name\. The "result" field contains the completed status of the action that triggered the event\.
 
-### Create Snapshot \(`createSnapshot`\)<a name="create-snapshot-complete"></a>
+### Create Volume \(`createVolume`\)<a name="create-volume"></a>
 
-The `createSnapshot` event is sent to your AWS account when an action to create a snapshot completes\. This event can have a result of either `succeeded` or `failed`\.
+The `createVolume` event is sent to your AWS account when an action to create a volume completes\. This event can have a result of either `available` or `failed`\. Creation will fail if an invalid KMS key was provided, as shown in the examples below\.
 
 **Event Data**  
-The listing below is an example of a JSON object emitted by EBS for a successful `createSnapshot` event\. The `source` field contains the ARN of the source volume\. The `StartTime` and `EndTime` fields indicate when creation of the snapshot started and completed\.
+The listing below is an example of a JSON object emitted by EBS for a successful `createVolume` event\. 
 
 ```
 {
-  "version": "0",
-  "id": "01234567-0123-0123-0123-012345678901",
-  "detail-type": "EBS Snapshot Notification",
-  "source": "aws.ec2",
-  "account": "012345678901",
-  "time": "yyyy-mm-ddThh:mm:ssZ",
-  "region": "us-east-1",
-  "resources": [
-     "arn:aws:ec2::us-west-2:snapshot/snap-01234567"
-  ],
-  "detail": {
-    "event": "createSnapshot",
-    "result": "succeeded",
-    "cause": "",
-    "request-id": "",
-    "snapshot_id": "arn:aws:ec2::us-west-2:snapshot/snap-01234567",
-    "source": "arn:aws:ec2::us-west-2:volume/vol-01234567",
-    "StartTime": "yyyy-mm-ddThh:mm:ssZ",
-    "EndTime": "yyyy-mm-ddThh:mm:ssZ"  }
+   "version": "0",
+   "id": "01234567-0123-0123-0123-012345678901",
+   "detail-type": "EBS Volume Notification",
+   "source": "aws.ec2",
+   "account": "012345678901",
+   "time": "yyyy-mm-ddThh:mm:ssZ",
+   "region": "us-east-1",
+   "resources": [
+      "arn:aws:ec2:us-east-1:012345678901:volume/vol-01234567"
+   ],
+   "detail": {
+      "result": "available",
+      "cause": "",
+      "event": "createVolume",
+      "request-id": "01234567-0123-0123-0123-0123456789ab"
+   }
 }
 ```
 
-### Copy Snapshot \(`copySnapshot`\)<a name="copy-snapshot-complete"></a>
-
-The `copySnapshot` event is sent to your AWS account when an action to copy a snapshot completes\. This event can have a result of either `succeeded` or `failed`\.
-
-**Event Data**  
-The listing below is an example of a JSON object emitted by EBS after a failed `copySnapshot` event\. The cause for the failure was an invalid source snapshot ID\. The value of `snapshot_id` is the ARN of the failed snapshot\. The value of `source` is the ARN of the source snapshot\. `StartTime` and `EndTime` represent when the copy\-snapshot action started and ended\. 
+The listing below is an example of a JSON object emitted by EBS after a failed `createVolume` event\. The cause for the failure was a disabled KMS key\.
 
 ```
 {
   "version": "0",
-  "id": "01234567-0123-0123-0123-012345678901",
-  "detail-type": "EBS Snapshot Notification",
+  "id": "01234567-0123-0123-0123-0123456789ab",
+  "detail-type": "EBS Volume Notification",
   "source": "aws.ec2",
-  "account": "123456789012",
+  "account": "012345678901",
   "time": "yyyy-mm-ddThh:mm:ssZ",
-  "region": "us-east-1",
+  "region": "sa-east-1",
   "resources": [
-    "arn:aws:ec2::us-west-2:snapshot/snap-01234567"
+    "arn:aws:ec2:sa-east-1:0123456789ab:volume/vol-01234567",
   ],
   "detail": {
-    "event": "copySnapshot",
+    "event": "createVolume",
     "result": "failed",
-    "cause": "Source snapshot ID is not valid",
-    "request-id": "",
-    "snapshot_id": "arn:aws:ec2::us-west-2:snapshot/snap-01234567",
-    "source": "arn:aws:ec2::eu-west-1:snapshot/snap-76543210",
-    "StartTime": "yyyy-mm-ddThh:mm:ssZ",
-    "EndTime": "yyyy-mm-ddThh:mm:ssZ"
+    "cause": "arn:aws:kms:sa-east-1:0123456789ab:key/01234567-0123-0123-0123-0123456789ab is disabled.",
+    "request-id": "01234567-0123-0123-0123-0123456789ab",
   }
 }
 ```
 
-### Share Snapshot \(`shareSnapshot`\)<a name="snapshot-shared"></a>
+The following is an example of a JSON object that is emitted by EBS after a failed `createVolume` event\. The cause for the failure was a KMS key pending import\.
 
-The `shareSnapshot` event is sent to your AWS account when another account shares a snapshot with it\. The result is always `succeeded`\.
+```
+{  
+  "version": "0",  
+  "id": "01234567-0123-0123-0123-0123456789ab",  
+  "detail-type": "EBS Volume Notification",  
+  "source": "aws.ec2",  
+  "account": "012345678901",  
+  "time": "yyyy-mm-ddThh:mm:ssZ",  
+  "region": "sa-east-1",  
+  "resources": [    
+    "arn:aws:ec2:sa-east-1:0123456789ab:volume/vol-01234567",  
+  ],  
+  "detail": {    
+    "event": "createVolume",    
+    "result": "failed",    
+    "cause": "arn:aws:kms:sa-east-1:0123456789ab:key/01234567-0123-0123-0123-0123456789ab is pending import.",    
+    "request-id": "01234567-0123-0123-0123-0123456789ab",  
+  }
+}
+```
+
+### Delete Volume \(`deleteVolume`\)<a name="delete-volume"></a>
+
+The `deleteVolume` event is sent to your AWS account when an action to delete a volume completes\. This event has the result `deleted`\. If the deletion does not complete, the event is never sent\.
 
 **Event Data**  
-The listing below is an example of a JSON object emitted by EBS after a completed `shareSnapshot` event\. The value of `source` is the AWS account number of the user that shared the snapshot with you\. `StartTime` and `EndTime` represent when the share\-snapshot action started and ended\. The `shareSnapshot` event is emitted only when a private snapshot is shared with another user\. Sharing a public snapshot does not trigger the event\.
+The listing below is an example of a JSON object emitted by EBS for a successful `deleteVolume` event\. 
 
 ```
 {
-  "version": "0",
-  "id": "01234567-01234-0123-0123-012345678901",
-  "detail-type": "EBS Snapshot Notification",
-  "source": "aws.ec2",
-  "account": "012345678901",
-  "time": "yyyy-mm-ddThh:mm:ssZ",
-  "region": "us-east-1",
-  "resources": [
-    "arn:aws:ec2::us-west-2:snapshot/snap-01234567"
-  ],
-  "detail": {
-    "event": "shareSnapshot",
-    "result": "succeeded",
-    "cause": "",
-    "request-id": "",
-    "snapshot_id": "arn:aws:ec2::us-west-2:snapshot/snap-01234567",
-    "source": 012345678901,
-    "StartTime": "yyyy-mm-ddThh:mm:ssZ",
-    "EndTime": ""yyyy-mm-ddThh:mm:ssZ""
-  }
+   "version": "0",
+   "id": "01234567-0123-0123-0123-012345678901",
+   "detail-type": "EBS Volume Notification",
+   "source": "aws.ec2",
+   "account": "012345678901",
+   "time": "yyyy-mm-ddThh:mm:ssZ",
+   "region": "us-east-1",
+   "resources": [
+      "arn:aws:ec2:us-east-1: 012345678901:volume/vol-01234567"
+   ],
+   "detail": {
+      "result": "deleted",
+      "cause": "",
+      "event": "deleteVolume",
+      "request-id": "01234567-0123-0123-0123-0123456789ab"
+   }
 }
 ```
 
-### Invalid Encryption Key on Volume Attach or Reattach \(`attachVolume`, `reattachVolume`\)<a name="attach-fail-key"></a>
+### Volume Attach or Reattach \(`attachVolume`, `reattachVolume`\)<a name="attach-fail-key"></a>
 
-The `attachVolume` event is sent to your AWS account when it fails to attach or reattach a volume to an instance due to an invalid KMS key\.
-
-**Note**  
-You can use a KMS key to encrypt an EBS volume\. If the key used to encrypt the volume becomes invalid, EBS will emit an event if that key is later used to create, attach, or reattach to a volume\.
+The `attachVolume` or `reattachVolume` event is sent to your AWS account if a volume fails to attach or reattach to an instance\. If you use a KMS key to encrypt an EBS volume and the key becomes invalid, EBS will emit an event if that key is later used to attach or reattach to an instance, as shown in the examples below\.
 
 **Event Data**  
 The listing below is an example of a JSON object emitted by EBS after a failed `attachVolume` event\. The cause for the failure was a KMS key pending deletion\.
@@ -168,55 +172,127 @@ The listing below is an example of a JSON object emitted by EBS after a failed `
 }
 ```
 
-### Invalid Encryption Key on Create Volume \(`createVolume`\)<a name="create-fail-key"></a>
+## EBS Snapshot Events<a name="snapshot-events"></a>
 
-The `createVolume` event is sent to your AWS account when it fails to create a volume due to an invalid KMS key\.
+### Create Snapshot \(`createSnapshot`\)<a name="create-snapshot-complete"></a>
 
-You can use a KMS key to encrypt an EBS volume\. If the key used to encrypt the volume becomes invalid, EBS will emit an event if that key is later used to create, attach, or reattach to a volume\.
+The `createSnapshot` event is sent to your AWS account when an action to create a snapshot completes\. This event can have a result of either `succeeded` or `failed`\.
 
 **Event Data**  
-The listing below is an example of a JSON object emitted by EBS after a failed `createVolume` event\. The cause for the failure was a disabled KMS key\.
+The listing below is an example of a JSON object emitted by EBS for a successful `createSnapshot` event\. In the `detail` section, the `source` field contains the ARN of the source volume\. The `StartTime` and `EndTime` fields indicate when creation of the snapshot started and completed\.
 
 ```
 {
   "version": "0",
-  "id": "01234567-0123-0123-0123-0123456789ab",
-  "detail-type": "EBS Volume Notification",
+  "id": "01234567-0123-0123-0123-012345678901",
+  "detail-type": "EBS Snapshot Notification",
   "source": "aws.ec2",
   "account": "012345678901",
   "time": "yyyy-mm-ddThh:mm:ssZ",
-  "region": "sa-east-1",
+  "region": "us-east-1",
   "resources": [
-    "arn:aws:ec2:sa-east-1:0123456789ab:volume/vol-01234567",
+     "arn:aws:ec2::us-west-2:snapshot/snap-01234567"
   ],
   "detail": {
-    "event": "createVolume",
-    "result": "failed",
-    "cause": "arn:aws:kms:sa-east-1:0123456789ab:key/01234567-0123-0123-0123-0123456789ab is disabled.",
-    "request-id": "01234567-0123-0123-0123-0123456789ab",
+    "event": "createSnapshot",
+    "result": "succeeded",
+    "cause": "",
+    "request-id": "",
+    "snapshot_id": "arn:aws:ec2::us-west-2:snapshot/snap-01234567",
+    "source": "arn:aws:ec2::us-west-2:volume/vol-01234567",
+    "StartTime": "yyyy-mm-ddThh:mm:ssZ",
+    "EndTime": "yyyy-mm-ddThh:mm:ssZ"  }
+}
+```
+
+### Copy Snapshot \(`copySnapshot`\)<a name="copy-snapshot-complete"></a>
+
+The `copySnapshot` event is sent to your AWS account when an action to copy a snapshot completes\. This event can have a result of either `succeeded` or `failed`\.
+
+**Event Data**  
+The listing below is an example of a JSON object emitted by EBS after a successful `copySnapshot` event\. The value of `snapshot_id` is the ARN of the newly created snapshot\. In the `detail` section, the value of `source` is the ARN of the source snapshot\. `StartTime` and `EndTime` represent when the copy\-snapshot action started and ended\.
+
+```
+{
+  "version": "0",
+  "id": "01234567-0123-0123-0123-012345678901",
+  "detail-type": "EBS Snapshot Notification",
+  "source": "aws.ec2",
+  "account": "123456789012",
+  "time": "yyyy-mm-ddThh:mm:ssZ",
+  "region": "us-east-1",
+  "resources": [
+    "arn:aws:ec2::us-west-2:snapshot/snap-01234567"
+  ],
+  "detail": {
+    "event": "copySnapshot",
+    "result": "succeeded",
+    "cause": "",
+    "request-id": "",
+    "snapshot_id": "arn:aws:ec2::us-west-2:snapshot/snap-01234567",
+    "source": "arn:aws:ec2::eu-west-1:snapshot/snap-76543210",
+    "StartTime": "yyyy-mm-ddThh:mm:ssZ",
+    "EndTime": "yyyy-mm-ddThh:mm:ssZ",
+    "Incremental": "True"
   }
 }
 ```
 
-The following is an example of a JSON object that is emitted by EBS after a failed `createVolume` event\. The cause for the failure was a KMS key pending import\.
+The listing below is an example of a JSON object emitted by EBS after a failed `copySnapshot` event\. The cause for the failure was an invalid source snapshot ID\. The value of `snapshot_id` is the ARN of the failed snapshot\. In the `detail` section, the value of `source` is the ARN of the source snapshot\. `StartTime` and `EndTime` represent when the copy\-snapshot action started and ended\. 
 
 ```
-{  
-  "version": "0",  
-  "id": "01234567-0123-0123-0123-0123456789ab",  
-  "detail-type": "EBS Volume Notification",  
-  "source": "aws.ec2",  
-  "account": "012345678901",  
-  "time": "yyyy-mm-ddThh:mm:ssZ",  
-  "region": "sa-east-1",  
-  "resources": [    
-    "arn:aws:ec2:sa-east-1:0123456789ab:volume/vol-01234567",  
-  ],  
-  "detail": {    
-    "event": "createVolume",    
-    "result": "failed",    
-    "cause": "arn:aws:kms:sa-east-1:0123456789ab:key/01234567-0123-0123-0123-0123456789ab is pending import.",    
-    "request-id": "01234567-0123-0123-0123-0123456789ab",  
+{
+  "version": "0",
+  "id": "01234567-0123-0123-0123-012345678901",
+  "detail-type": "EBS Snapshot Notification",
+  "source": "aws.ec2",
+  "account": "123456789012",
+  "time": "yyyy-mm-ddThh:mm:ssZ",
+  "region": "us-east-1",
+  "resources": [
+    "arn:aws:ec2::us-west-2:snapshot/snap-01234567"
+  ],
+  "detail": {
+    "event": "copySnapshot",
+    "result": "failed",
+    "cause": "Source snapshot ID is not valid",
+    "request-id": "",
+    "snapshot_id": "arn:aws:ec2::us-west-2:snapshot/snap-01234567",
+    "source": "arn:aws:ec2::eu-west-1:snapshot/snap-76543210",
+    "StartTime": "yyyy-mm-ddThh:mm:ssZ",
+    "EndTime": "yyyy-mm-ddThh:mm:ssZ"
+  }
+}
+```
+
+### Share Snapshot \(`shareSnapshot`\)<a name="snapshot-shared"></a>
+
+The `shareSnapshot` event is sent to your AWS account when another account shares a snapshot with it\. The result is always `succeeded`\.
+
+**Event Data**  
+The listing below is an example of a JSON object emitted by EBS after a completed `shareSnapshot` event\. In the `detail` section, the value of `source` is the AWS account number of the user that shared the snapshot with you\. `StartTime` and `EndTime` represent when the share\-snapshot action started and ended\. The `shareSnapshot` event is emitted only when a private snapshot is shared with another user\. Sharing a public snapshot does not trigger the event\.
+
+```
+{
+  "version": "0",
+  "id": "01234567-01234-0123-0123-012345678901",
+  "detail-type": "EBS Snapshot Notification",
+  "source": "aws.ec2",
+  "account": "012345678901",
+  "time": "yyyy-mm-ddThh:mm:ssZ",
+  "region": "us-east-1",
+  "resources": [
+    "arn:aws:ec2::us-west-2:snapshot/snap-01234567"
+  ],
+  "detail": {
+    "event": "shareSnapshot",
+    "result": "succeeded",
+    "cause": "",
+    "request-id": "",
+    "snapshot_id": "arn:aws:ec2::us-west-2:snapshot/snap-01234567",
+    "source": 012345678901,
+    "StartTime": "yyyy-mm-ddThh:mm:ssZ",
+    "EndTime": "yyyy-mm-ddThh:mm:ssZ"
   }
 }
 ```

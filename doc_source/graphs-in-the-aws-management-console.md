@@ -3,25 +3,15 @@
 After you launch an instance, you can open the Amazon EC2 console and view the monitoring graphs for an instance on the **Monitoring** tab\. Each graph is based on one of the available Amazon EC2 metrics\.
 
 The following graphs are available:
-
 + Average CPU Utilization \(Percent\)
-
 + Average Disk Reads \(Bytes\)
-
 + Average Disk Writes \(Bytes\)
-
 + Maximum Network In \(Bytes\)
-
 + Maximum Network Out \(Bytes\)
-
 + Summary Disk Read Operations \(Count\)
-
 + Summary Disk Write Operations \(Count\)
-
 + Summary Status \(Any\)
-
 + Summary Status Instance \(Count\)
-
 + Summary Status System \(Count\)
 
 For more information about the metrics and the data they provide to the graphs, see [List the Available CloudWatch Metrics for Your Instances](viewing_metrics_with_cloudwatch.md)\.

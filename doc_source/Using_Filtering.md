@@ -2,7 +2,7 @@
 
 You can get a list of some types of resource using the Amazon EC2 console\. You can get a list of each type of resource using its corresponding command or API action\. If you have many resources, you can filter the results to include only the resources that match certain criteria\.
 
-
+**Topics**
 + [Advanced Search](#advancedsearch)
 + [Listing Resources Using the Console](#listing-resources)
 + [Filtering Resources Using the Console](#filtering-resources)
@@ -13,11 +13,9 @@ You can get a list of some types of resource using the Amazon EC2 console\. You 
 Advanced search allows you to search using a combination of filters to achieve precise results\. You can filter by keywords, user\-defined tag keys, and predefined resource attributes\.
 
 The specific search types available are:
-
 + **Search by keyword**
 
   To search by keyword, type or paste what you’re looking for in the search box, and then choose Enter\. For example, to search for a specific instance, you can type the instance ID\.
-
 + **Search by fields**
 
   You can also search by fields, tags, and attributes associated with a resource\. For example, to find all instances in the stopped state:
@@ -29,19 +27,15 @@ The specific search types available are:
   1. Select **Stopped** from the list of suggested values\.
 
   1. To further refine your list, select the search box for more search options\.
-
 + **Advanced search**
 
   You can create advanced queries by adding multiple filters\. For example, you can search by tags and see instances for the Flying Mountain project running in the Production stack, and then search by attributes to see all t2\.micro instances, or all instances in us\-west\-2a, or both\. 
-
 + **Inverse search**
 
   You can search for resources that do not match a specified value\. For example, to list all instances that are not terminated, search by the **Instance State** field, and prefix the Terminated value with an exclamation mark \(\!\)\.
-
 + **Partial search**
 
   When searching by field, you can also enter a partial string to find all resources that contain the string in that field\. For example, search by **Instance Type**, and then type **t2** to find all t2\.micro, t2\.small or t2\.medium instances\.
-
 + **Regular expression**
 
   Regular expressions are useful when you need to match the values in a field with a specific pattern\. For example, search by the Name tag, and then type **^s\.\*** to see all instances with a Name tag that starts with an 's'\. Regular expression search is not case\-sensitive\.
@@ -99,14 +93,17 @@ Each resource type has a corresponding CLI command or API request that you use t
 
 The resulting lists of resources can be long, so you might want to filter the results to include only the resources that match certain criteria\. You can specify multiple filter values, and you can also specify multiple filters\. For example, you can list all the instances whose type is either `m1.small` or `m1.large`, and that have an attached EBS volume that is set to delete when the instance terminates\. The instance must match all your filters to be included in the results\. 
 
-You can also use wildcards with the filter values\. An asterisk \(\*\) matches zero or more characters, and a question mark \(?\) matches exactly one character\. For example, you can use `*database*` as a filter value to get all EBS snapshots that include `database` in the description\. If you were to specify `database` as the filter value, then only snapshots whose description equals `database` would be returned\. Filter values are case sensitive\. We support only exact string matching, or substring matching \(with wildcards\)\. If a resulting list of resources is long, using an exact string filter may return the response faster\. 
+You can also use wildcards with the filter values\. An asterisk \(\*\) matches zero or more characters, and a question mark \(?\) matches zero or one character\.
+
+For example, you can use `database` as the filter value to get only the EBS snapshots whose description equals `database`\. If you specify `*database*`, then all snapshots whose description includes `database` are returned\. If you specify `database?`, then only the snapshots whose description matches one of the following patterns are returned: equals `database` or equals `database` followed by one character\.
+
+The number of question marks determines the maximum number of characters to include in results\. For example, if you specify `database????`, then only the snapshots whose description equals `database` followed by up to four characters are returned\. Descriptions with five or more characters following `database` are excluded from the search results\.
+
+Filter values are case sensitive\. We support only exact string matching, or substring matching \(with wildcards\)\. If a resulting list of resources is long, using an exact string filter may return the response faster\. 
 
 Your search can include the literal values of the wildcard characters; you just need to escape them with a backslash before the character\. For example, a value of `\*amazon\?\\` searches for the literal string `*amazon?\`\.
 
 For a list of supported filters per Amazon EC2 resource, see the relevant documentation:
-
 + For the AWS CLI, see the relevant `describe` command in the *[AWS CLI Command Reference](http://docs.aws.amazon.com/cli/latest/reference/)*\.
-
 + For Windows PowerShell, see the relevant `Get` command in the *[AWS Tools for PowerShell Cmdlet Reference](http://docs.aws.amazon.com/powershell/latest/reference/items/Amazon_Elastic_Compute_Cloud_cmdlets.html)*\.
-
 + For the Query API, see the relevant `Describe` API action in the *[Amazon EC2 API Reference](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/)*\.

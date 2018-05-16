@@ -38,9 +38,7 @@ Connect to your instance, and download the WordPress installation package\.
 Your WordPress installation needs to store information, such as blog posts and user comments, in a database\. This procedure helps you create your blog's database and a user that is authorized to read and save information to it\. 
 
 1. Start the database server\.
-
    + **Amazon Linux AMI**: **sudo service mysqld start**
-
    + **Amazon Linux 2**: **sudo systemctl start mariadb**
 
 1. Log in to the database server as the `root` user\. Enter your database `root` password when prompted; this may be different than your `root` system password, or it may even be empty if you have not secured your database server\.
@@ -142,7 +140,7 @@ The values below are for example purposes only; do not use these values for your
 
 1. Now that you've unzipped the installation folder, created a MySQL database and user, and customized the WordPress configuration file, you are ready to copy your installation files to your web server document root so you can run the installation script that completes your installation\. The location of these files depends on whether you want your WordPress blog to be available at the actual root of your web server \(for example, `my.public.dns.amazonaws.com`\) or in a subdirectory or folder under the root \(for example, `my.public.dns.amazonaws.com/blog`\)\.
 
-1. If you want Wordpress to run at your document root, copy the contents of the `wordpress` installation directory \(but not the directory itself\) as follows: 
+1. If you want WordPress to run at your document root, copy the contents of the wordpress installation directory \(but not the directory itself\) as follows: 
 
    ```
    [ec2-user ~]$ cp -r wordpress/* /var/www/html/
@@ -239,41 +237,29 @@ Some of the available features in WordPress require write access to the Apache d
    ```
 
 1. Restart the Apache web server to pick up the new group and permissions\.
-
    + **Amazon Linux AMI**: **sudo service httpd restart**
-
    + **Amazon Linux 2**: **sudo systemctl restart httpd**
 
 **To run the WordPress installation script**
 
 1. Use the chkconfig command to ensure that the `httpd` and database services start at every system boot\.
-
    + **Amazon Linux AMI**: **sudo chkconfig enable httpd && sudo chkconfig enable mysql**
-
    + **Amazon Linux 2**: **sudo systemctl enable httpd && sudo systemctl enable mariadb**
 
 1. Verify that the database server is running\.
-
    + **Amazon Linux AMI**: **sudo service mysqld status**
-
    + **Amazon Linux 2**: **sudo systemctl status mariadb**
 
    If the database service is not running, start it\.
-
    + **Amazon Linux AMI**: **sudo service mysqld start**
-
    + **Amazon Linux 2**: **sudo systemctl start mariadb**
 
 1. Verify that your Apache web server \(`httpd`\) is running\.
-
    + **Amazon Linux AMI**: **sudo service httpd status**
-
    + **Amazon Linux 2**: **sudo systemctl status httpd**
 
    If the `httpd` service is not running, start it\.
-
    + **Amazon Linux AMI**: **sudo service httpd start**
-
    + **Amazon Linux 2**: **sudo systemctl start httpd**
 
 1. In a web browser, enter the URL of your WordPress blog \(either the public DNS address for your instance, or that address followed by the `blog` folder\)\. You should see the WordPress installation screen\.
@@ -302,13 +288,9 @@ You can configure your blog to use different [themes](https://wordpress.org/them
 
 **Increase Capacity**  
 If your WordPress blog becomes popular and you need more compute power or storage, consider the following steps:
-
 + Expand the storage space on your instance\. For more information, see [Modifying the Size, IOPS, or Type of an EBS Volume on Linux](ebs-modify-volume.md)\.
-
 + Move your MySQL database to [Amazon RDS](https://aws.amazon.com/rds) to take advantage of the service's ability to scale easily\.
-
-+ Migrate to a larger instance type\. For more information, see [Resizing Your Instance](ec2-instance-resize.md)\.
-
++ Migrate to a larger instance type\. For more information, see [Changing the Instance Type](ec2-instance-resize.md)\.
 + Add additional instances\. For more information, see [Tutorial: Increase the Availability of Your Application on Amazon EC2](ec2-increase-availability.md)\.
 
 **Learn More about WordPress**  

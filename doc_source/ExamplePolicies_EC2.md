@@ -2,7 +2,7 @@
 
 The following examples show policy statements that you could use to control the permissions that IAM users have to Amazon EC2\. These policies are designed for requests that are made with the AWS CLI or an AWS SDK\. For example policies for working in the Amazon EC2 console, see [Example Policies for Working in the Amazon EC2 Console](iam-policies-ec2-console.md)\. For examples of IAM policies specific to Amazon VPC, see [Controlling Access to Amazon VPC Resources](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_IAM.html)\.
 
-
+**Topics**
 + [1: Read\-Only Access](#iam-example-read-only)
 + [2: Restricting Access to a Specific Region](#iam-example-region)
 + [3: Working with Instances](#iam-example-instances)
@@ -44,22 +44,21 @@ The following policy grants users permissions to use all Amazon EC2 API actions 
   "Version":"2012-10-17",
   "Statement":[
     {
-    "Effect": "Allow",
-    "Action": "ec2:*",
-    "Resource": "*",
-    "Condition": {
-      "StringEquals": {
-        "ec2:Region": "eu-central-1"
-      }
-    }
-  }
+      "Effect": "Allow",
+      "Action": "ec2:*",
+      "Resource": "*",
+      "Condition": {"StringEquals": {"aws:RequestedRegion": [
+	    "eu-central-1"
+	  ]}
+       }
+    }  
   ]
 }
 ```
 
 ## 3: Working with Instances<a name="iam-example-instances"></a>
 
-
+**Topics**
 + [Describe, Launch, Stop, Start, and Terminate All Instances](#iam-example-instances-all)
 + [Describe All Instances, and Stop, Start, and Terminate Only Particular Instances](#iam-example-instances-specific)
 
@@ -134,7 +133,7 @@ The third statement allows users to terminate all instances in the US East \(N\.
 
 ## 4\. Working with Volumes<a name="iam-example-manage-volumes"></a>
 
-
+**Topics**
 + [Attaching and Detaching Volumes](#iam-example-manage-volumes-attach-detach)
 + [Creating a Volume](#iam-example-manage-volumes-create)
 + [Creating a Volume with Tags](#iam-example-manage-volumes-tags)
@@ -279,9 +278,10 @@ The following policy allows users to create a volume without having to specify t
 
 ## 5\. Working with Snapshots<a name="iam-example-manage-snapshots"></a>
 
-
+**Topics**
 + [Creating a Snapshot](#iam-creating-snapshop)
 + [Creating a Snapshot with Tags](#iam-creating-snapshot-with-tags)
++ [Modifying Permission Settings for Snapshots](#iam-modifying-snapshot-with-tags)
 
 ### Creating a Snapshot<a name="iam-creating-snapshop"></a>
 
@@ -473,6 +473,28 @@ The following policy allows a customer to create a snapshot but denies the actio
 }
 ```
 
+### Modifying Permission Settings for Snapshots<a name="iam-modifying-snapshot-with-tags"></a>
+
+The following policy allows modification of a snapshot only if the snapshot is tagged with `User:username`, where *username* is the customer's AWS account user name\. The request fails if this condition is not met\.
+
+```
+{
+   "Version":"2012-10-17",
+   "Statement":[
+      {
+         "Effect":"Allow",
+         "Action":"ec2: ModifySnapshotAttribute",
+         "Resource":"arn:aws:ec2:us-east-1::snapshot/*",
+         "Condition":{
+            "StringEquals":{
+               "ec2:ResourceTag/user-name":"${aws:username}"
+            }
+         }
+      }
+   ]
+}
+```
+
 ## 6: Launching Instances \(RunInstances\)<a name="iam-example-runinstances"></a>
 
 The [RunInstances](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-RunInstances.html) API action launches one or more instances\. `RunInstances` requires an AMI and creates an instance; and users can specify a key pair and security group in the request\. Launching into EC2\-VPC requires a subnet, and creates a network interface\. Launching from an Amazon EBS\-backed AMI creates a volume\. Therefore, the user must have permissions to use these Amazon EC2 resources\. You can create a policy statement that requires users to specify an optional parameter on `RunInstances`, or restricts users to particular values for a parameter\.
@@ -481,7 +503,7 @@ For more information about the resource\-level permissions that are required to 
 
 By default, users don't have permissions to describe, start, stop, or terminate the resulting instances\. One way to grant the users permission to manage the resulting instances is to create a specific tag for each instance, and then create a statement that enables them to manage instances with that tag\. For more information, see [3: Working with Instances](#iam-example-instances)\.
 
-
+**Topics**
 + [AMI](#iam-example-runinstances-ami)
 + [Instance Type](#iam-example-runinstances-instance-type)
 + [Subnet](#iam-example-runinstances-subnet)
@@ -915,7 +937,7 @@ In the following policy, users do not have to specify tags in the request, but i
 
 ### Applying Tags in a Launch Template<a name="iam-example-tags-launch-template"></a>
 
-In the following example, users can launch instances, but only if they use a specific launch template \(`lt-09477bcd97b0d310e`\)\. The `ec2:IsLaunchTemplateResource` condition key prevents users from overriding any of the launch template parameters\. The second part of the statement allows users to tag instances on creation—this part of the statement is necessary if tags are specified for the instance in the launch template\.
+In the following example, users can launch instances, but only if they use a specific launch template \(`lt-09477bcd97b0d310e`\)\. The `ec2:IsLaunchTemplateResource` condition key prevents users from overriding any of the resources specified in the launch template\. The second part of the statement allows users to tag instances on creation—this part of the statement is necessary if tags are specified for the instance in the launch template\.
 
 ```
 {
@@ -1019,7 +1041,7 @@ In the following example, users can launch instances, but only if they use a spe
 }
 ```
 
-In this example, users can launch instances only if they use a launch template\. The policy uses the `ec2:IsLaunchTemplateResource` condition key to prevent users from overriding any of the launch template parameters in the `RunInstances` request\.
+In this example, users can launch instances only if they use a launch template\. The policy uses the `ec2:IsLaunchTemplateResource` condition key to prevent users from overriding any of the launch template resources in the `RunInstances` request\.
 
 ```
 {
@@ -1114,7 +1136,7 @@ The following example allows users to launch instances only if they use a launch
 
 You can enable a VPC for ClassicLink and then link an EC2\-Classic instance to the VPC\. You can also view your ClassicLink\-enabled VPCs, and all of your EC2\-Classic instances that are linked to a VPC\. You can create policies with resource\-level permission for the `ec2:EnableVpcClassicLink`, `ec2:DisableVpcClassicLink`, `ec2:AttachClassicLinkVpc`, and `ec2:DetachClassicLinkVpc` actions to control how users are able to use those actions\. Resource\-level permissions are not supported for `ec2:Describe*` actions\.
 
-
+**Topics**
 + [Full Permissions to Work with ClassicLink](#iam-example-classiclink-full)
 + [Enable and Disable a VPC for ClassicLink](#iam-example-classiclink-enable)
 + [Link Instances](#iam-example-classiclink-link)

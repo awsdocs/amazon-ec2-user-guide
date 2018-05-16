@@ -4,7 +4,7 @@ To use a Dedicated Host, you first allocate hosts for use in your account\. You 
 
 If you no longer need an On\-Demand host, you can stop the instances running on the host, direct them to launch on a different host, and then *release* the host\.
 
-
+**Topics**
 + [Understanding Auto\-Placement and Affinity](#dedicated-hosts-understanding)
 + [Allocating Dedicated Hosts](#dedicated-hosts-allocating)
 + [Launching Instances onto Dedicated Hosts](#launching-dedicated-hosts-instances)
@@ -55,9 +55,7 @@ To begin using Dedicated Hosts, they need to be allocated to your account\. You 
    1. **Availability Zone**—The Availability Zone in which the Dedicated Host is located\.
 
    1. **Allow instance auto\-placement**—Choose one of the following settings:
-
       + Yes—The Dedicated Host accepts untargeted instance launches that match its instance type configuration\.
-
       + No—The Dedicated Host accepts `host` tenancy instances launches that specify its unique host ID only\. This is the default setting\.
 
       For more information about auto\-placement, see [Understanding Auto\-Placement and Affinity](#dedicated-hosts-understanding)\.
@@ -69,13 +67,11 @@ To begin using Dedicated Hosts, they need to be allocated to your account\. You 
 **To allocate Dedicated Hosts using the command line tools**
 
 Use one of the following commands\. The following examples allocate a Dedicated Host that supports *untargeted* `m4.large` instance launches in the `eu-west-1a` Availability Zone\.
-
 + [allocate\-hosts](http://docs.aws.amazon.com/cli/latest/reference/ec2/allocate-hosts.html) \(AWS CLI\)
 
   ```
   aws ec2 allocate-hosts --instance-type "m4.large" --availability-zone "eu-west-1a" --auto-placement "off" --quantity 1
   ```
-
 + [New\-EC2Host](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Host.html) \(AWS Tools for Windows PowerShell\)
 
   ```
@@ -110,9 +106,7 @@ Before you launch your instances, take note of the limitations\. For more inform
    The instance type is determined by the host you have selected\.
 
 1. On the **Configure Instance Details** page, configure the instance settings to suit your needs, and then for **Affinity**, choose one of the following options:
-
    + **Off**—The instance launches onto the specified host, but it is not guaranteed to restart on the same Dedicated Host if stopped\.
-
    + **Host**—If stopped, the instance always restarts on this specific host\.
 
    For more information about Affinity, see [Understanding Auto\-Placement and Affinity](#dedicated-hosts-understanding)\.
@@ -136,15 +130,10 @@ The **Tenancy** and **Host** options are pre\-configured based on the host you s
 1. Select the type of instance to launch and choose **Next: Configure Instance Details**\.
 
 1. On the **Configure Instance Details** page, configure the instance settings to suit your needs, and then configure the following Dedicated Host\-specific settings:
-
    + Tenancy—Choose **Dedicated Host \- Launch this instance on a Dedicated Host**\.
-
    + Host—Choose either **Use auto\-placement** to launch the instance on any Dedicated Host that has auto\-placement enabled, or select a specific Dedicated Host in the list\. Dedicated Hosts will be disabled in the list if they do not support the selected instance type\.
-
    + Affinity—Choose one of the following options:
-
      + **Off**—The instance launches onto the specified host, but it is not guaranteed to restart on it if stopped\.
-
      + **Host**—If stopped, the instance always restarts on the specified host\.
 
    For more information about auto\-placement and Affinity, see [Understanding Auto\-Placement and Affinity](#dedicated-hosts-understanding)\.
@@ -160,9 +149,7 @@ If you are unable to see these settings, check that you have selected a VPC in t
 **To launch an instance onto a Dedicated Host using the command line tools**
 
 Use one of the following commands and specify the instance affinity, tenancy, and host in the `Placement` request parameter:
-
 + [run\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) \(AWS CLI\)
-
 + [New\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
 
 ## Modifying Dedicated Host Auto\-Placement<a name="modify-host-auto-placement"></a>
@@ -184,13 +171,11 @@ You can modify a Dedicated Host's auto\-placement settings after you have alloca
 **To modify a Dedicated Host's auto\-placement using the command line tools**
 
 Use one of the following commands\. The following examples enable auto\-placement for the specified Dedicated Host\.
-
 + [modify\-hosts](http://docs.aws.amazon.com/cli/latest/reference/ec2/modify-hosts.html) \(AWS CLI\)
 
   ```
   aws ec2 modify-hosts --auto-placement on --host-ids h-012a3456b7890cdef
   ```
-
 + [Edit\-EC2Host](http://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2Host.html) \(AWS Tools for Windows PowerShell\)
 
   ```
@@ -212,19 +197,12 @@ You can change the tenancy of an instance from `dedicated` to `host`, or from `h
 1. Open the context \(right\-click\) menu on the instance and choose **Instance Settings**, **Modify Instance Placement**\.
 
 1. On the **Modify Instance Placement** page, configure the following:
-
    + **Tenancy**—Choose one of the following:
-
      + Run a dedicated hardware instance—Launches the instance as a Dedicated Instance\. For more information, see [Dedicated Instances](dedicated-instance.md)\.
-
      + Launch the instance on a Dedicated Host—Launches the instance onto a Dedicated Host with configurable affinity\.
-
    + **Affinity**—Choose one of the following:
-
      + This instance can run on any one of my hosts—the instance launches onto any available Dedicated Host in your account that supports its instance type\.
-
      + This instance can only run on the selected host—the instance is only able to run on the Dedicated Host selected for **Target Host**\.
-
    + **Target Host**—Select the Dedicated Host that the instance must run on\. If no target host is listed, you may not have available, compatible Dedicated Hosts in your account\.
 
    For more information about affinity, see [Understanding Auto\-Placement and Affinity](#dedicated-hosts-understanding)\.
@@ -234,13 +212,11 @@ You can change the tenancy of an instance from `dedicated` to `host`, or from `h
 **To modify instance tenancy and affinity using the command line tools**
 
 Use one of the following commands\. The following examples change the specified instance's affinity from `default` to `host` and specifies the Dedicated Host that the instance will have affinity with\.
-
 + [modify\-instance\-placement](http://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-placement.html) \(AWS CLI\)
 
   ```
   aws ec2 modify-instance-placement --instance-id i-1234567890abcdef0 --affinity host --host-id h-012a3456b7890cdef
   ```
-
 + [Edit\-EC2InstancePlacement](http://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2InstancePlacement.html) \(AWS Tools for Windows PowerShell\)
 
   ```
@@ -264,13 +240,11 @@ You can view details about a Dedicated Host and the individual instances on it\.
 **To view details of instances on a Dedicated Host using the command line tools**
 
 Use one of the following commands:
-
 + [describe\-hosts](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-hosts.html) \(AWS CLI\)
 
   ```
   aws ec2 describe-hosts --host-id host_id
   ```
-
 + [Get\-EC2Host](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Host.html) \(AWS Tools for Windows PowerShell\)
 
   ```
@@ -292,13 +266,11 @@ Amazon EC2 constantly monitors the state of your Dedicated Hosts; updates are co
 **To view the state of a Dedicated Host using the command line tools**
 
 Use one of the following commands and then review the `state` property in the `hostSet` response element:
-
 + [describe\-hosts](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-hosts.html) \(AWS CLI\)
 
   ```
   aws ec2 describe-hosts --host-id host_id
   ```
-
 + [Get\-EC2Host](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Host.html) \(AWS Tools for Windows PowerShell\)
 
   ```
@@ -335,13 +307,11 @@ Any running instances on the Dedicated Host need to be stopped before you can re
 **To release a Dedicated Host using the command line tools**
 
 Use one of the following commands:
-
 + [release\-hosts](http://docs.aws.amazon.com/cli/latest/reference/ec2/release-hosts.html) \(AWS CLI\)
 
   ```
   aws ec2 release-hosts --host-ids host_id
   ```
-
 + [Remove\-EC2Hosts](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Host.html) \(AWS Tools for Windows PowerShell\)
 
   ```
@@ -366,13 +336,9 @@ You can purchase reservations using the console or the Amazon EC2 console or com
 1. Choose **Dedicated Hosts**, **Dedicated Host Reservations**, **Purchase Dedicated Host Reservation**\.
 
 1. On the **Purchase Dedicated Host Reservation** screen, you can search for available offerings using the default settings or you can specify custom values for the following:
-
    + **Host instance family**—The options listed correspond with the Dedicated Hosts in your account that are not assigned to a reservation\.
-
    + **Availability Zone**—The Availability Zone of the Dedicated Hosts in your account that aren't assigned to a reservation\.
-
    + **Payment option**—The payment option for the offering\.
-
    + **Term**—The term of the reservation\. Can be one or three years\.
 
 1. Choose **Find offering** and select an offering that matches your requirements\.
@@ -386,13 +352,11 @@ You can purchase reservations using the console or the Amazon EC2 console or com
 1. Use one of the following commands to list the available offerings that match your needs\. The following examples list the offerings that support instances in the `m4` instance family and have a one\-year term\.
 **Note**  
 The term is specified in seconds\. A one\-year term includes 31536000 seconds, and a three\-year term includes 94608000 seconds\.
-
    + [describe\-host\-reservation\-offerings](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-host-reservation-offerings.html) \(AWS CLI\)
 
      ```
      aws ec2 describe-host-reservation-offerings --filter Name=instance-family,Values=m4 --max-duration 31536000
      ```
-
    + [Get\-EC2HostReservationOffering](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2HostReservationOffering.html) \(AWS Tools for Windows PowerShell\)
 
      ```
@@ -406,13 +370,11 @@ The term is specified in seconds\. A one\-year term includes 31536000 seconds, a
    Both commands return a list of offerings that match your criteria\. Note the `offeringId` of the offering to purchase\. 
 
 1. Use one of the following commands to purchase the offering and provide the `offeringId` noted in the previous step\. The following examples purchase the specified reservation and associate it with a specific Dedicated Host already allocated in the AWS account\.
-
    + [purchase\-host\-reservation](http://docs.aws.amazon.com/cli/latest/reference/ec2/purchase-host-reservation.html) \(AWS CLI\)
 
      ```
      aws ec2 purchase-host-reservation --offering-id hro-03f707bf363b6b324 --host-id-set h-013abcd2a00cbd123
      ```
-
    + [New\-EC2HostReservation](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2HostReservation.html) \(AWS Tools for Windows PowerShell\)
 
      ```
@@ -440,13 +402,11 @@ You can view information about the Dedicated Hosts associated with your reservat
 **To view details of reservations using the command line tools**
 
 Use one of the following commands:
-
 + [describe\-host\-reservations](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-host-reservations.html) \(AWS CLI\)
 
   ```
   aws ec2 describe-host-reservations
   ```
-
 + [Get\-EC2HostReservation](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2HostReservation.html) \(AWS Tools for Windows PowerShell\)
 
   ```

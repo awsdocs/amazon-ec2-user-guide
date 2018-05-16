@@ -27,7 +27,7 @@ aws s3 cp --recursive s3://ec2-linux-nvidia-drivers/ .
 
 If you receive an `Unable to locate credentials` error, see [Configuring the AWS CLI](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html) to configure the AWS CLI to use your AWS credentials\.
 
-## Downloading a Public NVIDIA Driver \(P2, P3\)<a name="obtain-nvidia-driver-linux"></a>
+## Downloading a Public NVIDIA Driver \(G2, P2, P3\)<a name="obtain-nvidia-driver-linux"></a>
 
 For instance types other than G3, or if you are not using NVIDIA GRID functionality on a G3 instance, you can download the public NVIDIA drivers\.
 
@@ -36,6 +36,7 @@ Download the 64\-bit NVIDIA driver appropriate for your instance type from [http
 
 | Instances | Product Type | Product Series | Product | 
 | --- | --- | --- | --- | 
+| G2 | GRID | GRID Series | GRID K520 | 
 | P2 | Tesla | K\-Series | K\-80 | 
 | P3 | Tesla | V\-Series | V100 | 
 
@@ -46,13 +47,11 @@ For more information about installing and configuring the driver, choose the **A
 **To install the driver on a Linux instance**
 
 1. Update your package cache and get necessary package updates for your instance\.
-
    + For Amazon Linux, CentOS, and Red Hat Enterprise Linux:
 
      ```
      sudo yum update -y
      ```
-
    + For Ubuntu and Debian:
 
      ```
@@ -74,13 +73,11 @@ For more information about installing and configuring the driver, choose the **A
 1. Reconnect to your instance after it has rebooted\.
 
 1. Install the gcc compiler and the kernel headers package for the version of the kernel you are currently running\.
-
    + For Amazon Linux, CentOS, and Red Hat Enterprise Linux:
 
      ```
      sudo yum install -y gcc kernel-devel-$(uname -r)
      ```
-
    + For Ubuntu and Debian:
 
      ```
@@ -101,20 +98,18 @@ For more information about installing and configuring the driver, choose the **A
       EOF
       ```
 
-   1. Edit the `/etc/default/grub` file and add the following text to the `GRUB_CMDLINE_LINUX` line:
+   1. Edit the `/etc/default/grub` file and add the following line:
 
       ```
-      GRUB_CMDLINE_LINUX="modprobe.blacklist=nouveau"
+      GRUB_CMDLINE_LINUX="rdblacklist=nouveau"
       ```
 
    1. Rebuild the Grub configuration\.
-
       + CentOS and Red Hat Enterprise Linux:
 
         ```
         sudo grub2-mkconfig -o /boot/grub2/grub.cfg
         ```
-
       + For Ubuntu and Debian:
 
         ```
@@ -122,13 +117,11 @@ For more information about installing and configuring the driver, choose the **A
         ```
 
 1. Download the driver package that you identified earlier\.
-
    + For P2 instances, the following command downloads the 367\.106 version of the NVIDIA driver\.
 
      ```
      wget [http://us.download.nvidia.com/XFree86/Linux-x86_64/367.106/NVIDIA-Linux-x86_64-367.106.run](http://us.download.nvidia.com/XFree86/Linux-x86_64/367.106/NVIDIA-Linux-x86_64-367.106.run)
      ```
-
    + For G3 instances, you can download the driver from Amazon S3 using the AWS CLI or SDKs\. To install the AWS CLI, see [Installing the AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/installing.html) in the *AWS Command Line Interface User Guide*\. Use the following AWS CLI command to download the driver and the [NVIDIA GRID Cloud End User License Agreement](http://aws-nvidia-license-agreement.s3.amazonaws.com/NvidiaGridAWSUserLicenseAgreement.DOCX):
 **Important**  
 This download is available to AWS customers only\. By downloading, you agree that you will only use the downloaded software to develop AMIs for use with the NVIDIA Tesla M60 hardware\. Upon installation of the software, you are bound by the terms of the [NVIDIA GRID Cloud End User License Agreement](http://aws-nvidia-license-agreement.s3.amazonaws.com/NvidiaGridAWSUserLicenseAgreement.DOCX)\.
@@ -159,6 +152,6 @@ This command may take several minutes to run\.
    nvidia-smi -q | head
    ```
 
-1. \(G3 instances only\) To enable NVIDIA GRID Virtual Workstation or NVIDIA GRID Virtual Applications on a G3 instance, complete the GRID activation steps in [Activate NVIDIA GRID Capabilities \(G3 Instances Only\)](activate_grid.md)\.
+1. \[G3 instances only\] To enable NVIDIA GRID Virtual Workstation or NVIDIA GRID Virtual Applications on a G3 instance, complete the GRID activation steps in [Activate NVIDIA GRID Capabilities \(G3 Instances Only\)](activate_grid.md)\.
 
-1. \(P2 and G3 instances only\) If you are using a P2 or G3 instance, complete the optimization steps in [Optimizing GPU Settings \(P2, P3, and G3 Instances\)](optimize_gpu.md) to achieve the best performance from your GPU\.
+1. \[P2, P3, and G3 instances\] Complete the optimization steps in [Optimizing GPU Settings \(P2, P3, and G3 Instances\)](optimize_gpu.md) to achieve the best performance from your GPU\.

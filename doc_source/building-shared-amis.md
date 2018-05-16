@@ -5,7 +5,7 @@ Use the following guidelines to reduce the attack surface and improve the reliab
 **Note**  
 No list of security guidelines can be exhaustive\. Build your shared AMIs carefully and take time to consider where you might expose sensitive data\. 
 
-
+**Topics**
 + [Update the AMI Tools at Boot Time](#public-amis-update-ami-tools)
 + [Disable Password\-Based Remote Logins for Root](#public-amis-disable-password-logins-for-root)
 + [Disable Local Root Access](#restrict-root-access)
@@ -18,9 +18,7 @@ No list of security guidelines can be exhaustive\. Build your shared AMIs carefu
 If you are building AMIs for AWS Marketplace, see [Building AMIs for AWS Marketplace](https://aws.amazon.com/marketplace/help/201231340/ref=help_ln_sibling) for guidelines, policies and best practices\.
 
 For additional information about sharing AMIs safely, see the following articles:
-
 +  [How To Share and Use Public AMIs in A Secure Manner](https://aws.amazon.com/articles/0155828273219400) 
-
 +  [Public AMI Publishing: Hardening and Clean\-up Requirements](https://aws.amazon.com/articles/9001172542712674) 
 
 ## Update the AMI Tools at Boot Time<a name="public-amis-update-ami-tools"></a>
@@ -81,25 +79,15 @@ This command does not impact the use of `sudo`\.
  If you plan to share an AMI derived from a public AMI, remove the existing SSH host key pairs located in `/etc/ssh`\. This forces SSH to generate new unique SSH key pairs when someone launches an instance using your AMI, improving security and reducing the likelihood of "man\-in\-the\-middle" attacks\. 
 
 Remove all of the following key files that are present on your system\.
-
 +  ssh\_host\_dsa\_key 
-
 +  ssh\_host\_dsa\_key\.pub 
-
 +  ssh\_host\_key 
-
 +  ssh\_host\_key\.pub 
-
 +  ssh\_host\_rsa\_key 
-
 +  ssh\_host\_rsa\_key\.pub 
-
 +  ssh\_host\_ecdsa\_key
-
 +  ssh\_host\_ecdsa\_key\.pub
-
 +  ssh\_host\_ed25519\_key
-
 +  ssh\_host\_ed25519\_key\.pub
 
 You can securely remove all of these files with the following command\.
@@ -175,9 +163,7 @@ We recommend that you post a description of your AMI, and the AMI ID, in the [Am
 The previous sections described how to make your shared AMIs safe, secure, and usable for the users who launch them\. This section describes guidelines to protect yourself from the users of your AMI\. 
 
 We recommend against storing sensitive data or software on any AMI that you share\. Users who launch a shared AMI might be able to rebundle it and register it as their own\. Follow these guidelines to help you to avoid some easily overlooked security risks: 
-
 + We recommend using the `--exclude directory` option on `ec2-bundle-vol` to skip any directories and subdirectories that contain secret information that you would not like to include in your bundle\. In particular, exclude all user\-owned SSH public/private key pairs and SSH `authorized_keys` files when bundling the image\. The Amazon public AMIs store these in `/root/.ssh` for the root account, and `/home/user_name/.ssh/` for regular user accounts\. For more information, see [ec2\-bundle\-vol](ami-tools-commands.md#ami-bundle-vol)\.
-
 + Always delete the shell history before bundling\. If you attempt more than one bundle upload in the same AMI, the shell history contains your secret access key\. The following example should be the last command executed before bundling from within the instance\.
 
   ```
@@ -187,5 +173,4 @@ We recommend against storing sensitive data or software on any AMI that you shar
 The limitations of **shred** described in the warning above apply here as well\.   
 Be aware that bash writes the history of the current session to the disk on exit\. If you log out of your instance after deleting `~/.bash_history`, and then log back in, you will find that `~/.bash_history` has been re\-created and contains all of the commands executed during your previous session\.   
 Other programs besides bash also write histories to disk, Use caution and remove or exclude unnecessary dot\-files and dot\-directories\.
-
 + Bundling a running instance requires your private key and X\.509 certificate\. Put these and other credentials in a location that is not bundled \(such as the instance store\)\.

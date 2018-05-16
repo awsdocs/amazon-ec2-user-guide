@@ -4,7 +4,7 @@ AWS can schedule events for your instances, such as a reboot, stop/start, or ret
 
 To update the contact information for your account so that you can be sure to be notified about scheduled events, go to the [Account Settings](https://console.aws.amazon.com/billing/home?#/account) page\.
 
-
+**Topics**
 + [Types of Scheduled Events](#types-of-scheduled-events)
 + [Viewing Scheduled Events](#viewing_scheduled_events)
 + [Working with Instances Scheduled to Stop or Retire](#schedevents_actions_retire)
@@ -14,13 +14,9 @@ To update the contact information for your account so that you can be sure to be
 ## Types of Scheduled Events<a name="types-of-scheduled-events"></a>
 
 Amazon EC2 supports the following types of scheduled events for your instances:
-
 + **Instance stop**: The instance will be stopped\. When you start it again, it's migrated to a new host computer\. Applies only to instances backed by Amazon EBS\.
-
 + **Instance retirement**: The instance will be stopped or terminated\.
-
 + **Reboot**: Either the instance will be rebooted \(instance reboot\) or the host computer for the instance will be rebooted \(system reboot\)\.
-
 + **System maintenance**: The instance might be temporarily affected by network maintenance or power maintenance\.
 
 ## Viewing Scheduled Events<a name="viewing_scheduled_events"></a>
@@ -90,9 +86,7 @@ The following is example output showing an instance retirement event:
 ```
 
 Alternatively, use the following commands:
-
 +  [Get\-EC2InstanceStatus](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2InstanceStatus.html) \(AWS Tools for Windows PowerShell\) 
-
 +  [DescribeInstanceStatus](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeInstanceStatus.html) \(Amazon EC2 Query API\)
 
 ## Working with Instances Scheduled to Stop or Retire<a name="schedevents_actions_retire"></a>
@@ -134,7 +128,7 @@ aws ec2 describe-instance-status --instance-ids i-1234567890abcdef0
 **Actions for Instance Reboot**  
 You can wait for the instance reboot to occur within its scheduled maintenance window\. Alternatively, you can reboot your instance yourself at a time that is convenient for you\. For more information, see [Reboot Your Instance](ec2-instance-reboot.md)\.
 
-After you reboot your instance, the scheduled event for the instance reboot is canceled immediately and the event's description is updated\. The pending maintenance to the underlying host computer is completed, and you can begin using your instance again after it has fully booted\. 
+After you reboot your instance, the scheduled event for the instance reboot is canceled and the event's description is updated\. The pending maintenance to the underlying host computer is completed, and you can begin using your instance again after it has fully booted\. 
 <a name="schedevents_actions_systemreboot"></a>
 **Actions for System Reboot**  
 It is not possible for you to reboot the system yourself\. We recommend that you wait for the system reboot to occur during its scheduled maintenance window\. A system reboot typically completes in a matter of minutes, the instance retains its IP address and DNS name, and any data on local instance store volumes is preserved\. After the system reboot has occurred, the scheduled event for the instance is cleared, and you can verify that the software on your instance is operating as you expect\.

@@ -1,12 +1,10 @@
-# Making an Amazon EBS Volume Available for Use<a name="ebs-using-volumes"></a>
+# Making an Amazon EBS Volume Available for Use on Linux<a name="ebs-using-volumes"></a>
 
 After you attach an Amazon EBS volume to your instance, it is exposed as a block device\. You can format the volume with any file system and then mount it\. After you make the EBS volume available for use, you can access it in the same ways that you access any other volume\. Any data written to this file system is written to the EBS volume and is transparent to applications using the device\.
 
 You can take snapshots of your EBS volume for backup purposes or to use as a baseline when you create another volume\. For more information, see [Amazon EBS Snapshots](EBSSnapshots.md)\.
 
-## Making the Volume Available on Linux<a name="using-ebs-volume-linux"></a>
-
-Use the following procedure to make the volume available\. You can get directions for volumes on a Windows instance from [Making the Volume Available on Windows](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ebs-using-volumes.html#using-ebs-volume-windows) in the *Amazon EC2 User Guide for Windows Instances*\.
+You can get directions for volumes on a Windows instance from [Making a Volume Available for Use on Windows](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ebs-using-volumes.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
 **To make an EBS volume available for use on Linux**
 
@@ -101,9 +99,7 @@ You must open the file as root or by using the sudo command\.
       ```
 
       Next, continuing this example, examine the output of either of two commands to find the UUID of `/dev/xvda1`:
-
       + **sudo file \-s */dev/xvda1***
-
       + **ls \-al /dev/disk/by\-uuid/**
 
       Assuming that you find `/dev/xvda1` to have UUID `de9a1ccd-a2dd-44f1-8be8-0123456abcdef`, you would add the following entry to `/etc/fstab` to mount an ext4 file system at mount point `/data`:

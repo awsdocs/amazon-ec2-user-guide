@@ -6,7 +6,7 @@ You can choose between AMIs backed by Amazon EC2 instance store and AMIs backed 
 
 For more information about the device names Amazon EC2 uses for your root volumes, see [Device Naming on Linux Instances](device_naming.md)\.
 
-
+**Topics**
 + [Root Device Storage Concepts](#RootDeviceStorageConcepts)
 + [Choosing an AMI by Root Device Type](#choose-an-ami-by-root-device)
 + [Determining the Root Device Type of Your Instance](#display-instance-root-device-type)
@@ -35,11 +35,8 @@ Instances that use Amazon EBS for the root device automatically have an Amazon E
 An Amazon EBS\-backed instance can be stopped and later restarted without affecting data stored in the attached volumes\. There are various instance– and volume\-related tasks you can do when an Amazon EBS\-backed instance is in a stopped state\. For example, you can modify the properties of the instance, change its size, or update the kernel it is using, or you can attach your root volume to a different running instance for debugging or any other purpose\. 
 
 If an Amazon EBS\-backed instance fails, you can restore your session by following one of these methods:
-
 + Stop and then start again \(try this method first\)\.
-
 + Automatically snapshot all relevant volumes and create a new AMI\. For more information, see [Creating an Amazon EBS\-Backed Linux AMI](creating-an-ami-ebs.md)\.
-
 + Attach the volume to the new instance by following these steps:
 
   1. Create a snapshot of the root volume\.
@@ -85,9 +82,7 @@ The AMI that you specify when you launch your instance determines the type of ro
 **To verify the type of the root device volume of an AMI using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-
 + [describe\-images](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) \(AWS CLI\)
-
 + [Get\-EC2Image](http://docs.aws.amazon.com/powershell/latest/userguide/pstools-ec2-get-amis.html#pstools-ec2-get-image) \(AWS Tools for Windows PowerShell\)
 
 ## Determining the Root Device Type of Your Instance<a name="display-instance-root-device-type"></a>
@@ -99,17 +94,13 @@ You can use one of the following commands\. For more information about these com
 1. In the navigation pane, choose **Instances**, and select the instance\.
 
 1. Check the value of **Root device type** in the **Description** tab as follows:
-
    + If the value is `ebs`, this is an Amazon EBS\-backed instance\.
-
    + If the value is `instance store`, this is an instance store\-backed instance\.
 
 **To determine the root device type of an instance using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-
 + [describe\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) \(AWS CLI\)
-
 + [Get\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
 
 ## Changing the Root Device Volume to Persist<a name="Using_RootDeviceStorage"></a>

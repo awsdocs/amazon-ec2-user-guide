@@ -6,7 +6,7 @@ Scheduled Instances are a good choice for workloads that do not run continuously
 
 If you require a capacity reservation on a continuous basis, Reserved Instances might meet your needs and decrease costs\. For more information, see [Reserved Instances](ec2-reserved-instances.md)\. If you are flexible about when your instances run, Spot Instances might meet your needs and decrease costs\. For more information, see [Spot Instances](using-spot-instances.md)\.
 
-
+**Topics**
 + [How Scheduled Instances Work](#how-scheduled-instances-work)
 + [Service\-Linked Roles for Scheduled Instances](#service-linked-roles-scheduled-instances)
 + [Purchasing a Scheduled Instance](#purchasing-scheduled-instances)
@@ -32,9 +32,7 @@ The following diagram illustrates the lifecycle of a Scheduled Instance\.
 Amazon EC2 creates a service\-linked role when you purchase a Scheduled Instance\. A service\-linked role includes all the permissions that Amazon EC2 requires to call other AWS services on your behalf\. For more information, see [Using Service\-Linked Roles](http://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html) in the *IAM User Guide*\.
 
 Amazon EC2 uses the service\-linked role named **AWSServiceRoleForEC2ScheduledInstances** to complete the following actions:
-
 + `ec2:TerminateInstances` \- Terminate Scheduled Instances after their schedules complete
-
 + `ec2:CreateTags` \- Add system tags to Scheduled Instances
 
 If you purchased Scheduled Instances before October 2017, when Amazon EC2 began supporting this service\-linked role, Amazon EC2 created the **AWSServiceRoleForEC2ScheduledInstances** role in your AWS account\. For more information, see [A New Role Appeared in My Account](http://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_roles.html#troubleshoot_roles_new-role-appeared) in the *IAM User Guide*\.
@@ -99,11 +97,7 @@ Use the [describe\-scheduled\-instances](http://docs.aws.amazon.com/cli/latest/r
 ## Scheduled Instance Limits<a name="scheduled-instances-limits"></a>
 
 Scheduled Instances are subject to the following limits:
-
 + The following are the only supported instance types: C3, C4, C5, M4, and R3\.
-
 + The required term is 365 days \(one year\)\.
-
 + The minimum required utilization is 1,200 hours per year\.
-
 + You can purchase a Scheduled Instance up to three months in advance\.

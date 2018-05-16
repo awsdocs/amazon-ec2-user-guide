@@ -3,11 +3,8 @@
 With step scaling policies, you specify CloudWatch alarms to trigger the scaling process\. For example, if you want to scale out when CPU utilization reaches a certain level, create an alarm using the `CPUUtilization` metric provided by Amazon EC2\.
 
 When you create a step scaling policy, you must specify one of the following scaling adjustment types:
-
 + **Add** — Increase the target capacity of the fleet by a specified number of capacity units or a specified percentage of the current capacity\.
-
 + **Remove** — Decrease the target capacity of the fleet by a specified number of capacity units or a specified percentage of the current capacity\.
-
 + **Set to** — Set the target capacity of the fleet to the specified number of capacity units\.
 
 When an alarm is triggered, the auto scaling process calculates the new target capacity using the fulfilled capacity and the scaling policy, and then updates the target capacity accordingly\. For example, suppose that the target capacity and fulfilled capacity are 10 and the scaling policy adds 1\. When the alarm is triggered, the auto scaling process adds 1 to 10 to get 11, so Spot Fleet launches 1 instance\.
@@ -15,15 +12,11 @@ When an alarm is triggered, the auto scaling process calculates the new target c
 Note that when a Spot Fleet terminates an instance because the target capacity was decreased, the instance receives a Spot Instance interruption notice\.
 
 **Limits**
-
 + The Spot Fleet request must have a request type of `maintain`\. Automatic scaling is not supported for one\-time requests or Spot blocks\.
 
 **Prerequisites**
-
 + Consider which CloudWatch metrics are important to your application\. You can create CloudWatch alarms based on metrics provided by AWS or your own custom metrics\.
-
 + For the AWS metrics that you will use in your scaling policies, enable CloudWatch metrics collection if the service that provides the metrics does not enable it by default\.
-
 + If you use the AWS Management Console to enable automatic scaling for your Spot Fleet, it creates a role named `aws-ec2-spot-fleet-autoscale-role` that grants Amazon EC2 Auto Scaling permission to describe the alarms for your policies, monitor the current capacity of the fleet, and modify the capacity of the fleet\. If you configure automatic scaling using the AWS CLI or an API, you can use this role if it exists, or manually create your own role for this purpose\.
 
 **To create a role manually**

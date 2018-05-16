@@ -52,13 +52,9 @@ Metrics are grouped first by namespace, and then by the various combinations of 
 1. In the navigation pane, under **Metrics**, choose the **EC2 Spot** namespace\.
 
 1. \(Optional\) To filter the metrics by dimension, select one of the following:
-
    + **Fleet Request Metrics** — Group by Spot Fleet request
-
    + **By Availability Zone** — Group by Spot Fleet request and Availability Zone
-
    + **By Instance Type** — Group by Spot Fleet request and instance type
-
    + **By Availability Zone/Instance Type** — Group by Spot Fleet request, Availability Zone, and instance type
 
 1. To view the data for a metric, select the check box next to the metric\.  

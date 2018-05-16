@@ -24,7 +24,7 @@ Amazon EC2 doesn't keep a copy of your private key; therefore, if you lose a pri
 **Key Pairs for Multiple Users**  
 If you have several users that require access to a single instance, you can add user accounts to your instance\. For more information, see [Managing User Accounts on Your Linux Instance](managing-users.md)\. You can create a key pair for each user, and add the public key information from each key pair to the `.ssh/authorized_keys` file for each user on your instance\. You can then distribute the private key files to your users\. That way, you do not have to distribute the same private key file that's used for the root account to multiple users\. 
 
-
+**Topics**
 + [Creating a Key Pair Using Amazon EC2](#having-ec2-create-your-key-pair)
 + [Importing Your Own Public Key to Amazon EC2](#how-to-generate-your-own-key-and-import-it-to-aws)
 + [Retrieving the Public Key for Your Key Pair on Linux](#retrieving-the-public-key)
@@ -64,9 +64,7 @@ This is the only chance for you to save the private key file\. You'll need to pr
 **To create your key pair using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-
 + [create\-key\-pair](http://docs.aws.amazon.com/cli/latest/reference/ec2/create-key-pair.html) \(AWS CLI\)
-
 + [New\-EC2KeyPair](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2KeyPair.html) \(AWS Tools for Windows PowerShell\)
 
 ## Importing Your Own Public Key to Amazon EC2<a name="how-to-generate-your-own-key-and-import-it-to-aws"></a>
@@ -74,11 +72,8 @@ You can use one of the following commands\. For more information about these com
 Instead of using Amazon EC2 to create your key pair, you can create an RSA key pair using a third\-party tool and then import the public key to Amazon EC2\. For example, you can use ssh\-keygen \(a tool provided with the standard OpenSSH installation\) to create a key pair\. Alternatively, Java, Ruby, Python, and many other programming languages provide standard libraries that you can use to create an RSA key pair\.
 
 Amazon EC2 accepts the following formats:
-
 + OpenSSH public key format \(the format in `~/.ssh/authorized_keys`\)
-
 + Base64 encoded DER format
-
 + SSH public key file format as specified in [RFC4716](http://tools.ietf.org/html/rfc4716)
 
 Amazon EC2 does not accept DSA keys\. Make sure your key generator is set up to create RSA keys\.
@@ -108,9 +103,7 @@ Use the following steps to import your key pair using the Amazon EC2 console\.
 **To import the public key using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-
 + [import\-key\-pair](http://docs.aws.amazon.com/cli/latest/reference/ec2/import-key-pair.html) \(AWS CLI\)
-
 + [Import\-EC2KeyPair](http://docs.aws.amazon.com/powershell/latest/reference/items/Import-EC2KeyPair.html) \(AWS Tools for Windows PowerShell\)
 
 After the public key file is imported, you can verify that the key pair was imported successfully using the Amazon EC2 console as follows\. 
@@ -128,9 +121,7 @@ After the public key file is imported, you can verify that the key pair was impo
 **To view your key pair using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-
 + [describe\-key\-pairs](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-key-pairs.html) \(AWS CLI\)
-
 + [Get\-EC2KeyPair](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2KeyPair.html) \(AWS Tools for Windows PowerShell\)
 
 ## Retrieving the Public Key for Your Key Pair on Linux<a name="retrieving-the-public-key"></a>
@@ -245,9 +236,7 @@ You can delete a key pair using the Amazon EC2 console or the command line\.
 **To delete your key pair using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-
 + [delete\-key\-pair](http://docs.aws.amazon.com/cli/latest/reference/ec2/delete-key-pair.html) \(AWS CLI\)
-
 + [Remove\-EC2KeyPair](http://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2KeyPair.html) \(AWS Tools for Windows PowerShell\)
 
 **Note**  
@@ -293,11 +282,8 @@ Create a new key pair using either the Amazon EC2 console or a third\-party tool
 1. Choose **Instances** in the navigation pane, and then select the instance that you'd like to connect to\. \(We'll refer to this as the original instance\.\)
 
 1. Save the following information that you'll need to complete this procedure\.
-
    + Write down the instance ID, AMI ID, and Availability Zone of the original instance\.
-
    + In the **Root device** field, take note of the device name for the root volume \(for example, `/dev/sda1` or `/dev/xvda`\)\. Choose the link and write down the volume ID in the **EBS ID** field \(vol\-*xxxxxxxxxxxxxxxxx*\)\.
-
    + \[EC2\-Classic\] If the original instance has an associated Elastic IP address, write down the Elastic IP address shown in the **Elastic IP** field in the details pane\.
 
 1. Choose **Actions**, select **Instance State**, and then select **Stop**\. If **Stop** is disabled, either the instance is already stopped or its root device is an instance store volume\.
@@ -305,15 +291,10 @@ Create a new key pair using either the Amazon EC2 console or a third\-party tool
 When you stop an instance, the data on any instance store volumes is erased\. Therefore, if you have any data on instance store volumes that you want to keep, be sure to back it up to persistent storage\.
 
 1. Choose **Launch Instance**, and then use the launch wizard to launch a temporary instance with the following options:
-
    + On the **Choose an AMI** page, select the same AMI that you used to launch the original instance\. If this AMI is unavailable, you can create an AMI that you can use from the stopped instance\. For more information, see [Creating an Amazon EBS\-Backed Linux AMI](creating-an-ami-ebs.md) \.
-
    + On the **Choose an Instance Type** page, leave the default instance type that the wizard selects for you\.
-
    + On the **Configure Instance Details** page, specify the same Availability Zone as the instance you'd like to connect to\. If you're launching an instance in a VPC, select a subnet in this Availability Zone\.
-
    + On the **Add Tags** page, add the tag `Name=Temporary` to the instance to indicate that this is a temporary instance\.
-
    + On the **Review** page, choose **Launch**\. Create a new key pair, download it to a safe location on your computer, and then choose **Launch Instances**\.
 
 1. In the navigation pane, choose **Volumes** and select the root device volume for the original instance \(you wrote down its volume ID in a previous step\)\. Choose **Actions**, and then select **Detach Volume**\. Wait for the state of the volume to become `available`\. \(You might need to choose the **Refresh** icon\.\)

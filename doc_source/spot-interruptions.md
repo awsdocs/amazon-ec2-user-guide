@@ -3,12 +3,11 @@
 Demand for Spot Instances can vary significantly from moment to moment, and the availability of Spot Instances can also vary significantly depending on how many unused EC2 instances are available\. It is always possible that your Spot Instance will be interrupted\. Therefore, you must ensure that your application is prepared for a Spot Instance interruption\.
 
 The following are the possible reasons that Amazon EC2 will interrupt your Spot Instances:
-
 + Price – The Spot price is greater than your maximum price\.
-
 + Capacity – If there are not enough unused EC2 instances to meet the demand for Spot Instances, Amazon EC2 interrupts Spot Instances\. The order in which the instances are interrupted is determined by Amazon EC2\.
-
 + Constraints – If your request includes a constraint such as a launch group or an Availability Zone group, these Spot Instances are terminated as a group when the constraint can no longer be met\.
+
+An On\-Demand Instance specified in a Spot Fleet cannot be interrupted\.
 
 ## Interruption Behavior<a name="interruption-behavior"></a>
 
@@ -19,11 +18,8 @@ You can specify whether Amazon EC2 should hibernate, stop, or terminate Spot Ins
 You can change the behavior so that Amazon EC2 stops Spot Instances when they are interrupted if the following requirements are met\.
 
 **Requirements**
-
 + For a Spot Instance request, the type must be `persistent`, not `one-time`\. You cannot specify a launch group in the Spot Instance request\.
-
 + For a Spot Fleet request, the type must be `maintain`, not `request`\.
-
 + The root volume must be an EBS volume, not an instance store volume\.
 
 After a Spot Instance is stopped by the Spot service, it can only be restarted by the Spot service, and only using the same launch configuration\. When capacity is available that matches the Availability Zone and instance type of a Spot Instance that is stopped, the Spot Instance is started\. With Spot Fleet, if capacity is available only with a different Availability Zone or instance type, Spot Fleet launches a new Spot Instance using the launch configuration with available capacity\.
@@ -39,33 +35,20 @@ While a Spot Instance is stopped, you are charged only for the EBS volumes, whic
 You can change the behavior so that Amazon EC2 hibernates Spot Instances when they are interrupted if the following requirements are met\.
 
 **Requirements**
-
 + For a Spot Instance request, the type must be `persistent`, not `one-time`\. You cannot specify a launch group in the Spot Instance request\.
-
 + For a Spot Fleet request, the type must be `maintain`, not `request`\.
-
 + The root volume must be an EBS volume, not an instance store volume, and it must be large enough to store the instance memory \(RAM\) during hibernation\.
-
 + The following instances are supported: C3, C4, C5, M4, M5, R3, and R4, with less than 100 GB of memory\.
-
 + The following operating systems are supported: Amazon Linux AMI, Ubuntu with an AWS\-tuned Ubuntu kernel \(linux\-aws\) greater than 4\.4\.0\-1041, and Windows Server 2008 R2 and later\.
-
 + Install the hibernation agent on a supported operating system, or use one of the following AMIs, which already include the agent:
-
   + Amazon Linux AMI 2017\.09\.1 or later
-
   + Ubuntu Xenial 16\.04 20171121 or later
-
   + Windows Server 2008 R2 AMI 2017\.11\.19 or later
-
   + Windows Server 2012 or Windows Server 2012 R2 AMI 2017\.11\.19 or later
-
   + Windows Server 2016 AMI 2017\.11\.19 or later
-
 + Start the agent\. We recommend that you use user data to start the agent on instance startup\. Alternatively, you could start the agent manually\.
 
 **Recommendation**
-
 + We strongly recommend that you use an encrypted EBS volume as the root volume, because instance memory is stored on the root volume during hibernation\. This ensures that the contents of memory \(RAM\) are encrypted when the data is at rest on the volume and when data is moving between the instance and volume\. If your AMI does not have an encrypted root volume, you can copy it to a new AMI and request encryption\. For more information, see [Amazon EBS Encryption](EBSEncryption.md) and [Copying an AMI](CopyingAMIs.md#ami-copy-steps)\.
 
 When a Spot Instance is hibernated by the Spot service, the EBS volumes are preserved and instance memory \(RAM\) is preserved on the root volume\. The private IP addresses of the instance are also preserved\. Instance storage volumes and public IP addresses, other than Elastic IP addresses, are not preserved\. While the instance is hibernating, you are charged only for the EBS volumes\. With Spot Fleet, if you have many hibernated instances, you can exceed the limit on the number of EBS volumes for your account\.
@@ -81,22 +64,16 @@ For more information, see [Preparing for Instance Hibernation](#prepare-for-inst
 ## Preparing for Interruptions<a name="using-spot-instances-managing-interruptions"></a>
 
 Here are some best practices to follow when you use Spot Instances:
-
 + Use the default maximum price, which is the On\-Demand price\.
-
 + Ensure that your instance is ready to go as soon as the request is fulfilled by using an Amazon Machine Image \(AMI\) that contains the required software configuration\. You can also use user data to run commands at start\-up\.
-
 + Store important data regularly in a place that won't be affected when the Spot Instance terminates\. For example, you can use Amazon S3, Amazon EBS, or DynamoDB\.
-
 + Divide the work into small tasks \(using a Grid, Hadoop, or queue\-based architecture\) or use checkpoints so that you can save your work frequently\.
-
 + Use Spot Instance interruption notices to monitor the status of your Spot Instances\.
-
 + While we make every effort to provide this warning as soon as possible, it is possible that your Spot Instance will be terminated before the warning can be made available\. Test your application to ensure that it handles an unexpected instance termination gracefully, even if you are testing for interruption notices\. You can do so by running the application using an On\-Demand Instance and then terminating the On\-Demand Instance yourself\.
 
 ## Preparing for Instance Hibernation<a name="prepare-for-instance-hibernation"></a>
 
-You must install a hibernation agent on your instance, unless you used an AMI that already includes the agent\. You must run the agent on instance startup, whether the agent was included in your AMI or you installed it yourself\. We suggest starting the agent using user data\.
+You must install a hibernation agent on your instance, unless you used an AMI that already includes the agent\. You must run the agent on instance startup, whether the agent was included in your AMI or you installed it yourself\.
 
 The following procedures help you prepare a Linux instance\. For directions to prepare a Windows instance, see [Preparing for Instance Hibernation](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/spot-interruptions.html#prepare-for-instance-hibernation) in the *Amazon EC2 User Guide for Windows Instances*\.
 

@@ -1,22 +1,16 @@
 # Instance Purchasing Options<a name="instance-purchasing-options"></a>
 
 Amazon EC2 provides the following purchasing options to enable you to optimize your costs based on your needs:
-
 + **On\-Demand Instances** – Pay, by the second, for the instances that you launch\.
-
 + **Reserved Instances** – Purchase, at a significant discount, instances that are always available, for a term from one to three years\.
-
 + **Scheduled Instances** – Purchase instances that are always available on the specified recurring schedule, for a one\-year term\.
-
 + **Spot Instances** – Request unused EC2 instances, which can lower your Amazon EC2 costs significantly\.
-
 + **Dedicated Hosts** – Pay for a physical host that is fully dedicated to running your instances, and bring your existing per\-socket, per\-core, or per\-VM software licenses to reduce costs\.
-
 + **Dedicated Instances** – Pay, by the hour, for instances that run on single\-tenant hardware\. 
 
 If you require a capacity reservation, purchase Reserved Instances for a specific Availability Zone or purchase Scheduled Instances\. Spot Instances are a cost\-effective choice if you can be flexible about when your applications run and if they can be interrupted\. Dedicated Hosts can help you address compliance requirements and reduce costs by using your existing server\-bound software licenses\. For more information, see [Amazon EC2 Instance Purchasing Options](https://aws.amazon.com/ec2/purchasing-options/)\.
 
-
+**Topics**
 + [Determining the Instance Lifecycle](#check-instance-lifecycle)
 + [Reserved Instances](ec2-reserved-instances.md)
 + [Scheduled Reserved Instances](ec2-scheduled-instances.md)

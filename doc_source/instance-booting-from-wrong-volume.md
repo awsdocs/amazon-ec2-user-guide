@@ -31,7 +31,7 @@ In some cases, specifying a UUID in `/etc/fstab` can resolve this\. However, if 
 /dev/xvdf1: LABEL="old/" UUID=73947a77-ddbe-4dc7-bd8f-3fe0bc840778 TYPE="ext4" PARTLABEL="Linux" PARTUUID=d55925ee-72c8-41e7-b514-7084e28f7334
 ```
 
-**To change the label of an attached volume**
+**To change the label of an attached ext4 volume**
 
 1. Use the e2label command to change the label of the volume to something other than `/`\.
 
@@ -46,7 +46,16 @@ In some cases, specifying a UUID in `/etc/fstab` can resolve this\. However, if 
    old/
    ```
 
-After making this change, you should be able to reboot the instance and have the proper volume selected by the initial ramdisk when the instance boots\.
+**To change the label of an attached xfs volume**
++ Use the xfs\_admin command to change the label of the volume to something other than `/`\.
+
+  ```
+  [ec2-user ~]$ sudo xfs_admin -L old/ /dev/xvdf1
+  writing all SBs
+  new label = "old/"
+  ```
+
+After changing the volume label as shown, you should be able to reboot the instance and have the proper volume selected by the initial ramdisk when the instance boots\.
 
 **Important**  
 If you intend to detach the volume with the new label and return it to another instance to use as the root volume, you must perform the above procedure again and change the volume label back to its original value\. Otherwise, the other instance does not boot because the ramdisk is unable to find the volume with the label `/`\.

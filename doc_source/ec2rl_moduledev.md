@@ -52,15 +52,10 @@ The following table lists the available environment variables\.
 ## Using YAML Syntax<a name="ec2rl_yamlsyntax"></a>
 
 The following should be noted when constructing your module YAML files:
-
 + The triple hyphen \(`---`\) denotes the explicit start of a document\.
-
 + The `!ec2rlcore.module.Module` tag tells the YAML parser which constructor to call when creating the object from the data stream\. You can find the constructor inside the `module.py` file\.
-
 + The `!!str` tag tells the YAML parser to not attempt to determine the type of data, and instead interpret the content as a string literal\.
-
 + The pipe character \(`|`\) tells the YAML parser that the value is a literal\-style scalar\. In this case, the parser includes all whitespace\. This is important for modules because indentation and newline characters are kept\.
-
 + The YAML standard indent is two spaces, which can be seen in the following examples\. Ensure that you maintain standard indentation \(for example, four spaces for Python\) for your script and then indent the entire content two spaces inside the module file\.
 
 ## Example Modules<a name="ec2rl_example"></a>

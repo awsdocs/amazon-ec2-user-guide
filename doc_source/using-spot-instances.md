@@ -1,10 +1,20 @@
 # Spot Instances<a name="using-spot-instances"></a>
 
-Spot Instances enable you to request unused EC2 instances, which can lower your Amazon EC2 costs significantly\. The hourly price for a Spot Instance \(of each instance type in each Availability Zone\) is set by Amazon EC2, and adjusted gradually based on the long\-term supply of and demand for Spot Instances\. Your Spot Instance runs whenever capacity is available and the maximum price per hour for your request exceeds the Spot price\.
+A Spot Instance is an unused EC2 instance that is available for less than the On\-Demand price\. Because Spot Instances enable you to request unused EC2 instances at steep discounts, you can lower your Amazon EC2 costs significantly\. The hourly price for a Spot Instance is called a Spot price\. The Spot price of each instance type in each Availability Zone is set by Amazon EC2, and adjusted gradually based on the long\-term supply of and demand for Spot Instances\. Your Spot Instance runs whenever capacity is available and the maximum price per hour for your request exceeds the Spot price\.
 
 Spot Instances are a cost\-effective choice if you can be flexible about when your applications run and if your applications can be interrupted\. For example, Spot Instances are well\-suited for data analysis, batch jobs, background processing, and optional tasks\. For more information, see [Amazon EC2 Spot Instances](https://aws.amazon.com/ec2/purchasing-options/spot-instances/)\.
 
-The key differences between Spot Instances and On\-Demand Instances are that Spot Instances can only be launched immediately if there is available capacity, the hourly price for Spot Instances varies based on demand, and Amazon EC2 can interrupt an individual Spot Instance as the price for, or availability of, Spot Instances changes\. One strategy is to launch a core group of On\-Demand Instances to maintain a minimum level of guaranteed compute resources for your applications, and supplement them with Spot Instances when the opportunity arises\.
+The following table lists the key differences between Spot Instances and On\-Demand Instances\.
+
+
+|  | Spot Instances | On\-Demand Instances | 
+| --- | --- | --- | 
+|  Launch time  |  Can only be launched immediately if the Spot Request is active and capacity is available\.  |  Can only be launched immediately if you make a manual launch request and capacity is available\.  | 
+|  Available capacity  |  If capacity is not available, the Spot Request continues to automatically make the launch request until capacity becomes available\.  |  If capacity is not available when you make a launch request, you get an insufficient capacity error \(ICE\)\.  | 
+|  Hourly price  |  The hourly price for Spot Instances varies based on demand\.  |  The hourly price for On\-Demand Instances is static\.  | 
+|  Instance interruption  |  You can’t stop and start an Amazon EBS\-backed Spot Instance; only the Amazon EC2 Spot service can do this\. The Amazon EC2 Spot service can [interrupt](spot-interruptions.md) an individual Spot Instance if capacity is no longer available, the Spot price exceeds your maximum price, or demand for Spot Instances increases\.   |  You determine when an On\-Demand Instance is interrupted \(stopped or terminated\)\.  | 
+
+One strategy to maintain a minimum level of guaranteed compute resources for your applications is to launch a core group of On\-Demand Instances , and supplement them with Spot Instances when the opportunity arises\.
 
 ![\[Compare On-Demand and Spot Instances\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/spot_introduction.png)
 
@@ -13,15 +23,10 @@ Another strategy is to launch Spot Instances with a required duration \(also kno
 ## Concepts<a name="spot-features"></a>
 
 Before you get started with Spot Instances, you should be familiar with the following concepts:
-
 + *Spot Instance pool* – A set of unused EC2 instances with the same instance type, operating system, Availability Zone, and network platform \(EC2\-Classic or EC2\-VPC\)\.
-
 + *Spot price* – The current price of a Spot Instance per hour\.
-
 + *Spot Instance request* – Provides the maximum price per hour that you are willing to pay for a Spot Instance\. If you don't specify a maximum price, the default maximum price is the On\-Demand price\. When the maximum price per hour for your request exceeds the Spot price, Amazon EC2 fulfills your request if capacity is available\. A Spot Instance request is either *one\-time* or *persistent*\. Amazon EC2 automatically resubmits a persistent Spot request after the Spot Instance associated with the request is terminated\. Your Spot Instance request can optionally specify a duration for the Spot Instances\.
-
-+ *Spot Fleet* – A set of Spot Instances that is launched based on criteria that you specify\. The Spot Fleet selects the Spot Instance pools that meet your needs and launches Spot Instances to meet the target capacity for the fleet\. By default, Spot Fleets are set to *maintain* target capacity by launching replacement instances after Spot Instances in the fleet are terminated\. You can submit a Spot Fleet as a one\-time *request*, which does not persist after the instances have been terminated\.
-
++ *Spot Fleet* – A set of Spot Instances that is launched based on criteria that you specify\. The Spot Fleet selects the Spot Instance pools that meet your needs and launches Spot Instances to meet the target capacity for the fleet\. By default, Spot Fleets are set to *maintain* target capacity by launching replacement instances after Spot Instances in the fleet are terminated\. You can submit a Spot Fleet as a one\-time *request*, which does not persist after the instances have been terminated\. You can include On\-Demand Instance requests in a Spot Fleet request\.
 + *Spot Instance interruption* – Amazon EC2 terminates, stops, or hibernates your Spot Instance when the Spot price exceeds the maximum price for your request or capacity is no longer available\. Amazon EC2 provides a Spot Instance interruption notice, which gives the instance a two\-minute warning before it is interrupted\.
 
 ## How to Get Started<a name="spot-get-started"></a>
@@ -29,29 +34,20 @@ Before you get started with Spot Instances, you should be familiar with the foll
 The first thing you need to do is get set up to use Amazon EC2\. It can also be helpful to have experience launching On\-Demand Instances before launching Spot Instances\.
 
 **Get up and running**
-
 + [Setting Up with Amazon EC2](get-set-up-for-amazon-ec2.md)
-
 + [Getting Started with Amazon EC2 Linux Instances](EC2_GetStarted.md)
 
 **Spot basics**
-
 + [How Spot Instances Work](how-spot-instances-work.md) 
-
 + [How Spot Fleet Works](spot-fleet.md)
 
 **Working with Spot Instances**
-
 + [Preparing for Interruptions](spot-interruptions.md#using-spot-instances-managing-interruptions)
-
 + [Creating a Spot Instance Request](spot-requests.md#using-spot-instances-request)
-
 + [Getting Request Status Information](spot-bid-status.md#get-spot-instance-bid-status)
 
 **Working with Spot Fleets**
-
 + [Spot Fleet Prerequisites](spot-fleet-requests.md#spot-fleet-prerequisites)
-
 + [Creating a Spot Fleet Request](spot-fleet-requests.md#create-spot-fleet)
 
 ## Related Services<a name="spot-related-services"></a>
@@ -59,7 +55,7 @@ The first thing you need to do is get set up to use Amazon EC2\. It can also be 
 You can provision Spot Instances directly using Amazon EC2\. You can also provision Spot Instances using other services in AWS\. For more information, see the following documentation\.
 
 Amazon EC2 Auto Scaling and Spot Instances  
-You can create launch configurations with the maximum price you are willing to pay, so that Amazon EC2 Auto Scaling can launch Spot Instances\. For more information, see [Launching Spot Instances in Your Auto Scaling Group](http://docs.aws.amazon.com/autoscaling/latest/userguide/asg-launch-spot-instances.html) in the *Amazon EC2 Auto Scaling User Guide*\.
+You can create launch configurations with the maximum price that you are willing to pay, so that Amazon EC2 Auto Scaling can launch Spot Instances\. For more information, see [Launching Spot Instances in Your Auto Scaling Group](http://docs.aws.amazon.com/autoscaling/latest/userguide/asg-launch-spot-instances.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 
 Amazon EMR and Spot Instances  
 There are scenarios where it can be useful to run Spot Instances in an Amazon EMR cluster\. For more information, see [Spot Instances](http://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-instance-purchasing-options.html#emr-spot-instances) and [When Should You Use Spot Instances](http://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-instances-guidelines.html#emr-plan-spot-instances) in the *Amazon EMR Management Guide*\.
@@ -71,7 +67,7 @@ AWS SDK for Java
 You can use the Java programming language to manage your Spot Instances\. For more information, see [Tutorial: Amazon EC2 Spot Instances](http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/tutorial-spot-instances-java.html) and [Tutorial: Advanced Amazon EC2 Spot Request Management](http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/tutorial-spot-adv-java.html)\.
 
 AWS SDK for \.NET  
-You can use the \.NET programming environment to manage your Spot Instances\. For more information, see [Tutorial: Amazon EC2 Spot instances](http://docs.aws.amazon.com/sdk-for-net/latest/developer-guide/tutorial-spot-instances-net.html)\.
+You can use the \.NET programming environment to manage your Spot Instances\. For more information, see [Tutorial: Amazon EC2 Spot Instances](http://docs.aws.amazon.com/sdk-for-net/latest/developer-guide/tutorial-spot-instances-net.html)\.
 
 ## Pricing<a name="spot-pricing"></a>
 

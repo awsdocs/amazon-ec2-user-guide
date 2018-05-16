@@ -4,7 +4,7 @@ Amazon EC2 is hosted in multiple locations world\-wide\. These locations are com
 
 Amazon operates state\-of\-the\-art, highly\-available data centers\. Although rare, failures can occur that affect the availability of instances that are in the same location\. If you host all your instances in a single location that is affected by such a failure, none of your instances would be available\.
 
-
+**Topics**
 + [Region and Availability Zone Concepts](#concepts-regions-availability-zones)
 + [Available Regions](#concepts-available-regions)
 + [Regions and Endpoints](#using-regions-endpoints)
@@ -46,11 +46,8 @@ You can list the Availability Zones that are available to your account\. For mor
 ## Available Regions<a name="concepts-available-regions"></a>
 
 Your account determines the regions that are available to you\. For example:
-
 + An AWS account provides multiple regions so that you can launch Amazon EC2 instances in locations that meet your requirements\. For example, you might want to launch instances in Europe to be closer to your European customers or to meet legal requirements\.
-
 + An AWS GovCloud \(US\) account provides access to the AWS GovCloud \(US\) region only\. For more information, see [AWS GovCloud \(US\) Region](https://aws.amazon.com/govcloud-us/)\.
-
 + An Amazon AWS \(China\) account provides access to the China \(Beijing\) region only\.
 
 The following table lists the regions provided by an AWS account\. You can't describe or access additional regions from an AWS account, such as AWS GovCloud \(US\) or China \(Beijing\)\.
@@ -143,9 +140,7 @@ Some AWS resources might not be available in all regions and Availability Zones\
 **To specify the default region using the command line**
 
 You can set the value of an environment variable to the desired regional endpoint \(for example, `https://ec2.us-east-2.amazonaws.com`\):
-
 + `AWS_DEFAULT_REGION` \(AWS CLI\)
-
 + `Set-AWSDefaultRegion` \(AWS Tools for Windows PowerShell\)
 
 Alternatively, you can use the `--region` \(AWS CLI\) or `-Region` \(AWS Tools for Windows PowerShell\) command line option with each individual command\. For example, `--region us-east-2`\.
@@ -165,27 +160,21 @@ When you launch an instance, you can optionally specify an Availability Zone in 
 1. On the dashboard, choose **Launch Instance**\.
 
 1. Follow the directions for the wizard\. On the **Configure Instance Details** page, do the following:
-
    + \[EC2\-Classic\] Select one of the Availability Zone options from the list, or select **No Preference** to enable us to select the best one for you\.  
 ![\[Select an Availability Zone for your instance\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/configure_instance_az.png)
-
    + \[EC2\-VPC\] Select one of the subnet options from the list, or select **No preference \(default subnet in any Availability Zone\)** to enable us to select the best one for you\.  
 ![\[Select a subnet for your instance\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/configure_instance_subnet.png)
 
 **To specify an Availability Zone for your instance using the AWS CLI**
 
 You can use the [run\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command with one of the following options:
-
 + \[EC2\-Classic\] `--placement`
-
 + \[EC2\-VPC\] `--subnet-id`
 
 **To specify an Availability Zone for your instance using the AWS Tools for Windows PowerShell**
 
 You can use the [New\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) command with one of the following options:
-
 + \[EC2\-Classic\] `-AvailabilityZone`
-
 + \[EC2\-VPC\] `-SubnetId`
 
 ## Migrating an Instance to Another Availability Zone<a name="migrating-instance-availability-zone"></a>
@@ -197,11 +186,8 @@ The migration process involves creating an AMI from the original instance, launc
 **To migrate an instance to another Availability Zone**
 
 1. Create an AMI from the instance\. The procedure depends on the operating system and the type of root device volume for the instance\. For more information, see the documentation that corresponds to your operating system and root device volume:
-
    + [Creating an Amazon EBS\-Backed Linux AMI](creating-an-ami-ebs.md)
-
    + [Creating an Instance Store\-Backed Linux AMI](creating-an-ami-instance-store.md)
-
    + [Creating an Amazon EBS\-Backed Windows AMI](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/Creating_EBSbacked_WinAMI.html)
 
 1. \[EC2\-VPC\] If you need to preserve the private IPv4 address of the instance, you must delete the subnet in the current Availability Zone and then create a subnet in the new Availability Zone with the same IPv4 address range as the original subnet\. Note that you must terminate all instances in a subnet before you can delete it\. Therefore, you should create AMIs from all the instances in your subnet so that you can move all instances in the current subnet to the new subnet\.

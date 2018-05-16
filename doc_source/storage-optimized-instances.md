@@ -5,40 +5,28 @@ Storage optimized instances are designed for workloads that require high, sequen
 **D2 Instances**
 
 D2 instances are well suited for the following applications:
-
 + Massive parallel processing \(MPP\) data warehouse
-
 + MapReduce and Hadoop distributed computing
-
 + Log or data processing applications<a name="h1-instances"></a>
 
 **H1 Instances**
 
 H1 instances are well suited for the following applications:
-
 + Data\-intensive workloads such as MapReduce and distributed file systems
-
 + Applications requiring sequential access to large amounts of data on direct\-attached instance storage
-
 + Applications that require high\-throughput access to large quantities of data<a name="i3-instances"></a>
 
 **I3 Instances**
 
 I3 instances are well suited for the following applications:
-
 + High frequency online transaction processing \(OLTP\) systems
-
 + Relational databases
-
 + NoSQL databases
-
 + Cache for in\-memory databases \(for example, Redis\)
-
 + Data warehousing applications
-
 + Low latency Ad\-Tech serving applications
 
-
+**Topics**
 + [Hardware Specifications](#storage-instances-hardware)
 + [Instance Performance](#storage-performance)
 + [Network Performance](#storage-network-performance)
@@ -56,7 +44,7 @@ Instance store volumes persist only for the life of the instance\. When you stop
 The following is a summary of the hardware specifications for Storage optimized instances\.
 
 
-| Instance type | vCPUs | Memory \(GiB\) | 
+| Instance type | Default vCPUs | Memory \(GiB\) | 
 | --- | --- | --- | 
 | d2\.xlarge | 4 | 30\.5 | 
 | d2\.2xlarge | 8 | 61 | 
@@ -74,6 +62,8 @@ The following is a summary of the hardware specifications for Storage optimized 
 | i3\.16xlarge | 64 | 488 | 
 
 For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
+
+For more information about specifying CPU options, see [Optimizing CPU Options](instance-optimize-cpu.md)\.
 
 ## Instance Performance<a name="storage-performance"></a>
 
@@ -139,15 +129,10 @@ The following is a summary of features for Storage optimized instances:
 |  I3  |  Yes  |  NVMe  |  Yes  |  [ENA](enhanced-networking-ena.md)  | 
 
 For more information, see the following:
-
 + [Instance Types Available Only in a VPC](using-vpc.md#vpc-only-instance-types)
-
 + [Amazon EBS–Optimized Instances](EBSOptimized.md)
-
 + [Amazon EC2 Instance Store](InstanceStorage.md)
-
 + [Placement Groups](placement-groups.md)
-
 + [Enhanced Networking on Linux](enhanced-networking.md)
 
 ## Support for vCPUs<a name="d2-instances-cpu-support"></a>
@@ -155,13 +140,9 @@ For more information, see the following:
 The `d2.8xlarge` instance type provides 36 vCPUs, which might cause launch issues in some Linux operating systems that have a vCPU limit of 32\. We strongly recommend that you use the latest AMIs when you launch `d2.8xlarge` instances\.
 
 The following Linux AMIs support launching `d2.8xlarge` instances with 36 vCPUs:
-
-+ Amazon Linux AMI 2017\.09 \(HVM\)
-
++ Amazon Linux AMI 2018\.03 \(HVM\)
 + Ubuntu Server 14\.04 LTS \(HVM\)
-
 + Red Hat Enterprise Linux 7\.1 \(HVM\)
-
 + SUSE Linux Enterprise Server 12 \(HVM\)
 
 If you must use a different AMI for your application, and your `d2.8xlarge` instance launch does not complete successfully \(for example, if your instance status changes to `stopped` during launch with a `Client.InstanceInitiatedShutdown` state transition reason\), modify your instance as described in the following procedure to support more than 32 vCPUs so that you can use the `d2.8xlarge` instance type\.
@@ -210,11 +191,7 @@ If you must use a different AMI for your application, and your `d2.8xlarge` inst
    1. Start the instance\.
 
 ## Release Notes<a name="storage-instance-limits"></a>
-
 + You must launch Storage optimized instances using an HVM AMI\. For more information, see [Linux AMI Virtualization Types](virtualization_types.md)\.
-
 + You must launch I3 instances using an Amazon EBS\-backed AMI\.
-
 + The `d2.8xlarge` instance type has 36 vCPUs, which might cause launch issues in some Linux operating systems that have a vCPU limit of 32\. For more information, see [Support for vCPUs](#d2-instances-cpu-support)\.
-
 + There is a limit on the total number of instances that you can launch in a region, and there are additional limits on some instance types\. For more information, see [How many instances can I run in Amazon EC2?](https://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2)\. To request a limit increase, use the [Amazon EC2 Instance Request Form](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-instances)\.

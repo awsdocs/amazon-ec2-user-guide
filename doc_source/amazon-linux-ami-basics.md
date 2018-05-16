@@ -6,7 +6,7 @@ AWS provides two versions of Amazon Linux: Amazon Linux 2 and the Amazon Linux A
 
 If you are migrating from another Linux distribution to Amazon Linux, we recommend that you migrate to Amazon Linux 2\. If you are currently using the Amazon Linux AMI, we recommend that you migrate to Amazon Linux 2\. To migrate to Amazon Linux 2, launch an instance or create a virtual machine using the current image\. Install your application on Amazon Linux 2, plus any packages required by your application\. Test your application, and make any changes required for it to run on Amazon Linux 2\. For more information about running Amazon Linux outside AWS, see [Running Amazon Linux 2 as a Virtual Machine On\-Premises](amazon-linux-2-virtual-machine.md)\.
 
-
+**Topics**
 + [Connecting to an Amazon Linux Instance](#connect-to-amazon-linux-limits)
 + [Identifying Amazon Linux Images](#amazon-linux-image-id)
 + [Included AWS Command Line Tools](#amazon-linux-aws-command-line-tools)
@@ -24,13 +24,9 @@ Amazon Linux does not allow remote root SSH by default\. Also, password authenti
 ## Identifying Amazon Linux Images<a name="amazon-linux-image-id"></a>
 
 Each image contains a unique `/etc/image-id` file that identifies it\. This file contains the following information about the image:
-
 + `image_name`, `image_version`, `image_arch` — From the build recipe that Amazon used to construct the image
-
 + `image_stamp` — A unique, random hex value generated during image creation
-
 + `image_date` — The UTC time of image creation, in *YYYYMMDDhhmmss* format
-
 + `recipe_name`, `recipe_id` — The name and ID of the build recipe Amazon used to construct the image
 
 Amazon Linux contains an `/etc/system-release` file that specifies the current release that is installed\. This file is updated using yum and is part of the `system-release` RPM\.
@@ -46,18 +42,18 @@ The following is an example of `/etc/image-id` for the current version of Amazon
 image_name="amzn2-ami-hvm"
 image_version="2017.12"
 image_arch="x86_64"
-image_file="amzn2-ami-hvm-2017.12.0.20171211-x86_64.xfs.gpt"
-image_stamp="d61d-706a"
-image_date="20171212050437"
+image_file="amzn2-ami-hvm-2017.12.0.20180328.1-x86_64.xfs.gpt"
+image_stamp="d58c-0f4e"
+image_date="20180328193624"
 recipe_name="amzn2 ami"
-recipe_id="c00ff066-85f8-2b34-a948-7e51-50ec-4ec4-47e73d1f"
+recipe_id="abf7fcc8-f988-713a-d779-19ed-94b7-feab-3c3974af"
 ```
 
 The following is an example of `/etc/system-release` for the current version of Amazon Linux 2:
 
 ```
 [ec2-user ~]$ cat /etc/system-release
-Amazon Linux release 2.0 (2017.12) LTS Release Candidate
+Amazon Linux release 2 (2017.12) LTS Release Candidate
 ```
 
 The following is an example of `/etc/os-release` for Amazon Linux 2:
@@ -65,13 +61,13 @@ The following is an example of `/etc/os-release` for Amazon Linux 2:
 ```
 [ec2-user ~]$ cat /etc/os-release
 NAME="Amazon Linux"
-VERSION="2.0 (2017.12)"
+VERSION="2 (2017.12)"
 ID="amzn"
 ID_LIKE="centos rhel fedora"
-VERSION_ID="2.0"
-PRETTY_NAME="Amazon Linux 2.0 (2017.12) LTS Release Candidate"
+VERSION_ID="2"
+PRETTY_NAME="Amazon Linux 2 (2017.12) LTS Release Candidate"
 ANSI_COLOR="0;33"
-CPE_NAME="cpe:2.3:o:amazon:amazon_linux:2.0"
+CPE_NAME="cpe:2.3:o:amazon:amazon_linux:2"
 HOME_URL="https://amazonlinux.com/"
 ```
 
@@ -82,40 +78,32 @@ The following is an example of `/etc/image-id` for the current Amazon Linux AMI:
 ```
 [ec2-user ~]$ cat /etc/image-id
 image_name="amzn-ami-hvm"
-image_version="2017.09"
+image_version="2018.03"
 image_arch="x86_64"
-image_file="amzn-ami-hvm-2017.09.0.20170930-x86_64.ext4.gpt"
-image_stamp="2cb1-42fd"
-image_date="20171001085438"
+image_file="amzn-ami-hvm-2018.03.0.20180412-x86_64.ext4.gpt"
+image_stamp="1f3d-d981"
+image_date="20180413000859"
 recipe_name="amzn ami"
-recipe_id="2eae227c-4a8b-749a-6eb1-0ec0-2ca0-c60d-5ca6b2ab"
+recipe_id="5ff6aaf8-75c1-29c7-99c9-1c92-6506-3dc2-33211769"
 ```
 
 The following is an example of `/etc/system-release` for the current Amazon Linux AMI:
 
 ```
 [ec2-user ~]$ cat /etc/system-release
-Amazon Linux AMI release 2017.09
+Amazon Linux AMI release 2018.03
 ```
 
 ## Included AWS Command Line Tools<a name="amazon-linux-aws-command-line-tools"></a>
 
-The following command line tools for AWS integration and usage are included in Amazon Linux or in the default repositories\. For the complete list of packages, see [Amazon Linux AMI 2017\.09 Packages](https://aws.amazon.com/amazon-linux-ami/2017.09-packages/)\.
-
+The following command line tools for AWS integration and usage are included in Amazon Linux or in the default repositories\. For the complete list of packages, see [Amazon Linux AMI 2018\.03 Packages](https://aws.amazon.com/amazon-linux-ami/2018.03-packages/)\.
 + aws\-amitools\-ec2
-
 + aws\-apitools\-as
-
 + aws\-apitools\-cfn
-
 + aws\-apitools\-ec2
-
 + aws\-apitools\-elb
-
 + aws\-apitools\-mon
-
 + aws\-cfn\-bootstrap
-
 + aws\-cli
 
 The minimal versions of Amazon Linux \(`amzn-ami-minimal-*` and `amzn2-ami-minimal-*`\) do not contain these packages; however, you can install them from the default repositories using the following command:
@@ -160,7 +148,7 @@ To upload your applications onto a running Amazon Linux instance, use scp or sft
 
 ### Security Updates<a name="security-updates"></a>
 
-Security updates are provided using the package repositories as well as updated AMIs Security alerts are published in the [Amazon Linux Security Center](https://alas.aws.amazon.com)\. For more information about AWS security policies or to report a security problem, go to the [AWS Security Center](https://aws.amazon.com/security/)\.
+Security updates are provided using the package repositories as well as updated AMIs Security alerts are published in the [Amazon Linux Security Center](https://alas.aws.amazon.com/)\. For more information about AWS security policies or to report a security problem, go to the [AWS Security Center](https://aws.amazon.com/security/)\.
 
 Amazon Linux is configured to download and install security updates at launch time\. This is controlled using the following cloud\-init setting: `repo_upgrade`\. The following snippet of cloud\-init configuration shows how you can change the settings in the user data text you pass to your instance initialization:
 
@@ -189,9 +177,9 @@ The default setting for `repo_upgrade` is security\. That is, if you don't speci
 
 With Amazon Linux, AMIs are treated as snapshots in time, with a repository and update structure that always gives you the latest packages when you run yum update \-y\.
 
-The repository structure is configured to deliver a continuous flow of updates that enable you to roll from one version of Amazon Linux to the next\. For example, if you launch an instance from an older version of the Amazon Linux AMI \(such as 2017\.03 or earlier\) and run yum update \-y, you end up with the latest packages\.
+The repository structure is configured to deliver a continuous flow of updates that enable you to roll from one version of Amazon Linux to the next\. For example, if you launch an instance from an older version of the Amazon Linux AMI \(such as 2017\.09 or earlier\) and run yum update \-y, you end up with the latest packages\.
 
-You can disable rolling updates by enabling the *lock\-on\-launch* feature\. The lock\-on\-launch feature locks your instance to receive updates only from the specified release of the AMI\. For example, you can launch a 2017\.03 AMI and have it receive only the updates that were released prior to the 2017\.09 AMI, until you are ready to migrate to the 2017\.09 AMI\.
+You can disable rolling updates by enabling the *lock\-on\-launch* feature\. The lock\-on\-launch feature locks your instance to receive updates only from the specified release of the AMI\. For example, you can launch a 2017\.09 AMI and have it receive only the updates that were released prior to the 2018\.03 AMI, until you are ready to migrate to the 2018\.03 AMI\.
 
 **Important**  
 If you lock to a version of the repositories that is not the latest, you do not receive further updates\. To receive a continuous flow of updates, you must use the latest AMI, or consistently update your AMI with the repositories pointed to latest\.
@@ -200,7 +188,7 @@ To enable lock\-on\-launch in new instances, launch it with the following user d
 
 ```
 #cloud-config
-repo_releasever: 2017.03
+repo_releasever: 2017.09
 ```
 
 **To lock existing instances to their current AMI version**
@@ -227,7 +215,7 @@ To enable a topic and install the latest version of its package to ensure freshn
 [ec2-user ~]$ sudo amazon-linux-extras install topic
 ```
 
-To enable topics and install specific versions of their packages to ensure stability, use the following command:
+To enable topics and install the specific versions of their packages that are required, use the following command:
 
 ```
 [ec2-user ~]$ sudo amazon-linux-extras install topic=version topic=version
@@ -252,29 +240,17 @@ For more information, see [http://cloudinit.readthedocs.org/en/latest/](http://c
 Amazon Linux uses the cloud\-init actions found in `/etc/cloud/cloud.cfg.d` and `/etc/cloud/cloud.cfg`\. You can create your own cloud\-init action files in `/etc/cloud/cloud.cfg.d`\. All files in this directory are read by cloud\-init\. They are read in lexical order, and later files overwrite values in earlier files\.
 
 The cloud\-init package performs these \(and other\) common configuration tasks for instances at boot:
-
 + Set the default locale
-
 + Set the hostname
-
 + Parse and handle user data
-
 + Generate host private SSH keys
-
 + Add a user's public SSH keys to `.ssh/authorized_keys` for easy login and administration
-
 + Prepare the repositories for package management
-
 + Handle package actions defined in user data
-
 + Execute user scripts found in user data
-
 + Mount instance store volumes if applicable
-
   + By default, the `ephemeral0` instance store volume is mounted at `/media/ephemeral0` if it is present and contains a valid file system; otherwise, it is not mounted\.
-
   + By default, any swap volumes associated with the instance are mounted \(only for `m1.small` and `c1.medium` instance types\)\.
-
   + You can override the default instance store volume mount with the following cloud\-init directive:
 
     ```
@@ -284,55 +260,32 @@ The cloud\-init package performs these \(and other\) common configuration tasks 
     ```
 
     For more control over mounts, see [Mounts](http://cloudinit.readthedocs.io/en/latest/topics/modules.html#mounts) in the cloud\-init documentation\.
-
   + Instance store volumes that support TRIM are not formatted when an instance launches, so you must partition and format them before you can mount them\. For more information, see [Instance Store Volume TRIM Support](ssd-instance-store.md#InstanceStoreTrimSupport)\. You can use the `disk_setup` module to partition and format your instance store volumes at boot\. For more information, see [Disk Setup](http://cloudinit.readthedocs.io/en/latest/topics/modules.html#disk-setup) in the cloud\-init documentation\.
 
 ### Supported User\-Data Formats<a name="supported-user-data-formats"></a>
 
 The cloud\-init package supports user\-data handling of a variety of formats:
-
 + Gzip
-
   + If user\-data is gzip compressed, cloud\-init decompresses the data and handles it appropriately\.
-
 + MIME multipart
-
   + Using a MIME multipart file, you can specify more than one type of data\. For example, you could specify both a user\-data script and a cloud\-config type\. Each part of the multipart file can be handled by cloud\-init if it is one of the supported formats\.
-
 + Base64 decoding
-
   +  If user\-data is base64\-encoded, cloud\-init determines if it can understand the decoded data as one of the supported types\. If it understands the decoded data, it decodes the data and handles it appropriately\. If not, it returns the base64 data intact\.
-
 + User\-Data script
-
   + Begins with `#!` or `Content-Type: text/x-shellscript`\.
-
   + The script is executed by `/etc/init.d/cloud-init-user-scripts` during the first boot cycle\. This occurs late in the boot process \(after the initial configuration actions are performed\)\.
-
 + Include file
-
   + Begins with `#include` or `Content-Type: text/x-include-url`\.
-
   + This content is an include file\. The file contains a list of URLs, one per line\. Each of the URLs is read, and their content passed through this same set of rules\. The content read from the URL can be gzipped, MIME\-multi\-part, or plaintext\.
-
 + Cloud Config Data
-
   + Begins with `#cloud-config` or `Content-Type: text/cloud-config`\.
-
   + This content is cloud\-config data\. See the examples for a commented example of supported configuration formats\.
-
 + Upstart job
-
   + Begins with `#upstart-job` or `Content-Type: text/upstart-job`\.
-
   + This content is stored in a file in `/etc/init`, and upstart consumes the content as per other upstart jobs\.
-
 + Cloud Boothook
-
   + Begins with `#cloud-boothook` or `Content-Type: text/cloud-boothook`\.
-
   + This content is boothook data\. It is stored in a file under `/var/lib/cloud` and then executed immediately\.
-
   +  This is the earliest "hook" available\. There is no mechanism provided for running it only one time\. The boothook must take care of this itself\. It is provided with the instance ID in the environment variable `INSTANCE_ID`\. Use this variable to provide a once\-per\-instance set of boothook data\.
 
 ## Subscribing to Amazon Linux Notifications<a name="linux-ami-notifications"></a>

@@ -2,20 +2,9 @@
 
 If your current\-generation Amazon EBS volume is attached to a current\-generation EC2 instance type, you can increase its size, change its volume type, or \(for an `io1` volume\) adjust its IOPS performance, all without detaching it\. You can apply these changes to detached volumes as well\. For more information about the current generation instance types, see [Current Generation Instances](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#current-gen-instances)\.
 
-**Note**  
-Many previous\-generation instance types also support modification of EBS volumes without detachment\. \(The warnings appearing for some of these instance types may be safely ignored\.\) These include:  
-C1 \(with warning\)
-C3
-CC2 \(with warning\)
-CR1 \(with warning\)
-G2
-I2
-M1 \(with warning\)
-M3
-R3
-If you are using an unsupported previous\-generation instance type, or if you encounter an error while attempting a volume modification, follow the procedures in [Appendix: Starting and Stopping an Instance to Modify an EBS Volume](stop-start.md)\.
+The following previous\-generation instance types support modification of EBS volumes without detachment: C1, C3, CC2, CR1, G2, I2, M1, M3, R3\. You can safely ignore any warnings that occur with these instance types\. If you are using an unsupported previous\-generation instance type, or if you encounter an error while attempting a volume modification, follow the procedures in [Appendix: Starting and Stopping an Instance to Modify an EBS Volume](stop-start.md)\.
 
-In general, the following steps are involved in modifying a volume:
+In general, use following steps when modifying a volume:
 
 1. **Issue the modification command\.** For more information, see [Modifying an EBS Volume from the Console](console-modify.md) and [Modifying an EBS Volume from the Command Line](cli-modify.md)\.
 
@@ -30,7 +19,7 @@ There is no charge to modify the configuration of a volume\. You are charged at 
 **Important**  
 Before modifying a volume that contains valuable data, it is a best practice to create a snapshot of the volume in case you need to roll back your changes\. For information about EBS snapshots, see [Creating an Amazon EBS Snapshot](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-creating-snapshot.html)\.
 
-
+**Topics**
 + [Constraints on Modifying EBS Volume Size](volume_constraints.md)
 + [Modifying an EBS Volume from the Console](console-modify.md)
 + [Modifying an EBS Volume from the Command Line](cli-modify.md)

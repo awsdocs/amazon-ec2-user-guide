@@ -10,7 +10,7 @@ If the partition you want to expand is not the root partition, then you can simp
 **Important**  
 The following procedures were written for and tested on Amazon Linux\. Other distributions with different tool sets and tool versions may behave differently\.
 
-
+**Topics**
 + [Preparing a Linux Root Partition for Expansion](#prepare-linux-root-part)
 + [Expanding a Linux Partition Using parted](#expanding-partition-parted)
 + [Expanding a Linux Partition Using gdisk](#expanding-partition-gdisk)
@@ -248,7 +248,6 @@ Because you removed a partition and added a partition, parted may warn that you 
    ```
 
 1. The next steps differ depending on whether the expanded partition belongs on the current instance or if it is the root partition for another instance\. 
-
    + If this partition belongs on the current instance, remount the partition at the `MOUNTPOINT` identified in [Step 2](#partition_unmount_step_parted)\.
 
      ```
@@ -256,7 +255,6 @@ Because you removed a partition and added a partition, parted may warn that you 
      ```
 
      After you have mounted the partition, extend the file system to use the newly available space by following the procedures in [Extending a Linux File System after Resizing the Volume](recognize-expanded-volume-linux.md)\.
-
    + If this volume is the root partition for another instance, proceed to the procedures in [Returning an Expanded Partition to Its Original Instance](#return-expanded-root-partition)\.
 
 ## Expanding a Linux Partition Using gdisk<a name="expanding-partition-gdisk"></a>
@@ -332,7 +330,6 @@ If the partition to expand is the root partition, be sure to follow the steps in
    ```
 
 1. Use the n command to create a new partition entry for each partition on the device\. 
-
    + If your volume has only one partition, at each prompt, enter the values that you recorded earlier\. For the last sector value, use the default value to expand to the entire volume size\.
 
      ```
@@ -344,7 +341,6 @@ If the partition to expand is the root partition, be sure to follow the steps in
      Hex code or GUID (L to show codes, Enter = 8300): EF00
      Changed type of partition to 'EFI System'
      ```
-
    + If your volume has more than one partition, there is likely a BIOS boot partition, and a main data partition\. Create a new partition entry for the BIOS boot partition using the values that you recorded earlier\. Create another new partition entry for the main data partition using the values that you recorded earlier\. For the last sector value, use the default value to expand to the entire volume size\.
 
      ```
@@ -461,7 +457,6 @@ You may need to install the `xfsprogs` package to work with XFS file systems\. U
       ```
 
 1. The next steps differ depending on whether the expanded partition belongs on the current instance or if it is the root partition for another instance\. 
-
    + If this partition belongs on the current instance, remount the partition at the `MOUNTPOINT` identified in [Step 2](#partition_unmount_step_gdisk)\.
 
      ```
@@ -469,7 +464,6 @@ You may need to install the `xfsprogs` package to work with XFS file systems\. U
      ```
 
      After you have mounted the partition, extend the file system to use the newly available space by following the procedures in [Extending a Linux File System after Resizing the Volume](recognize-expanded-volume-linux.md)\.
-
    + If this volume is the root partition for another instance, proceed to the procedures in [Returning an Expanded Partition to Its Original Instance](#return-expanded-root-partition)\.
 
 ## Returning an Expanded Partition to Its Original Instance<a name="return-expanded-root-partition"></a>

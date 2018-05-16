@@ -73,13 +73,9 @@ Some applications may not be compatible with the following recommended software 
       ```
 
       Using the procedures in [Adding Rules to a Security Group](using-network-security.md#adding-security-group-rule), add a new inbound security rule with the following values:
-
       + **Type**: HTTP
-
       + **Protocol**: TCP
-
       + **Port Range**: 80
-
       + **Source**: Custom
 
 1. Test your web server\. In a web browser, type the public DNS address \(or the public IP address\) of your instance\. If there is no content in `/var/www/html`, you should see the Apache test page\. You can get the public DNS for your instance using the Amazon EC2 console \(check the **Public DNS** column; if this column is hidden, choose **Show/Hide Columns** \(the gear\-shaped icon\) and choose **Public DNS**\)\.
@@ -222,7 +218,7 @@ The default installation of the MySQL server has several features that are great
 
       1. Type the current root password\. By default, the root account does not have a password set\. Press Enter\.
 
-      1. Type **Y** to set a password, and type a secure password twice\. For more information about creating a secure password, see [http://www\.pctools\.com/guides/password/](http://www.pctools.com/guides/password/)\. Make sure to store this password in a safe place\.
+      1. Type **Y** to set a password, and type a secure password twice\. For more information about creating a secure password, see [https://identitysafe\.norton\.com/password\-generator/](https://identitysafe.norton.com/password-generator/)\. Make sure to store this password in a safe place\.
 **Note**  
 Setting a root password for MySQL is only the most basic measure for securing your database\. When you build or install a database\-driven application, you typically create a database service user for that application and avoid using the root account for anything but database administration\. 
 
@@ -322,7 +318,6 @@ This section offers suggestions for resolving common problems you may encounter 
 ### I can't connect to my server using a web browser\.<a name="is_apache_on"></a>
 
 Perform the following checks to see if your Apache web server is running and accessible\.
-
 + **Is the web server running?**
 
   You can verify that httpd is on by running the following command:
@@ -335,7 +330,6 @@ Perform the following checks to see if your Apache web server is running and acc
   Here, httpd is `on` in runlevels 2, 3, 4, and 5 \(which is what you want to see\)\.
 
   If the httpd process is not running, repeat the steps described in [To install and start the LAMP web server with the Amazon Linux AMI](#install_apache)\.
-
 + **Is the firewall correctly configured?**
 
   If you are unable to see the Apache test page, check that the security group you are using contains a rule to allow HTTP \(port 80\) traffic\. For information about adding an HTTP rule to your security group, see [Adding Rules to a Security Group](using-network-security.md#adding-security-group-rule)\.
@@ -346,13 +340,9 @@ This tutorial recommends installing the most up\-to\-date versions of Apache HTT
 
 **How to downgrade**  
 The well\-tested previous version of this tutorial called for the following core LAMP packages:
-
 + `httpd24`
-
 + `php56`
-
 + `mysql55-server`
-
 + `php56-mysqlnd`
 
 If you have already installed the latest packages as recommended at the start of this tutorial, you must first uninstall these packages and other dependencies as follows:
@@ -378,23 +368,15 @@ Now you can install the latest packages, as described earlier\.
 ## Related Topics<a name="lamp-more-info"></a>
 
 For more information about transferring files to your instance or installing a WordPress blog on your web server, see the following documentation:
-
 + [Transferring Files to Your Linux Instance Using WinSCP](putty.md#Transfer_WinSCP)
-
 + [Transferring Files to Linux Instances from Linux Using SCP](AccessingInstancesLinux.md#AccessingInstancesLinuxSCP)
-
 + [Tutorial: Hosting a WordPress Blog with Amazon Linux](hosting-wordpress.md)
 
 For more information about the commands and software used in this tutorial, see the following webpages:
-
 + Apache web server: [http://httpd\.apache\.org/](http://httpd.apache.org/)
-
 + MySQL database server: [http://www\.mysql\.com/](http://www.mysql.com/)
-
 + PHP programming language: [http://php\.net/](http://php.net/)
-
 + The `chmod` command: [https://en\.wikipedia\.org/wiki/Chmod](https://en.wikipedia.org/wiki/Chmod)
-
 + The `chown` command: [https://en\.wikipedia\.org/wiki/Chown](https://en.wikipedia.org/wiki/Chown)
 
 For more information about registering a domain name for your web server, or transferring an existing domain name to this host, see [Creating and Migrating Domains and Subdomains to Amazon Route 53](http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/creating-migrating.html) in the *Amazon Route 53 Developer Guide*\.

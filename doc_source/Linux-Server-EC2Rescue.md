@@ -6,9 +6,6 @@ EC2Rescue for Linux is an easy\-to\-use, open\-source tool that can be run on an
 If you are using a Windows instance, see [EC2Rescue for Windows Server](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/Windows-Server-EC2Rescue.html)\.
 
 **Contents**
-
 + [Installing EC2Rescue for Linux](ec2rl_install.md)
-
 + [Working with EC2Rescue for Linux](ec2rl_working.md)
-
 + [Developing EC2Rescue Modules](ec2rl_moduledev.md)

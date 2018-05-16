@@ -1,10 +1,10 @@
 # Spot Fleet Requests<a name="spot-fleet-requests"></a>
 
-To use a Spot Fleet, you create a Spot Fleet request that includes the target capacity, one or more launch specifications for the instances, and the maximum price that you are willing to pay\. Amazon EC2 attempts to maintain your Spot Fleet's target capacity as Spot prices change\. For more information, see [How Spot Fleet Works](spot-fleet.md)\.
+To use a Spot Fleet, you create a Spot Fleet request that includes the target capacity, an optional On\-Demand portion, one or more launch specifications for the instances, and the maximum price that you are willing to pay\. Amazon EC2 attempts to maintain your Spot Fleet's target capacity as Spot prices change\. For more information, see [How Spot Fleet Works](spot-fleet.md)\.
 
 There are two types of Spot Fleet requests: `request` and `maintain`\. You can create a Spot Fleet to submit a one\-time request for your desired capacity, or require it to maintain a target capacity over time\. Both types of requests benefit from Spot Fleet's allocation strategy\.
 
-When you make a one\-time request, Spot Fleet places the required requests but will not attempt to replenish Spot Instances if capacity is diminished\. If capacity is not available, Spot Fleet does not submit requests in alternative Spot pools\.
+When you make a one\-time request, Spot Fleet places the required requests but does not attempt to replenish Spot Instances if capacity is diminished\. If capacity is not available, Spot Fleet does not submit requests in alternative Spot pools\.
 
 To maintain a target capacity, Spot Fleet places requests to meet the target capacity and automatically replenish any interrupted instances\.
 
@@ -12,9 +12,9 @@ It is not possible to modify the target capacity of a one\-time request after it
 
 A Spot Fleet request remains active until it expires or you cancel it\. When you cancel a Spot Fleet request, you may specify whether canceling your Spot Fleet request terminates the Spot Instances in your Spot Fleet\.
 
-Each launch specification includes the information that Amazon EC2 needs to launch an instance—such as an AMI, instance type, subnet or Availability Zone, and one or more security groups\.
+Each launch specification includes the information that Amazon EC2 needs to launch an instance, such as an AMI, instance type, subnet or Availability Zone, and one or more security groups\.
 
-
+**Topics**
 + [Spot Fleet Request States](#spot-fleet-states)
 + [Spot Fleet Prerequisites](#spot-fleet-prerequisites)
 + [Spot Fleet and IAM Users](#spot-fleet-iam-users)
@@ -30,18 +30,12 @@ Each launch specification includes the information that Amazon EC2 needs to laun
 ## Spot Fleet Request States<a name="spot-fleet-states"></a>
 
 A Spot Fleet request can be in one of the following states:
-
-+ `submitted`—The Spot Fleet request is being evaluated and Amazon EC2 is preparing to launch the target number of Spot Instances\.
-
-+ `active`—The Spot Fleet has been validated and Amazon EC2 is attempting to maintain the target number of running Spot Instances\. The request remains in this state until it is modified or cancelled\.
-
-+ `modifying`—The Spot Fleet request is being modified\. The request remains in this state until the modification is fully processed or the Spot Fleet is cancelled\. A one\-time `request` cannot be modified, and this state does not apply to such Spot requests\.
-
-+ `cancelled_running`—The Spot Fleet is cancelled and will not launch additional Spot Instances\. Its existing Spot Instances continue to run until they are interrupted or terminated\. The request remains in this state until all instances are interrupted or terminated\.
-
-+ `cancelled_terminating`—The Spot Fleet is cancelled and its Spot Instances are terminating\. The request remains in this state until all instances are terminated\.
-
-+ `cancelled`—The Spot Fleet is cancelled and has no running Spot Instances\. The Spot Fleet request is deleted two days after its instances were terminated\.
++ `submitted` – The Spot Fleet request is being evaluated and Amazon EC2 is preparing to launch the target number of Spot Instances\.
++ `active` – The Spot Fleet has been validated and Amazon EC2 is attempting to maintain the target number of running Spot Instances\. The request remains in this state until it is modified or cancelled\.
++ `modifying` – The Spot Fleet request is being modified\. The request remains in this state until the modification is fully processed or the Spot Fleet is cancelled\. A one\-time `request` cannot be modified, and this state does not apply to such Spot requests\.
++ `cancelled_running` – The Spot Fleet is cancelled and will not launch additional Spot Instances\. Its existing Spot Instances continue to run until they are interrupted or terminated\. The request remains in this state until all instances are interrupted or terminated\.
++ `cancelled_terminating` – The Spot Fleet is cancelled and its Spot Instances are terminating\. The request remains in this state until all instances are terminated\.
++ `cancelled` – The Spot Fleet is cancelled and has no running Spot Instances\. The Spot Fleet request is deleted two days after its instances were terminated\.
 
 The following illustration represents the transitions between the request states\. If you exceed your Spot Fleet limits, the request is cancelled immediately\.
 
@@ -71,7 +65,7 @@ If your IAM users will create or manage a Spot Fleet, be sure to grant them the 
 
 1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
-1. In the navigation pane, choose **Policies**, and then choose **Create policy**\.
+1. In the navigation pane, choose **Policies**, **Create policy**\.
 
 1. On the **Create policy** page, choose the **JSON** tab, replace the text with the following, and choose **Review policy**\.
 
@@ -104,17 +98,11 @@ If your IAM users will create or manage a Spot Fleet, be sure to grant them the 
    An IAM user must have permission to call the `iam:ListRoles` action to enumerate existing IAM roles, the `iam:PassRole` action to specify the Spot Fleet role, and the `iam:ListInstanceProfiles` action to enumerate existing instance profiles\.
 
    \(Optional\) To enable an IAM user to create roles or instance profiles using the IAM console, you must also add the following actions to the policy:
-
    + `iam:AddRoleToInstanceProfile`
-
    + `iam:AttachRolePolicy`
-
    + `iam:CreateInstanceProfile`
-
    + `iam:CreateRole`
-
    + `iam:GetRole`
-
    + `iam:ListPolicies`
 
 1. On the **Review policy** page, type a policy name and description, and then choose **Create policy**\.
@@ -134,25 +122,18 @@ Spot Fleet checks the health status of the Spot Instances in the fleet every two
 You can configure your Spot Fleet to replace unhealthy instances\. After enabling health check replacement, an instance is replaced after its health status is reported as `unhealthy`\. The Spot Fleet could go below its target capacity for up to a few minutes while an unhealthy instance is being replaced\.
 
 **Requirements**
-
 + Health check replacement is supported only with Spot Fleets that maintain a target capacity, not with one\-time Spot Fleets\.
-
 + You can configure your Spot Fleet to replace unhealthy instances only when you create it\.
-
 + IAM users can use health check replacement only if they have permission to call the `ec2:DescribeInstanceStatus` action\.
 
 ## Planning a Spot Fleet Request<a name="plan-spot-fleet"></a>
 
 Before you create a Spot Fleet request, review [Spot Best Practices](https://aws.amazon.com/ec2/spot/getting-started/#bestpractices)\. Use these best practices when you plan your Spot Fleet request so that you can provision the type of instances you want at the lowest possible price\. We also recommend that you do the following:
-
 + Determine whether you want to create a Spot Fleet that submits a one\-time request for the desired target capacity, or one that maintains a target capacity over time\.
-
 + Determine the instance types that meet your application requirements\.
-
 + Determine the target capacity for your Spot Fleet request\. You can set target capacity in instances or in custom units\. For more information, see [Spot Fleet Instance Weighting](spot-fleet.md#spot-instance-weighting)\.
-
++ Determine what portion of the Spot Fleet target capacity must be On\-Demand capacity\. You can specify 0 On\-Demand capacity\.
 + Determine your price per unit, if you are using instance weighting\. To calculate the price per unit, divide the price per instance hour by the number of units \(or weight\) that this instance represents\. \(If you are not using instance weighting, the default price per unit is the price per instance hour\.\)
-
 + Review the possible options for your Spot Fleet request\. For more information, see the [request\-spot\-fleet](http://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-fleet.html) command in the *AWS CLI Command Reference*\. For additional examples, see [Spot Fleet Example Configurations](spot-fleet-examples.md)\.
 
 ## Service\-Linked Role for Spot Fleet Requests<a name="service-linked-roles-spot-fleet-requests"></a>
@@ -160,17 +141,11 @@ Before you create a Spot Fleet request, review [Spot Best Practices](https://aws
 Amazon EC2 creates a service\-linked role when you request a Spot Fleet\. A service\-linked role includes all the permissions that Amazon EC2 requires to call other AWS services on your behalf\. For more information, see [Using Service\-Linked Roles](http://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html) in the *IAM User Guide*\.
 
 Amazon EC2 uses the service\-linked role named **AWSServiceRoleForEC2SpotFleet** to complete the following actions:
-
 + `ec2:RequestSpotInstances` \- Request Spot Instances
-
 + `ec2:TerminateInstances` \- Terminate Spot Instances
-
 + `ec2:DescribeImages` \- Describe Amazon Machine Images \(AMI\) for the Spot Instances
-
 + `ec2:DescribeInstanceStatus` \- Describe the status of the Spot Instances
-
 + `ec2:DescribeSubnets` \- Describe the subnets for Spot Instances
-
 + `ec2:CreateTags` \- Add system tags to Spot Instances
 
 Amazon EC2 also creates the **AWSServiceRoleForEC2Spot** role when you request a Spot Fleet\. For more information, see [Service\-Linked Role for Spot Instance Requests](spot-requests.md#service-linked-roles-spot-instance-requests)\.
@@ -191,11 +166,15 @@ When you create a Spot Fleet request, you must specify information about the Spo
 
 1. For **Request type**, select **Request** or **Request and Maintain**\.
 
-1. For **Target capacity**, type the number of units to request\. You can choose instances or performance characteristics that are important to your application workload, such as vCPUs, memory, and storage\. If the request type is **Request and Maintain**, you can specify a target capacity of 0 and add capacity later\.
+1. For **Total required capacity**, type the number of units to request for target capacity\. You can choose instances or performance characteristics that are important to your application workload, such as vCPUs, memory, and storage\. If the request type is **Request and Maintain**, you can specify a target capacity of 0 and add capacity later\.
+
+1. \(Optional\) For **Optional On\-Demand portion**, type the number of On\-Demand units to request\. The number must be less than the **Total required capacity**\. Amazon EC2 calculates the difference, and allocates the difference to Spot units to request\.
 
 1. For **Requirements**, do the following:
 
    1. \(Optional\) For **Launch template**, choose a launch template\. The launch template must specify an Amazon Machine Image \(AMI\), as you cannot override the AMI using Spot Fleet if you specify a launch template\.
+**Important**  
+ If you specify **Optional On\-Demand portion**, you must choose a launch template\.
 
    1. For **AMI**, choose one of the basic Amazon Machine Images \(AMI\) provided by AWS, or choose **Use custom AMI** to use an AMI from our user community, the AWS Marketplace, or one of your own\.
 
@@ -256,7 +235,6 @@ When you create a Spot Fleet request, you must specify information about the Spo
    The request type is `fleet`\. When the request is fulfilled, requests of type `instance` are added, where the state is `active` and the status is `fulfilled`\.
 
 **To create a Spot Fleet request using the AWS CLI**
-
 + Use the following [request\-spot\-fleet](http://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-fleet.html) command to create a Spot Fleet request:
 
 ```
@@ -311,13 +289,12 @@ aws ec2 describe-spot-fleet-request-history --spot-fleet-request-id sfr-73fbd2ce
 ## Modifying a Spot Fleet Request<a name="modify-spot-fleet"></a>
 
 You can modify an active Spot Fleet request to complete the following tasks:
-
 + Increase the target capacity
-
 + Decrease the target capacity
 
 **Note**  
-It is not possible to modify a one\-time Spot Fleet request\.
+You can't modify a one\-time Spot Fleet request\.  
+You can only modify the Spot Instance portion of a Spot Fleet request; you can't modify the On\-Demand Instance portion of a Spot Fleet request\.
 
 When you increase the target capacity, the Spot Fleet launches the additional Spot Instances according to the allocation strategy for its Spot Fleet request\. If the allocation strategy is `lowestPrice`, the Spot Fleet launches the instances from the lowest\-priced Spot Instance pool in the Spot Fleet request\. If the allocation strategy is `diversified`, the Spot Fleet distributes the instances across the pools in the Spot Fleet request\.
 

@@ -145,13 +145,8 @@ For more examples of how to execute commands using Run Command using the AWS CLI
 ## Related Content<a name="w3ab1c13c17c21"></a>
 
 For more information about Run Command and Systems Manager, see the following topics and references\.
-
 + [AWS Systems Manager User Guide](http://docs.aws.amazon.com/systems-manager/latest/userguide/)
-
 + [Amazon EC2 Systems Manager API Reference](http://docs.aws.amazon.com/ssm/latest/APIReference/)
-
 + [Systems Manager AWS Tools for PowerShell Cmdlet Reference](http://docs.aws.amazon.com/powershell/latest/reference/items/Amazon_Simple_Systems_Management_cmdlets.html)
-
 + [Systems Manager AWS CLI Command Reference](http://docs.aws.amazon.com/cli/latest/reference/ssm/index.html)
-
 +  [AWS SDKs](https://aws.amazon.com/tools/#SDKs)

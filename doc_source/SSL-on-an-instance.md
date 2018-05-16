@@ -8,7 +8,7 @@ For historical reasons, web encryption is often referred to simply as SSL\. Whil
 **Important**  
 These procedures are intended for use with Amazon Linux 2\. If you are trying to set up a LAMP web server on an instance of a different distribution, some procedures in this tutorial will not work for you\. For information about LAMP web servers on Ubuntu, see the Ubuntu community documentation [ApacheMySQLPHP](https://help.ubuntu.com/community/ApacheMySQLPHP) topic\. For information about Red Hat Enterprise Linux, see the Customer Portal topic [Web Servers](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/System_Administrators_Guide/ch-Web_Servers.html)\.
 
-
+**Topics**
 + [Prerequisites](#ssl_prereq)
 + [Step 1: Enable SSL/TLS on the Server](#ssl_enable)
 + [Step 2: Obtain a CA\-signed Certificate](#ssl_certificate)
@@ -19,21 +19,14 @@ These procedures are intended for use with Amazon Linux 2\. If you are trying to
 ## Prerequisites<a name="ssl_prereq"></a>
 
 Before you begin this tutorial, complete the following steps:
-
 + Launch an EBS\-backed Amazon Linux 2 instance\. For more information, see [Step 1: Launch an Instance](EC2_GetStarted.md#ec2-launch-instance)\. 
-
 + Configure your security group to allow your instance to accept connections on the following TCP ports: 
-
   + SSH \(port 22\)
-
   + HTTP \(port 80\)
-
   + HTTPS \(port 443\)
 
   For more information, see [Authorizing Inbound Traffic for Your Linux Instances](authorizing-access-to-an-instance.md)\.
-
 + Install an Apache web server\. For step\-by\-step instructions, see [Tutorial: Install a LAMP Web Server on Amazon Linux 2](ec2-lamp-amazon-linux-2.md)\. Only the httpd package and its dependencies are needed, so you can ignore the instructions involving PHP and MariaDB\.
-
 + To identify and authenticate websites, the SSL/TLS public key infrastructure \(PKI\) relies on the Domain Name System \(DNS\)\. If you plan to use your EC2 instance to host a public website, you need to register a domain name for your web server or transfer an existing domain name to your Amazon EC2 host\. Numerous third\-party domain registration and DNS hosting services are available for this, or you may use [Amazon Route 53](http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/Welcome.html)\. 
 
 ## Step 1: Enable SSL/TLS on the Server<a name="ssl_enable"></a>
@@ -72,15 +65,12 @@ The `-y` option installs the updates without asking for confirmation\. If you wo
    ```
 
    Later in this tutorial, you work with three important files that have been installed:
-
    +  `/etc/httpd/conf.d/ssl.conf` 
 
      The configuration file for mod\_ssl\. It contains "directives" telling Apache where to find encryption keys and certificates, the SSL/TLS protocol versions to allow, and the encryption ciphers to accept\. 
-
    + `/etc/pki/tls/private/localhost.key`
 
      An automatically generated, 2048\-bit RSA private key for your Amazon EC2 host\. During installation, OpenSSL used this key to generate a self\-signed host certificate, and you can also use this key to generate a certificate signing request \(CSR\) to submit to a certificate authority \(CA\)\. 
-
    + `/etc/pki/tls/certs/localhost.crt` 
 
      An automatically generated, self\-signed X\.509 certificate for your server host\. This certificate is useful for testing that Apache is properly set up to use SSL/TLS\.
@@ -404,7 +394,6 @@ If you test the domain again on [Qualys SSL Labs](https://www.ssllabs.com/ssltes
 | Cipher strength | 90% | 
 
 ## Troubleshooting<a name="troubleshooting"></a>
-
 + **My Apache webserver doesn't start unless I supply a password\.**
 
   This is expected behavior if you installed an encrypted, password\-protected, private server key\. 
@@ -422,6 +411,16 @@ If you test the domain again on [Qualys SSL Labs](https://www.ssllabs.com/ssltes
   ```
 
   Apache should now start without prompting you for a password\.
++  **I get errors when I run **sudo yum install \-y mod\_ssl**\.**
+
+  When you are installing the required packages for SSL, you may see errors like these:
+
+  ```
+  Error: httpd24-tools conflicts with httpd-tools-2.2.34-1.16.amzn1.x86_64
+  Error: httpd24 conflicts with httpd-2.2.34-1.16.amzn1.x86_64
+  ```
+
+  This typically means that your EC2 instance is not running Amazon Linux 2\. This tutorial only supports instances freshly created from an official Amazon Linux 2 AMI\.
 
 ## Appendix: Let's Encrypt with Certbot on Amazon Linux 2<a name="letsencrypt"></a>
 
@@ -432,9 +431,7 @@ The [Let's Encrypt](https://letsencrypt.org/) certificate authority is the cente
  **Certbot is a client utility for EFF's Let's Encrypt certificate service\.** 
 
 Certbot is not officially supported on Amazon Linux 2, but is available for download and functions correctly once installed\. We recommend that you make the following backups to protect your data and avoid inconvenience:
-
 + Before you begin, take a snapshot of your EBS root volume\. This allows you to restore the original state of your EC2 instance\. For information about creating EBS snapshots, see [Creating an Amazon EBS Snapshot](ebs-creating-snapshot.md)\.
-
 + The procedure below requires you to edit your `httpd.conf` file, which controls Apache's operation\. Certbot makes its own automated changes to this and other configuration files\. Make a backup copy of your entire `/etc/httpd` directory in case you need to restore it\.
 
 ### Prepare to Install<a name="prepare"></a>
@@ -464,7 +461,7 @@ Complete the following procedures before you install Certbot\.
       You can confirm that EPEL is enabled with the following command:
 
       ```
-      [ec2-user ~]$ yum repolist all
+      [ec2-user ~]$ sudo yum repolist all
       
       ...
       

@@ -31,17 +31,11 @@ Whatever your EBS volume type, if you are not experiencing the IOPS or throughpu
 
 **Monitor I/O Characteristics with CloudWatch**  
 You can monitor these I/O characteristics with each volume's [CloudWatch metrics](monitoring-volume-status.md)\. Important metrics to consider include:
-
 + `BurstBalance`
-
 + `VolumeReadBytes`
-
 + `VolumeWriteBytes`
-
 + `VolumeReadOps`
-
 + `VolumeWriteOps`
-
 + `VolumeQueueLength`
 
 `BurstBalance` displays the burst bucket balance for `gp2`, `st1`, and `sc1` volumes as a percentage of the remaining balance\. When your burst bucket is depleted, volume I/O credits \(for `gp2` volumes\) or volume throughput credits \(for `st1` and `sc1` volumes\) is throttled to the baseline\. Check the `BurstBalance` value to determine whether your volume is being throttled for this reason\. 

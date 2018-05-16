@@ -2,7 +2,7 @@
 
 Amazon Web Services provides a repository of public data sets that can be seamlessly integrated into AWS cloud\-based applications\. Amazon stores the data sets at no charge to the community and, as with all AWS services, you pay only for the compute and storage you use for your own applications\.
 
-
+**Topics**
 + [Public Data Set Concepts](#concepts-public-data-sets)
 + [Finding Public Data Sets](#using-public-data-sets-finding)
 + [Creating a Public Data Set Volume from a Snapshot](#using-public-data-sets-launching-set)
@@ -17,13 +17,9 @@ For more information, go to the [AWS Public Datasets](https://aws.amazon.com/pub
 ### Available Public Data Sets<a name="concepts-public-data-sets-available"></a>
 
 Public data sets are currently available in the following categories:
-
 + **Biology—**Includes Human Genome Project, GenBank, and other content\.
-
 + **Chemistry—**Includes multiple versions of PubChem and other content\. 
-
 + **Economics—**Includes census data, labor statistics, transportation statistics, and other content\. 
-
 + **Encyclopedic—**Includes Wikipedia content from multiple sources and other content\. 
 
 ## Finding Public Data Sets<a name="using-public-data-sets-finding"></a>
@@ -82,6 +78,6 @@ If you specify both a volume size and a snapshot, the size must be equal to or g
 
 After you have created your new data set volume, you need to attach it to an EC2 instance to access the data \(this instance must also be in the same Availability Zone as the new volume\)\. For more information, see [Attaching an Amazon EBS Volume to an Instance](ebs-attaching-volume.md)\.
 
-After you have attached the volume to an instance, you need to mount the volume on the instance\. For more information, see [Making an Amazon EBS Volume Available for Use](ebs-using-volumes.md)\.
+After you have attached the volume to an instance, you need to mount the volume on the instance\. For more information, see [Making an Amazon EBS Volume Available for Use on Linux](ebs-using-volumes.md)\.
 
 If you restored a snapshot to a larger volume than the default for that snapshot, you must extend the file system on the volume to take advantage of the extra space\. For more information, see [Modifying the Size, IOPS, or Type of an EBS Volume on Linux](ebs-modify-volume.md)\.

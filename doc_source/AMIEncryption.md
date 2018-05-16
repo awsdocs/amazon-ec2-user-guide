@@ -71,11 +71,7 @@ The steps of this example procedure correspond to the following diagram\.
 ![\[Create AMIs with unique CMKs\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/multi-key.png)
 
 You can carry out this procedure using either the Amazon EC2 console or the command line\. For more information, see the following topics:
-
 + [Launch Your Instance](LaunchingAndUsingInstances.md)
-
 + [Creating an Amazon EBS\-Backed Linux AMI](creating-an-ami-ebs.md)\.
-
 + [Amazon EBS Volumes](EBSVolumes.md)
-
 + [AWS Key Management](http://docs.aws.amazon.com/kms/latest/developerguide/getting-started.html) in the *AWS Key Management Service Developer Guide*

@@ -21,19 +21,16 @@ GPUs on P3 instances do not support autoboost\.
 1. Set all GPU clock speeds to their maximum frequency\. Use the memory and graphics clock speeds specified in the following commands\.
 **Note**  
 Some versions of the NVIDIA driver do not allow setting application clock speed and throw a `"Setting applications clocks is not supported for GPU …"` error, which you can ignore\.
-
    + P2 instances:
 
      ```
      sudo nvidia-smi -ac 2505,875
      ```
-
    + P3 instances:
 
      ```
      sudo nvidia-smi -ac 877,1530
      ```
-
    + G3 instances:
 
      ```

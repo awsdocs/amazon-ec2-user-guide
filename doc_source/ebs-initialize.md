@@ -56,4 +56,4 @@ Incorrect use of dd can easily destroy a volume's data\. Be sure to follow preci
    sudo apt-get install -y fio
    ```
 
-   When the operation is finished, you will see a report of the read operation\. Your volume is now ready for use\. For more information, see [Making an Amazon EBS Volume Available for Use](ebs-using-volumes.md)\.
+   When the operation is finished, you will see a report of the read operation\. Your volume is now ready for use\. For more information, see [Making an Amazon EBS Volume Available for Use on Linux](ebs-using-volumes.md)\.

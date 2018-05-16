@@ -5,9 +5,7 @@ If you have stopped your Amazon EBS\-backed instance and it appears stuck in the
 There is no cost for any instance usage while an instance is not in the `running` state\.
 
 Force the instance to stop using either the console or the AWS CLI\.
-
 + To force the instance to stop using the console, select the stuck instance, and choose **Actions**, **Instance State**, **Stop**, and **Yes, Forcefully Stop**\.
-
 + To force the instance to stop using the AWS CLI, use the [stop\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) command and the `--force` option as follows:
 
   ```

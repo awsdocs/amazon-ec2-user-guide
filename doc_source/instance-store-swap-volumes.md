@@ -3,7 +3,7 @@
 Swap space in Linux can be used when a system requires more memory than it has been physically allocated\. When swap space is enabled, Linux systems can swap infrequently used memory pages from physical memory to swap space \(either a dedicated partition or a swap file in an existing file system\) and free up that space for memory pages that require high\-speed access\.
 
 **Note**  
-Using swap space for memory paging is not as fast or efficient as using RAM\. If your workload is regularly paging memory into swap space, you should consider migrating to a larger instance type with more RAM\. For more information, see [Resizing Your Instance](ec2-instance-resize.md)\.
+Using swap space for memory paging is not as fast or efficient as using RAM\. If your workload is regularly paging memory into swap space, you should consider migrating to a larger instance type with more RAM\. For more information, see [Changing the Instance Type](ec2-instance-resize.md)\.
 
 The `c1.medium` and `m1.small` instance types have a limited amount of physical memory to work with, and they are given a 900 MiB swap volume at launch time to act as virtual memory for Linux AMIs\. Although the Linux kernel sees this swap space as a partition on the root device, it is actually a separate instance store volume, regardless of your root device type\.
 

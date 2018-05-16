@@ -14,6 +14,8 @@ The following examples show launch configurations that you can use with the [req
 
 1. [Launch a Spot Fleet using instance weighting](#fleet-config6)
 
+1. [Launch a Spot Fleet with On\-Demand capacity](#fleet-config7)
+
 ## Example 1: Launch Spot Instances Using the Lowest\-Priced Availability Zone or Subnet in the Region<a name="fleet-config1"></a>
 
 The following example specifies a single launch specification without an Availability Zone or subnet\. If your account supports EC2\-VPC only, the Spot Fleet launches the instances in the lowest\-priced Availability Zone that has a default subnet\. If your account supports EC2\-Classic, the Spot Fleet launches the instances in EC2\-Classic in the lowest\-priced Availability Zone\. The price you pay will not exceed the On\-Demand price\.
@@ -415,5 +417,43 @@ You can also use instance weighting to give priority to an Availability Zone or 
           "SubnetId": "subnet-bb3337d"
       }
     ]
+}
+```
+
+## Example 7: Launch a Spot Fleet with On\-Demand Capacity<a name="fleet-config7"></a>
+
+To ensure that you always have instance capacity, you can include a request for On\-Demand capacity in your Spot Fleet request\. The On\-Demand request is always fulfilled if there is capacity, while the balance of the target capacity is fulfilled as Spot if there is capacity and availability\.
+
+The following example specifies the desired target capacity as 10, of which 5 must be On\-Demand capacity\. Spot capacity is not specified; it is implied in the balance of the target capacity minus the On\-Demand capacity\. Amazon EC2 launches 5 capacity units as On\-Demand, and 5 capacity units \(10\-5=5\) as Spot if there is available EC2 capacity and availability\. 
+
+For more information, see [On\-Demand in Spot Fleet](spot-fleet.md#on-demand-in-spot)\.
+
+```
+{
+  "IamFleetRole": "arn:aws:iam::781603563322:role/aws-ec2-spot-fleet-tagging-role",
+  "AllocationStrategy": "lowestPrice",
+  "TargetCapacity": 10,
+  "SpotPrice": null,
+  "ValidFrom": "2018-04-04T15:58:13Z",
+  "ValidUntil": "2019-04-04T15:58:13Z",
+  "TerminateInstancesWithExpiration": true,
+  "LaunchSpecifications": [],
+  "Type": "maintain",
+  "OnDemandTargetCapacity": 5,
+  "LaunchTemplateConfigs": [
+    {
+      "LaunchTemplateSpecification": {
+        "LaunchTemplateId": "lt-0dbb04d4a6cca5ad1",
+        "Version": "2"
+      },
+      "Overrides": [
+        {
+          "InstanceType": "t2.medium",
+          "WeightedCapacity": 1,
+          "SubnetId": "subnet-d0dc51fb"
+        }
+      ]
+    }
+  ]
 }
 ```

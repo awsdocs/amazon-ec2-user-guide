@@ -15,11 +15,9 @@ For Windows instances, this operation performs a hard reboot that might result i
 
 ## Instance Console Output<a name="instance-console-console-output"></a>
 
- For Linux/Unix instances, the instance console output displays the exact console output that would normally be displayed on a physical monitor attached to a computer\. This output is buffered because the instance produces it and then posts it to a store where the instance's owner can retrieve it\. 
+For Linux/Unix, the instance console output displays the exact console output that would normally be displayed on a physical monitor attached to a computer\. The console output returns buffered information that was posted shortly after an instance transition state \(start, stop, reboot, and terminate\)\. The posted output is not continuously updated; only when it is likely to be of the most value\. 
 
- For Windows instances, the instance console output displays the last three system event log errors\. 
-
- The posted output is not continuously updated; only when it is likely to be of the most value\. This includes shortly after instance boot, after reboot, and when the instance terminates\. 
+For Windows instances, the instance console output displays the last three system event log errors\. 
 
 **Note**  
 Only the most recent 64 KB of posted output is stored, which is available for at least 1 hour after the last posting\.
@@ -37,9 +35,7 @@ Only the instance owner can access the console output\. You can retrieve the con
 **To get console output using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-
 + [get\-console\-output](http://docs.aws.amazon.com/cli/latest/reference/ec2/get-console-output.html) \(AWS CLI\)
-
 + [Get\-EC2ConsoleOutput](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ConsoleOutput.html) \(AWS Tools for Windows PowerShell\)
 
 For more information about common system log errors, see [Troubleshooting System Log Errors for Linux\-Based Instances](TroubleshootingInstances.md#system-log-errors-linux)\.
@@ -67,9 +63,7 @@ Right\-click on the image to download and save it\.
 **To capture a screenshot using the command line**
 
 You can use one of the following commands\. The returned content is base64\-encoded\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-
 + [get\-console\-screenshot](http://docs.aws.amazon.com/cli/latest/reference/ec2/get-console-screenshot.html) \(AWS CLI\)
-
 + [GetConsoleScreenshot](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-GetConsoleScreenshot.html) \(Amazon EC2 Query API\)
 
 ## Instance Recovery When a Host Computer Fails<a name="instance-machine-failure"></a>

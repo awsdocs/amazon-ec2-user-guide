@@ -1,22 +1,15 @@
 # Compute Optimized Instances<a name="compute-optimized-instances"></a>
 
 Compute optimized instances are ideal for compute\-bound applications that benefit from high\-performance processors\. They are well suited for the following applications:
-
 + Batch processing workloads
-
 + Media transcoding
-
 + High\-performance web servers
-
 + High\-performance computing \(HPC\)
-
 + Scientific modeling
-
 + Dedicated gaming servers and ad serving engines
-
 + Machine learning inference and other compute\-intensive applications
 
-
+**Topics**
 + [Hardware Specifications](#compute-instances-hardware)
 + [Instance Performance](#compute-performance)
 + [Network Performance](#compute-network-performance)
@@ -30,7 +23,7 @@ The following is a summary of the hardware specifications for Compute optimized 
 
 ****  
 
-| Instance type | vCPUs | Memory \(GiB\) | 
+| Instance type | Default vCPUs | Memory \(GiB\) | 
 | --- | --- | --- | 
 | c4\.large | 2 | 3\.75 | 
 | c4\.xlarge | 4 | 7\.5 | 
@@ -45,6 +38,8 @@ The following is a summary of the hardware specifications for Compute optimized 
 | c5\.18xlarge | 72 | 144 | 
 
 For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
+
+For more information about specifying CPU options, see [Optimizing CPU Options](instance-optimize-cpu.md)\.
 
 ## Instance Performance<a name="compute-performance"></a>
 
@@ -83,47 +78,27 @@ The following is a summary of features for Compute optimized instances:
 |  C5  |  Yes  |  Yes  |  Yes  | 
 
 For more information, see the following:
-
 + [Instance Types Available Only in a VPC](using-vpc.md#vpc-only-instance-types)
-
 + [Amazon EBS–Optimized Instances](EBSOptimized.md)
-
 + [Amazon EC2 Instance Store](InstanceStorage.md)
-
 + [Placement Groups](placement-groups.md)
-
 + [Enhanced Networking on Linux](enhanced-networking.md)
 
 ## Release Notes<a name="compute-instance-limits"></a>
-
 + C4 and C5 instances require 64\-bit EBS\-backed HVM AMIs\. They have high\-memory \(up to 144 GiB of RAM\), and require a 64\-bit operating system to take advantage of that capacity\. HVM AMIs provide superior performance in comparison to paravirtual \(PV\) AMIs on high\-memory instance types\. In addition, you must use an HVM AMI to take advantage of enhanced networking\.
-
 + C5 instances have the following requirements: 
-
   + Must have the NVMe drivers installed\. EBS volumes are exposed as [NVMe block devices](nvme-ebs-volumes.md)\.
-
   + Must have the Elastic Network Adapter \([ENA](enhanced-networking-ena.md)\) drivers installed\.
 
   The following AMIs meet these requirements:
-
   + Amazon Linux 2014\.03 or later
-
   + Ubuntu 14\.04 or later
-
   + SUSE Linux Enterprise Server 12 or later
-
   + Red Hat Enterprise Linux 7\.4 or later
-
   + CentOS 7 or later
-
   + FreeBSD 11\.1\-RELEASE
-
   + Windows Server 2008 R2 or later
-
 + C5 instances support a maximum of 27 EBS volumes plus elastic network interface attachments\. For example, `c5.2xlarge` instances support four network interfaces\. Every instance has at least one network interface\. If you have a `c5.2xlarge` instance with three additional elastic network interface attachments, you can attach 24 EBS volumes to that instance\.
-
 + C5 instances should have acpid installed to support clean shutdown through API requests\.
-
 + ClassicLink is not supported for C5 instances—you cannot use ClassicLink to link your EC2\-Classic instances to C5 instances in your VPC\.
-
 + There is a limit on the total number of instances that you can launch in a region, and there are additional limits on some instance types\. For more information, see [How many instances can I run in Amazon EC2?](https://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2)\. To request a limit increase, use the [Amazon EC2 Instance Request Form](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-instances)\.

@@ -8,7 +8,7 @@ The Amazon EC2 console displays a series of graphs based on the raw data from Am
 
 For more information about Amazon CloudWatch, see the [Amazon CloudWatch User Guide](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/)\.
 
-
+**Topics**
 + [Enable or Disable Detailed Monitoring for Your Instances](using-cloudwatch-new.md)
 + [List the Available CloudWatch Metrics for Your Instances](viewing_metrics_with_cloudwatch.md)
 + [Get Statistics for Metrics for Your Instances](monitoring_get_statistics.md)

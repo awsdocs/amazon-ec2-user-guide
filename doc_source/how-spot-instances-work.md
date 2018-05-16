@@ -6,9 +6,7 @@ When you use Spot Instances, you must be prepared for interruptions\. Amazon EC2
 
 You can't stop and start an Amazon EBS\-backed instance if it is a Spot Instance \(only the Spot service can stop and start a Spot Instance\), but you can reboot or terminate a Spot Instance\.
 
-Shutting down a Spot Instance on OS\-level results in the Spot Instance being terminated\. It is not possible to change this behavior\.
-
-
+**Topics**
 + [Launching Spot Instances in a Launch Group](#spot-launch-group)
 + [Launching Spot Instances in an Availability Zone Group](#spot-az-group)
 + [Launching Spot Instances in a VPC](#concepts-spot-instances-vpcs)
@@ -43,9 +41,6 @@ Amazon EC2 uses the Availability Zone for the specified subnet\.
 To take advantage of the features of EC2\-VPC when you use Spot Instances, specify in your Spot request that your Spot Instances are to be launched in a VPC\. You specify a subnet for your Spot Instances the same way that you specify a subnet for your On\-Demand Instances\.
 
 The process for making a Spot Instance request that launches Spot Instances in a VPC is the same as the process for making a Spot Instance request that launches Spot Instances in EC2\-Classic—except for the following differences: 
-
 + You should use the default maximum price \(the On\-Demand price\), or base your maximum price on the Spot price history of Spot Instances in a VPC\.
-
 + \[Default VPC\] If you want your Spot Instance launched in a specific low\-priced Availability Zone, you must specify the corresponding subnet in your Spot Instance request\. If you do not specify a subnet, Amazon EC2 selects one for you, and the Availability Zone for this subnet might not have the lowest Spot price\.
-
 + \[Nondefault VPC\] You must specify the subnet for your Spot Instance\.

@@ -8,7 +8,7 @@ The virtual devices for instance store volumes are `ephemeral[0-23]`\. Instance 
 
 ![\[Amazon EC2 instance storage\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/instance_storage.png)
 
-
+**Topics**
 + [Instance Store Lifetime](#instance-store-lifetime)
 + [Instance Store Volumes](#instance-store-volumes)
 + [Add Instance Store Volumes to Your EC2 Instance](add-instance-store-volumes.md)
@@ -21,11 +21,8 @@ The virtual devices for instance store volumes are `ephemeral[0-23]`\. Instance 
 You can specify instance store volumes for an instance only when you launch it\. You can't detach an instance store volume from one instance and attach it to a different instance\.
 
 The data in an instance store persists only during the lifetime of its associated instance\. If an instance reboots \(intentionally or unintentionally\), data in the instance store persists\. However, data in the instance store is lost under the following circumstances:
-
 + The underlying disk drive fails
-
 + The instance stops
-
 + The instance terminates
 
 Therefore, do not rely on instance store for valuable, long\-term data\. Instead, use more durable data storage, such as Amazon S3, Amazon EBS, or Amazon EFS\.

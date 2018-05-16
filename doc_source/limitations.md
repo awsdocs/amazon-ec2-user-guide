@@ -1,27 +1,18 @@
 # Limitations When Modifying EBS Volumes<a name="limitations"></a>
 
 Be aware of the following limits and requirements when you modify an EBS volume:
-
 + In some cases, you must detach the volume or stop the instance for modification to proceed\. If you encounter an error message while attempting to modify an EBS volume, or if you are modifying an EBS volume attached to a previous\-generation instance type, take one of the following steps:
-
   + For a non\-root volume, detach the volume from the instance, apply the modifications, and then re\-attach the volume\. For more information, see [Detaching an Amazon EBS Volume from an Instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-detaching-volume.html) and [Attaching an Amazon EBS Volume to an Instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-attaching-volume.html)\. 
-
   + For a root \(boot\) volume, stop the instance, apply the modifications, and then restart the instance\. For more information, see [Appendix: Starting and Stopping an Instance to Modify an EBS Volume](stop-start.md)\.
-
 + The previous generation Magnetic volume type is not supported by the volume modification methods described in this topic\. However, you can take a snapshot of a Magnetic volume and restore it to a differently configured EBS volume\.
-
 + Decreasing the size of an EBS volume is not supported\. However, you can create a smaller volume and then migrate your data to it using an application\-level tool such as rsync\.
-
 + After modifying a volume, wait at least six hours before applying further modifications to the same volume\.
-
 + While `m3.medium` instances fully support volume modification, some `m3.large`, `m3.xlarge`, and `m3.2xlarge` instances might not support all volume modification features\. If you encounter an error, see [Appendix: Starting and Stopping an Instance to Modify an EBS Volume](stop-start.md)\.
 
 ## Volume Modification Support on Older Volumes<a name="initialize-modification-support"></a>
 
 Before you can modify a volume that was attached to an instance before November 1, 2016, you must initialize volume modification support using one of the following actions:
-
 + Detach and attach the volume
-
 + Restart the instance
 
 **To determine whether you must initialize volume modification support using the console**

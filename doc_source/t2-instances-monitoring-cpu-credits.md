@@ -2,20 +2,16 @@
 
 You can see the credit balance for each T2 instance in the Amazon EC2 per\-instance metrics of the CloudWatch console\.
 
-
+**Topics**
 + [Additional CloudWatch Metrics for T2 Instances](#t2-cw-metrics)
 + [Calculating CPU Credit Usage](#t2-calculating-credit-use)
 
 ## Additional CloudWatch Metrics for T2 Instances<a name="t2-cw-metrics"></a>
 
 T2 instances have four additional CloudWatch metrics, which are updated every five minutes:
-
 + `CPUCreditUsage` – The number of CPU credits spent during the measurement period\.
-
 + `CPUCreditBalance` – The number of CPU credits that a T2 instance has accrued\. This balance is depleted when the CPU bursts and CPU credits are spent more quickly than they are earned\.
-
 + `CPUSurplusCreditBalance` – The number of surplus CPU credits spent to sustain CPU performance when the `CPUCreditBalance` is zero\.
-
 + `CPUSurplusCreditsCharged` – The number of surplus CPU credits that exceed the [maximum number of CPU credits](t2-credits-baseline-concepts.md#t2-credit-table) that can be earned in a 24\-hour period, and thus attract an additional charge\.
 
 The last two metrics apply only to T2 instances configured as `unlimited`\. 
@@ -37,9 +33,7 @@ The CPU credit usage of T2 Standard and T2 Unlimited instances is calculated usi
 Amazon EC2 sends the metrics to CloudWatch every five minutes\. A reference to a *prior* value of a metric at any point in time implies the previous value of the metric, sent *five minutes ago*\.
 
 ### Calculating CPU Credit Usage for T2 Standard<a name="t2-std-calculation"></a>
-
 + The CPU credit balance increases if CPU utilization is below the baseline, when credits spent are less than credits earned in the prior five\-minute interval\. 
-
 + The CPU credit balance decreases if CPU utilization is above the baseline, when credits spent are more than credits earned in the prior five\-minute interval\. 
 
 Mathematically, this is captured by the following equation:
@@ -54,15 +48,10 @@ The size of the instance determines the number of credits that the instance can 
 
 **Example**  
 This example uses a `t2.micro` instance\. To calculate the `CPUCreditBalance` of the instance, use the preceding equation as follows:
-
 + `CPUCreditBalance` – The current credit balance to calculate\.
-
 + `prior CPUCreditBalance` – The credit balance five minutes ago\. In this example, the instance had accrued two credits\.
-
 + `Credits earned per hour` – A `t2.micro` instance earns six credits per hour\.
-
 + `5/60` – Represents the five\-minute interval between CloudWatch metric publication\. Multiply the credits earned per hour by 5/60 \(five minutes\) to get the number of credits the instance earned in the past five minutes\. A `t2.micro` instance earns 0\.5 credits every five minutes\.
-
 + `CPUCreditUsage` – How many credits the instance spent in the past five minutes\. In this example, the instance spent one credit in the past five minutes\.
 
 Using these values, you can calculate the `CPUCreditBalance` value:

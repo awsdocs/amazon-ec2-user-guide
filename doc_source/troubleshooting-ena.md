@@ -6,7 +6,7 @@ If you are unable to connect to your instance, start with the [Troubleshooting C
 
 If you are able to connect to your instance, you can gather diagnostic information by using the failure detection and recovery mechanisms that are covered in the later sections of this topic\.
 
-
+**Topics**
 + [Troubleshooting Connectivity Issues](#ena-connectivity-issues)
 + [Keep\-Alive Mechanism](#ena-keep-alive)
 + [Register Read Timeout](#register-read-timeout-ena)
@@ -28,7 +28,6 @@ If your instance becomes unreachable after enabling enhanced networking with ENA
 If you are using an instance store\-backed instance, you can't stop the instance\. Instead, proceed to [To disable enhanced networking with ENA \(instance store\-backed instances\)](#disable-enhanced-networking-ena-instance-store)\.
 
 1. From your local computer, disable the enhanced networking attribute using the following command\.
-
    + [modify\-instance\-attribute](http://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) \(AWS CLI\)
 
      ```
@@ -41,13 +40,11 @@ If you are using an instance store\-backed instance, you can't stop the instance
 <a name="disable-enhanced-networking-ena-instance-store"></a>
 **To disable enhanced networking with ENA \(instance store\-backed instances\)**  
 If your instance is an instance store\-backed instance, create a new AMI as described in [Creating an Instance Store\-Backed Linux AMI](creating-an-ami-instance-store.md)\. Be sure to disable the enhanced networking `enaSupport` attribute when you register the AMI\.
-
 + [register\-image](http://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) \(AWS CLI\)
 
   ```
   $ aws ec2 register-image --no-ena-support ...
   ```
-
 + [Register\-EC2Image](http://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2Image.html) \(AWS Tools for Windows PowerShell\)
 
   ```
@@ -57,11 +54,8 @@ If your instance is an instance store\-backed instance, create a new AMI as desc
 ## Keep\-Alive Mechanism<a name="ena-keep-alive"></a>
 
 The ENA device posts keep\-alive events at a fixed rate \(usually once every second\)\. The ENA driver implements a watchdog mechanism, which checks for the presence of these keep\-alive messages\. If a message or messages are present, the watchdog is rearmed, otherwise the driver concludes that the device experienced a failure and then does the following:
-
 + Dumps its current statistics to syslog
-
 + Resets the ENA device
-
 + Resets the ENA driver state
 
 The above reset procedure may result in some traffic loss for a short period of time \(TCP connections should be able to recover\), but should not otherwise affect the user\.
@@ -274,15 +268,10 @@ This is a recoverable error, and it indicates that there may have been a memory 
 
 Feature *X* isn't supported  
 The referenced feature is not supported by the Elastic Network Adapter\. Possible values for *X* include:  
-
 + **10**: RSS Hash function configuration is not supported for this device\.
-
 + **12**: RSS Indirection table configuration is not supported for this device\.
-
 + **18**: RSS Hash Input configuration is not supported for this device\.
-
 + **20**: Interrupt moderation is not supported for this device\.
-
 + **27**: The Elastic Network Adapter driver does not support polling the Ethernet capabilities from snmpd\.
 
 Failed to config AENQ  

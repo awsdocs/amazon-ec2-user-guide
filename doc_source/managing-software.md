@@ -2,7 +2,7 @@
 
 The base distribution of Amazon Linux contains many software packages and utilities that are required for basic server operations\. However, many more software packages are available in various software repositories, and even more packages are available for you to build from source code\.
 
-
+**Topics**
 + [Updating Instance Software](install-updates.md)
 + [Adding Repositories](add-repositories.md)
 + [Finding Software Packages](find-software.md)

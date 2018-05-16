@@ -3,11 +3,8 @@
 An Amazon Machine Image \(AMI\) provides the information required to launch an instance, which is a virtual server in the cloud\. You must specify a source AMI when you launch an instance\. You can launch multiple instances from a single AMI when you need multiple instances with the same configuration\. You can use different AMIs to launch instances when you need instances with different configurations\.
 
 An AMI includes the following:
-
 + A template for the root volume for the instance \(for example, an operating system, an application server, and applications\)
-
 + Launch permissions that control which AWS accounts can use the AMI to launch instances
-
 + A block device mapping that specifies the volumes to attach to the instance when it's launched
 
 ## Using an AMI<a name="ami-using"></a>
@@ -43,15 +40,10 @@ You can deregister an AMI when you have finished with it\. After you deregister 
 ## Amazon Linux AMIs<a name="amazon-linux"></a>
 
 The Amazon Linux AMI is a supported and maintained Linux image provided by AWS\. The following are some of the features of Amazon Linux:
-
 + A stable, secure, and high\-performance execution environment for applications running on Amazon EC2\.
-
 + Provided at no additional charge to Amazon EC2 users\.
-
 + Repository access to multiple versions of MySQL, PostgreSQL, Python, Ruby, Tomcat, and many more common packages\.
-
 + Updated on a regular basis to include the latest components, and these updates are also made available in the yum repositories for installation on running instances\.
-
 + Includes packages that enable easy integration with AWS services, such as the AWS CLI, Amazon EC2 API and AMI tools, the Boto library for Python, and the Elastic Load Balancing tools\.
 
 For more information, see [Amazon Linux](amazon-linux-ami-basics.md)\.

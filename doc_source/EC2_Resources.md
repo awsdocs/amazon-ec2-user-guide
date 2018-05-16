@@ -6,7 +6,7 @@ Some resources can be tagged with values that you define, to help you organize a
 
 The following topics describe resources and tags, and how you can work with them\.
 
-
+**Topics**
 + [Resource Locations](resources.md)
 + [Resource IDs](resource-ids.md)
 + [Listing and Filtering Your Resources](Using_Filtering.md)

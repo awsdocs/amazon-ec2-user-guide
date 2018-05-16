@@ -8,7 +8,7 @@ While the instance is stopped, you can treat its root volume like any other volu
 
 If you decide that you no longer need an instance, you can terminate it\. As soon as the state of an instance changes to `shutting-down` or `terminated`, we stop charging for that instance\. For more information, see [Terminate Your Instance](terminating-instances.md)\.
 
-
+**Topics**
 + [Overview](#instance_stop)
 + [Stopping and Starting Your Instances](#starting-stopping-instances)
 + [Modifying a Stopped Instance](#Using_ChangingAttributesWhileInstanceStopped)
@@ -19,39 +19,26 @@ If you decide that you no longer need an instance, you can terminate it\. As soo
 You can only stop an Amazon EBS\-backed instance\. To verify the root device type of your instance, describe the instance and check whether the device type of its root volume is `ebs` \(Amazon EBS\-backed instance\) or `instance store` \(instance store\-backed instance\)\. For more information, see [Determining the Root Device Type of Your AMI](ComponentsAMIs.md#display-ami-root-device-type)\.
 
 When you stop a running instance, the following happens:
-
 + The instance performs a normal shutdown and stops running; its status changes to `stopping` and then `stopped`\.
-
 + Any Amazon EBS volumes remain attached to the instance, and their data persists\.
-
 + Any data stored in the RAM of the host computer or the instance store volumes of the host computer is gone\.
-
 + In most cases, the instance is migrated to a new underlying host computer when it's started\.
-
 + EC2\-Classic: We release the public and private IPv4 addresses for the instance when you stop the instance, and assign new ones when you restart it\.
 
   EC2\-VPC: The instance retains its private IPv4 addresses and any IPv6 addresses when stopped and restarted\. We release the public IPv4 address and assign a new one when you restart it\.
-
 + EC2\-Classic: We disassociate any Elastic IP address that's associated with the instance\. You're charged for Elastic IP addresses that aren't associated with an instance\. When you restart the instance, you must associate the Elastic IP address with the instance; we don't do this automatically\.
 
   EC2\-VPC: The instance retains its associated Elastic IP addresses\. You're charged for any Elastic IP addresses associated with a stopped instance\.
-
-+ When you stop and start a Windows instance, the EC2Config service performs tasks on the instance, such as changing the drive letters for any attached Amazon EBS volumes\. For more information about these defaults and how you can change them, see [Configuring a Windows Instance Using the EC2Config Service](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/UsingConfig_WinAMI.html) in the *Amazon EC2 User Guide for Windows Instances*\.
-
++ When you stop and start a Windows instance, the EC2Config service performs tasks on the instance, such as changing the drive letters for any attached Amazon EBS volumes\. For more information about these defaults and how you can change them, see [Configuring a Windows Instance Using the EC2Config Service](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2config-service.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 + If your instance is in an Auto Scaling group, the Amazon EC2 Auto Scaling service marks the stopped instance as unhealthy, and may terminate it and launch a replacement instance\. For more information, see [Health Checks for Auto Scaling Instances](http://docs.aws.amazon.com/autoscaling/latest/userguide/healthcheck.html) in the *Amazon EC2 Auto Scaling User Guide*\.
-
 + When you stop a ClassicLink instance, it's unlinked from the VPC to which it was linked\. You must link the instance to the VPC again after restarting it\. For more information about ClassicLink, see [ClassicLink](vpc-classiclink.md)\.
 
 For more information, see [Differences Between Reboot, Stop, and Terminate](ec2-instance-lifecycle.md#lifecycle-differences)\.
 
 You can modify the following attributes of an instance only when it is stopped:
-
 + Instance type
-
 + User data
-
 + Kernel
-
 + RAM disk
 
 If you try to modify these attributes while the instance is running, Amazon EC2 returns the `IncorrectInstanceState` error\.
@@ -97,9 +84,7 @@ When you stop an instance, the data on any instance store volumes is erased\. Th
 **To stop and start an Amazon EBS\-backed instance using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-
 + [stop\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) and [start\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/start-instances.html) \(AWS CLI\)
-
 + [Stop\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/Stop-EC2Instance.html) and [Start\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/Start-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
 
 ## Modifying a Stopped Instance<a name="Using_ChangingAttributesWhileInstanceStopped"></a>
@@ -107,21 +92,15 @@ You can use one of the following commands\. For more information about these com
 You can change the instance type, user data, and EBS\-optimization attributes of a stopped instance using the AWS Management Console or the command line interface\. You can't use the AWS Management Console to modify the `DeleteOnTermination`, kernel, or RAM disk attributes\.
 
 **To modify an instance attribute**
-
-+ To change the instance type, see [Resizing Your Instance](ec2-instance-resize.md)\.
-
-+ To change the user data for your instance, see [Configuring Instances with User Data](ec2-instance-metadata.md#instancedata-add-user-data)\.
-
++ To change the instance type, see [Changing the Instance Type](ec2-instance-resize.md)\.
++ To change the user data for your instance, see [Working with Instance User Data](ec2-instance-metadata.md#instancedata-add-user-data)\.
 + To enable or disable EBS–optimization for your instance, see [Modifying EBS–Optimization](EBSOptimized.md#modify-ebs-optimized-attribute)\.
-
 + To change the `DeleteOnTermination` attribute of the root volume for your instance, see [Updating the Block Device Mapping of a Running Instance](block-device-mapping-concepts.md#update-instance-bdm)\.
 
 **To modify an instance attribute using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-
 + [modify\-instance\-attribute](http://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) \(AWS CLI\)
-
 + [Edit\-EC2InstanceAttribute](http://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2InstanceAttribute.html) \(AWS Tools for Windows PowerShell\)
 
 ## Troubleshooting<a name="troubleshoot-instance-stop"></a>

@@ -8,7 +8,7 @@ In this tutorial, we use Amazon EC2 Auto Scaling with Elastic Load Balancing to 
 
 ![\[Architecture with Auto Scaling and Elastic Load Balancing\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/tutorial_as_elb_architecture.png)
 
-
+**Topics**
 + [Prerequisites](#scale-and-load-balance-prerequisites)
 + [Scale and Load Balance Your Application](#scale-and-load-balance)
 + [Test Your Load Balancer](#test-load-balancer)
@@ -17,7 +17,7 @@ In this tutorial, we use Amazon EC2 Auto Scaling with Elastic Load Balancing to 
 
 This tutorial assumes that you have already done the following:
 
-1. Created a virtual private cloud (VPC) with one public subnet in two or more Availability Zones\. If you haven't done so, see [Create a Virtual Private Cloud \(VPC\)](get-set-up-for-amazon-ec2.md#create-a-vpc)\.
+1. Created a virtual private cloud \(VPC\) with one public subnet in two or more Availability Zones\. If you haven't done so, see [Create a Virtual Private Cloud \(VPC\)](get-set-up-for-amazon-ec2.md#create-a-vpc)\.
 
 1. Launched an instance in the VPC\.
 
@@ -84,9 +84,7 @@ Use the following procedure to create a load balancer, create a launch configura
 1. On the **Review** page, choose **Create**\. After the load balancer is created, choose **Close**\.
 
 1. On the navigation pane, under **AUTO SCALING**, choose **Launch Configurations**\.
-
    + If you are new to Amazon EC2 Auto Scaling, you see a welcome page\. Choose **Create Auto Scaling group** to start the Create Auto Scaling Group wizard, and then choose **Create launch configuration**\.
-
    + Otherwise, choose **Create launch configuration**\.
 
 1. On the **Choose AMI** page, select the **My AMIs** tab, and then select the AMI that you created in [Prerequisites](#scale-and-load-balance-prerequisites)\.
@@ -110,9 +108,7 @@ Use the following procedure to create a load balancer, create a launch configura
 1. When prompted, select an existing key pair, create a new key pair, or proceed without a key pair\. Select the acknowledgment check box, and then choose **Create launch configuration**\.
 
 1. After the launch configuration is created, you must create an Auto Scaling group\.
-
    + If you are new to Amazon EC2 Auto Scaling and you are using the Create Auto Scaling group wizard, you are taken to the next step automatically\.
-
    + Otherwise, choose **Create an Auto Scaling group using this launch configuration**\.
 
 1. On the **Configure Auto Scaling group details** page, do the following:

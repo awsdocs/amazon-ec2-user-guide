@@ -4,7 +4,7 @@ Each instance that you launch has an associated root device volume, either an Am
 
 For more information about root device volumes, see [Changing the Root Device Volume to Persist](RootDeviceStorage.md#Using_RootDeviceStorage)\.
 
-
+**Topics**
 + [Block Device Mapping Concepts](#block-device-mapping-def)
 + [AMI Block Device Mapping](#ami-block-device-mapping)
 + [Instance Block Device Mapping](#instance-block-device-mapping)
@@ -12,14 +12,12 @@ For more information about root device volumes, see [Changing the Root Device Vo
 ## Block Device Mapping Concepts<a name="block-device-mapping-def"></a>
 
 A *block device* is a storage device that moves data in sequences of bytes or bits \(blocks\)\. These devices support random access and generally use buffered I/O\. Examples include hard disks, CD\-ROM drives, and flash drives\. A block device can be physically attached to a computer or accessed remotely as if it were physically attached to the computer\. Amazon EC2 supports two types of block devices: 
-
 + Instance store volumes \(virtual devices whose underlying hardware is physically attached to the host computer for the instance\)
-
 + EBS volumes \(remote storage devices\)
 
 A *block device mapping* defines the block devices \(instance store volumes and EBS volumes\) to attach to an instance\. You can specify a block device mapping as part of creating an AMI so that the mapping is used by all instances launched from the AMI\. Alternatively, you can specify a block device mapping when you launch an instance, so this mapping overrides the one specified in the AMI from which you launched the instance\. Note that all of the NVMe instance store volumes supported by an instance type are automatically added on instance launch; you do not need to add them to the block device mapping for the AMI or the instance\.
 
-
+**Topics**
 + [Block Device Mapping Entries](#parts-of-a-block-device-mapping)
 + [Block Device Mapping Instance Store Caveats](#instance_store_caveats)
 + [Example Block Device Mapping](#block-device-mapping-ex)
@@ -28,35 +26,23 @@ A *block device mapping* defines the block devices \(instance store volumes and 
 ### Block Device Mapping Entries<a name="parts-of-a-block-device-mapping"></a>
 
 When you create a block device mapping, you specify the following information for each block device that you need to attach to the instance:
-
 + The device name used within Amazon EC2\. The block device driver for the instance assigns the actual volume name when mounting the volume, and the name assigned can be different from the name that Amazon EC2 recommends\. For more information, see [Device Naming on Linux Instances](device_naming.md)\.
-
 + \[Instance store volumes\] The virtual device: `ephemeral[0-23]`\. Note that the number and size of available instance store volumes for your instance varies by instance type\.
-
 + \[NVMe instance store volumes\] These volumes are mapped automatically; you do not need to specify the NVMe instance type volumes supported by an instance type in a block device mapping\.
-
 + \[EBS volumes\] The ID of the snapshot to use to create the block device \(snap\-*xxxxxxxx*\)\. This value is optional as long as you specify a volume size\.
-
 + \[EBS volumes\] The size of the volume, in GiB\. The specified size must be greater than or equal to the size of the specified snapshot\.
-
 + \[EBS volumes\] Whether to delete the volume on instance termination \(`true` or `false`\)\. The default value is `true` for the root device volume and `false` for attached volumes\. When you create an AMI, its block device mapping inherits this setting from the instance\. When you launch an instance, it inherits this setting from the AMI\.
-
 + \[EBS volumes\] The volume type, which can be `gp2` for General Purpose SSD, `io1` for Provisioned IOPS SSD, `st1` for Throughput Optimized HDD, `sc1` for Cold HDD, or `standard` for Magnetic\. The default value is `gp2` in the Amazon EC2 console, and `standard` in the AWS SDKs and the AWS CLI\.
-
 + \[EBS volumes\] The number of input/output operations per second \(IOPS\) that the volume supports\. \(Not used with `gp2`, `st1`, `sc1`, or `standard` volumes\.\)
 
 ### Block Device Mapping Instance Store Caveats<a name="instance_store_caveats"></a>
 
 There are several caveats to consider when launching instances with AMIs that have instance store volumes in their block device mappings\.
-
 + Some instance types include more instance store volumes than others, and some instance types contain no instance store volumes at all\. If your instance type supports one instance store volume, and your AMI has mappings for two instance store volumes, then the instance launches with one instance store volume\.
-
 + Instance store volumes can only be mapped at launch time\. You cannot stop an instance without instance store volumes \(such as the `t2.micro`\), change the instance to a type that supports instance store volumes, and then restart the instance with instance store volumes\. However, you can create an AMI from the instance and launch it on an instance type that supports instance store volumes, and map those instance store volumes to the instance\.
-
 + If you launch an instance with instance store volumes mapped, and then stop the instance and change it to an instance type with fewer instance store volumes and restart it, the instance store volume mappings from the initial launch still show up in the instance metadata\. However, only the maximum number of supported instance store volumes for that instance type are available to the instance\.
 **Note**  
 When an instance is stopped, all data on the instance store volumes is lost\.
-
 + Depending on instance store capacity at launch time, M3 instances may ignore AMI instance store block device mappings at launch unless they are specified at launch\. You should specify instance store block device mappings at launch time, even if the AMI you are launching has the instance store volumes mapped in the AMI, to ensure that the instance store volumes are available when the instance launches\. 
 
 ### Example Block Device Mapping<a name="block-device-mapping-ex"></a>
@@ -77,7 +63,7 @@ With a Linux instance, the device names specified in the block device mapping ar
 
 Each AMI has a block device mapping that specifies the block devices to attach to an instance when it is launched from the AMI\. An AMI that Amazon provides includes a root device only\. To add more block devices to an AMI, you must create your own AMI\.
 
-
+**Topics**
 + [Specifying a Block Device Mapping for an AMI](#create-ami-bdm)
 + [Viewing the EBS Volumes in an AMI Block Device Mapping](#view-ami-bdm)
 
@@ -155,9 +141,7 @@ To omit a mapping for a device, use the following mapping:
 ```
 
 Alternatively, you can use the `-BlockDeviceMapping` parameter with the following commands \(AWS Tools for Windows PowerShell\):
-
 + [New\-EC2Image](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Image.html)
-
 + [Register\-EC2Image](http://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2Image.html)
 
 ### Viewing the EBS Volumes in an AMI Block Device Mapping<a name="view-ami-bdm"></a>
@@ -173,11 +157,8 @@ You can easily enumerate the EBS volumes in the block device mapping for an AMI\
 1. Choose **EBS images** from the **Filter** list to get a list of EBS\-backed AMIs\. 
 
 1. Select the desired AMI, and look at the **Details** tab\. At a minimum, the following information is available for the root device:
-
    + **Root Device Type** \(`ebs`\)
-
    + **Root Device Name** \(for example, `/dev/sda1`\)
-
    + **Block Devices** \(for example, `/dev/sda1=snap-1234567890abcdef0:8:true`\)
 
    If the AMI was created with additional EBS volumes using a block device mapping, the **Block Devices** field displays the mapping for those additional volumes as well\. \(Recall that this screen doesn't display instance store volumes\.\)
@@ -191,12 +172,10 @@ Use the [describe\-images](http://docs.aws.amazon.com/cli/latest/reference/ec2/d
 By default, an instance that you launch includes any storage devices specified in the block device mapping of the AMI from which you launched the instance\. You can specify changes to the block device mapping for an instance when you launch it, and these updates overwrite or merge with the block device mapping of the AMI\.
 
 **Limits**
-
 + For the root volume, you can only modify the following: volume size, volume type, and the **Delete on Termination** flag\.
-
 + When you modify an EBS volume, you can't decrease its size\. Therefore, you must specify a snapshot whose size is equal to or greater than the size of the snapshot specified in the block device mapping of the AMI\.
 
-
+**Topics**
 + [Updating the Block Device Mapping when Launching an Instance](#Using_OverridingAMIBDM)
 + [Updating the Block Device Mapping of a Running Instance](#update-instance-bdm)
 + [Viewing the EBS Volumes in an Instance Block Device Mapping](#view-instance-bdm)
@@ -217,15 +196,10 @@ You can add EBS volumes and instance store volumes to an instance when you launc
 1. Follow the wizard to complete the **Choose an Instance Type** and **Configure Instance Details** pages\.
 
 1. On the **Add Storage** page, you can modify the root volume, EBS volumes, and instance store volumes as follows:
-
    + To change the size of the root volume, locate the **Root** volume under the **Type** column, and change its **Size** field\.
-
    + To suppress an EBS volume specified by the block device mapping of the AMI used to launch the instance, locate the volume and click its **Delete** icon\.
-
    + To add an EBS volume, choose **Add New Volume**, choose **EBS** from the **Type** list, and fill in the fields \(**Device**, **Snapshot**, and so on\)\.
-
    + To suppress an instance store volume specified by the block device mapping of the AMI used to launch the instance, locate the volume, and choose its **Delete** icon\.
-
    + To add an instance store volume, choose **Add New Volume**, select **Instance Store** from the **Type** list, and select a device name from **Device**\.
 
 1. Complete the remaining wizard pages, and choose **Launch**\.
@@ -241,11 +215,8 @@ Specify the block device mapping using the following parameter:
 ```
 
 For example, suppose that an EBS\-backed AMI specifies the following block device mapping:
-
 + /dev/sdb=ephemeral0
-
 + /dev/sdh=snap\-1234567890abcdef0
-
 + /dev/sdj=:100
 
 To prevent `/dev/sdj` from attaching to an instance launched from this AMI, use the following mapping:
@@ -318,26 +289,18 @@ For instances launched before the release of the 2009\-10\-31 API, AWS can't dis
 1. In the search bar, type **Root Device Type**, and then choose **EBS**\. This displays a list of EBS\-backed instances\.
 
 1. Select the desired instance and look at the details displayed in the **Description** tab\. At a minimum, the following information is available for the root device:
-
    + **Root device type** \(`ebs`\)
-
    + **Root device** \(for example, `/dev/sda1`\)
-
    + **Block devices** \(for example, `/dev/sda1`, `/dev/sdh`, and `/dev/sdj`\)
 
    If the instance was launched with additional EBS volumes using a block device mapping, the **Block devices** field displays those additional volumes as well as the root device\. \(Recall that this dialog box doesn't display instance store volumes\.\)  
 ![\[Block devices for an instance.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/block-device-mapping-description-tab.png)
 
 1. To display additional information about a block device, select its entry next to **Block devices**\. This displays the following information for the block device:
-
    + **EBS ID** \(vol\-*xxxxxxxx*\)
-
    + **Root device type** \(`ebs`\)
-
    + **Attachment time** \(*yyyy*\-*mm*T*hh*:*mm*:*ss*\.*s**sTZD*\)
-
    + **Block device status** \(`attaching`, `attached`, `detaching`, `detached`\)
-
    + **Delete on termination** \(`Yes`, `No`\)
 
 **To view the EBS volumes for an instance using the command line**

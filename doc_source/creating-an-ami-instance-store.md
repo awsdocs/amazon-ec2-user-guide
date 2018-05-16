@@ -19,33 +19,19 @@ If you add instance store volumes to your instance in addition to the root devic
 ## Prerequisites<a name="bundle-ami-prerequisites"></a>
 
 Before you can create an AMI, you must complete the following tasks:
-
 + Install the AMI tools\. For more information, see [Setting Up the AMI Tools](set-up-ami-tools.md)\.
-
 + Install the AWS CLI\. For more information, see [Getting Set Up with the AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html)\.
-
 + Ensure that you have an Amazon S3 bucket for the bundle\. To create an Amazon S3 bucket, open the Amazon S3 console and click **Create Bucket**\. Alternatively, you can use the AWS CLI [mb](http://docs.aws.amazon.com/cli/latest/reference/s3/mb.html) command\.
-
 + Ensure that you have your AWS account ID\. For more information, see [AWS Account Identifiers](http://docs.aws.amazon.com/general/latest/gr/acct-identifiers.html) in the *AWS General Reference*\.
-
 + Ensure that you have your access key ID and secret access key\. For more information, see [Access Keys](http://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys) in the *AWS General Reference*\.
-
 + Ensure that you have an X\.509 certificate and corresponding private key\.
-
   + If you need to create an X\.509 certificate, see [Managing Signing Certificates](set-up-ami-tools.md#ami-tools-managing-certs)\. The X\.509 certificate and private key are used to encrypt and decrypt your AMI\.
-
   + \[China \(Beijing\)\] Use the `$EC2_AMITOOL_HOME/etc/ec2/amitools/cert-ec2-cn-north-1.pem` certificate\.
-
   + \[AWS GovCloud \(US\)\] Use the `$EC2_AMITOOL_HOME/etc/ec2/amitools/cert-ec2-gov.pem` certificate\.
-
 + Connect to your instance and customize it\. For example, you can install software and applications, copy data, delete temporary files, and modify the Linux configuration\.
 
 **Tasks**
-
 + [Setting Up the AMI Tools](set-up-ami-tools.md)
-
 + [Creating an AMI from an Instance Store\-Backed Amazon Linux Instance](create-instance-store-ami.md#amazon_linux_instructions)
-
 + [Creating an AMI from an Instance Store\-Backed Ubuntu Instance](create-instance-store-ami.md#ubuntu_instructions)
-
 + [Converting your Instance Store\-Backed AMI to an Amazon EBS\-Backed AMI](Using_ConvertingS3toEBS.md)

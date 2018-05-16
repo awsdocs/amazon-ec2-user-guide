@@ -9,11 +9,8 @@ The following procedure shows how to apply available volume modifications from t
 1. Choose **Volumes**, select the volume to modify, and then choose **Actions**, **Modify Volume**\.
 
 1. The **Modify Volume** window displays the volume ID and the volume's current configuration, including type, size, and IOPS\. You can change any or all of these settings in a single action\. Set new configuration values as follows:
-
    + To modify the type, choose a value for **Volume Type**\.
-
    + To modify the size, enter an allowed integer value for **Size**\.
-
    + If you chose **Provisioned IOPS \(IO1\)** as your volume type, enter an allowed integer value for **IOPS**\.
 
 1. After you have specified all of the modifications to apply, choose **Modify**, **Yes**\. 

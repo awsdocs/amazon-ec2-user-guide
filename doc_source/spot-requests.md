@@ -6,7 +6,7 @@ The following illustration shows how Spot requests work\. Notice that the action
 
 ![\[The Spot lifecycle\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/spot_lifecycle.png)
 
-
+**Topics**
 + [Spot Instance Request States](#creating-spot-request-status)
 + [Specifying a Duration for Your Spot Instances](#fixed-duration-spot-instances)
 + [Specifying a Tenancy for Your Spot Instances](#spot-instance-tenancy)
@@ -20,15 +20,10 @@ The following illustration shows how Spot requests work\. Notice that the action
 ## Spot Instance Request States<a name="creating-spot-request-status"></a>
 
 A Spot Instance request can be in one of the following states:
-
 + `open`—The request is waiting to be fulfilled\.
-
 + `active`—The request is fulfilled and has an associated Spot Instance\.
-
 + `failed`—The request has one or more bad parameters\.
-
 + `closed`—The Spot Instance was interrupted or terminated\.
-
 + `cancelled`—You cancelled the request, or the request expired\.
 
 The following illustration represents the transitions between the request states\. Notice that the transitions depend on the request type \(one\-time or persistent\)\.
@@ -67,43 +62,27 @@ Use the [describe\-spot\-instance\-requests](http://docs.aws.amazon.com/cli/late
 You can run a Spot Instance on single\-tenant hardware\. Dedicated Spot Instances are physically isolated from instances that belong to other AWS accounts\. For more information, see [Dedicated Instances](dedicated-instance.md) and the [Amazon EC2 Dedicated Instances](https://aws.amazon.com/ec2/purchasing-options/dedicated-instances/) product page\.
 
 To run a Dedicated Spot Instance, do one of the following:
-
 + Specify a tenancy of `dedicated` when you create the Spot Instance request\. For more information, see [Creating a Spot Instance Request](#using-spot-instances-request)\.
-
 + Request a Spot Instance in a VPC with an instance tenancy of `dedicated`\. For more information, see [Creating a VPC with an Instance Tenancy of Dedicated](dedicated-instance.md#creatingdedicatedvpc)\. You cannot request a Spot Instance with a tenancy of `default` if you request it in a VPC with an instance tenancy of `dedicated`\.
 
 The following instance types support Dedicated Spot Instances\.
 
 **Current Generation**
-
 + `c4.8xlarge`
-
 + `d2.8xlarge`
-
 + `i3.16xlarge`
-
 + `m4.10xlarge`
-
 + `m4.16xlarge`
-
 + `p2.16xlarge`
-
 + `r4.16xlarge`
-
 + `x1.32xlarge`
 
 **Previous Generation**
-
 + `c3.8xlarge`
-
 + `cc2.8xlarge`
-
 + `cr1.8xlarge`
-
 + `g2.8xlarge`
-
 + `i2.8xlarge`
-
 + `r3.8xlarge`
 
 ## Service\-Linked Role for Spot Instance Requests<a name="service-linked-roles-spot-instance-requests"></a>
@@ -111,11 +90,8 @@ The following instance types support Dedicated Spot Instances\.
 Amazon EC2 creates a service\-linked role when you request Spot Instances\. A service\-linked role includes all the permissions that Amazon EC2 requires to call other AWS services on your behalf\. For more information, see [Using Service\-Linked Roles](http://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html) in the *IAM User Guide*\.
 
 Amazon EC2 uses the service\-linked role named **AWSServiceRoleForEC2Spot** to complete the following actions:
-
 + `ec2:DescribeInstances` \- Describe Spot Instances
-
 + `ec2:StopInstances` \- Stop Spot Instances
-
 + `ec2:StartInstances` \- Start Spot Instances
 
 If you specify encrypted EBS snapshots for your Spot Instances and you use customer managed CMKs for encryption, you must grant the **AWSServiceRoleForEC2Spot** role access to the CMKs so that Amazon EC2 can launch Spot Instances on your behalf\. The principal is the Amazon Resource Name \(ARN\) of the **AWSServiceRoleForEC2Spot** role\. For more information, see [Using Key Policies in AWS KMS](http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html)\.
@@ -159,21 +135,21 @@ Before you begin, decide on your maximum price, how many Spot Instances you'd li
 
       \[Existing VPC\] Select the VPC\.
 
-      \[New VPC\] Select **Create new VPC** to go the Amazon VPC console\. When you are done, return to the wizard and refresh the list\.
+      \[New VPC\] Choose **Create new VPC** to go to the Amazon VPC console\. When you are done, return to the wizard and refresh the list\.
 
-      \[EC2\-Classic\] Select **EC2\-Classic**\.
+      \[EC2\-Classic\] Choose **EC2\-Classic**\.
 
    1. \(Optional\) For **Availability Zones**, the default is to let AWS choose the Availability Zones for your Spot Instances\. If you prefer, you can specify specific Availability Zones\.
 
       \[EC2\-VPC\] Select one or more Availability Zones\. If you have more than one subnet in an Availability Zone, select the appropriate subnet from **Subnet**\. To add subnets, select **Create new subnet** to go to the Amazon VPC console\. When you are done, return to the wizard and refresh the list\.
 
-      \[EC2\-Classic\] Select **Select specific zone/subnet**, and then select one or more Availability Zones\.
+      \[EC2\-Classic\] Choose **Select specific zone/subnet**, and then select one or more Availability Zones\.
 
    1. \(Optional\) To add storage, specify additional instance store volumes or EBS volumes, depending on the instance type\. You can also enable EBS optimization\.
 
-   1. \(Optional\) By default, basic monitoring is enabled for your instances\. To enable detailed monitoring, select **Enable CloudWatch detailed monitoring**\.
+   1. \(Optional\) By default, basic monitoring is enabled for your instances\. To enable detailed monitoring, choose **Enable CloudWatch detailed monitoring**\.
 
-   1. \(Optional\) To run a Dedicated Spot Instance, choose **Dedicated \- run a dedicated instance** for **Tenancy**\.
+   1. \(Optional\) To run a Dedicated Spot Instance, for **Tenancy**, choose **Dedicated \- run a dedicated instance**\.
 
    1. For **Security groups**, select one or more security groups\.
 
@@ -181,7 +157,7 @@ Before you begin, decide on your maximum price, how many Spot Instances you'd li
 
    1. \(Optional\) To connect to your instances, specify your key pair for **Key pair name**\.
 
-   1. \(Optional\) To launch your Spot Instances with an IAM role, specify your IAM role for **IAM instance profile**\.
+   1. \(Optional\) To launch your Spot Instances with an IAM role, for **IAM instance profile**, specify the role\.
 
    1. \(Optional\) To run a start\-up script, copy it to **User data**\.
 
@@ -191,9 +167,9 @@ Before you begin, decide on your maximum price, how many Spot Instances you'd li
 
    1. \[Spot Fleet\] For **Allocation strategy**, choose the strategy that meets your needs\. For more information, see [Spot Fleet Allocation Strategy](spot-fleet.md#spot-fleet-allocation-strategy)\.
 
-   1. \[Spot Fleet\] For **Maximum price**, you can use the default maximum price \(the On\-Demand price\) or specify the maximum price you are willing to pay\. Your Spot Instances are not launched if your maximum price is lower than the Spot price for the instance types that you selected\.
+   1. \[Spot Fleet\] For **Maximum price**, you can use the default maximum price \(the On\-Demand price\) or specify the maximum price that you are willing to pay\. If your maximum price is lower than the Spot price for the instance types that you selected, your Spot Instances are not launched\.
 
-   1. \(Optional\) To create a request that is valid only during a specific time period, edit **Request valid from** and **Request valid until**\.
+   1. \(Optional\) To create a request that is valid only during a specific time period, edit the values for **Request valid from** and **Request valid until**\.
 
    1. \[Spot Fleet\] By default, we terminate your Spot Instances when the request expires\. To keep them running after your request expires, clear **Terminate instances at expiration**\.
 

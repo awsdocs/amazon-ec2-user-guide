@@ -93,29 +93,23 @@ The `ec2:CreateTags` action is only evaluated if tags are applied during the res
 The `ec2:CreateTags` action is also evaluated if tags are provided in a launch template and the launch template is specified in the `ec2:RunInstances` action\. For an example policy, see [Applying Tags in a Launch Template](ExamplePolicies_EC2.md#iam-example-tags-launch-template)\.
 
 You can control the tag keys and values that are applied to resources by using the following condition keys:
-
 + `aws:RequestTag`: To indicate that a particular tag key or tag key and value must be present in a request\. Other tags can also be specified in the request\.
-
   + Use with the `StringEquals` condition operator to enforce a specific tag key and value combination, for example, to enforce the tag `cost-center`=`cc123`:
 
     ```
     "StringEquals": { "aws:RequestTag/cost-center": "cc123" }
     ```
-
   + Use with the `StringLike` condition operator to enforce a specific tag key in the request; for example, to enforce the tag key `purpose`:
 
     ```
     "StringLike": { "aws:RequestTag/purpose": "*" }
     ```
-
 + `aws:TagKeys`: To enforce the tag keys that are used in the request\.
-
   + Use with the `ForAllValues` modifier to enforce specific tag keys if they are provided in the request \(if tags are specified in the request, only specific tag keys are allowed; no other tags are allowed\)\. For example, the tag keys `environment` or `cost-center` are allowed:
 
     ```
     "ForAllValues:StringEquals": { "aws:TagKeys": ["environment","cost-center"] }
     ```
-
   + Use with the `ForAnyValue` modifier to enforce the presence of at least one of the specified tag keys in the request\. For example, at least one of the tag keys `environment` or `webserver` must be present in the request:
 
     ```

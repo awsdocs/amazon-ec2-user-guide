@@ -12,7 +12,7 @@ The Amazon CloudWatch Monitoring Scripts for Amazon Elastic Compute Cloud \(Amaz
 
 Standard Amazon CloudWatch usage charges for custom metrics apply to your use of these scripts\. For more information, see the [Amazon CloudWatch](https://aws.amazon.com/cloudwatch/pricing) pricing page\.
 
-
+**Topics**
 + [Supported Systems](#mon-scripts-systems)
 + [Package Contents](#mon-scripts-contents)
 + [Prerequisites](#mon-scripts-perl_prereq)
@@ -25,31 +25,29 @@ Standard Amazon CloudWatch usage charges for custom metrics apply to your use of
 ### Supported Systems<a name="mon-scripts-systems"></a>
 
 These monitoring scripts are intended for use with Amazon EC2 instances running Linux\. The scripts have been tested on instances using the following Amazon Machine Images \(AMIs\), both 32\-bit and 64\-bit versions:
-
 + Amazon Linux 2014\.09\.2
-
 + Red Hat Enterprise Linux 7\.4 and 6\.9
-
 + SUSE Linux Enterprise Server 12
-
 + Ubuntu Server 16\.04 and 14\.04
+
+**Note**  
+On servers running SUSE Linux Enterprise Server 12, you may need to first download the `perl-Switch` package\. You can download and install this package with the following commands:  
+
+```
+wget http://download.opensuse.org/repositories/devel:/languages:/perl/SLE_12_SP3/noarch/perl-Switch-2.17-32.1.noarch.rpm
+sudo rpm -i perl-Switch-2.17-32.1.noarch.rpm
+```
 
 You can also monitor memory and disk metrics on Amazon EC2 instances running Windows by sending this data to CloudWatch Logs\. For more information, see [Sending Logs, Events, and Performance Counters to Amazon CloudWatch](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/send_logs_to_cwl.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
 ### Package Contents<a name="mon-scripts-contents"></a>
 
 The package for the monitoring scripts contains the following files:
-
 + **CloudWatchClient\.pm** – Shared Perl module that simplifies calling Amazon CloudWatch from other scripts\.
-
 + **mon\-put\-instance\-data\.pl** – Collects system metrics on an Amazon EC2 instance \(memory, swap, disk space utilization\) and sends them to Amazon CloudWatch\.
-
 + **mon\-get\-instance\-stats\.pl** – Queries Amazon CloudWatch and displays the most recent utilization statistics for the EC2 instance on which this script is executed\.
-
 + **awscreds\.template** – File template for AWS credentials that stores your access key ID and secret access key\.
-
 + **LICENSE\.txt** – Text file containing the Apache 2\.0 license\.
-
 + **NOTICE\.txt** – Copyright notice\.
 
 ### Prerequisites<a name="mon-scripts-perl_prereq"></a>
@@ -159,29 +157,23 @@ The following steps show you how to download, uncompress, and configure the Clou
 1. At a command prompt, move to a folder where you want to store the monitoring scripts and run the following command to download them:
 
    ```
-   curl https://aws-cloudwatch.s3.amazonaws.com/downloads/CloudWatchMonitoringScripts-1.2.1.zip -O
+   curl https://aws-cloudwatch.s3.amazonaws.com/downloads/CloudWatchMonitoringScripts-1.2.2.zip -O
    ```
 
 1. Run the following commands to install the monitoring scripts you downloaded:
 
    ```
-   unzip CloudWatchMonitoringScripts-1.2.1.zip
-   rm CloudWatchMonitoringScripts-1.2.1.zip
+   unzip CloudWatchMonitoringScripts-1.2.2.zip
+   rm CloudWatchMonitoringScripts-1.2.2.zip
    cd aws-scripts-mon
    ```
 
 1. Ensure that the scripts have permission to perform CloudWatch operations using one of the following options:
-
    + If you associated an IAM role \(instance profile\) with your instance, verify that it grants permissions to perform the following operations:
-
      + cloudwatch:PutMetricData
-
      + cloudwatch:GetMetricStatistics
-
      + cloudwatch:ListMetrics
-
      + ec2:DescribeTags
-
    + Specify your AWS credentials in a credentials file\. First, copy the `awscreds.template` file included with the monitoring scripts to `awscreds.conf` as follows:
 
      ```

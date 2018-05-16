@@ -4,7 +4,7 @@ You can use the AMI tools commands to create and manage instance store\-backed L
 
 For information about your access keys, see [Best Practices for Managing AWS Access Keys](http://docs.aws.amazon.com/general/latest/gr/aws-access-keys-best-practices.html)\.
 
-
+**Topics**
 + [ec2\-ami\-tools\-version](#ami-tools-version)
 + [ec2\-bundle\-image](#ami-bundle-image)
 + [ec2\-bundle\-vol](#ami-bundle-vol)
@@ -78,7 +78,7 @@ Required: Only for the `us-gov-west-1` and `cn-north-1` regions\.
 
 `-r, --arch` *architecture*  
 Image architecture\. If you don't provide the architecture on the command line, you'll be prompted for it when bundling starts\.  
-Valid values: `i386` | `x86_64`  
+Valid values: `i386` \| `x86_64`  
 Required: No
 
 `--productcodes` *code1,code2,\.\.\.*  
@@ -88,13 +88,9 @@ Required: No
 `-B, --block-device-mapping` *mapping*  
 Defines how block devices are exposed to an instance of this AMI if its instance type supports the specified device\.  
 Specify a comma\-separated list of key\-value pairs, where each key is a virtual name and each value is the corresponding device name\. Virtual names include the following:  
-
 + `ami`—The root file system device, as seen by the instance
-
 + `root`—The root file system device, as seen by the kernel
-
 + `swap`—The swap device, as seen by the instance
-
 + `ephemeralN`—The Nth instance store volume
 Required: No
 
@@ -187,7 +183,7 @@ Required: Only for the `us-gov-west-1` and `cn-north-1` regions\.
 
 `-r, --arch ` *architecture*  
 The image architecture\. If you don't provide this on the command line, you'll be prompted to provide it when the bundling starts\.  
-Valid values: `i386` | `x86_64`  
+Valid values: `i386` \| `x86_64`  
 Required: No
 
 `--productcodes` *code1,code2,\.\.\.*  
@@ -197,13 +193,9 @@ Required: No
 `-B, --block-device-mapping` *mapping*  
 Defines how block devices are exposed to an instance of this AMI if its instance type supports the specified device\.  
 Specify a comma\-separated list of key\-value pairs, where each key is a virtual name and each value is the corresponding device name\. Virtual names include the following:  
-
 + `ami`—The root file system device, as seen by the instance
-
 + `root`—The root file system device, as seen by the kernel
-
 + `swap`—The swap device, as seen by the instance
-
 + `ephemeralN`—The Nth instance store volume
 Required: No
 
@@ -244,7 +236,7 @@ Required: No
 
 `-P, --partition` *type*  
 Indicates whether the disk image should use a partition table\. If you don't specify a partition table type, the default is the type used on the parent block device of the volume, if applicable, otherwise the default is `gpt`\.  
-Valid values: `mbr` | `gpt` | `none`  
+Valid values: `mbr` \| `gpt` \| `none`  
 Required: No
 
 `-S, --script` *script*  
@@ -350,7 +342,7 @@ Required: Required if using signature version 4
 
 `--sigv`*version*  
 The signature version to use when signing the request\.  
-Valid values: `2` | `4`  
+Valid values: `2` \| `4`  
 Default: `4`  
 Required: No
 
@@ -446,7 +438,7 @@ Required: Required if using signature version 4
 
 `--sigv` *version*  
 The signature version to use when signing the request\.  
-Valid values: `2` | `4`  
+Valid values: `2` \| `4`  
 Default: `4`  
 Required: No
 
@@ -504,7 +496,7 @@ Modifies an instance store\-backed Linux AMI \(for example, its certificate, ker
 
 ### Syntax<a name="migrate-manifest-request"></a>
 
- ** ec2\-migrate\-manifest \-c *path* \-k *path* \-m *path* \{\(\-a *access\_key\_id* \-s *secret\_access\_key* \-\-region *region*\) | \(\-\-no\-mapping\)\} \[\-\-ec2cert *ec2\_cert\_path*\] \[\-\-kernel *kernel\-id*\] \[\-\-ramdisk *ramdisk\_id*\]** 
+ ** ec2\-migrate\-manifest \-c *path* \-k *path* \-m *path* \{\(\-a *access\_key\_id* \-s *secret\_access\_key* \-\-region *region*\) \| \(\-\-no\-mapping\)\} \[\-\-ec2cert *ec2\_cert\_path*\] \[\-\-kernel *kernel\-id*\] \[\-\-ramdisk *ramdisk\_id*\]** 
 
 ### Options<a name="migrate-manifest-parameters"></a>
 
@@ -654,15 +646,10 @@ Required: No
 
 `--region` *region*  
 The region to use in the request signature for the destination S3 bucket\.  
-
 + If the bucket doesn't exist and you don't specify a region, the tool creates the bucket without a location constraint \(in `us-east-1`\)\.
-
 + If the bucket doesn't exist and you specify a region, the tool creates the bucket in the specified region\.
-
 + If the bucket exists and you don't specify a region, the tool uses the bucket's location\.
-
 + If the bucket exists and you specify `us-east-1` as the region, the tool uses the bucket's actual location without any error message, any existing matching files are over\-written\.
-
 + If the bucket exists and you specify a region \(other than `us-east-1`\) that doesn't match the bucket's actual location, the tool exits with an error\.
 If your bucket is constrained to the `EU` location \(and not `eu-west-1`\), use the `--location` flag instead\. The `--location` flag is the only way to target that specific location restraint\.  
 Default: `us-east-1`  
@@ -670,13 +657,13 @@ Required: Required if using signature version 4
 
 `--sigv` *version*  
 The signature version to use when signing the request\.  
-Valid values: `2` | `4`  
+Valid values: `2` \| `4`  
 Default: `4`  
 Required: No
 
 `--acl` *acl*  
 The access control list policy of the bundled image\.  
-Valid values: `public-read` | `aws-exec-read`  
+Valid values: `public-read` \| `aws-exec-read`  
 Default: `aws-exec-read`  
 Required: No
 

@@ -8,7 +8,7 @@ When you request Spot Instances, we recommend that you use the default maximum p
 
 1. On the navigation pane, choose **Spot Requests**\.
 
-1. If you are new to Spot Instances, you see a welcome page; choose **Get started**, scroll to the bottom of the screen, and then choose **Cancel**\.
+1. If you are new to Spot Instances, you see a welcome page\. Choose **Get started**, scroll to the bottom of the screen, and then choose **Cancel**\.
 
 1. Choose **Pricing History**\. By default, the page displays a graph of the data for Linux `t1.micro` instances in all Availability Zones over the past day\. Move your pointer over the graph to display the prices at specific times in the table below the graph\.  
 ![\[The Spot Instance Pricing History tool in the Amazon EC2 console.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/SpotInstance_spotinstancepricinghistory-gwt.png)
@@ -18,7 +18,5 @@ When you request Spot Instances, we recommend that you use the default maximum p
 **To view the Spot price history using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-
 + [describe\-spot\-price\-history](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-spot-price-history.html) \(AWS CLI\)
-
 + [Get\-EC2SpotPriceHistory](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2SpotPriceHistory.html) \(AWS Tools for Windows PowerShell\)

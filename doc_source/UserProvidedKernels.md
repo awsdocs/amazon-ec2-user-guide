@@ -2,7 +2,7 @@
 
 If you have a need for a custom kernel on your Amazon EC2 instances, you can start with an AMI that is close to what you want, compile the custom kernel on your instance, and modify the `menu.lst` file to point to the new kernel\. This process varies depending on the virtualization type that your AMI uses\. For more information, see [Linux AMI Virtualization Types](virtualization_types.md)\.
 
-
+**Topics**
 + [HVM AMIs \(GRUB\)](#HVM_instances)
 + [Paravirtual AMIs \(PV\-GRUB\)](#Paravirtual_instances)
 
@@ -12,7 +12,7 @@ HVM instance volumes are treated like actual physical disks\. The boot process i
 
 ### Configuring GRUB for HVM AMIs<a name="configuringGRUB-HVM"></a>
 
-The following is an example of a `menu.lst` configuration file for an HVM AMI\. In this example, there are two kernel entries to choose from: Amazon Linux 2017\.09 \(the original kernel for this AMI\) and Vanilla Linux 4\.13\.4 \(a newer version of the Vanilla Linux kernel from [https://www\.kernel\.org/](https://www.kernel.org/)\)\. The Vanilla entry was copied from the original entry for this AMI, and the `kernel` and `initrd` paths were updated to the new locations\. The `default 0` parameter points the bootloader to the first entry that it sees \(in this case, the Vanilla entry\), and the `fallback 1` parameter points the bootloader to the next entry if there is a problem booting the first\.
+The following is an example of a `menu.lst` configuration file for an HVM AMI\. In this example, there are two kernel entries to choose from: Amazon Linux 2018\.03 \(the original kernel for this AMI\) and Vanilla Linux 4\.16\.4 \(a newer version of the Vanilla Linux kernel from [https://www\.kernel\.org/](https://www.kernel.org/)\)\. The Vanilla entry was copied from the original entry for this AMI, and the `kernel` and `initrd` paths were updated to the new locations\. The `default 0` parameter points the bootloader to the first entry that it sees \(in this case, the Vanilla entry\), and the `fallback 1` parameter points the bootloader to the next entry if there is a problem booting the first\.
 
 By default, GRUB does not send its output to the instance console because it creates an extra boot delay\. For more information, see [Instance Console Output](instance-console.md#instance-console-console-output)\. If you are installing a custom kernel, you should consider enabling GRUB output by deleting the `hiddenmenu` line and adding `serial` and `terminal` lines to `/boot/grub/menu.lst` as shown in the example below\.
 
@@ -26,15 +26,15 @@ timeout=5
 serial --unit=0 --speed=9600
 terminal --dumb --timeout=5 serial console
 
-title Vanilla Linux 4.13.4
+title Vanilla Linux 4.16.4
 root (hd0)
-kernel /boot/vmlinuz-4.13.4 root=LABEL=/ console=tty1 console=ttyS0
-initrd /boot/initrd.img-4.13.4
+kernel /boot/vmlinuz-4.16.4 root=LABEL=/ console=tty1 console=ttyS0
+initrd /boot/initrd.img-4.16.4
 
-title Amazon Linux 2017.09 (4.9.51-10.52.amzn1.x86_64)
+title Amazon Linux 2018.03 (4.14.26-46.32.amzn1.x86_64)
 root (hd0,0)
-kernel /boot/vmlinuz-4.9.51-10.52.amzn1.x86_64 root=LABEL=/ console=tty1 console=ttyS0
-initrd /boot/initramfs-4.9.51-10.52.amzn1.x86_64.img
+kernel /boot/vmlinuz-4.14.26-46.32.amzn1.x86_64 root=LABEL=/ console=tty1 console=ttyS0
+initrd /boot/initramfs-4.14.26-46.32.amzn1.x86_64.img
 ```
 
 You don't need to specify a fallback kernel in your `menu.lst` file, but we recommend that you have a fallback when you test a new kernel\. GRUB can fall back to another kernel in the event that the new kernel fails\. Having a fallback kernel allows the instance to boot even if the new kernel isn't found\.
@@ -64,7 +64,7 @@ aws ec2 describe-images --filters Name=image-id,Values=aki-880531cd
 
 Check whether the `Name` field starts with `pv-grub`\.
 
-
+**Topics**
 + [Limitations of PV\-GRUB](#pv-grub-limitations)
 + [Configuring GRUB](#configuringGRUB)
 + [Amazon PV\-GRUB Kernel Image IDs](#AmazonKernelImageIDs)
@@ -73,26 +73,19 @@ Check whether the `Name` field starts with `pv-grub`\.
 ### Limitations of PV\-GRUB<a name="pv-grub-limitations"></a>
 
 PV\-GRUB has the following limitations:
-
 + You can't use the 64\-bit version of PV\-GRUB to start a 32\-bit kernel or vice versa\.
-
 + You can't specify an Amazon ramdisk image \(ARI\) when using a PV\-GRUB AKI\.
-
 + AWS has tested and verified that PV\-GRUB works with these file system formats: EXT2, EXT3, EXT4, JFS, XFS, and ReiserFS\. Other file system formats might not work\.
-
 + PV\-GRUB can boot kernels compressed using the gzip, bzip2, lzo, and xz compression formats\.
-
 + Cluster AMIs don't support or need PV\-GRUB, because they use full hardware virtualization \(HVM\)\. While paravirtual instances use PV\-GRUB to boot, HVM instance volumes are treated like actual disks, and the boot process is similar to the boot process of a bare metal operating system with a partitioned disk and bootloader\. 
-
 + PV\-GRUB versions 1\.03 and earlier don't support GPT partitioning; they support MBR partitioning only\.
-
 + If you plan to use a logical volume manager \(LVM\) with Amazon EBS volumes, you need a separate boot partition outside of the LVM\. Then you can create logical volumes with the LVM\.
 
 ### Configuring GRUB for Paravirtual AMIs<a name="configuringGRUB"></a>
 
 To boot PV\-GRUB, a GRUB `menu.lst` file must exist in the image; the most common location for this file is `/boot/grub/menu.lst`\.
 
-The following is an example of a `menu.lst` configuration file for booting an AMI with a PV\-GRUB AKI\. In this example, there are two kernel entries to choose from: Amazon Linux 2017\.09 \(the original kernel for this AMI\), and Vanilla Linux 4\.13\.4 \(a newer version of the Vanilla Linux kernel from [https://www\.kernel\.org/](https://www.kernel.org/)\)\. The Vanilla entry was copied from the original entry for this AMI, and the `kernel` and `initrd` paths were updated to the new locations\. The `default 0` parameter points the bootloader to the first entry it sees \(in this case, the Vanilla entry\), and the `fallback 1` parameter points the bootloader to the next entry if there is a problem booting the first\.
+The following is an example of a `menu.lst` configuration file for booting an AMI with a PV\-GRUB AKI\. In this example, there are two kernel entries to choose from: Amazon Linux 2018\.03 \(the original kernel for this AMI\), and Vanilla Linux 4\.16\.4 \(a newer version of the Vanilla Linux kernel from [https://www\.kernel\.org/](https://www.kernel.org/)\)\. The Vanilla entry was copied from the original entry for this AMI, and the `kernel` and `initrd` paths were updated to the new locations\. The `default 0` parameter points the bootloader to the first entry it sees \(in this case, the Vanilla entry\), and the `fallback 1` parameter points the bootloader to the next entry if there is a problem booting the first\.
 
 ```
 default 0
@@ -100,37 +93,28 @@ fallback 1
 timeout 0
 hiddenmenu
 
-title Vanilla Linux 4.13.4
+title Vanilla Linux 4.16.4
 root (hd0)
-kernel /boot/vmlinuz-4.13.4 root=LABEL=/ console=hvc0
-initrd /boot/initrd.img-4.13.4
+kernel /boot/vmlinuz-4.16.4 root=LABEL=/ console=hvc0
+initrd /boot/initrd.img-4.16.4
 
-title Amazon Linux 2017.09 (4.9.51-10.52.amzn1.x86_64)
+title Amazon Linux 2018.03 (4.14.26-46.32.amzn1.x86_64)
 root (hd0)
-kernel /boot/vmlinuz-4.9.51-10.52.amzn1.x86_64 root=LABEL=/ console=hvc0
-initrd /boot/initramfs-4.9.51-10.52.amzn1.x86_64.img
+kernel /boot/vmlinuz-4.14.26-46.32.amzn1.x86_64 root=LABEL=/ console=hvc0
+initrd /boot/initramfs-4.14.26-46.32.amzn1.x86_64.img
 ```
 
 You don't need to specify a fallback kernel in your `menu.lst` file, but we recommend that you have a fallback when you test a new kernel\. PV\-GRUB can fall back to another kernel in the event that the new kernel fails\. Having a fallback kernel allows the instance to boot even if the new kernel isn't found\. 
 
 PV\-GRUB checks the following locations for `menu.lst`, using the first one it finds:
-
 +  `(hd0)/boot/grub` 
-
 +  `(hd0,0)/boot/grub` 
-
 +  `(hd0,0)/grub` 
-
 +  `(hd0,1)/boot/grub` 
-
 +  `(hd0,1)/grub` 
-
 +  `(hd0,2)/boot/grub` 
-
 +  `(hd0,2)/grub` 
-
 +  `(hd0,3)/boot/grub` 
-
 +  `(hd0,3)/grub` 
 
 Note that PV\-GRUB 1\.03 and earlier only check one of the first two locations in this list\.

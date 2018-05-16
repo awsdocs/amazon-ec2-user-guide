@@ -2,9 +2,7 @@
 
 Using Amazon CloudWatch alarm actions, you can create alarms that automatically stop, terminate, reboot, or recover your instances\. You can use the stop or terminate actions to help you save money when you no longer need an instance to be running\. You can use the reboot and recover actions to automatically reboot those instances or recover them onto new hardware if a system impairment occurs\.
 
-Every alarm action you create uses alarm action ARNs\. One set of ARNs is more secure because it requires you to have the EC2ActionsAccess IAM role in your account\. This IAM role enables you to perform stop, terminate, or reboot actions—previously you could not execute an action if you were using an IAM role\. Existing alarms that use the previous alarm action ARNs do not require this IAM role; however, it is recommended that you change the ARN and add the role when you edit an existing alarm that uses these ARNs\.
-
-The `EC2ActionsAccess` role enables AWS to perform alarm actions on your behalf\. When you create an alarm action for the first time using the Amazon EC2 or Amazon CloudWatch consoles, AWS automatically creates this role for you\.
+The `AWSServiceRoleForCloudWatchEvents` service\-linked role enables AWS to perform alarm actions on your behalf\. The first time you create an alarm in the AWS Management Console, the IAM CLI, or the IAM API, CloudWatch creates the service\-linked role for you\.
 
 There are a number of scenarios in which you might want to automatically stop or terminate your instance\. For example, you might have instances dedicated to batch payroll processing jobs or scientific computing tasks that run for a period of time and then complete their work\. Rather than letting those instances sit idle \(and accrue charges\), you can stop or terminate them, which can help you to save money\. The main difference between using the stop and the terminate alarm actions is that you can easily restart a stopped instance if you need to run it again later, and you can keep the same instance ID and root volume\. However, you cannot restart a terminated instance\. Instead, you must launch a new instance\.
 
@@ -15,20 +13,14 @@ You can create alarms using the Amazon EC2 console or the CloudWatch console\. T
 
 **Permissions**  
 If you are an AWS Identity and Access Management \(IAM\) user, you must have the following permissions to create or modify an alarm:
-
 + `ec2:DescribeInstanceStatus` and `ec2:DescribeInstances` – For all alarms on Amazon EC2 instance status metrics
-
 + `ec2:StopInstances` – For alarms with stop actions
-
 + `ec2:TerminateInstances` – For alarms with terminate actions
-
-+ `ec2:DescribeInstanceRecoveryAttribute`, and `ec2:RecoverInstances` – For alarms with recover actions
++ No specific permissions are needed for alarms with recover actions
 
 If you have read/write permissions for Amazon CloudWatch but not for Amazon EC2, you can still create an alarm but the stop or terminate actions won't be performed on the Amazon EC2 instance\. However, if you are later granted permission to use the associated Amazon EC2 APIs, the alarm actions you created earlier are performed\. For more information about IAM permissions, see [Permissions and Policies](http://docs.aws.amazon.com/IAM/latest/UserGuide/PermissionsAndPolicies.html) in the *IAM User Guide*\.
 
-If you want to use an IAM role to stop, terminate, or reboot an instance using an alarm action, you can only use the EC2ActionsAccess role\. Other IAM roles are not supported\. If you are using another IAM role, you cannot stop, terminate, or reboot the instance\. However, you can still see the alarm state and perform any other actions such as Amazon SNS notifications or Amazon EC2 Auto Scaling policies\.
-
-
+**Topics**
 + [Adding Stop Actions to Amazon CloudWatch Alarms](#AddingStopActions)
 + [Adding Terminate Actions to Amazon CloudWatch Alarms](#AddingTerminateActions)
 + [Adding Reboot Actions to Amazon CloudWatch Alarms](#AddingRebootActions)
@@ -57,8 +49,6 @@ Instances that use an Amazon EBS volume as the root device can be stopped or ter
       To create a new topic, for **Send a notification to**, type a name for the topic, and then for **With these recipients**, type the email addresses of the recipients \(separated by commas\)\. After you create the alarm, you will receive a subscription confirmation email that you must accept before you can get notifications for this topic\.
 
    1. Choose **Take the action**, **Stop this instance**\.
-
-   1. If prompted, choose **Create IAM role: EC2ActionsAccess** to automatically create an IAM role so that AWS can automatically stop the instance on your behalf when the alarm is triggered\.
 
    1. For **Whenever**, choose the statistic you want to use and then choose the metric\. In this example, choose **Average** and **CPU Utilization**\.
 
@@ -93,8 +83,6 @@ You can create an alarm that terminates an EC2 instance automatically when a cer
       To create a new topic, for **Send a notification to**, type a name for the topic, and then for **With these recipients**, type the email addresses of the recipients \(separated by commas\)\. After you create the alarm, you will receive a subscription confirmation email that you must accept before you can get notifications for this topic\.
 
    1. Choose **Take the action**, **Terminate this instance**\.
-
-   1. If prompted, choose **Create IAM role: EC2ActionsAccess** to automatically create an IAM role so that AWS can automatically stop the instance on your behalf when the alarm is triggered\.
 
    1. For **Whenever**, choose a statistic and then choose the metric\. In this example, choose **Average** and **CPU Utilization**\.
 
@@ -135,8 +123,6 @@ To avoid a race condition between the reboot and recover actions, avoid setting 
 
    1. Select **Take the action**, **Reboot this instance**\.
 
-   1. If prompted, select **Create IAM role: EC2ActionsAccess** to automatically create an IAM role so that AWS can automatically stop the instance on your behalf when the alarm is triggered\.
-
    1. For **Whenever**, choose **Status Check Failed \(Instance\)**\.
 
    1. For **For at least**, specify the evaluation period for the alarm\. In this example, type **3** consecutive period\(s\) of **1 Minute**\.
@@ -156,23 +142,15 @@ When the `StatusCheckFailed_System` alarm is triggered, and the recover action i
 The recover action can be used only with `StatusCheckFailed_System`, not with `StatusCheckFailed_Instance`\.
 
 The following problems can cause system status checks to fail:
-
 + Loss of network connectivity
-
 + Loss of system power
-
 + Software issues on the physical host
-
 + Hardware issues on the physical host that impact network reachability
 
 The recover action is supported only on instances with the following characteristics:
-
 + Use a C3, C4, C5, M3, M4, M5, R3, R4, T2, or X1 instance type
-
 + Run in a VPC \(not EC2\-Classic\)
-
 + Use shared tenancy \(the tenancy attribute is set to `default`\)
-
 + Use EBS volumes only \(do not configure instance store volumes\)\. For more information, see ['Recover this instance' is disabled](https://aws.amazon.com/premiumsupport/knowledge-center/recover-this-instance-cloudwatch-enable/)\.
 
 If your instance has a public IP address, it retains the public IP address after recovery\.
@@ -195,8 +173,6 @@ To avoid a race condition between the reboot and recover actions, avoid setting 
       To create a new topic, for **Send a notification to**, type a name for the topic, and for **With these recipients**, type the email addresses of the recipients \(separated by commas\)\. After you create the alarm, you will receive a subscription confirmation email that you must accept before you can get email for this topic\.
 
    1. Select **Take the action**, **Recover this instance**\.
-
-   1. If prompted, select **Create IAM role: EC2ActionsAccess** to automatically create an IAM role so that AWS can automatically stop the instance on your behalf when the alarm is triggered\.
 
    1. For **Whenever**, choose **Status Check Failed \(System\)**\.
 
@@ -237,13 +213,13 @@ Create an alarm that stops an instance used for software development or testing 
 
 | Setting | Value | 
 | --- | --- | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/1.png)  |  Stop  | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/2.png)  |  Maximum  | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/3.png)  |  CPUUtilization  | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/4.png)  |  <=  | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/5.png)  |  10%  | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/6.png)  |  60 minutes  | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/7.png)  |  1  | 
+|  1  |  Stop  | 
+|  2  |  Maximum  | 
+|  3  |  CPUUtilization  | 
+|  4  |  <=  | 
+|  5  |  10%  | 
+|  6  |  60 minutes  | 
+|  7  |  1  | 
 
 ### Scenario 2: Stop Idle Instances<a name="StopLowUtilizationInstance"></a>
 
@@ -252,13 +228,13 @@ Create an alarm that stops an instance and sends an email when the instance has 
 
 | Setting | Value | 
 | --- | --- | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/1.png)  |  Stop and email  | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/2.png)  |  Average  | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/3.png)  |  CPUUtilization  | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/4.png)  |  <=  | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/5.png)  |  5%  | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/6.png)  |  60 minutes  | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/7.png)  |  24  | 
+|  1  |  Stop and email  | 
+|  2  |  Average  | 
+|  3  |  CPUUtilization  | 
+|  4  |  <=  | 
+|  5  |  5%  | 
+|  6  |  60 minutes  | 
+|  7  |  24  | 
 
 ### Scenario 3: Send Email About Web Servers with Unusually High Traffic<a name="StopHighWebTraffic"></a>
 
@@ -267,13 +243,13 @@ Create an alarm that sends email when an instance exceeds 10 GB of outbound netw
 
 | Setting | Value | 
 | --- | --- | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/1.png)  |  Email  | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/2.png)  |  Sum  | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/3.png)  |  NetworkOut  | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/4.png)  |  >  | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/5.png)  |  10 GB  | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/6.png)  |  1 day  | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/7.png)  |  1  | 
+|  1  |  Email  | 
+|  2  |  Sum  | 
+|  3  |  NetworkOut  | 
+|  4  |  >  | 
+|  5  |  10 GB  | 
+|  6  |  1 day  | 
+|  7  |  1  | 
 
 ### Scenario 4: Stop Web Servers with Unusually High Traffic<a name="StopHighWebTraffic2"></a>
 
@@ -282,13 +258,13 @@ Create an alarm that stops an instance and send a text message \(SMS\) if outbou
 
 | Setting | Value | 
 | --- | --- | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/1.png)  |  Stop and send SMS  | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/2.png)  |  Sum  | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/3.png)  |  NetworkOut  | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/4.png)  |  >  | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/5.png)  |  1 GB  | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/6.png)  |  1 hour  | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/7.png)  |  1  | 
+|  1  |  Stop and send SMS  | 
+|  2  |  Sum  | 
+|  3  |  NetworkOut  | 
+|  4  |  >  | 
+|  5  |  1 GB  | 
+|  6  |  1 hour  | 
+|  7  |  1  | 
 
 ### Scenario 5: Stop an Instance Experiencing a Memory Leak<a name="StopMemoryLeak"></a>
 
@@ -300,13 +276,13 @@ The MemoryUtilization metric is a custom metric\. In order to use the MemoryUtil
 
 | Setting | Value | 
 | --- | --- | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/1.png)  |  Stop  | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/2.png)  |  Maximum  | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/3.png)  |  MemoryUtilization  | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/4.png)  |  >=  | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/5.png)  |  90%  | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/6.png)  |  1 minute  | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/7.png)  |  1  | 
+|  1  |  Stop  | 
+|  2  |  Maximum  | 
+|  3  |  MemoryUtilization  | 
+|  4  |  >=  | 
+|  5  |  90%  | 
+|  6  |  1 minute  | 
+|  7  |  1  | 
 
 ### Scenario 6: Stop an Impaired Instance<a name="StopImpairedInstance"></a>
 
@@ -315,13 +291,13 @@ Create an alarm that stops an instance that fails three consecutive status check
 
 | Setting | Value | 
 | --- | --- | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/1.png)  |  Stop  | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/2.png)  |  Average  | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/3.png)  |  StatusCheckFailed\_System  | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/4.png)  |  >=  | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/5.png)  |  1  | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/6.png)  |  15 minutes  | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/7.png)  |  1  | 
+|  1  |  Stop  | 
+|  2  |  Average  | 
+|  3  |  StatusCheckFailed\_System  | 
+|  4  |  >=  | 
+|  5  |  1  | 
+|  6  |  15 minutes  | 
+|  7  |  1  | 
 
 ### Scenario 7: Terminate Instances When Batch Processing Jobs Are Complete<a name="TerminateBatchProcesses"></a>
 
@@ -330,10 +306,10 @@ Create an alarm that terminates an instance that runs batch jobs when it is no l
 
 | Setting | Value | 
 | --- | --- | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/1.png)  |  Terminate  | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/2.png)  |  Maximum  | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/3.png)  |  NetworkOut  | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/4.png)  |  <=  | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/5.png)  |  100,000 bytes  | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/6.png)  |  5 minutes  | 
-|  ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/docs-common/images/callouts/7.png)  |  1  | 
+|  1  |  Terminate  | 
+|  2  |  Maximum  | 
+|  3  |  NetworkOut  | 
+|  4  |  <=  | 
+|  5  |  100,000 bytes  | 
+|  6  |  5 minutes  | 
+|  7  |  1  | 
