@@ -103,11 +103,11 @@ drwxr-xr-x 3 root root 4096 Aug  7 00:02 icons
 drwxr-xr-x 2 root root 4096 Aug  7 21:17 noindex
 ```
 
-To allow the ec2\-user account to manipulate files in this directory, you must modify the ownership and permissions of the directory\. There are many ways to accomplish this task\. In this tutorial, you add the ec2\-user user to the `apache` group, to give the `apache` group ownership of the `/var/www` directory and assign write permissions to the group\.<a name="SettingFilePermissions"></a>
+To allow the `ec2-user` account to manipulate files in this directory, you must modify the ownership and permissions of the directory\. There are many ways to accomplish this task\. In this tutorial, you add `ec2-user` to the `apache` group, to give the `apache` group ownership of the `/var/www` directory and assign write permissions to the group\.<a name="SettingFilePermissions"></a>
 
 **To set file permissions**
 
-1. Add your user \(in this case, ec2\-user\) to the `apache` group\.
+1. Add your user \(in this case, `ec2-user`\) to the `apache` group\.
 
    ```
    [ec2-user ~]$ sudo usermod -a -G apache ec2-user
@@ -147,7 +147,7 @@ To allow the ec2\-user account to manipulate files in this directory, you must m
    [ec2-user ~]$ find /var/www -type f -exec sudo chmod 0664 {} \;
    ```
 
-Now, the ec2\-user user \(and any future members of the `apache` group\) can add, delete, and edit files in the Apache document root\. Now you are ready to add content, such as a static website or a PHP application\.
+Now, `ec2-user` \(and any future members of the `apache` group\) can add, delete, and edit files in the Apache document root, enabling you to add content, such as a static website or a PHP application\.
 
 **\(Optional\) Secure your web server**  
 A web server running the HTTP protocol provides no transport security for the data that it sends or receives\. When you connect to an HTTP server using a web browser, the URLs that you visit, the content of webpages that you receive, and the contents \(including passwords\) of any HTML forms that you submit are all visible to eavesdroppers anywhere along the network pathway\. The best practice for securing your web server is to install support for HTTPS \(HTTP Secure\), which protects your data with SSL/TLS encryption\.
@@ -156,7 +156,7 @@ For information about enabling HTTPS on your server, see [Tutorial: Configure Ap
 
 **To test your LAMP web server**
 
-If your server is installed and running, and your file permissions are set correctly, your ec2\-user account should be able to create a PHP file in the `/var/www/html` directory that is available from the internet\.
+If your server is installed and running, and your file permissions are set correctly, your `ec2-user` account should be able to create a PHP file in the `/var/www/html` directory that is available from the internet\.
 
 1. Create a PHP file in the Apache document root\.
 
