@@ -37,7 +37,7 @@ The following table summarizes the important differences when using the two type
 |  Boot time for an instance  |  Usually less than 1 minute  |  Usually less than 5 minutes  | 
 |  Size limit for a root device  |  16 TiB  |  10 GiB  | 
 |  Root device volume  |  Amazon EBS volume  |  Instance store volume  | 
-|  Data persistence  |  By default, the root volume is deleted when the instance terminates\.\* Data on any other Amazon EBS volumes persists after instance termination by default\. Data on any instance store volumes persists only during the life of the instance\.  |  Data on any instance store volumes persists only during the life of the instance\. Data on any Amazon EBS volumes persists after instance termination by default\.  | 
+|  Data persistence  |  By default, the root volume is deleted when the instance terminates\.\* Data on any other Amazon EBS volumes persists after instance termination by default\.  |  Data on any instance store volumes persists only during the life of the instance\.  | 
 |  Modifications  |  The instance type, kernel, RAM disk, and user data can be changed while the instance is stopped\.  |  Instance attributes are fixed for the life of an instance\.  | 
 |  Charges  |  You're charged for instance usage, Amazon EBS volume usage, and storing your AMI as an Amazon EBS snapshot\.  |  You're charged for instance usage and storing your AMI in Amazon S3\.  | 
 |  AMI creation/bundling  |  Uses a single command/call  |  Requires installation and use of AMI tools  | 
