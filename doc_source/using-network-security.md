@@ -76,6 +76,8 @@ For each rule, you specify the following:
   + \(VPC only\) A range of IPv6 addresses, in CIDR block notation, for example, `2001:db8:1234:1a00::/64`\.
 
   + Another security group\. This allows instances associated with the specified security group to access instances associated with this security group\. This does not add rules from the source security group to this security group\. You can specify one of the following security groups:
+  
+  + \(VPC only\) Prefix list ID of the VPC Endpoint, for example, `pl-1234abcd`\.
 
     + The current security group\.
 
