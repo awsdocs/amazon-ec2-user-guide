@@ -17,19 +17,19 @@ In this tutorial, we use Amazon EC2 Auto Scaling with Elastic Load Balancing to 
 
 This tutorial assumes that you have already done the following:
 
-1. If you don't have a default virtual private cloud \(VPC\), create a VPC with one public subnet in two or more Availability Zones\. For more information, see [Create a Virtual Private Cloud \(VPC\)](get-set-up-for-amazon-ec2.md#create-a-vpc)\.
+1. Created a virtual private cloud (VPC) with one public subnet in two or more Availability Zones\. If you haven't done so, see [Create a Virtual Private Cloud \(VPC\)](get-set-up-for-amazon-ec2.md#create-a-vpc)\.
 
-1. Launch an instance in the VPC\.
+1. Launched an instance in the VPC\.
 
-1. Connect to the instance and customize it\. For example, you can install software and applications, copy data, and attach additional EBS volumes\. For information about setting up a web server on your instance, see [Tutorial: Install a LAMP Web Server with the Amazon Linux AMI](install-LAMP.md)\.
+1. Connected to the instance and customized it\. For example, installing software and applications, copying data, and attaching additional EBS volumes\. For information about setting up a web server on your instance, see [Tutorial: Install a LAMP Web Server with the Amazon Linux AMI](install-LAMP.md)\.
 
-1. Test your application on your instance to ensure that your instance is configured correctly\.
+1. Tested your application on your instance to ensure that your instance is configured correctly\.
 
-1. Create a custom Amazon Machine Image \(AMI\) from your instance\. For more information, see [Creating an Amazon EBS\-Backed Linux AMI](creating-an-ami-ebs.md) or [Creating an Instance Store\-Backed Linux AMI](creating-an-ami-instance-store.md)\.
+1. Created a custom Amazon Machine Image \(AMI\) from your instance\. For more information, see [Creating an Amazon EBS\-Backed Linux AMI](creating-an-ami-ebs.md) or [Creating an Instance Store\-Backed Linux AMI](creating-an-ami-instance-store.md)\.
 
-1. \(Optional\) Terminate the instance if you no longer need it\.
+1. \(Optional\) Terminated the instance if you no longer need it\.
 
-1. Create an IAM role that grants your application the access to AWS that it needs\. For more information, see [To create an IAM role using the IAM console](iam-roles-for-amazon-ec2.md#create-iam-role-console)\.
+1. Created an IAM role that grants your application the access to AWS it needs\. For more information, see [To create an IAM role using the IAM console](iam-roles-for-amazon-ec2.md#create-iam-role-console)\.
 
 ## Scale and Load Balance Your Application<a name="scale-and-load-balance"></a>
 
