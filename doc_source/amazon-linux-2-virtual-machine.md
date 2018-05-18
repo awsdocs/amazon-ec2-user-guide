@@ -2,21 +2,79 @@
 
 Use the Amazon Linux 2 virtual machine images for on\-premises development and testing\. These images are available for use on the following virtualization platforms:
 + VMWare
-+ Oracle VM VirtualBox
++ VirtualBox (Oracle VM)
 + Microsoft Hyper\-V
 + KVM
 
-**To run Amazon Linux on a virtual machine**
+## Before you begin ##
 
-1. Download the VM image for your virtualization platform from [https://cdn\.amazonlinux\.com/os\-images/latest/](https://cdn.amazonlinux.com/os-images/latest/)\.
+For security reasons, the Amazon Linux 2 distribution requires a `seed.iso` disc for the first boot. This disc includes all the initial configuration information needed to boot your new virtual machine, such as the network configuration, host name, and the information required to create the users. The `seed.iso` also includes the passwords for your users.
 
-1. Create a cloud\-init configuration ISO\.
+**Important:** The 'seed.iso' disc is not the Amazon Linux 2 system image\. The Amazon Linux 2 image is available as a virtual hard drive for each supported virtualization platform.
 
-   1. Create `meta-data` and `user-data` configuration files\. The following is an example `meta-data` configuration file:
+## Create the seed.iso ##
+
+To create a `seed.iso` follow this steps:
+
+1. Create a new folder named `seedconfig` to contain the files that are necessary for this operation\.
+1. Inside the `seedconfig` folder, create the following files: `meta-data` and `user-data`\.
+1. Add the following to the `meta-data` file to specify the virtual machine's host name\.
 
       ```
       local-hostname: amazonlinux.onprem
-      
+      ```
+
+1. Add the following to the `user-data` file to specify a password for the default `ec2-user` user account\. Be sure to replace the `PLAIN_TEXT_PASSWORD` placeholder with a password of your choice\.
+
+      ```
+      #cloud-config
+      users:
+      # A user by the name ec2-user is created in the image by default.
+        - default
+
+      chpasswd:
+        list: |
+          ec2-user:PLAIN_TEXT_PASSWORD
+      # In the above line, do not add any spaces after 'ec2-user:'.
+      ```
+
+1. Create the `seed.iso` disc using the `meta-data` and `user-data` configuration files.
+
+      For Linux, use a tool such as **genisoimage**. Navigate into the `seedconfig` folder and execute the following command:
+
+      ```
+      $ genisoimage -output seed.iso -volid cidata -joliet -rock user-data meta-data
+      ```
+
+      For macOS, use a tool such as **hdiutil**\. Navigate one level up from the `seedconfig` folder and execute the following command:
+
+      ```
+      $ hdiutil makehybrid -o seed.iso -hfs -joliet -iso -default-volume-name cidata seedconfig/
+      ```
+
+    **Note:** After creating the `seed.iso` disc, you need to mount it in your virtual CD drive\.
+
+## Get the virtual HD ##
+
+In your web browser, navigate to [https://cdn\.amazonlinux\.com/os\-images/latest/](https://cdn.amazonlinux.com/os-images/latest/) to find all the virtual hard drives for the virtualization platforms that we support\. Download the correct virtual hard drive for your virtualization platform\.
+
+**IMPORTANT:** The `README.cloud-init` and `Seed.iso` files are examples, and should not be used to boot your system for the first time\.
+
+## Set up your VM ##
+
+Now that you have created the `seed.iso` file and downloaded the virtual HD, you can create a new runtime in your VM\. When creating a new system, use the virtual HD that you downloaded, and before booting the new system, make sure that you have mounted the `seed.iso` in your virtual CD drive\. 
+
+When the new virtual machine boots for the first time, the Amazon Linux 2 distribution will use the `seed.iso` disc mounted in your virtual CD drive to set up to virtual machine. After this is done, you can log in using the user data that you specified in the `user-data` configuration file. After you have logged in, stop the system and remove the `seed.iso` disc from the virtual CD drive.
+
+## Examples ##
+
+The following example `meta-data` and `user-data` files show the other options you can set in the seed configuration files\.
+
++ `meta-data` file:
+
+      ```
+      local-hostname: amazonlinux.onprem
+
       # eth0 is the default network interface enabled in the image. You can configure static network settings with an entry like below.
       #network-interfaces: |
       #  iface eth0 inet static
@@ -27,7 +85,7 @@ Use the Amazon Linux 2 virtual machine images for on\-premises development and t
       #  gateway 192.168.1.254
       ```
 
-      The following is an example `user-data` configuration file, which creates multiple users and provides access mechanisms for each \(plaintext password, hashed password, and a key pair\)\.
++ `user-data` file:
 
       ```
       #cloud-config
@@ -52,29 +110,9 @@ Use the Amazon Linux 2 virtual machine images for on\-premises development and t
           ssh-authorized-keys:
                   - ssh-public-key-information
           lock_passwd: true
-      
+
       chpasswd:
         list: |
           ec2-user:plain-text-password
       # In the above line, do not add any spaces after 'ec2-user:'.
       ```
-
-      For more information about supported directives, see [http://cloudinit\.readthedocs\.io/en/latest/topics/modules\.html](http://cloudinit.readthedocs.io/en/latest/topics/modules.html)\.
-
-   1. Create an ISO image\.
-
-      For Linux, use a tool such as genisoimage to create an ISO image from the `user-data` and `meta-data` configuration files\. The following example creates `seed.iso`:
-
-      ```
-      $ genisoimage -output seed.iso -volid cidata -joliet -rock user-data meta-data
-      ```
-
-      For macOS, you can use the hdiutil tool\. Copy the `user-data` and `meta-data` configuration files to a folder, and then specify the folder name in the command\. The following example creates `seed.iso` from the files in the `seedconfig/` directory:
-
-      ```
-      $ hdiutil makehybrid -o seed.iso -hfs -joliet -iso -default-volume-name cidata seedconfig/
-      ```
-
-1. Create a virtual machine using the VM image that you downloaded, and attach the configuration ISO that you created\. Connect to your virtual machine using the information that you provided in the `user-data` configuration file\. For more information, see the documentation for your virtualization platform\.
-**Important**  
-The ISO must be attached to the virtual machine on first boot so that the configuration can be applied\.
