@@ -15,9 +15,7 @@ You can view the requester\-managed network interfaces that are in your account\
 1. In the navigation pane, choose **Network Interfaces**\.
 
 1. Select the network interface and view the following information on the details pane:
-
    + **Attachment owner**: If you created the network interface, this field displays your AWS account ID\. Otherwise, it displays an alias or ID for the principal or service that created the network interface\.
-
    + **Description**: Provides information about the purpose of the network interface; for example, "VPC Endpoint Interface"\.
 
 **To view requester\-managed network interfaces using the command line**

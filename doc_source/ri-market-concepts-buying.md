@@ -11,7 +11,7 @@ Before you confirm your purchase, review the details of the Reserved Instance th
 **Note**  
 To purchase and modify Reserved Instances, ensure that your IAM user account has the appropriate permissions, such as the ability to describe Availability Zones\. For information, see [Example Policies for Working With the AWS CLI or an AWS SDK](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ExamplePolicies_EC2.html#iam-example-reservedinstances) and [Example Policies for Working in the Amazon EC2 Console](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-policies-ec2-console.html#ex-reservedinstances)\.
 
-
+**Topics**
 + [Choosing a Platform](#ri-choosing-platform)
 + [Buying Standard Reserved Instances](#ri-buying-standard)
 + [Buying Convertible Reserved Instances](#ri-buying-convertible)
@@ -149,11 +149,8 @@ If the status goes to `retired`, AWS may not have received your payment\.
    ```
 
 Alternatively, use the following AWS Tools for Windows PowerShell commands:
-
 + [Get\-EC2ReservedInstancesOffering](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ReservedInstancesOffering.html)
-
 + [New\-EC2ReservedInstance](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2ReservedInstance.html)
-
 + [Get\-EC2ReservedInstance](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ReservedInstance.html)
 
 If you already have a running instance that matches the specifications of the Reserved Instance, the billing benefit is immediately applied\. You do not have to restart your instances\. If you do not have a suitable running instance, launch an instance and ensure that you match the same criteria that you specified for your Reserved Instance\. For more information, see [Using Your Reserved Instances](#reserved-instances-process)\. 
@@ -277,11 +274,8 @@ If the status goes to `retired`, AWS may not have received your payment\.
    ```
 
 Alternatively, use the following AWS Tools for Windows PowerShell commands:
-
 + [Get\-EC2ReservedInstancesOffering](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ReservedInstancesOffering.html)
-
 + [New\-EC2ReservedInstance](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2ReservedInstance.html)
-
 + [Get\-EC2ReservedInstance](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ReservedInstance.html)
 
 If you already have a running instance that matches the specifications of the Reserved Instance, the billing benefit is immediately applied\. You do not have to restart your instances\. If you do not have a suitable running instance, launch an instance and ensure that you match the same criteria that you specified for your Reserved Instance\. For more information, see [Using Your Reserved Instances](#reserved-instances-process)\. 
@@ -303,9 +297,7 @@ You can view the Reserved Instances you've purchased using the Amazon EC2 consol
 1. If you are a seller in the Reserved Instance Marketplace the **My Listings** tab displays the status of a reservation that's listed in the [Reserved Instance Marketplace](ri-market-general.md)\. For more information, see [Reserved Instance Listing States](ri-market-general.md#ri-listing-states)\.
 
 **To view your Reserved Instances using the command line**
-
 + [describe\-reserved\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances.html) \(AWS CLI\)
-
 + [Get\-EC2ReservedInstance](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ReservedInstance.html) \(Tools for Windows PowerShell\)
 
 ## Using Your Reserved Instances<a name="reserved-instances-process"></a>
@@ -313,13 +305,9 @@ You can view the Reserved Instances you've purchased using the Amazon EC2 consol
 Reserved Instances are automatically applied to running On\-Demand Instances provided that the specifications match\. If you have no running On\-Demand Instances that match the specifications of your Reserved Instance, the Reserved Instance is unused until you launch an instance with the required specifications\. 
 
 If you're launching an instance to take advantage of the billing benefit of a Reserved Instance, ensure that you specify the following information during launch:
-
 + Platform: You must choose an Amazon Machine Image \(AMI\) that matches the platform \(product description\) of your Reserved Instance\. For example, if you specified `Linux/UNIX`, you can launch an instance from an Amazon Linux AMI or an Ubuntu AMI\.
-
 + Instance type: Specify the same instance type as your Reserved Instance; for example, `t2.large`\.
-
 + Availability Zone: If you purchased a Reserved Instance for a specific Availability Zone, you must launch the instance into the same Availability Zone\. If you purchased a regional Reserved Instance, you can launch your instance into any Availability Zone\.
-
 + Tenancy: The tenancy of your instance must match the tenancy of the Reserved Instance; for example, `dedicated` or `shared`\. For more information, see [Dedicated Instances](dedicated-instance.md)\.
 
 For more information, see [Launching an Instance Using the Launch Instance Wizard](launching-instance.md)\. For examples of how Reserved Instances are applied to your running instances, see [How Reserved Instances Are Applied](apply_ri.md)\.

@@ -7,7 +7,7 @@ When Reserved Instances expire, you are charged On\-Demand rates for EC2 instanc
 **Note**  
 The AWS Free Tier is available for new AWS accounts\. If you are using the AWS Free Tier to run Amazon EC2 instances, and you purchase a Reserved Instance, you are charged under standard pricing guidelines\. For information, see [AWS Free Tier](https://aws.amazon.com//free)\.
 
-
+**Topics**
 + [Usage Billing](#hourly-billing)
 + [Viewing Your Bill](#ri-market-buyer-billing)
 + [Reserved Instances and Consolidated Billing](#concepts-reserved-instances-billing)
@@ -42,9 +42,7 @@ If you close your AWS account, On\-Demand billing for your resources stops\. How
 ## Viewing Your Bill<a name="ri-market-buyer-billing"></a>
 
 You can find out about the charges and fees to your account by viewing the [AWS Billing and Cost Management](https://console.aws.amazon.com//billing) console\.
-
 + The **Dashboard** displays a spend summary for your account\.
-
 + On the **Bills** page, under **Details** expand the **Elastic Compute Cloud** section and the region to get billing information about your Reserved Instances\.
 
 You can view the charges online, or you can download a CSV file\.
@@ -62,16 +60,12 @@ If you close the payer account, any member accounts that benefit from Reserved I
 If your account qualifies for a discount pricing tier, it automatically receives discounts on upfront and instance usage fees for Reserved Instance purchases that you make within that tier level from that point on\. To qualify for a discount, the list value of your Reserved Instances in the region must be $500,000 USD or more\.
 
 The following rules apply:
-
 + Pricing tiers and related discounts apply only to purchases of Amazon EC2 Standard Reserved Instances\.
-
 + Pricing tiers do not apply to Reserved Instances for Windows with SQL Server Standard or Windows with SQL Server Web\.
-
 + Pricing tier discounts only apply to purchases made from AWS\. They do not apply to purchases of third\-party Reserved Instances\. 
-
 + Discount pricing tiers are currently not applicable to Convertible Reserved Instance purchases\. 
 
-
+**Topics**
 + [Calculating Reserved Instance Pricing Discounts](#pricing-discounts)
 + [Buying with a Discount Tier](#buying-discount-tier)
 + [Crossing Pricing Tiers](#crossing-pricing-tiers)
@@ -100,11 +94,8 @@ For example, for a 1\-year Partial Upfront `t2.small` Reserved Instance, assume 
 1. Display the **Upfront Price** column by choosing **Show/Hide Columns** \(the gear\-shaped icon\) in the top right corner\.
 
 **To view the fixed price values for Reserved Instances using the command line**
-
 + [describe\-reserved\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances.html) \(AWS CLI\)
-
 +  [Get\-EC2ReservedInstance](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ReservedInstance.html) \(AWS Tools for Windows PowerShell\)
-
 + [DescribeReservedInstances](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeReservedInstances.html) \(Amazon EC2 API\)
 
 ### Buying with a Discount Tier<a name="buying-discount-tier"></a>
@@ -116,13 +107,9 @@ After the list value of your active Reserved Instances in a region crosses into 
 If your list value falls below the price point for that discount pricing tier—for example, if some of your Reserved Instances expire—future purchases of Reserved Instances in the region are not discounted\. However, you continue to get the discount applied against any Reserved Instances that were originally purchased within the discount pricing tier\.
 
 When you buy Reserved Instances, one of four possible scenarios occurs:
-
 + **No discount**—Your purchase within a region is still below the discount threshold\.
-
 + **Partial discount**—Your purchase within a region crosses the threshold of the first discount tier\. No discount is applied to one or more reservations and the discounted rate is applied to the remaining reservations\.
-
 + **Full discount**—Your entire purchase within a region falls within one discount tier and is discounted appropriately\.
-
 + **Two discount rates**—Your purchase within a region crosses from a lower discount tier to a higher discount tier\. You are charged two different rates: one or more reservations at the lower discounted rate, and the remaining reservations at the higher discounted rate\.
 
 ### Crossing Pricing Tiers<a name="crossing-pricing-tiers"></a>

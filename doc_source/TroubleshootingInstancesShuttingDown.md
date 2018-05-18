@@ -12,7 +12,7 @@ If it appears that your instance is stuck terminating and it has been longer tha
 
 ## Terminated Instance Still Displayed<a name="terminated-instance-still-displaying"></a>
 
-After you terminate an instance, it remains visible for a short while before being deleted\. The status shows as `terminated`\. If the entry is not deleted after several hours, contact Support\.
+After you terminate an instance, it remains visible for a short while before being deleted\. The state shows as `terminated`\. If the entry is not deleted after several hours, contact Support\.
 
 ## Automatically Launch or Terminate Instances<a name="automatic-instance-create-or-delete"></a>
 

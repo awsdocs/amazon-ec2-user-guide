@@ -19,7 +19,6 @@ Linux boot volumes may be either MBR or GPT, and Linux GPT boot volumes are not 
 ## Partitioning Schemes<a name="partitioning"></a>
 
 Among other impacts, the partitioning scheme determines how many logical data blocks can be uniquely addressed in a single volume\. For more information, see [Data Block Sizes](#block_size)\. Two partitioning schemes are in common use on Linux and Windows systems: master boot record \(MBR\) and GUID partition table \(GPT\)\. The important differences between the two can be summarized as follows:
-
 + **MBR**
 
   MBR uses a 32\-bit data structure to store block addresses\. This means that each data block is mapped with one of 232possible integers\. The maximum addressable size of a volume is given by: 
@@ -31,7 +30,6 @@ Among other impacts, the partitioning scheme determines how many logical data bl
    \(232 \- 1\) × 512 bytes = 2 TiB \- 512 bytes
 
   Engineering workarounds to increase this 2\-TiB limit for MBR volumes have not met with widespread industry adoption\. Consequently, Linux and Windows never detect an MBR volume as being larger than 2 TiB even if AWS shows its size to be larger\. 
-
 + **GPT**
 
   GPT uses a 64\-bit data structure to store block addresses\. This means that each data block is mapped with one of 264 possible integers\. The maximum addressable size of a volume is given by:

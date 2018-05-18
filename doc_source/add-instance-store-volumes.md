@@ -10,7 +10,7 @@ You can specify the instance store volumes for your instance only when you launc
 
 The number and size of available instance store volumes for your instance varies by instance type\. Some instance types do not support instance store volumes\. For more information about the instance store volumes support by each instance type, see [Instance Store Volumes](InstanceStorage.md#instance-store-volumes)\. If the instance type you choose for your instance supports instance store volumes, you must add them to the block device mapping for the instance when you launch it\. After you launch the instance, you must ensure that the instance store volumes for your instance are formatted and mounted before you can use them\. The root volume of an instance store\-backed instance is mounted automatically\.
 
-
+**Topics**
 + [Adding Instance Store Volumes to an AMI](#adding-instance-storage-ami)
 + [Adding Instance Store Volumes to an Instance](#adding-instance-storage-instance)
 + [Making Instance Store Volumes Available on Your Instance](#making-instance-stores-available-on-your-instances)
@@ -39,9 +39,7 @@ For M3 instances, specify instance store volumes in the block device mapping of 
 **To add instance store volumes to an AMI using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-
 + [create\-image](http://docs.aws.amazon.com/cli/latest/reference/ec2/create-image.html) or [register\-image](http://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) \(AWS CLI\)
-
 + [New\-EC2Image](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Image.html) and [Register\-EC2Image](http://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2Image.html) \(AWS Tools for Windows PowerShell\)
 
 ## Adding Instance Store Volumes to an Instance<a name="adding-instance-storage-instance"></a>
@@ -71,9 +69,7 @@ For HS1 instances, no matter how many instance store volumes you specify in the 
 **To update the block device mapping for an instance using the command line**
 
 You can use one of the following options commands with the corresponding command\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-
 + `--block-device-mappings` with [run\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) \(AWS CLI\)
-
 + `-BlockDeviceMapping` with [New\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
 
 ## Making Instance Store Volumes Available on Your Instance<a name="making-instance-stores-available-on-your-instances"></a>

@@ -124,9 +124,6 @@ If you do not want to modify the hostname for your instance, but you would like 
 ## Changing the Hostname on Other Linux Distributions<a name="set-hostname-other-linux"></a>
 
 The procedures on this page are intended for use with Amazon Linux only\. For more information about other Linux distributions, see their specific documentation and the following articles:
-
 + [How do I assign a static hostname to a private Amazon EC2 instance running RHEL 7 or Centos 7?](https://aws.amazon.com/premiumsupport/knowledge-center/linux-static-hostname-rhel7-centos7/)
-
 + [How do I assign a static hostname to a private Amazon EC2 instance running SuSe Linux?](https://aws.amazon.com/premiumsupport/knowledge-center/linux-static-hostname-suse/)
-
 + [How do I assign a static hostname to a private Amazon EC2 instance running Ubuntu Linux?](https://aws.amazon.com/premiumsupport/knowledge-center/linux-static-hostname/)

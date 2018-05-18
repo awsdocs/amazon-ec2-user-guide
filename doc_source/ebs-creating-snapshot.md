@@ -26,7 +26,7 @@ To unmount the volume in Linux, use the following command, where *device\_name* 
 umount -d device_name
 ```
 
-After you've created a snapshot, you can tag it to help you manage it later\. For example, you can add tags describing the original volume from which the snapshot was created, or the device name that was used to attach the original volume to an instance\. For more information, see [Tagging Your Amazon EC2 Resources](Using_Tags.md)\.
+To make snapshot management easier, you can tag your snapshots during creation or add tags afterward\. For example, you can apply tags describing the original volume from which the snapshot was created, or the device name that was used to attach the original volume to an instance\. For more information, see [Tagging Your Amazon EC2 Resources](Using_Tags.md)\.
 
 **To create a snapshot using the console**
 
@@ -36,12 +36,14 @@ After you've created a snapshot, you can tag it to help you manage it later\. Fo
 
 1. Choose **Create Snapshot**\.
 
-1. In the **Create Snapshot** dialog box, select the volume to create a snapshot for, and then choose **Create**\.
+1. On the **Create Snapshot** page, select the volume to create a snapshot for\.
+
+1. \(Optional\) Choose **Add tags to your snapshot**\. For each tag, provide a tag key and a tag value\.
+
+1. Choose **Create Snapshot**\.
 
 **To create a snapshot using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-
 + [create\-snapshot](http://docs.aws.amazon.com/cli/latest/reference/ec2/create-snapshot.html) \(AWS CLI\)
-
 + [New\-EC2Snapshot](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Snapshot.html) \(AWS Tools for Windows PowerShell\)

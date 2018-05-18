@@ -2,7 +2,7 @@
 
 To help you manage your instances, images, and other Amazon EC2 resources, you can optionally assign your own metadata to each resource in the form of *tags*\. This topic describes tags and shows you how to create them\.
 
-
+**Topics**
 + [Tag Basics](#tag-basics)
 + [Tagging Your Resources](#tag-resources)
 + [Tag Restrictions](#tag-restrictions)
@@ -74,9 +74,9 @@ The following table describes the Amazon EC2 resources that can be tagged, and t
 | VPC peering connection | Yes | No | 
 |  VPN connection  |  Yes  | No | 
 
-To tag your instances or volumes on creation, you can use the Amazon EC2 Launch Instances wizard in the Amazon EC2 console, the [RunInstances](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html) Amazon EC2 API, or the [CreateVolume](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateVolume.html) Amazon EC2 API\. You can tag your EBS volumes on creation using the Volumes screen in the Amazon EC2 console\.
+You can tag instances and volumes on creation using the Amazon EC2 Launch Instances wizard in the Amazon EC2 console\. You can tag your EBS volumes on creation using the Volumes screen, or EBS snapshots using the Snapshots screen\. Alternatively, use the resource\-creating Amazon EC2 APIs \(for example, [RunInstances](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html)\) to apply tags when creating your resource\.
 
-You can apply tag\-based resource\-level permissions to the `CreateVolume` and `RunInstances` Amazon EC2 API actions in your IAM policies to implement granular control over the users and groups that can tag resources on creation\. Your resources are properly secured from creation—tags are applied immediately to your resources, therefore any tag\-based resource\-level permissions controlling the use of resources are immediately effective\. Your resources can be tracked and reported on more accurately\. You can enforce the use of tagging on new resources, and control which tag keys and values are set on your resources\. 
+You can apply tag\-based resource\-level permissions in your IAM policies to the Amazon EC2 API actions that support tagging on creation to implement granular control over the users and groups that can tag resources on creation\. Your resources are properly secured from creation—tags are applied immediately to your resources, therefore any tag\-based resource\-level permissions controlling the use of resources are immediately effective\. Your resources can be tracked and reported on more accurately\. You can enforce the use of tagging on new resources, and control which tag keys and values are set on your resources\. 
 
 You can also apply resource\-level permissions to the `CreateTags` and `DeleteTags` Amazon EC2 API actions in your IAM policies to control which tag keys and values are set on your existing resources\. For more information, see [Supported Resource\-Level Permissions for Amazon EC2 API Actions](ec2-supported-iam-actions-resources.md) and [Example Policies for Working with the AWS CLI or an AWS SDK](ExamplePolicies_EC2.md)\. 
 
@@ -85,17 +85,11 @@ For more information about tagging your resources for billing, see [Using Cost A
 ## Tag Restrictions<a name="tag-restrictions"></a>
 
 The following basic restrictions apply to tags:
-
 + Maximum number of tags per resource—50
-
 + Maximum key length—127 Unicode characters in UTF\-8
-
 + Maximum value length—255 Unicode characters in UTF\-8
-
 + Tag keys and values are case\-sensitive\.
-
 + Do not use the `aws:` prefix in your tag names or values because it is reserved for AWS use\. You can't edit or delete tag names or values with this prefix\. Tags with this prefix do not count against your tags per resource limit\. 
-
 + If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters\. Generally allowed characters are: letters, spaces, and numbers representable in UTF\-8, plus the following special characters: \+ \- = \. \_ : / @\.
 
 You can't terminate, stop, or delete a resource based solely on its tags; you must specify the resource identifier\. For example, to delete snapshots that you tagged with a tag key called `DeleteMe`, you must use the `DeleteSnapshots` action with the resource identifiers of the snapshots, such as `snap-1234567890abcdef0`\. 
@@ -121,7 +115,7 @@ For more information about using filters when listing your resources, see [Listi
 
 For ease of use and best results, use Tag Editor in the AWS Management Console, which provides a central, unified way to create and manage your tags\. For more information, see [Working with Tag Editor](http://docs.aws.amazon.com//awsconsolehelpdocs/latest/gsg/tag-editor.html) in *Getting Started with the AWS Management Console*\.
 
-
+**Topics**
 + [Displaying Tags](#displaying-tags)
 + [Adding and Deleting Tags on an Individual Resource](#adding-or-deleting-tags)
 + [Adding and Deleting Tags to a Group of Resources](#adding-or-deleting-tags-group)
@@ -136,9 +130,7 @@ You can display tags in two different ways in the Amazon EC2 console\. You can d
 When you select a resource\-specific page in the Amazon EC2 console, it displays a list of those resources\. For example, if you select **Instances** from the navigation pane, the console displays a list of Amazon EC2 instances\. When you select a resource from one of these lists \(for example, an instance\), if the resource supports tags, you can view and manage its tags\. On most resource pages, you can view the tags in the **Tags** tab on the details pane\.
 
 You can add a column to the resource list that displays all values for tags with the same key\. This column enables you to sort and filter the resource list by the tag\. There are two ways to add a new column to the resource list to display your tags\.
-
 + On the **Tags** tab, select **Show Column**\. A new column is added to the console\.
-
 + Choose the **Show/Hide Columns** gear\-shaped icon, and in the **Show/Hide Columns** dialog box, select the tag key under **Your Tag Keys**\.
 
 **Displaying Tags for All Resources**  

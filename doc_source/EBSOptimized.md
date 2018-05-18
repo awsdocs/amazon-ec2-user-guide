@@ -4,7 +4,7 @@ An Amazon EBS–optimized instance uses an optimized configuration stack and pro
 
 EBS–optimized instances deliver dedicated bandwidth to Amazon EBS, with options between 425 Mbps and 14,000 Mbps, depending on the instance type you use\. When attached to an EBS–optimized instance, General Purpose SSD \(`gp2`\) volumes are designed to deliver within 10% of their baseline and burst performance 99% of the time in a given year, and Provisioned IOPS SSD \(`io1`\) volumes are designed to deliver within 10% of their provisioned performance 99\.9% of the time in a given year\. Both Throughput Optimized HDD \(`st1`\) and Cold HDD \(`sc1`\) guarantee performance consistency of 90% of burst throughput 99% of the time in a given year\. Non\-compliant periods are approximately uniformly distributed, targeting 99% of expected total throughput each hour\. For more information, see [Amazon EBS Volume Types](EBSVolumeTypes.md)\.
 
-
+**Topics**
 + [Instance Types That Support EBS Optimization](#ebs-optimization-support)
 + [Enabling Amazon EBS Optimization at Launch](#enable-ebs-optimization)
 + [Modifying Amazon EBS Optimization for a Running Instance](#modify-ebs-optimized-attribute)
@@ -22,10 +22,6 @@ The `i2.8xlarge`, `c3.8xlarge`, and `r3.8xlarge` instances do not have dedicated
 
 | Instance type | EBS\-optimized by default | Maximum bandwidth \(Mbps\) | Maximum throughput \(MB/s, 128 KB I/O\) | Maximum IOPS \(16 KB I/O\) | 
 | --- | --- | --- | --- | --- | 
-| c1\.xlarge |  | 1,000 | 125 | 8,000 | 
-| c3\.xlarge |  | 500 | 62\.5 | 4,000 | 
-| c3\.2xlarge |  | 1,000 | 125 | 8,000 | 
-| c3\.4xlarge |  | 2,000 | 250 | 16,000 | 
 | c4\.large | Yes | 500 | 62\.5 | 4,000 | 
 | c4\.xlarge | Yes | 750 | 93\.75 | 6,000 | 
 | c4\.2xlarge | Yes | 1,000 | 125 | 8,000 | 
@@ -43,7 +39,6 @@ The `i2.8xlarge`, `c3.8xlarge`, and `r3.8xlarge` instances do not have dedicated
 | d2\.8xlarge | Yes | 4,000 | 500 | 32,000 | 
 | f1\.2xlarge | Yes | 1,700 | 212\.5 | 12,000 | 
 | f1\.16xlarge | Yes | 14,000 | 1,750 | 75,000 | 
-| g2\.2xlarge |  | 1,000 | 125 | 8,000 | 
 | g3\.4xlarge | Yes | 3,500 | 437\.5 | 20,000 | 
 | g3\.8xlarge | Yes | 7,000 | 875 | 40,000 | 
 | g3\.16xlarge | Yes | 14,000 | 1,750 | 80,000 | 
@@ -51,21 +46,12 @@ The `i2.8xlarge`, `c3.8xlarge`, and `r3.8xlarge` instances do not have dedicated
 | h1\.4xlarge | Yes | 3,500 | 437\.5 | 20,000 | 
 | h1\.8xlarge | Yes | 7,000 | 875 | 40,000 | 
 | h1\.16xlarge | Yes | 14,000 | 1,750 | 80,000 | 
-| i2\.xlarge |  | 500 | 62\.5 | 4,000 | 
-| i2\.2xlarge |  | 1,000 | 125 | 8,000 | 
-| i2\.4xlarge |  | 2,000 | 250 | 16,000 | 
 | i3\.large | Yes | 425 | 53\.13 | 3000 | 
 | i3\.xlarge | Yes | 850 | 106\.25 | 6000 | 
 | i3\.2xlarge | Yes | 1,700 | 212\.5 | 12,000 | 
 | i3\.4xlarge | Yes | 3,500 | 437\.5 | 16,000 | 
 | i3\.8xlarge | Yes | 7,000 | 875 | 32,500 | 
 | i3\.16xlarge | Yes | 14,000 | 1,750 | 65,000 | 
-| m1\.large |  | 500 | 62\.5 | 4,000 | 
-| m1\.xlarge |  | 1,000 | 125 | 8,000 | 
-| m2\.2xlarge |  | 500 | 62\.5 | 4,000 | 
-| m2\.4xlarge |  | 1,000 | 125 | 8,000 | 
-| m3\.xlarge |  | 500 | 62\.5 | 4,000 | 
-| m3\.2xlarge |  | 1,000 | 125 | 8,000 | 
 | m4\.large | Yes | 450 | 56\.25 | 3,600 | 
 | m4\.xlarge | Yes | 750 | 93\.75 | 6,000 | 
 | m4\.2xlarge | Yes | 1,000 | 125 | 8,000 | 
@@ -84,9 +70,6 @@ The `i2.8xlarge`, `c3.8xlarge`, and `r3.8xlarge` instances do not have dedicated
 | p3\.2xlarge | Yes | 1,750 | 218 | 10,000 | 
 | p3\.8xlarge | Yes | 7,000 | 875 | 40,000 | 
 | p3\.16xlarge | Yes | 14,000 | 1,750 | 80,000 | 
-| r3\.xlarge |  | 500 | 62\.5 | 4,000 | 
-| r3\.2xlarge |  | 1,000 | 125 | 8,000 | 
-| r3\.4xlarge |  | 2,000 | 250 | 16,000 | 
 | r4\.large | Yes | 425 | 53\.13 | 3,000 | 
 | r4\.xlarge | Yes | 850 | 106\.25 | 6,000 | 
 | r4\.2xlarge | Yes | 1,700 | 212\.5 | 12,000 | 
@@ -137,9 +120,7 @@ You can enable optimization for an instance by setting its Amazon EBS–optimize
 **To enable EBS optimization when launching an instance using the command line**
 
 You can use one of the following options with the corresponding command\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-
 + `--ebs-optimized` with [run\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) \(AWS CLI\)
-
 + `-EbsOptimized` with [New\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
 
 ## Modifying Amazon EBS Optimization for a Running Instance<a name="modify-ebs-optimized-attribute"></a>
@@ -161,11 +142,8 @@ When you stop an instance, the data on any instance store volumes is erased\. Th
 1. With the instance still selected, click **Actions**, select **Instance Settings**, and then click **Change Instance Type**\.
 
 1. In the **Change Instance Type** dialog box, do one of the following:
-
    + If the instance type of your instance is Amazon EBS–optimized by default, **EBS\-optimized** is selected and you can't change it\. You can choose **Cancel**, because Amazon EBS optimization is already enabled for the instance\.
-
    + If the instance type of your instance supports Amazon EBS optimization, choose **EBS\-optimized**, **Apply**\.
-
    + If the instance type of your instance does not support Amazon EBS optimization, you can't choose **EBS\-optimized**\. You can select an instance type from **Instance Type** that supports Amazon EBS optimization, and then choose **EBS\-optimized**, **Apply**\.
 
 1. Choose **Actions**, **Instance State**, **Start**\.
@@ -173,7 +151,5 @@ When you stop an instance, the data on any instance store volumes is erased\. Th
 **To enable EBS optimization for a running instance using the command line**
 
 You can use one of the following options with the corresponding command\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-
 + `--ebs-optimized` with [modify\-instance\-attribute](http://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) \(AWS CLI\)
-
 + `-EbsOptimized` with [Edit\-EC2InstanceAttribute](http://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2InstanceAttribute.html) \(AWS Tools for Windows PowerShell\)

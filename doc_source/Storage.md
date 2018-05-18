@@ -3,13 +3,9 @@
 Amazon EC2 provides you with flexible, cost effective, and easy\-to\-use data storage options for your instances\. Each option has a unique combination of performance and durability\. These storage options can be used independently or in combination to suit your requirements\.
 
 After reading this section, you should have a good understanding about how you can use the data storage options supported by Amazon EC2 to meet your specific requirements\. These storage options include the following:
-
 + [Amazon Elastic Block Store \(Amazon EBS\)](AmazonEBS.md)
-
 + [Amazon EC2 Instance Store](InstanceStorage.md)
-
 + [Amazon Elastic File System \(Amazon EFS\)](AmazonEFS.md)
-
 + [Amazon Simple Storage Service \(Amazon S3\)](AmazonS3.md)
 
 The following figure shows the relationship between these types of storage\.

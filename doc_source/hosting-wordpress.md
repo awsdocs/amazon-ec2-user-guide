@@ -35,12 +35,10 @@ Connect to your instance, and download the WordPress installation package\.
 
 **To create a database user and database for your WordPress installation**
 
-Your WordPress installation needs to store information, such as blog post entries and user comments, in a database\. This procedure helps you create a database for your blog and a user that is authorized to read and save information to that database\. 
+Your WordPress installation needs to store information, such as blog posts and user comments, in a database\. This procedure helps you create your blog's database and a user that is authorized to read and save information to it\. 
 
 1. Start the database server\.
-
    + **Amazon Linux AMI**: **sudo service mysqld start**
-
    + **Amazon Linux 2**: **sudo systemctl start mariadb**
 
 1. Log in to the database server as the `root` user\. Enter your database `root` password when prompted; this may be different than your `root` system password, or it may even be empty if you have not secured your database server\.
@@ -95,7 +93,7 @@ The WordPress installation folder contains a sample configuration file called `w
    [ec2-user wordpress]$ cp wordpress/wp-config-sample.php wordpress/wp-config.php
    ```
 
-1. Edit the `wp-config.php` file with your favorite text editor \(such as nano or vim\) and enter values for your installation\. If you do not have a favorite text editor, `nano` is much easier for beginners to use\.
+1. Edit the `wp-config.php` file with your favorite text editor \(such as nano or vim\) and enter values for your installation\. If you do not have a favorite text editor, `nano` is suitable for beginners\.
 
    ```
    [ec2-user wordpress]$ nano wordpress/wp-config.php
@@ -142,13 +140,13 @@ The values below are for example purposes only; do not use these values for your
 
 1. Now that you've unzipped the installation folder, created a MySQL database and user, and customized the WordPress configuration file, you are ready to copy your installation files to your web server document root so you can run the installation script that completes your installation\. The location of these files depends on whether you want your WordPress blog to be available at the actual root of your web server \(for example, `my.public.dns.amazonaws.com`\) or in a subdirectory or folder under the root \(for example, `my.public.dns.amazonaws.com/blog`\)\.
 
-1. If you want Wordpress to run at your document root, copy the contents of the wordpress installation directory \(but not the directory itself\) as follows: 
+1. If you want WordPress to run at your document root, copy the contents of the wordpress installation directory \(but not the directory itself\) as follows: 
 
    ```
    [ec2-user ~]$ cp -r wordpress/* /var/www/html/
    ```
 
-1. If you want Wordpress to run in an alternative directory under the document root, first create that directory, and then copy the files to it\. In this example, Wordpress will run from the directory `blog`:
+1. If you want WordPress to run in an alternative directory under the document root, first create that directory, and then copy the files to it\. In this example, WordPress will run from the directory `blog`:
 
    ```
    [ec2-user ~]$ mkdir /var/www/html/blog
@@ -162,7 +160,7 @@ For security purposes, if you are not moving on to the next procedure immediatel
 
 WordPress permalinks need to use Apache `.htaccess` files to work properly, but this is not enabled by default on Amazon Linux\. Use this procedure to allow all overrides in the Apache document root\.
 
-1. Open the `httpd.conf` file with your favorite text editor \(such as nano or vim\)\. If you do not have a favorite text editor, `nano` is much easier for beginners to use\.
+1. Open the `httpd.conf` file with your favorite text editor \(such as nano or vim\)\. If you do not have a favorite text editor, `nano` is suitable for beginners\.
 
    ```
    [ec2-user wordpress]$ sudo vim /etc/httpd/conf/httpd.conf
@@ -214,13 +212,13 @@ There are multiple `AllowOverride` lines in this file; be sure you change the li
 
 Some of the available features in WordPress require write access to the Apache document root \(such as uploading media though the Administration screens\)\. If you have not already done so, apply the following group memberships and permissions \(as described in greater detail in the [LAMP web server tutorial](install-LAMP.md)\)\.
 
-1. Change the file ownership of `/var/www` and its contents to the `apache` user\.
+1. Grant file ownership of `/var/www` and its contents to the `apache` user\.
 
    ```
    [ec2-user wordpress]$ sudo chown -R apache /var/www
    ```
 
-1. Change the group ownership of `/var/www` and its contents to the `apache` group\.
+1. Grant group ownership of `/var/www` and its contents to the `apache` group\.
 
    ```
    [ec2-user wordpress]$ sudo chgrp -R apache /var/www
@@ -239,41 +237,29 @@ Some of the available features in WordPress require write access to the Apache d
    ```
 
 1. Restart the Apache web server to pick up the new group and permissions\.
-
    + **Amazon Linux AMI**: **sudo service httpd restart**
-
    + **Amazon Linux 2**: **sudo systemctl restart httpd**
 
 **To run the WordPress installation script**
 
 1. Use the chkconfig command to ensure that the `httpd` and database services start at every system boot\.
-
    + **Amazon Linux AMI**: **sudo chkconfig enable httpd && sudo chkconfig enable mysql**
-
    + **Amazon Linux 2**: **sudo systemctl enable httpd && sudo systemctl enable mariadb**
 
 1. Verify that the database server is running\.
-
    + **Amazon Linux AMI**: **sudo service mysqld status**
-
    + **Amazon Linux 2**: **sudo systemctl status mariadb**
 
    If the database service is not running, start it\.
-
    + **Amazon Linux AMI**: **sudo service mysqld start**
-
    + **Amazon Linux 2**: **sudo systemctl start mariadb**
 
 1. Verify that your Apache web server \(`httpd`\) is running\.
-
    + **Amazon Linux AMI**: **sudo service httpd status**
-
    + **Amazon Linux 2**: **sudo systemctl status httpd**
 
    If the `httpd` service is not running, start it\.
-
    + **Amazon Linux AMI**: **sudo service httpd start**
-
    + **Amazon Linux 2**: **sudo systemctl start httpd**
 
 1. In a web browser, enter the URL of your WordPress blog \(either the public DNS address for your instance, or that address followed by the `blog` folder\)\. You should see the WordPress installation screen\.
@@ -302,13 +288,9 @@ You can configure your blog to use different [themes](https://wordpress.org/them
 
 **Increase Capacity**  
 If your WordPress blog becomes popular and you need more compute power or storage, consider the following steps:
-
 + Expand the storage space on your instance\. For more information, see [Modifying the Size, IOPS, or Type of an EBS Volume on Linux](ebs-modify-volume.md)\.
-
 + Move your MySQL database to [Amazon RDS](https://aws.amazon.com/rds) to take advantage of the service's ability to scale easily\.
-
-+ Migrate to a larger instance type\. For more information, see [Resizing Your Instance](ec2-instance-resize.md)\.
-
++ Migrate to a larger instance type\. For more information, see [Changing the Instance Type](ec2-instance-resize.md)\.
 + Add additional instances\. For more information, see [Tutorial: Increase the Availability of Your Application on Amazon EC2](ec2-increase-availability.md)\.
 
 **Learn More about WordPress**  

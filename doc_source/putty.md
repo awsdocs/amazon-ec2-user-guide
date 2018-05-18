@@ -10,45 +10,30 @@ The following instructions explain how to connect to your instance using PuTTY, 
 ## Prerequisites<a name="putty-prereqs"></a>
 
 Before you connect to your Linux instance using PuTTY, complete the following prerequisites:
-
 + **Install PuTTY**
 
   Download and install PuTTY from the [PuTTY download page](http://www.chiark.greenend.org.uk/~sgtatham/putty/)\. If you already have an older version of PuTTY installed, we recommend that you download the latest version\. Be sure to install the entire suite\.
-
 + **Get the ID of the instance**
 
   You can get the ID of your instance using the Amazon EC2 console \(from the **Instance ID** column\)\. If you prefer, you can use the [describe\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) \(AWS CLI\) or [Get\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html) \(AWS Tools for Windows PowerShell\) command\.
-
 + **Get the public DNS name of the instance**
 
   You can get the public DNS for your instance using the Amazon EC2 console \(check the **Public DNS \(IPv4\)** column; if this column is hidden, choose the **Show/Hide** icon and select **Public DNS \(IPv4\)**\)\. If you prefer, you can use the [describe\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) \(AWS CLI\) or [Get\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html) \(AWS Tools for Windows PowerShell\) command\.
-
 + **\(IPv6 only\) Get the IPv6 address of the instance**
 
   If you've assigned an IPv6 address to your instance, you can optionally connect to the instance using its IPv6 address instead of a public IPv4 address or public IPv4 DNS hostname\. Your local computer must have an IPv6 address and must be configured to use IPv6\. You can get the IPv6 address of your instance using the Amazon EC2 console \(check the **IPv6 IPs** field\)\. If you prefer, you can use the [describe\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) \(AWS CLI\) or [Get\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html) \(AWS Tools for Windows PowerShell\) command\. For more information about IPv6, see [IPv6 Addresses](using-instance-addressing.md#ipv6-addressing)\.
-
 + **Locate the private key**
 
   Get the fully qualified path to the location on your computer of the `.pem` file for the key pair that you specified when you launched the instance\.
-
 + **Get the default user name for the AMI that you used to launch your instance**
-
   + For an Amazon Linux AMI, the user name is `ec2-user`\.
-
   + For a Centos AMI, the user name is `centos`\.
-
   + For a Debian AMI, the user name is `admin` or `root`\.
-
-  + For a Fedora AMI, the user name is `ec2-user`\.
-
+  + For a Fedora AMI, the user name is `ec2-user` or `fedora`\.
   + For a RHEL AMI, the user name is `ec2-user` or `root`\.
-
   + For a SUSE AMI, the user name is `ec2-user` or `root`\.
-
   + For an Ubuntu AMI, the user name is `ubuntu` or `root`\.
-
   + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
-
 + **Enable inbound SSH traffic from your IP address to your instance**
 
   Ensure that the security group associated with your instance allows incoming SSH traffic from your IP address\. The default security group does not allow incoming SSH traffic by default\. For more information, see [Authorizing Inbound Traffic for Your Linux Instances](authorizing-access-to-an-instance.md)\.
@@ -106,39 +91,23 @@ Use the following procedure to connect to your Linux instance using PuTTY\. You 
 1. In the **Category** pane, choose **Session** and complete the following fields:
 
    1. In the **Host Name** box, enter *user\_name*@*public\_dns\_name*\. Be sure to specify the appropriate user name for your AMI\. For example:
-
       + For an Amazon Linux AMI, the user name is `ec2-user`\.
-
       + For a Centos AMI, the user name is `centos`\.
-
       + For a Debian AMI, the user name is `admin` or `root`\.
-
-      + For a Fedora AMI, the user name is `ec2-user`\.
-
+      + For a Fedora AMI, the user name is `ec2-user` or `fedora`\.
       + For a RHEL AMI, the user name is `ec2-user` or `root`\.
-
       + For a SUSE AMI, the user name is `ec2-user` or `root`\.
-
       + For an Ubuntu AMI, the user name is `ubuntu` or `root`\.
-
       + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
 
    1. \(IPv6 only\) To connect using your instance's IPv6 address, enter *user\_name*@*ipv6\_address*\. Be sure to specify the appropriate user name for your AMI\. For example:
-
       + For an Amazon Linux AMI, the user name is `ec2-user`\.
-
       + For a Centos AMI, the user name is `centos`\.
-
       + For a Debian AMI, the user name is `admin` or `root`\.
-
-      + For a Fedora AMI, the user name is `ec2-user`\.
-
+      + For a Fedora AMI, the user name is `ec2-user` or `fedora`\.
       + For a RHEL AMI, the user name is `ec2-user` or `root`\.
-
       + For a SUSE AMI, the user name is `ec2-user` or `root`\.
-
       + For an Ubuntu AMI, the user name is `ubuntu` or `root`\.
-
       + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
 
    1. Under **Connection type**, select **SSH**\.
@@ -202,21 +171,13 @@ WinSCP is a GUI\-based file manager for Windows that allows you to upload and tr
    \(IPv6 only\) To log in using your instance's IPv6 address, enter the IPv6 address for your instance\.
 
 1. For **User name**, enter the default user name for your AMI\.
-
    + For an Amazon Linux AMI, the user name is `ec2-user`\.
-
    + For a Centos AMI, the user name is `centos`\.
-
    + For a Debian AMI, the user name is `admin` or `root`\.
-
-   + For a Fedora AMI, the user name is `ec2-user`\.
-
+   + For a Fedora AMI, the user name is `ec2-user` or `fedora`\.
    + For a RHEL AMI, the user name is `ec2-user` or `root`\.
-
    + For a SUSE AMI, the user name is `ec2-user` or `root`\.
-
    + For an Ubuntu AMI, the user name is `ubuntu` or `root`\.
-
    + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
 
 1. Specify the private key for your instance\. For **Private key**, enter the path to your private key, or choose the "**\.\.\.**" button to browse for the file\. For newer versions of WinSCP, choose **Advanced** to open the advanced site settings and then under **SSH**, choose **Authentication** to find the **Private key file** setting\.

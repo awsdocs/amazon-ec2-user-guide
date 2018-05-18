@@ -1,17 +1,11 @@
 # Monitoring Amazon EC2<a name="monitoring_ec2"></a>
 
 Monitoring is an important part of maintaining the reliability, availability, and performance of your Amazon Elastic Compute Cloud \(Amazon EC2\) instances and your AWS solutions\. You should collect monitoring data from all of the parts in your AWS solutions so that you can more easily debug a multi\-point failure if one occurs\. Before you start monitoring Amazon EC2, however, you should create a monitoring plan that should include:
-
 + What are your goals for monitoring?
-
 + What resources will you monitor?
-
 + How often will you monitor these resources?
-
 + What monitoring tools will you use?
-
 + Who will perform the monitoring tasks?
-
 + Who should be notified when something goes wrong? 
 
 After you have defined your monitoring goals and have created your monitoring plan, the next step is to establish a baseline for normal Amazon EC2 performance in your environment\. You should measure Amazon EC2 performance at various times and under different load conditions\. As you monitor Amazon EC2, you should store a history of monitoring data that you've collected\. You can compare current Amazon EC2 performance to this historical data to help you to identify normal performance patterns and performance anomalies, and devise methods to address them\. For example, you can monitor CPU utilization, disk I/O, and network utilization for your EC2 instances\. When performance falls outside your established baseline, you might need to reconfigure or optimize the instance to reduce CPU utilization, improve disk I/O, or reduce network traffic\.

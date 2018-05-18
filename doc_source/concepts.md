@@ -7,27 +7,16 @@ For more information about cloud computing, see [What is Cloud Computing?](https
 ## Features of Amazon EC2<a name="ec2-features"></a>
 
 Amazon EC2 provides the following features:
-
 + Virtual computing environments, known as *instances*
-
 + Preconfigured templates for your instances, known as *Amazon Machine Images \(AMIs\)*, that package the bits you need for your server \(including the operating system and additional software\)
-
 + Various configurations of CPU, memory, storage, and networking capacity for your instances, known as *instance types*
-
 + Secure login information for your instances using *key pairs* \(AWS stores the public key, and you store the private key in a secure place\)
-
 + Storage volumes for temporary data that's deleted when you stop or terminate your instance, known as *instance store volumes*
-
 + Persistent storage volumes for your data using Amazon Elastic Block Store \(Amazon EBS\), known as *Amazon EBS volumes*
-
 + Multiple physical locations for your resources, such as instances and Amazon EBS volumes, known as *regions* and *Availability Zones*
-
 + A firewall that enables you to specify the protocols, ports, and source IP ranges that can reach your instances using *security groups*
-
 + Static IPv4 addresses for dynamic cloud computing, known as *Elastic IP addresses*
-
 + Metadata, known as *tags*, that you can create and assign to your Amazon EC2 resources
-
 + Virtual networks you can create that are logically isolated from the rest of the AWS cloud, and that you can optionally connect to your own network, known as *virtual private clouds* \(VPCs\)
 
 For more information about the features of Amazon EC2, see the [Amazon EC2 product page](https://aws.amazon.com/ec2)\.
@@ -36,48 +25,32 @@ For more information about running your website on AWS, see [Web Hosting](https:
 
 ## How to Get Started with Amazon EC2<a name="how-to-get-started"></a>
 
-The first thing you need to do is get set up to use Amazon EC2\. After you are set up, you are ready to complete the Getting Started tutorial for Amazon EC2\. Whenever you need more information about a feature of Amazon EC2, you can read the technical documentation\.
+First, you need to get set up to use Amazon EC2\. After you are set up, you are ready to complete the Getting Started tutorial for Amazon EC2\. Whenever you need more information about an Amazon EC2 feature, you can read the technical documentation\.
 
 **Get Up and Running**
-
 + [Setting Up with Amazon EC2](get-set-up-for-amazon-ec2.md)
-
 + [Getting Started with Amazon EC2 Linux Instances](EC2_GetStarted.md)
 
 **Basics**
-
 + [Instances and AMIs](ec2-instances-and-amis.md)
-
 + [Regions and Availability Zones](using-regions-availability-zones.md)
-
 + [Instance Types](instance-types.md)
-
 + [Tags](Using_Tags.md)
 
 **Networking and Security**
-
 + [Amazon EC2 Key Pairs](ec2-key-pairs.md)
-
 + [Security Groups](using-network-security.md)
-
 + [Elastic IP Addresses](elastic-ip-addresses-eip.md)
-
 + [Amazon EC2 and Amazon VPC](using-vpc.md)
 
 **Storage**
-
 + [Amazon EBS](AmazonEBS.md)
-
 + [Instance Store](InstanceStorage.md)
 
 **Working with Linux Instances**
-
 + [Remote Management \(Run Command\)](http://docs.aws.amazon.com/systems-manager/latest/userguide/execute-remote-commands.html)
-
 + [Tutorial: Install a LAMP Web Server with the Amazon Linux AMI](install-LAMP.md)
-
 + [Tutorial: Configure Apache Web Server on Amazon Linux 2 to Use SSL/TLS](SSL-on-an-instance.md)
-
 + [Getting Started with AWS: Hosting a Web App for Linux](http://docs.aws.amazon.com/gettingstarted/latest/wah-linux/)
 
 If you have questions about whether AWS is right for you, [contact AWS Sales](https://aws.amazon.com/contact-us/)\. If you have technical questions about Amazon EC2, use the [Amazon EC2 forum](https://forums.aws.amazon.com/forum.jspa?forumID=30)\. 
@@ -85,13 +58,9 @@ If you have questions about whether AWS is right for you, [contact AWS Sales](ht
 ## Related Services<a name="related-services"></a>
 
 You can provision Amazon EC2 resources, such as instances and volumes, directly using Amazon EC2\. You can also provision Amazon EC2 resources using other services in AWS\. For more information, see the following documentation:
-
 + [Amazon EC2 Auto Scaling User Guide](http://docs.aws.amazon.com/autoscaling/latest/userguide/)
-
 + [AWS CloudFormation User Guide](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/)
-
 + [AWS Elastic Beanstalk Developer Guide](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/)
-
 + [AWS OpsWorks User Guide](http://docs.aws.amazon.com/opsworks/latest/userguide/)
 
 To automatically distribute incoming application traffic across multiple instances, use Elastic Load Balancing\. For more information, see [Elastic Load Balancing User Guide](http://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/)\.

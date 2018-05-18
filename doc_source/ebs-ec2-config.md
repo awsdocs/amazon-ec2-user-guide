@@ -14,10 +14,6 @@ The table below and the following examples use 16 KB as an I/O size for explanat
 
 | Instance type | EBS\-optimized by default | Maximum bandwidth \(Mbps\) | Maximum throughput \(MB/s, 128 KB I/O\) | Maximum IOPS \(16 KB I/O\) | 
 | --- | --- | --- | --- | --- | 
-| c1\.xlarge |  | 1,000 | 125 | 8,000 | 
-| c3\.xlarge |  | 500 | 62\.5 | 4,000 | 
-| c3\.2xlarge |  | 1,000 | 125 | 8,000 | 
-| c3\.4xlarge |  | 2,000 | 250 | 16,000 | 
 | c4\.large | Yes | 500 | 62\.5 | 4,000 | 
 | c4\.xlarge | Yes | 750 | 93\.75 | 6,000 | 
 | c4\.2xlarge | Yes | 1,000 | 125 | 8,000 | 
@@ -35,7 +31,6 @@ The table below and the following examples use 16 KB as an I/O size for explanat
 | d2\.8xlarge | Yes | 4,000 | 500 | 32,000 | 
 | f1\.2xlarge | Yes | 1,700 | 212\.5 | 12,000 | 
 | f1\.16xlarge | Yes | 14,000 | 1,750 | 75,000 | 
-| g2\.2xlarge |  | 1,000 | 125 | 8,000 | 
 | g3\.4xlarge | Yes | 3,500 | 437\.5 | 20,000 | 
 | g3\.8xlarge | Yes | 7,000 | 875 | 40,000 | 
 | g3\.16xlarge | Yes | 14,000 | 1,750 | 80,000 | 
@@ -43,21 +38,12 @@ The table below and the following examples use 16 KB as an I/O size for explanat
 | h1\.4xlarge | Yes | 3,500 | 437\.5 | 20,000 | 
 | h1\.8xlarge | Yes | 7,000 | 875 | 40,000 | 
 | h1\.16xlarge | Yes | 14,000 | 1,750 | 80,000 | 
-| i2\.xlarge |  | 500 | 62\.5 | 4,000 | 
-| i2\.2xlarge |  | 1,000 | 125 | 8,000 | 
-| i2\.4xlarge |  | 2,000 | 250 | 16,000 | 
 | i3\.large | Yes | 425 | 53\.13 | 3000 | 
 | i3\.xlarge | Yes | 850 | 106\.25 | 6000 | 
 | i3\.2xlarge | Yes | 1,700 | 212\.5 | 12,000 | 
 | i3\.4xlarge | Yes | 3,500 | 437\.5 | 16,000 | 
 | i3\.8xlarge | Yes | 7,000 | 875 | 32,500 | 
 | i3\.16xlarge | Yes | 14,000 | 1,750 | 65,000 | 
-| m1\.large |  | 500 | 62\.5 | 4,000 | 
-| m1\.xlarge |  | 1,000 | 125 | 8,000 | 
-| m2\.2xlarge |  | 500 | 62\.5 | 4,000 | 
-| m2\.4xlarge |  | 1,000 | 125 | 8,000 | 
-| m3\.xlarge |  | 500 | 62\.5 | 4,000 | 
-| m3\.2xlarge |  | 1,000 | 125 | 8,000 | 
 | m4\.large | Yes | 450 | 56\.25 | 3,600 | 
 | m4\.xlarge | Yes | 750 | 93\.75 | 6,000 | 
 | m4\.2xlarge | Yes | 1,000 | 125 | 8,000 | 
@@ -76,9 +62,6 @@ The table below and the following examples use 16 KB as an I/O size for explanat
 | p3\.2xlarge | Yes | 1,750 | 218 | 10,000 | 
 | p3\.8xlarge | Yes | 7,000 | 875 | 40,000 | 
 | p3\.16xlarge | Yes | 14,000 | 1,750 | 80,000 | 
-| r3\.xlarge |  | 500 | 62\.5 | 4,000 | 
-| r3\.2xlarge |  | 1,000 | 125 | 8,000 | 
-| r3\.4xlarge |  | 2,000 | 250 | 16,000 | 
 | r4\.large | Yes | 425 | 53\.13 | 3,000 | 
 | r4\.xlarge | Yes | 850 | 106\.25 | 6,000 | 
 | r4\.2xlarge | Yes | 1,700 | 212\.5 | 12,000 | 
@@ -114,6 +97,6 @@ The `m1.large` instance has a maximum 16 KB IOPS value of 4,000, but unless this
 
 Volumes of type General Purpose SSD \(`gp2`\) have a throughput limit between 128 MB/s and 160 MB/s per volume \(depending on volume size\), which pairs well with a 1,000 Mbps EBS\-optimized connection\. Instance types that offer more than 1,000 Mbps of throughput to Amazon EBS can use more than one `gp2` volume to take advantage of the available throughput\. Volumes of type Provisioned IOPS SSD \(`io1`\) have a throughput limit range of 256 KiB for each IOPS provisioned, up to a maximum of 320 MiB/s \(at 1,280 IOPS\)\. For more information, see [Amazon EBS Volume Types](EBSVolumeTypes.md)\.
 
-Instance types with 10 Gigabit network connectivity support up to 800 MB/s of throughput and 48,000 16K IOPS for unencrypted Amazon EBS volumes and up to 25,000 16K IOPS for encrypted Amazon EBS volumes\. Because the maximum `io1` value for EBS volumes is for `io1` volumes and 10,000 for `gp2` volumes, you can use several EBS volumes simultaneously to reach the level of I/O performance available to these instance types\. For more information about which instance types include 10 Gigabit network connectivity, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
+Instance types with 10 Gigabit network connectivity support up to 800 MB/s of throughput and 48,000 16K IOPS for unencrypted Amazon EBS volumes and up to 25,000 16K IOPS for encrypted Amazon EBS volumes\. Because the maximum `io1` value for EBS volumes is 32,000 for `io1` volumes and 10,000 for `gp2` volumes, you can use several EBS volumes simultaneously to reach the level of I/O performance available to these instance types\. For more information about which instance types include 10 Gigabit network connectivity, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
 You should use EBS\-optimized instances when available to get the full performance benefits of Amazon EBS `gp2` and `io1` volumes\. For more information, see [Amazon EBS–Optimized Instances](EBSOptimized.md)\.

@@ -1,15 +1,10 @@
 # AMI Types<a name="ComponentsAMIs"></a>
 
 You can select an AMI to use based on the following characteristics:
-
 + Region \(see [Regions and Availability Zones](using-regions-availability-zones.md)\)
-
 + Operating system
-
 + Architecture \(32\-bit or 64\-bit\)
-
 + [Launch Permissions](#launch-permissions)
-
 + [Storage for the Root Device](#storage-for-the-root-device)
 
 ## Launch Permissions<a name="launch-permissions"></a>
@@ -37,7 +32,7 @@ The following table summarizes the important differences when using the two type
 |  Boot time for an instance  |  Usually less than 1 minute  |  Usually less than 5 minutes  | 
 |  Size limit for a root device  |  16 TiB  |  10 GiB  | 
 |  Root device volume  |  Amazon EBS volume  |  Instance store volume  | 
-|  Data persistence  |  By default, the root volume is deleted when the instance terminates\.\* Data on any other Amazon EBS volumes persists after instance termination by default\. Data on any instance store volumes persists only during the life of the instance\.  |  Data on any instance store volumes persists only during the life of the instance\. Data on any Amazon EBS volumes persists after instance termination by default\.  | 
+|  Data persistence  |  By default, the root volume is deleted when the instance terminates\.\* Data on any other Amazon EBS volumes persists after instance termination by default\.   |  Data on any instance store volumes persists only during the life of the instance\.  | 
 |  Modifications  |  The instance type, kernel, RAM disk, and user data can be changed while the instance is stopped\.  |  Instance attributes are fixed for the life of an instance\.  | 
 |  Charges  |  You're charged for instance usage, Amazon EBS volume usage, and storing your AMI as an Amazon EBS snapshot\.  |  You're charged for instance usage and storing your AMI in Amazon S3\.  | 
 |  AMI creation/bundling  |  Uses a single command/call  |  Requires installation and use of AMI tools  | 
@@ -54,17 +49,13 @@ The following table summarizes the important differences when using the two type
 1. In the navigation pane, click **AMIs**, and select the AMI\.
 
 1. Check the value of **Root Device Type** in the **Details** tab as follows:
-
    + If the value is `ebs`, this is an Amazon EBS\-backed AMI\.
-
    + If the value is `instance store`, this is an instance store\-backed AMI\.
 
 **To determine the root device type of an AMI using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-
 + [describe\-images](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) \(AWS CLI\)
-
 + [Get\-EC2Image](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Image.html) \(AWS Tools for Windows PowerShell\)
 
 ### Stopped State<a name="ec2-bootfromebs-stopped-state"></a>
@@ -89,7 +80,7 @@ AMI creation is much easier for AMIs backed by Amazon EBS\. The `CreateImage` AP
 
 ### How You're Charged<a name="ec2-bootfromebs-how-you-are-charged"></a>
 
-With AMIs backed by instance store, you're charged for instance usage and storing your AMI in Amazon S3\. With AMIs backed by Amazon EBS, you're charged for instance usage, Amazon Amazon EBS volume storage and usage, and storing your AMI as an Amazon EBS snapshot\.
+With AMIs backed by instance store, you're charged for instance usage and storing your AMI in Amazon S3\. With AMIs backed by Amazon EBS, you're charged for instance usage, Amazon EBS volume storage and usage, and storing your AMI as an Amazon EBS snapshot\.
 
 With Amazon EC2 instance store\-backed AMIs, each time you customize an AMI and create a new one, all of the parts are stored in Amazon S3 for each AMI\. So, the storage footprint for each customized AMI is the full size of the AMI\. For Amazon EBS\-backed AMIs, each time you customize an AMI and create a new one, only the changes are stored\. So the storage footprint for subsequent AMIs you customize after the first is much smaller, resulting in lower AMI storage charges\. 
 

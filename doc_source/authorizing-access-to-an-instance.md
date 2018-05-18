@@ -59,13 +59,11 @@ Be sure to run the following commands on your local system, not on the instance 
 **To add a rule to a security group using the command line**
 
 1. Find the security group that is associated with your instance using one of the following commands:
-
    + [describe\-instance\-attribute](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-attribute.html) \(AWS CLI\)
 
      ```
      aws ec2 describe-instance-attribute --instance-id instance_id --attribute groupSet
      ```
-
    + [Get\-EC2InstanceAttribute](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2InstanceAttribute.html) \(AWS Tools for Windows PowerShell\)
 
      ```
@@ -75,13 +73,11 @@ Be sure to run the following commands on your local system, not on the instance 
    Both commands return a security group ID, which you use in the next step\.
 
 1. Add the rule to the security group using one of the following commands:
-
    + [authorize\-security\-group\-ingress](http://docs.aws.amazon.com/cli/latest/reference/ec2/authorize-security-group-ingress.html) \(AWS CLI\)
 
      ```
      aws ec2 authorize-security-group-ingress --group-id security_group_id --protocol tcp --port 22 --cidr cidr_ip_range
      ```
-
    + [Grant\-EC2SecurityGroupIngress](http://docs.aws.amazon.com/powershell/latest/reference/items/Grant-EC2SecurityGroupIngress.html) \(AWS Tools for Windows PowerShell\)
 
      The `Grant-EC2SecurityGroupIngress` command needs an `IpPermission` parameter, which describes the protocol, port range, and IP address range to be used for the security group rule\. The following command creates the `IpPermission` parameter:

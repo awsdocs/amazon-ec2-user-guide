@@ -7,7 +7,7 @@ Data feed files arrive in your bucket typically once an hour, and each hour of u
 **Note**  
 If you don't have a Spot Instance running during a certain hour, you won't receive a data feed file for that hour\.
 
-
+**Topics**
 + [Data Feed File Name and Format](#using-spot-instances-format)
 + [Amazon S3 Bucket Requirements](#using-spot-instances-dfs3)
 + [Subscribing to Your Spot Instance Data Feed](#using-spot-instances-datafeed-all)
@@ -45,17 +45,13 @@ The Spot Instance data feed files are tab\-delimited\. Each line in the data fil
 ## Amazon S3 Bucket Requirements<a name="using-spot-instances-dfs3"></a>
 
 When you subscribe to the data feed, you must specify an Amazon S3 bucket to store the data feed files\. Before you choose an Amazon S3 bucket for the data feed, consider the following:
-
 + You must have `FULL_CONTROL` permission to the bucket, which includes permission for the `s3:GetBucketAcl` and `s3:PutBucketAcl` actions\.
 
   If you're the bucket owner, you have this permission by default\. Otherwise, the bucket owner must grant your AWS account this permission\.
-
 + When you subscribe to a data feed, these permissions are used to update the bucket ACL to give the AWS data feed account `FULL_CONTROL` permission\. The AWS data feed account writes data feed files to the bucket\. If your account doesn't have the required permissions, the data feed files cannot be written to the bucket\.
 **Note**  
 If you update the ACL and remove the permissions for the AWS data feed account, the data feed files cannot be written to the bucket\. You must resubscribe to the data feed to receive the data feed files\.
-
 + Each data feed file has its own ACL \(separate from the ACL for the bucket\)\. The bucket owner has `FULL_CONTROL` permission to the data files\. The AWS data feed account has read and write permissions\.
-
 + If you delete your data feed subscription, Amazon EC2 doesn't remove the read and write permissions for the AWS data feed account on either the bucket or the data files\. You must remove these permissions yourself\.
 
 ## Subscribing to Your Spot Instance Data Feed<a name="using-spot-instances-datafeed-all"></a>

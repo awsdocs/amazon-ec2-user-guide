@@ -1,16 +1,14 @@
 # Enabling Enhanced Networking with the Elastic Network Adapter \(ENA\) on Linux Instances in a VPC<a name="enhanced-networking-ena"></a>
 
-To prepare for enhanced networking with the ENA network adapter, set up your instance as follows:
+Amazon EC2 provides enhanced networking capabilities to C5, F1, G3, H1, I3, `m4.16xlarge`, M5, P2, P3, R4, and X1 instances through the Elastic Network Adapter \(ENA\)\.
 
+To prepare for enhanced networking using the ENA, set up your instance as follows:
 + Launch the instance from an HVM AMI using Linux kernel version of 3\.2 or later\. The latest Amazon Linux HVM AMIs have the modules required for enhanced networking installed and have the required attributes set\. Therefore, if you launch an Amazon EBS–backed, enhanced networking–supported instance using a current Amazon Linux HVM AMI, ENA enhanced networking is already enabled for your instance\. 
-
 + Launch the instance in a VPC\. \(You can't enable enhanced networking if the instance is in EC2\-Classic\.\)
-
 + Install and configure the [AWS CLI](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html) or the [AWS Tools for Windows PowerShell](http://docs.aws.amazon.com/powershell/latest/userguide/) on any computer you choose, preferably your local desktop or laptop\. For more information, see [Accessing Amazon EC2](concepts.md#access-ec2)\. Enhanced networking cannot be managed from the Amazon EC2 console\. 
-
 + If you have important data on the instance that you want to preserve, you should back that data up now by creating an AMI from your instance\. Updating kernels and kernel modules, as well as enabling the `enaSupport` attribute, may render incompatible instances or operating systems unreachable; if you have a recent backup, your data will still be retained if this happens\.
 
-
+**Topics**
 + [Testing Whether Enhanced Networking with ENA Is Enabled](#test-enhanced-networking-ena)
 + [Enabling Enhanced Networking with ENA on Amazon Linux](#enable-enhanced-networking-ena-AL)
 + [Enabling Enhanced Networking with ENA on Ubuntu](#enhanced-networking-ena-ubuntu)
@@ -64,13 +62,13 @@ In the above Ubuntu instance, the module is not installed, so you must first ins
 **Instance Attribute \(enaSupport\)**
 
 To check whether an instance has the enhanced networking `enaSupport` attribute set, use one of the following commands\. If the attribute is set, the response is true\.
-
 + [describe\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) \(AWS CLI\)
 
   ```
   aws ec2 describe-instances --instance-ids instance_id --query 'Reservations[].Instances[].EnaSupport'
   ```
-
+**Note**  
+Some command prompts require double quotes \("\)\. For more information, see [Specifying Parameter Values for the AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/cli-using-param.html) in the *AWS Command Line Interface User Guide*\.
 + [Get\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html) \(Tools for Windows PowerShell\)
 
   ```
@@ -79,13 +77,13 @@ To check whether an instance has the enhanced networking `enaSupport` attribute 
 
 **Image Attribute \(enaSupport\)**  
 To check whether an AMI has the enhanced networking `enaSupport` attribute set, use one of the following commands\. If the attribute is set, the response is true\.
-
 + [describe\-images](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) \(AWS CLI\)
 
   ```
   aws ec2 describe-images --image-id ami_id --query 'Images[].EnaSupport'
   ```
-
+**Note**  
+Some command prompts require double quotes \("\)\. For more information, see [Specifying Parameter Values for the AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/cli-using-param.html) in the *AWS Command Line Interface User Guide*\.
 + [Get\-EC2Image](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Image.html) \(Tools for Windows PowerShell\)
 
   ```
@@ -150,13 +148,11 @@ If you launched your instance using an older Amazon Linux AMI and it does not ha
 If you are using an instance store\-backed instance, you can't stop the instance\. Instead, proceed to [To enable enhanced networking with ENA \(instance store\-backed instances\)](#enhanced-networking-ena-instance-store-AL)\.
 
 1. From your local computer, enable the enhanced networking attribute using one of the following commands:
-
    + [modify\-instance\-attribute](http://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) \(AWS CLI\)
 
      ```
      aws ec2 modify-instance-attribute --instance-id instance_id --ena-support
      ```
-
    + [Edit\-EC2InstanceAttribute](http://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2InstanceAttribute.html) \(Tools for Windows PowerShell\)
 
      ```
@@ -173,13 +169,11 @@ If you are using an instance store\-backed instance, you can't stop the instance
 <a name="enhanced-networking-ena-instance-store-AL"></a>
 **To enable enhanced networking with ENA \(instance store\-backed instances\)**  
 If your instance is an instance store–backed instance, follow [Step 1](#amazon-linux-enhanced-networking-ena-start-step-AL) through [Step 4](#amazon-linux-enhanced-networking-ena-stop-step-AL) in the previous procedure, and then create a new AMI as described in [Creating an Instance Store\-Backed Linux AMI](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-instance-store.html)\. Be sure to enable the enhanced networking `enaSupport` attribute when you register the AMI\.
-
 + [register\-image](http://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) \(AWS CLI\)
 
   ```
   aws ec2 register-image --ena-support ...
   ```
-
 + [Register\-EC2Image](http://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2Image.html) \(AWS Tools for Windows PowerShell\)
 
   ```
@@ -305,13 +299,11 @@ If during the update process you are prompted to install `grub`, use `/dev/xvda`
 If you are using an instance store\-backed instance, you can't stop the instance\. Instead, proceed to [To enable enhanced networking with ENA on Ubuntu \(instance store\-backed instances\)](#ubuntu-enhanced-networking-ena-instance-store)\.
 
 1. From your local computer, enable the enhanced networking attribute using one of the following commands:
-
    + [modify\-instance\-attribute](http://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) \(AWS CLI\)
 
      ```
      aws ec2 modify-instance-attribute --instance-id instance_id --ena-support
      ```
-
    + [Edit\-EC2InstanceAttribute](http://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2InstanceAttribute.html) \(Tools for Windows PowerShell\)
 
      ```
@@ -328,13 +320,11 @@ If you are using an instance store\-backed instance, you can't stop the instance
 <a name="ubuntu-enhanced-networking-ena-instance-store"></a>
 **To enable enhanced networking with ENA on Ubuntu \(instance store\-backed instances\)**  
 If your instance is an instance store\-backed instance, follow [Step 1](#ubuntu-enhanced-networking-ena-start-step) through [Step 9](#ubuntu-enhanced-networking-ena-stop-step) in the previous procedure, and then create a new AMI as described in [Creating an Instance Store\-Backed Linux AMI](creating-an-ami-instance-store.md)\. Be sure to enable the enhanced networking `enaSupport` attribute when you register the AMI\.
-
 + [register\-image](http://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) \(AWS CLI\)
 
   ```
   aws ec2 register-image --ena-support ...
   ```
-
 + [Register\-EC2Image](http://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2Image.html) \(AWS Tools for Windows PowerShell\)
 
   ```
@@ -357,7 +347,9 @@ The following procedure provides the general steps for enabling enhanced network
 
 1. Compile and install the `ena` module on your instance\. 
 
-   If your distribution supports dkms, then you should consider configuring dkms to recompile the `ena` module whenever your system's kernel is updated\. If your distribution does not support dkms natively, you can find it in the EPEL repository \([https://fedoraproject\.org/wiki/EPEL](https://fedoraproject.org/wiki/EPEL)\) for Red Hat Enterprise Linux variants, or you can download the software at [https://linux\.dell\.com/dkms/](https://linux.dell.com/dkms/)\. Use [Step 5](#enhanced-networking-ena-dkms-start-step) through [Step 7](#enhanced-networking-ena-dkms-stop-step) in [To enable enhanced networking with ENA on Ubuntu \(EBS\-backed instances\)](#ubuntu-enhanced-networking-ena-procedure) for help configuring dkms\.
+   If your distribution supports dkms, then you should consider configuring dkms to recompile the `ena` module whenever your system's kernel is updated\. If your distribution does not support dkms natively, you can find it in the EPEL repository \([https://fedoraproject\.org/wiki/EPEL](https://fedoraproject.org/wiki/EPEL)\) for Red Hat Enterprise Linux \(RHEL\) variants, or you can download the software at [https://linux\.dell\.com/dkms/](https://linux.dell.com/dkms/)\. Use [Step 5](#enhanced-networking-ena-dkms-start-step) through [Step 7](#enhanced-networking-ena-dkms-stop-step) in [To enable enhanced networking with ENA on Ubuntu \(EBS\-backed instances\)](#ubuntu-enhanced-networking-ena-procedure) for help configuring dkms\.
+**Note**  
+For RHEL/CentOS 7 distributions, install dkms version 2\.5 or later\. Earlier versions might not recompile the latest installed `ena` module on your instance\.
 
 1. Run the sudo depmod command to update module dependencies\.
 
@@ -392,16 +384,14 @@ The following procedure provides the general steps for enabling enhanced network
 
 1. From your local computer, stop the instance using the Amazon EC2 console or one of the following commands: [stop\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) \(AWS CLI\), [Stop\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/Stop-EC2Instance.html) \(AWS Tools for Windows PowerShell\)\. If your instance is managed by AWS OpsWorks, you should stop the instance in the AWS OpsWorks console so that the instance state remains in sync\.
 **Important**  
-If you are using an instance store\-backed instance, you can't stop the instance\. Instead, proceed to [To enabled enhanced networking with ENA \(instance store–backed instances\)](#other-linux-enhanced-networking-ena-instance-store)
+If you are using an instance store\-backed instance, you can't stop the instance\. Instead, proceed to [To enable enhanced networking with ENA (instance store–backed instances)](#other-linux-enhanced-networking-ena-instance-store)\.
 
 1. From your local computer, enable the enhanced networking `enaSupport` attribute using one of the following commands:
-
    + [modify\-instance\-attribute](http://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) \(AWS CLI\)
 
      ```
      aws ec2 modify-instance-attribute --instance-id instance_id --ena-support
      ```
-
    + [Edit\-EC2InstanceAttribute](http://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2InstanceAttribute.html) \(Tools for Windows PowerShell\)
 
      ```
@@ -417,16 +407,14 @@ If your instance operating system contains an `/etc/udev/rules.d/70-persistent-n
 1. \(Optional\) Connect to your instance and verify that the module is installed\.
 
    If you are unable to connect to your instance after enabling enhanced networking with ENA, see [Troubleshooting the Elastic Network Adapter \(ENA\)](troubleshooting-ena.md)\.
-<a name="other-linux-enhanced-networking-ena-instance-store"></a>
-**To enabled enhanced networking with ENA \(instance store–backed instances\)**  
-If your instance is an instance store–backed instance, follow the [Step 1](#other-linux-enhanced-networking-ena-start-step) through the [Step 5](#other-linux-enhanced-networking-ena-stop-step) in the previous procedure, and then create a new AMI as described in [Creating an Instance Store\-Backed Linux AMI](creating-an-ami-instance-store.md)\. Be sure to enable the enhanced networking `enaSupport` attribute when you register the AMI\.
 
+**To enable enhanced networking with ENA \(instance store–backed instances\)**  
+If your instance is an instance store–backed instance, follow the [Step 1](#other-linux-enhanced-networking-ena-start-step) through the [Step 5](#other-linux-enhanced-networking-ena-stop-step) in the previous procedure, and then create a new AMI as described in [Creating an Instance Store\-Backed Linux AMI](creating-an-ami-instance-store.md)\. Be sure to enable the enhanced networking `enaSupport` attribute when you register the AMI\.
 + [register\-image](http://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) \(AWS CLI\)
 
   ```
   aws ec2 register-image --ena-support ...
   ```
-
 + [Register\-EC2Image](http://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2Image.html) \(AWS Tools for Windows PowerShell\)
 
   ```

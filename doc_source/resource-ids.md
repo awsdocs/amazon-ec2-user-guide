@@ -12,8 +12,8 @@ Different resource types have different opt\-in periods and deadline dates\. The
 
 | Resource type | Opt\-in period | Deadline date | 
 | --- | --- | --- | 
-|  `instance` | `snapshot` |`reservation` | `volume`  |  No longer available  |  December 15, 2016  | 
-|  `bundle` | `conversion-task` | `customer-gateway` | `dhcp-options` | `elastic-ip-allocation` |  `elastic-ip-association` | `export-task` | `flow-log` | `image` | `import-task` | `internet-gateway` | `network-acl` | `network-acl-association` | `network-interface` | `network-interface-attachment` | `prefix-list` |  `route-table` | `route-table-association` | `security-group` | `subnet` | `subnet-cidr-block-association` | `vpc` | `vpc-cidr-block-association` | `vpc-endpoint` |  `vpc-peering-connection` | `vpn-connection` | `vpn-gateway`  | February 09, 2018 \- June 30, 2018 | June 30, 2018 | 
+|  `instance` \| `snapshot` \|`reservation` \| `volume`  |  No longer available  |  December 15, 2016  | 
+|  `bundle` \| `conversion-task` \| `customer-gateway` \| `dhcp-options` \| `elastic-ip-allocation` \|  `elastic-ip-association` \| `export-task` \| `flow-log` \| `image` \| `import-task` \| `internet-gateway` \| `network-acl` \| `network-acl-association` \| `network-interface` \| `network-interface-attachment` \| `prefix-list` \|  `route-table` \| `route-table-association` \| `security-group` \| `subnet` \| `subnet-cidr-block-association` \| `vpc` \| `vpc-cidr-block-association` \| `vpc-endpoint` \|  `vpc-peering-connection` \| `vpn-connection` \| `vpn-gateway`  | February 09, 2018 \- June 30, 2018 | June 30, 2018 | 
 
 **During the Opt\-in Period**  
 You can enable or disable longer IDs for a resource at any time during the opt\-in period\. After you've enabled longer IDs for a resource type, any new resources that you create are created with a longer ID\.
@@ -30,7 +30,7 @@ You can’t disable longer IDs for a resource type after its deadline date has p
 
 You can enable or disable longer IDs per IAM user and IAM role\. By default, an IAM user or role defaults to the same settings as the root user\. 
 
-
+**Topics**
 + [Viewing Longer ID Settings](#viewing_longer_id_settings)
 + [Modifying Longer ID Settings](#modifying_longer_id_settings)
 
@@ -51,13 +51,11 @@ You can use the console and command line tools to view the resource types that s
 **To view your longer ID settings using the command line**
 
 Use one of the following commands:
-
 + [describe\-id\-format](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-id-format.html) \(AWS CLI\)
 
   ```
   aws ec2 describe-id-format  --region region
   ```
-
 + [Get\-EC2IdFormat](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2IdFormat.html) \(AWS Tools for Windows PowerShell\)
 
   ```
@@ -67,13 +65,11 @@ Use one of the following commands:
 **To view longer ID settings for a specific IAM user or IAM role using the command line**
 
 Use one of the following commands and specify the ARN of an IAM user, IAM role, or root account user in the request\.
-
 + [describe\-identity\-id\-format](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-identity-id-format.html) \(AWS CLI\)
 
   ```
   aws ec2 describe-identity-id-format --principal-arn arn-of-iam-principal --region region
   ```
-
 + [Get\-EC2IdentityIdFormat](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2IdentityIdFormat.html) \(AWS Tools for Windows PowerShell\)
 
   ```
@@ -110,13 +106,10 @@ The AWS CLI and AWS Tools for Windows PowerShell commands in this section are pe
 1. From the dashboard, under **Account Attributes**, choose **Resource ID length management**\. 
 
 1. Do one of the following:
-
    + To enable longer IDs for all supported resource types for all IAM users across all regions, choose **Switch to longer IDs**, **Yes, switch to longer IDs**\.
 **Important**  
 IAM users and IAM roles need the `ec2:ModifyIdentityIdFormat` permission to perform this action\.
-
    + To modify longer ID settings for a specific resource type for your IAM user account, expand **Advanced Resource ID Management**, and then select the corresponding check box in the **My IAM Role/User** column to enable longer IDs, or clear the check box to disable longer IDs\.
-
    + To modify longer ID settings for a specific resource type for all IAM users, expand **Advanced Resource ID Management**, and then select the corresponding check box in the **All IAM Roles/Users** column to enable longer IDs, or clear the check box to disable longer IDs\.
 
 **To modify longer ID settings for your IAM user account using the command line**
@@ -124,7 +117,6 @@ IAM users and IAM roles need the `ec2:ModifyIdentityIdFormat` permission to perf
 Use one of the following commands:
 **Note**  
 If you’re using these commands as the root user, then changes apply to the entire AWS account, unless an IAM user or role explicitly overrides these settings for themselves\.
-
 + [modify\-id\-format](http://docs.aws.amazon.com/cli/latest/reference/ec2/modify-id-format.html) \(AWS CLI\)
 
   ```
@@ -138,7 +130,6 @@ If you’re using these commands as the root user, then changes apply to the ent
   ```
 **Note**  
 To disable longer IDs, replace the `use-long-ids` parameter with `no-use-long-ids`\.
-
 + [Edit\-EC2IdFormat](http://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2IdFormat.html) \(AWS Tools for Windows PowerShell\)
 
   ```
@@ -154,7 +145,6 @@ To disable longer IDs, replace the `use-long-ids` parameter with `no-use-long-id
 **To modify longer ID settings for a specific IAM user or IAM role using the command line**
 
 Use one of the following commands and specify the ARN of an IAM user, IAM role, or root user in the request\.
-
 + [modify\-identity\-id\-format](http://docs.aws.amazon.com/cli/latest/reference/ec2/modify-identity-id-format.html) \(AWS CLI\)
 
   ```
@@ -168,7 +158,6 @@ Use one of the following commands and specify the ARN of an IAM user, IAM role, 
   ```
 **Note**  
 To disable longer IDs, replace the `use-long-ids` parameter with `no-use-long-ids`\.
-
 + [Edit\-EC2IdentityIdFormat](http://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2IdentityIdFormat.html) \(AWS Tools for Windows PowerShell\)
 
   ```
@@ -184,17 +173,11 @@ To disable longer IDs, replace the `use-long-ids` parameter with `no-use-long-id
 ## Controlling Access to Longer ID Settings<a name="resource-ids-access"></a>
 
 By default, IAM users and roles do not have permission to use the following actions unless they're explicitly granted permission through their associated IAM policies:
-
 + `ec2:DescribeIdFormat`
-
 + `ec2:DescribeIdentityIdFormat`
-
 + `ec2:DescribeAggregateIdFormat`
-
 + `ec2:DescribePrincipalIdFormat`
-
 + `ec2:ModifyIdFormat`
-
 + `ec2:ModifyIdentityIdFormat`
 
 For example, an IAM role may have permission to use all Amazon EC2 actions through an `"Action": "ec2:*"` element in the policy statement\.
@@ -222,15 +205,9 @@ To prevent IAM users and roles from viewing or modifying the longer resource ID 
 ```
 
 We do not support resource\-level permissions for the following actions:
-
 + `ec2:DescribeIdFormat`
-
 + `ec2:DescribeIdentityIdFormat`
-
 + `ec2:DescribeAggregateIdFormat`
-
 + `ec2:DescribePrincipalIdFormat`
-
 + `ec2:ModifyIdFormat`
-
 + `ec2:ModifyIdentityIdFormat`

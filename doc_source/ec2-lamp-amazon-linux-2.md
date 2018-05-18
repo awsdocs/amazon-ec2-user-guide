@@ -24,18 +24,31 @@ This tutorial assumes that you have already launched a new instance using Amazon
    [ec2-user ~]$ sudo yum update -y
    ```
 
-1. Install the `lamp-mariadb10.2-php7.2` Amazon Linux Extras repository to get the latest versions of the LAMP MariaDB and PHP packages for Amazon Linux 2\.
+1. Install the `lamp-mariadb10.2-php7.2` and `php7.2` Amazon Linux Extras repositories to get the latest versions of the LAMP MariaDB and PHP packages for Amazon Linux 2\.
 
    ```
-   [ec2-user ~]$ sudo amazon-linux-extras install lamp-mariadb10.2-php7.2
+   [ec2-user ~]$ sudo amazon-linux-extras install lamp-mariadb10.2-php7.2 php7.2
    ```
+**Note**  
+If you receive an error stating `sudo: amazon-linux-extras: command not found`, then your instance was not launched with an Amazon Linux 2 AMI\. You can view your version of Amazon Linux with the following command\.  
+
+   ```
+   cat /etc/system-release
+   ```
+To set up a LAMP web server on Amazon Linux AMI , see [Tutorial: Install a LAMP Web Server with the Amazon Linux AMI](install-LAMP.md)\.
 
 1. Now that your instance is current, you can install the Apache web server, MariaDB, and PHP software packages\. 
 
    Use the yum install command to install multiple software packages and all related dependencies at the same time\.
 
    ```
-   [ec2-user ~]$ sudo yum install -y httpd php mariadb-server php-mysqlnd
+   [ec2-user ~]$ sudo yum install -y httpd mariadb-server
+   ```
+**Note**  
+You can view the current versions of these packages with the following command:  
+
+   ```
+   yum info package_name
    ```
 
 1. Start the Apache web server\.
@@ -73,13 +86,9 @@ This tutorial assumes that you have already launched a new instance using Amazon
       ```
 
       Using the procedures in [Adding Rules to a Security Group](using-network-security.md#adding-security-group-rule), add a new inbound security rule with the following values:
-
       + **Type**: HTTP
-
       + **Protocol**: TCP
-
       + **Port Range**: 80
-
       + **Source**: Custom
 
 1. Test your web server\. In a web browser, type the public DNS address \(or the public IP address\) of your instance\. If there is no content in `/var/www/html`, you should see the Apache test page\. You can get the public DNS for your instance using the Amazon EC2 console \(check the **Public DNS** column; if this column is hidden, choose **Show/Hide Columns** \(the gear\-shaped icon\) and choose **Public DNS**\)\.
@@ -91,11 +100,11 @@ If you are not using Amazon Linux, you may also need to configure the firewall o
 
 Apache httpd serves files that are kept in a directory called the Apache document root\. The Amazon Linux Apache document root is `/var/www/html`, which by default is owned by root\.
 
-To allow the ec2\-user account to manipulate files in this directory, you must modify the ownership and permissions of the directory\. There are many ways to accomplish this task\. In this tutorial, you add the ec2\-user user to the `apache` group, to give the `apache` group ownership of the `/var/www` directory and assign write permissions to the group\.<a name="setting-file-permissions-2"></a>
+To allow the `ec2-user` account to manipulate files in this directory, you must modify the ownership and permissions of the directory\. There are many ways to accomplish this task\. In this tutorial, you add `ec2-user` to the `apache` group, to give the `apache` group ownership of the `/var/www` directory and assign write permissions to the group\.<a name="setting-file-permissions-2"></a>
 
 **To set file permissions**
 
-1. Add your user \(in this case, ec2\-user\) to the `apache` group\.
+1. Add your user \(in this case, `ec2-user`\) to the `apache` group\.
 
    ```
    [ec2-user ~]$ sudo usermod -a -G apache ec2-user
@@ -134,7 +143,7 @@ To allow the ec2\-user account to manipulate files in this directory, you must m
    [ec2-user ~]$ find /var/www -type f -exec sudo chmod 0664 {} \;
    ```
 
-Now, the ec2\-user user \(and any future members of the `apache` group\) can add, delete, and edit files in the Apache document root\. Now you are ready to add content, such as a static website or a PHP application\.
+Now, `ec2-user` \(and any future members of the `apache` group\) can add, delete, and edit files in the Apache document root, enabling you to add content, such as a static website or a PHP application\.
 
 **To secure your web server \(Optional\)**  
 A web server running the HTTP protocol provides no transport security for the data that it sends or receives\. When you connect to an HTTP server using a web browser, the URLs that you visit, the content of webpages that you receive, and the contents \(including passwords\) of any HTML forms that you submit are all visible to eavesdroppers anywhere along the network pathway\. The best practice for securing your web server is to install support for HTTPS \(HTTP Secure\), which protects your data with SSL/TLS encryption\.
@@ -143,7 +152,7 @@ For information about enabling HTTPS on your server, see [Tutorial: Configure Ap
 
 ## Step 2: Test Your LAMP Server<a name="test-lamp-server"></a>
 
-If your server is installed and running, and your file permissions are set correctly, your ec2\-user account should be able to create a PHP file in the `/var/www/html` directory that is available from the internet\.
+If your server is installed and running, and your file permissions are set correctly, your `ec2-user` account should be able to create a PHP file in the `/var/www/html` directory that is available from the internet\.
 
 **To test your LAMP server**
 
@@ -164,12 +173,12 @@ If your server is installed and running, and your file permissions are set corre
    You should see the PHP information page:  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/phpinfo7.2.10.png)
 **Note**  
-If you do not see this page, verify that the `/var/www/html/phpinfo.php` file was created properly in the previous step\. You can also verify that all of the required packages were installed with the following command\. The package versions in the second column do not need to match this example output\.  
+If you do not see this page, verify that the `/var/www/html/phpinfo.php` file was created properly in the previous step\. You can also verify that all of the required packages were installed with the following command\.  
 
    ```
-   [ec2-user ~]$ sudo yum list installed httpd php mariadb-server php-mysqlnd
+   [ec2-user ~]$ sudo yum list installed httpd mariadb-server php-mysqlnd
    ```
-If any of the required packages are not listed in your output, install them with the sudo yum install *package* command\.
+If any of the required packages are not listed in your output, install them with the sudo yum install *package* command\. Also verify that the `php7.2` and `lamp-mariadb10.2-php7.2` extras are enabled in the out put of the amazon\-linux\-extras command\.
 
 1. Delete the `phpinfo.php` file\. Although this can be useful information, it should not be broadcast to the internet for security reasons\.
 
@@ -246,6 +255,12 @@ We do not recommend using `phpMyAdmin` to access a LAMP server unless you have e
    [ec2-user ~]$ sudo systemctl restart httpd
    ```
 
+1. Restart `php-fpm`\.
+
+   ```
+   [ec2-user ~]$ sudo systemctl restart php-fpm
+   ```
+
 1. Navigate to the Apache document root at `/var/www/html`\.
 
    ```
@@ -258,11 +273,16 @@ We do not recommend using `phpMyAdmin` to access a LAMP server unless you have e
    [ec2-user html]$ wget https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.tar.gz
    ```
 
-1. Extract the package and change the name of the resulting directory to something more manageable\.
+1. Create a `phpMyAdmin` folder and extract the package into it with the following command\.
 
    ```
-   [ec2-user html]$ tar -xvzf phpMyAdmin-latest-all-languages.tar.gz
-   [ec2-user html]$ mv phpMyAdmin-4.7.5-all-languages phpMyAdmin
+   [ec2-user html]$ mkdir phpMyAdmin && tar -xvzf phpMyAdmin-latest-all-languages.tar.gz -C phpMyAdmin --strip-components 1
+   ```
+
+1. Delete the *phpMyAdmin\-latest\-all\-languages\.tar\.gz* tarball\.
+
+   ```
+   [ec2-user html]$ rm phpMyAdmin-latest-all-languages.tar.gz
    ```
 
 1.  \(Optional\) If the MySQL server is not running, start it now\.
@@ -293,7 +313,6 @@ This section offers suggestions for resolving common problems you may encounter 
 ### I can't connect to my server using a web browser\.<a name="is_apache_on"></a>
 
 Perform the following checks to see if your Apache web server is running and accessible\.
-
 + **Is the web server running?**
 
   You can verify that httpd is on by running the following command:
@@ -303,7 +322,6 @@ Perform the following checks to see if your Apache web server is running and acc
   ```
 
   If the httpd process is not running, repeat the steps described in [To prepare the LAMP server](#install_apache-2)\.
-
 + **Is the firewall correctly configured?**
 
   If you are unable to see the Apache test page, check that the security group you are using contains a rule to allow HTTP \(port 80\) traffic\. For information about adding an HTTP rule to your security group, see [Adding Rules to a Security Group](using-network-security.md#adding-security-group-rule)\.
@@ -311,23 +329,15 @@ Perform the following checks to see if your Apache web server is running and acc
 ## Related Topics<a name="lamp-more-info"></a>
 
 For more information about transferring files to your instance or installing a WordPress blog on your web server, see the following documentation:
-
 + [Transferring Files to Your Linux Instance Using WinSCP](putty.md#Transfer_WinSCP)
-
 + [Transferring Files to Linux Instances from Linux Using SCP](AccessingInstancesLinux.md#AccessingInstancesLinuxSCP)
-
 + [Tutorial: Hosting a WordPress Blog with Amazon Linux](hosting-wordpress.md)
 
 For more information about the commands and software used in this tutorial, see the following webpages:
-
 + Apache web server: [http://httpd\.apache\.org/](http://httpd.apache.org/)
-
 + MariaDB database server: [[https://mariadb.org/](https://mariadb.org/)https://mariadb\.org/](http://www.mysql.com/)
-
 + PHP programming language: [http://php\.net/](http://php.net/)
-
 + The `chmod` command: [https://en\.wikipedia\.org/wiki/Chmod](https://en.wikipedia.org/wiki/Chmod)
-
 + The `chown` command: [https://en\.wikipedia\.org/wiki/Chown](https://en.wikipedia.org/wiki/Chown)
 
 For more information about registering a domain name for your web server, or transferring an existing domain name to this host, see [Creating and Migrating Domains and Subdomains to Amazon Route 53](http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/creating-migrating.html) in the *Amazon Route 53 Developer Guide*\.

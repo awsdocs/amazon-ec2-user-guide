@@ -29,9 +29,7 @@ You can use the AMI tools to create and manage instance store\-backed Linux AMIs
    ```
 
    Then, compare your file's Header SHA1 and MD5 hashes with the following verified AMI tools hashes to confirm the file's authenticity:
-
    + Header SHA1: a1f662d6f25f69871104e6a62187fa4df508f880
-
    + MD5: 9faff05258064e2f7909b66142de6782
 
    If your file's Header SHA1 and MD5 hashes match the verified AMI tools hashes, continue to the next step\.

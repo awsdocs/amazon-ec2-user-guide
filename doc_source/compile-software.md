@@ -22,7 +22,6 @@ After you have decompressed and unarchived the source code package, you should l
 **To retrieve source code for Amazon Linux packages**
 
 Amazon Web Services provides the source code for maintained packages\. You can download the source code for any installed packages with the yumdownloader \-\-source command\.
-
 + Run the yumdownloader \-\-source *package* command to download the source code for *package*\. For example, to download the source code for the `htop` package, enter the following command\.
 
   ```

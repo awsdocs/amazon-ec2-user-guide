@@ -7,7 +7,7 @@ In this tutorial, you create an EFS file system and two Linux instances that can
 **Important**  
 Amazon EFS is not supported on Windows instances\.
 
-
+**Topics**
 + [Prerequisites](#efs-prerequisites)
 + [Step 1: Create an EFS File System](#efs-create-file-system)
 + [Step 2: Mount the File System](#efs-mount-file-system)
@@ -15,13 +15,9 @@ Amazon EFS is not supported on Windows instances\.
 + [Step 4: Clean Up](#efs-clean-up)
 
 ## Prerequisites<a name="efs-prerequisites"></a>
-
 + Create a security group \(for example, efs\-sg\) to associate with the EC2 instances and EFS mount target, and add the following rules:
-
   + Allow inbound SSH connections to the EC2 instances from your computer \(the source is the CIDR block for your network\)\.
-
   + Allow inbound NFS connections to the file system via the EFS mount target from the EC2 instances that are associated with this security group \(the source is the security group itself\)\. For more information, see [Amazon EFS file system](security-group-rules-reference.md#sg-rules-efs), and [Security Groups for Amazon EC2 Instances and Mount Targets](http://docs.aws.amazon.com/efs/latest/ug/security-considerations.html#network-access) in the *Amazon Elastic File System User Guide*\.
-
 + Create a key pair\. You must specify a key pair when you configure your instances or you can't connect to them\. For more information, see [Create a Key Pair](get-set-up-for-amazon-ec2.md#create-a-key-pair)\.
 
 ## Step 1: Create an EFS File System<a name="efs-create-file-system"></a>

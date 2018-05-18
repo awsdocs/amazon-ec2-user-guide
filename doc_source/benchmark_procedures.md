@@ -23,7 +23,7 @@ Some of the procedures described in this topic will result in the destruction of
 
 To get optimal performance from EBS volumes, we recommend that you use an EBS\-optimized instance\. EBS\-optimized instances deliver dedicated throughput between Amazon EC2 and Amazon EBS, with instance\. EBS\-optimized instances deliver dedicated bandwidth between Amazon EC2 and Amazon EBS, with options between 425 and 14,000 Mbps, depending on the instance type\.
 
-To create an EBS\-optimized instance, choose **Launch as an EBS\-Optimized instance** when launching the instance using the Amazon EC2 console, or specify \-\-ebs\-optimized when using the command line\. Be sure that you launch a current\-generation instance that supports this option\. For the example tests in this topic, we recommend that you launch a `c3.4xlarge` instance\. For more information, see [Amazon EBS–Optimized Instances](EBSOptimized.md)\.
+To create an EBS\-optimized instance, choose **Launch as an EBS\-Optimized instance** when launching the instance using the Amazon EC2 console, or specify \-\-ebs\-optimized when using the command line\. Be sure that you launch a current\-generation instance that supports this option\. For more information, see [Amazon EBS–Optimized Instances](EBSOptimized.md)\.
 
 ### Setting up Provisioned IOPS SSD \(`io1`\) volumes<a name="setupPIOPS"></a>
 

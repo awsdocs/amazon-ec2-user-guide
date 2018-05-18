@@ -2,7 +2,7 @@
 
 The following topics explain the structure of an IAM policy\.
 
-
+**Topics**
 + [Policy Syntax](#policy-syntax)
 + [Actions for Amazon EC2](#UsingWithEC2_Actions)
 + [Amazon Resource Names for Amazon EC2](#EC2_ARN_Format)
@@ -30,13 +30,9 @@ An IAM policy is a JSON document that consists of one or more statements\. Each 
 ```
 
 There are various elements that make up a statement:
-
 + **Effect:** The *effect* can be `Allow` or `Deny`\. By default, IAM users don't have permission to use resources and API actions, so all requests are denied\. An explicit allow overrides the default\. An explicit deny overrides any allows\.
-
 + **Action**: The *action* is the specific API action for which you are granting or denying permission\. To learn about specifying *action*, see [Actions for Amazon EC2](#UsingWithEC2_Actions)\. 
-
 + **Resource**: The resource that's affected by the action\. Some Amazon EC2 API actions allow you to include specific resources in your policy that can be created or modified by the action\. To specify a resource in the statement, you need to use its Amazon Resource Name \(ARN\)\. For more information about specifying the ARN value, see [Amazon Resource Names for Amazon EC2](#EC2_ARN_Format)\. For more information about which API actions support which ARNs, see [Supported Resource\-Level Permissions for Amazon EC2 API Actions](ec2-supported-iam-actions-resources.md)\. If the API action does not support ARNs, use the \* wildcard to specify that all resources can be affected by the action\. 
-
 + **Condition**: Conditions are optional\. They can be used to control when your policy is in effect\. For more information about specifying conditions for Amazon EC2, see [Condition Keys for Amazon EC2](#amazon-ec2-keys)\.
 
 For more information about example IAM policy statements for Amazon EC2, see [Example Policies for Working with the AWS CLI or an AWS SDK](ExamplePolicies_EC2.md)\. 
@@ -168,34 +164,35 @@ Amazon EC2 implements the following service\-specific condition keys\. For infor
 | Condition Key | Key\-Value Pair | Evaluation Types | 
 | --- | --- | --- | 
 |  `ec2:AccepterVpc`  |  "ec2:AccepterVpc":"*vpc\-arn*" Where *vpc\-arn* is the VPC ARN for the accepter VPC in a VPC peering connection  |  ARN, Null  | 
+|  `ec2:AuthorizedService`  |  "ec2:AuthorizedService":"*service\-principal*" Where *service\-principal* is the service principal \(for example, ecs\.amazonaws\.com\)  |  String, Null  | 
 |  `ec2:AuthorizedUser`  |  "ec2:AuthorizedUser":"*principal\-arn*" Where *principal\-arn* is the ARN for the principal \(for example, arn:aws:iam::123456789012:root\)  |  ARN, Null  | 
 |  `ec2:AvailabilityZone`  |  "ec2:AvailabilityZone":"*az\-api\-name*" Where *az\-api\-name* is the name of the Availability Zone \(for example, `us-east-2a`\) To list your Availability Zones, use [describe\-availability\-zones](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-availability-zones.html)  |  String, Null  | 
 | ec2:CreateAction | "ec2:CreateAction":"api\-name"Where *api\-name* is the name of the resource\-creating action \(for example, `RunInstances`\) | String, Null | 
-|  `ec2:EbsOptimized`  |  "ec2:EbsOptimized":"*optimized\-flag*" Where *optimized\-flag* is `true` | `false` \(for an instance\)  |  Boolean, Null  | 
+|  `ec2:EbsOptimized`  |  "ec2:EbsOptimized":"*optimized\-flag*" Where *optimized\-flag* is `true` \| `false` \(for an instance\)  |  Boolean, Null  | 
 |  `ec2:ElasticGpuType`  |  "ec2:ElasticGpuType":"*elastic\-gpu\-type*" Where *elastic\-gpu\-type* is the name of the elastic GPU type  |  String, Null  | 
-| ec2:Encrypted | "ec2:Encrypted":"encrypted\-flag"Where *encrypted\-flag* is `true` | `false` \(for an EBS volume\) | Boolean, Null | 
-|  `ec2:ImageType`  |  "ec2:ImageType":"*image\-type\-api\-name*" Where *image\-type\-api\-name* is `ami` | `aki` | `ari`  |  String, Null  | 
-|  `ec2:InstanceMarketType`  |  "ec2:InstanceMarketType":"*market\-type*" Where *market\-type* is `spot` | `on-demand`  |  String, Null  | 
+| ec2:Encrypted | "ec2:Encrypted":"encrypted\-flag"Where *encrypted\-flag* is `true` \| `false` \(for an EBS volume\) | Boolean, Null | 
+|  `ec2:ImageType`  |  "ec2:ImageType":"*image\-type\-api\-name*" Where *image\-type\-api\-name* is `ami` \| `aki` \| `ari`  |  String, Null  | 
+|  `ec2:InstanceMarketType`  |  "ec2:InstanceMarketType":"*market\-type*" Where *market\-type* is `spot` \| `on-demand`  |  String, Null  | 
 |  `ec2:InstanceProfile`  |  "ec2:InstanceProfile":"*instance\-profile\-arn*" Where *instance\-profile\-arn* is the instance profile ARN  |  ARN, Null  | 
 | `ec2:InstanceType`  |  "ec2:InstanceType":"*instance\-type\-api\-name*" Where *instance\-type\-api\-name* is the name of the instance type\.  |  String, Null  | 
-|  `ec2:IsLaunchTemplateResource`  |  "ec2:IsLaunchTemplateResource":"*launch\-template\-resource\-flag*" Where *launch\-template\-resource\-flag* is `true` | `false`  |  Boolean, Null  | 
+|  `ec2:IsLaunchTemplateResource`  |  "ec2:IsLaunchTemplateResource":"*launch\-template\-resource\-flag*" Where *launch\-template\-resource\-flag* is `true` \| `false`  |  Boolean, Null  | 
 |  `ec2:LaunchTemplate`  |  "ec2:LaunchTemplate":"*launch\-template\-arn*" Where *launch\-template\-arn* is the launch template ARN  |  ARN, Null  | 
-|  `ec2:Owner`  |  "ec2:Owner":"*account\-id*" Where *account\-id* is `amazon` | `aws-marketplace` | *aws\-account\-id*  |  String, Null  | 
+|  `ec2:Owner`  |  "ec2:Owner":"*account\-id*" Where *account\-id* is `amazon` \| `aws-marketplace` \| *aws\-account\-id*  |  String, Null  | 
 | `ec2:ParentSnapshot` |  "ec2:ParentSnapshot":"*snapshot\-arn*" Where *snapshot\-arn* is the snapshot ARN  |  ARN, Null  | 
 |  `ec2:ParentVolume`  |  "ec2:ParentVolume":"*volume\-arn*" Where *volume\-arn* is the volume ARN  |  ARN, Null  | 
-|  `ec2:Permission`  |  "ec2:Permission":"*permission*" Where *permission* is `INSTANCE-ATTACH` | `EIP-ASSOCIATE`  |  String, Null  | 
+|  `ec2:Permission`  |  "ec2:Permission":"*permission*" Where *permission* is `INSTANCE-ATTACH` \| `EIP-ASSOCIATE`  |  String, Null  | 
 |  `ec2:PlacementGroup`  |  "ec2:PlacementGroup":"*placement\-group\-arn*" Where *placement\-group\-arn* is the placement group ARN  |  ARN, Null  | 
-| ec2:PlacementGroupStrategy |  "ec2:PlacementGroupStrategy":"*placement\-group\-strategy*" Where *placement\-group\-strategy* is `cluster` | `spread`  | String, Null | 
+| ec2:PlacementGroupStrategy |  "ec2:PlacementGroupStrategy":"*placement\-group\-strategy*" Where *placement\-group\-strategy* is `cluster` \| `spread`  | String, Null | 
 |  `ec2:ProductCode`  |  "ec2:ProductCode":"*product\-code*" Where *product\-code* is the product code  |  String, Null  | 
-| `ec2:Public` |  "ec2:Public":"*public\-flag*" Where *public\-flag* is `true` | `false` \(for an AMI\)  |  Boolean, Null  | 
+| `ec2:Public` |  "ec2:Public":"*public\-flag*" Where *public\-flag* is `true` \| `false` \(for an AMI\)  |  Boolean, Null  | 
 |  `ec2:Region`  |  "ec2:Region":"*region\-name*" Where *region\-name* is the name of the region \(for example, `us-east-2`\)\. To list your regions, use [describe\-regions](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-regions.html)\. This condition key can be used with all Amazon EC2 actions\.  |  String, Null  | 
 | `ec2:RequesterVpc` |  "ec2:RequesterVpc":"*vpc\-arn*" Where *vpc\-arn* is the VPC ARN for the requester VPC in a VPC peering connection  |  ARN, Null  | 
-|  `ec2:ReservedInstancesOfferingType`  |  "ec2:ReservedInstancesOfferingType":"*offering\-type* Where *offering\-type* is `No Upfront` | `Partial Upfront` | `All Upfront`  |  String, Null  | 
+|  `ec2:ReservedInstancesOfferingType`  |  "ec2:ReservedInstancesOfferingType":"*offering\-type* Where *offering\-type* is `No Upfront` \| `Partial Upfront` \| `All Upfront`  |  String, Null  | 
 |  `ec2:ResourceTag/`*tag\-key*  |  "ec2:ResourceTag/*tag\-key*":"*tag\-value*" Where *tag\-key* and *tag\-value* are the tag\-key pair  |  String, Null  | 
-|  `ec2:RootDeviceType`  |  "ec2:RootDeviceType":"*root\-device\-type\-name*" Where *root\-device\-type\-name* is `ebs` | `instance-store`  |  String, Null  | 
+|  `ec2:RootDeviceType`  |  "ec2:RootDeviceType":"*root\-device\-type\-name*" Where *root\-device\-type\-name* is `ebs` \| `instance-store`  |  String, Null  | 
 |  `ec2:SnapshotTime`  |  "ec2:SnapshotTime":"*time*" Where *time* is the snapshot creation time \(for example, 2013\-06\-01T00:00:00Z\)  |  Date, Null  | 
 |  `ec2:Subnet`  |  "ec2:Subnet":"*subnet\-arn*" Where *subnet\-arn* is the subnet ARN  |  ARN, Null  | 
-|  `ec2:Tenancy`  |  "ec2:Tenancy":"*tenancy\-attribute*" Where *tenancy\-attribute* is `default` | `dedicated` | `host`  |  String, Null  | 
+|  `ec2:Tenancy`  |  "ec2:Tenancy":"*tenancy\-attribute*" Where *tenancy\-attribute* is `default` \| `dedicated` \| `host`  |  String, Null  | 
 |  `ec2:VolumeIops`  |  "ec2:VolumeIops":"*volume\-iops*" Where *volume\-iops* is the input/output operations per second \(IOPS\)\. For more information, see [Amazon EBS Volume Types](EBSVolumeTypes.md)\.  |  Numeric, Null  | 
 |  `ec2:VolumeSize`  |  "ec2:VolumeSize":"*volume\-size*" Where *volume\-size* is the size of the volume, in GiB  |  Numeric, Null  | 
 |  `ec2:VolumeType`  |  "ec2:VolumeType":"*volume\-type\-name*" Where *volume\-type\-name* is `gp2` for General Purpose SSD volumes, `io1` for Provisioned IOPS SSD volumes, `st1` for Throughput Optimized HDD volumes, `sc1` for Cold HDD volumes, or `standard` for Magnetic volumes\.  |  String, Null  | 

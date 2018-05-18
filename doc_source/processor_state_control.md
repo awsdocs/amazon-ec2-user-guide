@@ -3,22 +3,15 @@
 C\-states control the sleep levels that a core can enter when it is idle\. C\-states are numbered starting with C0 \(the shallowest state where the core is totally awake and executing instructions\) and go to C6 \(the deepest idle state where a core is powered off\)\. P\-states control the desired performance \(in CPU frequency\) from a core\. P\-states are numbered starting from P0 \(the highest performance setting where the core is allowed to use Intel Turbo Boost Technology to increase frequency if possible\), and they go from P1 \(the P\-state that requests the maximum baseline frequency\) to P15 \(the lowest possible frequency\)\.
 
 The following instance types provide the ability for an operating system to control processor C\-states and P\-states:
-
-+ General purpose: `m4.10xlarge` | `m4.16xlarge`
-
++ General purpose: `m4.10xlarge` \| `m4.16xlarge`
 + Compute optimized: `c4.8xlarge`
-
-+ Storage optimized: `d2.8xlarge` | `i3.8xlarge` | `i3.16xlarge` | `h1.8xlarge` | `h1.16xlarge`
-
-+ Accelerated computing: `f1.16xlarge` | `g3.16xlarge` | `p2.16xlarge` | `p3.16xlarge`
-
-+ Memory optimized: `r4.8xlarge` | `r4.16xlarge` | `x1.16xlarge` | `x1.32xlarge` | `x1e.8xlarge` | `x1e.16xlarge` | `x1e.32xlarge`
++ Storage optimized: `d2.8xlarge` \| `i3.8xlarge` \| `i3.16xlarge` \| `h1.8xlarge` \| `h1.16xlarge`
++ Accelerated computing: `f1.16xlarge` \| `g3.16xlarge` \| `p2.16xlarge` \| `p3.16xlarge`
++ Memory optimized: `r4.8xlarge` \| `r4.16xlarge` \| `x1.16xlarge` \| `x1.32xlarge` \| `x1e.8xlarge` \| `x1e.16xlarge` \| `x1e.32xlarge`
 
 The following instance types provide the ability for an operating system to control processor C\-states:
-
-+ General purpose: `m5.12xlarge` | `m5.24xlarge`
-
-+ Compute optimized: `c5.9xlarge` | `c5.18xlarge`
++ General purpose: `m5.12xlarge` \| `m5.24xlarge`
++ Compute optimized: `c5.9xlarge` \| `c5.18xlarge`
 
 You might want to change the C\-state or P\-state settings to increase processor performance consistency, reduce latency, or tune your instance for a specific workload\. The default C\-state and P\-state settings provide maximum performance, which is optimal for most workloads\. However, if your application would benefit from reduced latency at the cost of higher single\- or dual\-core frequencies, or from consistent performance at lower frequencies as opposed to bursty Turbo Boost frequencies, consider experimenting with the C\-state or P\-state settings that are available to these instances\.
 
@@ -28,7 +21,7 @@ The following sections describe the different processor state configurations and
 The examples on this page use the turbostat utility \(which is available on Amazon Linux by default\) to display processor frequency and C\-state information, and the stress command \(which can be installed by running sudo yum install \-y stress\) to simulate a workload\.  
 If the output does not display the C\-state information, include the \-\-debug option in the command \(sudo turbostat \-\-debug stress *<options>*\)\.
 
-
+**Topics**
 + [Highest Performance with Maximum Turbo Boost Frequency](#turbo-perf)
 + [High Performance and Low Latency by Limiting Deeper C\-states](#c-states)
 + [Baseline Performance with the Lowest Variability](#baseline-perf)
@@ -54,7 +47,7 @@ pk cor CPU    %c0  GHz  TSC SMI    %c1    %c3    %c6    %c7   %pc2   %pc3   %pc6
  0   3   3   0.05 3.42 2.90   0  99.91   0.00   0.05   0.00
  0   3  21  97.84 3.45 2.90   0   2.11
 ...
-  1   1  10   0.06 3.33 2.90   0  99.88   0.01   0.06   0.00
+ 1   1  10   0.06 3.33 2.90   0  99.88   0.01   0.06   0.00
  1   1  28  97.61 3.44 2.90   0   2.32
 ...
 10.002556 sec

@@ -1,9 +1,7 @@
 # Amazon EBS Volume Types<a name="EBSVolumeTypes"></a>
 
 Amazon EBS provides the following volume types, which differ in performance characteristics and price, so that you can tailor your storage performance and cost to the needs of your applications\. The volumes types fall into two categories:
-
 + SSD\-backed volumes optimized for transactional workloads involving frequent read/write operations with small I/O size, where the dominant performance attribute is IOPS
-
 + HDD\-backed volumes optimized for large streaming workloads where throughput \(measured in MiB/s\) is a better performance measure than IOPS
 
 The following table describes the use cases and performance characteristics for each volume type:
@@ -16,19 +14,23 @@ The following table describes the use cases and performance characteristics for 
 | Use Cases |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html)  | 
 | API Name | gp2 | io1 | st1 | sc1 | 
 | Volume Size | 1 GiB \- 16 TiB  | 4 GiB \- 16 TiB  | 500 GiB \- 16 TiB | 500 GiB \- 16 TiB  | 
-| Max\. IOPS\*\*/Volume | 10,000 | 32,000 | 500 | 250 | 
-| Max\. Throughput/Volume | 160 MiB/s | 500 MiB/s\*\*\* | 500 MiB/s | 250 MiB/s | 
+| Max\. IOPS\*\*/Volume | 10,000 | 32,000\*\*\* | 500 | 250 | 
+| Max\. Throughput/Volume | 160 MiB/s | 500 MiB/s† | 500 MiB/s | 250 MiB/s | 
 | Max\. IOPS/Instance | 80,000 | 80,000 | 80,000 | 80,000 | 
-| Max\. Throughput/Instance† | 1,750 MiB/s | 1,750 MiB/s | 1,750 MiB/s | 1,750 MiB/s | 
+| Max\. Throughput/Instance†† | 1,750 MiB/s | 1,750 MiB/s | 1,750 MiB/s | 1,750 MiB/s | 
 | Dominant Performance Attribute | IOPS | IOPS | MiB/s | MiB/s | 
 
-\* Default volume type
+\* Default volume type for EBS volumes created from the console is `gp2`\. Volumes created using the CreateVolume API default to either `gp2` or `standard` according to region:
++ `standard`: us\-east\-1, eu\-west\-1, eu\-central\-1, us\-west\-2, us\-west\-1, sa\-east\-1, ap\-northeast\-1, ap\-northeast\-2, ap\-southeast\-1, ap\-southeast\-2, ap\-south\-1, us\-gov\-west\-1, cn\-north\-1
++ `gp2`: All other regions
 
 \*\* `gp2`/`io1` based on 16 KiB I/O size, `st1`/`sc1` based on 1 MiB I/O size
 
-\*\*\* An `io1` volume created before 12/6/2017 will not achieve this throughput until modified in some way\. For more information, see [Modifying the Size, IOPS, or Type of an EBS Volume on Linux](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-modify-volume.html)\.
+\*\*\* `io1` volumes created in regions ap\-northeast\-3 and us\-gov\-west\-1 are subject to a 20,000 IOPS limit\.
 
-† To achieve this throughput, you must have an instance that supports it\. For more information, see [Amazon EBS–Optimized Instances](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html)\.
+† An `io1` volume created before 12/6/2017 will not achieve this throughput until modified in some way\. For more information, see [Modifying the Size, IOPS, or Type of an EBS Volume on Linux](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-modify-volume.html)\.
+
+†† To achieve this throughput, you must have an instance that supports it\. For more information, see [Amazon EBS–Optimized Instances](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html)\.
 
 The following table describes previous\-generation EBS volume types\. If you need higher performance or performance consistency than previous\-generation volumes can provide, we recommend that you consider using General Purpose SSD \(`gp2`\) or other current volume types\. For more information, see [Previous Generation Volumes](https://aws.amazon.com/ebs/previous-generation/)\.
 
@@ -103,7 +105,19 @@ For information about using CloudWatch metrics and alarms to monitor your burst 
 
 ### Throughput Performance<a name="GP2Throughput"></a>
 
-The throughput limit for `gp2` volumes is 128 MiB/s for volumes less than or equal to 170 GiB and 160 MiB/s for volumes over 170 GiB\.
+Throughput for a `gp2` volume can be calculated using the following formula, up to the throughput limit of 160 MiB/s:
+
+```
+(Volume size in GiB) × (IOPS per GiB) × (I/O size in KiB) = Throughput in MiB/s
+```
+
+Therefore the smallest volume size that achieves the maximum throughput is given by: 
+
+```
+(160 MiB/s)
+----------- (3 IOPS/GiB) = 214 GiB
+ (256 KiB)
+```
 
 ## Provisioned IOPS SSD \(`io1`\) Volumes<a name="EBSVolumeTypes_piops"></a>
 
@@ -358,9 +372,7 @@ For example, an I/O request of 1 MiB or less counts as a 1 MiB I/O credit\. Howe
 ### **Limitations on per\-Instance Throughput**<a name="throughput-limitations"></a>
 
 Throughput for `st1` and `sc1` volumes is always determined by the smaller of the following:
-
 + Throughput limits of the volume
-
 + Throughput limits of the instance
 
 As for all Amazon EBS volumes, we recommend that you select an appropriate EBS\-optimized EC2 instance in order to avoid network bottlenecks\. For more information, see [Amazon EBS\-Optimized Instances](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html)\.

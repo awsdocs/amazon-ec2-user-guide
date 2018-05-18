@@ -2,7 +2,7 @@
 
 The following are common tasks to get you started using this tool\.
 
-
+**Topics**
 + [Getting Help](#ec2rl_getting_help)
 + [Running a Module](#ec2rl_running_module)
 + [Uploading the Results](#ec2rl_uploading_results)
@@ -13,7 +13,6 @@ The following are common tasks to get you started using this tool\.
 EC2Rescue for Linux includes a help file that gives you information and syntax for each available command\.
 
 **To use the help command**
-
 + Use the `help` command to get general help:
 
   ```
@@ -21,7 +20,6 @@ EC2Rescue for Linux includes a help file that gives you information and syntax f
   ```
 
 **To list the available modules**
-
 + List all available modules:
 
   ```
@@ -29,7 +27,6 @@ EC2Rescue for Linux includes a help file that gives you information and syntax f
   ```
 
 **To get help for a specific module**
-
 + List the help details for a specific command:
 
   ```
@@ -77,7 +74,6 @@ You can run an EC2Rescue for Linux using these steps\.
 If AWS Support has requested the results or to share the results from an S3 bucket, upload using the EC2Rescue for Linux CLI tool\. The output of the EC2Rescue for Linux commands should provide the commands to achieve this\.
 
 **To upload to support**
-
 + Upload the results to support:
 
   ```
@@ -85,7 +81,6 @@ If AWS Support has requested the results or to share the results from an S3 buck
   ```
 
 **To upload to an S3 bucket**
-
 + To upload the results to an S3 bucket:
 
   ```
@@ -99,7 +94,6 @@ For more information about generating presigned URLs for Amazon S3, see [Uploadi
 Create a backup for your instance, one or more volumes, or a specific device ID using the following commands\.
 
 **To back up an instance**
-
 + Create a backup of your instance:
 
   ```
@@ -107,7 +101,6 @@ Create a backup for your instance, one or more volumes, or a specific device ID 
   ```
 
 **To back up all volumes**
-
 + Create a backup of all volumes associated with the instance:
 
   ```
@@ -115,7 +108,6 @@ Create a backup for your instance, one or more volumes, or a specific device ID 
   ```
 
 **To back up a volume**
-
 + Create a backup of a single volume:
 
   ```

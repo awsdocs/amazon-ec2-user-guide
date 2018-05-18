@@ -21,7 +21,6 @@ Before extending a file system that contains valuable data, it is a best practic
 For information about extending a Windows file system, see [Extending a Windows File System after Resizing the Volume](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/recognize-expanded-volume-windows.html) in the *Amazon EC2 User Guide for Windows Instances*\.<a name="procedure_partition_check"></a>
 
 **To check if your volume partition needs resizing**
-
 + Use the lsblk command to list the block devices attached to your instance\. The example below shows three volumes: `/dev/xvda`, `/dev/xvdb`, and `/dev/xvdf`\.
 
   ```

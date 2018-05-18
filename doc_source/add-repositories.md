@@ -8,7 +8,6 @@ These procedures are intended for use with Amazon Linux\. For more information a
 To install a package from a different repository with yum, you need to add the repository information to the `/etc/yum.conf` file or to its own `repository.repo` file in the `/etc/yum.repos.d` directory\. You can do this manually, but most yum repositories provide their own `repository.repo` file at their repository URL\.
 
 **To determine what yum repositories are already installed**
-
 + List the installed yum repositories with the following command:
 
   ```
@@ -55,7 +54,6 @@ To install a package from a different repository with yum, you need to add the r
 After you install a repository, you must enable it as described in the next procedure\.
 
 **To enable a yum repository in `/etc/yum.repos.d`**
-
 + Use the yum\-config\-manager command with the `--enable repository` flag\. The following command enables the Extra Packages for Enterprise Linux \(EPEL\) repository from the Fedora project\. By default, this repository is present in `/etc/yum.repos.d` on Amazon Linux instances, but it is not enabled\.
 
   ```

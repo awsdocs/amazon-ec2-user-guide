@@ -26,7 +26,7 @@ The following example does not include an Availability Zone or subnet\. Amazon E
 }
 ```
 
-Note that you can specify security groups for EC2\-Classic either by ID or by name \(using the `SecurityGroups` field\)\. You must specify security groups for EC2\-VPC by ID\.
+You can specify security groups for EC2\-Classic either by ID or by name \(using the `SecurityGroups` field\)\. You must specify security groups for EC2\-VPC by ID\.
 
 ## Example 2: Launch Spot Instances in the Specified Availability Zone<a name="spot-launch-specification2"></a>
 

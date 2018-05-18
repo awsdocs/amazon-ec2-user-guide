@@ -11,7 +11,7 @@ FPGA\-based instances do not support Microsoft Windows\.
 
 You can cluster accelerated computing instances into a cluster placement group\. Cluster placement groups provide low latency and high\-bandwidth connectivity between the instances within a single Availability Zone\. For more information, see [Placement Groups](placement-groups.md)\.
 
-
+**Topics**
 + [Accelerated Computing Instance Families](#gpu-instance-families)
 + [Hardware Specifications](#gpu-instance-specifications)
 + [Instance Performance](#gpu-instance-performance)
@@ -73,9 +73,7 @@ G3 instances support NVIDIA GRID Virtual Workstation and NVIDIA GRID Virtual App
 The following is a summary of the hardware specifications for accelerated computing instances\.
 
 
-****  
-
-| Instance type | vCPUs | Memory \(GiB\) | 
+| Instance type | Default vCPUs | Memory \(GiB\) | 
 | --- | --- | --- | 
 | p2\.xlarge | 4 | 61 | 
 | p2\.8xlarge | 32 | 488 | 
@@ -91,11 +89,13 @@ The following is a summary of the hardware specifications for accelerated comput
 
 For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
+For more information about specifying CPU options, see [Optimizing CPU Options](instance-optimize-cpu.md)\.
+
 ## Instance Performance<a name="gpu-instance-performance"></a>
 
 There are several GPU setting optimizations that you can perform to achieve the best performance on P2, P3, and G3 instances\. For more information, see [Optimizing GPU Settings \(P2, P3, and G3 Instances\)](optimize_gpu.md)\.
 
-EBS\-optimized instances enable you to get consistently high performance for your EBS volumes by eliminating contention between Amazon EBS I/O and other network traffic from your instance\. F1, P3, P2, and G3 instances are EBS\-optimized by default at no additional cost\. For more information, see [Amazon EBS–Optimized Instances](EBSOptimized.md)\.
+EBS\-optimized instances enable you to get consistently high performance for your EBS volumes by eliminating contention between Amazon EBS I/O and other network traffic from your instance\. F1, P3, P2, and G3 instances are EBS\-optimized by default at no additional cost\.For more information, see [Amazon EBS–Optimized Instances](EBSOptimized.md)\.
 
 The `g3.16xlarge`, `p2.16xlarge`, `p3.16xlarge`, and `f1.16xlarge` instance types provide the ability to control processor C\-states and P\-states on Linux\. C\-states control the sleep levels that a core can enter when it is inactive, while P\-states control the desired performance \(in CPU frequency\) from a core\. For more information, see [Processor State Control for Your EC2 Instance](processor_state_control.md)\.
 
@@ -131,25 +131,16 @@ The following is a summary of features for accelerated computing instances\.
 \* The root device volume must be an Amazon EBS volume\.
 
 For more information, see the following:
-
 + [Instance Types Available Only in a VPC](using-vpc.md#vpc-only-instance-types)
-
 + [Amazon EBS–Optimized Instances](EBSOptimized.md)
-
 + [Amazon EC2 Instance Store](InstanceStorage.md)
-
 + [Placement Groups](placement-groups.md)
-
 + [Enhanced Networking on Linux](enhanced-networking.md)
 
 ## Release Notes<a name="gpu-instance-current-limitations"></a>
-
 + You must launch the instance using an HVM AMI\.
-
 + GPU\-based instances can't access the GPU unless the NVIDIA drivers are installed\.
-
 + There is a limit of 100 AFIs per region\.
-
 + There is a limit on the number of instances that you can run\. For more information, see [How many instances can I run in Amazon EC2?](https://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2) in the Amazon EC2 FAQ\. To request an increase in these limits, use the following form: [Request to Increase Amazon EC2 Instance Limit](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-instances)\.
 
 ## AMIs for GPU\-Based Accelerated Computing Instances<a name="gpu-operating-systems"></a>
@@ -157,13 +148,14 @@ For more information, see the following:
 To help you get started, NVIDIA and others provide AMIs for GPU\-based accelerated computing instances\. These reference AMIs include the NVIDIA driver, which enables full functionality and performance of the NVIDIA GPUs\.
 
 For a list of AMIs with the NVIDIA driver, search AWS Marketplace as follows:
-
 + [NVIDIA P3 AMIs](https://aws.amazon.com/marketplace/search/results/?page=1&filters=instance_types&instance_types=p3.2xlarge&searchTerms=NVIDIA)
-
 + [NVIDIA P2 AMIs](https://aws.amazon.com/marketplace/search/results/?page=1&filters=instance_types&instance_types=p2.xlarge&searchTerms=NVIDIA)
-
 + [NVIDIA GRID G3 AMIs](https://aws.amazon.com/marketplace/search/results/?page=1&filters=instance_types&instance_types=g3.4xlarge&searchTerms=NVIDIAGRID)
++ [NVIDIA GRID G2 AMIs](https://aws.amazon.com/marketplace/search/results/?page=1&filters=instance_types&instance_types=g2.2xlarge&searchTerms=NVIDIAGRID)
 
 You can launch accelerated computing instances using any HVM AMI\.
+
+**Important**  
+These AMIs include drivers, software, or toolkits that are developed, owned, or provided by NVIDIA Corporation\. By using these AMIs, you agree to use these NVIDIA drivers, software, or toolkits only on Amazon EC2 instances that include NVIDIA hardware\.
 
 You can also install the NVIDIA driver manually\. For more information, see [Installing the NVIDIA Driver on Linux Instances](install-nvidia-driver.md)\.

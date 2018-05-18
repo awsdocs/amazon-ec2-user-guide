@@ -2,7 +2,7 @@
 
 After you have successfully launched and logged into your Amazon Linux instance, you can make changes to it\. There are many different ways you can configure an instance to meet the needs of a specific application\. The following are some common tasks to help get you started\.
 
-
+**Topics**
 + [Common Configuration Scenarios](#configuration-scenarios)
 + [Managing Software on Your Linux Instance](managing-software.md)
 + [Managing User Accounts on Your Linux Instance](managing-users.md)

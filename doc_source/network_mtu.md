@@ -4,7 +4,7 @@ The maximum transmission unit \(MTU\) of a network connection is the size, in by
 
 Ethernet frames can come in different formats, and the most common format is the standard Ethernet v2 frame format\. It supports 1500 MTU, which is the largest Ethernet packet size supported over most of the Internet\. The maximum supported MTU for an instance depends on its instance type\. All Amazon EC2 instance types support 1500 MTU, and many current instance sizes support 9001 MTU, or jumbo frames\.
 
-
+**Topics**
 + [Jumbo Frames \(9001 MTU\)](#jumbo_frame_instances)
 + [Path MTU Discovery](#path_mtu_discovery)
 + [Check the Path MTU Between Two Hosts](#check_path_mtu)
@@ -20,15 +20,10 @@ Jumbo frames should be used with caution for Internet\-bound traffic or any traf
 For instances that are collocated inside a cluster placement group, jumbo frames help to achieve the maximum network throughput possible, and they are recommended in this case\. For more information, see [Placement Groups](placement-groups.md)\.
 
 The following instances support jumbo frames:
-
 + General purpose: M3, M4, M5, T2
-
 + Compute optimized: C3, C4, C5, CC2
-
 + Accelerated computing: F1, G2, G3, P2, P3
-
 + Memory optimized: CR1, R3, R4, X1
-
 + Storage optimized: D2, H1, HS1, I2, I3
 
 ## Path MTU Discovery<a name="path_mtu_discovery"></a>

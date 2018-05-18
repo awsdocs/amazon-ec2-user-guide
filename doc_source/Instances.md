@@ -1,13 +1,9 @@
 # Amazon EC2 Instances<a name="Instances"></a>
 
 If you're new to Amazon EC2, see the following topics to get started:
-
 + [What Is Amazon EC2?](concepts.md)
-
 + [Setting Up with Amazon EC2](get-set-up-for-amazon-ec2.md)
-
 + [Getting Started with Amazon EC2 Linux Instances](EC2_GetStarted.md)
-
 + [Instance Lifecycle](ec2-instance-lifecycle.md)
 
 Before you launch a production environment, you need to answer the following questions\.

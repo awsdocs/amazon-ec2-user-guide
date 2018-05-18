@@ -6,7 +6,7 @@ Status checks are performed every minute and each returns a pass or a fail statu
 
 You can also create an Amazon CloudWatch alarm that monitors an Amazon EC2 instance and automatically recovers the instance if it becomes impaired due to an underlying issue\. For more information, see [Recover Your Instance](ec2-instance-recover.md)\.
 
-
+**Topics**
 + [Types of Status Checks](#types-of-instance-status-checks)
 + [Viewing Status Checks](#viewing_status)
 + [Reporting Instance Status](#reporting_status)
@@ -20,28 +20,19 @@ There are two types of status checks: system status checks and instance status c
 Monitor the AWS systems on which your instance runs\. These checks detect underlying problems with your instance that require AWS involvement to repair\. When a system status check fails, you can choose to wait for AWS to fix the issue, or you can resolve it yourself\. For instances backed by Amazon EBS, you can stop and start the instance yourself, which in most cases migrates it to a new host computer\. For instances backed by instance store, you can terminate and replace the instance\.
 
 The following are examples of problems that can cause system status checks to fail:
-
 + Loss of network connectivity
-
 + Loss of system power
-
 + Software issues on the physical host
-
 + Hardware issues on the physical host that impact network reachability
 
 **Instance Status Checks**  
 Monitor the software and network configuration of your individual instance\. These checks detect problems that require your involvement to repair\. When an instance status check fails, typically you will need to address the problem yourself \(for example, by rebooting the instance or by making instance configuration changes\)\.
 
 The following are examples of problems that can cause instance status checks to fail:
-
 + Failed system status checks
-
 + Incorrect networking or startup configuration
-
 + Exhausted memory
-
 + Corrupted file system
-
 + Incompatible kernel
 
 ## Viewing Status Checks<a name="viewing_status"></a>
@@ -88,9 +79,7 @@ aws ec2 describe-instance-status --instance-ids i-1234567890abcdef0
 ```
 
 Alternatively, use the following commands:
-
 +  [Get\-EC2InstanceStatus](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2InstanceStatus.html) \(AWS Tools for Windows PowerShell\) 
-
 +  [DescribeInstanceStatus](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeInstanceStatus.html) \(Amazon EC2 Query API\)
 
 If you have an instance with a failed status check, see [Troubleshooting Instances with Failed Status Checks](TroubleshootingInstances.md)\.
@@ -124,9 +113,7 @@ aws ec2 report-instance-status --instances i-1234567890abcdef0 --status impaired
 ```
 
 Alternatively, use the following commands:
-
 +  [Send\-EC2InstanceStatus](http://docs.aws.amazon.com/powershell/latest/reference/items/Send-EC2InstanceStatus.html) \(AWS Tools for Windows PowerShell\) 
-
 +  [ReportInstanceStatus](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-ReportInstanceStatus.html) \(Amazon EC2 Query API\)
 
 ## Creating and Editing Status Check Alarms<a name="creating_status_check_alarms"></a>
@@ -198,9 +185,6 @@ In the following example, the alarm publishes a notification to an SNS topic, `a
    ```
 
 **Note**
-
    + `--period` is the time frame, in seconds, in which Amazon CloudWatch metrics are collected\. This example uses 300, which is 60 seconds multiplied by 5 minutes\.
-
    + `--evaluation-periods` is the number of consecutive periods for which the value of the metric must be compared to the threshold\. This example uses 2\.
-
    + `--alarm-actions` is the list of actions to perform when this alarm is triggered\. Each action is specified as an Amazon Resource Name \(ARN\)\. This example configures the alarm to send an email using Amazon SNS\.

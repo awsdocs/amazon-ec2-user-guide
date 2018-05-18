@@ -10,8 +10,8 @@ For simplified data encryption, you can launch your EBS volumes as encrypted vol
 
 You can attach multiple volumes to the same instance within the limits specified by your AWS account\. Your account has a limit on the number of EBS volumes that you can use, and the total storage available to you\. For more information about these limits, and how to request an increase in your limits, see [Request to Increase the Amazon EBS Volume Limit](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ebs)\.
 
-
-+ [Features of Amazon EBS](#w3ab1c25c29c15)
+**Topics**
++ [Features of Amazon EBS](#w3ab1c25c31c15)
 + [Amazon EBS Volumes](EBSVolumes.md)
 + [Amazon EBS Snapshots](EBSSnapshots.md)
 + [Amazon EBS–Optimized Instances](EBSOptimized.md)
@@ -20,26 +20,15 @@ You can attach multiple volumes to the same instance within the limits specified
 + [Amazon EBS Volume Performance on Linux Instances](EBSPerformance.md)
 + [Amazon CloudWatch Events for Amazon EBS](ebs-cloud-watch-events.md)
 
-## Features of Amazon EBS<a name="w3ab1c25c29c15"></a>
-
+## Features of Amazon EBS<a name="w3ab1c25c31c15"></a>
 +  You can create EBS General Purpose SSD \(`gp2`\), Provisioned IOPS SSD \(`io1`\), Throughput Optimized HDD \(`st1`\), and Cold HDD \(`sc1`\) volumes up to 16 TiB in size\. You can mount these volumes as devices on your Amazon EC2 instances\. You can mount multiple volumes on the same instance, but each volume can be attached to only one instance at a time\. You can dynamically change the configuration of a volume attached to an instance\. For more information, see [Creating an Amazon EBS Volume](ebs-creating-volume.md)\.
-
 + With General Purpose SSD \(`gp2`\) volumes, you can expect base performance of 3 IOPS/GiB, with the ability to burst to 3,000 IOPS for extended periods of time\. `Gp2` volumes are ideal for a broad range of use cases such as boot volumes, small and medium\-size databases, and development and test environments\. `Gp2` volumes support up to 10,000 IOPS and 160 MB/s of throughput\. For more information, see [General Purpose SSD \(`gp2`\) Volumes](EBSVolumeTypes.md#EBSVolumeTypes_gp2)\.
-
 + With Provisioned IOPS SSD \(`io1`\) volumes, you can provision a specific level of I/O performance\. `Io1` volumes support up to 32,000 IOPS and 500 MB/s of throughput\. This allows you to predictably scale to tens of thousands of IOPS per EC2 instance\. For more information, see [Provisioned IOPS SSD \(`io1`\) Volumes](EBSVolumeTypes.md#EBSVolumeTypes_piops)\.
-
 + Throughput Optimized HDD \(`st1`\) volumes provide low\-cost magnetic storage that defines performance in terms of throughput rather than IOPS\. With throughput of up to 500 MiB/s, this volume type is a good fit for large, sequential workloads such as Amazon EMR, ETL, data warehouses, and log processing\. For more information, see [Throughput Optimized HDD \(`st1`\) Volumes](EBSVolumeTypes.md#EBSVolumeTypes_st1)\.
-
 + Cold HDD \(`sc1`\) volumes provide low\-cost magnetic storage that defines performance in terms of throughput rather than IOPS\. With throughput of up to 250 MiB/s, `sc1` is a good fit ideal for large, sequential, cold\-data workloads\. If you require infrequent access to your data and are looking to save costs, `sc1` provides inexpensive block storage\. For more information, see [Cold HDD \(`sc1`\) Volumes](EBSVolumeTypes.md#EBSVolumeTypes_sc1)\.
-
-+ EBS volumes behave like raw, unformatted block devices\. You can create a file system on top of these volumes, or use them in any other way you would use a block device \(like a hard drive\)\. For more information on creating file systems and mounting volumes, see [Making an Amazon EBS Volume Available for Use](ebs-using-volumes.md)\.
-
++ EBS volumes behave like raw, unformatted block devices\. You can create a file system on top of these volumes, or use them in any other way you would use a block device \(like a hard drive\)\. For more information on creating file systems and mounting volumes, see [Making an Amazon EBS Volume Available for Use on Linux](ebs-using-volumes.md)\.
 + You can use encrypted EBS volumes to meet a wide range of data\-at\-rest encryption requirements for regulated/audited data and applications\. For more information, see [Amazon EBS Encryption](EBSEncryption.md)\.
-
 + You can create point\-in\-time snapshots of EBS volumes, which are persisted to Amazon S3\. Snapshots protect data for long\-term durability, and they can be used as the starting point for new EBS volumes\. The same snapshot can be used to instantiate as many volumes as you wish\. These snapshots can be copied across AWS regions\. For more information, see [Amazon EBS Snapshots](EBSSnapshots.md)\. 
-
 + EBS volumes are created in a specific Availability Zone, and can then be attached to any instances in that same Availability Zone\. To make a volume available outside of the Availability Zone, you can create a snapshot and restore that snapshot to a new volume anywhere in that region\. You can copy snapshots to other regions and then restore them to new volumes there, making it easier to leverage multiple AWS regions for geographical expansion, data center migration, and disaster recovery\. For more information, see [Creating an Amazon EBS Snapshot](ebs-creating-snapshot.md), [Restoring an Amazon EBS Volume from a Snapshot](ebs-restoring-volume.md), and [Copying an Amazon EBS Snapshot](ebs-copy-snapshot.md)\.
-
 + A large repository of public data set snapshots can be restored to EBS volumes and seamlessly integrated into AWS cloud\-based applications\. For more information, see [Using Public Data Sets](using-public-data-sets.md)\.
-
 + Performance metrics, such as bandwidth, throughput, latency, and average queue length, are available through the AWS Management Console\. These metrics, provided by Amazon CloudWatch, allow you to monitor the performance of your volumes to make sure that you are providing enough performance for your applications without paying for resources you don't need\. For more information, see [Amazon EBS Volume Performance on Linux Instances](EBSPerformance.md)\.

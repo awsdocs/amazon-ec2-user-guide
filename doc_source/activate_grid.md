@@ -13,13 +13,11 @@ To activate the GRID capabilities on G3 instances, such as NVIDIA GRID Virtual W
 1. Open the `/etc/nvidia/gridd.conf` file in your favorite text editor\.
 
 1. 
-
    + For NVIDIA GRID Virtual Workstation, find the `FeatureType` line, and set it equal to 2\.
 
      ```
      FeatureType=2
      ```
-
    + For NVIDIA GRID Virtual Applications, find the `FeatureType` line, and set it equal to 0\. Then add a line with `IgnoreSP=TRUE`\.
 
      ```

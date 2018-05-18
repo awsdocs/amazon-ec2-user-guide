@@ -73,13 +73,9 @@ Some applications may not be compatible with the following recommended software 
       ```
 
       Using the procedures in [Adding Rules to a Security Group](using-network-security.md#adding-security-group-rule), add a new inbound security rule with the following values:
-
       + **Type**: HTTP
-
       + **Protocol**: TCP
-
       + **Port Range**: 80
-
       + **Source**: Custom
 
 1. Test your web server\. In a web browser, type the public DNS address \(or the public IP address\) of your instance\. If there is no content in `/var/www/html`, you should see the Apache test page\. You can get the public DNS for your instance using the Amazon EC2 console \(check the **Public DNS** column; if this column is hidden, choose **Show/Hide Columns** \(the gear\-shaped icon\) and choose **Public DNS**\)\.
@@ -103,11 +99,11 @@ drwxr-xr-x 3 root root 4096 Aug  7 00:02 icons
 drwxr-xr-x 2 root root 4096 Aug  7 21:17 noindex
 ```
 
-To allow the ec2\-user account to manipulate files in this directory, you must modify the ownership and permissions of the directory\. There are many ways to accomplish this task\. In this tutorial, you add the ec2\-user user to the `apache` group, to give the `apache` group ownership of the `/var/www` directory and assign write permissions to the group\.<a name="SettingFilePermissions"></a>
+To allow the `ec2-user` account to manipulate files in this directory, you must modify the ownership and permissions of the directory\. There are many ways to accomplish this task\. In this tutorial, you add `ec2-user` to the `apache` group, to give the `apache` group ownership of the `/var/www` directory and assign write permissions to the group\.<a name="SettingFilePermissions"></a>
 
 **To set file permissions**
 
-1. Add your user \(in this case, ec2\-user\) to the `apache` group\.
+1. Add your user \(in this case, `ec2-user`\) to the `apache` group\.
 
    ```
    [ec2-user ~]$ sudo usermod -a -G apache ec2-user
@@ -147,7 +143,7 @@ To allow the ec2\-user account to manipulate files in this directory, you must m
    [ec2-user ~]$ find /var/www -type f -exec sudo chmod 0664 {} \;
    ```
 
-Now, the ec2\-user user \(and any future members of the `apache` group\) can add, delete, and edit files in the Apache document root\. Now you are ready to add content, such as a static website or a PHP application\.
+Now, `ec2-user` \(and any future members of the `apache` group\) can add, delete, and edit files in the Apache document root, enabling you to add content, such as a static website or a PHP application\.
 
 **\(Optional\) Secure your web server**  
 A web server running the HTTP protocol provides no transport security for the data that it sends or receives\. When you connect to an HTTP server using a web browser, the URLs that you visit, the content of webpages that you receive, and the contents \(including passwords\) of any HTML forms that you submit are all visible to eavesdroppers anywhere along the network pathway\. The best practice for securing your web server is to install support for HTTPS \(HTTP Secure\), which protects your data with SSL/TLS encryption\.
@@ -156,7 +152,7 @@ For information about enabling HTTPS on your server, see [Tutorial: Configure Ap
 
 **To test your LAMP web server**
 
-If your server is installed and running, and your file permissions are set correctly, your ec2\-user account should be able to create a PHP file in the `/var/www/html` directory that is available from the internet\.
+If your server is installed and running, and your file permissions are set correctly, your `ec2-user` account should be able to create a PHP file in the `/var/www/html` directory that is available from the internet\.
 
 1. Create a PHP file in the Apache document root\.
 
@@ -222,7 +218,7 @@ The default installation of the MySQL server has several features that are great
 
       1. Type the current root password\. By default, the root account does not have a password set\. Press Enter\.
 
-      1. Type **Y** to set a password, and type a secure password twice\. For more information about creating a secure password, see [http://www\.pctools\.com/guides/password/](http://www.pctools.com/guides/password/)\. Make sure to store this password in a safe place\.
+      1. Type **Y** to set a password, and type a secure password twice\. For more information about creating a secure password, see [https://identitysafe\.norton\.com/password\-generator/](https://identitysafe.norton.com/password-generator/)\. Make sure to store this password in a safe place\.
 **Note**  
 Setting a root password for MySQL is only the most basic measure for securing your database\. When you build or install a database\-driven application, you typically create a database service user for that application and avoid using the root account for anything but database administration\. 
 
@@ -322,7 +318,6 @@ This section offers suggestions for resolving common problems you may encounter 
 ### I can't connect to my server using a web browser\.<a name="is_apache_on"></a>
 
 Perform the following checks to see if your Apache web server is running and accessible\.
-
 + **Is the web server running?**
 
   You can verify that httpd is on by running the following command:
@@ -335,7 +330,6 @@ Perform the following checks to see if your Apache web server is running and acc
   Here, httpd is `on` in runlevels 2, 3, 4, and 5 \(which is what you want to see\)\.
 
   If the httpd process is not running, repeat the steps described in [To install and start the LAMP web server with the Amazon Linux AMI](#install_apache)\.
-
 + **Is the firewall correctly configured?**
 
   If you are unable to see the Apache test page, check that the security group you are using contains a rule to allow HTTP \(port 80\) traffic\. For information about adding an HTTP rule to your security group, see [Adding Rules to a Security Group](using-network-security.md#adding-security-group-rule)\.
@@ -346,13 +340,9 @@ This tutorial recommends installing the most up\-to\-date versions of Apache HTT
 
 **How to downgrade**  
 The well\-tested previous version of this tutorial called for the following core LAMP packages:
-
 + `httpd24`
-
 + `php56`
-
 + `mysql55-server`
-
 + `php56-mysqlnd`
 
 If you have already installed the latest packages as recommended at the start of this tutorial, you must first uninstall these packages and other dependencies as follows:
@@ -378,23 +368,15 @@ Now you can install the latest packages, as described earlier\.
 ## Related Topics<a name="lamp-more-info"></a>
 
 For more information about transferring files to your instance or installing a WordPress blog on your web server, see the following documentation:
-
 + [Transferring Files to Your Linux Instance Using WinSCP](putty.md#Transfer_WinSCP)
-
 + [Transferring Files to Linux Instances from Linux Using SCP](AccessingInstancesLinux.md#AccessingInstancesLinuxSCP)
-
 + [Tutorial: Hosting a WordPress Blog with Amazon Linux](hosting-wordpress.md)
 
 For more information about the commands and software used in this tutorial, see the following webpages:
-
 + Apache web server: [http://httpd\.apache\.org/](http://httpd.apache.org/)
-
 + MySQL database server: [http://www\.mysql\.com/](http://www.mysql.com/)
-
 + PHP programming language: [http://php\.net/](http://php.net/)
-
 + The `chmod` command: [https://en\.wikipedia\.org/wiki/Chmod](https://en.wikipedia.org/wiki/Chmod)
-
 + The `chown` command: [https://en\.wikipedia\.org/wiki/Chown](https://en.wikipedia.org/wiki/Chown)
 
 For more information about registering a domain name for your web server, or transferring an existing domain name to this host, see [Creating and Migrating Domains and Subdomains to Amazon Route 53](http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/creating-migrating.html) in the *Amazon Route 53 Developer Guide*\.

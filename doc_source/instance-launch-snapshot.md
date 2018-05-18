@@ -22,15 +22,10 @@ Use the following procedure to create an AMI from the root volume of your instan
 1. Choose the snapshot that you just created, and then choose **Actions**, **Create Image**\.
 
 1. In the **Create Image from EBS Snapshot** dialog box, provide the following information and then choose **Create**\. If you're re\-creating a parent instance, then choose the same options as the parent instance\.
-
    + **Architecture**: Choose **i386** for 32\-bit or **x86\_64** for 64\-bit\.
-
    + **Root device name**: Enter the appropriate name for the root volume\. For more information, see [Device Naming on Linux Instances](device_naming.md)\.
-
    + **Virtualization type**: Choose whether instances launched from this AMI use paravirtual \(PV\) or hardware virtual machine \(HVM\) virtualization\. For more information, see [Linux AMI Virtualization Types](virtualization_types.md)\.
-
    + \(PV virtualization type only\) **Kernel ID** and **RAM disk ID**: Choose the AKI and ARI from the lists\. If you choose the default AKI or don't choose an AKI, you are required to specify an AKI every time you launch an instance using this AMI\. In addition, your instance may fail the health checks if the default AKI is incompatible with the instance\.
-
    + \(Optional\) **Block Device Mappings**: Add volumes or expand the default size of the root volume for the AMI\. For more information about resizing the file system on your instance for a larger volume, see [Extending a Linux File System after Resizing the Volume](recognize-expanded-volume-linux.md)\.
 
 1. In the navigation pane, choose **AMIs**\.

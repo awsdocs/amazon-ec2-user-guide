@@ -1,6 +1,6 @@
 # Troubleshooting Instances with Failed Status Checks<a name="TroubleshootingInstances"></a>
 
-
+**Topics**
 + [Initial Steps](#InitialSteps)
 + [Retrieving System Logs](#troubleshooting-retrieve-system-logs)
 + [Troubleshooting System Log Errors for Linux\-Based Instances](#system-log-errors-linux)
@@ -38,17 +38,11 @@ If your instance fails a status check, first determine whether your applications
 1. In the details pane, choose **Status Checks** to see the individual results for all **System Status Checks** and **Instance Status Checks**\.
 
 If a system status check has failed, you can try one of the following options:
-
 + Create an instance recovery alarm\. For more information, see [Create Alarms That Stop, Terminate, or Recover an Instance](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/UsingAlarmActions.html) in the *Amazon CloudWatch User Guide*\.
-
 + For an instance using an Amazon EBS\-backed AMI, stop and restart the instance\.
-
 + For an instance using an instance\-store backed AMI, terminate the instance and launch a replacement\.
-
 + Wait for Amazon EC2 to resolve the issue\.
-
 + Post your issue to the [Amazon EC2 forum](https://forums.aws.amazon.com/forum.jspa?forumID=30)\.
-
 + Retrieve the system log and look for errors\. 
 
 ## Retrieving System Logs<a name="troubleshooting-retrieve-system-logs"></a>
@@ -78,53 +72,33 @@ If an instance status check fails, you can reboot the instance and retrieve the 
 For Linux\-based instances that have failed an instance status check, such as the instance reachability check, verify that you followed the steps above to retrieve the system log\. The following list contains some common system log errors and suggested actions you can take to resolve the issue for each error\.
 
 **Memory Errors**
-
 + [Out of memory: kill process](#MemoryOOM)
-
 + [ERROR: mmu\_update failed \(Memory management update failed\)](#MemoryMMU)
 
 **Device Errors**
-
 + [I/O Error \(Block Device Failure\)](#DeviceBlock)
-
 + [I/O ERROR: neither local nor remote disk \(Broken distributed block device\)](#DeviceDistributed)
 
 **Kernel Errors**
-
 + [request\_module: runaway loop modprobe \(Looping legacy kernel modprobe on older Linux versions\)](#KernelLoop)
-
 + ["FATAL: kernel too old" and "fsck: No such file or directory while trying to open /dev" \(Kernel and AMI mismatch\) ](#KernelOld)
-
 + ["FATAL: Could not load /lib/modules" or "BusyBox" \(Missing kernel modules\)](#KernelMissing)
-
 + [ERROR Invalid kernel \(EC2 incompatible kernel\)](#KernelInvalid)
 
 **File System Errors**
-
 + [request\_module: runaway loop modprobe \(Looping legacy kernel modprobe on older Linux versions\)](#FilesystemUnknown)
-
 + [fsck: No such file or directory while trying to open\.\.\. \(File system not found\)](#FilesystemFschk)
-
 + [General error mounting filesystems \(Failed mount\)](#FilesystemGeneral)
-
 + [VFS: Unable to mount root fs on unknown\-block \(Root filesystem mismatch\)](#FilesystemKernel)
-
 + [Error: Unable to determine major/minor number of root device\.\.\. \(Root file system/device mismatch\) ](#FilesystemError)
-
 + [XENBUS: Device with no driver\.\.\.](#FilesystemXenbus)
-
 + [\.\.\. days without being checked, check forced \(File system check required\)](#FilesystemCheck)
-
 + [fsck died with exit status\.\.\. \(Missing device\)](#FilesystemFschkDied)
 
 **Operating System Errors**
-
 + [GRUB prompt \(grubdom>\)](#OpSystemGrub)
-
 + [Bringing up interface eth0: Device eth0 has different MAC address than expected, ignoring\. \(Hard\-coded MAC address\) ](#OpSystemBringing)
-
 + [Unable to load SELinux Policy\. Machine is in enforcing mode\. Halting now\. \(SELinux misconfiguration\)](#OpSystemUnable)
-
 + [XENBUS: Timeout connecting to devices \(Xenbus timeout\)](#OpSystemXenbus)
 
 ## Out of memory: kill process<a name="MemoryOOM"></a>
@@ -355,11 +329,8 @@ Enter 'help' for a list of built-in commands.
 ### Potential Causes<a name="KernelMissing-potential-cause"></a>
 
 One or more of the following conditions can cause this problem:
-
 + Missing ramdisk 
-
 + Missing correct modules from ramdisk
-
 + Amazon EBS root volume not correctly attached as `/dev/sda1`
 
 ### Suggested Actions<a name="KernelMissing-suggested-actions"></a>
@@ -404,9 +375,7 @@ Error 15: File not found
 ### Potential Causes<a name="KernelInvalid-potential-cause"></a>
 
 One or both of the following conditions can cause this problem:
-
 + Supplied kernel is not supported by GRUB 
-
 + Fallback kernel does not exist 
 
 ### Suggested Actions<a name="KernelInvalid-suggested-actions"></a>
@@ -494,11 +463,8 @@ Give root password for maintenance
 ```
 
 ### Potential Causes<a name="FilesystemFschk-potential-cause"></a>
-
 + A bug exists in ramdisk filesystem definitions /etc/fstab
-
 + Misconfigured filesystem definitions in /etc/fstab
-
 + Missing/failed drive
 
 ### Suggested Actions<a name="FilesystemFschk-suggested-actions"></a>
@@ -623,11 +589,8 @@ sh: can't access tty; job control turned off
 ```
 
 ### Potential Causes<a name="FilesystemError-potential-cause"></a>
-
 + Missing or incorrectly configured virtual block device driver
-
 + Device enumeration clash \(sda versus xvda or sda instead of sda1\)
-
 + Incorrect choice of instance kernel
 
 ### Suggested Actions<a name="FilesystemError-suggested-actions"></a>
@@ -662,11 +625,8 @@ sh: can't access tty; job control turned off
 ```
 
 ### Potential Causes<a name="FilesystemXenbus-potential-cause"></a>
-
 + Missing or incorrectly configured virtual block device driver
-
 + Device enumeration clash \(sda versus xvda\)
-
 + Incorrect choice of instance kernel
 
 ### Suggested Actions<a name="FilesystemXenbus-suggested-actions"></a>
@@ -694,9 +654,7 @@ Checking all file systems.
 Filesystem check time passed; a filesystem check is being forced\.
 
 ### Suggested Actions<a name="FilesystemCheck-suggested-actions"></a>
-
 + Wait until the filesystem check completes\. A filesystem check can take a long time depending on the size of the root filesystem\. 
-
 +  Modify your filesystems to remove the filesystem check \(fsck\) enforcement using tune2fs or tools appropriate for your filesystem\. 
 
 ## fsck died with exit status\.\.\. \(Missing device\)<a name="FilesystemFschkDied"></a>
@@ -715,11 +673,8 @@ fsck died with exit status 8
 ```
 
 ### Potential Causes<a name="FilesystemFschkDied-potential-cause"></a>
-
 + Ramdisk looking for missing drive
-
 + Filesystem consistency check forced
-
 + Drive failed or detached
 
 ### Suggested Actions<a name="FilesystemFschkDied-suggested-actions"></a>
@@ -803,9 +758,7 @@ Kernel panic - not syncing: Attempted to kill init!
 ### Potential Causes<a name="OpSystemUnable-potential-cause"></a>
 
 SELinux has been enabled in error:
-
 + Supplied kernel is not supported by GRUB
-
 + Fallback kernel does not exist
 
 ### Suggested Actions<a name="OpSystemUnable-suggested-actions"></a>
@@ -830,9 +783,7 @@ Kernel panic - not syncing: No init found.  Try passing init= option to kernel.
 ```
 
 ### Potential Causes<a name="OpSystemXenbus-potential-cause"></a>
-
 + The block device not is connected to the instance
-
 + This instance is using an old instance kernel
 
 ### Suggested Actions<a name="OpSystemXenbus-suggested-actions"></a>

@@ -11,7 +11,7 @@ Launching an instance from a paid AMI is the same as launching an instance from 
 **Important**  
 Amazon DevPay is no longer accepting new sellers or products\. AWS Marketplace is now the single, unified e\-commerce platform for selling software and services through AWS\. For information about how to deploy and sell software from AWS Marketplace, see [Selling on AWS Marketplace](https://aws.amazon.com/marketplace/help/200899830)\. AWS Marketplace supports AMIs backed by Amazon EBS\.
 
-
+**Topics**
 + [Selling Your AMI](#selling-your-ami)
 + [Finding a Paid AMI](#using-paid-amis-finding-paid-ami)
 + [Purchasing a Paid AMI](#using-paid-amis-purchasing-paid-ami)
@@ -84,9 +84,7 @@ You can purchase a paid AMI by using the Amazon EC2 launch wizard\. For more inf
 ### Subscribing to a Product Using AWS Marketplace<a name="subscribe-to-paid-ami"></a>
 
 To use the AWS Marketplace, you must have an AWS account\. To launch instances from AWS Marketplace products, you must be signed up to use the Amazon EC2 service, and you must be subscribed to the product from which to launch the instance\. There are two ways to subscribe to products in the AWS Marketplace:
-
 + **AWS Marketplace website**: You can launch preconfigured software quickly with the 1\-Click deployment feature\.
-
 + **Amazon EC2 launch wizard**: You can search for an AMI and launch an instance directly from the wizard\. For more information, see [Launching an AWS Marketplace Instance](launch-marketplace-console.md)\.
 
 ## Getting the Product Code for Your Instance<a name="get-product-code"></a>
@@ -109,13 +107,11 @@ Amazon EC2 also enables developers to offer support for software \(or derived AM
 You can't use a support product with Reserved Instances\. You always pay the price that's specified by the seller of the support product\.
 
 To associate a product code with your AMI, use one of the following commands, where *ami\_id* is the ID of the AMI and *product\_code* is the product code:
-
 + [modify\-image\-attribute](http://docs.aws.amazon.com/cli/latest/reference/ec2/modify-image-attribute.html) \(AWS CLI\)
 
   ```
   aws ec2 modify-image-attribute --image-id ami_id --product-codes "product_code"
   ```
-
 + [Edit\-EC2ImageAttribute](http://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2ImageAttribute.html) \(AWS Tools for Windows PowerShell\)
 
   ```

@@ -4,7 +4,7 @@ You can create a security group and add rules that reflect the role of the insta
 
 The following are examples of the kinds of rules that you can add to security groups for specific kinds of access\. 
 
-
+**Topics**
 + [Web server](#sg-rules-web-server)
 + [Database server](#sg-rules-db-server)
 + [Access from another instance in the same group](#sg-rules-other-instances)
@@ -32,9 +32,7 @@ The following inbound rules allow HTTP and HTTPS access from any IP address\. If
 The following inbound rules are examples of rules you might add for database access, depending on what type of database you're running on your instance\. For more information about Amazon RDS instances, see the [Amazon Relational Database Service User Guide](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/)\.
 
 For the source IP, specify one of the following:
-
 + A specific IP address or range of IP addresses in your local network
-
 + A security group ID for a group of instances that access the database
 
 
@@ -122,9 +120,7 @@ To use the `ping6` command to ping the IPv6 address for your instance, you must 
 If you've set up your EC2 instance as a DNS server, you must ensure that TCP and UDP traffic can reach your DNS server over port 53\. 
 
 For the source IP, specify one of the following:
-
 + A specific IP address or range of IP addresses in a network
-
 + A security group ID for a group of instances in your network that require access to the DNS server
 
 

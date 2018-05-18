@@ -4,20 +4,15 @@ A consistent and accurate time reference is crucial for many server tasks and pr
 
 Amazon provides the Amazon Time Sync Service, which you can access from your instance\. This service uses a fleet of satellite\-connected and atomic reference clocks in each AWS Region to deliver accurate current time readings of the Coordinated Universal Time \(UTC\) global standard through Network Time Protocol \(NTP\)\. The Amazon Time Sync Service automatically smooths any leap seconds that are added to UTC\.
 
-Alternatively, you can use external NTP sources\. For more information about NTP and public time sources, see [http://www\.ntp\.org/](http://www.ntp.org/)\. An instance needs access to the internet for the external NTP time sources to work\. 
-
-
-+ [Configuring the Amazon Time Sync Service](#configure-amazon-time-service)
-+ [Changing the Time Zone](#change_time_zone)
-
-## Configuring the Amazon Time Sync Service<a name="configure-amazon-time-service"></a>
-
 The Amazon Time Sync Service is available through NTP at the `169.254.169.123` IP address for any instance running in a VPC\. Your instance does not require access to the internet, and you do not have to configure your security group rules or your network ACL rules to allow access\. Use the following procedures to configure the Amazon Time Sync Service on your instance using the `chrony` client\.
 
-**Important**  
-On Amazon Linux 2, the default `chrony` configuration is already set up to use the Amazon Time Sync Service IP address\. For Amazon Linux, Red Hat Enterprise Linux \(RHEL\), CentOS, Fedora, and Ubuntu distributions, you must edit the `chrony` configuration file to add a server entry for the Amazon Time Sync Service\.
+Alternatively, you can use external NTP sources\. For more information about NTP and public time sources, see [http://www\.ntp\.org/](http://www.ntp.org/)\. An instance needs access to the internet for the external NTP time sources to work\. 
 
-**To configure your Amazon Linux instance to use the Amazon Time Sync Service**
+## Configuring the Amazon Time Sync Service on Amazon Linux<a name="configure-amazon-time-service-amazon-linux"></a>
+
+On Amazon Linux 2, the default `chrony` configuration is already set up to use the Amazon Time Sync Service IP address\. On Amazon Linux, you must edit the `chrony` configuration file to add a server entry for the Amazon Time Sync Service\.
+
+**To configure your instance to use the Amazon Time Sync Service**
 
 1. Connect to your instance and uninstall the NTP service\.
 
@@ -109,7 +104,11 @@ On RHEL and CentOS \(up to version 6\), the service name is `chrony` instead of 
    Leap status     : Normal
    ```
 
-**To configure your Ubuntu or Debian derivative instance to use the Amazon Time Sync Service**
+## Configuring the Amazon Time Sync Service on Ubuntu<a name="configure-amazon-time-service-ubuntu"></a>
+
+You must edit the `chrony` configuration file to add a server entry for the Amazon Time Sync Service\.
+
+**To configure your instance to use the Amazon Time Sync Service**
 
 1. Connect to your instance and use `apt` to install the `chrony` package\.
 
@@ -187,7 +186,19 @@ If necessary, update your instance first by running `sudo apt update`\.
    Leap status     : Normal
    ```
 
-## Changing the Time Zone<a name="change_time_zone"></a>
+## Configuring the Amazon Time Sync Service on SUSE Linux<a name="configure-amazon-time-service-suse"></a>
+
+Install chrony from [https://software\.opensuse\.org/package/chrony](https://software.opensuse.org/package/chrony)\.
+
+Open the `/etc/chrony.conf` file using a text editor \(such as vim or nano\)\. Verify that the file contains the following line:
+
+```
+server 169.254.169.123 prefer iburst
+```
+
+If this line is not present, add it\. Comment out any other server or pool lines\. Open yast and enable the chrony service\.
+
+## Changing the Time Zone on Amazon Linux<a name="change_time_zone"></a>
 
 Amazon Linux instances are set to the UTC \(Coordinated Universal Time\) time zone by default, but you may wish to change the time on an instance to the local time or to another time zone in your network\.
 

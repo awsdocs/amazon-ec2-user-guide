@@ -3,11 +3,8 @@
 After you launch an instance, we recommend that you check its status to confirm that it goes from the `pending` state to the `running` state, not the `terminated` state\.
 
 The following are a few reasons why an instance might immediately terminate:
-
 + You've reached your EBS volume limit\. For information about the volume limit, see [Instance Volume Limits](volume_limits.md)\. To submit a request to increase your Amazon EBS volume limit, complete the AWS Support Center [Create Case](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ebs) form\. For more information, see [Amazon EC2 Service Limits](ec2-resource-limits.md)\.
-
 + An EBS snapshot is corrupt\.
-
 + The instance store\-backed AMI you used to launch the instance is missing a required part \(an image\.part\.*xx* file\)\.
 
 ## Getting the Reason for Instance Termination<a name="Using_InstanceStraightToTerminated_Console"></a>

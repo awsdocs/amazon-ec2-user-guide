@@ -9,9 +9,10 @@ You should avoid booting from a RAID volume\. Grub is typically installed on onl
 
 If you need to create a RAID array on a Windows instance, see [RAID Configuration on Windows](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/raid-config.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
-
+**Topics**
 + [RAID Configuration Options](#raid-config-options)
 + [Creating a RAID Array on Linux](#linux-raid)
++ [Creating Snapshots of Volumes in a RAID Array](#ebs-snapshots-raid-array)
 
 ## RAID Configuration Options<a name="raid-config-options"></a>
 
@@ -28,7 +29,7 @@ RAID 5 and RAID 6 are not recommended for Amazon EBS because the parity write op
 
 Creating a RAID 0 array allows you to achieve a higher level of performance for a file system than you can provision on a single Amazon EBS volume\. A RAID 1 array offers a "mirror" of your data for extra redundancy\. Before you perform this procedure, you need to decide how large your RAID array should be and how many IOPS you want to provision\.
 
-The resulting size of a RAID 0 array is the sum of the sizes of the volumes within it, and the bandwidth is the sum of the available bandwidth of the volumes within it\. The resulting size and bandwidth of a RAID 1 array is equal to the size and bandwidth of the volumes in the array\. For example, two 500 GiB Amazon EBS volumes with 4,000 provisioned IOPS each will create a 1000 GiB RAID 0 array with an available bandwidth of 8,000 IOPS and 640 MB/s of throughput or a 500 GiB RAID 1 array with an available bandwidth of 4,000 IOPS and 320 MB/s of throughput\. 
+The resulting size of a RAID 0 array is the sum of the sizes of the volumes within it, and the bandwidth is the sum of the available bandwidth of the volumes within it\. The resulting size and bandwidth of a RAID 1 array is equal to the size and bandwidth of the volumes in the array\. For example, two 500 GiB Amazon EBS `io1` volumes with 4,000 provisioned IOPS each will create a 1000 GiB RAID 0 array with an available bandwidth of 8,000 IOPS and 1,000 MB/s of throughput or a 500 GiB RAID 1 array with an available bandwidth of 4,000 IOPS and 500 MB/s of throughput\.
 
 This documentation provides basic RAID setup examples\. For more information about RAID configuration, performance, and recovery, see the Linux RAID Wiki at [https://raid\.wiki\.kernel\.org/index\.php/Linux\_Raid](https://raid.wiki.kernel.org/index.php/Linux_Raid)\.
 
@@ -180,3 +181,11 @@ Errors in the `/etc/fstab` file can render a system unbootable\. Do not shut dow
       ```
       [ec2-user ~]$ sudo mv /etc/fstab.orig /etc/fstab
       ```
+
+## Creating Snapshots of Volumes in a RAID Array<a name="ebs-snapshots-raid-array"></a>
+
+If you want to back up the data on the EBS volumes in a RAID array using snapshots, you must ensure that the snapshots are consistent\. This is because snapshots of these volumes are created independently, not as a whole\. Restoring EBS volumes in a RAID array from snapshots that are out of sync would degrade the integrity of the array\.
+
+To create a consistent set of snapshots for your RAID array, stop applications from writing to the RAID array and flush all caches to disk\. To stop writes to the RAID array, you can take steps such as stopping the applications, stopping the instance, or unmounting the RAID array\. After you've stopped all I/O activity, you can create the snapshots\.
+
+When restoring the EBS volumes in a RAID array from a set of snapshots, stop all I/O activity as you did when you created the snapshots and then restore the volumes from the snapshots\.

@@ -2,7 +2,7 @@
 
 An Amazon EC2 Dedicated Host is a physical server with EC2 instance capacity fully dedicated to your use\. Dedicated Hosts allow you to use your existing per\-socket, per\-core, or per\-VM software licenses, including Windows Server, Microsoft SQL Server, SUSE, Linux Enterprise Server, and so on\.
 
-
+**Topics**
 + [Differences between Dedicated Hosts and Dedicated Instances](#dedicated-hosts-dedicated-instances)
 + [Bring Your Own License](#dedicated-hosts-BYOL)
 + [Dedicated Host Instance Capacity](#dedicated-hosts-configurations)
@@ -50,23 +50,14 @@ Dedicated Hosts are configured to support a single instance type and size capaci
 ## Dedicated Hosts Limitations and Restrictions<a name="dedicated-hosts-limitations"></a>
 
 Before you allocate Dedicated Hosts, take note of the following limitations and restrictions:
-
 + RHEL, SUSE Linux, and Windows AMIs offered by AWS or on the AWS Marketplace cannot be used with Dedicated Hosts\.
-
 + Amazon EC2 instance recovery is not supported\.
-
 + Up to two On\-Demand Dedicated Hosts per instance family, per region can be allocated\. It is possible to request a limit increase: [Request to Raise Allocation Limit on Amazon EC2 Dedicated Hosts](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=)\.
-
 + The instances that run on a Dedicated Host can only be launched in a VPC\.
-
 + Host limits are independent from instance limits\. Instances that you are running on Dedicated Hosts do not count towards your instance limits\.
-
 + Auto Scaling groups are not supported\.
-
 + Amazon RDS instances are not supported\.
-
 + The AWS Free Usage tier is not available for Dedicated Hosts\.
-
 + Instance placement control refers to managing instance launches onto Dedicated Hosts\. Placement groups are not supported for Dedicated Hosts\.
 
 ## Pricing and Billing<a name="dedicated-hosts-billing"></a>
@@ -82,11 +73,8 @@ You can release an On\-Demand Dedicated Host at any time to stop accruing charge
 ### Dedicated Host Reservations<a name="dedicated-host-reservations"></a>
 
 Dedicated Host Reservations provide a billing discount compared to running On\-Demand Dedicated Hosts\. Reservations are available in three payment options:
-
 + **No Upfront**—No Upfront Reservations provide you with a discount on your Dedicated Host usage over a term and do not require an upfront payment\. Available for a one\-year term only\.
-
 + **Partial Upfront**—A portion of the reservation must be paid upfront and the remaining hours in the term are billed at a discounted rate\. Available in one\-year and three\-year terms\.
-
 + **All Upfront**—Provides the lowest effective price\. Available in one\-year and three\-year terms and covers the entire cost of the term upfront, with no additional charges going forward\.
 
 You must have active Dedicated Hosts in your account before you can purchase reservations\. Each reservation covers a single, specific Dedicated Host in your account\. Reservations are applied to the instance family on the host, not the instance size\. If you have three Dedicated Hosts with different instances sizes \(`m4.xlarge`, `m4.medium`, and `m4.large`\) you can associate a single `m4` reservation with all those Dedicated Hosts\. The instance family and region of the reservation must match that of the Dedicated Hosts you want to associate it with\. 

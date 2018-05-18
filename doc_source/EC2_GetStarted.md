@@ -4,7 +4,7 @@ Let's get started with Amazon Elastic Compute Cloud \(Amazon EC2\) by launching,
 
 When you sign up for AWS, you can get started with Amazon EC2 for free using the [AWS Free Tier](https://aws.amazon.com/free/)\. If you created your AWS account less than 12 months ago, and have not already exceeded the free tier benefits for Amazon EC2, it will not cost you anything to complete this tutorial, because we help you select options that are within the free tier benefits\. Otherwise, you'll incur the standard Amazon EC2 usage fees from the time that you launch the instance until you terminate the instance \(which is the final task of this tutorial\), even if it remains idle\.
 
-
+**Topics**
 + [Overview](#ec2-get-started-overview)
 + [Prerequisites](#ec2-getstarted-prereqs)
 + [Step 1: Launch an Instance](#ec2-launch-instance)
@@ -29,9 +29,7 @@ To complete this tutorial, perform the following tasks:
 1. [Clean Up Your Instance](#ec2-clean-up-your-instance)
 
 **Related Tutorials**
-
 + If you'd prefer to launch a Windows instance, see this tutorial in the *Amazon EC2 User Guide for Windows Instances*: [Getting Started with Amazon EC2 Windows Instances](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/EC2_GetStarted.html)\.
-
 + If you'd prefer to use the command line, see this tutorial in the *AWS Command Line Interface User Guide*: [Using Amazon EC2 through the AWS CLI](http://docs.aws.amazon.com/cli/latest/userguide/cli-using-ec2.html)\.
 
 ## Prerequisites<a name="ec2-getstarted-prereqs"></a>
@@ -48,7 +46,7 @@ You can launch a Linux instance using the AWS Management Console as described in
 
 1. From the console dashboard, choose **Launch Instance**\.
 
-1. The **Choose an Amazon Machine Image \(AMI\)** page displays a list of basic configurations, called *Amazon Machine Images \(AMIs\)*, that serve as templates for your instance\. Select the HVM edition of the Amazon Linux AMI\. Notice that this AMI is marked "Free tier eligible\."
+1. The **Choose an Amazon Machine Image \(AMI\)** page displays a list of basic configurations, called *Amazon Machine Images \(AMIs\)*, that serve as templates for your instance\. Select the HVM edition of the Amazon Linux AMI or the AMI for Amazon Linux 2\. Notice that these AMIs are marked "Free tier eligible\."
 
 1. On the **Choose an Instance Type** page, you can select the hardware configuration of your instance\. Select the `t2.micro` type, which is selected by default\. Notice that this instance type is eligible for the free tier\.
 **Note**  
@@ -141,11 +139,7 @@ If you launched an instance that is not within the [AWS Free Tier](https://aws.a
 ## Next Steps<a name="ec2-next-steps"></a>
 
 After you start your instance, you might want to try some of the following exercises:
-
 + Learn how to remotely manage your EC2 instance using Run Command\. For more information, see [Tutorial: Remotely Manage Your Amazon EC2 Instances](tutorial_run_command.md) and [Systems Manager Remote Management \(Run Command\)](http://docs.aws.amazon.com/systems-manager/latest/userguide/execute-remote-commands.html)\.
-
 + Configure a CloudWatch alarm to notify you if your usage exceeds the Free Tier\. For more information, see [Create a Billing Alarm](http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/free-tier-alarms.html) in the *AWS Billing and Cost Management User Guide*\.
-
 + Add an EBS volume\. For more information, see [Creating an Amazon EBS Volume](ebs-creating-volume.md) and [Attaching an Amazon EBS Volume to an Instance](ebs-attaching-volume.md)\.
-
 + Install the LAMP stack\. For more information, see [Tutorial: Install a LAMP Web Server with the Amazon Linux AMI](install-LAMP.md)\.

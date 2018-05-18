@@ -5,38 +5,27 @@ Memory optimized instances are designed to deliver fast performance for workload
 **R4 Instances**
 
 R4 instances are well suited for the following applications:
-
 + High\-performance, relational \(MySQL\) and NoSQL \(MongoDB, Cassandra\) databases\.
-
 + Distributed web scale cache stores that provide in\-memory caching of key\-value type data \(Memcached and Redis\)\.
-
 + In\-memory databases using optimized data storage formats and analytics for business intelligence \(for example, SAP HANA\)\.
-
 + Applications performing real\-time processing of big unstructured data \(financial services, Hadoop/Spark clusters\)\.
-
 + High\-performance computing \(HPC\) and Electronic Design Automation \(EDA\) applications\.
 
 **X1 Instances**
 
 X1 instances are well suited for the following applications:
-
 + In\-memory databases such as SAP HANA, including SAP\-certified support for Business Suite S/4HANA, Business Suite on HANA \(SoH\), Business Warehouse on HANA \(BW\), and Data Mart Solutions on HANA\. For more information, see [SAP HANA on the AWS Cloud](https://aws.amazon.com//sap/solutions/saphana/)\.
-
 + Big\-data processing engines such as Apache Spark or Presto\.
-
 + High\-performance computing \(HPC\) applications\.
 
 **X1e Instances**
 
 X1e instances are well suited for the following applications:
-
 + High\-performance databases\.
-
 + In\-memory databases such as SAP HANA\. For more information, see [SAP HANA on the AWS Cloud](https://aws.amazon.com//sap/solutions/saphana/)\.
-
 + Memory\-intensive enterprise applications\.
 
-
+**Topics**
 + [Hardware Specifications](#memory-instances-hardware)
 + [Memory Performance](#memory-perf)
 + [Instance Performance](#memory-compute-perf)
@@ -52,7 +41,7 @@ The following is a summary of the hardware specifications for Memory optimized i
 
 ****  
 
-| Instance Type | vCPUs | Memory \(GiB\) | 
+| Instance type | Default vCPUs | Memory \(GiB\) | 
 | --- | --- | --- | 
 | r4\.large | 2 | 15\.25 | 
 | r4\.xlarge | 4 | 30\.5 | 
@@ -70,6 +59,8 @@ The following is a summary of the hardware specifications for Memory optimized i
 | x1e\.32xlarge | 128 | 3,904 | 
 
 For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
+
+For more information about specifying CPU options, see [Optimizing CPU Options](instance-optimize-cpu.md)\.
 
 ## Memory Performance<a name="memory-perf"></a>
 
@@ -118,15 +109,10 @@ The following is a summary of features for Memory optimized instances\.
 | X1e | Yes |  | SSD | Yes | 
 
 For more information, see the following:
-
 + [Instance Types Available Only in a VPC](using-vpc.md#vpc-only-instance-types)
-
 + [Amazon EBS–Optimized Instances](EBSOptimized.md)
-
 + [Amazon EC2 Instance Store](InstanceStorage.md)
-
 + [Placement Groups](placement-groups.md)
-
 + [Enhanced Networking on Linux](enhanced-networking.md)
 
 ## Support for vCPUs<a name="high-cpu-support"></a>
@@ -134,31 +120,18 @@ For more information, see the following:
 Memory optimized instances provide a high number of vCPUs, which can cause launch issues with operating systems that have a lower vCPU limit\. We strongly recommend that you use the latest AMIs when you launch Memory optimized instances\.
 
 The following AMIs support launching Memory optimized instances:
-
 + Amazon Linux AMI 2016\.03 \(HVM\) or later
-
 + Ubuntu Server 14\.04 LTS \(HVM\)
-
 + Red Hat Enterprise Linux 7\.1 \(HVM\)
-
 + SUSE Linux Enterprise Server 12 SP1 \(HVM\)
-
 + Windows Server 2016
-
 + Windows Server 2012 R2
-
 + Windows Server 2012
-
 + Windows Server 2008 R2 64\-bit
-
 + Windows Server 2008 SP2 64\-bit
 
 ## Release Notes<a name="memory-instance-limits"></a>
-
 + You can't launch X1 instances using a Windows Server 2008 SP2 64\-bit AMI, except for `x1.16xlarge` instances\.
-
 + You can't launch X1e instances using a Windows Server 2008 SP2 64\-bit AMI\.
-
 + With earlier versions of the Windows Server 2008 R2 64\-bit AMI, you can't launch `r4.large` and `r4.4xlarge` instances\. If you experience this issue, update to the latest version of this AMI\.
-
 + There is a limit on the total number of instances that you can launch in a region, and there are additional limits on some instance types\. For more information, see [How many instances can I run in Amazon EC2?](https://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2)\. To request a limit increase, use the [Amazon EC2 Instance Request Form](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-instances)\.

@@ -2,7 +2,7 @@
 
 Amazon Web Services \(AWS\) automatically provides data, such as Amazon CloudWatch metrics and volume status checks, that you can use to monitor your Amazon Elastic Block Store \(Amazon EBS\) volumes\.
 
-
+**Topics**
 + [Monitoring Volumes with CloudWatch](#using_cloudwatch_ebs)
 + [Monitoring Volumes with Status Checks](#monitoring-volume-checks)
 + [Monitoring Volume Events](#monitoring-vol-events)
@@ -115,9 +115,7 @@ Alternatively, you can use the **Events** pane to view all events for your insta
 **To view volume status information with the command line**
 
 You can use one of the following commands to view the status of your Amazon EBS volumes\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-
 + [describe\-volume\-status](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-volume-status.html) \(AWS CLI\)
-
 + [Get\-EC2VolumeStatus](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2VolumeStatus.html) \(AWS Tools for Windows PowerShell\)
 
 ## Monitoring Volume Events<a name="monitoring-vol-events"></a>
@@ -169,16 +167,14 @@ If you have a volume where I/O is disabled, see [Working with an Impaired Volume
 **To view events for your volumes with the command line**
 
 You can use one of the following commands to view event information for your Amazon EBS volumes\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-
 + [describe\-volume\-status](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-volume-status.html) \(AWS CLI\)
-
 + [Get\-EC2VolumeStatus](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2VolumeStatus.html) \(AWS Tools for Windows PowerShell\)
 
 ## Working with an Impaired Volume<a name="work_volumes_impaired"></a>
 
 This section discusses your options if a volume is impaired because the volume's data is potentially inconsistent\.
 
-
+**Topics**
 + [Option 1: Perform a Consistency Check on the Volume Attached to its Instance](#work_volumes_impaired_option1)
 + [Option 2: Perform a Consistency Check on the Volume Using Another Instance](#work_volumes_impaired_option2)
 + [Option 3: Delete the Volume If You No Longer Need It](#work_volumes_impaired_option3)
@@ -215,9 +211,7 @@ The simplest option is to enable I/O and then perform a data consistency check o
 **To enable I/O for a volume with the command line**
 
 You can use one of the following commands to view event information for your Amazon EBS volumes\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-
 + [enable\-volume\-io](http://docs.aws.amazon.com/cli/latest/reference/ec2/enable-volume-io.html) \(AWS CLI\)
-
 + [Enable\-EC2VolumeIO](http://docs.aws.amazon.com/powershell/latest/reference/items/Enable-EC2VolumeIO.html) \(AWS Tools for Windows PowerShell\)
 
 ### Option 2: Perform a Consistency Check on the Volume Using Another Instance<a name="work_volumes_impaired_option2"></a>
@@ -265,9 +259,7 @@ This procedure may cause the loss of write I/Os that were suspended when volume 
 **To enable I/O for a volume with the command line**
 
 You can use one of the following commands to view event information for your Amazon EBS volumes\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-
 + [enable\-volume\-io](http://docs.aws.amazon.com/cli/latest/reference/ec2/enable-volume-io.html) \(AWS CLI\)
-
 + [Enable\-EC2VolumeIO](http://docs.aws.amazon.com/powershell/latest/reference/items/Enable-EC2VolumeIO.html) \(AWS Tools for Windows PowerShell\)
 
 ### Option 3: Delete the Volume If You No Longer Need It<a name="work_volumes_impaired_option3"></a>
@@ -318,13 +310,9 @@ Alternatively, instead of completing steps 4\-6 in the previous procedure, choos
 **To view or modify the AutoEnableIO attribute of a volume with the command line**
 
 You can use one of the following commands to view the `AutoEnableIO` attribute of your Amazon EBS volumes\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-
 + [describe\-volume\-attribute](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-volume-attribute.html) \(AWS CLI\)
-
 + [Get\-EC2VolumeAttribute](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2VolumeAttribute.html) \(AWS Tools for Windows PowerShell\)
 
 To modify the `AutoEnableIO` attribute of a volume, you can use one of the commands below\.
-
 + [modify\-volume\-attribute](http://docs.aws.amazon.com/cli/latest/reference/ec2/modify-volume-attribute.html) \(AWS CLI\)
-
 + [Edit\-EC2VolumeAttribute](http://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2VolumeAttribute.html) \(AWS Tools for Windows PowerShell\)

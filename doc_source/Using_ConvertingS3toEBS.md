@@ -56,7 +56,7 @@ You can't convert an instance store\-backed Windows AMI to an Amazon EBS\-backed
 1. Download the bundle for your instance store\-based AMI to `/tmp/bundle` using the [ec2\-download\-bundle](ami-tools-commands.md#ami-download-bundle) command\.
 
    ```
-   [ec2-user ~]$ ec2-download-bundle -b my-s3-bucket/bundle_folder/bundle_name -m image.manifest.xml -a $AWS_ACCESS_KEY -s $AWS_SECRET_KEY --privatekey /path/to/pk-HKZYKTAIG2ECMXYIBH3HXV4ZBEXAMPLE.pem -d /tmp/bundle
+   [ec2-user ~]$ ec2-download-bundle -b my-s3-bucket/bundle_folder/bundle_name -m image.manifest.xml -a $AWS_ACCESS_KEY_ID -s $AWS_SECRET_ACCESS_KEY --privatekey /path/to/pk-HKZYKTAIG2ECMXYIBH3HXV4ZBEXAMPLE.pem -d /tmp/bundle
    ```
 
 1. Reconstitute the image file from the bundle using the [ec2\-unbundle](ami-tools-commands.md#ami-unbundle) command\.

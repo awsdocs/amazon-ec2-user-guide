@@ -4,7 +4,7 @@ The Reserved Instance Marketplace is a platform that supports the sale of third\
 
 If you want to sell your unused Reserved Instances on the Reserved Instance Marketplace, you must meet certain eligibility criteria\.
 
-
+**Topics**
 + [Selling in the Reserved Instance Marketplace](#ri-market-selling-guide)
 + [Buying in the Reserved Instance Marketplace](#ri-market-buying-guide)
 
@@ -16,7 +16,7 @@ To fulfill a buyer's request, AWS first sells the Reserved Instance with the low
 
 You own your Reserved Instance until it's sold\. After the sale, you've given up the capacity reservation and the discounted recurring fees\. If you continue to use your instance, AWS charges you the On\-Demand price starting from the time that your Reserved Instance was sold\.
 
-
+**Topics**
 + [Restrictions and Limitations](#ri-seller-limits)
 + [Registering as a Seller](#ri-market-seller-profile)
 + [Pricing Your Reserved Instances](#ri-market-concepts-pricing)
@@ -29,30 +29,22 @@ You own your Reserved Instance until it's sold\. After the sale, you've given up
 Before you can sell your unused reservations, you must register as a seller in the Reserved Instance Marketplace\. For information, see [Registering as a Seller](#ri-market-seller-profile)\.
 
 The following limitations and restrictions apply when selling Reserved Instances:
-
-+ Only Amazon EC2 Standard Reserved Instances can be sold in the Reserved Instance Marketplace\. Convertible Reserved Instances cannot be sold\.
-
++ Only Amazon EC2 Standard Reserved Instances can be sold in the Reserved Instance Marketplace\. Convertible Reserved Instances cannot be sold\. There must be at least one month remaining in the term of the Standard Reserved Instance\.
 + The minimum price allowed in the Reserved Instance Marketplace is $0\.00\.
-
-+ Reserved Instances can be sold only after AWS has received the upfront payment and the reservation has been active \(you've owned it\) for at least 30 days\. In addition, there must be at least one month remaining in the term of the Standard Reserved Instance you are listing\.
-
++ You can sell No Upfront, Partial Upfront, or All Upfront Reserved Instances in the Reserved Instance Marketplace\. If there is an upfront payment on a Reserved Instance, it can be sold only after AWS has received the upfront payment and the reservation has been active \(you've owned it\) for at least 30 days\.
 + You cannot modify your listing in the Reserved Instance Marketplace directly\. However, you can change your listing by first canceling it and then creating another listing with new parameters\. For information, see [Pricing Your Reserved Instances](#ri-market-concepts-pricing)\. You can also modify your Reserved Instances before listing them\. For information, see [Modifying Reserved Instances](ri-modifying.md)\.
-
 + AWS charges a service fee of 12 percent of the total upfront price of each Standard Reserved Instance you sell in the Reserved Instance Marketplace\. The upfront price is the price the seller is charging for the Standard Reserved Instance\.
-
 + Only Amazon EC2 Standard Reserved Instances can be sold in the Reserved Instance Marketplace\. Other AWS Reserved Instances, such as Amazon RDS and Amazon ElastiCache Reserved Instances cannot be sold in the Reserved Instance Marketplace\.
 
 ### Registering as a Seller<a name="ri-market-seller-profile"></a>
 
 To sell in the Reserved Instance Marketplace, you must first register as a seller\. During registration, you provide the following information:
-
 + **Bank information**—AWS must have your bank information in order to disburse funds collected when you sell your reservations\. The bank you specify must have a US address\. For more information, see [Bank Accounts](#ri-market-concepts-bank)\.
-
-+ **Tax information**—Sellers who have 50 or more transactions or who plan to sell $20,000 or more in Standard Reserved Instances have to provide additional information about their business for tax reasons\. For information, see [Tax Information](#ri-market-concepts-taxinfo)\.
++ **Tax information**—All sellers are required to complete a tax information interview to determine any necessary tax reporting obligations\. For more information, see [Tax Information](#ri-market-concepts-taxinfo)\.
 
 After AWS receives your completed seller registration, you receive an email confirming your registration and informing you that you can get started selling in the Reserved Instance Marketplace\.
 
-
+**Topics**
 + [Bank Accounts](#ri-market-concepts-bank)
 + [Tax Information](#ri-market-concepts-taxinfo)
 + [Sharing Information with the Buyer](#ri-market-seller-disclosure)
@@ -67,13 +59,9 @@ AWS must have your bank information in order to disburse funds collected when yo
 1. Open the [Reserved Instance Marketplace Seller Registration](https://portal.aws.amazon.com/ec2/ri/seller_registration) page and sign in using your AWS credentials\.
 
 1. On the **Manage Bank Account** page, provide the following information about the bank through to receive payment:
-
    + Bank account holder name
-
    + Routing number
-
    + Account number
-
    + Bank account type
 **Note**  
 If you are using a corporate bank account, you are prompted to send the information about the bank account via fax \(1\-206\-765\-3424\)\.
@@ -88,27 +76,18 @@ After registration, the bank account provided is set as the default, pending ver
 
 #### Tax Information<a name="ri-market-concepts-taxinfo"></a>
 
-Your sale of Reserved Instances might be subject to a transactional tax, such as sales tax or value\-added tax\. You should check with your business's tax, legal, finance, or accounting department to determine if transaction\-based taxes are applicable\. You are responsible for collecting and sending the transaction\-based taxes to the appropriate tax authority\.
+Your sale of Reserved Instances might be subject to a transaction\-based tax, such as sales tax or value\-added tax\. You should check with your business's tax, legal, finance, or accounting department to determine if transaction\-based taxes are applicable\. You are responsible for collecting and sending the transaction\-based taxes to the appropriate tax authority\.
 
-As part of the seller registration process, you have the option of completing a tax interview\. We encourage you to complete this process if any of the following apply:
+As part of the seller registration process, you must complete a tax interview in the [Seller Registration Portal](https://portal.aws.amazon.com/ec2/ri/seller_registration?action=taxInterview)\. The interview collects your tax information and populates an IRS form W\-9, W\-8BEN, or W\-8BEN\-E, which is used to determine any necessary tax reporting obligations\. 
 
-+ You want AWS to generate a Form 1099\-K\.
-
-+ You anticipate having either 50 or more transactions or $20,000 or more in sales of Reserved Instances in a calendar year\. A transaction can involve one or more Reserved Instances\. If you choose to skip this step during registration, and later you reach transaction 49, you get a message saying, "You have reached the transaction limit for pre\-tax\. Please complete the tax interview in the [Seller Registration Portal](https://portal.aws.amazon.com/ec2/ri/seller_registration?action=taxInterview)\." After the tax interview is completed, the account limit is automatically increased\.
-
-+ You are a non\-US seller\. In this case, you must electronically complete Form W\-8BEN\.
-
-For more information about IRS requirements and the Form 1099\-K, see the [IRS website](http://www.irs.gov/uac/FAQs-on-New-Payment-Card-Reporting-Requirements)\.
-
-The tax information you enter as part of the tax interview differs depending on whether your business is a US or non\-US legal entity\. As you fill out the tax interview, keep in mind the following:
-
-+ Information provided by AWS, including the information in this topic, does not constitute tax, legal, or other professional advice\. To find out how the IRS reporting requirements might affect your business, or if you have other questions, please contact your tax, legal, or other professional advisor\.
-
+The tax information you enter as part of the tax interview might differ depending on whether you operate as an individual or business, and whether you or your business are a US or non\-US person or entity\. As you fill out the tax interview, keep in mind the following:
++ Information provided by AWS, including the information in this topic, does not constitute tax, legal, or other professional advice\. To find out how the IRS reporting requirements might affect your business, or if you have other questions, contact your tax, legal, or other professional advisor\.
 + To fulfill the IRS reporting requirements as efficiently as possible, answer all questions and enter all information requested during the interview\.
-
 + Check your answers\. Avoid misspellings or entering incorrect tax identification numbers\. They can result in an invalidated tax form\. 
 
-After you complete the tax registration process, AWS files Form 1099\-K\. You will receive a copy of it through the US mail on or before January 31 in the year following the year that your tax account reaches the threshold levels\. For example, if your tax account reaches the threshold in 2016, you receive the form in 2017\.
+Based on your tax interview responses and IRS reporting thresholds, Amazon may file Form 1099\-K\. Amazon mails a copy of your Form 1099\-K on or before January 31 in the year following the year that your tax account reaches the threshold levels\. For example, if your account reaches the threshold in 2018, your Form 1099\-K is mailed on or before January 31, 2019\.
+
+For more information about IRS requirements and Form 1099\-K, see the [IRS](http://www.irs.gov/uac/FAQs-on-New-Payment-Card-Reporting-Requirements) website\.
 
 #### Sharing Information with the Buyer<a name="ri-market-seller-disclosure"></a>
 
@@ -133,9 +112,7 @@ You receive a cash disbursement for your Reserved Instances through a wire trans
 The upfront fee is the only fee that you can specify for the Reserved Instance that you're selling\. The upfront fee is the one\-time fee that the buyer pays when they purchase a Reserved Instance\. You cannot specify the usage fee or the recurring fee; The buyer pays the same usage or recurring fees that were set when the reservations were originally purchased\.
 
 The following are important limits to note:
-
 + **You can sell up to $50,000 in Reserved Instances per year**\. To sell more, complete the [Request to Raise Sales Limit on Amazon EC2 Reserved Instances](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-reserved-instance-sales) form\.
-
 + **The minimum price is $0**\. The minimum allowed price in the Reserved Instance Marketplace is $0\.00\.
 
 You cannot modify your listing directly\. However, you can change your listing by first canceling it and then creating another listing with new parameters\.
@@ -154,7 +131,7 @@ As a registered seller, you can choose to sell one or more of your Reserved Inst
 
 If you cancel your listing and a portion of that listing has already been sold, the cancellation is not effective on the portion that has been sold\. Only the unsold portion of the listing is no longer available in the Reserved Instance Marketplace\.
 
-
+**Topics**
 + [Listing Your Reserved Instance Using the AWS Management Console](#ri-market-concepts-listing)
 + [Listing Your Reserved Instances Using the AWS CLI or Amazon EC2 API](#listing-ri-cli)
 + [Reserved Instance Listing States](#ri-listing-states)
@@ -198,13 +175,9 @@ If you cancel your listing and a portion of that listing has already been sold, 
 To cancel your listing, use the [cancel\-reserved\-instances\-listings](http://docs.aws.amazon.com/cli/latest/reference/ec2/cancel-reserved-instances-listings.html) command\.
 
 **To list a Reserved Instance in the Reserved Instance Marketplace using the Amazon EC2 API**
-
 + [DescribeReservedInstances](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeReservedInstances.html)
-
 + [CreateReservedInstancesListing](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateReservedInstancesListing.html)
-
 + [DescribeReservedInstancesListings](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeReservedInstancesListings.html)
-
 + [CancelReservedInstancesListing](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CancelReservedInstancesListing.html)
 
 #### Reserved Instance Listing States<a name="ri-listing-states"></a>
@@ -212,11 +185,8 @@ To cancel your listing, use the [cancel\-reserved\-instances\-listings](http://d
 **Listing State** on the **My Listings** tab of the Reserved Instances page displays the current status of your listings:
 
 The information displayed by **Listing State** is about the status of your listing in the Reserved Instance Marketplace\. It is different from the status information that is displayed by the **State** column in the **Reserved Instances** page\. This **State** information is about your reservation\.
-
 + **active**—The listing is available for purchase\.
-
 + **canceled**—The listing is canceled and isn't available for purchase in the Reserved Instance Marketplace\.
-
 + **closed**—The Reserved Instance is not listed\. A Reserved Instance might be `closed` because the sale of the listing was completed\.
 
 ### Lifecycle of a Listing<a name="ri-market-concepts-sold-partial"></a>
@@ -232,13 +202,9 @@ For example, you create a listing *Reserved Instances listing ID 5ec28771\-05ff\
 The **My Listings** tab in the **Reserved Instance** console page displays the listing this way:
 
 *Reserved Instance listing ID 5ec28771\-05ff\-4b9b\-aa31\-9e57dexample*
-
 + Total reservation count = 5
-
 + Sold = 0
-
 + Available = 5
-
 + Status = active
 
  A buyer purchases two of the reservations, which leaves a count of three reservations still available for sale\. Because of this partial sale, AWS creates a new reservation with a count of three to represent the remaining reservations that are still for sale\.
@@ -246,13 +212,9 @@ The **My Listings** tab in the **Reserved Instance** console page displays the l
 This is how your listing looks in the **My Listings** tab:
 
 *Reserved Instance listing ID 5ec28771\-05ff\-4b9b\-aa31\-9e57dexample*
-
 + Total reservation count = 5
-
 + Sold = 2
-
 + Available = 3
-
 + Status = active
 
 If you cancel your listing and a portion of that listing has already sold, the cancelation is not effective on the portion that has been sold\. Only the unsold portion of the listing is no longer available in the Reserved Instance Marketplace\.
@@ -268,11 +230,8 @@ To track the status of a Reserved Instance listing in the console, choose **Rese
 You can purchase Reserved Instances from third\-party sellers who own Reserved Instances that they no longer need from the Reserved Instance Marketplace\. You can do this using the Amazon EC2 console or a command line tool\. The process is similar to purchasing Reserved Instances from AWS\. For more information, see [Buying Reserved Instances](ri-market-concepts-buying.md)\.
 
 There are a few differences between Reserved Instances purchased in the Reserved Instance Marketplace and Reserved Instances purchased directly from AWS:
-
 + **Term**—Reserved Instances that you purchase from third\-party sellers have less than a full standard term remaining\. Full standard terms from AWS run for one year or three years\.
-
 + **Upfront price**—Third\-party Reserved Instances can be sold at different upfront prices\. The usage or recurring fees remain the same as the fees set when the Reserved Instances were originally purchased from AWS\.
-
 + **Types of Reserved Instances**—Only Amazon EC2 Standard Reserved Instances can be purchased from the Reserved Instance Marketplace\. Convertible Reserved Instances, Amazon RDS and Amazon ElastiCache Reserved Instances are not available for purchase on the Reserved Instance Marketplace\.
 
 Basic information about you is shared with the seller, for example, your ZIP code and country information\.

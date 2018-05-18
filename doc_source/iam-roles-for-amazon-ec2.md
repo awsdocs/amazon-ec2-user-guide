@@ -20,7 +20,7 @@ You cannot attach multiple IAM roles to a single instance, but you can attach a 
 
 You can apply resource\-level permissions to your IAM policies to control the users' ability to attach, replace, or detach IAM roles for an instance\. For more information, see [Supported Resource\-Level Permissions for Amazon EC2 API Actions](ec2-supported-iam-actions-resources.md) and the following example: [10: Working with IAM Roles](ExamplePolicies_EC2.md#iam-example-iam-roles)\.
 
-
+**Topics**
 + [Instance Profiles](#ec2-instance-profile)
 + [Retrieving Security Credentials from Instance Metadata](#instance-metadata-security-credentials)
 + [Granting an IAM User Permission to Pass an IAM Role to an Instance](#permission-to-pass-iam-roles)
@@ -101,7 +101,7 @@ This policy grants IAM users access to all your roles by specifying the resource
 
 You can create an IAM role and attach it to an instance during or after launch\. You can also replace or detach an IAM role for an instance\.
 
-
+**Topics**
 + [Creating an IAM Role](#create-iam-role)
 + [Launching an Instance with an IAM Role](#launch-instance-with-role)
 + [Attaching an IAM Role to an Instance](#attach-iam-role)
@@ -127,7 +127,6 @@ You must create an IAM role before you can launch an instance with that role or 
 Alternatively, you can use the AWS CLI to create an IAM role\.<a name="create-iam-role-cli"></a>
 
 **To create an IAM role and instance profile using the AWS CLI**
-
 + Create an IAM role with a policy that allows the role to use an Amazon S3 bucket\.
 
   1. Create the following trust policy and save it in a text file named `ec2-role-trust-policy.json`\.
@@ -218,11 +217,8 @@ Alternatively, you can use the AWS CLI to create an IAM role\.<a name="create-ia
   For more information about these commands, see [create\-role](http://docs.aws.amazon.com/cli/latest/reference/iam/create-role.html), [put\-role\-policy](http://docs.aws.amazon.com/cli/latest/reference/iam/put-role-policy.html), and [create\-instance\-profile](http://docs.aws.amazon.com/cli/latest/reference/iam/create-instance-profile.html) in the *AWS CLI Command Reference*\. 
 
   Alternatively, you can use the following AWS Tools for Windows PowerShell commands:
-
   + [New\-IAMRole](http://docs.aws.amazon.com/powershell/latest/reference/items/New-IAMRole.html)
-
   + [Register\-IAMRolePolicy](http://docs.aws.amazon.com/powershell/latest/reference/items/Register-IAMRolePolicy.html)
-
   + [New\-IAMInstanceProfile](http://docs.aws.amazon.com/powershell/latest/reference/items/New-IAMInstanceProfile.html)
 
 ### Launching an Instance with an IAM Role<a name="launch-instance-with-role"></a>
@@ -313,9 +309,7 @@ After you've created an IAM role, you can attach it to a running or stopped inst
    ```
 
 Alternatively, use the following Tools for Windows PowerShell commands:
-
 + [Get\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html)
-
 + [Register\-EC2IamInstanceProfile](http://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2IamInstanceProfile.html)
 
 ### Detaching an IAM Role<a name="detach-iam-role"></a>
@@ -375,9 +369,7 @@ You can detach an IAM role from a running or stopped instance\. <a name="detach-
    ```
 
 Alternatively, use the following Tools for Windows PowerShell commands:
-
 + [Get\-EC2IamInstanceProfileAssociation](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2IamInstanceProfileAssociation.html)
-
 + [Unregister\-EC2IamInstanceProfile](http://docs.aws.amazon.com/powershell/latest/reference/items/Unregister-EC2IamInstanceProfile.html)
 
 ### Replacing an IAM Role<a name="replace-iam-role"></a>
@@ -421,7 +413,5 @@ You can replace an IAM role for a running instance\. You can do this if you want
    ```
 
 Alternatively, use the following Tools for Windows PowerShell commands:
-
 + [Get\-EC2IamInstanceProfileAssociation](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2IamInstanceProfileAssociation.html)
-
 + [Set\-EC2IamInstanceProfileAssociation](http://docs.aws.amazon.com/powershell/latest/reference/items/Set-EC2IamInstanceProfileAssociation.html)

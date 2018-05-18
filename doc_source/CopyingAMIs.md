@@ -53,13 +53,9 @@ To find the Amazon Resource Name \(ARN\) of the AMI source bucket, open the Amaz
 ## Cross\-Region AMI Copy<a name="copy-amis-across-regions"></a>
 
 Copying an AMI across geographically diverse regions provides the following benefits:
-
 + Consistent global deployment: Copying an AMI from one region to another enables you to launch consistent instances in different regions based on the same AMI\.
-
 + Scalability: You can more easily design and build global applications that meet the needs of your users, regardless of their location\.
-
 + Performance: You can increase performance by distributing your application, as well as locating critical components of your application in closer proximity to your users\. You can also take advantage of region\-specific features, such as instance types or other AWS services\.
-
 + High availability: You can design and deploy applications across AWS regions, to increase availability\.
 
 The following diagram shows the relations among a source AMI and two copied AMIs in different regions, as well as the EC2 instances launched from each\. When you launch an instance from an AMI, it resides in the same region where the AMI resides\. If you make changes to the source AMI and want those changes to be reflected in the AMIs in the target regions, you must recopy the source AMI to the target regions\. 
@@ -72,10 +68,8 @@ When you first copy an instance store\-backed AMI to a region, we create an Amaz
 Prior to copying an AMI, you must ensure that the contents of the source AMI are updated to support running in a different region\. For example, you should update any database connection strings or similar application configuration data to point to the appropriate resources\. Otherwise, instances launched from the new AMI in the destination region may still use the resources from the source region, which can impact performance and cost\.
 
 **Limits**
-
 + Destination regions are limited to 50 concurrent AMI copies at a time, with no more than 25 of those coming from a single source region\.
-
-+ The EU \(Paris\) Region does not support PV AMIs; therefore, you cannot copy a PV AMI to the EU \(Paris\) Region\. 
++ Not all AWS Regions support paravirtual \(PV\) AMIs; therefore, you cannot copy a PV AMI to those regions\. For more information, see [Linux AMI Virtualization Types](virtualization_types.md)\.
 
 ## Cross\-Account AMI Copy<a name="copy-ami-across-accounts"></a>
 
@@ -87,9 +81,7 @@ If you copy an AMI that has been shared with your account, you are the owner of 
 To copy an AMI that was shared with you from another account, the owner of the source AMI must grant you read permissions for the storage that backs the AMI, either the associated EBS snapshot \(for an Amazon EBS\-backed AMI\) or an associated S3 bucket \(for an instance store\-backed AMI\)\.
 
 **Limits**
-
 + You can't copy an encrypted AMI that was shared with you from another account\. Instead, if the underlying snapshot and encryption key were shared with you, you can copy the snapshot while re\-encrypting it with a key of your own\. You own the copied snapshot, and can register it as a new AMI\.
-
 + You can't copy an AMI with an associated `billingProduct` code that was shared with you from another account\. This includes Windows AMIs and AMIs from the AWS Marketplace\. To copy a shared AMI with a `billingProduct` code, launch an EC2 instance in your account using the shared AMI and then create an AMI from the instance\. For more information, see [Creating an Amazon EBS\-Backed Linux AMI](creating-an-ami-ebs.md)\.
 
 ## Encryption and AMI Copy<a name="ami-copy-encryption"></a>
@@ -141,15 +133,10 @@ Create or obtain an AMI backed by an Amazon EBS snapshot\. Note that you can use
 1. Select the AMI to copy and choose **Actions**, **Copy AMI**\.
 
 1. In the **Copy AMI** dialog box, specify the following information and then choose **Copy AMI**:
-
    + **Destination region**: The region in which to copy the AMI\.
-
    + **Name**: A name for the new AMI\. You can include operating system information in the name, as we do not provide this information when displaying details about the AMI\.
-
    + **Description**: By default, the description includes information about the source AMI so that you can distinguish a copy from its original\. You can change this description as needed\.
-
    + **Encryption**: Select this field to encrypt the target snapshots, or to re\-encrypt them using a different key\.
-
    + **Master Key**: The KMS key to used to encrypt the target snapshots\.
 
 1. We display a confirmation page to let you know that the copy operation has been initiated and to provide you with the ID of the new AMI\.
@@ -187,7 +174,5 @@ You can stop a pending AMI copy as follows\.
 **To stop an AMI copy operation using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-
 + [deregister\-image](http://docs.aws.amazon.com/cli/latest/reference/ec2/deregister-image.html) \(AWS CLI\)
-
 + [Unregister\-EC2Image](http://docs.aws.amazon.com/powershell/latest/reference/items/Unregister-EC2Image.html) \(AWS Tools for Windows PowerShell\)

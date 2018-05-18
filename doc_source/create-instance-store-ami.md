@@ -2,7 +2,7 @@
 
 The following procedures are for creating an instance store\-backed AMI from an instance store\-backed instance\. Before you begin, ensure that you've read the [Prerequisites](creating-an-ami-instance-store.md#bundle-ami-prerequisites)\.
 
-
+**Topics**
 + [Creating an AMI from an Instance Store\-Backed Amazon Linux Instance](#amazon_linux_instructions)
 + [Creating an AMI from an Instance Store\-Backed Ubuntu Instance](#ubuntu_instructions)
 
@@ -178,11 +178,8 @@ HVM instances also require partitioning tools to be installed for the AMI tools 
       ```
 
 1. <a name="partition"></a>Install the following partition management packages using the package manager for your distribution\. 
-
    + `gdisk` \(some distributions may call this package `gptfdisk` instead\) 
-
    + `kpartx`
-
    + `parted`
 
    Use the following command\.

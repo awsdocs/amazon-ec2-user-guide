@@ -2,7 +2,7 @@
 
 The following are possible problems you may have and error messages you may see while trying to connect to your instance\.
 
-
+**Topics**
 + [Error connecting to your instance: Connection timed out](#TroubleshootingInstancesConnectionTimeout)
 + [Error: User key not recognized by server](#TroubleshootingInstancesServerError)
 + [Error: Host key not found, Permission denied \(publickey\), *or* Authentication failed, permission denied](#TroubleshootingInstancesConnectingMindTerm)
@@ -19,7 +19,6 @@ You can also search for answers and post questions on the [Amazon EC2 forum](htt
 ## Error connecting to your instance: Connection timed out<a name="TroubleshootingInstancesConnectionTimeout"></a>
 
 If you try to connect to your instance and get an error message `Network error: Connection timed out` or `Error connecting to [instance], reason: -> Connection timed out: connect`, try the following:
-
 + Check your security group rules\. You need a security group rule that allows inbound traffic from your public IPv4 address on the proper port\.
 
   1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
@@ -33,7 +32,6 @@ If you try to connect to your instance and get an error message `Network error: 
      For Windows instances: Verify that there is a rule that allows traffic from your computer to port 3389 \(RDP\)\.
 
      If your security group has a rule that allows inbound traffic from a single IP address, this address may not be static if your computer is on a corporate network or if you are connecting through an internet service provider \(ISP\)\. Instead, specify the range of IP addresses used by client computers\. If your security group does not have a rule that allows inbound traffic as described in the previous step, add a rule to your security group\. For more information, see [Authorizing Network Access to Your Instances](authorizing-access-to-an-instance.md)\.
-
 + \[EC2\-VPC\] Check the route table for the subnet\. You need a route that sends all traffic destined outside the VPC to the internet gateway for the VPC\.
 
   1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
@@ -51,7 +49,6 @@ If you try to connect to your instance and get an error message `Network error: 
   1. On the **Route Table** tab, verify that there is a route with `0.0.0.0/0` as the destination and the internet gateway for your VPC as the target\. Otherwise, choose the ID of the route table \(rtb\-*xxxxxxxx*\) to navigate to the **Routes** tab for the route table, choose **Edit**, **Add another route**, enter `0.0.0.0/0` in **Destination**, select your internet gateway from **Target**, and then choose **Save**\.
 
      If you're connecting to your instance using its IPv6 address, verify that there is a route for all IPv6 traffic \(`::/0`\) that points to the internet gateway\. If not, add a route with `::/0` as the destination, and the internet gateway as the target\.
-
 + \[EC2\-VPC\] Check the network access control list \(ACL\) for the subnet\. The network ACLs must allow inbound and outbound traffic from your local IP address on the proper port\. The default network ACL allows all inbound and outbound traffic\.
 
   1. Open the Amazon VPC console at [https://console\.aws\.amazon\.com/vpc/](https://console.aws.amazon.com/vpc/)\.
@@ -63,35 +60,24 @@ If you try to connect to your instance and get an error message `Network error: 
   1. Select the network ACL\. For **Inbound Rules**, verify that the rules allow traffic from your computer\. Otherwise, delete or modify the rule that is blocking traffic from your computer\.
 
   1. For **Outbound Rules**, verify that the rules allow traffic to your computer\. Otherwise, delete or modify the rule that is blocking traffic to your computer\.
-
 + If your computer is on a corporate network, ask your network administrator whether the internal firewall allows inbound and outbound traffic from your computer on port 22 \(for Linux instances\) or port 3389 \(for Windows instances\)\.
 
   If you have a firewall on your computer, verify that it allows inbound and outbound traffic from your computer on port 22 \(for Linux instances\) or port 3389 \(for Windows instances\)\.
-
 + Check that your instance has a public IPv4 address\. If not, you can associate an Elastic IP address with your instance\. For more information, see [Elastic IP Addresses](elastic-ip-addresses-eip.md)\. 
-
 + Check the CPU load on your instance; the server may be overloaded\. AWS automatically provides data such as Amazon CloudWatch metrics and instance status, which you can use to see how much CPU load is on your instance and, if necessary, adjust how your loads are handled\. For more information, see [Monitoring Your Instances Using CloudWatch](using-cloudwatch.md)\. 
-
   + If your load is variable, you can automatically scale your instances up or down using [Auto Scaling](https://aws.amazon.com/autoscaling/) and [Elastic Load Balancing](https://aws.amazon.com/elasticloadbalancing/)\. 
-
-  + If your load is steadily growing, you can move to a larger instance type\. For more information, see [Resizing Your Instance](ec2-instance-resize.md)\. 
+  + If your load is steadily growing, you can move to a larger instance type\. For more information, see [Changing the Instance Type](ec2-instance-resize.md)\. 
 
 To connect to your instance using an IPv6 address, check the following: 
-
 + Your subnet must be associated with a route table that has a route for IPv6 traffic \(`::/0`\) to an internet gateway\. 
-
 + Your security group rules must allow inbound traffic from your local IPv6 address on the proper port \(22 for Linux and 3389 for Windows\)\.
-
 + Your network ACL rules must allow inbound and outbound IPv6 traffic\.
-
 + If you launched your instance from an older AMI, it may not be configured for DHCPv6 \(IPv6 addresses are not automatically recognized on the network interface\)\. For more information, see [Configure IPv6 on Your Instances](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-migrate-ipv6.html#vpc-migrate-ipv6-dhcpv6) in the *Amazon VPC User Guide*\.
-
 + Your local computer must have an IPv6 address, and must be configured to use IPv6\. 
 
 ## Error: User key not recognized by server<a name="TroubleshootingInstancesServerError"></a>
 
 **If you use SSH to connect to your instance**
-
 + Use `ssh -vvv` to get triple verbose debugging information while connecting:
 
   ```
@@ -133,33 +119,21 @@ To connect to your instance using an IPv6 address, check the following:
   ```
 
 **If you use SSH \(MindTerm\) to connect to your instance**
-
 + If Java is not enabled, the server does not recognize the user key\. To enable Java, go to [How do I enable Java in my web browser?](http://java.com/en/download/help/enable_browser.xml) in the Java documentation\.
 
 **If you use PuTTY to connect to your instance**
-
 + Verify that your private key \(\.pem\) file has been converted to the format recognized by PuTTY \(\.ppk\)\. For more information about converting your private key, see [Connecting to Your Linux Instance from Windows Using PuTTY](putty.md)\.
 **Note**  
 In PuTTYgen, load your private key file and select **Save Private Key** rather than **Generate**\. 
-
 + Verify that you are connecting with the appropriate user name for your AMI\. Enter the user name in the **Host name** box in the **PuTTY Configuration** window\.
-
   + For an Amazon Linux AMI, the user name is `ec2-user`\.
-
   + For a Centos AMI, the user name is `centos`\.
-
   + For a Debian AMI, the user name is `admin` or `root`\.
-
-  + For a Fedora AMI, the user name is `ec2-user`\.
-
+  + For a Fedora AMI, the user name is `ec2-user` or `fedora`\.
   + For a RHEL AMI, the user name is `ec2-user` or `root`\.
-
   + For a SUSE AMI, the user name is `ec2-user` or `root`\.
-
   + For an Ubuntu AMI, the user name is `ubuntu` or `root`\.
-
   + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
-
 + Verify that you have an inbound security group rule to allow inbound traffic to the appropriate port\. For more information, see [Authorizing Network Access to Your Instances](authorizing-access-to-an-instance.md)\. 
 
 ## Error: Host key not found, Permission denied \(publickey\), *or* Authentication failed, permission denied<a name="TroubleshootingInstancesConnectingMindTerm"></a>
@@ -167,21 +141,13 @@ In PuTTYgen, load your private key file and select **Save Private Key** rather t
 If you connect to your instance using SSH and get any of the following errors, `Host key not found in [directory]`, `Permission denied (publickey)`, or `Authentication failed, permission denied`, verify that you are connecting with the appropriate user name for your AMI *and* that you have specified the proper private key \(`.pem)` file for your instance\. For MindTerm clients, enter the user name in the **User name** box in the **Connect To Your Instance** window\.
 
 The appropriate user names are as follows:
-
 + For an Amazon Linux AMI, the user name is `ec2-user`\.
-
 + For a Centos AMI, the user name is `centos`\.
-
 + For a Debian AMI, the user name is `admin` or `root`\.
-
-+ For a Fedora AMI, the user name is `ec2-user`\.
-
++ For a Fedora AMI, the user name is `ec2-user` or `fedora`\.
 + For a RHEL AMI, the user name is `ec2-user` or `root`\.
-
 + For a SUSE AMI, the user name is `ec2-user` or `root`\.
-
 + For an Ubuntu AMI, the user name is `ubuntu` or `root`\.
-
 + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
 
 For example, to use an SSH client to connect to an instance launched from an Amazon Linux AMI, use the following command:
@@ -208,7 +174,7 @@ If you get a `Permission denied (publickey)` error and none of the above applies
 
 1. Launch a temporary instance in the same Availability Zone as your current instance \(use a similar or the same AMI as you used for your current instance\), and attach the root volume to the temporary instance\. For more information, see [Attaching an Amazon EBS Volume to an Instance](ebs-attaching-volume.md)\.
 
-1. Connect to the temporary instance, create a mount point, and mount the volume that you attached\. For more information, see [Making an Amazon EBS Volume Available for Use](ebs-using-volumes.md)\.
+1. Connect to the temporary instance, create a mount point, and mount the volume that you attached\. For more information, see [Making an Amazon EBS Volume Available for Use on Linux](ebs-using-volumes.md)\.
 
 1. From the temporary instance, check the permissions of the `/home/ec2-user/` directory of the attached volume\. If necessary, adjust the permissions as follows:
 
@@ -254,21 +220,13 @@ If you see a similar message when you try to log in to your instance, examine th
 If you use PuTTY to connect to your instance and get either of the following errors, `Error: Server refused our key` or `Error: No supported authentication methods available`, verify that you are connecting with the appropriate user name for your AMI\. Enter the user name in the **User name** box in the **PuTTY Configuration** window\.
 
 The appropriate user names are as follows:
-
 + For an Amazon Linux AMI, the user name is `ec2-user`\.
-
 + For a Centos AMI, the user name is `centos`\.
-
 + For a Debian AMI, the user name is `admin` or `root`\.
-
-+ For a Fedora AMI, the user name is `ec2-user`\.
-
++ For a Fedora AMI, the user name is `ec2-user` or `fedora`\.
 + For a RHEL AMI, the user name is `ec2-user` or `root`\.
-
 + For a SUSE AMI, the user name is `ec2-user` or `root`\.
-
 + For an Ubuntu AMI, the user name is `ubuntu` or `root`\.
-
 + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
 
 You should also verify that your private key \(\.pem\) file has been correctly converted to the format recognized by PuTTY \(\.ppk\)\. For more information about converting your private key, see [Connecting to Your Linux Instance from Windows Using PuTTY](putty.md)\.
