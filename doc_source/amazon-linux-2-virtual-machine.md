@@ -6,26 +6,25 @@ Use the Amazon Linux 2 virtual machine images for on\-premises development and t
 + Microsoft Hyper\-V
 + KVM
 
-**Before you start**
+## Before you begin ##
 
-For security reasons the Amazon Linux 2 distribution requires a `seed.iso` disc for the first boot. This disc contains all the initial configuration of the system, for example: the network configuration, host name, while also having all the information necessary regarding the creation of a user(s). Meaning the `seed.iso` is the place where you put the password(s) for your user(s).
+For security reasons, the Amazon Linux 2 distribution requires a `seed.iso` disc for the first boot. This disc includes all the initial configuration information needed to boot your new virtual machine, such as the network configuration, host name, and the information required to create the users. The `seed.iso` also includes the passwords for your users.
 
-**IMPORTANT:** this iso file is not the Amazon Linux 2 system\. The Linux image is provided to you as a virtual hard drive for each individual VM that we support - more on this bellow\.
+**Important:** The 'seed.iso' disc is not the Amazon Linux 2 system image\. The Amazon Linux 2 image is available as a virtual hard drive for each supported virtualization platform.
 
-**How to make the seed.iso**
+## Create the seed.iso ##
 
 To create a `seed.iso` follow this steps:
 
-1. Create a new folder that will contain all that is necessary for this operation\.
-1. Inside the folder create for example a `seedconfig` folder\.
+1. Create a new folder named `seedconfig` to contain the files that are necessary for this operation\.
 1. Inside the `seedconfig` folder, create the following files: `meta-data` and `user-data`\.
-1. In the `meta-data` file paste the following content\.
+1. Add the following to the `meta-data` file to specify the virtual machine's host name\.
 
       ```
       local-hostname: amazonlinux.onprem
       ```
 
-1. In the `user-data` file paste the following content and replace `PLAIN_TEXT_PASSWORD` with a password of your choosing\.
+1. Add the following to the `user-data` file to specify a password for the default `ec2-user` user account\. Be sure to replace the `PLAIN_TEXT_PASSWORD` placeholder with a password of your choice\.
 
       ```
       #cloud-config
@@ -39,37 +38,37 @@ To create a `seed.iso` follow this steps:
       # In the above line, do not add any spaces after 'ec2-user:'.
       ```
 
-1. Create the `seed.iso` by making sure you are outside the `seedconfig` folder, and then use one of this commands\.
+1. Create the `seed.iso` disc using the `meta-data` and `user-data` configuration files.
 
-      Under Linux, use for example `genisoimage`.
+      For Linux, use a tool such as **genisoimage**. Navigate into the `seedconfig` folder and execute the following command:
 
       ```
       $ genisoimage -output seed.iso -volid cidata -joliet -rock user-data meta-data
       ```
 
-      On macOS, you can use the `hdiutil` tool\.
+      For macOS, use a tool such as **hdiutil**\. Navigate one level up from the `seedconfig` folder and execute the following command:
 
       ```
       $ hdiutil makehybrid -o seed.iso -hfs -joliet -iso -default-volume-name cidata seedconfig/
       ```
 
-1.  After you run one of this commands you'll end up with the `seed.iso` that you'll have to mount in your virtual CD drive\.
+    **Note:** After creating the `seed.iso` disc, you need to mount it in your virtual CD drive\.
 
-**Get the virtual HD**
+## Get the virtual HD ##
 
-Visit this URL [https://cdn\.amazonlinux\.com/os\-images/latest/](https://cdn.amazonlinux.com/os-images/latest/) to find all the virtual hard drives that we support\.
+In your web browser, navigate to [https://cdn\.amazonlinux\.com/os\-images/latest/](https://cdn.amazonlinux.com/os-images/latest/) to find all the virtual hard drives for the virtualization platforms that we support\. Download the correct virtual hard drive for your virtualization platform\.
 
-**IMPORTANT:** the following files are examples, and should not be used to boot your system for the first time: `README.cloud-init`, `Seed.iso`\.
+**IMPORTANT:** The `README.cloud-init` and `Seed.iso` files are examples, and should not be used to boot your system for the first time\.
 
-**How to setup your VM**
+## Set up your VM ##
 
-Now that you have created the `seed.iso` file and downloaded the virtual HD, you can go ahead and create a new runtime in your VM\. When creating a new system use the virtual HD that you just downloaded, and before booting the new system, make sure you mounted the virtual CD with the `seed.iso` that you created\. 
+Now that you have created the `seed.iso` file and downloaded the virtual HD, you can create a new runtime in your VM\. When creating a new system, use the virtual HD that you downloaded, and before booting the new system, make sure that you have mounted the `seed.iso` in your virtual CD drive\. 
 
-When you'll start the new machine for the first time, you'll see that the Amazon Linux 2 distribution will use the CD to set everything up. Once this is done, you will be able to log-in. After this step you can stop the system and remove the virtual CD.
+When the new virtual machine boots for the first time, the Amazon Linux 2 distribution will use the `seed.iso` disc mounted in your virtual CD drive to set up to virtual machine. After this is done, you can log in using the user data that you specified in the `user-data` configuration file. After you have logged in, stop the system and remove the `seed.iso` disc from the virtual CD drive.
 
-**Examples**
+## Examples ##
 
-Bellow you can find an example of what other options you can set in the seed configuration files\.
+The following example `meta-data` and `user-data` files show the other options you can set in the seed configuration files\.
 
 + `meta-data` file:
 
