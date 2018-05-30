@@ -35,7 +35,7 @@ Before you connect to your Linux instance, complete the following prerequisites:
   + For a Fedora AMI, the user name is `ec2-user` or `fedora`\.
   + For a RHEL AMI, the user name is `ec2-user` or `root`\.
   + For a SUSE AMI, the user name is `ec2-user` or `root`\.
-  + For an Ubuntu AMI, the user name is `ubuntu` or `root`\.
+  + For an Ubuntu AMI, the user name is `ubuntu`\.
   + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
 + **Enable inbound SSH traffic from your IP address to your instance**
 
@@ -123,7 +123,7 @@ One way to transfer files between your local computer and a Linux instance is to
   + For a Fedora AMI, the user name is `ec2-user` or `fedora`\.
   + For a RHEL AMI, the user name is `ec2-user` or `root`\.
   + For a SUSE AMI, the user name is `ec2-user` or `root`\.
-  + For an Ubuntu AMI, the user name is `ubuntu` or `root`\.
+  + For an Ubuntu AMI, the user name is `ubuntu`\.
   + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
 + **Enable inbound SSH traffic from your IP address to your instance**
 

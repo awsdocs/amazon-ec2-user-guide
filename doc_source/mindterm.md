@@ -27,7 +27,7 @@ The Chrome browser does not support the NPAPI plugin, and therefore cannot run t
   + For a Fedora AMI, the user name is `ec2-user` or `fedora`\.
   + For a RHEL AMI, the user name is `ec2-user` or `root`\.
   + For a SUSE AMI, the user name is `ec2-user` or `root`\.
-  + For an Ubuntu AMI, the user name is `ubuntu` or `root`\.
+  + For an Ubuntu AMI, the user name is `ubuntu`\.
   + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
 + **Enable inbound SSH traffic from your IP address to your instance**
 
@@ -52,7 +52,7 @@ The Chrome browser does not support the NPAPI plugin, and therefore cannot run t
       + For a Fedora AMI, the user name is `ec2-user` or `fedora`\.
       + For a RHEL AMI, the user name is `ec2-user` or `root`\.
       + For a SUSE AMI, the user name is `ec2-user` or `root`\.
-      + For an Ubuntu AMI, the user name is `ubuntu` or `root`\.
+      + For an Ubuntu AMI, the user name is `ubuntu`\.
       + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
 
    1. In **Private key path**, enter the fully qualified path to your private key \(`.pem`\) file, including the key pair name; for example:

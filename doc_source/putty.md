@@ -32,7 +32,7 @@ Before you connect to your Linux instance using PuTTY, complete the following pr
   + For a Fedora AMI, the user name is `ec2-user` or `fedora`\.
   + For a RHEL AMI, the user name is `ec2-user` or `root`\.
   + For a SUSE AMI, the user name is `ec2-user` or `root`\.
-  + For an Ubuntu AMI, the user name is `ubuntu` or `root`\.
+  + For an Ubuntu AMI, the user name is `ubuntu`\.
   + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
 + **Enable inbound SSH traffic from your IP address to your instance**
 
@@ -97,7 +97,7 @@ Use the following procedure to connect to your Linux instance using PuTTY\. You 
       + For a Fedora AMI, the user name is `ec2-user` or `fedora`\.
       + For a RHEL AMI, the user name is `ec2-user` or `root`\.
       + For a SUSE AMI, the user name is `ec2-user` or `root`\.
-      + For an Ubuntu AMI, the user name is `ubuntu` or `root`\.
+      + For an Ubuntu AMI, the user name is `ubuntu`\.
       + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
 
    1. \(IPv6 only\) To connect using your instance's IPv6 address, enter *user\_name*@*ipv6\_address*\. Be sure to specify the appropriate user name for your AMI\. For example:
@@ -107,7 +107,7 @@ Use the following procedure to connect to your Linux instance using PuTTY\. You 
       + For a Fedora AMI, the user name is `ec2-user` or `fedora`\.
       + For a RHEL AMI, the user name is `ec2-user` or `root`\.
       + For a SUSE AMI, the user name is `ec2-user` or `root`\.
-      + For an Ubuntu AMI, the user name is `ubuntu` or `root`\.
+      + For an Ubuntu AMI, the user name is `ubuntu`\.
       + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
 
    1. Under **Connection type**, select **SSH**\.
@@ -177,7 +177,7 @@ WinSCP is a GUI\-based file manager for Windows that allows you to upload and tr
    + For a Fedora AMI, the user name is `ec2-user` or `fedora`\.
    + For a RHEL AMI, the user name is `ec2-user` or `root`\.
    + For a SUSE AMI, the user name is `ec2-user` or `root`\.
-   + For an Ubuntu AMI, the user name is `ubuntu` or `root`\.
+   + For an Ubuntu AMI, the user name is `ubuntu`\.
    + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
 
 1. Specify the private key for your instance\. For **Private key**, enter the path to your private key, or choose the "**\.\.\.**" button to browse for the file\. For newer versions of WinSCP, choose **Advanced** to open the advanced site settings and then under **SSH**, choose **Authentication** to find the **Private key file** setting\.
