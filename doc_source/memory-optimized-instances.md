@@ -121,7 +121,7 @@ Memory optimized instances provide a high number of vCPUs, which can cause launc
 
 The following AMIs support launching Memory optimized instances:
 + Amazon Linux AMI 2016\.03 \(HVM\) or later
-+ Ubuntu Server 14\.04 LTS \(HVM\)
++ Ubuntu Server 14\.04 LTS \(HVM\) or later
 + Red Hat Enterprise Linux 7\.1 \(HVM\)
 + SUSE Linux Enterprise Server 12 SP1 \(HVM\)
 + Windows Server 2016
