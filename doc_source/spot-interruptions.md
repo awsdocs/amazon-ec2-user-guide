@@ -163,6 +163,9 @@ The following example indicates that hibernation has started immediately:
 ```
 {"action": "hibernate", "time": "2017-11-28T08:22:00Z"}
 ```
+If Amazon EC2 is not preparing to be hibernated, stopped, or terminated by the Spot service, or if you terminated the Spot Instance yourself, the instance-action item is not present (so you receive an HTTP 404 error).
+
+See this example for a (Bash script to continueslly monitors instance-action)[https://github.com/awslabs/ec2-spot-labs/blob/master/sqs-ec2-spot-fleet-autoscaling/spot-instance-interruption-notice-handler.sh].
 
 ### termination\-time<a name="termination-time-metadata"></a>
 
