@@ -140,7 +140,7 @@ The following is an example of the event for Spot Instance interruption\. The po
 
 ### instance\-action<a name="instance-action-metadata"></a>
 
-If your Spot Instance is marked to be hibernated, stopped, or terminated by the Spot service, the `instance-action` item is present in your instance metadata\. You can retrieve `instance-action` as follows\.
+If your Spot Instance is marked to be hibernated, stopped, or terminated by the Spot service, the `instance-action` item is present in your instance metadata\. Otherwise, it is not present. You can retrieve `instance-action` as follows\.
 
 ```
 [ec2-user ~]$ curl http://169.254.169.254/latest/meta-data/spot/instance-action
@@ -163,10 +163,13 @@ The following example indicates that hibernation has started immediately:
 ```
 {"action": "hibernate", "time": "2017-11-28T08:22:00Z"}
 ```
+If Amazon EC2 is not preparing to hibernate, stop, or terminate the instance, or if you terminated the instance yourself, the `instance-action` item is not present and you receive an HTTP 404 error\.
 
 ### termination\-time<a name="termination-time-metadata"></a>
 
-If your Spot Instance is marked for termination by the Spot service, the `termination-time` item is present in your instance metadata\. This item is maintained for backward compatibility; you should use `instance-action` instead\. You can retrieve `termination-time` as follows\.
+This item is maintained for backward compatibility; you should use `instance-action` instead\.
+
+If your Spot Instance is marked for termination by the Spot service, the `termination-time` item is present in your instance metadata\. Otherwise, it is not present. You can retrieve `termination-time` as follows\.
 
 ```
 [ec2-user ~]$ if curl -s http://169.254.169.254/latest/meta-data/spot/termination-time | grep -q .*T.*Z; then echo terminated; fi
@@ -178,6 +181,6 @@ The `termination-time` item specifies the approximate time in UTC when the insta
 2015-01-05T18:02:00Z
 ```
 
-If Amazon EC2 is not preparing to terminate the instance, or if you terminated the Spot Instance yourself, the `termination-time` item is either not present \(so you receive an HTTP 404 error\) or contains a value that is not a time value\.
+If Amazon EC2 is not preparing to terminate the instance, or if you terminated the instance yourself, the `termination-time` item is either not present \(so you receive an HTTP 404 error\) or contains a value that is not a time value\.
 
 If Amazon EC2 fails to terminate the instance, the request status is set to `fulfilled`\. Note that `termination-time` remains in the instance metadata with the original approximate time, which is now in the past\.
