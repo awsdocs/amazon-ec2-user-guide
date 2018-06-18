@@ -141,7 +141,7 @@ The `d2.8xlarge` instance type provides 36 vCPUs, which might cause launch issue
 
 The following Linux AMIs support launching `d2.8xlarge` instances with 36 vCPUs:
 + Amazon Linux AMI 2018\.03 \(HVM\)
-+ Ubuntu Server 14\.04 LTS \(HVM\)
++ Ubuntu Server 14\.04 LTS \(HVM\) or later
 + Red Hat Enterprise Linux 7\.1 \(HVM\)
 + SUSE Linux Enterprise Server 12 \(HVM\)
 

@@ -132,7 +132,7 @@ In PuTTYgen, load your private key file and select **Save Private Key** rather t
   + For a Fedora AMI, the user name is `ec2-user` or `fedora`\.
   + For a RHEL AMI, the user name is `ec2-user` or `root`\.
   + For a SUSE AMI, the user name is `ec2-user` or `root`\.
-  + For an Ubuntu AMI, the user name is `ubuntu` or `root`\.
+  + For an Ubuntu AMI, the user name is `ubuntu`\.
   + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
 + Verify that you have an inbound security group rule to allow inbound traffic to the appropriate port\. For more information, see [Authorizing Network Access to Your Instances](authorizing-access-to-an-instance.md)\. 
 
@@ -147,7 +147,7 @@ The appropriate user names are as follows:
 + For a Fedora AMI, the user name is `ec2-user` or `fedora`\.
 + For a RHEL AMI, the user name is `ec2-user` or `root`\.
 + For a SUSE AMI, the user name is `ec2-user` or `root`\.
-+ For an Ubuntu AMI, the user name is `ubuntu` or `root`\.
++ For an Ubuntu AMI, the user name is `ubuntu`\.
 + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
 
 For example, to use an SSH client to connect to an instance launched from an Amazon Linux AMI, use the following command:
@@ -226,7 +226,7 @@ The appropriate user names are as follows:
 + For a Fedora AMI, the user name is `ec2-user` or `fedora`\.
 + For a RHEL AMI, the user name is `ec2-user` or `root`\.
 + For a SUSE AMI, the user name is `ec2-user` or `root`\.
-+ For an Ubuntu AMI, the user name is `ubuntu` or `root`\.
++ For an Ubuntu AMI, the user name is `ubuntu`\.
 + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
 
 You should also verify that your private key \(\.pem\) file has been correctly converted to the format recognized by PuTTY \(\.ppk\)\. For more information about converting your private key, see [Connecting to Your Linux Instance from Windows Using PuTTY](putty.md)\.
