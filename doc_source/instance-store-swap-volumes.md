@@ -7,7 +7,7 @@ Using swap space for memory paging is not as fast or efficient as using RAM\. If
 
 The `c1.medium` and `m1.small` instance types have a limited amount of physical memory to work with, and they are given a 900 MiB swap volume at launch time to act as virtual memory for Linux AMIs\. Although the Linux kernel sees this swap space as a partition on the root device, it is actually a separate instance store volume, regardless of your root device type\.
 
-Amazon Linux AMIs automatically enable and use this swap space, but your AMI may require some additional steps to recognize and use this swap space\. To see if your instance is using swap space, you can use the swapon \-s command\.
+Amazon Linux automatically enables and uses this swap space, but your AMI may require some additional steps to recognize and use this swap space\. To see if your instance is using swap space, you can use the swapon \-s command\.
 
 ```
 [ec2-user ~]$ swapon -s

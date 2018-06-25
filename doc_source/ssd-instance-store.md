@@ -1,15 +1,15 @@
 # SSD Instance Store Volumes<a name="ssd-instance-store"></a>
 
-The following instances support instance store volumes that use solid state drives \(SSD\) to deliver high random I/O performance: C3, F1, G2, I2, I3, M3, R3, and X1\. For more information about the instance store volumes support by each instance type, see [Instance Store Volumes](InstanceStorage.md#instance-store-volumes)\.
+The following instances support instance store volumes that use solid state drives \(SSD\) to deliver high random I/O performance: C3, C5d, F1, G2, I2, I3, M3, M5d, R3, and X1\. For more information about the instance store volumes support by each instance type, see [Instance Store Volumes](InstanceStorage.md#instance-store-volumes)\.
 
-To ensure the best IOPS performance from your SSD instance store volumes on Linux, we recommend that you use the most recent version of the [Amazon Linux AMI](https://aws.amazon.com/amazon-linux-ami/), or another Linux AMI with a kernel version of 3\.8 or later\. If you do not use a Linux AMI with a kernel version of 3\.8 or later, your instance will not achieve the maximum IOPS performance available for these instance types\.
+To ensure the best IOPS performance from your SSD instance store volumes on Linux, we recommend that you use the most recent version of Amazon Linux, or another Linux AMI with a kernel version of 3\.8 or later\. If you do not use a Linux AMI with a kernel version of 3\.8 or later, your instance will not achieve the maximum IOPS performance available for these instance types\.
 
 Like other instance store volumes, you must map the SSD instance store volumes for your instance when you launch it\. The data on an SSD instance volume persists only for the life of its associated instance\. For more information, see [Add Instance Store Volumes to Your EC2 Instance](add-instance-store-volumes.md)\.
 
 ## NVMe SSD Volumes<a name="nvme-ssd-volumes"></a>
 
-I3 and F1 instances offer non\-volatile memory express \(NVMe\) SSD instance store volumes\. To access the NVMe volumes, you must use an operating system that supports NVMe\. The following are the recommended operating systems:
-+ The current Amazon Linux AMI
+The following instances offer non\-volatile memory express \(NVMe\) SSD instance store volumes: C5d, I3, F1, and M5d\. To access the NVMe volumes, you must use an operating system that supports NVMe\. The following are the recommended operating systems:
++ The most recent version of Amazon Linux 2 or Amazon Linux AMI
 + Ubuntu version 16\.04 or latest LTS release provided by AWS\. If you are using a different version, we recommend that you turn off memory hot add\.
 + Red Hat Enterprise Linux version 7\.4
 + CentOS 7 version 1708\_11
@@ -40,11 +40,13 @@ If you are using a supported operating system but you do not see the NVMe device
 nvme          48813  0
 ```
 
-The NVMe volumes are compliant with the NVMe 1\.0e specification\. You can use the NVMe commands with your NVMe volumes\. With the Amazon Linux AMI, you can install the `nvme-cli` package from the repo using the yum install command\. With other supported versions of Linux, you can download the `nvme-cli` package if it's not available in the image\.
+The NVMe volumes are compliant with the NVMe 1\.0e specification\. You can use the NVMe commands with your NVMe volumes\. With Amazon Linux, you can install the `nvme-cli` package from the repo using the yum install command\. With other supported versions of Linux, you can download the `nvme-cli` package if it's not available in the image\.
+
+The data on NVMe instance storage is encrypted using an XTS\-AED\-256 block cipher implemented in a hardware module on the instance\. The encryption keys are generated using the hardware module and are unique to each NVMe instance storage device\. All encryption keys are destroyed when the instance is stopped or terminated and cannot be recovered\. You cannot disable this encryption and you cannot provide your own encryption key\.
 
 ## Instance Store Volume TRIM Support<a name="InstanceStoreTrimSupport"></a>
 
-The following instances support SSD volumes with TRIM: F1, I2, I3, and R3\.
+The following instances support SSD volumes with TRIM: C5d, F1, I2, I3, M5d, and R3\.
 
 Instance store volumes that support TRIM are fully trimmed before they are allocated to your instance\. These volumes are not formatted with a file system when an instance launches, so you must format them before they can be mounted and used\. For faster access to these volumes, you should skip the TRIM operation when you format them\.
 

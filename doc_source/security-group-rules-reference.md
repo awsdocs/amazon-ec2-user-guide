@@ -29,7 +29,7 @@ The following inbound rules allow HTTP and HTTPS access from any IP address\. If
 
 ## Database server<a name="sg-rules-db-server"></a>
 
-The following inbound rules are examples of rules you might add for database access, depending on what type of database you're running on your instance\. For more information about Amazon RDS instances, see the [Amazon Relational Database Service User Guide](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/)\.
+The following inbound rules are examples of rules you might add for database access, depending on what type of database you're running on your instance\. For more information about Amazon RDS instances, see the [Amazon RDS User Guide](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/)\.
 
 For the source IP, specify one of the following:
 + A specific IP address or range of IP addresses in your local network

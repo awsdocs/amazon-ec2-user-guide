@@ -5,19 +5,23 @@ An Amazon EBS–optimized instance uses an optimized configuration stack and pro
 EBS–optimized instances deliver dedicated bandwidth to Amazon EBS, with options between 425 Mbps and 14,000 Mbps, depending on the instance type you use\. When attached to an EBS–optimized instance, General Purpose SSD \(`gp2`\) volumes are designed to deliver within 10% of their baseline and burst performance 99% of the time in a given year, and Provisioned IOPS SSD \(`io1`\) volumes are designed to deliver within 10% of their provisioned performance 99\.9% of the time in a given year\. Both Throughput Optimized HDD \(`st1`\) and Cold HDD \(`sc1`\) guarantee performance consistency of 90% of burst throughput 99% of the time in a given year\. Non\-compliant periods are approximately uniformly distributed, targeting 99% of expected total throughput each hour\. For more information, see [Amazon EBS Volume Types](EBSVolumeTypes.md)\.
 
 **Topics**
-+ [Instance Types That Support EBS Optimization](#ebs-optimization-support)
++ [Instance Types that Support EBS Optimization](#ebs-optimization-support)
 + [Enabling Amazon EBS Optimization at Launch](#enable-ebs-optimization)
 + [Modifying Amazon EBS Optimization for a Running Instance](#modify-ebs-optimized-attribute)
 
-## Instance Types That Support EBS Optimization<a name="ebs-optimization-support"></a>
+## Instance Types that Support EBS Optimization<a name="ebs-optimization-support"></a>
 
-The following table shows which instance types support EBS optimization, the dedicated bandwidth to Amazon EBS, the maximum number of IOPS the instance can support if you are using a 16 KiB I/O size, and the typical maximum aggregate throughput that can be achieved on that connection in MiB/s with a streaming read workload and 128 KiB I/O size\. Choose an EBS–optimized instance that provides more dedicated Amazon EBS throughput than your application needs; otherwise, the connection between Amazon EBS and Amazon EC2 can become a performance bottleneck\.
+The following tables show which instance types support EBS optimization, the dedicated bandwidth to Amazon EBS, the maximum number of IOPS the instance can support if you are using a 16 KiB I/O size, and the typical maximum aggregate throughput that can be achieved on that connection in MiB/s with a streaming read workload and 128 KiB I/O size\. Choose an EBS–optimized instance that provides more dedicated Amazon EBS throughput than your application needs; otherwise, the connection between Amazon EBS and Amazon EC2 can become a performance bottleneck\.
 
-The current generation instance types are EBS–optimized by default\. For those instances, there is no need to enable EBS optimization and no effect if you disable EBS optimization\. For instances that are not EBS–optimized by default, you can enable EBS optimization when you launch the instances, or enable EBS optimization after the instances are running\. Instances must have EBS optimization enabled to achieve the level of performance described in the table below\.
+The instance types that are EBS–optimized by default, there is no need to enable EBS optimization and no effect if you disable EBS optimization\. For instances that are not EBS–optimized by default, you can enable EBS optimization when you launch the instances, or enable EBS optimization after the instances are running\. Instances must have EBS optimization enabled to achieve the level of performance described in the table below\.
 
 When you enable EBS optimization for an instance that is not EBS\-optimized by default, you pay an additional low, hourly fee for the dedicated capacity\. For pricing information, see EBS\-optimized Instances on the [Amazon EC2 Pricing page for On\-Demand instances](https://aws.amazon.com/ec2/pricing/on-demand/)\.
 
 The `i2.8xlarge`, `c3.8xlarge`, and `r3.8xlarge` instances do not have dedicated EBS bandwidth and therefore do not offer EBS optimization\. On these instances, network traffic and Amazon EBS traffic share the same 10\-gigabit network interface\.
+
+### Supported Current Generation Instance Types<a name="current"></a>
+
+The following table lists current\-generation instance types that support EBS optimization\.
 
 
 | Instance type | EBS\-optimized by default | Maximum bandwidth \(Mbps\) | Maximum throughput \(MB/s, 128 KB I/O\) | Maximum IOPS \(16 KB I/O\) | 
@@ -33,6 +37,12 @@ The `i2.8xlarge`, `c3.8xlarge`, and `r3.8xlarge` instances do not have dedicated
 | c5\.4xlarge | Yes | 2,250 | 281\.25 | 16,000 | 
 | c5\.9xlarge | Yes | 4,500 | 562\.5 | 32,000 | 
 | c5\.18xlarge | Yes | 9,000 | 1,125 | 64,000 | 
+| c5d\.large \* | Yes | 2,250 | 281\.25 | 16,000 | 
+| c5d\.xlarge \* | Yes | 2,250 | 281\.25 | 16,000 | 
+| c5d\.2xlarge \* | Yes | 2,250 | 281\.25 | 16,000 | 
+| c5d\.4xlarge | Yes | 2,250 | 281\.25 | 16,000 | 
+| c5d\.9xlarge | Yes | 4,500 | 562\.5 | 32,000 | 
+| c5d\.18xlarge | Yes | 9,000 | 1,125 | 64,000 | 
 | d2\.xlarge | Yes | 750 | 93\.75 | 6,000 | 
 | d2\.2xlarge | Yes | 1,000 | 125 | 8,000 | 
 | d2\.4xlarge | Yes | 2,000 | 250 | 16,000 | 
@@ -52,6 +62,7 @@ The `i2.8xlarge`, `c3.8xlarge`, and `r3.8xlarge` instances do not have dedicated
 | i3\.4xlarge | Yes | 3,500 | 437\.5 | 16,000 | 
 | i3\.8xlarge | Yes | 7,000 | 875 | 32,500 | 
 | i3\.16xlarge | Yes | 14,000 | 1,750 | 65,000 | 
+| i3\.metal | Yes | 10,000 | 1,250 | 64,000 | 
 | m4\.large | Yes | 450 | 56\.25 | 3,600 | 
 | m4\.xlarge | Yes | 750 | 93\.75 | 6,000 | 
 | m4\.2xlarge | Yes | 1,000 | 125 | 8,000 | 
@@ -64,6 +75,12 @@ The `i2.8xlarge`, `c3.8xlarge`, and `r3.8xlarge` instances do not have dedicated
 | m5\.4xlarge | Yes | 2,120 | 265 | 16,000 | 
 | m5\.12xlarge | Yes | 5,000 | 625 | 32,500 | 
 | m5\.24xlarge | Yes | 10,000 | 1,250 | 65,000 | 
+| m5d\.large\* | Yes | 2,120 | 265 | 16,000 | 
+| m5d\.xlarge\* | Yes | 2,120 | 265 | 16,000 | 
+| m5d\.2xlarge\* | Yes | 2,120 | 265 | 16,000 | 
+| m5d\.4xlarge | Yes | 2,120 | 265 | 16,000 | 
+| m5d\.12xlarge | Yes | 5,000 | 625 | 32,500 | 
+| m5d\.24xlarge | Yes | 10,000 | 1,250 | 65,000 | 
 | p2\.xlarge | Yes | 750 | 93\.75 | 6,000 | 
 | p2\.8xlarge | Yes | 5,000 | 625 | 32,500 | 
 | p2\.16xlarge | Yes | 10,000 | 1,250 | 65,000 | 
@@ -85,9 +102,7 @@ The `i2.8xlarge`, `c3.8xlarge`, and `r3.8xlarge` instances do not have dedicated
 | x1e\.16xlarge | Yes | 7,000 | 875 | 40,000 | 
 | x1e\.32xlarge | Yes | 14,000 | 1,750 | 80,000 | 
 
-\* These instance types can support maximum performance for 30 minutes at least once every 24 hours\. For example, `c5.large` instances can deliver 281 MB/s for 30 minutes at least once every 24 hours\. If you have a workload that requires sustained maximum performance for longer than 30 minutes, select an instance type according to baseline performance as shown in the table below\.
-
-The `EBSIOBalance%` and `EBSByteBalance%` metrics can help you determine if you have rightsized your instances\. You can view these metrics in the CloudWatch console and set an alarm that will be triggered based on your thresholds\. These metrics are expressed as a percentage\. Instances with a consistently low balance percentage are candidates for upsizing\. Instances where the balance percentage never drops below 100% are candidates for downsizing\. For more information, see [Monitoring Your Instances Using CloudWatch](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch.html)\.
+\* These instance types can support maximum performance for 30 minutes at least once every 24 hours\. For example, `c5.large` instances can deliver 281 MB/s for 30 minutes at least once every 24 hours\. If you have a workload that requires sustained maximum performance for longer than 30 minutes, select an instance type according to baseline performance shown in this table\.
 
 
 | Instance type | Baseline bandwidth \(Mbps\) | Baseline throughput \(MB/s, 128 KB I/O\) | Baseline IOPS \(16 KB I/O\) | 
@@ -95,9 +110,44 @@ The `EBSIOBalance%` and `EBSByteBalance%` metrics can help you determine if you 
 | c5\.large | 525 | 66 | 4,000 | 
 | c5\.xlarge | 800 | 100 | 6,000 | 
 | c5\.2xlarge | 1,125 | 141 | 8,000 | 
+| c5d\.large | 525 | 66 | 4,000 | 
+| c5d\.xlarge | 800 | 100 | 6,000 | 
+| c5d\.2xlarge | 1,125 | 141 | 8,000 | 
 | m5\.large | 480 | 60 | 3,600 | 
 | m5\.xlarge | 800 | 100 | 6,000 | 
 | m5\.2xlarge | 1,166 | 146 | 8,333 | 
+| m5d\.large | 480 | 60 | 3,600 | 
+| m5d\.xlarge | 800 | 100 | 6,000 | 
+| m5d\.2xlarge | 1,166 | 146 | 8,333 | 
+
+The `EBSIOBalance%` and `EBSByteBalance%` metrics can help you determine if your instances are sized correctly\. You can view these metrics in the CloudWatch console and set an alarm that is triggered based on a threshold you specify\. These metrics are expressed as a percentage\. Instances with a consistently low balance percentage are candidates for upsizing\. Instances where the balance percentage never drops below 100% are candidates for downsizing\. For more information, see [Monitoring Your Instances Using CloudWatch](using-cloudwatch.md)\.
+
+### Supported Previous Generation Instance Types<a name="previous"></a>
+
+The following table lists previous\-generation instance types that support EBS optimization\.
+
+
+**Previous Generation Instances**  
+
+| Instance type | EBS\-optimized by default | Maximum bandwidth \(Mbps\) | Maximum throughput \(MB/s, 128 KB I/O\) | Maximum IOPS \(16 KB I/O\) | 
+| --- | --- | --- | --- | --- | 
+| c1\.xlarge | No | 1,000 | 125 | 8,000 | 
+| c3\.xlarge | No | 500 | 62\.5 | 4,000 | 
+| c3\.2xlarge | No | 1,000 | 125 | 8,000 | 
+| c3\.4xlarge | No | 2,000 | 250 | 16,000 | 
+| g2\.2xlarge | No | 1,000 | 125 | 8,000 | 
+| i2\.xlarge | No | 500 | 62\.5 | 4,000 | 
+| i2\.2xlarge | No | 1,000 | 125 | 8,000 | 
+| i2\.4xlarge | No | 2,000 | 250 | 16,000 | 
+| m1\.large | No | 500 | 62\.5 | 4,000 | 
+| m1\.xlarge | No | 1,000 | 125 | 8,000 | 
+| m2\.2xlarge | No | 500 | 62\.5 | 4,000 | 
+| m2\.4xlarge | No | 1,000 | 125 | 8,000 | 
+| m3\.xlarge | No | 500 | 62\.5 | 4,000 | 
+| m3\.2xlarge | No | 1,000 | 125 | 8,000 | 
+| r3\.xlarge | No | 500 | 62\.5 | 4,000 | 
+| r3\.2xlarge | No | 1,000 | 125 | 8,000 | 
+| r3\.4xlarge | No | 2,000 | 250 | 16,000 | 
 
 ## Enabling Amazon EBS Optimization at Launch<a name="enable-ebs-optimization"></a>
 

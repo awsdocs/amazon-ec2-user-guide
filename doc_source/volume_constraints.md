@@ -21,7 +21,7 @@ Linux boot volumes may be either MBR or GPT, and Linux GPT boot volumes are not 
 Among other impacts, the partitioning scheme determines how many logical data blocks can be uniquely addressed in a single volume\. For more information, see [Data Block Sizes](#block_size)\. Two partitioning schemes are in common use on Linux and Windows systems: master boot record \(MBR\) and GUID partition table \(GPT\)\. The important differences between the two can be summarized as follows:
 + **MBR**
 
-  MBR uses a 32\-bit data structure to store block addresses\. This means that each data block is mapped with one of 232possible integers\. The maximum addressable size of a volume is given by: 
+  MBR uses a 32\-bit data structure to store block addresses\. This means that each data block is mapped with one of 232 possible integers\. The maximum addressable size of a volume is given by: 
 
   \(232 \- 1\) × Block size = Number of addressable blocks
 

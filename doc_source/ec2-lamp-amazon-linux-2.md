@@ -27,10 +27,10 @@ This tutorial assumes that you have already launched a new instance using Amazon
 1. Install the `lamp-mariadb10.2-php7.2` and `php7.2` Amazon Linux Extras repositories to get the latest versions of the LAMP MariaDB and PHP packages for Amazon Linux 2\.
 
    ```
-   [ec2-user ~]$ sudo amazon-linux-extras install lamp-mariadb10.2-php7.2 php7.2
+   [ec2-user ~]$ sudo amazon-linux-extras install -y lamp-mariadb10.2-php7.2 php7.2
    ```
 **Note**  
-If you receive an error stating `sudo: amazon-linux-extras: command not found`, then your instance was not launched with an Amazon Linux 2 AMI\. You can view your version of Amazon Linux with the following command\.  
+If you receive an error stating `sudo: amazon-linux-extras: command not found`, then your instance was not launched with an Amazon Linux 2 AMI \(perhaps you are using the Amazon Linux AMI instead\)\. You can view your version of Amazon Linux with the following command\.  
 
    ```
    cat /etc/system-release

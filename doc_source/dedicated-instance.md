@@ -5,10 +5,6 @@ Dedicated Instances are Amazon EC2 instances that run in a virtual private cloud
 **Note**  
 A *Dedicated Host* is also a physical server that's dedicated for your use\. With a Dedicated Host, you have visibility and control over how instances are placed on the server\. For more information, see [Dedicated Hosts](dedicated-hosts-overview.md)\.
 
-**Topics**
-+ [Dedicated Instance Basics](#dedicated-howitworks)
-+ [Working with Dedicated Instances](#dedicated-usage-overview)
-
 ## Dedicated Instance Basics<a name="dedicated-howitworks"></a>
 
 Each instance that you launch into a VPC has a tenancy attribute\. This attribute has the following values\.
@@ -58,9 +54,13 @@ When you purchase a Dedicated Reserved Instance, you are purchasing the capacity
 
 You can't use the modification process to change the tenancy of a Reserved Instance after you've purchased it\. However, you can exchange a Convertible Reserved Instance for a new Convertible Reserved Instance with a different tenancy\.
 
-### Auto Scaling of Dedicated Instances<a name="dedicated-instance-autoscaling"></a>
+### Automatic Scaling of Dedicated Instances<a name="dedicated-instance-autoscaling"></a>
 
-For information about using Auto Scaling to launch Dedicated Instances, see [Auto Scaling in Amazon Virtual Private Cloud](http://docs.aws.amazon.com/autoscaling/latest/userguide/autoscalingsubnets.html) in the *Amazon EC2 Auto Scaling User Guide*\.
+You can use Amazon EC2 Auto Scaling to launch Dedicated Instances\. For more information, see [Launching Auto Scaling Instances in a VPC](http://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html) in the *Amazon EC2 Auto Scaling User Guide*\.
+
+### Automatic Recovery of Dedicated Instances<a name="dedicated-instance-recovery"></a>
+
+You can configure automatic recovery for a Dedicated Instances if it becomes impaired due to an underlying hardware failure or a problem that requires AWS involvement to repair\. For more information, see [Recover Your Instance](ec2-instance-recover.md)\.
 
 ### Dedicated Spot Instances<a name="dedicated-instance-spot"></a>
 

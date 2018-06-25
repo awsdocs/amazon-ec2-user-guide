@@ -20,7 +20,7 @@ You can cluster accelerated computing instances into a cluster placement group\.
 + [Release Notes](#gpu-instance-current-limitations)
 + [AMIs for GPU\-Based Accelerated Computing Instances](#gpu-operating-systems)
 + [Installing the NVIDIA Driver on Linux Instances](install-nvidia-driver.md)
-+ [Activate NVIDIA GRID Capabilities \(G3 Instances Only\)](activate_grid.md)
++ [Activate NVIDIA GRID Virtual Applications \(G3 Instances Only\)](activate_grid.md)
 + [Optimizing GPU Settings \(P2, P3, and G3 Instances\)](optimize_gpu.md)
 + [Getting Started with FPGA Development](fpga-getting-started.md)
 
@@ -66,7 +66,7 @@ For more information, see [NVIDIA GPUDirect](https://developer.nvidia.com/gpudir
 **G3 Instances**  
 G3 instances use NVIDIA Tesla M60 GPUs and provide a cost\-effective, high\-performance platform for graphics applications using DirectX or OpenGL\. G3 instances also provide NVIDIA GRID Virtual Workstation features, such as support for four monitors with resolutions up to 4096x2160, and NVIDIA GRID Virtual Applications\. G3 instances are well\-suited for applications such as 3D visualizations, graphics\-intensive remote workstations, 3D rendering, video encoding, virtual reality, and other server\-side graphics workloads requiring massively parallel processing power\. 
 
-G3 instances support NVIDIA GRID Virtual Workstation and NVIDIA GRID Virtual Applications\. To activate either of these features, see [Activate NVIDIA GRID Capabilities \(G3 Instances Only\)](activate_grid.md)\.
+G3 instances support NVIDIA GRID Virtual Workstation and NVIDIA GRID Virtual Applications\. To activate either of these features, see [Activate NVIDIA GRID Virtual Applications \(G3 Instances Only\)](activate_grid.md)\.
 
 ## Hardware Specifications<a name="gpu-instance-specifications"></a>
 

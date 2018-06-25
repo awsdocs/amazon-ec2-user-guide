@@ -140,7 +140,6 @@ Throughput Optimized HDD \(`st1`\) volumes provide low\-cost magnetic storage th
 
 Throughput Optimized HDD \(`st1`\) volumes, though similar to Cold HDD \(`sc1`\) volumes, are designed to support *frequently* accessed data\.
 
-**Note**  
 This volume type is optimized for workloads involving large, sequential I/O, and we recommend that customers with workloads performing small, random I/O use `gp2`\. For more information, see [**Inefficiency of Small Read/Writes on HDD**](#inefficiency)\.
 
 ### Throughput Credits and Burst Performance<a name="ST1ThroughputBurst"></a>

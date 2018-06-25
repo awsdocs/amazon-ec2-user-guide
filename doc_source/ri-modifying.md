@@ -43,7 +43,7 @@ Not all attributes of a Reserved Instance can be modified, and restrictions may 
 |  Change **Availability Zones** within the same region  |  All Windows and Linux  | \- | 
 |  Change the **scope** from Availability Zone to Region and vice versa  |  All Windows and Linux  |  If you change the scope from Availability Zone to region, you lose the capacity reservation benefit\. If you change the scope from region to Availability Zone, you lose Availability Zone flexibility and instance size flexibility \(if applicable\)\. For more information, see [How Reserved Instances Are Applied](apply_ri.md)\.  | 
 |  Change the **network platform** between EC2\-VPC and EC2\-Classic  |  All Windows and Linux  |  Only applicable if your account supports EC2\-Classic\.  | 
-|  Change the **instance size** within the same instance type  |  Supported on Linux, except for RedHat and SUSE Linux due to licensing differences\. For more information about RedHat and SUSE pricing, see [Amazon EC2 Reserved Instance Pricing](https://aws.amazon.com//ec2/purchasing-options/reserved-instances/)\.  Not supported on Windows\.   | Some instance types are not supported, because there are no other sizes available\. For more information, see [Modifying the Instance Size of Your Reservations](#ri-modification-instancemove)\. | 
+|  Change the **instance size** within the same instance type  |  Supported on Linux, except for RedHat and SUSE Linux due to licensing differences\. For more information about RedHat and SUSE pricing, see [Amazon EC2 Reserved Instance Pricing](https://aws.amazon.com/ec2/purchasing-options/reserved-instances/)\.  Not supported on Windows\.   | Some instance types are not supported, because there are no other sizes available\. For more information, see [Modifying the Instance Size of Your Reservations](#ri-modification-instancemove)\. | 
 
 Amazon EC2 processes your modification request if there is sufficient capacity for your target configuration \(if applicable\), and if the following conditions are met\.
 
@@ -65,13 +65,14 @@ Your modification request must meet the following conditions:
 If you have Amazon Linux reservations in an instance type with multiple sizes, you can modify the instance size of your Reserved Instances\. 
 
 **Note**  
-Instances are grouped by family \(based on storage, or CPU capacity\); type \(designed for specific use cases\); and size\. For example, the `c4` instance type is in the Compute optimized instance family and is available in multiple sizes\. While `c3` instances are in the same family, you can't modify `c4` instances into `c3` instances because they have different hardware specifications\. For more information, see [Amazon EC2 Instance Types](https://aws.amazon.com//ec2/instance-types/)\.
+Instances are grouped by family \(based on storage, or CPU capacity\); type \(designed for specific use cases\); and size\. For example, the `c4` instance type is in the Compute optimized instance family and is available in multiple sizes\. While `c3` instances are in the same family, you can't modify `c4` instances into `c3` instances because they have different hardware specifications\. For more information, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
 You cannot modify the instance size of the Reserved Instances for the following instance types, because only one size is available for each of these instance types\.
-+ `t1.micro`
 + `cc2.8xlarge`
 + `cr1.8xlarge`
 + `hs1.8xlarge`
++ `i3.metal`
++ `t1.micro`
 
 Each Reserved Instance has an *instance size footprint*, which is determined by the normalization factor of the instance type and the number of instances in the reservation\. When you modify a Reserved Instance, the footprint of the target configuration must match that of the original configuration, otherwise the modification request is not processed\.
 

@@ -1,6 +1,6 @@
 # Enabling Enhanced Networking with the Elastic Network Adapter \(ENA\) on Linux Instances in a VPC<a name="enhanced-networking-ena"></a>
 
-Amazon EC2 provides enhanced networking capabilities to C5, F1, G3, H1, I3, `m4.16xlarge`, M5, P2, P3, R4, and X1 instances through the Elastic Network Adapter \(ENA\)\.
+Amazon EC2 provides enhanced networking capabilities to C5, C5d, F1, G3, H1, I3, `m4.16xlarge`, M5, M5d, P2, P3, R4, and X1 instances through the Elastic Network Adapter \(ENA\)\.
 
 To prepare for enhanced networking using the ENA, set up your instance as follows:
 + Launch the instance from an HVM AMI using Linux kernel version of 3\.2 or later\. The latest Amazon Linux HVM AMIs have the modules required for enhanced networking installed and have the required attributes set\. Therefore, if you launch an Amazon EBS–backed, enhanced networking–supported instance using a current Amazon Linux HVM AMI, ENA enhanced networking is already enabled for your instance\. 
@@ -10,7 +10,7 @@ To prepare for enhanced networking using the ENA, set up your instance as follow
 
 **Topics**
 + [Testing Whether Enhanced Networking with ENA Is Enabled](#test-enhanced-networking-ena)
-+ [Enabling Enhanced Networking with ENA on Amazon Linux](#enable-enhanced-networking-ena-AL)
++ [Enabling Enhanced Networking with ENA on the Amazon Linux AMI](#enable-enhanced-networking-ena-AL)
 + [Enabling Enhanced Networking with ENA on Ubuntu](#enhanced-networking-ena-ubuntu)
 + [Enabling Enhanced Networking with ENA on Other Linux Distributions](#enhanced-networking-ena-linux)
 + [Troubleshooting](#enhanced-networking-ena-troubleshooting)
@@ -24,30 +24,21 @@ To verify that the `ena` module is installed, use the modinfo command as follows
 
 ```
 [ec2-user ~]$ modinfo ena
-filename:       /lib/modules/4.4.11-23.53.amzn1.x86_64/kernel/drivers/amazon/net/ena/ena.ko
-version:        0.6.6
+filename:       /lib/modules/4.14.33-59.37.amzn2.x86_64/kernel/drivers/amazon/net/ena/ena.ko
+version:        1.5.0g
 license:        GPL
 description:    Elastic Network Adapter (ENA)
 author:         Amazon.com, Inc. or its affiliates
-srcversion:     3141E47566402C79D6B8284
+srcversion:     692C7C68B8A9001CB3F31D0
 alias:          pci:v00001D0Fd0000EC21sv*sd*bc*sc*i*
 alias:          pci:v00001D0Fd0000EC20sv*sd*bc*sc*i*
 alias:          pci:v00001D0Fd00001EC2sv*sd*bc*sc*i*
 alias:          pci:v00001D0Fd00000EC2sv*sd*bc*sc*i*
 depends:
+retpoline:      Y
 intree:         Y
-vermagic:       4.4.11-23.53.amzn1.x86_64 SMP mod_unload modversions
-parm:           debug:Debug level (0=none,...,16=all) (int)
-parm:           push_mode:Descriptor / header push mode (0=automatic,1=disable,3=enable)
-			  0 - Automatically choose according to device capability (default)
-			  1 - Don't push anything to device memory
-			  3 - Push descriptors and header buffer to device memory (int)
-parm:           enable_wd:Enable keepalive watchdog (0=disable,1=enable,default=1) (int)
-parm:           enable_missing_tx_detection:Enable missing Tx completions. (default=1) (int)
-parm:           numa_node_override_array:Numa node override map
- (array of int)
-parm:           numa_node_override:Enable/Disable numa node override (0=disable)
- (int)
+name:           ena
+...
 ```
 
 In the above Amazon Linux case, the `ena` module is installed\.
@@ -111,9 +102,10 @@ In the above case, the `ena` module is not loaded, because the listed driver is 
 ```
 [ec2-user ~]$ ethtool -i eth0
 driver: ena
-version: 0.6.6
+version: 1.5.0g
 firmware-version:
-bus-info: 0000:00:03.0
+expansion-rom-version:
+bus-info: 0000:00:05.0
 supports-statistics: yes
 supports-test: no
 supports-eeprom-access: no
@@ -123,9 +115,9 @@ supports-priv-flags: no
 
 In this case, the `ena` module is loaded and at the minimum recommended version\. This instance has enhanced networking properly configured\.
 
-## Enabling Enhanced Networking with ENA on Amazon Linux<a name="enable-enhanced-networking-ena-AL"></a>
+## Enabling Enhanced Networking with ENA on the Amazon Linux AMI<a name="enable-enhanced-networking-ena-AL"></a>
 
-The latest Amazon Linux HVM AMIs have the module required for enhanced networking with ENA installed and have the required `enaSupport` attribute set\. Therefore, if you launch an instance with the latest Amazon Linux HVM AMI on a supported instance type, enhanced networking with ENA is already enabled for your instance\. For more information, see [Testing Whether Enhanced Networking with ENA Is Enabled](#test-enhanced-networking-ena)\.
+Amazon Linux 2 and the latest versions of the Amazon Linux AMI have the module required for enhanced networking with ENA installed and have the required `enaSupport` attribute set\. Therefore, if you launch an instance with an HVM version of Amazon Linux on a supported instance type, enhanced networking with ENA is already enabled for your instance\. For more information, see [Testing Whether Enhanced Networking with ENA Is Enabled](#test-enhanced-networking-ena)\.
 
 If you launched your instance using an older Amazon Linux AMI and it does not have enhanced networking enabled already, use the following procedure to enable enhanced networking\.
 

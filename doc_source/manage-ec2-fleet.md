@@ -12,6 +12,7 @@ An EC2 Fleet request remains active until it expires or you delete it\. When you
 + [EC2 Fleet Health Checks](#ec2-fleet-health-checks)
 + [Generating an EC2 Fleet JSON Configuration File](#ec2-fleet-cli-skeleton)
 + [Creating an EC2 Fleet](#create-ec2-fleet)
++ [Tagging an EC2 Fleet](#tag-ec2-fleet)
 + [Monitoring Your EC2 Fleet](#manage-ec2-fleet)
 + [Modifying an EC2 Fleet](#modify-ec2-fleet)
 + [Deleting an EC2 Fleet](#delete-fleet)
@@ -194,7 +195,7 @@ To create an EC2 Fleet, you need only specify the launch template, target capaci
       "ReplaceUnhealthyInstances": true, 
       "TagSpecifications": [
           {
-              "ResourceType": "reserved-instances", 
+              "ResourceType": "fleet", 
               "Tags": [
                   {
                       "Key": "", 
@@ -262,7 +263,7 @@ If the value for `TotalTargetCapacity` is higher than the combined values for `O
 \(Optional\) By default, Amazon EC2 terminates your instances when the EC2 Fleet request expires\. The default value is `true`\. To keep them running after your request expires, do not enter a value for this parameter\.
 
 **Type**  
-\(Optional\) Indicates whether EC2 Fleet only requests the target capacity, or also attempts to maintain it\. Valid values are `maintain` and `request`\. The default value is `maintain`\. If the value is `request`, EC2 Fleet only places the required requests\. It does not attempt to replenish instances if capacity is diminished, and does not submit requests in alternative capacity pools if capacity is unavailable\. If the value is `maintain`, the fleet places the required requests to meet the target capacity\. It also automatically replenishes any interrupted Spot Instances\. 
+\(Optional\) Indicates whether EC2 Fleet only requests the target capacity, or also attempts to maintain it\. Valid values are `maintain` and `request`\. The default value is `maintain`\. If the value is `request`, EC2 Fleet only places the required requests\. It does not attempt to replenish instances if capacity is diminished, and does not submit requests in alternative capacity pools if capacity is unavailable\. If the value is `maintain`, the fleet places the required requests to meet the target capacity\. It also automatically replenishes any interrupted Spot Instances\.
 
 **ValidFrom**  
 \(Optional\) To create a request that is valid only during a specific time period, enter a start date\.
@@ -274,7 +275,7 @@ If the value for `TotalTargetCapacity` is higher than the combined values for `O
 \(Optional\) To replace unhealthy instances in an EC2 Fleet that is configured to `maintain` the fleet, enter `true`\. Otherwise, leave this parameter empty\.
 
 **TagSpecifications**  
-\(Optional\) The key\-value pair for tagging Amazon EC2 resources\.
+\(Optional\) The key\-value pair for tagging the EC2 Fleet request on creation\. The value for `ResourceType` must be `fleet`, otherwise the fleet request fails\. To tag instances at launch, specify the tags in the [launch template](ec2-launch-templates.md#create-launch-template)\. For information about tagging after launch, see [Tagging Your Resources](Using_Tags.md#tag-resources)\.
 
 ## Creating an EC2 Fleet<a name="create-ec2-fleet"></a>
 
@@ -282,7 +283,7 @@ When you create an EC2 Fleet, you must specify a launch template that includes i
 
 You can create an EC2 Fleet that includes multiple launch specifications that override the launch template\. The launch specifications can vary by instance type, Availability Zone, subnet, and maximum price, and can include a different weighted capacity\.
 
-When you create an EC2 Fleet, use a JSON file to specify information about the instances to launch\. For more information, see [EC2 Fleet JSON Configuration File Reference](#ec2-fleet-json-reference)\. 
+When you create an EC2 Fleet, use a JSON file to specify information about the instances to launch\. For more information, see [EC2 Fleet JSON Configuration File Reference](#ec2-fleet-json-reference)\.
 
 **To create an EC2 Fleet using the AWS CLI**
 + Use the following [create\-fleet](http://docs.aws.amazon.com/cli/latest/reference/ec2/create-fleet.html) \(AWS CLI\) command to create an EC2 Fleet:
@@ -299,6 +300,25 @@ The following is example output:
 {
     "FleetId": "fleet-12a34b55-67cd-8ef9-ba9b-9208dEXAMPLE"
 }
+```
+
+## Tagging an EC2 Fleet<a name="tag-ec2-fleet"></a>
+
+To help categorize and manage your EC2 Fleet requests, you can tag them with custom metadata\. For more information, see [Tagging Your Amazon EC2 Resources](Using_Tags.md)\.
+
+You can assign a tag to an EC2 Fleet request when you create it, or afterward\. Tags assigned to the fleet request are not assigned to the instances launched by the fleet\.
+
+**To tag a new EC2 Fleet request**  
+To tag an EC2 Fleet request when you create it, specify the key\-value pair in the [JSON file](#ec2-fleet-cli-skeleton) used to create the fleet\. The value for `ResourceType` must be `fleet`\. If you specify another value, the fleet request fails\.
+
+**To tag instances launched by an EC2 Fleet**  
+To tag instances when they are launched by the fleet, specify the tags in the [launch template](ec2-launch-templates.md#create-launch-template) referenced in the EC2 Fleet request\.
+
+**To tag an existing EC2 Fleet request and instance using the AWS CLI**  
+Use the following [create\-tags](http://docs.aws.amazon.com/cli/latest/reference/ec2/create-tags.html) command to tag existing resources:
+
+```
+aws ec2 create-tags --resources fleet-12a34b55-67cd-8ef9-ba9b-9208dEXAMPLE i-1234567890abcdef0 --tags Key=purpose,Value=test
 ```
 
 ## Monitoring Your EC2 Fleet<a name="manage-ec2-fleet"></a>

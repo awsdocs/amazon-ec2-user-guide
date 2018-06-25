@@ -16,10 +16,16 @@ These procedures are intended for use with Amazon Linux\. For more information a
    1. Enable the Extra Packages for Enterprise Linux \(EPEL\) repository to gain access to the noip2 client\.
 **Note**  
 Amazon Linux instances have the GPG keys and repository information for the EPEL repository installed by default; however, Red Hat and CentOS instances must first install the `epel-release` package before you can enable the EPEL repository\. For more information and to download the latest version of this package, see [https://fedoraproject\.org/wiki/EPEL](https://fedoraproject.org/wiki/EPEL)\.
+      + For Amazon Linux 2:
 
-      ```
-      [ec2-user ~]$ sudo yum-config-manager --enable epel
-      ```
+        ```
+        [ec2-user ~]$ sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+        ```
+      + For Amazon Linux AMI:
+
+        ```
+        [ec2-user ~]$ sudo yum-config-manager --enable epel
+        ```
 
    1. Install the `noip` package\.
 
@@ -33,27 +39,29 @@ Amazon Linux instances have the GPG keys and repository information for the EPEL
       [ec2-user ~]$ sudo noip2 -C
       ```
 
-1. Enable the noip service with the chkconfig command\.
+1. Enable the noip service\.
+   + For Amazon Linux 2:
 
-   ```
-   [ec2-user ~]$ sudo chkconfig noip on
-   ```
+     ```
+     [ec2-user ~]$ sudo systemctl enable noip.service
+     ```
+   + For Amazon Linux AMI:
 
-   You can verify that the service is enabled with the chkconfig \-\-list command\.
-
-   ```
-   [ec2-user ~]$ chkconfig --list noip
-   noip           	0:off	1:off	2:on	3:on	4:on	5:on	6:off
-   ```
-
-   Here, noip is `on` in runlevels 2, 3, 4, and 5 \(which is correct\)\. Now the update client starts at every boot and updates the public DNS record to point to the IP address of the instance\.
+     ```
+     [ec2-user ~]$ sudo chkconfig noip on
+     ```
 
 1. Start the noip service\.
+   + For Amazon Linux 2:
 
-   ```
-   [ec2-user ~]$ sudo service noip start
-   Starting noip2:                                            [  OK  ]
-   ```
+     ```
+     [ec2-user ~]$ sudo systemctl start noip.service
+     ```
+   + For Amazon Linux AMI:
+
+     ```
+     [ec2-user ~]$ sudo service noip start
+     ```
 
    This command starts the client, which reads the configuration file \(`/etc/no-ip2.conf`\) that you created earlier and updates the IP address for the public DNS name that you chose\.
 

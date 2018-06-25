@@ -1,6 +1,6 @@
 # Resource IDs<a name="resource-ids"></a>
 
-When resources are created, we assign each resource a unique resource ID\. You can use resource IDs to find your resources in the Amazon EC2 console\. If you are using a command line tool or the Amazon EC2 API to work with Amazon EC2, resource IDs are required for certain commands\. For example, if you are using the [stop\-instances](http://docs.aws.amazon.com/cli/latest/reference//ec2/stop-instances.html) AWS CLI command to stop an instance, you must specify the instance ID in the command\.
+When resources are created, we assign each resource a unique resource ID\. You can use resource IDs to find your resources in the Amazon EC2 console\. If you are using a command line tool or the Amazon EC2 API to work with Amazon EC2, resource IDs are required for certain commands\. For example, if you are using the [stop\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) AWS CLI command to stop an instance, you must specify the instance ID in the command\.
 
 **Resource ID Length**  
 A resource ID takes the form of a resource identifier \(such as `snap` for a snapshot\) followed by a hyphen and a unique combination of letters and numbers\. Starting in January 2016, we're gradually introducing longer length IDs for Amazon EC2 and Amazon EBS resource types\. The length of the alphanumeric character combination was in an 8\-character format; the new IDs are in a 17\-character format, for example, `i-1234567890abcdef0` for an instance ID\.

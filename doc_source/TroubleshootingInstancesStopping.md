@@ -70,7 +70,7 @@ If you are unable to create an AMI from the instance as described in the previou
 
 1. In the navigation pane, choose **Snapshots**\. Select the snapshot that you just created, and choose **Actions**, **Create Volume**\.
 
-1. Launch an instance of the same type as the stuck instance \(Amazon Linux, Windows, and so on\)\. Note the volume ID and device name of its root volume\.
+1. Launch an instance with the same operating system as the stuck instance\. Note the volume ID and device name of its root volume\.
 
 1. In the navigation pane, choose **Instances**, select the instance that you just launched, choose **Actions**, **Instance State**, and then choose **Stop**\.
 

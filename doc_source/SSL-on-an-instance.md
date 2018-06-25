@@ -6,7 +6,8 @@ Secure Sockets Layer/Transport Layer Security \(SSL/TLS\) creates an encrypted c
 For historical reasons, web encryption is often referred to simply as SSL\. While web browsers still support SSL, its successor protocol TLS is less vulnerable to attack\. Amazon Linux 2 disables all versions of SSL by default and recommends disabling TLS version 1\.0, as described below\. Only TLS 1\.1 and 1\.2 may be safely enabled\. For more information about the updated encryption standard, see [RFC 7568](https://tools.ietf.org/html/rfc7568)\. 
 
 **Important**  
-These procedures are intended for use with Amazon Linux 2\. If you are trying to set up a LAMP web server on an instance of a different distribution, some procedures in this tutorial will not work for you\. For information about LAMP web servers on Ubuntu, see the Ubuntu community documentation [ApacheMySQLPHP](https://help.ubuntu.com/community/ApacheMySQLPHP) topic\. For information about Red Hat Enterprise Linux, see the Customer Portal topic [Web Servers](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/System_Administrators_Guide/ch-Web_Servers.html)\.
+These procedures are intended for use with Amazon Linux 2\. We also assume that you are starting with a fresh EC2 instance\. If you are trying to set up a LAMP web server on an instance of a different distribution, or if you are re\-purposing an older, existing instance, some procedures in this tutorial may not work for you\. For information about LAMP web servers on Ubuntu, see the Ubuntu community documentation [ApacheMySQLPHP](https://help.ubuntu.com/community/ApacheMySQLPHP) topic\. For information about Red Hat Enterprise Linux, see the Customer Portal topic [Web Servers](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/System_Administrators_Guide/ch-Web_Servers.html)\.   
+The version of this tutorial supporting Amazon Linux 1 is no longer maintained, but you can still find it on the [Internet Archive](https://web.archive.org/web/20171208004937/https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/SSL-on-an-instance.html)\.
 
 **Topics**
 + [Prerequisites](#ssl_prereq)
@@ -350,7 +351,7 @@ Though shown here on several lines for readability, each of these two directives
 **Important**  
 The cipher list shown here is just one of many possible lists\. For instance, you might want to optimize a list for speed rather than forward secrecy\.   
 If you anticipate a need to support older clients, you can allow the DES\-CBC3\-SHA cipher suite\.  
-Finally, each update to OpenSSL introduces new ciphers and removes support for old ones\. Keep your EC2 Amazon Linux 2 instance up\-to\-date, watch for security announcements from [OpenSSL](https://www.openssl.org/), and be alert to reports of new security exploits in the technical press\. For more information, see [Predefined SSL Security Policies for Elastic Load Balancing](http://docs.aws.amazon.com/elasticloadbalancing/latest/userguide//elb-security-policy-table.html) in the *Elastic Load Balancing User Guide*\.
+Finally, each update to OpenSSL introduces new ciphers and removes support for old ones\. Keep your EC2 Amazon Linux 2 instance up\-to\-date, watch for security announcements from [OpenSSL](https://www.openssl.org/), and be alert to reports of new security exploits in the technical press\. For more information, see [Predefined SSL Security Policies for Elastic Load Balancing](http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-security-policy-table.html) in the *User Guide for Classic Load Balancers*\.
 
    Finally, uncomment the following line by removing the "\#":
 

@@ -31,6 +31,13 @@ Some applications may not be compatible with the following recommended software 
    ```
    [ec2-user ~]$ sudo yum install -y httpd24 php70 mysql56-server php70-mysqlnd
    ```
+**Note**  
+If you receive the error `No package package-name available`, then your instance was not launched with the Amazon Linux AMI \(perhaps you are using Amazon Linux 2 instead\)\. You can view your version of Amazon Linux with the following command\.  
+
+   ```
+   cat /etc/system-release
+   ```
+To set up a LAMP web server on Amazon Linux 2, see [Tutorial: Install a LAMP Web Server on Amazon Linux 2](ec2-lamp-amazon-linux-2.md)\.
 
 1. Start the Apache web server\.
 
@@ -282,11 +289,16 @@ The Amazon Linux package management system does not currently support the automa
    [ec2-user html]$ wget https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.tar.gz
    ```
 
-1. Extract the package and change the name of the resulting directory to something more manageable\.
+1. Create a phpMyAdmin folder and extract the package into it using the following command\.
 
    ```
-   [ec2-user html]$ tar -xvzf phpMyAdmin-latest-all-languages.tar.gz
-   [ec2-user html]$ mv phpMyAdmin-4.7.5-all-languages phpMyAdmin
+   [ec2-user html]$ mkdir phpMyAdmin && tar -xvzf phpMyAdmin-latest-all-languages.tar.gz -C phpMyAdmin --strip-components 1
+   ```
+
+1. Delete the *phpMyAdmin\-latest\-all\-languages\.tar\.gz* tarball\.
+
+   ```
+   [ec2-user html]$ rm phpMyAdmin-latest-all-languages.tar.gz
    ```
 
 1.  \(Optional\) If the MySQL server is not running, start it now\.

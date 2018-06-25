@@ -37,7 +37,7 @@ aws configservice get-resource-config-history --resource type AWS::EC2::Instance
 
 1. On the **Dedicated Hosts** page, choose **Edit Config Recording**\.
 
-1. In the AWS Config console, follow the steps provided to turn on recording\. For more information, see [Setting up AWS Config using the Console](http://docs.aws.amazon.com/config/latest/developerguide//gs-console.html)\.
+1. In the AWS Config console, follow the steps provided to turn on recording\. For more information, see [Setting up AWS Config using the Console](http://docs.aws.amazon.com/config/latest/developerguide/gs-console.html)\.
 
  **To activate AWS Config using the command line or API**
 + Using the AWS CLI, see [Viewing Configuration Details in the AWS Config Console](http://docs.aws.amazon.com/config/latest/developerguide/view-manage-resource-console.html) in the *AWS Config Developer Guide*\.

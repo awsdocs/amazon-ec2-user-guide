@@ -12,11 +12,15 @@ To help you manage your instances, images, and other Amazon EC2 resources, you c
 
 ## Tag Basics<a name="tag-basics"></a>
 
-Tags enable you to categorize your AWS resources in different ways, for example, by purpose, owner, or environment\. This is useful when you have many resources of the same type — you can quickly identify a specific resource based on the tags you've assigned to it\. Each tag consists of a *key* and an optional *value*, both of which you define\. For example, you could define a set of tags for your account's Amazon EC2 instances that helps you track each instance's owner and stack level\. We recommend that you devise a set of tag keys that meets your needs for each resource type\. Using a consistent set of tag keys makes it easier for you to manage your resources\. You can search and filter the resources based on the tags you add\.
+A tag is a label that you assign to an AWS resource\. Each tag consists of a *key* and an optional *value*, both of which you define\.
 
-The following diagram illustrates how tagging works\. In this example, you've assigned two tags to each of your instances, one called `Owner` and another called `Stack`\. Each of the tags also has an associated value\.
+Tags enable you to categorize your AWS resources in different ways, for example, by purpose, owner, or environment\. This is useful when you have many resources of the same type—you can quickly identify a specific resource based on the tags you've assigned to it\. For example, you could define a set of tags for your account's Amazon EC2 instances that helps you track each instance's owner and stack level\.
+
+The following diagram illustrates how tagging works\. In this example, you've assigned two tags to each of your instances—one tag with the key `Owner` and another with the key `Stack`\. Each tag also has an associated value\.
 
 ![\[Tag example\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/Tag_Example.png)
+
+We recommend that you devise a set of tag keys that meets your needs for each resource type\. Using a consistent set of tag keys makes it easier for you to manage your resources\. You can search and filter the resources based on the tags you add\.
 
 Tags don't have any semantic meaning to Amazon EC2 and are interpreted strictly as a string of characters\. Also, tags are not automatically assigned to your resources\. You can edit tag keys and values, and you can remove tags from a resource at any time\. You can set the value of a tag to an empty string, but you can't set the value of a tag to null\. If you add a tag that has the same key as an existing tag on that resource, the new value overwrites the old value\. If you delete a resource, any tags for the resource are also deleted\.
 
@@ -47,6 +51,7 @@ The following table describes the Amazon EC2 resources that can be tagged, and t
 |  DHCP option  |  Yes  | No | 
 |  EBS snapshot  |  Yes  | Yes | 
 |  EBS volume  |  Yes  | Yes | 
+|  EC2 Fleet  |  Yes  |  Yes  | 
 |  Egress\-only internet gateway  |  No  | No | 
 |  Elastic IP address  |  Yes  | No | 
 |  Instance  |  Yes  | Yes | 
@@ -85,12 +90,13 @@ For more information about tagging your resources for billing, see [Using Cost A
 ## Tag Restrictions<a name="tag-restrictions"></a>
 
 The following basic restrictions apply to tags:
-+ Maximum number of tags per resource—50
-+ Maximum key length—127 Unicode characters in UTF\-8
-+ Maximum value length—255 Unicode characters in UTF\-8
++ Maximum number of tags per resource – 50
++ For each resource, each tag key must be unique, and each tag key can have only one value\.
++ Maximum key length – 127 Unicode characters in UTF\-8
++ Maximum value length – 255 Unicode characters in UTF\-8
++ If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters\. Generally allowed characters are: letters, numbers, and spaces representable in UTF\-8, and the following characters: \+ \- = \. \_ : / @\.
 + Tag keys and values are case\-sensitive\.
-+ Do not use the `aws:` prefix in your tag names or values because it is reserved for AWS use\. You can't edit or delete tag names or values with this prefix\. Tags with this prefix do not count against your tags per resource limit\. 
-+ If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters\. Generally allowed characters are: letters, spaces, and numbers representable in UTF\-8, plus the following special characters: \+ \- = \. \_ : / @\.
++ Don't use the `aws:` prefix for either keys or values; it's reserved for AWS use\. You can't edit or delete tag keys or values with this prefix\. Tags with this prefix do not count against your tags per resource limit\.
 
 You can't terminate, stop, or delete a resource based solely on its tags; you must specify the resource identifier\. For example, to delete snapshots that you tagged with a tag key called `DeleteMe`, you must use the `DeleteSnapshots` action with the resource identifiers of the snapshots, such as `snap-1234567890abcdef0`\. 
 
@@ -113,7 +119,7 @@ Using the Amazon EC2 console, you can see which tags are in use across all of yo
 
 For more information about using filters when listing your resources, see [Listing and Filtering Your Resources](Using_Filtering.md)\.
 
-For ease of use and best results, use Tag Editor in the AWS Management Console, which provides a central, unified way to create and manage your tags\. For more information, see [Working with Tag Editor](http://docs.aws.amazon.com//awsconsolehelpdocs/latest/gsg/tag-editor.html) in *Getting Started with the AWS Management Console*\.
+For ease of use and best results, use Tag Editor in the AWS Management Console, which provides a central, unified way to create and manage your tags\. For more information, see [Working with Tag Editor](http://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/tag-editor.html) in *Getting Started with the AWS Management Console*\.
 
 **Topics**
 + [Displaying Tags](#displaying-tags)

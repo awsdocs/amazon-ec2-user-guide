@@ -26,7 +26,7 @@ Before you connect to your Linux instance using PuTTY, complete the following pr
 
   Get the fully qualified path to the location on your computer of the `.pem` file for the key pair that you specified when you launched the instance\.
 + **Get the default user name for the AMI that you used to launch your instance**
-  + For an Amazon Linux AMI, the user name is `ec2-user`\.
+  + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
   + For a Centos AMI, the user name is `centos`\.
   + For a Debian AMI, the user name is `admin` or `root`\.
   + For a Fedora AMI, the user name is `ec2-user` or `fedora`\.
@@ -91,7 +91,7 @@ Use the following procedure to connect to your Linux instance using PuTTY\. You 
 1. In the **Category** pane, choose **Session** and complete the following fields:
 
    1. In the **Host Name** box, enter *user\_name*@*public\_dns\_name*\. Be sure to specify the appropriate user name for your AMI\. For example:
-      + For an Amazon Linux AMI, the user name is `ec2-user`\.
+      + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
       + For a Centos AMI, the user name is `centos`\.
       + For a Debian AMI, the user name is `admin` or `root`\.
       + For a Fedora AMI, the user name is `ec2-user` or `fedora`\.
@@ -101,7 +101,7 @@ Use the following procedure to connect to your Linux instance using PuTTY\. You 
       + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
 
    1. \(IPv6 only\) To connect using your instance's IPv6 address, enter *user\_name*@*ipv6\_address*\. Be sure to specify the appropriate user name for your AMI\. For example:
-      + For an Amazon Linux AMI, the user name is `ec2-user`\.
+      + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
       + For a Centos AMI, the user name is `centos`\.
       + For a Debian AMI, the user name is `admin` or `root`\.
       + For a Fedora AMI, the user name is `ec2-user` or `fedora`\.
@@ -171,7 +171,7 @@ WinSCP is a GUI\-based file manager for Windows that allows you to upload and tr
    \(IPv6 only\) To log in using your instance's IPv6 address, enter the IPv6 address for your instance\.
 
 1. For **User name**, enter the default user name for your AMI\.
-   + For an Amazon Linux AMI, the user name is `ec2-user`\.
+   + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
    + For a Centos AMI, the user name is `centos`\.
    + For a Debian AMI, the user name is `admin` or `root`\.
    + For a Fedora AMI, the user name is `ec2-user` or `fedora`\.

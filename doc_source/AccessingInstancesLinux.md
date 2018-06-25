@@ -29,7 +29,7 @@ Before you connect to your Linux instance, complete the following prerequisites:
 
   Get the fully qualified path to the location on your computer of the `.pem` file for the key pair that you specified when you launched the instance\.
 + **Get the default user name for the AMI that you used to launch your instance**
-  + For an Amazon Linux AMI, the user name is `ec2-user`\.
+  + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
   + For a Centos AMI, the user name is `centos`\.
   + For a Debian AMI, the user name is `admin` or `root`\.
   + For a Fedora AMI, the user name is `ec2-user` or `fedora`\.
@@ -64,7 +64,7 @@ Use the following procedure to connect to your Linux instance using an SSH clien
    chmod 400 /path/my-key-pair.pem
    ```
 
-1. Use the ssh command to connect to the instance\. You specify the private key \(`.pem`\) file and *user\_name*@*public\_dns\_name*\. For example, if you used an Amazon Linux AMI, the user name is `ec2-user`\.
+1. Use the ssh command to connect to the instance\. You specify the private key \(`.pem`\) file and *user\_name*@*public\_dns\_name*\. For example, if you used Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
 
    ```
    ssh -i /path/my-key-pair.pem ec2-user@ec2-198-51-100-1.compute-1.amazonaws.com
@@ -79,7 +79,7 @@ Use the following procedure to connect to your Linux instance using an SSH clien
    Are you sure you want to continue connecting (yes/no)?
    ```
 
-1. \(IPv6 only\) Alternatively, you can connect to the instance using its IPv6 address\. Specify the ssh command with the path to the private key \(\.pem\) file, the appropriate user name, and the IPv6 address\. For example, if you used an Amazon Linux AMI, the user name is `ec2-user`\.
+1. \(IPv6 only\) Alternatively, you can connect to the instance using its IPv6 address\. Specify the ssh command with the path to the private key \(\.pem\) file, the appropriate user name, and the IPv6 address\. For example, if you used Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
 
    ```
    ssh -i /path/my-key-pair.pem ec2-user@2001:db8:1234:1a00:9691:9503:25ad:1761
@@ -117,7 +117,7 @@ One way to transfer files between your local computer and a Linux instance is to
 
   Get the fully qualified path to the location on your computer of the `.pem` file for the key pair that you specified when you launched the instance\.
 + **Get the default user name for the AMI that you used to launch your instance**
-  + For an Amazon Linux AMI, the user name is `ec2-user`\.
+  + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
   + For a Centos AMI, the user name is `centos`\.
   + For a Debian AMI, the user name is `admin` or `root`\.
   + For a Fedora AMI, the user name is `ec2-user` or `fedora`\.

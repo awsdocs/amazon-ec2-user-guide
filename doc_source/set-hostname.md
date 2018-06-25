@@ -13,11 +13,17 @@ If you have a public DNS name registered for the IP address of your instance \(s
 
 Follow this procedure if you already have a public DNS name registered\.
 
-1. On your instance, open the `/etc/sysconfig/network` configuration file in your favorite text editor and change the `HOSTNAME` entry to reflect the fully qualified domain name \(such as **webserver\.mydomain\.com**\)\.
+1. 
+   + For Amazon Linux 2: Use the hostnamectl command to set your hostname to reflect the fully qualified domain name \(such as **webserver\.mydomain\.com**\)\.
 
-   ```
-   HOSTNAME=webserver.mydomain.com
-   ```
+     ```
+     [ec2-user ~]$ sudo hostnamectl set-hostname webserver.mydomain.com
+     ```
+   + For Amazon Linux AMI: On your instance, open the `/etc/sysconfig/network` configuration file in your favorite text editor and change the `HOSTNAME` entry to reflect the fully qualified domain name \(such as **webserver\.mydomain\.com**\)\.
+
+     ```
+     HOSTNAME=webserver.mydomain.com
+     ```
 
 1. Reboot the instance to pick up the new hostname\.
 
@@ -36,7 +42,19 @@ Follow this procedure if you already have a public DNS name registered\.
 
 **To change the system hostname without a public DNS name**
 
-1. Open the `/etc/sysconfig/network` configuration file in your favorite text editor and change the `HOSTNAME` entry to reflect the desired system hostname \(such as **webserver**\)\.
+1. 
+   + For Amazon Linux 2: Use the hostnamectl command to set your hostname to reflect the desired system hostname \(such as **webserver**\)\.
+
+     ```
+     [ec2-user ~]$ sudo hostnamectl set-hostname webserver.localdomain
+     ```
+   + For Amazon Linux AMI: On your instance, open the `/etc/sysconfig/network` configuration file in your favorite text editor and change the `HOSTNAME` entry to reflect the desired system hostname \(such as **webserver**\)\.
+
+     ```
+     HOSTNAME=webserver.localdomain
+     ```
+
+   Open the `/etc/sysconfig/network` configuration file in your favorite text editor and change the `HOSTNAME` entry to reflect the desired system hostname \(such as **webserver**\)\.
 
    ```
    HOSTNAME=webserver.localdomain

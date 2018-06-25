@@ -4,8 +4,6 @@ Linux Amazon Machine Images use one of two types of virtualization: paravirtual 
 
 For the best performance, we recommend that you use current generation instance types and HVM AMIs when you launch your instances\. For more information about current generation instance types, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\. If you are using previous generation instance types and would like to upgrade, see [Upgrade Paths](https://aws.amazon.com/ec2/previous-generation/#Upgrade_Paths)\.
 
-For information about the types of the Amazon Linux AMI recommended for each instance type, see the [Amazon Linux AMI Instance Type Matrix](https://aws.amazon.com/amazon-linux-ami/instance-type-matrix/)\.
-
 **HVM AMIs**  
 HVM AMIs are presented with a fully virtualized set of hardware and boot by executing the master boot record of the root block device of your image\. This virtualization type provides the ability to run an operating system directly on top of a virtual machine without any modification, as if it were run on the bare\-metal hardware\. The Amazon EC2 host system emulates some or all of the underlying hardware that is presented to the guest\.
 
@@ -20,9 +18,9 @@ PV AMIs boot with a special boot loader called PV\-GRUB, which starts the boot c
 
 The following previous generation instance types support PV AMIs: C1, C3, HS1, M1, M3, M2, and T1\. Current generation instance types do not support PV AMIs\.
 
-The following AWS Regions support PV instances: Asia Pacific \(Tokyo\), Asia Pacific \(Singapore\), Asia Pacific \(Sydney\), EU \(Frankfurt\), EU \(Ireland\), South America \(São Paulo\), US East \(N\. Virginia\), US West \(N\. California\), and US West \(Oregon\)\.
+The following AWS regions support PV instances: Asia Pacific \(Tokyo\), Asia Pacific \(Singapore\), Asia Pacific \(Sydney\), EU \(Frankfurt\), EU \(Ireland\), South America \(São Paulo\), US East \(N\. Virginia\), US West \(N\. California\), and US West \(Oregon\)\.
 
 To find a PV AMI, verify that the virtualization type of the AMI is set to `paravirtual`, using the console or the [describe\-images](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command\.
 
 **PV on HVM**  
-Paravirtual guests traditionally performed better with storage and network operations than HVM guests because they could leverage special drivers for I/O that avoided the overhead of emulating network and disk hardware, whereas HVM guests had to translate these instructions to emulated hardware\. Now these PV drivers are available for HVM guests, so operating systems that cannot be ported to run in a paravirtualized environment \(such as Windows\) can still see performance advantages in storage and network I/O by using them\. With these PV on HVM drivers, HVM guests can get the same, or better, performance than paravirtual guests\.
+Paravirtual guests traditionally performed better with storage and network operations than HVM guests because they could leverage special drivers for I/O that avoided the overhead of emulating network and disk hardware, whereas HVM guests had to translate these instructions to emulated hardware\. Now PV drivers are available for HVM guests, so operating systems that cannot be ported to run in a paravirtualized environment can still see performance advantages in storage and network I/O by using them\. With these PV on HVM drivers, HVM guests can get the same, or better, performance than paravirtual guests\.

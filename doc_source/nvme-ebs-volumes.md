@@ -1,6 +1,6 @@
 # Amazon EBS and NVMe<a name="nvme-ebs-volumes"></a>
 
-With C5 and M5 instances, EBS volumes are exposed as NVMe block devices\. The device names are `/dev/nvme0n1`, `/dev/nvme1n1`, and so on\. The device names that you specify in a block device mapping are renamed using NVMe device names \(`/dev/nvme[0-26]n1`\)\.
+With the following instances, EBS volumes are exposed as NVMe block devices: C5, C5d, `i3.metal`, M5, and M5d\. The device names are `/dev/nvme0n1`, `/dev/nvme1n1`, and so on\. The device names that you specify in a block device mapping are renamed using NVMe device names \(`/dev/nvme[0-26]n1`\)\.
 
 **Note**  
 The EBS performance guarantees stated in [Amazon EBS Product Details](https://aws.amazon.com/ebs/details/) are valid regardless of the block\-device interface\.
@@ -8,7 +8,7 @@ The EBS performance guarantees stated in [Amazon EBS Product Details](https://aw
 ## Identifying the EBS Device<a name="identify-nvme-ebs-device"></a>
 
 **Amazon Linux AMIs**  
-With Amazon Linux AMI 2017\.09\.01 or later, you can run the ebsnvme\-id command as follows to map the NVMe device name to a volume ID and device name\.
+With Amazon Linux AMI 2017\.09\.01 or later \(including Amazon Linux 2\), you can run the ebsnvme\-id command as follows to map the NVMe device name to a volume ID and device name\.
 
 ```
 [ec2-user ~]$ sudo /sbin/ebsnvme-id /dev/nvme1n1
@@ -57,7 +57,7 @@ Before you detach an NVMe EBS volume, you should sync and unmount it\. When you 
 
 ## I/O Operation Timeout<a name="timeout-nvme-ebs-volumes"></a>
 
-NVMe EBS volumes use the default NVMe driver provided by the operating system\. Most operating systems specify a timeout for I/O operations submitted to NVMe devices\. The default timeout is 30 seconds and can be changed using the `nvme_core.io_timeout` boot parameter \(or the `nvme.io_timeout` boot parameter for Linux kernels prior to version 4\.6\)\. For an experience similar to EBS volumes attached to Xen instances, we recommend setting this to the highest value possible\. For Amazon Linux AMI 2017\.09\.01 \(or greater\), and for Linux kernels with version 4\.15 or greater, the maximum is 4294967295\. Prior to Linux 4\.15, the maximum is 255 seconds\. If you are using a current version of the Amazon Linux AMI, we have already increased the timeout\. 
+NVMe EBS volumes use the default NVMe driver provided by the operating system\. Most operating systems specify a timeout for I/O operations submitted to NVMe devices\. The default timeout is 30 seconds and can be changed using the `nvme_core.io_timeout` boot parameter \(or the `nvme.io_timeout` boot parameter for Linux kernels prior to version 4\.6\)\. For an experience similar to EBS volumes attached to Xen instances, we recommend setting this to the highest value possible\. For Amazon Linux AMI 2017\.09\.01 \(or greater\), and for Linux kernels with version 4\.15 or greater, the maximum is 4294967295\. Prior to Linux 4\.15, the maximum is 255 seconds\. If you are using a current version of the Amazon Linux AMI, we have already increased the timeout\.
 
 With Linux kernel 4\.14 and later, you can also configure the number of times that I/O operations can be retried\. The default is five retries\. You can configure a different value using the `nvme_core.max_retries` kernel boot parameter, or at runtime using the following command:
 

@@ -6,7 +6,7 @@ Use the following guidelines to reduce the attack surface and improve the reliab
 No list of security guidelines can be exhaustive\. Build your shared AMIs carefully and take time to consider where you might expose sensitive data\. 
 
 **Topics**
-+ [Update the AMI Tools at Boot Time](#public-amis-update-ami-tools)
++ [Update the AMI Tools Before Using Them](#public-amis-update-ami-tools)
 + [Disable Password\-Based Remote Logins for Root](#public-amis-disable-password-logins-for-root)
 + [Disable Local Root Access](#restrict-root-access)
 + [Remove SSH Host Key Pairs](#remove-ssh-host-key-pairs)
@@ -21,23 +21,21 @@ For additional information about sharing AMIs safely, see the following articles
 +  [How To Share and Use Public AMIs in A Secure Manner](https://aws.amazon.com/articles/0155828273219400) 
 +  [Public AMI Publishing: Hardening and Clean\-up Requirements](https://aws.amazon.com/articles/9001172542712674) 
 
-## Update the AMI Tools at Boot Time<a name="public-amis-update-ami-tools"></a>
+## Update the AMI Tools Before Using Them<a name="public-amis-update-ami-tools"></a>
 
-For AMIs backed by instance store, we recommend that your AMIs download and upgrade the Amazon EC2 AMI creation tools during startup\. This ensures that new AMIs based on your shared AMIs have the latest AMI tools\. 
+For AMIs backed by instance store, we recommend that your AMIs download and upgrade the Amazon EC2 AMI creation tools before you use them\. This ensures that new AMIs based on your shared AMIs have the latest AMI tools\. 
 
-For [Amazon Linux](https://aws.amazon.com/amazon-linux-ami), add the following to `/etc/rc.local`:
+For [Amazon Linux 2](https://aws.amazon.com/amazon-linux-2), install the `aws-amitools-ec2` package and add the AMI tools to your PATH with the following command\. For the [Amazon Linux AMI](https://aws.amazon.com/amazon-linux-ami), `aws-amitools-ec2` package is already installed by default\.
 
 ```
-# Update the Amazon EC2 AMI tools
-echo " + Updating EC2 AMI tools"
-yum update -y aws-amitools-ec2
-echo " + Updated EC2 AMI tools"
+[ec2-user ~]$ sudo yum install -y aws-amitools-ec2 && export PATH=$PATH:/opt/aws/bin > /etc/profile.d/aws-amitools-ec2.sh && . /etc/profile.d/aws-amitools-ec2.sh
 ```
 
-Use this method to automatically update other software on your image\. 
+Upgrade the AMI tools with the following command:
 
-**Note**  
-When deciding which software to automatically update, consider the amount of WAN traffic that the update will generate \(your users will be charged for it\) and the risk of the update breaking other software on the AMI\. 
+```
+[ec2-user ~]$ sudo yum upgrade -y aws-amitools-ec2
+```
 
 For other distributions, make sure you have the latest AMI tools\.
 

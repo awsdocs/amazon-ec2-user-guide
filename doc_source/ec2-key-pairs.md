@@ -281,7 +281,7 @@ Create a new key pair using either the Amazon EC2 console or a third\-party tool
 
 1. Choose **Instances** in the navigation pane, and then select the instance that you'd like to connect to\. \(We'll refer to this as the original instance\.\)
 
-1. Save the following information that you'll need to complete this procedure\.
+1. From the **Details** tab, save the following information that you'll need to complete this procedure\.
    + Write down the instance ID, AMI ID, and Availability Zone of the original instance\.
    + In the **Root device** field, take note of the device name for the root volume \(for example, `/dev/sda1` or `/dev/xvda`\)\. Choose the link and write down the volume ID in the **EBS ID** field \(vol\-*xxxxxxxxxxxxxxxxx*\)\.
    + \[EC2\-Classic\] If the original instance has an associated Elastic IP address, write down the Elastic IP address shown in the **Elastic IP** field in the details pane\.

@@ -2,15 +2,18 @@
 
 A consistent and accurate time reference is crucial for many server tasks and processes\. Most system logs include a time stamp that you can use to determine when problems occur and in what order the events take place\. If you use the AWS CLI or an AWS SDK to make requests from your instance, these tools sign requests on your behalf\. If your instance's date and time are not set correctly, the date in the signature may not match the date of the request, and AWS rejects the request\. 
 
-Amazon provides the Amazon Time Sync Service, which you can access from your instance\. This service uses a fleet of satellite\-connected and atomic reference clocks in each AWS Region to deliver accurate current time readings of the Coordinated Universal Time \(UTC\) global standard through Network Time Protocol \(NTP\)\. The Amazon Time Sync Service automatically smooths any leap seconds that are added to UTC\.
+Amazon provides the Amazon Time Sync Service, which you can access from your instance\. This service uses a fleet of satellite\-connected and atomic reference clocks in each region to deliver accurate current time readings of the Coordinated Universal Time \(UTC\) global standard through Network Time Protocol \(NTP\)\. The Amazon Time Sync Service automatically smooths any leap seconds that are added to UTC\.
 
 The Amazon Time Sync Service is available through NTP at the `169.254.169.123` IP address for any instance running in a VPC\. Your instance does not require access to the internet, and you do not have to configure your security group rules or your network ACL rules to allow access\. Use the following procedures to configure the Amazon Time Sync Service on your instance using the `chrony` client\.
 
 Alternatively, you can use external NTP sources\. For more information about NTP and public time sources, see [http://www\.ntp\.org/](http://www.ntp.org/)\. An instance needs access to the internet for the external NTP time sources to work\. 
 
-## Configuring the Amazon Time Sync Service on Amazon Linux<a name="configure-amazon-time-service-amazon-linux"></a>
+## Configuring the Amazon Time Sync Service on Amazon Linux AMI<a name="configure-amazon-time-service-amazon-linux"></a>
 
-On Amazon Linux 2, the default `chrony` configuration is already set up to use the Amazon Time Sync Service IP address\. On Amazon Linux, you must edit the `chrony` configuration file to add a server entry for the Amazon Time Sync Service\.
+**Note**  
+On Amazon Linux 2, the default `chrony` configuration is already set up to use the Amazon Time Sync Service IP address\.
+
+ With the Amazon Linux AMI, you must edit the `chrony` configuration file to add a server entry for the Amazon Time Sync Service\.
 
 **To configure your instance to use the Amazon Time Sync Service**
 

@@ -26,6 +26,10 @@ I3 instances are well suited for the following applications:
 + Data warehousing applications
 + Low latency Ad\-Tech serving applications
 
+`i3.metal` instances provide your applications with direct access to physical resources of the host server, such as processors and memory\. These instances are well suited for the following:
++ Workloads that require access to low\-level hardware features \(for example, Intel VT\) that are not available or fully supported in virtualized environments
++ Applications that require a non\-virtualized environment for licensing or support
+
 **Topics**
 + [Hardware Specifications](#storage-instances-hardware)
 + [Instance Performance](#storage-performance)
@@ -33,7 +37,7 @@ I3 instances are well suited for the following applications:
 + [SSD I/O Performance](#i2-instances-diskperf)
 + [Instance Features](#storage-instances-features)
 + [Support for vCPUs](#d2-instances-cpu-support)
-+ [Release Notes](#storage-instance-limits)
++ [Release Notes](#storage-instance-release-notes)
 
 ## Hardware Specifications<a name="storage-instances-hardware"></a>
 
@@ -60,6 +64,7 @@ The following is a summary of the hardware specifications for Storage optimized 
 | i3\.4xlarge | 16 | 122 | 
 | i3\.8xlarge | 32 | 244 | 
 | i3\.16xlarge | 64 | 488 | 
+| i3\.metal | 72 | 512 | 
 
 For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
@@ -67,7 +72,7 @@ For more information about specifying CPU options, see [Optimizing CPU Options](
 
 ## Instance Performance<a name="storage-performance"></a>
 
-To ensure the best disk throughput performance from your instance on Linux, we recommend that you use the most recent version of the Amazon Linux AMI\.
+To ensure the best disk throughput performance from your instance on Linux, we recommend that you use the most recent version of Amazon Linux 2 or the Amazon Linux AMI\.
 
 For instances with NVMe instance store volumes, you must use a Linux AMI with kernel version 4\.4 or later\. Otherwise, your instance will not achieve the maximum IOPS performance available\.
 
@@ -75,7 +80,7 @@ D2 instances provide the best disk performance when you use a Linux kernel that 
 
 EBS\-optimized instances enable you to get consistently high performance for your EBS volumes by eliminating contention between Amazon EBS I/O and other network traffic from your instance\. D2 and H1 instances are EBS\-optimized by default at no additional cost\. For more information, see [Amazon EBS–Optimized Instances](EBSOptimized.md)\.
 
-The `h1.16xlarge`, `h1.8xlarge`, `d2.8xlarge`, and `i3.16xlarge` instance types provide the ability to control processor C\-states and P\-states on Linux\. C\-states control the sleep levels that a core can enter when it is inactive, while P\-states control the desired performance \(in CPU frequency\) from a core\. For more information, see [Processor State Control for Your EC2 Instance](processor_state_control.md)\.
+The `h1.16xlarge`, `h1.8xlarge`, `d2.8xlarge`, `i3.16xlarge`, and `i3.metal` instance types provide the ability to control processor C\-states and P\-states on Linux\. C\-states control the sleep levels that a core can enter when it is inactive, while P\-states control the desired performance \(in CPU frequency\) from a core\. For more information, see [Processor State Control for Your EC2 Instance](processor_state_control.md)\.
 
 ## Network Performance<a name="storage-network-performance"></a>
 
@@ -90,7 +95,7 @@ The following is a summary of network performance for Storage optimized instance
 | --- | --- | --- | 
 |  `i3.4xlarge` and smaller  |  Up to 10 Gbps, use network I/O credit mechanism  | [ENA](enhanced-networking-ena.md) | 
 |  `i3.8xlarge`, `h1.8xlarge`  |  10 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  `i3.16xlarge`, `h1.16xlarge`  |  25 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `i3.16xlarge`, `i3.metal`, `h1.16xlarge`  |  25 Gbps  | [ENA](enhanced-networking-ena.md) | 
 |  `d2.xlarge`  |  Moderate  | [Intel 82599 VF](sriov-networking.md) | 
 | d2\.2xlarge, d2\.4xlarge |  High  | [Intel 82599 VF](sriov-networking.md) | 
 | d2\.8xlarge |  10 Gbps  | [Intel 82599 VF](sriov-networking.md) | 
@@ -140,8 +145,9 @@ For more information, see the following:
 The `d2.8xlarge` instance type provides 36 vCPUs, which might cause launch issues in some Linux operating systems that have a vCPU limit of 32\. We strongly recommend that you use the latest AMIs when you launch `d2.8xlarge` instances\.
 
 The following Linux AMIs support launching `d2.8xlarge` instances with 36 vCPUs:
++ Amazon Linux 2 \(HVM\)
 + Amazon Linux AMI 2018\.03 \(HVM\)
-+ Ubuntu Server 14\.04 LTS \(HVM\) or later
++ Ubuntu Server 14\.04 LTS \(HVM\)
 + Red Hat Enterprise Linux 7\.1 \(HVM\)
 + SUSE Linux Enterprise Server 12 \(HVM\)
 
@@ -190,8 +196,33 @@ If you must use a different AMI for your application, and your `d2.8xlarge` inst
 
    1. Start the instance\.
 
-## Release Notes<a name="storage-instance-limits"></a>
-+ You must launch Storage optimized instances using an HVM AMI\. For more information, see [Linux AMI Virtualization Types](virtualization_types.md)\.
+## Release Notes<a name="storage-instance-release-notes"></a>
++ You must launch storage optimized instances using an HVM AMI\. For more information, see [Linux AMI Virtualization Types](virtualization_types.md)\.
 + You must launch I3 instances using an Amazon EBS\-backed AMI\.
++ The following are requirements for `i3.metal` instances:
+  + NVMe drivers must be installed\. EBS volumes are exposed as [NVMe block devices](nvme-ebs-volumes.md)\.
+  + Elastic Network Adapter \([ENA](enhanced-networking-ena.md)\) drivers must be installed\.
+
+  The following AMIs meet these requirements:
+  + Amazon Linux 2
+  + Amazon Linux 2014\.03 or later
+  + Ubuntu 14\.04 or later
+  + SUSE Linux Enterprise Server 12 or later
+  + Red Hat Enterprise Linux 7\.4 or later
+  + CentOS 7 or later
+  + Windows Server 2008 R2 or later
++ Launching an `i3.metal` instance boots the underlying server, which includes verifying all hardware and firmware components\. This means that it can take 20 minutes from the time the instance enters the running state until it becomes available over the network\.
++ To attach or detach EBS volumes or secondary network interfaces from an `i3.metal` instance requires PCIe native hotplug support\. Amazon Linux 2 and the latest versions of the Amazon Linux AMI support PCIe native hotplug, but earlier versions do not\. You must enable the following Linux kernel configuration options:
+
+  ```
+  CONFIG_HOTPLUG_PCI_PCIE=y
+  CONFIG_PCIEASPM=y
+  ```
++ `i3.metal` instances use a PCI\-based serial device rather than an I/O port\-based serial device\. The upstream Linux kernel and the latest Amazon Linux AMIs support this device\. `i3.metal` instances also provide an ACPI SPCR table to enable the system to automatically use the PCI\-based serial device\. The latest Windows AMIs automatically use the PCI\-based serial device\.
++ With FreeBSD AMIs, `i3.metal` instances take nearly an hour to boot and I/O to the local NVMe storage does not complete\. As a workaround, add the following line to `/boot/loader.conf` and reboot:
+
+  ```
+  hw.nvme.per_cpu_io_queues="0"
+  ```
 + The `d2.8xlarge` instance type has 36 vCPUs, which might cause launch issues in some Linux operating systems that have a vCPU limit of 32\. For more information, see [Support for vCPUs](#d2-instances-cpu-support)\.
 + There is a limit on the total number of instances that you can launch in a region, and there are additional limits on some instance types\. For more information, see [How many instances can I run in Amazon EC2?](https://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2)\. To request a limit increase, use the [Amazon EC2 Instance Request Form](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-instances)\.

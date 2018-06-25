@@ -2,7 +2,7 @@
 
 In some situations, you may find that a volume other than the volume attached to `/dev/xvda` or `/dev/sda` has become the root volume of your instance\. This can happen when you have attached the root volume of another instance, or a volume created from the snapshot of a root volume, to an instance with an existing root volume\.
 
-This is due to how the initial ramdisk in Linux works\. It chooses the volume defined as `/` in the `/etc/fstab`, and in some distributions, including Amazon Linux, this is determined by the label attached to the volume partition\. Specifically, you find that your `/etc/fstab` looks something like the following: 
+This is due to how the initial ramdisk in Linux works\. It chooses the volume defined as `/` in the `/etc/fstab`, and in some distributions, this is determined by the label attached to the volume partition\. Specifically, you find that your `/etc/fstab` looks something like the following: 
 
 ```
 LABEL=/ / ext4 defaults,noatime 1 1 

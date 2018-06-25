@@ -2,7 +2,7 @@
 
 Reserved Instances provide you with a significant discount compared to On\-Demand Instance pricing\. Reserved Instances are not physical instances, but rather a billing discount applied to the use of On\-Demand Instances in your account\. These On\-Demand Instances must match certain attributes in order to benefit from the billing discount\.
 
-The following diagram shows a basic overview of purchasing and using Reserved Instances\. 
+The following diagram shows a basic overview of purchasing and using Reserved Instances\.
 
 ![\[Purchasing Reserved Instances\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ri-basics.png)
 
@@ -34,7 +34,7 @@ No Upfront Reserved Instances are based on a contractual obligation to pay month
 
 Generally speaking, you can save more money choosing Reserved Instances with a higher upfront payment\. You can also find Reserved Instances offered by third\-party sellers at lower prices and shorter term lengths on the Reserved Instance Marketplace\. For more information, see [Selling on the Reserved Instance Marketplace](ri-market-general.md)\. 
 
-For more information about pricing, see [Amazon EC2 Reserved Instances Pricing](https://aws.amazon.com//ec2/pricing/reserved-instances/pricing/)\.
+For more information about pricing, see [Amazon EC2 Reserved Instances Pricing](https://aws.amazon.com/ec2/pricing/reserved-instances/pricing/)\.
 
 ## Using Reserved Instances in a VPC<a name="reserved-instances-vpc"></a>
 
@@ -48,6 +48,6 @@ For more information, see [Detecting Your Supported Platforms and Whether You Ha
 
 You are limited to purchasing 20 Reserved Instances per Availability Zone, per month, plus 20 regional Reserved Instances\. Therefore, in a region that has three Availability Zones, you can purchase 80 Reserved Instances in total: 20 per Availability Zone \(60\) plus 20 regional Reserved Instances\.
 
-Reserved Instances that are purchased for a specific Availability Zone \(zonal Reserved Instances\) allow you to launch as many instances that are covered by the zonal Reserved Instances, even if this results in your exceeding your On\-Demand Instance limit\. For example, your running On\-Demand Instance limit is 20, and you are currently running 18 On\-Demand Instances\. You have five unused zonal Reserved Instances\. You can launch two more On\-Demand Instances with any specifications, and you can launch five instances that exactly match the specifications of your zonal Reserved Instances; giving you a total of 25 instances\.
+Reserved Instances that are purchased for a specific Availability Zone \(zonal Reserved Instances\) allow you to launch as many instances that are covered by the zonal Reserved Instances, even if it means that you exceed your On\-Demand Instance limit\. For example, your running On\-Demand Instance limit is 20, and you are currently running 18 On\-Demand Instances\. You have five unused zonal Reserved Instances\. You can launch two more On\-Demand Instances with any specifications, and you can launch five instances that exactly match the specifications of your zonal Reserved Instances; giving you a total of 25 instances\.
 
 Regional Reserved Instances do not increase your On\-Demand Instance limit\.

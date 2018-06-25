@@ -46,7 +46,7 @@ You can launch a Linux instance using the AWS Management Console as described in
 
 1. From the console dashboard, choose **Launch Instance**\.
 
-1. The **Choose an Amazon Machine Image \(AMI\)** page displays a list of basic configurations, called *Amazon Machine Images \(AMIs\)*, that serve as templates for your instance\. Select the HVM edition of the Amazon Linux AMI or the AMI for Amazon Linux 2\. Notice that these AMIs are marked "Free tier eligible\."
+1. The **Choose an Amazon Machine Image \(AMI\)** page displays a list of basic configurations, called *Amazon Machine Images \(AMIs\)*, that serve as templates for your instance\. Select an HVM version of Amazon Linux 2\. Notice that these AMIs are marked "Free tier eligible\."
 
 1. On the **Choose an Instance Type** page, you can select the hardware configuration of your instance\. Select the `t2.micro` type, which is selected by default\. Notice that this instance type is eligible for the free tier\.
 **Note**  
@@ -80,7 +80,7 @@ Don't select the **Proceed without a key pair** option\. If you launch your inst
 
 ## Step 2: Connect to Your Instance<a name="ec2-connect-to-instance-linux"></a>
 
-There are several ways to connect to a Linux instance\. In this procedure, you'll connect using your browser\. Alternatively, you can connect using PuTTY or an SSH client\. It's also assumed that you followed the steps earlier and launched an instance from an Amazon Linux AMI, which has a specific user name\. Other Linux distributions may use a different user name\. For more information, see [Connecting to Your Linux Instance from Windows Using PuTTY](putty.md) or [Connecting to Your Linux Instance Using SSH](AccessingInstancesLinux.md)\. 
+There are several ways to connect to a Linux instance\. In this procedure, you'll connect using your browser\. Alternatively, you can connect using PuTTY or an SSH client\. It's also assumed that you followed the steps earlier and launched an Amazon Linux 2 instance, which has a specific user name\. Other Linux distributions may use a different user name\. For more information, see [Connecting to Your Linux Instance from Windows Using PuTTY](putty.md) or [Connecting to Your Linux Instance Using SSH](AccessingInstancesLinux.md)\. 
 
 **Important**  
 You can't connect to your instance unless you launched it with a key pair for which you have the \.pem file and you launched it with a security group that allows SSH access\. If you can't connect to your instance, see [Troubleshooting Connecting to Your Instance](TroubleshootingInstancesConnecting.md) for assistance\.
@@ -142,4 +142,4 @@ After you start your instance, you might want to try some of the following exerc
 + Learn how to remotely manage your EC2 instance using Run Command\. For more information, see [Tutorial: Remotely Manage Your Amazon EC2 Instances](tutorial_run_command.md) and [Systems Manager Remote Management \(Run Command\)](http://docs.aws.amazon.com/systems-manager/latest/userguide/execute-remote-commands.html)\.
 + Configure a CloudWatch alarm to notify you if your usage exceeds the Free Tier\. For more information, see [Create a Billing Alarm](http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/free-tier-alarms.html) in the *AWS Billing and Cost Management User Guide*\.
 + Add an EBS volume\. For more information, see [Creating an Amazon EBS Volume](ebs-creating-volume.md) and [Attaching an Amazon EBS Volume to an Instance](ebs-attaching-volume.md)\.
-+ Install the LAMP stack\. For more information, see [Tutorial: Install a LAMP Web Server with the Amazon Linux AMI](install-LAMP.md)\.
++ Install the LAMP stack\. For more information, see [Tutorial: Install a LAMP Web Server on Amazon Linux 2](ec2-lamp-amazon-linux-2.md)\.

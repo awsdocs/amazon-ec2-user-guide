@@ -37,9 +37,9 @@ You can purchase AMIs from a third party, including AMIs that come with service 
 
 You can deregister an AMI when you have finished with it\. After you deregister an AMI, it can't be used to launch new instances\. Existing instances launched from the AMI are not affected\. For more information, see [Deregistering Your Linux AMI](deregister-ami.md)\.
 
-## Amazon Linux AMIs<a name="amazon-linux"></a>
+## Amazon Linux 2 and Amazon Linux AMI<a name="amazon-linux"></a>
 
-The Amazon Linux AMI is a supported and maintained Linux image provided by AWS\. The following are some of the features of Amazon Linux:
+Amazon Linux 2 and the Amazon Linux AMI are supported and maintained Linux images provided by AWS\. The following are some of the features of Amazon Linux 2 and Amazon Linux AMI:
 + A stable, secure, and high\-performance execution environment for applications running on Amazon EC2\.
 + Provided at no additional charge to Amazon EC2 users\.
 + Repository access to multiple versions of MySQL, PostgreSQL, Python, Ruby, Tomcat, and many more common packages\.

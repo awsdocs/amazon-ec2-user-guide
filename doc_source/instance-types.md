@@ -28,10 +28,10 @@ For more information about the current generation instance types, see [Amazon EC
 
 | Instance Family | Current Generation Instance Types | 
 | --- | --- | 
-| General purpose | `t2.nano` \| `t2.micro` \| `t2.small` \| `t2.medium` \| `t2.large` \| `t2.xlarge` \| `t2.2xlarge` \| `m4.large` \| `m4.xlarge` \| `m4.2xlarge` \| `m4.4xlarge` \| `m4.10xlarge` \| `m4.16xlarge` \| `m5.large` \| `m5.xlarge` \| `m5.2xlarge` \| `m5.4xlarge` \| `m5.12xlarge` \| `m5.24xlarge`  | 
-| Compute optimized | `c4.large` \| `c4.xlarge` \| `c4.2xlarge` \| `c4.4xlarge` \| `c4.8xlarge` \| `c5.large` \| `c5.xlarge` \| `c5.2xlarge` \| `c5.4xlarge` \| `c5.9xlarge` \| `c5.18xlarge` | 
+| General purpose | `t2.nano` \| `t2.micro` \| `t2.small` \| `t2.medium` \| `t2.large` \| `t2.xlarge` \| `t2.2xlarge` \| `m4.large` \| `m4.xlarge` \| `m4.2xlarge` \| `m4.4xlarge` \| `m4.10xlarge` \| `m4.16xlarge` \| `m5.large` \| `m5.xlarge` \| `m5.2xlarge` \| `m5.4xlarge` \| `m5.12xlarge` \| `m5.24xlarge` \| `m5d.large` \| `m5d.xlarge` \| `m5d.2xlarge` \| `m5d.4xlarge` \| `m5d.12xlarge` \| `m5d.24xlarge` | 
+| Compute optimized | `c4.large` \| `c4.xlarge` \| `c4.2xlarge` \| `c4.4xlarge` \| `c4.8xlarge` \| `c5.large` \| `c5.xlarge` \| `c5.2xlarge` \| `c5.4xlarge` \| `c5.9xlarge` \| `c5.18xlarge` \| `c5d.xlarge` \| `c5d.2xlarge` \| `c5d.4xlarge` \| `c5d.9xlarge` \| `c5d.18xlarge`  | 
 | Memory optimized | `r4.large` \| `r4.xlarge` \| `r4.2xlarge` \| `r4.4xlarge` \| `r4.8xlarge` \| `r4.16xlarge` \| `x1.16xlarge` \| `x1.32xlarge` \| `x1e.xlarge` \| `x1e.2xlarge` \| `x1e.4xlarge` \| `x1e.8xlarge` \| `x1e.16xlarge` \| `x1e.32xlarge` | 
-| Storage optimized | `d2.xlarge` \| `d2.2xlarge` \| `d2.4xlarge` \| `d2.8xlarge` \| `h1.2xlarge` \| `h1.4xlarge` \| `h1.8xlarge` \| `h1.16xlarge` \| `i3.large` \| `i3.xlarge` \| `i3.2xlarge` \| `i3.4xlarge` \| `i3.8xlarge` \| `i3.16xlarge` | 
+| Storage optimized | `d2.xlarge` \| `d2.2xlarge` \| `d2.4xlarge` \| `d2.8xlarge` \| `h1.2xlarge` \| `h1.4xlarge` \| `h1.8xlarge` \| `h1.16xlarge` \| `i3.large` \| `i3.xlarge` \| `i3.2xlarge` \| `i3.4xlarge` \| `i3.8xlarge` \| `i3.16xlarge` \| `i3.metal` | 
 | Accelerated computing | `f1.2xlarge` \| `f1.16xlarge` \| `g3.4xlarge` \| `g3.8xlarge` \| `g3.16xlarge` \| `p2.xlarge` \| `p2.8xlarge` \| `p2.16xlarge` \| `p3.2xlarge` \| `p3.8xlarge` \| `p3.16xlarge` | 
 
 ### Previous Generation Instances<a name="previous-gen-instances"></a>
@@ -76,8 +76,8 @@ When you select an instance type, this determines the networking and storage fea
   + Launch supported instance types into a cluster placement group to optimize your instances for high performance computing \(HPC\) applications\. Instances in a common cluster placement group can benefit from high\-bandwidth, low\-latency networking\. For more information, see [Placement Groups](placement-groups.md)\.
   + Enable enhanced networking for supported current generation instance types to get significantly higher packet per second \(PPS\) performance, lower network jitter, and lower latencies\. For more information, see [Enhanced Networking on Linux](enhanced-networking.md)\. 
 + Current generation instance types that are enabled for enhanced networking have the following networking performance attributes:
-  + Traffic within the same AWS Region over private IPv4 or IPv6 can support 5 Gbps for single\-flow traffic and up to 25 Gbps for multi\-flow traffic \(depending on the instance type\)\.
-  + Traffic to and from Amazon S3 buckets within the same AWS Region over the public IP address space or through a VPC endpoint can use all available instance aggregate bandwidth\.
+  + Traffic within the same region over private IPv4 or IPv6 can support 5 Gbps for single\-flow traffic and up to 25 Gbps for multi\-flow traffic \(depending on the instance type\)\.
+  + Traffic to and from Amazon S3 buckets within the same region over the public IP address space or through a VPC endpoint can use all available instance aggregate bandwidth\.
 + The maximum supported MTU varies across instance types\. All Amazon EC2 instance types support standard Ethernet V2 1500 MTU frames\. All current generation instances support 9001 MTU, or jumbo frames, and some previous generation instances support them as well\. For more information, see [Network Maximum Transmission Unit \(MTU\) for Your EC2 Instance](network_mtu.md)\.
 
 **Storage features**
@@ -91,6 +91,7 @@ The following table summarizes the networking and storage features supported by 
 | --- | --- | --- | --- | --- | --- | 
 |  C4  |  Yes  |  Yes  |  |  Yes  |  Intel 82599 VF  | 
 |  C5  |  Yes  |  Yes  |  |  Yes  |  ENA  | 
+|  C5d  |  Yes  |  | NVMe \* |  Yes  |  ENA  | 
 |  F1  |  Yes  |  |  NVMe \*  |  Yes  |  ENA  | 
 |  P2  |  Yes  |  Yes  |  |  Yes  |  ENA  | 
 |  P3  |  Yes  |  Yes  |  |  Yes  |  ENA  | 
@@ -100,6 +101,7 @@ The following table summarizes the networking and storage features supported by 
 |  D2  |  |  |  HDD  |  Yes  |  Intel 82599 VF  | 
 |  M4  |  Yes  |  Yes  |  |  Yes  |  `m4.16xlarge`: ENA All other sizes: Intel 82599 VF  | 
 |  M5  |  Yes  |  Yes  |  |  Yes  |  ENA  | 
+|  M5d  |  Yes  |  | NVMe \* |  Yes  |  ENA  | 
 |  T2  |  Yes  |  Yes  |  |  |  | 
 |  R4  |  Yes  |  Yes  |  |  Yes  |  ENA  | 
 |  X1  |  Yes  |  |  SSD  |  Yes  |  ENA  | 

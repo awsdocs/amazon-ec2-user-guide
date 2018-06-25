@@ -78,6 +78,12 @@ The following table lists the maximum number of network interfaces per instance 
 | `c5.4xlarge` | 8 | 30 | 30 | 
 | `c5.9xlarge` | 8 | 30 | 30 | 
 | `c5.18xlarge` | 15 | 50 | 50 | 
+| `c5d.large` | 3 | 10 | 10 | 
+| `c5d.xlarge` | 4 | 15 | 15 | 
+| `c5d.2xlarge` | 4 | 15 | 15 | 
+| `c5d.4xlarge` | 8 | 30 | 30 | 
+| `c5d.9xlarge` | 8 | 30 | 30 | 
+| `c5d.18xlarge` | 15 | 50 | 50 | 
 |  `cc2.8xlarge`  |  8  |  30  | IPv6 not supported | 
 |  `cr1.8xlarge`  |  8  |  30  | IPv6 not supported | 
 |  `d2.xlarge`  |  4  |  15  | 15 | 
@@ -106,6 +112,7 @@ The following table lists the maximum number of network interfaces per instance 
 | `i3.4xlarge` | 8 | 30 | 30 | 
 | `i3.8xlarge` | 8 | 30 | 30 | 
 | `i3.16xlarge` | 15 | 50 | 50 | 
+| `i3.metal` | 15 | 50 | 50 | 
 |  `m1.small`  |  2  |  4  | IPv6 not supported | 
 |  `m1.medium`  |  2  |  6  | IPv6 not supported | 
 |  `m1.large`  |  3  |  10  | IPv6 not supported | 
@@ -129,6 +136,12 @@ The following table lists the maximum number of network interfaces per instance 
 | m5\.4xlarge | 8 | 30 | 30 | 
 | m5\.12xlarge | 8 | 30 | 30 | 
 | m5\.24xlarge | 15 | 50 | 50 | 
+| m5d\.large | 3 | 10 | 10 | 
+| m5d\.xlarge | 4 | 15 | 15 | 
+| m5d\.2xlarge | 4 | 15 | 15 | 
+| m5d\.4xlarge | 8 | 30 | 30 | 
+| m5d\.12xlarge | 8 | 30 | 30 | 
+| m5d\.24xlarge | 15 | 50 | 50 | 
 | p2\.xlarge | 4 | 15 | 15 | 
 | p2\.8xlarge | 8 | 30 | 30 | 
 | p2\.16xlarge | 8 | 30 | 30 | 

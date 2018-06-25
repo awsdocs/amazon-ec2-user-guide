@@ -40,7 +40,7 @@ The `AWS/EC2` namespace includes the following status checks metrics\. By defaul
 | `StatusCheckFailed_Instance` |  Reports whether the instance has passed the instance status check in the last minute\. This metric can be either 0 \(passed\) or 1 \(failed\)\. By default, this metric is available at a 1\-minute frequency at no charge\. Units: Count  | 
 | `StatusCheckFailed_System` |  Reports whether the instance has passed the system status check in the last minute\. This metric can be either 0 \(passed\) or 1 \(failed\)\. By default, this metric is available at a 1\-minute frequency at no charge\. Units: Count  | 
 
-The `AWS/EC2` namespace includes the following Amazon EBS metrics for your C5 and M5 instances\.
+The `AWS/EC2` namespace includes the following Amazon EBS metrics for your C5, C5d, M5, and M5d instances\.
 
 
 | Metric | Description | 
@@ -49,8 +49,8 @@ The `AWS/EC2` namespace includes the following Amazon EBS metrics for your C5 an
 |  `EBSWriteOps`  |  Completed write operations to all EBS volumes attached to the instance in a specified period of time\. To calculate the average write I/O operations per second \(Write IOPS\) for the period, divide the total operations in the period by the number of seconds in that period\. If you are using basic \(five\-minute\) monitoring, you can divide this number by 300 to calculate the Write IOPS\. If you have detailed \(one\-minute\) monitoring, divide it by 60\. Unit: Count  | 
 |  `EBSReadBytes`  |  Bytes read from all EBS volumes attached to the instance in a specified period of time\.  The number reported is the number of bytes read during the period\. If you are using basic \(five\-minute\) monitoring, you can divide this number by 300 to find Read Bytes/second\. If you have detailed \(one\-minute\) monitoring, divide it by 60\.  Unit: Bytes  | 
 |  `EBSWriteBytes`  |  Bytes written to all EBS volumes attached to the instance in a specified period of time\. The number reported is the number of bytes written during the period\. If you are using basic \(five\-minute\) monitoring, you can divide this number by 300 to find Write Bytes/second\. If you have detailed \(one\-minute\) monitoring, divide it by 60\.  Unit: Bytes  | 
-|  `EBSIOBalance%`  |  Available only for the smaller C5 and M5 instance sizes\. Provides information about the percentage of I/O credits remaining in the burst bucket\. This metric is available for basic monitoring only\. The `Sum` statistic is not applicable to this metric\. Unit: Percent  | 
-|  `EBSByteBalance%`  |  Available only for the smaller C5 and M5 instance sizes\. Provides information about the percentage of throughput credits remaining in the burst bucket\. This metric is available for basic monitoring only\. The `Sum` statistic is not applicable to this metric\. Unit: Percent  | 
+|  `EBSIOBalance%`  |  Available only for the smaller C5, C5d, M5, and M5d instance sizes\. Provides information about the percentage of I/O credits remaining in the burst bucket\. This metric is available for basic monitoring only\. The `Sum` statistic is not applicable to this metric\. Unit: Percent  | 
+|  `EBSByteBalance%`  |  Available only for the smaller C5, C5d, M5, and M5d instance sizes\. Provides information about the percentage of throughput credits remaining in the burst bucket\. This metric is available for basic monitoring only\. The `Sum` statistic is not applicable to this metric\. Unit: Percent  | 
 
 For information about the metrics provided for your EBS volumes, see [Amazon EBS Metrics](monitoring-volume-status.md#ebs-metrics)\. For information about the metrics provided for your Spot fleets, see [CloudWatch Metrics for Spot Fleet](spot-fleet-cloudwatch-metrics.md)\.
 

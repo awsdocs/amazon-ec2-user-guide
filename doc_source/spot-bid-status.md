@@ -80,12 +80,18 @@ Your Spot Instances continue to run as long as your maximum price is at or above
 |  `request-canceled-and-instance-running`  |  `cancelled`  |  `running`  | 
 |  `marked-for-stop`  |  `active`  |  `running`  | 
 |  `marked-for-termination`  |  `closed`  |  `running`  | 
+|  `instance-stopped-by-price`  |  `disabled`  |  `stopped`  | 
+|  `instance-stopped-by-user`  |  `disabled`  |  `stopped`  | 
+|  `instance-stopped-capacity-oversubscribed`  |  `disabled`  |  `stopped`  | 
+|  `instance-stopped-no-capacity`  |  `disabled`  |  `stopped`  | 
 |  `instance-terminated-by-price`  |  `closed` \(one\-time\), `open` \(persistent\)  |  `terminated`  | 
 |  `instance-terminated-by-service`  |  `cancelled`  |  `terminated`  | 
-|  `instance-terminated-by-user`  |  `closed` or `cancelled` \*  |  `terminated`  | 
+|  `instance-terminated-by-user` †  |  `closed` or `cancelled` \*  |  `terminated`  | 
 |  `instance-terminated-no-capacity`  |  `closed` \(one\-time\), `open` \(persistent\)  |  `terminated`  | 
 |  `instance-terminated-capacity-oversubscribed`  |  `closed` \(one\-time\), `open` \(persistent\)  |  `terminated`  | 
 |  `instance-terminated-launch-group-constraint`  |  `closed` \(one\-time\), `open` \(persistent\)  |  `terminated`  | 
+
+† A Spot Instance can only get to this state if a user runs the shutdown command from the instance\. We do not recommend that you do this, as the Spot service might restart the instance\.
 
 \* The request state is `closed` if you terminate the instance but do not cancel the request\. The request state is `cancelled` if you terminate the instance and cancel the request\. Note that even if you terminate a Spot Instance before you cancel its request, there might be a delay before Amazon EC2 detects that your Spot Instance was terminated\. In this case, the request state can either be `closed` or `cancelled`\.
 
@@ -137,8 +143,20 @@ The Spot request can't be fulfilled because one or more constraints are not vali
 `fulfilled`  
 The Spot request is `active`, and Amazon EC2 is launching your Spot Instances\.
 
+`instance-stopped-by-price`  
+Your instance was stopped because the Spot price exceeded your maximum price\.
+
+`instance-stopped-by-user`  
+Your instance was stopped because a user ran shutdown \-h from the instance\.
+
+`instance-stopped-capacity-oversubscribed`  
+Your instance was stopped because the number of Spot requests with maximum prices equal to or higher than the Spot price exceeded the available capacity in this Spot Instance pool\. \(Note that the Spot price might not have changed\.\)
+
+`instance-stopped-no-capacity`  
+Your instance was stopped because there was no longer enough Spot capacity available for the instance\.
+
 `instance-terminated-by-price`  
-The Spot price exceeds your maximum price\. If your request is persistent, the process restarts, so your request is pending evaluation\.
+Your instance was terminated because the Spot price exceeded your maximum price\. If your request is persistent, the process restarts, so your request is pending evaluation\.
 
 `instance-terminated-by-service`  
 Your instance was terminated from a stopped state\.
@@ -147,13 +165,13 @@ Your instance was terminated from a stopped state\.
 You terminated a Spot Instance that had been fulfilled, so the request state is `closed` \(unless it's a persistent request\) and the instance state is `terminated`\.
 
  `instance-terminated-capacity-oversubscribed`   
-Your instance is terminated because the number of Spot requests with maximum prices equal to or higher than the Spot price exceeded the available capacity in this Spot Instance pool\. \(Note that the Spot price might not have changed\.\)
+Your instance was terminated because the number of Spot requests with maximum prices equal to or higher than the Spot price exceeded the available capacity in this Spot Instance pool\. \(Note that the Spot price might not have changed\.\)
 
 `instance-terminated-launch-group-constraint`  
 One or more of the instances in your launch group was terminated, so the launch group constraint is no longer fulfilled\.
 
 `instance-terminated-no-capacity`  
-There is no longer enough Spot capacity available for the instance\.
+Your instance was terminated because there is no longer enough Spot capacity available for the instance\.
 
 `launch-group-constraint`  
 Amazon EC2 cannot launch all the instances that you requested at the same time\. All instances in a launch group are started and terminated together\.

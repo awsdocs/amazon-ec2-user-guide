@@ -65,7 +65,7 @@ Amazon's trademarks and trade dress may not be used in
       + [Storage Optimized Instances](storage-optimized-instances.md)
       + [Linux Accelerated Computing Instances](accelerated-computing-instances.md)
          + [Installing the NVIDIA Driver on Linux Instances](install-nvidia-driver.md)
-         + [Activate NVIDIA GRID Capabilities (G3 Instances Only)](activate_grid.md)
+         + [Activate NVIDIA GRID Virtual Applications (G3 Instances Only)](activate_grid.md)
          + [Optimizing GPU Settings (P2, P3, and G3 Instances)](optimize_gpu.md)
          + [Getting Started with FPGA Development](fpga-getting-started.md)
       + [T1 Micro Instances](concepts_micro_instances.md)

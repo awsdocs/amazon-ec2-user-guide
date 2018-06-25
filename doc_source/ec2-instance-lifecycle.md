@@ -6,6 +6,24 @@ The following illustration represents the transitions between instance states\. 
 
 ![\[The instance lifecycle\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/instance_lifecycle.png)
 
+The following table provides a brief description of each instance state and indicates whether it is billed or not\.
+
+**Note**  
+The table indicates billing for instance usage only\. Some AWS resources, such as Amazon EBS volumes and Elastic IP addresses, incur charges regardless of the instance's state\. For more information, see [Avoiding Unexpected Charges](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/checklistforunwantedcharges.html) in the *AWS Billing and Cost Management User Guide*\.
+
+
+| Instance state | Description | Instance usage billing | 
+| --- | --- | --- | 
+|  `pending`  |  The instance is preparing to enter the `running` state\. An instance enters the `pending` state when it launches for the first time, or when it is restarted after being in the `stopped` state\.  |  Not billed  | 
+|  `running`  |  The instance is running and ready for use\.  |  Billed  | 
+|  `stopping`  |  The instance is preparing to be stopped\.  |  Not billed  | 
+|  `stopped`  |  The instance is shut down and cannot be used\. The instance can be restarted at any time\.  |  Not billed  | 
+|  `shutting-down`  |  The instance is preparing to be terminated\.  |  Not billed  | 
+|  `terminated`  |  The instance has been permanently deleted and cannot be restarted\.  |  Not billed  | 
+
+**Note**  
+Rebooting an instance doesn't start a new instance billing period because the instance stays in the `running` state\.
+
 ## Instance Launch<a name="instance-launch"></a>
 
 When you launch an instance, it enters the `pending` state\. The instance type that you specified at launch determines the hardware of the host computer for your instance\. We use the Amazon Machine Image \(AMI\) you specified at launch to boot the instance\. After the instance is ready for you, it enters the `running` state\. You can connect to your running instance and use it the way that you'd use a computer sitting in front of you\.

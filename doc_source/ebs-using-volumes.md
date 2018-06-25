@@ -1,6 +1,6 @@
 # Making an Amazon EBS Volume Available for Use on Linux<a name="ebs-using-volumes"></a>
 
-After you attach an Amazon EBS volume to your instance, it is exposed as a block device\. You can format the volume with any file system and then mount it\. After you make the EBS volume available for use, you can access it in the same ways that you access any other volume\. Any data written to this file system is written to the EBS volume and is transparent to applications using the device\.
+After you attach an Amazon EBS volume to your instance, it is exposed as a block device, and appears as a removable disk in Windows\. You can format the volume with any file system and then mount it\. After you make the EBS volume available for use, you can access it in the same ways that you access any other volume\. Any data written to this file system is written to the EBS volume and is transparent to applications using the device\.
 
 You can take snapshots of your EBS volume for backup purposes or to use as a baseline when you create another volume\. For more information, see [Amazon EBS Snapshots](EBSSnapshots.md)\.
 
@@ -10,7 +10,7 @@ You can get directions for volumes on a Windows instance from [Making a Volume A
 
 1. Connect to your instance using SSH\. For more information, see [Connect to Your Linux Instance](AccessingInstances.md)\.
 
-1. Depending on the block device driver of the kernel, the device could be attached with a different name than you specified\. For example, if you specify a device name of `/dev/sdh`, your device could be renamed `/dev/xvdh` or `/dev/hdh`\. In most cases, the trailing letter remains the same\. In some versions of Red Hat Enterprise Linux \(and its variants, such as CentOS\), even the trailing letter could change \(`/dev/sda` could become `/dev/xvde`\)\. In these cases, the trailing letter of each device name is incremented the same number of times\. For example, if `/dev/sdb` is renamed `/dev/xvdf`, then `/dev/sdc` is renamed `/dev/xvdg`\. Amazon Linux AMIs create a symbolic link for the name you specified to the renamed device\. Other AMIs could behave differently\.
+1. Depending on the block device driver of the kernel, the device could be attached with a different name than you specified\. For example, if you specify a device name of `/dev/sdh`, your device could be renamed `/dev/xvdh` or `/dev/hdh`\. In most cases, the trailing letter remains the same\. In some versions of Red Hat Enterprise Linux \(and its variants, such as CentOS\), even the trailing letter could change \(`/dev/sda` could become `/dev/xvde`\)\. In these cases, the trailing letter of each device name is incremented the same number of times\. For example, if `/dev/sdb` is renamed `/dev/xvdf`, then `/dev/sdc` is renamed `/dev/xvdg`\. Amazon Linux creates a symbolic link for the name you specified to the renamed device\. Other operating systems could behave differently\.
 
    Use the lsblk command to view your available disk devices and their mount points \(if applicable\) to help you determine the correct device name to use\.
 
@@ -23,7 +23,7 @@ You can get directions for volumes on a Windows instance from [Making a Volume A
 
    The output of lsblk removes the `/dev/` prefix from full device paths\. In this example, `/dev/xvda1` is mounted as the root device \(note that MOUNTPOINT is listed as `/`, the root of the Linux file system hierarchy\), and `/dev/xvdf` is attached, but it has not been mounted yet\.
 
-   For C5 and M5 instances, EBS volumes are exposed as NVMe block devices\. The device names that you specify are renamed using NVMe device names \(`/dev/nvme[0-26]n1`\)\. For more information, see [Amazon EBS and NVMe](nvme-ebs-volumes.md)\.
+   EBS volumes are exposed as NVMe block devices for the following instances: C5, C5d, M5, and M5d\. The device names that you specify are renamed using NVMe device names \(`/dev/nvme[0-26]n1`\)\. For more information, see [Amazon EBS and NVMe](nvme-ebs-volumes.md)\.
 
 1. Determine whether to create a file system on the volume\. New volumes are raw block devices, and you must create a file system on them before you can mount and use them\. Volumes that have been restored from snapshots likely have a file system on them already; if you create a new file system on top of an existing file system, the operation overwrites your data\. Use the sudo file \-s *device* command to list special information, such as file system type\.
 

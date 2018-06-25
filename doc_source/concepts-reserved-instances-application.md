@@ -5,7 +5,7 @@ All Reserved Instances provide you with a discount compared to On\-Demand pricin
 When Reserved Instances expire, you are charged On\-Demand rates for EC2 instance usage\. You can set up a billing alert to warn you when your bill exceeds a threshold you define\. For more information, see [Monitoring Charges with Alerts and Notifications](http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/monitor-charges.html) in the *AWS Billing and Cost Management User Guide*\.
 
 **Note**  
-The AWS Free Tier is available for new AWS accounts\. If you are using the AWS Free Tier to run Amazon EC2 instances, and you purchase a Reserved Instance, you are charged under standard pricing guidelines\. For information, see [AWS Free Tier](https://aws.amazon.com//free)\.
+The AWS Free Tier is available for new AWS accounts\. If you are using the AWS Free Tier to run Amazon EC2 instances, and you purchase a Reserved Instance, you are charged under standard pricing guidelines\. For information, see [AWS Free Tier](https://aws.amazon.com/free)\.
 
 **Topics**
 + [Usage Billing](#hourly-billing)
@@ -41,7 +41,7 @@ If you close your AWS account, On\-Demand billing for your resources stops\. How
 
 ## Viewing Your Bill<a name="ri-market-buyer-billing"></a>
 
-You can find out about the charges and fees to your account by viewing the [AWS Billing and Cost Management](https://console.aws.amazon.com//billing) console\.
+You can find out about the charges and fees to your account by viewing the [AWS Billing and Cost Management](https://console.aws.amazon.com/billing) console\.
 + The **Dashboard** displays a spend summary for your account\.
 + On the **Bills** page, under **Details** expand the **Elastic Compute Cloud** section and the region to get billing information about your Reserved Instances\.
 

@@ -22,7 +22,7 @@ Amazon DevPay is no longer accepting new sellers or products\. AWS Marketplace i
 
 ## Selling Your AMI<a name="selling-your-ami"></a>
 
-You can sell your AMI using AWS Marketplace\. AWS Marketplace offers an organized shopping experience\. Additionally, AWS Marketplace also supports AWS features such as Amazon EBS\-backed AMIs, Reserved Instances, and Spot Instances\. 
+You can sell your AMI using AWS Marketplace\. AWS Marketplace offers an organized shopping experience\. Additionally, AWS Marketplace also supports AWS features such as Amazon EBS\-backed AMIs, Reserved Instances, and Spot Instances\.
 
 For information about how to sell your AMI on AWS Marketplace, see [Selling on AWS Marketplace](https://aws.amazon.com/marketplace/help/200899830/)\. 
 

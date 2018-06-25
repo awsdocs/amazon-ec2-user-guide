@@ -100,11 +100,13 @@ You can switch the credit option for CPU usage of a running or stopped T2 instan
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the left navigation pane, choose **Instances** and select the T2 instance\. 
+1. In the left navigation pane, choose **Instances** and select the T2 instance\. To modify the credit option for several T2 instances at once, select all applicable instances\.
 
-1. Choose **Actions**, **Instance Settings**, **Change T2 Unlimited**, and then choose **Yes, Change T2 Unlimited**\.
+1. Choose **Actions**, **Instance Settings**, **Change T2 Unlimited**\.
 **Note**  
 The **Change T2 Unlimited** option is enabled only if you select a T2 instance\.
+
+1. To change the credit option to `unlimited`, choose **Enable**\. To change the credit option to `standard`, choose **Disable**\. The current credit option for the T2 instance appears in parentheses after the instance ID\.
 
 **To modify the credit option for CPU usage of a T2 instance using the AWS CLI**
 + Modify the credit option for CPU usage for a T2 instance using the [modify\-instance\-credit\-specification](http://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-credit-specification.html) command\. Specify the instance and its credit option using the `--instance-credit-specification` parameter\. Valid credit options are `standard` and `unlimited`\.

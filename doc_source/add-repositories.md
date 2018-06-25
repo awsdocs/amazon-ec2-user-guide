@@ -16,26 +16,6 @@ To install a package from a different repository with yum, you need to add the r
 
   The resulting output lists the installed repositories and reports the status of each\. Enabled repositories display the number of packages they contain\.
 
-  ```
-  repo id                             repo name                                                                status
-  !amzn-main/latest                   amzn-main-Base                                                           enabled: 5,612
-  amzn-main-debuginfo/latest          amzn-main-debuginfo                                                      disabled
-  amzn-main-source/latest             amzn-main-source                                                         disabled
-  amzn-nosrc/latest                   amzn-nosrc-Base                                                          disabled
-  amzn-preview/latest                 amzn-preview-Base                                                        disabled
-  amzn-preview-debuginfo/latest       amzn-preview-debuginfo                                                   disabled
-  amzn-preview-source/latest          amzn-preview-source                                                      disabled
-  !amzn-updates/latest                amzn-updates-Base                                                        enabled: 1,152
-  amzn-updates-debuginfo/latest       amzn-updates-debuginfo                                                   disabled
-  amzn-updates-source/latest          amzn-updates-source                                                      disabled
-  epel/x86_64                         Extra Packages for Enterprise Linux 6 - x86_64                           disabled
-  epel-debuginfo/x86_64               Extra Packages for Enterprise Linux 6 - x86_64 - Debug                   disabled
-  epel-source/x86_64                  Extra Packages for Enterprise Linux 6 - x86_64 - Source                  disabled
-  epel-testing/x86_64                 Extra Packages for Enterprise Linux 6 - Testing - x86_64                 disabled
-  epel-testing-debuginfo/x86_64       Extra Packages for Enterprise Linux 6 - Testing - x86_64 - Debug         disabled
-  epel-testing-source/x86_64          Extra Packages for Enterprise Linux 6 - Testing - x86_64 - Source        disabled
-  ```
-
 **To add a yum repository to `/etc/yum.repos.d`**
 
 1. Find the location of the `.repo` file\. This will vary depending on the repository you are adding\. In this example, the `.repo` file is at `https://www.example.com/repository.repo`\.
@@ -54,11 +34,15 @@ To install a package from a different repository with yum, you need to add the r
 After you install a repository, you must enable it as described in the next procedure\.
 
 **To enable a yum repository in `/etc/yum.repos.d`**
-+ Use the yum\-config\-manager command with the `--enable repository` flag\. The following command enables the Extra Packages for Enterprise Linux \(EPEL\) repository from the Fedora project\. By default, this repository is present in `/etc/yum.repos.d` on Amazon Linux instances, but it is not enabled\.
++ Use the yum\-config\-manager command with the `--enable repository` flag\. The following command enables the Extra Packages for Enterprise Linux \(EPEL\) repository from the Fedora project\. By default, this repository is present in `/etc/yum.repos.d` on Amazon Linux AMI instances, but it is not enabled\.
 
   ```
   [ec2-user ~]$ sudo yum-config-manager --enable epel
   ```
-
 **Note**  
+To enable the EPEL repository on Amazon Linux 2, use the following command:  
+
+  ```
+  [ec2-user ~]$ sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+  ```
 For information on enabling the EPEL repository on other distributions, such as Red Hat and CentOS, see the EPEL documentation at [https://fedoraproject\.org/wiki/EPEL](https://fedoraproject.org/wiki/EPEL)\.

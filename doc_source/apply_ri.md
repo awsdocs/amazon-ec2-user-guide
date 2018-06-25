@@ -15,7 +15,7 @@ Reserved Instances purchased for a region \(regional Reserved Instances\) provid
 Regional Reserved Instances on the Linux/Unix platform with default tenancy also provide instance size flexibility, where the Reserved Instance discount applies to instance usage within that instance type, regardless of size\.
 
 **Note**  
-Instance size flexibility does not apply to Reserved Instances that are purchased for a specific Availability Zone, Reserved Instances with dedicated tenancy, and Reserved Instances for Windows, Windows with SQL Standard, Windows with SQL Server Enterprise, Windows with SQL Server Web, RHEL, and SLES\.
+Instance size flexibility does not apply to Reserved Instances that are purchased for a specific Availability Zone, bare metal instances, Reserved Instances with dedicated tenancy, and Reserved Instances for Windows, Windows with SQL Standard, Windows with SQL Server Enterprise, Windows with SQL Server Web, RHEL, and SLES\.
 
 Instance size flexibility is determined by the normalization factor of the instance size\. The discount applies either fully or partially to running instances of the same instance type, depending on the instance size of the reservation, in any Availability Zone in the region\. The only attributes that must be matched are the instance type, tenancy, and platform\.
 
@@ -67,8 +67,8 @@ You are running the following On\-Demand Instances in account A:
 + 1 x `c4.xlarge` Amazon Linux, default tenancy instances in Availability Zone us\-east\-1c
 You purchase the following Reserved Instances in account A:  
 + 4 x `m3.large` Linux, default tenancy Reserved Instances in Availability Zone us\-east\-1a \(capacity is reserved\)
-+ 4 x `m4.large` Amazon Linux, default tenancy Reserved Instances in Region us\-east\-1
-+ 1 x `c4.large` Amazon Linux, default tenancy Reserved Instances in Region us\-east\-1
++ 4 x `m4.large` Amazon Linux, default tenancy Reserved Instances in region us\-east\-1
++ 1 x `c4.large` Amazon Linux, default tenancy Reserved Instances in region us\-east\-1
 The Reserved Instance benefits are applied in the following way:  
 + The discount and capacity reservation of the four `m3.large` zonal Reserved Instances is used by the four `m3.large` instances because the attributes \(instance size, region, platform, tenancy\) between them match\.
 + The `m4.large` regional Reserved Instances provide Availability Zone and instance size flexibility, because they are regional Amazon Linux Reserved Instances with default tenancy\.
@@ -90,8 +90,8 @@ You're running the following On\-Demand Instances in account A \(the purchasing 
 Another customer is running the following On\-Demand Instances in account B—a linked account:  
 + 2 x `m4.xlarge` Linux, default tenancy instances in Availability Zone us\-east\-1a
 You purchase the following regional Reserved Instances in account A:  
-+ 4 x `m4.xlarge` Linux, default tenancy Reserved Instances in Region us\-east\-1
-+ 2 x `c4.xlarge` Linux, default tenancy Reserved Instances in Region us\-east\-1
++ 4 x `m4.xlarge` Linux, default tenancy Reserved Instances in region us\-east\-1
++ 2 x `c4.xlarge` Linux, default tenancy Reserved Instances in region us\-east\-1
 The regional Reserved Instance benefits are applied in the following way:  
 + The discount of the four `m4.xlarge` Reserved Instances is used by the two `m4.xlarge` instances in account A and the `m4.2xlarge` instance in account A\. All three instances match the attributes \(instance family, region, platform, tenancy\)\. There is no capacity reservation\.
 + The discount of the two `c4.xlarge` Reserved Instances applies to the two `c4.xlarge` instances, because they are a smaller instance size than the `c4.2xlarge` instance\. There is no capacity reservation\.
@@ -103,7 +103,7 @@ You're running the following On\-Demand Instance in account A \(the purchasing a
 A customer is running the following On\-Demand Instance in linked account B:  
 + 1 x `m4.xlarge` Linux, default tenancy instance in Availability Zone us\-east\-1b
 You purchase the following regional Reserved Instances in account A:  
-+ 1 x `m4.xlarge` Linux, default tenancy Reserved Instance in Region us\-east\-1
++ 1 x `m4.xlarge` Linux, default tenancy Reserved Instance in region us\-east\-1
 A customer also purchases the following zonal Reserved Instances in linked account C:  
 + 1 x `m4.xlarge` Linux, default tenancy Reserved Instances in Availability Zone us\-east\-1a
 The Reserved Instance benefits are applied in the following way:  

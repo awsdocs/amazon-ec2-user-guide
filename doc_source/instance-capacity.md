@@ -12,7 +12,7 @@ If you get an `InsufficientInstanceCapacity` error when you try to launch an ins
 + If you are launching instances into a cluster placement group, you can get an insufficient capacity error\. For more information, see [Placement Group Rules and Limitations](placement-groups.md#concepts-placement-groups)\.
 + Try purchasing Reserved Instances\. Reserved Instances are a long\-term capacity reservation\. For more information, see [Amazon EC2 Reserved Instances](https://aws.amazon.com/ec2/purchasing-options/reserved-instances/)\.
 
-The `InsufficientInstanceCapacity` error is returned by Amazon EC2\. For more information about the `InsufficientDBInstanceCapacity` error that's returned by Amazon RDS for DB instances, see [Amazon RDS Insufficient DB Instance Capacity](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Troubleshooting.html#CHAP_Troubleshooting.Capacity) in the *Amazon Relational Database Service User Guide*\.
+The `InsufficientInstanceCapacity` error is returned by Amazon EC2\. For more information about the `InsufficientDBInstanceCapacity` error that's returned by Amazon RDS for DB instances, see [Amazon RDS Insufficient DB Instance Capacity](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Troubleshooting.html#CHAP_Troubleshooting.Capacity) in the *Amazon RDS User Guide*\.
 
 ## Error: InstanceLimitExceeded<a name="instance-capacity-exceeded"></a>
 

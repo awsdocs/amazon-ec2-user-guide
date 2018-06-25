@@ -22,7 +22,9 @@ EBS volumes provide several benefits that are not supported by instance store vo
 
   When you create an EBS volume in an Availability Zone, it is automatically replicated within that zone to prevent data loss due to failure of any single hardware component\. After you create a volume, you can attach it to any EC2 instance in the same Availability Zone\. After you attach a volume, it appears as a native block device similar to a hard drive or other physical device\. At that point, the instance can interact with the volume just as it would with a local drive\. The instance can format the EBS volume with a file system, such as ext3, and then install applications\. 
 
-  An EBS volume can be attached to only one instance at a time within the same Availability Zone\. However, multiple volumes can be attached to a single instance\. If you attach multiple volumes to a device that you have named, you can stripe data across the volumes for increased I/O and throughput performance\. 
+  An EBS volume can be attached to only one instance at a time, but multiple volumes can be attached to a single instance\. If you attach multiple volumes to a device that you have named, you can stripe data across the volumes for increased I/O and throughput performance\.
+
+  An EBS volume and the instance to which it attaches must be in the same Availability Zone\.
 
   You can get monitoring data for your EBS volumes, including root device volumes for EBS\-backed instances, at no additional charge\. For more information about monitoring metrics, see [Monitoring Volumes with CloudWatch](monitoring-volume-status.md#using_cloudwatch_ebs)\. For information about tracking the status of your volumes, see [Amazon CloudWatch Events for Amazon EBS](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-cloud-watch-events.html)\.
 + **Data persistence**

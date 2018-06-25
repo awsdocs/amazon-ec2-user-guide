@@ -11,7 +11,11 @@ The base distribution of Amazon Linux contains many software packages and utilit
 
 It is important to keep software up\-to\-date\. Many packages in a Linux distribution are updated frequently to fix bugs, add features, and protect against security exploits\. For more information, see [Updating Instance Software](install-updates.md)\.
 
-By default, Amazon Linux instances launch with two repositories enabled: `amzn-main` and `amzn-updates`\. While there are many packages available in these repositories that are updated by Amazon Web Services, there may be a package that you wish to install that is contained in another repository\. For more information, see [Adding Repositories](add-repositories.md)\. For help finding packages in enabled repositories, see [Finding Software Packages](find-software.md)\. For information about installing software on an Amazon Linux instance, see [Installing Software Packages](install-software.md)\.
+By default, Amazon Linux instances launch with the following repositories enabled:
++ Amazon Linux 2: `amzn2-core`
++ Amazon Linux AMI: `amzn-main` and `amzn-updates`
+
+ While there are many packages available in these repositories that are updated by Amazon Web Services, there may be a package that you wish to install that is contained in another repository\. For more information, see [Adding Repositories](add-repositories.md)\. For help finding packages in enabled repositories, see [Finding Software Packages](find-software.md)\. For information about installing software on an Amazon Linux instance, see [Installing Software Packages](install-software.md)\.
 
 Not all software is available in software packages stored in repositories; some software must be compiled on an instance from its source code\. For more information, see [Preparing to Compile Software](compile-software.md)\.
 

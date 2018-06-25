@@ -20,8 +20,8 @@ Jumbo frames should be used with caution for Internet\-bound traffic or any traf
 For instances that are collocated inside a cluster placement group, jumbo frames help to achieve the maximum network throughput possible, and they are recommended in this case\. For more information, see [Placement Groups](placement-groups.md)\.
 
 The following instances support jumbo frames:
-+ General purpose: M3, M4, M5, T2
-+ Compute optimized: C3, C4, C5, CC2
++ General purpose: M3, M4, M5, M5d, T2
++ Compute optimized: C3, C4, C5, C5d, CC2
 + Accelerated computing: F1, G2, G3, P2, P3
 + Memory optimized: CR1, R3, R4, X1
 + Storage optimized: D2, H1, HS1, I2, I3
@@ -85,22 +85,24 @@ You can check the current MTU value using the following ip command\. Note that i
    ```
 
 1. \(Optional\) To persist your network MTU setting after a reboot, modify the following configuration files, based on your operating system type\.
+   + For Amazon Linux 2, add the following line to the `/etc/sysconfig/network-scripts/ifcfg-eth0` file:
 
-   For Amazon Linux, add the following lines to your `/etc/dhcp/dhclient-eth0.conf` file\.
+     ```
+     MTU=1500
+     ```
+   + For Amazon Linux, add the following lines to your `/etc/dhcp/dhclient-eth0.conf` file\.
 
-   ```
-   interface "eth0" {
-   supersede interface-mtu 1500;
-   }
-   ```
+     ```
+     interface "eth0" {
+     supersede interface-mtu 1500;
+     }
+     ```
+   + For Ubuntu, add the following line to `/etc/network/interfaces.d/eth0.cfg`\.
 
-   For Ubuntu, add the following line to `/etc/network/interfaces.d/eth0.cfg`\.
-
-   ```
-   post-up /sbin/ifconfig eth0 mtu 1500
-   ```
-
-   For other Linux distributions, consult their specific documentation\.
+     ```
+     post-up /sbin/ifconfig eth0 mtu 1500
+     ```
+   + For other Linux distributions, consult their specific documentation\.
 
 1. \(Optional\) Reboot your instance and verify that the MTU setting is correct\.
 

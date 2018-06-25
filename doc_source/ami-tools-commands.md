@@ -109,7 +109,7 @@ Required: No
 
 ### Output<a name="bundle-image-output"></a>
 
- Status messages describing the stages and status of the bundling process\. 
+Status messages describing the stages and status of the bundling process\.
 
 ### Example<a name="bundle-image-response"></a>
 
@@ -155,7 +155,7 @@ For more information, see [Creating an Instance Store\-Backed Linux AMI](creatin
 
 ### Syntax<a name="bundle-vol-request"></a>
 
- ** ec2\-bundle\-vol \-c *path* \-k *path* \-u *account* \[\-d *path*\] \[\-\-ec2cert *path*\] \[\-r *architecture*\] \[\-\-productcodes *code1*,*code2*,\.\.\.\] \[\-B *mapping*\] \[\-\-all\] \[\-e *directory1*,*directory2*,\.\.\.\] \[\-i *file1*,*file2*,\.\.\.\] \[\-\-no\-filter\] \[\-p *prefix*\] \[\-s *size*\] \[\-\-\[no\-\]inherit\] \[\-v *volume*\] \[\-P *type*\] \[\-S *script*\] \[\-\-fstab *path*\] \[\-\-generate\-fstab\] \[\-\-grub\-config *path*\]** 
+**ec2\-bundle\-vol \-c *path* \-k *path* \-u *account* \[\-d *path*\] \[\-\-ec2cert *path*\] \[\-r *architecture*\] \[\-\-productcodes *code1*,*code2*,\.\.\.\] \[\-B *mapping*\] \[\-\-all\] \[\-e *directory1*,*directory2*,\.\.\.\] \[\-i *file1*,*file2*,\.\.\.\] \[\-\-no\-filter\] \[\-p *prefix*\] \[\-s *size*\] \[\-\-\[no\-\]inherit\] \[\-v *volume*\] \[\-P *type*\] \[\-S *script*\] \[\-\-fstab *path*\] \[\-\-generate\-fstab\] \[\-\-grub\-config *path*\]** 
 
 ### Options<a name="bundle-vol-parameters"></a>
 
@@ -265,7 +265,7 @@ Required: No
 
 ### Output<a name="bundle-vol-output"></a>
 
- Status messages describing the stages and status of the bundling\.
+Status messages describing the stages and status of the bundling\.
 
 ### Example<a name="bundle-vol-response"></a>
 
@@ -314,7 +314,7 @@ Deletes the specified bundle from Amazon S3 storage\. After you delete a bundle,
 
 ### Syntax<a name="delete-bundle-request"></a>
 
- ** ec2\-delete\-bundle \-b *bucket* \-a *access\_key\_id* \-s *secret\_access\_key* \[\-t *token*\] \[\-\-url *url*\] \[\-\-region *region*\] \[\-\-sigv *version*\] \[\-m *path*\] \[\-p *prefix*\] \[\-\-clear\] \[\-\-retry\] \[\-y\]** 
+**ec2\-delete\-bundle \-b *bucket* \-a *access\_key\_id* \-s *secret\_access\_key* \[\-t *token*\] \[\-\-url *url*\] \[\-\-region *region*\] \[\-\-sigv *version*\] \[\-m *path*\] \[\-p *prefix*\] \[\-\-clear\] \[\-\-retry\] \[\-y\]** 
 
 ### Options<a name="delete-bundle-parameters"></a>
 
@@ -368,7 +368,7 @@ Required: No
 
 ### Output<a name="delete-bundle-output"></a>
 
- Amazon EC2 displays status messages indicating the stages and status of the delete process\. 
+Amazon EC2 displays status messages indicating the stages and status of the delete process\.
 
 ### Example<a name="delete-bundle-response"></a>
 
@@ -406,7 +406,7 @@ Downloads the specified instance store\-backed Linux AMIs from Amazon S3 storage
 
 ### Syntax<a name="download-bundle-request"></a>
 
- ** ec2\-download\-bundle \-b *bucket* \-a *access\_key\_id* \-s *secret\_access\_key* \-k *path* \[\-\-url *url*\] \[\-\-region *region*\] \[\-\-sigv *version*\] \[\-m *file*\] \[\-p *prefix*\] \[\-d *directory*\] \[\-\-retry\]** 
+**ec2\-download\-bundle \-b *bucket* \-a *access\_key\_id* \-s *secret\_access\_key* \-k *path* \[\-\-url *url*\] \[\-\-region *region*\] \[\-\-sigv *version*\] \[\-m *file*\] \[\-p *prefix*\] \[\-d *directory*\] \[\-\-retry\]** 
 
 ### Options<a name="download-bundle-parameters"></a>
 
@@ -462,7 +462,7 @@ Required: No
 
 ### Output<a name="download-bundle-output"></a>
 
- Status messages indicating the various stages of the download process are displayed\. 
+Status messages indicating the various stages of the download process are displayed\.
 
 ### Example<a name="download-bundle-response"></a>
 
@@ -496,7 +496,7 @@ Modifies an instance store\-backed Linux AMI \(for example, its certificate, ker
 
 ### Syntax<a name="migrate-manifest-request"></a>
 
- ** ec2\-migrate\-manifest \-c *path* \-k *path* \-m *path* \{\(\-a *access\_key\_id* \-s *secret\_access\_key* \-\-region *region*\) \| \(\-\-no\-mapping\)\} \[\-\-ec2cert *ec2\_cert\_path*\] \[\-\-kernel *kernel\-id*\] \[\-\-ramdisk *ramdisk\_id*\]** 
+**ec2\-migrate\-manifest \-c *path* \-k *path* \-m *path* \{\(\-a *access\_key\_id* \-s *secret\_access\_key* \-\-region *region*\) \| \(\-\-no\-mapping\)\} \[\-\-ec2cert *ec2\_cert\_path*\] \[\-\-kernel *kernel\-id*\] \[\-\-ramdisk *ramdisk\_id*\]** 
 
 ### Options<a name="migrate-manifest-parameters"></a>
 
@@ -546,7 +546,7 @@ Required: No
 
 ### Output<a name="migrate-manifest-output"></a>
 
- Status messages describing the stages and status of the bundling process\. 
+Status messages describing the stages and status of the bundling process\.
 
 ### Example<a name="migrate-manifest-response"></a>
 
@@ -567,7 +567,7 @@ Re\-creates the bundle from an instance store\-backed Linux AMI\.
 
 ### Syntax<a name="unbundle-request"></a>
 
- ** ec2\-unbundle \-k *path* \-m *path* \[\-s *source\_directory*\] \[\-d *destination\_directory*\]** 
+**ec2\-unbundle \-k *path* \-m *path* \[\-s *source\_directory*\] \[\-d *destination\_directory*\]** 
 
 ### Options<a name="unbundle-parameters"></a>
 
@@ -603,7 +603,7 @@ total 1025008
 
 ### Output<a name="unbundle-output"></a>
 
- Status messages indicating the various stages of the unbundling process are displayed\. 
+Status messages indicating the various stages of the unbundling process are displayed\.
 
 ## ec2\-upload\-bundle<a name="ami-upload-bundle"></a>
 
@@ -613,7 +613,7 @@ Uploads the bundle for an instance store\-backed Linux AMI to Amazon S3 and sets
 
 ### Syntax<a name="upload-bundle-request"></a>
 
- ** ec2\-upload\-bundle \-b *bucket* \-a *access\_key\_id* \-s *secret\_access\_key* \[\-t *token*\] \-m *path* \[\-\-url *url*\] \[\-\-region *region*\] \[\-\-sigv *version*\] \[\-\-acl *acl*\] \[\-d *directory*\] \[\-\-part *part*\] \[\-\-retry\] \[\-\-skipmanifest\]** 
+**ec2\-upload\-bundle \-b *bucket* \-a *access\_key\_id* \-s *secret\_access\_key* \[\-t *token*\] \-m *path* \[\-\-url *url*\] \[\-\-region *region*\] \[\-\-sigv *version*\] \[\-\-acl *acl*\] \[\-d *directory*\] \[\-\-part *part*\] \[\-\-retry\] \[\-\-skipmanifest\]** 
 
 ### Options<a name="upload-bundle-parameters"></a>
 
@@ -692,7 +692,7 @@ Required: No
 
 ### Output<a name="upload-bundle-output"></a>
 
- Amazon EC2 displays status messages that indicate the stages and status of the upload process\. 
+Amazon EC2 displays status messages that indicate the stages and status of the upload process\.
 
 ### Example<a name="upload-bundle-response"></a>
 

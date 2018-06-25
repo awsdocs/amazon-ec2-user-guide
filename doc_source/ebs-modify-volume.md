@@ -4,7 +4,7 @@ If your current\-generation Amazon EBS volume is attached to a current\-generati
 
 The following previous\-generation instance types support modification of EBS volumes without detachment: C1, C3, CC2, CR1, G2, I2, M1, M3, R3\. You can safely ignore any warnings that occur with these instance types\. If you are using an unsupported previous\-generation instance type, or if you encounter an error while attempting a volume modification, follow the procedures in [Appendix: Starting and Stopping an Instance to Modify an EBS Volume](stop-start.md)\.
 
-In general, use following steps when modifying a volume:
+In general, use the following steps when modifying a volume:
 
 1. **Issue the modification command\.** For more information, see [Modifying an EBS Volume from the Console](console-modify.md) and [Modifying an EBS Volume from the Command Line](cli-modify.md)\.
 

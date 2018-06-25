@@ -46,22 +46,22 @@ Before you use placement groups, be aware of the following rules:
 
 The following rules apply to cluster placement groups:
 + The following are the only instance types that you can use when you launch an instance into a cluster placement group:
-  + General purpose: `m4.large` \| `m4.xlarge` \| `m4.2xlarge` \| `m4.4xlarge` \| `m4.10xlarge` \| `m4.16xlarge` \| `m5.large` \| `m5.xlarge` \| `m5.2xlarge` \| `m5.4xlarge` \| `m5.12xlarge` \| `m5.24xlarge`
-  + Compute optimized: `c3.large` \| `c3.xlarge` \| `c3.2xlarge` \| `c3.4xlarge` \| `c3.8xlarge` \| `c4.large` \| `c4.xlarge` \| `c4.2xlarge` \| `c4.4xlarge` \| `c4.8xlarge` \| `c5.large` \| `c5.xlarge` \| `c5.2xlarge` \| `c5.4xlarge` \| `c5.9xlarge` \| `c5.18xlarge` \| `cc2.8xlarge`
+  + General purpose: `m4.large` \| `m4.xlarge` \| `m4.2xlarge` \| `m4.4xlarge` \| `m4.10xlarge` \| `m4.16xlarge` \| `m5.large` \| `m5.xlarge` \| `m5.2xlarge` \| `m5.4xlarge` \| `m5.12xlarge` \| `m5.24xlarge` \| `m5d.large` \| `m5d.xlarge` \| `m5d.2xlarge` \| `m5d.4xlarge` \| `m5d.12xlarge` \| `m5d.24xlarge`
+  + Compute optimized: `c3.large` \| `c3.xlarge` \| `c3.2xlarge` \| `c3.4xlarge` \| `c3.8xlarge` \| `c4.large` \| `c4.xlarge` \| `c4.2xlarge` \| `c4.4xlarge` \| `c4.8xlarge` \| `c5.large` \| `c5.xlarge` \| `c5.2xlarge` \| `c5.4xlarge` \| `c5.9xlarge` \| `c5.18xlarge` \| `c5d.large` \| `c5d.xlarge` \| `c5d.2xlarge` \| `c5d.4xlarge` \| `c5d.9xlarge` \| `c5d.18xlarge` \| `cc2.8xlarge`
   + Memory optimized: `r3.large` \| `r3.xlarge` \| `r3.2xlarge` \| `r3.4xlarge` \| `r3.8xlarge` \| `r4.large` \| `r4.xlarge` \| `r4.2xlarge` \| `r4.4xlarge` \| `r4.8xlarge` \| `r4.16xlarge` \| `x1.16xlarge` \| `x1.32xlarge` \| `x1e.xlarge` \| `x1e.2xlarge` \| `x1e.4xlarge` \| `x1e.8xlarge` \| `x1e.16xlarge` \| `x1e.32xlarge`\| `cr1.8xlarge`
-  + Storage optimized: `d2.xlarge` \| `d2.2xlarge` \| `d2.4xlarge` \| `d2.8xlarge` \| `h1.2xlarge` \| `h1.4xlarge` \| `h1.8xlarge` \| `h1.16xlarge` \| `i2.xlarge` \| `i2.2xlarge` \| `i2.4xlarge` \| `i2.8xlarge` `i3.large` \| `i3.xlarge` \| `i3.2xlarge` \| `i3.4xlarge` \| `i3.8xlarge` \| `i3.16xlarge` \| `hs1.8xlarge`
+  + Storage optimized: `d2.xlarge` \| `d2.2xlarge` \| `d2.4xlarge` \| `d2.8xlarge` \| `h1.2xlarge` \| `h1.4xlarge` \| `h1.8xlarge` \| `h1.16xlarge` \| `i2.xlarge` \| `i2.2xlarge` \| `i2.4xlarge` \| `i2.8xlarge` `i3.large` \| `i3.xlarge` \| `i3.2xlarge` \| `i3.4xlarge` \| `i3.8xlarge` \| `i3.16xlarge` \| `i3.metal` \| `hs1.8xlarge`
   + Accelerated computing: `f1.2xlarge` \| `f1.16xlarge` \| `g2.2xlarge` \| `g2.8xlarge` \| `g3.4xlarge` \| `g3.8xlarge` \| `g3.16xlarge` \| `p2.xlarge` \| `p2.8xlarge` \| `p2.16xlarge` \| `p3.2xlarge` \| `p3.8xlarge` \| `p3.16xlarge`
 + A cluster placement group can't span multiple Availability Zones\.
 + The maximum network throughput speed of traffic between two instances in a cluster placement group is limited by the slower of the two instances\. For applications with high\-throughput requirements, choose an instance type with 10–Gbps or 25–Gbps network connectivity\. For more information about instance type network performance, see the [Amazon EC2 Instance Types Matrix](https://aws.amazon.com/ec2/instance-types/#instance-type-matrix)\.
 + For current generation instance types that are enabled for enhanced networking, the following applies:
-  + Traffic between instances within the same AWS Region that is addressed using private IPv4 or IPv6 addresses can use 5 Gbps for single\-flow traffic and up to 25 Gbps for multi\-flow traffic\.
+  + Traffic between instances within the same region that is addressed using private IPv4 or IPv6 addresses can use 5 Gbps for single\-flow traffic and up to 25 Gbps for multi\-flow traffic\.
   + Instances within a cluster placement group can use up to 10 Gbps for single\-flow traffic\.
-  + Traffic to and from Amazon S3 buckets within the same AWS Region over the public IP address space or through a VPC endpoint can use all available instance aggregate bandwidth\.
+  + Traffic to and from Amazon S3 buckets within the same region over the public IP address space or through a VPC endpoint can use all available instance aggregate bandwidth\.
 + You can launch multiple instance types into a cluster placement group\. However, this reduces the likelihood that the required capacity will be available for your launch to succeed\. We recommend using the same instance type for all instances in a cluster placement group\.
 + Network traffic to the internet and over an AWS Direct Connect connection to on\-premises resources is limited to 5 Gbps\.
 
 The following rules apply to spread placement groups:
-+ A spread placement group supports a maximum of seven running instances per Availability Zone\. For example, in an AWS Region that has three Availability Zones, you can have a total of 21 running instances in the group \(seven per zone\)\.
++ A spread placement group supports a maximum of seven running instances per Availability Zone\. For example, in a region that has three Availability Zones, you can have a total of 21 running instances in the group \(seven per zone\)\.
 + Spread placement groups are not supported for Dedicated Instances or Dedicated Hosts\.
 
 ## Creating a Placement Group<a name="create-placement-group"></a>

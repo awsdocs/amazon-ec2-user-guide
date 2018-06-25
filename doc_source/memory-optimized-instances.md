@@ -14,7 +14,7 @@ R4 instances are well suited for the following applications:
 **X1 Instances**
 
 X1 instances are well suited for the following applications:
-+ In\-memory databases such as SAP HANA, including SAP\-certified support for Business Suite S/4HANA, Business Suite on HANA \(SoH\), Business Warehouse on HANA \(BW\), and Data Mart Solutions on HANA\. For more information, see [SAP HANA on the AWS Cloud](https://aws.amazon.com//sap/solutions/saphana/)\.
++ In\-memory databases such as SAP HANA, including SAP\-certified support for Business Suite S/4HANA, Business Suite on HANA \(SoH\), Business Warehouse on HANA \(BW\), and Data Mart Solutions on HANA\. For more information, see [SAP HANA on the AWS Cloud](https://aws.amazon.com/sap/solutions/saphana/)\.
 + Big\-data processing engines such as Apache Spark or Presto\.
 + High\-performance computing \(HPC\) applications\.
 
@@ -22,7 +22,7 @@ X1 instances are well suited for the following applications:
 
 X1e instances are well suited for the following applications:
 + High\-performance databases\.
-+ In\-memory databases such as SAP HANA\. For more information, see [SAP HANA on the AWS Cloud](https://aws.amazon.com//sap/solutions/saphana/)\.
++ In\-memory databases such as SAP HANA\. For more information, see [SAP HANA on the AWS Cloud](https://aws.amazon.com/sap/solutions/saphana/)\.
 + Memory\-intensive enterprise applications\.
 
 **Topics**
@@ -120,8 +120,9 @@ For more information, see the following:
 Memory optimized instances provide a high number of vCPUs, which can cause launch issues with operating systems that have a lower vCPU limit\. We strongly recommend that you use the latest AMIs when you launch Memory optimized instances\.
 
 The following AMIs support launching Memory optimized instances:
++ Amazon Linux 2 \(HVM\)
 + Amazon Linux AMI 2016\.03 \(HVM\) or later
-+ Ubuntu Server 14\.04 LTS \(HVM\) or later
++ Ubuntu Server 14\.04 LTS \(HVM\)
 + Red Hat Enterprise Linux 7\.1 \(HVM\)
 + SUSE Linux Enterprise Server 12 SP1 \(HVM\)
 + Windows Server 2016

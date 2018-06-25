@@ -9,7 +9,7 @@ If you are migrating from another Linux distribution to Amazon Linux, we recomme
 **Topics**
 + [Connecting to an Amazon Linux Instance](#connect-to-amazon-linux-limits)
 + [Identifying Amazon Linux Images](#amazon-linux-image-id)
-+ [Included AWS Command Line Tools](#amazon-linux-aws-command-line-tools)
++ [AWS Command Line Tools](#amazon-linux-aws-command-line-tools)
 + [Package Repository](#package-repository)
 + [Extras Library \(Amazon Linux 2\)](#extras-library)
 + [Accessing Source Packages for Reference](#amazon-linux-source-packages)
@@ -24,10 +24,10 @@ Amazon Linux does not allow remote root SSH by default\. Also, password authenti
 ## Identifying Amazon Linux Images<a name="amazon-linux-image-id"></a>
 
 Each image contains a unique `/etc/image-id` file that identifies it\. This file contains the following information about the image:
-+ `image_name`, `image_version`, `image_arch` — From the build recipe that Amazon used to construct the image
-+ `image_stamp` — A unique, random hex value generated during image creation
++ `image_name`, `image_version`, `image_arch` — Values from the build recipe that Amazon used to construct the image\.
++ `image_stamp` — A unique, random hex value generated during image creation\.
 + `image_date` — The UTC time of image creation, in *YYYYMMDDhhmmss* format
-+ `recipe_name`, `recipe_id` — The name and ID of the build recipe Amazon used to construct the image
++ `recipe_name`, `recipe_id` — The name and ID of the build recipe Amazon used to construct the image\.
 
 Amazon Linux contains an `/etc/system-release` file that specifies the current release that is installed\. This file is updated using yum and is part of the `system-release` RPM\.
 
@@ -42,18 +42,18 @@ The following is an example of `/etc/image-id` for the current version of Amazon
 image_name="amzn2-ami-hvm"
 image_version="2017.12"
 image_arch="x86_64"
-image_file="amzn2-ami-hvm-2017.12.0.20180328.1-x86_64.xfs.gpt"
-image_stamp="d58c-0f4e"
-image_date="20180328193624"
+image_file="amzn2-ami-hvm-2017.12.0.20180509-x86_64.xfs.gpt"
+image_stamp="c763-2a26"
+image_date="20180509235735"
 recipe_name="amzn2 ami"
-recipe_id="abf7fcc8-f988-713a-d779-19ed-94b7-feab-3c3974af"
+recipe_id="0b8118bb-6f98-5619-0618-9570-26ae-ad18-178b79f1"
 ```
 
 The following is an example of `/etc/system-release` for the current version of Amazon Linux 2:
 
 ```
 [ec2-user ~]$ cat /etc/system-release
-Amazon Linux release 2 (2017.12) LTS Release Candidate
+Amazon Linux release 2.0 (2017.12) LTS Release Candidate
 ```
 
 The following is an example of `/etc/os-release` for Amazon Linux 2:
@@ -80,11 +80,11 @@ The following is an example of `/etc/image-id` for the current Amazon Linux AMI:
 image_name="amzn-ami-hvm"
 image_version="2018.03"
 image_arch="x86_64"
-image_file="amzn-ami-hvm-2018.03.0.20180412-x86_64.ext4.gpt"
-image_stamp="1f3d-d981"
-image_date="20180413000859"
+image_file="amzn-ami-hvm-2018.03.0.20180508-x86_64.ext4.gpt"
+image_stamp="c4fa-96f6"
+image_date="20180508174933"
 recipe_name="amzn ami"
-recipe_id="5ff6aaf8-75c1-29c7-99c9-1c92-6506-3dc2-33211769"
+recipe_id="1cb2680c-5325-ae3b-9562-95c2-ae09-5817-8b40e17d"
 ```
 
 The following is an example of `/etc/system-release` for the current Amazon Linux AMI:
@@ -94,9 +94,9 @@ The following is an example of `/etc/system-release` for the current Amazon Linu
 Amazon Linux AMI release 2018.03
 ```
 
-## Included AWS Command Line Tools<a name="amazon-linux-aws-command-line-tools"></a>
+## AWS Command Line Tools<a name="amazon-linux-aws-command-line-tools"></a>
 
-The following command line tools for AWS integration and usage are included in Amazon Linux or in the default repositories\. For the complete list of packages, see [Amazon Linux AMI 2018\.03 Packages](https://aws.amazon.com/amazon-linux-ami/2018.03-packages/)\.
+The following command line tools for AWS integration and usage are included in the Amazon Linux AMI, or in the default repositories for Amazon Linux 2\. For the complete list of packages in the Amazon Linux AMI, see [Amazon Linux AMI 2017\.09 Packages](https://aws.amazon.com/amazon-linux-ami/2017.09-packages/)\.
 + aws\-amitools\-ec2
 + aws\-apitools\-as
 + aws\-apitools\-cfn
@@ -106,7 +106,7 @@ The following command line tools for AWS integration and usage are included in A
 + aws\-cfn\-bootstrap
 + aws\-cli
 
-The minimal versions of Amazon Linux \(`amzn-ami-minimal-*` and `amzn2-ami-minimal-*`\) do not contain these packages; however, you can install them from the default repositories using the following command:
+Amazon Linux 2 and the minimal versions of Amazon Linux \(`amzn-ami-minimal-*` and `amzn2-ami-minimal-*`\) do not always contain all of these packages; however, you can install them from the default repositories using the following command:
 
 ```
 [ec2-user ~]$ sudo yum install -y package_name
@@ -127,9 +127,9 @@ Used by `/etc/profile.d/aws-apitools-common.sh` to set product\-specific environ
 
 ## Package Repository<a name="package-repository"></a>
 
-Amazon Linux is designed to be used with online package repositories hosted in each Amazon EC2 region\. These repositories provide ongoing updates to packages in Amazon Linux, as well as access to hundreds of additional common open source server applications\. The repositories are available in all regions and are accessed using yum update tools\. Hosting repositories in each region enables us to deploy updates quickly and without any data transfer charges\.
+Amazon Linux 2 and the Amazon Linux AMI are designed to be used with online package repositories hosted in each Amazon EC2 region\. These repositories provide ongoing updates to packages in Amazon Linux 2 and the Amazon Linux AMI, as well as access to hundreds of additional common open\-source server applications\. The repositories are available in all regions and are accessed using yum update tools\. Hosting repositories in each region enables us to deploy updates quickly and without any data transfer charges\.
 
-Amazon Linux is updated regularly with security and feature enhancements\. If you do not need to preserve data or customizations for your instances, you can simply launch new instances using the current AMI\. If you need to preserve data or customizations for your instances, you can maintain those instances through the Amazon Linux package repositories\. These repositories contain all the updated packages\. You can choose to apply these updates to your running instances\. Older versions of the AMI and update packages continue to be available for use, even as new versions are released\.
+Amazon Linux 2 and the Amazon Linux AMI are updated regularly with security and feature enhancements\. If you do not need to preserve data or customizations for your instances, you can simply launch new instances using the current AMI\. If you need to preserve data or customizations for your instances, you can maintain those instances through the Amazon Linux package repositories\. These repositories contain all the updated packages\. You can choose to apply these updates to your running instances\. Older versions of the AMI and update packages continue to be available for use, even as new versions are released\.
 
 **Important**  
 Your instance must have access to the internet in order to access the repository\.
@@ -140,7 +140,17 @@ To install packages, use the following command:
 [ec2-user ~]$ sudo yum install package
 ```
 
-Access to the Extra Packages for Enterprise Linux \(EPEL\) repository is configured, but it is not enabled by default\. EPEL provides third\-party packages in addition to those that are in the repositories\. The third\-party packages are not supported by AWS\.
+For the Amazon Linux AMI, access to the Extra Packages for Enterprise Linux \(EPEL\) repository is configured, but it is not enabled by default\. Amazon Linux 2 is not configured to use the EPEL repository\. EPEL provides third\-party packages in addition to those that are in the repositories\. The third\-party packages are not supported by AWS\. You can enable the EPEL repository with the following commands:
++ For Amazon Linux 2:
+
+  ```
+  [ec2-user ~]$ sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+  ```
++ For the Amazon Linux AMI:
+
+  ```
+  [ec2-user ~]$ sudo yum-config-manager --enable epel
+  ```
 
 If you find that Amazon Linux does not contain an application you need, you can simply install the application directly on your Amazon Linux instance\. Amazon Linux uses RPMs and yum for package management, and that is likely the simplest way to install new applications\. You should always check to see if an application is available in our central Amazon Linux repository first, because many applications are available there\. These applications can easily be added to your Amazon Linux instance\.
 
@@ -148,7 +158,7 @@ To upload your applications onto a running Amazon Linux instance, use scp or sft
 
 ### Security Updates<a name="security-updates"></a>
 
-Security updates are provided using the package repositories as well as updated AMIs Security alerts are published in the [Amazon Linux Security Center](https://alas.aws.amazon.com/)\. For more information about AWS security policies or to report a security problem, go to the [AWS Security Center](https://aws.amazon.com/security/)\.
+Security updates are provided using the package repositories as well as updated AMIs Security alerts are published in the [Amazon Linux Security Center](https://alas.aws.amazon.com)\. For more information about AWS security policies or to report a security problem, go to the [AWS Security Center](https://aws.amazon.com/security/)\.
 
 Amazon Linux is configured to download and install security updates at launch time\. This is controlled using the following cloud\-init setting: `repo_upgrade`\. The following snippet of cloud\-init configuration shows how you can change the settings in the user data text you pass to your instance initialization:
 
@@ -197,7 +207,7 @@ repo_releasever: 2017.09
 
 1. Comment out `releasever=latest`\.
 
-1. Run yum clean all to clear the cache\.
+1. To clear the cache, run yum clean all \.
 
 ## Extras Library \(Amazon Linux 2\)<a name="extras-library"></a>
 
@@ -215,7 +225,7 @@ To enable a topic and install the latest version of its package to ensure freshn
 [ec2-user ~]$ sudo amazon-linux-extras install topic
 ```
 
-To enable topics and install the specific versions of their packages that are required, use the following command:
+To enable topics and install specific versions of their packages to ensure stability, use the following command:
 
 ```
 [ec2-user ~]$ sudo amazon-linux-extras install topic=version topic=version
@@ -233,22 +243,22 @@ The source RPM can be unpacked, and, for reference, you can view the source tree
 
 ## cloud\-init<a name="amazon-linux-cloud-init"></a>
 
-The cloud\-init package is an open source application built by Canonical that is used to bootstrap Linux images in a cloud computing environment, such as Amazon EC2\. Amazon Linux contains a customized version of cloud\-init\. It enables you to specify actions that should happen to your instance at boot time\. You can pass desired actions to cloud\-init through the user data fields when launching an instance\. This means you can use common AMIs for many use cases and configure them dynamically at startup\. Amazon Linux also uses cloud\-init to perform initial configuration of the ec2\-user account\.
+The cloud\-init package is an open\-source application built by Canonical that is used to bootstrap Linux images in a cloud computing environment, such as Amazon EC2\. Amazon Linux contains a customized version of cloud\-init\. It enables you to specify actions that should happen to your instance at boot time\. You can pass desired actions to cloud\-init through the user data fields when launching an instance\. This means you can use common AMIs for many use cases and configure them dynamically at startup\. Amazon Linux also uses cloud\-init to perform initial configuration of the ec2\-user account\.
 
-For more information, see [http://cloudinit.readthedocs.org/en/latest/](http://cloudinit.readthedocs.org/en/latest/)\.
+For more information, see the [cloud\-init documentation](http://cloudinit.readthedocs.org/en/latest/)\.
 
 Amazon Linux uses the cloud\-init actions found in `/etc/cloud/cloud.cfg.d` and `/etc/cloud/cloud.cfg`\. You can create your own cloud\-init action files in `/etc/cloud/cloud.cfg.d`\. All files in this directory are read by cloud\-init\. They are read in lexical order, and later files overwrite values in earlier files\.
 
 The cloud\-init package performs these \(and other\) common configuration tasks for instances at boot:
-+ Set the default locale
-+ Set the hostname
-+ Parse and handle user data
-+ Generate host private SSH keys
-+ Add a user's public SSH keys to `.ssh/authorized_keys` for easy login and administration
-+ Prepare the repositories for package management
-+ Handle package actions defined in user data
-+ Execute user scripts found in user data
-+ Mount instance store volumes if applicable
++ Set the default locale\.
++ Set the hostname\.
++ Parse and handle user data\.
++ Generate host private SSH keys\.
++ Add a user's public SSH keys to `.ssh/authorized_keys` for easy login and administration\.
++ Prepare the repositories for package management\.
++ Handle package actions defined in user data\.
++ Execute user scripts found in user data\.
++ Mount instance store volumes, if applicable\.
   + By default, the `ephemeral0` instance store volume is mounted at `/media/ephemeral0` if it is present and contains a valid file system; otherwise, it is not mounted\.
   + By default, any swap volumes associated with the instance are mounted \(only for `m1.small` and `c1.medium` instance types\)\.
   + You can override the default instance store volume mount with the following cloud\-init directive:
@@ -279,7 +289,7 @@ The cloud\-init package supports user\-data handling of a variety of formats:
   + This content is an include file\. The file contains a list of URLs, one per line\. Each of the URLs is read, and their content passed through this same set of rules\. The content read from the URL can be gzipped, MIME\-multi\-part, or plaintext\.
 + Cloud Config Data
   + Begins with `#cloud-config` or `Content-Type: text/cloud-config`\.
-  + This content is cloud\-config data\. See the examples for a commented example of supported configuration formats\.
+  + This content is cloud\-config data\. For a commented example of supported configuration formats, see the examples \.
 + Upstart job
   + Begins with `#upstart-job` or `Content-Type: text/upstart-job`\.
   + This content is stored in a file in `/etc/init`, and upstart consumes the content as per other upstart jobs\.
@@ -290,17 +300,15 @@ The cloud\-init package supports user\-data handling of a variety of formats:
 
 ## Subscribing to Amazon Linux Notifications<a name="linux-ami-notifications"></a>
 
-If you want to be notified when new AMIs are released, you can subscribe to these notifications using Amazon SNS\.
+To be notified when new AMIs are released, you can subscribe using Amazon SNS\.
 
 **To subscribe to Amazon Linux notifications**
 
 1. Open the Amazon SNS console at [https://console\.aws\.amazon\.com/sns/v2/home](https://console.aws.amazon.com/sns/v2/home)\.
 
-1. In the navigation bar, change the region to **US East \(N\. Virginia\)**, if necessary\. You must select this region because the SNS notification that you are subscribing to was created in this region\.
+1. In the navigation bar, change the Region to **US East \(N\. Virginia\)**, if necessary\. You must select the Region in which the SNS notification that you are subscribing to was created\.
 
-1. In the navigation pane, choose **Subscriptions**\.
-
-1. Choose **Create subscription**\.
+1. In the navigation pane, choose **Subscriptions**, **Create subscription**\.
 
 1. For the **Create subscription** dialog box, do the following:
 
@@ -314,16 +322,16 @@ If you want to be notified when new AMIs are released, you can subscribe to thes
 
    1. Choose **Create subscription**\.
 
-1. You'll receive a confirmation email with the subject line "AWS Notification \- Subscription Confirmation"\. Open the email and click **Confirm subscription** to complete your subscription\.
+1. You receive a confirmation email with the subject line "AWS Notification \- Subscription Confirmation"\. Open the email and choose **Confirm subscription** to complete your subscription\.
 
-Whenever AMIs are released, we send notifications to the subscribers of the corresponding topic\. If you no longer want to receive these notifications, use the following procedure to unsubscribe\.
+Whenever AMIs are released, we send notifications to the subscribers of the corresponding topic\. To stop receiving these notifications, use the following procedure to unsubscribe\.
 
 **To unsubscribe from Amazon Linux notifications**
 
 1. Open the Amazon SNS console at [https://console\.aws\.amazon\.com/sns/v2/home](https://console.aws.amazon.com/sns/v2/home)\.
 
-1. In the navigation bar, change the region to **US East \(N\. Virginia\)**, if necessary\. You must use this region because the SNS notification was created in this region\.
+1. In the navigation bar, change the Region to **US East \(N\. Virginia\)**, if necessary\. You must use the Region in which the SNS notification was created\.
 
-1. In the navigation pane, choose **Subscriptions**\.
+1. In the navigation pane, choose **Subscriptions**, select the subscription, and choose **Actions**, **Delete subscriptions**\. \.
 
-1. Select the subscription and then choose **Actions**, **Delete subscriptions**\. When prompted for confirmation, choose **Delete**\.
+1. When prompted for confirmation, choose **Delete**\.

@@ -1,6 +1,6 @@
 # Copying an AMI<a name="CopyingAMIs"></a>
 
-You can copy an Amazon Machine Image \(AMI\) within or across an AWS region using the AWS Management Console, the AWS command line tools or SDKs, or the Amazon EC2 API, all of which support the `CopyImage` action\. You can copy both Amazon EBS\-backed AMIs and instance store\-backed AMIs\. You can copy encrypted AMIs and AMIs with encrypted snapshots\.
+You can copy an Amazon Machine Image \(AMI\) within or across an AWS region using the AWS Management Console, the AWS AWS Command Line Interface or SDKs, or the Amazon EC2 API, all of which support the `CopyImage` action\. You can copy both Amazon EBS\-backed AMIs and instance store\-backed AMIs\. You can copy encrypted AMIs and AMIs with encrypted snapshots\.
 
 Copying a source AMI results in an identical but distinct target AMI with its own unique identifier\. In the case of an Amazon EBS\-backed AMI, each of its backing snapshots is, by default, copied to an identical but distinct target snapshot\. \(The one exception is when you choose to encrypt the snapshot\.\) You can change or deregister the source AMI with no effect on the target AMI\. The reverse is also true\.
 
@@ -69,7 +69,7 @@ Prior to copying an AMI, you must ensure that the contents of the source AMI are
 
 **Limits**
 + Destination regions are limited to 50 concurrent AMI copies at a time, with no more than 25 of those coming from a single source region\.
-+ Not all AWS Regions support paravirtual \(PV\) AMIs; therefore, you cannot copy a PV AMI to those regions\. For more information, see [Linux AMI Virtualization Types](virtualization_types.md)\.
++ Not all regions support paravirtual \(PV\) AMIs; therefore, you cannot copy a PV AMI to those regions\. For more information, see [Linux AMI Virtualization Types](virtualization_types.md)\.
 
 ## Cross\-Account AMI Copy<a name="copy-ami-across-accounts"></a>
 

@@ -4,6 +4,7 @@ The EC2Rescue for Linux tool can be installed on an Amazon EC2 Linux instance th
 
 **Prerequisites**
 + Supported operating systems:
+  + Amazon Linux 2
   + Amazon Linux 2016\.09\+
   + SLES 12\+
   + RHEL 7\+
@@ -16,13 +17,13 @@ The EC2Rescue for Linux tool can be installed on an Amazon EC2 Linux instance th
 1. From a working Linux instance, download the [EC2Rescue for Linux](https://s3.amazonaws.com/ec2rescuelinux/ec2rl.tgz) tool:
 
    ```
-   [ec2-user ~]$ wget https://s3.amazonaws.com/ec2rescuelinux/ec2rl.tgz
+   [ec2-user ~]$ curl -O https://s3.amazonaws.com/ec2rescuelinux/ec2rl.tgz
    ```
 
 1. Download the sha256 hash file:
 
    ```
-   [ec2-user ~]$  wget https://s3.amazonaws.com/ec2rescuelinux/ec2rl.tgz.sha256
+   [ec2-user ~]$ curl -O https://s3.amazonaws.com/ec2rescuelinux/ec2rl.tgz.sha256
    ```
 
 1. Verify the integrity of the tarball:

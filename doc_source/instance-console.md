@@ -15,9 +15,11 @@ For Windows instances, this operation performs a hard reboot that might result i
 
 ## Instance Console Output<a name="instance-console-console-output"></a>
 
-For Linux/Unix, the instance console output displays the exact console output that would normally be displayed on a physical monitor attached to a computer\. The console output returns buffered information that was posted shortly after an instance transition state \(start, stop, reboot, and terminate\)\. The posted output is not continuously updated; only when it is likely to be of the most value\. 
+For Linux/Unix, the instance console output displays the exact console output that would normally be displayed on a physical monitor attached to a computer\. The console output returns buffered information that was posted shortly after an instance transition state \(start, stop, reboot, and terminate\)\. The posted output is not continuously updated; only when it is likely to be of the most value\.
 
-For Windows instances, the instance console output displays the last three system event log errors\. 
+For Windows instances, the instance console output displays the last three system event log errors\.
+
+You can optionally retrieve the latest serial console output at any time during the instance lifecycle\. This option is only supported on instance types that use the Nitro hypervisor\. It is not supported through the Amazon EC2 console\.
 
 **Note**  
 Only the most recent 64 KB of posted output is stored, which is available for at least 1 hour after the last posting\.

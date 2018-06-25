@@ -25,7 +25,8 @@ Standard Amazon CloudWatch usage charges for custom metrics apply to your use of
 ### Supported Systems<a name="mon-scripts-systems"></a>
 
 These monitoring scripts are intended for use with Amazon EC2 instances running Linux\. The scripts have been tested on instances using the following Amazon Machine Images \(AMIs\), both 32\-bit and 64\-bit versions:
-+ Amazon Linux 2014\.09\.2
++ Amazon Linux 2
++ Amazon Linux AMI 2014\.09\.2 and later
 + Red Hat Enterprise Linux 7\.4 and 6\.9
 + SUSE Linux Enterprise Server 12
 + Ubuntu Server 16\.04 and 14\.04
@@ -54,9 +55,7 @@ The package for the monitoring scripts contains the following files:
 
 With some versions of Linux, you must install additional modules before the monitoring scripts will work\.
 
-#### Amazon Linux AMI<a name="mon-scripts-alami"></a>
-
-If you are running Amazon Linux AMI version 2014\.03 or later, you must install additional Perl modules\.
+#### Amazon Linux 2 and Amazon Linux AMI<a name="mon-scripts-alami"></a>
 
 **To install the required packages**
 
@@ -65,10 +64,8 @@ If you are running Amazon Linux AMI version 2014\.03 or later, you must install 
 1. At a command prompt, install packages as follows:
 
    ```
-   sudo yum install perl-Switch perl-DateTime perl-Sys-Syslog perl-LWP-Protocol-https -y
+   sudo yum install -y perl-Switch perl-DateTime perl-Sys-Syslog perl-LWP-Protocol-https perl-Digest-SHA.x86_64
    ```
-**Note**  
-If you are running Amazon Linux 2, you may also need to install `perl-Digest-SHA.x86_64`\.
 
 #### Red Hat Enterprise Linux<a name="mon-scripts-redhat"></a>
 
@@ -163,8 +160,8 @@ The following steps show you how to download, uncompress, and configure the Clou
 1. Run the following commands to install the monitoring scripts you downloaded:
 
    ```
-   unzip CloudWatchMonitoringScripts-1.2.2.zip
-   rm CloudWatchMonitoringScripts-1.2.2.zip
+   unzip CloudWatchMonitoringScripts-1.2.2.zip && \
+   rm CloudWatchMonitoringScripts-1.2.2.zip && \
    cd aws-scripts-mon
    ```
 
@@ -180,7 +177,7 @@ The following steps show you how to download, uncompress, and configure the Clou
      cp awscreds.template awscreds.conf
      ```
 
-     Add the following content to this file:
+     Add the following content to the `awscreds.conf` file:
 
      ```
      AWSAccessKeyId=my-access-key-id

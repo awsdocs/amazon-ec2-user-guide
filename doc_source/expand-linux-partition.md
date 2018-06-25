@@ -375,8 +375,8 @@ If the partition to expand is the root partition, be sure to follow the steps in
 
    ```
    Expert command (? for help): g
-   Enter the disk's unique GUID ('R' to randomize): 947F4655-F3BF-4A1F-8203-A7B30C2A4425
-   The new disk GUID is 947F4655-F3BF-4A1F-8203-A7B30C2A4425
+   Enter the disk's unique GUID ('R' to randomize): 947F4655-F3BF-4A1F-8203-000000000000
+   The new disk GUID is 947F4655-F3BF-4A1F-8203-000000000000
    ```
 
 1. Use the w command to write the changes to the device and exit\.

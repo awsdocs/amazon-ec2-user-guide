@@ -5,13 +5,13 @@ C\-states control the sleep levels that a core can enter when it is idle\. C\-st
 The following instance types provide the ability for an operating system to control processor C\-states and P\-states:
 + General purpose: `m4.10xlarge` \| `m4.16xlarge`
 + Compute optimized: `c4.8xlarge`
-+ Storage optimized: `d2.8xlarge` \| `i3.8xlarge` \| `i3.16xlarge` \| `h1.8xlarge` \| `h1.16xlarge`
++ Storage optimized: `d2.8xlarge` \| `i3.8xlarge` \| `i3.16xlarge` \| `i3.metal` \| `h1.8xlarge` \| `h1.16xlarge`
 + Accelerated computing: `f1.16xlarge` \| `g3.16xlarge` \| `p2.16xlarge` \| `p3.16xlarge`
 + Memory optimized: `r4.8xlarge` \| `r4.16xlarge` \| `x1.16xlarge` \| `x1.32xlarge` \| `x1e.8xlarge` \| `x1e.16xlarge` \| `x1e.32xlarge`
 
 The following instance types provide the ability for an operating system to control processor C\-states:
-+ General purpose: `m5.12xlarge` \| `m5.24xlarge`
-+ Compute optimized: `c5.9xlarge` \| `c5.18xlarge`
++ General purpose: `m5.12xlarge` \| `m5.24xlarge` \| `m5d.12xlarge` \| `m5d.24xlarge`
++ Compute optimized: `c5.9xlarge` \| `c5.18xlarge` \| `c5d.9xlarge` \| `c5d.18xlarge`
 
 You might want to change the C\-state or P\-state settings to increase processor performance consistency, reduce latency, or tune your instance for a specific workload\. The default C\-state and P\-state settings provide maximum performance, which is optimal for most workloads\. However, if your application would benefit from reduced latency at the cost of higher single\- or dual\-core frequencies, or from consistent performance at lower frequencies as opposed to bursty Turbo Boost frequencies, consider experimenting with the C\-state or P\-state settings that are available to these instances\.
 
@@ -86,7 +86,36 @@ C\-states control the sleep levels that a core may enter when it is inactive\. Y
 
 A common scenario for disabling deeper sleep states is a Redis database application, which stores the database in system memory for the fastest possible query response time\.
 
-**To limit deeper sleep states on Amazon Linux**
+**To limit deeper sleep states on Amazon Linux 2**
+
+1. Open the `/etc/default/grub` file with your editor of choice\.
+
+   ```
+   [ec2-user ~]$ sudo vim /etc/default/grub
+   ```
+
+1. Edit the `GRUB_CMDLINE_LINUX_DEFAULT` line and add the `intel_idle.max_cstate=1` option to set `C1` as the deepest C\-state for idle cores\.
+
+   ```
+   GRUB_CMDLINE_LINUX_DEFAULT="console=tty0 console=ttyS0,115200n8 net.ifnames=0 biosdevname=0 nvme_core.io_timeout=4294967295 intel_idle.max_cstate=1"
+   GRUB_TIMEOUT=0
+   ```
+
+1. Save the file and exit your editor\.
+
+1.  Run the following command to rebuild the boot configuration\.
+
+   ```
+   [ec2-user ~]$ grub2-mkconfig -o /boot/grub2/grub.cfg
+   ```
+
+1. Reboot your instance to enable the new kernel option\.
+
+   ```
+   [ec2-user ~]$ sudo reboot
+   ```
+
+**To limit deeper sleep states on Amazon Linux AMI**
 
 1. Open the `/boot/grub/grub.conf` file with your editor of choice\.
 
@@ -146,7 +175,48 @@ Intel Advanced Vector Extensions \(AVX or AVX2\) workloads can perform well at l
 
 This section describes how to limit deeper sleep states and disable Turbo Boost \(by requesting the `P1` P\-state\) to provide low\-latency and the lowest processor speed variability for these types of workloads\.
 
-**To limit deeper sleep states and disable Turbo Boost on Amazon Linux**
+**To limit deeper sleep states and disable Turbo Boost on Amazon Linux 2**
+
+1. Open the `/etc/default/grub` file with your editor of choice\.
+
+   ```
+   [ec2-user ~]$ sudo vim /etc/default/grub
+   ```
+
+1. Edit the `GRUB_CMDLINE_LINUX_DEFAULT` line and add the `intel_idle.max_cstate=1` option to set `C1` as the deepest C\-state for idle cores\.
+
+   ```
+   GRUB_CMDLINE_LINUX_DEFAULT="console=tty0 console=ttyS0,115200n8 net.ifnames=0 biosdevname=0 nvme_core.io_timeout=4294967295 intel_idle.max_cstate=1"
+   GRUB_TIMEOUT=0
+   ```
+
+1. Save the file and exit your editor\.
+
+1.  Run the following command to rebuild the boot configuration\.
+
+   ```
+   [ec2-user ~]$ grub2-mkconfig -o /boot/grub2/grub.cfg
+   ```
+
+1. Reboot your instance to enable the new kernel option\.
+
+   ```
+   [ec2-user ~]$ sudo reboot
+   ```
+
+1. When you need the low processor speed variability that the `P1` P\-state provides, execute the following command to disable Turbo Boost\.
+
+   ```
+   [ec2-user ~]$ sudo sh -c "echo 1 > /sys/devices/system/cpu/intel_pstate/no_turbo"
+   ```
+
+1. When your workload is finished, you can re\-enable Turbo Boost with the following command\.
+
+   ```
+   [ec2-user ~]$ sudo sh -c "echo 0 > /sys/devices/system/cpu/intel_pstate/no_turbo"
+   ```
+
+**To limit deeper sleep states and disable Turbo Boost on Amazon Linux AMI**
 
 1. Open the `/boot/grub/grub.conf` file with your editor of choice\.
 

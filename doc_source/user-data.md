@@ -6,11 +6,11 @@ If you are interested in more complex automation scenarios, consider using AWS C
 
 For information about running commands on your Windows instance at launch, see [Running Commands on Your Windows Instance at Launch](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-windows-user-data.html) and [Managing Windows Instance Configuration](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-configuration-manage.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
-In the following examples, the commands from the [Installing a LAMP Web Server tutorial](install-LAMP.md) are converted to a shell script and a set of cloud\-init directives that executes when the instance launches\. In each example, the following tasks are executed by the user data:
+In the following examples, the commands from the [Install a LAMP Web Server on Amazon Linux 2](ec2-lamp-amazon-linux-2.md) are converted to a shell script and a set of cloud\-init directives that executes when the instance launches\. In each example, the following tasks are executed by the user data:
 + The distribution software packages are updated\.
-+ The necessary web server, `php`, and `mysql` packages are installed\.
-+ The `httpd` service is started and turned on via chkconfig\.
-+ The www group is added, and `ec2-user` is added to that group\.
++ The necessary web server, `php`, and `mariadb` packages are installed\.
++ The `httpd` service is started and turned on via systemctl\.
++ The `ec2-user` is added to the apache group\.
 + The appropriate ownership and file permissions are set for the web directory and the files contained within it\.
 + A simple web page is created to test the web server and PHP engine\.
 
@@ -27,7 +27,7 @@ By default, user data and cloud\-init directives only run during the first boot 
 
 The following examples assume that your instance has a public DNS name that is reachable from the Internet\. For more information, see [Step 1: Launch an Instance](EC2_GetStarted.md#ec2-launch-instance)\. You must also configure your security group to allow SSH \(port 22\), HTTP \(port 80\), and HTTPS \(port 443\) connections\. For more information about these prerequisites, see [Setting Up with Amazon EC2](get-set-up-for-amazon-ec2.md)\.
 
-Also, these instructions are intended for use with Amazon Linux, and the commands and directives may not work for other Linux distributions\. For more information about other distributions, such as their support for cloud\-init, see their specific documentation\.
+Also, these instructions are intended for use with Amazon Linux 2, and the commands and directives may not work for other Linux distributions\. For more information about other distributions, such as their support for cloud\-init, see their specific documentation\.
 
 ## User Data and Shell Scripts<a name="user-data-shell-scripts"></a>
 
@@ -55,15 +55,15 @@ In the example script below, the script creates and configures our web server\.
 ```
 #!/bin/bash
 yum update -y
-yum install -y httpd24 php56 mysql55-server php56-mysqlnd
-service httpd start
-chkconfig httpd on
-groupadd www
-usermod -a -G www ec2-user
-chown -R root:www /var/www
+amazon-linux-extras install -y lamp-mariadb10.2-php7.2 php7.2
+yum install -y httpd mariadb-server
+systemctl start httpd
+systemctl enable httpd
+usermod -a -G apache ec2-user
+chown -R ec2-user:apache /var/www
 chmod 2775 /var/www
-find /var/www -type d -exec chmod 2775 {} +
-find /var/www -type f -exec chmod 0664 {} +
+find /var/www -type d -exec chmod 2775 {} \;
+find /var/www -type f -exec chmod 0664 {} \;
 echo "<?php phpinfo(); ?>" > /var/www/html/phpinfo.php
 ```
 
@@ -124,7 +124,7 @@ Adding these tasks at boot time adds to the amount of time it takes to boot an i
 
 1. Follow the procedure for launching an instance at [Launching Your Instance from an AMI](launching-instance.md#launch-instance-console), but when you get to [Step 6](launching-instance.md#configure_instance_details_step) in that procedure, enter your cloud\-init directive text in the **User data** field, and then complete the launch procedure\.
 
-   In the example below, the directives create and configure a web server\. The `#cloud-config` line at the top is required in order to identify the commands as cloud\-init directives\.
+   In the example below, the directives create and configure a web server on Amazon Linux 2\. The `#cloud-config` line at the top is required in order to identify the commands as cloud\-init directives\.
 
    ```
    #cloud-config
@@ -132,20 +132,18 @@ Adding these tasks at boot time adds to the amount of time it takes to boot an i
    repo_upgrade: all
    
    packages:
-    - httpd24
-    - php56
-    - mysql55-server
-    - php56-mysqlnd
+    - httpd
+    - mariadb-server
    
    runcmd:
-    - service httpd start
-    - chkconfig httpd on
-    - groupadd www
-    - [ sh, -c, "usermod -a -G www ec2-user" ]
-    - [ sh, -c, "chown -R root:www /var/www" ]
+    - [ sh, -c, "amazon-linux-extras install -y lamp-mariadb10.2-php7.2 php7.2" ]
+    - systemctl start httpd
+    - sudo systemctl enable httpd
+    - [ sh, -c, "usermod -a -G apache ec2-user" ]
+    - [ sh, -c, "chown -R ec2-user:apache /var/www" ]
     - chmod 2775 /var/www
-    - [ find, /var/www, -type, d, -exec, chmod, 2775, {}, + ]
-    - [ find, /var/www, -type, f, -exec, chmod, 0664, {}, + ]
+    - [ find, /var/www, -type, d, -exec, chmod, 2775, {}, \; ]
+    - [ find, /var/www, -type, f, -exec, chmod, 0664, {}, \; ]
     - [ sh, -c, 'echo "<?php phpinfo(); ?>" > /var/www/html/phpinfo.php' ]
    ```
 

@@ -56,6 +56,12 @@ The following is a summary of the hardware specifications for General purpose in
 | m5\.4xlarge | 16 | 64 | 
 | m5\.12xlarge | 48 | 192 | 
 | m5\.24xlarge | 96 | 384 | 
+| m5d\.large | 2 | 8 | 
+| m5d\.xlarge | 4 | 16 | 
+| m5d\.2xlarge | 8 | 32 | 
+| m5d\.4xlarge | 16 | 64 | 
+| m5d\.12xlarge | 48 | 192 | 
+| m5d\.24xlarge | 96 | 384 | 
 
 For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
@@ -63,9 +69,9 @@ For more information about specifying CPU options, see [Optimizing CPU Options](
 
 ## Instance Performance<a name="general-purpose-performance"></a>
 
-EBS\-optimized instances enable you to get consistently high performance for your EBS volumes by eliminating contention between Amazon EBS I/O and other network traffic from your instance\. M4 and M5 instances are EBS\-optimized by default at no additional cost\. For more information, see [Amazon EBS–Optimized Instances](EBSOptimized.md)\.
+EBS\-optimized instances enable you to get consistently high performance for your EBS volumes by eliminating contention between Amazon EBS I/O and other network traffic from your instance\. M4, M5, and M5d instances are EBS\-optimized by default at no additional cost\. For more information, see [Amazon EBS–Optimized Instances](EBSOptimized.md)\.
 
-The `m4.10xlarge` and `m4.16xlarge` instance types provide the ability to control processor C\-states and P\-states on Linux\. The `m5.12xlarge` and `m5.24xlarge` instance types provide the ability to control processor C\-states\. C\-states control the sleep levels that a core can enter when it is inactive, while P\-states control the desired performance \(in CPU frequency\) from a core\. For more information, see [Processor State Control for Your EC2 Instance](processor_state_control.md)\.
+The `m4.10xlarge` and `m4.16xlarge` instance types provide the ability to control processor C\-states and P\-states on Linux\. The `m5.12xlarge`, `m5.24xlarge`, `m5d.12xlarge`, and `m5d.24xlarge` instance types provide the ability to control processor C\-states\. C\-states control the sleep levels that a core can enter when it is inactive, while P\-states control the desired performance \(in CPU frequency\) from a core\. For more information, see [Processor State Control for Your EC2 Instance](processor_state_control.md)\.
 
 ## Network Performance<a name="general-purpose-network-performance"></a>
 
@@ -84,9 +90,9 @@ The following is a summary of network performance for General purpose instances 
 |  `m4.xlarge`, `m4.2xlarge`, `m4.4xlarge`  |  High  |  [Intel 82599 VF](sriov-networking.md)  | 
 |  `m4.10xlarge`  |  10 Gbps  |  [Intel 82599 VF](sriov-networking.md)  | 
 |  `m4.16xlarge`  |  25 Gbps  |  [ENA](enhanced-networking-ena.md)  | 
-|  `m5.large`, `m5.xlarge`, `m5.2xlarge`, `m5.4xlarge`  |  Up to 10 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  `m5.12xlarge`  |  10 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  `m5.24xlarge`  |  25 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `m5.large`, `m5.xlarge`, `m5.2xlarge`, `m5.4xlarge`, `m5d.large`, `m5d.xlarge`, `m5d.2xlarge`, `m5d.4xlarge`  |  Up to 10 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `m5.12xlarge`, `m5d.12xlarge`  |  10 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `m5.24xlarge`, `m5d.24xlarge`  |  25 Gbps  | [ENA](enhanced-networking-ena.md) | 
 
 ## Instance Features<a name="general-purpose-features"></a>
 
@@ -98,6 +104,7 @@ The following is a summary of features for General purpose instances:
 |  T2  |  Yes  |  Yes  |   | 
 |  M4  |  Yes  |  Yes  |  Yes  | 
 |  M5  |  Yes  |  Yes  |  Yes  | 
+|  M5d  |  Yes  |  |  Yes  | 
 
 For more information, see the following:
 + [Instance Types Available Only in a VPC](using-vpc.md#vpc-only-instance-types)
@@ -107,20 +114,21 @@ For more information, see the following:
 + [Enhanced Networking on Linux](enhanced-networking.md)
 
 ## Release Notes<a name="general-purpose-instances-limits"></a>
-+ M4, M5, and `t2.large` and larger T2 instance types require 64\-bit HVM AMIs\. They have high\-memory, and require a 64\-bit operating system to take advantage of that capacity\. HVM AMIs provide superior performance in comparison to paravirtual \(PV\) AMIs on high\-memory instance types\. In addition, you must use an HVM AMI to take advantage of enhanced networking\.
-+ M5 instances have the following requirements: 
++ M4, M5, M5d, and `t2.large` and larger T2 instance types require 64\-bit HVM AMIs\. They have high\-memory, and require a 64\-bit operating system to take advantage of that capacity\. HVM AMIs provide superior performance in comparison to paravirtual \(PV\) AMIs on high\-memory instance types\. In addition, you must use an HVM AMI to take advantage of enhanced networking\.
++ M5 and M5d instances have the following requirements:
   + Must have the NVMe drivers installed\. EBS volumes are exposed as [NVMe block devices](nvme-ebs-volumes.md)\.
   + Must have the Elastic Network Adapter \([ENA](enhanced-networking-ena.md)\) drivers installed\.
 
   The following AMIs meet these requirements:
-  + Amazon Linux 2014\.03 or later
+  + Amazon Linux 2
+  + Amazon Linux AMI 2014\.03 or later
   + Ubuntu 14\.04 or later
   + SUSE Linux Enterprise Server 12 or later
   + Red Hat Enterprise Linux 7\.4 or later
   + CentOS 7 or later
   + FreeBSD 11\.1\-RELEASE
   + Windows Server 2008 R2 or later
-+ M5 instances support a maximum of 27 EBS volumes plus elastic network interface attachments\. For example, `m5.2xlarge` instances support four network interfaces\. Every instance has at least one network interface\. If you have a `m5.2xlarge` instance with three additional elastic network interface attachments, you can attach 24 EBS volumes to that instance\.
-+ M5 instances should have acpid installed to support clean shutdown through API requests\.
-+ ClassicLink is not supported for M5 instances—you cannot use ClassicLink to link your EC2\-Classic instances to M5 instances in your VPC\.
++ M5 and M5d instances support a maximum of 27 EBS volumes plus elastic network interface attachments\. For example, `m5.2xlarge` instances support four network interfaces\. Every instance has at least one network interface\. If you have a `m5.2xlarge` instance with three additional elastic network interface attachments, you can attach 24 EBS volumes to that instance\.
++ M5 and M5d instances should have acpid installed to support clean shutdown through API requests\.
++ ClassicLink is not supported for M5 and M5d instances—you cannot use ClassicLink to link your EC2\-Classic instances to these instances in your VPC\.
 + There is a limit on the total number of instances that you can launch in a region, and there are additional limits on some instance types\. For more information, see [How many instances can I run in Amazon EC2?](https://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2)\. To request a limit increase, use the [Amazon EC2 Instance Request Form](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-instances)\.

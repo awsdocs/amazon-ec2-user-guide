@@ -21,7 +21,7 @@ The Chrome browser does not support the NPAPI plugin, and therefore cannot run t
 
   Get the fully qualified path to the location on your computer of the `.pem` file for the key pair that you specified when you launched the instance\.
 + **Get the default user name for the AMI that you used to launch your instance**
-  + For an Amazon Linux AMI, the user name is `ec2-user`\.
+  + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
   + For a Centos AMI, the user name is `centos`\.
   + For a Debian AMI, the user name is `admin` or `root`\.
   + For a Fedora AMI, the user name is `ec2-user` or `fedora`\.
@@ -46,7 +46,7 @@ The Chrome browser does not support the NPAPI plugin, and therefore cannot run t
 1. Amazon EC2 automatically detects the public DNS name of your instance and then populates **Public DNS** for you\. It also detects the name of the key pair that you specified when you launched the instance\. Complete the following, and then choose **Launch SSH Client**\.
 
    1. In **User name**, enter the user name to log in to your instance\.
-      + For an Amazon Linux AMI, the user name is `ec2-user`\.
+      + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
       + For a Centos AMI, the user name is `centos`\.
       + For a Debian AMI, the user name is `admin` or `root`\.
       + For a Fedora AMI, the user name is `ec2-user` or `fedora`\.

@@ -126,7 +126,7 @@ To connect to your instance using an IPv6 address, check the following:
 **Note**  
 In PuTTYgen, load your private key file and select **Save Private Key** rather than **Generate**\. 
 + Verify that you are connecting with the appropriate user name for your AMI\. Enter the user name in the **Host name** box in the **PuTTY Configuration** window\.
-  + For an Amazon Linux AMI, the user name is `ec2-user`\.
+  + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
   + For a Centos AMI, the user name is `centos`\.
   + For a Debian AMI, the user name is `admin` or `root`\.
   + For a Fedora AMI, the user name is `ec2-user` or `fedora`\.
@@ -141,7 +141,7 @@ In PuTTYgen, load your private key file and select **Save Private Key** rather t
 If you connect to your instance using SSH and get any of the following errors, `Host key not found in [directory]`, `Permission denied (publickey)`, or `Authentication failed, permission denied`, verify that you are connecting with the appropriate user name for your AMI *and* that you have specified the proper private key \(`.pem)` file for your instance\. For MindTerm clients, enter the user name in the **User name** box in the **Connect To Your Instance** window\.
 
 The appropriate user names are as follows:
-+ For an Amazon Linux AMI, the user name is `ec2-user`\.
++ For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
 + For a Centos AMI, the user name is `centos`\.
 + For a Debian AMI, the user name is `admin` or `root`\.
 + For a Fedora AMI, the user name is `ec2-user` or `fedora`\.
@@ -150,7 +150,7 @@ The appropriate user names are as follows:
 + For an Ubuntu AMI, the user name is `ubuntu`\.
 + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
 
-For example, to use an SSH client to connect to an instance launched from an Amazon Linux AMI, use the following command:
+For example, to use an SSH client to connect to an Amazon Linux instance, use the following command:
 
 ```
 ssh -i /path/my-key-pair.pem ec2-user@public-dns-hostname
@@ -220,7 +220,7 @@ If you see a similar message when you try to log in to your instance, examine th
 If you use PuTTY to connect to your instance and get either of the following errors, `Error: Server refused our key` or `Error: No supported authentication methods available`, verify that you are connecting with the appropriate user name for your AMI\. Enter the user name in the **User name** box in the **PuTTY Configuration** window\.
 
 The appropriate user names are as follows:
-+ For an Amazon Linux AMI, the user name is `ec2-user`\.
++ For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
 + For a Centos AMI, the user name is `centos`\.
 + For a Debian AMI, the user name is `admin` or `root`\.
 + For a Fedora AMI, the user name is `ec2-user` or `fedora`\.

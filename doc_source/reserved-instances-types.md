@@ -5,8 +5,6 @@ When you purchase a Reserved Instance, you can choose between a Standard or Conv
 The following are the differences between Standard and Convertible offering classes\.
 
 
-****  
-
 | Standard Reserved Instance | Convertible Reserved Instance | 
 | --- | --- | 
 | Some attributes, such as instance size, can be modified during the term; however, the instance type cannot be modified\. You cannot exchange a Standard Reserved Instance, only modify it\. For more information, see [Modifying Reserved Instances](ri-modifying.md)\. | Can be exchanged during the term for another Convertible Reserved Instance with new attributes including instance family, instance type, platform, scope, or tenancy\. For more information, see [Exchanging Convertible Reserved Instances](ri-convertible-exchange.md)\. You can also modify some attributes of a Convertible Reserved Instance\. For more information, see [Modifying Reserved Instances](ri-modifying.md)\. | 

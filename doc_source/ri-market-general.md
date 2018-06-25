@@ -95,7 +95,7 @@ When you sell in the Reserved Instance Marketplace, AWS shares your company’s 
 
 For similar reasons, the buyer's ZIP code and country information are provided to the seller in the disbursement report\. As a seller, you might need this information to accompany any necessary transaction taxes that you remit to the government \(such as sales tax and value\-added tax\)\.
 
-AWS cannot offer tax advice, but if your tax specialist determines that you need specific additional information, [contact AWS Support](https://aws.amazon.com//contact-us/)\.
+AWS cannot offer tax advice, but if your tax specialist determines that you need specific additional information, [contact AWS Support](https://aws.amazon.com/contact-us/)\.
 
 #### Getting Paid<a name="ri-market-sold-gettingpaid"></a>
 
@@ -238,4 +238,4 @@ Basic information about you is shared with the seller, for example, your ZIP cod
 
 This information enables sellers to calculate any necessary transaction taxes that they have to remit to the government \(such as sales tax or value\-added tax\) and is provided as a disbursement report\. In rare circumstances, AWS might have to provide the seller with your email address, so that they can contact you regarding questions related to the sale \(for example, tax questions\)\.
 
-For similar reasons, AWS shares the legal entity name of the seller on the buyer's purchase invoice\. If you need additional information about the seller for tax or related reasons, contact [AWS Support](https://aws.amazon.com//contact-us/)\.
+For similar reasons, AWS shares the legal entity name of the seller on the buyer's purchase invoice\. If you need additional information about the seller for tax or related reasons, contact [AWS Support](https://aws.amazon.com/contact-us/)\.

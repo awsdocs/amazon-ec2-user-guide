@@ -49,7 +49,7 @@ First, you need to get set up to use Amazon EC2\. After you are set up, you are 
 
 **Working with Linux Instances**
 + [Remote Management \(Run Command\)](http://docs.aws.amazon.com/systems-manager/latest/userguide/execute-remote-commands.html)
-+ [Tutorial: Install a LAMP Web Server with the Amazon Linux AMI](install-LAMP.md)
++ [Tutorial: Install a LAMP Web Server on Amazon Linux 2](ec2-lamp-amazon-linux-2.md)
 + [Tutorial: Configure Apache Web Server on Amazon Linux 2 to Use SSL/TLS](SSL-on-an-instance.md)
 + [Getting Started with AWS: Hosting a Web App for Linux](http://docs.aws.amazon.com/gettingstarted/latest/wah-linux/)
 

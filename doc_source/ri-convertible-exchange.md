@@ -37,7 +37,7 @@ If the total value \(hourly price \* number of remaining hours\) of the new Conv
 
 ## Calculating Convertible Reserved Instances Exchanges<a name="riconvertible-exchange-cost"></a>
 
-Exchanging Convertible Reserved Instances is free\. However, you may be required to pay a true\-up cost, which is a prorated upfront cost of the difference between the Convertible Reserved Instances that you had and the Convertible Reserved Instances that you receive from the exchange\. 
+Exchanging Convertible Reserved Instances is free\. However, you may be required to pay a true\-up cost, which is a prorated upfront cost of the difference between the Convertible Reserved Instances that you had and the Convertible Reserved Instances that you receive from the exchange\.
 
 Each Convertible Reserved Instance has a list value\. This list value is compared to the list value of the Convertible Reserved Instances that you want in order to determine how many instance reservations you can receive from the exchange\.
 
@@ -87,7 +87,7 @@ In this example, you have a `t2.micro` Convertible Reserved Instance with four i
 
 1. Modify the `t2.micro` Convertible Reserved Instance by splitting it into two `t2.micro` Convertible Reserved Instances with two instances each\.
 
-1. Exchange one of the new `t2.micro` Convertible Reserved Instances for an `m4.xlarge` Convertible Reserved Instance\. 
+1. Exchange one of the new `t2.micro` Convertible Reserved Instances for an `m4.xlarge` Convertible Reserved Instance\.
 
 ![\[Modifying and exchange Reserved Instances\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ri-split-cri-multiple.png)
 
