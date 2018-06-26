@@ -28,7 +28,7 @@ You can apply resource\-level permissions to your IAM policies to control the us
 
 ## Instance Profiles<a name="ec2-instance-profile"></a>
 
-Amazon EC2 uses an *instance profile* as a container for an IAM role\. When you create an IAM role using the IAM console, the console creates an instance profile automatically and gives it the same name as the role to which it corresponds\. If you use the Amazon EC2 console to launch an instance with an IAM role or to attach an IAM role to an instance, you choose the instance based on a list of instance profile names\. 
+Amazon EC2 uses an *instance profile* as a container for an IAM role\. When you create an IAM role using the IAM console, the console creates an instance profile automatically and gives it the same name as the role to which it corresponds\. If you use the Amazon EC2 console to launch an instance with an IAM role or to attach an IAM role to an instance, you choose the role based on a list of instance profile names\. 
 
 If you use the AWS CLI, API, or an AWS SDK to create a role, you create the role and instance profile as separate actions, with potentially different names\. If you then use the AWS CLI, API, or an AWS SDK to launch an instance with an IAM role or to attach an IAM role to an instance, specify the instance profile name\. 
 
