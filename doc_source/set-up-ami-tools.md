@@ -72,9 +72,6 @@ If you receive a load error such as "cannot load such file \-\- ec2/amitools/ver
       [ec2-user ~]$ ec2-ami-tools-version
       ```
 
-**To set up the AMI tools on Ubuntu**  
-For more information, see [How to install ec2\-ami\-tools on Ubuntu 16\.04](https://www.howtoinstall.co/en/ubuntu/xenial/ec2-ami-tools)\.
-
 **To set up the AMI tools using the \.zip file**
 
 1. Install Ruby and unzip using the package manager for your Linux distribution, such as apt\-get\. For example:

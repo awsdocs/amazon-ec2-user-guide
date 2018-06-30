@@ -38,7 +38,7 @@ For more information, see [Encrypt a Snapshot Under a New CMK](http://docs.aws.a
 
 ## Encrypted Snapshots<a name="ebs-encrypt-snapshot-copy"></a>
 
-When you copy a snapshot, you can choose to encrypt the copy \(if the original snapshot was not encrypted\) or you can specify a CMK different from the original one, and the resulting copied snapshot uses the new CMK\. However, changing the encryption status of a snapshot or using a non\-default EBS CMK during a copy operation always results in a full \(not incremental\) copy, which may incur greater data transfer and storage charges\. 
+When you copy a snapshot, you can choose to encrypt the copy \(if the original snapshot was not encrypted\) or you can specify a CMK different from the original one, and the resulting copied snapshot uses the new CMK\. However, changing the encryption status of a snapshot during a copy operation results in a full \(not incremental\) copy, which might incur greater data transfer and storage charges\. 
 
 To copy an encrypted snapshot from another account, you must have permissions to use the snapshot and you must have permissions to use the customer master key \(CMK\) that was used to encrypt the original snapshot\. For more information, see [Sharing an Amazon EBS Snapshot](ebs-modifying-snapshot-permissions.md)\.
 

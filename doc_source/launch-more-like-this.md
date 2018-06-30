@@ -36,3 +36,5 @@ The following configuration details are not copied from your selected instance; 
 1. The launch wizard opens on the **Review Instance Launch** page\. You can check the details of your instance, and make any necessary changes by clicking the appropriate **Edit** link\. 
 
    When you are ready, choose **Launch** to select a key pair and launch your instance\.
+
+1. If the instance fails to launch or the state immediately goes to `terminated` instead of `running`, see [Troubleshooting Instance Launch Issues](troubleshooting-launch.md)\.

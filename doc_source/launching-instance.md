@@ -137,4 +137,4 @@ If you choose the **Proceed without key pair** option, you won't be able to conn
 
 1. \(Optional\) You can create a status check alarm for the instance \(additional fees may apply\)\. \(If you're not sure, you can always add one later\.\) On the confirmation screen, choose **Create status check alarms** and follow the directions\. For more information, see [Creating and Editing Status Check Alarms](monitoring-system-instance-status-check.md#creating_status_check_alarms)\.
 
-1. If the instance state immediately goes to `terminated` instead of `running`, you can get information about why the instance didn't launch\. For more information, see [What to Do If an Instance Immediately Terminates](Using_InstanceStraightToTerminated.md)\.
+1. If the instance fails to launch or the state immediately goes to `terminated` instead of `running`, see [Troubleshooting Instance Launch Issues](troubleshooting-launch.md)\.

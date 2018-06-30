@@ -317,6 +317,8 @@ Instances that are launched using a launch template are automatically assigned t
   aws ec2 run-instances --launch-template LaunchTemplateId=lt-0abcd290751193123 --block-device-mappings "DeviceName=/dev/xvdb,Ebs={VolumeSize=20,VolumeType=gp2}"
   ```
 
+If the instance fails to launch or the state immediately goes to `terminated` instead of `running`, see [Troubleshooting Instance Launch Issues](troubleshooting-launch.md)\.
+
 ## Using Launch Templates with Amazon EC2 Auto Scaling<a name="launch-templates-as"></a>
 
 You can create an Auto Scaling group and specify a launch template to use for the group\. When Amazon EC2 Auto Scaling launches instances in the Auto Scaling group, it uses the launch parameters defined in the associated launch template\.

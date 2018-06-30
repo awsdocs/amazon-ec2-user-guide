@@ -17,7 +17,7 @@ There is no charge for creating a placement group\.
 
 ## Cluster Placement Groups<a name="placement-groups-cluster"></a>
 
-A cluster placement group is a logical grouping of instances within a single Availability Zone\. Placement groups are recommended for applications that benefit from low network latency, high network throughput, or both\. To provide the lowest latency, and the highest packet\-per\-second network performance for your placement group, choose an instance type that supports enhanced networking\. For more information, see [Enhanced Networking](enhanced-networking.md)\.
+A cluster placement group is a logical grouping of instances within a single Availability Zone\. Placement groups are recommended for applications that benefit from low network latency, high network throughput, or both, and if the majority of the network traffic is between the instances in the group\. To provide the lowest latency and the highest packet\-per\-second network performance for your placement group, choose an instance type that supports enhanced networking\. For more information, see [Enhanced Networking](enhanced-networking.md)\.
 
 We recommend that you launch the number of instances that you need in the placement group in a single launch request and that you use the same instance type for all instances in the placement group\. If you try to add more instances to the placement group later, or if you try to launch more than one instance type in the placement group, you increase your chances of getting an insufficient capacity error\.
 
