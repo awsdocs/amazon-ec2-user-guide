@@ -189,7 +189,7 @@ To create an EC2 Fleet, you need only specify the launch template, target capaci
           "DefaultTargetCapacityType": "spot"
       }, 
       "TerminateInstancesWithExpiration": true, 
-      "Type": "request", 
+      "Type": "maintain", 
       "ValidFrom": "1970-01-01T00:00:00", 
       "ValidUntil": "1970-01-01T00:00:00", 
       "ReplaceUnhealthyInstances": true, 
@@ -419,7 +419,7 @@ aws ec2 describe-fleet-history --fleet-request-id fleet-73fbd2ce-aa30-494c-8788-
 You can modify an EC2 Fleet that is in the `submitted` or `active` state\. When you modify a fleet, it enters the `modifying` state\.
 
 You can modify the following parameters of an EC2 Fleet:
-+ `target-capacity` – Increase or decrease the target capacity\.
++ `target-capacity-specification` – Increase or decrease the target capacity for `TotalTargetCapacity`, `OnDemandTargetCapacity`, and `SpotTargetCapacity`\.
 + `excess-capacity-termination-policy` – Whether running instances should be terminated if the total target capacity of the EC2 Fleet is decreased below the current size of the fleet\. Valid values are `no-termination` and `termination`\.
 
 **Note**  
@@ -437,13 +437,13 @@ When an EC2 Fleet terminates a Spot Instance because the target capacity was dec
 Use the following [modify\-fleet](http://docs.aws.amazon.com/cli/latest/reference/ec2/modify-spot-fleet-request.html) command to update the target capacity of the specified EC2 Fleet:
 
 ```
-aws ec2 modify-fleet --fleet-id fleet-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE --target-capacity 20
+aws ec2 modify-fleet --fleet-id fleet-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE --target-capacity-specification TotalTargetCapacity=20
 ```
 
 If you are decreasing the target capacity but want to keep the fleet at its current size, you can modify the previous command as follows:
 
 ```
-aws ec2 modify-fleet --fleet-id fleet-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE --target-capacity 10 --excess-capacity-termination-policy no-termination
+aws ec2 modify-fleet --fleet-id fleet-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE --target-capacity-specification TotalTargetCapacity=10 --excess-capacity-termination-policy no-termination
 ```
 
 ## Deleting an EC2 Fleet<a name="delete-fleet"></a>

@@ -20,7 +20,7 @@ The virtual devices for instance store volumes are `ephemeral[0-23]`\. Instance 
 
 You can specify instance store volumes for an instance only when you launch it\. You can't detach an instance store volume from one instance and attach it to a different instance\.
 
-The data in an instance store persists only during the lifetime of its associated instance\. If an instance reboots \(intentionally or unintentionally\), data in the instance store persists\. However, data in the instance store is lost under the following circumstances:
+The data in an instance store persists only during the lifetime of its associated instance\. If an instance reboots \(intentionally or unintentionally\), data in the instance store persists\. However, data in the instance store is lost under any of the following circumstances:
 + The underlying disk drive fails
 + The instance stops
 + The instance terminates

@@ -24,6 +24,7 @@ There are no performance, security, or physical differences between Dedicated In
 | Visibility of sockets, cores, and host ID | Provides visibility of the number of sockets and physical cores | No visibility | 
 | Host and instance affinity | Allows you to consistently deploy your instances to the same physical server over time | Not supported | 
 | Targeted instance placement | Provides additional visibility and control over how instances are placed on a physical server | Not supported | 
+| Automatic instance recovery | Not supported | Supported | 
 | Bring Your Own License \(BYOL\) | Supported | Not supported | 
 
 ## Bring Your Own License<a name="dedicated-hosts-BYOL"></a>
@@ -41,7 +42,7 @@ These are the general steps to follow in order to bring your own volume licensed
 1. When you run these instances, depending on the operating system, you may be required to activate these instances against your own KMS server\.
 
 **Note**  
-To keep track of how your images are used in AWS, enable host recording in AWS Config\. You can use AWS Config to record configuration changes to a Dedicated Host and use the output as a data source for license reporting\. For more information, see [Tracking Configuration Changes](dedicated-hosts-aws-config.md)\. 
+To track how your images are used in AWS, enable host recording in AWS Config\. You can use AWS Config to record configuration changes to a Dedicated Host and use the output as a data source for license reporting\. For more information, see [Tracking Configuration Changes](dedicated-hosts-aws-config.md)\. 
 
 ## Dedicated Host Instance Capacity<a name="dedicated-hosts-configurations"></a>
 
@@ -75,7 +76,7 @@ You can release an On\-Demand Dedicated Host at any time to stop accruing charge
 Dedicated Host Reservations provide a billing discount compared to running On\-Demand Dedicated Hosts\. Reservations are available in three payment options:
 + **No Upfront**—No Upfront Reservations provide you with a discount on your Dedicated Host usage over a term and do not require an upfront payment\. Available for a one\-year term only\.
 + **Partial Upfront**—A portion of the reservation must be paid upfront and the remaining hours in the term are billed at a discounted rate\. Available in one\-year and three\-year terms\.
-+ **All Upfront**—Provides the lowest effective price\. Available in one\-year and three\-year terms and covers the entire cost of the term upfront, with no additional charges going forward\.
++ **All Upfront**—Provides the lowest effective price\. Available in one\-year and three\-year terms and covers the entire cost of the term upfront, with no additional future charges\.
 
 You must have active Dedicated Hosts in your account before you can purchase reservations\. Each reservation covers a single, specific Dedicated Host in your account\. Reservations are applied to the instance family on the host, not the instance size\. If you have three Dedicated Hosts with different instances sizes \(`m4.xlarge`, `m4.medium`, and `m4.large`\) you can associate a single `m4` reservation with all those Dedicated Hosts\. The instance family and region of the reservation must match that of the Dedicated Hosts you want to associate it with\. 
 

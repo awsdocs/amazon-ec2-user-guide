@@ -110,7 +110,7 @@ A default security group is named `default`, and it has an ID assigned by AWS\. 
 + Allows all inbound traffic from other instances associated with the default security group \(the security group specifies itself as a source security group in its inbound rules\)
 + Allows all outbound traffic from the instance\.
 
-You can add or remove the inbound rules for any EC2\-Classic default security group\. You can add or remove outbound rules for any VPC default security group\.
+You can add or remove the inbound rules for any EC2\-Classic default security group\. You can add or remove inbound and outbound rules for any VPC default security group\.
 
 You can't delete a default security group\. If you try to delete the EC2\-Classic default security group, you'll get the following error: `Client.InvalidGroup.Reserved: The security group 'default' is reserved`\. If you try to delete a VPC default security group, you'll get the following error: `Client.CannotDelete: the specified group: "sg-51530134" name: "default" cannot be deleted by a user`\. 
 

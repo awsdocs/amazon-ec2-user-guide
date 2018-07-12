@@ -47,7 +47,7 @@ The following table describes the Amazon EC2 resources that can be tagged, and t
 |  AMI  |  Yes  | No | 
 |  Bundle task  |  No  | No | 
 |  Customer gateway  |  Yes  | No | 
-|  Dedicated Host  |  No  | No | 
+|  Dedicated Host  |  Yes  | No | 
 |  DHCP option  |  Yes  | No | 
 |  EBS snapshot  |  Yes  | Yes | 
 |  EBS volume  |  Yes  | Yes | 

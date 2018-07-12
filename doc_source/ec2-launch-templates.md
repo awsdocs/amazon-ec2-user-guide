@@ -51,9 +51,9 @@ You can create a new launch template using parameters that you define, or you ca
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation pane, choose **Launch Templates**, **Create launch template**\.
+1. In the navigation pane, choose **Launch Templates**\.
 
-1. Provide a name and description for the launch template\.
+1. Choose **Create launch template**\. Provide a name and description for the launch template\.
 
 1. For **Launch template contents**, provide the following information\.
    + **AMI ID**: Specify an AMI ID from which to launch the instance\. You can use an AMI that you own, or you can [find a suitable AMI](finding-an-ami.md)\.
@@ -105,9 +105,9 @@ You can create a new launch template using parameters that you define, or you ca
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation pane, choose **Launch Templates**, **Create launch template**\.
+1. In the navigation pane, choose **Launch Templates**\.
 
-1. Provide a name and description for the launch template\.
+1. Choose **Create launch template**\. Provide a name and description for the launch template\.
 
 1. For **Source template**, choose a launch template on which to base the new launch template\.
 
@@ -139,7 +139,7 @@ You can create a new launch template using parameters that you define, or you ca
 + Use the [get\-launch\-template\-data](http://docs.aws.amazon.com/cli/latest/reference/ec2/get-launch-template-data.html) \(AWS CLI\) command and specify the instance ID\. You can use the output as a base to create a new launch template or launch template version\. By default, the output includes a top\-level `LaunchTemplateData` object, which cannot be specified in your launch template data\. Use the `--query` option to exclude this object\.
 
   ```
-  aws ec2 get-launch-template-data --instance-id i-0123d646e8048babc --query 'LaunchTemplateData'
+  aws ec2 get-launch-template-data --instance-id i-0123d646e8048babc --query "LaunchTemplateData"
   ```
 
   ```
@@ -189,7 +189,7 @@ You can create a new launch template using parameters that you define, or you ca
   You can write the output directly to a file, for example:
 
   ```
-  aws ec2 get-launch-template-data --instance-id i-0123d646e8048babc --query 'LaunchTemplateData' >> instance-data.json
+  aws ec2 get-launch-template-data --instance-id i-0123d646e8048babc --query "LaunchTemplateData" >> instance-data.json
   ```
 
 ## Managing Launch Template Versions<a name="manage-launch-template-versions"></a>
@@ -203,26 +203,28 @@ You can create launch template versions for a specific launch template, set the 
 
 ### Creating a Launch Template Version<a name="create-launch-template-version"></a>
 
-When you create a launch template version, you can specify new launch parameters or use an existing version as the base for the new version\.
+When you create a launch template version, you can specify new launch parameters or use an existing version as the base for the new version\. For more information about the launch parameters, see [Creating a Launch Template](#create-launch-template)\.
 
 **To create a launch template version using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation pane, choose **Launch Templates**, and select the launch template\.
+1. In the navigation pane, choose **Launch Templates**\.
 
-1. Choose **Create launch template**, **Create a new template version**\.
+1. Choose **Create launch template**\.
 
-1. Specify a description for the launch template version\.
+1. For **What would you like to do**, choose **Create a new template version**
 
-1. To create a launch template version from an existing version, select the source template and source template version\.
+1. For **Launch template name**, select the name of the existing launch template from the list\.
 
-1. Specify or adjust the launch parameters as required, and choose **Create launch template**\. For more information about launch template parameters, see [Creating a Launch Template](#create-launch-template)\.
+1. For **Template version description**, type a description for the launch template version\.
 
-To view information about launch template versions, select the launch template and choose **Versions** in the details pane\. 
+1. \(Optional\) Select a version of the launch template, or a version of a different launch template, to use as a base for the new launch template version\. The new launch template version inherits the launch parameters from this launch template version\.
+
+1. Modify the launch parameters as required, and choose **Create launch template**\.
 
 **To create a launch template version using the command line**
-+ Use the [create\-launch\-template\-version](http://docs.aws.amazon.com/cli/latest/reference/ec2/create-launch-template-version.html) \(AWS CLI\) command\. You can specify a source version on which to base the new version\. The new version inherits the same launch parameters, except for parameters that you specify in `--launch-template-data`\. The following example creates a new version based on version 1 of the launch template and specifies a different AMI ID\.
++ Use the [create\-launch\-template\-version](http://docs.aws.amazon.com/cli/latest/reference/ec2/create-launch-template-version.html) \(AWS CLI\) command\. You can specify a source version on which to base the new version\. The new version inherits the launch parameters from this version, and you can override parameters using `--launch-template-data`\. The following example creates a new version based on version 1 of the launch template and specifies a different AMI ID\.
 
   ```
   aws ec2 create-launch-template-version --launch-template-id lt-0abcd290751193123 --version-description WebVersion2 --source-version 1 --launch-template-data '{"ImageId":"ami-c998b6b2"}'
@@ -236,9 +238,9 @@ You can set the default version for the launch template\. When you launch an ins
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation pane, choose **Launch Templates** and select the launch template\.
+1. In the navigation pane, choose **Launch Templates**\.
 
-1. Choose **Actions**, **Set default version**\.
+1. Select the launch template and choose **Actions**, **Set default version**\.
 
 1. For **Default version**, select the version number and choose **Set as default version**\.
 
@@ -257,13 +259,11 @@ If you no longer require a launch template version, you can delete it\. You cann
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation pane, choose **Launch Templates** and select the launch template\.
+1. In the navigation pane, choose **Launch Templates**\.
 
-1. Choose **Actions**, **Delete template version**\.
+1. Select the launch template and choose **Actions**, **Delete template version**\.
 
 1. Select the version to delete and choose **Delete launch template version**\.
-**Note**  
-If you've specified the launch template version in an Auto Scaling group or a Spot Fleet request, ensure that you update the Auto Scaling group to use a different version\.
 
 **To delete a launch template version using the command line**
 + Use the [delete\-launch\-template\-versions](http://docs.aws.amazon.com/cli/latest/reference/ec2/delete-launch-template-versions.html) \(AWS CLI\) command and specify the version numbers to delete\.
@@ -282,9 +282,9 @@ Instances that are launched using a launch template are automatically assigned t
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation pane, choose **Launch Templates** and select the launch template\.
+1. In the navigation pane, choose **Launch Templates**\.
 
-1. Choose **Actions**, **Launch instance from template**\.
+1. Select the launch template and choose **Actions**, **Launch instance from template**\.
 
 1. Select the launch template version to use\.
 
@@ -345,9 +345,9 @@ If you no longer require a launch template, you can delete it\. Deleting a launc
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation pane, choose **Launch Templates** and select the launch template\.
+1. In the navigation pane, choose **Launch Templates**\.
 
-1. Choose **Actions**, **Delete template**\.
+1. Select the launch template and choose **Actions**, **Delete template**\.
 
 1. Choose **Delete launch template**\.
 

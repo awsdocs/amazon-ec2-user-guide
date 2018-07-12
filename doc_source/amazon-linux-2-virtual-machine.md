@@ -81,11 +81,11 @@ Be sure to replace the `plain_text_password` placeholder with a plaintext passwo
       # NOTE: Cloud-init applies network settings on every boot by default. To retain network settings from first
       boot, add following ‘write_files’ section:
       write_files:
-      - content: |
-      # Disable network configuration after first boot
-      network:
-        config: disabled
-      path: /etc/cloud/cloud.cfg.d/80_disable_network_after_firstboot.cfg
+        - path: /etc/cloud/cloud.cfg.d/80_disable_network_after_firstboot.cfg
+          content: |
+            # Disable network configuration after first boot
+            network:
+              config: disabled
       ```
 
    For example, the following code block shows the contents of a `user-data` configuration file that creates three additional users, specifies a custom password for the default `ec2-user` user account, and prevents cloud\-init from applying network settings at each boot\.
@@ -103,7 +103,8 @@ Be sure to replace the `plain_text_password` placeholder with a plaintext passwo
        sudo: ['ALL=(ALL) NOPASSWD:ALL']
        plain_text_passwd: myp@ssw0rd
        lock_passwd: false
-   # The following entry creates user2 and attaches a hashed password to the user. Hashed passwords can be generated with:
+   # The following entry creates user2 and attaches a hashed password to the user.
+   # Hashed passwords can be generated with the following command on Amazon Linux 2:
    # python -c 'import crypt,getpass; print(crypt.crypt(getpass.getpass()))'
      - name: user2
        passwd: hashed-password
@@ -121,11 +122,11 @@ Be sure to replace the `plain_text_password` placeholder with a plaintext passwo
    # NOTE: Cloud-init applies network settings on every boot by default. To retain network settings from first
    boot, uncomment the following ‘write_files’ section:
    #write_files:
-     - content: |
-       # Disable network configuration after first boot
-       network:
-         config: disabled
-     path: /etc/cloud/cloud.cfg.d/80_disable_network_after_firstboot.cfg
+     - path: /etc/cloud/cloud.cfg.d/80_disable_network_after_firstboot.cfg
+       content: |
+         # Disable network configuration after first boot
+         network:
+           config: disabled
    ```
 
 1. Place your `meta-data` and `user-data` configuration files in the `seedconfig` folder created in **Step 1**\.
@@ -147,10 +148,10 @@ Be sure to replace the `plain_text_password` placeholder with a plaintext passwo
 ## Step 2: Download the Amazon Linux 2 VM Image<a name="amazon-linux-2-virtual-machine-download"></a>
 
 We offer a different Amazon Linux 2 VM image for each of the supported virtualization platforms\. Download the correct VM image for your chosen platform:
-+ [VMWare](https://cdn.amazonlinux.com/os-images/2017.12.0.20180330/vmware/)
-+ [KVM](https://cdn.amazonlinux.com/os-images/2017.12.0.20180330/kvm/)
-+ [Oracle VirtualBox](https://cdn.amazonlinux.com/os-images/2017.12.0.20180330/virtualbox/)
-+ [Microsoft Hyper\-V](https://cdn.amazonlinux.com/os-images/2017.12.0.20180330/hyperv/)
++ [VMWare](https://cdn.amazonlinux.com/os-images/latest/vmware/)
++ [KVM](https://cdn.amazonlinux.com/os-images/latest/kvm/)
++ [Oracle VirtualBox](https://cdn.amazonlinux.com/os-images/latest/virtualbox/)
++ [Microsoft Hyper\-V](https://cdn.amazonlinux.com/os-images/latest/hyperv/)
 
 ## Step 3: Boot and Connect to Your New VM<a name="amazon-linux-2-virtual-machine-boot"></a>
 

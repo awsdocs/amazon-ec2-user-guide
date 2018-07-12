@@ -11,6 +11,7 @@ If you no longer need an On\-Demand host, you can stop the instances running on 
 + [Modifying Dedicated Host Auto\-Placement](#modify-host-auto-placement)
 + [Modifying Instance Tenancy and Affinity](#moving-instances-dedicated-hosts)
 + [Viewing Dedicated Hosts](#dedicated-hosts-managing)
++ [Tagging Dedicated Hosts](#dedicated-hosts-tagging)
 + [Monitoring Dedicated Hosts](#dedicated-hosts-monitoring)
 + [Releasing Dedicated Hosts](#dedicated-hosts-releasing)
 + [Purchasing Dedicated Host Reservations](#purchasing-dedicated-host-reservations)
@@ -211,7 +212,7 @@ You can change the tenancy of an instance from `dedicated` to `host`, or from `h
 
 **To modify instance tenancy and affinity using the command line tools**
 
-Use one of the following commands\. The following examples change the specified instance's affinity from `default` to `host` and specifies the Dedicated Host that the instance will have affinity with\.
+Use one of the following commands\. The following examples change the specified instance's affinity from `default` to `host` and specifies the Dedicated Host that the instance has affinity with\.
 + [modify\-instance\-placement](http://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-placement.html) \(AWS CLI\)
 
   ```
@@ -251,6 +252,38 @@ Use one of the following commands:
   PS C:\> Get-EC2Host -HostId host_id
   ```
 
+## Tagging Dedicated Hosts<a name="dedicated-hosts-tagging"></a>
+
+You can assign custom tags to your Dedicated Hosts to categorize them in different ways, for example, by purpose, owner, or environment\. This helps you to quickly find a specific Dedicated Host based on the custom tags that you've assigned\. Dedicated Host tags can also be used for cost allocation tracking\.
+
+You can only tag a Dedicated Host using the command line tools\.
+
+**To tag a Dedicated Host using the command line**
+
+Use one of the following commands:
++ [create\-tags](http://docs.aws.amazon.com/cli/latest/reference/ec2/create-tags.html) \(AWS CLI\)
+
+  The following command tags the specified Dedicated Host with `Owner=TeamA`\.
+
+  ```
+  aws ec2 create-tags --resources h-abc12345678909876 --tags Key=Owner,Value=TeamA
+  ```
++ [New\-EC2Tag](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Tag.html) \(AWS Tools for Windows PowerShell\)
+
+  The `New-EC2Tag` command needs a `Tag` object, which specifies the key and value pair to be used for the Dedicated Host tag\. The following commands create a `Tag` object named `$tag` with a key and value pair of `Owner` and `TeamA` respectively:
+
+  ```
+  PS C:\> $tag = New-Object Amazon.EC2.Model.Tag
+  PS C:\> $tag.Key = "Owner"
+  PS C:\> $tag.Value = "TeamA"
+  ```
+
+  The following command tags the specified Dedicated Host with the `$tag` object:
+
+  ```
+  PS C:\> New-EC2Tag -Resource h-abc12345678909876 -Tag $tag
+  ```
+
 ## Monitoring Dedicated Hosts<a name="dedicated-hosts-monitoring"></a>
 
 Amazon EC2 constantly monitors the state of your Dedicated Hosts; updates are communicated on the Amazon EC2 console\. You can also obtain information about your Dedicated Hosts using the command line tools\.
@@ -284,7 +317,7 @@ The following table explains the possible Dedicated Host states\.
 | --- | --- | 
 | available | AWS hasn't detected an issue with the Dedicated Host; no maintenance or repairs are scheduled\. Instances can be launched onto this Dedicated Host\. | 
 | released | The Dedicated Host has been released\. The host ID is no longer in use\. Released hosts cannot be reused\. | 
-| under\-assessment | AWS is exploring a possible issue with the Dedicated Host\. If action needs to be taken, you are notified via the AWS Management Console or email\. Instances cannot be launched onto a Dedicated Host in this state\. | 
+| under\-assessment | AWS is exploring a possible issue with the Dedicated Host\. If action must be taken, you are notified via the AWS Management Console or email\. Instances cannot be launched onto a Dedicated Host in this state\. | 
 | permanent\-failure | An unrecoverable failure has been detected\. You receive an eviction notice through your instances and by email\. Your instances may continue to run\. If you stop or terminate all instances on a Dedicated Host with this state, AWS retires the host\. Instances cannot be launched onto Dedicated Hosts in this state\. | 
 | released\-permanent\-failure | AWS permanently releases Dedicated Hosts that have failed and no longer have running instances on them\. The Dedicated Host ID is no longer available for use\. | 
 

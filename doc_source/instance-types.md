@@ -92,22 +92,33 @@ The following table summarizes the networking and storage features supported by 
 |  C4  |  Yes  |  Yes  |  |  Yes  |  Intel 82599 VF  | 
 |  C5  |  Yes  |  Yes  |  |  Yes  |  ENA  | 
 |  C5d  |  Yes  |  | NVMe \* |  Yes  |  ENA  | 
+|  D2  |  |  |  HDD  |  Yes  |  Intel 82599 VF  | 
 |  F1  |  Yes  |  |  NVMe \*  |  Yes  |  ENA  | 
-|  P2  |  Yes  |  Yes  |  |  Yes  |  ENA  | 
-|  P3  |  Yes  |  Yes  |  |  Yes  |  ENA  | 
 |  G3  | Yes | Yes |  |  Yes  | ENA | 
 |  H1  | Yes |  |  HDD  |  Yes  |  ENA  | 
 |  I3  |  Yes  |  |  NVMe \*  |  Yes  |  ENA  | 
-|  D2  |  |  |  HDD  |  Yes  |  Intel 82599 VF  | 
 |  M4  |  Yes  |  Yes  |  |  Yes  |  `m4.16xlarge`: ENA All other sizes: Intel 82599 VF  | 
 |  M5  |  Yes  |  Yes  |  |  Yes  |  ENA  | 
 |  M5d  |  Yes  |  | NVMe \* |  Yes  |  ENA  | 
-|  T2  |  Yes  |  Yes  |  |  |  | 
+|  P2  |  Yes  |  Yes  |  |  Yes  |  ENA  | 
+|  P3  |  Yes  |  Yes  |  |  Yes  |  ENA  | 
 |  R4  |  Yes  |  Yes  |  |  Yes  |  ENA  | 
+|  T2  |  Yes  |  Yes  |  |  |  | 
 |  X1  |  Yes  |  |  SSD  |  Yes  |  ENA  | 
 |  X1e  |  Yes  |  |  SSD  |  Yes  |   | 
 
 \* The root device volume must be an Amazon EBS volume\.
+
+The following table summarizes the networking and storage features supported by earlier generation instance types\.
+
+
+|  | VPC only | EBS only | Instance store | Placement group | Enhanced networking | 
+| --- | --- | --- | --- | --- | --- | 
+|  C3  |  |  |  SSD  |  Yes  |  Intel 82599 VF  | 
+|  G2  |  |  |  SSD  |  Yes  |  | 
+|  I2  |  |  |  SSD  |  Yes  |  Intel 82599 VF  | 
+|  M3  |  |  |  SSD  |  |  | 
+|  R3  |  |  |  SSD  |  Yes  |  Intel 82599 VF  | 
 
 ## Instance Limits<a name="instance-type-limits"></a>
 

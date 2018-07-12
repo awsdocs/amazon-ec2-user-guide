@@ -17,7 +17,9 @@ There is no charge for creating a placement group\.
 
 ## Cluster Placement Groups<a name="placement-groups-cluster"></a>
 
-A cluster placement group is a logical grouping of instances within a single Availability Zone\. Cluster placement groups are recommended for applications that benefit from low network latency, high network throughput, or both, and if the majority of the network traffic is between the instances in the group\. To provide the lowest latency and the highest packet\-per\-second network performance for your placement group, choose an instance type that supports enhanced networking\. For more information, see [Enhanced Networking](enhanced-networking.md)\.
+A cluster placement group is a logical grouping of instances within a single Availability Zone\.
+
+Cluster placement groups are recommended for applications that benefit from low network latency, high network throughput, or both, and if the majority of the network traffic is between the instances in the group\. To provide the lowest latency and the highest packet\-per\-second network performance for your placement group, choose an instance type that supports enhanced networking\. For more information, see [Enhanced Networking](enhanced-networking.md)\.
 
 We recommend that you launch the number of instances that you need in the placement group in a single launch request and that you use the same instance type for all instances in the placement group\. If you try to add more instances to the placement group later, or if you try to launch more than one instance type in the placement group, you increase your chances of getting an insufficient capacity error\.
 
@@ -61,7 +63,7 @@ The following rules apply to cluster placement groups:
 + Network traffic to the internet and over an AWS Direct Connect connection to on\-premises resources is limited to 5 Gbps\.
 
 The following rules apply to spread placement groups:
-+ A spread placement group supports a maximum of seven running instances per Availability Zone\. For example, in a region that has three Availability Zones, you can have a total of 21 running instances in the group \(seven per zone\)\.
++ A spread placement group supports a maximum of seven running instances per Availability Zone\. For example, in a region with three Availability Zones, you can run a total of 21 instances in the group \(seven per zone\)\. If you try to start an eighth instance in the same zone and in the same spread placement group, the instance will not launch\. If you need to have more than seven instances in an AZ, then the recommendation is to use multiple spread placement groups\. This does not provide guarantees about the spread of instances between groups, but does ensure the spread for each group to limit impact from certain classes of failures\. 
 + Spread placement groups are not supported for Dedicated Instances or Dedicated Hosts\.
 
 ## Creating a Placement Group<a name="create-placement-group"></a>

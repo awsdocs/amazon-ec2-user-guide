@@ -1,18 +1,31 @@
-# Connecting to Your Linux Instance Using SSH<a name="AccessingInstancesLinux"></a>
+# Connecting to Your Linux Instance from Windows Using Windows Subsystem for Linux<a name="WSL"></a>
+
+The following instructions explain how to connect to your instance using a Linux distribution on the Windows Subsystem for Linux \(WSL\)\. WSL is a free download and enables you to run native Linux command\-line tools directly on Windows, alongside your traditional Windows desktop, without the overhead of a virtual machine\. 
+
+By installing WSL, you can use a native Linux environment to connect to your Linux EC2 instances instead of using PuTTY or PuTTYgen\. The Linux environment makes it easier to connect to your Linux instances because it comes with a native SSH client that you can use to connect to your Linux instances and change the permissions of the \.pem key file\. The Amazon EC2 console provides the SSH command for connecting to the Linux instance, and you can get verbose output from the SSH command for troubleshooting\. For more information, see the [Windows Subsystem for Linux Documentation](https://docs.microsoft.com/en-us/windows/wsl/about)\.
 
 After you launch your instance, you can connect to it and use it the way that you'd use a computer sitting in front of you\.
 
 **Note**  
 After you launch an instance, it can take a few minutes for the instance to be ready so that you can connect to it\. Check that your instance has passed its status checks\. You can view this information in the **Status Checks** column on the **Instances** page\.
 
-The following instructions explain how to connect to your instance using an SSH client\. If you receive an error while attempting to connect to your instance, see [Troubleshooting Connecting to Your Instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html)\.
+If you receive an error while attempting to connect to your instance, see [Troubleshooting Connecting to Your Instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html)\.
+
+**Contents**
++ [Prerequisites](#ssh-prereqs)
++ [Connecting to Your Linux Instance using the Windows Subsystem for Linux](#Connect-Linux-WSL)
++ [Transferring Files to Linux Instances from Linux Using SCP](#Connect-Linux-WSL-SCP)
++ [Uninstalling Windows Subsystem for Linux](#uninstall-WSL)
+
+**Note**  
+After you've installed the WSL, all the prerequisites and steps are the same as those described in [Connecting to Your Linux Instance Using SSH](AccessingInstancesLinux.md), and the experience is just like using native Linux\.
 
 ## Prerequisites<a name="ssh-prereqs"></a>
 
 Before you connect to your Linux instance, complete the following prerequisites:
-+ **Install an SSH client**
++ **Install the Windows Subsystem for Linux \(WSL\) and a Linux distribution**
 
-  Your Linux computer most likely includes an SSH client by default\. You can check for an SSH client by typing ssh at the command line\. If your computer doesn't recognize the command, the OpenSSH project provides a free implementation of the full suite of SSH tools\. For more information, see [http://www\.openssh\.com](http://www.openssh.com/)\. 
+  Install the WSL and a Linux distribution using the instructions in the [Windows 10 Installation Guide](https://docs.microsoft.com/en-us/windows/wsl/install-win10)\. The example in the instructions installs the Ubuntu distribution of Linux, but you can install any distribution\. You are prompted to restart your computer for the changes to take effect\.
 + **Install the AWS CLI Tools**
 
   \(Optional\) If you're using a public AMI from a third party, you can use the command line tools to verify the fingerprint\. For more information about installing the AWS CLI, see [Getting Set Up](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html) in the *AWS Command Line Interface User Guide*\.
@@ -25,9 +38,13 @@ Before you connect to your Linux instance, complete the following prerequisites:
 + **\(IPv6 only\) Get the IPv6 address of the instance**
 
   If you've assigned an IPv6 address to your instance, you can optionally connect to the instance using its IPv6 address instead of a public IPv4 address or public IPv4 DNS hostname\. Your local computer must have an IPv6 address and must be configured to use IPv6\. You can get the IPv6 address of your instance using the Amazon EC2 console\. Check the **IPv6 IPs** field\. If you prefer, you can use the [describe\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) \(AWS CLI\) or [Get\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html) \(AWS Tools for Windows PowerShell\) command\. For more information about IPv6, see [IPv6 Addresses](using-instance-addressing.md#ipv6-addressing)\.
-+ **Locate the private key**
++ **Copy the private key from Windows to WSL**
 
-  Get the fully qualified path to the location on your computer of the `.pem` file for the key pair that you specified when you launched the instance\.
+  In a WSL terminal window, copy the `.pem` file \(for the key pair that you specified when you launched the instance\) from Windows to WSL\. Note the fully qualified path to the `.pem` file on WSL to use when connecting to your instance\. For information about how to specify the path to your Windows hard drive, see [How do I access my C drive?](https://docs.microsoft.com/en-us/windows/wsl/faq#how-do-i-access-my-c-drive)\.
+
+  ```
+  cp /mnt/<Windows drive letter>/path/my-key-pair.pem ~/WSL-path/my-key-pair.pem
+  ```
 + **Get the default user name for the AMI that you used to launch your instance**
   + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
   + For a Centos AMI, the user name is `centos`\.
@@ -41,9 +58,9 @@ Before you connect to your Linux instance, complete the following prerequisites:
 
   Ensure that the security group associated with your instance allows incoming SSH traffic from your IP address\. The default security group does not allow incoming SSH traffic by default\. For more information, see [Authorizing Inbound Traffic for Your Linux Instances](authorizing-access-to-an-instance.md)\.
 
-## Connecting to Your Linux Instance<a name="AccessingInstancesLinuxSSHClient"></a>
+## Connecting to Your Linux Instance using the Windows Subsystem for Linux<a name="Connect-Linux-WSL"></a>
 
-Use the following procedure to connect to your Linux instance using an SSH client\. If you receive an error while attempting to connect to your instance, see [Troubleshooting Connecting to Your Instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html)\.
+Use the following procedure to connect to your Linux instance using the Windows Subsystem for Linux \(WSL\)\. If you receive an error while attempting to connect to your instance, see [Troubleshooting Connecting to Your Instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html)\.
 
 **To connect to your instance using SSH**
 
@@ -96,7 +113,7 @@ Use the following procedure to connect to your Linux instance using an SSH clien
    to the list of known hosts.
    ```
 
-## Transferring Files to Linux Instances from Linux Using SCP<a name="AccessingInstancesLinuxSCP"></a>
+## Transferring Files to Linux Instances from Linux Using SCP<a name="Connect-Linux-WSL-SCP"></a>
 
 One way to transfer files between your local computer and a Linux instance is to use the secure copy protocol \(SCP\)\. This section describes how to transfer files with SCP\. The procedure is similar to the procedure for connecting to an instance with SSH\. 
 
@@ -150,7 +167,7 @@ The following procedure steps you through using SCP to transfer a file\. If you'
    chmod 400 /path/my-key-pair.pem
    ```
 
-1. Transfer a file to your instance using the instance's public DNS name\. For example, if the name of the private key file is `my-key-pair`, the file to transfer is `SampleFile.txt`, the user name is `ec2-user`, and the public DNS name of the instance is `ec2-198-51-100-1.compute-1.amazonaws.com`, use the following command to copy the file to the `ec2-user` home directory\.
+1. Transfer a file to your instance using the instance's public DNS name\. For example, if the name of the private key file is `my-key-pair`, the file to transfer is `SampleFile.txt`, the user name is `ec2-user`, and the public DNS name of the instance is `ec2-198-51-100-1.compute-1.amazonaws.com`, use the following command to copy the file to the `ec2-user` home directory:
 
    ```
    scp -i /path/my-key-pair.pem /path/SampleFile.txt ec2-user@c2-198-51-100-1.compute-1.amazonaws.com:~
@@ -197,8 +214,12 @@ The following procedure steps you through using SCP to transfer a file\. If you'
    scp -i /path/my-key-pair.pem ec2-user@ec2-198-51-100-1.compute-1.amazonaws.com:~/SampleFile.txt ~/SampleFile2.txt
    ```
 
-1. \(IPv6 only\) Alternatively, you can transfer files in the other direction using the instance's IPv6 address\.
+1. \(IPv6 only\) Alternatively, you can transfer files in the other direction using the instance's IPv6 address:
 
    ```
    scp -i /path/my-key-pair.pem ec2-user@\[2001:db8:1234:1a00:9691:9503:25ad:1761\]:~/SampleFile.txt ~/SampleFile2.txt
    ```
+
+## Uninstalling Windows Subsystem for Linux<a name="uninstall-WSL"></a>
+
+For information about uninstalling Windows Subsystem for Linux, see [How do I uninstall WSL?](https://docs.microsoft.com/en-us/windows/wsl/faq#how-do-i-uninstall-wsl)\.
