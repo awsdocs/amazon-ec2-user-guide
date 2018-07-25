@@ -148,7 +148,7 @@ The following problems can cause system status checks to fail:
 + Hardware issues on the physical host that impact network reachability
 
 The recover action is supported only on instances with the following characteristics:
-+ Use a C3, C4, C5, M3, M4, M5, R3, R4, T2, or X1 instance
++ Use a C3, C4, C5, M3, M4, M5, R3, R4, R5, T2, or X1 instance
 + Run in a VPC \(not EC2\-Classic\)
 + Use `default` or `dedicated` instance tenancy
 + Use EBS volumes only \(do not configure instance store volumes\)\. For more information, see ['Recover this instance' is disabled](https://aws.amazon.com/premiumsupport/knowledge-center/recover-this-instance-cloudwatch-enable/)\.

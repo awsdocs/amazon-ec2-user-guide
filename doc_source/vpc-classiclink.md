@@ -93,7 +93,7 @@ To use the ClassicLink feature, you need to be aware of the following limitation
 + If you stop your linked EC2\-Classic instance, it's automatically unlinked from the VPC and the VPC security groups are no longer associated with the instance\. You can link your instance to the VPC again after you've restarted it\.
 + You cannot link an EC2\-Classic instance to a VPC that's in a different region or a different AWS account\.
 + You cannot use ClassicLink to link a VPC instance to a different VPC, or to a EC2\-Classic resource\. To establish a private connection between VPCs, you can use a VPC peering connection\. For more information, see the [Amazon VPC Peering Guide](http://docs.aws.amazon.com/AmazonVPC/latest/PeeringGuide/)\.
-+ You cannot use ClassicLink to enable communication between an EC2\-Classic instance and a C5, C5d, `i3.metal`, M5, and M5d instance\.
++ You cannot use ClassicLink to enable communication between an EC2\-Classic instance and a C5, C5d, `i3.metal`, M5, M5d, R5, R5d, and z1d instance\.
 + You cannot associate a VPC Elastic IP address with a linked EC2\-Classic instance\.
 + VPCs with routes that conflict with the EC2\-Classic private IP address range of `10/8` cannot be enabled for ClassicLink\. This does not include VPCs with `10.0.0.0/16` and `10.1.0.0/16` IP address ranges that already have local routes in their route tables\. For more information, see [Routing for ClassicLink](#classiclink-routing)\.
 + VPCs configured for dedicated hardware tenancy cannot be enabled for ClassicLink\. Contact AWS support to request that your dedicated tenancy VPC be allowed to be enabled for ClassicLink\.

@@ -1,6 +1,6 @@
 # Enabling Enhanced Networking with the Elastic Network Adapter \(ENA\) on Linux Instances<a name="enhanced-networking-ena"></a>
 
-Amazon EC2 provides enhanced networking capabilities to C5, C5d, F1, G3, H1, I3, `m4.16xlarge`, M5, M5d, P2, P3, R4, and X1 instances through the Elastic Network Adapter \(ENA\)\.
+Amazon EC2 provides enhanced networking capabilities to C5, C5d, F1, G3, H1, I3, `m4.16xlarge`, M5, M5d, P2, P3, R4, R5, R5d, X1, and z1d instances through the Elastic Network Adapter \(ENA\)\.
 
 **Topics**
 + [Requirements](#ena-requirements)

@@ -1,14 +1,14 @@
 # SSD Instance Store Volumes<a name="ssd-instance-store"></a>
 
-The following instances support instance store volumes that use solid state drives \(SSD\) to deliver high random I/O performance: C3, C5d, F1, G2, I2, I3, M3, M5d, R3, and X1\. For more information about the instance store volumes support by each instance type, see [Instance Store Volumes](InstanceStorage.md#instance-store-volumes)\.
+The following instances support instance store volumes that use solid state drives \(SSD\) to deliver high random I/O performance: C3, C5d, F1, G2, I2, I3, M3, M5d, R3, X1, and z1d\. For more information about the instance store volumes support by each instance type, see [Instance Store Volumes](InstanceStorage.md#instance-store-volumes)\.
 
-To ensure the best IOPS performance from your SSD instance store volumes on Linux, we recommend that you use the most recent version of Amazon Linux, or another Linux AMI with a kernel version of 3\.8 or later\. If you do not use a Linux AMI with a kernel version of 3\.8 or later, your instance will not achieve the maximum IOPS performance available for these instance types\.
+To ensure the best IOPS performance from your SSD instance store volumes on Linux, we recommend that you use the most recent version of Amazon Linux, or another Linux AMI with a kernel version of 3\.8 or later\. If you do not use a Linux AMI with a kernel version of 3\.8 or later, your instance won't achieve the maximum IOPS performance available for these instance types\.
 
 Like other instance store volumes, you must map the SSD instance store volumes for your instance when you launch it\. The data on an SSD instance volume persists only for the life of its associated instance\. For more information, see [Add Instance Store Volumes to Your EC2 Instance](add-instance-store-volumes.md)\.
 
 ## NVMe SSD Volumes<a name="nvme-ssd-volumes"></a>
 
-The following instances offer non\-volatile memory express \(NVMe\) SSD instance store volumes: C5d, I3, F1, and M5d\. To access the NVMe volumes, you must use an operating system that supports NVMe\. The following are the recommended operating systems:
+The following instances offer non\-volatile memory express \(NVMe\) SSD instance store volumes; C5d, I3, F1, M5d, and z1d\. To access the NVMe volumes, you must use an operating system that supports NVMe\. The following are the recommended operating systems:
 + The most recent version of Amazon Linux 2 or Amazon Linux AMI
 + Ubuntu version 16\.04 or latest LTS release provided by AWS\. If you are using a different version, we recommend that you turn off memory hot add\.
 + Red Hat Enterprise Linux version 7\.4

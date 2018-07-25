@@ -50,13 +50,13 @@ The following rules apply to cluster placement groups:
 + The following are the only instance types that you can use when you launch an instance into a cluster placement group:
   + General purpose: M4, M5
   + Compute optimized: C3, C4, C5, C5d, `cc2.8xlarge`
-  + Memory optimized: `cr1.8xlarge`, R3, R4, X1, X1e
+  + Memory optimized: `cr1.8xlarge`, R3, R4, R5, R5d, X1, X1e, z1d
   + Storage optimized: D2, H1, `hs1.8xlarge`, I2, I3, `i3.metal`
   + Accelerated computing: F1, G2, G3, P2, P3
 + A cluster placement group can't span multiple Availability Zones\.
-+ The maximum network throughput speed of traffic between two instances in a cluster placement group is limited by the slower of the two instances\. For applications with high\-throughput requirements, choose an instance type with 10–Gbps or 25–Gbps network connectivity\. For more information about instance type network performance, see the [Amazon EC2 Instance Types Matrix](https://aws.amazon.com/ec2/instance-types/#instance-type-matrix)\.
-+ For current generation instance types that are enabled for enhanced networking, the following applies:
-  + Traffic between instances within the same region that is addressed using private IPv4 or IPv6 addresses can use 5 Gbps for single\-flow traffic and up to 25 Gbps for multi\-flow traffic\.
++ The maximum network throughput speed of traffic between two instances in a cluster placement group is limited by the slower of the two instances\. For applications with high\-throughput requirements, choose an instance type with 10–Gbps or 25–Gbps network connectivity\.
++ For instances that are enabled for enhanced networking, the following rules apply:
+  + Traffic between instances within the same region that is addressed using private IPv4 or IPv6 addresses can use 5 Gbps for single\-flow traffic and up to 25 Gbps for multi\-flow traffic\. A flow represents a single, point\-to\-point network connection\.
   + Instances within a cluster placement group can use up to 10 Gbps for single\-flow traffic\.
   + Traffic to and from Amazon S3 buckets within the same region over the public IP address space or through a VPC endpoint can use all available instance aggregate bandwidth\.
 + You can launch multiple instance types into a cluster placement group\. However, this reduces the likelihood that the required capacity will be available for your launch to succeed\. We recommend using the same instance type for all instances in a cluster placement group\.

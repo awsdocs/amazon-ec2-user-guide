@@ -23,7 +23,7 @@ The following instances support jumbo frames:
 + General purpose: M3, M4, M5, M5d, T2
 + Compute optimized: C3, C4, C5, C5d, CC2
 + Accelerated computing: F1, G2, G3, P2, P3
-+ Memory optimized: CR1, R3, R4, X1
++ Memory optimized: CR1, R3, R4, R5, R5d, X1, z1d
 + Storage optimized: D2, H1, HS1, I2, I3
 
 ## Path MTU Discovery<a name="path_mtu_discovery"></a>

@@ -2,9 +2,9 @@
 
 Memory optimized instances are designed to deliver fast performance for workloads that process large data sets in memory\.
 
-**R4 Instances**
+**R4, R5, and R5d Instances**
 
-R4 instances are well suited for the following applications:
+These instances are well suited for the following applications:
 + High\-performance, relational \(MySQL\) and NoSQL \(MongoDB, Cassandra\) databases\.
 + Distributed web scale cache stores that provide in\-memory caching of key\-value type data \(Memcached and Redis\)\.
 + In\-memory databases using optimized data storage formats and analytics for business intelligence \(for example, SAP HANA\)\.
@@ -13,17 +13,23 @@ R4 instances are well suited for the following applications:
 
 **X1 Instances**
 
-X1 instances are well suited for the following applications:
+These instances are well suited for the following applications:
 + In\-memory databases such as SAP HANA, including SAP\-certified support for Business Suite S/4HANA, Business Suite on HANA \(SoH\), Business Warehouse on HANA \(BW\), and Data Mart Solutions on HANA\. For more information, see [SAP HANA on the AWS Cloud](https://aws.amazon.com/sap/solutions/saphana/)\.
 + Big\-data processing engines such as Apache Spark or Presto\.
 + High\-performance computing \(HPC\) applications\.
 
 **X1e Instances**
 
-X1e instances are well suited for the following applications:
+These instances are well suited for the following applications:
 + High\-performance databases\.
 + In\-memory databases such as SAP HANA\. For more information, see [SAP HANA on the AWS Cloud](https://aws.amazon.com/sap/solutions/saphana/)\.
 + Memory\-intensive enterprise applications\.
+
+**z1d Instances**
+
+These instances deliver both high compute and high memory and are well\-suited for the following applications:
++ Electronic Design Automation \(EDA\)
++ Relational database workloads
 
 **Topics**
 + [Hardware Specifications](#memory-instances-hardware)
@@ -49,6 +55,18 @@ The following is a summary of the hardware specifications for memory optimized i
 | r4\.4xlarge | 16 | 122 | 
 | r4\.8xlarge | 32 | 244 | 
 | r4\.16xlarge | 64 | 488 | 
+| r5\.large | 2 | 16 | 
+| r5\.xlarge | 4 | 32 | 
+| r5\.2xlarge | 8 | 64 | 
+| r5\.4xlarge | 16 | 128 | 
+| r5\.12xlarge | 48 | 384 | 
+| r5\.24xlarge | 96 | 768 | 
+| r5d\.large | 2 | 16 | 
+| r5d\.xlarge | 4 | 32 | 
+| r5d\.2xlarge | 8 | 64 | 
+| r5d\.4xlarge | 16 | 128 | 
+| r5d\.12xlarge | 48 | 384 | 
+| r5d\.24xlarge | 96 | 768 | 
 | x1\.16xlarge | 64 | 976 | 
 | x1\.32xlarge | 128 | 1,952 | 
 | x1e\.xlarge | 4 | 122 | 
@@ -57,6 +75,12 @@ The following is a summary of the hardware specifications for memory optimized i
 | x1e\.8xlarge | 32 | 976 | 
 | x1e\.16xlarge | 64 | 1,952 | 
 | x1e\.32xlarge | 128 | 3,904 | 
+| z1d\.large | 2 | 16 | 
+| z1d\.xlarge | 4 | 32 | 
+| z1d\.2xlarge | 8 | 64 | 
+| z1d\.3xlarge | 12 | 96 | 
+| z1d\.6xlarge | 24 | 192 | 
+| z1d\.12xlarge | 48 | 384 | 
 
 For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
@@ -91,9 +115,9 @@ The following is a summary of network performance for memory optimized instances
 
 | Instance type | Network performance | Enhanced networking | 
 | --- | --- | --- | 
-|  `r4.4xlarge` and smaller \| `x1e.8large` and smaller   |  Up to 10 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  `r4.8xlarge` \| `x1.16xlarge` \| `x1e.16xlarge`  |  10 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  `r4.16xlarge` \| `x1.32xlarge` \| `x1e.32xlarge`  |  25 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `r4.4xlarge` and smaller \| `r5.4xlarge` and smaller \| `r5d.4xlarge` and smaller \| `x1e.8large` and smaller \| `z1d.3xlarge` and smaller  |  Up to 10 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `r4.8xlarge` \| `r5.12xlarge` \| `r5d.12xlarge` \| `x1.16xlarge` \| `x1e.16xlarge` \| `z1d.6xlarge`  |  10 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `r4.16xlarge` \| `r5.24xlarge` \| `r5d.24xlarge` \| `x1.32xlarge` \| `x1e.32xlarge` \| `z1d.12xlarge`  |  25 Gbps  | [ENA](enhanced-networking-ena.md) | 
 
 ## Instance Features<a name="memory-instances-features"></a>
 
@@ -103,8 +127,13 @@ The following is a summary of features for memory optimized instances\.
 |  | VPC only | EBS only | Instance store | Placement group | 
 | --- | --- | --- | --- | --- | 
 | R4 | Yes | Yes |  | Yes | 
+| R5 | Yes | Yes |  | Yes | 
+| R5d | Yes |  | NVME \* | Yes | 
 | X1 | Yes |  | SSD | Yes | 
 | X1e | Yes |  | SSD | Yes | 
+| z1d | Yes |  | NVME \* | Yes | 
+
+**\*** The root device volume must be an Amazon EBS volume\.
 
 For more information, see the following:
 + [Instance Types Available Only in a VPC](using-vpc.md#vpc-only-instance-types)
@@ -130,7 +159,20 @@ The following AMIs support launching memory optimized instances:
 + Windows Server 2008 SP2 64\-bit
 
 ## Release Notes<a name="memory-instance-limits"></a>
++ The following are requirements for R5, R5d, and z1d instances:
+  + NVMe drivers must be installed\. EBS volumes are exposed as [NVMe block devices](nvme-ebs-volumes.md)\.
+  + Elastic Network Adapter \([ENA](enhanced-networking-ena.md)\) drivers must be installed\.
+
+  The following AMIs meet these requirements:
+  + Amazon Linux 2
+  + Amazon Linux 2014\.03 or later
+  + Ubuntu 14\.04 or later
+  + SUSE Linux Enterprise Server 12 or later
+  + Red Hat Enterprise Linux 7\.4 or later
+  + CentOS 7 or later
+  + Windows Server 2008 R2 or later
 + You can't launch X1 instances using a Windows Server 2008 SP2 64\-bit AMI, except for `x1.16xlarge` instances\.
 + You can't launch X1e instances using a Windows Server 2008 SP2 64\-bit AMI\.
 + With earlier versions of the Windows Server 2008 R2 64\-bit AMI, you can't launch `r4.large` and `r4.4xlarge` instances\. If you experience this issue, update to the latest version of this AMI\.
++ [ClassicLink](vpc-classiclink.md) is not supported for R5, R5d, and z1d instances—you cannot use ClassicLink to link your EC2\-Classic instances to these instances in your VPC\.
 + There is a limit on the total number of instances that you can launch in a region, and there are additional limits on some instance types\. For more information, see [How many instances can I run in Amazon EC2?](https://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2)\. To request a limit increase, use the [Amazon EC2 Instance Request Form](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-instances)\.

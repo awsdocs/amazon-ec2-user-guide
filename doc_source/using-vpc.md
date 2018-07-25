@@ -82,7 +82,7 @@ The following resources can't be shared or moved between EC2\-Classic and a VPC:
 Instances of the following instance types are not supported in EC2\-Classic and must be launched in a VPC:
 + General purpose: M4, M5, M5d, T2
 + Compute optimized: C4, C5, C5d
-+ Memory optimized: R4, X1
++ Memory optimized: R4, R5, R5d, X1, z1d
 + Storage optimized: H1, I3
 + Accelerated computing: F1, G3, P2, P3
 

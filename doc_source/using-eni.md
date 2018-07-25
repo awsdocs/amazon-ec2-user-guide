@@ -159,6 +159,18 @@ The following table lists the maximum number of network interfaces per instance 
 | r4\.4xlarge | 8 | 30 | 30 | 
 | r4\.8xlarge | 8 | 30 | 30 | 
 | r4\.16xlarge | 15 | 50 | 50 | 
+| r5\.large | 3 | 10 | 10 | 
+| r5\.xlarge | 4 | 15 | 15 | 
+| r5\.2xlarge | 4 | 15 | 15 | 
+| r5\.4xlarge | 8 | 30 | 30 | 
+| r5\.12xlarge | 8 | 30 | 30 | 
+| r5\.24xlarge | 15 | 50 | 50 | 
+| r5d\.large | 3 | 10 | 10 | 
+| r5d\.xlarge | 4 | 15 | 15 | 
+| r5d\.2xlarge | 4 | 15 | 15 | 
+| r5d\.4xlarge | 8 | 30 | 30 | 
+| r5d\.12xlarge | 8 | 30 | 30 | 
+| r5d\.24xlarge | 15 | 50 | 50 | 
 |  `t1.micro`  |  2  |  2  | IPv6 not supported | 
 |  `t2.nano`  |  2  |  2  | 2 | 
 |  `t2.micro`  |  2  |  2  | 2 | 
@@ -175,6 +187,12 @@ The following table lists the maximum number of network interfaces per instance 
 | x1e\.8xlarge | 4 | 15 | 15 | 
 | x1e\.16xlarge | 8 | 30 | 30 | 
 | x1e\.32xlarge | 8 | 30 | 30 | 
+| z1d\.large | 3 | 10 | 10 | 
+| z1d\.xlarge | 4 | 15 | 15 | 
+| z1d\.2xlarge | 4 | 15 | 15 | 
+| z1d\.3xlarge | 8 | 30 | 30 | 
+| z1d\.6xlarge | 8 | 30 | 30 | 
+| z1d\.12xlarge | 15 | 50 | 50 | 
 
 ## Scenarios for Network Interfaces<a name="scenarios-enis"></a>
 

@@ -19,7 +19,7 @@ C3, C4, D2, I2, M4 \(excluding `m4.16xlarge`\), and R3 instances use the Intel 8
 
 **Elastic Network Adapter \(ENA\)**  
 The Elastic Network Adapter \(ENA\) supports network speeds of up to 25 Gbps for supported instance types\.  
-C5, C5d, F1, G3, H1, I3, `m4.16xlarge`, M5, M5d, P2, P3, R4, and X1 instances use the Elastic Network Adapter for enhanced networking\.
+C5, C5d, F1, G3, H1, I3, `m4.16xlarge`, M5, M5d, P2, P3, R4, R5, R5d, X1, and z1d instances use the Elastic Network Adapter for enhanced networking\.
 
 To find out which instance types support 10 or 25 Gbps network speeds, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types)\.
 

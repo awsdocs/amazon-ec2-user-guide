@@ -1,6 +1,6 @@
 # Amazon EBS and NVMe<a name="nvme-ebs-volumes"></a>
 
-With the following instances, EBS volumes are exposed as NVMe block devices: C5, C5d, `i3.metal`, M5, and M5d\. The device names are `/dev/nvme0n1`, `/dev/nvme1n1`, and so on\. The device names that you specify in a block device mapping are renamed using NVMe device names \(`/dev/nvme[0-26]n1`\)\.
+With the following instances, EBS volumes are exposed as NVMe block devices: C5, C5d, `i3.metal`, M5, M5d, R5, R5d, and z1d\. The device names are `/dev/nvme0n1`, `/dev/nvme1n1`, and so on\. The device names that you specify in a block device mapping are renamed using NVMe device names \(`/dev/nvme[0-26]n1`\)\.
 
 **Note**  
 The EBS performance guarantees stated in [Amazon EBS Product Details](https://aws.amazon.com/ebs/details/) are valid regardless of the block\-device interface\.
