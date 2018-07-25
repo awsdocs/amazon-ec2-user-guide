@@ -22,7 +22,7 @@ For pricing information about copying snapshots across regions and accounts, see
 **Limits**
 + Each account can have up to 5 concurrent snapshot copy requests to a single destination region\.
 + User\-defined tags are not copied from the source snapshot to the new snapshot\. After the copy operation is complete, you can apply user\-defined tags to the new snapshot\. For more information, see [Tagging Your Amazon EC2 Resources](Using_Tags.md)\.
-+ Snapshots created by the CopySnapshot action have an arbitrary volume ID that should not be used for any purpose\.
++ Snapshots created by the `CopySnapshot` action have an arbitrary volume ID that should not be used for any purpose\.
 
 ## Incremental Copying Across Regions<a name="ebs-incremental-copy"></a>
 
@@ -34,15 +34,13 @@ In the case of encrypted snapshots, you must encrypt to the same CMK that was us
   + If you encrypt to the same CMK in a subsequent snapshot copy for the same volume between the same regions, the copy is incremental\.
   + If you encrypt to a different CMK in a subsequent snapshot copy for the same volume between the same regions, the copy is a new full copy of the snapshot\.
 
-For more information, see [Encrypt a Snapshot Under a New CMK](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#re-encrypt_snapshot)\.
+For more information, see [Encrypt a Snapshot to a New CMK](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#re-encrypt_snapshot)\.
 
 ## Encrypted Snapshots<a name="ebs-encrypt-snapshot-copy"></a>
 
 When you copy a snapshot, you can choose to encrypt the copy \(if the original snapshot was not encrypted\) or you can specify a CMK different from the original one, and the resulting copied snapshot uses the new CMK\. However, changing the encryption status of a snapshot during a copy operation results in a full \(not incremental\) copy, which might incur greater data transfer and storage charges\. 
 
-To copy an encrypted snapshot from another account, you must have permissions to use the snapshot and you must have permissions to use the customer master key \(CMK\) that was used to encrypt the original snapshot\. For more information, see [Sharing an Amazon EBS Snapshot](ebs-modifying-snapshot-permissions.md)\.
-
-When copying an encrypted snapshot that was shared with you, you should consider re\-encrypting the snapshot during the copy process with a different key that you control\. This protects you if the original key is compromised, or if the owner revokes the key for any reason, which could cause you to lose access to the volume you created\.
+To copy an encrypted snapshot shared from another AWS account, you must have permissions to use the snapshot and the customer master key \(CMK\) that was used to encrypt the snapshot\. When using an encrypted snapshot that was shared with you, we recommend that you re\-encrypt the snapshot by copying it using a CMK that you own\. This protects you if the original CMK is compromised, or if the owner revokes it, which could cause you to lose access to any encrypted volumes you created using the snapshot\. For more information, see [Sharing an Amazon EBS Snapshot](ebs-modifying-snapshot-permissions.md)\.
 
 ## Copy a Snapshot<a name="ebs-snapshot-copy"></a>
 

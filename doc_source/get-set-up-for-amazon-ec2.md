@@ -54,13 +54,13 @@ We strongly recommend that you adhere to the best practice of using the **Admini
 
 1. Choose **Next: Permissions**\.
 
-1. On the **Set permissions for user** page, choose **Add user to group**\.
+1. On the **Set permissions** page, choose **Add user to group**\.
 
 1. Choose **Create group**\.
 
-1. In the **Create group** dialog box, type **Administrators**\.
+1. In the **Create group** dialog box, for **Group name** type **Administrators**\.
 
-1. For **Filter**, choose **Job function**\.
+1. For **Filter policies**, select the check box for **AWS managed \- job function**\.
 
 1. In the policy list, select the check box for **AdministratorAccess**\. Then choose **Create group**\.
 
@@ -122,6 +122,8 @@ This is the only chance for you to save the private key file\. You'll need to pr
    chmod 400 your_user_name-key-pair-region_name.pem
    ```
 
+   If you do not set these permissions, then you cannot connect to your instance using this key pair\. For more information, see [Error: Unprotected Private Key File](TroubleshootingInstancesConnecting.md#troubleshoot-unprotected-key)\.
+
 For more information, see [Amazon EC2 Key Pairs](ec2-key-pairs.md)\.
 
 **To connect to your instance using your key pair**  
@@ -158,7 +160,7 @@ If your account supports EC2\-Classic in a region, then you do not have a defaul
 
 1. From the navigation bar, select a region for the VPC\. VPCs are specific to a region, so you should select the same region in which you created your key pair\.
 
-1. On the VPC dashboard, choose **Start VPC Wizard**\.
+1. On the VPC dashboard, choose **Create VPC**\.
 
 1. On the **Step 1: Select a VPC Configuration** page, ensure that **VPC with a Single Public Subnet** is selected, and choose **Select**\.
 

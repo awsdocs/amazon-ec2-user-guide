@@ -1,40 +1,90 @@
 # Sharing an Amazon EBS Snapshot<a name="ebs-modifying-snapshot-permissions"></a>
 
-By modifying the permissions of the snapshot, you can share your unencrypted snapshots with your co\-workers or others in the AWS community\. Users that you have authorized can use your unencrypted shared snapshots as the basis for creating their own EBS volumes\. If you choose, you can also make your unencrypted snapshots available publicly to all AWS users\. 
+By modifying the permissions of a snapshot, you can share it with the AWS accounts that you specify\. Users that you have authorized can use the snapshots you share as the basis for creating their own EBS volumes, while your original snapshot remains unaffected\. If you choose, you can make your unencrypted snapshots available publicly to all AWS users\. You can't make your encrypted snapshots available publicly\.
 
-You can share an encrypted snapshot with specific AWS accounts, though you cannot make it public\. For others to use the snapshot, you must also share the custom CMK key used to encrypt it\. Cross\-account permissions may be applied to a custom key either when it is created or at a later time\. Users with access can copy your snapshot and create their own EBS volumes based on your snapshot while your original snapshot remains unaffected\. 
+When you share an encrypted snapshot, you must also share the custom CMK used to encrypt the snapshot\. You can apply cross\-account permissions to a custom CMK either when it is created or at a later time\.
 
 **Important**  
-When you share a snapshot \(whether by sharing it with another AWS account or making it public to all\), you are giving others access to all the data on the snapshot\. Share snapshots only with people with whom you want to share *all* your snapshot data\. 
+When you share a snapshot, you are giving others access to all the data on the snapshot\. Share snapshots only with people with whom you want to share *all* your snapshot data\.
 
-Several technical and policy restrictions apply to sharing snapshots:
-+ Snapshots are constrained to the region in which they were created\. To share a snapshot with another region, copy the snapshot to that region\. For more information about copying snapshots, see [Copying an Amazon EBS Snapshot](ebs-copy-snapshot.md)\.
+## Considerations<a name="share-snapshot-considerations"></a>
+
+The following considerations apply to sharing snapshots:
++ Snapshots are constrained to the region in which they were created\. To share a snapshot with another region, copy the snapshot to that region\. For more information, see [Copying an Amazon EBS Snapshot](ebs-copy-snapshot.md)\.
 + If your snapshot uses the longer resource ID format, you can only share it with another account that also supports longer IDs\. For more information, see [Resource IDs](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/resource-ids.html)\.
-+ AWS prevents you from sharing snapshots that were encrypted with your default CMK\. Snapshots that you intend to share must instead be encrypted with a custom CMK\. For information about creating keys, see [Creating Keys](http://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html)\. 
-+ Users of your shared CMK who are accessing encrypted snapshots must be granted `DescribeKey` and `ReEncrypt` permissions\. For information about managing and sharing CMK keys, see [Controlling Access to Customer Master Keys](http://docs.aws.amazon.com/kms/latest/developerguide/control-access.html)\.
++ AWS prevents you from sharing snapshots that were encrypted with your default CMK\. Snapshots that you intend to share must instead be encrypted with a custom CMK\. For more information, see [Creating Keys](http://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html) in the *AWS Key Management Service Developer Guide*\.
++ Users of your shared CMK who are accessing encrypted snapshots must be granted permissions to perform the following actions on the key: `kms:DescribeKey`, `kms:CreateGrant`, `GenerateDataKey`, and `kms:ReEncrypt`\. For more information, see [Controlling Access to Customer Master Keys](http://docs.aws.amazon.com/kms/latest/developerguide/control-access.html) in the *AWS Key Management Service Developer Guide*\.
 + If you have access to a shared encrypted snapshot and you want to restore a volume from it, you must create a personal copy of the snapshot and then use that copy to restore the volume\. We recommend that you re\-encrypt the snapshot during the copy process with a different key that you control\. This protects your access to the volume if the original key is compromised, or if the owner revokes the key for any reason\.
 
-**To modify snapshot permissions using the console**
+## Sharing an Unencrypted Snapshot<a name="share-unencrypted-snapshot"></a>
+
+**To share a snapshot using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. Choose **Snapshots** in the navigation pane\. 
+1. Choose **Snapshots** in the navigation pane\.
 
-1. Select a snapshot and then choose **Modify Permissions** from the **Actions** list\.
+1. Select the snapshot and then choose **Actions**, **Modify Permissions**\.
 
-1. Choose whether to make the snapshot public or to share it with specific AWS accounts:
+1. Make the snapshot public or share it with specific AWS accounts as follows:
+   + To make the snapshot public, choose **Public**\.
 
-   1. To make the snapshot public, choose **Public**\.
+     This option is not valid for encrypted snapshots or snapshots with an AWS Marketplace product code\.
+   + To share the snapshot with one or more AWS accounts, choose **Private**, type the AWS account ID \(without hyphens\) in **AWS Account Number**, and choose **Add Permission**\. Repeat for any additional AWS accounts\.
 
-      This is not a valid option for encrypted snapshots or snapshots with AWS Marketplace product codes\.
+1. Choose **Save**\.
 
-   1. To expose the snapshot to only specific AWS accounts, choose **Private**, enter the ID of the AWS account \(without hyphens\) in the **AWS Account Number** field, and choose **Add Permission**\. Repeat until you've added all the required AWS accounts\. 
-**Important**  
-If your snapshot is encrypted, you must ensure that the following are true:  
-The snapshot is encrypted with a custom CMK, not your default CMK\. If you attempt to change the permissions of a snapshot encrypted with your default CMK, the console displays an error message\.
-You are sharing the custom CMK with the accounts that have access to your snapshot\.
+**To use an encrypted snapshot that was shared with me**
 
-1. Choose **Save**\. Now a user logged into the permitted account can locate the shared snapshot by choosing **Private Snapshots** in the filter menu\.
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. Choose **Snapshots** in the navigation pane\.
+
+1. Choose the **Private Snapshots** filter\.
+
+1. Locate the snapshot by ID or description\. You can use this snapshot as you would any other; for example, you can create a volume from the snapshot or copy the snapshot to a different region\.
+
+## Sharing an Encrypted Snapshot<a name="share-encrypted-snapshot"></a>
+
+**To share an encrypted snapshot using the console**
+
+1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
+
+1. Choose **Encryption keys** in the navigation pane\.
+
+1. Choose the alias of the custom key that you used to encrypt the snapshot\.
+
+1. For each AWS account, choose **Add External Accounts** and type the AWS account ID where prompted\. When you have added all AWS accounts, choose **Save Changes**\.
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. Choose **Snapshots** in the navigation pane\.
+
+1. Select the snapshot and then choose **Actions**, **Modify Permissions**\.
+
+1. For each AWS account, type the AWS account ID in **AWS Account Number** and choose **Add Permission**\. When you have added all AWS accounts, choose **Save**\.
+
+**To use an encrypted snapshot that was shared with me**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. Choose **Snapshots** in the navigation pane\.
+
+1. Choose the **Private Snapshots** filter\. Optionally add the **Encrypted** filter\.
+
+1. Locate the snapshot by ID or description\.
+
+1. We recommend that you re\-encrypt the snapshot with a different key that you own\. This protects you if the original key is compromised, or if the owner revokes the key, which could cause you to lose access to any encrypted volumes you create from the snapshot\.
+
+   1. Select the snapshot and choose **Actions**, **Copy**\.
+
+   1. \(Optional\) Select a destination region\.
+
+   1. Select a custom CMK that you own\.
+
+   1. Choose **Copy**\.
+
+## Sharing an Snapshot Using the Command Line<a name="share-snapshot-cli"></a>
 
 **To view and modify snapshot permissions using the command line**
 

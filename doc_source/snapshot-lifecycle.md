@@ -62,34 +62,63 @@ Amazon DLM uses an IAM role to get the permissions that are required to manage s
 aws dlm create-default-role
 ```
 
-Alternatively, you can create a custom IAM role with the required permissions and select it when you create a lifecycle policy\. This role must contain the following permissions:
+Alternatively, you can create a custom IAM role with the required permissions and select it when you create a lifecycle policy\. 
 
-```
-{
-   "Version": "2012-10-17",
-   "Statement": [
-      {
-         "Effect": "Allow",
-         "Action": [
-            "ec2:CreateSnapshot",
-            "ec2:DeleteSnapshot",
-            "ec2:DescribeVolumes",
-            "ec2:DescribeSnapshots"
-         ],
-         "Resource": "*"
-      },
-      {
-         "Effect": "Allow",
-         "Action": [
-            "ec2:CreateTags"
-         ],
-         "Resource": "arn:aws:ec2:*::snapshot/*"
+**To create a custom IAM role**
+
+1. Create a role with the following permissions:
+
+   ```
+   {
+      "Version": "2012-10-17",
+      "Statement": [
+         {
+            "Effect": "Allow",
+            "Action": [
+               "ec2:CreateSnapshot",
+               "ec2:DeleteSnapshot",
+               "ec2:DescribeVolumes",
+               "ec2:DescribeSnapshots"
+            ],
+            "Resource": "*"
+         },
+         {
+            "Effect": "Allow",
+            "Action": [
+               "ec2:CreateTags"
+            ],
+            "Resource": "arn:aws:ec2:*::snapshot/*"
+         }
+      ]
+   }
+   ```
+
+   For more information, see [Creating a Role](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user.html) in the *IAM User Guide*\.
+
+1. Add a trust relationship to the role\.
+
+   1. In the IAM console, choose **Roles**\.
+
+   1. Select the role you created and then choose **Trust relationships**\.
+
+   1. Choose **Edit Trust Relationship**, add the following policy, and then choose **Update Trust Policy**\.
+
+      ```
+      { 
+         "Version": "2012-10-17", 
+         "Statement": [ 
+            { 
+               "Effect": "Allow", 
+      	     "PrincipalGroup": { 
+      	        "AWS": [ 
+      	           "svc:dlm.amazonaws.com" 
+      	        ]	 
+      	     }, 
+               "Action": "sts:AssumeRole" 
+            } 
+         ] 
       }
-   ]
-}
-```
-
-For more information, see [Creating a Role](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user.html) in the *IAM User Guide*\.
+      ```
 
 ## Permissions for IAM Users<a name="dlm-access-control"></a>
 
@@ -137,8 +166,8 @@ The following examples show how to use Amazon DLM to perform typical procedures 
    + **Target volumes with tags**—The resource tags that identify the volumes to back up\.
    + **Schedule Name**—A name for the backup schedule\.
    + **Create snapshots every** ***n*** **Hours**—The number of hours between policy runs\. The supported values are 12 and 24\.
-   + **Snapshot creation start time** ***nn***:***nn*** **UTC**—The time of day when policy runs are scheduled to start\. The policy runs start within an hour after the scheduled time\.
-   + **Retention rule**—The maximum number of snapshots to retain for each volume\. After the limit is reached, the oldest snapshot is deleted when a new one is created\.
+   + **Snapshot creation start time** ***hh***:***mm*** **UTC**—The time of day when policy runs are scheduled to start\. The policy runs start within an hour after the scheduled time\.
+   + **Retention rule**—The maximum number of snapshots to retain for each volume\. The supported range is 1 to 1000\. After the limit is reached, the oldest snapshot is deleted when a new one is created\.
    + **Tag created snapshots**—The resource tags to apply to the snapshots that are created\. These tags are in addition to the tags applied by Amazon DLM\.
    + **IAM role**—An IAM role that has permissions to create, delete, and describe snapshots, and to describe volumes\. AWS provides a default role, **AWSDataLifecycleManagerDefaultRole**, or you can create a custom IAM role\.
    + **Policy status after creation**—Choose **Enable policy** to start the policy runs at the next scheduled time or **Disable policy** to prevent the policy from running\.
@@ -176,8 +205,8 @@ The following examples show how to use Amazon DLM to perform typical procedures 
    + **Target volumes with tags**—The resource tags that identify the volumes to back up\.
    + **Schedule Name**—A name for the backup schedule\.
    + **Create snapshots every** ***n*** **Hours**—The number of hours between policy runs\. The supported values are 12 and 24\.
-   + **Snapshot creation start time** ***nn***:***nn*** **UTC**—The time of day when policy runs are scheduled to start\. The policy runs start within an hour after the scheduled time\.
-   + **Retention rule**—The maximum number of snapshots to retain for each volume\. After the limit is reached, the oldest snapshot is deleted when a new one is created\.
+   + **Snapshot creation start time** ***hh***:***mm*** **UTC**—The time of day when policy runs are scheduled to start\. The policy runs start within an hour after the scheduled time\.
+   + **Retention rule**—The maximum number of snapshots to retain for each volume\. The supported range is 1 to 1000\. After the limit is reached, the oldest snapshot is deleted when a new one is created\.
    + **Tag created snapshots**—The resource tags to apply to the snapshots that are created\. These tags are in addition to the tags applied by Amazon DLM\.
    + **IAM role**—An IAM role that has permissions to create, delete, and describe snapshots, and to describe volumes\. AWS provides a default role, **AWSDataLifecycleManagerDefaultRole**, or you can create a custom IAM role\.
    + **Policy status after creation**—Choose **Enable policy** to start the policy runs at the next scheduled time or **Disable policy** to prevent the policy from running\.<a name="console-delete-policy"></a>

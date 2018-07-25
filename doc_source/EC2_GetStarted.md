@@ -2,7 +2,7 @@
 
 Let's get started with Amazon Elastic Compute Cloud \(Amazon EC2\) by launching, connecting to, and using a Linux instance\. An *instance* is a virtual server in the AWS cloud\. With Amazon EC2, you can set up and configure the operating system and applications that run on your instance\.
 
-When you sign up for AWS, you can get started with Amazon EC2 for free using the [AWS Free Tier](https://aws.amazon.com/free/)\. If you created your AWS account less than 12 months ago, and have not already exceeded the free tier benefits for Amazon EC2, it will not cost you anything to complete this tutorial, because we help you select options that are within the free tier benefits\. Otherwise, you'll incur the standard Amazon EC2 usage fees from the time that you launch the instance until you terminate the instance \(which is the final task of this tutorial\), even if it remains idle\.
+When you sign up for AWS, you can get started with Amazon EC2 using the [AWS Free Tier](https://aws.amazon.com/free/)\. If you created your AWS account less than 12 months ago, and have not already exceeded the free tier benefits for Amazon EC2, it will not cost you anything to complete this tutorial, because we help you select options that are within the free tier benefits\. Otherwise, you'll incur the standard Amazon EC2 usage fees from the time that you launch the instance until you terminate the instance \(which is the final task of this tutorial\), even if it remains idle\.
 
 **Topics**
 + [Overview](#ec2-get-started-overview)
@@ -80,7 +80,7 @@ Don't select the **Proceed without a key pair** option\. If you launch your inst
 
 ## Step 2: Connect to Your Instance<a name="ec2-connect-to-instance-linux"></a>
 
-There are several ways to connect to a Linux instance\. In this procedure, you'll connect using your browser\. Alternatively, you can connect using PuTTY or an SSH client\. It's also assumed that you followed the steps earlier and launched an Amazon Linux 2 instance, which has a specific user name\. Other Linux distributions may use a different user name\. For more information, see [Connecting to Your Linux Instance from Windows Using PuTTY](putty.md) or [Connecting to Your Linux Instance Using SSH](AccessingInstancesLinux.md)\. 
+There are several ways to connect to a Linux instance\. In this procedure, you'll connect using your browser\. Alternatively, you can connect using PuTTY or an SSH client\. It's also assumed that you launched an Amazon Linux 2 instance, per the previous step, which has a specific user name\. Other Linux distributions might use a different user name\. For more information, see [Connecting to Your Linux Instance from Windows Using PuTTY](putty.md) or [Connecting to Your Linux Instance Using SSH](AccessingInstancesLinux.md)\. 
 
 **Important**  
 You can't connect to your instance unless you launched it with a key pair for which you have the \.pem file and you launched it with a security group that allows SSH access\. If you can't connect to your instance, see [Troubleshooting Connecting to Your Instance](TroubleshootingInstancesConnecting.md) for assistance\.

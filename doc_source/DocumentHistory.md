@@ -8,6 +8,7 @@ The following table describes important additions to the Amazon EC2 documentatio
 | Feature | API Version | Description | Release Date | 
 | --- | --- | --- | --- | 
 | Automate snapshot lifecycle |  2016\-11\-15  |  You can use Amazon Data Lifecycle Manager to automate creation and deletion of snapshots for your EBS volumes\. For more information, see [Automating the Amazon EBS Snapshot Lifecycle](snapshot-lifecycle.md)\.  | 12 July 2018 | 
+| Launch template CPU options |  2016\-11\-15  |  When you create a launch template using the command line tools, you can optimize the CPU options to suit specific workloads or business needs\. For more information, see [Creating a Launch Template](ec2-launch-templates.md#create-launch-template)\.  | 11 July 2018 | 
 | Tag Dedicated Hosts |  2016\-11\-15  |  You can tag your Dedicated Hosts\. For more information, see [Tagging Dedicated Hosts](how-dedicated-hosts-work.md#dedicated-hosts-tagging)\.  | 3 July 2018 | 
 | i3\.metal instances |  2016\-11\-15  |  `i3.metal` instances provide your applications with direct access to the physical resources of the host server, such as processors and memory\. For more information, see [Storage Optimized Instances](storage-optimized-instances.md)\.  | 17 May 2018 | 
 |  Get latest console output  |  2016\-11\-15  |  You can retrieve the latest console output for some instance types when you use the [get\-console\-output](http://docs.aws.amazon.com/cli/latest/reference/ec2/get-console-output.html) AWS CLI command\.  | 9 May 2018 | 

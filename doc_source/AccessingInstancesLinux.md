@@ -5,7 +5,7 @@ After you launch your instance, you can connect to it and use it the way that yo
 **Note**  
 After you launch an instance, it can take a few minutes for the instance to be ready so that you can connect to it\. Check that your instance has passed its status checks\. You can view this information in the **Status Checks** column on the **Instances** page\.
 
-The following instructions explain how to connect to your instance using an SSH client\. If you receive an error while attempting to connect to your instance, see [Troubleshooting Connecting to Your Instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html)\.
+The following instructions explain how to connect to your instance using an SSH client\. If you receive an error while attempting to connect to your instance, see [Troubleshooting Connecting to Your Instance](TroubleshootingInstancesConnecting.md)\.
 
 ## Prerequisites<a name="ssh-prereqs"></a>
 
@@ -25,9 +25,9 @@ Before you connect to your Linux instance, complete the following prerequisites:
 + **\(IPv6 only\) Get the IPv6 address of the instance**
 
   If you've assigned an IPv6 address to your instance, you can optionally connect to the instance using its IPv6 address instead of a public IPv4 address or public IPv4 DNS hostname\. Your local computer must have an IPv6 address and must be configured to use IPv6\. You can get the IPv6 address of your instance using the Amazon EC2 console\. Check the **IPv6 IPs** field\. If you prefer, you can use the [describe\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) \(AWS CLI\) or [Get\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html) \(AWS Tools for Windows PowerShell\) command\. For more information about IPv6, see [IPv6 Addresses](using-instance-addressing.md#ipv6-addressing)\.
-+ **Locate the private key**
++ **Locate the private key**** and verify permissions**
 
-  Get the fully qualified path to the location on your computer of the `.pem` file for the key pair that you specified when you launched the instance\.
+  Get the fully\-qualified path to the location on your computer of the `.pem` file for the key pair that you specified when you launched the instance\. Verify that the `.pem` file has permissions of 0400, not 0777\. For more information, see [Error: Unprotected Private Key File](TroubleshootingInstancesConnecting.md#troubleshoot-unprotected-key)\.
 + **Get the default user name for the AMI that you used to launch your instance**
   + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
   + For a Centos AMI, the user name is `centos`\.
@@ -43,7 +43,7 @@ Before you connect to your Linux instance, complete the following prerequisites:
 
 ## Connecting to Your Linux Instance<a name="AccessingInstancesLinuxSSHClient"></a>
 
-Use the following procedure to connect to your Linux instance using an SSH client\. If you receive an error while attempting to connect to your instance, see [Troubleshooting Connecting to Your Instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html)\.
+Use the following procedure to connect to your Linux instance using an SSH client\. If you receive an error while attempting to connect to your instance, see [Troubleshooting Connecting to Your Instance](TroubleshootingInstancesConnecting.md)\.
 
 **To connect to your instance using SSH**
 
@@ -58,11 +58,13 @@ Use the following procedure to connect to your Linux instance using an SSH clien
 
 1. In a command\-line shell, change directories to the location of the private key file that you created when you launched the instance\.
 
-1. Use the chmod command to make sure that your private key file isn't publicly viewable\. For example, if the name of your private key file is `my-key-pair.pem`, use the following command:
+1. Use the following command to set the permissions of your private key file so that only you can read it\.
 
    ```
    chmod 400 /path/my-key-pair.pem
    ```
+
+   If you do not set these permissions, then you cannot connect to your instance using this key pair\. For more information, see [Error: Unprotected Private Key File](TroubleshootingInstancesConnecting.md#troubleshoot-unprotected-key)\.
 
 1. Use the ssh command to connect to the instance\. You specify the private key \(`.pem`\) file and *user\_name*@*public\_dns\_name*\. For example, if you used Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
 
@@ -113,9 +115,9 @@ One way to transfer files between your local computer and a Linux instance is to
 + **\(IPv6 only\) Get the IPv6 address of the instance**
 
   If you've assigned an IPv6 address to your instance, you can optionally connect to the instance using its IPv6 address instead of a public IPv4 address or public IPv4 DNS hostname\. Your local computer must have an IPv6 address and must be configured to use IPv6\. You can get the IPv6 address of your instance using the Amazon EC2 console\. Check the **IPv6 IPs** field\. If you prefer, you can use the [describe\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) \(AWS CLI\) or [Get\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html) \(AWS Tools for Windows PowerShell\) command\. For more information about IPv6, see [IPv6 Addresses](using-instance-addressing.md#ipv6-addressing)\.
-+ **Locate the private key**
++ **Locate the private key**** and verify permissions**
 
-  Get the fully qualified path to the location on your computer of the `.pem` file for the key pair that you specified when you launched the instance\.
+  Get the fully\-qualified path to the location on your computer of the `.pem` file for the key pair that you specified when you launched the instance\. Verify that the `.pem` file has permissions of 0400, not 0777\. For more information, see [Error: Unprotected Private Key File](TroubleshootingInstancesConnecting.md#troubleshoot-unprotected-key)\.
 + **Get the default user name for the AMI that you used to launch your instance**
   + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
   + For a Centos AMI, the user name is `centos`\.

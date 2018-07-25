@@ -61,6 +61,8 @@ This is the only chance for you to save the private key file\. You'll need to pr
    chmod 400 my-key-pair.pem
    ```
 
+   If you do not set these permissions, then you cannot connect to your instance using this key pair\. For more information, see [Error: Unprotected Private Key File](TroubleshootingInstancesConnecting.md#troubleshoot-unprotected-key)\.
+
 **To create your key pair using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.

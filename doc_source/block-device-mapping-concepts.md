@@ -15,7 +15,7 @@ A *block device* is a storage device that moves data in sequences of bytes or bi
 + Instance store volumes \(virtual devices whose underlying hardware is physically attached to the host computer for the instance\)
 + EBS volumes \(remote storage devices\)
 
-A *block device mapping* defines the block devices \(instance store volumes and EBS volumes\) to attach to an instance\. You can specify a block device mapping as part of creating an AMI so that the mapping is used by all instances launched from the AMI\. Alternatively, you can specify a block device mapping when you launch an instance, so this mapping overrides the one specified in the AMI from which you launched the instance\. Note that all of the NVMe instance store volumes supported by an instance type are automatically added on instance launch; you do not need to add them to the block device mapping for the AMI or the instance\.
+A *block device mapping* defines the block devices \(instance store volumes and EBS volumes\) to attach to an instance\. You can specify a block device mapping as part of creating an AMI so that the mapping is used by all instances launched from the AMI\. Alternatively, you can specify a block device mapping when you launch an instance, so this mapping overrides the one specified in the AMI from which you launched the instance\. Note that all NVMe instance store volumes supported by an instance type are automatically enumerated and assigned a device name on instance launch; including them in your block device mapping has no effect\.
 
 **Topics**
 + [Block Device Mapping Entries](#parts-of-a-block-device-mapping)
@@ -28,7 +28,7 @@ A *block device mapping* defines the block devices \(instance store volumes and 
 When you create a block device mapping, you specify the following information for each block device that you need to attach to the instance:
 + The device name used within Amazon EC2\. The block device driver for the instance assigns the actual volume name when mounting the volume, and the name assigned can be different from the name that Amazon EC2 recommends\. For more information, see [Device Naming on Linux Instances](device_naming.md)\.
 + \[Instance store volumes\] The virtual device: `ephemeral[0-23]`\. Note that the number and size of available instance store volumes for your instance varies by instance type\.
-+ \[NVMe instance store volumes\] These volumes are mapped automatically; you do not need to specify the NVMe instance type volumes supported by an instance type in a block device mapping\.
++ \[NVMe instance store volumes\] These volumes are automatically enumerated and assigned a device name; including them in your block device mapping has no effect\.
 + \[EBS volumes\] The ID of the snapshot to use to create the block device \(snap\-*xxxxxxxx*\)\. This value is optional as long as you specify a volume size\.
 + \[EBS volumes\] The size of the volume, in GiB\. The specified size must be greater than or equal to the size of the specified snapshot\.
 + \[EBS volumes\] Whether to delete the volume on instance termination \(`true` or `false`\)\. The default value is `true` for the root device volume and `false` for attached volumes\. When you create an AMI, its block device mapping inherits this setting from the instance\. When you launch an instance, it inherits this setting from the AMI\.

@@ -45,7 +45,7 @@ The primary data storage for D2 instances is HDD instance store volumes\. The pr
 
 Instance store volumes persist only for the life of the instance\. When you stop or terminate an instance, the applications and data in its instance store volumes are erased\. We recommend that you regularly back up or replicate important data in your instance store volumes\. For more information, see [Amazon EC2 Instance Store](InstanceStorage.md) and [SSD Instance Store Volumes](ssd-instance-store.md)\.
 
-The following is a summary of the hardware specifications for Storage optimized instances\.
+The following is a summary of the hardware specifications for storage optimized instances\.
 
 
 | Instance type | Default vCPUs | Memory \(GiB\) | 
@@ -88,16 +88,16 @@ You can enable enhanced networking capabilities on supported instance types\. En
 
 Instance types that use the Elastic Network Adapter \(ENA\) for enhanced networking deliver high packet per second performance with consistently low latencies\. Most applications do not consistently need a high level of network performance, but can benefit from having access to increased bandwidth when they send or receive data\. Instance types that use the ENA and support up to 10 Gbps of throughput use a network I/O credit mechanism to allocate network bandwidth to instances based on average bandwidth utilization\. These instances accrue credits when their network throughput is below their baseline limits, and can use these credits when they perform network data transfers\. For workloads that require access to 10 Gbps of bandwidth or more on a sustained basis, we recommend using instance types that support 10 Gbps or 25 Gbps network speeds\.
 
-The following is a summary of network performance for Storage optimized instances that support enhanced networking\.
+The following is a summary of network performance for storage optimized instances that support enhanced networking\.
 
 
 | Instance type | Network performance | Enhanced networking | 
 | --- | --- | --- | 
 |  `i3.4xlarge` and smaller  |  Up to 10 Gbps, use network I/O credit mechanism  | [ENA](enhanced-networking-ena.md) | 
-|  `i3.8xlarge`, `h1.8xlarge`  |  10 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  `i3.16xlarge`, `i3.metal`, `h1.16xlarge`  |  25 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `i3.8xlarge` \| `h1.8xlarge`  |  10 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `i3.16xlarge` \| `i3.metal` \| `h1.16xlarge`  |  25 Gbps  | [ENA](enhanced-networking-ena.md) | 
 |  `d2.xlarge`  |  Moderate  | [Intel 82599 VF](sriov-networking.md) | 
-| d2\.2xlarge, d2\.4xlarge |  High  | [Intel 82599 VF](sriov-networking.md) | 
+| d2\.2xlarge \| d2\.4xlarge |  High  | [Intel 82599 VF](sriov-networking.md) | 
 | d2\.8xlarge |  10 Gbps  | [Intel 82599 VF](sriov-networking.md) | 
 
 ## SSD I/O Performance<a name="i2-instances-diskperf"></a>
@@ -124,7 +124,7 @@ For instance store volumes that support TRIM, you can use the TRIM command to no
 
 ## Instance Features<a name="storage-instances-features"></a>
 
-The following is a summary of features for Storage optimized instances:
+The following is a summary of features for storage optimized instances:
 
 
 |  | VPC only | SSD volumes | Placement group | Enhanced networking | 
@@ -225,4 +225,5 @@ If you must use a different AMI for your application, and your `d2.8xlarge` inst
   hw.nvme.per_cpu_io_queues="0"
   ```
 + The `d2.8xlarge` instance type has 36 vCPUs, which might cause launch issues in some Linux operating systems that have a vCPU limit of 32\. For more information, see [Support for vCPUs](#d2-instances-cpu-support)\.
++ [ClassicLink](vpc-classiclink.md) is not supported for `i3.metal` instances—you cannot use ClassicLink to link your EC2\-Classic instances to these instances in your VPC\.
 + There is a limit on the total number of instances that you can launch in a region, and there are additional limits on some instance types\. For more information, see [How many instances can I run in Amazon EC2?](https://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2)\. To request a limit increase, use the [Amazon EC2 Instance Request Form](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-instances)\.

@@ -95,6 +95,8 @@ The `-y` option installs the updates without asking for confirmation\. If you wo
 **Note**  
 When you replace the default SSL/TLS files with your own customized files, be sure that they are in PEM format\. 
 
+1. [Reboot your instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-reboot.html) and reconnect to it\.
+
 1. Restart Apache\.
 
    ```

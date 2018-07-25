@@ -15,7 +15,7 @@ The following table describes the use cases and performance characteristics for 
 | API Name | gp2 | io1 | st1 | sc1 | 
 | Volume Size | 1 GiB \- 16 TiB  | 4 GiB \- 16 TiB  | 500 GiB \- 16 TiB | 500 GiB \- 16 TiB  | 
 | Max\. IOPS\*\*/Volume | 10,000 | 32,000\*\*\* | 500 | 250 | 
-| Max\. Throughput/Volume | 160 MiB/s | 500 MiB/s† | 500 MiB/s | 250 MiB/s | 
+| Max\. Throughput/Volume | 160 MiB/s\*\*\*\* | 500 MiB/s† | 500 MiB/s | 250 MiB/s | 
 | Max\. IOPS/Instance | 80,000 | 80,000 | 80,000 | 80,000 | 
 | Max\. Throughput/Instance†† | 1,750 MiB/s | 1,750 MiB/s | 1,750 MiB/s | 1,750 MiB/s | 
 | Dominant Performance Attribute | IOPS | IOPS | MiB/s | MiB/s | 
@@ -27,6 +27,8 @@ The following table describes the use cases and performance characteristics for 
 \*\* `gp2`/`io1` based on 16 KiB I/O size, `st1`/`sc1` based on 1 MiB I/O size
 
 \*\*\* `io1` volumes created in regions ap\-northeast\-3 and us\-gov\-west\-1 are subject to a 20,000 IOPS limit\.
+
+\*\*\*\* General Purpose SSD \(gp2\) volumes have a throughput limit between 128 MB/s and 160 MB/s depending on volume size\.
 
 † An `io1` volume created before 12/6/2017 will not achieve this throughput until modified in some way\. For more information, see [Modifying the Size, IOPS, or Type of an EBS Volume on Linux](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-modify-volume.html)\.
 

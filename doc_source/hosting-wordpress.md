@@ -90,13 +90,13 @@ The WordPress installation folder contains a sample configuration file called `w
 1. Copy the `wp-config-sample.php` file to a file called `wp-config.php`\. This creates a new configuration file and keeps the original sample file intact as a backup\.
 
    ```
-   [ec2-user wordpress]$ cp wordpress/wp-config-sample.php wordpress/wp-config.php
+   [ec2-user ~]$ cp wordpress/wp-config-sample.php wordpress/wp-config.php
    ```
 
 1. Edit the `wp-config.php` file with your favorite text editor \(such as nano or vim\) and enter values for your installation\. If you do not have a favorite text editor, `nano` is suitable for beginners\.
 
    ```
-   [ec2-user wordpress]$ nano wordpress/wp-config.php
+   [ec2-user ~]$ nano wordpress/wp-config.php
    ```
 
    1. Find the line that defines `DB_NAME` and change `database_name_here` to the database name that you created in [Step 4](#create_database) of [To create a database user and database for your WordPress installation](#create_user_and_database)\.
@@ -163,7 +163,7 @@ WordPress permalinks need to use Apache `.htaccess` files to work properly, but 
 1. Open the `httpd.conf` file with your favorite text editor \(such as nano or vim\)\. If you do not have a favorite text editor, `nano` is suitable for beginners\.
 
    ```
-   [ec2-user wordpress]$ sudo vim /etc/httpd/conf/httpd.conf
+   [ec2-user ~]$ sudo vim /etc/httpd/conf/httpd.conf
    ```
 
 1. Find the section that starts with `<Directory "/var/www/html">`\.
@@ -215,25 +215,25 @@ Some of the available features in WordPress require write access to the Apache d
 1. Grant file ownership of `/var/www` and its contents to the `apache` user\.
 
    ```
-   [ec2-user wordpress]$ sudo chown -R apache /var/www
+   [ec2-user ~]$ sudo chown -R apache /var/www
    ```
 
 1. Grant group ownership of `/var/www` and its contents to the `apache` group\.
 
    ```
-   [ec2-user wordpress]$ sudo chgrp -R apache /var/www
+   [ec2-user ~]$ sudo chgrp -R apache /var/www
    ```
 
 1. Change the directory permissions of `/var/www` and its subdirectories to add group write permissions and to set the group ID on future subdirectories\.
 
    ```
-   [ec2-user wordpress]$ sudo chmod 2775 /var/www
+   [ec2-user ~]$ sudo chmod 2775 /var/www
    ```
 
 1. Recursively change the file permissions of `/var/www` and its subdirectories to add group write permissions\.
 
    ```
-   [ec2-user wordpress]$ find /var/www -type d -exec sudo chmod 2775 {} \;
+   [ec2-user ~]$ find /var/www -type d -exec sudo chmod 2775 {} \;
    ```
 
 1. Restart the Apache web server to pick up the new group and permissions\.

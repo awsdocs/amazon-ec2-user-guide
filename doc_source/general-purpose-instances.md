@@ -130,5 +130,5 @@ For more information, see the following:
   + Windows Server 2008 R2 or later
 + M5 and M5d instances support a maximum of 27 EBS volumes plus elastic network interface attachments\. For example, `m5.2xlarge` instances support four network interfaces\. Every instance has at least one network interface\. If you have a `m5.2xlarge` instance with three additional elastic network interface attachments, you can attach 24 EBS volumes to that instance\.
 + M5 and M5d instances should have acpid installed to support clean shutdown through API requests\.
-+ ClassicLink is not supported for M5 and M5d instances—you cannot use ClassicLink to link your EC2\-Classic instances to these instances in your VPC\.
++ [ClassicLink](vpc-classiclink.md) is not supported for M5 and M5d instances—you cannot use ClassicLink to link your EC2\-Classic instances to these instances in your VPC\.
 + There is a limit on the total number of instances that you can launch in a region, and there are additional limits on some instance types\. For more information, see [How many instances can I run in Amazon EC2?](https://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2)\. To request a limit increase, use the [Amazon EC2 Instance Request Form](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-instances)\.

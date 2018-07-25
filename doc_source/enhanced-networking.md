@@ -5,8 +5,8 @@ Enhanced networking uses single root I/O virtualization \(SR\-IOV\) to provide h
 **Topics**
 + [Enhanced Networking Types](#supported_instances)
 + [Enabling Enhanced Networking on Your Instance](#enabling_enhanced_networking)
-+ [Enabling Enhanced Networking with the Intel 82599 VF Interface on Linux Instances in a VPC](sriov-networking.md)
-+ [Enabling Enhanced Networking with the Elastic Network Adapter \(ENA\) on Linux Instances in a VPC](enhanced-networking-ena.md)
++ [Enabling Enhanced Networking with the Intel 82599 VF Interface on Linux Instances](sriov-networking.md)
++ [Enabling Enhanced Networking with the Elastic Network Adapter \(ENA\) on Linux Instances](enhanced-networking-ena.md)
 + [Troubleshooting the Elastic Network Adapter \(ENA\)](troubleshooting-ena.md)
 
 ## Enhanced Networking Types<a name="supported_instances"></a>
@@ -25,6 +25,6 @@ To find out which instance types support 10 or 25 Gbps network speeds, see [Amaz
 
 ## Enabling Enhanced Networking on Your Instance<a name="enabling_enhanced_networking"></a>
 
-If your instance type supports the Intel 82599 VF interface for enhanced networking, follow the procedures in [Enabling Enhanced Networking with the Intel 82599 VF Interface on Linux Instances in a VPC](sriov-networking.md)\.
+If your instance type supports the Intel 82599 VF interface for enhanced networking, follow the procedures in [Enabling Enhanced Networking with the Intel 82599 VF Interface on Linux Instances](sriov-networking.md)\.
 
-If your instance type supports the Elastic Network Adapter for enhanced networking, follow the procedures in [Enabling Enhanced Networking with the Elastic Network Adapter \(ENA\) on Linux Instances in a VPC](enhanced-networking-ena.md)\.
+If your instance type supports the Elastic Network Adapter for enhanced networking, follow the procedures in [Enabling Enhanced Networking with the Elastic Network Adapter \(ENA\) on Linux Instances](enhanced-networking-ena.md)\.

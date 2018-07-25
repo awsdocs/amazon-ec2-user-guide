@@ -85,6 +85,7 @@ Your Spot Instances continue to run as long as your maximum price is at or above
 |  `instance-stopped-capacity-oversubscribed`  |  `disabled`  |  `stopped`  | 
 |  `instance-stopped-no-capacity`  |  `disabled`  |  `stopped`  | 
 |  `instance-terminated-by-price`  |  `closed` \(one\-time\), `open` \(persistent\)  |  `terminated`  | 
+|  `instance-terminated-by-schedule`  |  `closed`  |  `terminated`  | 
 |  `instance-terminated-by-service`  |  `cancelled`  |  `terminated`  | 
 |  `instance-terminated-by-user` †  |  `closed` or `cancelled` \*  |  `terminated`  | 
 |  `instance-terminated-no-capacity`  |  `closed` \(one\-time\), `open` \(persistent\)  |  `terminated`  | 
@@ -157,6 +158,9 @@ Your instance was stopped because there was no longer enough Spot capacity avail
 
 `instance-terminated-by-price`  
 Your instance was terminated because the Spot price exceeded your maximum price\. If your request is persistent, the process restarts, so your request is pending evaluation\.
+
+`instance-terminated-by-schedule`  
+Your Spot Instance was terminated at the end of its scheduled duration\.
 
 `instance-terminated-by-service`  
 Your instance was terminated from a stopped state\.

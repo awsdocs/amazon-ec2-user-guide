@@ -17,9 +17,9 @@ The Chrome browser does not support the NPAPI plugin, and therefore cannot run t
 + **Enable Java in your browser**
 
   For instructions, see [https://java\.com/en/download/help/enable\_browser\.xml](https://java.com/en/download/help/enable_browser.xml)\.
-+ **Locate the private key**
++ **Locate the private key**** and verify permissions**
 
-  Get the fully qualified path to the location on your computer of the `.pem` file for the key pair that you specified when you launched the instance\.
+  Get the fully\-qualified path to the location on your computer of the `.pem` file for the key pair that you specified when you launched the instance\. Verify that the `.pem` file has permissions of 0400, not 0777\. For more information, see [Error: Unprotected Private Key File](TroubleshootingInstancesConnecting.md#troubleshoot-unprotected-key)\.
 + **Get the default user name for the AMI that you used to launch your instance**
   + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
   + For a Centos AMI, the user name is `centos`\.
