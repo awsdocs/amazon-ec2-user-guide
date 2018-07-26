@@ -156,14 +156,18 @@ To create an EC2 Fleet, you need only specify the launch template, target capaci
   The following EC2 Fleet parameters are available:
 
   ```
-      {
+  {
       "DryRun": true, 
       "ClientToken": "", 
       "SpotOptions": {
-          "AllocationStrategy": "diversified", 
-          "InstanceInterruptionBehavior": "stop"
+          "AllocationStrategy": "lowest-price", 
+          "InstanceInterruptionBehavior": "hibernate", 
+          "InstancePoolsToUseCount": 0
       }, 
-      "ExcessCapacityTerminationPolicy": "no-termination", 
+      "OnDemandOptions": {
+          "AllocationStrategy": "prioritized"
+      }, 
+      "ExcessCapacityTerminationPolicy": "termination", 
       "LaunchTemplateConfigs": [
           {
               "LaunchTemplateSpecification": {
@@ -177,7 +181,8 @@ To create an EC2 Fleet, you need only specify the launch template, target capaci
                       "MaxPrice": "", 
                       "SubnetId": "", 
                       "AvailabilityZone": "", 
-                      "WeightedCapacity": null
+                      "WeightedCapacity": null, 
+                      "Priority": null
                   }
               ]
           }
@@ -212,11 +217,17 @@ To create an EC2 Fleet, you need only specify the launch template, target capaci
 **Note**  
 Use lowercase for all parameter values; otherwise, you get an error when Amazon EC2 uses the JSON file to launch the EC2 Fleet\.
 
-**AllocationStrategy**  
+**AllocationStrategy \(for SpotOptions\)**  
 \(Optional\) Indicates how to allocate the Spot Instance target capacity across the Spot Instance pools specified by the EC2 Fleet\. Valid values are `lowest-price` and `diversified`\. The default is `lowest-price`\. Specify the allocation strategy that meets your needs\. For more information, see [Allocation Strategy for Spot Instances](ec2-fleet-configuration-strategies.md#ec2-fleet-allocation-strategy)\.
 
 **InstanceInterruptionBehavior**  
 \(Optional\) The behavior when a Spot Instance is interrupted\. Valid values are `hibernate`, `stop`, and `terminate`\. By default, the Spot service terminates Spot Instances when they are interrupted\. If the fleet type is `maintain`, you can specify that the Spot service hibernates or stops Spot Instances when they are interrupted\.
+
+**InstancePoolsToUseCount**  
+The number of Spot pools across which to allocate your target Spot capacity\. Valid only when Spot **AllocationStrategy** is set to `lowestPrice`\. EC2 Fleet selects the cheapest Spot pools and evenly allocates your target Spot capacity across the number of Spot pools that you specify\.
+
+**AllocationStrategy \(for OnDemandOptions\)**  
+The order of the launch template overrides to use in fulfilling On\-Demand capacity\. If you specify `lowest-price`, EC2 Fleet uses price to determine the order, launching the lowest price first\. If you specify prioritized, EC2 Fleet uses the priority that you assigned to each launch template override, launching the highest priority first\. If you do not specify a value, EC2 Fleet defaults to `lowest-price`\.
 
 **ExcessCapacityTerminationPolicy**  
 \(Optional\) Indicates whether running instances should be terminated if the total target capacity of the EC2 Fleet is decreased below the current size of the EC2 Fleet\. Valid values are `no-termination` and `termination`\.
@@ -246,6 +257,9 @@ The version number of the launch template\.
 
 **WeightedCapacity**  
 \(Optional\) The number of units provided by the specified instance type\. If entered, this value overrides the launch template\.
+
+**Priority**  
+The priority for the launch template override\. If **AllocationStrategy** is set to `prioritized`, EC2 Fleet uses priority to determine which launch template override to use first in fulfilling On\-Demand capacity\. The highest priority is launched first\. Valid values are whole numbers starting at `0`\. The lower the number, the higher the priority\. If no number is set, the override has the lowest priority\.
 
 **TotalTargetCapacity**  
 The number of instances to launch\. You can choose instances or performance characteristics that are important to your application workload, such as vCPUs, memory, or storage\. If the request type is `maintain`, you can specify a target capacity of 0 and add capacity later\.
@@ -362,7 +376,8 @@ The following is example output:
             "FleetId": "fleet-76e13e99-01ef-4bd6-ba9b-9208de883e7f", 
             "ReplaceUnhealthyInstances": false, 
             "SpotOptions": {
-                "InstanceInterruptionBehavior": "terminate", 
+                "InstanceInterruptionBehavior": "terminate",
+                "InstancePoolsToUseCount": 1, 
                 "AllocationStrategy": "lowestPrice"
             }, 
             "FleetState": "active", 

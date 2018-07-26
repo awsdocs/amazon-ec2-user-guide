@@ -27,21 +27,40 @@ The Spot Instances come from the pool with the lowest price\. This is the defaul
 `diversified`  
 The Spot Instances are distributed across all pools\.
 
-For On\-Demand target capacity, we always select the cheapest option based on the On\-Demand price, while continuing to follow the allocation strategy \(either lowest price or diversified\) for Spot Instances\.
+`InstancePoolsToUseCount`  
+The Spot Instances are distributed across the number of Spot pools that you specify\. This parameter is valid only when used in combination with `lowestPrice`\.
 
-### Choosing an Allocation Strategy<a name="allocation-use-cases"></a>
+### Maintaining Target Capacity<a name="maintain-fleet-capacity"></a>
+
+After Spot Instances are terminated due to a change in the Spot price or available capacity of a Spot Instance pool, a Spot Fleet of type `maintain` launches replacement Spot Instances\. If the allocation strategy is `lowestPrice`, the fleet launches replacement instances in the pool where the Spot price is currently the lowest\. If the allocation strategy is `diversified`, the fleet distributes the replacement Spot Instances across the remaining pools\. If the allocation strategy is `lowestPrice` in combination with `InstancePoolsToUseCount`, the fleet selects the Spot pools with the lowest price and launches Spot Instances across the number of Spot pools that you specify\.
+
+### Configuring Spot Fleet for Cost Optimization<a name="spot-fleet-strategy-cost-optimization"></a>
+
+To optimize the costs for your use of Spot Instances, specify the `lowestPrice` allocation strategy so that Spot Fleet automatically deploys the cheapest combination of instance types and Availability Zones based on the current Spot price\.
+
+For On\-Demand Instance target capacity, Spot Fleet always selects the cheapest instance type based on the public On\-Demand price, while continuing to follow the allocation strategy \(either `lowestPrice` or `diversified`\) for Spot Instances\.
+
+### Configuring Spot Fleet for Cost Optimization and Diversification<a name="spot-fleet-strategy-cost-optimization-and-diversified"></a>
+
+To create a fleet of Spot Instances that is both cheap and diversified, use the `lowestPrice` allocation strategy in combination with `InstancePoolsToUseCount`\. Spot Fleet automatically deploys the cheapest combination of instance types and Availability Zones based on the current Spot price across the number of Spot pools that you specify\. This combination can be used to avoid the most expensive Spot Instances\.
+
+### Choosing an Appropriate Allocation Strategy<a name="allocation-use-cases"></a>
 
 You can optimize your Spot Fleets based on your use case\.
 
 If your fleet is small or runs for a short time, the probability that your Spot Instances will be interrupted is low, even with all the instances in a single Spot Instance pool\. Therefore, the `lowestPrice` strategy is likely to meet your needs while providing the lowest cost\.
 
-If your fleet is large or runs for a long time, you can improve the availability of your fleet by distributing the Spot Instances across multiple pools\. For example, if your Spot Fleet request specifies 10 pools and a target capacity of 100 instances, the Spot Fleet launches 10 Spot Instances in each pool\. If the Spot price for one pool exceeds your maximum price for this pool, only 10% of your fleet is affected\. Using this strategy also makes your fleet less sensitive to increases in the Spot price in any one pool over time\.
+If your fleet is large or runs for a long time, you can improve the availability of your fleet by distributing the Spot Instances across multiple pools\. For example, if your Spot Fleet request specifies 10 pools and a target capacity of 100 instances, the fleet launches 10 Spot Instances in each pool\. If the Spot price for one pool exceeds your maximum price for this pool, only 10% of your fleet is affected\. Using this strategy also makes your fleet less sensitive to increases in the Spot price in any one pool over time\.
 
 With the `diversified` strategy, the Spot Fleet does not launch Spot Instances into any pools with a Spot price that is equal to or higher than the [On\-Demand price](https://aws.amazon.com/ec2/pricing/)\.
 
-### Maintaining Target Capacity<a name="maintain-fleet-capacity"></a>
+To create a cheap and diversified fleet, use the `lowestPrice` strategy in combination with `InstancePoolsToUseCount`\. You can use a low or high number of Spot pools across which to allocate your Spot Instances\. For example, if you run batch processing, we recommend specifying a low number of Spot pools \(for example, `InstancePoolsToUseCount=2`\) to ensure that your queue always has compute capacity while maximizing savings\. If you run a web service, we recommend specifying a high number of Spot pools \(for example, `InstancePoolsToUseCount=10`\) to minimize the impact if a Spot Instance pool becomes temporarily unavailable\.
 
-After Spot Instances are terminated due to a change in the Spot price or available capacity of a Spot Instance pool, the Spot Fleet launches replacement Spot Instances\. If the allocation strategy is `lowestPrice`, the Spot Fleet launches replacement instances in the pool where the Spot price is currently the lowest\. If the allocation strategy is `diversified`, the Spot Fleet distributes the replacement Spot Instances across the remaining pools\.
+### Prioritizing Instance Types for On\-Demand Capacity<a name="spot-fleet-on-demand-priority"></a>
+
+When Spot Fleet attempts to fulfill your On\-Demand capacity, it defaults to launching the lowest\-priced instance type first\. If `OnDemandAllocationStrategy` is set to `prioritized`, Spot Fleet uses priority to determine which instance type to use first in fulfilling On\-Demand capacity\. The priority is assigned to the launch template override, and the highest priority is launched first\.
+
+For example, you have configured three launch template overrides, each with a different instance type: `c3.large`, `c4.large`, and `c5.large`\. The On\-Demand price for `c5.large` is less than for `c4.large`\. `c3.large` is the cheapest\. If you do not use priority to determine the order, the fleet fulfills On\-Demand capacity by starting with `c3.large`, and then `c5.large`\. Because you often have unused Reserved Instances for `c4.large`, you can set the launch template override priority so that the order is `c4.large`, `c3.large`, and then `c5.large`\.
 
 ## Spot Price Overrides<a name="spot-price-overrides"></a>
 
@@ -55,14 +74,16 @@ When you request a fleet of Spot Instances, you can define the capacity units th
 
 By default, the price that you specify is *per instance hour*\. When you use the instance weighting feature, the price that you specify is *per unit hour*\. You can calculate your price per unit hour by dividing your price for an instance type by the number of units that it represents\. Spot Fleet calculates the number of Spot Instances to launch by dividing the target capacity by the instance weight\. If the result isn't an integer, the Spot Fleet rounds it up to the next integer, so that the size of your fleet is not below its target capacity\. Spot Fleet can select any pool that you specify in your launch specification, even if the capacity of the instances launched exceeds the requested target capacity\.
 
-The following table includes examples of calculations to determine the price per unit for a Spot Fleet request with a target capacity of 10\.
+The following tables provide examples of calculations to determine the price per unit for a Spot Fleet request with a target capacity of 10\.
 
-
-****  
 
 | Instance type | Instance weight | Price per instance hour | Price per unit hour | Number of instances launched | 
 | --- | --- | --- | --- | --- | 
 | `r3.xlarge` | 2 | $0\.05 |  \.025 \(\.05 divided by 2\)  |  5 \(10 divided by 2\)  | 
+
+
+| Instance type | Instance weight | Price per instance hour | Price per unit hour | Number of instances launched | 
+| --- | --- | --- | --- | --- | 
 | `r3.8xlarge` | 8 | $0\.10 |  \.0125 \(\.10 divided by 8\)  |  2 \(10 divided by 8, result rounded up\)  | 
 
 Use Spot Fleet instance weighting as follows to provision the target capacity that you want in the pools with the lowest price per unit at the time of fulfillment:

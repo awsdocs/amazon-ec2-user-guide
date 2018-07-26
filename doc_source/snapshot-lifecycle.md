@@ -19,11 +19,11 @@ For more information, see [Amazon EBS Snapshots](http://docs.aws.amazon.com/AWSE
 
 ### Volume Tags<a name="dlm-tagging-volumes"></a>
 
-Amazon DLM uses resource tags to identify the EBS volumes to back up\. Tags are customizable metadata that you can assign to your AWS resources \(including EBS volumes and snapshots\)\. Amazon DLM policies \(described below\) target each volume with a specific tag\.
+Amazon DLM uses resource tags to identify the EBS volumes to back up\. Tags are customizable metadata that you can assign to your AWS resources \(including EBS volumes and snapshots\)\. An Amazon DLM policy \(described below\) targets a volume for backup using a single unique tag\. Multiple tags can be assigned to a volume if you want to run multiple policies on it\.
 
 You can't use a '\\' or '=' character in a tag key\.
 
-For more information, see [Tagging Your Amazon EC2 Resources](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html)\.
+For more information about tagging Amazon EC2 objects, see [Tagging Your Amazon EC2 Resources](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html)\.
 
 ### Snapshot Tags<a name="dlm-tagging-snapshots"></a>
 
@@ -39,20 +39,20 @@ Volume tags are not inherited by the snapshots that Amazon DLM creates\.
 
 ### Lifecycle Policies<a name="dlm-lifecycle-policies"></a>
 
-Lifecycle policies consist of these core settings:
+A lifecycle policy consists of these core settings:
 + Resource type—The AWS resource managed by the policy, in this case, EBS volumes\.
-+ Target tags—The tags that must be associated with the EBS volumes to be managed by the policy\.
++ Target tag—The tag that must be associated with an EBS volume for it to be managed by the policy\.
 + Schedule—Defines how often to create snapshots and the maximum number of snapshots to keep\. Snapshot creation starts within an hour of the specified start time\. If creating a new snapshot exceeds the maximum number of snapshots to keep for the volume, the oldest snapshot is deleted\.
-
-For example, you could create a policy that manages all EBS volumes with the tag account=Finance, creates snapshots every 24 hours at 0900, and retains the five most recent snapshots\. Snapshot creation could start as late as 0959\.
 
 The following considerations apply to lifecycle policies:
 + A policy does not begin creating snapshots until you set its activation status to *enabled*\. You can configure a policy to be enabled upon creation\.
 + Snapshots begin to be created by a policy within one hour following the specified start time\.
-+ If you modify a policy by removing or changing its target tags, the EBS volumes with those tags are no longer affected by the policy\.
++ If you modify a policy by removing or changing its target tag, the EBS volumes with that tag are no longer affected by the policy\.
 + If you modify the schedule name for a policy, the snapshots created under the old schedule name are no longer affected by the policy\.
-+ You can create multiple policies targeting the one or more EBS volumes, as long as distinct tags are used by each policy\. Target tags cannot be reused across policies, even disabled policies\. If an EBS volume has two tags, where tag A is a target of policy A to create a snapshot every 12 hours, and tag B is a target of policy B to create a snapshot every 24 hours, Amazon DLM creates snapshots according to the schedules for both policies\.
++ You can create multiple policies to back up an EBS volume, as long as each policy targets a unique tag on the volume\. Target tags cannot be reused across policies, even disabled policies\. If an EBS volume has two tags, where tag A is the target for policy A to create a snapshot every 12 hours, and tag B is the target for policy B to create a snapshot every 24 hours, Amazon DLM creates snapshots according to the schedules for both policies\.
 + When you copy a snapshot created by a policy, the retention schedule is not carried over to the copy\. This ensures that Amazon DLM does not delete snapshots that should be retained for a longer period of time\.
+
+For example, you could create a policy that manages all EBS volumes with the tag `account=Finance`, creates snapshots every 24 hours at 0900, and retains the five most recent snapshots\. Snapshot creation could start as late as 0959\.
 
 ## Permissions for Amazon DLM<a name="dlm-permissions"></a>
 

@@ -119,8 +119,36 @@ You can create a new launch template using parameters that you define, or you ca
 + Use the [create\-launch\-template](http://docs.aws.amazon.com/cli/latest/reference/ec2/create-launch-template.html) \(AWS CLI\) command\. The following example creates a launch template that specifies the instance type \(`r4.4xlarge`\) and AMI \(`ami-8c1be5f6`\) to launch, specifies the number of cores \(`4`\) and threads per core \(`2`\) for a total of 8 vCPUs \(4 cores x 2 threads\), specifies the subnet in which to launch the instance \(`subnet-7b16de0c`\), assigns a public IP address and an IPv6 address to the instance, and creates a tag for the instance \(`Name`=`webserver`\)\.
 
   ```
-  aws ec2 create-launch-template --launch-template-name TemplateForWebServer --version-description WebVersion1 --launch-template-data '{"NetworkInterfaces":[{"AssociatePublicIpAddress":true,"DeviceIndex":0,"Ipv6AddressCount":1,"SubnetId":"subnet-7b16de0c"}],"ImageId":"ami-8c1be5f6","InstanceType":"r4.4xlarge","TagSpecifications":[{"ResourceType":"instance","Tags":[{"Key":"Name","Value":"webserver"}]}],"CpuOptions":[{"CoreCount":4,"ThreadsPerCore":2}]}'
+  aws ec2 create-launch-template --launch-template-name TemplateForWebServer --version-description WebVersion1 --launch-template-data file://template-data.json
   ```
+
+  The following is an example `template-data.json` file\.
+
+  ```
+  {
+      "NetworkInterfaces": [{
+          "AssociatePublicIpAddress": true,
+          "DeviceIndex": 0,
+          "Ipv6AddressCount": 1,
+          "SubnetId": "subnet-7b16de0c"
+      }],
+      "ImageId": "ami-8c1be5f6",
+      "InstanceType": "r4.4xlarge",
+      "TagSpecifications": [{
+          "ResourceType": "instance",
+          "Tags": [{
+              "Key":"Name",
+              "Value":"webserver"
+          }]
+      }],
+      "CpuOptions": {
+          "CoreCount":4,
+          "ThreadsPerCore":2
+      }
+  }
+  ```
+
+  The following is example output\.
 
   ```
   {
@@ -141,6 +169,8 @@ You can create a new launch template using parameters that you define, or you ca
   ```
   aws ec2 get-launch-template-data --instance-id i-0123d646e8048babc --query "LaunchTemplateData"
   ```
+
+  The following is example output\.
 
   ```
       {
@@ -227,7 +257,7 @@ When you create a launch template version, you can specify new launch parameters
 + Use the [create\-launch\-template\-version](http://docs.aws.amazon.com/cli/latest/reference/ec2/create-launch-template-version.html) \(AWS CLI\) command\. You can specify a source version on which to base the new version\. The new version inherits the launch parameters from this version, and you can override parameters using `--launch-template-data`\. The following example creates a new version based on version 1 of the launch template and specifies a different AMI ID\.
 
   ```
-  aws ec2 create-launch-template-version --launch-template-id lt-0abcd290751193123 --version-description WebVersion2 --source-version 1 --launch-template-data '{"ImageId":"ami-c998b6b2"}'
+  aws ec2 create-launch-template-version --launch-template-id lt-0abcd290751193123 --version-description WebVersion2 --source-version 1 --launch-template-data "ImageId=ami-c998b6b2"
   ```
 
 ### Setting the Default Launch Template Version<a name="set-default-launch-template-version"></a>

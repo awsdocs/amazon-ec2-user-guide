@@ -32,7 +32,7 @@ T2 instance types are the only instance types that use CPU credits for CPU usage
 + Launch a T2 instance using the [run\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command\. Specify the credit option using the `--credit-specification CpuCredits=` parameter\. Valid credit options are `standard` and `unlimited`\. If you do not include the `--credit-specification` parameter, the instance launches as `standard` by default\.
 
   ```
-  aws ec2 run-instances --image-id ami-abc12345 --count 1 --instance-type t2.micro --key-name MyKeyPair --credit-specification CpuCredits=unlimited
+  aws ec2 run-instances --image-id ami-abc12345 --count 1 --instance-type t2.micro --key-name MyKeyPair --credit-specification "CpuCredits=unlimited"
   ```
 
 ## Using an Auto Scaling Group to Launch a T2 Unlimited Instance<a name="t2-auto-scaling-grp"></a>
@@ -46,7 +46,7 @@ You must use a launch template for launching a T2 instance as Unlimited in an Au
 **Example**  
 
   ```
-  aws ec2 create-launch-template --launch-template-name MyLaunchTemplate --version-description FirstVersion --launch-template-data ImageId=ami-8c1be5f6,InstanceType=t2.medium,CreditSpecification={CpuCredits=unlimited} 
+  aws ec2 create-launch-template --launch-template-name MyLaunchTemplate --version-description FirstVersion --launch-template-data ImageId=ami-8c1be5f6,InstanceType=t2.medium,CreditSpecification={CpuCredits=unlimited}
   ```
 
 To associate the launch template with an Auto Scaling group, create the group with the launch template, or add the launch template to an existing group\.
@@ -81,6 +81,8 @@ You can view the credit option \(`standard` or `unlimited`\) of a running or sto
   aws ec2 describe-instance-credit-specifications --instance-id i-1234567890abcdef0
   ```
 
+  The following is example output\.
+
   ```
   {
     "InstanceCreditSpecifications": [
@@ -112,8 +114,10 @@ The **Change T2 Unlimited** option is enabled only if you select a T2 instance\.
 + Modify the credit option for CPU usage for a T2 instance using the [modify\-instance\-credit\-specification](http://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-credit-specification.html) command\. Specify the instance and its credit option using the `--instance-credit-specification` parameter\. Valid credit options are `standard` and `unlimited`\.
 
   ```
-  aws ec2 modify-instance-credit-specification --region us-east-1 --instance-credit-specification '[{"InstanceId": "i-1234567890abcdef0","CpuCredits": "unlimited"}]' 
+  aws ec2 modify-instance-credit-specification --region us-east-1 --instance-credit-specification "InstanceId=i-1234567890abcdef0,CpuCredits=unlimited"
   ```
+
+  The following is example output\.
 
   ```
   {

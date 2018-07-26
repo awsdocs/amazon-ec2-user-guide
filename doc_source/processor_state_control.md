@@ -5,13 +5,14 @@ C\-states control the sleep levels that a core can enter when it is idle\. C\-st
 The following instance types provide the ability for an operating system to control processor C\-states and P\-states:
 + General purpose: `m4.10xlarge` \| `m4.16xlarge`
 + Compute optimized: `c4.8xlarge`
-+ Memory optimized: `r4.8xlarge` \| `r4.16xlarge` \| `x1.16xlarge` \| `x1.32xlarge` \| `x1e.8xlarge` \| `x1e.16xlarge` \| `x1e.32xlarge`
++ Memory optimized: `r4.8xlarge` \| `r4.16xlarge` \| `r5.12xlarge` \| `r5.24xlarge` \| `x1.16xlarge` \| `x1.32xlarge` \| `x1e.8xlarge` \| `x1e.16xlarge` \| `x1e.32xlarge`
 + Storage optimized: `d2.8xlarge` \| `i3.8xlarge` \| `i3.16xlarge` \| `i3.metal` \| `h1.8xlarge` \| `h1.16xlarge`
 + Accelerated computing: `f1.16xlarge` \| `g3.16xlarge` \| `p2.16xlarge` \| `p3.16xlarge`
 
 The following instance types provide the ability for an operating system to control processor C\-states:
 + General purpose: `m5.12xlarge` \| `m5.24xlarge` \| `m5d.12xlarge` \| `m5d.24xlarge`
 + Compute optimized: `c5.9xlarge` \| `c5.18xlarge` \| `c5d.9xlarge` \| `c5d.18xlarge`
++ Memory optimized: `z1d.6xlarge` \| `z1d.12xlarge`
 
 You might want to change the C\-state or P\-state settings to increase processor performance consistency, reduce latency, or tune your instance for a specific workload\. The default C\-state and P\-state settings provide maximum performance, which is optimal for most workloads\. However, if your application would benefit from reduced latency at the cost of higher single\- or dual\-core frequencies, or from consistent performance at lower frequencies as opposed to bursty Turbo Boost frequencies, consider experimenting with the C\-state or P\-state settings that are available to these instances\.
 

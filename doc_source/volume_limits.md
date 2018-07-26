@@ -37,7 +37,7 @@ For more information about how device names related to volumes, see [Mapping Dis
 
 ## Instance Type Limits<a name="instance-type-volume-limits"></a>
 
-C5 and M5 instances support a maximum of 28 attachments, and every instance has at least one network interface attachment\. If you have no additional network interface attachments on a C5 or M5 instance, you could attach 27 EBS volumes\. For more information, see [Elastic Network Interfaces](using-eni.md)\.
+C5, C5d, M5, M5d, R5, R5d, and z1d instances support a maximum of 28 attachments, and every instance has at least one network interface attachment\. If you have no additional network interface attachments on these instances, you could attach 27 EBS volumes\. For more information, see [Elastic Network Interfaces](using-eni.md)\.
 
 ## Bandwidth versus Capacity<a name="storage-bandwidth"></a>
 

@@ -37,7 +37,7 @@ Use the [modify\-image\-attribute](http://docs.aws.amazon.com/cli/latest/referen
 The following command grants launch permissions for the specified AMI to the specified AWS account\.
 
 ```
-aws ec2 modify-image-attribute --image-id ami-12345678 --launch-permission "{\"Add\":[{\"UserId\":\"123456789012\"}]}"
+aws ec2 modify-image-attribute --image-id ami-12345678 --launch-permission "Add=[{UserId=123456789012}]"
 ```
 
 The following command grants create volume permission for a snapshot\.
@@ -50,7 +50,7 @@ aws ec2 modify-snapshot-attribute --snapshot-id snap-1234567890abcdef0 --attribu
 The following command removes launch permissions for the specified AMI from the specified AWS account:
 
 ```
-aws ec2 modify-image-attribute --image-id ami-12345678 --launch-permission "{\"Remove\":[{\"UserId\":\"123456789012\"}]}"
+aws ec2 modify-image-attribute --image-id ami-12345678 --launch-permission "Remove=[{UserId=123456789012}]"
 ```
 
 The following command removes create volume permission for a snapshot\.
