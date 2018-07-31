@@ -164,87 +164,21 @@ Follow the previous procedure until the step where you stop the instance\. Creat
 
 Before you begin, [check if enhanced networking is already enabled](#test-enhanced-networking) on your instance\.
 
-The Quick Start Ubuntu HVM AMIs include the necessary drivers for enhanced networking\. If you have version 2\.16\.4 or later of `ixgbevf`, you do not need to compile a different version of the `ixgbevf` module unless you want additional functionality provided in a newer version\. Versions of `ixgbevf` earlier than 2\.16\.4, including version 2\.14\.2, do not build properly on certain versions of Ubuntu\.
+The Quick Start Ubuntu HVM AMIs include the necessary drivers for enhanced networking\.
 
-If you've launched an instance from a different Ubuntu AMI, contact the AMI provider to confirm if you need a newer version of the enhanced networking drivers\.
+If you have a version of `ixgbevf` earlier than 2\.16\.4 then you can install the `linux-aws` kernel package to get the latest `ixgbevf` drivers.
 
-The following procedure provides the general steps for compiling the `ixgbevf` module on an Ubuntu instance\.<a name="ubuntu-enhanced-networking-procedure"></a>
-
-**To enable enhanced networking on Ubuntu**
+**To install the `linux-aws` kernel package**
 
 1. <a name="ubuntu-enhanced-networking-start-step"></a>Connect to your instance\.
 
 1. Update the package cache and packages\.
 
    ```
-   ubuntu:~$ sudo apt-get update && sudo apt-get upgrade -y
+   ubuntu:~$ sudo apt-get update && sudo apt-get upgrade -y linux-aws
    ```
 **Important**  
 If during the update process, you are prompted to install `grub`, use `/dev/xvda` to install `grub` onto, and then choose to keep the current version of `/boot/grub/menu.lst`\.
-
-1. Download the source of the `ixgbevf` module appropriate for the kernel version of your instance from Sourceforge at [https://sourceforge\.net/projects/e1000/files/ixgbevf%20stable/](https://sourceforge.net/projects/e1000/files/ixgbevf%20stable/); for example:
-
-   ```
-   ubuntu:~$ wget "https://sourceforge.net/projects/e1000/files/ixgbevf stable/4.3.3/ixgbevf-4.3.3.tar.gz"
-   ```
-**Note**  
-Use the `uname -r` command to get the kernel version for your instance\.
-
-1. Decompress and unarchive the `ixgbevf` package\.
-
-   ```
-   ubuntu:~$ tar -xzf ixgbevf-4.3.3.tar.gz
-   ```
-
-1. Add, build, and install the `ixgbevf` module on your instance\.
-
-1. <a name="ixgbevf_stop_step"></a>Rebuild `initramfs` so the correct module is loaded at boot time\.
-
-   ```
-   ubuntu:~$ sudo update-initramfs -c -k all
-   ```
-
-1. <a name="ubuntu-enhanced-networking-stop-step"></a>Verify that the `ixgbevf` module is installed and at the minimum recommended version using the modinfo ixgbevf command\.
-
-   ```
-   ubuntu:~$ modinfo ixgbevf
-   ```
-
-1. \[EBS\-backed instance\] From your local computer, stop the instance using the Amazon EC2 console or one of the following commands: [stop\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) \(AWS CLI\), [Stop\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/Stop-EC2Instance.html) \(AWS Tools for Windows PowerShell\)\. If your instance is managed by AWS OpsWorks, you should stop the instance in the AWS OpsWorks console so that the instance state remains in sync\.
-
-   \[Instance store\-backed instance\] You can't stop the instance to modify the attribute\. Instead, proceed to this procedure: [To enable enhanced networking on Ubuntu \(instance store\-backed instances\)](#ubuntu-enhanced-networking-instance-store)\.
-
-1. From your local computer, enable the enhanced networking `sriovNetSupport` attribute using one of the following commands\. Note that there is no way to disable this attribute after you've enabled it\.
-   + [modify\-instance\-attribute](http://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) \(AWS CLI\)
-
-     ```
-     aws ec2 modify-instance-attribute --instance-id instance_id --sriov-net-support simple
-     ```
-   + [Edit\-EC2InstanceAttribute](http://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2InstanceAttribute.html) \(AWS Tools for Windows PowerShell\)
-
-     ```
-     Edit-EC2InstanceAttribute -InstanceId instance_id -SriovNetSupport "simple"
-     ```
-
-1. \(Optional\) Create an AMI from the instance, as described in [Creating an Amazon EBS\-Backed Linux AMI](creating-an-ami-ebs.md)\. The AMI inherits the enhanced networking `sriovNetSupport` attribute from the instance\. Therefore, you can use this AMI to launch another instance with enhanced networking enabled by default\.
-
-1. From your local computer, start the instance using the Amazon EC2 console or one of the following commands: [start\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/start-instances.html) \(AWS CLI\), [Start\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/Start-EC2Instance.html) \(AWS Tools for Windows PowerShell\)\. If your instance is managed by AWS OpsWorks, you should start the instance in the AWS OpsWorks console so that the instance state remains in sync\.
-
-1. \(Optional\) Connect to your instance and verify that the module is installed\.<a name="ubuntu-enhanced-networking-instance-store"></a>
-
-**To enable enhanced networking on Ubuntu \(instance store\-backed instances\)**
-
-Follow the previous procedure until the step where you stop the instance\. Create a new AMI as described in [Creating an Instance Store\-Backed Linux AMI](creating-an-ami-instance-store.md), making sure to enable the enhanced networking attribute when you register the AMI\.
-+ [register\-image](http://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) \(AWS CLI\)
-
-  ```
-  aws ec2 register-image --sriov-net-support simple ...
-  ```
-+ [Register\-EC2Image](http://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2Image.html) \(AWS Tools for Windows PowerShell\)
-
-  ```
-  Register-EC2Image -SriovNetSupport "simple" ...
-  ```
 
 ## Enabling Enhanced Networking on Other Linux Distributions<a name="enhanced-networking-linux"></a>
 
