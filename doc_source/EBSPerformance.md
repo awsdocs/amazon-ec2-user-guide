@@ -91,6 +91,6 @@ For more information about EBS I/O characteristics, see the [Amazon EBS: Designi
 
 Some instance types can drive more I/O throughput than what you can provision for a single EBS volume\. You can join multiple `gp2`, `io1`, `st1`, or `sc1` volumes together in a RAID 0 configuration to use the available bandwidth for these instances\. For more information, see [RAID Configuration on Linux](raid-config.md)\.
 
-### Track Performance with Amazon CloudWatch<a name="cloudwatch"></a>
+### Track Performance Using Amazon CloudWatch<a name="cloudwatch"></a>
 
 Amazon Web Services provides performance metrics for Amazon EBS that you can analyze and view with Amazon CloudWatch and status checks that you can use to monitor the health of your volumes\. For more information, see [Monitoring the Status of Your Volumes](monitoring-volume-status.md)\.

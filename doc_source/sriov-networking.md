@@ -164,11 +164,11 @@ Follow the previous procedure until the step where you stop the instance\. Creat
 
 Before you begin, [check if enhanced networking is already enabled](#test-enhanced-networking) on your instance\.
 
-The Quick Start Ubuntu HVM AMIs include the necessary drivers for enhanced networking\.
+The Quick Start Ubuntu HVM AMIs include the necessary drivers for enhanced networking\. If you have a version of `ixgbevf` earlier than 2\.16\.4, you can install the `linux-aws` kernel package to get the latest enhanced networking drivers\.
 
-If you have a version of `ixgbevf` earlier than 2\.16\.4 then you can install the `linux-aws` kernel package to get the latest `ixgbevf` drivers.
+The following procedure provides the general steps for compiling the `ixgbevf` module on an Ubuntu instance\.<a name="ubuntu-enhanced-networking-procedure"></a>
 
-**To install the `linux-aws` kernel package**
+**To install the linux\-aws kernel package**
 
 1. <a name="ubuntu-enhanced-networking-start-step"></a>Connect to your instance\.
 

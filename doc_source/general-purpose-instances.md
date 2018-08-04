@@ -86,6 +86,7 @@ The following is a summary of network performance for General purpose instances 
 
 | Instance type | Network performance | Enhanced networking | 
 | --- | --- | --- | 
+| t2\.nano, t2\.micro, t2\.small, t2\.medium, t2\.large, t2\.xlarge, t2\.2xlarge | Up to 1 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  `m4.large`  |  Moderate  |  [Intel 82599 VF](sriov-networking.md)  | 
 |  `m4.xlarge`, `m4.2xlarge`, `m4.4xlarge`  |  High  |  [Intel 82599 VF](sriov-networking.md)  | 
 |  `m4.10xlarge`  |  10 Gbps  |  [Intel 82599 VF](sriov-networking.md)  | 
@@ -101,10 +102,10 @@ The following is a summary of features for General purpose instances:
 
 |  | VPC only | EBS only | Placement group | 
 | --- | --- | --- | --- | 
-|  T2  |  Yes  |  Yes  |   | 
 |  M4  |  Yes  |  Yes  |  Yes  | 
 |  M5  |  Yes  |  Yes  |  Yes  | 
 |  M5d  |  Yes  |  |  Yes  | 
+|  T2  |  Yes  |  Yes  |   | 
 
 For more information, see the following:
 + [Instance Types Available Only in a VPC](using-vpc.md#vpc-only-instance-types)

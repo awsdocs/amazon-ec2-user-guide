@@ -31,18 +31,18 @@ The following table lists current\-generation instance types that support EBS op
 | c4\.2xlarge | Yes | 1,000 | 125 | 8,000 | 
 | c4\.4xlarge | Yes | 2,000 | 250 | 16,000 | 
 | c4\.8xlarge | Yes | 4,000 | 500 | 32,000 | 
-| c5\.large \* | Yes | 2,250 | 281\.25 | 16,000 | 
-| c5\.xlarge \* | Yes | 2,250 | 281\.25 | 16,000 | 
-| c5\.2xlarge \* | Yes | 2,250 | 281\.25 | 16,000 | 
-| c5\.4xlarge | Yes | 2,250 | 281\.25 | 16,000 | 
-| c5\.9xlarge | Yes | 4,500 | 562\.5 | 32,000 | 
-| c5\.18xlarge | Yes | 9,000 | 1,125 | 64,000 | 
-| c5d\.large \* | Yes | 2,250 | 281\.25 | 16,000 | 
-| c5d\.xlarge \* | Yes | 2,250 | 281\.25 | 16,000 | 
-| c5d\.2xlarge \* | Yes | 2,250 | 281\.25 | 16,000 | 
-| c5d\.4xlarge | Yes | 2,250 | 281\.25 | 16,000 | 
-| c5d\.9xlarge | Yes | 4,500 | 562\.5 | 32,000 | 
-| c5d\.18xlarge | Yes | 9,000 | 1,125 | 64,000 | 
+| c5\.large \* | Yes | 3,500 | 437\.5 | 20,000 | 
+| c5\.xlarge \* | Yes | 3,500 | 437\.5 | 20,000 | 
+| c5\.2xlarge \* | Yes | 3,500 | 437\.5 | 20,000 | 
+| c5\.4xlarge | Yes | 3,500 | 437\.5 | 20,000 | 
+| c5\.9xlarge | Yes | 7,000 | 875 | 40,000 | 
+| c5\.18xlarge | Yes | 14,000 | 1,750 | 80,000 | 
+| c5d\.large \* | Yes | 3,500 | 437\.5 | 20,000 | 
+| c5d\.xlarge \* | Yes | 3,500 | 437\.5 | 20,000 | 
+| c5d\.2xlarge \* | Yes | 3,500 | 437\.5 | 20,000 | 
+| c5d\.4xlarge | Yes | 3,500 | 437\.5 | 20,000 | 
+| c5d\.9xlarge | Yes | 7,000 | 875 | 40,000 | 
+| c5d\.18xlarge | Yes | 14,000 | 1,750 | 80,000 | 
 | d2\.xlarge | Yes | 750 | 93\.75 | 6,000 | 
 | d2\.2xlarge | Yes | 1,000 | 125 | 8,000 | 
 | d2\.4xlarge | Yes | 2,000 | 250 | 16,000 | 
@@ -69,18 +69,18 @@ The following table lists current\-generation instance types that support EBS op
 | m4\.4xlarge | Yes | 2,000 | 250 | 16,000 | 
 | m4\.10xlarge | Yes | 4,000 | 500 | 32,000 | 
 | m4\.16xlarge | Yes | 10,000 | 1,250 | 65,000 | 
-| m5\.large\* | Yes | 2,120 | 265 | 16,000 | 
-| m5\.xlarge\* | Yes | 2,120 | 265 | 16,000 | 
-| m5\.2xlarge\* | Yes | 2,120 | 265 | 16,000 | 
-| m5\.4xlarge | Yes | 2,120 | 265 | 16,000 | 
-| m5\.12xlarge | Yes | 5,000 | 625 | 32,500 | 
-| m5\.24xlarge | Yes | 10,000 | 1,250 | 65,000 | 
-| m5d\.large\* | Yes | 2,120 | 265 | 16,000 | 
-| m5d\.xlarge\* | Yes | 2,120 | 265 | 16,000 | 
-| m5d\.2xlarge\* | Yes | 2,120 | 265 | 16,000 | 
-| m5d\.4xlarge | Yes | 2,120 | 265 | 16,000 | 
-| m5d\.12xlarge | Yes | 5,000 | 625 | 32,500 | 
-| m5d\.24xlarge | Yes | 10,000 | 1,250 | 65,000 | 
+| m5\.large \* | Yes | 3,500 | 437\.5 | 18,750 | 
+| m5\.xlarge \* | Yes | 3,500 | 437\.5 | 18,750 | 
+| m5\.2xlarge \* | Yes | 3,500 | 437\.5 | 18,750 | 
+| m5\.4xlarge | Yes | 3,500 | 437\.5 | 18,750 | 
+| m5\.12xlarge | Yes | 7,000 | 875 | 40,000 | 
+| m5\.24xlarge | Yes | 14,000 | 1,750 | 80,000 | 
+| m5d\.large \* | Yes | 3,500 | 437\.5 | 18,750 | 
+| m5d\.xlarge \* | Yes | 3,500 | 437\.5 | 18,750 | 
+| m5d\.2xlarge \* | Yes | 3,500 | 437\.5 | 18,750 | 
+| m5d\.4xlarge | Yes | 3,500 | 437\.5 | 18,750 | 
+| m5d\.12xlarge | Yes | 7,000 | 875 | 40,000 | 
+| m5d\.24xlarge | Yes | 14,000 | 1,750 | 80,000 | 
 | p2\.xlarge | Yes | 750 | 93\.75 | 6,000 | 
 | p2\.8xlarge | Yes | 5,000 | 625 | 32,500 | 
 | p2\.16xlarge | Yes | 10,000 | 1,250 | 65,000 | 
@@ -93,15 +93,15 @@ The following table lists current\-generation instance types that support EBS op
 | r4\.4xlarge | Yes | 3,500 | 437\.5 | 18,750 | 
 | r4\.8xlarge | Yes | 7,000 | 875 | 37,500 | 
 | r4\.16xlarge | Yes | 14,000 | 1,750 | 75,000 | 
-| r5\.large | Yes | 3,500 | 437\.5 | 18,750 | 
-| r5\.xlarge | Yes | 3,500 | 437\.5 | 18,750 | 
-| r5\.2xlarge | Yes | 3,500 | 437\.5 | 18,750 | 
+| r5\.large \* | Yes | 3,500 | 437\.5 | 18,750 | 
+| r5\.xlarge \* | Yes | 3,500 | 437\.5 | 18,750 | 
+| r5\.2xlarge \* | Yes | 3,500 | 437\.5 | 18,750 | 
 | r5\.4xlarge | Yes | 3,500 | 437\.5 | 18,750 | 
 | r5\.12xlarge | Yes | 7,000 | 875 | 40,000 | 
 | r5\.24xlarge | Yes | 14,000 | 1,750 | 80,000 | 
-| r5d\.large | Yes | 3,500 | 437\.5 | 18,750 | 
-| r5d\.xlarge | Yes | 3,500 | 437\.5 | 18,750 | 
-| r5d\.2xlarge | Yes | 3,500 | 437\.5 | 18,750 | 
+| r5d\.large \* | Yes | 3,500 | 437\.5 | 18,750 | 
+| r5d\.xlarge \* | Yes | 3,500 | 437\.5 | 18,750 | 
+| r5d\.2xlarge \* | Yes | 3,500 | 437\.5 | 18,750 | 
 | r5d\.4xlarge | Yes | 3,500 | 437\.5 | 18,750 | 
 | r5d\.12xlarge | Yes | 7,000 | 875 | 40,000 | 
 | r5d\.24xlarge | Yes | 14,000 | 1,750 | 80,000 | 
@@ -113,8 +113,8 @@ The following table lists current\-generation instance types that support EBS op
 | x1e\.8xlarge | Yes | 3,500 | 437\.5 | 20,000 | 
 | x1e\.16xlarge | Yes | 7,000 | 875 | 40,000 | 
 | x1e\.32xlarge | Yes | 14,000 | 1,750 | 80,000 | 
-| z1d\.large | Yes | 2,333 | 291 | 13,333 | 
-| z1d\.xlarge | Yes | 2,333 | 291 | 13,333 | 
+| z1d\.large \* | Yes | 2,333 | 291 | 13,333 | 
+| z1d\.xlarge \* | Yes | 2,333 | 291 | 13,333 | 
 | z1d\.2xlarge | Yes | 2,333 | 292 | 13,333 | 
 | z1d\.3xlarge | Yes | 3,500 | 438 | 20,000 | 
 | z1d\.6xlarge | Yes | 7,000 | 875 | 40,000 | 
@@ -125,18 +125,26 @@ The following table lists current\-generation instance types that support EBS op
 
 | Instance type | Baseline bandwidth \(Mbps\) | Baseline throughput \(MB/s, 128 KB I/O\) | Baseline IOPS \(16 KB I/O\) | 
 | --- | --- | --- | --- | 
-| c5\.large | 525 | 66 | 4,000 | 
+| c5\.large | 525 | 65\.625 | 4,000 | 
 | c5\.xlarge | 800 | 100 | 6,000 | 
-| c5\.2xlarge | 1,125 | 141 | 8,000 | 
-| c5d\.large | 525 | 66 | 4,000 | 
+| c5\.2xlarge | 1,750 | 218\.75 | 10,000 | 
+| c5d\.large | 525 | 65\.625 | 4,000 | 
 | c5d\.xlarge | 800 | 100 | 6,000 | 
-| c5d\.2xlarge | 1,125 | 141 | 8,000 | 
+| c5d\.2xlarge | 1,750 | 218\.75 | 10,000 | 
 | m5\.large | 480 | 60 | 3,600 | 
-| m5\.xlarge | 800 | 100 | 6,000 | 
-| m5\.2xlarge | 1,166 | 146 | 8,333 | 
+| m5\.xlarge | 850 | 106\.25 | 6,000 | 
+| m5\.2xlarge | 1,700 | 212\.5 | 12,000 | 
 | m5d\.large | 480 | 60 | 3,600 | 
-| m5d\.xlarge | 800 | 100 | 6,000 | 
-| m5d\.2xlarge | 1,166 | 146 | 8,333 | 
+| m5d\.xlarge | 850 | 106\.25 | 6,000 | 
+| m5d\.2xlarge | 1,700 | 212\.5 | 12,000 | 
+| r5\.large | 480 | 60 | 3,600 | 
+| r5\.xlarge | 850 | 106\.25 | 6,000 | 
+| r5\.2xlarge | 1,700 | 212\.5 | 12,000 | 
+| r5d\.large | 480 | 60 | 3,600 | 
+| r5d\.xlarge | 850 | 106\.25 | 6,000 | 
+| r5d\.2xlarge | 1,700 | 212\.5 | 12,000 | 
+| z1d\.large | 583 | 73 | 3,333 | 
+| z1d\.xlarge | 1,167 | 146 | 6,667 | 
 
 The `EBSIOBalance%` and `EBSByteBalance%` metrics can help you determine if your instances are sized correctly\. You can view these metrics in the CloudWatch console and set an alarm that is triggered based on a threshold you specify\. These metrics are expressed as a percentage\. Instances with a consistently low balance percentage are candidates for upsizing\. Instances where the balance percentage never drops below 100% are candidates for downsizing\. For more information, see [Monitoring Your Instances Using CloudWatch](using-cloudwatch.md)\.
 

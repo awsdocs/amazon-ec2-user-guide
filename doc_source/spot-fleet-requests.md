@@ -152,6 +152,22 @@ Amazon EC2 also creates the **AWSServiceRoleForEC2Spot** role when you request a
 
 If you had an active Spot Fleet request before November 2017, when Amazon EC2 began supporting this service\-linked role, Amazon EC2 created the **AWSServiceRoleForEC2SpotFleet** role in your AWS account\. For more information, see [A New Role Appeared in My Account](http://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_roles.html#troubleshoot_roles_new-role-appeared) in the *IAM User Guide*\.
 
+Ensure that this role exists before you use the AWS CLI or an API to create a Spot Fleet\. To create the role, use the IAM console as follows\.
+
+**To create the IAM role for Spot Fleet**
+
+1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
+
+1. In the navigation pane, choose **Roles**\.
+
+1. Choose **Create role**\.
+
+1. On the **Select type of trusted entity** page, choose **EC2**, select **EC2 \- Spot Fleet**, and then choose **Next: Permissions**\.
+
+1. On the next page, choose **Next:Review**\.
+
+1. On the **Review** page, choose **Create role**\.
+
 If you no longer need to use Spot Fleet, we recommend that you delete the **AWSServiceRoleForEC2SpotFleet** role\. After this role is deleted from your account, Amazon EC2 will create the role again if you request a Spot Fleet\.
 
 ## Creating a Spot Fleet Request<a name="create-spot-fleet"></a>
@@ -218,7 +234,7 @@ When you create a Spot Fleet request, you must specify information about the Spo
 
 1. For **Spot request fulfillment**, do the following:
 
-   1. For **Allocation strategy**, choose the strategy that meets your needs\. For more information, see [Spot Fleet Allocation Strategy](spot-fleet.md#spot-fleet-allocation-strategy)\.
+   1. For **Allocation strategy**, choose the strategy that meets your needs\. For more information, see [Allocation Strategy for Spot Instances](spot-fleet.md#spot-fleet-allocation-strategy)\.
 
    1. For **Maximum price**, you can use the default maximum price \(the On\-Demand price\) or specify the maximum price you are willing to pay\. Your Spot Instances are not launched if your maximum price is lower than the Spot price for the instance types that you selected\.
 

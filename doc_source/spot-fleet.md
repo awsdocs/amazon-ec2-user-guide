@@ -8,7 +8,7 @@ A *Spot Instance pool* is a set of unused EC2 instances with the same instance t
 
 **Topics**
 + [On\-Demand in Spot Fleet](#on-demand-in-spot)
-+ [Spot Fleet Allocation Strategy](#spot-fleet-allocation-strategy)
++ [Allocation Strategy for Spot Instances](#spot-fleet-allocation-strategy)
 + [Spot Price Overrides](#spot-price-overrides)
 + [Spot Fleet Instance Weighting](#spot-instance-weighting)
 + [Walkthrough: Using Spot Fleet with Instance Weighting](#instance-weighting-walkthrough)
@@ -17,9 +17,15 @@ A *Spot Instance pool* is a set of unused EC2 instances with the same instance t
 
 To ensure that you always have instance capacity, you can include a request for On\-Demand capacity in your Spot Fleet request\. In your Spot Fleet request, you specify your desired target capacity and how much of that capacity must be On\-Demand\. The balance comprises Spot capacity, which is launched if there is available EC2 capacity and availability\. For example, if in your Spot Fleet request you specify target capacity as 10 and On\-Demand capacity as 8, Amazon EC2 launches 8 capacity units as On\-Demand, and 2 capacity units \(10\-8=2\) as Spot\.
 
-## Spot Fleet Allocation Strategy<a name="spot-fleet-allocation-strategy"></a>
+### Prioritizing Instance Types for On\-Demand Capacity<a name="spot-fleet-on-demand-priority"></a>
 
-The allocation strategy for your Spot Fleet determines how it fulfills your Spot Fleet request from the possible Spot Instance pools represented by its launch specifications\. The following are the allocation strategies that you can specify in your Spot Fleet request:
+When Spot Fleet attempts to fulfill your On\-Demand capacity, it defaults to launching the lowest\-priced instance type first\. If `OnDemandAllocationStrategy` is set to `prioritized`, Spot Fleet uses priority to determine which instance type to use first in fulfilling On\-Demand capacity\. The priority is assigned to the launch template override, and the highest priority is launched first\.
+
+For example, you have configured three launch template overrides, each with a different instance type: `c3.large`, `c4.large`, and `c5.large`\. The On\-Demand price for `c5.large` is less than for `c4.large`\. `c3.large` is the cheapest\. If you do not use priority to determine the order, the fleet fulfills On\-Demand capacity by starting with `c3.large`, and then `c5.large`\. Because you often have unused Reserved Instances for `c4.large`, you can set the launch template override priority so that the order is `c4.large`, `c3.large`, and then `c5.large`\.
+
+## Allocation Strategy for Spot Instances<a name="spot-fleet-allocation-strategy"></a>
+
+The allocation strategy for the Spot Instances in your Spot Fleet determines how it fulfills your Spot Fleet request from the possible Spot Instance pools represented by its launch specifications\. The following are the allocation strategies that you can specify in your Spot Fleet request:
 
 `lowestPrice`  
 The Spot Instances come from the pool with the lowest price\. This is the default strategy\.
@@ -55,12 +61,6 @@ If your fleet is large or runs for a long time, you can improve the availability
 With the `diversified` strategy, the Spot Fleet does not launch Spot Instances into any pools with a Spot price that is equal to or higher than the [On\-Demand price](https://aws.amazon.com/ec2/pricing/)\.
 
 To create a cheap and diversified fleet, use the `lowestPrice` strategy in combination with `InstancePoolsToUseCount`\. You can use a low or high number of Spot pools across which to allocate your Spot Instances\. For example, if you run batch processing, we recommend specifying a low number of Spot pools \(for example, `InstancePoolsToUseCount=2`\) to ensure that your queue always has compute capacity while maximizing savings\. If you run a web service, we recommend specifying a high number of Spot pools \(for example, `InstancePoolsToUseCount=10`\) to minimize the impact if a Spot Instance pool becomes temporarily unavailable\.
-
-### Prioritizing Instance Types for On\-Demand Capacity<a name="spot-fleet-on-demand-priority"></a>
-
-When Spot Fleet attempts to fulfill your On\-Demand capacity, it defaults to launching the lowest\-priced instance type first\. If `OnDemandAllocationStrategy` is set to `prioritized`, Spot Fleet uses priority to determine which instance type to use first in fulfilling On\-Demand capacity\. The priority is assigned to the launch template override, and the highest priority is launched first\.
-
-For example, you have configured three launch template overrides, each with a different instance type: `c3.large`, `c4.large`, and `c5.large`\. The On\-Demand price for `c5.large` is less than for `c4.large`\. `c3.large` is the cheapest\. If you do not use priority to determine the order, the fleet fulfills On\-Demand capacity by starting with `c3.large`, and then `c5.large`\. Because you often have unused Reserved Instances for `c4.large`, you can set the launch template override priority so that the order is `c4.large`, `c3.large`, and then `c5.large`\.
 
 ## Spot Price Overrides<a name="spot-price-overrides"></a>
 

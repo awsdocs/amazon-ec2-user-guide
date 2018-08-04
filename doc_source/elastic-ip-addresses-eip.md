@@ -56,7 +56,7 @@ After you've migrated an Elastic IP address to EC2\-VPC, you cannot use it in th
 
 To migrate an Elastic IP address, it must not be associated with an instance\. For more information about disassociating an Elastic IP address from an instance, see [Disassociating an Elastic IP Address and Reassociating with a Different Instance](#using-instance-addressing-eips-associating-different)\.
 
-You can migrate as many EC2\-Classic Elastic IP addresses as you can have in your account\. However, when you migrate an Elastic IP address to EC2\-VPC, it counts against your Elastic IP address limit for EC2\-VPC\. You cannot migrate an Elastic IP address if it will result in you exceeding your limit\. Similarly, when you restore an Elastic IP address to EC2\-Classic, it counts against your Elastic IP address limit for EC2\-Classic\. For more information, see [Elastic IP Address Limit](#using-instance-addressing-limit)\. 
+You can migrate as many EC2\-Classic Elastic IP addresses as you can have in your account\. However, when you migrate an Elastic IP address to EC2\-VPC, it counts against your Elastic IP address limit for EC2\-VPC\. You cannot migrate an Elastic IP address if it will result in your exceeding your limit\. Similarly, when you restore an Elastic IP address to EC2\-Classic, it counts against your Elastic IP address limit for EC2\-Classic\. For more information, see [Elastic IP Address Limit](#using-instance-addressing-limit)\. 
 
 You cannot migrate an Elastic IP address that has been allocated to your account for less than 24 hours\. 
 
@@ -261,7 +261,7 @@ After you've performed the command to move or restore your Elastic IP address, t
 
 After you've moved your Elastic IP address to EC2\-VPC, you can view its allocation ID on the **Elastic IPs** page in the **Allocation ID** field\.
 
-If the Elastic IP address is in a moving state for longer than 5 minutes, contact https://aws\.amazon\.com/premiumsupport/\.
+If the Elastic IP address is in a moving state for longer than 5 minutes, contact [Premium Support](https://aws.amazon.com/premiumsupport/)\.
 
 **To move an Elastic IP address using the Amazon EC2 Query API or AWS CLI**
 
@@ -315,7 +315,7 @@ You can use one of the following commands\. For more information about these com
 
 If you have released your Elastic IP address, you might be able to recover it\. The following rules apply:
 + You can only recover an Elastic IP address that was originally allocated for use in EC2\-VPC, or that was moved from EC2\-Classic to EC2\-VPC\.
-+ You cannot recover an Elastic IP address if it has been allocated to another AWS account, or if it will result you in exceeding your Elastic IP address limit\.
++ You cannot recover an Elastic IP address if it has been allocated to another AWS account, or if it will result in your exceeding your Elastic IP address limit\.
 + You cannot recover tags associated with an Elastic IP address\.
 
 Currently, you can recover an Elastic IP address using the Amazon EC2 API or a command line tool only\.

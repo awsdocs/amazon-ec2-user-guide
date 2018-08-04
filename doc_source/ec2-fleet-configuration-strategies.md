@@ -207,12 +207,12 @@ Example Corp creates a file, `config.json`, with the following configuration for
                     "InstanceType": "r3.2xlarge", 
                     "SubnetId": "subnet-482e4972", 
                     "WeightedCapacity": 1
-                }
+                },
                 {
                     "InstanceType": "r3.4xlarge", 
                     "SubnetId": "subnet-482e4972", 
                     "WeightedCapacity": 2
-                }
+                },
                 {
                     "InstanceType": "r3.8xlarge", 
                     "MaxPrice": "0.90", 
@@ -225,8 +225,7 @@ Example Corp creates a file, `config.json`, with the following configuration for
     "TargetCapacitySpecification": {
         "TotalTargetCapacity": 20, 
         "DefaultTargetCapacityType": "spot"
-    }, 
-    ]
+    }
 }
 ```
 

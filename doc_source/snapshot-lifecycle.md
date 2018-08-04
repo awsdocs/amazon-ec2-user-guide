@@ -105,15 +105,13 @@ Alternatively, you can create a custom IAM role with the required permissions an
 
       ```
       { 
-         "Version": "2012-10-17", 
+         "Version": "2012-10-17",
          "Statement": [ 
             { 
                "Effect": "Allow", 
-      	     "PrincipalGroup": { 
-      	        "AWS": [ 
-      	           "svc:dlm.amazonaws.com" 
-      	        ]	 
-      	     }, 
+               "Principal": { 
+                  "Service": "dlm.amazonaws.com"
+               }, 
                "Action": "sts:AssumeRole" 
             } 
          ] 

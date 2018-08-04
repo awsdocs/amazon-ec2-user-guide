@@ -34,18 +34,23 @@ The following illustration represents the transitions between the EC2 Fleet requ
 
 ## EC2 Fleet Prerequisites<a name="ec2-fleet-prerequisites"></a>
 
-To create an EC2 Fleet, the following prerequisites must be in place:
-+ [Launch template](#ec2-fleet-prerequisites-launch-template)
-+ [IAM role for EC2 Fleet](#ec2-fleet-prerequisites-role)
-+ [Service\-linked role for EC2 Fleet](#ec2-fleet-service-linked-role)
+To create an EC2 Fleet, the following prerequisites must be in place\.
 
 ### Launch Template<a name="ec2-fleet-prerequisites-launch-template"></a>
 
 A launch template includes information about the instances to launch, such as the instance type, Availability Zone, and the maximum price that you are willing to pay\. For more information, see [Launching an Instance from a Launch Template](ec2-launch-templates.md)\.
 
-### IAM Role for EC2 Fleet<a name="ec2-fleet-prerequisites-role"></a>
+### Service\-Linked Role for EC2 Fleet<a name="ec2-fleet-service-linked-role"></a>
 
-The `aws-ec2-fleet-tagging-role` grants the EC2 Fleet permission to request, launch, terminate, and tag instances on your behalf\. Ensure that this role exists before you use the AWS CLI or an API to create an EC2 Fleet\. To create the role, use the IAM console as follows\. 
+The `AWSServiceRoleForEC2Fleet` role grants the EC2 Fleet permission to request, launch, terminate, and tag instances on your behalf\. Amazon EC2 uses this service\-linked role to complete the following actions:
++ `ec2:RequestSpotInstances` – Request Spot Instances\.
++ `ec2:TerminateInstances` – Terminate Spot Instances\.
++ `ec2:DescribeImages` – Describe Amazon Machine Images \(AMI\) for the Spot Instances\.
++ `ec2:DescribeInstanceStatus` – Describe the status of the Spot Instances\.
++ `ec2:DescribeSubnets` – Describe the subnets for Spot Instances\.
++ `ec2:CreateTags` \- Add system tags to Spot Instances\.
+
+Ensure that this role exists before you use the AWS CLI or an API to create an EC2 Fleet\. To create the role, use the IAM console as follows\.
 
 **To create the IAM role for EC2 Fleet**
 
@@ -53,11 +58,15 @@ The `aws-ec2-fleet-tagging-role` grants the EC2 Fleet permission to request, lau
 
 1. In the navigation pane, choose **Roles**\.
 
-1. On the **Select type of trusted entity** page, choose **AWS service**, **EC2**, **EC2 \- Fleet Tagging**, and then choose **Next: Permissions**\.
+1. Choose **Create role**\.
 
-1. On the **Attached permissions policy** page, choose **Next:Review**\.
+1. On the **Select type of trusted entity** page, choose **EC2 \- Fleet** and then choose **Next: Permissions**\.
 
-1. On the **Review** page, type a name for the role \(for example, **aws\-ec2\-fleet\-tagging\-role**\) and choose **Create role**\.
+1. On the next page, choose **Next:Review**\.
+
+1. On the **Review** page, choose **Create role**\.
+
+If you no longer need to use EC2 Fleet, we recommend that you delete the **AWSServiceRoleForEC2Fleet** role\. After this role is deleted from your account, you can create the role again if you create another fleet\.
 
 ### EC2 Fleet and IAM Users<a name="ec2-fleet-iam-users"></a>
 
@@ -67,7 +76,9 @@ If your IAM users will create or manage an EC2 Fleet, be sure to grant them the 
 
 1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
-1. In the navigation pane, choose **Policies**, **Create policy**\.
+1. In the navigation pane, choose **Policies**\.
+
+1. Choose **Create policy**\.
 
 1. On the **Create policy** page, choose the **JSON** tab, replace the text with the following, and choose **Review policy**\.
 
@@ -117,20 +128,6 @@ If your IAM users will create or manage an EC2 Fleet, be sure to grant them the 
 
 1. Choose **Add permissions**\.
 
-### Service\-Linked Role for EC2 Fleet Requests<a name="ec2-fleet-service-linked-role"></a>
-
-Before you create an EC2 Fleet, you need to create a service\-linked role named **AWSServiceRoleForEC2Fleet**\. A service\-linked role includes all the permissions that Amazon EC2 requires to call other AWS services on your behalf\. If you try to create a fleet before the role is created, you get an error\. Create the role using the IAM console\. For more information, see [Using Service\-Linked Roles](http://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html) in the *IAM User Guide*\.
-
-Amazon EC2 uses the service\-linked role named **AWSServiceRoleForEC2Fleet** to complete the following actions:
-+ `ec2:RequestSpotInstances` – Request Spot Instances\.
-+ `ec2:TerminateInstances` – Terminate Spot Instances\.
-+ `ec2:DescribeImages` – Describe Amazon Machine Images \(AMI\) for the Spot Instances\.
-+ `ec2:DescribeInstanceStatus` – Describe the status of the Spot Instances\.
-+ `ec2:DescribeSubnets` – Describe the subnets for Spot Instances\.
-+ `ec2:CreateTags` \- Add system tags to Spot Instances\.
-
-If you no longer need to use EC2 Fleet, we recommend that you delete the **AWSServiceRoleForEC2Fleet** role\. After this role is deleted from your account, you can create the role again if you create another fleet\.
-
 ## EC2 Fleet Health Checks<a name="ec2-fleet-health-checks"></a>
 
 EC2 Fleet checks the health status of the instances in the fleet every two minutes\. The health status of an instance is either `healthy` or `unhealthy`\. The fleet determines the health status of an instance using the status checks provided by Amazon EC2\. If the status of either the instance status check or the system status check is `impaired` for three consecutive health checks, the health status of the instance is `unhealthy`\. Otherwise, the health status is `healthy`\. For more information, see [Status Checks for Your Instances](monitoring-system-instance-status-check.md)\.
@@ -160,7 +157,7 @@ To create an EC2 Fleet, you need only specify the launch template, target capaci
       "DryRun": true, 
       "ClientToken": "", 
       "SpotOptions": {
-          "AllocationStrategy": "lowest-price", 
+          "AllocationStrategy": "lowestPrice", 
           "InstanceInterruptionBehavior": "hibernate", 
           "InstancePoolsToUseCount": 0
       }, 
@@ -218,7 +215,7 @@ To create an EC2 Fleet, you need only specify the launch template, target capaci
 Use lowercase for all parameter values; otherwise, you get an error when Amazon EC2 uses the JSON file to launch the EC2 Fleet\.
 
 **AllocationStrategy \(for SpotOptions\)**  
-\(Optional\) Indicates how to allocate the Spot Instance target capacity across the Spot Instance pools specified by the EC2 Fleet\. Valid values are `lowest-price` and `diversified`\. The default is `lowest-price`\. Specify the allocation strategy that meets your needs\. For more information, see [Allocation Strategy for Spot Instances](ec2-fleet-configuration-strategies.md#ec2-fleet-allocation-strategy)\.
+\(Optional\) Indicates how to allocate the Spot Instance target capacity across the Spot Instance pools specified by the EC2 Fleet\. Valid values are `lowestPrice` and `diversified`\. The default is `lowestPrice`\. Specify the allocation strategy that meets your needs\. For more information, see [Allocation Strategy for Spot Instances](ec2-fleet-configuration-strategies.md#ec2-fleet-allocation-strategy)\.
 
 **InstanceInterruptionBehavior**  
 \(Optional\) The behavior when a Spot Instance is interrupted\. Valid values are `hibernate`, `stop`, and `terminate`\. By default, the Spot service terminates Spot Instances when they are interrupted\. If the fleet type is `maintain`, you can specify that the Spot service hibernates or stops Spot Instances when they are interrupted\.
@@ -227,7 +224,7 @@ Use lowercase for all parameter values; otherwise, you get an error when Amazon 
 The number of Spot pools across which to allocate your target Spot capacity\. Valid only when Spot **AllocationStrategy** is set to `lowestPrice`\. EC2 Fleet selects the cheapest Spot pools and evenly allocates your target Spot capacity across the number of Spot pools that you specify\.
 
 **AllocationStrategy \(for OnDemandOptions\)**  
-The order of the launch template overrides to use in fulfilling On\-Demand capacity\. If you specify `lowest-price`, EC2 Fleet uses price to determine the order, launching the lowest price first\. If you specify prioritized, EC2 Fleet uses the priority that you assigned to each launch template override, launching the highest priority first\. If you do not specify a value, EC2 Fleet defaults to `lowest-price`\.
+The order of the launch template overrides to use in fulfilling On\-Demand capacity\. If you specify `lowestPrice`, EC2 Fleet uses price to determine the order, launching the lowest price first\. If you specify prioritized, EC2 Fleet uses the priority that you assigned to each launch template override, launching the highest priority first\. If you do not specify a value, EC2 Fleet defaults to `lowestPrice`\.
 
 **ExcessCapacityTerminationPolicy**  
 \(Optional\) Indicates whether running instances should be terminated if the total target capacity of the EC2 Fleet is decreased below the current size of the EC2 Fleet\. Valid values are `no-termination` and `termination`\.

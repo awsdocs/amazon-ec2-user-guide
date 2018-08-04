@@ -100,7 +100,7 @@ To use the ClassicLink feature, you need to be aware of the following limitation
 **Important**  
 EC2\-Classic instances are run on shared hardware\. If you've set the tenancy of your VPC to `dedicated` because of regulatory or security requirements, then linking an EC2\-Classic instance to your VPC might not conform to those requirements, as this allows a shared tenancy resource to address your isolated resources directly using private IP addresses\. If you need to enable your dedicated VPC for ClassicLink, provide a detailed reason in your request to AWS support\.
 + If you link your EC2\-Classic instance to a VPC in the `172.16.0.0/16` range, and you have a DNS server running on the `172.16.0.23/32` IP address within the VPC, then your linked EC2\-Classic instance can't access the VPC DNS server\. To work around this issue, run your DNS server on a different IP address within the VPC\.
-+ ClassicLink doesn't support transitive relationships out of the VPC\. Your linked EC2\-Classic instance doesn't have access to any VPN connection, VPC endpoint, or Internet gateway associated with the VPC\. Similarly, resources on the other side of a VPN connection, or an Internet gateway don't have access to a linked EC2\-Classic instance\.
++ ClassicLink doesn't support transitive relationships out of the VPC\. Your linked EC2\-Classic instance doesn't have access to any VPN connection, VPC gateway endpoint, NAT gateway, or Internet gateway associated with the VPC\. Similarly, resources on the other side of a VPN connection or an Internet gateway don't have access to a linked EC2\-Classic instance\.
 
 ## Working with ClassicLink<a name="working-with-classiclink"></a>
 

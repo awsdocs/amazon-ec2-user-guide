@@ -1,6 +1,6 @@
 # Enabling Enhanced Networking with the Elastic Network Adapter \(ENA\) on Linux Instances<a name="enhanced-networking-ena"></a>
 
-Amazon EC2 provides enhanced networking capabilities to C5, C5d, F1, G3, H1, I3, `m4.16xlarge`, M5, M5d, P2, P3, R4, R5, R5d, X1, and z1d instances through the Elastic Network Adapter \(ENA\)\.
+Amazon EC2 provides enhanced networking capabilities to C5, C5d, F1, G3, H1, I3, `m4.16xlarge`, M5, M5d, P2, P3, R4, R5, R5d, X1, X1e, and z1d instances through the Elastic Network Adapter \(ENA\)\.
 
 **Topics**
 + [Requirements](#ena-requirements)
@@ -176,9 +176,9 @@ Follow the previous procedure until the step where you stop the instance\. Creat
 
 The latest Ubuntu HVM AMIs have the module required for enhanced networking with ENA installed and have the required `enaSupport` attribute set\. Therefore, if you launch an instance with the latest Ubuntu HVM AMI on a supported instance type, enhanced networking is already enabled for your instance\. For more information, see [Testing Whether Enhanced Networking Is Enabled](#test-enhanced-networking-ena)\.
 
-If you launched your instance using an older AMI and it does not have enhanced networking enabled already then you can install the `linux-aws` kernel package to get the latest enhanced networking drivers.
+If you launched your instance using an older AMI and it does not have enhanced networking enabled already, you can install the `linux-aws` kernel package to get the latest enhanced networking drivers\.<a name="ubuntu-enhanced-networking-ena-procedure"></a>
 
-**To install the `linux-aws` kernel package**
+**To install the linux\-aws kernel package**
 
 1. <a name="ubuntu-enhanced-networking-ena-start-step"></a>Connect to your instance\.
 
@@ -188,7 +188,7 @@ If you launched your instance using an older AMI and it does not have enhanced n
    ubuntu:~$ sudo apt-get update && sudo apt-get upgrade -y linux-aws
    ```
 **Important**  
-If during the update process, you are prompted to install `grub`, use `/dev/xvda` to install `grub` onto, and then choose to keep the current version of `/boot/grub/menu.lst`\.
+If during the update process you are prompted to install `grub`, use `/dev/xvda` to install `grub` onto, and then choose to keep the current version of `/boot/grub/menu.lst`\.
 
 ## Enabling Enhanced Networking on Linux<a name="enhanced-networking-ena-linux"></a>
 

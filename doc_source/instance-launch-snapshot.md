@@ -2,9 +2,6 @@
 
 With an Amazon EBS\-backed Linux instance, you can back up the root device volume of the instance by creating a snapshot\. When you have a snapshot of the root device volume of an instance, you can terminate that instance and then later launch a new instance from the snapshot\. This can be useful if you don't have the original AMI that you launched an instance from, but you need to be able to launch an instance using the same image\.
 
-**Important**  
-Although you can create a Windows AMI from a snapshot, you can't successfully launch an instance from that AMI\.
-
 Some Linux distributions, such as Red Hat Enterprise Linux \(RHEL\) and SUSE Linux Enterprise Server \(SLES\), use the billing product code associated with an AMI to verify subscription status for package updates\. Creating an AMI from an EBS snapshot does not maintain this billing code, and subsequent instances launched from such an AMI are not able to connect to the package update infrastructure\. To retain the billing product codes, create the AMI from the instance not from a snapshot\. For more information, see [Creating an Amazon EBS\-Backed Linux AMI](creating-an-ami-ebs.md) or [Creating an Instance Store\-Backed Linux AMI](creating-an-ami-instance-store.md)\.
 
 Use the following procedure to create an AMI from the root volume of your instance using the console\. If you prefer, you can use one of the following commands instead: [register\-image](http://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) \(AWS CLI\) or [Register\-EC2Image](http://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2Image.html) \(AWS Tools for Windows PowerShell\)\. You specify the snapshot using the block device mapping\.
