@@ -43,7 +43,7 @@ The AMIs that AWS community members have made available for others to use\. To f
 
 1. <a name="choose-an-instance-type-page"></a>On the **Choose an Instance Type** page, select the hardware configuration and size of the instance to launch\. Larger instance types have more CPU and memory\. For more information, see [Instance Types](instance-types.md)\.
 
-   To remain eligible for the free tier, choose the **t2\.micro** instance type\. For more information, see [T2 Instances](t2-instances.md)\.
+   To remain eligible for the free tier, choose the **t2\.micro** instance type\. For more information, see [Burstable Performance Instances](burstable-performance-instances.md)\.
 
    By default, the wizard displays current generation instance types, and selects the first available instance type based on the AMI that you selected\. To view previous generation instance types, choose **All generations** from the filter list\.
 **Note**  
@@ -73,7 +73,7 @@ Some instance types must be launched into a VPC\. If you don't have a VPC, you c
    + **Monitoring**: Select this check box to enable detailed monitoring of your instance using Amazon CloudWatch\. Additional charges apply\. For more information, see [Monitoring Your Instances Using CloudWatch](using-cloudwatch.md)\.
    + **EBS\-Optimized instance**: An Amazon EBS\-optimized instance uses an optimized configuration stack and provides additional, dedicated capacity for Amazon EBS I/O\. If the instance type supports this feature, select this check box to enable it\. Additional charges apply\. For more information, see [Amazon EBS–Optimized Instances](EBSOptimized.md)\.
    + **Tenancy**: If you are launching your instance into a VPC, you can choose to run your instance on isolated, dedicated hardware \(**Dedicated**\) or on a Dedicated Host \(**Dedicated host**\)\. Additional charges may apply\. For more information, see [Dedicated Instances](dedicated-instance.md) and [Dedicated Hosts](dedicated-hosts-overview.md)\.
-   + **T2 Unlimited**: \(Only valid for T2 instances\) Select this check box to enable applications to burst beyond the baseline for as long as needed\. Additional charges may apply\. For more information, see [T2 Instances](t2-instances.md)\.
+   + **T2/T3 Unlimited**: \(Only valid for T2 and T3 instances\) Select this check box to enable applications to burst beyond the baseline for as long as needed\. Additional charges may apply\. For more information, see [Burstable Performance Instances](burstable-performance-instances.md)\.
    + **Network interfaces**: If you selected a specific subnet, you can specify up to two network interfaces for your instance:
      + For **Network Interface**, select **New network interface** to let AWS create a new interface, or select an existing, available network interface\.
      + For **Primary IP**, enter a private IPv4 address from the range of your subnet, or leave **Auto\-assign** to let AWS choose a private IPv4 address for you\.

@@ -13,10 +13,11 @@ You can create alarms using the Amazon EC2 console or the CloudWatch console\. T
 
 **Permissions**  
 If you are an AWS Identity and Access Management \(IAM\) user, you must have the following permissions to create or modify an alarm:
++ `iam:CreateServiceLinkedRole`, `iam:GetPolicy`, `iam:GetPolicyVersion`, and `iam:GetRole` — For all alarms with Amazon EC2 actions
 + `ec2:DescribeInstanceStatus` and `ec2:DescribeInstances` – For all alarms on Amazon EC2 instance status metrics
 + `ec2:StopInstances` – For alarms with stop actions
 + `ec2:TerminateInstances` – For alarms with terminate actions
-+ No specific permissions are needed for alarms with recover actions
++ No additional specific permissions are needed for alarms with recover actions
 
 If you have read/write permissions for Amazon CloudWatch but not for Amazon EC2, you can still create an alarm but the stop or terminate actions won't be performed on the Amazon EC2 instance\. However, if you are later granted permission to use the associated Amazon EC2 APIs, the alarm actions you created earlier are performed\. For more information about IAM permissions, see [Permissions and Policies](http://docs.aws.amazon.com/IAM/latest/UserGuide/PermissionsAndPolicies.html) in the *IAM User Guide*\.
 
@@ -148,7 +149,7 @@ The following problems can cause system status checks to fail:
 + Hardware issues on the physical host that impact network reachability
 
 The recover action is supported only on instances with the following characteristics:
-+ Use a C3, C4, C5, M3, M4, M5, R3, R4, R5, T2, or X1 instance
++ Use one of the following instance types: C3, C4, C5, M3, M4, M5, R3, R4, R5, T2, T3, X1, or X1e
 + Run in a VPC \(not EC2\-Classic\)
 + Use `default` or `dedicated` instance tenancy
 + Use EBS volumes only \(do not configure instance store volumes\)\. For more information, see ['Recover this instance' is disabled](https://aws.amazon.com/premiumsupport/knowledge-center/recover-this-instance-cloudwatch-enable/)\.

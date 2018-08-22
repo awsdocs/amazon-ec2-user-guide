@@ -68,6 +68,9 @@ G3 instances use NVIDIA Tesla M60 GPUs and provide a cost\-effective, high\-perf
 
 G3 instances support NVIDIA GRID Virtual Workstation and NVIDIA GRID Virtual Applications\. To activate either of these features, see [Activate NVIDIA GRID Virtual Applications \(G3 Instances Only\)](activate_grid.md)\.
 
+**G2 Instances**  
+G2 instances use NVIDIA GRID K520 GPUs and provide a cost\-effective, high\-performance platform for graphics applications using DirectX or OpenGL\. NVIDIA GRID GPUs also support NVIDIA’s fast capture and encode API operations\. Example applications include video creation services, 3D visualizations, streaming graphics\-intensive applications, and other server\-side graphics workloads\.
+
 ## Hardware Specifications<a name="gpu-instance-specifications"></a>
 
 The following is a summary of the hardware specifications for accelerated computing instances\.
@@ -81,6 +84,8 @@ The following is a summary of the hardware specifications for accelerated comput
 | p3\.2xlarge | 8 | 61 | 
 | p3\.8xlarge | 32 | 244 | 
 | p3\.16xlarge | 64 | 488 | 
+| g2\.2xlarge | 8 | 15 | 
+| g2\.8xlarge | 32 | 60 | 
 | g3\.4xlarge | 16 | 122 | 
 | g3\.8xlarge | 32 | 244 | 
 | g3\.16xlarge | 64 | 488 | 
@@ -123,10 +128,11 @@ The following is a summary of features for accelerated computing instances\.
 
 |  | VPC only | EBS only | Instance store | Placement group | 
 | --- | --- | --- | --- | --- | 
-|  G3  |  Yes  |  Yes  |   |  Yes  | 
-|  P2  |  Yes  |  Yes  |   |  Yes  | 
-|  P3  |  Yes  |  Yes  |   |  Yes  | 
-|  F1  |  Yes  |   |  NVMe \*  |  Yes  | 
+| G2 |  |  | SSD | Yes | 
+|  G3  |  Yes  |  Yes  |  |  Yes  | 
+|  P2  |  Yes  |  Yes  |  |  Yes  | 
+|  P3  |  Yes  |  Yes  |  |  Yes  | 
+|  F1  |  Yes  |  |  NVMe \*  |  Yes  | 
 
 \* The root device volume must be an Amazon EBS volume\.
 

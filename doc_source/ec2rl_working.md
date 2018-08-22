@@ -16,27 +16,27 @@ EC2Rescue for Linux includes a help file that gives you information and syntax f
 + Use the `help` command to get general help:
 
   ```
-  [ec2-user ~]$ ./ec2rl help
+  ./ec2rl help
   ```
 
 **To list the available modules**
 + List all available modules:
 
   ```
-  [ec2-user ~]$ ./ec2rl list
+  ./ec2rl list
   ```
 
 **To get help for a specific module**
 + List the help details for a specific command:
 
   ```
-  [ec2-user ~]$ ./ec2rl help module_name
+  ./ec2rl help module_name
   ```
 
   Example command for showing the help file for the `dig` module:
 
   ```
-  [ec2-user ~]$ ./ec2rl help dig
+  ./ec2rl help dig
   ```
 
 ## Running a Module<a name="ec2rl_running_module"></a>
@@ -48,25 +48,25 @@ You can run an EC2Rescue for Linux using these steps\.
 1. Run a module:
 
    ```
-   [ec2-user ~]$ ./ec2rl run --only-modules=module_name --arguments
+   ./ec2rl run --only-modules=module_name --arguments
    ```
 
    Example command, using the `dig` module to query the `amazon.com` domain:
 
    ```
-   [ec2-user ~]$ ./ec2rl run --only-modules=dig --domain=amazon.com
+   ./ec2rl run --only-modules=dig --domain=amazon.com
    ```
 
 1. View the results:
 
    ```
-   [ec2-user ~]$ cat /var/tmp/ec2rl/logfile_location
+   cat /var/tmp/ec2rl/logfile_location
    ```
 
    Example:
 
    ```
-   [ec2-user ~]$ cat /var/tmp/ec2rl/2017-05-11T15_39_21.893145/mod_out/run/dig.log
+   cat /var/tmp/ec2rl/2017-05-11T15_39_21.893145/mod_out/run/dig.log
    ```
 
 ## Uploading the Results<a name="ec2rl_uploading_results"></a>
@@ -77,14 +77,14 @@ If AWS Support has requested the results or to share the results from an S3 buck
 + Upload the results to support:
 
   ```
-  [ec2-user ~]$ ./ec2rl upload --upload-directory=/var/tmp/ec2rl/2017-05-11T15_39_21.893145 --support-url="URLProvidedByAWSSupport"
+  ./ec2rl upload --upload-directory=/var/tmp/ec2rl/2017-05-11T15_39_21.893145 --support-url="URLProvidedByAWSSupport"
   ```
 
 **To upload to an S3 bucket**
 + To upload the results to an S3 bucket:
 
   ```
-  [ec2-user ~]$ ./ec2rl upload --upload-directory=/var/tmp/ec2rl/2017-05-11T15_39_21.893145 --presigned-url="YourPresignedS3URL"
+  ./ec2rl upload --upload-directory=/var/tmp/ec2rl/2017-05-11T15_39_21.893145 --presigned-url="YourPresignedS3URL"
   ```
 **Note**  
 For more information about generating presigned URLs for Amazon S3, see [Uploading Objects Using Pre\-Signed URLs](http://docs.aws.amazon.com/AmazonS3/latest/dev/PresignedUrlUploadObject.html)\.
@@ -97,19 +97,19 @@ Create a backup for your instance, one or more volumes, or a specific device ID 
 + Create a backup of your instance:
 
   ```
-  [ec2-user ~]$ ./ec2rl run --backup=ami
+  ./ec2rl run --backup=ami
   ```
 
 **To back up all volumes**
 + Create a backup of all volumes associated with the instance:
 
   ```
-  [ec2-user ~]$ ./ec2rl run --backup=allvolumes
+  ./ec2rl run --backup=allvolumes
   ```
 
 **To back up a volume**
 + Create a backup of a single volume:
 
   ```
-  [ec2-user ~]$ ./ec2rl run --backup=volume ID
+  ./ec2rl run --backup=volume ID
   ```

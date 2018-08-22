@@ -160,7 +160,7 @@ If your account supports EC2\-Classic in a region, then you do not have a defaul
 
 1. From the navigation bar, select a region for the VPC\. VPCs are specific to a region, so you should select the same region in which you created your key pair\.
 
-1. On the VPC dashboard, choose **Create VPC**\.
+1. On the VPC dashboard, choose **Launch VPC Wizard**\.
 
 1. On the **Step 1: Select a VPC Configuration** page, ensure that **VPC with a Single Public Subnet** is selected, and choose **Select**\.
 

@@ -13,7 +13,7 @@ EBS–optimized instances deliver dedicated bandwidth to Amazon EBS, with option
 
 The following tables show which instance types support EBS optimization, the dedicated bandwidth to Amazon EBS, the maximum number of IOPS the instance can support if you are using a 16 KB I/O size, and the typical maximum aggregate throughput that can be achieved on that connection in MiB/s with a streaming read workload and 128 KB I/O size\. Choose an EBS–optimized instance that provides more dedicated Amazon EBS throughput than your application needs; otherwise, the connection between Amazon EBS and Amazon EC2 can become a performance bottleneck\.
 
-The instance types that are EBS–optimized by default, there is no need to enable EBS optimization and no effect if you disable EBS optimization\. For instances that are not EBS–optimized by default, you can enable EBS optimization when you launch the instances, or enable EBS optimization after the instances are running\. Instances must have EBS optimization enabled to achieve the level of performance described in the table below\.
+For instance types that are EBS–optimized by default, there is no need to enable EBS optimization and no effect if you disable EBS optimization\. For instances that are not EBS–optimized by default, you can enable EBS optimization when you launch the instances, or enable EBS optimization after the instances are running\. Instances must have EBS optimization enabled to achieve the level of performance described in the table below\.
 
 When you enable EBS optimization for an instance that is not EBS\-optimized by default, you pay an additional low, hourly fee for the dedicated capacity\. For pricing information, see EBS\-optimized Instances on the [Amazon EC2 Pricing page for On\-Demand instances](https://aws.amazon.com/ec2/pricing/on-demand/)\.
 
@@ -105,6 +105,13 @@ The following table lists current\-generation instance types that support EBS op
 | r5d\.4xlarge | Yes | 3,500 | 437\.5 | 18,750 | 
 | r5d\.12xlarge | Yes | 7,000 | 875 | 40,000 | 
 | r5d\.24xlarge | Yes | 14,000 | 1,750 | 80,000 | 
+| t3\.nano \* | Yes | 1,536 | 192 | 11,800 | 
+| t3\.micro \* | Yes | 1,536 | 192 | 11,800 | 
+| t3\.small \* | Yes | 1,536 | 192 | 11,800 | 
+| t3\.medium \* | Yes | 1,536 | 192 | 11,800 | 
+| t3\.large \* | Yes | 2,048 | 256 | 15,700 | 
+| t3\.xlarge \* | Yes | 2,048 | 256 | 15,700 | 
+| t3\.2xlarge \* | Yes | 2,048 | 256 | 15,700 | 
 | x1\.16xlarge | Yes | 7,000 | 875 | 40,000 | 
 | x1\.32xlarge | Yes | 14,000 | 1,750 | 80,000 | 
 | x1e\.xlarge | Yes | 500 | 62\.5 | 3,700 | 
@@ -143,6 +150,13 @@ The following table lists current\-generation instance types that support EBS op
 | r5d\.large | 480 | 60 | 3,600 | 
 | r5d\.xlarge | 850 | 106\.25 | 6,000 | 
 | r5d\.2xlarge | 1,700 | 212\.5 | 12,000 | 
+| t3\.nano | 32 | 4 | 250 | 
+| t3\.micro | 64 | 8 | 500 | 
+| t3\.small | 128 | 16 | 1,000 | 
+| t3\.medium | 256 | 32 | 2,000 | 
+| t3\.large | 512 | 64 | 4,000 | 
+| t3\.xlarge | 512 | 64 | 4,000 | 
+| t3\.2xlarge | 512 | 64 | 4,000 | 
 | z1d\.large | 583 | 73 | 3,333 | 
 | z1d\.xlarge | 1,167 | 146 | 6,667 | 
 

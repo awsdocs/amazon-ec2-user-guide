@@ -77,8 +77,8 @@ Amazon provides a DNS server that resolves Amazon\-provided IPv4 DNS hostnames t
 
 You can optionally associate an IPv6 CIDR block with your VPC, and associate IPv6 CIDR blocks with your subnets\. The IPv6 CIDR block for your VPC is automatically assigned from Amazon's pool of IPv6 addresses; you cannot choose the range yourself\. For more information, see the following topics in the *Amazon VPC User Guide*:
 + [VPC and Subnet Sizing for IPv6](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Subnets.html#vpc-sizing-ipv6)
-+ [Associating an IPv6 CIDR Block with Your VPC](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Subnets.html#vpc-associate-ipv6-cidr)
-+ [Associating an IPv6 CIDR Block with Your Subnet](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Subnets.html#subnet-associate-ipv6-cidr)
++ [Associating an IPv6 CIDR Block with Your VPC](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/working-with-vpcs.html#vpc-associate-ipv6-cidr)
++ [Associating an IPv6 CIDR Block with Your Subnet](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/working-with-vpcs.html#subnet-associate-ipv6-cidr)
 
 IPv6 addresses are globally unique, and therefore reachable over the Internet\. Your instance in a VPC receives an IPv6 address if an IPv6 CIDR block is associated with your VPC and subnet, and if one of the following is true:
 + Your subnet is configured to automatically assign an IPv6 address to an instance during launch\. For more information, see [Modifying the IPv6 Addressing Attribute for Your Subnet](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-ip-addressing.html#subnet-ipv6)\.

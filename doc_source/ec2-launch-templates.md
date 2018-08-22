@@ -16,6 +16,7 @@ The following diagram shows a launch template with three versions\. The first ve
 + [Managing Launch Template Versions](#manage-launch-template-versions)
 + [Launching an Instance from a Launch Template](#launch-instance-from-launch-template)
 + [Using Launch Templates with Amazon EC2 Auto Scaling](#launch-templates-as)
++ [Using Launch Templates with EC2 Fleet](#launch-templates-ec2-fleet)
 + [Using Launch Templates with Spot Fleet](#launch-templates-spot-fleet)
 + [Deleting a Launch Template](#delete-launch-template)
 
@@ -81,7 +82,8 @@ You can create a new launch template using parameters that you define, or you ca
    + **Volume type**: For Amazon EBS volumes, the volume type\. For more information, see [Amazon EBS Volume Types](EBSVolumeTypes.md)\.
    + **IOPS**: If you have selected a Provisioned IOPS SSD volume type, then you can enter the number of I/O operations per second \(IOPS\) that the volume can support\.
    + **Delete on termination**: For Amazon EBS volumes, select this check box to delete the volume when the instance is terminated\. For more information, see [Preserving Amazon EBS Volumes on Instance Termination](terminating-instances.md#preserving-volumes-on-termination)\.
-   + **Encrypted**: Select this check box to encrypt new Amazon EBS volumes\. Amazon EBS volumes that are restored from encrypted snapshots are automatically encrypted\. Encrypted volumes may only be attached to [supported instance types](EBSEncryption.md#EBSEncryption_supported_instances)\.
+   + **Encrypted**: Choose **Yes** to encrypt new Amazon EBS volumes\. Amazon EBS volumes that are restored from encrypted snapshots are automatically encrypted\. Encrypted volumes may only be attached to [supported instance types](EBSEncryption.md#EBSEncryption_supported_instances)\.
+   + **Key**: If you chose to encrypt new Amazon EBS volumes, enter the master key you want to use when encrypting the volumes\. You can enter the default master key for your account, or you can enter any customer master key \(CMK\) that you have previously created using the AWS Key Management Service\. You can paste the full ARN of any key that you have access to\. For more information, see the [AWS Key Management Service Developer Guide](http://docs.aws.amazon.com/kms/latest/developerguide/)\.
 
 1. For **Tags**, specify [tags](Using_Tags.md) by providing key and value combinations\. You can tag the instance, the volumes, or both\.
 
@@ -357,6 +359,15 @@ For more information, see [Creating an Auto Scaling Group Using a Launch Templat
 
 **To create or update an Amazon EC2 Auto Scaling group with a launch template using the command line**
 + Use the [create\-auto\-scaling\-group](http://docs.aws.amazon.com/cli/latest/reference/autoscaling/create-auto-scaling-group.html) or the [update\-auto\-scaling\-group](http://docs.aws.amazon.com/cli/latest/reference/autoscaling/update-auto-scaling-group.html) AWS CLI command and specify the `--launch-template` parameter\.
+
+## Using Launch Templates with EC2 Fleet<a name="launch-templates-ec2-fleet"></a>
+
+You can create an EC2 Fleet request and specify a launch template in the instance configuration\. When Amazon EC2 fulfills the EC2 Fleet request, it uses the launch parameters defined in the associated launch template\. You can override some of the parameters that are specified in the launch template\.
+
+For more information, see [Creating an EC2 Fleet](manage-ec2-fleet.md#create-ec2-fleet)\.
+
+**To create an EC2 Fleet with a launch template using the command line**
++ Use the [create\-fleet](http://docs.aws.amazon.com/cli/latest/reference/ec2/create-fleet.html) AWS CLI command\. Use the `--launch-template-configs` parameter to specify the launch template and any overrides for the launch template\.
 
 ## Using Launch Templates with Spot Fleet<a name="launch-templates-spot-fleet"></a>
 

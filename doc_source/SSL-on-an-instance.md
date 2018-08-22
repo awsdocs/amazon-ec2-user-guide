@@ -21,13 +21,13 @@ The version of this tutorial supporting Amazon Linux 1 is no longer maintained, 
 
 Before you begin this tutorial, complete the following steps:
 + Launch an EBS\-backed Amazon Linux 2 instance\. For more information, see [Step 1: Launch an Instance](EC2_GetStarted.md#ec2-launch-instance)\. 
-+ Configure your security group to allow your instance to accept connections on the following TCP ports: 
++ Configure your security groups to allow your instance to accept connections on the following TCP ports: 
   + SSH \(port 22\)
   + HTTP \(port 80\)
   + HTTPS \(port 443\)
 
   For more information, see [Authorizing Inbound Traffic for Your Linux Instances](authorizing-access-to-an-instance.md)\.
-+ Install an Apache web server\. For step\-by\-step instructions, see [Tutorial: Install a LAMP Web Server on Amazon Linux 2](ec2-lamp-amazon-linux-2.md)\. Only the httpd package and its dependencies are needed, so you can ignore the instructions involving PHP and MariaDB\.
++ Install the Apache web server\. For step\-by\-step instructions, see [Tutorial: Install a LAMP Web Server on Amazon Linux 2](ec2-lamp-amazon-linux-2.md)\. Only the httpd package and its dependencies are needed, so you can ignore the instructions involving PHP and MariaDB\.
 + To identify and authenticate websites, the SSL/TLS public key infrastructure \(PKI\) relies on the Domain Name System \(DNS\)\. If you plan to use your EC2 instance to host a public website, you need to register a domain name for your web server or transfer an existing domain name to your Amazon EC2 host\. Numerous third\-party domain registration and DNS hosting services are available for this, or you may use [Amazon Route 53](http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/Welcome.html)\. 
 
 ## Step 1: Enable SSL/TLS on the Server<a name="ssl_enable"></a>
@@ -35,7 +35,7 @@ Before you begin this tutorial, complete the following steps:
 This procedure takes you through the process of setting up SSL/TLS on Amazon Linux 2 with a self\-signed digital certificate\.
 
 **Note**  
-A self\-signed certificate is acceptable for testing but not production\. If you expose your self\-signed certificate to the internet, visitors to your site are greeted by security warnings\.
+A self\-signed certificate is acceptable for testing but not production\. If you expose your self\-signed certificate to the internet, visitors to your site are greeted by security warnings\. 
 
 **To enable SSL/TLS on a server**
 
@@ -72,6 +72,8 @@ The `-y` option installs the updates without asking for confirmation\. If you wo
    + `/etc/pki/tls/private/localhost.key`
 
      An automatically generated, 2048\-bit RSA private key for your Amazon EC2 host\. During installation, OpenSSL used this key to generate a self\-signed host certificate, and you can also use this key to generate a certificate signing request \(CSR\) to submit to a certificate authority \(CA\)\. 
+**Note**  
+If you can't see this file in a directory listing, it may be due to its restrictive access permissions\. Try running `sudo ls -al` inside the directory\.
    + `/etc/pki/tls/certs/localhost.crt` 
 
      An automatically generated, self\-signed X\.509 certificate for your server host\. This certificate is useful for testing that Apache is properly set up to use SSL/TLS\.
@@ -321,7 +323,7 @@ The report shows that the configuration is mostly sound, with acceptable ratings
 
    Leave these as they are, and below them add the following directives:
 **Note**  
-Though shown here on several lines for readability, each of these two directives must be on a single line without spaces between the cipher names\.
+Though shown here on several lines for readability, each of these two directives must be on a single line with only a colon \(no spaces\) between cipher names\.
 
    ```
    SSLCipherSuite ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:
@@ -443,7 +445,7 @@ Complete the following procedures before you install Certbot\.
 
 1. Download the Extra Packages for Enterprise Linux \(EPEL\) 7 repository packages\. These are required to supply dependencies needed by Certbot\. 
 
-   1. Download EPEL with the following command:
+   1. Navigate to your home directory \(`/home/ec2-user`\)\. Download EPEL with the following command:
 
       ```
       [ec2-user ~]$ sudo wget -r --no-parent -A 'epel-release-*.rpm' http://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/e/
@@ -461,7 +463,7 @@ Complete the following procedures before you install Certbot\.
       [ec2-user ~]$ sudo yum-config-manager --enable epel*
       ```
 
-      You can confirm that EPEL is enabled with the following command:
+      You can confirm that EPEL is enabled with the following command, should should return information such as the snippet shown:
 
       ```
       [ec2-user ~]$ sudo yum repolist all
@@ -474,6 +476,8 @@ Complete the following procedures before you install Certbot\.
       !epel-testing/x86_64                  Extra Packages for Enterprise Linux 7 - Testing - x86_64                    enabled:     959+10
       !epel-testing-debuginfo/x86_64        Extra Packages for Enterprise Linux 7 - Testing - x86_64 - Debug            enabled:        142
       !epel-testing-source/x86_64           Extra Packages for Enterprise Linux 7 - Testing - x86_64 - Source           enabled:          0
+      
+      ...
       ```
 
 1. Edit the main Apache configuration file, `/etc/httpd/conf/httpd.conf`\. Locate the "`listen 80`" directive and add the following lines after it, replacing the example domain names with the actual Common Name and Subject Alternative Name \(SAN\) to configure:
@@ -502,7 +506,11 @@ This procedure is based on the EFF's documentation for installing Certbot on [ F
    [ec2-user ~]$ sudo yum install -y certbot python2-certbot-apache
    ```
 
-1. Run Certbot\.
+1. Run Certbot:
+
+   ```
+   [ec2-user ~]$ sudo certbot
+   ```
 
 1. At the prompt "Enter email address \(used for urgent renewal and security notices\)," type a contact address and press Enter\.
 

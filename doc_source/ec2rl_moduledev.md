@@ -17,12 +17,12 @@ The following table lists the available module attributes\.
 | helptext |  The extended description of the module\. Each line should be less than or equal to 75 characters in length\. If the module consumes arguments, required or optional, include them in the helptext value\. For example:<pre>helptext: !!str |<br />  Collect output from ps for system analysis<br />  Consumes --times= for number of times to repeat<br />  Consumes --period= for time period between repetition</pre> | 
 | placement | The stage in which the module should be run\. Supported values:[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2rl_moduledev.html) | 
 | language | The language that the module code is written in\. Supported values:[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2rl_moduledev.html) Python code must be compatible with both Python 2\.7\.9\+ and Python 3\.2\+\.  | 
-| remediation |  Indicates whether the module supports remediation\. Supported values are `True` or `False`\. The module will default to `False` if this is absent, making it an optional attribute for those modules that do not support remediation\.  | 
+| remediation |  Indicates whether the module supports remediation\. Supported values are `True` or `False`\. The module defaults to `False` if this is absent, making it an optional attribute for those modules that do not support remediation\.  | 
 | content | The entirety of the script code\. | 
 | constraint | The name of the object containing the constraint values\. | 
 | domain | A descriptor of how the module is grouped or classified\. The set of included modules uses the following domains:  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2rl_moduledev.html) | 
 | class | A descriptor of the type of task performed by the module\. The set of included modules uses the following classes: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2rl_moduledev.html) | 
-| distro | The list of Linux distributions that this module supports\. The set of included modules use the following distributions: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2rl_moduledev.html) | 
+| distro | The list of Linux distributions that this module supports\. The set of included modules uses the following distributions: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2rl_moduledev.html) | 
 | required | The required arguments that the module is consuming from the CLI options\. | 
 | optional | The optional arguments that the module can use\. | 
 | software | The software executables used in the module\. This attribute is intended to specify software that is not installed by default\. The EC2Rescue for Linux logic ensures that these programs are present and executable before running the module\. | 
@@ -40,14 +40,14 @@ The following table lists the available environment variables\.
 
 | Environment Variable | Description | 
 | --- | --- | 
-|  EC2RL\_CALLPATH  | The path to ec2rl\.py\. This path can be used to locate the lib directory and utilize vendored Python modules\. | 
-|  EC2RL\_WORKDIR  |  The main tmp directory for the diagnostic tool\. Default value: `/var/tmp/ec2rl`\. | 
-|  EC2RL\_RUNDIR  |  The directory where all output is stored\. Default value: `/var/tmp/ec2rl/<date&timestamp>`\.  | 
-|  EC2RL\_GATHEREDDIR  |  The root directory for placing gathered module data\. Default value:`/var/tmp/ec2rl/<date&timestamp>/mod_out/gathered/`\.  | 
-|  EC2RL\_NET\_DRIVER  |  The driver in use for the first, alphabetically ordered, non\-virtual network interface on the instance\. Examples: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2rl_moduledev.html)  | 
-|  EC2RL\_SUDO  |  True if EC2Rescue for Linux is running as root; otherwise, false\.  | 
-|  EC2RL\_VIRT\_TYPE  |  The virtualization type as provided by the instance metadata\. Examples: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2rl_moduledev.html)  | 
-|  EC2RL\_INTERFACES  |  An enumerated list of interfaces on the system\. The value is a string containing names, such as `eth0`, `eth1`, etc\. This is generated via the `functions.bash` and is only available for modules that have sourced it\.  | 
+|  `EC2RL_CALLPATH`  | The path to ec2rl\.py\. This path can be used to locate the lib directory and use vendored Python modules\. | 
+|  `EC2RL_WORKDIR`  |  The main tmp directory for the diagnostic tool\. Default value: `/var/tmp/ec2rl`\. | 
+|  `EC2RL_RUNDIR`  |  The directory where all output is stored\. Default value: `/var/tmp/ec2rl/<date&timestamp>`\.  | 
+|  `EC2RL_GATHEREDDIR`  |  The root directory for placing gathered module data\. Default value:`/var/tmp/ec2rl/<date&timestamp>/mod_out/gathered/`\.  | 
+|  `EC2RL_NET_DRIVER`  |  The driver in use for the first, alphabetically ordered, non\-virtual network interface on the instance\. Examples: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2rl_moduledev.html)  | 
+|  `EC2RL_SUDO`  |  True if EC2Rescue for Linux is running as root; otherwise, false\.  | 
+|  `EC2RL_VIRT_TYPE`  |  The virtualization type as provided by the instance metadata\. Examples: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2rl_moduledev.html)  | 
+|  `EC2RL_INTERFACES`  |  An enumerated list of interfaces on the system\. The value is a string containing names, such as `eth0`, `eth1`, etc\. This is generated via the `functions.bash` and is only available for modules that have sourced it\.  | 
 
 ## Using YAML Syntax<a name="ec2rl_yamlsyntax"></a>
 

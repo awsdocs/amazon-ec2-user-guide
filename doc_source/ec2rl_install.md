@@ -17,30 +17,32 @@ The EC2Rescue for Linux tool can be installed on an Amazon EC2 Linux instance th
 1. From a working Linux instance, download the [EC2Rescue for Linux](https://s3.amazonaws.com/ec2rescuelinux/ec2rl.tgz) tool:
 
    ```
-   [ec2-user ~]$ curl -O https://s3.amazonaws.com/ec2rescuelinux/ec2rl.tgz
+   curl -O https://s3.amazonaws.com/ec2rescuelinux/ec2rl.tgz
    ```
+**Important**  
+Before proceeding, you can optionally verify the signature of the EC2Rescue for Linux installation file\. For more information, see [\(Optional\) Verify the Signature of EC2Rescue for Linux](ec2rl_verify.md)\.
 
 1. Download the sha256 hash file:
 
    ```
-   [ec2-user ~]$ curl -O https://s3.amazonaws.com/ec2rescuelinux/ec2rl.tgz.sha256
+   curl -O https://s3.amazonaws.com/ec2rescuelinux/ec2rl.tgz.sha256
    ```
 
 1. Verify the integrity of the tarball:
 
    ```
-   [ec2-user ~]$  sha256sum -c ec2rl.tgz.sha256
+   sha256sum -c ec2rl.tgz.sha256
    ```
 
 1. Unpack the tarball:
 
    ```
-   [ec2-user ~]$ tar -xvf ec2rl.tgz
+   tar -xvf ec2rl.tgz
    ```
 
 1. Verify the installation by listing out the help file:
 
    ```
-   [ec2-user ~]$ cd ec2rl-<version_number>
-   [ec2-user ~]$ ./ec2rl help
+   cd ec2rl-<version_number>
+   ./ec2rl help
    ```

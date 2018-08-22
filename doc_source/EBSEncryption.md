@@ -36,7 +36,7 @@ For more information about key management and key access permissions, see [How A
 ## Supported Instance Types<a name="EBSEncryption_supported_instances"></a>
 
 Amazon EBS encryption is available on the current\-generation instance types listed below\. These instance types leverage the Intel AES New Instructions \(AES\-NI\) instruction set to provide faster and simpler data protection\. You can attach both encrypted and unencrypted volumes to these instance types simultaneously\.
-+ General purpose: T2, M4, M5, M5d
++ General purpose: T2, T3, M4, M5, M5d
 + Compute optimized: C4, C5, C5d
 + Memory optimized: R4, R5, R5d, X1, X1e, z1d, `cr1.8xlarge` 
 + Storage optimized: D2, I3, `h1.2xlarge`, `h1.4xlarge`, `i3.metal` 

@@ -90,7 +90,7 @@ The following table lists the maximum number of network interfaces per instance 
 |  `d2.2xlarge`  |  4  |  15  | 15 | 
 |  `d2.4xlarge`  |  8  |  30  | 30 | 
 |  `d2.8xlarge`  |  8  |  30  | 30 | 
-| f1\.2xlarge | 4 | 15 | 15 | 
+|  `f1.2xlarge`  |  4  | 15  |  15  | 
 | f1\.16xlarge | 8 | 50 | 50 | 
 |  `g2.2xlarge`  |  4  |  15  | IPv6 not supported | 
 |  `g2.8xlarge`  |  8  |  30  | IPv6 not supported | 
@@ -179,6 +179,13 @@ The following table lists the maximum number of network interfaces per instance 
 |  `t2.large`  |  3  |  12  | 12 | 
 |  `t2.xlarge`  |  3  |  15  |  15  | 
 |  `t2.2xlarge`  |  3  |  15  |  15  | 
+|  `t3.nano`  |  2  |  2  | 2 | 
+|  `t3.micro`  |  2  |  2  | 2 | 
+|  `t3.small`  |  2  |  4  | 4 | 
+|  `t3.medium`  |  3  |  6  | 6 | 
+|  `t3.large`  |  3  |  12  | 12 | 
+|  `t3.xlarge`  |  3  |  15  |  15  | 
+|  `t3.2xlarge`  |  3  |  15  |  15  | 
 | x1\.16xlarge | 8 | 30 | 30 | 
 | x1\.32xlarge | 8 | 30 | 30 | 
 | x1e\.xlarge | 3 | 10 | 10 | 

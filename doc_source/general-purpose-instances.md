@@ -13,9 +13,17 @@ M5 instances are the latest generation in Amazon EC2's General purpose instance 
 
 **Note**: M5 instances require EBS\-backed AMIs with the NVMe and Elastic Network Adapter \(ENA\) drivers installed\. For more information, see the [Release Notes](#general-purpose-instances-limits)\.
 
+**T3 Instances**
+
+T3 instances provide a baseline level of CPU performance with the ability to burst to a higher level when required by your workload\. A T3 Unlimited instance can sustain high CPU performance for any period of time whenever required\. For more information, see [Burstable Performance Instances](burstable-performance-instances.md)\. T3 instances are well\-suited for the following applications:
++ Websites and web applications
++ Code repositories
++ Development, build, test, and staging environments
++ Microservices
+
 **T2 Instances**
 
-T2 instances provide a baseline level of CPU performance with the ability to burst to a higher level when required by your workload\. A T2 Unlimited instance can sustain high CPU performance for any period of time whenever required\. For more information, see [T2 Instances](t2-instances.md)\. T2 instances are well\-suited for the following applications:
+T2 instances provide a baseline level of CPU performance with the ability to burst to a higher level when required by your workload\. A T2 Unlimited instance can sustain high CPU performance for any period of time whenever required\. For more information, see [Burstable Performance Instances](burstable-performance-instances.md)\. T2 instances are well\-suited for the following applications:
 + Websites and web applications
 + Code repositories
 + Development, build, test, and staging environments
@@ -44,6 +52,13 @@ The following is a summary of the hardware specifications for General purpose in
 | t2\.large | 2 | 8 | 
 | t2\.xlarge | 4 | 16 | 
 | t2\.2xlarge | 8 | 32 | 
+| t3\.nano | 2 | 0\.5 | 
+| t3\.micro | 2 | 1 | 
+| t3\.small | 2 | 2 | 
+| t3\.medium | 2 | 4 | 
+| t3\.large | 2 | 8 | 
+| t3\.xlarge | 4 | 16 | 
+| t3\.2xlarge | 8 | 32 | 
 | m4\.large | 2 | 8 | 
 | m4\.xlarge | 4 | 16 | 
 | m4\.2xlarge | 8 | 32 | 
@@ -87,6 +102,7 @@ The following is a summary of network performance for General purpose instances 
 | Instance type | Network performance | Enhanced networking | 
 | --- | --- | --- | 
 | t2\.nano, t2\.micro, t2\.small, t2\.medium, t2\.large, t2\.xlarge, t2\.2xlarge | Up to 1 Gbps | [ENA](enhanced-networking-ena.md) | 
+| t3\.nano, t3\.micro, t3\.small, t3\.medium, t3\.large, t3\.xlarge, t3\.2xlarge | Up to 5 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  `m4.large`  |  Moderate  |  [Intel 82599 VF](sriov-networking.md)  | 
 |  `m4.xlarge`, `m4.2xlarge`, `m4.4xlarge`  |  High  |  [Intel 82599 VF](sriov-networking.md)  | 
 |  `m4.10xlarge`  |  10 Gbps  |  [Intel 82599 VF](sriov-networking.md)  | 
@@ -102,10 +118,11 @@ The following is a summary of features for General purpose instances:
 
 |  | VPC only | EBS only | Placement group | 
 | --- | --- | --- | --- | 
+|  T2  |  Yes  |  Yes  |   | 
+|  T3  |  Yes  |  Yes  |   | 
 |  M4  |  Yes  |  Yes  |  Yes  | 
 |  M5  |  Yes  |  Yes  |  Yes  | 
 |  M5d  |  Yes  |  |  Yes  | 
-|  T2  |  Yes  |  Yes  |   | 
 
 For more information, see the following:
 + [Instance Types Available Only in a VPC](using-vpc.md#vpc-only-instance-types)
@@ -115,8 +132,8 @@ For more information, see the following:
 + [Enhanced Networking on Linux](enhanced-networking.md)
 
 ## Release Notes<a name="general-purpose-instances-limits"></a>
-+ M4, M5, M5d, and `t2.large` and larger T2 instance types require 64\-bit HVM AMIs\. They have high\-memory, and require a 64\-bit operating system to take advantage of that capacity\. HVM AMIs provide superior performance in comparison to paravirtual \(PV\) AMIs on high\-memory instance types\. In addition, you must use an HVM AMI to take advantage of enhanced networking\.
-+ M5 and M5d instances have the following requirements:
++ M4, M5, M5d, `t2.large` and larger, and `t3.large` and larger instance types require 64\-bit HVM AMIs\. They have high\-memory, and require a 64\-bit operating system to take advantage of that capacity\. HVM AMIs provide superior performance in comparison to paravirtual \(PV\) AMIs on high\-memory instance types\. In addition, you must use an HVM AMI to take advantage of enhanced networking\.
++ M5, M5d, and T3 instances have the following requirements:
   + Must have the NVMe drivers installed\. EBS volumes are exposed as [NVMe block devices](nvme-ebs-volumes.md)\.
   + Must have the Elastic Network Adapter \([ENA](enhanced-networking-ena.md)\) drivers installed\.
 
@@ -129,7 +146,7 @@ For more information, see the following:
   + CentOS 7 or later
   + FreeBSD 11\.1\-RELEASE
   + Windows Server 2008 R2 or later
-+ M5 and M5d instances support a maximum of 27 EBS volumes plus elastic network interface attachments\. For example, `m5.2xlarge` instances support four network interfaces\. Every instance has at least one network interface\. If you have a `m5.2xlarge` instance with three additional elastic network interface attachments, you can attach 24 EBS volumes to that instance\.
++ M5, M5d, and T3 instances support a maximum of 27 EBS volumes plus elastic network interface attachments\. For example, `m5.2xlarge` instances support four network interfaces\. Every instance has at least one network interface\. If you have a `m5.2xlarge` instance with three additional elastic network interface attachments, you can attach 24 EBS volumes to that instance\.
 + M5 and M5d instances should have acpid installed to support clean shutdown through API requests\.
 + [ClassicLink](vpc-classiclink.md) is not supported for M5 and M5d instances—you cannot use ClassicLink to link your EC2\-Classic instances to these instances in your VPC\.
 + There is a limit on the total number of instances that you can launch in a region, and there are additional limits on some instance types\. For more information, see [How many instances can I run in Amazon EC2?](https://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2)\. To request a limit increase, use the [Amazon EC2 Instance Request Form](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-instances)\.

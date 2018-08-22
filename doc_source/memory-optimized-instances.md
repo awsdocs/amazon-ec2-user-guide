@@ -36,6 +36,7 @@ These instances deliver both high compute and high memory and are well\-suited f
 + [Memory Performance](#memory-perf)
 + [Instance Performance](#memory-compute-perf)
 + [Network Performance](#memory-network-perf)
++ [SSD I/O Performance](#r5d-z1d-instances-ssd-perf)
 + [Instance Features](#memory-instances-features)
 + [Support for vCPUs](#high-cpu-support)
 + [Release Notes](#memory-instance-limits)
@@ -118,6 +119,34 @@ The following is a summary of network performance for memory optimized instances
 |  `r4.4xlarge` and smaller \| `r5.4xlarge` and smaller \| `r5d.4xlarge` and smaller \| `x1e.8large` and smaller \| `z1d.3xlarge` and smaller  |  Up to 10 Gbps  | [ENA](enhanced-networking-ena.md) | 
 |  `r4.8xlarge` \| `r5.12xlarge` \| `r5d.12xlarge` \| `x1.16xlarge` \| `x1e.16xlarge` \| `z1d.6xlarge`  |  10 Gbps  | [ENA](enhanced-networking-ena.md) | 
 |  `r4.16xlarge` \| `r5.24xlarge` \| `r5d.24xlarge` \| `x1.32xlarge` \| `x1e.32xlarge` \| `z1d.12xlarge`  |  25 Gbps  | [ENA](enhanced-networking-ena.md) | 
+
+## SSD I/O Performance<a name="r5d-z1d-instances-ssd-perf"></a>
+
+If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-based instance store volumes available to your instance, you get the IOPS \(4,096 byte block size\) performance listed in the following table \(at queue depth saturation\)\. Otherwise, you get lower IOPS performance\.
+
+
+| Instance Size | 100% Random Read IOPS | Write IOPS | 
+| --- | --- | --- | 
+|  `r5d.large` \*  |  29,170  |  14,170  | 
+|  `r5d.xlarge` \*  |  58,330  |  28,330  | 
+|  `r5d.2xlarge` \*  |  116,670  |  56,670  | 
+|  `r5d.4xlarge` \*  |  233,330  |  113,330  | 
+|  `r5d.12xlarge`  |  700,000  |  340,000  | 
+|  `r5d.24xlarge`  |  1\.4 million  |  680,000  | 
+|  `z1d.large` \*  |  29,170  |  14,170  | 
+|  `z1d.xlarge` \*  |  58,330  |  28,330  | 
+|  `z1d.2xlarge` \*  |  116,670  |  56,670  | 
+|  `z1d.3xlarge` \*  |  175,000  |  85,000  | 
+|  `z1d.6xlarge`  |  350,000  |  170,000  | 
+|  `z1d.12xlarge`  |  700,000  |  340,000  | 
+
+\* For these instances, you can get up to the specified performance\.
+
+As you fill the SSD\-based instance store volumes for your instance, the number of write IOPS that you can achieve decreases\. This is due to the extra work the SSD controller must do to find available space, rewrite existing data, and erase unused space so that it can be rewritten\. This process of garbage collection results in internal write amplification to the SSD, expressed as the ratio of SSD write operations to user write operations\. This decrease in performance is even larger if the write operations are not in multiples of 4,096 bytes or not aligned to a 4,096\-byte boundary\. If you write a smaller amount of bytes or bytes that are not aligned, the SSD controller must read the surrounding data and store the result in a new location\. This pattern results in significantly increased write amplification, increased latency, and dramatically reduced I/O performance\.
+
+SSD controllers can use several strategies to reduce the impact of write amplification\. One such strategy is to reserve space in the SSD instance storage so that the controller can more efficiently manage the space available for write operations\. This is called *over\-provisioning*\. The SSD\-based instance store volumes provided to an instance don't have any space reserved for over\-provisioning\. To reduce write amplification, we recommend that you leave 10% of the volume unpartitioned so that the SSD controller can use it for over\-provisioning\. This decreases the storage that you can use, but increases performance even if the disk is close to full capacity\.
+
+For instance store volumes that support TRIM, you can use the TRIM command to notify the SSD controller whenever you no longer need data that you've written\. This provides the controller with more free space, which can reduce write amplification and increase performance\. For more information, see [Instance Store Volume TRIM Support](ssd-instance-store.md#InstanceStoreTrimSupport)\.
 
 ## Instance Features<a name="memory-instances-features"></a>
 

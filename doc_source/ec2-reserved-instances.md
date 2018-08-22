@@ -46,8 +46,8 @@ For more information, see [Detecting Your Supported Platforms and Whether You Ha
 
 ## Reserved Instance Limits<a name="ri-limits"></a>
 
-You are limited to purchasing 20 Reserved Instances per Availability Zone, per month, plus 20 regional Reserved Instances\. Therefore, in a region that has three Availability Zones, you can purchase 80 Reserved Instances in total: 20 per Availability Zone \(60\) plus 20 regional Reserved Instances\.
+There is a limit to the number of Reserved Instances that you can purchase per month\. For each region you can purchase 20 [regional](apply_ri.md#apply-regional-ri) Reserved Instances plus an additional 20 [zonal](apply_ri.md#apply-zonal-ri) Reserved Instances for each Availability Zone\.
 
-Reserved Instances that are purchased for a specific Availability Zone \(zonal Reserved Instances\) allow you to launch as many instances that are covered by the zonal Reserved Instances, even if it means that you exceed your On\-Demand Instance limit\. For example, your running On\-Demand Instance limit is 20, and you are currently running 18 On\-Demand Instances\. You have five unused zonal Reserved Instances\. You can launch two more On\-Demand Instances with any specifications, and you can launch five instances that exactly match the specifications of your zonal Reserved Instances; giving you a total of 25 instances\.
+For example, in a region with three Availability Zones, the limit is 80 Reserved Instances: 20 regional Reserved Instances for the region plus 20 zonal Reserved Instances for each of the three Availability Zones \(20x3=60\)\.
 
-Regional Reserved Instances do not increase your On\-Demand Instance limit\.
+Reserved Instance limits do not affect On\-Demand Instance limits, and On\-Demand Instance limits do not affect Reserved Instance limits\. For example, if your On\-Demand Instance Limit is 20 and your Reserved Instance limit is 20, you can launch 40 instances—20 On\-Demand Instances and 20 Reserved Instances\. The Amazon EC2 console provides limit information\. For more information, see [Viewing Your Current Limits](ec2-resource-limits.md#view-limits)\.

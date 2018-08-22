@@ -3,7 +3,7 @@
 T1 Micro instances \(`t1.micro`\) provide a small amount of consistent CPU resources and allow you to increase CPU capacity in short bursts when additional cycles are available\. They are well suited for lower throughput applications and websites that require additional compute cycles periodically\.
 
 **Note**  
-The `t1.micro` is a previous generation instance and it has been replaced by the `t2.micro`, which has a much better performance profile\. We recommend using the `t2.micro` instance type instead of the `t1.micro`\. For more information, see [T2 Instances](t2-instances.md)\.
+The `t1.micro` is a previous generation instance and it has been replaced by the `t2.micro`, which has a much better performance profile\. We recommend using the `t2.micro` instance type instead of the `t1.micro`\. For more information, see [Burstable Performance Instances](burstable-performance-instances.md)\.
 
 The `t1.micro` instance is available as an Amazon EBS\-backed instance only\.
 

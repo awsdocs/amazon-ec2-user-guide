@@ -9,7 +9,6 @@ The following are possible problems you may have and error messages you may see 
 + [Error: Unprotected Private Key File](#troubleshoot-unprotected-key)
 + [Error: Server refused our key *or* No supported authentication methods available](#TroubleshootingInstancesConnectingPuTTY)
 + [Error Using MindTerm on Safari Browser](#troubleshoot-instance-connect-safari)
-+ [Error Using macOS RDP Client](#troubleshoot-instance-connect-mac-rdp)
 + [Cannot Ping Instance](#troubleshoot-instance-ping)
 
 For additional help with Windows instances, see [Troubleshooting Windows Instances](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/troubleshooting-windows-instances.html) in the *Amazon EC2 User Guide for Windows Instances*\.
@@ -253,16 +252,6 @@ You must update the browser's security settings to allow the AWS Management Cons
 1. For **Currently Open Websites**, select the AWS Management Console URL and choose **Run in Unsafe Mode**\.
 
 1. When prompted, choose **Trust** in the warning dialog box and choose **Done**\. 
-
-## Error Using macOS RDP Client<a name="troubleshoot-instance-connect-mac-rdp"></a>
-
-If you are connecting to a Windows Server 2012 R2 instance using the Remote Desktop Connection client from the Microsoft website, you may get the following error:
-
-```
-Remote Desktop Connection cannot verify the identity of the computer that you want to connect to.
-```
-
-Download the Microsoft Remote Desktop app from the Apple iTunes store, and use the app to connect to your instance\.
 
 ## Cannot Ping Instance<a name="troubleshoot-instance-ping"></a>
 

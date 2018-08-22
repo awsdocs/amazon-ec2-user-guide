@@ -20,7 +20,7 @@ The following table describes the use cases and performance characteristics for 
 | Max\. Throughput/Instance†† | 1,750 MiB/s | 1,750 MiB/s | 1,750 MiB/s | 1,750 MiB/s | 
 | Dominant Performance Attribute | IOPS | IOPS | MiB/s | MiB/s | 
 
-\* Default volume type for EBS volumes created from the console is `gp2`\. Volumes created using the CreateVolume API default to either `gp2` or `standard` according to region:
+\* Default volume type for EBS volumes created from the console is `gp2`\. Volumes created using the `CreateVolume` API without a volume\-type argument default to either `gp2` or `standard` according to region:
 + `standard`: us\-east\-1, eu\-west\-1, eu\-central\-1, us\-west\-2, us\-west\-1, sa\-east\-1, ap\-northeast\-1, ap\-northeast\-2, ap\-southeast\-1, ap\-southeast\-2, ap\-south\-1, us\-gov\-west\-1, cn\-north\-1
 + `gp2`: All other regions
 
@@ -28,7 +28,7 @@ The following table describes the use cases and performance characteristics for 
 
 \*\*\* `io1` volumes created in regions ap\-northeast\-3 and us\-gov\-west\-1 are subject to a 20,000 IOPS limit\.
 
-\*\*\*\* General Purpose SSD \(gp2\) volumes have a throughput limit between 128 MB/s and 160 MB/s depending on volume size\.
+\*\*\*\* General Purpose SSD \(gp2\) volumes have a throughput limit between 128 MiB/s and 160 MiB/s depending on volume size\. Volumes greater than 170 GiB up to 214 GiB deliver a maximum throughput of 160 MiB/s if burst credits are available\. Volumes above 214 GiB deliver 160 MiB/s irrespective of burst credits\.
 
 † An `io1` volume created before 12/6/2017 will not achieve this throughput until modified in some way\. For more information, see [Modifying the Size, IOPS, or Type of an EBS Volume on Linux](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-modify-volume.html)\.
 
@@ -110,15 +110,39 @@ For information about using CloudWatch metrics and alarms to monitor your burst 
 Throughput for a `gp2` volume can be calculated using the following formula, up to the throughput limit of 160 MiB/s:
 
 ```
-(Volume size in GiB) × (IOPS per GiB) × (I/O size in KiB) = Throughput in MiB/s
+Throughput in MiB/s = (Volume size in GiB) × (IOPS per GiB) × (I/O size in KiB)
 ```
 
-Therefore the smallest volume size that achieves the maximum throughput is given by: 
+Assuming T = volume size, I = I/O size, R = I/O rate, and T = throughput, this can be simplified to: 
 
 ```
-(160 MiB/s)
------------ (3 IOPS/GiB) = 214 GiB
- (256 KiB)
+T = VIR
+```
+
+The smallest volume size that achieves the maximum throughput is given by: 
+
+```
+        T          
+V  =  -----  
+       I R   
+
+           (160 MiB/s)
+   =  ---------------------
+      (256 KiB)(3 IOPS/GiB)
+
+
+               [(160)(2^20)(Bytes)]/(s)
+   =  ------------------------------------------
+      (256)(2^10)(Bytes)(3 IOPS/[(2^30)(Bytes)])
+
+
+      (160)(2^20)(2^30)(Bytes)
+   =  ------------------------
+           (256)(2^10)(3)
+
+   =  229064920000 Bytes
+   
+   =  213 GiB
 ```
 
 ## Provisioned IOPS SSD \(`io1`\) Volumes<a name="EBSVolumeTypes_piops"></a>
