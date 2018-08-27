@@ -186,6 +186,6 @@ Errors in the `/etc/fstab` file can render a system unbootable\. Do not shut dow
 
 If you want to back up the data on the EBS volumes in a RAID array using snapshots, you must ensure that the snapshots are consistent\. This is because snapshots of these volumes are created independently, not as a whole\. Restoring EBS volumes in a RAID array from snapshots that are out of sync would degrade the integrity of the array\.
 
-To create a consistent set of snapshots for your RAID array, stop applications from writing to the RAID array and flush all caches to disk\. To stop writes to the RAID array, you can take steps such as stopping the applications, stopping the instance, or unmounting the RAID array\. After you've stopped all I/O activity, you can create the snapshots\.
+To create a consistent set of snapshots for your RAID array, stop applications from writing to the RAID array and flush all caches to disk\. To stop writes to the RAID array, you can take steps such as stopping the applications, stopping the instance, or unmounting the RAID array\. After you've stopped all I/O activity, you can create the snapshots\. When the snapshot has been initiated or the snapshot API returns successfully, it is safe to resume all I/O activity.
 
 When restoring the EBS volumes in a RAID array from a set of snapshots, stop all I/O activity as you did when you created the snapshots and then restore the volumes from the snapshots\.
