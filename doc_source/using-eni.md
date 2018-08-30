@@ -184,8 +184,8 @@ The following table lists the maximum number of network interfaces per instance 
 |  `t3.small`  |  2  |  4  | 4 | 
 |  `t3.medium`  |  3  |  6  | 6 | 
 |  `t3.large`  |  3  |  12  | 12 | 
-|  `t3.xlarge`  |  3  |  15  |  15  | 
-|  `t3.2xlarge`  |  3  |  15  |  15  | 
+|  `t3.xlarge`  |  4  |  15  |  15  | 
+|  `t3.2xlarge`  |  4  |  15  |  15  | 
 | x1\.16xlarge | 8 | 30 | 30 | 
 | x1\.32xlarge | 8 | 30 | 30 | 
 | x1e\.xlarge | 3 | 10 | 10 | 
