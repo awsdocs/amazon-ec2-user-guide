@@ -11,9 +11,9 @@ To use the Amazon Linux 2 virtual machine images with one of the supported virtu
 + [Step 2: Download the Amazon Linux 2 VM Image](#amazon-linux-2-virtual-machine-download)
 + [Step 3: Boot and Connect to Your New VM](#amazon-linux-2-virtual-machine-boot)
 
-## Step 1: Prepare the `seed.iso` Boot Image<a name="amazon-linux-2-virtual-machine-prepare"></a>
+## Step 1: Prepare the seed Boot Image<a name="amazon-linux-2-virtual-machine-prepare"></a>
 
-The `seed.iso` boot image includes the initial configuration information that is needed to boot your new VM, such as the network configuration, host name, and user data\.
+The seed boot image (e.g. `seed.iso`) includes the initial configuration information that is needed to boot your new VM, such as the network configuration, host name, and user data\.
 
 **Note**  
 The `seed.iso` boot image only includes configuration information required to boot the VM\. It does not include the Amazon Linux 2 operating system files\.
@@ -47,12 +47,13 @@ To generate the `seed.iso` boot image, you need two configuration files:
    local-hostname: amazonlinux.onprem
    # eth0 is the default network interface enabled in the image. You can configure static network settings with an entry like the following.
    network-interfaces: |
-    iface eth0 inet static
-    address 192.168.1.10
-    network 192.168.1.0
-    netmask 255.255.255.0
-    broadcast 192.168.1.255
-    gateway 192.168.1.254
+     auto eth0
+     iface eth0 inet static
+     address 192.168.1.10
+     network 192.168.1.0
+     netmask 255.255.255.0
+     broadcast 192.168.1.255
+     gateway 192.168.1.254
    ```
 
 1. Create the `user-data` configuration file\.
