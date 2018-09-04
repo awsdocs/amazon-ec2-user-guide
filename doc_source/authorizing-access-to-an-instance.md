@@ -94,4 +94,4 @@ Be sure to run the following commands on your local system, not on the instance 
 
 You can assign a security group to an instance when you launch the instance\. When you add or remove rules, those changes are automatically applied to all instances to which you've assigned the security group\.
 
-After you launch an instance in EC2\-Classic, you can't change its security groups\. After you launch an instance in a VPC, you can change its security groups\. For more information, see [Changing an Instance's Security Groups](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html#SG_Changing_Group_Membership) in the *Amazon VPC User Guide*\.
+After you launch an instance in EC2\-Classic, you can't change its security groups\. After you launch an instance in a VPC, you can change its security groups\. For more information, see [Changing an Instance's Security Groups](http://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html#SG_Changing_Group_Membership) in the *Amazon VPC User Guide*\.

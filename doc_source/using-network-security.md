@@ -27,13 +27,13 @@ In EC2\-Classic, you can have up to 500 security groups in each region for each 
 
 ## Security Groups for EC2\-VPC<a name="vpc-security-groups"></a>
 
-When you launch an instance in a VPC, you must specify a security group that's created for the VPC\. If your account supports EC2\-Classic, you can't specify a security group that you created for EC2\-Classic when you launch an instance in a VPC\. Security groups for EC2\-VPC have additional capabilities that aren't supported by security groups for EC2\-Classic\. For more information, see [Differences Between Security Groups for EC2\-Classic and EC2\-VPC](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html#VPC_Security_Group_Differences) in the *Amazon VPC User Guide*\.
+When you launch an instance in a VPC, you must specify a security group that's created for the VPC\. If your account supports EC2\-Classic, you can't specify a security group that you created for EC2\-Classic when you launch an instance in a VPC\. Security groups for EC2\-VPC have additional capabilities that aren't supported by security groups for EC2\-Classic\. For more information, see [Differences Between Security Groups for EC2\-Classic and EC2\-VPC](http://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html#VPC_Security_Group_Differences) in the *Amazon VPC User Guide*\.
 
-After you launch an instance in a VPC, you can change its security groups\. Security groups are associated with network interfaces\. Changing an instance's security groups changes the security groups associated with the primary network interface \(eth0\)\. For more information, see [Changing an Instance's Security Groups](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html#SG_Changing_Group_Membership) in the *Amazon VPC User Guide*\. You can also change the security groups associated with any other network interface\. For more information, see [Changing the Security Group](using-eni.md#eni_security_group)\.
+After you launch an instance in a VPC, you can change its security groups\. Security groups are associated with network interfaces\. Changing an instance's security groups changes the security groups associated with the primary network interface \(eth0\)\. For more information, see [Changing an Instance's Security Groups](http://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html#SG_Changing_Group_Membership) in the *Amazon VPC User Guide*\. You can also change the security groups associated with any other network interface\. For more information, see [Changing the Security Group](using-eni.md#eni_security_group)\.
 
-Security groups for EC2\-VPC have separate limits\. For more information, see [Amazon VPC Limits](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Appendix_Limits.html) in the *Amazon VPC User Guide*\. The security groups for EC2\-Classic do not count against the security group limit for EC2\-VPC\.
+Security groups for EC2\-VPC have separate limits\. For more information, see [Amazon VPC Limits](http://docs.aws.amazon.com/vpc/latest/userguide/VPC_Appendix_Limits.html) in the *Amazon VPC User Guide*\. The security groups for EC2\-Classic do not count against the security group limit for EC2\-VPC\.
 
-Your VPC can be enabled for IPv6\. For more information, see [IP addressing in Your VPC](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-ip-addressing.html) in the *Amazon VPC User Guide*\. You can add rules to your VPC security groups to enable inbound and outbound IPv6 traffic\. 
+Your VPC can be enabled for IPv6\. For more information, see [IP addressing in Your VPC](http://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html) in the *Amazon VPC User Guide*\. You can add rules to your VPC security groups to enable inbound and outbound IPv6 traffic\. 
 
 ## Security Group Rules<a name="security-group-rules"></a>
 
@@ -60,7 +60,7 @@ For each rule, you specify the following:
   + \(VPC only\) An individual IPv6 address\. You must use the `/128` prefix length; for example `2001:db8:1234:1a00::123/128`\.
   + A range of IPv4 addresses, in CIDR block notation, for example, `203.0.113.0/24`\.
   + \(VPC only\) A range of IPv6 addresses, in CIDR block notation, for example, `2001:db8:1234:1a00::/64`\.
-  + \(VPC only\) The prefix list ID for the AWS service; for example, `pl-1a2b3c4d`\. For more information, see [Gateway VPC Endpoints](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpce-gateway.html) in the *Amazon VPC User Guide*\.
+  + \(VPC only\) The prefix list ID for the AWS service; for example, `pl-1a2b3c4d`\. For more information, see [Gateway VPC Endpoints](http://docs.aws.amazon.com/vpc/latest/userguide/vpce-gateway.html) in the *Amazon VPC User Guide*\.
   + Another security group\. This allows instances associated with the specified security group to access instances associated with this security group\. This does not add rules from the source security group to this security group\. You can specify one of the following security groups:
     + The current security group\.
     + EC2\-Classic: A different security group for EC2\-Classic in the same region\.
@@ -68,7 +68,7 @@ For each rule, you specify the following:
     + EC2\-VPC: A different security group for the same VPC or a peer VPC in a VPC peering connection\.
 + **\(Optional\) Description**: You can add a description for the rule; for example, to help you identify it later\. A description can be up to 255 characters in length\. Allowed characters are a\-z, A\-Z, 0\-9, spaces, and \.\_\-:/\(\)\#,@\[\]\+=;\{\}\!$\*\.
 
-When you specify a security group as the source or destination for a rule, the rule affects all instances associated with the security group\. Incoming traffic is allowed based on the private IP addresses of the instances that are associated with the source security group \(and not the public IP or Elastic IP addresses\)\. For more information about IP addresses, see [Amazon EC2 Instance IP Addressing](using-instance-addressing.md)\. If your security group rule references a security group in a peer VPC, and the referenced security group or VPC peering connection is deleted, the rule is marked as stale\. For more information, see [Working with Stale Security Group Rules](http://docs.aws.amazon.com/AmazonVPC/latest/PeeringGuide/vpc-peering-security-groups.html#vpc-peering-stale-groups) in the *Amazon VPC Peering Guide*\.
+When you specify a security group as the source or destination for a rule, the rule affects all instances associated with the security group\. Incoming traffic is allowed based on the private IP addresses of the instances that are associated with the source security group \(and not the public IP or Elastic IP addresses\)\. For more information about IP addresses, see [Amazon EC2 Instance IP Addressing](using-instance-addressing.md)\. If your security group rule references a security group in a peer VPC, and the referenced security group or VPC peering connection is deleted, the rule is marked as stale\. For more information, see [Working with Stale Security Group Rules](http://docs.aws.amazon.com/vpc/latest/peering/vpc-peering-security-groups.html#vpc-peering-stale-groups) in the *Amazon VPC Peering Guide*\.
 
 If there is more than one rule for a specific port, we apply the most permissive rule\. For example, if you have a rule that allows access to TCP port 22 \(SSH\) from IP address `203.0.113.1` and another rule that allows access to TCP port 22 from everyone, everyone has access to TCP port 22\.
 
@@ -100,7 +100,7 @@ An existing flow of traffic that is tracked may not be interrupted when you remo
 
 For protocols other than TCP, UDP, or ICMP, only the IP address and protocol number is tracked\. If your instance sends traffic to another host \(host B\), and host B initiates the same type of traffic to your instance in a separate request within 600 seconds of the original request or response, your instance accepts it regardless of inbound security group rules, because it’s regarded as response traffic\.
 
-For VPC security groups, to ensure that traffic is immediately interrupted when you remove a security group rule, or to ensure that all inbound traffic is subject to firewall rules, you can use a network ACL for your subnet — network ACLs are stateless and therefore do not automatically allow response traffic\. For more information, see [Network ACLs](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_ACLs.html) in the *Amazon VPC User Guide*\.
+For VPC security groups, to ensure that traffic is immediately interrupted when you remove a security group rule, or to ensure that all inbound traffic is subject to firewall rules, you can use a network ACL for your subnet — network ACLs are stateless and therefore do not automatically allow response traffic\. For more information, see [Network ACLs](http://docs.aws.amazon.com/vpc/latest/userguide/VPC_ACLs.html) in the *Amazon VPC User Guide*\.
 
 ## Default Security Groups<a name="default-security-group"></a>
 
@@ -182,7 +182,7 @@ The Amazon EC2 console enables you to copy the rules from an existing security g
 
 You can assign a security group to an instance when you launch the instance\. When you add or remove rules, those changes are automatically applied to all instances to which you've assigned the security group\.
 
-After you launch an instance in EC2\-Classic, you can't change its security groups\. After you launch an instance in a VPC, you can change its security groups\. For more information, see [Changing an Instance's Security Groups](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html#SG_Changing_Group_Membership) in the *Amazon VPC User Guide*\.
+After you launch an instance in EC2\-Classic, you can't change its security groups\. After you launch an instance in a VPC, you can change its security groups\. For more information, see [Changing an Instance's Security Groups](http://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html#SG_Changing_Group_Membership) in the *Amazon VPC User Guide*\.
 
 **\[EC2\-VPC\] To modify the security groups for an instance using the command line**
 + [modify\-instance\-attribute](http://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) \(AWS CLI\)

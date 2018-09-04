@@ -94,14 +94,12 @@ You can enable enhanced networking capabilities on supported instance types\. En
 
 Instance types that use the Elastic Network Adapter \(ENA\) for enhanced networking deliver high packet per second performance with consistently low latencies\. Most applications do not consistently need a high level of network performance, but can benefit from having access to increased bandwidth when they send or receive data\. Instance types that use the ENA and support up to 10 Gbps of throughput use a network I/O credit mechanism to allocate network bandwidth to instances based on average bandwidth utilization\. These instances accrue credits when their network throughput is below their baseline limits, and can use these credits when they perform network data transfers\. For workloads that require access to 10 Gbps of bandwidth or more on a sustained basis, we recommend using instance types that support 10 Gbps or 25 Gbps network speeds\.
 
-The following is a summary of network performance for General purpose instances that support enhanced networking\.
+The following is a summary of network performance for general purpose instances that support enhanced networking\.
 
-
-****  
 
 | Instance type | Network performance | Enhanced networking | 
 | --- | --- | --- | 
-| t2\.nano, t2\.micro, t2\.small, t2\.medium, t2\.large, t2\.xlarge, t2\.2xlarge | Up to 1 Gbps | [ENA](enhanced-networking-ena.md) | 
+| t2\.nano, t2\.micro, t2\.small, t2\.medium, t2\.large, t2\.xlarge, t2\.2xlarge | Up to 1 Gbps |  | 
 | t3\.nano, t3\.micro, t3\.small, t3\.medium, t3\.large, t3\.xlarge, t3\.2xlarge | Up to 5 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  `m4.large`  |  Moderate  |  [Intel 82599 VF](sriov-networking.md)  | 
 |  `m4.xlarge`, `m4.2xlarge`, `m4.4xlarge`  |  High  |  [Intel 82599 VF](sriov-networking.md)  | 

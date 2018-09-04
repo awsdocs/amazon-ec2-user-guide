@@ -88,7 +88,7 @@ If you launch instances with `host` tenancy but do not have any active Dedicated
 After you have allocated a Dedicated Host, you can launch instances onto it\. You cannot launch instances with `host` tenancy if you do not have active Dedicated Hosts with enough available capacity for the instance type you are launching\.
 
 **Note**  
-The instances launched onto Dedicated Hosts can only be launched in a VPC\. For more information, see [Introduction to VPC](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Introduction.html)\.
+The instances launched onto Dedicated Hosts can only be launched in a VPC\. For more information, see [Introduction to VPC](http://docs.aws.amazon.com/vpc/latest/userguide/VPC_Introduction.html)\.
 
 Before you launch your instances, take note of the limitations\. For more information, see [Dedicated Hosts Limitations and Restrictions](dedicated-hosts-overview.md#dedicated-hosts-limitations)\.
 

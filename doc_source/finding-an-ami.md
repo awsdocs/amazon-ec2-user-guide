@@ -13,6 +13,7 @@ If you need to find a Windows AMI, see [Finding a Windows AMI](http://docs.aws.a
 **Topics**
 + [Finding a Linux AMI Using the Amazon EC2 Console](#finding-an-ami-console)
 + [Finding an AMI Using the AWS CLI](#finding-an-ami-aws-cli)
++ [Finding a Quick Start AMI](#finding-quick-start-ami)
 
 ## Finding a Linux AMI Using the Amazon EC2 Console<a name="finding-an-ami-console"></a>
 
@@ -58,4 +59,43 @@ You can add the following filter to the previous command to display only AMIs ba
 
 ```
 --filters "Name=root-device-type,Values=ebs"
+```
+
+**Important**  
+Omitting the `--owners` flag from the describe\-images command will return all images for which you have launch permissions, regardless of ownership\.
+
+## Finding a Quick Start AMI<a name="finding-quick-start-ami"></a>
+
+When you launch an instance using the Amazon EC2 console, the **Choose an Amazon Machine Image \(AMI\)** page includes a list of popular AMIs on the **Quick Start** tab\. If you want to automate launching an instance using one of these quick start AMIs, you'll need to programatically locate the ID of the current version of the AMI\.
+
+To locate the current version of a quick start AMI, you can enumerate all AMIs with its AMI name, and then find the one with the most recent creation date\.
+
+**Example Example: Find the current Amazon Linux 2 AMI**  
+
+```
+aws ec2 describe-images --owners amazon --filters 'Name=name,Values=amzn2-ami-hvm-2.0.????????-x86_64-gp2' 'Name=state,Values=available' | jq -r '.Images | sort_by(.CreationDate) | last(.[]).ImageId'
+```
+
+**Example Example: Find the current Amazon Linux AMI**  
+
+```
+aws ec2 describe-images --owners amazon --filters 'Name=name,Values=amzn-ami-hvm-????.??.?.????????-x86_64-gp2' 'Name=state,Values=available' | jq -r '.Images | sort_by(.CreationDate) | last(.[]).ImageId'
+```
+
+**Example Example: Find the current Ubuntu Server 16\.04 LTS AMI**  
+
+```
+aws ec2 describe-images --owners 099720109477 --filters 'Name=name,Values=ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-????????' 'Name=state,Values=available' | jq -r '.Images | sort_by(.CreationDate) | last(.[]).ImageId'
+```
+
+**Example Example: Find the current Red Hat Enterprise Linux 7\.5 AMI**  
+
+```
+aws ec2 describe-images --owners amazon --filters 'Name=name,Values=RHEL-7.5_HVM_GA*' 'Name=state,Values=available' | jq -r '.Images | sort_by(.CreationDate) | last(.[]).ImageId'
+```
+
+**Example Example: Find the current SUSE Linux Enterprise Server 15 AMI**  
+
+```
+aws ec2 describe-images --owners amazon --filters 'Name=name,Values=suse-sles-15-v????????-hvm-ssd-x86_64' 'Name=state,Values=available' | jq -r '.Images | sort_by(.CreationDate) | last(.[]).ImageId'
 ```

@@ -113,7 +113,7 @@ Throughput for a `gp2` volume can be calculated using the following formula, up 
 Throughput in MiB/s = (Volume size in GiB) × (IOPS per GiB) × (I/O size in KiB)
 ```
 
-Assuming T = volume size, I = I/O size, R = I/O rate, and T = throughput, this can be simplified to: 
+Assuming V = volume size, I = I/O size, R = I/O rate, and T = throughput, this can be simplified to: 
 
 ```
 T = VIR

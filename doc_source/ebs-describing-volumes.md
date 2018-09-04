@@ -1,8 +1,12 @@
 # Viewing Volume Information<a name="ebs-describing-volumes"></a>
 
-You can view descriptive information for your Amazon EBS volumes in a selected region at a time in the AWS Management Console\. You can also view detailed information about a single volume, including the size, volume type, whether the volume is encrypted, which master key was used to encrypt the volume, and the specific instance to which the volume is attached\.
+You can view descriptive information about your EBS volumes\. For example, you can view information about all volumes in a specific region or view detailed information about a single volume, including its size, volume type, whether the volume is encrypted, which master key was used to encrypt the volume, and the specific instance to which the volume is attached\.
 
-**View information about an EBS volume using the console**
+You can get additional information about your EBS volumes, such as how much disk space is available, from the operating system on the instance\.
+
+## Viewing Descriptive information<a name="ebs-view-information"></a>
+
+**To view information about an EBS volume using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -25,3 +29,13 @@ You can view descriptive information for your Amazon EBS volumes in a selected r
 You can use one of the following commands to view volume attributes\. For more information, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
 + [describe\-volumes](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-volumes.html) \(AWS CLI\)
 + [Get\-EC2Volume](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Volume.html) \(AWS Tools for Windows PowerShell\)
+
+## Viewing Free Disk Space<a name="ebs-view-free-disk-space"></a>
+
+You can get additional information about your EBS volumes, such as how much disk space is available, from the Linux operating system on the instance\. For example, use the following command:
+
+```
+[ec2-user ~]$ df -hT /dev/xvda1
+Filesystem     Type      Size  Used Avail Use% Mounted on
+/dev/xvda1     xfs       8.0G  1.2G  6.9G  15% /
+```

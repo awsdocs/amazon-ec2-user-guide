@@ -33,7 +33,7 @@ If your account supports EC2\-Classic, there's one pool of Elastic IP addresses 
 
 When you associate an Elastic IP address with an instance in EC2\-Classic, a default VPC, or an instance in a nondefault VPC in which you assigned a public IPv4 to the eth0 network interface during launch, the instance's current public IPv4 address is released back into the public IP address pool\. If you disassociate an Elastic IP address from the instance, the instance is automatically assigned a new public IPv4 address within a few minutes\. However, if you have attached a second network interface to an instance in a VPC, the instance is not automatically assigned a new public IPv4 address\. For more information about public IPv4 addresses, see [Public IPv4 Addresses and External DNS Hostnames](using-instance-addressing.md#concepts-public-addresses)\.
 
-For information about using an Elastic IP address with an instance in a VPC, see [Elastic IP Addresses](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-ip-addressing.html#vpc-eips) in the *Amazon VPC User Guide*\.
+For information about using an Elastic IP address with an instance in a VPC, see [Elastic IP Addresses](http://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html#vpc-eips) in the *Amazon VPC User Guide*\.
 
 The following table lists the differences between Elastic IP addresses on EC2\-Classic and EC2\-VPC\. For more information about the differences between private and public IP addresses, see [IP Address Differences Between EC2\-Classic and EC2\-VPC](using-instance-addressing.md#differences)\.
 
@@ -177,7 +177,7 @@ Use one of the following commands:
 
 You can associate an Elastic IP address to an instance using the Amazon EC2 console or the command line\.
 
-\(VPC only\) If you're associating an Elastic IP address with your instance to enable communication with the internet, you must also ensure that your instance is in a public subnet\. For more information, see [Internet Gateways](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Internet_Gateway.html) in the *Amazon VPC User Guide*\.
+\(VPC only\) If you're associating an Elastic IP address with your instance to enable communication with the internet, you must also ensure that your instance is in a public subnet\. For more information, see [Internet Gateways](http://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html) in the *Amazon VPC User Guide*\.
 
 **To associate an Elastic IP address with an instance using the console**
 

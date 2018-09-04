@@ -42,7 +42,7 @@ If your account supports EC2\-Classic, you can purchase Reserved Instances for u
 
 If you have an EC2\-VPC\-only account, the listed platforms available do not include *Amazon VPC* in its name because all instances must be launched into a VPC\.
 
-For more information, see [Detecting Your Supported Platforms and Whether You Have a Default VPC](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/default-vpc.html#detecting-platform)\. 
+For more information, see [Detecting Your Supported Platforms and Whether You Have a Default VPC](http://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html#detecting-platform)\. 
 
 ## Reserved Instance Limits<a name="ri-limits"></a>
 

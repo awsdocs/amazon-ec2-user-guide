@@ -40,20 +40,20 @@ The following is an example of `/etc/image-id` for the current version of Amazon
 ```
 [ec2-user ~]$ cat /etc/image-id
 image_name="amzn2-ami-hvm"
-image_version="2017.12"
+image_version="2"
 image_arch="x86_64"
-image_file="amzn2-ami-hvm-2017.12.0.20180509-x86_64.xfs.gpt"
-image_stamp="c763-2a26"
-image_date="20180509235735"
+image_file="amzn2-ami-hvm-2.0.20180810-x86_64.xfs.gpt"
+image_stamp="8008-2abd"
+image_date="20180811020321"
 recipe_name="amzn2 ami"
-recipe_id="0b8118bb-6f98-5619-0618-9570-26ae-ad18-178b79f1"
+recipe_id="c652686a-2415-9819-65fb-4dee-9792-289d-1e2846bd"
 ```
 
 The following is an example of `/etc/system-release` for the current version of Amazon Linux 2:
 
 ```
 [ec2-user ~]$ cat /etc/system-release
-Amazon Linux release 2.0 (2017.12) LTS Release Candidate
+Amazon Linux 2
 ```
 
 The following is an example of `/etc/os-release` for Amazon Linux 2:
@@ -61,11 +61,11 @@ The following is an example of `/etc/os-release` for Amazon Linux 2:
 ```
 [ec2-user ~]$ cat /etc/os-release
 NAME="Amazon Linux"
-VERSION="2 (2017.12)"
+VERSION="2"
 ID="amzn"
 ID_LIKE="centos rhel fedora"
 VERSION_ID="2"
-PRETTY_NAME="Amazon Linux 2 (2017.12) LTS Release Candidate"
+PRETTY_NAME="Amazon Linux 2"
 ANSI_COLOR="0;33"
 CPE_NAME="cpe:2.3:o:amazon:amazon_linux:2"
 HOME_URL="https://amazonlinux.com/"
@@ -80,11 +80,11 @@ The following is an example of `/etc/image-id` for the current Amazon Linux AMI:
 image_name="amzn-ami-hvm"
 image_version="2018.03"
 image_arch="x86_64"
-image_file="amzn-ami-hvm-2018.03.0.20180508-x86_64.ext4.gpt"
-image_stamp="c4fa-96f6"
-image_date="20180508174933"
+image_file="amzn-ami-hvm-2018.03.0.20180811-x86_64.ext4.gpt"
+image_stamp="cc81-f2f3"
+image_date="20180811012746"
 recipe_name="amzn ami"
-recipe_id="1cb2680c-5325-ae3b-9562-95c2-ae09-5817-8b40e17d"
+recipe_id="5b283820-dc60-a7ea-d436-39fa-439f-02ea-5c802dbd"
 ```
 
 The following is an example of `/etc/system-release` for the current Amazon Linux AMI:

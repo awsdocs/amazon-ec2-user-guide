@@ -51,7 +51,7 @@ Dedicated Hosts are configured to support a single instance type and size capaci
 ## Dedicated Hosts Limitations and Restrictions<a name="dedicated-hosts-limitations"></a>
 
 Before you allocate Dedicated Hosts, take note of the following limitations and restrictions:
-+ RHEL, SUSE Linux, and Windows AMIs offered by AWS or on the AWS Marketplace cannot be used with Dedicated Hosts\.
++ RHEL, SUSE Linux, and Windows AMIs \(whether offered by AWS or on the AWS Marketplace\) cannot be used with Dedicated Hosts\.
 + Amazon EC2 instance recovery is not supported\.
 + Up to two On\-Demand Dedicated Hosts per instance family, per region can be allocated\. It is possible to request a limit increase: [Request to Raise Allocation Limit on Amazon EC2 Dedicated Hosts](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=)\.
 + The instances that run on a Dedicated Host can only be launched in a VPC\.

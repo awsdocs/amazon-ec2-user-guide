@@ -121,6 +121,12 @@ The following tables list the instance types that support specifying CPU options
 | x1e\.8xlarge | 32 | 16 | 2 | 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 | 1, 2 | 
 | x1e\.16xlarge | 64 | 32 | 2 | 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32 | 1, 2 | 
 | x1e\.32xlarge | 128 | 64 | 2 | 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64 | 1, 2 | 
+| z1d\.large | 2 | 1 | 2 | 1 | 1, 2 | 
+| z1d\.xlarge | 4 | 2 | 2 | 2 | 1, 2 | 
+| z1d\.2xlarge | 8 | 4 | 2 | 2, 4 | 1, 2 | 
+| z1d\.3xlarge | 12 | 6 | 2 | 2, 4, 6 | 1, 2 | 
+| z1d\.6xlarge | 24 | 12 | 2 | 2, 4, 6, 8, 10, 12 | 1, 2 | 
+| z1d\.12xlarge | 48 | 24 | 2 | 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24 | 1, 2 | 
 
 
 **Storage Optimized Instances**  

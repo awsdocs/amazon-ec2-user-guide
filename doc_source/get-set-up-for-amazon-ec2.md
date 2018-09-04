@@ -166,7 +166,7 @@ If your account supports EC2\-Classic in a region, then you do not have a defaul
 
 1. On the **Step 2: VPC with a Single Public Subnet** page, enter a friendly name for your VPC in the **VPC name** field\. Leave the other default configuration settings, and choose **Create VPC**\. On the confirmation page, choose **OK**\.
 
-For more information about Amazon VPC, see [What is Amazon VPC?](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/) in the *Amazon VPC User Guide*\.
+For more information about Amazon VPC, see [What is Amazon VPC?](http://docs.aws.amazon.com/vpc/latest/userguide/) in the *Amazon VPC User Guide*\.
 
 ## Create a Security Group<a name="create-a-base-security-group"></a>
 

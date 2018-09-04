@@ -25,8 +25,8 @@ For more information about the hardware specifications for each Amazon EC2 insta
 ## Burstable Performance Instance Requirements<a name="t2-instance-limits"></a>
 
 The following are the requirements for T2 and T3 instances:
-+ You must launch your T2 and T3 instances into a virtual private cloud \(VPC\); they are not supported on the EC2\-Classic platform\. You cannot change the instance type of an existing instance in EC2\-Classic to a T2 or T3 instance type\. For more information about EC2\-Classic and EC2\-VPC, see [Supported Platforms](ec2-supported-platforms.md)\. For more information about launching a VPC\-only instance, see [Instance Types Available Only in a VPC](using-vpc.md#vpc-only-instance-types)\.
-+ You must launch a T2 or a T3 instance using an HVM AMI\. For more information, see [Linux AMI Virtualization Types](virtualization_types.md)\.
++ You must launch your T2 and T3 instances into a virtual private cloud \(VPC\); they are not supported on the EC2\-Classic platform\. You cannot change the instance type of an existing instance in EC2\-Classic to a T2 or T3 instance type\. For more information about EC2\-Classic and EC2\-VPC, see [Supported Platforms](ec2-supported-platforms.md)\.
++ You must launch a T2 or a T3 instance using an HVM AMI with ENA and NVMe drivers\. For more information, see [Release Notes](general-purpose-instances.md#general-purpose-instances-limits)\.
 + You must launch your T2 or T3 instances using an Amazon EBS volume as the root device\. For more information, see [Amazon EC2 Root Device Volume](RootDeviceStorage.md)\.
 + T2 and T3 instances are available as On\-Demand Instances, Reserved Instances, and Spot Instances, but not as Scheduled Instances or Dedicated Instances\. They are also not supported on a Dedicated Host\. For more information, see [Instance Purchasing Options](instance-purchasing-options.md)\.
 + There is a limit on the total number of instances that you can launch in a Region, and there are additional limits on some instance types\. By default, you can run up to 20 T2 and 20 T3 instances simultaneously\. If you need more instances, request them using the [Amazon EC2 Instance Request Form](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-instances)\.
@@ -35,9 +35,5 @@ The following are the requirements for T2 and T3 instances:
 ## Best Practices<a name="t2-best-practices"></a>
 
 Follow these best practices to get the maximum benefit from and satisfaction with T2 and T3 instances\.
-+ Use a recommended AMI
-
-  For Linux T2 and T3 instances, we recommend the [latest Amazon Linux 2 AMI](https://aws.amazon.com/amazon-linux-2/)\. 
-+ Turn on auto\-recover
-
-  You can create a CloudWatch alarm that monitors an EC2 instance and automatically recovers the instance if it becomes impaired for any reason\. For more information, see [Adding Recover Actions to Amazon CloudWatch Alarms](UsingAlarmActions.md#AddingRecoverActions)\.
++ **Use a recommended AMI** — Use an AMI that provides the required drivers\. For more information, see [Release Notes](general-purpose-instances.md#general-purpose-instances-limits)\.
++ **Turn on instance recovery** — Create a CloudWatch alarm that monitors an EC2 instance and automatically recovers it if it becomes impaired for any reason\. For more information, see [Adding Recover Actions to Amazon CloudWatch Alarms](UsingAlarmActions.md#AddingRecoverActions)\.

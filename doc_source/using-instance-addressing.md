@@ -2,7 +2,7 @@
 
 We provide your instances with IP addresses and IPv4 DNS hostnames\. These can vary depending on whether you launched the instance in the EC2\-Classic platform or in a virtual private cloud \(VPC\)\. For information about the EC2\-Classic and EC2\-VPC platforms, see [Supported Platforms](ec2-supported-platforms.md)\.
 
-Amazon EC2 and Amazon VPC support both the IPv4 and IPv6 addressing protocols\. By default, Amazon EC2 and Amazon VPC use the IPv4 addressing protocol; you can't disable this behavior\. When you create a VPC, you must specify an IPv4 CIDR block \(a range of private IPv4 addresses\)\. You can optionally assign an IPv6 CIDR block to your VPC and subnets, and assign IPv6 addresses from that block to instances in your subnet\. IPv6 addresses are reachable over the Internet\. For more information about IPv6, see [IP Addressing in Your VPC](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-ip-addressing.html) in the *Amazon VPC User Guide*\.
+Amazon EC2 and Amazon VPC support both the IPv4 and IPv6 addressing protocols\. By default, Amazon EC2 and Amazon VPC use the IPv4 addressing protocol; you can't disable this behavior\. When you create a VPC, you must specify an IPv4 CIDR block \(a range of private IPv4 addresses\)\. You can optionally assign an IPv6 CIDR block to your VPC and subnets, and assign IPv6 addresses from that block to instances in your subnet\. IPv6 addresses are reachable over the Internet\. For more information about IPv6, see [IP Addressing in Your VPC](http://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html) in the *Amazon VPC User Guide*\.
 
 IPv6 is not supported for the EC2\-Classic platform\. 
 
@@ -25,7 +25,7 @@ You can create a VPC with a publicly routable CIDR block that falls outside of t
 
 When you launch an instance, we allocate a primary private IPv4 address for the instance\. Each instance is also given an internal DNS hostname that resolves to the primary private IPv4 address; for example, `ip-10-251-50-12.ec2.internal`\. You can use the internal DNS hostname for communication between instances in the same network, but we can't resolve the DNS hostname outside the network that the instance is in\.
 
-An instance launched in a VPC receives a primary private IP address from the IPv4 address range of the subnet\. For more information, see [Subnet Sizing](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Subnets.html#SubnetSize) in the *Amazon VPC User Guide*\. If you don't specify a primary private IP address when you launch the instance, we select an available IP address in the subnet's IPv4 range for you\. Each instance in a VPC has a default network interface \(eth0\) that is assigned the primary private IPv4 address\. You can also specify additional private IPv4 addresses, known as *secondary private IPv4 addresses*\. Unlike primary private IP addresses, secondary private IP addresses can be reassigned from one instance to another\. For more information, see [Multiple IP Addresses](MultipleIP.md)\. 
+An instance launched in a VPC receives a primary private IP address from the IPv4 address range of the subnet\. For more information, see [Subnet Sizing](http://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html#SubnetSize) in the *Amazon VPC User Guide*\. If you don't specify a primary private IP address when you launch the instance, we select an available IP address in the subnet's IPv4 range for you\. Each instance in a VPC has a default network interface \(eth0\) that is assigned the primary private IPv4 address\. You can also specify additional private IPv4 addresses, known as *secondary private IPv4 addresses*\. Unlike primary private IP addresses, secondary private IP addresses can be reassigned from one instance to another\. For more information, see [Multiple IP Addresses](MultipleIP.md)\. 
 
 For instances launched in EC2\-Classic, we release the private IPv4 address when the instance is stopped or terminated\. If you restart your stopped instance, it receives a new private IPv4 address\.
 
@@ -46,7 +46,7 @@ Each instance that receives a public IP address is also given an external DNS ho
 When you launch an instance in EC2\-Classic, we automatically assign a public IP address to the instance from the EC2\-Classic public IPv4 address pool\. You cannot modify this behavior\. When you launch an instance into a VPC, your subnet has an attribute that determines whether instances launched into that subnet receive a public IP address from the EC2\-VPC public IPv4 address pool\. By default, we assign a public IP address to instances launched in a default VPC, and we don't assign a public IP address to instances launched in a nondefault subnet\. 
 
 You can control whether your instance in a VPC receives a public IP address by doing the following:
-+ Modifying the public IP addressing attribute of your subnet\. For more information, see [Modifying the Public IPv4 Addressing Attribute for Your Subnet](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-ip-addressing.html#subnet-public-ip) in the *Amazon VPC User Guide*\.
++ Modifying the public IP addressing attribute of your subnet\. For more information, see [Modifying the Public IPv4 Addressing Attribute for Your Subnet](http://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html#subnet-public-ip) in the *Amazon VPC User Guide*\.
 + Enabling or disabling the public IP addressing feature during launch, which overrides the subnet's public IP addressing attribute\. For more information, see [Assigning a Public IPv4 Address During Instance Launch](#public-ip-addresses)\.
 
 A public IP address is assigned to your instance from Amazon's pool of public IPv4 addresses, and is not associated with your AWS account\. When a public IP address is disassociated from your instance, it is released back into the public IPv4 address pool, and you cannot reuse it\. 
@@ -58,7 +58,7 @@ You cannot manually associate or disassociate a public IP address from your inst
 
 If you require a persistent public IP address that can be associated to and from instances as you require, use an Elastic IP address instead\. For example, if you use dynamic DNS to map an existing DNS name to a new instance's public IP address, it might take up to 24 hours for the IP address to propagate through the Internet\. As a result, new instances might not receive traffic while terminated instances continue to receive requests\. To solve this problem, use an Elastic IP address\. You can allocate your own Elastic IP address, and associate it with your instance\. For more information, see [Elastic IP Addresses](elastic-ip-addresses-eip.md)\. 
 
-If your instance is in a VPC and you assign it an Elastic IP address, it receives an IPv4 DNS hostname if DNS hostnames are enabled\. For more information, see [Using DNS with Your VPC](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-dns.html) in the *Amazon VPC User Guide*\.
+If your instance is in a VPC and you assign it an Elastic IP address, it receives an IPv4 DNS hostname if DNS hostnames are enabled\. For more information, see [Using DNS with Your VPC](http://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html) in the *Amazon VPC User Guide*\.
 
 **Note**  
 Instances that access other instances through their public NAT IP address are charged for regional or Internet data transfer, depending on whether the instances are in the same region\. 
@@ -71,17 +71,17 @@ We do not support Elastic IP addresses for IPv6\.
 
 ## Amazon DNS Server<a name="amazon-dns-server"></a>
 
-Amazon provides a DNS server that resolves Amazon\-provided IPv4 DNS hostnames to IPv4 addresses\. In EC2\-Classic, the Amazon DNS server is located at `172.16.0.23`\. In EC2\-VPC, the Amazon DNS server is located at the base of your VPC network range plus two\. For more information, see [Amazon DNS Server](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html#AmazonDNS) in the *Amazon VPC User Guide*\.
+Amazon provides a DNS server that resolves Amazon\-provided IPv4 DNS hostnames to IPv4 addresses\. In EC2\-Classic, the Amazon DNS server is located at `172.16.0.23`\. In EC2\-VPC, the Amazon DNS server is located at the base of your VPC network range plus two\. For more information, see [Amazon DNS Server](http://docs.aws.amazon.com/vpc/latest/userguide/VPC_DHCP_Options.html#AmazonDNS) in the *Amazon VPC User Guide*\.
 
 ## IPv6 Addresses<a name="ipv6-addressing"></a>
 
 You can optionally associate an IPv6 CIDR block with your VPC, and associate IPv6 CIDR blocks with your subnets\. The IPv6 CIDR block for your VPC is automatically assigned from Amazon's pool of IPv6 addresses; you cannot choose the range yourself\. For more information, see the following topics in the *Amazon VPC User Guide*:
-+ [VPC and Subnet Sizing for IPv6](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Subnets.html#vpc-sizing-ipv6)
-+ [Associating an IPv6 CIDR Block with Your VPC](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/working-with-vpcs.html#vpc-associate-ipv6-cidr)
-+ [Associating an IPv6 CIDR Block with Your Subnet](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/working-with-vpcs.html#subnet-associate-ipv6-cidr)
++ [VPC and Subnet Sizing for IPv6](http://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html#vpc-sizing-ipv6)
++ [Associating an IPv6 CIDR Block with Your VPC](http://docs.aws.amazon.com/vpc/latest/userguide/working-with-vpcs.html#vpc-associate-ipv6-cidr)
++ [Associating an IPv6 CIDR Block with Your Subnet](http://docs.aws.amazon.com/vpc/latest/userguide/working-with-vpcs.html#subnet-associate-ipv6-cidr)
 
 IPv6 addresses are globally unique, and therefore reachable over the Internet\. Your instance in a VPC receives an IPv6 address if an IPv6 CIDR block is associated with your VPC and subnet, and if one of the following is true:
-+ Your subnet is configured to automatically assign an IPv6 address to an instance during launch\. For more information, see [Modifying the IPv6 Addressing Attribute for Your Subnet](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-ip-addressing.html#subnet-ipv6)\.
++ Your subnet is configured to automatically assign an IPv6 address to an instance during launch\. For more information, see [Modifying the IPv6 Addressing Attribute for Your Subnet](http://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html#subnet-ipv6)\.
 + You assign an IPv6 address to your instance during launch\.
 + You assign an IPv6 address to the primary network interface of your instance after launch\.
 + You assign an IPv6 address to a network interface in the same subnet, and attach the network interface to your instance after launch\. 
@@ -221,7 +221,7 @@ You cannot auto\-assign a public IP address if you specify more than one network
 
 1. On the **Instances** page, select your new instance and view its public IP address in **IPv4 Public IP** field in the details pane\.
 
-The public IP addressing feature is only available during launch\. However, whether you assign a public IP address to your instance during launch or not, you can associate an Elastic IP address with your instance after it's launched\. For more information, see [Elastic IP Addresses](elastic-ip-addresses-eip.md)\. You can also modify your subnet's public IPv4 addressing behavior\. For more information, see [Modifying the Public IPv4 Addressing Attribute for Your Subnet](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-ip-addressing.html#subnet-public-ip)\.<a name="publicip-cli"></a>
+The public IP addressing feature is only available during launch\. However, whether you assign a public IP address to your instance during launch or not, you can associate an Elastic IP address with your instance after it's launched\. For more information, see [Elastic IP Addresses](elastic-ip-addresses-eip.md)\. You can also modify your subnet's public IPv4 addressing behavior\. For more information, see [Modifying the Public IPv4 Addressing Attribute for Your Subnet](http://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html#subnet-public-ip)\.<a name="publicip-cli"></a>
 
 **To enable or disable the public IP addressing feature using the command line**
 + You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
@@ -259,7 +259,7 @@ Alternatively, you can assign an IPv6 address to your instance after launch\.
 1. Choose **Save**\.
 
 **Note**  
-If you launched your instance using Amazon Linux 2016\.09\.0 or later, or Windows Server 2008 R2 or later, your instance is configured for IPv6, and no additional steps are needed to ensure that the IPv6 address is recognized on the instance\. If you launched your instance from an older AMI, you may have to configure your instance manually\. For more information, see [Configure IPv6 on Your Instances](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-migrate-ipv6.html#vpc-migrate-ipv6-dhcpv6) in the *Amazon VPC User Guide*\.<a name="assign-ipv6-cli"></a>
+If you launched your instance using Amazon Linux 2016\.09\.0 or later, or Windows Server 2008 R2 or later, your instance is configured for IPv6, and no additional steps are needed to ensure that the IPv6 address is recognized on the instance\. If you launched your instance from an older AMI, you may have to configure your instance manually\. For more information, see [Configure IPv6 on Your Instances](http://docs.aws.amazon.com/vpc/latest/userguide/vpc-migrate-ipv6.html#vpc-migrate-ipv6-dhcpv6) in the *Amazon VPC User Guide*\.<a name="assign-ipv6-cli"></a>
 
 **To assign an IPv6 address using the command line**
 

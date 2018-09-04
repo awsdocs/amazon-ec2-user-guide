@@ -1,6 +1,6 @@
 # \(Optional\) Verify the Signature of EC2Rescue for Linux<a name="ec2rl_verify"></a>
 
-This topic describes the recommended process of verifying the validity of the EC2Rescue for Linux package for Linux\-based operating systems\.
+The following is the recommended process of verifying the validity of the EC2Rescue for Linux package for Linux\-based operating systems\.
 
 When you download an application from the internet, we recommend that you authenticate the identity of the software publisher and check that the application has not been altered or corrupted after it was published\. This protects you from installing a version of the application that contains a virus or other malicious code\.
 

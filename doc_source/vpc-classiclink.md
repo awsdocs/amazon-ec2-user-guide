@@ -1,6 +1,6 @@
 # ClassicLink<a name="vpc-classiclink"></a>
 
-ClassicLink allows you to link your EC2\-Classic instance to a VPC in your account, within the same region\. This allows you to associate the VPC security groups with the EC2\-Classic instance, enabling communication between your EC2\-Classic instance and instances in your VPC using private IPv4 addresses\. ClassicLink removes the need to make use of public IPv4 addresses or Elastic IP addresses to enable communication between instances in these platforms\. For more information about private and public IPv4 addresses, see [IP Addressing in Your VPC](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-ip-addressing.html)\.
+ClassicLink allows you to link your EC2\-Classic instance to a VPC in your account, within the same region\. This allows you to associate the VPC security groups with the EC2\-Classic instance, enabling communication between your EC2\-Classic instance and instances in your VPC using private IPv4 addresses\. ClassicLink removes the need to make use of public IPv4 addresses or Elastic IP addresses to enable communication between instances in these platforms\. For more information about private and public IPv4 addresses, see [IP Addressing in Your VPC](http://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html)\.
 
 ClassicLink is available to all users with accounts that support the EC2\-Classic platform, and can be used with any EC2\-Classic instance\. To find out which platform your account supports, see [Supported Platforms](ec2-supported-platforms.md)\. For more information about the benefits of using a VPC, see [Amazon EC2 and Amazon Virtual Private Cloud](using-vpc.md)\. For more information about migrating your resources to a VPC, see [Migrating from a Linux Instance in EC2\-Classic to a Linux Instance in a VPC](vpc-migrate.md)\.
 
@@ -76,7 +76,7 @@ VPCs that are in the `10.0.0.0/16` and `10.1.0.0/16` IP address ranges can be en
 **Important**  
 If your VPC CIDR block is a publicly routable IP address range, consider the security implications before you link an EC2\-Classic instance to your VPC\. For example, if your linked EC2\-Classic instance receives an incoming Denial of Service \(DoS\) request flood attack from a source IP address that falls within the VPC’s IP address range, the response traffic is sent into your VPC\. We strongly recommend that you create your VPC using a private IP address range as specified in [RFC 1918](http://www.faqs.org/rfcs/rfc1918.html)\.
 
-For more information about route tables and routing in your VPC, see [Route Tables](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Route_Tables.html) in the *Amazon VPC User Guide*\.
+For more information about route tables and routing in your VPC, see [Route Tables](http://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html) in the *Amazon VPC User Guide*\.
 
 ### Enabling a VPC Peering Connection for ClassicLink<a name="classiclink-peering"></a>
 
@@ -84,7 +84,7 @@ If you have a VPC peering connection between two VPCs, and there are one or more
 
 If you enable a local VPC to communicate with a linked EC2\-Classic instance in a peer VPC, a static route is automatically added to your route tables with a destination of `10.0.0.0/8` and a target of `local`\. 
 
-For more information and examples, see [Configurations With ClassicLink](http://docs.aws.amazon.com/AmazonVPC/latest/PeeringGuide/peering-configurations-classiclink.html) in the *Amazon VPC Peering Guide*\.
+For more information and examples, see [Configurations With ClassicLink](http://docs.aws.amazon.com/vpc/latest/peering/peering-configurations-classiclink.html) in the *Amazon VPC Peering Guide*\.
 
 ## ClassicLink Limitations<a name="classiclink-limitations"></a>
 
@@ -92,8 +92,8 @@ To use the ClassicLink feature, you need to be aware of the following limitation
 + You can link an EC2\-Classic instance to only one VPC at a time\.
 + If you stop your linked EC2\-Classic instance, it's automatically unlinked from the VPC and the VPC security groups are no longer associated with the instance\. You can link your instance to the VPC again after you've restarted it\.
 + You cannot link an EC2\-Classic instance to a VPC that's in a different region or a different AWS account\.
-+ You cannot use ClassicLink to link a VPC instance to a different VPC, or to a EC2\-Classic resource\. To establish a private connection between VPCs, you can use a VPC peering connection\. For more information, see the [Amazon VPC Peering Guide](http://docs.aws.amazon.com/AmazonVPC/latest/PeeringGuide/)\.
-+ You cannot use ClassicLink to enable communication between an EC2\-Classic instance and a C5, C5d, `i3.metal`, M5, M5d, R5, R5d, and z1d instance\.
++ You cannot use ClassicLink to link a VPC instance to a different VPC, or to a EC2\-Classic resource\. To establish a private connection between VPCs, you can use a VPC peering connection\. For more information, see the [Amazon VPC Peering Guide](http://docs.aws.amazon.com/vpc/latest/peering/)\.
++ You cannot use ClassicLink to enable communication between an EC2\-Classic instance and the following instances: C5, C5d, `i3.metal`, M5, M5d, R5, R5d, T3, and z1d\.
 + You cannot associate a VPC Elastic IP address with a linked EC2\-Classic instance\.
 + VPCs with routes that conflict with the EC2\-Classic private IP address range of `10/8` cannot be enabled for ClassicLink\. This does not include VPCs with `10.0.0.0/16` and `10.1.0.0/16` IP address ranges that already have local routes in their route tables\. For more information, see [Routing for ClassicLink](#classiclink-routing)\.
 + VPCs configured for dedicated hardware tenancy cannot be enabled for ClassicLink\. Contact AWS support to request that your dedicated tenancy VPC be allowed to be enabled for ClassicLink\.
@@ -165,7 +165,7 @@ You can create a new VPC and immediately enable it for ClassicLink by using the 
 
 1. Select one of the VPC configuration options and choose **Select**\. 
 
-1. On the next page of the wizard, choose **Yes** for **Enable ClassicLink**\. Complete the rest of the steps in the wizard to create your VPC\. For more information about using the VPC wizard, see [Scenarios for Amazon VPC](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Scenarios.html) in the *Amazon VPC User Guide*\.
+1. On the next page of the wizard, choose **Yes** for **Enable ClassicLink**\. Complete the rest of the steps in the wizard to create your VPC\. For more information about using the VPC wizard, see [Scenarios for Amazon VPC](http://docs.aws.amazon.com/vpc/latest/userguide/VPC_Scenarios.html) in the *Amazon VPC User Guide*\.
 
 ### Linking an EC2\-Classic Instance to a VPC at Launch<a name="classiclink-launch-wizard"></a>
 

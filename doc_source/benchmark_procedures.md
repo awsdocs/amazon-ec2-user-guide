@@ -101,6 +101,66 @@ Increasing the queue length is beneficial until you achieve the provisioned IOPS
 
 To determine the optimal queue length for your workload on HDD\-backed volumes, we recommend that you target a queue length of at least 4 while performing 1MiB sequential I/Os\. Then you can monitor your application performance and tune that value based on your application requirements\. For example, a 2 TiB `st1` volume with burst throughput of 500 MiB/s and IOPS of 500 should target a queue length of 4, 8, or 16 while performing 1,024 KiB, 512 KiB, or 256 KiB sequential I/Os respectively\. You should experiment with tuning these values value up or down to see what performs best for your application\.
 
+## Disable C\-States<a name="cstates"></a>
+
+Before you run benchmarking, you should disable processor C\-states\. Temporarily idle cores in a supported CPU can enter a C\-state to save power\. When the core is called on to resume processing, a certain amount of time passes until the core is again fully operational\. This latency can interfere with processor benchmarking routines\. For more information about C\-states and which EC2 instance types support them, see [Processor State Control for Your EC2 Instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/processor_state_control.html)\.
+
+### Disabling C\-States on a Linux System<a name="linux-cstates"></a>
+
+You can disable C\-states on Amazon Linux, RHEL, and CentOS as follows:
+
+1. Get the number of C\-states\.
+
+   ```
+   $ cpupower idle-info | grep "Number of idle states:"
+   ```
+
+1. Disable the C\-states from c1 to cN\. Ideally, the cores should be in state c0\.
+
+   ```
+   $ for i in `seq 1 $((N-1))`; do cpupower idle-set -d $i; done
+   ```
+
+### Disabling C\-States on a Windows System<a name="windows-cstates"></a>
+
+You can diable C\-states on Windows as follows:
+
+1. In PowerShell, get the current active power scheme\.
+
+   ```
+   C:\> $current_scheme = powercfg /getactivescheme          
+   ```
+
+1. Get the power scheme GUID\.
+
+   ```
+   C:\> (Get-WmiObject -class Win32_PowerPlan -Namespace "root\cimv2\power" -Filter "ElementName='High performance'").InstanceID          
+   ```
+
+1. Get the power setting GUID\.
+
+   ```
+   C:\> (Get-WmiObject -class Win32_PowerSetting -Namespace "root\cimv2\power" -Filter "ElementName='Processor idle disable'").InstanceID                  
+   ```
+
+1. Get the power setting subgroup GUID\.
+
+   ```
+   C:\> (Get-WmiObject -class Win32_PowerSettingSubgroup -Namespace "root\cimv2\power" -Filter "ElementName='Processor power management'").InstanceID
+   ```
+
+1. Disable C\-states by setting the value of the index to 1\. A value of 0 indicates that C\-states are disabled\.
+
+   ```
+   C:\> powercfg /setacvalueindex <power_scheme_guid> <power_setting_subgroup_guid> <power_setting_guid> 1
+   ```
+
+1. Set active scheme to ensure the settings are saved\.
+
+   ```
+   C:\> powercfg /setactive <power_scheme_guid>
+   ```
+
 ## Perform Benchmarking<a name="perform_benchmarking"></a>
 
 The following procedures describe benchmarking commands for various EBS volume types\. 

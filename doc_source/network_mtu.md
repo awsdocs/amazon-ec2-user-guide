@@ -20,7 +20,7 @@ Jumbo frames should be used with caution for Internet\-bound traffic or any traf
 For instances that are collocated inside a cluster placement group, jumbo frames help to achieve the maximum network throughput possible, and they are recommended in this case\. For more information, see [Placement Groups](placement-groups.md)\.
 
 The following instances support jumbo frames:
-+ General purpose: M3, M4, M5, M5d, T2
++ General purpose: M3, M4, M5, M5d, T2, T3
 + Compute optimized: C3, C4, C5, C5d, CC2
 + Accelerated computing: F1, G2, G3, P2, P3
 + Memory optimized: CR1, R3, R4, R5, R5d, X1, z1d

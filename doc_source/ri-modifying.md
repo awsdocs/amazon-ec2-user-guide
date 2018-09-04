@@ -36,14 +36,12 @@ You can modify your reservations as frequently as you like, but you cannot chang
 Not all attributes of a Reserved Instance can be modified, and restrictions may apply\.
 
 
-****  
-
 | Modifiable attribute | Supported platforms | Limitations | 
 | --- | --- | --- | 
-|  Change **Availability Zones** within the same region  |  All Windows and Linux  | \- | 
-|  Change the **scope** from Availability Zone to Region and vice versa  |  All Windows and Linux  |  If you change the scope from Availability Zone to region, you lose the capacity reservation benefit\. If you change the scope from region to Availability Zone, you lose Availability Zone flexibility and instance size flexibility \(if applicable\)\. For more information, see [How Reserved Instances Are Applied](apply_ri.md)\.  | 
-|  Change the **network platform** between EC2\-VPC and EC2\-Classic  |  All Windows and Linux  |  Only applicable if your account supports EC2\-Classic\.  | 
-|  Change the **instance size** within the same instance type  |  Supported on Linux, except for RedHat and SUSE Linux due to licensing differences\. For more information about RedHat and SUSE pricing, see [Amazon EC2 Reserved Instance Pricing](https://aws.amazon.com/ec2/purchasing-options/reserved-instances/)\.  Not supported on Windows\.   | Some instance types are not supported, because there are no other sizes available\. For more information, see [Modifying the Instance Size of Your Reservations](#ri-modification-instancemove)\. | 
+|  Change **Availability Zones** within the same region  |  Linux and Windows  | \- | 
+|  Change the **scope** from Availability Zone to Region and vice versa  |  Linux and Windows  |  If you change the scope from Availability Zone to region, you lose the capacity reservation benefit\. If you change the scope from region to Availability Zone, you lose Availability Zone flexibility and instance size flexibility \(if applicable\)\. For more information, see [How Reserved Instances Are Applied](apply_ri.md)\.  | 
+|  Change the **network platform** between EC2\-VPC and EC2\-Classic  |  Linux and Windows  |  Only applicable if your account supports EC2\-Classic\.  | 
+|  Change the **instance size** within the same instance type  |  Linux only  |  Some instance types are not supported, because there are no other sizes available\. For more information, see [Modifying the Instance Size of Your Reservations](#ri-modification-instancemove)\.  | 
 
 Amazon EC2 processes your modification request if there is sufficient capacity for your target configuration \(if applicable\), and if the following conditions are met\.
 
@@ -78,8 +76,6 @@ Each Reserved Instance has an *instance size footprint*, which is determined by 
 
 The normalization factor is based on instance size within the instance type \(for example, `m1.xlarge` instances within the `m1` instance type\)\. This is only meaningful within the same instance type\. Instance types cannot be modified from one type to another\. In the Amazon EC2 console, this is measured in units\. The following table illustrates the normalization factor that applies within an instance type\.
 
-
-****  
 
 | Instance size | Normalization factor | 
 | --- | --- | 
@@ -141,8 +137,6 @@ If your combined target configurations are larger or smaller than the instance s
 
 You can determine the status of your modification request by looking at the **State** column in the Reserved Instances screen\. The following table illustrates the possible **State** values\.
 
-
-****  
 
 | State | Description | 
 | --- | --- | 

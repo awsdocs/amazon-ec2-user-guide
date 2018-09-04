@@ -7,8 +7,6 @@ Modules are written in YAML, a data serialization standard\. A module's YAML fil
 The following table lists the available module attributes\.
 
 
-****  
-
 | Attribute | Description | 
 | --- | --- | 
 | name | The name of the module\. The name should be less than or equal to 18 characters in length\. | 
@@ -35,8 +33,6 @@ The following table lists the available module attributes\.
 
 The following table lists the available environment variables\.
 
-
-****  
 
 | Environment Variable | Description | 
 | --- | --- | 

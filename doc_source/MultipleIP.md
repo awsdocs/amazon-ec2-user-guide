@@ -200,7 +200,7 @@ You can assign multiple IPv6 addresses to your instance, view the IPv6 addresses
 
 ### Assigning Multiple IPv6 Addresses<a name="assign-multiple-ipv6"></a>
 
-You can assign one or more IPv6 addresses to your instance during launch or after launch\. To assign an IPv6 address to an instance, the VPC and subnet in which you launch the instance must have an associated IPv6 CIDR block\. For more information, see [VPCs and Subnets](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Subnets.html) in the *Amazon VPC User Guide*\.
+You can assign one or more IPv6 addresses to your instance during launch or after launch\. To assign an IPv6 address to an instance, the VPC and subnet in which you launch the instance must have an associated IPv6 CIDR block\. For more information, see [VPCs and Subnets](http://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html) in the *Amazon VPC User Guide*\.
 
 **To assign multiple IPv6 addresses during launch**
 

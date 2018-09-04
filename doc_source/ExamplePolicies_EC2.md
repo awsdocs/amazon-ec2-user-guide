@@ -1,6 +1,6 @@
 # Example Policies for Working with the AWS CLI or an AWS SDK<a name="ExamplePolicies_EC2"></a>
 
-The following examples show policy statements that you could use to control the permissions that IAM users have to Amazon EC2\. These policies are designed for requests that are made with the AWS CLI or an AWS SDK\. For example policies for working in the Amazon EC2 console, see [Example Policies for Working in the Amazon EC2 Console](iam-policies-ec2-console.md)\. For examples of IAM policies specific to Amazon VPC, see [Controlling Access to Amazon VPC Resources](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_IAM.html)\.
+The following examples show policy statements that you could use to control the permissions that IAM users have to Amazon EC2\. These policies are designed for requests that are made with the AWS CLI or an AWS SDK\. For example policies for working in the Amazon EC2 console, see [Example Policies for Working in the Amazon EC2 Console](iam-policies-ec2-console.md)\. For examples of IAM policies specific to Amazon VPC, see [Controlling Access to Amazon VPC Resources](http://docs.aws.amazon.com/vpc/latest/userguide/VPC_IAM.html)\.
 
 **Topics**
 + [1: Read\-Only Access](#iam-example-read-only)

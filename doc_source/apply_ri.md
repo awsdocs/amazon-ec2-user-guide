@@ -24,8 +24,6 @@ Instance size flexibility is applied from the smallest to the largest instance s
 The table below describes the different sizes within an instance type, and corresponding normalization factor per hour\. This scale is used to apply the discounted rate of Reserved Instances to the normalized usage of the instance type\.
 
 
-****  
-
 | Instance size | Normalization factor | 
 | --- | --- | 
 |  nano  |  0\.25  | 
