@@ -387,6 +387,7 @@ Category names that are formatted in red text are placeholders for data that is 
 |  local\-ipv4  | The private IPv4 address of the instance\. In cases where multiple network interfaces are present, this refers to the eth0 device \(the device for which the device number is 0\)\. | 1\.0 | 
 |  mac  | The instance's media access control \(MAC\) address\. In cases where multiple network interfaces are present, this refers to the eth0 device \(the device for which the device number is 0\)\. | 2011\-01\-01 | 
 |  network/interfaces/macs/mac/device\-number  | The unique device number associated with that interface\. The device number corresponds to the device name; for example, a device\-number of 2 is for the eth2 device\. This category corresponds to the DeviceIndex and device\-index fields that are used by the Amazon EC2 API and the EC2 commands for the AWS CLI\. | 2011\-01\-01 | 
+|  network/interfaces/macs/mac/interface-id  | The ID of the network interface\. | 2011\-01\-01 | 
 |  network/interfaces/macs/mac/ipv4\-associations/public\-ip  | The private IPv4 addresses that are associated with each public\-ip address and assigned to that interface\. | 2011\-01\-01 | 
 | network/interfaces/macs/mac/ipv6s | The IPv6 addresses associated with the interface\. Returned only for instances launched into a VPC\.  | 2016\-06\-30  | 
 |  network/interfaces/macs/mac/local\-hostname  | The interface's local hostname\. | 2011\-01\-01 | 
