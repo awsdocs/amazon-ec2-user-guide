@@ -28,7 +28,7 @@ Before you begin this tutorial, complete the following steps:
 
   For more information, see [Authorizing Inbound Traffic for Your Linux Instances](authorizing-access-to-an-instance.md)\.
 + Install the Apache web server\. For step\-by\-step instructions, see [Tutorial: Install a LAMP Web Server on Amazon Linux 2](ec2-lamp-amazon-linux-2.md)\. Only the httpd package and its dependencies are needed, so you can ignore the instructions involving PHP and MariaDB\.
-+ To identify and authenticate websites, the SSL/TLS public key infrastructure \(PKI\) relies on the Domain Name System \(DNS\)\. If you plan to use your EC2 instance to host a public website, you need to register a domain name for your web server or transfer an existing domain name to your Amazon EC2 host\. Numerous third\-party domain registration and DNS hosting services are available for this, or you may use [Amazon Route 53](http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/Welcome.html)\. 
++ To identify and authenticate websites, the SSL/TLS public key infrastructure \(PKI\) relies on the Domain Name System \(DNS\)\. If you plan to use your EC2 instance to host a public website, you need to register a domain name for your web server or transfer an existing domain name to your Amazon EC2 host\. Numerous third\-party domain registration and DNS hosting services are available for this, or you may use [Amazon Route 53](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/Welcome.html)\. 
 
 ## Step 1: Enable SSL/TLS on the Server<a name="ssl_enable"></a>
 
@@ -97,7 +97,7 @@ If you can't see this file in a directory listing, it may be due to its restrict
 **Note**  
 When you replace the default SSL/TLS files with your own customized files, be sure that they are in PEM format\. 
 
-1. [Reboot your instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-reboot.html) and reconnect to it\.
+1. [Reboot your instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-reboot.html) and reconnect to it\.
 
 1. Restart Apache\.
 
@@ -355,7 +355,7 @@ Though shown here on several lines for readability, each of these two directives
 **Important**  
 The cipher list shown here is just one of many possible lists\. For instance, you might want to optimize a list for speed rather than forward secrecy\.   
 If you anticipate a need to support older clients, you can allow the DES\-CBC3\-SHA cipher suite\.  
-Finally, each update to OpenSSL introduces new ciphers and removes support for old ones\. Keep your EC2 Amazon Linux 2 instance up\-to\-date, watch for security announcements from [OpenSSL](https://www.openssl.org/), and be alert to reports of new security exploits in the technical press\. For more information, see [Predefined SSL Security Policies for Elastic Load Balancing](http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-security-policy-table.html) in the *User Guide for Classic Load Balancers*\.
+Finally, each update to OpenSSL introduces new ciphers and removes support for old ones\. Keep your EC2 Amazon Linux 2 instance up\-to\-date, watch for security announcements from [OpenSSL](https://www.openssl.org/), and be alert to reports of new security exploits in the technical press\. For more information, see [Predefined SSL Security Policies for Elastic Load Balancing](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-security-policy-table.html) in the *User Guide for Classic Load Balancers*\.
 
    Finally, uncomment the following line by removing the "\#":
 

@@ -32,8 +32,8 @@ Note that you can't delete a snapshot of the root device of an EBS volume used b
 **To delete a snapshot using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [delete\-snapshot](http://docs.aws.amazon.com/cli/latest/reference/ec2/delete-snapshot.html) \(AWS CLI\)
-+ [Remove\-EC2Snapshot](http://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2Snapshot.html) \(AWS Tools for Windows PowerShell\)
++ [delete\-snapshot](https://docs.aws.amazon.com/cli/latest/reference/ec2/delete-snapshot.html) \(AWS CLI\)
++ [Remove\-EC2Snapshot](https://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2Snapshot.html) \(AWS Tools for Windows PowerShell\)
 
 **Note**  
 Although you can delete a snapshot that is still in progress, the snapshot must complete before the deletion takes effect\. This may take a long time\. If you are also at your concurrent snapshot limit \(five snapshots in progress\), and you attempt to take an additional snapshot, you may get the `ConcurrentSnapshotLimitExceeded` error\.

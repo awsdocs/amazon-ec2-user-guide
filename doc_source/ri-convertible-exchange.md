@@ -125,13 +125,13 @@ The Reserved Instances that were exchanged are retired, and the new Reserved Ins
 ### Exchanging a Convertible Reserved Instance Using the Command Line Interface<a name="ri-exchange-process-CLI"></a>
 
 To exchange a Convertible Reserved Instance, first find a target Convertible Reserved Instance that meets your needs:
-+ [describe\-reserved\-instances\-offerings](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances-offerings.html) \(AWS CLI\)
-+ [Get\-EC2ReservedInstancesOffering](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ReservedInstancesOffering.html) \(Tools for Windows PowerShell\)
++ [describe\-reserved\-instances\-offerings](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances-offerings.html) \(AWS CLI\)
++ [Get\-EC2ReservedInstancesOffering](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ReservedInstancesOffering.html) \(Tools for Windows PowerShell\)
 
 Get a quote for the exchange, which includes the number of Reserved Instances you get from the exchange, and the true\-up cost for the exchange:
-+ [get\-reserved\-instances\-exchange\-quote](http://docs.aws.amazon.com/cli/latest/reference/ec2/get-reserved-instances-exchange-quote.html) \(AWS CLI\)
-+ [GetEC2\-ReservedInstancesExchangeQuote](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ReservedInstancesExchangeQuote.html) \(Tools for Windows PowerShell\)
++ [get\-reserved\-instances\-exchange\-quote](https://docs.aws.amazon.com/cli/latest/reference/ec2/get-reserved-instances-exchange-quote.html) \(AWS CLI\)
++ [GetEC2\-ReservedInstancesExchangeQuote](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ReservedInstancesExchangeQuote.html) \(Tools for Windows PowerShell\)
 
 Finally, perform the exchange:
-+ [accept\-reserved\-instances\-exchange\-quote](http://docs.aws.amazon.com/cli/latest/reference/ec2/accept-reserved-instances-exchange-quote.html) \(AWS CLI\)
-+ [Confirm\-EC2ReservedInstancesExchangeQuote](http://docs.aws.amazon.com/powershell/latest/reference/items/Confirm-EC2ReservedInstancesExchangeQuote.html) \(Tools for Windows PowerShell\)
++ [accept\-reserved\-instances\-exchange\-quote](https://docs.aws.amazon.com/cli/latest/reference/ec2/accept-reserved-instances-exchange-quote.html) \(AWS CLI\)
++ [Confirm\-EC2ReservedInstancesExchangeQuote](https://docs.aws.amazon.com/powershell/latest/reference/items/Confirm-EC2ReservedInstancesExchangeQuote.html) \(Tools for Windows PowerShell\)

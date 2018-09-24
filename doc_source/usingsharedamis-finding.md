@@ -24,7 +24,7 @@ You can use the Amazon EC2 console or the command line to find shared AMIs\.
 
 ## Finding a Shared AMI \(AWS CLI\)<a name="usingsharedamis-finding-cli"></a>
 
-Use the [describe\-images](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command \(AWS CLI\) to list AMIs\. You can scope the list to the types of AMIs that interest you, as shown in the following examples\.
+Use the [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command \(AWS CLI\) to list AMIs\. You can scope the list to the types of AMIs that interest you, as shown in the following examples\.
 
 **Example: List all public AMIs**  
 The following command lists all public AMIs, including any public AMIs that you own\.

@@ -30,7 +30,7 @@ The following instances support jumbo frames:
 
 Path MTU Discovery is used to determine the path MTU between two devices\. The path MTU is the maximum packet size that's supported on the path between the originating host and the receiving host\. If a host sends a packet that's larger than the MTU of the receiving host or that's larger than the MTU of a device along the path, the receiving host or device returns the following ICMP message: `Destination Unreachable: Fragmentation Needed and Don't Fragment was Set` \(Type 3, Code 4\)\. This instructs the original host to adjust the MTU until the packet can be transmitted\. 
 
-By default, security groups do not allow any inbound ICMP traffic\. To ensure that your instance can receive this message and the packet does not get dropped, you must add a **Custom ICMP Rule** with the **Destination Unreachable** protocol to the inbound security group rules for your instance\. For more information, see [Path MTU Discovery](security-group-rules-reference.md#sg-rules-path-mtu)\.
+By default, security groups do not allow any inbound ICMP traffic\. To ensure that your instance can receive this message and the packet does not get dropped, you must add a **Custom ICMP Rule** with the **Destination Unreachable** protocol to the inbound security group rules for your instance\. For more information, see [Rules for Path MTU Discovery](security-group-rules-reference.md#sg-rules-path-mtu)\.
 
 **Important**  
 Modifying your instance's security group to allow path MTU discovery does not guarantee that jumbo frames will not be dropped by some routers\. An Internet gateway in your VPC will forward packets up to 1500 bytes only\. 1500 MTU packets are recommended for Internet traffic\.
@@ -108,4 +108,4 @@ You can check the current MTU value using the following ip command\. Note that i
 
 ## Troubleshooting<a name="mtu-troubleshooting"></a>
 
-If you experience connectivity issues between your EC2 instance and an Amazon Redshift cluster when using jumbo frames, see [Queries Appear to Hang](http://docs.aws.amazon.com/redshift/latest/mgmt/connecting-drop-issues.html) in the *Amazon Redshift Cluster Management Guide*
+If you experience connectivity issues between your EC2 instance and an Amazon Redshift cluster when using jumbo frames, see [Queries Appear to Hang](https://docs.aws.amazon.com/redshift/latest/mgmt/connecting-drop-issues.html) in the *Amazon Redshift Cluster Management Guide*

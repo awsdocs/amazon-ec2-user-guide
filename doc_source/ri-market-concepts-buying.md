@@ -9,7 +9,7 @@ If the price rises or changes for any reason, the purchase is not completed\. If
 Before you confirm your purchase, review the details of the Reserved Instance that you plan to buy, and make sure that all the parameters are accurate\. After you purchase a Reserved Instance \(either from a third\-party seller in the Reserved Instance Marketplace or from AWS\), you cannot cancel your purchase\.
 
 **Note**  
-To purchase and modify Reserved Instances, ensure that your IAM user account has the appropriate permissions, such as the ability to describe Availability Zones\. For information, see [Example Policies for Working With the AWS CLI or an AWS SDK](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ExamplePolicies_EC2.html#iam-example-reservedinstances) and [Example Policies for Working in the Amazon EC2 Console](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-policies-ec2-console.html#ex-reservedinstances)\.
+To purchase and modify Reserved Instances, ensure that your IAM user account has the appropriate permissions, such as the ability to describe Availability Zones\. For information, see [Example Policies for Working With the AWS CLI or an AWS SDK](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ExamplePolicies_EC2.html#iam-example-reservedinstances) and [Example Policies for Working in the Amazon EC2 Console](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-policies-ec2-console.html#ex-reservedinstances)\.
 
 **Topics**
 + [Choosing a Platform](#ri-choosing-platform)
@@ -57,7 +57,7 @@ If the status goes to `retired`, AWS may not have received your payment\.
 
 **To buy a Standard Reserved Instance using the AWS CLI**
 
-1. Find available Reserved Instances using the [describe\-reserved\-instances\-offerings](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances-offerings.html) command\. Specify `standard` for the `--offering-class` parameter to return only Standard Reserved Instances\. You can apply additional parameters to narrow your results; for example, if you want to purchase a regional `t2.large` Reserved Instance with a default tenancy for `Linux/UNIX` for a 1\-year term only:
+1. Find available Reserved Instances using the [describe\-reserved\-instances\-offerings](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances-offerings.html) command\. Specify `standard` for the `--offering-class` parameter to return only Standard Reserved Instances\. You can apply additional parameters to narrow your results; for example, if you want to purchase a regional `t2.large` Reserved Instance with a default tenancy for `Linux/UNIX` for a 1\-year term only:
 
    ```
    aws ec2 describe-reserved-instances-offerings --instance-type t2.large --offering-class standard --product-description "Linux/UNIX" --instance-tenancy default --filters Name=duration,Values=31536000 Name=scope,Values=Region
@@ -136,22 +136,22 @@ If the status goes to `retired`, AWS may not have received your payment\.
 
    When you find a Reserved Instance that meets your needs, take note of the `ReservedInstancesOfferingId`\.
 
-1. Use the [purchase\-reserved\-instances\-offering](http://docs.aws.amazon.com/cli/latest/reference/ec2/purchase-reserved-instances-offering.html) command to buy your Reserved Instance\. You must specify the Reserved Instance offering ID you obtained the previous step and you must specify the number of instances for the reservation\.
+1. Use the [purchase\-reserved\-instances\-offering](https://docs.aws.amazon.com/cli/latest/reference/ec2/purchase-reserved-instances-offering.html) command to buy your Reserved Instance\. You must specify the Reserved Instance offering ID you obtained the previous step and you must specify the number of instances for the reservation\.
 
    ```
    aws ec2 purchase-reserved-instances-offering --reserved-instances-offering-id ec06327e-dd07-46ee-9398-75b5fexample --instance-count 1
    ```
 
-1. Use the [describe\-reserved\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances.html) command to get the status of your Reserved Instance\.
+1. Use the [describe\-reserved\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances.html) command to get the status of your Reserved Instance\.
 
    ```
    aws ec2 describe-reserved-instances
    ```
 
 Alternatively, use the following AWS Tools for Windows PowerShell commands:
-+ [Get\-EC2ReservedInstancesOffering](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ReservedInstancesOffering.html)
-+ [New\-EC2ReservedInstance](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2ReservedInstance.html)
-+ [Get\-EC2ReservedInstance](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ReservedInstance.html)
++ [Get\-EC2ReservedInstancesOffering](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ReservedInstancesOffering.html)
++ [New\-EC2ReservedInstance](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2ReservedInstance.html)
++ [Get\-EC2ReservedInstance](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ReservedInstance.html)
 
 If you already have a running instance that matches the specifications of the Reserved Instance, the billing benefit is immediately applied\. You do not have to restart your instances\. If you do not have a suitable running instance, launch an instance and ensure that you match the same criteria that you specified for your Reserved Instance\. For more information, see [Using Your Reserved Instances](#reserved-instances-process)\. 
 
@@ -188,7 +188,7 @@ If the status goes to `retired`, AWS may not have received your payment\.
 
 **To buy a Convertible Reserved Instance using the AWS CLI**
 
-1. Find available Reserved Instances using the [describe\-reserved\-instances\-offerings](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances-offerings.html) command\. Specify `convertible` for the `--offering-class` parameter to return only Convertible Reserved Instances\. You can apply additional parameters to narrow your results; for example, if you want to purchase a regional `t2.large` Reserved Instance with a default tenancy for `Linux/UNIX`:
+1. Find available Reserved Instances using the [describe\-reserved\-instances\-offerings](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances-offerings.html) command\. Specify `convertible` for the `--offering-class` parameter to return only Convertible Reserved Instances\. You can apply additional parameters to narrow your results; for example, if you want to purchase a regional `t2.large` Reserved Instance with a default tenancy for `Linux/UNIX`:
 
    ```
    aws ec2 describe-reserved-instances-offerings --instance-type t2.large --offering-class convertible --product-description "Linux/UNIX" --instance-tenancy default --filters Name=scope,Values=Region
@@ -261,22 +261,22 @@ If the status goes to `retired`, AWS may not have received your payment\.
 
    When you find a Reserved Instance that meets your needs, take note of the `ReservedInstancesOfferingId`\.
 
-1. Use the [purchase\-reserved\-instances\-offering](http://docs.aws.amazon.com/cli/latest/reference/ec2/purchase-reserved-instances-offering.html) command to buy your Reserved Instance\. You must specify the Reserved Instance offering ID you obtained the previous step and you must specify the number of instances for the reservation\.
+1. Use the [purchase\-reserved\-instances\-offering](https://docs.aws.amazon.com/cli/latest/reference/ec2/purchase-reserved-instances-offering.html) command to buy your Reserved Instance\. You must specify the Reserved Instance offering ID you obtained the previous step and you must specify the number of instances for the reservation\.
 
    ```
    aws ec2 purchase-reserved-instances-offering --reserved-instances-offering-id ec06327e-dd07-46ee-9398-75b5fexample --instance-count 1
    ```
 
-1. Use the [describe\-reserved\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances.html) command to get the status of your Reserved Instance\.
+1. Use the [describe\-reserved\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances.html) command to get the status of your Reserved Instance\.
 
    ```
    aws ec2 describe-reserved-instances
    ```
 
 Alternatively, use the following AWS Tools for Windows PowerShell commands:
-+ [Get\-EC2ReservedInstancesOffering](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ReservedInstancesOffering.html)
-+ [New\-EC2ReservedInstance](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2ReservedInstance.html)
-+ [Get\-EC2ReservedInstance](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ReservedInstance.html)
++ [Get\-EC2ReservedInstancesOffering](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ReservedInstancesOffering.html)
++ [New\-EC2ReservedInstance](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2ReservedInstance.html)
++ [Get\-EC2ReservedInstance](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ReservedInstance.html)
 
 If you already have a running instance that matches the specifications of the Reserved Instance, the billing benefit is immediately applied\. You do not have to restart your instances\. If you do not have a suitable running instance, launch an instance and ensure that you match the same criteria that you specified for your Reserved Instance\. For more information, see [Using Your Reserved Instances](#reserved-instances-process)\. 
 
@@ -297,8 +297,8 @@ You can view the Reserved Instances you've purchased using the Amazon EC2 consol
 1. If you are a seller in the Reserved Instance Marketplace the **My Listings** tab displays the status of a reservation that's listed in the [Reserved Instance Marketplace](ri-market-general.md)\. For more information, see [Reserved Instance Listing States](ri-market-general.md#ri-listing-states)\.
 
 **To view your Reserved Instances using the command line**
-+ [describe\-reserved\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances.html) \(AWS CLI\)
-+ [Get\-EC2ReservedInstance](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ReservedInstance.html) \(Tools for Windows PowerShell\)
++ [describe\-reserved\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances.html) \(AWS CLI\)
++ [Get\-EC2ReservedInstance](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ReservedInstance.html) \(Tools for Windows PowerShell\)
 
 ## Using Your Reserved Instances<a name="reserved-instances-process"></a>
 
@@ -312,4 +312,4 @@ If you're launching an instance to take advantage of the billing benefit of a Re
 
 For more information, see [Launching an Instance Using the Launch Instance Wizard](launching-instance.md)\. For examples of how Reserved Instances are applied to your running instances, see [How Reserved Instances Are Applied](apply_ri.md)\.
 
-You can use Amazon EC2 Auto Scaling or other AWS services to launch the On\-Demand Instances that use your Reserved Instance benefits\. For more information, see the [Amazon EC2 Auto Scaling User Guide](http://docs.aws.amazon.com/autoscaling/latest/userguide/WhatIsAutoScaling.html)\.
+You can use Amazon EC2 Auto Scaling or other AWS services to launch the On\-Demand Instances that use your Reserved Instance benefits\. For more information, see the [Amazon EC2 Auto Scaling User Guide](https://docs.aws.amazon.com/autoscaling/latest/userguide/WhatIsAutoScaling.html)\.

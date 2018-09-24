@@ -1,12 +1,12 @@
 # Creating an Amazon EBS\-Backed Linux AMI<a name="creating-an-ami-ebs"></a>
 
-To create an Amazon EBS\-backed Linux AMI, start from an instance that you've launched from an existing Amazon EBS\-backed Linux AMI\. This can be an AMI you have obtained from the AWS Marketplace, an AMI you have created using the [AWS Server Migration Service](https://aws.amazon.com/server-migration-service/) or [VM Import/Export](http://docs.aws.amazon.com/vm-import/latest/userguide/what-is-vmimport.html), or any other AMI you can access\. After you customize the instance to suit your needs, create and register a new AMI, which you can use to launch new instances with these customizations\.
+To create an Amazon EBS\-backed Linux AMI, start from an instance that you've launched from an existing Amazon EBS\-backed Linux AMI\. This can be an AMI you have obtained from the AWS Marketplace, an AMI you have created using the [AWS Server Migration Service](https://aws.amazon.com/server-migration-service/) or [VM Import/Export](https://docs.aws.amazon.com/vm-import/latest/userguide/what-is-vmimport.html), or any other AMI you can access\. After you customize the instance to suit your needs, create and register a new AMI, which you can use to launch new instances with these customizations\.
 
 The procedures described below work for Amazon EC2 instances backed by encrypted Amazon EBS volumes \(including the root volume\) as well as for unencrypted volumes\.
 
 The AMI creation process is different for instance store\-backed AMIs\. For more information about the differences between Amazon EBS\-backed and instance store\-backed instances, and how to determine the root device type for your instance, see [Storage for the Root Device](ComponentsAMIs.md#storage-for-the-root-device)\. For more information about creating an instance store\-backed Linux AMI, see [Creating an Instance Store\-Backed Linux AMI](creating-an-ami-instance-store.md)\.
 
-For more information about creating an Amazon EBS\-backed Windows AMI, see [Creating an Amazon EBS\-Backed Windows AMI](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/Creating_EBSbacked_WinAMI.html) in the *Amazon EC2 User Guide for Windows Instances*\.
+For more information about creating an Amazon EBS\-backed Windows AMI, see [Creating an Amazon EBS\-Backed Windows AMI](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/Creating_EBSbacked_WinAMI.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
 ## Overview of Creating Amazon EBS\-Backed AMIs<a name="process-creating-an-ami-ebs"></a>
 
@@ -23,7 +23,7 @@ After the process completes, you have a new AMI and snapshot created from the ro
 If you add instance\-store volumes or EBS volumes to your instance in addition to the root device volume, the block device mapping for the new AMI contains information for these volumes, and the block device mappings for instances that you launch from the new AMI automatically contain information for these volumes\. The instance\-store volumes specified in the block device mapping for the new instance are new and don't contain any data from the instance store volumes of the instance you used to create the AMI\. The data on EBS volumes persists\. For more information, see [Block Device Mapping](block-device-mapping-concepts.md)\.
 
 **Note**  
-When you create a new instance from an EBS\-backed AMI, you should initialize both its root volume and any additional EBS storage before putting it into production\. For more information, see [Initializing Amazon EBS Volumes](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-initialize.html)\.
+When you create a new instance from an EBS\-backed AMI, you should initialize both its root volume and any additional EBS storage before putting it into production\. For more information, see [Initializing Amazon EBS Volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-initialize.html)\.
 
 ## Creating a Linux AMI from an Instance<a name="how-to-create-ebs-ami"></a>
 
@@ -74,8 +74,8 @@ If you select **No reboot**, we can't guarantee the file system integrity of the
 ### To Create an AMI from an Instance Using the Command Line<a name="create-ami-cli"></a>
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [create\-image](http://docs.aws.amazon.com/cli/latest/reference/ec2/create-image.html) \(AWS CLI\)
-+ [New\-EC2Image](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Image.html) \(AWS Tools for Windows PowerShell\)
++ [create\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-image.html) \(AWS CLI\)
++ [New\-EC2Image](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Image.html) \(AWS Tools for Windows PowerShell\)
 
 ## Creating a Linux AMI from a Snapshot<a name="creating-launching-ami-from-snapshot"></a>
 
@@ -105,5 +105,5 @@ For more information about creating Windows AMIs or AMIs for Linux operating sys
 **To create an AMI from a snapshot using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [register\-image](http://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) \(AWS CLI\)
-+ [Register\-EC2Image](http://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2Image.html) \(AWS Tools for Windows PowerShell\)
++ [register\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) \(AWS CLI\)
++ [Register\-EC2Image](https://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2Image.html) \(AWS Tools for Windows PowerShell\)

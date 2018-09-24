@@ -38,7 +38,7 @@ If your instance fails a status check, first determine whether your applications
 1. In the details pane, choose **Status Checks** to see the individual results for all **System Status Checks** and **Instance Status Checks**\.
 
 If a system status check has failed, you can try one of the following options:
-+ Create an instance recovery alarm\. For more information, see [Create Alarms That Stop, Terminate, or Recover an Instance](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/UsingAlarmActions.html) in the *Amazon CloudWatch User Guide*\.
++ Create an instance recovery alarm\. For more information, see [Create Alarms That Stop, Terminate, or Recover an Instance](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/UsingAlarmActions.html) in the *Amazon CloudWatch User Guide*\.
 + For an instance using an Amazon EBS\-backed AMI, stop and restart the instance\.
 + For an instance using an instance\-store backed AMI, terminate the instance and launch a replacement\.
 + Wait for Amazon EC2 to resolve the issue\.

@@ -4,7 +4,7 @@ You can back up the data on your Amazon EBS volumes to Amazon S3 by taking point
 
 When you create an EBS volume based on a snapshot, the new volume begins as an exact replica of the original volume that was used to create the snapshot\. The replicated volume loads data lazily in the background so that you can begin using it immediately\. If you access data that hasn't been loaded yet, the volume immediately downloads the requested data from Amazon S3, and then continues loading the rest of the volume's data in the background\. For more information, see [Creating an Amazon EBS Snapshot](ebs-creating-snapshot.md)\.
 
-You can track the status of your EBS snapshots through CloudWatch Events\. For more information, see [Amazon CloudWatch Events for Amazon EBS](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-cloud-watch-events.html)\.
+You can track the status of your EBS snapshots through CloudWatch Events\. For more information, see [Amazon CloudWatch Events for Amazon EBS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-cloud-watch-events.html)\.
 
 **Topics**
 + [How Incremental Snapshots Work](#how_snapshots_work)
@@ -46,4 +46,4 @@ EBS snapshots broadly support EBS encryption\.
 + When you copy an unencrypted snapshot that you own, you can encrypt it during the copy process\.
 + When you copy an encrypted snapshot that you own, you can reencrypt it with a different key during the copy process\.
 
-For more information, see [Amazon EBS Encryption](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html)\.
+For more information, see [Amazon EBS Encryption](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html)\.

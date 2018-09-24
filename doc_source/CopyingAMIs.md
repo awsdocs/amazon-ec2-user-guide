@@ -146,12 +146,12 @@ Create or obtain an AMI backed by an Amazon EBS snapshot\. Note that you can use
    The initial status of the target AMI is `pending` and the operation is complete when the status is `available`\.
 
 **To copy an AMI using the AWS CLI**  
-You can copy an AMI using the [copy\-image](http://docs.aws.amazon.com/cli/latest/reference/ec2/copy-image.html) command\. You must specify both the source and destination regions\. You specify the source region using the `--source-region` parameter\. You can specify the destination region using either the `--region` parameter or an environment variable\. For more information, see [Configuring the AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)\.
+You can copy an AMI using the [copy\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/copy-image.html) command\. You must specify both the source and destination regions\. You specify the source region using the `--source-region` parameter\. You can specify the destination region using either the `--region` parameter or an environment variable\. For more information, see [Configuring the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)\.
 
 When you encrypt a target snapshot during copying, you must specify these additional parameters: `--encrypted` and `--kms-key-id`\.
 
 **To copy an AMI using the Tools for Windows PowerShell**  
-You can copy an AMI using the [Copy\-EC2Image](http://docs.aws.amazon.com/powershell/latest/reference/items/Copy-EC2Image.html) command\. You must specify both the source and destination regions\. You specify the source region using the `-SourceRegion` parameter\. You can specify the destination region using either the `-Region` parameter or the `Set-AWSDefaultRegion` command\. For more information, see [Specifying AWS Regions](http://docs.aws.amazon.com/powershell/latest/userguide/pstools-installing-specifying-region.html)\.
+You can copy an AMI using the [Copy\-EC2Image](https://docs.aws.amazon.com/powershell/latest/reference/items/Copy-EC2Image.html) command\. You must specify both the source and destination regions\. You specify the source region using the `-SourceRegion` parameter\. You can specify the destination region using either the `-Region` parameter or the `Set-AWSDefaultRegion` command\. For more information, see [Specifying AWS Regions](https://docs.aws.amazon.com/powershell/latest/userguide/pstools-installing-specifying-region.html)\.
 
 When you encrypt a target snapshot during copying, you must specify these additional parameters: `-Encrypted` and `-KmsKeyId`\.
 
@@ -174,5 +174,5 @@ You can stop a pending AMI copy as follows\.
 **To stop an AMI copy operation using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [deregister\-image](http://docs.aws.amazon.com/cli/latest/reference/ec2/deregister-image.html) \(AWS CLI\)
-+ [Unregister\-EC2Image](http://docs.aws.amazon.com/powershell/latest/reference/items/Unregister-EC2Image.html) \(AWS Tools for Windows PowerShell\)
++ [deregister\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/deregister-image.html) \(AWS CLI\)
++ [Unregister\-EC2Image](https://docs.aws.amazon.com/powershell/latest/reference/items/Unregister-EC2Image.html) \(AWS Tools for Windows PowerShell\)

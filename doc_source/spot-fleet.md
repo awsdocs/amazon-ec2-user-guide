@@ -195,7 +195,7 @@ Example Corp creates a file, `config.json`, with the following configuration for
 }
 ```
 
-Example Corp creates the Spot Fleet request using the following [request\-spot\-fleet](http://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-fleet.html) command:
+Example Corp creates the Spot Fleet request using the following [request\-spot\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-fleet.html) command:
 
 ```
 aws ec2 request-spot-fleet --spot-fleet-request-config file://config.json

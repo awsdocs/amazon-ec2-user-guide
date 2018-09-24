@@ -9,7 +9,7 @@ The following illustration represents the transitions between instance states\. 
 The following table provides a brief description of each instance state and indicates whether it is billed or not\.
 
 **Note**  
-The table indicates billing for instance usage only\. Some AWS resources, such as Amazon EBS volumes and Elastic IP addresses, incur charges regardless of the instance's state\. For more information, see [Avoiding Unexpected Charges](http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/checklistforunwantedcharges.html) in the *AWS Billing and Cost Management User Guide*\.
+The table indicates billing for instance usage only\. Some AWS resources, such as Amazon EBS volumes and Elastic IP addresses, incur charges regardless of the instance's state\. For more information, see [Avoiding Unexpected Charges](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/checklistforunwantedcharges.html) in the *AWS Billing and Cost Management User Guide*\.
 
 
 | Instance state | Description | Instance usage billing | 

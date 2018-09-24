@@ -38,7 +38,11 @@ There are several ways that you can find AMIs that are available for you to purc
 
 1. In the navigation pane, choose **AMIs**\. 
 
-1. Choose **Public images** from the first **Filter** list\. In the Search bar choose **Product Code**, then **Marketplace**\. In the Search bar again, choose **Platform** and then select the operating system from the list\.
+1. Choose **Public images** for the first filter\.
+
+1. In the Search bar, choose **Owner**, then **AWS Marketplace**\.
+
+1. If you know the product code, choose **Product Code**, then type the product code\.
 
 ### Finding a Paid AMI Using AWS Marketplace<a name="finding-an-ami-mkt"></a>
 
@@ -54,7 +58,7 @@ There are several ways that you can find AMIs that are available for you to purc
 
 ### Finding a Paid AMI Using the AWS CLI<a name="finding-paid-windows-ami-cli"></a>
 
-You can find a paid AMI using the following [describe\-images](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command \(AWS CLI\)\.
+You can find a paid AMI using the following [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command \(AWS CLI\)\.
 
 ```
 aws ec2 describe-images --owners aws-marketplace
@@ -69,6 +73,14 @@ This command returns numerous details that describe each AMI, including the prod
         "ProductCodeType": "marketplace"
     }
 ],
+```
+
+If you know the product code, you can filter the results by product code\. This example returns the most recent AMI with the specified product code\.
+
+```
+aws ec2 describe-images --owners aws-marketplace \
+--filters "Name=product-code,Values=product_code"
+--query "sort_by(Images, &CreationDate)[-1].[ImageId]"
 ```
 
 ## Purchasing a Paid AMI<a name="using-paid-amis-purchasing-paid-ami"></a>
@@ -107,12 +119,12 @@ Amazon EC2 also enables developers to offer support for software \(or derived AM
 You can't use a support product with Reserved Instances\. You always pay the price that's specified by the seller of the support product\.
 
 To associate a product code with your AMI, use one of the following commands, where *ami\_id* is the ID of the AMI and *product\_code* is the product code:
-+ [modify\-image\-attribute](http://docs.aws.amazon.com/cli/latest/reference/ec2/modify-image-attribute.html) \(AWS CLI\)
++ [modify\-image\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-image-attribute.html) \(AWS CLI\)
 
   ```
   aws ec2 modify-image-attribute --image-id ami_id --product-codes "product_code"
   ```
-+ [Edit\-EC2ImageAttribute](http://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2ImageAttribute.html) \(AWS Tools for Windows PowerShell\)
++ [Edit\-EC2ImageAttribute](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2ImageAttribute.html) \(AWS Tools for Windows PowerShell\)
 
   ```
   PS C:\> Edit-EC2ImageAttribute -ImageId ami_id -ProductCode product_code

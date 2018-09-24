@@ -17,5 +17,5 @@ To delete a volume, it must be in the `available` state \(not attached to an ins
 **To delete an EBS volume using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [delete\-volume](http://docs.aws.amazon.com/cli/latest/reference/ec2/delete-volume.html) \(AWS CLI\)
-+ [Remove\-EC2Volume](http://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2Volume.html) \(AWS Tools for Windows PowerShell\)
++ [delete\-volume](https://docs.aws.amazon.com/cli/latest/reference/ec2/delete-volume.html) \(AWS CLI\)
++ [Remove\-EC2Volume](https://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2Volume.html) \(AWS Tools for Windows PowerShell\)

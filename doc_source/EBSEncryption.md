@@ -10,7 +10,7 @@ Encryption operations occur on the servers that host EC2 instances, ensuring the
 
 Encryption is supported by all EBS volume types \(General Purpose SSD \[`gp2`\], Provisioned IOPS SSD \[`io1`\], Throughput Optimized HDD \[`st1`\], Cold HDD \[`sc1`\], and Magnetic \[`standard`\]\)\. You can expect the same IOPS performance on encrypted volumes as on unencrypted volumes, with a minimal effect on latency\. You can access encrypted volumes the same way that you access unencrypted volumes\. Encryption and decryption are handled transparently and they require no additional action from you or your applications\.
 
-Public snapshots of encrypted volumes are not supported, but you can share an encrypted snapshot with specific accounts\. For more information about sharing encrypted snapshots, see [Sharing an Amazon EBS Snapshot](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-modifying-snapshot-permissions.html)\.
+Public snapshots of encrypted volumes are not supported, but you can share an encrypted snapshot with specific accounts\. For more information about sharing encrypted snapshots, see [Sharing an Amazon EBS Snapshot](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-modifying-snapshot-permissions.html)\.
 
 Amazon EBS encryption is only available on certain instance types\. You can attach both encrypted and unencrypted volumes to a supported instance type\. For more information, see [Supported Instance Types](#EBSEncryption_supported_instances)\.
 
@@ -25,13 +25,13 @@ Amazon EBS encryption is only available on certain instance types\. You can atta
 Amazon EBS encryption uses AWS Key Management Service \(AWS KMS\) customer master keys \(CMKs\) when creating encrypted volumes and any snapshots created from them\. A unique AWS\-managed CMK is created for you automatically in each region where you store AWS assets\. This key is used for Amazon EBS encryption unless you specify a customer\-managed CMK that you created separately using AWS KMS\. 
 
 **Note**  
-Creating your own CMK gives you more flexibility, including the ability to create, rotate, and disable keys to define access controls\. For more information, see the [AWS Key Management Service Developer Guide](http://docs.aws.amazon.com/kms/latest/developerguide/)\.
+Creating your own CMK gives you more flexibility, including the ability to create, rotate, and disable keys to define access controls\. For more information, see the [AWS Key Management Service Developer Guide](https://docs.aws.amazon.com/kms/latest/developerguide/)\.
 
 You cannot change the CMK that is associated with an existing snapshot or encrypted volume\. However, you can associate a different CMK during a snapshot copy operation so that the resulting copied snapshot uses the new CMK\.
 
 EBS encrypts your volume with a data key using the industry\-standard AES\-256 algorithm\. Your data key is stored on\-disk with your encrypted data, but not before EBS encrypts it with your CMK—it never appears there in plaintext\. The same data key is shared by snapshots of the volume and any subsequent volumes created from those snapshots\.
 
-For more information about key management and key access permissions, see [How Amazon Elastic Block Store \(Amazon EBS\) Uses AWS KMS](http://docs.aws.amazon.com/kms/latest/developerguide/services-ebs.html) and [Authentication and Access Control for AWS KMS](http://docs.aws.amazon.com/kms/latest/developerguide/control-access.html) in the *AWS Key Management Service Developer Guide*\.
+For more information about key management and key access permissions, see [How Amazon Elastic Block Store \(Amazon EBS\) Uses AWS KMS](https://docs.aws.amazon.com/kms/latest/developerguide/services-ebs.html) and [Authentication and Access Control for AWS KMS](https://docs.aws.amazon.com/kms/latest/developerguide/control-access.html) in the *AWS Key Management Service Developer Guide*\.
 
 ## Supported Instance Types<a name="EBSEncryption_supported_instances"></a>
 
@@ -96,7 +96,7 @@ Because you can apply encryption to a snapshot while copying it, another path to
 
 1. Restore the encrypted snapshot to a new volume, which is also encrypted\. 
 
-For more information, see [Copying an Amazon EBS Snapshot](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-copy-snapshot.html)\.
+For more information, see [Copying an Amazon EBS Snapshot](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-copy-snapshot.html)\.
 
 ### Encrypt a Snapshot to a New CMK<a name="re-encrypt_snapshot"></a>
 
@@ -111,7 +111,7 @@ The following procedure demonstrates how to create a copy of a shared snapshot t
 
 **To copy a snapshot that you own to a new custom CMK using the console**
 
-1. Create a customer\-managed CMK\. For more information, see [AWS Key Management Service Developer Guide](http://docs.aws.amazon.com/kms/latest/developerguide/)\.
+1. Create a customer\-managed CMK\. For more information, see [AWS Key Management Service Developer Guide](https://docs.aws.amazon.com/kms/latest/developerguide/)\.
 
 1. Create an EBS volume encrypted to \(for this example\) your AWS\-managed CMK\. 
 
@@ -133,8 +133,8 @@ The following procedure demonstrates how to make a copy of a shared encrypted sn
 
 The resulting copy of the snapshot—and all volumes restored from it—are encrypted to the CMK that you supplied\. Changes to the original shared snapshot, its encryption status, or the shared CMK have no effect on your copy\.
 
-For more information, see [Copying an Amazon EBS Snapshot](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-copy-snapshot.html)\.
+For more information, see [Copying an Amazon EBS Snapshot](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-copy-snapshot.html)\.
 
 ## Amazon EBS Encryption and CloudWatch Events<a name="ebs-cw-crypto"></a>
 
-Amazon EBS supports Amazon CloudWatch Events for certain encryption\-related scenarios\. For more information, see [Amazon CloudWatch Events for Amazon EBS](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-cloud-watch-events.html#attach-fail-key)\.
+Amazon EBS supports Amazon CloudWatch Events for certain encryption\-related scenarios\. For more information, see [Amazon CloudWatch Events for Amazon EBS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-cloud-watch-events.html#attach-fail-key)\.

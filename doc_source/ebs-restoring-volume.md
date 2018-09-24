@@ -6,7 +6,7 @@ New volumes created from existing EBS snapshots load lazily in the background\. 
 
 EBS volumes that are restored from encrypted snapshots are automatically encrypted\. Encrypted volumes can only be attached to selected instance types\. For more information, see [Supported Instance Types](EBSEncryption.md#EBSEncryption_supported_instances)\.
 
-Because of security constraints, you cannot directly restore an EBS volume from a shared encrypted snapshot that you do not own\. You must first create a copy of the snapshot, which you will own\. You can then restore a volume from that copy\. For more information, see [Amazon EBS Encryption](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html)\.
+Because of security constraints, you cannot directly restore an EBS volume from a shared encrypted snapshot that you do not own\. You must first create a copy of the snapshot, which you will own\. You can then restore a volume from that copy\. For more information, see [Amazon EBS Encryption](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html)\.
 
 New EBS volumes receive their maximum performance the moment that they are available and do not require initialization \(formerly known as pre\-warming\)\. However, storage blocks on volumes that were restored from snapshots must be initialized \(pulled down from Amazon S3 and written to the volume\) before you can access the block\. This preliminary action takes time and can cause a significant increase in the latency of an I/O operation the first time each block is accessed\. Performance is restored after the data is accessed once\.
 
@@ -51,5 +51,5 @@ If you specify both a volume size and a snapshot, the size must be equal to or g
 **To restore an EBS volume using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [create\-volume](http://docs.aws.amazon.com/cli/latest/reference/ec2/create-volume.html) \(AWS CLI\)
-+ [New\-EC2Volume](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Volume.html) \(AWS Tools for Windows PowerShell\)
++ [create\-volume](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-volume.html) \(AWS CLI\)
++ [New\-EC2Volume](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Volume.html) \(AWS Tools for Windows PowerShell\)

@@ -8,7 +8,7 @@ Before you can launch an instance, you must select an AMI to use\. As you select
 + The provider \(for example, Amazon Web Services\)
 + Additional software \(for example, SQL server\)
 
-If you need to find a Windows AMI, see [Finding a Windows AMI](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/finding-an-ami.html) in the *Amazon EC2 User Guide for Windows Instances*\.
+If you need to find a Windows AMI, see [Finding a Windows AMI](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/finding-an-ami.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
 **Topics**
 + [Finding a Linux AMI Using the Amazon EC2 Console](#finding-an-ami-console)
@@ -47,9 +47,9 @@ You can find Linux AMIs using the Amazon EC2 console\. You can search through al
 
 ## Finding an AMI Using the AWS CLI<a name="finding-an-ami-aws-cli"></a>
 
-You can use AWS CLI commands for Amazon EC2 to list only the Linux AMIs that meet your needs\. After locating an AMI that meets your needs, make note of its ID so that you can use it to launch instances\. For more information, see [Launching an Instance Using the AWS CLI](http://docs.aws.amazon.com/cli/latest/userguide/cli-ec2-launch.html#launching-instances) in the *AWS Command Line Interface User Guide*\.
+You can use AWS CLI commands for Amazon EC2 to list only the Linux AMIs that meet your needs\. After locating an AMI that meets your needs, make note of its ID so that you can use it to launch instances\. For more information, see [Launching an Instance Using the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-ec2-launch.html#launching-instances) in the *AWS Command Line Interface User Guide*\.
 
-The [describe\-images](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command supports filtering parameters\. For example, use the `--owners` parameter to public AMIs owned by Amazon\.
+The [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command supports filtering parameters\. For example, use the `--owners` parameter to public AMIs owned by Amazon\.
 
 ```
 aws ec2 describe-images --owners self amazon

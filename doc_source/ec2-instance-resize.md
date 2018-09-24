@@ -1,6 +1,6 @@
 # Changing the Instance Type<a name="ec2-instance-resize"></a>
 
-As your needs change, you might find that your instance is over\-utilized \(the instance type is too small\) or under\-utilized \(the instance type is too large\)\. If this is the case, you can change the size of your instance\. For example, if your `t2.micro` instance is too small for its workload, you can change it to an `m3.medium` instance\.
+As your needs change, you might find that your instance is over\-utilized \(the instance type is too small\) or under\-utilized \(the instance type is too large\)\. If this is the case, you can change the size of your instance\. For example, if your `t2.micro` instance is too small for its workload, you can change it to another instance type that is appropriate for the workload\.
 
 You might also want to migrate from a previous generation instance type to a current generation instance type to take advantage of some features; for example, support for IPv6\.
 
@@ -24,7 +24,12 @@ You can resize an instance only if its current instance type and the new instanc
 + **Network**: Some instance types are not supported in EC2\-Classic and must be launched in a VPC\. Therefore, you can't resize an instance in EC2\-Classic to a instance type that is available only in a VPC unless you have a nondefault VPC\. For more information, see [Instance Types Available Only in a VPC](using-vpc.md#vpc-only-instance-types)\. To check if your instance is in a VPC, check the **VPC ID** value on the details pane of the **Instances** screen in the Amazon EC2 console\.
 + **Platform**: All Amazon EC2 instance types support 64\-bit AMIs, but only the following instance types support 32\-bit AMIs: `t2.nano`, `t2.micro`, `t2.small`, `t2.medium`, `c3.large`, `t1.micro`, `m1.small`, `m1.medium`, and `c1.medium`\. If you are resizing a 32\-bit instance, you are limited to these instance types\. To check the platform of your instance, go to the **Instances** screen in the Amazon EC2 console and choose **Show/Hide Columns**, **Architecture**\.
 + **Enhanced networking**: Instance types that support [enhanced networking](enhanced-networking.md) require the necessary drivers installed\. For example, the C5, C5d, M5, M5d, R5, R5d, T3, and z1d instance types require EBS\-backed AMIs with the Elastic Network Adapter \(ENA\) drivers installed\. To resize an existing instance to an instance type that supports enhanced networking, you must first install the [ENA drivers](enhanced-networking-ena.md) or [ixgbevf drivers](sriov-networking.md) on your instance, as appropriate\.
-+ **NVMe**: Instance types that support NVMe, such as C5, C5d, M5, M5d, R5, R5d, T3, and z1d, expose EBS volumes as NVMe block devices\. To resize an existing instance to an instance type that supports NVMe, you must first install the [NVMe drivers](nvme-ebs-volumes.md) on your instance\. Also, the device names for NVMe devices are `/dev/nvme[0-26]n1`\. For more information about the required AMIs for these instance types, see the Release Notes in [Compute Optimized Instances](compute-optimized-instances.md) and [General Purpose Instances](general-purpose-instances.md)\.
++ **NVMe**: Instance types that support NVMe, such as C5, C5d, M5, M5d, R5, R5d, T3, and z1d, expose EBS volumes as NVMe block devices\. To resize an existing instance to an instance type that supports NVMe, you must first install the [NVMe drivers](nvme-ebs-volumes.md) on your instance\. Also, the device names for devices that you specify in the block device mapping are renamed using NVMe device names \(`/dev/nvme[0-26]n1`\)\. Therefore, to mount file systems at boot time using `/etc/fstab`, you must use UUID/Label instead of device names\.
++ **AMI**: For information about the AMIs required by instance types that support enhanced networking and NVMe, see the Release Notes in the following documentation:
+  + [General Purpose Instances](general-purpose-instances.md)
+  + [Compute Optimized Instances](compute-optimized-instances.md)
+  + [Memory Optimized Instances](memory-optimized-instances.md)
+  + [Storage Optimized Instances](storage-optimized-instances.md)
 
 For example, T2 instances are not supported in EC2\-Classic and they are HVM only\. On Linux, T1 instances do not support HVM and must be launched from PV AMIs\. Therefore, you can't resize a T1 Linux instance to a T2 Linux instance\.
 
@@ -34,10 +39,10 @@ You must stop your Amazon EBS–backed instance before you can change its instan
 + We move the instance to new hardware; however, the instance ID does not change\.
 + If your instance is running in a VPC and has a public IPv4 address, we release the address and give it a new public IPv4 address\. The instance retains its private IPv4 addresses, any Elastic IP addresses, and any IPv6 addresses\.
 + If your instance is running in EC2\-Classic, we give it new public and private IP addresses, and disassociate any Elastic IP address that's associated with the instance\. Therefore, to ensure that your users can continue to use the applications that you're hosting on your instance uninterrupted, you must re\-associate any Elastic IP address after you restart your instance\.
-+ If your instance is in an Auto Scaling group, the Amazon EC2 Auto Scaling service marks the stopped instance as unhealthy, and may terminate it and launch a replacement instance\. To prevent this, you can suspend the scaling processes for the group while you're resizing your instance\. For more information, see [Suspending and Resuming Scaling Processes](http://docs.aws.amazon.com/autoscaling/latest/userguide/as-suspend-resume-processes.html) in the *Amazon EC2 Auto Scaling User Guide*\.
++ If your instance is in an Auto Scaling group, the Amazon EC2 Auto Scaling service marks the stopped instance as unhealthy, and may terminate it and launch a replacement instance\. To prevent this, you can suspend the scaling processes for the group while you're resizing your instance\. For more information, see [Suspending and Resuming Scaling Processes](https://docs.aws.amazon.com/autoscaling/latest/userguide/as-suspend-resume-processes.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 + Ensure that you plan for downtime while your instance is stopped\. Stopping and resizing an instance may take a few minutes, and restarting your instance may take a variable amount of time depending on your application's startup scripts\.
 
-For more information, see [Stop and Start Your Instance](Stop_Start.md)\. 
+For more information, see [Stop and Start Your Instance](Stop_Start.md)\.
 
 Use the following procedure to resize an Amazon EBS–backed instance using the AWS Management Console\.
 
@@ -70,6 +75,8 @@ Use the following procedure to resize an Amazon EBS–backed instance using the 
 1. To restart the stopped instance, select the instance, choose **Actions**, select **Instance State**, and then choose **Start**\.
 
 1. In the confirmation dialog box, choose **Yes, Start**\. It can take a few minutes for the instance to enter the `running` state\.
+
+1. \(Troubleshooting\) If your instance won't boot, it is possible that one of the requirements for the new instance type was not met\. For more information, see [Why is my Linux instance not booting after I changed its type?](https://aws.amazon.com/premiumsupport/knowledge-center/boot-error-linux-m5-c5/)
 
 1. \[EC2\-Classic\] When the instance state is `running`, the **Public DNS \(IPv4\)**, **Private DNS**, and **Private IPs** fields in the details pane contain the new values that we assigned to the instance\. If your instance had an associated Elastic IP address, you must reassociate it as follows:
 

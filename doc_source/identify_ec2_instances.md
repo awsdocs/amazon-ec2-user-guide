@@ -2,7 +2,7 @@
 
 You may benefit from being able to determine whether a system is an EC2 instance\. There are two methods that you can use to identify an EC2 instance\.
 
-For information about identifying Windows instances, see [Identify EC2 Windows Instances](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/identify_ec2_instances.html) in the *Amazon EC2 User Guide for Windows Instances*\.
+For information about identifying Windows instances, see [Identify EC2 Windows Instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/identify_ec2_instances.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
 ## Inspecting the System UUID<a name="inspect-uuid"></a>
 

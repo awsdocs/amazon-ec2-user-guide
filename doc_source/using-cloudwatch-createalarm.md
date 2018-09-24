@@ -3,7 +3,7 @@
 You can create a CloudWatch alarm that monitors CloudWatch metrics for one of your instances\. CloudWatch will automatically send you a notification when the metric reaches a threshold you specify\. You can create a CloudWatch alarm using the Amazon EC2 console, or using the more advanced options provided by the CloudWatch console\.
 
 **To create an alarm using the CloudWatch console**  
-For examples, see [Creating Amazon CloudWatch Alarms](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html) in the *Amazon CloudWatch User Guide*\.
+For examples, see [Creating Amazon CloudWatch Alarms](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html) in the *Amazon CloudWatch User Guide*\.
 
 **To create an alarm using the Amazon EC2 console**
 

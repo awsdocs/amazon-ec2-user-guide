@@ -41,6 +41,6 @@ To launch instances from AWS Marketplace products using the API or command line 
 
 | Method | Documentation | 
 | --- | --- | 
-|  AWS CLI  |  Use the [run\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command, or see the following topic for more information: [Launching an Instance](http://docs.aws.amazon.com/cli/latest/userguide/cli-ec2-launch.html#launching-instances)\.  | 
-|  AWS Tools for Windows PowerShell   |  Use the [New\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) command, or see the following topic for more information: [Launch an Amazon EC2 Instance Using Windows PowerShell](http://docs.aws.amazon.com/powershell/latest/userguide/pstools-ec2-launch.html)  | 
-| Query API | Use the [RunInstances](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-RunInstances.html) request\. | 
+|  AWS CLI  |  Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command, or see the following topic for more information: [Launching an Instance](https://docs.aws.amazon.com/cli/latest/userguide/cli-ec2-launch.html#launching-instances)\.  | 
+|  AWS Tools for Windows PowerShell   |  Use the [New\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) command, or see the following topic for more information: [Launch an Amazon EC2 Instance Using Windows PowerShell](https://docs.aws.amazon.com/powershell/latest/userguide/pstools-ec2-launch.html)  | 
+| Query API | Use the [RunInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-RunInstances.html) request\. | 

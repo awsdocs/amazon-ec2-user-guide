@@ -2,7 +2,7 @@
 
 You can use the AMI tools commands to create and manage instance store\-backed Linux AMIs\. To set up the tools, see [Setting Up the AMI Tools](set-up-ami-tools.md)\.
 
-For information about your access keys, see [Best Practices for Managing AWS Access Keys](http://docs.aws.amazon.com/general/latest/gr/aws-access-keys-best-practices.html)\.
+For information about your access keys, see [Best Practices for Managing AWS Access Keys](https://docs.aws.amazon.com/general/latest/gr/aws-access-keys-best-practices.html)\.
 
 **Topics**
 + [ec2\-ami\-tools\-version](#ami-tools-version)
@@ -100,11 +100,11 @@ Default: The name of the image file\. For example, if the image path is `/var/sp
 Required: No
 
 `--kernel` *kernel\_id*  
-Deprecated\. Use [register\-image](http://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) to set the kernel\.  
+Deprecated\. Use [register\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) to set the kernel\.  
 Required: No
 
 `--ramdisk` *ramdisk\_id*  
-Deprecated\. Use [register\-image](http://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) to set the RAM disk if required\.  
+Deprecated\. Use [register\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) to set the RAM disk if required\.  
 Required: No
 
 ### Output<a name="bundle-image-output"></a>
@@ -256,11 +256,11 @@ The path to an alternate grub configuration file to bundle into the image\. By d
 Required: No
 
 `--kernel` *kernel\_id*  
-Deprecated\. Use [register\-image](http://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) to set the kernel\.  
+Deprecated\. Use [register\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) to set the kernel\.  
 Required: No
 
 `--ramdisk`*ramdisk\_id*  
-Deprecated\. Use [register\-image](http://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) to set the RAM disk if required\.  
+Deprecated\. Use [register\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) to set the RAM disk if required\.  
 Required: No
 
 ### Output<a name="bundle-vol-output"></a>
@@ -331,7 +331,7 @@ The AWS secret access key\.
 Required: Yes
 
 `-t, --delegation-token` *token*  
-The delegation token to pass along to the AWS request\. For more information, see the [Using Temporary Security Credentials](http://docs.aws.amazon.com/STS/latest/UsingSTS/)\.  
+The delegation token to pass along to the AWS request\. For more information, see the [Using Temporary Security Credentials](https://docs.aws.amazon.com/STS/latest/UsingSTS/)\.  
 Required: Only when you are using temporary security credentials\.  
 Default: The value of the `AWS_DELEGATION_TOKEN` environment variable \(if set\)\.
 
@@ -630,7 +630,7 @@ Your AWS secret access key\.
 Required: Yes
 
 `-t, --delegation-token` *token*  
-The delegation token to pass along to the AWS request\. For more information, see the [Using Temporary Security Credentials](http://docs.aws.amazon.com/STS/latest/UsingSTS/)\.  
+The delegation token to pass along to the AWS request\. For more information, see the [Using Temporary Security Credentials](https://docs.aws.amazon.com/STS/latest/UsingSTS/)\.  
 Required: Only when you are using temporary security credentials\.  
 Default: The value of the `AWS_DELEGATION_TOKEN` environment variable \(if set\)\.
 

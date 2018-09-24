@@ -11,7 +11,7 @@ The following are possible problems you may have and error messages you may see 
 + [Error Using MindTerm on Safari Browser](#troubleshoot-instance-connect-safari)
 + [Cannot Ping Instance](#troubleshoot-instance-ping)
 
-For additional help with Windows instances, see [Troubleshooting Windows Instances](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/troubleshooting-windows-instances.html) in the *Amazon EC2 User Guide for Windows Instances*\.
+For additional help with Windows instances, see [Troubleshooting Windows Instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/troubleshooting-windows-instances.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
 You can also search for answers and post questions on the [Amazon EC2 forum](https://forums.aws.amazon.com/forum.jspa?forumID=30)\.
 
@@ -71,7 +71,7 @@ To connect to your instance using an IPv6 address, check the following:
 + Your subnet must be associated with a route table that has a route for IPv6 traffic \(`::/0`\) to an internet gateway\. 
 + Your security group rules must allow inbound traffic from your local IPv6 address on the proper port \(22 for Linux and 3389 for Windows\)\.
 + Your network ACL rules must allow inbound and outbound IPv6 traffic\.
-+ If you launched your instance from an older AMI, it may not be configured for DHCPv6 \(IPv6 addresses are not automatically recognized on the network interface\)\. For more information, see [Configure IPv6 on Your Instances](http://docs.aws.amazon.com/vpc/latest/userguide/vpc-migrate-ipv6.html#vpc-migrate-ipv6-dhcpv6) in the *Amazon VPC User Guide*\.
++ If you launched your instance from an older AMI, it may not be configured for DHCPv6 \(IPv6 addresses are not automatically recognized on the network interface\)\. For more information, see [Configure IPv6 on Your Instances](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-migrate-ipv6.html#vpc-migrate-ipv6-dhcpv6) in the *Amazon VPC User Guide*\.
 + Your local computer must have an IPv6 address, and must be configured to use IPv6\. 
 
 ## Error: User key not recognized by server<a name="TroubleshootingInstancesServerError"></a>

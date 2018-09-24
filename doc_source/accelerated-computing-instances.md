@@ -24,7 +24,7 @@ You can cluster accelerated computing instances into a cluster placement group\.
 + [Optimizing GPU Settings \(P2, P3, and G3 Instances\)](optimize_gpu.md)
 + [Getting Started with FPGA Development](fpga-getting-started.md)
 
-For information about Windows accelerated computing instances, see [Windows Accelerated Computing Instances](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/accelerated-computing-instances.html) in the *Amazon EC2 User Guide for Windows Instances*\.
+For information about Windows accelerated computing instances, see [Windows Accelerated Computing Instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/accelerated-computing-instances.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
 ## Accelerated Computing Instance Families<a name="gpu-instance-families"></a>
 

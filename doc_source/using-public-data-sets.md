@@ -38,11 +38,11 @@ Data sets that are in snapshot format are used to create new EBS volumes that yo
 
 For data sets that are in Amazon S3 format, you can use the AWS SDKs or the HTTP query API to access the information, or you can use the AWS CLI to copy or synchronize the data to and from your instance\. For more information, see [Amazon S3 and Amazon EC2](AmazonS3.md#S3UsageScenarios)\.
 
-You can also use Amazon EMR to analyze and work with public data sets\. For more information, see [ What is Amazon EMR?](http://docs.aws.amazon.com/emr/latest/DeveloperGuide/emr-what-is-emr.html)\.
+You can also use Amazon EMR to analyze and work with public data sets\. For more information, see [ What is Amazon EMR?](https://docs.aws.amazon.com/emr/latest/DeveloperGuide/emr-what-is-emr.html)\.
 
 ## Creating a Public Data Set Volume from a Snapshot<a name="using-public-data-sets-launching-set"></a>
 
-To use a public data set that is in snapshot format, you create a new volume, specifying the snapshot ID of the public data set\. You can create your new volume using the AWS Management Console as follows\. If you prefer, you can use the [create\-volume](http://docs.aws.amazon.com/cli/latest/reference/ec2/create-volume.html) AWS CLI command instead\.
+To use a public data set that is in snapshot format, you create a new volume, specifying the snapshot ID of the public data set\. You can create your new volume using the AWS Management Console as follows\. If you prefer, you can use the [create\-volume](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-volume.html) AWS CLI command instead\.
 
 **To create a public data set volume from a snapshot**
 

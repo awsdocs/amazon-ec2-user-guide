@@ -37,8 +37,8 @@ Only the instance owner can access the console output\. You can retrieve the con
 **To get console output using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [get\-console\-output](http://docs.aws.amazon.com/cli/latest/reference/ec2/get-console-output.html) \(AWS CLI\)
-+ [Get\-EC2ConsoleOutput](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ConsoleOutput.html) \(AWS Tools for Windows PowerShell\)
++ [get\-console\-output](https://docs.aws.amazon.com/cli/latest/reference/ec2/get-console-output.html) \(AWS CLI\)
++ [Get\-EC2ConsoleOutput](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ConsoleOutput.html) \(AWS Tools for Windows PowerShell\)
 
 For more information about common system log errors, see [Troubleshooting System Log Errors for Linux\-Based Instances](TroubleshootingInstances.md#system-log-errors-linux)\.
 
@@ -65,8 +65,8 @@ Right\-click on the image to download and save it\.
 **To capture a screenshot using the command line**
 
 You can use one of the following commands\. The returned content is base64\-encoded\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [get\-console\-screenshot](http://docs.aws.amazon.com/cli/latest/reference/ec2/get-console-screenshot.html) \(AWS CLI\)
-+ [GetConsoleScreenshot](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-GetConsoleScreenshot.html) \(Amazon EC2 Query API\)
++ [get\-console\-screenshot](https://docs.aws.amazon.com/cli/latest/reference/ec2/get-console-screenshot.html) \(AWS CLI\)
++ [GetConsoleScreenshot](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-GetConsoleScreenshot.html) \(Amazon EC2 Query API\)
 
 ## Instance Recovery When a Host Computer Fails<a name="instance-machine-failure"></a>
 

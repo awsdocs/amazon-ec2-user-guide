@@ -15,7 +15,7 @@ The following are the key elements that you should understand before you get sta
 
 Snapshots are the primary means to back up data from your EBS volumes\. To save storage costs, successive snapshots are incremental, containing only the volume data that changed since the previous snapshot\. When you delete one snapshot in a series of snapshots for a volume, only the data unique to that snapshot is removed\. The rest of the captured history of the volume is preserved\.
 
-For more information, see [Amazon EBS Snapshots](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html)\.
+For more information, see [Amazon EBS Snapshots](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html)\.
 
 ### Volume Tags<a name="dlm-tagging-volumes"></a>
 
@@ -23,7 +23,7 @@ Amazon DLM uses resource tags to identify the EBS volumes to back up\. Tags are 
 
 You can't use a '\\' or '=' character in a tag key\.
 
-For more information about tagging Amazon EC2 objects, see [Tagging Your Amazon EC2 Resources](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html)\.
+For more information about tagging Amazon EC2 objects, see [Tagging Your Amazon EC2 Resources](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html)\.
 
 ### Snapshot Tags<a name="dlm-tagging-snapshots"></a>
 
@@ -56,7 +56,7 @@ For example, you could create a policy that manages all EBS volumes with the tag
 
 ## Permissions for Amazon DLM<a name="dlm-permissions"></a>
 
-Amazon DLM uses an IAM role to get the permissions that are required to manage snapshots on your behalf\. Amazon DLM creates the **AWSDataLifecycleManagerDefaultRole** role the first time that you create a lifecycle policy using the AWS Management Console\. You can also create this role using the [create\-default\-role](http://docs.aws.amazon.com/cli/latest/reference/dlm/create-default-role.html) command as follows:
+Amazon DLM uses an IAM role to get the permissions that are required to manage snapshots on your behalf\. Amazon DLM creates the **AWSDataLifecycleManagerDefaultRole** role the first time that you create a lifecycle policy using the AWS Management Console\. You can also create this role using the [create\-default\-role](https://docs.aws.amazon.com/cli/latest/reference/dlm/create-default-role.html) command as follows:
 
 ```
 aws dlm create-default-role
@@ -93,7 +93,7 @@ Alternatively, you can create a custom IAM role with the required permissions an
    }
    ```
 
-   For more information, see [Creating a Role](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user.html) in the *IAM User Guide*\.
+   For more information, see [Creating a Role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user.html) in the *IAM User Guide*\.
 
 1. Add a trust relationship to the role\.
 
@@ -140,7 +140,7 @@ An IAM user must have the following permissions to use Amazon DLM:
 }
 ```
 
-For more information, see [Changing Permissions for an IAM User](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html) in the *IAM User Guide*\.
+For more information, see [Changing Permissions for an IAM User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html) in the *IAM User Guide*\.
 
 ## Limits<a name="dlm-limits"></a>
 
@@ -224,7 +224,7 @@ The following examples show how to use Amazon DLM to perform typical procedures 
 The following examples show how to use Amazon DLM to perform typical procedures to manage the backups of your EBS volumes\.
 
 **Example Example: Create a lifecycle policy**  <a name="create-policy-cli"></a>
-Use the [create\-lifecycle\-policy](http://docs.aws.amazon.com/cli/latest/reference/dlm/create-lifecycle-policy.html) command to create a lifecycle policy\. To simplify the syntax, this example references a JSON file, `policyDetails.json`, that includes the policy details\.  
+Use the [create\-lifecycle\-policy](https://docs.aws.amazon.com/cli/latest/reference/dlm/create-lifecycle-policy.html) command to create a lifecycle policy\. To simplify the syntax, this example references a JSON file, `policyDetails.json`, that includes the policy details\.  
 
 ```
 aws dlm create-lifecycle-policy --description "My first policy" --state ENABLED --execution-role-arn arn:aws:iam::12345678910:role/AWSDataLifecycleManagerDefaultRole --policy-details file://policyDetails.json
@@ -274,7 +274,7 @@ Upon success, the command returns the ID of the newly created policy\. The follo
 ```
 
 **Example Example: Display a lifecycle policy**  <a name="display-policy-cli"></a>
-Use the [get\-lifecycle\-policy](http://docs.aws.amazon.com/cli/latest/reference/dlm/get-lifecycle-policy.html) command to display information about a lifecycle policy\.  
+Use the [get\-lifecycle\-policy](https://docs.aws.amazon.com/cli/latest/reference/dlm/get-lifecycle-policy.html) command to display information about a lifecycle policy\.  
 
 ```
 aws dlm get-lifecycle-policy --policy-id policy-0123456789abcdef0
@@ -327,7 +327,7 @@ The following is example output\. It includes the information that you specified
 ```
 
 **Example To modify a lifecycle policy**  <a name="modify-policy-cli"></a>
-Use the [update\-lifecycle\-policy](http://docs.aws.amazon.com/cli/latest/reference/dlm/update-lifecycle-policy.html) command to modify the information in a lifecycle policy\. To simplify the syntax, this example references a JSON file, `policyDetailsUpdated.json`, that includes the policy details\.  
+Use the [update\-lifecycle\-policy](https://docs.aws.amazon.com/cli/latest/reference/dlm/update-lifecycle-policy.html) command to modify the information in a lifecycle policy\. To simplify the syntax, this example references a JSON file, `policyDetailsUpdated.json`, that includes the policy details\.  
 
 ```
 aws dlm update-lifecycle-policy --state DISABLED --execution-role-arn arn:aws:iam::12345678910:role/AWSDataLifecycleManagerDefaultRole" --policy-details file://policyDetailsUpdated.json
@@ -371,7 +371,7 @@ The following is an example of the `policyDetailsUpdated.json` file:
 To view the updated policy, use the `get-lifecycle-policy` command\. You can see that the state, the value of the tag, the snapshot interval, and the snapshot start time were changed\.
 
 **Example Example: Delete a lifecycle policy**  <a name="delete-policy-cli"></a>
-Use the [delete\-lifecycle\-policy](http://docs.aws.amazon.com/cli/latest/reference/dlm/delete-lifecycle-policy.html) command to delete a lifecycle policy and free up the target tags specified in the policy for reuse\.  
+Use the [delete\-lifecycle\-policy](https://docs.aws.amazon.com/cli/latest/reference/dlm/delete-lifecycle-policy.html) command to delete a lifecycle policy and free up the target tags specified in the policy for reuse\.  
 
 ```
 aws dlm delete-lifecycle-policy --policy-id policy-0123456789abcdef0
@@ -379,7 +379,7 @@ aws dlm delete-lifecycle-policy --policy-id policy-0123456789abcdef0
 
 ## Working with Amazon DLM Using the API<a name="snaphot-lifecycle-api"></a>
 
-The [Amazon Data Lifecycle Manager API Reference](http://docs.aws.amazon.com/dlm/latest/APIReference/) provides descriptions and syntax for each of the actions and data types for the Amazon DLM Query API\.
+The [Amazon Data Lifecycle Manager API Reference](https://docs.aws.amazon.com/dlm/latest/APIReference/) provides descriptions and syntax for each of the actions and data types for the Amazon DLM Query API\.
 
 Alternatively, you can use one of the AWS SDKs to access an API that's tailored to the programming language or platform that you're using\. For more information, see [AWS SDKs](https://aws.amazon.com/tools/#SDKs)\.
 
@@ -393,10 +393,10 @@ You can view your lifecycle policies using the Amazon EC2 console or the AWS CLI
 
 ### CloudWatch Events<a name="monitor-cloudwatch-events"></a>
 
-Amazon EBS and Amazon DLM emit events related to lifecycle policy actions\. You can use AWS Lambda and Amazon CloudWatch Events to handle event notifications programmatically\. For more information, see the [Amazon CloudWatch Events User Guide](http://docs.aws.amazon.com/AmazonCloudWatch/latest/events/)\.
+Amazon EBS and Amazon DLM emit events related to lifecycle policy actions\. You can use AWS Lambda and Amazon CloudWatch Events to handle event notifications programmatically\. For more information, see the [Amazon CloudWatch Events User Guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/)\.
 
 The following events are available:
-+ `createSnapshot`—An Amazon EBS event emitted when a `CreateSnapshot` action succeeds or fails\. For more information, see [Amazon CloudWatch Events for Amazon EBS](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-cloud-watch-events.html)\.
++ `createSnapshot`—An Amazon EBS event emitted when a `CreateSnapshot` action succeeds or fails\. For more information, see [Amazon CloudWatch Events for Amazon EBS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-cloud-watch-events.html)\.
 + `DLM Policy State Change`—A Amazon DLM event emitted when a lifecycle policy enters an error state\. The event contains a description of what caused the error\. The following is an example of an event when the permissions granted by the IAM role are insufficient:
 
   ```
@@ -443,4 +443,4 @@ The following events are available:
 
 ### AWS CloudTrail<a name="monitor-lifecycle-cloudtrail"></a>
 
-With AWS CloudTrail, you can track user activity and API usage to demonstrate compliance with internal policies and regulatory standards\. For more information, see the [AWS CloudTrail User Guide](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)\.
+With AWS CloudTrail, you can track user activity and API usage to demonstrate compliance with internal policies and regulatory standards\. For more information, see the [AWS CloudTrail User Guide](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/)\.

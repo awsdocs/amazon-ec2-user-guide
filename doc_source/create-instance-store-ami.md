@@ -135,7 +135,7 @@ To register your AMI in a region other than US East \(N\. Virginia\), you must s
 **Important**  
 If you specified a path with the `-d /path/to/bundle/storage` option in [Step 2](#step_with_bundle_path_amazon_linux), use that path instead of `/tmp`\.
 
-1. To register your AMI, run the [register\-image](http://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) command as follows\.
+1. To register your AMI, run the [register\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) command as follows\.
 
    ```
    [ec2-user ~]$ aws ec2 register-image --image-location my-s3-bucket/bundle_folder/bundle_name/image.manifest.xml --name AMI_name --virtualization-type hvm
@@ -354,7 +354,7 @@ If you intend to register your AMI in a region other than US East \(N\. Virginia
 **Important**  
 If you specified a path with the `-d /path/to/bundle/storage` option in [Step 2](#step_with_bundle_path_ubuntu), use that same path below, instead of `/tmp`\.
 
-1. To register your AMI, run the [register\-image](http://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) AWS CLI command as follows\.
+1. To register your AMI, run the [register\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) AWS CLI command as follows\.
 
    ```
    ubuntu:~$ aws ec2 register-image --image-location my-s3-bucket/bundle_folder/bundle_name/image.manifest.xml --name AMI_name --virtualization-type hvm

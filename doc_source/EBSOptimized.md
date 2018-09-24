@@ -210,8 +210,8 @@ You can enable optimization for an instance by setting its Amazon EBS–optimize
 **To enable EBS optimization when launching an instance using the command line**
 
 You can use one of the following options with the corresponding command\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ `--ebs-optimized` with [run\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) \(AWS CLI\)
-+ `-EbsOptimized` with [New\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
++ `--ebs-optimized` with [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) \(AWS CLI\)
++ `-EbsOptimized` with [New\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
 
 ## Modifying Amazon EBS Optimization for a Running Instance<a name="modify-ebs-optimized-attribute"></a>
 
@@ -241,5 +241,5 @@ When you stop an instance, the data on any instance store volumes is erased\. Th
 **To enable EBS optimization for a running instance using the command line**
 
 You can use one of the following options with the corresponding command\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ `--ebs-optimized` with [modify\-instance\-attribute](http://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) \(AWS CLI\)
-+ `-EbsOptimized` with [Edit\-EC2InstanceAttribute](http://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2InstanceAttribute.html) \(AWS Tools for Windows PowerShell\)
++ `--ebs-optimized` with [modify\-instance\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) \(AWS CLI\)
++ `-EbsOptimized` with [Edit\-EC2InstanceAttribute](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2InstanceAttribute.html) \(AWS Tools for Windows PowerShell\)

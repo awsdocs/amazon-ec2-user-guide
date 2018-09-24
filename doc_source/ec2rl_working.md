@@ -63,7 +63,7 @@ If AWS Support has requested the results or to share the results from an S3 buck
 ```
 ./ec2rl upload --upload-directory=/var/tmp/ec2rl/2017-05-11T15_39_21.893145 --presigned-url="YourPresignedS3URL"
 ```
-For more information about generating pre\-signed URLs for Amazon S3, see [Uploading Objects Using Pre\-Signed URLs](http://docs.aws.amazon.com/AmazonS3/latest/dev/PresignedUrlUploadObject.html)\.
+For more information about generating pre\-signed URLs for Amazon S3, see [Uploading Objects Using Pre\-Signed URLs](https://docs.aws.amazon.com/AmazonS3/latest/dev/PresignedUrlUploadObject.html)\.
 
 ## Creating Backups<a name="ec2rl_creating_backups"></a>
 

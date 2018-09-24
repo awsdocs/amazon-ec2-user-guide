@@ -1,11 +1,11 @@
 # Connecting to Your Linux Instance from Windows Using PuTTY<a name="putty"></a>
 
+The following instructions explain how to connect to your instance using PuTTY, a free SSH client for Windows\. If you receive an error while attempting to connect to your instance, see [Troubleshooting Connecting to Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html)\.
+
 After you launch your instance, you can connect to it and use it the way that you'd use a computer sitting in front of you\.
 
 **Note**  
 After you launch an instance, it can take a few minutes for the instance to be ready so that you can connect to it\. Check that your instance has passed its status checks\. You can view this information in the **Status Checks** column on the **Instances** page\.
-
-The following instructions explain how to connect to your instance using PuTTY, a free SSH client for Windows\. If you receive an error while attempting to connect to your instance, see [Troubleshooting Connecting to Your Instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html)\.
 
 ## Prerequisites<a name="putty-prereqs"></a>
 
@@ -15,13 +15,13 @@ Before you connect to your Linux instance using PuTTY, complete the following pr
   Download and install PuTTY from the [PuTTY download page](http://www.chiark.greenend.org.uk/~sgtatham/putty/)\. If you already have an older version of PuTTY installed, we recommend that you download the latest version\. Be sure to install the entire suite\.
 + **Get the ID of the instance**
 
-  You can get the ID of your instance using the Amazon EC2 console \(from the **Instance ID** column\)\. If you prefer, you can use the [describe\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) \(AWS CLI\) or [Get\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html) \(AWS Tools for Windows PowerShell\) command\.
+  You can get the ID of your instance using the Amazon EC2 console \(from the **Instance ID** column\)\. If you prefer, you can use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) \(AWS CLI\) or [Get\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html) \(AWS Tools for Windows PowerShell\) command\.
 + **Get the public DNS name of the instance**
 
-  You can get the public DNS for your instance using the Amazon EC2 console\. Check the **Public DNS \(IPv4\)** column\. If this column is hidden, choose the **Show/Hide** icon and select **Public DNS \(IPv4\)**\. If you prefer, you can use the [describe\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) \(AWS CLI\) or [Get\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html) \(AWS Tools for Windows PowerShell\) command\.
+  You can get the public DNS for your instance using the Amazon EC2 console\. Check the **Public DNS \(IPv4\)** column\. If this column is hidden, choose the **Show/Hide** icon and select **Public DNS \(IPv4\)**\. If you prefer, you can use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) \(AWS CLI\) or [Get\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html) \(AWS Tools for Windows PowerShell\) command\.
 + **\(IPv6 only\) Get the IPv6 address of the instance**
 
-  If you've assigned an IPv6 address to your instance, you can optionally connect to the instance using its IPv6 address instead of a public IPv4 address or public IPv4 DNS hostname\. Your local computer must have an IPv6 address and must be configured to use IPv6\. You can get the IPv6 address of your instance using the Amazon EC2 console\. Check the **IPv6 IPs** field\. If you prefer, you can use the [describe\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) \(AWS CLI\) or [Get\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html) \(AWS Tools for Windows PowerShell\) command\. For more information about IPv6, see [IPv6 Addresses](using-instance-addressing.md#ipv6-addressing)\.
+  If you've assigned an IPv6 address to your instance, you can optionally connect to the instance using its IPv6 address instead of a public IPv4 address or public IPv4 DNS hostname\. Your local computer must have an IPv6 address and must be configured to use IPv6\. You can get the IPv6 address of your instance using the Amazon EC2 console\. Check the **IPv6 IPs** field\. If you prefer, you can use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) \(AWS CLI\) or [Get\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html) \(AWS Tools for Windows PowerShell\) command\. For more information about IPv6, see [IPv6 Addresses](using-instance-addressing.md#ipv6-addressing)\.
 + **Locate the private key**
 
   Get the fully\-qualified path to the location on your computer of the `.pem` file for the key pair that you specified when you launched the instance\.
@@ -66,11 +66,11 @@ Your private key is now in the correct format for use with PuTTY\. You can now c
 
 ## Starting a PuTTY Session<a name="putty-ssh"></a>
 
-Use the following procedure to connect to your Linux instance using PuTTY\. You need the `.ppk` file that you created for your private key\. If you receive an error while attempting to connect to your instance, see [Troubleshooting Connecting to Your Instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html)\.
+Use the following procedure to connect to your Linux instance using PuTTY\. You need the `.ppk` file that you created for your private key\. If you receive an error while attempting to connect to your instance, see [Troubleshooting Connecting to Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html)\.
 
 **To start a PuTTY session**
 
-1. \(Optional\) You can verify the RSA key fingerprint on your instance using the [get\-console\-output](http://docs.aws.amazon.com/cli/latest/reference/ec2/get-console-output.html) \(AWS CLI\) command on your local system \(not on the instance\)\. This is useful if you've launched your instance from a public AMI from a third party\. Locate the `SSH HOST KEY FINGERPRINTS` section, and note the RSA fingerprint \(for example, 1f:51:ae:28:bf:89:e9:d8:1f:25:5d:37:2d:7d:b8:ca:9f:f5:f1:6f\) and compare it to the fingerprint of the instance\.
+1. \(Optional\) You can verify the RSA key fingerprint on your instance using the [get\-console\-output](https://docs.aws.amazon.com/cli/latest/reference/ec2/get-console-output.html) \(AWS CLI\) command on your local system \(not on the instance\)\. This is useful if you've launched your instance from a public AMI from a third party\. Locate the `SSH HOST KEY FINGERPRINTS` section, and note the RSA fingerprint \(for example, 1f:51:ae:28:bf:89:e9:d8:1f:25:5d:37:2d:7d:b8:ca:9f:f5:f1:6f\) and compare it to the fingerprint of the instance\.
 
    ```
    aws ec2 get-console-output --instance-id instance_id
@@ -136,7 +136,7 @@ Use the following procedure to connect to your Linux instance using PuTTY\. You 
 **Note**  
 If you specified a passphrase when you converted your private key to PuTTY's format, you must provide that passphrase when you log in to the instance\.
 
-If you receive an error while attempting to connect to your instance, see [Troubleshooting Connecting to Your Instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html)\.
+If you receive an error while attempting to connect to your instance, see [Troubleshooting Connecting to Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html)\.
 
 ## Transferring Files to Your Linux Instance Using the PuTTY Secure Copy Client<a name="putty-scp"></a>
 

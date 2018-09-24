@@ -33,7 +33,7 @@ If your account supports EC2\-Classic, there's one pool of Elastic IP addresses 
 
 When you associate an Elastic IP address with an instance in EC2\-Classic, a default VPC, or an instance in a nondefault VPC in which you assigned a public IPv4 to the eth0 network interface during launch, the instance's current public IPv4 address is released back into the public IP address pool\. If you disassociate an Elastic IP address from the instance, the instance is automatically assigned a new public IPv4 address within a few minutes\. However, if you have attached a second network interface to an instance in a VPC, the instance is not automatically assigned a new public IPv4 address\. For more information about public IPv4 addresses, see [Public IPv4 Addresses and External DNS Hostnames](using-instance-addressing.md#concepts-public-addresses)\.
 
-For information about using an Elastic IP address with an instance in a VPC, see [Elastic IP Addresses](http://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html#vpc-eips) in the *Amazon VPC User Guide*\.
+For information about using an Elastic IP address with an instance in a VPC, see [Elastic IP Addresses](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html#vpc-eips) in the *Amazon VPC User Guide*\.
 
 The following table lists the differences between Elastic IP addresses on EC2\-Classic and EC2\-VPC\. For more information about the differences between private and public IP addresses, see [IP Address Differences Between EC2\-Classic and EC2\-VPC](using-instance-addressing.md#differences)\.
 
@@ -105,8 +105,8 @@ You can allocate an Elastic IP address using the Amazon EC2 console or the comma
 **To allocate an Elastic IP address using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [allocate\-address](http://docs.aws.amazon.com/cli/latest/reference/ec2/allocate-address.html) \(AWS CLI\)
-+ [New\-EC2Address](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Address.html) \(AWS Tools for Windows PowerShell\)
++ [allocate\-address](https://docs.aws.amazon.com/cli/latest/reference/ec2/allocate-address.html) \(AWS CLI\)
++ [New\-EC2Address](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Address.html) \(AWS Tools for Windows PowerShell\)
 
 ### Describing Your Elastic IP Addresses<a name="using-instance-addressing-eips-describing"></a>
 
@@ -123,8 +123,8 @@ You can describe an Elastic IP address using the Amazon EC2 or the command line\
 **To describe your Elastic IP addresses using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [describe\-addresses](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-addresses.html) \(AWS CLI\)
-+ [Get\-EC2Address](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Address.html) \(AWS Tools for Windows PowerShell\)
++ [describe\-addresses](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-addresses.html) \(AWS CLI\)
++ [Get\-EC2Address](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Address.html) \(AWS Tools for Windows PowerShell\)
 
 ### Tagging an Elastic IP Address<a name="using-instance-addressing-eips-tagging"></a>
 
@@ -154,12 +154,12 @@ You can tag an Elastic IP address using the Amazon EC2 console or the command li
 **To tag an Elastic IP address using the command line**
 
 Use one of the following commands:
-+ [create\-tags](http://docs.aws.amazon.com/cli/latest/reference/ec2/create-tags.html) \(AWS CLI\)
++ [create\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-tags.html) \(AWS CLI\)
 
   ```
   aws ec2 create-tags --resources eipalloc-12345678 --tags Key=Owner,Value=TeamA
   ```
-+ [New\-EC2Tag](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Tag.html) \(AWS Tools for Windows PowerShell\)
++ [New\-EC2Tag](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Tag.html) \(AWS Tools for Windows PowerShell\)
 
   The `New-EC2Tag` command needs a `Tag` parameter, which specifies the key and value pair to be used for the Elastic IP address tag\. The following commands create the `Tag` parameter:
 
@@ -177,7 +177,7 @@ Use one of the following commands:
 
 You can associate an Elastic IP address to an instance using the Amazon EC2 console or the command line\.
 
-\(VPC only\) If you're associating an Elastic IP address with your instance to enable communication with the internet, you must also ensure that your instance is in a public subnet\. For more information, see [Internet Gateways](http://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html) in the *Amazon VPC User Guide*\.
+\(VPC only\) If you're associating an Elastic IP address with your instance to enable communication with the internet, you must also ensure that your instance is in a public subnet\. For more information, see [Internet Gateways](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html) in the *Amazon VPC User Guide*\.
 
 **To associate an Elastic IP address with an instance using the console**
 
@@ -192,8 +192,8 @@ You can associate an Elastic IP address to an instance using the Amazon EC2 cons
 **To associate an Elastic IP address using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [associate\-address](http://docs.aws.amazon.com/cli/latest/reference/ec2/associate-address.html) \(AWS CLI\)
-+ [Register\-EC2Address](http://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2Address.html) \(AWS Tools for Windows PowerShell\)
++ [associate\-address](https://docs.aws.amazon.com/cli/latest/reference/ec2/associate-address.html) \(AWS CLI\)
++ [Register\-EC2Address](https://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2Address.html) \(AWS Tools for Windows PowerShell\)
 
 ### Disassociating an Elastic IP Address and Reassociating with a Different Instance<a name="using-instance-addressing-eips-associating-different"></a>
 
@@ -216,14 +216,14 @@ You can disassociate an Elastic IP address and then reassociate it using the Ama
 **To disassociate an Elastic IP address using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [disassociate\-address](http://docs.aws.amazon.com/cli/latest/reference/ec2/disassociate-address.html) \(AWS CLI\)
-+ [Unregister\-EC2Address](http://docs.aws.amazon.com/powershell/latest/reference/items/Unregister-EC2Address.html) \(AWS Tools for Windows PowerShell\)
++ [disassociate\-address](https://docs.aws.amazon.com/cli/latest/reference/ec2/disassociate-address.html) \(AWS CLI\)
++ [Unregister\-EC2Address](https://docs.aws.amazon.com/powershell/latest/reference/items/Unregister-EC2Address.html) \(AWS Tools for Windows PowerShell\)
 
 **To associate an Elastic IP address using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [associate\-address](http://docs.aws.amazon.com/cli/latest/reference/ec2/associate-address.html) \(AWS CLI\)
-+ [Register\-EC2Address](http://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2Address.html) \(AWS Tools for Windows PowerShell\)
++ [associate\-address](https://docs.aws.amazon.com/cli/latest/reference/ec2/associate-address.html) \(AWS CLI\)
++ [Register\-EC2Address](https://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2Address.html) \(AWS Tools for Windows PowerShell\)
 
 ### Moving an Elastic IP Address<a name="using-eip-migration"></a>
 
@@ -257,7 +257,7 @@ You can restore an Elastic IP address to EC2\-Classic using the Amazon EC2 conso
 **Note**  
 If you choose to restore a previously migrated Elastic IP adddress to EC2\-Classic, the tags assigned to the Elastic IP address after migration are lost\.
 
-After you've performed the command to move or restore your Elastic IP address, the process of migrating the Elastic IP address can take a few minutes\. Use the [describe\-moving\-addresses](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-moving-addresses.html) command to check whether your Elastic IP address is still moving, or has completed moving\.
+After you've performed the command to move or restore your Elastic IP address, the process of migrating the Elastic IP address can take a few minutes\. Use the [describe\-moving\-addresses](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-moving-addresses.html) command to check whether your Elastic IP address is still moving, or has completed moving\.
 
 After you've moved your Elastic IP address to EC2\-VPC, you can view its allocation ID on the **Elastic IPs** page in the **Allocation ID** field\.
 
@@ -266,30 +266,30 @@ If the Elastic IP address is in a moving state for longer than 5 minutes, contac
 **To move an Elastic IP address using the Amazon EC2 Query API or AWS CLI**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [move\-address\-to\-vpc](http://docs.aws.amazon.com/cli/latest/reference/ec2/move-address-to-vpc.html) \(AWS CLI\)
-+ [MoveAddressToVpc](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_MoveAddressToVpc.html) \(Amazon EC2 Query API\)
-+ [Move\-EC2AddressToVpc](http://docs.aws.amazon.com/powershell/latest/reference/items/Move-EC2AddressToVpc.html) \(AWS Tools for Windows PowerShell\)
++ [move\-address\-to\-vpc](https://docs.aws.amazon.com/cli/latest/reference/ec2/move-address-to-vpc.html) \(AWS CLI\)
++ [MoveAddressToVpc](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_MoveAddressToVpc.html) \(Amazon EC2 Query API\)
++ [Move\-EC2AddressToVpc](https://docs.aws.amazon.com/powershell/latest/reference/items/Move-EC2AddressToVpc.html) \(AWS Tools for Windows PowerShell\)
 
 **To restore an Elastic IP address to EC2\-Classic using the Amazon EC2 Query API or AWS CLI**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [restore\-address\-to\-classic](http://docs.aws.amazon.com/cli/latest/reference/ec2/restore-address-to-classic.html) \(AWS CLI\)
-+ [RestoreAddressToClassic](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RestoreAddressToClassic.html) \(Amazon EC2 Query API\)
-+ [Restore\-EC2AddressToClassic](http://docs.aws.amazon.com/powershell/latest/reference/items/Restore-EC2AddressToClassic.html) \(AWS Tools for Windows PowerShell\)
++ [restore\-address\-to\-classic](https://docs.aws.amazon.com/cli/latest/reference/ec2/restore-address-to-classic.html) \(AWS CLI\)
++ [RestoreAddressToClassic](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RestoreAddressToClassic.html) \(Amazon EC2 Query API\)
++ [Restore\-EC2AddressToClassic](https://docs.aws.amazon.com/powershell/latest/reference/items/Restore-EC2AddressToClassic.html) \(AWS Tools for Windows PowerShell\)
 
 **To describe the status of your moving addresses using the Amazon EC2 Query API or AWS CLI**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [describe\-moving\-addresses](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-moving-addresses.html) \(AWS CLI\)
-+ [DescribeMovingAddresses](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeMovingAddresses.html) \(Amazon EC2 Query API\)
-+ [Get\-EC2Address](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Address.html) \(AWS Tools for Windows PowerShell\)
++ [describe\-moving\-addresses](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-moving-addresses.html) \(AWS CLI\)
++ [DescribeMovingAddresses](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeMovingAddresses.html) \(Amazon EC2 Query API\)
++ [Get\-EC2Address](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Address.html) \(AWS Tools for Windows PowerShell\)
 
 **To retrieve the allocation ID for your migrated Elastic IP address in EC2\-VPC**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [describe\-addresses](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-addresses.html) \(AWS CLI\)
-+ [DescribeAddresses](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeAddresses.html) \(Amazon EC2 Query API\)
-+ [Get\-EC2Address](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Address.html) \(AWS Tools for Windows PowerShell\)
++ [describe\-addresses](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-addresses.html) \(AWS CLI\)
++ [DescribeAddresses](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeAddresses.html) \(Amazon EC2 Query API\)
++ [Get\-EC2Address](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Address.html) \(AWS Tools for Windows PowerShell\)
 
 ### Releasing an Elastic IP Address<a name="using-instance-addressing-eips-releasing"></a>
 
@@ -308,8 +308,8 @@ You can release an Elastic IP address using the Amazon EC2 console or the comman
 **To release an Elastic IP address using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [release\-address](http://docs.aws.amazon.com/cli/latest/reference/ec2/release-address.html) \(AWS CLI\)
-+ [Remove\-EC2Address](http://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2Address.html) \(AWS Tools for Windows PowerShell\)
++ [release\-address](https://docs.aws.amazon.com/cli/latest/reference/ec2/release-address.html) \(AWS CLI\)
++ [Remove\-EC2Address](https://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2Address.html) \(AWS Tools for Windows PowerShell\)
 
 ### Recovering an Elastic IP Address<a name="using-eip-recovering"></a>
 
@@ -322,13 +322,13 @@ Currently, you can recover an Elastic IP address using the Amazon EC2 API or a c
 
 **To recover an Elastic IP address using the command line**
 
-1. \(AWS CLI\) Use the [allocate\-address](http://docs.aws.amazon.com/cli/latest/reference/ec2/allocate-address.html) command and specify the IP address using the `--address` parameter\.
+1. \(AWS CLI\) Use the [allocate\-address](https://docs.aws.amazon.com/cli/latest/reference/ec2/allocate-address.html) command and specify the IP address using the `--address` parameter\.
 
    ```
    aws ec2 allocate-address --domain vpc --address 203.0.113.3
    ```
 
-1. \(AWS Tools for Windows PowerShell\) Use the [New\-EC2Address](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Address.html) command and specify the IP address using the `-Address` parameter\.
+1. \(AWS Tools for Windows PowerShell\) Use the [New\-EC2Address](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Address.html) command and specify the IP address using the `-Address` parameter\.
 
    ```
    PS C:\> New-EC2Address -Address 203.0.113.3 -Domain vpc -Region us-east-1

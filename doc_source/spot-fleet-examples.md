@@ -1,6 +1,6 @@
 # Spot Fleet Example Configurations<a name="spot-fleet-examples"></a>
 
-The following examples show launch configurations that you can use with the [request\-spot\-fleet](http://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-fleet.html) command to create a Spot Fleet request\. For more information, see [Creating a Spot Fleet Request](spot-fleet-requests.md#create-spot-fleet)\.
+The following examples show launch configurations that you can use with the [request\-spot\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-fleet.html) command to create a Spot Fleet request\. For more information, see [Creating a Spot Fleet Request](spot-fleet-requests.md#create-spot-fleet)\.
 
 1. [Launch Spot Instances using the lowest\-priced Availability Zone or subnet in the region](#fleet-config1)
 

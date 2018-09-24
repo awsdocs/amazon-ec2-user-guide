@@ -47,6 +47,7 @@ To generate the `seed.iso` boot image, you need two configuration files:
    local-hostname: amazonlinux.onprem
    # eth0 is the default network interface enabled in the image. You can configure static network settings with an entry like the following.
    network-interfaces: |
+     auto eth0
      iface eth0 inet static
      address 192.168.1.10
      network 192.168.1.0

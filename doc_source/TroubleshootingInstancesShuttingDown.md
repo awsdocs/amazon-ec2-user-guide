@@ -18,4 +18,4 @@ After you terminate an instance, it remains visible for a short while before bei
 
 If you terminate all your instances, you may see that we launch a new instance for you\. If you launch an instance, you may see that we terminate one of your instances\. If you stop an instance, you may see that we terminate the instance and launch a new instance\. Generally, these behaviors mean that you've used Amazon EC2 Auto Scaling or Elastic Beanstalk to scale your computing resources automatically based on criteria that you've defined\.
 
-For more information, see the [Amazon EC2 Auto Scaling User Guide](http://docs.aws.amazon.com/autoscaling/latest/userguide/) or the [AWS Elastic Beanstalk Developer Guide](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/)\.
+For more information, see the [Amazon EC2 Auto Scaling User Guide](https://docs.aws.amazon.com/autoscaling/latest/userguide/) or the [AWS Elastic Beanstalk Developer Guide](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/)\.

@@ -66,8 +66,8 @@ This is the only chance for you to save the private key file\. You'll need to pr
 **To create your key pair using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [create\-key\-pair](http://docs.aws.amazon.com/cli/latest/reference/ec2/create-key-pair.html) \(AWS CLI\)
-+ [New\-EC2KeyPair](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2KeyPair.html) \(AWS Tools for Windows PowerShell\)
++ [create\-key\-pair](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-key-pair.html) \(AWS CLI\)
++ [New\-EC2KeyPair](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2KeyPair.html) \(AWS Tools for Windows PowerShell\)
 
 ## Importing Your Own Public Key to Amazon EC2<a name="how-to-generate-your-own-key-and-import-it-to-aws"></a>
 
@@ -105,8 +105,8 @@ Use the following steps to import your key pair using the Amazon EC2 console\.
 **To import the public key using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [import\-key\-pair](http://docs.aws.amazon.com/cli/latest/reference/ec2/import-key-pair.html) \(AWS CLI\)
-+ [Import\-EC2KeyPair](http://docs.aws.amazon.com/powershell/latest/reference/items/Import-EC2KeyPair.html) \(AWS Tools for Windows PowerShell\)
++ [import\-key\-pair](https://docs.aws.amazon.com/cli/latest/reference/ec2/import-key-pair.html) \(AWS CLI\)
++ [Import\-EC2KeyPair](https://docs.aws.amazon.com/powershell/latest/reference/items/Import-EC2KeyPair.html) \(AWS Tools for Windows PowerShell\)
 
 After the public key file is imported, you can verify that the key pair was imported successfully using the Amazon EC2 console as follows\. 
 
@@ -123,8 +123,8 @@ After the public key file is imported, you can verify that the key pair was impo
 **To view your key pair using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [describe\-key\-pairs](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-key-pairs.html) \(AWS CLI\)
-+ [Get\-EC2KeyPair](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2KeyPair.html) \(AWS Tools for Windows PowerShell\)
++ [describe\-key\-pairs](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-key-pairs.html) \(AWS CLI\)
++ [Get\-EC2KeyPair](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2KeyPair.html) \(AWS Tools for Windows PowerShell\)
 
 ## Retrieving the Public Key for Your Key Pair on Linux<a name="retrieving-the-public-key"></a>
 
@@ -238,8 +238,8 @@ You can delete a key pair using the Amazon EC2 console or the command line\.
 **To delete your key pair using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [delete\-key\-pair](http://docs.aws.amazon.com/cli/latest/reference/ec2/delete-key-pair.html) \(AWS CLI\)
-+ [Remove\-EC2KeyPair](http://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2KeyPair.html) \(AWS Tools for Windows PowerShell\)
++ [delete\-key\-pair](https://docs.aws.amazon.com/cli/latest/reference/ec2/delete-key-pair.html) \(AWS CLI\)
++ [Remove\-EC2KeyPair](https://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2KeyPair.html) \(AWS Tools for Windows PowerShell\)
 
 **Note**  
 If you create a Linux AMI from an instance, and then use the AMI to launch a new instance in a different region or account, the new instance includes the public key from the original instance\. This enables you to connect to the new instance using the same private key file as your original instance\. You can remove this public key from your instance by removing its entry from the `.ssh/authorized_keys` file using a text editor of your choice\. For more information about managing users on your instance and providing remote access using a specific key pair, see [Managing User Accounts on Your Linux Instance](managing-users.md)\.
@@ -334,7 +334,7 @@ The device name may appear differently on your instance\. For example, devices m
    1. Mount the volume \(or partition\) at the temporary mount point, using the volume name or device name you identified earlier\.
 
       ```
-      [ec2-user ~]$ sudo mount /dev/xvdf1 /mnt/tempvol
+      [ec2-user ~]$ sudo mount -o nouuid /dev/xvdf1 /mnt/tempvol
       ```
 
 1. From the temporary instance, use the following command to update `authorized_keys` on the mounted volume with the new public key from the `authorized_keys` for the temporary instance\.

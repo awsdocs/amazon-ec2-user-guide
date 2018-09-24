@@ -166,19 +166,19 @@ If you cancel your listing and a portion of that listing has already been sold, 
 
 **To list a Reserved Instance in the Reserved Instance Marketplace using the AWS CLI**
 
-1. Get a list of your Reserved Instances by using the [describe\-reserved\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances.html) command\.
+1. Get a list of your Reserved Instances by using the [describe\-reserved\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances.html) command\.
 
-1. Note the ID of the Reserved Instance you want to list and call [create\-reserved\-instances\-listing](http://docs.aws.amazon.com/cli/latest/reference/ec2/create-reserved-instances-listing.html)\. You must specify the ID of the Reserved Instance, the number of instances, and the pricing schedule\.
+1. Note the ID of the Reserved Instance you want to list and call [create\-reserved\-instances\-listing](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-reserved-instances-listing.html)\. You must specify the ID of the Reserved Instance, the number of instances, and the pricing schedule\.
 
-1. To view your listing, use the [describe\-reserved\-instances\-listings](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances-listings.html) command\.
+1. To view your listing, use the [describe\-reserved\-instances\-listings](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances-listings.html) command\.
 
-To cancel your listing, use the [cancel\-reserved\-instances\-listings](http://docs.aws.amazon.com/cli/latest/reference/ec2/cancel-reserved-instances-listings.html) command\.
+To cancel your listing, use the [cancel\-reserved\-instances\-listings](https://docs.aws.amazon.com/cli/latest/reference/ec2/cancel-reserved-instances-listings.html) command\.
 
 **To list a Reserved Instance in the Reserved Instance Marketplace using the Amazon EC2 API**
-+ [DescribeReservedInstances](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeReservedInstances.html)
-+ [CreateReservedInstancesListing](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateReservedInstancesListing.html)
-+ [DescribeReservedInstancesListings](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeReservedInstancesListings.html)
-+ [CancelReservedInstancesListing](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CancelReservedInstancesListing.html)
++ [DescribeReservedInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeReservedInstances.html)
++ [CreateReservedInstancesListing](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateReservedInstancesListing.html)
++ [DescribeReservedInstancesListings](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeReservedInstancesListings.html)
++ [CancelReservedInstancesListing](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CancelReservedInstancesListing.html)
 
 #### Reserved Instance Listing States<a name="ri-listing-states"></a>
 
@@ -223,7 +223,7 @@ If you cancel your listing and a portion of that listing has already sold, the c
 
 When your Reserved Instance is sold, AWS sends you an email notification\. Each day that there is any kind of activity, you receive one email notification capturing all the activities of the day\. For example, you may create or sell a listing, or AWS may send funds to your account\. 
 
-To track the status of a Reserved Instance listing in the console, choose **Reserved Instance**, **My Listings**\. The **My Listings** tab contains the **Listing State** value\. It also contains information about the term, listing price, and a breakdown of how many instances in the listing are available, pending, sold, and canceled\. You can also use the [describe\-reserved\-instances\-listings](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances-listings.html) command with the appropriate filter to obtain information about your listings\.
+To track the status of a Reserved Instance listing in the console, choose **Reserved Instance**, **My Listings**\. The **My Listings** tab contains the **Listing State** value\. It also contains information about the term, listing price, and a breakdown of how many instances in the listing are available, pending, sold, and canceled\. You can also use the [describe\-reserved\-instances\-listings](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances-listings.html) command with the appropriate filter to obtain information about your listings\.
 
 ## Buying in the Reserved Instance Marketplace<a name="ri-market-buying-guide"></a>
 

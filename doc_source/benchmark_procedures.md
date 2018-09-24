@@ -1,6 +1,6 @@
 # Benchmark EBS Volumes<a name="benchmark_procedures"></a>
 
-This section demonstrates how you can test the performance of Amazon EBS volumes by simulating I/O workloads\. The process is as follows:
+TYou can test the performance of Amazon EBS volumes by simulating I/O workloads\. The process is as follows:
 
 1. Launch an EBS\-optimized instance\.
 
@@ -17,7 +17,7 @@ This section demonstrates how you can test the performance of Amazon EBS volumes
 1. Delete your volumes and terminate your instance so that you don't continue to incur charges\.
 
 **Important**  
-Some of the procedures described in this topic will result in the destruction of existing data on the EBS volumes you benchmark\. The benchmarking procedures are intended for use on volumes specially created for testing purposes, not production volumes\.
+Some of the procedures result in the destruction of existing data on the EBS volumes you benchmark\. The benchmarking procedures are intended for use on volumes specially created for testing purposes, not production volumes\.
 
 ## Set Up Your Instance<a name="set_up_instance"></a>
 
@@ -103,7 +103,7 @@ To determine the optimal queue length for your workload on HDD\-backed volumes, 
 
 ## Disable C\-States<a name="cstates"></a>
 
-Before you run benchmarking, you should disable processor C\-states\. Temporarily idle cores in a supported CPU can enter a C\-state to save power\. When the core is called on to resume processing, a certain amount of time passes until the core is again fully operational\. This latency can interfere with processor benchmarking routines\. For more information about C\-states and which EC2 instance types support them, see [Processor State Control for Your EC2 Instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/processor_state_control.html)\.
+Before you run benchmarking, you should disable processor C\-states\. Temporarily idle cores in a supported CPU can enter a C\-state to save power\. When the core is called on to resume processing, a certain amount of time passes until the core is again fully operational\. This latency can interfere with processor benchmarking routines\. For more information about C\-states and which EC2 instance types support them, see [Processor State Control for Your EC2 Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/processor_state_control.html)\.
 
 ### Disabling C\-States on a Linux System<a name="linux-cstates"></a>
 
@@ -119,46 +119,6 @@ You can disable C\-states on Amazon Linux, RHEL, and CentOS as follows:
 
    ```
    $ for i in `seq 1 $((N-1))`; do cpupower idle-set -d $i; done
-   ```
-
-### Disabling C\-States on a Windows System<a name="windows-cstates"></a>
-
-You can diable C\-states on Windows as follows:
-
-1. In PowerShell, get the current active power scheme\.
-
-   ```
-   C:\> $current_scheme = powercfg /getactivescheme          
-   ```
-
-1. Get the power scheme GUID\.
-
-   ```
-   C:\> (Get-WmiObject -class Win32_PowerPlan -Namespace "root\cimv2\power" -Filter "ElementName='High performance'").InstanceID          
-   ```
-
-1. Get the power setting GUID\.
-
-   ```
-   C:\> (Get-WmiObject -class Win32_PowerSetting -Namespace "root\cimv2\power" -Filter "ElementName='Processor idle disable'").InstanceID                  
-   ```
-
-1. Get the power setting subgroup GUID\.
-
-   ```
-   C:\> (Get-WmiObject -class Win32_PowerSettingSubgroup -Namespace "root\cimv2\power" -Filter "ElementName='Processor power management'").InstanceID
-   ```
-
-1. Disable C\-states by setting the value of the index to 1\. A value of 0 indicates that C\-states are disabled\.
-
-   ```
-   C:\> powercfg /setacvalueindex <power_scheme_guid> <power_setting_subgroup_guid> <power_setting_guid> 1
-   ```
-
-1. Set active scheme to ensure the settings are saved\.
-
-   ```
-   C:\> powercfg /setactive <power_scheme_guid>
    ```
 
 ## Perform Benchmarking<a name="perform_benchmarking"></a>

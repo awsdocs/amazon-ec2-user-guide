@@ -4,8 +4,10 @@ You can share an AMI with specific AWS accounts without making the AMI public\. 
 
 AMIs are a regional resource\. Therefore, sharing an AMI makes it available in that region\. To make an AMI available in a different region, copy the AMI to the region and then share it\. For more information, see [Copying an AMI](CopyingAMIs.md)\.
 
+There is no limit to the number of AWS accounts with which an AMI can be shared\.
+
 **Note**  
-If you are sharing an AMI containing a snapshot of an encrypted volume, see [Sharing an Amazon EBS Snapshot](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-modifying-snapshot-permissions.html) for restrictions that apply\.
+If you are sharing an AMI containing a snapshot of an encrypted volume, see [Sharing an Amazon EBS Snapshot](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-modifying-snapshot-permissions.html) for restrictions that apply\.
 
 ## Sharing an AMI \(Console\)<a name="sharingamis-console"></a>
 
@@ -31,7 +33,7 @@ You do not need to share the Amazon EBS snapshots that an AMI references in orde
 
 ## Sharing an AMI \(AWS CLI\)<a name="sharingamis-aws-cli"></a>
 
-Use the [modify\-image\-attribute](http://docs.aws.amazon.com/cli/latest/reference/ec2/modify-image-attribute.html) command \(AWS CLI\) to share an AMI as shown in the following examples\.
+Use the [modify\-image\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-image-attribute.html) command \(AWS CLI\) to share an AMI as shown in the following examples\.
 
 **To grant explicit launch permissions**  
 The following command grants launch permissions for the specified AMI to the specified AWS account\.

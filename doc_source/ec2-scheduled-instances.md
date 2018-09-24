@@ -29,13 +29,13 @@ The following diagram illustrates the lifecycle of a Scheduled Instance\.
 
 ## Service\-Linked Roles for Scheduled Instances<a name="service-linked-roles-scheduled-instances"></a>
 
-Amazon EC2 creates a service\-linked role when you purchase a Scheduled Instance\. A service\-linked role includes all the permissions that Amazon EC2 requires to call other AWS services on your behalf\. For more information, see [Using Service\-Linked Roles](http://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html) in the *IAM User Guide*\.
+Amazon EC2 creates a service\-linked role when you purchase a Scheduled Instance\. A service\-linked role includes all the permissions that Amazon EC2 requires to call other AWS services on your behalf\. For more information, see [Using Service\-Linked Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html) in the *IAM User Guide*\.
 
 Amazon EC2 uses the service\-linked role named **AWSServiceRoleForEC2ScheduledInstances** to complete the following actions:
 + `ec2:TerminateInstances` \- Terminate Scheduled Instances after their schedules complete
 + `ec2:CreateTags` \- Add system tags to Scheduled Instances
 
-If you purchased Scheduled Instances before October 2017, when Amazon EC2 began supporting this service\-linked role, Amazon EC2 created the **AWSServiceRoleForEC2ScheduledInstances** role in your AWS account\. For more information, see [A New Role Appeared in My Account](http://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_roles.html#troubleshoot_roles_new-role-appeared) in the *IAM User Guide*\.
+If you purchased Scheduled Instances before October 2017, when Amazon EC2 began supporting this service\-linked role, Amazon EC2 created the **AWSServiceRoleForEC2ScheduledInstances** role in your AWS account\. For more information, see [A New Role Appeared in My Account](https://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_roles.html#troubleshoot_roles_new-role-appeared) in the *IAM User Guide*\.
 
 If you no longer need to use Scheduled Instances, we recommend that you delete the **AWSServiceRoleForEC2ScheduledInstances** role\. After this role is deleted from your account, Amazon EC2 will create the role again if you purchase Scheduled Instances\.
 
@@ -71,7 +71,7 @@ After you purchase a Scheduled Instance, you can't cancel, modify, or resell you
 1. On the **Review and purchase** page, verify your selections and edit them as needed\. When you are finished, choose **Purchase**\.
 
 **To purchase a Scheduled Instance using the AWS CLI**  
-Use the [describe\-scheduled\-instance\-availability](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-scheduled-instance-availability.html) command to list the available schedules that meet your needs, and then use the [purchase\-scheduled\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/purchase-scheduled-instances.html) command to complete the purchase\.
+Use the [describe\-scheduled\-instance\-availability](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-scheduled-instance-availability.html) command to list the available schedules that meet your needs, and then use the [purchase\-scheduled\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/purchase-scheduled-instances.html) command to complete the purchase\.
 
 ## Launching a Scheduled Instance<a name="launching-scheduled-instances"></a>
 
@@ -92,7 +92,7 @@ The launch specification must match the instance type, Availability Zone, networ
 1. On the **Review** page, verify the launch configuration and modify it as needed\. When you are finished, choose **Launch**\.
 
 **To launch a Scheduled Instance using the AWS CLI**  
-Use the [describe\-scheduled\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-scheduled-instances.html) command to list your Scheduled Instances, and then use the [run\-scheduled\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/run-scheduled-instances.html) command to launch each Scheduled Instance during its scheduled time periods\.
+Use the [describe\-scheduled\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-scheduled-instances.html) command to list your Scheduled Instances, and then use the [run\-scheduled\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-scheduled-instances.html) command to launch each Scheduled Instance during its scheduled time periods\.
 
 ## Scheduled Instance Limits<a name="scheduled-instances-limits"></a>
 

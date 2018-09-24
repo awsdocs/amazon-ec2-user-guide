@@ -56,7 +56,7 @@ You can't use the modification process to change the tenancy of a Reserved Insta
 
 ### Automatic Scaling of Dedicated Instances<a name="dedicated-instance-autoscaling"></a>
 
-You can use Amazon EC2 Auto Scaling to launch Dedicated Instances\. For more information, see [Launching Auto Scaling Instances in a VPC](http://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html) in the *Amazon EC2 Auto Scaling User Guide*\.
+You can use Amazon EC2 Auto Scaling to launch Dedicated Instances\. For more information, see [Launching Auto Scaling Instances in a VPC](https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 
 ### Automatic Recovery of Dedicated Instances<a name="dedicated-instance-recovery"></a>
 
@@ -106,8 +106,8 @@ When you create a VPC, you have the option of specifying its instance tenancy\. 
 1. For **Tenancy**, choose **Dedicated**\. Specify the CIDR block, and choose **Yes, Create**\.
 
 **To set the tenancy option when you create a VPC using the command line**
-+ [create\-vpc](http://docs.aws.amazon.com/cli/latest/reference/ec2/create-vpc.html) \(AWS CLI\)
-+ [New\-EC2Vpc](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Vpc.html) \(AWS Tools for Windows PowerShell\)
++ [create\-vpc](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-vpc.html) \(AWS CLI\)
++ [New\-EC2Vpc](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Vpc.html) \(AWS Tools for Windows PowerShell\)
 
 If you launch an instance into a VPC that has an instance tenancy of `dedicated`, your instance is automatically a Dedicated Instance, regardless of the tenancy of the instance\.
 
@@ -134,8 +134,8 @@ Ensure that you choose an instance type that's supported as a Dedicated Instance
 For more information about launching an instance with a tenancy of `host`, see [Launching Instances onto Dedicated Hosts](how-dedicated-hosts-work.md#launching-dedicated-hosts-instances)\.
 
 **To set the tenancy option for an instance during launch using the command line**
-+ [run\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) \(AWS CLI\)
-+ [New\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
++ [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) \(AWS CLI\)
++ [New\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
 
 ### Displaying Tenancy Information<a name="dedicated-gettingpgsinfo"></a>
 
@@ -162,20 +162,20 @@ For more information about launching an instance with a tenancy of `host`, see [
    + Select the instance\. The **Description** tab in the details pane displays information about the instance, including its tenancy\.
 
 **To describe the tenancy of your VPC using the command line**
-+ [describe\-vpcs](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-vpcs.html) \(AWS CLI\)
-+ [Get\-EC2Vpc](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Vpc.html) \(AWS Tools for Windows PowerShell\)
++ [describe\-vpcs](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-vpcs.html) \(AWS CLI\)
++ [Get\-EC2Vpc](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Vpc.html) \(AWS Tools for Windows PowerShell\)
 
 **To describe the tenancy of your instance using the command line**
-+ [describe\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) \(AWS CLI\)
-+ [Get\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
++ [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) \(AWS CLI\)
++ [Get\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
 
 **To describe the tenancy value of a Reserved Instance using the command line**
-+ [describe\-reserved\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances.html) \(AWS CLI\)
-+ [Get\-EC2ReservedInstance](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ReservedInstance.html) \(AWS Tools for Windows PowerShell\)
++ [describe\-reserved\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances.html) \(AWS CLI\)
++ [Get\-EC2ReservedInstance](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ReservedInstance.html) \(AWS Tools for Windows PowerShell\)
 
 **To describe the tenancy value of a Reserved Instance offering using the command line**
-+ [describe\-reserved\-instances\-offerings](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances-offerings.html) \(AWS CLI\)
-+ [Get\-EC2ReservedInstancesOffering](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ReservedInstancesOffering.html) \(AWS Tools for Windows PowerShell\)
++ [describe\-reserved\-instances\-offerings](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances-offerings.html) \(AWS CLI\)
++ [Get\-EC2ReservedInstancesOffering](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ReservedInstancesOffering.html) \(AWS Tools for Windows PowerShell\)
 
 ### Changing the Tenancy of an Instance<a name="dedicated-change-tenancy"></a>
 
@@ -194,8 +194,8 @@ Depending on your instance type and platform, you can change the tenancy of a st
 1. In the **Tenancy** list, choose whether to run your instance on dedicated hardware or on a Dedicated Host\. Choose **Save**\.
 
 **To modify the tenancy value of an instance using the command line**
-+ [modify\-instance\-placement](http://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-placement.html) \(AWS CLI\)
-+ [Edit\-EC2InstancePlacement](http://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2InstancePlacement.html) \(AWS Tools for Windows PowerShell\)
++ [modify\-instance\-placement](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-placement.html) \(AWS CLI\)
++ [Edit\-EC2InstancePlacement](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2InstancePlacement.html) \(AWS Tools for Windows PowerShell\)
 
 ### Changing the Tenancy of a VPC<a name="change-tenancy-vpc"></a>
 
@@ -206,7 +206,7 @@ You cannot change the instance tenancy attribute of a VPC to `dedicated`\.
 You can modify the instance tenancy attribute of a VPC using the AWS CLI, an AWS SDK, or the Amazon EC2 API only\.
 
 **To modify the instance tenancy attribute of a VPC using the AWS CLI**
-+ Use the [modify\-vpc\-tenancy](http://docs.aws.amazon.com/cli/latest/reference/ec2/modify-vpc-tenancy.html) command to specify the ID of the VPC and instance tenancy value\. The only supported value is `default`\.
++ Use the [modify\-vpc\-tenancy](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-vpc-tenancy.html) command to specify the ID of the VPC and instance tenancy value\. The only supported value is `default`\.
 
   ```
   aws ec2 modify-vpc-tenancy --vpc-id vpc-1a2b3c4d --instance-tenancy default

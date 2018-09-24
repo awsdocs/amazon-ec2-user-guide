@@ -27,7 +27,7 @@ You can get the data using either the CloudWatch API or the Amazon EC2 console\.
 
 ### Amazon EBS Metrics<a name="ebs-metrics"></a>
 
-Amazon Elastic Block Store \(Amazon EBS\) sends data points to CloudWatch for several metrics\. Amazon EBS General Purpose SSD \(gp2\), Throughput Optimized HDD \(st1\) , Cold HDD \(sc1\), and Magnetic \(standard\) volumes automatically send five\-minute metrics to CloudWatch\. Provisioned IOPS SSD \(io1\) volumes automatically send one\-minute metrics to CloudWatch\. Data is only reported to CloudWatch when the volume is attached to an instance\. For more information about how to monitor Amazon EBS, see [Monitoring the Status of Your Volumes](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-volume-status.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+Amazon Elastic Block Store \(Amazon EBS\) sends data points to CloudWatch for several metrics\. Amazon EBS General Purpose SSD \(gp2\), Throughput Optimized HDD \(st1\) , Cold HDD \(sc1\), and Magnetic \(standard\) volumes automatically send five\-minute metrics to CloudWatch\. Provisioned IOPS SSD \(io1\) volumes automatically send one\-minute metrics to CloudWatch\. Data is only reported to CloudWatch when the volume is attached to an instance\. For more information about how to monitor Amazon EBS, see [Monitoring the Status of Your Volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-volume-status.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 The `AWS/EBS` namespace includes the following metrics\.
 
@@ -60,10 +60,10 @@ After you create a volume, you can view the volume's monitoring graphs in the Am
 |  Write Throughput \(IOPS\)  |  `Sum(VolumeWriteOps) / Period`  | 
 |  Avg Queue Length \(Operations\)  |  `Avg(VolumeQueueLength)`  | 
 |  % Time Spent Idle  |  `Sum(VolumeIdleTime) / Period × 100`  | 
-|  Avg Read Size \(KiB/Operation\)  |  `Avg(VolumeReadBytes) / 1024`  For C5, C5d, `i3.metal`, M5, M5d, R5, R5d, T3, and z1d instances, the following formula derives Average Read Size using [CloudWatch Metric Math](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/using-metric-math.html): `(Sum(VolumeReadBytes) / Sum(VolumeReadOps)) / 1024` The `VolumeReadBytes` and `VolumeReadOps` metrics are available in the EBS CloudWatch console\.   | 
-|  Avg Write Size \(KiB/Operation\)  |  `Avg(VolumeWriteBytes) / 1024`  For C5, C5d, `i3.metal`, M5, M5d, R5, R5d, T3, and z1d instances, the following formula derives Average Write Size using [CloudWatch Metric Math](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/using-metric-math.html): `(Sum(VolumeWriteBytes) / Sum(VolumeWriteOps)) / 1024` The `VolumeWriteBytes` and `VolumeWriteOps` metrics are available in the EBS CloudWatch console\.   | 
-|  Avg Read Latency \(ms/Operation\)  |  `Avg(VolumeTotalReadTime) × 1000`  For C5, C5d, `i3.metal`, M5, M5d, R5, R5d, T3, and z1d instances, the following formula derives Average Read Latency using [CloudWatch Metric Math](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/using-metric-math.html): `(Sum(VolumeTotalReadTime) / Sum(VolumeReadOps)) × 1000` The `VolumeTotalReadTime` and `VolumeReadOps` metrics are available in the EBS CloudWatch console\.   | 
-|  Avg Write Latency \(ms/Operation\)  |  `Avg(VolumeTotalWriteTime) × 1000`  For C5, C5d, `i3.metal`, M5, M5d, R5, R5d, T3, and z1d instances, the following formula derives Average Write Latency using [CloudWatch Metric Math](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/using-metric-math.html): `(Sum(VolumeTotalWriteTime) / Sum(VolumeWriteOps)) * 1000` The `VolumeTotalWriteTime` and `VolumeWriteOps` metrics are available in the EBS CloudWatch console\.   | 
+|  Avg Read Size \(KiB/Operation\)  |  `Avg(VolumeReadBytes) / 1024`  For C5, C5d, `i3.metal`, M5, M5d, R5, R5d, T3, and z1d instances, the following formula derives Average Read Size using [CloudWatch Metric Math](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/using-metric-math.html): `(Sum(VolumeReadBytes) / Sum(VolumeReadOps)) / 1024` The `VolumeReadBytes` and `VolumeReadOps` metrics are available in the EBS CloudWatch console\.   | 
+|  Avg Write Size \(KiB/Operation\)  |  `Avg(VolumeWriteBytes) / 1024`  For C5, C5d, `i3.metal`, M5, M5d, R5, R5d, T3, and z1d instances, the following formula derives Average Write Size using [CloudWatch Metric Math](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/using-metric-math.html): `(Sum(VolumeWriteBytes) / Sum(VolumeWriteOps)) / 1024` The `VolumeWriteBytes` and `VolumeWriteOps` metrics are available in the EBS CloudWatch console\.   | 
+|  Avg Read Latency \(ms/Operation\)  |  `Avg(VolumeTotalReadTime) × 1000`  For C5, C5d, `i3.metal`, M5, M5d, R5, R5d, T3, and z1d instances, the following formula derives Average Read Latency using [CloudWatch Metric Math](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/using-metric-math.html): `(Sum(VolumeTotalReadTime) / Sum(VolumeReadOps)) × 1000` The `VolumeTotalReadTime` and `VolumeReadOps` metrics are available in the EBS CloudWatch console\.   | 
+|  Avg Write Latency \(ms/Operation\)  |  `Avg(VolumeTotalWriteTime) × 1000`  For C5, C5d, `i3.metal`, M5, M5d, R5, R5d, T3, and z1d instances, the following formula derives Average Write Latency using [CloudWatch Metric Math](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/using-metric-math.html): `(Sum(VolumeTotalWriteTime) / Sum(VolumeWriteOps)) * 1000` The `VolumeTotalWriteTime` and `VolumeWriteOps` metrics are available in the EBS CloudWatch console\.   | 
 
 For the average latency graphs and average size graphs, the average is calculated over the total number of operations \(read or write, whichever is applicable to the graph\) that completed during the period\. 
 
@@ -115,8 +115,8 @@ Alternatively, you can use the **Events** pane to view all events for your insta
 **To view volume status information with the command line**
 
 You can use one of the following commands to view the status of your Amazon EBS volumes\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [describe\-volume\-status](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-volume-status.html) \(AWS CLI\)
-+ [Get\-EC2VolumeStatus](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2VolumeStatus.html) \(AWS Tools for Windows PowerShell\)
++ [describe\-volume\-status](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-volume-status.html) \(AWS CLI\)
++ [Get\-EC2VolumeStatus](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2VolumeStatus.html) \(AWS Tools for Windows PowerShell\)
 
 ## Monitoring Volume Events<a name="monitoring-vol-events"></a>
 
@@ -167,8 +167,8 @@ If you have a volume where I/O is disabled, see [Working with an Impaired Volume
 **To view events for your volumes with the command line**
 
 You can use one of the following commands to view event information for your Amazon EBS volumes\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [describe\-volume\-status](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-volume-status.html) \(AWS CLI\)
-+ [Get\-EC2VolumeStatus](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2VolumeStatus.html) \(AWS Tools for Windows PowerShell\)
++ [describe\-volume\-status](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-volume-status.html) \(AWS CLI\)
++ [Get\-EC2VolumeStatus](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2VolumeStatus.html) \(AWS Tools for Windows PowerShell\)
 
 ## Working with an Impaired Volume<a name="work_volumes_impaired"></a>
 
@@ -211,8 +211,8 @@ The simplest option is to enable I/O and then perform a data consistency check o
 **To enable I/O for a volume with the command line**
 
 You can use one of the following commands to view event information for your Amazon EBS volumes\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [enable\-volume\-io](http://docs.aws.amazon.com/cli/latest/reference/ec2/enable-volume-io.html) \(AWS CLI\)
-+ [Enable\-EC2VolumeIO](http://docs.aws.amazon.com/powershell/latest/reference/items/Enable-EC2VolumeIO.html) \(AWS Tools for Windows PowerShell\)
++ [enable\-volume\-io](https://docs.aws.amazon.com/cli/latest/reference/ec2/enable-volume-io.html) \(AWS CLI\)
++ [Enable\-EC2VolumeIO](https://docs.aws.amazon.com/powershell/latest/reference/items/Enable-EC2VolumeIO.html) \(AWS Tools for Windows PowerShell\)
 
 ### Option 2: Perform a Consistency Check on the Volume Using Another Instance<a name="work_volumes_impaired_option2"></a>
 
@@ -259,8 +259,8 @@ This procedure may cause the loss of write I/Os that were suspended when volume 
 **To enable I/O for a volume with the command line**
 
 You can use one of the following commands to view event information for your Amazon EBS volumes\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [enable\-volume\-io](http://docs.aws.amazon.com/cli/latest/reference/ec2/enable-volume-io.html) \(AWS CLI\)
-+ [Enable\-EC2VolumeIO](http://docs.aws.amazon.com/powershell/latest/reference/items/Enable-EC2VolumeIO.html) \(AWS Tools for Windows PowerShell\)
++ [enable\-volume\-io](https://docs.aws.amazon.com/cli/latest/reference/ec2/enable-volume-io.html) \(AWS CLI\)
++ [Enable\-EC2VolumeIO](https://docs.aws.amazon.com/powershell/latest/reference/items/Enable-EC2VolumeIO.html) \(AWS Tools for Windows PowerShell\)
 
 ### Option 3: Delete the Volume If You No Longer Need It<a name="work_volumes_impaired_option3"></a>
 
@@ -310,9 +310,9 @@ Alternatively, instead of completing steps 4\-6 in the previous procedure, choos
 **To view or modify the AutoEnableIO attribute of a volume with the command line**
 
 You can use one of the following commands to view the `AutoEnableIO` attribute of your Amazon EBS volumes\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [describe\-volume\-attribute](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-volume-attribute.html) \(AWS CLI\)
-+ [Get\-EC2VolumeAttribute](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2VolumeAttribute.html) \(AWS Tools for Windows PowerShell\)
++ [describe\-volume\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-volume-attribute.html) \(AWS CLI\)
++ [Get\-EC2VolumeAttribute](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2VolumeAttribute.html) \(AWS Tools for Windows PowerShell\)
 
 To modify the `AutoEnableIO` attribute of a volume, you can use one of the commands below\.
-+ [modify\-volume\-attribute](http://docs.aws.amazon.com/cli/latest/reference/ec2/modify-volume-attribute.html) \(AWS CLI\)
-+ [Edit\-EC2VolumeAttribute](http://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2VolumeAttribute.html) \(AWS Tools for Windows PowerShell\)
++ [modify\-volume\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-volume-attribute.html) \(AWS CLI\)
++ [Edit\-EC2VolumeAttribute](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2VolumeAttribute.html) \(AWS Tools for Windows PowerShell\)

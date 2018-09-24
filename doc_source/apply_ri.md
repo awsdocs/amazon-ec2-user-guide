@@ -109,4 +109,4 @@ The Reserved Instance benefits are applied in the following way:
 + The discount of the `m4.xlarge` regional Reserved Instance owned by account A is applied to the `m4.xlarge` usage in account B\.
 + If the regional Reserved Instance owned by account A was first applied to the usage in account A, the zonal Reserved Instance owned by account C remains unused and usage in account B is charged at On\-Demand rates\.
 
-For more information, see [Reserved Instances in the Billing and Cost Management Report](http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-reports.html#enhanced-RI)\.
+For more information, see [Reserved Instances in the Billing and Cost Management Report](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-reports.html#enhanced-RI)\.

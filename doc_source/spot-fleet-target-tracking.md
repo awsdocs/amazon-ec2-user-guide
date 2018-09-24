@@ -39,6 +39,6 @@ Do not edit or delete the CloudWatch alarms that Spot Fleet manages for a target
 
 **To configure a target tracking policy using the AWS CLI**
 
-1. Register the Spot Fleet request as a scalable target using the [register\-scalable\-target](http://docs.aws.amazon.com/cli/latest/reference/application-autoscaling/register-scalable-target.html) command\.
+1. Register the Spot Fleet request as a scalable target using the [register\-scalable\-target](https://docs.aws.amazon.com/cli/latest/reference/application-autoscaling/register-scalable-target.html) command\.
 
-1. Create a scaling policy using the [put\-scaling\-policy](http://docs.aws.amazon.com/cli/latest/reference/application-autoscaling/put-scaling-policy.html) command\.
+1. Create a scaling policy using the [put\-scaling\-policy](https://docs.aws.amazon.com/cli/latest/reference/application-autoscaling/put-scaling-policy.html) command\.

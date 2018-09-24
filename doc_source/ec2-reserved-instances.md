@@ -42,7 +42,7 @@ If your account supports EC2\-Classic, you can purchase Reserved Instances for u
 
 If you have an EC2\-VPC\-only account, the listed platforms available do not include *Amazon VPC* in its name because all instances must be launched into a VPC\.
 
-For more information, see [Detecting Your Supported Platforms and Whether You Have a Default VPC](http://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html#detecting-platform)\. 
+For more information, see [Detecting Your Supported Platforms and Whether You Have a Default VPC](https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html#detecting-platform)\. 
 
 ## Reserved Instance Limits<a name="ri-limits"></a>
 
@@ -50,4 +50,8 @@ There is a limit to the number of Reserved Instances that you can purchase per m
 
 For example, in a region with three Availability Zones, the limit is 80 Reserved Instances: 20 regional Reserved Instances for the region plus 20 zonal Reserved Instances for each of the three Availability Zones \(20x3=60\)\.
 
-Reserved Instance limits do not affect On\-Demand Instance limits, and On\-Demand Instance limits do not affect Reserved Instance limits\. For example, if your On\-Demand Instance Limit is 20 and your Reserved Instance limit is 20, you can launch 40 instances—20 On\-Demand Instances and 20 Reserved Instances\. The Amazon EC2 console provides limit information\. For more information, see [Viewing Your Current Limits](ec2-resource-limits.md#view-limits)\.
+A regional Reserved Instance applies a discount to a running On\-Demand Instance\. The default On\-Demand Instance limit is 20\. You cannot exceed your running On\-Demand Instance limit by purchasing regional Reserved Instances\. For example, if you already have 20 running On\-Demand Instances, and you purchase 20 regional Reserved Instances, the 20 regional Reserved Instances are used to apply a discount to the 20 running On\-Demand Instances\. If you purchase more regional Reserved Instances, you will not be able to launch more instances because you have reached your On\-Demand Instance limit\.
+
+A zonal Reserved Instance—a Reserved Instance that is purchased for a specific Availability Zone— provides capacity reservation as well as a discount\. You *can exceed* your running On\-Demand Instance limit by purchasing zonal Reserved Instances\. For example, if you already have 20 running On\-Demand Instances, and you purchase 20 zonal Reserved Instances, you can launch a further 20 On\-Demand Instances that match the specifications of your zonal Reserved Instances, giving you a total of 40 running instances\.
+
+The Amazon EC2 console provides limit information\. For more information, see [Viewing Your Current Limits](ec2-resource-limits.md#view-limits)\.

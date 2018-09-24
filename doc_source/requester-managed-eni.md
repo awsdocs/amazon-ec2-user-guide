@@ -20,7 +20,7 @@ You can view the requester\-managed network interfaces that are in your account\
 
 **To view requester\-managed network interfaces using the command line**
 
-1. Use the [describe\-network\-interfaces](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-network-interfaces.html) AWS CLI command to describe the network interfaces in your account\. 
+1. Use the [describe\-network\-interfaces](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-network-interfaces.html) AWS CLI command to describe the network interfaces in your account\. 
 
    ```
    aws ec2 describe-network-interfaces
@@ -47,4 +47,4 @@ You can view the requester\-managed network interfaces that are in your account\
            }
    ```
 
-   Alternatively, use the [Get\-EC2NetworkInterface](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2NetworkInterface.html) Tools for Windows PowerShell command\.
+   Alternatively, use the [Get\-EC2NetworkInterface](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2NetworkInterface.html) Tools for Windows PowerShell command\.

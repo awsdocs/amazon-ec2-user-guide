@@ -79,7 +79,7 @@ The following table summarizes the theoretical and implemented storage capacitie
 
 ## Recommendations for Linux Volumes<a name="linux-volumes"></a>
 
-Linux AMIs require a GUID partition table \(GPT\) and GRUB 2 for boot volumes that are 2 TiB \(2,048 GiB\) or larger\. Many Linux AMIs today still use the MBR partitioning scheme, which only supports boot\-volume sizes up to 2 TiB\. If your instance does not boot with a boot volume that is 2 TiB or larger, the AMI you are using may be limited to a 2 TiB GiB boot volume size\. Non\-boot volumes do not have this limitation on Linux instances\. For recommendations for Windows volumes, see [Recommendations for Windows Volumes](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/volume_constraints.html) in the *Amazon EC2 User Guide for Windows Instances*\.
+Linux AMIs require a GUID partition table \(GPT\) and GRUB 2 for boot volumes that are 2 TiB \(2,048 GiB\) or larger\. Many Linux AMIs today still use the MBR partitioning scheme, which only supports boot\-volume sizes up to 2 TiB\. If your instance does not boot with a boot volume that is 2 TiB or larger, the AMI you are using may be limited to a 2 TiB GiB boot volume size\. Non\-boot volumes do not have this limitation on Linux instances\. For recommendations for Windows volumes, see [Recommendations for Windows Volumes](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/volume_constraints.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
 Before attempting to resize a boot volume beyond 2 TiB, you can determine whether the volume is using MBR or GPT partitioning by running the following command on your instance:
 

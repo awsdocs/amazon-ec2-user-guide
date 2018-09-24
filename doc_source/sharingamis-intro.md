@@ -31,13 +31,13 @@ You can add or remove account IDs from the list of accounts that have launch per
 
 **To make an AMI public**
 
-1. Use the [modify\-image\-attribute](http://docs.aws.amazon.com/cli/latest/reference/ec2/modify-image-attribute.html) command as follows to add the `all` group to the `launchPermission` list for the specified AMI\.
+1. Use the [modify\-image\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-image-attribute.html) command as follows to add the `all` group to the `launchPermission` list for the specified AMI\.
 
    ```
    aws ec2 modify-image-attribute --image-id ami-12345678 --launch-permission "Add=[{Group=all}]"
    ```
 
-1. To verify the launch permissions of the AMI, use the following [describe\-image\-attribute](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-image-attribute.html) command\.
+1. To verify the launch permissions of the AMI, use the following [describe\-image\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-image-attribute.html) command\.
 
    ```
    aws ec2 describe-image-attribute --image-id ami-12345678 --attribute launchPermission

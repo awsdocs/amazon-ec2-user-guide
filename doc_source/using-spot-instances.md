@@ -55,19 +55,19 @@ The first thing you need to do is get set up to use Amazon EC2\. It can also be 
 You can provision Spot Instances directly using Amazon EC2\. You can also provision Spot Instances using other services in AWS\. For more information, see the following documentation\.
 
 Amazon EC2 Auto Scaling and Spot Instances  
-You can create launch configurations with the maximum price that you are willing to pay, so that Amazon EC2 Auto Scaling can launch Spot Instances\. For more information, see [Launching Spot Instances in Your Auto Scaling Group](http://docs.aws.amazon.com/autoscaling/latest/userguide/asg-launch-spot-instances.html) in the *Amazon EC2 Auto Scaling User Guide*\.
+You can create launch configurations with the maximum price that you are willing to pay, so that Amazon EC2 Auto Scaling can launch Spot Instances\. For more information, see [Launching Spot Instances in Your Auto Scaling Group](https://docs.aws.amazon.com/autoscaling/latest/userguide/asg-launch-spot-instances.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 
 Amazon EMR and Spot Instances  
-There are scenarios where it can be useful to run Spot Instances in an Amazon EMR cluster\. For more information, see [Spot Instances](http://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-instance-purchasing-options.html#emr-spot-instances) and [When Should You Use Spot Instances](http://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-instances-guidelines.html#emr-plan-spot-instances) in the *Amazon EMR Management Guide*\.
+There are scenarios where it can be useful to run Spot Instances in an Amazon EMR cluster\. For more information, see [Spot Instances](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-instance-purchasing-options.html#emr-spot-instances) and [When Should You Use Spot Instances](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-instances-guidelines.html#emr-plan-spot-instances) in the *Amazon EMR Management Guide*\.
 
 AWS CloudFormation Templates  
 AWS CloudFormation enables you to create and manage a collection of AWS resources using a template in JSON format\. AWS CloudFormation templates can include the maximum price you are willing to pay\. For more information, see [EC2 Spot Instance Updates \- Auto Scaling and CloudFormation Integration](https://aws.amazon.com/blogs/aws/ec2-spot-instance-updates-auto-scaling-and-cloudformation-integration-new-sample-app-1/)\.
 
 AWS SDK for Java  
-You can use the Java programming language to manage your Spot Instances\. For more information, see [Tutorial: Amazon EC2 Spot Instances](http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/tutorial-spot-instances-java.html) and [Tutorial: Advanced Amazon EC2 Spot Request Management](http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/tutorial-spot-adv-java.html)\.
+You can use the Java programming language to manage your Spot Instances\. For more information, see [Tutorial: Amazon EC2 Spot Instances](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/tutorial-spot-instances-java.html) and [Tutorial: Advanced Amazon EC2 Spot Request Management](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/tutorial-spot-adv-java.html)\.
 
 AWS SDK for \.NET  
-You can use the \.NET programming environment to manage your Spot Instances\. For more information, see [Tutorial: Amazon EC2 Spot Instances](http://docs.aws.amazon.com/sdk-for-net/latest/developer-guide/tutorial-spot-instances-net.html)\.
+You can use the \.NET programming environment to manage your Spot Instances\. For more information, see [Tutorial: Amazon EC2 Spot Instances](https://docs.aws.amazon.com/sdk-for-net/latest/developer-guide/tutorial-spot-instances-net.html)\.
 
 ## Pricing<a name="spot-pricing"></a>
 
@@ -78,11 +78,11 @@ Spot Instances with a predefined duration use a fixed hourly price that remains 
 **View Prices**  
 To view the current \(updated every five minutes\) lowest Spot price per region and instance type, see the [Spot Instances Pricing](https://aws.amazon.com/ec2/spot/pricing/) page\.
 
-To view the Spot price history for the past three months, use the Amazon EC2 console or the [describe\-spot\-price\-history](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-spot-price-history.html) command \(AWS CLI\)\. For more information, see [Spot Instance Pricing History](using-spot-instances-history.md)\.
+To view the Spot price history for the past three months, use the Amazon EC2 console or the [describe\-spot\-price\-history](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-spot-price-history.html) command \(AWS CLI\)\. For more information, see [Spot Instance Pricing History](using-spot-instances-history.md)\.
 
 We independently map Availability Zones to codes for each AWS account\. Therefore, you can get different results for the same Availability Zone code \(for example, `us-west-2a`\) between different accounts\.
 
 **View Billing**  
-To review your bill, go to your [AWS Account Activity page](https://aws.amazon.com/account-activity)\. Your bill contains links to usage reports that provide details about your bill\. For more information, see [AWS Account Billing](http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/)\.
+To review your bill, go to your [AWS Account Activity page](https://aws.amazon.com/account-activity)\. Your bill contains links to usage reports that provide details about your bill\. For more information, see [AWS Account Billing](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/)\.
 
 If you have questions concerning AWS billing, accounts, and events, [contact AWS Support](https://aws.amazon.com/contact-us/)\.

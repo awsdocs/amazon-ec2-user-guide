@@ -56,7 +56,7 @@ PV\-GRUB understands standard `grub.conf` or `menu.lst` commands, which allows i
 
 Most modern paravirtual AMIs use a PV\-GRUB AKI by default \(including all of the paravirtual Linux AMIs available in the Amazon EC2 Launch Wizard Quick Start menu\), so there are no additional steps that you need to take to use a different kernel on your instance, provided that the kernel you want to use is compatible with your distribution\. The best way to run a custom kernel on your instance is to start with an AMI that is close to what you want and then to compile the custom kernel on your instance and modify the `menu.lst` file as shown in [Configuring GRUB for Paravirtual AMIs](#configuringGRUB) to boot with that kernel\.
 
-You can verify that the kernel image for an AMI is a PV\-GRUB AKI by executing the following [describe\-images](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command with the Amazon EC2 command line tools \(substituting the kernel image ID you want to check:
+You can verify that the kernel image for an AMI is a PV\-GRUB AKI by executing the following [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command with the Amazon EC2 command line tools \(substituting the kernel image ID you want to check:
 
 ```
 aws ec2 describe-images --filters Name=image-id,Values=aki-880531cd
@@ -123,7 +123,7 @@ Note that PV\-GRUB 1\.03 and earlier only check one of the first two locations i
 
 PV\-GRUB AKIs are available in all Amazon EC2 regions\. There are AKIs for both 32\-bit and 64\-bit architecture types\. Most modern AMIs use a PV\-GRUB AKI by default\.
 
-We recommend that you always use the latest version of the PV\-GRUB AKI, as not all versions of the PV\-GRUB AKI are compatible with all instance types\. Use the following [describe\-images](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command to get a list of the PV\-GRUB AKIs for the current region:
+We recommend that you always use the latest version of the PV\-GRUB AKI, as not all versions of the PV\-GRUB AKI are compatible with all instance types\. Use the following [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command to get a list of the PV\-GRUB AKIs for the current region:
 
 ```
 aws ec2 describe-images --owners amazon --filters Name=name,Values=pv-grub-*.gz

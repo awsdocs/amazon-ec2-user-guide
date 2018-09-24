@@ -229,7 +229,7 @@ Example Corp creates a file, `config.json`, with the following configuration for
 }
 ```
 
-Example Corp creates the EC2 Fleet using the following [create\-fleet](http://docs.aws.amazon.com/cli/latest/reference/ec2/create-fleet.html) command:
+Example Corp creates the EC2 Fleet using the following [create\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-fleet.html) command:
 
 ```
 aws ec2 create-fleet --cli-input-json file://config.json
@@ -286,7 +286,7 @@ ABC Online creates a file, `config.json`, with the following configuration for i
 }
 ```
 
-ABC Online creates the EC2 Fleet using the following [create\-fleet](http://docs.aws.amazon.com/cli/latest/reference/ec2/create-fleet.html) command:
+ABC Online creates the EC2 Fleet using the following [create\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-fleet.html) command:
 
 ```
 aws ec2 create-fleet --cli-input-json file://config.json

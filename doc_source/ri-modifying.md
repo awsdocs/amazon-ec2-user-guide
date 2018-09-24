@@ -12,7 +12,7 @@ You can also *merge* two or more Reserved Instances into a single Reserved Insta
 After modification, the benefit of the Reserved Instances is applied only to instances that match the new parameters\. For example, if you change the Availability Zone of a reservation, the capacity reservation and pricing benefits are automatically applied to instance usage in the new Availability Zone\. Instances that no longer match the new parameters are charged at the On\-Demand rate unless your account has other applicable reservations\. 
 
 If your modification request succeeds:
-+ The modified reservation becomes effective immediately and the pricing benefit is applied to the new instances beginning at the hour of the modification request\. For example, if you successfully modify your reservations at 9:15PM, the pricing benefit transfers to your new instance at 9:00PM\. \(You can get the `effective date` of the modified Reserved Instances by using the [DescribeReservedInstances](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeReservedInstances.html) API action or the [describe\-reserved\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances.html) command \(AWS CLI\)\.
++ The modified reservation becomes effective immediately and the pricing benefit is applied to the new instances beginning at the hour of the modification request\. For example, if you successfully modify your reservations at 9:15PM, the pricing benefit transfers to your new instance at 9:00PM\. \(You can get the `effective date` of the modified Reserved Instances by using the [DescribeReservedInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeReservedInstances.html) API action or the [describe\-reserved\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances.html) command \(AWS CLI\)\.
 + The original reservation is retired\. Its end date is the start date of the new reservation, and the end date of the new reservation is the same as the end date of the original Reserved Instance\. If you modify a three\-year reservation that had 16 months left in its term, the resulting modified reservation is a 16\-month reservation with the same end date as the original one\.
 + The modified reservation lists a $0 fixed price and not the fixed price of the original reservation\.
 
@@ -148,14 +148,14 @@ You can determine the status of your modification request by looking at the **St
 ### Amazon EC2 API or Command Line Tool<a name="ri-modification-process-CLI"></a>
 
 To modify your Reserved Instances, you can use one of the following:
-+ [modify\-reserved\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/modify-reserved-instances.html) \(AWS CLI\)
-+ [Edit\-EC2ReservedInstance](http://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2ReservedInstance.html) \(AWS Tools for Windows PowerShell\)
-+ [ModifyReservedInstances](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-ModifyReservedInstances.html) \(Amazon EC2 API\)
++ [modify\-reserved\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-reserved-instances.html) \(AWS CLI\)
++ [Edit\-EC2ReservedInstance](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2ReservedInstance.html) \(AWS Tools for Windows PowerShell\)
++ [ModifyReservedInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-ModifyReservedInstances.html) \(Amazon EC2 API\)
 
 To get the status of your modification, use one of the following:
-+ [describe\-reserved\-instances\-modifications](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances-modifications.html) \(AWS CLI\)
-+  [Get\-EC2ReservedInstancesModifications](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ReservedInstancesModifications.html) \(AWS Tools for Windows PowerShell\)
-+ [DescribeReservedInstancesModifications](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeReservedInstancesModifications.html) \(Amazon EC2 API\)
++ [describe\-reserved\-instances\-modifications](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances-modifications.html) \(AWS CLI\)
++  [Get\-EC2ReservedInstancesModifications](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ReservedInstancesModifications.html) \(AWS Tools for Windows PowerShell\)
++ [DescribeReservedInstancesModifications](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeReservedInstancesModifications.html) \(Amazon EC2 API\)
 
 The state returned shows your request as `processing`, `fulfilled`, or `failed`\.
 

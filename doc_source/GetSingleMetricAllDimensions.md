@@ -21,7 +21,7 @@ This technique for retrieving all dimensions across an AWS namespace does not wo
 1. To change the statistic or the period for the metric, choose the **Graphed metrics** tab\. Choose the column heading or an individual value, and then choose a different value\.
 
 **To get average CPU utilization across your instances**  
-Use the [get\-metric\-statistics](http://docs.aws.amazon.com/cli/latest/reference/cloudwatch/get-metric-statistics.html) command as follows to get the average of the **CPUUtilization** metric across your instances\.
+Use the [get\-metric\-statistics](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/get-metric-statistics.html) command as follows to get the average of the **CPUUtilization** metric across your instances\.
 
 ```
 aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtilization \ 

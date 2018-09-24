@@ -132,4 +132,4 @@ With CloudWatch Events, you can create a notification rule for volume modificati
    }
    ```
 
-You can use your rule to generate a notification message with [Amazon SNS](http://docs.aws.amazon.com/sns/latest/dg/) or to invoke a [Lambda function](http://docs.aws.amazon.com/lambda/latest/dg/) in response to matching events\.
+You can use your rule to generate a notification message with [Amazon SNS](https://docs.aws.amazon.com/sns/latest/dg/) or to invoke a [Lambda function](https://docs.aws.amazon.com/lambda/latest/dg/) in response to matching events\.

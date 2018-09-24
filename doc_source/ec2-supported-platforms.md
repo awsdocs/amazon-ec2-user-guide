@@ -8,7 +8,7 @@ Amazon EC2 supports the following platforms\. Your AWS account is capable of lau
 |  EC2\-Classic  |  The original release of Amazon EC2  |  Your instances run in a single, flat network that you share with other customers\.  | 
 |  EC2\-VPC  |  The original release of Amazon VPC  |  Your instances run in a virtual private cloud \(VPC\) that's logically isolated to your AWS account\.  | 
 
-For more information about the availability of either platform in your account, see [Availability](http://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html#default-vpc-availability) in the *Amazon VPC User Guide*\. For more information about the differences between EC2\-Classic and EC2\-VPC, see [Differences Between EC2\-Classic and EC2\-VPC](using-vpc.md#differences-ec2-classic-vpc)\.
+For more information about the availability of either platform in your account, see [Availability](https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html#default-vpc-availability) in the *Amazon VPC User Guide*\. For more information about the differences between EC2\-Classic and EC2\-VPC, see [Differences Between EC2\-Classic and EC2\-VPC](using-vpc.md#differences-ec2-classic-vpc)\.
 
 ## Supported Platforms in the Amazon EC2 Console<a name="console-updates"></a>
 
@@ -38,4 +38,4 @@ If your account supports EC2\-Classic and EC2\-VPC, you can launch into EC2\-Cla
 
 ### Related Topic<a name="related-topic"></a>
 
-For more information about how you can tell which platforms you can launch instances into, see [Detecting Your Supported Platforms](http://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html#detecting-platform) in the *Amazon VPC User Guide*\.
+For more information about how you can tell which platforms you can launch instances into, see [Detecting Your Supported Platforms](https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html#detecting-platform) in the *Amazon VPC User Guide*\.

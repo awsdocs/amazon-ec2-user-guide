@@ -12,6 +12,6 @@ The following documentation can help you troubleshoot problems that you might ha
 + [Getting Console Output and Rebooting Instances](instance-console.md)
 + [Booting from the Wrong Volume](instance-booting-from-wrong-volume.md)
 
-For additional help with Windows instances, see [Troubleshooting Windows Instances](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/troubleshooting-windows-instances.html) in the *Amazon EC2 User Guide for Windows Instances*\.
+For additional help with Windows instances, see [Troubleshooting Windows Instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/troubleshooting-windows-instances.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
 You can also search for answers and post questions on the [Amazon EC2 forum](https://forums.aws.amazon.com/forum.jspa?forumID=30)\. 

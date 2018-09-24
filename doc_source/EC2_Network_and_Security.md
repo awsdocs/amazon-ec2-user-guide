@@ -14,7 +14,7 @@ Amazon EC2 provides the following network and security features\.
 + [Network Maximum Transmission Unit \(MTU\) for Your EC2 Instance](network_mtu.md)
 + [Enhanced Networking on Linux](enhanced-networking.md)
 
-If you access Amazon EC2 using the command line tools or an API, you'll need your access key ID and secret access key\. For more information, see [How Do I Get Security Credentials?](http://docs.aws.amazon.com/general/latest/gr/getting-aws-sec-creds.html) in the *Amazon Web Services General Reference*\.
+If you access Amazon EC2 using the command line tools or an API, you'll need your access key ID and secret access key\. For more information, see [How Do I Get Security Credentials?](https://docs.aws.amazon.com/general/latest/gr/getting-aws-sec-creds.html) in the *Amazon Web Services General Reference*\.
 
 You can launch an instance into one of two platforms: EC2\-Classic or EC2\-VPC\. An instance that's launched into EC2\-Classic or a default VPC is automatically assigned a public IP address\. An instance that's launched into a nondefault VPC can be assigned a public IP address on launch\. For more information about EC2\-Classic and EC2\-VPC, see [Supported Platforms](ec2-supported-platforms.md)\.
 

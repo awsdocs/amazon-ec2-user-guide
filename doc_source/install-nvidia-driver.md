@@ -14,7 +14,7 @@ The Amazon\-provided CUDA toolkit package has dependencies on the NVIDIA drivers
 
 ## Downloading the NVIDIA GRID Driver \(G3\)<a name="obtain-nvidia-GRID-driver-linux"></a>
 
-For G3 instances, you can download the NVIDIA GRID driver from Amazon S3 using the AWS CLI or SDKs\. To install the AWS CLI, see [Installing the AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/installing.html) in the *AWS Command Line Interface User Guide*\.
+For G3 instances, you can download the NVIDIA GRID driver from Amazon S3 using the AWS CLI or SDKs\. To install the AWS CLI, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) in the *AWS Command Line Interface User Guide*\.
 
 **Important**  
 This download is available to AWS customers only\. By downloading, you agree to use the downloaded software only to develop AMIs for use with the NVIDIA Tesla M60 hardware\. Upon installation of the software, you are bound by the terms of the [NVIDIA GRID Cloud End User License Agreement](http://aws-nvidia-license-agreement.s3.amazonaws.com/NvidiaGridAWSUserLicenseAgreement.DOCX)\.
@@ -31,7 +31,7 @@ Multiple versions of the NVIDIA GRID driver are stored in this bucket\. You can 
 aws s3 ls --recursive s3://ec2-linux-nvidia-drivers/
 ```
 
-If you receive an `Unable to locate credentials` error, the AWS CLI on the instance is not configured to use your AWS credentials\. To configure the AWS CLI to use your AWS credentials, see [Quick Configuration](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html#cli-quick-configuration) in the *AWS Command Line Interface User Guide*\.
+If you receive an `Unable to locate credentials` error, the AWS CLI on the instance is not configured to use your AWS credentials\. To configure the AWS CLI to use your AWS credentials, see [Quick Configuration](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html#cli-quick-configuration) in the *AWS Command Line Interface User Guide*\.
 
 ## Downloading a Public NVIDIA Driver \(G2, P2, P3\)<a name="obtain-nvidia-driver-linux"></a>
 
@@ -133,7 +133,7 @@ For more information about installing and configuring the driver, choose the **A
      ```
      wget http://us.download.nvidia.com/XFree86/Linux-x86_64/xxx.xxx/NVIDIA-Linux-x86_64-xxx.xxx.run
      ```
-   + For G3 instances, you can download the driver from Amazon S3 using the AWS CLI or SDKs\. To install the AWS CLI, see [Installing the AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/installing.html) in the *AWS Command Line Interface User Guide*\. Use the following AWS CLI command to download the latest driver:
+   + For G3 instances, you can download the driver from Amazon S3 using the AWS CLI or SDKs\. To install the AWS CLI, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) in the *AWS Command Line Interface User Guide*\. Use the following AWS CLI command to download the latest driver:
 
      ```
      aws s3 cp --recursive s3://ec2-linux-nvidia-drivers/latest/ .

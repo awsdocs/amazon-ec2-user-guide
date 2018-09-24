@@ -31,7 +31,7 @@ The `AWS/EC2` namespace includes the following instance metrics\.
 | `NetworkPacketsIn` |  The number of packets received on all network interfaces by the instance\. This metric identifies the volume of incoming traffic in terms of the number of packets on a single instance\. This metric is available for basic monitoring only\. Units: Count Statistics: Minimum, Maximum, Average  | 
 | `NetworkPacketsOut` |  The number of packets sent out on all network interfaces by the instance\. This metric identifies the volume of outgoing traffic in terms of the number of packets on a single instance\. This metric is available for basic monitoring only\. Units: Count Statistics: Minimum, Maximum, Average  | 
 
-The `AWS/EC2` namespace includes the following status checks metrics\. By default, status check metrics are available at a 1\-minute frequency at no charge\. For a newly\-launched instance, status check metric data is only available after the instance has completed the initialization state \(within a few minutes of the instance entering the running state\)\. For more information about EC2 status checks, see [Status Checks For Your Instances](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-system-instance-status-check.html)\.
+The `AWS/EC2` namespace includes the following status checks metrics\. By default, status check metrics are available at a 1\-minute frequency at no charge\. For a newly\-launched instance, status check metric data is only available after the instance has completed the initialization state \(within a few minutes of the instance entering the running state\)\. For more information about EC2 status checks, see [Status Checks For Your Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-system-instance-status-check.html)\.
 
 
 | Metric | Description | 
@@ -87,7 +87,7 @@ Metrics are grouped first by namespace, and then by the various dimension combin
 
 ## Listing Metrics Using the AWS CLI<a name="list-ec2-metrics-cli"></a>
 
-Use the [list\-metrics](http://docs.aws.amazon.com/cli/latest/reference/cloudwatch/list-metrics.html) command to list the CloudWatch metrics for your instances\.
+Use the [list\-metrics](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/list-metrics.html) command to list the CloudWatch metrics for your instances\.
 
 **To list all the available metrics for Amazon EC2**  
 The following example specifies the `AWS/EC2` namespace to view all the metrics for Amazon EC2\.

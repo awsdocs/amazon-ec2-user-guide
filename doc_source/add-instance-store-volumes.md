@@ -39,8 +39,8 @@ For M3 instances, specify instance store volumes in the block device mapping of 
 **To add instance store volumes to an AMI using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [create\-image](http://docs.aws.amazon.com/cli/latest/reference/ec2/create-image.html) or [register\-image](http://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) \(AWS CLI\)
-+ [New\-EC2Image](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Image.html) and [Register\-EC2Image](http://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2Image.html) \(AWS Tools for Windows PowerShell\)
++ [create\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-image.html) or [register\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) \(AWS CLI\)
++ [New\-EC2Image](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Image.html) and [Register\-EC2Image](https://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2Image.html) \(AWS Tools for Windows PowerShell\)
 
 ## Adding Instance Store Volumes to an Instance<a name="adding-instance-storage-instance"></a>
 
@@ -69,8 +69,8 @@ For HS1 instances, no matter how many instance store volumes you specify in the 
 **To update the block device mapping for an instance using the command line**
 
 You can use one of the following options commands with the corresponding command\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ `--block-device-mappings` with [run\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) \(AWS CLI\)
-+ `-BlockDeviceMapping` with [New\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
++ `--block-device-mappings` with [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) \(AWS CLI\)
++ `-BlockDeviceMapping` with [New\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
 
 ## Making Instance Store Volumes Available on Your Instance<a name="making-instance-stores-available-on-your-instances"></a>
 
@@ -80,7 +80,7 @@ Many instance store volumes are pre\-formatted with the ext3 file system\. SSD\-
 
 You can confirm that the instance store devices are available from within the instance itself using instance metadata\. For more information, see [Viewing the Instance Block Device Mapping for Instance Store Volumes](block-device-mapping-concepts.md#bdm-instance-metadata)\.
 
-For Windows instances, you can also view the instance store volumes using Windows Disk Management\. For more information, see [Listing the Disks Using Windows Disk Management](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-windows-volumes.html#windows-disks)\.
+For Windows instances, you can also view the instance store volumes using Windows Disk Management\. For more information, see [Listing the Disks Using Windows Disk Management](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-windows-volumes.html#windows-disks)\.
 
 For Linux instances, you can view and mount the instance store volumes as described in the following procedure\.
 

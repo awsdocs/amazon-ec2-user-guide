@@ -1,6 +1,6 @@
 # Resource IDs<a name="resource-ids"></a>
 
-When resources are created, we assign each resource a unique resource ID\. You can use resource IDs to find your resources in the Amazon EC2 console\. If you are using a command line tool or the Amazon EC2 API to work with Amazon EC2, resource IDs are required for certain commands\. For example, if you are using the [stop\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) AWS CLI command to stop an instance, you must specify the instance ID in the command\.
+When resources are created, we assign each resource a unique resource ID\. You can use resource IDs to find your resources in the Amazon EC2 console\. If you are using a command line tool or the Amazon EC2 API to work with Amazon EC2, resource IDs are required for certain commands\. For example, if you are using the [stop\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) AWS CLI command to stop an instance, you must specify the instance ID in the command\.
 
 **Resource ID Length**  
 A resource ID takes the form of a resource identifier \(such as `snap` for a snapshot\) followed by a hyphen and a unique combination of letters and numbers\. Starting in January 2016, we're gradually introducing longer length IDs for Amazon EC2 and Amazon EBS resource types\. The length of the alphanumeric character combination was in an 8\-character format; the new IDs are in a 17\-character format, for example, `i-1234567890abcdef0` for an instance ID\.
@@ -51,12 +51,12 @@ You can use the console and command line tools to view the resource types that s
 **To view your longer ID settings using the command line**
 
 Use one of the following commands:
-+ [describe\-id\-format](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-id-format.html) \(AWS CLI\)
++ [describe\-id\-format](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-id-format.html) \(AWS CLI\)
 
   ```
   aws ec2 describe-id-format  --region region
   ```
-+ [Get\-EC2IdFormat](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2IdFormat.html) \(AWS Tools for Windows PowerShell\)
++ [Get\-EC2IdFormat](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2IdFormat.html) \(AWS Tools for Windows PowerShell\)
 
   ```
   Get-EC2IdFormat -Region region
@@ -65,26 +65,26 @@ Use one of the following commands:
 **To view longer ID settings for a specific IAM user or IAM role using the command line**
 
 Use one of the following commands and specify the ARN of an IAM user, IAM role, or root account user in the request\.
-+ [describe\-identity\-id\-format](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-identity-id-format.html) \(AWS CLI\)
++ [describe\-identity\-id\-format](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-identity-id-format.html) \(AWS CLI\)
 
   ```
   aws ec2 describe-identity-id-format --principal-arn arn-of-iam-principal --region region
   ```
-+ [Get\-EC2IdentityIdFormat](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2IdentityIdFormat.html) \(AWS Tools for Windows PowerShell\)
++ [Get\-EC2IdentityIdFormat](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2IdentityIdFormat.html) \(AWS Tools for Windows PowerShell\)
 
   ```
   Get-EC2IdentityIdFormat -PrincipalArn arn-of-iam-principal -Region region
   ```
 
 **To view the aggregated longer ID settings for a specific region using the command line**  
-Use the [describe\-aggregate\-id\-format](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-aggregate-id-format.html) AWS CLI command to view the aggregated longer ID setting for the entire region, as well as the aggregated longer ID setting of all ARNs for each resource type\. This command is useful for performing a quick audit to determine whether a specific region is fully opted in for longer IDs\.
+Use the [describe\-aggregate\-id\-format](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-aggregate-id-format.html) AWS CLI command to view the aggregated longer ID setting for the entire region, as well as the aggregated longer ID setting of all ARNs for each resource type\. This command is useful for performing a quick audit to determine whether a specific region is fully opted in for longer IDs\.
 
 ```
 aws ec2 describe-aggregate-id-format --region region
 ```
 
 **To identify users who have explicitly defined custom longer ID settings**  
-Use the [describe\-principal\-id\-format](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-principal-id-format.html) AWS CLI command to view the longer ID format settings for the root user and all IAM roles and IAM users that have explicitly specified a longer ID preference\. This command is useful for identifying IAM users and IAM roles that have overridden the default longer ID settings\.
+Use the [describe\-principal\-id\-format](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-principal-id-format.html) AWS CLI command to view the longer ID format settings for the root user and all IAM roles and IAM users that have explicitly specified a longer ID preference\. This command is useful for identifying IAM users and IAM roles that have overridden the default longer ID settings\.
 
 ```
 aws ec2 describe-principal-id-format --region region
@@ -117,7 +117,7 @@ IAM users and IAM roles need the `ec2:ModifyIdentityIdFormat` permission to perf
 Use one of the following commands:
 **Note**  
 If you’re using these commands as the root user, then changes apply to the entire AWS account, unless an IAM user or role explicitly overrides these settings for themselves\.
-+ [modify\-id\-format](http://docs.aws.amazon.com/cli/latest/reference/ec2/modify-id-format.html) \(AWS CLI\)
++ [modify\-id\-format](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-id-format.html) \(AWS CLI\)
 
   ```
   aws ec2 modify-id-format --resource resource_type --use-long-ids
@@ -130,7 +130,7 @@ If you’re using these commands as the root user, then changes apply to the ent
   ```
 **Note**  
 To disable longer IDs, replace the `use-long-ids` parameter with `no-use-long-ids`\.
-+ [Edit\-EC2IdFormat](http://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2IdFormat.html) \(AWS Tools for Windows PowerShell\)
++ [Edit\-EC2IdFormat](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2IdFormat.html) \(AWS Tools for Windows PowerShell\)
 
   ```
   Edit-EC2IdFormat -Resource resource_type -UseLongId boolean
@@ -145,7 +145,7 @@ To disable longer IDs, replace the `use-long-ids` parameter with `no-use-long-id
 **To modify longer ID settings for a specific IAM user or IAM role using the command line**
 
 Use one of the following commands and specify the ARN of an IAM user, IAM role, or root user in the request\.
-+ [modify\-identity\-id\-format](http://docs.aws.amazon.com/cli/latest/reference/ec2/modify-identity-id-format.html) \(AWS CLI\)
++ [modify\-identity\-id\-format](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-identity-id-format.html) \(AWS CLI\)
 
   ```
   aws ec2 modify-identity-id-format --principal-arn arn-of-iam-principal --resource resource_type --use-long-ids
@@ -158,7 +158,7 @@ Use one of the following commands and specify the ARN of an IAM user, IAM role, 
   ```
 **Note**  
 To disable longer IDs, replace the `use-long-ids` parameter with `no-use-long-ids`\.
-+ [Edit\-EC2IdentityIdFormat](http://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2IdentityIdFormat.html) \(AWS Tools for Windows PowerShell\)
++ [Edit\-EC2IdentityIdFormat](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2IdentityIdFormat.html) \(AWS Tools for Windows PowerShell\)
 
   ```
   Edit-EC2IdentityIdFormat -PrincipalArn arn-of-iam-principal -Resource resource_type -UseLongId boolean

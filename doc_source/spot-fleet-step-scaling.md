@@ -81,8 +81,8 @@ Note that when a Spot Fleet terminates an instance because the target capacity w
 
 **To configure step scaling policies for your Spot Fleet using the AWS CLI**
 
-1. Register the Spot Fleet request as a scalable target using the [register\-scalable\-target](http://docs.aws.amazon.com/cli/latest/reference/application-autoscaling/register-scalable-target.html) command\.
+1. Register the Spot Fleet request as a scalable target using the [register\-scalable\-target](https://docs.aws.amazon.com/cli/latest/reference/application-autoscaling/register-scalable-target.html) command\.
 
-1. Create a scaling policy using the [put\-scaling\-policy](http://docs.aws.amazon.com/cli/latest/reference/application-autoscaling/put-scaling-policy.html) command\.
+1. Create a scaling policy using the [put\-scaling\-policy](https://docs.aws.amazon.com/cli/latest/reference/application-autoscaling/put-scaling-policy.html) command\.
 
-1. Create an alarm that triggers the scaling policy using the [put\-metric\-alarm](http://docs.aws.amazon.com/cli/latest/reference/cloudwatch/put-metric-alarm.html) command\.
+1. Create an alarm that triggers the scaling policy using the [put\-metric\-alarm](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/put-metric-alarm.html) command\.

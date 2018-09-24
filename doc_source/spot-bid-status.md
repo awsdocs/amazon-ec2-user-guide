@@ -114,8 +114,8 @@ You can get request status information using the AWS Management Console or a com
 **To get request status information using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [describe\-spot\-instance\-requests](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-spot-instance-requests.html) \(AWS CLI\)
-+ [Get\-EC2SpotInstanceRequest](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2SpotInstanceRequest.html) \(AWS Tools for Windows PowerShell\)
++ [describe\-spot\-instance\-requests](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-spot-instance-requests.html) \(AWS CLI\)
++ [Get\-EC2SpotInstanceRequest](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2SpotInstanceRequest.html) \(AWS Tools for Windows PowerShell\)
 
 ## Spot Request Status Codes<a name="spot-instance-bid-status-understand"></a>
 
@@ -181,7 +181,7 @@ Your instance was terminated because there is no longer enough Spot capacity ava
 Amazon EC2 cannot launch all the instances that you requested at the same time\. All instances in a launch group are started and terminated together\.
 
 `limit-exceeded`  
-The limit on the number of EBS volumes or total volume storage was exceeded\. For more information about these limits and how to request an increase, see [Amazon EBS Limits](http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_ebs) in the *Amazon Web Services General Reference*\.
+The limit on the number of EBS volumes or total volume storage was exceeded\. For more information about these limits and how to request an increase, see [Amazon EBS Limits](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_ebs) in the *Amazon Web Services General Reference*\.
 
 `marked-for-stop`  
 The Spot Instance is marked for stopping\.

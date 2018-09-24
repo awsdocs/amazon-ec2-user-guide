@@ -17,7 +17,7 @@ There is no charge for creating a placement group\.
 
 ## Cluster Placement Groups<a name="placement-groups-cluster"></a>
 
-A cluster placement group is a logical grouping of instances within a single Availability Zone\.
+A cluster placement group is a logical grouping of instances within a single Availability Zone\. A placement group can span peered VPCs in the same region\.
 
 Cluster placement groups are recommended for applications that benefit from low network latency, high network throughput, or both, and if the majority of the network traffic is between the instances in the group\. To provide the lowest latency and the highest packet\-per\-second network performance for your placement group, choose an instance type that supports enhanced networking\. For more information, see [Enhanced Networking](enhanced-networking.md)\.
 
@@ -81,8 +81,8 @@ You can create a placement group using the Amazon EC2 console or the command lin
 1. Choose **Create**\.
 
 **To create a placement group using the command line**
-+ [create\-placement\-group](http://docs.aws.amazon.com/cli/latest/reference/ec2/create-placement-group.html) \(AWS CLI\)
-+ [New\-EC2PlacementGroup](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2PlacementGroup.html) \(AWS Tools for Windows PowerShell\)
++ [create\-placement\-group](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-placement-group.html) \(AWS CLI\)
++ [New\-EC2PlacementGroup](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2PlacementGroup.html) \(AWS Tools for Windows PowerShell\)
 
 ## Launching Instances in a Placement Group<a name="launch-instance-placement-group"></a>
 
@@ -103,12 +103,12 @@ You can create an AMI specifically for the instances to be launched in a placeme
 **To launch instances into a placement group using the command line**
 
 1. Create an AMI for your instances using one of the following commands:
-   + [create\-image](http://docs.aws.amazon.com/cli/latest/reference/ec2/create-image.html) \(AWS CLI\)
-   + [New\-EC2Image](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Image.html) \(AWS Tools for Windows PowerShell\)
+   + [create\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-image.html) \(AWS CLI\)
+   + [New\-EC2Image](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Image.html) \(AWS Tools for Windows PowerShell\)
 
 1. Launch instances into your placement group using one of the following options:
-   + `--placement` with [run\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) \(AWS CLI\)
-   + `-PlacementGroup` with [New\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
+   + `--placement` with [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) \(AWS CLI\)
+   + `-PlacementGroup` with [New\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
 
 ## Changing the Placement Group for an Instance<a name="change-instance-placement-group"></a>
 
@@ -119,38 +119,38 @@ You can change the placement group for an instance using the command line or an 
 **To move an instance to a placement group using the command line**
 
 1. Stop the instance using one of the following commands:
-   + [stop\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) \(AWS CLI\)
-   + [Stop\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/Stop-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
+   + [stop\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) \(AWS CLI\)
+   + [Stop\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Stop-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
 
-1. Use the [modify\-instance\-placement](http://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-placement.html) command \(AWS CLI\) and specify the name of the placement group to which to move the instance\.
+1. Use the [modify\-instance\-placement](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-placement.html) command \(AWS CLI\) and specify the name of the placement group to which to move the instance\.
 
    ```
    aws ec2 modify-instance-placement --instance-id i-0aa51192b00939a40 --group-name MySpreadGroup
    ```
 
-   Alternatively, use the [Edit\-EC2InstancePlacement](http://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2InstancePlacement.html) command \(AWS Tools for Windows PowerShell\)\.
+   Alternatively, use the [Edit\-EC2InstancePlacement](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2InstancePlacement.html) command \(AWS Tools for Windows PowerShell\)\.
 
 1. Restart the instance using one of the following commands:
-   + [start\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/start-instances.html) \(AWS CLI\)
-   + [Start\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/Start-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
+   + [start\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/start-instances.html) \(AWS CLI\)
+   + [Start\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Start-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
 
 **To remove an instance from a placement group using the command line**
 
 1. Stop the instance using one of the following commands:
-   + [stop\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) \(AWS CLI\)
-   + [Stop\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/Stop-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
+   + [stop\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) \(AWS CLI\)
+   + [Stop\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Stop-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
 
-1. Use the [modify\-instance\-placement](http://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-placement.html) command \(AWS CLI\) and specify an empty string for the group name\.
+1. Use the [modify\-instance\-placement](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-placement.html) command \(AWS CLI\) and specify an empty string for the group name\.
 
    ```
    aws ec2 modify-instance-placement --instance-id i-0aa51192b00939a40 --group-name ""
    ```
 
-   Alternatively, use the [Edit\-EC2InstancePlacement](http://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2InstancePlacement.html) command \(AWS Tools for Windows PowerShell\)\.
+   Alternatively, use the [Edit\-EC2InstancePlacement](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2InstancePlacement.html) command \(AWS Tools for Windows PowerShell\)\.
 
 1. Restart the instance using one of the following commands:
-   + [start\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/start-instances.html) \(AWS CLI\)
-   + [Start\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/Start-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
+   + [start\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/start-instances.html) \(AWS CLI\)
+   + [Start\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Start-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
 
 ## Deleting a Placement Group<a name="delete-placement-group"></a>
 
@@ -175,5 +175,5 @@ If you need to replace a placement group or no longer need one, you can delete i
 **To terminate instances and delete a placement group using the command line**
 
 You can use one of the following sets of commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [terminate\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/terminate-instances.html) and [delete\-placement\-group](http://docs.aws.amazon.com/cli/latest/reference/ec2/delete-placement-group.html) \(AWS CLI\)
-+ [Remove\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2Instance.html) and [Remove\-EC2PlacementGroup](http://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2PlacementGroup.html) \(AWS Tools for Windows PowerShell\)
++ [terminate\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/terminate-instances.html) and [delete\-placement\-group](https://docs.aws.amazon.com/cli/latest/reference/ec2/delete-placement-group.html) \(AWS CLI\)
++ [Remove\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2Instance.html) and [Remove\-EC2PlacementGroup](https://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2PlacementGroup.html) \(AWS Tools for Windows PowerShell\)

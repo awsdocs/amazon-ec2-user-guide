@@ -9,7 +9,7 @@ There are a number of scenarios in which you might want to automatically stop or
 You can add the stop, terminate, reboot, or recover actions to any alarm that is set on an Amazon EC2 per\-instance metric, including basic and detailed monitoring metrics provided by Amazon CloudWatch \(in the `AWS/EC2` namespace\), as well as any custom metrics that include the `InstanceId` dimension, as long as its value refers to a valid running Amazon EC2 instance\.
 
 **Console Support**  
-You can create alarms using the Amazon EC2 console or the CloudWatch console\. The procedures in this documentation use the Amazon EC2 console\. For procedures that use the CloudWatch console, see [Create Alarms That Stop, Terminate, Reboot, or Recover an Instance](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/UsingAlarmActions.html) in the *Amazon CloudWatch User Guide*\.
+You can create alarms using the Amazon EC2 console or the CloudWatch console\. The procedures in this documentation use the Amazon EC2 console\. For procedures that use the CloudWatch console, see [Create Alarms That Stop, Terminate, Reboot, or Recover an Instance](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/UsingAlarmActions.html) in the *Amazon CloudWatch User Guide*\.
 
 **Permissions**  
 If you are an AWS Identity and Access Management \(IAM\) user, you must have the following permissions to create or modify an alarm:
@@ -19,7 +19,7 @@ If you are an AWS Identity and Access Management \(IAM\) user, you must have the
 + `ec2:TerminateInstances` – For alarms with terminate actions
 + No additional specific permissions are needed for alarms with recover actions
 
-If you have read/write permissions for Amazon CloudWatch but not for Amazon EC2, you can still create an alarm but the stop or terminate actions won't be performed on the Amazon EC2 instance\. However, if you are later granted permission to use the associated Amazon EC2 APIs, the alarm actions you created earlier are performed\. For more information about IAM permissions, see [Permissions and Policies](http://docs.aws.amazon.com/IAM/latest/UserGuide/PermissionsAndPolicies.html) in the *IAM User Guide*\.
+If you have read/write permissions for Amazon CloudWatch but not for Amazon EC2, you can still create an alarm but the stop or terminate actions won't be performed on the Amazon EC2 instance\. However, if you are later granted permission to use the associated Amazon EC2 APIs, the alarm actions you created earlier are performed\. For more information about IAM permissions, see [Permissions and Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/PermissionsAndPolicies.html) in the *IAM User Guide*\.
 
 **Topics**
 + [Adding Stop Actions to Amazon CloudWatch Alarms](#AddingStopActions)
@@ -67,7 +67,7 @@ You can adjust the alarm configuration based on your own requirements before cre
 
 ## Adding Terminate Actions to Amazon CloudWatch Alarms<a name="AddingTerminateActions"></a>
 
-You can create an alarm that terminates an EC2 instance automatically when a certain threshold has been met \(as long as termination protection is not enabled for the instance\)\. For example, you might want to terminate an instance when it has completed its work, and you don’t need the instance again\. If you might want to use the instance later, you should stop the instance instead of terminating it\. For information on enabling and disabling termination protection for an instance, see [Enabling Termination Protection for an Instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_ChangingDisableAPITermination.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+You can create an alarm that terminates an EC2 instance automatically when a certain threshold has been met \(as long as termination protection is not enabled for the instance\)\. For example, you might want to terminate an instance when it has completed its work, and you don’t need the instance again\. If you might want to use the instance later, you should stop the instance instead of terminating it\. For information on enabling and disabling termination protection for an instance, see [Enabling Termination Protection for an Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_ChangingDisableAPITermination.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 **To create an alarm to terminate an idle instance using the Amazon EC2 console**
 
@@ -103,10 +103,10 @@ You can adjust the alarm configuration based on your own requirements before cre
 
 You can create an Amazon CloudWatch alarm that monitors an Amazon EC2 instance and automatically reboots the instance\. The reboot alarm action is recommended for Instance Health Check failures \(as opposed to the recover alarm action, which is suited for System Health Check failures\)\. An instance reboot is equivalent to an operating system reboot\. In most cases, it takes only a few minutes to reboot your instance\. When you reboot an instance, it remains on the same physical host, so your instance keeps its public DNS name, private IP address, and any data on its instance store volumes\.
 
-Rebooting an instance doesn't start a new instance billing period \(with a minimum one\-minute charge\), unlike stopping and restarting your instance\. For more information, see [Reboot Your Instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-reboot.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+Rebooting an instance doesn't start a new instance billing period \(with a minimum one\-minute charge\), unlike stopping and restarting your instance\. For more information, see [Reboot Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-reboot.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 **Important**  
-To avoid a race condition between the reboot and recover actions, avoid setting the same number of evaluation periods for a reboot alarm and a recover alarm\. We recommend that you set reboot alarms to three evaluation periods of one minute each\. For more information, see [Evaluating an Alarm](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarm-evaluation) in the *Amazon CloudWatch User Guide*\.
+To avoid a race condition between the reboot and recover actions, avoid setting the same number of evaluation periods for a reboot alarm and a recover alarm\. We recommend that you set reboot alarms to three evaluation periods of one minute each\. For more information, see [Evaluating an Alarm](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarm-evaluation) in the *Amazon CloudWatch User Guide*\.
 
 **To create an alarm to reboot an instance using the Amazon EC2 console**
 
@@ -157,7 +157,7 @@ The recover action is supported only on instances with the following characteris
 If your instance has a public IP address, it retains the public IP address after recovery\.
 
 **Important**  
-To avoid a race condition between the reboot and recover actions, avoid setting the same number of evaluation periods for a reboot alarm and a recover alarm\. We recommend that you set recover alarms to two evaluation periods of one minute each\. For more information, see [Evaluating an Alarm](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarm-evaluation) in the *Amazon CloudWatch User Guide*\.
+To avoid a race condition between the reboot and recover actions, avoid setting the same number of evaluation periods for a reboot alarm and a recover alarm\. We recommend that you set recover alarms to two evaluation periods of one minute each\. For more information, see [Evaluating an Alarm](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarm-evaluation) in the *Amazon CloudWatch User Guide*\.
 
 **To create an alarm to recover an instance using the Amazon EC2 console**
 
@@ -272,7 +272,7 @@ Create an alarm that stops an instance and send a text message \(SMS\) if outbou
 Create an alarm that stops an instance when memory utilization reaches or exceeds 90%, so that application logs can be retrieved for troubleshooting\.
 
 **Note**  
-The MemoryUtilization metric is a custom metric\. In order to use the MemoryUtilization metric, you must install the Perl scripts for Linux instances\. For more information, see [Monitoring Memory and Disk Metrics for Amazon EC2 Linux Instances](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/mon-scripts.html)\.
+The MemoryUtilization metric is a custom metric\. In order to use the MemoryUtilization metric, you must install the Perl scripts for Linux instances\. For more information, see [Monitoring Memory and Disk Metrics for Amazon EC2 Linux Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/mon-scripts.html)\.
 
 
 | Setting | Value | 

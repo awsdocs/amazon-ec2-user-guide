@@ -37,7 +37,7 @@ You can also modify the attributes of your network interface, including changing
 Every instance in a VPC has a default network interface, called the *primary network interface* \(eth0\)\. You cannot detach a primary network interface from an instance\. You can create and attach additional network interfaces\. The maximum number of network interfaces that you can use varies by instance type\. For more information, see [IP Addresses Per Network Interface Per Instance Type](#AvailableIpPerENI)\.
 
 **Public IPv4 addresses for network interfaces**  
-In a VPC, all subnets have a modifiable attribute that determines whether network interfaces created in that subnet \(and therefore instances launched into that subnet\) are assigned a public IPv4 address\. For more information, see [IP Addressing Behavior for Your Subnet](http://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html#vpc-ip-addressing-subnet) in the *Amazon VPC User Guide*\. The public IPv4 address is assigned from Amazon's pool of public IPv4 addresses\. When you launch an instance, the IP address is assigned to the primary network interface \(eth0\) that's created\.
+In a VPC, all subnets have a modifiable attribute that determines whether network interfaces created in that subnet \(and therefore instances launched into that subnet\) are assigned a public IPv4 address\. For more information, see [IP Addressing Behavior for Your Subnet](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html#vpc-ip-addressing-subnet) in the *Amazon VPC User Guide*\. The public IPv4 address is assigned from Amazon's pool of public IPv4 addresses\. When you launch an instance, the IP address is assigned to the primary network interface \(eth0\) that's created\.
 
 When you create a network interface, it inherits the public IPv4 addressing attribute from the subnet\. If you later modify the public IPv4 addressing attribute of the subnet, the network interface keeps the setting that was in effect when it was created\. If you launch an instance and specify an existing network interface for eth0, the public IPv4 addressing attribute is determined by the network interface\.
 
@@ -46,16 +46,16 @@ For more information, see [Public IPv4 Addresses and External DNS Hostnames](usi
 **IPv6 addresses for network interfaces**  
 You can associate an IPv6 CIDR block with your VPC and subnet, and assign one or more IPv6 addresses from the subnet range to a network interface\.
 
-All subnets have a modifiable attribute that determines whether network interfaces created in that subnet \(and therefore instances launched into that subnet\) are automatically assigned an IPv6 address from the range of the subnet\. For more information, see [IP Addressing Behavior for Your Subnet](http://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html#vpc-ip-addressing-subnet) in the *Amazon VPC User Guide*\. When you launch an instance, the IPv6 address is assigned to the primary network interface \(eth0\) that's created\.
+All subnets have a modifiable attribute that determines whether network interfaces created in that subnet \(and therefore instances launched into that subnet\) are automatically assigned an IPv6 address from the range of the subnet\. For more information, see [IP Addressing Behavior for Your Subnet](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html#vpc-ip-addressing-subnet) in the *Amazon VPC User Guide*\. When you launch an instance, the IPv6 address is assigned to the primary network interface \(eth0\) that's created\.
 
 For more information, see [IPv6 Addresses](using-instance-addressing.md#ipv6-addressing)\.
 
 **Monitoring IP Traffic**  
-You can enable a VPC flow log on your network interface to capture information about the IP traffic going to and from a network interface\. After you've created a flow log, you can view and retrieve its data in Amazon CloudWatch Logs\. For more information, see [VPC Flow Logs](http://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html) in the *Amazon VPC User Guide*\.
+You can enable a VPC flow log on your network interface to capture information about the IP traffic going to and from a network interface\. After you've created a flow log, you can view and retrieve its data in Amazon CloudWatch Logs\. For more information, see [VPC Flow Logs](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html) in the *Amazon VPC User Guide*\.
 
 ## IP Addresses Per Network Interface Per Instance Type<a name="AvailableIpPerENI"></a>
 
-The following table lists the maximum number of network interfaces per instance type, and the maximum number of private IPv4 addresses and IPv6 addresses per network interface\. The limit for IPv6 addresses is separate from the limit for private IPv4 addresses per network interface\. Not all instance types support IPv6 addressing\. Network interfaces, multiple private IPv4 addresses, and IPv6 addresses are only available for instances running in a VPC\. For more information, see [Multiple IP Addresses](MultipleIP.md)\. For more information about IPv6 in VPC, see [IP Addressing in Your VPC](http://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html) in the *Amazon VPC User Guide*\.
+The following table lists the maximum number of network interfaces per instance type, and the maximum number of private IPv4 addresses and IPv6 addresses per network interface\. The limit for IPv6 addresses is separate from the limit for private IPv4 addresses per network interface\. Not all instance types support IPv6 addressing\. Network interfaces, multiple private IPv4 addresses, and IPv6 addresses are only available for instances running in a VPC\. For more information, see [Multiple IP Addresses](MultipleIP.md)\. For more information about IPv6 in VPC, see [IP Addressing in Your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html) in the *Amazon VPC User Guide*\.
 
 
 | Instance Type | Maximum Network Interfaces | IPv4 Addresses per Interface | IPv6 Addresses per Interface | 
@@ -336,8 +336,8 @@ You can create a network interface in a subnet\. You can't move the network inte
 **To create a network interface using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [create\-network\-interface](http://docs.aws.amazon.com/cli/latest/reference/ec2/create-network-interface.html) \(AWS CLI\)
-+ [New\-EC2NetworkInterface](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2NetworkInterface.html) \(AWS Tools for Windows PowerShell\)
++ [create\-network\-interface](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-network-interface.html) \(AWS CLI\)
++ [New\-EC2NetworkInterface](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2NetworkInterface.html) \(AWS Tools for Windows PowerShell\)
 
 ### Deleting a Network Interface<a name="delete_eni"></a>
 
@@ -356,8 +356,8 @@ To delete an instance, you must first detach the network interface\. Deleting a 
 **To delete a network interface using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [delete\-network\-interface](http://docs.aws.amazon.com/cli/latest/reference/ec2/delete-network-interface.html) \(AWS CLI\)
-+ [Remove\-EC2NetworkInterface](http://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2NetworkInterface.html) \(AWS Tools for Windows PowerShell\)
++ [delete\-network\-interface](https://docs.aws.amazon.com/cli/latest/reference/ec2/delete-network-interface.html) \(AWS CLI\)
++ [Remove\-EC2NetworkInterface](https://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2NetworkInterface.html) \(AWS Tools for Windows PowerShell\)
 
 ### Viewing Details about a Network Interface<a name="view_eni_details"></a>
 
@@ -376,14 +376,14 @@ You can view all the network interfaces in your account\.
 **To describe a network interface using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [describe\-network\-interfaces](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-network-interfaces.html) \(AWS CLI\)
-+ [Get\-EC2NetworkInterface](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2NetworkInterface.html) \(AWS Tools for Windows PowerShell\)
++ [describe\-network\-interfaces](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-network-interfaces.html) \(AWS CLI\)
++ [Get\-EC2NetworkInterface](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2NetworkInterface.html) \(AWS Tools for Windows PowerShell\)
 
 **To describe a network interface attribute using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [describe\-network\-interface\-attribute](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-network-interface-attribute.html) \(AWS CLI\)
-+ [Get\-EC2NetworkInterfaceAttribute](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2NetworkInterfaceAttribute.html) \(AWS Tools for Windows PowerShell\)
++ [describe\-network\-interface\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-network-interface-attribute.html) \(AWS CLI\)
++ [Get\-EC2NetworkInterfaceAttribute](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2NetworkInterfaceAttribute.html) \(AWS Tools for Windows PowerShell\)
 
 ### Attaching a Network Interface When Launching an Instance<a name="attach_eni_launch"></a>
 
@@ -425,8 +425,8 @@ If you specified an existing network interface in step 5, the instance is associ
 **To attach a network interface when launching an instance using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [run\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) \(AWS CLI\)
-+ [New\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
++ [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) \(AWS CLI\)
++ [New\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
 
 ### Attaching a Network Interface to a Stopped or Running Instance<a name="attach_eni_running_stopped"></a>
 
@@ -458,8 +458,8 @@ If the public IPv4 address on your instance is released, it does not receive a n
 **To attach a network interface to an instance using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [attach\-network\-interface](http://docs.aws.amazon.com/cli/latest/reference/ec2/attach-network-interface.html) \(AWS CLI\)
-+ [Add\-EC2NetworkInterface](http://docs.aws.amazon.com/powershell/latest/reference/items/Add-EC2NetworkInterface.html) \(AWS Tools for Windows PowerShell\)
++ [attach\-network\-interface](https://docs.aws.amazon.com/cli/latest/reference/ec2/attach-network-interface.html) \(AWS CLI\)
++ [Add\-EC2NetworkInterface](https://docs.aws.amazon.com/powershell/latest/reference/items/Add-EC2NetworkInterface.html) \(AWS Tools for Windows PowerShell\)
 
 ### Detaching a Network Interface from an Instance<a name="detach_eni"></a>
 
@@ -488,8 +488,8 @@ You can detach a secondary network interface at any time, using either the **Ins
 **To detach a network interface using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [detach\-network\-interface](http://docs.aws.amazon.com/cli/latest/reference/ec2/detach-network-interface.html) \(AWS CLI\)
-+ [Dismount\-EC2NetworkInterface](http://docs.aws.amazon.com/powershell/latest/reference/items/Dismount-EC2NetworkInterface.html) \(AWS Tools for Windows PowerShell\)
++ [detach\-network\-interface](https://docs.aws.amazon.com/cli/latest/reference/ec2/detach-network-interface.html) \(AWS CLI\)
++ [Dismount\-EC2NetworkInterface](https://docs.aws.amazon.com/powershell/latest/reference/items/Dismount-EC2NetworkInterface.html) \(AWS Tools for Windows PowerShell\)
 
 ### Changing the Security Group<a name="eni_security_group"></a>
 
@@ -511,8 +511,8 @@ To change security group membership for interfaces owned by other services, such
 **To change the security group of a network interface using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [modify\-network\-interface\-attribute](http://docs.aws.amazon.com/cli/latest/reference/ec2/modify-network-interface-attribute.html) \(AWS CLI\)
-+ [Edit\-EC2NetworkInterfaceAttribute](http://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2NetworkInterfaceAttribute.html) \(AWS Tools for Windows PowerShell\)
++ [modify\-network\-interface\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-network-interface-attribute.html) \(AWS CLI\)
++ [Edit\-EC2NetworkInterfaceAttribute](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2NetworkInterfaceAttribute.html) \(AWS Tools for Windows PowerShell\)
 
 ### Changing the Source or Destination Checking<a name="change_source_dest_check"></a>
 
@@ -531,8 +531,8 @@ The Source/Destination Check attribute controls whether source/destination check
 **To change source/destination checking for a network interface using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [modify\-network\-interface\-attribute](http://docs.aws.amazon.com/cli/latest/reference/ec2/modify-network-interface-attribute.html) \(AWS CLI\)
-+ [Edit\-EC2NetworkInterfaceAttribute](http://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2NetworkInterfaceAttribute.html) \(AWS Tools for Windows PowerShell\)
++ [modify\-network\-interface\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-network-interface-attribute.html) \(AWS CLI\)
++ [Edit\-EC2NetworkInterfaceAttribute](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2NetworkInterfaceAttribute.html) \(AWS Tools for Windows PowerShell\)
 
 ### Associating an Elastic IP Address \(IPv4\)<a name="associate_eip"></a>
 
@@ -557,8 +557,8 @@ You can associate an Elastic IP address using the Amazon EC2 console or the comm
 **To associate an Elastic IP address using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [associate\-address](http://docs.aws.amazon.com/cli/latest/reference/ec2/associate-address.html) \(AWS CLI\)
-+ [Register\-EC2Address](http://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2Address.html) \(AWS Tools for Windows PowerShell\)
++ [associate\-address](https://docs.aws.amazon.com/cli/latest/reference/ec2/associate-address.html) \(AWS CLI\)
++ [Register\-EC2Address](https://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2Address.html) \(AWS Tools for Windows PowerShell\)
 
 ### Disassociating an Elastic IP Address \(IPv4\)<a name="disassociate_eip"></a>
 
@@ -579,8 +579,8 @@ You can disassociate an Elastic IP address using the Amazon EC2 console or the c
 **To disassociate an Elastic IP address using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [disassociate\-address](http://docs.aws.amazon.com/cli/latest/reference/ec2/disassociate-address.html) \(AWS CLI\)
-+ [Unregister\-EC2Address](http://docs.aws.amazon.com/powershell/latest/reference/items/Unregister-EC2Address.html) \(AWS Tools for Windows PowerShell\)
++ [disassociate\-address](https://docs.aws.amazon.com/cli/latest/reference/ec2/disassociate-address.html) \(AWS CLI\)
++ [Unregister\-EC2Address](https://docs.aws.amazon.com/powershell/latest/reference/items/Unregister-EC2Address.html) \(AWS Tools for Windows PowerShell\)
 
 ### Assigning an IPv6 Address<a name="eni-assign-ipv6"></a>
 
@@ -598,8 +598,8 @@ You can assign one or more IPv6 addresses to a network interface\. The network i
 
 **To assign an IPv6 address to a network interface using the command line**
 + You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-  + [assign\-ipv6\-addresses](http://docs.aws.amazon.com/cli/latest/reference/ec2/assign-ipv6-addresses.html) \(AWS CLI\)
-  + [Register\-EC2Ipv6AddressList](http://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2Ipv6AddressList.html) \(AWS Tools for Windows PowerShell\)
+  + [assign\-ipv6\-addresses](https://docs.aws.amazon.com/cli/latest/reference/ec2/assign-ipv6-addresses.html) \(AWS CLI\)
+  + [Register\-EC2Ipv6AddressList](https://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2Ipv6AddressList.html) \(AWS Tools for Windows PowerShell\)
 
 ### Unassigning an IPv6 Address<a name="eni-unassign-ipv6"></a>
 
@@ -617,8 +617,8 @@ You can unassign an IPv6 address from a network interface using the Amazon EC2 c
 
 **To unassign an IPv6 address from a network interface using the command line**
 + You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-  + [unassign\-ipv6\-addresses](http://docs.aws.amazon.com/cli/latest/reference/ec2/unassign-ipv6-addresses.html) \(AWS CLI\)
-  + [Unregister\-EC2Ipv6AddressList](http://docs.aws.amazon.com/powershell/latest/reference/items/Unregister-EC2Ipv6AddressList.html) \(AWS Tools for Windows PowerShell\)
+  + [unassign\-ipv6\-addresses](https://docs.aws.amazon.com/cli/latest/reference/ec2/unassign-ipv6-addresses.html) \(AWS CLI\)
+  + [Unregister\-EC2Ipv6AddressList](https://docs.aws.amazon.com/powershell/latest/reference/items/Unregister-EC2Ipv6AddressList.html) \(AWS Tools for Windows PowerShell\)
 
 ### Changing Termination Behavior<a name="change_term_behavior"></a>
 
@@ -639,8 +639,8 @@ You can change the terminating behavior for a network interface using the Amazon
 **To change the termination behavior for a network interface using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [modify\-network\-interface\-attribute](http://docs.aws.amazon.com/cli/latest/reference/ec2/modify-network-interface-attribute.html) \(AWS CLI\)
-+ [Edit\-EC2NetworkInterfaceAttribute](http://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2NetworkInterfaceAttribute.html) \(AWS Tools for Windows PowerShell\)
++ [modify\-network\-interface\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-network-interface-attribute.html) \(AWS CLI\)
++ [Edit\-EC2NetworkInterfaceAttribute](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2NetworkInterfaceAttribute.html) \(AWS Tools for Windows PowerShell\)
 
 ### Adding or Editing a Description<a name="add_edit_description"></a>
 
@@ -659,8 +659,8 @@ You can change the description for a network interface using the Amazon EC2 cons
 **To change the description for a network interface using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [modify\-network\-interface\-attribute](http://docs.aws.amazon.com/cli/latest/reference/ec2/modify-network-interface-attribute.html) \(AWS CLI\)
-+ [Edit\-EC2NetworkInterfaceAttribute](http://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2NetworkInterfaceAttribute.html) \(AWS Tools for Windows PowerShell\)
++ [modify\-network\-interface\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-network-interface-attribute.html) \(AWS CLI\)
++ [Edit\-EC2NetworkInterfaceAttribute](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2NetworkInterfaceAttribute.html) \(AWS Tools for Windows PowerShell\)
 
 ### Adding or Editing Tags<a name="eni_add_edit_tags"></a>
 
@@ -681,5 +681,5 @@ Tags are metadata that you can add to a network interface\. Tags are private and
 **To add or edit tags for a network interface using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [create\-tags](http://docs.aws.amazon.com/cli/latest/reference/ec2/create-tags.html) \(AWS CLI\)
-+ [New\-EC2Tag](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Tag.html) \(AWS Tools for Windows PowerShell\)
++ [create\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-tags.html) \(AWS CLI\)
++ [New\-EC2Tag](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Tag.html) \(AWS Tools for Windows PowerShell\)

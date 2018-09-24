@@ -40,7 +40,7 @@ The following diagram illustrates the process for cleaning up your instance stor
 
 **To clean up your instance store\-backed AMI**
 
-1. Deregister the AMI using the [deregister\-image](http://docs.aws.amazon.com/cli/latest/reference/ec2/deregister-image.html) command as follows\.
+1. Deregister the AMI using the [deregister\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/deregister-image.html) command as follows\.
 
    ```
    aws ec2 deregister-image --image-id ami_id
@@ -52,7 +52,7 @@ The following diagram illustrates the process for cleaning up your instance stor
    ec2-delete-bundle -b myawsbucket/myami -a your_access_key_id -s your_secret_access_key -p image
    ```
 
-1. \(Optional\) If you are finished with an instance that you launched from the AMI, you can terminate it using the [terminate\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/terminate-instances.html) command as follows\.
+1. \(Optional\) If you are finished with an instance that you launched from the AMI, you can terminate it using the [terminate\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/terminate-instances.html) command as follows\.
 
    ```
    aws ec2 terminate-instances --instance-ids instance_id

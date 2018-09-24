@@ -6,7 +6,7 @@ There is no cost for any instance usage while an instance is not in the `running
 
 Force the instance to stop using either the console or the AWS CLI\.
 + To force the instance to stop using the console, select the stuck instance, and choose **Actions**, **Instance State**, **Stop**, and **Yes, Forcefully Stop**\.
-+ To force the instance to stop using the AWS CLI, use the [stop\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) command and the `--force` option as follows:
++ To force the instance to stop using the AWS CLI, use the [stop\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) command and the `--force` option as follows:
 
   ```
   aws ec2 stop-instances --instance-ids i-0123ab456c789d01e --force
@@ -40,13 +40,13 @@ To attempt to resolve the problem while you are waiting for assistance from the 
 
 **To create a replacement instance using the CLI**
 
-1. Create an AMI from the stuck instance using the [create\-image](http://docs.aws.amazon.com/cli/latest/reference/ec2/create-image.html) \(AWS CLI\) command and the `--no-reboot` option as follows:\.
+1. Create an AMI from the stuck instance using the [create\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-image.html) \(AWS CLI\) command and the `--no-reboot` option as follows:\.
 
    ```
    aws ec2 create-image --instance-id i-0123ab456c789d01e --name "AMI" --description "AMI for replacement instance" --no-reboot
    ```
 
-1. Launch a new instance from the AMI using the [run\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) \(AWS CLI\) command as follows:
+1. Launch a new instance from the AMI using the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) \(AWS CLI\) command as follows:
 
    ```
    aws ec2 run-instances --image-id ami-1a2b3c4d --count 1 --instance-type c3.large --key-name MyKeyPair --security-groups MySecurityGroup
@@ -54,7 +54,7 @@ To attempt to resolve the problem while you are waiting for assistance from the 
 
 1. Verify that the new instance is working\.
 
-1. Terminate the stuck instance using the [terminate\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/terminate-instances.html) \(AWS CLI\) command as follows:
+1. Terminate the stuck instance using the [terminate\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/terminate-instances.html) \(AWS CLI\) command as follows:
 
    ```
    aws ec2 terminate-instances --instance-ids i-1234567890abcdef0

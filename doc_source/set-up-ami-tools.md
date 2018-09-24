@@ -133,25 +133,25 @@ Certain commands in the AMI tools require a signing certificate \(also known as 
    openssl req -new -x509 -nodes -sha256 -days 365 -key private-key.pem -outform PEM -out certificate.pem
    ```
 
-To upload the certificate to AWS, use the [upload\-signing\-certificate](http://docs.aws.amazon.com/cli/latest/reference/iam/upload-signing-certificate.html) command\.
+To upload the certificate to AWS, use the [upload\-signing\-certificate](https://docs.aws.amazon.com/cli/latest/reference/iam/upload-signing-certificate.html) command\.
 
 ```
 aws iam upload-signing-certificate --user-name user-name --certificate-body file://path/to/certificate.pem
 ```
 
-To list the certificates for a user, use the [list\-signing\-certificates](http://docs.aws.amazon.com/cli/latest/reference/iam/list-signing-certificates.html) command:
+To list the certificates for a user, use the [list\-signing\-certificates](https://docs.aws.amazon.com/cli/latest/reference/iam/list-signing-certificates.html) command:
 
 ```
 aws iam list-signing-certificates --user-name user-name
 ```
 
-To disable or re\-enable a signing certificate for a user, use the [update\-signing\-certificate](http://docs.aws.amazon.com/cli/latest/reference/iam/update-signing-certificate.html) command\. The following command disables the certificate:
+To disable or re\-enable a signing certificate for a user, use the [update\-signing\-certificate](https://docs.aws.amazon.com/cli/latest/reference/iam/update-signing-certificate.html) command\. The following command disables the certificate:
 
 ```
 aws iam update-signing-certificate --certificate-id OFHPLP4ZULTHYPMSYEX7O4BEXAMPLE --status Inactive --user-name user-name
 ```
 
-To delete a certificate, use the [delete\-signing\-certificate](http://docs.aws.amazon.com/cli/latest/reference/iam/delete-signing-certificate.html) command:
+To delete a certificate, use the [delete\-signing\-certificate](https://docs.aws.amazon.com/cli/latest/reference/iam/delete-signing-certificate.html) command:
 
 ```
 aws iam delete-signing-certificate --user-name user-name --certificate-id OFHPLP4ZULTHYPMSYEX7O4BEXAMPLE

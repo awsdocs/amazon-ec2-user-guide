@@ -31,9 +31,9 @@ Attaching more than the following volumes to a Windows instance is supported on 
 
 We do not recommend that you give a Windows instance more than 26 volumes with AWS PV or Citrix PV drivers, as it is likely to cause performance issues\.
 
-To determine which PV drivers your instance is using, or to upgrade your Windows instance from Red Hat to Citrix PV drivers, see [Upgrading PV Drivers on Your Windows Instance](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/Upgrading_PV_drivers.html)\.
+To determine which PV drivers your instance is using, or to upgrade your Windows instance from Red Hat to Citrix PV drivers, see [Upgrading PV Drivers on Your Windows Instance](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/Upgrading_PV_drivers.html)\.
 
-For more information about how device names related to volumes, see [Mapping Disks to Volumes on Your Windows EC2 Instance](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-windows-volumes.html) in the *Amazon EC2 User Guide for Windows Instances*\.
+For more information about how device names related to volumes, see [Mapping Disks to Volumes on Your Windows EC2 Instance](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-windows-volumes.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
 ## Instance Type Limits<a name="instance-type-volume-limits"></a>
 

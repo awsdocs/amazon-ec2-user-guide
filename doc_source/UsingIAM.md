@@ -95,4 +95,4 @@ For more information about IAM, see the following:
 + [IAM Policies for Amazon EC2](iam-policies-for-amazon-ec2.md)
 + [IAM Roles for Amazon EC2](iam-roles-for-amazon-ec2.md)
 + [AWS Identity and Access Management \(IAM\)](https://aws.amazon.com/iam)
-+ [IAM User Guide](http://docs.aws.amazon.com/IAM/latest/UserGuide/)
++ [IAM User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/)

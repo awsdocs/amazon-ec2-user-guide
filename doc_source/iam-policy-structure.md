@@ -59,7 +59,7 @@ To specify all Amazon EC2 API actions, use the \* wildcard as follows:
 "Action": "ec2:*"
 ```
 
-For a list of Amazon EC2 actions, see [Actions](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/query-apis.html) in the *Amazon EC2 API Reference*\.
+For a list of Amazon EC2 actions, see [Actions](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/query-apis.html) in the *Amazon EC2 API Reference*\.
 
 ## Amazon Resource Names for Amazon EC2<a name="EC2_ARN_Format"></a>
 
@@ -145,7 +145,7 @@ Many Amazon EC2 API actions involve multiple resources\. For example, `AttachVol
 "Resource": ["arn1", "arn2"]
 ```
 
-For more general information about ARNs, see [Amazon Resource Names \(ARN\) and AWS Service Namespaces](http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) in the *Amazon Web Services General Reference*\. For more information about the resources that are created or modified by the Amazon EC2 actions, and the ARNs that you can use in your IAM policy statements, see [Granting IAM Users Required Permissions for Amazon EC2 Resources](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ec2-api-permissions.html) in the *Amazon EC2 API Reference*\.
+For more general information about ARNs, see [Amazon Resource Names \(ARN\) and AWS Service Namespaces](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) in the *Amazon Web Services General Reference*\. For more information about the resources that are created or modified by the Amazon EC2 actions, and the ARNs that you can use in your IAM policy statements, see [Granting IAM Users Required Permissions for Amazon EC2 Resources](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ec2-api-permissions.html) in the *Amazon EC2 API Reference*\.
 
 ## Condition Keys for Amazon EC2<a name="amazon-ec2-keys"></a>
 
@@ -153,10 +153,10 @@ In a policy statement, you can optionally specify conditions that control when i
 
 If you specify multiple conditions, or multiple keys in a single condition, we evaluate them using a logical AND operation\. If you specify a single condition with multiple values for one key, we evaluate the condition using a logical OR operation\. For permissions to be granted, all conditions must be met\.
 
-You can also use placeholders when you specify conditions\. For example, you can grant an IAM user permission to use resources with a tag that specifies his or her IAM user name\. For more information, see [Policy Variables](http://docs.aws.amazon.com/IAM/latest/UserGuide/PolicyVariables.html) in the *IAM User Guide*\.
+You can also use placeholders when you specify conditions\. For example, you can grant an IAM user permission to use resources with a tag that specifies his or her IAM user name\. For more information, see [Policy Variables](https://docs.aws.amazon.com/IAM/latest/UserGuide/PolicyVariables.html) in the *IAM User Guide*\.
 
 **Important**  
-Many condition keys are specific to a resource, and some API actions use multiple resources\. If you write a policy with a condition key, use the `Resource` element of the statement to specify the resource to which the condition key applies\. If not, the policy may prevent users from performing the action at all, because the condition check fails for the resources to which the condition key does not apply\. If you do not want to specify a resource, or if you've written the `Action` element of your policy to include multiple API actions, then you must use the `...IfExists` condition type to ensure that the condition key is ignored for resources that do not use it\. For more information, see [\.\.\.IfExists Conditions](http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements.html#Conditions_IfExists) in the *IAM User Guide*\.
+Many condition keys are specific to a resource, and some API actions use multiple resources\. If you write a policy with a condition key, use the `Resource` element of the statement to specify the resource to which the condition key applies\. If not, the policy may prevent users from performing the action at all, because the condition check fails for the resources to which the condition key does not apply\. If you do not want to specify a resource, or if you've written the `Action` element of your policy to include multiple API actions, then you must use the `...IfExists` condition type to ensure that the condition key is ignored for resources that do not use it\. For more information, see [\.\.\.IfExists Conditions](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements.html#Conditions_IfExists) in the *IAM User Guide*\.
 
 Amazon EC2 implements the following service\-specific condition keys\. For information about which condition keys you can use with which Amazon EC2 resources, on an action\-by\-action basis, see [Supported Resource\-Level Permissions for Amazon EC2 API Actions](ec2-supported-iam-actions-resources.md)\. 
 
@@ -166,7 +166,7 @@ Amazon EC2 implements the following service\-specific condition keys\. For infor
 |  `ec2:AccepterVpc`  |  "ec2:AccepterVpc":"*vpc\-arn*" Where *vpc\-arn* is the VPC ARN for the accepter VPC in a VPC peering connection  |  ARN, Null  | 
 |  `ec2:AuthorizedService`  |  "ec2:AuthorizedService":"*service\-principal*" Where *service\-principal* is the service principal \(for example, ecs\.amazonaws\.com\)  |  String, Null  | 
 |  `ec2:AuthorizedUser`  |  "ec2:AuthorizedUser":"*principal\-arn*" Where *principal\-arn* is the ARN for the principal \(for example, arn:aws:iam::123456789012:root\)  |  ARN, Null  | 
-|  `ec2:AvailabilityZone`  |  "ec2:AvailabilityZone":"*az\-api\-name*" Where *az\-api\-name* is the name of the Availability Zone \(for example, `us-east-2a`\) To list your Availability Zones, use [describe\-availability\-zones](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-availability-zones.html)  |  String, Null  | 
+|  `ec2:AvailabilityZone`  |  "ec2:AvailabilityZone":"*az\-api\-name*" Where *az\-api\-name* is the name of the Availability Zone \(for example, `us-east-2a`\) To list your Availability Zones, use [describe\-availability\-zones](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-availability-zones.html)  |  String, Null  | 
 | ec2:CreateAction | "ec2:CreateAction":"api\-name"Where *api\-name* is the name of the resource\-creating action \(for example, `RunInstances`\) | String, Null | 
 |  `ec2:EbsOptimized`  |  "ec2:EbsOptimized":"*optimized\-flag*" Where *optimized\-flag* is `true` \| `false` \(for an instance\)  |  Boolean, Null  | 
 |  `ec2:ElasticGpuType`  |  "ec2:ElasticGpuType":"*elastic\-gpu\-type*" Where *elastic\-gpu\-type* is the name of the elastic GPU type  |  String, Null  | 
@@ -185,7 +185,7 @@ Amazon EC2 implements the following service\-specific condition keys\. For infor
 | ec2:PlacementGroupStrategy |  "ec2:PlacementGroupStrategy":"*placement\-group\-strategy*" Where *placement\-group\-strategy* is `cluster` \| `spread`  | String, Null | 
 |  `ec2:ProductCode`  |  "ec2:ProductCode":"*product\-code*" Where *product\-code* is the product code  |  String, Null  | 
 | `ec2:Public` |  "ec2:Public":"*public\-flag*" Where *public\-flag* is `true` \| `false` \(for an AMI\)  |  Boolean, Null  | 
-|  `ec2:Region`  |  "ec2:Region":"*region\-name*" Where *region\-name* is the name of the region \(for example, `us-east-2`\)\. To list your regions, use [describe\-regions](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-regions.html)\. This condition key can be used with all Amazon EC2 actions\.  |  String, Null  | 
+|  `ec2:Region`  |  "ec2:Region":"*region\-name*" Where *region\-name* is the name of the region \(for example, `us-east-2`\)\. To list your regions, use [describe\-regions](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-regions.html)\. This condition key can be used with all Amazon EC2 actions\.  |  String, Null  | 
 | `ec2:RequesterVpc` |  "ec2:RequesterVpc":"*vpc\-arn*" Where *vpc\-arn* is the VPC ARN for the requester VPC in a VPC peering connection  |  ARN, Null  | 
 |  `ec2:ReservedInstancesOfferingType`  |  "ec2:ReservedInstancesOfferingType":"*offering\-type* Where *offering\-type* is `No Upfront` \| `Partial Upfront` \| `All Upfront`  |  String, Null  | 
 |  `ec2:ResourceTag/`*tag\-key*  |  "ec2:ResourceTag/*tag\-key*":"*tag\-value*" Where *tag\-key* and *tag\-value* are the tag\-key pair  |  String, Null  | 
@@ -198,9 +198,9 @@ Amazon EC2 implements the following service\-specific condition keys\. For infor
 |  `ec2:VolumeType`  |  "ec2:VolumeType":"*volume\-type\-name*" Where *volume\-type\-name* is `gp2` for General Purpose SSD volumes, `io1` for Provisioned IOPS SSD volumes, `st1` for Throughput Optimized HDD volumes, `sc1` for Cold HDD volumes, or `standard` for Magnetic volumes\.  |  String, Null  | 
 |  `ec2:Vpc`  |  "ec2:Vpc":"*vpc\-arn*" Where *vpc\-arn* is the VPC ARN  |  ARN, Null  | 
 
-Amazon EC2 also implements the AWS\-wide condition keys\. For more information, see [Information Available in All Requests](http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_variables.html#policy-vars-infoallreqs) in the *IAM User Guide*\. 
+Amazon EC2 also implements the AWS\-wide condition keys\. For more information, see [Information Available in All Requests](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_variables.html#policy-vars-infoallreqs) in the *IAM User Guide*\. 
 
-The `ec2:SourceInstanceARN` key can be used for conditions that specify the ARN of the instance from which a request is made\. This condition key is available AWS\-wide and is not service\-specific\. For policy examples, see [Allows an EC2 Instance to Attach or Detach Volumes](http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_examples_ec2_volumes-instance.html) and [12: Allowing a Specific Instance to View Resources in Other AWS Services](ExamplePolicies_EC2.md#iam-example-source-instance)\. The `ec2:SourceInstanceARN` key cannot be used as a variable to populate the ARN for the `Resource` element in a statement\.
+The `ec2:SourceInstanceARN` key can be used for conditions that specify the ARN of the instance from which a request is made\. This condition key is available AWS\-wide and is not service\-specific\. For policy examples, see [Allows an EC2 Instance to Attach or Detach Volumes](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_examples_ec2_volumes-instance.html) and [12: Allowing a Specific Instance to View Resources in Other AWS Services](ExamplePolicies_EC2.md#iam-example-source-instance)\. The `ec2:SourceInstanceARN` key cannot be used as a variable to populate the ARN for the `Resource` element in a statement\.
 
 The following AWS condition keys were introduced for Amazon EC2 and are supported by a limited number of additional services\.
 
@@ -225,4 +225,4 @@ If the policy doesn't grant the user the permissions that you expected, or is ov
 **Important**  
 It can take several minutes for policy changes to propagate before they take effect\. Therefore, we recommend that you allow five minutes to pass before you test your policy updates\.
 
-If an authorization check fails, the request returns an encoded message with diagnostic information\. You can decode the message using the `DecodeAuthorizationMessage` action\. For more information, see [DecodeAuthorizationMessage](http://docs.aws.amazon.com/STS/latest/APIReference/API_DecodeAuthorizationMessage.html) in the *AWS Security Token Service API Reference*, and [decode\-authorization\-message](http://docs.aws.amazon.com/cli/latest/reference/sts/decode-authorization-message.html) in the *AWS CLI Command Reference*\.
+If an authorization check fails, the request returns an encoded message with diagnostic information\. You can decode the message using the `DecodeAuthorizationMessage` action\. For more information, see [DecodeAuthorizationMessage](https://docs.aws.amazon.com/STS/latest/APIReference/API_DecodeAuthorizationMessage.html) in the *AWS Security Token Service API Reference*, and [decode\-authorization\-message](https://docs.aws.amazon.com/cli/latest/reference/sts/decode-authorization-message.html) in the *AWS CLI Command Reference*\.

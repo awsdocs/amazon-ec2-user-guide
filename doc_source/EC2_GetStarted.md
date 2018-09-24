@@ -29,8 +29,8 @@ To complete this tutorial, perform the following tasks:
 1. [Clean Up Your Instance](#ec2-clean-up-your-instance)
 
 **Related Tutorials**
-+ If you'd prefer to launch a Windows instance, see this tutorial in the *Amazon EC2 User Guide for Windows Instances*: [Getting Started with Amazon EC2 Windows Instances](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/EC2_GetStarted.html)\.
-+ If you'd prefer to use the command line, see this tutorial in the *AWS Command Line Interface User Guide*: [Using Amazon EC2 through the AWS CLI](http://docs.aws.amazon.com/cli/latest/userguide/cli-using-ec2.html)\.
++ If you'd prefer to launch a Windows instance, see this tutorial in the *Amazon EC2 User Guide for Windows Instances*: [Getting Started with Amazon EC2 Windows Instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/EC2_GetStarted.html)\.
++ If you'd prefer to use the command line, see this tutorial in the *AWS Command Line Interface User Guide*: [Using Amazon EC2 through the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-using-ec2.html)\.
 
 ## Prerequisites<a name="ec2-getstarted-prereqs"></a>
 
@@ -38,7 +38,7 @@ Before you begin, be sure that you've completed the steps in [Setting Up with Am
 
 ## Step 1: Launch an Instance<a name="ec2-launch-instance"></a>
 
-You can launch a Linux instance using the AWS Management Console as described in the following procedure\. This tutorial is intended to help you launch your first instance quickly, so it doesn't cover all possible options\. For more information about the advanced options, see [Launching an Instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/launching-instance.html)\.
+You can launch a Linux instance using the AWS Management Console as described in the following procedure\. This tutorial is intended to help you launch your first instance quickly, so it doesn't cover all possible options\. For more information about the advanced options, see [Launching an Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/launching-instance.html)\.
 
 **To launch an instance**
 
@@ -50,7 +50,7 @@ You can launch a Linux instance using the AWS Management Console as described in
 
 1. On the **Choose an Instance Type** page, you can select the hardware configuration of your instance\. Select the `t2.micro` type, which is selected by default\. Notice that this instance type is eligible for the free tier\.
 **Note**  
-[T2 instances](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/t2-instances.html), such as `t2.micro`, must be launched into a VPC\. If your AWS account supports EC2\-Classic and you do not have a VPC in the selected region, the launch wizard creates a VPC for you and you can continue to the next step\. Otherwise, the **Review and Launch** button is disabled and you must choose **Next: Configure Instance Details** and follow the directions to select a subnet\.
+[T2 instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/t2-instances.html), such as `t2.micro`, must be launched into a VPC\. If your AWS account supports EC2\-Classic and you do not have a VPC in the selected region, the launch wizard creates a VPC for you and you can continue to the next step\. Otherwise, the **Review and Launch** button is disabled and you must choose **Next: Configure Instance Details** and follow the directions to select a subnet\.
 
 1. Choose **Review and Launch** to let the wizard complete the other configuration settings for you\.
 
@@ -124,7 +124,7 @@ After you've finished with the instance that you created for this tutorial, you 
 **Important**  
 Terminating an instance effectively deletes it; you can't reconnect to an instance after you've terminated it\.
 
-If you launched an instance that is not within the [AWS Free Tier](https://aws.amazon.com/free/), you'll stop incurring charges for that instance as soon as the instance status changes to `shutting down` or `terminated`\. If you'd like to keep your instance for later, but not incur charges, you can stop the instance now and then start it again later\. For more information, see [Stopping Instances](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Stop_Start.html)\.
+If you launched an instance that is not within the [AWS Free Tier](https://aws.amazon.com/free/), you'll stop incurring charges for that instance as soon as the instance status changes to `shutting down` or `terminated`\. If you'd like to keep your instance for later, but not incur charges, you can stop the instance now and then start it again later\. For more information, see [Stopping Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Stop_Start.html)\.
 
 **To terminate your instance**
 
@@ -139,7 +139,7 @@ If you launched an instance that is not within the [AWS Free Tier](https://aws.a
 ## Next Steps<a name="ec2-next-steps"></a>
 
 After you start your instance, you might want to try some of the following exercises:
-+ Learn how to remotely manage your EC2 instance using Run Command\. For more information, see [Tutorial: Remotely Manage Your Amazon EC2 Instances](tutorial_run_command.md) and [Systems Manager Remote Management \(Run Command\)](http://docs.aws.amazon.com/systems-manager/latest/userguide/execute-remote-commands.html)\.
-+ Configure a CloudWatch alarm to notify you if your usage exceeds the Free Tier\. For more information, see [Create a Billing Alarm](http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/free-tier-alarms.html) in the *AWS Billing and Cost Management User Guide*\.
++ Learn how to remotely manage your EC2 instance using Run Command\. For more information, see [Tutorial: Remotely Manage Your Amazon EC2 Instances](tutorial_run_command.md) and [Systems Manager Remote Management \(Run Command\)](https://docs.aws.amazon.com/systems-manager/latest/userguide/execute-remote-commands.html)\.
++ Configure a CloudWatch alarm to notify you if your usage exceeds the Free Tier\. For more information, see [Create a Billing Alarm](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/free-tier-alarms.html) in the *AWS Billing and Cost Management User Guide*\.
 + Add an EBS volume\. For more information, see [Creating an Amazon EBS Volume](ebs-creating-volume.md) and [Attaching an Amazon EBS Volume to an Instance](ebs-attaching-volume.md)\.
 + Install the LAMP stack\. For more information, see [Tutorial: Install a LAMP Web Server on Amazon Linux 2](ec2-lamp-amazon-linux-2.md)\.

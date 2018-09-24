@@ -69,7 +69,7 @@ You can use the Amazon EC2 console or AWS Command Line Interface to get the term
 
 **To get the termination reason using the AWS Command Line Interface**
 
-1. Use the [describe\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command and specify the instance ID\.
+1. Use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command and specify the instance ID\.
 
    ```
    aws ec2 describe-instances --instance-id instance_id
@@ -90,4 +90,4 @@ You can use the Amazon EC2 console or AWS Command Line Interface to get the term
 
 Take one of the following actions depending on the termination reason you noted:
 + If the reason is **`Client.VolumeLimitExceeded: Volume limit exceeded`**, you have reached your EBS volume limit\. For more information, see [Instance Volume Limits](volume_limits.md)\. To submit a request to increase your Amazon EBS volume limit, complete the AWS Support Center [Create Case](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ebs) form\. For more information, see [Amazon EC2 Service Limits](ec2-resource-limits.md)\.
-+ If the reason is **`Client.InternalError: Client error on launch`**, that typically indicates that the root volume is encrypted and that you do not have permissions to access the KMS key for decryption\. To get permissions to access the required KMS key, add the appropriate KMS permissions to your IAM user\. For more information, see [Using Key Policies in AWS KMS](http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html) in the *AWS Key Management Service Developer Guide*\.
++ If the reason is **`Client.InternalError: Client error on launch`**, that typically indicates that the root volume is encrypted and that you do not have permissions to access the KMS key for decryption\. To get permissions to access the required KMS key, add the appropriate KMS permissions to your IAM user\. For more information, see [Using Key Policies in AWS KMS](https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html) in the *AWS Key Management Service Developer Guide*\.

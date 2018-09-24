@@ -15,5 +15,5 @@ You can view detailed information about your snapshots\.
 **To view snapshot information using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [describe\-snapshots](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-snapshots.html) \(AWS CLI\)
-+ [Get\-EC2Snapshot](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Snapshot.html) \(AWS Tools for Windows PowerShell\)
++ [describe\-snapshots](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-snapshots.html) \(AWS CLI\)
++ [Get\-EC2Snapshot](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Snapshot.html) \(AWS Tools for Windows PowerShell\)

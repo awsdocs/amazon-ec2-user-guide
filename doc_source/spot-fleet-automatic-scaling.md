@@ -6,6 +6,7 @@ If you are using instance weighting, keep in mind that Spot Fleet can exceed the
 
 You can also configure the cooldown period for a scaling policy\. This is the number of seconds after a scaling activity completes where previous trigger\-related scaling activities can influence future scaling events\. For scale out policies, while the cooldown period is in effect, the capacity that has been added by the previous scale out event that initiated the cooldown is calculated as part of the desired capacity for the next scale out\. The intention is to continuously \(but not excessively\) scale out\. For scale in policies, the cooldown period is used to block subsequent scale in requests until it has expired\. The intention is to scale in conservatively to protect your application's availability\. However, if another alarm triggers a scale out policy during the cooldown period after a scale\-in, auto scaling scales out your scalable target immediately\.
 
-Spot Fleet supports the following types of scaling policies:
+Spot Fleet supports the following types of automatic scaling:
 + [Target tracking scaling](spot-fleet-target-tracking.md)—Increase or decrease  the current capacity of the fleet based on a target value for a specific metric\. This is similar to the way that your thermostat maintains the temperature of your home – you select temperature and the thermostat does the rest\.
 + [Step scaling](spot-fleet-step-scaling.md)—Increase or decrease the current capacity of the fleet based on a set of scaling adjustments, known as step adjustments, that vary based on the size of the alarm breach\.
++ [Scheduled scaling](spot-fleet-scheduled-scaling.md)—Increase or decrease the current capacity of the fleet based on the date and time\.

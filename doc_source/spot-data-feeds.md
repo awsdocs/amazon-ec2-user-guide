@@ -56,7 +56,7 @@ If you update the ACL and remove the permissions for the AWS data feed account, 
 
 ## Subscribing to Your Spot Instance Data Feed<a name="using-spot-instances-datafeed-all"></a>
 
-To subscribe to your data feed, use the following [create\-spot\-datafeed\-subscription](http://docs.aws.amazon.com/cli/latest/reference/ec2/create-spot-datafeed-subscription.html) command:
+To subscribe to your data feed, use the following [create\-spot\-datafeed\-subscription](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-spot-datafeed-subscription.html) command:
 
 ```
 aws ec2 create-spot-datafeed-subscription --bucket myawsbucket [--prefix myprefix]
@@ -77,7 +77,7 @@ The following is example output:
 
 ## Deleting Your Spot Instance Data Feed<a name="using-spot-instances-datafeed-delete"></a>
 
-To delete your data feed, use the following [delete\-spot\-datafeed\-subscription](http://docs.aws.amazon.com/cli/latest/reference/ec2/delete-spot-datafeed-subscription.html) command:
+To delete your data feed, use the following [delete\-spot\-datafeed\-subscription](https://docs.aws.amazon.com/cli/latest/reference/ec2/delete-spot-datafeed-subscription.html) command:
 
 ```
 aws ec2 delete-spot-datafeed-subscription

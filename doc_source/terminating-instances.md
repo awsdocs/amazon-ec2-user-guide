@@ -45,8 +45,8 @@ You can terminate an instance using the AWS Management Console or the command li
 **To terminate an instance using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [terminate\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/terminate-instances.html) \(AWS CLI\)
-+ [Stop\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/Stop-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
++ [terminate\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/terminate-instances.html) \(AWS CLI\)
++ [Stop\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Stop-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
 
 ## Enabling Termination Protection for an Instance<a name="Using_ChangingDisableAPITermination"></a>
 
@@ -58,9 +58,9 @@ The `DisableApiTermination` attribute does not prevent you from terminating an i
 You can't enable termination protection for Spot instances — a Spot instance is terminated when the Spot price exceeds your bid price\. However, you can prepare your application to handle Spot instance interruptions\. For more information, see [Spot Instance Interruptions](spot-interruptions.md)\.
 
 The `DisableApiTermination` attribute does not prevent Amazon EC2 Auto Scaling from terminating an instance\. For instances in an Auto Scaling group, use the following Amazon EC2 Auto Scaling features instead of Amazon EC2 termination protection:
-+ To prevent instances that are part of an Auto Scaling group from terminating on scale in, use instance protection\. For more information, see [Instance Protection](http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-instance-termination.html#instance-protection) in the *Amazon EC2 Auto Scaling User Guide*\.
-+ To prevent Amazon EC2 Auto Scaling from terminating unhealthy instances, suspend the `ReplaceUnhealthy` process\. For more information, see [Suspending and Resuming Scaling Processes](http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-suspend-resume-processes.html) in the *Amazon EC2 Auto Scaling User Guide*\.
-+ To specify which instances Amazon EC2 Auto Scaling should terminate first, choose a termination policy\. For more information, see [Customizing the Termination Policy](http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-instance-termination.html#custom-termination-policy) in the *Amazon EC2 Auto Scaling User Guide*\.
++ To prevent instances that are part of an Auto Scaling group from terminating on scale in, use instance protection\. For more information, see [Instance Protection](https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-instance-termination.html#instance-protection) in the *Amazon EC2 Auto Scaling User Guide*\.
++ To prevent Amazon EC2 Auto Scaling from terminating unhealthy instances, suspend the `ReplaceUnhealthy` process\. For more information, see [Suspending and Resuming Scaling Processes](https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-suspend-resume-processes.html) in the *Amazon EC2 Auto Scaling User Guide*\.
++ To specify which instances Amazon EC2 Auto Scaling should terminate first, choose a termination policy\. For more information, see [Customizing the Termination Policy](https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-instance-termination.html#custom-termination-policy) in the *Amazon EC2 Auto Scaling User Guide*\.
 
 **To enable termination protection for an instance at launch time**
 
@@ -85,8 +85,8 @@ The `DisableApiTermination` attribute does not prevent Amazon EC2 Auto Scaling f
 **To enable or disable termination protection using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [modify\-instance\-attribute](http://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) \(AWS CLI\)
-+ [Edit\-EC2InstanceAttribute](http://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2InstanceAttribute.html) \(AWS Tools for Windows PowerShell\)
++ [modify\-instance\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) \(AWS CLI\)
++ [Edit\-EC2InstanceAttribute](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2InstanceAttribute.html) \(AWS Tools for Windows PowerShell\)
 
 ## Changing the Instance Initiated Shutdown Behavior<a name="Using_ChangingInstanceInitiatedShutdownBehavior"></a>
 
@@ -110,8 +110,8 @@ You can update the `InstanceInitiatedShutdownBehavior` attribute using the Amazo
 **To change the shutdown behavior of an instance using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [modify\-instance\-attribute](http://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) \(AWS CLI\)
-+ [Edit\-EC2InstanceAttribute](http://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2InstanceAttribute.html) \(AWS Tools for Windows PowerShell\)
++ [modify\-instance\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) \(AWS CLI\)
++ [Edit\-EC2InstanceAttribute](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2InstanceAttribute.html) \(AWS Tools for Windows PowerShell\)
 
 ## Preserving Amazon EBS Volumes on Instance Termination<a name="preserving-volumes-on-termination"></a>
 
@@ -153,8 +153,8 @@ You can verify the setting by viewing details for the root device volume on the 
 ### Changing the Root Volume to Persist at Launch Using the Command Line<a name="delete-on-termination-cli"></a>
 
 When you launch an EBS\-backed instance, you can use one of the following commands to change the root device volume to persist\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [run\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) \(AWS CLI\)
-+ [New\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
++ [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) \(AWS CLI\)
++ [New\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
 
 For example, add the following option to your `run-instances` command:
 
@@ -180,8 +180,8 @@ Specify the following in `mapping.json`:
 ### Changing the Root Volume of a Running Instance to Persist Using the Command Line<a name="delete-on-termination-running-instance"></a>
 
 You can use one of the following commands to change the root device volume of a running EBS\-backed instance to persist\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [modify\-instance\-attribute](http://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) \(AWS CLI\)
-+ [Edit\-EC2InstanceAttribute](http://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2InstanceAttribute.html) \(AWS Tools for Windows PowerShell\)
++ [modify\-instance\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) \(AWS CLI\)
++ [Edit\-EC2InstanceAttribute](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2InstanceAttribute.html) \(AWS Tools for Windows PowerShell\)
 
 For example, use the following command:
 

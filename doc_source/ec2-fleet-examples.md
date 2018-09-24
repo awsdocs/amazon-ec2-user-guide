@@ -1,6 +1,6 @@
 # EC2 Fleet Example Configurations<a name="ec2-fleet-examples"></a>
 
-The following examples show launch configurations that you can use with the [create\-fleet](http://docs.aws.amazon.com/cli/latest/reference/ec2/create-fleet.html) command to create an EC2 Fleet\. For more information, see the [EC2 Fleet JSON Configuration File Reference](manage-ec2-fleet.md#ec2-fleet-json-reference)\.
+The following examples show launch configurations that you can use with the [create\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-fleet.html) command to create an EC2 Fleet\. For more information, see the [EC2 Fleet JSON Configuration File Reference](manage-ec2-fleet.md#ec2-fleet-json-reference)\.
 
 1. [Launch Spot Instances as the default purchasing model](#ec2-fleet-config1)
 

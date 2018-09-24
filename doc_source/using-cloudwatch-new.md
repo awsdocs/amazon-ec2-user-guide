@@ -28,14 +28,14 @@ You can enable detailed monitoring on an instance as you launch it or after the 
 When launching an instance using the AWS Management Console, select the **Monitoring** check box on the **Configure Instance Details** page\.
 
 **To enable detailed monitoring for an existing instance using the AWS CLI**  
-Use the following [monitor\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/monitor-instances.html) command to enable detailed monitoring for the specified instances\.
+Use the following [monitor\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/monitor-instances.html) command to enable detailed monitoring for the specified instances\.
 
 ```
 aws ec2 monitor-instances --instance-ids i-1234567890abcdef0
 ```
 
 **To enable detailed monitoring when launching an instance using the AWS CLI**  
-Use the [run\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command with the `--monitoring` flag to enable detailed monitoring\.
+Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command with the `--monitoring` flag to enable detailed monitoring\.
 
 ```
 aws ec2 run-instances --image-id ami-09092360 --monitoring Enabled=true...
@@ -58,7 +58,7 @@ You can disable detailed monitoring on an instance as you launch it or after the
 1. Choose **Close**\.
 
 **To disable detailed monitoring using the AWS CLI**  
-Use the following [unmonitor\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/unmonitor-instances.html) command to disable detailed monitoring for the specified instances\.
+Use the following [unmonitor\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/unmonitor-instances.html) command to disable detailed monitoring for the specified instances\.
 
 ```
 aws ec2 unmonitor-instances --instance-ids i-1234567890abcdef0

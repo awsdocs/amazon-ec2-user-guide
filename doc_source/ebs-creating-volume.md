@@ -4,7 +4,7 @@ You can create an Amazon EBS volume that you can then attach to any EC2 instance
 
 You can also create and attach EBS volumes when you launch instances by specifying a block device mapping\. For more information, see [Launching an Instance Using the Launch Instance Wizard](launching-instance.md) and [Block Device Mapping](block-device-mapping-concepts.md)\. You can restore volumes from previously created snapshots\. For more information, see [Restoring an Amazon EBS Volume from a Snapshot](ebs-restoring-volume.md)\.
 
-You can apply tags to EBS volumes at the time of creation\. With tagging, you can simplify tracking of your Amazon EC2 resource inventory\. Tagging on creation can be combined with an IAM policy to enforce tagging on new volumes\. For more information, see [Tagging Your Resources](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html)\.
+You can apply tags to EBS volumes at the time of creation\. With tagging, you can simplify tracking of your Amazon EC2 resource inventory\. Tagging on creation can be combined with an IAM policy to enforce tagging on new volumes\. For more information, see [Tagging Your Resources](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html)\.
 
 If you are creating a volume for a high\-performance storage scenario, you should make sure to use a Provisioned IOPS SSD \(`io1`\) volume and attach it to an instance with enough bandwidth to support your application, such as an EBS\-optimized instance or an instance with 10\-Gigabit network connectivity\. The same advice holds for Throughput Optimized HDD \(`st1`\) and Cold HDD \(`sc1`\) volumes\. For more information, see [Amazon EC2 Instance Configuration](ebs-ec2-config.md)\.
 
@@ -30,7 +30,7 @@ Some AWS accounts created before 2012 might have access to Availability Zones in
 
 1. For **Availability Zone**, choose the Availability Zone in which to create the volume\. EBS volumes can only be attached to EC2 instances within the same Availability Zone\.
 
-1. \(Optional\) To create an encrypted volume, select the **Encrypted** box and choose the master key you want to use when encrypting the volume\. You can choose the default master key for your account, or you can choose any customer master key \(CMK\) that you have previously created using the AWS Key Management Service\. Available keys are visible in the **Master Key** menu, or you can paste the full ARN of any key that you have access to\. For more information, see the [AWS Key Management Service Developer Guide](http://docs.aws.amazon.com/kms/latest/developerguide/)\.
+1. \(Optional\) To create an encrypted volume, select the **Encrypted** box and choose the master key you want to use when encrypting the volume\. You can choose the default master key for your account, or you can choose any customer master key \(CMK\) that you have previously created using the AWS Key Management Service\. Available keys are visible in the **Master Key** menu, or you can paste the full ARN of any key that you have access to\. For more information, see the [AWS Key Management Service Developer Guide](https://docs.aws.amazon.com/kms/latest/developerguide/)\.
 **Note**  
 Encrypted volumes can only be attached to selected instance types\. For more information, see [Supported Instance Types](EBSEncryption.md#EBSEncryption_supported_instances)\.
 
@@ -41,5 +41,5 @@ Encrypted volumes can only be attached to selected instance types\. For more inf
 **To create an EBS volume using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [create\-volume](http://docs.aws.amazon.com/cli/latest/reference/ec2/create-volume.html) \(AWS CLI\)
-+ [New\-EC2Volume](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Volume.html) \(AWS Tools for Windows PowerShell\)
++ [create\-volume](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-volume.html) \(AWS CLI\)
++ [New\-EC2Volume](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Volume.html) \(AWS Tools for Windows PowerShell\)

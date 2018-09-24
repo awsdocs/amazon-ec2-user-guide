@@ -2,7 +2,7 @@
 
 With Amazon EBS, you can create point\-in\-time snapshots of volumes, which we store for you in Amazon S3\. After you've created a snapshot and it has finished copying to Amazon S3 \(when the snapshot status is `completed`\), you can copy it from one AWS region to another, or within the same region\. Amazon S3 server\-side encryption \(256\-bit AES\) protects a snapshot's data in\-transit during a copy operation\. The snapshot copy receives an ID that is different than the ID of the original snapshot\.
 
-For information about copying an Amazon RDS snapshot, see [Copying a DB Snapshot](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_CopySnapshot.html) in the *Amazon RDS User Guide*\.
+For information about copying an Amazon RDS snapshot, see [Copying a DB Snapshot](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_CopySnapshot.html) in the *Amazon RDS User Guide*\.
 
 If you would like another account to be able to copy your snapshot, you must either modify the snapshot permissions to allow access to that account or make the snapshot public so that all AWS accounts may copy it\. For more information, see [Sharing an Amazon EBS Snapshot](ebs-modifying-snapshot-permissions.md)\.
 
@@ -34,7 +34,7 @@ In the case of encrypted snapshots, you must encrypt to the same CMK that was us
   + If you encrypt to the same CMK in a subsequent snapshot copy for the same volume between the same regions, the copy is incremental\.
   + If you encrypt to a different CMK in a subsequent snapshot copy for the same volume between the same regions, the copy is a new full copy of the snapshot\.
 
-For more information, see [Encrypt a Snapshot to a New CMK](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#re-encrypt_snapshot)\.
+For more information, see [Encrypt a Snapshot to a New CMK](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#re-encrypt_snapshot)\.
 
 ## Encrypted Snapshots<a name="ebs-encrypt-snapshot-copy"></a>
 
@@ -75,10 +75,10 @@ aws ec2 describe-snapshots --snapshot-id snap-0123abcd
 
 If the copy failed because of insufficient key permissions, you see the following message: "StateMessage": "Given key ID is not accessible"\.
 
-When copying an encrypted snapshot, you must have `DescribeKey` permissions on the default CMK\. Explicitly denying these permissions results in copy failure\. For information about managing CMK keys, see [Controlling Access to Customer Master Keys](http://docs.aws.amazon.com/kms/latest/developerguide/control-access.html)\.
+When copying an encrypted snapshot, you must have `DescribeKey` permissions on the default CMK\. Explicitly denying these permissions results in copy failure\. For information about managing CMK keys, see [Controlling Access to Customer Master Keys](https://docs.aws.amazon.com/kms/latest/developerguide/control-access.html)\.
 
 **To copy a snapshot using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [copy\-snapshot](http://docs.aws.amazon.com/cli/latest/reference/ec2/copy-snapshot.html) \(AWS CLI\)
-+ [Copy\-EC2Snapshot](http://docs.aws.amazon.com/powershell/latest/reference/items/Copy-EC2Snapshot.html) \(AWS Tools for Windows PowerShell\)
++ [copy\-snapshot](https://docs.aws.amazon.com/cli/latest/reference/ec2/copy-snapshot.html) \(AWS CLI\)
++ [Copy\-EC2Snapshot](https://docs.aws.amazon.com/powershell/latest/reference/items/Copy-EC2Snapshot.html) \(AWS Tools for Windows PowerShell\)

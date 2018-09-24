@@ -1,6 +1,6 @@
 # Example Policies for Working with the AWS CLI or an AWS SDK<a name="ExamplePolicies_EC2"></a>
 
-The following examples show policy statements that you could use to control the permissions that IAM users have to Amazon EC2\. These policies are designed for requests that are made with the AWS CLI or an AWS SDK\. For example policies for working in the Amazon EC2 console, see [Example Policies for Working in the Amazon EC2 Console](iam-policies-ec2-console.md)\. For examples of IAM policies specific to Amazon VPC, see [Controlling Access to Amazon VPC Resources](http://docs.aws.amazon.com/vpc/latest/userguide/VPC_IAM.html)\.
+The following examples show policy statements that you could use to control the permissions that IAM users have to Amazon EC2\. These policies are designed for requests that are made with the AWS CLI or an AWS SDK\. For example policies for working in the Amazon EC2 console, see [Example Policies for Working in the Amazon EC2 Console](iam-policies-ec2-console.md)\. For examples of IAM policies specific to Amazon VPC, see [Controlling Access to Amazon VPC Resources](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_IAM.html)\.
 
 **Topics**
 + [1: Read\-Only Access](#iam-example-read-only)
@@ -179,7 +179,7 @@ The following policy allows users to attach volumes with the tag "`volume_user`=
 
 ### Creating a Volume<a name="iam-example-manage-volumes-create"></a>
 
-The following policy allows users to use the [CreateVolume](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateVolume.html) API action\. The user is allowed to create a volume only if the volume is encrypted and only if the volume size is less than 20 GiB\.
+The following policy allows users to use the [CreateVolume](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateVolume.html) API action\. The user is allowed to create a volume only if the volume is encrypted and only if the volume size is less than 20 GiB\.
 
 ```
 {
@@ -285,7 +285,7 @@ The following policy allows users to create a volume without having to specify t
 
 ### Creating a Snapshot<a name="iam-creating-snapshop"></a>
 
-The following policy allows customers to use the [CreateSnapshot](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateSnapshot.html) API action\. The customer may create a snapshot only if the volume is encrypted and only if the volume size is less than 20 GiB\.
+The following policy allows customers to use the [CreateSnapshot](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateSnapshot.html) API action\. The customer may create a snapshot only if the volume is encrypted and only if the volume size is less than 20 GiB\.
 
 ```
 {
@@ -317,7 +317,7 @@ The following policy allows customers to use the [CreateSnapshot](http://docs.aw
 
 The following policy includes the `aws:RequestTag` condition key that requires the customer to apply the tags `costcenter=115` and `stack=prod` to any new snapshot\. The `aws:TagKeys` condition key uses the `ForAllValues` modifier to indicate that only the keys `costcenter` and `stack` may be specified in the request\. The request fails if either of these conditions is not met\.
 
-For resource\-creating actions that apply tags, customers must also have permissions to use the `CreateTags` action\. The third statement uses the `ec2:CreateAction` condition key to allow customers to create tags only in the context of `CreateSnapshot`\. Customers cannot tag existing volumes or any other resources\. For more information, see [Resource\-Level Permissions for Tagging](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-iam-actions-resources.html#supported-iam-actions-tagging)\.
+For resource\-creating actions that apply tags, customers must also have permissions to use the `CreateTags` action\. The third statement uses the `ec2:CreateAction` condition key to allow customers to create tags only in the context of `CreateSnapshot`\. Customers cannot tag existing volumes or any other resources\. For more information, see [Resource\-Level Permissions for Tagging](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-iam-actions-resources.html#supported-iam-actions-tagging)\.
 
 ```
 {
@@ -497,7 +497,7 @@ The following policy allows modification of a snapshot only if the snapshot is t
 
 ## 6: Launching Instances \(RunInstances\)<a name="iam-example-runinstances"></a>
 
-The [RunInstances](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-RunInstances.html) API action launches one or more instances\. `RunInstances` requires an AMI and creates an instance; and users can specify a key pair and security group in the request\. Launching into EC2\-VPC requires a subnet, and creates a network interface\. Launching from an Amazon EBS\-backed AMI creates a volume\. Therefore, the user must have permissions to use these Amazon EC2 resources\. You can create a policy statement that requires users to specify an optional parameter on `RunInstances`, or restricts users to particular values for a parameter\.
+The [RunInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-RunInstances.html) API action launches one or more instances\. `RunInstances` requires an AMI and creates an instance; and users can specify a key pair and security group in the request\. Launching into EC2\-VPC requires a subnet, and creates a network interface\. Launching from an Amazon EBS\-backed AMI creates a volume\. Therefore, the user must have permissions to use these Amazon EC2 resources\. You can create a policy statement that requires users to specify an optional parameter on `RunInstances`, or restricts users to particular values for a parameter\.
 
 For more information about the resource\-level permissions that are required to launch an instance, see [Resource\-Level Permissions for RunInstances](ec2-supported-iam-actions-resources.md#supported-iam-actions-runinstances)\.
 
@@ -1064,7 +1064,7 @@ In this example, users can launch instances only if they use a launch template\.
 }
 ```
 
-The following example policy allows user to launch instances, but only if they use a launch template\. Users cannot override the subnet and network interface parameters in the request; these parameters can only be specified in the launch template\. The first part of the statement uses the [NotResource](http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_notresource.html) element to allow all other resources except subnets and network interfaces\. The second part of the statement allows the subnet and network interface resources, but only if they are sourced from the launch template\.
+The following example policy allows user to launch instances, but only if they use a launch template\. Users cannot override the subnet and network interface parameters in the request; these parameters can only be specified in the launch template\. The first part of the statement uses the [NotResource](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_notresource.html) element to allow all other resources except subnets and network interfaces\. The second part of the statement allows the subnet and network interface resources, but only if they are sourced from the launch template\.
 
 ```
 {

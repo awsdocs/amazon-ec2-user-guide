@@ -58,7 +58,7 @@ You can view status checks using the AWS Management Console\.
 
 ### Viewing Status Using the Command Line or API<a name="viewing_status-cli"></a>
 
-You can view status checks for running instances using the [describe\-instance\-status](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-status.html) \(AWS CLI\) command\.
+You can view status checks for running instances using the [describe\-instance\-status](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-status.html) \(AWS CLI\) command\.
 
 To view the status of all instances, use the following command:
 
@@ -79,8 +79,8 @@ aws ec2 describe-instance-status --instance-ids i-1234567890abcdef0
 ```
 
 Alternatively, use the following commands:
-+  [Get\-EC2InstanceStatus](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2InstanceStatus.html) \(AWS Tools for Windows PowerShell\) 
-+  [DescribeInstanceStatus](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeInstanceStatus.html) \(Amazon EC2 Query API\)
++  [Get\-EC2InstanceStatus](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2InstanceStatus.html) \(AWS Tools for Windows PowerShell\) 
++  [DescribeInstanceStatus](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeInstanceStatus.html) \(Amazon EC2 Query API\)
 
 If you have an instance with a failed status check, see [Troubleshooting Instances with Failed Status Checks](TroubleshootingInstances.md)\.
 
@@ -106,15 +106,15 @@ We use reported feedback to identify issues impacting multiple customers, but do
 
 ### Reporting Status Feedback Using the Command Line or API<a name="reporting_status-cli"></a>
 
-Use the following [report\-instance\-status](http://docs.aws.amazon.com/cli/latest/reference/ec2/report-instance-status.html) \(AWS CLI\) command to send feedback about the status of an impaired instance:
+Use the following [report\-instance\-status](https://docs.aws.amazon.com/cli/latest/reference/ec2/report-instance-status.html) \(AWS CLI\) command to send feedback about the status of an impaired instance:
 
 ```
 aws ec2 report-instance-status --instances i-1234567890abcdef0 --status impaired --reason-codes code
 ```
 
 Alternatively, use the following commands:
-+  [Send\-EC2InstanceStatus](http://docs.aws.amazon.com/powershell/latest/reference/items/Send-EC2InstanceStatus.html) \(AWS Tools for Windows PowerShell\) 
-+  [ReportInstanceStatus](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-ReportInstanceStatus.html) \(Amazon EC2 Query API\)
++  [Send\-EC2InstanceStatus](https://docs.aws.amazon.com/powershell/latest/reference/items/Send-EC2InstanceStatus.html) \(AWS Tools for Windows PowerShell\) 
++  [ReportInstanceStatus](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-ReportInstanceStatus.html) \(Amazon EC2 Query API\)
 
 ## Creating and Editing Status Check Alarms<a name="creating_status_check_alarms"></a>
 
@@ -170,15 +170,15 @@ In the following example, the alarm publishes a notification to an SNS topic, `a
 
 **To create a status check alarm using the CLI**
 
-1. Select an existing SNS topic or create a new one\. For more information, see [Using the AWS CLI with Amazon SNS](http://docs.aws.amazon.com/cli/latest/userguide/cli-sqs-queue-sns-topic.html) in the *AWS Command Line Interface User Guide*\.
+1. Select an existing SNS topic or create a new one\. For more information, see [Using the AWS CLI with Amazon SNS](https://docs.aws.amazon.com/cli/latest/userguide/cli-sqs-queue-sns-topic.html) in the *AWS Command Line Interface User Guide*\.
 
-1. Use the following [list\-metrics](http://docs.aws.amazon.com/cli/latest/reference/cloudwatch/list-metrics.html) command to view the available Amazon CloudWatch metrics for Amazon EC2:
+1. Use the following [list\-metrics](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/list-metrics.html) command to view the available Amazon CloudWatch metrics for Amazon EC2:
 
    ```
    aws cloudwatch list-metrics --namespace AWS/EC2
    ```
 
-1. Use the following [put\-metric\-alarm](http://docs.aws.amazon.com/cli/latest/reference/cloudwatch/put-metric-alarm.html) command to create the alarm:
+1. Use the following [put\-metric\-alarm](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/put-metric-alarm.html) command to create the alarm:
 
    ```
    aws cloudwatch put-metric-alarm --alarm-name StatusCheckFailed-Alarm-for-i-1234567890abcdef0 --metric-name StatusCheckFailed --namespace AWS/EC2 --statistic Maximum --dimensions Name=InstanceId,Value=i-1234567890abcdef0 --unit Count --period 300 --evaluation-periods 2 --threshold 1 --comparison-operator GreaterThanOrEqualToThreshold --alarm-actions arn:aws:sns:us-west-2:111122223333:my-sns-topic

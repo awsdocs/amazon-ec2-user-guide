@@ -83,7 +83,7 @@ You can create a new launch template using parameters that you define, or you ca
    + **IOPS**: If you have selected a Provisioned IOPS SSD volume type, then you can enter the number of I/O operations per second \(IOPS\) that the volume can support\.
    + **Delete on termination**: For Amazon EBS volumes, select this check box to delete the volume when the instance is terminated\. For more information, see [Preserving Amazon EBS Volumes on Instance Termination](terminating-instances.md#preserving-volumes-on-termination)\.
    + **Encrypted**: Choose **Yes** to encrypt new Amazon EBS volumes\. Amazon EBS volumes that are restored from encrypted snapshots are automatically encrypted\. Encrypted volumes may only be attached to [supported instance types](EBSEncryption.md#EBSEncryption_supported_instances)\.
-   + **Key**: If you chose to encrypt new Amazon EBS volumes, enter the master key you want to use when encrypting the volumes\. You can enter the default master key for your account, or you can enter any customer master key \(CMK\) that you have previously created using the AWS Key Management Service\. You can paste the full ARN of any key that you have access to\. For more information, see the [AWS Key Management Service Developer Guide](http://docs.aws.amazon.com/kms/latest/developerguide/)\.
+   + **Key**: If you chose to encrypt new Amazon EBS volumes, enter the master key you want to use when encrypting the volumes\. You can enter the default master key for your account, or you can enter any customer master key \(CMK\) that you have previously created using the AWS Key Management Service\. You can paste the full ARN of any key that you have access to\. For more information, see the [AWS Key Management Service Developer Guide](https://docs.aws.amazon.com/kms/latest/developerguide/)\.
 
 1. For **Tags**, specify [tags](Using_Tags.md) by providing key and value combinations\. You can tag the instance, the volumes, or both\.
 
@@ -94,6 +94,7 @@ You can create a new launch template using parameters that you define, or you ca
    + **Shutdown behavior**: Select whether the instance should stop or terminate when shut down\. For more information, see [Changing the Instance Initiated Shutdown Behavior](terminating-instances.md#Using_ChangingInstanceInitiatedShutdownBehavior)\.
    + **Termination protection**: Select whether to prevent accidental termination\. For more information, see [Enabling Termination Protection for an Instance](terminating-instances.md#Using_ChangingDisableAPITermination)\.
    + **Monitoring**: Select whether to enable detailed monitoring of the instance using Amazon CloudWatch\. Additional charges apply\. For more information, see [Monitoring Your Instances Using CloudWatch](using-cloudwatch.md)\.
+   + **T2/T3 Unlimited**: \(Only valid for T2 and T3 instances\) Select whether to enable applications to burst beyond the baseline for as long as needed\. Additional charges may apply\. For more information, see [Burstable Performance Instances](burstable-performance-instances.md)\.
    + **Placement group name**: Specify a placement group in which to launch the instance\. Not all instance types can be launched in a placement group\. For more information, see [Placement Groups](placement-groups.md)\.
    + **EBS\-optimized instance**: Provides additional, dedicated capacity for Amazon EBS I/O\. Not all instance types support this feature, and additional charges apply\. For more information, see [Amazon EBS–Optimized Instances](EBSOptimized.md)\.
    + **Tenancy**: Specify whether to run your instance on isolated, dedicated hardware \(**Dedicated**\) or on a Dedicated Host \(**Dedicated host**\)\. Additional charges may apply\. For more information, see [Dedicated Instances](dedicated-instance.md) and [Dedicated Hosts](dedicated-hosts-overview.md)\. If you specify a Dedicated Host, you can choose a specific host and the affinity for the instance\.
@@ -118,7 +119,7 @@ You can create a new launch template using parameters that you define, or you ca
 1. Adjust any launch parameters as required, and choose **Create launch template**\.
 
 **To create a launch template using the command line**
-+ Use the [create\-launch\-template](http://docs.aws.amazon.com/cli/latest/reference/ec2/create-launch-template.html) \(AWS CLI\) command\. The following example creates a launch template that specifies the instance type \(`r4.4xlarge`\) and AMI \(`ami-8c1be5f6`\) to launch, specifies the number of cores \(`4`\) and threads per core \(`2`\) for a total of 8 vCPUs \(4 cores x 2 threads\), specifies the subnet in which to launch the instance \(`subnet-7b16de0c`\), assigns a public IP address and an IPv6 address to the instance, and creates a tag for the instance \(`Name`=`webserver`\)\.
++ Use the [create\-launch\-template](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-launch-template.html) \(AWS CLI\) command\. The following example creates a launch template that specifies the instance type \(`r4.4xlarge`\) and AMI \(`ami-8c1be5f6`\) to launch, specifies the number of cores \(`4`\) and threads per core \(`2`\) for a total of 8 vCPUs \(4 cores x 2 threads\), specifies the subnet in which to launch the instance \(`subnet-7b16de0c`\), assigns a public IP address and an IPv6 address to the instance, and creates a tag for the instance \(`Name`=`webserver`\)\.
 
   ```
   aws ec2 create-launch-template --launch-template-name TemplateForWebServer --version-description WebVersion1 --launch-template-data file://template-data.json
@@ -166,7 +167,7 @@ You can create a new launch template using parameters that you define, or you ca
   ```
 
 **To get instance data for a launch template using the command line**
-+ Use the [get\-launch\-template\-data](http://docs.aws.amazon.com/cli/latest/reference/ec2/get-launch-template-data.html) \(AWS CLI\) command and specify the instance ID\. You can use the output as a base to create a new launch template or launch template version\. By default, the output includes a top\-level `LaunchTemplateData` object, which cannot be specified in your launch template data\. Use the `--query` option to exclude this object\.
++ Use the [get\-launch\-template\-data](https://docs.aws.amazon.com/cli/latest/reference/ec2/get-launch-template-data.html) \(AWS CLI\) command and specify the instance ID\. You can use the output as a base to create a new launch template or launch template version\. By default, the output includes a top\-level `LaunchTemplateData` object, which cannot be specified in your launch template data\. Use the `--query` option to exclude this object\.
 
   ```
   aws ec2 get-launch-template-data --instance-id i-0123d646e8048babc --query "LaunchTemplateData"
@@ -256,7 +257,7 @@ When you create a launch template version, you can specify new launch parameters
 1. Modify the launch parameters as required, and choose **Create launch template**\.
 
 **To create a launch template version using the command line**
-+ Use the [create\-launch\-template\-version](http://docs.aws.amazon.com/cli/latest/reference/ec2/create-launch-template-version.html) \(AWS CLI\) command\. You can specify a source version on which to base the new version\. The new version inherits the launch parameters from this version, and you can override parameters using `--launch-template-data`\. The following example creates a new version based on version 1 of the launch template and specifies a different AMI ID\.
++ Use the [create\-launch\-template\-version](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-launch-template-version.html) \(AWS CLI\) command\. You can specify a source version on which to base the new version\. The new version inherits the launch parameters from this version, and you can override parameters using `--launch-template-data`\. The following example creates a new version based on version 1 of the launch template and specifies a different AMI ID\.
 
   ```
   aws ec2 create-launch-template-version --launch-template-id lt-0abcd290751193123 --version-description WebVersion2 --source-version 1 --launch-template-data "ImageId=ami-c998b6b2"
@@ -277,7 +278,7 @@ You can set the default version for the launch template\. When you launch an ins
 1. For **Default version**, select the version number and choose **Set as default version**\.
 
 **To set the default launch template version using the command line**
-+ Use the [modify\-launch\-template](http://docs.aws.amazon.com/cli/latest/reference/ec2/modify-launch-template.html) \(AWS CLI\) command and specify the version that you want to set as the default\.
++ Use the [modify\-launch\-template](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-launch-template.html) \(AWS CLI\) command and specify the version that you want to set as the default\.
 
   ```
   aws ec2 modify-launch-template --launch-template-id lt-0abcd290751193123 --default-version 2
@@ -298,7 +299,7 @@ If you no longer require a launch template version, you can delete it\. You cann
 1. Select the version to delete and choose **Delete launch template version**\.
 
 **To delete a launch template version using the command line**
-+ Use the [delete\-launch\-template\-versions](http://docs.aws.amazon.com/cli/latest/reference/ec2/delete-launch-template-versions.html) \(AWS CLI\) command and specify the version numbers to delete\.
++ Use the [delete\-launch\-template\-versions](https://docs.aws.amazon.com/cli/latest/reference/ec2/delete-launch-template-versions.html) \(AWS CLI\) command and specify the version numbers to delete\.
 
   ```
   aws ec2 delete-launch-template-versions --launch-template-id lt-0abcd290751193123 --versions 1
@@ -325,12 +326,12 @@ Instances that are launched using a launch template are automatically assigned t
 1. Choose **Launch instance from template**\.
 
 **To launch an instance from a launch template using the command line**
-+ Use the [run\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) AWS CLI command and specify the `--launch-template` parameter\. Optionally specify the launch template version to use\. If you don't specify the version, the default version is used\.
++ Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) AWS CLI command and specify the `--launch-template` parameter\. Optionally specify the launch template version to use\. If you don't specify the version, the default version is used\.
 
   ```
   aws ec2 run-instances --launch-template LaunchTemplateId=lt-0abcd290751193123,Version=1
   ```
-+ To override a launch template parameter, specify the parameter in the [run\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command\. The following example overrides the instance type that's specified in the launch template \(if any\)\.
++ To override a launch template parameter, specify the parameter in the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command\. The following example overrides the instance type that's specified in the launch template \(if any\)\.
 
   ```
   aws ec2 run-instances --launch-template LaunchTemplateId=lt-0abcd290751193123 --instance-type t2.small
@@ -355,10 +356,10 @@ If the instance fails to launch or the state immediately goes to `terminated` in
 
 You can create an Auto Scaling group and specify a launch template to use for the group\. When Amazon EC2 Auto Scaling launches instances in the Auto Scaling group, it uses the launch parameters defined in the associated launch template\.
 
-For more information, see [Creating an Auto Scaling Group Using a Launch Template](http://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg-launch-template.html) in the *Amazon EC2 Auto Scaling User Guide*\.
+For more information, see [Creating an Auto Scaling Group Using a Launch Template](https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg-launch-template.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 
 **To create or update an Amazon EC2 Auto Scaling group with a launch template using the command line**
-+ Use the [create\-auto\-scaling\-group](http://docs.aws.amazon.com/cli/latest/reference/autoscaling/create-auto-scaling-group.html) or the [update\-auto\-scaling\-group](http://docs.aws.amazon.com/cli/latest/reference/autoscaling/update-auto-scaling-group.html) AWS CLI command and specify the `--launch-template` parameter\.
++ Use the [create\-auto\-scaling\-group](https://docs.aws.amazon.com/cli/latest/reference/autoscaling/create-auto-scaling-group.html) or the [update\-auto\-scaling\-group](https://docs.aws.amazon.com/cli/latest/reference/autoscaling/update-auto-scaling-group.html) AWS CLI command and specify the `--launch-template` parameter\.
 
 ## Using Launch Templates with EC2 Fleet<a name="launch-templates-ec2-fleet"></a>
 
@@ -367,7 +368,7 @@ You can create an EC2 Fleet request and specify a launch template in the instanc
 For more information, see [Creating an EC2 Fleet](manage-ec2-fleet.md#create-ec2-fleet)\.
 
 **To create an EC2 Fleet with a launch template using the command line**
-+ Use the [create\-fleet](http://docs.aws.amazon.com/cli/latest/reference/ec2/create-fleet.html) AWS CLI command\. Use the `--launch-template-configs` parameter to specify the launch template and any overrides for the launch template\.
++ Use the [create\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-fleet.html) AWS CLI command\. Use the `--launch-template-configs` parameter to specify the launch template and any overrides for the launch template\.
 
 ## Using Launch Templates with Spot Fleet<a name="launch-templates-spot-fleet"></a>
 
@@ -376,7 +377,7 @@ You can create a Spot Fleet request and specify a launch template in the instanc
 For more information, see [Spot Fleet Requests](spot-fleet-requests.md)\.
 
 **To create a Spot Fleet request with a launch template using the command line**
-+ Use the [request\-spot\-fleet](http://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-fleet.html) AWS CLI command\. Use the `LaunchTemplateConfigs` parameter to specify the launch template and any overrides for the launch template\.
++ Use the [request\-spot\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-fleet.html) AWS CLI command\. Use the `LaunchTemplateConfigs` parameter to specify the launch template and any overrides for the launch template\.
 
 ## Deleting a Launch Template<a name="delete-launch-template"></a>
 
@@ -393,7 +394,7 @@ If you no longer require a launch template, you can delete it\. Deleting a launc
 1. Choose **Delete launch template**\.
 
 **To delete a launch template using the command line**
-+ Use the [delete\-launch\-template](http://docs.aws.amazon.com/cli/latest/reference/ec2/delete-launch-template.html) \(AWS CLI\) command and specify the launch template\.
++ Use the [delete\-launch\-template](https://docs.aws.amazon.com/cli/latest/reference/ec2/delete-launch-template.html) \(AWS CLI\) command and specify the launch template\.
 
   ```
   aws ec2 delete-launch-template --launch-template-id lt-01238c059e3466abc

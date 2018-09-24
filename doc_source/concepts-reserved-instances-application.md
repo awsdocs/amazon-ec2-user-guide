@@ -2,7 +2,7 @@
 
 All Reserved Instances provide you with a discount compared to On\-Demand pricing\. With Reserved Instances, you pay for the entire term regardless of actual use\. You can choose to pay for your Reserved Instance upfront, partially upfront, or monthly, depending on the [payment option](ec2-reserved-instances.md#ri-payment-options) specified for the Reserved Instance\. 
 
-When Reserved Instances expire, you are charged On\-Demand rates for EC2 instance usage\. You can set up a billing alert to warn you when your bill exceeds a threshold you define\. For more information, see [Monitoring Charges with Alerts and Notifications](http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/monitor-charges.html) in the *AWS Billing and Cost Management User Guide*\.
+When Reserved Instances expire, you are charged On\-Demand rates for EC2 instance usage\. You can set up a billing alert to warn you when your bill exceeds a threshold you define\. For more information, see [Monitoring Charges with Alerts and Notifications](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/monitor-charges.html) in the *AWS Billing and Cost Management User Guide*\.
 
 **Note**  
 The AWS Free Tier is available for new AWS accounts\. If you are using the AWS Free Tier to run Amazon EC2 instances, and you purchase a Reserved Instance, you are charged under standard pricing guidelines\. For information, see [AWS Free Tier](https://aws.amazon.com/free)\.
@@ -47,11 +47,11 @@ You can find out about the charges and fees to your account by viewing the [AWS 
 
 You can view the charges online, or you can download a CSV file\.
 
-You can also track your Reserved Instance utilization using the AWS Cost and Usage Report\. For more information, see [Reserved Instances ](http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-reports-costusage-ri.html) under Cost and Usage Report in the *AWS Billing and Cost Management User Guide*\.
+You can also track your Reserved Instance utilization using the AWS Cost and Usage Report\. For more information, see [Reserved Instances ](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-reports-costusage-ri.html) under Cost and Usage Report in the *AWS Billing and Cost Management User Guide*\.
 
 ## Reserved Instances and Consolidated Billing<a name="concepts-reserved-instances-billing"></a>
 
-The pricing benefits of Reserved Instances are shared when the purchasing account is part of a set of accounts billed under one consolidated billing payer account\. The instance usage across all member accounts is aggregated in the payer account every month\. This is typically useful for companies in which there are different functional teams or groups; then, the normal Reserved Instance logic is applied to calculate the bill\. For more information, see [Consolidated Billing and AWS Organizations](http://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_from-consolidatedbilling.html) in the *AWS Organizations User Guide*\.
+The pricing benefits of Reserved Instances are shared when the purchasing account is part of a set of accounts billed under one consolidated billing payer account\. The instance usage across all member accounts is aggregated in the payer account every month\. This is typically useful for companies in which there are different functional teams or groups; then, the normal Reserved Instance logic is applied to calculate the bill\. For more information, see [Consolidated Billing and AWS Organizations](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_from-consolidatedbilling.html) in the *AWS Organizations User Guide*\.
 
 If you close the payer account, any member accounts that benefit from Reserved Instances billing discounts continue to benefit from the discount until the Reserved Instances expire, or until the member account is removed\.
 
@@ -94,9 +94,9 @@ For example, for a 1\-year Partial Upfront `t2.small` Reserved Instance, assume 
 1. Display the **Upfront Price** column by choosing **Show/Hide Columns** \(the gear\-shaped icon\) in the top right corner\.
 
 **To view the fixed price values for Reserved Instances using the command line**
-+ [describe\-reserved\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances.html) \(AWS CLI\)
-+  [Get\-EC2ReservedInstance](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ReservedInstance.html) \(AWS Tools for Windows PowerShell\)
-+ [DescribeReservedInstances](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeReservedInstances.html) \(Amazon EC2 API\)
++ [describe\-reserved\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances.html) \(AWS CLI\)
++  [Get\-EC2ReservedInstance](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ReservedInstance.html) \(AWS Tools for Windows PowerShell\)
++ [DescribeReservedInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeReservedInstances.html) \(Amazon EC2 API\)
 
 ### Buying with a Discount Tier<a name="buying-discount-tier"></a>
 

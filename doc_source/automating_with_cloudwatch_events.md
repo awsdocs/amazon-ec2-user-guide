@@ -12,4 +12,4 @@ Some examples of using CloudWatch Events with Amazon EC2 include:
 + Notifying an Amazon SNS topic when an Amazon EBS volume is created or modified\.
 + Sending a command to one or more Amazon EC2 instances using Amazon EC2 Run Command whenever a certain event in another AWS service occurs\.
 
-For more information, see the [Amazon CloudWatch Events User Guide](http://docs.aws.amazon.com/AmazonCloudWatch/latest/events/)\.
+For more information, see the [Amazon CloudWatch Events User Guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/)\.

@@ -1,6 +1,6 @@
 # Examples: Standard Mode<a name="standard-mode-examples"></a>
 
-The following examples explain credit use when T2 and T3 instances are configured as `standard`\.
+The following examples explain credit use when T3 and T2 instances are configured as `standard`\.
 
 **Topics**
 + [Example 1: Explaining Credit Use with T3 Standard](#t3_standard_example)
@@ -13,25 +13,25 @@ In this example, you see how a `t3.nano` instance launched as `standard` earns, 
 **Note**  
 T3 instances configured as `standard` do not receive launch credits\.
 
-A running `t3.nano` instance earns 144 credits every 24 hours\. Its credit balance limit is 144 earned credits\. After the limit is reached, new credits that are earned are discarded\. For more information about the number of credits that can be earned and accrued, see the [T2 and T3 credit table](t2-credits-baseline-concepts.md#t-instance-credit-table)\.
+A running `t3.nano` instance earns 144 credits every 24 hours\. Its credit balance limit is 144 earned credits\. After the limit is reached, new credits that are earned are discarded\. For more information about the number of credits that can be earned and accrued, see the [T3 and T2 credit table](burstable-credits-baseline-concepts.md#burstable-performance-instances-credit-table)\.
 
-You might launch a T2 Standard instance and use it immediately, or you might launch a T2 Standard instance and leave it idle for a few days before running applications on it\. Whether an instance is used or remains idle determines if credits are spent or accrued\. If an instance remains idle for 24 hours from the time it is launched, the credit balance reaches it limit, which is the maximum number of earned credits that can be accrued\. 
+You might launch a T3 Standard instance and use it immediately\. Or, you might launch a T3 Standard instance and leave it idle for a few days before running applications on it\. Whether an instance is used or remains idle determines if credits are spent or accrued\. If an instance remains idle for 24 hours from the time it is launched, the credit balance reaches it limit, which is the maximum number of earned credits that can be accrued\. 
 
 This example describes an instance that remains idle for 24 hours from the time it is launched, and walks you through seven periods of time over a 96\-hour period, showing the rate at which credits are earned, accrued, spent, and discarded, and the value of the credit balance at the end of each period\.
 
 The following workflow references the numbered points on the graph:
 
-**P1** – At 0 hours on the graph, the T3 instance is launched as `standard` and immediately begins to earn credits\. The instance remains idle from the time it is launched—CPU utilization is 0%—and no credits are spent\. All unspent credits are accrued in the credit balance\. For the first 24 hours, `CPUCreditUsage` is at 0, and the `CPUCreditBalance` reaches its maximum of 144\.
+**P1** – At 0 hours on the graph, the T3 instance is launched as `standard` and immediately begins to earn credits\. The instance remains idle from the time it is launched—CPU utilization is 0%—and no credits are spent\. All unspent credits are accrued in the credit balance\. For the first 24 hours, `CPUCreditUsage` is at 0, and the `CPUCreditBalance` value reaches its maximum of 144\.
 
-**P2** – For the next 12 hours, CPU utilization is at 2\.5%, which is below the 5% baseline\. The instance earns more credits than it spends, but the `CPUCreditBalance` cannot exceed its maximum of 144 credits\. Any credits that are earned in excess of the limit are discarded\.
+**P2** – For the next 12 hours, CPU utilization is at 2\.5%, which is below the 5% baseline\. The instance earns more credits than it spends, but the `CPUCreditBalance` value cannot exceed its maximum of 144 credits\. Any credits that are earned in excess of the limit are discarded\.
 
-**P3** – For the next 24 hours, CPU utilization is at 7% \(above the baseline\), which requires a spend of 57\.6 credits\. The instance spends more credits than it earns, and the `CPUCreditBalance` reduces to 86\.4 credits\.
+**P3** – For the next 24 hours, CPU utilization is at 7% \(above the baseline\), which requires a spend of 57\.6 credits\. The instance spends more credits than it earns, and the `CPUCreditBalance` value reduces to 86\.4 credits\.
 
-**P4** – For the next 12 hours, CPU utilization decreases to 2\.5% \(below the baseline\), which requires a spend of 36 credits\. In the same time, the instance earns 72 credits\. The instance earns more credits than it spends, and the `CPUCreditBalance` increases to 122 credits\.
+**P4** – For the next 12 hours, CPU utilization decreases to 2\.5% \(below the baseline\), which requires a spend of 36 credits\. In the same time, the instance earns 72 credits\. The instance earns more credits than it spends, and the `CPUCreditBalance` value increases to 122 credits\.
 
-**P5** – For the next two hours, the instance bursts at 100% CPU utilization, and depletes its entire `CPUCreditBalance` of 122 credits\. At the end of this period, the `CPUCreditBalance` and the CPU utilization is forced to drop to the baseline performance level of 5%\. At the baseline, the instance earns as many credits as it spends\.
+**P5** – For the next two hours, the instance bursts at 100% CPU utilization, and depletes its entire `CPUCreditBalance` value of 122 credits\. At the end of this period, with the `CPUCreditBalance` at zero, CPU utilization is forced to drop to the baseline performance level of 5%\. At the baseline, the instance earns as many credits as it spends\.
 
-**P6** – For the next 14 hours, CPU utilization is at 5% \(the baseline\)\. The instance earns as many credits as it spends\. The `CPUCreditBalance` remains at 0\.
+**P6** – For the next 14 hours, CPU utilization is at 5% \(the baseline\)\. The instance earns as many credits as it spends\. The `CPUCreditBalance` value remains at 0\.
 
 **P7** – For the last 24 hours in this example, the instance is idle and CPU utilization is 0%\. During this time, the instance earns 144 credits, which it accrues in its `CPUCreditBalance`\.
 
@@ -43,9 +43,9 @@ The following workflow references the numbered points on the graph:
 
 In this example, you see how a `t2.nano` instance launched as `standard` earns, accrues, and spends *launch* and *earned* credits\. You see how the credit balance reflects not only accrued *earned* credits, but also accrued *launch* credits\.
 
-A `t2.nano` instance gets 30 launch credits when it is launched, and earns 72 credits every 24 hours\. Its credit balance limit is 72 earned credits; launch credits do not count towards the limit\. After the limit is reached, new credits that are earned are discarded\. For more information about the number of credits that can be earned and accrued, see the [T2 and T3 credit table](t2-credits-baseline-concepts.md#t-instance-credit-table)\. For more information about limits, see [Launch Credit Limits](t2-std.md#launch-credit-limits)\.
+A `t2.nano` instance gets 30 launch credits when it is launched, and earns 72 credits every 24 hours\. Its credit balance limit is 72 earned credits; launch credits do not count towards the limit\. After the limit is reached, new credits that are earned are discarded\. For more information about the number of credits that can be earned and accrued, see the [T3 and T2 credit table](burstable-credits-baseline-concepts.md#burstable-performance-instances-credit-table)\. For more information about limits, see [Launch Credit Limits](burstable-performance-instances-standard-mode.md#launch-credit-limits)\.
 
-You might launch a T2 Standard instance and use it immediately, or you might launch a T2 Standard instance and leave it idle for a few days before running applications on it\. Whether an instance is used or remains idle determines if credits are spent or accrued\. If an instance remains idle for 24 hours from the time it is launched, the credit balance appears to exceed its limit because the balance reflects both accrued earned credits and accrued launch credits\. However, after CPU is used, the launch credits are spent first\. Thereafter, the limit always reflects the maximum number of earned credits that can be accrued\. 
+You might launch a T2 Standard instance and use it immediately\. Or, you might launch a T2 Standard instance and leave it idle for a few days before running applications on it\. Whether an instance is used or remains idle determines if credits are spent or accrued\. If an instance remains idle for 24 hours from the time it is launched, the credit balance appears to exceed its limit because the balance reflects both accrued earned credits and accrued launch credits\. However, after CPU is used, the launch credits are spent first\. Thereafter, the limit always reflects the maximum number of earned credits that can be accrued\. 
 
 This example describes an instance that remains idle for 24 hours from the time it is launched, and walks you through seven periods of time over a 96\-hour period, showing the rate at which credits are earned, accrued, spent, and discarded, and the value of the credit balance at the end of each period\.
 
@@ -110,7 +110,7 @@ An instance spends launch credits first, before spending earned credits\. Launch
 
 For the next 11 hours, the instance uses 2% CPU, which requires 13\.2 credits\. This is the same CPU utilization as in the previous period, but the balance does not decrease\. It stays at 72 credits\.
 
-The balance does not decrease because the credit earn rate is higher than the credit spend rate\. In the time the instance spends 13\.2 credits, it also earns 33 credits\. However, the balance limit is 72 credits, so any earned credits that exceed the limit are discarded\. The balance plateaus at 72 credits, which is different from the plateau of 102 credits during Period 2, because there are no accrued launch credits\.
+The balance does not decrease because the credit earn rate is higher than the credit spend rate\. In the time that the instance spends 13\.2 credits, it also earns 33 credits\. However, the balance limit is 72 credits, so any earned credits that exceed the limit are discarded\. The balance plateaus at 72 credits, which is different from the plateau of 102 credits during Period 2, because there are no accrued launch credits\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/t2-graph4.png)
 
@@ -125,7 +125,7 @@ The balance does not decrease because the credit earn rate is higher than the cr
 | Credit Balance |  72 credits \(0 launch credits, 72 earned credits\)—balance is at its limit  | 
 
 **Conclusion**  
-After launch credits are spent, the credit balance limit is determined by the number of credits an instance can earn in 24 hours\. If the instance earns more credits than it spends, newly earned credits over the limit are discarded\.
+After launch credits are spent, the credit balance limit is determined by the number of credits that an instance can earn in 24 hours\. If the instance earns more credits than it spends, newly earned credits over the limit are discarded\.
 
 ### Period 5: 73 – 75 hours<a name="period-5"></a>
 
@@ -150,7 +150,7 @@ If an instance spends more credits than it earns, its credit balance decreases\.
 
 For the next 15 hours, the instance uses 2% CPU, which requires 18 credits\. This is the same CPU utilization as in Periods 3 and 4\. However, the balance increases in this period, whereas it decreased in Period 3 and plateaued in Period 4\.
 
-In Period 3, the accrued launch credits were spent, and any earned credits that exceeded the credit limit were discarded, resulting in a decrease in the credit balance\. In Period 4, the instance spent fewer credits than it earned, and any earned credits that exceeded the limit were discarded, so the balance plateaued at its maximum of 72 credits\.
+In Period 3, the accrued launch credits were spent, and any earned credits that exceeded the credit limit were discarded, resulting in a decrease in the credit balance\. In Period 4, the instance spent fewer credits than it earned\. Any earned credits that exceeded the limit were discarded, so the balance plateaued at its maximum of 72 credits\.
 
 In this period, there are no accrued launch credits, and the number of accrued earned credits in the balance is below the limit\. No earned credits are discarded\. Furthermore, the instance earns more credits than it spends, resulting in an increase in the credit balance\.
 
@@ -188,4 +188,4 @@ In Period 2, the credit balance included 30 accrued launch credits\. The launch 
 | Credit Balance |  72 credits \(0 launch credits, 72 earned credits\)  | 
 
 **Conclusion**  
-An instance constantly earns credits, but cannot accrue more earned credits if the credit balance limit has been reached\. After the limit is reached, newly earned credits are discarded\. The credit balance limit is determined by the number of credits an instance can earn in 24 hours\. For more information about credit balance limits, see the [T2 and T3 credit table](t2-credits-baseline-concepts.md#t-instance-credit-table)\. 
+An instance constantly earns credits, but cannot accrue more earned credits if the credit balance limit has been reached\. After the limit is reached, newly earned credits are discarded\. The credit balance limit is determined by the number of credits that an instance can earn in 24 hours\. For more information about credit balance limits, see the [T3 and T2 credit table](burstable-credits-baseline-concepts.md#burstable-performance-instances-credit-table)\.

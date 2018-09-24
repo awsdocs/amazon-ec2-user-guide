@@ -1,6 +1,6 @@
 # Spot Request Example Launch Specifications<a name="spot-request-examples"></a>
 
-The following examples show launch configurations that you can use with the [request\-spot\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-instances.html) command to create a Spot Instance request\. For more information, see [Creating a Spot Instance Request](spot-requests.md#using-spot-instances-request)\.
+The following examples show launch configurations that you can use with the [request\-spot\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-instances.html) command to create a Spot Instance request\. For more information, see [Creating a Spot Instance Request](spot-requests.md#using-spot-instances-request)\.
 
 1. [Launch Spot Instances](#spot-launch-specification1)
 

@@ -158,7 +158,7 @@ You can specify CPU options during instance launch\. The following examples are 
 + Valid number of threads per core: 1, 2
 
 **To disable Intel Hyper\-Threading Technology during instance launch**
-+ Use the [run\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) AWS CLI command and specify a value of `1` for `ThreadsPerCore` for the `--cpu-options` parameter\. For `CoreCount`, specify the default CPU core count for the instance type \(in this example, `8` for an `r4.4xlarge` instance\)\.
++ Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) AWS CLI command and specify a value of `1` for `ThreadsPerCore` for the `--cpu-options` parameter\. For `CoreCount`, specify the default CPU core count for the instance type \(in this example, `8` for an `r4.4xlarge` instance\)\.
 
   ```
   aws ec2 run-instances --image-id ami-1a2b3c4d --instance-type r4.4xlarge --cpu-options "CoreCount=8,ThreadsPerCore=1" --key-name MyKeyPair
@@ -168,7 +168,7 @@ You can specify CPU options during instance launch\. The following examples are 
 
 The following example launches an `r4.4xlarge` instance with six vCPUs\.
 
-1. Use the [run\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) AWS CLI command and specify the number of CPU cores and number of threads in the `--cpu-options` parameter\. You can specify three CPU cores and two threads per core to get six vCPUs\.
+1. Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) AWS CLI command and specify the number of CPU cores and number of threads in the `--cpu-options` parameter\. You can specify three CPU cores and two threads per core to get six vCPUs\.
 
    ```
    aws ec2 run-instances --image-id ami-1a2b3c4d --instance-type r4.4xlarge --cpu-options "CoreCount=3,ThreadsPerCore=2" --key-name MyKeyPair
@@ -185,7 +185,7 @@ The following example launches an `r4.4xlarge` instance with six vCPUs\.
 You can view the CPU options for an existing instance by describing the instance\.
 
 **To view the CPU options for an instance using the command line**
-+ Use the [describe\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) AWS CLI command\.
++ Use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) AWS CLI command\.
 
   ```
   aws ec2 describe-instances --instance-ids i-123456789abcde123
@@ -223,4 +223,4 @@ You can view the CPU options for an existing instance by describing the instance
 
 Alternatively, connect to your instance and use a tool such as lscpu to view the CPU information for your instance\.
 
-You can use AWS Config to record, assess, audit, and evaluate configuration changes for instances, including terminated instances\. For more information, see [Getting Started with AWS Config](http://docs.aws.amazon.com/config/latest/developerguide/getting-started.html) in the *AWS Config Developer Guide*\.
+You can use AWS Config to record, assess, audit, and evaluate configuration changes for instances, including terminated instances\. For more information, see [Getting Started with AWS Config](https://docs.aws.amazon.com/config/latest/developerguide/getting-started.html) in the *AWS Config Developer Guide*\.

@@ -35,7 +35,7 @@ These are the general steps to follow in order to bring your own volume licensed
 
 1. Verify that the license terms controlling the use of your machine images allow usage in a virtualized cloud environment\. 
 
-1. After you have verified that your machine image can be used within Amazon EC2, import it using VM Import/Export\. For information about how to import your machine image, see the [ VM Import/Export User Guide](http://docs.aws.amazon.com/vm-import/latest/userguide/)\.
+1. After you have verified that your machine image can be used within Amazon EC2, import it using VM Import/Export\. For information about how to import your machine image, see the [ VM Import/Export User Guide](https://docs.aws.amazon.com/vm-import/latest/userguide/)\.
 
 1. After you've imported your machine image, you can launch instances from it onto active Dedicated Hosts in your account\.
 

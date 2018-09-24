@@ -2,15 +2,15 @@
 
 Amazon EBS emits notifications based on Amazon CloudWatch Events for a variety of snapshot and encryption status changes\. With CloudWatch Events, you can establish rules that trigger programmatic actions in response to a change in snapshot or encryption key state\. For example, when a snapshot is created, you can trigger an AWS Lambda function to share the completed snapshot with another account or copy it to another region for disaster\-recovery purposes\.
 
-For more information, see [Using Events](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/WhatIsCloudWatchEvents.html) in the *Amazon CloudWatch User Guide*\.
+For more information, see [Using Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/WhatIsCloudWatchEvents.html) in the *Amazon CloudWatch User Guide*\.
 
 ## EBS Volume Events<a name="volume-events"></a>
 
-This section defines the supported Amazon EBS volume events and provides examples of event output for specific scenarios\. Events in CloudWatch are represented as JSON objects\. For more information about the format and content of event objects, see [Events and Event Patterns](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CloudWatchEventsandEventPatterns.html) in the *Amazon CloudWatch Events User Guide*\.
+This section defines the supported Amazon EBS volume events and provides examples of event output for specific scenarios\. Events in CloudWatch are represented as JSON objects\. For more information about the format and content of event objects, see [Events and Event Patterns](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CloudWatchEventsandEventPatterns.html) in the *Amazon CloudWatch Events User Guide*\.
 
 **Note**  
 Additional information about EBS volumes that is not captured by Cloudwatch is available through the   
-[DescribeVolumes](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeVolumes.html) API and the [describe\-volumes](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-volumes.html) CLI command\.
+[DescribeVolumes](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeVolumes.html) API and the [describe\-volumes](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-volumes.html) CLI command\.
 
 The fields that are unique to EBS events are contained in the "detail" section of the JSON objects shown below\. The "event" field contains the event name\. The "result" field contains the completed status of the action that triggered the event\.
 
@@ -382,7 +382,7 @@ The following procedure uses the `createSnapshot` event to automatically copy a 
    };
    ```
 
-   To ensure that your Lambda function is available from the CloudWatch console, create it in the region where the CloudWatch event will occur\. For more information, see the [AWS Lambda Developer Guide](http://docs.aws.amazon.com/lambda/latest/dg/)\.
+   To ensure that your Lambda function is available from the CloudWatch console, create it in the region where the CloudWatch event will occur\. For more information, see the [AWS Lambda Developer Guide](https://docs.aws.amazon.com/lambda/latest/dg/)\.
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 

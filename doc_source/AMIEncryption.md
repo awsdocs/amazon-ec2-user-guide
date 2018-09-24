@@ -74,4 +74,4 @@ You can carry out this procedure using either the Amazon EC2 console or the comm
 + [Launch Your Instance](LaunchingAndUsingInstances.md)
 + [Creating an Amazon EBS\-Backed Linux AMI](creating-an-ami-ebs.md)\.
 + [Amazon EBS Volumes](EBSVolumes.md)
-+ [AWS Key Management](http://docs.aws.amazon.com/kms/latest/developerguide/getting-started.html) in the *AWS Key Management Service Developer Guide*
++ [AWS Key Management](https://docs.aws.amazon.com/kms/latest/developerguide/getting-started.html) in the *AWS Key Management Service Developer Guide*

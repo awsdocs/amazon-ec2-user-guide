@@ -33,7 +33,7 @@ You can't convert an instance store\-backed Windows AMI to an Amazon EBS\-backed
 
 1. Prepare an Amazon EBS volume for your new AMI\.
 
-   1. Create an empty Amazon EBS volume in the same Availability Zone as your instance using the [create\-volume](http://docs.aws.amazon.com/cli/latest/reference/ec2/create-volume.html) command\. Note the volume ID in the command output\.
+   1. Create an empty Amazon EBS volume in the same Availability Zone as your instance using the [create\-volume](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-volume.html) command\. Note the volume ID in the command output\.
 **Important**  
  This Amazon EBS volume must be the same size or larger than the original instance store root volume\.
 
@@ -41,7 +41,7 @@ You can't convert an instance store\-backed Windows AMI to an Amazon EBS\-backed
       [ec2-user ~]$ aws ec2 create-volume --size 10 --region us-west-2 --availability-zone us-west-2b						
       ```
 
-   1. Attach the volume to your Amazon EBS\-backed instance using the [attach\-volume](http://docs.aws.amazon.com/cli/latest/reference/ec2/attach-volume.html) command\.
+   1. Attach the volume to your Amazon EBS\-backed instance using the [attach\-volume](https://docs.aws.amazon.com/cli/latest/reference/ec2/attach-volume.html) command\.
 
       ```
       [ec2-user ~]$ aws ec2 attach-volume --volume-id volume_id --instance-id instance_id --device /dev/sdb --region us-west-2

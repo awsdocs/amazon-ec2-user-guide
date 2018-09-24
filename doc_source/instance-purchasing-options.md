@@ -39,7 +39,7 @@ Use the following procedure to determine the lifecycle of an instance\.
 1. \(Optional\) If you have purchased a Reserved Instance and want to verify that it is being applied, you can check the usage reports for Amazon EC2\. For more information, see [Amazon EC2 Usage Reports](usage-reports.md)\.
 
 **To determine the instance lifecycle using the AWS CLI**  
-Use the following [describe\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command:
+Use the following [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command:
 
 ```
 aws ec2 describe-instances --instance-ids i-1234567890abcdef0

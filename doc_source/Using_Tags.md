@@ -79,13 +79,13 @@ The following table describes the Amazon EC2 resources that can be tagged, and t
 | VPC peering connection | Yes | No | 
 |  VPN connection  |  Yes  | No | 
 
-You can tag instances and volumes on creation using the Amazon EC2 Launch Instances wizard in the Amazon EC2 console\. You can tag your EBS volumes on creation using the Volumes screen, or EBS snapshots using the Snapshots screen\. Alternatively, use the resource\-creating Amazon EC2 APIs \(for example, [RunInstances](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html)\) to apply tags when creating your resource\.
+You can tag instances and volumes on creation using the Amazon EC2 Launch Instances wizard in the Amazon EC2 console\. You can tag your EBS volumes on creation using the Volumes screen, or EBS snapshots using the Snapshots screen\. Alternatively, use the resource\-creating Amazon EC2 APIs \(for example, [RunInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html)\) to apply tags when creating your resource\.
 
 You can apply tag\-based resource\-level permissions in your IAM policies to the Amazon EC2 API actions that support tagging on creation to implement granular control over the users and groups that can tag resources on creation\. Your resources are properly secured from creation—tags are applied immediately to your resources, therefore any tag\-based resource\-level permissions controlling the use of resources are immediately effective\. Your resources can be tracked and reported on more accurately\. You can enforce the use of tagging on new resources, and control which tag keys and values are set on your resources\. 
 
 You can also apply resource\-level permissions to the `CreateTags` and `DeleteTags` Amazon EC2 API actions in your IAM policies to control which tag keys and values are set on your existing resources\. For more information, see [Supported Resource\-Level Permissions for Amazon EC2 API Actions](ec2-supported-iam-actions-resources.md) and [Example Policies for Working with the AWS CLI or an AWS SDK](ExamplePolicies_EC2.md)\. 
 
-For more information about tagging your resources for billing, see [Using Cost Allocation Tags](http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html) in the *AWS Billing and Cost Management User Guide*\.
+For more information about tagging your resources for billing, see [Using Cost Allocation Tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html) in the *AWS Billing and Cost Management User Guide*\.
 
 ## Tag Restrictions<a name="tag-restrictions"></a>
 
@@ -106,9 +106,9 @@ You can't tag all resources\. For more information, see [Tagging Support for Ama
 
 ## Tagging Your Resources for Billing<a name="tag-resources-for-billing"></a>
 
-You can use tags to organize your AWS bill to reflect your own cost structure\. To do this, sign up to get your AWS account bill with tag key values included\. For more information about setting up a cost allocation report with tags, see [The Monthly Cost Allocation Report](http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/configurecostallocreport.html) in *AWS Billing and Cost Management User Guide*\. To see the cost of your combined resources, you can organize your billing information based on resources that have the same tag key values\. For example, you can tag several resources with a specific application name, and then organize your billing information to see the total cost of that application across several services\. For more information, see [Using Cost Allocation Tags](http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html) in the *AWS Billing and Cost Management User Guide*\.
+You can use tags to organize your AWS bill to reflect your own cost structure\. To do this, sign up to get your AWS account bill with tag key values included\. For more information about setting up a cost allocation report with tags, see [The Monthly Cost Allocation Report](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/configurecostallocreport.html) in *AWS Billing and Cost Management User Guide*\. To see the cost of your combined resources, you can organize your billing information based on resources that have the same tag key values\. For example, you can tag several resources with a specific application name, and then organize your billing information to see the total cost of that application across several services\. For more information, see [Using Cost Allocation Tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html) in the *AWS Billing and Cost Management User Guide*\.
 
-Cost allocation tags can indicate which resources are contributing to costs, but deleting or deactivating resources doesn't always reduce costs\. For example, snapshot data that is referenced by another snapshot is preserved, even if the snapshot that contains the original data is deleted\. For more information, see [Amazon Elastic Block Store Volumes and Snapshots](http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/checklistforunwantedcharges.html#checkebsvolumes) in the *AWS Billing and Cost Management User Guide*\.
+Cost allocation tags can indicate which resources are contributing to costs, but deleting or deactivating resources doesn't always reduce costs\. For example, snapshot data that is referenced by another snapshot is preserved, even if the snapshot that contains the original data is deleted\. For more information, see [Amazon Elastic Block Store Volumes and Snapshots](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/checklistforunwantedcharges.html#checkebsvolumes) in the *AWS Billing and Cost Management User Guide*\.
 
 **Note**  
 If you've just enabled reporting, data for the current month is available for viewing after 24 hours\.
@@ -119,7 +119,7 @@ Using the Amazon EC2 console, you can see which tags are in use across all of yo
 
 For more information about using filters when listing your resources, see [Listing and Filtering Your Resources](Using_Filtering.md)\.
 
-For ease of use and best results, use Tag Editor in the AWS Management Console, which provides a central, unified way to create and manage your tags\. For more information, see [Working with Tag Editor](http://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/tag-editor.html) in *Getting Started with the AWS Management Console*\.
+For ease of use and best results, use Tag Editor in the AWS Management Console, which provides a central, unified way to create and manage your tags\. For more information, see [Working with Tag Editor](https://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/tag-editor.html) in *Getting Started with the AWS Management Console*\.
 
 **Topics**
 + [Displaying Tags](#displaying-tags)
@@ -255,14 +255,14 @@ Use the following to add, update, list, and delete the tags for your resources\.
 
 | Task | AWS CLI | AWS Tools for Windows PowerShell | API Action | 
 | --- | --- | --- | --- | 
-|  Add or overwrite one or more tags\.  |  [create\-tags](http://docs.aws.amazon.com/cli/latest/reference/ec2/create-tags.html)  |  [New\-EC2Tag](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Tag.html)  |  [CreateTags](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-CreateTags.html)  | 
-|  Delete one or more tags\.  |  [delete\-tags](http://docs.aws.amazon.com/cli/latest/reference/ec2/delete-tags.html)  |  [Remove\-EC2Tag](http://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2Tag.html)  |  [DeleteTags](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DeleteTags.html)  | 
-|  Describe one or more tags\.  |  [describe\-tags](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-tags.html)  |  [Get\-EC2Tag](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Tag.html)  |  [DescribeTags](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeTags.html)  | 
+|  Add or overwrite one or more tags\.  |  [create\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-tags.html)  |  [New\-EC2Tag](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Tag.html)  |  [CreateTags](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-CreateTags.html)  | 
+|  Delete one or more tags\.  |  [delete\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/delete-tags.html)  |  [Remove\-EC2Tag](https://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2Tag.html)  |  [DeleteTags](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DeleteTags.html)  | 
+|  Describe one or more tags\.  |  [describe\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-tags.html)  |  [Get\-EC2Tag](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Tag.html)  |  [DescribeTags](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeTags.html)  | 
 
-You can also filter a list of resources according to their tags\. The following examples demonstrate how to filter your instances using tags with the [describe\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command\.
+You can also filter a list of resources according to their tags\. The following examples demonstrate how to filter your instances using tags with the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command\.
 
 **Note**  
-The way you enter JSON\-formatted parameters on the command line differs depending on your operating system\. Linux, macOS, or Unix and Windows PowerShell use the single quote \('\) to enclose the JSON data structure\. Omit the single quotes when using the commands with the Windows command line\. For more information, see [Specifying Parameter Values for the AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/cli-using-param.html)\.
+The way you enter JSON\-formatted parameters on the command line differs depending on your operating system\. Linux, macOS, or Unix and Windows PowerShell use the single quote \('\) to enclose the JSON data structure\. Omit the single quotes when using the commands with the Windows command line\. For more information, see [Specifying Parameter Values for the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-using-param.html)\.
 
 **Example 1: Describe instances with the specified tag key**  
 The following command describes the instances with a Stack tag, regardless of the value of the tag\.
@@ -290,8 +290,8 @@ Some resource\-creating actions enable you to specify tags when you create the r
 
 | Task | AWS CLI | AWS Tools for Windows PowerShell | API Action | 
 | --- | --- | --- | --- | 
-|  Launch one or more instances\.   |  [run\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html)  |  [New\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html)  |  [RunInstances](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html)  | 
-|  Create an EBS volume\.  |  [create\-volume](http://docs.aws.amazon.com/cli/latest/reference/ec2/create-volume.html)  |  [New\-EC2Volume](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Volume.html)  |  [CreateVolume](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateVolume.html)  | 
+|  Launch one or more instances\.   |  [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html)  |  [New\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html)  |  [RunInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html)  | 
+|  Create an EBS volume\.  |  [create\-volume](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-volume.html)  |  [New\-EC2Volume](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Volume.html)  |  [CreateVolume](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateVolume.html)  | 
 
 The following examples demonstrate how to apply tags when you create resources\.
 

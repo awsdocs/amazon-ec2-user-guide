@@ -92,7 +92,7 @@ For M3 instances, you must specify instance store volumes in the block device ma
 
 **To add volumes to an AMI using the command line**
 
-Use the [create\-image](http://docs.aws.amazon.com/cli/latest/reference/ec2/create-image.html) AWS CLI command to specify a block device mapping for an EBS\-backed AMI\. Use the [register\-image](http://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) AWS CLI command to specify a block device mapping for an instance store\-backed AMI\.
+Use the [create\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-image.html) AWS CLI command to specify a block device mapping for an EBS\-backed AMI\. Use the [register\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) AWS CLI command to specify a block device mapping for an instance store\-backed AMI\.
 
 Specify the block device mapping using the following parameter:
 
@@ -141,8 +141,8 @@ To omit a mapping for a device, use the following mapping:
 ```
 
 Alternatively, you can use the `-BlockDeviceMapping` parameter with the following commands \(AWS Tools for Windows PowerShell\):
-+ [New\-EC2Image](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Image.html)
-+ [Register\-EC2Image](http://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2Image.html)
++ [New\-EC2Image](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Image.html)
++ [Register\-EC2Image](https://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2Image.html)
 
 ### Viewing the EBS Volumes in an AMI Block Device Mapping<a name="view-ami-bdm"></a>
 
@@ -165,7 +165,7 @@ You can easily enumerate the EBS volumes in the block device mapping for an AMI\
 
 **To view the EBS volumes for an AMI using the command line**
 
-Use the [describe\-images](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) \(AWS CLI\) command or [Get\-EC2Image](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Image.html) \(AWS Tools for Windows PowerShell\) command to enumerate the EBS volumes in the block device mapping for an AMI\.
+Use the [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) \(AWS CLI\) command or [Get\-EC2Image](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Image.html) \(AWS Tools for Windows PowerShell\) command to enumerate the EBS volumes in the block device mapping for an AMI\.
 
 ## Instance Block Device Mapping<a name="instance-block-device-mapping"></a>
 
@@ -206,7 +206,7 @@ You can add EBS volumes and instance store volumes to an instance when you launc
 
 **To add volumes to an instance using the command line**
 
-Use the [run\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) AWS CLI command to specify a block device mapping for an instance\.
+Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) AWS CLI command to specify a block device mapping for an instance\.
 
 Specify the block device mapping using the following parameter:
 
@@ -248,11 +248,11 @@ To attach an additional instance store volume, `/dev/sdc`, specify the following
 }
 ```
 
-Alternatively, you can use the `-BlockDeviceMapping` parameter with the [New\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) command \(AWS Tools for Windows PowerShell\)\.
+Alternatively, you can use the `-BlockDeviceMapping` parameter with the [New\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) command \(AWS Tools for Windows PowerShell\)\.
 
 ### Updating the Block Device Mapping of a Running Instance<a name="update-instance-bdm"></a>
 
-You can use the following [modify\-instance\-attribute](http://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) AWS CLI command to update the block device mapping of a running instance\. Note that you do not need to stop the instance before changing this attribute\.
+You can use the following [modify\-instance\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) AWS CLI command to update the block device mapping of a running instance\. Note that you do not need to stop the instance before changing this attribute\.
 
 ```
 aws ec2 modify-instance-attribute --instance-id i-1a2b3c4d --block-device-mappings file://mapping.json
@@ -271,7 +271,7 @@ For example, to preserve the root volume at instance termination, specify the fo
 ]
 ```
 
-Alternatively, you can use the `-BlockDeviceMapping` parameter with the [Edit\-EC2InstanceAttribute](http://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2InstanceAttribute.html) command \(AWS Tools for Windows PowerShell\)\.
+Alternatively, you can use the `-BlockDeviceMapping` parameter with the [Edit\-EC2InstanceAttribute](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2InstanceAttribute.html) command \(AWS Tools for Windows PowerShell\)\.
 
 ### Viewing the EBS Volumes in an Instance Block Device Mapping<a name="view-instance-bdm"></a>
 
@@ -305,7 +305,7 @@ For instances launched before the release of the 2009\-10\-31 API, AWS can't dis
 
 **To view the EBS volumes for an instance using the command line**
 
-Use the [describe\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) \(AWS CLI\) command or [Get\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html) \(AWS Tools for Windows PowerShell\) command to enumerate the EBS volumes in the block device mapping for an instance\.
+Use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) \(AWS CLI\) command or [Get\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html) \(AWS Tools for Windows PowerShell\) command to enumerate the EBS volumes in the block device mapping for an instance\.
 
 ### Viewing the Instance Block Device Mapping for Instance Store Volumes<a name="bdm-instance-metadata"></a>
 

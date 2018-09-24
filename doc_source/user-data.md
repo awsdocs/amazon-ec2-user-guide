@@ -2,9 +2,9 @@
 
 When you launch an instance in Amazon EC2, you have the option of passing user data to the instance that can be used to perform common automated configuration tasks and even run scripts after the instance starts\. You can pass two types of user data to Amazon EC2: shell scripts and cloud\-init directives\. You can also pass this data into the launch wizard as plain text, as a file \(this is useful for launching instances using the command line tools\), or as base64\-encoded text \(for API calls\)\.
 
-If you are interested in more complex automation scenarios, consider using AWS CloudFormation and AWS OpsWorks\. For more information, see the [AWS CloudFormation User Guide](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/) and the [AWS OpsWorks User Guide](http://docs.aws.amazon.com/opsworks/latest/userguide/)\.
+If you are interested in more complex automation scenarios, consider using AWS CloudFormation and AWS OpsWorks\. For more information, see the [AWS CloudFormation User Guide](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/) and the [AWS OpsWorks User Guide](https://docs.aws.amazon.com/opsworks/latest/userguide/)\.
 
-For information about running commands on your Windows instance at launch, see [Running Commands on Your Windows Instance at Launch](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-windows-user-data.html) and [Managing Windows Instance Configuration](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-configuration-manage.html) in the *Amazon EC2 User Guide for Windows Instances*\.
+For information about running commands on your Windows instance at launch, see [Running Commands on Your Windows Instance at Launch](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-windows-user-data.html) and [Managing Windows Instance Configuration](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-configuration-manage.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
 In the following examples, the commands from the [Install a LAMP Web Server on Amazon Linux 2](ec2-lamp-amazon-linux-2.md) are converted to a shell script and a set of cloud\-init directives that executes when the instance launches\. In each example, the following tasks are executed by the user data:
 + The distribution software packages are updated\.
@@ -14,7 +14,7 @@ In the following examples, the commands from the [Install a LAMP Web Server on A
 + The appropriate ownership and file permissions are set for the web directory and the files contained within it\.
 + A simple web page is created to test the web server and PHP engine\.
 
-By default, user data and cloud\-init directives only run during the first boot cycle when you launch an instance\. However, AWS Marketplace vendors and owners of third\-party AMIs may have made their own customizations for how and when scripts run\. 
+By default, user data scripts and cloud\-init directives run only during the first boot cycle when an instance is launched\. However, you can configure your user data scripts and cloud\-init directives to run every time the instance is restarted from a stopped state\. For more information, see [How can I execute user data after the initial launch of my EC2 instance?](https://aws.amazon.com/premiumsupport/knowledge-center/execute-user-data-ec2/) in the AWS Knowledge Center\.
 
 **Topics**
 + [Prerequisites](#user-data-requirements)
@@ -34,7 +34,7 @@ Also, these instructions are intended for use with Amazon Linux 2, and the comma
 If you are familiar with shell scripting, this is the easiest and most complete way to send instructions to an instance at launch, and the cloud\-init output log file \(`/var/log/cloud-init-output.log`\) captures console output so it is easy to debug your scripts following a launch if the instance does not behave the way you intended\.
 
 **Important**  
-User data scripts and cloud\-init directives run only during the first boot cycle when an instance is launched\.
+By default, user data scripts and cloud\-init directives run only during the first boot cycle when an instance is launched\. However, you can configure your user data scripts and cloud\-init directives to run every time the instance is restarted from a stopped state\. For more information, see [How can I execute user data after the initial launch of my EC2 instance?](https://aws.amazon.com/premiumsupport/knowledge-center/execute-user-data-ec2/) in the AWS Knowledge Center\.
 
 User data shell scripts must start with the `#!` characters and the path to the interpreter you want to read the script \(commonly /bin/bash\)\. For a great introduction on shell scripting, see [the BASH Programming HOW\-TO](http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO.html) at the Linux Documentation Project \([tldp\.org](http://tldp.org)\)\.
 
@@ -114,7 +114,7 @@ The cloud\-init package configures specific aspects of a new Amazon Linux instan
 The cloud\-init user directives can be passed to an instance at launch the same way that a script is passed, although the syntax is different\. For more information about cloud\-init, go to [http://cloudinit\.readthedocs\.org/en/latest/index\.html](http://cloudinit.readthedocs.org/en/latest/index.html)\.
 
 **Important**  
-User data scripts and cloud\-init directives only run during the first boot cycle when an instance is launched\.
+By default, user data scripts and cloud\-init directives run only during the first boot cycle when an instance is launched\. However, you can configure your user data scripts and cloud\-init directives to run every time the instance is restarted from a stopped state\. For more information, see [How can I execute user data after the initial launch of my EC2 instance?](https://aws.amazon.com/premiumsupport/knowledge-center/execute-user-data-ec2/) in the AWS Knowledge Center\.
 
 The Amazon Linux version of cloud\-init does not support all of the directives that are available in the base package, and some of the directives have been renamed \(such as `repo_update` instead of `apt-upgrade`\)\.
 
@@ -169,10 +169,10 @@ Adding these tasks at boot time adds to the amount of time it takes to boot an i
 
 You can use the AWS CLI to specify, modify, and view the user data for your instance\. For information about viewing user data from your instance using instance metadata, see [Retrieve Instance User Data](ec2-instance-metadata.md#instancedata-user-data-retrieval)\.
 
-On Windows, you can use the AWS Tools for Windows PowerShell instead of using the AWS CLI\. For more information, see [User Data and the Tools for Windows PowerShell](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-windows-user-data.html#user-data-powershell) in the *Amazon EC2 User Guide for Windows Instances*\.
+On Windows, you can use the AWS Tools for Windows PowerShell instead of using the AWS CLI\. For more information, see [User Data and the Tools for Windows PowerShell](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-windows-user-data.html#user-data-powershell) in the *Amazon EC2 User Guide for Windows Instances*\.
 
 **Example: Specify User Data at Launch**  
-To specify user data when you launch your instance, use the [run\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command with the `--user-data` parameter\. With run\-instances, the AWS CLI performs base64 encoding of the user data for you\.
+To specify user data when you launch your instance, use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command with the `--user-data` parameter\. With run\-instances, the AWS CLI performs base64 encoding of the user data for you\.
 
 The following example shows how to specify a script as a string on the command line:
 
@@ -200,7 +200,7 @@ chkconfig httpd on
 ```
 
 **Example: Modify the User Data of a Stopped Instance**  
-You can modify the user data of a stopped instance using the [modify\-instance\-attribute](http://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) command\. With modify\-instance\-attribute, the AWS CLI does not perform base64 encoding of the user data for you\.
+You can modify the user data of a stopped instance using the [modify\-instance\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) command\. With modify\-instance\-attribute, the AWS CLI does not perform base64 encoding of the user data for you\.
 
 On Linux, use the base64 command to encode the user data\.
 
@@ -222,7 +222,7 @@ aws ec2 modify-instance-attribute --instance-id i-1234567890abcdef0 --attribute 
 ```
 
 **Example: View User Data**  
-To retrieve the user data for an instance, use the [describe\-instance\-attribute](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-attribute.html) command\. With describe\-instance\-attribute, the AWS CLI does not perform base64 decoding of the user data for you\.
+To retrieve the user data for an instance, use the [describe\-instance\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-attribute.html) command\. With describe\-instance\-attribute, the AWS CLI does not perform base64 decoding of the user data for you\.
 
 ```
 aws ec2 describe-instance-attribute --instance-id i-1234567890abcdef0 --attribute userData

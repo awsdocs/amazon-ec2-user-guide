@@ -81,8 +81,8 @@ After you have added a secondary private IP address to a network interface, you 
 
 **To assign a secondary IPv4 address during launch using the command line**
 + You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-  + The `--secondary-private-ip-addresses` option with the [run\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command \(AWS CLI\)
-  + Define `-NetworkInterface` and specify the `PrivateIpAddresses` parameter with the [New\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) command \(AWS Tools for Windows PowerShell\)\.<a name="assignIP-existing"></a>
+  + The `--secondary-private-ip-addresses` option with the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command \(AWS CLI\)
+  + Define `-NetworkInterface` and specify the `PrivateIpAddresses` parameter with the [New\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) command \(AWS Tools for Windows PowerShell\)\.<a name="assignIP-existing"></a>
 
 **To assign a secondary private IPv4 address to a network interface**
 
@@ -104,8 +104,8 @@ Alternatively, you can assign a secondary private IPv4 address to an instance\. 
 
 **To assign a secondary private IPv4 to an existing instance using the command line**
 + You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-  + [assign\-private\-ip\-addresses](http://docs.aws.amazon.com/cli/latest/reference/ec2/assign-private-ip-addresses.html) \(AWS CLI\)
-  + [Register\-EC2PrivateIpAddress](http://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2PrivateIpAddress.html) \(AWS Tools for Windows PowerShell\)
+  + [assign\-private\-ip\-addresses](https://docs.aws.amazon.com/cli/latest/reference/ec2/assign-private-ip-addresses.html) \(AWS CLI\)
+  + [Register\-EC2PrivateIpAddress](https://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2PrivateIpAddress.html) \(AWS Tools for Windows PowerShell\)
 
 ### Configuring the Operating System on Your Instance to Recognize the Secondary Private IPv4 Address<a name="StepTwoConfigOS"></a>
 
@@ -113,7 +113,7 @@ After you assign a secondary private IPv4 address to your instance, you need to 
 + If you are using Amazon Linux, the ec2\-net\-utils package can take care of this step for you\. It configures additional network interfaces that you attach while the instance is running, refreshes secondary IPv4 addresses during DHCP lease renewal, and updates the related routing rules\. You can immediately refresh the list of interfaces by using the command `sudo service network restart` and then view the up\-to\-date list using `ip addr li`\. If you require manual control over your network configuration, you can remove the ec2\-net\-utils package\. For more information, see [Configuring Your Network Interface Using ec2\-net\-utils](using-eni.md#ec2-net-utils)\.
 + If you are using another Linux distribution, see the documentation for your Linux distribution\. Search for information about configuring additional network interfaces and secondary IPv4 addresses\. If the instance has two or more interfaces on the same subnet, search for information about using routing rules to work around asymmetric routing\.
 
-For information about configuring a Windows instance, see [Configuring a Secondary Private IP Address for Your Windows Instance in a VPC](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/config-windows-multiple-ip.html) in the *Amazon EC2 User Guide for Windows Instances*\.
+For information about configuring a Windows instance, see [Configuring a Secondary Private IP Address for Your Windows Instance in a VPC](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/config-windows-multiple-ip.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
 ### Associating an Elastic IP Address with the Secondary Private IPv4 Address<a name="StepThreeEIP"></a>
 
@@ -131,8 +131,8 @@ For information about configuring a Windows instance, see [Configuring a Seconda
 
 **To associate an Elastic IP address with a secondary private IPv4 address using the command line**
 + You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-  + [associate\-address](http://docs.aws.amazon.com/cli/latest/reference/ec2/associate-address.html) \(AWS CLI\)
-  + [Register\-EC2Address](http://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2Address.html) \(AWS Tools for Windows PowerShell\)
+  + [associate\-address](https://docs.aws.amazon.com/cli/latest/reference/ec2/associate-address.html) \(AWS CLI\)
+  + [Register\-EC2Address](https://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2Address.html) \(AWS Tools for Windows PowerShell\)
 
 ### Viewing Your Secondary Private IPv4 Addresses<a name="view-privateIPs"></a>
 
@@ -186,8 +186,8 @@ If you no longer require a secondary private IPv4 address, you can unassign it f
 
 **To unassign a secondary private IPv4 address using the command line**
 + You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-  + [unassign\-private\-ip\-addresses](http://docs.aws.amazon.com/cli/latest/reference/ec2/unassign-private-ip-addresses.html) \(AWS CLI\)
-  + [Unregister\-EC2PrivateIpAddress](http://docs.aws.amazon.com/powershell/latest/reference/items/Unregister-EC2PrivateIpAddress.html) \(AWS Tools for Windows PowerShell\)
+  + [unassign\-private\-ip\-addresses](https://docs.aws.amazon.com/cli/latest/reference/ec2/unassign-private-ip-addresses.html) \(AWS CLI\)
+  + [Unregister\-EC2PrivateIpAddress](https://docs.aws.amazon.com/powershell/latest/reference/items/Unregister-EC2PrivateIpAddress.html) \(AWS Tools for Windows PowerShell\)
 
 ## Working with Multiple IPv6 Addresses<a name="working-with-multiple-ipv6"></a>
 
@@ -200,7 +200,7 @@ You can assign multiple IPv6 addresses to your instance, view the IPv6 addresses
 
 ### Assigning Multiple IPv6 Addresses<a name="assign-multiple-ipv6"></a>
 
-You can assign one or more IPv6 addresses to your instance during launch or after launch\. To assign an IPv6 address to an instance, the VPC and subnet in which you launch the instance must have an associated IPv6 CIDR block\. For more information, see [VPCs and Subnets](http://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html) in the *Amazon VPC User Guide*\.
+You can assign one or more IPv6 addresses to your instance during launch or after launch\. To assign an IPv6 address to an instance, the VPC and subnet in which you launch the instance must have an associated IPv6 CIDR block\. For more information, see [VPCs and Subnets](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html) in the *Amazon VPC User Guide*\.
 
 **To assign multiple IPv6 addresses during launch**
 
@@ -254,11 +254,11 @@ Alternatively, you can assign multiple IPv6 addresses to an existing network int
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
 + **Assign an IPv6 address during launch**:
-  + Use the `--ipv6-addresses` or `--ipv6-address-count` options with the [run\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command \(AWS CLI\)
-  + Define `-NetworkInterface` and specify the `Ipv6Addresses` or `Ipv6AddressCount` parameters with the [New\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) command \(AWS Tools for Windows PowerShell\)\.
+  + Use the `--ipv6-addresses` or `--ipv6-address-count` options with the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command \(AWS CLI\)
+  + Define `-NetworkInterface` and specify the `Ipv6Addresses` or `Ipv6AddressCount` parameters with the [New\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) command \(AWS Tools for Windows PowerShell\)\.
 + **Assign an IPv6 address to a network interface**:
-  + [assign\-ipv6\-addresses](http://docs.aws.amazon.com/cli/latest/reference/ec2/assign-ipv6-addresses.html) \(AWS CLI\)
-  + [Register\-EC2Ipv6AddressList](http://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2Ipv6AddressList.html) \(AWS Tools for Windows PowerShell\)
+  + [assign\-ipv6\-addresses](https://docs.aws.amazon.com/cli/latest/reference/ec2/assign-ipv6-addresses.html) \(AWS CLI\)
+  + [Register\-EC2Ipv6AddressList](https://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2Ipv6AddressList.html) \(AWS Tools for Windows PowerShell\)
 
 ### Viewing Your IPv6 Addresses<a name="view-secondary-ipv6"></a>
 
@@ -284,11 +284,11 @@ You can view the IPv6 addresses for an instance or for a network interface\.
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
 + **View the IPv6 addresses for an instance**:
-  + [describe\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) \(AWS CLI\)
-  + [Get\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html) \(AWS Tools for Windows PowerShell\)\.
+  + [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) \(AWS CLI\)
+  + [Get\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html) \(AWS Tools for Windows PowerShell\)\.
 + **View the IPv6 addresses for a network interface**:
-  + [describe\-network\-interfaces](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-network-interfaces.html) \(AWS CLI\)
-  + [Get\-EC2NetworkInterface](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2NetworkInterface.html) \(AWS Tools for Windows PowerShell\)
+  + [describe\-network\-interfaces](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-network-interfaces.html) \(AWS CLI\)
+  + [Get\-EC2NetworkInterface](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2NetworkInterface.html) \(AWS Tools for Windows PowerShell\)
 
 ### Unassigning an IPv6 Address<a name="unassign-secondary-ipv6"></a>
 
@@ -321,5 +321,5 @@ You can unassign an IPv6 address from the primary network interface of an instan
 **CLI Overview**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [unassign\-ipv6\-addresses](http://docs.aws.amazon.com/cli/latest/reference/ec2/unassign-ipv6-addresses.html) \(AWS CLI\)
-+ [Unregister\-EC2Ipv6AddressList](http://docs.aws.amazon.com/powershell/latest/reference/items/Unregister-EC2Ipv6AddressList.html) \(AWS Tools for Windows PowerShell\)\.
++ [unassign\-ipv6\-addresses](https://docs.aws.amazon.com/cli/latest/reference/ec2/unassign-ipv6-addresses.html) \(AWS CLI\)
++ [Unregister\-EC2Ipv6AddressList](https://docs.aws.amazon.com/powershell/latest/reference/items/Unregister-EC2Ipv6AddressList.html) \(AWS Tools for Windows PowerShell\)\.

@@ -32,13 +32,13 @@ There is a significant increase in latency when you first access each block of d
 
 ### Factors That Can Degrade HDD Performance<a name="snapshotting_latency"></a>
 
-When you create a snapshot of a Throughput Optimized HDD \(`st1`\) or Cold HDD \(`sc1`\) volume, performance may drop as far as the volume's baseline value while the snapshot is in progress\. This behavior is specific to these volume types\. Other factors that can limit performance include driving more throughput than the instance can support, the performance penalty encountered while initializing volumes restored from a snapshot, and excessive amounts of small, random I/O on the volume\. For more information about calculating throughput for HDD volumes, see [Amazon EBS Volume Types ](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html)\. 
+When you create a snapshot of a Throughput Optimized HDD \(`st1`\) or Cold HDD \(`sc1`\) volume, performance may drop as far as the volume's baseline value while the snapshot is in progress\. This behavior is specific to these volume types\. Other factors that can limit performance include driving more throughput than the instance can support, the performance penalty encountered while initializing volumes restored from a snapshot, and excessive amounts of small, random I/O on the volume\. For more information about calculating throughput for HDD volumes, see [Amazon EBS Volume Types ](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html)\. 
 
 Your performance can also be impacted if your application isn’t sending enough I/O requests\. This can be monitored by looking at your volume’s queue length and I/O size\. The queue length is the number of pending I/O requests from your application to your volume\. For maximum consistency, HDD\-backed volumes must maintain a queue length \(rounded to the nearest whole number\) of 4 or more when performing 1 MiB sequential I/O\. For more information about ensuring consistent performance of your volumes, see [I/O Characteristics and Monitoring](ebs-io-characteristics.md)
 
 ### Increase Read\-Ahead for High\-Throughput, Read\-Heavy Workloads on `st1` and `sc1`<a name="read_ahead"></a>
 
-Some workloads are read\-heavy and access the block device through the operating system page cache \(for example, from a file system\)\. In this case, to achieve the maximum throughput, we recommend that you configure the read\-ahead setting to 1 MiB\. This is a per\-block\-device setting that should only be applied to your HDD volumes\. The following examples assume that you are on an Amazon Linux instance\. 
+Some workloads are read\-heavy and access the block device through the operating system page cache \(for example, from a file system\)\. In this case, to achieve the maximum throughput, we recommend that you configure the read\-ahead setting to 1 MiB\. This is a per\-block\-device setting that should only be applied to your HDD volumes\.
 
 To examine the current value of read\-ahead for your block devices, use the following command:
 
@@ -83,7 +83,7 @@ kernel /boot/vmlinuz-4.9.20-11.31.amzn1.x86_64 root=LABEL=/ console=tty1 console
 
 Reboot your instance for this setting to take effect\.
 
-For more information, see [Configuring GRUB](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedKernels.html#configuringGRUB)\. Other Linux distributions, especially those that do not use the GRUB boot loader, may require a different approach to adjusting the kernel parameters\.
+For more information, see [Configuring GRUB](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedKernels.html#configuringGRUB)\. Other Linux distributions, especially those that do not use the GRUB boot loader, may require a different approach to adjusting the kernel parameters\.
 
 For more information about EBS I/O characteristics, see the [Amazon EBS: Designing for Performance](https://www.youtube.com/watch?v=2wKgha8CZ_w) re:Invent presentation on this topic\.
 

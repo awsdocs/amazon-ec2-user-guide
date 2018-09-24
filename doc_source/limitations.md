@@ -2,7 +2,7 @@
 
 Be aware of the following limits and requirements when you modify an EBS volume:
 + In some cases, you must detach the volume or stop the instance for modification to proceed\. If you encounter an error message while attempting to modify an EBS volume, or if you are modifying an EBS volume attached to a previous\-generation instance type, take one of the following steps:
-  + For a non\-root volume, detach the volume from the instance, apply the modifications, and then re\-attach the volume\. For more information, see [Detaching an Amazon EBS Volume from an Instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-detaching-volume.html) and [Attaching an Amazon EBS Volume to an Instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-attaching-volume.html)\. 
+  + For a non\-root volume, detach the volume from the instance, apply the modifications, and then re\-attach the volume\. For more information, see [Detaching an Amazon EBS Volume from an Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-detaching-volume.html) and [Attaching an Amazon EBS Volume to an Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-attaching-volume.html)\. 
   + For a root \(boot\) volume, stop the instance, apply the modifications, and then restart the instance\. For more information, see [Appendix: Starting and Stopping an Instance to Modify an EBS Volume](stop-start.md)\.
 + Decreasing the size of an EBS volume is not supported\. However, you can create a smaller volume and then migrate your data to it using an application\-level tool such as rsync\.
 + After modifying a volume, wait at least six hours before applying further modifications to the same volume\.
@@ -27,7 +27,7 @@ Before you can modify a volume that was attached to an instance before November 
 
 **To determine whether you must initialize volume modification support using the CLI**
 
-To find an instance that was last started before the cutoff date with a volume that was attached before the cutoff date, use the following [describe\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command\.
+To find an instance that was last started before the cutoff date with a volume that was attached before the cutoff date, use the following [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command\.
 
 ```
 aws ec2 describe-instances --query "Reservations[*].Instances[*].[InstanceId,LaunchTime<=`2016-11-01`,BlockDeviceMappings[*][Ebs.AttachTime<=`2016-11-01`]]" --output text

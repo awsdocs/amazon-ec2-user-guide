@@ -3,7 +3,7 @@
 The following examples show you how to use the AWS Management Console or the AWS CLI to determine the maximum CPU utilization of a specific EC2 instance\.
 
 **Requirements**
-+ You must have the ID of the instance\. You can get the instance ID using the AWS Management Console or the [describe\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command\.
++ You must have the ID of the instance\. You can get the instance ID using the AWS Management Console or the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command\.
 + By default, basic monitoring is enabled, but you can enable detailed monitoring\. For more information, see [Enable or Disable Detailed Monitoring for Your Instances](using-cloudwatch-new.md)\.
 
 **To display the CPU utilization for a specific instance using the console**
@@ -25,7 +25,7 @@ The following examples show you how to use the AWS Management Console or the AWS
 ![\[Change the statistic or period for a metric\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/metric_statistics_ec2_instance_statistic_period.png)
 
 **To get the CPU utilization for a specific instance using the AWS CLI**  
-Use the following [get\-metric\-statistics](http://docs.aws.amazon.com/cli/latest/reference/cloudwatch/get-metric-statistics.html) command to get the **CPUUtilization** metric for the specified instance, using the specified period and time interval:
+Use the following [get\-metric\-statistics](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/get-metric-statistics.html) command to get the **CPUUtilization** metric for the specified instance, using the specified period and time interval:
 
 ```
 aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtilization  --period 3600 \

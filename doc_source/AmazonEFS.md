@@ -17,12 +17,12 @@ Amazon EFS is not supported on Windows instances\.
 ## Prerequisites<a name="efs-prerequisites"></a>
 + Create a security group \(for example, efs\-sg\) to associate with the EC2 instances and EFS mount target, and add the following rules:
   + Allow inbound SSH connections to the EC2 instances from your computer \(the source is the CIDR block for your network\)\.
-  + Allow inbound NFS connections to the file system via the EFS mount target from the EC2 instances that are associated with this security group \(the source is the security group itself\)\. For more information, see [Amazon EFS file system](security-group-rules-reference.md#sg-rules-efs), and [Security Groups for Amazon EC2 Instances and Mount Targets](http://docs.aws.amazon.com/efs/latest/ug/security-considerations.html#network-access) in the *Amazon Elastic File System User Guide*\.
+  + Allow inbound NFS connections to the file system via the EFS mount target from the EC2 instances that are associated with this security group \(the source is the security group itself\)\. For more information, see [Amazon EFS Rules](security-group-rules-reference.md#sg-rules-efs), and [Security Groups for Amazon EC2 Instances and Mount Targets](https://docs.aws.amazon.com/efs/latest/ug/security-considerations.html#network-access) in the *Amazon Elastic File System User Guide*\.
 + Create a key pair\. You must specify a key pair when you configure your instances or you can't connect to them\. For more information, see [Create a Key Pair](get-set-up-for-amazon-ec2.md#create-a-key-pair)\.
 
 ## Step 1: Create an EFS File System<a name="efs-create-file-system"></a>
 
-Amazon EFS enables you to create a file system that multiple instances can mount and access at the same time\. For more information, see [Creating Resources for Amazon EFS](http://docs.aws.amazon.com/efs/latest/ug/creating-using.html) in the *Amazon Elastic File System User Guide*\.
+Amazon EFS enables you to create a file system that multiple instances can mount and access at the same time\. For more information, see [Creating Resources for Amazon EFS](https://docs.aws.amazon.com/efs/latest/ug/creating-using.html) in the *Amazon Elastic File System User Guide*\.
 
 **To create a file system**
 
@@ -57,7 +57,7 @@ Amazon EFS enables you to create a file system that multiple instances can mount
 Use the following procedure to launch two `t2.micro` instances\. The user data script mounts the file system to both instances during launch and updates /etc/fstab to ensure that the file system is remounted after an instance reboot\. Note that T2 instances must be launched in a subnet\. You can use a default VPC or a nondefault VPC\.
 
 **Note**  
-There are other ways that you can mount the volume \(for example, on an already running instance\)\. For more information, see [Mounting File Systems](http://docs.aws.amazon.com/efs/latest/ug/mounting-fs.html) in the *Amazon Elastic File System User Guide*\.
+There are other ways that you can mount the volume \(for example, on an already running instance\)\. For more information, see [Mounting File Systems](https://docs.aws.amazon.com/efs/latest/ug/mounting-fs.html) in the *Amazon Elastic File System User Guide*\.
 
 **To launch two instances and mount an EFS file system**
 

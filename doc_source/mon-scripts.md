@@ -2,7 +2,7 @@
 
 ## New CloudWatch Agent Available<a name="new-cloudwatch-agent"></a>
 
-A new multi\-platform CloudWatch agent is available\. You can use a single agent to collect both system metrics and log files from Amazon EC2 instances and on\-premises servers\. The new agent supports both Windows Server and Linux and enables you to select the metrics to be collected, including sub\-resource metrics such as per\-CPU core\. We recommend you use the new agent instead of the older monitoring scripts to collect metrics and logs\. For more information about the CloudWatch agent, see [Collect Metrics from Amazon EC2 Instances and On\-Premises Servers with the CloudWatch Agent](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Install-CloudWatch-Agent.html) in the *Amazon CloudWatch User Guide*\.
+A new multi\-platform CloudWatch agent is available\. You can use a single agent to collect both system metrics and log files from Amazon EC2 instances and on\-premises servers\. The new agent supports both Windows Server and Linux and enables you to select the metrics to be collected, including sub\-resource metrics such as per\-CPU core\. We recommend you use the new agent instead of the older monitoring scripts to collect metrics and logs\. For more information about the CloudWatch agent, see [Collect Metrics from Amazon EC2 Instances and On\-Premises Servers with the CloudWatch Agent](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Install-CloudWatch-Agent.html) in the *Amazon CloudWatch User Guide*\.
 
 The rest of this section is informational for customers who are still using the older Perl scripts for monitoring\. You can download these [Amazon CloudWatch Monitoring Scripts for Linux](https://aws.amazon.com/code/8720044071969977) from the AWS sample code library\.
 
@@ -39,7 +39,7 @@ wget http://download.opensuse.org/repositories/devel:/languages:/perl/SLE_12_SP3
 sudo rpm -i perl-Switch-2.17-32.1.noarch.rpm
 ```
 
-You can also monitor memory and disk metrics on Amazon EC2 instances running Windows by sending this data to CloudWatch Logs\. For more information, see [Sending Logs, Events, and Performance Counters to Amazon CloudWatch](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/send_logs_to_cwl.html) in the *Amazon EC2 User Guide for Windows Instances*\.
+You can also monitor memory and disk metrics on Amazon EC2 instances running Windows by sending this data to CloudWatch Logs\. For more information, see [Sending Logs, Events, and Performance Counters to Amazon CloudWatch](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/send_logs_to_cwl.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
 ### Package Contents<a name="mon-scripts-contents"></a>
 
@@ -184,7 +184,7 @@ The following steps show you how to download, uncompress, and configure the Clou
      AWSSecretKey=my-secret-access-key
      ```
 
-     For information about how to view your AWS credentials, see [Understanding and Getting Your Security Credentials](http://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html) in the *Amazon Web Services General Reference*\.
+     For information about how to view your AWS credentials, see [Understanding and Getting Your Security Credentials](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html) in the *Amazon Web Services General Reference*\.
 
 ### mon\-put\-instance\-data\.pl<a name="using_put_script"></a>
 
@@ -212,7 +212,7 @@ This script collects memory, swap, and disk space utilization data on the curren
 |   `--aws-secret-key=VALUE `   |  Specifies the AWS secret access key to use to sign the request to CloudWatch\. Must be used together with the `--aws-access-key-id` option\. Do not use this option with `--aws-credential-file` parameter\.  | 
 |   `--aws-iam-role=VALUE`   |  Specifies the IAM role used to provide AWS credentials\. The value `=VALUE` is required\. If no credentials are specified, the default IAM role associated with the EC2 instance is applied\. Only one IAM role can be used\. If no IAM roles are found, or if more than one IAM role is found, the script will return an error\. Do not use this option with the `--aws-credential-file`, `--aws-access-key-id`, or `--aws-secret-key` parameters\.  | 
 |   `--aggregated[=only]`   |  Adds aggregated metrics for instance type, AMI ID, and overall for the region\. The value `=only` is optional; if specified, the script reports only aggregated metrics\.  | 
-|   `--auto-scaling[=only]`   |  Adds aggregated metrics for the Auto Scaling group\. The value `=only` is optional; if specified, the script reports only Auto Scaling metrics\. The [IAM policy](http://docs.aws.amazon.com/IAM/latest/UserGuide/ManagingPolicies.html) associated with the IAM account or role using the scripts need to have permissions to call the EC2 action [DescribeTags](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeTags.html)\.  | 
+|   `--auto-scaling[=only]`   |  Adds aggregated metrics for the Auto Scaling group\. The value `=only` is optional; if specified, the script reports only Auto Scaling metrics\. The [IAM policy](https://docs.aws.amazon.com/IAM/latest/UserGuide/ManagingPolicies.html) associated with the IAM account or role using the scripts need to have permissions to call the EC2 action [DescribeTags](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeTags.html)\.  | 
 |   `--verify `   |  Performs a test run of the script that collects the metrics, prepares a complete HTTP request, but does not actually call CloudWatch to report the data\. This option also checks that credentials are provided\. When run in verbose mode, this option outputs the metrics that will be sent to CloudWatch\.   | 
 |   `--from-cron `   |  Use this option when calling the script from cron\. When this option is used, all diagnostic output is suppressed, but error messages are sent to the local system log of the user account\.   | 
 |   `--verbose `   |  Displays detailed information about what the script is doing\.   | 

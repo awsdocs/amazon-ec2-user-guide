@@ -86,8 +86,8 @@ The following is example output showing an instance retirement event:
 ```
 
 Alternatively, use the following commands:
-+  [Get\-EC2InstanceStatus](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2InstanceStatus.html) \(AWS Tools for Windows PowerShell\) 
-+  [DescribeInstanceStatus](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeInstanceStatus.html) \(Amazon EC2 Query API\)
++  [Get\-EC2InstanceStatus](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2InstanceStatus.html) \(AWS Tools for Windows PowerShell\) 
++  [DescribeInstanceStatus](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeInstanceStatus.html) \(Amazon EC2 Query API\)
 
 ## Working with Instances Scheduled to Stop or Retire<a name="schedevents_actions_retire"></a>
 
@@ -119,7 +119,7 @@ You can determine whether the reboot event is an instance reboot or a system reb
 1. In the bottom pane, locate **Event type**\. The value is either `system-reboot` or `instance-reboot`\.
 
 **To view the type of scheduled reboot event using the AWS CLI**  
-Use the following [describe\-instance\-status](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-status.html) command:
+Use the following [describe\-instance\-status](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-status.html) command:
 
 ```
 aws ec2 describe-instance-status --instance-ids i-1234567890abcdef0

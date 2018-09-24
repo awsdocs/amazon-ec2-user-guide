@@ -11,14 +11,14 @@ If you are unsure of which file system you are using, you can use the file \-s c
 ```
 
 **Note**  
-If the volume you are extending has been partitioned, you need to increase the size of the partition before you can resize the file system\. You can also allocate additional partitions at this time\. For more information, see [Expanding a Linux Partition](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/expand-linux-partition.html)\.
+If the volume you are extending has been partitioned, you need to increase the size of the partition before you can resize the file system\. You can also allocate additional partitions at this time\. For more information, see [Expanding a Linux Partition](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/expand-linux-partition.html)\.
 
 You can begin resizing the file system as soon as the volume enters the `Optimizing` state\.
 
 **Important**  
-Before extending a file system that contains valuable data, it is a best practice to create a snapshot of the volume that contains it in case you need to roll back your changes\. For information about EBS snapshots, see [Creating an Amazon EBS Snapshot](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-creating-snapshot.html)\.
+Before extending a file system that contains valuable data, it is a best practice to create a snapshot of the volume that contains it in case you need to roll back your changes\. For information about EBS snapshots, see [Creating an Amazon EBS Snapshot](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-creating-snapshot.html)\.
 
-For information about extending a Windows file system, see [Extending a Windows File System after Resizing the Volume](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/recognize-expanded-volume-windows.html) in the *Amazon EC2 User Guide for Windows Instances*\.<a name="procedure_partition_check"></a>
+For information about extending a Windows file system, see [Extending a Windows File System after Resizing the Volume](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/recognize-expanded-volume-windows.html) in the *Amazon EC2 User Guide for Windows Instances*\.<a name="procedure_partition_check"></a>
 
 **To check if your volume partition needs resizing**
 + Use the lsblk command to list the block devices attached to your instance\. The example below shows three volumes: `/dev/xvda`, `/dev/xvdb`, and `/dev/xvdf`\.
@@ -37,13 +37,13 @@ For information about extending a Windows file system, see [Extending a Windows 
 
   The volume `/dev/xvdb` is not partitioned at all, so it does not need resizing\.
 
-  However, `/dev/xvdf1` is an 8\-GiB partition on a 35\-GiB device and there are no other partitions on the volume\. In this case, the partition must be resized in order to use the remaining space on the volume\. For more information, see [Expanding a Linux Partition](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/expand-linux-partition.html)\. After you resize the partition, you can follow the next procedure to extend the file system to occupy all of the space on the partition\.
+  However, `/dev/xvdf1` is an 8\-GiB partition on a 35\-GiB device and there are no other partitions on the volume\. In this case, the partition must be resized in order to use the remaining space on the volume\. After you resize the partition, you can extend the file system to occupy all of the space on the partition\.
 
-**To extend a Linux file system**
+**To resize a Linux partition**
 
-1. Log in to your Linux instance using an SSH client\. For more information about connecting to a Linux instance, see [Connecting to Your Linux Instance Using SSH](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html)\.
+1. Log in to your Linux instance using an SSH client\. For more information about connecting to a Linux instance, see [Connecting to Your Linux Instance Using SSH](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html)\.
 
-1. Use the df \-h command to report the existing disk space usage on the file system\. In this new example, `/dev/xvda1` device has already been expanded to 35 GiB, but the operating system still sees only an original 8 GiB ext4 file system\. Similarly, the `/dev/xvdf` device has been expanded to 35 GiB, but the operating system still only sees an original 1 GiB XFS file system\.
+1. Use the df \-h command to report the existing disk space usage on the file system\. In this new example, `/dev/xvda1` block device has already been expanded to 35 GiB, but the operating system still sees only an original 8 GiB ext4 file system\. Similarly, the `/dev/xvdf` block device has been expanded to 35 GiB, but the operating system still only sees an original 1 GiB XFS file system\.
 
    ```
    [ec2-user ~]$ df -h
@@ -69,6 +69,8 @@ For information about extending a Windows file system, see [Extending a Windows 
    xvdf    202:80   0  35G  0 disk
    └─xvdf1 202:81   0  35G  0 part
    ```
+
+**To extend a Linux file system**
 
 1. Use a file system\-specific command to resize each file system to the new volume capacity\. 
 
@@ -103,7 +105,7 @@ For information about extending a Windows file system, see [Extending a Windows 
    ```
 **Note**  
 If you receive an xfsctl failed: Cannot allocate memory error, you may need to update the Linux kernel on your instance\. For more information, refer to your specific operating system documentation\.  
-If you receive a The filesystem is already *nnnnnnn* blocks long\. Nothing to do\! error, see [Expanding a Linux Partition](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/expand-linux-partition.html)\.
+If you receive a The filesystem is already *nnnnnnn* blocks long\. Nothing to do\! error, see [Expanding a Linux Partition](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/expand-linux-partition.html)\.
 
 1. Use the df \-h command to report the existing file system disk space usage, in this example showing 70 GiB on the ext4 file system and 100 GiB on the XFS file system:
 
@@ -116,4 +118,4 @@ If you receive a The filesystem is already *nnnnnnn* blocks long\. Nothing to do
    ```
 
 **Tip**  
-If the increased available space on your volume remains invisible to the system, try re\-initializing the volume as described in [Initializing Amazon EBS Volumes](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-initialize.html)\.
+If the increased available space on your volume remains invisible to the system, try re\-initializing the volume as described in [Initializing Amazon EBS Volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-initialize.html)\.

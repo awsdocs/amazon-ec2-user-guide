@@ -78,9 +78,9 @@ The number and mapping of Availability Zones per region may vary between AWS acc
 
 ## Regions and Endpoints<a name="using-regions-endpoints"></a>
 
-When you work with an instance using the command line interface or API actions, you must specify its regional endpoint\. For more information about the regions and endpoints for Amazon EC2, see [Regions and Endpoints](http://docs.aws.amazon.com/general/latest/gr/rande.html#ec2_region) in the *Amazon Web Services General Reference*\.
+When you work with an instance using the command line interface or API actions, you must specify its regional endpoint\. For more information about the regions and endpoints for Amazon EC2, see [Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#ec2_region) in the *Amazon Web Services General Reference*\.
 
-For more information about endpoints and protocols in AWS GovCloud \(US\), see [AWS GovCloud \(US\) Endpoints](http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/using-govcloud-endpoints.html) in the *AWS GovCloud \(US\) User Guide*\.
+For more information about endpoints and protocols in AWS GovCloud \(US\), see [AWS GovCloud \(US\) Endpoints](https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/using-govcloud-endpoints.html) in the *AWS GovCloud \(US\) User Guide*\.
 
 ## Describing Your Regions and Availability Zones<a name="using-regions-availability-zones-describe"></a>
 
@@ -99,25 +99,25 @@ You can use the Amazon EC2 console or the command line interface to determine wh
 
 **To find your regions and Availability Zones using the command line**
 
-1. \[AWS CLI\] Use the [describe\-regions](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-regions.html) command as follows to describe the regions for your account\.
+1. \[AWS CLI\] Use the [describe\-regions](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-regions.html) command as follows to describe the regions for your account\.
 
    ```
    aws ec2 describe-regions
    ```
 
-1. \[AWS CLI\] Use the [describe\-availability\-zones](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-availability-zones.html) command as follows to describe the Availability Zones within the specified region\.
+1. \[AWS CLI\] Use the [describe\-availability\-zones](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-availability-zones.html) command as follows to describe the Availability Zones within the specified region\.
 
    ```
    aws ec2 describe-availability-zones --region region-name
    ```
 
-1. \[AWS Tools for Windows PowerShell\] Use the [Get\-EC2Region](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Region.html) command as follows to describe the regions for your account\.
+1. \[AWS Tools for Windows PowerShell\] Use the [Get\-EC2Region](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Region.html) command as follows to describe the regions for your account\.
 
    ```
    PS C:\> Get-EC2Region
    ```
 
-1. \[AWS Tools for Windows PowerShell\] Use the [Get\-EC2AvailabilityZone](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2AvailabilityZone.html) command as follows to describe the Availability Zones within the specified region\.
+1. \[AWS Tools for Windows PowerShell\] Use the [Get\-EC2AvailabilityZone](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2AvailabilityZone.html) command as follows to describe the Availability Zones within the specified region\.
 
    ```
    PS C:\> Get-EC2AvailabilityZone -Region region-name
@@ -145,7 +145,7 @@ You can set the value of an environment variable to the desired regional endpoin
 
 Alternatively, you can use the `--region` \(AWS CLI\) or `-Region` \(AWS Tools for Windows PowerShell\) command line option with each individual command\. For example, `--region us-east-2`\.
 
-For more information about the endpoints for Amazon EC2, see [Amazon Elastic Compute Cloud Endpoints](http://docs.aws.amazon.com/general/latest/gr/rande.html#ec2_region)\.
+For more information about the endpoints for Amazon EC2, see [Amazon Elastic Compute Cloud Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#ec2_region)\.
 
 ## Launching Instances in an Availability Zone<a name="using-regions-availability-zones-launching"></a>
 
@@ -167,13 +167,13 @@ When you launch an instance, you can optionally specify an Availability Zone in 
 
 **To specify an Availability Zone for your instance using the AWS CLI**
 
-You can use the [run\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command with one of the following options:
+You can use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command with one of the following options:
 + \[EC2\-Classic\] `--placement`
 + \[EC2\-VPC\] `--subnet-id`
 
 **To specify an Availability Zone for your instance using the AWS Tools for Windows PowerShell**
 
-You can use the [New\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) command with one of the following options:
+You can use the [New\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) command with one of the following options:
 + \[EC2\-Classic\] `-AvailabilityZone`
 + \[EC2\-VPC\] `-SubnetId`
 
@@ -188,7 +188,7 @@ The migration process involves creating an AMI from the original instance, launc
 1. Create an AMI from the instance\. The procedure depends on the operating system and the type of root device volume for the instance\. For more information, see the documentation that corresponds to your operating system and root device volume:
    + [Creating an Amazon EBS\-Backed Linux AMI](creating-an-ami-ebs.md)
    + [Creating an Instance Store\-Backed Linux AMI](creating-an-ami-instance-store.md)
-   + [Creating an Amazon EBS\-Backed Windows AMI](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/Creating_EBSbacked_WinAMI.html)
+   + [Creating an Amazon EBS\-Backed Windows AMI](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/Creating_EBSbacked_WinAMI.html)
 
 1. \[EC2\-VPC\] If you need to preserve the private IPv4 address of the instance, you must delete the subnet in the current Availability Zone and then create a subnet in the new Availability Zone with the same IPv4 address range as the original subnet\. Note that you must terminate all instances in a subnet before you can delete it\. Therefore, you should create AMIs from all the instances in your subnet so that you can move all instances in the current subnet to the new subnet\.
 

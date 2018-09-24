@@ -82,8 +82,8 @@ The AMI that you specify when you launch your instance determines the type of ro
 **To verify the type of the root device volume of an AMI using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [describe\-images](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) \(AWS CLI\)
-+ [Get\-EC2Image](http://docs.aws.amazon.com/powershell/latest/userguide/pstools-ec2-get-amis.html#pstools-ec2-get-image) \(AWS Tools for Windows PowerShell\)
++ [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) \(AWS CLI\)
++ [Get\-EC2Image](https://docs.aws.amazon.com/powershell/latest/userguide/pstools-ec2-get-amis.html#pstools-ec2-get-image) \(AWS Tools for Windows PowerShell\)
 
 ## Determining the Root Device Type of Your Instance<a name="display-instance-root-device-type"></a>
 
@@ -100,8 +100,8 @@ You can use one of the following commands\. For more information about these com
 **To determine the root device type of an instance using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [describe\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) \(AWS CLI\)
-+ [Get\-EC2Instance](http://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
++ [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) \(AWS CLI\)
++ [Get\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
 
 ## Changing the Root Device Volume to Persist<a name="Using_RootDeviceStorage"></a>
 
@@ -132,7 +132,7 @@ You can verify the setting by viewing details for the root device volume on the 
 Using the AWS CLI, you can change the `DeleteOnTermination` attribute when you launch an instance or while the instance is running\.
 
 **Example at Launch**  
-Use the [run\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command to preserve the root volume by including a block device mapping that sets its `DeleteOnTermination` attribute to `false`\.  
+Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command to preserve the root volume by including a block device mapping that sets its `DeleteOnTermination` attribute to `false`\.  
 
 ```
 aws ec2 run-instances --block-device-mappings file://mapping.json other parameters...
@@ -150,7 +150,7 @@ Specify the following in `mapping.json`\.
 ]
 ```
 
-You can confirm that `DeleteOnTermination` is `false` by using the [describe\-instances](http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command and looking for the `BlockDeviceMappings` entry for the device in the command output, as shown here\.
+You can confirm that `DeleteOnTermination` is `false` by using the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command and looking for the `BlockDeviceMappings` entry for the device in the command output, as shown here\.
 
 ```
 ...
@@ -168,7 +168,7 @@ You can confirm that `DeleteOnTermination` is `false` by using the [describe\-in
 ```
 
 **Example While the Instance is Running**  
-Use the [modify\-instance\-attribute](http://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) command to preserve the root volume by including a block device mapping that sets its `DeleteOnTermination` attribute to `false`\.  
+Use the [modify\-instance\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) command to preserve the root volume by including a block device mapping that sets its `DeleteOnTermination` attribute to `false`\.  
 
 ```
 aws ec2 modify-instance-attribute --instance-id i-1234567890abcdef0 --block-device-mappings file://mapping.json

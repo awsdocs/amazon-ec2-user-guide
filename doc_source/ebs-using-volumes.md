@@ -4,7 +4,7 @@ After you attach an Amazon EBS volume to your instance, it is exposed as a block
 
 You can take snapshots of your EBS volume for backup purposes or to use as a baseline when you create another volume\. For more information, see [Amazon EBS Snapshots](EBSSnapshots.md)\.
 
-You can get directions for volumes on a Windows instance from [Making a Volume Available for Use on Windows](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ebs-using-volumes.html) in the *Amazon EC2 User Guide for Windows Instances*\.
+You can get directions for volumes on a Windows instance from [Making a Volume Available for Use on Windows](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ebs-using-volumes.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
 **To make an EBS volume available for use on Linux**
 

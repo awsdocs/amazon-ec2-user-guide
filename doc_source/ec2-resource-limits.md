@@ -4,7 +4,7 @@ Amazon EC2 provides different *resources* that you can use\. These resources inc
 
 The Amazon EC2 console provides limit information for the resources managed by the Amazon EC2 and Amazon VPC consoles\. You can request an increase for many of these limits\. Use the limit information that we provide to manage your AWS infrastructure\. Plan to request any limit increases in advance of the time that you'll need them\.
 
-For more information about the limits for other services, see [AWS Service Limits](http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) in the *Amazon Web Services General Reference*\.
+For more information about the limits for other services, see [AWS Service Limits](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) in the *Amazon Web Services General Reference*\.
 
 ## Viewing Your Current Limits<a name="view-limits"></a>
 
@@ -19,7 +19,7 @@ Use the **EC2 Service Limits** page in the Amazon EC2 console to view the curren
 
 1. From the navigation pane, choose **Limits**\.
 
-1. Locate the resource in the list\. The **Current Limit** column displays the current maximum for that resource for your account\. 
+1. Locate the resource in the list\. The **Current Limit** column displays the current maximum for that resource for your account\.
 
 ## Requesting a Limit Increase<a name="request-increase"></a>
 
@@ -36,3 +36,7 @@ Use the **Limits** page in the Amazon EC2 console to request an increase in the 
 1. Locate the resource in the list\. Choose **Request limit increase**\.
 
 1. Complete the required fields on the limit increase form\. We'll respond to you using the contact method that you specified\.
+
+## Limits on Email Sent Using Port 25<a name="port-25-throttle"></a>
+
+Amazon EC2 throttles traffic on port 25 of all instances by default\. You can request that this throttle be removed\. For more information, see [How do I remove the throttle on port 25 from my EC2 instance?](https://aws.amazon.com/premiumsupport/knowledge-center/ec2-port-25-throttle/) in the AWS Knowledge Center\.
