@@ -153,30 +153,6 @@ When you launch an instance, select a region that puts your instances closer to 
 
 When you launch an instance, you can optionally specify an Availability Zone in the region that you are using\. If you do not specify an Availability Zone, we select one for you\. When you launch your initial instances, we recommend that you accept the default Availability Zone, because this enables us to select the best Availability Zone for you based on system health and available capacity\. If you launch additional instances, only specify an Availability Zone if your new instances must be close to, or separated from, your running instances\.
 
-**To specify an Availability Zone for your instance using the console**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. On the dashboard, choose **Launch Instance**\.
-
-1. Follow the directions for the wizard\. On the **Configure Instance Details** page, do the following:
-   + \[EC2\-Classic\] Select one of the Availability Zone options from the list, or select **No Preference** to enable us to select the best one for you\.  
-![\[Select an Availability Zone for your instance\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/configure_instance_az.png)
-   + \[EC2\-VPC\] Select one of the subnet options from the list, or select **No preference \(default subnet in any Availability Zone\)** to enable us to select the best one for you\.  
-![\[Select a subnet for your instance\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/configure_instance_subnet.png)
-
-**To specify an Availability Zone for your instance using the AWS CLI**
-
-You can use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command with one of the following options:
-+ \[EC2\-Classic\] `--placement`
-+ \[EC2\-VPC\] `--subnet-id`
-
-**To specify an Availability Zone for your instance using the AWS Tools for Windows PowerShell**
-
-You can use the [New\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) command with one of the following options:
-+ \[EC2\-Classic\] `-AvailabilityZone`
-+ \[EC2\-VPC\] `-SubnetId`
-
 ## Migrating an Instance to Another Availability Zone<a name="migrating-instance-availability-zone"></a>
 
 If you need to, you can migrate an instance from one Availability Zone to another\. For example, if you are trying to modify the instance type of your instance and we can't launch an instance of the new instance type in the current Availability Zone, you could migrate the instance to an Availability Zone where we can launch an instance of that instance type\.
@@ -190,7 +166,7 @@ The migration process involves creating an AMI from the original instance, launc
    + [Creating an Instance Store\-Backed Linux AMI](creating-an-ami-instance-store.md)
    + [Creating an Amazon EBS\-Backed Windows AMI](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/Creating_EBSbacked_WinAMI.html)
 
-1. \[EC2\-VPC\] If you need to preserve the private IPv4 address of the instance, you must delete the subnet in the current Availability Zone and then create a subnet in the new Availability Zone with the same IPv4 address range as the original subnet\. Note that you must terminate all instances in a subnet before you can delete it\. Therefore, you should create AMIs from all the instances in your subnet so that you can move all instances in the current subnet to the new subnet\.
+1. If you need to preserve the private IPv4 address of the instance, you must delete the subnet in the current Availability Zone and then create a subnet in the new Availability Zone with the same IPv4 address range as the original subnet\. Note that you must terminate all instances in a subnet before you can delete it\. Therefore, you should create AMIs from all the instances in your subnet so that you can move all instances in the current subnet to the new subnet\.
 
 1. Launch an instance from the AMI that you just created, specifying the new Availability Zone or subnet\. You can use the same instance type as the original instance, or select a new instance type\. For more information, see [Launching Instances in an Availability Zone](#using-regions-availability-zones-launching)\.
 

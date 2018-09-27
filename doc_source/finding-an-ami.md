@@ -1,7 +1,7 @@
 # Finding a Linux AMI<a name="finding-an-ami"></a>
 
 Before you can launch an instance, you must select an AMI to use\. As you select an AMI, consider the following requirements you might have for the instances that you'll launch:
-+ The region
++ The Region
 + The operating system
 + The architecture: 32\-bit \(`i386`\) or 64\-bit \(`x86_64`\)
 + The root device type: Amazon EBS or instance store
@@ -23,17 +23,17 @@ You can find Linux AMIs using the Amazon EC2 console\. You can search through al
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. From the navigation bar, select the region in which to launch your instances\. You can select any region that's available to you, regardless of your location\.
+1. From the navigation bar, select the Region in which to launch your instances\. You can select any Region that's available to you, regardless of your location\.
 
 1. From the console dashboard, choose **Launch Instance**\.
 
-1. On **Quick Start** tab, select from one of the commonly used AMIs in the list\. If you don't see the AMI that you need, select the **AWS Marketplace** or **Community AMIs** tab to find additional AMIs\.
+1. On the **Quick Start** tab, select from one of the commonly used AMIs in the list\. If you don't see the AMI that you need, select the **AWS Marketplace** or **Community AMIs** tab to find additional AMIs\.
 
 **To find a Linux AMI using the Images page**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. From the navigation bar, select the region in which to launch your instances\. You can select any region that's available to you, regardless of your location\.
+1. From the navigation bar, select the Region in which to launch your instances\. You can select any Region that's available to you, regardless of your location\.
 
 1. In the navigation pane, choose **AMIs**\.
 
@@ -49,7 +49,7 @@ You can find Linux AMIs using the Amazon EC2 console\. You can search through al
 
 You can use AWS CLI commands for Amazon EC2 to list only the Linux AMIs that meet your needs\. After locating an AMI that meets your needs, make note of its ID so that you can use it to launch instances\. For more information, see [Launching an Instance Using the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-ec2-launch.html#launching-instances) in the *AWS Command Line Interface User Guide*\.
 
-The [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command supports filtering parameters\. For example, use the `--owners` parameter to public AMIs owned by Amazon\.
+The [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command supports filtering parameters\. For example, use the `--owners` parameter to display public AMIs owned by Amazon\.
 
 ```
 aws ec2 describe-images --owners self amazon
@@ -91,7 +91,7 @@ aws ec2 describe-images --owners 099720109477 --filters 'Name=name,Values=ubuntu
 **Example Example: Find the current Red Hat Enterprise Linux 7\.5 AMI**  
 
 ```
-aws ec2 describe-images --owners amazon --filters 'Name=name,Values=RHEL-7.5_HVM_GA*' 'Name=state,Values=available' | jq -r '.Images | sort_by(.CreationDate) | last(.[]).ImageId'
+aws ec2 describe-images --owners 309956199498 --filters 'Name=name,Values=RHEL-7.5_HVM_GA*' 'Name=state,Values=available' | jq -r '.Images | sort_by(.CreationDate) | last(.[]).ImageId'
 ```
 
 **Example Example: Find the current SUSE Linux Enterprise Server 15 AMI**  

@@ -4,7 +4,7 @@ General purpose instances provide a balance of compute, memory, and networking r
 
 **M5 Instances**
 
-M5 instances are the latest generation in Amazon EC2's General purpose instance family\. M5 instances give you an ideal cloud infrastructure, offering a balance of compute, memory, and networking resources for a broad range of applications that are deployed in the cloud\. M5 instances are well\-suited for the following applications:
+M5 instances are the latest generation in Amazon EC2's general purpose instance family\. M5 instances give you an ideal cloud infrastructure, offering a balance of compute, memory, and networking resources for a broad range of applications that are deployed in the cloud\. M5 instances are well\-suited for the following applications:
 + Web and application servers
 + Small and medium databases
 + Gaming servers
@@ -111,23 +111,23 @@ The following is a summary of network performance for general purpose instances 
 
 ## Instance Features<a name="general-purpose-features"></a>
 
-The following is a summary of features for General purpose instances:
+The following is a summary of features for general purpose instances:
 
 
-|  | VPC only | EBS only | Placement group | 
-| --- | --- | --- | --- | 
-|  T2  |  Yes  |  Yes  |   | 
-|  T3  |  Yes  |  Yes  |   | 
-|  M4  |  Yes  |  Yes  |  Yes  | 
-|  M5  |  Yes  |  Yes  |  Yes  | 
-|  M5d  |  Yes  |  |  Yes  | 
+|  | EBS only | NVMe EBS | Instance store | Placement group | 
+| --- | --- | --- | --- | --- | 
+|  M4  |  Yes  |  |  |  Yes  | 
+|  M5  |  Yes  |  Yes  |  |  Yes  | 
+|  M5d  |  |  Yes  |  NVMe \*  |  Yes  | 
+|  T2  |  Yes  |  |  |  | 
+|  T3  |  Yes  |  Yes  |  |  | 
+
+**\*** The root device volume must be an Amazon EBS volume\.
 
 For more information, see the following:
-+ [Instance Types Available Only in a VPC](using-vpc.md#vpc-only-instance-types)
-+ [Amazon EBS–Optimized Instances](EBSOptimized.md)
++ [Amazon EBS and NVMe](nvme-ebs-volumes.md)
 + [Amazon EC2 Instance Store](InstanceStorage.md)
 + [Placement Groups](placement-groups.md)
-+ [Enhanced Networking on Linux](enhanced-networking.md)
 
 ## Release Notes<a name="general-purpose-instances-limits"></a>
 + M4, M5, M5d, `t2.large` and larger, and `t3.large` and larger instance types require 64\-bit HVM AMIs\. They have high\-memory, and require a 64\-bit operating system to take advantage of that capacity\. HVM AMIs provide superior performance in comparison to paravirtual \(PV\) AMIs on high\-memory instance types\. In addition, you must use an HVM AMI to take advantage of enhanced networking\.
@@ -146,5 +146,4 @@ For more information, see the following:
   + Windows Server 2008 R2 or later
 + M5, M5d, and T3 instances support a maximum of 27 EBS volumes plus elastic network interface attachments\. For example, `m5.2xlarge` instances support four network interfaces\. Every instance has at least one network interface\. If you have a `m5.2xlarge` instance with three additional elastic network interface attachments, you can attach 24 EBS volumes to that instance\.
 + M5 and M5d instances should have acpid installed to support clean shutdown through API requests\.
-+ [ClassicLink](vpc-classiclink.md) is not supported for M5, M5d, and T3 instances—you cannot use ClassicLink to link your EC2\-Classic instances to these instances in your VPC\.
 + There is a limit on the total number of instances that you can launch in a region, and there are additional limits on some instance types\. For more information, see [How many instances can I run in Amazon EC2?](https://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2)\. To request a limit increase, use the [Amazon EC2 Instance Request Form](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-instances)\.

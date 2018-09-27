@@ -12,7 +12,7 @@ The following examples show launch configurations that you can use with the [req
 
 ## Example 1: Launch Spot Instances<a name="spot-launch-specification1"></a>
 
-The following example does not include an Availability Zone or subnet\. Amazon EC2 selects an Availability Zone for you\. If your account supports EC2\-VPC only, Amazon EC2 launches the instances in the default subnet of the selected Availability Zone\. If your account supports EC2\-Classic, Amazon EC2 launches the instances in EC2\-Classic in the selected Availability Zone\.
+The following example does not include an Availability Zone or subnet\. Amazon EC2 selects an Availability Zone for you\. Amazon EC2 launches the instances in the default subnet of the selected Availability Zone\.
 
 ```
 {
@@ -26,11 +26,9 @@ The following example does not include an Availability Zone or subnet\. Amazon E
 }
 ```
 
-You can specify security groups for EC2\-Classic either by ID or by name \(using the `SecurityGroups` field\)\. You must specify security groups for EC2\-VPC by ID\.
-
 ## Example 2: Launch Spot Instances in the Specified Availability Zone<a name="spot-launch-specification2"></a>
 
-The following example includes an Availability Zone\. If your account supports EC2\-VPC only, Amazon EC2 launches the instances in the default subnet of the specified Availability Zone\. If your account supports EC2\-Classic, Amazon EC2 launches the instances in EC2\-Classic in the specified Availability Zone\.
+The following example includes an Availability Zone\. Amazon EC2 launches the instances in the default subnet of the specified Availability Zone\.
 
 ```
 {

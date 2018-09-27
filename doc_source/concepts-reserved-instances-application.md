@@ -61,7 +61,8 @@ If your account qualifies for a discount pricing tier, it automatically receives
 
 The following rules apply:
 + Pricing tiers and related discounts apply only to purchases of Amazon EC2 Standard Reserved Instances\.
-+ Pricing tiers do not apply to Reserved Instances for Windows with SQL Server Standard or Windows with SQL Server Web\.
++ Pricing tiers do not apply to Reserved Instances for Windows with SQL Server Standard, SQL Server Web, and SQL Server Enterprise\. 
++ Pricing tiers do not apply to Reserved Instances for Linux with SQL Server Standard, SQL Server Web, and SQL Server Enterprise\. 
 + Pricing tier discounts only apply to purchases made from AWS\. They do not apply to purchases of third\-party Reserved Instances\. 
 + Discount pricing tiers are currently not applicable to Convertible Reserved Instance purchases\. 
 

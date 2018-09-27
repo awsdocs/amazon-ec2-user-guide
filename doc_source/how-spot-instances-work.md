@@ -25,10 +25,7 @@ Specify an Availability Zone group in your Spot Instance request to tell the Spo
 
 Although this option can be useful, adding this constraint can lower the chances that your Spot Instance request is fulfilled\.
 
-If you specify an Availability Zone group but don't specify an Availability Zone in the Spot Instance request, the result depends on whether you specified the EC2\-Classic network, a default VPC, or a nondefault VPC\. For more information, see [Supported Platforms](ec2-supported-platforms.md)\.
-
-**EC2\-Classic**  
-Amazon EC2 finds the lowest\-priced Availability Zone in the region and launches your Spot Instances in that Availability Zone if the lowest price for the group is higher than the current Spot price in that Availability Zone\. Amazon EC2 waits until there is enough capacity to launch your Spot Instances together, as long as the Spot price remains lower than the lowest price for the group\.
+If you specify an Availability Zone group but don't specify an Availability Zone in the Spot Instance request, the result depends on the network you specified\.
 
 **Default VPC**  
 Amazon EC2 uses the Availability Zone for the specified subnet, or if you don't specify a subnet, it selects an Availability Zone and its default subnet, but it might not be the lowest\-priced Availability Zone\. If you deleted the default subnet for an Availability Zone, then you must specify a different subnet\.
@@ -38,9 +35,7 @@ Amazon EC2 uses the Availability Zone for the specified subnet\.
 
 ## Launching Spot Instances in a VPC<a name="concepts-spot-instances-vpcs"></a>
 
-To take advantage of the features of EC2\-VPC when you use Spot Instances, specify in your Spot request that your Spot Instances are to be launched in a VPC\. You specify a subnet for your Spot Instances the same way that you specify a subnet for your On\-Demand Instances\.
-
-The process for making a Spot Instance request that launches Spot Instances in a VPC is the same as the process for making a Spot Instance request that launches Spot Instances in EC2\-Classic—except for the following differences: 
+You specify a subnet for your Spot Instances the same way that you specify a subnet for your On\-Demand Instances\.
 + You should use the default maximum price \(the On\-Demand price\), or base your maximum price on the Spot price history of Spot Instances in a VPC\.
 + \[Default VPC\] If you want your Spot Instance launched in a specific low\-priced Availability Zone, you must specify the corresponding subnet in your Spot Instance request\. If you do not specify a subnet, Amazon EC2 selects one for you, and the Availability Zone for this subnet might not have the lowest Spot price\.
 + \[Nondefault VPC\] You must specify the subnet for your Spot Instance\.

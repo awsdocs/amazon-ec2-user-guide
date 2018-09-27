@@ -68,8 +68,7 @@ The following table describes the Amazon EC2 resources that can be tagged, and t
 |  Reserved Instance listing  |  No  | No | 
 | Route table |  Yes  | No | 
 |  Spot Instance request  |  Yes  | No | 
-|  Security group–EC2\-Classic  |  Yes  | No | 
-|  Security group–VPC  |  Yes  | No | 
+|  Security group  |  Yes  | No | 
 |  Subnet  |  Yes  | No | 
 |  Virtual private gateway  |  Yes  | No | 
 |  VPC  |  Yes  | No | 

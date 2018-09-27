@@ -49,8 +49,6 @@ You can launch a Linux instance using the AWS Management Console as described in
 1. The **Choose an Amazon Machine Image \(AMI\)** page displays a list of basic configurations, called *Amazon Machine Images \(AMIs\)*, that serve as templates for your instance\. Select an HVM version of Amazon Linux 2\. Notice that these AMIs are marked "Free tier eligible\."
 
 1. On the **Choose an Instance Type** page, you can select the hardware configuration of your instance\. Select the `t2.micro` type, which is selected by default\. Notice that this instance type is eligible for the free tier\.
-**Note**  
-[T2 instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/t2-instances.html), such as `t2.micro`, must be launched into a VPC\. If your AWS account supports EC2\-Classic and you do not have a VPC in the selected region, the launch wizard creates a VPC for you and you can continue to the next step\. Otherwise, the **Review and Launch** button is disabled and you must choose **Next: Configure Instance Details** and follow the directions to select a subnet\.
 
 1. Choose **Review and Launch** to let the wizard complete the other configuration settings for you\.
 

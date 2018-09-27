@@ -127,18 +127,18 @@ For instance store volumes that support TRIM, you can use the TRIM command to no
 The following is a summary of features for storage optimized instances:
 
 
-|  | VPC only | SSD volumes | Placement group | Enhanced networking | 
+|  | EBS only | NVMe EBS | Instance store | Placement group | 
 | --- | --- | --- | --- | --- | 
-|  D2  |   |   |  Yes  |  [Intel 82599 VF](sriov-networking.md)  | 
-|  H1  |  Yes  |   |  Yes  |  [ENA](enhanced-networking-ena.md)  | 
-|  I3  |  Yes  |  NVMe  |  Yes  |  [ENA](enhanced-networking-ena.md)  | 
+|  D2  |  |  |  HDD  |  Yes  | 
+|  H1  |  |  |  HDD  |  Yes  | 
+|  I3  |  |  | NVMe \* |  Yes  | 
+
+**\*** The root device volume must be an Amazon EBS volume\.
 
 For more information, see the following:
-+ [Instance Types Available Only in a VPC](using-vpc.md#vpc-only-instance-types)
-+ [Amazon EBS–Optimized Instances](EBSOptimized.md)
++ [Amazon EBS and NVMe](nvme-ebs-volumes.md)
 + [Amazon EC2 Instance Store](InstanceStorage.md)
 + [Placement Groups](placement-groups.md)
-+ [Enhanced Networking on Linux](enhanced-networking.md)
 
 ## Support for vCPUs<a name="d2-instances-cpu-support"></a>
 
@@ -225,5 +225,4 @@ If you must use a different AMI for your application, and your `d2.8xlarge` inst
   hw.nvme.per_cpu_io_queues="0"
   ```
 + The `d2.8xlarge` instance type has 36 vCPUs, which might cause launch issues in some Linux operating systems that have a vCPU limit of 32\. For more information, see [Support for vCPUs](#d2-instances-cpu-support)\.
-+ [ClassicLink](vpc-classiclink.md) is not supported for `i3.metal` instances—you cannot use ClassicLink to link your EC2\-Classic instances to these instances in your VPC\.
 + There is a limit on the total number of instances that you can launch in a region, and there are additional limits on some instance types\. For more information, see [How many instances can I run in Amazon EC2?](https://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2)\. To request a limit increase, use the [Amazon EC2 Instance Request Form](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-instances)\.

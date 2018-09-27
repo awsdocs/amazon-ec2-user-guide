@@ -196,19 +196,15 @@ When you create a Spot Fleet request, you must specify information about the Spo
 
    1. For **Instance type\(s\)**, choose **Select**\. Select the instance types that have the minimum hardware specifications that you need \(vCPUs, memory, and storage\)\.
 
-   1. For **Network**, your account supports either the EC2\-Classic and EC2\-VPC platforms, or the EC2\-VPC platform only\. To find out which platforms your account supports, see [Supported Platforms](ec2-supported-platforms.md)\.
+   1. For **Network**, you can select an existing VPC or create a new one\.
 
       \[Existing VPC\] Select the VPC\.
 
       \[New VPC\] Select **Create new VPC** to go the Amazon VPC console\. When you are done, return to the wizard and refresh the list\.
 
-      \[EC2\-Classic\] Select **EC2\-Classic**\.
-
    1. \(Optional\) For **Availability Zones**, the default is to let AWS choose the Availability Zones for your Spot Instances\. If you prefer, you can specify specific Availability Zones\.
 
-      \[EC2\-VPC\] Select one or more Availability Zones\. If you have more than one subnet in an Availability Zone, select the appropriate subnet from **Subnet**\. To add subnets, select **Create new subnet** to go to the Amazon VPC console\. When you are done, return to the wizard and refresh the list\.
-
-      \[EC2\-Classic\] Select **Select specific zone/subnet**, and then select one or more Availability Zones\.
+      Select one or more Availability Zones\. If you have more than one subnet in an Availability Zone, select the appropriate subnet from **Subnet**\. To add subnets, select **Create new subnet** to go to the Amazon VPC console\. When you are done, return to the wizard and refresh the list\.
 
    1. \(Optional\) To add storage, specify additional instance store volumes or EBS volumes, depending on the instance type\. You can also enable EBS optimization\.
 
@@ -222,7 +218,7 @@ When you create a Spot Fleet request, you must specify information about the Spo
 
    1. For **Security groups**, select one or more security groups\.
 
-   1. \[EC2\-VPC\] If you need to connect to your instances in a VPC, you can enable **Auto\-assign IPv4 Public IP**\.
+   1. If you need to connect to your instances, you can enable **Auto\-assign IPv4 Public IP**\.
 
    1. \(Optional\) If you need to connect to your instances, specify your key pair using **Key pair name**\.
 

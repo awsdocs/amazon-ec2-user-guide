@@ -4,7 +4,6 @@ If you are using a previous generation Amazon EC2 instance and you need to modif
 
 When you stop and start an instance, be aware of the following:
 + If your instance is running in a VPC and has a public IPv4 address, we release the address and give it a new public IPv4 address\. The instance retains its private IPv4 addresses and any Elastic IP addresses\.
-+ If your instance is running in EC2\-Classic, we give it new public and private IPv4 addresses, and disassociate any Elastic IP address that's associated with the instance\. You must re\-associate any Elastic IP address after you restart your instance\.
 + If your instance is in an Auto Scaling group, Amazon EC2 Auto Scaling marks the stopped instance as unhealthy, and may terminate it and launch a replacement instance\. To prevent this, you can temporarily suspend the Auto Scaling processes for the group\. For more information, see [Suspending and Resuming Scaling Processes](https://docs.aws.amazon.com/autoscaling/latest/userguide/as-suspend-resume-processes.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 
 **To modify the root volume of an instance**

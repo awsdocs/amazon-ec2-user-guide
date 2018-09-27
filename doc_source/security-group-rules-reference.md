@@ -24,8 +24,8 @@ The following inbound rules allow HTTP and HTTPS access from any IP address\. If
 | --- | --- | --- | --- | --- | 
 | TCP | 6 | 80 \(HTTP\) | 0\.0\.0\.0/0 | Allows inbound HTTP access from any IPv4 address | 
 | TCP | 6 | 443 \(HTTPS\) | 0\.0\.0\.0/0 | Allows inbound HTTPS access from any IPv4 address | 
-| TCP | 6 | 80 \(HTTP\) | ::/0 | \(VPC only\) Allows inbound HTTP access from any IPv6 address | 
-| TCP | 6 | 443 \(HTTPS\) | ::/0 | \(VPC only\) Allows inbound HTTPS access from any IPv6 address | 
+| TCP | 6 | 80 \(HTTP\) | ::/0 | Allows inbound HTTP access from any IPv6 address | 
+| TCP | 6 | 443 \(HTTPS\) | ::/0 | Allows inbound HTTPS access from any IPv6 address | 
 
 ## Database Server Rules<a name="sg-rules-db-server"></a>
 
@@ -44,7 +44,7 @@ For the source IP, specify one of the following:
 | TCP | 6 | 5432 \(PostgreSQL\) | The default port to access a PostgreSQL database, for example, on an Amazon RDS instance | 
 | TCP | 6 | 1521 \(Oracle\) | The default port to access an Oracle database, for example, on an Amazon RDS instance | 
 
-\(VPC only\) You can optionally restrict outbound traffic from your database servers, for example, if you want allow access to the Internet for software updates, but restrict all other kinds of traffic\. You must first remove the default outbound rule that allows all outbound traffic\.
+You can optionally restrict outbound traffic from your database servers, for example, if you want allow access to the Internet for software updates, but restrict all other kinds of traffic\. You must first remove the default outbound rule that allows all outbound traffic\.
 
 
 | Protocol type | Protocol number | Port | Destination IP | Notes | 
@@ -68,21 +68,12 @@ To connect to your instance, your security group must have inbound rules that al
 
 To allow instances that are associated with the same security group to communicate with each other, you must explicitly add rules for this\. 
 
-The following table describes the inbound rule for a VPC security group that enables associated instances to communicate with each other\. The rule allows all types of traffic\.
+The following table describes the inbound rule for a security group that enables associated instances to communicate with each other\. The rule allows all types of traffic\.
 
 
 | Protocol type | Protocol number | Ports | Source IP | 
 | --- | --- | --- | --- | 
 | \-1 \(All\) | \-1 \(All\) | \-1 \(All\) | The ID of the security group | 
-
-The following table describes inbound rules for an EC2\-Classic security group that enable associated instances to communicate with each other\. The rules allow all types of traffic\.
-
-
-| Protocol type | Protocol number | Ports | Source IP | 
-| --- | --- | --- | --- | 
-| ICMP | 1 | \-1 \(All\) | The ID of the security group | 
-| TCP | 6 | 0 \- 65535 \(All\) | The ID of the security group | 
-| UDP | 17 | 0 \- 65535 \(All\) | The ID of the security group | 
 
 ## Rules for Path MTU Discovery<a name="sg-rules-path-mtu"></a>
 
@@ -120,8 +111,8 @@ To use the `ping6` command to ping the IPv6 address for your instance, you must 
 If you've set up your EC2 instance as a DNS server, you must ensure that TCP and UDP traffic can reach your DNS server over port 53\. 
 
 For the source IP, specify one of the following:
-+ A specific IP address or range of IP addresses in a network
-+ A security group ID for a group of instances in your network that require access to the DNS server
++ An IP address or range of IP addresses in a network
++ The ID of a security group for the set of instances in your network that require access to the DNS server
 
 
 | Protocol type | Protocol number | Port | 

@@ -17,7 +17,7 @@ There is no charge for creating a placement group\.
 
 ## Cluster Placement Groups<a name="placement-groups-cluster"></a>
 
-A cluster placement group is a logical grouping of instances within a single Availability Zone\. A placement group can span peered VPCs in the same region\.
+A cluster placement group is a logical grouping of instances within a single Availability Zone\. A placement group can span peered VPCs in the same region\. The chief benefit of a cluster placement group, in addition to a 10 Gbps flow limit, is the non\-blocking, non\-oversubscribed, fully bi\-sectional nature of the connectivity\. In other words, all nodes within the placement group can talk to all other nodes within the placement group at the full line rate of 10 Gpbs flows and 25 aggregate without any slowing due to over\-subscription\. 
 
 Cluster placement groups are recommended for applications that benefit from low network latency, high network throughput, or both, and if the majority of the network traffic is between the instances in the group\. To provide the lowest latency and the highest packet\-per\-second network performance for your placement group, choose an instance type that supports enhanced networking\. For more information, see [Enhanced Networking](enhanced-networking.md)\.
 
@@ -45,6 +45,7 @@ Before you use placement groups, be aware of the following rules:
 + An instance can be launched in one placement group at a time; it cannot span multiple placement groups\.
 + Reserved Instances provide a capacity reservation for EC2 instances in a specific Availability Zone\. The capacity reservation can be used by instances in a placement group\. However, it is not possible to explicitly reserve capacity for a placement group\.
 + Instances with a tenancy of `host` cannot be launched in placement groups\.
++ For instances that are enabled for enhanced networking, traffic between instances within the same region that is addressed using IPv4 or IPv6 addresses can use up to 5 Gbps for single\-flow traffic and up to 25 Gbps for multi\-flow traffic\. A flow represents a single, point\-to\-point network connection\.
 
 The following rules apply to cluster placement groups:
 + The following are the only instance types that you can use when you launch an instance into a cluster placement group:
@@ -56,7 +57,6 @@ The following rules apply to cluster placement groups:
 + A cluster placement group can't span multiple Availability Zones\.
 + The maximum network throughput speed of traffic between two instances in a cluster placement group is limited by the slower of the two instances\. For applications with high\-throughput requirements, choose an instance type with 10–Gbps or 25–Gbps network connectivity\.
 + For instances that are enabled for enhanced networking, the following rules apply:
-  + Traffic between instances within the same region that is addressed using private IPv4 or IPv6 addresses can use 5 Gbps for single\-flow traffic and up to 25 Gbps for multi\-flow traffic\. A flow represents a single, point\-to\-point network connection\.
   + Instances within a cluster placement group can use up to 10 Gbps for single\-flow traffic\.
   + Traffic to and from Amazon S3 buckets within the same region over the public IP address space or through a VPC endpoint can use all available instance aggregate bandwidth\.
 + You can launch multiple instance types into a cluster placement group\. However, this reduces the likelihood that the required capacity will be available for your launch to succeed\. We recommend using the same instance type for all instances in a cluster placement group\.

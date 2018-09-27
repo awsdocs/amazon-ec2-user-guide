@@ -11,6 +11,9 @@ These instances are well suited for the following applications:
 + Applications performing real\-time processing of big unstructured data \(financial services, Hadoop/Spark clusters\)\.
 + High\-performance computing \(HPC\) and Electronic Design Automation \(EDA\) applications\.
 
+**High memory instances**  
+High memory instances \(`u-6tb1.metal`, `u-9tb1.metal`, and `u-12tb1.metal`\) offer 6 TiB, 9 TiB, and 12 TiB of memory per instance\. These instances are designed to run large in\-memory databases, including production installations of SAP HANA\. They offer bare metal performance with direct access to host hardware\.
+
 **X1 Instances**
 
 These instances are well suited for the following applications:
@@ -68,6 +71,9 @@ The following is a summary of the hardware specifications for memory optimized i
 | r5d\.4xlarge | 16 | 128 | 
 | r5d\.12xlarge | 48 | 384 | 
 | r5d\.24xlarge | 96 | 768 | 
+| u\-6tb1\.metal | 448 \* | 6,144 | 
+| u\-9tb1\.metal | 448 \* | 9,216 | 
+| u\-12tb1\.metal | 448 \* | 12,288 | 
 | x1\.16xlarge | 64 | 976 | 
 | x1\.32xlarge | 128 | 1,952 | 
 | x1e\.xlarge | 4 | 122 | 
@@ -83,6 +89,8 @@ The following is a summary of the hardware specifications for memory optimized i
 | z1d\.6xlarge | 24 | 192 | 
 | z1d\.12xlarge | 48 | 384 | 
 
+\* Each logical processor is a hyperthread on 224 cores\.
+
 For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
 For more information about specifying CPU options, see [Optimizing CPU Options](instance-optimize-cpu.md)\.
@@ -93,13 +101,15 @@ X1 instances include Intel Scalable M​​emory Buffers, providing 300 GiB/s of
 
 For more information about how much RAM can be enabled for memory optimized instances, see [Hardware Specifications](#memory-instances-hardware)\.
 
-Memory optimized instances have high\-memory and require 64\-bit HVM AMIs to take advantage of that capacity\. HVM AMIs provide superior performance in comparison to paravirtual \(PV\) AMIs on high\-memory instance types\. For more information, see [Linux AMI Virtualization Types](virtualization_types.md)\.
+Memory optimized instances have high memory and require 64\-bit HVM AMIs to take advantage of that capacity\. HVM AMIs provide superior performance in comparison to paravirtual \(PV\) AMIs on memory optimized instances\. For more information, see [Linux AMI Virtualization Types](virtualization_types.md)\.
 
 ## Instance Performance<a name="memory-compute-perf"></a>
 
 R4 instances feature up to 64 vCPUs and are powered by two AWS\-customized Intel XEON processors based on E5\-2686v4 that feature high\-memory bandwidth and larger L3 caches to boost the performance of in\-memory applications\.
 
 X1e and X1 instances feature up to 128 vCPUs and are powered by four Intel Xeon E7\-8880 v3 processors that feature high\-memory bandwidth and larger L3 caches to boost the performance of in\-memory applications\.
+
+High memory instances \(`u-6tb1.metal`, `u-9tb1.metal`, and `u-12tb1.metal`\) are the first instances to be powered by an eight\-socket platform with the latest generation Intel Xeon Platinum 8176M \(Skylake\) processors that are optimized for mission\-critical enterprise workloads\.
 
 Memory optimized instances enable increased cryptographic performance through the latest Intel AES\-NI feature, support Intel Transactional Synchronization Extensions \(TSX\) to boost the performance of in\-memory transactional data processing, and support Advanced Vector Extensions 2 \(Intel AVX2\) processor instructions to expand most integer commands to 256 bits\.
 
@@ -118,7 +128,7 @@ The following is a summary of network performance for memory optimized instances
 | --- | --- | --- | 
 |  `r4.4xlarge` and smaller \| `r5.4xlarge` and smaller \| `r5d.4xlarge` and smaller \| `x1e.8large` and smaller \| `z1d.3xlarge` and smaller  |  Up to 10 Gbps  | [ENA](enhanced-networking-ena.md) | 
 |  `r4.8xlarge` \| `r5.12xlarge` \| `r5d.12xlarge` \| `x1.16xlarge` \| `x1e.16xlarge` \| `z1d.6xlarge`  |  10 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  `r4.16xlarge` \| `r5.24xlarge` \| `r5d.24xlarge` \| `x1.32xlarge` \| `x1e.32xlarge` \| `z1d.12xlarge`  |  25 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `r4.16xlarge` \| `r5.24xlarge` \| `r5d.24xlarge` \| `u-6tb1.metal` \| `u-9tb1.metal` \| `u-12tb1.metal` \| `x1.32xlarge` \| `x1e.32xlarge` \| `z1d.12xlarge`  |  25 Gbps  | [ENA](enhanced-networking-ena.md) | 
 
 ## SSD I/O Performance<a name="r5d-z1d-instances-ssd-perf"></a>
 
@@ -153,23 +163,24 @@ For instance store volumes that support TRIM, you can use the TRIM command to no
 The following is a summary of features for memory optimized instances\.
 
 
-|  | VPC only | EBS only | Instance store | Placement group | 
+|  | EBS only | NVMe EBS | Instance store | Placement group | 
 | --- | --- | --- | --- | --- | 
-| R4 | Yes | Yes |  | Yes | 
+| R4 | Yes |  |  | Yes | 
 | R5 | Yes | Yes |  | Yes | 
-| R5d | Yes |  | NVME \* | Yes | 
-| X1 | Yes |  | SSD | Yes | 
-| X1e | Yes |  | SSD | Yes | 
-| z1d | Yes |  | NVME \* | Yes | 
+| R5d |  | Yes | NVME \* | Yes | 
+| `u-6tb1.metal` | Yes | Yes |  | No | 
+| `u-9tb1.metal` | Yes | Yes |  | No | 
+| `u-12tb1.metal` | Yes | Yes |  | No | 
+| X1 |  |  | SSD | Yes | 
+| X1e |  |  | SSD | Yes | 
+| z1d |  | Yes | NVME \* | Yes | 
 
 **\*** The root device volume must be an Amazon EBS volume\.
 
 For more information, see the following:
-+ [Instance Types Available Only in a VPC](using-vpc.md#vpc-only-instance-types)
-+ [Amazon EBS–Optimized Instances](EBSOptimized.md)
++ [Amazon EBS and NVMe](nvme-ebs-volumes.md)
 + [Amazon EC2 Instance Store](InstanceStorage.md)
 + [Placement Groups](placement-groups.md)
-+ [Enhanced Networking on Linux](enhanced-networking.md)
 
 ## Support for vCPUs<a name="high-cpu-support"></a>
 
@@ -188,7 +199,7 @@ The following AMIs support launching memory optimized instances:
 + Windows Server 2008 SP2 64\-bit
 
 ## Release Notes<a name="memory-instance-limits"></a>
-+ The following are requirements for R5, R5d, and z1d instances:
++ The following are requirements for high memory, R5, R5d, and z1d instances:
   + NVMe drivers must be installed\. EBS volumes are exposed as [NVMe block devices](nvme-ebs-volumes.md)\.
   + Elastic Network Adapter \([ENA](enhanced-networking-ena.md)\) drivers must be installed\.
 
@@ -203,5 +214,4 @@ The following AMIs support launching memory optimized instances:
 + You can't launch X1 instances using a Windows Server 2008 SP2 64\-bit AMI, except for `x1.16xlarge` instances\.
 + You can't launch X1e instances using a Windows Server 2008 SP2 64\-bit AMI\.
 + With earlier versions of the Windows Server 2008 R2 64\-bit AMI, you can't launch `r4.large` and `r4.4xlarge` instances\. If you experience this issue, update to the latest version of this AMI\.
-+ [ClassicLink](vpc-classiclink.md) is not supported for R5, R5d, and z1d instances—you cannot use ClassicLink to link your EC2\-Classic instances to these instances in your VPC\.
 + There is a limit on the total number of instances that you can launch in a region, and there are additional limits on some instance types\. For more information, see [How many instances can I run in Amazon EC2?](https://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2)\. To request a limit increase, use the [Amazon EC2 Instance Request Form](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-instances)\.

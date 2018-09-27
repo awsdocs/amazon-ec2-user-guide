@@ -40,7 +40,6 @@ Not all attributes of a Reserved Instance can be modified, and restrictions may 
 | --- | --- | --- | 
 |  Change **Availability Zones** within the same region  |  Linux and Windows  | \- | 
 |  Change the **scope** from Availability Zone to Region and vice versa  |  Linux and Windows  |  If you change the scope from Availability Zone to region, you lose the capacity reservation benefit\. If you change the scope from region to Availability Zone, you lose Availability Zone flexibility and instance size flexibility \(if applicable\)\. For more information, see [How Reserved Instances Are Applied](apply_ri.md)\.  | 
-|  Change the **network platform** between EC2\-VPC and EC2\-Classic  |  Linux and Windows  |  Only applicable if your account supports EC2\-Classic\.  | 
 |  Change the **instance size** within the same instance type  |  Linux only  |  Some instance types are not supported, because there are no other sizes available\. For more information, see [Modifying the Instance Size of Your Reservations](#ri-modification-instancemove)\.  | 
 
 Amazon EC2 processes your modification request if there is sufficient capacity for your target configuration \(if applicable\), and if the following conditions are met\.
@@ -125,7 +124,6 @@ Before you modify your Reserved Instances, ensure that you have read the applica
 If your Reserved Instances are not in the active state or cannot be modified, **Modify Reserved Instances** is disabled\.
 
 1. The first entry in the modification table displays attributes of selected Reserved Instances, and at least one target configuration beneath it\. The **Units** column displays the total instance size footprint\. Choose **Add** for each new configuration to add\. Modify the attributes as needed for each configuration, and choose **Continue** when you're done:
-   + **Network**: Choose whether the Reserved Instance applies to EC2\-Classic or EC2\-VPC\. This option is only available if your account supports EC2\-Classic\.
    + **Scope**: Choose whether the Reserved Instance applies to an Availability Zone or to the whole region\.
    + **Availability Zone**: Choose the required Availability Zone\. Not applicable for regional Reserved Instances\.
    + **Instance Type**: Select the required instance type\. Only available for supported platforms\. For more information, see [Requirements and Restrictions for Modification](#ri-modification-limits)\.

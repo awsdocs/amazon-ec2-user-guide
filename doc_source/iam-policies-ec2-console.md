@@ -69,8 +69,8 @@ The Amazon EC2 launch wizard is a series of screens with options to configure an
 
 To complete a launch successfully, users must be given permission to use the `ec2:RunInstances` API action, and at least the following API actions:
 + `ec2:DescribeImages`: To view and select an AMI\. 
-+ `ec2:DescribeVpcs`: To view the available network options, which are EC2\-Classic and a list of VPCs\. This is required even if you are not launching into a VPC\.
-+ `ec2:DescribeSubnets`: If launching into a VPC, to view all available subnets for the chosen VPC\. 
++ `ec2:DescribeVpcs`: To view the available network options\.
++ `ec2:DescribeSubnets`: To view all available subnets for the chosen VPC\. 
 + `ec2:DescribeSecurityGroups`: To view the security groups page in the wizard\. Users can select an existing security group\. 
 + `ec2:DescribeKeyPairs` or `ec2:CreateKeyPair`: To select an existing key pair, or create a new one\.
 
@@ -96,8 +96,8 @@ To complete a launch successfully, users must be given permission to use the `ec
 ```
 
 You can add API actions to your policy to provide more options for users, for example:
-+ `ec2:DescribeAvailabilityZones`: If launching into EC2\-Classic, to view and select a specific Availability Zone\.
-+ `ec2:DescribeNetworkInterfaces`: If launching into a VPC, to view and select existing network interfaces for the selected subnet\.
++ `ec2:DescribeAvailabilityZones`: To view and select a specific Availability Zone\.
++ `ec2:DescribeNetworkInterfaces`: To view and select existing network interfaces for the selected subnet\.
 + `ec2:CreateSecurityGroup`: To create a new security group; for example, to create the wizard's suggested `launch-wizard-x` security group\. However, this action alone only creates the security group; it does not add or modify any rules\. To add inbound rules, users must be granted permission to use the `ec2:AuthorizeSecurityGroupIngress` API action\. To add outbound rules to VPC security groups, users must be granted permission to use the `ec2:AuthorizeSecurityGroupEgress` API action\. To modify or delete existing rules, users must be granted permission to use the relevant `ec2:RevokeSecurityGroup*` API action\.
 + `ec2:CreateTags`: To tag the resources that are created by `RunInstances`\. For more information, see [Resource\-Level Permissions for Tagging](ec2-supported-iam-actions-resources.md#supported-iam-actions-tagging)\. If users do not have permission to use this action and they attempt to apply tags on the tagging page of the launch wizard, the launch fails\.
 **Important**  
@@ -215,9 +215,6 @@ Users cannot tag the volumes that they create \(either during or after volume cr
 
 The following policy grants users permission to view security groups in the Amazon EC2 console, and to add and remove inbound and outbound rules for existing security groups that have the tag `Department=Test`\.
 
-**Note**  
-You can't modify outbound rules for EC2\-Classic security groups\. For more information about security groups, see [Amazon EC2 Security Groups for Linux Instances](using-network-security.md)\.
-
 In the first statement, the `ec2:DescribeTags` action allows users to view tags in the console, which makes it easier for users to identify the security groups that they are allowed to modify\.
 
 ```
@@ -253,7 +250,7 @@ In the first statement, the `ec2:DescribeTags` action allows users to view tags 
 
 You can create a policy that allows users to work with the **Create Security Group** dialog box in the Amazon EC2 console\. To use this dialog box, users must be granted permission to use at the least the following API actions:
 + `ec2:CreateSecurityGroup`: To create a new security group\. 
-+ `ec2:DescribeVpcs`: To view a list of existing VPCs in the **VPC** list\. This action is not required for creating security groups in EC2\-Classic\.
++ `ec2:DescribeVpcs`: To view a list of existing VPCs in the **VPC** list\.
 
 With these permissions, users can create a new security group successfully, but they cannot add any rules to it\. To work with rules in the **Create Security Group** dialog box, you can add the following API actions to your policy:
 + `ec2:AuthorizeSecurityGroupIngress`: To add inbound rules\.
@@ -297,10 +294,10 @@ The following policy grants users permission to use the **Create Security Group*
 To allow users to view Elastic IP addresses in the Amazon EC2 console, you must grant users permission to use the `ec2:DescribeAddresses` action\.
 
 To allow users to work with Elastic IP addresses, you can add the following actions to your policy\.
-+ `ec2:AllocateAddress`: To allocate an address for use in VPC or EC2\-Classic\.
++ `ec2:AllocateAddress`: To allocate an Elastic IP address\.
 + `ec2:ReleaseAddress`: To release an Elastic IP address\.
 + `ec2:AssociateAddress`: To associate an Elastic IP address with an instance or a network interface\.
-+ `ec2:DescribeNetworkInterfaces` and `ec2:DescribeInstances`: To work with the **Associate address** screen\. The screen displays the available instances or network interfaces to which you can associate an Elastic IP address\. For an EC2\-Classic instance, users only need permission to use `ec2:DescribeInstances`\.
++ `ec2:DescribeNetworkInterfaces` and `ec2:DescribeInstances`: To work with the **Associate address** screen\. The screen displays the available instances or network interfaces to which you can associate an Elastic IP address\.
 + `ec2:DisassociateAddress`: To disassociate an Elastic IP address from an instance or a network interface\.
 
 The following policy allows users to view, allocate, and associate Elastic IP addresses with instances\. Users cannot associate Elastic IP addresses with network interfaces, disassociate Elastic IP addresses, or release them\.

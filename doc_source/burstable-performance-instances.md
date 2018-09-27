@@ -21,8 +21,6 @@ If your account is less than 12 months old, you can use a `t2.micro` instance fo
 The following is a summary of the hardware specifications for burstable performance instances\.
 
 
-****  
-
 | Instance type | Default vCPUs | Memory \(GiB\) | 
 | --- | --- | --- | 
 | t2\.nano | 1 | 0\.5 | 
@@ -45,7 +43,6 @@ For more information about the hardware specifications for each Amazon EC2 insta
 ## Burstable Performance Instance Requirements<a name="burstable-performance-instances-limits"></a>
 
 The following are the requirements for T3 and T2 instances:
-+ You must launch your T3 and T2 instances into a virtual private cloud \(VPC\); they are not supported on the EC2\-Classic platform\. You cannot change the instance type of an existing instance in EC2\-Classic to a T3 or T2 instance type\. For more information about EC2\-Classic and EC2\-VPC, see [Supported Platforms](ec2-supported-platforms.md)\.
 + You must launch a T3 or a T2 instance using an HVM AMI with ENA and NVMe drivers\. For more information, see [Release Notes](general-purpose-instances.md#general-purpose-instances-limits)\.
 + You must launch your T3 or T2 instances using an Amazon EBS volume as the root device\. For more information, see [Amazon EC2 Root Device Volume](RootDeviceStorage.md)\.
 + T3 and T2 instances are available as On\-Demand Instances, Reserved Instances, and Spot Instances, but not as Scheduled Instances or Dedicated Instances\. They are also not supported on a Dedicated Host\. For more information, see [Instance Purchasing Options](instance-purchasing-options.md)\.

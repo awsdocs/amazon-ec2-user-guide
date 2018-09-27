@@ -72,7 +72,7 @@ This example gets the available versions of the instance metadata\. These versio
 latest
 ```
 
-This example gets the top\-level metadata items\. Some items are only available for instances in a VPC\. For more information about each of these items, see [Instance Metadata Categories](#instancedata-data-categories)\.
+This example gets the top\-level metadata items\. For more information, see [Instance Metadata Categories](#instancedata-data-categories)\.
 
 ```
 [ec2-user ~]$ curl http://169.254.169.254/latest/meta-data/    
@@ -156,20 +156,7 @@ FFBjvSfpJIlJ00zbhNYS5f6GuoEDmFJl0ZxBHjJnyp378OD8uTs7fLvjx79LjSTb
 NYiytVbZPQUQ5Yaxu2jXnimvw3rrszlaEXAMPLE my-public-key
 ```
 
-This example shows the information available for a specific network interface \(indicated by the MAC address\) on an NAT instance in the EC2\-Classic platform\. 
-
-```
-[ec2-user ~]$ curl http://169.254.169.254/latest/meta-data/network/interfaces/macs/02:29:96:8f:6a:2d/
-device-number
-local-hostname
-local-ipv4s
-mac
-owner-id
-public-hostname
-public-ipv4s
-```
-
-This example gets the subnet ID for an instance launched into a VPC\.
+This example gets the subnet ID for an instance\.
 
 ```
 [ec2-user ~]$ curl http://169.254.169.254/latest/meta-data/network/interfaces/macs/02:29:96:8f:6a:2d/subnet-id
@@ -394,26 +381,26 @@ Category names that are formatted in red text are placeholders for data that is 
 |  network/interfaces/macs/mac/local\-ipv4s  | The private IPv4 addresses associated with the interface\.  | 2011\-01\-01 | 
 |  network/interfaces/macs/mac/mac  | The instance's MAC address\. | 2011\-01\-01 | 
 | network/interfaces/macs/mac/owner\-id  | The ID of the owner of the network interface\. In multiple\-interface environments, an interface can be attached by a third party, such as Elastic Load Balancing\. Traffic on an interface is always billed to the interface owner\. | 2011\-01\-01 | 
-|  network/interfaces/macs/mac/public\-hostname  | The interface's public DNS \(IPv4\)\. If the instance is in a VPC, this category is only returned if the enableDnsHostnames attribute is set to true\. For more information, see [Using DNS with Your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html)\. | 2011\-01\-01 | 
+|  network/interfaces/macs/mac/public\-hostname  | The interface's public DNS \(IPv4\)\. This category is only returned if the enableDnsHostnames attribute is set to true\. For more information, see [Using DNS with Your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html)\. | 2011\-01\-01 | 
 |  network/interfaces/macs/mac/public\-ipv4s  | The Elastic IP addresses associated with the interface\. There may be multiple IPv4 addresses on an instance\.  | 2011\-01\-01 | 
-| network/interfaces/macs/mac/security\-groups  | Security groups to which the network interface belongs\. Returned only for instances launched into a VPC\.  | 2011\-01\-01 | 
-|  network/interfaces/macs/mac/security\-group\-ids  | The IDs of the security groups to which the network interface belongs\. Returned only for instances launched into a VPC\. For more information on security groups in the EC2\-VPC platform, see [Security Groups for Your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html)\. | 2011\-01\-01 | 
-|  network/interfaces/macs/mac/subnet\-id  | The ID of the subnet in which the interface resides\. Returned only for instances launched into a VPC\.  | 2011\-01\-01 | 
-|  network/interfaces/macs/mac/subnet\-ipv4\-cidr\-block  | The IPv4 CIDR block of the subnet in which the interface resides\. Returned only for instances launched into a VPC\.  | 2011\-01\-01 | 
-| network/interfaces/macs/mac/subnet\-ipv6\-cidr\-blocks  | The IPv6 CIDR block of the subnet in which the interface resides\. Returned only for instances launched into a VPC\. | 2016\-06\-30  | 
-|  network/interfaces/macs/mac/vpc\-id  | The ID of the VPC in which the interface resides\. Returned only for instances launched into a VPC\.  | 2011\-01\-01 | 
-| network/interfaces/macs/mac/vpc\-ipv4\-cidr\-block  | The primary IPv4 CIDR block of the VPC\. Returned only for instances launched into a VPC\.  | 2011\-01\-01 | 
-| network/interfaces/macs/mac/vpc\-ipv4\-cidr\-blocks  | The IPv4 CIDR blocks for the VPC\. Returned only for instances launched into a VPC\.  | 2016\-06\-30  | 
-| network/interfaces/macs/mac/vpc\-ipv6\-cidr\-blocks  | The IPv6 CIDR block of the VPC in which the interface resides\. Returned only for instances launched into a VPC\. | 2016\-06\-30  | 
+| network/interfaces/macs/mac/security\-groups  | Security groups to which the network interface belongs\. | 2011\-01\-01 | 
+|  network/interfaces/macs/mac/security\-group\-ids  | The IDs of the security groups to which the network interface belongs\. | 2011\-01\-01 | 
+|  network/interfaces/macs/mac/subnet\-id  | The ID of the subnet in which the interface resides\. | 2011\-01\-01 | 
+|  network/interfaces/macs/mac/subnet\-ipv4\-cidr\-block  | The IPv4 CIDR block of the subnet in which the interface resides\. | 2011\-01\-01 | 
+| network/interfaces/macs/mac/subnet\-ipv6\-cidr\-blocks  | The IPv6 CIDR block of the subnet in which the interface resides\. | 2016\-06\-30  | 
+|  network/interfaces/macs/mac/vpc\-id  | The ID of the VPC in which the interface resides\. | 2011\-01\-01 | 
+| network/interfaces/macs/mac/vpc\-ipv4\-cidr\-block  | The primary IPv4 CIDR block of the VPC\. | 2011\-01\-01 | 
+| network/interfaces/macs/mac/vpc\-ipv4\-cidr\-blocks  | The IPv4 CIDR blocks for the VPC\. | 2016\-06\-30  | 
+| network/interfaces/macs/mac/vpc\-ipv6\-cidr\-blocks  | The IPv6 CIDR block of the VPC in which the interface resides\. | 2016\-06\-30  | 
 |  placement/availability\-zone  | The Availability Zone in which the instance launched\. | 2008\-02\-01 | 
 |  product\-codes  | Marketplace product codes associated with the instance, if any\.  | 2007\-03\-01 | 
-|  public\-hostname  | The instance's public DNS\. If the instance is in a VPC, this category is only returned if the enableDnsHostnames attribute is set to true\. For more information, see [Using DNS with Your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html)\. | 2007\-01\-19 | 
+|  public\-hostname  | The instance's public DNS\. This category is only returned if the enableDnsHostnames attribute is set to true\. For more information, see [Using DNS with Your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html) in the Amazon VPC User Guide\. | 2007\-01\-19 | 
 |  public\-ipv4  | The public IPv4 address\. If an Elastic IP address is associated with the instance, the value returned is the Elastic IP address\. | 2007\-01\-19 | 
 |  public\-keys/0/openssh\-key  | Public key\. Only available if supplied at instance launch time\. | 1\.0 | 
 |  ramdisk\-id  | The ID of the RAM disk specified at launch time, if applicable\. | 2007\-10\-10 | 
 |  reservation\-id  | The ID of the reservation\. | 1\.0 | 
-|  security\-groups  |  The names of the security groups applied to the instance\. After launch, you can only change the security groups of instances running in a VPC\. Such changes are reflected here and in network/interfaces/macs/**mac**/security\-groups\.  | 1\.0 | 
-|  services/domain  |  The domain for AWS resources for the region; for example, `amazonaws.com` for us\-east\-1\.  | 2014\-02\-25 | 
+|  security\-groups  |  The names of the security groups applied to the instance\. After launch, you can change the security groups of the instances\. Such changes are reflected here and in network/interfaces/macs/**mac**/security\-groups\.  | 1\.0 | 
+|  services/domain  |  The domain for AWS resources for the region\.  | 2014\-02\-25 | 
 |  services/partition  |  The partition that the resource is in\. For standard AWS regions, the partition is `aws`\. If you have resources in other partitions, the partition is `aws-partitionname`\. For example, the partition for resources in the China \(Beijing\) region is `aws-cn`\.  | 2015\-10\-20 | 
 |  spot/instance\-action  |  The action \(hibernate, stop, or terminate\) and the approximate time, in UTC, when the action will occur\. This item is present only if the Spot Instance has been marked for hibernate, stop, or terminate\. For more information, see [instance\-action](spot-interruptions.md#instance-action-metadata)\.  | 2016\-11\-15 | 
 |  spot/termination\-time  |  The approximate time, in UTC, that the operating system for your Spot Instance will receive the shutdown signal\. This item is present and contains a time value \(for example, 2015\-01\-05T18:02:00Z\) only if the Spot Instance has been marked for termination by Amazon EC2\. The termination\-time item is not set to a time if you terminated the Spot Instance yourself\. For more information, see [termination\-time](spot-interruptions.md#termination-time-metadata)\.  | 2014\-11\-05 | 

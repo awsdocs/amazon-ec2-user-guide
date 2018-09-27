@@ -245,12 +245,12 @@ The version number of the launch template\.
 \(Optional\) The maximum price per unit hour that you are willing to pay for a Spot Instance\. If entered, this value overrides the launch template\. You can use the default maximum price \(the On\-Demand price\) or specify the maximum price that you are willing to pay\. Your Spot Instances are not launched if your maximum price is lower than the Spot price for the instance types that you specified\.
 
 **SubnetId**  
-\(Optional\) The ID of the subnet in which to launch the instances\. If entered, this value overrides the launch template\. Your account supports either the EC2\-Classic and EC2\-VPC platforms, or the EC2\-VPC platform only\. To find out which platforms your account supports, see [Supported Platforms](ec2-supported-platforms.md)\.  
-\[New VPC\] To create a new VPC, go the Amazon VPC console\. When you are done, return to the JSON file and enter the new subnet ID\.
+\(Optional\) The ID of the subnet in which to launch the instances\. If entered, this value overrides the launch template\.  
+To create a new VPC, go the Amazon VPC console\. When you are done, return to the JSON file and enter the new subnet ID\.
 
 **AvailabilityZone**  
 \(Optional\) The Availability Zone in which to launch the instances\. The default is to let AWS choose the zones for your instances\. If you prefer, you can specify specific zones\. If entered, this value overrides the launch template\.   
-\[EC2\-VPC\] Specify one or more Availability Zones\. If you have more than one subnet in a zone, specify the appropriate subnet\. To add subnets, go to the Amazon VPC console\. When you are done, return to the JSON file and enter the new subnet ID\.
+Specify one or more Availability Zones\. If you have more than one subnet in a zone, specify the appropriate subnet\. To add subnets, go to the Amazon VPC console\. When you are done, return to the JSON file and enter the new subnet ID\.
 
 **WeightedCapacity**  
 \(Optional\) The number of units provided by the specified instance type\. If entered, this value overrides the launch template\.

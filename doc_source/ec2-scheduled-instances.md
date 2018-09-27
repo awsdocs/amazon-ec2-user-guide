@@ -15,7 +15,7 @@ If you require a capacity reservation on a continuous basis, Reserved Instances 
 
 ## How Scheduled Instances Work<a name="how-scheduled-instances-work"></a>
 
-Amazon EC2 sets aside pools of EC2 instances in each Availability Zone for use as Scheduled Instances\. Each pool supports a specific combination of instance type, operating system, and network \(EC2\-Classic or EC2\-VPC\)\.
+Amazon EC2 sets aside pools of EC2 instances in each Availability Zone for use as Scheduled Instances\. Each pool supports a specific combination of instance type, operating system, and network\.
 
 To get started, you must search for an available schedule\. You can search across multiple pools or a single pool\. After you locate a suitable schedule, purchase it\.
 

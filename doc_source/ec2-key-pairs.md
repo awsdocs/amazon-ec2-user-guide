@@ -286,7 +286,6 @@ Create a new key pair using either the Amazon EC2 console or a third\-party tool
 1. From the **Details** tab, save the following information that you'll need to complete this procedure\.
    + Write down the instance ID, AMI ID, and Availability Zone of the original instance\.
    + In the **Root device** field, take note of the device name for the root volume \(for example, `/dev/sda1` or `/dev/xvda`\)\. Choose the link and write down the volume ID in the **EBS ID** field \(vol\-*xxxxxxxxxxxxxxxxx*\)\.
-   + \[EC2\-Classic\] If the original instance has an associated Elastic IP address, write down the Elastic IP address shown in the **Elastic IP** field in the details pane\.
 
 1. Choose **Actions**, select **Instance State**, and then select **Stop**\. If **Stop** is disabled, either the instance is already stopped or its root device is an instance store volume\.
 **Warning**  
@@ -388,15 +387,5 @@ If you don't specify the same device name as the original attachment, you cannot
 1. Select the original instance, choose **Actions**, select **Instance State**, and then choose **Start**\. After the instance enters the `running` state, you can connect to it using the private key file for your new key pair\.
 **Note**  
 If the name of your new key pair and corresponding private key file is different to the name of the original key pair, ensure that you specify the name of the new private key file when you connect to your instance\.
-
-1. \[EC2\-Classic\] If the original instance had an associated Elastic IP address before you stopped it, you must re\-associate it with the instance as follows:
-
-   1. In the navigation pane, choose **Elastic IPs**\.
-
-   1. Select the Elastic IP address that you wrote down at the beginning of this procedure\.
-
-   1. Choose **Actions**, and then select **Associate address**\.
-
-   1. Select the ID of the original instance, and then choose **Associate**\.
 
 1. \(Optional\) You can terminate the temporary instance if you have no further use for it\. Select the temporary instance, choose **Actions**, select **Instance State**, and then choose **Terminate**\.

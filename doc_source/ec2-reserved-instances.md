@@ -36,14 +36,6 @@ Generally speaking, you can save more money choosing Reserved Instances with a h
 
 For more information about pricing, see [Amazon EC2 Reserved Instances Pricing](https://aws.amazon.com/ec2/pricing/reserved-instances/pricing/)\.
 
-## Using Reserved Instances in a VPC<a name="reserved-instances-vpc"></a>
-
-If your account supports EC2\-Classic, you can purchase Reserved Instances for use in either EC2\-Classic or a VPC\. You can purchase Reserved Instances to apply to instances launched into a VPC by selecting a platform that includes *Amazon VPC* in its name\. 
-
-If you have an EC2\-VPC\-only account, the listed platforms available do not include *Amazon VPC* in its name because all instances must be launched into a VPC\.
-
-For more information, see [Detecting Your Supported Platforms and Whether You Have a Default VPC](https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html#detecting-platform)\. 
-
 ## Reserved Instance Limits<a name="ri-limits"></a>
 
 There is a limit to the number of Reserved Instances that you can purchase per month\. For each region you can purchase 20 [regional](apply_ri.md#apply-regional-ri) Reserved Instances plus an additional 20 [zonal](apply_ri.md#apply-zonal-ri) Reserved Instances for each Availability Zone\.

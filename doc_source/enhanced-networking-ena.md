@@ -1,6 +1,6 @@
 # Enabling Enhanced Networking with the Elastic Network Adapter \(ENA\) on Linux Instances<a name="enhanced-networking-ena"></a>
 
-Amazon EC2 provides enhanced networking capabilities to C5, C5d, F1, G3, H1, I3, `m4.16xlarge`, M5, M5d, P2, P3, R4, R5, R5d, T3, X1, X1e, and z1d instances through the Elastic Network Adapter \(ENA\)\.
+Amazon EC2 provides enhanced networking capabilities to C5, C5d, F1, G3, H1, I3, `m4.16xlarge`, M5, M5d, P2, P3, R4, R5, R5d, T3, `u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, X1, X1e, and z1d instances through the Elastic Network Adapter \(ENA\)\.
 
 **Topics**
 + [Requirements](#ena-requirements)
@@ -14,7 +14,6 @@ Amazon EC2 provides enhanced networking capabilities to C5, C5d, F1, G3, H1, I3,
 
 To prepare for enhanced networking using the ENA, set up your instance as follows:
 + Launch the instance from an HVM AMI using Linux kernel version of 3\.2 or later\. The latest Amazon Linux HVM AMIs have the modules required for enhanced networking installed and have the required attributes set\. Therefore, if you launch an Amazon EBS–backed, enhanced networking–supported instance using a current Amazon Linux HVM AMI, ENA enhanced networking is already enabled for your instance\. 
-+ Launch the instance in a VPC\. \(You can't enable enhanced networking if the instance is in EC2\-Classic\.\)
 + Install and configure the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html) or the [AWS Tools for Windows PowerShell](https://docs.aws.amazon.com/powershell/latest/userguide/) on any computer you choose, preferably your local desktop or laptop\. For more information, see [Accessing Amazon EC2](concepts.md#access-ec2)\. Enhanced networking cannot be managed from the Amazon EC2 console\. 
 + If you have important data on the instance that you want to preserve, you should back that data up now by creating an AMI from your instance\. Updating kernels and kernel modules, as well as enabling the `enaSupport` attribute, might render incompatible instances or operating systems unreachable; if you have a recent backup, your data will still be retained if this happens\.
 

@@ -200,7 +200,7 @@ Amazon EC2 implements the following service\-specific condition keys\. For infor
 
 Amazon EC2 also implements the AWS\-wide condition keys\. For more information, see [Information Available in All Requests](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_variables.html#policy-vars-infoallreqs) in the *IAM User Guide*\. 
 
-The `ec2:SourceInstanceARN` key can be used for conditions that specify the ARN of the instance from which a request is made\. This condition key is available AWS\-wide and is not service\-specific\. For policy examples, see [Allows an EC2 Instance to Attach or Detach Volumes](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_examples_ec2_volumes-instance.html) and [12: Allowing a Specific Instance to View Resources in Other AWS Services](ExamplePolicies_EC2.md#iam-example-source-instance)\. The `ec2:SourceInstanceARN` key cannot be used as a variable to populate the ARN for the `Resource` element in a statement\.
+The `ec2:SourceInstanceARN` key can be used for conditions that specify the ARN of the instance from which a request is made\. This condition key is available AWS\-wide and is not service\-specific\. For policy examples, see [Allows an EC2 Instance to Attach or Detach Volumes](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_examples_ec2_volumes-instance.html) and [11: Allowing a Specific Instance to View Resources in Other AWS Services](ExamplePolicies_EC2.md#iam-example-source-instance)\. The `ec2:SourceInstanceARN` key cannot be used as a variable to populate the ARN for the `Resource` element in a statement\.
 
 The following AWS condition keys were introduced for Amazon EC2 and are supported by a limited number of additional services\.
 

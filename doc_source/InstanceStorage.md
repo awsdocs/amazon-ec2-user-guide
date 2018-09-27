@@ -62,6 +62,7 @@ The following table provides the quantity, size, type, and performance optimizat
 |  `d2.4xlarge`  |  12 x 2,000 GB \(24 TB\)  | HDD |  |  | 
 |  `d2.8xlarge`  |  24 x 2,000 GB \(48 TB\)  | HDD |  |  | 
 |  `f1.2xlarge`  |  1 x 470 GB  | NVMe SSD |  | ✔ | 
+|  `f1.4xlarge`  |  1 x 940 GB  | NVMe SSD |  | ✔ | 
 |  `f1.16xlarge`  |  4 x 940 GB  | NVMe SSD |  | ✔ | 
 | g2\.2xlarge | 1 x 60 GB | SSD | ✔ |  | 
 | g2\.8xlarge | 2 x 120 GB \(240 GB\) | SSD | ✔ |  | 

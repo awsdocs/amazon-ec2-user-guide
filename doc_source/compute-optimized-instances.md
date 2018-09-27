@@ -78,18 +78,18 @@ The following is a summary of network performance for compute optimized instance
 The following is a summary of features for compute optimized instances:
 
 
-|  | VPC only | EBS only | Placement group | 
-| --- | --- | --- | --- | 
-|  C4  |  Yes  |  Yes  |  Yes  | 
-|  C5  |  Yes  |  Yes  |  Yes  | 
-| C5d | Yes |  | Yes | 
+|  | EBS only | NVMe EBS | Instance store | Placement group | 
+| --- | --- | --- | --- | --- | 
+|  C4  |  Yes  |  |  |  Yes  | 
+|  C5  |  Yes  |  Yes  |  |  Yes  | 
+| C5d |  | Yes |  NVMe \*  | Yes | 
+
+**\*** The root device volume must be an Amazon EBS volume\.
 
 For more information, see the following:
-+ [Instance Types Available Only in a VPC](using-vpc.md#vpc-only-instance-types)
-+ [Amazon EBS–Optimized Instances](EBSOptimized.md)
++ [Amazon EBS and NVMe](nvme-ebs-volumes.md)
 + [Amazon EC2 Instance Store](InstanceStorage.md)
 + [Placement Groups](placement-groups.md)
-+ [Enhanced Networking on Linux](enhanced-networking.md)
 
 ## Release Notes<a name="compute-instance-limits"></a>
 + C4, C5, and C5d instances require 64\-bit EBS\-backed HVM AMIs\. They have high\-memory \(up to 144 GiB of RAM\), and require a 64\-bit operating system to take advantage of that capacity\. HVM AMIs provide superior performance in comparison to paravirtual \(PV\) AMIs on high\-memory instance types\. In addition, you must use an HVM AMI to take advantage of enhanced networking\.
@@ -109,5 +109,4 @@ For more information, see the following:
 + C5 instances support a maximum of 27 EBS volumes plus elastic network interface attachments\. For example, `c5.2xlarge` instances support four network interfaces\. Every instance has at least one network interface\. If you have a `c5.2xlarge` instance with three additional elastic network interface attachments, you can attach 24 EBS volumes to that instance\.
 + The `c5d.18xlarge` instance type supports a maximum of 25 EBS volumes plus elastic network interface attachments\. Other sizes of C5d instances support a maximum of 26 EBS volumes plus elastic network interfaces\.
 + C5 and C5d instances should have acpid installed to support clean shutdown through API requests\.
-+ [ClassicLink](vpc-classiclink.md) is not supported for C5 and C5d instances—you cannot use ClassicLink to link your EC2\-Classic instances to these instances in your VPC\.
 + There is a limit on the total number of instances that you can launch in a region, and there are additional limits on some instance types\. For more information, see [How many instances can I run in Amazon EC2?](https://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2)\. To request a limit increase, use the [Amazon EC2 Instance Request Form](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-instances)\.

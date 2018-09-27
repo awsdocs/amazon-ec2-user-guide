@@ -9,13 +9,12 @@ The following examples show policy statements that you could use to control the 
 + [4\. Working with Volumes](#iam-example-manage-volumes)
 + [5\. Working with Snapshots](#iam-example-manage-snapshots)
 + [6: Launching Instances \(RunInstances\)](#iam-example-runinstances)
-+ [7\. Working with ClassicLink](#iam-example-classiclink)
-+ [8\. Working with Reserved Instances](#iam-example-reservedinstances)
-+ [9\. Tagging Resources](#iam-example-taggingresources)
-+ [10: Working with IAM Roles](#iam-example-iam-roles)
-+ [11: Working with Route Tables](#iam-example-route-tables)
-+ [12: Allowing a Specific Instance to View Resources in Other AWS Services](#iam-example-source-instance)
-+ [13\. Working with Launch Templates](#iam-example-launch-templates)
++ [7\. Working with Reserved Instances](#iam-example-reservedinstances)
++ [8\. Tagging Resources](#iam-example-taggingresources)
++ [9: Working with IAM Roles](#iam-example-iam-roles)
++ [10: Working with Route Tables](#iam-example-route-tables)
++ [11: Allowing a Specific Instance to View Resources in Other AWS Services](#iam-example-source-instance)
++ [12\. Working with Launch Templates](#iam-example-launch-templates)
 
 ## 1: Read\-Only Access<a name="iam-example-read-only"></a>
 
@@ -497,7 +496,7 @@ The following policy allows modification of a snapshot only if the snapshot is t
 
 ## 6: Launching Instances \(RunInstances\)<a name="iam-example-runinstances"></a>
 
-The [RunInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-RunInstances.html) API action launches one or more instances\. `RunInstances` requires an AMI and creates an instance; and users can specify a key pair and security group in the request\. Launching into EC2\-VPC requires a subnet, and creates a network interface\. Launching from an Amazon EBS\-backed AMI creates a volume\. Therefore, the user must have permissions to use these Amazon EC2 resources\. You can create a policy statement that requires users to specify an optional parameter on `RunInstances`, or restricts users to particular values for a parameter\.
+The [RunInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-RunInstances.html) API action launches one or more instances\. `RunInstances` requires an AMI and creates an instance; and users can specify a key pair and security group in the request\. Launching into a VPC requires a subnet, and creates a network interface\. Launching from an Amazon EBS\-backed AMI creates a volume\. Therefore, the user must have permissions to use these Amazon EC2 resources\. You can create a policy statement that requires users to specify an optional parameter on `RunInstances`, or restricts users to particular values for a parameter\.
 
 For more information about the resource\-level permissions that are required to launch an instance, see [Resource\-Level Permissions for RunInstances](ec2-supported-iam-actions-resources.md#supported-iam-actions-runinstances)\.
 
@@ -565,37 +564,6 @@ Alternatively, the following policy allows users to launch instances from all AM
          "arn:aws:ec2:region:account:network-interface/*",
          "arn:aws:ec2:region:account:key-pair/*",
          "arn:aws:ec2:region:account:security-group/*"
-         ]
-      }
-   ]
-}
-```
-
-\[EC2\-Classic only\] The following policy allows users to launch instances using only the AMIs that have the specified tag, "`department=dev`", associated with them\. The users can't launch instances using other AMIs because the `Condition` element of the first statement requires that users specify an AMI that has this tag\. Users can only launch into EC2\-Classic, as the policy does not grant permissions for the subnet and network interface resources\. The second statement uses a wildcard to enable users to create instance resources, and requires users to specify the key pair `project_keypair` and the security group `sg-1a2b3c4d`\. Users are still able to launch instances without a key pair\.
-
-```
-{
-   "Version": "2012-10-17",
-   "Statement": [{
-      "Effect": "Allow",
-      "Action": "ec2:RunInstances",
-      "Resource": [ 
-         "arn:aws:ec2:region::image/ami-*"
-      ],
-      "Condition": {
-         "StringEquals": {
-            "ec2:ResourceTag/department": "dev"
-         }
-      }
-   },
-   {
-      "Effect": "Allow",
-      "Action": "ec2:RunInstances",
-      "Resource": [ 
-          "arn:aws:ec2:region:account:instance/*",
-          "arn:aws:ec2:region:account:volume/*",
-          "arn:aws:ec2:region:account:key-pair/project_keypair",
-          "arn:aws:ec2:region:account:security-group/sg-1a2b3c4d"
          ]
       }
    ]
@@ -673,7 +641,7 @@ Alternatively, you can create a policy that denies users permissions to launch a
 
 ### Subnet<a name="iam-example-runinstances-subnet"></a>
 
-The following policy allows users to launch instances using only the specified subnet, `subnet-12345678`\. The group can't launch instances into any another subnet \(unless another statement grants the users permission to do so\)\. Users are still able to launch instances into EC2\-Classic\.
+The following policy allows users to launch instances using only the specified subnet, `subnet-12345678`\. The group can't launch instances into any another subnet \(unless another statement grants the users permission to do so\)\.
 
 ```
 {
@@ -695,7 +663,7 @@ The following policy allows users to launch instances using only the specified s
 }
 ```
 
-Alternatively, you could create a policy that denies users permissions to launch an instance into any other subnet\. The statement does this by denying permission to create a network interface, except where subnet `subnet-12345678` is specified\. This denial overrides any other policies that are created to allow launching instances into other subnets\. Users are still able to launch instances into EC2\-Classic\.
+Alternatively, you could create a policy that denies users permissions to launch an instance into any other subnet\. The statement does this by denying permission to create a network interface, except where subnet `subnet-12345678` is specified\. This denial overrides any other policies that are created to allow launching instances into other subnets\.
 
 ```
 {
@@ -1132,139 +1100,7 @@ The following example allows users to launch instances only if they use a launch
 }
 ```
 
-## 7\. Working with ClassicLink<a name="iam-example-classiclink"></a>
-
-You can enable a VPC for ClassicLink and then link an EC2\-Classic instance to the VPC\. You can also view your ClassicLink\-enabled VPCs, and all of your EC2\-Classic instances that are linked to a VPC\. You can create policies with resource\-level permission for the `ec2:EnableVpcClassicLink`, `ec2:DisableVpcClassicLink`, `ec2:AttachClassicLinkVpc`, and `ec2:DetachClassicLinkVpc` actions to control how users are able to use those actions\. Resource\-level permissions are not supported for `ec2:Describe*` actions\.
-
-**Topics**
-+ [Full Permissions to Work with ClassicLink](#iam-example-classiclink-full)
-+ [Enable and Disable a VPC for ClassicLink](#iam-example-classiclink-enable)
-+ [Link Instances](#iam-example-classiclink-link)
-+ [Unlink Instances](#iam-example-classiclink-unlink)
-
-### Full Permissions to Work with ClassicLink<a name="iam-example-classiclink-full"></a>
-
-The following policy grants users permissions to view ClassicLink\-enabled VPCs and linked EC2\-Classic instances, to enable and disable a VPC for ClassicLink, and to link and unlink instances from a ClassicLink\-enabled VPC\. 
-
-```
-{
-   "Version": "2012-10-17",
-   "Statement": [{
-      "Effect": "Allow",
-      "Action": [
-        "ec2:DescribeClassicLinkInstances", "ec2:DescribeVpcClassicLink",
-        "ec2:EnableVpcClassicLink", "ec2:DisableVpcClassicLink",
-        "ec2:AttachClassicLinkVpc", "ec2:DetachClassicLinkVpc"
-      ],
-      "Resource": "*"
-    }
-   ]
-}
-```
-
-### Enable and Disable a VPC for ClassicLink<a name="iam-example-classiclink-enable"></a>
-
-The following policy allows user to enable and disable VPCs for ClassicLink that have the specific tag '`purpose=classiclink`'\. Users cannot enable or disable any other VPCs for ClassicLink\. 
-
-```
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": "ec2:*VpcClassicLink",
-      "Resource": "arn:aws:ec2:region:account:vpc/*",
-      "Condition": {
-        "StringEquals": {
-          "ec2:ResourceTag/purpose":"classiclink"
-        }
-      }
-    }
-  ]
-}
-```
-
-### Link Instances<a name="iam-example-classiclink-link"></a>
-
-The following policy grants users permissions to link instances to a VPC only if the instance is an `m3.large` instance type\. The second statement allows users to use the VPC and security group resources, which are required to link an instance to a VPC\.
-
-```
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": "ec2:AttachClassicLinkVpc",
-      "Resource": "arn:aws:ec2:region:account:instance/*",
-      "Condition": {
-        "StringEquals": {
-          "ec2:InstanceType":"m3.large"
-        }
-      }
-    },
-    {
-      "Effect": "Allow",
-      "Action": "ec2:AttachClassicLinkVpc",
-      "Resource": [
-        "arn:aws:ec2:region:account:vpc/*",
-        "arn:aws:ec2:region:account:security-group/*"
-      ]
-    }
-  ]
-}
-```
-
-The following policy grants users permissions to link instances to a specific VPC \(`vpc-1a2b3c4d`\) only, and to associate only specific security groups from the VPC to the instance \(`sg-1122aabb` and `sg-aabb2233`\)\. Users cannot link an instance to any other VPC, and they cannot specify any other of the VPC security groups to associate with the instance in the request\.
-
-```
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": "ec2:AttachClassicLinkVpc",
-      "Resource": [
-         "arn:aws:ec2:region:account:vpc/vpc-1a2b3c4d",
-         "arn:aws:ec2:region:account:instance/*",
-         "arn:aws:ec2:region:account:security-group/sg-1122aabb",
-         "arn:aws:ec2:region:account:security-group/sg-aabb2233"
-       ]
-    }
-  ]
-}
-```
-
-### Unlink Instances<a name="iam-example-classiclink-unlink"></a>
-
-The following grants users permission to unlink any linked EC2\-Classic instance from a VPC, but only if the instance has the tag "`unlink=true`"\. The second statement grants users permissions to use the VPC resource, which is required to unlink an instance from a VPC\.
-
-```
-{
-   "Version": "2012-10-17",
-   "Statement": [{
-      "Effect": "Allow",
-      "Action": "ec2:DetachClassicLinkVpc",
-      "Resource": [
-         "arn:aws:ec2:region:account:instance/*"
-      ],
-      "Condition": {
-         "StringEquals": {
-            "ec2:ResourceTag/unlink":"true"
-         }
-      }
-   },
-   {
-      "Effect": "Allow",
-      "Action": "ec2:DetachClassicLinkVpc",
-      "Resource": [
-         "arn:aws:ec2:region:account:vpc/*"
-         ]
-      }
-   ]
-}
-```
-
-## 8\. Working with Reserved Instances<a name="iam-example-reservedinstances"></a>
+## 7\. Working with Reserved Instances<a name="iam-example-reservedinstances"></a>
 
 The following policy gives users permission to view, modify, and purchase Reserved Instances in your account\.
 
@@ -1305,7 +1141,7 @@ To allow users to view and modify the Reserved Instances in your account, but no
 }
 ```
 
-## 9\. Tagging Resources<a name="iam-example-taggingresources"></a>
+## 8\. Tagging Resources<a name="iam-example-taggingresources"></a>
 
 The following policy allows users to use the `CreateTags` action to apply tags to an instance only if the tag contains the key `environment` and the value `production`\. The `ForAllValues` modifier is used with the `aws:TagKeys` condition key to indicate that only the key `environment` is allowed in the request \(no other tags are allowed\)\. The user cannot tag any other resource types\.
 
@@ -1406,7 +1242,7 @@ This policy allows users to delete only the `environment=prod` tag on any resour
 }
 ```
 
-## 10: Working with IAM Roles<a name="iam-example-iam-roles"></a>
+## 9: Working with IAM Roles<a name="iam-example-iam-roles"></a>
 
 The following policy allows users to attach, replace, and detach an IAM role to instances that have the tag `department=test`\. Replacing or detaching an IAM role requires an association ID, therefore the policy also grants users permission to use the `ec2:DescribeIamInstanceProfileAssociations` action\. 
 
@@ -1472,7 +1308,7 @@ The following policy allows users to attach or replace an IAM role for any insta
 }
 ```
 
-## 11: Working with Route Tables<a name="iam-example-route-tables"></a>
+## 10: Working with Route Tables<a name="iam-example-route-tables"></a>
 
 The following policy allows users to add, remove, and replace routes for route tables that are associated with VPC `vpc-ec43eb89` only\. To specify a VPC for the `ec2:Vpc` condition key, you must specify the full ARN of the VPC\.
 
@@ -1500,7 +1336,7 @@ The following policy allows users to add, remove, and replace routes for route t
 }
 ```
 
-## 12: Allowing a Specific Instance to View Resources in Other AWS Services<a name="iam-example-source-instance"></a>
+## 11: Allowing a Specific Instance to View Resources in Other AWS Services<a name="iam-example-source-instance"></a>
 
 The following is an example of a policy that you might attach to an IAM role\. The policy allows an instance to view resources in various AWS services\. It uses the `ec2:SourceInstanceARN` condition key to specify that the instance from which the request is made must be instance `i-093452212644b0dd6`\. If the same IAM role is associated with another instance, the other instance cannot perform any of these actions\.
 
@@ -1531,7 +1367,7 @@ The `ec2:SourceInstanceARN` key is an AWS\-wide condition key, therefore it can 
 }
 ```
 
-## 13\. Working with Launch Templates<a name="iam-example-launch-templates"></a>
+## 12\. Working with Launch Templates<a name="iam-example-launch-templates"></a>
 
 The following policy allows users to create a launch template version and modify a launch template, but only for a specific launch template \(`lt-09477bcd97b0d3abc`\)\. Users cannot work with other launch templates\.
 

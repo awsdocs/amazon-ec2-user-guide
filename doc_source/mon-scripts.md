@@ -98,9 +98,9 @@ You must install additional Perl modules\.
 
    ```
    cpan[1]> install YAML 
-   cpan[1]> install LWP::Protocol::https 
-   cpan[1]> install Sys::Syslog 
-   cpan[1]> install Switch
+   cpan[2]> install LWP::Protocol::https 
+   cpan[3]> install Sys::Syslog 
+   cpan[4]> install Switch
    ```
 
 **To install the required packages on Red Hat Enterprise Linux 7\.4**
@@ -180,8 +180,8 @@ The following steps show you how to download, uncompress, and configure the Clou
      Add the following content to the `awscreds.conf` file:
 
      ```
-     AWSAccessKeyId=my-access-key-id
-     AWSSecretKey=my-secret-access-key
+     AWSAccessKeyId = my-access-key-id
+     AWSSecretKey = my-secret-access-key
      ```
 
      For information about how to view your AWS credentials, see [Understanding and Getting Your Security Credentials](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html) in the *Amazon Web Services General Reference*\.

@@ -23,12 +23,8 @@ When you stop a running instance, the following happens:
 + Any Amazon EBS volumes remain attached to the instance, and their data persists\.
 + Any data stored in the RAM of the host computer or the instance store volumes of the host computer is gone\.
 + In most cases, the instance is migrated to a new underlying host computer when it's started\.
-+ EC2\-Classic: We release the public and private IPv4 addresses for the instance when you stop the instance, and assign new ones when you restart it\.
-
-  EC2\-VPC: The instance retains its private IPv4 addresses and any IPv6 addresses when stopped and restarted\. We release the public IPv4 address and assign a new one when you restart it\.
-+ EC2\-Classic: We disassociate any Elastic IP address that's associated with the instance\. You're charged for Elastic IP addresses that aren't associated with an instance\. When you restart the instance, you must associate the Elastic IP address with the instance; we don't do this automatically\.
-
-  EC2\-VPC: The instance retains its associated Elastic IP addresses\. You're charged for any Elastic IP addresses associated with a stopped instance\.
++ The instance retains its private IPv4 addresses and any IPv6 addresses when stopped and restarted\. We release the public IPv4 address and assign a new one when you restart it\.
++ The instance retains its associated Elastic IP addresses\. You're charged for any Elastic IP addresses associated with a stopped instance\.
 + When you stop and start a Windows instance, the EC2Config service performs tasks on the instance, such as changing the drive letters for any attached Amazon EBS volumes\. For more information about these defaults and how you can change them, see [Configuring a Windows Instance Using the EC2Config Service](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2config-service.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 + If your instance is in an Auto Scaling group, the Amazon EC2 Auto Scaling service marks the stopped instance as unhealthy, and may terminate it and launch a replacement instance\. For more information, see [Health Checks for Auto Scaling Instances](https://docs.aws.amazon.com/autoscaling/latest/userguide/healthcheck.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 + When you stop a ClassicLink instance, it's unlinked from the VPC to which it was linked\. You must link the instance to the VPC again after restarting it\. For more information about ClassicLink, see [ClassicLink](vpc-classiclink.md)\.
@@ -53,33 +49,17 @@ By default, when you initiate a shutdown from an Amazon EBS\-backed instance \(u
 
 1. In the navigation pane, choose **Instances**, and select the instance\.
 
-1. \[EC2\-Classic\] If the instance has an associated Elastic IP address, write down the Elastic IP address and the instance ID shown in the details pane\.
-
 1. Choose **Actions**, select **Instance State**, and then choose **Stop**\. If **Stop** is disabled, either the instance is already stopped or its root device is an instance store volume\.
 **Warning**  
 When you stop an instance, the data on any instance store volumes is erased\. Therefore, if you have any data on instance store volumes that you want to keep, be sure to back it up to persistent storage\.
 
 1. In the confirmation dialog box, choose **Yes, Stop**\. It can take a few minutes for the instance to stop\.
 
-   \[EC2\-Classic\] When the instance state becomes `stopped`, the **Elastic IP**, **Public DNS \(IPv4\)**, **Private DNS**, and **Private IPs** fields in the details pane are blank to indicate that the old values are no longer associated with the instance\.
-
 1. While your instance is stopped, you can modify certain instance attributes\. For more information, see [Modifying a Stopped Instance](#Using_ChangingAttributesWhileInstanceStopped)\.
 
 1. To restart the stopped instance, select the instance, and choose **Actions**, **Instance State**, **Start**\.
 
 1. In the confirmation dialog box, choose **Yes, Start**\. It can take a few minutes for the instance to enter the `running` state\.
-
-   \[EC2\-Classic\] When the instance state becomes `running`, the **Public DNS \(IPv4\)**, **Private DNS**, and **Private IPs** fields in the details pane contain the new values that we assigned to the instance\.
-
-1. \[EC2\-Classic\] If your instance had an associated Elastic IP address, you must re\-associate it as follows:
-
-   1. In the navigation pane, choose **Elastic IPs**\.
-
-   1. Select the Elastic IP address that you wrote down before you stopped the instance\.
-
-   1. Choose **Actions**, and then select **Associate address**\.
-
-   1. Select the instance ID that you wrote down before you stopped the instance, and then choose **Associate**\.
 
 **To stop and start an Amazon EBS\-backed instance using the command line**
 

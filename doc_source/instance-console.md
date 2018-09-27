@@ -82,8 +82,6 @@ If there is an unrecoverable issue with the hardware of an underlying host compu
 
 1. Restore any important data\.
 
-1. \[EC2\-Classic\] If the instance had an associated Elastic IP address, you must reassociate it with the instance\.
-
 For more information, see [Stop and Start Your Instance](Stop_Start.md)\.
 
 **To recover an instance store\-backed instance running on a host computer that failed**
@@ -99,7 +97,5 @@ For more information, see [Stop and Start Your Instance](Stop_Start.md)\.
 1. Launch a new instance from the AMI\.
 
 1. Restore any important data to the new instance\.
-
-1. \[EC2\-Classic\] If the original instance had an associated Elastic IP address, you must associate it with the new instance\.
 
 For more information, see [Creating an Instance Store\-Backed Linux AMI](creating-an-ami-instance-store.md)\.

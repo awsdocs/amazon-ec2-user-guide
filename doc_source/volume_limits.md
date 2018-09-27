@@ -39,6 +39,8 @@ For more information about how device names related to volumes, see [Mapping Dis
 
 C5, C5d, M5, M5d, R5, R5d, T3, and z1d instances support a maximum of 28 attachments, and every instance has at least one network interface attachment\. If you have no additional network interface attachments on these instances, you could attach 27 EBS volumes\. For more information, see [Elastic Network Interfaces](using-eni.md)\.
 
+`u-6tb1.metal`, `u-9tb1.metal`, and `u-12tb1.metal` instances support a maximum of 13 EBS volumes\.
+
 ## Bandwidth versus Capacity<a name="storage-bandwidth"></a>
 
 For consistent and predictable bandwidth use cases, use EBS\-optimized or 10 Gigabit network connectivity instances and General Purpose SSD or Provisioned IOPS SSD volumes\. Follow the guidance in [Amazon EC2 Instance Configuration](ebs-ec2-config.md) to match the IOPS you have provisioned for your volumes to the bandwidth available from your instances for maximum performance\. For RAID configurations, many administrators find that arrays larger than 8 volumes have diminished performance returns due to increased I/O overhead\. Test your individual application performance and tune it as required\.

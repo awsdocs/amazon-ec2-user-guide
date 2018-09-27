@@ -40,7 +40,7 @@ When you stop your instance, it enters the `stopping` state, and then the `stopp
 
 When you start your instance, it enters the `pending` state, and in most cases, we move the instance to a new host computer\. \(Your instance may stay on the same host computer if there are no problems with the host computer\.\) When you stop and start your instance, you lose any data on the instance store volumes on the previous host computer\.
 
-If your instance is running in EC2\-Classic, it receives a new private IPv4 address, which means that an Elastic IP address associated with the private IPv4 address is no longer associated with your instance\. If your instance is running in EC2\-VPC, it retains its private IPv4 address, which means that an Elastic IP address associated with the private IPv4 address or network interface is still associated with your instance\. If your instance has an IPv6 address, it retains its IPv6 address\.
+Your instance retains its private IPv4 address, which means that an Elastic IP address associated with the private IPv4 address or network interface is still associated with your instance\. If your instance has an IPv6 address, it retains its IPv6 address\.
 
 Each time you transition an instance from `stopped` to `running`, we charge per second when the instance is running, with a minimum of one minute every time you restart your instance\.
 
@@ -84,9 +84,9 @@ The following table summarizes the key differences between rebooting, stopping, 
 | Characteristic | Reboot | Stop/start \(Amazon EBS\-backed instances only\) | Terminate | 
 | --- | --- | --- | --- | 
 |  Host computer  |  The instance stays on the same host computer  |  In most cases, we move the instance to a new host computer\. Your instance may stay on the same host computer if there are no problems with the host computer\.  |  None  | 
-|  Private and public IPv4 addresses  |  These addresses stay the same  |  EC2\-Classic: The instance gets new private and public IPv4 addresses EC2\-VPC: The instance keeps its private IPv4 address\. The instance gets a new public IPv4 address, unless it has an Elastic IP address, which doesn't change during a stop/start\.  |  None  | 
-|  Elastic IP addresses \(IPv4\)  |  The Elastic IP address remains associated with the instance  |  EC2\-Classic: The Elastic IP address is disassociated from the instance EC2\-VPC: The Elastic IP address remains associated with the instance  |  The Elastic IP address is disassociated from the instance  | 
-| IPv6 address \(EC2\-VPC only\) | The address stays the same | The instance keeps its IPv6 address | None | 
+|  Private and public IPv4 addresses  |  These addresses stay the same  |  The instance keeps its private IPv4 address\. The instance gets a new public IPv4 address, unless it has an Elastic IP address, which doesn't change during a stop/start\.  |  None  | 
+|  Elastic IP addresses \(IPv4\)  |  The Elastic IP address remains associated with the instance  |  The Elastic IP address remains associated with the instance  |  The Elastic IP address is disassociated from the instance  | 
+| IPv6 address | The address stays the same | The instance keeps its IPv6 address | None | 
 |  Instance store volumes  |  The data is preserved  |  The data is erased  |  The data is erased  | 
 |  Root device volume  |  The volume is preserved  |  The volume is preserved  |  The volume is deleted by default  | 
 |  Billing  |  The instance billing hour doesn't change\.  |  You stop incurring charges for an instance as soon as its state changes to `stopping`\. Each time an instance transitions from `stopped` to `running`, we start a new instance billing period, billing a minimum of one minute every time you restart your instance\.  |  You stop incurring charges for an instance as soon as its state changes to `shutting-down`\.  | 

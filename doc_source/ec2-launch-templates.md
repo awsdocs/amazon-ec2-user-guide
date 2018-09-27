@@ -40,7 +40,7 @@ To launch instances, IAM users must have permission to use the `ec2:RunInstances
 
 ## Controlling the Use of Launch Templates<a name="launch-template-permissions"></a>
 
-By default, IAM users do not have permissions to work with launch templates\. You can create an IAM user policy that grants users permissions to create, modify, describe, and delete launch templates and launch template versions\. You can also apply resource\-level permissions to some launch template actions to control a user's ability to use specific resources for those actions\. For more information, see [Supported Resource\-Level Permissions for Amazon EC2 API Actions](ec2-supported-iam-actions-resources.md) and the following example policies: [13\. Working with Launch Templates](ExamplePolicies_EC2.md#iam-example-launch-templates)\.
+By default, IAM users do not have permissions to work with launch templates\. You can create an IAM user policy that grants users permissions to create, modify, describe, and delete launch templates and launch template versions\. You can also apply resource\-level permissions to some launch template actions to control a user's ability to use specific resources for those actions\. For more information, see [Supported Resource\-Level Permissions for Amazon EC2 API Actions](ec2-supported-iam-actions-resources.md) and the following example policies: [12\. Working with Launch Templates](ExamplePolicies_EC2.md#iam-example-launch-templates)\.
 
 Take care when granting users permissions to use the `ec2:CreateLaunchTemplate` and `ec2:CreateLaunchTemplateVersion` actions\. These actions do not support resource\-level permissions that enable you to control which resources users can specify in the launch template\. To restrict the resources that are used to launch an instance, ensure that you grant permissions to create launch templates and launch template versions only to appropriate administrators\.
 
@@ -60,7 +60,6 @@ You can create a new launch template using parameters that you define, or you ca
    + **AMI ID**: Specify an AMI ID from which to launch the instance\. You can use an AMI that you own, or you can [find a suitable AMI](finding-an-ami.md)\.
    + **Instance type**: Choose the instance type\. Ensure that the instance type is compatible with the AMI you've specified\. For more information, see [Instance Types](instance-types.md)\. 
    + **Key pair name**: Specify the key pair for the instance\. For more information, see [Amazon EC2 Key Pairs](ec2-key-pairs.md)\.
-   + **Network type**: If applicable, choose whether to launch the instance into EC2\-Classic or a VPC\. This option is not available if your account supports EC2\-VPC only\. If you choose EC2\-Classic, ensure that the specified instance type is supported in EC2\-Classic and specify the Availability Zone for the instance\. If you choose EC2\-VPC, specify the subnet in the **Network interfaces** section\.
 
 1. For **Network interfaces**, you can specify up to two [network interfaces](using-eni.md) for the instance\.
    + **Device**: Specify the device number for the network interface; for example, `eth0` for the primary network interface\. If you leave the field blank, AWS creates the primary network interface\.

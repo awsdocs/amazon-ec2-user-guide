@@ -90,6 +90,7 @@ The following is a summary of the hardware specifications for accelerated comput
 | g3\.8xlarge | 32 | 244 | 
 | g3\.16xlarge | 64 | 488 | 
 | f1\.2xlarge | 8 | 122 | 
+| f1\.4xlarge | 16 | 244 | 
 | f1\.16xlarge | 64 | 976 | 
 
 For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
@@ -117,7 +118,7 @@ The following is a summary of network performance for accelerated computing inst
 
 | Instance type | Network performance | Enhanced networking | 
 | --- | --- | --- | 
-|  `f1.2xlarge` \| `g3.4xlarge` \| `p3.2xlarge`  |  Up to 10 Gbps  |  [ENA](enhanced-networking-ena.md)  | 
+|  `f1.2xlarge` \| `f1.4xlarge` \| `g3.4xlarge` \| `p3.2xlarge`  |  Up to 10 Gbps  |  [ENA](enhanced-networking-ena.md)  | 
 |  `g3.8xlarge` \| `p2.8xlarge` \| `p3.8xlarge`  |  10 Gbps  |  [ENA](enhanced-networking-ena.md)  | 
 |  `f1.16xlarge` \| `g3.16.xlarge` \| `g3.16.xlarge` \| `p2.16xlarge` \| `p3.16xlarge`  |  25 Gbps  |  [ENA](enhanced-networking-ena.md)  | 
 
@@ -126,22 +127,20 @@ The following is a summary of network performance for accelerated computing inst
 The following is a summary of features for accelerated computing instances\.
 
 
-|  | VPC only | EBS only | Instance store | Placement group | 
+|  | EBS only | NVMe EBS | Instance store | Placement group | 
 | --- | --- | --- | --- | --- | 
 | G2 |  |  | SSD | Yes | 
-|  G3  |  Yes  |  Yes  |  |  Yes  | 
-|  P2  |  Yes  |  Yes  |  |  Yes  | 
-|  P3  |  Yes  |  Yes  |  |  Yes  | 
-|  F1  |  Yes  |  |  NVMe \*  |  Yes  | 
+|  G3  |  Yes  |  |  |  Yes  | 
+|  P2  |  Yes  |  |  |  Yes  | 
+|  P3  |  Yes  |  |  |  Yes  | 
+|  F1  |  |  |  NVMe \*  |  Yes  | 
 
-\* The root device volume must be an Amazon EBS volume\.
+**\*** The root device volume must be an Amazon EBS volume\.
 
 For more information, see the following:
-+ [Instance Types Available Only in a VPC](using-vpc.md#vpc-only-instance-types)
-+ [Amazon EBS–Optimized Instances](EBSOptimized.md)
++ [Amazon EBS and NVMe](nvme-ebs-volumes.md)
 + [Amazon EC2 Instance Store](InstanceStorage.md)
 + [Placement Groups](placement-groups.md)
-+ [Enhanced Networking on Linux](enhanced-networking.md)
 
 ## Release Notes<a name="gpu-instance-current-limitations"></a>
 + You must launch the instance using an HVM AMI\.

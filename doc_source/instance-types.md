@@ -11,7 +11,7 @@ Each instance type provides higher or lower minimum performance from a shared re
 **Contents**
 + [Available Instance Types](#AvailableInstanceTypes)
 + [Hardware Specifications](#instance-hardware-specs)
-+ [Virtualization Types](#instance-virtualization-type)
++ [AMI Virtualization Types](#instance-virtualization-type)
 + [Networking and Storage Features](#instance-networking-storage)
 + [Instance Limits](#instance-type-limits)
 
@@ -31,8 +31,9 @@ For more information about the current generation instance types, see [Amazon EC
 | General purpose | `t2.nano` \| `t2.micro` \| `t2.small` \| `t2.medium` \| `t2.large` \| `t2.xlarge` \| `t2.2xlarge` \| `t3.nano` \| `t3.micro` \| `t3.small` \| `t3.medium` \| `t3.large` \| `t3.xlarge` \| `t3.2xlarge` \| `m4.large` \| `m4.xlarge` \| `m4.2xlarge` \| `m4.4xlarge` \| `m4.10xlarge` \| `m4.16xlarge` \| `m5.large` \| `m5.xlarge` \| `m5.2xlarge` \| `m5.4xlarge` \| `m5.12xlarge` \| `m5.24xlarge` \| `m5d.large` \| `m5d.xlarge` \| `m5d.2xlarge` \| `m5d.4xlarge` \| `m5d.12xlarge` \| `m5d.24xlarge` | 
 | Compute optimized | `c4.large` \| `c4.xlarge` \| `c4.2xlarge` \| `c4.4xlarge` \| `c4.8xlarge` \| `c5.large` \| `c5.xlarge` \| `c5.2xlarge` \| `c5.4xlarge` \| `c5.9xlarge` \| `c5.18xlarge` \| `c5d.xlarge` \| `c5d.2xlarge` \| `c5d.4xlarge` \| `c5d.9xlarge` \| `c5d.18xlarge`  | 
 | Memory optimized | `r4.large` \| `r4.xlarge` \| `r4.2xlarge` \| `r4.4xlarge` \| `r4.8xlarge` \| `r4.16xlarge` \| `r5.large` \| `r5.xlarge` \| `r5.2xlarge` \| `r5.4xlarge` \| `r5.12xlarge` \| `r5.24xlarge` \| `r5d.large` \| `r5d.xlarge` \| `r5d.2xlarge` \| `r5d.4xlarge` \| `r5d.12xlarge` \| `r5d.24xlarge` \| `x1.16xlarge` \| `x1.32xlarge` \| `x1e.xlarge` \| `x1e.2xlarge` \| `x1e.4xlarge` \| `x1e.8xlarge` \| `x1e.16xlarge` \| `x1e.32xlarge` \| `z1d.large` \| `z1d.xlarge` \| `z1d.2xlarge` \| `z1d.3xlarge` \| `z1d.6xlarge` \| `z1d.12xlarge` | 
-| Storage optimized | `d2.xlarge` \| `d2.2xlarge` \| `d2.4xlarge` \| `d2.8xlarge` \| `h1.2xlarge` \| `h1.4xlarge` \| `h1.8xlarge` \| `h1.16xlarge` \| `i3.large` \| `i3.xlarge` \| `i3.2xlarge` \| `i3.4xlarge` \| `i3.8xlarge` \| `i3.16xlarge` \| `i3.metal` | 
-| Accelerated computing | `f1.2xlarge` \| `f1.16xlarge` \| `g3.4xlarge` \| `g3.8xlarge` \| `g3.16xlarge` \| `p2.xlarge` \| `p2.8xlarge` \| `p2.16xlarge` \| `p3.2xlarge` \| `p3.8xlarge` \| `p3.16xlarge` | 
+| Storage optimized | `d2.xlarge` \| `d2.2xlarge` \| `d2.4xlarge` \| `d2.8xlarge` \| `h1.2xlarge` \| `h1.4xlarge` \| `h1.8xlarge` \| `h1.16xlarge` \| `i3.large` \| `i3.xlarge` \| `i3.2xlarge` \| `i3.4xlarge` \| `i3.8xlarge` \| `i3.16xlarge` | 
+| Accelerated computing | `f1.2xlarge` \| `f1.4xlarge` \| `f1.16xlarge` \| `g3.4xlarge` \| `g3.8xlarge` \| `g3.16xlarge` \| `p2.xlarge` \| `p2.8xlarge` \| `p2.16xlarge` \| `p3.2xlarge` \| `p3.8xlarge` \| `p3.16xlarge` | 
+| Bare metal | `i3.metal` \| `u-6tb1.metal` \| `u-9tb1.metal` \| `u-12tb1.metal` | 
 
 ### Previous Generation Instances<a name="previous-gen-instances"></a>
 
@@ -59,7 +60,7 @@ If your needs change, even after you make a decision, you can resize your instan
 **Note**  
 Amazon EC2 instances run on 64\-bit virtual Intel processors as specified in the instance type product pages\. For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\. However, confusion may result from industry naming conventions for 64\-bit CPUs\. Chip manufacturer Advanced Micro Devices \(AMD\) introduced the first commercially successful 64\-bit architecture based on the Intel x86 instruction set\. Consequently, the architecture is widely referred to as AMD64 regardless of the chip manufacturer\. Windows and several Linux distributions follow this practice\. This explains why the internal system information on an Ubuntu or Windows EC2 instance displays the CPU architecture as AMD64 even though the instances are running on Intel hardware\.
 
-## Virtualization Types<a name="instance-virtualization-type"></a>
+## AMI Virtualization Types<a name="instance-virtualization-type"></a>
 
 <a name="virtualization"></a>The virtualization type of your instance is determined by the AMI that you use to launch it\. Current generation instance types support hardware virtual machine \(HVM\) only\. Some previous generation instance types support paravirtual \(PV\) and some AWS regions support PV instances\. For more information, see [Linux AMI Virtualization Types](virtualization_types.md)\.
 
@@ -70,7 +71,6 @@ For best performance, we recommend that you use an HVM AMI\. In addition, HVM AM
 When you select an instance type, this determines the networking and storage features that are available\.
 
 **Networking features**
-+ Some instance types are not available in EC2\-Classic, so you must launch them in a VPC\. By launching an instance in a VPC, you can leverage features that are not available in EC2\-Classic, such as enhanced networking, assigning multiple private IPv4 addresses to an instance, assigning IPv6 addresses to an instance, and changing the security groups assigned to an instance\. For more information, see [Instance Types Available Only in a VPC](using-vpc.md#vpc-only-instance-types)\.
 + IPv6 is supported on all current generation instance types and the C3, R3, and I2 previous generation instance types\.
 + To maximize the networking and bandwidth performance of your instance type, you can do the following:
   + Launch supported instance types into a cluster placement group to optimize your instances for high performance computing \(HPC\) applications\. Instances in a common cluster placement group can benefit from high\-bandwidth, low\-latency networking\. For more information, see [Placement Groups](placement-groups.md)\.
@@ -81,48 +81,49 @@ When you select an instance type, this determines the networking and storage fea
 + The maximum supported MTU varies across instance types\. All Amazon EC2 instance types support standard Ethernet V2 1500 MTU frames\. All current generation instances support 9001 MTU, or jumbo frames, and some previous generation instances support them as well\. For more information, see [Network Maximum Transmission Unit \(MTU\) for Your EC2 Instance](network_mtu.md)\.
 
 **Storage features**
-+ Some instance types support EBS volumes and instance store volumes, while other instance types support only EBS volumes\. Some instances that support instance store volumes use solid state drives \(SSD\) to deliver very high random I/O performance\. For more information, see [Storage](Storage.md)\.
++ Some instance types support EBS volumes and instance store volumes, while other instance types support only EBS volumes\. Some instance types that support instance store volumes use solid state drives \(SSD\) to deliver very high random I/O performance\. Some instance types support NVMe instance store volumes\. Some instance types support NVMe EBS volumes\. For more information, see [Storage](Storage.md)\.
 + To obtain additional, dedicated capacity for Amazon EBS I/O, you can launch some instance types as EBS–optimized instances\. Some instance types are EBS–optimized by default\. For more information, see [Amazon EBS–Optimized Instances](EBSOptimized.md)\.
 
 The following table summarizes the networking and storage features supported by the current generation instance types\.
 
 
-|  | VPC only | EBS only | Instance store | Placement group | Enhanced networking | 
+|  | EBS only | NVMe EBS | Instance store | Placement group | Enhanced networking | 
 | --- | --- | --- | --- | --- | --- | 
-|  C4  |  Yes  |  Yes  |  |  Yes  |  Intel 82599 VF  | 
-|  C5  |  Yes  |  Yes  |  |  Yes  |  ENA  | 
-|  C5d  |  Yes  |  | NVMe \* |  Yes  |  ENA  | 
-|  D2  |  |  |  HDD  |  Yes  |  Intel 82599 VF  | 
-|  F1  |  Yes  |  |  NVMe \*  |  Yes  |  ENA  | 
-|  G3  | Yes | Yes |  |  Yes  | ENA | 
-|  H1  | Yes |  |  HDD  |  Yes  |  ENA  | 
-|  I3  |  Yes  |  |  NVMe \*  |  Yes  |  ENA  | 
-|  M4  |  Yes  |  Yes  |  |  Yes  |  `m4.16xlarge`: ENA All other sizes: Intel 82599 VF  | 
-|  M5  |  Yes  |  Yes  |  |  Yes  |  ENA  | 
-|  M5d  |  Yes  |  | NVMe \* |  Yes  |  ENA  | 
-|  P2  |  Yes  |  Yes  |  |  Yes  |  ENA  | 
-|  P3  |  Yes  |  Yes  |  |  Yes  |  ENA  | 
-|  R4  |  Yes  |  Yes  |  |  Yes  |  ENA  | 
-|  R5  |  Yes  |  Yes  |  |  Yes  |  ENA  | 
-|  R5d  |  Yes  |  | NVMe \* |  Yes  |  ENA  | 
-| T2 | Yes | Yes |  |  |  | 
-|  T3  |  Yes  |  Yes  |  |  | ENA | 
-|  X1  |  Yes  |  |  SSD  |  Yes  |  ENA  | 
-|  X1e  |  Yes  |  |  SSD  |  Yes  |   | 
-|  z1d  |  Yes  |  | NVMe \* |  Yes  |  ENA  | 
+|  C4  |  Yes  |  |  |  Yes  | Intel 82599 VF | 
+|  C5  |  Yes  | Yes |  |  Yes  | ENA | 
+|  C5d  |  | Yes | NVMe \* |  Yes  | ENA | 
+|  D2  |  |  |  HDD  |  Yes  | Intel 82599 VF | 
+|  F1  |  |  |  NVMe \*  |  Yes  | ENA | 
+|  G3  | Yes |  |  |  Yes  | ENA | 
+|  H1  |  |  |  HDD  |  Yes  | ENA | 
+|  I3  |  |  |  NVMe \*  |  Yes  | ENA | 
+|  M4  |  Yes  |  |  |  Yes  |  `m4.16xlarge`: ENA All other sizes: Intel 82599 VF  | 
+|  M5  |  Yes  | Yes |  |  Yes  | ENA | 
+|  M5d  |  | Yes | NVMe \* |  Yes  | ENA | 
+|  P2  |  Yes  |  |  |  Yes  | ENA | 
+|  P3  |  Yes  |  |  |  Yes  | ENA | 
+|  R4  |  Yes  |  |  |  Yes  | ENA | 
+|  R5  |  Yes  | Yes |  |  Yes  | ENA | 
+|  R5d  |  | Yes | NVMe \* |  Yes  | ENA | 
+| T2 | Yes |  |  |  |  | 
+|  T3  |  Yes  | Yes |  |  | ENA | 
+| u\-xtb1\.metal | Yes | Yes |  |  | ENA | 
+|  X1  |  |  |  SSD  |  Yes  | ENA | 
+|  X1e  |  |  |  SSD  |  Yes  | ENA | 
+|  z1d  |  | Yes | NVMe \* |  Yes  | ENA | 
 
 \* The root device volume must be an Amazon EBS volume\.
 
 The following table summarizes the networking and storage features supported by earlier generation instance types\.
 
 
-|  | VPC only | EBS only | Instance store | Placement group | Enhanced networking | 
-| --- | --- | --- | --- | --- | --- | 
-|  C3  |  |  |  SSD  |  Yes  |  Intel 82599 VF  | 
-|  G2  |  |  |  SSD  |  Yes  |  | 
-|  I2  |  |  |  SSD  |  Yes  |  Intel 82599 VF  | 
-|  M3  |  |  |  SSD  |  |  | 
-|  R3  |  |  |  SSD  |  Yes  |  Intel 82599 VF  | 
+|  | Instance store | Placement group | Enhanced networking | 
+| --- | --- | --- | --- | 
+|  C3  |  SSD  |  Yes  |  Intel 82599 VF  | 
+|  G2  |  SSD  |  Yes  |  | 
+|  I2  |  SSD  |  Yes  |  Intel 82599 VF  | 
+|  M3  |  SSD  |  |  | 
+|  R3  |  SSD  |  Yes  |  Intel 82599 VF  | 
 
 ## Instance Limits<a name="instance-type-limits"></a>
 

@@ -18,7 +18,7 @@ The following examples show launch configurations that you can use with the [req
 
 ## Example 1: Launch Spot Instances Using the Lowest\-Priced Availability Zone or Subnet in the Region<a name="fleet-config1"></a>
 
-The following example specifies a single launch specification without an Availability Zone or subnet\. If your account supports EC2\-VPC only, the Spot Fleet launches the instances in the lowest\-priced Availability Zone that has a default subnet\. If your account supports EC2\-Classic, the Spot Fleet launches the instances in EC2\-Classic in the lowest\-priced Availability Zone\. The price you pay will not exceed the On\-Demand price\.
+The following example specifies a single launch specification without an Availability Zone or subnet\. The Spot Fleet launches the instances in the lowest\-priced Availability Zone that has a default subnet\. The price you pay will not exceed the On\-Demand price\.
 
 ```
 {
@@ -48,7 +48,7 @@ The following examples specify two launch specifications with different Availabi
 
 **Availability Zones**
 
-If your account supports EC2\-VPC only, the Spot Fleet launches the instances in the default subnet of the lowest\-priced Availability Zone that you specified\. If your account supports EC2\-Classic, the Spot Fleet launches the instances in the lowest\-priced Availability Zone that you specified\.
+The Spot Fleet launches the instances in the default subnet of the lowest\-priced Availability Zone that you specified\.
 
 ```
 {

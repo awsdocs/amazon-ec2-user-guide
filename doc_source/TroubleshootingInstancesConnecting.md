@@ -31,7 +31,7 @@ If you try to connect to your instance and get an error message `Network error: 
      For Windows instances: Verify that there is a rule that allows traffic from your computer to port 3389 \(RDP\)\.
 
      If your security group has a rule that allows inbound traffic from a single IP address, this address may not be static if your computer is on a corporate network or if you are connecting through an internet service provider \(ISP\)\. Instead, specify the range of IP addresses used by client computers\. If your security group does not have a rule that allows inbound traffic as described in the previous step, add a rule to your security group\. For more information, see [Authorizing Network Access to Your Instances](authorizing-access-to-an-instance.md)\.
-+ \[EC2\-VPC\] Check the route table for the subnet\. You need a route that sends all traffic destined outside the VPC to the internet gateway for the VPC\.
++ Check the route table for the subnet\. You need a route that sends all traffic destined outside the VPC to the internet gateway for the VPC\.
 
   1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -48,7 +48,7 @@ If you try to connect to your instance and get an error message `Network error: 
   1. On the **Route Table** tab, verify that there is a route with `0.0.0.0/0` as the destination and the internet gateway for your VPC as the target\. Otherwise, choose the ID of the route table \(rtb\-*xxxxxxxx*\) to navigate to the **Routes** tab for the route table, choose **Edit**, **Add another route**, enter `0.0.0.0/0` in **Destination**, select your internet gateway from **Target**, and then choose **Save**\.
 
      If you're connecting to your instance using its IPv6 address, verify that there is a route for all IPv6 traffic \(`::/0`\) that points to the internet gateway\. If not, add a route with `::/0` as the destination, and the internet gateway as the target\.
-+ \[EC2\-VPC\] Check the network access control list \(ACL\) for the subnet\. The network ACLs must allow inbound and outbound traffic from your local IP address on the proper port\. The default network ACL allows all inbound and outbound traffic\.
++ Check the network access control list \(ACL\) for the subnet\. The network ACLs must allow inbound and outbound traffic from your local IP address on the proper port\. The default network ACL allows all inbound and outbound traffic\.
 
   1. Open the Amazon VPC console at [https://console\.aws\.amazon\.com/vpc/](https://console.aws.amazon.com/vpc/)\.
 

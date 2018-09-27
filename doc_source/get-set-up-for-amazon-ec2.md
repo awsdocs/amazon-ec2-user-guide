@@ -149,10 +149,7 @@ To connect to your Linux instance from a computer running Mac or Linux, you'll s
 
 ## Create a Virtual Private Cloud \(VPC\)<a name="create-a-vpc"></a>
 
-Amazon VPC enables you to launch AWS resources into a virtual network that you've defined\. If you have a default VPC, you can skip this section and move to the next task, [Create a Security Group](#create-a-base-security-group)\. To determine whether you have a default VPC, see [Supported Platforms in the Amazon EC2 Console](ec2-supported-platforms.md#console-updates)\. Otherwise, you can create a nondefault VPC in your account using the steps below\.
-
-**Important**  
-If your account supports EC2\-Classic in a region, then you do not have a default VPC in that region\. T2 instances must be launched into a VPC\.
+Amazon VPC enables you to launch AWS resources into a virtual network that you've defined, known as a *virtual private cloud* \(VPC\)\. The newer EC2 instance types require that you launch your instances in a VPC\. If you have a default VPC, you can skip this section and move to the next task, [Create a Security Group](#create-a-base-security-group)\. To determine whether you have a default VPC, open the Amazon EC2 console and look for **Default VPC** under **Account Attributes** on the dashboard\. If you do not have a default VPC listed on the dashboard, you can create a nondefault VPC using the steps below\.
 
 **To create a nondefault VPC**
 
@@ -166,7 +163,7 @@ If your account supports EC2\-Classic in a region, then you do not have a defaul
 
 1. On the **Step 2: VPC with a Single Public Subnet** page, enter a friendly name for your VPC in the **VPC name** field\. Leave the other default configuration settings, and choose **Create VPC**\. On the confirmation page, choose **OK**\.
 
-For more information about Amazon VPC, see [What is Amazon VPC?](https://docs.aws.amazon.com/vpc/latest/userguide/) in the *Amazon VPC User Guide*\.
+For more information about VPCs, see the [Amazon VPC User Guide](https://docs.aws.amazon.com/vpc/latest/userguide/)\.
 
 ## Create a Security Group<a name="create-a-base-security-group"></a>
 
@@ -193,8 +190,6 @@ Alternatively, you can use the Amazon VPC console to create a security group\. H
 1. Enter a name for the new security group and a description\. Use a name that is easy for you to remember, such as your IAM user name, followed by \_SG\_, plus the region name\. For example, *me*\_SG\_*uswest2*\.
 
 1. In the **VPC** list, select your VPC\. If you have a default VPC, it's the one that is marked with an asterisk \(\*\)\.
-**Note**  
-If your account supports EC2\-Classic, select the VPC that you created in the previous task\.
 
 1. On the **Inbound** tab, create the following rules \(choose **Add Rule** for each new rule\), and then choose **Create**:
    + Choose **HTTP** from the **Type** list, and make sure that **Source** is set to **Anywhere** \(`0.0.0.0/0`\)\.

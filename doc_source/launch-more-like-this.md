@@ -24,7 +24,7 @@ The following configuration details are copied from the selected instance into t
 + Security groups associated with the instance
 
 The following configuration details are not copied from your selected instance; instead, the wizard applies their default settings or behavior:
-+ \(VPC only\) Number of network interfaces: The default is one network interface, which is the primary network interface \(eth0\)\.
++ Number of network interfaces: The default is one network interface, which is the primary network interface \(eth0\)\.
 + Storage: The default storage configuration is determined by the AMI and the instance type\.
 
 **To use your current instance as a template**
