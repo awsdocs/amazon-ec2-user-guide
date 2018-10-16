@@ -22,7 +22,7 @@ The table indicates billing for instance usage only\. Some AWS resources, such a
 |  `terminated`  |  The instance has been permanently deleted and cannot be restarted\.  |  Not billed  | 
 
 **Note**  
-Rebooting an instance doesn't start a new instance billing period because the instance stays in the `running` state\.
+Rebooting an instance doesn't start a new instance billing period because the instance stays in the `running` state\. If you are using Reserved Instances, take note that even if you terminate the instance, you will still be billed until the end of your Reserved Instance contract.
 
 ## Instance Launch<a name="instance-launch"></a>
 
