@@ -15,6 +15,6 @@ The recover action can also be triggered when an instance is scheduled by AWS to
 The recover action is supported only on instances with the following characteristics:
 + Use one of the following instance types: C3, C4, C5, M3, M4, M5, R3, R4, R5, T2, T3, X1, or X1e
 + Use `default` or `dedicated` instance tenancy
-+ Use EBS volumes only \(do not configure instance store volumes\)\. For more information, see ['Recover this instance' is disabled](https://aws.amazon.com/premiumsupport/knowledge-center/recover-this-instance-cloudwatch-enable/)\.
++ Use EBS volumes only \(do not configure instance store volumes\)\. 
 
 If your instance has a public IPv4 address, it retains the public IPv4 address after recovery\.

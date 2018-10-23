@@ -38,10 +38,10 @@ For information about extending a Windows file system, see [Extending a Windows 
   The volume `/dev/xvdb` is not partitioned at all, so it does not need resizing\.
 
   However, `/dev/xvdf1` is an 8\-GiB partition on a 35\-GiB device and there are no other partitions on the volume\. In this case, the partition must be resized in order to use the remaining space on the volume\. After you resize the partition, you can extend the file system to occupy all of the space on the partition\.
-  
-  **Note**   
- In the first and second scenario, once the modified volume becomes Complete state from Optimizing state a restart/reboot is required for the changes to reflect.
-  
+
+**Note**  
+I
+
 **To resize a Linux partition**
 
 1. Log in to your Linux instance using an SSH client\. For more information about connecting to a Linux instance, see [Connecting to Your Linux Instance Using SSH](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html)\.
@@ -56,7 +56,7 @@ For information about extending a Windows file system, see [Extending a Windows 
    /dev/xvdf            1014M   33M  982M   4% /mnt
    ```
 
-1. Expand the modified partition using growpart \(and note the unusual syntax of separating the device name from the partition number\):
+1. Expand the modified partition using growpart \(note that you need to add a space between the device name and the partition number\):
 
    ```
    $sudo growpart /dev/xvdf 1
@@ -121,4 +121,6 @@ If you receive a The filesystem is already *nnnnnnn* blocks long\. Nothing to do
    ```
 
 **Tip**  
-If the increased available space on your volume remains invisible to the system, try re\-initializing the volume as described in [Initializing Amazon EBS Volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-initialize.html)\.
+If the increased available space on your volume remains invisible to the system, try:  
+Re\-initializing the volume as described in [Initializing Amazon EBS Volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-initialize.html)\.
+Rebooting the instance\.

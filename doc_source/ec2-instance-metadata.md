@@ -366,6 +366,8 @@ Category names that are formatted in red text are placeholders for data that is 
 | hostname | The private IPv4 DNS hostname of the instance\. In cases where multiple network interfaces are present, this refers to the eth0 device \(the device for which the device number is 0\)\. | 1\.0 | 
 |  iam/info  | If there is an IAM role associated with the instance, contains information about the last time the instance profile was updated, including the instance's LastUpdated date, InstanceProfileArn, and InstanceProfileId\. Otherwise, not present\. | 2012\-01\-12 | 
 |  iam/security\-credentials/role\-name  | If there is an IAM role associated with the instance, role\-name is the name of the role, and role\-name contains the temporary security credentials associated with the role \(for more information, see [Retrieving Security Credentials from Instance Metadata](iam-roles-for-amazon-ec2.md#instance-metadata-security-credentials)\)\. Otherwise, not present\. | 2012\-01\-12 | 
+| identity\-credentials/ec2/info | \[Reserved for internal use only\] Information about the credentials that AWS uses to identify an instance to the rest of the Amazon EC2 infrastructure\. | 2018\-05\-23 | 
+| identity\-credentials/ec2/security\-credentials/ec2\-instance | \[Reserved for internal use only\] The credentials that AWS uses to identify an instance to the rest of the Amazon EC2 infrastructure\. | 2018\-05\-23 | 
 |  instance\-action  | Notifies the instance that it should reboot in preparation for bundling\. Valid values: none \| shutdown \| bundle\-pending\. | 2008\-09\-01 | 
 |  instance\-id  | The ID of this instance\. | 1\.0 | 
 |  instance\-type  | The type of instance\. For more information, see [Instance Types](instance-types.md)\. | 2007\-08\-29 | 

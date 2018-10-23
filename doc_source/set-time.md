@@ -20,7 +20,7 @@ On Amazon Linux 2, the default `chrony` configuration is already set up to use t
 1. Connect to your instance and uninstall the NTP service\.
 
    ```
-   [ec2-user ~]$ sudo yum erase ntp*
+   [ec2-user ~]$ sudo yum erase 'ntp*'
    ```
 
 1. Install the `chrony` package\.

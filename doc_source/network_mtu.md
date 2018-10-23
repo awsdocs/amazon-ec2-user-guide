@@ -19,6 +19,8 @@ Jumbo frames should be used with caution for Internet\-bound traffic or any traf
 
 For instances that are collocated inside a cluster placement group, jumbo frames help to achieve the maximum network throughput possible, and they are recommended in this case\. For more information, see [Placement Groups](placement-groups.md)\.
 
+You can use jumbo frames for traffic between your VPCs and your on\-premises networks over AWS Direct Connect\. For more information, see [Setting Network MTU](https://docs.aws.amazon.com/directconnect/latest/UserGuide/set-jumbo-frames-vif.html) in the *AWS Direct Connect User Guide*\.
+
 The following instances support jumbo frames:
 + General purpose: M3, M4, M5, M5d, T2, and T3
 + Compute optimized: C3, C4, C5, C5d, and CC2

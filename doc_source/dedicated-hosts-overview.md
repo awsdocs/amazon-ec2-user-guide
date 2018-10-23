@@ -82,4 +82,4 @@ You must have active Dedicated Hosts in your account before you can purchase res
 
 When a reservation is associated with a Dedicated Host, the Dedicated Host can't be released until the reservation's term is over\.
 
-For more information about Reservation pricing, see [Amazon EC2 Dedicated Hosts Pricing](https://aws.amazon.com/ec2/dedicated-hosts/pricing/#reservations)\.
+For more information about reservation pricing, see [Amazon EC2 Dedicated Hosts Pricing](https://aws.amazon.com/ec2/dedicated-hosts/pricing/#reservations)\.

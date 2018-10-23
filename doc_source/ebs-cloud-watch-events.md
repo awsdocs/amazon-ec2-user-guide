@@ -2,7 +2,7 @@
 
 Amazon EBS emits notifications based on Amazon CloudWatch Events for a variety of snapshot and encryption status changes\. With CloudWatch Events, you can establish rules that trigger programmatic actions in response to a change in snapshot or encryption key state\. For example, when a snapshot is created, you can trigger an AWS Lambda function to share the completed snapshot with another account or copy it to another region for disaster\-recovery purposes\.
 
-For more information, see [Using Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/WhatIsCloudWatchEvents.html) in the *Amazon CloudWatch User Guide*\.
+For more information, see [Using Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/WhatIsCloudWatchEvents.html) in the *Amazon CloudWatch User Guide*\. For full API reference, see the [EC2 API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference)\.
 
 ## EBS Volume Events<a name="volume-events"></a>
 

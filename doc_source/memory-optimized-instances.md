@@ -137,16 +137,16 @@ If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-ba
 
 | Instance Size | 100% Random Read IOPS | Write IOPS | 
 | --- | --- | --- | 
-|  `r5d.large` \*  |  29,170  |  14,170  | 
-|  `r5d.xlarge` \*  |  58,330  |  28,330  | 
-|  `r5d.2xlarge` \*  |  116,670  |  56,670  | 
-|  `r5d.4xlarge` \*  |  233,330  |  113,330  | 
+|  `r5d.large` \*  |  30,000  |  15,000  | 
+|  `r5d.xlarge` \*  |  59,000  |  29,000  | 
+|  `r5d.2xlarge` \*  |  117,000  |  57,000  | 
+|  `r5d.4xlarge` \*  |  234,000  |  114,000  | 
 |  `r5d.12xlarge`  |  700,000  |  340,000  | 
-|  `r5d.24xlarge`  |  1\.4 million  |  680,000  | 
-|  `z1d.large` \*  |  29,170  |  14,170  | 
-|  `z1d.xlarge` \*  |  58,330  |  28,330  | 
-|  `z1d.2xlarge` \*  |  116,670  |  56,670  | 
-|  `z1d.3xlarge` \*  |  175,000  |  85,000  | 
+|  `r5d.24xlarge`  |  1,400,000  |  680,000  | 
+|  `z1d.large` \*  |  30,000  |  15,000  | 
+|  `z1d.xlarge` \*  |  59,000  |  29,000  | 
+|  `z1d.2xlarge` \*  |  117,000  |  57,000  | 
+|  `z1d.3xlarge` \*  |  175,000  |  75,000  | 
 |  `z1d.6xlarge`  |  350,000  |  170,000  | 
 |  `z1d.12xlarge`  |  700,000  |  340,000  | 
 

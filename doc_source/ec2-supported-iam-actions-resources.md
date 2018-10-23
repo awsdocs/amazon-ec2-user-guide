@@ -5,8 +5,7 @@
 The following table describes the Amazon EC2 API actions that currently support resource\-level permissions, as well as the supported resources \(and their ARNs\) and condition keys for each action\. When specifying an ARN, you can use the \* wildcard in your paths; for example, when you cannot or do not want to specify exact resource IDs\. For examples of using wildcards, see [Example Policies for Working with the AWS CLI or an AWS SDK](ExamplePolicies_EC2.md)\.
 
 **Important**  
-If an Amazon EC2 API action is not listed in this table, then it does not support resource\-level permissions\. If an Amazon EC2 API action does not support resource\-level permissions, you can grant users permissions to use the action, but you have to specify a \* for the resource element of your policy statement\. For an example, see [1: Read\-Only Access](ExamplePolicies_EC2.md#iam-example-read-only)\. For a list of Amazon EC2 API actions that currently do not support resource\-level permissions, see [Unsupported Resource\-Level Permissions](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ec2-api-permissions.html#ec2-api-unsupported-resource-permissions) in the *Amazon EC2 API Reference*\.   
-All Amazon EC2 actions support the `ec2:Region` condition key\. For an example, see [2: Restricting Access to a Specific Region](ExamplePolicies_EC2.md#iam-example-region)\.
+If an Amazon EC2 API action is not listed in this table, then it does not support resource\-level permissions\. If an Amazon EC2 API action does not support resource\-level permissions, you can grant users permissions to use the action, but you have to specify a \* for the resource element of your policy statement\. For an example, see [Example: Read\-Only Access](ExamplePolicies_EC2.md#iam-example-read-only)\. For a list of Amazon EC2 API actions that currently do not support resource\-level permissions, see [Unsupported Resource\-Level Permissions](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ec2-api-permissions.html#ec2-api-unsupported-resource-permissions) in the *Amazon EC2 API Reference*\. 
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-iam-actions-resources.html)
 
@@ -18,7 +17,7 @@ If you are using resource\-level permissions, the following table describes the 
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-iam-actions-resources.html)
 
-We recommend that you also specify the key pair resource in your policy — even though it's not required to launch an instance, you can't connect to your instance without a key pair\. For examples of using resource\-level permissions with the `ec2:RunInstances` action, see [6: Launching Instances \(RunInstances\)](ExamplePolicies_EC2.md#iam-example-runinstances)\.
+We recommend that you also specify the key pair resource in your policy — even though it's not required to launch an instance, you can't connect to your instance without a key pair\. For examples of using resource\-level permissions with the `ec2:RunInstances` action, see [Launching Instances \(RunInstances\)](ExamplePolicies_EC2.md#iam-example-runinstances)\.
 
 For additional information about resource\-level permissions in Amazon EC2, see the following AWS Security Blog post: [Demystifying EC2 Resource\-Level Permissions](https://aws.amazon.com/blogs/security/demystifying-ec2-resource-level-permissions/)\.
 
@@ -90,7 +89,7 @@ Similarly, the following policy allows users to create volumes and apply any tag
 
 The `ec2:CreateTags` action is only evaluated if tags are applied during the resource\-creating action\. Therefore, a user that has permissions to create a resource \(assuming there are no tagging conditions\) does not require permissions to use the `ec2:CreateTags` action if no tags are specified in the request\. However, if the user attempts to create a resource with tags, the request fails if the user does not have permissions to use the `ec2:CreateTags` action\.
 
-The `ec2:CreateTags` action is also evaluated if tags are provided in a launch template and the launch template is specified in the `ec2:RunInstances` action\. For an example policy, see [Applying Tags in a Launch Template](ExamplePolicies_EC2.md#iam-example-tags-launch-template)\.
+The `ec2:CreateTags` action is also evaluated if tags are provided in a launch template and the launch template is specified in the `ec2:RunInstances` action\. For an example policy, see [Tags in a Launch Template](ExamplePolicies_EC2.md#iam-example-tags-launch-template)\.
 
 You can control the tag keys and values that are applied to resources by using the following condition keys:
 + `aws:RequestTag`: To indicate that a particular tag key or tag key and value must be present in a request\. Other tags can also be specified in the request\.

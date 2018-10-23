@@ -43,11 +43,11 @@ For more information about the hardware specifications for each Amazon EC2 insta
 ## Burstable Performance Instance Requirements<a name="burstable-performance-instances-limits"></a>
 
 The following are the requirements for T3 and T2 instances:
-+ You must launch a T3 or a T2 instance using an HVM AMI with ENA and NVMe drivers\. For more information, see [Release Notes](general-purpose-instances.md#general-purpose-instances-limits)\.
-+ You must launch your T3 or T2 instances using an Amazon EBS volume as the root device\. For more information, see [Amazon EC2 Root Device Volume](RootDeviceStorage.md)\.
++ You must launch T3 and T2 instances using an HVM AMI and an Amazon EBS volume as the root device\. For more information, see [Amazon EC2 Root Device Volume](RootDeviceStorage.md)\.
++ You must launch T3 instances using an AMI with ENA and NVMe drivers\. For more information, see [Release Notes](general-purpose-instances.md#general-purpose-instances-limits)\.
 + T3 and T2 instances are available as On\-Demand Instances, Reserved Instances, and Spot Instances, but not as Scheduled Instances or Dedicated Instances\. They are also not supported on a Dedicated Host\. For more information, see [Instance Purchasing Options](instance-purchasing-options.md)\.
 + There is a limit on the total number of instances that you can launch in an AWS Region, and there are additional limits on some instance types\. By default, you can run up to 20 T3 and 20 T2 instances simultaneously\. If you need more instances, request them using the [Amazon EC2 Instance Request Form](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-instances)\.
-+ Ensure that the T3 or T2 instance size you choose passes the minimum memory requirements of your operating system and applications\. Operating systems with graphical user interfaces that consume significant memory and CPU resources \(for example, Windows\) may require a `t2.micro` or larger instance size for many use cases\. As the memory and CPU requirements of your workload grow over time, you can scale to larger T3 or T2 instance sizes, or other EC2 instance types\.
++ Ensure that the T3 or T2 instance size you choose passes the minimum memory requirements of your operating system and applications\. Operating systems with graphical user interfaces that consume significant memory and CPU resources \(for example, Windows\) might require a `t2.micro` or larger instance size for many use cases\. As the memory and CPU requirements of your workload grow over time, you can scale to larger T3 or T2 instance sizes, or other EC2 instance types\.
 
 ## Best Practices<a name="burstable-performance-instances-best-practices"></a>
 

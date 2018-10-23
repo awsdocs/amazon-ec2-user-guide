@@ -151,7 +151,7 @@ Now, `ec2-user` \(and any future members of the `apache` group\) can add, delete
 **To secure your web server \(Optional\)**  
 A web server running the HTTP protocol provides no transport security for the data that it sends or receives\. When you connect to an HTTP server using a web browser, the URLs that you visit, the content of webpages that you receive, and the contents \(including passwords\) of any HTML forms that you submit are all visible to eavesdroppers anywhere along the network pathway\. The best practice for securing your web server is to install support for HTTPS \(HTTP Secure\), which protects your data with SSL/TLS encryption\.
 
-For information about enabling HTTPS on your server, see [Tutorial: Configure Apache Web Server on Amazon Linux to use SSL/TLS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/SSL-on-an-instance.html)\.
+For information about enabling HTTPS on your server, see [Tutorial: Configure Apache Web Server on Amazon Linux 2 to use SSL/TLS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/SSL-on-an-instance.html)\.
 
 ## Step 2: Test Your LAMP Server<a name="test-lamp-server"></a>
 

@@ -7,6 +7,7 @@ Amazon EC2 provides the following network and security features\.
 + [Amazon EC2 Security Groups for Linux Instances](using-network-security.md)
 + [Controlling Access to Amazon EC2 Resources](UsingIAM.md)
 + [Amazon EC2 Instance IP Addressing](using-instance-addressing.md)
++ [Bring Your Own IP Addresses \(BYOIP\)](ec2-byoip.md)
 + [Elastic IP Addresses](elastic-ip-addresses-eip.md)
 + [Elastic Network Interfaces](using-eni.md)
 + [Enhanced Networking on Linux](enhanced-networking.md)

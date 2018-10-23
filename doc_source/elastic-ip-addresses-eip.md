@@ -23,6 +23,7 @@ The following are the basic characteristics of an Elastic IP address:
 + An Elastic IP address is for use in a specific region only\. 
 + When you associate an Elastic IP address with an instance that previously had a public IPv4 address, the public DNS hostname of the instance changes to match the Elastic IP address\. 
 + We resolve a public DNS hostname to the public IPv4 address or the Elastic IP address of the instance outside the network of the instance, and to the private IPv4 address of the instance from within the network of the instance\. 
++ When you allocate an Elastic IP address from an IP address pool that you have brought to your AWS account, it does not count toward your Elastic IP address limits\.
 
 ## Working with Elastic IP Addresses<a name="working-with-eips"></a>
 
@@ -39,15 +40,37 @@ The following sections describe how you can work with Elastic IP addresses\.
 
 ### Allocating an Elastic IP Address<a name="using-instance-addressing-eips-allocating"></a>
 
+You can allocate an Elastic IP address from Amazon's pool of public IPv4 addresses, or from a custom IP address pool that you have brought to your AWS account\. For more information about bringing your own IP address range to your AWS account, see [Bring Your Own IP Addresses \(BYOIP\)](ec2-byoip.md)\.
+
 You can allocate an Elastic IP address using the Amazon EC2 console or the command line\.
 
-**To allocate an Elastic IP address using the console**
+**To allocate an Elastic IP address from Amazon's pool of public IPv4 addresses using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation pane, choose **Elastic IPs**\. 
+1. In the navigation pane, choose **Elastic IPs**\.
 
-1. Choose **Allocate new address**\. 
+1. Choose **Allocate new address**\.
+
+1. For **IPv4 address pool**, choose **Amazon pool**\.
+
+1. Choose **Allocate**, and close the confirmation screen\.
+
+**To allocate an Elastic IP address from an IP address pool that you own using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Elastic IPs**\.
+
+1. Choose **Allocate new address**\.
+
+1. For **IPv4 address pool**, choose **Owned by me** and then select the IP address pool\.
+
+   To see the IP address range of the selected address pool and the number of IP addresses already allocated from the address pool, see **Address ranges**\.
+
+1. For **IPv4 address**, do one of the following:
+   + To let Amazon EC2 select an IP address from the address pool, choose **No preference**\.
+   + To select a specific IP address from the address pool, choose **Select an address** and then type the IP address\.
 
 1. Choose **Allocate**, and close the confirmation screen\.
 

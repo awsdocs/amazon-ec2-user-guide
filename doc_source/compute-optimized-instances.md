@@ -13,6 +13,7 @@ Compute optimized instances are ideal for compute\-bound applications that benef
 + [Hardware Specifications](#compute-instances-hardware)
 + [Instance Performance](#compute-performance)
 + [Network Performance](#compute-network-performance)
++ [SSD I/O Performance](#compute-ssd-perf)
 + [Instance Features](#compute-instances-features)
 + [Release Notes](#compute-instance-limits)
 
@@ -72,6 +73,28 @@ The following is a summary of network performance for compute optimized instance
 | c4\.large | Moderate | [Intel 82599 VF](sriov-networking.md) | 
 | c4\.xlarge \| c4\.2xlarge \| c4\.4xlarge | High | [Intel 82599 VF](sriov-networking.md) | 
 | c4\.8xlarge | 10 Gbps | [Intel 82599 VF](sriov-networking.md) | 
+
+## SSD I/O Performance<a name="compute-ssd-perf"></a>
+
+If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-based instance store volumes available to your instance, you get the IOPS \(4,096 byte block size\) performance listed in the following table \(at queue depth saturation\)\. Otherwise, you get lower IOPS performance\.
+
+
+| Instance Size | 100% Random Read IOPS | Write IOPS | 
+| --- | --- | --- | 
+|  `c5d.large` \*  |  20,000  |  9,000  | 
+|  `c5d.xlarge` \*  |  40,000  |  18,000  | 
+|  `c5d.2xlarge` \*  |  80,000  |  37,000  | 
+|  `c5d.4xlarge` \*  |  175,000  |  75,000  | 
+|  `c5d.9xlarge`  |  350,000  |  170,000  | 
+|  `c5d.18xlarge`  |  700,000  |  340,000  | 
+
+\* For these instances, you can get up to the specified performance\.
+
+As you fill the SSD\-based instance store volumes for your instance, the number of write IOPS that you can achieve decreases\. This is due to the extra work the SSD controller must do to find available space, rewrite existing data, and erase unused space so that it can be rewritten\. This process of garbage collection results in internal write amplification to the SSD, expressed as the ratio of SSD write operations to user write operations\. This decrease in performance is even larger if the write operations are not in multiples of 4,096 bytes or not aligned to a 4,096\-byte boundary\. If you write a smaller amount of bytes or bytes that are not aligned, the SSD controller must read the surrounding data and store the result in a new location\. This pattern results in significantly increased write amplification, increased latency, and dramatically reduced I/O performance\.
+
+SSD controllers can use several strategies to reduce the impact of write amplification\. One such strategy is to reserve space in the SSD instance storage so that the controller can more efficiently manage the space available for write operations\. This is called *over\-provisioning*\. The SSD\-based instance store volumes provided to an instance don't have any space reserved for over\-provisioning\. To reduce write amplification, we recommend that you leave 10% of the volume unpartitioned so that the SSD controller can use it for over\-provisioning\. This decreases the storage that you can use, but increases performance even if the disk is close to full capacity\.
+
+For instance store volumes that support TRIM, you can use the TRIM command to notify the SSD controller whenever you no longer need data that you've written\. This provides the controller with more free space, which can reduce write amplification and increase performance\. For more information, see [Instance Store Volume TRIM Support](ssd-instance-store.md#InstanceStoreTrimSupport)\.
 
 ## Instance Features<a name="compute-instances-features"></a>
 

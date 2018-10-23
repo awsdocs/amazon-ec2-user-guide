@@ -8,7 +8,7 @@ Amazon EC2 provides the following purchasing options to enable you to optimize y
 + **Dedicated Hosts** – Pay for a physical host that is fully dedicated to running your instances, and bring your existing per\-socket, per\-core, or per\-VM software licenses to reduce costs\.
 + **Dedicated Instances** – Pay, by the hour, for instances that run on single\-tenant hardware\. 
 
-If you require a capacity reservation, purchase Reserved Instances for a specific Availability Zone or purchase Scheduled Instances\. Spot Instances are a cost\-effective choice if you can be flexible about when your applications run and if they can be interrupted\. Dedicated Hosts can help you address compliance requirements and reduce costs by using your existing server\-bound software licenses\. For more information, see [Amazon EC2 Instance Purchasing Options](https://aws.amazon.com/ec2/purchasing-options/)\.
+If you require a capacity reservation, purchase Reserved Instances for a specific Availability Zone or purchase Scheduled Instances\. Spot Instances are a cost\-effective choice if you can be flexible about when your applications run and if they can be interrupted\. Dedicated Hosts can help you address compliance requirements and reduce costs by using your existing server\-bound software licenses\. For more information, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/)\.
 
 **Topics**
 + [Determining the Instance Lifecycle](#check-instance-lifecycle)

@@ -30,7 +30,7 @@ Before you can modify a volume that was attached to an instance before November 
 To find an instance that was last started before the cutoff date with a volume that was attached before the cutoff date, use the following [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command\.
 
 ```
-aws ec2 describe-instances --query "Reservations[*].Instances[*].[InstanceId,LaunchTime<=`2016-11-01`,BlockDeviceMappings[*][Ebs.AttachTime<=`2016-11-01`]]" --output text
+aws ec2 describe-instances --query "Reservations[*].Instances[*].[InstanceId,LaunchTime<='2016-11-01',BlockDeviceMappings[*][Ebs.AttachTime<='2016-11-01']]" --output text
 ```
 
 The output for each instance shows its ID, whether it was started before the cutoff date \(True or False\), and whether its volumes were attached before the cutoff date \(True or False\)\. In the following example output, you must initialize volume modification for the first instance because it was started before the cutoff date and its root volume was attached before the cutoff date\. The other instances are ready because they were started after the cutoff, regardless of when the volumes were attached\.

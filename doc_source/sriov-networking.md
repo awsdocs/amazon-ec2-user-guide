@@ -1,6 +1,6 @@
 # Enabling Enhanced Networking with the Intel 82599 VF Interface on Linux Instances<a name="sriov-networking"></a>
 
-Amazon EC2 provides enhanced networking capabilities to C3, C4, D2, I2, M4 \(excluding `m4.16xlarge`\), and R3 instances through the Intel 82599 VF interface, which uses the Intel `ixgbevf` driver\.
+Amazon EC2 provides enhanced networking capabilities through the Intel 82599 VF interface, which uses the Intel `ixgbevf` driver\.
 
 **Topics**
 + [Requirements](#ixgbevf-requirements)
@@ -13,9 +13,11 @@ Amazon EC2 provides enhanced networking capabilities to C3, C4, D2, I2, M4 \(exc
 ## Requirements<a name="ixgbevf-requirements"></a>
 
 To prepare for enhanced networking using the Intel 82599 VF interface, set up your instance as follows:
++ Select from the following supported instance types: C3, C4, D2, I2, M4 \(excluding m4\.16xlarge\), and R3\.
 + Launch the instance from an HVM AMI using Linux kernel version of 2\.6\.32 or later\. The latest Amazon Linux HVM AMIs have the modules required for enhanced networking installed and have the required attributes set\. Therefore, if you launch an Amazon EBS–backed, enhanced networking–supported instance using a current Amazon Linux HVM AMI, enhanced networking is already enabled for your instance\.
 **Warning**  
 Enhanced networking is supported only for HVM instances\. Enabling enhanced networking with a PV instance can make it unreachable\. Setting this attribute without the proper module or module version can also make your instance unreachable\.
++ Ensure that the instance has internet connectivity\.
 + Install and configure the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html) or the [AWS Tools for Windows PowerShell](https://docs.aws.amazon.com/powershell/latest/userguide/) on any computer you choose, preferably your local desktop or laptop\. For more information, see [Accessing Amazon EC2](concepts.md#access-ec2)\. Enhanced networking cannot be managed from the Amazon EC2 console\.
 + If you have important data on the instance that you want to preserve, you should back that data up now by creating an AMI from your instance\. Updating kernels and kernel modules, as well as enabling the `sriovNetSupport` attribute, might render incompatible instances or operating systems unreachable; if you have a recent backup, your data will still be retained if this happens\.
 

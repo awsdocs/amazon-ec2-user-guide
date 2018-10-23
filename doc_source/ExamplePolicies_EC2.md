@@ -3,20 +3,20 @@
 The following examples show policy statements that you could use to control the permissions that IAM users have to Amazon EC2\. These policies are designed for requests that are made with the AWS CLI or an AWS SDK\. For example policies for working in the Amazon EC2 console, see [Example Policies for Working in the Amazon EC2 Console](iam-policies-ec2-console.md)\. For examples of IAM policies specific to Amazon VPC, see [Controlling Access to Amazon VPC Resources](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_IAM.html)\.
 
 **Topics**
-+ [1: Read\-Only Access](#iam-example-read-only)
-+ [2: Restricting Access to a Specific Region](#iam-example-region)
-+ [3: Working with Instances](#iam-example-instances)
-+ [4\. Working with Volumes](#iam-example-manage-volumes)
-+ [5\. Working with Snapshots](#iam-example-manage-snapshots)
-+ [6: Launching Instances \(RunInstances\)](#iam-example-runinstances)
-+ [7\. Working with Reserved Instances](#iam-example-reservedinstances)
-+ [8\. Tagging Resources](#iam-example-taggingresources)
-+ [9: Working with IAM Roles](#iam-example-iam-roles)
-+ [10: Working with Route Tables](#iam-example-route-tables)
-+ [11: Allowing a Specific Instance to View Resources in Other AWS Services](#iam-example-source-instance)
-+ [12\. Working with Launch Templates](#iam-example-launch-templates)
++ [Read\-Only Access](#iam-example-read-only)
++ [Restricting Access to a Specific Region](#iam-example-region)
++ [Working with Instances](#iam-example-instances)
++ [Working with Volumes](#iam-example-manage-volumes)
++ [Working with Snapshots](#iam-example-manage-snapshots)
++ [Launching Instances \(RunInstances\)](#iam-example-runinstances)
++ [Working with Reserved Instances](#iam-example-reservedinstances)
++ [Tagging Resources](#iam-example-taggingresources)
++ [Working with IAM Roles](#iam-example-iam-roles)
++ [Working with Route Tables](#iam-example-route-tables)
++ [Allowing a Specific Instance to View Resources in Other AWS Services](#iam-example-source-instance)
++ [Working with Launch Templates](#iam-example-launch-templates)
 
-## 1: Read\-Only Access<a name="iam-example-read-only"></a>
+## Example: Read\-Only Access<a name="iam-example-read-only"></a>
 
 The following policy grants users permissions to use all Amazon EC2 API actions whose names begin with `Describe`\. The `Resource` element uses a wildcard to indicate that users can specify all resources with these API actions\. The \* wildcard is also necessary in cases where the API action does not support resource\-level permissions\. For more information about which ARNs you can use with which Amazon EC2 API actions, see [Supported Resource\-Level Permissions for Amazon EC2 API Actions](ec2-supported-iam-actions-resources.md)\. 
 
@@ -34,34 +34,55 @@ Users don't have permission to perform any actions on the resources \(unless ano
 }
 ```
 
-## 2: Restricting Access to a Specific Region<a name="iam-example-region"></a>
+## Example: Restricting Access to a Specific Region<a name="iam-example-region"></a>
 
-The following policy grants users permissions to use all Amazon EC2 API actions in the EU \(Frankfurt\) region only\. Users cannot view, create, modify, or delete resources in any other region\.
+The following policy denies users permission to use all Amazon EC2 API actions unless the region is EU \(Frankfurt\)\. It uses the global condition key `aws:RequestedRegion`, which is supported by all Amazon EC2 API actions\.
 
 ```
 {
   "Version":"2012-10-17",
   "Statement":[
     {
-      "Effect": "Allow",
+      "Effect": "Deny",
       "Action": "ec2:*",
       "Resource": "*",
-      "Condition": {"StringEquals": {"aws:RequestedRegion": [
-	    "eu-central-1"
-	  ]}
-       }
+      "Condition": {
+        "StringNotEquals": {
+          "aws:RequestedRegion": "eu-central-1"
+        }
+      }
     }  
   ]
 }
 ```
 
-## 3: Working with Instances<a name="iam-example-instances"></a>
+Alternatively, you can use the condition key `ec2:Region`, which is specific to Amazon EC2 and is supported by all Amazon EC2 API actions\.
+
+```
+{
+  "Version":"2012-10-17",
+  "Statement":[
+    {
+      "Effect": "Deny",
+      "Action": "ec2:*",
+      "Resource": "*",
+      "Condition": {
+        "StringNotEquals": {
+          "ec2:Region": "eu-central-1"
+        }
+      }
+    }  
+  ]
+}
+```
+
+## Working with Instances<a name="iam-example-instances"></a>
 
 **Topics**
-+ [Describe, Launch, Stop, Start, and Terminate All Instances](#iam-example-instances-all)
-+ [Describe All Instances, and Stop, Start, and Terminate Only Particular Instances](#iam-example-instances-specific)
++ [Example: Describe, Launch, Stop, Start, and Terminate All Instances](#iam-example-instances-all)
++ [Example: Describe All Instances, and Stop, Start, and Terminate Only Particular Instances](#iam-example-instances-specific)
 
-### Describe, Launch, Stop, Start, and Terminate All Instances<a name="iam-example-instances-all"></a>
+### Example: Describe, Launch, Stop, Start, and Terminate All Instances<a name="iam-example-instances-all"></a>
 
 The following policy grants users permissions to use the API actions specified in the `Action` element\. The `Resource` element uses a \* wildcard to indicate that users can specify all resources with these API actions\. The \* wildcard is also necessary in cases where the API action does not support resource\-level permissions\. For more information about which ARNs you can use with which Amazon EC2 API actions, see [Supported Resource\-Level Permissions for Amazon EC2 API Actions](ec2-supported-iam-actions-resources.md)\. 
 
@@ -85,7 +106,7 @@ The users don't have permission to use any other API actions \(unless another st
 }
 ```
 
-### Describe All Instances, and Stop, Start, and Terminate Only Particular Instances<a name="iam-example-instances-specific"></a>
+### Example: Describe All Instances, and Stop, Start, and Terminate Only Particular Instances<a name="iam-example-instances-specific"></a>
 
 The following policy allows users to describe all instances, to start and stop only instances i\-1234567890abcdef0 and i\-0598c7d356eba48d7, and to terminate only instances in the US East \(N\. Virginia\) Region \(`us-east-1`\) with the resource tag "`purpose=test`"\. 
 
@@ -130,14 +151,14 @@ The third statement allows users to terminate all instances in the US East \(N\.
 }
 ```
 
-## 4\. Working with Volumes<a name="iam-example-manage-volumes"></a>
+## Working with Volumes<a name="iam-example-manage-volumes"></a>
 
 **Topics**
-+ [Attaching and Detaching Volumes](#iam-example-manage-volumes-attach-detach)
-+ [Creating a Volume](#iam-example-manage-volumes-create)
-+ [Creating a Volume with Tags](#iam-example-manage-volumes-tags)
++ [Example: Attaching and Detaching Volumes](#iam-example-manage-volumes-attach-detach)
++ [Example: Creating a Volume](#iam-example-manage-volumes-create)
++ [Example: Creating a Volume with Tags](#iam-example-manage-volumes-tags)
 
-### Attaching and Detaching Volumes<a name="iam-example-manage-volumes-attach-detach"></a>
+### Example: Attaching and Detaching Volumes<a name="iam-example-manage-volumes-attach-detach"></a>
 
 When an API action requires a caller to specify multiple resources, you must create a policy statement that allows users to access all required resources\. If you need to use a `Condition` element with one or more of these resources, you must create multiple statements as shown in this example\.
 
@@ -176,7 +197,7 @@ The following policy allows users to attach volumes with the tag "`volume_user`=
 }
 ```
 
-### Creating a Volume<a name="iam-example-manage-volumes-create"></a>
+### Example: Creating a Volume<a name="iam-example-manage-volumes-create"></a>
 
 The following policy allows users to use the [CreateVolume](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateVolume.html) API action\. The user is allowed to create a volume only if the volume is encrypted and only if the volume size is less than 20 GiB\.
 
@@ -203,7 +224,7 @@ The following policy allows users to use the [CreateVolume](https://docs.aws.ama
 }
 ```
 
-### Creating a Volume with Tags<a name="iam-example-manage-volumes-tags"></a>
+### Example: Creating a Volume with Tags<a name="iam-example-manage-volumes-tags"></a>
 
 The following policy includes the `aws:RequestTag` condition key that requires users to tag any volumes they create with the tags `costcenter=115` and `stack=prod`\. The `aws:TagKeys` condition key uses the `ForAllValues` modifier to indicate that only the keys `costcenter` and `stack` are allowed in the request \(no other tags can be specified\)\. If users don't pass these specific tags, or if they don't specify tags at all, the request fails\. 
 
@@ -275,14 +296,14 @@ The following policy allows users to create a volume without having to specify t
 }
 ```
 
-## 5\. Working with Snapshots<a name="iam-example-manage-snapshots"></a>
+## Working with Snapshots<a name="iam-example-manage-snapshots"></a>
 
 **Topics**
-+ [Creating a Snapshot](#iam-creating-snapshop)
-+ [Creating a Snapshot with Tags](#iam-creating-snapshot-with-tags)
-+ [Modifying Permission Settings for Snapshots](#iam-modifying-snapshot-with-tags)
++ [Example: Creating a Snapshot](#iam-creating-snapshot)
++ [Example: Creating a Snapshot with Tags](#iam-creating-snapshot-with-tags)
++ [Example: Modifying Permission Settings for Snapshots](#iam-modifying-snapshot-with-tags)
 
-### Creating a Snapshot<a name="iam-creating-snapshop"></a>
+### Example: Creating a Snapshot<a name="iam-creating-snapshot"></a>
 
 The following policy allows customers to use the [CreateSnapshot](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateSnapshot.html) API action\. The customer may create a snapshot only if the volume is encrypted and only if the volume size is less than 20 GiB\.
 
@@ -312,7 +333,7 @@ The following policy allows customers to use the [CreateSnapshot](https://docs.a
 }
 ```
 
-### Creating a Snapshot with Tags<a name="iam-creating-snapshot-with-tags"></a>
+### Example: Creating a Snapshot with Tags<a name="iam-creating-snapshot-with-tags"></a>
 
 The following policy includes the `aws:RequestTag` condition key that requires the customer to apply the tags `costcenter=115` and `stack=prod` to any new snapshot\. The `aws:TagKeys` condition key uses the `ForAllValues` modifier to indicate that only the keys `costcenter` and `stack` may be specified in the request\. The request fails if either of these conditions is not met\.
 
@@ -472,7 +493,7 @@ The following policy allows a customer to create a snapshot but denies the actio
 }
 ```
 
-### Modifying Permission Settings for Snapshots<a name="iam-modifying-snapshot-with-tags"></a>
+### Example: Modifying Permission Settings for Snapshots<a name="iam-modifying-snapshot-with-tags"></a>
 
 The following policy allows modification of a snapshot only if the snapshot is tagged with `User:username`, where *username* is the customer's AWS account user name\. The request fails if this condition is not met\.
 
@@ -494,25 +515,25 @@ The following policy allows modification of a snapshot only if the snapshot is t
 }
 ```
 
-## 6: Launching Instances \(RunInstances\)<a name="iam-example-runinstances"></a>
+## Launching Instances \(RunInstances\)<a name="iam-example-runinstances"></a>
 
 The [RunInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-RunInstances.html) API action launches one or more instances\. `RunInstances` requires an AMI and creates an instance; and users can specify a key pair and security group in the request\. Launching into a VPC requires a subnet, and creates a network interface\. Launching from an Amazon EBS\-backed AMI creates a volume\. Therefore, the user must have permissions to use these Amazon EC2 resources\. You can create a policy statement that requires users to specify an optional parameter on `RunInstances`, or restricts users to particular values for a parameter\.
 
 For more information about the resource\-level permissions that are required to launch an instance, see [Resource\-Level Permissions for RunInstances](ec2-supported-iam-actions-resources.md#supported-iam-actions-runinstances)\.
 
-By default, users don't have permissions to describe, start, stop, or terminate the resulting instances\. One way to grant the users permission to manage the resulting instances is to create a specific tag for each instance, and then create a statement that enables them to manage instances with that tag\. For more information, see [3: Working with Instances](#iam-example-instances)\.
+By default, users don't have permissions to describe, start, stop, or terminate the resulting instances\. One way to grant the users permission to manage the resulting instances is to create a specific tag for each instance, and then create a statement that enables them to manage instances with that tag\. For more information, see [Working with Instances](#iam-example-instances)\.
 
 **Topics**
-+ [AMI](#iam-example-runinstances-ami)
-+ [Instance Type](#iam-example-runinstances-instance-type)
-+ [Subnet](#iam-example-runinstances-subnet)
++ [AMIs](#iam-example-runinstances-ami)
++ [Instance Types](#iam-example-runinstances-instance-type)
++ [Subnets](#iam-example-runinstances-subnet)
 + [EBS Volumes](#iam-example-runinstances-volumes)
-+ [Applying Tags](#iam-example-runinstances-tags)
-+ [Applying Tags in a Launch Template](#iam-example-tags-launch-template)
-+ [Attaching an Elastic GPU](#iam-example-runinstances-egpu)
++ [Tags](#iam-example-runinstances-tags)
++ [Tags in a Launch Template](#iam-example-tags-launch-template)
++ [Elastic GPUs](#iam-example-runinstances-egpu)
 + [Launch Templates](#iam-example-runinstances-launch-templates)
 
-### AMI<a name="iam-example-runinstances-ami"></a>
+### AMIs<a name="iam-example-runinstances-ami"></a>
 
 The following policy allows users to launch instances using only the specified AMIs, `ami-9e1670f7` and `ami-45cf5c3c`\. The users can't launch an instance using other AMIs \(unless another statement grants the users permission to do so\)\.
 
@@ -570,7 +591,7 @@ Alternatively, the following policy allows users to launch instances from all AM
 }
 ```
 
-### Instance Type<a name="iam-example-runinstances-instance-type"></a>
+### Instance Types<a name="iam-example-runinstances-instance-type"></a>
 
 The following policy allows users to launch instances using only the `t2.micro` or `t2.small` instance type, which you might do to control costs\. The users can't launch larger instances because the `Condition` element of the first statement tests whether `ec2:InstanceType` is either `t2.micro` or `t2.small`\. 
 
@@ -639,7 +660,7 @@ Alternatively, you can create a policy that denies users permissions to launch a
 }
 ```
 
-### Subnet<a name="iam-example-runinstances-subnet"></a>
+### Subnets<a name="iam-example-runinstances-subnet"></a>
 
 The following policy allows users to launch instances using only the specified subnet, `subnet-12345678`\. The group can't launch instances into any another subnet \(unless another statement grants the users permission to do so\)\.
 
@@ -733,7 +754,7 @@ The following policy allows users to launch instances only if the EBS volumes fo
 }
 ```
 
-### Applying Tags<a name="iam-example-runinstances-tags"></a>
+### Tags<a name="iam-example-runinstances-tags"></a>
 
 The following policy allows users to launch instances and tag the instances during creation\. For resource\-creating actions that apply tags, users must have permissions to use the `CreateTags` action\. The second statement uses the `ec2:CreateAction` condition key to allow users to create tags only in the context of `RunInstances`, and only for instances\. Users cannot tag existing resources, and users cannot tag volumes using the `RunInstances` request\. 
 
@@ -903,7 +924,7 @@ In the following policy, users do not have to specify tags in the request, but i
 }
 ```
 
-### Applying Tags in a Launch Template<a name="iam-example-tags-launch-template"></a>
+### Tags in a Launch Template<a name="iam-example-tags-launch-template"></a>
 
 In the following example, users can launch instances, but only if they use a specific launch template \(`lt-09477bcd97b0d310e`\)\. The `ec2:IsLaunchTemplateResource` condition key prevents users from overriding any of the resources specified in the launch template\. The second part of the statement allows users to tag instances on creation—this part of the statement is necessary if tags are specified for the instance in the launch template\.
 
@@ -940,7 +961,7 @@ In the following example, users can launch instances, but only if they use a spe
 }
 ```
 
-### Attaching an Elastic GPU<a name="iam-example-runinstances-egpu"></a>
+### Elastic GPUs<a name="iam-example-runinstances-egpu"></a>
 
 In the following policy, users can launch an instance and specify an elastic GPU to attach to the instance\. Users can launch instances in any region, but they can only attach an elastic GPU during a launch in the `us-east-2` region\. 
 
@@ -1100,7 +1121,7 @@ The following example allows users to launch instances only if they use a launch
 }
 ```
 
-## 7\. Working with Reserved Instances<a name="iam-example-reservedinstances"></a>
+## Example: Working with Reserved Instances<a name="iam-example-reservedinstances"></a>
 
 The following policy gives users permission to view, modify, and purchase Reserved Instances in your account\.
 
@@ -1141,7 +1162,7 @@ To allow users to view and modify the Reserved Instances in your account, but no
 }
 ```
 
-## 8\. Tagging Resources<a name="iam-example-taggingresources"></a>
+## Example: Tagging Resources<a name="iam-example-taggingresources"></a>
 
 The following policy allows users to use the `CreateTags` action to apply tags to an instance only if the tag contains the key `environment` and the value `production`\. The `ForAllValues` modifier is used with the `aws:TagKeys` condition key to indicate that only the key `environment` is allowed in the request \(no other tags are allowed\)\. The user cannot tag any other resource types\.
 
@@ -1242,7 +1263,7 @@ This policy allows users to delete only the `environment=prod` tag on any resour
 }
 ```
 
-## 9: Working with IAM Roles<a name="iam-example-iam-roles"></a>
+## Example: Working with IAM Roles<a name="iam-example-iam-roles"></a>
 
 The following policy allows users to attach, replace, and detach an IAM role to instances that have the tag `department=test`\. Replacing or detaching an IAM role requires an association ID, therefore the policy also grants users permission to use the `ec2:DescribeIamInstanceProfileAssociations` action\. 
 
@@ -1308,7 +1329,7 @@ The following policy allows users to attach or replace an IAM role for any insta
 }
 ```
 
-## 10: Working with Route Tables<a name="iam-example-route-tables"></a>
+## Example: Working with Route Tables<a name="iam-example-route-tables"></a>
 
 The following policy allows users to add, remove, and replace routes for route tables that are associated with VPC `vpc-ec43eb89` only\. To specify a VPC for the `ec2:Vpc` condition key, you must specify the full ARN of the VPC\.
 
@@ -1336,7 +1357,7 @@ The following policy allows users to add, remove, and replace routes for route t
 }
 ```
 
-## 11: Allowing a Specific Instance to View Resources in Other AWS Services<a name="iam-example-source-instance"></a>
+## Example: Allowing a Specific Instance to View Resources in Other AWS Services<a name="iam-example-source-instance"></a>
 
 The following is an example of a policy that you might attach to an IAM role\. The policy allows an instance to view resources in various AWS services\. It uses the `ec2:SourceInstanceARN` condition key to specify that the instance from which the request is made must be instance `i-093452212644b0dd6`\. If the same IAM role is associated with another instance, the other instance cannot perform any of these actions\.
 
@@ -1367,7 +1388,7 @@ The `ec2:SourceInstanceARN` key is an AWS\-wide condition key, therefore it can 
 }
 ```
 
-## 12\. Working with Launch Templates<a name="iam-example-launch-templates"></a>
+## Example: Working with Launch Templates<a name="iam-example-launch-templates"></a>
 
 The following policy allows users to create a launch template version and modify a launch template, but only for a specific launch template \(`lt-09477bcd97b0d3abc`\)\. Users cannot work with other launch templates\.
 

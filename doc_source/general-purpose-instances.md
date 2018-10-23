@@ -33,6 +33,7 @@ T2 instances provide a baseline level of CPU performance with the ability to bur
 + [Hardware Specifications](#general-purpose-hardware)
 + [Instance Performance](#general-purpose-performance)
 + [Network Performance](#general-purpose-network-performance)
++ [SSD I/O Performance](#general-purpose-ssd-perf)
 + [Instance Features](#general-purpose-features)
 + [Release Notes](#general-purpose-instances-limits)
 
@@ -108,6 +109,28 @@ The following is a summary of network performance for general purpose instances 
 |  `m5.large`, `m5.xlarge`, `m5.2xlarge`, `m5.4xlarge`, `m5d.large`, `m5d.xlarge`, `m5d.2xlarge`, `m5d.4xlarge`  |  Up to 10 Gbps  | [ENA](enhanced-networking-ena.md) | 
 |  `m5.12xlarge`, `m5d.12xlarge`  |  10 Gbps  | [ENA](enhanced-networking-ena.md) | 
 |  `m5.24xlarge`, `m5d.24xlarge`  |  25 Gbps  | [ENA](enhanced-networking-ena.md) | 
+
+## SSD I/O Performance<a name="general-purpose-ssd-perf"></a>
+
+If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-based instance store volumes available to your instance, you get the IOPS \(4,096 byte block size\) performance listed in the following table \(at queue depth saturation\)\. Otherwise, you get lower IOPS performance\.
+
+
+| Instance Size | 100% Random Read IOPS | Write IOPS | 
+| --- | --- | --- | 
+|  `m5d.large` \*  |  30,000  |  15,000  | 
+|  `m5d.xlarge` \*  |  59,000  |  29,000  | 
+|  `m5d.2xlarge` \*  |  117,000  |  57,000  | 
+|  `m5d.4xlarge` \*  |  234,000  |  114,000  | 
+|  `m5d.12xlarge`  |  700,000  |  340,000  | 
+|  `m5d.24xlarge`  |  1,400,000  |  680,000  | 
+
+\* For these instances, you can get up to the specified performance\.
+
+As you fill the SSD\-based instance store volumes for your instance, the number of write IOPS that you can achieve decreases\. This is due to the extra work the SSD controller must do to find available space, rewrite existing data, and erase unused space so that it can be rewritten\. This process of garbage collection results in internal write amplification to the SSD, expressed as the ratio of SSD write operations to user write operations\. This decrease in performance is even larger if the write operations are not in multiples of 4,096 bytes or not aligned to a 4,096\-byte boundary\. If you write a smaller amount of bytes or bytes that are not aligned, the SSD controller must read the surrounding data and store the result in a new location\. This pattern results in significantly increased write amplification, increased latency, and dramatically reduced I/O performance\.
+
+SSD controllers can use several strategies to reduce the impact of write amplification\. One such strategy is to reserve space in the SSD instance storage so that the controller can more efficiently manage the space available for write operations\. This is called *over\-provisioning*\. The SSD\-based instance store volumes provided to an instance don't have any space reserved for over\-provisioning\. To reduce write amplification, we recommend that you leave 10% of the volume unpartitioned so that the SSD controller can use it for over\-provisioning\. This decreases the storage that you can use, but increases performance even if the disk is close to full capacity\.
+
+For instance store volumes that support TRIM, you can use the TRIM command to notify the SSD controller whenever you no longer need data that you've written\. This provides the controller with more free space, which can reduce write amplification and increase performance\. For more information, see [Instance Store Volume TRIM Support](ssd-instance-store.md#InstanceStoreTrimSupport)\.
 
 ## Instance Features<a name="general-purpose-features"></a>
 

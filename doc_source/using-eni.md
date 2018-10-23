@@ -95,6 +95,7 @@ The following table lists the maximum number of network interfaces per instance 
 | f1\.16xlarge | 8 | 50 | 50 | 
 |  `g2.2xlarge`  |  4  |  15  | IPv6 not supported | 
 |  `g2.8xlarge`  |  8  |  30  | IPv6 not supported | 
+| g3s\.xlarge | 4 | 15 | 15 | 
 | g3\.4xlarge | 8 | 30 | 30 | 
 | g3\.8xlarge | 8 | 30 | 30 | 
 | g3\.16xlarge | 15 | 50 | 50 | 
@@ -236,7 +237,7 @@ If one of your instances serving a particular function fails, its network interf
 ## Best Practices for Configuring Network Interfaces<a name="best-practices-for-configuring-network-interfaces"></a>
 + You can attach a network interface to an instance when it's running \(hot attach\), when it's stopped \(warm attach\), or when the instance is being launched \(cold attach\)\.
 + You can detach secondary \(eth*N*\) network interfaces when the instance is running or stopped\. However, you can't detach the primary \(eth0\) interface\.
-+ You can attach a network interface in one subnet to an instance in another subnet in the same VPC; however, both the network interface and the instance must reside in the same Availability Zone\.
++ If you have multiple subnets in an Availability Zone for the same VPC, you can move a network interface from an instance in one of these subnets to an instance in another one of these subnets\.
 + When launching an instance from the CLI or API, you can specify the network interfaces to attach to the instance for both the primary \(eth0\) and additional network interfaces\. 
 + Launching an Amazon Linux or Windows Server instance with multiple network interfaces automatically configures interfaces, private IPv4 addresses, and route tables on the operating system of the instance\. 
 + A warm or hot attach of an additional network interface may require you to manually bring up the second interface, configure the private IPv4 address, and modify the route table accordingly\. Instances running Amazon Linux or Windows Server automatically recognize the warm or hot attach and configure themselves\.

@@ -50,6 +50,7 @@ The following table lists current\-generation instance types that support EBS op
 | f1\.2xlarge | Yes | 1,700 | 212\.5 | 12,000 | 
 | f1\.4xlarge | Yes | 3,500 | 400 | 44,000 | 
 | f1\.16xlarge | Yes | 14,000 | 1,750 | 75,000 | 
+| g3s\.xlarge | Yes | 850 | 100 | 5,000 | 
 | g3\.4xlarge | Yes | 3,500 | 437\.5 | 20,000 | 
 | g3\.8xlarge | Yes | 7,000 | 875 | 40,000 | 
 | g3\.16xlarge | Yes | 14,000 | 1,750 | 80,000 | 
@@ -131,7 +132,7 @@ The following table lists current\-generation instance types that support EBS op
 | z1d\.6xlarge | Yes | 7,000 | 875 | 40,000 | 
 | z1d\.12xlarge | Yes | 14,000 | 1,750 | 80,000 | 
 
-\* These instance types can support maximum performance for 30 minutes at least once every 24 hours\. For example, `c5.large` instances can deliver 281 MB/s for 30 minutes at least once every 24 hours\. If you have a workload that requires sustained maximum performance for longer than 30 minutes, select an instance type according to baseline performance shown in this table\.
+\* These instance types can support maximum performance for 30 minutes at least once every 24 hours\. For example, `c5.large` instances can deliver 437\.5 MB/s for 30 minutes at least once every 24 hours\. If you have a workload that requires sustained maximum performance for longer than 30 minutes, select an instance type according to baseline performance shown in this table\.
 
 
 | Instance type | Baseline bandwidth \(Mbps\) | Baseline throughput \(MB/s, 128 KB I/O\) | Baseline IOPS \(16 KB I/O\) | 

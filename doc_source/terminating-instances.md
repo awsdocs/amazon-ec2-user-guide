@@ -90,9 +90,7 @@ You can use one of the following commands\. For more information about these com
 
 ## Changing the Instance Initiated Shutdown Behavior<a name="Using_ChangingInstanceInitiatedShutdownBehavior"></a>
 
-By default, when you initiate a shutdown from an Amazon EBS\-backed instance \(using a command such as shutdown, halt, or poweroff\), the instance stops\. You can change this behavior using the `InstanceInitiatedShutdownBehavior` attribute for the instance so that it terminates instead\. You can update this attribute while the instance is running or stopped\.
-
-Note that instance store\-backed instances can be terminated but they can't be stopped\.
+By default, when you initiate a shutdown from an Amazon EBS\-backed instance \(using a command such as shutdown or poweroff\), the instance stops \(Note that halt does not issue a poweroff command and, if used, the instance will not terminate; instead, it will place the CPU into HLT and the instance will remain running\)\. You can change this behavior using the `InstanceInitiatedShutdownBehavior` attribute for the instance so that it terminates instead\. You can update this attribute while the instance is running or stopped\. 
 
 You can update the `InstanceInitiatedShutdownBehavior` attribute using the Amazon EC2 console or the command line\. The `InstanceInitiatedShutdownBehavior` attribute only applies when you perform a shutdown from the operating system of the instance itself; it does not apply when you stop an instance using the `StopInstances` API or the Amazon EC2 console\.
 

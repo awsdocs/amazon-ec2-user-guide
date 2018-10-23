@@ -48,9 +48,9 @@ You can list the Availability Zones that are available to your account\. For mor
 Your account determines the regions that are available to you\. For example:
 + An AWS account provides multiple regions so that you can launch Amazon EC2 instances in locations that meet your requirements\. For example, you might want to launch instances in Europe to be closer to your European customers or to meet legal requirements\.
 + An AWS GovCloud \(US\) account provides access to the AWS GovCloud \(US\) region only\. For more information, see [AWS GovCloud \(US\) Region](https://aws.amazon.com/govcloud-us/)\.
-+ An Amazon AWS \(China\) account provides access to the China \(Beijing\) region only\.
++ An Amazon AWS \(China\) account provides access to the Beijing and Ningxia Regions only\. For more information, see [AWS in China](https://www.amazonaws.cn/about-aws/china/)\.
 
-The following table lists the regions provided by an AWS account\. You can't describe or access additional regions from an AWS account, such as AWS GovCloud \(US\) or China \(Beijing\)\.
+The following table lists the regions provided by an AWS account\. You can't describe or access additional regions from an AWS account, such as AWS GovCloud \(US\) or the China Regions\.
 
 
 | Code | Name | 

@@ -2,11 +2,14 @@
 
 The following table describes important additions to the Amazon EC2 documentation\. We also update the documentation frequently to address the feedback that you send us\.
 
- **Current API version: 2016\-11\-15\.** 
+ **Current API version: 2016\-11\-15** 
 
 
 | Feature | API Version | Description | Release Date | 
 | --- | --- | --- | --- | 
+| Bring Your Own IP Addresses \(BYOIP\) | 2016\-11\-15 | You can bring part or all of your public IPv4 address range from your on\-premises network to your AWS account\. After you bring the address range to AWS, it appears in your account as an address pool\. You can create an Elastic IP address from your address pool and use it with your AWS resources\. For more information, see [Bring Your Own IP Addresses \(BYOIP\)](ec2-byoip.md)\. | 23 October 2018 | 
+| g3s\.xlarge instances | 2016\-11\-15 | Expands the range of the accelerated\-computing G3 instance family with the introduction of g3s\.xlarge instances\. | 11 October 2018 | 
+| Dedicated Host tag on create and console support |  2016\-11\-15  |  You can tag your Dedicated Hosts on creation, and you can manage your Dedicated Host tags using the Amazon EC2 console\. For more information, see [Allocating Dedicated Hosts](how-dedicated-hosts-work.md#dedicated-hosts-allocating)\.  | 08 October 2018 | 
 | High memory instances | 2016\-11\-15 | These instances are purpose\-built to run large in\-memory databases\. They offer bare metal performance with direct access to host hardware\. For more information, see [Memory Optimized Instances](memory-optimized-instances.md)\. | 27 September 2018 | 
 | f1\.4xlarge instances | 2016\-11\-15 | Expands the range of the accelerated\-computing F1 instance family with the introduction of f1\.4xlarge instances\. | 25 September 2018 | 
 | Console support for scheduled scaling for Spot Fleet | 2016\-11\-15 | Increase or decrease the current capacity of the fleet based on the date and time\. For more information, see [Scale Spot Fleet Using Scheduled Scaling](spot-fleet-scheduled-scaling.md)\. | 20 September 2018 | 

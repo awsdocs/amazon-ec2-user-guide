@@ -8,6 +8,7 @@ After you have successfully launched and logged into your Amazon Linux instance,
 + [Managing User Accounts on Your Linux Instance](managing-users.md)
 + [Processor State Control for Your EC2 Instance](processor_state_control.md)
 + [Setting the Time for Your Linux Instance](set-time.md)
++ [Optimizing CPU Options](instance-optimize-cpu.md)
 + [Changing the Hostname of Your Linux Instance](set-hostname.md)
 + [Setting Up Dynamic DNS on Your Linux Instance](dynamic-dns.md)
 + [Running Commands on Your Linux Instance at Launch](user-data.md)

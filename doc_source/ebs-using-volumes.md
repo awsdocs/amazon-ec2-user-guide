@@ -1,6 +1,6 @@
 # Making an Amazon EBS Volume Available for Use on Linux<a name="ebs-using-volumes"></a>
 
-After you attach an Amazon EBS volume to your instance, it is exposed as a block device, and appears as a removable disk in Windows\. You can format the volume with any file system and then mount it\. After you make the EBS volume available for use, you can access it in the same ways that you access any other volume\. Any data written to this file system is written to the EBS volume and is transparent to applications using the device\.
+After you attach an Amazon EBS volume to your instance, it is exposed as a block device\. You can format the volume with any file system and then mount it\. After you make the EBS volume available for use, you can access it in the same ways that you access any other volume\. Any data written to this file system is written to the EBS volume and is transparent to applications using the device\.
 
 You can take snapshots of your EBS volume for backup purposes or to use as a baseline when you create another volume\. For more information, see [Amazon EBS Snapshots](EBSSnapshots.md)\.
 
@@ -110,13 +110,14 @@ You must open the file as root or by using the sudo command\.
 **Note**  
 If you ever intend to boot your instance without this volume attached \(for example, so this volume could move back and forth between different instances\), you should add the `nofail` mount option that allows the instance to boot even if there are errors in mounting the volume\. Debian derivatives, including Ubuntu versions earlier than 16\.04, must also add the `nobootwait` mount option\.
 
-   1. After you've added the new entry to `/etc/fstab`, you must check that your entry works\. Run the sudo mount \-a command to mount all file systems in `/etc/fstab`\.
+   1. After you've added the new entry to `/etc/fstab`, you must check that your entry works\. Run the following commands to unmount the device and then mount all file systems in `/etc/fstab`\.
 
       ```
+      [ec2-user ~]$ sudo umount /data
       [ec2-user ~]$ sudo mount -a
       ```
 
-      If the previous command does not produce an error, then your `/etc/fstab` file is OK and your file system will mount automatically at the next boot\. If the command does produce any errors, examine the errors and try to correct your `/etc/fstab`\.
+      If the mount command does not produce an error, then your `/etc/fstab` file is OK and your file system will mount automatically at the next boot\. If the command does produce any errors, examine the errors and try to correct your `/etc/fstab`\.
 **Warning**  
 Errors in the `/etc/fstab` file can render a system unbootable\. Do not shut down a system that has errors in the `/etc/fstab` file\.
 

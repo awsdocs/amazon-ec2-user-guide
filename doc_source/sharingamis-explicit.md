@@ -7,7 +7,7 @@ AMIs are a regional resource\. Therefore, sharing an AMI makes it available in t
 There is no limit to the number of AWS accounts with which an AMI can be shared\.
 
 **Note**  
-If you are sharing an AMI containing a snapshot of an encrypted volume, see [Sharing an Amazon EBS Snapshot](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-modifying-snapshot-permissions.html) for restrictions that apply\.
+You cannot directly share an AMI that contains a snapshot of an encrypted volume\. You can share your encrypted snapshots with other AWS accounts\. This enables the other account to copy the snapshots to other regions, re\-encrypt the snapshots, and create AMIs using the encrypted snapshots\. For more information, see [Sharing an Amazon EBS Snapshot](ebs-modifying-snapshot-permissions.md)\.
 
 ## Sharing an AMI \(Console\)<a name="sharingamis-console"></a>
 

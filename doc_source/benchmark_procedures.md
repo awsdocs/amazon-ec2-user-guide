@@ -1,6 +1,6 @@
 # Benchmark EBS Volumes<a name="benchmark_procedures"></a>
 
-TYou can test the performance of Amazon EBS volumes by simulating I/O workloads\. The process is as follows:
+You can test the performance of Amazon EBS volumes by simulating I/O workloads\. The process is as follows:
 
 1. Launch an EBS\-optimized instance\.
 

@@ -18,7 +18,7 @@ For example, you can use IAM roles to grant permissions to applications running 
 
 You cannot attach multiple IAM roles to a single instance, but you can attach a single IAM role to multiple instances\. For more information about creating and using IAM roles, see [Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/WorkingWithRoles.html) in the *IAM User Guide*\.
 
-You can apply resource\-level permissions to your IAM policies to control the users' ability to attach, replace, or detach IAM roles for an instance\. For more information, see [Supported Resource\-Level Permissions for Amazon EC2 API Actions](ec2-supported-iam-actions-resources.md) and the following example: [9: Working with IAM Roles](ExamplePolicies_EC2.md#iam-example-iam-roles)\.
+You can apply resource\-level permissions to your IAM policies to control the users' ability to attach, replace, or detach IAM roles for an instance\. For more information, see [Supported Resource\-Level Permissions for Amazon EC2 API Actions](ec2-supported-iam-actions-resources.md) and the following example: [Example: Working with IAM Roles](ExamplePolicies_EC2.md#iam-example-iam-roles)\.
 
 **Topics**
 + [Instance Profiles](#ec2-instance-profile)

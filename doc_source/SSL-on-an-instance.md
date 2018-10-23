@@ -2,12 +2,11 @@
 
 Secure Sockets Layer/Transport Layer Security \(SSL/TLS\) creates an encrypted channel between a web server and web client that protects data in transit from being eavesdropped on\. This tutorial explains how to add support manually for SSL/TLS on a single instance of Amazon Linux 2 running Apache web server\. If you plan to offer commercial\-grade services, the [AWS Certificate Manager](https://aws.amazon.com/certificate-manager/), not discussed here, is a good option\.
 
-**Note**  
 For historical reasons, web encryption is often referred to simply as SSL\. While web browsers still support SSL, its successor protocol TLS is less vulnerable to attack\. Amazon Linux 2 disables all versions of SSL by default and recommends disabling TLS version 1\.0, as described below\. Only TLS 1\.1 and 1\.2 may be safely enabled\. For more information about the updated encryption standard, see [RFC 7568](https://tools.ietf.org/html/rfc7568)\. 
 
 **Important**  
-These procedures are intended for use with Amazon Linux 2\. We also assume that you are starting with a fresh EC2 instance\. If you are trying to set up a LAMP web server on an instance of a different distribution, or if you are re\-purposing an older, existing instance, some procedures in this tutorial may not work for you\. For information about LAMP web servers on Ubuntu, see the Ubuntu community documentation [ApacheMySQLPHP](https://help.ubuntu.com/community/ApacheMySQLPHP) topic\. For information about Red Hat Enterprise Linux, see the Customer Portal topic [Web Servers](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/System_Administrators_Guide/ch-Web_Servers.html)\.   
-The version of this tutorial supporting Amazon Linux 1 is no longer maintained, but you can still find it on the [Internet Archive](https://web.archive.org/web/20171208004937/https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/SSL-on-an-instance.html)\.
+These procedures are intended for use with Amazon Linux 2\. We also assume that you are starting with a fresh EC2 instance\. If you are trying to set up a LAMP web server on a different distribution, or if you are re\-purposing an older, existing instance, some procedures in this tutorial might not work for you\. For information about LAMP web servers on Ubuntu, see the Ubuntu community documentation [ApacheMySQLPHP](https://help.ubuntu.com/community/ApacheMySQLPHP) topic\. For information about Red Hat Enterprise Linux, see the Customer Portal topic [Web Servers](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/System_Administrators_Guide/ch-Web_Servers.html)\.  
+The version of this tutorial for use with Amazon Linux AMI is no longer maintained, but you can find it on the [Internet Archive](https://web.archive.org/web/20171208004937/https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/SSL-on-an-instance.html)\.
 
 **Topics**
 + [Prerequisites](#ssl_prereq)

@@ -8,12 +8,21 @@ Amazon EC2 dedicates some resources of the host computer, such as CPU, memory, a
 
 Each instance type provides higher or lower minimum performance from a shared resource\. For example, instance types with high I/O performance have a larger allocation of shared resources\. Allocating a larger share of shared resources also reduces the variance of I/O performance\. For most applications, moderate I/O performance is more than enough\. However, for applications that require greater or more consistent I/O performance, consider an instance type with higher I/O performance\.
 
-**Contents**
+**Topics**
 + [Available Instance Types](#AvailableInstanceTypes)
 + [Hardware Specifications](#instance-hardware-specs)
 + [AMI Virtualization Types](#instance-virtualization-type)
++ [Nitro Instances](#ec2-nitro-instances)
 + [Networking and Storage Features](#instance-networking-storage)
 + [Instance Limits](#instance-type-limits)
++ [Burstable Performance Instances](burstable-performance-instances.md)
++ [General Purpose Instances](general-purpose-instances.md)
++ [Compute Optimized Instances](compute-optimized-instances.md)
++ [Memory Optimized Instances](memory-optimized-instances.md)
++ [Storage Optimized Instances](storage-optimized-instances.md)
++ [Linux Accelerated Computing Instances](accelerated-computing-instances.md)
++ [T1 Micro Instances](concepts_micro_instances.md)
++ [Changing the Instance Type](ec2-instance-resize.md)
 
 ## Available Instance Types<a name="AvailableInstanceTypes"></a>
 
@@ -32,7 +41,7 @@ For more information about the current generation instance types, see [Amazon EC
 | Compute optimized | `c4.large` \| `c4.xlarge` \| `c4.2xlarge` \| `c4.4xlarge` \| `c4.8xlarge` \| `c5.large` \| `c5.xlarge` \| `c5.2xlarge` \| `c5.4xlarge` \| `c5.9xlarge` \| `c5.18xlarge` \| `c5d.xlarge` \| `c5d.2xlarge` \| `c5d.4xlarge` \| `c5d.9xlarge` \| `c5d.18xlarge`  | 
 | Memory optimized | `r4.large` \| `r4.xlarge` \| `r4.2xlarge` \| `r4.4xlarge` \| `r4.8xlarge` \| `r4.16xlarge` \| `r5.large` \| `r5.xlarge` \| `r5.2xlarge` \| `r5.4xlarge` \| `r5.12xlarge` \| `r5.24xlarge` \| `r5d.large` \| `r5d.xlarge` \| `r5d.2xlarge` \| `r5d.4xlarge` \| `r5d.12xlarge` \| `r5d.24xlarge` \| `x1.16xlarge` \| `x1.32xlarge` \| `x1e.xlarge` \| `x1e.2xlarge` \| `x1e.4xlarge` \| `x1e.8xlarge` \| `x1e.16xlarge` \| `x1e.32xlarge` \| `z1d.large` \| `z1d.xlarge` \| `z1d.2xlarge` \| `z1d.3xlarge` \| `z1d.6xlarge` \| `z1d.12xlarge` | 
 | Storage optimized | `d2.xlarge` \| `d2.2xlarge` \| `d2.4xlarge` \| `d2.8xlarge` \| `h1.2xlarge` \| `h1.4xlarge` \| `h1.8xlarge` \| `h1.16xlarge` \| `i3.large` \| `i3.xlarge` \| `i3.2xlarge` \| `i3.4xlarge` \| `i3.8xlarge` \| `i3.16xlarge` | 
-| Accelerated computing | `f1.2xlarge` \| `f1.4xlarge` \| `f1.16xlarge` \| `g3.4xlarge` \| `g3.8xlarge` \| `g3.16xlarge` \| `p2.xlarge` \| `p2.8xlarge` \| `p2.16xlarge` \| `p3.2xlarge` \| `p3.8xlarge` \| `p3.16xlarge` | 
+| Accelerated computing | `f1.2xlarge` \| `f1.4xlarge` \| `f1.16xlarge` \| `g3s.xlarge` \| `g3.4xlarge` \| `g3.8xlarge` \| `g3.16xlarge` \| `p2.xlarge` \| `p2.8xlarge` \| `p2.16xlarge` \| `p3.2xlarge` \| `p3.8xlarge` \| `p3.16xlarge` | 
 | Bare metal | `i3.metal` \| `u-6tb1.metal` \| `u-9tb1.metal` \| `u-12tb1.metal` | 
 
 ### Previous Generation Instances<a name="previous-gen-instances"></a>
@@ -65,6 +74,36 @@ Amazon EC2 instances run on 64\-bit virtual Intel processors as specified in the
 <a name="virtualization"></a>The virtualization type of your instance is determined by the AMI that you use to launch it\. Current generation instance types support hardware virtual machine \(HVM\) only\. Some previous generation instance types support paravirtual \(PV\) and some AWS regions support PV instances\. For more information, see [Linux AMI Virtualization Types](virtualization_types.md)\.
 
 For best performance, we recommend that you use an HVM AMI\. In addition, HVM AMIs are required to take advantage of enhanced networking\. HVM virtualization uses hardware\-assist technology provided by the AWS platform\. With HVM virtualization, the guest VM runs as if it were on a native hardware platform, except that it still uses PV network and storage drivers for improved performance\.
+
+## Nitro Instances<a name="ec2-nitro-instances"></a>
+
+The Nitro system is a collection of AWS\-built hardware and software components that enable high performance, high availability, and high security\. In addition, the Nitro system provides bare metal capabilities that eliminate virtualization overhead and support workloads that require full access to host hardware\.
+
+**Nitro Components**
+
+The following components are part of the Nitro system:
++ Nitro hypervisor \- A lightweight hypervisor that manages memory and CPU allocation and delivers performance that is indistinguishable from bare metal for most workloads\.
++ Nitro card
+  + Local NVMe storage volumes
+  + Networking hardware support
+  + Management
+  + Monitoring
+  + Security
++ Nitro security chip, integrated into the motherboard
+
+**Nitro Instance Types**
+
+The following instances are based on the Nitro system:
++ All Nitro: C5, C5d, `i3.metal`, M5, M5d, R5, R5d, T3, `u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, and z1d
++ Nitro, not bare metal: C5, C5d, M5, M5d, R5, R5d, T3, and z1d
++ Bare metal: `i3.metal`, `u-6tb1.metal`, `u-9tb1.metal`, and `u-12tb1.metal`\.
+
+**Resources**
+
+For more information, see the following videos:
++ [AWS re:Invent 2017: The Amazon EC2 Nitro System Architecture](https://www.youtube.com/watch?v=02EbskIXCOc)
++ [AWS re:Invent 2017: Amazon EC2 Bare Metal Instances](https://www.youtube.com/watch?v=o9_4uGvbvnk)
++ [The Nitro Project: Next\-Generation EC2 Infrastructure](https://www.slideshare.net/AmazonWebServices/the-nitro-project-nextgeneration-ec2-infrastructure-aws-online-tech-talks)
 
 ## Networking and Storage Features<a name="instance-networking-storage"></a>
 

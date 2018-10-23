@@ -19,7 +19,7 @@ The following list explains how multiple IP addresses work with network interfac
 + You can assign multiple IPv6 addresses to a network interface that's in a subnet that has an associated IPv6 CIDR block\.
 + You must choose the secondary IPv4 from the IPv4 CIDR block range of the subnet for the network interface\. 
 + You must choose IPv6 addresses from the IPv6 CIDR block range of the subnet for the network interface\.
-+ Security groups apply to network interfaces, not to IP addresses\. Therefore, IP addresses are subject to the security group of the network interface in which they're specified\. 
++ You associate security groups with network interfaces, not the individual IP addresses\. Therefore, each IP address you specify in a network interface is subject to the security group of its network interface\.
 + Multiple IP addresses can be assigned and unassigned to network interfaces attached to running or stopped instances\.
 + Secondary private IPv4 addresses that are assigned to a network interface can be reassigned to another one if you explicitly allow it\. 
 + An IPv6 address cannot be reassigned to another network interface; you must first unassign the IPv6 address from the existing network interface\.

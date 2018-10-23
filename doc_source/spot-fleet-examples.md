@@ -395,31 +395,6 @@ For more information, see [Spot Fleet Instance Weighting](spot-fleet.md#spot-ins
 }
 ```
 
-**Priority**
-
-You can also use instance weighting to give priority to an Availability Zone or subnet\. For example, the following launch specifications are nearly identical, except that they specify different subnets and weights\. The Spot Fleet finds the specification with the highest value for `WeightedCapacity`, and attempts to provision the request in the least expensive Spot Instance pool in that subnet\. The second launch specification does not include a weight, so it defaults to 1\.
-
-```
-{
-  "SpotPrice": "0.42",
-  "TargetCapacity": 40,
-  "IamFleetRole": "arn:aws:iam::123456789012:role/aws-ec2-spot-fleet-tagging-role",
-  "LaunchSpecifications": [
-      {
-          "ImageId": "ami-1a2b3c4d",
-          "InstanceType": "c3.2xlarge",
-          "SubnetId": "subnet-482e4972",
-          "WeightedCapacity": 2
-      },
-      {
-          "ImageId": "ami-1a2b3c4d",
-          "InstanceType": "c3.2xlarge",
-          "SubnetId": "subnet-bb3337d"
-      }
-    ]
-}
-```
-
 ## Example 7: Launch a Spot Fleet with On\-Demand Capacity<a name="fleet-config7"></a>
 
 To ensure that you always have instance capacity, you can include a request for On\-Demand capacity in your Spot Fleet request\. The On\-Demand request is always fulfilled if there is capacity, while the balance of the target capacity is fulfilled as Spot if there is capacity and availability\.
