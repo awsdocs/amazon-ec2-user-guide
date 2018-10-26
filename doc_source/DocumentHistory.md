@@ -7,6 +7,7 @@ The following table describes important additions to the Amazon EC2 documentatio
 
 | Feature | API Version | Description | Release Date | 
 | --- | --- | --- | --- | 
+| On\-Demand Capacity Reservations | 2016\-11\-15 | You can reserve capacity for your Amazon EC2 instances in a specific Availability Zone for any duration\. This allws you to create and manage capacity reservations independently from the billing discounts offered by Reserved Instances \(RI\)\. For more information, see [On\-Demand Capacity Reservations](ec2-capacity-reservations.md)\. | 25 October 2018 | 
 | Bring Your Own IP Addresses \(BYOIP\) | 2016\-11\-15 | You can bring part or all of your public IPv4 address range from your on\-premises network to your AWS account\. After you bring the address range to AWS, it appears in your account as an address pool\. You can create an Elastic IP address from your address pool and use it with your AWS resources\. For more information, see [Bring Your Own IP Addresses \(BYOIP\)](ec2-byoip.md)\. | 23 October 2018 | 
 | g3s\.xlarge instances | 2016\-11\-15 | Expands the range of the accelerated\-computing G3 instance family with the introduction of g3s\.xlarge instances\. | 11 October 2018 | 
 | Dedicated Host tag on create and console support |  2016\-11\-15  |  You can tag your Dedicated Hosts on creation, and you can manage your Dedicated Host tags using the Amazon EC2 console\. For more information, see [Allocating Dedicated Hosts](how-dedicated-hosts-work.md#dedicated-hosts-allocating)\.  | 08 October 2018 | 

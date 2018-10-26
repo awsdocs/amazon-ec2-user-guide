@@ -176,14 +176,14 @@ The following table lists the maximum number of network interfaces per instance 
 |  `t1.micro`  |  2  |  2  | IPv6 not supported | 
 |  `t2.nano`  |  2  |  2  | 2 | 
 |  `t2.micro`  |  2  |  2  | 2 | 
-|  `t2.small`  |  2  |  4  | 4 | 
+|  `t2.small`  |  3  |  4  | 4 | 
 |  `t2.medium`  |  3  |  6  | 6 | 
 |  `t2.large`  |  3  |  12  | 12 | 
 |  `t2.xlarge`  |  3  |  15  |  15  | 
 |  `t2.2xlarge`  |  3  |  15  |  15  | 
 |  `t3.nano`  |  2  |  2  | 2 | 
 |  `t3.micro`  |  2  |  2  | 2 | 
-|  `t3.small`  |  2  |  4  | 4 | 
+|  `t3.small`  |  3  |  4  | 4 | 
 |  `t3.medium`  |  3  |  6  | 6 | 
 |  `t3.large`  |  3  |  12  | 12 | 
 |  `t3.xlarge`  |  4  |  15  |  15  | 

@@ -19,7 +19,7 @@ The commands in the following procedure require OpenSSL version 1\.0\.2 or later
 
 **To prepare to bring your address range to your AWS account**
 
-1. Create an ROA to authorize Amazon ASNs 16509 and 14618 to advertise your address range\. It might take up to 24 hours for the ROA to become available to Amazon\. For more information, see the following:
+1. Create an ROA to authorize Amazon ASNs 16509 and 14618 to advertise your address range\. You must set the maximum length to the size of the smallest prefix that you want to bring \(for example, /24\)\. It might take up to 24 hours for the ROA to become available to Amazon\. For more information, see the following:
    + ARIN — [ROA Requests](https://www.arin.net/resources/rpki/roarequest.html)
    + RIPE — [Managing ROAs](https://www.ripe.net/manage-ips-and-asns/resource-management/certification/resource-certification-roa-management)
 
@@ -41,7 +41,7 @@ The commands in the following procedure require OpenSSL version 1\.0\.2 or later
    1|aws|account|cidr|YYYYMMDD|SHA256|RSAPSS
    ```
 
-   The following command signs the message using the key pair you created and saves it as `base64_urlsafe_signature`:
+   The following command signs the message using the key pair that you created and saves it as `base64_urlsafe_signature`:
 
    ```
    echo "1|aws|123456789012|198.51.100.0/24|20191201|SHA256|RSAPSS" | tr -d "\n" | openssl dgst -sha256 -sigopt rsa_padding_mode:pss -sigopt rsa_pss_saltlen:-1 -sign private.key -keyform PEM | openssl base64 | tr -- '+=/' '-_~' | tr -d "\n" > base64_urlsafe_signature
@@ -59,9 +59,9 @@ The commands in the following procedure require OpenSSL version 1\.0\.2 or later
 
 ## Provision the Address Range for use with AWS<a name="byoip-provision"></a>
 
-When you provision an address range for use with AWS, you are confirming that you own the address range and authorizing Amazon to advertise it\. We will also verify that you own the address range\.
+When you provision an address range for use with AWS, you are confirming that you own the address range and authorizing Amazon to advertise it\. We also verify that you own the address range\.
 
-Use the following [provision\-byoip\-cidr](https://docs.aws.amazon.com/cli/latest/reference/ec2/provision-byoip-cidr.html) command to provision the address range\. The message in the `--cidr-authorization-context` parameter is the signed message that you created in the previous section\.
+To provision the address range, use the following [provision\-byoip\-cidr](https://docs.aws.amazon.com/cli/latest/reference/ec2/provision-byoip-cidr.html) command\. The message in the `--cidr-authorization-context` parameter is the signed message that you created in the previous section, not the ROA message\.
 
 ```
 aws ec2 provision-byoip-cidr --cidr address-range --cidr-authorization-context Message="message",Signature="signature"
@@ -75,11 +75,11 @@ aws ec2 describe-byoip-cidrs --max-results 5
 
 ## Advertise the Address Range through AWS<a name="byoip-advertise"></a>
 
-After the address range is provisioned, it is ready to be advertised\. We recommend that you stop advertising the address range from other locations before you advertise it through AWS\. If you keep advertising your IP address range from other locations, we can't reliably support it\. Specifically, we couldn't guarantee that traffic to the address range will enter our network and it would affect our ability to troubleshoot issues\.
+After the address range is provisioned, it is ready to be advertised\. We recommend that you stop advertising the address range from other locations before you advertise it through AWS\. If you keep advertising your IP address range from other locations, we can't reliably support it or troubleshoot issues\. Specifically, we can't guarantee that traffic to the address range will enter our network\.
 
 To minimize down time, you can configure your AWS resources to use an address from your address pool before it is advertised, and then simultaneously stop advertising it from the current location and start advertising it through AWS\. For more information about allocating an Elastic IP address from your address pool, see [Allocating an Elastic IP Address](elastic-ip-addresses-eip.md#using-instance-addressing-eips-allocating)\.
 
-Use the following [advertise\-byoip\-cidr](https://docs.aws.amazon.com/cli/latest/reference/ec2/advertise-byoip-cidr.html) command to advertise the address range:
+To advertise the address range, use the following [advertise\-byoip\-cidr](https://docs.aws.amazon.com/cli/latest/reference/ec2/advertise-byoip-cidr.html) command:
 
 ```
 aws ec2 advertise-byoip-cidr --cidr address-range
@@ -88,7 +88,7 @@ aws ec2 advertise-byoip-cidr --cidr address-range
 **Important**  
 You can run the advertise\-byoip\-cidr command at most once every 10 seconds, even if you specify different address ranges each time\.
 
-If you want to stop advertising the address range, use the following [withdraw\-byoip\-cidr](https://docs.aws.amazon.com/cli/latest/reference/ec2/withdraw-byoip-cidr.html) command:
+To stop advertising the address range, use the following [withdraw\-byoip\-cidr](https://docs.aws.amazon.com/cli/latest/reference/ec2/withdraw-byoip-cidr.html) command:
 
 ```
 aws ec2 withdraw-byoip-cidr --cidr address-range
@@ -99,15 +99,21 @@ You can run the withdraw\-byoip\-cidr command at most once every 10 seconds, eve
 
 ## Deprovision the Address Range<a name="byoip-deprovision"></a>
 
-If you no longer want to use your address range with AWS, you can stop advertising the address range and then deprovision it\. You must release all Elastic IP addresses you allocated from the address pool first\.
+To stop using your address range with AWS, release any Elastic IP addresses still allocated from the address pool, stop advertising the address range, and deprovision the address range\.
 
-Use the following [withdraw\-byoip\-cidr](https://docs.aws.amazon.com/cli/latest/reference/ec2/withdraw-byoip-cidr.html) command to stop advertising the address range:
+To release each Elastic IP address, use the following [release\-address](https://docs.aws.amazon.com/cli/latest/reference/ec2/release-address.html) command:
+
+```
+aws ec2 release-address --allocation-id eipalloc-12345678
+```
+
+To stop advertising the address range, use the following [withdraw\-byoip\-cidr](https://docs.aws.amazon.com/cli/latest/reference/ec2/withdraw-byoip-cidr.html) command:
 
 ```
 aws ec2 withdraw-byoip-cidr --cidr address-range
 ```
 
-Use the following [deprovision\-byoip\-cidr](https://docs.aws.amazon.com/cli/latest/reference/ec2/deprovision-byoip-cidr.html) command to deprovision the address range:
+To deprovision the address range, use the following [deprovision\-byoip\-cidr](https://docs.aws.amazon.com/cli/latest/reference/ec2/deprovision-byoip-cidr.html) command:
 
 ```
 aws ec2 deprovision-byoip-cidr --cidr address-range
