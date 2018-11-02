@@ -106,7 +106,7 @@ You can retrieve the AWS Marketplace product code for your instance using its in
 To retrieve a product code, use the following command:
 
 ```
-[ec2-user ~]$ GET http://169.254.169.254/latest/meta-data/product-codes
+[ec2-user ~]$ curl http://169.254.169.254/latest/meta-data/product-codes
 ```
 
 If the instance has a product code, Amazon EC2 returns it\.
