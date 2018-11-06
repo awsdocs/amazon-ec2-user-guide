@@ -43,7 +43,7 @@ If you close your AWS account, On\-Demand billing for your resources stops\. How
 
 You can find out about the charges and fees to your account by viewing the [AWS Billing and Cost Management](https://console.aws.amazon.com/billing) console\.
 + The **Dashboard** displays a spend summary for your account\.
-+ On the **Bills** page, under **Details** expand the **Elastic Compute Cloud** section and the region to get billing information about your Reserved Instances\.
++ On the **Bills** page, under **Details** expand the **Elastic Compute Cloud** section and the Region to get billing information about your Reserved Instances\.
 
 You can view the charges online, or you can download a CSV file\.
 
@@ -57,7 +57,7 @@ If you close the payer account, any member accounts that benefit from Reserved I
 
 ## Reserved Instance Discount Pricing Tiers<a name="reserved-instances-discounts"></a>
 
-If your account qualifies for a discount pricing tier, it automatically receives discounts on upfront and instance usage fees for Reserved Instance purchases that you make within that tier level from that point on\. To qualify for a discount, the list value of your Reserved Instances in the region must be $500,000 USD or more\.
+If your account qualifies for a discount pricing tier, it automatically receives discounts on upfront and instance usage fees for Reserved Instance purchases that you make within that tier level from that point on\. To qualify for a discount, the list value of your Reserved Instances in the Region must be $500,000 USD or more\.
 
 The following rules apply:
 + Pricing tiers and related discounts apply only to purchases of Amazon EC2 Standard Reserved Instances\.
@@ -74,7 +74,7 @@ The following rules apply:
 
 ### Calculating Reserved Instance Pricing Discounts<a name="pricing-discounts"></a>
 
-You can determine the pricing tier for your account by calculating the list value for all of your Reserved Instances in a region\. Multiply the hourly recurring price for each reservation by the total number of hours for the term and add the undiscounted upfront price \(also known as the fixed price\) listed on the [Reserved Instances pricing page](https://aws.amazon.com/ec2/pricing/reserved-instances/pricing/) at the time of purchase\. Because the list value is based on undiscounted \(public\) pricing, it is not affected if you qualify for a volume discount or if the price drops after you buy your Reserved Instances\.
+You can determine the pricing tier for your account by calculating the list value for all of your Reserved Instances in a Region\. Multiply the hourly recurring price for each reservation by the total number of hours for the term and add the undiscounted upfront price \(also known as the fixed price\) listed on the [Reserved Instances pricing page](https://aws.amazon.com/ec2/pricing/reserved-instances/pricing/) at the time of purchase\. Because the list value is based on undiscounted \(public\) pricing, it is not affected if you qualify for a volume discount or if the price drops after you buy your Reserved Instances\.
 
 ```
 List value = fixed price + (undiscounted recurring hourly price * hours in term)
@@ -103,15 +103,15 @@ For example, for a 1\-year Partial Upfront `t2.small` Reserved Instance, assume 
 
 When you buy Reserved Instances, Amazon EC2 automatically applies any discounts to the part of your purchase that falls within a discount pricing tier\. You don't need to do anything differently, and you can buy Reserved Instances using any of the Amazon EC2 tools\. For more information, see [Buying Reserved Instances](ri-market-concepts-buying.md)\.
 
-After the list value of your active Reserved Instances in a region crosses into a discount pricing tier, any future purchase of Reserved Instances in that region are charged at a discounted rate\. If a single purchase of Reserved Instances in a region takes you over the threshold of a discount tier, then the portion of the purchase that is above the price threshold is charged at the discounted rate\. For more information about the temporary Reserved Instance IDs that are created during the purchase process, see [Crossing Pricing Tiers](#crossing-pricing-tiers)\.
+After the list value of your active Reserved Instances in a Region crosses into a discount pricing tier, any future purchase of Reserved Instances in that Region are charged at a discounted rate\. If a single purchase of Reserved Instances in a Region takes you over the threshold of a discount tier, then the portion of the purchase that is above the price threshold is charged at the discounted rate\. For more information about the temporary Reserved Instance IDs that are created during the purchase process, see [Crossing Pricing Tiers](#crossing-pricing-tiers)\.
 
-If your list value falls below the price point for that discount pricing tier—for example, if some of your Reserved Instances expire—future purchases of Reserved Instances in the region are not discounted\. However, you continue to get the discount applied against any Reserved Instances that were originally purchased within the discount pricing tier\.
+If your list value falls below the price point for that discount pricing tier—for example, if some of your Reserved Instances expire—future purchases of Reserved Instances in the Region are not discounted\. However, you continue to get the discount applied against any Reserved Instances that were originally purchased within the discount pricing tier\.
 
 When you buy Reserved Instances, one of four possible scenarios occurs:
-+ **No discount**—Your purchase within a region is still below the discount threshold\.
-+ **Partial discount**—Your purchase within a region crosses the threshold of the first discount tier\. No discount is applied to one or more reservations and the discounted rate is applied to the remaining reservations\.
-+ **Full discount**—Your entire purchase within a region falls within one discount tier and is discounted appropriately\.
-+ **Two discount rates**—Your purchase within a region crosses from a lower discount tier to a higher discount tier\. You are charged two different rates: one or more reservations at the lower discounted rate, and the remaining reservations at the higher discounted rate\.
++ **No discount**—Your purchase within a Region is still below the discount threshold\.
++ **Partial discount**—Your purchase within a Region crosses the threshold of the first discount tier\. No discount is applied to one or more reservations and the discounted rate is applied to the remaining reservations\.
++ **Full discount**—Your entire purchase within a Region falls within one discount tier and is discounted appropriately\.
++ **Two discount rates**—Your purchase within a Region crosses from a lower discount tier to a higher discount tier\. You are charged two different rates: one or more reservations at the lower discounted rate, and the remaining reservations at the higher discounted rate\.
 
 ### Crossing Pricing Tiers<a name="crossing-pricing-tiers"></a>
 
@@ -121,4 +121,4 @@ The Reserved Instance service generates several Reserved Instance IDs because yo
 
 ### Consolidated Billing for Pricing Tiers<a name="consolidating-billing"></a>
 
-A consolidated billing account aggregates the list value of member accounts within a region\. When the list value of all active Reserved Instances for the consolidated billing account reaches a discount pricing tier, any Reserved Instances purchased after this point by any member of the consolidated billing account are charged at the discounted rate \(as long as the list value for that consolidated account stays above the discount pricing tier threshold\)\. For more information, see [Reserved Instances and Consolidated Billing](#concepts-reserved-instances-billing)\. 
+A consolidated billing account aggregates the list value of member accounts within a Region\. When the list value of all active Reserved Instances for the consolidated billing account reaches a discount pricing tier, any Reserved Instances purchased after this point by any member of the consolidated billing account are charged at the discounted rate \(as long as the list value for that consolidated account stays above the discount pricing tier threshold\)\. For more information, see [Reserved Instances and Consolidated Billing](#concepts-reserved-instances-billing)\. 

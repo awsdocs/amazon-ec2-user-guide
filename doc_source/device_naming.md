@@ -18,7 +18,7 @@ The following table lists the available device names that you can specify in a b
 |  Paravirtual  |  /dev/sd\[a\-z\] /dev/sd\[a\-z\]\[1\-15\] /dev/hd\[a\-z\] /dev/hd\[a\-z\]\[1\-15\]  |  /dev/sda1  |  /dev/sd\[f\-p\] /dev/sd\[f\-p\]\[1\-6\]  |  /dev/sd\[b\-e\] /dev/sd\[b\-y\] \(hs1\.8xlarge\)  | 
 | HVM |  /dev/sd\[a\-z\] /dev/xvd\[b\-c\]\[a\-z\]  |  Differs by AMI /dev/sda1 or /dev/xvda  |  /dev/sd\[f\-p\] \*  |  /dev/sd\[b\-e\] /dev/sd\[b\-h\] \(h1\.16xlarge\) /dev/sd\[b\-y\] \(d2\.8xlarge\) /dev/sd\[b\-y\] \(hs1\.8xlarge\) /dev/sd\[b\-i\] \(i2\.8xlarge\) \*\*  | 
 
-\* The device names that you specify for NVMe EBS volumes in a block device mapping are renamed using NVMe device names \(`/dev/nvme[0-26]n1`\)\.
+\* The device names that you specify for NVMe EBS volumes in a block device mapping are renamed using NVMe device names \(`/dev/nvme[0-26]n1`\)\. The block device driver can assign NVMe device names in a different order than you specified for the volumes in the block device mapping\.
 
 \*\* NVMe instance store volumes are automatically enumerated and assigned an NVMe device name\.
 

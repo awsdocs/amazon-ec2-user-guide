@@ -8,7 +8,7 @@ Scaling based on a schedule enables you to scale your application in response to
 
 1. In the navigation pane, choose **Spot Requests**\.
 
-1. Select your Spot Fleet request, and then choose the **Scheduled Scaling** tab\.
+1. Select your Spot Fleet request and choose **Scheduled Scaling**\.
 
 1. Choose **Create Scheduled Action**\.
 
@@ -28,7 +28,7 @@ Scaling based on a schedule enables you to scale your application in response to
 
 1. In the navigation pane, choose **Spot Requests**\.
 
-1. Select your Spot Fleet request, and then choose the **Scheduled Scaling** tab\.
+1. Select your Spot Fleet request and choose **Scheduled Scaling**\.
 
 1. For **Recurrence**, choose one of the predefined schedules \(for example, **Every day**\), or choose **Custom** and type a cron expression\. For more information about the cron expressions supported by scheduled scaling, see [Cron Expressions](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions) in the *Amazon CloudWatch Events User Guide*\.
 
@@ -42,11 +42,11 @@ Scaling based on a schedule enables you to scale your application in response to
 
 1. In the navigation pane, choose **Spot Requests**\.
 
-1. Select your Spot Fleet request, and then choose the **Scheduled Scaling** tab\.
+1. Select your Spot Fleet request and choose **Scheduled Scaling**\.
 
-1. Select the scheduled action, and then choose **Actions**, **Edit**\.
+1. Select the scheduled action and choose **Actions**, **Edit**\.
 
-1. Make the changes that you need, and then choose **Submit**\.
+1. Make the needed changes and choose **Submit**\.
 
 **To delete a scheduled action**
 
@@ -54,9 +54,9 @@ Scaling based on a schedule enables you to scale your application in response to
 
 1. In the navigation pane, choose **Spot Requests**\.
 
-1. Select your Spot Fleet request, and then choose the **Scheduled Scaling** tab\.
+1. Select your Spot Fleet request and choose **Scheduled Scaling**\.
 
-1. Select the scheduled action, and then choose **Actions**, **Delete**\.
+1. Select the scheduled action and choose **Actions**, **Delete**\.
 
 1. When prompted for confirmation, choose **Delete**\.
 

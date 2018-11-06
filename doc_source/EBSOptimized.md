@@ -77,6 +77,12 @@ The following table lists current\-generation instance types that support EBS op
 | m5\.4xlarge | Yes | 3,500 | 437\.5 | 18,750 | 
 | m5\.12xlarge | Yes | 7,000 | 875 | 40,000 | 
 | m5\.24xlarge | Yes | 14,000 | 1,750 | 80,000 | 
+| m5a\.large \* | Yes | 2,120 | 265 | 16,000 | 
+| m5a\.xlarge \* | Yes | 2,120 | 265 | 16,000 | 
+| m5a\.2xlarge \* | Yes | 2,120 | 265 | 16,000 | 
+| m5a\.4xlarge | Yes | 2,120 | 265 | 16,000 | 
+| m5a\.12xlarge | Yes | 5,000 | 675 | 30,000 | 
+| m5a\.24xlarge | Yes | 10,000 | 1,250 | 60,000 | 
 | m5d\.large \* | Yes | 3,500 | 437\.5 | 18,750 | 
 | m5d\.xlarge \* | Yes | 3,500 | 437\.5 | 18,750 | 
 | m5d\.2xlarge \* | Yes | 3,500 | 437\.5 | 18,750 | 
@@ -101,6 +107,12 @@ The following table lists current\-generation instance types that support EBS op
 | r5\.4xlarge | Yes | 3,500 | 437\.5 | 18,750 | 
 | r5\.12xlarge | Yes | 7,000 | 875 | 40,000 | 
 | r5\.24xlarge | Yes | 14,000 | 1,750 | 80,000 | 
+| r5a\.large \* | Yes | 2,210 | 265 | 16,000 | 
+| r5a\.xlarge \* | Yes | 2,210 | 265 | 16,000 | 
+| r5a\.2xlarge \* | Yes | 2,210 | 265 | 16,000 | 
+| r5a\.4xlarge | Yes | 2,210 | 265 | 16,000 | 
+| r5a\.12xlarge | Yes | 5,000 | 625 | 30,000 | 
+| r5a\.24xlarge | Yes | 10,000 | 1,250 | 60,000 | 
 | r5d\.large \* | Yes | 3,500 | 437\.5 | 18,750 | 
 | r5d\.xlarge \* | Yes | 3,500 | 437\.5 | 18,750 | 
 | r5d\.2xlarge \* | Yes | 3,500 | 437\.5 | 18,750 | 
@@ -146,12 +158,18 @@ The following table lists current\-generation instance types that support EBS op
 | m5\.large | 480 | 60 | 3,600 | 
 | m5\.xlarge | 850 | 106\.25 | 6,000 | 
 | m5\.2xlarge | 1,700 | 212\.5 | 12,000 | 
+| m5a\.large | 480 | 60 | 3,600 | 
+| m5a\.xlarge | 800 | 100 | 6,000 | 
+| m5a\.2xlarge | 1,166 | 146 | 8,333 | 
 | m5d\.large | 480 | 60 | 3,600 | 
 | m5d\.xlarge | 850 | 106\.25 | 6,000 | 
 | m5d\.2xlarge | 1,700 | 212\.5 | 12,000 | 
 | r5\.large | 480 | 60 | 3,600 | 
 | r5\.xlarge | 850 | 106\.25 | 6,000 | 
 | r5\.2xlarge | 1,700 | 212\.5 | 12,000 | 
+| r5a\.large | 480 | 60 | 3,600 | 
+| r5a\.xlarge | 800 | 100 | 6,000 | 
+| r5a\.2xlarge | 1,166 | 146 | 8,333 | 
 | r5d\.large | 480 | 60 | 3,600 | 
 | r5d\.xlarge | 850 | 106\.25 | 6,000 | 
 | r5d\.2xlarge | 1,700 | 212\.5 | 12,000 | 

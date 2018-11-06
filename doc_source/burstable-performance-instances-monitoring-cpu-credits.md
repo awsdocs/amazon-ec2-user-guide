@@ -1,38 +1,38 @@
 # Monitoring Your CPU Credits<a name="burstable-performance-instances-monitoring-cpu-credits"></a>
 
-You can see the credit balance for each T3 or T2 instance in the Amazon EC2 per\-instance metrics of the CloudWatch console\.
+You can see the credit balance for each instance in the Amazon EC2 per\-instance metrics of the CloudWatch console\.
 
 **Topics**
-+ [Additional CloudWatch Metrics for T3 and T2 Instances](#burstable-performance-instances-cw-metrics)
++ [Additional CloudWatch Metrics for Burstable Performance Instances](#burstable-performance-instances-cw-metrics)
 + [Calculating CPU Credit Usage](#burstable-performance-instances-calculating-credit-use)
 
-## Additional CloudWatch Metrics for T3 and T2 Instances<a name="burstable-performance-instances-cw-metrics"></a>
+## Additional CloudWatch Metrics for Burstable Performance Instances<a name="burstable-performance-instances-cw-metrics"></a>
 
-T3 and T2 instances have four additional CloudWatch metrics, which are updated every five minutes:
+T3 and T2 instances have these additional CloudWatch metrics, which are updated every five minutes:
 + `CPUCreditUsage` – The number of CPU credits spent during the measurement period\.
-+ `CPUCreditBalance` – The number of CPU credits that a T3 or T2 instance has accrued\. This balance is depleted when the CPU bursts and CPU credits are spent more quickly than they are earned\.
++ `CPUCreditBalance` – The number of CPU credits that an instance has accrued\. This balance is depleted when the CPU bursts and CPU credits are spent more quickly than they are earned\.
 + `CPUSurplusCreditBalance` – The number of surplus CPU credits spent to sustain CPU performance when the `CPUCreditBalance` value is zero\.
 + `CPUSurplusCreditsCharged` – The number of surplus CPU credits exceeding the [maximum number of CPU credits](burstable-credits-baseline-concepts.md#burstable-performance-instances-credit-table) that can be earned in a 24\-hour period, and thus attracting an additional charge\.
 
-The last two metrics apply only to T3 and T2 instances configured as `unlimited`\. 
+The last two metrics apply only to instances configured as `unlimited`\.
 
-The following table describes the CloudWatch metrics for T3 and T2 instances\. For more information, see [List the Available CloudWatch Metrics for Your Instances](viewing_metrics_with_cloudwatch.md)\.
+The following table describes the CloudWatch metrics for burstable performance instances\. For more information, see [List the Available CloudWatch Metrics for Your Instances](viewing_metrics_with_cloudwatch.md)\.
 
 
 | Metric | Description | 
 | --- | --- | 
-| CPUCreditUsage |  \[T3/T2 instances\] The number of CPU credits spent by the instance for CPU utilization\. One CPU credit equals one vCPU running at 100% utilization for one minute or an equivalent combination of vCPUs, utilization, and time \(for example, one vCPU running at 50% utilization for two minutes or two vCPUs running at 25% utilization for two minutes\)\. CPU credit metrics are available at a five\-minute frequency only\. If you specify a period greater than five minutes, use the `Sum` statistic instead of the `Average` statistic\. Units: Credits \(vCPU\-minutes\)  | 
-| CPUCreditBalance |  \[T3/T2 instances\] The number of earned CPU credits that an instance has accrued since it was launched or started\. For T2 Standard, the `CPUCreditBalance` also includes the number of launch credits that have been accrued\. Credits are accrued in the credit balance after they are earned, and removed from the credit balance when they are spent\. The credit balance has a maximum limit, determined by the instance size\. After the limit is reached, any new credits that are earned are discarded\. For T2 Standard, launch credits do not count towards the limit\. The credits in the `CPUCreditBalance` are available for the instance to spend to burst beyond its baseline CPU utilization\. When an instance is running, credits in the `CPUCreditBalance` do not expire\. When a T3 instance stops, the `CPUCreditBalance` value persists for seven days\. Thereafter, all accrued credits are lost\. When a T2 instance stops, the `CPUCreditBalance` value does not persist, and all accrued credits are lost\. CPU credit metrics are available at a five\-minute frequency only\. Units: Credits \(vCPU\-minutes\)  | 
-| CPUSurplusCreditBalance  |  \[T3/T2 Unlimited instances\] The number of surplus credits that have been spent by a T3 Unlimited or T2 Unlimited instance when its `CPUCreditBalance` value is zero\. The `CPUSurplusCreditBalance` value is paid down by earned CPU credits\. If the number of surplus credits exceeds the maximum number of credits that the instance can earn in a 24\-hour period, the spent surplus credits above the maximum incur an additional charge\. Units: Credits \(vCPU\-minutes\)   | 
-| CPUSurplusCreditsCharged |  \[T3/T2 Unlimited instances\] The number of spent surplus credits that are not paid down by earned CPU credits, and which thus incur an additional charge\. Spent surplus credits are charged when any of the following occurs:  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances-monitoring-cpu-credits.html) Units: Credits \(vCPU\-minutes\)   | 
+| CPUCreditUsage |  The number of CPU credits spent by the instance for CPU utilization\. One CPU credit equals one vCPU running at 100% utilization for one minute or an equivalent combination of vCPUs, utilization, and time \(for example, one vCPU running at 50% utilization for two minutes or two vCPUs running at 25% utilization for two minutes\)\. CPU credit metrics are available at a five\-minute frequency only\. If you specify a period greater than five minutes, use the `Sum` statistic instead of the `Average` statistic\. Units: Credits \(vCPU\-minutes\)  | 
+| CPUCreditBalance |  The number of earned CPU credits that an instance has accrued since it was launched or started\. For T2 Standard, the `CPUCreditBalance` also includes the number of launch credits that have been accrued\. Credits are accrued in the credit balance after they are earned, and removed from the credit balance when they are spent\. The credit balance has a maximum limit, determined by the instance size\. After the limit is reached, any new credits that are earned are discarded\. For T2 Standard, launch credits do not count towards the limit\. The credits in the `CPUCreditBalance` are available for the instance to spend to burst beyond its baseline CPU utilization\. When an instance is running, credits in the `CPUCreditBalance` do not expire\. When a T3 instance stops, the `CPUCreditBalance` value persists for seven days\. Thereafter, all accrued credits are lost\. When a T2 instance stops, the `CPUCreditBalance` value does not persist, and all accrued credits are lost\. CPU credit metrics are available at a five\-minute frequency only\. Units: Credits \(vCPU\-minutes\)  | 
+| CPUSurplusCreditBalance  |  The number of surplus credits that have been spent by an `unlimited` instance when its `CPUCreditBalance` value is zero\. The `CPUSurplusCreditBalance` value is paid down by earned CPU credits\. If the number of surplus credits exceeds the maximum number of credits that the instance can earn in a 24\-hour period, the spent surplus credits above the maximum incur an additional charge\. Units: Credits \(vCPU\-minutes\)   | 
+| CPUSurplusCreditsCharged |  The number of spent surplus credits that are not paid down by earned CPU credits, and which thus incur an additional charge\. Spent surplus credits are charged when any of the following occurs:  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances-monitoring-cpu-credits.html) Units: Credits \(vCPU\-minutes\)   | 
 
 ## Calculating CPU Credit Usage<a name="burstable-performance-instances-calculating-credit-use"></a>
 
-The CPU credit usage of T3 and T2 instances is calculated using the T3/T2 instance CloudWatch metrics described in the preceding table\. 
+The CPU credit usage of instances is calculated using the instance CloudWatch metrics described in the preceding table\.
 
 Amazon EC2 sends the metrics to CloudWatch every five minutes\. A reference to the *prior* value of a metric at any point in time implies the previous value of the metric, sent *five minutes ago*\.
 
-### Calculating CPU Credit Usage for T3 Standard or T2 Standard<a name="burstable-performance-instances-standard-calculation"></a>
+### Calculating CPU Credit Usage for Standard Instances<a name="burstable-performance-instances-standard-calculation"></a>
 + The CPU credit balance increases if CPU utilization is below the baseline, when the credits spent are less than the credits earned in the prior five\-minute interval\. 
 + The CPU credit balance decreases if CPU utilization is above the baseline, when the credits spent are more than the credits earned in the prior five\-minute interval\. 
 
@@ -44,7 +44,7 @@ Mathematically, this is captured by the following equation:
 CPUCreditBalance = prior CPUCreditBalance + [Credits earned per hour * (5/60) - CPUCreditUsage]
 ```
 
-The size of the instance determines the number of credits that the instance can earn per hour and the number of earned credits that it can accrue in the credit balance\. For information about the number of credits earned per hour, and the credit balance limit for each T3 and T2 instance size, see [the T3 and T2 credit table](burstable-credits-baseline-concepts.md#burstable-performance-instances-credit-table)\.
+The size of the instance determines the number of credits that the instance can earn per hour and the number of earned credits that it can accrue in the credit balance\. For information about the number of credits earned per hour, and the credit balance limit for each instance size, see the [credit table](burstable-credits-baseline-concepts.md#burstable-performance-instances-credit-table)\.
 
 **Example**  
 This example uses a `t3.nano` instance\. To calculate the `CPUCreditBalance` value of the instance, use the preceding equation as follows:
@@ -62,7 +62,7 @@ Using these values, you can calculate the `CPUCreditBalance` value:
 CPUCreditBalance = 2 + [0.5 - 1] = 1.5
 ```
 
-### Calculating CPU Credit Usage for T3 Unlimited or T2 Unlimited<a name="burstable-performance-instances-unlimited-calculation"></a>
+### Calculating CPU Credit Usage for Unlimited Instances<a name="burstable-performance-instances-unlimited-calculation"></a>
 
 When a T3 or T2 instance needs to burst above the baseline, it always spends accrued credits before spending surplus credits\. When it depletes its accrued CPU credit balance, it can spend surplus credits to burst for as long as it needs\. When CPU utilization falls below the baseline, surplus credits are always paid down before the instance accrues earned credits\.
 
@@ -85,7 +85,7 @@ CPUCreditBalance = min [max earned credit balance, Adjusted balance]
 CPUSurplusCreditBalance = 0
 ```
 
-A negative `Adjusted balance` value indicates that the instance spent all its earned credits that it accrued and, in addition, also spent surplus credits for bursting\. As a result, the `Adjusted balance` value is assigned to `CPUSurplusCreditBalance` and the `CPUCreditBalance` is set to `0`\. Again, the instance size determines the [maximum number of credits](burstable-credits-baseline-concepts.md#burstable-performance-instances-credit-table) that it can accrue\.
+A negative `Adjusted balance` value indicates that the instance spent all its earned credits that it accrued and, in addition, also spent surplus credits for bursting\. As a result, the `Adjusted balance` value is assigned to `CPUSurplusCreditBalance` and `CPUCreditBalance` is set to `0`\. Again, the instance size determines the [maximum number of credits](burstable-credits-baseline-concepts.md#burstable-performance-instances-credit-table) that it can accrue\.
 
 **Example**  
 

@@ -2,7 +2,7 @@
 
 Memory optimized instances are designed to deliver fast performance for workloads that process large data sets in memory\.
 
-**R4, R5, and R5d Instances**
+**R4, R5, R5a, and R5d Instances**
 
 These instances are well suited for the following applications:
 + High\-performance, relational \(MySQL\) and NoSQL \(MongoDB, Cassandra\) databases\.
@@ -49,8 +49,6 @@ These instances deliver both high compute and high memory and are well\-suited f
 The following is a summary of the hardware specifications for memory optimized instances\.
 
 
-****  
-
 | Instance type | Default vCPUs | Memory \(GiB\) | 
 | --- | --- | --- | 
 | r4\.large | 2 | 15\.25 | 
@@ -65,6 +63,12 @@ The following is a summary of the hardware specifications for memory optimized i
 | r5\.4xlarge | 16 | 128 | 
 | r5\.12xlarge | 48 | 384 | 
 | r5\.24xlarge | 96 | 768 | 
+| r5a\.large | 2 | 16 | 
+| r5a\.xlarge | 4 | 32 | 
+| r5a\.2xlarge | 8 | 64 | 
+| r5a\.4xlarge | 16 | 128 | 
+| r5a\.12xlarge | 48 | 384 | 
+| r5a\.24xlarge | 96 | 768 | 
 | r5d\.large | 2 | 16 | 
 | r5d\.xlarge | 4 | 32 | 
 | r5d\.2xlarge | 8 | 64 | 
@@ -126,8 +130,9 @@ The following is a summary of network performance for memory optimized instances
 
 | Instance type | Network performance | Enhanced networking | 
 | --- | --- | --- | 
-|  `r4.4xlarge` and smaller \| `r5.4xlarge` and smaller \| `r5d.4xlarge` and smaller \| `x1e.8large` and smaller \| `z1d.3xlarge` and smaller  |  Up to 10 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  `r4.8xlarge` \| `r5.12xlarge` \| `r5d.12xlarge` \| `x1.16xlarge` \| `x1e.16xlarge` \| `z1d.6xlarge`  |  10 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `r4.4xlarge` and smaller \| `r5.4xlarge` and smaller \| `r5a.4xlarge` and smaller \| `r5d.4xlarge` and smaller \| `x1e.8large` and smaller \| `z1d.3xlarge` and smaller  |  Up to 10 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `r4.8xlarge` \| `r5.12xlarge`\| `r5a.12xlarge` \| `r5d.12xlarge` \| `x1.16xlarge` \| `x1e.16xlarge` \| `z1d.6xlarge`  |  10 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `r5a.24xlarge`  |  20 Gbps  | [ENA](enhanced-networking-ena.md) | 
 |  `r4.16xlarge` \| `r5.24xlarge` \| `r5d.24xlarge` \| `u-6tb1.metal` \| `u-9tb1.metal` \| `u-12tb1.metal` \| `x1.32xlarge` \| `x1e.32xlarge` \| `z1d.12xlarge`  |  25 Gbps  | [ENA](enhanced-networking-ena.md) | 
 
 ## SSD I/O Performance<a name="r5d-z1d-instances-ssd-perf"></a>
@@ -167,6 +172,7 @@ The following is a summary of features for memory optimized instances\.
 | --- | --- | --- | --- | --- | 
 | R4 | Yes |  |  | Yes | 
 | R5 | Yes | Yes |  | Yes | 
+| R5a | Yes | Yes |  | Yes | 
 | R5d |  | Yes | NVME \* | Yes | 
 | `u-6tb1.metal` | Yes | Yes |  | No | 
 | `u-9tb1.metal` | Yes | Yes |  | No | 
@@ -199,7 +205,9 @@ The following AMIs support launching memory optimized instances:
 + Windows Server 2008 SP2 64\-bit
 
 ## Release Notes<a name="memory-instance-limits"></a>
-+ The following are requirements for high memory, R5, R5d, and z1d instances:
++ R5 and R5d instances feature a 3\.1 GHz Intel Xeon Platinum 8000 series processor\.
++ R5a instances feature a 2\.5 GHz AMD EPYC 7000 series processor\.
++ The following are requirements for high memory, R5, R5a, R5d, and z1d instances:
   + NVMe drivers must be installed\. EBS volumes are exposed as [NVMe block devices](nvme-ebs-volumes.md)\.
   + Elastic Network Adapter \([ENA](enhanced-networking-ena.md)\) drivers must be installed\.
 
@@ -211,6 +219,7 @@ The following AMIs support launching memory optimized instances:
   + Red Hat Enterprise Linux 7\.4 or later
   + CentOS 7 or later
   + Windows Server 2008 R2 or later
++ R5, R5a, and R5d instances support a maximum of 28 attachments, including network interfaces, EBS volumes, and NVMe instance store volumes\. Every instance has at least one network interface attachment\. For example, if you have no additional network interface attachments on an EBS\-only instance, you could attach 27 EBS volumes to that instance\.
 + You can't launch X1 instances using a Windows Server 2008 SP2 64\-bit AMI, except for `x1.16xlarge` instances\.
 + You can't launch X1e instances using a Windows Server 2008 SP2 64\-bit AMI\.
 + With earlier versions of the Windows Server 2008 R2 64\-bit AMI, you can't launch `r4.large` and `r4.4xlarge` instances\. If you experience this issue, update to the latest version of this AMI\.

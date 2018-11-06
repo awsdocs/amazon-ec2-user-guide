@@ -18,9 +18,9 @@ The `AWS/EC2Spot` namespace includes the following metrics\.
 | --- | --- | 
 | `AvailableInstancePoolsCount` |  The Spot Instance pools specified in the Spot Fleet request\. Units: Count  | 
 | `BidsSubmittedForCapacity` |  The capacity for which Amazon EC2 has submitted bids\. Units: Count  | 
-| `EligibleInstancePoolCount` |  The Spot Instance pools specified in the Spot Fleet request where Amazon EC2 can fulfill bids\. Amazon EC2 will not fulfill bids in pools where your bid price is less than the Spot price or the Spot price is greater than the price for On\-Demand instances\. Units: Count  | 
+| `EligibleInstancePoolCount` |  The Spot Instance pools specified in the Spot Fleet request where Amazon EC2 can fulfill bids\. Amazon EC2 does not fulfill bids in pools where your bid price is less than the Spot price or the Spot price is greater than the price for On\-Demand Instances\. Units: Count  | 
 | `FulfilledCapacity` |  The capacity that Amazon EC2 has fulfilled\. Units: Count  | 
-| `MaxPercentCapacityAllocation` |  The maximum value of `PercentCapacityAllocation` across all Spot Instance pools specified in the Spot Fleet request\. Units: Percent  | 
+| `MaxPercentCapacityAllocation` |  The maximum value of `PercentCapacityAllocation` across all Spot Fleet pools specified in the Spot Fleet request\. Units: Percent  | 
 | `PendingCapacity` |  The difference between `TargetCapacity` and `FulfilledCapacity`\. Units: Count  | 
 | `PercentCapacityAllocation` |  The capacity allocated for the Spot Instance pool for the specified dimensions\. To get the maximum value recorded across all Spot Instance pools, use `MaxPercentCapacityAllocation`\. Units: Percent  | 
 | `TargetCapacity` |  The target capacity of the Spot Fleet request\. Units: Count  | 
@@ -30,7 +30,7 @@ If the unit of measure for a metric is `Count`, the most useful statistic is `Av
 
 ## Spot Fleet Dimensions<a name="spot-fleet-dimensions"></a>
 
-To filter the data for your Spot Fleet, you can use the following dimensions\.
+To filter the data for your Spot Fleet, use the following dimensions\.
 
 
 | Dimensions | Description | 

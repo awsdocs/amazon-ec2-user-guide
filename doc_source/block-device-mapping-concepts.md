@@ -26,7 +26,7 @@ A *block device mapping* defines the block devices \(instance store volumes and 
 ### Block Device Mapping Entries<a name="parts-of-a-block-device-mapping"></a>
 
 When you create a block device mapping, you specify the following information for each block device that you need to attach to the instance:
-+ The device name used within Amazon EC2\. The block device driver for the instance assigns the actual volume name when mounting the volume, and the name assigned can be different from the name that Amazon EC2 recommends\. For more information, see [Device Naming on Linux Instances](device_naming.md)\.
++ The device name used within Amazon EC2\. The block device driver for the instance assigns the actual volume name when mounting the volume\. The name assigned can be different from the name that Amazon EC2 recommends\. For more information, see [Device Naming on Linux Instances](device_naming.md)\.
 + \[Instance store volumes\] The virtual device: `ephemeral[0-23]`\. Note that the number and size of available instance store volumes for your instance varies by instance type\.
 + \[NVMe instance store volumes\] These volumes are automatically enumerated and assigned a device name; including them in your block device mapping has no effect\.
 + \[EBS volumes\] The ID of the snapshot to use to create the block device \(snap\-*xxxxxxxx*\)\. This value is optional as long as you specify a volume size\.

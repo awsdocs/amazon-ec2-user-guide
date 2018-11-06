@@ -2,15 +2,17 @@
 
 The following instructions explain how to connect to your instance using MindTerm through the Amazon EC2 console\. If you receive an error while attempting to connect to your instance, see [Troubleshooting Connecting to Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html)\.
 
-**Important**  
-The Chrome browser does not support the NPAPI plugin, and therefore cannot run the MindTerm client\. For more information, go to the Chromium [NPAPI deprecation article](https://www.chromium.org/developers/npapi-deprecation)\. You can use Firefox, Safari, or Internet Explorer 9 or higher instead\. 
-
 After you launch your instance, you can connect to it and use it the way that you'd use a computer sitting in front of you\.
 
 **Note**  
 After you launch an instance, it can take a few minutes for the instance to be ready so that you can connect to it\. Check that your instance has passed its status checks\. You can view this information in the **Status Checks** column on the **Instances** page\.
 
 ## Prerequisites<a name="mindterm-prereqs"></a>
++ **Verify that your browser supports the NPAPI plugin**
+
+  If your browser does not support the NPAPI plugin, it can't run the MindTerm client\.
+**Important**  
+The Chrome browser does not support the NPAPI plugin\. For more information, see the Chromium [NPAPI deprecation article](https://www.chromium.org/developers/npapi-deprecation)\. The FireFox browser does not support the NPAPI plugin\. For more information, see the Java [NPAPI deprecation article](https://www.java.com/en/download/faq/firefox_java.xml)\.
 + **Install Java**
 
   Your Linux computer most likely includes Java\. If not, see [How do I enable Java in my web browser?](https://java.com/en/download/help/index_installing.xml)\. On a Windows or macOS client, you must run your browser using administrator credentials\. For Linux, additional steps may be required if you are not logged in as `root`\.

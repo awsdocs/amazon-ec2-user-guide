@@ -16,7 +16,7 @@ The following diagram shows you the paths that your Spot request can follow thro
 ![\[Life cycle of a Spot request\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/spot-bid-status-diagram.png)
 
 **Pending evaluation**  
-As soon as you make a Spot Instance request, it goes into the `pending-evaluation` state unless one or more request parameters is not valid \(`bad-parameters`\)\.
+As soon as you make a Spot Instance request, it goes into the `pending-evaluation` state unless one or more request parameters are not valid \(`bad-parameters`\)\.
 
 
 | Status Code | Request State | Instance State | 
@@ -40,7 +40,7 @@ If one or more request constraints are valid but can't be met yet, or if there i
 |  `constraint-not-fulfillable`  |  `open`  |  n/a  | 
 
 **Pending evaluation/fulfillment\-terminal**  
-Your Spot Instance request can go to a `terminal` state if you create a request that is valid only during a specific time period and this time period expires before your request reaches the pending fulfillment phase, you cancel the request, or a system error occurs\.
+Your Spot Instance request can go to a `terminal` state if you create a request that is valid only during a specific time period and this time period expires before your request reaches the pending fulfillment phase\. It might also happen if you cancel the request, or if a system error occurs\.
 
 
 | Status Code | Request State | Instance State | 
@@ -55,7 +55,7 @@ Your Spot Instance request can go to a `terminal` state if you create a request 
 **Pending fulfillment**  
 When the constraints you specified \(if any\) are met and your maximum price is equal to or higher than the current Spot price, your Spot request goes into the `pending-fulfillment` state\.
 
-At this point, Amazon EC2 is getting ready to provision the instances that you requested\. If the process stops at this point, it is likely to be because it was cancelled by the user before a Spot Instance was launched, or because an unexpected system error occurred\.
+At this point, Amazon EC2 is getting ready to provision the instances that you requested\. If the process stops at this point, it is likely to be because it was cancelled by the user before a Spot Instance was launched\. It may also be because an unexpected system error occurred\.
 
 
 | Status Code | Request State | Instance State | 
@@ -94,7 +94,7 @@ Your Spot Instances continue to run as long as your maximum price is at or above
 
 † A Spot Instance can only get to this state if a user runs the shutdown command from the instance\. We do not recommend that you do this, as the Spot service might restart the instance\.
 
-\* The request state is `closed` if you terminate the instance but do not cancel the request\. The request state is `cancelled` if you terminate the instance and cancel the request\. Note that even if you terminate a Spot Instance before you cancel its request, there might be a delay before Amazon EC2 detects that your Spot Instance was terminated\. In this case, the request state can either be `closed` or `cancelled`\.
+\* The request state is `closed` if you terminate the instance but do not cancel the request\. The request state is `cancelled` if you terminate the instance and cancel the request\. Even if you terminate a Spot Instance before you cancel its request, there might be a delay before Amazon EC2 detects that your Spot Instance was terminated\. In this case, the request state can either be `closed` or `cancelled`\.
 
 **Persistent requests**  
 When your Spot Instances are terminated \(either by you or Amazon EC2\), if the Spot request is a persistent request, it returns to the `pending-evaluation` state and then Amazon EC2 can launch a new Spot Instance when the constraints are met\.
@@ -103,13 +103,13 @@ When your Spot Instances are terminated \(either by you or Amazon EC2\), if the 
 
 You can get request status information using the AWS Management Console or a command line tool\.
 
-**To get request status information using the console**
+**To get request status information \(console\)**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation pane, choose **Spot Requests**, and then select the Spot request\.
+1. In the navigation pane, choose **Spot Requests** and select the Spot request\.
 
-1. Check the value of **Status** in the **Description** tab\.
+1. To check the status, choose **Description**, **Status**\.
 
 **To get request status information using the command line**
 
@@ -151,7 +151,7 @@ Your instance was stopped because the Spot price exceeded your maximum price\.
 Your instance was stopped because a user ran shutdown \-h from the instance\.
 
 `instance-stopped-capacity-oversubscribed`  
-Your instance was stopped because the number of Spot requests with maximum prices equal to or higher than the Spot price exceeded the available capacity in this Spot Instance pool\. \(Note that the Spot price might not have changed\.\)
+Your instance was stopped because the number of Spot requests with maximum prices equal to or higher than the Spot price exceeded the available capacity in this Spot Instance pool\. The Spot price might not have changed\.
 
 `instance-stopped-no-capacity`  
 Your instance was stopped because there was no longer enough Spot capacity available for the instance\.
@@ -169,7 +169,7 @@ Your instance was terminated from a stopped state\.
 You terminated a Spot Instance that had been fulfilled, so the request state is `closed` \(unless it's a persistent request\) and the instance state is `terminated`\.
 
  `instance-terminated-capacity-oversubscribed`   
-Your instance was terminated because the number of Spot requests with maximum prices equal to or higher than the Spot price exceeded the available capacity in this Spot Instance pool\. \(Note that the Spot price might not have changed\.\)
+Your instance was terminated because the number of Spot requests with maximum prices equal to or higher than the Spot price exceeded the available capacity in this Spot Instance pool\. The Spot price might not have changed\.
 
 `instance-terminated-launch-group-constraint`  
 One or more of the instances in your launch group was terminated, so the launch group constraint is no longer fulfilled\.
@@ -190,7 +190,7 @@ The Spot Instance is marked for stopping\.
 The Spot Instance is marked for termination\.
 
 `not-scheduled-yet`  
-The Spot request will not be evaluated until the scheduled date\.
+The Spot request is not evaluated until the scheduled date\.
 
 `pending-evaluation`  
 After you make a Spot Instance request, it goes into the `pending-evaluation` state while the system evaluates the parameters of your request\.
@@ -211,4 +211,4 @@ You canceled the Spot request while the Spot Instances are still running\. The r
 The Spot request expired because it was not fulfilled before the specified date\.
 
 `system-error`  
-There was an unexpected system error\. If this is a recurring issue, please contact customer support for assistance\.
+There was an unexpected system error\. If this is a recurring issue, please contact AWS Support for assistance\.

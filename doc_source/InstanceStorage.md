@@ -43,7 +43,7 @@ The following table provides the quantity, size, type, and performance optimizat
 | Instance Type | Instance Store Volumes | Type | Needs Initialization\* | TRIM Support\*\* | 
 | --- | --- | --- | --- | --- | 
 |  `c1.medium`  |  1 x 350 GB†  | HDD | ✔ |  | 
-|  `c1.xlarge`  |  4 x 420 GB \(1,680 GB\)  | HDD | ✔ |  | 
+|  `c1.xlarge`  |  4 x 420 GB \(1\.6 TB\)  | HDD | ✔ |  | 
 |  `c3.large`  |  2 x 16 GB \(32 GB\)  | SSD | ✔ |  | 
 |  `c3.xlarge`  |  2 x 40 GB \(80 GB\)  | SSD | ✔ |  | 
 |  `c3.2xlarge`  |  2 x 80 GB \(160 GB\)  | SSD | ✔ |  | 
@@ -55,7 +55,7 @@ The following table provides the quantity, size, type, and performance optimizat
 | c5d\.4xlarge | 1 x 400 GB | NVMe SSD |  | ✔ | 
 | c5d\.9xlarge | 1 x 900 GB | NVMe SSD |  | ✔ | 
 | c5d\.18xlarge | 2 x 900 GB \(1\.8 TB\) | NVMe SSD |  | ✔ | 
-|  `cc2.8xlarge`  |  4 x 840 GB \(3,360 GB\)  | HDD | ✔ |  | 
+|  `cc2.8xlarge`  |  4 x 840 GB \(3\.36 TB\)  | HDD | ✔ |  | 
 |  `cr1.8xlarge`  |  2 x 120 GB \(240 GB\)  | SSD | ✔ |  | 
 |  `d2.xlarge`  |  3 x 2,000 GB \(6 TB\)  | HDD |  |  | 
 |  `d2.2xlarge`  |  6 x 2,000 GB \(12 TB\)  | HDD |  |  | 
@@ -72,9 +72,9 @@ The following table provides the quantity, size, type, and performance optimizat
 | h1\.16xlarge | 8 x 2000 GB \(16 TB\) | HDD |  |  | 
 |  `hs1.8xlarge`  |  24 x 2,000 GB \(48 TB\)  | HDD | ✔ |  | 
 |  `i2.xlarge`  |  1 x 800 GB  | SSD |  | ✔ | 
-|  `i2.2xlarge`  |  2 x 800 GB \(1,600 GB\)  | SSD |  | ✔ | 
-|  `i2.4xlarge`  |  4 x 800 GB \(3,200 GB\)  | SSD |  | ✔ | 
-|  `i2.8xlarge`  |  8 x 800 GB \(6,400 GB\)  | SSD |  | ✔ | 
+|  `i2.2xlarge`  |  2 x 800 GB \(1\.6 TB\)  | SSD |  | ✔ | 
+|  `i2.4xlarge`  |  4 x 800 GB \(3\.2 TB\)  | SSD |  | ✔ | 
+|  `i2.8xlarge`  |  8 x 800 GB \(6\.4 TB\)  | SSD |  | ✔ | 
 |  `i3.large`  |  1 x 475 GB  | NVMe SSD |  | ✔ | 
 |  `i3.xlarge`  |  1 x 950 GB  | NVMe SSD |  | ✔ | 
 |  `i3.2xlarge`  |  1 x 1,900 GB  | NVMe SSD |  | ✔ | 
@@ -85,10 +85,10 @@ The following table provides the quantity, size, type, and performance optimizat
 |  `m1.small`  |  1 x 160 GB†  | HDD | ✔ |  | 
 |  `m1.medium`  |  1 x 410 GB  | HDD | ✔ |  | 
 |  `m1.large`  |  2 x 420 GB \(840 GB\)  | HDD | ✔ |  | 
-|  `m1.xlarge`  |  4 x 420 GB \(1,680 GB\)  | HDD | ✔ |  | 
+|  `m1.xlarge`  |  4 x 420 GB \(1\.6 TB\)  | HDD | ✔ |  | 
 |  `m2.xlarge`  |  1 x 420 GB  | HDD | ✔ |  | 
 |  `m2.2xlarge`  |  1 x 850 GB  | HDD | ✔ |  | 
-|  `m2.4xlarge`  |  2 x 840 GB \(1,680 GB\)  | HDD | ✔ |  | 
+|  `m2.4xlarge`  |  2 x 840 GB \(1\.68 TB\)  | HDD | ✔ |  | 
 |  `m3.medium`  |  1 x 4 GB  | SSD | ✔ |  | 
 |  `m3.large`  |  1 x 32 GB  | SSD | ✔ |  | 
 |  `m3.xlarge`  |  2 x 40 GB \(80 GB\)  | SSD | ✔ |  | 
@@ -108,22 +108,22 @@ The following table provides the quantity, size, type, and performance optimizat
 | r5d\.xlarge | 1 x 150 GB | NVMe SSD |  | ✔ | 
 | r5d\.2xlarge | 1 x 300 GB | NVMe SSD |  | ✔ | 
 | r5d\.4xlarge | 2 x 300 GB \(600 GB\) | NVMe SSD |  | ✔ | 
-| r5d\.12xlarge | 2 x 900 GB \(1,800 GB\) | NVMe SSD |  | ✔ | 
-| r5d\.24xlarge | 4 x 900 GB \(3,600 GB\) | NVMe SSD |  | ✔ | 
+| r5d\.12xlarge | 2 x 900 GB \(1\.8 TB\) | NVMe SSD |  | ✔ | 
+| r5d\.24xlarge | 4 x 900 GB \(3\.6 TB\) | NVMe SSD |  | ✔ | 
 |  `x1.16xlarge`  |  1 x 1,920 GB  | SSD |  |  | 
-|  `x1.32xlarge`  |  2 x 1,920 GB \(3,840 GB\)  | SSD |  |  | 
+|  `x1.32xlarge`  |  2 x 1,920 GB \(3\.84 TB\)  | SSD |  |  | 
 |  `x1e.xlarge`  |  1 x 120 GB  | SSD |  |  | 
 |  `x1e.2xlarge`  |  1 x 240 GB  | SSD |  |  | 
 |  `x1e.4xlarge`  |  1 x 480 GB  | SSD |  |  | 
 |  `x1e.8xlarge`  |  1 x 960 GB  | SSD |  |  | 
 |  `x1e.16xlarge`  |  1 x 1,920 GB  | SSD |  |  | 
-|  `x1e.32xlarge`  |  2 x 1,920 GB \(3,840 GB\)  | SSD |  |  | 
+|  `x1e.32xlarge`  |  2 x 1,920 GB \(3\.84 TB\)  | SSD |  |  | 
 |  `z1d.large`  |  1 x 75 GB  | NVMe SSD |  | ✔ | 
 |  `z1d.xlarge`  |  1 x 150 GB  | NVMe SSD |  | ✔ | 
 |  `z1d.2xlarge`  |  1 x 300 GB  | NVMe SSD |  | ✔ | 
 |  `z1d.3xlarge`  |  1 x 450 GB  | NVMe SSD |  | ✔ | 
 |  `z1d.6xlarge`  |  1 x 900 GB  | NVMe SSD |  | ✔ | 
-|  `z1d.12xlarge`  |  2 x 900 GB \(1,800 GB\)  | NVMe SSD |  | ✔ | 
+|  `z1d.12xlarge`  |  2 x 900 GB \(1\.8 TB\)  | NVMe SSD |  | ✔ | 
 
 \* Volumes attached to certain instances suffer a first\-write penalty unless initialized\. For more information, see [Optimizing Disk Performance for Instance Store Volumes](disk-performance.md)\.
 

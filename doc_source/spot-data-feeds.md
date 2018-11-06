@@ -2,10 +2,10 @@
 
 To help you understand the charges for your Spot Instances, Amazon EC2 provides a data feed that describes your Spot Instance usage and pricing\. This data feed is sent to an Amazon S3 bucket that you specify when you subscribe to the data feed\.
 
-Data feed files arrive in your bucket typically once an hour, and each hour of usage is typically covered in a single data file\. These files are compressed \(gzip\) before they are delivered to your bucket\. Amazon EC2 can write multiple files for a given hour of usage where files are very large \(for example, when file contents for the hour exceed 50 MB before compression\)\.
+Data feed files arrive in your bucket typically once an hour, and each hour of usage is typically covered in a single data file\. These files are compressed \(gzip\) before they are delivered to your bucket\. Amazon EC2 can write multiple files for a given hour of usage where files are large \(for example, when file contents for the hour exceed 50 MB before compression\)\.
 
 **Note**  
-If you don't have a Spot Instance running during a certain hour, you won't receive a data feed file for that hour\.
+If you don't have a Spot Instance running during a certain hour, you don't receive a data feed file for that hour\.
 
 **Topics**
 + [Data Feed File Name and Format](#using-spot-instances-format)

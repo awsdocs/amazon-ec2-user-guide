@@ -1,8 +1,8 @@
 # Spot Instance Interruptions<a name="spot-interruptions"></a>
 
-Demand for Spot Instances can vary significantly from moment to moment, and the availability of Spot Instances can also vary significantly depending on how many unused EC2 instances are available\. It is always possible that your Spot Instance will be interrupted\. Therefore, you must ensure that your application is prepared for a Spot Instance interruption\.
+Demand for Spot Instances can vary significantly from moment to moment, and the availability of Spot Instances can also vary significantly depending on how many unused EC2 instances are available\. It is always possible that your Spot Instance might be interrupted\. Therefore, you must ensure that your application is prepared for a Spot Instance interruption\.
 
-The following are the possible reasons that Amazon EC2 will interrupt your Spot Instances:
+The following are the possible reasons that Amazon EC2 might interrupt your Spot Instances:
 + Price – The Spot price is greater than your maximum price\.
 + Capacity – If there are not enough unused EC2 instances to meet the demand for Spot Instances, Amazon EC2 interrupts Spot Instances\. The order in which the instances are interrupted is determined by Amazon EC2\.
 + Constraints – If your request includes a constraint such as a launch group or an Availability Zone group, these Spot Instances are terminated as a group when the constraint can no longer be met\.
@@ -67,10 +67,10 @@ For more information, see [Preparing for Instance Hibernation](#prepare-for-inst
 Here are some best practices to follow when you use Spot Instances:
 + Use the default maximum price, which is the On\-Demand price\.
 + Ensure that your instance is ready to go as soon as the request is fulfilled by using an Amazon Machine Image \(AMI\) that contains the required software configuration\. You can also use user data to run commands at start\-up\.
-+ Store important data regularly in a place that won't be affected when the Spot Instance terminates\. For example, you can use Amazon S3, Amazon EBS, or DynamoDB\.
++ Store important data regularly in a place that isn't affected when the Spot Instance terminates\. For example, you can use Amazon S3, Amazon EBS, or DynamoDB\.
 + Divide the work into small tasks \(using a Grid, Hadoop, or queue\-based architecture\) or use checkpoints so that you can save your work frequently\.
 + Use Spot Instance interruption notices to monitor the status of your Spot Instances\.
-+ While we make every effort to provide this warning as soon as possible, it is possible that your Spot Instance will be terminated before the warning can be made available\. Test your application to ensure that it handles an unexpected instance termination gracefully, even if you are testing for interruption notices\. You can do so by running the application using an On\-Demand Instance and then terminating the On\-Demand Instance yourself\.
++ While we make every effort to provide this warning as soon as possible, it is possible that your Spot Instance is terminated before the warning can be made available\. Test your application to ensure that it handles an unexpected instance termination gracefully, even if you are testing for interruption notices\. You can do so by running the application using an On\-Demand Instance and then terminating the On\-Demand Instance yourself\.
 
 ## Preparing for Instance Hibernation<a name="prepare-for-instance-hibernation"></a>
 
@@ -112,7 +112,7 @@ The following procedures help you prepare a Linux instance\. For directions to p
 
 ## Spot Instance Interruption Notices<a name="spot-instance-termination-notices"></a>
 
-The best way to protect against Spot Instance interruption is to architect your application to be fault tolerant\. In addition, you can take advantage of *Spot Instance interruption notices*, which provide a two\-minute warning before Amazon EC2 must interrupt your Spot Instance\. We recommend that you check for these warnings every 5 seconds\.
+The best way to protect against Spot Instance interruption is to architect your application to be fault\-tolerant\. In addition, you can take advantage of *Spot Instance interruption notices*, which provide a two\-minute warning before Amazon EC2 must interrupt your Spot Instance\. We recommend that you check for these warnings every 5 seconds\.
 
 This warning is made available as a CloudWatch event and as an item in the [instance metadata](ec2-instance-metadata.md) on the Spot Instance\.
 
@@ -147,13 +147,13 @@ If your Spot Instance is marked to be hibernated, stopped, or terminated by the 
 [ec2-user ~]$ curl http://169.254.169.254/latest/meta-data/spot/instance-action
 ```
 
-The `instance-action` item specifies the action and the approximate time, in UTC, when the action will occur\. The following example indicates the time that this instance will be stopped:
+The `instance-action` item specifies the action and the approximate time, in UTC, when the action will occur\. The following example indicates the time at which this instance will be stopped:
 
 ```
 {"action": "stop", "time": "2017-09-18T08:22:00Z"}
 ```
 
-The following example indicates the time that this instance will be terminated:
+The following example indicates the time at which this instance will be terminated:
 
 ```
 {"action": "terminate", "time": "2017-09-18T08:22:00Z"}
@@ -177,7 +177,7 @@ If your Spot Instance is marked for termination by the Spot service, the `termin
 [ec2-user ~]$ if curl -s http://169.254.169.254/latest/meta-data/spot/termination-time | grep -q .*T.*Z; then echo terminated; fi
 ```
 
-The `termination-time` item specifies the approximate time in UTC when the instance will receive the shutdown signal\. For example:
+The `termination-time` item specifies the approximate time in UTC when the instance receives the shutdown signal\. For example:
 
 ```
 2015-01-05T18:02:00Z
@@ -185,4 +185,4 @@ The `termination-time` item specifies the approximate time in UTC when the insta
 
 If Amazon EC2 is not preparing to terminate the instance, or if you terminated the Spot Instance yourself, the `termination-time` item is either not present \(so you receive an HTTP 404 error\) or contains a value that is not a time value\.
 
-If Amazon EC2 fails to terminate the instance, the request status is set to `fulfilled`\. Note that `termination-time` remains in the instance metadata with the original approximate time, which is now in the past\.
+If Amazon EC2 fails to terminate the instance, the request status is set to `fulfilled`\. The `termination-time` value remains in the instance metadata with the original approximate time, which is now in the past\.

@@ -10,7 +10,7 @@ When you share a snapshot, you are giving others access to all the data on the s
 ## Considerations<a name="share-snapshot-considerations"></a>
 
 The following considerations apply to sharing snapshots:
-+ Snapshots are constrained to the region in which they were created\. To share a snapshot with another region, copy the snapshot to that region\. For more information, see [Copying an Amazon EBS Snapshot](ebs-copy-snapshot.md)\.
++ Snapshots are constrained to the Region in which they were created\. To share a snapshot with another Region, copy the snapshot to that Region\. For more information, see [Copying an Amazon EBS Snapshot](ebs-copy-snapshot.md)\.
 + If your snapshot uses the longer resource ID format, you can only share it with another account that also supports longer IDs\. For more information, see [Resource IDs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/resource-ids.html)\.
 + AWS prevents you from sharing snapshots that were encrypted with your default CMK\. Snapshots that you intend to share must instead be encrypted with a custom CMK\. For more information, see [Creating Keys](https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html) in the *AWS Key Management Service Developer Guide*\.
 + Users of your shared CMK who are accessing encrypted snapshots must be granted permissions to perform the following actions on the key: `kms:DescribeKey`, `kms:CreateGrant`, `GenerateDataKey`, and `kms:ReEncrypt`\. For more information, see [Controlling Access to Customer Master Keys](https://docs.aws.amazon.com/kms/latest/developerguide/control-access.html) in the *AWS Key Management Service Developer Guide*\.
@@ -34,7 +34,7 @@ The following considerations apply to sharing snapshots:
 
 1. Choose **Save**\.
 
-**To use an encrypted snapshot that was shared with me**
+**To use an unencrypted snapshot that was privately shared with me**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -42,7 +42,7 @@ The following considerations apply to sharing snapshots:
 
 1. Choose the **Private Snapshots** filter\.
 
-1. Locate the snapshot by ID or description\. You can use this snapshot as you would any other; for example, you can create a volume from the snapshot or copy the snapshot to a different region\.
+1. Locate the snapshot by ID or description\. You can use this snapshot as you would any other; for example, you can create a volume from the snapshot or copy the snapshot to a different Region\.
 
 ## Sharing an Encrypted Snapshot Using the Console<a name="share-encrypted-snapshot"></a>
 
@@ -78,7 +78,7 @@ The following considerations apply to sharing snapshots:
 
    1. Select the snapshot and choose **Actions**, **Copy**\.
 
-   1. \(Optional\) Select a destination region\.
+   1. \(Optional\) Select a destination Region\.
 
    1. Select a custom CMK that you own\.
 

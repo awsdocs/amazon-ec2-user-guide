@@ -36,7 +36,7 @@ For more information about how data is managed when you delete a snapshot, see [
 
 You can share a snapshot across AWS accounts by modifying its access permissions\. You can make copies of your own snapshots as well as snapshots that have been shared with you\. For more information, see [Sharing an Amazon EBS Snapshot](ebs-modifying-snapshot-permissions.md)\.
 
-A snapshot is constrained to the region where it was created\. After you create a snapshot of an EBS volume, you can use it to create new volumes in the same region\. For more information, see [Restoring an Amazon EBS Volume from a Snapshot](ebs-restoring-volume.md)\. You can also copy snapshots across regions, making it possible to use multiple regions for geographical expansion, data center migration, and disaster recovery\. You can copy any accessible snapshot that has a `completed` status\. For more information, see [Copying an Amazon EBS Snapshot](ebs-copy-snapshot.md)\.
+A snapshot is constrained to the Region where it was created\. After you create a snapshot of an EBS volume, you can use it to create new volumes in the same Region\. For more information, see [Restoring an Amazon EBS Volume from a Snapshot](ebs-restoring-volume.md)\. You can also copy snapshots across regions, making it possible to use multiple regions for geographical expansion, data center migration, and disaster recovery\. You can copy any accessible snapshot that has a `completed` status\. For more information, see [Copying an Amazon EBS Snapshot](ebs-copy-snapshot.md)\.
 
 ## Encryption Support for Snapshots<a name="encryption-support"></a>
 

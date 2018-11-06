@@ -23,9 +23,9 @@ The following table highlights some key differences between Capacity Reservation
 |  | Capacity Reservations | Zonal RIs | Regional RIs | 
 | --- | --- | --- | --- | 
 | Term | No commitment required\. Can be created and cancelled as needed\. | Require fixed one\-year or three\-year commitment\. | 
-| Capacity benefit | Reserves capacity in a specific Availability Zone\. | Reserves capacity in a specific Availability Zone\. | Do not reserve capacity in an Availability Zone\. | 
-| Billing discount | No billing discount\. Instances launched into a Capacity Reservation are charged at their standard On\-Demand rates\. However, Regional RIs can be used with Capacity Reservations to get a billing discount\. | Provide billing discounts | 
-| Instance Limits | Limited to your On\-Demand Instance limits per Region | Limited to 20 per Availability Zone | Limited to 20 per Region | 
+| Capacity benefit | Reserve capacity in a specific Availability Zone\. | Reserve capacity in a specific Availability Zone\. | Do not reserve capacity in an Availability Zone\. | 
+| Billing discount | No billing discount\. Instances launched into a Capacity Reservation are charged at their standard On\-Demand rates\. However, Regional RIs can be used with Capacity Reservations to get a billing discount\. | Provide billing discounts\. | 
+| Instance Limits | Limited to your On\-Demand Instance limits per Region\. | Limited to 20 per Availability Zone\. A limit increase can be requested\. | Limited to 20 per Region\. A limit increase can be requested\. | 
 
 ## Capacity Reservation Limits<a name="capacity-reservations-limits"></a>
 

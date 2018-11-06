@@ -46,7 +46,7 @@ Take care when granting users permissions to use the `ec2:CreateLaunchTemplate` 
 
 ## Creating a Launch Template<a name="create-launch-template"></a>
 
-You can create a new launch template using parameters that you define, or you can use an existing launch template as the basis for a new launch template\.
+You can create a new launch template using parameters that you define, or you can use an existing launch template or an instance as the basis for a new launch template\.
 
 **To create a new launch template using defined parameters \(console\)**
 
@@ -117,6 +117,20 @@ You can create a new launch template using parameters that you define, or you ca
 1. For **Source template version**, choose the launch template version on which to base the new launch template\.
 
 1. Adjust any launch parameters as required, and choose **Create launch template**\.
+
+**To create a launch template from an instance \(console\)**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances**\.
+
+1. Select the instance, and choose **Actions**, **Create Template From Instance**\.
+
+1. Provide a name and description, and adjust the launch parameters as required\.
+**Note**  
+When you create a launch template from an instance, the instance's network interface IDs and IP addresses are not included in the template\.
+
+1. Choose **Create Template From Instance**\.
 
 **To create a launch template \(AWS CLI\)**
 + Use the [create\-launch\-template](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-launch-template.html) \(AWS CLI\) command\. The following example creates a launch template that specifies the instance type \(`r4.4xlarge`\) and AMI \(`ami-8c1be5f6`\) to launch, specifies the number of cores \(`4`\) and threads per core \(`2`\) for a total of 8 vCPUs \(4 cores x 2 threads\), specifies the subnet in which to launch the instance \(`subnet-7b16de0c`\), assigns a public IP address and an IPv6 address to the instance, and creates a tag for the instance \(`Name`=`webserver`\)\.

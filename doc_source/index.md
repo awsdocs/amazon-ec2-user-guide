@@ -86,6 +86,7 @@ Amazon's trademarks and trade dress may not be used in
          + [How Spot Instances Work](how-spot-instances-work.md)
          + [How Spot Fleet Works](spot-fleet.md)
          + [Spot Instance Pricing History](using-spot-instances-history.md)
+         + [Savings From Purchasing Spot Instances](spot-savings.md)
          + [Spot Instance Requests](spot-requests.md)
             + [Spot Request Example Launch Specifications](spot-request-examples.md)
          + [Spot Fleet Requests](spot-fleet-requests.md)

@@ -6,20 +6,20 @@ You can create multiple target tracking scaling policies for a Spot Fleet, provi
 
 To ensure application availability, the fleet scales out proportionally to the metric as fast as it can, but scales in more gradually\.
 
-Note that when a Spot Fleet terminates an instance because the target capacity was decreased, the instance receives a Spot Instance interruption notice\.
+When a Spot Fleet terminates an instance because the target capacity was decreased, the instance receives a Spot Instance interruption notice\.
 
 Do not edit or delete the CloudWatch alarms that Spot Fleet manages for a target tracking scaling policy\. Spot Fleet deletes the alarms automatically when you delete the target tracking scaling policy\.
 
 **Limits**
 + The Spot Fleet request must have a request type of `maintain`\. Automatic scaling is not supported for one\-time requests or Spot blocks\.
 
-**To configure a target tracking policy using the console**
+**To configure a target tracking policy \(console\)**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
 1. In the navigation pane, choose **Spot Requests**\.
 
-1. Select your Spot Fleet request, and then choose the **Auto Scaling** tab\.
+1. Select your Spot Fleet request and choose **Auto Scaling**\.
 
 1. If automatic scaling is not configured, choose **Configure**\.
 

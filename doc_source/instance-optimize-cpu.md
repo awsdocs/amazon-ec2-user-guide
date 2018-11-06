@@ -1,13 +1,13 @@
 # Optimizing CPU Options<a name="instance-optimize-cpu"></a>
 
-Amazon EC2 instances support Intel Hyper\-Threading Technology, which enables multiple threads to run concurrently on a single Intel Xeon CPU core\. Each thread is represented as a virtual CPU \(vCPU\) on the instance\. An instance has a default number of CPU cores, which varies according to instance type\. For example, an `m5.xlarge` instance type has two CPU cores and two threads per core by default—four vCPUs in total\.
+Amazon EC2 instances support Intel Hyper\-Threading Technology \(HT Technology\), which enables multiple threads to run concurrently on a single Intel Xeon CPU core\. Each thread is represented as a virtual CPU \(vCPU\) on the instance\. An instance has a default number of CPU cores, which varies according to instance type\. For example, an `m5.xlarge` instance type has two CPU cores and two threads per core by default—four vCPUs in total\.
 
 **Note**  
 Each vCPU is a hyperthread of an Intel Xeon CPU core, except for T2 instances\.
 
 In most cases, there is an Amazon EC2 instance type that has a combination of memory and number of vCPUs to suit your workloads\. However, you can specify the following CPU options to optimize your instance for specific workloads or business needs:
 + **Number of CPU cores**: You can customize the number of CPU cores for the instance\. You might do this to potentially optimize the licensing costs of your software with an instance that has sufficient amounts of RAM for memory\-intensive workloads but fewer CPU cores\.
-+ **Threads per core**: You can disable Intel Hyper\-Threading Technology by specifying a single thread per CPU core\. You might do this for certain workloads, such as high performance computing \(HPC\) workloads\.
++ **Threads per core**: You can disable Intel HT Technology by specifying a single thread per CPU core\. You might do this for certain workloads, such as high performance computing \(HPC\) workloads\.
 
 You can specify these CPU options during instance launch\. There is no additional or reduced charge for specifying CPU options\. You're charged the same as instances that are launched with default CPU options\.
 
@@ -20,13 +20,13 @@ You can specify these CPU options during instance launch\. There is no additiona
 ## Rules for Specifying CPU Options<a name="instance-cpu-options-rules"></a>
 
 To specify the CPU options for your instance, be aware of the following rules:
-+ CPU options are currently supported using the AWS CLI, an AWS SDK, or the Amazon EC2 API only\.
++ CPU options are currently supported using the Amazon EC2 console, the AWS CLI, an AWS SDK, or the Amazon EC2 API\.
 + CPU options can only be specified during instance launch and cannot be modified after launch\.
-+ When you launch an instance, you must specify both the number of CPU cores and threads per core in the request\. For examples, see [Specifying CPU Options for Your Instance](#instance-specify-cpu-options)\.
-+ The total number of vCPUs for the instance is the number of CPU cores multiplied by the threads per core\. To specify a custom number of vCPUs, you must specify a valid number of CPU cores and threads per core for the instance type\. You cannot exceed the default number of vCPUs for the instance\. For more information, see [CPU Cores and Threads Per CPU Core Per Instance Type](#cpu-options-supported-instances-values)\.
-+ To disable Intel Hyper\-Threading Technology, specify one thread per core\.
-+ If you [change the instance type](ec2-instance-resize.md) of an existing instance, the CPU options automatically change to the default CPU options for the new instance type\.
-+ The CPU options that you specify persist after you stop, start, or reboot an instance\.
++ When you launch an instance, you must specify both the number of CPU cores and threads per core in the request\. For more information about examples, see [Specifying CPU Options for Your Instance](#instance-specify-cpu-options)\.
++ The number of vCPUs for the instance is the number of CPU cores multiplied by the threads per core\. To specify a custom number of vCPUs, you must specify a valid number of CPU cores and threads per core for the instance type\. You cannot exceed the default number of vCPUs for the instance\. For more information, see [CPU Cores and Threads Per CPU Core Per Instance Type](#cpu-options-supported-instances-values)\.
++ To disable Intel HT Technology, specify one thread per core\.
++ When you [change the instance type](ec2-instance-resize.md) of an existing instance, the CPU options automatically change to the default CPU options for the new instance type\.
++ The specified CPU options persist after you stop, start, or reboot an instance\.
 
 ## CPU Cores and Threads Per CPU Core Per Instance Type<a name="cpu-options-supported-instances-values"></a>
 
@@ -85,6 +85,12 @@ The following tables list the instance types that support specifying CPU options
 | m5\.4xlarge | 16 | 8 | 2 | 2, 4, 6, 8 | 1, 2 | 
 | m5\.12xlarge | 48 | 24 | 2 | 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24 | 1, 2 | 
 | m5\.24xlarge | 96 | 48 | 2 | 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48 | 1, 2 | 
+| m5a\.large | 2 | 1 | 2 | 1 | 1, 2 | 
+| m5a\.xlarge | 4 | 2 | 2 | 2 | 1, 2 | 
+| m5a\.2xlarge | 8 | 4 | 2 | 2, 4 | 1, 2 | 
+| m5a\.4xlarge | 16 | 8 | 2 | 2, 4, 6, 8 | 1, 2 | 
+| m5a\.12xlarge | 48 | 24 | 2 | 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24 | 1, 2 | 
+| m5a\.24xlarge | 96 | 48 | 2 | 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48 | 1, 2 | 
 | m5d\.large | 2 | 1 | 2 | 1 | 1, 2 | 
 | m5d\.xlarge | 4 | 2 | 2 | 2 | 1, 2 | 
 | m5d\.2xlarge | 8 | 4 | 2 | 2, 4 | 1, 2 | 
@@ -109,6 +115,12 @@ The following tables list the instance types that support specifying CPU options
 | r5\.4xlarge | 16 | 8 | 2 | 2, 4, 6, 8 | 1, 2 | 
 | r5\.12xlarge | 48 | 24 | 2 | 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24 | 1, 2 | 
 | r5\.24xlarge | 96 | 48 | 2 | 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48 | 1, 2 | 
+| r5a\.large | 2 | 1 | 2 | 1 | 1, 2 | 
+| r5a\.xlarge | 4 | 2 | 2 | 2 | 1, 2 | 
+| r5a\.2xlarge | 8 | 4 | 2 | 2, 4 | 1, 2 | 
+| r5a\.4xlarge | 16 | 8 | 2 | 2, 4, 6, 8 | 1, 2 | 
+| r5a\.12xlarge | 48 | 24 | 2 | 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24 | 1, 2 | 
+| r5a\.24xlarge | 96 | 48 | 2 | 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48 | 1, 2 | 
 | r5d\.large | 2 | 1 | 2 | 1 | 1, 2 | 
 | r5d\.xlarge | 4 | 2 | 2 | 2 | 1, 2 | 
 | r5d\.2xlarge | 8 | 4 | 2 | 2, 4 | 1, 2 | 
@@ -159,14 +171,48 @@ You can specify CPU options during instance launch\. The following examples are 
 + Valid number of CPU cores: 1, 2, 3, 4, 5, 6, 7, 8
 + Valid number of threads per core: 1, 2
 
-**To disable Intel Hyper\-Threading Technology during instance launch**
-+ Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) AWS CLI command and specify a value of `1` for `ThreadsPerCore` for the `--cpu-options` parameter\. For `CoreCount`, specify the default CPU core count for the instance type \(in this example, `8` for an `r4.4xlarge` instance\)\.
+### Disabling Intel HT Technology<a name="cpu-options-disable-intel-hyper-threading-technology"></a>
+
+To disable Intel HT Technology, specify one thread per core\.
+
+**To disable Intel HT Technology during instance launch \(Console\)**
+
+1. Follow the [Launching an Instance Using the Launch Instance Wizard](launching-instance.md) procedure\.
+
+1. On the **Configure Instance Details** page, for **CPU options**, choose **Specify CPU options**\.
+
+1. For **Core count**, choose the number of required CPU cores\. In this example, to specify the default CPU core count for an `r4.4xlarge` instance, choose `8`\.
+
+1. To disable Intel HT Technology, for **Threads per core**, choose **1**\.
+
+1. Continue as prompted by the wizard\. When you've finished reviewing your options on the **Review Instance Launch** page, choose **Launch**\. For more information, see [Launching an Instance Using the Launch Instance Wizard](launching-instance.md)\.
+
+**To disable Intel HT Technology during instance launch \(AWS CLI\)**
++ Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) AWS CLI command and specify a value of `1` for `ThreadsPerCore` for the `--cpu-options` parameter\. For `CoreCount`, specify the number of CPU cores\. In this example, to specify the default CPU core count for an `r4.4xlarge` instance, specify a value of `8`\.
 
   ```
   aws ec2 run-instances --image-id ami-1a2b3c4d --instance-type r4.4xlarge --cpu-options "CoreCount=8,ThreadsPerCore=1" --key-name MyKeyPair
   ```
 
-**To specify a custom number of vCPUs during instance launch**
+### Specifying a Custom Number of vCPUs<a name="cpu-options-customer-number-of-vCPUs"></a>
+
+You can customize the number of CPU cores and threads per core for the instance\.
+
+**To specify a custom number of vCPUs during instance launch \(console\)**
+
+The following example launches an `r4.4xlarge` instance with six vCPUs\.
+
+1. Follow the [Launching an Instance Using the Launch Instance Wizard](launching-instance.md) procedure\.
+
+1. On the **Configure Instance Details** page, for **CPU options**, choose **Specify CPU options**\.
+
+1. To get six vCPUs, specify three CPU cores and two threads per core, as follows:
+   + For **Core count**, choose **3**\.
+   + For **Threads per core**, choose **2**\.
+
+1. Continue as prompted by the wizard\. When you've finished reviewing your options on the **Review Instance Launch** page, choose **Launch**\. For more information, see [Launching an Instance Using the Launch Instance Wizard](launching-instance.md)\.
+
+**To specify a custom number of vCPUs during instance launch \(AWS CLI\)**
 
 The following example launches an `r4.4xlarge` instance with six vCPUs\.
 
@@ -184,9 +230,19 @@ The following example launches an `r4.4xlarge` instance with six vCPUs\.
 
 ## Viewing the CPU Options for Your Instance<a name="view-cpu-options"></a>
 
-You can view the CPU options for an existing instance by describing the instance\.
+You can view the CPU options for an existing instance in the Amazon EC2 console or by describing the instance using the AWS CLI\.
 
-**To view the CPU options for an instance using the command line**
+**To view the CPU options for an instance \(Console\)**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the left navigation pane, choose **Instances**, and select the instance\.
+
+1. Choose **Description** and view the **Number of vCPUs** field\.
+
+1. To view the core count and threads per core, choose the **Number of vCPUs** field value\.
+
+**To view the CPU options for an instance \(AWS CLI\)**
 + Use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) AWS CLI command\.
 
   ```

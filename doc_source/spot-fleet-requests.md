@@ -33,7 +33,7 @@ A Spot Fleet request can be in one of the following states:
 + `submitted` – The Spot Fleet request is being evaluated and Amazon EC2 is preparing to launch the target number of Spot Instances\.
 + `active` – The Spot Fleet has been validated and Amazon EC2 is attempting to maintain the target number of running Spot Instances\. The request remains in this state until it is modified or cancelled\.
 + `modifying` – The Spot Fleet request is being modified\. The request remains in this state until the modification is fully processed or the Spot Fleet is cancelled\. A one\-time `request` cannot be modified, and this state does not apply to such Spot requests\.
-+ `cancelled_running` – The Spot Fleet is cancelled and will not launch additional Spot Instances\. Its existing Spot Instances continue to run until they are interrupted or terminated\. The request remains in this state until all instances are interrupted or terminated\.
++ `cancelled_running` – The Spot Fleet is cancelled and does not launch additional Spot Instances\. Its existing Spot Instances continue to run until they are interrupted or terminated\. The request remains in this state until all instances are interrupted or terminated\.
 + `cancelled_terminating` – The Spot Fleet is cancelled and its Spot Instances are terminating\. The request remains in this state until all instances are terminated\.
 + `cancelled` – The Spot Fleet is cancelled and has no running Spot Instances\. The Spot Fleet request is deleted two days after its instances were terminated\.
 
@@ -51,11 +51,11 @@ If you use the Amazon EC2 console to create a Spot Fleet, it creates a role name
 
 1. In the navigation pane, choose **Roles**\.
 
-1. On the **Select type of trusted entity** page, choose **AWS service**, **EC2**, **EC2 \- Spot Fleet Tagging**, and then choose **Next: Permissions**\.
+1. On the **Select type of trusted entity** page, choose **AWS service**, **EC2**, **EC2 \- Spot Fleet Tagging**, **Next: Permissions**\.
 
 1. On the **Attached permissions policy** page, choose **Next:Review**\.
 
-1. On the **Review** page, type a name for the role \(for example, **aws\-ec2\-spot\-fleet\-tagging\-role**\) and then choose **Create role**\.
+1. On the **Review** page, type a name for the role \(for example, **aws\-ec2\-spot\-fleet\-tagging\-role**\) and choose **Create role**\.
 
 ## Spot Fleet and IAM Users<a name="spot-fleet-iam-users"></a>
 
@@ -67,7 +67,7 @@ If your IAM users will create or manage a Spot Fleet, be sure to grant them the 
 
 1. In the navigation pane, choose **Policies**, **Create policy**\.
 
-1. On the **Create policy** page, choose the **JSON** tab, replace the text with the following, and choose **Review policy**\.
+1. On the **Create policy** page, choose **JSON**, replace the text with the following, and choose **Review policy**\.
 
    ```
    {
@@ -105,13 +105,13 @@ If your IAM users will create or manage a Spot Fleet, be sure to grant them the 
    + `iam:GetRole`
    + `iam:ListPolicies`
 
-1. On the **Review policy** page, type a policy name and description, and then choose **Create policy**\.
+1. On the **Review policy** page, type a policy name and description and choose **Create policy**\.
 
-1. In the navigation pane, choose **Users**, and then choose the user\.
+1. In the navigation pane, choose **Users** and select the user\.
 
-1. On the **Permissions** tab, choose **Add permissions**\.
+1. Choose **Permissions**, **Add permissions**\.
 
-1. Choose **Attach existing policies directly**\. Select the policy you created above and choose **Next: Review**\.
+1. Choose **Attach existing policies directly**\. Select the policy that you created earlier and choose **Next: Review**\.
 
 1. Choose **Add permissions**\.
 
@@ -131,9 +131,9 @@ You can configure your Spot Fleet to replace unhealthy instances\. After enablin
 Before you create a Spot Fleet request, review [Spot Best Practices](https://aws.amazon.com/ec2/spot/getting-started/#bestpractices)\. Use these best practices when you plan your Spot Fleet request so that you can provision the type of instances you want at the lowest possible price\. We also recommend that you do the following:
 + Determine whether you want to create a Spot Fleet that submits a one\-time request for the desired target capacity, or one that maintains a target capacity over time\.
 + Determine the instance types that meet your application requirements\.
-+ Determine the target capacity for your Spot Fleet request\. You can set target capacity in instances or in custom units\. For more information, see [Spot Fleet Instance Weighting](spot-fleet.md#spot-instance-weighting)\.
-+ Determine what portion of the Spot Fleet target capacity must be On\-Demand capacity\. You can specify 0 On\-Demand capacity\.
-+ Determine your price per unit, if you are using instance weighting\. To calculate the price per unit, divide the price per instance hour by the number of units \(or weight\) that this instance represents\. \(If you are not using instance weighting, the default price per unit is the price per instance hour\.\)
++ Determine the target capacity for your Spot Fleet request\. You can set the target capacity in instances or in custom units\. For more information, see [Spot Fleet Instance Weighting](spot-fleet.md#spot-instance-weighting)\.
++ Determine what portion of the Spot Fleet target capacity must be On\-Demand capacity\. You can specify 0 for On\-Demand capacity\.
++ Determine your price per unit, if you are using instance weighting\. To calculate the price per unit, divide the price per instance hour by the number of units \(or weight\) that this instance represents\. If you are not using instance weighting, the default price per unit is the price per instance hour\.
 + Review the possible options for your Spot Fleet request\. For more information, see the [request\-spot\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-fleet.html) command in the *AWS CLI Command Reference*\. For additional examples, see [Spot Fleet Example Configurations](spot-fleet-examples.md)\.
 
 ## Service\-Linked Role for Spot Fleet Requests<a name="service-linked-roles-spot-fleet-requests"></a>
@@ -154,7 +154,7 @@ If you had an active Spot Fleet request before November 2017, when Amazon EC2 be
 
 Ensure that this role exists before you use the AWS CLI or an API to create a Spot Fleet\. To create the role, use the IAM console as follows\.
 
-**To create the IAM role for Spot Fleet**
+**To create the IAM role for Spot Fleet \(console\)**
 
 1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
@@ -162,7 +162,7 @@ Ensure that this role exists before you use the AWS CLI or an API to create a Sp
 
 1. Choose **Create role**\.
 
-1. On the **Select type of trusted entity** page, choose **EC2**, select **EC2 \- Spot Fleet**, and then choose **Next: Permissions**\.
+1. On the **Select type of trusted entity** page, choose **EC2**, **EC2 \- Spot Fleet**, **Next: Permissions**\.
 
 1. On the next page, choose **Next:Review**\.
 
@@ -174,7 +174,7 @@ If you no longer need to use Spot Fleet, we recommend that you delete the **AWSS
 
 When you create a Spot Fleet request, you must specify information about the Spot Instances to launch, such as the instance type and the maximum price you are willing to pay\.
 
-**To create a Spot Fleet request using the console**
+**To create a Spot Fleet request \(console\)**
 
 1. Open the Spot console at [https://console\.aws\.amazon\.com/ec2spot](https://console.aws.amazon.com/ec2spot)\.
 
@@ -218,9 +218,9 @@ When you create a Spot Fleet request, you must specify information about the Spo
 
    1. For **Security groups**, select one or more security groups\.
 
-   1. If you need to connect to your instances, you can enable **Auto\-assign IPv4 Public IP**\.
+   1. To connect to your instances, select **Auto\-assign IPv4 Public IP**\.
 
-   1. \(Optional\) If you need to connect to your instances, specify your key pair using **Key pair name**\.
+   1. \(Optional\) To connect to your instances, specify your key pair using **Key pair name**\.
 
    1. \(Optional\) To launch your Spot Instances with an IAM role, choose the role for **IAM instance profile**\.
 
@@ -232,7 +232,7 @@ When you create a Spot Fleet request, you must specify information about the Spo
 
    1. For **Allocation strategy**, choose the strategy that meets your needs\. For more information, see [Allocation Strategy for Spot Instances](spot-fleet.md#spot-fleet-allocation-strategy)\.
 
-   1. For **Maximum price**, you can use the default maximum price \(the On\-Demand price\) or specify the maximum price you are willing to pay\. Your Spot Instances are not launched if your maximum price is lower than the Spot price for the instance types that you selected\.
+   1. For **Maximum price**, you can use the default maximum price \(the On\-Demand price\) or specify the maximum price you are willing to pay\. If your maximum price is lower than the Spot price for the instance types that you selected, your Spot Instances are not launched\.
 
    1. \(Optional\) To create a request that is valid only during a specific time period, edit **Request valid from** and **Request valid until**\.
 
@@ -267,19 +267,19 @@ The following is example output:
 
 The Spot Fleet launches Spot Instances when your maximum price exceeds the Spot price and capacity is available\. The Spot Instances run until they are interrupted or you terminate them\.
 
-**To monitor your Spot Fleet using the console**
+**To monitor your Spot Fleet \(console\)**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
 1. In the navigation pane, choose **Spot Requests**\.
 
-1. Select your Spot Fleet request\. The configuration details are available in the **Description** tab\.
+1. Select your Spot Fleet request\. To see the configuration details, choose **Description**\.
 
-1. To list the Spot Instances for the Spot Fleet, choose the **Instances** tab\.
+1. To list the Spot Instances for the Spot Fleet, choose **Instances**\.
 
-1. To view the history for the Spot Fleet, choose the **History** tab\.
+1. To view the history for the Spot Fleet, choose **History**\.
 
-**To monitor your Spot Fleet using the AWS CLI**  
+**To monitor your Spot Fleet \(AWS CLI\)**  
 Use the following [describe\-spot\-fleet\-requests](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-spot-fleet-requests.html) command to describe your Spot Fleet requests:
 
 ```
@@ -314,19 +314,19 @@ When you decrease the target capacity, the Spot Fleet cancels any open requests 
 
 When a Spot Fleet terminates an instance because the target capacity was decreased, the instance receives a Spot Instance interruption notice\.
 
-**To modify a Spot Fleet request using the console**
+**To modify a Spot Fleet request \(console\)**
 
 1. Open the Spot console at [https://console\.aws\.amazon\.com/ec2spot/home/fleet](https://console.aws.amazon.com/ec2spot/home/fleet)\.
 
 1. Select your Spot Fleet request\.
 
-1. Choose **Actions**, and then choose **Modify target capacity**\.
+1. Choose **Actions**, **Modify target capacity**\.
 
 1. In **Modify target capacity**, do the following:
 
    1. Enter the new target capacity\.
 
-   1. \(Optional\) If you are decreasing the target capacity but want to keep the fleet at its current size, deselect **Terminate instances**\.
+   1. \(Optional\) If you are decreasing the target capacity but want to keep the fleet at its current size, clear **Terminate instances**\.
 
    1. Choose **Submit**\.
 
@@ -347,15 +347,15 @@ aws ec2 modify-spot-fleet-request --spot-fleet-request-id sfr-73fbd2ce-aa30-494c
 
 When you are finished using your Spot Fleet, you can cancel the Spot Fleet request\. This cancels all Spot requests associated with the Spot Fleet, so that no new Spot Instances are launched for your Spot Fleet\. You must specify whether the Spot Fleet should terminate its Spot Instances\. If you terminate the instances, the Spot Fleet request enters the `cancelled_terminating` state\. Otherwise, the Spot Fleet request enters the `cancelled_running` state and the instances continue to run until they are interrupted or you terminate them manually\.
 
-**To cancel a Spot Fleet request using the console**
+**To cancel a Spot Fleet request \(console\)**
 
 1. Open the Spot console at [https://console\.aws\.amazon\.com/ec2spot/home/fleet](https://console.aws.amazon.com/ec2spot/home/fleet)\.
 
 1. Select your Spot Fleet request\.
 
-1. Choose **Actions**, and then choose **Cancel spot request**\.
+1. Choose **Actions**, **Cancel spot request**\.
 
-1. In **Cancel spot request**, verify that you want to cancel the Spot Fleet\. To keep the fleet at its current size, deselect **Terminate instances**\. When you are ready, choose **Confirm**\.
+1. In **Cancel spot request**, verify that you want to cancel the Spot Fleet\. To keep the fleet at its current size, clear **Terminate instances**\. When you are ready, choose **Confirm**\.
 
 **To cancel a Spot Fleet request using the AWS CLI**  
 Use the following [cancel\-spot\-fleet\-requests](https://docs.aws.amazon.com/cli/latest/reference/ec2/cancel-spot-fleet-requests.html) command to cancel the specified Spot Fleet request and terminate the instances:

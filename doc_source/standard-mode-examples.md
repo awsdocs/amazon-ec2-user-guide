@@ -1,6 +1,6 @@
 # Examples: Standard Mode<a name="standard-mode-examples"></a>
 
-The following examples explain credit use when T3 and T2 instances are configured as `standard`\.
+The following examples explain credit use when instances are configured as `standard`\.
 
 **Topics**
 + [Example 1: Explaining Credit Use with T3 Standard](#t3_standard_example)
@@ -13,7 +13,7 @@ In this example, you see how a `t3.nano` instance launched as `standard` earns, 
 **Note**  
 T3 instances configured as `standard` do not receive launch credits\.
 
-A running `t3.nano` instance earns 144 credits every 24 hours\. Its credit balance limit is 144 earned credits\. After the limit is reached, new credits that are earned are discarded\. For more information about the number of credits that can be earned and accrued, see the [T3 and T2 credit table](burstable-credits-baseline-concepts.md#burstable-performance-instances-credit-table)\.
+A running `t3.nano` instance earns 144 credits every 24 hours\. Its credit balance limit is 144 earned credits\. After the limit is reached, new credits that are earned are discarded\. For more information about the number of credits that can be earned and accrued, see the [credit table](burstable-credits-baseline-concepts.md#burstable-performance-instances-credit-table)\.
 
 You might launch a T3 Standard instance and use it immediately\. Or, you might launch a T3 Standard instance and leave it idle for a few days before running applications on it\. Whether an instance is used or remains idle determines if credits are spent or accrued\. If an instance remains idle for 24 hours from the time it is launched, the credit balance reaches it limit, which is the maximum number of earned credits that can be accrued\. 
 
@@ -21,7 +21,7 @@ This example describes an instance that remains idle for 24 hours from the time 
 
 The following workflow references the numbered points on the graph:
 
-**P1** – At 0 hours on the graph, the T3 instance is launched as `standard` and immediately begins to earn credits\. The instance remains idle from the time it is launched—CPU utilization is 0%—and no credits are spent\. All unspent credits are accrued in the credit balance\. For the first 24 hours, `CPUCreditUsage` is at 0, and the `CPUCreditBalance` value reaches its maximum of 144\.
+**P1** – At 0 hours on the graph, the instance is launched as `standard` and immediately begins to earn credits\. The instance remains idle from the time it is launched—CPU utilization is 0%—and no credits are spent\. All unspent credits are accrued in the credit balance\. For the first 24 hours, `CPUCreditUsage` is at 0, and the `CPUCreditBalance` value reaches its maximum of 144\.
 
 **P2** – For the next 12 hours, CPU utilization is at 2\.5%, which is below the 5% baseline\. The instance earns more credits than it spends, but the `CPUCreditBalance` value cannot exceed its maximum of 144 credits\. Any credits that are earned in excess of the limit are discarded\.
 
@@ -43,7 +43,7 @@ The following workflow references the numbered points on the graph:
 
 In this example, you see how a `t2.nano` instance launched as `standard` earns, accrues, and spends *launch* and *earned* credits\. You see how the credit balance reflects not only accrued *earned* credits, but also accrued *launch* credits\.
 
-A `t2.nano` instance gets 30 launch credits when it is launched, and earns 72 credits every 24 hours\. Its credit balance limit is 72 earned credits; launch credits do not count towards the limit\. After the limit is reached, new credits that are earned are discarded\. For more information about the number of credits that can be earned and accrued, see the [T3 and T2 credit table](burstable-credits-baseline-concepts.md#burstable-performance-instances-credit-table)\. For more information about limits, see [Launch Credit Limits](burstable-performance-instances-standard-mode.md#launch-credit-limits)\.
+A `t2.nano` instance gets 30 launch credits when it is launched, and earns 72 credits every 24 hours\. Its credit balance limit is 72 earned credits; launch credits do not count towards the limit\. After the limit is reached, new credits that are earned are discarded\. For more information about the number of credits that can be earned and accrued, see the [credit table](burstable-credits-baseline-concepts.md#burstable-performance-instances-credit-table)\. For more information about limits, see [Launch Credit Limits](burstable-performance-instances-standard-mode.md#launch-credit-limits)\.
 
 You might launch a T2 Standard instance and use it immediately\. Or, you might launch a T2 Standard instance and leave it idle for a few days before running applications on it\. Whether an instance is used or remains idle determines if credits are spent or accrued\. If an instance remains idle for 24 hours from the time it is launched, the credit balance appears to exceed its limit because the balance reflects both accrued earned credits and accrued launch credits\. However, after CPU is used, the launch credits are spent first\. Thereafter, the limit always reflects the maximum number of earned credits that can be accrued\. 
 
@@ -188,4 +188,4 @@ In Period 2, the credit balance included 30 accrued launch credits\. The launch 
 | Credit Balance |  72 credits \(0 launch credits, 72 earned credits\)  | 
 
 **Conclusion**  
-An instance constantly earns credits, but cannot accrue more earned credits if the credit balance limit has been reached\. After the limit is reached, newly earned credits are discarded\. The credit balance limit is determined by the number of credits that an instance can earn in 24 hours\. For more information about credit balance limits, see the [T3 and T2 credit table](burstable-credits-baseline-concepts.md#burstable-performance-instances-credit-table)\.
+An instance constantly earns credits, but cannot accrue more earned credits if the credit balance limit has been reached\. After the limit is reached, newly earned credits are discarded\. The credit balance limit is determined by the number of credits that an instance can earn in 24 hours\. For more information about credit balance limits, see the [credit table](burstable-credits-baseline-concepts.md#burstable-performance-instances-credit-table)\.

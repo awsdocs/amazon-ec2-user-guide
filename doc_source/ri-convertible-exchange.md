@@ -19,7 +19,7 @@ If the following conditions are met, Amazon EC2 processes your exchange request\
 
 The following rules apply:
 + Convertible Reserved Instances can only be exchanged for other Convertible Reserved Instances currently offered by AWS\.
-+ Convertible Reserved Instances are associated with a specific region, which is fixed for the duration of the reservation's term\. You cannot exchange a Convertible Reserved Instance for a Convertible Reserved Instance in a different region\.
++ Convertible Reserved Instances are associated with a specific Region, which is fixed for the duration of the reservation's term\. You cannot exchange a Convertible Reserved Instance for a Convertible Reserved Instance in a different Region\.
 + You can exchange one or more Convertible Reserved Instances at a time for one Convertible Reserved Instance only\.
 + To exchange a portion of a Convertible Reserved Instance, you can modify it into two or more reservations, and then exchange one or more of the reservations for a new Convertible Reserved Instance\. For more information, see [Exchanging a Portion of a Convertible Reserved Instance](#ri-split-convertible)\. For more information about modifying your Reserved Instances, see [Modifying Reserved Instances](ri-modifying.md)\.
 + All Upfront Convertible Reserved Instances can be exchanged for Partial Upfront Convertible Reserved Instances, and vice versa\.

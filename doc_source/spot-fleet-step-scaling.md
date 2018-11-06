@@ -7,9 +7,9 @@ When you create a step scaling policy, you must specify one of the following sca
 + **Remove** — Decrease the target capacity of the fleet by a specified number of capacity units or a specified percentage of the current capacity\.
 + **Set to** — Set the target capacity of the fleet to the specified number of capacity units\.
 
-When an alarm is triggered, the auto scaling process calculates the new target capacity using the fulfilled capacity and the scaling policy, and then updates the target capacity accordingly\. For example, suppose that the target capacity and fulfilled capacity are 10 and the scaling policy adds 1\. When the alarm is triggered, the auto scaling process adds 1 to 10 to get 11, so Spot Fleet launches 1 instance\.
+When an alarm is triggered, the automatic scaling process calculates the new target capacity using the fulfilled capacity and the scaling policy, and then updates the target capacity accordingly\. For example, suppose that the target capacity and fulfilled capacity are 10 and the scaling policy adds 1\. When the alarm is triggered, the automatic scaling process adds 1 to 10 to get 11, so Spot Fleet launches 1 instance\.
 
-Note that when a Spot Fleet terminates an instance because the target capacity was decreased, the instance receives a Spot Instance interruption notice\.
+When a Spot Fleet terminates an instance because the target capacity was decreased, the instance receives a Spot Instance interruption notice\.
 
 **Limits**
 + The Spot Fleet request must have a request type of `maintain`\. Automatic scaling is not supported for one\-time requests or Spot blocks\.
@@ -31,7 +31,7 @@ Note that when a Spot Fleet terminates an instance because the target capacity w
 
   1. On the **Attached permissions policy** page, choose **Next:Review**\.
 
-  1. On the **Review** page, type a name for the role and then choose **Create role**\.
+  1. On the **Review** page, type a name for the role and choose **Create role**\.
 
 **To create a CloudWatch alarm**
 
@@ -43,7 +43,7 @@ Note that when a Spot Fleet terminates an instance because the target capacity w
 
 1. For **CloudWatch Metrics by Category**, choose a category\. For example, choose **EC2 Spot Metrics**, **Fleet Request Metrics**\.
 
-1. Select a metric, and then choose **Next**\.
+1. Select a metric and choose **Next**\.
 
 1. For **Alarm Threshold**, type a name and description for the alarm, and set the threshold value and number of time periods for the alarm\.
 
@@ -51,19 +51,19 @@ Note that when a Spot Fleet terminates an instance because the target capacity w
 
 1. Choose **Create Alarm**\.
 
-**To configure step scaling policies for your Spot Fleet using the console**
+**To configure step scaling policies for your Spot Fleet \(console\)**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
 1. In the navigation pane, choose **Spot Requests**\.
 
-1. Select your Spot Fleet request, and then choose the **Auto Scaling** tab\.
+1. Select your Spot Fleet request and choose **Auto Scaling**\.
 
 1. If automatic scaling is not configured, choose **Configure**\.
 
 1. Use **Scale capacity between** to set the minimum and maximum capacity for your fleet\. Automatic scaling does not scale your fleet below the minimum capacity or above the maximum capacity\.
 
-1. Initially, **Scaling policies** contains policies named ScaleUp and ScaleDown\. You can complete these policies, or choose **Remove policy** to delete them\. You can also choose **Add policy** to add a policy\.
+1. Initially, **Scaling policies** contains policies named ScaleUp and ScaleDown\. You can complete these policies, or choose **Remove policy** to delete them\. You can also choose **Add policy**\.
 
 1. To define a policy, do the following:
 

@@ -2,28 +2,18 @@
 
 General purpose instances provide a balance of compute, memory, and networking resources, and can be used for a variety of workloads\.
 
-**M5 Instances**
+**M5, M5a, and M5d Instances**
 
-M5 instances are the latest generation in Amazon EC2's general purpose instance family\. M5 instances give you an ideal cloud infrastructure, offering a balance of compute, memory, and networking resources for a broad range of applications that are deployed in the cloud\. M5 instances are well\-suited for the following applications:
+These instances provide an ideal cloud infrastructure, offering a balance of compute, memory, and networking resources for a broad range of applications that are deployed in the cloud\. M5 instances are well\-suited for the following applications:
 + Web and application servers
 + Small and medium databases
 + Gaming servers
 + Caching fleets
 + Running backend servers for SAP, Microsoft SharePoint, cluster computing, and other enterprise applications
 
-**Note**: M5 instances require EBS\-backed AMIs with the NVMe and Elastic Network Adapter \(ENA\) drivers installed\. For more information, see the [Release Notes](#general-purpose-instances-limits)\.
+**T2 and T3 Instances**
 
-**T3 Instances**
-
-T3 instances provide a baseline level of CPU performance with the ability to burst to a higher level when required by your workload\. A T3 Unlimited instance can sustain high CPU performance for any period of time whenever required\. For more information, see [Burstable Performance Instances](burstable-performance-instances.md)\. T3 instances are well\-suited for the following applications:
-+ Websites and web applications
-+ Code repositories
-+ Development, build, test, and staging environments
-+ Microservices
-
-**T2 Instances**
-
-T2 instances provide a baseline level of CPU performance with the ability to burst to a higher level when required by your workload\. A T2 Unlimited instance can sustain high CPU performance for any period of time whenever required\. For more information, see [Burstable Performance Instances](burstable-performance-instances.md)\. T2 instances are well\-suited for the following applications:
+These instances provide a baseline level of CPU performance with the ability to burst to a higher level when required by your workload\. An Unlimited instance can sustain high CPU performance for any period of time whenever required\. For more information, see [Burstable Performance Instances](burstable-performance-instances.md)\. These instances are well\-suited for the following applications:
 + Websites and web applications
 + Code repositories
 + Development, build, test, and staging environments
@@ -42,10 +32,32 @@ T2 instances provide a baseline level of CPU performance with the ability to bur
 The following is a summary of the hardware specifications for general purpose instances\.
 
 
-****  
-
 | Instance type | Default vCPUs | Memory \(GiB\) | 
 | --- | --- | --- | 
+| m4\.large | 2 | 8 | 
+| m4\.xlarge | 4 | 16 | 
+| m4\.2xlarge | 8 | 32 | 
+| m4\.4xlarge | 16 | 64 | 
+| m4\.10xlarge | 40 | 160 | 
+| m4\.16xlarge | 64 | 256 | 
+| m5\.large | 2 | 8 | 
+| m5\.xlarge | 4 | 16 | 
+| m5\.2xlarge | 8 | 32 | 
+| m5\.4xlarge | 16 | 64 | 
+| m5\.12xlarge | 48 | 192 | 
+| m5\.24xlarge | 96 | 384 | 
+| m5a\.large | 2 | 8 | 
+| m5a\.xlarge | 4 | 16 | 
+| m5a\.2xlarge | 8 | 32 | 
+| m5a\.4xlarge | 16 | 64 | 
+| m5a\.12xlarge | 48 | 192 | 
+| m5a\.24xlarge | 96 | 384 | 
+| m5d\.large | 2 | 8 | 
+| m5d\.xlarge | 4 | 16 | 
+| m5d\.2xlarge | 8 | 32 | 
+| m5d\.4xlarge | 16 | 64 | 
+| m5d\.12xlarge | 48 | 192 | 
+| m5d\.24xlarge | 96 | 384 | 
 | t2\.nano | 1 | 0\.5 | 
 | t2\.micro | 1 | 1 | 
 | t2\.small | 1 | 2 | 
@@ -60,24 +72,6 @@ The following is a summary of the hardware specifications for general purpose in
 | t3\.large | 2 | 8 | 
 | t3\.xlarge | 4 | 16 | 
 | t3\.2xlarge | 8 | 32 | 
-| m4\.large | 2 | 8 | 
-| m4\.xlarge | 4 | 16 | 
-| m4\.2xlarge | 8 | 32 | 
-| m4\.4xlarge | 16 | 64 | 
-| m4\.10xlarge | 40 | 160 | 
-| m4\.16xlarge | 64 | 256 | 
-| m5\.large | 2 | 8 | 
-| m5\.xlarge | 4 | 16 | 
-| m5\.2xlarge | 8 | 32 | 
-| m5\.4xlarge | 16 | 64 | 
-| m5\.12xlarge | 48 | 192 | 
-| m5\.24xlarge | 96 | 384 | 
-| m5d\.large | 2 | 8 | 
-| m5d\.xlarge | 4 | 16 | 
-| m5d\.2xlarge | 8 | 32 | 
-| m5d\.4xlarge | 16 | 64 | 
-| m5d\.12xlarge | 48 | 192 | 
-| m5d\.24xlarge | 96 | 384 | 
 
 For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
@@ -85,9 +79,9 @@ For more information about specifying CPU options, see [Optimizing CPU Options](
 
 ## Instance Performance<a name="general-purpose-performance"></a>
 
-EBS\-optimized instances enable you to get consistently high performance for your EBS volumes by eliminating contention between Amazon EBS I/O and other network traffic from your instance\. M4, M5, and M5d instances are EBS\-optimized by default at no additional cost\. For more information, see [Amazon EBS–Optimized Instances](EBSOptimized.md)\.
+EBS\-optimized instances enable you to get consistently high performance for your EBS volumes by eliminating contention between Amazon EBS I/O and other network traffic from your instance\. Some general purpose instances are EBS\-optimized by default at no additional cost\. For more information, see [Amazon EBS–Optimized Instances](EBSOptimized.md)\.
 
-The `m4.10xlarge` and `m4.16xlarge` instance types provide the ability to control processor C\-states and P\-states on Linux\. The `m5.12xlarge`, `m5.24xlarge`, `m5d.12xlarge`, and `m5d.24xlarge` instance types provide the ability to control processor C\-states\. C\-states control the sleep levels that a core can enter when it is inactive, while P\-states control the desired performance \(in CPU frequency\) from a core\. For more information, see [Processor State Control for Your EC2 Instance](processor_state_control.md)\.
+Some general purpose instance types provide the ability to control processor C\-states and P\-states on Linux\. C\-states control the sleep levels that a core can enter when it is inactive, while P\-states control the desired performance \(in CPU frequency\) from a core\. For more information, see [Processor State Control for Your EC2 Instance](processor_state_control.md)\.
 
 ## Network Performance<a name="general-purpose-network-performance"></a>
 
@@ -101,14 +95,14 @@ The following is a summary of network performance for general purpose instances 
 | Instance type | Network performance | Enhanced networking | 
 | --- | --- | --- | 
 | t2\.nano, t2\.micro, t2\.small, t2\.medium, t2\.large, t2\.xlarge, t2\.2xlarge | Up to 1 Gbps |  | 
-| t3\.nano, t3\.micro, t3\.small, t3\.medium, t3\.large, t3\.xlarge, t3\.2xlarge | Up to 5 Gbps | [ENA](enhanced-networking-ena.md) | 
+| t3\.nano, t3\.micro, t3\.small, t3\.medium, t3\.large, t3\.xlarge, t3\.2xlarge  | Up to 5 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  `m4.large`  |  Moderate  |  [Intel 82599 VF](sriov-networking.md)  | 
 |  `m4.xlarge`, `m4.2xlarge`, `m4.4xlarge`  |  High  |  [Intel 82599 VF](sriov-networking.md)  | 
+|  `m5.large`, `m5.xlarge`, `m5.2xlarge`, `m5.4xlarge`, `m5a.large`, `m5a.xlarge`, `m5a.2xlarge`, `m5a.4xlarge`, `m5d.large`, `m5d.xlarge`, `m5d.2xlarge`, `m5d.4xlarge`  |  Up to 10 Gbps  | [ENA](enhanced-networking-ena.md) | 
 |  `m4.10xlarge`  |  10 Gbps  |  [Intel 82599 VF](sriov-networking.md)  | 
-|  `m4.16xlarge`  |  25 Gbps  |  [ENA](enhanced-networking-ena.md)  | 
-|  `m5.large`, `m5.xlarge`, `m5.2xlarge`, `m5.4xlarge`, `m5d.large`, `m5d.xlarge`, `m5d.2xlarge`, `m5d.4xlarge`  |  Up to 10 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  `m5.12xlarge`, `m5d.12xlarge`  |  10 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  `m5.24xlarge`, `m5d.24xlarge`  |  25 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `m5.12xlarge`, `m5a.12xlarge`, `m5d.12xlarge`  |  10 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `m5a.24xlarge`  |  20 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `m4.16xlarge`, `m5.24xlarge`, `m5d.24xlarge`  |  25 Gbps  | [ENA](enhanced-networking-ena.md) | 
 
 ## SSD I/O Performance<a name="general-purpose-ssd-perf"></a>
 
@@ -141,6 +135,7 @@ The following is a summary of features for general purpose instances:
 | --- | --- | --- | --- | --- | 
 |  M4  |  Yes  |  |  |  Yes  | 
 |  M5  |  Yes  |  Yes  |  |  Yes  | 
+|  M5a  |  Yes  |  Yes  |  |  Yes  | 
 |  M5d  |  |  Yes  |  NVMe \*  |  Yes  | 
 |  T2  |  Yes  |  |  |  | 
 |  T3  |  Yes  |  Yes  |  |  | 
@@ -153,8 +148,10 @@ For more information, see the following:
 + [Placement Groups](placement-groups.md)
 
 ## Release Notes<a name="general-purpose-instances-limits"></a>
-+ M4, M5, M5d, `t2.large` and larger, and `t3.large` and larger instance types require 64\-bit HVM AMIs\. They have high\-memory, and require a 64\-bit operating system to take advantage of that capacity\. HVM AMIs provide superior performance in comparison to paravirtual \(PV\) AMIs on high\-memory instance types\. In addition, you must use an HVM AMI to take advantage of enhanced networking\.
-+ M5, M5d, and T3 instances have the following requirements:
++ M5, M5d, and T3 instances feature a 3\.1 GHz Intel Xeon Platinum 8000 series processor\.
++ M5a instances feature a 2\.5 GHz AMD EPYC 7000 series processor\.
++ M4, M5, M5a, M5d, `t2.large` and larger, and `t3.large` and larger instance types require 64\-bit HVM AMIs\. They have high\-memory, and require a 64\-bit operating system to take advantage of that capacity\. HVM AMIs provide superior performance in comparison to paravirtual \(PV\) AMIs on high\-memory instance types\. In addition, you must use an HVM AMI to take advantage of enhanced networking\.
++ M5, M5a, M5d, and T3 instances have the following requirements:
   + Must have the NVMe drivers installed\. EBS volumes are exposed as [NVMe block devices](nvme-ebs-volumes.md)\.
   + Must have the Elastic Network Adapter \([ENA](enhanced-networking-ena.md)\) drivers installed\.
 
@@ -167,6 +164,6 @@ For more information, see the following:
   + CentOS 7 or later
   + FreeBSD 11\.1\-RELEASE
   + Windows Server 2008 R2 or later
-+ M5, M5d, and T3 instances support a maximum of 27 EBS volumes plus elastic network interface attachments\. For example, `m5.2xlarge` instances support four network interfaces\. Every instance has at least one network interface\. If you have a `m5.2xlarge` instance with three additional elastic network interface attachments, you can attach 24 EBS volumes to that instance\.
-+ M5 and M5d instances should have acpid installed to support clean shutdown through API requests\.
++ M5, M5a, M5d, and T3 instances support a maximum of 28 attachments, including network interfaces, EBS volumes, and NVMe instance store volumes\. Every instance has at least one network interface attachment\. For example, if you have no additional network interface attachments on an EBS\-only instance, you could attach 27 EBS volumes to that instance\.
++ M5, M5a, and M5d instances should have acpid installed to support clean shutdown through API requests\.
 + There is a limit on the total number of instances that you can launch in a region, and there are additional limits on some instance types\. For more information, see [How many instances can I run in Amazon EC2?](https://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2)\. To request a limit increase, use the [Amazon EC2 Instance Request Form](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-instances)\.

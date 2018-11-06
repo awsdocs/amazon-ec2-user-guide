@@ -38,8 +38,8 @@ Not all attributes of a Reserved Instance can be modified, and restrictions may 
 
 | Modifiable attribute | Supported platforms | Limitations | 
 | --- | --- | --- | 
-|  Change **Availability Zones** within the same region  |  Linux and Windows  | \- | 
-|  Change the **scope** from Availability Zone to Region and vice versa  |  Linux and Windows  |  If you change the scope from Availability Zone to region, you lose the capacity reservation benefit\. If you change the scope from region to Availability Zone, you lose Availability Zone flexibility and instance size flexibility \(if applicable\)\. For more information, see [How Reserved Instances Are Applied](apply_ri.md)\.  | 
+|  Change **Availability Zones** within the same Region  |  Linux and Windows  | \- | 
+|  Change the **scope** from Availability Zone to Region and vice versa  |  Linux and Windows  |  If you change the scope from Availability Zone to Region, you lose the capacity reservation benefit\. If you change the scope from Region to Availability Zone, you lose Availability Zone flexibility and instance size flexibility \(if applicable\)\. For more information, see [How Reserved Instances Are Applied](apply_ri.md)\.  | 
 |  Change the **instance size** within the same instance type  |  Linux only  |  Some instance types are not supported, because there are no other sizes available\. For more information, see [Modifying the Instance Size of Your Reservations](#ri-modification-instancemove)\.  | 
 
 Amazon EC2 processes your modification request if there is sufficient capacity for your target configuration \(if applicable\), and if the following conditions are met\.
@@ -124,7 +124,7 @@ Before you modify your Reserved Instances, ensure that you have read the applica
 If your Reserved Instances are not in the active state or cannot be modified, **Modify Reserved Instances** is disabled\.
 
 1. The first entry in the modification table displays attributes of selected Reserved Instances, and at least one target configuration beneath it\. The **Units** column displays the total instance size footprint\. Choose **Add** for each new configuration to add\. Modify the attributes as needed for each configuration, and choose **Continue** when you're done:
-   + **Scope**: Choose whether the Reserved Instance applies to an Availability Zone or to the whole region\.
+   + **Scope**: Choose whether the Reserved Instance applies to an Availability Zone or to the whole Region\.
    + **Availability Zone**: Choose the required Availability Zone\. Not applicable for regional Reserved Instances\.
    + **Instance Type**: Select the required instance type\. Only available for supported platforms\. For more information, see [Requirements and Restrictions for Modification](#ri-modification-limits)\.
    + **Count**: Specify the number of instances to be covered by the reservation\.

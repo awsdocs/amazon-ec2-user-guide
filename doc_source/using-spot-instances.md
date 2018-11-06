@@ -4,6 +4,23 @@ A Spot Instance is an unused EC2 instance that is available for less than the On
 
 Spot Instances are a cost\-effective choice if you can be flexible about when your applications run and if your applications can be interrupted\. For example, Spot Instances are well\-suited for data analysis, batch jobs, background processing, and optional tasks\. For more information, see [Amazon EC2 Spot Instances](https://aws.amazon.com/ec2/purchasing-options/spot-instances/)\.
 
+**Topics**
++ [Concepts](#spot-features)
++ [How to Get Started](#spot-get-started)
++ [Related Services](#spot-related-services)
++ [Pricing and Savings](#spot-pricing)
+
+## Concepts<a name="spot-features"></a>
+
+Before you get started with Spot Instances, you should be familiar with the following concepts:
++ *Spot Instance pool* – A set of unused EC2 instances with the same instance type, operating system, Availability Zone, and network platform\.
++ *Spot price* – The current price of a Spot Instance per hour\.
++ *Spot Instance request* – Provides the maximum price per hour that you are willing to pay for a Spot Instance\. If you don't specify a maximum price, the default maximum price is the On\-Demand price\. When the maximum price per hour for your request exceeds the Spot price, Amazon EC2 fulfills your request if capacity is available\. A Spot Instance request is either *one\-time* or *persistent*\. Amazon EC2 automatically resubmits a persistent Spot request after the Spot Instance associated with the request is terminated\. Your Spot Instance request can optionally specify a duration for the Spot Instances\.
++ *Spot Fleet* – A set of Spot Instances that is launched based on criteria that you specify\. The Spot Fleet selects the Spot Instance pools that meet your needs and launches Spot Instances to meet the target capacity for the fleet\. By default, Spot Fleets are set to *maintain* target capacity by launching replacement instances after Spot Instances in the fleet are terminated\. You can submit a Spot Fleet as a one\-time *request*, which does not persist after the instances have been terminated\. You can include On\-Demand Instance requests in a Spot Fleet request\.
++ *Spot Instance interruption* – Amazon EC2 terminates, stops, or hibernates your Spot Instance when the Spot price exceeds the maximum price for your request or capacity is no longer available\. Amazon EC2 provides a Spot Instance interruption notice, which gives the instance a two\-minute warning before it is interrupted\.
+
+### Key Differences between Spot Instances and On\-Demand Instances<a name="key-differences-spot-on-demand"></a>
+
 The following table lists the key differences between Spot Instances and On\-Demand Instances\.
 
 
@@ -14,20 +31,13 @@ The following table lists the key differences between Spot Instances and On\-Dem
 |  Hourly price  |  The hourly price for Spot Instances varies based on demand\.  |  The hourly price for On\-Demand Instances is static\.  | 
 |  Instance interruption  |  You can’t stop and start an Amazon EBS\-backed Spot Instance; only the Amazon EC2 Spot service can do this\. The Amazon EC2 Spot service can [interrupt](spot-interruptions.md) an individual Spot Instance if capacity is no longer available, the Spot price exceeds your maximum price, or demand for Spot Instances increases\.   |  You determine when an On\-Demand Instance is interrupted \(stopped or terminated\)\.  | 
 
+### Strategies for Using Spot Instances<a name="spot-strategy"></a>
+
 One strategy to maintain a minimum level of guaranteed compute resources for your applications is to launch a core group of On\-Demand Instances , and supplement them with Spot Instances when the opportunity arises\.
 
 ![\[Compare On-Demand and Spot Instances\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/spot_introduction.png)
 
 Another strategy is to launch Spot Instances with a required duration \(also known as Spot blocks\), which are not interrupted due to changes in the Spot price\. For more information, see [Specifying a Duration for Your Spot Instances](spot-requests.md#fixed-duration-spot-instances)\.
-
-## Concepts<a name="spot-features"></a>
-
-Before you get started with Spot Instances, you should be familiar with the following concepts:
-+ *Spot Instance pool* – A set of unused EC2 instances with the same instance type, operating system, Availability Zone, and network platform\.
-+ *Spot price* – The current price of a Spot Instance per hour\.
-+ *Spot Instance request* – Provides the maximum price per hour that you are willing to pay for a Spot Instance\. If you don't specify a maximum price, the default maximum price is the On\-Demand price\. When the maximum price per hour for your request exceeds the Spot price, Amazon EC2 fulfills your request if capacity is available\. A Spot Instance request is either *one\-time* or *persistent*\. Amazon EC2 automatically resubmits a persistent Spot request after the Spot Instance associated with the request is terminated\. Your Spot Instance request can optionally specify a duration for the Spot Instances\.
-+ *Spot Fleet* – A set of Spot Instances that is launched based on criteria that you specify\. The Spot Fleet selects the Spot Instance pools that meet your needs and launches Spot Instances to meet the target capacity for the fleet\. By default, Spot Fleets are set to *maintain* target capacity by launching replacement instances after Spot Instances in the fleet are terminated\. You can submit a Spot Fleet as a one\-time *request*, which does not persist after the instances have been terminated\. You can include On\-Demand Instance requests in a Spot Fleet request\.
-+ *Spot Instance interruption* – Amazon EC2 terminates, stops, or hibernates your Spot Instance when the Spot price exceeds the maximum price for your request or capacity is no longer available\. Amazon EC2 provides a Spot Instance interruption notice, which gives the instance a two\-minute warning before it is interrupted\.
 
 ## How to Get Started<a name="spot-get-started"></a>
 
@@ -69,20 +79,26 @@ You can use the Java programming language to manage your Spot Instances\. For mo
 AWS SDK for \.NET  
 You can use the \.NET programming environment to manage your Spot Instances\. For more information, see [Tutorial: Amazon EC2 Spot Instances](https://docs.aws.amazon.com/sdk-for-net/latest/developer-guide/tutorial-spot-instances-net.html)\.
 
-## Pricing<a name="spot-pricing"></a>
+## Pricing and Savings<a name="spot-pricing"></a>
 
 You pay the Spot price for Spot Instances, which is set by Amazon EC2 and adjusted gradually based on the long\-term supply of and demand for Spot Instances\. If the maximum price for your request exceeds the current Spot price, Amazon EC2 fulfills your request if capacity is available\. Your Spot Instances run until you terminate them, capacity is no longer available, or the Spot price exceeds your maximum price\.
 
 Spot Instances with a predefined duration use a fixed hourly price that remains in effect for the Spot Instance while it runs\.
 
-**View Prices**  
+### View Prices<a name="spot-pricing-view-prices"></a>
+
 To view the current \(updated every five minutes\) lowest Spot price per region and instance type, see the [Spot Instances Pricing](https://aws.amazon.com/ec2/spot/pricing/) page\.
 
 To view the Spot price history for the past three months, use the Amazon EC2 console or the [describe\-spot\-price\-history](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-spot-price-history.html) command \(AWS CLI\)\. For more information, see [Spot Instance Pricing History](using-spot-instances-history.md)\.
 
 We independently map Availability Zones to codes for each AWS account\. Therefore, you can get different results for the same Availability Zone code \(for example, `us-west-2a`\) between different accounts\.
 
-**View Billing**  
+### View Savings<a name="spot-pricing-view-savings"></a>
+
+You can view the savings made from using Spot Instances for a single Spot Fleet or for all Spot Instances\. You can view the savings made in the last hour or the last three days, and you can view the average cost per vCPU hour and per memory \(GiB\) hour\. Savings are estimated and may differ from actual savings because they do not include the billing adjustments for your usage\. For more information about viewing savings information, see [Savings From Purchasing Spot Instances](spot-savings.md)\.
+
+### View Billing<a name="spot-pricing-view-billing"></a>
+
 To review your bill, go to your [AWS Account Activity page](https://aws.amazon.com/account-activity)\. Your bill contains links to usage reports that provide details about your bill\. For more information, see [AWS Account Billing](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/)\.
 
 If you have questions concerning AWS billing, accounts, and events, [contact AWS Support](https://aws.amazon.com/contact-us/)\.

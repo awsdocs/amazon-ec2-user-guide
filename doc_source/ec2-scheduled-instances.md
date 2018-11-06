@@ -46,11 +46,11 @@ To purchase a Scheduled Instance, you can use the Scheduled Reserved Instances R
 **Warning**  
 After you purchase a Scheduled Instance, you can't cancel, modify, or resell your purchase\.
 
-**To purchase a Scheduled Instance using the console**
+**To purchase a Scheduled Instance \(console\)**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation pane, under **INSTANCES**, choose **Scheduled Instances**\.
+1. In the navigation pane, under **INSTANCES**, choose **Scheduled Instances**\. If the currently selected Region does not support Scheduled Instances, the page is unavailable\. [Learn more](#scheduled-instances-limits)
 
 1. Choose **Purchase Scheduled Instances**\.
 
@@ -70,18 +70,18 @@ After you purchase a Scheduled Instance, you can't cancel, modify, or resell you
 
 1. On the **Review and purchase** page, verify your selections and edit them as needed\. When you are finished, choose **Purchase**\.
 
-**To purchase a Scheduled Instance using the AWS CLI**  
+**To purchase a Scheduled Instance \(AWS CLI\)**  
 Use the [describe\-scheduled\-instance\-availability](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-scheduled-instance-availability.html) command to list the available schedules that meet your needs, and then use the [purchase\-scheduled\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/purchase-scheduled-instances.html) command to complete the purchase\.
 
 ## Launching a Scheduled Instance<a name="launching-scheduled-instances"></a>
 
 After you purchase a Scheduled Instance, it is available for you to launch during its scheduled time periods\.
 
-**To launch a Scheduled Instance using the console**
+**To launch a Scheduled Instance \(console\)**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation pane, under **INSTANCES**, choose **Scheduled Instances**\.
+1. In the navigation pane, under **INSTANCES**, choose **Scheduled Instances**\. If the currently selected Region does not support Scheduled Instances, the page is unavailable\. [Learn more](#scheduled-instances-limits)
 
 1. Select the Scheduled Instance and choose **Launch Scheduled Instances**\.
 
@@ -91,7 +91,7 @@ The launch specification must match the instance type, Availability Zone, networ
 
 1. On the **Review** page, verify the launch configuration and modify it as needed\. When you are finished, choose **Launch**\.
 
-**To launch a Scheduled Instance using the AWS CLI**  
+**To launch a Scheduled Instance \(AWS CLI\)**  
 Use the [describe\-scheduled\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-scheduled-instances.html) command to list your Scheduled Instances, and then use the [run\-scheduled\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-scheduled-instances.html) command to launch each Scheduled Instance during its scheduled time periods\.
 
 ## Scheduled Instance Limits<a name="scheduled-instances-limits"></a>
@@ -101,3 +101,4 @@ Scheduled Instances are subject to the following limits:
 + The required term is 365 days \(one year\)\.
 + The minimum required utilization is 1,200 hours per year\.
 + You can purchase a Scheduled Instance up to three months in advance\.
++ They are available in the following Regions: US East \(N\. Virginia\), US West \(Oregon\), and Europe \(Ireland\)\.

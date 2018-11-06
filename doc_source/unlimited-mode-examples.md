@@ -1,6 +1,6 @@
 # Examples: Unlimited Mode<a name="unlimited-mode-examples"></a>
 
-The following examples explain credit use when T3 and T2 instances are configured as `unlimited`\.
+The following examples explain credit use for instances that are configured as `unlimited`\.
 
 **Topics**
 + [Example 1: Explaining Credit Use with T3 Unlimited](#t3_unlimited_example)
@@ -14,7 +14,7 @@ A `t3.nano` instance earns 144 CPU credits over a rolling 24\-hour period, which
 
 The intent of the example, illustrated by the following graph, is to show how an instance can burst using surplus credits even after it depletes its `CPUCreditBalance`\. The following workflow references the numbered points on the graph:
 
-**P1** – At 0 hours on the graph, the T3 instance is launched as `unlimited` and immediately begins to earn credits\. The instance remains idle from the time it is launched—CPU utilization is 0%—and no credits are spent\. All unspent credits are accrued in the credit balance\. For the first 24 hours, `CPUCreditUsage` is at 0, and the `CPUCreditBalance` value reaches its maximum of 144\.
+**P1** – At 0 hours on the graph, the instance is launched as `unlimited` and immediately begins to earn credits\. The instance remains idle from the time it is launched—CPU utilization is 0%—and no credits are spent\. All unspent credits are accrued in the credit balance\. For the first 24 hours, `CPUCreditUsage` is at 0, and the `CPUCreditBalance` value reaches its maximum of 144\.
 
 **P2** – For the next 12 hours, CPU utilization is at 2\.5%, which is below the 5% baseline\. The instance earns more credits than it spends, but the `CPUCreditBalance` value cannot exceed its maximum of 144 credits\.
 
