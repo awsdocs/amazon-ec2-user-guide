@@ -45,7 +45,7 @@ You can filter the Amazon EI data using the following dimensions\.
 
 | Dimension | Description | 
 | --- | --- | 
-|                     **ElasticInferenceAcceleratorId **                 |                     This dimension filters the data by the Amazon EI accelerator\.                 | 
+|                     **ElasticInferenceAcceleratorId**                 |                     This dimension filters the data by the Amazon EI accelerator\.                 | 
 |                     **InstanceId**                 |                     This dimension filters the data by instance to which the Amazon EI accelerator is attached\.                 | 
 
 ## Creating CloudWatch Alarms to Monitor Amazon EI<a name="ei-cw-alarms"></a>
