@@ -16,7 +16,7 @@ The table indicates billing for instance usage only\. Some AWS resources, such a
 | --- | --- | --- | 
 |  `pending`  |  The instance is preparing to enter the `running` state\. An instance enters the `pending` state when it launches for the first time, or when it is restarted after being in the `stopped` state\.  |  Not billed  | 
 |  `running`  |  The instance is running and ready for use\.  |  Billed  | 
-|  `stopping`  |  The instance is preparing to be stopped\.  |  Not billed  | 
+|  `stopping`  |  The instance is preparing to be stopped or stop\-hibernated\.  |  Not billed if preparing to stop Billed if preparing to hibernate  | 
 |  `stopped`  |  The instance is shut down and cannot be used\. The instance can be restarted at any time\.  |  Not billed  | 
 |  `shutting-down`  |  The instance is preparing to be terminated\.  |  Not billed  | 
 |  `terminated`  |  The instance has been permanently deleted and cannot be restarted\.  |  Not billed  Reserved Instances that applied to terminated instances are billed until the end of their term according to their payment option\. For more information, see [Reserved Instances](ec2-reserved-instances.md)   | 
@@ -46,11 +46,23 @@ Each time you transition an instance from `stopped` to `running`, we charge per 
 
 For more information, see [Stop and Start Your Instance](Stop_Start.md)\.
 
+## Instance Hibernate \(Amazon EBS\-Backed Instances Only\)<a name="instance-hibernate"></a>
+
+When you hibernate an instance, we signal the operating system to perform hibernation \(suspend\-to\-disk\), which saves the contents from the instance memory \(RAM\) to your Amazon EBS root volume\. We persist the instance's Amazon EBS root volume and any attached Amazon EBS data volumes\. When you restart your instance, the Amazon EBS root volume is restored to its previous state and the RAM contents are reloaded\. Previously attached data volumes are reattached and the instance retains its instance ID\.
+
+When you hibernate your instance, it enters the `stopping` state, and then the `stopped` state\. We don't charge usage for a hibernated instance when it is in the `stopped` state, but we do charge while it is in the `stopping` state, unlike when you [stop an instance](#instance-stop-start) without hibernating it\. We don't charge usage for data transfer fees, but we do charge for the storage for any Amazon EBS volumes, including storage for the RAM data\.
+
+When you restart your hibernated instance, it enters the `pending` state, and in most cases, we move the instance to a new host computer\. Your instance may stay on the same host computer if there are no problems with the host computer\.
+
+Your instance retains its private IPv4 address, which means that an Elastic IP address associated with the private IPv4 address or network interface is still associated with your instance\. If your instance has an IPv6 address, it retains its IPv6 address\.
+
+For more information, see [Hibernate Your Instance](Hibernate.md)\.
+
 ## Instance Reboot<a name="instance-reboot"></a>
 
 You can reboot your instance using the Amazon EC2 console, a command line tool, and the Amazon EC2 API\. We recommend that you use Amazon EC2 to reboot your instance instead of running the operating system reboot command from your instance\.
 
-Rebooting an instance is equivalent to rebooting an operating system; the instance remains on the same host computer and maintains its public DNS name, private IP address, and any data on its instance store volumes\. It typically takes a few minutes for the reboot to complete, but the time it takes to reboot depends on the instance configuration\.
+Rebooting an instance is equivalent to rebooting an operating system\. The instance remains on the same host computer and maintains its public DNS name, private IP address, and any data on its instance store volumes\. It typically takes a few minutes for the reboot to complete, but the time it takes to reboot depends on the instance configuration\.
 
 Rebooting an instance doesn't start a new instance billing period; per second billing continues without a further one\-minute minimum charge\.
 
@@ -58,7 +70,7 @@ For more information, see [Reboot Your Instance](ec2-instance-reboot.md)\.
 
 ## Instance Retirement<a name="instance-retiring"></a>
 
-An instance is scheduled to be retired when AWS detects irreparable failure of the underlying hardware hosting the instance\. When an instance reaches its scheduled retirement date, it is stopped or terminated by AWS\. If your instance root device is an Amazon EBS volume, the instance is stopped, and you can start it again at any time\. If your instance root device is an instance store volume, the instance is terminated, and cannot be used again\.
+An instance is scheduled to be retired when AWS detects the irreparable failure of the underlying hardware hosting the instance\. When an instance reaches its scheduled retirement date, it is stopped or terminated by AWS\. If your instance root device is an Amazon EBS volume, the instance is stopped, and you can start it again at any time\. If your instance root device is an instance store volume, the instance is terminated, and cannot be used again\.
 
 For more information, see [Instance Retirement](instance-retirement.md)\.
 
@@ -76,19 +88,20 @@ Each Amazon EBS volume supports the `DeleteOnTermination` attribute, which contr
 
 For more information, see [Terminate Your Instance](terminating-instances.md)\.
 
-## Differences Between Reboot, Stop, and Terminate<a name="lifecycle-differences"></a>
+## Differences Between Reboot, Stop, Hibernate, and Terminate<a name="lifecycle-differences"></a>
 
-The following table summarizes the key differences between rebooting, stopping, and terminating your instance\.
+The following table summarizes the key differences between rebooting, stopping, hibernating, and terminating your instance\.
 
 
-| Characteristic | Reboot | Stop/start \(Amazon EBS\-backed instances only\) | Terminate | 
-| --- | --- | --- | --- | 
-|  Host computer  |  The instance stays on the same host computer  |  In most cases, we move the instance to a new host computer\. Your instance may stay on the same host computer if there are no problems with the host computer\.  |  None  | 
-|  Private and public IPv4 addresses  |  These addresses stay the same  |  The instance keeps its private IPv4 address\. The instance gets a new public IPv4 address, unless it has an Elastic IP address, which doesn't change during a stop/start\.  |  None  | 
-|  Elastic IP addresses \(IPv4\)  |  The Elastic IP address remains associated with the instance  |  The Elastic IP address remains associated with the instance  |  The Elastic IP address is disassociated from the instance  | 
-| IPv6 address | The address stays the same | The instance keeps its IPv6 address | None | 
-|  Instance store volumes  |  The data is preserved  |  The data is erased  |  The data is erased  | 
-|  Root device volume  |  The volume is preserved  |  The volume is preserved  |  The volume is deleted by default  | 
-|  Billing  |  The instance billing hour doesn't change\.  |  You stop incurring charges for an instance as soon as its state changes to `stopping`\. Each time an instance transitions from `stopped` to `running`, we start a new instance billing period, billing a minimum of one minute every time you restart your instance\.  |  You stop incurring charges for an instance as soon as its state changes to `shutting-down`\.  | 
+| Characteristic | Reboot | Stop/start \(Amazon EBS\-backed instances only\) | Hibernate \(Amazon EBS\-backed instances only\) | Terminate | 
+| --- | --- | --- | --- | --- | 
+|  Host computer  |  The instance stays on the same host computer  |  In most cases, we move the instance to a new host computer\. Your instance may stay on the same host computer if there are no problems with the host computer\.  |  In most cases, we move the instance to a new host computer\. Your instance may stay on the same host computer if there are no problems with the host computer\.  |  None  | 
+|  Private and public IPv4 addresses  |  These addresses stay the same  |  The instance keeps its private IPv4 address\. The instance gets a new public IPv4 address, unless it has an Elastic IP address, which doesn't change during a stop/start\.  |  The instance keeps its private IPv4 address\. The instance gets a new public IPv4 address, unless it has an Elastic IP address, which doesn't change during a stop/start\.  |  None  | 
+|  Elastic IP addresses \(IPv4\)  |  The Elastic IP address remains associated with the instance  |  The Elastic IP address remains associated with the instance  |  The Elastic IP address remains associated with the instance  |  The Elastic IP address is disassociated from the instance  | 
+|  IPv6 address  |  The address stays the same  |  The instance keeps its IPv6 address  |  The instance keeps its IPv6 address  |  None  | 
+|  Instance store volumes  |  The data is preserved  |  The data is erased  |  The data is erased  |  The data is erased  | 
+|  Root device volume  |  The volume is preserved  |  The volume is preserved  |  The volume is preserved  |  The volume is deleted by default  | 
+|  RAM \(contents of memory\)  |  The RAM is erased  |  The RAM is erased  |  The RAM is saved to a file on the root volume  |  The RAM is erased  | 
+|  Billing  |  The instance billing hour doesn't change\.  |  You stop incurring charges for an instance as soon as its state changes to `stopping`\. Each time an instance transitions from `stopped` to `running`, we start a new instance billing period, billing a minimum of one minute every time you restart your instance\.  |  You incur charges while the instance is in the `stopping` state, but stop incurring charges when the instance is in the `stopped` state\. Each time an instance transitions from `stopped` to `running`, we start a new instance billing period, billing a minimum of one minute every time you restart your instance\.  |  You stop incurring charges for an instance as soon as its state changes to `shutting-down`\.  | 
 
 Operating system shutdown commands always terminate an instance store\-backed instance\. You can control whether operating system shutdown commands stop or terminate an Amazon EBS\-backed instance\. For more information, see [Changing the Instance Initiated Shutdown Behavior](terminating-instances.md#Using_ChangingInstanceInitiatedShutdownBehavior)\.

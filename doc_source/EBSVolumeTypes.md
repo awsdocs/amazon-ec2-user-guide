@@ -7,15 +7,15 @@ Amazon EBS provides the following volume types, which differ in performance char
 The following table describes the use cases and performance characteristics for each volume type:
 
 
-|  | Solid\-State Drives \(SSD\) | Hard disk Drives \(HDD\) | 
+|  | Solid\-State Drives \(SSD\) | Hard Disk Drives \(HDD\) | 
 | --- | --- | --- | 
 | Volume Type | General Purpose SSD \(gp2\)\* | Provisioned IOPS SSD \(io1\) | Throughput Optimized HDD \(st1\) | Cold HDD \(sc1\) | 
-| Description | General purpose SSD volume that balances price and performance for a wide variety of workloads | Highest\-performance SSD volume for mission\-critical low\-latency or high\-throughput workloads  | Low cost HDD volume designed for frequently accessed, throughput\-intensive workloads | Lowest cost HDD volume designed for less frequently accessed workloads | 
+| Description | General purpose SSD volume that balances price and performance for a wide variety of workloads | Highest\-performance SSD volume for mission\-critical low\-latency or high\-throughput workloads  | Low\-cost HDD volume designed for frequently accessed, throughput\-intensive workloads | Lowest cost HDD volume designed for less frequently accessed workloads | 
 | Use Cases |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html)  | 
 | API Name | gp2 | io1 | st1 | sc1 | 
 | Volume Size | 1 GiB \- 16 TiB  | 4 GiB \- 16 TiB  | 500 GiB \- 16 TiB | 500 GiB \- 16 TiB  | 
-| Max\. IOPS\*\*/Volume | 10,000 | 32,000\*\*\* | 500 | 250 | 
-| Max\. Throughput/Volume | 160 MiB/s\*\*\*\* | 500 MiB/s† | 500 MiB/s | 250 MiB/s | 
+| Max\. IOPS\*\*/Volume | 10,000 | 64,000\*\*\* | 500 | 250 | 
+| Max\. Throughput/Volume | 160 MiB/s\*\*\*\* | 1,000 MiB/s† | 500 MiB/s | 250 MiB/s | 
 | Max\. IOPS/Instance | 80,000 | 80,000 | 80,000 | 80,000 | 
 | Max\. Throughput/Instance†† | 1,750 MiB/s | 1,750 MiB/s | 1,750 MiB/s | 1,750 MiB/s | 
 | Dominant Performance Attribute | IOPS | IOPS | MiB/s | MiB/s | 
@@ -26,11 +26,11 @@ The following table describes the use cases and performance characteristics for 
 
 \*\* `gp2`/`io1` based on 16 KiB I/O size, `st1`/`sc1` based on 1 MiB I/O size
 
-\*\*\* `io1` volumes created in regions ap\-northeast\-3 and us\-gov\-west\-1 are subject to a 20,000 IOPS limit\.
+\*\*\* Maximum IOPS of 64,000 is guaranteed only on [Nitro\-based instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances)\. Other instance families guarantee performance up to 32,000 IOPS\.
 
 \*\*\*\* General Purpose SSD \(gp2\) volumes have a throughput limit between 128 MiB/s and 160 MiB/s depending on volume size\. Volumes greater than 170 GiB up to 214 GiB deliver a maximum throughput of 160 MiB/s if burst credits are available\. Volumes above 214 GiB deliver 160 MiB/s irrespective of burst credits\.
 
-† An `io1` volume created before 12/6/2017 will not achieve this throughput until modified in some way\. For more information, see [Modifying the Size, IOPS, or Type of an EBS Volume on Linux](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-modify-volume.html)\.
+† An `io1` volume created before 12/6/2017 does not achieve this throughput until modified in some way\. For more information, see [Modifying the Size, IOPS, or Type of an EBS Volume on Linux](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-modify-volume.html)\. Maximum throughput of 1,000 MiB/s is guaranteed only on [Nitro\-based instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances)\. Other instance families guarantee up to 500 MiB/s\.
 
 †† To achieve this throughput, you must have an instance that supports it\. For more information, see [Amazon EBS–Optimized Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html)\.
 
@@ -149,9 +149,9 @@ V  =  -----
 
 Provisioned IOPS SSD \(`io1`\) volumes are designed to meet the needs of I/O\-intensive workloads, particularly database workloads, that are sensitive to storage performance and consistency\. Unlike `gp2`, which uses a bucket and credit model to calculate performance, an `io1` volume allows you to specify a consistent IOPS rate when you create the volume, and Amazon EBS delivers within 10 percent of the provisioned IOPS performance 99\.9 percent of the time over a given year\. 
 
-An `io1` volume can range in size from 4 GiB to 16 TiB and you can provision 100 up to 32,000 IOPS per volume\. The maximum ratio of provisioned IOPS to requested volume size \(in GiB\) is 50:1\. For example, a 100 GiB volume can be provisioned with up to 5,000 IOPS\. Any volume 640 GiB in size or greater allows provisioning up to the 32,000 IOPS maximum \(50 × 640 GiB = 32,000\)\.
+An `io1` volume can range in size from 4 GiB to 16 TiB\. You can provision from 100 IOPS up to 64,000 IOPS per volume on [Nitro system](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances) instance families and up to 32,000 on other instance families\. The maximum ratio of provisioned IOPS to requested volume size \(in GiB\) is 50:1\. For example, a 100 GiB volume can be provisioned with up to 5,000 IOPS\. On a supported instance type, any volume 1,280 GiB in size or greater allows provisioning up to the 64,000 IOPS maximum \(50 × 1,280 GiB = 64,000\)\.
 
-The throughput limit of `io1` volumes is 256 KiB/s for each IOPS provisioned, up to a maximum of 500 MiB/s \(at 32,000 IOPS\)\.
+The throughput limit of `io1` volumes is 256 KiB/s for each IOPS provisioned, up to a maximum of 1,000 MiB/s \(at 64,000 IOPS\)\. Up to 32,000 IOPS, I/O size can be as high as 256 KiB, while above that a 16 KiB size is used\.
 
 ![\[Throughput limits for io1 volumes\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/io1_throughput.png)
 

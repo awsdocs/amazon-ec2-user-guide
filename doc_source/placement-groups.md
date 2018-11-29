@@ -49,13 +49,13 @@ Before you use placement groups, be aware of the following rules:
 
 The following rules apply to cluster placement groups:
 + The following are the only instance types that you can use when you launch an instance into a cluster placement group:
-  + General purpose: M4, M5, M5a, M5d
-  + Compute optimized: C3, C4, C5, C5d, `cc2.8xlarge`
-  + Memory optimized: `cr1.8xlarge`, R3, R4, R5, R5a, R5d, X1, X1e, z1d
-  + Storage optimized: D2, H1, `hs1.8xlarge`, I2, I3, `i3.metal`
-  + Accelerated computing: F1, G2, G3, P2, P3
+  + General purpose: A1, M4, M5, M5a, and M5d
+  + Compute optimized: C3, C4, C5, C5d, C5n, and `cc2.8xlarge`
+  + Memory optimized: `cr1.8xlarge`, R3, R4, R5, R5a, R5d, X1, X1e, and z1d
+  + Storage optimized: D2, H1, `hs1.8xlarge`, I2, and I3
+  + Accelerated computing: F1, G2, G3, P2, and P3
 + A cluster placement group can't span multiple Availability Zones\.
-+ The maximum network throughput speed of traffic between two instances in a cluster placement group is limited by the slower of the two instances\. For applications with high\-throughput requirements, choose an instance type with 10–Gbps or 25–Gbps network connectivity\.
++ The maximum network throughput speed of traffic between two instances in a cluster placement group is limited by the slower of the two instances\. For applications with high\-throughput requirements, choose an instance type with network connectivity that meets your requirements\.
 + For instances that are enabled for enhanced networking, the following rules apply:
   + Instances within a cluster placement group can use up to 10 Gbps for single\-flow traffic\.
   + Traffic to and from Amazon S3 buckets within the same region over the public IP address space or through a VPC endpoint can use all available instance aggregate bandwidth\.

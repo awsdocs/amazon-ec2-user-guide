@@ -23,7 +23,7 @@ You can get directions for volumes on a Windows instance from [Making a Volume A
 
    The output of lsblk removes the `/dev/` prefix from full device paths\. In this example, `/dev/xvda1` is mounted as the root device \(note that MOUNTPOINT is listed as `/`, the root of the Linux file system hierarchy\), and `/dev/xvdf` is attached, but it has not been mounted yet\.
 
-   EBS volumes are exposed as NVMe block devices for the following instances: C5, C5d, `i3.metal`, M5, M5a, M5d, R5, R5a, R5d, T3, `u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, and z1d\. The device names that you specify are renamed using NVMe device names \(`/dev/nvme[0-26]n1`\)\. For more information, see [Amazon EBS and NVMe](nvme-ebs-volumes.md)\.
+   EBS volumes are exposed as NVMe block devices on [Nitro\-based instances](instance-types.md#ec2-nitro-instances)\. The device names that you specify are renamed using NVMe device names \(`/dev/nvme[0-26]n1`\)\. For more information, see [Amazon EBS and NVMe](nvme-ebs-volumes.md)\.
 
 1. Determine whether to create a file system on the volume\. New volumes are raw block devices, and you must create a file system on them before you can mount and use them\. Volumes that have been restored from snapshots likely have a file system on them already; if you create a new file system on top of an existing file system, the operation overwrites your data\. Use the sudo file \-s *device* command to list special information, such as file system type\.
 

@@ -11,7 +11,7 @@ After you detach a volume, you are still charged for volume storage as long as t
 
 This example unmounts the volume and then explicitly detaches it from the instance\. This is useful when you want to terminate an instance or attach a volume to a different instance\. To verify that the volume is no longer attached to the instance, see [Viewing Volume Information](ebs-describing-volumes.md)\.
 
-You can reattach a volume that you detached \(without unmounting it\), but it might not get the same mount point and the data on the volume might be out of sync if there were writes to the volume in progress when it was detached\.
+You can reattach a volume that you detached \(without unmounting it\), but it might not get the same mount point\. If there were writes to the volume in progress when it was detached, the data on the volume might be out of sync\.
 
 **To detach an EBS volume using the console**
 

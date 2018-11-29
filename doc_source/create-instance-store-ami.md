@@ -70,7 +70,7 @@ By default, the AMI bundling process creates a compressed, encrypted collection 
       [root ec2-user]# ec2-bundle-vol -k /tmp/cert/pk-HKZYKTAIG2ECMXYIBH3HXV4ZBEXAMPLE.pem -c /tmp/cert/cert-HKZYKTAIG2ECMXYIBH3HXV4ZBEXAMPLE.pem -u 123456789012 -r x86_64 -e /tmp/cert --partition gpt
       ```
 **Note**  
-For the China \(Beijing\) and AWS GovCloud \(US\) regions, use the `--ec2cert` parameter and specify the certificates as per the [prerequisites](creating-an-ami-instance-store.md#bundle-ami-prerequisites)\.
+For the China \(Beijing\) and AWS GovCloud \(US\-West\) regions, use the `--ec2cert` parameter and specify the certificates as per the [prerequisites](creating-an-ami-instance-store.md#bundle-ami-prerequisites)\.
 
       It can take a few minutes to create the image\. When this command completes, your `/tmp` \(or non\-default\) directory contains the bundle \(`image.manifest.xml`, plus multiple `image.part.`*xx* files\)\.
 

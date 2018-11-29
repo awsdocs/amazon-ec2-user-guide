@@ -100,7 +100,7 @@ If you had an active Spot Instance request before October 2017, when Amazon EC2 
 
 Ensure that this role exists before you use the AWS CLI or an API to create a Spot Fleet\. To create the role, use the IAM console as follows\.
 
-**To create the IAM role**
+**To create the IAM role \(console\)**
 
 1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
@@ -135,7 +135,7 @@ Before you begin, decide on your maximum price, how many Spot Instances you'd li
 
 1. For **Request type**, the default is **Request**, which specifies a one\-time Spot request created using a Spot Fleet\. To use Spot blocks instead, choose **Reserve for duration** and select the number of hours for the job to complete\.
 
-   If you prefer to use **Request and Maintain**, see [Creating a Spot Fleet Request](spot-fleet-requests.md#create-spot-fleet)\.
+   To use **Request and Maintain**, see [Creating a Spot Fleet Request](spot-fleet-requests.md#create-spot-fleet)\.
 
 1. For **Target capacity**, enter the number of units to request\. You can choose instances or performance characteristics that are important to your application workload, such as vCPUs, memory, and storage\.
 
@@ -157,7 +157,7 @@ Before you begin, decide on your maximum price, how many Spot Instances you'd li
 
       Select one or more Availability Zones\. If you have more than one subnet in an Availability Zone, select the appropriate subnet from **Subnet**\. To add subnets, select **Create new subnet** to go to the Amazon VPC console\. When you are done, return to the wizard and refresh the list\.
 
-   1. \(Optional\) To add storage, specify additional instance store volumes or EBS volumes, depending on the instance type\. You can also enable EBS optimization\.
+   1. \(Optional\) To add storage, specify additional instance store volumes or EBS volumes, depending on the instance type\. You can also enable Amazon EBS optimization\.
 
    1. \(Optional\) By default, basic monitoring is enabled for your instances\. To enable detailed monitoring, choose **Enable CloudWatch detailed monitoring**\.
 
@@ -269,6 +269,9 @@ Use the following [create\-tags](https://docs.aws.amazon.com/cli/latest/referenc
 aws ec2 create-tags --resources sir-08b93456 i-1234567890abcdef0 --tags Key=purpose,Value=test
 ```
 
+**Note**  
+Spot Instance requests are not tagged instantly and for a period of time may appear separate from Spot Fleet requests\.
+
 ## Canceling a Spot Instance Request<a name="using-spot-instances-cancel"></a>
 
 If you no longer want your Spot request, you can cancel it\. You can only cancel Spot Instance requests that are `open` or `active`\. Your Spot request is `open` when your request has not yet been fulfilled and no instances have been launched\. Your Spot request is `active` when your request has been fulfilled, and Spot Instances have launched as a result\. If your Spot request is `active` and has an associated running Spot Instance, canceling the request does not terminate the instance; you must terminate the running Spot Instance manually\.
@@ -283,7 +286,7 @@ If the Spot request is a persistent Spot request, it returns to the `open` state
 
 1. Choose **Actions**, **Cancel spot request**\.
 
-1. \(Optional\) If you are finished with the associated Spot Instances, you can terminate them\. In the navigation pane, choose **Instances**, select the instance and then choose **Actions**, **Instance State**, **Terminate**\.
+1. \(Optional\) If you are finished with the associated Spot Instances, you can terminate them\. In the navigation pane, choose **Instances**, select the instance, and then choose **Actions**, **Instance State**, **Terminate**\.
 
 **To cancel a Spot Instance request using the AWS CLI**  
 Use the following [cancel\-spot\-instance\-requests](https://docs.aws.amazon.com/cli/latest/reference/ec2/cancel-spot-instance-requests.html) command to cancel the specified Spot request:

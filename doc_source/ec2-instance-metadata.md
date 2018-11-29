@@ -359,7 +359,7 @@ Category names that are formatted in red text are placeholders for data that is 
 |  ancestor\-ami\-ids  | The AMI IDs of any instances that were rebundled to create this AMI\. This value will only exist if the AMI manifest file contained an ancestor\-amis key\. | 2007\-10\-10 | 
 | block\-device\-mapping/ami  | The virtual device that contains the root/boot file system\. | 2007\-12\-15 | 
 |  block\-device\-mapping/ebsN  | The virtual devices associated with Amazon EBS volumes, if any are present\. Amazon EBS volumes are only available in metadata if they were present at launch time or when the instance was last started\. The N indicates the index of the Amazon EBS volume \(such as ebs1 or ebs2\)\. | 2007\-12\-15 | 
-|  block\-device\-mapping/ephemeralN  | The virtual devices associated with ephemeral devices, if any are present\. The N indicates the index of the ephemeral volume\. | 2007\-12\-15 | 
+|  block\-device\-mapping/ephemeralN  | The virtual devices associated with non\-NVMe instance store volumes, if any are present\. The N indicates the index of each ephemeral volume\. | 2007\-12\-15 | 
 |  block\-device\-mapping/root  | The virtual devices or partitions associated with the root devices, or partitions on the virtual device, where the root \(/ or C:\) file system is associated with the given instance\. | 2007\-12\-15 | 
 |  block\-device\-mapping/swap  | The virtual devices associated with swap\. Not always present\. | 2007\-12\-15 | 
 | elastic\-gpus/associations/elastic\-gpu\-id | If there is an Elastic GPU attached to the instance, contains a JSON string with information about the Elastic GPU, including its ID and connection information\. | 2016\-11\-30 | 

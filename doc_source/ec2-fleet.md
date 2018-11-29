@@ -2,7 +2,7 @@
 
 An *EC2 Fleet* contains the configuration information to launch a fleet—or group—of instances\. In a single API call, a fleet can launch multiple instance types across multiple Availability Zones, using the On\-Demand Instance, Reserved Instance, and Spot Instance purchasing models together\. Using EC2 Fleet, you can define separate On\-Demand and Spot capacity targets, specify the instance types that work best for your applications, and specify how Amazon EC2 should distribute your fleet capacity within each purchasing model\.
 
-The EC2 Fleet attempts to launch the number of instances that are required to meet the target capacity specified in your request\. The fleet also attempts to maintain its target Spot capacity if your Spot Instances are interrupted due to a change in Spot prices or available capacity\. For more information, see [How Spot Instances Work](how-spot-instances-work.md)\.
+The EC2 Fleet attempts to launch the number of instances that are required to meet the target capacity specified in your request\. The fleet can also attempt to maintain its target Spot capacity if your Spot Instances are interrupted due to a change in Spot prices or available capacity\. For more information, see [How Spot Instances Work](how-spot-instances-work.md)\.
 
 ![\[A sample EC2 fleet\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ec2-fleet.png)
 
@@ -23,4 +23,4 @@ There is no additional charge for using EC2 Fleet\. You pay only for the EC2 ins
 
 The following limitations apply to EC2 Fleet:
 + EC2 Fleet is available only through the API or AWS CLI\.
-+ You need to create a separate EC2 Fleet for each region\.
++ You need to create a separate EC2 Fleet for each Region\.

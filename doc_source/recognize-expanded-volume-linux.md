@@ -39,9 +39,6 @@ For information about extending a Windows file system, see [Extending a Windows 
 
   However, `/dev/xvdf1` is an 8\-GiB partition on a 35\-GiB device and there are no other partitions on the volume\. In this case, the partition must be resized in order to use the remaining space on the volume\. After you resize the partition, you can extend the file system to occupy all of the space on the partition\.
 
-**Note**  
-I
-
 **To resize a Linux partition**
 
 1. Log in to your Linux instance using an SSH client\. For more information about connecting to a Linux instance, see [Connecting to Your Linux Instance Using SSH](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html)\.
@@ -108,7 +105,7 @@ I
    ```
 **Note**  
 If you receive an xfsctl failed: Cannot allocate memory error, you may need to update the Linux kernel on your instance\. For more information, refer to your specific operating system documentation\.  
-If you receive a The filesystem is already *nnnnnnn* blocks long\. Nothing to do\! error, see [Expanding a Linux Partition](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/expand-linux-partition.html)\.
+If you receive the error The filesystem is already *nnnnnnn* blocks long\. Nothing to do\!, see [Expanding a Linux Partition](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/expand-linux-partition.html)\.
 
 1. Use the df \-h command to report the existing file system disk space usage, in this example showing 70 GiB on the ext4 file system and 100 GiB on the XFS file system:
 

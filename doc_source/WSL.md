@@ -56,7 +56,7 @@ Before you connect to your Linux instance, complete the following prerequisites:
   + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
 + **Enable inbound SSH traffic from your IP address to your instance**
 
-  Ensure that the security group associated with your instance allows incoming SSH traffic from your IP address\. The default security group does not allow incoming SSH traffic by default\. For more information, see [Authorizing Inbound Traffic for Your Linux Instances](authorizing-access-to-an-instance.md)\.
+  Ensure that the security group associated with your instance allows incoming SSH traffic from your IP address\. The default security group for the VPC does not allow incoming SSH traffic by default\. The security group created by the launch wizard enables SSH traffic by default\. For more information, see [Authorizing Inbound Traffic for Your Linux Instances](authorizing-access-to-an-instance.md)\.
 
 ## Connecting to Your Linux Instance using the Windows Subsystem for Linux<a name="Connect-Linux-WSL"></a>
 
@@ -144,7 +144,7 @@ One way to transfer files between your local computer and a Linux instance is to
   + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
 + **Enable inbound SSH traffic from your IP address to your instance**
 
-  Ensure that the security group associated with your instance allows incoming SSH traffic from your IP address\. The default security group does not allow incoming SSH traffic by default\. For more information, see [Authorizing Inbound Traffic for Your Linux Instances](authorizing-access-to-an-instance.md)\.
+  Ensure that the security group associated with your instance allows incoming SSH traffic from your IP address\. The default security group for the VPC does not allow incoming SSH traffic by default\. The security group created by the launch wizard enables SSH traffic by default\. For more information, see [Authorizing Inbound Traffic for Your Linux Instances](authorizing-access-to-an-instance.md)\.
 
 The following procedure steps you through using SCP to transfer a file\. If you've already connected to the instance with SSH and have verified its fingerprints, you can start with the step that contains the SCP command \(step 4\)\.
 

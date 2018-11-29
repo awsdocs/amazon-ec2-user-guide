@@ -36,7 +36,7 @@ Before you connect to your Linux instance using PuTTY, complete the following pr
   + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
 + **Enable inbound SSH traffic from your IP address to your instance**
 
-  Ensure that the security group associated with your instance allows incoming SSH traffic from your IP address\. The default security group does not allow incoming SSH traffic by default\. For more information, see [Authorizing Inbound Traffic for Your Linux Instances](authorizing-access-to-an-instance.md)\.
+  Ensure that the security group associated with your instance allows incoming SSH traffic from your IP address\. The default security group for the VPC does not allow incoming SSH traffic by default\. The security group created by the launch wizard enables SSH traffic by default\. For more information, see [Authorizing Inbound Traffic for Your Linux Instances](authorizing-access-to-an-instance.md)\.
 
 ## Converting Your Private Key Using PuTTYgen<a name="putty-private-key"></a>
 

@@ -97,7 +97,7 @@ This directive sends command output from your script to `/var/log/cloud-init-out
 
 1. Select the instance and choose **Actions**, **Instance State**, **Stop**\.
 **Warning**  
-When you stop an instance, the data on any instance store volumes is erased\. Therefore, if you have any data on instance store volumes that you want to keep, be sure to back it up to persistent storage\.
+When you stop an instance, the data on any instance store volumes is erased\. To keep data from instance store volumes, be sure to back it up to persistent storage\.
 
 1. When prompted for confirmation, choose **Yes, Stop**\. It can take a few minutes for the instance to stop\.
 
@@ -215,7 +215,7 @@ certutil -encode my_script.txt my_script_base64.txt
 notepad my_script_base64.txt
 ```
 
-Use the `--user-data` and `--value` parameters to use the encoded text file to specify the user data\. Be sure to use the `file://` prefix to specify the file\.
+Use the `--attribute` and `--value` parameters to use the encoded text file to specify the user data\. Be sure to use the `file://` prefix to specify the file\.
 
 ```
 aws ec2 modify-instance-attribute --instance-id i-1234567890abcdef0 --attribute userData --value file://my_script_base64.txt

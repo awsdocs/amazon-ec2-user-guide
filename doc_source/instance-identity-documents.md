@@ -1,8 +1,8 @@
 # Instance Identity Documents<a name="instance-identity-documents"></a>
 
-An instance identity document is a JSON file that describes an instance\. The instance identity document is accompanied by a signature and a PKCS7 signature which can be used to verify the accuracy, origin, and authenticity of the information provided in the document\. For example, you may have downloaded free software with paid updates\.
+An instance identity document is a JSON file that describes an instance\. The instance identity document is accompanied by a signature and a PKCS7 signature which can be used to verify the accuracy, origin, and authenticity of the information provided in the document\. 
 
-The instance identity document is generated when the instance is launched, and exposed to the instance through [instance metadata](ec2-instance-metadata.md)\. It validates the attributes of the instances, such as the subscribed software, instance size, instance type, operating system, and AMI\. 
+The instance identity document is generated when the instance is launched, and exposed to the instance through [instance metadata](ec2-instance-metadata.md)\. It validates the attributes of the instances, such as the instance size, instance type, operating system, and AMI\. 
 
 **Important**  
 Due to the dynamic nature of instance identity documents and signatures, we recommend retrieving the instance identity document and signature regularly\.
@@ -103,7 +103,7 @@ vSeDCOUMYQR7R9LINYwouHIziqQYMAkGByqGSM44BAMDLwAwLAIUWXBlk40xTwSw
 -----END CERTIFICATE-----
 ```
 
-The AWS public certificate for the AWS GovCloud \(US\) region is as follows:
+The AWS public certificate for the AWS GovCloud \(US\-West\) region is as follows:
 
 ```
 -----BEGIN CERTIFICATE-----

@@ -15,7 +15,7 @@ You can't stop and start an Amazon EBS\-backed instance if it is a Spot Instance
 
 Specify a launch group in your Spot Instance request to tell Amazon EC2 to launch a set of Spot Instances only if it can launch them all\. In addition, if the Spot service must terminate one of the instances in a launch group \(for example, if the Spot price exceeds your maximum price\), it must terminate them all\. However, if you terminate one or more of the instances in a launch group, Amazon EC2 does not terminate the remaining instances in the launch group\.
 
-Although this option can be useful, adding this constraint can decrease the chances that your Spot Instance request is fulfilled and increase the chances that your Spot Instances are terminated\. For example, your launch group includes instances in multiple Availability Zones\. If capacity in one of these Availability Zone decreases and is no longer available, then Amazon EC2 terminates all instances for the launch group\.
+Although this option can be useful, adding this constraint can decrease the chances that your Spot Instance request is fulfilled and increase the chances that your Spot Instances are terminated\. For example, your launch group includes instances in multiple Availability Zones\. If capacity in one of these Availability Zones decreases and is no longer available, then Amazon EC2 terminates all instances for the launch group\.
 
 If you create another successful Spot Instance request that specifies the same \(existing\) launch group as an earlier successful request, then the new instances are added to the launch group\. Subsequently, if an instance in this launch group is terminated, all instances in the launch group are terminated, which includes instances launched by the first and second requests\.
 
@@ -28,7 +28,7 @@ Although this option can be useful, adding this constraint can lower the chances
 If you specify an Availability Zone group but don't specify an Availability Zone in the Spot Instance request, the result depends on the network you specified\.
 
 **Default VPC**  
-Amazon EC2 uses the Availability Zone for the specified subnet, or if you don't specify a subnet, it selects an Availability Zone and its default subnet, but it might not be the lowest\-priced Availability Zone\. If you deleted the default subnet for an Availability Zone, then you must specify a different subnet\.
+Amazon EC2 uses the Availability Zone for the specified subnet\. If you don't specify a subnet, it selects an Availability Zone and its default subnet, but not necessarily the lowest\-priced zone\. If you deleted the default subnet for an Availability Zone, then you must specify a different subnet\.
 
 **Nondefault VPC**  
 Amazon EC2 uses the Availability Zone for the specified subnet\.

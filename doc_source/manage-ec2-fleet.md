@@ -1,8 +1,8 @@
 # Managing an EC2 Fleet<a name="manage-ec2-fleet"></a>
 
-To use an EC2 Fleet, you create a request that includes the target capacity, On\-Demand capacity, Spot capacity, one or more launch specifications for the instances, and the maximum price that you are willing to pay\. The fleet request must include a launch template that defines the information that the fleet needs to launch an instance, such as an AMI, instance type, subnet or Availability Zone, and one or more security groups\. You can specify launch specification overrides for the instance type, subnet, Availability Zone, and maximum price you're willing to pay, and you can assign weighted capacity to each launch specification override\.
+To use an EC2 Fleet, you create a request that includes the total target capacity, On\-Demand capacity, Spot capacity, one or more launch specifications for the instances, and the maximum price that you are willing to pay\. The fleet request must include a launch template that defines the information that the fleet needs to launch an instance, such as an AMI, instance type, subnet or Availability Zone, and one or more security groups\. You can specify launch specification overrides for the instance type, subnet, Availability Zone, and maximum price you're willing to pay, and you can assign weighted capacity to each launch specification override\.
 
-If your fleet includes Spot Instances, Amazon EC2 attempts to maintain your fleet target capacity as Spot prices change\.
+If your fleet includes Spot Instances, Amazon EC2 can attempt to maintain your fleet target capacity as Spot prices change\.
 
 An EC2 Fleet request remains active until it expires or you delete it\. When you delete a fleet, you may specify whether deletion terminates the instances in that fleet\.
 
@@ -23,7 +23,7 @@ An EC2 Fleet request remains active until it expires or you delete it\. When you
 An EC2 Fleet request can be in one of the following states:
 + `submitted` – The EC2 Fleet request is being evaluated and Amazon EC2 is preparing to launch the target number of instances, which can include On\-Demand Instances, Spot Instances, or both\.
 + `active` – The EC2 Fleet request has been validated and Amazon EC2 is attempting to maintain the target number of running instances\. The request remains in this state until it is modified or deleted\.
-+ `modifying` – The EC2 Fleet request is being modified\. The request remains in this state until the modification is fully processed or the request is deleted\. A one\-time `request` cannot be modified, and this state does not apply to such requests\.
++ `modifying` – The EC2 Fleet request is being modified\. The request remains in this state until the modification is fully processed or the request is deleted\. Only a `maintain` request type can be modified\. This state does not apply to other request types\.
 + `deleted_running` – The EC2 Fleet request is deleted and does not launch additional instances\. Its existing instances continue to run until they are interrupted or terminated\. The request remains in this state until all instances are interrupted or terminated\.
 + `deleted_terminating` – The EC2 Fleet request is deleted and its instances are terminating\. The request remains in this state until all instances are terminated\.
 + `deleted` – The EC2 Fleet is deleted and has no running instances\. The request is deleted two days after its instances are terminated\.
@@ -118,7 +118,7 @@ If your IAM users will create or manage an EC2 Fleet, be sure to grant them the 
    + `iam:GetRole`
    + `iam:ListPolicies`
 
-1. On the **Review policy** page, type a policy name and description, and then choose **Create policy**\.
+1. On the **Review policy** page, enter a policy name and description, and choose **Create policy**\.
 
 1. In the navigation pane, choose **Users** and select the user\.
 
@@ -141,7 +141,7 @@ You can configure your EC2 Fleet to replace unhealthy instances\. After enabling
 
 ## Generating an EC2 Fleet JSON Configuration File<a name="ec2-fleet-cli-skeleton"></a>
 
-To create an EC2 Fleet, you need only specify the launch template, target capacity, and whether the default purchasing model is On\-Demand or Spot\. If you do not specify a parameter, the fleet uses the default value\. To view the full list of fleet configuration parameters, you can generate a JSON file as follows\.
+To create an EC2 Fleet, you need only specify the launch template, total target capacity, and whether the default purchasing model is On\-Demand or Spot\. If you do not specify a parameter, the fleet uses the default value\. To view the full list of fleet configuration parameters, you can generate a JSON file as follows\.
 
 **To generate a JSON file with all possible EC2 Fleet parameters using the command line**
 + Use the [create\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-fleet.html) \(AWS CLI\) command and the `--generate-cli-skeleton` parameter to generate an EC2 Fleet JSON file:
@@ -215,7 +215,7 @@ To create an EC2 Fleet, you need only specify the launch template, target capaci
 Use lowercase for all parameter values; otherwise, you get an error when Amazon EC2 uses the JSON file to launch the EC2 Fleet\.
 
 **AllocationStrategy \(for SpotOptions\)**  
-\(Optional\) Indicates how to allocate the Spot Instance target capacity across the Spot Instance pools specified by the EC2 Fleet\. Valid values are `lowestPrice` and `diversified`\. The default is `lowestPrice`\. Specify the allocation strategy that meets your needs\. For more information, see [Allocation Strategy for Spot Instances](ec2-fleet-configuration-strategies.md#ec2-fleet-allocation-strategy)\.
+\(Optional\) Indicates how to allocate the Spot Instance target capacity across the Spot Instance pools specified by the EC2 Fleet\. Valid values are `lowestPrice` and `diversified`\. The default is `lowestPrice`\. Specify the allocation strategy that meets your needs\. For more information, see [Allocation Strategies for Spot Instances](ec2-fleet-configuration-strategies.md#ec2-fleet-allocation-strategy)\.
 
 **InstanceInterruptionBehavior**  
 \(Optional\) The behavior when a Spot Instance is interrupted\. Valid values are `hibernate`, `stop`, and `terminate`\. By default, the Spot service terminates Spot Instances when they are interrupted\. If the fleet type is `maintain`, you can specify that the Spot service hibernates or stops Spot Instances when they are interrupted\.
@@ -274,7 +274,7 @@ If the value for `TotalTargetCapacity` is higher than the combined values for `O
 \(Optional\) By default, Amazon EC2 terminates your instances when the EC2 Fleet request expires\. The default value is `true`\. To keep them running after your request expires, do not enter a value for this parameter\.
 
 **Type**  
-\(Optional\) Indicates whether EC2 Fleet only requests the target capacity, or also attempts to maintain it\. Valid values are `maintain` and `request`\. The default value is `maintain`\. If the value is `request`, EC2 Fleet only places the required requests\. It does not attempt to replenish instances if capacity is diminished, and does not submit requests in alternative capacity pools if capacity is unavailable\. If the value is `maintain`, the fleet places the required requests to meet the target capacity\. It also automatically replenishes any interrupted Spot Instances\.
+\(Optional\) Indicates whether the EC2 Fleet submits a synchronous one\-time request for your desired capacity \(`instant`\), or an asynchronous one\-time request for your desired capacity, but with no attempt maintain the capacity or to submit requests in alternative capacity pools if capacity is unavailable \(`request`\), or submits an asynchronous request for your desired capacity and continues to maintain your desired capacity by replenishing interrupted Spot Instances \(`maintain`\)\. Valid values are `instant`, `request`, and `maintain`\. The default value is `maintain`\. For more information, see [EC2 Fleet Request Types](ec2-fleet-configuration-strategies.md#ec2-fleet-request-type)\.
 
 **ValidFrom**  
 \(Optional\) To create a request that is valid only during a specific time period, enter a start date\.
@@ -296,7 +296,9 @@ You can create an EC2 Fleet that includes multiple launch specifications that ov
 
 When you create an EC2 Fleet, use a JSON file to specify information about the instances to launch\. For more information, see [EC2 Fleet JSON Configuration File Reference](#ec2-fleet-json-reference)\.
 
-**To create an EC2 Fleet using the AWS CLI**
+EC2 Fleets can only be created using the AWS CLI\.
+
+**To create an EC2 Fleet \(AWS CLI\)**
 + Use the following [create\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-fleet.html) \(AWS CLI\) command to create an EC2 Fleet:
 
 ```
@@ -305,11 +307,153 @@ aws ec2 create-fleet --cli-input-json file://file_name.json
 
 For example configuration files, see [EC2 Fleet Example Configurations](ec2-fleet-examples.md)\.
 
-The following is example output:
+The following is example output for a fleet of type `request` or `maintain`:
 
 ```
 {
     "FleetId": "fleet-12a34b55-67cd-8ef9-ba9b-9208dEXAMPLE"
+}
+```
+
+The following is example output for a fleet of type `instant` that launched the target capacity:
+
+```
+{
+  "FleetId": "fleet-12a34b55-67cd-8ef9-ba9b-9208dEXAMPLE",
+  "Errors": [],
+  "Instances": [
+    {
+      "LaunchTemplateAndOverrides": {
+        "LaunchTemplateSpecification": {
+          "LaunchTemplateId": "lt-01234a567b8910abcEXAMPLE",
+          "Version": "1"
+        },
+        "Overrides": {
+          "InstanceType": "c5.large",
+          "AvailabilityZone": "us-east-1a"
+        }
+      },
+      "Lifecycle": "on-demand",
+      "InstanceIds": [
+        "i-1234567890abcdef0",
+        "i-9876543210abcdef9" 
+      ],
+      "InstanceType": "c5.large",
+      "Platform": null
+    },
+    {
+      "LaunchTemplateAndOverrides": {
+        "LaunchTemplateSpecification": {
+          "LaunchTemplateId": "lt-01234a567b8910abcEXAMPLE",
+          "Version": "1"
+        },
+        "Overrides": {
+          "InstanceType": "c4.large",
+          "AvailabilityZone": "us-east-1a"
+        }
+      },
+      "Lifecycle": "on-demand",
+      "InstanceIds": [
+        "i-5678901234abcdef0",
+        "i-5432109876abcdef9" 
+      ],
+      "InstanceType": "c4.large",
+      "Platform": null
+    },
+  ]
+}
+```
+
+The following is example output for a fleet of type `instant` that launched part of the target capacity with errors for instances that were not launched:
+
+```
+{
+  "FleetId": "fleet-12a34b55-67cd-8ef9-ba9b-9208dEXAMPLE",
+  "Errors": [
+    {
+      "LaunchTemplateAndOverrides": {
+        "LaunchTemplateSpecification": {
+          "LaunchTemplateId": "lt-01234a567b8910abcEXAMPLE",
+          "Version": "1"
+        },
+        "Overrides": {
+          "InstanceType": "c4.xlarge",
+          "AvailabilityZone": "us-east-1a",
+        }
+      },
+      "Lifecycle": "on-demand",
+      "ErrorCode": "InsufficientInstanceCapacity",
+      "ErrorMessage": "",
+      "InstanceType": "c4.xlarge",
+      "Platform": null
+    },
+  ],
+  "Instances": [
+    {
+      "LaunchTemplateAndOverrides": {
+        "LaunchTemplateSpecification": {
+          "LaunchTemplateId": "lt-01234a567b8910abcEXAMPLE",
+          "Version": "1"
+        },
+        "Overrides": {
+          "InstanceType": "c5.large",
+          "AvailabilityZone": "us-east-1a"
+        }
+      },
+      "Lifecycle": "on-demand",
+      "InstanceIds": [
+        "i-1234567890abcdef0",
+        "i-9876543210abcdef9" 
+      ],
+      "InstanceType": "c5.large",
+      "Platform": null
+    },
+  ]
+}
+```
+
+The following is example output for a fleet of type `instant` that launched no instances:
+
+```
+{
+  "FleetId": "fleet-12a34b55-67cd-8ef9-ba9b-9208dEXAMPLE",
+  "Errors": [
+    {
+      "LaunchTemplateAndOverrides": {
+        "LaunchTemplateSpecification": {
+          "LaunchTemplateId": "lt-01234a567b8910abcEXAMPLE",
+          "Version": "1"
+        },
+        "Overrides": {
+          "InstanceType": "c4.xlarge",
+          "AvailabilityZone": "us-east-1a",
+        }
+      },
+      "Lifecycle": "on-demand",
+      "ErrorCode": "InsufficientCapacity",
+      "ErrorMessage": "",
+      "InstanceType": "c4.xlarge",
+      "Platform": null
+    },
+    {
+      "LaunchTemplateAndOverrides": {
+        "LaunchTemplateSpecification": {
+          "LaunchTemplateId": "lt-01234a567b8910abcEXAMPLE",
+          "Version": "1"
+        },
+        "Overrides": {
+          "InstanceType": "c5.large",
+          "AvailabilityZone": "us-east-1a",
+        }
+      },
+      "Lifecycle": "on-demand",
+      "ErrorCode": "InsufficientCapacity",
+      "ErrorMessage": "",
+      "InstanceType": "c5.large",
+      "Platform": null
+    },
+  ],
+  "Instances": []
 }
 ```
 
@@ -325,7 +469,7 @@ To tag an EC2 Fleet request when you create it, specify the key\-value pair in t
 **To tag instances launched by an EC2 Fleet**  
 To tag instances when they are launched by the fleet, specify the tags in the [launch template](ec2-launch-templates.md#create-launch-template) referenced in the EC2 Fleet request\.
 
-**To tag an existing EC2 Fleet request and instance using the AWS CLI**  
+**To tag an existing EC2 Fleet request and instance \(AWS CLI\)**  
 Use the following [create\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-tags.html) command to tag existing resources:
 
 ```
@@ -338,7 +482,7 @@ The EC2 Fleet launches On\-Demand Instances when there is available capacity, an
 
 The returned list of running instances is refreshed periodically and might be out of date\.
 
-**To monitor your EC2 Fleet using the AWS CLI**  
+**To monitor your EC2 Fleet \(AWS CLI\)**  
 Use the following [describe\-fleets](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-fleet.html) command to describe your EC2 Fleets:
 
 ```
@@ -445,7 +589,7 @@ When you decrease the target capacity, the EC2 Fleet deletes any open requests t
 
 When an EC2 Fleet terminates a Spot Instance because the target capacity was decreased, the instance receives a Spot Instance interruption notice\.
 
-**To modify an EC2 Fleet using the AWS CLI**  
+**To modify an EC2 Fleet \(AWS CLI\)**  
 Use the following [modify\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-spot-fleet-request.html) command to update the target capacity of the specified EC2 Fleet:
 
 ```
@@ -464,7 +608,7 @@ If you no longer require an EC2 Fleet, you can delete it\. After you delete a fl
 
 You must specify whether the EC2 Fleet must terminate its instances\. If you specify that the instances must be terminated when the fleet is deleted, it enters the `deleted_terminating` state\. Otherwise, it enters the `deleted_running` state, and the instances continue to run until they are interrupted or you terminate them manually\.
 
-**To delete an EC2 Fleet using the AWS CLI**  
+**To delete an EC2 Fleet \(AWS CLI\)**  
 Use the [delete\-fleets](https://docs.aws.amazon.com/cli/latest/reference/ec2/cancel-spot-fleet-requests.html) command and the `--terminate-instances` parameter to delete the specified EC2 Fleet and terminate the instances:
 
 ```

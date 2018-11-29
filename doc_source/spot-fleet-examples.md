@@ -399,7 +399,7 @@ For more information, see [Spot Fleet Instance Weighting](spot-fleet.md#spot-ins
 
 To ensure that you always have instance capacity, you can include a request for On\-Demand capacity in your Spot Fleet request\. If there is capacity, the On\-Demand request is always fulfilled\. The balance of the target capacity is fulfilled as Spot if there is capacity and availability\.
 
-The following example specifies the desired target capacity as 10, of which 5 must be On\-Demand capacity\. Spot capacity is not specified; it is implied in the balance of the target capacity minus the On\-Demand capacity\. Amazon EC2 launches 5 capacity units as On\-Demand, and 5 capacity units \(10\-5=5\) as Spot if there is available EC2 capacity and availability\. 
+The following example specifies the desired target capacity as 10, of which 5 must be On\-Demand capacity\. Spot capacity is not specified; it is implied in the balance of the target capacity minus the On\-Demand capacity\. Amazon EC2 launches 5 capacity units as On\-Demand, and 5 capacity units \(10\-5=5\) as Spot if there is available Amazon EC2 capacity and availability\. 
 
 For more information, see [On\-Demand in Spot Fleet](spot-fleet.md#on-demand-in-spot)\.
 

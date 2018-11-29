@@ -26,6 +26,11 @@ The following table lists current\-generation instance types that support EBS op
 
 | Instance type | EBS\-optimized by default | Maximum bandwidth \(Mbps\) | Maximum throughput \(MB/s, 128 KB I/O\) | Maximum IOPS \(16 KB I/O\) | 
 | --- | --- | --- | --- | --- | 
+| a1\.medium | Yes | 3,500 | 437\.5 | 20,000 | 
+| a1\.large | Yes | 3,500 | 437\.5 | 20,000 | 
+| a1\.xlarge | Yes | 3,500 | 437\.5 | 20,000 | 
+| a1\.2xlarge | Yes | 3,500 | 437\.5 | 20,000 | 
+| a1\.4xlarge | Yes | 3,500 | 437\.5 | 20,000 | 
 | c4\.large | Yes | 500 | 62\.5 | 4,000 | 
 | c4\.xlarge | Yes | 750 | 93\.75 | 6,000 | 
 | c4\.2xlarge | Yes | 1,000 | 125 | 8,000 | 
@@ -43,6 +48,12 @@ The following table lists current\-generation instance types that support EBS op
 | c5d\.4xlarge | Yes | 3,500 | 437\.5 | 20,000 | 
 | c5d\.9xlarge | Yes | 7,000 | 875 | 40,000 | 
 | c5d\.18xlarge | Yes | 14,000 | 1,750 | 80,000 | 
+| c5n\.large \* | Yes | 3,500 | 437\.5 | 20,000 | 
+| c5n\.xlarge \* | Yes | 3,500 | 437\.5 | 20,000 | 
+| c5n\.2xlarge \* | Yes | 3,500 | 437\.5 | 20,000 | 
+| c5n\.4xlarge | Yes | 3,500 | 437\.5 | 20,000 | 
+| c5n\.9xlarge | Yes | 7,000 | 875 | 40,000 | 
+| c5n\.18xlarge | Yes | 14,000 | 1,750 | 80,000 | 
 | d2\.xlarge | Yes | 750 | 93\.75 | 6,000 | 
 | d2\.2xlarge | Yes | 1,000 | 125 | 8,000 | 
 | d2\.4xlarge | Yes | 2,000 | 250 | 16,000 | 
@@ -155,6 +166,9 @@ The following table lists current\-generation instance types that support EBS op
 | c5d\.large | 525 | 65\.625 | 4,000 | 
 | c5d\.xlarge | 800 | 100 | 6,000 | 
 | c5d\.2xlarge | 1,750 | 218\.75 | 10,000 | 
+| c5n\.large | 525 | 65\.625 | 4,000 | 
+| c5n\.xlarge | 800 | 100 | 6,000 | 
+| c5n\.2xlarge | 1,750 | 218\.75 | 10,000 | 
 | m5\.large | 480 | 60 | 3,600 | 
 | m5\.xlarge | 850 | 106\.25 | 6,000 | 
 | m5\.2xlarge | 1,700 | 212\.5 | 12,000 | 
@@ -248,7 +262,7 @@ You can enable or disable optimization for a running instance by modifying its A
 
 1. Click **Actions**, select **Instance State**, and then click **Stop**\.
 **Warning**  
-When you stop an instance, the data on any instance store volumes is erased\. Therefore, if you have any data on instance store volumes that you want to keep, be sure to back it up to persistent storage\.
+When you stop an instance, the data on any instance store volumes is erased\. To keep data from instance store volumes, be sure to back it up to persistent storage\.
 
 1. In the confirmation dialog box, click **Yes, Stop**\. It can take a few minutes for the instance to stop\.
 

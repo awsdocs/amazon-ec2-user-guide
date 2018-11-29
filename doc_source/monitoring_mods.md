@@ -10,7 +10,7 @@ It may take up to 24 hours for a new configuration to take effect, and in some c
 
 While the volume is in the `optimizing` state, your volume performance is in between the source and target configuration specifications\. Transitional volume performance will be no less than the source volume performance\. If you are downgrading IOPS, transitional volume performance is no less than the target volume performance\.
 
-You can monitor the progress of a modification by inspecting the AWS Management Console, by querying the volume's state with the Amazon EC2 API/CLI, or by accessing metrics sent to Amazon CloudWatch Events\. The following procedures demonstrate these approaches\.<a name="console_monitoring"></a>
+You can monitor the progress of a modification by inspecting the AWS Management Console, by querying the volume's state with the Amazon EC2 API or AWS CLI, or by accessing metrics sent to Amazon CloudWatch Events\. The following procedures demonstrate these approaches\.<a name="console_monitoring"></a>
 
 **To monitor progress of a modification from the console**
 

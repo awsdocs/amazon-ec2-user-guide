@@ -1,6 +1,6 @@
 # Modifying the Size, IOPS, or Type of an EBS Volume on Linux<a name="ebs-modify-volume"></a>
 
-If your current\-generation Amazon EBS volume is attached to a current\-generation EC2 instance type, you can increase its size, change its volume type, or \(for an `io1` volume\) adjust its IOPS performance, all without detaching it\. You can apply these changes to detached volumes as well\. For more information about the current generation instance types, see [Current Generation Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#current-gen-instances)\.
+If your current\-generation Amazon EBS volume is attached to a current\-generation EC2 instance type, you can increase its size, change its volume type, or \(for an `io1` volume\) adjust its IOPS performance, all without detaching it\. You can apply these changes to detached volumes as well\. For more information, see [Current Generation Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#current-gen-instances)\.
 
 The following previous\-generation instance types support modification of EBS volumes without detachment: C1, C3, CC2, CR1, G2, I2, M1, M3, and R3\. You can safely ignore any warnings that occur with these instance types\. If you are using an unsupported previous\-generation instance type, or if you encounter an error while attempting a volume modification, follow the procedures in [Appendix: Starting and Stopping an Instance to Modify an EBS Volume](stop-start.md)\.
 

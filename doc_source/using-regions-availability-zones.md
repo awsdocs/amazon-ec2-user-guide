@@ -37,9 +37,13 @@ When you launch an instance, you can select an Availability Zone or let us choos
 
 You can also use Elastic IP addresses to mask the failure of an instance in one Availability Zone by rapidly remapping the address to an instance in another Availability Zone\. For more information, see [Elastic IP Addresses](elastic-ip-addresses-eip.md)\. 
 
-An Availability Zone is represented by a region code followed by a letter identifier; for example, `us-east-1a`\. To ensure that resources are distributed across the Availability Zones for a region, we independently map Availability Zones to identifiers for each account\. For example, your Availability Zone `us-east-1a` might not be the same location as `us-east-1a` for another account\. There's no way for you to coordinate Availability Zones between accounts\.
+An Availability Zone is represented by a region code followed by a letter identifier; for example, `us-east-1a`\. To ensure that resources are distributed across the Availability Zones for a region, we independently map Availability Zones to names for each AWS account\. For example, the Availability Zone `us-east-1a` for your AWS account might not be the same location as `us-east-1a` for another AWS account\.
 
-As Availability Zones grow over time, our ability to expand them can become constrained\. If this happens, we might restrict you from launching an instance in a constrained Availability Zone unless you already have an instance in that Availability Zone\. Eventually, we might also remove the constrained Availability Zone from the list of Availability Zones for new customers\. Therefore, your account might have a different number of available Availability Zones in a region than another account\. 
+To coordinate Availability Zones across accounts, you must use the *AZ ID*, which is a unique and consistent identifier for an Availability Zone\. For example, `use1-az1` is an AZ ID for the `us-east-1` Region and it has the same location in every AWS account\.
+
+Viewing AZ IDs enables you to determine the location of resources in one account relative to the resources in another account\. For example, if you share a subnet in the Availability Zone with the AZ ID `use-az2` with another account, this subnet is available to that account in the Availability Zone whose AZ ID is also `use-az2`\. The AZ ID for each VPC and subnet is displayed in the Amazon VPC console\. For more information, see [Working with VPC Sharing](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-sharing.html) in the *Amazon VPC User Guide*\.
+
+As Availability Zones grow over time, our ability to expand them can become constrained\. If this happens, we might restrict you from launching an instance in a constrained Availability Zone unless you already have an instance in that Availability Zone\. Eventually, we might also remove the constrained Availability Zone from the list of Availability Zones for new accounts\. Therefore, your account might have a different number of available Availability Zones in a region than another account\. 
 
 You can list the Availability Zones that are available to your account\. For more information, see [Describing Your Regions and Availability Zones](#using-regions-availability-zones-describe)\.
 
@@ -47,10 +51,10 @@ You can list the Availability Zones that are available to your account\. For mor
 
 Your account determines the regions that are available to you\. For example:
 + An AWS account provides multiple regions so that you can launch Amazon EC2 instances in locations that meet your requirements\. For example, you might want to launch instances in Europe to be closer to your European customers or to meet legal requirements\.
-+ An AWS GovCloud \(US\) account provides access to the AWS GovCloud \(US\) region only\. For more information, see [AWS GovCloud \(US\) Region](https://aws.amazon.com/govcloud-us/)\.
++ An AWS GovCloud \(US\-West\) account provides access to the AWS GovCloud \(US\-West\) region only\. For more information, see [AWS GovCloud \(US\-West\) Region](https://aws.amazon.com/govcloud-us/)\.
 + An Amazon AWS \(China\) account provides access to the Beijing and Ningxia Regions only\. For more information, see [AWS in China](https://www.amazonaws.cn/about-aws/china/)\.
 
-The following table lists the regions provided by an AWS account\. You can't describe or access additional regions from an AWS account, such as AWS GovCloud \(US\) or the China Regions\.
+The following table lists the regions provided by an AWS account\. You can't describe or access additional regions from an AWS account, such as AWS GovCloud \(US\-West\) or the China Regions\.
 
 
 | Code | Name | 
@@ -80,7 +84,7 @@ The number and mapping of Availability Zones per region may vary between AWS acc
 
 When you work with an instance using the command line interface or API actions, you must specify its regional endpoint\. For more information about the regions and endpoints for Amazon EC2, see [Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#ec2_region) in the *Amazon Web Services General Reference*\.
 
-For more information about endpoints and protocols in AWS GovCloud \(US\), see [AWS GovCloud \(US\) Endpoints](https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/using-govcloud-endpoints.html) in the *AWS GovCloud \(US\) User Guide*\.
+For more information about endpoints and protocols in AWS GovCloud \(US\-West\), see [AWS GovCloud \(US\-West\) Endpoints](https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/using-govcloud-endpoints.html) in the *AWS GovCloud \(US\) User Guide*\.
 
 ## Describing Your Regions and Availability Zones<a name="using-regions-availability-zones-describe"></a>
 

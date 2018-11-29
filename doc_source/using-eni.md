@@ -60,6 +60,11 @@ The following table lists the maximum number of network interfaces per instance 
 
 | Instance Type | Maximum Network Interfaces | IPv4 Addresses per Interface | IPv6 Addresses per Interface | 
 | --- | --- | --- | --- | 
+| `a1.medium` | 2 | 4 | 4 | 
+| `a1.large` | 3 | 10 | 10 | 
+| `a1.xlarge` | 4 | 15 | 15 | 
+| `a1.2xlarge` | 4 | 15 | 15 | 
+| `a1.4xlarge` | 8 | 30 | 30 | 
 |  `c1.medium`  |  2  |  6  | IPv6 not supported | 
 |  `c1.xlarge`  |  4  |  15  | IPv6 not supported | 
 |  `c3.large`  |  3  |  10  | 10 | 
@@ -84,6 +89,12 @@ The following table lists the maximum number of network interfaces per instance 
 | `c5d.4xlarge` | 8 | 30 | 30 | 
 | `c5d.9xlarge` | 8 | 30 | 30 | 
 | `c5d.18xlarge` | 15 | 50 | 50 | 
+| `c5n.large` | 3 | 10 | 10 | 
+| `c5n.xlarge` | 4 | 15 | 15 | 
+| `c5n.2xlarge` | 4 | 15 | 15 | 
+| `c5n.4xlarge` | 8 | 30 | 30 | 
+| `c5n.9xlarge` | 8 | 30 | 30 | 
+| `c5n.18xlarge` | 15 | 50 | 50 | 
 |  `cc2.8xlarge`  |  8  |  30  | IPv6 not supported | 
 |  `cr1.8xlarge`  |  8  |  30  | IPv6 not supported | 
 |  `d2.xlarge`  |  4  |  15  | 15 | 
@@ -217,6 +228,9 @@ The following table lists the maximum number of network interfaces per instance 
 | z1d\.3xlarge | 8 | 30 | 30 | 
 | z1d\.6xlarge | 8 | 30 | 30 | 
 | z1d\.12xlarge | 15 | 50 | 50 | 
+
+**Note**  
+If `f1.16xlarge`, `g3.16xlarge`, `h1.16xlarge`, `i3.16xlarge`, and `r4.16xlarge` instances use more than 31 IPv4 or IPv6 addresses per interface, they cannot access the instance metadata, VPC DNS, and Time Sync services from the 32nd IP address onwards\. If access to these services is needed from all IP addresses on the interface, we recommend using a maximum of 31 IP addresses per interface\.
 
 ## Scenarios for Network Interfaces<a name="scenarios-enis"></a>
 

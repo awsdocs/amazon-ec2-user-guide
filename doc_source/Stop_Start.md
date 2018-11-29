@@ -6,7 +6,7 @@ When you stop an instance, we shut it down\. We don't charge usage for a stopped
 
 While the instance is stopped, you can treat its root volume like any other volume, and modify it \(for example, repair file system problems or update software\)\. You just detach the volume from the stopped instance, attach it to a running instance, make your changes, detach it from the running instance, and then reattach it to the stopped instance\. Make sure that you reattach it using the storage device name that's specified as the root device in the block device mapping for the instance\.
 
-If you decide that you no longer need an instance, you can terminate it\. As soon as the state of an instance changes to `shutting-down` or `terminated`, we stop charging for that instance\. For more information, see [Terminate Your Instance](terminating-instances.md)\.
+If you decide that you no longer need an instance, you can terminate it\. As soon as the state of an instance changes to `shutting-down` or `terminated`, we stop charging for that instance\. For more information, see [Terminate Your Instance](terminating-instances.md)\. If you'd rather hibernate the instance, see [Hibernate Your Instance](Hibernate.md)\. For more information, see [Differences Between Reboot, Stop, Hibernate, and Terminate](ec2-instance-lifecycle.md#lifecycle-differences)\.
 
 **Topics**
 + [Overview](#instance_stop)
@@ -29,7 +29,7 @@ When you stop a running instance, the following happens:
 + If your instance is in an Auto Scaling group, the Amazon EC2 Auto Scaling service marks the stopped instance as unhealthy, and may terminate it and launch a replacement instance\. For more information, see [Health Checks for Auto Scaling Instances](https://docs.aws.amazon.com/autoscaling/latest/userguide/healthcheck.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 + When you stop a ClassicLink instance, it's unlinked from the VPC to which it was linked\. You must link the instance to the VPC again after restarting it\. For more information about ClassicLink, see [ClassicLink](vpc-classiclink.md)\.
 
-For more information, see [Differences Between Reboot, Stop, and Terminate](ec2-instance-lifecycle.md#lifecycle-differences)\.
+For more information, see [Differences Between Reboot, Stop, Hibernate, and Terminate](ec2-instance-lifecycle.md#lifecycle-differences)\.
 
 You can modify the following attributes of an instance only when it is stopped:
 + Instance type
@@ -51,7 +51,7 @@ By default, when you initiate a shutdown from an Amazon EBS\-backed instance \(u
 
 1. Choose **Actions**, select **Instance State**, and then choose **Stop**\. If **Stop** is disabled, either the instance is already stopped or its root device is an instance store volume\.
 **Warning**  
-When you stop an instance, the data on any instance store volumes is erased\. Therefore, if you have any data on instance store volumes that you want to keep, be sure to back it up to persistent storage\.
+When you stop an instance, the data on any instance store volumes is erased\. To keep data from instance store volumes, be sure to back it up to persistent storage\.
 
 1. In the confirmation dialog box, choose **Yes, Stop**\. It can take a few minutes for the instance to stop\.
 

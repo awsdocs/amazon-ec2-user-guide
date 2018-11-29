@@ -13,7 +13,7 @@ Examples of problems that cause system status checks to fail include:
 The recover action can also be triggered when an instance is scheduled by AWS to stop or retire due to degradation of the underlying hardware\. For more information about scheduled events, see [Scheduled Events for Your Instances](monitoring-instances-status-check_sched.md)\. 
 
 The recover action is supported only on instances with the following characteristics:
-+ Use one of the following instance types: C3, C4, C5, M3, M4, M5, M5a, R3, R4, R5, R5a, T2, T3, X1, or X1e
++ Use one of the following instance types: A1, C3, C4, C5, C5n, M3, M4, M5, M5a, R3, R4, R5, R5a, T2, T3, X1, or X1e
 + Use `default` or `dedicated` instance tenancy
 + Use EBS volumes only \(do not configure instance store volumes\)\. 
 

@@ -41,6 +41,7 @@ Not all attributes of a Reserved Instance can be modified, and restrictions may 
 |  Change **Availability Zones** within the same Region  |  Linux and Windows  | \- | 
 |  Change the **scope** from Availability Zone to Region and vice versa  |  Linux and Windows  |  If you change the scope from Availability Zone to Region, you lose the capacity reservation benefit\. If you change the scope from Region to Availability Zone, you lose Availability Zone flexibility and instance size flexibility \(if applicable\)\. For more information, see [How Reserved Instances Are Applied](apply_ri.md)\.  | 
 |  Change the **instance size** within the same instance type  |  Linux only  |  Some instance types are not supported, because there are no other sizes available\. For more information, see [Modifying the Instance Size of Your Reservations](#ri-modification-instancemove)\.  | 
+|  Change the **network** from EC2\-Classic to Amazon VPC and vice versa  |  Linux and Windows  |  The network platform must be available in your AWS account\. If you created your AWS account after 2013\-12\-04, it does not support EC2\-Classic\.  | 
 
 Amazon EC2 processes your modification request if there is sufficient capacity for your target configuration \(if applicable\), and if the following conditions are met\.
 

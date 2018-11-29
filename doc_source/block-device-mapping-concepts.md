@@ -311,7 +311,10 @@ Use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/e
 
 When you view the block device mapping for your instance, you can see only the EBS volumes, not the instance store volumes\. You can use instance metadata to query the complete block device mapping\. The base URI for all requests for instance metadata is `http://169.254.169.254/latest/`\.
 
-First, connect to your running instance\. From the instance, use this query to get its block device mapping\. 
+**Important**  
+NVMe instance store volumes are not included in the block device mapping\.
+
+First, connect to your running instance\. From the instance, use this query to get its block device mapping\.
 
 ```
 [ec2-user ~]$ curl http://169.254.169.254/latest/meta-data/block-device-mapping/

@@ -24,7 +24,7 @@ When you stop and start an instance, be aware of the following:
 
 1. Stop the instance\. For more information, see [Stopping and Starting Your Instances](Stop_Start.md#starting-stopping-instances)\.
 **Warning**  
-When you stop an instance, the data on any instance store volumes is erased\. Therefore, if you have any data on instance store volumes that you want to keep, be sure to back it up to persistent storage\.
+When you stop an instance, the data on any instance store volumes is erased\. To keep data from instance store volumes, be sure to back it up to persistent storage\.
 
 1. Modify your EBS volume as described in [Modifying an EBS Volume from the Console](console-modify.md) or [Modifying an EBS Volume from the Command Line](cli-modify.md)\.
 

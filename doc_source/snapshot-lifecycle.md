@@ -35,7 +35,7 @@ You can also specify custom tags to be applied to snapshots on creation\.
 
 You can't use a '\\' or '=' character in a tag key\.
 
-Volume tags are not inherited by the snapshots that Amazon DLM creates\.
+All user\-defined tags on a source volume can optionally be copied to snapshots created by a policy\.
 
 ### Lifecycle Policies<a name="dlm-lifecycle-policies"></a>
 
@@ -166,6 +166,7 @@ The following examples show how to use Amazon DLM to perform typical procedures 
    + **Create snapshots every** ***n*** **Hours**—The number of hours between policy runs\. The supported values are 12 and 24\.
    + **Snapshot creation start time** ***hh***:***mm*** **UTC**—The time of day when policy runs are scheduled to start\. The policy runs start within an hour after the scheduled time\.
    + **Retention rule**—The maximum number of snapshots to retain for each volume\. The supported range is 1 to 1000\. After the limit is reached, the oldest snapshot is deleted when a new one is created\.
+   + **Copy tags**—Copy all user\-defined tags on a source volume to snapshots of the volume created by this policy\.
    + **Tag created snapshots**—The resource tags to apply to the snapshots that are created\. These tags are in addition to the tags applied by Amazon DLM\.
    + **IAM role**—An IAM role that has permissions to create, delete, and describe snapshots, and to describe volumes\. AWS provides a default role, **AWSDataLifecycleManagerDefaultRole**, or you can create a custom IAM role\.
    + **Policy status after creation**—Choose **Enable policy** to start the policy runs at the next scheduled time or **Disable policy** to prevent the policy from running\.
@@ -205,6 +206,7 @@ The following examples show how to use Amazon DLM to perform typical procedures 
    + **Create snapshots every** ***n*** **Hours**—The number of hours between policy runs\. The supported values are 12 and 24\.
    + **Snapshot creation start time** ***hh***:***mm*** **UTC**—The time of day when policy runs are scheduled to start\. The policy runs start within an hour after the scheduled time\.
    + **Retention rule**—The maximum number of snapshots to retain for each volume\. The supported range is 1 to 1000\. After the limit is reached, the oldest snapshot is deleted when a new one is created\.
+   + **Copy tags**—Copy all user\-defined tags on a source volume to snapshots of the volume created by this policy\.
    + **Tag created snapshots**—The resource tags to apply to the snapshots that are created\. These tags are in addition to the tags applied by Amazon DLM\.
    + **IAM role**—An IAM role that has permissions to create, delete, and describe snapshots, and to describe volumes\. AWS provides a default role, **AWSDataLifecycleManagerDefaultRole**, or you can create a custom IAM role\.
    + **Policy status after creation**—Choose **Enable policy** to start the policy runs at the next scheduled time or **Disable policy** to prevent the policy from running\.<a name="console-delete-policy"></a>
@@ -260,7 +262,8 @@ The following is an example of the `policyDetails.json` file:
          },
          "RetainRule": {
             "Count":5
-         }
+         },
+         "CopyTags": false 
       }
    ]
 }
@@ -311,6 +314,7 @@ The following is example output\. It includes the information that you specified
                "RetainRule": {
                   "Count": 5
                },
+               "CopyTags": false, 
                "CreateRule": {
                   "Interval": 24,
                   "IntervalUnit": "HOURS",
@@ -363,7 +367,8 @@ The following is an example of the `policyDetailsUpdated.json` file:
          },
          "RetainRule": {
             "Count" :5
-         }
+         },
+         "CopyTags": false 
       }
    ]
 }

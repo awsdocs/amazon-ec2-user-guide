@@ -2,6 +2,15 @@
 
 General purpose instances provide a balance of compute, memory, and networking resources, and can be used for a variety of workloads\.
 
+**A1 Instances**
+
+A1 instances are ideally suited for scale\-out workloads that are supported by the Arm ecosystem\. These instances are well\-suited for the following applications:
++ Web servers
++ Containerized microservices
++ Caching fleets
++ Distributed data stores
++ Applications that require the Arm instruction set
+
 **M5, M5a, and M5d Instances**
 
 These instances provide an ideal cloud infrastructure, offering a balance of compute, memory, and networking resources for a broad range of applications that are deployed in the cloud\. M5 instances are well\-suited for the following applications:
@@ -34,6 +43,11 @@ The following is a summary of the hardware specifications for general purpose in
 
 | Instance type | Default vCPUs | Memory \(GiB\) | 
 | --- | --- | --- | 
+| a1\.medium | 1 | 2 | 
+| a1\.large | 2 | 4 | 
+| a1\.xlarge | 4 | 8 | 
+| a1\.2xlarge | 8 | 16 | 
+| a1\.4xlarge | 16 | 32 | 
 | m4\.large | 2 | 8 | 
 | m4\.xlarge | 4 | 16 | 
 | m4\.2xlarge | 8 | 32 | 
@@ -87,7 +101,7 @@ Some general purpose instance types provide the ability to control processor C\-
 
 You can enable enhanced networking capabilities on supported instance types\. Enhanced networking provides significantly higher packet\-per\-second \(PPS\) performance, lower network jitter, and lower latencies\. For more information, see [Enhanced Networking on Linux](enhanced-networking.md)\.
 
-Instance types that use the Elastic Network Adapter \(ENA\) for enhanced networking deliver high packet per second performance with consistently low latencies\. Most applications do not consistently need a high level of network performance, but can benefit from having access to increased bandwidth when they send or receive data\. Instance types that use the ENA and support up to 10 Gbps of throughput use a network I/O credit mechanism to allocate network bandwidth to instances based on average bandwidth utilization\. These instances accrue credits when their network throughput is below their baseline limits, and can use these credits when they perform network data transfers\. For workloads that require access to 10 Gbps of bandwidth or more on a sustained basis, we recommend using instance types that support 10 Gbps or 25 Gbps network speeds\.
+Instance types that use the Elastic Network Adapter \(ENA\) for enhanced networking deliver high packet per second performance with consistently low latencies\. Most applications do not consistently need a high level of network performance, but can benefit from having access to increased bandwidth when they send or receive data\. Instance sizes that use the ENA and are documented with network performance of "Up to 10 Gbps" or "Up to 25 Gbps" use a network I/O credit mechanism to allocate network bandwidth to instances based on average bandwidth utilization\. These instances accrue credits when their network bandwidth is below their baseline limits, and can use these credits when they perform network data transfers\.
 
 The following is a summary of network performance for general purpose instances that support enhanced networking\.
 
@@ -98,7 +112,7 @@ The following is a summary of network performance for general purpose instances 
 | t3\.nano, t3\.micro, t3\.small, t3\.medium, t3\.large, t3\.xlarge, t3\.2xlarge  | Up to 5 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  `m4.large`  |  Moderate  |  [Intel 82599 VF](sriov-networking.md)  | 
 |  `m4.xlarge`, `m4.2xlarge`, `m4.4xlarge`  |  High  |  [Intel 82599 VF](sriov-networking.md)  | 
-|  `m5.large`, `m5.xlarge`, `m5.2xlarge`, `m5.4xlarge`, `m5a.large`, `m5a.xlarge`, `m5a.2xlarge`, `m5a.4xlarge`, `m5d.large`, `m5d.xlarge`, `m5d.2xlarge`, `m5d.4xlarge`  |  Up to 10 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `a1.medium`, `a1.large`, `a1.xlarge`, `a1.2xlarge`, `a1.4xlarge`, `m5.large`, `m5.xlarge`, `m5.2xlarge`, `m5.4xlarge`, `m5a.large`, `m5a.xlarge`, `m5a.2xlarge`, `m5a.4xlarge`, `m5d.large`, `m5d.xlarge`, `m5d.2xlarge`, `m5d.4xlarge`  |  Up to 10 Gbps  | [ENA](enhanced-networking-ena.md) | 
 |  `m4.10xlarge`  |  10 Gbps  |  [Intel 82599 VF](sriov-networking.md)  | 
 |  `m5.12xlarge`, `m5a.12xlarge`, `m5d.12xlarge`  |  10 Gbps  | [ENA](enhanced-networking-ena.md) | 
 |  `m5a.24xlarge`  |  20 Gbps  | [ENA](enhanced-networking-ena.md) | 
@@ -133,12 +147,13 @@ The following is a summary of features for general purpose instances:
 
 |  | EBS only | NVMe EBS | Instance store | Placement group | 
 | --- | --- | --- | --- | --- | 
-|  M4  |  Yes  |  |  |  Yes  | 
-|  M5  |  Yes  |  Yes  |  |  Yes  | 
-|  M5a  |  Yes  |  Yes  |  |  Yes  | 
-|  M5d  |  |  Yes  |  NVMe \*  |  Yes  | 
-|  T2  |  Yes  |  |  |  | 
-|  T3  |  Yes  |  Yes  |  |  | 
+| A1 | Yes | Yes |  | Yes | 
+| M4 | Yes |  |  | Yes | 
+| M5 | Yes | Yes |  | Yes | 
+| M5a | Yes | Yes |  | Yes | 
+| M5d |  | Yes | NVMe \* | Yes | 
+| T2 | Yes |  |  |  | 
+| T3 | Yes | Yes |  |  | 
 
 **\*** The root device volume must be an Amazon EBS volume\.
 
@@ -150,7 +165,18 @@ For more information, see the following:
 ## Release Notes<a name="general-purpose-instances-limits"></a>
 + M5, M5d, and T3 instances feature a 3\.1 GHz Intel Xeon Platinum 8000 series processor\.
 + M5a instances feature a 2\.5 GHz AMD EPYC 7000 series processor\.
++ A1 instances feature a 2\.3 GHz AWS Graviton processor based on 64\-bit Arm architecture\.
 + M4, M5, M5a, M5d, `t2.large` and larger, and `t3.large` and larger instance types require 64\-bit HVM AMIs\. They have high\-memory, and require a 64\-bit operating system to take advantage of that capacity\. HVM AMIs provide superior performance in comparison to paravirtual \(PV\) AMIs on high\-memory instance types\. In addition, you must use an HVM AMI to take advantage of enhanced networking\.
++ A1 instances have the following requirements:
+  + Must have the NVMe drivers installed\. EBS volumes are exposed as [NVMe block devices](nvme-ebs-volumes.md)\.
+  + Must have the Elastic Network Adapter \([ENA](enhanced-networking-ena.md)\) drivers installed\.
+  + Must use an AMI for the 64\-bit Arm architecture\.
+  + Must support booting through UEFI with ACPI tables and support ACPI hot\-plug of PCI devices\.
+
+  The following AMIs meet these requirements:
+  + Amazon Linux 2 \(64\-bit Arm\)
+  + Ubuntu 16\.04 or later \(64\-bit Arm\)
+  + Red Hat Enterprise Linux 7\.6 or later \(64\-bit Arm\)
 + M5, M5a, M5d, and T3 instances have the following requirements:
   + Must have the NVMe drivers installed\. EBS volumes are exposed as [NVMe block devices](nvme-ebs-volumes.md)\.
   + Must have the Elastic Network Adapter \([ENA](enhanced-networking-ena.md)\) drivers installed\.
@@ -164,6 +190,6 @@ For more information, see the following:
   + CentOS 7 or later
   + FreeBSD 11\.1\-RELEASE
   + Windows Server 2008 R2 or later
-+ M5, M5a, M5d, and T3 instances support a maximum of 28 attachments, including network interfaces, EBS volumes, and NVMe instance store volumes\. Every instance has at least one network interface attachment\. For example, if you have no additional network interface attachments on an EBS\-only instance, you could attach 27 EBS volumes to that instance\.
-+ M5, M5a, and M5d instances should have acpid installed to support clean shutdown through API requests\.
++ A1, M5, M5a, M5d, and T3 instances support a maximum of 28 attachments, including network interfaces, EBS volumes, and NVMe instance store volumes\. Every instance has at least one network interface attachment\. For example, if you have no additional network interface attachments on an EBS\-only instance, you could attach 27 EBS volumes to that instance\.
++ A1, M5, M5a, and M5d instances should have system\-logind or acpid installed to support clean shutdown through API requests\.
 + There is a limit on the total number of instances that you can launch in a region, and there are additional limits on some instance types\. For more information, see [How many instances can I run in Amazon EC2?](https://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2)\. To request a limit increase, use the [Amazon EC2 Instance Request Form](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-instances)\.

@@ -33,7 +33,7 @@ The following table lists the key differences between Spot Instances and On\-Dem
 
 ### Strategies for Using Spot Instances<a name="spot-strategy"></a>
 
-One strategy to maintain a minimum level of guaranteed compute resources for your applications is to launch a core group of On\-Demand Instances , and supplement them with Spot Instances when the opportunity arises\.
+One strategy to maintain a minimum level of guaranteed compute resources for your applications is to launch a core group of On\-Demand Instances, and supplement them with Spot Instances when the opportunity arises\.
 
 ![\[Compare On-Demand and Spot Instances\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/spot_introduction.png)
 

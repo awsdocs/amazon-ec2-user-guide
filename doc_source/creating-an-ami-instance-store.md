@@ -27,7 +27,7 @@ Before you can create an AMI, you must complete the following tasks:
 + Ensure that you have an X\.509 certificate and corresponding private key\.
   + If you need to create an X\.509 certificate, see [Managing Signing Certificates](set-up-ami-tools.md#ami-tools-managing-certs)\. The X\.509 certificate and private key are used to encrypt and decrypt your AMI\.
   + \[China \(Beijing\)\] Use the `$EC2_AMITOOL_HOME/etc/ec2/amitools/cert-ec2-cn-north-1.pem` certificate\.
-  + \[AWS GovCloud \(US\)\] Use the `$EC2_AMITOOL_HOME/etc/ec2/amitools/cert-ec2-gov.pem` certificate\.
+  + \[AWS GovCloud \(US\-West\)\] Use the `$EC2_AMITOOL_HOME/etc/ec2/amitools/cert-ec2-gov.pem` certificate\.
 + Connect to your instance and customize it\. For example, you can install software and applications, copy data, delete temporary files, and modify the Linux configuration\.
 
 **Tasks**

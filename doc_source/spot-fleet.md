@@ -15,7 +15,7 @@ A *Spot Instance pool* is a set of unused EC2 instances with the same instance t
 
 ## On\-Demand in Spot Fleet<a name="on-demand-in-spot"></a>
 
-To ensure that you always have instance capacity, you can include a request for On\-Demand capacity in your Spot Fleet request\. In your Spot Fleet request, you specify your desired target capacity and how much of that capacity must be On\-Demand\. The balance comprises Spot capacity, which is launched if there is available EC2 capacity and availability\. For example, if in your Spot Fleet request you specify target capacity as 10 and On\-Demand capacity as 8, Amazon EC2 launches 8 capacity units as On\-Demand, and 2 capacity units \(10\-8=2\) as Spot\.
+To ensure that you always have instance capacity, you can include a request for On\-Demand capacity in your Spot Fleet request\. In your Spot Fleet request, you specify your desired target capacity and how much of that capacity must be On\-Demand\. The balance comprises Spot capacity, which is launched if there is available Amazon EC2 capacity and availability\. For example, if in your Spot Fleet request you specify target capacity as 10 and On\-Demand capacity as 8, Amazon EC2 launches 8 capacity units as On\-Demand, and 2 capacity units \(10\-8=2\) as Spot\.
 
 ### Prioritizing Instance Types for On\-Demand Capacity<a name="spot-fleet-on-demand-priority"></a>
 
@@ -111,7 +111,7 @@ Consider a Spot Fleet request with the following configuration:
 + A launch specification with an instance type `m3.xlarge` and a weight of 8
 + A launch specification with an instance type `r3.xlarge` and a weight of 8
 
-The Spot Fleet would launch four instances \(30 divided by 8, result rounded up\)\. With the `lowestPrice` strategy, all four instances come from the pool that provides the lowest price per unit\. With the `diversified` strategy, the Spot Fleet launches 1 instance in each of the three pools, and the fourth instance in whichever of the three pools provides the lowest price per unit\.
+The Spot Fleet would launch four instances \(30 divided by 8, result rounded up\)\. With the `lowestPrice` strategy, all four instances come from the pool that provides the lowest price per unit\. With the `diversified` strategy, the Spot Fleet launches one instance in each of the three pools, and the fourth instance in whichever pool provides the lowest price per unit\.
 
 ## Walkthrough: Using Spot Fleet with Instance Weighting<a name="instance-weighting-walkthrough"></a>
 

@@ -46,6 +46,7 @@ The following table describes the Amazon EC2 resources that can be tagged, and t
 |  AFI  |  Yes  |  No  | 
 |  AMI  |  Yes  | No | 
 |  Bundle task  |  No  | No | 
+|  Capacity Reservation  |  Yes  |  Yes  | 
 |  Customer gateway  |  Yes  | No | 
 |  Dedicated Host  |  Yes  |  Yes  | 
 |  DHCP option  |  Yes  | No | 
@@ -58,7 +59,6 @@ The following table describes the Amazon EC2 resources that can be tagged, and t
 |  Instance store volume  |  N/A  | N/A | 
 |  Internet gateway  |  Yes  | No | 
 |  Key pair  |  No  | No | 
-|   |  Yes  |  Yes  | 
 |  Launch template  |  Yes  |  No  | 
 |  Launch template version  |  No  |  No  | 
 |  NAT gateway  |  Yes  | No | 

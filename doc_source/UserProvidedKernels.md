@@ -193,7 +193,7 @@ We continue to provide hd00 AKIs for backward compatibility in regions where the
 |  aki\-5c21674b  |  pv\-grub\-hd0\_1\.05\-x86\_64\.gz  | 
 
 
-**us\-gov\-west\-1, AWS GovCloud \(US\)**  
+**us\-gov\-west\-1, AWS GovCloud \(US\-West\)**  
 
 | Image ID | Image Name | 
 | --- | --- | 

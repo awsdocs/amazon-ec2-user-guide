@@ -289,7 +289,7 @@ Create a new key pair using either the Amazon EC2 console or a third\-party tool
 
 1. Choose **Actions**, select **Instance State**, and then select **Stop**\. If **Stop** is disabled, either the instance is already stopped or its root device is an instance store volume\.
 **Warning**  
-When you stop an instance, the data on any instance store volumes is erased\. Therefore, if you have any data on instance store volumes that you want to keep, be sure to back it up to persistent storage\.
+When you stop an instance, the data on any instance store volumes is erased\. To keep data from instance store volumes, be sure to back it up to persistent storage\.
 
 1. Choose **Launch Instance**, and then use the launch wizard to launch a temporary instance with the following options:
    + On the **Choose an AMI** page, select the same AMI that you used to launch the original instance\. If this AMI is unavailable, you can create an AMI that you can use from the stopped instance\. For more information, see [Creating an Amazon EBS\-Backed Linux AMI](creating-an-ami-ebs.md) \.

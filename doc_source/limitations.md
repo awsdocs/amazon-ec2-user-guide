@@ -4,6 +4,9 @@ Be aware of the following limits and requirements when you modify an EBS volume:
 + In some cases, you must detach the volume or stop the instance for modification to proceed\. If you encounter an error message while attempting to modify an EBS volume, or if you are modifying an EBS volume attached to a previous\-generation instance type, take one of the following steps:
   + For a non\-root volume, detach the volume from the instance, apply the modifications, and then re\-attach the volume\. For more information, see [Detaching an Amazon EBS Volume from an Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-detaching-volume.html) and [Attaching an Amazon EBS Volume to an Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-attaching-volume.html)\. 
   + For a root \(boot\) volume, stop the instance, apply the modifications, and then restart the instance\. For more information, see [Appendix: Starting and Stopping an Instance to Modify an EBS Volume](stop-start.md)\.
++ When provisioning over 32,000 IOPS on an existing `io1` volume, you may need to do one of the following in order to see full performance:
+  + Detach and attach the volume\.
+  + Restart the instance\.
 + Decreasing the size of an EBS volume is not supported\. However, you can create a smaller volume and then migrate your data to it using an application\-level tool such as rsync\.
 + After modifying a volume, wait at least six hours and ensure that the volume is in the `in-use` or `available` state before applying further modifications to the same volume\.
 + While `m3.medium` instances fully support volume modification, some `m3.large`, `m3.xlarge`, and `m3.2xlarge` instances might not support all volume modification features\. If you encounter an error, see [Appendix: Starting and Stopping an Instance to Modify an EBS Volume](stop-start.md)\.
@@ -11,8 +14,8 @@ Be aware of the following limits and requirements when you modify an EBS volume:
 ## Volume Modification Support on Older Volumes<a name="initialize-modification-support"></a>
 
 Before you can modify a volume that was attached to an instance before November 1, 2016, you must initialize volume modification support using one of the following actions:
-+ Detach and attach the volume
-+ Restart the instance
++ Detach and attach the volume\.
++ Restart the instance\.
 
 **To determine whether you must initialize volume modification support using the console**
 

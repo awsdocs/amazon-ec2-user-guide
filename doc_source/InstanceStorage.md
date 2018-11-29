@@ -63,7 +63,7 @@ The following table provides the quantity, size, type, and performance optimizat
 |  `d2.8xlarge`  |  24 x 2,000 GB \(48 TB\)  | HDD |  |  | 
 |  `f1.2xlarge`  |  1 x 470 GB  | NVMe SSD |  | ✔ | 
 |  `f1.4xlarge`  |  1 x 940 GB  | NVMe SSD |  | ✔ | 
-|  `f1.16xlarge`  |  4 x 940 GB  | NVMe SSD |  | ✔ | 
+|  `f1.16xlarge`  |  4 x 940 GB \(3\.76 TB\)  | NVMe SSD |  | ✔ | 
 | g2\.2xlarge | 1 x 60 GB | SSD | ✔ |  | 
 | g2\.8xlarge | 2 x 120 GB \(240 GB\) | SSD | ✔ |  | 
 | h1\.2xlarge | 1 x 2000 GB \(2 TB\) | HDD |  |  | 
@@ -96,8 +96,8 @@ The following table provides the quantity, size, type, and performance optimizat
 | m5d\.large | 1 x 75 GB  | NVMe SSD |  | ✔ | 
 | m5d\.xlarge | 1 x 150 GB | NVMe SSD |  | ✔ | 
 | m5d\.2xlarge | 1 x 300 GB | NVMe SSD |  | ✔ | 
-| m5d\.4xlarge | 2 x 300 GB | NVMe SSD |  | ✔ | 
-| m5d\.12xlarge | 2 x 900 GB | NVMe SSD |  | ✔ | 
+| m5d\.4xlarge | 2 x 300 GB \(600 GB\) | NVMe SSD |  | ✔ | 
+| m5d\.12xlarge | 2 x 900 GB \(1\.8 TB\) | NVMe SSD |  | ✔ | 
 | m5d\.24xlarge | 4 x 900 GB \(3\.6 TB\) | NVMe SSD |  | ✔ | 
 |  `r3.large`  |  1 x 32 GB  | SSD |  | ✔ | 
 |  `r3.xlarge`  |  1 x 80 GB  | SSD |  | ✔ | 

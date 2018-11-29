@@ -73,6 +73,12 @@ The following tables list the instance types that support specifying CPU options
 | c5d\.4xlarge | 16 | 8 | 2 | 2, 4, 6, 8 | 1, 2 | 
 | c5d\.9xlarge | 36 | 18 | 2 | 2, 4, 6, 8, 10, 12, 14, 16, 18 | 1, 2 | 
 | c5d\.18xlarge | 72 | 36 | 2 | 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36 | 1, 2 | 
+| c5n\.large | 2 | 1 | 2 | 1 | 1, 2 | 
+| c5n\.xlarge | 4 | 2 | 2 | 2 | 1, 2 | 
+| c5n\.2xlarge | 8 | 4 | 2 | 2, 4 | 1, 2 | 
+| c5n\.4xlarge | 16 | 8 | 2 | 2, 4, 6, 8 | 1, 2 | 
+| c5n\.9xlarge | 36 | 18 | 2 | 2, 4, 6, 8, 10, 12, 14, 16, 18 | 1, 2 | 
+| c5n\.18xlarge | 72 | 36 | 2 | 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36 | 1, 2 | 
 
 
 **General Purpose Instances**  

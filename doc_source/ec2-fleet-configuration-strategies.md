@@ -13,7 +13,7 @@ Use the appropriate configuration strategies to create an EC2 Fleet that meets y
 **Topics**
 + [Planning an EC2 Fleet](#plan-ec2-fleet)
 + [EC2 Fleet Request Types](#ec2-fleet-request-type)
-+ [Allocation Strategy for Spot Instances](#ec2-fleet-allocation-strategy)
++ [Allocation Strategies for Spot Instances](#ec2-fleet-allocation-strategy)
 + [Configuring EC2 Fleet for On\-Demand Backup](#ec2-fleet-on-demand-backup)
 + [Maximum Price Overrides](#ec2-fleet-price-overrides)
 + [EC2 Fleet Instance Weighting](#ec2-fleet-instance-weighting)
@@ -23,7 +23,7 @@ Use the appropriate configuration strategies to create an EC2 Fleet that meets y
 ## Planning an EC2 Fleet<a name="plan-ec2-fleet"></a>
 
 When planning your EC2 Fleet, we recommend that you do the following:
-+ Determine whether you want to create an EC2 Fleet that submits a one\-time request for the desired target capacity, or one that maintains a target capacity over time\. For more information, see [EC2 Fleet Request Types](#ec2-fleet-request-type)\.
++ Determine whether you want to create an EC2 Fleet that submits a synchronous or asynchronous one\-time request for the desired target capacity, or one that maintains a target capacity over time\. For more information, see [EC2 Fleet Request Types](#ec2-fleet-request-type)\.
 + Determine the instance types that meet your application requirements\.
 + If you plan to include Spot Instances in your EC2 Fleet, review [Spot Best Practices](https://aws.amazon.com/ec2/spot/getting-started/#bestpractices) before you create the fleet\. Use these best practices when you plan your fleet so that you can provision the instances at the lowest possible price\.
 + Determine the target capacity for your EC2 Fleet\. You can set target capacity in instances or in custom units\. For more information, see [EC2 Fleet Instance Weighting](#ec2-fleet-instance-weighting)\.
@@ -33,17 +33,22 @@ When planning your EC2 Fleet, we recommend that you do the following:
 
 ## EC2 Fleet Request Types<a name="ec2-fleet-request-type"></a>
 
-There are two types of EC2 Fleet requests: `request` and `maintain`\. You can create a fleet to submit a one\-time request for your desired capacity, or require it to maintain the target capacity over time\.
+There are three types of EC2 Fleet requests: 
 
-If you configure the fleet type as `request`, EC2 Fleet places a one\-time request for the target capacity, and does not attempt to replenish Spot Instances if capacity is diminished\. If capacity is not available, the fleet does not submit requests in alternative Spot Instance pools\.
+`instant`  
+If you configure the request type as `instant`, EC2 Fleet places a synchronous one\-time request for your desired capacity\. In the API response, it returns the instances that launched, along with errors for those instances that could not be launched\.
 
-If you configure the fleet type as `maintain`, EC2 Fleet places requests to meet the target capacity, and automatically replenishes any interrupted Spot Instances\.
+`request`  
+If you configure the request type as `request`, EC2 Fleet places an asynchronous one\-time request for your desired capacity\. Thereafter, if capacity is diminished because of Spot interruptions, the fleet does not attempt to replenish Spot Instances, nor does it submit requests in alternative Spot Instance pools if capacity is unavailable\.
 
-You cannot modify the target capacity of a one\-time request after it's been submitted\. To change the target capacity of a one\-time request, delete the EC2 Fleet and create a new one\.
+`maintain`  
+\(Default\) If you configure the request type as `maintain`, EC2 Fleet places an asynchronous request for your desired capacity, and maintains capacity by automatically replenishing any interrupted Spot Instances\.
 
-Both types of requests benefit from an allocation strategy\. For more information, see [Allocation Strategy for Spot Instances](#ec2-fleet-allocation-strategy)\.
+You cannot modify the target capacity of an `instant` or `request` EC2 Fleet request after it's been submitted\. To change the target capacity of an `instant` or `request` fleet request, delete the fleet and create a new one\.
 
-## Allocation Strategy for Spot Instances<a name="ec2-fleet-allocation-strategy"></a>
+All three types of requests benefit from an allocation strategy\. For more information, see [Allocation Strategies for Spot Instances](#ec2-fleet-allocation-strategy)\.
+
+## Allocation Strategies for Spot Instances<a name="ec2-fleet-allocation-strategy"></a>
 
 The allocation strategy for your EC2 Fleet determines how it fulfills your request for Spot Instances from the possible Spot Instance pools represented by its launch specifications\. The following are the allocation strategies that you can specify in your fleet:
 
