@@ -179,7 +179,7 @@ The following procedure provides the general steps for compiling the `ixgbevf` m
    ubuntu:~$ sudo apt-get update && sudo apt-get upgrade -y linux-aws
    ```
 **Important**  
-If during the update process, you are prompted to install `grub`, use `/dev/xvda` to install `grub` onto, and then choose to keep the current version of `/boot/grub/menu.lst`\.
+If during the update process, you are prompted to install `grub`, use `/dev/xvda` to install `grub`, and then choose to keep the current version of `/boot/grub/menu.lst`\.
 
 ## Enabling Enhanced Networking on Other Linux Distributions<a name="enhanced-networking-linux"></a>
 
