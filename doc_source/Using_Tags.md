@@ -36,12 +36,12 @@ If you're using the Amazon EC2 console, you can apply tags to resources by using
 
 If you're using the Amazon EC2 API, the AWS CLI, or an AWS SDK, you can use the `CreateTags` EC2 API action to apply tags to existing resources\. Additionally, some resource\-creating actions enable you to specify tags for a resource when the resource is created\. If tags cannot be applied during resource creation, we roll back the resource creation process\. This ensures that resources are either created with tags or not created at all, and that no resources are left untagged at any time\. By tagging resources at the time of creation, you can eliminate the need to run custom tagging scripts after resource creation\.
 
-The following table describes the Amazon EC2 resources that can be tagged, and the resources that can be tagged on creation\.
+The following table describes the Amazon EC2 resources that can be tagged, and the resources that can be tagged on creation using the Amazon EC2 API, the AWS CLI, or an AWS SDK\.
 
 
 **Tagging Support for Amazon EC2 Resources**  
 
-| Resource | Supports tags | Supports tagging on creation \(Amazon EC2 API, AWS CLI, AWS SDK\) | 
+| Resource | Supports tags | Supports tagging on creation | 
 | --- | --- | --- | 
 |  AFI  |  Yes  |  No  | 
 |  AMI  |  Yes  | No | 
@@ -71,13 +71,16 @@ The following table describes the Amazon EC2 resources that can be tagged, and t
 |  Spot Instance request  |  Yes  | No | 
 |  Security group  |  Yes  | No | 
 |  Subnet  |  Yes  | No | 
-|  Virtual private gateway  |  Yes  | No | 
-|  VPC  |  Yes  | No | 
+| Transit gateway | Yes | Yes | 
+| Transit gateway route table | Yes | Yes | 
+| Transit gateway VPC attachment | Yes | Yes | 
+| Virtual private gateway | Yes | No | 
+| VPC | Yes | No | 
 | VPC endpoint | No | No | 
-|  VPC endpoint service  |  No  |  No  | 
-|  VPC flow log  |  No  | No | 
+| VPC endpoint service | No | No | 
+| VPC flow log | No | No | 
 | VPC peering connection | Yes | No | 
-|  VPN connection  |  Yes  | No | 
+| VPN connection | Yes | No | 
 
 You can tag instances and volumes on creation using the Amazon EC2 Launch Instances wizard in the Amazon EC2 console\. You can tag your EBS volumes on creation using the Volumes screen, or EBS snapshots using the Snapshots screen\. Alternatively, use the resource\-creating Amazon EC2 APIs \(for example, [RunInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html)\) to apply tags when creating your resource\.
 

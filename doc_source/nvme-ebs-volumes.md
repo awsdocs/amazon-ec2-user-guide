@@ -9,16 +9,14 @@ Some of these instance types also support NVMe instance store volumes\. For more
 
 ## Identifying the EBS Device<a name="identify-nvme-ebs-device"></a>
 
-**Amazon Linux AMIs**  
-EBS uses single\-root I/O virtualization \(SR\-IOV\) to provide volume attachments on Nitro\-based instances following the NVMe specification\. These devices rely on standard drivers provided by the operating system\. 
+EBS uses single\-root I/O virtualization \(SR\-IOV\) to provide volume attachments on Nitro\-based instances using the NVMe specification\. These devices rely on standard NVMe drivers on the operating system\. These drivers typically discover attached devices by scanning the PCI bus during instance boot, and create device nodes based on the order in which the devices respond, not on how the devices are specified in the block device mapping\. In Linux, NVMe device names follow the pattern `/dev/nvme<x>n<y>`, where <x> is the enumeration order, and, for EBS, <y> is 1\. Occasionally, devices can respond to discovery in a different order in subsequent instance starts, which causes the device name to change\.
 
-NVMe drivers typically discover attached devices by scanning the PCI bus during instance boot and create device nodes based on the order in which the devices respond\. This differs from the block\-device mapping that is performed during `RunInstances` or `AttachVolume` API call\. In Linux, NVMe devices names follow the pattern: `/dev/nvme<x>n<y>`, where `x` is the enumeration order, and, for EBS, `y` is 1\. Devices may respond to discovery in a different order in subsequent instance starts, causing the device name to change\.
-
-We recommend that you track your EBS volumes with one of the following stable identifiers:
-+ For Nitro\-based instances, the block device mappings that are specified in the Amazon EC2 console when you are attaching an EBS volume or during `AttachVolume` or `RunInstances` API calls are captured in the vendor\-specific data field of the NVMe controller identification\. Amazon Linux AMIs later than version 2017\.09\.01 provide a `udev` rule that reads this data and creates a symbolic link to the block\-device mapping\.
+We recommend that you use stable identifiers for your EBS volumes within your instance, such as one of the following:
++ For Nitro\-based instances, the block device mappings that are specified in the Amazon EC2 console when you are attaching an EBS volume or during `AttachVolume` or `RunInstances` API calls are captured in the vendor\-specific data field of the NVMe controller identification\. With Amazon Linux AMIs later than version 2017\.09\.01, we provide a `udev` rule that reads this data and creates a symbolic link to the block\-device mapping\.
 + NVMe\-attached EBS volumes have the EBS volume ID set as the serial number in the device identification\.
 + When a device is formatted, a UUID is generated that persists for the life of the filesystem\. A device label can be specified at the same time\. For more information, see [Making an Amazon EBS Volume Available for Use on Linux](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html) and [Booting from the Wrong Volume](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-booting-from-wrong-volume.html)\.
 
+**Amazon Linux AMIs**  
 With Amazon Linux AMI 2017\.09\.01 or later \(including Amazon Linux 2\), you can run the ebsnvme\-id command as follows to map the NVMe device name to a volume ID and device name:
 
 ```
@@ -68,10 +66,12 @@ Before you detach an NVMe EBS volume, you should sync and unmount it\. When you 
 
 ## I/O Operation Timeout<a name="timeout-nvme-ebs-volumes"></a>
 
-EBS volumes attached to Nitro\-based system instances use the default NVMe driver provided by the operating system\. Most operating systems specify a timeout for I/O operations submitted to NVMe devices\. The default timeout is 30 seconds and can be changed using the `nvme_core.io_timeout` boot parameter \(or the `nvme.io_timeout` boot parameter for Linux kernels before version 4\.6\)\. For testing, it can also be dynamically updated by writing to `/sys/module/nvme_core/parameters/io_timeout` file\. If I/O latency exceeds the value of this parameter, the Linux NVMe driver fails the I/O and return an error to the filesystem or application\. Depending on the I/O operation, your filesystem or application may retry the error\. In some cases, your filesystem may be remounted as read\-only\. 
+EBS volumes attached to Nitro\-based instances use the default NVMe driver provided by the operating system\. Most operating systems specify a timeout for I/O operations submitted to NVMe devices\. The default timeout is 30 seconds and can be changed using the `nvme_core.io_timeout` boot parameter \(or the `nvme.io_timeout` boot parameter for Linux kernels before version 4\.6\)\. For testing purposes, you can also dynamically update the timeout by writing to `/sys/module/nvme_core/parameters/io_timeout` using your preferred text editor\. If I/O latency exceeds the value of this parameter, the Linux NVMe driver fails the I/O and return an error to the filesystem or application\. Depending on the I/O operation, your filesystem or application can retry the error\. In some cases, your filesystem may be remounted as read\-only\.
 
-For an experience similar to EBS volumes attached to Xen instances, we recommend setting this timeout to the highest value possible\. For current kernels, the maximum is 4294967295, while for earlier kernels the maximum is 255 \( You can verify the maximum by writing to `/sys/module/nvme_core/parameters/io_timeout` without the 'Numerical result out of range' error \)\.The `nvme.io_timeout` boot parameter is already set to the maximum value for the following Linux distributions: 
+For an experience similar to EBS volumes attached to Xen instances, we recommend setting this timeout to the highest value possible\. For current kernels, the maximum is 4294967295, while for earlier kernels the maximum is 255\. The `nvme.io_timeout` boot parameter is already set to the maximum value for the following Linux distributions:
 + Amazon Linux AMI 2017\.09\.01 or later
 + Canonical 4\.4\.0\-1041 or later
 + SLES 12 SP2 \(4\.4 kernel\) or later
 + RHEL 7\.5 \(3\.10\.0\-862 kernel\) or later
+
+You can verify the maximum value for your Linux distribution by writing a value higher than the suggested maximum to `/sys/module/nvme_core/parameters/io_timeout` and checking for the `Numerical result out of range` error when attempting to save the file\.

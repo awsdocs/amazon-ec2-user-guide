@@ -6,7 +6,7 @@ By default, Capacity Reservations automatically match new instances and running 
 
 **Contents**
 + [Creating a Capacity Reservation](#capacity-reservations-create)
-+ [Launching an Instance into an existing Capacity Reservation](#capacity-reservations-launch)
++ [Launching an Instance into an Existing Capacity Reservation](#capacity-reservations-launch)
 + [Modifying a Capacity Reservation](#capacity-reservations-modify)
 + [Modifying an Instance's Capacity Reservation Settings](#capacity-reservations-modify-instance)
 + [Viewing a Capacity Reservation](#capacity-reservations-view)
@@ -65,7 +65,7 @@ Use the [create\-capacity\-reservation](https://docs.aws.amazon.com/cli/latest/r
 $  aws ec2 create-capacity-reservation --instance-type instance_type --instance-platform platform_type --availability-zone az --instance-count quantity
 ```
 
-## Launching an instance into an existing Capacity Reservation<a name="capacity-reservations-launch"></a>
+## Launching an Instance into an Existing Capacity Reservation<a name="capacity-reservations-launch"></a>
 
 You can launch an instance into a Capacity Reservation if it has matching attributes \(instance type, platform, and Availability Zone\) and sufficient capacity\. Launching an instance into a Capacity Reservation reduces its available capacity by the number of instances launched\. For example, if you launch three instances, the Capacity Reservation's available capacity is reduced by three\.
 

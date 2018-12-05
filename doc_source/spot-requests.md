@@ -15,16 +15,17 @@ The following illustration shows how Spot requests work\. Notice that the action
 + [Finding Running Spot Instances](#using-spot-instances-running)
 + [Tagging Spot Instance Requests](#concepts-spot-instances-request-tags)
 + [Canceling a Spot Instance Request](#using-spot-instances-cancel)
++ [Terminating a Spot Instance](#terminating-a-spot-instance)
 + [Spot Request Example Launch Specifications](spot-request-examples.md)
 
 ## Spot Instance Request States<a name="creating-spot-request-status"></a>
 
 A Spot Instance request can be in one of the following states:
-+ `open`—The request is waiting to be fulfilled\.
-+ `active`—The request is fulfilled and has an associated Spot Instance\.
-+ `failed`—The request has one or more bad parameters\.
-+ `closed`—The Spot Instance was interrupted or terminated\.
-+ `cancelled`—You cancelled the request, or the request expired\.
++ `open` – The request is waiting to be fulfilled\.
++ `active` – The request is fulfilled and has an associated Spot Instance\.
++ `failed` – The request has one or more bad parameters\.
++ `closed` – The Spot Instance was interrupted or terminated\.
++ `cancelled` – You cancelled the request, or the request expired\.
 
 The following illustration represents the transitions between the request states\. Notice that the transitions depend on the request type \(one\-time or persistent\)\.
 
@@ -32,7 +33,7 @@ The following illustration represents the transitions between the request states
 
 A one\-time Spot Instance request remains active until Amazon EC2 launches the Spot Instance, the request expires, or you cancel the request\. If the Spot price exceeds your maximum price or capacity is not available, your Spot Instance is terminated and the Spot Instance request is closed\.
 
-A persistent Spot Instance request remains active until it expires or you cancel it, even if the request is fulfilled\. If the Spot price exceeds your maximum price or capacity is not available, your Spot Instance is interrupted\. After your instance is interrupted, when the maximum price exceeds the Spot price or capacity becomes available again, the Spot Instance is started if stopped or resumed if hibernated\. If the Spot Instance is terminated, the Spot Instance request is opened again and Amazon EC2 launches a new Spot Instance\.
+A persistent Spot Instance request remains active until it expires or you cancel it, even if the request is fulfilled\. If the Spot price exceeds your maximum price or capacity is not available, your Spot Instance is interrupted\. After your instance is interrupted, when your maximum price exceeds the Spot price or capacity becomes available again, the Spot Instance is started if stopped or resumed if hibernated\. If the Spot Instance is terminated, the Spot Instance request is opened again and Amazon EC2 launches a new Spot Instance\.
 
 You can track the status of your Spot Instance requests, as well as the status of the Spot Instances launched, through the status\. For more information, see [Spot Request Status](spot-bid-status.md)\.
 
@@ -90,9 +91,9 @@ The following instance types support Dedicated Spot Instances\.
 Amazon EC2 creates a service\-linked role when you request Spot Instances\. A service\-linked role includes all the permissions that Amazon EC2 requires to call other AWS services on your behalf\. For more information, see [Using Service\-Linked Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html) in the *IAM User Guide*\.
 
 Amazon EC2 uses the service\-linked role named **AWSServiceRoleForEC2Spot** to complete the following actions:
-+ `ec2:DescribeInstances` \- Describe Spot Instances
-+ `ec2:StopInstances` \- Stop Spot Instances
-+ `ec2:StartInstances` \- Start Spot Instances
++ `ec2:DescribeInstances` – Describe Spot Instances
++ `ec2:StopInstances` – Stop Spot Instances
++ `ec2:StartInstances` – Start Spot Instances
 
 If you specify encrypted EBS snapshots for your Spot Instances and you use customer managed CMKs for encryption, you must grant the **AWSServiceRoleForEC2Spot** role access to the CMKs so that Amazon EC2 can launch Spot Instances on your behalf\. The principal is the Amazon Resource Name \(ARN\) of the **AWSServiceRoleForEC2Spot** role\. For more information, see [Using Key Policies in AWS KMS](https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html)\.
 
@@ -118,9 +119,9 @@ If you no longer need to use Spot Instances, we recommend that you delete the **
 
 ## Creating a Spot Instance Request<a name="using-spot-instances-request"></a>
 
-The process for requesting a Spot Instance is similar to the process for launching an On\-Demand Instance\. You can't change the parameters of your Spot request, including your maximum price, after you've submitted the request\.
+The process for requesting a Spot Instance is similar to the process for launching an On\-Demand Instance\. You can't change the parameters of your Spot Instance request, including your maximum price, after you've submitted the request\.
 
-If you request multiple Spot Instances at one time, Amazon EC2 creates separate Spot Instance requests so that you can track the status of each request separately\. For more information about tracking Spot requests, see [Spot Request Status](spot-bid-status.md)\.
+If you request multiple Spot Instances at one time, Amazon EC2 creates separate Spot Instance requests so that you can track the status of each request separately\. For more information about tracking Spot Instance requests, see [Spot Request Status](spot-bid-status.md)\.
 
 **Prerequisites**  
 Before you begin, decide on your maximum price, how many Spot Instances you'd like, and what instance type to use\. To review Spot price trends, see [Spot Instance Pricing History](using-spot-instances-history.md)\.
@@ -227,6 +228,8 @@ Amazon EC2 launches a Spot Instance when the maximum price exceeds the Spot pric
 1. In the navigation pane, choose **Spot Requests**\.
 
    You can see both Spot Instance requests and Spot Fleet requests\. If a Spot Instance request has been fulfilled, **Capacity** is the ID of the Spot Instance\. For a Spot Fleet, **Capacity** indicates how much of the requested capacity has been fulfilled\. To view the IDs of the instances in a Spot Fleet, choose the expand arrow, or select the fleet and choose **Instances**\.
+**Note**  
+Spot Instance requests are not tagged instantly and for a period of time may appear separate from Spot Fleet Requests \(SFR\)\.
 
 1. Alternatively, in the navigation pane, choose **Instances**\. In the top right corner, choose the **Show/Hide** icon, and then select **Lifecycle**\. For each instance, **Lifecycle** is either `normal`, `spot`, or `scheduled`\.
 
@@ -269,14 +272,9 @@ Use the following [create\-tags](https://docs.aws.amazon.com/cli/latest/referenc
 aws ec2 create-tags --resources sir-08b93456 i-1234567890abcdef0 --tags Key=purpose,Value=test
 ```
 
-**Note**  
-Spot Instance requests are not tagged instantly and for a period of time may appear separate from Spot Fleet requests\.
-
 ## Canceling a Spot Instance Request<a name="using-spot-instances-cancel"></a>
 
-If you no longer want your Spot request, you can cancel it\. You can only cancel Spot Instance requests that are `open` or `active`\. Your Spot request is `open` when your request has not yet been fulfilled and no instances have been launched\. Your Spot request is `active` when your request has been fulfilled, and Spot Instances have launched as a result\. If your Spot request is `active` and has an associated running Spot Instance, canceling the request does not terminate the instance; you must terminate the running Spot Instance manually\.
-
-If the Spot request is a persistent Spot request, it returns to the `open` state so that a new Spot Instance can be launched\. To cancel a persistent Spot request and terminate its Spot Instances, you must cancel the Spot request first and then terminate the Spot Instances\. Otherwise, the Spot request can launch a new instance\.
+If you no longer want your Spot request, you can cancel it\. You can only cancel Spot Instance requests that are `open` or `active`\. Your Spot request is `open` when your request has not yet been fulfilled and no instances have been launched\. Your Spot request is `active` when your request has been fulfilled and Spot Instances have launched as a result\. If your Spot request is `active` and has an associated running Spot Instance, canceling the request does not terminate the instance\. For more information about terminating a Spot Instance, see the next section\.
 
 **To cancel a Spot Instance request \(console\)**
 
@@ -288,15 +286,20 @@ If the Spot request is a persistent Spot request, it returns to the `open` state
 
 1. \(Optional\) If you are finished with the associated Spot Instances, you can terminate them\. In the navigation pane, choose **Instances**, select the instance, and then choose **Actions**, **Instance State**, **Terminate**\.
 
-**To cancel a Spot Instance request using the AWS CLI**  
-Use the following [cancel\-spot\-instance\-requests](https://docs.aws.amazon.com/cli/latest/reference/ec2/cancel-spot-instance-requests.html) command to cancel the specified Spot request:
+**To cancel a Spot Instance request \(AWS CLI\)**
++ Use the following [cancel\-spot\-instance\-requests](https://docs.aws.amazon.com/cli/latest/reference/ec2/cancel-spot-instance-requests.html) command to cancel the specified Spot request:
 
-```
-aws ec2 cancel-spot-instance-requests --spot-instance-request-ids sir-08b93456
-```
+  ```
+  aws ec2 cancel-spot-instance-requests --spot-instance-request-ids sir-08b93456
+  ```
 
-If you are finished with the associated Spot Instances, you can terminate them manually using the following [terminate\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/terminate-instances.html) command:
+## Terminating a Spot Instance<a name="terminating-a-spot-instance"></a>
 
-```
-aws ec2 terminate-instances --instance-ids i-1234567890abcdef0 i-0598c7d356eba48d7
-```
+If your Spot request is `active` and has an associated running Spot Instance, canceling the request does not terminate the instance; you must terminate the running Spot Instance manually\. If you terminate a running Spot Instance that was launched by a persistent Spot request, the Spot request returns to the `open` state so that a new Spot Instance can be launched\. To cancel a persistent Spot request and terminate its Spot Instances, you must cancel the Spot request first and then terminate the Spot Instances\. Otherwise, the persistent Spot request can launch a new instance\. For more information about canceling a Spot Instance request, see the previous section\.
+
+**To manually terminate a Spot Instance \(AWS CLI\)**
++ Use the following [terminate\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/terminate-instances.html) command to manually terminate Spot Instances: 
+
+  ```
+  aws ec2 terminate-instances --instance-ids i-1234567890abcdef0 i-0598c7d356eba48d7
+  ```

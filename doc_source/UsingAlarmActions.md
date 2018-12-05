@@ -35,7 +35,7 @@ You can create an alarm that stops an Amazon EC2 instance when a certain thresho
 
 Instances that use an Amazon EBS volume as the root device can be stopped or terminated, whereas instances that use the instance store as the root device can only be terminated\.
 
-**To create an alarm to stop an idle instance using the Amazon EC2 console**
+**To create an alarm to stop an idle instance \(Amazon EC2 console\)**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -47,19 +47,19 @@ Instances that use an Amazon EBS volume as the root device can be stopped or ter
 
    1. To receive an email when the alarm is triggered, for **Send a notification to**, choose an existing Amazon SNS topic, or choose **create topic** to create a new one\.
 
-      To create a new topic, for **Send a notification to**, type a name for the topic, and then for **With these recipients**, type the email addresses of the recipients \(separated by commas\)\. After you create the alarm, you will receive a subscription confirmation email that you must accept before you can get notifications for this topic\.
+      To create a new topic, for **Send a notification to**, enter a name for the topic, and then for **With these recipients**, enter the email addresses of the recipients \(separated by commas\)\. After you create the alarm, you will receive a subscription confirmation email that you must accept before you can get notifications for this topic\.
 
    1. Choose **Take the action**, **Stop this instance**\.
 
    1. For **Whenever**, choose the statistic you want to use and then choose the metric\. In this example, choose **Average** and **CPU Utilization**\.
 
-   1. For **Is**, specify the metric threshold\. In this example, type **10** percent\.
+   1. For **Is**, specify the metric threshold\. In this example, enter **10** percent\.
 
-   1. For **For at least**, specify the evaluation period for the alarm\. In this example, type **24** consecutive period\(s\) of **1 Hour**\.
+   1. For **For at least**, specify the evaluation period for the alarm\. In this example, enter **24** consecutive period\(s\) of **1 Hour**\.
 
-   1. To change the name of the alarm, for **Name of alarm**, type a new name\. Alarm names must contain only ASCII characters\.
+   1. To change the name of the alarm, for **Name of alarm**, enter a new name\. Alarm names must contain only ASCII characters\.
 
-      If you don't type a name for the alarm, Amazon CloudWatch automatically creates one for you\.
+      If you don't enter a name for the alarm, Amazon CloudWatch automatically creates one for you\.
 **Note**  
 You can adjust the alarm configuration based on your own requirements before creating the alarm, or you can edit them later\. This includes the metric, threshold, duration, action, and notification settings\. However, after you create an alarm, you cannot edit its name later\.
 
@@ -69,7 +69,7 @@ You can adjust the alarm configuration based on your own requirements before cre
 
 You can create an alarm that terminates an EC2 instance automatically when a certain threshold has been met \(as long as termination protection is not enabled for the instance\)\. For example, you might want to terminate an instance when it has completed its work, and you don’t need the instance again\. If you might want to use the instance later, you should stop the instance instead of terminating it\. For information on enabling and disabling termination protection for an instance, see [Enabling Termination Protection for an Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_ChangingDisableAPITermination.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
-**To create an alarm to terminate an idle instance using the Amazon EC2 console**
+**To create an alarm to terminate an idle instance \(Amazon EC2 console\)**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -81,19 +81,19 @@ You can create an alarm that terminates an EC2 instance automatically when a cer
 
    1. To receive an email when the alarm is triggered, for **Send a notification to**, choose an existing Amazon SNS topic, or choose **create topic** to create a new one\.
 
-      To create a new topic, for **Send a notification to**, type a name for the topic, and then for **With these recipients**, type the email addresses of the recipients \(separated by commas\)\. After you create the alarm, you will receive a subscription confirmation email that you must accept before you can get notifications for this topic\.
+      To create a new topic, for **Send a notification to**, enter a name for the topic, and then for **With these recipients**, enter the email addresses of the recipients \(separated by commas\)\. After you create the alarm, you will receive a subscription confirmation email that you must accept before you can get notifications for this topic\.
 
    1. Choose **Take the action**, **Terminate this instance**\.
 
    1. For **Whenever**, choose a statistic and then choose the metric\. In this example, choose **Average** and **CPU Utilization**\.
 
-   1. For **Is**, specify the metric threshold\. In this example, type **10** percent\.
+   1. For **Is**, specify the metric threshold\. In this example, enter **10** percent\.
 
-   1. For **For at least**, specify the evaluation period for the alarm\. In this example, type **24** consecutive period\(s\) of **1 Hour**\.
+   1. For **For at least**, specify the evaluation period for the alarm\. In this example, enter **24** consecutive period\(s\) of **1 Hour**\.
 
-   1. To change the name of the alarm, for **Name of alarm**, type a new name\. Alarm names must contain only ASCII characters\.
+   1. To change the name of the alarm, for **Name of alarm**, enter a new name\. Alarm names must contain only ASCII characters\.
 
-      If you don't type a name for the alarm, Amazon CloudWatch automatically creates one for you\.
+      If you don't enter a name for the alarm, Amazon CloudWatch automatically creates one for you\.
 **Note**  
 You can adjust the alarm configuration based on your own requirements before creating the alarm, or you can edit them later\. This includes the metric, threshold, duration, action, and notification settings\. However, after you create an alarm, you cannot edit its name later\.
 
@@ -108,7 +108,7 @@ Rebooting an instance doesn't start a new instance billing period \(with a minim
 **Important**  
 To avoid a race condition between the reboot and recover actions, avoid setting the same number of evaluation periods for a reboot alarm and a recover alarm\. We recommend that you set reboot alarms to three evaluation periods of one minute each\. For more information, see [Evaluating an Alarm](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarm-evaluation) in the *Amazon CloudWatch User Guide*\.
 
-**To create an alarm to reboot an instance using the Amazon EC2 console**
+**To create an alarm to reboot an instance \(Amazon EC2 console\)**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -120,17 +120,17 @@ To avoid a race condition between the reboot and recover actions, avoid setting 
 
    1. To receive an email when the alarm is triggered, for **Send a notification to**, choose an existing Amazon SNS topic, or choose **create topic** to create a new one\.
 
-      To create a new topic, for **Send a notification to**, type a name for the topic, and for **With these recipients**, type the email addresses of the recipients \(separated by commas\)\. After you create the alarm, you will receive a subscription confirmation email that you must accept before you can get notifications for this topic\.
+      To create a new topic, for **Send a notification to**, enter a name for the topic, and for **With these recipients**, enter the email addresses of the recipients \(separated by commas\)\. After you create the alarm, you will receive a subscription confirmation email that you must accept before you can get notifications for this topic\.
 
    1. Select **Take the action**, **Reboot this instance**\.
 
    1. For **Whenever**, choose **Status Check Failed \(Instance\)**\.
 
-   1. For **For at least**, specify the evaluation period for the alarm\. In this example, type **3** consecutive period\(s\) of **1 Minute**\.
+   1. For **For at least**, specify the evaluation period for the alarm\. In this example, enter **3** consecutive period\(s\) of **1 Minute**\.
 
-   1. To change the name of the alarm, for **Name of alarm**, type a new name\. Alarm names must contain only ASCII characters\.
+   1. To change the name of the alarm, for **Name of alarm**, enter a new name\. Alarm names must contain only ASCII characters\.
 
-      If you don't type a name for the alarm, Amazon CloudWatch automatically creates one for you\.
+      If you don't enter a name for the alarm, Amazon CloudWatch automatically creates one for you\.
 
    1. Choose **Create Alarm**\.
 
@@ -158,7 +158,7 @@ If your instance has a public IP address, it retains the public IP address after
 **Important**  
 To avoid a race condition between the reboot and recover actions, avoid setting the same number of evaluation periods for a reboot alarm and a recover alarm\. We recommend that you set recover alarms to two evaluation periods of one minute each\. For more information, see [Evaluating an Alarm](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarm-evaluation) in the *Amazon CloudWatch User Guide*\.
 
-**To create an alarm to recover an instance using the Amazon EC2 console**
+**To create an alarm to recover an instance \(Amazon EC2 console\)**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -170,17 +170,21 @@ To avoid a race condition between the reboot and recover actions, avoid setting 
 
    1. To receive an email when the alarm is triggered, for **Send a notification to**, choose an existing Amazon SNS topic, or choose **create topic** to create a new one\.
 
-      To create a new topic, for **Send a notification to**, type a name for the topic, and for **With these recipients**, type the email addresses of the recipients \(separated by commas\)\. After you create the alarm, you will receive a subscription confirmation email that you must accept before you can get email for this topic\.
+      To create a new topic, for **Send a notification to**, enter a name for the topic, and for **With these recipients**, enter the email addresses of the recipients \(separated by commas\)\. After you create the alarm, you will receive a subscription confirmation email that you must accept before you can get email for this topic\.
+**Note**  
+Users must subscribe to the specified SNS topic to receive email notifications when the alarm is triggered\.
+The AWS account root user always receives email notifications when automatic instance recovery actions occur, even if an SNS topic is not specified\.
+The AWS account root user always receives email notifications when automatic instance recovery actions occur, even if it is not subscribed to the specified SNS topic\.
 
    1. Select **Take the action**, **Recover this instance**\.
 
    1. For **Whenever**, choose **Status Check Failed \(System\)**\.
 
-   1. For **For at least**, specify the evaluation period for the alarm\. In this example, type **2** consecutive period\(s\) of **1 Minute**\.
+   1. For **For at least**, specify the evaluation period for the alarm\. In this example, enter **2** consecutive period\(s\) of **1 Minute**\.
 
-   1. To change the name of the alarm, for **Name of alarm**, type a new name\. Alarm names must contain only ASCII characters\.
+   1. To change the name of the alarm, for **Name of alarm**, enter a new name\. Alarm names must contain only ASCII characters\.
 
-      If you don't type a name for the alarm, Amazon CloudWatch automatically creates one for you\.
+      If you don't enter a name for the alarm, Amazon CloudWatch automatically creates one for you\.
 
    1. Choose **Create Alarm**\.
 
@@ -188,7 +192,7 @@ To avoid a race condition between the reboot and recover actions, avoid setting 
 
 You can view alarm and action history in the Amazon CloudWatch console\. Amazon CloudWatch keeps the last two weeks' worth of alarm and action history\.
 
-**To view the history of triggered alarms and actions**
+**To view the history of triggered alarms and actions \(CloudWatch console\)**
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 

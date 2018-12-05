@@ -88,7 +88,7 @@ The following procedures help you prepare a Linux instance\. For directions to p
    sudo yum update; sudo yum install hibagent
    ```
 
-1. Add the following to user data:
+1. Add the following to the user data:
 
    ```
    #!/bin/bash
@@ -103,7 +103,7 @@ The following procedures help you prepare a Linux instance\. For directions to p
    sudo apt-get install hibagent
    ```
 
-1. Add the following to user data:
+1. Add the following to the user data:
 
    ```
    #!/bin/bash

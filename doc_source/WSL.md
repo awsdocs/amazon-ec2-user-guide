@@ -84,7 +84,7 @@ Use the following procedure to connect to your Linux instance using the Windows 
 1. Use the ssh command to connect to the instance\. You specify the private key \(`.pem`\) file and *user\_name*@*public\_dns\_name*\. For example, if you used Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
 
    ```
-   ssh -i /path/my-key-pair.pem ec2-user@ec2-198-51-100-1.compute-1.amazonaws.com
+   sudo ssh -i /path/my-key-pair.pem ec2-user@ec2-198-51-100-1.compute-1.amazonaws.com
    ```
 
    You see a response like the following:
@@ -99,7 +99,7 @@ Use the following procedure to connect to your Linux instance using the Windows 
 1. \(IPv6 only\) Alternatively, you can connect to the instance using its IPv6 address\. Specify the ssh command with the path to the private key \(\.pem\) file, the appropriate user name, and the IPv6 address\. For example, if you used Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
 
    ```
-   ssh -i /path/my-key-pair.pem ec2-user@2001:db8:1234:1a00:9691:9503:25ad:1761
+   sudo ssh -i /path/my-key-pair.pem ec2-user@2001:db8:1234:1a00:9691:9503:25ad:1761
    ```
 
 1. \(Optional\) Verify that the fingerprint in the security alert matches the fingerprint that you obtained in step 1\. If these fingerprints don't match, someone might be attempting a "man\-in\-the\-middle" attack\. If they match, continue to the next step\.

@@ -23,17 +23,17 @@ Amazon EC2 supports the following types of scheduled events for your instances:
 
 In addition to receiving notification of scheduled events in email, you can check for scheduled events\.
 
-**To view scheduled events for your instances using the console**
+**To view scheduled events for your instances \(console\)**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation pane, click **Events**\. Any resources with an associated event are displayed\. You can filter by resource type, or by specific event types\. You can select the resource to view details\.  
+1. In the navigation pane, choose **Events**\. Any resources with an associated event are displayed\. You can filter by resource type, or by specific event types\. You can select the resource to view details\.  
 ![\[Viewing events using the Events page.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/events-instance-stop.png)
 
 1. Alternatively, in the navigation pane, choose **EC2 Dashboard**\. Any resources with an associated event are displayed under **Scheduled Events**\.  
 ![\[Viewing events using the dashboard.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/dashboard-scheduled-events.png)
 
-1. Note that some events are also shown for affected resources\. For example, in the navigation pane, choose **Instances**, and then select an instance\. If the instance has an associated instance stop or instance retirement event, it is displayed in the lower pane\.  
+1. Note that some events are also shown for affected resources\. For example, in the navigation pane, choose **Instances** and select an instance\. If the instance has an associated instance stop or instance retirement event, it is displayed in the lower pane\.  
 ![\[Viewing events in the instance details.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/event-instance-retirement.png)
 
 **To view scheduled events for your instances using the command line or API**  
@@ -108,17 +108,17 @@ When AWS needs to perform tasks such as installing updates or maintaining the un
 
 You can determine whether the reboot event is an instance reboot or a system reboot\. 
 
-**To view the type of scheduled reboot event using the console**
+**To view the type of scheduled reboot event \(console\)**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
 1. In the navigation pane, choose **Events**\.
 
-1. Select **Instance resources** from the filter list, and then select your instance\.
+1. Choose **Instance resources** from the filter list, and then select your instance\.
 
 1. In the bottom pane, locate **Event type**\. The value is either `system-reboot` or `instance-reboot`\.
 
-**To view the type of scheduled reboot event using the AWS CLI**  
+**To view the type of scheduled reboot event \(AWS CLI\)**  
 Use the following [describe\-instance\-status](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-status.html) command:
 
 ```

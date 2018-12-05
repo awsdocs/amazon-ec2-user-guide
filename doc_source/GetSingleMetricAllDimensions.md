@@ -7,20 +7,20 @@ This example shows you how to use detailed monitoring to get the average CPU usa
 **Important**  
 This technique for retrieving all dimensions across an AWS namespace does not work for custom namespaces that you publish to Amazon CloudWatch\. With custom namespaces, you must specify the complete set of dimensions that are associated with any given data point to retrieve statistics that include the data point\. 
 
-**To display average CPU utilization across your instances**
+**To display average CPU utilization across your instances \(console\)**
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
 1. In the navigation pane, choose **Metrics**\.
 
-1. Select the **EC2** namespace and then select **Across All Instances**\.
+1. Choose the **EC2** namespace and then choose **Across All Instances**\.
 
-1. Select the row that contains **CPUUtilization**, which displays a graph for the metric for all your EC2 instances\. To name the graph, choose the pencil icon\. To change the time range, select one of the predefined values or choose **custom**\.  
+1. Choose the row that contains **CPUUtilization**, which displays a graph for the metric for all your EC2 instances\. To name the graph, choose the pencil icon\. To change the time range, select one of the predefined values or choose **custom**\.  
 ![\[Metrics aggregated across your EC2 instances\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/metric_aggregated_instances.png)
 
 1. To change the statistic or the period for the metric, choose the **Graphed metrics** tab\. Choose the column heading or an individual value, and then choose a different value\.
 
-**To get average CPU utilization across your instances**  
+**To get average CPU utilization across your instances \(AWS CLI\)**  
 Use the [get\-metric\-statistics](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/get-metric-statistics.html) command as follows to get the average of the **CPUUtilization** metric across your instances\.
 
 ```

@@ -14,8 +14,8 @@ The following table describes the use cases and performance characteristics for 
 | Use Cases |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html)  | 
 | API Name | gp2 | io1 | st1 | sc1 | 
 | Volume Size | 1 GiB \- 16 TiB  | 4 GiB \- 16 TiB  | 500 GiB \- 16 TiB | 500 GiB \- 16 TiB  | 
-| Max\. IOPS\*\*/Volume | 10,000 | 64,000\*\*\* | 500 | 250 | 
-| Max\. Throughput/Volume | 160 MiB/s\*\*\*\* | 1,000 MiB/s† | 500 MiB/s | 250 MiB/s | 
+| Max\. IOPS\*\*/Volume | 16,000\*\*\*  | 64,000\*\*\*\* | 500 | 250 | 
+| Max\. Throughput/Volume | 250 MiB/s\*\*\* | 1,000 MiB/s† | 500 MiB/s | 250 MiB/s | 
 | Max\. IOPS/Instance | 80,000 | 80,000 | 80,000 | 80,000 | 
 | Max\. Throughput/Instance†† | 1,750 MiB/s | 1,750 MiB/s | 1,750 MiB/s | 1,750 MiB/s | 
 | Dominant Performance Attribute | IOPS | IOPS | MiB/s | MiB/s | 
@@ -26,9 +26,9 @@ The following table describes the use cases and performance characteristics for 
 
 \*\* `gp2`/`io1` based on 16 KiB I/O size, `st1`/`sc1` based on 1 MiB I/O size
 
-\*\*\* Maximum IOPS of 64,000 is guaranteed only on [Nitro\-based instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances)\. Other instance families guarantee performance up to 32,000 IOPS\.
+\*\*\* General Purpose SSD \(gp2\) volumes have a throughput limit between 128 MiB/s and 250 MiB/s depending on volume size\. Volumes greater than 170 GiB up to 214 GiB deliver a maximum throughput of 160 MiB/s if burst credits are available\. Volumes above 214 GiB deliver 250 MiB/s irrespective of burst credits\. A volume created prior to an EBS service upgrade may not see full performance unless a `ModifyVolume` action is performed on it\.
 
-\*\*\*\* General Purpose SSD \(gp2\) volumes have a throughput limit between 128 MiB/s and 160 MiB/s depending on volume size\. Volumes greater than 170 GiB up to 214 GiB deliver a maximum throughput of 160 MiB/s if burst credits are available\. Volumes above 214 GiB deliver 160 MiB/s irrespective of burst credits\.
+\*\*\*\* Maximum IOPS of 64,000 is guaranteed only on [Nitro\-based instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances)\. Other instance families guarantee performance up to 32,000 IOPS\.
 
 † An `io1` volume created before 12/6/2017 does not achieve this throughput until modified in some way\. For more information, see [Modifying the Size, IOPS, or Type of an EBS Volume on Linux](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-modify-volume.html)\. Maximum throughput of 1,000 MiB/s is guaranteed only on [Nitro\-based instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances)\. Other instance families guarantee up to 500 MiB/s\.
 
@@ -59,7 +59,7 @@ For more information about pricing for these volume types, see [Amazon EBS Prici
 
 ## General Purpose SSD \(`gp2`\) Volumes<a name="EBSVolumeTypes_gp2"></a>
 
-General Purpose SSD \(`gp2`\) volumes offer cost\-effective storage that is ideal for a broad range of workloads\. These volumes deliver single\-digit millisecond latencies and the ability to burst to 3,000 IOPS for extended periods of time\. Between a minimum of 100 IOPS \(at 33\.33 GiB and below\) and a maximum of 10,000 IOPS \(at 3,334 GiB and above\), baseline performance scales linearly at 3 IOPS per GiB of volume size\. AWS designs `gp2` volumes to deliver the provisioned performance 99% of the time\. A `gp2` volume can range in size from 1 GiB to 16 TiB\.
+General Purpose SSD \(`gp2`\) volumes offer cost\-effective storage that is ideal for a broad range of workloads\. These volumes deliver single\-digit millisecond latencies and the ability to burst to 3,000 IOPS for extended periods of time\. Between a minimum of 100 IOPS \(at 33\.33 GiB and below\) and a maximum of 16,000 IOPS \(at 5,334 GiB and above\), baseline performance scales linearly at 3 IOPS per GiB of volume size\. AWS designs `gp2` volumes to deliver the provisioned performance 99% of the time\. A `gp2` volume can range in size from 1 GiB to 16 TiB\.
 
 ### I/O Credits and Burst Performance<a name="IOcredit"></a>
 

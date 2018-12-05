@@ -17,9 +17,9 @@ For examples, see [Creating Amazon CloudWatch Alarms](https://docs.aws.amazon.co
 
 1. In the **Create Alarm** dialog box, do the following:
 
-   1. Choose **create topic**\. For **Send a notification to**, type a name for the SNS topic\. For **With these recipients**, type one or more email addresses to receive notification\.
+   1. Choose **create topic**\. For **Send a notification to**, enter a name for the SNS topic\. For **With these recipients**, enter one or more email addresses to receive notification\.
 
-   1. Specify the metric and the criteria for the policy\. For example, you can leave the default settings for **Whenever** \(Average of CPU Utilization\)\. For **Is**, choose `>=` and type `80` percent\. For **For at least**, type `1` consecutive period of `5 Minutes`\.
+   1. Specify the metric and the criteria for the policy\. For example, you can leave the default settings for **Whenever** \(Average of CPU Utilization\)\. For **Is**, choose `>=` and enter `80` percent\. For **For at least**, enter `1` consecutive period of `5 Minutes`\.
 
    1. Choose **Create Alarm**\.  
 ![\[Create a CloudWatch alarm using the Amazon EC2 console.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/monitoring_create_alarm.png)

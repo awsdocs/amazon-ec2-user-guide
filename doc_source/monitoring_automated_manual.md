@@ -16,7 +16,7 @@ You can use the following automated monitoring tools to watch Amazon EC2 and rep
   + Hardware issues on the physical host that impact network reachability
 
   For more information, see [Status Checks for Your Instances](monitoring-system-instance-status-check.md)\.
-+ **Instance Status Checks** \- monitor the software and network configuration of your individual instance\. These checks detect problems that require your involvement to repair\. When an instance status check fails, typically you will need to address the problem yourself \(for example by rebooting the instance or by making modifications in your operating system\)\. Examples of problems that may cause instance status checks to fail include:
++ **Instance Status Checks** \- monitor the software and network configuration of your individual instance\. These checks detect problems that require your involvement to repair\. When an instance status check fails, typically you will need to address the problem yourself \(for example, by rebooting the instance or by making modifications in your operating system\)\. Examples of problems that may cause instance status checks to fail include:
   + Failed system status checks
   + Misconfigured networking or startup configuration
   + Exhausted memory
@@ -24,7 +24,7 @@ You can use the following automated monitoring tools to watch Amazon EC2 and rep
   + Incompatible kernel
 
   For more information, see [Status Checks for Your Instances](monitoring-system-instance-status-check.md)\.
-+ **Amazon CloudWatch Alarms** \- watch a single metric over a time period you specify, and perform one or more actions based on the value of the metric relative to a given threshold over a number of time periods\. The action is a notification sent to an Amazon Simple Notification Service \(Amazon SNS\) topic or Amazon EC2 Auto Scaling policy\. Alarms invoke actions for sustained state changes only\. CloudWatch alarms will not invoke actions simply because they are in a particular state, the state must have changed and been maintained for a specified number of periods\. For more information, see [Monitoring Your Instances Using CloudWatch](using-cloudwatch.md)\.
++ **Amazon CloudWatch Alarms** \- watch a single metric over a time period you specify, and perform one or more actions based on the value of the metric relative to a given threshold over a number of time periods\. The action is a notification sent to an Amazon Simple Notification Service \(Amazon SNS\) topic or Amazon EC2 Auto Scaling policy\. Alarms invoke actions for sustained state changes only\. CloudWatch alarms will not invoke actions simply because they are in a particular state; the state must have changed and been maintained for a specified number of periods\. For more information, see [Monitoring Your Instances Using CloudWatch](using-cloudwatch.md)\.
 + **Amazon CloudWatch Events** \- automate your AWS services and respond automatically to system events\. Events from AWS services are delivered to CloudWatch Events in near real time, and you can specify automated actions to take when an event matches a rule you write\. For more information, see [What is Amazon CloudWatch Events?](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/WhatIsCloudWatchEvents.html)\.
 + **Amazon CloudWatch Logs** \- monitor, store, and access your log files from Amazon EC2 instances, AWS CloudTrail, or other sources\. For more information, see [What is Amazon CloudWatch Logs?](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html)\.
 + **Amazon EC2 Monitoring Scripts** \- Perl scripts that can monitor memory, disk, and swap file usage in your instances\. For more information, see [Monitoring Memory and Disk Metrics for Amazon EC2 Linux Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/mon-scripts.html)\.
@@ -34,12 +34,12 @@ You can use the following automated monitoring tools to watch Amazon EC2 and rep
 
 Another important part of monitoring Amazon EC2 involves manually monitoring those items that the monitoring scripts, status checks, and CloudWatch alarms don't cover\. The Amazon EC2 and CloudWatch console dashboards provide an at\-a\-glance view of the state of your Amazon EC2 environment\.
 + Amazon EC2 Dashboard shows:
-  + Service Health and Scheduled Events by region
+  + Service Health and Scheduled Events by Region
   + Instance state
   + Status checks
   + Alarm status
-  + Instance metric details \(In the navigation pane click **Instances**, select an instance, and then click the **Monitoring** tab\)
-  + Volume metric details \(In the navigation pane click **Volumes**, select a volume, and then click the **Monitoring** tab\)
+  + Instance metric details \(In the navigation pane choose **Instances**, select an instance, and choose the **Monitoring** tab\)
+  + Volume metric details \(In the navigation pane choose **Volumes**, select a volume, and choose the **Monitoring** tab\)
 + Amazon CloudWatch Dashboard shows:
   + Current alarms and status
   + Graphs of alarms and resources

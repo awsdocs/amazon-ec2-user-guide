@@ -1,6 +1,6 @@
 # Amazon Elastic Inference<a name="elastic-inference"></a>
 
-Amazon Elastic Inference is a resource you can attach to your Amazon EC2 instances to accelerate your deep learning \(DL\) inference workloads\. Amazon EI accelerators come in multiple sizes and are a cost\-effective method to build intelligent capabilities into applications running on Amazon EC2 instances\. 
+Amazon Elastic Inference \(EI\) is a resource you can attach to your Amazon EC2 instances to accelerate your deep learning \(DL\) inference workloads\. Amazon EI accelerators come in multiple sizes and are a cost\-effective method to build intelligent capabilities into applications running on Amazon EC2 instances\. 
 
 Amazon EI accelerates operations defined by TensorFlow, Apache MXNet, and the Open Neural Network Exchange \(ONNX\) format on low\-cost, GPU\-based, DL inference accelerators\. Developers building a wide range of applications on Amazon EC2 instances with machine learning inference workloads can benefit from wider deployment through the reduction in cost that Amazon EI enables\. 
 

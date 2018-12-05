@@ -40,7 +40,7 @@ A public IP address is assigned to your instance from Amazon's pool of public IP
 
 You cannot manually associate or disassociate a public IP address from your instance\. Instead, in certain cases, we release the public IP address from your instance, or assign it a new one: 
 + We release your instance's public IP address when it is stopped or terminated\. Your stopped instance receives a new public IP address when it is restarted\.
-+ We release your instance's public IP address when you associate an Elastic IP address it\. When you disassociate the Elastic IP address from your instance, it receives a new public IP address\.
++ We release your instance's public IP address when you associate an Elastic IP address with it\. When you disassociate the Elastic IP address from your instance, it receives a new public IP address\.
 + If the public IP address of your instance in a VPC has been released, it will not receive a new one if there is more than one network interface attached to your instance\. 
 + If your instance's public IP address is released while it has a secondary private IP address that is associated with an Elastic IP address, the instance does not receive a new public IP address\.
 

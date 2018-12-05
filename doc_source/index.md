@@ -169,6 +169,7 @@ Amazon's trademarks and trade dress may not be used in
       + [Create Alarms That Stop, Terminate, Reboot, or Recover an Instance](UsingAlarmActions.md)
    + [Automating Amazon EC2 with CloudWatch Events](automating_with_cloudwatch_events.md)
    + [Monitoring Memory and Disk Metrics for Amazon EC2 Linux Instances](mon-scripts.md)
+   + [Logging Amazon EC2 and Amazon EBS API Calls with AWS CloudTrail](monitor-with-cloudtrail.md)
 + [Network and Security](EC2_Network_and_Security.md)
    + [Amazon EC2 Key Pairs](ec2-key-pairs.md)
    + [Amazon EC2 Security Groups for Linux Instances](using-network-security.md)

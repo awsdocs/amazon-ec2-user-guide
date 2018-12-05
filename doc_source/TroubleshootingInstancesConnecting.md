@@ -47,9 +47,13 @@ If you try to connect to your instance and get an error message `Network error: 
 
   1. In the navigation pane, choose **Subnets**, and then select your subnet\.
 
-  1. On the **Route Table** tab, verify that there is a route with `0.0.0.0/0` as the destination and the internet gateway for your VPC as the target\. Otherwise, choose the ID of the route table \(rtb\-*xxxxxxxx*\) to navigate to the **Routes** tab for the route table, choose **Edit**, **Add another route**, enter `0.0.0.0/0` in **Destination**, select your internet gateway from **Target**, and then choose **Save**\.
+  1. On the **Route Table** tab, verify that there is a route with `0.0.0.0/0` as the destination and the internet gateway for your VPC as the target\. If you're connecting to your instance using its IPv6 address, verify that there is a route for all IPv6 traffic \(`::/0`\) that points to the internet gateway\. Otherwise, do the following:
 
-     If you're connecting to your instance using its IPv6 address, verify that there is a route for all IPv6 traffic \(`::/0`\) that points to the internet gateway\. If not, add a route with `::/0` as the destination, and the internet gateway as the target\.
+     1. Choose the ID of the route table \(rtb\-*xxxxxxxx*\) to navigate to the route table\.
+
+     1. On the **Routes** tab, choose **Edit routes**\. Choose **Add route**, use `0.0.0.0/0` as the destination and the internet gateway as the target\. For IPv6, choose **Add route**, use `::/0` as the destination and the internet gateway as the target\.
+
+     1. Choose **Save routes**\.
 + Check the network access control list \(ACL\) for the subnet\. The network ACLs must allow inbound and outbound traffic from your local IP address on the proper port\. The default network ACL allows all inbound and outbound traffic\.
 
   1. Open the Amazon VPC console at [https://console\.aws\.amazon\.com/vpc/](https://console.aws.amazon.com/vpc/)\.

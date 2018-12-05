@@ -6,25 +6,25 @@ The following examples show you how to use the AWS Management Console or the AWS
 + You must have the ID of the instance\. You can get the instance ID using the AWS Management Console or the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command\.
 + By default, basic monitoring is enabled, but you can enable detailed monitoring\. For more information, see [Enable or Disable Detailed Monitoring for Your Instances](using-cloudwatch-new.md)\.
 
-**To display the CPU utilization for a specific instance using the console**
+**To display the CPU utilization for a specific instance \(console\)**
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
 1. In the navigation pane, choose **Metrics**\.
 
-1. Select the EC2 metric namespace\.  
-![\[Select the EC2 metrics namespace\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/metric_view_categories.png)
+1. Choose the **EC2** metric namespace\.  
+![\[Choose the EC2 metrics namespace\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/metric_view_categories.png)
 
-1. Select the Per\-Instance Metrics dimension\.  
+1. Choose the **Per\-Instance Metrics** dimension\.  
 ![\[View the metric dimensions for Amazon EC2\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/metric_view_metric_category.png)
 
-1. In the search field, type **CPUUtilization** and press Enter\. Select the row for the specific instance, which displays a graph for the **CPUUtilization** metric for the instance\. To name the graph, choose the pencil icon\. To change the time range, select one of the predefined values or choose **custom**\.  
+1. In the search field, enter **CPUUtilization** and press Enter\. Choose the row for the specific instance, which displays a graph for the **CPUUtilization** metric for the instance\. To name the graph, choose the pencil icon\. To change the time range, select one of the predefined values or choose **custom**\.  
 ![\[Graph a single metric\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/metric_statistics_ec2_instance.png)
 
 1. To change the statistic or the period for the metric, choose the **Graphed metrics** tab\. Choose the column heading or an individual value, and then choose a different value\.  
 ![\[Change the statistic or period for a metric\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/metric_statistics_ec2_instance_statistic_period.png)
 
-**To get the CPU utilization for a specific instance using the AWS CLI**  
+**To get the CPU utilization for a specific instance \(AWS CLI\)**  
 Use the following [get\-metric\-statistics](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/get-metric-statistics.html) command to get the **CPUUtilization** metric for the specified instance, using the specified period and time interval:
 
 ```

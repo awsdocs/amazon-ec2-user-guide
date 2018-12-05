@@ -6,19 +6,19 @@ Before you can get statistics aggregated across instances, you must enable detai
 
 This example shows you how to determine average CPU utilization for all instances that use a specific Amazon Machine Image \(AMI\)\. The average is over 60\-second time intervals for a one\-day period\.
 
-**To display the average CPU utilization by AMI using the console**
+**To display the average CPU utilization by AMI \(console\)**
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
 1. In the navigation pane, choose **Metrics**\.
 
-1. Select the **EC2** namespace and then select **By Image \(AMI\) Id**\.
+1. Choose the **EC2** namespace and then choose **By Image \(AMI\) Id**\.
 
-1. Select the row for the **CPUUtilization** metric and the specific AMI, which displays a graph for the metric for the specified AMI\. To name the graph, choose the pencil icon\. To change the time range, select one of the predefined values or choose **custom**\.
+1. Choose the row for the **CPUUtilization** metric and the specific AMI, which displays a graph for the metric for the specified AMI\. To name the graph, choose the pencil icon\. To change the time range, select one of the predefined values or choose **custom**\.
 
 1. To change the statistic or the period for the metric, choose the **Graphed metrics** tab\. Choose the column heading or an individual value, and then choose a different value\.
 
-**To get the average CPU utilization for an image ID**  
+**To get the average CPU utilization for an image ID \(AWS CLI\)**  
 Use the [get\-metric\-statistics](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/get-metric-statistics.html) command as follows\.
 
 ```

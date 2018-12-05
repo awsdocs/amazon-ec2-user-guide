@@ -78,42 +78,10 @@ Don't select the **Proceed without a key pair** option\. If you launch your inst
 
 ## Step 2: Connect to Your Instance<a name="ec2-connect-to-instance-linux"></a>
 
-There are several ways to connect to a Linux instance\. In this procedure, you'll connect using your browser\. Alternatively, you can connect using PuTTY or an SSH client\. It's also assumed that you launched an Amazon Linux 2 instance, per the previous step, which has a specific user name\. Other Linux distributions might use a different user name\. For more information, see [Connecting to Your Linux Instance from Windows Using PuTTY](putty.md) or [Connecting to Your Linux Instance Using SSH](AccessingInstancesLinux.md)\. 
+There are several ways to connect to your Linux instance\. For more information, see [Connect to Your Linux Instance](AccessingInstances.md)\.
 
 **Important**  
-You can't connect to your instance unless you launched it with a key pair for which you have the \.pem file and you launched it with a security group that allows SSH access\. If you can't connect to your instance, see [Troubleshooting Connecting to Your Instance](TroubleshootingInstancesConnecting.md) for assistance\.
-
-**To connect to your Linux instance using a web browser**
-
-1. You must have Java installed and enabled in the browser\. If you don't have Java already, you can contact your system administrator to get it installed, or follow the steps outlined in the following pages: [Install Java](http://java.com/en/download/help/index_installing.xml) and [Enable Java in your web browser](http://java.com/en/download/help/enable_browser.xml)\.
-
-1. From the Amazon EC2 console, choose **Instances** in the navigation pane\.
-
-1. Select the instance, and then choose **Connect**\.
-
-1. Choose **A Java SSH client directly from my browser \(Java required\)**\.
-
-1. Amazon EC2 automatically detects the public DNS name of your instance and populates **Public DNS** for you\. It also detects the key pair that you specified when you launched the instance\. Complete the following, and then choose **Launch SSH Client**\.
-
-   1. In **User name**, enter `ec2-user`\. 
-
-   1. In **Private key path**, enter the fully qualified path to your private key \(`.pem`\) file, including the key pair name\.
-
-   1. \(Optional\) Choose **Store in browser cache** to store the location of the private key in your browser cache\. This enables Amazon EC2 to detect the location of the private key in subsequent browser sessions, until you clear your browser's cache\.
-
-1. If necessary, choose **Yes** to trust the certificate, and choose **Run** to run the MindTerm client\.
-
-1. If this is your first time running MindTerm, a series of dialog boxes asks you to accept the license agreement, confirm setup for your home directory, and confirm setup of the known hosts directory\. Confirm these settings\.
-
-1. A dialog prompts you to add the host to your set of known hosts\. If you do not want to store the host key information on your local computer, choose **No**\.
-
-   A window opens and you are connected to your instance\.
-**Note**  
-If you chose **No** in the previous step, you'll see the following message, which is expected:  
-
-   ```
-   Verification of server key disabled in this session.
-   ```
+You can't connect to your instance unless you launched it with a key pair for which you have the `.pem` file and you launched it with a security group that allows SSH access from your computer\. If you can't connect to your instance, see [Troubleshooting Connecting to Your Instance](TroubleshootingInstancesConnecting.md) for assistance\.
 
 ## Step 3: Clean Up Your Instance<a name="ec2-clean-up-your-instance"></a>
 

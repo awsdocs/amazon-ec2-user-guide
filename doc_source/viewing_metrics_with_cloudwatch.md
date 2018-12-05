@@ -6,7 +6,7 @@ For information about getting the statistics for these metrics, see [Get Statist
 
 ## Instance Metrics<a name="ec2-cloudwatch-metrics"></a>
 
-The `AWS/EC2` namespace includes the following CPU credit metrics for your burstable performance instances\.
+The `AWS/EC2` namespace includes the following CPU credit metrics for your [burstable performance instances](burstable-performance-instances.md)\.
 
 
 | Metric | Description | 
@@ -73,16 +73,16 @@ For information about the metrics provided for your EBS volumes, see [Amazon EBS
 
 Metrics are grouped first by namespace, and then by the various dimension combinations within each namespace\. For example, you can view all metrics provided by Amazon EC2, or metrics grouped by instance ID, instance type, image \(AMI\) ID, or Auto Scaling group\.
 
-**To view available metrics by category**
+**To view available metrics by category \(console\)**
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
 1. In the navigation pane, choose **Metrics**\.
 
-1. Select the EC2 metric namespace\.  
-![\[Select the EC2 metrics namespace\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/metric_view_categories.png)
+1. Choose the **EC2** metric namespace\.  
+![\[Choose the EC2 metrics namespace\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/metric_view_categories.png)
 
-1. Select a metric dimension \(for example, Per\-Instance Metrics\)\.  
+1. Select a metric dimension \(for example, **Per\-Instance Metrics**\)\.  
 ![\[View the metric dimensions for Amazon EC2\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/metric_view_metric_category.png)
 
 1. To sort the metrics, use the column heading\. To graph a metric, select the check box next to the metric\. To filter by resource, choose the resource ID and then choose **Add to search**\. To filter by metric, choose the metric name and then choose **Add to search**\.  
@@ -92,7 +92,7 @@ Metrics are grouped first by namespace, and then by the various dimension combin
 
 Use the [list\-metrics](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/list-metrics.html) command to list the CloudWatch metrics for your instances\.
 
-**To list all the available metrics for Amazon EC2**  
+**To list all the available metrics for Amazon EC2 \(AWS CLI\)**  
 The following example specifies the `AWS/EC2` namespace to view all the metrics for Amazon EC2\.
 
 ```
@@ -139,14 +139,14 @@ The following is example output:
 }
 ```
 
-**To list all the available metrics for an instance**  
+**To list all the available metrics for an instance \(AWS CLI\)**  
 The following example specifies the `AWS/EC2` namespace and the `InstanceId` dimension to view the results for the specified instance only\.
 
 ```
 aws cloudwatch list-metrics --namespace AWS/EC2 --dimensions Name=InstanceId,Value=i-1234567890abcdef0
 ```
 
-**To list a metric across all instances**  
+**To list a metric across all instances \(AWS CLI\)**  
 The following example specifies the `AWS/EC2` namespace and a metric name to view the results for the specified metric only\.
 
 ```

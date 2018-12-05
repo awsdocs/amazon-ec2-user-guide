@@ -2,8 +2,13 @@
 
 You can bring part or all of your public IPv4 address range from your on\-premises network to your AWS account\. You continue to own the address range, but AWS advertises it on the internet\. After you bring the address range to AWS, it appears in your account as an address pool\. You can create an Elastic IP address from your address pool and use it with your AWS resources, such as EC2 instances, NAT gateways, and Network Load Balancers\.
 
+**Important**  
+BYOIP is not available in all Regions\. For a list of supported Regions, see the [FAQ for Bring Your Own IP](https://aws.amazon.com/vpc/faqs/#Bring_Your_Own_IP)\.
+
 ## Requirements<a name="byoip-requirements"></a>
 + The address range must be registered with your regional internet registry \(RIR\), such as the American Registry for Internet Numbers \(ARIN\) or Réseaux IP Européens Network Coordination Centre \(RIPE\)\. It must be registered to a business or institutional entity and may not be registered to an individual person\.
++ For ARIN, the supported network types are "Direct Allocation" and "Direct Assignment"\.
++ For RIPE, the supported allocation statuses are "ALLOCATED PA", "LEGACY", and "ASSIGNED PI"\.
 + The most specific address range that you can specify is /24\.
 + You can bring each address range to one region at a time\.
 + You can bring 5 address ranges per region to your AWS account\.
@@ -47,7 +52,7 @@ The commands in the following procedure require OpenSSL version 1\.0\.2 or later
    echo "1|aws|123456789012|198.51.100.0/24|20191201|SHA256|RSAPSS" | tr -d "\n" | openssl dgst -sha256 -sigopt rsa_padding_mode:pss -sigopt rsa_pss_saltlen:-1 -sign private.key -keyform PEM | openssl base64 | tr -- '+=/' '-_~' | tr -d "\n" > base64_urlsafe_signature
    ```
 
-1. Update the RDAP record for your RIR with the X509 certificate\. Be sure to copy the `-----BEGIN CERTIFICATE-----` and `-----END CERTIFICATE-----` from the certificate\. To view your certificate, run the following command:
+1. Update the RDAP record for your RIR with the X509 certificate\. Be sure to copy the `-----BEGIN CERTIFICATE-----` and `-----END CERTIFICATE-----` from the certificate\. Be sure that you have removed newline characters, if you haven't already done so using the tr \-d "\\n" commands in the previous steps\. To view your certificate, run the following command:
 
    ```
    cat publickey.cer
