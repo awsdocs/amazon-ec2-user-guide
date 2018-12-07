@@ -269,3 +269,5 @@ Follow the previous procedure until the step where you stop the instance\. Creat
 If you lose connectivity while enabling enhanced networking, the `ixgbevf` module might be incompatible with the kernel\. Try installing the version of the `ixgbevf` module included with the distribution of Linux for your instance\.
 
 If you enable enhanced networking for a PV instance or AMI, this can make your instance unreachable\.
+
+For more information, see [How do I enable and configure enhanced networking on my EC2 instances?](https://aws.amazon.com/pt/premiumsupport/knowledge-center/enable-configure-enhanced-networking/)\.

@@ -38,7 +38,7 @@ Developers can use the FPGA Developer AMI and AWS Hardware Developer Kit to crea
 For more information, see [Amazon EC2 F1 Instances](https://aws.amazon.com/ec2/instance-types/f1/)\.
 
 **P3 Instances**  
-P3 instances use NVIDIA Tesla V100 GPUs and are designed for general purpose GPU computing using the CUDA or OpenCL programming models or through a machine learning framework\. P3 instances provide high\-bandwidth networking, powerful half, single, and double\-precision floating\-point capabilities, and 16 GiB of memory per GPU, which makes them ideal for deep learning, computational fluid dynamics, computational finance, seismic analysis, molecular modeling, genomics, rendering, and other server\-side GPU compute workloads\. Tesla V100 GPUs do not support graphics mode\.
+P3 instances use NVIDIA Tesla V100 GPUs and are designed for general purpose GPU computing using the CUDA or OpenCL programming models or through a machine learning framework\. P3 instances provide high\-bandwidth networking, powerful half, single, and double\-precision floating\-point capabilities, and up to 32 GiB of memory per GPU, which makes them ideal for deep learning, computational fluid dynamics, computational finance, seismic analysis, molecular modeling, genomics, rendering, and other server\-side GPU compute workloads\. Tesla V100 GPUs do not support graphics mode\. For more information, see [Amazon EC2 P3 Instances](https://aws.amazon.com/ec2/instance-types/p3)\.
 
 P3 instances support NVIDIA NVLink peer to peer transfers\.
 
@@ -84,6 +84,7 @@ The following is a summary of the hardware specifications for accelerated comput
 | p3\.2xlarge | 8 | 61 | 
 | p3\.8xlarge | 32 | 244 | 
 | p3\.16xlarge | 64 | 488 | 
+| p3dn\.24xlarge | 96 | 768 | 
 | g2\.2xlarge | 8 | 15 | 
 | g2\.8xlarge | 32 | 60 | 
 | g3s\.xlarge | 4 | 30\.5 | 
@@ -122,6 +123,7 @@ The following is a summary of network performance for accelerated computing inst
 |  `f1.2xlarge` \| `f1.4xlarge` \| `g3.4xlarge` \| `p3.2xlarge`  |  Up to 10 Gbps  |  [ENA](enhanced-networking-ena.md)  | 
 |  `g3s.xlarge` \| `g3.8xlarge` \| `p2.8xlarge` \| `p3.8xlarge`  |  10 Gbps  |  [ENA](enhanced-networking-ena.md)  | 
 |  `f1.16xlarge` \| `g3.16.xlarge` \| `g3.16.xlarge` \| `p2.16xlarge` \| `p3.16xlarge`  |  25 Gbps  |  [ENA](enhanced-networking-ena.md)  | 
+| `p3dn.24xlarge` | 100 Gbps |  [ENA](enhanced-networking-ena.md)  | 
 
 ## Instance Features<a name="gpu-instances-features"></a>
 
@@ -133,7 +135,7 @@ The following is a summary of features for accelerated computing instances\.
 | G2 |  |  | SSD | Yes | 
 |  G3  |  Yes  |  |  |  Yes  | 
 |  P2  |  Yes  |  |  |  Yes  | 
-|  P3  |  Yes  |   |   |  Yes  | 
+|  P3  |  `p3dn.24xlarge`: No All other sizes: Yes  |  `p3dn.24xlarge`: Yes All other sizes: No  |  `p3dn.24xlarge`: NVMe \*  |  Yes  | 
 |  F1  |  |  |  NVMe \*  |  Yes  | 
 
 **\*** The root device volume must be an Amazon EBS volume\.

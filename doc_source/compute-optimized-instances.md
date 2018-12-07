@@ -9,6 +9,8 @@ Compute optimized instances are ideal for compute\-bound applications that benef
 + Dedicated gaming servers and ad serving engines
 + Machine learning inference and other compute\-intensive applications
 
+For more information, see [Amazon EC2 C5 Instances](https://aws.amazon.com/ec2/instance-types/c5)\.
+
 **Topics**
 + [Hardware Specifications](#compute-instances-hardware)
 + [Instance Performance](#compute-performance)
@@ -21,8 +23,6 @@ Compute optimized instances are ideal for compute\-bound applications that benef
 
 The following is a summary of the hardware specifications for compute optimized instances\.
 
-
-****  
 
 | Instance type | Default vCPUs | Memory \(GiB\) | 
 | --- | --- | --- | 

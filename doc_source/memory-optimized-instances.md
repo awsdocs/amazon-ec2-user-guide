@@ -11,6 +11,8 @@ These instances are well suited for the following applications:
 + Applications performing real\-time processing of big unstructured data \(financial services, Hadoop/Spark clusters\)\.
 + High\-performance computing \(HPC\) and Electronic Design Automation \(EDA\) applications\.
 
+For more information, see [Amazon EC2 R5 Instances](https://aws.amazon.com/ec2/instance-types/r5)\.
+
 **High memory instances**  
 High memory instances \(`u-6tb1.metal`, `u-9tb1.metal`, and `u-12tb1.metal`\) offer 6 TiB, 9 TiB, and 12 TiB of memory per instance\. These instances are designed to run large in\-memory databases, including production installations of SAP HANA\. They offer bare metal performance with direct access to host hardware\.
 
@@ -21,6 +23,8 @@ These instances are well suited for the following applications:
 + Big\-data processing engines such as Apache Spark or Presto\.
 + High\-performance computing \(HPC\) applications\.
 
+For more information, see [Amazon EC2 X1 Instances](https://aws.amazon.com/ec2/instance-types/x1)\.
+
 **X1e Instances**
 
 These instances are well suited for the following applications:
@@ -28,11 +32,15 @@ These instances are well suited for the following applications:
 + In\-memory databases such as SAP HANA\. For more information, see [SAP HANA on the AWS Cloud](https://aws.amazon.com/sap/solutions/saphana/)\.
 + Memory\-intensive enterprise applications\.
 
+For more information, see [Amazon EC2 X1e Instances](https://aws.amazon.com/ec2/instance-types/x1e)\.
+
 **z1d Instances**
 
 These instances deliver both high compute and high memory and are well\-suited for the following applications:
 + Electronic Design Automation \(EDA\)
 + Relational database workloads
+
+For more information, see [Amazon EC2 z1d Instances](https://aws.amazon.com/ec2/instance-types/z1d)\.
 
 **Topics**
 + [Hardware Specifications](#memory-instances-hardware)

@@ -26,7 +26,7 @@ The following table describes the use cases and performance characteristics for 
 
 \*\* `gp2`/`io1` based on 16 KiB I/O size, `st1`/`sc1` based on 1 MiB I/O size
 
-\*\*\* General Purpose SSD \(gp2\) volumes have a throughput limit between 128 MiB/s and 250 MiB/s depending on volume size\. Volumes greater than 170 GiB up to 214 GiB deliver a maximum throughput of 160 MiB/s if burst credits are available\. Volumes above 214 GiB deliver 250 MiB/s irrespective of burst credits\. A volume created prior to an EBS service upgrade may not see full performance unless a `ModifyVolume` action is performed on it\.
+\*\*\* General Purpose SSD \(gp2\) volumes have a throughput limit between 128 MiB/s and 250 MiB/s depending on volume size\. Volumes greater than 170 GiB up to 334 GiB deliver a maximum throughput of 250 MiB/s if burst credits are available\. Volumes above 334 GiB deliver 250 MiB/s irrespective of burst credits\. A volume created prior to 11/26/2018 may not see full performance unless a `ModifyVolume` action is performed on it\.
 
 \*\*\*\* Maximum IOPS of 64,000 is guaranteed only on [Nitro\-based instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances)\. Other instance families guarantee performance up to 32,000 IOPS\.
 
@@ -59,7 +59,7 @@ For more information about pricing for these volume types, see [Amazon EBS Prici
 
 ## General Purpose SSD \(`gp2`\) Volumes<a name="EBSVolumeTypes_gp2"></a>
 
-General Purpose SSD \(`gp2`\) volumes offer cost\-effective storage that is ideal for a broad range of workloads\. These volumes deliver single\-digit millisecond latencies and the ability to burst to 3,000 IOPS for extended periods of time\. Between a minimum of 100 IOPS \(at 33\.33 GiB and below\) and a maximum of 16,000 IOPS \(at 5,334 GiB and above\), baseline performance scales linearly at 3 IOPS per GiB of volume size\. AWS designs `gp2` volumes to deliver the provisioned performance 99% of the time\. A `gp2` volume can range in size from 1 GiB to 16 TiB\.
+General Purpose SSD \(`gp2`\) volumes offer cost\-effective storage that is ideal for a broad range of workloads\. These volumes deliver single\-digit millisecond latencies and the ability to burst to 3,000 IOPS for extended periods of time\. Between a minimum of 100 IOPS \(at 33\.33 GiB and below\) and a maximum of 16,000 IOPS \(at 5,334 GiB and above\), baseline performance scales linearly at 3 IOPS per GiB of volume size\. AWS designs `gp2` volumes to deliver 90% of the provisioned performance 99% of the time\. A `gp2` volume can range in size from 1 GiB to 16 TiB\.
 
 ### I/O Credits and Burst Performance<a name="IOcredit"></a>
 
@@ -80,13 +80,13 @@ The following table lists several volume sizes and the associated baseline perfo
 | --- | --- | --- | --- | 
 |  1  |  100  |  1862  | 54,000 | 
 |  100  |  300  |  2,000  | 18,000 | 
-|  214 \(Min\. size for max\. throughput\)  |  642  |  2,290  |  8,412  | 
+|  333 \(Min\. size for max\. throughput\)  |  642  |  2,290  |  8,412  | 
 |  250  |  750  | 2,400 | 7,200 | 
 |  500  |  1,500  |  3,600  | 3,600 | 
 |  750  |  2,250  |  7,200  | 2,400 | 
 |  1,000  |  3,000  |  N/A\*  |  N/A\*  | 
-|  3,334 \(Min\. size for max\. IOPS\)  |  10,000  |  N/A\*  |  N/A\*  | 
-|  16,384 \(16 TiB, max\. volume size\)  |  10,000  |  N/A\*  |  N/A\*  | 
+|  5,334 \(Min\. size for max\. IOPS\)  |  16,000  |  N/A\*  |  N/A\*  | 
+|  16,384 \(16 TiB, max\. volume size\)  |  16,000  |  N/A\*  |  N/A\*  | 
 
 \* Bursting and I/O credits are only relevant to volumes under 1,000 GiB, where burst performance exceeds baseline performance\.
 
@@ -99,15 +99,15 @@ Burst duration  =  ------------------------------------
 ```
 
 **What happens if I empty my I/O credit balance?**  
-If your `gp2` volume uses all of its I/O credit balance, the maximum IOPS performance of the volume remains at the baseline IOPS performance level \(the rate at which your volume earns credits\) and the volume's maximum throughput is reduced to the baseline IOPS multiplied by the maximum I/O size\. Throughput can never exceed 160 MiB/s\. When I/O demand drops below the baseline level and unused credits are added to the I/O credit balance, the maximum IOPS performance of the volume again exceeds the baseline\. For example, a 100 GiB `gp2` volume with an empty credit balance has a baseline performance of 300 IOPS and a throughput limit of 75 MiB/s \(300 I/O operations per second \* 256 KiB per I/O operation = 75 MiB/s\)\. The larger a volume is, the greater the baseline performance is and the faster it replenishes the credit balance\. For more information about how IOPS are measured, see [I/O Characteristics](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-io-characteristics.html)\.
+If your `gp2` volume uses all of its I/O credit balance, the maximum IOPS performance of the volume remains at the baseline IOPS performance level \(the rate at which your volume earns credits\) and the volume's maximum throughput is reduced to the baseline IOPS multiplied by the maximum I/O size\. Throughput can never exceed 250 MiB/s\. When I/O demand drops below the baseline level and unused credits are added to the I/O credit balance, the maximum IOPS performance of the volume again exceeds the baseline\. For example, a 100 GiB `gp2` volume with an empty credit balance has a baseline performance of 300 IOPS and a throughput limit of 75 MiB/s \(300 I/O operations per second \* 256 KiB per I/O operation = 75 MiB/s\)\. The larger a volume is, the greater the baseline performance is and the faster it replenishes the credit balance\. For more information about how IOPS are measured, see [I/O Characteristics](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-io-characteristics.html)\.
 
-If you notice that your volume performance is frequently limited to the baseline level \(due to an empty I/O credit balance\), you should consider using a larger `gp2` volume \(with a higher baseline performance level\) or switching to an `io1` volume for workloads that require sustained IOPS performance greater than 10,000 IOPS\.
+If you notice that your volume performance is frequently limited to the baseline level \(due to an empty I/O credit balance\), you should consider using a larger `gp2` volume \(with a higher baseline performance level\) or switching to an `io1` volume for workloads that require sustained IOPS performance greater than 16,000 IOPS\.
 
 For information about using CloudWatch metrics and alarms to monitor your burst bucket balance, see [Monitoring the Burst Bucket Balance for `gp2`, `st1`, and `sc1` Volumes](#monitoring_burstbucket)\.
 
 ### Throughput Performance<a name="GP2Throughput"></a>
 
-Throughput for a `gp2` volume can be calculated using the following formula, up to the throughput limit of 160 MiB/s:
+Throughput for a `gp2` volume can be calculated using the following formula, up to the throughput limit of 250 MiB/s:
 
 ```
 Throughput in MiB/s = (Volume size in GiB) × (IOPS per GiB) × (I/O size in KiB)
@@ -126,23 +126,23 @@ The smallest volume size that achieves the maximum throughput is given by:
 V  =  -----  
        I R   
 
-           (160 MiB/s)
+           (250 MiB/s)
    =  ---------------------
       (256 KiB)(3 IOPS/GiB)
 
 
-               [(160)(2^20)(Bytes)]/(s)
+               [(250)(2^20)(Bytes)]/(s)
    =  ------------------------------------------
       (256)(2^10)(Bytes)(3 IOPS/[(2^30)(Bytes)])
 
 
-      (160)(2^20)(2^30)(Bytes)
+      (250)(2^20)(2^30)(Bytes)
    =  ------------------------
            (256)(2^10)(3)
 
-   =  229064920000 Bytes
+   =  357913940000 Bytes
    
-   =  213 GiB
+   =  333 GiB
 ```
 
 ## Provisioned IOPS SSD \(`io1`\) Volumes<a name="EBSVolumeTypes_piops"></a>

@@ -7,6 +7,7 @@ The following table describes important additions to the Amazon EC2 documentatio
 
 | Feature | API Version | Description | Release Date | 
 | --- | --- | --- | --- | 
+| p3dn\.24xlarge instances | 2016\-11\-15 | New p3dn\.xlarge instances provide 100 Gbps of network bandwidth\. | 7 December 2018 | 
 | Hibernate EC2 Linux instances | 2016\-11\-15 | You can hibernate a Linux instance if it's enabled for hibernation and it meets the hibernation prerequisites\. For more information, see [Hibernate Your Instance](Hibernate.md)\. | 28 November 2018 | 
 | Amazon Elastic Inference Accelerators | 2016\-11\-15 | You can attach an Amazon EI accelerator to your instances to add GPU\-powered acceleration to reduce the cost of running deep learning inference\. For more information, see [Amazon Elastic Inference](elastic-inference.md)\. | 28 November 2018 | 
 | Instances featuring 100 Gbps of network bandwidth | 2016\-11\-15 | New C5n instances can utilize up to 100 Gbps of network bandwidth\. | 26 November 2018 | 

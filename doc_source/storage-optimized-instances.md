@@ -30,6 +30,8 @@ I3 instances are well suited for the following applications:
 + Workloads that require access to low\-level hardware features \(for example, Intel VT\) that are not available or fully supported in virtualized environments
 + Applications that require a non\-virtualized environment for licensing or support
 
+For more information, see [Amazon EC2 I3 Instances](https://aws.amazon.com/ec2/instance-types/i3)\.
+
 **Topics**
 + [Hardware Specifications](#storage-instances-hardware)
 + [Instance Performance](#storage-performance)

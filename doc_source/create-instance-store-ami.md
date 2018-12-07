@@ -94,7 +94,9 @@ For the China \(Beijing\) and AWS GovCloud \(US\-West\) regions, use the `--ec2c
       [ec2-user ~]$ sudo xmllint --format /tmp/image.manifest.xml.bak > sudo /tmp/image.manifest.xml
       ```
 
-   1. Edit the block device mappings in `image.manifest.xml` with a text editor\. The example below shows a new entry for the `ephemeral1` instance store volume\.
+   1. Edit the block device mappings in `image.manifest.xml` with a text editor\. The example below shows a new entry for the `ephemeral1` instance store volume\. 
+**Note**  
+For a list of excluded files, see [ec2\-bundle\-vol](ami-tools-commands.md#ami-bundle-vol)\. 
 
       ```
           <block_device_mapping>

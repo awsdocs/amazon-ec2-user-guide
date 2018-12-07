@@ -109,6 +109,12 @@ To retrieve a product code, use the following command:
 [ec2-user ~]$ curl http://169.254.169.254/latest/meta-data/product-codes
 ```
 
+If your instance supports it, you can use the GET command:
+
+```
+[ec2-user ~]$ GET http://169.254.169.254/latest/meta-data/product-codes
+```
+
 If the instance has a product code, Amazon EC2 returns it\.
 
 ## Using Paid Support<a name="using-paid-amis-support"></a>

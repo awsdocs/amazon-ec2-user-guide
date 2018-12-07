@@ -449,3 +449,7 @@ The following events are available:
 ### AWS CloudTrail<a name="monitor-lifecycle-cloudtrail"></a>
 
 With AWS CloudTrail, you can track user activity and API usage to demonstrate compliance with internal policies and regulatory standards\. For more information, see the [AWS CloudTrail User Guide](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/)\.
+
+### AWS CloudFormation<a name="lifecycle-cloudformation"></a>
+
+When deploying resource stacks with AWS CloudFormation, you can include Amazon DLM policies in your AWS CloudFormation templates\. For more information, see [Amazon Data Lifecycle Manager Resource Types Reference](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-reference-dlm.html)\.

@@ -167,6 +167,7 @@ The following table lists the maximum number of network interfaces per instance 
 | p3\.2xlarge | 4 | 15 | 15 | 
 | p3\.8xlarge | 8 | 30 | 30 | 
 | p3\.16xlarge | 8 | 30 | 30 | 
+| p3dn\.24xlarge | 15 | 50 | 50 | 
 | r3\.large | 3 | 10 | 10 | 
 | r3\.xlarge | 4 | 15 | 15 | 
 | r3\.2xlarge | 4 | 15 | 15 | 
