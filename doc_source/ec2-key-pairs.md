@@ -331,9 +331,11 @@ The device name may appear differently on your instance\. For example, devices m
       ```
 
    1. Mount the volume \(or partition\) at the temporary mount point, using the volume name or device name you identified earlier\.
+   Note: "-o nouuid" is only valid on XFS file systems, which include Red Hat (or varients, such as CentOS or Amazon Linux).
+   On ext4 file systems, omit this option. This includes systems such as Debian or Ubuntu.
 
       ```
-      [ec2-user ~]$ sudo mount -o nouuid /dev/xvdf1 /mnt/tempvol
+      [ec2-user ~]$ sudo mount [-o nouuid] /dev/xvdf1 /mnt/tempvol
       ```
 
 1. From the temporary instance, use the following command to update `authorized_keys` on the mounted volume with the new public key from the `authorized_keys` for the temporary instance\.
