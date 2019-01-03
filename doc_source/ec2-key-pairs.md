@@ -330,7 +330,8 @@ The device name may appear differently on your instance\. For example, devices m
       [ec2-user ~]$ sudo mkdir /mnt/tempvol
       ```
 
-   1. Mount the volume \(or partition\) at the temporary mount point, using the volume name or device name you identified earlier\. **Note** "-o nouuid" is only valid on XFS file systems, which include Red Hat (or varients, such as CentOS or Amazon Linux).
+   1. Mount the volume \(or partition\) at the temporary mount point, using the volume name or device name you identified earlier\. **Note** 
+"-o nouuid" is only valid on XFS file systems, which include Red Hat (or varients, such as CentOS or Amazon Linux).
    On ext4 file systems, omit this option. This includes systems such as Debian or Ubuntu.
 
       ```
