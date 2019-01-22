@@ -332,7 +332,69 @@ The following example uses the `diversified` allocation strategy\. The launch sp
     ]
 }
 ```
+A best practice to increase the chance that a spot request can be fulfilled by EC2 capacity in the event of an outage in one of the Availability Zones is to diversify across AZs. For this scenario, include each AZ available to you in the launch specification. And, instead of using the same subnet each time, use three unique subnets (each mapping to a different AZ). 
 
+**Availability Zone**
+
+```
+{
+  "SpotPrice": "0.70", 
+  "TargetCapacity": 30,
+  "AllocationStrategy": "diversified",
+  "IamFleetRole": "arn:aws:iam::123456789012:role/aws-ec2-spot-fleet-tagging-role",
+  "LaunchSpecifications": [
+      {
+          "ImageId": "ami-1a2b3c4d",
+          "InstanceType": "c4.2xlarge",
+          "Placement": {
+              "AvailabilityZone": "us-west-2a"
+          }
+      },
+      {
+          "ImageId": "ami-1a2b3c4d",
+          "InstanceType": "m3.2xlarge",
+          "Placement": {
+              "AvailabilityZone": "us-west-2b"
+          }
+      },
+      {
+          "ImageId": "ami-1a2b3c4d",
+          "InstanceType": "r3.2xlarge",
+          "Placement": {
+              "AvailabilityZone": "us-west-2c"
+          }
+      }
+  ]
+}
+```
+
+**Subnet**
+
+```
+{
+    "SpotPrice": "0.70", 
+    "TargetCapacity": 30,
+    "AllocationStrategy": "diversified",
+    "IamFleetRole": "arn:aws:iam::123456789012:role/aws-ec2-spot-fleet-tagging-role",
+    "LaunchSpecifications": [
+        {
+            "ImageId": "ami-1a2b3c4d",
+            "InstanceType": "c4.2xlarge",
+            "SubnetId": "subnet-1a2b3c4d"
+        },
+        {
+            "ImageId": "ami-1a2b3c4d",
+            "InstanceType": "m3.2xlarge",
+            "SubnetId": "subnet-2a2b3c4d"
+        },
+        {
+            "ImageId": "ami-1a2b3c4d",
+            "InstanceType": "r3.2xlarge",
+            "SubnetId": "subnet-3a2b3c4d"
+        }
+    ]
+}
+```
 ## Example 6: Launch a Spot Fleet Using Instance Weighting<a name="fleet-config6"></a>
 
 The following examples use instance weighting, which means that the price is per unit hour instead of per instance hour\. Each launch configuration lists a different instance type and a different weight\. The Spot Fleet selects the instance type with the lowest price per unit hour\. The Spot Fleet calculates the number of Spot Instances to launch by dividing the target capacity by the instance weight\. If the result isn't an integer, the Spot Fleet rounds it up to the next integer, so that the size of your fleet is not below its target capacity\.
