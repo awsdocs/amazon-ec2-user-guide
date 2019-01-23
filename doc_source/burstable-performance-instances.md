@@ -43,11 +43,9 @@ For more information about the hardware specifications for each Amazon EC2 insta
 ## Burstable Performance Instance Requirements<a name="burstable-performance-instances-limits"></a>
 
 The following are the requirements for these instances:
-+ You must launch these instances using an HVM AMI and an Amazon EBS volume as the root device\. For more information, see [Amazon EC2 Root Device Volume](RootDeviceStorage.md)\.
-+ You must launch T3 instances using an AMI with ENA and NVMe drivers\. For more information, see [Release Notes](general-purpose-instances.md#general-purpose-instances-limits)\.
 + These instances are available as On\-Demand Instances, Reserved Instances, and Spot Instances, but not as Scheduled Instances or Dedicated Instances\. They are also not supported on a Dedicated Host\. For more information, see [Instance Purchasing Options](instance-purchasing-options.md)\.
-+ There is a limit on the total number of instances that you can launch in an AWS Region, and there are additional limits on some instance types\. If you need more instances, request them using the [Amazon EC2 Instance Request Form](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-instances)\.
 + Ensure that the instance size you choose passes the minimum memory requirements of your operating system and applications\. Operating systems with graphical user interfaces that consume significant memory and CPU resources \(for example, Windows\) might require a `t2.micro` or larger instance size for many use cases\. As the memory and CPU requirements of your workload grow over time, you can scale to larger instance sizes of the same instance type, or another instance type\.
++ For additional requirements, see [General Purpose Instances Release Notes](general-purpose-instances.md#general-purpose-instances-limits)\.
 
 ## Best Practices<a name="burstable-performance-instances-best-practices"></a>
 

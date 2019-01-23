@@ -4,6 +4,8 @@ Be aware of the following limits and requirements when you modify an EBS volume:
 + In some cases, you must detach the volume or stop the instance for modification to proceed\. If you encounter an error message while attempting to modify an EBS volume, or if you are modifying an EBS volume attached to a previous\-generation instance type, take one of the following steps:
   + For a non\-root volume, detach the volume from the instance, apply the modifications, and then re\-attach the volume\. For more information, see [Detaching an Amazon EBS Volume from an Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-detaching-volume.html) and [Attaching an Amazon EBS Volume to an Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-attaching-volume.html)\. 
   + For a root \(boot\) volume, stop the instance, apply the modifications, and then restart the instance\. For more information, see [Appendix: Starting and Stopping an Instance to Modify an EBS Volume](stop-start.md)\.
++ A `gp2` volume that is attached to an instance as a root volume cannot be modified to an `st1` or `sc1` volume\. If detached and modified to `st1` or `sc1`, it cannot be attached to an instance as the root volume\.
++ A `gp2` volume cannot be modified to an `st1` or `sc1` volume if the requested volume size is below the minimum size for `st1` and `sc1` volumes\.
 + When provisioning over 32,000 IOPS on an existing `io1` volume, you may need to do one of the following in order to see full performance:
   + Detach and attach the volume\.
   + Restart the instance\.

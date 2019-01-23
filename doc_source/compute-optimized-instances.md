@@ -112,10 +112,10 @@ The following is a summary of features for compute optimized instances:
 
 |  | EBS only | NVMe EBS | Instance store | Placement group | 
 | --- | --- | --- | --- | --- | 
-| C4 | Yes |  |  | Yes | 
-| C5 | Yes | Yes |  | Yes | 
-| C5d |  | Yes | NVMe \* | Yes | 
-| C5n | Yes | Yes |  | Yes | 
+| C4 | Yes | No | No | Yes | 
+| C5 | Yes | Yes | No | Yes | 
+| C5d | No | Yes | NVMe \* | Yes | 
+| C5n | Yes | Yes | No | Yes | 
 
 **\*** The root device volume must be an Amazon EBS volume\.
 

@@ -9,7 +9,7 @@ If the root device for your instance is an EBS volume, you can change the size o
 When you resize an instance, you must select an instance type that is compatible with the configuration of the instance\. If the instance type that you want is not compatible with the instance configuration you have, then you must migrate your application to a new instance with the instance type that you need\.
 
 **Important**  
-When you resize an instance, the resized instance usually has the same number of instance store volumes that you specified when you launched the original instance\. If you want to add instance store volumes, you must migrate your application to a new instance with the instance type and instance store volumes that you need\. An exception to this rule is when you resize to a storage\-optimized instance type that by default contains a higher number of volumes\. For more information about instance store volumes, see [Amazon EC2 Instance Store](InstanceStorage.md)\.
+When you resize an instance, the resized instance usually has the same number of instance store volumes that you specified when you launched the original instance\. With instance types that support NVMe instance store volumes \(which are available by default\), the resized instance might have additional instance store volumes, depending on the AMI\. Otherwise, you can migrate your application to an instance with a new instance type manually, specifying the number of instance store volumes that you need when you launch the new instance\.
 
 **Topics**
 + [Compatibility for Resizing Instances](#resize-limitations)

@@ -4,7 +4,10 @@ Amazon EBS provides the following volume types, which differ in performance char
 + SSD\-backed volumes optimized for transactional workloads involving frequent read/write operations with small I/O size, where the dominant performance attribute is IOPS
 + HDD\-backed volumes optimized for large streaming workloads where throughput \(measured in MiB/s\) is a better performance measure than IOPS
 
-The following table describes the use cases and performance characteristics for each volume type:
+The following table describes the use cases and performance characteristics for each volume type\. 
+
+**Note**  
+AWS updates to the performance of EBS volume types may not immediately take effect on your existing volumes\. To see full performance on an older volume, you may first need to perform a `ModifyVolume` action on it\. For more information, see [Modifying the Size, IOPS, or Type of an EBS Volume on Linux](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-modify-volume.html)\.
 
 
 |  | Solid\-State Drives \(SSD\) | Hard Disk Drives \(HDD\) | 
@@ -16,7 +19,7 @@ The following table describes the use cases and performance characteristics for 
 | Volume Size | 1 GiB \- 16 TiB  | 4 GiB \- 16 TiB  | 500 GiB \- 16 TiB | 500 GiB \- 16 TiB  | 
 | Max\. IOPS\*\*/Volume | 16,000\*\*\*  | 64,000\*\*\*\* | 500 | 250 | 
 | Max\. Throughput/Volume | 250 MiB/s\*\*\* | 1,000 MiB/s† | 500 MiB/s | 250 MiB/s | 
-| Max\. IOPS/Instance | 80,000 | 80,000 | 80,000 | 80,000 | 
+| Max\. IOPS/Instance†† | 80,000 | 80,000 | 80,000 | 80,000 | 
 | Max\. Throughput/Instance†† | 1,750 MiB/s | 1,750 MiB/s | 1,750 MiB/s | 1,750 MiB/s | 
 | Dominant Performance Attribute | IOPS | IOPS | MiB/s | MiB/s | 
 
@@ -26,11 +29,11 @@ The following table describes the use cases and performance characteristics for 
 
 \*\* `gp2`/`io1` based on 16 KiB I/O size, `st1`/`sc1` based on 1 MiB I/O size
 
-\*\*\* General Purpose SSD \(gp2\) volumes have a throughput limit between 128 MiB/s and 250 MiB/s depending on volume size\. Volumes greater than 170 GiB up to 334 GiB deliver a maximum throughput of 250 MiB/s if burst credits are available\. Volumes above 334 GiB deliver 250 MiB/s irrespective of burst credits\. A volume created prior to 11/26/2018 may not see full performance unless a `ModifyVolume` action is performed on it\.
+\*\*\* General Purpose SSD \(gp2\) volumes have a throughput limit between 128 MiB/s and 250 MiB/s depending on volume size\. Volumes greater than 170 GiB and below 334 GiB deliver a maximum throughput of 250 MiB/s if burst credits are available\. Volumes with 334 GiB and above deliver 250 MiB/s irrespective of burst credits\. An older `gp2` volume may not see full performance unless a `ModifyVolume` action is performed on it\. For more information, see [Modifying the Size, IOPS, or Type of an EBS Volume on Linux](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-modify-volume.html)\.
 
 \*\*\*\* Maximum IOPS of 64,000 is guaranteed only on [Nitro\-based instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances)\. Other instance families guarantee performance up to 32,000 IOPS\.
 
-† An `io1` volume created before 12/6/2017 does not achieve this throughput until modified in some way\. For more information, see [Modifying the Size, IOPS, or Type of an EBS Volume on Linux](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-modify-volume.html)\. Maximum throughput of 1,000 MiB/s is guaranteed only on [Nitro\-based instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances)\. Other instance families guarantee up to 500 MiB/s\.
+† Maximum throughput of 1,000 MiB/s is guaranteed only on [Nitro\-based instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances)\. Other instance families guarantee up to 500 MiB/s\. An older `io1` volume may not see full performance unless a `ModifyVolume` action is performed on it\. For more information, see [Modifying the Size, IOPS, or Type of an EBS Volume on Linux](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-modify-volume.html)\. 
 
 †† To achieve this throughput, you must have an instance that supports it\. For more information, see [Amazon EBS–Optimized Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html)\.
 
@@ -76,12 +79,12 @@ When your volume requires more than the baseline performance I/O level, it draws
 The following table lists several volume sizes and the associated baseline performance of the volume \(which is also the rate at which it accumulates I/O credits\), the burst duration at the 3,000 IOPS maximum \(when starting with a full credit balance\), and the time in seconds that the volume would take to refill an empty credit balance\.
 
 
-|  Volume size \(GiB\)  |  Baseline performance \(IOPS\)  |  Maximum burst duration @ 3,000 IOPS \(seconds\)  |  Seconds to fill empty credit balance  | 
+|  Volume size \(GiB\)  |  Baseline performance \(IOPS\)  |  Minimum burst duration @ 3,000 IOPS \(seconds\)  |  Seconds to fill empty credit balance  | 
 | --- | --- | --- | --- | 
 |  1  |  100  |  1862  | 54,000 | 
 |  100  |  300  |  2,000  | 18,000 | 
-|  333 \(Min\. size for max\. throughput\)  |  642  |  2,290  |  8,412  | 
 |  250  |  750  | 2,400 | 7,200 | 
+|  334 \(Min\. size for max\. throughput\)  | 1002 |  2703  |  5389  | 
 |  500  |  1,500  |  3,600  | 3,600 | 
 |  750  |  2,250  |  7,200  | 2,400 | 
 |  1,000  |  3,000  |  N/A\*  |  N/A\*  | 
@@ -142,7 +145,7 @@ V  =  -----
 
    =  357913940000 Bytes
    
-   =  333 GiB
+   =  333⅓ GiB (334 GiB in practice because volumes are provisioned in whole gibibytes)
 ```
 
 ## Provisioned IOPS SSD \(`io1`\) Volumes<a name="EBSVolumeTypes_piops"></a>

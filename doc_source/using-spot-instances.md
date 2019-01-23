@@ -65,7 +65,7 @@ The first thing you need to do is get set up to use Amazon EC2\. It can also be 
 You can provision Spot Instances directly using Amazon EC2\. You can also provision Spot Instances using other services in AWS\. For more information, see the following documentation\.
 
 Amazon EC2 Auto Scaling and Spot Instances  
-You can create launch configurations with the maximum price that you are willing to pay, so that Amazon EC2 Auto Scaling can launch Spot Instances\. For more information, see [Launching Spot Instances in Your Auto Scaling Group](https://docs.aws.amazon.com/autoscaling/latest/userguide/asg-launch-spot-instances.html) in the *Amazon EC2 Auto Scaling User Guide*\.
+You can create launch configurations with the maximum price that you are willing to pay, so that Amazon EC2 Auto Scaling can launch Spot Instances\. For more information, see [Launching Spot Instances in Your Auto Scaling Group](https://docs.aws.amazon.com/autoscaling/latest/userguide/asg-launch-spot-instances.html) and [Using Multiple Instance Types and Purchase Options](https://docs.aws.amazon.com/autoscaling/latest/userguide/AutoScalingGroup.html#asg-purchase-options) in the *Amazon EC2 Auto Scaling User Guide*\.
 
 Amazon EMR and Spot Instances  
 There are scenarios where it can be useful to run Spot Instances in an Amazon EMR cluster\. For more information, see [Spot Instances](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-instance-purchasing-options.html#emr-spot-instances) and [When Should You Use Spot Instances](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-instances-guidelines.html#emr-plan-spot-instances) in the *Amazon EMR Management Guide*\.
@@ -81,7 +81,7 @@ You can use the \.NET programming environment to manage your Spot Instances\. Fo
 
 ## Pricing and Savings<a name="spot-pricing"></a>
 
-You pay the Spot price for Spot Instances, which is set by Amazon EC2 and adjusted gradually based on the long\-term supply of and demand for Spot Instances\. If the maximum price for your request exceeds the current Spot price, Amazon EC2 fulfills your request if capacity is available\. Your Spot Instances run until you terminate them, capacity is no longer available, or the Spot price exceeds your maximum price\.
+You pay the Spot price for Spot Instances, which is set by Amazon EC2 and adjusted gradually based on the long\-term supply of and demand for Spot Instances\. If the maximum price for your request exceeds the current Spot price, Amazon EC2 fulfills your request if capacity is available\. Your Spot Instances run until you terminate them, capacity is no longer available, the Spot price exceeds your maximum price, or your Amazon EC2 Auto Scaling group terminates them during [scale in](https://docs.aws.amazon.com/autoscaling/latest/userguide/AutoScalingGroupLifecycle.html#as-lifecycle-scale-in)\.
 
 Spot Instances with a predefined duration use a fixed hourly price that remains in effect for the Spot Instance while it runs\.
 

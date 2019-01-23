@@ -45,8 +45,11 @@ You need two security groups: one for inbound and outbound traffic for the new A
 
    ```
    aws ec2 create-security-group
+    
    --description insert a description for the security group
+    
    --group-name assign a name for the security group
+    
    [--vpc-id enter the VPC ID]
    ```
 
@@ -54,6 +57,7 @@ You need two security groups: one for inbound and outbound traffic for the new A
 
    ```
    aws ec2 authorize-security-group-ingress --group-id insert the security group ID --group-name insert the name of the security group --protocol https 
+    
    --port 443
    ```
 
@@ -67,8 +71,11 @@ You need two security groups: one for inbound and outbound traffic for the new A
 
    ```
    aws ec2 create-security-group
+    
    --description insert a description for the security group
+    
    --group-name assign a name for the security group
+    
    [--vpc-id enter the VPC ID]
    ```
 
@@ -84,7 +91,9 @@ Amazon EI uses [VPC endpoints](https://docs.aws.amazon.com/vpc/latest/userguide/
 
 1. For **Service category**, choose **Find service by name**\.
 
-1. For **Service Name**, select **com\.amazonaws\.us\-west\-2\.elastic\-inference\.runtime**\. 
+1. For **Service Name**, select **com\.amazonaws\.*<your\-region>*\.elastic\-inference\.runtime**\. 
+
+   For example, for the us\-west\-2 region, select **com\.amazonaws\.us\-west\-2\.elastic\-inference\.runtime**\.
 
 1. For **Subnets**, select one or more Availability Zones where the endpoint should be created\. Where you plan to launch instances with accelerators, you must select subnets for the Availability Zone\. 
 
@@ -110,16 +119,25 @@ To launch an instance with an Amazon EI accelerator, you must provide an [IAM ro
 1. Choose **JSON** and paste the following policy:
 
    ```
-   	{
-   	    "Version": "2012-10-17",
-   	    "Statement": [
-   	        {
-   	            "Effect": "Allow",
-   	            "Action": "elastic-inference:Connect",
-   	            "Resource": "*"
-   	        }
-   	    ]
-    	}
+   {
+    
+     "Version": "2012-10-17",
+    
+     "Statement": [
+    
+       {
+    
+         "Effect": "Allow",
+    
+         "Action": "elastic-inference:Connect",
+    
+         "Resource": "*"
+    
+       }
+    
+     ]
+    
+   }
    ```
 
 1. Choose **Review policy** and enter a name for the policy, such as `ec2-role-trust-policy.json`, and a description\.
@@ -140,16 +158,25 @@ When you create your instance, select the role under **Configure Instance Detail
 + To configure an instance role with an Amazon EI policy, follow the steps in [Creating an IAM Role](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html#create-iam-role)\. Add the following policy to your instance:
 
   ```
-  	{
-  	    "Version": "2012-10-17",
-  	    "Statement": [
-  	        {
-  	            "Effect": "Allow",
-  	            "Action": "elastic-inference:Connect",
-  	            "Resource": "*"
-  	        }
-  	    ]
-   	}
+  {
+   
+     "Version": "2012-10-17",
+   
+     "Statement": [
+   
+       {
+   
+         "Effect": "Allow",
+   
+         "Action": "elastic-inference:Connect",
+   
+         "Resource": "*"
+   
+      }
+   
+    ]
+   
+  }
   ```
 
 ## Launching an Instance with Amazon EI<a name="eia-launch"></a>
@@ -209,12 +236,19 @@ To launch an instance with Amazon EI at the command line, you need your key pair
 
    ```
    "ElasticInferenceAcceleratorAssociations": [
+    
     {
+    
     "ElasticInferenceAcceleratorArn": "arn:aws:elastic-inference:us-west-2:204044812891:elastic-inference-accelerator/eia-3e1de7c2f64a4de8b970c205e838af6b",
+    
     "ElasticInferenceAcceleratorAssociationId": "eia-assoc-031f6f53ddcd5f260",
+    
     "ElasticInferenceAcceleratorAssociationState": "associating",
+    
     "ElasticInferenceAcceleratorAssociationTime": "2018-10-05T17:22:20.000Z"
+    
     }
+    
     ],
    ```
 
@@ -246,13 +280,13 @@ The following is an example of how to run an inception model with Amazon EI Tens
 1. Download the model\.
 
    ```
-   curl -O https://s3-us-west-2.amazonaws.com/aws-tf-serving-ei-example/inception.zip
+   curl -O https://s3-us-west-2.amazonaws.com/aws-tf-serving-ei-example/inception_example2.zip
    ```
 
 1. Unzip the model\.
 
    ```
-   unzip inception.zip
+   unzip inception_example2.zip
    ```
 
 1. Download a picture of a husky\.
@@ -264,44 +298,90 @@ The following is an example of how to run an inception model with Amazon EI Tens
 1. Navigate to the folder where `AmazonEI_TensorFlow_Serving` is installed and run the following command to launch the server\.
 
    ```
-   AmazonEI_TensorFlow_Serving_v1.11_v1 --model_name=inception --model_base_path=[directory with the unzipped model]/SERVING_INCEPTION/SERVING_INCEPTION --port=9000
+   AmazonEI_TensorFlow_Serving_v1.11_v1 --model_name=inception --model_base_path=[directory with the unzipped model]/inception_example  --port=9000
    ```
 
 1. While the server is running in the foreground, launch another terminal session\. Open a new terminal and use your preferred text editor to create a script that has the following content\. Name it `inception_client.py`\. This script will take an image filename as a parameter and get a prediction result from the pre\-trained model\.
 
    ```
    from __future__ import print_function
+    
    
+    
    import grpc
+    
    import tensorflow as tf
-   
+    
+   from PIL import Image
+    
+   import numpy as np
+    
+   import time
+    
    from tensorflow_serving.apis import predict_pb2
+    
    from tensorflow_serving.apis import prediction_service_pb2_grpc
+    
    
+    
    
+    
    tf.app.flags.DEFINE_string('server', 'localhost:9000',
+    
                               'PredictionService host:port')
+    
    tf.app.flags.DEFINE_string('image', '', 'path to image in JPEG format')
+    
    FLAGS = tf.app.flags.FLAGS
+    
    
+    
    
+    
    def main(_):
+    
      channel = grpc.insecure_channel(FLAGS.server)
+    
      stub = prediction_service_pb2_grpc.PredictionServiceStub(channel)
+    
      # Send request
-     with open(FLAGS.image, 'rb') as f:
+    
+     with Image.open(FLAGS.image) as f:
+    
+       f.load()
+    
        # See prediction_service.proto for gRPC request/response details.
-       data = f.read()
+    
+       data = np.asarray(f, dtype = "float")
+    
+       data = np.resize(data, (224, 224, 3))
+    
+       data = np.expand_dims(data, axis=0)
+    
        request = predict_pb2.PredictRequest()
+    
        request.model_spec.name = 'inception'
-       request.model_spec.signature_name = 'predict_images'
-       request.inputs['images'].CopyFrom(
-           tf.contrib.util.make_tensor_proto(data, shape=[1]))
-       result = stub.Predict(request, 10.0)  # 10 secs timeout
-       print(result)
-     print("Inception Client Passed")
+    
+       request.inputs['Placeholder:0'].CopyFrom(
+    
+           tf.contrib.util.make_tensor_proto(data, shape=[1,224,224,3], dtype=tf.float32))
+    
+       start = time.time()
+    
+       result = stub.Predict(request, 60.0)  # 10 secs timeout
+    
+       stop = time.time()
+    
+       print("Inception prediction took %fs"%(stop - start))
+    
    
+    
+     print("Inception Client Passed")
+    
+   
+    
    if __name__ == '__main__':
+    
      tf.app.run()
    ```
 
@@ -359,17 +439,29 @@ The following example calls the `simple_bind()` method:
 
 ```
 import mxnet as mx
+ 
 
+ 
 data = mx.sym.var('data', shape=(1,))
+ 
 sym = mx.sym.exp(data)
+ 
 
+ 
 # Pass mx.eia() as context during simple bind operation
+ 
 
+ 
 executor = sym.simple_bind(ctx=mx.eia(), grad_req='null')
+ 
 for i in range(10):
+ 
 
+ 
   # Forward call is performed on remote accelerator
+ 
   executor.forward()
+ 
   print('Inference %d, output = %s' % (i, executor.outputs[0]))
 ```
 
@@ -377,17 +469,29 @@ The following example calls the `bind()` method:
 
 ```
 import mxnet as mx
+ 
 a = mx.sym.Variable('a')
+ 
 b = mx.sym.Variable('b')
+ 
 c = 2 * a + b
+ 
 # Even for execution of inference workloads on eia,
+ 
 # context for input ndarrays to be mx.cpu()
+ 
 a_data = mx.nd.array([1,2], ctx=mx.cpu())
+ 
 b_data = mx.nd.array([2,3], ctx=mx.cpu())
+ 
 # Then in the bind call, use the mx.eia() context
+ 
 e = c.bind(mx.eia(), {'a': a_data, 'b': b_data})
+ 
 
+ 
 # Forward call is performed on remote accelerator
+ 
 e.forward()
 ```
 
@@ -395,40 +499,75 @@ The following example calls the `bind()` method on a pre\-trained real model \(R
 
 ```
 import mxnet as mx
+ 
 import numpy as np
+ 
 
+ 
 path='http://data.mxnet.io/models/imagenet/'
+ 
 [mx.test_utils.download(path+'resnet/50-layers/resnet-50-0000.params'),
+ 
 mx.test_utils.download(path+'resnet/50-layers/resnet-50-symbol.json'),
+ 
 mx.test_utils.download(path+'synset.txt')]
+ 
 
+ 
 ctx = mx.eia()
+ 
 
+ 
 with open('synset.txt', 'r') as f:
+ 
   labels = [l.rstrip() for l in f]
+ 
 
+ 
 sym, args, aux = mx.model.load_checkpoint('resnet-50', 0)
+ 
 
+ 
 fname = mx.test_utils.download('https://github.com/dmlc/web-data/blob/master/mxnet/doc/tutorials/python/predict_image/cat.jpg?raw=true')
+ 
 img = mx.image.imread(fname)
+ 
 # convert into format (batch, RGB, width, height)
+ 
 img = mx.image.imresize(img, 224, 224) # resize
+ 
 img = img.transpose((2, 0, 1)) # Channel first
+ 
 img = img.expand_dims(axis=0) # batchify
+ 
 img = img.astype(dtype='float32')
+ 
 args['data'] = img
+ 
 
+ 
 softmax = mx.nd.random_normal(shape=(1,))
+ 
 args['softmax_label'] = softmax
+ 
 
+ 
 exe = sym.bind(ctx=ctx, args=args, aux_states=aux, grad_req='null')
+ 
 
+ 
 exe.forward()
+ 
 prob = exe.outputs[0].asnumpy()
+ 
 # print the top-5
+ 
 prob = np.squeeze(prob)
+ 
 a = np.argsort(prob)[::-1]
+ 
 for i in a[0:5]:
+ 
   print('probability=%f, class=%s' %(prob[i], labels[i]))
 ```
 
@@ -440,16 +579,27 @@ To use the MXNet Module API, you can use the following commands:
 
 ```
 # Load saved model
+ 
 sym, arg_params, aux_params = mx.model.load_checkpoint(model_path, EPOCH_NUM)
+ 
 
+ 
 # Pass mx.eia() as context while creating Module object
+ 
 mod = mx.mod.Module(symbol=sym, context=mx.eia())
+ 
 
+ 
 # Only for_training = False is supported for eia
+ 
 mod.bind(for_training=False, data_shapes=data_shape)
+ 
 mod.set_params(arg_params, aux_params)
+ 
 
+ 
 # Forward call is performed on remote accelerator
+ 
 mod.forward(data_batch)
 ```
 
@@ -457,39 +607,73 @@ The following example uses Amazon EI with the Module API on a pre\-trained real 
 
 ```
 import mxnet as mx
+ 
 import numpy as np
+ 
 from collections import namedtuple
+ 
 Batch = namedtuple('Batch', ['data'])
+ 
 
+ 
 path='http://data.mxnet.io/models/imagenet/'
+ 
 [mx.test_utils.download(path+'resnet/152-layers/resnet-152-0000.params'),
+ 
 mx.test_utils.download(path+'resnet/152-layers/resnet-152-symbol.json'),
+ 
 mx.test_utils.download(path+'synset.txt')]
+ 
 
+ 
 ctx = mx.eia()
+ 
 
+ 
 sym, arg_params, aux_params = mx.model.load_checkpoint('resnet-152', 0)
+ 
 mod = mx.mod.Module(symbol=sym, context=ctx, label_names=None)
+ 
 mod.bind(for_training=False, data_shapes=[('data', (1,3,224,224))],
+ 
      label_shapes=mod._label_shapes)
+ 
 mod.set_params(arg_params, aux_params, allow_missing=True)
+ 
 with open('synset.txt', 'r') as f:
+ 
   labels = [l.rstrip() for l in f]
+ 
 
+ 
 fname = mx.test_utils.download('https://github.com/dmlc/web-data/blob/master/mxnet/doc/tutorials/python/predict_image/cat.jpg?raw=true')
+ 
 img = mx.image.imread(fname)
+ 
 
+ 
 # convert into format (batch, RGB, width, height)
+ 
 img = mx.image.imresize(img, 224, 224) # resize
+ 
 img = img.transpose((2, 0, 1)) # Channel first
+ 
 img = img.expand_dims(axis=0) # batchify
+ 
 
+ 
 mod.forward(Batch([img]))
+ 
 prob = mod.get_outputs()[0].asnumpy()
+ 
 # print the top-5
+ 
 prob = np.squeeze(prob)
+ 
 a = np.argsort(prob)[::-1]
+ 
 for i in a[0:5]:
+ 
   print('probability=%f, class=%s' %(prob[i], labels[i]))
 ```
 
@@ -507,7 +691,6 @@ This release of Amazon EI Apache MXNet has been tested to perform well and provi
 + Amazon EI is not currently supported for MXNet Imperative mode or the MXNet Gluon API\.
 + `mx.eia()` does not currently provide the full functionality of an MXNet context\. You cannot allocate memory for NDArray on the Amazon EI accelerator by writing something such as: `x = mx.nd.array([[1, 2], [3, 4]], ctx=mx.eia())`\. This results in an error\. Instead you should use: `x = mx.nd.array([[1, 2], [3, 4]], ctx=mx.cpu())`\. MXNet automatically transfers your data to the accelerator as necessary\.
 + Because Amazon EI only supports inference, the `backward()` method or calls to bind\(\) with `for_training=True`\. Because the default value of `for_training` is `True`, make sure that you set `for_training=False`\. 
-+ The Amazon EI Apache MXNet pip package on S3 is tested to work with Amazon Linux 1 and 2, and Ubuntu 16\. If you encounter a `(Caused by SSLError("Can't connect to HTTPS URL because the SSL module is not available.",))` after you install the pip package, resolve this issue by removing the SSL shared object libraries from the installation\. To do this, navigate to where Amazon EI MXNet has been installed and remove `libssl.so.1.0.0` and `libcrypto.so.1.0.0` from the MXNet directory\.
 
 ## Using ONNX Models with Amazon EI<a name="ei-ONNX"></a>
 

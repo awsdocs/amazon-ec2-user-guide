@@ -132,11 +132,11 @@ The following is a summary of features for accelerated computing instances\.
 
 |  | EBS only | NVMe EBS | Instance store | Placement group | 
 | --- | --- | --- | --- | --- | 
-| G2 |  |  | SSD | Yes | 
-|  G3  |  Yes  |  |  |  Yes  | 
-|  P2  |  Yes  |  |  |  Yes  | 
-|  P3  |  `p3dn.24xlarge`: No All other sizes: Yes  |  `p3dn.24xlarge`: Yes All other sizes: No  |  `p3dn.24xlarge`: NVMe \*  |  Yes  | 
-|  F1  |  |  |  NVMe \*  |  Yes  | 
+| G2 | No | No | SSD | Yes | 
+| G3 | Yes | No | No | Yes | 
+| P2 | Yes | No | No | Yes | 
+| P3 |  `p3dn.24xlarge`: No All other sizes: Yes  |  `p3dn.24xlarge`: Yes All other sizes: No  | `p3dn.24xlarge`: NVMe \* | Yes | 
+| F1 | No | No | NVMe \* | Yes | 
 
 **\*** The root device volume must be an Amazon EBS volume\.
 

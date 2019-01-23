@@ -2,9 +2,6 @@
 
 The following instructions explain how to connect to your instance using an SSH client\. If you receive an error while attempting to connect to your instance, see [Troubleshooting Connecting to Your Instance](TroubleshootingInstancesConnecting.md)\.
 
-**Note**  
-If you are connecting to a Linux instance from a computer running Windows, see the following documentation instead: [Connecting to Your Linux Instance from Windows Using PuTTY](putty.md) and [Connecting to Your Linux Instance from Windows Using Windows Subsystem for Linux](WSL.md)\.
-
 After you launch your instance, you can connect to it and use it the way that you'd use a computer sitting in front of you\.
 
 **Note**  
@@ -15,7 +12,7 @@ After you launch an instance, it can take a few minutes for the instance to be r
 Before you connect to your Linux instance, complete the following prerequisites:
 + **Install an SSH client**
 
-  Your Linux computer most likely includes an SSH client by default\. You can check for an SSH client by typing ssh at the command line\. If your computer doesn't recognize the command, the OpenSSH project provides a free implementation of the full suite of SSH tools\. For more information, see [http://www\.openssh\.com](http://www.openssh.com/)\. 
+  With Windows 10 1709, you can enable the feature "OpenSSH Client \(Beta\)"\. With Linux and Mac OS X, most likely there's an SSH client installed by default\. You can check for an SSH client by typing ssh at the command line\. If your computer doesn't recognize the command, you can install an SSH client\. For more information, see [http://www\.openssh\.com](http://www.openssh.com/)\.
 + **Install the AWS CLI Tools**
 
   \(Optional\) If you're using a public AMI from a third party, you can use the command line tools to verify the fingerprint\. For more information about installing the AWS CLI, see [Getting Set Up](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html) in the *AWS Command Line Interface User Guide*\.

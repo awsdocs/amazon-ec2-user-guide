@@ -1,7 +1,7 @@
 # Amazon Elastic Compute Cloud User Guide for Linux Instances
 
 -----
-*****Copyright &copy; 2018 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy; 2019 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -242,7 +242,9 @@ Amazon's trademarks and trade dress may not be used in
       + [SSD Instance Store Volumes](ssd-instance-store.md)
       + [Instance Store Swap Volumes](instance-store-swap-volumes.md)
       + [Optimizing Disk Performance for Instance Store Volumes](disk-performance.md)
-   + [Amazon Elastic File System (Amazon EFS)](AmazonEFS.md)
+   + [File Storage](file-storage.md)
+      + [Amazon Elastic File System (Amazon EFS)](AmazonEFS.md)
+      + [Amazon FSx for Windows File Server](storage_fsx.md)
    + [Amazon Simple Storage Service (Amazon S3)](AmazonS3.md)
    + [Instance Volume Limits](volume_limits.md)
    + [Device Naming on Linux Instances](device_naming.md)

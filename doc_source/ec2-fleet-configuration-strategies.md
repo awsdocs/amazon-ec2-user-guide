@@ -256,7 +256,7 @@ This walkthrough uses a fictitious company called ABC Online to illustrate the p
 
 ### Objective<a name="ec2-fleet-on-demand-walkthrough-objective"></a>
 
-ABC Online, a restaurant delivery company, wants to be able to provision Amazon EC2 capacity across EC2 instance types and purchase models to achieve their desired scale, performance, and cost\.
+ABC Online, a restaurant delivery company, wants to be able to provision Amazon EC2 capacity across EC2 instance types and purchasing options to achieve their desired scale, performance, and cost\.
 
 ### Planning<a name="ec2-fleet-on-demand-walkthrough-planning"></a>
 

@@ -332,7 +332,8 @@ The following example uses the `diversified` allocation strategy\. The launch sp
     ]
 }
 ```
-A best practice to increase the chance that a spot request can be fulfilled by EC2 capacity in the event of an outage in one of the Availability Zones is to diversify across AZs. For this scenario, include each AZ available to you in the launch specification. And, instead of using the same subnet each time, use three unique subnets (each mapping to a different AZ). 
+
+A best practice to increase the chance that a spot request can be fulfilled by EC2 capacity in the event of an outage in one of the Availability Zones is to diversify across AZs\. For this scenario, include each AZ available to you in the launch specification\. And, instead of using the same subnet each time, use three unique subnets \(each mapping to a different AZ\)\. 
 
 **Availability Zone**
 
@@ -395,6 +396,7 @@ A best practice to increase the chance that a spot request can be fulfilled by E
     ]
 }
 ```
+
 ## Example 6: Launch a Spot Fleet Using Instance Weighting<a name="fleet-config6"></a>
 
 The following examples use instance weighting, which means that the price is per unit hour instead of per instance hour\. Each launch configuration lists a different instance type and a different weight\. The Spot Fleet selects the instance type with the lowest price per unit hour\. The Spot Fleet calculates the number of Spot Instances to launch by dividing the target capacity by the instance weight\. If the result isn't an integer, the Spot Fleet rounds it up to the next integer, so that the size of your fleet is not below its target capacity\.

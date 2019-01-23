@@ -66,6 +66,8 @@ We strongly recommend that you adhere to the best practice of using the **Admini
 
 1. Back in the list of groups, select the check box for your new group\. Choose **Refresh** if necessary to see the group in the list\.
 
+1. Choose **Next: Tags** to add metadata to the user by attaching tags as key\-value pairs\.
+
 1. Choose **Next: Review** to see the list of group memberships to be added to the new user\. When you are ready to proceed, choose **Create user**\.
 
 You can use this same process to create more groups and users, and to give your users access to your AWS account resources\. To learn about using policies to restrict users' permissions to specific AWS resources, go to [Access Management](https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html) and [Example Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_examples.html)\.

@@ -338,7 +338,7 @@ For more information about transferring files to your instance or installing a W
 
 For more information about the commands and software used in this tutorial, see the following webpages:
 + Apache web server: [http://httpd\.apache\.org/](http://httpd.apache.org/)
-+ MariaDB database server: [[https://mariadb.org/](https://mariadb.org/)https://mariadb\.org/](http://www.mysql.com/)
++ MariaDB database server: [https://mariadb\.org/](https://mariadb.org/)
 + PHP programming language: [http://php\.net/](http://php.net/)
 + The `chmod` command: [https://en\.wikipedia\.org/wiki/Chmod](https://en.wikipedia.org/wiki/Chmod)
 + The `chown` command: [https://en\.wikipedia\.org/wiki/Chown](https://en.wikipedia.org/wiki/Chown)

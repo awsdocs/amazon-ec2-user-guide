@@ -44,7 +44,7 @@ For information about how hibernation differs from reboot, stop, and terminate, 
 ## Hibernation Prerequisites<a name="hibernating-prerequisites"></a>
 
 To hibernate an instance, the following prerequisites must be in place:
-+ **Instance types:** The following instance types are supported: C3, C4, C5, M3, M4, M5, R3, R4, and R5, excluding \*\.metal\.
++ **Instance families:** The following instance families are supported: C3, C4, C5, M3, M4, M5, R3, R4, and R5, excluding \*\.metal\.
 + **Supported AMIs:** The following AMIs support hibernation: Amazon Linux AMI 2018\.03 released 2018\.11\.16 or later\.
 
   Support for Amazon Linux 2 is coming soon\. Only HVM AMIs support hibernation\. To configure your own AMI to support hibernation, see [Configuring an Existing AMI to Support Hibernation](#hibernation-enabled-AMI)\.
