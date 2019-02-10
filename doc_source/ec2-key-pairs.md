@@ -207,6 +207,12 @@ If you created your key pair using a third\-party tool and uploaded the public k
 $ openssl rsa -in path_to_private_key -pubout -outform DER | openssl md5 -c
 ```
 
+If you created your key pair using OpenSSH 7.8 or newer and upload the public key to AWS, you might need another command line to generate a fingerprint from the private key file on your local machine:
+
+```
+$ ssh-keygen -ef path_to_private_key -m PEM | openssl rsa -RSAPublicKey_in -outform DER | openssl md5 -c
+```
+
 The output should match the fingerprint that's displayed in the console\.
 
 ## Deleting Your Key Pair<a name="delete-key-pair"></a>
