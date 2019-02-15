@@ -31,18 +31,20 @@ Before you launch an instance with an Amazon EI accelerator, you must create an 
 
 ![\[An Amazon EI accelerator attached to an EC2 instance.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/elastic-inference.png)
 
-You can use Amazon Elastic Inference enabled TensorFlow Serving or Apache MXNet libraries to load models and make inference calls\. The modified versions of these libraries automatically detect the presence of Amazon EI accelerators, optimally distribute the model operations between the Amazon EI accelerator and the CPU of the instance, and securely control access to your accelerators using IAM policies\. The [AWS Deep Learning AMIs](https://aws.amazon.com//blogs/machine-learning/get-started-with-deep-learning-using-the-aws-deep-learning-ami) include the latest releases of Amazon Elastic Inference enabled TensorFlow Serving and MXNet\. If you are using custom AMIs or container images, you can download and install the required [Amazon Elastic Inference TensorFlow Serving](https://s3.console.aws.amazon.com/s3/buckets/amazonei-tensorflow/) and [Amazon Elastic Inference Apache MXNet](https://s3.console.aws.amazon.com/s3/buckets/amazonei-apachemxnet/) libraries from Amazon S3\. 
+You can use Amazon Elastic Inference enabled TensorFlow, TensorFlow Serving, or Apache MXNet libraries to load models and make inference calls\. The modified versions of these libraries automatically detect the presence of Amazon EI accelerators, optimally distribute the model operations between the Amazon EI accelerator and the CPU of the instance, and securely control access to your accelerators using IAM policies\. The [AWS Deep Learning AMIs](https://aws.amazon.com//blogs/machine-learning/get-started-with-deep-learning-using-the-aws-deep-learning-ami) include the latest releases of Amazon Elastic Inference enabled TensorFlow Serving and MXNet\. If you are using custom AMIs or container images, you can download and install the required [Amazon Elastic Inference TensorFlow Serving](https://s3.console.aws.amazon.com/s3/buckets/amazonei-tensorflow/) and [Amazon Elastic Inference Apache MXNet](https://s3.console.aws.amazon.com/s3/buckets/amazonei-apachemxnet/) libraries from Amazon S3\. 
 
 **Note**  
 An Amazon EI accelerator is not visible or accessible through the device manager of your instance\.
 
-The Amazon EI accelerator network traffic uses the HTTPS protocol \(TCP port 443\)\. Ensure that the security group for your instance and for your AWS PrivateLink endpoint service allows for this\. For more information, see [Configuring Your Security Groups for Amazon EI](working-with-ei.md#ei-security)\. 
+The Amazon EI accelerator network traffic uses the HTTPS protocol \(TCP port 443\)\. Ensure that the security group for your instance and for your AWS PrivateLink endpoint service allows for this\. For more information, see [Configuring Your Security Groups for Amazon EI](setting-up-ei.md#ei-security)\. 
 
 ### Pricing for Amazon EI<a name="elastic-inference-pricing"></a>
 
 You are charged for each second that an Amazon EI accelerator is attached to an instance in the `running` state\. You are not charged for an accelerator attached to an instance that is in the `pending`, `stopping`, `stopped`, `shutting-down`, or `terminated` state\. You are also not charged when an Amazon EI accelerator is in the `unknown` or `impaired` state\.
 
 You do not incur AWS PrivateLink charges for VPC endpoints to the Amazon EI service when you have accelerators provisioned in the subnet\.
+
+For more information about pricing by region for Amazon EI, see [ Amazon EI Pricing](https://aws.amazon.com//machine-learning/elastic-inference/pricing)\.
 
 ### Amazon EI Considerations<a name="elastic-inference-limitations"></a>
 
