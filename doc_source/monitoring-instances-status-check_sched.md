@@ -7,6 +7,7 @@ To update the contact information for your account so that you can be sure to be
 **Topics**
 + [Types of Scheduled Events](#types-of-scheduled-events)
 + [Viewing Scheduled Events](#viewing_scheduled_events)
++ [Viewing Event History](#viewing-event-history)
 + [Working with Instances Scheduled to Stop or Retire](#schedevents_actions_retire)
 + [Working with Instances Scheduled for Reboot](#schedevents_actions_reboot)
 + [Working with Instances Scheduled for Maintenance](#schedevents_actions_maintenance)
@@ -21,9 +22,9 @@ Amazon EC2 supports the following types of scheduled events for your instances:
 
 ## Viewing Scheduled Events<a name="viewing_scheduled_events"></a>
 
-In addition to receiving notification of scheduled events in email, you can check for scheduled events\.
+In addition to receiving notification of scheduled events in email, you can check for scheduled events using one of the following methods\.
 
-**To view scheduled events for your instances \(console\)**
+**To view scheduled events for your instances using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -36,58 +37,96 @@ In addition to receiving notification of scheduled events in email, you can chec
 1. Note that some events are also shown for affected resources\. For example, in the navigation pane, choose **Instances** and select an instance\. If the instance has an associated instance stop or instance retirement event, it is displayed in the lower pane\.  
 ![\[Viewing events in the instance details.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/event-instance-retirement.png)
 
-**To view scheduled events for your instances using the command line or API**  
-Use the following AWS CLI command:
+**To view scheduled events for your instances using the AWS CLI**  
+Use the following [describe\-instance\-status](https://docs.aws.amazon.com/cli/latest/reference/describe-instance-status.html) command:
 
 ```
-aws ec2 describe-instance-status --instance-id i-1234567890abcdef0
+aws ec2 describe-instance-status --instance-id i-1234567890abcdef0 --query "InstanceStatuses[].Events"
 ```
 
-The following is example output showing an instance retirement event:
+The following example output shows an instance retirement event:
 
 ```
-{
-    "InstanceStatuses": [
+[
+    "Events": [
         {
-            "InstanceStatus": {
-                "Status": "ok",
-                "Details": [
-                    {
-                        "Status": "passed",
-                        "Name": "reachability"
-                    }
-                ]
-            },
-            "AvailabilityZone": "us-west-2a",
-            "InstanceId": "i-1234567890abcdef0",
-            "InstanceState": {
-                "Code": 16,
-                "Name": "running"
-            },
-            "SystemStatus": {
-                "Status": "ok",
-                "Details": [
-                    {
-                        "Status": "passed",
-                        "Name": "reachability"
-                    }
-                ]
-            },
-            "Events": [
-                {
-                    "Code": "instance-stop",
-                    "Description": "The instance is running on degraded hardware",
-                    "NotBefore": "2015-05-23T00:00:00.000Z"
-                }
-            ]
+            "Code": "instance-stop",
+            "Description": "The instance is running on degraded hardware",
+            "NotBefore": "2015-05-23T00:00:00.000Z"
         }
     ]
-}
+]
 ```
 
-Alternatively, use the following commands:
-+  [Get\-EC2InstanceStatus](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2InstanceStatus.html) \(AWS Tools for Windows PowerShell\) 
-+  [DescribeInstanceStatus](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeInstanceStatus.html) \(Amazon EC2 Query API\)
+**To view scheduled events for your instances using the AWS Tools for Windows PowerShell**  
+Use the following [Get\-EC2InstanceStatus](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2InstanceStatus.html) command:
+
+```
+PS C:\> (Get-EC2InstanceStatus -InstanceId i-1234567890abcdef0).Events
+```
+
+The following example output shows an instance retirement event:
+
+```
+Code         : instance-stop
+Description  : The instance is running on degraded hardware
+NotBefore    : 5/23/2015 12:00:00 AM
+```
+
+**To view scheduled events for your instances using instance metadata**  
+You can retrieve information about active maintenance events for your instances from the [instance metadata](ec2-instance-metadata.md) as follows\.
+
+```
+[ec2-user ~]$ curl http://169.254.169.254/latest/meta-data/events/maintenance/scheduled
+```
+
+The following is example output with information about a scheduled system reboot event, in JSON format\.
+
+```
+[ 
+  {
+    "NotBefore" : "21 Jan 2019 09:00:43 GMT",
+    "Code" : "system-reboot",
+    "Description" : "scheduled reboot",
+    "EventId" : "243450899",
+    "NotAfter" : "21 Jan 2019 09:17:23 GMT",
+    "State" : "active"
+  } 
+]
+```
+
+## Viewing Event History<a name="viewing-event-history"></a>
+
+Information about completed or canceled maintenance events for a instance is available through the [instance metadata](ec2-instance-metadata.md) for the instance\.
+
+You can retrieve these events from instance metadata as follows:
+
+```
+[ec2-user ~]$ curl http://169.254.169.254/latest/meta-data/events/maintenance/history
+```
+
+The following is example output with information about a system reboot event that was canceled and a system reboot event that was completed, in JSON format\.
+
+```
+[ 
+  {
+    "NotBefore" : "21 Jan 2019 09:00:43 GMT",
+    "Code" : "system-reboot",
+    "Description" : "[Canceled] scheduled reboot",
+    "EventId" : "243450899",
+    "NotAfter" : "21 Jan 2019 09:17:23 GMT",
+    "State" : "canceled"
+  }, 
+  {
+    "NotBefore" : "29 Jan 2019 09:00:43 GMT",
+    "Code" : "system-reboot",
+    "Description" : "[Completed] scheduled reboot",
+    "EventId" : "243451013",
+    "NotAfter" : "29 Jan 2019 09:17:23 GMT",
+    "State" : "completed"
+  }
+]
+```
 
 ## Working with Instances Scheduled to Stop or Retire<a name="schedevents_actions_retire"></a>
 

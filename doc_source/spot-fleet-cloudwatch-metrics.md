@@ -24,7 +24,7 @@ The `AWS/EC2Spot` namespace includes the following metrics\.
 | `PendingCapacity` |  The difference between `TargetCapacity` and `FulfilledCapacity`\. Units: Count  | 
 | `PercentCapacityAllocation` |  The capacity allocated for the Spot Instance pool for the specified dimensions\. To get the maximum value recorded across all Spot Instance pools, use `MaxPercentCapacityAllocation`\. Units: Percent  | 
 | `TargetCapacity` |  The target capacity of the Spot Fleet request\. Units: Count  | 
-| `TerminatingCapacity` |  The capacity that is being terminated due to Spot Instance interruptions\. Units: Count  | 
+| `TerminatingCapacity` |  The capacity that is being terminated because the provisioned capacity is greater than the target capacity\. Units: Count  | 
 
 If the unit of measure for a metric is `Count`, the most useful statistic is `Average`\.
 

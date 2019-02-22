@@ -97,7 +97,7 @@ The following basic restrictions apply to tags:
 + For each resource, each tag key must be unique, and each tag key can have only one value\.
 + Maximum key length – 128 Unicode characters in UTF\-8
 + Maximum value length – 256 Unicode characters in UTF\-8
-+ If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters\. Generally allowed characters are: letters, numbers, and spaces representable in UTF\-8, and the following characters: \+ \- = \. \_ : / @\.
++ Although EC2 allows for any character in its tags, other services may be more restrictive\. Generally allowed characters are: letters, numbers, and spaces representable in UTF\-8, and the following characters: \+ \- = \. \_ : / @\. These characters may not be allowed by more restrictive services\. 
 + Tag keys and values are case\-sensitive\.
 + Don't use the `aws:` prefix for either keys or values; it's reserved for AWS use\. You can't edit or delete tag keys or values with this prefix\. Tags with this prefix do not count against your tags per resource limit\.
 
@@ -111,10 +111,13 @@ You can't tag all resources\. For more information, see [Tagging Support for Ama
 
 You can use tags to organize your AWS bill to reflect your own cost structure\. To do this, sign up to get your AWS account bill with tag key values included\. For more information about setting up a cost allocation report with tags, see [The Monthly Cost Allocation Report](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/configurecostallocreport.html) in *AWS Billing and Cost Management User Guide*\. To see the cost of your combined resources, you can organize your billing information based on resources that have the same tag key values\. For example, you can tag several resources with a specific application name, and then organize your billing information to see the total cost of that application across several services\. For more information, see [Using Cost Allocation Tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html) in the *AWS Billing and Cost Management User Guide*\.
 
+**Note**  
+If you've just enabled reporting, data for the current month is available for viewing after 24 hours\.
+
 Cost allocation tags can indicate which resources are contributing to costs, but deleting or deactivating resources doesn't always reduce costs\. For example, snapshot data that is referenced by another snapshot is preserved, even if the snapshot that contains the original data is deleted\. For more information, see [Amazon Elastic Block Store Volumes and Snapshots](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/checklistforunwantedcharges.html#checkebsvolumes) in the *AWS Billing and Cost Management User Guide*\.
 
 **Note**  
-If you've just enabled reporting, data for the current month is available for viewing after 24 hours\.
+Elastic IP addresses that are tagged do not appear on your cost allocation report\.
 
 ## Working with Tags Using the Console<a name="Using_Tags_Console"></a>
 

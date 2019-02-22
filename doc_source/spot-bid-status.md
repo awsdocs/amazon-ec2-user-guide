@@ -27,6 +27,8 @@ As soon as you make a Spot Instance request, it goes into the `pending-evaluatio
 **Holding**  
 If one or more request constraints are valid but can't be met yet, or if there is not enough capacity, the request goes into a holding state waiting for the constraints to be met\. The request options affect the likelihood of the request being fulfilled\. For example, if you specify a maximum price below the current Spot price, your request stays in a holding state until the Spot price goes below your maximum price\. If you specify an Availability Zone group, the request stays in a holding state until the Availability Zone constraint is met\.
 
+In the event of an outage of one of the Availability Zones, there is a chance that the spare EC2 capacity available for Spot instance requests in other Availability Zones can be affected\.
+
 
 | Status Code | Request State | Instance State | 
 | --- | --- | --- | 

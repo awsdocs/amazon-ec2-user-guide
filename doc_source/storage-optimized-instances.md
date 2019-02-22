@@ -129,11 +129,11 @@ For instance store volumes that support TRIM, you can use the TRIM command to no
 The following is a summary of features for storage optimized instances:
 
 
-|  | EBS only | NVMe EBS | Instance store | Placement group | 
-| --- | --- | --- | --- | --- | 
-|  D2  |  |  |  HDD  |  Yes  | 
-|  H1  |  |  |  HDD  |  Yes  | 
-|  I3  |  |  | NVMe \* |  Yes  | 
+|  | EBS only | Instance store | Placement group | 
+| --- | --- | --- | --- | 
+| D2 | No | HDD | Yes | 
+| H1 | No | HDD | Yes | 
+| I3 | No | NVMe \* | Yes | 
 
 **\*** The root device volume must be an Amazon EBS volume\.
 

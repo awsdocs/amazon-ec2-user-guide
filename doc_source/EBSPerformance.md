@@ -2,6 +2,9 @@
 
 Several factors, including I/O characteristics and the configuration of your instances and volumes, can affect the performance of Amazon EBS\. Customers who follow the guidance on our Amazon EBS and Amazon EC2 product detail pages typically achieve good performance out of the box\. However, there are some cases where you may need to do some tuning in order to achieve peak performance on the platform\. This topic discusses general best practices as well as performance tuning that is specific to certain use cases\. We recommend that you tune performance with information from your actual workload, in addition to benchmarking, to determine your optimal configuration\. After you learn the basics of working with EBS volumes, it's a good idea to look at the I/O performance you require and at your options for increasing Amazon EBS performance to meet those requirements\.
 
+**Note**  
+AWS updates to the performance of EBS volume types may not immediately take effect on your existing volumes\. To see full performance on an older volume, you may first need to perform a `ModifyVolume` action on it\. For more information, see [Modifying the Size, IOPS, or Type of an EBS Volume on Linux](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-modify-volume.html)\.
+
 **Topics**
 + [Amazon EBS Performance Tips](#tips)
 + [Amazon EC2 Instance Configuration](ebs-ec2-config.md)
@@ -65,7 +68,7 @@ Only use this setting when your workload consists of large, sequential I/Os\. If
 
 ### Use a Modern Linux Kernel<a name="ModernKernel"></a>
 
-Use a modern Linux kernel with support for indirect descriptors\. Any Linux kernel 3\.11 and above has this support, as well as any current\-generation EC2 instance\. If your average I/O size is at or near 44 KiB, you may be using an instance or kernel without support for indirect descriptors\. For information about deriving the average I/O size from Amazon CloudWatch metrics, see [I/O Characteristics and Monitoring](ebs-io-characteristics.md)\.
+Use a modern Linux kernel with support for indirect descriptors\. Any Linux kernel 3\.8 and above has this support, as well as any current\-generation EC2 instance\. If your average I/O size is at or near 44 KiB, you may be using an instance or kernel without support for indirect descriptors\. For information about deriving the average I/O size from Amazon CloudWatch metrics, see [I/O Characteristics and Monitoring](ebs-io-characteristics.md)\.
 
 To achieve maximum throughput on `st1` or `sc1` volumes, we recommend applying a value of 256 to the `xen_blkfront.max` parameter \(for Linux kernel versions below 4\.6\) or the `xen_blkfront.max_indirect_segments` parameter \(for Linux kernel version 4\.6 and above\)\. The appropriate parameter can be set in your OS boot command line\. 
 

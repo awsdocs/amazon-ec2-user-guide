@@ -17,7 +17,7 @@ If you are an AWS Identity and Access Management \(IAM\) user, you must have the
 + `ec2:DescribeInstanceStatus` and `ec2:DescribeInstances` – For all alarms on Amazon EC2 instance status metrics
 + `ec2:StopInstances` – For alarms with stop actions
 + `ec2:TerminateInstances` – For alarms with terminate actions
-+ No additional specific permissions are needed for alarms with recover actions
++ `ec2:DescribeInstanceRecoveryAttribute` and `ec2:RecoverInstances` – For alarms with recover actions
 
 If you have read/write permissions for Amazon CloudWatch but not for Amazon EC2, you can still create an alarm but the stop or terminate actions won't be performed on the Amazon EC2 instance\. However, if you are later granted permission to use the associated Amazon EC2 APIs, the alarm actions you created earlier are performed\. For more information about IAM permissions, see [Permissions and Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/PermissionsAndPolicies.html) in the *IAM User Guide*\.
 

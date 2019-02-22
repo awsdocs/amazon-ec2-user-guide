@@ -127,32 +127,32 @@ The following table summarizes the networking and storage features supported by 
 
 |  | EBS only | NVMe EBS | Instance store | Placement group | Enhanced networking | 
 | --- | --- | --- | --- | --- | --- | 
-|  A1  |  Yes  | Yes |  |  Yes  | ENA | 
-|  C4  |  Yes  |  |  |  Yes  | Intel 82599 VF | 
-|  C5  |  Yes  | Yes |  |  Yes  | ENA | 
-|  C5d  |  | Yes | NVMe \* |  Yes  | ENA | 
-|  C5n  |  Yes  | Yes |  |  Yes  | ENA | 
-|  D2  |  |  |  HDD  |  Yes  | Intel 82599 VF | 
-|  F1  |  |  |  NVMe \*  |  Yes  | ENA | 
-|  G3  | Yes |  |  |  Yes  | ENA | 
-|  H1  |  |  |  HDD  |  Yes  | ENA | 
-|  I3  |  |  |  NVMe \*  |  Yes  | ENA | 
-|  M4  |  Yes  |  |  |  Yes  |  `m4.16xlarge`: ENA All other sizes: Intel 82599 VF  | 
-|  M5  |  Yes  | Yes |  |  Yes  | ENA | 
-|  M5a  |  Yes  | Yes |  |  Yes  | ENA | 
-|  M5d  |  | Yes | NVMe \* |  Yes  | ENA | 
-|  P2  |  Yes  |  |  |  Yes  | ENA | 
+| A1 | Yes | Yes | No | Yes | ENA | 
+|  C4  |  Yes  | No | No |  Yes  | Intel 82599 VF | 
+|  C5  |  Yes  | Yes | No |  Yes  | ENA | 
+|  C5d  | No | Yes | NVMe \* |  Yes  | ENA | 
+|  C5n  |  Yes  | Yes | No |  Yes  | ENA | 
+|  D2  | No | No |  HDD  |  Yes  | Intel 82599 VF | 
+|  F1  | No | No |  NVMe \*  |  Yes  | ENA | 
+|  G3  | Yes | No | No |  Yes  | ENA | 
+|  H1  | No | No |  HDD  |  Yes  | ENA | 
+|  I3  | No | No |  NVMe \*  |  Yes  | ENA | 
+|  M4  |  Yes  | No | No |  Yes  |  `m4.16xlarge`: ENA All other sizes: Intel 82599 VF  | 
+|  M5  |  Yes  | Yes | No |  Yes  | ENA | 
+|  M5a  |  Yes  | Yes | No |  Yes  | ENA | 
+|  M5d  | No | Yes | NVMe \* |  Yes  | ENA | 
+|  P2  |  Yes  | No | No |  Yes  | ENA | 
 | P3 |  `p3dn.24xlarge`: No All other sizes: Yes  |  `p3dn.24xlarge`: Yes All other sizes: No  |  `p3dn.24xlarge`: NVMe \*  |  Yes  | ENA | 
-|  R4  |  Yes  |  |  |  Yes  | ENA | 
-|  R5  |  Yes  | Yes |  |  Yes  | ENA | 
-|  R5a  |  Yes  | Yes |  |  Yes  | ENA | 
-|  R5d  |  | Yes | NVMe \* |  Yes  | ENA | 
-| T2 | Yes |  |  |  |  | 
-|  T3  |  Yes  | Yes |  |  | ENA | 
-| u\-xtb1\.metal | Yes | Yes |  |  | ENA | 
-|  X1  |  |  |  SSD  |  Yes  | ENA | 
-|  X1e  |  |  |  SSD  |  Yes  | ENA | 
-|  z1d  |  | Yes | NVMe \* |  Yes  | ENA | 
+|  R4  |  Yes  | No | No |  Yes  | ENA | 
+|  R5  |  Yes  | Yes | No |  Yes  | ENA | 
+|  R5a  |  Yes  | Yes | No |  Yes  | ENA | 
+|  R5d  | No | Yes | NVMe \* |  Yes  | ENA | 
+| T2 | Yes | No | No | No | No | 
+| T3 | Yes | Yes | No | No | ENA | 
+| u\-xtb1\.metal | Yes | Yes | No | No | ENA | 
+|  X1  | No | No |  SSD  |  Yes  | ENA | 
+| X1e | No | No | SSD | Yes | ENA | 
+| z1d | No | Yes | NVMe \* | Yes | ENA | 
 
 \* The root device volume must be an Amazon EBS volume\.
 
@@ -162,9 +162,9 @@ The following table summarizes the networking and storage features supported by 
 |  | Instance store | Placement group | Enhanced networking | 
 | --- | --- | --- | --- | 
 |  C3  |  SSD  |  Yes  |  Intel 82599 VF  | 
-|  G2  |  SSD  |  Yes  |  | 
+|  G2  |  SSD  |  Yes  | No | 
 |  I2  |  SSD  |  Yes  |  Intel 82599 VF  | 
-|  M3  |  SSD  |  |  | 
+|  M3  |  SSD  | No | No | 
 |  R3  |  SSD  |  Yes  |  Intel 82599 VF  | 
 
 ## Instance Limits<a name="instance-type-limits"></a>

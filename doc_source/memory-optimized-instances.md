@@ -139,7 +139,7 @@ The following is a summary of network performance for memory optimized instances
 | Instance type | Network performance | Enhanced networking | 
 | --- | --- | --- | 
 |  `r4.4xlarge` and smaller \| `r5.4xlarge` and smaller \| `r5a.4xlarge` and smaller \| `r5d.4xlarge` and smaller \| `x1e.8large` and smaller \| `z1d.3xlarge` and smaller  |  Up to 10 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  `r4.8xlarge` \| `r5.12xlarge`\| `r5a.12xlarge` \| `r5d.12xlarge` \| `x1.16xlarge` \| `x1e.16xlarge` \| `z1d.6xlarge`  |  10 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `r4.8xlarge` \| `r5.12xlarge` \| `r5a.12xlarge` \| `r5d.12xlarge` \| `x1.16xlarge` \| `x1e.16xlarge` \| `z1d.6xlarge`  |  10 Gbps  | [ENA](enhanced-networking-ena.md) | 
 |  `r5a.24xlarge`  |  20 Gbps  | [ENA](enhanced-networking-ena.md) | 
 |  `r4.16xlarge` \| `r5.24xlarge` \| `r5d.24xlarge` \| `u-6tb1.metal` \| `u-9tb1.metal` \| `u-12tb1.metal` \| `x1.32xlarge` \| `x1e.32xlarge` \| `z1d.12xlarge`  |  25 Gbps  | [ENA](enhanced-networking-ena.md) | 
 
@@ -178,16 +178,16 @@ The following is a summary of features for memory optimized instances\.
 
 |  | EBS only | NVMe EBS | Instance store | Placement group | 
 | --- | --- | --- | --- | --- | 
-| R4 | Yes |  |  | Yes | 
-| R5 | Yes | Yes |  | Yes | 
-| R5a | Yes | Yes |  | Yes | 
-| R5d |  | Yes | NVME \* | Yes | 
-| `u-6tb1.metal` | Yes | Yes |  | No | 
-| `u-9tb1.metal` | Yes | Yes |  | No | 
-| `u-12tb1.metal` | Yes | Yes |  | No | 
-| X1 |  |  | SSD | Yes | 
-| X1e |  |  | SSD | Yes | 
-| z1d |  | Yes | NVME \* | Yes | 
+| R4 | Yes | No | No | Yes | 
+| R5 | Yes | Yes | No | Yes | 
+| R5a | Yes | Yes | No | Yes | 
+| R5d | No | Yes | NVME \* | Yes | 
+| `u-6tb1.metal` | Yes | Yes | No | No | 
+| `u-9tb1.metal` | Yes | Yes | No | No | 
+| `u-12tb1.metal` | Yes | Yes | No | No | 
+| X1 | No | No | SSD | Yes | 
+| X1e | No | No | SSD | Yes | 
+| z1d | No | Yes | NVME \* | Yes | 
 
 **\*** The root device volume must be an Amazon EBS volume\.
 
@@ -206,6 +206,7 @@ The following AMIs support launching memory optimized instances:
 + Ubuntu Server 14\.04 LTS \(HVM\)
 + Red Hat Enterprise Linux 7\.1 \(HVM\)
 + SUSE Linux Enterprise Server 12 SP1 \(HVM\)
++ Windows Server 2019
 + Windows Server 2016
 + Windows Server 2012 R2
 + Windows Server 2012

@@ -153,13 +153,13 @@ The following is a summary of features for general purpose instances:
 
 |  | EBS only | NVMe EBS | Instance store | Placement group | 
 | --- | --- | --- | --- | --- | 
-| A1 | Yes | Yes |  | Yes | 
-| M4 | Yes |  |  | Yes | 
-| M5 | Yes | Yes |  | Yes | 
-| M5a | Yes | Yes |  | Yes | 
-| M5d |  | Yes | NVMe \* | Yes | 
-| T2 | Yes |  |  |  | 
-| T3 | Yes | Yes |  |  | 
+| A1 | Yes | Yes | No | Yes | 
+| M4 | Yes | No | No | Yes | 
+| M5 | Yes | Yes | No | Yes | 
+| M5a | Yes | Yes | No | Yes | 
+| M5d | No | Yes | NVMe \* | Yes | 
+| T2 | Yes | No | No | No | 
+| T3 | Yes | Yes | No | No | 
 
 **\*** The root device volume must be an Amazon EBS volume\.
 
@@ -197,5 +197,5 @@ For more information, see the following:
   + FreeBSD 11\.1\-RELEASE
   + Windows Server 2008 R2 or later
 + A1, M5, M5a, M5d, and T3 instances support a maximum of 28 attachments, including network interfaces, EBS volumes, and NVMe instance store volumes\. Every instance has at least one network interface attachment\. For example, if you have no additional network interface attachments on an EBS\-only instance, you could attach 27 EBS volumes to that instance\.
-+ A1, M5, M5a, and M5d instances should have system\-logind or acpid installed to support clean shutdown through API requests\.
++ A1, M5, M5a, M5d, and T3 instances should have system\-logind or acpid installed to support clean shutdown through API requests\.
 + There is a limit on the total number of instances that you can launch in a region, and there are additional limits on some instance types\. For more information, see [How many instances can I run in Amazon EC2?](https://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2)\. To request a limit increase, use the [Amazon EC2 Instance Request Form](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-instances)\.

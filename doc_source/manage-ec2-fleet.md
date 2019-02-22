@@ -141,7 +141,7 @@ You can configure your EC2 Fleet to replace unhealthy instances\. After enabling
 
 ## Generating an EC2 Fleet JSON Configuration File<a name="ec2-fleet-cli-skeleton"></a>
 
-To create an EC2 Fleet, you need only specify the launch template, total target capacity, and whether the default purchasing model is On\-Demand or Spot\. If you do not specify a parameter, the fleet uses the default value\. To view the full list of fleet configuration parameters, you can generate a JSON file as follows\.
+To create an EC2 Fleet, you need only specify the launch template, total target capacity, and whether the default purchasing option is On\-Demand or Spot\. If you do not specify a parameter, the fleet uses the default value\. To view the full list of fleet configuration parameters, you can generate a JSON file as follows\.
 
 **To generate a JSON file with all possible EC2 Fleet parameters using the command line**
 + Use the [create\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-fleet.html) \(AWS CLI\) command and the `--generate-cli-skeleton` parameter to generate an EC2 Fleet JSON file:
@@ -268,7 +268,7 @@ The number of instances to launch\. You can choose instances or performance char
 \(Optional\) The number of Spot Instances to launch\. This number must be less than the `TotalTargetCapacity`\.
 
 **DefaultTargetCapacityType**  
-If the value for `TotalTargetCapacity` is higher than the combined values for `OnDemandTargetCapacity` and `SpotTargetCapacity`, the difference is launched as the instance purchasing model specified here\. Valid values are `on-demand` or `spot`\.
+If the value for `TotalTargetCapacity` is higher than the combined values for `OnDemandTargetCapacity` and `SpotTargetCapacity`, the difference is launched as the instance purchasing option specified here\. Valid values are `on-demand` or `spot`\.
 
 **TerminateInstancesWithExpiration**  
 \(Optional\) By default, Amazon EC2 terminates your instances when the EC2 Fleet request expires\. The default value is `true`\. To keep them running after your request expires, do not enter a value for this parameter\.
@@ -581,7 +581,7 @@ You can modify the following parameters of an EC2 Fleet:
 **Note**  
 You can only modify an EC2 Fleet that has `Type`=`maintain`\.
 
-When you increase the target capacity, the EC2 Fleet launches the additional instances according to the instance purchasing model specified for `DefaultTargetCapacityType`, which are either On\-Demand Instances or Spot Instances\.
+When you increase the target capacity, the EC2 Fleet launches the additional instances according to the instance purchasing option specified for `DefaultTargetCapacityType`, which are either On\-Demand Instances or Spot Instances\.
 
 If the `DefaultTargetCapacityType` is `spot`, the EC2 Fleet launches the additional Spot Instances according to its allocation strategy\. If the allocation strategy is `lowestPrice`, the fleet launches the instances from the lowest\-priced Spot Instance pool in the request\. If the allocation strategy is `diversified`, the fleet distributes the instances across the pools in the request\.
 

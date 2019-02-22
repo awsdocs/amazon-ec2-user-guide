@@ -80,7 +80,9 @@ aws ec2 describe-byoip-cidrs --max-results 5
 
 ## Advertise the Address Range through AWS<a name="byoip-advertise"></a>
 
-After the address range is provisioned, it is ready to be advertised\. We recommend that you stop advertising the address range from other locations before you advertise it through AWS\. If you keep advertising your IP address range from other locations, we can't reliably support it or troubleshoot issues\. Specifically, we can't guarantee that traffic to the address range will enter our network\.
+After the address range is provisioned, it is ready to be advertised\. You must advertise the exact address range that you provisioned\. You can't advertise only a portion of the provisioned address range\.
+
+We recommend that you stop advertising the address range from other locations before you advertise it through AWS\. If you keep advertising your IP address range from other locations, we can't reliably support it or troubleshoot issues\. Specifically, we can't guarantee that traffic to the address range will enter our network\.
 
 To minimize down time, you can configure your AWS resources to use an address from your address pool before it is advertised, and then simultaneously stop advertising it from the current location and start advertising it through AWS\. For more information about allocating an Elastic IP address from your address pool, see [Allocating an Elastic IP Address](elastic-ip-addresses-eip.md#using-instance-addressing-eips-allocating)\.
 

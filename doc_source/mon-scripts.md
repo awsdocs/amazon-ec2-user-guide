@@ -277,7 +277,7 @@ This script queries CloudWatch for statistics on memory, swap, and disk space me
 |   `--aws-access-key-id=VALUE `   |  Specifies the AWS access key ID to use to identify the caller\. Must be used together with the `--aws-secret-key` option\. Do not use this option with the `--aws-credential-file` option\.   | 
 |   `--aws-secret-key=VALUE `   |  Specifies the AWS secret access key to use to sign the request to CloudWatch\. Must be used together with the `--aws-access-key-id` option\. Do not use this option with `--aws-credential-file` option\.   | 
 |   `--aws-iam-role=VALUE`   |  Specifies the IAM role used to provide AWS credentials\. The value `=VALUE` is required\. If no credentials are specified, the default IAM role associated with the EC2 instance is applied\. Only one IAM role can be used\. If no IAM roles are found, or if more than one IAM role is found, the script will return an error\. Do not use this option with the `--aws-credential-file`, `--aws-access-key-id`, or `--aws-secret-key` parameters\.  | 
-|   `--verify `   |  Performs a test run of the script that collects the metrics, prepares a complete HTTP request, but does not actually call CloudWatch to report the data\. This option also checks that credentials are provided\. When run in verbose mode, this option outputs the metrics that will be sent to CloudWatch\.   | 
+|   `--verify `   |  Performs a test run of the script\. This option also checks that credentials are provided\.  | 
 |   `--verbose `   |  Displays detailed information about what the script is doing\.   | 
 |   `--help `   |  Displays usage information\.   | 
 |   `--version `   |  Displays the version number of the script\.   | 

@@ -1,6 +1,6 @@
 # Best Practices for Amazon EC2<a name="ec2-best-practices"></a>
 
-This checklist is intended to help you get the maximum benefit from and satisfaction with Amazon EC2\.
+This list of practices will help you get the maximum benefit from Amazon EC2\.
 
 **Security and Network**
 + Manage access to AWS resources and APIs using identity federation, IAM users, and IAM roles\. Establish credential management policies and procedures for creating, distributing, rotating, and revoking AWS access credentials\. For more information, see [IAM Best Practices](https://docs.aws.amazon.com/IAM/latest/UserGuide/IAMBestPractices.html) in the *IAM User Guide*\.

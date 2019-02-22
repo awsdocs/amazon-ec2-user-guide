@@ -47,6 +47,7 @@ You can change the behavior so that Amazon EC2 hibernates Spot Instances when th
   + Windows Server 2008 R2 AMI 2017\.11\.19 or later
   + Windows Server 2012 or Windows Server 2012 R2 AMI 2017\.11\.19 or later
   + Windows Server 2016 AMI 2017\.11\.19 or later
+  + Windows Server 2019
 + Start the agent\. We recommend that you use user data to start the agent on instance startup\. Alternatively, you could start the agent manually\.
 
 **Recommendation**
@@ -112,9 +113,11 @@ The following procedures help you prepare a Linux instance\. For directions to p
 
 ## Spot Instance Interruption Notices<a name="spot-instance-termination-notices"></a>
 
-The best way to protect against Spot Instance interruption is to architect your application to be fault\-tolerant\. In addition, you can take advantage of *Spot Instance interruption notices*, which provide a two\-minute warning before Amazon EC2 must interrupt your Spot Instance\. We recommend that you check for these warnings every 5 seconds\.
+The best way to protect against Spot Instance interruption is to architect your application to be fault\-tolerant\. In addition, you can take advantage of *Spot Instance interruption notices*, which provide a two\-minute warning before Amazon EC2 must stop or terminate your Spot Instance\. We recommend that you check for these warnings every 5 seconds\. 
 
 This warning is made available as a CloudWatch event and as an item in the [instance metadata](ec2-instance-metadata.md) on the Spot Instance\.
+
+If you specify hibernation as the interruption behavior, you receive an interruption notice, but you do not receive a two\-minute warning because the hibernation process begins immediately\.
 
 ### EC2 Spot Instance Interruption Warning<a name="ec2-spot-instance-interruption-warning-event"></a>
 
@@ -141,13 +144,15 @@ The following is an example of the event for Spot Instance interruption\. The po
 
 ### instance\-action<a name="instance-action-metadata"></a>
 
-If your Spot Instance is marked to be hibernated, stopped, or terminated by the Spot service, the `instance-action` item is present in your instance metadata\. Otherwise, it is not present\. You can retrieve `instance-action` as follows\.
+If your Spot Instance is marked to be stopped or terminated by the Spot service, the `instance-action` item is present in your instance metadata\. Otherwise, it is not present\. You can retrieve `instance-action` as follows\.
 
 ```
 [ec2-user ~]$ curl http://169.254.169.254/latest/meta-data/spot/instance-action
 ```
 
-The `instance-action` item specifies the action and the approximate time, in UTC, when the action will occur\. The following example indicates the time at which this instance will be stopped:
+The `instance-action` item specifies the action and the approximate time, in UTC, when the action will occur\.
+
+ The following example indicates the time at which this instance will be stopped:
 
 ```
 {"action": "stop", "time": "2017-09-18T08:22:00Z"}
@@ -159,13 +164,7 @@ The following example indicates the time at which this instance will be terminat
 {"action": "terminate", "time": "2017-09-18T08:22:00Z"}
 ```
 
-The following example indicates that hibernation has started immediately:
-
-```
-{"action": "hibernate", "time": "2017-11-28T08:22:00Z"}
-```
-
-If Amazon EC2 is not preparing to hibernate, stop, or terminate the instance, or if you terminated the instance yourself, `instance-action` is not present and you receive an HTTP 404 error\.
+If Amazon EC2 is not preparing to stop or terminate the instance, or if you terminated the instance yourself, `instance-action` is not present and you receive an HTTP 404 error\.
 
 ### termination\-time<a name="termination-time-metadata"></a>
 
