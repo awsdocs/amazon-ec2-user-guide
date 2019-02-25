@@ -167,7 +167,7 @@ Not all CAs provide the same level of support for elliptic\-curve\-based keys as
    Make sure that the new private key has highly restrictive ownership and permissions \(owner=root, group=root, read/write for owner only\)\. The commands would be as follows:
 
    ```
-   [ec2-user ~]$ sudo chown root.root custom.key
+   [ec2-user ~]$ sudo chown root:root custom.key
    [ec2-user ~]$ sudo chmod 600 custom.key
    [ec2-user ~]$ ls -al custom.key
    ```
@@ -222,7 +222,7 @@ There are several ways to upload your new certificate to your EC2 instance, but 
    From inside the `/etc/pki/tls/certs` directory, check that the file ownership, group, and permission settings match the highly restrictive Amazon Linux 2 defaults \(owner=root, group=root, read/write for owner only\)\. The commands would be as follows: 
 
    ```
-   [ec2-user certs]$ sudo chown root.root custom.crt
+   [ec2-user certs]$ sudo chown root:root custom.crt
    [ec2-user certs]$ sudo chmod 600 custom.crt
    [ec2-user certs]$ ls -al custom.crt
    ```
@@ -236,7 +236,7 @@ There are several ways to upload your new certificate to your EC2 instance, but 
    The permissions for the intermediate certificate file are less stringent \(owner=root, group=root, owner can write, group can read, world can read\)\. The commands would be: 
 
    ```
-   [ec2-user certs]$ sudo chown root.root intermediate.crt
+   [ec2-user certs]$ sudo chown root:root intermediate.crt
    [ec2-user certs]$ sudo chmod 644 intermediate.crt
    [ec2-user certs]$ ls -al intermediate.crt
    ```
@@ -254,7 +254,7 @@ There are several ways to upload your custom key to your EC2 instance, but the m
    From inside the `/etc/pki/tls/private` directory, check that the file ownership, group, and permission settings match the highly restrictive Amazon Linux 2 defaults \(owner=root, group=root, read/write for owner only\)\. The commands would be as follows: 
 
    ```
-   [ec2-user private]$ sudo chown root.root custom.key
+   [ec2-user private]$ sudo chown root:root custom.key
    [ec2-user private]$ sudo chmod 600 custom.key
    [ec2-user private]$ ls -al custom.key
    ```
@@ -409,7 +409,7 @@ If you test the domain again on [Qualys SSL Labs](https://www.ssllabs.com/ssltes
   [ec2-user private]$ sudo cp custom.key custom.key.bak
   [ec2-user private]$ sudo openssl rsa -in custom.key -passin pass:abcde12345 -out custom.key.nocrypt 
   [ec2-user private]$ sudo mv custom.key.nocrypt custom.key
-  [ec2-user private]$ sudo chown root.root custom.key
+  [ec2-user private]$ sudo chown root:root custom.key
   [ec2-user private]$ sudo chmod 600 custom.key
   [ec2-user private]$ sudo systemctl restart httpd
   ```

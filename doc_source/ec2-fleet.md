@@ -16,6 +16,7 @@ There is no additional charge for using EC2 Fleet\. You pay only for the EC2 ins
 
 **Topics**
 + [EC2 Fleet Limitations](#EC2-fleet-limitations)
++ [EC2 Fleet Limits](#ec2-fleet-limits)
 + [EC2 Fleet Configuration Strategies](ec2-fleet-configuration-strategies.md)
 + [Managing an EC2 Fleet](manage-ec2-fleet.md)
 
@@ -23,4 +24,30 @@ There is no additional charge for using EC2 Fleet\. You pay only for the EC2 ins
 
 The following limitations apply to EC2 Fleet:
 + EC2 Fleet is available only through the API or AWS CLI\.
-+ You need to create a separate EC2 Fleet for each Region\.
++ An EC2 Fleet request can't span Regions\. You need to create a separate EC2 Fleet for each Region\.
++ An EC2 Fleet request can't span different subnets from the same Availability Zone\.
+
+## EC2 Fleet Limits<a name="ec2-fleet-limits"></a>
+
+The usual Amazon EC2 limits apply to instances launched by an EC2 Fleet, such as Spot request price limits, instance limits, and volume limits\. In addition, the following limits apply:
++ The number of active EC2 Fleets per Region: 1,000 \*
++ The number of launch specifications per fleet: 50
++ The size of the user data in a launch specification: 16 KB
++ The target capacity per EC2 Fleet: 10,000
++ The target capacity across all EC2 Fleets in a Region: 100,000 \*
+
+If you need more than the default limits for target capacity, complete the AWS Support Center [Create case](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-fleet) form to request a limit increase\. For **Limit type**, choose **EC2 Fleet**, choose a Region, and then choose **Target Fleet Capacity per Fleet \(in units\)** or **Target Fleet Capacity per Region \(in units\)**, or both\.
+
+\* These limits apply to both your EC2 Fleets and your Spot Fleets\.
+
+### T3 Instances<a name="ec2-fleet-t3-spot-instances"></a>
+
+If you plan to use your T3 Spot Instances immediately and for a short duration, with no idle time for accruing CPU credits, we recommend that you launch your T3 Spot Instances in [`standard`](burstable-performance-instances-standard-mode.md) mode to avoid paying higher costs\.
+
+If you launch your T3 Spot Instances in [`unlimited`](burstable-performance-instances-unlimited-mode.md) mode and burst CPU immediately, you'll spend surplus credits for bursting\. If you use the instance for a short duration, your instance doesn't have time to accrue CPU credits to pay down the surplus credits, and you are charged for the surplus credits when you terminate your instance\.
+
+`Unlimited` mode for T3 Spot Instances is suitable only if the instance runs for long enough to accrue CPU credits for bursting\. Otherwise, paying for surplus credits makes T3 Spot Instances more expensive than M5 or C5 instances\.
+
+### T2 Instances<a name="ec2-fleet-t2-spot-instances"></a>
+
+Launch credits are meant to provide a productive initial launch experience for T2 instances by providing sufficient compute resources to configure the instance\. Repeated launches of T2 instances to access new launch credits is not permitted\. If you require sustained CPU, you can earn credits \(by idling over some period\), use [T2 Unlimited](burstable-performance-instances-unlimited-mode.md), or use an instance type with dedicated CPU \(for example, `c4.large`\)\.

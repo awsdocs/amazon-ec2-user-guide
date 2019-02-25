@@ -1,8 +1,10 @@
 # Troubleshooting Instances with Failed Status Checks<a name="TroubleshootingInstances"></a>
 
+The following information can help you troubleshoot issues if your instance fails a status check\. First determine whether your applications are exhibiting any problems\. If you verify that the instance is not running your applications as expected, review the status check information and the system logs\.
+
 **Topics**
-+ [Initial Steps](#InitialSteps)
-+ [Retrieving System Logs](#troubleshooting-retrieve-system-logs)
++ [Review Status Check Information](#InitialSteps)
++ [Retrieve the System Logs](#troubleshooting-retrieve-system-logs)
 + [Troubleshooting System Log Errors for Linux\-Based Instances](#system-log-errors-linux)
 + [Out of memory: kill process](#MemoryOOM)
 + [ERROR: mmu\_update failed \(Memory management update failed\)](#MemoryMMU)
@@ -25,9 +27,7 @@
 + [Unable to load SELinux Policy\. Machine is in enforcing mode\. Halting now\. \(SELinux misconfiguration\)](#OpSystemUnable)
 + [XENBUS: Timeout connecting to devices \(Xenbus timeout\)](#OpSystemXenbus)
 
-## Initial Steps<a name="InitialSteps"></a>
-
-If your instance fails a status check, first determine whether your applications are exhibiting any problems\. If you verify that the instance is not running your applications as expected, follow these steps:
+## Review Status Check Information<a name="InitialSteps"></a>
 
 **To investigate impaired instances using the Amazon EC2 console**
 
@@ -39,14 +39,15 @@ If your instance fails a status check, first determine whether your applications
 
 If a system status check has failed, you can try one of the following options:
 + Create an instance recovery alarm\. For more information, see [Create Alarms That Stop, Terminate, or Recover an Instance](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/UsingAlarmActions.html) in the *Amazon CloudWatch User Guide*\.
++ If you changed the instance type to a [Nitro\-based instance](instance-types.md#ec2-nitro-instances), status checks fail if you migrated from an instance that does not have the required ENA and NVMe drivers\. For more information, see [Compatibility for Resizing Instances](ec2-instance-resize.md#resize-limitations)\.
 + For an instance using an Amazon EBS\-backed AMI, stop and restart the instance\.
 + For an instance using an instance\-store backed AMI, terminate the instance and launch a replacement\.
 + Wait for Amazon EC2 to resolve the issue\.
 + Post your issue to the [Amazon EC2 forum](https://forums.aws.amazon.com/forum.jspa?forumID=30)\.
 + If your instance is in an Auto Scaling group, the Amazon EC2 Auto Scaling service automatically launches a replacement instance\. For more information, see [Health Checks for Auto Scaling Instances](https://docs.aws.amazon.com/autoscaling/latest/userguide/healthcheck.html) in the *Amazon EC2 Auto Scaling User Guide*\.
-+ Retrieve the system log and look for errors\. 
++ Retrieve the system log and look for errors\.
 
-## Retrieving System Logs<a name="troubleshooting-retrieve-system-logs"></a>
+## Retrieve the System Logs<a name="troubleshooting-retrieve-system-logs"></a>
 
 If an instance status check fails, you can reboot the instance and retrieve the system logs\. The logs may reveal an error that can help you troubleshoot the issue\. Rebooting clears unnecessary information from the logs\.
 
@@ -91,7 +92,7 @@ For Linux\-based instances that have failed an instance status check, such as th
 + [fsck: No such file or directory while trying to open\.\.\. \(File system not found\)](#FilesystemFschk)
 + [General error mounting filesystems \(Failed mount\)](#FilesystemGeneral)
 + [VFS: Unable to mount root fs on unknown\-block \(Root filesystem mismatch\)](#FilesystemKernel)
-+ [Error: Unable to determine major/minor number of root device\.\.\. \(Root file system/device mismatch\) ](#FilesystemError)
++ [Error: Unable to determine major/minor number of root device\.\.\. \(Root file system/device mismatch\)](#FilesystemError)
 + [XENBUS: Device with no driver\.\.\.](#FilesystemXenbus)
 + [\.\.\. days without being checked, check forced \(File system check required\)](#FilesystemCheck)
 + [fsck died with exit status\.\.\. \(Missing device\)](#FilesystemFschkDied)

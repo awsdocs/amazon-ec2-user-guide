@@ -207,11 +207,12 @@ If you must use a different AMI for your application, and your `d2.8xlarge` inst
 
   The following AMIs meet these requirements:
   + Amazon Linux 2
-  + Amazon Linux 2014\.03 or later
+  + Amazon Linux AMI 2018\.03
   + Ubuntu 14\.04 or later
-  + SUSE Linux Enterprise Server 12 or later
   + Red Hat Enterprise Linux 7\.4 or later
+  + SUSE Linux Enterprise Server 12 or later
   + CentOS 7 or later
+  + FreeBSD 11\.1 or later
   + Windows Server 2008 R2 or later
 + Launching an `i3.metal` instance boots the underlying server, which includes verifying all hardware and firmware components\. This means that it can take 20 minutes from the time the instance enters the running state until it becomes available over the network\.
 + To attach or detach EBS volumes or secondary network interfaces from an `i3.metal` instance requires PCIe native hotplug support\. Amazon Linux 2 and the latest versions of the Amazon Linux AMI support PCIe native hotplug, but earlier versions do not\. You must enable the following Linux kernel configuration options:

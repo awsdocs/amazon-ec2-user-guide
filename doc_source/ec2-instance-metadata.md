@@ -80,6 +80,7 @@ ami-id
 ami-launch-index
 ami-manifest-path
 block-device-mapping/
+events/
 hostname
 iam/
 instance-action
@@ -363,7 +364,7 @@ Category names that are formatted in red text are placeholders for data that is 
 |  block\-device\-mapping/root  | The virtual devices or partitions associated with the root devices, or partitions on the virtual device, where the root \(/ or C:\) file system is associated with the given instance\. | 2007\-12\-15 | 
 |  block\-device\-mapping/swap  | The virtual devices associated with swap\. Not always present\. | 2007\-12\-15 | 
 | elastic\-gpus/associations/elastic\-gpu\-id | If there is an Elastic GPU attached to the instance, contains a JSON string with information about the Elastic GPU, including its ID and connection information\. | 2016\-11\-30 | 
-| events/maintenance/history | If there are completed or canceled maintenance events for the instance, contains a JSON string with information about the events\. For more information, see [Viewing Event History](monitoring-instances-status-check_sched.md#viewing-event-history)\. | 2018\-08\-17 | 
+| events/maintenance/history | If there are completed or canceled maintenance events for the instance, contains a JSON string with information about the events\. For more information, see [To view event history about completed or canceled events](monitoring-instances-status-check_sched.md#viewing-event-history)\. | 2018\-08\-17 | 
 | events/maintenance/scheduled | If there are active maintenance events for the instance, contains a JSON string with information about the events\. For more information, see [Viewing Scheduled Events](monitoring-instances-status-check_sched.md#viewing_scheduled_events)\. | 2018\-08\-17 | 
 | hostname | The private IPv4 DNS hostname of the instance\. In cases where multiple network interfaces are present, this refers to the eth0 device \(the device for which the device number is 0\)\. | 1\.0 | 
 |  iam/info  | If there is an IAM role associated with the instance, contains information about the last time the instance profile was updated, including the instance's LastUpdated date, InstanceProfileArn, and InstanceProfileId\. Otherwise, not present\. | 2012\-01\-12 | 
@@ -377,6 +378,7 @@ Category names that are formatted in red text are placeholders for data that is 
 |  local\-hostname  | The private IPv4 DNS hostname of the instance\. In cases where multiple network interfaces are present, this refers to the eth0 device \(the device for which the device number is 0\)\. | 2007\-01\-19 | 
 |  local\-ipv4  | The private IPv4 address of the instance\. In cases where multiple network interfaces are present, this refers to the eth0 device \(the device for which the device number is 0\)\. | 1\.0 | 
 |  mac  | The instance's media access control \(MAC\) address\. In cases where multiple network interfaces are present, this refers to the eth0 device \(the device for which the device number is 0\)\. | 2011\-01\-01 | 
+| metrics/vhostmd | Deprecated\. | 2011\-05\-01 | 
 |  network/interfaces/macs/mac/device\-number  | The unique device number associated with that interface\. The device number corresponds to the device name; for example, a device\-number of 2 is for the eth2 device\. This category corresponds to the DeviceIndex and device\-index fields that are used by the Amazon EC2 API and the EC2 commands for the AWS CLI\. | 2011\-01\-01 | 
 |  network/interfaces/macs/mac/interface\-id  | The ID of the network interface\. | 2011\-01\-01 | 
 |  network/interfaces/macs/mac/ipv4\-associations/public\-ip  | The private IPv4 addresses that are associated with each public IP address and assigned to that interface\. | 2011\-01\-01 | 

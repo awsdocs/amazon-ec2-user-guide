@@ -54,12 +54,6 @@ Follow this procedure if you already have a public DNS name registered\.
      HOSTNAME=webserver.localdomain
      ```
 
-   Open the `/etc/sysconfig/network` configuration file in your favorite text editor and change the `HOSTNAME` entry to reflect the desired system hostname \(such as **webserver**\)\.
-
-   ```
-   HOSTNAME=webserver.localdomain
-   ```
-
 1. Open the `/etc/hosts` file in your favorite text editor and change the entry beginning with **127\.0\.0\.1** to match the example below, substituting your own hostname\.
 
    ```
@@ -93,9 +87,9 @@ If you do not want to modify the hostname for your instance, but you would like 
    [ec2-user ~]$ sudo sh -c 'echo "export NICKNAME=webserver" > /etc/profile.d/prompt.sh'
    ```
 
-1. Open the `/etc/bashrc` file in your favorite text editor \(such as vim or nano\)\. You need to use sudo with the editor command because `/etc/bashrc` is owned by `root`\.
+1. Open the `/etc/bashrc` \(Red Hat\) or `/etc/bash.bashrc` \(Debian/Ubuntu\) file in your favorite text editor \(such as vim or nano\)\. You need to use sudo with the editor command because `/etc/bashrc` and `/etc/bash.bashrc` are owned by `root`\.
 
-1. Edit the file and change the shell prompt variable \(`PS1`\) to display your nickname instead of the hostname\. Find the following line that sets the shell prompt in `/etc/bashrc` \(several surrounding lines are shown below for context; look for the line that starts with `[ "$PS1"`\):
+1. Edit the file and change the shell prompt variable \(`PS1`\) to display your nickname instead of the hostname\. Find the following line that sets the shell prompt in `/etc/bashrc` or `/etc/bash.bashrc` \(several surrounding lines are shown below for context; look for the line that starts with `[ "$PS1"`\):
 
    ```
      # Turn on checkwinsize

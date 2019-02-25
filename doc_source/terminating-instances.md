@@ -26,6 +26,18 @@ You can control whether an instance should stop or terminate when shutdown is in
 
 If you run a script on instance termination, your instance might have an abnormal termination, because we have no way to ensure that shutdown scripts run\. Amazon EC2 attempts to shut an instance down cleanly and run any system shutdown scripts; however, certain events \(such as hardware failure\) may prevent these system shutdown scripts from running\.
 
+### What Happens When You Terminate an Instance \(API\)<a name="what-happens-terminate"></a>
+
+When an EC2 instance is terminated using the terminate\-instances command, the following is registered at the OS level:
++ The API request will send a button press event to the guest\.
++ Various system services will be stopped as a result of the button press event\. systemd handles a graceful shutdown of the system\. This is true for both stop and termination\. Graceful shutdown is triggered by the ACPI shutdown button press event from the hypervisor\.
++ ACPI shutdown will be initiated\.
++ The instance will shut down when the graceful shutdown process exits\. There is no configurable OS shutdown time\. 
+
+**Lifecycle Hooks and Auto Scaling**
+
+For instances launched in Amazon EC2 Auto Scaling groups, you can add a lifecycle hook to your Auto Scaling group to perform custom actions, such as sending large log files, when an instance is terminated\. When a scale\-in event occurs, a Spot Instance is interrupted, an instance fails a health check, or you manually terminate an instance, the Auto Scaling group stops sending traffic to the **terminating** instance\. If you added a lifecycle hook to your group, the instance enters a **Terminating:Wait** state where it continues to run until either you call the CompleteLifecycleAction API or the timeout period ends\. For more information, see [ Amazon EC2 Auto Scaling Lifecycle Hooks](https://docs.aws.amazon.com/autoscaling/ec2/userguide/lifecycle-hooks.html)\. 
+
 ## Terminating an Instance<a name="terminating-instances-console"></a>
 
 You can terminate an instance using the AWS Management Console or the command line\.

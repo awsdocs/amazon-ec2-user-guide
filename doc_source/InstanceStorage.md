@@ -99,6 +99,7 @@ The following table provides the quantity, size, type, and performance optimizat
 | m5d\.4xlarge | 2 x 300 GB \(600 GB\) | NVMe SSD |  | ✔ | 
 | m5d\.12xlarge | 2 x 900 GB \(1\.8 TB\) | NVMe SSD |  | ✔ | 
 | m5d\.24xlarge | 4 x 900 GB \(3\.6 TB\) | NVMe SSD |  | ✔ | 
+| m5d\.metal | 4 x 900 GB \(3\.6 TB\) | NVMe SSD |  | ✔ | 
 | p3dn\.24xlarge | 2 x 900 GB \(1\.8 TB\) | NVMe SSD |  | ✔ | 
 |  `r3.large`  |  1 x 32 GB  | SSD |  | ✔ | 
 |  `r3.xlarge`  |  1 x 80 GB  | SSD |  | ✔ | 
@@ -111,6 +112,7 @@ The following table provides the quantity, size, type, and performance optimizat
 | r5d\.4xlarge | 2 x 300 GB \(600 GB\) | NVMe SSD |  | ✔ | 
 | r5d\.12xlarge | 2 x 900 GB \(1\.8 TB\) | NVMe SSD |  | ✔ | 
 | r5d\.24xlarge | 4 x 900 GB \(3\.6 TB\) | NVMe SSD |  | ✔ | 
+| r5d\.metal | 4 x 900 GB \(3\.6 TB\) | NVMe SSD |  | ✔ | 
 |  `x1.16xlarge`  |  1 x 1,920 GB  | SSD |  |  | 
 |  `x1.32xlarge`  |  2 x 1,920 GB \(3\.84 TB\)  | SSD |  |  | 
 |  `x1e.xlarge`  |  1 x 120 GB  | SSD |  |  | 
@@ -125,6 +127,7 @@ The following table provides the quantity, size, type, and performance optimizat
 |  `z1d.3xlarge`  |  1 x 450 GB  | NVMe SSD |  | ✔ | 
 |  `z1d.6xlarge`  |  1 x 900 GB  | NVMe SSD |  | ✔ | 
 |  `z1d.12xlarge`  |  2 x 900 GB \(1\.8 TB\)  | NVMe SSD |  | ✔ | 
+|  `z1d.metal`  |  2 x 900 GB \(1\.8 TB\)  | NVMe SSD |  | ✔ | 
 
 \* Volumes attached to certain instances suffer a first\-write penalty unless initialized\. For more information, see [Optimizing Disk Performance for Instance Store Volumes](disk-performance.md)\.
 

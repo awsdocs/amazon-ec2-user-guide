@@ -163,7 +163,7 @@ The following examples show how to use Amazon DLM to perform typical procedures 
    + **Description**—A description of the policy\.
    + **Target volumes with tags**—The resource tags that identify the volumes to back up\.
    + **Schedule Name**—A name for the backup schedule\.
-   + **Create snapshots every** ***n*** **Hours**—The number of hours between policy runs\. The supported values are 12 and 24\.
+   + **Create snapshots every** ***n*** **Hours**—The number of hours between policy runs\. The supported values are 2, 3, 4, 6, 8, 12, and 24\.
    + **Snapshot creation start time** ***hh***:***mm*** **UTC**—The time of day when policy runs are scheduled to start\. The policy runs start within an hour after the scheduled time\.
    + **Retention rule**—The maximum number of snapshots to retain for each volume\. The supported range is 1 to 1000\. After the limit is reached, the oldest snapshot is deleted when a new one is created\.
    + **Copy tags**—Copy all user\-defined tags on a source volume to snapshots of the volume created by this policy\.
@@ -203,7 +203,7 @@ The following examples show how to use Amazon DLM to perform typical procedures 
    + **Description**—A description of the policy\.
    + **Target volumes with tags**—The resource tags that identify the volumes to back up\.
    + **Schedule Name**—A name for the backup schedule\.
-   + **Create snapshots every** ***n*** **Hours**—The number of hours between policy runs\. The supported values are 12 and 24\.
+   + **Create snapshots every** ***n*** **Hours**—The number of hours between policy runs\. The supported values are 2, 3, 4, 6, 8, 12, and 24\.
    + **Snapshot creation start time** ***hh***:***mm*** **UTC**—The time of day when policy runs are scheduled to start\. The policy runs start within an hour after the scheduled time\.
    + **Retention rule**—The maximum number of snapshots to retain for each volume\. The supported range is 1 to 1000\. After the limit is reached, the oldest snapshot is deleted when a new one is created\.
    + **Copy tags**—Copy all user\-defined tags on a source volume to snapshots of the volume created by this policy\.

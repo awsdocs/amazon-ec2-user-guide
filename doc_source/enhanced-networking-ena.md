@@ -8,7 +8,9 @@ Amazon EC2 provides enhanced networking capabilities through the Elastic Network
 + [Enabling Enhanced Networking on the Amazon Linux AMI](#enable-enhanced-networking-ena-AL)
 + [Enabling Enhanced Networking on Ubuntu](#enhanced-networking-ena-ubuntu)
 + [Enabling Enhanced Networking on Linux](#enhanced-networking-ena-linux)
++ [Enabling Enhanced Networking on Ubuntu with DKMS](#enhanced-networking-ena-ubuntu-dkms)
 + [Troubleshooting](#enhanced-networking-ena-troubleshooting)
++ [Operating System Optimizations](enhanced-networking-os.md)
 
 ## Requirements<a name="ena-requirements"></a>
 
@@ -175,11 +177,14 @@ Follow the previous procedure until the step where you stop the instance\. Creat
 
 ## Enabling Enhanced Networking on Ubuntu<a name="enhanced-networking-ena-ubuntu"></a>
 
-The latest Ubuntu HVM AMIs have the module required for enhanced networking with ENA installed and have the required `enaSupport` attribute set\. Therefore, if you launch an instance with the latest Ubuntu HVM AMI on a supported instance type, enhanced networking is already enabled for your instance\. For more information, see [Testing Whether Enhanced Networking Is Enabled](#test-enhanced-networking-ena)\.
+The latest Ubuntu HVM AMIs have the module required for enhanced networking with ENA installed and have the required `enaSupport` attribute set\. Therefore, if you launch an instance with the latest Ubuntu HVM AMI on a supported instance type, enhanced networking is already enabled for your instance\. For more information, see [Testing Whether Enhanced Networking Is Enabled](#test-enhanced-networking-ena)\. 
 
-If you launched your instance using an older AMI and it does not have enhanced networking enabled already, you can install the `linux-aws` kernel package to get the latest enhanced networking drivers and update the required attribute\.<a name="ubuntu-enhanced-networking-ena-procedure"></a>
+If you launched your instance using an older AMI and it does not have enhanced networking enabled already, you can install the `linux-aws` kernel package to get the latest enhanced networking drivers and update the required attribute\.
 
-**To install the linux\-aws kernel package**
+**To install the linux\-aws kernel package \(Ubuntu 16\.04 or later\)**  
+Ubuntu 16\.04 and 18\.04 ship with the Ubuntu custom kernel \(linux\-aws kernel package\)\. To use a different kernel, contact [AWS Support](https://console.aws.amazon.com/support)\.<a name="ubuntu-enhanced-networking-ena-procedure"></a>
+
+**To install the linux\-aws kernel package \(Ubuntu Trusty 14\.04\)**
 
 1. <a name="ubuntu-enhanced-networking-ena-start-step"></a>Connect to your instance\.
 
@@ -227,13 +232,13 @@ Follow the previous procedure until the step where you stop the instance\. Creat
 
 ## Enabling Enhanced Networking on Linux<a name="enhanced-networking-ena-linux"></a>
 
-The following procedure provides the general steps for enabling enhanced networking on a Linux distribution other than Amazon Linux AMI or Ubuntu, such as SUSE Linux Enterprise Server, Red Hat Enterprise Linux, or CentOS\. Before you begin, see [Testing Whether Enhanced Networking Is Enabled](#test-enhanced-networking-ena) to check if your instance is already enabled for enhanced networking\. For more information, such as detailed syntax for commands, file locations, or package and tool support, see the specific documentation for your Linux distribution\.
+The following procedure provides the general steps for enabling enhanced networking on a Linux distribution other than Amazon Linux AMI or Ubuntu, such as SUSE Linux Enterprise Server \(SLES\), Red Hat Enterprise Linux, or CentOS\. Before you begin, see [Testing Whether Enhanced Networking Is Enabled](#test-enhanced-networking-ena) to check if your instance is already enabled for enhanced networking\. For more information, such as detailed syntax for commands, file locations, or package and tool support, see the specific documentation for your Linux distribution\.
 
 **To enable enhanced networking on Linux**
 
 1. <a name="other-linux-enhanced-networking-ena-start-step"></a>Connect to your instance\.
 
-1. Clone the source code for the `ena` module on your instance from GitHub at [https://github.com/amzn/amzn-drivers](https://github.com/amzn/amzn-drivers)\.
+1. Clone the source code for the `ena` module on your instance from GitHub at [https://github.com/amzn/amzn-drivers](https://github.com/amzn/amzn-drivers)\. \(SUSE SLES 12 SP2 and later include ENA 2\.02 by default, so you are not required to download and compile the ENA driver\. For SLES 12 SP2 and later, you should file a request to add the driver version you want to the stock kernel\)\. 
 
    ```
    git clone https://github.com/amzn/amzn-drivers
@@ -311,6 +316,115 @@ Follow the previous procedure until the step where you stop the instance\. Creat
   ```
   Register-EC2Image -EnaSupport ...
   ```
+
+## Enabling Enhanced Networking on Ubuntu with DKMS<a name="enhanced-networking-ena-ubuntu-dkms"></a>
+
+This method is for testing and feedback purposes only\. It is not intended for use with production deployments\. For production employments, see [Enabling Enhanced Networking on Ubuntu](#enhanced-networking-ena-ubuntu)\.
+
+**Important**  
+Using DKMS voids the support agreement for your subscription\. Using kmod configurations are an acceptable alternative for running the latest available kernel modules\. 
+
+**To enable enhanced networking with ENA on Ubuntu \(EBS\-backed instances\)**
+
+1. Follow steps 1 and 2 in [Enabling Enhanced Networking on Ubuntu](#enhanced-networking-ena-ubuntu)\.
+
+1. Install the `build-essential` packages to compile the kernel module and the `dkms` package so that your `ena` module is rebuilt every time your kernel is updated\.
+
+   ```
+   ubuntu:~$ sudo apt-get install -y build-essential dkms
+   ```
+
+1. Clone the source for the `ena` module on your instance from GitHub at [https://github.com/amzn/amzn-drivers](https://github.com/amzn/amzn-drivers)\.
+
+   ```
+   ubuntu:~$ git clone https://github.com/amzn/amzn-drivers
+   ```
+
+1. Move the `amzn-drivers` package to the `/usr/src/` directory so dkms can find it and build it for each kernel update\. Append the version number \(you can find the current version number in the release notes\) of the source code to the directory name\. For example, version `1.0.0` is shown in the example below\.
+
+   ```
+   ubuntu:~$ sudo mv amzn-drivers /usr/src/amzn-drivers-1.0.0
+   ```
+
+1. Create the dkms configuration file with the following values, substituting your version of `ena`\.
+
+   Create the file\.
+
+   ```
+   ubuntu:~$ sudo touch /usr/src/amzn-drivers-1.0.0/dkms.conf
+   ```
+
+   Edit the file and add the following values\.
+
+   ```
+   ubuntu:~$ sudo vim /usr/src/amzn-drivers-1.0.0/dkms.conf
+   PACKAGE_NAME="ena"
+   PACKAGE_VERSION="1.0.0"
+   CLEAN="make -C kernel/linux/ena clean"
+   MAKE="make -C kernel/linux/ena/ BUILD_KERNEL=${kernelver}"
+   BUILT_MODULE_NAME[0]="ena"
+   BUILT_MODULE_LOCATION="kernel/linux/ena"
+   DEST_MODULE_LOCATION[0]="/updates"
+   DEST_MODULE_NAME[0]="ena"
+   AUTOINSTALL="yes"
+   ```
+
+1. Add, build, and install the `ena` module on your instance using dkms\.
+
+   Add the module to dkms
+
+   ```
+   ubuntu:~$ sudo dkms add -m amzn-drivers -v 1.0.0
+   ```
+
+   Build the module using dkms\.
+
+   ```
+   ubuntu:~$ sudo dkms build -m amzn-drivers -v 1.0.0
+   ```
+
+   Install the module using dkms\.
+
+   ```
+   ubuntu:~$ sudo dkms install -m amzn-drivers -v 1.0.0
+   ```
+
+1. Rebuild `initramfs` so the correct module is loaded at boot time\.
+
+   ```
+   ubuntu:~$ sudo update-initramfs -c -k all
+   ```
+
+1. Verify that the `ena` module is installed using the modinfo ena command from [](#test-enhanced-networking-ena)\.
+
+   ```
+   ubuntu:~$ modinfo ena
+   filename:       /lib/modules/3.13.0-74-generic/updates/dkms/ena.ko
+   version:        1.0.0
+   license:        GPL
+   description:    Elastic Network Adapter (ENA)
+   author:         Amazon.com, Inc. or its affiliates
+   srcversion:     9693C876C54CA64AE48F0CA
+   alias:          pci:v00001D0Fd0000EC21sv*sd*bc*sc*i*
+   alias:          pci:v00001D0Fd0000EC20sv*sd*bc*sc*i*
+   alias:          pci:v00001D0Fd00001EC2sv*sd*bc*sc*i*
+   alias:          pci:v00001D0Fd00000EC2sv*sd*bc*sc*i*
+   depends:
+   vermagic:       3.13.0-74-generic SMP mod_unload modversions
+   parm:           debug:Debug level (0=none,...,16=all) (int)
+   parm:           push_mode:Descriptor / header push mode (0=automatic,1=disable,3=enable)
+   			  0 - Automatically choose according to device capability (default)
+   			  1 - Don't push anything to device memory
+   			  3 - Push descriptors and header buffer to device memory (int)
+   parm:           enable_wd:Enable keepalive watchdog (0=disable,1=enable,default=1) (int)
+   parm:           enable_missing_tx_detection:Enable missing Tx completions. (default=1) (int)
+   parm:           numa_node_override_array:Numa node override map
+    (array of int)
+   parm:           numa_node_override:Enable/Disable numa node override (0=disable)
+    (int)
+   ```
+
+1. Continue with Step 3 in [Enabling Enhanced Networking on Ubuntu](#enhanced-networking-ena-ubuntu)\. 
 
 ## Troubleshooting<a name="enhanced-networking-ena-troubleshooting"></a>
 

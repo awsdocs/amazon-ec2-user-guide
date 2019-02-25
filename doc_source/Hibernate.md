@@ -36,7 +36,7 @@ When you hibernate a running instance, the following happens:
 + In most cases, the instance is migrated to a new underlying host computer when it's restarted, which is the same as what happens when you stop and restart an instance\.
 + When you restart the instance, the instance boots up and the operating system reads in the contents of the RAM from the Amazon EBS root volume before unfreezing processes to resume its state\.
 + The instance retains its private IPv4 addresses and any IPv6 addresses when hibernated and restarted\. We release the public IPv4 address and assign a new one when you restart it\.
-+ The instance retains its associated Elastic IP addresses\. You're charged for any Elastic IP addresses associated with a hibernated instance\.
++ The instance retains its associated Elastic IP addresses\. You're charged for any Elastic IP addresses associated with a hibernated instance\. With EC2\-Classic, an Elastic IP address is dissociated from your instance when you hibernate it\. For more information, see [EC2\-Classic](ec2-classic-platform.md)\.
 + When you hibernate a ClassicLink instance, it's unlinked from the VPC to which it was linked\. You must link the instance to the VPC again after restarting it\. For more information, see [ClassicLink](vpc-classiclink.md)\.
 
 For information about how hibernation differs from reboot, stop, and terminate, see [Differences Between Reboot, Stop, Hibernate, and Terminate](ec2-instance-lifecycle.md#lifecycle-differences)\.

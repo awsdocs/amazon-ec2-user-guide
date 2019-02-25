@@ -93,9 +93,9 @@ Choosing the best volume queue length based on your workload and volume type\.
 
 ### Queue Length on SSD\-backed Volumes<a name="SSD_queue"></a>
 
-To determine the optimal queue length for your workload on SSD\-backed volumes, we recommend that you target a queue length of 1 for every 500 IOPS available \(baseline for `gp2` volumes and the provisioned amount for `io1` volumes\)\. Then you can monitor your application performance and tune that value based on your application requirements\.
+To determine the optimal queue length for your workload on SSD\-backed volumes, we recommend that you target a queue length of 1 for every 1000 IOPS available \(baseline for `gp2` volumes and the provisioned amount for `io1` volumes\)\. Then you can monitor your application performance and tune that value based on your application requirements\.
 
-Increasing the queue length is beneficial until you achieve the provisioned IOPS, throughput or optimal system queue length value, which is currently set to 32\. For example, a volume with 1,000 provisioned IOPS should target a queue length of 2\. You should experiment with tuning these values up or down to see what performs best for your application\.
+Increasing the queue length is beneficial until you achieve the provisioned IOPS, throughput or optimal system queue length value, which is currently set to 32\. For example, a volume with 3,000 provisioned IOPS should target a queue length of 3\. You should experiment with tuning these values up or down to see what performs best for your application\.
 
 ### Queue Length on HDD\-backed Volumes<a name="HDD_queue"></a>
 

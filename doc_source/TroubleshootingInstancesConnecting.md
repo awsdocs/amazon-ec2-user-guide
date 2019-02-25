@@ -60,7 +60,7 @@ If you try to connect to your instance and get an error message `Network error: 
 
   1. In the navigation pane, choose **Subnets** and select your subnet\.
 
-  1. On the **Summary** tab, find **Network ACL**, and choose its ID \(acl\-*xxxxxxxx*\)\.
+  1. On the **Description** tab, find **Network ACL**, and choose its ID \(acl\-*xxxxxxxx*\)\.
 
   1. Select the network ACL\. For **Inbound Rules**, verify that the rules allow traffic from your computer\. Otherwise, delete or modify the rule that is blocking traffic from your computer\.
 

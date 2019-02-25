@@ -17,7 +17,7 @@ You can also create an Amazon CloudWatch alarm that monitors an Amazon EC2 insta
 There are two types of status checks: system status checks and instance status checks\.
 
 **System Status Checks**  
-Monitor the AWS systems on which your instance runs\. These checks detect underlying problems with your instance that require AWS involvement to repair\. When a system status check fails, you can choose to wait for AWS to fix the issue, or you can resolve it yourself\. For instances backed by Amazon EBS, you can stop and start the instance yourself, which in most cases migrates it to a new host computer\. For instances backed by instance store, you can terminate and replace the instance\.
+Monitor the AWS systems on which your instance runs\. These checks detect underlying problems with your instance that require AWS involvement to repair\. When a system status check fails, you can choose to wait for AWS to fix the issue, or you can resolve it yourself\. For instances backed by Amazon EBS, you can stop and start the instance yourself, which in most cases migrates it to a new host\. For instances backed by instance store, you can terminate and replace the instance\.
 
 The following are examples of problems that can cause system status checks to fail:
 + Loss of network connectivity

@@ -97,7 +97,7 @@ Use the [describe\-scheduled\-instances](https://docs.aws.amazon.com/cli/latest/
 ## Scheduled Instance Limits<a name="scheduled-instances-limits"></a>
 
 Scheduled Instances are subject to the following limits:
-+ The following are the only supported instance types: C3, C4, C5, M4, and R3\.
++ The following are the only supported instance types: C3, C4, M4, and R3\.
 + The required term is 365 days \(one year\)\.
 + The minimum required utilization is 1,200 hours per year\.
 + You can purchase a Scheduled Instance up to three months in advance\.

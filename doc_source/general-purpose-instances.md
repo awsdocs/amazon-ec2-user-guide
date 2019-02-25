@@ -22,6 +22,10 @@ These instances provide an ideal cloud infrastructure, offering a balance of com
 + Caching fleets
 + Running backend servers for SAP, Microsoft SharePoint, cluster computing, and other enterprise applications
 
+`m5.metal` and `m5d.metal` instances provide your applications with direct access to physical resources of the host server, such as processors and memory\. These instances are well suited for the following:
++ Workloads that require access to low\-level hardware features \(for example, Intel VT\) that are not available or fully supported in virtualized environments
++ Applications that require a non\-virtualized environment for licensing or support
+
 For more information, see [Amazon EC2 M5 Instances](https://aws.amazon.com/ec2/instance-types/m5)\.
 
 **T2 and T3 Instances**
@@ -66,6 +70,7 @@ The following is a summary of the hardware specifications for general purpose in
 | m5\.4xlarge | 16 | 64 | 
 | m5\.12xlarge | 48 | 192 | 
 | m5\.24xlarge | 96 | 384 | 
+| m5\.metal | 96 | 384 | 
 | m5a\.large | 2 | 8 | 
 | m5a\.xlarge | 4 | 16 | 
 | m5a\.2xlarge | 8 | 32 | 
@@ -78,6 +83,7 @@ The following is a summary of the hardware specifications for general purpose in
 | m5d\.4xlarge | 16 | 64 | 
 | m5d\.12xlarge | 48 | 192 | 
 | m5d\.24xlarge | 96 | 384 | 
+| m5d\.metal | 96 | 384 | 
 | t2\.nano | 1 | 0\.5 | 
 | t2\.micro | 1 | 1 | 
 | t2\.small | 1 | 2 | 
@@ -122,7 +128,7 @@ The following is a summary of network performance for general purpose instances 
 |  `m4.10xlarge`  |  10 Gbps  |  [Intel 82599 VF](sriov-networking.md)  | 
 |  `m5.12xlarge`, `m5a.12xlarge`, `m5d.12xlarge`  |  10 Gbps  | [ENA](enhanced-networking-ena.md) | 
 |  `m5a.24xlarge`  |  20 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  `m4.16xlarge`, `m5.24xlarge`, `m5d.24xlarge`  |  25 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `m4.16xlarge`, `m5.24xlarge`, `m5.metal`, `m5d.24xlarge`, `m5d.metal`  |  25 Gbps  | [ENA](enhanced-networking-ena.md) | 
 
 ## SSD I/O Performance<a name="general-purpose-ssd-perf"></a>
 
@@ -137,6 +143,7 @@ If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-ba
 |  `m5d.4xlarge` \*  |  234,000  |  114,000  | 
 |  `m5d.12xlarge`  |  700,000  |  340,000  | 
 |  `m5d.24xlarge`  |  1,400,000  |  680,000  | 
+|  `m5d.metal`  |  1,400,000  |  680,000  | 
 
 \* For these instances, you can get up to the specified performance\.
 
@@ -184,18 +191,26 @@ For more information, see the following:
   + Ubuntu 16\.04 or later \(64\-bit Arm\)
   + Red Hat Enterprise Linux 7\.6 or later \(64\-bit Arm\)
 + M5, M5a, M5d, and T3 instances have the following requirements:
-  + Must have the NVMe drivers installed\. EBS volumes are exposed as [NVMe block devices](nvme-ebs-volumes.md)\.
-  + Must have the Elastic Network Adapter \([ENA](enhanced-networking-ena.md)\) drivers installed\.
+  + NVMe drivers must be installed\. EBS volumes are exposed as [NVMe block devices](nvme-ebs-volumes.md)\.
+  + Elastic Network Adapter \([ENA](enhanced-networking-ena.md)\) drivers must be installed\.
 
   The following AMIs meet these requirements:
   + Amazon Linux 2
-  + Amazon Linux AMI 2014\.03 or later
+  + Amazon Linux AMI 2018\.03
   + Ubuntu 14\.04 or later
-  + SUSE Linux Enterprise Server 12 or later
   + Red Hat Enterprise Linux 7\.4 or later
+  + SUSE Linux Enterprise Server 12 or later
   + CentOS 7 or later
-  + FreeBSD 11\.1\-RELEASE
+  + FreeBSD 11\.1 or later
   + Windows Server 2008 R2 or later
 + A1, M5, M5a, M5d, and T3 instances support a maximum of 28 attachments, including network interfaces, EBS volumes, and NVMe instance store volumes\. Every instance has at least one network interface attachment\. For example, if you have no additional network interface attachments on an EBS\-only instance, you could attach 27 EBS volumes to that instance\.
++ Launching a bare metal instance boots the underlying server, which includes verifying all hardware and firmware components\. This means that it can take 20 minutes from the time the instance enters the running state until it becomes available over the network\.
++ To attach or detach EBS volumes or secondary network interfaces from a bare metal instance requires PCIe native hotplug support\. Amazon Linux 2 and the latest versions of the Amazon Linux AMI support PCIe native hotplug, but earlier versions do not\. You must enable the following Linux kernel configuration options:
+
+  ```
+  CONFIG_HOTPLUG_PCI_PCIE=y
+  CONFIG_PCIEASPM=y
+  ```
++ Bare metal instances use a PCI\-based serial device rather than an I/O port\-based serial device\. The upstream Linux kernel and the latest Amazon Linux AMIs support this device\. Bare metal instances also provide an ACPI SPCR table to enable the system to automatically use the PCI\-based serial device\. The latest Windows AMIs automatically use the PCI\-based serial device\.
 + A1, M5, M5a, M5d, and T3 instances should have system\-logind or acpid installed to support clean shutdown through API requests\.
 + There is a limit on the total number of instances that you can launch in a region, and there are additional limits on some instance types\. For more information, see [How many instances can I run in Amazon EC2?](https://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2)\. To request a limit increase, use the [Amazon EC2 Instance Request Form](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-instances)\.

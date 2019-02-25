@@ -2,6 +2,8 @@
 
 You can restore an Amazon EBS volume with data from a snapshot stored in Amazon S3\. You need to know the ID of the snapshot you want to restore your volume from and you need to have access permissions for the snapshot\. For more information on snapshots, see [Amazon EBS Snapshots](EBSSnapshots.md)\.
 
+EBS snapshots are the preferred backup tool on Amazon EC2 due to their speed, convenience, and cost\. When restoring a volume from a snapshot, you recreate its state at a specific point in the past with all data intact\. By attaching a restored volume to an instance, you can duplicate data across regions, create test environments, replace a damaged or corrupted production volume in its entirety, or retrieve specific files and directories and transfer them to another attached volume\. For more information, see [Amazon EBS Snapshots](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.htm)\.
+
 New volumes created from existing EBS snapshots load lazily in the background\. This means that after a volume is created from a snapshot, there is no need to wait for all of the data to transfer from Amazon S3 to your EBS volume before your attached instance can start accessing the volume and all its data\. If your instance accesses data that hasn't yet been loaded, the volume immediately downloads the requested data from Amazon S3, and continues loading the rest of the data in the background\.
 
 EBS volumes that are restored from encrypted snapshots are automatically encrypted\. Encrypted volumes can only be attached to selected instance types\. For more information, see [Supported Instance Types](EBSEncryption.md#EBSEncryption_supported_instances)\.

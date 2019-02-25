@@ -24,7 +24,7 @@ The commands in the following procedure require OpenSSL version 1\.0\.2 or later
 
 **To prepare to bring your address range to your AWS account**
 
-1. Create an ROA to authorize Amazon ASNs 16509 and 14618 to advertise your address range\. You must set the maximum length to the size of the smallest prefix that you want to bring \(for example, /24\)\. It might take up to 24 hours for the ROA to become available to Amazon\. For more information, see the following:
+1. Create an ROA to authorize Amazon ASNs 16509 and 14618 to advertise your address range, plus the ASNs that are currently authorized to advertise the address range\. You must set the maximum length to the size of the smallest prefix that you want to bring \(for example, /24\)\. It might take up to 24 hours for the ROA to become available to Amazon\. For more information, see the following:
    + ARIN — [ROA Requests](https://www.arin.net/resources/rpki/roarequest.html)
    + RIPE — [Managing ROAs](https://www.ripe.net/manage-ips-and-asns/resource-management/certification/resource-certification-roa-management)
 
@@ -46,7 +46,7 @@ The commands in the following procedure require OpenSSL version 1\.0\.2 or later
    1|aws|account|cidr|YYYYMMDD|SHA256|RSAPSS
    ```
 
-   The following command signs the message using the key pair that you created and saves it as `base64_urlsafe_signature`:
+   The following command, using an example account number, address range, and expiry date, signs the message using the key pair that you created and saves it as `base64_urlsafe_signature`:
 
    ```
    echo "1|aws|123456789012|198.51.100.0/24|20191201|SHA256|RSAPSS" | tr -d "\n" | openssl dgst -sha256 -sigopt rsa_padding_mode:pss -sigopt rsa_pss_saltlen:-1 -sign private.key -keyform PEM | openssl base64 | tr -- '+=/' '-_~' | tr -d "\n" > base64_urlsafe_signature

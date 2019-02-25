@@ -25,8 +25,7 @@ In the diagram below, Volume 1 is shown at three points in time\. A snapshot is 
 + In State 1, the volume has 10 GiB of data\. Because Snap A is the first snapshot taken of the volume, the entire 10 GiB of data must be copied\.
 + In State 2, the volume still contains 10 GiB of data, but 4 GiB have changed\. Snap B needs to copy and store only the 4 GiB that changed after Snap A was taken\. The other 6 GiB of unchanged data, which are already copied and stored in Snap A, are *referenced* by Snap B rather than \(again\) copied\. This is indicated by the dashed arrow\.
 + In State 3, 2 GiB of data have been added to the volume, for a total of 12 GiB\. Snap C needs to copy the 2 GiB that were added after Snap B was taken\. As shown by the dashed arrows, Snap C also references the 4 GiB of data stored in Snap B, and the 6 GiB of data stored in Snap A\. 
-The total storage required for the three snapshots is 12 GiB\.
-
++ The total storage required for the three snapshots is 12 GiB\.
 
  **Relations among Multiple Snapshots of a Volume** 
 

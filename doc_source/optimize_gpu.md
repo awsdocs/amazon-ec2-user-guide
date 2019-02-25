@@ -7,13 +7,13 @@ There are several GPU setting optimizations that you can perform to achieve the 
 1. Configure the GPU settings to be persistent\. This command can take several minutes to run\.
 
    ```
-   sudo nvidia-persistenced
+   [ec2-user ~]$ sudo nvidia-persistenced
    ```
 
 1. Disable the autoboost feature for all GPUs on the instance\.
 
    ```
-   sudo nvidia-smi --auto-boost-default=0
+   [ec2-user ~]$ sudo nvidia-smi --auto-boost-default=0
    ```
 **Note**  
 GPUs on P3 instances do not support autoboost\.
@@ -24,15 +24,15 @@ Some versions of the NVIDIA driver do not allow setting application clock speed 
    + P2 instances:
 
      ```
-     sudo nvidia-smi -ac 2505,875
+     [ec2-user ~]$ sudo nvidia-smi -ac 2505,875
      ```
    + P3 instances:
 
      ```
-     sudo nvidia-smi -ac 877,1530
+     [ec2-user ~]$ sudo nvidia-smi -ac 877,1530
      ```
    + G3 instances:
 
      ```
-     sudo nvidia-smi -ac 2505,1177
+     [ec2-user ~]$ sudo nvidia-smi -ac 2505,1177
      ```

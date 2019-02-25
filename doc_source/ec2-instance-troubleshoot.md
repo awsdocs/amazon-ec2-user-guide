@@ -7,9 +7,9 @@ The following documentation can help you troubleshoot problems that you might ha
 + [Troubleshooting Connecting to Your Instance](TroubleshootingInstancesConnecting.md)
 + [Troubleshooting Stopping Your Instance](TroubleshootingInstancesStopping.md)
 + [Troubleshooting Terminating \(Shutting Down\) Your Instance](TroubleshootingInstancesShuttingDown.md)
-+ [Troubleshooting Instance Recovery Failures](TroubleshootingInstanceRecovery.md)
 + [Troubleshooting Instances with Failed Status Checks](TroubleshootingInstances.md)
-+ [Getting Console Output and Rebooting Instances](instance-console.md)
++ [Troubleshooting Instance Recovery Failures](TroubleshootingInstanceRecovery.md)
++ [Getting Console Output](instance-console.md)
 + [Booting from the Wrong Volume](instance-booting-from-wrong-volume.md)
 
 For additional help with Windows instances, see [Troubleshooting Windows Instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/troubleshooting-windows-instances.html) in the *Amazon EC2 User Guide for Windows Instances*\.

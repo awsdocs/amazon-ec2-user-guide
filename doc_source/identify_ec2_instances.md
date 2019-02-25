@@ -51,3 +51,13 @@ In the following example output, the UUID is represented in little\-endian forma
 ```
 45E12AEC-DCD1-B213-94ED-01234ABCDEF
 ```
+On Nitro instances, the following command can be used:  
+
+```
+[ec2-user ~]$ cat /sys/devices/virtual/dmi/id/board_asset_tag
+```
+This returns the instance ID, which is unique to EC2 instances:  
+
+```
+i-0af01c0123456789a
+```

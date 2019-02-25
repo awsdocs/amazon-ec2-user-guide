@@ -10,20 +10,22 @@ Spot Instance requests are subject to the following limits:
 
 ## Spot Request Limits<a name="spot-limits-general"></a>
 
-By default, there is an account limit of 20 Spot Instances per region\. If you terminate your Spot Instance but do not cancel the request, the request counts against this limit until Amazon EC2 detects the termination and closes the request\.
+By default, there is an account limit of 20 Spot Instances per Region\. If you terminate your Spot Instance but do not cancel the request, the request counts against this limit until Amazon EC2 detects the termination and closes the request\.
 
-Spot Instance limits are dynamic\. When your account is new, your limit might be lower than 20 to start, but increase over time\. In addition, your account might have limits on specific Spot Instance types\. If you submit a Spot Instance request and you receive the error `Max spot instance count exceeded`, you can complete the AWS Support Center [Create Case](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-spot-instances) form to request an Amazon EC2 instance limit increase\. For **Use Case Description**, indicate that you need an increase in your limits for Spot Instance requests\. For more information, see [Amazon EC2 Service Limits](ec2-resource-limits.md)\.
+Spot Instance limits are dynamic\. When your account is new, your limit might be lower than 20 to start, but can increase over time\. In addition, your account might have limits on specific Spot Instance types\. If you submit a Spot Instance request and you receive the error `Max spot instance count exceeded`, you can complete the AWS Support Center [Create case](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-spot-instances) form to request a Spot Instance limit increase\. For **Limit type**, choose **EC2 Spot Instances**\. For more information, see [Amazon EC2 Service Limits](ec2-resource-limits.md)\.
 
 ## Spot Fleet Limits<a name="spot-fleet-limitations"></a>
 
-The usual Amazon EC2 limits apply to instances launched by a Spot Fleet, such as Spot request price limits, instance limits, and volume limits\. In addition, the following limits apply:
-+ The number of active Spot Fleets per region: 1,000
+The usual Amazon EC2 limits apply to instances launched by a Spot Fleet or an EC2 Fleet, such as Spot request price limits, instance limits, and volume limits\. In addition, the following limits apply:
++ The number of active Spot Fleets and EC2 Fleets per Region: 1,000
 + The number of launch specifications per fleet: 50
 + The size of the user data in a launch specification: 16 KB
-+ The target capacity per Spot Fleet: 3,000
-+ The target capacity across all Spot Fleets in a region: 5,000
-+ A Spot Fleet request can't span regions\.
-+ A Spot Fleet request can't span different subnets from the same Availability Zone\.
++ The target capacity per Spot Fleet or EC2 Fleet: 10,000
++ The target capacity across all Spot Fleets and EC2 Fleets in a Region: 100,000
++ A Spot Fleet request or an EC2 Fleet request can't span Regions\.
++ A Spot Fleet request or an EC2 Fleet request can't span different subnets from the same Availability Zone\.
+
+If you need more than the default limits for target capacity, complete the AWS Support Center [Create case](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-fleet) form to request a limit increase\. For **Limit type**, choose **EC2 Fleet**, choose a Region, and then choose **Target Fleet Capacity per Fleet \(in units\)** or **Target Fleet Capacity per Region \(in units\)**, or both\.
 
 ## T3 Instances<a name="t3-spot-instances"></a>
 

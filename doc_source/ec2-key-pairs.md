@@ -276,7 +276,7 @@ Create a new key pair using either the Amazon EC2 console or a third\-party tool
 
 1. Choose **Instances** in the navigation pane, and then select the instance that you'd like to connect to\. \(We'll refer to this as the original instance\.\)
 
-1. From the **Details** tab, save the following information that you'll need to complete this procedure\.
+1. From the **Description** tab, save the following information that you'll need to complete this procedure\.
    + Write down the instance ID, AMI ID, and Availability Zone of the original instance\.
    + In the **Root device** field, take note of the device name for the root volume \(for example, `/dev/sda1` or `/dev/xvda`\)\. Choose the link and write down the volume ID in the **EBS ID** field \(vol\-*xxxxxxxxxxxxxxxxx*\)\.
 
@@ -291,9 +291,9 @@ When you stop an instance, the data on any instance store volumes is erased\. To
    + On the **Add Tags** page, add the tag `Name=Temporary` to the instance to indicate that this is a temporary instance\.
    + On the **Review** page, choose **Launch**\. Create a new key pair, download it to a safe location on your computer, and then choose **Launch Instances**\.
 
-1. In the navigation pane, choose **Volumes** and select the root device volume for the original instance \(you wrote down its volume ID in a previous step\)\. Choose **Actions**, and then select **Detach Volume**\. Wait for the state of the volume to become `available`\. \(You might need to choose the **Refresh** icon\.\)
+1. In the navigation pane, choose **Volumes** and select the root device volume for the original instance \(you wrote down its volume ID in a previous step\)\. Choose **Actions**, **Detach Volume**, and then select **Yes, Detach**\. Wait for the state of the volume to become `available`\. \(You might need to choose the **Refresh** icon\.\)
 
-1. With the volume still selected, choose **Actions**, and then select **Attach Volume**\. Select the instance ID of the temporary instance, write down the device name specified under **Device** \(for example, `/dev/sdf`\), and then choose **Yes, Attach**\.
+1. With the volume still selected, choose **Actions**, and then select **Attach Volume**\. Select the instance ID of the temporary instance, write down the device name specified under **Device** \(for example, `/dev/sdf`\), and then choose **Attach**\.
 **Note**  
 If you launched your original instance from an AWS Marketplace AMI and your volume contains AWS Marketplace codes, you must first stop the temporary instance before you can attach the volume\.
 
@@ -323,15 +323,23 @@ The device name may appear differently on your instance\. For example, devices m
       [ec2-user ~]$ sudo mkdir /mnt/tempvol
       ```
 
-   1. Mount the volume \(or partition\) at the temporary mount point, using the volume name or device name you identified earlier\. **Note** 
-"-o nouuid" is only valid on XFS file systems, which include Red Hat (or varients, such as CentOS or Amazon Linux).
-   On ext4 file systems, omit this option. This includes systems such as Debian or Ubuntu.
+   1. Mount the volume \(or partition\) at the temporary mount point, using the volume name or device name you identified earlier\. The required command depends on your operating system's file system\.
+      + Amazon Linux, Ubuntu, and Debian
 
-      ```
-      [ec2-user ~]$ sudo mount [-o nouuid] /dev/xvdf1 /mnt/tempvol
-      ```
+        ```
+        [ec2-user ~]$ sudo mount /dev/xvdf1 /mnt/tempvol
+        ```
+      + Amazon Linux 2, CentOS, SLES 12, and RHEL 7\.x
+
+        ```
+        [ec2-user ~]$ sudo mount -o nouuid /dev/xvdf1 /mnt/tempvol
+        ```
 **Note**  
-If the volume fails to mount, try the command without the `-o nouuid` parameter\.
+If you get an error stating that the file system is corrupt, run the following command to use the **fsck** utility to check the file system and repair any issues:  
+
+   ```
+   [ec2-user ~]$ sudo fsck /dev/xvdf1
+   ```
 
 1. From the temporary instance, use the following command to update `authorized_keys` on the mounted volume with the new public key from the `authorized_keys` for the temporary instance\.
 **Important**  
@@ -375,9 +383,9 @@ The following examples use the Amazon Linux user name `ec2-user`\. You may need 
    [ec2-user ~]$ sudo umount /mnt/tempvol
    ```
 
-1. From the Amazon EC2 console, select the volume with the volume ID that you wrote down, choose **Actions**, and then select **Detach Volume**\. Wait for the state of the volume to become `available`\. \(You might need to choose the **Refresh** icon\.\)
+1. From the Amazon EC2 console, select the volume with the volume ID that you wrote down, choose **Actions**, **Detach Volume**, and then select **Yes, Detach**\. Wait for the state of the volume to become `available`\. \(You might need to choose the **Refresh** icon\.\)
 
-1. With the volume still selected, choose **Actions**, **Attach Volume**\. Select the instance ID of the original instance, specify the device name you noted earlier for the original root device attachment \(`/dev/sda1` or `/dev/xvda`\), and then choose **Yes, Attach**\.
+1. With the volume still selected, choose **Actions**, **Attach Volume**\. Select the instance ID of the original instance, specify the device name you noted earlier for the original root device attachment \(`/dev/sda1` or `/dev/xvda`\), and then choose **Attach**\.
 **Important**  
 If you don't specify the same device name as the original attachment, you cannot start the original instance\. Amazon EC2 expects the root device volume at `sda1` or `/dev/xvda`\.
 

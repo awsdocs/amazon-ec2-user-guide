@@ -1,8 +1,13 @@
 # Amazon CloudWatch Events for Amazon EBS<a name="ebs-cloud-watch-events"></a>
 
-Amazon EBS emits notifications based on Amazon CloudWatch Events for a variety of snapshot and encryption status changes\. With CloudWatch Events, you can establish rules that trigger programmatic actions in response to a change in snapshot or encryption key state\. For example, when a snapshot is created, you can trigger an AWS Lambda function to share the completed snapshot with another account or copy it to another region for disaster\-recovery purposes\.
+Amazon EBS emits notifications based on Amazon CloudWatch Events for a variety of volume, snapshot, and encryption status changes\. With CloudWatch Events, you can establish rules that trigger programmatic actions in response to a change in volume, snapshot, or encryption key state\. For example, when a snapshot is created, you can trigger an AWS Lambda function to share the completed snapshot with another account or copy it to another region for disaster\-recovery purposes\.
 
 For more information, see [Using Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/WhatIsCloudWatchEvents.html) in the *Amazon CloudWatch User Guide*\. For full API reference, see the [EC2 API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference)\.
+
+**Topics**
++ [EBS Volume Events](#volume-events)
++ [EBS Snapshot Events](#snapshot-events)
++ [Using Amazon Lambda To Handle CloudWatch Events](#using_lambda)
 
 ## EBS Volume Events<a name="volume-events"></a>
 
@@ -13,6 +18,11 @@ Additional information about EBS volumes that is not captured by Cloudwatch is a
 [DescribeVolumes](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeVolumes.html) API and the [describe\-volumes](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-volumes.html) CLI command\.
 
 The fields that are unique to EBS events are contained in the "detail" section of the JSON objects shown below\. The "event" field contains the event name\. The "result" field contains the completed status of the action that triggered the event\.
+
+**Topics**
++ [Create Volume \(`createVolume`\)](#create-volume)
++ [Delete Volume \(`deleteVolume`\)](#delete-volume)
++ [Volume Attach or Reattach \(`attachVolume`, `reattachVolume`\)](#attach-fail-key)
 
 ### Create Volume \(`createVolume`\)<a name="create-volume"></a>
 
@@ -173,6 +183,11 @@ The listing below is an example of a JSON object emitted by EBS after a failed `
 ```
 
 ## EBS Snapshot Events<a name="snapshot-events"></a>
+
+**Topics**
++ [Create Snapshot \(`createSnapshot`\)](#create-snapshot-complete)
++ [Copy Snapshot \(`copySnapshot`\)](#copy-snapshot-complete)
++ [Share Snapshot \(`shareSnapshot`\)](#snapshot-shared)
 
 ### Create Snapshot \(`createSnapshot`\)<a name="create-snapshot-complete"></a>
 

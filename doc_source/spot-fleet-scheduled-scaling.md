@@ -2,6 +2,9 @@
 
 Scaling based on a schedule enables you to scale your application in response to predictable changes in demand\. To use scheduled scaling, you create *scheduled actions*, which tell Spot Fleet to perform scaling activities at specific times\. When you create a scheduled action, you specify the Spot Fleet, when the scaling activity should occur, minimum capacity, and maximum capacity\. You can create scheduled actions that scale one time only or that scale on a recurring schedule\.
 
+**Limits**
++ The Spot Fleet request must have a request type of `maintain`\. Automatic scaling is not supported for one\-time requests or Spot blocks\.
+
 **To create a one\-time scheduled action**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.

@@ -1,4 +1,4 @@
-# Getting Console Output and Rebooting Instances<a name="instance-console"></a>
+# Getting Console Output<a name="instance-console"></a>
 
 Console output is a valuable tool for problem diagnosis\. It is especially useful for troubleshooting kernel problems and service configuration issues that could cause an instance to terminate or become unreachable before its SSH daemon can be started\. 
 

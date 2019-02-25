@@ -7,7 +7,7 @@ To activate the GRID Virtual Applications on G3 instances \(NVIDIA GRID Virtual 
 1. Create the `/etc/nvidia/gridd.conf` file from the provided template file\.
 
    ```
-   sudo cp /etc/nvidia/gridd.conf.template /etc/nvidia/gridd.conf
+   [ec2-user ~]$ sudo cp /etc/nvidia/gridd.conf.template /etc/nvidia/gridd.conf
    ```
 
 1. Open the `/etc/nvidia/gridd.conf` file in your favorite text editor\.
@@ -24,5 +24,5 @@ To activate the GRID Virtual Applications on G3 instances \(NVIDIA GRID Virtual 
 1. Reboot the instance to pick up the new configuration\.
 
    ```
-   sudo reboot
+   [ec2-user ~]$ sudo reboot
    ```

@@ -6,125 +6,152 @@ You can take snapshots of your EBS volume for backup purposes or to use as a bas
 
 You can get directions for volumes on a Windows instance from [Making a Volume Available for Use on Windows](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ebs-using-volumes.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
-**To make an EBS volume available for use on Linux**
+## Format and Mount an Attached Volume<a name="ebs-format-mount-volume"></a>
+
+Suppose that you have an EC2 instance with an EBS volume for the root device, `/dev/xvda`, and that you have just attached an empty EBS volume to the instance using `/dev/sdf`\. Use the following procedure to make the newly attached volume available for use\.
+
+**To format and mount an EBS volume on Linux**
 
 1. Connect to your instance using SSH\. For more information, see [Connect to Your Linux Instance](AccessingInstances.md)\.
 
-1. Depending on the block device driver of the kernel, the device could be attached with a different name than you specified\. For example, if you specify a device name of `/dev/sdh`, your device could be renamed `/dev/xvdh` or `/dev/hdh`\. In most cases, the trailing letter remains the same\. In some versions of Red Hat Enterprise Linux \(and its variants, such as CentOS\), even the trailing letter could change \(`/dev/sda` could become `/dev/xvde`\)\. In these cases, the trailing letter of each device name is incremented the same number of times\. For example, if `/dev/sdb` is renamed `/dev/xvdf`, then `/dev/sdc` is renamed `/dev/xvdg`\. Amazon Linux creates a symbolic link for the name you specified to the renamed device\. Other operating systems could behave differently\.
+1. The device could be attached to the instance with a different device name than you specified in the block device mapping\. For more information, see [Device Naming on Linux Instances](device_naming.md)\. Use the lsblk command to view your available disk devices and their mount points \(if applicable\) to help you determine the correct device name to use\. The output of lsblk removes the `/dev/` prefix from full device paths\.
 
-   Use the lsblk command to view your available disk devices and their mount points \(if applicable\) to help you determine the correct device name to use\.
+   The following is example output for a [Nitro\-based instance](instance-types.md#ec2-nitro-instances), which exposes EBS volumes as NVMe block devices\. The root device is `/dev/nvme0n1`\. The attached volume is `/dev/nvme1n1`, which is not yet mounted\.
 
    ```
    [ec2-user ~]$ lsblk
-   NAME  MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
-   xvdf  202:80   0  100G  0 disk
-   xvda1 202:1    0    8G  0 disk /
+   NAME          MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
+   nvme1n1       259:0    0  10G  0 disk
+   nvme0n1       259:1    0   8G  0 disk
+   -nvme0n1p1    259:2    0   8G  0 part /
+   -nvme0n1p128  259:3    0   1M  0 part
    ```
 
-   The output of lsblk removes the `/dev/` prefix from full device paths\. In this example, `/dev/xvda1` is mounted as the root device \(note that MOUNTPOINT is listed as `/`, the root of the Linux file system hierarchy\), and `/dev/xvdf` is attached, but it has not been mounted yet\.
+   The following is example output for a T2 instance\. The root device is `/dev/xvda`\. The attached volume is `/dev/xvdf`, which is not yet mounted\.
 
-   EBS volumes are exposed as NVMe block devices on [Nitro\-based instances](instance-types.md#ec2-nitro-instances)\. The device names that you specify are renamed using NVMe device names \(`/dev/nvme[0-26]n1`\)\. For more information, see [Amazon EBS and NVMe](nvme-ebs-volumes.md)\.
+   ```
+   [ec2-user ~]$ lsblk
+   NAME    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+   xvda    202:0    0    8G  0 disk
+   -xvda1  202:1    0    8G  0 part /
+   xvdf    202:80   0   10G  0 disk
+   ```
 
-1. Determine whether to create a file system on the volume\. New volumes are raw block devices, and you must create a file system on them before you can mount and use them\. Volumes that have been restored from snapshots likely have a file system on them already; if you create a new file system on top of an existing file system, the operation overwrites your data\. Use the sudo file \-s *device* command to list special information, such as file system type\.
+1. Determine whether there is a file system on the volume\. New volumes are raw block devices, and you must create a file system on them before you can mount and use them\. Volumes that have been restored from snapshots likely have a file system on them already; if you create a new file system on top of an existing file system, the operation overwrites your data\.
+
+   Use the file \-s command to get information about a device, such as its file system type\. If the output shows simply `data`, as in the following example output, there is no file system on the device and you must create one\.
 
    ```
    [ec2-user ~]$ sudo file -s /dev/xvdf
    /dev/xvdf: data
    ```
 
-   If the output of the previous command shows simply `data` for the device, then there is no file system on the device and you must create one\. You can go on to [Step 4](#create_file_system_step)\. If you run this command on a device that contains a file system, then your output will be different\.
+   If the device has a file system, the command shows information about the file system type\. For example, the following output shows a root device with the XFS file system\.
 
    ```
    [ec2-user ~]$ sudo file -s /dev/xvda1
-   /dev/xvda1: Linux rev 1.0 ext4 filesystem data, UUID=1701d228-e1bd-4094-a14c-8c64d6819362 (needs journal recovery) (extents) (large files) (huge files)
+   /dev/xvda1: SGI XFS filesystem data (blksz 4096, inosz 512, v2 dirs)
    ```
 
-   In the previous example, the device contains Linux rev 1\.0 ext4 filesystem data, so this volume does not need a file system created \(you can skip [Step 4](#create_file_system_step) if your output shows file system data\)\.
-
-1. <a name="create_file_system_step"></a>\(Conditional\) Use the following command to create an ext4 file system on the volume\. Substitute the device name \(such as `/dev/xvdf`\) for *device\_name*\. Depending on the requirements of your application or the limitations of your operating system, you can choose a different file system type, such as ext3 or XFS\.
+1. <a name="create_file_system_step"></a>\(Conditional\) If you discovered that there is a file system on the device in the previous step, skip this step\. If you have an empty volume, use the mkfs \-t command to create a file system on the volume\.
 **Warning**  
-This step assumes that you're mounting an empty volume\. If you're mounting a volume that already has data on it \(for example, a volume that was restored from a snapshot\), don't use mkfs before mounting the volume \(skip to the next step instead\)\. Otherwise, you'll format the volume and delete the existing data\.
+Do not use this command if you're mounting a volume that already has data on it \(for example, a volume that was restored from a snapshot\)\. Otherwise, you'll format the volume and delete the existing data\.
 
    ```
-   [ec2-user ~]$ sudo mkfs -t ext4 device_name
+   [ec2-user ~]$ sudo mkfs -t xfs /dev/xvdf
    ```
 
-1. Use the following command to create a mount point directory for the volume\. The mount point is where the volume is located in the file system tree and where you read and write files to after you mount the volume\. Substitute a location for *mount\_point*, such as `/data`\.
+1. Use the mkdir command to create a mount point directory for the volume\. The mount point is where the volume is located in the file system tree and where you read and write files to after you mount the volume\. The following example creates a directory named `/data`\.
 
    ```
-   [ec2-user ~]$ sudo mkdir mount_point
+   [ec2-user ~]$ sudo mkdir /data
    ```
 
-1. Use the following command to mount the volume at the location you just created\.
+1. Use the following command to mount the volume at the directory you created in the previous step\.
 
    ```
-   [ec2-user ~]$ sudo mount device_name mount_point
+   [ec2-user ~]$ sudo mount /dev/xvdf /data
    ```
 
-1. \(Optional\) To mount this EBS volume on every system reboot, add an entry for the device to the `/etc/fstab` file\.
+1. Review the file permissions of your new volume mount to make sure that your users and applications can write to the volume\. For more information about file permissions, see [File security](http://tldp.org/LDP/intro-linux/html/sect_03_04.html) at *The Linux Documentation Project*\.
 
-   1. Create a backup of your `/etc/fstab` file that you can use if you accidentally destroy or delete this file while you are editing it\.
+1. The mount point is not automatically preserved after rebooting your instance\. To automatically mount this EBS volume after reboot, see [Automatically Mount an Attached Volume After Reboot](#ebs-mount-after-reboot)\.
 
-      ```
-      [ec2-user ~]$ sudo cp /etc/fstab /etc/fstab.orig
-      ```
+## Automatically Mount an Attached Volume After Reboot<a name="ebs-mount-after-reboot"></a>
 
-   1. Open the `/etc/fstab` file using any text editor, such as nano or vim\.
+To mount an attached EBS volume on every system reboot, add an entry for the device to the `/etc/fstab` file\.
+
+You can use the device name, such as `/dev/xvdf`, in `/etc/fstab`, but we recommend using the device's 128\-bit universally unique identifier \(UUID\) instead\. Device names can change, but the UUID persists throughout the life of the partition\. By using the UUID, you reduce the chances that the system becomes unbootable after a hardware reconfiguration\. For more information, see [ Identifying the EBS Device  EBS uses single\-root I/O virtualization \(SR\-IOV\) to provide volume attachments on Nitro\-based instances using the NVMe specification\. These devices rely on standard NVMe drivers on the operating system\. These drivers typically discover attached devices by scanning the PCI bus during instance boot, and create device nodes based on the order in which the devices respond, not on how the devices are specified in the block device mapping\. In Linux, NVMe device names follow the pattern `/dev/nvme<x>n<y>`, where <x> is the enumeration order, and, for EBS, <y> is 1\. Occasionally, devices can respond to discovery in a different order in subsequent instance starts, which causes the device name to change\. We recommend that you use stable identifiers for your EBS volumes within your instance, such as one of the following:   For Nitro\-based instances, the block device mappings that are specified in the Amazon EC2 console when you are attaching an EBS volume or during `AttachVolume` or `RunInstances` API calls are captured in the vendor\-specific data field of the NVMe controller identification\. With Amazon Linux AMIs later than version 2017\.09\.01, we provide a `udev` rule that reads this data and creates a symbolic link to the block\-device mapping\.   NVMe\-attached EBS volumes have the EBS volume ID set as the serial number in the device identification\.   When a device is formatted, a UUID is generated that persists for the life of the filesystem\. A device label can be specified at the same time\. For more information, see [Making an Amazon EBS Volume Available for Use on Linux](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html) and [Booting from the Wrong Volume](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-booting-from-wrong-volume.html)\.    Amazon Linux AMIs With Amazon Linux AMI 2017\.09\.01 or later \(including Amazon Linux 2\), you can run the ebsnvme\-id command as follows to map the NVMe device name to a volume ID and device name:  
+
+```
+[ec2-user ~]$ sudo /sbin/ebsnvme-id /dev/nvme1n1
+Volume ID: vol-01324f611e2463981
+/dev/sdf
+``` Amazon Linux also creates a symbolic link from the device name in the block device mapping \(for example, `/dev/sdf`\), to the NVMe device name\.  Other Linux AMIs With a kernel version of 4\.2 or later, you can run the nvme id\-ctrl command as follows to map an NVMe device to a volume ID\. First, install the NVMe command line package, `nvme-cli`, using the package management tools for your Linux distribution\.  The following example gets the volume ID and device name\. The device name is available through the NVMe controller vendor\-specific extension \(bytes 384:4095 of the controller identification\): 
+
+```
+[ec2-user ~]$ sudo nvme id-ctrl -v /dev/nvme1n1
+NVME Identify Controller:
+vid     : 0x1d0f
+ssvid   : 0x1d0f
+sn      : vol01234567890abcdef
+mn      : Amazon Elastic Block Store
+...
+0000: 2f 64 65 76 2f 73 64 6a 20 20 20 20 20 20 20 20 "/dev/sdf..."
+``` The lsblk command lists available devices and their mount points \(if applicable\)\. This helps you determine the correct device name to use\. In this example, `/dev/nvme0n1p1` is mounted as the root device and `/dev/nvme1n1` is attached but not mounted\. 
+
+```
+[ec2-user ~]$ lsblk
+NAME          MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
+nvme1n1       259:3   0  100G  0 disk
+nvme0n1       259:0   0    8G  0 disk
+  nvme0n1p1   259:1   0    8G  0 part /
+  nvme0n1p128 259:2   0    1M  0 part
+``` ](nvme-ebs-volumes.md#identify-nvme-ebs-device)\.
+
+**To mount an attached volume automatically after reboot**
+
+1. \(Optional\) Create a backup of your `/etc/fstab` file that you can use if you accidentally destroy or delete this file while editing it\.
+
+   ```
+   [ec2-user ~]$ sudo cp /etc/fstab /etc/fstab.orig
+   ```
+
+1. Use the blkid command to find the UUID of the device\.
+
+   ```
+   [ec2-user ~]$ sudo blkid
+   /dev/xvda1: LABEL="/" UUID="ca774df7-756d-4261-a3f1-76038323e572" TYPE="xfs" PARTLABEL="Linux" PARTUUID="02dcd367-e87c-4f2e-9a72-a3cf8f299c10"
+   /dev/xvdf: UUID="aebf131c-6957-451e-8d34-ec978d9581ae" TYPE="xfs"
+   ```
+
+1. Open the `/etc/fstab` file using any text editor, such as nano or vim\.
+
+   ```
+   [ec2-user ~]$ sudo vim /etc/fstab
+   ```
+
+1. Add the following entry to `/etc/fstab` to mount the device at the specified mount point\. The fields are the UUID value returned by blkid, the mount point, the file system, and the recommended file system mount options\. For more information, see the manual page for fstab \(run man fstab\)\.
+
+   ```
+   UUID=aebf131c-6957-451e-8d34-ec978d9581ae  /data  xfs  defaults,nofail  0  2
+   ```
 **Note**  
-You must open the file as root or by using the sudo command\.
+If you ever boot your instance without this volume attached \(for example, after moving the volume to another instance\), the `nofail` mount option enables the instance to boot even if there are errors mounting the volume\. Debian derivatives, including Ubuntu versions earlier than 16\.04, must also add the `nobootwait` mount option\.
 
-   1. Add a new line to the end of the file for your volume using the following format:
+1. To verify that your entry works, run the following commands to unmount the device and then mount all file systems in `/etc/fstab`\. If there are no errors, the `/etc/fstab` file is OK and your file system will mount automatically after it is rebooted\.
 
-      ```
-      device_name  mount_point  file_system_type  fs_mntops  fs_freq  fs_passno  
-      ```
+   ```
+   [ec2-user ~]$ sudo umount /data
+   [ec2-user ~]$ sudo mount -a
+   ```
 
-      The last three fields on this line are the file system mount options, the dump frequency of the file system, and the order of file system checks done at boot time\. If you don't know what these values should be, then use the values in the following example for them \(`defaults,nofail 0 2)`\. For more information on `/etc/fstab` entries, see the fstab manual page \(by entering man fstab on the command line\)\. 
-
-      You can use the system's current device name \(`/dev/sda1`, `/dev/xvda1`, etc\.\) in `/etc/fstab`, but we recommend using the device's 128\-bit universally unique identifier \(UUID\) instead\. System\-declared block\-device names may change under a variety of circumstances, but the UUID is assigned to a volume partition when it is formatted and persists throughout the partition's service life\. By using the UUID, you reduce the chances of the block\-device mapping in `/etc/fstab` leaving the system unbootable after a hardware reconfiguration\.
-
-      To find the UUID of a device, first display the available devices:
-
-      ```
-      [ec2-user ~]$ df
-      ```
-
-      The following is example output:
-
-      ```
-      Filesystem     1K-blocks    Used Available Use% Mounted on
-      /dev/xvda1       8123812 1876888   6146676  24% /
-      devtmpfs          500712      56    500656   1% /dev
-      tmpfs             509724       0    509724   0% /dev/shm
-      ```
-
-      Next, continuing this example, examine the output of either of two commands to find the UUID of `/dev/xvda1`:
-      + **sudo file \-s */dev/xvda1***
-      + **ls \-al /dev/disk/by\-uuid/**
-
-      Assuming that you find `/dev/xvda1` to have UUID `de9a1ccd-a2dd-44f1-8be8-0123456abcdef`, you would add the following entry to `/etc/fstab` to mount an ext4 file system at mount point `/data`:
-
-      ```
-      UUID=de9a1ccd-a2dd-44f1-8be8-0123456abcdef       /data   ext4    defaults,nofail        0       2
-      ```
-**Note**  
-If you ever intend to boot your instance without this volume attached \(for example, so this volume could move back and forth between different instances\), you should add the `nofail` mount option that allows the instance to boot even if there are errors in mounting the volume\. Debian derivatives, including Ubuntu versions earlier than 16\.04, must also add the `nobootwait` mount option\.
-
-   1. After you've added the new entry to `/etc/fstab`, you must check that your entry works\. Run the following commands to unmount the device and then mount all file systems in `/etc/fstab`\.
-
-      ```
-      [ec2-user ~]$ sudo umount /data
-      [ec2-user ~]$ sudo mount -a
-      ```
-
-      If the mount command does not produce an error, then your `/etc/fstab` file is OK and your file system will mount automatically at the next boot\. If the command does produce any errors, examine the errors and try to correct your `/etc/fstab`\.
+   If you receive an error message, address the errors in the file\.
 **Warning**  
 Errors in the `/etc/fstab` file can render a system unbootable\. Do not shut down a system that has errors in the `/etc/fstab` file\.
 
-   1. \(Optional\) If you are unsure how to correct `/etc/fstab` errors, you can always restore your backup `/etc/fstab` file with the following command\.
+   If you are unsure how to correct errors in `/etc/fstab` and you created a backup file in the first step of this procedure, you can restore from your backup file using the following command\.
 
-      ```
-      [ec2-user ~]$ sudo mv /etc/fstab.orig /etc/fstab
-      ```
-
-1. Review the file permissions of your new volume mount to make sure that your users and applications can write to the volume\. For more information about file permissions, see [File security](http://tldp.org/LDP/intro-linux/html/sect_03_04.html) at *The Linux Documentation Project*\.
+   ```
+   [ec2-user ~]$ sudo mv /etc/fstab.orig /etc/fstab
+   ```

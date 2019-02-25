@@ -7,7 +7,6 @@ Enhanced networking uses single root I/O virtualization \(SR\-IOV\) to provide h
 + [Enabling Enhanced Networking on Your Instance](#enabling_enhanced_networking)
 + [Enhanced Networking: ENA](enhanced-networking-ena.md)
 + [Enhanced Networking: Intel 82599 VF](sriov-networking.md)
-+ [Operating System Optimizations](enhanced-networking-os.md)
 + [Troubleshooting ENA](troubleshooting-ena.md)
 
 ## Enhanced Networking Types<a name="supported_instances"></a>

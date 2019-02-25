@@ -88,6 +88,7 @@ The following table lists current\-generation instance types that support EBS op
 | m5\.4xlarge | Yes | 3,500 | 437\.5 | 18,750 | 
 | m5\.12xlarge | Yes | 7,000 | 875 | 40,000 | 
 | m5\.24xlarge | Yes | 14,000 | 1,750 | 80,000 | 
+| m5\.metal | Yes | 14,000 | 1,750 | 80,000 | 
 | m5a\.large \* | Yes | 2,120 | 265 | 16,000 | 
 | m5a\.xlarge \* | Yes | 2,120 | 265 | 16,000 | 
 | m5a\.2xlarge \* | Yes | 2,120 | 265 | 16,000 | 
@@ -100,6 +101,7 @@ The following table lists current\-generation instance types that support EBS op
 | m5d\.4xlarge | Yes | 3,500 | 437\.5 | 18,750 | 
 | m5d\.12xlarge | Yes | 7,000 | 875 | 40,000 | 
 | m5d\.24xlarge | Yes | 14,000 | 1,750 | 80,000 | 
+| m5d\.metal | Yes | 14,000 | 1,750 | 80,000 | 
 | p2\.xlarge | Yes | 750 | 93\.75 | 6,000 | 
 | p2\.8xlarge | Yes | 5,000 | 625 | 32,500 | 
 | p2\.16xlarge | Yes | 10,000 | 1,250 | 65,000 | 
@@ -119,6 +121,7 @@ The following table lists current\-generation instance types that support EBS op
 | r5\.4xlarge | Yes | 3,500 | 437\.5 | 18,750 | 
 | r5\.12xlarge | Yes | 7,000 | 875 | 40,000 | 
 | r5\.24xlarge | Yes | 14,000 | 1,750 | 80,000 | 
+| r5\.metal | Yes | 14,000 | 1,750 | 80,000 | 
 | r5a\.large \* | Yes | 2,210 | 265 | 16,000 | 
 | r5a\.xlarge \* | Yes | 2,210 | 265 | 16,000 | 
 | r5a\.2xlarge \* | Yes | 2,210 | 265 | 16,000 | 
@@ -131,6 +134,7 @@ The following table lists current\-generation instance types that support EBS op
 | r5d\.4xlarge | Yes | 3,500 | 437\.5 | 18,750 | 
 | r5d\.12xlarge | Yes | 7,000 | 875 | 40,000 | 
 | r5d\.24xlarge | Yes | 14,000 | 1,750 | 80,000 | 
+| r5d\.metal | Yes | 14,000 | 1,750 | 80,000 | 
 | t3\.nano \* | Yes | 1,536 | 192 | 11,800 | 
 | t3\.micro \* | Yes | 1,536 | 192 | 11,800 | 
 | t3\.small \* | Yes | 1,536 | 192 | 11,800 | 
@@ -155,6 +159,7 @@ The following table lists current\-generation instance types that support EBS op
 | z1d\.3xlarge | Yes | 3,500 | 438 | 20,000 | 
 | z1d\.6xlarge | Yes | 7,000 | 875 | 40,000 | 
 | z1d\.12xlarge | Yes | 14,000 | 1,750 | 80,000 | 
+| z1d\.metal | Yes | 14,000 | 1,750 | 80,000 | 
 
 \* These instance types can support maximum performance for 30 minutes at least once every 24 hours\. For example, `c5.large` instances can deliver 437\.5 MB/s for 30 minutes at least once every 24 hours\. If you have a workload that requires sustained maximum performance for longer than 30 minutes, select an instance type according to baseline performance as shown in the following table:
 

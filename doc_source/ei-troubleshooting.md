@@ -4,6 +4,7 @@ The following are common errors and troubleshooting steps\.
 
 **Topics**
 + [Issues Launching Accelerators](#ei-issues)
++ [Resolving Configuration Issues](#ei-activation)
 + [Resolving Connectivity Issues](#ei-resolving-connectivity)
 + [Resolving Unhealthy Status Issues](#ei-unhealthy-status)
 + [Stop and Start the Instance](#ei-stop-start)
@@ -13,6 +14,10 @@ The following are common errors and troubleshooting steps\.
 ## Issues Launching Accelerators<a name="ei-issues"></a>
 
 Ensure that you are launching in a Region where Amazon EI accelerators are available\. For more information, see the [Region Table](https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/)\.
+
+## Resolving Configuration Issues<a name="ei-activation"></a>
+
+If you launched your instance with the Deep Learning AMI \(DLAMI\), run `python ~/anaconda3/bin/EISetupValidator.py` to verify that the instance is correctly configured to use the Amazon EI service\. Or, you can download the [ script](https://s3.console.aws.amazon.com/s3/buckets/amazonei/) and execute `'python EISetupValidator.py`\.
 
 ## Resolving Connectivity Issues<a name="ei-resolving-connectivity"></a>
 

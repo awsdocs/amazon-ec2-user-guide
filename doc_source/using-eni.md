@@ -149,6 +149,7 @@ The following table lists the maximum number of network interfaces per instance 
 | m5\.4xlarge | 8 | 30 | 30 | 
 | m5\.12xlarge | 8 | 30 | 30 | 
 | m5\.24xlarge | 15 | 50 | 50 | 
+| m5\.metal | 15 | 50 | 50 | 
 | m5a\.large | 3 | 10 | 10 | 
 | m5a\.xlarge | 4 | 15 | 15 | 
 | m5a\.2xlarge | 4 | 15 | 15 | 
@@ -161,6 +162,7 @@ The following table lists the maximum number of network interfaces per instance 
 | m5d\.4xlarge | 8 | 30 | 30 | 
 | m5d\.12xlarge | 8 | 30 | 30 | 
 | m5d\.24xlarge | 15 | 50 | 50 | 
+| m5d\.metal | 15 | 50 | 50 | 
 | p2\.xlarge | 4 | 15 | 15 | 
 | p2\.8xlarge | 8 | 30 | 30 | 
 | p2\.16xlarge | 8 | 30 | 30 | 
@@ -185,6 +187,7 @@ The following table lists the maximum number of network interfaces per instance 
 | r5\.4xlarge | 8 | 30 | 30 | 
 | r5\.12xlarge | 8 | 30 | 30 | 
 | r5\.24xlarge | 15 | 50 | 50 | 
+| r5\.metal | 15 | 50 | 50 | 
 | r5a\.large | 3 | 10 | 10 | 
 | r5a\.xlarge | 4 | 15 | 15 | 
 | r5a\.2xlarge | 4 | 15 | 15 | 
@@ -197,6 +200,7 @@ The following table lists the maximum number of network interfaces per instance 
 | r5d\.4xlarge | 8 | 30 | 30 | 
 | r5d\.12xlarge | 8 | 30 | 30 | 
 | r5d\.24xlarge | 15 | 50 | 50 | 
+| r5d\.metal | 15 | 50 | 50 | 
 |  `t1.micro`  |  2  |  2  | IPv6 not supported | 
 |  `t2.nano`  |  2  |  2  | 2 | 
 |  `t2.micro`  |  2  |  2  | 2 | 
@@ -229,6 +233,7 @@ The following table lists the maximum number of network interfaces per instance 
 | z1d\.3xlarge | 8 | 30 | 30 | 
 | z1d\.6xlarge | 8 | 30 | 30 | 
 | z1d\.12xlarge | 15 | 50 | 50 | 
+| z1d\.metal | 15 | 50 | 50 | 
 
 **Note**  
 If `f1.16xlarge`, `g3.16xlarge`, `h1.16xlarge`, `i3.16xlarge`, and `r4.16xlarge` instances use more than 31 IPv4 or IPv6 addresses per interface, they cannot access the instance metadata, VPC DNS, and Time Sync services from the 32nd IP address onwards\. If access to these services is needed from all IP addresses on the interface, we recommend using a maximum of 31 IP addresses per interface\.

@@ -113,7 +113,7 @@ For information about using CloudWatch metrics and alarms to monitor your burst 
 Throughput for a `gp2` volume can be calculated using the following formula, up to the throughput limit of 250 MiB/s:
 
 ```
-Throughput in MiB/s = (Volume size in GiB) × (IOPS per GiB) × (I/O size in KiB)
+Throughput in MiB/s = ((Volume size in GiB) × (IOPS per GiB) × (I/O size in KiB))
 ```
 
 Assuming V = volume size, I = I/O size, R = I/O rate, and T = throughput, this can be simplified to: 
@@ -129,21 +129,21 @@ The smallest volume size that achieves the maximum throughput is given by:
 V  =  -----  
        I R   
 
-           (250 MiB/s)
+            250 MiB/s
    =  ---------------------
       (256 KiB)(3 IOPS/GiB)
 
 
-               [(250)(2^20)(Bytes)]/(s)
+               [(250)(2^20)(Bytes)]/s
    =  ------------------------------------------
-      (256)(2^10)(Bytes)(3 IOPS/[(2^30)(Bytes)])
+      (256)(2^10)(Bytes)([3 IOP/s]/[(2^30)(Bytes)])
 
 
       (250)(2^20)(2^30)(Bytes)
    =  ------------------------
            (256)(2^10)(3)
 
-   =  357913940000 Bytes
+   =  357,913,941,333 Bytes
    
    =  333⅓ GiB (334 GiB in practice because volumes are provisioned in whole gibibytes)
 ```

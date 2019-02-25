@@ -10,7 +10,7 @@ We designed IAM roles so that your applications can securely make API requests f
 
 1. Define which API actions and resources the application can use after assuming the role\.
 
-1. Specify the role when you launch your instance, or attach the role to a running or stopped instance\.
+1. Specify the role when you launch your instance, or attach the role to an existing instance\.
 
 1. Have the application retrieve a set of temporary credentials and use them\.
 
@@ -105,8 +105,8 @@ You can create an IAM role and attach it to an instance during or after launch\.
 + [Creating an IAM Role](#create-iam-role)
 + [Launching an Instance with an IAM Role](#launch-instance-with-role)
 + [Attaching an IAM Role to an Instance](#attach-iam-role)
-+ [Detaching an IAM Role](#detach-iam-role)
 + [Replacing an IAM Role](#replace-iam-role)
++ [Detaching an IAM Role](#detach-iam-role)
 
 ### Creating an IAM Role<a name="create-iam-role"></a>
 
@@ -270,7 +270,7 @@ Alternatively, you can use the AWS CLI to associate a role with an instance duri
 
 ### Attaching an IAM Role to an Instance<a name="attach-iam-role"></a>
 
-After you've created an IAM role, you can attach it to a running or stopped instance\.<a name="attach-iam-role-console"></a>
+To attach an IAM role to an instance that has no role, the instance can be in the `stopped` or `running` state\.<a name="attach-iam-role-console"></a>
 
 **To attach an IAM role to an instance \(console\)**
 
@@ -311,6 +311,50 @@ After you've created an IAM role, you can attach it to a running or stopped inst
 Alternatively, use the following Tools for Windows PowerShell commands:
 + [Get\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html)
 + [Register\-EC2IamInstanceProfile](https://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2IamInstanceProfile.html)
+
+### Replacing an IAM Role<a name="replace-iam-role"></a>
+
+To replace the IAM role on an instance that already has an attached IAM role, the instance must be in the `running` state\. You can do this if you want to change the IAM role for an instance without detaching the existing one first; for example, to ensure that API actions performed by applications running on the instance are not interrupted\.<a name="replace-iam-role-console"></a>
+
+**To replace an IAM role for an instance \(console\)**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances**\.
+
+1. Select the instance, choose **Actions**, **Instance Settings**, **Attach/Replace IAM role**\.
+
+1. Select the IAM role to attach to your instance, and choose **Apply**\.<a name="replace-iam-role-cli"></a>
+
+**To replace an IAM role for an instance \(AWS CLI\)**
+
+1. If required, describe your IAM instance profile associations to get the association ID for the IAM instance profile to replace\.
+
+   ```
+   aws ec2 describe-iam-instance-profile-associations
+   ```
+
+1. Use the [replace\-iam\-instance\-profile\-association](https://docs.aws.amazon.com/cli/latest/reference/ec2/replace-iam-instance-profile-association.html) command to replace the IAM instance profile by specifying the association ID for the existing instance profile and the ARN or name of the instance profile that should replace it\.
+
+   ```
+   aws ec2 replace-iam-instance-profile-association --association-id iip-assoc-0044d817db6c0a4ba --iam-instance-profile Name="TestRole-2"
+   
+   {
+       "IamInstanceProfileAssociation": {
+           "InstanceId": "i-087711ddaf98f9489", 
+           "State": "associating", 
+           "AssociationId": "iip-assoc-09654be48e33b91e0", 
+           "IamInstanceProfile": {
+               "Id": "AIPAJCJEDKX7QYHWYK7GS", 
+               "Arn": "arn:aws:iam::123456789012:instance-profile/TestRole-2"
+           }
+       }
+   }
+   ```
+
+Alternatively, use the following Tools for Windows PowerShell commands:
++ [Get\-EC2IamInstanceProfileAssociation](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2IamInstanceProfileAssociation.html)
++ [Set\-EC2IamInstanceProfileAssociation](https://docs.aws.amazon.com/powershell/latest/reference/items/Set-EC2IamInstanceProfileAssociation.html)
 
 ### Detaching an IAM Role<a name="detach-iam-role"></a>
 
@@ -371,47 +415,3 @@ You can detach an IAM role from a running or stopped instance\. <a name="detach-
 Alternatively, use the following Tools for Windows PowerShell commands:
 + [Get\-EC2IamInstanceProfileAssociation](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2IamInstanceProfileAssociation.html)
 + [Unregister\-EC2IamInstanceProfile](https://docs.aws.amazon.com/powershell/latest/reference/items/Unregister-EC2IamInstanceProfile.html)
-
-### Replacing an IAM Role<a name="replace-iam-role"></a>
-
-You can replace an IAM role for a running instance\. You can do this if you want to change the IAM role for an instance without detaching the existing one first; for example, to ensure that API actions performed by applications running on the instance are not interrupted\.<a name="replace-iam-role-console"></a>
-
-**To replace an IAM role for an instance \(console\)**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Instances**\.
-
-1. Select the instance, choose **Actions**, **Instance Settings**, **Attach/Replace IAM role**\.
-
-1. Select the IAM role to attach to your instance, and choose **Apply**\.<a name="replace-iam-role-cli"></a>
-
-**To replace an IAM role for an instance \(AWS CLI\)**
-
-1. If required, describe your IAM instance profile associations to get the association ID for the IAM instance profile to replace\.
-
-   ```
-   aws ec2 describe-iam-instance-profile-associations
-   ```
-
-1. Use the [replace\-iam\-instance\-profile\-association](https://docs.aws.amazon.com/cli/latest/reference/ec2/replace-iam-instance-profile-association.html) command to replace the IAM instance profile by specifying the association ID for the existing instance profile and the ARN or name of the instance profile that should replace it\.
-
-   ```
-   aws ec2 replace-iam-instance-profile-association --association-id iip-assoc-0044d817db6c0a4ba --iam-instance-profile Name="TestRole-2"
-   
-   {
-       "IamInstanceProfileAssociation": {
-           "InstanceId": "i-087711ddaf98f9489", 
-           "State": "associating", 
-           "AssociationId": "iip-assoc-09654be48e33b91e0", 
-           "IamInstanceProfile": {
-               "Id": "AIPAJCJEDKX7QYHWYK7GS", 
-               "Arn": "arn:aws:iam::123456789012:instance-profile/TestRole-2"
-           }
-       }
-   }
-   ```
-
-Alternatively, use the following Tools for Windows PowerShell commands:
-+ [Get\-EC2IamInstanceProfileAssociation](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2IamInstanceProfileAssociation.html)
-+ [Set\-EC2IamInstanceProfileAssociation](https://docs.aws.amazon.com/powershell/latest/reference/items/Set-EC2IamInstanceProfileAssociation.html)
