@@ -1,4 +1,4 @@
-# Viewing Volume Information<a name="ebs-describing-volumes"></a>
+# Viewing Information about an Amazon EBS Volume<a name="ebs-describing-volumes"></a>
 
 You can view descriptive information about your EBS volumes\. For example, you can view information about all volumes in a specific region or view detailed information about a single volume, including its size, volume type, whether the volume is encrypted, which master key was used to encrypt the volume, and the specific instance to which the volume is attached\.
 
@@ -14,11 +14,13 @@ You can get additional information about your EBS volumes, such as how much disk
 
 1. To view more information about a volume, select it\. In the details pane, you can inspect the information provided about the volume\.
 
-**To view what EBS \(or other\) volumes are attached to an Amazon EC2 instance**
+1. In the details pane, you can inspect the information provided about the volume\.
+
+**To view the EBS volumes that are attached to an instance**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation pane, choose **Instances**\. 
+1. In the navigation pane, choose **Instances**\.
 
 1. To view more information about an instance, select it\.
 

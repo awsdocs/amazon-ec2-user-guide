@@ -44,7 +44,8 @@ For information about how hibernation differs from reboot, stop, and terminate, 
 ## Hibernation Prerequisites<a name="hibernating-prerequisites"></a>
 
 To hibernate an instance, the following prerequisites must be in place:
-+ **Instance families:** The following instance families are supported: C3, C4, C5, M3, M4, M5, R3, R4, and R5, excluding \*\.metal\.
++ **Instance families:** The following instance families are supported: C3, C4, C5, M3, M4, M5, R3, R4, and R5, with less than 150 GB of RAM\. Hibernation is not supported for \*\.metal instances\.
++ **Instance RAM size:** The instance RAM size must be less than 150 GB\.
 + **Supported AMIs:** The following AMIs support hibernation: Amazon Linux AMI 2018\.03 released 2018\.11\.16 or later\.
 
   Support for Amazon Linux 2 is coming soon\. Only HVM AMIs support hibernation\. To configure your own AMI to support hibernation, see [Configuring an Existing AMI to Support Hibernation](#hibernation-enabled-AMI)\.
@@ -62,6 +63,8 @@ The following actions are not supported for hibernation:
 + Creating snapshots or AMIs from hibernated instances
 
 You can't stop or hibernate instance store\-backed instances\.\*
+
+You can't hibernate an instance that has more than 150 GB of RAM\.
 
 You cannot hibernate an instance that is in an Auto Scaling group or used by Amazon ECS\. If your instance is in an Auto Scaling group and you try to hibernate it, the Amazon EC2 Auto Scaling service marks the stopped instance as unhealthy, and may terminate it and launch a replacement instance\. For more information, see [Health Checks for Auto Scaling Instances](https://docs.aws.amazon.com/autoscaling/latest/userguide/healthcheck.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 

@@ -76,6 +76,9 @@ Each volume receives an initial I/O credit balance of 5\.4 million I/O credits, 
 
 When your volume requires more than the baseline performance I/O level, it draws on I/O credits in the credit balance to burst to the required performance level, up to a maximum of 3,000 IOPS\. Volumes larger than 1,000 GiB have a baseline performance that is equal or greater than the maximum burst performance, and their I/O credit balance never depletes\. When your volume uses fewer I/O credits than it earns in a second, unused I/O credits are added to the I/O credit balance\. The maximum I/O credit balance for a volume is equal to the initial credit balance \(5\.4 million I/O credits\)\.
 
+**Note**  
+For a volume 1 TiB or larger, baseline performance is higher than maximum burst performance, so I/O credits are never spent\. If the volume is attached to a Nitro\-based instance, the reported burst balance is 0%\. For a non\-Nitro\-based instance, the reported burst balance is 100%\.
+
 The following table lists several volume sizes and the associated baseline performance of the volume \(which is also the rate at which it accumulates I/O credits\), the burst duration at the 3,000 IOPS maximum \(when starting with a full credit balance\), and the time in seconds that the volume would take to refill an empty credit balance\.
 
 

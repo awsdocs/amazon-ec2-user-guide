@@ -56,13 +56,11 @@ Ensure that this role exists before you use the AWS CLI or an API to create an E
 
 1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
-1. In the navigation pane, choose **Roles**\.
+1. In the navigation pane, choose **Roles**, and then choose **Create role**\.
 
-1. Choose **Create role**\.
+1. For **Select type of trusted entity**, choose **AWS service**\.
 
-1. On the **Select type of trusted entity** page, choose **EC2 \- Fleet** and then choose **Next: Permissions**\.
-
-1. On the next page, choose **Next:Review**\.
+1. For **Choose the service that will use this role**, choose **EC2 \- Fleet**, and then choose **Next: Permissions**, **Next: Tags**, and **Next: Review**\.
 
 1. On the **Review** page, choose **Create role**\.
 

@@ -3,9 +3,9 @@
 With step scaling policies, you specify CloudWatch alarms to trigger the scaling process\. For example, if you want to scale out when CPU utilization reaches a certain level, create an alarm using the `CPUUtilization` metric provided by Amazon EC2\.
 
 When you create a step scaling policy, you must specify one of the following scaling adjustment types:
-+ **Add** — Increase the target capacity of the fleet by a specified number of capacity units or a specified percentage of the current capacity\.
-+ **Remove** — Decrease the target capacity of the fleet by a specified number of capacity units or a specified percentage of the current capacity\.
-+ **Set to** — Set the target capacity of the fleet to the specified number of capacity units\.
++ **Add** – Increase the target capacity of the fleet by a specified number of capacity units or a specified percentage of the current capacity\.
++ **Remove** – Decrease the target capacity of the fleet by a specified number of capacity units or a specified percentage of the current capacity\.
++ **Set to** – Set the target capacity of the fleet to the specified number of capacity units\.
 
 When an alarm is triggered, the automatic scaling process calculates the new target capacity using the fulfilled capacity and the scaling policy, and then updates the target capacity accordingly\. For example, suppose that the target capacity and fulfilled capacity are 10 and the scaling policy adds 1\. When the alarm is triggered, the automatic scaling process adds 1 to 10 to get 11, so Spot Fleet launches 1 instance\.
 
@@ -23,15 +23,17 @@ When a Spot Fleet terminates an instance because the target capacity was decreas
 
   1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
-  1. In the navigation pane, choose **Roles**\.
+  1. In the navigation pane, choose **Roles**, and then choose **Create role**\.
 
-  1. Choose **Create role**\.
+  1. For **Select type of trusted entity**, choose **AWS service**\.
 
-  1. On the **Select type of trusted entity** page, choose **AWS service**, **EC2**, **EC2 \- Spot Fleet Auto Scaling**, and then choose **Next: Permissions**\.
+  1. For **Choose the service that will use this role**, choose **EC2**\. 
 
-  1. On the **Attached permissions policy** page, choose **Next:Review**\.
+  1. For **Select your use case**, choose **EC2 \- Spot Fleet Auto Scaling**, and then choose **Next: Permissions**\.
 
-  1. On the **Review** page, type a name for the role and choose **Create role**\.
+  1. For **Attached permissions policy**, the **AmazonEC2SpotFleetAutoscaleRole** policy automatically appears\. Choose **Next: Tags**, and then **Next: Review**\.
+
+  1. For **Review**, type a name for the role and choose **Create role**\.
 
 **To create a CloudWatch alarm**
 

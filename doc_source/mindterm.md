@@ -12,7 +12,7 @@ After you launch an instance, it can take a few minutes for the instance to be r
 
   If your browser does not support the NPAPI plugin, it can't run the MindTerm client\.
 **Important**  
-The Chrome browser does not support the NPAPI plugin\. For more information, see the Chromium [NPAPI deprecation article](https://www.chromium.org/developers/npapi-deprecation)\. The FireFox browser does not support the NPAPI plugin\. For more information, see the Java [NPAPI deprecation article](https://www.java.com/en/download/faq/firefox_java.xml)\.
+The Chrome browser does not support the NPAPI plugin\. For more information, see the Chromium [NPAPI deprecation article](https://www.chromium.org/developers/npapi-deprecation)\. The FireFox browser does not support the NPAPI plugin\. For more information, see the Java [NPAPI deprecation article](https://www.java.com/en/download/faq/firefox_java.xml)\. The Safari browser does not support the NPAPI plugin\. For more information, see the Safari [ NPAPI deprecation article\.](https://java.com/en/download/faq/safari.xml) For information about the deprecation of NPAPI, see the [NPAPI Wikipedia](https://en.wikipedia.org/wiki/NPAPI#Support/deprecation) article\.
 + **Install Java**
 
   Your Linux computer most likely includes Java\. If not, see [How do I enable Java in my web browser?](https://java.com/en/download/help/index_installing.xml)\. On a Windows or macOS client, you must run your browser using administrator credentials\. For Linux, additional steps may be required if you are not logged in as `root`\.
