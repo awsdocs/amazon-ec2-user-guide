@@ -75,7 +75,7 @@ When you provision an address range for use with AWS, you are confirming that yo
 To provision the address range, use the following [provision\-byoip\-cidr](https://docs.aws.amazon.com/cli/latest/reference/ec2/provision-byoip-cidr.html) command\. The `--cidr-authorization-context` parameter uses the variables that you created in the previous section, not the ROA message\.
 
 ```
-aws ec2 provision-byoip-cidr --cidr address-range --cidr-authorization-context Message="$text_message",Signature="signed_message"
+aws ec2 provision-byoip-cidr --cidr address-range --cidr-authorization-context Message="$text_message",Signature="$signed_message"
 ```
 
 Provisioning an address range is an asynchronous operation, so the call returns immediately, but the address range is not ready to use until its status changes from `pending-provision` to `provisioned`\. To monitor the status of the address range, use the following [describe\-byoip\-cidrs](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-byoip-cidrs.html) command:
