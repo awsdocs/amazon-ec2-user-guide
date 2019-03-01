@@ -40,16 +40,22 @@ The commands in the following procedure require OpenSSL version 1\.0\.2 or later
    openssl req -new -x509 -key private.key -days 365 | tr -d "\n" > publickey.cer
    ```
 
-1. Create a signed message\. The format of the message is as follows, where the date is the expiry date of the message:
+1. Create a signed authorization message for the prefix and AWS account\. The format of the message is as follows, where the date is the expiry date of the message:
 
    ```
    1|aws|account|cidr|YYYYMMDD|SHA256|RSAPSS
    ```
 
-   The following command, using an example account number, address range, and expiry date, signs the message using the key pair that you created and saves it as `base64_urlsafe_signature`:
+   The following command creates a plain\-text authorization message using an example account number, address range, and expiry date, and stores it in a variable named `text_message`\.
 
    ```
-   echo "1|aws|123456789012|198.51.100.0/24|20191201|SHA256|RSAPSS" | tr -d "\n" | openssl dgst -sha256 -sigopt rsa_padding_mode:pss -sigopt rsa_pss_saltlen:-1 -sign private.key -keyform PEM | openssl base64 | tr -- '+=/' '-_~' | tr -d "\n" > base64_urlsafe_signature
+   text_message="1|aws|123456789012|198.51.100.0/24|20191201|SHA256|RSAPSS"
+   ```
+
+   The following command signs the authorization message in `text_message` using the key pair that you created, and stores it in a variable named `signed_message`:
+
+   ```
+   signed_message=$(echo $text_message | tr -d "\n" | openssl dgst -sha256 -sigopt rsa_padding_mode:pss -sigopt rsa_pss_saltlen:-1 -sign private.key -keyform PEM | openssl base64 | tr -- '+=/' '-_~' | tr -d "\n")
    ```
 
 1. Update the RDAP record for your RIR with the X509 certificate\. Be sure to copy the `-----BEGIN CERTIFICATE-----` and `-----END CERTIFICATE-----` from the certificate\. Be sure that you have removed newline characters, if you haven't already done so using the tr \-d "\\n" commands in the previous steps\. To view your certificate, run the following command:
@@ -66,10 +72,10 @@ The commands in the following procedure require OpenSSL version 1\.0\.2 or later
 
 When you provision an address range for use with AWS, you are confirming that you own the address range and authorizing Amazon to advertise it\. We also verify that you own the address range\.
 
-To provision the address range, use the following [provision\-byoip\-cidr](https://docs.aws.amazon.com/cli/latest/reference/ec2/provision-byoip-cidr.html) command\. The message in the `--cidr-authorization-context` parameter is the signed message that you created in the previous section, not the ROA message\.
+To provision the address range, use the following [provision\-byoip\-cidr](https://docs.aws.amazon.com/cli/latest/reference/ec2/provision-byoip-cidr.html) command\. The `--cidr-authorization-context` parameter uses the variables that you created in the previous section, not the ROA message\.
 
 ```
-aws ec2 provision-byoip-cidr --cidr address-range --cidr-authorization-context Message="message",Signature="signature"
+aws ec2 provision-byoip-cidr --cidr address-range --cidr-authorization-context Message="$text_message",Signature="signed_message"
 ```
 
 Provisioning an address range is an asynchronous operation, so the call returns immediately, but the address range is not ready to use until its status changes from `pending-provision` to `provisioned`\. To monitor the status of the address range, use the following [describe\-byoip\-cidrs](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-byoip-cidrs.html) command:
