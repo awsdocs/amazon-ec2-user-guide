@@ -1,6 +1,6 @@
 # Amazon Machine Images \(AMI\)<a name="AMIs"></a>
 
-An Amazon Machine Image \(AMI\) provides the information required to launch an instance, which is a virtual server in the cloud\. You must specify a source AMI when you launch an instance\. You can launch multiple instances from a single AMI when you need multiple instances with the same configuration\. You can use different AMIs to launch instances when you need instances with different configurations\.
+An Amazon Machine Image \(AMI\) provides the information required to launch an instance\. You must specify an AMI when you launch an instance\. You can launch multiple instances from a single AMI when you need multiple instances with the same configuration\. You can use different AMIs to launch instances when you need instances with different configurations\.
 
 An AMI includes the following:
 + A template for the root volume for the instance \(for example, an operating system, an application server, and applications\)
@@ -15,7 +15,7 @@ The following diagram summarizes the AMI lifecycle\. After you create and regist
 
 You can search for an AMI that meets the criteria for your instance\. You can search for AMIs provided by AWS or AMIs provided by the community\. For more information, see [AMI Types](ComponentsAMIs.md) and [Finding a Linux AMI](finding-an-ami.md)\.
 
-When you are connected to an instance, you can use it just like you use any other server\. For information about launching, connecting, and using your instance, see [Amazon EC2 Instances](Instances.md)\.
+After you launch an instance from an AMI, you can connect to it\. When you are connected to an instance, you can use it just like you use any other server\. For information about launching, connecting, and using your instance, see [Amazon EC2 Instances](Instances.md)\.
 
 ## Creating Your Own AMI<a name="creating-an-ami"></a>
 

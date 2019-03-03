@@ -14,8 +14,6 @@ In the following examples, the commands from the [Install a LAMP Web Server on A
 + The appropriate ownership and file permissions are set for the web directory and the files contained within it\.
 + A simple web page is created to test the web server and PHP engine\.
 
-By default, user data scripts and cloud\-init directives run only during the first boot cycle when an instance is launched\. However, you can configure your user data scripts and cloud\-init directives to run every time the instance is restarted from a stopped state\. For more information, see [How can I execute user data after the initial launch of my EC2 instance?](https://aws.amazon.com/premiumsupport/knowledge-center/execute-user-data-ec2/) in the AWS Knowledge Center\.
-
 **Topics**
 + [Prerequisites](#user-data-requirements)
 + [User Data and Shell Scripts](#user-data-shell-scripts)
@@ -31,16 +29,18 @@ Also, these instructions are intended for use with Amazon Linux 2, and the comma
 
 ## User Data and Shell Scripts<a name="user-data-shell-scripts"></a>
 
-If you are familiar with shell scripting, this is the easiest and most complete way to send instructions to an instance at launch, and the cloud\-init output log file \(`/var/log/cloud-init-output.log`\) captures console output so it is easy to debug your scripts following a launch if the instance does not behave the way you intended\.
+If you are familiar with shell scripting, this is the easiest and most complete way to send instructions to an instance at launch\. Adding these tasks at boot time adds to the amount of time it takes to boot the instance\. You should allow a few minutes of extra time for the tasks to complete before you test that the user script has finished successfully\.
 
 **Important**  
-By default, user data scripts and cloud\-init directives run only during the first boot cycle when an instance is launched\. However, you can configure your user data scripts and cloud\-init directives to run every time the instance is restarted from a stopped state\. For more information, see [How can I execute user data after the initial launch of my EC2 instance?](https://aws.amazon.com/premiumsupport/knowledge-center/execute-user-data-ec2/) in the AWS Knowledge Center\.
+By default, user data scripts and cloud\-init directives run only during the boot cycle when you first launch an instance\. You can update your configuration to ensure that your user data scripts and cloud\-init directives run every time you restart your instance\. For more information, see [How can I execute user data with every restart of my EC2 instance?](https://aws.amazon.com/premiumsupport/knowledge-center/execute-user-data-ec2/) in the AWS Knowledge Center\.
 
 User data shell scripts must start with the `#!` characters and the path to the interpreter you want to read the script \(commonly /bin/bash\)\. For a great introduction on shell scripting, see [the BASH Programming HOW\-TO](http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO.html) at the Linux Documentation Project \([tldp\.org](http://tldp.org)\)\.
 
 Scripts entered as user data are executed as the `root` user, so do not use the sudo command in the script\. Remember that any files you create will be owned by `root`; if you need non\-root users to have file access, you should modify the permissions accordingly in the script\. Also, because the script is not run interactively, you cannot include commands that require user feedback \(such as yum update without the `-y` flag\)\.
 
-Adding these tasks at boot time adds to the amount of time it takes to boot the instance\. You should allow a few minutes of extra time for the tasks to complete before you test that the user script has finished successfully\.
+The cloud\-init output log file \(`/var/log/cloud-init-output.log`\) captures console output so it is easy to debug your scripts following a launch if the instance does not behave the way you intended\.
+
+When a user data script is processed, it is copied to and executed from a directory in `/var/lib/cloud`\. The script is not deleted after it is run\. Be sure to delete the user data scripts from `/var/lib/cloud` before you create an AMI from the instance\. Otherwise, the script will exist in this directory on any instance launched from the AMI and will be run when the instance is launched\.
 
 ## User Data and the Console<a name="user-data-console"></a>
 
@@ -114,7 +114,7 @@ The cloud\-init package configures specific aspects of a new Amazon Linux instan
 The cloud\-init user directives can be passed to an instance at launch the same way that a script is passed, although the syntax is different\. For more information about cloud\-init, go to [http://cloudinit\.readthedocs\.org/en/latest/index\.html](http://cloudinit.readthedocs.org/en/latest/index.html)\.
 
 **Important**  
-By default, user data scripts and cloud\-init directives run only during the first boot cycle when an instance is launched\. However, you can configure your user data scripts and cloud\-init directives to run every time the instance is restarted from a stopped state\. For more information, see [How can I execute user data after the initial launch of my EC2 instance?](https://aws.amazon.com/premiumsupport/knowledge-center/execute-user-data-ec2/) in the AWS Knowledge Center\.
+By default, user data scripts and cloud\-init directives run only during the boot cycle when you first launch an instance\. You can update your configuration to ensure that your user data scripts and cloud\-init directives run every time you restart your instance\. For more information, see [How can I execute user data with every restart of my EC2 instance?](https://aws.amazon.com/premiumsupport/knowledge-center/execute-user-data-ec2/) in the AWS Knowledge Center\.
 
 The Amazon Linux version of cloud\-init does not support all of the directives that are available in the base package, and some of the directives have been renamed \(such as `repo_update` instead of `apt-upgrade`\)\.
 

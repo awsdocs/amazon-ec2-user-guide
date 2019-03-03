@@ -9,6 +9,7 @@ Amazon EBS provides the following volume types: General Purpose SSD \(`gp2`\), P
 **Topics**
 + [Benefits of Using EBS Volumes](#EBSFeatures)
 + [Amazon EBS Volume Types](EBSVolumeTypes.md)
++ [Constraints on the Size and Configuration of an EBS Volume](volume_constraints.md)
 + [Creating an Amazon EBS Volume](ebs-creating-volume.md)
 + [Restoring an Amazon EBS Volume from a Snapshot](ebs-restoring-volume.md)
 + [Attaching an Amazon EBS Volume to an Instance](ebs-attaching-volume.md)

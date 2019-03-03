@@ -13,32 +13,10 @@ Use the following process when modifying a volume:
 1. If the size of the volume was modified, extend the volume's file system to take advantage of the increased storage capacity\. For more information, see [Extending a Linux File System After Resizing a Volume](recognize-expanded-volume-linux.md)\.
 
 **Topics**
-+ [Requirements](#elastic-volumes-requirements)
-+ [Limitations](#elastic-volumes-limitations)
 + [Modifying an EBS Volume Using Elastic Volumes \(Console\)](#modify-ebs-volume)
 + [Modifying an EBS Volume Using Elastic Volumes \(AWS CLI\)](#modify-ebs-volume-cli)
 + [Initializing Elastic Volumes Support \(If Needed\)](#initialize-modification-support)
 + [Modifying an EBS Volume If Elastic Volumes Is Unsupported](#modify-volume-stop-start)
-
-## Requirements<a name="elastic-volumes-requirements"></a>
-+ All [current\-generation instances](instance-types.md#current-gen-instances) support Elastic Volumes\.
-+ The following previous\-generation instances support Elastic Volumes: C1, C3, CC2, CR1, G2, I2, M1, M3, and R3\.
-
-## Limitations<a name="elastic-volumes-limitations"></a>
-+ The new volume size cannot exceed the supported volume capacity\. For more information, see [Constraints on the Size of an EBS Volume](volume_constraints.md)\.
-+ If the volume was attached before November 2, 2016, you must initialize Elastic Volumes support\. For more information, see [Initializing Elastic Volumes Support](#initialize-modification-support)\.
-+ If you are using an unsupported previous\-generation instance type, or if you encounter an error while attempting a volume modification, see [Modifying an EBS Volume If Elastic Volumes Is Unsupported](#modify-volume-stop-start)\.
-+ A `gp2` volume that is attached to an instance as a root volume cannot be modified to an `st1` or `sc1` volume\. If detached and modified to `st1` or `sc1`, it cannot be attached to an instance as the root volume\.
-+ A `gp2` volume cannot be modified to an `st1` or `sc1` volume if the requested volume size is below the minimum size for `st1` and `sc1` volumes\.
-+ In some cases, you must detach the volume or stop the instance for modification to proceed\. If you encounter an error message while attempting to modify an EBS volume, or if you are modifying an EBS volume attached to a previous\-generation instance type, take one of the following steps:
-  + For a non\-root volume, detach the volume from the instance, apply the modifications, and then re\-attach the volume\.
-  + For a root \(boot\) volume, stop the instance, apply the modifications, and then restart the instance\.
-+ After provisioning over 32,000 IOPS on an existing `io1` volume, you may need to do one of the following to see the full performance improvements:
-  + Detach and attach the volume\.
-  + Restart the instance\.
-+ Decreasing the size of an EBS volume is not supported\. However, you can create a smaller volume and then migrate your data to it using an application\-level tool such as rsync\.
-+ After modifying a volume, wait at least six hours and ensure that the volume is in the `in-use` or `available` state before making additional modifications to the same volume\.
-+ While `m3.medium` instances fully support volume modification, `m3.large`, `m3.xlarge`, and `m3.2xlarge` instances might not support all volume modification features\.
 
 ## Modifying an EBS Volume Using Elastic Volumes \(Console\)<a name="modify-ebs-volume"></a>
 

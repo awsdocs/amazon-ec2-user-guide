@@ -9,7 +9,7 @@ Amazon EC2 provides the following purchasing options to enable you to optimize y
 + **Dedicated Instances** – Pay, by the hour, for instances that run on single\-tenant hardware\. 
 + **Capacity Reservations** – Reserve capacity for your EC2 instances in a specific Availability Zone for any duration\.
 
-If you require a capacity reservation, purchase Reserved Instances or Capacity Reservations for a specific Availability Zone, or purchase Scheduled Instances\. Spot Instances are a cost\-effective choice if you can be flexible about when your applications run and if they can be interrupted\. Dedicated Hosts can help you address compliance requirements and reduce costs by using your existing server\-bound software licenses\. For more information, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/)\.
+If you require a capacity reservation, purchase Reserved Instances or Capacity Reservations for a specific Availability Zone, or purchase Scheduled Instances\. Spot Instances are a cost\-effective choice if you can be flexible about when your applications run and if they can be interrupted\. Dedicated Hosts or Dedicated Instances can help you address compliance requirements and reduce costs by using your existing server\-bound software licenses\. For more information, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/)\.
 
 **Topics**
 + [Determining the Instance Lifecycle](#check-instance-lifecycle)

@@ -43,7 +43,7 @@ The following example shows a T2 instance that has a boot volume with an ext4 fi
 
 Your EBS volume might have a partition that contains the file system and data\. Increasing the size of a volume does not increase the size of the partition\. Before you extend the file system on a resized volume, check whether the volume has a partition that must be extended to the new size of the volume\.
 
-Use the lsblk command to display information about the block devices attached to your instance\. If a resized volume has a partition and the partition does not reflect the new size of the volume, use the growpart command to extend the partition\. For information about extending an LVM partition, refer to the documentation for LVM\.
+Use the lsblk command to display information about the block devices attached to your instance\. If a resized volume has a partition and the partition does not reflect the new size of the volume, use the growpart command to extend the partition\. For information about extending an LVM partition, see [Extending a logical volume](https://www.tldp.org/HOWTO/html_single/LVM-HOWTO/#extendlv)\.
 
 **Example Example: Partitions on a Nitro\-based Instance**  
 The following example shows the volumes on a Nitro\-based instance:  
