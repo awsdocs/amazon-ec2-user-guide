@@ -50,7 +50,7 @@ When you launch an Amazon EBS\-backed Dedicated Instance, the EBS volume doesn't
 
 To guarantee that sufficient capacity is available to launch Dedicated Instances, you can purchase Dedicated Reserved Instances\. For more information, see [Reserved Instances](ec2-reserved-instances.md)\. 
 
-When you purchase a Dedicated Reserved Instance, you are purchasing the capacity to launch a Dedicated Instance into a VPC at a much reduced usage fee; the price break in the usage charge applies only if you launch an instance with dedicated tenancy\. However, if you purchase a Reserved Instance with a default tenancy value, you won't get a Dedicated Reserved Instance if you launch an instance with `dedicated` instance tenancy\.
+When you purchase a Dedicated Reserved Instance, you are purchasing the capacity to launch a Dedicated Instance into a VPC at a much reduced usage fee; the price break in the usage charge applies only if you launch an instance with dedicated tenancy\. When you purchase a Reserved Instance with default tenancy, it applies only to a running instance with `default` tenancy; it would not apply to a running instance with `dedicated` tenancy\.
 
 You can't use the modification process to change the tenancy of a Reserved Instance after you've purchased it\. However, you can exchange a Convertible Reserved Instance for a new Convertible Reserved Instance with a different tenancy\.
 

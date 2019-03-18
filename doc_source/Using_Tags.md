@@ -55,6 +55,7 @@ The following table describes the Amazon EC2 resources that can be tagged, and t
 |  EC2 Fleet  |  Yes  |  Yes  | 
 |  Egress\-only internet gateway  |  No  | No | 
 |  Elastic IP address  |  Yes  | No | 
+|  Dedicated Host Reservation  |  Yes  | No | 
 |  Instance  |  Yes  | Yes | 
 |  Instance store volume  |  N/A  | N/A | 
 |  Internet gateway  |  Yes  | No | 

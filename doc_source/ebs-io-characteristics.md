@@ -38,7 +38,7 @@ You can monitor these I/O characteristics with each volume's [CloudWatch metrics
 + `VolumeWriteOps`
 + `VolumeQueueLength`
 
-`BurstBalance` displays the burst bucket balance for `gp2`, `st1`, and `sc1` volumes as a percentage of the remaining balance\. When your burst bucket is depleted, volume I/O credits \(for `gp2` volumes\) or volume throughput credits \(for `st1` and `sc1` volumes\) is throttled to the baseline\. Check the `BurstBalance` value to determine whether your volume is being throttled for this reason\. 
+`BurstBalance` displays the burst bucket balance for `gp2`, `st1`, and `sc1` volumes as a percentage of the remaining balance\. When your burst bucket is depleted, volume I/O \(for `gp2` volumes\) or volume throughput \(for `st1` and `sc1` volumes\) is throttled to the baseline\. Check the `BurstBalance` value to determine whether your volume is being throttled for this reason\. 
 
 HDD\-backed `st1` and `sc1` volumes are designed to perform best with workloads that take advantage of the 1,024 KiB maximum I/O size\. To determine your volume's average I/O size, divide `VolumeWriteBytes `by `VolumeWriteOps`\. The same calculation applies to read operations\. If average I/O size is below 64 KiB, increasing the size of the I/O operations sent to an `st1` or `sc1` volume should improve performance\. 
 

@@ -1,6 +1,9 @@
 # Monitoring the Progress of Volume Modifications<a name="monitoring-volume-modifications"></a>
 
-When you modify an EBS volume, it goes through a sequence of states\. The volume enters the `modifying` state, the `optimizing` state, and finally the `completed` state\. At this point, the volume is ready to be further modified\. Rarely, a transient AWS fault can result in the `failed` state\. If this occurs, retry the volume modification\.
+When you modify an EBS volume, it goes through a sequence of states\. The volume enters the `modifying` state, the `optimizing` state, and finally the `completed` state\. At this point, the volume is ready to be further modified\. 
+
+**Note**  
+Rarely, a transient AWS fault can result in a `failed` state\. This is not an indication of volume health; it merely indicates that the modification to the volume failed\. If this occurs, retry the volume modification\.
 
 While the volume is in the `optimizing` state, your volume performance is in between the source and target configuration specifications\. Transitional volume performance will be no less than the source volume performance\. If you are downgrading IOPS, transitional volume performance is no less than the target volume performance\.
 

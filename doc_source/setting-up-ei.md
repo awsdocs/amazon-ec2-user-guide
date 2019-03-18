@@ -84,27 +84,22 @@ You need two security groups: one for inbound and outbound traffic for the new A
 1.  Create a security group using the `create-security-group` command: 
 
    ```
-   aws ec2 create-security-group
-    
-   --description insert a description for the security group
-    
-   --group-name assign a name for the security group
-    
-   [--vpc-id enter the VPC ID]
+   aws ec2 create-security-group 
+   --description description for the security group
+   --group-name name for the security group
+   [--vpc-id VPC ID]
    ```
 
 1.  Create an inbound rule using the `authorize-security-group-ingress` command: 
 
    ```
-   aws ec2 authorize-security-group-ingress --group-id insert the security group ID --group-name insert the name of the security group --protocol tcp 
-    
-   --port 443
+   aws ec2 authorize-security-group-ingress --group-id security group ID --group-name security group name --protocol tcp --port 443
    ```
 
 1.  Use the `authorize-security-group-egress` command to create an outbound rule: 
 
    ```
-   aws ec2 authorize-security-group-egress --group-id insert the security group ID --protocol tcp --port 443 --port 22 --cidr 0.0.0.0/0
+   aws ec2 authorize-security-group-egress --group-id security group ID --protocol tcp --port 443 --port 22 --cidr 0.0.0.0/0
    ```
 
 ## Configuring an Instance Role with an Amazon EI Policy<a name="ei-role-policy"></a>
@@ -121,39 +116,24 @@ To launch an instance with an Amazon EI accelerator, you must provide an [IAM ro
 
    ```
    {
-    
        "Version": "2012-10-17",
-    
        "Statement": [
-    
            {
-    
                "Effect": "Allow",
-    
                "Action": [
-    
-               "elastic-inference:Connect",
-    
-               "iam:List*",
-    
-               "iam:Get*",
-    
-               "ec2:Describe*",
-    
-               "ec2:Get*"
-    
+                  "elastic-inference:Connect",
+                  "iam:List*",
+                  "iam:Get*",
+                  "ec2:Describe*",
+                  "ec2:Get*"
                ],
-    
                "Resource": "*"
-    
            }
-    
        ]
-    
    }
    ```
-**Note**  
-You may get a warning message about the elastic\-inference service not being recognizable\. This is a known issue and does not block creation of the policy\.
+
+   You may get a warning message about the elastic\-inference service not being recognizable\. This is a known issue and does not block creation of the policy\.
 
 1. Choose **Review policy** and enter a name for the policy, such as `ec2-role-trust-policy.json`, and a description\.
 
@@ -174,39 +154,24 @@ When you create your instance, select the role under **Configure Instance Detail
 
   ```
   {
-   
       "Version": "2012-10-17",
-   
       "Statement": [
-   
           {
-   
               "Effect": "Allow",
-   
               "Action": [
-   
-              "elastic-inference:Connect",
-   
-              "iam:List*",
-   
-              "iam:Get*",
-   
-              "ec2:Describe*",
-   
-              "ec2:Get*"
-   
+                "elastic-inference:Connect",
+                "iam:List*",
+                "iam:Get*",
+                "ec2:Describe*",
+                "ec2:Get*"
               ],
-   
               "Resource": "*"
-   
           }
-   
       ]
-   
   }
   ```
-**Note**  
-You may get a warning message about the elastic\-inference service not being recognizable\. This is a known issue and does not block creation of the policy\.
+
+  You may get a warning message about the elastic\-inference service not being recognizable\. This is a known issue and does not block creation of the policy\.
 
 ## Launching an Instance with Amazon EI<a name="eia-launch"></a>
 
@@ -258,27 +223,20 @@ To launch an instance with Amazon EI at the command line, you need your key pair
 1. Use the `run-instances` command to launch your instance and accelerator:
 
    ```
-   aws ec2 run-instances --image-id ami-insert image ID --instance-type for example, m5.large --subnet-id subnet-insert your subnet ID --elastic-inference-accelerator Type=for example, eia1.large --key-name enter your key pair name --security-group-ids sg-enter your security group ID --iam-instance-profile Name="enter the name of your accelerator profile"
+   aws ec2 run-instances --image-id ami-image ID --instance-type m5.large --subnet-id subnet-subnet ID --elastic-inference-accelerator Type=eia1.large --key-name key pair name --security-group-ids sg-security group ID --iam-instance-profile Name="accelerator profile name"
    ```
 
 1. When the `run-instances` operation succeeds, your output is similar to the following\. The ElasticInferenceAcceleratorArn identifies the Amazon EI accelerator\.
 
    ```
    "ElasticInferenceAcceleratorAssociations": [
-    
     {
-    
-    "ElasticInferenceAcceleratorArn": "arn:aws:elastic-inference:us-west-2:204044812891:elastic-inference-accelerator/eia-3e1de7c2f64a4de8b970c205e838af6b",
-    
-    "ElasticInferenceAcceleratorAssociationId": "eia-assoc-031f6f53ddcd5f260",
-    
-    "ElasticInferenceAcceleratorAssociationState": "associating",
-    
-    "ElasticInferenceAcceleratorAssociationTime": "2018-10-05T17:22:20.000Z"
-    
+      "ElasticInferenceAcceleratorArn": "arn:aws:elastic-inference:us-west-2:204044812891:elastic-inference-accelerator/eia-3e1de7c2f64a4de8b970c205e838af6b",
+      "ElasticInferenceAcceleratorAssociationId": "eia-assoc-031f6f53ddcd5f260",
+      "ElasticInferenceAcceleratorAssociationState": "associating",
+      "ElasticInferenceAcceleratorAssociationTime": "2018-10-05T17:22:20.000Z"
     }
-    
-    ],
+   ],
    ```
 
 You are now ready to run your models using either TensorFlow or MXNet on the provided AMI\.

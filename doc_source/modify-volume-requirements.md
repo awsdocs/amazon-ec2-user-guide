@@ -1,6 +1,6 @@
 # Requirements When Modifying Volumes<a name="modify-volume-requirements"></a>
 
-The following requirements and limitations apply when you modify an Amazon EBS volume\. This section topic describes general requirements applying to all EBS volumes as well as requirements associated with your operating system\. For more information, see [Constraints on the Size and Configuration of an EBS Volume](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/volume_constraints.html)\.
+The following requirements and limitations apply when you modify an Amazon EBS volume\. To learn more about the general requirements for EBS volumes, see [Constraints on the Size and Configuration of an EBS Volume](volume_constraints.md)\.
 
 ## Amazon EC2 Instance Support<a name="instance-support"></a>
 

@@ -7,38 +7,13 @@ Burstable performance instances are the only instance types that use credits for
 If your account is less than 12 months old, you can use a `t2.micro` instance for free within certain usage limits\. For more information, see [AWS Free Tier](https://aws.amazon.com/free/)\.
 
 **Topics**
-+ [Hardware Specifications](#burstable-performance-instances-hardware)
 + [Burstable Performance Instance Requirements](#burstable-performance-instances-limits)
 + [Best Practices](#burstable-performance-instances-best-practices)
 + [CPU Credits and Baseline Performance for Burstable Performance Instances](burstable-credits-baseline-concepts.md)
 + [Unlimited Mode for Burstable Performance Instances](burstable-performance-instances-unlimited-mode.md)
-+ [Standard Mode](burstable-performance-instances-standard-mode.md)
++ [Standard Mode for Burstable Performance Instances](burstable-performance-instances-standard-mode.md)
 + [Working with Burstable Performance Instances](burstable-performance-instances-how-to.md)
 + [Monitoring Your CPU Credits](burstable-performance-instances-monitoring-cpu-credits.md)
-
-## Hardware Specifications<a name="burstable-performance-instances-hardware"></a>
-
-The following is a summary of the hardware specifications for burstable performance instances\.
-
-
-| Instance type | Default vCPUs | Memory \(GiB\) | 
-| --- | --- | --- | 
-| t2\.nano | 1 | 0\.5 | 
-| t2\.micro | 1 | 1 | 
-| t2\.small | 1 | 2 | 
-| t2\.medium | 2 | 4 | 
-| t2\.large | 2 | 8 | 
-| t2\.xlarge | 4 | 16 | 
-| t2\.2xlarge | 8 | 32 | 
-| t3\.nano | 2 | 0\.5 | 
-| t3\.micro | 2 | 1 | 
-| t3\.small | 2 | 2 | 
-| t3\.medium | 2 | 4 | 
-| t3\.large | 2 | 8 | 
-| t3\.xlarge | 4 | 16 | 
-| t3\.2xlarge | 8 | 32 | 
-
-For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
 ## Burstable Performance Instance Requirements<a name="burstable-performance-instances-limits"></a>
 

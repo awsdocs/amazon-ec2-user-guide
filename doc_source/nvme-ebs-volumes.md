@@ -120,7 +120,7 @@ If you are using Linux kernel 4\.2 or later, any change you make to the volume s
 [ec2-user ~]$ sudo hdparm -z /dev/nvme1n1
 ```
 
-Before you detach an NVMe EBS volume, you should sync and unmount it\. When you detach an NVMe EBS volume, the force option is implicitly enabled\. Therefore, the instance does not have an opportunity to flush file system caches or metadata before detaching the volume\.
+When you detach an NVMe EBS volume, the instance does not have an opportunity to flush the file system caches or metadata before detaching the volume\. Therefore, before you detach an NVMe EBS volume, you should first sync and unmount it\. If the volume fails to detach, you can attempt a `force-detach` command as described in [Detaching an Amazon EBS Volume from an Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-detaching-volume.html)\.
 
 ## I/O Operation Timeout<a name="timeout-nvme-ebs-volumes"></a>
 

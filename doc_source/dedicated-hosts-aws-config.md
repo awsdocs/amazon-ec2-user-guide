@@ -39,8 +39,8 @@ aws configservice get-resource-config-history --resource type AWS::EC2::Instance
 
 1. In the AWS Config console, follow the steps provided to turn on recording\. For more information, see [Setting up AWS Config using the Console](https://docs.aws.amazon.com/config/latest/developerguide/gs-console.html)\.
 
- **To activate AWS Config using the command line or API**
-+ Using the AWS CLI, see [Viewing Configuration Details in the AWS Config Console](https://docs.aws.amazon.com/config/latest/developerguide/view-manage-resource-console.html) in the *AWS Config Developer Guide*\.
-+ Using the Amazon EC2 API, see [GetResourceConfigHistory](https://docs.aws.amazon.com/config/latest/APIReference/API_GetResourceConfigHistory.html)\.
-
 For more information, see [Viewing Configuration Details in the AWS Config Console](https://docs.aws.amazon.com/config/latest/developerguide/view-manage-resource-console.html)\.
+
+ **To activate AWS Config using the command line or API**
++ Using the AWS CLI, see [Viewing Configuration Details \(AWS CLI\)](https://docs.aws.amazon.com/config/latest/developerguide/view-manage-resource-console.html#view-config-details-cli) in the *AWS Config Developer Guide*\.
++ Using the Amazon EC2 API, see [GetResourceConfigHistory](https://docs.aws.amazon.com/config/latest/APIReference/API_GetResourceConfigHistory.html)\.

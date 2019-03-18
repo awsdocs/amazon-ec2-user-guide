@@ -81,33 +81,7 @@ Do not use this command if you're mounting a volume that already has data on it 
 
 To mount an attached EBS volume on every system reboot, add an entry for the device to the `/etc/fstab` file\.
 
-You can use the device name, such as `/dev/xvdf`, in `/etc/fstab`, but we recommend using the device's 128\-bit universally unique identifier \(UUID\) instead\. Device names can change, but the UUID persists throughout the life of the partition\. By using the UUID, you reduce the chances that the system becomes unbootable after a hardware reconfiguration\. For more information, see [ Identifying the EBS Device  EBS uses single\-root I/O virtualization \(SR\-IOV\) to provide volume attachments on Nitro\-based instances using the NVMe specification\. These devices rely on standard NVMe drivers on the operating system\. These drivers typically discover attached devices by scanning the PCI bus during instance boot, and create device nodes based on the order in which the devices respond, not on how the devices are specified in the block device mapping\. In Linux, NVMe device names follow the pattern `/dev/nvme<x>n<y>`, where <x> is the enumeration order, and, for EBS, <y> is 1\. Occasionally, devices can respond to discovery in a different order in subsequent instance starts, which causes the device name to change\. We recommend that you use stable identifiers for your EBS volumes within your instance, such as one of the following:   For Nitro\-based instances, the block device mappings that are specified in the Amazon EC2 console when you are attaching an EBS volume or during `AttachVolume` or `RunInstances` API calls are captured in the vendor\-specific data field of the NVMe controller identification\. With Amazon Linux AMIs later than version 2017\.09\.01, we provide a `udev` rule that reads this data and creates a symbolic link to the block\-device mapping\.   NVMe\-attached EBS volumes have the EBS volume ID set as the serial number in the device identification\.   When a device is formatted, a UUID is generated that persists for the life of the filesystem\. A device label can be specified at the same time\. For more information, see [Making an Amazon EBS Volume Available for Use on Linux](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html) and [Booting from the Wrong Volume](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-booting-from-wrong-volume.html)\.    Amazon Linux AMIs With Amazon Linux AMI 2017\.09\.01 or later \(including Amazon Linux 2\), you can run the ebsnvme\-id command as follows to map the NVMe device name to a volume ID and device name:  
-
-```
-[ec2-user ~]$ sudo /sbin/ebsnvme-id /dev/nvme1n1
-Volume ID: vol-01324f611e2463981
-/dev/sdf
-``` Amazon Linux also creates a symbolic link from the device name in the block device mapping \(for example, `/dev/sdf`\), to the NVMe device name\.  Other Linux AMIs With a kernel version of 4\.2 or later, you can run the nvme id\-ctrl command as follows to map an NVMe device to a volume ID\. First, install the NVMe command line package, `nvme-cli`, using the package management tools for your Linux distribution\.  The following example gets the volume ID and device name\. The device name is available through the NVMe controller vendor\-specific extension \(bytes 384:4095 of the controller identification\): 
-
-```
-[ec2-user ~]$ sudo nvme id-ctrl -v /dev/nvme1n1
-NVME Identify Controller:
-vid     : 0x1d0f
-ssvid   : 0x1d0f
-sn      : vol01234567890abcdef
-mn      : Amazon Elastic Block Store
-...
-0000: 2f 64 65 76 2f 73 64 6a 20 20 20 20 20 20 20 20 "/dev/sdf..."
-``` The lsblk command lists available devices and their mount points \(if applicable\)\. This helps you determine the correct device name to use\. In this example, `/dev/nvme0n1p1` is mounted as the root device and `/dev/nvme1n1` is attached but not mounted\. 
-
-```
-[ec2-user ~]$ lsblk
-NAME          MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
-nvme1n1       259:3   0  100G  0 disk
-nvme0n1       259:0   0    8G  0 disk
-  nvme0n1p1   259:1   0    8G  0 part /
-  nvme0n1p128 259:2   0    1M  0 part
-``` ](nvme-ebs-volumes.md#identify-nvme-ebs-device)\.
+You can use the device name, such as `/dev/xvdf`, in `/etc/fstab`, but we recommend using the device's 128\-bit universally unique identifier \(UUID\) instead\. Device names can change, but the UUID persists throughout the life of the partition\. By using the UUID, you reduce the chances that the system becomes unbootable after a hardware reconfiguration\. For more information, see [Identifying the EBS Device](nvme-ebs-volumes.md#identify-nvme-ebs-device)\.
 
 **To mount an attached volume automatically after reboot**
 

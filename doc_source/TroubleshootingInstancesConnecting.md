@@ -7,9 +7,11 @@ The following are possible problems you may have and error messages you may see 
 + [Error: User key not recognized by server](#TroubleshootingInstancesServerError)
 + [Error: Host key not found, Permission denied \(publickey\), *or* Authentication failed, permission denied](#TroubleshootingInstancesConnectingMindTerm)
 + [Error: Unprotected Private Key File](#troubleshoot-unprotected-key)
++ [Error: Private key must begin with "\-\-\-\-\-BEGIN RSA PRIVATE KEY\-\-\-\-\-" and end with "\-\-\-\-\-END RSA PRIVATE KEY\-\-\-\-\-"](#troubleshoot-private-key-file-format)
 + [Error: Server refused our key *or* No supported authentication methods available](#TroubleshootingInstancesConnectingPuTTY)
 + [Error Using MindTerm on Safari Browser](#troubleshoot-instance-connect-safari)
 + [Cannot Ping Instance](#troubleshoot-instance-ping)
++ [Error: Server unexpectedly closed network connection](#troubleshoot-ssh)
 
 For additional help with Windows instances, see [Troubleshooting Windows Instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/troubleshooting-windows-instances.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
@@ -220,6 +222,16 @@ If you see a similar message when you try to log in to your instance, examine th
 [ec2-user ~]$ chmod 0400 .ssh/my_private_key.pem
 ```
 
+## Error: Private key must begin with "\-\-\-\-\-BEGIN RSA PRIVATE KEY\-\-\-\-\-" and end with "\-\-\-\-\-END RSA PRIVATE KEY\-\-\-\-\-"<a name="troubleshoot-private-key-file-format"></a>
+
+If you use a third\-party tool, such as ssh\-keygen, to create an RSA key pair, it generates the private key in the OpenSSH key format\. When you connect to your instance, if you use the private key in the OpenSSH format to decrypt the password, you'll get the error `Private key must begin with "-----BEGIN RSA PRIVATE KEY-----" and end with "-----END RSA PRIVATE KEY-----"`\.
+
+To resolve the error, the private key must be in the PEM format\. Use the following command to create the private key in the PEM format:
+
+```
+ssh-keygen -m PEM
+```
+
 ## Error: Server refused our key *or* No supported authentication methods available<a name="TroubleshootingInstancesConnectingPuTTY"></a>
 
 If you use PuTTY to connect to your instance and get either of the following errors, `Error: Server refused our key` or `Error: No supported authentication methods available`, verify that you are connecting with the appropriate user name for your AMI\. Enter the user name in the **User name** box in the **PuTTY Configuration** window\.
@@ -262,3 +274,9 @@ You must update the browser's security settings to allow the AWS Management Cons
 ## Cannot Ping Instance<a name="troubleshoot-instance-ping"></a>
 
 The `ping` command is a type of ICMP traffic — if you are unable to ping your instance, ensure that your inbound security group rules allow ICMP traffic for the `Echo Request` message from all sources, or from the computer or instance from which you are issuing the command\. If you are unable to issue a `ping` command from your instance, ensure that your outbound security group rules allow ICMP traffic for the `Echo Request` message to all destinations, or to the host that you are attempting to ping\.
+
+## Error: Server unexpectedly closed network connection<a name="troubleshoot-ssh"></a>
+
+If you are connecting to your instance with Putty and you receive the error "Server unexpectedly closed network connection," verify that you have enabled keepalives on the Connection page of the Putty Configuration to avoid being disconnected\. Some servers disconnect clients when they do not receive any data within a specified period of time\. Set the Seconds between keepalives to 59 seconds\. 
+
+If you still experience issues after enabling keepalives, try to disable Nagle's algorithm on the Connection page of the Putty Configuration\. 

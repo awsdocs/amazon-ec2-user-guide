@@ -10,7 +10,8 @@ Traditional Amazon EC2 instance types provide fixed performance, while burstable
 
 One CPU credit is equal to one vCPU running at 100% utilization for one minute\. Other combinations of number of vCPUs, utilization, and time can also equate to one CPU credit\. For example, one CPU credit is equal to one vCPU running at 50% utilization for two minutes, or two vCPUs running at 25% utilization for two minutes\.
 
-**Earning CPU Credits**  
+### Earning CPU Credits<a name="earning-CPU-credits"></a>
+
 Each burstable performance instance continuously earns \(at a millisecond\-level resolution\) a set rate of CPU credits per hour, depending on the instance size\. The accounting process for whether credits are accrued or spent also happens at a millisecond\-level resolution, so you don't have to worry about overspending CPU credits; a short burst of CPU uses a small fraction of a CPU credit\.
 
 If a burstable performance instance uses fewer CPU resources than is required for baseline performance \(such as when it is idle\), the unspent CPU credits are accrued in the CPU credit balance\. If a burstable performance instance needs to burst above the baseline performance level, it spends the accrued credits\. The more credits that a burstable performance instance has accrued, the more time it can burst beyond its baseline when more performance is needed\.
@@ -20,6 +21,7 @@ The following table lists the burstable performance instance types, the rate at 
 
 |  Instance type  |  CPU credits earned per hour  |  Maximum earned credits that can be accrued\*  |  vCPUs  |  Baseline performance per vCPU  | 
 | --- | --- | --- | --- | --- | 
+|  `t1.micro`  |  6  |  144  |  1  |  10%  | 
 |  `t2.nano`  |  3  |  72  |  1  |  5%  | 
 |  `t2.micro`  |  6  |  144  |  1  |  10%  | 
 |  `t2.small`  |  12  |  288  |  1  |  20%  | 
@@ -41,10 +43,12 @@ The following table lists the burstable performance instance types, the rate at 
 |  \* The number of credits that can be accrued is equivalent to the number of credits that can be earned in a 24\-hour period\.  | 
 |  \*\* The baseline performance in the table is per vCPU\. For instance sizes that have more than one vCPU, to calculate the baseline CPU utilization for the instance, multiply the vCPU percentage by the number of vCPUs\. For example, a `t3.large` instance has two vCPUs, which provide a baseline CPU utilization for the instance of 60% \(2 vCPUs x 30% baseline performance of one vCPU\)\. In CloudWatch, CPU utilization is shown per vCPU\. Therefore, the CPU utilization for a `t3.large` instance operating at the baseline performance is shown as 30% in CloudWatch CPU metrics\.  | 
 
-**CPU Credit Earn Rate**  
+### CPU Credit Earn Rate<a name="CPU-credit-earn-rate"></a>
+
 The number of CPU credits earned per hour is determined by the instance size\. For example, a `t3.nano` earns six credits per hour, while a `t3.small` earns 24 credits per hour\. The preceding table lists the credit earn rate for all instances\.
 
-**CPU Credit Accrual Limit**  
+### CPU Credit Accrual Limit<a name="CPU-credit-accrual-limit"></a>
+
 While earned credits never expire on a running instance, there is a limit to the number of earned credits that an instance can accrue\. The limit is determined by the CPU credit balance limit\. After the limit is reached, any new credits that are earned are discarded, as indicated by the following image\. The full bucket indicates the CPU credit balance limit, and the spillover indicates the newly earned credits that exceed the limit\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/t2-t3-bucket.png)
@@ -52,10 +56,11 @@ While earned credits never expire on a running instance, there is a limit to the
 The CPU credit balance limit differs for each instance size\. For example, a `t3.micro` instance can accrue a maximum of 288 earned CPU credits in the CPU credit balance\. The preceding table lists the maximum number of earned credits that each instance can accrue\.
 
 **Note**  
-T2 Standard instances also earn launch credits\. Launch credits do not count towards the CPU credit balance limit\. If a T2 Standard instance has not spent its launch credits, and remains idle over a 24\-hour period while accruing earned credits, its CPU credit balance appears as over the limit\. For more information, see [Launch Credits](burstable-performance-instances-standard-mode.md#launch-credits)\.   
+T2 Standard instances also earn launch credits\. Launch credits do not count towards the CPU credit balance limit\. If a T2 instance has not spent its launch credits, and remains idle over a 24\-hour period while accruing earned credits, its CPU credit balance appears as over the limit\. For more information, see [Launch Credits](burstable-performance-instances-standard-mode.md#launch-credits)\.   
 T3 instances do not earn launch credits\. These instances launch as `unlimited` by default, and therefore can burst immediately upon start without any launch credits\.
 
-**Accrued CPU Credits Life Span**  
+### Accrued CPU Credits Life Span<a name="accrued-CPU-credits-life-span"></a>
+
 CPU credits on a running instance do not expire\.
 
 For T3, the CPU credit balance persists for seven days after an instance stops and the credits are lost thereafter\. If you start the instance within seven days, no credits are lost\.

@@ -13,7 +13,7 @@ Each key pair requires a name\. Be sure to choose a name that is easy to remembe
 
 Amazon EC2 stores the public key only, and you store the private key\. Anyone who possesses your private key can decrypt your login information, so it's important that you store your private keys in a secure place\.
 
-The keys that Amazon EC2 uses are 2048\-bit SSH\-2 RSA keys\. You can have up to five thousand key pairs per region\.
+The keys that Amazon EC2 uses are 2048\-bit SSH\-2 RSA keys\. You can have up to five thousand key pairs per Region\.
 
 **Launching and Connecting to Your Instance**  
 When you launch an instance, you should specify the name of the key pair you plan to use to connect to the instance\. If you don't specify the name of an existing key pair when you launch an instance, you won't be able to connect to the instance\. When you connect to the instance, you must specify the private key that corresponds to the key pair you specified when you launched the instance\.
@@ -49,7 +49,7 @@ The navigation pane is on the left side of the Amazon EC2 console\. If you do no
 
 1. Choose **Create Key Pair**\.
 
-1. Enter a name for the new key pair in the **Key pair name** field of the **Create Key Pair** dialog box, and then choose **Create**\.
+1. For **Key pair name**, enter a name for the new key pair, and then choose **Create**\.
 
 1. The private key file is automatically downloaded by your browser\. The base file name is the name you specified as the name of your key pair, and the file name extension is `.pem`\. Save the private key file in a safe place\.
 **Important**  
@@ -80,6 +80,7 @@ Instead of using Amazon EC2 to create your key pair, you can create an RSA key p
   + OpenSSH public key format \(the format in `~/.ssh/authorized_keys`\)
   + Base64 encoded DER format
   + SSH public key file format as specified in [RFC4716](http://tools.ietf.org/html/rfc4716)
+  + SSH private key file format must be PEM \(for example, use `ssh-keygen -m PEM` to convert the OpenSSH key into the PEM format\)
 + Create an RSA key\. Amazon EC2 does not accept DSA keys\.
 + The supported lengths are 1024, 2048, and 4096\.
 
@@ -115,7 +116,7 @@ After the public key file is imported, you can verify that the key pair was impo
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. From the navigation bar, select the region in which you created the key pair\.
+1. From the navigation bar, select the Region in which you created the key pair\.
 
 1. In the navigation pane, under **NETWORK & SECURITY**, choose **Key Pairs**\.
 
@@ -237,7 +238,7 @@ You can use one of the following commands\. For more information about these com
 + [Remove\-EC2KeyPair](https://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2KeyPair.html) \(AWS Tools for Windows PowerShell\)
 
 **Note**  
-If you create a Linux AMI from an instance, and then use the AMI to launch a new instance in a different region or account, the new instance includes the public key from the original instance\. This enables you to connect to the new instance using the same private key file as your original instance\. You can remove this public key from your instance by removing its entry from the `.ssh/authorized_keys` file using a text editor of your choice\. For more information about managing users on your instance and providing remote access using a specific key pair, see [Managing User Accounts on Your Linux Instance](managing-users.md)\.
+If you create a Linux AMI from an instance, and then use the AMI to launch a new instance in a different Region or account, the new instance includes the public key from the original instance\. This enables you to connect to the new instance using the same private key file as your original instance\. You can remove this public key from your instance by removing its entry from the `.ssh/authorized_keys` file using a text editor of your choice\. For more information about managing users on your instance and providing remote access using a specific key pair, see [Managing User Accounts on Your Linux Instance](managing-users.md)\.
 
 ## Adding or Replacing a Key Pair for Your Instance<a name="replacing-key-pair"></a>
 

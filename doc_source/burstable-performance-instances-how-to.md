@@ -53,13 +53,13 @@ You must use a *launch template* for launching instances as `unlimited` in an Au
 
 **To create a launch template that launches instances as Unlimited \(console\)**
 
-1. Follow the [Creating a Launch Template](ec2-launch-templates.md#create-launch-template) procedure\.
+1. Follow the [Creating a Launch Template for an Auto Scaling Group](https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-launch-template.html) procedure\.
 
 1. In **Launch template contents**, for **Instance type**, choose a T3 or T2 instance size\.
 
 1. To launch instances as `unlimited` in an Auto Scaling group, in **Advanced details**, for **T2/T3 Unlimited**, choose **Enable**\.
 
-1. When you've finished defining the launch template parameters, choose **Create launch template**\. For more information, see [Creating a Launch Template](ec2-launch-templates.md#create-launch-template)\.
+1. When you've finished defining the launch template parameters, choose **Create launch template**\. For more information, see [Creating a Launch Template for an Auto Scaling Group](https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-launch-template.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 
 **To create a launch template that launches instances as Unlimited \(AWS CLI\)**  
 Use the [create\-launch\-template](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-launch-template.html) command and specify `unlimited` as the credit specification\.

@@ -16,6 +16,7 @@ If you no longer need an On\-Demand host, you can stop the instances running on 
 + [Releasing Dedicated Hosts](#dedicated-hosts-releasing)
 + [Purchasing Dedicated Host Reservations](#purchasing-dedicated-host-reservations)
 + [Viewing Dedicated Host Reservations](#viewing-host-reservations)
++ [Tagging Dedicated Host Reservations](#tagging-host-reservations)
 
 ## Understanding Auto\-Placement and Affinity<a name="dedicated-hosts-understanding"></a>
 
@@ -473,4 +474,32 @@ Use one of the following commands:
 
   ```
   PS C:\> Get-EC2HostReservation
+  ```
+
+## Tagging Dedicated Host Reservations<a name="tagging-host-reservations"></a>
+
+You can assign custom tags to your Dedicated Host Reservations to categorize them in different ways, for example, by purpose, owner, or environment\. This helps you to quickly find a specific Dedicated Host Reservation based on the custom tags you've assigned it\.
+
+You can tag a Dedicated Host Reservation using the AWS CLI only\.
+
+**To tag a Dedicated Host Reservation using the command line**
+
+Use one of the following commands:
++ [create\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-tags.html) \(AWS CLI\)
+
+  ```
+  aws ec2 create-tags --resources hr-1234563a4ffc669ae --tags Key=Owner,Value=TeamA
+  ```
++ [New\-EC2Tag](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Tag.html) \(AWS Tools for Windows PowerShell\)
+
+  The `New-EC2Tag` command needs a `Tag` parameter, which specifies the key and value pair to be used for the Dedicated Host Reservation tag\. The following commands create the `Tag` parameter:
+
+  ```
+  PS C:\> $tag = New-Object Amazon.EC2.Model.Tag
+  PS C:\> $tag.Key = "Owner"
+  PS C:\> $tag.Value = "TeamA"
+  ```
+
+  ```
+  PS C:\> New-EC2Tag -Resource hr-1234563a4ffc669ae -Tag $tag
   ```

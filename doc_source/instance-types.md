@@ -15,13 +15,11 @@ Each instance type provides higher or lower minimum performance from a shared re
 + [Nitro\-based Instances](#ec2-nitro-instances)
 + [Networking and Storage Features](#instance-networking-storage)
 + [Instance Limits](#instance-type-limits)
-+ [Burstable Performance Instances](burstable-performance-instances.md)
 + [General Purpose Instances](general-purpose-instances.md)
 + [Compute Optimized Instances](compute-optimized-instances.md)
 + [Memory Optimized Instances](memory-optimized-instances.md)
 + [Storage Optimized Instances](storage-optimized-instances.md)
 + [Linux Accelerated Computing Instances](accelerated-computing-instances.md)
-+ [T1 Micro Instances](concepts_micro_instances.md)
 + [Changing the Instance Type](ec2-instance-resize.md)
 
 ## Available Instance Types<a name="AvailableInstanceTypes"></a>
@@ -50,12 +48,11 @@ Amazon Web Services offers previous generation instances for users who have opti
 
 | Instance Family | Previous Generation Instance Types | 
 | --- | --- | 
-| General purpose | `m1.small` \| `m1.medium` \| `m1.large` \| `m1.xlarge` \| `m3.medium` \| `m3.large` \| `m3.xlarge` \| `m3.2xlarge` | 
+| General purpose | `m1.small` \| `m1.medium` \| `m1.large` \| `m1.xlarge` \| `m3.medium` \| `m3.large` \| `m3.xlarge` \| `m3.2xlarge` \| `t1.micro` | 
 | Compute optimized | `c1.medium` \| `c1.xlarge` \| `cc2.8xlarge` \| `c3.large` \| `c3.xlarge` \| `c3.2xlarge` \| `c3.4xlarge` \| `c3.8xlarge` | 
 | Memory optimized | `m2.xlarge` \| `m2.2xlarge` \| `m2.4xlarge` \| `cr1.8xlarge` \| `r3.large` \| `r3.xlarge` \| `r3.2xlarge` \| `r3.4xlarge` \| `r3.8xlarge` | 
 | Storage optimized | `hs1.8xlarge` \| `i2.xlarge` \| `i2.2xlarge` \| `i2.4xlarge` \| `i2.8xlarge` | 
-|  GPU optimized  | `g2.2xlarge` \| `g2.8xlarge` | 
-| Micro | `t1.micro` | 
+| Accelerated computing | `g2.2xlarge` \| `g2.8xlarge` | 
 
 ## Hardware Specifications<a name="instance-hardware-specs"></a>
 

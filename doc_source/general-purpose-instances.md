@@ -45,6 +45,7 @@ For more information, see [Amazon EC2 T2 Instances](https://aws.amazon.com/ec2/i
 + [SSD I/O Performance](#general-purpose-ssd-perf)
 + [Instance Features](#general-purpose-features)
 + [Release Notes](#general-purpose-instances-limits)
++ [Burstable Performance Instances](burstable-performance-instances.md)
 
 ## Hardware Specifications<a name="general-purpose-hardware"></a>
 
