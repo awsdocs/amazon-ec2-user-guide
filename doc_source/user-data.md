@@ -116,8 +116,6 @@ The cloud\-init user directives can be passed to an instance at launch the same 
 **Important**  
 By default, user data scripts and cloud\-init directives run only during the boot cycle when you first launch an instance\. You can update your configuration to ensure that your user data scripts and cloud\-init directives run every time you restart your instance\. For more information, see [How can I execute user data with every restart of my EC2 instance?](https://aws.amazon.com/premiumsupport/knowledge-center/execute-user-data-ec2/) in the AWS Knowledge Center\.
 
-The Amazon Linux version of cloud\-init does not support all of the directives that are available in the base package, and some of the directives have been renamed \(such as `repo_update` instead of `apt-upgrade`\)\.
-
 Adding these tasks at boot time adds to the amount of time it takes to boot an instance\. You should allow a few minutes of extra time for the tasks to complete before you test that your user data directives have completed\.
 
 **To pass cloud\-init directives to an instance with user data**
