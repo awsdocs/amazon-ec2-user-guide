@@ -20,7 +20,7 @@ There is no charge for creating a placement group\.
 
 ## Cluster Placement Groups<a name="placement-groups-cluster"></a>
 
-A cluster placement group is a logical grouping of instances within a single Availability Zone\. A placement group can span peered VPCs in the same Region\. The chief benefit of a cluster placement group, in addition to a 10 Gbps flow limit, is the non\-blocking, non\-oversubscribed, fully bi\-sectional nature of the connectivity\. In other words, all nodes within the placement group can talk to all other nodes within the placement group at the full line rate of 10 Gpbs flows and 25 aggregate without any slowing due to over\-subscription\.
+A cluster placement group is a logical grouping of instances within a single Availability Zone\. A placement group can span peered VPCs in the same Region\. The chief benefit of a cluster placement group, in addition to a 10 Gbps flow limit, is the non\-blocking, non\-oversubscribed, fully bi\-sectional nature of the connectivity\. In other words, all nodes within the placement group can talk to all other nodes within the placement group at the full line rate of 10 Gbps flows and 25 aggregate without any slowing due to over\-subscription\.
 
 The following image shows instances that are placed into a cluster placement group\.
 
