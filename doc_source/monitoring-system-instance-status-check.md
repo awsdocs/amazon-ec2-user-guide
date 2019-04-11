@@ -66,7 +66,7 @@ To view the status of all instances, use the following command:
 aws ec2 describe-instance-status
 ```
 
-To get the status of all instances with a instance status of `impaired`, use the following command:
+To get the status of all instances with an instance status of `impaired`, use the following command:
 
 ```
 aws ec2 describe-instance-status --filters Name=instance-status.status,Values=impaired

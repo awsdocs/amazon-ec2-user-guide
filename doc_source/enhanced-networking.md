@@ -15,7 +15,7 @@ Depending on your instance type, enhanced networking can be enabled using one of
 
 **Elastic Network Adapter \(ENA\)**  
 The Elastic Network Adapter \(ENA\) supports network speeds of up to 100 Gbps for supported instance types\.  
-A1, C5, C5d, C5n, F1, G3, H1, I3, `m4.16xlarge`, M5, M5a, M5d, P2, P3, R4, R5, R5a, R5d, T3, `u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, X1, X1e, and z1d instances use the Elastic Network Adapter for enhanced networking\.
+A1, C5, C5d, C5n, F1, G3, H1, I3, `m4.16xlarge`, M5, M5a, M5ad, M5d, P2, P3, R4, R5, R5a, R5ad, R5d, T3, `u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, X1, X1e, and z1d instances use the Elastic Network Adapter for enhanced networking\.
 
 **Intel 82599 Virtual Function \(VF\) interface**  
 The Intel 82599 Virtual Function interface supports network speeds of up to 10 Gbps for supported instance types\.  

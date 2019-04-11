@@ -83,7 +83,7 @@ If you have a snapshot of the root device volume of an instance, you can create 
 
 **Important**  
 Some Linux distributions, such as Red Hat Enterprise Linux \(RHEL\) and SUSE Linux Enterprise Server \(SLES\), use the Amazon EC2 `billingProduct` code associated with an AMI to verify subscription status for package updates\. Creating an AMI from an EBS snapshot does not maintain this billing code, and instances launched from such an AMI are not able to connect to package update infrastructure\. If you purchase a Reserved Instance offering for one of these Linux distributions and launch instances using an AMI that does not contain the required billing code, your Reserved Instance is not applied to these instances\.  
-Similarly, although you can create a Windows AMI from a snapshot, you can't successfully launch an instance from the AMI\.  
+Similarly, although you can create a Windows AMI from a snapshot and launch an instance from that AMI, you will not be able to connect to the instance, and it will be billed incorrectly as a result of it having the incorrect billing code\.  
 In general, AWS advises against manually creating AMIs from snapshots\.  
 For more information about creating Windows AMIs or AMIs for Linux operating systems that must retain AMI billing codes to work properly, see [Creating a Linux AMI from an Instance](#how-to-create-ebs-ami)\.
 

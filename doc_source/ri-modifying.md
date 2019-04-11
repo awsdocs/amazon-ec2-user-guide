@@ -40,7 +40,7 @@ Not all attributes of a Reserved Instance can be modified, and restrictions may 
 | --- | --- | --- | 
 |  Change **Availability Zones** within the same Region  |  Linux and Windows  | \- | 
 |  Change the **scope** from Availability Zone to Region and vice versa  |  Linux and Windows  |  If you change the scope from Availability Zone to Region, you lose the capacity reservation benefit\. If you change the scope from Region to Availability Zone, you lose Availability Zone flexibility and instance size flexibility \(if applicable\)\. For more information, see [How Reserved Instances Are Applied](apply_ri.md)\.  | 
-|  Change the **instance size** within the same instance type  |  Linux only  |  Some instance types are not supported, because there are no other sizes available\. For more information, see [Modifying the Instance Size of Your Reservations](#ri-modification-instancemove)\.  | 
+|  Change the **instance size** within the same instance type  |  Amazon Linux only  |  To change the instance size within the same instance type, the reservation must use Amazon Linux on default tenancy\. Some instance types are not supported, because there are no other sizes available\. For more information, see [Modifying the Instance Size of Your Reservations](#ri-modification-instancemove)\.  | 
 |  Change the **network** from EC2\-Classic to Amazon VPC and vice versa  |  Linux and Windows  |  The network platform must be available in your AWS account\. If you created your AWS account after 2013\-12\-04, it does not support EC2\-Classic\.  | 
 
 Amazon EC2 processes your modification request if there is sufficient capacity for your target configuration \(if applicable\), and if the following conditions are met\.
@@ -69,7 +69,6 @@ You cannot modify the instance size of the Reserved Instances for the following 
 + `cc2.8xlarge`
 + `cr1.8xlarge`
 + `hs1.8xlarge`
-+ `i3.metal`
 + `t1.micro`
 
 Each Reserved Instance has an *instance size footprint*, which is determined by the normalization factor of the instance type and the number of instances in the reservation\. When you modify a Reserved Instance, the footprint of the target configuration must match that of the original configuration, otherwise the modification request is not processed\.
@@ -107,6 +106,28 @@ In the following example, you have a reservation with two `t2.micro` instances \
 You can also modify a reservation to divide it into two or more reservations\. In the following example, you have a reservation with a `t2.medium` instance\. You divide the reservation into a reservation with two `t2.nano` instances and a reservation with three `t2.micro` instances\.
 
 ![\[Modifying Reserved Instances\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ri-modify-divide.png)
+
+### Normalization Factor for Bare Metal Instances<a name="ri-normalization-factor-bare-metal-2"></a>
+
+You can modify `.metal` Reserved Instances into other sizes within the same family, and, similarly, you can modify other sized Reserved Instances in the same family into `.metal` Reserved Instances\. A bare metal instance is the same size as the largest instance within the same instance family\. For example, an `i3.metal` is the same size as an `i3.16xlarge`, so they have the same normalization factor\.
+
+**Note**  
+The `.metal` instance sizes do not have a single normalization factor\. They vary based on the specific instance family\.
+
+
+| Bare metal instance size | Normalization factor | 
+| --- | --- | 
+| i3\.metal |  128  | 
+|  `r5.metal`  |  192  | 
+|  `r5d.metal`  |  192  | 
+|  `z1d.metal`  |  96  | 
+|  `m5.metal`  |  192  | 
+|  `m5d.metal`  |  192  | 
+
+For example, an `i3.metal` instance has a normalization factor of 128\. If you purchase an `i3.metal` default tenancy Amazon Linux/Unix Reserved Instance, you can divide the reservation as follows:
++ An `i3.16xlarge` is the same size as an `i3.metal` instance, so its normalization factor is 128 \(128/1\)\. The reservation for one `i3.metal` instance can be modified into one `i3.16xlarge` instance\.
++ An `i3.8xlarge` is half the size of an `i3.metal` instance, so its normalization factor is 64 \(128/2\)\. The reservation for one `i3.metal` instance can be divided into two `i3.8xlarge` instances\.
++ An `i3.4xlarge` is a quarter the size of an `i3.metal` instance, so its normalization factor is 32 \(128/4\)\. The reservation for one `i3.metal` instance can be divided into four `i3.4xlarge` instances\.
 
 ## Submitting Modification Requests<a name="ri-modification-process"></a>
 

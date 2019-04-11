@@ -4,8 +4,12 @@ Learn how to connect to the Linux instances that you launched and transfer files
 
 To connect to a Windows instance, see [Connecting to Your Windows Instance](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/connecting_to_windows_instance.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
+## Connection Method<a name="connection-method"></a>
 
-| Your Computer | Topic | 
+Your local computer's operating system determines the type of method you use to connect to your instance\.
+
+
+| Your local computer | Connection method | 
 | --- | --- | 
 |  Linux or Mac OS X  |  [Connecting to Your Linux Instance Using SSH](AccessingInstancesLinux.md)  | 
 |  Windows  |  [Connecting to Your Linux Instance from Windows Using PuTTY](putty.md) [Connecting to Your Linux Instance from Windows Using Windows Subsystem for Linux](WSL.md) [Connecting to Your Linux Instance Using SSH](AccessingInstancesLinux.md)  | 

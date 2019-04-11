@@ -13,7 +13,7 @@ Amazon EC2 provides the following features:
 + Secure login information for your instances using *key pairs* \(AWS stores the public key, and you store the private key in a secure place\)
 + Storage volumes for temporary data that's deleted when you stop or terminate your instance, known as *instance store volumes*
 + Persistent storage volumes for your data using Amazon Elastic Block Store \(Amazon EBS\), known as *Amazon EBS volumes*
-+ Multiple physical locations for your resources, such as instances and Amazon EBS volumes, known as *regions* and *Availability Zones*
++ Multiple physical locations for your resources, such as instances and Amazon EBS volumes, known as *Regions* and *Availability Zones*
 + A firewall that enables you to specify the protocols, ports, and source IP ranges that can reach your instances using *security groups*
 + Static IPv4 addresses for dynamic cloud computing, known as *Elastic IP addresses*
 + Metadata, known as *tags*, that you can create and assign to your Amazon EC2 resources
@@ -58,14 +58,14 @@ If you have questions about whether AWS is right for you, [contact AWS Sales](ht
 ## Related Services<a name="related-services"></a>
 
 You can provision Amazon EC2 resources, such as instances and volumes, directly using Amazon EC2\. You can also provision Amazon EC2 resources using other services in AWS\. For more information, see the following documentation:
-+ [Amazon EC2 Auto Scaling User Guide](https://docs.aws.amazon.com/autoscaling/latest/userguide/)
++ [Amazon EC2 Auto Scaling User Guide](https://docs.aws.amazon.com/autoscaling/ec2/userguide/)
 + [AWS CloudFormation User Guide](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/)
 + [AWS Elastic Beanstalk Developer Guide](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/)
 + [AWS OpsWorks User Guide](https://docs.aws.amazon.com/opsworks/latest/userguide/)
 
 To automatically distribute incoming application traffic across multiple instances, use Elastic Load Balancing\. For more information, see [Elastic Load Balancing User Guide](https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/)\.
 
-To monitor basic statistics for your instances and Amazon EBS volumes, use Amazon CloudWatch\. For more information, see the [Amazon CloudWatch User Guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/)\.
+To monitor basic statistics for your instances and Amazon EBS volumes, use Amazon CloudWatch\. For more information, see the [Amazon CloudWatch User Guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/)\.
 
 To automate actions, such as activating a Lambda function whenever a new Amazon EC2 instance starts, or invoking SSM Run Command whenever an event in another AWS service happens, use Amazon CloudWatch Events\. For more information, see the [Amazon CloudWatch Events User Guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/)\.
 
@@ -89,7 +89,7 @@ Provides commands for a broad set of AWS products for those who script in the Po
 
 Amazon EC2 provides a Query API\. These requests are HTTP or HTTPS requests that use the HTTP verbs GET or POST and a Query parameter named `Action`\. For more information about the API actions for Amazon EC2, see [Actions](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/query-apis.html) in the *Amazon EC2 API Reference*\.
 
-If you prefer to build applications using language\-specific APIs instead of submitting a request over HTTP or HTTPS, AWS provides libraries, sample code, tutorials, and other resources for software developers\. These libraries provide basic functions that automate tasks such as cryptographically signing your requests, retrying requests, and handling error responses, making it is easier for you to get started\. For more information, see [AWS SDKs and Tools](https://aws.amazon.com/tools/)\.
+If you prefer to build applications using language\-specific APIs instead of submitting a request over HTTP or HTTPS, AWS provides libraries, sample code, tutorials, and other resources for software developers\. These libraries provide basic functions that automate tasks such as cryptographically signing your requests, retrying requests, and handling error responses, making it is easier for you to get started\. For more information, see [AWS SDKs and Tools](https://aws.amazon.com//tools/)\.
 
 ## Pricing for Amazon EC2<a name="ec2-pricing"></a>
 
@@ -110,7 +110,7 @@ For a complete list of charges and specific prices for Amazon EC2, see [Amazon E
 
 To calculate the cost of a sample provisioned environment, see [Cloud Economics Center](https://aws.amazon.com/economics/)\.
 
-To see your bill, go to your [AWS Account Activity page](https://aws.amazon.com/account-activity)\. Your bill contains links to usage reports that provide details about your bill\. To learn more about AWS account billing, see [AWS Account Billing](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/)\.
+To see your bill, go to the **Billing and Cost Management Dashboard** in the [AWS Billing and Cost Management console](https://console.aws.amazon.com/billing/)\. Your bill contains links to usage reports that provide details about your bill\. To learn more about AWS account billing, see [AWS Account Billing](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/)\.
 
 If you have questions concerning AWS billing, accounts, and events, [contact AWS Support](https://aws.amazon.com/contact-us/)\.
 

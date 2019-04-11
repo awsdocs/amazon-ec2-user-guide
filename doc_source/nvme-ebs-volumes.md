@@ -5,7 +5,7 @@ EBS volumes are exposed as NVMe block devices on [Nitro\-based instances](instan
 **Note**  
 The EBS performance guarantees stated in [Amazon EBS Product Details](https://aws.amazon.com/ebs/details/) are valid regardless of the block\-device interface\.
 
-The following Nitro\-based instances support NVMe instance store volumes: C5d, I3, F1, M5d, `p3dn.24xlarge`, R5d, and z1d\. For more information, see [NVMe SSD Volumes](ssd-instance-store.md#nvme-ssd-volumes)\.
+The following Nitro\-based instances support NVMe instance store volumes: C5d, I3, F1, M5ad, M5d, `p3dn.24xlarge`, R5ad, R5d, and z1d\. For more information, see [NVMe SSD Volumes](ssd-instance-store.md#nvme-ssd-volumes)\.
 
 **Topics**
 + [Install or Upgrade the NVMe Driver](#install-nvme-driver)
@@ -23,7 +23,6 @@ The following AMIs include the required NVMe drivers:
 + SUSE Linux Enterprise Server 12 or later
 + CentOS 7 or later
 + FreeBSD 11\.1 or later
-+ Windows Server 2008 R2 or later
 
 If you are using an AMI that does not include the NVMe driver, you can install the driver on your instance using the following procedure\.
 
@@ -126,10 +125,6 @@ When you detach an NVMe EBS volume, the instance does not have an opportunity to
 
 EBS volumes attached to Nitro\-based instances use the default NVMe driver provided by the operating system\. Most operating systems specify a timeout for I/O operations submitted to NVMe devices\. The default timeout is 30 seconds and can be changed using the `nvme_core.io_timeout` boot parameter \(or the `nvme.io_timeout` boot parameter for Linux kernels before version 4\.6\)\. For testing purposes, you can also dynamically update the timeout by writing to `/sys/module/nvme_core/parameters/io_timeout` using your preferred text editor\. If I/O latency exceeds the value of this parameter, the Linux NVMe driver fails the I/O and return an error to the filesystem or application\. Depending on the I/O operation, your filesystem or application can retry the error\. In some cases, your filesystem may be remounted as read\-only\.
 
-For an experience similar to EBS volumes attached to Xen instances, we recommend setting this timeout to the highest value possible\. For current kernels, the maximum is 4294967295, while for earlier kernels the maximum is 255\. The `nvme.io_timeout` boot parameter is already set to the maximum value for the following Linux distributions:
-+ Amazon Linux AMI 2017\.09\.01 or later
-+ Canonical 4\.4\.0\-1041 or later
-+ SLES 12 SP2 \(4\.4 kernel\) or later
-+ RHEL 7\.5 \(3\.10\.0\-862 kernel\) or later
+For an experience similar to EBS volumes attached to Xen instances, we recommend setting `nvme.io_timeout` to the highest value possible\. For current kernels, the maximum is 4294967295, while for earlier kernels the maximum is 255\. Depending on the version of Linux, the timeout might already be set to the supported maximum value\. For example, the timeout is set to 4294967295 by default for Amazon Linux AMI 2017\.09\.01 and later\.
 
 You can verify the maximum value for your Linux distribution by writing a value higher than the suggested maximum to `/sys/module/nvme_core/parameters/io_timeout` and checking for the `Numerical result out of range` error when attempting to save the file\.

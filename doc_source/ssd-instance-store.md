@@ -8,7 +8,7 @@ Like other instance store volumes, you must map the SSD instance store volumes f
 
 ## NVMe SSD Volumes<a name="nvme-ssd-volumes"></a>
 
-The following instances offer non\-volatile memory express \(NVMe\) SSD instance store volumes: C5d, I3, F1, M5d, `p3dn.24xlarge`, R5d, and z1d\. To access NVMe volumes, the [NVMe drivers](nvme-ebs-volumes.md#install-nvme-driver) must be installed\. The following AMIs meet this requirement:
+The following instances offer non\-volatile memory express \(NVMe\) SSD instance store volumes: C5d, I3, F1, M5ad, M5d, `p3dn.24xlarge`, R5ad, R5d, and z1d\. To access NVMe volumes, the [NVMe drivers](nvme-ebs-volumes.md#install-nvme-driver) must be installed\. The following AMIs meet this requirement:
 + Amazon Linux 2
 + Amazon Linux AMI 2018\.03
 + Ubuntu 14\.04 or later
@@ -16,7 +16,6 @@ The following instances offer non\-volatile memory express \(NVMe\) SSD instance
 + SUSE Linux Enterprise Server 12 or later
 + CentOS 7 or later
 + FreeBSD 11\.1 or later
-+ Windows Server 2008 R2 or later
 
 After you connect to your instance, you can list the NVMe devices using the lspci command\. The following is example output for an `i3.8xlarge` instance, which supports four NVMe devices\.
 
@@ -35,12 +34,21 @@ After you connect to your instance, you can list the NVMe devices using the lspc
 00:1f.0 Unassigned class [ff80]: XenSource, Inc. Xen Platform Device (rev 01)
 ```
 
-If you are using a supported operating system but you do not see the NVMe devices, verify that the NVMe module is loaded using the following `lsmod` command\.
+If you are using a supported operating system but you do not see the NVMe devices, verify that the NVMe module is loaded using the following command\.
++ Amazon Linux, Amazon Linux 2, Ubuntu 14/16, Red Hat Enterprise Linux, SUSE Linux Enterprise Server, CentOS 7
 
-```
-[ec2-user ~]$ lsmod | grep nvme
-nvme          48813  0
-```
+  ```
+  $ lsmod | grep nvme
+  nvme          48813  0
+  ```
++ Ubuntu 18
+
+  ```
+  $ cat /lib/modules/$(uname -r)/modules.builtin | grep nvme
+  s/nvme/host/nvme-core.ko
+  kernel/drivers/nvme/host/nvme.ko
+  kernel/drivers/nvmem/nvmem_core.ko
+  ```
 
 The NVMe volumes are compliant with the NVMe 1\.0e specification\. You can use the NVMe commands with your NVMe volumes\. With Amazon Linux, you can install the `nvme-cli` package from the repo using the yum install command\. With other supported versions of Linux, you can download the `nvme-cli` package if it's not available in the image\.
 
@@ -48,7 +56,7 @@ The data on NVMe instance storage is encrypted using an XTS\-AES\-256 block ciph
 
 ## Instance Store Volume TRIM Support<a name="InstanceStoreTrimSupport"></a>
 
-The following instances support SSD volumes with TRIM: C5d, F1, I2, I3, M5d, `p3dn.24xlarge`, R3, R5d, and z1d\.
+The following instances support SSD volumes with TRIM: C5d, F1, I2, I3, M5ad, M5d, `p3dn.24xlarge`, R3, R5ad, R5d, and z1d\.
 
 Instance store volumes that support TRIM are fully trimmed before they are allocated to your instance\. These volumes are not formatted with a file system when an instance launches, so you must format them before they can be mounted and used\. For faster access to these volumes, you should skip the TRIM operation when you format them\.
 

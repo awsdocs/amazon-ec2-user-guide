@@ -96,8 +96,8 @@ For more information about tagging your resources for billing, see [Using Cost A
 The following basic restrictions apply to tags:
 + Maximum number of tags per resource – 50
 + For each resource, each tag key must be unique, and each tag key can have only one value\.
-+ Maximum key length – 128 Unicode characters in UTF\-8
-+ Maximum value length – 256 Unicode characters in UTF\-8
++ Maximum key length – 127 Unicode characters in UTF\-8
++ Maximum value length – 255 Unicode characters in UTF\-8
 + Although EC2 allows for any character in its tags, other services may be more restrictive\. Generally allowed characters are: letters, numbers, and spaces representable in UTF\-8, and the following characters: \+ \- = \. \_ : / @\. These characters may not be allowed by more restrictive services\. 
 + Tag keys and values are case\-sensitive\.
 + Don't use the `aws:` prefix for either keys or values; it's reserved for AWS use\. You can't edit or delete tag keys or values with this prefix\. Tags with this prefix do not count against your tags per resource limit\.

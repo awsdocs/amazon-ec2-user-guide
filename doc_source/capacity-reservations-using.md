@@ -10,7 +10,7 @@ By default, Capacity Reservations automatically match new instances and running 
 + [Modifying a Capacity Reservation](#capacity-reservations-modify)
 + [Modifying an Instance's Capacity Reservation Settings](#capacity-reservations-modify-instance)
 + [Viewing a Capacity Reservation](#capacity-reservations-view)
-+ [Cancelling a Capacity Reservation](#capacity-reservations-release)
++ [Canceling a Capacity Reservation](#capacity-reservations-release)
 
 ## Creating a Capacity Reservation<a name="capacity-reservations-create"></a>
 
@@ -192,7 +192,7 @@ Use the [describe\-capacity\-reservations](https://docs.aws.amazon.com/cli/lates
 $  aws ec2 describe-capacity-reservations
 ```
 
-## Cancelling a Capacity Reservation<a name="capacity-reservations-release"></a>
+## Canceling a Capacity Reservation<a name="capacity-reservations-release"></a>
 
 You can cancel a Capacity Reservation at any time if you no longer need the reserved capacity\. When you cancel a Capacity Reservation, the capacity is released immediately, and it is no longer reserved for your use\.
 

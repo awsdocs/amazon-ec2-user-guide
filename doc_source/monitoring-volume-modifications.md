@@ -125,26 +125,25 @@ With CloudWatch Events, you can create a notification rule for volume modificati
    }
    ```
 
-   The following is an example of a typical event:
+   The following is example event data:
 
    ```
-   Body:
    {
       "version": "0",
-      "id": "1ea2ace2-7790-46ed-99ab-d07a8bd68685",
+      "id": "01234567-0123-0123-0123-012345678901",
       "detail-type": "EBS Volume Notification",
       "source": "aws.ec2",
-      "account": "065441870323",
+      "account": "012345678901",
       "time": "2017-01-12T21:09:07Z",
       "region": "us-east-1",
       "resources": [
-         "arn:aws:ec2:us-east-1:065441870323:volume/vol-03a55cf56513fa1b6"
+         "arn:aws:ec2:us-east-1:012345678901:volume/vol-03a55cf56513fa1b6"
       ],
       "detail": {
          "result": "optimizing",
          "cause": "",
          "event": "modifyVolume",
-         "request-id": "auto-58c08bad-d90b-11e6-a309-b51ed35473f8"
+         "request-id": "01234567-0123-0123-0123-0123456789ab"
       }
    }
    ```

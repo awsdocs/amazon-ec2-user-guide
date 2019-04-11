@@ -38,13 +38,13 @@ The following information can help you troubleshoot issues if your instance fail
 1. In the details pane, choose **Status Checks** to see the individual results for all **System Status Checks** and **Instance Status Checks**\.
 
 If a system status check has failed, you can try one of the following options:
-+ Create an instance recovery alarm\. For more information, see [Create Alarms That Stop, Terminate, or Recover an Instance](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/UsingAlarmActions.html) in the *Amazon CloudWatch User Guide*\.
++ Create an instance recovery alarm\. For more information, see [Create Alarms That Stop, Terminate, Reboot, or Recover an Instance](UsingAlarmActions.md)\.
 + If you changed the instance type to a [Nitro\-based instance](instance-types.md#ec2-nitro-instances), status checks fail if you migrated from an instance that does not have the required ENA and NVMe drivers\. For more information, see [Compatibility for Resizing Instances](ec2-instance-resize.md#resize-limitations)\.
 + For an instance using an Amazon EBS\-backed AMI, stop and restart the instance\.
 + For an instance using an instance\-store backed AMI, terminate the instance and launch a replacement\.
 + Wait for Amazon EC2 to resolve the issue\.
 + Post your issue to the [Amazon EC2 forum](https://forums.aws.amazon.com/forum.jspa?forumID=30)\.
-+ If your instance is in an Auto Scaling group, the Amazon EC2 Auto Scaling service automatically launches a replacement instance\. For more information, see [Health Checks for Auto Scaling Instances](https://docs.aws.amazon.com/autoscaling/latest/userguide/healthcheck.html) in the *Amazon EC2 Auto Scaling User Guide*\.
++ If your instance is in an Auto Scaling group, the Amazon EC2 Auto Scaling service automatically launches a replacement instance\. For more information, see [Health Checks for Auto Scaling Instances](https://docs.aws.amazon.com/autoscaling/ec2/userguide/healthcheck.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 + Retrieve the system log and look for errors\.
 
 ## Retrieve the System Logs<a name="troubleshooting-retrieve-system-logs"></a>

@@ -6,7 +6,7 @@ By default, Amazon EC2 sends metric data to CloudWatch in 5\-minute periods\. To
 
 The Amazon EC2 console displays a series of graphs based on the raw data from Amazon CloudWatch\. Depending on your needs, you might prefer to get data for your instances from Amazon CloudWatch instead of the graphs in the console\.
 
-For more information about Amazon CloudWatch, see the [Amazon CloudWatch User Guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/)\.
+For more information about Amazon CloudWatch, see the [Amazon CloudWatch User Guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/)\.
 
 **Topics**
 + [Enable or Disable Detailed Monitoring for Your Instances](using-cloudwatch-new.md)

@@ -138,7 +138,6 @@ For more information, see the following:
   + SUSE Linux Enterprise Server 12 or later
   + CentOS 7 or later
   + FreeBSD 11\.1 or later
-  + Windows Server 2008 R2 or later
 + C5, C5d, and C5n instances support a maximum of 28 attachments, including network interfaces, EBS volumes, and NVMe instance store volumes\. Every instance has at least one network interface attachment\.
 + C5, C5d, and C5n instances should have acpid installed to support clean shutdown through API requests\.
 + There is a limit on the total number of instances that you can launch in a region, and there are additional limits on some instance types\. For more information, see [How many instances can I run in Amazon EC2?](https://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2)\. To request a limit increase, use the [Amazon EC2 Instance Request Form](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-instances)\.

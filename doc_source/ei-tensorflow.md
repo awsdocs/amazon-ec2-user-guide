@@ -25,14 +25,23 @@ This release of Amazon EI TensorFlow Serving has been tested to perform well and
 
 ## Amazon EI TensorFlow Serving Example<a name="tensorflow-example"></a>
 
-The following is an example you can try for serving different models like ResNet using a Single Shot Detector \(SSD\)\. As a general rule, you need a servable model and client scripts to be already downloaded to your DLAMI\. 
+The following is an example you can try for serving different models like ResNet using a Single Shot Detector \(SSD\)\. This example assumes that you are using a Deep Learning AMI\. As a general rule, you need a servable model and client scripts to be already downloaded to your DLAMI\. 
 
 **Activate the TensorFlow Elastic Inference Environment**
-+ If you are using the AWS Deep Learning AMI, activate the Python 2\.7 TensorFlow environment\. The example scripts are not compatible with Python 3\.x\.
 
-  ```
-  source activate amazonei_tensorflow_p27
-  ```
+1. 
+   + \(Option for Python 3\) Activate the Python 3 TensorFlow EI environment\. 
+
+     ```
+     source activate amazonei_tensorflow_p36
+     ```
+   + \(Option for Python 2\) Activate the Python 2\.7 TensorFlow EI environment\. 
+
+     ```
+     source activate amazonei_tensorflow_p27
+     ```
+
+1. The remaining steps assume you are using the `amazonei_tensorflow_p27` environment\.
 
 **Serve and Test Inference with an Inception Model**
 
@@ -54,10 +63,10 @@ The following is an example you can try for serving different models like ResNet
    curl -O https://raw.githubusercontent.com/awslabs/mxnet-model-server/master/docs/images/3dogs.jpg
    ```
 
-1. Navigate to the folder where `AmazonEI_TensorFlow_Serving` is installed and run the following command to launch the server\. Note, "model\_base\_path" must be an absolute path\.
+1. Launch the server\. Note, "model\_base\_path" must be an absolute path\.
 
    ```
-   AmazonEI_TensorFlow_Serving_v1.12_v1 --model_name=ssdresnet --model_base_path=/tmp/ssd_resnet50_v1_coco --port=9000
+   amazonei_tensorflow_model_server  --model_name=ssdresnet --model_base_path=/tmp/ssd_resnet50_v1_coco --port=9000
    ```
 
 1. While the server is running in the foreground, launch another terminal session\. Open a new terminal and activate the TensorFlow environment\. 
@@ -70,6 +79,7 @@ The following is an example you can try for serving different models like ResNet
 
    ```
    from __future__ import print_function
+   
    import grpc
    import tensorflow as tf
    from PIL import Image
@@ -79,89 +89,69 @@ The following is an example you can try for serving different models like ResNet
    from tensorflow_serving.apis import predict_pb2
    from tensorflow_serving.apis import prediction_service_pb2_grpc
    
-   tf.app.flags.DEFINE_string('server', 'localhost:9000', 
+   tf.app.flags.DEFINE_string('server', 'localhost:9000',
                               'PredictionService host:port')
-   
    tf.app.flags.DEFINE_string('image', '', 'path to image in JPEG format')
-    
    FLAGS = tf.app.flags.FLAGS
-    
-   if(FLAGS.image == ''): 
+   if(FLAGS.image == ''):
      print("Supply an Image using '--image [path/to/image]'")
      exit(1)
    
    coco_classes_txt = "https://raw.githubusercontent.com/amikelive/coco-labels/master/coco-labels-paper.txt"
-    
    local_coco_classes_txt = "/tmp/coco-labels-paper.txt"
-    
    # Downloading coco labels
    os.system("curl -o %s -O %s" % (local_coco_classes_txt, coco_classes_txt))
-    
    # Setting default number of predictions
    NUM_PREDICTIONS = 20
-    
    # Reading coco labels to a list
-   with open(local_coco_classes_txt) as f: 
+   with open(local_coco_classes_txt) as f:
      classes = ["No Class"] + [line.strip() for line in f.readlines()]
    
-   def main(_): 
+   
+   def main(_):
      channel = grpc.insecure_channel(FLAGS.server)
      stub = prediction_service_pb2_grpc.PredictionServiceStub(channel)
    
-     with Image.open(FLAGS.image) as f: 
+     with Image.open(FLAGS.image) as f:
        f.load()
-    
        # Reading the test image given by the user
        data = np.asarray(f)
-    
        # Setting batch size to 1
        data = np.expand_dims(data, axis=0)
-    
+   
        # Creating a prediction request
        request = predict_pb2.PredictRequest()
-    
        # Setting the model spec name
        request.model_spec.name = 'ssdresnet'
-    
        # Setting up the inputs and tensors from image data
        request.inputs['inputs'].CopyFrom(
            tf.contrib.util.make_tensor_proto(data, shape=data.shape))
    
-       # Iterating over the predictions. The first inference request can take saveral seconds to complete 
+       # Iterating over the predictions. The first inference request can take saveral seconds to complete
        for curpred in range(NUM_PREDICTIONS):
-    
          if(curpred == 0):
            print("The first inference request loads the model into the accelerator and can take several seconds to complete. Please standby!")
-    
          # Start the timer
          start = time.time()
-    
          # This is where the inference actually happens
          result = stub.Predict(request, 60.0)  # 10 secs timeout
-    
          print("Inference %d took %f seconds" % (curpred, time.time()-start))
    
-       # Extracting results from output 
+       # Extracting results from output
        outputs = result.outputs
-    
        detection_classes = outputs["detection_classes"]
-    
        # Creating an ndarray from the output TensorProto
        detection_classes = tf.make_ndarray(detection_classes)
-    
        # Getting the number of objects detected in the input image from the output of the predictor
        num_detections = int(tf.make_ndarray(outputs["num_detections"])[0])
-    
        print("%d detection[s]" % (num_detections))
-    
        # Getting the class ids from the output and mapping the class ids to class names from the coco labels
        class_label = [classes[int(x)]
-    
-       for x in detection_classes[0][:num_detections]]
-           print("SSD Prediction is ", class_label)
-    
+                      for x in detection_classes[0][:num_detections]]
+       print("SSD Prediction is ", class_label)
+   
+   
    if __name__ == '__main__':
-    
      tf.app.run()
    ```
 
@@ -243,16 +233,16 @@ EI\-enabled TensorFlow comes bundled in the Deep Learning AMIs\. You can also do
 
 **To download and install the pip package**
 
-1. Choose the zip file with the pip wheel for the Python version and operating system of your choice from the [S3 bucket](https://s3.console.aws.amazon.com/s3/buckets/amazonei-tensorflow/)\. Copy the path to the zip file and run the following command to download it:
+1. Choose the tar file with the pip wheel for the Python version and operating system of your choice from the [S3 bucket](https://s3.console.aws.amazon.com/s3/buckets/amazonei-tensorflow/)\. Copy the path to the tar file and run the following command to download it:
 
    ```
-   curl -O [URL of the zip file of your choice]
+   curl -O [URL of the tar file of your choice]
    ```
 
-1. Unzip the file:
+1. Untar the file:
 
    ```
-   unzip [name of zip file] -d /tmp
+   tar -xvzf [name of tar file]
    ```
 
 1. Install the pip wheel:
@@ -290,126 +280,96 @@ Try the following example to serve different models, such as ResNet, using a Sin
    from __future__ import division
    from __future__ import print_function
    
-   import os 
+   import os
    import sys
    import numpy as np
    import tensorflow as tf
    import matplotlib.image as mpimg
    import time
-   
    from tensorflow.contrib.ei.python.predictor.ei_predictor import EIPredictor
-    
+   
    tf.app.flags.DEFINE_string('image', '', 'path to image in JPEG format')
-    
    FLAGS = tf.app.flags.FLAGS
-    
-   if(FLAGS.image == ''): 
+   if(FLAGS.image == ''):
      print("Supply an Image using '--image [path/to/image]'")
      exit(1)
-    
    coco_classes_txt = "https://raw.githubusercontent.com/amikelive/coco-labels/master/coco-labels-paper.txt"
-    
    local_coco_classes_txt = "/tmp/coco-labels-paper.txt"
-    
    # Downloading coco labels
    os.system("curl -o %s -O %s" % (local_coco_classes_txt, coco_classes_txt))
-    
    # Setting default number of predictions
    NUM_PREDICTIONS = 20
-    
    # Reading coco labels to a list
    with open(local_coco_classes_txt) as f:
      classes = ["No Class"] + [line.strip() for line in f.readlines()]
-    
+   
+   
    def main(_):
-    
      # Reading the test image given by the user
      img = mpimg.imread(FLAGS.image)
-    
      # Setting batch size to 1
      img = np.expand_dims(img, axis=0)
-    
      # Setting up EIPredictor Input
      ssd_resnet_input = {'inputs': img}
-    
+   
      print('Running SSD Resnet on EIPredictor using specified input and outputs')
-    
      # This is the EIPredictor interface, using specified input and outputs
      eia_predictor = EIPredictor(
-    
          # Model directory where the saved model is located
          model_dir='/tmp/ssd_resnet50_v1_coco/1/',
-    
          # Specifying the inputs to the Predictor
          input_names={"inputs": "image_tensor:0"},
-    
          # Specifying the output names to tensor for Predictor
          output_names={"detection_classes": "detection_classes:0", "num_detections": "num_detections:0",
                        "detection_boxes": "detection_boxes:0"},
      )
-    
+   
      pred = None
-    
      # Iterating over the predictions. The first inference request can take saveral seconds to complete
      for curpred in range(NUM_PREDICTIONS):
        if(curpred == 0):
          print("The first inference request loads the model into the accelerator and can take several seconds to complete. Please standby!")
-    
        # Start the timer
        start = time.time()
-    
        # This is where the inference actually happens
        pred = eia_predictor(ssd_resnet_input)
-    
        print("Inference %d took %f seconds" % (curpred, time.time()-start))
-    
+   
      # Getting the number of objects detected in the input image from the output of the predictor
-    
      num_detections = int(pred["num_detections"])
      print("%d detection[s]" % (num_detections))
-    
      # Getting the class ids from the output
      detection_classes = pred["detection_classes"][0][:num_detections]
-    
      # Mapping the class ids to class names from the coco labels
-     print([classes[int(i)] for i in detection_classes]
-    
+     print([classes[int(i)] for i in detection_classes])
+   
      print('Running SSD Resnet on EIPredictor using default Signature Def')
-    
      # This is the EIPredictor interface using the default Signature Def
      eia_predictor = EIPredictor(
-    
          # Model directory where the saved model is located
          model_dir='/tmp/ssd_resnet50_v1_coco/1/',
      )
    
-    
      # Iterating over the predictions. The first inference request can take saveral seconds to complete
-    
-     for curpred in range(NUM_PREDICTIONS): 
+     for curpred in range(NUM_PREDICTIONS):
        if(curpred == 0):
          print("The first inference request loads the model into the accelerator and can take several seconds to complete. Please standby!")
-    
        # Start the timer
        start = time.time()
-    
        # This is where the inference actually happens
        pred = eia_predictor(ssd_resnet_input)
-    
        print("Inference %d took %f seconds" % (curpred, time.time()-start))
-    
+   
      # Getting the number of objects detected in the input image from the output of the predictor
      num_detections = int(pred["num_detections"])
      print("%d detection[s]" % (num_detections))
-    
      # Getting the class ids from the output
      detection_classes = pred["detection_classes"][0][:num_detections]
-    
      # Mapping the class ids to class names from the coco labels
      print([classes[int(i)] for i in detection_classes])
    
-    
-   if __name__ == "__main__": 
+   
+   if __name__ == "__main__":
      tf.app.run()
    ```
 

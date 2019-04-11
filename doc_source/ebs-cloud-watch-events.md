@@ -2,27 +2,22 @@
 
 Amazon EBS emits notifications based on Amazon CloudWatch Events for a variety of volume, snapshot, and encryption status changes\. With CloudWatch Events, you can establish rules that trigger programmatic actions in response to a change in volume, snapshot, or encryption key state\. For example, when a snapshot is created, you can trigger an AWS Lambda function to share the completed snapshot with another account or copy it to another region for disaster\-recovery purposes\.
 
-For more information, see [Using Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/WhatIsCloudWatchEvents.html) in the *Amazon CloudWatch User Guide*\. For full API reference, see the [EC2 API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference)\.
+Events in CloudWatch are represented as JSON objects\. The fields that are unique to the event are contained in the "detail" section of the JSON object\. The "event" field contains the event name\. The "result" field contains the completed status of the action that triggered the event\. For more information, see [Event Patterns in CloudWatch Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CloudWatchEventsandEventPatterns.html) in the *Amazon CloudWatch Events User Guide*\.
 
 **Topics**
 + [EBS Volume Events](#volume-events)
 + [EBS Snapshot Events](#snapshot-events)
++ [EBS Volume Modification Events](#volume-modification-events)
 + [Using Amazon Lambda To Handle CloudWatch Events](#using_lambda)
 
 ## EBS Volume Events<a name="volume-events"></a>
 
-This section defines the supported Amazon EBS volume events and provides examples of event output for specific scenarios\. Events in CloudWatch are represented as JSON objects\. For more information about the format and content of event objects, see [Events and Event Patterns](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CloudWatchEventsandEventPatterns.html) in the *Amazon CloudWatch Events User Guide*\.
-
-**Note**  
-Additional information about EBS volumes that is not captured by Cloudwatch is available through the   
-[DescribeVolumes](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeVolumes.html) API and the [describe\-volumes](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-volumes.html) CLI command\.
-
-The fields that are unique to EBS events are contained in the "detail" section of the JSON objects shown below\. The "event" field contains the event name\. The "result" field contains the completed status of the action that triggered the event\.
+Amazon EBS sends events to CloudWatch Events when the following volume events occur\.
 
 **Topics**
-+ [Create Volume \(`createVolume`\)](#create-volume)
-+ [Delete Volume \(`deleteVolume`\)](#delete-volume)
-+ [Volume Attach or Reattach \(`attachVolume`, `reattachVolume`\)](#attach-fail-key)
++ [`createVolume`](#create-volume)
++ [`deleteVolume`](#delete-volume)
++ [`attachVolume`](#attach-fail-key)
 
 ### Create Volume \(`createVolume`\)<a name="create-volume"></a>
 
@@ -115,7 +110,7 @@ The listing below is an example of a JSON object emitted by EBS for a successful
    "time": "yyyy-mm-ddThh:mm:ssZ",
    "region": "us-east-1",
    "resources": [
-      "arn:aws:ec2:us-east-1: 012345678901:volume/vol-01234567"
+      "arn:aws:ec2:us-east-1:012345678901:volume/vol-01234567"
    ],
    "detail": {
       "result": "deleted",
@@ -184,10 +179,12 @@ The listing below is an example of a JSON object emitted by EBS after a failed `
 
 ## EBS Snapshot Events<a name="snapshot-events"></a>
 
+Amazon EBS sends events to CloudWatch Events when the following volume events occur\.
+
 **Topics**
-+ [Create Snapshot \(`createSnapshot`\)](#create-snapshot-complete)
-+ [Copy Snapshot \(`copySnapshot`\)](#copy-snapshot-complete)
-+ [Share Snapshot \(`shareSnapshot`\)](#snapshot-shared)
++ [`createSnapshot`](#create-snapshot-complete)
++ [`copySnapshot`](#copy-snapshot-complete)
++ [`shareSnapshot`](#snapshot-shared)
 
 ### Create Snapshot \(`createSnapshot`\)<a name="create-snapshot-complete"></a>
 
@@ -206,15 +203,15 @@ The listing below is an example of a JSON object emitted by EBS for a successful
   "time": "yyyy-mm-ddThh:mm:ssZ",
   "region": "us-east-1",
   "resources": [
-     "arn:aws:ec2::us-west-2:snapshot/snap-01234567"
+     "arn:aws:ec2:us-west-2::snapshot/snap-01234567"
   ],
   "detail": {
     "event": "createSnapshot",
     "result": "succeeded",
     "cause": "",
     "request-id": "",
-    "snapshot_id": "arn:aws:ec2::us-west-2:snapshot/snap-01234567",
-    "source": "arn:aws:ec2::us-west-2:volume/vol-01234567",
+    "snapshot_id": "arn:aws:ec2:us-west-2::snapshot/snap-01234567",
+    "source": "arn:aws:ec2:us-west-2::volume/vol-01234567",
     "StartTime": "yyyy-mm-ddThh:mm:ssZ",
     "EndTime": "yyyy-mm-ddThh:mm:ssZ"  }
 }
@@ -237,15 +234,15 @@ The listing below is an example of a JSON object emitted by EBS after a successf
   "time": "yyyy-mm-ddThh:mm:ssZ",
   "region": "us-east-1",
   "resources": [
-    "arn:aws:ec2::us-west-2:snapshot/snap-01234567"
+    "arn:aws:ec2:us-west-2::snapshot/snap-01234567"
   ],
   "detail": {
     "event": "copySnapshot",
     "result": "succeeded",
     "cause": "",
     "request-id": "",
-    "snapshot_id": "arn:aws:ec2::us-west-2:snapshot/snap-01234567",
-    "source": "arn:aws:ec2::eu-west-1:snapshot/snap-76543210",
+    "snapshot_id": "arn:aws:ec2:us-west-2::snapshot/snap-01234567",
+    "source": "arn:aws:ec2:eu-west-1::snapshot/snap-76543210",
     "StartTime": "yyyy-mm-ddThh:mm:ssZ",
     "EndTime": "yyyy-mm-ddThh:mm:ssZ",
     "Incremental": "True"
@@ -265,15 +262,15 @@ The listing below is an example of a JSON object emitted by EBS after a failed `
   "time": "yyyy-mm-ddThh:mm:ssZ",
   "region": "us-east-1",
   "resources": [
-    "arn:aws:ec2::us-west-2:snapshot/snap-01234567"
+    "arn:aws:ec2:us-west-2::snapshot/snap-01234567"
   ],
   "detail": {
     "event": "copySnapshot",
     "result": "failed",
     "cause": "Source snapshot ID is not valid",
     "request-id": "",
-    "snapshot_id": "arn:aws:ec2::us-west-2:snapshot/snap-01234567",
-    "source": "arn:aws:ec2::eu-west-1:snapshot/snap-76543210",
+    "snapshot_id": "arn:aws:ec2:us-west-2::snapshot/snap-01234567",
+    "source": "arn:aws:ec2:eu-west-1::snapshot/snap-76543210",
     "StartTime": "yyyy-mm-ddThh:mm:ssZ",
     "EndTime": "yyyy-mm-ddThh:mm:ssZ"
   }
@@ -285,7 +282,7 @@ The listing below is an example of a JSON object emitted by EBS after a failed `
 The `shareSnapshot` event is sent to your AWS account when another account shares a snapshot with it\. The result is always `succeeded`\.
 
 **Event Data**  
-The listing below is an example of a JSON object emitted by EBS after a completed `shareSnapshot` event\. In the `detail` section, the value of `source` is the AWS account number of the user that shared the snapshot with you\. `StartTime` and `EndTime` represent when the share\-snapshot action started and ended\. The `shareSnapshot` event is emitted only when a private snapshot is shared with another user\. Sharing a public snapshot does not trigger the event\.
+The following is an example of a JSON object emitted by EBS after a completed `shareSnapshot` event\. In the `detail` section, the value of `source` is the AWS account number of the user that shared the snapshot with you\. `StartTime` and `EndTime` represent when the share\-snapshot action started and ended\. The `shareSnapshot` event is emitted only when a private snapshot is shared with another user\. Sharing a public snapshot does not trigger the event\.
 
 ```
 {
@@ -297,18 +294,43 @@ The listing below is an example of a JSON object emitted by EBS after a complete
   "time": "yyyy-mm-ddThh:mm:ssZ",
   "region": "us-east-1",
   "resources": [
-    "arn:aws:ec2::us-west-2:snapshot/snap-01234567"
+    "arn:aws:ec2:us-west-2::snapshot/snap-01234567"
   ],
   "detail": {
     "event": "shareSnapshot",
     "result": "succeeded",
     "cause": "",
     "request-id": "",
-    "snapshot_id": "arn:aws:ec2::us-west-2:snapshot/snap-01234567",
+    "snapshot_id": "arn:aws:ec2:us-west-2::snapshot/snap-01234567",
     "source": 012345678901,
     "StartTime": "yyyy-mm-ddThh:mm:ssZ",
     "EndTime": "yyyy-mm-ddThh:mm:ssZ"
   }
+}
+```
+
+## EBS Volume Modification Events<a name="volume-modification-events"></a>
+
+Amazon EBS sends `modifyVolume` events to CloudWatch Events when a volume is modified\.
+
+```
+{
+   "version": "0",
+   "id": "01234567-0123-0123-0123-012345678901",
+   "detail-type": "EBS Volume Notification",
+   "source": "aws.ec2",
+   "account": "012345678901",
+   "time": "2017-01-12T21:09:07Z",
+   "region": "us-east-1",
+   "resources": [
+      "arn:aws:ec2:us-east-1:012345678901:volume/vol-03a55cf56513fa1b6"
+   ],
+   "detail": {
+      "result": "optimizing",
+      "cause": "",
+      "event": "modifyVolume",
+      "request-id": "01234567-0123-0123-0123-0123456789ab"
+   }
 }
 ```
 

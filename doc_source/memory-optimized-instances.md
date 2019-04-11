@@ -2,7 +2,7 @@
 
 Memory optimized instances are designed to deliver fast performance for workloads that process large data sets in memory\.
 
-**R4, R5, R5a, and R5d Instances**
+**R4, R5, R5a, R5ad, and R5d Instances**
 
 These instances are well suited for the following applications:
 + High\-performance, relational \(MySQL\) and NoSQL \(MongoDB, Cassandra\) databases\.
@@ -86,6 +86,12 @@ The following is a summary of the hardware specifications for memory optimized i
 | r5a\.4xlarge | 16 | 128 | 
 | r5a\.12xlarge | 48 | 384 | 
 | r5a\.24xlarge | 96 | 768 | 
+| r5ad\.large | 2 | 16 | 
+| r5ad\.xlarge | 4 | 32 | 
+| r5ad\.2xlarge | 8 | 64 | 
+| r5ad\.4xlarge | 16 | 128 | 
+| r5ad\.12xlarge | 48 | 384 | 
+| r5ad\.24xlarge | 96 | 768 | 
 | r5d\.large | 2 | 16 | 
 | r5d\.xlarge | 4 | 32 | 
 | r5d\.2xlarge | 8 | 64 | 
@@ -149,9 +155,9 @@ The following is a summary of network performance for memory optimized instances
 
 | Instance type | Network performance | Enhanced networking | 
 | --- | --- | --- | 
-|  `r4.4xlarge` and smaller \| `r5.4xlarge` and smaller \| `r5a.4xlarge` and smaller \| `r5d.4xlarge` and smaller \| `x1e.8large` and smaller \| `z1d.3xlarge` and smaller  |  Up to 10 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  `r4.8xlarge` \| `r5.12xlarge` \| `r5a.12xlarge` \| `r5d.12xlarge` \| `x1.16xlarge` \| `x1e.16xlarge` \| `z1d.6xlarge`  |  10 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  `r5a.24xlarge`  |  20 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `r4.4xlarge` and smaller \| `r5.4xlarge` and smaller \| `r5a.4xlarge` and smaller \| `r5ad.4xlarge` and smaller \| `r5d.4xlarge` and smaller \| `x1e.8large` and smaller \| `z1d.3xlarge` and smaller  |  Up to 10 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `r4.8xlarge` \| `r5.12xlarge` \| `r5a.12xlarge` \| `r5ad.12xlarge` \| `r5d.12xlarge` \| `x1.16xlarge` \| `x1e.16xlarge` \| `z1d.6xlarge`  |  10 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `r5a.24xlarge` \| `r5ad.24xlarge`  |  20 Gbps  | [ENA](enhanced-networking-ena.md) | 
 |  `r4.16xlarge` \| `r5.24xlarge` \| `r5.metal` \| `r5d.24xlarge` \| `r5d.metal` \| `u-6tb1.metal` \| `u-9tb1.metal` \| `u-12tb1.metal` \| `x1.32xlarge` \| `x1e.32xlarge` \| `z1d.12xlarge` \| `z1d.metal`  |  25 Gbps  | [ENA](enhanced-networking-ena.md) | 
 
 ## SSD I/O Performance<a name="r5d-z1d-instances-ssd-perf"></a>
@@ -161,6 +167,12 @@ If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-ba
 
 | Instance Size | 100% Random Read IOPS | Write IOPS | 
 | --- | --- | --- | 
+|  `r5ad.large` \*  |  30,000  |  15,000  | 
+|  `r5ad.xlarge` \*  |  59,000  |  29,000  | 
+|  `r5ad.2xlarge` \*  |  117,000  |  57,000  | 
+|  `r5ad.4xlarge` \*  |  234,000  |  114,000  | 
+|  `r5ad.12xlarge`  |  700,000  |  340,000  | 
+|  `r5ad.24xlarge`  |  1,400,000  |  680,000  | 
 |  `r5d.large` \*  |  30,000  |  15,000  | 
 |  `r5d.xlarge` \*  |  59,000  |  29,000  | 
 |  `r5d.2xlarge` \*  |  117,000  |  57,000  | 
@@ -194,6 +206,7 @@ The following is a summary of features for memory optimized instances\.
 | R4 | Yes | No | No | Yes | 
 | R5 | Yes | Yes | No | Yes | 
 | R5a | Yes | Yes | No | Yes | 
+| R5ad | No | Yes | NVME \* | Yes | 
 | R5d | No | Yes | NVME \* | Yes | 
 | `u-6tb1.metal` | Yes | Yes | No | No | 
 | `u-9tb1.metal` | Yes | Yes | No | No | 
@@ -228,8 +241,8 @@ The following AMIs support launching memory optimized instances:
 
 ## Release Notes<a name="memory-instance-limits"></a>
 + R5 and R5d instances feature a 3\.1 GHz Intel Xeon Platinum 8000 series processor\.
-+ R5a instances feature a 2\.5 GHz AMD EPYC 7000 series processor\.
-+ The following are requirements for high memory, R5, R5a, R5d, and z1d instances:
++ R5a and R5ad instances feature a 2\.5 GHz AMD EPYC 7000 series processor\.
++ The following are requirements for high memory, R5, R5a, R5ad, R5d, and z1d instances:
   + NVMe drivers must be installed\. EBS volumes are exposed as [NVMe block devices](nvme-ebs-volumes.md)\.
   + Elastic Network Adapter \([ENA](enhanced-networking-ena.md)\) drivers must be installed\.
 
@@ -241,8 +254,7 @@ The following AMIs support launching memory optimized instances:
   + SUSE Linux Enterprise Server 12 or later
   + CentOS 7 or later
   + FreeBSD 11\.1 or later
-  + Windows Server 2008 R2 or later
-+ R5, R5a, and R5d instances support a maximum of 28 attachments, including network interfaces, EBS volumes, and NVMe instance store volumes\. Every instance has at least one network interface attachment\. For example, if you have no additional network interface attachments on an EBS\-only instance, you could attach 27 EBS volumes to that instance\.
++ R5, R5a, R5ad, and R5d instances support a maximum of 28 attachments, including network interfaces, EBS volumes, and NVMe instance store volumes\. Every instance has at least one network interface attachment\. For example, if you have no additional network interface attachments on an EBS\-only instance, you could attach 27 EBS volumes to that instance\.
 + Launching a bare metal instance boots the underlying server, which includes verifying all hardware and firmware components\. This means that it can take 20 minutes from the time the instance enters the running state until it becomes available over the network\.
 + To attach or detach EBS volumes or secondary network interfaces from a bare metal instance requires PCIe native hotplug support\. Amazon Linux 2 and the latest versions of the Amazon Linux AMI support PCIe native hotplug, but earlier versions do not\. You must enable the following Linux kernel configuration options:
 

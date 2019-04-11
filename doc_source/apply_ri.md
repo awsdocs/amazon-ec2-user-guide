@@ -10,18 +10,25 @@ Reserved Instances assigned to a specific Availability Zone provide the Reserved
 
 ## How Regional Reserved Instances Are Applied<a name="apply-regional-ri"></a>
 
-Reserved Instances purchased for a Region \(regional Reserved Instances\) provide Availability Zone flexibility—the Reserved Instance discount applies to instance usage in any Availability Zone in that Region\. 
+Regional Reserved Instances are purchased for a Region and provide Availability Zone flexibility\. The Reserved Instance discount applies to instance usage in any Availability Zone in that Region\. 
 
-Regional Reserved Instances on the Linux/Unix platform with default tenancy also provide instance size flexibility, where the Reserved Instance discount applies to instance usage within that instance type, regardless of size\.
+Regional Reserved Instances also provide instance size flexibility where the Reserved Instance discount applies to instance usage within the instance family, regardless of size\.
 
-**Note**  
-Instance size flexibility does not apply to Reserved Instances that are purchased for a specific Availability Zone, bare metal instances, Reserved Instances with dedicated tenancy, and Reserved Instances for Windows, Windows with SQL Standard, Windows with SQL Server Enterprise, Windows with SQL Server Web, RHEL, and SLES\.
+**Limitations for instance size flexibility**  
+Instance size flexibility only applies to Reserved Instances that use the Amazon Linux/Unix platform with default tenancy\.
 
-Instance size flexibility is determined by the normalization factor of the instance size\. The discount applies either fully or partially to running instances of the same instance type, depending on the instance size of the reservation, in any Availability Zone in the Region\. The only attributes that must be matched are the instance type, tenancy, and platform\.
+Instance size flexibility does not apply to the following Reserved Instances:
++ Reserved Instances that are purchased for a specific Availability Zone \(zonal Reserved Instances\)
++ Reserved Instances with dedicated tenancy
++ Reserved Instances for Windows, Windows with SQL Standard, Windows with SQL Server Enterprise, Windows with SQL Server Web, RHEL, and SLES
+
+### Instance Size Flexibility Determined by Normalization Factor<a name="ri-normalization-factor"></a>
+
+Instance size flexibility is determined by the normalization factor of the instance size\. The discount applies either fully or partially to running instances of the same instance type, depending on the instance size of the reservation, in any Availability Zone in the Region\. The only attributes that must be matched are the instance type, tenancy, and platform\. 
 
 Instance size flexibility is applied from the smallest to the largest instance size within the instance family based on the normalization factor\. 
 
-The table below describes the different sizes within an instance type, and corresponding normalization factor per hour\. This scale is used to apply the discounted rate of Reserved Instances to the normalized usage of the instance type\.
+The table below describes the different sizes within an instance family, and corresponding normalization factor per hour\. This scale is used to apply the discounted rate of Reserved Instances to the normalized usage of the instance family\.
 
 
 | Instance size | Normalization factor | 
@@ -54,6 +61,32 @@ Or, if you have one `t2.large` instance running in your account in the US East \
 **Note**  
 The normalization factor is also applied when modifying Reserved Instances\. For more information, see [Modifying Reserved Instances](ri-modifying.md)\.
 
+#### Normalization Factor for Bare Metal Instances<a name="ri-normalization-factor-bare-metal"></a>
+
+Instance size flexibility also applies to bare metal instances within the instance family\. If you have regional Amazon Linux/Unix Reserved Instances with shared tenancy on bare metal instances, you can benefit from the Reserved Instance savings within the same instance family\. The opposite is also true: if you have regional Amazon Linux/Unix Reserved Instances with shared tenancy on instances in the same family as a bare metal instance, you can benefit from the Reserved Instance savings on the bare metal instance\. 
+
+A bare metal instance is the same size as the largest instance within the same instance family\. For example, an `i3.metal` is the same size as an `i3.16xlarge`, so they have the same normalization factor\.
+
+**Note**  
+The `.metal` instance sizes do not have a single normalization factor\. They vary based on the specific instance family\.
+
+
+| Bare metal instance size | Normalization factor | 
+| --- | --- | 
+| i3\.metal |  128  | 
+|  `r5.metal`  |  192  | 
+|  `r5d.metal`  |  192  | 
+|  `z1d.metal`  |  96  | 
+|  `m5.metal`  |  192  | 
+|  `m5d.metal`  |  192  | 
+
+For example, an `i3.metal` instance has a normalization factor of 128\. If you purchase an `i3.metal` default tenancy Amazon Linux/Unix Reserved Instance in the US East \(N\. Virginia\), the billing benefit can apply as follows:
++ If you have one running `i3.16xlarge` in your account in that Region, the billing benefit is applied in full to the `i3.16xlarge` instance \(`i3.16xlarge` normalization factor = 128\)\.
++ Or, if you have two running `i3.8xlarge` instances in your account in that Region, the billing benefit is applied in full to both `i3.8xlarge` instances \(`i3.8xlarge` normalization factor = 64\)\.
++ Or, if you have four running `i3.4xlarge` instances in your account in that Region, the billing benefit is applied in full to all four `i3.4xlarge` instances \(`i3.4xlarge` normalization factor = 32\)\.
+
+The opposite is also true\. For example, if you purchase two `i3.8xlarge` default tenancy Amazon Linux/Unix Reserved Instances in the US East \(N\. Virginia\), and you have one running `i3.metal` instance in that Region, the billing benefit is applied in full to the `i3.metal` instance\.
+
 ## Examples of Applying Reserved Instances<a name="ri-usage-examples"></a>
 
 The following scenarios cover the ways in which Reserved Instances are applied\.
@@ -84,15 +117,15 @@ You're running the following On\-Demand Instances in account A \(the purchasing 
 + 2 x `m4.xlarge` Linux, default tenancy instances in Availability Zone us\-east\-1a
 + 1 x `m4.2xlarge` Linux, default tenancy instances in Availability Zone us\-east\-1b
 + 2 x `c4.xlarge` Linux, default tenancy instances in Availability Zone us\-east\-1a
-+ 1x `c4.2xlarge` Linux, default tenancy instances in Availability Zone us\-east\-1b
++ 1 x `c4.2xlarge` Linux, default tenancy instances in Availability Zone us\-east\-1b
 Another customer is running the following On\-Demand Instances in account B—a linked account:  
 + 2 x `m4.xlarge` Linux, default tenancy instances in Availability Zone us\-east\-1a
 You purchase the following regional Reserved Instances in account A:  
 + 4 x `m4.xlarge` Linux, default tenancy Reserved Instances in Region us\-east\-1
 + 2 x `c4.xlarge` Linux, default tenancy Reserved Instances in Region us\-east\-1
 The regional Reserved Instance benefits are applied in the following way:  
-+ The discount of the four `m4.xlarge` Reserved Instances is used by the two `m4.xlarge` instances in account A and the `m4.2xlarge` instance in account A\. All three instances match the attributes \(instance family, Region, platform, tenancy\)\. There is no capacity reservation\.
-+ The discount of the two `c4.xlarge` Reserved Instances applies to the two `c4.xlarge` instances, because they are a smaller instance size than the `c4.2xlarge` instance\. There is no capacity reservation\.
++ The discount of the four `m4.xlarge` Reserved Instances is used by the two `m4.xlarge` instances and the single `m4.2xlarge` instance in account A \(purchasing account\)\. All three instances match the attributes \(instance family, Region, platform, tenancy\)\. The discount is applied to instances in the purchasing account \(account A\) first, even though account B \(linked account\) has two `m4.xlarge` that also match the Reserved Instances\. There is no capacity reservation because the Reserved Instances are regional Reserved Instances\.
++ The discount of the two `c4.xlarge` Reserved Instances applies to the two `c4.xlarge` instances, because they are a smaller instance size than the `c4.2xlarge` instance\. There is no capacity reservation because the Reserved Instances are regional Reserved Instances\.
 
 **Example Scenario 3: Zonal Reserved Instances in a Linked Account**  
 In general, Reserved Instances that are owned by an account are applied first to usage in that account\. However, if there are qualifying, unused Reserved Instances for a specific Availability Zone \(zonal Reserved Instances\) in other accounts in the organization, they are applied to the account before regional Reserved Instances owned by the account\. This is done to ensure maximum Reserved Instance utilization and a lower bill\. For billing purposes, all the accounts in the organization are treated as one account\. The following example may help explain this\.  

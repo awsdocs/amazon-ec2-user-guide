@@ -160,7 +160,7 @@ Encrypting the key provides greater security, but because an encrypted key requi
       [ec2-user ~]$ sudo openssl ecparam -name prime256v1 -out custom.key -genkey
       ```
 
-       The output in this case is a 256\-bit elliptic curve private key using prime256v1, a "named curve" that OpenSSL supports\. Its cryptographic strength is slightly greater than a 2048\-bit RSA key, [according to NIST](http://csrc.nist.gov/publications/nistpubs/800-57/sp800-57_part1_rev3_general.pdf)\.
+       The output in this case is a 256\-bit elliptic curve private key using prime256v1, a "named curve" that OpenSSL supports\. Its cryptographic strength is slightly greater than a 2048\-bit RSA key, [according to NIST](http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57pt1r4.pdf)\.
 **Note**  
 Not all CAs provide the same level of support for elliptic\-curve\-based keys as for RSA keys\.
 

@@ -7,6 +7,7 @@ The following table describes important additions to the Amazon EC2 documentatio
 
 | Feature | API Version | Description | Release Date | 
 | --- | --- | --- | --- | 
+| M5ad and R5ad instances | 2016\-11\-15 | New instances featuring AMD EYPC processors\. | 27 March 2019 | 
 | Tag Dedicated Host Reservations |  2016\-11\-15  |  You can tag your Dedicated Host Reservations\. For more information, see [Tagging Dedicated Host Reservations](how-dedicated-hosts-work.md#tagging-host-reservations)\.  | 14 March 2019 | 
 | Bare metal instances for M5, M5d, R5, R5d, and z1d | 2016\-11\-15 | New instances that provide your applications with direct access to the physical resources of the host server\. | 13 February 2019 | 
 | Partition placement groups | 2016\-11\-15 | Partition placement groups spread instances across logical partitions, ensuring that instances in one partition do not share underlying hardware with instances in other partitions\. For more information, see [Partition Placement Groups](placement-groups.md#placement-groups-partition)\. | 20 December 2018 | 
