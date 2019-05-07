@@ -21,10 +21,12 @@ The Chrome browser does not support the NPAPI plugin\. For more information, see
   For instructions, see [https://java\.com/en/download/help/enable\_browser\.xml](https://java.com/en/download/help/enable_browser.xml)\.
 + **Locate the private key**** and verify permissions**
 
-  Get the fully\-qualified path to the location on your computer of the `.pem` file for the key pair that you specified when you launched the instance\. Verify that the `.pem` file has permissions of 0400, not 0777\. For more information, see [Error: Unprotected Private Key File](TroubleshootingInstancesConnecting.md#troubleshoot-unprotected-key)\.
+  Get the fully\-qualified path to the location on your computer of the `.pem` file for the key pair that you specified when you launched the instance\. For more information about how you created your key pair, see [Creating a Key Pair Using Amazon EC2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#having-ec2-create-your-key-pair)\.
+
+   Verify that the `.pem` file has permissions of 0400, not 0777\. For more information, see [Error: Unprotected Private Key File](TroubleshootingInstancesConnecting.md#troubleshoot-unprotected-key)\.
 + **Get the default user name for the AMI that you used to launch your instance**
   + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
-  + For a Centos AMI, the user name is `centos`\.
+  + For a CentOS AMI, the user name is `centos`\.
   + For a Debian AMI, the user name is `admin` or `root`\.
   + For a Fedora AMI, the user name is `ec2-user` or `fedora`\.
   + For a RHEL AMI, the user name is `ec2-user` or `root`\.
@@ -49,7 +51,7 @@ The Chrome browser does not support the NPAPI plugin\. For more information, see
 
    1. In **User name**, enter the user name to log in to your instance\.
       + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
-      + For a Centos AMI, the user name is `centos`\.
+      + For a CentOS AMI, the user name is `centos`\.
       + For a Debian AMI, the user name is `admin` or `root`\.
       + For a Fedora AMI, the user name is `ec2-user` or `fedora`\.
       + For a RHEL AMI, the user name is `ec2-user` or `root`\.

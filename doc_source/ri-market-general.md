@@ -1,14 +1,14 @@
-# Selling on the Reserved Instance Marketplace<a name="ri-market-general"></a>
+# Reserved Instance Marketplace<a name="ri-market-general"></a>
 
 The Reserved Instance Marketplace is a platform that supports the sale of third\-party and AWS customers' unused Standard Reserved Instances, which vary in term lengths and pricing options\. For example, you may want to sell Reserved Instances after moving instances to a new AWS Region, changing to a new instance type, ending projects before the term expiration, when your business needs change, or if you have unneeded capacity\.
 
 If you want to sell your unused Reserved Instances on the Reserved Instance Marketplace, you must meet certain eligibility criteria\.
 
 **Topics**
-+ [Selling in the Reserved Instance Marketplace](#ri-market-selling-guide)
-+ [Buying in the Reserved Instance Marketplace](#ri-market-buying-guide)
++ [Selling on the Reserved Instance Marketplace](#ri-market-selling-guide)
++ [Buying from the Reserved Instance Marketplace](#ri-market-buying-guide)
 
-## Selling in the Reserved Instance Marketplace<a name="ri-market-selling-guide"></a>
+## Selling on the Reserved Instance Marketplace<a name="ri-market-selling-guide"></a>
 
 As soon as you list your Reserved Instances in the Reserved Instance Marketplace, they are available for potential buyers to find\. All Reserved Instances are grouped according to the duration of the term remaining and the hourly price\.
 
@@ -225,7 +225,7 @@ When your Reserved Instance is sold, AWS sends you an email notification\. Each 
 
 To track the status of a Reserved Instance listing in the console, choose **Reserved Instance**, **My Listings**\. The **My Listings** tab contains the **Listing State** value\. It also contains information about the term, listing price, and a breakdown of how many instances in the listing are available, pending, sold, and canceled\. You can also use the [describe\-reserved\-instances\-listings](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances-listings.html) command with the appropriate filter to obtain information about your listings\.
 
-## Buying in the Reserved Instance Marketplace<a name="ri-market-buying-guide"></a>
+## Buying from the Reserved Instance Marketplace<a name="ri-market-buying-guide"></a>
 
 You can purchase Reserved Instances from third\-party sellers who own Reserved Instances that they no longer need from the Reserved Instance Marketplace\. You can do this using the Amazon EC2 console or a command line tool\. The process is similar to purchasing Reserved Instances from AWS\. For more information, see [Buying Reserved Instances](ri-market-concepts-buying.md)\.
 

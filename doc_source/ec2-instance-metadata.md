@@ -27,6 +27,8 @@ To view all categories of instance metadata from within a running instance, use 
 http://169.254.169.254/latest/meta-data/
 ```
 
+The IP address `169.254.169.254` is a link\-local address and is valid only from the instance\. For more information, see [Link\-local address](https://en.wikipedia.org/wiki/Link-local_address) on Wikipedia\.
+
 Note that you are not billed for HTTP requests used to retrieve instance metadata and user data\.
 
 You can use a tool such as cURL, or if your instance supports it, the GET command; for example:
@@ -175,10 +177,10 @@ If you're throttled while accessing the instance metadata service, retry your qu
 ## Working with Instance User Data<a name="instancedata-add-user-data"></a>
 
 When working with instance user data, keep the following in mind:
-+ User data is treated as opaque data: what you give is what you get back\. It is up to the instance to be able to interpret it\.
-+ User data is limited to 16 KB\. This limit applies to the data in raw form, not base64\-encoded form\.
 + User data must be base64\-encoded\. The Amazon EC2 console can perform the base64 encoding for you or accept base64\-encoded input\.
-+ User data must be decoded when you retrieve it\. The data is decoded when you retrieve it using instance metadata and the console\.
++ User data is limited to 16 KB, in raw form, before it is base64\-encoded\. The size of a string of length *n* after base64\-encoding is ceil\(*n*/3\)\*4\.
++ User data must be base64\-decoded when you retrieve it\. The data is decoded for you automatically if you retrieve it using instance metadata or the console\.
++ User data is treated as opaque data: what you give is what you get back\. It is up to the instance to be able to interpret it\.
 + If you stop an instance, modify its user data, and start the instance, the updated user data is not executed when you start the instance\.
 
 ### Specify Instance User Data at Launch<a name="specify-user-data-launch"></a>

@@ -212,13 +212,13 @@ The following is a summary of features for memory optimized instances\.
 | `u-9tb1.metal` | Yes | Yes | No | No | 
 | `u-12tb1.metal` | Yes | Yes | No | No | 
 | X1 | No | No | SSD | Yes | 
-| X1e | No | No | SSD | Yes | 
+| X1e | No | No | SSD \* | Yes | 
 | z1d | No | Yes | NVME \* | Yes | 
 
 **\*** The root device volume must be an Amazon EBS volume\.
 
 For more information, see the following:
-+ [Amazon EBS and NVMe](nvme-ebs-volumes.md)
++ [Amazon EBS and NVMe on Linux Instances](nvme-ebs-volumes.md)
 + [Amazon EC2 Instance Store](InstanceStorage.md)
 + [Placement Groups](placement-groups.md)
 
@@ -251,7 +251,7 @@ The following AMIs support launching memory optimized instances:
   + Amazon Linux AMI 2018\.03
   + Ubuntu 14\.04 or later
   + Red Hat Enterprise Linux 7\.4 or later
-  + SUSE Linux Enterprise Server 12 or later
+  + SUSE Linux Enterprise Server 12 SP2 or later
   + CentOS 7 or later
   + FreeBSD 11\.1 or later
 + R5, R5a, R5ad, and R5d instances support a maximum of 28 attachments, including network interfaces, EBS volumes, and NVMe instance store volumes\. Every instance has at least one network interface attachment\. For example, if you have no additional network interface attachments on an EBS\-only instance, you could attach 27 EBS volumes to that instance\.

@@ -38,7 +38,7 @@ Incorrect use of dd can easily destroy a volume's data\. Be sure to follow preci
    [ec2-user ~]$ sudo dd if=/dev/xvdf of=/dev/null bs=1M
    ```
 
-   \[fio\] If you have fio installed on your system, use the following command initialize your volume\. The `--filename` \(input file\) parameter should be set to the drive you wish to initialize\.
+   \[fio\] If you have fio installed on your system, use the following command to initialize your volume\. The `--filename` \(input file\) parameter should be set to the drive you wish to initialize\.
 
    ```
    [ec2-user ~]$ sudo fio --filename=/dev/xvdf --rw=read --bs=128k --iodepth=32 --ioengine=libaio --direct=1 --name=volume-initialize

@@ -11,7 +11,7 @@ Your local computer's operating system determines the type of method you use to 
 
 | Your local computer | Connection method | 
 | --- | --- | 
-|  Linux or Mac OS X  |  [Connecting to Your Linux Instance Using SSH](AccessingInstancesLinux.md)  | 
+|  Linux or macOS X  |  [Connecting to Your Linux Instance Using SSH](AccessingInstancesLinux.md)  | 
 |  Windows  |  [Connecting to Your Linux Instance from Windows Using PuTTY](putty.md) [Connecting to Your Linux Instance from Windows Using Windows Subsystem for Linux](WSL.md) [Connecting to Your Linux Instance Using SSH](AccessingInstancesLinux.md)  | 
 |  All  |  [Connecting to Your Linux Instance Using MindTerm](mindterm.md)  | 
 

@@ -120,7 +120,7 @@ The following is a summary of features for compute optimized instances:
 **\*** The root device volume must be an Amazon EBS volume\.
 
 For more information, see the following:
-+ [Amazon EBS and NVMe](nvme-ebs-volumes.md)
++ [Amazon EBS and NVMe on Linux Instances](nvme-ebs-volumes.md)
 + [Amazon EC2 Instance Store](InstanceStorage.md)
 + [Placement Groups](placement-groups.md)
 
@@ -135,7 +135,7 @@ For more information, see the following:
   + Amazon Linux AMI 2018\.03
   + Ubuntu 14\.04 or later
   + Red Hat Enterprise Linux 7\.4 or later
-  + SUSE Linux Enterprise Server 12 or later
+  + SUSE Linux Enterprise Server 12 SP2 or later
   + CentOS 7 or later
   + FreeBSD 11\.1 or later
 + C5, C5d, and C5n instances support a maximum of 28 attachments, including network interfaces, EBS volumes, and NVMe instance store volumes\. Every instance has at least one network interface attachment\.

@@ -48,7 +48,7 @@ You can create a Capacity Reservation using the Amazon EC2 console or the AWS CL
 
    1. **Reservation Ends**—Choose one of the following options:
       + **Manually**—Reserve the capacity until you explicitly cancel it\.
-      + **Specific time**—Cancels the capacity reservation automatically\. The capacity reservation is released automatically at the specified date and time\. The Capacity Reservation is cancelled within an hour from the specified time\. For example, if you specify 5/31/2019, 13:30:55, the Capacity Reservation is guaranteed to end between 13:30:55 and 14:30:55 on 5/31/2019\.
+      + **Specific time**—Cancels the capacity reservation automatically\. The capacity reservation is released automatically at the specified date and time\. The Capacity Reservation is canceled within an hour from the specified time\. For example, if you specify 5/31/2019, 13:30:55, the Capacity Reservation is guaranteed to end between 13:30:55 and 14:30:55 on 5/31/2019\.
 **Note**  
 After the reservation ends, you can no longer target instances to the Capacity Reservation\. Instances running in the reserved capacity continue to run uninterrupted\. If instances targeting a Capacity Reservation are stopped, you cannot restart them until you remove their Capacity Reservation targeting preference or configure them to target a different Capacity Reservation\.
 
@@ -109,7 +109,7 @@ $  aws ec2 run-instances --image-id ami-abc12345 --count 1 --instance-type t2.mi
 
 ## Modifying a Capacity Reservation<a name="capacity-reservations-modify"></a>
 
-You can change an active Capacity Reservation's attributes after you have created it\. You cannot modify a Capacity Reservation after it has expired or after you have explicitly cancelled it\.
+You can change an active Capacity Reservation's attributes after you have created it\. You cannot modify a Capacity Reservation after it has expired or after you have explicitly canceled it\.
 
 When modifying a Capacity Reservation, you can only increase or decrease the quantity and change the way in which it is released\. You cannot change a Capacity Reservation's instance type, EBS optimization, instance store settings, platform, Availability Zone, or instance eligibility\. If you need to modify any of these attributes, we recommend that you cancel the reservation, and then create a new one with the required attributes\.
 
@@ -171,7 +171,7 @@ $  aws ec2 modify-instance-capacity-reservation-attributes --instance-id instanc
 Capacity Reservations have three possible states:
 + `active`—The Capacity Reservation is active and the capacity is available for your use\.
 + `expired`—The Capacity Reservation expired automatically at the date and time specified in your reservation request\. The reserved capacity is no longer available for your use\.
-+ `cancelled`—The Capacity Reservation was manually cancelled\. The reserved capacity is no longer available for your use\.
++ `cancelled`—The Capacity Reservation was manually canceled\. The reserved capacity is no longer available for your use\.
 + `pending`—The Capacity Reservation request was successful but the capacity provisioning is still pending\.
 + `failed`—The Capacity Reservation request has failed\. A request might fail due to invalid request parameters, capacity constraints, or instance limit constraints\. Failed requests are retained for 60 minutes\.
 

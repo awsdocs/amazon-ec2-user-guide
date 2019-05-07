@@ -128,7 +128,7 @@ An IAM user must have the following permissions to use Amazon DLM:
    "Statement": [
       {
          "Effect": "Allow",
-         "Action": "iam:PassRole",
+         "Action": ["iam:PassRole", "iam:ListRoles"],
          "Resource": "arn:aws:iam::123456789012:role/AWSDataLifecycleManagerDefaultRole"
       },
       {

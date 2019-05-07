@@ -92,13 +92,13 @@ In this example, you have a `t2.micro` Convertible Reserved Instance with four i
 **Example Example: Convertible Reserved Instance with a single instance**  
 In this example, you have a `t2.large` Convertible Reserved Instance\. To change it to a smaller `t2.medium` instance and a `m3.medium` instance:  
 
-1. Modify the `t2.large` Convertible Reserved Instance by splitting it into two `t2.medium` Convertible Reserved Instances\. A single `t2.large` instance has the same instance size footprint as two `t2.medium` instances\. For more information, see [Modifying the Instance Size of Your Reservations](ri-modifying.md#ri-modification-instancemove)\.
+1. Modify the `t2.large` Convertible Reserved Instance by splitting it into two `t2.medium` Convertible Reserved Instances\. A single `t2.large` instance has the same instance size footprint as two `t2.medium` instances\. For more information, see [Support For Modifying Instance Sizes](ri-modifying.md#ri-modification-instancemove)\.
 
 1. Exchange one of the new `t2.medium` Convertible Reserved Instances for an `m3.medium` Convertible Reserved Instance\.
 
 ![\[Modify and exchange Reserved Instances\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ri-split-cri-single.png)
 
-For more information, see [Modifying the Instance Size of Your Reservations](ri-modifying.md#ri-modification-instancemove) and [Submitting Exchange Requests](#ri-exchange-process)\.
+For more information, see [Support For Modifying Instance Sizes](ri-modifying.md#ri-modification-instancemove) and [Submitting Exchange Requests](#ri-exchange-process)\.
 
 Not all Reserved Instances can be modified\. Ensure that you read the applicable [restrictions](ri-modifying.md#ri-modification-limits)\.
 

@@ -36,7 +36,7 @@ For more information about key management and key access permissions, see [How A
 ## Supported Instance Types<a name="EBSEncryption_supported_instances"></a>
 
 Amazon EBS encryption is available on the instance types listed below\. You can attach both encrypted and unencrypted volumes to these instance types simultaneously\.
-+ General purpose: A1, M3, M4, M5, M5a, M5ad, M5d, T2, and T3
++ General purpose: A1, M3, M4, M5, M5a, M5ad, M5d, T2, T3, and T3a
 + Compute optimized: C3, C4, C5, C5d, and C5n
 + Memory optimized: `cr1.8xlarge`, R3, R4, R5, R5a, R5ad, R5d, X1, X1e, and z1d
 + Storage optimized: D2, `h1.2xlarge`, `h1.4xlarge`, I2, and I3

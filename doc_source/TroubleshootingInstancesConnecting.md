@@ -134,7 +134,7 @@ To connect to your instance using an IPv6 address, check the following:
 In PuTTYgen, load your private key file and select **Save Private Key** rather than **Generate**\. 
 + Verify that you are connecting with the appropriate user name for your AMI\. Enter the user name in the **Host name** box in the **PuTTY Configuration** window\.
   + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
-  + For a Centos AMI, the user name is `centos`\.
+  + For a CentOS AMI, the user name is `centos`\.
   + For a Debian AMI, the user name is `admin` or `root`\.
   + For a Fedora AMI, the user name is `ec2-user` or `fedora`\.
   + For a RHEL AMI, the user name is `ec2-user` or `root`\.
@@ -149,7 +149,7 @@ If you connect to your instance using SSH and get any of the following errors, `
 
 The appropriate user names are as follows:
 + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
-+ For a Centos AMI, the user name is `centos`\.
++ For a CentOS AMI, the user name is `centos`\.
 + For a Debian AMI, the user name is `admin` or `root`\.
 + For a Fedora AMI, the user name is `ec2-user` or `fedora`\.
 + For a RHEL AMI, the user name is `ec2-user` or `root`\.
@@ -238,7 +238,7 @@ If you use PuTTY to connect to your instance and get either of the following err
 
 The appropriate user names are as follows:
 + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
-+ For a Centos AMI, the user name is `centos`\.
++ For a CentOS AMI, the user name is `centos`\.
 + For a Debian AMI, the user name is `admin` or `root`\.
 + For a Fedora AMI, the user name is `ec2-user` or `fedora`\.
 + For a RHEL AMI, the user name is `ec2-user` or `root`\.

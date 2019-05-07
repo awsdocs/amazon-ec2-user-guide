@@ -11,15 +11,15 @@ A burstable performance instance configured as `standard` is suited to workloads
 The `standard` mode is a configuration option for burstable performance instances\. It can be enabled or disabled at any time for a running or stopped instance\.
 
 **Note**  
-T3 instances are launched as `unlimited` by default\. T2 instances are launched as `standard` by default\.
+T3 and T3a instances are launched as `unlimited` by default\. T2 instances are launched as `standard` by default\.
 
 ### How Standard Burstable Performance Instances Work<a name="how-burstable-performance-instances-standard-works"></a>
 
-When a burstable performance instance configured as `standard` is in a running state, it continuously earns \(at a millisecond\-level resolution\) a set rate of earned credits per hour\. For T2 Standard, when the instance is stopped, it loses all its accrued credits, and its credit balance is reset to zero\. When it is restarted, it receives a new set of launch credits, and begins to accrue earned credits\. For T3 Standard, the CPU credit balance persists for seven days after the instance stops and the credits are lost thereafter\. If you start the instance within seven days, no credits are lost\.
+When a burstable performance instance configured as `standard` is in a running state, it continuously earns \(at a millisecond\-level resolution\) a set rate of earned credits per hour\. For T2 Standard, when the instance is stopped, it loses all its accrued credits, and its credit balance is reset to zero\. When it is restarted, it receives a new set of launch credits, and begins to accrue earned credits\. For T3 and T3a Standard, the CPU credit balance persists for seven days after the instance stops and the credits are lost thereafter\. If you start the instance within seven days, no credits are lost\.
 
 A T2 Standard instance receives two types of CPU credits: *earned credits* and *launch credits*\. When a T2 Standard instance is in a running state, it continuously earns \(at a millisecond\-level resolution\) a set rate of earned credits per hour\. At start, it has not yet earned credits for a good startup experience; therefore, to provide a good startup experience, it receives launch credits at start, which it spends first while it accrues earned credits\.
 
-T3 Standard instances do not receive launch credits\.
+T3 and T3a Standard instances do not receive launch credits\.
 
 ### Launch Credits<a name="launch-credits"></a>
 

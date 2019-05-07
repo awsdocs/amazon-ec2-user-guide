@@ -123,7 +123,7 @@ Cost allocation tracking using Elastic IP address tags is not supported\.
 
 **To tag an Elastic IP address using the command line**
 
-Use one of the following commands:
+You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
 + [create\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-tags.html) \(AWS CLI\)
 
   ```
@@ -221,12 +221,14 @@ If you have released your Elastic IP address, you might be able to recover it\. 
 + You can recover an Elastic IP address using the Amazon EC2 API or a command line tool only\.
 
 **To recover an Elastic IP address using the command line**
-+ \(AWS CLI\) Use the [allocate\-address](https://docs.aws.amazon.com/cli/latest/reference/ec2/allocate-address.html) command and specify the IP address using the `--address` parameter\.
+
+You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
++ [allocate\-address](https://docs.aws.amazon.com/cli/latest/reference/ec2/allocate-address.html) \(AWS CLI\) — Specify the IP address using the `--address` parameter as follows\.
 
   ```
   aws ec2 allocate-address --domain vpc --address 203.0.113.3
   ```
-+ \(AWS Tools for Windows PowerShell\) Use the [New\-EC2Address](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Address.html) command and specify the IP address using the `-Address` parameter\.
++ [New\-EC2Address](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Address.html) \(AWS Tools for Windows PowerShell\) — Specify the IP address using the `-Address` parameter as follows\.
 
   ```
   PS C:\> New-EC2Address -Address 203.0.113.3 -Domain vpc -Region us-east-1

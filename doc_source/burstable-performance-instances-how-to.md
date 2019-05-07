@@ -1,7 +1,7 @@
 # Working with Burstable Performance Instances<a name="burstable-performance-instances-how-to"></a>
 
 The steps for launching, monitoring, and modifying these instances are similar\. The key difference is the default credit specification when they launch: 
-+ T3 instances launch as `unlimited` by default\.
++ T3 and T3a instances launch as `unlimited` by default\.
 + T2 instances launch as `standard` by default\.
 
 **Topics**
@@ -12,7 +12,7 @@ The steps for launching, monitoring, and modifying these instances are similar\.
 
 ## Launching a Burstable Performance Instance as Unlimited or Standard<a name="launch-burstable-performance-instances"></a>
 
-T3 instances launch as `unlimited` by default\. T2 instances launch as `standard` by default\.
+T3 and T3a instances launch as `unlimited` by default\. T2 instances launch as `standard` by default\.
 
 For more information about AMI and driver requirements for these instances, see [Release Notes](general-purpose-instances.md#general-purpose-instances-limits)\.
 
@@ -26,9 +26,9 @@ You can launch your instances as `unlimited` or `standard` using the Amazon EC2 
 
 1. On the **Choose an Instance Type** page, select an instance type, and choose **Next: Configure Instance Details**\.
 
-1. Choose a credit specification\. The default for T3 is `unlimited`, and for T2 it is `standard`\.
+1. Choose a credit specification\. The default for T3 and T3a is `unlimited`, and for T2 it is `standard`\.
 
-   1. To launch a T3 instance as `standard`, on the **Configure Instance Details** page, for **T2/T3 Unlimited**, clear **Enable**\.
+   1. To launch a T3 or T3a instance as `standard`, on the **Configure Instance Details** page, for **T2/T3 Unlimited**, clear **Enable**\.
 
    1. To launch a T2 instance as `unlimited`, on the **Configure Instance Details** page, for **T2/T3 Unlimited**, select **Enable**\.
 
@@ -36,7 +36,7 @@ You can launch your instances as `unlimited` or `standard` using the Amazon EC2 
 
 **To launch a burstable performance instance as Unlimited or Standard \(AWS CLI\)**  
 Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command to launch your instances\. Specify the credit specification using the `--credit-specification CpuCredits=` parameter\. Valid credit specifications are `unlimited` and `standard`\.
-+ For T3, if you do not include the `--credit-specification` parameter, the instance launches as `unlimited` by default\.
++ For T3 and T3a, if you do not include the `--credit-specification` parameter, the instance launches as `unlimited` by default\.
 + For T2, if you do not include the `--credit-specification` parameter, the instance launches as `standard` by default\.
 
 ```
@@ -55,7 +55,7 @@ You must use a *launch template* for launching instances as `unlimited` in an Au
 
 1. Follow the [Creating a Launch Template for an Auto Scaling Group](https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-launch-template.html) procedure\.
 
-1. In **Launch template contents**, for **Instance type**, choose a T3 or T2 instance size\.
+1. In **Launch template contents**, for **Instance type**, choose a T3, T3a, or T2 instance size\.
 
 1. To launch instances as `unlimited` in an Auto Scaling group, in **Advanced details**, for **T2/T3 Unlimited**, choose **Enable**\.
 
@@ -63,7 +63,7 @@ You must use a *launch template* for launching instances as `unlimited` in an Au
 
 **To create a launch template that launches instances as Unlimited \(AWS CLI\)**  
 Use the [create\-launch\-template](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-launch-template.html) command and specify `unlimited` as the credit specification\.
-+ For T3, if you do not include the `CreditSpecification={CpuCredits=unlimited}` value, the instance launches as `unlimited` by default\.
++ For T3 and T3a, if you do not include the `CreditSpecification={CpuCredits=unlimited}` value, the instance launches as `unlimited` by default\.
 + For T2, if you do not include the `CreditSpecification={CpuCredits=unlimited}` value, the instance launches as `standard` by default\.
 
 ```
@@ -151,7 +151,7 @@ You can switch the credit specification of a running or stopped instance at any 
 
 1. Choose **Actions**, **Instance Settings**, **Change T2/T3 Unlimited**\.
 **Note**  
-The **Change T2/T3 Unlimited** option is enabled only if you select a T3 or T2 instance\.
+The **Change T2/T3 Unlimited** option is enabled only if you select a T3, T3a, or T2 instance\.
 
 1. To change the credit specification to `unlimited`, choose **Enable**\. To change the credit specification to `standard`, choose **Disable**\. The current credit specification for the instance appears in parentheses after the instance ID\.
 

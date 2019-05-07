@@ -31,13 +31,13 @@ Each launch specification includes the information that Amazon EC2 needs to laun
 
 A Spot Fleet request can be in one of the following states:
 + `submitted` – The Spot Fleet request is being evaluated and Amazon EC2 is preparing to launch the target number of Spot Instances\.
-+ `active` – The Spot Fleet has been validated and Amazon EC2 is attempting to maintain the target number of running Spot Instances\. The request remains in this state until it is modified or cancelled\.
-+ `modifying` – The Spot Fleet request is being modified\. The request remains in this state until the modification is fully processed or the Spot Fleet is cancelled\. A one\-time `request` cannot be modified, and this state does not apply to such Spot requests\.
-+ `cancelled_running` – The Spot Fleet is cancelled and does not launch additional Spot Instances\. Its existing Spot Instances continue to run until they are interrupted or terminated\. The request remains in this state until all instances are interrupted or terminated\.
-+ `cancelled_terminating` – The Spot Fleet is cancelled and its Spot Instances are terminating\. The request remains in this state until all instances are terminated\.
-+ `cancelled` – The Spot Fleet is cancelled and has no running Spot Instances\. The Spot Fleet request is deleted two days after its instances were terminated\.
++ `active` – The Spot Fleet has been validated and Amazon EC2 is attempting to maintain the target number of running Spot Instances\. The request remains in this state until it is modified or canceled\.
++ `modifying` – The Spot Fleet request is being modified\. The request remains in this state until the modification is fully processed or the Spot Fleet is canceled\. A one\-time `request` cannot be modified, and this state does not apply to such Spot requests\.
++ `cancelled_running` – The Spot Fleet is canceled and does not launch additional Spot Instances\. Its existing Spot Instances continue to run until they are interrupted or terminated\. The request remains in this state until all instances are interrupted or terminated\.
++ `cancelled_terminating` – The Spot Fleet is canceled and its Spot Instances are terminating\. The request remains in this state until all instances are terminated\.
++ `cancelled` – The Spot Fleet is canceled and has no running Spot Instances\. The Spot Fleet request is deleted two days after its instances were terminated\.
 
-The following illustration represents the transitions between the request states\. If you exceed your Spot Fleet limits, the request is cancelled immediately\.
+The following illustration represents the transitions between the request states\. If you exceed your Spot Fleet limits, the request is canceled immediately\.
 
 ![\[Spot Fleet request states\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/Spot_fleet_states.png)
 

@@ -74,6 +74,7 @@ Create a new launch template using parameters that you define, or use an existin
    + \(IPv6\-only\) **IPv6 IPs**: An IPv6 address from the range of the subnet\.
    + **Security group ID**: The ID of a security group in your VPC with which to associate the network interface\.
    + **Delete on termination**: Whether the network interface is deleted when the instance is deleted\.
+   + **Elastic Fabric Adapter**: Indicates whether the network interface is an Elastic Fabric Adapter\. For more information, see [ Elastic Fabric Adapter](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html)\.
 
 1. For **Storage \(Volumes\)**, specify volumes to attach to the instance besides the volumes specified by the AMI\.
    + **Volume type**: The instance store or Amazon EBS volumes with which to associate your instance\. The type of volume depends on the instance type that you've chosen\. For more information, see [Amazon EC2 Instance Store](InstanceStorage.md) and [Amazon EBS Volumes](EBSVolumes.md)\.

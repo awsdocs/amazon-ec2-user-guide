@@ -481,7 +481,7 @@ The EC2 Fleet launches On\-Demand Instances when there is available capacity, an
 The returned list of running instances is refreshed periodically and might be out of date\.
 
 **To monitor your EC2 Fleet \(AWS CLI\)**  
-Use the following [describe\-fleets](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-fleet.html) command to describe your EC2 Fleets:
+Use the following [describe\-fleets](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-fleets.html) command to describe your EC2 Fleets:
 
 ```
 aws ec2 describe-fleets

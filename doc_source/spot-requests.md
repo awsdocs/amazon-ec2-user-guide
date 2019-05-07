@@ -25,7 +25,7 @@ A Spot Instance request can be in one of the following states:
 + `active` – The request is fulfilled and has an associated Spot Instance\.
 + `failed` – The request has one or more bad parameters\.
 + `closed` – The Spot Instance was interrupted or terminated\.
-+ `cancelled` – You cancelled the request, or the request expired\.
++ `cancelled` – You canceled the request, or the request expired\.
 
 The following illustration represents the transitions between the request states\. Notice that the transitions depend on the request type \(one\-time or persistent\)\.
 

@@ -58,7 +58,7 @@ Use the following procedure to connect to your Linux instance using PuTTY\. You 
 
    1. In the **Host Name** box, enter *user\_name*@*public\_dns\_name*\. Be sure to specify the appropriate user name for your AMI\. For example:
       + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
-      + For a Centos AMI, the user name is `centos`\.
+      + For a CentOS AMI, the user name is `centos`\.
       + For a Debian AMI, the user name is `admin` or `root`\.
       + For a Fedora AMI, the user name is `ec2-user` or `fedora`\.
       + For a RHEL AMI, the user name is `ec2-user` or `root`\.
@@ -68,7 +68,7 @@ Use the following procedure to connect to your Linux instance using PuTTY\. You 
 
    1. \(IPv6 only\) To connect using your instance's IPv6 address, enter *user\_name*@*ipv6\_address*\. Be sure to specify the appropriate user name for your AMI\. For example:
       + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
-      + For a Centos AMI, the user name is `centos`\.
+      + For a CentOS AMI, the user name is `centos`\.
       + For a Debian AMI, the user name is `admin` or `root`\.
       + For a Fedora AMI, the user name is `ec2-user` or `fedora`\.
       + For a RHEL AMI, the user name is `ec2-user` or `root`\.
@@ -138,7 +138,7 @@ WinSCP is a GUI\-based file manager for Windows that allows you to upload and tr
 
 1. For **User name**, enter the default user name for your AMI\.
    + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
-   + For a Centos AMI, the user name is `centos`\.
+   + For a CentOS AMI, the user name is `centos`\.
    + For a Debian AMI, the user name is `admin` or `root`\.
    + For a Fedora AMI, the user name is `ec2-user` or `fedora`\.
    + For a RHEL AMI, the user name is `ec2-user` or `root`\.

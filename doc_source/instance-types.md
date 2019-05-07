@@ -35,10 +35,10 @@ For more information about the current generation instance types, see [Amazon EC
 
 | Instance Family | Current Generation Instance Types | 
 | --- | --- | 
-| General purpose | `a1.medium` \| `a1.large` \| `a1.xlarge` \| `a1.2xlarge` \| `a1.4xlarge` \| `m4.large` \| `m4.xlarge` \| `m4.2xlarge` \| `m4.4xlarge` \| `m4.10xlarge` \| `m4.16xlarge` \| `m5.large` \| `m5.xlarge` \| `m5.2xlarge` \| `m5.4xlarge` \| `m5.12xlarge` \| `m5.24xlarge` \| `m5.metal` \| `m5a.large` \| `m5a.xlarge` \| `m5a.2xlarge` \| `m5a.4xlarge` \| `m5a.12xlarge` \| `m5a.24xlarge` \| `m5ad.large` \| `m5ad.xlarge` \| `m5ad.2xlarge` \| `m5ad.4xlarge` \| `m5ad.12xlarge` \| `m5ad.24xlarge` \| `m5d.large` \| `m5d.xlarge` \| `m5d.2xlarge` \| `m5d.4xlarge` \| `m5d.12xlarge` \| `m5d.24xlarge` \| `m5d.metal` \| `t2.nano` \| `t2.micro` \| `t2.small` \| `t2.medium` \| `t2.large` \| `t2.xlarge` \| `t2.2xlarge` \| `t3.nano` \| `t3.micro` \| `t3.small` \| `t3.medium` \| `t3.large` \| `t3.xlarge` \| `t3.2xlarge`  | 
-| Compute optimized | `c4.large` \| `c4.xlarge` \| `c4.2xlarge` \| `c4.4xlarge` \| `c4.8xlarge` \| `c5.large` \| `c5.xlarge` \| `c5.2xlarge` \| `c5.4xlarge` \| `c5.9xlarge` \| `c5.18xlarge` \| `c5d.xlarge` \| `c5d.2xlarge` \| `c5d.4xlarge` \| `c5d.9xlarge` \| `c5d.18xlarge` \| `c5n.large` \| `c5n.xlarge` \| `c5n.2xlarge` \| `c5n.4xlarge` \| `c5n.9xlarge` \| `c5n.18xlarge`  | 
+| General purpose | `a1.medium` \| `a1.large` \| `a1.xlarge` \| `a1.2xlarge` \| `a1.4xlarge` \| `m4.large` \| `m4.xlarge` \| `m4.2xlarge` \| `m4.4xlarge` \| `m4.10xlarge` \| `m4.16xlarge` \| `m5.large` \| `m5.xlarge` \| `m5.2xlarge` \| `m5.4xlarge` \| `m5.12xlarge` \| `m5.24xlarge` \| `m5.metal` \| `m5a.large` \| `m5a.xlarge` \| `m5a.2xlarge` \| `m5a.4xlarge` \| `m5a.12xlarge` \| `m5a.24xlarge` \| `m5ad.large` \| `m5ad.xlarge` \| `m5ad.2xlarge` \| `m5ad.4xlarge` \| `m5ad.12xlarge` \| `m5ad.24xlarge` \| `m5d.large` \| `m5d.xlarge` \| `m5d.2xlarge` \| `m5d.4xlarge` \| `m5d.12xlarge` \| `m5d.24xlarge` \| `m5d.metal` \| `t2.nano` \| `t2.micro` \| `t2.small` \| `t2.medium` \| `t2.large` \| `t2.xlarge` \| `t2.2xlarge` \| `t3.nano` \| `t3.micro` \| `t3.small` \| `t3.medium` \| `t3.large` \| `t3.xlarge` \| `t3.2xlarge` \| `t3a.nano` \| `t3a.micro` \| `t3a.small` \| `t3a.medium` \| `t3a.large` \| `t3a.xlarge` \| `t3a.2xlarge` | 
+| Compute optimized | `c4.large` \| `c4.xlarge` \| `c4.2xlarge` \| `c4.4xlarge` \| `c4.8xlarge` \| `c5.large` \| `c5.xlarge` \| `c5.2xlarge` \| `c5.4xlarge` \| `c5.9xlarge` \| `c5.18xlarge` \| `c5d.large` \| `c5d.xlarge` \| `c5d.2xlarge` \| `c5d.4xlarge` \| `c5d.9xlarge` \| `c5d.18xlarge` \| `c5n.large` \| `c5n.xlarge` \| `c5n.2xlarge` \| `c5n.4xlarge` \| `c5n.9xlarge` \| `c5n.18xlarge`  | 
 | Memory optimized | `r4.large` \| `r4.xlarge` \| `r4.2xlarge` \| `r4.4xlarge` \| `r4.8xlarge` \| `r4.16xlarge` \| `r5.large` \| `r5.xlarge` \| `r5.2xlarge` \| `r5.4xlarge` \| `r5.12xlarge` \| `r5.24xlarge` \| `r5.metal` \| `r5a.large` \| `r5a.xlarge` \| `r5a.2xlarge` \| `r5a.4xlarge` \| `r5a.12xlarge` \| `r5a.24xlarge` \| `r5ad.large` \| `r5ad.xlarge` \| `r5ad.2xlarge` \| `r5ad.4xlarge` \| `r5ad.12xlarge` \| `r5ad.24xlarge` \| `r5d.large` \| `r5d.xlarge` \| `r5d.2xlarge` \| `r5d.4xlarge` \| `r5d.12xlarge` \| `r5d.24xlarge` \| `r5d.metal` \| `u-6tb1.metal` \| `u-9tb1.metal` \| `u-12tb1.metal` \| `x1.16xlarge` \| `x1.32xlarge` \| `x1e.xlarge` \| `x1e.2xlarge` \| `x1e.4xlarge` \| `x1e.8xlarge` \| `x1e.16xlarge` \| `x1e.32xlarge` \| `z1d.large` \| `z1d.xlarge` \| `z1d.2xlarge` \| `z1d.3xlarge` \| `z1d.6xlarge` \| `z1d.12xlarge` \| `z1d.metal` | 
-| Storage optimized | `d2.xlarge` \| `d2.2xlarge` \| `d2.4xlarge` \| `d2.8xlarge` \| `h1.2xlarge` \| `h1.4xlarge` \| `h1.8xlarge` \| `h1.16xlarge` \| `i3.large` \| `i3.xlarge` \| `i3.2xlarge` \| `i3.4xlarge` \| `i3.8xlarge` \| `i3.16xlarge` \| `i3.metal` | 
+| Storage optimized | `d2.xlarge` \| `d2.2xlarge` \| `d2.4xlarge` \| `d2.8xlarge` \| `h1.2xlarge` \| `h1.4xlarge` \| `h1.8xlarge` \| `h1.16xlarge` \| `i3.large` \| `i3.xlarge` \| `i3.2xlarge` \| `i3.4xlarge` \| `i3.8xlarge` \| `i3.16xlarge` \| `i3.metal`  | 
 | Accelerated computing | `f1.2xlarge` \| `f1.4xlarge` \| `f1.16xlarge` \| `g3s.xlarge` \| `g3.4xlarge` \| `g3.8xlarge` \| `g3.16xlarge` \| `p2.xlarge` \| `p2.8xlarge` \| `p2.16xlarge` \| `p3.2xlarge` \| `p3.8xlarge` \| `p3.16xlarge` \| `p3dn.24xlarge` | 
 
 ### Previous Generation Instances<a name="previous-gen-instances"></a>
@@ -90,7 +90,7 @@ The following components are part of the Nitro system:
 **Instance Types**
 
 The following instances are based on the Nitro system:
-+ A1, C5, C5d, C5n, M5, M5a, M5ad, M5d, `p3dn.24xlarge`, R5, R5a, R5ad, R5d, T3, and z1d
++ A1, C5, C5d, C5n, M5, M5a, M5ad, M5d, `p3dn.24xlarge`, R5, R5a, R5ad, R5d, T3, T3a, and z1d
 + Bare metal: `i3.metal`, `m5.metal`, `m5d.metal`, `r5.metal`, `r5d.metal`, `u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, and `z1d.metal`
 
 **Resources**
@@ -115,10 +115,12 @@ When you select an instance type, this determines the networking and storage fea
 + The maximum supported MTU varies across instance types\. All Amazon EC2 instance types support standard Ethernet V2 1500 MTU frames\. All current generation instances support 9001 MTU, or jumbo frames, and some previous generation instances support them as well\. For more information, see [Network Maximum Transmission Unit \(MTU\) for Your EC2 Instance](network_mtu.md)\.
 
 **Storage features**
-+ Some instance types support EBS volumes and instance store volumes, while other instance types support only EBS volumes\. Some instance types that support instance store volumes use solid state drives \(SSD\) to deliver very high random I/O performance\. Some instance types support NVMe instance store volumes\. Some instance types support NVMe EBS volumes\. For more information, see [Storage](Storage.md)\.
++ Some instance types support EBS volumes and instance store volumes, while other instance types support only EBS volumes\. Some instance types that support instance store volumes use solid state drives \(SSD\) to deliver very high random I/O performance\. Some instance types support NVMe instance store volumes\. Some instance types support NVMe EBS volumes\. For more information, see [Amazon EBS and NVMe on Linux Instances](nvme-ebs-volumes.md) and [NVMe SSD Volumes](ssd-instance-store.md#nvme-ssd-volumes)\.
 + To obtain additional, dedicated capacity for Amazon EBS I/O, you can launch some instance types as EBS–optimized instances\. Some instance types are EBS–optimized by default\. For more information, see [Amazon EBS–Optimized Instances](EBSOptimized.md)\.
 
-The following table summarizes the networking and storage features supported by the current generation instance types\.
+### Summary of Networking and Storage Features<a name="instance-type-summary-table"></a>
+
+The following table summarizes the networking and storage features supported by current generation instance types\.
 
 
 |  | EBS only | NVMe EBS | Instance store | Placement group | Enhanced networking | 
@@ -131,7 +133,7 @@ The following table summarizes the networking and storage features supported by 
 |  D2  | No | No |  HDD  |  Yes  | Intel 82599 VF | 
 |  F1  | No | No |  NVMe \*  |  Yes  | ENA | 
 |  G3  | Yes | No | No |  Yes  | ENA | 
-|  H1  | No | No |  HDD  |  Yes  | ENA | 
+|  H1  | No | No |  HDD \*  |  Yes  | ENA | 
 |  I3  | No | No |  NVMe \*  |  Yes  | ENA | 
 |  M4  |  Yes  | No | No |  Yes  |  `m4.16xlarge`: ENA All other sizes: Intel 82599 VF  | 
 |  M5  |  Yes  | Yes | No |  Yes  | ENA | 
@@ -147,14 +149,15 @@ The following table summarizes the networking and storage features supported by 
 |  R5d  | No | Yes | NVMe \* |  Yes  | ENA | 
 | T2 | Yes | No | No | No | No | 
 | T3 | Yes | Yes | No | No | ENA | 
+| T3a | Yes | Yes | No | No | ENA | 
 | u\-xtb1\.metal | Yes | Yes | No | No | ENA | 
 |  X1  | No | No |  SSD  |  Yes  | ENA | 
-| X1e | No | No | SSD | Yes | ENA | 
+| X1e | No | No | SSD \* | Yes | ENA | 
 | z1d | No | Yes | NVMe \* | Yes | ENA | 
 
 \* The root device volume must be an Amazon EBS volume\.
 
-The following table summarizes the networking and storage features supported by earlier generation instance types\.
+The following table summarizes the networking and storage features supported by previous generation instance types\.
 
 
 |  | Instance store | Placement group | Enhanced networking | 

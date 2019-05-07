@@ -21,7 +21,6 @@ The following table lists the burstable performance instance types, the rate at 
 
 |  Instance type  |  CPU credits earned per hour  |  Maximum earned credits that can be accrued\*  |  vCPUs  |  Baseline performance per vCPU  | 
 | --- | --- | --- | --- | --- | 
-|  `t1.micro`  |  6  |  144  |  1  |  10%  | 
 |  `t2.nano`  |  3  |  72  |  1  |  5%  | 
 |  `t2.micro`  |  6  |  144  |  1  |  10%  | 
 |  `t2.small`  |  12  |  288  |  1  |  20%  | 
@@ -36,6 +35,13 @@ The following table lists the burstable performance instance types, the rate at 
 |  `t3.large`  |  36  |  864  |  2  |  30%\*\*  | 
 |  `t3.xlarge`  |  96  |  2304  |  4  |  40%\*\*  | 
 |  `t3.2xlarge`  |  192  |  4608  |  8  |  40%\*\*  | 
+|  `t3a.nano`  |  6  |  144  |  2  |  5%\*\*  | 
+|  `t3a.micro`  |  12  |  288  |  2  |  10%\*\*  | 
+|  `t3a.small`  |  24  |  576  |  2  |  20%\*\*  | 
+|  `t3a.medium`  |  24  |  576  |  2  |  20%\*\*  | 
+|  `t3a.large`  |  36  |  864  |  2  |  30%\*\*  | 
+|  `t3a.xlarge`  |  96  |  2304  |  4  |  40%\*\*  | 
+|  `t3a.2xlarge`  |  192  |  4608  |  8  |  40%\*\*  | 
 
 
 |  | 
@@ -57,13 +63,13 @@ The CPU credit balance limit differs for each instance size\. For example, a `t3
 
 **Note**  
 T2 Standard instances also earn launch credits\. Launch credits do not count towards the CPU credit balance limit\. If a T2 instance has not spent its launch credits, and remains idle over a 24\-hour period while accruing earned credits, its CPU credit balance appears as over the limit\. For more information, see [Launch Credits](burstable-performance-instances-standard-mode.md#launch-credits)\.   
-T3 instances do not earn launch credits\. These instances launch as `unlimited` by default, and therefore can burst immediately upon start without any launch credits\.
+T3 and T3a instances do not earn launch credits\. These instances launch as `unlimited` by default, and therefore can burst immediately upon start without any launch credits\.
 
 ### Accrued CPU Credits Life Span<a name="accrued-CPU-credits-life-span"></a>
 
 CPU credits on a running instance do not expire\.
 
-For T3, the CPU credit balance persists for seven days after an instance stops and the credits are lost thereafter\. If you start the instance within seven days, no credits are lost\.
+For T3 and T3a, the CPU credit balance persists for seven days after an instance stops and the credits are lost thereafter\. If you start the instance within seven days, no credits are lost\.
 
 For T2, the CPU credit balance does not persist between instance stops and starts\. If you stop a T2 instance, the instance loses all its accrued credits\.
 

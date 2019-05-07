@@ -2,7 +2,9 @@
 
 Secure Sockets Layer/Transport Layer Security \(SSL/TLS\) creates an encrypted channel between a web server and web client that protects data in transit from being eavesdropped on\. This tutorial explains how to add support manually for SSL/TLS on a single instance of Amazon Linux 2 running Apache web server\. If you plan to offer commercial\-grade services, the [AWS Certificate Manager](https://aws.amazon.com/certificate-manager/), not discussed here, is a good option\.
 
-For historical reasons, web encryption is often referred to simply as SSL\. While web browsers still support SSL, its successor protocol TLS is less vulnerable to attack\. Amazon Linux 2 disables all versions of SSL by default and recommends disabling TLS version 1\.0, as described below\. Only TLS 1\.1 and 1\.2 may be safely enabled\. For more information about the updated encryption standard, see [RFC 7568](https://tools.ietf.org/html/rfc7568)\. 
+For historical reasons, web encryption is often referred to simply as SSL\. While web browsers still support SSL, its successor protocol TLS is less vulnerable to attack\. Amazon Linux 2 disables server\-side support for all versions of SSL by default\. [Security standards bodies](https://www.ssl.com/article/deprecating-early-tls/) consider TLS 1\.0 to be unsafe, and both TLS 1\.0 and TLS 1\.1 are on track to be formally [deprecated](https://tools.ietf.org/html/draft-ietf-tls-oldversions-deprecate-03) by the IETF\. This tutorial contains guidance based exclusively on enabling TLS 1\.2\. \(A newer TLS 1\.3 protocol exists in draft form, but is not yet supported on Amazon Linux 2 \.\) For more information about the updated encryption standards, see [RFC 7568](https://tools.ietf.org/html/rfc7568) and [RFC 8446](https://tools.ietf.org/html/rfc8446)\.
+
+In the following procedures, this tutorial will refer to modern Web encryption simply as TLS\.
 
 **Important**  
 These procedures are intended for use with Amazon Linux 2\. We also assume that you are starting with a fresh EC2 instance\. If you are trying to set up a LAMP web server on a different distribution, or if you are re\-purposing an older, existing instance, some procedures in this tutorial might not work for you\. For information about LAMP web servers on Ubuntu, see the Ubuntu community documentation [ApacheMySQLPHP](https://help.ubuntu.com/community/ApacheMySQLPHP) topic\. For information about Red Hat Enterprise Linux, see the Customer Portal topic [Web Servers](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/System_Administrators_Guide/ch-Web_Servers.html)\.  
@@ -10,7 +12,7 @@ The version of this tutorial for use with Amazon Linux AMI is no longer maintain
 
 **Topics**
 + [Prerequisites](#ssl_prereq)
-+ [Step 1: Enable SSL/TLS on the Server](#ssl_enable)
++ [Step 1: Enable TLS on the Server](#ssl_enable)
 + [Step 2: Obtain a CA\-signed Certificate](#ssl_certificate)
 + [Step 3: Test and Harden the Security Configuration](#ssl_test)
 + [Troubleshooting](#troubleshooting)
@@ -27,16 +29,18 @@ Before you begin this tutorial, complete the following steps:
 
   For more information, see [Authorizing Inbound Traffic for Your Linux Instances](authorizing-access-to-an-instance.md)\.
 + Install the Apache web server\. For step\-by\-step instructions, see [Tutorial: Install a LAMP Web Server on Amazon Linux 2](ec2-lamp-amazon-linux-2.md)\. Only the httpd package and its dependencies are needed, so you can ignore the instructions involving PHP and MariaDB\.
-+ To identify and authenticate websites, the SSL/TLS public key infrastructure \(PKI\) relies on the Domain Name System \(DNS\)\. If you plan to use your EC2 instance to host a public website, you need to register a domain name for your web server or transfer an existing domain name to your Amazon EC2 host\. Numerous third\-party domain registration and DNS hosting services are available for this, or you may use [Amazon Route 53](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/Welcome.html)\. 
++ To identify and authenticate websites, the TLS public key infrastructure \(PKI\) relies on the Domain Name System \(DNS\)\. To use your EC2 instance to host a public website, you need to register a domain name for your web server or transfer an existing domain name to your Amazon EC2 host\. Numerous third\-party domain registration and DNS hosting services are available for this, or you may use [Amazon Route 53](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/Welcome.html)\. 
+**Important**  
+This tutorial's instructions for acquiring CA\-signed host certificates will not work unless you own a registered and hosted DNS domain\.
 
-## Step 1: Enable SSL/TLS on the Server<a name="ssl_enable"></a>
+## Step 1: Enable TLS on the Server<a name="ssl_enable"></a>
 
-This procedure takes you through the process of setting up SSL/TLS on Amazon Linux 2 with a self\-signed digital certificate\.
+This procedure takes you through the process of setting up TLS on Amazon Linux 2 with a self\-signed digital certificate\.
 
 **Note**  
 A self\-signed certificate is acceptable for testing but not production\. If you expose your self\-signed certificate to the internet, visitors to your site are greeted by security warnings\. 
 
-**To enable SSL/TLS on a server**
+**To enable TLS on a server**
 
 1. [Connect to your instance](EC2_GetStarted.md#ec2-connect-to-instance-linux) and confirm that Apache is running\.
 
@@ -58,45 +62,59 @@ The `-y` option installs the updates without asking for confirmation\. If you wo
    [ec2-user ~]$ sudo yum update -y
    ```
 
-1. Now that your instance is current, add SSL/TLS support by installing the Apache module `mod_ssl`:
+1. Now that your instance is current, add TLS support by installing the Apache module `mod_ssl`:
 
    ```
    [ec2-user ~]$ sudo yum install -y mod_ssl
    ```
 
-   Later in this tutorial, you work with three important files that have been installed:
+   Your instance now has the following files that you will use to configure your secure server and create a certificate for testing:
    +  `/etc/httpd/conf.d/ssl.conf` 
 
-     The configuration file for mod\_ssl\. It contains "directives" telling Apache where to find encryption keys and certificates, the SSL/TLS protocol versions to allow, and the encryption ciphers to accept\. 
-   + `/etc/pki/tls/private/localhost.key`
+     The configuration file for mod\_ssl\. It contains *directives* telling Apache where to find encryption keys and certificates, the TLS protocol versions to allow, and the encryption ciphers to accept\. 
+   + `/etc/pki/tls/certs/make-dummy-cert`
 
-     An automatically generated, 2048\-bit RSA private key for your Amazon EC2 host\. During installation, OpenSSL used this key to generate a self\-signed host certificate, and you can also use this key to generate a certificate signing request \(CSR\) to submit to a certificate authority \(CA\)\. 
-**Note**  
-If you can't see this file in a directory listing, it may be due to its restrictive access permissions\. Try running `sudo ls -al` inside the directory\.
-   + `/etc/pki/tls/certs/localhost.crt` 
+     A script to generate a self\-signed X\.509 certificate and private key for your server host\. This certificate is useful for testing that Apache is properly set up to use TLS\. Because it offers no proof of identity, it should not be used in production, and will trigger warnings in Web browsers\.
 
-     An automatically generated, self\-signed X\.509 certificate for your server host\. This certificate is useful for testing that Apache is properly set up to use SSL/TLS\.
-
-   The `.key` and `.crt` files are both in PEM format, which consists of Base64\-encoded ASCII characters framed by "BEGIN" and "END" lines, as in this abbreviated example of a certificate:
+1. Run the script to generate a self\-signed dummy certificate and key for testing:
 
    ```
-                           -----BEGIN CERTIFICATE-----
-                           MIIEazCCA1OgAwIBAgICWxQwDQYJKoZIhvcNAQELBQAwgbExCzAJBgNVBAYTAi0t
-                           MRIwEAYDVQQIDAlTb21lU3RhdGUxETAPBgNVBAcMCFNvbWVDaXR5MRkwFwYDVQQK
-                           DBBTb21lT3JnYW5pemF0aW9uMR8wHQYDVQQLDBZTb21lT3JnYW5pemF0aW9uYWxV
-                           bml0MRkwFwYDVQQDDBBpcC0xNzItMzEtMjAtMjM2MSQwIgYJKoZIhvcNAQkBFhVy
-                           ...
-                           z5rRUE/XzxRLBZOoWZpNWTXJkQ3uFYH6s/sBwtHpKKZMzOvDedREjNKAvk4ws6F0
-                           WanXWehT6FiSZvB4sTEXXJN2jdw8g+sHGnZ8zCOsclknYhHrCVD2vnBlZJKSZvak
-                           3ZazhBxtQSukFMOnWPP2a0DMMFGYUHOd0BQE8sBJxg==
-                           -----END CERTIFICATE-----
+   [ec2-user ~]$ sudo /etc/pki/tls/certs/make-dummy-cert localhost.crt
    ```
 
-   The file names and extensions are a convenience and have no effect on function\. You can call a certificate `cert.crt`, `cert.pem`, or any other file name, so long as the related directive in the `ssl.conf` file uses the same name\.
-**Note**  
-When you replace the default SSL/TLS files with your own customized files, be sure that they are in PEM format\. 
+   This generates a new file `localhost.crt` in the `/etc/pki/tls/certs/` directory\. The specified file name matches the default assigned in the SSLCertificateFile directive in `/etc/httpd/conf.d/ssl.conf`\. 
 
-1. [Reboot your instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-reboot.html) and reconnect to it\.
+   This file contains both a self\-signed certificate and the certificate's private key\. Apache requires the certificate and key to be in PEM format, which consists of Base64\-encoded ASCII characters framed by "BEGIN" and "END" lines, as in this abbreviated example:
+
+   ```
+   -----BEGIN PRIVATE KEY-----
+   MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQD2KKx/8Zk94m1q
+   3gQMZF9ZN66Ls19+3tHAgQ5Fpo9KJDhzLjOOCI8u1PTcGmAah5kEitCEc0wzmNeo
+   BCl0wYR6G0rGaKtK9Dn7CuIjvubtUysVyQoMVPQ97ldeakHWeRMiEJFXg6kZZ0vr
+   GvwnKoMh3DlK44D9dX7IDua2PlYx5+eroA+1Lqf32ZSaAO0bBIMIYTHigwbHMZoT
+   ...
+   56tE7THvH7vOEf4/iUOsIrEzaMaJ0mqkmY1A70qQGQKBgBF3H1qNRNHuyMcPODFs
+   27hDzPDinrquSEvoZIggkDMlh2irTiipJ/GhkvTpoQlv0fK/VXw8vSgeaBuhwJvS
+   LXU9HvYq0U6O4FgD3nAyB9hI0BE13r1HjUvbjT7moH+RhnNz6eqqdscCS09VtRAo
+   4QQvAqOa8UheYeoXLdWcHaLP
+   -----END PRIVATE KEY-----                    
+   
+   -----BEGIN CERTIFICATE-----
+   MIIEazCCA1OgAwIBAgICWxQwDQYJKoZIhvcNAQELBQAwgbExCzAJBgNVBAYTAi0t
+   MRIwEAYDVQQIDAlTb21lU3RhdGUxETAPBgNVBAcMCFNvbWVDaXR5MRkwFwYDVQQK
+   DBBTb21lT3JnYW5pemF0aW9uMR8wHQYDVQQLDBZTb21lT3JnYW5pemF0aW9uYWxV
+   bml0MRkwFwYDVQQDDBBpcC0xNzItMzEtMjAtMjM2MSQwIgYJKoZIhvcNAQkBFhVy
+   ...
+   z5rRUE/XzxRLBZOoWZpNWTXJkQ3uFYH6s/sBwtHpKKZMzOvDedREjNKAvk4ws6F0
+   CuIjvubtUysVyQoMVPQ97ldeakHWeRMiEJFXg6kZZ0vrGvwnKoMh3DlK44D9dlU3
+   WanXWehT6FiSZvB4sTEXXJN2jdw8g+sHGnZ8zCOsclknYhHrCVD2vnBlZJKSZvak
+   3ZazhBxtQSukFMOnWPP2a0DMMFGYUHOd0BQE8sBJxg==
+   -----END CERTIFICATE-----
+   ```
+
+   The file names and extensions are a convenience and have no effect on function\. For example, you can call a certificate `cert.crt`, `cert.pem`, or any other file name, so long as the related directive in the `ssl.conf` file uses the same name\.
+**Note**  
+When you replace the default TLS files with your own customized files, be sure that they are in PEM format\. 
 
 1. Restart Apache\.
 
@@ -106,35 +124,37 @@ When you replace the default SSL/TLS files with your own customized files, be su
 **Note**  
 Make sure the TCP port 443 is accessible on your EC2 instance, as described above\.
 
-1. Your Apache web server should now support HTTPS \(secure HTTP\) over port 443\. Test it by typing the IP address or fully qualified domain name of your EC2 instance into a browser URL bar with the prefix **https://**\. Because you are connecting to a site with a self\-signed, untrusted host certificate, your browser may display a series of security warnings\. 
+1. Your Apache web server should now support HTTPS \(secure HTTP\) over port 443\. Test it by typing the IP address or fully qualified domain name of your EC2 instance into a browser URL bar with the prefix **https://**\. 
 
-   Override the warnings and proceed to the site\. If the default Apache test page opens, it means that you have successfully configured SSL/TLS on your server\. All data passing between the browser and server is now encrypted\.
+   Because you are connecting to a site with a self\-signed, untrusted host certificate, your browser may display a series of security warnings\. Override the warnings and proceed to the site\. 
 
-   To prevent site visitors from encountering warning screens, you need to obtain a trusted certificate that not only encrypts, but also publicly authenticates you as the owner of the site\.
+   If the default Apache test page opens, it means that you have successfully configured TLS on your server\. All data passing between the browser and server is now encrypted\.
+**Note**  
+To prevent site visitors from encountering warning screens, you need to obtain a trusted, CA\-signed certificate that not only encrypts, but also publicly authenticates you as the owner of the site\. 
 
 ## Step 2: Obtain a CA\-signed Certificate<a name="ssl_certificate"></a>
 
 This section describes the process of generating a certificate signing request \(CSR\) from a private key, submitting the CSR to a certificate authority \(CA\), obtaining a signed host certificate, and configuring Apache to use it\.
 
-A self\-signed SSL/TLS X\.509 host certificate is cryptologically identical to a CA\-signed certificate\. The difference is social, not mathematical\. A CA promises to validate, at a minimum, a domain's ownership before issuing a certificate to an applicant\. Each web browser contains a list of CAs trusted by the browser vendor to do this\. An X\.509 certificate consists primarily of a public key that corresponds to your private server key, and a signature by the CA that is cryptographically tied to the public key\. When a browser connects to a web server over HTTPS, the server presents a certificate for the browser to check against its list of trusted CAs\. If the signer is on the list, or accessible through a *chain of trust *consisting of other trusted signers, the browser negotiates a fast encrypted data channel with the server and loads the page\. 
+A self\-signed TLS X\.509 host certificate is cryptologically identical to a CA\-signed certificate\. The difference is social, not mathematical\. A CA promises to validate, at a minimum, a domain's ownership before issuing a certificate to an applicant\. Each web browser contains a list of CAs trusted by the browser vendor to do this\. An X\.509 certificate consists primarily of a public key that corresponds to your private server key, and a signature by the CA that is cryptographically tied to the public key\. When a browser connects to a web server over HTTPS, the server presents a certificate for the browser to check against its list of trusted CAs\. If the signer is on the list, or accessible through a *chain of trust *consisting of other trusted signers, the browser negotiates a fast encrypted data channel with the server and loads the page\. 
 
 Certificates generally cost money because of the labor involved in validating the requests, so it pays to shop around\. A list of well\-known CAs can be found at [dmoztools\.net](http://dmoztools.net/Computers/Security/Public_Key_Infrastructure/PKIX/Tools_and_Services/Third_Party_Certificate_Authorities/)\. A few CAs offer basic\-level certificates free of charge\. The most notable of these is the [Let's Encrypt](https://letsencrypt.org/) project, which also supports the automation of the certificate creation and renewal process\. For more information about using Let's Encrypt as your CA, see [Appendix: Let's Encrypt with Certbot on Amazon Linux 2](#letsencrypt) \. 
 
-Underlying the host certificate is the key\. As of 2017, [government](http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57pt1r4.pdf) and [industry](https://cabforum.org/wp-content/uploads/CA-Browser-Forum-BR-1.4.2.pdf) groups recommend using a minimum key \(modulus\) size of 2048 bits for RSA keys intended to protect documents through 2030\. The default modulus size generated by OpenSSL in Amazon Linux 2 is 2048 bits, which means that the existing autogenerated key is suitable for use in a CA\-signed certificate\. An alternative procedure is described below for those who desire a customized key, for instance one with a larger modulus or using a different encryption algorithm\. 
+Underlying the host certificate is the key\. As of 2019, [government](http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57pt1r4.pdf) and [industry](https://cabforum.org/wp-content/uploads/CA-Browser-Forum-BR-1.6.5.pdf) groups recommend using a minimum key \(modulus\) size of 2048 bits for RSA keys intended to protect documents through 2030\. The default modulus size generated by OpenSSL in Amazon Linux 2 is 2048 bits, which is suitable for use in a CA\-signed certificate\. An alternative procedure is described below for those who desire a customized key, for instance one with a larger modulus or using a different encryption algorithm\. 
 
 **To obtain a CA\-signed certificate**
 
-1.  [Connect to your instance](EC2_GetStarted.md#ec2-connect-to-instance-linux) and navigate to /etc/pki/tls/private/\. This is the directory where the server's private key for SSL/TLS is stored\. If you prefer to use your existing host key to generate the CSR, skip to Step 3\.
+1.  [Connect to your instance](EC2_GetStarted.md#ec2-connect-to-instance-linux) and navigate to /etc/pki/tls/private/\. This is the directory where you will store the server's private key for TLS\. If you prefer to use an existing host key to generate the CSR, skip to Step 3\.
 
-1. \(Optional\) Generate a new private key\. Here are some sample key configurations\. Any of the resulting keys work with your web server, but they vary in the degree and type of security that they implement\.
+1. Generate a new private key\. Here are some sample key configurations\. Any of the resulting keys work with your web server, but they vary in the degree and type of security that they implement\.
 
-   1. As a starting point, here is the command to create an RSA key resembling the default host key on your instance:
+   1. As a starting point, here is the command to create a default RSA host key:
 
       ```
-      [ec2-user ~]$ sudo openssl genrsa -out custom.key 2048
+      [ec2-user ~]$ sudo openssl genrsa -out custom.key
       ```
 
-      The resulting file, **custom\.key**, is a 2048\-bit RSA private key\. 
+      The resulting file, **custom\.key**, is a default\-sized 2048\-bit RSA private key\. 
 
    1. To create a stronger RSA key with a bigger modulus, use the following command: 
 
@@ -154,7 +174,7 @@ Underlying the host certificate is the key\. As of 2017, [government](http://nvl
 **Important**  
 Encrypting the key provides greater security, but because an encrypted key requires a password, services depending on it cannot be auto\-started\. Each time you use this key, you need to supply the password "abcde12345" over an SSH connection\. 
 
-   1. RSA cryptography can be relatively slow, because its security relies on the difficulty of factoring the product of two large two prime numbers\. However, it is possible to create keys for SSL/TLS that use non\-RSA ciphers\. Keys based on the mathematics of elliptic curves are smaller and computationally faster when delivering an equivalent level of security\. Here is an example: 
+   1. RSA cryptography can be relatively slow, because its security relies on the difficulty of factoring the product of two large two prime numbers\. However, it is possible to create keys for TLS that use non\-RSA ciphers\. Keys based on the mathematics of elliptic curves are smaller and computationally faster when delivering an equivalent level of security\. Here is an example: 
 
       ```
       [ec2-user ~]$ sudo openssl ecparam -name prime256v1 -out custom.key -genkey
@@ -215,7 +235,7 @@ You can also test a file at the command line as follows:
    ```
 Examine the output for the tell\-tale lines described above\. Do not use files ending with `.p7b`, `.p7c`, or similar extensions\.
 
-1. Remove or rename the old self\-signed host certificate **localhost\.crt** from the `/etc/pki/tls/certs` directory and place the new CA\-signed certificate there \(along with any intermediate certificates\)\.
+1. Place the new CA\-signed certificate and any intermediate certificates in the `/etc/pki/tls/certs` directory\.
 **Note**  
 There are several ways to upload your new certificate to your EC2 instance, but the most straightforward and informative way is to open a text editor \(vi, nano, notepad, etc\.\) on both your local computer and your instance, and then copy and paste the file contents between them\. You need root \[sudo\] privileges when performing these operations on the EC2 instance\. This way, you can see immediately if there are any permission or path problems\. Be careful, however, not to add any additional lines while copying the contents, or to change them in any way\. 
 
@@ -227,7 +247,7 @@ There are several ways to upload your new certificate to your EC2 instance, but 
    [ec2-user certs]$ ls -al custom.crt
    ```
 
-   The commands above should yield the following result: 
+   These commands should yield the following result: 
 
    ```
    -rw------- root root custom.crt
@@ -241,13 +261,13 @@ There are several ways to upload your new certificate to your EC2 instance, but 
    [ec2-user certs]$ ls -al intermediate.crt
    ```
 
-   The commands above should yield the following result:
+   These commands should yield the following result:
 
    ```
    -rw-r--r-- root root intermediate.crt
    ```
 
-1. If you used a custom key to create your CSR and the resulting host certificate, remove or rename the old key from the `/etc/pki/tls/private/` directory, and then install the new key there\. 
+1. Place the private key you used to create the CSR in the `/etc/pki/tls/private/` directory\. 
 **Note**  
 There are several ways to upload your custom key to your EC2 instance, but the most straightforward and informative way is to open a text editor \(vi, nano, notepad, etc\.\) on both your local computer and your instance, and then copy and paste the file contents between them\. You need root \[sudo\] privileges when performing these operations on the EC2 instance\. This way, you can see immediately if there are any permission or path problems\. Be careful, however, not to add any additional lines while copying the contents, or to change them in any way\.
 
@@ -259,37 +279,40 @@ There are several ways to upload your custom key to your EC2 instance, but the m
    [ec2-user private]$ ls -al custom.key
    ```
 
-   The commands above should yield the following result: 
+   These commands should yield the following result: 
 
    ```
    -rw------- root root custom.key
    ```
 
-1. Because the file name of the new CA\-signed host certificate \(**custom\.crt** in this example\) probably differs from the old certificate, edit `/etc/httpd/conf.d/ssl.conf` and provide the correct path and file name using Apache's `SSLCertificateFile` directive: 
+1. Edit `/etc/httpd/conf.d/ssl.conf` to align it with your new certificate and key files\.
+   + Provide the path and file name of the CA\-signed host certificate in Apache's `SSLCertificateFile` directive:
 
-   ```
-   SSLCertificateFile /etc/pki/tls/certs/custom.crt
-   ```
+     ```
+     SSLCertificateFile /etc/pki/tls/certs/custom.crt
+     ```
+   + If you received an intermediate certificate file \(**intermediate\.crt** in this example\), provide its path and file name using Apache's `SSLCACertificateFile` directive:
 
-   If you received an intermediate certificate file \(**intermediate\.crt** in this example\), provide its path and file name using Apache's `SSLCACertificateFile` directive:
-
-   ```
-   SSLCACertificateFile /etc/pki/tls/certs/intermediate.crt
-   ```
+     ```
+     SSLCACertificateFile /etc/pki/tls/certs/intermediate.crt
+     ```
 **Note**  
-Some CAs combine the host certificate and the intermediate certificates in a single file, making this directive unnecessary\. Consult the instructions provided by your CA\.
+Some CAs combine the host certificate and the intermediate certificates in a single file, making the `SSLCACertificateFile` directive unnecessary\. Consult the instructions provided by your CA\.
+   + Provide the path and file name of the private key \(**custom\.key** in this example\) in Apache's SSLCertificateKeyFile directive:
 
-   If you installed a custom private key \(**custom\.key** in this example\), provide its path and file name using Apache's `SSLCertificateKeyFile` directive:
-
-   ```
-   SSLCertificateKeyFile /etc/pki/tls/private/custom.key
-   ```
+     ```
+     SSLCertificateKeyFile /etc/pki/tls/private/custom.key
+     ```
 
 1. Save `/etc/httpd/conf.d/ssl.conf` and restart Apache\.
 
    ```
    [ec2-user ~]$ sudo systemctl restart httpd
    ```
+
+1. Test your server by typing your domain name into a browser URL bar with the prefix `https://`\. Your browser should load the test page over HTTPS without generating errors\. 
+**Note**  
+If you encounter a "page not found" error when providing a URL in the form `https://www.example.com`, check whether DNS is working\. You can do this by entering the server's public\-facing IP address in a browser in the form `https://111.111.111.111`\. \(You can find the IP address by opening the EC2 console's details page for your instance\.\) If the browser connects, even with certificate errors, it probably means that DNS is misconfigured\.
 
 ## Step 3: Test and Harden the Security Configuration<a name="ssl_test"></a>
 
@@ -306,85 +329,82 @@ On the [Qualys SSL Labs](https://www.ssllabs.com/ssltest/analyze.html) site, typ
 | Overall rating | B | 
 | Certificate | 100% | 
 | Protocol support | 95% | 
-| Key exchange | 90% | 
+| Key exchange | 70% | 
 | Cipher strength | 90% | 
 
-The report shows that the configuration is mostly sound, with acceptable ratings for certificate, protocol support, key exchange, and cipher strength issues\. The configuration also supports [Forward secrecy](https://en.wikipedia.org/wiki/Forward_secrecy), a feature of protocols that encrypt using temporary \(ephemeral\) session keys derived from the private key\. This means in practice that attackers cannot decrypt HTTPS data even if they possess a web server's long\-term private key\. However, the report also flags one serious vulnerability that is responsible for lowering the overall grade, and points to an additional potential problem:
+Though the overview shows that the configuration is mostly sound, the detailed report flags several potential problems, listed here in order of severity:
 
-1. **RC4 cipher support**: A cipher is the mathematical core of an encryption algorithm\. RC4, a fast cipher used to encrypt SSL/TLS data\-streams, is known to have several [serious weaknesses](http://www.imperva.com/docs/hii_attacking_ssl_when_using_rc4.pdf)\. The fix is to completely disable RC4 support\. We also specify an explicit cipher order and an explicit list of forbidden ciphers\.
+✗ **The RC4 cipher is supported for use by certain older browsers\.** A cipher is the mathematical core of an encryption algorithm\. RC4, a fast cipher used to encrypt TLS data\-streams, is known to have several [serious weaknesses](http://www.imperva.com/docs/hii_attacking_ssl_when_using_rc4.pdf)\. Unless you have very good reasons to support legacy browsers, you should disable this\.
 
-   In the configuration file `/etc/httpd/conf.d/ssl.conf`, find the section with commented\-out examples for configuring **SSLCipherSuite** and **SSLProxyCipherSuite**\.
+✗ **Old TLS versions are supported\.** The configuration supports TLS 1\.0 \(already deprecated\) and TLS 1\.1 \(on a path to deprecation\)\. Only TLS 1\.2 has been recommended since 2018\.
+
+✗ **Forward secrecy is not fully supported\.** [Forward secrecy](https://en.wikipedia.org/wiki/Forward_secrecy) is a feature of algorithms that encrypt using temporary \(ephemeral\) session keys derived from the private key\. This means in practice that attackers cannot decrypt HTTPS data even if they possess a web server's long\-term private key\.
+
+The simplest of these issues to fix is TLS version support\. 
+
+**To correct and future\-proof the TLS configuration**
+
+1. Open the configuration file `/etc/httpd/conf.d/ssl.conf` in a text editor and comment out the following line by typing "\#" at the beginning:
+
+   ```
+   #SSLProtocol all -SSLv3
+   ```
+
+1. Add the following directive: 
+
+   ```
+   SSLProtocol -SSLv2 -SSLv3 -TLSv1 -TLSv1.1 +TLSv1.2
+   ```
+
+   This directive explicitly disables SSL versions 2 and 3, as well as TLS versions 1\.0 and 1\.1\. The server now refuses to accept encrypted connections with clients using anything except TLS 1\.2\. The verbose wording in the directive conveys more clearly, to a human reader, what the server is configured to do\.
+**Note**  
+Disabling TLS versions 1\.0 and 1\.1 in this manner blocks a small percentage of outdated web browsers from accessing your site\.
+
+The other problems go away when we improve the list of allowed ciphers, prioritizing those that support forward secrecy, and removing the ones that support RC4\.
+
+**To modify the list of allowed ciphers**
+
+1. In the configuration file `/etc/httpd/conf.d/ssl.conf`, find the section with the **SSLCipherSuite** directive and comment out the existing line:
 
    ```
    #SSLCipherSuite HIGH:MEDIUM:!aNULL:!MD5
-   #SSLProxyCipherSuite HIGH:MEDIUM:!aNULL:!MD5
    ```
 
-   Leave these as they are, and below them add the following directives:
-**Note**  
-Though shown here on several lines for readability, each of these two directives must be on a single line with only a colon \(no spaces\) between cipher names\.
+1. Specify explicit cipher suites and a cipher order that prioritizes forward secrecy and avoids insecure ciphers\. The `SSLCipherSuite` directive used here is based on output from the [Mozilla SSL Configuration Generator](mozilla.github.io/server-side-tls/ssl-config-generator/), which tailors a TLS configuration to the specific software running on your server\. \(For more information, see Mozilla's useful resource [Security/Server Side TLS](https://wiki.mozilla.org/Security/Server_Side_TLS)\.\) First determine your Apache and OpenSSL versions using output form the following commands:
+
+   ```
+   [ec2-user ~]$ yum list installed | grep httpd
+   
+   [ec2-user ~]$ yum list installed | grep openssl
+   ```
+
+   For example, if the returned information is be Apache 2\.4\.34 and OpenSSL 1\.0\.2, and we can enter this into the generator and choose the "modern" compatibility model, which creates an `SSLCipherSuite` directive that aggressively enforces security but still works for most browsers:
 
    ```
    SSLCipherSuite ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:
-   ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:
-   ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256:AES:!aNULL:!eNULL:!EXPORT:!DES:
-   !RC4:!MD5:!PSK:!aECDH:!EDH-DSS-DES-CBC3-SHA:!EDH-RSA-DES-CBC3-SHA:!KRB5-DES-CBC3-SHA
-   
-   SSLProxyCipherSuite ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:
-   ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:
-   ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256:AES:!aNULL:!eNULL:!EXPORT:!DES:
-   !RC4:!MD5:!PSK:!aECDH:!EDH-DSS-DES-CBC3-SHA:!EDH-RSA-DES-CBC3-SHA:!KRB5-DES-CBC3-SHA
+   ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:
+   ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256
    ```
 
-   These ciphers are a subset of the much longer list of supported ciphers in OpenSSL\. They were selected and ordered according to the following criteria:
-
-   1. Support for forward secrecy
-
-   1. Strength
-
-   1. Speed
-
-   1. Specific ciphers before cipher families
-
-   1. Allowed ciphers before denied ciphers
-
-   The high\-ranking ciphers have *ECDHE* in their names, for *Elliptic Curve Diffie\-Hellman Ephemeral *\. The term *ephemeral* indicates forward secrecy\. Also, RC4 is now among the forbidden ciphers near the end\.
+   The selected ciphers have *ECDHE* in their names, for *Elliptic Curve Diffie\-Hellman Ephemeral *\. The term *ephemeral* indicates forward secrecy\. As a by\-product, these ciphers do not support RC4\.
 
    We recommend that you use an explicit list of ciphers instead relying on defaults or terse directives whose content isn't visible\.
-**Important**  
-The cipher list shown here is just one of many possible lists\. For instance, you might want to optimize a list for speed rather than forward secrecy\.   
-If you anticipate a need to support older clients, you can allow the DES\-CBC3\-SHA cipher suite\.  
-Finally, each update to OpenSSL introduces new ciphers and removes support for old ones\. Keep your EC2 Amazon Linux 2 instance up\-to\-date, watch for security announcements from [OpenSSL](https://www.openssl.org/), and be alert to reports of new security exploits in the technical press\. For more information, see [Predefined SSL Security Policies for Elastic Load Balancing](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-security-policy-table.html) in the *User Guide for Classic Load Balancers*\.
 
-   Finally, uncomment the following line by removing the "\#":
+   Copy the generated directive into `/etc/httpd/conf.d/ssl.conf`\.
+**Note**  
+Though shown here on several lines for readability, the directive must be on a single line when copied to `/etc/httpd/conf.d/ssl.conf` with only a colon \(no spaces\) between cipher names\.
+
+1. Finally, uncomment the following line by removing the "\#":
 
    ```
    #SSLHonorCipherOrder on
    ```
 
-   This command forces the server to prefer high\-ranking ciphers, including \(in this case\) those that support forward secrecy\. With this directive turned on, the server tries to establish a strong secure connection before falling back to allowed ciphers with lesser security\.
+   This directive forces the server to prefer high\-ranking ciphers, including \(in this case\) those that support forward secrecy\. With this directive turned on, the server tries to establish a strong secure connection before falling back to allowed ciphers with lesser security\.
 
-1. **Future protocol support**: The configuration supports TLS versions 1\.0 and 1\.1, which are on a path to deprecation, with TLS version 1\.2 recommended after June 2018\. To future\-proof the protocol support, open the configuration file `/etc/httpd/conf.d/ssl.conf` in a text editor and comment out the following lines by typing "\#" at the beginning of each:
+After completing both of these procedures, save the changes to `/etc/httpd/conf.d/ssl.conf` and restart Apache\.
 
-   ```
-   #SSLProtocol all -SSLv3
-   #SSLProxyProtocol all -SSLv3
-   ```
-
-   Then, add the following directives: 
-
-   ```
-   SSLProtocol -SSLv2 -SSLv3 -TLSv1 -TLSv1.1 +TLSv1.2
-   SSLProxyProtocol -SSLv2 -SSLv3 -TLSv1 -TLSv1.1 +TLSv1.2
-   ```
-
-   These directives explicitly disable SSL versions 2 and 3, as well as TLS versions 1\.0 and 1\.1\. The server now refuses to accept encrypted connections with clients using anything except supported versions of TLS\. The verbose wording in the directive communicates more clearly, to a human reader, what the server is configured to do\.
-**Note**  
-Disabling TLS versions 1\.0 and 1\.1 in this manner blocks a small percentage of outdated web browsers from accessing your site\.
-
-Restart Apache after saving these changes to the edited configuration file\.
-
-If you test the domain again on [Qualys SSL Labs](https://www.ssllabs.com/ssltest/analyze.html), you should see that the RC4 vulnerability is gone and the summary looks something like the following:
+If you test the domain again on [Qualys SSL Labs](https://www.ssllabs.com/ssltest/analyze.html), you should see that the RC4 vulnerability and other warnings are gone and the summary looks something like the following:
 
 
 ****  
@@ -396,6 +416,9 @@ If you test the domain again on [Qualys SSL Labs](https://www.ssllabs.com/ssltes
 | Protocol support | 100% | 
 | Key exchange | 90% | 
 | Cipher strength | 90% | 
+
+**Important**  
+Each update to OpenSSL introduces new ciphers and removes support for old ones\. Keep your EC2 Amazon Linux 2 instance up\-to\-date, watch for security announcements from [OpenSSL](https://www.openssl.org/), and be alert to reports of new security exploits in the technical press\. For more information, see [Predefined SSL Security Policies for Elastic Load Balancing](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-security-policy-table.html) in the *User Guide for Classic Load Balancers*\.
 
 ## Troubleshooting<a name="troubleshooting"></a>
 + **My Apache webserver doesn't start unless I supply a password\.**
@@ -428,7 +451,7 @@ If you test the domain again on [Qualys SSL Labs](https://www.ssllabs.com/ssltes
 
 ## Appendix: Let's Encrypt with Certbot on Amazon Linux 2<a name="letsencrypt"></a>
 
-The [Let's Encrypt](https://letsencrypt.org/) certificate authority is the centerpiece of an effort by the Electronic Frontier Foundation \(EFF\) to encrypt the entire internet\. In line with that goal, Let's Encrypt host certificates are designed to be created, validated, installed, and maintained with minimal human intervention\. The automated aspects of certificate management are carried out by a software agent running on your webserver\. After you install and configure the agent, it communicates securely with Let's Encrypt and performs administrative tasks on Apache and the key management system\. This tutorial uses the free [Certbot](https://certbot.eff.org) agent because it allows you either to supply a customized encryption key as the basis for your certificates, or to allow the agent itself to create a key based on its defaults\. You can also configure Certbot to renew your certificates on a regular basis without human interaction, as described below in [To automate Certbot](#automate_certbot)\. For more information, consult the Certbot [User Guide](https://certbot.eff.org/docs/using.html) and [man page](http://manpages.ubuntu.com/manpages/bionic/en/man1/certbot.1.html)\. 
+The [Let's Encrypt](https://letsencrypt.org/) certificate authority is the centerpiece of an effort by the Electronic Frontier Foundation \(EFF\) to encrypt the entire Internet\. In line with that goal, Let's Encrypt host certificates are designed to be created, validated, installed, and maintained with minimal human intervention\. The automated aspects of certificate management are carried out by a software agent running on your webserver\. After you install and configure the agent, it communicates securely with Let's Encrypt and performs administrative tasks on Apache and the key management system\. This tutorial uses the free [Certbot](https://certbot.eff.org) agent because it allows you either to supply a customized encryption key as the basis for your certificates, or to allow the agent itself to create a key based on its defaults\. You can also configure Certbot to renew your certificates on a regular basis without human interaction, as described below in [To automate Certbot](#automate_certbot)\. For more information, consult the Certbot [User Guide](https://certbot.eff.org/docs/using.html) and [man page](http://manpages.ubuntu.com/manpages/bionic/en/man1/certbot.1.html)\. 
 
 ![\[Certbot logo\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/certbot-logo-7.png)
 
@@ -468,14 +491,12 @@ Complete the following procedures before you install Certbot\.
       [ec2-user ~]$ sudo yum repolist all
       
       ...
-      
-      !epel/x86_64                          Extra Packages for Enterprise Linux 7 - x86_64                              enabled: 12,184+105
-      !epel-debuginfo/x86_64                Extra Packages for Enterprise Linux 7 - x86_64 - Debug                      enabled:      2,717
-      !epel-source/x86_64                   Extra Packages for Enterprise Linux 7 - x86_64 - Source                     enabled:          0
-      !epel-testing/x86_64                  Extra Packages for Enterprise Linux 7 - Testing - x86_64                    enabled:     959+10
-      !epel-testing-debuginfo/x86_64        Extra Packages for Enterprise Linux 7 - Testing - x86_64 - Debug            enabled:        142
-      !epel-testing-source/x86_64           Extra Packages for Enterprise Linux 7 - Testing - x86_64 - Source           enabled:          0
-      
+      epel/x86_64                          Extra Packages for Enterprise Linux 7 - x86_64                               enabled: 12949+175
+      epel-debuginfo/x86_64                Extra Packages for Enterprise Linux 7 - x86_64 - Debug                       enabled:      2890
+      epel-source/x86_64                   Extra Packages for Enterprise Linux 7 - x86_64 - Source                      enabled:         0
+      epel-testing/x86_64                  Extra Packages for Enterprise Linux 7 - Testing - x86_64                     enabled:    778+12
+      epel-testing-debuginfo/x86_64        Extra Packages for Enterprise Linux 7 - Testing - x86_64 - Debug             enabled:       107
+      epel-testing-source/x86_64           Extra Packages for Enterprise Linux 7 - Testing - x86_64 - Source            enabled:         0
       ...
       ```
 
@@ -516,14 +537,12 @@ This procedure is based on the EFF's documentation for installing Certbot on [ F
 1. Agree to the Let's Encrypt Terms of Service at the prompt\. Type "A" and press Enter to proceed:
 
    ```
-   Starting new HTTPS connection (1): acme-v01.api.letsencrypt.org
-   
-   -------------------------------------------------------------------------------
+   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
    Please read the Terms of Service at
    https://letsencrypt.org/documents/LE-SA-v1.2-November-15-2017.pdf. You must
    agree in order to register with the ACME server at
-   https://acme-v01.api.letsencrypt.org/directory
-   -------------------------------------------------------------------------------
+   https://acme-v02.api.letsencrypt.org/directory
+   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
    (A)gree/(C)ancel: A
    ```
 
@@ -533,10 +552,10 @@ This procedure is based on the EFF's documentation for installing Certbot on [ F
 
    ```
    Which names would you like to activate HTTPS for?
-   -------------------------------------------------------------------------------
+   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
    1: example.com
    2: www.example.com
-   -------------------------------------------------------------------------------
+   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
    Select the appropriate numbers separated by commas and/or spaces, or leave input
    blank to select all options shown (Enter 'c' to cancel):
    ```
@@ -558,12 +577,12 @@ This procedure is based on the EFF's documentation for installing Certbot on [ F
    Deploying Certificate for www.example.com to VirtualHost /etc/httpd/conf/httpd-le-ssl.conf
    
    Please choose whether or not to redirect HTTP traffic to HTTPS, removing HTTP access.
-   -------------------------------------------------------------------------------
+   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
    1: No redirect - Make no further changes to the webserver configuration.
    2: Redirect - Make all requests redirect to secure HTTPS access. Choose this for
    new sites, or if you're confident your site works on HTTPS. You can undo this
    change by editing your web server's configuration.
-   -------------------------------------------------------------------------------
+   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
    Select the appropriate number [1-2] then [enter] (press 'c' to cancel):
    ```
 
@@ -578,14 +597,14 @@ This procedure is based on the EFF's documentation for installing Certbot on [ F
    You should test your configuration at:
    https://www.ssllabs.com/ssltest/analyze.html?d=example.com
    https://www.ssllabs.com/ssltest/analyze.html?d=www.example.com
-   -------------------------------------------------------------------------------
+   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
    
    IMPORTANT NOTES:
     - Congratulations! Your certificate and chain have been saved at:
-      /etc/letsencrypt/live/example.com/fullchain.pem
+      /etc/letsencrypt/live/certbot.oneeyedman.net/fullchain.pem
       Your key file has been saved at:
-      /etc/letsencrypt/live/example.com/privkey.pem
-      Your cert will expire on 2018-05-28. To obtain a new or tweaked
+      /etc/letsencrypt/live/certbot.oneeyedman.net/privkey.pem
+      Your cert will expire on 2019-08-01. To obtain a new or tweaked
       version of this certificate in the future, simply run certbot again
       with the "certonly" option. To non-interactively renew *all* of
       your certificates, run "certbot renew"

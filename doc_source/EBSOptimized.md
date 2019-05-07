@@ -154,6 +154,13 @@ The following table lists current\-generation instance types that support EBS op
 | t3\.large \* | Yes | 2,048 | 256 | 15,700 | 
 | t3\.xlarge \* | Yes | 2,048 | 256 | 15,700 | 
 | t3\.2xlarge \* | Yes | 2,048 | 256 | 15,700 | 
+| t3a\.nano \* | Yes | 1,536 | 192 | 11,800 | 
+| t3a\.micro \* | Yes | 1,536 | 192 | 11,800 | 
+| t3a\.small \* | Yes | 1,536 | 192 | 11,800 | 
+| t3a\.medium \* | Yes | 1,536 | 192 | 11,800 | 
+| t3a\.large \* | Yes | 2,048 | 256 | 15,700 | 
+| t3a\.xlarge \* | Yes | 2,048 | 256 | 15,700 | 
+| t3a\.2xlarge \* | Yes | 2,048 | 256 | 15,700 | 
 | u\-6tb1\.metal | Yes | 14,000 | 1,750 | 80,000 | 
 | u\-9tb1\.metal | Yes | 14,000 | 1,750 | 80,000 | 
 | u\-12tb1\.metal | Yes | 14,000 | 1,750 | 80,000 | 
@@ -218,6 +225,13 @@ The following table lists current\-generation instance types that support EBS op
 | t3\.large | 512 | 64 | 4,000 | 
 | t3\.xlarge | 512 | 64 | 4,000 | 
 | t3\.2xlarge | 512 | 64 | 4,000 | 
+| t3a\.nano | 32 | 4 | 250 | 
+| t3a\.micro | 64 | 8 | 500 | 
+| t3a\.small | 128 | 16 | 1,000 | 
+| t3a\.medium | 256 | 32 | 2,000 | 
+| t3a\.large | 512 | 64 | 4,000 | 
+| t3a\.xlarge | 512 | 64 | 4,000 | 
+| t3a\.2xlarge | 512 | 64 | 4,000 | 
 | z1d\.large | 583 | 73 | 3,333 | 
 | z1d\.xlarge | 1,167 | 146 | 6,667 | 
 

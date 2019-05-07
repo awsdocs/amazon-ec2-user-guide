@@ -1,13 +1,13 @@
 # Modifying Reserved Instances<a name="ri-modifying"></a>
 
-When your computing needs change, you can modify your Standard or Convertible Reserved Instances and continue to benefit from the billing benefit\. You can modify the Availability Zone, scope, network platform, or instance size \(within the same instance type\) of your Reserved Instance\. To modify a Reserved Instance, you specify the Reserved Instances that you want to modify, and you specify one or more target configurations\.
+When your computing needs change, you can modify your Standard or Convertible Reserved Instances and continue to benefit from the billing benefit\. You can modify the Availability Zone, scope, network platform, or instance size \(within the same instance family\) of your Reserved Instance\. To modify a Reserved Instance, you specify the Reserved Instances that you want to modify, and you specify one or more target configurations\.
 
 **Note**  
 You can also exchange a Convertible Reserved Instance for another Convertible Reserved Instance with a different configuration, including instance family\. For more information, see [Exchanging Convertible Reserved Instances](ri-convertible-exchange.md)\.
 
 You can modify all or a subset of your Reserved Instances\. You can separate your original Reserved Instances into two or more new Reserved Instances\. For example, if you have a reservation for 10 instances in `us-east-1a` and decide to move 5 instances to `us-east-1b`, the modification request results in two new reservations: one for 5 instances in `us-east-1a` and the other for 5 instances in `us-east-1b`\.
 
-You can also *merge* two or more Reserved Instances into a single Reserved Instance\. For example, if you have four `t2.small` Reserved Instances of one instance each, you can merge them to create one `t2.large` Reserved Instance\. For more information, see [Modifying the Instance Size of Your Reservations](#ri-modification-instancemove)\.
+You can also *merge* two or more Reserved Instances into a single Reserved Instance\. For example, if you have four `t2.small` Reserved Instances of one instance each, you can merge them to create one `t2.large` Reserved Instance\. For more information, see [Support For Modifying Instance Sizes](#ri-modification-instancemove)\.
 
 After modification, the benefit of the Reserved Instances is applied only to instances that match the new parameters\. For example, if you change the Availability Zone of a reservation, the capacity reservation and pricing benefits are automatically applied to instance usage in the new Availability Zone\. Instances that no longer match the new parameters are charged at the On\-Demand rate unless your account has other applicable reservations\. 
 
@@ -27,45 +27,41 @@ You can modify your reservations as frequently as you like, but you cannot chang
 
 **Topics**
 + [Requirements and Restrictions for Modification](#ri-modification-limits)
-+ [Modifying the Instance Size of Your Reservations](#ri-modification-instancemove)
++ [Support For Modifying Instance Sizes](#ri-modification-instancemove)
 + [Submitting Modification Requests](#ri-modification-process)
 + [Troubleshooting Modification Requests](#ri-modification-process-messages)
 
 ## Requirements and Restrictions for Modification<a name="ri-modification-limits"></a>
 
-Not all attributes of a Reserved Instance can be modified, and restrictions may apply\.
+You can modify these attributes as follows\.
 
 
 | Modifiable attribute | Supported platforms | Limitations | 
 | --- | --- | --- | 
 |  Change **Availability Zones** within the same Region  |  Linux and Windows  | \- | 
 |  Change the **scope** from Availability Zone to Region and vice versa  |  Linux and Windows  |  If you change the scope from Availability Zone to Region, you lose the capacity reservation benefit\. If you change the scope from Region to Availability Zone, you lose Availability Zone flexibility and instance size flexibility \(if applicable\)\. For more information, see [How Reserved Instances Are Applied](apply_ri.md)\.  | 
-|  Change the **instance size** within the same instance type  |  Amazon Linux only  |  To change the instance size within the same instance type, the reservation must use Amazon Linux on default tenancy\. Some instance types are not supported, because there are no other sizes available\. For more information, see [Modifying the Instance Size of Your Reservations](#ri-modification-instancemove)\.  | 
+|  Change the **instance size** within the same instance family  |  Amazon Linux only  |  To change the instance size within the same instance family, the reservation must use Amazon Linux on default tenancy\. Some instance families are not supported, because there are no other sizes available\. For more information, see [Support For Modifying Instance Sizes](#ri-modification-instancemove)\.  | 
 |  Change the **network** from EC2\-Classic to Amazon VPC and vice versa  |  Linux and Windows  |  The network platform must be available in your AWS account\. If you created your AWS account after 2013\-12\-04, it does not support EC2\-Classic\.  | 
 
-Amazon EC2 processes your modification request if there is sufficient capacity for your target configuration \(if applicable\), and if the following conditions are met\.
+**Requirements**
 
-The Reserved Instances that you want to modify must be:
-+ Active
-+ Not pending another modification request
-+ Not listed in the Reserved Instance Marketplace
-**Note**  
-To modify your Reserved Instances that are listed in the Reserved Instance Marketplace, cancel the listing, request modification, and then list them again\. 
-+ Terminating in the same hour \(but not minutes or seconds\)
-+ Already purchased by you \(you cannot modify an offering before or at the same time that you purchase it\)
+Amazon EC2 processes your modification request if there is sufficient capacity for your target configuration \(if applicable\), and if the following conditions are met:
++ The Reserved Instance cannot be modified before or at the same time that you purchase it
++ The Reserved Instance must be active
++ There cannot be a pending modification request
++ The Reserved Instance is not listed in the Reserved Instance Marketplace
++ There must be a match between the instance size footprint of the active reservation and the target configuration\. For more information, see [Support For Modifying Instance Sizes](#ri-modification-instancemove)\.
++ The input Reserved Instances are all Standard Reserved Instances or all Convertible Reserved Instances, not some of each type
++ The input Reserved Instances must expire within the same hour, if they are Standard Reserved Instances
 
-Your modification request must meet the following conditions:
-+ There must be a match between the instance size footprint of the active reservation and the target configuration\. For more information, see [Modifying the Instance Size of Your Reservations](#ri-modification-instancemove)\.
-+ The input Reserved Instances must be either Standard Reserved Instances or Convertible Reserved Instances, but not a combination of both\.
+## Support For Modifying Instance Sizes<a name="ri-modification-instancemove"></a>
 
-## Modifying the Instance Size of Your Reservations<a name="ri-modification-instancemove"></a>
-
-If you have Amazon Linux reservations in an instance type with multiple sizes, you can modify the instance size of your Reserved Instances\. 
+If you have Amazon Linux reservations in an instance family with multiple sizes, you can modify the instance size of your Reserved Instances\. 
 
 **Note**  
-Instances are grouped by family \(based on storage, or CPU capacity\); type \(designed for specific use cases\); and size\. For example, the `c4` instance type is in the Compute optimized instance family and is available in multiple sizes\. While `c3` instances are in the same family, you can't modify `c4` instances into `c3` instances because they have different hardware specifications\. For more information, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
+Instances are grouped by family \(based on storage, or CPU capacity\); type \(designed for specific use cases\); and size\. For example, the `c4` instance family is in the Compute optimized family and is available in multiple sizes\. While `c3` instances are in the same family, you can't modify `c4` instances into `c3` instances because they have different hardware specifications\. For more information, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
-You cannot modify the instance size of the Reserved Instances for the following instance types, because only one size is available for each of these instance types\.
+You cannot modify the instance size of the Reserved Instances for the following instance types, because only one size is available for each of the instance families\.
 + `cc2.8xlarge`
 + `cr1.8xlarge`
 + `hs1.8xlarge`
@@ -73,7 +69,7 @@ You cannot modify the instance size of the Reserved Instances for the following 
 
 Each Reserved Instance has an *instance size footprint*, which is determined by the normalization factor of the instance type and the number of instances in the reservation\. When you modify a Reserved Instance, the footprint of the target configuration must match that of the original configuration, otherwise the modification request is not processed\.
 
-The normalization factor is based on instance size within the instance type \(for example, `m1.xlarge` instances within the `m1` instance type\)\. This is only meaningful within the same instance type\. Instance types cannot be modified from one type to another\. In the Amazon EC2 console, this is measured in units\. The following table illustrates the normalization factor that applies within an instance type\.
+The normalization factor is based on instance size within the instance family \(for example, `m1.xlarge` instances within the `m1` instance family\)\. This is only meaningful within the same instance family\. Instance types cannot be modified from one family to another\. In the Amazon EC2 console, the normalization factor is measured in units\. The following table illustrates the normalization factor that applies within an instance family\.
 
 
 | Instance size | Normalization factor | 
@@ -95,9 +91,9 @@ The normalization factor is based on instance size within the instance type \(fo
 |  24xlarge  |  192  | 
 |  32xlarge  |  256  | 
 
-To calculate the instance size footprint of a Reserved Instance, multiply the number of instances by the normalization factor\. For example, an `t2.medium` has a normalization factor of 2 so a reservation for four `t2.medium` instances has a footprint of 8 units\.
+To calculate the instance size footprint of a Reserved Instance, multiply the number of instances by the normalization factor\. For example, a `t2.medium` has a normalization factor of 2 so a reservation for four `t2.medium` instances has a footprint of 8 units\.
 
-You can allocate your reservations into different instance sizes across the same instance type as long as the instance size footprint of your reservation remains the same\. For example, you can divide a reservation for one `t2.large` \(1 x 4\) instance into four `t2.small` \(4 x 1\) instances, or you can combine a reservation for four `t2.small` instances into one `t2.large` instance\. However, you cannot change your reservation for two `t2.small` \(2 x 1\) instances into one `t2.large` \(1 x 4\) instance\. This is because the existing instance size footprint of your current reservation is smaller than the proposed reservation\. 
+You can allocate your reservations into different instance sizes across the same instance family, for example, across the T2 instance family, as long as the instance size footprint of your reservation remains the same\. For example, you can divide a reservation for one `t2.large` \(1 x 4\) instance into four `t2.small` \(4 x 1\) instances, or you can combine a reservation for four `t2.small` instances into one `t2.large` instance\. However, you cannot change your reservation for two `t2.small` \(2 x 1\) instances into one `t2.large` \(1 x 4\) instance\. This is because the existing instance size footprint of your current reservation is smaller than the proposed reservation\. 
 
 In the following example, you have a reservation with two `t2.micro` instances \(giving you a footprint of 1\) and a reservation with one `t2.small` instance \(giving you a footprint of 1\)\. You merge both reservations to a single reservation with one `t2.medium` instance—the combined instance size footprint of the two original reservations equals the footprint of the modified reservation\.
 

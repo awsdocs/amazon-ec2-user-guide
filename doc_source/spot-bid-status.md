@@ -57,7 +57,7 @@ Your Spot Instance request can go to a `terminal` state if you create a request 
 **Pending fulfillment**  
 When the constraints you specified \(if any\) are met and your maximum price is equal to or higher than the current Spot price, your Spot request goes into the `pending-fulfillment` state\.
 
-At this point, Amazon EC2 is getting ready to provision the instances that you requested\. If the process stops at this point, it is likely to be because it was cancelled by the user before a Spot Instance was launched\. It may also be because an unexpected system error occurred\.
+At this point, Amazon EC2 is getting ready to provision the instances that you requested\. If the process stops at this point, it is likely to be because it was canceled by the user before a Spot Instance was launched\. It may also be because an unexpected system error occurred\.
 
 
 | Status Code | Request State | Instance State | 
@@ -65,7 +65,7 @@ At this point, Amazon EC2 is getting ready to provision the instances that you r
 |  `pending-fulfillment`  |  `open`  |  n/a  | 
 
 **Fulfilled**  
-When all the specifications for your Spot Instances are met, your Spot request is fulfilled\. Amazon EC2 launches the Spot Instances, which can take a few minutes\. If a Spot Instance is hibernated or stopped when interrupted, it remains in this state until the request can be fulfilled again or the request is cancelled\.
+When all the specifications for your Spot Instances are met, your Spot request is fulfilled\. Amazon EC2 launches the Spot Instances, which can take a few minutes\. If a Spot Instance is hibernated or stopped when interrupted, it remains in this state until the request can be fulfilled again or the request is canceled\.
 
 
 | Status Code | Request State | Instance State | 
@@ -132,7 +132,7 @@ Amazon EC2 cannot launch all the instances you requested in the same Availabilit
 One or more parameters for your Spot request are not valid \(for example, the AMI you specified does not exist\)\. The status message indicates which parameter is not valid\.
 
 `cancelled-before-fulfillment`  
-The user cancelled the Spot request before it was fulfilled\.
+The user canceled the Spot request before it was fulfilled\.
 
 `capacity-not-available`  
 There is not enough capacity available for the instances that you requested\.

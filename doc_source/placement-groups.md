@@ -1,9 +1,9 @@
 # Placement Groups<a name="placement-groups"></a>
 
-You can launch or start instances in a *placement group*, which determines how instances are placed on underlying hardware\. When you create a placement group, you specify one of the following strategies for the group:
-+ *Cluster* – clusters instances into a low\-latency group in a single Availability Zone
-+ *Partition* – spreads instances across logical partitions, ensuring that instances in one partition do not share underlying hardware with instances in other partitions
-+ *Spread* – spreads instances across underlying hardware
+When you launch a new EC2 instance, the EC2 service attempts to place the instance in such a way that all of your instances are spread out across underlying hardware to minimize correlated failures\. You can use *placement groups* to influence the placement of a group of *interdependent* instances to meet the needs of your workload\. Depending on the type of workload, you can create a placement group using one of the following placement strategies:
++ *Cluster* – packs instances close together inside an Availability Zone\. This strategy enables workloads to achieve the low\-latency network performance necessary for tightly\-coupled node\-to\-node communication that is typical of HPC applications\.
++ *Partition* – spreads your instances across logical partitions such that groups of instances in one partition do not share the underlying hardware with groups of instances in different partitions\. This strategy is typically used by large distributed and replicated workloads, such as Hadoop, Cassandra, and Kafka\.
++ *Spread* – strictly places a small group of instances across distinct underlying hardware to reduce correlated failures\.
 
 There is no charge for creating a placement group\.
 
@@ -36,33 +36,31 @@ If you receive a capacity error when launching an instance in a placement group 
 
 ## Partition Placement Groups<a name="placement-groups-partition"></a>
 
-A partition placement group is a group of instances spread across partitions\. Partitions are logical groupings of instances, where contained instances do not share the same underlying hardware across different partitions\.
+Partition placement groups help reduce the likelihood of correlated hardware failures for your application\. When using partition placement groups, Amazon EC2 divides each group into logical segments called partitions\. Amazon EC2 ensures that each partition within a placement group has its own set of racks\. Each rack has its own network and power source\. No two partitions within a placement group share the same racks, allowing you to isolate the impact of hardware failure within your application\.
 
-The following image shows instances in a single Availability Zone that are placed into a partition placement group with three partitions, **Partition 1**, **Partition 2**, and **Partition 3**\. Each partition comprises multiple instances\. The instances in each partition do not share underlying hardware with the instances in the other partitions, limiting the impact of hardware failure to only one partition\.
+The following image is a simple visual representation of a partition placement group in a single Availability Zone\. It shows instances that are placed into a partition placement group with three partitions—**Partition 1**, **Partition 2**, and **Partition 3**\. Each partition comprises multiple instances\. The instances in a partition do not share racks with the instances in the other partitions, allowing you to contain the impact of a single hardware failure to only the associated partition\.
 
-![\[A partition placement group with seven partitions\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/placement-group-partition.png)
+![\[A partition placement group with three partitions\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/placement-group-partition.png)
 
-Partition placement groups can be used to spread deployment of large distributed and replicated workloads, such as HDFS, HBase, and Cassandra, across distinct hardware to reduce the likelihood of correlated failures\. When you launch instances into a partition placement group, Amazon EC2 tries to distribute the instances evenly across the number of partitions that you specify\. You can also launch instances into a specific partition to have more control over where the instances are placed\.
+Partition placement groups can be used to deploy large distributed and replicated workloads, such as HDFS, HBase, and Cassandra, across distinct racks\. When you launch instances into a partition placement group, Amazon EC2 tries to distribute the instances evenly across the number of partitions that you specify\. You can also launch instances into a specific partition to have more control over where the instances are placed\.
 
-In addition, partition placement groups offer visibility into the partitions—you can see which instances are in which partitions\. You can share this information with topology\-aware applications, such as HDFS, HBase, and Cassandra, which use this information to make intelligent data replication decisions for increasing data availability and durability\.
+A partition placement group can have partitions in multiple Availability Zones in the same Region\. A partition placement group can have a maximum of seven partitions per Availability Zone\. The number of instances that can be launched into a partition placement group is limited only by the limits of your account\. 
 
-A partition placement group can have a maximum of seven partitions per Availability Zone\. The number of instances that can be launched into a partition placement group is limited only by the limits of your account\. Partition placement groups can also span multiple Availability Zones in the same Region\.
+In addition, partition placement groups offer visibility into the partitions—you can see which instances are in which partitions\. You can share this information with topology\-aware applications, such as HDFS, HBase, and Cassandra\. These applications use this information to make intelligent data replication decisions for increasing data availability and durability\.
 
 If you start or launch an instance in a partition placement group and there is insufficient unique hardware to fulfill the request, the request fails\. Amazon EC2 makes more distinct hardware available over time, so you can try your request again later\.
 
-Partition placement groups are currently only available through the API or AWS CLI\.
-
 ## Spread Placement Groups<a name="placement-groups-spread"></a>
 
-A spread placement group is a group of instances that are each placed on distinct underlying hardware\.
+A spread placement group is a group of instances that are each placed on distinct racks, with each rack having its own network and power source\.
 
-The following image shows seven instances in a single Availability Zone that are placed into a spread placement group\. The instances do not share underlying hardware with each other\.
+The following image shows seven instances in a single Availability Zone that are placed into a spread placement group\. The seven instances are placed on seven different racks\.
 
 ![\[A spread placement group\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/placement-group-spread.png)
 
-Spread placement groups are recommended for applications that have a small number of critical instances that should be kept separate from each other\. Launching instances in a spread placement group reduces the risk of simultaneous failures that might occur when instances share the same underlying hardware\. Spread placement groups provide access to distinct hardware, and are therefore suitable for mixing instance types or launching instances over time\.
+Spread placement groups are recommended for applications that have a small number of critical instances that should be kept separate from each other\. Launching instances in a spread placement group reduces the risk of simultaneous failures that might occur when instances share the same racks\. Spread placement groups provide access to distinct racks, and are therefore suitable for mixing instance types or launching instances over time\.
 
-A spread placement group can span multiple Availability Zones, and you can have a maximum of seven running instances per Availability Zone per group\.
+A spread placement group can span multiple Availability Zones in the same Region\. You can have a maximum of seven running instances per Availability Zone per group\.
 
 If you start or launch an instance in a spread placement group and there is insufficient unique hardware to fulfill the request, the request fails\. Amazon EC2 makes more distinct hardware available over time, so you can try your request again later\.
 
@@ -102,7 +100,6 @@ The following rules apply to partition placement groups:
 + When instances are launched into a partition placement group, Amazon EC2 tries to evenly distribute the instances across all partitions\. Amazon EC2 doesn’t guarantee an even distribution of instances across all partitions\.
 + A partition placement group with Dedicated Instances can have a maximum of two partitions\.
 + Partition placement groups are not supported for Dedicated Hosts\.
-+ Partition placement groups are currently only available through the API or AWS CLI\.
 
 ### Spread Placement Group Rules and Limitations<a name="placement-groups-limitations-spread"></a>
 
@@ -120,9 +117,9 @@ You can create a placement group using the Amazon EC2 console or the command lin
 
 1. In the navigation pane, choose **Placement Groups**, **Create Placement Group**\.
 
-1. Specify a name for the group and choose the strategy\.
-**Note**  
-To specify a partition placement group, use the AWS CLI\.
+1. Specify a name for the group\. 
+
+1. Choose the strategy for the group\. If you choose **Partition**, specify the number of partitions within the group\.
 
 1. Choose **Create**\.
 
@@ -150,8 +147,11 @@ You can create an AMI specifically for the instances to be launched in a placeme
 1. Choose **Launch Instance**\. Complete the wizard as directed, taking care to do the following:
    + On the **Choose an Amazon Machine Image \(AMI\)** page, select an AMI\. To select an AMI you created, choose **My AMIs**\.
    + On the **Choose an Instance Type** page, select an instance type that can be launched into a placement group\.
-   + On the **Configure Instance Details** page, enter the total number of instances that you need in this placement group, as you might not be able to add instances to the placement group later\.
-   + On the **Configure Instance Details** page, select the placement group that you created from **Placement group**\. If you do not see the **Placement group** list on this page, verify that you have selected an instance type that can be launched into a placement group, as this option is not available otherwise\.
+   + On the **Configure Instance Details** page, the following fields are applicable to placement groups:
+     + For **Number of instances**, enter the total number of instances that you need in this placement group, because you might not be able to add instances to the placement group later\.
+     + For **Placement group**, select the **Add instance to placement group** check box\. If you do not see **Placement group** on this page, verify that you have selected an instance type that can be launched into a placement group; otherwise, this option is not available\.
+     + For **Placement group name**, you can choose to add the instances to an existing placement group or to a new placement group that you create\.
+     + For **Placement group strategy**, choose the appropriate strategy\. If you choose **partition**, for **Target partition**, choose **Auto distribution** to have Amazon EC2 do a best effort to distribute the instances evenly across all the partitions in the group; or, specify the partition in which to launch the instances\.
 
 **To launch instances into a placement group \(command line\)**
 
@@ -180,7 +180,7 @@ You can view the placement information of your instances using the Amazon EC2 co
 
 1. In the navigation pane, choose **Instances**\. 
 
-1. Select the instance and, in the details pane, inspect **Placement group**\. If the instance is not in a placement group, the field is empty\. Otherwise, the placement group name is displayed\.
+1. Select the instance and, in the details pane, inspect **Placement group**\. If the instance is not in a placement group, the field is empty\. Otherwise, the placement group name is displayed\. If the placement group is a partition placement group, inspect **Partition number** for the partition number for the instance\.
 
 **To view the partition number for an instance in a partition placement group \(AWS CLI\)**
 + Use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command and specify the `--instance-id` parameter\.

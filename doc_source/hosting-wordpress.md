@@ -261,7 +261,7 @@ Some of the available features in WordPress require write access to the Apache d
 
 You are ready to install WordPress\. The commands that you use depend on the operating system\. The commands in this procedure are for use with Amazon Linux 2\. Use the procedure that follows this one with Amazon Linux AMI\.
 
-1. Use the chkconfig command to ensure that the `httpd` and database services start at every system boot\.
+1. Use the systemctl command to ensure that the `httpd` and database services start at every system boot\.
 
    ```
    [ec2-user ~]$ sudo systemctl enable httpd && sudo systemctl enable mariadb

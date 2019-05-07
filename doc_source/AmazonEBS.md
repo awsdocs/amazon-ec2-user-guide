@@ -16,7 +16,7 @@ You can attach multiple volumes to the same instance within the limits specified
 + [Amazon EBS Snapshots](EBSSnapshots.md)
 + [Amazon EBS–Optimized Instances](EBSOptimized.md)
 + [Amazon EBS Encryption](EBSEncryption.md)
-+ [Amazon EBS and NVMe](nvme-ebs-volumes.md)
++ [Amazon EBS and NVMe on Linux Instances](nvme-ebs-volumes.md)
 + [Amazon EBS Volume Performance on Linux Instances](EBSPerformance.md)
 + [Amazon CloudWatch Events for Amazon EBS](ebs-cloud-watch-events.md)
 

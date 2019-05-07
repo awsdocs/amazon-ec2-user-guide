@@ -13,7 +13,7 @@ The following instances offer non\-volatile memory express \(NVMe\) SSD instance
 + Amazon Linux AMI 2018\.03
 + Ubuntu 14\.04 or later
 + Red Hat Enterprise Linux 7\.4 or later
-+ SUSE Linux Enterprise Server 12 or later
++ SUSE Linux Enterprise Server 12 SP2 or later
 + CentOS 7 or later
 + FreeBSD 11\.1 or later
 
@@ -60,4 +60,4 @@ The following instances support SSD volumes with TRIM: C5d, F1, I2, I3, M5ad, M5
 
 Instance store volumes that support TRIM are fully trimmed before they are allocated to your instance\. These volumes are not formatted with a file system when an instance launches, so you must format them before they can be mounted and used\. For faster access to these volumes, you should skip the TRIM operation when you format them\.
 
-With instance store volumes that support TRIM, you can use the TRIM command to notify the SSD controller when you no longer need data that you've written\. This provides the controller with more free space, which can reduce write amplification and increase performance\. On Linux, use the `fstrim` command to enable periodic TRIM\. \.
+With instance store volumes that support TRIM, you can use the TRIM command to notify the SSD controller when you no longer need data that you've written\. This provides the controller with more free space, which can reduce write amplification and increase performance\. On Linux, use the `fstrim` command to enable periodic TRIM\. 

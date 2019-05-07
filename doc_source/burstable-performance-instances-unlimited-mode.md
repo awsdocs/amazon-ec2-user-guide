@@ -16,7 +16,7 @@ If you use a `t2.micro` instance under the [AWS Free Tier](https://aws.amazon.co
 The `unlimited` mode is a credit configuration option for burstable performance instances\. It can be enabled or disabled at any time for a running or stopped instance\.
 
 **Note**  
-T3 instances are launched as `unlimited` by default\. T2 instances are launched as `standard` by default\.
+T3 and T3a instances are launched as `unlimited` by default\. T2 instances are launched as `standard` by default\.
 
 ### How Unlimited Burstable Performance Instances Work<a name="how-burstable-performance-instances-unlimited-works"></a>
 
@@ -97,11 +97,11 @@ T2 Standard instances receive [launch credits](burstable-performance-instances-s
 If a T2 instance is switched from `standard` to `unlimited`, any accrued launch credits are removed from the `CPUCreditBalance` before the remaining `CPUCreditBalance` is carried over\.
 
 **Note**  
-T3 instances never receive launch credits\.
+T3 and T3a instances never receive launch credits\.
 
 ### Enabling Unlimited Mode<a name="unlimited-mode-enabling"></a>
 
-T3 instances launch as `unlimited` by default\. T2 instances launch as `standard` by default, but you can enable `unlimited` at launch\.
+T3 and T3a instances launch as `unlimited` by default\. T2 instances launch as `standard` by default, but you can enable `unlimited` at launch\.
 
 You can switch from `unlimited` to `standard`, and from `standard` to `unlimited`, at any time on a running or stopped instance\. For more information, see [Launching a Burstable Performance Instance as Unlimited or Standard](burstable-performance-instances-how-to.md#launch-burstable-performance-instances) and [Modifying the Credit Specification of a Burstable Performance Instance](burstable-performance-instances-how-to.md#modify-burstable-performance-instances)\. 
 

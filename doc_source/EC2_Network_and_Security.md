@@ -11,6 +11,7 @@ Amazon EC2 provides the following network and security features\.
 + [Elastic IP Addresses](elastic-ip-addresses-eip.md)
 + [Elastic Network Interfaces](using-eni.md)
 + [Enhanced Networking on Linux](enhanced-networking.md)
++ [Elastic Fabric Adapter](efa.md)
 + [Placement Groups](placement-groups.md)
 + [Network Maximum Transmission Unit \(MTU\) for Your EC2 Instance](network_mtu.md)
 + [Virtual Private Clouds](using-vpc.md)

@@ -2,11 +2,11 @@
 
 A consistent and accurate time reference is crucial for many server tasks and processes\. Most system logs include a time stamp that you can use to determine when problems occur and in what order the events take place\. If you use the AWS CLI or an AWS SDK to make requests from your instance, these tools sign requests on your behalf\. If your instance's date and time are not set correctly, the date in the signature may not match the date of the request, and AWS rejects the request\. 
 
-Amazon provides the Amazon Time Sync Service, which you can access from your instance\. This service uses a fleet of satellite\-connected and atomic reference clocks in each region to deliver accurate current time readings of the Coordinated Universal Time \(UTC\) global standard through Network Time Protocol \(NTP\)\. The Amazon Time Sync Service automatically smooths any leap seconds that are added to UTC\.
+Amazon provides the Amazon Time Sync Service, which is accessible from all EC2 instances, and is also used by other AWS services\. This service uses a fleet of satellite\-connected and atomic reference clocks in each Region to deliver accurate current time readings of the Coordinated Universal Time \(UTC\) global standard through Network Time Protocol \(NTP\)\. The Amazon Time Sync Service automatically smooths any leap seconds that are added to UTC\.
 
-The Amazon Time Sync Service is available through NTP at the `169.254.169.123` IP address for any instance running in a VPC\. Your instance does not require access to the internet, and you do not have to configure your security group rules or your network ACL rules to allow access\. Use the following procedures to configure the Amazon Time Sync Service on your instance using the `chrony` client\.
+The Amazon Time Sync Service is available through NTP at the `169.254.169.123` IP address for any instance running in a VPC\. Your instance does not require access to the internet, and you do not have to configure your security group rules or your network ACL rules to allow access\. The latest versions of Amazon Linux 2 and Amazon Linux AMIs synchronize with the Amazon Time Sync Service by default\.
 
-Alternatively, you can use external NTP sources\. For more information about NTP and public time sources, see [http://www\.ntp\.org/](http://www.ntp.org/)\. An instance needs access to the internet for the external NTP time sources to work\. 
+Use the following procedures to configure the Amazon Time Sync Service on your instance using the `chrony` client\. Alternatively, you can use external NTP sources\. For more information about NTP and public time sources, see [http://www\.ntp\.org/](http://www.ntp.org/)\. An instance needs access to the internet for the external NTP time sources to work\. 
 
 ## Configuring the Amazon Time Sync Service on Amazon Linux AMI<a name="configure-amazon-time-service-amazon-linux"></a>
 
@@ -32,7 +32,7 @@ On Amazon Linux 2, the default `chrony` configuration is already set up to use t
 1. Open the `/etc/chrony.conf` file using a text editor \(such as vim or nano\)\. Verify that the file includes the following line:
 
    ```
-   server 169.254.169.123 prefer iburst
+   server 169.254.169.123 prefer iburst minpoll 4 maxpoll 4
    ```
 
    If the line is present, then the Amazon Time Sync Service is already configured and you can go to the next step\. If not, add the line after any other `server` or `pool` statements that are already present in the file, and save your changes\.
@@ -124,7 +124,7 @@ If necessary, update your instance first by running `sudo apt update`\.
 1. Open the `/etc/chrony/chrony.conf` file using a text editor \(such as vim or nano\)\. Add the following line before any other `server` or `pool` statements that are already present in the file, and save your changes:
 
    ```
-   server 169.254.169.123 prefer iburst
+   server 169.254.169.123 prefer iburst minpoll 4 maxpoll 4
    ```
 
 1. Restart the `chrony` service\.
@@ -196,7 +196,7 @@ Install chrony from [https://software\.opensuse\.org/package/chrony](https://sof
 Open the `/etc/chrony.conf` file using a text editor \(such as vim or nano\)\. Verify that the file contains the following line:
 
 ```
-server 169.254.169.123 prefer iburst
+server 169.254.169.123 prefer iburst minpoll 4 maxpoll 4
 ```
 
 If this line is not present, add it\. Comment out any other server or pool lines\. Open yast and enable the chrony service\.

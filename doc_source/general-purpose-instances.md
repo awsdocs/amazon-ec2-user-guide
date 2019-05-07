@@ -28,7 +28,7 @@ These instances provide an ideal cloud infrastructure, offering a balance of com
 
 For more information, see [Amazon EC2 M5 Instances](https://aws.amazon.com/ec2/instance-types/m5)\.
 
-**T2 and T3 Instances**
+**T2, T3, and T3a Instances**
 
 These instances provide a baseline level of CPU performance with the ability to burst to a higher level when required by your workload\. An Unlimited instance can sustain high CPU performance for any period of time whenever required\. For more information, see [Burstable Performance Instances](burstable-performance-instances.md)\. These instances are well\-suited for the following applications:
 + Websites and web applications
@@ -105,6 +105,13 @@ The following is a summary of the hardware specifications for general purpose in
 | t3\.large | 2 | 8 | 
 | t3\.xlarge | 4 | 16 | 
 | t3\.2xlarge | 8 | 32 | 
+| t3a\.nano | 2 | 0\.5 | 
+| t3a\.micro | 2 | 1 | 
+| t3a\.small | 2 | 2 | 
+| t3a\.medium | 2 | 4 | 
+| t3a\.large | 2 | 8 | 
+| t3a\.xlarge | 4 | 16 | 
+| t3a\.2xlarge | 8 | 32 | 
 
 For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
@@ -128,7 +135,7 @@ The following is a summary of network performance for general purpose instances 
 | Instance type | Network performance | Enhanced networking | 
 | --- | --- | --- | 
 | t2\.nano, t2\.micro, t2\.small, t2\.medium, t2\.large, t2\.xlarge, t2\.2xlarge | Up to 1 Gbps |  | 
-| t3\.nano, t3\.micro, t3\.small, t3\.medium, t3\.large, t3\.xlarge, t3\.2xlarge  | Up to 5 Gbps | [ENA](enhanced-networking-ena.md) | 
+| t3\.nano, t3\.micro, t3\.small, t3\.medium, t3\.large, t3\.xlarge, t3\.2xlarge, t3a\.nano, t3a\.micro, t3a\.small, t3a\.medium, t3a\.large, t3a\.xlarge, t3a\.2xlarge | Up to 5 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  `m4.large`  |  Moderate  |  [Intel 82599 VF](sriov-networking.md)  | 
 |  `m4.xlarge`, `m4.2xlarge`, `m4.4xlarge`  |  High  |  [Intel 82599 VF](sriov-networking.md)  | 
 |  `a1.medium`, `a1.large`, `a1.xlarge`, `a1.2xlarge`, `a1.4xlarge`, `m5.large`, `m5.xlarge`, `m5.2xlarge`, `m5.4xlarge`, `m5a.large`, `m5a.xlarge`, `m5a.2xlarge`, `m5a.4xlarge`, `m5ad.large`, `m5ad.xlarge`, `m5ad.2xlarge`, `m5ad.4xlarge`, `m5d.large`, `m5d.xlarge`, `m5d.2xlarge`, `m5d.4xlarge`  |  Up to 10 Gbps  | [ENA](enhanced-networking-ena.md) | 
@@ -181,19 +188,20 @@ The following is a summary of features for general purpose instances:
 | M5d | No | Yes | NVMe \* | Yes | 
 | T2 | Yes | No | No | No | 
 | T3 | Yes | Yes | No | No | 
+| T3a | Yes | Yes | No | No | 
 
 **\*** The root device volume must be an Amazon EBS volume\.
 
 For more information, see the following:
-+ [Amazon EBS and NVMe](nvme-ebs-volumes.md)
++ [Amazon EBS and NVMe on Linux Instances](nvme-ebs-volumes.md)
 + [Amazon EC2 Instance Store](InstanceStorage.md)
 + [Placement Groups](placement-groups.md)
 
 ## Release Notes<a name="general-purpose-instances-limits"></a>
 + M5, M5d, and T3 instances feature a 3\.1 GHz Intel Xeon Platinum 8000 series processor\.
-+ M5a, M5ad instances feature a 2\.5 GHz AMD EPYC 7000 series processor\.
++ M5a, M5ad, and T3a instances feature a 2\.5 GHz AMD EPYC 7000 series processor\.
 + A1 instances feature a 2\.3 GHz AWS Graviton processor based on 64\-bit Arm architecture\.
-+ M4, M5, M5a, M5ad, M5d, `t2.large` and larger, and `t3.large` and larger instance types require 64\-bit HVM AMIs\. They have high\-memory, and require a 64\-bit operating system to take advantage of that capacity\. HVM AMIs provide superior performance in comparison to paravirtual \(PV\) AMIs on high\-memory instance types\. In addition, you must use an HVM AMI to take advantage of enhanced networking\.
++ M4, M5, M5a, M5ad, M5d, `t2.large` and larger, and `t3.large` and larger, and `t3a.large` and larger instance types require 64\-bit HVM AMIs\. They have high\-memory, and require a 64\-bit operating system to take advantage of that capacity\. HVM AMIs provide superior performance in comparison to paravirtual \(PV\) AMIs on high\-memory instance types\. In addition, you must use an HVM AMI to take advantage of enhanced networking\.
 + A1 instances have the following requirements:
   + Must have the NVMe drivers installed\. EBS volumes are exposed as [NVMe block devices](nvme-ebs-volumes.md)\.
   + Must have the Elastic Network Adapter \([ENA](enhanced-networking-ena.md)\) drivers installed\.
@@ -204,7 +212,7 @@ For more information, see the following:
   + Amazon Linux 2 \(64\-bit Arm\)
   + Ubuntu 16\.04 or later \(64\-bit Arm\)
   + Red Hat Enterprise Linux 7\.6 or later \(64\-bit Arm\)
-+ M5, M5a, M5ad, M5d, and T3 instances have the following requirements:
++ M5, M5a, M5ad, M5d, T3, and T3a instances have the following requirements:
   + NVMe drivers must be installed\. EBS volumes are exposed as [NVMe block devices](nvme-ebs-volumes.md)\.
   + Elastic Network Adapter \([ENA](enhanced-networking-ena.md)\) drivers must be installed\.
 
@@ -213,10 +221,10 @@ For more information, see the following:
   + Amazon Linux AMI 2018\.03
   + Ubuntu 14\.04 or later
   + Red Hat Enterprise Linux 7\.4 or later
-  + SUSE Linux Enterprise Server 12 or later
+  + SUSE Linux Enterprise Server 12 SP2 or later
   + CentOS 7 or later
   + FreeBSD 11\.1 or later
-+ A1, M5, M5a, M5ad, M5d, and T3 instances support a maximum of 28 attachments, including network interfaces, EBS volumes, and NVMe instance store volumes\. Every instance has at least one network interface attachment\. For example, if you have no additional network interface attachments on an EBS\-only instance, you could attach 27 EBS volumes to that instance\.
++ A1, M5, M5a, M5ad, M5d, T3, and T3a instances support a maximum of 28 attachments, including network interfaces, EBS volumes, and NVMe instance store volumes\. Every instance has at least one network interface attachment\. For example, if you have no additional network interface attachments on an EBS\-only instance, you could attach 27 EBS volumes to that instance\.
 + Launching a bare metal instance boots the underlying server, which includes verifying all hardware and firmware components\. This means that it can take 20 minutes from the time the instance enters the running state until it becomes available over the network\.
 + To attach or detach EBS volumes or secondary network interfaces from a bare metal instance requires PCIe native hotplug support\. Amazon Linux 2 and the latest versions of the Amazon Linux AMI support PCIe native hotplug, but earlier versions do not\. You must enable the following Linux kernel configuration options:
 
@@ -225,5 +233,5 @@ For more information, see the following:
   CONFIG_PCIEASPM=y
   ```
 + Bare metal instances use a PCI\-based serial device rather than an I/O port\-based serial device\. The upstream Linux kernel and the latest Amazon Linux AMIs support this device\. Bare metal instances also provide an ACPI SPCR table to enable the system to automatically use the PCI\-based serial device\. The latest Windows AMIs automatically use the PCI\-based serial device\.
-+ A1, M5, M5a, M5ad, M5d, and T3 instances should have system\-logind or acpid installed to support clean shutdown through API requests\.
++ A1, M5, M5a, M5ad, M5d, T3, and T3a instances should have system\-logind or acpid installed to support clean shutdown through API requests\.
 + There is a limit on the total number of instances that you can launch in a region, and there are additional limits on some instance types\. For more information, see [How many instances can I run in Amazon EC2?](https://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2)\. To request a limit increase, use the [Amazon EC2 Instance Request Form](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-instances)\.

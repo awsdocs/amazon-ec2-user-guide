@@ -61,6 +61,12 @@ Do not use this command if you're mounting a volume that already has data on it 
    [ec2-user ~]$ sudo mkfs -t xfs /dev/xvdf
    ```
 
+   If you get an error that `mkfs.xfs` is not found, use the following command to install the XFS tools and then repeat the previous command:
+
+   ```
+   [ec2-user ~]$ sudo yum install xfsprogs
+   ```
+
 1. Use the mkdir command to create a mount point directory for the volume\. The mount point is where the volume is located in the file system tree and where you read and write files to after you mount the volume\. The following example creates a directory named `/data`\.
 
    ```

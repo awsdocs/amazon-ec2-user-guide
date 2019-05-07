@@ -117,6 +117,13 @@ The following tables list the instance types that support specifying CPU options
 | t3\.large | 2 | 1 | 2 | 1 | 1, 2 | 
 | t3\.xlarge | 4 | 2 | 2 | 2 | 1, 2 | 
 | t3\.2xlarge | 8 | 4 | 2 | 2, 4 | 1, 2 | 
+| t3a\.nano | 2 | 1 | 2 | 1 | 1, 2 | 
+| t3a\.micro | 2 | 1 | 2 | 1 | 1, 2 | 
+| t3a\.small | 2 | 1 | 2 | 1 | 1, 2 | 
+| t3a\.medium | 2 | 1 | 2 | 1 | 1, 2 | 
+| t3a\.large | 2 | 1 | 2 | 1 | 1, 2 | 
+| t3a\.xlarge | 4 | 2 | 2 | 2 | 1, 2 | 
+| t3a\.2xlarge | 8 | 4 | 2 | 2, 4 | 1, 2 | 
 
 
 **Memory Optimized Instances**  

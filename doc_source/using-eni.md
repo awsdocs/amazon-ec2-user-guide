@@ -228,6 +228,13 @@ The following table lists the maximum number of network interfaces per instance 
 |  `t3.large`  |  3  |  12  | 12 | 
 |  `t3.xlarge`  |  4  |  15  |  15  | 
 |  `t3.2xlarge`  |  4  |  15  |  15  | 
+|  `t3a.nano`  |  2  |  2  | 2 | 
+|  `t3a.micro`  |  2  |  2  | 2 | 
+|  `t3a.small`  |  3  |  4  | 4 | 
+|  `t3a.medium`  |  3  |  6  | 6 | 
+|  `t3a.large`  |  3  |  12  | 12 | 
+|  `t3a.xlarge`  |  4  |  15  |  15  | 
+|  `t3a.2xlarge`  |  4  |  15  |  15  | 
 | `u-6tb1.metal` | 5 | 30 | 30 | 
 | `u-9tb1.metal` | 5 | 30 | 30 | 
 | `u-12tb1.metal` | 5 | 30 | 30 | 

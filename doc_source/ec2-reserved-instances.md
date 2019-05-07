@@ -15,7 +15,7 @@ The Reserved Instance pricing is determined by the following key variables\.
 ### Instance Attributes<a name="ri-pricing-variable-instance-attributes"></a>
 
 A Reserved Instance has four instance attributes that determine its price\. The attributes also determine how the Reserved Instance is applied to a running instance in your account\.
-+ **Instance type**: For example, `m4.large`\. This is composed of the instance family \(m4\) and the instance size \(large\)\.
++ **Instance type**: For example, `m4.large`\. This is composed of the instance family \(`m4`\) and the instance size \(`large`\)\.
 + **Scope**: Whether the Reserved Instance applies to a Region \(*regional* Reserved Instance\) or specific Availability Zone \(*zonal* Reserved Instance\)\. For more information, see [Regional and Zonal Reserved Instances \(Scope\)](reserved-instances-scope.md)\.
 + **Tenancy**: Whether your instance runs on shared \(default\) or single\-tenant \(dedicated\) hardware\. For more information, see [Dedicated Instances](dedicated-instance.md)\. 
 + **Platform**: The operating system; for example, Windows or Linux/Unix\. For more information, see [Choosing a Platform](ri-market-concepts-buying.md#ri-choosing-platform)\.
@@ -37,7 +37,7 @@ The following payment options are available for Reserved Instances:
 **Note**  
 No Upfront Reserved Instances are based on a contractual obligation to pay monthly for the entire term of the reservation\. For this reason, a successful billing history is required before you can purchase No Upfront Reserved Instances\.
 
-Generally speaking, you can save more money making a higher upfront payment for Reserved Instances\. You can also find Reserved Instances offered by third\-party sellers at lower prices and shorter term lengths on the Reserved Instance Marketplace\. For more information, see [Selling on the Reserved Instance Marketplace](ri-market-general.md)\. 
+Generally speaking, you can save more money making a higher upfront payment for Reserved Instances\. You can also find Reserved Instances offered by third\-party sellers at lower prices and shorter term lengths on the Reserved Instance Marketplace\. For more information, see [Reserved Instance Marketplace](ri-market-general.md)\. 
 
 ### Offering Class<a name="ri-pricing-variable-offering-class"></a>
 

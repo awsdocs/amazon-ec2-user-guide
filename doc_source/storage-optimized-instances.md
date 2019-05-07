@@ -18,13 +18,13 @@ H1 instances are well suited for the following applications:
 
 **I3 Instances**
 
-I3 instances are well suited for the following applications:
+These instances are well suited for the following applications:
 + High frequency online transaction processing \(OLTP\) systems
 + Relational databases
 + NoSQL databases
 + Cache for in\-memory databases \(for example, Redis\)
 + Data warehousing applications
-+ Low latency Ad\-Tech serving applications
++ Distributed file systems
 
 `i3.metal` instances provide your applications with direct access to physical resources of the host server, such as processors and memory\. These instances are well suited for the following:
 + Workloads that require access to low\-level hardware features \(for example, Intel VT\) that are not available or fully supported in virtualized environments
@@ -116,7 +116,7 @@ If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-ba
 |  `i3.8xlarge`  |  1\.65 million  |  720,000  | 
 |  `i3.16xlarge`  |  3\.3 million  |  1\.4 million  | 
 
-\* For `i3.large` and `i3.xlarge` instances, you can get up to the specified performance\.
+\* For these instances, you can get up to the specified performance\.
 
 As you fill the SSD\-based instance store volumes for your instance, the number of write IOPS that you can achieve decreases\. This is due to the extra work the SSD controller must do to find available space, rewrite existing data, and erase unused space so that it can be rewritten\. This process of garbage collection results in internal write amplification to the SSD, expressed as the ratio of SSD write operations to user write operations\. This decrease in performance is even larger if the write operations are not in multiples of 4,096 bytes or not aligned to a 4,096\-byte boundary\. If you write a smaller amount of bytes or bytes that are not aligned, the SSD controller must read the surrounding data and store the result in a new location\. This pattern results in significantly increased write amplification, increased latency, and dramatically reduced I/O performance\.
 
@@ -131,14 +131,14 @@ The following is a summary of features for storage optimized instances:
 
 |  | EBS only | Instance store | Placement group | 
 | --- | --- | --- | --- | 
-| D2 | No | HDD | Yes | 
-| H1 | No | HDD | Yes | 
+| D2 | No | HDD  | Yes | 
+| H1 | No | HDD \* | Yes | 
 | I3 | No | NVMe \* | Yes | 
 
 **\*** The root device volume must be an Amazon EBS volume\.
 
 For more information, see the following:
-+ [Amazon EBS and NVMe](nvme-ebs-volumes.md)
++ [Amazon EBS and NVMe on Linux Instances](nvme-ebs-volumes.md)
 + [Amazon EC2 Instance Store](InstanceStorage.md)
 + [Placement Groups](placement-groups.md)
 
@@ -210,7 +210,7 @@ If you must use a different AMI for your application, and your `d2.8xlarge` inst
   + Amazon Linux AMI 2018\.03
   + Ubuntu 14\.04 or later
   + Red Hat Enterprise Linux 7\.4 or later
-  + SUSE Linux Enterprise Server 12 or later
+  + SUSE Linux Enterprise Server 12 SP2 or later
   + CentOS 7 or later
   + FreeBSD 11\.1 or later
 + Launching an `i3.metal` instance boots the underlying server, which includes verifying all hardware and firmware components\. This means that it can take 20 minutes from the time the instance enters the running state until it becomes available over the network\.
