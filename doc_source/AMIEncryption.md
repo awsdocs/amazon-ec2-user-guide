@@ -1,77 +1,115 @@
-# AMIs with Encrypted Snapshots<a name="AMIEncryption"></a>
+# Using Encryption with EBS\-Backed AMIs<a name="AMIEncryption"></a>
 
-AMIs that are backed by Amazon EBS snapshots can take advantage of Amazon EBS encryption\. Snapshots of both data and root volumes can be encrypted and attached to an AMI\.
+AMIs that are backed by Amazon EBS snapshots can take advantage of Amazon EBS encryption\. Snapshots of both data and root volumes can be encrypted and attached to an AMI\. You can launch instances and copy images with full EBS encryption support including\. Encryption parameters for these operations are supported in all regions where AWS KMS is available\.
 
-EC2 instances with encrypted volumes are launched from AMIs in the same way as other instances\. 
+EC2 instances with encrypted EBS volumes are launched from AMIs in the same way as other instances\. In addition, when you launch an instance from an AMI backed by unencrypted EBS snapshots, you can encrypt some or all of the volumes during launch\. 
 
-The `CopyImage` action can be used to create an AMI with encrypted snapshots from an AMI with unencrypted snapshots\. By default, `CopyImage` preserves the encryption status of source snapshots when creating destination copies\. However, you can configure the parameters of the copy process to also encrypt the destination snapshots\. 
+Like EBS volumes, snapshots in AMIs can be encrypted to either your default AWS Key Management Service customer master key \(CMK\), or to a custom key that you specify\. You must in all cases have permissions to use the selected key\.
 
-Snapshots can be encrypted with either your default AWS Key Management Service customer master key \(CMK\), or with a custom key that you specify\. You must in all cases have permission to use the selected key\. If you have an AMI with encrypted snapshots, you can choose to re\-encrypt them with a different encryption key as part of the `CopyImage` action\. `CopyImage` accepts only one key at a time and encrypts all of an image's snapshots \(whether root or data\) to that key\. However, it is possible to manually build an AMI with snapshots encrypted to multiple keys\.
+AMIs with encrypted snapshots can be shared across AWS accounts\. For more information, see [Shared AMIs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/sharing-amis.html)\.
 
-Support for creating AMIs with encrypted snapshots is accessible through the Amazon EC2 console, Amazon EC2 API, or the AWS CLI\. 
+## Instance\-Launching Scenarios<a name="AMI-encryption-launch"></a>
 
-The encryption parameters of `CopyImage` are available in all regions where AWS KMS is available\.
+Amazon EC2 instances are launched from AMIs using the `RunInstances` action with parameters supplied through block device mapping, either by means of the AWS Management Console or directly using the Amazon EC2 API or CLI\. For more information about block device mapping, see [Block Device Mapping](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html)\. For examples of controlling block device mapping from the AWS CLI, see [Launch, List, and Terminate EC2 Instances](https://docs.aws.amazon.com/cli/latest/userguide/cli-services-ec2-instances.html)\.
 
-## AMI Scenarios Involving Encrypted EBS Snapshots<a name="AMIEncryption_scenarios"></a>
+By default, without explicit encryption parameters, a `RunInstances` action maintains the existing encryption state of an AMI's source snapshots while restoring EBS volumes from them\. If [encryption by default](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/encryption-by-default.html) is enabled, all volumes created from the AMI \(whether from encrypted or unencrypted snapshots\) will be encrypted\. If encryption by default is not enabled, then the instance maintains the encryption state of the AMI\.
 
-You can copy an AMI and simultaneously encrypt its associated EBS snapshots using the AWS Management Console or the command line\.
+You can also launch an instance and simultaneously apply a new encryption state to the resulting volumes by supplying encryption parameters\. Consequently, the following behaviors are observed:
 
-### Copying an AMI with an Encrypted Data Snapshot<a name="copy-ami-encrypted-snapshot"></a>
+**Launch with no encryption parameters**
++ An unencrypted snapshot is restored to an unencrypted volume, unless encryption by default is enabled, in which case all the newly created volumes will be encrypted\.
++ An encrypted snapshot that you own is restored to a volume that is encrypted to the same CMK\.
++ An encrypted snapshot that you do not own \(i\.e\., the AMI is shared with you\) is restored to a volume that is encrypted to your AWS account's default CMK\.
 
-In this scenario, an EBS\-backed AMI has an unencrypted root snapshot and an encrypted data snapshot, shown in step 1\. The `CopyImage` action is invoked in step 2 without encryption parameters\. As a result, the encryption status of each snapshot is preserved, so that the destination AMI, in step 3, is also backed by an unencrypted root snapshot and an encrypted data snapshot\. Though the snapshots contain the same data, they are distinct from each other and you will incur storage costs for the snapshots in both AMIs, as well as charges for any instances you launch from either AMI\.
+The default behaviors can be overridden by supplying encryption parameters\. The available parameters are `Encrypted` and `KmsKeyId`\. Setting only the `Encrypted` parameter results in the following:
 
-![\[Copy an AMI with encrypted data snapshot\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ami-to-ami-mixed.png)
+**Instance launch behaviors with `Encrypted` set, but no `KmsKeyId` specified**
++ An unencrypted snapshot is restored to an EBS volume that is encrypted to your AWS account's default CMK\.
++ An encrypted snapshot that you own is restored to an EBS volume encrypted to the same CMK\. \(In other words, the `Encrypted` parameter has no effect\.\)
++ An encrypted snapshot that you do not own \(i\.e\., the AMI is shared with you\) is restored to a volume that is encrypted to your AWS account's default CMK\. \(In other words, the `Encrypted` parameter has no effect\.\)
 
-You can perform a simple copy such as this using either the Amazon EC2 console or the command line\. For more information, see [Copying an AMI](CopyingAMIs.md)\.
+Setting both the `Encrypted` and `KmsKeyId` parameters allows you to specify a non\-default CMK for an encryption operation\. The following behaviors result:
 
-### Copying an AMI Backed by An Encrypted Root Snapshot<a name="copy-ami-encrypted-root-snapshot"></a>
+**Instance with both `Encrypted` and `KmsKeyId` set**
++ An unencrypted snapshot is restored to an EBS volume encrypted to the specified CMK\.
++ An encrypted snapshot is restored to an EBS volume encrypted not to the original CMK, but instead to the specified CMK\.
 
-In this scenario, an Amazon EBS\-backed AMI has an encrypted root snapshot, shown in step 1\. The `CopyImage` action is invoked in step 2 without encryption parameters\. As a result, the encryption status of the snapshot is preserved, so that the destination AMI, in step 3, is also backed by an encrypted root snapshot\. Though the root snapshots contain identical system data, they are distinct from each other and you will incur storage costs for the snapshots in both AMIs, as well as charges for any instances you launch from either AMI\.
+Submitting a `KmsKeyId` without also setting the `Encrypted` parameter results in an error\.
 
-![\[Copy an AMI backed by encrypted root snapshot\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ami-to-ami-encrypted.png)
+The following sections provide examples of launching instances from AMIs using non\-default encryption parameters\. In each of these scenarios, parameters supplied to the `RunInstances` action result in a change of encryption state during restoration of a volume from a snapshot\.
 
-You can perform a simple copy such as this using either the Amazon EC2 console or the command line\. For more information, see [Copying an AMI](CopyingAMIs.md)\.
+**Note**  
+For detailed console procedures to launch an instance from an AMI, see [Launch Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/LaunchingAndUsingInstances.html)[Launch Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/LaunchingAndUsingInstances.html)\.  
+For documentation of the `RunInstances` API, see [RunInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html)\.  
+For documentation of the command `run-instances` in the AWS Command Line Interface, see [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html)\.
 
-### Creating an AMI with Encrypted Root Snapshot from an Unencrypted AMI<a name="create-ami-encrypted-root-snapshot"></a>
+### Encrypt a Volume during Launch<a name="launch1"></a>
 
-In this scenario, an Amazon EBS\-backed AMI has an unencrypted root snapshot, shown in step 1, and an AMI is created with an encrypted root snapshot, shown in step 3\. The `CopyImage` action in step 2 is invoked with two encryption parameters, including the choice of a CMK\. As a result, the encryption status of the root snapshot changes, so that the target AMI is backed by a root snapshot containing the same data as the source snapshot, but encrypted using the specified key\. You will incur storage costs for the snapshots in both AMIs, as well as charges for any instances you launch from either AMI\.
+In this example, an AMI backed by an unencrypted snapshot is used to launch an EC2 instance with an encrypted EBS volume\.
 
-![\[Create an AMI from unencrypted AMI\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ami-to-ami-convert.png)
+![\[Launch instance and encrypt volume on the fly\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ami-launch-convert.png)
 
-You can perform a copy and encrypt operation such as this using either the Amazon EC2 console or the command line\. For more information, see [Copying an AMI](CopyingAMIs.md)\.
+The `Encrypted` parameter alone results in the volume for this instance being encrypted\. Providing a `KmsKeyId` parameter is optional\. If no key ID is specified, the AWS account's default CMK is used to encrypt the volume\. To encrypt the volume to a different CMK that you own, supply the `KmsKeyId` parameter\. 
 
-### Creating an AMI with an Encrypted Root Snapshot from a Running Instance<a name="create-ami-encrypted-root-snapshot-instance"></a>
+### Re\-Encrypt a Volume during Launch<a name="launch2"></a>
 
-In this scenario, an AMI is created from a running EC2 instance\. The running instance in step 1 has an encrypted root volume, and the created AMI in step 3 has a root snapshot encrypted to the same key as the source volume\. The `CreateImage` action has exactly the same behavior whether or not encryption is present\.
+In this example, an AMI backed by an encrypted snapshot is used to launch an EC2 instance with an EBS volume encrypted to a new CMK\. 
 
-![\[Create an AMI from instance with encrypted root snapshot\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/running-instance-encrypted.png)
+![\[Launch instance and re-encrypt volume on the fly\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ami-launch-encrypted.png)
 
-You can create an AMI from a running Amazon EC2 instance \(with or without encrypted volumes\) using either the Amazon EC2 console or the command line\. For more information, see [Creating an Amazon EBS\-Backed Linux AMI](creating-an-ami-ebs.md)\. 
+If you own the AMI and supply no encryption parameters, the resulting instance has a volume encrypted to the same key as the snapshot\. If the AMI is shared rather than owned by you, and you supply no encryption parameters, the volume is encrypted to your default CMK\. With encryption parameters supplied as shown, the volume is encrypted to the specified CMK\.
 
-### Creating an AMI with Unique CMKs for Each Encrypted Snapshot<a name="create-ami-encrypted-snapshot-cmk"></a>
+### Change Encryption State of Multiple Volumes during Launch<a name="launch3"></a>
 
-This scenario starts with an AMI backed by a root\-volume snapshot \(encrypted to key \#1\), and finishes with an AMI that has two additional data\-volume snapshots attached \(encrypted to key \#2 and key \#3\)\. The `CopyImage` action cannot apply more than one encryption key in a single operation\. However, you can create an AMI from an instance that has multiple attached volumes encrypted to different keys\. The resulting AMI has snapshots encrypted to those keys and any instance launched from this new AMI also has volumes encrypted to those keys\.
+In this more complex example, an AMI backed by multiple snapshots \(each with its own encryption state\) is used to launch an EC2 instance with a newly encrypted volume and a re\-encrypted volume\.
 
-The steps of this example procedure correspond to the following diagram\.
+![\[Encrypt and re-encrypt multiple volumes during launch\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ami-launch-mixed.png)
 
-1. Start with the source AMI backed by vol\. \#1 \(root\) snapshot, which is encrypted with key \#1\.
+In this scenario, the `RunInstances` action is supplied with encryption parameters for each of the source snapshots\. When all possible encryption parameters are specified, the resulting instance is the same regardless of whether you own the AMI\.
 
-1. Launch an EC2 instance from the source AMI\.
+## Image\-Copying Scenarios<a name="AMI-encryption-copy"></a>
 
-1. Create EBS volumes vol\. \#2 \(data\) and vol\. \#3 \(data\), encrypted to key \#2 and key \#3 respectively\.
+Amazon EC2 AMIs are copied using the `CopyImage` action, either through the AWS Management Console or directly using the Amazon EC2 API or CLI\.
 
-1. Attach the encrypted data volumes to the EC2 instance\.
+By default, without explicit encryption parameters, a `CopyImage` action maintains the existing encryption state of an AMI's source snapshots during copy\. You can also copy an AMI and simultaneously apply a new encryption state to its associated EBS snapshots by supplying encryption parameters\. Consequently, the following behaviors are observed:
 
-1. The EC2 instance now has an encrypted root volume as well as two encrypted data volumes, all using different keys\.
+**Copy with no encryption parameters**
++ An unencrypted snapshot is copied to another unencrypted snapshot, unless encryption by default is enabled, in which case all the newly created snapshots will be encrypted\.
++ An encrypted snapshot that you own is copied to a snapshot encrypted with the same key\.
++ An encrypted snapshot that you do not own \(that is, the AMI is shared with you\) is copied to a snapshot that is encrypted to your AWS account's default CMK\.
 
-1. Use the `CreateImage` action on the EC2 instance\.
+All of these default behaviors can be overridden by supplying encryption parameters\. The available parameters are `Encrypted` and `KmsKeyId`\. Setting only the `Encrypted` parameter results in the following:
 
-1. The resulting target AMI contains encrypted snapshots of the three EBS volumes, all using different keys\.
+**Copy\-image behaviors with `Encrypted` set, but no `KmsKeyId` specified**
++ An unencrypted snapshot is copied to a snapshot encrypted to the AWS account's default CMK\.
++ An encrypted snapshot is copied to a snapshot encrypted to the same CMK\. \(In other words, the `Encrypted` parameter has no effect\.\)
++ An encrypted snapshot that you do not own \(i\.e\., the AMI is shared with you\) is copied to a volume that is encrypted to your AWS account's default CMK\. \(In other words, the `Encrypted` parameter has no effect\.\)
 
-![\[Create AMIs with unique CMKs\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/multi-key.png)
+Setting both the `Encrypted` and `KmsKeyId` parameters allows you to specify a custom CMK for an encryption operation\. The following behaviors result:
 
-You can carry out this procedure using either the Amazon EC2 console or the command line\. For more information, see the following topics:
-+ [Launch Your Instance](LaunchingAndUsingInstances.md)
-+ [Creating an Amazon EBS\-Backed Linux AMI](creating-an-ami-ebs.md)\.
-+ [Amazon EBS Volumes](EBSVolumes.md)
-+ [AWS Key Management](https://docs.aws.amazon.com/kms/latest/developerguide/getting-started.html) in the *AWS Key Management Service Developer Guide*
+**Copy\-image behaviors with both `Encrypted` and `KmsKeyId` set**
++ An unencrypted snapshot is copied to a snapshot encrypted to the specified CMK\.
++ An encrypted snapshot is copied to a snapshot encrypted not to the original CMK, but instead to the specified CMK\.
+
+Submitting a `KmsKeyId` without also setting the `Encrypted` parameter results in an error\.
+
+The following section provides an example of copying an AMI using non\-default encryption parameters, resulting in a change of encryption state\.
+
+**Note**  
+For detailed console procedures to copy an AMI, see [Copying an AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/CopyingAMIs.html)\.  
+For documentation of the `CopyImage` API, see [CopyImage](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CopyImage.html)\.  
+For documentation of the command `copy-image` in the AWS Command Line Interface, see [copy\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/copy-image.html)\.
+
+### Encrypt an Unencrypted Image during Copy<a name="copy-unencrypted-to-encrypted"></a>
+
+In this scenario, an AMI backed by an unencrypted root snapshot is copied to an AMI with an encrypted root snapshot\. The `CopyImage` action is invoked with two encryption parameters, including the choice of a CMK\. As a result, the encryption status of the root snapshot changes, so that the target AMI is backed by a root snapshot containing the same data as the source snapshot, but encrypted using the specified key\. You will incur storage costs for the snapshots in both AMIs, as well as charges for any instances you launch from either AMI\.
+
+**Note**  
+ Enabling [encryption by default](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/encryption-by-default.html) has the same effect as setting the `Encrypted` parameter to `true` for all snapshots in the AMI\. 
+
+![\[Copy AMI and encrypt snapshot on the fly\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ami-to-ami-convert.png)
+
+The `Encrypted` parameter alone results in the single snapshot for this instance being encrypted\. Providing a `KmsKeyId` parameter is optional\. If none is specified, the default CMK of the AWS account is used to encrypt the snapshot copy\. To encrypt the copy to a different CMK that you own, supply the `KmsKeyId` parameter\. 
+
+**Note**  
+You can also copy an image with multiple snapshots and configure the encryption state of each individually\.

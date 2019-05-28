@@ -1,6 +1,6 @@
 # Sharing an Amazon EBS Snapshot<a name="ebs-modifying-snapshot-permissions"></a>
 
-By modifying the permissions of a snapshot, you can share it with the AWS accounts that you specify\. Users that you have authorized can use the snapshots you share as the basis for creating their own EBS volumes, while your original snapshot remains unaffected\. If you choose, you can make your unencrypted snapshots available publicly to all AWS users\. You can't make your encrypted snapshots available publicly\.
+By modifying the permissions of a snapshot, you can share it with the AWS accounts that you specify\. Users that you have authorized can use the snapshots you share as the basis for creating their own EBS volumes, while your original snapshot remains unaffected\. If you choose, you can make your unencrypted snapshots available publicly to all AWS users\. You can't make your encrypted snapshots available publicly\. 
 
 When you share an encrypted snapshot, you must also share the custom CMK used to encrypt the snapshot\. You can apply cross\-account permissions to a custom CMK either when it is created or at a later time\.
 
@@ -14,7 +14,6 @@ The following considerations apply to sharing snapshots:
 + If your snapshot uses the longer resource ID format, you can only share it with another account that also supports longer IDs\. For more information, see [Resource IDs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/resource-ids.html)\.
 + AWS prevents you from sharing snapshots that were encrypted with your default CMK\. Snapshots that you intend to share must instead be encrypted with a custom CMK\. For more information, see [Creating Keys](https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html) in the *AWS Key Management Service Developer Guide*\.
 + Users of your shared CMK who are accessing encrypted snapshots must be granted permissions to perform the following actions on the key: `kms:DescribeKey`, `kms:CreateGrant`, `GenerateDataKey`, and `kms:ReEncrypt`\. For more information, see [Controlling Access to Customer Master Keys](https://docs.aws.amazon.com/kms/latest/developerguide/control-access.html) in the *AWS Key Management Service Developer Guide*\.
-+ If you have access to a shared encrypted snapshot and you want to restore a volume from it, you must create a personal copy of the snapshot and then use that copy to restore the volume\. We recommend that you re\-encrypt the snapshot during the copy process with a different key that you control\. This protects your access to the volume if the original key is compromised, or if the owner revokes the key for any reason\.
 
 ## Sharing an Unencrypted Snapshot Using the Console<a name="share-unencrypted-snapshot"></a>
 
@@ -74,17 +73,15 @@ The following considerations apply to sharing snapshots:
 
 1. Locate the snapshot by ID or description\.
 
-1. We recommend that you re\-encrypt the snapshot with a different key that you own\. This protects you if the original key is compromised, or if the owner revokes the key, which could cause you to lose access to any encrypted volumes you create from the snapshot\.
+1. Select the snapshot and choose **Actions**, **Copy**\.
 
-   1. Select the snapshot and choose **Actions**, **Copy**\.
+1. \(Optional\) Select a destination Region\.
 
-   1. \(Optional\) Select a destination Region\.
+1. The copy of the snapshot will be encrypted to the key displayed in the **Master Key** field\. By default, the selected key is your account's default CMK\. To select a custom CMK, click inside the input box to see a list of available keys\.
 
-   1. Select a custom CMK that you own\.
+1. Choose **Copy**\.
 
-   1. Choose **Copy**\.
-
-## Sharing an Snapshot Using the Command Line<a name="share-snapshot-cli"></a>
+## Sharing a Snapshot Using the Command Line<a name="share-snapshot-cli"></a>
 
 The permissions for a snapshot are specified using the `createVolumePermission` attribute of the snapshot\. To make a snapshot public, set the group to `all`\. To share a snapshot with a specific AWS account, set the user to the ID of the AWS account\.
 

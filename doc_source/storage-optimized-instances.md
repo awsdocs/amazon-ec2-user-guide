@@ -16,7 +16,7 @@ H1 instances are well suited for the following applications:
 + Applications requiring sequential access to large amounts of data on direct\-attached instance storage
 + Applications that require high\-throughput access to large quantities of data<a name="i3-instances"></a>
 
-**I3 Instances**
+**I3 and I3en Instances**
 
 These instances are well suited for the following applications:
 + High frequency online transaction processing \(OLTP\) systems
@@ -67,6 +67,13 @@ The following is a summary of the hardware specifications for storage optimized 
 | i3\.8xlarge | 32 | 244 | 
 | i3\.16xlarge | 64 | 488 | 
 | i3\.metal | 72 | 512 | 
+| i3en\.large | 2 | 16 | 
+| i3en\.xlarge | 4 | 32 | 
+| i3en\.2xlarge | 8 | 64 | 
+| i3en\.3xlarge | 12 | 96 | 
+| i3en\.6xlarge | 24 | 192 | 
+| i3en\.12xlarge | 48 | 384 | 
+| i3en\.24xlarge | 96 | 768 | 
 
 For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
@@ -97,7 +104,10 @@ The following is a summary of network performance for storage optimized instance
 | --- | --- | --- | 
 |  `i3.4xlarge` and smaller  |  Up to 10 Gbps, use network I/O credit mechanism  | [ENA](enhanced-networking-ena.md) | 
 |  `i3.8xlarge` \| `h1.8xlarge`  |  10 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  `i3.16xlarge` \| `i3.metal` \| `h1.16xlarge`  |  25 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `i3en.3xlarge` and smaller  |  Up to 25 Gbps, use network I/O credit mechanism  | [ENA](enhanced-networking-ena.md) | 
+|  `i3.16xlarge` \| `i3.metal` \| `i3en.6xlarge \| ``h1.16xlarge`  |  25 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `i3en.12xlarge`  |  50 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `i3en.24xlarge`  |  100 Gbps  | [ENA](enhanced-networking-ena.md) | 
 |  `d2.xlarge`  |  Moderate  | [Intel 82599 VF](sriov-networking.md) | 
 | d2\.2xlarge \| d2\.4xlarge |  High  | [Intel 82599 VF](sriov-networking.md) | 
 | d2\.8xlarge |  10 Gbps  | [Intel 82599 VF](sriov-networking.md) | 
@@ -115,10 +125,17 @@ If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-ba
 |  `i3.4xlarge`  |  825,000  |  360,000  | 
 |  `i3.8xlarge`  |  1\.65 million  |  720,000  | 
 |  `i3.16xlarge`  |  3\.3 million  |  1\.4 million  | 
+| `i3en.large` \* | 42,500 | 32,500 | 
+| `i3en.xlarge` \* | 85,000 | 65,000 | 
+| `i3en.2xlarge` \* | 170,000 | 130,000 | 
+| `i3en.3xlarge` | 250,000 | 200,000 | 
+| `i3en.6xlarge` | 500,000 | 400,000 | 
+| `i3en.12xlarge` | 1 million | 800,000 | 
+| `i3en.24xlarge` | 2 million | 1\.6 million | 
 
 \* For these instances, you can get up to the specified performance\.
 
-As you fill the SSD\-based instance store volumes for your instance, the number of write IOPS that you can achieve decreases\. This is due to the extra work the SSD controller must do to find available space, rewrite existing data, and erase unused space so that it can be rewritten\. This process of garbage collection results in internal write amplification to the SSD, expressed as the ratio of SSD write operations to user write operations\. This decrease in performance is even larger if the write operations are not in multiples of 4,096 bytes or not aligned to a 4,096\-byte boundary\. If you write a smaller amount of bytes or bytes that are not aligned, the SSD controller must read the surrounding data and store the result in a new location\. This pattern results in significantly increased write amplification, increased latency, and dramatically reduced I/O performance\.
+As you fill your SSD\-based instance store volumes, the I/O performance that you get decreases\. This is due to the extra work that the SSD controller must do to find available space, rewrite existing data, and erase unused space so that it can be rewritten\. This process of garbage collection results in internal write amplification to the SSD, expressed as the ratio of SSD write operations to user write operations\. This decrease in performance is even larger if the write operations are not in multiples of 4,096 bytes or not aligned to a 4,096\-byte boundary\. If you write a smaller amount of bytes or bytes that are not aligned, the SSD controller must read the surrounding data and store the result in a new location\. This pattern results in significantly increased write amplification, increased latency, and dramatically reduced I/O performance\.
 
 SSD controllers can use several strategies to reduce the impact of write amplification\. One such strategy is to reserve space in the SSD instance storage so that the controller can more efficiently manage the space available for write operations\. This is called *over\-provisioning*\. The SSD\-based instance store volumes provided to an instance don't have any space reserved for over\-provisioning\. To reduce write amplification, we recommend that you leave 10% of the volume unpartitioned so that the SSD controller can use it for over\-provisioning\. This decreases the storage that you can use, but increases performance even if the disk is close to full capacity\.
 
@@ -134,6 +151,7 @@ The following is a summary of features for storage optimized instances:
 | D2 | No | HDD  | Yes | 
 | H1 | No | HDD \* | Yes | 
 | I3 | No | NVMe \* | Yes | 
+| I3en | No | NVMe \* | Yes | 
 
 **\*** The root device volume must be an Amazon EBS volume\.
 
@@ -200,8 +218,7 @@ If you must use a different AMI for your application, and your `d2.8xlarge` inst
 
 ## Release Notes<a name="storage-instance-release-notes"></a>
 + You must launch storage optimized instances using an HVM AMI\. For more information, see [Linux AMI Virtualization Types](virtualization_types.md)\.
-+ You must launch I3 instances using an Amazon EBS\-backed AMI\.
-+ The following are requirements for `i3.metal` instances:
++ The following are requirements for I3en and `i3.metal` instances:
   + NVMe drivers must be installed\. EBS volumes are exposed as [NVMe block devices](nvme-ebs-volumes.md)\.
   + Elastic Network Adapter \([ENA](enhanced-networking-ena.md)\) drivers must be installed\.
 

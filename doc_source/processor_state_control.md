@@ -14,6 +14,7 @@ The following instance types provide the ability for an operating system to cont
 + General purpose: `m5.12xlarge` \| `m5.24xlarge` \| `m5d.12xlarge` \| `m5d.24xlarge`
 + Compute optimized: `c5.9xlarge` \| `c5.18xlarge` \| `c5d.9xlarge` \| `c5d.18xlarge`
 + Memory optimized: `r5.12xlarge` \| `r5.24xlarge` \| `r5d.12xlarge` \| `r5d.24xlarge` \| `z1d.6xlarge` \| `z1d.12xlarge`
++ Storage optimized: `i3en.12xlarge` \| `i3en.24xlarge`
 + Accelerated computing: `p3dn.24xlarge`
 
 You might want to change the C\-state or P\-state settings to increase processor performance consistency, reduce latency, or tune your instance for a specific workload\. The default C\-state and P\-state settings provide maximum performance, which is optimal for most workloads\. However, if your application would benefit from reduced latency at the cost of higher single\- or dual\-core frequencies, or from consistent performance at lower frequencies as opposed to bursty Turbo Boost frequencies, consider experimenting with the C\-state or P\-state settings that are available to these instances\.

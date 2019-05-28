@@ -76,6 +76,13 @@ The following table lists current\-generation instance types that support EBS op
 | i3\.8xlarge | Yes | 7,000 | 875 | 32,500 | 
 | i3\.16xlarge | Yes | 14,000 | 1,750 | 65,000 | 
 | i3\.metal | Yes | 14,000 | 1,750 | 65,000 | 
+| i3en\.large \* | Yes | 3,500 | 437\.5 | 20,000 | 
+| i3en\.xlarge \* | Yes | 3,500 | 437\.5 | 20,000 | 
+| i3en\.2xlarge \* | Yes | 3,500 | 437\.5 | 20,000 | 
+| i3en\.3xlarge \* | Yes | 3,500 | 437\.5 | 20,000 | 
+| i3en\.6xlarge | Yes | 3,500 | 437\.5 | 20,000 | 
+| i3en\.12xlarge | Yes | 7,000 | 875 | 40,000 | 
+| i3en\.24xlarge | Yes | 14,000 | 1,750 | 80,000 | 
 | m4\.large | Yes | 450 | 56\.25 | 3,600 | 
 | m4\.xlarge | Yes | 750 | 93\.75 | 6,000 | 
 | m4\.2xlarge | Yes | 1,000 | 125 | 8,000 | 
@@ -194,6 +201,10 @@ The following table lists current\-generation instance types that support EBS op
 | c5n\.large | 525 | 65\.625 | 4,000 | 
 | c5n\.xlarge | 800 | 100 | 6,000 | 
 | c5n\.2xlarge | 1,750 | 218\.75 | 10,000 | 
+| i3en\.large | 425 | 53\.125 | 3,000 | 
+| i3en\.xlarge | 850 | 106\.25 | 6,000 | 
+| i3en\.2xlarge | 1,700 | 212\.5 | 12,000 | 
+| i3en\.3xlarge | 2,800 | 350 | 15,000 | 
 | m5\.large | 480 | 60 | 3,600 | 
 | m5\.xlarge | 850 | 106\.25 | 6,000 | 
 | m5\.2xlarge | 1,700 | 212\.5 | 12,000 | 

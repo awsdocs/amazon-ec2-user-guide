@@ -6,7 +6,7 @@ EBS snapshots are the preferred backup tool on Amazon EC2 due to their speed, co
 
 New volumes created from existing EBS snapshots load lazily in the background\. This means that after a volume is created from a snapshot, there is no need to wait for all of the data to transfer from Amazon S3 to your EBS volume before your attached instance can start accessing the volume and all its data\. If your instance accesses data that hasn't yet been loaded, the volume immediately downloads the requested data from Amazon S3, and continues loading the rest of the data in the background\.
 
-EBS volumes that are restored from encrypted snapshots are automatically encrypted\. Encrypted volumes can only be attached to selected instance types\. For more information, see [Supported Instance Types](EBSEncryption.md#EBSEncryption_supported_instances)\.
+EBS volumes that are restored from encrypted snapshots are automatically encrypted\. You can also encrypt a volume on\-the\-fly while restoring it from an unencrypted snapshot\. Encrypted volumes can only be attached to selected instance types\. For more information, see [Supported Instance Types](EBSEncryption.md#EBSEncryption_supported_instances)\.
 
 Because of security constraints, you cannot directly restore an EBS volume from a shared encrypted snapshot that you do not own\. You must first create a copy of the snapshot, which you will own\. You can then restore a volume from that copy\. For more information, see [Amazon EBS Encryption](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html)\.
 
@@ -30,9 +30,21 @@ For most applications, amortizing the initialization cost over the lifetime of t
 **Note**  
 Some AWS accounts created before 2012 might have access to Availability Zones in us\-west\-1 or ap\-northeast\-1 that do not support Provisioned IOPS SSD \(`io1`\) volumes\. If you are unable to create an `io1` volume \(or launch an instance with an `io1` volume in its block device mapping\) in one of these regions, try a different Availability Zone in the region\. You can verify that an Availability Zone supports `io1` volumes by creating a 4 GiB `io1` volume in that zone\.
 
-1. For **Snapshot**, start typing the ID or description of the snapshot from which you are restoring the volume, and choose it from the list of suggested options\.
+1. For **Snapshot ID**, start typing the ID or description of the snapshot from which you are restoring the volume, and choose it from the list of suggested options\.
 
    Volumes that are restored from encrypted snapshots can only be attached to instances that support Amazon EBS encryption\. For more information, see [Supported Instance Types](EBSEncryption.md#EBSEncryption_supported_instances)\.
+
+1. \(Optional\) Selecting **Encrypted** allows you to change the encryption state of your volume\.
+
+   You apply encryption to EBS volumes by setting the `Encrypted` parameter to `true`\. \(The `Encrypted` parameter is optional if [encryption by default](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/encryption-by-default.html) is enabled\)\.
+
+   Optionally, you can use `KmsKeyId` to specify a custom key to use to encrypt the volume\. \(The `Encrypted` parameter must also be set to `true`, even if encryption by default is enabled\.\) If `KmsKeyId` is not specified, the key that is used for encryption depends on the encryption state of the source snapshot and its ownership\. The following table describes the encryption outcome for each possible combination of settings\.  
+**Encryption Outcomes**    
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-restoring-volume.html)
+
+   \* This is the default CMK for the AWS account and region\. This may be either the AWS\-managed default or a customer\-managed default that you have specified\. For more information, see [Encryption Key Management](EBSEncryption.md#EBSEncryption_key_mgmt)\.
+
+   \*\* This is a customer\-managed CMK specified for the volume at launch time\. This CMK overrides the default CMK that is set for the AWS account and region\.
 
 1. For **Size \(GiB\)**, type the size of the volume, or verify that the default size of the snapshot is adequate\.
 **Note**  

@@ -2,7 +2,7 @@
 
 An *EC2 Fleet* is a group of On\-Demand Instances and Spot Instances\. 
 
-The EC2 Fleet attempts to launch the number of On\-Demand Instances and Spot Instances to meet the specified target capacity\. The request for Spot Instances is fulfilled if the specified Spot price exceeds the current Spot price and there is available capacity\. The fleet also attempts to maintain its target capacity if your Spot Instances are interrupted due to a change in Spot prices or available capacity\.
+The EC2 Fleet attempts to launch the number of instances that are required to meet the target capacity that you specify in the fleet request\. The fleet can comprise only On\-Demand Instances or only Spot Instances, or a combination of both On\-Demand Instances and Spot Instances\. The request for Spot Instances is fulfilled if the specified Spot price exceeds the current Spot price and there is available capacity\. The fleet also attempts to maintain its target capacity if your Spot Instances are interrupted due to a change in Spot prices or available capacity\.
 
 A *Spot Instance pool* is a set of unused EC2 instances with the same instance type, operating system, Availability Zone, and network platform\. When you create an EC2 Fleet, you can include multiple launch specifications, which vary by instance type, Availability Zone, subnet, and maximum price\. The fleet selects the Spot Instance pools that are used to fulfill the request, based on the launch specifications included in your request, and the configuration of the request\. The Spot Instances come from the selected pools\.
 

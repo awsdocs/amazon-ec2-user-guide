@@ -2,7 +2,7 @@
 
 The Amazon EI\-enabled version of TensorFlow and TensorFlow Serving allows you to use Amazon EI accelerators with minimal changes to your TensorFlow code\. The Amazon EI enabled packages are available in the AWS Deep Learning AMI\. You can also download the packages from the [Amazon S3 bucket](https://s3.console.aws.amazon.com/s3/buckets/amazonei-tensorflow/) to build it in to your own Amazon Linux or Ubuntu AMIs, or Docker containers\.
 
-With Amazon EI TensorFlow Serving, the standard TensorFlow Serving interface remains unchanged\. The only difference is that the entry point is a different binary named amazonei\_tensorflow\_model\_server\. 
+With Amazon EI TensorFlow Serving, the standard TensorFlow Serving interface remains unchanged\. The only difference is that the entry point is a different binary named `amazonei_tensorflow_model_server`\. 
 
 For more information, see [TensorFlow Serving](https://www.tensorflow.org/serving/)\.
 

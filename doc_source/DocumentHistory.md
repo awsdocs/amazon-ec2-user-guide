@@ -7,13 +7,17 @@ The following table describes important additions to the Amazon EC2 documentatio
 
 | Feature | API Version | Description | Release Date | 
 | --- | --- | --- | --- | 
+|  Tag VPC endpoints, endpoint services, and endpoint service configurations  | 2016\-11\-15 |  You can tag VPC endpoints, endpoint services, and endpoint service configurations\. For more information, see [Tagging Your Resources](Using_Tags.md#tag-resources)\.  | 13 May 2019 | 
+| Windows to Linux Replatforming Assistant for Microsoft SQL Server Databases | 2016\-11\-15 | Move existing Microsoft SQL Server workloads from a Windows to a Linux operating system\. | 8 May 2019 | 
+| I3en instances | 2016\-11\-15 | New instances featuring up to 100 Gbps of network bandwidth\. | 8 May 2019 | 
+| Windows Automated Upgrade | 2016\-11\-15 | Perform automated upgrade on Windows Server 2008 R2 and SQL Server 2008 R2 EC2 instances using AWS Systems Manager SSM documents\. | 6 May 2019 | 
 | Elastic Fabric Adapter | 2016\-11\-15 | You can attach an Elastic Fabric Adapter to your instances to accelerate High Performance Computing \(HPC\) applications\. For more information, see [Elastic Fabric Adapter](efa.md)\. | 29 April 2019 | 
 | T3a instances | 2016\-11\-15 | New instances featuring AMD EYPC processors\. | 24 April 2019 | 
 | M5ad and R5ad instances | 2016\-11\-15 | New instances featuring AMD EYPC processors\. | 27 March 2019 | 
 | Tag Dedicated Host Reservations |  2016\-11\-15  |  You can tag your Dedicated Host Reservations\. For more information, see [Tagging Dedicated Host Reservations](how-dedicated-hosts-work.md#tagging-host-reservations)\.  | 14 March 2019 | 
 | Bare metal instances for M5, M5d, R5, R5d, and z1d | 2016\-11\-15 | New instances that provide your applications with direct access to the physical resources of the host server\. | 13 February 2019 | 
 | Partition placement groups | 2016\-11\-15 | Partition placement groups spread instances across logical partitions, ensuring that instances in one partition do not share underlying hardware with instances in other partitions\. For more information, see [Partition Placement Groups](placement-groups.md#placement-groups-partition)\. | 20 December 2018 | 
-| p3dn\.24xlarge instances | 2016\-11\-15 | New p3dn\.xlarge instances provide 100 Gbps of network bandwidth\. | 7 December 2018 | 
+| p3dn\.24xlarge instances | 2016\-11\-15 | New p3dn\.24xlarge instances provide 100 Gbps of network bandwidth\. | 7 December 2018 | 
 | Hibernate EC2 Linux instances | 2016\-11\-15 | You can hibernate a Linux instance if it's enabled for hibernation and it meets the hibernation prerequisites\. For more information, see [Hibernate Your Instance](Hibernate.md)\. | 28 November 2018 | 
 | Amazon Elastic Inference Accelerators | 2016\-11\-15 | You can attach an Amazon EI accelerator to your instances to add GPU\-powered acceleration to reduce the cost of running deep learning inference\. For more information, see [Amazon Elastic Inference](elastic-inference.md)\. | 28 November 2018 | 
 | Instances featuring 100 Gbps of network bandwidth | 2016\-11\-15 | New C5n instances can utilize up to 100 Gbps of network bandwidth\. | 26 November 2018 | 
@@ -71,7 +75,6 @@ The following table describes important additions to the Amazon EC2 documentatio
 |  Recover Elastic IP addresses  |  2016\-11\-15  |  If you release an Elastic IP address for use in a VPC, you might be able to recover it\. For more information, see [Recovering an Elastic IP Address](elastic-ip-addresses-eip.md#using-eip-recovering)\.  | 11 August 2017 | 
 |  Tag Spot fleet instances  |  2016\-11\-15  |  You can configure your Spot fleet to automatically tag the instances that it launches\.  | 24 July 2017 | 
 |  G3 instances  |  2016\-11\-15  |  G3 instances provide a cost\-effective, high\-performance platform for graphics applications using DirectX or OpenGL\. G3 instances also provide NVIDIA GRID Virtual Workstation features, supporting 4 monitors with resolutions up to 4096x2160\. For more information, see [Linux Accelerated Computing Instances](accelerated-computing-instances.md)\.  | 13 July 2017 | 
-|  SSL/TLS tutorial update  |  2016\-11\-15  |  Set up SSL/TLS support on your EC2 webserver using Let's Encrypt\. For more information, see [Tutorial: Configure Apache Web Server on Amazon Linux 2 to Use SSL/TLS](SSL-on-an-instance.md)\.  | 25 April 2017 | 
 |  F1 instances  |  2016\-11\-15  |  F1 instances represent the next generation of accelerated computing instances\. For more information, see [Linux Accelerated Computing Instances](accelerated-computing-instances.md)\.  | 19 April 2017 | 
 |  Tag resources during creation  |  2016\-11\-15  |  You can apply tags to instances and volumes during creation\. For more information, see [Tagging Your Resources](Using_Tags.md#tag-resources)\. In addition, you can use tag\-based resource\-level permissions to control the tags that are applied\. For more information see, [Resource\-Level Permissions for Tagging](ec2-supported-iam-actions-resources.md#supported-iam-actions-tagging)\.  | 28 March 2017 | 
 |  I3 instances  |  2016\-11\-15  |  I3 instances represent the next generation of storage optimized instances\. For more information, see [Storage Optimized Instances](storage-optimized-instances.md)\.  | 23 February 2017 | 

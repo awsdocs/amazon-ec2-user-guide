@@ -78,9 +78,9 @@ To set up an instance quickly for testing purposes, choose **Review and Launch**
    + **User data**: You can specify user data to configure an instance during launch, or to run a configuration script\. To attach a file, select the **As file** option and browse for the file to attach\.
 
 1. The AMI you selected includes one or more volumes of storage, including the root device volume\. On the **Add Storage** page, you can specify additional volumes to attach to the instance by choosing **Add New Volume**\. You can configure the following options for each volume:
-   + **Type**: Select instance store or Amazon EBS volumes to associate with your instance\. The type of volume available in the list depends on the instance type you've chosen\. For more information, see [Amazon EC2 Instance Store](InstanceStorage.md) and [Amazon EBS Volumes](EBSVolumes.md)\.
+   + **Type**: Select instance store or Amazon EBS volumes to associate with your instance\. The types of volume available in the list depend on the instance type you've chosen\. For more information, see [Amazon EC2 Instance Store](InstanceStorage.md) and [Amazon EBS Volumes](EBSVolumes.md)\.
    + **Device**: Select from the list of available device names for the volume\. 
-   + **Snapshot**: Enter the name or ID of the snapshot from which to restore a volume\. You can also search for public snapshots by typing text into the **Snapshot** field\. Snapshot descriptions are case\-sensitive\.
+   + **Snapshot**: Enter the name or ID of the snapshot from which to restore a volume\. You can also search for available shared and public snapshots by typing text into the **Snapshot** field\. Snapshot descriptions are case\-sensitive\.
    + **Size**: For Amazon EBS\-backed volumes, you can specify a storage size\. Even if you have selected an AMI and instance that are eligible for the free tier, to stay within the free tier, you must keep under 30 GiB of total storage\.
 **Note**  
 Linux AMIs require GPT partition tables and GRUB 2 for boot volumes 2 TiB \(2048 GiB\) or larger\. Many Linux AMIs today use the MBR partitioning scheme, which only supports up to 2047 GiB boot volumes\. If your instance does not boot with a boot volume that is 2 TiB or larger, the AMI you are using may be limited to a 2047 GiB boot volume size\. Non\-boot volumes do not have this limitation on Linux instances\.
@@ -93,7 +93,19 @@ If you select a Magnetic boot volume, you'll be prompted when you complete the w
 Some AWS accounts created before 2012 might have access to Availability Zones in us\-west\-1 or ap\-northeast\-1 that do not support Provisioned IOPS SSD \(`io1`\) volumes\. If you are unable to create an `io1` volume \(or launch an instance with an `io1` volume in its block device mapping\) in one of these regions, try a different Availability Zone in the region\. You can verify that an Availability Zone supports `io1` volumes by creating a 4 GiB `io1` volume in that zone\.
    + **IOPS**: If you have selected a Provisioned IOPS SSD volume type, then you can enter the number of I/O operations per second \(IOPS\) that the volume can support\.
    + **Delete on Termination**: For Amazon EBS volumes, select this check box to delete the volume when the instance is terminated\. For more information, see [Preserving Amazon EBS Volumes on Instance Termination](terminating-instances.md#preserving-volumes-on-termination)\.
-   + **Encrypted**: Select a value in this menu to configure the encryption state of new Amazon EBS volumes\. The default value is **Not encrypted**\. Additional options include using your AWS managed customer master key \(CMK\) or a customer\-managed CMK that you have created\. Available keys are listed in the menu\. You can also hover over the field and paste the Amazon Resource Name \(ARN\) of a key directly into the text box\. For information about creating customer\-managed CMKs, see [AWS Key Management Service Developer Guide](https://docs.aws.amazon.com/kms/latest/developerguide/EBSEncryption.html)\. 
+   + **Encrypted**: This field allows you to change the encryption state of the volume\.
+
+     You apply encryption to EBS volumes by setting the `Encrypted` parameter to `true`\. \(The `Encrypted` parameter is optional if [encryption by default](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/encryption-by-default.html) is enabled\)\.
+
+     Optionally, you can use `KmsKeyId` to specify a custom key to use to encrypt the volume\. \(The `Encrypted` parameter must also be set to `true`, even if encryption by default is enabled\.\) If `KmsKeyId` is not specified, the key that is used for encryption depends on the encryption state of the source snapshot and its ownership\. The following table describes the encryption outcome for each possible combination of settings\.  
+**Encryption Outcomes**    
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/launching-instance.html)
+
+     \* This is the default CMK for the AWS account and region\. This may be either the AWS\-managed default or a customer\-managed default that you have specified\. For more information, see [Encryption Key Management](EBSEncryption.md#EBSEncryption_key_mgmt)\.
+
+     \*\* This is a customer\-managed CMK specified for the volume at launch time\. This CMK overrides the default CMK that is set for the AWS account and region\.
+
+     To override any of these defaults, click in the **Encrypted** field to see available keys, and choose a key alias or type a key ARN\. You can encrypt a volume restored from an unencrypted snapshot, or re\-encrypt any volume to which you have access using a key that you own\.
 **Note**  
 Encrypted volumes may only be attached to [supported instance types](EBSEncryption.md#EBSEncryption_supported_instances)\.
 

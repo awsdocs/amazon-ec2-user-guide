@@ -212,6 +212,7 @@ For more information, see the following:
   + Amazon Linux 2 \(64\-bit Arm\)
   + Ubuntu 16\.04 or later \(64\-bit Arm\)
   + Red Hat Enterprise Linux 7\.6 or later \(64\-bit Arm\)
+  + SUSE Linux Enterprise Server 15 or later \(64\-bit Arm\)
 + M5, M5a, M5ad, M5d, T3, and T3a instances have the following requirements:
   + NVMe drivers must be installed\. EBS volumes are exposed as [NVMe block devices](nvme-ebs-volumes.md)\.
   + Elastic Network Adapter \([ENA](enhanced-networking-ena.md)\) drivers must be installed\.

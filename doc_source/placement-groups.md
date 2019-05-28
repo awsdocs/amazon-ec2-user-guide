@@ -72,7 +72,7 @@ Before you use placement groups, be aware of the following rules:
 + The name you specify for a placement group must be unique within your AWS account for the Region\.
 + You can't merge placement groups\.
 + An instance can be launched in one placement group at a time; it cannot span multiple placement groups\.
-+ Reserved Instances provide a capacity reservation for EC2 instances in a specific Availability Zone\. The capacity reservation can be used by instances in a placement group\. However, it is not possible to explicitly reserve capacity for a placement group\.
++ [On\-Demand Capacity Reservation](ec2-capacity-reservations.md#capacity-reservations-limits) and [zonal Reserved Instances](reserved-instances-scope.md) provide a capacity reservation for EC2 instances in a specific Availability Zone\. The capacity reservation can be used by instances in a placement group\. However, it is not possible to explicitly reserve capacity for a placement group\.
 + Instances with a tenancy of `host` cannot be launched in placement groups\.
 + For instances that are enabled for enhanced networking, traffic between instances within the same Region that is addressed using IPv4 or IPv6 addresses can use up to 5 Gbps for single\-flow traffic and up to 25 Gbps for multi\-flow traffic\. A flow represents a single, point\-to\-point network connection\.
 
@@ -83,7 +83,7 @@ The following rules apply to cluster placement groups:
   + General purpose: A1, M4, M5, M5a, M5ad, and M5d
   + Compute optimized: C3, C4, C5, C5d, C5n, and `cc2.8xlarge`
   + Memory optimized: `cr1.8xlarge`, R3, R4, R5, R5a, R5ad, R5d, X1, X1e, and z1d
-  + Storage optimized: D2, H1, `hs1.8xlarge`, I2, and I3
+  + Storage optimized: D2, H1, `hs1.8xlarge`, I2, I3, and I3en
   + Accelerated computing: F1, G2, G3, P2, and P3
 + A cluster placement group can't span multiple Availability Zones\.
 + The maximum network throughput speed of traffic between two instances in a cluster placement group is limited by the slower of the two instances\. For applications with high\-throughput requirements, choose an instance type with network connectivity that meets your requirements\.

@@ -11,7 +11,7 @@ Deleting a snapshot might not reduce your organization's data storage costs\. Ot
 In the following diagram, Volume 1 is shown at three points in time\. A snapshot has captured each of the first two states, and in the third, a snapshot has been deleted\. 
 + In State 1, the volume has 10 GiB of data\. Because Snap A is the first snapshot taken of the volume, the entire 10 GiB of data must be copied\.
 + In State 2, the volume still contains 10 GiB of data, but 4 GiB have changed\. Snap B needs to copy and store only the 4 GiB that changed after Snap A was taken\. The other 6 GiB of unchanged data, which are already copied and stored in Snap A, are referenced by Snap B rather than \(again\) copied\. This is indicated by the dashed arrow\.
-+ In state 3, the volume has not changed since State 2, but Snapshot A has been deleted\. The 6 GiB of data stored in Snapshot A that were referenced by Snapshot B have now been moved to Snapshot B, as shown by the heavy arrow\. As a result, you are still charged for storing 10 GiB of data—6 GiB of unchanged data preserved from Snap A, and 4 GiB of changed data from Snap B\.
++ In state 3, the volume has not changed since State 2, but Snapshot A has been deleted\. The 6 GiB of data stored in Snapshot A that were referenced by Snapshot B have now been moved to Snapshot B, as shown by the heavy arrow\. As a result, you are still charged for storing 10 GiB of data; 6 GiB of unchanged data preserved from Snap A and 4 GiB of changed data from Snap B\.
 
  **Example 1: Deleting a Snapshot with Some of its Data Referenced by Another Snapshot**
 

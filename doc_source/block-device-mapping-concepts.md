@@ -94,10 +94,11 @@ For M3 instances, you must specify instance store volumes in the block device ma
 
 Use the [create\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-image.html) AWS CLI command to specify a block device mapping for an EBS\-backed AMI\. Use the [register\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) AWS CLI command to specify a block device mapping for an instance store\-backed AMI\.
 
-Specify the block device mapping using the following parameter:
+Specify the block device mapping using the \-\-block\-device\-mappings parameter\. Arguments encoded in JSON can be supplied either directly on the command line or by reference to a file:
 
 ```
 --block-device-mappings [mapping, ...]
+--block-device-mappings [file://mapping.json]
 ```
 
 To add an instance store volume, use the following mapping:

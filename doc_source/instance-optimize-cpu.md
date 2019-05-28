@@ -194,6 +194,13 @@ The following tables list the instance types that support specifying CPU options
 | i3\.4xlarge | 16 | 8 | 2 | 1, 2, 3, 4, 5, 6, 7, 8 | 1, 2 | 
 | i3\.8xlarge | 32 | 16 | 2 | 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 | 1, 2 | 
 | i3\.16xlarge | 64 | 32 | 2 | 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32 | 1, 2 | 
+| i3en\.large | 2 | 1 | 2 | 1 | 1, 2 | 
+| i3en\.xlarge | 4 | 2 | 2 | 2 | 1, 2 | 
+| i3en\.2xlarge | 8 | 4 | 2 | 2, 4 | 1, 2 | 
+| i3en\.3xlarge | 12 | 6 | 2 | 2, 4, 6 | 1, 2 | 
+| i3en\.6xlarge | 24 | 12 | 2 | 2, 4, 6, 8, 10, 12 | 1, 2 | 
+| i3en\.12xlarge | 48 | 24 | 2 | 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24 | 1, 2 | 
+| i3en\.24xlarge | 96 | 48 | 2 | 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48 | 1, 2 | 
 
 ## Specifying CPU Options for Your Instance<a name="instance-specify-cpu-options"></a>
 

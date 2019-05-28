@@ -30,12 +30,12 @@ Amazon EI uses [VPC endpoints](https://docs.aws.amazon.com/vpc/latest/userguide/
 
 1. The security group for the endpoint must allow inbound traffic to port 443\. 
 
-**To configure a AWS PrivateLink endpoint service \(AWS CLI\)**
-+ Use the `create-vpc-endpoint` command and specify the VPC ID, type of VPC endpoint \(interface\), service name, subnets to use the endpoint, and security groups to associate with the endpoint network interfaces\. For information about how to set up a security group for your VPC endpoint, see [Configuring Your Security Groups for Amazon EI](#ei-security)\. 
+**To configure an AWS PrivateLink endpoint service \(AWS CLI\)**  
+Use the [create\-vpc\-endpoint](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-vpc-endpoint.html) command, specifying the VPC ID, type of VPC endpoint \(interface\), service name, and subnets to use, and the security groups to associate with the endpoint network interfaces\. For information about how to set up a security group for your VPC endpoint, see [Configuring Your Security Groups for Amazon EI](#ei-security)\.
 
-  ```
-  aws ec2 create-vpc-endpoint --vpc-id vpc-insert VPC ID --vpc-endpoint-type Interface --service-name com.amazonaws.us-west-2.elastic-inference.runtime --subnet-id subnet-insert subnet --security-group-id sg-insert security group ID
-  ```
+```
+aws ec2 create-vpc-endpoint --vpc-id vpc-1234567890abcdef0 --vpc-endpoint-type Interface --service-name com.amazonaws.us-west-2.elastic-inference.runtime --subnet-id subnet-1234567890abcdef0 --security-group-id sg-1234567890abcdef0
+```
 
 ## Configuring Your Security Groups for Amazon EI<a name="ei-security"></a>
 
@@ -47,59 +47,52 @@ You need two security groups: one for inbound and outbound traffic for the new A
 
 1. Open the Amazon VPC console at [https://console\.aws\.amazon\.com/vpc/](https://console.aws.amazon.com/vpc/)\.
 
-1. In the left navigation pane, choose **Security**, **Security Groups**, **Create a Security Group**\.
+1. In the left navigation pane, choose **Security**, **Security Groups**\.
 
-1. Under **Create Security Group**, enter field values and choose **Create**\. 
+1. Choose **Create security group**\.
 
-1. Choose **Close**\.
+1. Under **Create Security Group**, specify a name and description for the security group and choose the ID of the VPC\. Choose **Create** and then choose **Close**\.
 
-1. Select the box next to your security group and choose **Inbound Rules**\. 
+1. Select the check box next to your security group and choose **Actions**, **Edit inbound rules**\. Add a rule to allow HTTPS traffic on port 443 as follows:
 
-1. Choose **Edit rules**\.
+   1. Choose **Add Rule**\.
 
-1. Choose **Add rule**\.
+   1. For **Type**, select **HTTPS**\.
 
-1. To allow traffic from only port 443 from any source, or the security group to which you plan to associate your instance, for **Type**, select **HTTPS**\. 
+   1. For **Source**, specify a CIDR block \(for example, 0\.0\.0\.0/0\) or the security group for your instance\.
 
-1. Choose **Add rule**\.
+   1. Choose **Save rules** and then choose **Close**\.
 
-1. Choose **Save rules**\. 
+1. Choose **Actions**, **Edit outbound rules**\. Add a rule to allow HTTPS traffic on port 443 as follows:
 
-1. Choose **Outbound Rules**\. To allow traffic for port 443 to any destination, for **Type**, select **HTTPS**\.
+   1. Choose **Add Rule**\.
 
-   Choose **Add rule**\.
+   1. For **Type**, select **HTTPS**\.
 
-   To allow traffic for port 22 to the EC2 instance, for **Type**, select **SSH**\.
+   1. For **Source**, specify a CIDR block \(for example, 0\.0\.0\.0/0\) or the security group for your VPC endpoint\.
 
-   Choose **Add rule**\.
-
-1. Choose **Save rules**\.
-
-1. Add an outbound rule that either restricts traffic to the endpoint security group that you created in the previous step or that allows traffic to HTTPS \(TCP port 443\) to any destination\.
-
-1. Choose **Save**\.
+   1. Choose **Save rules** and then choose **Close**\.
 
 **To configure a security group for an Amazon EI accelerator \(AWS CLI\)**
 
-1.  Create a security group using the `create-security-group` command: 
+1. Create a security group using the [create\-security\-group](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-security-group.html) command:
 
    ```
-   aws ec2 create-security-group 
-   --description description for the security group
-   --group-name name for the security group
-   [--vpc-id VPC ID]
+   aws ec2 create-security-group --group-name my-security-group \
+   --description My security group \
+   --vpc-id vpc-1234567890abcdef0
    ```
 
-1.  Create an inbound rule using the `authorize-security-group-ingress` command: 
+1. Create an inbound rule using the [authorize\-security\-group\-ingress](https://docs.aws.amazon.com/cli/latest/reference/ec2/authorize-security-group-ingress.html) command:
 
    ```
-   aws ec2 authorize-security-group-ingress --group-id security group ID --group-name security group name --protocol tcp --port 443
+   aws ec2 authorize-security-group-ingress --group-id sg-1234567890abcdef0 --protocol tcp --port 443 --cidr 0.0.0.0/0
    ```
 
-1.  Use the `authorize-security-group-egress` command to create an outbound rule: 
+1. Create an outbound rule using the [authorize\-security\-group\-egress](https://docs.aws.amazon.com/cli/latest/reference/ec2/authorize-security-group-egress.html) command:
 
    ```
-   aws ec2 authorize-security-group-egress --group-id security group ID --protocol tcp --port 443 --port 22 --cidr 0.0.0.0/0
+   aws ec2 authorize-security-group-egress --group-id sg-1234567890abcdef0 --protocol tcp --port 443 --cidr 0.0.0.0/0
    ```
 
 ## Configuring an Instance Role with an Amazon EI Policy<a name="ei-role-policy"></a>
@@ -149,29 +142,29 @@ To launch an instance with an Amazon EI accelerator, you must provide an [IAM ro
 
 When you create your instance, select the role under **Configure Instance Details** in the launch wizard\.
 
-**To configure an instance role with an Amazon EI policy \(AWS CLI\)**
-+ To configure an instance role with an Amazon EI policy, follow the steps in [Creating an IAM Role](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html#create-iam-role)\. Add the following policy to your instance:
+**To configure an instance role with an Amazon EI policy \(AWS CLI\)**  
+To configure an instance role with an Amazon EI policy, follow the steps in [Creating an IAM Role](iam-roles-for-amazon-ec2.md#create-iam-role)\. Add the following policy to your instance:
 
-  ```
-  {
-      "Version": "2012-10-17",
-      "Statement": [
-          {
-              "Effect": "Allow",
-              "Action": [
-                "elastic-inference:Connect",
-                "iam:List*",
-                "iam:Get*",
-                "ec2:Describe*",
-                "ec2:Get*"
-              ],
-              "Resource": "*"
-          }
-      ]
-  }
-  ```
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+              "elastic-inference:Connect",
+              "iam:List*",
+              "iam:Get*",
+              "ec2:Describe*",
+              "ec2:Get*"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+```
 
-  You may get a warning message about the elastic\-inference service not being recognizable\. This is a known issue and does not block creation of the policy\.
+You may get a warning message about the elastic\-inference service not being recognizable\. This is a known issue and does not block creation of the policy\.
 
 ## Launching an Instance with Amazon EI<a name="eia-launch"></a>
 
@@ -220,10 +213,10 @@ Don’t select the **Proceed without a key pair** option\. If you launch your in
 
 To launch an instance with Amazon EI at the command line, you need your key pair name, subnet ID, security group ID, AMI ID, and the name of the instance profile that you created in the section [Configuring an Instance Role with an Amazon EI Policy](#ei-role-policy)\. For the security group ID, use the one you created for your instance that contains the AWS PrivateLink endpoint\. For more information, see [Configuring Your Security Groups for Amazon EI](#ei-security)\)\. For more information about the AMI ID, see [Finding a Linux AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/find-an-ami.html)\.
 
-1. Use the `run-instances` command to launch your instance and accelerator:
+1. Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command to launch your instance and accelerator:
 
    ```
-   aws ec2 run-instances --image-id ami-image ID --instance-type m5.large --subnet-id subnet-subnet ID --elastic-inference-accelerator Type=eia1.large --key-name key pair name --security-group-ids sg-security group ID --iam-instance-profile Name="accelerator profile name"
+   aws ec2 run-instances --image-id ami-1234567890abcdef0 --instance-type m5.large --subnet-id subnet-1234567890abcdef0 --elastic-inference-accelerator Type=eia1.large --key-name my-key-pair --security-group-ids sg-1234567890abcdef0 --iam-instance-profile Name="accelerator profile name"
    ```
 
 1. When the `run-instances` operation succeeds, your output is similar to the following\. The ElasticInferenceAcceleratorArn identifies the Amazon EI accelerator\.

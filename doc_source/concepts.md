@@ -48,9 +48,9 @@ First, you need to get set up to use Amazon EC2\. After you are set up, you are 
 + [Instance Store](InstanceStorage.md)
 
 **Working with Linux Instances**
-+ [Remote Management \(Run Command\)](https://docs.aws.amazon.com/systems-manager/latest/userguide/execute-remote-commands.html)
++ [AWS Systems Manager Run Command](https://docs.aws.amazon.com/systems-manager/latest/userguide/execute-remote-commands.html) in the *AWS Systems Manager User Guide*
 + [Tutorial: Install a LAMP Web Server on Amazon Linux 2](ec2-lamp-amazon-linux-2.md)
-+ [Tutorial: Configure Apache Web Server on Amazon Linux 2 to Use SSL/TLS](SSL-on-an-instance.md)
++ [Tutorial: Configure SSL/TLS on Amazon Linux 2](SSL-on-amazon-linux-2.md)
 + [Getting Started with AWS: Hosting a Web App for Linux](https://docs.aws.amazon.com/gettingstarted/latest/wah-linux/)
 
 If you have questions about whether AWS is right for you, [contact AWS Sales](https://aws.amazon.com/contact-us/)\. If you have technical questions about Amazon EC2, use the [Amazon EC2 forum](https://forums.aws.amazon.com/forum.jspa?forumID=30)\. 
@@ -67,7 +67,7 @@ To automatically distribute incoming application traffic across multiple instanc
 
 To monitor basic statistics for your instances and Amazon EBS volumes, use Amazon CloudWatch\. For more information, see the [Amazon CloudWatch User Guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/)\.
 
-To automate actions, such as activating a Lambda function whenever a new Amazon EC2 instance starts, or invoking SSM Run Command whenever an event in another AWS service happens, use Amazon CloudWatch Events\. For more information, see the [Amazon CloudWatch Events User Guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/)\.
+To automate actions, such as activating a Lambda function whenever a new Amazon EC2 instance starts, or invoking AWS Systems Manager Run Command whenever an event in another AWS service happens, use Amazon CloudWatch Events\. For more information, see the [Amazon CloudWatch Events User Guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/)\.
 
 To monitor the calls made to the Amazon EC2 API for your account, including calls made by the AWS Management Console, command line tools, and other services, use AWS CloudTrail\. For more information, see the [AWS CloudTrail User Guide](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/)\.
 

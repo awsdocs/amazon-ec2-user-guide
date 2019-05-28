@@ -1,6 +1,6 @@
 # Creating an Amazon EBS Snapshot<a name="ebs-creating-snapshot"></a>
 
-A point\-in\-time snapshot of an EBS volume, can be used as a baseline for new volumes or for data backup\. If you make periodic snapshots of a volume, the snapshots are incremental—only the blocks on the device that have changed after your last snapshot are saved in the new snapshot\. Even though snapshots are saved incrementally, the snapshot deletion process is designed so that you need to retain only the most recent snapshot in order to restore the entire volume\.
+A point\-in\-time snapshot of an EBS volume, can be used as a baseline for new volumes or for data backup\. If you make periodic snapshots of a volume, the snapshots are incremental\-only the blocks on the device that have changed after your last snapshot are saved in the new snapshot\. Even though snapshots are saved incrementally, the snapshot deletion process is designed so that you need to retain only the most recent snapshot in order to restore the entire volume\.
 
 Snapshots occur asynchronously; the point\-in\-time snapshot is created immediately, but the status of the snapshot is `pending` until the snapshot is complete \(when all of the modified blocks have been transferred to Amazon S3\), which can take several hours for large initial snapshots or subsequent snapshots where many blocks have changed\. While it is completing, an in\-progress snapshot is not affected by ongoing reads and writes to the volume\.
 
@@ -13,6 +13,9 @@ Snapshots that are taken from encrypted volumes are automatically encrypted\. Vo
 By default, only you can create volumes from snapshots that you own\. However, you can share your unencrypted snapshots with specific AWS accounts, or you can share them with the entire AWS community by making them public\. For more information, see [Sharing an Amazon EBS Snapshot](ebs-modifying-snapshot-permissions.md)\.
 
 You can share an encrypted snapshot only with specific AWS accounts\. For others to use your shared, encrypted snapshot, you must also share the CMK key that was used to encrypt it\. Users with access to your encrypted snapshot must create their own personal copy of it and then use that copy to restore the volume\. Your copy of a shared, encrypted snapshot can also be re\-encrypted with a different key\. For more information, see [Sharing an Amazon EBS Snapshot](ebs-modifying-snapshot-permissions.md)\.
+
+**Note**  
+If you copy a snapshot and encrypt it to a new CMK, a complete \(non\-incremental\) copy is always created, resulting in additional delay and storage costs\.
 
 When a snapshot is created from a volume with an AWS Marketplace product code, the product code is propagated to the snapshot\.
 

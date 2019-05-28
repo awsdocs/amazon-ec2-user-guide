@@ -5,7 +5,7 @@ Elastic Fabric Adapters \(EFAs\) can be created, used, and managed much like any
 ## EFA Requirements<a name="efa-reqs"></a>
 
 To use EFA, you must do the following:
-+ Use one of the following supported instance types: c5n\.18xlarge, p3dn\.24xlarge
++ Use one of the following supported instance types: c5n\.18xlarge, i3en\.24xlarge, p3dn\.24xlarge
 + Use one of the following supported AMIs: Amazon Linux, Amazon Linux 2, Red Hat Enterprise Linux 7\.6, CentOS 7\.6
 + Install the EFA software components\.
 + Use a security group that allows all inbound and outbound traffic to and from the security group itself\.

@@ -35,7 +35,7 @@ You can also specify custom tags to be applied to snapshots on creation\.
 
 You can't use a '\\' or '=' character in a tag key\.
 
-All user\-defined tags on a source volume can optionally be copied to snapshots created by a policy\.
+The target tags that Amazon DLM uses to associate volumes with a policy can optionally be applied to snapshots created by the policy\.
 
 ### Lifecycle Policies<a name="dlm-lifecycle-policies"></a>
 

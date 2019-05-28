@@ -82,6 +82,13 @@ The following table provides the quantity, size, type, and performance optimizat
 |  `i3.8xlarge`  |  4 x 1,900 GB \(7\.6 TB\)  | NVMe SSD |  | ✔ | 
 |  `i3.16xlarge`  |  8 x 1,900 GB \(15\.2 TB\)  | NVMe SSD |  | ✔ | 
 |  `i3.metal`  |  8 x 1,900 GB \(15\.2 TB\)  | NVMe SSD |  | ✔ | 
+|  `i3en.large`  |  1 x 1,250 GB  | NVMe SSD |  | ✔ | 
+|  `i3en.xlarge`  |  1 x 2,500 GB  | NVMe SSD |  | ✔ | 
+|  `i3en.2xlarge`  |  2 x 2,500 GB \(5 TB\)  | NVMe SSD |  | ✔ | 
+|  `i3en.3xlarge`  |  1 x 7,500 GB  | NVMe SSD |  | ✔ | 
+|  `i3en.6xlarge`  |  2 x 7,500 GB \(15 TB\)  | NVMe SSD |  | ✔ | 
+|  `i3en.12xlarge`  |  4 x 7,500 GB \(30 TB\)  | NVMe SSD |  | ✔ | 
+|  `i3en.24xlarge`  |  8 x 7,500 GB \(60 TB\)  | NVMe SSD |  | ✔ | 
 |  `m1.small`  |  1 x 160 GB†  | HDD | ✔ |  | 
 |  `m1.medium`  |  1 x 410 GB  | HDD | ✔ |  | 
 |  `m1.large`  |  2 x 420 GB \(840 GB\)  | HDD | ✔ |  | 

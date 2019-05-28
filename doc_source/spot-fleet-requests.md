@@ -244,6 +244,8 @@ You can create a Spot Fleet using the parameters that you define\.
 
    1. \(Optional\) By default, basic monitoring is enabled for your instances\. To enable detailed monitoring, for **Monitoring**, choose **Enable CloudWatch detailed monitoring**\.
 
+   1. \(Optional\) To replace unhealthy instances, for **Health check**, choose **Replace unhealthy instances**\. To enable this option, you must first choose **Maintain target capacity**\.
+
    1. \(Optional\) To run a Dedicated Spot Instance, for **Tenancy**, choose **Dedicated \- run a dedicated instance**\.
 
    1. \(Optional\) For **Security groups**, choose one or more security groups or create a new one\.
@@ -267,8 +269,6 @@ You can create a Spot Fleet using the parameters that you define\.
    1. \(Optional\) For **Optional On\-Demand portion**, specify the number of On\-Demand units to request\. The number must be less than the **Total target capacity**\. Amazon EC2 calculates the difference, and allocates the difference to Spot units to request\.
 **Important**  
  To specify an optional On\-Demand portion, you must first choose a launch template\.
-
-   1. \(Optional\) To replace unhealthy instances in a **Request and Maintain** Spot Fleet, select **Replace unhealthy instances**\.
 
    1. \(Optional\) By default, the Spot service terminates Spot Instances when they are interrupted\. To maintain the target capacity, choose **Maintain target capacity**\. You can then specify that the Spot service terminates, stops, or hibernates Spot Instances when they are interrupted\. To do so, choose the corresponding option from **Interruption behavior**\.
 
@@ -359,7 +359,7 @@ You can modify an active Spot Fleet request to complete the following tasks:
 + Decrease the target capacity
 
 **Note**  
-You can't modify a one\-time Spot Fleet request\.  
+You can't modify a one\-time Spot Fleet request\. You can only modify a Spot Fleet request if you selected **Maintain target capacity** when you created the Spot Fleet request\.  
 You can only modify the Spot Instance portion of a Spot Fleet request; you can't modify the On\-Demand Instance portion of a Spot Fleet request\.
 
 When you increase the target capacity, the Spot Fleet launches the additional Spot Instances according to the allocation strategy for its Spot Fleet request\. If the allocation strategy is `lowestPrice`, the Spot Fleet launches the instances from the lowest\-priced Spot Instance pool in the Spot Fleet request\. If the allocation strategy is `diversified`, the Spot Fleet distributes the instances across the pools in the Spot Fleet request\.

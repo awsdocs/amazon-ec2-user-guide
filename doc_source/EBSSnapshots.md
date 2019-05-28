@@ -31,6 +31,9 @@ In the diagram below, Volume 1 is shown at three points in time\. A snapshot is 
 
 ![\[Snapshots capturing an initial volume state and two subsequent states after data has been changed.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/snapshot_1a.png)
 
+**Note**  
+If you copy a snapshot and encrypt it to a new CMK, a complete \(non\-incremental\) copy is always created, resulting in additional delay and storage costs\.
+
 For more information about how data is managed when you delete a snapshot, see [Deleting an Amazon EBS Snapshot](ebs-deleting-snapshot.md)\.
 
 ## Copying and Sharing Snapshots<a name="copy-and-share"></a>
@@ -41,10 +44,16 @@ A snapshot is constrained to the Region where it was created\. After you create 
 
 ## Encryption Support for Snapshots<a name="encryption-support"></a>
 
-EBS snapshots broadly support EBS encryption\.
+EBS snapshots fully support EBS encryption\.
 + Snapshots of encrypted volumes are automatically encrypted\.
-+ Volumes that are created from encrypted snapshots are automatically encrypted\.
++ Volumes you create from encrypted snapshots are automatically encrypted\.
++ Volumes you create from an unencrypted snapshot that you own or have access to can be encrypted on\-the\-fly\.
 + When you copy an unencrypted snapshot that you own, you can encrypt it during the copy process\.
-+ When you copy an encrypted snapshot that you own, you can reencrypt it with a different key during the copy process\.
++ When you copy an encrypted snapshot that you own or have access to, you can reencrypt it with a different key during the copy process\.
+
+**Note**  
+If you copy a snapshot and encrypt it to a new CMK, a complete \(non\-incremental\) copy is always created, resulting in additional delay and storage costs\.
+
+Complete documentation of possible snapshot encryption scenarios is provided in [Creating an Amazon EBS Snapshot](ebs-creating-snapshot.md) and in [Copying an Amazon EBS Snapshot](ebs-copy-snapshot.md)\.
 
 For more information, see [Amazon EBS Encryption](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html)\.

@@ -38,7 +38,7 @@ Elastic Network Adapters \(ENAs\) provide traditional IP networking features tha
 
 ## Supported Instance Types<a name="efa-instance-types"></a>
 
-The following instance types support EFA: c5n\.18xlarge, p3dn\.24xlarge
+The following instance types support EFA: c5n\.18xlarge, i3en\.24xlarge, p3dn\.24xlarge
 
 **Note**  
 EFA requires an instance type that has at least 8GB of memory\.

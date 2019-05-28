@@ -16,7 +16,7 @@ Amazon EC2 provides enhanced networking capabilities through the Elastic Network
 ## Requirements<a name="ena-requirements"></a>
 
 To prepare for enhanced networking using the ENA, set up your instance as follows:
-+ Select from the following supported instance types: A1, C5, C5d, C5n, F1, G3, H1, I3, `m4.16xlarge`, M5, M5a, M5ad, M5d, P2, P3, R4, R5, R5a, R5ad, R5d, T3, T3a, `u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, X1, X1e, and z1d\.
++ Select from the following supported instance types: A1, C5, C5d, C5n, F1, G3, H1, I3, I3en, `m4.16xlarge`, M5, M5a, M5ad, M5d, P2, P3, R4, R5, R5a, R5ad, R5d, T3, T3a, `u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, X1, X1e, and z1d\.
 + Launch the instance using a supported version of the Linux kernel and a supported distribution, so that ENA enhanced networking is enabled for your instance automatically\. For more information, see [ENA Linux Kernel Driver Release Notes](https://github.com/amzn/amzn-drivers/blob/ena_linux_1.6.0/kernel/linux/ena/RELEASENOTES.md)\.
 + Ensure that the instance has internet connectivity\.
 + Install and configure the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html) or the [AWS Tools for Windows PowerShell](https://docs.aws.amazon.com/powershell/latest/userguide/) on any computer you choose, preferably your local desktop or laptop\. For more information, see [Accessing Amazon EC2](concepts.md#access-ec2)\. Enhanced networking cannot be managed from the Amazon EC2 console\.
@@ -24,7 +24,7 @@ To prepare for enhanced networking using the ENA, set up your instance as follow
 
 ## Data Encryption<a name="ena-data-encryption-in-transit"></a>
 
-AWS provides secure and private connectivity between EC2 instances\. In addition, we automatically encrypt in\-transit traffic between C5n and P3dn instances in the same VPC or in peered VPCs, using AEAD algorithms with 256\-bit encryption\. This encryption feature uses the offload capabilities of the underlying hardware, and there is no impact on network performance\.
+AWS provides secure and private connectivity between EC2 instances\. In addition, we automatically encrypt in\-transit traffic between C5n, I3en, and P3dn instances in the same VPC or in peered VPCs, using AEAD algorithms with 256\-bit encryption\. This encryption feature uses the offload capabilities of the underlying hardware, and there is no impact on network performance\.
 
 ## Testing Whether Enhanced Networking Is Enabled<a name="test-enhanced-networking-ena"></a>
 
@@ -327,7 +327,7 @@ Follow the previous procedure until the step where you stop the instance\. Creat
 This method is for testing and feedback purposes only\. It is not intended for use with production deployments\. For production employments, see [Enabling Enhanced Networking on Ubuntu](#enhanced-networking-ena-ubuntu)\.
 
 **Important**  
-Using DKMS voids the support agreement for your subscription\. Using kmod configurations are an acceptable alternative for running the latest available kernel modules\. 
+Using DKMS voids the support agreement for your subscription\. Using kmod configurations are an acceptable alternative for running the latest available kernel modules\.
 
 **To enable enhanced networking with ENA on Ubuntu \(EBS\-backed instances\)**
 
@@ -397,10 +397,10 @@ Using DKMS voids the support agreement for your subscription\. Using kmod config
 1. Rebuild `initramfs` so the correct module is loaded at boot time\.
 
    ```
-   ubuntu:~$ sudo update-initramfs -c -k all
+   ubuntu:~$ sudo update-initramfs -u -k all
    ```
 
-1. Verify that the `ena` module is installed using the modinfo ena command from [](#test-enhanced-networking-ena)\.
+1. Verify that the `ena` module is installed using the modinfo ena command from [Testing Whether Enhanced Networking Is Enabled](#test-enhanced-networking-ena)\.
 
    ```
    ubuntu:~$ modinfo ena

@@ -2,15 +2,14 @@
 
 The following procedures help you install an Apache web server with PHP and [MariaDB](https://mariadb.org/about/) \(a community\-developed fork of MySQL\) support on your Amazon Linux 2 instance \(sometimes called a LAMP web server or LAMP stack\)\. You can use this server to host a static website or deploy a dynamic PHP application that reads and writes information to a database\.
 
-To set up a LAMP web server on Amazon Linux AMI, see [Tutorial: Install a LAMP Web Server with the Amazon Linux AMI](install-LAMP.md)\.
-
 **Important**  
+To set up a LAMP web server on Amazon Linux AMI, see [Tutorial: Install a LAMP Web Server with the Amazon Linux AMI](install-LAMP.md)\.  
 If you are trying to set up a LAMP web server on an Ubuntu or Red Hat Enterprise Linux instance, this tutorial will not work for you\. For more information about other distributions, see their specific documentation\. For information about LAMP web servers on Ubuntu, see the Ubuntu community documentation [ApacheMySQLPHP](https://help.ubuntu.com/community/ApacheMySQLPHP) topic\. 
 
 ## Step 1: Prepare the LAMP Server<a name="prepare-lamp-server"></a>
 
 **Prerequisites**  
-This tutorial assumes that you have already launched a new instance using Amazon Linux 2, with a public DNS name that is reachable from the internet\. For more information, see [Step 1: Launch an Instance](EC2_GetStarted.md#ec2-launch-instance)\. You must also have configured your security group to allow SSH \(port 22\), HTTP \(port 80\), and HTTPS \(port 443\) connections\. For more information about these prerequisites, see [Setting Up with Amazon EC2](get-set-up-for-amazon-ec2.md)\.
+This tutorial assumes that you have already launched a new instance using Amazon Linux 2, with a public DNS name that is reachable from the internet\. For more information, see [Step 1: Launch an Instance](EC2_GetStarted.md#ec2-launch-instance)\. You must also have configured your security group to allow SSH \(port 22\), HTTP \(port 80\), and HTTPS \(port 443\) connections\. For more information about these prerequisites, see [Authorizing Inbound Traffic for Your Linux Instances](authorizing-access-to-an-instance.md)\.
 
 **Note**  
 The following procedure installs the latest PHP version available on Amazon Linux 2, currently PHP 7\.2\. If you plan to use PHP applications other than those described in this tutorial, you should check their compatibility with PHP 7\.2\.<a name="install_apache-2"></a>
@@ -151,7 +150,7 @@ Now, `ec2-user` \(and any future members of the `apache` group\) can add, delete
 **To secure your web server \(Optional\)**  
 A web server running the HTTP protocol provides no transport security for the data that it sends or receives\. When you connect to an HTTP server using a web browser, the URLs that you visit, the content of webpages that you receive, and the contents \(including passwords\) of any HTML forms that you submit are all visible to eavesdroppers anywhere along the network pathway\. The best practice for securing your web server is to install support for HTTPS \(HTTP Secure\), which protects your data with SSL/TLS encryption\.
 
-For information about enabling HTTPS on your server, see [Tutorial: Configure Apache Web Server on Amazon Linux 2 to use SSL/TLS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/SSL-on-an-instance.html)\.
+For information about enabling HTTPS on your server, see [Tutorial: Configure SSL/TLS on Amazon Linux 2](SSL-on-amazon-linux-2.md)\.
 
 ## Step 2: Test Your LAMP Server<a name="test-lamp-server"></a>
 
@@ -242,7 +241,7 @@ Setting a root password for MariaDB is only the most basic measure for securing 
 [phpMyAdmin](https://www.phpmyadmin.net/) is a web\-based database management tool that you can use to view and edit the MySQL databases on your EC2 instance\. Follow the steps below to install and configure `phpMyAdmin` on your Amazon Linux instance\.
 
 **Important**  
-We do not recommend using `phpMyAdmin` to access a LAMP server unless you have enabled SSL/TLS in Apache; otherwise, your database administrator password and other data are transmitted insecurely across the internet\. For security recommendations from the developers, see [Securing your phpMyAdmin installation](https://docs.phpmyadmin.net/en/latest/setup.html#securing-your-phpmyadmin-installation)\. For general information about securing a web server on an EC2 instance, see [Tutorial: Configure Apache Web Server on Amazon Linux to use SSL/TLS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/SSL-on-an-instance.html)\.
+We do not recommend using `phpMyAdmin` to access a LAMP server unless you have enabled SSL/TLS in Apache; otherwise, your database administrator password and other data are transmitted insecurely across the internet\. For security recommendations from the developers, see [Securing your phpMyAdmin installation](https://docs.phpmyadmin.net/en/latest/setup.html#securing-your-phpmyadmin-installation)\. For general information about securing a web server on an EC2 instance, see [Tutorial: Configure SSL/TLS on Amazon Linux 2](SSL-on-amazon-linux-2.md)\.
 
 **To install phpMyAdmin**
 

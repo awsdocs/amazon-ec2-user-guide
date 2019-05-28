@@ -1,6 +1,6 @@
 # Managing User Accounts on Your Linux Instance<a name="managing-users"></a>
 
-Each Linux instance type launches with a default Linux system user account\. For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\. For CentOS, the user name is `centos`\. For Debian, the user name is `admin` or `root`\. For Fedora, the user name is `ec2-user` or `fedora`\. For RHEL, the user name is `ec2-user` or `root`\. For SUSE, the user name is `ec2-user` or `root`\. For Ubuntu, the user name is `ubuntu`\. Otherwise, if `ec2-user` and `root` don't work, check with your AMI provider\.
+Each Linux instance launches with a default Linux system user account\. The default user name is determined by the AMI that was specified when you launched the instance\. For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\. For CentOS, the user name is `centos`\. For Debian, the user name is `admin` or `root`\. For Fedora, the user name is `ec2-user` or `fedora`\. For RHEL, the user name is `ec2-user` or `root`\. For SUSE, the user name is `ec2-user` or `root`\. For Ubuntu, the user name is `ubuntu`\. Otherwise, if `ec2-user` and `root` don't work, check with your AMI provider\.
 
 **Note**  
 Linux system users should not be confused with AWS Identity and Access Management \(IAM\) users\. For more information, see [IAM Users and Groups](https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_WorkingWithGroupsAndUsers.html) in the *IAM User Guide*\.
@@ -12,7 +12,7 @@ Linux system users should not be confused with AWS Identity and Access Managemen
 
 ## Best Practice<a name="add-user-best-practice"></a>
 
-Using the default user account is adequate for many applications, but you may choose to add user accounts so that individuals can have their own files and workspaces\. Creating user accounts for new users is much more secure than granting multiple \(possibly inexperienced\) users access to the default user account, because that account can cause a lot of damage to a system when used improperly\. For more information, see [Tips for Securing Your EC2 Instance](https://aws.amazon.com/articles/tips-for-securing-your-ec2-instance/)\.
+Using the default user account is adequate for many applications\. However, you may choose to add user accounts so that individuals can have their own files and workspaces\. Furthermore, creating user accounts for new users is much more secure than granting multiple \(possibly inexperienced\) users access to the default user account, because the default user account can cause a lot of damage to a system when used improperly\. For more information, see [Tips for Securing Your EC2 Instance](https://aws.amazon.com/articles/tips-for-securing-your-ec2-instance/)\.
 
 ## Creating a User Account<a name="create-user-account"></a>
 
@@ -26,9 +26,9 @@ First create the user account, and then add the SSH public key that allows the u
 
   For more information, see [Retrieving the Public Key for Your Key Pair on Linux](ec2-key-pairs.md#retrieving-the-public-key) or [Retrieving the Public Key for Your Key Pair on Windows](ec2-key-pairs.md#retrieving-the-public-key-windows)\.
 
-**To add a user account**
+**To create a user account**
 
-1. Use the adduser command to add the user account to the system \(with an entry in the `/etc/passwd` file\)\. The command also creates a group and a home directory for the account\. In this example, the user account is named `newuser`\.
+1. Use the adduser command to create the user account and add it to the system \(with an entry in the `/etc/passwd` file\)\. The command also creates a group and a home directory for the account\. In this example, the user account is named `newuser`\.
 
    ```
    [ec2-user ~]$ sudo adduser newuser
@@ -47,7 +47,7 @@ First create the user account, and then add the SSH public key that allows the u
    [newuser ~]$
    ```
 
-   Notice that the prompt changes from `ec2-user` to `newuser` to indicate that you have switched the shell session to the new account\.
+   Notice that, in this example, the prompt changes from `ec2-user` to `newuser` to indicate that you have switched the shell session to the new account\.
 
 1. Add the SSH public key to the user account\. First create a directory in the user's home directory for the SSH key file, then create the key file, and finally paste the public key into the key file\.
 

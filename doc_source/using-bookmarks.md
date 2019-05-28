@@ -12,10 +12,10 @@ Note that your AMI must be public, or you must have shared it with the user to w
    https://console.aws.amazon.com/ec2/v2/home?region=region#LaunchInstanceWizard:ami=ami_id
    ```
 
-   For example, this URL launches an instance from the ami\-12345678 AMI in the us\-east\-1 region:
+   For example, this URL launches an instance from the ami\-0abcdef1234567890 AMI in the us\-east\-1 region:
 
    ```
-   https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard:ami=ami-12345678
+   https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard:ami=ami-0abcdef1234567890
    ```
 
 1. Distribute the link to users who want to use your AMI\.

@@ -1,8 +1,8 @@
 # Copying an AMI<a name="CopyingAMIs"></a>
 
-You can copy an Amazon Machine Image \(AMI\) within or across an AWS Region\. You can copy both Amazon EBS\-backed AMIs and instance store\-backed AMIs\. You can copy encrypted AMIs and AMIs with encrypted snapshots\.
+You can copy an Amazon Machine Image \(AMI\) within or across AWS regions using the AWS Management Console, the AWS Command Line Interface or SDKs, or the Amazon EC2 API, all of which support the `CopyImage` action\. You can copy both Amazon EBS\-backed AMIs and instance\-store\-backed AMIs\. You can copy AMIs with encrypted snapshots and also change encryption status during the copy process\.
 
-Copying a source AMI results in an identical but distinct target AMI with its own unique identifier\. In the case of an Amazon EBS\-backed AMI, each of its backing snapshots is, by default, copied to an identical but distinct target snapshot\. \(The one exception is when you choose to encrypt the snapshot\.\) You can change or deregister the source AMI with no effect on the target AMI\. The reverse is also true\.
+Copying a source AMI results in an identical but distinct target AMI with its own unique identifier\. In the case of an Amazon EBS\-backed AMI, each of its backing snapshots is, by default, copied to an identical but distinct target snapshot\. \(The sole exceptions are when you choose to encrypt or re\-encrypt the snapshot\.\) You can change or deregister the source AMI with no effect on the target AMI\. The reverse is also true\.
 
 There are no charges for copying an AMI\. However, standard storage and data transfer rates apply\.
 
@@ -50,7 +50,7 @@ The following example policy allows the user to copy the AMI source in the speci
 
 To find the Amazon Resource Name \(ARN\) of the AMI source bucket, open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/), in the navigation pane choose **AMIs**, and locate the bucket name in the **Source** column\.
 
-## Cross\-Region AMI Copy<a name="copy-amis-across-regions"></a>
+## Cross\-Region Copying<a name="copy-amis-across-regions"></a>
 
 Copying an AMI across geographically diverse Regions provides the following benefits:
 + Consistent global deployment: Copying an AMI from one Region to another enables you to launch consistent instances in different Regions based on the same AMI\.
@@ -71,28 +71,21 @@ Prior to copying an AMI, you must ensure that the contents of the source AMI are
 + Destination Regions are limited to 50 concurrent AMI copies\.
 + You cannot copy a paravirtual \(PV\) AMI to a Region that does not support PV AMIs\. For more information, see [Linux AMI Virtualization Types](virtualization_types.md)\.
 
-## Cross\-Account AMI Copy<a name="copy-ami-across-accounts"></a>
+## Cross\-Account Copying<a name="copy-ami-across-accounts"></a>
 
 You can share an AMI with another AWS account\. Sharing an AMI does not affect the ownership of the AMI\. The owning account is charged for the storage in the Region\. For more information, see [Sharing an AMI with Specific AWS Accounts](sharingamis-explicit.md)\.
 
 If you copy an AMI that has been shared with your account, you are the owner of the target AMI in your account\. The owner of the source AMI is charged standard Amazon EBS or Amazon S3 transfer fees, and you are charged for the storage of the target AMI in the destination Region\.
 
 **Resource Permissions**  
-To copy an AMI that was shared with you from another account, the owner of the source AMI must grant you read permissions for the storage that backs the AMI, either the associated EBS snapshot \(for an Amazon EBS\-backed AMI\) or an associated S3 bucket \(for an instance store\-backed AMI\)\.
+To copy an AMI that was shared with you from another account, the owner of the source AMI must grant you read permissions for the storage that backs the AMI, either the associated EBS snapshot \(for an Amazon EBS\-backed AMI\) or an associated S3 bucket \(for an instance store\-backed AMI\)\. If the shared AMI has encrypted snapshots, the owner must share the key or keys with you as well\.
 
-**Limits**
-+ You can't copy an encrypted AMI that was shared with you from another account\. Instead, if the underlying snapshot and encryption key were shared with you, you can copy the snapshot while re\-encrypting it with a key of your own\. You own the copied snapshot, and can register it as a new AMI\.
-+ You can't copy an AMI with an associated `billingProduct` code that was shared with you from another account\. This includes Windows AMIs and AMIs from the AWS Marketplace\. To copy a shared AMI with a `billingProduct` code, launch an EC2 instance in your account using the shared AMI and then create an AMI from the instance\. For more information, see [Creating an Amazon EBS\-Backed Linux AMI](creating-an-ami-ebs.md)\.
+**Note**  
+You can't copy an AMI with an associated `billingProduct` code that was shared with you from another account\. This includes Windows AMIs and AMIs from the AWS Marketplace\. To copy a shared AMI with a `billingProduct` code, launch an EC2 instance in your account using the shared AMI and then create an AMI from the instance\. For more information, see [Creating an Amazon EBS\-Backed Linux AMI](creating-an-ami-ebs.md)\.
 
-## Encryption and AMI Copy<a name="ami-copy-encryption"></a>
+## Encryption and Copying<a name="ami-copy-encryption"></a>
 
-Encrypting during AMI copy applies only to Amazon EBS\-backed AMIs\. Because an instance store\-backed AMI does not rely on snapshots, you cannot use AMI copy to change its encryption status\.
-
-You can use AMI copy to create a new AMI backed by encrypted Amazon EBS snapshots\. If you invoke encryption while copying an AMI, each snapshot taken of its associated Amazon EBS volumes—including the root volume—is encrypted using a key that you specify\. For more information about using AMIs with encrypted snapshots, see [AMIs with Encrypted Snapshots](AMIEncryption.md)\.
-
-By default, the backing snapshot of an AMI is copied with its original encryption status\. Copying an AMI backed by an unencrypted snapshot results in an identical target snapshot that is also unencrypted\. If the source AMI is backed by an encrypted snapshot, copying it results in a target snapshot encrypted to the specified key\. Copying an AMI backed by multiple snapshots preserves the source encryption status in each target snapshot\. For more information about copying AMIs with multiple snapshots, see [AMIs with Encrypted Snapshots](AMIEncryption.md)\.
-
-The following table shows encryption support for various scenarios\. Note that while it is possible to copy an unencrypted snapshot to yield an encrypted snapshot, you cannot copy an encrypted snapshot to yield an unencrypted one\.
+The following table shows encryption support for various AMI\-copying scenarios\. While it is possible to copy an unencrypted snapshot to yield an encrypted snapshot, you cannot copy an encrypted snapshot to yield an unencrypted one\.
 
 
 | Scenario | Description | Supported | 
@@ -102,20 +95,25 @@ The following table shows encryption support for various scenarios\. Note that w
 | 3 | Unencrypted\-to\-encrypted | Yes | 
 | 4 | Encrypted\-to\-unencrypted | No | 
 
-**Copy an unencrypted source AMI to an unencrypted target AMI**  
-In this scenario, a copy of an AMI with an unencrypted single backing snapshot is created in the specified geographical Region \(not shown\)\. Although this diagram shows an AMI with a single backing snapshot, you can also copy an AMI with multiple snapshots\. The encryption status of each snapshot is preserved\. Therefore, an unencrypted snapshot in the source AMI results in an unencrypted snapshot in the target AMI, and an encrypted snapshot in the source AMI results in an encrypted snapshot in the target AMI\.
+**Note**  
+Encrypting during the `CopyImage` action applies only to Amazon EBS\-backed AMIs\. Because an instance store\-backed AMI does not rely on snapshots, you cannot use copying to change its encryption status\.
 
-![\[Copy an unencrypted source AMI\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ami-to-ami-unencrypted.png)
+By default \(i\.e\., without specifying encryption parameters\), the backing snapshot of an AMI is copied with its original encryption status\. Copying an AMI backed by an unencrypted snapshot results in an identical target snapshot that is also unencrypted\. If the source AMI is backed by an encrypted snapshot, copying it results in an identical target snapshot that is encrypted to the same customer master key \(CMK\)\. Copying an AMI backed by multiple snapshots preserves, by default, the source encryption status in each target snapshot\.
 
-**Copy an encrypted source AMI to an encrypted target AMI**  
-Although this scenario involves encrypted snapshots, it is functionally equivalent to the previous scenario\. If you apply encryption while copying a multi\-snapshot AMI, all of the target snapshots are encrypted using the specified key or the default key if none is specified\.
+If you specify encryption parameters while copying an AMI, you can encrypt or re\-encrypt its backing snapshots\. The following example shows a non\-default case that supplies encryption parameters to the `CopyImage` action in order to change the target AMI's encryption state\.
 
-![\[Copy an encrypted source AMI\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ami-to-ami-encrypted.png)
+**Copy an unencrypted source AMI to an encrypted target AMI**
 
-**Copy an unencrypted source AMI to an encrypted target AMI**  
-In this scenario, copying an AMI changes the encryption status of the destination image, for instance, by encrypting an unencrypted snapshot, or re\-encrypting an encrypted snapshot with a different key\. To apply encryption during the copy, you must provide an encryption flag and key\. Volumes created from the target snapshot are accessible only using this key\.
+In this scenario, an AMI backed by an unencrypted root snapshot is copied to an AMI with an encrypted root snapshot\. The `CopyImage` action is invoked with two encryption parameters, including the choice of a CMK\. As a result, the encryption status of the root snapshot changes, so that the target AMI is backed by a root snapshot containing the same data as the source snapshot, but encrypted using the specified key\. You will incur storage costs for the snapshots in both AMIs, as well as charges for any instances you launch from either AMI\.
 
-![\[Copy an unencrypted source AMI to encrypted target AMI\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ami-to-ami-convert.png)
+**Note**  
+ Enabling [encryption by default](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/encryption-by-default.html) has the same effect as setting the `Encrypted` parameter to `true` for all snapshots in the AMI\. 
+
+![\[Copy AMI and encrypt snapshot on the fly\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ami-to-ami-convert.png)
+
+The `Encrypted` parameter alone results in the single snapshot for this instance being encrypted\. Providing a `KmsKeyId` parameter is optional\. If none is specified, the default CMK of the AWS account is used to encrypt the snapshot copy\. To encrypt the copy to a different CMK that you own, supply the `KmsKeyId` parameter\. 
+
+For more information about copying AMIs with encrypted snapshots, see [Using Encryption with EBS\-Backed AMIs](AMIEncryption.md)\.
 
 ## Copying an AMI<a name="ami-copy-steps"></a>
 
@@ -136,7 +134,7 @@ Create or obtain an AMI backed by an Amazon EBS snapshot\. Note that you can use
    + **Destination region**: The Region in which to copy the AMI\.
    + **Name**: A name for the new AMI\. You can include operating system information in the name, as we do not provide this information when displaying details about the AMI\.
    + **Description**: By default, the description includes information about the source AMI so that you can distinguish a copy from its original\. You can change this description as needed\.
-   + **Encryption**: Select this field to encrypt the target snapshots, or to re\-encrypt them using a different key\.
+   + **Encryption**: Select this field to encrypt the target snapshots, or to re\-encrypt them using a different key\. If you have enabled [encryption by default](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/encryption-by-default.html), the **Encryption** option is set and cannot be unset from the AMI console\. 
    + **Master Key**: The KMS key to used to encrypt the target snapshots\.
 
 1. We display a confirmation page to let you know that the copy operation has been initiated and to provide you with the ID of the new AMI\.

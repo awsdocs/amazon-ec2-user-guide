@@ -107,12 +107,12 @@ These examples get the value of some of the metadata items from the preceding ex
 
 ```
 [ec2-user ~]$ curl http://169.254.169.254/latest/meta-data/ami-id
-ami-12345678
+ami-0abcdef1234567890
 ```
 
 ```
 [ec2-user ~]$ curl http://169.254.169.254/latest/meta-data/reservation-id
-r-fea54097
+r-0efghijk987654321
 ```
 
 ```
@@ -258,11 +258,11 @@ The `replicate-every=1min` data defines the first replicant's configuration, `re
 Alice launches four instances using the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command, specifying the user data: 
 
 ```
-aws ec2 run-instances --image-id ami-12345678 --count 4 --instance-type t2.micro --user-data "replicate-every=1min | replicate-every=5min | replicate-every=10min"
+aws ec2 run-instances --image-id ami-0abcdef1234567890 --count 4 --instance-type t2.micro --user-data "replicate-every=1min | replicate-every=5min | replicate-every=10min"
 ```
 
 After they're launched, all instances have a copy of the user data and the common metadata shown here:
-+ AMI id: ami\-12345678
++ AMI id: ami\-0abcdef1234567890
 + Reservation ID: r\-1234567890abcabc0
 + Public keys: none 
 + Security group name: default

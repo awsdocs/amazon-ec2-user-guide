@@ -8,7 +8,7 @@ Like other instance store volumes, you must map the SSD instance store volumes f
 
 ## NVMe SSD Volumes<a name="nvme-ssd-volumes"></a>
 
-The following instances offer non\-volatile memory express \(NVMe\) SSD instance store volumes: C5d, I3, F1, M5ad, M5d, `p3dn.24xlarge`, R5ad, R5d, and z1d\. To access NVMe volumes, the [NVMe drivers](nvme-ebs-volumes.md#install-nvme-driver) must be installed\. The following AMIs meet this requirement:
+The following instances offer non\-volatile memory express \(NVMe\) SSD instance store volumes: C5d, I3, I3en, F1, M5ad, M5d, `p3dn.24xlarge`, R5ad, R5d, and z1d\. To access NVMe volumes, the [NVMe drivers](nvme-ebs-volumes.md#install-nvme-driver) must be installed\. The following AMIs meet this requirement:
 + Amazon Linux 2
 + Amazon Linux AMI 2018\.03
 + Ubuntu 14\.04 or later
@@ -56,7 +56,7 @@ The data on NVMe instance storage is encrypted using an XTS\-AES\-256 block ciph
 
 ## Instance Store Volume TRIM Support<a name="InstanceStoreTrimSupport"></a>
 
-The following instances support SSD volumes with TRIM: C5d, F1, I2, I3, M5ad, M5d, `p3dn.24xlarge`, R3, R5ad, R5d, and z1d\.
+The following instances support SSD volumes with TRIM: C5d, F1, I2, I3, I3en, M5ad, M5d, `p3dn.24xlarge`, R3, R5ad, R5d, and z1d\.
 
 Instance store volumes that support TRIM are fully trimmed before they are allocated to your instance\. These volumes are not formatted with a file system when an instance launches, so you must format them before they can be mounted and used\. For faster access to these volumes, you should skip the TRIM operation when you format them\.
 

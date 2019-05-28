@@ -10,7 +10,7 @@ If you are creating a volume for a high\-performance storage scenario, you shoul
 
 New EBS volumes receive their maximum performance the moment that they are available and do not require initialization \(formerly known as pre\-warming\)\. However, storage blocks on volumes that were restored from snapshots must be initialized \(pulled down from Amazon S3 and written to the volume\) before you can access the block\. This preliminary action takes time and can cause a significant increase in the latency of an I/O operation the first time each block is accessed\. For most applications, amortizing this cost over the lifetime of the volume is acceptable\. Performance is restored after the data is accessed once\. For more information, see [Initializing Amazon EBS Volumes](ebs-initialize.md)\.
 
-**To create an EBS volume using the console**
+**To create a new \(empty\) EBS volume using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -30,7 +30,7 @@ Some AWS accounts created before 2012 might have access to Availability Zones in
 
 1. For **Availability Zone**, choose the Availability Zone in which to create the volume\. EBS volumes can only be attached to EC2 instances within the same Availability Zone\.
 
-1. \(Optional\) To create an encrypted volume, select the **Encrypted** box and choose the master key you want to use when encrypting the volume\. You can choose the default master key for your account, or you can choose any customer master key \(CMK\) that you have previously created using the AWS Key Management Service\. Available keys are visible in the **Master Key** menu, or you can paste the full ARN of any key that you have access to\. For more information, see the [AWS Key Management Service Developer Guide](https://docs.aws.amazon.com/kms/latest/developerguide/)\.
+1. \(Optional\) To create an encrypted volume, select the **Encrypted** box and choose the Customer Master Key \(CMK\) you want to use when encrypting the volume\. You can accept the default, which is the default CMK for your account, or you can choose any CMK that you have previously created using the AWS Key Management Service\. Choose an available key from the **Master Key** menu or paste the full ARN of any key that you have access to\. For more information, see the [AWS Key Management Service Developer Guide](https://docs.aws.amazon.com/kms/latest/developerguide/)\.
 **Note**  
 Encrypted volumes can only be attached to selected instance types\. For more information, see [Supported Instance Types](EBSEncryption.md#EBSEncryption_supported_instances)\.
 
@@ -38,7 +38,7 @@ Encrypted volumes can only be attached to selected instance types\. For more inf
 
 1. Choose **Create Volume**\. 
 
-**To create an EBS volume using the command line**
+**To create a new \(empty\) EBS volume using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
 + [create\-volume](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-volume.html) \(AWS CLI\)

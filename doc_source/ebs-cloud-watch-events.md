@@ -21,7 +21,7 @@ Amazon EBS sends events to CloudWatch Events when the following volume events oc
 
 ### Create Volume \(`createVolume`\)<a name="create-volume"></a>
 
-The `createVolume` event is sent to your AWS account when an action to create a volume completes\. This event can have a result of either `available` or `failed`\. Creation will fail if an invalid KMS key was provided, as shown in the examples below\.
+The `createVolume` event is sent to your AWS account when an action to create a volume completes\. However it is not saved, logged, or archived\. This event can have a result of either `available` or `failed`\. Creation will fail if an invalid KMS key was provided, as shown in the examples below\.
 
 **Event Data**  
 The listing below is an example of a JSON object emitted by EBS for a successful `createVolume` event\. 
@@ -95,7 +95,7 @@ The following is an example of a JSON object that is emitted by EBS after a fail
 
 ### Delete Volume \(`deleteVolume`\)<a name="delete-volume"></a>
 
-The `deleteVolume` event is sent to your AWS account when an action to delete a volume completes\. This event has the result `deleted`\. If the deletion does not complete, the event is never sent\.
+The `deleteVolume` event is sent to your AWS account when an action to delete a volume completes\. However it is not saved, logged, or archived\. This event has the result `deleted`\. If the deletion does not complete, the event is never sent\.
 
 **Event Data**  
 The listing below is an example of a JSON object emitted by EBS for a successful `deleteVolume` event\. 
@@ -123,7 +123,7 @@ The listing below is an example of a JSON object emitted by EBS for a successful
 
 ### Volume Attach or Reattach \(`attachVolume`, `reattachVolume`\)<a name="attach-fail-key"></a>
 
-The `attachVolume` or `reattachVolume` event is sent to your AWS account if a volume fails to attach or reattach to an instance\. If you use a KMS key to encrypt an EBS volume and the key becomes invalid, EBS will emit an event if that key is later used to attach or reattach to an instance, as shown in the examples below\.
+The `attachVolume` or `reattachVolume` event is sent to your AWS account if a volume fails to attach or reattach to an instance\. However it is not saved, logged, or archived\. If you use a KMS key to encrypt an EBS volume and the key becomes invalid, EBS will emit an event if that key is later used to attach or reattach to an instance, as shown in the examples below\.
 
 **Event Data**  
 The listing below is an example of a JSON object emitted by EBS after a failed `attachVolume` event\. The cause for the failure was a KMS key pending deletion\.
@@ -188,7 +188,7 @@ Amazon EBS sends events to CloudWatch Events when the following volume events oc
 
 ### Create Snapshot \(`createSnapshot`\)<a name="create-snapshot-complete"></a>
 
-The `createSnapshot` event is sent to your AWS account when an action to create a snapshot completes\. This event can have a result of either `succeeded` or `failed`\.
+The `createSnapshot` event is sent to your AWS account when an action to create a snapshot completes\. However it is not saved, logged, or archived\. This event can have a result of either `succeeded` or `failed`\.
 
 **Event Data**  
 The listing below is an example of a JSON object emitted by EBS for a successful `createSnapshot` event\. In the `detail` section, the `source` field contains the ARN of the source volume\. The `StartTime` and `EndTime` fields indicate when creation of the snapshot started and completed\.
@@ -219,7 +219,7 @@ The listing below is an example of a JSON object emitted by EBS for a successful
 
 ### Copy Snapshot \(`copySnapshot`\)<a name="copy-snapshot-complete"></a>
 
-The `copySnapshot` event is sent to your AWS account when an action to copy a snapshot completes\. This event can have a result of either `succeeded` or `failed`\.
+The `copySnapshot` event is sent to your AWS account when an action to copy a snapshot completes\. However it is not saved, logged, or archived\. This event can have a result of either `succeeded` or `failed`\.
 
 **Event Data**  
 The listing below is an example of a JSON object emitted by EBS after a successful `copySnapshot` event\. The value of `snapshot_id` is the ARN of the newly created snapshot\. In the `detail` section, the value of `source` is the ARN of the source snapshot\. `StartTime` and `EndTime` represent when the copy\-snapshot action started and ended\.
@@ -279,7 +279,7 @@ The listing below is an example of a JSON object emitted by EBS after a failed `
 
 ### Share Snapshot \(`shareSnapshot`\)<a name="snapshot-shared"></a>
 
-The `shareSnapshot` event is sent to your AWS account when another account shares a snapshot with it\. The result is always `succeeded`\.
+The `shareSnapshot` event is sent to your AWS account when another account shares a snapshot with it\. However it is not saved, logged, or archived\. The result is always `succeeded`\.
 
 **Event Data**  
 The following is an example of a JSON object emitted by EBS after a completed `shareSnapshot` event\. In the `detail` section, the value of `source` is the AWS account number of the user that shared the snapshot with you\. `StartTime` and `EndTime` represent when the share\-snapshot action started and ended\. The `shareSnapshot` event is emitted only when a private snapshot is shared with another user\. Sharing a public snapshot does not trigger the event\.
@@ -311,7 +311,7 @@ The following is an example of a JSON object emitted by EBS after a completed `s
 
 ## EBS Volume Modification Events<a name="volume-modification-events"></a>
 
-Amazon EBS sends `modifyVolume` events to CloudWatch Events when a volume is modified\.
+Amazon EBS sends `modifyVolume` events to CloudWatch Events when a volume is modified\. However it is not saved, logged, or archived\.
 
 ```
 {

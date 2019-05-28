@@ -8,7 +8,7 @@ Your instances keep running until you stop or terminate them, or until they fail
 
 ## Instances<a name="instances"></a>
 
-An instance is a virtual server in the cloud\. It's configuration at launch is a copy of the AMI that you specified when you launched the instance\.
+An instance is a virtual server in the cloud\. Its configuration at launch is a copy of the AMI that you specified when you launched the instance\.
 
 You can launch different types of instances from a single AMI\. An *instance type* essentially determines the hardware of the host computer used for your instance\. Each instance type offers different compute and memory capabilities\. Select an instance type based on the amount of memory and computing power that you need for the application or software that you plan to run on the instance\. For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 

@@ -57,7 +57,7 @@ Launch a temporary instance that you can use to install and configure the EFA so
 
 1. On the **Choose an AMI** page, choose one of the following supported AMIs and then choose **Select**: Amazon Linux, Amazon Linux 2, Red Hat Enterprise Linux 7\.6, CentOS 7\.6\.
 
-1. On the **Choose an Instance Type** page, select one of the following supported instance types and then choose **Next: Configure Instance Details**: c5n\.18xlarge, p3dn\.24xlarge\.
+1. On the **Choose an Instance Type** page, select one of the following supported instance types and then choose **Next: Configure Instance Details**: c5n\.18xlarge, i3en\.24xlarge, p3dn\.24xlarge\.
 
 1. On the **Configure Instance Details** page, do the following:
 
@@ -114,14 +114,6 @@ Install the EFA\-enabled kernel, EFA drivers, libfabric, and Open MPI stack that
    ```
 
    The EFA software packages are installed in the `/opt/amazon/efa` directory\.
-
-1. Reboot the instance to complete the installation\.
-
-   ```
-   $ sudo reboot
-   ```
-
-1. Reconnect to the instance\.
 
 1. Confirm that the EFA software components were successfully installed\.
 
@@ -204,7 +196,7 @@ It is not an absolute requirement to launch your EFAinstances into a cluster pla
 
 1. On the **Choose an AMI** page, choose **My AMIs**, find the AMI that you created in **Step 5**, and then choose **Select**\.
 
-1. On the **Choose an Instance Type** page, select one of the following supported instance types and then choose **Next: Configure Instance Details**: c5n\.18xlarge, p3dn\.24xlarge\.
+1. On the **Choose an Instance Type** page, select one of the following supported instance types and then choose **Next: Configure Instance Details**: c5n\.18xlarge, i3en\.24xlarge, p3dn\.24xlarge\.
 
 1. On the **Configure Instance Details** page, do the following:
 

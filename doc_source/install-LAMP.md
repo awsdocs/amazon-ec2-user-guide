@@ -2,15 +2,14 @@
 
 The following procedures help you install an Apache web server with PHP and MySQL support on your Amazon Linux instance \(sometimes called a LAMP web server or LAMP stack\)\. You can use this server to host a static website or deploy a dynamic PHP application that reads and writes information to a database\.
 
-To set up a LAMP web server on Amazon Linux 2, see [Tutorial: Install a LAMP Web Server on Amazon Linux 2](ec2-lamp-amazon-linux-2.md)\.
-
-To set up a secure LAMP web server using industry\-standard SSL/TLS encryption, use [Tutorial: Install a LAMP Web Server on Amazon Linux 2](ec2-lamp-amazon-linux-2.md) in combination with [Tutorial: Configure Apache Web Server on Amazon Linux 2 to Use SSL/TLS](SSL-on-an-instance.md)\.
-
 **Important**  
+To set up a LAMP web server on Amazon Linux 2, see [Tutorial: Install a LAMP Web Server on Amazon Linux 2](ec2-lamp-amazon-linux-2.md)\.  
 If you are trying to set up a LAMP web server on an Ubuntu or Red Hat Enterprise Linux instance, this tutorial will not work for you\. For more information about other distributions, see their specific documentation\. For information about LAMP web servers on Ubuntu, see the Ubuntu community documentation [ApacheMySQLPHP](https://help.ubuntu.com/community/ApacheMySQLPHP) topic\. 
 
+## Step 1: Prepare the LAMP Server<a name="prepare-lamp-server-alami"></a>
+
 **Prerequisites**  
-This tutorial assumes that you have already launched a new instance using the Amazon Linux AMI, with a public DNS name that is reachable from the internet\. For more information, see [Step 1: Launch an Instance](EC2_GetStarted.md#ec2-launch-instance)\. You must also have configured your security group to allow SSH \(port 22\), HTTP \(port 80\), and HTTPS \(port 443\) connections\. For more information about these prerequisites, see [Setting Up with Amazon EC2](get-set-up-for-amazon-ec2.md)\.<a name="install_apache"></a>
+This tutorial assumes that you have already launched a new instance using the Amazon Linux AMI, with a public DNS name that is reachable from the internet\. For more information, see [Step 1: Launch an Instance](EC2_GetStarted.md#ec2-launch-instance)\. You must also have configured your security group to allow SSH \(port 22\), HTTP \(port 80\), and HTTPS \(port 443\) connections\. For more information about these prerequisites, see [Authorizing Inbound Traffic for Your Linux Instances](authorizing-access-to-an-instance.md)\.
 
 **To install and start the LAMP web server with the Amazon Linux AMI**
 
@@ -26,7 +25,7 @@ This tutorial assumes that you have already launched a new instance using the Am
 
 1. Now that your instance is current, you can install the Apache web server, MySQL, and PHP software packages\. 
 **Note**  
-Some applications may not be compatible with the following recommended software environment\. Before installing these packages, check whether your LAMP applications are compatible with them\. If there is a problem, you may need to install an alternative environment\. For more information, see [The application software I want to run on my server is incompatible with the installed PHP version or other software](#software_versions) 
+Some applications may not be compatible with the following recommended software environment\. Before installing these packages, check whether your LAMP applications are compatible with them\. If there is a problem, you may need to install an alternative environment\. For more information, see [The application software I want to run on my server is incompatible with the installed PHP version or other software](#software-versions-alami) 
 
    Use the yum install command to install multiple software packages and all related dependencies at the same time\.
 
@@ -39,7 +38,6 @@ If you receive the error `No package package-name available`, then your instance
    ```
    cat /etc/system-release
    ```
-To set up a LAMP web server on Amazon Linux 2, see [Tutorial: Install a LAMP Web Server on Amazon Linux 2](ec2-lamp-amazon-linux-2.md)\.
 
 1. Start the Apache web server\.
 
@@ -108,7 +106,7 @@ drwxr-xr-x 3 root root 4096 Aug  7 00:02 icons
 drwxr-xr-x 2 root root 4096 Aug  7 21:17 noindex
 ```
 
-To allow the `ec2-user` account to manipulate files in this directory, you must modify the ownership and permissions of the directory\. There are many ways to accomplish this task\. In this tutorial, you add `ec2-user` to the `apache` group, to give the `apache` group ownership of the `/var/www` directory and assign write permissions to the group\.<a name="SettingFilePermissions"></a>
+To allow the `ec2-user` account to manipulate files in this directory, you must modify the ownership and permissions of the directory\. There are many ways to accomplish this task\. In this tutorial, you add `ec2-user` to the `apache` group, to give the `apache` group ownership of the `/var/www` directory and assign write permissions to the group\.
 
 **To set file permissions**
 
@@ -157,11 +155,13 @@ Now, `ec2-user` \(and any future members of the `apache` group\) can add, delete
 **\(Optional\) Secure your web server**  
 A web server running the HTTP protocol provides no transport security for the data that it sends or receives\. When you connect to an HTTP server using a web browser, the URLs that you visit, the content of webpages that you receive, and the contents \(including passwords\) of any HTML forms that you submit are all visible to eavesdroppers anywhere along the network pathway\. The best practice for securing your web server is to install support for HTTPS \(HTTP Secure\), which protects your data with SSL/TLS encryption\.
 
-For information about enabling HTTPS on your server, see [Tutorial: Configure Apache Web Server on Amazon Linux to use SSL/TLS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/SSL-on-an-instance.html)\.
+For information about enabling HTTPS on your server, see [Tutorial: Configure SSL/TLS on Amazon Linux](SSL-on-amazon-linux-ami.md)\.
 
-**To test your LAMP web server**
+## Step 2: Test Your Lamp Server<a name="test-lamp-server-alami"></a>
 
 If your server is installed and running, and your file permissions are set correctly, your `ec2-user` account should be able to create a PHP file in the `/var/www/html` directory that is available from the internet\.
+
+**To test your LAMP web server**
 
 1. Create a PHP file in the Apache document root\.
 
@@ -169,7 +169,7 @@ If your server is installed and running, and your file permissions are set corre
    [ec2-user ~]$ echo "<?php phpinfo(); ?>" > /var/www/html/phpinfo.php
    ```
 
-   If you get a "Permission denied" error when trying to run this command, try logging out and logging back in again to pick up the proper group permissions that you configured in [To set file permissions](#SettingFilePermissions)\.
+   If you get a "Permission denied" error when trying to run this command, try logging out and logging back in again to pick up the proper group permissions that you configured in [Step 1: Prepare the LAMP Server](#prepare-lamp-server-alami)\.
 
 1. In a web browser, type the URL of the file that you just created\. This URL is the public DNS address of your instance followed by a forward slash and the file name\. For example:
 
@@ -198,11 +198,13 @@ If your server is installed and running, and your file permissions are set corre
 
    ```
    [ec2-user ~]$ rm /var/www/html/phpinfo.php
-   ```<a name="SecuringMySQLProcedure"></a>
+   ```
+
+## Step 3: Secure the Database Server<a name="secure-mysql-lamp-server"></a>
+
+The default installation of the MySQL server has several features that are great for testing and development, but they should be disabled or removed for production servers\. The mysql\_secure\_installation command walks you through the process of setting a root password and removing the insecure features from your installation\. Even if you are not planning on using the MySQL server, we recommend performing this procedure\.<a name="SecuringMySQLProcedure"></a>
 
 **To secure the database server**
-
-The default installation of the MySQL server has several features that are great for testing and development, but they should be disabled or removed for production servers\. The mysql\_secure\_installation command walks you through the process of setting a root password and removing the insecure features from your installation\. Even if you are not planning on using the MySQL server, we recommend performing this procedure\.
 
 1. Start the MySQL server\.
 
@@ -254,11 +256,13 @@ Setting a root password for MySQL is only the most basic measure for securing yo
 
 You should now have a fully functional LAMP web server\. If you add content to the Apache document root at `/var/www/html`, you should be able to view that content at the public DNS address for your instance\. 
 
-**\(Optional\) Install phpMyAdmin**
+## Step 4: \(Optional\) Install phpMyAdmin<a name="install-phpmyadmin-lamp-server-alami"></a>
+
+**To install phpMyAdmin**
 
 [phpMyAdmin](https://www.phpmyadmin.net/) is a web\-based database management tool that you can use to view and edit the MySQL databases on your EC2 instance\. Follow the steps below to install and configure phpMyAdmin on your Amazon Linux instance\.
 **Important**  
-We do not recommend using phpMyAdmin to access a LAMP server unless you have enabled SSL/TLS in Apache; otherwise, your database administrator password and other data are transmitted insecurely across the internet\. For security recommendations from the developers, see [Securing your phpMyAdmin installation](https://docs.phpmyadmin.net/en/latest/setup.html#securing-your-phpmyadmin-installation)\. For general information about securing a web server on an EC2 instance, see [Tutorial: Configure Apache Web Server on Amazon Linux to use SSL/TLS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/SSL-on-an-instance.html)\.
+We do not recommend using phpMyAdmin to access a LAMP server unless you have enabled SSL/TLS in Apache; otherwise, your database administrator password and other data are transmitted insecurely across the internet\. For security recommendations from the developers, see [Securing your phpMyAdmin installation](https://docs.phpmyadmin.net/en/latest/setup.html#securing-your-phpmyadmin-installation)\.
 **Note**  
 The Amazon Linux package management system does not currently support the automatic installation of phpMyAdmin in a PHP 7 environment\. This tutorial describes how to install phpMyAdmin manually\.
 
@@ -325,11 +329,11 @@ The Amazon Linux package management system does not currently support the automa
 
     For information about using phpMyAdmin, see the [phpMyAdmin User Guide](http://docs.phpmyadmin.net/en/latest/user.html)\.
 
-## Troubleshooting<a name="lamp-troubleshooting"></a>
+## Troubleshooting<a name="lamp-troubleshooting-alami"></a>
 
 This section offers suggestions for resolving common problems you may encounter while setting up a new LAMP server\. 
 
-### I can't connect to my server using a web browser\.<a name="is_apache_on"></a>
+### I can't connect to my server using a web browser\.<a name="is-apache-on-alami"></a>
 
 Perform the following checks to see if your Apache web server is running and accessible\.
 + **Is the web server running?**
@@ -343,12 +347,12 @@ Perform the following checks to see if your Apache web server is running and acc
 
   Here, httpd is `on` in runlevels 2, 3, 4, and 5 \(which is what you want to see\)\.
 
-  If the httpd process is not running, repeat the steps described in [To install and start the LAMP web server with the Amazon Linux AMI](#install_apache)\.
+  If the httpd process is not running, repeat the steps described in [Step 1: Prepare the LAMP Server](#prepare-lamp-server-alami)\.
 + **Is the firewall correctly configured?**
 
   If you are unable to see the Apache test page, check that the security group you are using contains a rule to allow HTTP \(port 80\) traffic\. For information about adding an HTTP rule to your security group, see [Adding Rules to a Security Group](using-network-security.md#adding-security-group-rule)\.
 
-### The application software I want to run on my server is incompatible with the installed PHP version or other software<a name="software_versions"></a>
+### The application software I want to run on my server is incompatible with the installed PHP version or other software<a name="software-versions-alami"></a>
 
 This tutorial recommends installing the most up\-to\-date versions of Apache HTTP Server, PHP, and MySQL\. Before installing an additional LAMP application, check its requirements to confirm that it is compatible with your installed environment\. If the latest version of PHP is not supported, it is possible \(and entirely safe\) to downgrade to an earlier supported configuration\. You can also install more than one version of PHP in parallel, which solves certain compatibility problems with a minimum of effort\. For information about configuring a preference among multiple installed PHP versions, see [Amazon Linux AMI 2016\.09 Release Notes\.](https://aws.amazon.com/amazon-linux-ami/2016.09-release-notes/)
 
@@ -379,7 +383,7 @@ If you decide later to upgrade to the recommended environment, you must first re
 
 Now you can install the latest packages, as described earlier\.
 
-## Related Topics<a name="lamp-more-info"></a>
+## Related Topics<a name="lamp-more-info-alami"></a>
 
 For more information about transferring files to your instance or installing a WordPress blog on your web server, see the following documentation:
 + [Transferring Files to Your Linux Instance Using WinSCP](putty.md#Transfer_WinSCP)

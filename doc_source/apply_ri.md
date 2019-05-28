@@ -40,7 +40,9 @@ The table below describes the different sizes within an instance family, and cor
 |  large  |  4  | 
 |  xlarge  |  8  | 
 |  2xlarge  |  16  | 
+|  3xlarge  |  24  | 
 |  4xlarge  |  32  | 
+|  6xlarge  |  48  | 
 |  8xlarge  |  64  | 
 |  9xlarge  |  72  | 
 |  10xlarge  |  80  | 

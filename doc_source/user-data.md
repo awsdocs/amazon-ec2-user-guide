@@ -40,7 +40,7 @@ Scripts entered as user data are executed as the `root` user, so do not use the 
 
 The cloud\-init output log file \(`/var/log/cloud-init-output.log`\) captures console output so it is easy to debug your scripts following a launch if the instance does not behave the way you intended\.
 
-When a user data script is processed, it is copied to and executed from a directory in `/var/lib/cloud`\. The script is not deleted after it is run\. Be sure to delete the user data scripts from `/var/lib/cloud` before you create an AMI from the instance\. Otherwise, the script will exist in this directory on any instance launched from the AMI and will be run when the instance is launched\.
+When a user data script is processed, it is copied to and executed from `/var/lib/cloud/instances/instance-id/`\. The script is not deleted after it is run\. Be sure to delete the user data scripts from `/var/lib/cloud/instances/instance-id/` before you create an AMI from the instance\. Otherwise, the script will exist in this directory on any instance launched from the AMI\.
 
 ## User Data and the Console<a name="user-data-console"></a>
 
