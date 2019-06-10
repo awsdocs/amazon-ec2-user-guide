@@ -42,6 +42,8 @@ You can create a Capacity Reservation using the Amazon EC2 console or the AWS CL
 
    1. **Availability Zone**—Specify the Availability Zone in which to reserve the capacity\.
 
+   1. **Tenancy**—Specify whether you want to run a shared hardware instance \(default\) or a dedicated instance\.
+
    1. **Quantity**—Specify the number instances for which to reserve capacity\. If you specify a quantity that exceeds your remaining On\-Demand Instance limit for the selected instance type, the request will be denied\.
 
 1. Configure the following settings in the **Reservation details** section:

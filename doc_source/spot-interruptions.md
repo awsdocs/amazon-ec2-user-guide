@@ -57,7 +57,10 @@ You can change the behavior so that Amazon EC2 hibernates Spot Instances when th
 + Start the agent\. We recommend that you use user data to start the agent on instance startup\. Alternatively, you could start the agent manually\.
 
 **Recommendation**
-+ We strongly recommend that you use an encrypted EBS volume as the root volume, because instance memory is stored on the root volume during hibernation\. This ensures that the contents of memory \(RAM\) are encrypted when the data is at rest on the volume and when data is moving between the instance and volume\. If your AMI does not have an encrypted root volume, you can copy it to a new AMI and request encryption\. For more information, see [Amazon EBS Encryption](EBSEncryption.md) and [Copying an AMI](CopyingAMIs.md#ami-copy-steps)\.
++ We strongly recommend that you use an encrypted Amazon EBS volume as the root volume, because instance memory is stored on the root volume during hibernation\. This ensures that the contents of memory \(RAM\) are encrypted when the data is at rest on the volume and when data is moving between the instance and volume\. Use one of the following three options to ensure that the root volume is an encrypted Amazon EBS volume:
+  + EBS “single\-step” encryption: In a single run\-instances API call, you can launch encrypted EBS\-backed EC2 instances from an unencrypted AMI\. For more information, see [Using Encryption with EBS\-Backed AMIs](AMIEncryption.md)\.
+  + EBS encryption by default: You can enable EBS encryption by default to ensure all new EBS volumes created in your AWS account are encrypted\. For more information, see [Encryption by Default](EBSEncryption.md#encryption-by-default)\.
+  + Encrypted AMI: You can enable EBS encryption by using an encrypted AMI to launch your instance\. If your AMI does not have an encrypted root snapshot, you can copy it to a new AMI and request encryption\. For more information, see [Encrypt an Unencrypted Image during Copy](AMIEncryption.md#copy-unencrypted-to-encrypted) and [Copying an AMI](CopyingAMIs.md#ami-copy-steps)\. 
 
 When a Spot Instance is hibernated by the Spot service, the EBS volumes are preserved and instance memory \(RAM\) is preserved on the root volume\. The private IP addresses of the instance are also preserved\. Instance storage volumes and public IP addresses, other than Elastic IP addresses, are not preserved\. While the instance is hibernating, you are charged only for the EBS volumes\. With Spot Fleet, if you have many hibernated instances, you can exceed the limit on the number of EBS volumes for your account\.
 
@@ -125,9 +128,9 @@ This warning is made available as a CloudWatch event and as an item in the [inst
 
 If you specify hibernation as the interruption behavior, you receive an interruption notice, but you do not receive a two\-minute warning because the hibernation process begins immediately\.
 
-### EC2 Spot Instance Interruption Warning<a name="ec2-spot-instance-interruption-warning-event"></a>
+### EC2 Spot Instance Interruption Notice<a name="ec2-spot-instance-interruption-warning-event"></a>
 
-When Amazon EC2 interrupts your Spot Instance, it emits an event that can be detected by Amazon CloudWatch Events\. For more information, see the [Amazon CloudWatch Events User Guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/)\.
+When Amazon EC2 is going to interrupt your Spot Instance, it emits an event two minutes prior to the actual interruption\. This event can be detected by Amazon CloudWatch Events\. For more information, see the [Amazon CloudWatch Events User Guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/)\.
 
 The following is an example of the event for Spot Instance interruption\. The possible values for `instance-action` are `hibernate`, `stop`, and `terminate`\.
 

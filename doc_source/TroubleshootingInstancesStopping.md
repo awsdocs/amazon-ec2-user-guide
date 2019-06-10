@@ -32,7 +32,7 @@ To attempt to resolve the problem while you are waiting for assistance from the 
 
    1. Choose **No reboot**\.
 
-   For more information, see [Creating a Linux AMI from an Instance](creating-an-ami-ebs.md#how-to-create-ebs-ami)
+   For more information, see [Creating a Linux AMI from an Instance](creating-an-ami-ebs.md#how-to-create-ebs-ami)\.
 
 1. Launch a new instance from the AMI and verify that the new instance is working\.
 

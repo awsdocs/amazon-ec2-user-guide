@@ -82,7 +82,7 @@ For more information about Amazon EBS volumes, see the following topics:
 
 To back up the data on your Amazon EBS volume, you can take periodic snapshots of your volume\. If you need to, you can restore an Amazon EBS volume from your snapshot\. For more information about Amazon EBS snapshots, see the following topics:
 + [Amazon EBS Snapshots](EBSSnapshots.md)
-+ [Creating an Amazon EBS Snapshot](ebs-creating-snapshot.md)
++ [Creating Amazon EBS Snapshots](ebs-creating-snapshot.md)
 + [Restoring an Amazon EBS Volume from a Snapshot](ebs-restoring-volume.md)
 
 ### Step 4: Launch an Instance Into Your VPC<a name="vpc-migrate-instance"></a>
@@ -246,7 +246,7 @@ For more information about Amazon EBS volumes, see the following topics:
 
 To back up the data on your Amazon EBS volume, you can take periodic snapshots of your volume\. If you need to, you can restore an Amazon EBS volume from your snapshot\. For more information about Amazon EBS snapshots, see the following topics:
 + [Amazon EBS Snapshots](EBSSnapshots.md)
-+ [Creating an Amazon EBS Snapshot](ebs-creating-snapshot.md)
++ [Creating Amazon EBS Snapshots](ebs-creating-snapshot.md)
 + [Restoring an Amazon EBS Volume from a Snapshot](ebs-restoring-volume.md)
 
 ### Step 5: Launch an Instance Into Your VPC<a name="classiclink-migrate-launch-instance"></a>

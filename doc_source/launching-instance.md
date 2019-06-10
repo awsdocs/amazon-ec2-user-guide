@@ -90,20 +90,20 @@ If you increase the size of your root volume at this point \(or any other volume
 **Note**  
 If you select a Magnetic boot volume, you'll be prompted when you complete the wizard to make General Purpose SSD volumes the default boot volume for this instance and future console launches\. \(This preference persists in the browser session, and does not affect AMIs with Provisioned IOPS SSD boot volumes\.\) We recommended that you make General Purpose SSD volumes the default because they provide a much faster boot experience and they are the optimal volume type for most workloads\. For more information, see [Amazon EBS Volume Types](EBSVolumeTypes.md)\.
 **Note**  
-Some AWS accounts created before 2012 might have access to Availability Zones in us\-west\-1 or ap\-northeast\-1 that do not support Provisioned IOPS SSD \(`io1`\) volumes\. If you are unable to create an `io1` volume \(or launch an instance with an `io1` volume in its block device mapping\) in one of these regions, try a different Availability Zone in the region\. You can verify that an Availability Zone supports `io1` volumes by creating a 4 GiB `io1` volume in that zone\.
+Some AWS accounts created before 2012 might have access to Availability Zones in us\-west\-1 or ap\-northeast\-1 that do not support Provisioned IOPS SSD \(`io1`\) volumes\. If you are unable to create an `io1` volume \(or launch an instance with an `io1` volume in its block device mapping\) in one of these Regions, try a different Availability Zone in the Region\. You can verify that an Availability Zone supports `io1` volumes by creating a 4 GiB `io1` volume in that zone\.
    + **IOPS**: If you have selected a Provisioned IOPS SSD volume type, then you can enter the number of I/O operations per second \(IOPS\) that the volume can support\.
    + **Delete on Termination**: For Amazon EBS volumes, select this check box to delete the volume when the instance is terminated\. For more information, see [Preserving Amazon EBS Volumes on Instance Termination](terminating-instances.md#preserving-volumes-on-termination)\.
    + **Encrypted**: This field allows you to change the encryption state of the volume\.
 
-     You apply encryption to EBS volumes by setting the `Encrypted` parameter to `true`\. \(The `Encrypted` parameter is optional if [encryption by default](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/encryption-by-default.html) is enabled\)\.
+     You apply encryption to EBS volumes by setting the `Encrypted` parameter to `true`\. \(The `Encrypted` parameter is optional if [encryption by default](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#encryption-by-default) is enabled\)\.
 
      Optionally, you can use `KmsKeyId` to specify a custom key to use to encrypt the volume\. \(The `Encrypted` parameter must also be set to `true`, even if encryption by default is enabled\.\) If `KmsKeyId` is not specified, the key that is used for encryption depends on the encryption state of the source snapshot and its ownership\. The following table describes the encryption outcome for each possible combination of settings\.  
 **Encryption Outcomes**    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/launching-instance.html)
 
-     \* This is the default CMK for the AWS account and region\. This may be either the AWS\-managed default or a customer\-managed default that you have specified\. For more information, see [Encryption Key Management](EBSEncryption.md#EBSEncryption_key_mgmt)\.
+     \* This is the default CMK used for EBS encryption for the AWS account and Region\. By default this is a unique AWS managed CMK for EBS, or you can specify a customer managed CMK\. For more information, see [Encryption Key Management](EBSEncryption.md#EBSEncryption_key_mgmt)\.
 
-     \*\* This is a customer\-managed CMK specified for the volume at launch time\. This CMK overrides the default CMK that is set for the AWS account and region\.
+     \*\* This is a customer managed CMK specified for the volume at launch time\. This CMK is used instead of the default CMK for the AWS account and Region\.
 
      To override any of these defaults, click in the **Encrypted** field to see available keys, and choose a key alias or type a key ARN\. You can encrypt a volume restored from an unencrypted snapshot, or re\-encrypt any volume to which you have access using a key that you own\.
 **Note**  

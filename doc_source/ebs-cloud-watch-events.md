@@ -4,6 +4,8 @@ Amazon EBS emits notifications based on Amazon CloudWatch Events for a variety o
 
 Events in CloudWatch are represented as JSON objects\. The fields that are unique to the event are contained in the "detail" section of the JSON object\. The "event" field contains the event name\. The "result" field contains the completed status of the action that triggered the event\. For more information, see [Event Patterns in CloudWatch Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CloudWatchEventsandEventPatterns.html) in the *Amazon CloudWatch Events User Guide*\.
 
+For more information, see [Using Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/WhatIsCloudWatchEvents.html) in the *Amazon CloudWatch User Guide*\. For full API reference, see the [EC2 API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference)\.
+
 **Topics**
 + [EBS Volume Events](#volume-events)
 + [EBS Snapshot Events](#snapshot-events)
@@ -183,6 +185,7 @@ Amazon EBS sends events to CloudWatch Events when the following volume events oc
 
 **Topics**
 + [`createSnapshot`](#create-snapshot-complete)
++ [`createSnapshots`](#create-snapshots-complete)
 + [`copySnapshot`](#copy-snapshot-complete)
 + [`shareSnapshot`](#snapshot-shared)
 
@@ -214,6 +217,87 @@ The listing below is an example of a JSON object emitted by EBS for a successful
     "source": "arn:aws:ec2:us-west-2::volume/vol-01234567",
     "StartTime": "yyyy-mm-ddThh:mm:ssZ",
     "EndTime": "yyyy-mm-ddThh:mm:ssZ"  }
+}
+```
+
+### Create Snapshots \(`createSnapshots`\)<a name="create-snapshots-complete"></a>
+
+The `createSnapshots` event is sent to your AWS account when an action to create a multi\-volume snapshot completes\. This event can have a result of either `succeeded` or `failed`\.
+
+**Event Data**  
+The listing below is an example of a JSON object emitted by EBS for a successful `createSnapshots` event\. In the `detail` section, the `source` field contains the ARNs of the source volumes of the multi\-volume snapshot set\. The `StartTime` and `EndTime` fields indicate when creation of the snapshot started and completed\.
+
+```
+{
+  "version": "0",
+  "id": "01234567-0123-0123-0123-012345678901",
+  "detail-type": "EBS Multi-Volume Snapshots Completion Status",
+  "source": "aws.ec2",
+  "account": "012345678901",
+  "time": "yyyy-mm-ddThh:mm:ssZ",
+  "region": "us-east-1",
+  "resources": [
+    "arn:aws:ec2::us-east-1:snapshot/snap-01234567",
+    "arn:aws:ec2::us-east-1:snapshot/snap-012345678"
+  ],
+  "detail": {
+    "event": "createSnapshots",
+    "result": "succeeded",
+    "cause": "",
+    "request-id": "",
+    "startTime": "yyyy-mm-ddThh:mm:ssZ",
+    "endTime": "yyyy-mm-ddThh:mm:ssZ",
+    "snapshots": [
+      {
+        "snapshot_id": "arn:aws:ec2::us-east-1:snapshot/snap-01234567",
+        "source": "arn:aws:ec2::us-east-1:volume/vol-01234567",
+        "status": "completed"
+      },
+      {
+        "snapshot_id": "arn:aws:ec2::us-east-1:snapshot/snap-012345678",
+        "source": "arn:aws:ec2::us-east-1:volume/vol-012345678",
+        "status": "completed"
+      }
+    ]
+  }
+}
+```
+
+The listing below is an example of a JSON object emitted by EBS after a failed `createSnapshots` event\. The cause for the failure was one or more snapshots failed to complete\. The values of `snapshot_id` are the ARNs of the failed snapshots\. `StartTime` and `EndTime` represent when the create\-snapshots action started and ended\. 
+
+```
+{
+  "version": "0",
+  "id": "01234567-0123-0123-0123-012345678901",
+  "detail-type": "EBS Multi-Volume Snapshots Completion Status",
+ "source": "aws.ec2",
+  "account": "012345678901",
+  "time": "yyyy-mm-ddThh:mm:ssZ",
+  "region": "us-east-1",
+  "resources": [
+    "arn:aws:ec2::us-east-1:snapshot/snap-01234567",
+    "arn:aws:ec2::us-east-1:snapshot/snap-012345678"
+  ],
+ "detail": {
+    "event": "createSnapshots",
+    "result": "failed",
+    "cause": "Snapshot snap-01234567 is in status deleted",
+    "request-id": "",
+    "startTime": "yyyy-mm-ddThh:mm:ssZ",
+    "endTime": "yyyy-mm-ddThh:mm:ssZ",
+    "snapshots": [
+      {
+        "snapshot_id": "arn:aws:ec2::us-east-1:snapshot/snap-01234567",
+        "source": "arn:aws:ec2::us-east-1:volume/vol-01234567",
+        "status": "error"
+      },
+      {
+        "snapshot_id": "arn:aws:ec2::us-east-1:snapshot/snap-012345678",
+        "source": "arn:aws:ec2::us-east-1:volume/vol-012345678",
+        "status": "deleted"
+      }
+    ]
+  }
 }
 ```
 

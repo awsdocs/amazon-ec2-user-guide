@@ -1,6 +1,6 @@
 # Copying an AMI<a name="CopyingAMIs"></a>
 
-You can copy an Amazon Machine Image \(AMI\) within or across AWS regions using the AWS Management Console, the AWS Command Line Interface or SDKs, or the Amazon EC2 API, all of which support the `CopyImage` action\. You can copy both Amazon EBS\-backed AMIs and instance\-store\-backed AMIs\. You can copy AMIs with encrypted snapshots and also change encryption status during the copy process\.
+You can copy an Amazon Machine Image \(AMI\) within or across AWS Regions using the AWS Management Console, the AWS Command Line Interface or SDKs, or the Amazon EC2 API, all of which support the `CopyImage` action\. You can copy both Amazon EBS\-backed AMIs and instance\-store\-backed AMIs\. You can copy AMIs with encrypted snapshots and also change encryption status during the copy process\.
 
 Copying a source AMI results in an identical but distinct target AMI with its own unique identifier\. In the case of an Amazon EBS\-backed AMI, each of its backing snapshots is, by default, copied to an identical but distinct target snapshot\. \(The sole exceptions are when you choose to encrypt or re\-encrypt the snapshot\.\) You can change or deregister the source AMI with no effect on the target AMI\. The reverse is also true\.
 
@@ -98,20 +98,20 @@ The following table shows encryption support for various AMI\-copying scenarios\
 **Note**  
 Encrypting during the `CopyImage` action applies only to Amazon EBS\-backed AMIs\. Because an instance store\-backed AMI does not rely on snapshots, you cannot use copying to change its encryption status\.
 
-By default \(i\.e\., without specifying encryption parameters\), the backing snapshot of an AMI is copied with its original encryption status\. Copying an AMI backed by an unencrypted snapshot results in an identical target snapshot that is also unencrypted\. If the source AMI is backed by an encrypted snapshot, copying it results in an identical target snapshot that is encrypted to the same customer master key \(CMK\)\. Copying an AMI backed by multiple snapshots preserves, by default, the source encryption status in each target snapshot\.
+By default \(i\.e\., without specifying encryption parameters\), the backing snapshot of an AMI is copied with its original encryption status\. Copying an AMI backed by an unencrypted snapshot results in an identical target snapshot that is also unencrypted\. If the source AMI is backed by an encrypted snapshot, copying it results in an identical target snapshot that is encrypted by the same customer master key \(CMK\)\. Copying an AMI backed by multiple snapshots preserves, by default, the source encryption status in each target snapshot\.
 
 If you specify encryption parameters while copying an AMI, you can encrypt or re\-encrypt its backing snapshots\. The following example shows a non\-default case that supplies encryption parameters to the `CopyImage` action in order to change the target AMI's encryption state\.
 
 **Copy an unencrypted source AMI to an encrypted target AMI**
 
-In this scenario, an AMI backed by an unencrypted root snapshot is copied to an AMI with an encrypted root snapshot\. The `CopyImage` action is invoked with two encryption parameters, including the choice of a CMK\. As a result, the encryption status of the root snapshot changes, so that the target AMI is backed by a root snapshot containing the same data as the source snapshot, but encrypted using the specified key\. You will incur storage costs for the snapshots in both AMIs, as well as charges for any instances you launch from either AMI\.
+In this scenario, an AMI backed by an unencrypted root snapshot is copied to an AMI with an encrypted root snapshot\. The `CopyImage` action is invoked with two encryption parameters, including a CMK\. As a result, the encryption status of the root snapshot changes, so that the target AMI is backed by a root snapshot containing the same data as the source snapshot, but encrypted using the specified key\. You incur storage costs for the snapshots in both AMIs, as well as charges for any instances you launch from either AMI\.
 
 **Note**  
- Enabling [encryption by default](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/encryption-by-default.html) has the same effect as setting the `Encrypted` parameter to `true` for all snapshots in the AMI\. 
+Enabling [encryption by default](EBSEncryption.md#encryption-by-default) has the same effect as setting the `Encrypted` parameter to `true` for all snapshots in the AMI\.
 
 ![\[Copy AMI and encrypt snapshot on the fly\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ami-to-ami-convert.png)
 
-The `Encrypted` parameter alone results in the single snapshot for this instance being encrypted\. Providing a `KmsKeyId` parameter is optional\. If none is specified, the default CMK of the AWS account is used to encrypt the snapshot copy\. To encrypt the copy to a different CMK that you own, supply the `KmsKeyId` parameter\. 
+Setting the `Encrypted` parameter encrypts the single snapshot for this instance\. If you do not specify the `KmsKeyId` parameter, the default CMK is used to encrypt the snapshot copy\.
 
 For more information about copying AMIs with encrypted snapshots, see [Using Encryption with EBS\-Backed AMIs](AMIEncryption.md)\.
 

@@ -231,14 +231,14 @@ If you must use a different AMI for your application, and your `d2.8xlarge` inst
   + CentOS 7 or later
   + FreeBSD 11\.1 or later
 + Launching an `i3.metal` instance boots the underlying server, which includes verifying all hardware and firmware components\. This means that it can take 20 minutes from the time the instance enters the running state until it becomes available over the network\.
-+ To attach or detach EBS volumes or secondary network interfaces from an `i3.metal` instance requires PCIe native hotplug support\. Amazon Linux 2 and the latest versions of the Amazon Linux AMI support PCIe native hotplug, but earlier versions do not\. You must enable the following Linux kernel configuration options:
++ To attach or detach EBS volumes or secondary network interfaces from a bare metal instance requires PCIe native hotplug support\. Amazon Linux 2 and the latest versions of the Amazon Linux AMI support PCIe native hotplug, but earlier versions do not\. You must enable the following Linux kernel configuration options:
 
   ```
   CONFIG_HOTPLUG_PCI_PCIE=y
   CONFIG_PCIEASPM=y
   ```
-+ `i3.metal` instances use a PCI\-based serial device rather than an I/O port\-based serial device\. The upstream Linux kernel and the latest Amazon Linux AMIs support this device\. `i3.metal` instances also provide an ACPI SPCR table to enable the system to automatically use the PCI\-based serial device\. The latest Windows AMIs automatically use the PCI\-based serial device\.
-+ With FreeBSD AMIs, `i3.metal` instances take nearly an hour to boot and I/O to the local NVMe storage does not complete\. As a workaround, add the following line to `/boot/loader.conf` and reboot:
++ Bare metal instances use a PCI\-based serial device rather than an I/O port\-based serial device\. The upstream Linux kernel and the latest Amazon Linux AMIs support this device\. Bare metal instances also provide an ACPI SPCR table to enable the system to automatically use the PCI\-based serial device\. The latest Windows AMIs automatically use the PCI\-based serial device\.
++ With FreeBSD AMIs, bare metal instances take nearly an hour to boot and I/O to the local NVMe storage does not complete\. As a workaround, add the following line to `/boot/loader.conf` and reboot:
 
   ```
   hw.nvme.per_cpu_io_queues="0"

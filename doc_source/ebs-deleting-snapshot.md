@@ -4,9 +4,11 @@ When you delete a snapshot, only the data referenced exclusively by that snapsho
 
 Deleting a snapshot of a volume has no effect on the volume\. Deleting a volume has no effect on the snapshots made from it\.
 
-If you make periodic snapshots of a volume, the snapshots are *incremental*, which means that only the blocks on the device that have changed after your last snapshot are saved in the new snapshot\. Even though snapshots are saved incrementally, the snapshot deletion process is designed so that you need to retain only the most recent snapshot in order to restore the volume\.
+If you make periodic snapshots of a volume, the snapshots are *incremental*\. This means that only the blocks on the device that have changed after your last snapshot are saved in the new snapshot\. Even though snapshots are saved incrementally, the snapshot deletion process is designed so that you need to retain only the most recent snapshot in order to restore the volume\.
 
 Deleting a snapshot might not reduce your organization's data storage costs\. Other snapshots might reference that snapshot's data, and referenced data is always preserved\. If you delete a snapshot containing data being used by a later snapshot, costs associated with the referenced data are allocated to the later snapshot\. For more information about how snapshots store data, see [How Incremental Snapshots Work](EBSSnapshots.md#how_snapshots_work) and the example below\.
+
+To delete multi\-volume snapshots, retrieve all of the snapshots for your multi\-volume group using the tag you applied to the group when you created the snapshots\. Then, delete the snapshots individually\. You will not be prevented from deleting individual snapshots in the multi\-volume snapshots group\.
 
 In the following diagram, Volume 1 is shown at three points in time\. A snapshot has captured each of the first two states, and in the third, a snapshot has been deleted\. 
 + In State 1, the volume has 10 GiB of data\. Because Snap A is the first snapshot taken of the volume, the entire 10 GiB of data must be copied\.

@@ -2,7 +2,7 @@
 
 You can use AWS Config to record configuration changes for Dedicated Hosts, and instances that are launched, stopped, or terminated on them\. You can then use the information captured by AWS Config as a data source for license reporting\.
 
-AWS Config records configuration information for Dedicated Hosts and instances individually and pairs this information through relationships\. There are three reporting conditions\.
+AWS Config records configuration information for Dedicated Hosts and instances individually and pairs this information through relationships\. There are three reporting conditions:
 + **AWS Config recording status**—When **On**, AWS Config is recording one or more AWS resource types, which can include Dedicated Hosts and Dedicated Instances\. To capture the information required for license reporting, verify that hosts and instances are being recorded with the following fields\.
 + **Host recording status**—When **Enabled**, the configuration information for Dedicated Hosts is recorded\.
 + **Instance recording status**—When **Enabled**, the configuration information for Dedicated Instances is recorded\.
@@ -19,13 +19,13 @@ You can view configuration histories in any of the following ways\.
 + By running AWS CLI commands\. First, you can use the [list\-discovered\-resources](https://docs.aws.amazon.com/cli/latest/reference/configservice/list-discovered-resources.html) command to get a list of all hosts and instances\. Then, you can use the [get\-resource\-config\-history](https://docs.aws.amazon.com/cli/latest/reference/configservice/get-resource-config-history.html#get-resource-config-history) command to get the configuration details of a host or instance for a specific time interval\. For more information, see [View Configuration Details Using the CLI](https://docs.aws.amazon.com/config/latest/developerguide/view-manage-resource-cli.html) in the *AWS Config Developer Guide*\.
 + By using the AWS Config API in your applications\. First, you can use the [ListDiscoveredResources](https://docs.aws.amazon.com/config/latest/APIReference/API_ListDiscoveredResources.html) action to get a list of all hosts and instances\. Then, you can use the [GetResourceConfigHistory](https://docs.aws.amazon.com/config/latest/APIReference/API_GetResourceConfigHistory.html) action to get the configuration details of a host or instance for a specific time interval\.
 
-For example, to get a list of all of your Dedicated Hosts from AWS Config, run a CLI command such as the following:
+For example, to get a list of all of your Dedicated Hosts from AWS Config, run a CLI command such as the following\.
 
 ```
 aws configservice list-discovered-resources --resource-type AWS::EC2::Host
 ```
 
-To obtain the configuration history of a Dedicated Host from AWS Config, run a CLI command such as the following:
+To obtain the configuration history of a Dedicated Host from AWS Config, run a CLI command such as the following\.
 
 ```
 aws configservice get-resource-config-history --resource type AWS::EC2::Instance --resource-id i-1234567890abcdef0

@@ -22,7 +22,7 @@ New EBS volumes receive their maximum performance the moment that they are avail
 
 1. For **Volume Type**, choose a volume type\. For more information, see [Amazon EBS Volume Types](EBSVolumeTypes.md)\.
 **Note**  
-Some AWS accounts created before 2012 might have access to Availability Zones in us\-west\-1 or ap\-northeast\-1 that do not support Provisioned IOPS SSD \(`io1`\) volumes\. If you are unable to create an `io1` volume \(or launch an instance with an `io1` volume in its block device mapping\) in one of these regions, try a different Availability Zone in the region\. You can verify that an Availability Zone supports `io1` volumes by creating a 4 GiB `io1` volume in that zone\.
+Some AWS accounts created before 2012 might have access to Availability Zones in us\-west\-1 or ap\-northeast\-1 that do not support Provisioned IOPS SSD \(`io1`\) volumes\. If you are unable to create an `io1` volume \(or launch an instance with an `io1` volume in its block device mapping\) in one of these Regions, try a different Availability Zone in the Region\. You can verify that an Availability Zone supports `io1` volumes by creating a 4 GiB `io1` volume in that zone\.
 
 1. For **Size \(GiB\)**, type the size of the volume\.
 

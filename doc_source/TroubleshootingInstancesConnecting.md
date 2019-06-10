@@ -15,8 +15,6 @@ The following are possible problems you may have and error messages you may see 
 
 For additional help with Windows instances, see [Troubleshooting Windows Instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/troubleshooting-windows-instances.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
-You can also search for answers and post questions on the [Amazon EC2 forum](https://forums.aws.amazon.com/forum.jspa?forumID=30)\.
-
 ## Error connecting to your instance: Connection timed out<a name="TroubleshootingInstancesConnectionTimeout"></a>
 
 If you try to connect to your instance and get an error message `Network error: Connection timed out` or `Error connecting to [instance], reason: -> Connection timed out: connect`, try the following:

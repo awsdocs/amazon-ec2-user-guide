@@ -1,6 +1,6 @@
-# Getting Started with EFA<a name="efa-start"></a>
+# Getting Started with EFAs<a name="efa-start"></a>
 
-The following tasks help you to get started with Elastic Fabric Adapter\. In this tutorial, you create an EFA\-enabled AMI and an EFA\-enabled security group, and then launch EFA\-enabled instances into a cluster placement group using that AMI and security group\. 
+In this tutorial, you create an EFA\-enabled AMI and an EFA\-enabled security group, and then launch EFA\-enabled instances into a cluster placement group using that AMI and security group\.
 
 **Topics**
 + [Step 1: Prepare an EFA\-enabled Security Group](#efa-start-security)
@@ -13,7 +13,7 @@ The following tasks help you to get started with Elastic Fabric Adapter\. In thi
 
 ## Step 1: Prepare an EFA\-enabled Security Group<a name="efa-start-security"></a>
 
-EFA requires a security group that allows all inbound and outbound traffic to and from the security group itself\.
+An EFA requires a security group that allows all inbound and outbound traffic to and from the security group itself\.
 
 **To create an EFA\-enabled security group**
 
@@ -55,7 +55,7 @@ Launch a temporary instance that you can use to install and configure the EFA so
 
 1. Choose **Launch Instance**\.
 
-1. On the **Choose an AMI** page, choose one of the following supported AMIs and then choose **Select**: Amazon Linux, Amazon Linux 2, Red Hat Enterprise Linux 7\.6, CentOS 7\.6\.
+1. On the **Choose an AMI** page, choose one of the following supported AMIs and then choose **Select**: Amazon Linux, Amazon Linux 2, Red Hat Enterprise Linux 7\.6, CentOS 7\.6, Ubuntu 16\.04, Ubuntu 18\.04\.
 
 1. On the **Choose an Instance Type** page, select one of the following supported instance types and then choose **Next: Configure Instance Details**: c5n\.18xlarge, i3en\.24xlarge, p3dn\.24xlarge\.
 
@@ -114,6 +114,8 @@ Install the EFA\-enabled kernel, EFA drivers, libfabric, and Open MPI stack that
    ```
 
    The EFA software packages are installed in the `/opt/amazon/efa` directory\.
+
+1. Log out of the instance and then log back in\.
 
 1. Confirm that the EFA software components were successfully installed\.
 
@@ -186,7 +188,7 @@ After you have installed the required software components, you create an EFA\-AM
 Launch your EFA\-enabled instances into a cluster placement group using the EFA\-enabled AMI that you created in **Step 5**, and the EFA\-enabled security group that you created in **Step 1**\.
 
 **Note**  
-It is not an absolute requirement to launch your EFAinstances into a cluster placement group\. However, we do recommend running your EFA\-enabled instances in a cluster placement group as it launches the instances into a low\-latency group in a single Availability Zone\.
+It is not an absolute requirement to launch your EFA\-enabled instances into a cluster placement group\. However, we do recommend running your EFA\-enabled instances in a cluster placement group as it launches the instances into a low\-latency group in a single Availability Zone\.
 
 **To launch your EFA\-enabled instances into a cluster placement group**
 

@@ -19,10 +19,15 @@ You own your Reserved Instance until it's sold\. After the sale, you've given up
 **Topics**
 + [Restrictions and Limitations](#ri-seller-limits)
 + [Registering as a Seller](#ri-market-seller-profile)
++ [Bank Account for Disbursement](#ri-market-concepts-bank)
++ [Tax Information](#ri-market-concepts-taxinfo)
 + [Pricing Your Reserved Instances](#ri-market-concepts-pricing)
 + [Listing Your Reserved Instances](#ri-market-selling-listing)
++ [Reserved Instance Listing States](#ri-listing-states)
 + [Lifecycle of a Listing](#ri-market-concepts-sold-partial)
 + [After Your Reserved Instance Is Sold](#ri-market-concepts-sold)
++ [Getting Paid](#ri-market-sold-gettingpaid)
++ [Information Shared with the Buyer](#ri-market-seller-disclosure)
 
 ### Restrictions and Limitations<a name="ri-seller-limits"></a>
 
@@ -39,18 +44,12 @@ The following limitations and restrictions apply when selling Reserved Instances
 ### Registering as a Seller<a name="ri-market-seller-profile"></a>
 
 To sell in the Reserved Instance Marketplace, you must first register as a seller\. During registration, you provide the following information:
-+ **Bank information**—AWS must have your bank information in order to disburse funds collected when you sell your reservations\. The bank you specify must have a US address\. For more information, see [Bank Accounts](#ri-market-concepts-bank)\.
++ **Bank information**—AWS must have your bank information in order to disburse funds collected when you sell your reservations\. The bank you specify must have a US address\. For more information, see [Bank Account for Disbursement](#ri-market-concepts-bank)\.
 + **Tax information**—All sellers are required to complete a tax information interview to determine any necessary tax reporting obligations\. For more information, see [Tax Information](#ri-market-concepts-taxinfo)\.
 
 After AWS receives your completed seller registration, you receive an email confirming your registration and informing you that you can get started selling in the Reserved Instance Marketplace\.
 
-**Topics**
-+ [Bank Accounts](#ri-market-concepts-bank)
-+ [Tax Information](#ri-market-concepts-taxinfo)
-+ [Sharing Information with the Buyer](#ri-market-seller-disclosure)
-+ [Getting Paid](#ri-market-sold-gettingpaid)
-
-#### Bank Accounts<a name="ri-market-concepts-bank"></a>
+### Bank Account for Disbursement<a name="ri-market-concepts-bank"></a>
 
 AWS must have your bank information in order to disburse funds collected when you sell your Reserved Instance\. The bank you specify must have a US address\.
 
@@ -74,7 +73,7 @@ After registration, the bank account provided is set as the default, pending ver
 
 1. On the **Manage Bank Account** page, add a new bank account or modify the default bank account as needed\.
 
-#### Tax Information<a name="ri-market-concepts-taxinfo"></a>
+### Tax Information<a name="ri-market-concepts-taxinfo"></a>
 
 Your sale of Reserved Instances might be subject to a transaction\-based tax, such as sales tax or value\-added tax\. You should check with your business's tax, legal, finance, or accounting department to determine if transaction\-based taxes are applicable\. You are responsible for collecting and sending the transaction\-based taxes to the appropriate tax authority\.
 
@@ -89,24 +88,6 @@ Based on your tax interview responses and IRS reporting thresholds, Amazon may f
 
 For more information about IRS requirements and Form 1099\-K, see the [IRS](http://www.irs.gov/uac/FAQs-on-New-Payment-Card-Reporting-Requirements) website\.
 
-#### Sharing Information with the Buyer<a name="ri-market-seller-disclosure"></a>
-
-When you sell in the Reserved Instance Marketplace, AWS shares your company’s legal name on the buyer’s statement in accordance with US regulations\. In addition, if the buyer calls AWS Support because the buyer needs to contact you for an invoice or for some other tax\-related reason, AWS may need to provide the buyer with your email address so that the buyer can contact you directly\.
-
-For similar reasons, the buyer's ZIP code and country information are provided to the seller in the disbursement report\. As a seller, you might need this information to accompany any necessary transaction taxes that you remit to the government \(such as sales tax and value\-added tax\)\.
-
-AWS cannot offer tax advice, but if your tax specialist determines that you need specific additional information, [contact AWS Support](https://aws.amazon.com/contact-us/)\.
-
-#### Getting Paid<a name="ri-market-sold-gettingpaid"></a>
-
-As soon as AWS receives funds from the buyer, a message is sent to the registered owner account email for the sold Reserved Instance\.
-
-AWS sends an Automated Clearing House \(ACH\) wire transfer to your specified bank account\. Typically, this transfer occurs between one to three days after your Reserved Instance has been sold\. You can view the state of this disbursement by viewing your Reserved Instance disbursement report\. Disbursements take place once a day\. Keep in mind that you can't receive disbursements until AWS has received verification from your bank\. This period can take up to two weeks\.
-
-The Reserved Instance that you sold continues to appear when you describe your Reserved Instances\.
-
-You receive a cash disbursement for your Reserved Instances through a wire transfer directly into your bank account\. AWS charges a service fee of 12 percent of the total upfront price of each Reserved Instance you sell in the Reserved Instance Marketplace\.
-
 ### Pricing Your Reserved Instances<a name="ri-market-concepts-pricing"></a>
 
 The upfront fee is the only fee that you can specify for the Reserved Instance that you're selling\. The upfront fee is the one\-time fee that the buyer pays when they purchase a Reserved Instance\. You cannot specify the usage fee or the recurring fee; The buyer pays the same usage or recurring fees that were set when the reservations were originally purchased\.
@@ -119,8 +100,6 @@ You cannot modify your listing directly\. However, you can change your listing b
 
 You can cancel your listing at any time, as long as it's in the `active`state\. You cannot cancel the listing if it's already matched or being processed for a sale\. If some of the instances in your listing are matched and you cancel the listing, only the remaining unmatched instances are removed from the listing\.
 
-#### Setting a Pricing Schedule<a name="pricing-schedule"></a>
-
 Because the value of Reserved Instances decreases over time, by default, AWS can set prices to decrease in equal increments month over month\. However, you can set different upfront prices based on when your reservation sells\.
 
 For example, if your Reserved Instance has nine months of its term remaining, you can specify the amount that you would accept if a customer were to purchase that Reserved Instance with nine months remaining\. You could set another price with five months remaining, and yet another price with one month remaining\.
@@ -130,13 +109,6 @@ For example, if your Reserved Instance has nine months of its term remaining, yo
 As a registered seller, you can choose to sell one or more of your Reserved Instances\. You can choose to sell all of them in one listing or in portions\. In addition, you can list Reserved Instances with any configuration of instance type, platform, and scope\.
 
 If you cancel your listing and a portion of that listing has already been sold, the cancellation is not effective on the portion that has been sold\. Only the unsold portion of the listing is no longer available in the Reserved Instance Marketplace\.
-
-**Topics**
-+ [Listing Your Reserved Instance Using the AWS Management Console](#ri-market-concepts-listing)
-+ [Listing Your Reserved Instances Using the AWS CLI or Amazon EC2 API](#listing-ri-cli)
-+ [Reserved Instance Listing States](#ri-listing-states)
-
-#### Listing Your Reserved Instance Using the AWS Management Console<a name="ri-market-concepts-listing"></a>
 
 **To list a Reserved Instance in the Reserved Instance Marketplace using the AWS Management Console**
 
@@ -162,9 +134,7 @@ If you cancel your listing and a portion of that listing has already been sold, 
 
 1. Select the Reserved Instance that you've listed and choose **My Listings**\.
 
-#### Listing Your Reserved Instances Using the AWS CLI or Amazon EC2 API<a name="listing-ri-cli"></a>
-
-**To list a Reserved Instance in the Reserved Instance Marketplace using the AWS CLI**
+**To manage Reserved Instances in the Reserved Instance Marketplace using the AWS CLI**
 
 1. Get a list of your Reserved Instances by using the [describe\-reserved\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances.html) command\.
 
@@ -172,15 +142,9 @@ If you cancel your listing and a portion of that listing has already been sold, 
 
 1. To view your listing, use the [describe\-reserved\-instances\-listings](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances-listings.html) command\.
 
-To cancel your listing, use the [cancel\-reserved\-instances\-listings](https://docs.aws.amazon.com/cli/latest/reference/ec2/cancel-reserved-instances-listings.html) command\.
+1. To cancel your listing, use the [cancel\-reserved\-instances\-listings](https://docs.aws.amazon.com/cli/latest/reference/ec2/cancel-reserved-instances-listings.html) command\.
 
-**To list a Reserved Instance in the Reserved Instance Marketplace using the Amazon EC2 API**
-+ [DescribeReservedInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeReservedInstances.html)
-+ [CreateReservedInstancesListing](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateReservedInstancesListing.html)
-+ [DescribeReservedInstancesListings](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeReservedInstancesListings.html)
-+ [CancelReservedInstancesListing](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CancelReservedInstancesListing.html)
-
-#### Reserved Instance Listing States<a name="ri-listing-states"></a>
+### Reserved Instance Listing States<a name="ri-listing-states"></a>
 
 **Listing State** on the **My Listings** tab of the Reserved Instances page displays the current status of your listings:
 
@@ -221,9 +185,27 @@ If you cancel your listing and a portion of that listing has already sold, the c
 
 ### After Your Reserved Instance Is Sold<a name="ri-market-concepts-sold"></a>
 
-When your Reserved Instance is sold, AWS sends you an email notification\. Each day that there is any kind of activity, you receive one email notification capturing all the activities of the day\. For example, you may create or sell a listing, or AWS may send funds to your account\. 
+When your Reserved Instance is sold, AWS sends you an email notification\. Each day that there is any kind of activity, you receive one email notification capturing all the activities of the day\. For example, you create or sell a listing, or AWS sends funds to your account\.
 
 To track the status of a Reserved Instance listing in the console, choose **Reserved Instance**, **My Listings**\. The **My Listings** tab contains the **Listing State** value\. It also contains information about the term, listing price, and a breakdown of how many instances in the listing are available, pending, sold, and canceled\. You can also use the [describe\-reserved\-instances\-listings](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances-listings.html) command with the appropriate filter to obtain information about your listings\.
+
+### Getting Paid<a name="ri-market-sold-gettingpaid"></a>
+
+As soon as AWS receives funds from the buyer, a message is sent to the registered owner account email for the sold Reserved Instance\.
+
+AWS sends an Automated Clearing House \(ACH\) wire transfer to your specified bank account\. Typically, this transfer occurs between one to three days after your Reserved Instance has been sold\. Disbursements take place once a day\. You will receive an email with a disbursement report after the funds are released\. Keep in mind that you can't receive disbursements until AWS receives verification from your bank\. This can take up to two weeks\.
+
+The Reserved Instance that you sold continues to appear when you describe your Reserved Instances\.
+
+You receive a cash disbursement for your Reserved Instances through a wire transfer directly into your bank account\. AWS charges a service fee of 12 percent of the total upfront price of each Reserved Instance you sell in the Reserved Instance Marketplace\.
+
+### Information Shared with the Buyer<a name="ri-market-seller-disclosure"></a>
+
+When you sell in the Reserved Instance Marketplace, AWS shares your company’s legal name on the buyer’s statement in accordance with US regulations\. In addition, if the buyer calls AWS Support because the buyer needs to contact you for an invoice or for some other tax\-related reason, AWS may need to provide the buyer with your email address so that the buyer can contact you directly\.
+
+For similar reasons, the buyer's ZIP code and country information are provided to the seller in the disbursement report\. As a seller, you might need this information to accompany any necessary transaction taxes that you remit to the government \(such as sales tax and value\-added tax\)\.
+
+AWS cannot offer tax advice, but if your tax specialist determines that you need specific additional information, [contact AWS Support](https://aws.amazon.com/contact-us/)\.
 
 ## Buying from the Reserved Instance Marketplace<a name="ri-market-buying-guide"></a>
 

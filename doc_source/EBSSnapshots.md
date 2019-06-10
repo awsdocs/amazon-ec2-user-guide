@@ -1,8 +1,12 @@
 # Amazon EBS Snapshots<a name="EBSSnapshots"></a>
 
-You can back up the data on your Amazon EBS volumes to Amazon S3 by taking point\-in\-time snapshots\. Snapshots are *incremental* backups, which means that only the blocks on the device that have changed after your most recent snapshot are saved\. This minimizes the time required to create the snapshot and saves on storage costs by not duplicating data\. When you delete a snapshot, only the data unique to that snapshot is removed\. Each snapshot contains all of the information needed to restore your data \(from the moment when the snapshot was taken\) to a new EBS volume\. 
+You can back up the data on your Amazon EBS volumes to Amazon S3 by taking point\-in\-time snapshots\. Snapshots are *incremental* backups, which means that only the blocks on the device that have changed after your most recent snapshot are saved\. This minimizes the time required to create the snapshot and saves on storage costs by not duplicating data\. When you delete a snapshot, only the data unique to that snapshot is removed\. Each snapshot contains all of the information that is needed to restore your data \(from the moment when the snapshot was taken\) to a new EBS volume\. 
 
-When you create an EBS volume based on a snapshot, the new volume begins as an exact replica of the original volume that was used to create the snapshot\. The replicated volume loads data lazily in the background so that you can begin using it immediately\. If you access data that hasn't been loaded yet, the volume immediately downloads the requested data from Amazon S3, and then continues loading the rest of the volume's data in the background\. For more information, see [Creating an Amazon EBS Snapshot](ebs-creating-snapshot.md)\.
+When you create an EBS volume based on a snapshot, the new volume begins as an exact replica of the original volume that was used to create the snapshot\. The replicated volume loads data in the background so that you can begin using it immediately\. If you access data that hasn't been loaded yet, the volume immediately downloads the requested data from Amazon S3, and then continues loading the rest of the volume's data in the background\. For more information, see [Creating Amazon EBS Snapshots](ebs-creating-snapshot.md)\.
+
+ **Multi\-Volume Snapshots**
+
+Snapshots can be used to create a backup of critical workloads, such as a large database or a file system that spans across multiple EBS volumes\. Multi\-volume snapshots allow you to take exact point\-in\-time, data coordinated, and crash\-consistent snapshots across multiple EBS volumes attached to an EC2 instance\. You are no longer required to stop your instance or to coordinate between volumes to ensure crash consistency, because snapshots are automatically taken across multiple EBS volumes\. For more information, see the steps for creating a multi\-volume EBS snapshot under [Creating Amazon EBS Snapshots](ebs-creating-snapshot.md)\.
 
 You can track the status of your EBS snapshots through CloudWatch Events\. For more information, see [Amazon CloudWatch Events for Amazon EBS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-cloud-watch-events.html)\.
 
@@ -10,7 +14,7 @@ You can track the status of your EBS snapshots through CloudWatch Events\. For m
 + [How Incremental Snapshots Work](#how_snapshots_work)
 + [Copying and Sharing Snapshots](#copy-and-share)
 + [Encryption Support for Snapshots](#encryption-support)
-+ [Creating an Amazon EBS Snapshot](ebs-creating-snapshot.md)
++ [Creating Amazon EBS Snapshots](ebs-creating-snapshot.md)
 + [Deleting an Amazon EBS Snapshot](ebs-deleting-snapshot.md)
 + [Copying an Amazon EBS Snapshot](ebs-copy-snapshot.md)
 + [Viewing Amazon EBS Snapshot Information](ebs-describing-snapshots.md)
@@ -40,20 +44,20 @@ For more information about how data is managed when you delete a snapshot, see [
 
 You can share a snapshot across AWS accounts by modifying its access permissions\. You can make copies of your own snapshots as well as snapshots that have been shared with you\. For more information, see [Sharing an Amazon EBS Snapshot](ebs-modifying-snapshot-permissions.md)\.
 
-A snapshot is constrained to the Region where it was created\. After you create a snapshot of an EBS volume, you can use it to create new volumes in the same Region\. For more information, see [Restoring an Amazon EBS Volume from a Snapshot](ebs-restoring-volume.md)\. You can also copy snapshots across regions, making it possible to use multiple regions for geographical expansion, data center migration, and disaster recovery\. You can copy any accessible snapshot that has a `completed` status\. For more information, see [Copying an Amazon EBS Snapshot](ebs-copy-snapshot.md)\.
+A snapshot is constrained to the AWS Region where it was created\. After you create a snapshot of an EBS volume, you can use it to create new volumes in the same Region\. For more information, see [Restoring an Amazon EBS Volume from a Snapshot](ebs-restoring-volume.md)\. You can also copy snapshots across Regions, making it possible to use multiple Regions for geographical expansion, data center migration, and disaster recovery\. You can copy any accessible snapshot that has a `completed` status\. For more information, see [Copying an Amazon EBS Snapshot](ebs-copy-snapshot.md)\.
 
 ## Encryption Support for Snapshots<a name="encryption-support"></a>
 
 EBS snapshots fully support EBS encryption\.
 + Snapshots of encrypted volumes are automatically encrypted\.
-+ Volumes you create from encrypted snapshots are automatically encrypted\.
-+ Volumes you create from an unencrypted snapshot that you own or have access to can be encrypted on\-the\-fly\.
++ Volumes that you create from encrypted snapshots are automatically encrypted\.
++ Volumes that you create from an unencrypted snapshot that you own or have access to can be encrypted on\-the\-fly\.
 + When you copy an unencrypted snapshot that you own, you can encrypt it during the copy process\.
 + When you copy an encrypted snapshot that you own or have access to, you can reencrypt it with a different key during the copy process\.
 
 **Note**  
 If you copy a snapshot and encrypt it to a new CMK, a complete \(non\-incremental\) copy is always created, resulting in additional delay and storage costs\.
 
-Complete documentation of possible snapshot encryption scenarios is provided in [Creating an Amazon EBS Snapshot](ebs-creating-snapshot.md) and in [Copying an Amazon EBS Snapshot](ebs-copy-snapshot.md)\.
+Complete documentation of possible snapshot encryption scenarios is provided in [Creating Amazon EBS Snapshots](ebs-creating-snapshot.md) and in [Copying an Amazon EBS Snapshot](ebs-copy-snapshot.md)\.
 
 For more information, see [Amazon EBS Encryption](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html)\.

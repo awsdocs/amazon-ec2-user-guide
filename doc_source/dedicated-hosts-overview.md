@@ -9,6 +9,7 @@ An Amazon EC2 Dedicated Host is a physical server with EC2 instance capacity ful
 + [Dedicated Hosts Limitations and Restrictions](#dedicated-hosts-limitations)
 + [Pricing and Billing](#dedicated-hosts-billing)
 + [Working with Dedicated Hosts](how-dedicated-hosts-work.md)
++ [Host Recovery](dedicated-hosts-recovery.md)
 + [Tracking Configuration Changes](dedicated-hosts-aws-config.md)
 
 ## Differences between Dedicated Hosts and Dedicated Instances<a name="dedicated-hosts-dedicated-instances"></a>
@@ -24,12 +25,12 @@ There are no performance, security, or physical differences between Dedicated In
 | Visibility of sockets, cores, and host ID | Provides visibility of the number of sockets and physical cores | No visibility | 
 | Host and instance affinity | Allows you to consistently deploy your instances to the same physical server over time | Not supported | 
 | Targeted instance placement | Provides additional visibility and control over how instances are placed on a physical server | Not supported | 
-| Automatic instance recovery | Not supported | Supported | 
+| Automatic instance recovery | Supported\. For more information, see [Host Recovery](dedicated-hosts-recovery.md)\. | Supported | 
 | Bring Your Own License \(BYOL\) | Supported | Not supported | 
 
 ## Bring Your Own License<a name="dedicated-hosts-BYOL"></a>
 
-Dedicated Hosts allow you to use your existing per\-socket, per\-core, or per\-VM software licenses\. When you bring your own license, you are responsible for managing your own licenses, but Amazon EC2 has features that help you maintain license compliance, such as instance affinity and targeted placement\.
+Dedicated Hosts allow you to use your existing per\-socket, per\-core, or per\-VM software licenses\. When you bring your own license, you are responsible for managing your own licenses\. However, Amazon EC2 has features that help you maintain license compliance, such as instance affinity and targeted placement\.
 
 These are the general steps to follow in order to bring your own volume licensed machine image into Amazon EC2\.
 
@@ -37,7 +38,7 @@ These are the general steps to follow in order to bring your own volume licensed
 
 1. After you have verified that your machine image can be used within Amazon EC2, import it using VM Import/Export\. For information about how to import your machine image, see the [ VM Import/Export User Guide](https://docs.aws.amazon.com/vm-import/latest/userguide/)\.
 
-1. After you've imported your machine image, you can launch instances from it onto active Dedicated Hosts in your account\.
+1. After you import your machine image, you can launch instances from it onto active Dedicated Hosts in your account\.
 
 1. When you run these instances, depending on the operating system, you may be required to activate these instances against your own KMS server\.
 
@@ -52,8 +53,7 @@ Dedicated Hosts are configured to support a single instance type and size capaci
 
 Before you allocate Dedicated Hosts, take note of the following limitations and restrictions:
 + RHEL, SUSE Linux, and Windows AMIs \(whether offered by AWS or on the AWS Marketplace\) cannot be used with Dedicated Hosts\.
-+ Amazon EC2 instance recovery is not supported\.
-+ Up to two On\-Demand Dedicated Hosts per instance family, per region can be allocated\. It is possible to request a limit increase: [Request to Raise Allocation Limit on Amazon EC2 Dedicated Hosts](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=)\.
++ Up to two On\-Demand Dedicated Hosts per instance family, per Region can be allocated\. It is possible to request a limit increase: [Request to Raise Allocation Limit on Amazon EC2 Dedicated Hosts](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=)\.
 + The instances that run on a Dedicated Host can only be launched in a VPC\.
 + Host limits are independent from instance limits\. Instances that you are running on Dedicated Hosts do not count towards your instance limits\.
 + Auto Scaling groups are not supported\.
@@ -67,7 +67,7 @@ Before you allocate Dedicated Hosts, take note of the following limitations and 
 
 On\-Demand billing is automatically activated when you allocate a Dedicated Host to your account\.
 
-The On\-Demand price for a Dedicated Host varies by instance family and region\. You are charged an hourly rate for the Dedicated Host, regardless of the quantity or the size of instances that you choose to launch on it\. In other words, you are charged for the entire Dedicated Host, and not the individual instances that you choose to run on it\. For more information about On\-Demand pricing, see [Amazon EC2 Dedicated Hosts On\-Demand Pricing](https://aws.amazon.com/ec2/dedicated-hosts/pricing/#on-demand)\.
+The On\-Demand price for a Dedicated Host varies by instance family and Region\. You are charged an hourly rate for the Dedicated Host, regardless of the quantity or the size of instances that you choose to launch on it\. In other words, you are charged for the entire Dedicated Host, and not the individual instances that you choose to run on it\. For more information about On\-Demand pricing, see [Amazon EC2 Dedicated Hosts On\-Demand Pricing](https://aws.amazon.com/ec2/dedicated-hosts/pricing/#on-demand)\.
 
 You can release an On\-Demand Dedicated Host at any time to stop accruing charges for it\. For information about releasing a Dedicated Host, see [Releasing Dedicated Hosts](how-dedicated-hosts-work.md#dedicated-hosts-releasing)\.
 
@@ -78,7 +78,7 @@ Dedicated Host Reservations provide a billing discount compared to running On\-D
 + **Partial Upfront**—A portion of the reservation must be paid upfront and the remaining hours in the term are billed at a discounted rate\. Available in one\-year and three\-year terms\.
 + **All Upfront**—Provides the lowest effective price\. Available in one\-year and three\-year terms and covers the entire cost of the term upfront, with no additional future charges\.
 
-You must have active Dedicated Hosts in your account before you can purchase reservations\. Each reservation covers a single, specific Dedicated Host in your account\. Reservations are applied to the instance family on the host, not the instance size\. If you have three Dedicated Hosts with different instances sizes \(`m4.xlarge`, `m4.medium`, and `m4.large`\) you can associate a single `m4` reservation with all those Dedicated Hosts\. The instance family and region of the reservation must match that of the Dedicated Hosts you want to associate it with\. 
+You must have active Dedicated Hosts in your account before you can purchase reservations\. Each reservation covers a single, specific Dedicated Host in your account\. Reservations are applied to the instance family on the host, not the instance size\. If you have three Dedicated Hosts with different instances sizes \(`m4.xlarge`, `m4.medium`, and `m4.large`\) you can associate a single `m4` reservation with all those Dedicated Hosts\. The instance family and Region of the reservation must match that of the Dedicated Hosts you want to associate it with\. 
 
 When a reservation is associated with a Dedicated Host, the Dedicated Host can't be released until the reservation's term is over\.
 

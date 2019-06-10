@@ -36,7 +36,7 @@ A launch template can contain all or some of the parameters to launch an instanc
 **Note**  
 You cannot remove launch template parameters during launch \(for example, you cannot specify a null value for the parameter\)\. To remove a parameter, create a new version of the launch template without the parameter and use that version to launch the instance\.
 
-To launch instances, IAM users must have permissions to use the `ec2:RunInstances` action\. They must also have permissions to create or use the resources that are created or associated with the instance\. You can use resource\-level permissions for the `ec2:RunInstances` action to control the launch parameters that users can specify\. Alternatively, you can grant users permissions to launch an instance using a launch template\. This enables you to manage launch parameters in a launch template rather than in an IAM policy, and to use a launch template as an authorization vehicle for launching instances\. For example, you can specify that users can only launch instances using a launch template, and that they can only use a specific launch template\. You can also control the launch parameters that users can override in the launch template\. For example policies, see [Launch Templates](ExamplePolicies_EC2.md#iam-example-runinstances-launch-templates)\.
+To launch instances, IAM users must have permissions to use the `ec2:RunInstances` action\. You must also have permissions to create or use the resources that are created or associated with the instance\. You can use resource\-level permissions for the `ec2:RunInstances` action to control the launch parameters that users can specify\. Alternatively, you can grant users permissions to launch an instance using a launch template\. This enables you to manage launch parameters in a launch template rather than in an IAM policy, and to use a launch template as an authorization vehicle for launching instances\. For example, you can specify that users can only launch instances using a launch template, and that they can only use a specific launch template\. You can also control the launch parameters that users can override in the launch template\. For example policies, see [Launch Templates](ExamplePolicies_EC2.md#iam-example-runinstances-launch-templates)\.
 
 ## Controlling the Use of Launch Templates<a name="launch-template-permissions"></a>
 
@@ -86,15 +86,15 @@ Create a new launch template using parameters that you define, or use an existin
    + **Delete on termination**: For Amazon EBS volumes, whether to delete the volume when the instance is terminated\. For more information, see [Preserving Amazon EBS Volumes on Instance Termination](terminating-instances.md#preserving-volumes-on-termination)\.
    + **Encrypted**: Allows you to change the encryption state of a volume created by the template\.
 
-     You apply encryption to EBS volumes by setting the `Encrypted` parameter to `true`\. \(The `Encrypted` parameter is optional if [encryption by default](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/encryption-by-default.html) is enabled\)\.
+     You apply encryption to EBS volumes by setting the `Encrypted` parameter to `true`\. \(The `Encrypted` parameter is optional if [encryption by default](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#encryption-by-default) is enabled\)\.
 
      Optionally, you can use `KmsKeyId` to specify a custom key to use to encrypt the volume\. \(The `Encrypted` parameter must also be set to `true`, even if encryption by default is enabled\.\) If `KmsKeyId` is not specified, the key that is used for encryption depends on the encryption state of the source snapshot and its ownership\. The following table describes the encryption outcome for each possible combination of settings\.  
 **Encryption Outcomes**    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-templates.html)
 
-     \* This is the default CMK for the AWS account and region\. This may be either the AWS\-managed default or a customer\-managed default that you have specified\. For more information, see [Encryption Key Management](EBSEncryption.md#EBSEncryption_key_mgmt)\.
+     \* This is the default CMK used for EBS encryption for the AWS account and Region\. By default this is a unique AWS managed CMK for EBS, or you can specify a customer managed CMK\. For more information, see [Encryption Key Management](EBSEncryption.md#EBSEncryption_key_mgmt)\.
 
-     \*\* This is a customer\-managed CMK specified for the volume at launch time\. This CMK overrides the default CMK that is set for the AWS account and region\.
+     \*\* This is a customer managed CMK specified for the volume at launch time\. This CMK is used instead of the default CMK for the AWS account and Region\.
 
      Encrypted volumes may only be attached to [supported instance types](EBSEncryption.md#EBSEncryption_supported_instances)\.
    + **Key**: The CMK to use for non\-default changes to volume encryption state\. Enter any customer master key \(CMK\) that you previously created using the AWS Key Management Service\. You can paste the full ARN of any key to which you have access\. For more information, see the [AWS Key Management Service Developer Guide](https://docs.aws.amazon.com/kms/latest/developerguide/)\.

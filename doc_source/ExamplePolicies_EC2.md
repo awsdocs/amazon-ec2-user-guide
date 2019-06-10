@@ -36,7 +36,7 @@ Users don't have permission to perform any actions on the resources \(unless ano
 
 ## Example: Restricting Access to a Specific Region<a name="iam-example-region"></a>
 
-The following policy denies users permission to use all Amazon EC2 API actions unless the region is EU \(Frankfurt\)\. It uses the global condition key `aws:RequestedRegion`, which is supported by all Amazon EC2 API actions\.
+The following policy denies users permission to use all Amazon EC2 API actions unless the Region is EU \(Frankfurt\)\. It uses the global condition key `aws:RequestedRegion`, which is supported by all Amazon EC2 API actions\.
 
 ```
 {
@@ -298,14 +298,18 @@ The following policy allows users to create a volume without having to specify t
 
 ## Working with Snapshots<a name="iam-example-manage-snapshots"></a>
 
+This sections contains example policies for both `CreateSnapshot` \(point\-in\-time snapshot of an EBS volume\) and `CreateSnapshots` \(multi\-volume snapshots\)\.
+
 **Topics**
 + [Example: Creating a Snapshot](#iam-creating-snapshot)
++ [Example: Creating Snapshots](#iam-creating-snapshots)
 + [Example: Creating a Snapshot with Tags](#iam-creating-snapshot-with-tags)
++ [Example: Creating Snapshots with Tags](#iam-creating-snapshots-with-tags)
 + [Example: Modifying Permission Settings for Snapshots](#iam-modifying-snapshot-with-tags)
 
 ### Example: Creating a Snapshot<a name="iam-creating-snapshot"></a>
 
-The following policy allows customers to use the [CreateSnapshot](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateSnapshot.html) API action\. The customer may create a snapshot only if the volume is encrypted and only if the volume size is less than 20 GiB\.
+The following policy allows customers to use the [CreateSnapshot](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateSnapshot.html) API action\. The customer can create snapshots only if the volume is encrypted and only if the volume size is less than 20 GiB\.
 
 ```
 {
@@ -333,9 +337,40 @@ The following policy allows customers to use the [CreateSnapshot](https://docs.a
 }
 ```
 
+### Example: Creating Snapshots<a name="iam-creating-snapshots"></a>
+
+The following policy allows customers to use the [CreateSnapshots](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateSnapshots.html) API action\. The customer can create snapshots only if all of the volumes on the instance are type GP2\.
+
+```
+{
+   "Version":"2012-10-17",
+   "Statement":[
+      {
+         "Effect":"Allow",
+         "Action":"ec2:CreateSnapshots",
+         "Resource":[
+"arn:aws:ec2:us-east-1::snapshot/*",
+"arn:aws:ec2:*:*:instance/*"
+   ]
+      },
+      {
+         "Effect":"Allow",
+         "Action":"ec2:CreateSnapshots",
+         "Resource":"arn:aws:ec2:us-east-1:*:volume/*",
+         "Condition":{
+            "StringLikeIfExists":{
+               "ec2:VolumeType":"gp2"
+             }
+	    }
+            
+      }
+   ]
+}
+```
+
 ### Example: Creating a Snapshot with Tags<a name="iam-creating-snapshot-with-tags"></a>
 
-The following policy includes the `aws:RequestTag` condition key that requires the customer to apply the tags `costcenter=115` and `stack=prod` to any new snapshot\. The `aws:TagKeys` condition key uses the `ForAllValues` modifier to indicate that only the keys `costcenter` and `stack` may be specified in the request\. The request fails if either of these conditions is not met\.
+The following policy includes the `aws:RequestTag` condition key that requires the customer to apply the tags `costcenter=115` and `stack=prod` to any new snapshot\. The `aws:TagKeys` condition key uses the `ForAllValues` modifier to indicate that only the keys `costcenter` and `stack` can be specified in the request\. The request fails if either of these conditions is not met\.
 
 For resource\-creating actions that apply tags, customers must also have permissions to use the `CreateTags` action\. The third statement uses the `ec2:CreateAction` condition key to allow customers to create tags only in the context of `CreateSnapshot`\. Customers cannot tag existing volumes or any other resources\. For more information, see [Resource\-Level Permissions for Tagging](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-iam-actions-resources.html#supported-iam-actions-tagging)\.
 
@@ -380,7 +415,57 @@ For resource\-creating actions that apply tags, customers must also have permiss
 }
 ```
 
-The following policy allows customers to create a snapshot without having to specify tags\. The `CreateTags` action is evaluated only if tags are specified in the `CreateSnapshot` request\. If a tag is specified, the tag must be `purpose=test`\. No other tags are allowed in the request\.
+### Example: Creating Snapshots with Tags<a name="iam-creating-snapshots-with-tags"></a>
+
+The following policy includes the `aws:RequestTag` condition key that requires the customer to apply the tags `costcenter=115` and `stack=prod` to any new snapshot\. The `aws:TagKeys` condition key uses the `ForAllValues` modifier to indicate that only the keys `costcenter` and `stack` can be specified in the request\. The request fails if either of these conditions is not met\.
+
+```
+{
+   "Version":"2012-10-17",
+   "Statement":[
+      {
+         "Effect":"Allow",
+         "Action":"ec2:CreateSnapshots",
+         "Resource":[
+"arn:aws:ec2:us-east-1::snapshot/*",
+"arn:aws:ec2:*:*:instance/*",
+"arn:aws:ec2:*:*:volume/*"
+
+   ]
+      },
+      {
+         "Sid":"AllowCreateTaggedSnapshots",
+         "Effect":"Allow",
+         "Action":"ec2:CreateSnapshots",
+         "Resource":"arn:aws:ec2:us-east-1::snapshot/*",
+         "Condition":{
+            "StringEquals":{
+               "aws:RequestTag/costcenter":"115",
+               "aws:RequestTag/stack":"prod"
+            },
+            "ForAllValues:StringEquals":{
+               "aws:TagKeys":[
+                  "costcenter",
+                  "stack"
+               ]
+            }
+         }
+      },
+      {
+         "Effect":"Allow",
+         "Action":"ec2:CreateTags",
+         "Resource":"arn:aws:ec2:us-east-1::snapshot/*",
+         "Condition":{
+            "StringEquals":{
+               "ec2:CreateAction":"CreateSnapshots"
+            }
+         }
+      }
+   ]
+}
+```
+
+The following policy allows customers to create a snapshot without having to specify tags\. The `CreateTags` action is evaluated only if tags are specified in the `CreateSnapshot` or `CreateSnapshots` request\. If a tag is specified, the tag must be `purpose=test`\. No other tags are allowed in the request\.
 
 ```
 {
@@ -409,7 +494,34 @@ The following policy allows customers to create a snapshot without having to spe
 }
 ```
 
-The following policy allows a snapshot to be created only if the source volume is tagged with `User:username` for the customer, and the snapshot itself is tagged with `Environment:Dev` and `User:username`\. The customer may add additional tags to the snapshot\.
+```
+{
+   "Version":"2012-10-17",
+   "Statement":[
+      {
+         "Effect":"Allow",
+         "Action":"ec2:CreateSnapshots",
+         "Resource":"*"
+      },
+      {
+         "Effect":"Allow",
+         "Action":"ec2:CreateTags",
+         "Resource":"arn:aws:ec2:us-east-1::snapshot/*",
+         "Condition":{
+            "StringEquals":{
+               "aws:RequestTag/purpose":"test",
+               "ec2:CreateAction":"CreateSnapshots"
+            },
+            "ForAllValues:StringEquals":{
+               "aws:TagKeys":"purpose"
+            }
+         }
+      }
+   ]
+}
+```
+
+The following policy allows snapshots to be created only if the source volume is tagged with `User:username` for the customer, and the snapshot itself is tagged with `Environment:Dev` and `User:username`\. The customer can add additional tags to the snapshot\.
 
 ```
 {
@@ -428,6 +540,47 @@ The following policy allows a snapshot to be created only if the source volume i
       {
          "Effect":"Allow",
          "Action":"ec2:CreateSnapshot",
+         "Resource":"arn:aws:ec2:us-east-1::snapshot/*",
+         "Condition":{
+            "StringEquals":{
+               "aws:RequestTag/Environment":"Dev",
+               "aws:RequestTag/User":"${aws:username}"
+            }
+         }
+      },
+      {
+         "Effect":"Allow",
+         "Action":"ec2:CreateTags",
+         "Resource":"arn:aws:ec2:us-east-1::snapshot/*"
+      }
+   ]
+}
+```
+
+The following policy for `CreateSnapshots` allows snapshots to be created only if the source volume is tagged with `User:username` for the customer, and the snapshot itself is tagged with `Environment:Dev` and `User:username`\. 
+
+```
+{
+   "Version":"2012-10-17",
+   "Statement":[
+	{
+         "Effect":"Allow",
+         "Action":"ec2:CreateSnapshots",
+         "Resource":"arn:aws:ec2:us-east-1:*:instance/*",
+	},
+      {
+         "Effect":"Allow",
+         "Action":"ec2:CreateSnapshots",
+         "Resource":"arn:aws:ec2:us-east-1:123456789012:volume/*",
+         "Condition":{
+            "StringEquals":{
+               "ec2:ResourceTag/User":"${aws:username}"
+            }
+         }
+      },
+      {
+         "Effect":"Allow",
+         "Action":"ec2:CreateSnapshots",
          "Resource":"arn:aws:ec2:us-east-1::snapshot/*",
          "Condition":{
             "StringEquals":{
@@ -486,6 +639,67 @@ The following policy allows a customer to create a snapshot but denies the actio
          "Condition":{
             "ForAnyValue:StringEquals":{
                "aws:TagKeys":"stack"
+            }
+         }
+      }
+   ]
+}
+```
+
+The following policy allows a customer to create snapshots but denies the action if the snapshots being created have a tag key `value=stack`\.
+
+```
+{
+   "Version":"2012-10-17",
+   "Statement":[
+      {
+         "Effect":"Allow",
+         "Action":[
+            "ec2:CreateSnapshots",
+            "ec2:CreateTags"
+         ],
+         "Resource":"*"
+      },
+      {
+         "Effect":"Deny",
+         "Action":"ec2:CreateSnapshots",
+         "Resource":"arn:aws:ec2:us-east-1::snapshot/*",
+         "Condition":{
+            "ForAnyValue:StringEquals":{
+               "aws:TagKeys":"stack"
+            }
+         }
+      }
+   ]
+}
+```
+
+The following policy allows you to combine multiple actions into a single policy\. You can only create a snapshot \(in the context of `CreateSnapshots`\) when the snapshot is created in Region `us-east-1`\. You can only create snapshots \(in the context of `CreateSnapshots`\) when the snapshots are being created in the Region `us-east-1` and when the instance type is `t2*`\.
+
+```
+{
+   "Version":"2012-10-17",
+   "Statement":[
+      {
+         "Effect":"Allow",
+         "Action":[
+            "ec2:CreateSnapshots",
+            "ec2:CreateSnapshot",
+            "ec2:CreateTags"
+         ],
+         "Resource": [
+            "arn:aws:ec2:*:*:instance/*",
+            "arn:aws:ec2:*:*:snapshot/*",
+            "arn:aws:ec2:*:*:volume/*"
+         ],
+         "Condition":{
+            "StringEqualsIgnoreCase": {
+            "ec2:Region": "us-east-1"
+            },
+            "StringLikeIfExists": {
+            "ec2:InstanceType": [
+            "t2.*"
+            ]
             }
          }
       }

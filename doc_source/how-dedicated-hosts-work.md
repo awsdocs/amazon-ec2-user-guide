@@ -42,7 +42,7 @@ When affinity is set to `Off`, and you stop and restart the instance, it can be 
 
 ## Allocating Dedicated Hosts<a name="dedicated-hosts-allocating"></a>
 
-To begin using Dedicated Hosts, they need to be allocated to your account\. You can allocate Dedicated Hosts to your account using the Amazon EC2 console or the command line tools\.
+To begin using Dedicated Hosts, they must be allocated to your account\. You can allocate Dedicated Hosts to your account using the Amazon EC2 console or the command line tools\.
 
 **To allocate Dedicated Hosts using the Amazon EC2 console**
 
@@ -52,15 +52,15 @@ To begin using Dedicated Hosts, they need to be allocated to your account\. You 
 
 1. Configure the following Dedicated Host options:
 
-   1. **Instance type**—The type of instance you want to launch on the Dedicated Host\.
+   1. **Instance type**—The type of instance that you want to launch on the Dedicated Host\.
 
    1. **Availability Zone**—The Availability Zone in which the Dedicated Host is located\.
 
-   1. **Allow instance auto\-placement**—Choose one of the following settings:
-      + Yes—The Dedicated Host accepts untargeted instance launches that match its instance type configuration\.
-      + No—The Dedicated Host accepts `host` tenancy instances launches that specify its unique host ID only\. This is the default setting\.
+   1. To allow the Dedicated Host to accept untargeted instance launches that match its instance type, for **Instance auto\-placement**, choose **Enable**\.
 
       For more information about auto\-placement, see [Understanding Auto\-Placement and Affinity](#dedicated-hosts-understanding)\.
+
+   1. To enable host recovery for the Dedicated Host, for **Host recovery** choose **Enable**\. For more information, see [Host Recovery](dedicated-hosts-recovery.md)\.
 
    1. **Quantity**—The number of Dedicated Hosts to allocate with these options\.
 
@@ -70,11 +70,11 @@ To begin using Dedicated Hosts, they need to be allocated to your account\. You 
 
 **To allocate Dedicated Hosts using the command line tools**
 
-Use one of the following commands\. The following commands allocate a Dedicated Host that supports *untargeted* `m4.large` instance launches in the `eu-west-1a` Availability Zone, and apply a tag with a key of `purpose` and a value of `production`\.
+Use one of the following commands\. The following commands allocate a Dedicated Host that supports *untargeted* `m4.large` instance launches in the `eu-west-1a` Availability Zone, enable host recovery, and apply a tag with a key of `purpose` and a value of `production`\.
 + [allocate\-hosts](https://docs.aws.amazon.com/cli/latest/reference/ec2/allocate-hosts.html) \(AWS CLI\)
 
   ```
-  aws ec2 allocate-hosts --instance-type "m4.large" --availability-zone "eu-west-1a" --auto-placement "off" --quantity 1 --tag-specifications 'ResourceType=dedicated-host,Tags=[{Key=purpose,Value=production}]'
+  aws ec2 allocate-hosts --instance-type "m4.large" --availability-zone "eu-west-1a" --auto-placement "off" --host-recovery "on" --quantity 1 --tag-specifications 'ResourceType=dedicated-host,Tags=[{Key=purpose,Value=production}]'
   ```
 + [New\-EC2Host](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Host.html) \(AWS Tools for Windows PowerShell\)
 
@@ -90,7 +90,7 @@ Use one of the following commands\. The following commands allocate a Dedicated 
   The following command allocates the Dedicated Host and applies the tag specified in the `$tagspec` object\.
 
   ```
-  PS C:\> New-EC2Host -InstanceType m4.large -AvailabilityZone eu-west-1a -AutoPlacement Off -Quantity 1 -TagSpecification $tagspec
+  PS C:\> New-EC2Host -InstanceType m4.large -AvailabilityZone eu-west-1a -AutoPlacement Off -HostRecovery On -Quantity 1 -TagSpecification $tagspec
   ```
 
 The Dedicated Host capacity is made available in your account immediately\.
@@ -118,7 +118,7 @@ Before you launch your instances, take note of the limitations\. For more inform
 
 1. On the **Choose an Instance Type** page, keep the instance type that is selected by default, and then choose **Next: Configure Instance Details**\. 
 
-   The instance type is determined by the host you have selected\.
+   The instance type is determined by the host that you selected\.
 
 1. On the **Configure Instance Details** page, configure the instance settings to suit your needs, and then for **Affinity**, choose one of the following options:
    + **Off**—The instance launches onto the specified host, but it is not guaranteed to restart on the same Dedicated Host if stopped\.
@@ -126,7 +126,7 @@ Before you launch your instances, take note of the limitations\. For more inform
 
    For more information about Affinity, see [Understanding Auto\-Placement and Affinity](#dedicated-hosts-understanding)\.
 **Note**  
-The **Tenancy** and **Host** options are pre\-configured based on the host you selected\.
+The **Tenancy** and **Host** options are pre\-configured based on the host that you selected\.
 
 1. Choose **Review and Launch**\.
 
@@ -146,7 +146,7 @@ The **Tenancy** and **Host** options are pre\-configured based on the host you s
 
 1. On the **Configure Instance Details** page, configure the instance settings to suit your needs, and then configure the following Dedicated Host\-specific settings:
    + Tenancy—Choose **Dedicated Host \- Launch this instance on a Dedicated Host**\.
-   + Host—Choose either **Use auto\-placement** to launch the instance on any Dedicated Host that has auto\-placement enabled, or select a specific Dedicated Host in the list\. If Dedicated Hosts do not support the selected instance type, theyare disabled in the list\.
+   + Host—Choose either **Use auto\-placement** to launch the instance on any Dedicated Host that has auto\-placement enabled, or select a specific Dedicated Host in the list\. If Dedicated Hosts does not support the selected instance type, it is disabled in the list\.
    + Affinity—Choose one of the following options:
      + **Off**—The instance launches onto the specified host, but it is not guaranteed to restart on it if stopped\.
      + **Host**—If stopped, the instance always restarts on the specified host\.
@@ -199,7 +199,7 @@ Use one of the following commands\. The following examples enable auto\-placemen
 
 ## Modifying Instance Tenancy and Affinity<a name="moving-instances-dedicated-hosts"></a>
 
-You can change the tenancy of an instance from `dedicated` to `host`, or from `host` to `dedicated` after you've launched it\.
+You can change the tenancy of an instance from `dedicated` to `host`, or from `host` to `dedicated`, after you have launched it\.
 
 **To modify instance tenancy and affinity using the Amazon EC2 console**
 
@@ -216,8 +216,8 @@ You can change the tenancy of an instance from `dedicated` to `host`, or from `h
      + Run a dedicated hardware instance—Launches the instance as a Dedicated Instance\. For more information, see [Dedicated Instances](dedicated-instance.md)\.
      + Launch the instance on a Dedicated Host—Launches the instance onto a Dedicated Host with configurable affinity\.
    + **Affinity**—Choose one of the following:
-     + This instance can run on any one of my hosts—the instance launches onto any available Dedicated Host in your account that supports its instance type\.
-     + This instance can only run on the selected host—the instance is only able to run on the Dedicated Host selected for **Target Host**\.
+     + This instance can run on any one of my hosts—The instance launches onto any available Dedicated Host in your account that supports its instance type\.
+     + This instance can only run on the selected host—The instance is only able to run on the Dedicated Host selected for **Target Host**\.
    + **Target Host**—Select the Dedicated Host that the instance must run on\. If no target host is listed, you may not have available, compatible Dedicated Hosts in your account\.
 
    For more information, see [Understanding Auto\-Placement and Affinity](#dedicated-hosts-understanding)\.
@@ -226,7 +226,7 @@ You can change the tenancy of an instance from `dedicated` to `host`, or from `h
 
 **To modify instance tenancy and affinity using the command line tools**
 
-Use one of the following commands\. The following examples change the specified instance's affinity from `default` to `host` and specifies the Dedicated Host that the instance has affinity with\.
+Use one of the following commands\. The following examples change the specified instance's affinity from `default` to `host`, and specify the Dedicated Host that the instance has affinity with\.
 + [modify\-instance\-placement](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-placement.html) \(AWS CLI\)
 
   ```
@@ -268,7 +268,7 @@ Use one of the following commands:
 
 ## Tagging Dedicated Hosts<a name="dedicated-hosts-tagging"></a>
 
-You can assign custom tags to your existing Dedicated Hosts to categorize them in different ways, for example, by purpose, owner, or environment\. This helps you to quickly find a specific Dedicated Host based on the custom tags that you've assigned\. Dedicated Host tags can also be used for cost allocation tracking\.
+You can assign custom tags to your existing Dedicated Hosts to categorize them in different ways, for example, by purpose, owner, or environment\. This helps you to quickly find a specific Dedicated Host based on the custom tags that you assigned\. Dedicated Host tags can also be used for cost allocation tracking\.
 
 You can also apply tags to Dedicated Hosts at the time of creation\. For more information, see [Allocating Dedicated Hosts](#dedicated-hosts-allocating)\.
 
@@ -280,7 +280,7 @@ You can tag a Dedicated Host using the Amazon EC2 console and command line tools
 
 1. In the navigation pane, choose **Dedicated Hosts**\. 
 
-1. Select the Dedicated Host to tag and choose **Tags**\. 
+1. Select the Dedicated Host to tag, and then choose **Tags**\. 
 
 1. Choose **Add/Edit Tags**\.
 
@@ -302,7 +302,7 @@ Use one of the following commands:
   ```
 + [New\-EC2Tag](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Tag.html) \(AWS Tools for Windows PowerShell\)
 
-  The `New-EC2Tag` command needs a `Tag` object, which specifies the key and value pair to be used for the Dedicated Host tag\. The following commands create a `Tag` object named `$tag` with a key and value pair of `Owner` and `TeamA` respectively:
+  The `New-EC2Tag` command needs a `Tag` object, which specifies the key and value pair to be used for the Dedicated Host tag\. The following commands create a `Tag` object named `$tag`, with a key and value pair of `Owner` and `TeamA` respectively\.
 
   ```
   PS C:\> $tag = New-Object Amazon.EC2.Model.Tag
@@ -310,7 +310,7 @@ Use one of the following commands:
   PS C:\> $tag.Value = "TeamA"
   ```
 
-  The following command tags the specified Dedicated Host with the `$tag` object:
+  The following command tags the specified Dedicated Host with the `$tag` object\.
 
   ```
   PS C:\> New-EC2Tag -Resource h-abc12345678909876 -Tag $tag
@@ -318,7 +318,7 @@ Use one of the following commands:
 
 ## Monitoring Dedicated Hosts<a name="dedicated-hosts-monitoring"></a>
 
-Amazon EC2 constantly monitors the state of your Dedicated Hosts; updates are communicated on the Amazon EC2 console\. You can also obtain information about your Dedicated Hosts using the command line tools\.
+Amazon EC2 constantly monitors the state of your Dedicated Hosts\. Updates are communicated on the Amazon EC2 console\. You can also obtain information about your Dedicated Hosts by using the command line tools\.
 
 **To view the state of a Dedicated Host using the Amazon EC2 console**
 
@@ -347,15 +347,16 @@ The following table explains the possible Dedicated Host states\.
 
 | **State** | **Description** | 
 | --- | --- | 
-| available | AWS hasn't detected an issue with the Dedicated Host; no maintenance or repairs are scheduled\. Instances can be launched onto this Dedicated Host\. | 
+| available | AWS hasn't detected an issue with the Dedicated Host\. No maintenance or repairs are scheduled\. Instances can be launched onto this Dedicated Host\. | 
 | released | The Dedicated Host has been released\. The host ID is no longer in use\. Released hosts cannot be reused\. | 
 | under\-assessment | AWS is exploring a possible issue with the Dedicated Host\. If action must be taken, you are notified via the AWS Management Console or email\. Instances cannot be launched onto a Dedicated Host in this state\. | 
-| permanent\-failure | An unrecoverable failure has been detected\. You receive an eviction notice through your instances and by email\. Your instances may continue to run\. If you stop or terminate all instances on a Dedicated Host with this state, AWS retires the host\. AWS does not restart instances in this state\. Instances cannot be launched onto Dedicated Hosts in this state\. | 
+| pending | A host recovery is in progress\. For more information, see [Host Recovery](dedicated-hosts-recovery.md)\. | 
+| permanent\-failure | An unrecoverable failure has been detected\. You receive an eviction notice through your instances and by email\. Your instances might continue to run\. If you stop or terminate all instances on a Dedicated Host with this state, AWS retires the host\. AWS does not restart instances in this state\. Instances cannot be launched onto Dedicated Hosts in this state\. | 
 | released\-permanent\-failure | AWS permanently releases Dedicated Hosts that have failed and no longer have running instances on them\. The Dedicated Host ID is no longer available for use\. | 
 
 ## Releasing Dedicated Hosts<a name="dedicated-hosts-releasing"></a>
 
-Any running instances on the Dedicated Host need to be stopped before you can release the host\. These instances can be migrated to other Dedicated Hosts in your account so that you can continue to use them\. These steps apply only to On\-Demand Dedicated Hosts\.
+Any running instances on the Dedicated Host must be stopped before you can release the host\. These instances can be migrated to other Dedicated Hosts in your account so that you can continue to use them\. These steps apply only to On\-Demand Dedicated Hosts\.
 
 **To release a Dedicated Host using the Amazon EC2 console**
 
@@ -383,10 +384,10 @@ Use one of the following commands:
   PS C:\> Remove-EC2Hosts -HostId host_id
   ```
 
-After you release a Dedicated Host, you cannot reuse the same host or host ID again, and you are no longer charged On\-Demand billing rates for it\. The Dedicated Host's state is changed to `released` and you are not able to launch any instances onto that host\.
+After you release a Dedicated Host, you cannot reuse the same host or host ID again, and you are no longer charged On\-Demand billing rates for it\. The Dedicated Host's state is changed to `released`, and you are not able to launch any instances onto that host\.
 
 **Note**  
-If you've recently released Dedicated Hosts, it may take some time for them to stop counting towards your limit\. During this time, you may experience `LimitExceeded` errors when trying to allocate new Dedicated Hosts\. If this is the case, try allocating new hosts again after a few minutes\.
+If you have recently released Dedicated Hosts, it may take some time for them to stop counting towards your limit\. During this time, you may experience `LimitExceeded` errors when trying to allocate new Dedicated Hosts\. If this is the case, try allocating new hosts again after a few minutes\.
 
 The instances that were stopped are still available for use and are listed on the **Instances** page\. They retain their `host` tenancy setting\.
 
@@ -400,15 +401,15 @@ You can purchase reservations using the Amazon EC2 console or command line tools
 
 1. Choose **Dedicated Hosts**, **Dedicated Host Reservations**, **Purchase Dedicated Host Reservation**\.
 
-1. On the **Purchase Dedicated Host Reservation** screen, you can search for available offerings using the default settings or you can specify custom values for the following:
-   + **Host instance family**—The options listed correspond with the Dedicated Hosts in your account that are not assigned to a reservation\.
-   + **Availability Zone**—The Availability Zone of the Dedicated Hosts in your account that aren't assigned to a reservation\.
+1. On the **Purchase Dedicated Host Reservation** screen, you can search for available offerings using the default settings, or you can specify custom values for the following:
+   + **Host instance family**—The options listed correspond with the Dedicated Hosts in your account that are not already assigned to a reservation\.
+   + **Availability Zone**—The Availability Zone of the Dedicated Hosts in your account that aren't already assigned to a reservation\.
    + **Payment option**—The payment option for the offering\.
-   + **Term**—The term of the reservation\. Can be one or three years\.
+   + **Term**—The term of the reservation, which can be one or three years\.
 
 1. Choose **Find offering** and select an offering that matches your requirements\.
 
-1. Choose the Dedicated Hosts to associate with the reservation and choose **Review**\.
+1. Choose the Dedicated Hosts to associate with the reservation, and then choose **Review**\.
 
 1. Review your order and choose **Purchase**\.
 
@@ -434,7 +435,7 @@ The term is specified in seconds\. A one\-year term includes 31536000 seconds, a
 
    Both commands return a list of offerings that match your criteria\. Note the `offeringId` of the offering to purchase\. 
 
-1. Use one of the following commands to purchase the offering and provide the `offeringId` noted in the previous step\. The following examples purchase the specified reservation and associate it with a specific Dedicated Host already allocated in the AWS account\.
+1. Use one of the following commands to purchase the offering and provide the `offeringId` noted in the previous step\. The following examples purchase the specified reservation and associate it with a specific Dedicated Host that is already allocated in the AWS account\.
    + [purchase\-host\-reservation](https://docs.aws.amazon.com/cli/latest/reference/ec2/purchase-host-reservation.html) \(AWS CLI\)
 
      ```
@@ -448,7 +449,10 @@ The term is specified in seconds\. A one\-year term includes 31536000 seconds, a
 
 ## Viewing Dedicated Host Reservations<a name="viewing-host-reservations"></a>
 
-You can view information about the Dedicated Hosts associated with your reservation, the term of the reservation, the payment option selected, and the start and end dates of the reservation\.
+You can view information about the Dedicated Hosts associated with your reservation, including:
++ The term of the reservation
++ The payment option
++ The start and end dates
 
 **To view details of reservations using the Amazon EC2 console**
 
@@ -456,7 +460,7 @@ You can view information about the Dedicated Hosts associated with your reservat
 
 1. Choose **Dedicated Hosts** in the navigation pane\.
 
-1. On the **Dedicated Hosts** page, choose **Dedicated Host Reservations** and select the reservation from the list provided\.
+1. On the **Dedicated Hosts** page, choose **Dedicated Host Reservations**, and then select the reservation from the list provided\.
 
 1. Choose **Details** for information about the reservation\.
 
@@ -478,7 +482,7 @@ Use one of the following commands:
 
 ## Tagging Dedicated Host Reservations<a name="tagging-host-reservations"></a>
 
-You can assign custom tags to your Dedicated Host Reservations to categorize them in different ways, for example, by purpose, owner, or environment\. This helps you to quickly find a specific Dedicated Host Reservation based on the custom tags you've assigned it\.
+You can assign custom tags to your Dedicated Host Reservations to categorize them in different ways, for example, by purpose, owner, or environment\. This helps you to quickly find a specific Dedicated Host Reservation based on the custom tags you assigned\.
 
 You can tag a Dedicated Host Reservation using the AWS CLI only\.
 
@@ -492,7 +496,7 @@ Use one of the following commands:
   ```
 + [New\-EC2Tag](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Tag.html) \(AWS Tools for Windows PowerShell\)
 
-  The `New-EC2Tag` command needs a `Tag` parameter, which specifies the key and value pair to be used for the Dedicated Host Reservation tag\. The following commands create the `Tag` parameter:
+  The `New-EC2Tag` command needs a `Tag` parameter, which specifies the key and value pair to be used for the Dedicated Host Reservation tag\. The following commands create the `Tag` parameter\.
 
   ```
   PS C:\> $tag = New-Object Amazon.EC2.Model.Tag

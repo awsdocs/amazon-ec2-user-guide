@@ -2,17 +2,17 @@
 
 By modifying the permissions of a snapshot, you can share it with the AWS accounts that you specify\. Users that you have authorized can use the snapshots you share as the basis for creating their own EBS volumes, while your original snapshot remains unaffected\. If you choose, you can make your unencrypted snapshots available publicly to all AWS users\. You can't make your encrypted snapshots available publicly\. 
 
-When you share an encrypted snapshot, you must also share the custom CMK used to encrypt the snapshot\. You can apply cross\-account permissions to a custom CMK either when it is created or at a later time\.
+When you share an encrypted snapshot, you must also share the customer managed CMK used to encrypt the snapshot\. You can apply cross\-account permissions to a customer managed CMK either when it is created or at a later time\.
 
 **Important**  
-When you share a snapshot, you are giving others access to all the data on the snapshot\. Share snapshots only with people with whom you want to share *all* your snapshot data\.
+When you share a snapshot, you are giving others access to all of the data on the snapshot\. Share snapshots only with people with whom you want to share *all* of your snapshot data\.
 
 ## Considerations<a name="share-snapshot-considerations"></a>
 
 The following considerations apply to sharing snapshots:
 + Snapshots are constrained to the Region in which they were created\. To share a snapshot with another Region, copy the snapshot to that Region\. For more information, see [Copying an Amazon EBS Snapshot](ebs-copy-snapshot.md)\.
 + If your snapshot uses the longer resource ID format, you can only share it with another account that also supports longer IDs\. For more information, see [Resource IDs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/resource-ids.html)\.
-+ AWS prevents you from sharing snapshots that were encrypted with your default CMK\. Snapshots that you intend to share must instead be encrypted with a custom CMK\. For more information, see [Creating Keys](https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html) in the *AWS Key Management Service Developer Guide*\.
++ AWS prevents you from sharing snapshots that were encrypted with your default CMK\. Snapshots that you intend to share must instead be encrypted with a customer managed CMK\. For more information, see [Creating Keys](https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html) in the *AWS Key Management Service Developer Guide*\.
 + Users of your shared CMK who are accessing encrypted snapshots must be granted permissions to perform the following actions on the key: `kms:DescribeKey`, `kms:CreateGrant`, `GenerateDataKey`, and `kms:ReEncrypt`\. For more information, see [Controlling Access to Customer Master Keys](https://docs.aws.amazon.com/kms/latest/developerguide/control-access.html) in the *AWS Key Management Service Developer Guide*\.
 
 ## Sharing an Unencrypted Snapshot Using the Console<a name="share-unencrypted-snapshot"></a>
@@ -29,11 +29,11 @@ The following considerations apply to sharing snapshots:
    + To make the snapshot public, choose **Public**\.
 
      This option is not valid for encrypted snapshots or snapshots with an AWS Marketplace product code\.
-   + To share the snapshot with one or more AWS accounts, choose **Private**, type the AWS account ID \(without hyphens\) in **AWS Account Number**, and choose **Add Permission**\. Repeat for any additional AWS accounts\.
+   + To share the snapshot with one or more AWS accounts, choose **Private**, enter the AWS account ID \(without hyphens\) in **AWS Account Number**, and choose **Add Permission**\. Repeat for any additional AWS accounts\.
 
 1. Choose **Save**\.
 
-**To use an unencrypted snapshot that was privately shared with me**
+**To use an unencrypted snapshot that was privately shared with you**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -51,9 +51,9 @@ The following considerations apply to sharing snapshots:
 
 1. Choose **Encryption keys** in the navigation pane\.
 
-1. Choose the alias of the custom key that you used to encrypt the snapshot\.
+1. Choose the alias of the customer managed key that you used to encrypt the snapshot\.
 
-1. For each AWS account, choose **Add External Accounts** and type the AWS account ID where prompted\. When you have added all AWS accounts, choose **Save Changes**\.
+1. For each AWS account, choose **Add External Accounts** and enter the AWS account ID where prompted\. When you have added all AWS accounts, choose **Save Changes**\.
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -61,9 +61,9 @@ The following considerations apply to sharing snapshots:
 
 1. Select the snapshot and then choose **Actions**, **Modify Permissions**\.
 
-1. For each AWS account, type the AWS account ID in **AWS Account Number** and choose **Add Permission**\. When you have added all AWS accounts, choose **Save**\.
+1. For each AWS account, enter the AWS account ID in **AWS Account Number** and choose **Add Permission**\. When you have added all AWS accounts, choose **Save**\.
 
-**To use an encrypted snapshot that was shared with me**
+**To use an encrypted snapshot that was shared with you**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -77,7 +77,7 @@ The following considerations apply to sharing snapshots:
 
 1. \(Optional\) Select a destination Region\.
 
-1. The copy of the snapshot will be encrypted to the key displayed in the **Master Key** field\. By default, the selected key is your account's default CMK\. To select a custom CMK, click inside the input box to see a list of available keys\.
+1. The copy of the snapshot is encrypted by the key displayed in **Master Key**\. By default, the selected key is your account's default CMK\. To select a customer managed CMK, click inside the input box to see a list of available keys\.
 
 1. Choose **Copy**\.
 

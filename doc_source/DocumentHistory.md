@@ -7,10 +7,11 @@ The following table describes important additions to the Amazon EC2 documentatio
 
 | Feature | API Version | Description | Release Date | 
 | --- | --- | --- | --- | 
+| Host recovery | 2016\-11\-15 | Automatically restart your instances on a new host in the event of an unexpected hardware failure on a Dedicated Host\. For more information, see [Host Recovery](dedicated-hosts-recovery.md)\. | 5 June 2019 | 
+| Amazon EBS multi\-volume snapshots | 2016\-11\-15 | Take exact point\-in\-time, data coordinated, and crash\-consistent snapshots across multiple EBS volumes attached to an EC2 instance\. | 29 May 2019 | 
+| Amazon EBS encryption by default | 2016\-11\-15 | After you enable encryption by default in a Region, all new EBS volumes you create in the Region are encrypted using the default CMK for EBS encryption\. For more information, see [Encryption by Default](EBSEncryption.md#encryption-by-default)\. | 23 May 2019 | 
 |  Tag VPC endpoints, endpoint services, and endpoint service configurations  | 2016\-11\-15 |  You can tag VPC endpoints, endpoint services, and endpoint service configurations\. For more information, see [Tagging Your Resources](Using_Tags.md#tag-resources)\.  | 13 May 2019 | 
-| Windows to Linux Replatforming Assistant for Microsoft SQL Server Databases | 2016\-11\-15 | Move existing Microsoft SQL Server workloads from a Windows to a Linux operating system\. | 8 May 2019 | 
 | I3en instances | 2016\-11\-15 | New instances featuring up to 100 Gbps of network bandwidth\. | 8 May 2019 | 
-| Windows Automated Upgrade | 2016\-11\-15 | Perform automated upgrade on Windows Server 2008 R2 and SQL Server 2008 R2 EC2 instances using AWS Systems Manager SSM documents\. | 6 May 2019 | 
 | Elastic Fabric Adapter | 2016\-11\-15 | You can attach an Elastic Fabric Adapter to your instances to accelerate High Performance Computing \(HPC\) applications\. For more information, see [Elastic Fabric Adapter](efa.md)\. | 29 April 2019 | 
 | T3a instances | 2016\-11\-15 | New instances featuring AMD EYPC processors\. | 24 April 2019 | 
 | M5ad and R5ad instances | 2016\-11\-15 | New instances featuring AMD EYPC processors\. | 27 March 2019 | 
@@ -48,7 +49,7 @@ The following table describes important additions to the Amazon EC2 documentatio
 |  Optimize CPU options  |  2016\-11\-15  |  When you launch an instance, you can optimize the CPU options to suit specific workloads or business needs\. For more information, see [Optimizing CPU Options](instance-optimize-cpu.md)\.  | 8 May 2018 | 
 |  EC2 Fleet  |  2016\-11\-15  |  You can use EC2 Fleet to launch a group of instances across different EC2 instance types and Availability Zones, and across On\-Demand Instance, Reserved Instance, and Spot Instance purchasing models\. For more information, see [Launching an EC2 Fleet](ec2-fleet.md)\.  | 2 May 2018 | 
 |  On\-Demand Instances in Spot Fleets  |  2016\-11\-15  |  You can include a request for On\-Demand capacity in your Spot Fleet request to ensure that you always have instance capacity\. For more information, see [How Spot Fleet Works](spot-fleet.md)\.  |  2 May 2018  | 
-|  Tag EBS snapshots on creation  |  2016\-11\-15  |  You can apply tags to snapshots during creation\. For more information, see [Creating an Amazon EBS Snapshot](ebs-creating-snapshot.md)\.   | 2 April 2018 | 
+|  Tag EBS snapshots on creation  |  2016\-11\-15  |  You can apply tags to snapshots during creation\. For more information, see [Creating Amazon EBS Snapshots](ebs-creating-snapshot.md)\.   | 2 April 2018 | 
 |  Change placement groups  |  2016\-11\-15  |  You can move an instance in or out of a placement group, or change its placement group\. For more information, see [Changing the Placement Group for an Instance](placement-groups.md#change-instance-placement-group)\.  | 1 March 2018 | 
 |  Longer resource IDs  |  2016\-11\-15  |  You can enable the longer ID format for more resource types\. For more information, see [Resource IDs](resource-ids.md)\.  | 9 February 2018 | 
 |  Network performance improvements  |  2016\-11\-15  |  Instances outside of a cluster placement group can now benefit from increased bandwidth when sending or receiving network traffic between other instances or Amazon S3\. For more information, see [Networking and Storage Features](instance-types.md#instance-networking-storage)\.  | 24 January 2018 | 

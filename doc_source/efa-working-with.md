@@ -1,12 +1,12 @@
 # Working with EFA<a name="efa-working-with"></a>
 
-Elastic Fabric Adapters \(EFAs\) can be created, used, and managed much like any other elastic network interface \(ENI\) in Amazon EC2\. However, unlike ENIs, EFAs cannot be attached to or detached from an instance in a running state\.
+You can create, use, and manage an EFA much like any other elastic network interface \(ENI\) in Amazon EC2\. However, unlike ENIs, EFAs cannot be attached to or detached from an instance in a running state\.
 
 ## EFA Requirements<a name="efa-reqs"></a>
 
-To use EFA, you must do the following:
+To use an EFA, you must do the following:
 + Use one of the following supported instance types: c5n\.18xlarge, i3en\.24xlarge, p3dn\.24xlarge
-+ Use one of the following supported AMIs: Amazon Linux, Amazon Linux 2, Red Hat Enterprise Linux 7\.6, CentOS 7\.6
++ Use one of the following supported AMIs: Amazon Linux, Amazon Linux 2, Red Hat Enterprise Linux 7\.6, CentOS 7\.6, Ubuntu 16\.04, Ubuntu 18\.04
 + Install the EFA software components\.
 + Use a security group that allows all inbound and outbound traffic to and from the security group itself\.
 
@@ -27,7 +27,7 @@ To use EFA, you must do the following:
 
 You can create an EFA in a subnet in a VPC\. You can't move the EFA to another subnet after it's created, and you can only attach it to stopped instances in the same Availability Zone\.
 
-**To create a new EFA \(Console\)**
+**To create a new EFA using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -49,7 +49,7 @@ You can create an EFA in a subnet in a VPC\. You can't move the EFA to another s
 
 1. Choose **Yes, Create**\.
 
-**To create a new EFA \(AWS CLI\)**  
+**To create a new EFA using the AWS CLI**  
 Use the [create\-network\-interface](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-network-interface.html) command and for `interface-type`, specify `efa`\. For example:
 
 ```
@@ -65,22 +65,22 @@ You attach an EFA to an instance in the same way that you attach an ENI to an in
 ## Attaching an EFA When Launching an Instance<a name="efa-launch"></a>
 
 **To attach an existing EFA when launching an instance \(AWS CLI\)**  
-Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command and for **NetworkInterfaceId**, specify the EFA's ID\. For example:
+Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command and for **NetworkInterfaceId**, specify the ID of the EFA\. For example:
 
 ```
-$ aws ec2 run-instances --image-id ami-123456 --count 1 --instance-type c5n.18xlarge --key-name my_key_pair --security-group-ids sg-123456 --subnet-id subnet-123456 --network-interfaces DeviceIndex=0,NetworkInterfaceId=eni-123456
+$ aws ec2 run-instances --image-id ami_id --count 1 --instance-type c5n.18xlarge --key-name my_key_pair --network-interfaces DeviceIndex=0,NetworkInterfaceId=efa_id,Groups=sg_id,SubnetId=subnet_id
 ```
 
 **To attach a new EFA when launching an instance \(AWS CLI\)**  
 Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command and for **InterfaceType**, specify `efa`\. For example:
 
 ```
-$ aws ec2 run-instances --image-id ami-123456 --count 1 --instance-type c5n.18xlarge --key-name my_key_pair --security-group-ids sg-123456 --subnet-id subnet-123456 --network-interfaces DeviceIndex=0,InterfaceType=efa
+$ aws ec2 run-instances --image-id ami_id --count 1 --instance-type c5n.18xlarge --key-name my_key_pair --network-interfaces DeviceIndex=0,InterfaceType=efa,Groups=sg_id,SubnetId=subnet_id
 ```
 
 ## Adding an EFA to a Launch Template<a name="efa-launch-template"></a>
 
-You can create a launch template that contains the configuration information needed to launch EFA\-enabled instances\. To create an EFA\-enabled launch template, create a new launch template and specify a supported instance type, your EFA\-enabled AMI, and an EFAenabled\-security group\. For more information about creating an EFA\-enabled AMI and EFA\-enabled security group, see [Getting Started with EFA](efa-start.md)\.
+You can create a launch template that contains the configuration information needed to launch EFA\-enabled instances\. To create an EFA\-enabled launch template, create a new launch template and specify a supported instance type, your EFA\-enabled AMI, and an EFA\-enabled security group\. For more information, see [Getting Started with EFAs](efa-start.md)\.
 
 You can leverage launch templates to launch EFA\-enabled instances with other AWS services, such as AWS Batch\.
 
@@ -88,7 +88,7 @@ For more information about creating launch templates, see [Creating a Launch Tem
 
 ## Assigning an IP Address to an EFA<a name="efa-ip-assign"></a>
 
-If you have an Elastic IP \(IPv4\) address, you can associate it with an EFA\. And if your EFA is provisioned in a subnet that has an associated IPv6 CIDR block, you can assign one or more IPv6 addresses to the EFA\.
+If you have an Elastic IP \(IPv4\) address, you can associate it with an EFA\. If your EFA is provisioned in a subnet that has an associated IPv6 CIDR block, you can assign one or more IPv6 addresses to the EFA\.
 
 You assign an Elastic IP \(IPv4\) and IPv6 address to an EFA in the same way that you assign an IP address to an ENI\. For more information, see:
 + [Associating an Elastic IP Address \(IPv4\)](using-eni.md#associate_eip)

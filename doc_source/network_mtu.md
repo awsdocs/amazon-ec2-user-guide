@@ -93,6 +93,12 @@ You can check the current MTU value using the following ip command\. Note that i
      ```
      MTU=1500
      ```
+
+     Add the following line to the `/etc/dhcp/dhclient.conf` file:
+
+     ```
+     request subnet-mask, broadcast-address, time-offset, routers, domain-name, domain-search, domain-name-servers, host-name, nis-domain, nis-servers, ntp-servers;
+     ```
    + For Amazon Linux, add the following lines to your `/etc/dhcp/dhclient-eth0.conf` file\.
 
      ```

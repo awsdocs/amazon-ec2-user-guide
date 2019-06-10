@@ -99,7 +99,7 @@ The following basic restrictions apply to tags:
 + For each resource, each tag key must be unique, and each tag key can have only one value\.
 + Maximum key length – 128 Unicode characters in UTF\-8
 + Maximum value length – 256 Unicode characters in UTF\-8
-+ Although EC2 allows for any character in its tags, other services may be more restrictive\. Generally allowed characters are: letters, numbers, and spaces representable in UTF\-8, and the following characters: \+ \- = \. \_ : / @\. These characters may not be allowed by more restrictive services\. 
++ Although EC2 allows for any character in its tags, other services are more restrictive\. The allowed characters across services are: letters, numbers, and spaces representable in UTF\-8, and the following characters: \+ \- = \. \_ : / @\.
 + Tag keys and values are case\-sensitive\.
 + Don't use the `aws:` prefix for either keys or values; it's reserved for AWS use\. You can't edit or delete tag keys or values with this prefix\. Tags with this prefix do not count against your tags per resource limit\.
 
@@ -123,7 +123,7 @@ Elastic IP addresses that are tagged do not appear on your cost allocation repor
 
 ## Working with Tags Using the Console<a name="Using_Tags_Console"></a>
 
-Using the Amazon EC2 console, you can see which tags are in use across all of your Amazon EC2 resources in the same region\. You can view tags by resource and by resource type, and you can also view how many items of each resource type are associated with a specified tag\. You can also use the Amazon EC2 console to apply or remove tags from one or more resources at a time\.
+Using the Amazon EC2 console, you can see which tags are in use across all of your Amazon EC2 resources in the same Region\. You can view tags by resource and by resource type, and you can also view how many items of each resource type are associated with a specified tag\. You can also use the Amazon EC2 console to apply or remove tags from one or more resources at a time\.
 
 For more information about using filters when listing your resources, see [Listing and Filtering Your Resources](Using_Filtering.md)\.
 
@@ -160,7 +160,7 @@ You can manage tags for an individual resource directly from the resource's page
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. From the navigation bar, select the region that meets your needs\. This choice is important because some Amazon EC2 resources can be shared between regions, while others can't\. For more information, see [Resource Locations](resources.md)\.
+1. From the navigation bar, select the Region that meets your needs\. This choice is important because some Amazon EC2 resources can be shared between Regions, while others can't\. For more information, see [Resource Locations](resources.md)\.
 
 1. In the navigation pane, select a resource type \(for example, **Instances**\)\.
 
@@ -172,7 +172,7 @@ You can manage tags for an individual resource directly from the resource's page
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. From the navigation bar, select the region that meets your needs\. This choice is important because some Amazon EC2 resources can be shared between regions, while others can't\. For more information, see [Resource Locations](resources.md)\.
+1. From the navigation bar, select the Region that meets your needs\. This choice is important because some Amazon EC2 resources can be shared between Regions, while others can't\. For more information, see [Resource Locations](resources.md)\.
 
 1. In the navigation pane, choose a resource type \(for example, **Instances**\)\.
 
@@ -186,7 +186,7 @@ You can manage tags for an individual resource directly from the resource's page
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. From the navigation bar, select the region that meets your needs\. This choice is important because some Amazon EC2 resources can be shared between regions, while others can't\. For more information, see [Resource Locations](resources.md)\.
+1. From the navigation bar, select the Region that meets your needs\. This choice is important because some Amazon EC2 resources can be shared between Regions, while others can't\. For more information, see [Resource Locations](resources.md)\.
 
 1. In the navigation pane, choose **Tags**\.
 
@@ -204,7 +204,7 @@ If you add a new tag with the same tag key as an existing tag, the new tag overw
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. From the navigation bar, select the region that meets your needs\. This choice is important because some Amazon EC2 resources can be shared between regions, while others can't\. For more information, see [Resource Locations](resources.md)\.
+1. From the navigation bar, select the Region that meets your needs\. This choice is important because some Amazon EC2 resources can be shared between Regions, while others can't\. For more information, see [Resource Locations](resources.md)\.
 
 1. In the navigation pane, choose **Tags**, **Manage Tags**\.
 
@@ -220,7 +220,7 @@ If you add a new tag with the same tag key as an existing tag, the new tag overw
 
 **To add a tag using the Launch Wizard**
 
-1. From the navigation bar, select the region for the instance\. This choice is important because some Amazon EC2 resources can be shared between regions, while others can't\. Select the region that meets your needs\. For more information, see [Resource Locations](resources.md)\.
+1. From the navigation bar, select the Region for the instance\. This choice is important because some Amazon EC2 resources can be shared between Regions, while others can't\. Select the Region that meets your needs\. For more information, see [Resource Locations](resources.md)\.
 
 1. Choose **Launch Instance**\.
 
