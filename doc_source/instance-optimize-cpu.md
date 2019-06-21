@@ -67,7 +67,9 @@ The following tables list the instance types that support specifying CPU options
 | c5\.2xlarge | 8 | 4 | 2 | 2, 4 | 1, 2 | 
 | c5\.4xlarge | 16 | 8 | 2 | 2, 4, 6, 8 | 1, 2 | 
 | c5\.9xlarge | 36 | 18 | 2 | 2, 4, 6, 8, 10, 12, 14, 16, 18 | 1, 2 | 
+| c5\.12xlarge | 48 | 24 | 2 | 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24 | 1, 2 | 
 | c5\.18xlarge | 72 | 36 | 2 | 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36 | 1, 2 | 
+| c5\.24xlarge | 96 | 48 | 2 | 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48 | 1, 2 | 
 | c5d\.large | 2 | 1 | 2 | 1 | 1, 2 | 
 | c5d\.xlarge | 4 | 2 | 2 | 2 | 1, 2 | 
 | c5d\.2xlarge | 8 | 4 | 2 | 2, 4 | 1, 2 | 
@@ -228,12 +230,12 @@ To disable multithreading, specify one thread per core\.
 
 1. Continue as prompted by the wizard\. When you've finished reviewing your options on the **Review Instance Launch** page, choose **Launch**\. For more information, see [Launching an Instance Using the Launch Instance Wizard](launching-instance.md)\.
 
-**To disable multithreading during instance launch \(AWS CLI\)**
-+ Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) AWS CLI command and specify a value of `1` for `ThreadsPerCore` for the `--cpu-options` parameter\. For `CoreCount`, specify the number of CPU cores\. In this example, to specify the default CPU core count for an `r4.4xlarge` instance, specify a value of `8`\.
+**To disable multithreading during instance launch \(AWS CLI\)**  
+Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) AWS CLI command and specify a value of `1` for `ThreadsPerCore` for the `--cpu-options` parameter\. For `CoreCount`, specify the number of CPU cores\. In this example, to specify the default CPU core count for an `r4.4xlarge` instance, specify a value of `8`\.
 
-  ```
-  aws ec2 run-instances --image-id ami-1a2b3c4d --instance-type r4.4xlarge --cpu-options "CoreCount=8,ThreadsPerCore=1" --key-name MyKeyPair
-  ```
+```
+aws ec2 run-instances --image-id ami-1a2b3c4d --instance-type r4.4xlarge --cpu-options "CoreCount=8,ThreadsPerCore=1" --key-name MyKeyPair
+```
 
 ### Specifying a Custom Number of vCPUs<a name="cpu-options-customer-number-of-vCPUs"></a>
 
@@ -253,21 +255,20 @@ The following example launches an `r4.4xlarge` instance with six vCPUs\.
 
 1. Continue as prompted by the wizard\. When you've finished reviewing your options on the **Review Instance Launch** page, choose **Launch**\. For more information, see [Launching an Instance Using the Launch Instance Wizard](launching-instance.md)\.
 
-**To specify a custom number of vCPUs during instance launch \(AWS CLI\)**
-
+**To specify a custom number of vCPUs during instance launch \(AWS CLI\)**  
 The following example launches an `r4.4xlarge` instance with six vCPUs\.
 
-1. Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) AWS CLI command and specify the number of CPU cores and number of threads in the `--cpu-options` parameter\. You can specify three CPU cores and two threads per core to get six vCPUs\.
+Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) AWS CLI command and specify the number of CPU cores and number of threads in the `--cpu-options` parameter\. You can specify three CPU cores and two threads per core to get six vCPUs\.
 
-   ```
-   aws ec2 run-instances --image-id ami-1a2b3c4d --instance-type r4.4xlarge --cpu-options "CoreCount=3,ThreadsPerCore=2" --key-name MyKeyPair
-   ```
+```
+aws ec2 run-instances --image-id ami-1a2b3c4d --instance-type r4.4xlarge --cpu-options "CoreCount=3,ThreadsPerCore=2" --key-name MyKeyPair
+```
 
-1. Alternatively, specify six CPU cores and one thread per core \(disable multithreading\) to get six vCPUs:
+Alternatively, specify six CPU cores and one thread per core \(disable multithreading\) to get six vCPUs:
 
-   ```
-   aws ec2 run-instances --image-id ami-1a2b3c4d --instance-type r4.4xlarge --cpu-options "CoreCount=6,ThreadsPerCore=1" --key-name MyKeyPair
-   ```
+```
+aws ec2 run-instances --image-id ami-1a2b3c4d --instance-type r4.4xlarge --cpu-options "CoreCount=6,ThreadsPerCore=1" --key-name MyKeyPair
+```
 
 ## Viewing the CPU Options for Your Instance<a name="view-cpu-options"></a>
 
@@ -283,42 +284,43 @@ You can view the CPU options for an existing instance in the Amazon EC2 console 
 
 1. To view the core count and threads per core, choose the **Number of vCPUs** field value\.
 
-**To view the CPU options for an instance \(AWS CLI\)**
-+ Use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) AWS CLI command\.
+**To view the CPU options for an instance \(AWS CLI\)**  
+Use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command\.
 
-  ```
-  aws ec2 describe-instances --instance-ids i-123456789abcde123
-  ```
+```
+aws ec2 describe-instances --instance-ids i-123456789abcde123
+```
 
-  ```
-  ...
-  
-              "Instances": [
-                  {
-                      "Monitoring": {
-                          "State": "disabled"
-                      }, 
-                      "PublicDnsName": "ec2-198-51-100-5.eu-central-1.compute.amazonaws.com", 
-                      "State": {
-                          "Code": 16, 
-                          "Name": "running"
-                      }, 
-                      "EbsOptimized": false, 
-                      "LaunchTime": "2018-05-08T13:40:33.000Z", 
-                      "PublicIpAddress": "198.51.100.5", 
-                      "PrivateIpAddress": "172.31.2.206", 
-                      "ProductCodes": [], 
-                      "VpcId": "vpc-1a2b3c4d", 
-                      "CpuOptions": {
-                          "CoreCount": 34, 
-                          "ThreadsPerCore": 1
-                      }, 
-                      "StateTransitionReason": "", 
-  
-  ...
-  ```
+```
+...
+    "Instances": [
+        {
+            "Monitoring": {
+                "State": "disabled"
+            }, 
+            "PublicDnsName": "ec2-198-51-100-5.eu-central-1.compute.amazonaws.com", 
+            "State": {
+                "Code": 16, 
+                "Name": "running"
+            }, 
+            "EbsOptimized": false, 
+            "LaunchTime": "2018-05-08T13:40:33.000Z", 
+            "PublicIpAddress": "198.51.100.5", 
+            "PrivateIpAddress": "172.31.2.206", 
+            "ProductCodes": [], 
+            "VpcId": "vpc-1a2b3c4d", 
+            "CpuOptions": {
+                "CoreCount": 34, 
+                "ThreadsPerCore": 1
+            }, 
+            "StateTransitionReason": "", 
+            ...
+        }
+    ]
+...
+```
 
-  In the output that's returned, the `CoreCount` field indicates the number of cores for the instance\. The `ThreadsPerCore` field indicates the number of threads per core\.
+In the output that's returned, the `CoreCount` field indicates the number of cores for the instance\. The `ThreadsPerCore` field indicates the number of threads per core\.
 
 Alternatively, connect to your instance and use a tool such as lscpu to view the CPU information for your instance\.
 

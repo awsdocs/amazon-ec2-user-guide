@@ -113,7 +113,8 @@ The `.metal` instance sizes do not have a single normalization factor\. They var
 
 | Bare metal instance size | Normalization factor | 
 | --- | --- | 
-| i3\.metal |  128  | 
+|  `c5.metal`  |  192  | 
+|  `i3.metal`  |  128  | 
 |  `r5.metal`  |  192  | 
 |  `r5d.metal`  |  192  | 
 |  `z1d.metal`  |  96  | 

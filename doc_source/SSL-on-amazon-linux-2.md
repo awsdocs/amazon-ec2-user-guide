@@ -77,7 +77,7 @@ The `-y` option installs the updates without asking for confirmation\. If you wo
 
    ```
    [ec2-user ~]$ cd /etc/pki/tls/certs
-   sudo make-dummy-cert localhost.crt
+   sudo ./make-dummy-cert localhost.crt
    ```
 
    This generates a new file `localhost.crt` in the `/etc/pki/tls/certs/` directory\. The specified file name matches the default that is assigned in the SSLCertificateFile directive in `/etc/httpd/conf.d/ssl.conf`\. 

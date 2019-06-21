@@ -28,7 +28,7 @@ Instance size flexibility is determined by the normalization factor of the insta
 
 Instance size flexibility is applied from the smallest to the largest instance size within the instance family based on the normalization factor\. 
 
-The table below describes the different sizes within an instance family, and corresponding normalization factor per hour\. This scale is used to apply the discounted rate of Reserved Instances to the normalized usage of the instance family\.
+The following table lists the different sizes within an instance family, and the corresponding normalization factor per hour\. This scale is used to apply the discounted rate of Reserved Instances to the normalized usage of the instance family\.
 
 
 | Instance size | Normalization factor | 
@@ -75,7 +75,8 @@ The `.metal` instance sizes do not have a single normalization factor\. They var
 
 | Bare metal instance size | Normalization factor | 
 | --- | --- | 
-| i3\.metal |  128  | 
+|  `c5.metal`  |  192  | 
+|  `i3.metal`  |  128  | 
 |  `r5.metal`  |  192  | 
 |  `r5d.metal`  |  192  | 
 |  `z1d.metal`  |  96  | 

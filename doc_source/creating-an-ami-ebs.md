@@ -81,12 +81,6 @@ You can use one of the following commands\. For more information about these com
 
 If you have a snapshot of the root device volume of an instance, you can create an AMI from this snapshot using the AWS Management Console or the command line\.
 
-**Important**  
-Some Linux distributions, such as Red Hat Enterprise Linux \(RHEL\) and SUSE Linux Enterprise Server \(SLES\), use the Amazon EC2 `billingProduct` code associated with an AMI to verify subscription status for package updates\. Creating an AMI from an EBS snapshot does not maintain this billing code, and instances launched from such an AMI are not able to connect to package update infrastructure\. If you purchase a Reserved Instance offering for one of these Linux distributions and launch instances using an AMI that does not contain the required billing code, your Reserved Instance is not applied to these instances\.  
-Similarly, although you can create a Windows AMI from a snapshot and launch an instance from that AMI, you will not be able to connect to the instance, and it will be billed incorrectly as a result of it having the incorrect billing code\.  
-In general, AWS advises against manually creating AMIs from snapshots\.  
-For more information about creating Windows AMIs or AMIs for Linux operating systems that must retain AMI billing codes to work properly, see [Creating a Linux AMI from an Instance](#how-to-create-ebs-ami)\.
-
 **To create an AMI from a snapshot using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.

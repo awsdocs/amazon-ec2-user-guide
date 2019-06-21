@@ -102,7 +102,7 @@ Amazon EBS encryption is available on the instance types listed below\. You can 
 + Memory optimized: `cr1.8xlarge`, R3, R4, R5, R5a, R5ad, R5d, X1, X1e, and z1d
 + Storage optimized: D2, `h1.2xlarge`, `h1.4xlarge`, I2, and I3
 + Accelerated computing: F1, G2, G3, P2, and P3
-+ Bare metal: `i3.metal`, `m5.metal`, `m5d.metal`, `r5.metal`, `r5d.metal`, `u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, and `z1d.metal`
++ Bare metal: `c5.metal`, `i3.metal`, `m5.metal`, `m5d.metal`, `r5.metal`, `r5d.metal`, `u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, and `z1d.metal`
 
 ## Using Encryption Parameters with EBS Volumes<a name="encryption-parameters"></a>
 
@@ -146,7 +146,7 @@ When you have enabled encryption by default, encryption is mandatory for volumes
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/volume-encrypt-account-on.png)
 
-If you want to encrypt the restored volume to a customer managed CMK, you must supply both the `Encrypted` and `KmsKeyId` parameters as shown in [**Restore an Unencrypted Volume \(Encryption by Default *Not Enabled*\)**Copy an Unencrypted Snapshot \(Encryption by Default *Not Enabled*\) ](#volume-account-off)\.
+If you want to encrypt the restored volume to a customer managed CMK, you must supply both the `Encrypted` and `KmsKeyId` parameters as shown in [**Restore an Unencrypted Volume \(Encryption by Default *Not Enabled*\)**](#volume-account-off)\.
 
 #### Copy an Unencrypted Snapshot \(Encryption by Default *Not Enabled*\)<a name="snapshot-account-off"></a>
 
@@ -176,7 +176,7 @@ When you have enabled encryption by default, encryption is mandatory for copies 
 **Note**  
 If you copy a snapshot and encrypt it to a new CMK, a complete \(non\-incremental\) copy is always created, resulting in additional delay and storage costs\.
 
-To encrypt the snapshot copy to a customer managed CMK, you must supply both the `Encrypted` and `KmsKeyId` parameters as shown in [](#snapshot-account-off)\.
+To encrypt the snapshot copy to a customer managed CMK, you must supply both the `Encrypted` and `KmsKeyId` parameters as shown in [Copy an Unencrypted Snapshot \(Encryption by Default *Not Enabled*\) ](#snapshot-account-off)\.
 
 ### Re\-Encrypting Resources to a New CMK<a name="reencrypt-resources"></a>
 
@@ -231,7 +231,7 @@ The resulting copy of the snapshot—and all volumes restored from it—are encr
 For more information, see [Copying an Amazon EBS Snapshot](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-copy-snapshot.html)\.
 
 **Note**  
-You can also apply new encryption states when launching an instance from an EBS\-backed AMI\. This is because EBS\-backed AMIs include snapshots of EBS volumes that can be manipulated as described\. For more information about encryption options while launching an instance from an EBS\-backed AMI, see [Using Encryption with EBS\-Backed AMIs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIEncryption.html) \.
+You can also apply new encryption states when launching an instance from an EBS\-backed AMI\. This is because EBS\-backed AMIs include snapshots of EBS volumes that can be manipulated as described\. For more information about encryption options while launching an instance from an EBS\-backed AMI, see [Using Encryption with EBS\-Backed AMIs](AMIEncryption.md)\.
 
 ### Migrate Data between Encrypted and Unencrypted Volumes<a name="migrate-data-encrypted-unencrypted"></a>
 

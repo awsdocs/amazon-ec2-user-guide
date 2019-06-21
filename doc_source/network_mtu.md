@@ -27,7 +27,7 @@ The following instances support jumbo frames:
 + Memory optimized: CR1, R3, R4, R5, R5a, R5ad, R5d, X1, and z1d
 + Storage optimized: D2, H1, HS1, I2, I3, and I3en
 + Accelerated computing: F1, G2, G3, P2, and P3
-+ Bare metal: `i3.metal`, `m5.metal`, `m5d.metal`, `r5.metal`, `r5d.metal`, `u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, and `z1d.metal`
++ Bare metal: `c5.metal`, `i3.metal`, `m5.metal`, `m5d.metal`, `r5.metal`, `r5d.metal`, `u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, and `z1d.metal`
 
 ## Path MTU Discovery<a name="path_mtu_discovery"></a>
 

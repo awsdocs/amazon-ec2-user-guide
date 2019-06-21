@@ -138,9 +138,13 @@ Before you create a Spot Fleet request, review [Spot Best Practices](https://aws
 
 ## Service\-Linked Role for Spot Fleet Requests<a name="service-linked-roles-spot-fleet-requests"></a>
 
-Amazon EC2 creates a service\-linked role when you request a Spot Fleet\. A service\-linked role includes all the permissions that Amazon EC2 requires to call other AWS services on your behalf\. For more information, see [Using Service\-Linked Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html) in the *IAM User Guide*\.
+Amazon EC2 uses service\-linked roles for the permissions that it requires to call other AWS services on your behalf\. A service\-linked role is a unique type of IAM role that is linked directly to an AWS service\. Service\-linked roles provide a secure way to delegate permissions to AWS services because only the linked service can assume a service\-linked role\. For more information, see [Using Service\-Linked Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html) in the *IAM User Guide*\.
 
-Amazon EC2 uses the service\-linked role named **AWSServiceRoleForEC2SpotFleet** to complete the following actions:
+Amazon EC2 uses the service\-linked role named **AWSServiceRoleForEC2SpotFleet** to launch and manage Spot Instances on your behalf\.
+
+### Permissions Granted by AWSServiceRoleForEC2SpotFleet<a name="service-linked-role-permissions-granted-by-AWSServiceRoleForEC2SpotFleet"></a>
+
+Amazon EC2 uses **AWSServiceRoleForEC2SpotFleet** to complete the following actions:
 + `ec2:RequestSpotInstances` \- Request Spot Instances
 + `ec2:TerminateInstances` \- Terminate Spot Instances
 + `ec2:DescribeImages` \- Describe Amazon Machine Images \(AMI\) for the Spot Instances
@@ -148,13 +152,15 @@ Amazon EC2 uses the service\-linked role named **AWSServiceRoleForEC2SpotFleet**
 + `ec2:DescribeSubnets` \- Describe the subnets for Spot Instances
 + `ec2:CreateTags` \- Add system tags to Spot Instances
 
-Amazon EC2 also creates the **AWSServiceRoleForEC2Spot** role when you request a Spot Fleet\. For more information, see [Service\-Linked Role for Spot Instance Requests](spot-requests.md#service-linked-roles-spot-instance-requests)\.
+### Create the Service\-Linked Role<a name="service-linked-role-creating-for-spot-fleet"></a>
 
-If you had an active Spot Fleet request before November 2017, when Amazon EC2 began supporting this service\-linked role, Amazon EC2 created the **AWSServiceRoleForEC2SpotFleet** role in your AWS account\. For more information, see [A New Role Appeared in My Account](https://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_roles.html#troubleshoot_roles_new-role-appeared) in the *IAM User Guide*\.
+Under most circumstances, you don't need to manually create a service\-linked role\. Amazon EC2 creates the **AWSServiceRoleForEC2SpotFleet** service\-linked role the first time you create a Spot Fleet using the console\.
+
+If you had an active Spot Fleet request before October 2017, when Amazon EC2 began supporting this service\-linked role, Amazon EC2 created the **AWSServiceRoleForEC2SpotFleet** role in your AWS account\. For more information, see [A New Role Appeared in My Account](https://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_roles.html#troubleshoot_roles_new-role-appeared) in the *IAM User Guide*\.
 
 Ensure that this role exists before you use the AWS CLI or an API to create a Spot Fleet\. To create the role, use the IAM console as follows\.
 
-**To create the IAM role for Spot Fleet \(console\)**
+**To manually create the AWSServiceRoleForEC2SpotFleet service\-linked role**
 
 1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
@@ -169,6 +175,25 @@ Ensure that this role exists before you use the AWS CLI or an API to create a Sp
 1. On the **Review** page, choose **Create role**\.
 
 If you no longer need to use Spot Fleet, we recommend that you delete the **AWSServiceRoleForEC2SpotFleet** role\. After this role is deleted from your account, Amazon EC2 will create the role again if you request a Spot Fleet\.
+
+### Granting Access to CMKs for Use with Encrypted AMIs and EBS Snapshots<a name="spot-fleet-service-linked-roles-access-to-cmks"></a>
+
+If you specify an [encrypted AMI](AMIEncryption.md) or an [encrypted Amazon EBS snapshot](EBSEncryption.md) in your Spot Fleet request and you use a customer managed customer master key \(CMK\) for encryption, you must grant the **AWSServiceRoleForEC2SpotFleet** role permission to use the CMK so that Amazon EC2 can launch Spot Instances on your behalf\. To do this, you must add a grant to the CMK, as shown in the following procedure\.
+
+When providing permissions, grants are an alternative to key policies\. For more information, see [Using Grants](https://docs.aws.amazon.com/kms/latest/developerguide/grants.html) and [Using Key Policies in AWS KMS](https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html) in the *AWS Key Management Service Developer Guide*\.
+
+**To grant the AWSServiceRoleForEC2SpotFleet role permissions to use the CMK**
++ Use the [create\-grant](https://docs.aws.amazon.com/cli/latest/reference/kms/create-grant.html) command to add a grant to the CMK and to specify the principal \(the **AWSServiceRoleForEC2SpotFleet** service\-linked role\) that is given permission to perform the operations that the grant permits\. The CMK is specified by the `key-id` parameter and the ARN of the CMK\. The principal is specified by the `grantee-principal` parameter and the ARN of the **AWSServiceRoleForEC2SpotFleet** service\-linked role\.
+
+  The following example is formatted for legibility\. 
+
+  ```
+  aws kms create-grant 
+  --region us-east-1 
+  --key-id arn:aws:kms:us-east-1:444455556666:key/1234abcd-12ab-34cd-56ef-1234567890ab 
+  --grantee-principal arn:aws:iam::111122223333:role/AWSServiceRoleForEC2SpotFleet 
+  --operations "Decrypt" "Encrypt" "GenerateDataKey" "GenerateDataKeyWithoutPlaintext" "CreateGrant" "DescribeKey" "ReEncryptFrom" "ReEncryptTo"
+  ```
 
 ## Creating a Spot Fleet Request<a name="create-spot-fleet"></a>
 

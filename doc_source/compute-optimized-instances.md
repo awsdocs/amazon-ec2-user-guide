@@ -36,7 +36,10 @@ The following is a summary of the hardware specifications for compute optimized 
 | c5\.2xlarge | 8 | 16 | 
 | c5\.4xlarge | 16 | 32 | 
 | c5\.9xlarge | 36 | 72 | 
+| c5\.12xlarge | 48 | 96 | 
 | c5\.18xlarge | 72 | 144 | 
+| c5\.24large | 96 | 192 | 
+| c5\.metal | 96 | 192 | 
 | c5d\.large | 2 | 4 | 
 | c5d\.xlarge | 4 | 8 | 
 | c5d\.2xlarge | 8 | 16 | 
@@ -75,8 +78,9 @@ The following is a summary of network performance for compute optimized instance
 | --- | --- | --- | 
 |  `c5.4xlarge` and smaller \| `c5d.4xlarge` and smaller  | Up to 10 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5\.9xlarge \| c5d\.9xlarge | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
+| c5\.12xlarge \| c5d\.12xlarge | 12 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5n\.4xlarge and smaller | Up to 25 Gbps | [ENA](enhanced-networking-ena.md) | 
-| c5\.18xlarge \| c5d\.18xlarge | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
+| c5\.18xlarge \| c5\.24xlarge \| c5d\.18xlarge \| c5\.metal | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5n\.9xlarge | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5n\.18xlarge | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c4\.large | Moderate | [Intel 82599 VF](sriov-networking.md) | 
@@ -139,5 +143,13 @@ For more information, see the following:
   + CentOS 7 or later
   + FreeBSD 11\.1 or later
 + C5, C5d, and C5n instances support a maximum of 28 attachments, including network interfaces, EBS volumes, and NVMe instance store volumes\. Every instance has at least one network interface attachment\.
++ Launching a bare metal instance boots the underlying server, which includes verifying all hardware and firmware components\. This means that it can take 20 minutes from the time the instance enters the running state until it becomes available over the network\.
++ To attach or detach EBS volumes or secondary network interfaces from a bare metal instance requires PCIe native hotplug support\. Amazon Linux 2 and the latest versions of the Amazon Linux AMI support PCIe native hotplug, but earlier versions do not\. You must enable the following Linux kernel configuration options:
+
+  ```
+  CONFIG_HOTPLUG_PCI_PCIE=y
+  CONFIG_PCIEASPM=y
+  ```
++ Bare metal instances use a PCI\-based serial device rather than an I/O port\-based serial device\. The upstream Linux kernel and the latest Amazon Linux AMIs support this device\. Bare metal instances also provide an ACPI SPCR table to enable the system to automatically use the PCI\-based serial device\. The latest Windows AMIs automatically use the PCI\-based serial device\.
 + C5, C5d, and C5n instances should have acpid installed to support clean shutdown through API requests\.
 + There is a limit on the total number of instances that you can launch in a region, and there are additional limits on some instance types\. For more information, see [How many instances can I run in Amazon EC2?](https://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2)\. To request a limit increase, use the [Amazon EC2 Instance Request Form](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-instances)\.

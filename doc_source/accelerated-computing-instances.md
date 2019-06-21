@@ -21,7 +21,7 @@ You can cluster accelerated computing instances into a cluster placement group\.
 + [AMIs for GPU\-Based Accelerated Computing Instances](#gpu-operating-systems)
 + [Installing the NVIDIA Driver on Linux Instances](install-nvidia-driver.md)
 + [Activate NVIDIA GRID Virtual Applications \(G3 Instances Only\)](activate_grid.md)
-+ [Optimizing GPU Settings \(P2, P3, and G3 Instances\)](optimize_gpu.md)
++ [Optimizing GPU Settings](optimize_gpu.md)
 + [Getting Started with FPGA Development](fpga-getting-started.md)
 
 For information about Windows accelerated computing instances, see [Windows Accelerated Computing Instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/accelerated-computing-instances.html) in the *Amazon EC2 User Guide for Windows Instances*\.
@@ -36,7 +36,7 @@ F1 instances use Xilinx UltraScale\+ VU9P FPGAs and are designed to accelerate c
 Developers can use the FPGA Developer AMI and AWS Hardware Developer Kit to create custom hardware accelerations for use on F1 instances\. The FPGA Developer AMI includes development tools for full\-cycle FPGA development in the cloud\. Using these tools, developers can create and share Amazon FPGA Images \(AFIs\) that can be loaded onto the FPGA of an F1 instance\.
 
 For more information, see [Amazon EC2 F1 Instances](https://aws.amazon.com/ec2/instance-types/f1/)\.
-
+<a name="p3-instances"></a>
 **P3 Instances**  
 P3 instances use NVIDIA Tesla V100 GPUs and are designed for general purpose GPU computing using the CUDA or OpenCL programming models or through a machine learning framework\. P3 instances provide high\-bandwidth networking, powerful half, single, and double\-precision floating\-point capabilities, and up to 32 GiB of memory per GPU, which makes them ideal for deep learning, computational fluid dynamics, computational finance, seismic analysis, molecular modeling, genomics, rendering, and other server\-side GPU compute workloads\. Tesla V100 GPUs do not support graphics mode\. For more information, see [Amazon EC2 P3 Instances](https://aws.amazon.com/ec2/instance-types/p3)\.
 
@@ -49,7 +49,7 @@ nvidia-smi topo -m
 ```
 
 For more information, see [NVIDIA NVLink](https://devblogs.nvidia.com/parallelforall/how-nvlink-will-enable-faster-easier-multi-gpu-computing/)\.
-
+<a name="p2-instances"></a>
 **P2 Instances**  
 P2 instances use NVIDIA Tesla K80 GPUs and are designed for general purpose GPU computing using the CUDA or OpenCL programming models\. P2 instances provide high\-bandwidth networking, powerful single and double precision floating\-point capabilities, and 12 GiB of memory per GPU, which makes them ideal for deep learning, graph databases, high\-performance databases, computational fluid dynamics, computational finance, seismic analysis, molecular modeling, genomics, rendering, and other server\-side GPU compute workloads\.
 
@@ -62,12 +62,12 @@ nvidia-smi topo -m
 ```
 
 For more information, see [NVIDIA GPUDirect](https://developer.nvidia.com/gpudirect)\.
-
+<a name="g3-instances"></a>
 **G3 Instances**  
 G3 instances use NVIDIA Tesla M60 GPUs and provide a cost\-effective, high\-performance platform for graphics applications using DirectX or OpenGL\. G3 instances also provide NVIDIA GRID Virtual Workstation features, such as support for four monitors with resolutions up to 4096x2160, and NVIDIA GRID Virtual Applications\. G3 instances are well\-suited for applications such as 3D visualizations, graphics\-intensive remote workstations, 3D rendering, video encoding, virtual reality, and other server\-side graphics workloads requiring massively parallel processing power\. 
 
 G3 instances support NVIDIA GRID Virtual Workstation and NVIDIA GRID Virtual Applications\. To activate either of these features, see [Activate NVIDIA GRID Virtual Applications \(G3 Instances Only\)](activate_grid.md)\.
-
+<a name="g2-instances"></a>
 **G2 Instances**  
 G2 instances use NVIDIA GRID K520 GPUs and provide a cost\-effective, high\-performance platform for graphics applications using DirectX or OpenGL\. NVIDIA GRID GPUs also support NVIDIA’s fast capture and encode API operations\. Example applications include video creation services, 3D visualizations, streaming graphics\-intensive applications, and other server\-side graphics workloads\.
 
@@ -76,24 +76,24 @@ G2 instances use NVIDIA GRID K520 GPUs and provide a cost\-effective, high\-perf
 The following is a summary of the hardware specifications for accelerated computing instances\.
 
 
-| Instance type | Default vCPUs | Memory \(GiB\) | 
-| --- | --- | --- | 
-| p2\.xlarge | 4 | 61 | 
-| p2\.8xlarge | 32 | 488 | 
-| p2\.16xlarge | 64 | 732 | 
-| p3\.2xlarge | 8 | 61 | 
-| p3\.8xlarge | 32 | 244 | 
-| p3\.16xlarge | 64 | 488 | 
-| p3dn\.24xlarge | 96 | 768 | 
-| g2\.2xlarge | 8 | 15 | 
-| g2\.8xlarge | 32 | 60 | 
-| g3s\.xlarge | 4 | 30\.5 | 
-| g3\.4xlarge | 16 | 122 | 
-| g3\.8xlarge | 32 | 244 | 
-| g3\.16xlarge | 64 | 488 | 
-| f1\.2xlarge | 8 | 122 | 
-| f1\.4xlarge | 16 | 244 | 
-| f1\.16xlarge | 64 | 976 | 
+| Instance type | Default vCPUs | Memory \(GiB\) | Accelerators | 
+| --- | --- | --- | --- | 
+| p2\.xlarge | 4 | 61 | 1 | 
+| p2\.8xlarge | 32 | 488 | 8 | 
+| p2\.16xlarge | 64 | 732 | 16 | 
+| p3\.2xlarge | 8 | 61 | 1 | 
+| p3\.8xlarge | 32 | 244 | 4 | 
+| p3\.16xlarge | 64 | 488 | 8 | 
+| p3dn\.24xlarge | 96 | 768 | 8 | 
+| g2\.2xlarge | 8 | 15 | 1 | 
+| g2\.8xlarge | 32 | 60 | 4 | 
+| g3s\.xlarge | 4 | 30\.5 | 1 | 
+| g3\.4xlarge | 16 | 122 | 1 | 
+| g3\.8xlarge | 32 | 244 | 2 | 
+| g3\.16xlarge | 64 | 488 | 4 | 
+| f1\.2xlarge | 8 | 122 | 1 | 
+| f1\.4xlarge | 16 | 244 | 2 | 
+| f1\.16xlarge | 64 | 976 | 8 | 
 
 For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
@@ -101,7 +101,7 @@ For more information about specifying CPU options, see [Optimizing CPU Options](
 
 ## Instance Performance<a name="gpu-instance-performance"></a>
 
-There are several GPU setting optimizations that you can perform to achieve the best performance on your instances\. For more information, see [Optimizing GPU Settings \(P2, P3, and G3 Instances\)](optimize_gpu.md)\.
+There are several GPU setting optimizations that you can perform to achieve the best performance on your instances\. For more information, see [Optimizing GPU Settings](optimize_gpu.md)\.
 
 EBS\-optimized instances enable you to get consistently high performance for your EBS volumes by eliminating contention between Amazon EBS I/O and other network traffic from your instance\. Some accelerated computing instances are EBS\-optimized by default at no additional cost\. For more information, see [Amazon EBS–Optimized Instances](EBSOptimized.md)\.
 
@@ -156,10 +156,10 @@ For more information, see the following:
 To help you get started, NVIDIA and others provide AMIs for GPU\-based accelerated computing instances\. These reference AMIs include the NVIDIA driver, which enables full functionality and performance of the NVIDIA GPUs\.
 
 For a list of AMIs with the NVIDIA driver, search AWS Marketplace as follows:
-+ [NVIDIA P3 AMIs](https://aws.amazon.com/marketplace/search/results/?page=1&filters=instance_types&instance_types=p3.2xlarge&searchTerms=NVIDIA)
-+ [NVIDIA P2 AMIs](https://aws.amazon.com/marketplace/search/results/?page=1&filters=instance_types&instance_types=p2.xlarge&searchTerms=NVIDIA)
-+ [NVIDIA GRID G3 AMIs](https://aws.amazon.com/marketplace/search/results/?page=1&filters=instance_types&instance_types=g3.4xlarge&searchTerms=NVIDIAGRID)
-+ [NVIDIA GRID G2 AMIs](https://aws.amazon.com/marketplace/search/results/?page=1&filters=instance_types&instance_types=g2.2xlarge&searchTerms=NVIDIAGRID)
++ [NVIDIA P3 AMIs](http://aws.amazon.com/marketplace/search/results/?page=1&filters=instance_types&instance_types=p3.2xlarge&searchTerms=NVIDIA)
++ [NVIDIA P2 AMIs](http://aws.amazon.com/marketplace/search/results/?page=1&filters=instance_types&instance_types=p2.xlarge&searchTerms=NVIDIA)
++ [NVIDIA GRID G3 AMIs](http://aws.amazon.com/marketplace/search/results/?page=1&filters=instance_types&instance_types=g3.4xlarge&searchTerms=NVIDIAGRID)
++ [NVIDIA GRID G2 AMIs](http://aws.amazon.com/marketplace/search/results/?page=1&filters=instance_types&instance_types=g2.2xlarge&searchTerms=NVIDIAGRID)
 
 You can launch accelerated computing instances using any HVM AMI\.
 

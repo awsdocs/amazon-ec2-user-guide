@@ -133,7 +133,7 @@ If the impaired Dedicated Host has instances that do not support host recovery, 
 ## Supported Instance Configurations<a name="dedicated-hosts-recovery-instances"></a>
 
 Host recovery is supported only on Dedicated Hosts that are configured for instances with the following characteristics:
-+ Use any instance type, except C5d, M5d, R5d, F1, I3, Z1d, and bare metal instances
++ Use any instance type, except C5d, M5d, R5d, F1, H1, D2, I2, I3, I3en, P3dn, Z1d, and bare metal instances
 + Run in an Amazon VPC
 + Use Amazon EBS volumes only
 **Note**  

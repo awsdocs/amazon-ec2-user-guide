@@ -9,4 +9,4 @@ The following tutorials show you how to perform common tasks using EC2 instances
 + [Tutorial: Configure SSL/TLS on Amazon Linux 2](SSL-on-amazon-linux-2.md)
 + [Tutorial: Configure SSL/TLS on Amazon Linux](SSL-on-amazon-linux-ami.md)
 + [Tutorial: Increase the Availability of Your Application on Amazon EC2](ec2-increase-availability.md)
-+ [Tutorial: Remotely Manage Your Amazon EC2 Instances](tutorial_run_command.md)
++ [Tutorial: Remotely Manage Your Amazon EC2 Instances Using Systems Manager](tutorial_run_command.md)

@@ -2,7 +2,7 @@
 
 A *Spot Fleet* is a collection, or fleet, of Spot Instances, and optionally On\-Demand Instances\. 
 
-The Spot Fleet attempts to launch the number of Spot Instances and On\-Demand Instances to meet the target capacity that you specified in the Spot Fleet request\. The request for Spot Instances is fulfilled if the maximum price you specified in the request exceeds the current Spot price and there is available capacity\. The Spot Fleet also attempts to maintain its target capacity fleet if your Spot Instances are interrupted due to a change in the Spot price or available capacity\.
+The Spot Fleet attempts to launch the number of Spot Instances and On\-Demand Instances to meet the target capacity that you specified in the Spot Fleet request\. The request for Spot Instances is fulfilled if there is available capacity and the maximum price you specified in the request exceeds the current Spot price\. The Spot Fleet also attempts to maintain its target capacity fleet if your Spot Instances are interrupted\.
 
 A *Spot Instance pool* is a set of unused EC2 instances with the same instance type \(for example, `m5.large`\), operating system, Availability Zone, and network platform\. When you make a Spot Fleet request, you can include multiple launch specifications, that vary by instance type, AMI, Availability Zone, or subnet\. The Spot Fleet selects the Spot Instance pools that are used to fulfill the request, based on the launch specifications included in your Spot Fleet request, and the configuration of the Spot Fleet request\. The Spot Instances come from the selected pools\.
 
@@ -183,7 +183,7 @@ Example Corp creates a file, `config.json`, with the following configuration for
       "InstanceType": "r3.4xlarge",
       "SubnetId": "subnet-482e4972",
       "WeightedCapacity": 2
-    }
+    },
     {
       "ImageId": "ami-1a2b3c4d",
       "InstanceType": "r3.8xlarge",

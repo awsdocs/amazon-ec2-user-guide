@@ -41,7 +41,10 @@ The following table lists current\-generation instance types that support EBS op
 | c5\.2xlarge \* | Yes | 3,500 | 437\.5 | 20,000 | 
 | c5\.4xlarge | Yes | 3,500 | 437\.5 | 20,000 | 
 | c5\.9xlarge | Yes | 7,000 | 875 | 40,000 | 
+| c5\.12xlarge | Yes | 7,000 | 875 | 40,000 | 
 | c5\.18xlarge | Yes | 14,000 | 1,750 | 80,000 | 
+| c5\.24xlarge | Yes | 14,000 | 1,750 | 80,000 | 
+| c5\.metal | Yes | 14,000 | 1,750 | 80,000 | 
 | c5d\.large \* | Yes | 3,500 | 437\.5 | 20,000 | 
 | c5d\.xlarge \* | Yes | 3,500 | 437\.5 | 20,000 | 
 | c5d\.2xlarge \* | Yes | 3,500 | 437\.5 | 20,000 | 
@@ -135,10 +138,10 @@ The following table lists current\-generation instance types that support EBS op
 | r5\.12xlarge | Yes | 7,000 | 875 | 40,000 | 
 | r5\.24xlarge | Yes | 14,000 | 1,750 | 80,000 | 
 | r5\.metal | Yes | 14,000 | 1,750 | 80,000 | 
-| r5a\.large \* | Yes | 2,210 | 265 | 16,000 | 
-| r5a\.xlarge \* | Yes | 2,210 | 265 | 16,000 | 
-| r5a\.2xlarge \* | Yes | 2,210 | 265 | 16,000 | 
-| r5a\.4xlarge | Yes | 2,210 | 265 | 16,000 | 
+| r5a\.large \* | Yes | 2,120 | 265 | 16,000 | 
+| r5a\.xlarge \* | Yes | 2,120 | 265 | 16,000 | 
+| r5a\.2xlarge \* | Yes | 2,120 | 265 | 16,000 | 
+| r5a\.4xlarge | Yes | 2,120 | 265 | 16,000 | 
 | r5a\.12xlarge | Yes | 5,000 | 625 | 30,000 | 
 | r5a\.24xlarge | Yes | 10,000 | 1,250 | 60,000 | 
 | r5ad\.large \* | Yes | 2,210 | 265 | 16,000 | 

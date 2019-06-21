@@ -52,7 +52,7 @@ The `AWSServiceRoleForEC2Fleet` role grants the EC2 Fleet permission to request,
 
 Ensure that this role exists before you use the AWS CLI or an API to create an EC2 Fleet\. To create the role, use the IAM console as follows\.
 
-**To create the IAM role for EC2 Fleet**
+**To create the AWSServiceRoleForEC2Fleet role for EC2 Fleet**
 
 1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
@@ -65,6 +65,27 @@ Ensure that this role exists before you use the AWS CLI or an API to create an E
 1. On the **Review** page, choose **Create role**\.
 
 If you no longer need to use EC2 Fleet, we recommend that you delete the **AWSServiceRoleForEC2Fleet** role\. After this role is deleted from your account, you can create the role again if you create another fleet\.
+
+For more information, see [Using Service\-Linked Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html) in the *IAM User Guide*\.
+
+### Granting Access to CMKs for Use with Encrypted AMIs and EBS Snapshots<a name="ec2-fleet-service-linked-roles-access-to-cmks"></a>
+
+If you specify an [encrypted AMI](AMIEncryption.md) or an [encrypted Amazon EBS snapshot](EBSEncryption.md) in your EC2 Fleet and you use a customer managed customer master key \(CMK\) for encryption, you must grant the **AWSServiceRoleForEC2Fleet** role permission to use the CMK so that Amazon EC2 can launch instances on your behalf\. To do this, you must add a grant to the CMK, as shown in the following procedure\.
+
+When providing permissions, grants are an alternative to key policies\. For more information, see [Using Grants](https://docs.aws.amazon.com/kms/latest/developerguide/grants.html) and [Using Key Policies in AWS KMS](https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html) in the *AWS Key Management Service Developer Guide*\.
+
+**To grant the AWSServiceRoleForEC2Fleet role permissions to use the CMK**
++ Use the [create\-grant](https://docs.aws.amazon.com/cli/latest/reference/kms/create-grant.html) command to add a grant to the CMK and to specify the principal \(the **AWSServiceRoleForEC2Fleet** service\-linked role\) that is given permission to perform the operations that the grant permits\. The CMK is specified by the `key-id` parameter and the ARN of the CMK\. The principal is specified by the `grantee-principal` parameter and the ARN of the **AWSServiceRoleForEC2Fleet** service\-linked role\.
+
+  The following example is formatted for legibility\. 
+
+  ```
+  aws kms create-grant 
+  --region us-east-1 
+  --key-id arn:aws:kms:us-east-1:444455556666:key/1234abcd-12ab-34cd-56ef-1234567890ab 
+  --grantee-principal arn:aws:iam::111122223333:role/AWSServiceRoleForEC2Fleet 
+  --operations "Decrypt" "Encrypt" "GenerateDataKey" "GenerateDataKeyWithoutPlaintext" "CreateGrant" "DescribeKey" "ReEncryptFrom" "ReEncryptTo"
+  ```
 
 ### EC2 Fleet and IAM Users<a name="ec2-fleet-iam-users"></a>
 

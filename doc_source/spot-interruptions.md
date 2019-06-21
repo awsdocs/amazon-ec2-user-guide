@@ -2,12 +2,21 @@
 
 Demand for Spot Instances can vary significantly from moment to moment, and the availability of Spot Instances can also vary significantly depending on how many unused EC2 instances are available\. It is always possible that your Spot Instance might be interrupted\. Therefore, you must ensure that your application is prepared for a Spot Instance interruption\.
 
+An On\-Demand Instance specified in an EC2 Fleet or Spot Fleet cannot be interrupted\.
+
+**Topics**
++ [Reasons for Interruption](#interruption-reasons)
++ [Interruption Behavior](#interruption-behavior)
++ [Preparing for Interruptions](#using-spot-instances-managing-interruptions)
++ [Preparing for Instance Hibernation](#prepare-for-instance-hibernation)
++ [Spot Instance Interruption Notices](#spot-instance-termination-notices)
+
+## Reasons for Interruption<a name="interruption-reasons"></a>
+
 The following are the possible reasons that Amazon EC2 might interrupt your Spot Instances:
 + Price – The Spot price is greater than your maximum price\.
 + Capacity – If there are not enough unused EC2 instances to meet the demand for Spot Instances, Amazon EC2 interrupts Spot Instances\. The order in which the instances are interrupted is determined by Amazon EC2\.
 + Constraints – If your request includes a constraint such as a launch group or an Availability Zone group, these Spot Instances are terminated as a group when the constraint can no longer be met\.
-
-An On\-Demand Instance specified in a Spot Fleet cannot be interrupted\.
 
 ## Interruption Behavior<a name="interruption-behavior"></a>
 
@@ -18,31 +27,31 @@ You can specify whether Amazon EC2 should hibernate, stop, or terminate Spot Ins
 You can change the behavior so that Amazon EC2 stops Spot Instances when they are interrupted if the following requirements are met\.
 
 **Requirements**
-+ For a Spot Instance request, the type must be `persistent`, not `one-time`\. You cannot specify a launch group in the Spot Instance request\.
-+ For a Spot Fleet request, the type must be `maintain`, not `request`\.
++ For a Spot Instance request, the type must be `persistent`\. You cannot specify a launch group in the Spot Instance request\.
++ For an EC2 Fleet or Spot Fleet request, the type must be `maintain`\.
 + The root volume must be an EBS volume, not an instance store volume\.
 
 After a Spot Instance is stopped by the Spot service, only the Spot service can restart the Spot Instance, and the same launch specification must be used\.
 
 For a Spot Instance launched by a `persistent` Spot Instance request, the Spot service restarts the stopped instance when capacity is available in the same Availability Zone and for the same instance type as the stopped instance\.
 
-If instances in a Spot Fleet are stopped and the Spot Fleet is of type `maintain`, the Spot service launches replacement instances to maintain the target capacity\. The Spot service finds the best pool\(s\) based on the specified allocation strategy \(`lowestPrice`, `diversified`, or `InstancePoolsToUseCount`\); it does not prioritize the pool with the earlier stopped instances\. Later, if the allocation strategy leads to a pool containing the earlier stopped instances, the Spot service restarts the stopped instances to meet the target capacity\.
+If instances in an EC2 Fleet or Spot Fleet are stopped and the fleet is of type `maintain`, the Spot service launches replacement instances to maintain the target capacity\. The Spot service finds the best pool\(s\) based on the specified allocation strategy \(`lowestPrice`, `diversified`, or `InstancePoolsToUseCount`\); it does not prioritize the pool with the earlier stopped instances\. Later, if the allocation strategy leads to a pool containing the earlier stopped instances, the Spot service restarts the stopped instances to meet the target capacity\.
 
 For example, consider a Spot Fleet with the `lowestPrice` allocation strategy\. At initial launch, a `c3.large` pool meets the `lowestPrice` criteria for the launch specification\. Later, when the `c3.large` instances are interrupted, the Spot service stops the instances and replenishes capacity from another pool that fits the `lowestPrice` strategy\. This time, the pool happens to be a `c4.large` pool and the Spot service launches `c4.large` instances to meet the target capacity\. Similarly, Spot Fleet could move to a `c5.large` pool the next time\. In each of these transitions, the Spot service does not prioritize pools with earlier stopped instances, but rather prioritizes purely on the specified allocation strategy\. The `lowestPrice` strategy can lead back to pools with earlier stopped instances\. For example, if instances are interrupted in the `c5.large` pool and the `lowestPrice` strategy leads it back to the `c3.large` or `c4.large` pools, the earlier stopped instances are restarted to fulfil target capacity\.
 
 While a Spot Instance is stopped, you can modify some of its instance attributes, but not the instance type\. If you detach or delete an EBS volume, it is not attached when the Spot Instance is started\. If you detach the root volume and the Spot service attempts to start the Spot Instance, instance start fails and the Spot service terminates the stopped instance\.
 
-You can terminate a Spot Instance while it is stopped\. If you cancel a Spot request or a Spot Fleet, the Spot service terminates any associated Spot Instances that are stopped\.
+You can terminate a Spot Instance while it is stopped\. If you cancel a Spot request, an EC2 Fleet, or a Spot Fleet, the Spot service terminates any associated Spot Instances that are stopped\.
 
-While a Spot Instance is stopped, you are charged only for the EBS volumes, which are preserved\. With Spot Fleet, if you have many stopped instances, you can exceed the limit on the number of EBS volumes for your account\.
+While a Spot Instance is stopped, you are charged only for the EBS volumes, which are preserved\. With EC2 Fleet and Spot Fleet, if you have many stopped instances, you can exceed the limit on the number of EBS volumes for your account\.
 
 ### Hibernating Interrupted Spot Instances<a name="hibernate-spot-instances"></a>
 
 You can change the behavior so that Amazon EC2 hibernates Spot Instances when they are interrupted if the following requirements are met\.
 
 **Requirements**
-+ For a Spot Instance request, the type must be `persistent`, not `one-time`\. You cannot specify a launch group in the Spot Instance request\.
-+ For a Spot Fleet request, the type must be `maintain`, not `request`\.
++ For a Spot Instance request, the type must be `persistent`\. You cannot specify a launch group in the Spot Instance request\.
++ For an EC2 Fleet or Spot Fleet request, the type must be `maintain`\.
 + The root volume must be an EBS volume, not an instance store volume, and it must be large enough to store the instance memory \(RAM\) during hibernation\.
 + The following instances are supported: C3, C4, C5, M4, M5, R3, and R4, with less than 100 GB of memory\.
 + The following operating systems are supported: Amazon Linux 2, Amazon Linux AMI, Ubuntu with an AWS\-tuned Ubuntu kernel \(linux\-aws\) greater than 4\.4\.0\-1041, and Windows Server 2008 R2 and later\.
@@ -62,7 +71,7 @@ You can change the behavior so that Amazon EC2 hibernates Spot Instances when th
   + EBS encryption by default: You can enable EBS encryption by default to ensure all new EBS volumes created in your AWS account are encrypted\. For more information, see [Encryption by Default](EBSEncryption.md#encryption-by-default)\.
   + Encrypted AMI: You can enable EBS encryption by using an encrypted AMI to launch your instance\. If your AMI does not have an encrypted root snapshot, you can copy it to a new AMI and request encryption\. For more information, see [Encrypt an Unencrypted Image during Copy](AMIEncryption.md#copy-unencrypted-to-encrypted) and [Copying an AMI](CopyingAMIs.md#ami-copy-steps)\. 
 
-When a Spot Instance is hibernated by the Spot service, the EBS volumes are preserved and instance memory \(RAM\) is preserved on the root volume\. The private IP addresses of the instance are also preserved\. Instance storage volumes and public IP addresses, other than Elastic IP addresses, are not preserved\. While the instance is hibernating, you are charged only for the EBS volumes\. With Spot Fleet, if you have many hibernated instances, you can exceed the limit on the number of EBS volumes for your account\.
+When a Spot Instance is hibernated by the Spot service, the EBS volumes are preserved and instance memory \(RAM\) is preserved on the root volume\. The private IP addresses of the instance are also preserved\. Instance storage volumes and public IP addresses, other than Elastic IP addresses, are not preserved\. While the instance is hibernating, you are charged only for the EBS volumes\. With EC2 Fleet and Spot Fleet, if you have many hibernated instances, you can exceed the limit on the number of EBS volumes for your account\.
 
 The agent prompts the operating system to hibernate when the instance receives a signal from the Spot service\. If the agent is not installed, the underlying operating system doesn't support hibernation, or there isn't enough volume space to save the instance memory, hibernation fails and the Spot service stops the instance instead\.
 
@@ -71,6 +80,8 @@ When the Spot service hibernates a Spot Instance, you receive an interruption no
 After a Spot Instance is hibernated by the Spot service, it can only be resumed by the Spot service\. The Spot service resumes the instance when capacity becomes available with a Spot price that is less than your specified maximum price\.
 
 For more information, see [Preparing for Instance Hibernation](#prepare-for-instance-hibernation)\.
+
+For information about hibernating On\-Demand Instances, see [Hibernate Your Instance](Hibernate.md)\.
 
 ## Preparing for Interruptions<a name="using-spot-instances-managing-interruptions"></a>
 

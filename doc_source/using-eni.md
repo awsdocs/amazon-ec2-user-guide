@@ -82,7 +82,10 @@ The following table lists the maximum number of network interfaces per instance 
 | `c5.2xlarge` | 4 | 15 | 15 | 
 | `c5.4xlarge` | 8 | 30 | 30 | 
 | `c5.9xlarge` | 8 | 30 | 30 | 
+| `c5.12xlarge` | 8 | 30 | 30 | 
 | `c5.18xlarge` | 15 | 50 | 50 | 
+| `c5.24xlarge` | 15 | 50 | 50 | 
+| `c5.metal` | 15 | 50 | 50 | 
 | `c5d.large` | 3 | 10 | 10 | 
 | `c5d.xlarge` | 4 | 15 | 15 | 
 | `c5d.2xlarge` | 4 | 15 | 15 | 
@@ -237,7 +240,7 @@ The following table lists the maximum number of network interfaces per instance 
 |  `t3.2xlarge`  |  4  |  15  |  15  | 
 |  `t3a.nano`  |  2  |  2  | 2 | 
 |  `t3a.micro`  |  2  |  2  | 2 | 
-|  `t3a.small`  |  3  |  4  | 4 | 
+|  `t3a.small`  |  2  |  4  | 4 | 
 |  `t3a.medium`  |  3  |  6  | 6 | 
 |  `t3a.large`  |  3  |  12  | 12 | 
 |  `t3a.xlarge`  |  4  |  15  |  15  | 
