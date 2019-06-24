@@ -4,7 +4,7 @@ You can create an Amazon EBS volume that you can then attach to any EC2 instance
 
 You can also create and attach EBS volumes when you launch instances by specifying a block device mapping\. For more information, see [Launching an Instance Using the Launch Instance Wizard](launching-instance.md) and [Block Device Mapping](block-device-mapping-concepts.md)\. You can restore volumes from previously created snapshots\. For more information, see [Restoring an Amazon EBS Volume from a Snapshot](ebs-restoring-volume.md)\.
 
-You can apply tags to EBS volumes at the time of creation\. With tagging, you can simplify tracking of your Amazon EC2 resource inventory\. Tagging on creation can be combined with an IAM policy to enforce tagging on new volumes\. For more information, see [Tagging Your Resources](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html)\.
+You can apply tags to EBS volumes at the time of creation\. With tagging, you can simplify tracking of your Amazon EC2 resource inventory\. Tagging on creation can be combined with an IAM policy to enforce tagging on new volumes\. For more information, see [Tagging Your Amazon EC2 Resources](Using_Tags.md)\.
 
 If you are creating a volume for a high\-performance storage scenario, you should make sure to use a Provisioned IOPS SSD \(`io1`\) volume and attach it to an instance with enough bandwidth to support your application, such as an EBS\-optimized instance or an instance with 10\-Gigabit network connectivity\. The same advice holds for Throughput Optimized HDD \(`st1`\) and Cold HDD \(`sc1`\) volumes\. For more information, see [Amazon EC2 Instance Configuration](ebs-ec2-config.md)\.
 

@@ -31,7 +31,7 @@ EBS volumes provide several benefits that are not supported by instance store vo
 
   An EBS volume and the instance to which it attaches must be in the same Availability Zone\.
 
-  You can get monitoring data for your EBS volumes, including root device volumes for EBS\-backed instances, at no additional charge\. For more information about monitoring metrics, see [Monitoring Volumes with CloudWatch](monitoring-volume-status.md#using_cloudwatch_ebs)\. For information about tracking the status of your volumes, see [Amazon CloudWatch Events for Amazon EBS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-cloud-watch-events.html)\.
+  You can get monitoring data for your EBS volumes, including root device volumes for EBS\-backed instances, at no additional charge\. For more information about monitoring metrics, see [Amazon CloudWatch Metrics for Amazon EBS](using_cloudwatch_ebs.md)\. For information about tracking the status of your volumes, see [Amazon CloudWatch Events for Amazon EBS](ebs-cloud-watch-events.md)\.
 + **Data persistence**
 
   An EBS volume is off\-instance storage that can persist independently from the life of an instance\. You continue to pay for the volume usage as long as the data persists\. 

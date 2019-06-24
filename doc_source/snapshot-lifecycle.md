@@ -27,7 +27,7 @@ The following are the key elements that you should understand before you get sta
 
 Snapshots are the primary means to back up data from your EBS volumes\. To save storage costs, successive snapshots are incremental, containing only the volume data that changed since the previous snapshot\. When you delete one snapshot in a series of snapshots for a volume, only the data unique to that snapshot is removed\. The rest of the captured history of the volume is preserved\.
 
-For more information, see [Amazon EBS Snapshots](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html)\.
+For more information, see [Amazon EBS Snapshots](EBSSnapshots.md)\.
 
 ### Target Resource Tags<a name="dlm-tagging-volumes"></a>
 
@@ -35,7 +35,7 @@ Amazon DLM uses resource tags to identify the EBS volumes to back up\. Tags are 
 
 You can't use a '\\' or '=' character in a tag key\.
 
-For more information about tagging Amazon EC2 objects, see [Tagging Your Amazon EC2 Resources](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html)\.
+For more information, see [Tagging Your Amazon EC2 Resources](Using_Tags.md)\.
 
 ### Snapshot Tags<a name="dlm-tagging-snapshots"></a>
 
@@ -404,7 +404,7 @@ aws dlm delete-lifecycle-policy --policy-id policy-0123456789abcdef0
 
 The [Amazon Data Lifecycle Manager API Reference](https://docs.aws.amazon.com/dlm/latest/APIReference/) provides descriptions and syntax for each of the actions and data types for the Amazon DLM Query API\.
 
-Alternatively, you can use one of the AWS SDKs to access an API that's tailored to the programming language or platform that you're using\. For more information, see [AWS SDKs](https://aws.amazon.com/tools/#SDKs)\.
+Alternatively, you can use one of the AWS SDKs to access an API that's tailored to the programming language or platform that you're using\. For more information, see [AWS SDKs](http://aws.amazon.com/tools/#SDKs)\.
 
 ## Working with Amazon DLM to Create and Maintain Multi\-Volume Snapshots Using the Console<a name="multivolume-lifecycle"></a>
 
@@ -510,7 +510,7 @@ You can view your lifecycle policies using the Amazon EC2 console or the AWS CLI
 Amazon EBS and Amazon DLM emit events related to lifecycle policy actions\. You can use AWS Lambda and Amazon CloudWatch Events to handle event notifications programmatically\. For more information, see the [Amazon CloudWatch Events User Guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/)\.
 
 The following events are available:
-+ `createSnapshot`—An Amazon EBS event emitted when a `CreateSnapshot` action succeeds or fails\. For more information, see [Amazon CloudWatch Events for Amazon EBS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-cloud-watch-events.html)\.
++ `createSnapshot`—An Amazon EBS event emitted when a `CreateSnapshot` action succeeds or fails\. For more information, see [Amazon CloudWatch Events for Amazon EBS](ebs-cloud-watch-events.md)\.
 + `DLM Policy State Change`—A Amazon DLM event emitted when a lifecycle policy enters an error state\. The event contains a description of what caused the error\. The following is an example of an event when the permissions granted by the IAM role are insufficient:
 
   ```

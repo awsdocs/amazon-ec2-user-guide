@@ -4,7 +4,7 @@ Amazon EBS emits notifications based on Amazon CloudWatch Events for a variety o
 
 Events in CloudWatch are represented as JSON objects\. The fields that are unique to the event are contained in the "detail" section of the JSON object\. The "event" field contains the event name\. The "result" field contains the completed status of the action that triggered the event\. For more information, see [Event Patterns in CloudWatch Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CloudWatchEventsandEventPatterns.html) in the *Amazon CloudWatch Events User Guide*\.
 
-For more information, see [Using Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/WhatIsCloudWatchEvents.html) in the *Amazon CloudWatch User Guide*\. For full API reference, see the [EC2 API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference)\.
+For more information, see [Using Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/WhatIsCloudWatchEvents.html) in the *Amazon CloudWatch User Guide*\.
 
 **Topics**
 + [EBS Volume Events](#volume-events)
@@ -404,7 +404,7 @@ Amazon EBS sends `modifyVolume` events to CloudWatch Events when a volume is mod
    "detail-type": "EBS Volume Notification",
    "source": "aws.ec2",
    "account": "012345678901",
-   "time": "2017-01-12T21:09:07Z",
+   "time": "yyyy-mm-ddThh:mm:ssZ",
    "region": "us-east-1",
    "resources": [
       "arn:aws:ec2:us-east-1:012345678901:volume/vol-03a55cf56513fa1b6"

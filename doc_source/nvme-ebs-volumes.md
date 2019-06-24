@@ -3,7 +3,7 @@
 EBS volumes are exposed as NVMe block devices on [Nitro\-based instances](instance-types.md#ec2-nitro-instances)\. The device names are `/dev/nvme0n1`, `/dev/nvme1n1`, and so on\. The device names that you specify in a block device mapping are renamed using NVMe device names \(`/dev/nvme[0-26]n1`\)\. The block device driver can assign NVMe device names in a different order than you specified for the volumes in the block device mapping\.
 
 **Note**  
-The EBS performance guarantees stated in [Amazon EBS Product Details](https://aws.amazon.com/ebs/details/) are valid regardless of the block\-device interface\.
+The EBS performance guarantees stated in [Amazon EBS Product Details](http://aws.amazon.com/ebs/details/) are valid regardless of the block\-device interface\.
 
 **Topics**
 + [Install or Upgrade the NVMe Driver](#install-nvme-driver)
@@ -71,7 +71,7 @@ EBS uses single\-root I/O virtualization \(SR\-IOV\) to provide volume attachmen
 We recommend that you use stable identifiers for your EBS volumes within your instance, such as one of the following:
 + For Nitro\-based instances, the block device mappings that are specified in the Amazon EC2 console when you are attaching an EBS volume or during `AttachVolume` or `RunInstances` API calls are captured in the vendor\-specific data field of the NVMe controller identification\. With Amazon Linux AMIs later than version 2017\.09\.01, we provide a `udev` rule that reads this data and creates a symbolic link to the block\-device mapping\.
 + NVMe\-attached EBS volumes have the EBS volume ID set as the serial number in the device identification\.
-+ When a device is formatted, a UUID is generated that persists for the life of the filesystem\. A device label can be specified at the same time\. For more information, see [Making an Amazon EBS Volume Available for Use on Linux](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html) and [Booting from the Wrong Volume](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-booting-from-wrong-volume.html)\.
++ When a device is formatted, a UUID is generated that persists for the life of the filesystem\. A device label can be specified at the same time\. For more information, see [Making an Amazon EBS Volume Available for Use on Linux](ebs-using-volumes.md) and [Booting from the Wrong Volume](instance-booting-from-wrong-volume.md)\.
 
 **Amazon Linux AMIs**  
 With Amazon Linux AMI 2017\.09\.01 or later \(including Amazon Linux 2\), you can run the ebsnvme\-id command as follows to map the NVMe device name to a volume ID and device name:
@@ -121,7 +121,7 @@ If you are using Linux kernel 4\.2 or later, any change you make to the volume s
 [ec2-user ~]$ sudo hdparm -z /dev/nvme1n1
 ```
 
-When you detach an NVMe EBS volume, the instance does not have an opportunity to flush the file system caches or metadata before detaching the volume\. Therefore, before you detach an NVMe EBS volume, you should first sync and unmount it\. If the volume fails to detach, you can attempt a `force-detach` command as described in [Detaching an Amazon EBS Volume from an Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-detaching-volume.html)\.
+When you detach an NVMe EBS volume, the instance does not have an opportunity to flush the file system caches or metadata before detaching the volume\. Therefore, before you detach an NVMe EBS volume, you should first sync and unmount it\. If the volume fails to detach, you can attempt a `force-detach` command as described in [Detaching an Amazon EBS Volume from an Instance](ebs-detaching-volume.md)\.
 
 ## I/O Operation Timeout<a name="timeout-nvme-ebs-volumes"></a>
 

@@ -5,7 +5,7 @@ New EBS volumes receive their maximum performance the moment that they are avail
 However, storage blocks on volumes that were restored from snapshots must be pulled down from Amazon S3 and written to the volume before they can be accessed\. This preliminary action takes time and can significantly increase the latency of I/O operations\. For most applications, amortizing this cost over the lifetime of the volume is acceptable\. The volume's performance is restored after all of the blocks have been downloaded and written to the volume\. To avoid this initial performance hit in a production environment, you can perform an initialization to read all of the blocks on the volume before you use it\.
 
 **Important**  
-While initializing `io1` volumes that were restored from snapshots, the performance of the volume may drop below 50 percent of its expected level, which causes the volume to display a `warning` state in the **I/O Performance** status check\. This is expected, and you can ignore the `warning` state on `io1` volumes while you are initializing them\. For more information, see [Monitoring Volumes with Status Checks](monitoring-volume-status.md#monitoring-volume-checks)\.
+While initializing `io1` volumes that were restored from snapshots, the performance of the volume may drop below 50 percent of its expected level, which causes the volume to display a `warning` state in the **I/O Performance** status check\. This is expected, and you can ignore the `warning` state on `io1` volumes while you are initializing them\. For more information, see [EBS Volume Status Checks](monitoring-volume-status.md#monitoring-volume-checks)\.
 
 ## Initializing Amazon EBS Volumes on Linux<a name="ebs-initialize-linux"></a>
 

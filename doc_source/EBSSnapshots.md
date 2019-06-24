@@ -8,7 +8,7 @@ When you create an EBS volume based on a snapshot, the new volume begins as an e
 
 Snapshots can be used to create a backup of critical workloads, such as a large database or a file system that spans across multiple EBS volumes\. Multi\-volume snapshots allow you to take exact point\-in\-time, data coordinated, and crash\-consistent snapshots across multiple EBS volumes attached to an EC2 instance\. You are no longer required to stop your instance or to coordinate between volumes to ensure crash consistency, because snapshots are automatically taken across multiple EBS volumes\. For more information, see the steps for creating a multi\-volume EBS snapshot under [Creating Amazon EBS Snapshots](ebs-creating-snapshot.md)\.
 
-You can track the status of your EBS snapshots through CloudWatch Events\. For more information, see [Amazon CloudWatch Events for Amazon EBS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-cloud-watch-events.html)\.
+You can track the status of your EBS snapshots through CloudWatch Events\. For more information, see [Amazon CloudWatch Events for Amazon EBS](ebs-cloud-watch-events.md)\.
 
 **Topics**
 + [How Incremental Snapshots Work](#how_snapshots_work)
@@ -60,4 +60,4 @@ If you copy a snapshot and encrypt it to a new CMK, a complete \(non\-incrementa
 
 Complete documentation of possible snapshot encryption scenarios is provided in [Creating Amazon EBS Snapshots](ebs-creating-snapshot.md) and in [Copying an Amazon EBS Snapshot](ebs-copy-snapshot.md)\.
 
-For more information, see [Amazon EBS Encryption](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html)\.
+For more information, see [Amazon EBS Encryption](EBSEncryption.md)\.

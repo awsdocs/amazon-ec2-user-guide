@@ -55,7 +55,7 @@ Metric values for Nitro\-based instances will always be integers \(whole numbers
 |  `EBSIOBalance%`  |  Available only for the smaller instance sizes\. Provides information about the percentage of I/O credits remaining in the burst bucket\. This metric is available for basic monitoring only\. The `Sum` statistic is not applicable to this metric\. Unit: Percent  | 
 |  `EBSByteBalance%`  |  Available only for the smaller instance sizes\. Provides information about the percentage of throughput credits remaining in the burst bucket\. This metric is available for basic monitoring only\. The `Sum` statistic is not applicable to this metric\. Unit: Percent  | 
 
-For information about the metrics provided for your EBS volumes, see [Amazon EBS Metrics](monitoring-volume-status.md#ebs-metrics)\. For information about the metrics provided for your Spot fleets, see [CloudWatch Metrics for Spot Fleet](spot-fleet-cloudwatch-metrics.md)\.
+For information about the metrics provided for your EBS volumes, see [Amazon EBS Metrics](using_cloudwatch_ebs.md#ebs-metrics)\. For information about the metrics provided for your Spot fleets, see [CloudWatch Metrics for Spot Fleet](spot-fleet-cloudwatch-metrics.md)\.
 
 ## Amazon EC2 Dimensions<a name="ec2-cloudwatch-dimensions"></a>
 

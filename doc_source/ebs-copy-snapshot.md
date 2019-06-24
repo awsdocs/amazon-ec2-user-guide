@@ -8,7 +8,7 @@ For information about copying an Amazon RDS snapshot, see [Copying a DB Snapshot
 
 If you would like another account to be able to copy your snapshot, you must either modify the snapshot permissions to allow access to that account or make the snapshot public so that all AWS accounts can copy it\. For more information, see [Sharing an Amazon EBS Snapshot](ebs-modifying-snapshot-permissions.md)\.
 
-For pricing information about copying snapshots across AWS Regions and accounts, see [Amazon EBS Pricing](https://aws.amazon.com/ebs/pricing/)\. Note that snapshot copy operations within a single account and Region do not copy any actual data and therefore are cost\-free as long as the encryption status of the snapshot copy does not change\.
+For pricing information about copying snapshots across AWS Regions and accounts, see [Amazon EBS Pricing](http://aws.amazon.com/ebs/pricing/)\. Note that snapshot copy operations within a single account and Region do not copy any actual data and therefore are cost\-free as long as the encryption status of the snapshot copy does not change\.
 
 **Note**  
 If you copy a snapshot to a new Region, a complete \(non\-incremental\) copy is always created, resulting in additional delay and storage costs\.
@@ -42,7 +42,7 @@ In the case of encrypted snapshots, you must encrypt to the same CMK that was us
   + If you encrypt to the same CMK in a subsequent snapshot copy for the same volume between the same Regions, the copy is incremental\.
   + If you encrypt to a different CMK in a subsequent snapshot copy for the same volume between the same Regions, the copy is a new full copy of the snapshot\.
 
-For more information, see [Encrypt a Snapshot to a New CMK](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#re-encrypt_snapshot)\.
+For more information, see [Re\-Encrypt an Encrypted Snapshot](EBSEncryption.md#reencrypt-snapshot)\.
 
 ## Encryption and Snapshot Copying<a name="creating-encrypted-snapshots"></a>
 
@@ -50,9 +50,11 @@ When you copy a snapshot, you can encrypt the copy or you can specify a CMK diff
 
 To copy an encrypted snapshot shared from another AWS account, you must have permissions to use the snapshot and the customer master key \(CMK\) that was used to encrypt the snapshot\. When using an encrypted snapshot that was shared with you, we recommend that you re\-encrypt the snapshot by copying it using a CMK that you own\. This protects you if the original CMK is compromised, or if the owner revokes it, which could cause you to lose access to any encrypted volumes that you created using the snapshot\. For more information, see [Sharing an Amazon EBS Snapshot](ebs-modifying-snapshot-permissions.md)\.
 
-You apply encryption to EBS snapshot copies by setting the `Encrypted` parameter to `true`\. \(The `Encrypted` parameter is optional if [encryption by default](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#encryption-by-default) is enabled\)\.
+You apply encryption to EBS snapshot copies by setting the `Encrypted` parameter to `true`\. \(The `Encrypted` parameter is optional if [encryption by default](EBSEncryption.md#encryption-by-default) is enabled\)\.
 
-Optionally, you can use `KmsKeyId` to specify a custom key to use to encrypt the snapshot copy\. \(The `Encrypted` parameter must also be set to `true`, even if encryption by default is enabled\.\) If `KmsKeyId` is not specified, the key that is used for encryption depends on the encryption state of the source snapshot and its ownership\. The following table describes the encryption outcome for each possible combination of settings\.
+Optionally, you can use `KmsKeyId` to specify a custom key to use to encrypt the snapshot copy\. \(The `Encrypted` parameter must also be set to `true`, even if encryption by default is enabled\.\) If `KmsKeyId` is not specified, the key that is used for encryption depends on the encryption state of the source snapshot and its ownership\.
+
+The following table describes the encryption outcome for each possible combination of settings\.
 
 
 **Encryption outcomes: Copying a snapshot**  
@@ -77,7 +79,7 @@ Use the following procedure to copy a snapshot using the Amazon EC2 console\.
 1. In the **Copy Snapshot** dialog box, update the following as necessary:
    + **Destination region**: Select the Region where you want to write the copy of the snapshot\.
    + **Description**: By default, the description includes information about the source snapshot so that you can identify a copy from the original\. You can change this description as necessary\.
-   + **Encryption**: If the source snapshot is not encrypted, you can choose to encrypt the copy\. If you have enabled [encryption by default](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/encryption-by-default.html), the **Encryption** option is set and cannot be unset from the snapshot console\. If the **Encryption** option is set, you can choose to encrypt it to a customer managed CMK by selecting one in the field, described below\.
+   + **Encryption**: If the source snapshot is not encrypted, you can choose to encrypt the copy\. If you have enabled [encryption by default](EBSEncryption.md#encryption-by-default), the **Encryption** option is set and cannot be unset from the snapshot console\. If the **Encryption** option is set, you can choose to encrypt it to a customer managed CMK by selecting one in the field, described below\.
 
      You cannot strip encryption from an encrypted snapshot\.
 **Note**  
