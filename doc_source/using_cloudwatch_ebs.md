@@ -41,7 +41,7 @@ The `AWS/EBS` namespace includes the following metrics\.
 
 ## Dimensions for Amazon EBS Metrics<a name="ebs-metric-dimensions"></a>
 
-The only dimension that Amazon EBS sends to CloudWatch is the volume ID\. This means that all available statistics are filtered by volume ID\.
+For the [volume metrics](#ebs-volume-metrics), the supported dimension is the volume ID \(`VolumeId`\)\. All available statistics are filtered by volume ID\.
 
 ## Graphs in the Amazon EC2 Console<a name="graphs-in-the-aws-management-console-2"></a>
 

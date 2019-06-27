@@ -1,6 +1,6 @@
 # Connecting to Your Linux Instance from Windows Using Windows Subsystem for Linux<a name="WSL"></a>
 
-The following instructions explain how to connect to your instance using a Linux distribution on the Windows Subsystem for Linux \(WSL\)\. WSL is a free download and enables you to run native Linux command\-line tools directly on Windows, alongside your traditional Windows desktop, without the overhead of a virtual machine\. 
+The following instructions explain how to connect to your instance using a Linux distribution on the Windows Subsystem for Linux \(WSL\)\. WSL is a free download and enables you to run native Linux command line tools directly on Windows, alongside your traditional Windows desktop, without the overhead of a virtual machine\. 
 
 By installing WSL, you can use a native Linux environment to connect to your Linux EC2 instances instead of using PuTTY or PuTTYgen\. The Linux environment makes it easier to connect to your Linux instances because it comes with a native SSH client that you can use to connect to your Linux instances and change the permissions of the \.pem key file\. The Amazon EC2 console provides the SSH command for connecting to the Linux instance, and you can get verbose output from the SSH command for troubleshooting\. For more information, see the [Windows Subsystem for Linux Documentation](https://docs.microsoft.com/en-us/windows/wsl/about)\.
 
@@ -13,9 +13,9 @@ If you receive an error while attempting to connect to your instance, see [Troub
 
 **Contents**
 + [Prerequisites](#ssh-prereqs)
-+ [Connecting to Your Linux Instance using the Windows Subsystem for Linux](#Connect-Linux-WSL)
++ [Connect to Your Linux Instance using WSL](#Connect-Linux-WSL)
 + [Transferring Files to Linux Instances from Linux Using SCP](#Connect-Linux-WSL-SCP)
-+ [Uninstalling Windows Subsystem for Linux](#uninstall-WSL)
++ [Uninstalling WSL](#uninstall-WSL)
 
 **Note**  
 After you've installed the WSL, all the prerequisites and steps are the same as those described in [Connecting to Your Linux Instance Using SSH](AccessingInstancesLinux.md), and the experience is just like using native Linux\.
@@ -37,7 +37,7 @@ Before you connect to your Linux instance, complete the following prerequisites:
   cp /mnt/<Windows drive letter>/path/my-key-pair.pem ~/WSL-path/my-key-pair.pem
   ```
 
-## Connecting to Your Linux Instance using the Windows Subsystem for Linux<a name="Connect-Linux-WSL"></a>
+## Connect to Your Linux Instance using WSL<a name="Connect-Linux-WSL"></a>
 
 Use the following procedure to connect to your Linux instance using the Windows Subsystem for Linux \(WSL\)\. If you receive an error while attempting to connect to your instance, see [Troubleshooting Connecting to Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html)\.
 
@@ -144,6 +144,6 @@ The following procedure steps you through using SCP to transfer a file\. If you'
    scp -i /path/my-key-pair.pem ec2-user@\[2001:db8:1234:1a00:9691:9503:25ad:1761\]:~/SampleFile.txt ~/SampleFile2.txt
    ```
 
-## Uninstalling Windows Subsystem for Linux<a name="uninstall-WSL"></a>
+## Uninstalling WSL<a name="uninstall-WSL"></a>
 
 For information about uninstalling Windows Subsystem for Linux, see [How do I uninstall a WSL Distribution?](https://docs.microsoft.com/en-us/windows/wsl/faq#how-do-i-uninstall-a-wsl-distribution)\.

@@ -78,3 +78,63 @@ The following log file record shows that a user terminated an instance\.
    ]
 }
 ```
+
+## Using AWS CloudTrail to Audit Users that Connect via EC2 Instance Connect<a name="ec2-instance-connect-cloudtrail"></a>
+
+Use AWS CloudTrail to audit the users that connect to your instances via EC2 Instance Connect\.
+
+**To audit SSH activity via EC2 Instance Connect using the AWS CloudTrail console**
+
+1. Open the AWS CloudTrail console at [https://console.aws.amazon.com/cloudtrail/](https://console.aws.amazon.com/cloudtrail/)\.
+
+1. Verify that you are in the correct Region\.
+
+1. In the navigation pane, choose **Event history**\.
+
+1. For **Filter**, choose **Event source**, **ec2\-instance\-connect\.amazonaws\.com**\.
+
+1. \(Optional\) For **Time range**, select a time range\.
+
+1. Choose the **Refresh events** icon\.
+
+1. The page displays the events that correspond to the `[SendSSHPublicKey](https://docs.aws.amazon.com/ec2-instance-connect/latest/APIReference/API_SendSSHPublicKey.html)` API calls\. Expand an event using the arrow to view additional details, such as the user name and AWS access key that was used to make the SSH connection, and the source IP address\.
+
+1. To display the full event information in JSON format, choose **View event**\. The **requestParameters** field contains the destination instance ID, OS user name, and public key that were used to make the SSH connection\.
+
+   ```
+   {
+       "eventVersion": "1.05",
+       "userIdentity": {
+           "type": "IAMUser",
+           "principalId": "ABCDEFGONGNOMOOCB6XYTQEXAMPLE",
+           "arn": "arn:aws:iam::1234567890120:user/IAM-friendly-name",
+           "accountId": "123456789012",
+           "accessKeyId": "ABCDEFGUKZHNAW4OSN2AEXAMPLE",
+           "userName": "IAM-friendly-name",
+           "sessionContext": {
+               "attributes": {
+                   "mfaAuthenticated": "false",
+                   "creationDate": "2018-09-21T21:37:58Z"}
+           }
+       },
+       "eventTime": "2018-09-21T21:38:00Z",
+       "eventSource": "ec2-instance-connect.amazonaws.com",
+       "eventName": "SendSSHPublicKey ",
+       "awsRegion": "us-west-2",
+       "sourceIPAddress": "123.456.789.012",
+       "userAgent": "aws-cli/1.15.61 Python/2.7.10 Darwin/16.7.0 botocore/1.10.60",
+       "requestParameters": {
+           "instanceId": "i-0123456789EXAMPLE",
+           "osUser": "ec2-user",
+           "SSHKey": {
+               "publicKey": "ssh-rsa ABCDEFGHIJKLMNO01234567890EXAMPLE"
+           }
+       "responseElements": null,
+       "requestID": "1a2s3d4f-bde6-11e8-a892-f7ec64543add",
+       "eventID": "1a2w3d4r5-a88f-4e28-b3bf-30161f75be34",
+       "eventType": "AwsApiCall",
+       "recipientAccountId": "0987654321"
+   }
+   ```
+
+   If you have configured your AWS account to collect CloudTrail events in an S3 bucket, you can download and audit the information programmatically\. For more information, see [Getting and Viewing Your CloudTrail Log Files](https://docs.aws.amazon.com/awscloudtrail/latest/userguide//get-and-view-cloudtrail-log-files.html) in the *AWS CloudTrail User Guide*\.

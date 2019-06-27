@@ -7,16 +7,16 @@
 + [\(Optional\) Get the Instance Fingerprint](#connection-prereqs-fingerprint)
 
 ## Get Information About Your Instance<a name="connection-prereqs-get-info-about-instance"></a>
-+ **Get the ID of the instance**
++ **Get the ID of the instance\.**
 
   You can get the ID of your instance using the Amazon EC2 console \(from the **Instance ID** column\)\. If you prefer, you can use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) \(AWS CLI\) or [Get\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html) \(AWS Tools for Windows PowerShell\) command\.
-+ **Get the public DNS name of the instance**
++ **Get the public DNS name of the instance\.**
 
   You can get the public DNS for your instance using the Amazon EC2 console\. Check the **Public DNS \(IPv4\)** column\. If this column is hidden, choose the **Show/Hide** icon and select **Public DNS \(IPv4\)**\. If you prefer, you can use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) \(AWS CLI\) or [Get\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html) \(AWS Tools for Windows PowerShell\) command\.
-+ **\(IPv6 only\) Get the IPv6 address of the instance**
++ **\(IPv6 only\) Get the IPv6 address of the instance\.**
 
   If you've assigned an IPv6 address to your instance, you can optionally connect to the instance using its IPv6 address instead of a public IPv4 address or public IPv4 DNS hostname\. Your local computer must have an IPv6 address and must be configured to use IPv6\. You can get the IPv6 address of your instance using the Amazon EC2 console\. Check the **IPv6 IPs** field\. If you prefer, you can use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) \(AWS CLI\) or [Get\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html) \(AWS Tools for Windows PowerShell\) command\. For more information about IPv6, see [IPv6 Addresses](using-instance-addressing.md#ipv6-addressing)\.
-+ **Get the default user name for the AMI that you used to launch your instance**
++ **Get the default user name for the AMI that you used to launch your instance:**
   + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
   + For a CentOS AMI, the user name is `centos`\.
   + For a Debian AMI, the user name is `admin` or `root`\.
@@ -27,7 +27,7 @@
   + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
 
 ## Enable Inbound Traffic to Your Instance<a name="connection-prereqs-enable-inbound-traffic"></a>
-+ **Enable inbound SSH traffic from your IP address to your instance**
++ **Enable inbound SSH traffic from your IP address to your instance\.**
 
   Ensure that the security group associated with your instance allows incoming SSH traffic from your IP address\. The default security group for the VPC does not allow incoming SSH traffic by default\. The security group created by the launch wizard enables SSH traffic by default\. For more information, see [Authorizing Inbound Traffic for Your Linux Instances](authorizing-access-to-an-instance.md)\.
 
@@ -40,7 +40,7 @@
 
 **To set the permissions of your private key**
 
-1. In a command\-line shell, change directories to the location of the private key file that you created when you launched the instance\.
+1. In a command line shell, change directories to the location of the private key file that you created when you launched the instance\.
 
 1. Use the following command to set the permissions of your private key file so that only you can read it\.
 

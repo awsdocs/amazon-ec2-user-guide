@@ -8,15 +8,15 @@ After you launch your instance, you can connect to it and use it the way that yo
 After you launch an instance, it can take a few minutes for the instance to be ready so that you can connect to it\. Check that your instance has passed its status checks\. You can view this information in the **Status Checks** column on the **Instances** page\.
 
 ## Prerequisites<a name="mindterm-prereqs"></a>
-+ **Verify that your browser supports the NPAPI plugin**
++ **Verify that your browser supports the NPAPI plugin**\.
 
   If your browser does not support the NPAPI plugin, it can't run the MindTerm client\.
 **Important**  
 The Chrome browser does not support the NPAPI plugin\. For more information, see the Chromium [NPAPI deprecation article](https://www.chromium.org/developers/npapi-deprecation)\. The FireFox browser does not support the NPAPI plugin\. For more information, see the Java [NPAPI deprecation article](https://www.java.com/en/download/faq/firefox_java.xml)\. The Safari browser does not support the NPAPI plugin\. For more information, see the Safari [ NPAPI deprecation article\.](https://java.com/en/download/faq/safari.xml) For information about the deprecation of NPAPI, see the [NPAPI Wikipedia](https://en.wikipedia.org/wiki/NPAPI#Support/deprecation) article\.
-+ **Install Java**
++ **Install Java**\.
 
   Your Linux computer most likely includes Java\. If not, see [How do I enable Java in my web browser?](https://java.com/en/download/help/index_installing.xml)\. On a Windows or macOS client, you must run your browser using administrator credentials\. For Linux, additional steps may be required if you are not logged in as `root`\.
-+ **Enable Java in your browser**
++ **Enable Java in your browser**\.
 
   For instructions, see [https://java\.com/en/download/help/enable\_browser\.xml](https://java.com/en/download/help/enable_browser.xml)\.
 + **Locate the private key**** and verify permissions**
@@ -24,7 +24,7 @@ The Chrome browser does not support the NPAPI plugin\. For more information, see
   Get the fully\-qualified path to the location on your computer of the `.pem` file for the key pair that you specified when you launched the instance\. For more information about how you created your key pair, see [Creating a Key Pair Using Amazon EC2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#having-ec2-create-your-key-pair)\.
 
    Verify that the `.pem` file has permissions of 0400, not 0777\. For more information, see [Error: Unprotected Private Key File](TroubleshootingInstancesConnecting.md#troubleshoot-unprotected-key)\.
-+ **Get the default user name for the AMI that you used to launch your instance**
++ **Get the default user name for the AMI that you used to launch your instance:**
   + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
   + For a CentOS AMI, the user name is `centos`\.
   + For a Debian AMI, the user name is `admin` or `root`\.
@@ -33,19 +33,21 @@ The Chrome browser does not support the NPAPI plugin\. For more information, see
   + For a SUSE AMI, the user name is `ec2-user` or `root`\.
   + For an Ubuntu AMI, the user name is `ubuntu`\.
   + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
-+ **Enable inbound SSH traffic from your IP address to your instance**
++ **Enable inbound SSH traffic from your IP address to your instance\.**
 
   Ensure that the security group associated with your instance allows incoming SSH traffic from your IP address\. The default security group for the VPC does not allow incoming SSH traffic by default\. The security group created by the launch wizard enables SSH traffic by default\. For more information, see [Authorizing Inbound Traffic for Your Linux Instances](authorizing-access-to-an-instance.md)\.
 
-## Starting MindTerm<a name="mindterm-connect"></a>
+## Connect to Your Linux Instance Using MindTerm<a name="mindterm-connect"></a>
+
+Use the following procedure to connect to your Linux instance using MindTerm\. If you receive an error while attempting to connect to your instance, see [Troubleshooting Connecting to Your Instance](TroubleshootingInstancesConnecting.md)\.
 
 **To connect to your instance using a web browser with MindTerm**
 
-1. In the Amazon EC2 console, choose **Instances** in the navigation pane\.
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. Select the instance, and then choose **Connect**\.
+1. In the navigation pane, choose **Instances**\.
 
-1. Choose **A Java SSH client directly from my browser \(Java required\)**\.
+1. Select the instance and choose **Connect**, **A Java SSH client directly from my browser \(Java required\)**\.
 
 1. Amazon EC2 automatically detects the public DNS name of your instance and then populates **Public DNS** for you\. It also detects the name of the key pair that you specified when you launched the instance\. Complete the following, and then choose **Launch SSH Client**\.
 
@@ -71,10 +73,10 @@ The Chrome browser does not support the NPAPI plugin\. For more information, see
 
 1. A dialog prompts you to add the host to your set of known hosts\. If you do not want to store the host key information on your local computer, choose **No**\.
 
-1. A window opens and you are connected to your instance\. 
+A window opens and you are connected to your instance\. 
 
-   If you chose **No** in the previous step, you see the following message, which is expected:
+If you chose **No** in the previous step, you see the following message, which is expected:
 
-   ```
-   Verification of server key disabled in this session.
-   ```
+```
+Verification of server key disabled in this session.
+```

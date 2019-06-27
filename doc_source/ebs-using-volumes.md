@@ -105,13 +105,19 @@ You can use the device name, such as `/dev/xvdf`, in `/etc/fstab`, but we recomm
    /dev/xvdf: UUID="aebf131c-6957-451e-8d34-ec978d9581ae" TYPE="xfs"
    ```
 
+   For Ubuntu 18\.04 use the lsblk command\.
+
+   ```
+   [ec2-user ~]$ sudo lsblk -o +UUID
+   ```
+
 1. Open the `/etc/fstab` file using any text editor, such as nano or vim\.
 
    ```
    [ec2-user ~]$ sudo vim /etc/fstab
    ```
 
-1. Add the following entry to `/etc/fstab` to mount the device at the specified mount point\. The fields are the UUID value returned by blkid, the mount point, the file system, and the recommended file system mount options\. For more information, see the manual page for fstab \(run man fstab\)\.
+1. Add the following entry to `/etc/fstab` to mount the device at the specified mount point\. The fields are the UUID value returned by blkid \(or lsblk for Ubuntu 18\.04\), the mount point, the file system, and the recommended file system mount options\. For more information, see the manual page for fstab \(run man fstab\)\.
 
    ```
    UUID=aebf131c-6957-451e-8d34-ec978d9581ae  /data  xfs  defaults,nofail  0  2

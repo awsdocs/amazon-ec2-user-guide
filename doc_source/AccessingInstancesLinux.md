@@ -17,7 +17,7 @@ Before you connect to your Linux instance, complete the following prerequisites:
 
   Your local computer most likely has an SSH client installed by default\. You can check for an SSH client by typing ssh at the command line\. If your local computer doesn't recognize the command, you can install an SSH client\. For information about installing an SSH client on Linux or macOS X, see [http://www\.openssh\.com](http://www.openssh.com/)\. For information about installing an SSH client on Windows 10, see [OpenSSH in Windows](https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_overview)\.
 
-## Connecting to Your Linux Instance<a name="AccessingInstancesLinuxSSHClient"></a>
+## Connect to Your Linux Instance using an SSH Client<a name="AccessingInstancesLinuxSSHClient"></a>
 
 Use the following procedure to connect to your Linux instance using an SSH client\. If you receive an error while attempting to connect to your instance, see [Troubleshooting Connecting to Your Instance](TroubleshootingInstancesConnecting.md)\.
 
@@ -46,9 +46,7 @@ Use the following procedure to connect to your Linux instance using an SSH clien
 
 1. \(Optional\) Verify that the fingerprint in the security alert matches the fingerprint that you previously obtained in [\(Optional\) Get the Instance Fingerprint](connection-prereqs.md#connection-prereqs-fingerprint)\. If these fingerprints don't match, someone might be attempting a "man\-in\-the\-middle" attack\. If they match, continue to the next step\.
 
-1. Enter `yes`\.
-
-   You see a response like the following:
+1. Enter `yes`\. You see a response like the following:
 
    ```
    Warning: Permanently added 'ec2-198-51-100-1.compute-1.amazonaws.com' (RSA) 
@@ -118,7 +116,7 @@ The following procedure steps you through using SCP to transfer a file\. If you'
    scp -i /path/my-key-pair.pem ec2-user@ec2-198-51-100-1.compute-1.amazonaws.com:~/SampleFile.txt ~/SampleFile2.txt
    ```
 
-1. \(IPv6 only\) Alternatively, you can transfer files in the other direction using the instance's IPv6 address\.
+1. \(IPv6 only\) Alternatively, you can transfer files in the other direction using the instance's IPv6 address:
 
    ```
    scp -i /path/my-key-pair.pem ec2-user@\[2001:db8:1234:1a00:9691:9503:25ad:1761\]:~/SampleFile.txt ~/SampleFile2.txt

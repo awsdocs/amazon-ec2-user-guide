@@ -7,6 +7,7 @@ The following table describes important additions to the Amazon EC2 documentatio
 
 | Feature | API Version | Description | Release Date | 
 | --- | --- | --- | --- | 
+| EC2 Instance Connect | 2016\-11\-15 |  EC2 Instance Connect is a simple and secure way to connect to your instances using Secure Shell \(SSH\)\. For more information, see [Connecting to Your Linux Instance Using EC2 Instance Connect](Connect-using-EC2-Instance-Connect.md)\.  | 27 June 2019 | 
 | Host recovery | 2016\-11\-15 | Automatically restart your instances on a new host in the event of an unexpected hardware failure on a Dedicated Host\. For more information, see [Host Recovery](dedicated-hosts-recovery.md)\. | 5 June 2019 | 
 | Amazon EBS multi\-volume snapshots | 2016\-11\-15 | Take exact point\-in\-time, data coordinated, and crash\-consistent snapshots across multiple EBS volumes attached to an EC2 instance\. | 29 May 2019 | 
 | Amazon EBS encryption by default | 2016\-11\-15 | After you enable encryption by default in a Region, all new EBS volumes you create in the Region are encrypted using the default CMK for EBS encryption\. For more information, see [Encryption by Default](EBSEncryption.md#encryption-by-default)\. | 23 May 2019 | 
