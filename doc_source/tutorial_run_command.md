@@ -36,13 +36,13 @@ To install SSM Agent on Linux, see [Installing and Configuring SSM Agent on Amaz
 
 To install SSM Agent on Windows, see [Installing and Configuring SSM Agent on Windows Instances](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-install-ssm-win.html) in the *AWS Systems Manager User Guide*\.
 
-## Send a Command Using the EC2 Console<a name="rc-tutorial-ui"></a>
+## Send a Command Using the Systems Manager Console<a name="rc-tutorial-ui"></a>
 
 Use the following procedure to list all services running on the instance by using Run Command from the Amazon EC2 console\.
 
-**To run a command using Run Commandfrom the console**
+**To run a command using Run Command from the console**
 
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+1. Open the Systems Manager console at [https://console\.aws\.amazon\.com/systems\-manager](https://console.aws.amazon.com/systems-manager)\.
 
 1. In the navigation pane, choose **Run Command**\.
 

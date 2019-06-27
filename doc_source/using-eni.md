@@ -157,14 +157,18 @@ The following table lists the maximum number of network interfaces per instance 
 | m5\.xlarge | 4 | 15 | 15 | 
 | m5\.2xlarge | 4 | 15 | 15 | 
 | m5\.4xlarge | 8 | 30 | 30 | 
+| `m5.8xlarge` | 8 | 30 | 30 | 
 | m5\.12xlarge | 8 | 30 | 30 | 
+| `m5.16xlarge` | 15 | 50 | 50 | 
 | m5\.24xlarge | 15 | 50 | 50 | 
 | m5\.metal | 15 | 50 | 50 | 
 | m5a\.large | 3 | 10 | 10 | 
 | m5a\.xlarge | 4 | 15 | 15 | 
 | m5a\.2xlarge | 4 | 15 | 15 | 
 | m5a\.4xlarge | 8 | 30 | 30 | 
+| `m5a.8xlarge` | 8 | 30 | 30 | 
 | m5a\.12xlarge | 8 | 30 | 30 | 
+| `m5a.16xlarge` | 15 | 50 | 50 | 
 | m5a\.24xlarge | 15 | 50 | 50 | 
 | m5ad\.large | 3 | 10 | 10 | 
 | m5ad\.xlarge | 4 | 15 | 15 | 
@@ -201,14 +205,18 @@ The following table lists the maximum number of network interfaces per instance 
 | r5\.xlarge | 4 | 15 | 15 | 
 | r5\.2xlarge | 4 | 15 | 15 | 
 | r5\.4xlarge | 8 | 30 | 30 | 
+| `r5.8xlarge` | 8 | 30 | 30 | 
 | r5\.12xlarge | 8 | 30 | 30 | 
+| r5\.16xlarge | 15 | 50 | 50 | 
 | r5\.24xlarge | 15 | 50 | 50 | 
 | r5\.metal | 15 | 50 | 50 | 
 | r5a\.large | 3 | 10 | 10 | 
 | r5a\.xlarge | 4 | 15 | 15 | 
 | r5a\.2xlarge | 4 | 15 | 15 | 
 | r5a\.4xlarge | 8 | 30 | 30 | 
+| `r5a.8xlarge` | 8 | 30 | 30 | 
 | r5a\.12xlarge | 8 | 30 | 30 | 
+| r5a\.16xlarge | 15 | 50 | 50 | 
 | r5a\.24xlarge | 15 | 50 | 50 | 
 | r5ad\.large | 3 | 10 | 10 | 
 | r5ad\.xlarge | 4 | 15 | 15 | 
@@ -220,7 +228,9 @@ The following table lists the maximum number of network interfaces per instance 
 | r5d\.xlarge | 4 | 15 | 15 | 
 | r5d\.2xlarge | 4 | 15 | 15 | 
 | r5d\.4xlarge | 8 | 30 | 30 | 
+| `r5d.8xlarge` | 8 | 30 | 30 | 
 | r5d\.12xlarge | 8 | 30 | 30 | 
+| r5d\.16xlarge | 15 | 50 | 50 | 
 | r5d\.24xlarge | 15 | 50 | 50 | 
 | r5d\.metal | 15 | 50 | 50 | 
 |  `t1.micro`  |  2  |  2  | IPv6 not supported | 

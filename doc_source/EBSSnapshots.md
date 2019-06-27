@@ -54,6 +54,8 @@ EBS snapshots fully support EBS encryption\.
 + Volumes that you create from an unencrypted snapshot that you own or have access to can be encrypted on\-the\-fly\.
 + When you copy an unencrypted snapshot that you own, you can encrypt it during the copy process\.
 + When you copy an encrypted snapshot that you own or have access to, you can reencrypt it with a different key during the copy process\.
++ The first snapshot you take of an encrypted volume that has been created from an unencrypted snapshot is always a full snapshot\.
++ The first snapshot you take of a reencrypted volume, which has a different CMK compared to the source snapshot, is always a full snapshot\.
 
 **Note**  
 If you copy a snapshot and encrypt it to a new CMK, a complete \(non\-incremental\) copy is always created, resulting in additional delay and storage costs\.

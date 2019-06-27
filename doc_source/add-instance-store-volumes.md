@@ -8,6 +8,8 @@ You can use a block device mapping to specify additional EBS volumes when you la
 
 You can specify the instance store volumes for your instance only when you launch an instance\. You can't attach instance store volumes to an instance after you've launched it\.
 
+If you change the instance type, an instance store will not be attached to the new instance type\. For more information, see [Changing the Instance Type](ec2-instance-resize.md) \.
+
 The number and size of available instance store volumes for your instance varies by instance type\. Some instance types do not support instance store volumes\. For more information about the instance store volumes support by each instance type, see [Instance Store Volumes](InstanceStorage.md#instance-store-volumes)\. If the instance type you choose for your instance supports instance store volumes, you must add them to the block device mapping for the instance when you launch it\. After you launch the instance, you must ensure that the instance store volumes for your instance are formatted and mounted before you can use them\. The root volume of an instance store\-backed instance is mounted automatically\.
 
 **Topics**

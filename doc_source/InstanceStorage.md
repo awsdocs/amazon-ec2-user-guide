@@ -31,6 +31,8 @@ When you stop or terminate an instance, every block of storage in the instance s
 
 If you create an AMI from an instance, the data on its instance store volumes isn't preserved and isn't present on the instance store volumes of the instances that you launch from the AMI\.
 
+If you change the instance type, an instance store will not be attached to the new instance type\. For more information, see [Changing the Instance Type](ec2-instance-resize.md) \.
+
 ## Instance Store Volumes<a name="instance-store-volumes"></a>
 
 The instance type determines the size of the instance store available and the type of hardware used for the instance store volumes\. Instance store volumes are included as part of the instance's usage cost\. You must specify the instance store volumes that you'd like to use when you launch the instance \(except for NVMe instance store volumes, which are available by default\)\. Then format and mount the instance store volumes before using them\. You can't make an instance store volume available after you launch the instance\. For more information, see [Add Instance Store Volumes to Your EC2 Instance](add-instance-store-volumes.md)\.
@@ -110,7 +112,9 @@ The following table provides the quantity, size, type, and performance optimizat
 | m5d\.xlarge | 1 x 150 GB | NVMe SSD |  | ✔ | 
 | m5d\.2xlarge | 1 x 300 GB | NVMe SSD |  | ✔ | 
 | m5d\.4xlarge | 2 x 300 GB \(600 GB\) | NVMe SSD |  | ✔ | 
+| m5d\.8xlarge | 2 x 600 GB \(1\.2 TB\) | NVMe SSD |  | ✔ | 
 | m5d\.12xlarge | 2 x 900 GB \(1\.8 TB\) | NVMe SSD |  | ✔ | 
+| m5d\.16xlarge | 4 x 600 GB \(2\.4 TB\) | NVMe SSD |  | ✔ | 
 | m5d\.24xlarge | 4 x 900 GB \(3\.6 TB\) | NVMe SSD |  | ✔ | 
 | m5d\.metal | 4 x 900 GB \(3\.6 TB\) | NVMe SSD |  | ✔ | 
 | p3dn\.24xlarge | 2 x 900 GB \(1\.8 TB\) | NVMe SSD |  | ✔ | 
@@ -129,7 +133,9 @@ The following table provides the quantity, size, type, and performance optimizat
 | r5d\.xlarge | 1 x 150 GB | NVMe SSD |  | ✔ | 
 | r5d\.2xlarge | 1 x 300 GB | NVMe SSD |  | ✔ | 
 | r5d\.4xlarge | 2 x 300 GB \(600 GB\) | NVMe SSD |  | ✔ | 
+| r5d\.8xlarge | 2 x 600 GB \(1\.2 TB\) | NVMe SSD |  | ✔ | 
 | r5d\.12xlarge | 2 x 900 GB \(1\.8 TB\) | NVMe SSD |  | ✔ | 
+| r5d\.16xlarge | 4 x 600 GB \(2\.4 TB\) | NVMe SSD |  | ✔ | 
 | r5d\.24xlarge | 4 x 900 GB \(3\.6 TB\) | NVMe SSD |  | ✔ | 
 | r5d\.metal | 4 x 900 GB \(3\.6 TB\) | NVMe SSD |  | ✔ | 
 |  `x1.16xlarge`  |  1 x 1,920 GB  | SSD |  |  | 

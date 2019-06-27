@@ -77,14 +77,18 @@ The following is a summary of the hardware specifications for memory optimized i
 | r5\.xlarge | 4 | 32 | 
 | r5\.2xlarge | 8 | 64 | 
 | r5\.4xlarge | 16 | 128 | 
+| r5\.8xlarge | 32 | 256 | 
 | r5\.12xlarge | 48 | 384 | 
+| r5\.16xlarge | 64 | 512 | 
 | r5\.24xlarge | 96 | 768 | 
 | r5\.metal | 96 | 768 | 
 | r5a\.large | 2 | 16 | 
 | r5a\.xlarge | 4 | 32 | 
 | r5a\.2xlarge | 8 | 64 | 
 | r5a\.4xlarge | 16 | 128 | 
+| r5a\.8xlarge | 32 | 256 | 
 | r5a\.12xlarge | 48 | 384 | 
+| r5a\.16xlarge | 64 | 512 | 
 | r5a\.24xlarge | 96 | 768 | 
 | r5ad\.large | 2 | 16 | 
 | r5ad\.xlarge | 4 | 32 | 
@@ -96,7 +100,9 @@ The following is a summary of the hardware specifications for memory optimized i
 | r5d\.xlarge | 4 | 32 | 
 | r5d\.2xlarge | 8 | 64 | 
 | r5d\.4xlarge | 16 | 128 | 
+| r5d\.8xlarge | 32 | 256 | 
 | r5d\.12xlarge | 48 | 384 | 
+| r5d\.16xlarge | 64 | 512 | 
 | r5d\.24xlarge | 96 | 768 | 
 | r5d\.metal | 96 | 768 | 
 | u\-6tb1\.metal | 448 \* | 6,144 | 
@@ -155,9 +161,10 @@ The following is a summary of network performance for memory optimized instances
 
 | Instance type | Network performance | Enhanced networking | 
 | --- | --- | --- | 
-|  `r4.4xlarge` and smaller \| `r5.4xlarge` and smaller \| `r5a.4xlarge` and smaller \| `r5ad.4xlarge` and smaller \| `r5d.4xlarge` and smaller \| `x1e.8large` and smaller \| `z1d.3xlarge` and smaller  |  Up to 10 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  `r4.8xlarge` \| `r5.12xlarge` \| `r5a.12xlarge` \| `r5ad.12xlarge` \| `r5d.12xlarge` \| `x1.16xlarge` \| `x1e.16xlarge` \| `z1d.6xlarge`  |  10 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  `r5a.24xlarge` \| `r5ad.24xlarge`  |  20 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `r4.4xlarge` and smaller \| `r5.4xlarge` and smaller \| `r5a.8xlarge` and smaller \| `r5ad.4xlarge` and smaller \| `r5d.4xlarge` and smaller \| `x1e.8large` and smaller \| `z1d.3xlarge` and smaller  |  Up to 10 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `r4.8xlarge` \| `r5.8xlarge` \| `r5.12xlarge` \| `r5a.12xlarge` \| `r5ad.12xlarge` \| `r5d.8xlarge` \| `r5d.12xlarge` \| `x1.16xlarge` \| `x1e.16xlarge` \| `z1d.6xlarge`  |  10 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `r5a.16xlarge` \| `r5ad.16xlarge`  |  12 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `r5.16xlarge` \| `r5a.24xlarge` \| `r5ad.24xlarge` \| `r5d.16xlarge`  |  20 Gbps  | [ENA](enhanced-networking-ena.md) | 
 |  `r4.16xlarge` \| `r5.24xlarge` \| `r5.metal` \| `r5d.24xlarge` \| `r5d.metal` \| `u-6tb1.metal` \| `u-9tb1.metal` \| `u-12tb1.metal` \| `x1.32xlarge` \| `x1e.32xlarge` \| `z1d.12xlarge` \| `z1d.metal`  |  25 Gbps  | [ENA](enhanced-networking-ena.md) | 
 
 ## SSD I/O Performance<a name="r5d-z1d-instances-ssd-perf"></a>
@@ -177,7 +184,9 @@ If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-ba
 |  `r5d.xlarge` \*  |  59,000  |  29,000  | 
 |  `r5d.2xlarge` \*  |  117,000  |  57,000  | 
 |  `r5d.4xlarge` \*  |  234,000  |  114,000  | 
+|  `r5d.8xlarge`  |  466,666  |  233,333  | 
 |  `r5d.12xlarge`  |  700,000  |  340,000  | 
+|  `r5d.16xlarge`  |  933,333  |  466,666  | 
 |  `r5d.24xlarge`  |  1,400,000  |  680,000  | 
 |  `r5d.metal`  |  1,400,000  |  680,000  | 
 |  `z1d.large` \*  |  30,000  |  15,000  | 

@@ -69,14 +69,18 @@ The following is a summary of the hardware specifications for general purpose in
 | m5\.xlarge | 4 | 16 | 
 | m5\.2xlarge | 8 | 32 | 
 | m5\.4xlarge | 16 | 64 | 
+| m5\.8xlarge | 32 | 128 | 
 | m5\.12xlarge | 48 | 192 | 
+| m5\.16xlarge | 64 | 256 | 
 | m5\.24xlarge | 96 | 384 | 
 | m5\.metal | 96 | 384 | 
 | m5a\.large | 2 | 8 | 
 | m5a\.xlarge | 4 | 16 | 
 | m5a\.2xlarge | 8 | 32 | 
 | m5a\.4xlarge | 16 | 64 | 
+| m5a\.8xlarge | 32 | 128 | 
 | m5a\.12xlarge | 48 | 192 | 
+| m5a\.16xlarge | 64 | 256 | 
 | m5a\.24xlarge | 96 | 384 | 
 | m5ad\.large | 2 | 8 | 
 | m5ad\.xlarge | 4 | 16 | 
@@ -88,7 +92,9 @@ The following is a summary of the hardware specifications for general purpose in
 | m5d\.xlarge | 4 | 16 | 
 | m5d\.2xlarge | 8 | 32 | 
 | m5d\.4xlarge | 16 | 64 | 
+| m5d\.8xlarge | 32 | 128 | 
 | m5d\.12xlarge | 48 | 192 | 
+| m5d\.16xlarge | 64 | 256 | 
 | m5d\.24xlarge | 96 | 384 | 
 | m5d\.metal | 96 | 384 | 
 | t2\.nano | 1 | 0\.5 | 
@@ -138,10 +144,11 @@ The following is a summary of network performance for general purpose instances 
 | t3\.nano \| t3\.micro \| t3\.small \| t3\.medium \| t3\.large \| t3\.xlarge \| t3\.2xlarge \| t3a\.nano \| t3a\.micro \| t3a\.small \| t3a\.medium \| t3a\.large \| t3a\.xlarge \| t3a\.2xlarge | Up to 5 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  `m4.large`  |  Moderate  |  [Intel 82599 VF](sriov-networking.md)  | 
 |  `m4.xlarge` \| `m4.2xlarge` \| `m4.4xlarge`  |  High  |  [Intel 82599 VF](sriov-networking.md)  | 
-|  `a1.medium` \| `a1.large` \| `a1.xlarge` \| `a1.2xlarge` \| `a1.4xlarge` \| `m5.large` \| `m5.xlarge` \| `m5.2xlarge` \| `m5.4xlarge` \| `m5a.large` \| `m5a.xlarge` \| `m5a.2xlarge` \| `m5a.4xlarge` \| `m5ad.large` \| `m5ad.xlarge` \| `m5ad.2xlarge` \| `m5ad.4xlarge` \| `m5d.large` \| `m5d.xlarge` \| `m5d.2xlarge` \| `m5d.4xlarge`  |  Up to 10 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `a1.medium` \| `a1.large` \| `a1.xlarge` \| `a1.2xlarge` \| `a1.4xlarge` \| `m5.large` \| `m5.xlarge` \| `m5.2xlarge` \| `m5.4xlarge` \| `m5a.large` \| `m5a.xlarge` \| `m5a.2xlarge` \| `m5a.4xlarge` \| `m5a.8xlarge` \| `m5ad.large` \| `m5ad.xlarge` \| `m5ad.2xlarge` \| `m5ad.4xlarge` \| `m5d.large` \| `m5d.xlarge` \| `m5d.2xlarge` \| `m5d.4xlarge`  |  Up to 10 Gbps  | [ENA](enhanced-networking-ena.md) | 
 |  `m4.10xlarge`  |  10 Gbps  |  [Intel 82599 VF](sriov-networking.md)  | 
-|   `m5.12xlarge` \| `m5a.12xlarge` \| `m5ad.12xlarge` \| `m5d.12xlarge`  |  10 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  `m5a.24xlarge` \| `m5ad.24xlarge`  |  20 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `m5.8xlarge` \|  `m5.12xlarge` \| `m5a.12xlarge` \| `m5ad.12xlarge` \| `m5d.8xlarge` \| `m5d.12xlarge`  |  10 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `m5a.16xlarge` \| `m5ad.16xlarge`  |  12 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `m5.16xlarge` \| `m5a.24xlarge` \| `m5ad.24xlarge` \| `m5d.16xlarge`  |  20 Gbps  | [ENA](enhanced-networking-ena.md) | 
 |  `m4.16xlarge` \| `m5.24xlarge` \| `m5.metal` \| `m5d.24xlarge` \| `m5d.metal`  |  25 Gbps  | [ENA](enhanced-networking-ena.md) | 
 
 ## SSD I/O Performance<a name="general-purpose-ssd-perf"></a>
@@ -161,7 +168,9 @@ If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-ba
 |  `m5d.xlarge` \*  |  59,000  |  29,000  | 
 |  `m5d.2xlarge` \*  |  117,000  |  57,000  | 
 |  `m5d.4xlarge` \*  |  234,000  |  114,000  | 
+|  `m5d.8xlarge`  |  466,666  |  233,333  | 
 |  `m5d.12xlarge`  |  700,000  |  340,000  | 
+|  `m5d.16xlarge`  |  933,333  |  466,666  | 
 |  `m5d.24xlarge`  |  1,400,000  |  680,000  | 
 |  `m5d.metal`  |  1,400,000  |  680,000  | 
 
