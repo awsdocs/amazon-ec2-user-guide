@@ -4,7 +4,7 @@ To use an EC2 Fleet, you create a request that includes the total target capacit
 
 If your fleet includes Spot Instances, Amazon EC2 can attempt to maintain your fleet target capacity as Spot prices change\.
 
-An EC2 Fleet request remains active until it expires or you delete it\. When you delete a fleet, you may specify whether deletion terminates the instances in that fleet\.
+An EC2 Fleet request remains active until it expires or you delete it\. When you delete a fleet, you can specify whether deletion terminates the instances in that fleet\.
 
 **Topics**
 + [EC2 Fleet Request States](#EC2-fleet-states)
@@ -48,7 +48,7 @@ The `AWSServiceRoleForEC2Fleet` role grants the EC2 Fleet permission to request,
 + `ec2:DescribeImages` – Describe Amazon Machine Images \(AMI\) for the Spot Instances\.
 + `ec2:DescribeInstanceStatus` – Describe the status of the Spot Instances\.
 + `ec2:DescribeSubnets` – Describe the subnets for Spot Instances\.
-+ `ec2:CreateTags` \- Add system tags to Spot Instances\.
++ `ec2:CreateTags` – Add system tags to Spot Instances\.
 
 Ensure that this role exists before you use the AWS CLI or an API to create an EC2 Fleet\. To create the role, use the IAM console as follows\.
 
@@ -179,9 +179,17 @@ To create an EC2 Fleet, you need only specify the launch template, total target 
           "AllocationStrategy": "lowestPrice", 
           "InstanceInterruptionBehavior": "hibernate", 
           "InstancePoolsToUseCount": 0
+          "SingleInstanceType": true, 
+          "SingleAvailabilityZone": true, 
+          "MaxTotalPrice": 0
+          "MinTargetCapacity": 0
       }, 
       "OnDemandOptions": {
           "AllocationStrategy": "prioritized"
+          "SingleInstanceType": true, 
+          "SingleAvailabilityZone": true, 
+          "MaxTotalPrice": 0
+          "MinTargetCapacity": 0
       }, 
       "ExcessCapacityTerminationPolicy": "termination", 
       "LaunchTemplateConfigs": [
@@ -199,6 +207,14 @@ To create an EC2 Fleet, you need only specify the launch template, total target 
                       "AvailabilityZone": "", 
                       "WeightedCapacity": null, 
                       "Priority": null
+                      "Placement": {
+                          "AvailabilityZone": "", 
+                          "Affinity": "", 
+                          "GroupName": "", 
+                          "PartitionNumber": 0, 
+                          "HostId": "", 
+                          "Tenancy": "dedicated", 
+                          "SpreadDomain": ""
                   }
               ]
           }
@@ -242,8 +258,32 @@ Use lowercase for all parameter values; otherwise, you get an error when Amazon 
 **InstancePoolsToUseCount**  
 The number of Spot pools across which to allocate your target Spot capacity\. Valid only when Spot **AllocationStrategy** is set to `lowestPrice`\. EC2 Fleet selects the cheapest Spot pools and evenly allocates your target Spot capacity across the number of Spot pools that you specify\.
 
+**SingleInstanceType**  
+Indicates that the fleet uses a single instance type to launch all Spot Instances in the fleet\.
+
+**SingleAvailabilityZone**  
+Indicates that the fleet launches all Spot Instances into a single Availability Zone\.
+
+**MaxTotalPrice**  
+The maximum amount per hour for Spot Instances that you're willing to pay\.
+
+**MinTargetCapacity**  
+The minimum target capacity for Spot Instances in the fleet\. If the minimum target capacity is not reached, the fleet launches no instances\.
+
 **AllocationStrategy \(for OnDemandOptions\)**  
 The order of the launch template overrides to use in fulfilling On\-Demand capacity\. If you specify `lowestPrice`, EC2 Fleet uses price to determine the order, launching the lowest price first\. If you specify prioritized, EC2 Fleet uses the priority that you assigned to each launch template override, launching the highest priority first\. If you do not specify a value, EC2 Fleet defaults to `lowestPrice`\.
+
+**SingleInstanceType**  
+Indicates that the fleet uses a single instance type to launch all On\-Demand Instances in the fleet\.
+
+**SingleAvailabilityZone**  
+Indicates that the fleet launches all On\-Demand Instances into a single Availability Zone\.
+
+**MaxTotalPrice**  
+The maximum amount per hour for On\-Demand Instances that you're willing to pay\.
+
+**MinTargetCapacity**  
+The minimum target capacity for On\-Demand Instances in the fleet\. If the minimum target capacity is not reached, the fleet launches no instances\.
 
 **ExcessCapacityTerminationPolicy**  
 \(Optional\) Indicates whether running instances should be terminated if the total target capacity of the EC2 Fleet is decreased below the current size of the EC2 Fleet\. Valid values are `no-termination` and `termination`\.
@@ -318,7 +358,7 @@ When you create an EC2 Fleet, use a JSON file to specify information about the i
 EC2 Fleets can only be created using the AWS CLI\.
 
 **To create an EC2 Fleet \(AWS CLI\)**
-+ Use the following [create\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-fleet.html) \(AWS CLI\) command to create an EC2 Fleet:
++ Use the following [create\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-fleet.html) \(AWS CLI\) command to create an EC2 Fleet\.
 
 ```
 aws ec2 create-fleet --cli-input-json file://file_name.json
@@ -326,7 +366,7 @@ aws ec2 create-fleet --cli-input-json file://file_name.json
 
 For example configuration files, see [EC2 Fleet Example Configurations](ec2-fleet-examples.md)\.
 
-The following is example output for a fleet of type `request` or `maintain`:
+The following is example output for a fleet of type `request` or `maintain`\.
 
 ```
 {
@@ -334,7 +374,7 @@ The following is example output for a fleet of type `request` or `maintain`:
 }
 ```
 
-The following is example output for a fleet of type `instant` that launched the target capacity:
+The following is example output for a fleet of type `instant` that launched the target capacity\.
 
 ```
 {
@@ -383,7 +423,7 @@ The following is example output for a fleet of type `instant` that launched the 
 }
 ```
 
-The following is example output for a fleet of type `instant` that launched part of the target capacity with errors for instances that were not launched:
+The following is example output for a fleet of type `instant` that launched part of the target capacity with errors for instances that were not launched\.
 
 ```
 {
@@ -431,7 +471,7 @@ The following is example output for a fleet of type `instant` that launched part
 }
 ```
 
-The following is example output for a fleet of type `instant` that launched no instances:
+The following is example output for a fleet of type `instant` that launched no instances\.
 
 ```
 {
@@ -486,10 +526,10 @@ You can assign a tag to an EC2 Fleet request when you create it, or afterward\. 
 To tag an EC2 Fleet request when you create it, specify the key\-value pair in the [JSON file](#ec2-fleet-cli-skeleton) used to create the fleet\. The value for `ResourceType` must be `fleet`\. If you specify another value, the fleet request fails\.
 
 **To tag instances launched by an EC2 Fleet**  
-To tag instances when they are launched by the fleet, specify the tags in the [launch template](ec2-launch-templates.md#create-launch-template) referenced in the EC2 Fleet request\.
+To tag instances when they are launched by the fleet, specify the tags in the [launch template](ec2-launch-templates.md#create-launch-template) that is referenced in the EC2 Fleet request\.
 
 **To tag an existing EC2 Fleet request and instance \(AWS CLI\)**  
-Use the following [create\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-tags.html) command to tag existing resources:
+Use the following [create\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-tags.html) command to tag existing resources\.
 
 ```
 aws ec2 create-tags --resources fleet-12a34b55-67cd-8ef9-ba9b-9208dEXAMPLE i-1234567890abcdef0 --tags Key=purpose,Value=test
@@ -502,13 +542,13 @@ The EC2 Fleet launches On\-Demand Instances when there is available capacity, an
 The returned list of running instances is refreshed periodically and might be out of date\.
 
 **To monitor your EC2 Fleet \(AWS CLI\)**  
-Use the following [describe\-fleets](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-fleets.html) command to describe your EC2 Fleets:
+Use the following [describe\-fleets](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-fleets.html) command to describe your EC2 Fleets\.
 
 ```
 aws ec2 describe-fleets
 ```
 
-The following is example output:
+The following is example output\.
 
 ```
 {
@@ -548,7 +588,7 @@ The following is example output:
 }
 ```
 
-Use the following [describe\-fleet\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-fleet-instances.html) command to describe the instances for the specified EC2 Fleet:
+Use the following [describe\-fleet\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-fleet-instances.html) command to describe the instances for the specified EC2 Fleet\.
 
 ```
 aws ec2 describe-fleet-instances --fleet-id fleet-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE
@@ -574,7 +614,7 @@ aws ec2 describe-fleet-instances --fleet-id fleet-73fbd2ce-aa30-494c-8788-1cee4E
 }
 ```
 
-Use the following [describe\-fleet\-history](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-spot-fleet-request-history.html) command to describe the history for the specified EC2 Fleet for the specified time: 
+Use the following [describe\-fleet\-history](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-spot-fleet-request-history.html) command to describe the history for the specified EC2 Fleet for the specified time\. 
 
 ```
 aws ec2 describe-fleet-history --fleet-request-id fleet-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE --start-time 2018-04-10T00:00:00Z
@@ -609,13 +649,13 @@ When you decrease the target capacity, the EC2 Fleet deletes any open requests t
 When an EC2 Fleet terminates a Spot Instance because the target capacity was decreased, the instance receives a Spot Instance interruption notice\.
 
 **To modify an EC2 Fleet \(AWS CLI\)**  
-Use the following [modify\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-spot-fleet-request.html) command to update the target capacity of the specified EC2 Fleet:
+Use the following [modify\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-fleet.html) command to update the target capacity of the specified EC2 Fleet\.
 
 ```
 aws ec2 modify-fleet --fleet-id fleet-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE --target-capacity-specification TotalTargetCapacity=20
 ```
 
-If you are decreasing the target capacity but want to keep the fleet at its current size, you can modify the previous command as follows:
+If you are decreasing the target capacity but want to keep the fleet at its current size, you can modify the previous command as follows\.
 
 ```
 aws ec2 modify-fleet --fleet-id fleet-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE --target-capacity-specification TotalTargetCapacity=10 --excess-capacity-termination-policy no-termination
@@ -628,13 +668,13 @@ If you no longer require an EC2 Fleet, you can delete it\. After you delete a fl
 You must specify whether the EC2 Fleet must terminate its instances\. If you specify that the instances must be terminated when the fleet is deleted, it enters the `deleted_terminating` state\. Otherwise, it enters the `deleted_running` state, and the instances continue to run until they are interrupted or you terminate them manually\.
 
 **To delete an EC2 Fleet \(AWS CLI\)**  
-Use the [delete\-fleets](https://docs.aws.amazon.com/cli/latest/reference/ec2/cancel-spot-fleet-requests.html) command and the `--terminate-instances` parameter to delete the specified EC2 Fleet and terminate the instances:
+Use the [delete\-fleets](https://docs.aws.amazon.com/cli/latest/reference/ec2/delete-fleets.html) command and the `--terminate-instances` parameter to delete the specified EC2 Fleet and terminate the instances\.
 
 ```
 aws ec2 delete-fleets --fleet-ids fleet-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE --terminate-instances
 ```
 
-The following is example output:
+The following is example output\.
 
 ```
 {
@@ -649,13 +689,13 @@ The following is example output:
 }
 ```
 
-You can modify the previous command using the `--no-terminate-instances` parameter to delete the specified EC2 Fleet without terminating the instances:
+You can modify the previous command using the `--no-terminate-instances` parameter to delete the specified EC2 Fleet without terminating the instances\.
 
 ```
 aws ec2 delete-fleets --fleet-ids fleet-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE --no-terminate-instances
 ```
 
-The following is example output:
+The following is example output\.
 
 ```
 {

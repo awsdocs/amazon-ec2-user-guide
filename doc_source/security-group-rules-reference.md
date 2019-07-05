@@ -14,6 +14,7 @@ The following are examples of the kinds of rules that you can add to security gr
 + [DNS Server Rules](#sg-rules-dns)
 + [Amazon EFS Rules](#sg-rules-efs)
 + [Elastic Load Balancing Rules](#sg-rules-elb)
++ [VPC Peering Rules](#peer-vpc-rules)
 
 ## Web Server Rules<a name="sg-rules-web-server"></a>
 
@@ -162,3 +163,7 @@ The security group rules for your instances must allow the load balancer to comm
 | TCP | 6 | The health check port | The ID of the load balancer security group | Allow traffic from the load balancer on the health check port\. | 
 
 For more information, see [Configure Security Groups for Your Classic Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-security-groups.html) in the *User Guide for Classic Load Balancers*, and [Security Groups for Your Application Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-update-security-groups.html) in the *User Guide for Application Load Balancers*\.
+
+## VPC Peering Rules<a name="peer-vpc-rules"></a>
+
+You can update the inbound or outbound rules for your VPC security groups to reference security groups in the peered VPC\. Doing so allows traffic to flow to and from instances that are associated with the referenced security group in the peered VPC\. For more information about how to configure security groups for VPC peering, see [Updating Your Security Groups to Reference Peer VPC Groups](https://docs.aws.amazon.com/vpc/latest/peering/vpc-peering-security-groups.html)\.

@@ -1,8 +1,13 @@
 # Launching an EC2 Fleet<a name="ec2-fleet"></a>
 
-An *EC2 Fleet* contains the configuration information to launch a fleet—or group—of instances\. In a single API call, a fleet can launch multiple instance types across multiple Availability Zones, using the On\-Demand Instance, Reserved Instance, and Spot Instance purchasing options together\. Using EC2 Fleet, you can define separate On\-Demand and Spot capacity targets, specify the instance types that work best for your applications, and specify how Amazon EC2 should distribute your fleet capacity within each purchasing option\.
+An *EC2 Fleet* contains the configuration information to launch a fleet—or group—of instances\. In a single API call, a fleet can launch multiple instance types across multiple Availability Zones, using the On\-Demand Instance, Reserved Instance, and Spot Instance purchasing options together\. Using EC2 Fleet, you can:
++ Define separate On\-Demand and Spot capacity targets and the maximum amount you’re willing to pay per hour
++ Specify the instance types that work best for your applications
++ Specify how Amazon EC2 should distribute your fleet capacity within each purchasing option
 
-The EC2 Fleet attempts to launch the number of instances that are required to meet the target capacity specified in your request\. The fleet can also attempt to maintain its target Spot capacity if your Spot Instances are interrupted\. For more information, see [How Spot Instances Work](how-spot-instances-work.md)\.
+You can also set a maximum amount per hour that you’re willing to pay for your fleet, and EC2 Fleet launches instances until it reaches the maximum amount\. When the maximum amount you're willing to pay is reached, the fleet stops launching instances even if it hasn’t met the target capacity\.
+
+The EC2 Fleet attempts to launch the number of instances that are required to meet the target capacity specified in your request\. If you specified a total maximum price per hour, it fulfills the capacity until it reaches the maximum amount that you’re willing to pay\. The fleet can also attempt to maintain its target Spot capacity if your Spot Instances are interrupted\. For more information, see [How Spot Instances Work](how-spot-instances-work.md)\.
 
 ![\[A sample EC2 fleet\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ec2-fleet.png)
 
@@ -24,13 +29,13 @@ There is no additional charge for using EC2 Fleet\. You pay only for the EC2 ins
 
 The following limitations apply to EC2 Fleet:
 + EC2 Fleet is available only through the API or AWS CLI\.
-+ An EC2 Fleet request can't span Regions\. You need to create a separate EC2 Fleet for each Region\.
++ An EC2 Fleet request can't span AWS Regions\. You need to create a separate EC2 Fleet for each Region\.
 + An EC2 Fleet request can't span different subnets from the same Availability Zone\.
 
 ## EC2 Fleet Limits<a name="ec2-fleet-limits"></a>
 
 The usual Amazon EC2 limits apply to instances launched by an EC2 Fleet, such as Spot request price limits, instance limits, and volume limits\. In addition, the following limits apply:
-+ The number of active EC2 Fleets per Region: 1,000 \* †
++ The number of active EC2 Fleets per AWS Region: 1,000 \* †
 + The number of launch specifications per fleet: 50 †
 + The size of the user data in a launch specification: 16 KB †
 + The target capacity per EC2 Fleet: 10,000

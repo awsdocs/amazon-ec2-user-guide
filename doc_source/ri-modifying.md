@@ -40,7 +40,7 @@ You can modify these attributes as follows\.
 | --- | --- | --- | 
 |  Change **Availability Zones** within the same Region  |  Linux and Windows  | \- | 
 |  Change the **scope** from Availability Zone to Region and vice versa  |  Linux and Windows  |  If you change the scope from Availability Zone to Region, you lose the capacity reservation benefit\. If you change the scope from Region to Availability Zone, you lose Availability Zone flexibility and instance size flexibility \(if applicable\)\. For more information, see [How Reserved Instances Are Applied](apply_ri.md)\.  | 
-|  Change the **instance size** within the same instance family  |  Amazon Linux only  |  To change the instance size within the same instance family, the reservation must use Amazon Linux on default tenancy\. Some instance families are not supported, because there are no other sizes available\. For more information, see [Support For Modifying Instance Sizes](#ri-modification-instancemove)\.  | 
+|  Change the **instance size** within the same instance family  |  Linux only  |  The reservation must use Linux and default tenancy\. You cannot use Red Hat Enterprise Linux or SUSE\. Some instance families are not supported, because there are no other sizes available\. For more information, see [Support For Modifying Instance Sizes](#ri-modification-instancemove)\.  | 
 |  Change the **network** from EC2\-Classic to Amazon VPC and vice versa  |  Linux and Windows  |  The network platform must be available in your AWS account\. If you created your AWS account after 2013\-12\-04, it does not support EC2\-Classic\.  | 
 
 **Requirements**

@@ -180,7 +180,9 @@ The following table lists the maximum number of network interfaces per instance 
 | m5d\.xlarge | 4 | 15 | 15 | 
 | m5d\.2xlarge | 4 | 15 | 15 | 
 | m5d\.4xlarge | 8 | 30 | 30 | 
+| `m5d.8xlarge` | 8 | 30 | 30 | 
 | m5d\.12xlarge | 8 | 30 | 30 | 
+| `m5d.16xlarge` | 15 | 50 | 50 | 
 | m5d\.24xlarge | 15 | 50 | 50 | 
 | m5d\.metal | 15 | 50 | 50 | 
 | p2\.xlarge | 4 | 15 | 15 | 

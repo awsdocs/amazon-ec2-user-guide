@@ -82,7 +82,7 @@ For a volume 1 TiB or larger, baseline performance is higher than maximum burst 
 The following table lists several volume sizes and the associated baseline performance of the volume \(which is also the rate at which it accumulates I/O credits\), the burst duration at the 3,000 IOPS maximum \(when starting with a full credit balance\), and the time in seconds that the volume would take to refill an empty credit balance\.
 
 
-|  Volume size \(GiB\)  |  Baseline performance \(IOPS\)  |  Minimum burst duration @ 3,000 IOPS \(seconds\)  |  Seconds to fill empty credit balance  | 
+|  Volume size \(GiB\)  |  Baseline performance \(IOPS\)  |  Burst duration when driving sustained 3,000 IOPS \(second\)  |  Seconds to fill empty credit balance when driving no IO  | 
 | --- | --- | --- | --- | 
 |  1  |  100  |  1862  | 54,000 | 
 |  100  |  300  |  2,000  | 18,000 | 

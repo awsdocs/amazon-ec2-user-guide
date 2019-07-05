@@ -56,7 +56,7 @@ The following example specifies the minimum parameters required in an EC2 Fleet:
 
 ## Example 3: Launch On\-Demand Instances as the Primary Capacity<a name="ec2-fleet-config3"></a>
 
-The following example specifies the total target capacity of 2 instances for the fleet, and a target capacity of 1 On\-Demand Instance\. The default purchasing option is `spot`\. The fleet launches 1 On\-Demand Instance as specified, but needs to launch one more instance to fulfil the total target capacity\. The purchasing option for the difference is calculated as `TotalTargetCapacity` – `OnDemandTargetCapacity` = `DefaultTargetCapacityType`, which results in the fleet launching 1 Spot Instance\.
+The following example specifies the total target capacity of 2 instances for the fleet, and a target capacity of 1 On\-Demand Instance\. The default purchasing option is `spot`\. The fleet launches 1 On\-Demand Instance as specified, but needs to launch one more instance to fulfill the total target capacity\. The purchasing option for the difference is calculated as `TotalTargetCapacity` – `OnDemandTargetCapacity` = `DefaultTargetCapacityType`, which results in the fleet launching 1 Spot Instance\.
 
 ```
 {

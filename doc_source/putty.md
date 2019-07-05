@@ -56,7 +56,7 @@ Use the following procedure to connect to your Linux instance using PuTTY\. You 
 
 1. In the **Category** pane, choose **Session** and complete the following fields:
 
-   1. In the **Host Name** box, enter *user\_name*@*public\_dns\_name*\. Be sure to specify the appropriate user name for your AMI\. For example:
+   1. In the **Host Name** box, enter *user\_name*@*public\_dns\_name* \(see [Get Information About Your Instance](connection-prereqs.md#connection-prereqs-get-info-about-instance) for how to get the public DNS name of the instance\)\. Be sure to specify the appropriate user name for your AMI\. For example:
       + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
       + For a CentOS AMI, the user name is `centos`\.
       + For a Debian AMI, the user name is `admin` or `root`\.

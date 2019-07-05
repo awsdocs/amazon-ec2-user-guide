@@ -1,0 +1,3 @@
+# Connecting to Your Linux Instance Using AWS Systems Manager Session Manager<a name="session-manager"></a>
+
+AWS Systems Manager Session Manager is a fully managed AWS Systems Manager capability that lets you manage your Amazon EC2 instances through an interactive one\-click browser\-based shell or through the AWS CLI\. For more information about how to connect to your instance with SSM Session Manager, see [AWS Systems Manager Session Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html) in the *Systems Manager User Guide*\. 

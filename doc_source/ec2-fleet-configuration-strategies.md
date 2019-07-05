@@ -2,7 +2,9 @@
 
 An *EC2 Fleet* is a group of On\-Demand Instances and Spot Instances\. 
 
-The EC2 Fleet attempts to launch the number of instances that are required to meet the target capacity that you specify in the fleet request\. The fleet can comprise only On\-Demand Instances or only Spot Instances, or a combination of both On\-Demand Instances and Spot Instances\. The request for Spot Instances is fulfilled if there is available capacity and the maximum price per hour for your request exceeds the Spot price\. The fleet also attempts to maintain its target capacity if your Spot Instances are interrupted\.
+The EC2 Fleet attempts to launch the number of instances that are required to meet the target capacity that you specify in the fleet request\. The fleet can comprise only On\-Demand Instances, only Spot Instances, or a combination of both On\-Demand Instances and Spot Instances\. The request for Spot Instances is fulfilled if there is available capacity and the maximum price per hour for your request exceeds the Spot price\. The fleet also attempts to maintain its target capacity if your Spot Instances are interrupted\.
+
+You can also set a maximum amount per hour that you’re willing to pay for your fleet, and EC2 Fleet launches instances until it reaches the maximum amount\. When the maximum amount you're willing to pay is reached, the fleet stops launching instances even if it hasn’t met the target capacity\.
 
 A *Spot Instance pool* is a set of unused EC2 instances with the same instance type, operating system, Availability Zone, and network platform\. When you create an EC2 Fleet, you can include multiple launch specifications, which vary by instance type, Availability Zone, subnet, and maximum price\. The fleet selects the Spot Instance pools that are used to fulfill the request, based on the launch specifications included in your request, and the configuration of the request\. The Spot Instances come from the selected pools\.
 
@@ -16,9 +18,10 @@ Use the appropriate configuration strategies to create an EC2 Fleet that meets y
 + [Allocation Strategies for Spot Instances](#ec2-fleet-allocation-strategy)
 + [Configuring EC2 Fleet for On\-Demand Backup](#ec2-fleet-on-demand-backup)
 + [Maximum Price Overrides](#ec2-fleet-price-overrides)
++ [Control Spending](#ec2-fleet-control-spending)
 + [EC2 Fleet Instance Weighting](#ec2-fleet-instance-weighting)
-+ [Walkthrough: Using EC2 Fleet with Instance Weighting](#ec2-fleet-instance-weighting-walkthrough)
-+ [Walkthrough: Using EC2 Fleet with On\-Demand as the Primary Capacity](#ec2-fleet-on-demand-walkthrough)
++ [Tutorial: Using EC2 Fleet with Instance Weighting](#ec2-fleet-instance-weighting-walkthrough)
++ [Tutorial: Using EC2 Fleet with On\-Demand as the Primary Capacity](#ec2-fleet-on-demand-walkthrough)
 
 ## Planning an EC2 Fleet<a name="plan-ec2-fleet"></a>
 
@@ -29,6 +32,7 @@ When planning your EC2 Fleet, we recommend that you do the following:
 + Determine the target capacity for your EC2 Fleet\. You can set target capacity in instances or in custom units\. For more information, see [EC2 Fleet Instance Weighting](#ec2-fleet-instance-weighting)\.
 + Determine what portion of the EC2 Fleet target capacity must be On\-Demand capacity and Spot capacity\. You can specify 0 for On\-Demand capacity or Spot capacity, or both\.
 + Determine your price per unit, if you are using instance weighting\. To calculate the price per unit, divide the price per instance hour by the number of units \(or weight\) that this instance represents\. If you are not using instance weighting, the default price per unit is the price per instance hour\.
++ Determine the maximum amount per hour that you’re willing to pay for your fleet\. For more information, see [Control Spending](#ec2-fleet-control-spending)\.
 + Review the possible options for your EC2 Fleet\. For more information, see the [EC2 Fleet JSON Configuration File Reference](manage-ec2-fleet.md#ec2-fleet-json-reference)\. For EC2 Fleet configuration examples, see [EC2 Fleet Example Configurations](ec2-fleet-examples.md)\.
 
 ## EC2 Fleet Request Types<a name="ec2-fleet-request-type"></a>
@@ -44,7 +48,7 @@ If you configure the request type as `request`, EC2 Fleet places an asynchronous
 `maintain`  
 \(Default\) If you configure the request type as `maintain`, EC2 Fleet places an asynchronous request for your desired capacity, and maintains capacity by automatically replenishing any interrupted Spot Instances\.
 
-You cannot modify the target capacity of an `instant` or `request` EC2 Fleet request after it's been submitted\. To change the target capacity of an `instant` or `request` fleet request, delete the fleet and create a new one\.
+You cannot modify the target capacity of an `instant` or `request` EC2 Fleet request after it is submitted\. To change the target capacity of an `instant` or `request` fleet request, delete the fleet and create a new one\.
 
 All three types of requests benefit from an allocation strategy\. For more information, see [Allocation Strategies for Spot Instances](#ec2-fleet-allocation-strategy)\.
 
@@ -79,7 +83,7 @@ To create a fleet of Spot Instances that is both cheap and diversified, use the 
 
 You can optimize your fleet based on your use case\.
 
-If your fleet is small or runs for a short time, the probability that your Spot Instances will be interrupted is low, even with all the instances in a single Spot Instance pool\. Therefore, the `lowestPrice` strategy is likely to meet your needs while providing the lowest cost\.
+If your fleet is small or runs for a short time, the probability that your Spot Instances will be interrupted is low, even with all of the instances in a single Spot Instance pool\. Therefore, the `lowestPrice` strategy is likely to meet your needs while providing the lowest cost\.
 
 If your fleet is large or runs for a long time, you can improve the availability of your fleet by distributing the Spot Instances across multiple pools\. For example, if your EC2 Fleet specifies 10 pools and a target capacity of 100 instances, the fleet launches 10 Spot Instances in each pool\. If the Spot price for one pool exceeds your maximum price for this pool, only 10% of your fleet is affected\. Using this strategy also makes your fleet less sensitive to increases in the Spot price in any one pool over time\.
 
@@ -89,23 +93,47 @@ To create a cheap and diversified fleet, use the `lowestPrice` strategy in combi
 
 ## Configuring EC2 Fleet for On\-Demand Backup<a name="ec2-fleet-on-demand-backup"></a>
 
-If you have urgent, unpredictable scaling needs, such as a news website that must scale during a major news event or game launch, we recommend that you specify alternative instance types for your On\-Demand Instances, in the event that your preferred option does not have sufficient available capacity\. For example, you might prefer `c5.2xlarge` On\-Demand Instances, but if there is insufficient available capacity, you'd be willing to use some `c4.2xlarge` instances during peak load\. In this case, EC2 Fleet attempts to fulfill all your target capacity using `c5.2xlarge` instances, but if there is insufficient capacity, it automatically launches `c4.2xlarge` instances to fulfill the target capacity\.
+If you have urgent, unpredictable scaling needs, such as a news website that must scale during a major news event or game launch, we recommend that you specify alternative instance types for your On\-Demand Instances, in the event that your preferred option does not have sufficient available capacity\. For example, you might prefer `c5.2xlarge` On\-Demand Instances, but if there is insufficient available capacity, you'd be willing to use some `c4.2xlarge` instances during peak load\. In this case, EC2 Fleet attempts to fulfill all of your target capacity using `c5.2xlarge` instances, but if there is insufficient capacity, it automatically launches `c4.2xlarge` instances to fulfill the target capacity\.
 
 ### Prioritizing Instance Types for On\-Demand Capacity<a name="ec2-fleet-on-demand-priority"></a>
 
 When EC2 Fleet attempts to fulfill your On\-Demand capacity, it defaults to launching the lowest\-priced instance type first\. If `AllocationStrategy` is set to `prioritized`, EC2 Fleet uses priority to determine which instance type to use first in fulfilling On\-Demand capacity\. The priority is assigned to the launch template override, and the highest priority is launched first\. 
 
-For example, you have configured three launch template overrides, each with a different instance type: `c3.large`, `c4.large`, and `c5.large`\. The On\-Demand price for `c5.large` is less than for `c4.large`\. `c3.large` is the cheapest\. If you do not use priority to determine the order, the fleet fulfills On\-Demand capacity by starting with `c3.large`, and then `c5.large`\. Because you often have unused Reserved Instances for `c4.large`, you can set the launch template override priority so that the order is `c4.large`, `c3.large`, and then `c5.large`\.
+For example, you have configured three launch template overrides, each with a different instance type: `c3.large`, `c4.large`, and `c5.large`\. The On\-Demand price for `c5.large` is less than the price for `c4.large`\. `c3.large` is the cheapest\. If you do not use priority to determine the order, the fleet fulfills On\-Demand capacity by starting with `c3.large`, and then `c5.large`\. Because you often have unused Reserved Instances for `c4.large`, you can set the launch template override priority so that the order is `c4.large`, `c3.large`, and then `c5.large`\.
 
 ## Maximum Price Overrides<a name="ec2-fleet-price-overrides"></a>
 
-Each EC2 Fleet can include a global maximum price, or use the default \(the On\-Demand price\)\. The fleet uses this as the default maximum price for each of its launch specifications\.
+Each EC2 Fleet can either include a global maximum price, or use the default \(the On\-Demand price\)\. The fleet uses this as the default maximum price for each of its launch specifications\.
 
 You can optionally specify a maximum price in one or more launch specifications\. This price is specific to the launch specification\. If a launch specification includes a specific price, the EC2 Fleet uses this maximum price, overriding the global maximum price\. Any other launch specifications that do not include a specific maximum price still use the global maximum price\.
 
+## Control Spending<a name="ec2-fleet-control-spending"></a>
+
+EC2 Fleet stops launching instances when it has met one of the following parameters: the `TotalTargetCapacity` or the `MaxTotalPrice` \(the maximum amount you’re willing to pay\)\. To control the amount you pay per hour for your fleet, you can specify the `MaxTotalPrice`\. When the maximum total price is reached, EC2 Fleet stops launching instances even if it hasn’t met the target capacity\.
+
+The following examples show two different scenarios\. In the first, EC2 Fleet stops launching instances when it has met the target capacity\. In the second, EC2 Fleet stops launching instances when it has reached the maximum amount you’re willing to pay \(`MaxTotalPrice`\)\.
+
+**Example: Stop launching instances when target capacity is reached**
+
+Given a request for `m4.large` On\-Demand Instances, where:
++ On\-Demand Price: $0\.10 per hour
++ `OnDemandTargetCapacity`: 10
++ `MaxTotalPrice`: $1\.50
+
+EC2 Fleet launches 10 On\-Demand Instances because the total of $1\.00 \(10 instances x $0\.10\) does not exceed the `MaxTotalPrice` of $1\.50 for On\-Demand Instances\.
+
+**Example: Stop launching instances when maximum total price is reached**
+
+Given a request for `m4.large` On\-Demand Instances, where:
++ On\-Demand Price: $0\.10 per hour
++ `OnDemandTargetCapacity`: 10
++ `MaxTotalPrice`: $0\.80
+
+If EC2 Fleet launches the On\-Demand target capacity \(10 On\-Demand Instances\), the total cost per hour would be $1\.00\. This is more than the amount \($0\.80\) specified for `MaxTotalPrice` for On\-Demand Instances\. To prevent spending more than you're willing to pay, EC2 Fleet launches only 8 On\-Demand Instances \(below the On\-Demand target capacity\) because launching more would exceed the `MaxTotalPrice` for On\-Demand Instances\.
+
 ## EC2 Fleet Instance Weighting<a name="ec2-fleet-instance-weighting"></a>
 
-When you create an EC2 Fleet, you can define the capacity units that each instance type would contribute to your application's performance, and adjust your maximum price for each launch specification accordingly using *instance weighting*\.
+When you create an EC2 Fleet, you can define the capacity units that each instance type would contribute to your application's performance\. You can then adjust your maximum price for each launch specification by using *instance weighting*\.
 
 By default, the price that you specify is *per instance hour*\. When you use the instance weighting feature, the price that you specify is *per unit hour*\. You can calculate your price per unit hour by dividing your price for an instance type by the number of units that it represents\. EC2 Fleet calculates the number of instances to launch by dividing the target capacity by the instance weight\. If the result isn't an integer, the fleet rounds it up to the next integer, so that the size of your fleet is not below its target capacity\. The fleet can select any pool that you specify in your launch specification, even if the capacity of the instances launched exceeds the requested target capacity\.
 
@@ -116,8 +144,8 @@ The following table includes examples of calculations to determine the price per
 
 | Instance type | Instance weight | Target capacity | Number of instances launched | Price per instance hour | Price per unit hour | 
 | --- | --- | --- | --- | --- | --- | 
-|  `r3.xlarge`  |  2  | 10 |  5 \(10 divided by 2\)  |  $0\.05  |  \.025 \(\.05 divided by 2\)  | 
-|  `r3.8xlarge`  |  8  | 10 |  2 \(10 divided by 8, result rounded up\)  |  $0\.10  |  \.0125 \(\.10 divided by 8\)  | 
+|  `r3.xlarge`  |  2  | 10 |  5 \(10 divided by 2\)  |  $0\.05  |  $0\.025 \(\.05 divided by 2\)  | 
+|  `r3.8xlarge`  |  8  | 10 |  2 \(10 divided by 8, result rounded up\)  |  $0\.10  |  $0\.0125 \(\.10 divided by 8\)  | 
 
 Use EC2 Fleet instance weighting as follows to provision the target capacity that you want in the pools with the lowest price per unit at the time of fulfillment:
 
@@ -146,9 +174,9 @@ Consider an EC2 Fleet request with the following configuration:
 
 The EC2 Fleet would launch four instances \(30 divided by 8, result rounded up\)\. With the `lowestPrice` strategy, all four instances come from the pool that provides the lowest price per unit\. With the `diversified` strategy, the fleet launches one instance in each of the three pools, and the fourth instance in whichever of the three pools provides the lowest price per unit\.
 
-## Walkthrough: Using EC2 Fleet with Instance Weighting<a name="ec2-fleet-instance-weighting-walkthrough"></a>
+## Tutorial: Using EC2 Fleet with Instance Weighting<a name="ec2-fleet-instance-weighting-walkthrough"></a>
 
-This walkthrough uses a fictitious company called Example Corp to illustrate the process of requesting an EC2 Fleet using instance weighting\.
+This tutorial uses a fictitious company called Example Corp to illustrate the process of requesting an EC2 Fleet using instance weighting\.
 
 ### Objective<a name="ec2-fleet-instance-weighting-walkthrough-objective"></a>
 
@@ -197,7 +225,7 @@ Before creating an EC2 Fleet, Example Corp verifies that it has an IAM role with
 
 ### Creating the EC2 Fleet<a name="ec2-fleet-instance-weighting-walkthrough-request"></a>
 
-Example Corp creates a file, `config.json`, with the following configuration for its EC2 Fleet:
+Example Corp creates a file, `config.json`, with the following configuration for its EC2 Fleet\.
 
 ```
 { 
@@ -234,7 +262,7 @@ Example Corp creates a file, `config.json`, with the following configuration for
 }
 ```
 
-Example Corp creates the EC2 Fleet using the following [create\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-fleet.html) command:
+Example Corp creates the EC2 Fleet using the following [create\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-fleet.html) command\.
 
 ```
 aws ec2 create-fleet --cli-input-json file://config.json
@@ -250,9 +278,9 @@ With the `lowestPrice` strategy \(which is the default strategy\), the Spot Inst
 
 If Example Corp used the `diversified` strategy, the Spot Instances would come from all three pools\. The EC2 Fleet would launch 6 `r3.2xlarge` instances \(which provide 6 units\), 3 `r3.4xlarge` instances \(which provide 6 units\), and 2 `r3.8xlarge` instances \(which provide 8 units\), for a total of 20 units\.
 
-## Walkthrough: Using EC2 Fleet with On\-Demand as the Primary Capacity<a name="ec2-fleet-on-demand-walkthrough"></a>
+## Tutorial: Using EC2 Fleet with On\-Demand as the Primary Capacity<a name="ec2-fleet-on-demand-walkthrough"></a>
 
-This walkthrough uses a fictitious company called ABC Online to illustrate the process of requesting an EC2 Fleet with On\-Demand as the primary capacity, and Spot capacity if available\.
+This tutorial uses a fictitious company called ABC Online to illustrate the process of requesting an EC2 Fleet with On\-Demand as the primary capacity, and Spot capacity if available\.
 
 ### Objective<a name="ec2-fleet-on-demand-walkthrough-objective"></a>
 
@@ -261,7 +289,7 @@ ABC Online, a restaurant delivery company, wants to be able to provision Amazon 
 ### Planning<a name="ec2-fleet-on-demand-walkthrough-planning"></a>
 
 ABC Online requires a fixed capacity to operate during peak periods, but would like to benefit from increased capacity at a lower price\. ABC Online determines the following requirements for their EC2 Fleet:
-+ On\-Demand Instance capacity – ABC Online requires 15 On\-Demand Instances to ensure they can accommodate traffic at peak periods\.
++ On\-Demand Instance capacity – ABC Online requires 15 On\-Demand Instances to ensure that they can accommodate traffic at peak periods\.
 + Spot Instance capacity – ABC Online would like to improve performance, but at a lower price, by provisioning 5 Spot Instances\.
 
 ### Verifying Permissions<a name="ec2-fleet-on-demand-walkthrough-permissions"></a>
@@ -270,7 +298,7 @@ Before creating an EC2 Fleet, ABC Online verifies that it has an IAM role with t
 
 ### Creating the EC2 Fleet<a name="ec2-fleet-on-demand-walkthrough-request"></a>
 
-ABC Online creates a file, `config.json`, with the following configuration for its EC2 Fleet:
+ABC Online creates a file, `config.json`, with the following configuration for its EC2 Fleet\.
 
 ```
 {
@@ -291,7 +319,7 @@ ABC Online creates a file, `config.json`, with the following configuration for i
 }
 ```
 
-ABC Online creates the EC2 Fleet using the following [create\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-fleet.html) command:
+ABC Online creates the EC2 Fleet using the following [create\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-fleet.html) command\.
 
 ```
 aws ec2 create-fleet --cli-input-json file://config.json

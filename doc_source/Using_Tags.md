@@ -2,6 +2,9 @@
 
 To help you manage your instances, images, and other Amazon EC2 resources, you can optionally assign your own metadata to each resource in the form of *tags*\. This topic describes tags and shows you how to create them\.
 
+**Warning**  
+Tag keys, and their values, are returned by many different API calls\. As a best practice, we recommend that you do not include sensitive data in your tags\.
+
 **Topics**
 + [Tag Basics](#tag-basics)
 + [Tagging Your Resources](#tag-resources)

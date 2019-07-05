@@ -146,7 +146,7 @@ The following is a summary of network performance for general purpose instances 
 |  `m4.xlarge` \| `m4.2xlarge` \| `m4.4xlarge`  |  High  |  [Intel 82599 VF](sriov-networking.md)  | 
 |  `a1.medium` \| `a1.large` \| `a1.xlarge` \| `a1.2xlarge` \| `a1.4xlarge` \| `m5.large` \| `m5.xlarge` \| `m5.2xlarge` \| `m5.4xlarge` \| `m5a.large` \| `m5a.xlarge` \| `m5a.2xlarge` \| `m5a.4xlarge` \| `m5a.8xlarge` \| `m5ad.large` \| `m5ad.xlarge` \| `m5ad.2xlarge` \| `m5ad.4xlarge` \| `m5d.large` \| `m5d.xlarge` \| `m5d.2xlarge` \| `m5d.4xlarge`  |  Up to 10 Gbps  | [ENA](enhanced-networking-ena.md) | 
 |  `m4.10xlarge`  |  10 Gbps  |  [Intel 82599 VF](sriov-networking.md)  | 
-|  `m5.8xlarge` \|  `m5.12xlarge` \| `m5a.12xlarge` \| `m5ad.12xlarge` \| `m5d.8xlarge` \| `m5d.12xlarge`  |  10 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `m5.8xlarge` \| `m5.12xlarge` \| `m5a.12xlarge` \| `m5ad.12xlarge` \| `m5d.8xlarge` \| `m5d.12xlarge`  |  10 Gbps  | [ENA](enhanced-networking-ena.md) | 
 |  `m5a.16xlarge` \| `m5ad.16xlarge`  |  12 Gbps  | [ENA](enhanced-networking-ena.md) | 
 |  `m5.16xlarge` \| `m5a.24xlarge` \| `m5ad.24xlarge` \| `m5d.16xlarge`  |  20 Gbps  | [ENA](enhanced-networking-ena.md) | 
 |  `m4.16xlarge` \| `m5.24xlarge` \| `m5.metal` \| `m5d.24xlarge` \| `m5d.metal`  |  25 Gbps  | [ENA](enhanced-networking-ena.md) | 

@@ -30,6 +30,7 @@ If you need to allow traffic to a Windows instance, see [Amazon EC2 Security Gro
   + [DNS Server Rules](security-group-rules-reference.md#sg-rules-dns)
   + [Amazon EFS Rules](security-group-rules-reference.md#sg-rules-efs)
   + [Elastic Load Balancing Rules](security-group-rules-reference.md#sg-rules-elb)
+  + [VPC Peering Rules](security-group-rules-reference.md#peer-vpc-rules)
 
 ## Security Group Rules<a name="security-group-rules"></a>
 

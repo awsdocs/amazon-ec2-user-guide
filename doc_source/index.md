@@ -130,6 +130,7 @@ Amazon's trademarks and trade dress may not be used in
          + [Connecting to Your Linux Instance from Windows Using PuTTY](putty.md)
          + [Connecting to Your Linux Instance from Windows Using Windows Subsystem for Linux](WSL.md)
          + [Connecting to Your Linux Instance Using MindTerm](mindterm.md)
+         + [Connecting to Your Linux Instance Using AWS Systems Manager Session Manager](session-manager.md)
       + [Stop and Start Your Instance](Stop_Start.md)
       + [Hibernate Your Instance](Hibernate.md)
       + [Reboot Your Instance](ec2-instance-reboot.md)

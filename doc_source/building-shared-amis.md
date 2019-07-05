@@ -158,8 +158,6 @@ We recommend that you post a description of your AMI, and the AMI ID, in the [Am
 
 ## Protect Yourself<a name="public-amis-protect-yourself"></a>
 
-The previous sections described how to make your shared AMIs safe, secure, and usable for the users who launch them\. This section describes guidelines to protect yourself from the users of your AMI\. 
-
 We recommend against storing sensitive data or software on any AMI that you share\. Users who launch a shared AMI might be able to rebundle it and register it as their own\. Follow these guidelines to help you to avoid some easily overlooked security risks: 
 + We recommend using the `--exclude directory` option on `ec2-bundle-vol` to skip any directories and subdirectories that contain secret information that you would not like to include in your bundle\. In particular, exclude all user\-owned SSH public/private key pairs and SSH `authorized_keys` files when bundling the image\. The Amazon public AMIs store these in `/root/.ssh` for the root account, and `/home/user_name/.ssh/` for regular user accounts\. For more information, see [ec2\-bundle\-vol](ami-tools-commands.md#ami-bundle-vol)\.
 + Always delete the shell history before bundling\. If you attempt more than one bundle upload in the same AMI, the shell history contains your secret access key\. The following example should be the last command executed before bundling from within the instance\.

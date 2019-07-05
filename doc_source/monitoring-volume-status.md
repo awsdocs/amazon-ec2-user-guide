@@ -113,7 +113,7 @@ You can use one of the following commands to view event information for your Ama
 
 ## Working with an Impaired Volume<a name="work_volumes_impaired"></a>
 
-This section discusses your options if a volume is impaired because the volume's data is potentially inconsistent\.
+Use the following options if a volume is impaired because the volume's data is potentially inconsistent\.
 
 **Topics**
 + [Option 1: Perform a Consistency Check on the Volume Attached to its Instance](#work_volumes_impaired_option1)
@@ -209,7 +209,7 @@ If you have a recent snapshot that backs up the data on the volume, you can crea
 
 When Amazon EBS determines that a volume's data is potentially inconsistent, it disables I/O to the volume from any attached EC2 instances by default\. This causes the volume status check to fail, and creates a volume status event that indicates the cause of the failure\. If the consistency of a particular volume is not a concern, and you prefer that the volume be made available immediately if it's **impaired**, you can override the default behavior by configuring the volume to automatically enable I/O\. If you enable the **Auto\-Enabled IO** volume attribute \(`autoEnableIO` in the API\), I/O between the volume and the instance is automatically re\-enabled and the volume's status check will pass\. In addition, you'll see an event that lets you know that the volume was in a potentially inconsistent state, but that its I/O was automatically enabled\. When this event occurs, you should check the volume's consistency and replace it if necessary\. For more information, see [EBS Volume Events](#monitoring-vol-events)\.
 
-This section explains how to view and modify the **Auto\-Enabled IO** attribute of a volume using the Amazon EC2 console, the command line interface, or the API\.
+This procedure explains how to view and modify the **Auto\-Enabled IO** attribute of a volume\.
 
 **To view the Auto\-Enabled IO attribute of a volume in the console**
 
