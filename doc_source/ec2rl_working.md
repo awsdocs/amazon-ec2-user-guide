@@ -37,7 +37,7 @@ For example, this command runs the dig module to query the `amazon.com` domain:
 ```
 
 **Example Example: View the results**  
-You can view the results in `/var/temp/ec2rl`:  
+You can view the results in `/var/tmp/ec2rl`:
 
 ```
 cat /var/tmp/ec2rl/logfile_location
