@@ -62,6 +62,7 @@ The following considerations apply to lifecycle policies:
 + Snapshots begin to be created by a policy within one hour following the specified start time\.
 + If you modify a policy by removing or changing its target tag, the EBS volumes with that tag are no longer affected by the policy\.
 + If you modify the schedule name for a policy, the snapshots created under the old schedule name are no longer affected by the policy\.
++ If you delete the resource to which a policy applies, the policy no longer manages the previously created snapshots\. You must manually delete the snapshots if they are no longer needed\.
 + You can create multiple policies to back up an EBS volume or an EC2 instance\. For example, if an EBS volume has two tags, where tag A is the target for policy A to create a snapshot every 12 hours, and tag B is the target for policy B to create a snapshot every 24 hours, Amazon DLM creates snapshots according to the schedules for both policies\.
 + When you copy a snapshot created by a policy, the retention schedule is not carried over to the copy\. This ensures that Amazon DLM does not delete snapshots that should be retained for a longer period of time\.
 

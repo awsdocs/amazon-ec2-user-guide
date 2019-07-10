@@ -16,7 +16,6 @@ Amazon EBS provides the following volume types: General Purpose SSD \(`gp2`\), P
 + [Making an Amazon EBS Volume Available for Use on Linux](ebs-using-volumes.md)
 + [Viewing Information about an Amazon EBS Volume](ebs-describing-volumes.md)
 + [Monitoring the Status of Your Volumes](monitoring-volume-status.md)
-+ [Modifying the Size, Performance, or Type of an EBS Volume](ebs-modify-volume.md)
 + [Detaching an Amazon EBS Volume from an Instance](ebs-detaching-volume.md)
 + [Deleting an Amazon EBS Volume](ebs-deleting-volume.md)
 

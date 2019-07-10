@@ -57,7 +57,9 @@ When you enable encryption by default, you can launch an Amazon EC2 instance *on
 
 1. From the navigation bar, select the Region\.
 
-1. Choose **Account Attributes**, **Settings**\.
+1. From the navigation pane, select **EC2 Dashboard**\.
+
+1. In the upper\-right corner of the page, choose **Account Attributes**, **Settings**\.
 
 1. Under **EBS Storage**, select **Always encrypt new EBS volumes**\.
 

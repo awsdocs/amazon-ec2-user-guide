@@ -53,10 +53,10 @@ You can use one of the following commands\. For more information about these com
 
 ### Managing Instances Scheduled for Retirement<a name="instance-retirement-actions"></a>
 
-You can perform one of the actions listed below in order to preserve the data on your retiring instance\. It's important that you take this action before the instance retirement date, to prevent unforeseen downtime and data loss\. 
+You can perform one of the actions listed below in order to preserve the data on your retiring instance\. It's important that you take this action before the instance retirement date to prevent unforeseen downtime and data loss\. 
 
 **Warning**  
-If your instance store\-backed instance passes its retirement date, it's terminated and you cannot recover the instance or any data that was stored on it\. Regardless of the root device of your instance, the data on instance store volumes is lost when the instance is retired, even if they are attached to an EBS\-backed instance\.
+If your instance store\-backed instance passes its retirement date, it is terminated and you cannot recover the instance or any data that was stored on it\. Regardless of the root device of your instance, the data on instance store volumes is lost when the instance is retired, even if they are attached to an EBS\-backed instance\.
 
 
 | Instance Root Device Type | Action | 

@@ -339,7 +339,7 @@ You can configure your blog to use different [themes](https://wordpress.org/them
 
 **Increase Capacity**  
 If your WordPress blog becomes popular and you need more compute power or storage, consider the following steps:
-+ Expand the storage space on your instance\. For more information, see [Modifying the Size, Performance, or Type of an EBS Volume](ebs-modify-volume.md)\.
++ Expand the storage space on your instance\. For more information, see [Amazon EBS Elastic Volumes](ebs-modify-volume.md)\.
 + Move your MySQL database to [Amazon RDS](https://aws.amazon.com/rds) to take advantage of the service's ability to scale easily\.
 + Migrate to a larger instance type\. For more information, see [Changing the Instance Type](ec2-instance-resize.md)\.
 + Add additional instances\. For more information, see [Tutorial: Increase the Availability of Your Application on Amazon EC2](ec2-increase-availability.md)\.

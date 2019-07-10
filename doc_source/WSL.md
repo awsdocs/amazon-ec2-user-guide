@@ -43,7 +43,7 @@ Use the following procedure to connect to your Linux instance using the Windows 
 
 **To connect to your instance using SSH**
 
-1. In a terminal window, use the ssh command to connect to the instance\. You specify the private key \(`.pem`\) file and *user\_name*@*public\_dns\_name*\. For example, if you used Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
+1. In a terminal window, use the ssh command to connect to the instance\. You specify the private key \(`.pem`\) file, the user name for your AMI, and the public DNS name for your instance\. For example, if you used Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\. For more information about finding the user name for an AMI and the DNS name for an instance, see [Get Information About Your Instance](connection-prereqs.md#connection-prereqs-get-info-about-instance)\.
 
    ```
    sudo ssh -i /path/my-key-pair.pem ec2-user@ec2-198-51-100-1.compute-1.amazonaws.com

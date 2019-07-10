@@ -12,7 +12,7 @@ The procedure that you'll use to clean up your AMI depends on whether it is back
 
 ## Cleaning Up Your Amazon EBS\-Backed AMI<a name="clean-up-ebs-ami"></a>
 
-When you deregister an Amazon EBS\-backed AMI, it doesn't affect the snapshot that was created for the root volume of the instance during the AMI creation process\. You'll continue to incur storage costs for this snapshot\. Therefore, if you are finished with the snapshot, you should delete it\. 
+When you deregister an Amazon EBS\-backed AMI, it doesn't affect the snapshot\(s\) that were created for the volume\(s\) of the instance during the AMI creation process\. You'll continue to incur storage costs for the snapshots\. Therefore, if you are finished with the snapshots, you should delete them\. 
 
 The following diagram illustrates the process for cleaning up your Amazon EBS\-backed AMI\.
 

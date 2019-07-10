@@ -6,13 +6,12 @@ To connect to a Windows instance, see [Connecting to Your Windows Instance](http
 
 ## Connection Method<a name="connection-method"></a>
 
-Your local computer's operating system determines the type of method you use to connect to your instance\.
+Your local computer's operating system determines the type of method you use to connect to your Linux instance\.
 
 
-| Your local computer | Connection method | 
+| Your local computer | Available connection methods | 
 | --- | --- | 
-|  Linux or macOS X  |  [Connecting to Your Linux Instance Using SSH](AccessingInstancesLinux.md) [Connecting to Your Linux Instance Using EC2 Instance Connect](Connect-using-EC2-Instance-Connect.md)  | 
-|  Windows  |  [Connecting to Your Linux Instance from Windows Using PuTTY](putty.md) [Connecting to Your Linux Instance from Windows Using Windows Subsystem for Linux](WSL.md) [Connecting to Your Linux Instance Using SSH](AccessingInstancesLinux.md)  | 
-|  All  |  [Connecting to Your Linux Instance Using MindTerm](mindterm.md)  | 
+|  Linux or macOS X  |  [SSH client](AccessingInstancesLinux.md) [EC2 Instance Connect](Connect-using-EC2-Instance-Connect.md) [AWS Systems Manager Session Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html)  | 
+|  Windows  |  [PuTTY](putty.md) [Windows Subsystem for Linux](WSL.md) [SSH client](AccessingInstancesLinux.md) [AWS Systems Manager Session Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html)  | 
 
-After you connect to your instance, you can try one of our tutorials, such as [Tutorial: Install a LAMP Web Server with the Amazon Linux AMI](install-LAMP.md) or [Tutorial: Hosting a WordPress Blog with Amazon Linux](hosting-wordpress.md)\.
+After you connect to your Linux instance, you can try one of our tutorials, such as [Tutorial: Install a LAMP Web Server with the Amazon Linux AMI](install-LAMP.md) or [Tutorial: Hosting a WordPress Blog with Amazon Linux](hosting-wordpress.md)\.

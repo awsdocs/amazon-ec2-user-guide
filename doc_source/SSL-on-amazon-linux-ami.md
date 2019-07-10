@@ -66,11 +66,11 @@ The `-y` option installs the updates without asking for confirmation\. If you wo
    ```
 
    Your instance now has the following files that you use to configure your secure server and create a certificate for testing:  
-*/etc/httpd/conf\.d/ssl\.conf*  
+`/etc/httpd/conf.d/ssl.conf`  
 The configuration file for mod\_ssl\. It contains "directives" telling Apache where to find encryption keys and certificates, the TLS protocol versions to allow, and the encryption ciphers to accept\.  
-*/etc/pki/tls/private/localhost\.key*  
+`/etc/pki/tls/private/localhost.key`  
 An automatically generated, 2048\-bit RSA private key for your Amazon EC2 host\. During installation, OpenSSL used this key to generate a self\-signed host certificate, and you can also use this key to generate a certificate signing request \(CSR\) to submit to a certificate authority \(CA\)\.  
-*/etc/pki/tls/certs/localhost\.crt*  
+`/etc/pki/tls/certs/localhost.crt`  
 An automatically generated, self\-signed X\.509 certificate for your server host\. This certificate is useful for testing that Apache is properly set up to use TLS\.
 
    The `.key` and `.crt` files are both in PEM format, which consists of Base64\-encoded ASCII characters framed by "BEGIN" and "END" lines, as in this abbreviated example of a certificate:

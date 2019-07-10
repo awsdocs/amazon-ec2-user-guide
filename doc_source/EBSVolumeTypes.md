@@ -29,11 +29,11 @@ AWS updates to the performance of EBS volume types may not immediately take effe
 
 \*\* `gp2`/`io1` based on 16 KiB I/O size, `st1`/`sc1` based on 1 MiB I/O size
 
-\*\*\* General Purpose SSD \(gp2\) volumes have a throughput limit between 128 MiB/s and 250 MiB/s depending on volume size\. Volumes greater than 170 GiB and below 334 GiB deliver a maximum throughput of 250 MiB/s if burst credits are available\. Volumes with 334 GiB and above deliver 250 MiB/s irrespective of burst credits\. An older `gp2` volume may not see full performance unless a `ModifyVolume` action is performed on it\. For more information, see [Modifying the Size, Performance, or Type of an EBS Volume](ebs-modify-volume.md)\.
+\*\*\* General Purpose SSD \(gp2\) volumes have a throughput limit between 128 MiB/s and 250 MiB/s depending on volume size\. Volumes greater than 170 GiB and below 334 GiB deliver a maximum throughput of 250 MiB/s if burst credits are available\. Volumes with 334 GiB and above deliver 250 MiB/s irrespective of burst credits\. An older `gp2` volume may not see full performance unless a `ModifyVolume` action is performed on it\. For more information, see [Amazon EBS Elastic Volumes](ebs-modify-volume.md)\.
 
 \*\*\*\* Maximum IOPS of 64,000 is guaranteed only on [Nitro\-based Instances](instance-types.md#ec2-nitro-instances)\. Other instances guarantee performance up to 32,000 IOPS\.
 
-† Maximum throughput of 1,000 MiB/s is guaranteed only on [Nitro\-based Instances](instance-types.md#ec2-nitro-instances)\. Other instances guarantee up to 500 MiB/s\. An older `io1` volume may not see full performance unless a `ModifyVolume` action is performed on it\. For more information, see [Modifying the Size, Performance, or Type of an EBS Volume](ebs-modify-volume.md)\.
+† Maximum throughput of 1,000 MiB/s is guaranteed only on [Nitro\-based Instances](instance-types.md#ec2-nitro-instances)\. Other instances guarantee up to 500 MiB/s\. An older `io1` volume may not see full performance unless a `ModifyVolume` action is performed on it\. For more information, see [Amazon EBS Elastic Volumes](ebs-modify-volume.md)\.
 
 †† To achieve this throughput, you must have an instance that supports it\. For more information, see [Amazon EBS–Optimized Instances](EBSOptimized.md)\.
 
@@ -84,7 +84,7 @@ The following table lists several volume sizes and the associated baseline perfo
 
 |  Volume size \(GiB\)  |  Baseline performance \(IOPS\)  |  Burst duration when driving sustained 3,000 IOPS \(second\)  |  Seconds to fill empty credit balance when driving no IO  | 
 | --- | --- | --- | --- | 
-|  1  |  100  |  1862  | 54,000 | 
+|  1  |  100  |  1802  | 54,000 | 
 |  100  |  300  |  2,000  | 18,000 | 
 |  250  |  750  | 2,400 | 7,200 | 
 |  334 \(Min\. size for max\. throughput\)  | 1002 |  2703  |  5389  | 

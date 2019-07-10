@@ -64,7 +64,7 @@ Use the following procedure to create a volume from a snapshot\.
 
 1. After you've restored a volume from a snapshot, you can attach it to an instance to begin using it\. For more information, see [Attaching an Amazon EBS Volume to an Instance](ebs-attaching-volume.md)\.
 
-1. If you restored a snapshot to a larger volume than the default for that snapshot, you must extend the file system on the volume to take advantage of the extra space\. For more information, see [Modifying the Size, Performance, or Type of an EBS Volume](ebs-modify-volume.md)\.
+1. If you restored a snapshot to a larger volume than the default for that snapshot, you must extend the file system on the volume to take advantage of the extra space\. For more information, see [Amazon EBS Elastic Volumes](ebs-modify-volume.md)\.
 
 **To create an EBS volume from a snapshot using the command line**
 

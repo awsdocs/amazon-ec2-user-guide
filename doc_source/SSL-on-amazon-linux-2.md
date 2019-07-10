@@ -114,6 +114,12 @@ The `-y` option installs the updates without asking for confirmation\. If you wo
 **Note**  
 When you replace the default TLS files with your own customized files, be sure that they are in PEM format\. 
 
+1. Open the `/etc/httpd/conf.d/ssl.conf` file and comment out the following line, because the self\-signed dummy certificate also contains the key\. If you do not comment out this line before you complete the next step, the Apache service fails to start\.
+
+   ```
+   SSLCertificateKeyFile /etc/pki/tls/private/localhost.key
+   ```
+
 1. Restart Apache\.
 
    ```
@@ -122,7 +128,7 @@ When you replace the default TLS files with your own customized files, be sure t
 **Note**  
 Make sure that TCP port 443 is accessible on your EC2 instance, as previously described\.
 
-1. Your Apache web server should now support HTTPS \(secure HTTP\) over port 443\. Test it by entering the IP address or fully qualified domain name of your EC2 instance into a browser URL bar with the prefix **https://**\. 
+1. Your Apache web server should now support HTTPS \(secure HTTP\) over port 443\. Test it by entering the IP address or fully qualified domain name of your EC2 instance into a browser URL bar with the prefix **https://**\.
 
    Because you are connecting to a site with a self\-signed, untrusted host certificate, your browser may display a series of security warnings\. Override the warnings and proceed to the site\. 
 
