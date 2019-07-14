@@ -5,7 +5,7 @@ Amazon CloudWatch Events enables you to automate your AWS services and respond a
 + Invoking Amazon EC2 Run Command
 + Relaying the event to Amazon Kinesis Data Streams
 + Activating an AWS Step Functions state machine
-+ Notifying an Amazon SNS topic or an AWS SMS queue
++ Notifying an Amazon SNS topic or an AWS SQS queue
 
 Some examples of using CloudWatch Events with Amazon EC2 include:
 + Activating a Lambda function whenever a new Amazon EC2 instance starts\.
