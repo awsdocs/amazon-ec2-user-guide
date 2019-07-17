@@ -26,7 +26,7 @@ The following Linux distributions are supported for Instance Connect:
   Your local computer most likely has an SSH client installed by default\. You can check for an SSH client by typing ssh at the command line\. If your local computer doesn't recognize the command, you can install an SSH client\. For information about installing an SSH client on Linux or macOS X, see [http://www\.openssh\.com](http://www.openssh.com/)\. For information about installing an SSH client on Windows 10, see [OpenSSH in Windows](https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_overview)\.
 + **Install the AWS CLI on your local computer\.**
 
-  To configure the IAM permissions and to install the EC2 Instance Connect CLI, you must use the AWS CLI\. For more information about installing the AWS CLI, see [Installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html) in the *AWS Command Line Interface User Guide*\.
+  To configure the IAM permissions, you must use the AWS CLI\. For more information about installing the AWS CLI, see [Installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html) in the *AWS Command Line Interface User Guide*\.
 + **\[Ubuntu\] Install the AWS CLI on your instance\.**
 
   To install EC2 Instance Connect on an Ubuntu instance, you must use the AWS CLI on the instance\. For more information about installing the AWS CLI, see [Installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html) in the *AWS Command Line Interface User Guide*\.
@@ -144,16 +144,10 @@ There is no need to install the EC2 Instance Connect CLI if users only use the c
 
 **To install the EC2 Instance Connect CLI package**
 
-1. Use the s3api get\-object command to download the `ec2instanceconnectcli-latest.tar.gz` package from Amazon S3 to your local computer using the AWS CLI, as follows:
-
-   ```
-   $ aws s3api get-object --bucket ec2-instance-connect --key cli/ec2instanceconnectcli-latest.tar.gz ec2instanceconnectcli-latest.tar.gz
-   ```
-
 1. Use `[pip](https://pip.pypa.io/en/stable/reference/pip_install/)` to install the `ec2instanceconnectcli-latest.tar.gz` package\. For more information about `pip`, see [https://pip.pypa.io/en/stable/](https://pip.pypa.io/en/stable/)\.
 
    ```
-   $ sudo pip install ec2instanceconnectcli-latest.tar.gz
+   $ pip install https://ec2-instance-connect.s3.amazonaws.com/cli/ec2instanceconnectcli-latest.tar.gz
    ```
 
 ## Step 3: Configure IAM permissions for EC2 Instance Connect<a name="ec2-instance-connect-configure-IAM-role"></a>
