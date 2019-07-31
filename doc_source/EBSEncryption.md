@@ -51,6 +51,8 @@ Encryption by default has no effect on existing EBS volumes or snapshots, but wh
 
 When you enable encryption by default, you can launch an Amazon EC2 instance *only* if the instance type supports EBS encryption\. For more information, see [Supported Instance Types](#EBSEncryption_supported_instances)\.
 
+When migrating servers using AWS Server Migration Service \(SMS\), do not turn on encryption by default\. If encryption by default is already on and you are experiencing delta replication failures, turn off this feature\.
+
 **To enable encryption by default for a Region**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.

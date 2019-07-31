@@ -12,7 +12,7 @@ AWS updates to the performance of EBS volume types may not immediately take effe
 
 |  | Solid\-State Drives \(SSD\) | Hard Disk Drives \(HDD\) | 
 | --- | --- | --- | 
-| Volume Type | General Purpose SSD \(gp2\)\* | Provisioned IOPS SSD \(io1\) | Throughput Optimized HDD \(st1\) | Cold HDD \(sc1\) | 
+| Volume Type \* | General Purpose SSD \(gp2\) | Provisioned IOPS SSD \(io1\) | Throughput Optimized HDD \(st1\) | Cold HDD \(sc1\) | 
 | Description | General purpose SSD volume that balances price and performance for a wide variety of workloads | Highest\-performance SSD volume for mission\-critical low\-latency or high\-throughput workloads  | Low\-cost HDD volume designed for frequently accessed, throughput\-intensive workloads | Lowest cost HDD volume designed for less frequently accessed workloads | 
 | Use Cases |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html)  | 
 | API Name | gp2 | io1 | st1 | sc1 | 
@@ -23,9 +23,7 @@ AWS updates to the performance of EBS volume types may not immediately take effe
 | Max\. Throughput/Instance†† | 1,750 MiB/s | 1,750 MiB/s | 1,750 MiB/s | 1,750 MiB/s | 
 | Dominant Performance Attribute | IOPS | IOPS | MiB/s | MiB/s | 
 
-\* Default volume type for EBS volumes created from the console is `gp2`\. Volumes created using the `CreateVolume` API without a volume\-type argument default to either `gp2` or `standard` according to region:
-+ `standard`: us\-east\-1, eu\-west\-1, eu\-central\-1, us\-west\-2, us\-west\-1, sa\-east\-1, ap\-northeast\-1, ap\-northeast\-2, ap\-southeast\-1, ap\-southeast\-2, ap\-south\-1, us\-gov\-west\-1, cn\-north\-1
-+ `gp2`: All other regions
+\* The default EBS volume type is `gp2`\.
 
 \*\* `gp2`/`io1` based on 16 KiB I/O size, `st1`/`sc1` based on 1 MiB I/O size
 

@@ -33,6 +33,12 @@ umount -d device_name
 
 To make snapshot management easier, you can tag your snapshots during creation or add tags afterward\. For example, you can apply tags describing the original volume from which the snapshot was created, or the device name that was used to attach the original volume to an instance\. For more information, see [Tagging Your Amazon EC2 Resources](Using_Tags.md)\.
 
+## Limitations for Creating Snapshots<a name="ebs-creating-snapshot-limitations"></a>
+
+The following limitations apply to creating snapshots:
++ You cannot create snapshots from instances for which hibernation is enabled\.
++ You cannot create snapshots from hibernated instances\.
+
 **To create a snapshot using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.

@@ -3,9 +3,10 @@
 Amazon Linux 2 2\.0\.20190618 or later comes preconfigured with EC2 Instance Connect\. For other supported Linux distributions, you need to set up Instance Connect for every instance that will provide the Instance Connect capability for connecting\. This is a one\-time requirement for each instance\. 
 
 **Topics**
-+ [Step 1: Install EC2 Instance Connect on an Instance](#ec2-instance-connect-install)
-+ [Step 2: \(Optional\) Install the EC2 Instance Connect CLI](#ec2-instance-connect-install-eic-CLI)
-+ [Step 3: Configure IAM permissions for EC2 Instance Connect](#ec2-instance-connect-configure-IAM-role)
++ [Step 1: Configure Network Access to an Instance](#ec2-instance-connect-setup-security-group)
++ [Step 2: Install EC2 Instance Connect on an Instance](#ec2-instance-connect-install)
++ [Step 3: \(Optional\) Install the EC2 Instance Connect CLI](#ec2-instance-connect-install-eic-CLI)
++ [Step 4: Configure IAM permissions for EC2 Instance Connect](#ec2-instance-connect-configure-IAM-role)
 
 **Limitations**
 
@@ -31,9 +32,18 @@ The following Linux distributions are supported for Instance Connect:
 
   To install EC2 Instance Connect on an Ubuntu instance, you must use the AWS CLI on the instance\. For more information about installing the AWS CLI, see [Installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html) in the *AWS Command Line Interface User Guide*\.
 
-## Step 1: Install EC2 Instance Connect on an Instance<a name="ec2-instance-connect-install"></a>
+## Step 1: Configure Network Access to an Instance<a name="ec2-instance-connect-setup-security-group"></a>
+
+You need to configure network access to your instance so that you can install EC2 Instance Connect and enable your users to connect to your instance\. You need to configure the following network access to your instance:
++ Ensure that the security group associated with your instance [allows inbound SSH traffic](authorizing-access-to-an-instance.md#add-rule-authorize-access) on port 22 from your IP address\. The default security group for the VPC does not allow incoming SSH traffic by default\. The security group created by the launch wizard enables SSH traffic by default\. For more information, see [Authorizing Inbound Traffic for Your Linux Instances](authorizing-access-to-an-instance.md)\.
++ \(Console only\) If your users will connect using the Amazon EC2 console, we recommend that your instance allows inbound SSH traffic from the [recommended IP block published for the service](https://ip-ranges.amazonaws.com/ip-ranges.json)\. Use the `EC2_INSTANCE_CONNECT` filter for the `service` parameter to get the IP address ranges in the EC2 Instance Connect subset\. For more information, see [AWS IP Address Ranges](https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html) in the *Amazon Web Services General Reference*\.
+
+## Step 2: Install EC2 Instance Connect on an Instance<a name="ec2-instance-connect-install"></a>
 
 Installing EC2 Instance Connect configures the SSH daemon on the instance\. The procedure for installing EC2 Instance Connect is different for instances launched using Amazon Linux 2 and Ubuntu\.
+
+------
+#### [ Amazon Linux 2 ]
 
 **To install EC2 Instance Connect on an instance launched with Amazon Linux 2**
 
@@ -85,6 +95,9 @@ Installing EC2 Instance Connect configures the SSH daemon on the instance\. The 
 **Note**  
 If you previously configured `AuthorizedKeysCommand` and `AuthorizedKeysCommandUser`, the Instance Connect installation will not change the values and you will not be able to use Instance Connect\.
 
+------
+#### [ Ubuntu ]
+
 **To install EC2 Instance Connect on an instance launched with Ubuntu 16\.04 or later**
 
 1. Connect to your instance using SSH\.
@@ -98,6 +111,14 @@ If you previously configured `AuthorizedKeysCommand` and `AuthorizedKeysCommandU
    ```
 
    For more information about connecting to your instance, see [Connecting to Your Linux Instance Using SSH](AccessingInstancesLinux.md)\.
+
+1. \(Optional\) Ensure your instance has the latest Ubuntu AMI\.
+
+   For Ubuntu, use the apt\-get update command to update all the packages on your instance\.
+
+   ```
+   ubuntu:~$ sudo apt-get update
+   ```
 
 1. Install the Instance Connect package on your instance\.
 
@@ -135,7 +156,11 @@ If you previously configured `AuthorizedKeysCommand` and `AuthorizedKeysCommandU
 **Note**  
 If you previously configured `AuthorizedKeysCommand` and `AuthorizedKeysCommandUser`, the Instance Connect installation will not change the values and you will not be able to use Instance Connect\.
 
-## Step 2: \(Optional\) Install the EC2 Instance Connect CLI<a name="ec2-instance-connect-install-eic-CLI"></a>
+------
+
+For more information about the EC2 Instance Connect package, see [aws/aws\-ec2\-instance\-connect\-config ](https://github.com/aws/aws-ec2-instance-connect-config) on the GitHub website\.
+
+## Step 3: \(Optional\) Install the EC2 Instance Connect CLI<a name="ec2-instance-connect-install-eic-CLI"></a>
 
 The EC2 Instance Connect CLI provides a similar interface to standard SSH calls, which includes querying EC2 instance information, generating and publishing ephemeral public keys, and establishing an SSH connection through a single command, `mssh instance_id`\.
 
@@ -143,16 +168,17 @@ The EC2 Instance Connect CLI provides a similar interface to standard SSH calls,
 There is no need to install the EC2 Instance Connect CLI if users only use the console or an SSH client to connect to an instance\.
 
 **To install the EC2 Instance Connect CLI package**
++ Use `[pip](https://pip.pypa.io/en/stable/reference/pip_install/)` to install the `ec2instanceconnectcli` package\.
 
-1. Use `[pip](https://pip.pypa.io/en/stable/reference/pip_install/)` to install the `ec2instanceconnectcli-latest.tar.gz` package\. For more information about `pip`, see [https://pip.pypa.io/en/stable/](https://pip.pypa.io/en/stable/)\.
+  ```
+  $ pip install ec2instanceconnectcli
+  ```
 
-   ```
-   $ pip install https://ec2-instance-connect.s3.amazonaws.com/cli/ec2instanceconnectcli-latest.tar.gz
-   ```
+  For more information about the EC2 Instance Connect CLI package, see [aws/aws\-ec2\-instance\-connect\-cli ](https://github.com/aws/aws-ec2-instance-connect-cli) on the GitHub website, and [https://pypi\.org/project/ec2instanceconnectcli/](https://pypi.org/project/ec2instanceconnectcli/) on the The Python Package Index \(PyPI\) website\.
 
-## Step 3: Configure IAM permissions for EC2 Instance Connect<a name="ec2-instance-connect-configure-IAM-role"></a>
+## Step 4: Configure IAM permissions for EC2 Instance Connect<a name="ec2-instance-connect-configure-IAM-role"></a>
 
-If your IAM users will connect to an instance using EC2 Instance Connect, be sure to grant them the required permission to push the public key to the instance\. The following instructions explain how to create the policy and attach it to the user using the AWS CLI\. For information about how to do this using the AWS Management Console, see [Creating IAM Policies \(Console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html#access_policies_create-start) and [Adding Permissions by Attaching Policies Directly to the User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html#users_change_permissions-add-directly-console) in the *IAM User Guide*\.
+For your IAM users to connect to an instance using EC2 Instance Connect, you must grant them the required permission to push the public key to the instance\. The following instructions explain how to create the policy and attach it to the user using the AWS CLI\. For information about how to do this using the AWS Management Console, see [Creating IAM Policies \(Console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html#access_policies_create-start) and [Adding Permissions by Attaching Policies Directly to the User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html#users_change_permissions-add-directly-console) in the *IAM User Guide*\.
 
 **Note**  
 We currently do not support tag\-based authorization for Instance Connect\. Tags and context keys in the `ec2` namespace are not automatically applied to `ec2-instance-connect`\.

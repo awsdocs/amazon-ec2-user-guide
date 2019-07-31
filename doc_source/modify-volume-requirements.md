@@ -48,7 +48,7 @@ GPT fdisk (gdisk) version 0.8.8
 
 ## Limitations<a name="elastic-volumes-limitations"></a>
 + The new volume size cannot exceed the supported volume capacity\. For more information, see [Constraints on the Size and Configuration of an EBS Volume](volume_constraints.md)\.
-+ If the volume was attached before November 2, 2016, you must initialize Elastic Volumes support\. For more information, see [Initializing Elastic Volumes Support](requesting-ebs-volume-modifications.md#initialize-modification-support)\.
++ If the volume was attached before November 3, 2016 23:40 UTC, you must initialize Elastic Volumes support\. For more information, see [Initializing Elastic Volumes Support](requesting-ebs-volume-modifications.md#initialize-modification-support)\.
 + If you are using an unsupported previous\-generation instance type, or if you encounter an error while attempting a volume modification, see [Modifying an EBS Volume If Elastic Volumes Is Unsupported](requesting-ebs-volume-modifications.md#modify-volume-stop-start)\.
 + A `gp2` volume that is attached to an instance as a root volume cannot be modified to an `st1` or `sc1` volume\. If detached and modified to `st1` or `sc1`, it cannot be attached to an instance as the root volume\.
 + A `gp2` volume cannot be modified to an `st1` or `sc1` volume if the requested volume size is below the minimum size for `st1` and `sc1` volumes\.

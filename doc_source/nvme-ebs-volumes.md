@@ -70,7 +70,7 @@ EBS uses single\-root I/O virtualization \(SR\-IOV\) to provide volume attachmen
 
 We recommend that you use stable identifiers for your EBS volumes within your instance, such as one of the following:
 + For Nitro\-based instances, the block device mappings that are specified in the Amazon EC2 console when you are attaching an EBS volume or during `AttachVolume` or `RunInstances` API calls are captured in the vendor\-specific data field of the NVMe controller identification\. With Amazon Linux AMIs later than version 2017\.09\.01, we provide a `udev` rule that reads this data and creates a symbolic link to the block\-device mapping\.
-+ NVMe\-attached EBS volumes have the EBS volume ID set as the serial number in the device identification\.
++ NVMe EBS volumes have the EBS volume ID set as the serial number in the device identification\.
 + When a device is formatted, a UUID is generated that persists for the life of the filesystem\. A device label can be specified at the same time\. For more information, see [Making an Amazon EBS Volume Available for Use on Linux](ebs-using-volumes.md) and [Booting from the Wrong Volume](instance-booting-from-wrong-volume.md)\.
 
 **Amazon Linux AMIs**  

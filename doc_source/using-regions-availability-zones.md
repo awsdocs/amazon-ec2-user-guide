@@ -54,29 +54,30 @@ Your account determines the Regions that are available to you\. For example:
 + An AWS GovCloud \(US\-West\) account provides access to the AWS GovCloud \(US\-West\) Region only\. For more information, see [AWS GovCloud \(US\-West\) Region](https://aws.amazon.com/govcloud-us/)\.
 + An Amazon AWS \(China\) account provides access to the Beijing and Ningxia Regions only\. For more information, see [AWS in China](https://www.amazonaws.cn/about-aws/china/)\.
 
-The following table lists the Regions provided by an AWS account\. You can't describe or access additional Regions from an AWS account, such as AWS GovCloud \(US\-West\) or the China Regions\.
+The following table lists the Regions provided by an AWS account\. You can't describe or access additional Regions from an AWS account, such as AWS GovCloud \(US\-West\) or the China Regions\. To use a Region introduced after March 20, 2019, you must enable the Region\. For more information, see [Managing AWS Regions](https://docs.aws.amazon.com/general/latest/gr/rande-manage.html) in the *AWS General Reference*\.
 
 
-| Code | Name | 
-| --- | --- | 
-| `us-east-1` | US East \(N\. Virginia\) | 
-| `us-east-2` | US East \(Ohio\) | 
-| `us-west-1` | US West \(N\. California\) | 
-| `us-west-2` | US West \(Oregon\) | 
-| `ca-central-1` | Canada \(Central\) | 
-| `eu-central-1` | EU \(Frankfurt\) | 
-| `eu-west-1` | EU \(Ireland\) | 
-| `eu-west-2` | EU \(London\) | 
-| `eu-west-3` | EU \(Paris\) | 
-| `eu-north-1` | EU \(Stockholm\) | 
-| `ap-east-1` | Asia Pacific \(Hong Kong\) | 
-| `ap-northeast-1` | Asia Pacific \(Tokyo\) | 
-| `ap-northeast-2` | Asia Pacific \(Seoul\) | 
-| `ap-northeast-3` | Asia Pacific \(Osaka\-Local\) | 
-| `ap-southeast-1` | Asia Pacific \(Singapore\) | 
-| `ap-southeast-2` | Asia Pacific \(Sydney\) | 
-| `ap-south-1` | Asia Pacific \(Mumbai\) | 
-| `sa-east-1` | South America \(São Paulo\) | 
+| Code | Name | Opt\-in Status | 
+| --- | --- | --- | 
+| `us-east-1` | US East \(N\. Virginia\) | Not required | 
+| `us-east-2` | US East \(Ohio\) | Not required | 
+| `us-west-1` | US West \(N\. California\) | Not required | 
+| `us-west-2` | US West \(Oregon\) | Not required | 
+| `ca-central-1` | Canada \(Central\) | Not required | 
+| `eu-central-1` | EU \(Frankfurt\) | Not required | 
+| `eu-west-1` | EU \(Ireland\) | Not required | 
+| `eu-west-2` | EU \(London\) | Not required | 
+| `eu-west-3` | EU \(Paris\) | Not required | 
+| `eu-north-1` | EU \(Stockholm\) | Not required | 
+| `ap-east-1` | Asia Pacific \(Hong Kong\) | Required | 
+| `ap-northeast-1` | Asia Pacific \(Tokyo\) | Not required | 
+| `ap-northeast-2` | Asia Pacific \(Seoul\) | Not required | 
+| `ap-northeast-3` | Asia Pacific \(Osaka\-Local\) | Not required | 
+| `ap-southeast-1` | Asia Pacific \(Singapore\) | Not required | 
+| `ap-southeast-2` | Asia Pacific \(Sydney\) | Not required | 
+| `ap-south-1` | Asia Pacific \(Mumbai\) | Not required | 
+| `me-south-1` | Middle East \(Bahrain\) | Required | 
+| `sa-east-1` | South America \(São Paulo\) | Not required | 
 
 For more information, see [AWS Global Infrastructure](https://aws.amazon.com/about-aws/global-infrastructure/)\.
 
@@ -103,27 +104,35 @@ You can use the Amazon EC2 console or the command line interface to determine wh
 
 1. The Availability Zones are listed under **Service Health**, **Availability Zone Status**\.
 
-**To find your Regions and Availability Zones using the command line**
+**To find your Regions and Availability Zones using the AWS CLI**
 
-1. \[AWS CLI\] Use the [describe\-regions](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-regions.html) command as follows to describe the Regions for your account\.
+1. Use the [describe\-regions](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-regions.html) command as follows to describe the Regions that are enabled for your account\.
 
    ```
    aws ec2 describe-regions
    ```
 
-1. \[AWS CLI\] Use the [describe\-availability\-zones](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-availability-zones.html) command as follows to describe the Availability Zones within the specified Region\.
+   To describe all Regions, including any Regions that are disabled for your account, add the `--all-regions` option as follows\.
+
+   ```
+   aws ec2 describe-regions --all-regions
+   ```
+
+1. Use the [describe\-availability\-zones](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-availability-zones.html) command as follows to describe the Availability Zones within the specified Region\.
 
    ```
    aws ec2 describe-availability-zones --region region-name
    ```
 
-1. \[AWS Tools for Windows PowerShell\] Use the [Get\-EC2Region](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Region.html) command as follows to describe the Regions for your account\.
+**To find your Regions and Availability Zones using the AWS Tools for Windows PowerShell**
+
+1. Use the [Get\-EC2Region](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Region.html) command as follows to describe the Regions for your account\.
 
    ```
    PS C:\> Get-EC2Region
    ```
 
-1. \[AWS Tools for Windows PowerShell\] Use the [Get\-EC2AvailabilityZone](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2AvailabilityZone.html) command as follows to describe the Availability Zones within the specified Region\.
+1. Use the [Get\-EC2AvailabilityZone](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2AvailabilityZone.html) command as follows to describe the Availability Zones within the specified Region\.
 
    ```
    PS C:\> Get-EC2AvailabilityZone -Region region-name

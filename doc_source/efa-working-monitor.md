@@ -4,11 +4,11 @@ You can use the following features to monitor the performance of your Elastic Fa
 
 ## Amazon VPC Flow Logs<a name="efa-flowlog"></a>
 
-You can create an Amazon VPC flow log to capture information about the traffic going to and from an EFA\. Flow log data can be published to Amazon CloudWatch Logs and Amazon S3\. After you create a flow log, you can retrieve and view its data in the chosen destination\. For more information, see [VPC Flow Logs](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html) in the *Amazon VPC User Guide*\.
+You can create an Amazon VPC Flow Log to capture information about the traffic going to and from an EFA\. Flow log data can be published to Amazon CloudWatch Logs and Amazon S3\. After you create a flow log, you can retrieve and view its data in the chosen destination\. For more information, see [VPC Flow Logs](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html) in the *Amazon VPC User Guide*\.
 
-You create a flow log for an EFA in the same way that you create a flow log for an ENI\. For more information, see [Creating a Flow Log](https://docs.aws.amazon.com/vpc/latest/userguide/working-with-flow-logs.html#create-flow-log) in the *Amazon VPC User Guide*\.
+You create a flow log for an EFA in the same way that you create a flow log for an elastic network interface\. For more information, see [Creating a Flow Log](https://docs.aws.amazon.com/vpc/latest/userguide/working-with-flow-logs.html#create-flow-log) in the *Amazon VPC User Guide*\.
 
-In the flow log entries, EFA traffic is identified by the `srcAddress` and `destAddress`, which are both formatted as MAC addresses\. For example:
+In the flow log entries, EFA traffic is identified by the `srcAddress` and `destAddress`, which are both formatted as MAC addresses, as shown in the following example\.
 
 ```
 version accountId  eniId        srcAddress        destAddress       sourcePort destPort protocol packets bytes start      end        action log-status

@@ -3,15 +3,16 @@
 In this tutorial, you create an EFA\-enabled AMI and an EFA\-enabled security group, and then launch EFA\-enabled instances into a cluster placement group using that AMI and security group\.
 
 **Topics**
-+ [Step 1: Prepare an EFA\-enabled Security Group](#efa-start-security)
++ [Step 1: Prepare an EFA\-Enabled Security Group](#efa-start-security)
 + [Step 2: Launch a Temporary Instance](#efa-start-tempinstance)
-+ [Step 3: Install EFA Software Components](#efa-start-enable)
-+ [Step 4: Install your HPC Application](#efa-start-hpc-app)
-+ [Step 5: Create an EFA\-enabled AMI](#efa-start-ami)
-+ [Step 6: Launch EFA\-enabled Instances into a Cluster Placement Group](#efa-start-instances)
-+ [Step 7: Terminate the Temporary Instance](#efa-start-terminate)
++ [Step 3: Install Libfabric and Open MPI](#efa-start-enable)
++ [Step 4: \(Optional\) Install Intel MPI](#efa-start-impi)
++ [Step 5: Install Your HPC Application](#efa-start-hpc-app)
++ [Step 6: Create an EFA\-Enabled AMI](#efa-start-ami)
++ [Step 7: Launch EFA\-Enabled Instances into a Cluster Placement Group](#efa-start-instances)
++ [Step 8: Terminate the Temporary Instance](#efa-start-terminate)
 
-## Step 1: Prepare an EFA\-enabled Security Group<a name="efa-start-security"></a>
+## Step 1: Prepare an EFA\-Enabled Security Group<a name="efa-start-security"></a>
 
 An EFA requires a security group that allows all inbound and outbound traffic to and from the security group itself\.
 
@@ -61,7 +62,7 @@ Launch a temporary instance that you can use to install and configure the EFA so
 
 1. On the **Configure Instance Details** page, do the following:
 
-   1. For **EFA**, choose **Enable**\.
+   1. For **Elastic Fabric Adapter**, choose **Enable**\.
 
    1. In the **Network Interfaces** section, for device **eth0**, choose **New network interface**\.
 
@@ -75,45 +76,39 @@ Launch a temporary instance that you can use to install and configure the EFA so
 
 1. On the **Review Instance Launch** page, review the settings, and then choose **Launch** to choose a key pair and to launch your instance\.
 
-## Step 3: Install EFA Software Components<a name="efa-start-enable"></a>
+## Step 3: Install Libfabric and Open MPI<a name="efa-start-enable"></a>
 
 Install the EFA\-enabled kernel, EFA drivers, libfabric, and Open MPI stack that is required to support EFA on your temporary instance\.
 
-**To install the EFA software components on your temporary instance**
+**To install libfabric and Open MPI on your temporary instance**
 
 1. Connect to the instance you launched in **Step 2**\. For more information, see [Connect to Your Linux Instance](AccessingInstances.md)\.
 
-1. Update the instance software\.
+1. Download the EFA software installation files\. To download the latest *stable* version, use the following command\.
 
    ```
-   $ sudo yum update -y
+   $ curl -O https://s3-us-west-2.amazonaws.com/aws-efa-installer/aws-efa-installer-1.4.1.tar.gz
    ```
+**Note**  
+You can also get the latest version by replacing the version number with `latest` in the command above\.
 
-1. Download the EFA software installation files\. The software installation files are packaged into a compressed `.tar.gz` file\.
-
-   ```
-   $ wget https://s3-us-west-2.amazonaws.com/aws-efa-installer/aws-efa-installer-latest.tar.gz
-   ```
-
-1. Extract the EFA software installation files from the compressed `.tar.gz` file\. The files are extracted into a directory named `aws-efa-installer`\.
+1. The software installation files are packaged into a compressed `.tar.gz` file\. Extract the files from the compressed `.tar.gz` file and navigate into the extracted directory\.
 
    ```
-   $ tar -xf aws-efa-installer-latest.tar.gz
+   $ tar -xf aws-efa-installer-1.4.1.tar.gz
    ```
-
-1. Navigate into the extracted directory\.
 
    ```
    $ cd aws-efa-installer
    ```
 
-1. Run the EFA software installation script\. You can specify the `-y` option to run an unattended installation\.
+1. Run the EFA software installation script\.
 
    ```
    $ sudo ./efa_installer.sh -y
    ```
 
-   The EFA software packages are installed in the `/opt/amazon/efa` directory\.
+   Libfabric is installed in the `/opt/amazon/efa` directory, while Open MPI is installed in the `/opt/amazon/openmpi` directory\.
 
 1. Log out of the instance and then log back in\.
 
@@ -123,43 +118,101 @@ Install the EFA\-enabled kernel, EFA drivers, libfabric, and Open MPI stack that
    $ fi_info -p efa
    ```
 
-   The command should return information about the libfabric EFA interfaces\. The following is example output of the command:
+   The command should return information about the libfabric EFA interfaces\. The following example shows the command output\.
 
    ```
    provider: efa
-       fabric: EFA-fe80::1a:feff:feef:82a6
+       fabric: EFA-fe80::94:3dff:fe89:1b70
        domain: efa_0-rdm
-       version: 3.0
+       version: 2.0
        type: FI_EP_RDM
        protocol: FI_PROTO_EFA
    provider: efa
-       fabric: EFA-fe80::1a:feff:feef:82a6
+       fabric: EFA-fe80::94:3dff:fe89:1b70
        domain: efa_0-dgrm
-       version: 3.0
+       version: 2.0
        type: FI_EP_DGRAM
        protocol: FI_PROTO_EFA
    provider: efa;ofi_rxd
-       fabric: EFA-fe80::1a:feff:feef:82a6
+       fabric: EFA-fe80::94:3dff:fe89:1b70
        domain: efa_0-dgrm
        version: 1.0
        type: FI_EP_RDM
        protocol: FI_PROTO_RXD
-   provider: efa;ofi_rxr
-       fabric: EFA-fe80::1a:feff:feef:82a6
-       domain: efa_0-rdm
-       version: 1.0
-       type: FI_EP_RDM
-       protocol: FI_PROTO_RXR
    ```
 
-## Step 4: Install your HPC Application<a name="efa-start-hpc-app"></a>
+## Step 4: \(Optional\) Install Intel MPI<a name="efa-start-impi"></a>
+
+**Note**  
+If you intend to use Open MPI, skip this step\. Perform this step only if you intend to use Intel MPI\.
+
+Intel MPI installation requires an additional installation script and environment variable configuration\.
+
+### Prerequisites<a name="efa-start-impi-prereq"></a>
+
+Ensure that the user performing the following steps has sudo privileges\.
+
+**To install Intel MPI**
+
+1. Download the Intel MPI installation script\.
+
+   ```
+   $ curl -O http://registrationcenter-download.intel.com/akdlm/irc_nas/tec/15553/aws_impi.sh
+   ```
+
+1. Change the script permissions to add group read/write permissions\.
+
+   ```
+   $ chmod 755 aws_impi.sh
+   ```
+
+1. Run the installation script\.
+
+   ```
+   $ ./aws_impi.sh install
+   ```
+
+   Intel MPI is installed in the `/opt/intel/impi/2019.4.243/intel64` directory\.
+
+1. Add the Intel MPI environment variables to the corresponding shell startup scripts to ensure that they are set each time that the instance starts\. Do one of the following depending on your shell\.
+**Note**  
+The **csh** shell is not supported due to environment variable length limitations\.
+   + For **bash**, add the following environment variable to `/home/username/.bashrc` and `/home/username/.bash_profile`\.
+
+     ```
+     source /opt/intel/impi/2019.4.243/intel64/bin/mpivars.sh
+     ```
+   + For **tcsh**, add the following environment variable to `/home/username/.cshrc`\.
+
+     ```
+     source /opt/intel/impi/2019.4.243/intel64/bin/mpivarsh.csh
+     ```
+
+1. Log out of the instance and then log back in\.
+
+1. Run the following command to confirm that Intel MPI was successfully installed\.
+
+   ```
+   $ which mpicc
+   ```
+
+   The following example shows the command output\.
+
+   ```
+   /opt/intel/compilers_and_libraries_2019.4.243/linux/mpi/intel64/bin/mpicc
+   ```
+
+**Note**  
+If you no longer want to use Intel MPI, remove the environment variables from the shell startup scripts\.
+
+## Step 5: Install Your HPC Application<a name="efa-start-hpc-app"></a>
 
 Install the HPC application on the temporary instance\. The installation procedure varies depending on the specific HPC application\. For more information about installing software on your Linux instance, see [Managing Software on Your Linux Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/managing-software.html)\.
 
 **Note**  
 You might need to refer to your HPC application’s documentation for installation instructions\.
 
-## Step 5: Create an EFA\-enabled AMI<a name="efa-start-ami"></a>
+## Step 6: Create an EFA\-Enabled AMI<a name="efa-start-ami"></a>
 
 After you have installed the required software components, you create an EFA\-AMI that you can reuse to launch your EFA\-enabled instances\.
 
@@ -183,7 +236,7 @@ After you have installed the required software components, you create an EFA\-AM
 
 1. Locate the AMI you created in the list\. Wait for the Status to transition from `pending` to `available` before continuing to the next step\.
 
-## Step 6: Launch EFA\-enabled Instances into a Cluster Placement Group<a name="efa-start-instances"></a>
+## Step 7: Launch EFA\-Enabled Instances into a Cluster Placement Group<a name="efa-start-instances"></a>
 
 Launch your EFA\-enabled instances into a cluster placement group using the EFA\-enabled AMI that you created in **Step 5**, and the EFA\-enabled security group that you created in **Step 1**\.
 
@@ -226,7 +279,7 @@ It is not an absolute requirement to launch your EFA\-enabled instances into a c
 
 1. On the **Review Instance Launch** page, review the settings, and then choose **Launch** to choose a key pair and to launch your instances\.
 
-## Step 7: Terminate the Temporary Instance<a name="efa-start-terminate"></a>
+## Step 8: Terminate the Temporary Instance<a name="efa-start-terminate"></a>
 
 At this point, you no longer need the temporary instance that you launched in **Step 2**\. You can terminate the instance to stop incurring charges for it\.
 

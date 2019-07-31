@@ -8,10 +8,6 @@ The following instructions explain how to connect to your EC2 Linux instance usi
 + [Connect Using Your Own Key and Any SSH Client](#ec2-instance-connect-connecting-aws-cli)
 
 **Prerequisites**
-+ **Verify the general prerequisites for connecting to your instance\.**
-
-  For more information, see [General Prerequisites for Connecting to Your Instance](connection-prereqs.md)\. 
-+ Your instance must [allow inbound SSH traffic](authorizing-access-to-an-instance.md#add-rule-authorize-access) on port 22\. We recommend that your instance allows inbound SSH traffic from the [recommended IP block published for the service](https://ip-ranges.amazonaws.com/ip-ranges.json)\. Use the `EC2_INSTANCE_CONNECT` filter for the `service` parameter to get the IP address ranges in the EC2 Instance Connect subset\. For more information, see [AWS IP Address Ranges](https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html) in the *Amazon Web Services General Reference*\.
 + **Install EC2 Instance Connect on your instance\.**
 
   For more information, see [Set Up EC2 Instance Connect](ec2-instance-connect-set-up.md)\.
@@ -20,7 +16,7 @@ The following instructions explain how to connect to your EC2 Linux instance usi
   There is no need to install an SSH client if users only use the console or the EC2 Instance Connect CLI to connect to an instance\. Your local computer most likely has an SSH client installed by default\. You can check for an SSH client by typing ssh at the command line\. If your local computer doesn't recognize the command, you can install an SSH client\. For information about installing an SSH client on Linux or macOS X, see [http://www\.openssh\.com](http://www.openssh.com/)\. For information about installing an SSH client on Windows 10, see [OpenSSH in Windows](https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_overview)\.
 + **\(Optional\) Install the EC2 Instance Connect CLI on your local computer\.**
 
-  There is no need to install the EC2 Instance Connect CLI if users only use the console or an SSH client to connect to an instance\. For more information, see [Step 2: \(Optional\) Install the EC2 Instance Connect CLI](ec2-instance-connect-set-up.md#ec2-instance-connect-install-eic-CLI)\.
+  There is no need to install the EC2 Instance Connect CLI if users only use the console or an SSH client to connect to an instance\. For more information, see [Step 3: \(Optional\) Install the EC2 Instance Connect CLI](ec2-instance-connect-set-up.md#ec2-instance-connect-install-eic-CLI)\.
 
 ## Connect Using EC2 Instance Connect from the Amazon EC2 Console<a name="ec2-instance-connect-connecting-console"></a>
 
@@ -45,18 +41,31 @@ A window opens, and you are connected to your instance\.
 
 You can connect to an instance using the EC2 Instance Connect CLI by providing only the instance ID, while the Instance Connect CLI performs the following three actions in one call: it generates a one\-time\-use SSH public key, pushes the key to the instance where it remains for 60 seconds, and connects the user to the instance\. You can use basic SSH/SFTP commands with the Instance Connect CLI\.
 
-**To connect to your instance using the EC2 Instance Connect CLI**
+------
+#### [ Amazon Linux 2 ]
+
+**To connect to an instance using the EC2 Instance Connect CLI**
 + Use the mssh command and the instance ID to connect to the instance\.
-  + \[Amazon Linux 2\] For an instance launched using Amazon Linux 2, the default user name is `ec2-user`; you do not need to specify it\.
 
-    ```
-    $ mssh i-001234a4bf70dec41EXAMPLE
-    ```
-  + \[Ubuntu\] For an instance launched using an Ubuntu AMI, specify the `ubuntu` user name; otherwise, you get an `Authentication failed` error\.
+  For an instance launched using Amazon Linux 2, the default user name is `ec2-user`; you do not need to specify it\.
 
-    ```
-    $ mssh ubuntu@i-001234a4bf70dec41EXAMPLE
-    ```
+  ```
+  $ mssh i-001234a4bf70dec41EXAMPLE
+  ```
+
+------
+#### [ Ubuntu ]
+
+**To connect to an instance using the EC2 Instance Connect CLI**
++ Use the mssh command and the instance ID to connect to the instance\.
+
+  For an instance launched using an Ubuntu AMI, specify the `ubuntu` user name; otherwise, you get an `Authentication failed` error\.
+
+  ```
+  $ mssh ubuntu@i-001234a4bf70dec41EXAMPLE
+  ```
+
+------
 
 ## Connect Using Your Own Key and Any SSH Client<a name="ec2-instance-connect-connecting-aws-cli"></a>
 

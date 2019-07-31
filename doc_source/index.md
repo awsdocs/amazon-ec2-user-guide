@@ -108,6 +108,7 @@ Amazon's trademarks and trade dress may not be used in
       + [On-Demand Capacity Reservations](ec2-capacity-reservations.md)
          + [Capacity Reservation Pricing and Billing](capacity-reservations-pricing-biling.md)
          + [Working with Capacity Reservations](capacity-reservations-using.md)
+         + [Working with Shared Capacity Reservations](capacity-reservation-sharing.md)
    + [Instance Lifecycle](ec2-instance-lifecycle.md)
       + [Launch Your Instance](LaunchingAndUsingInstances.md)
          + [Launching an Instance Using the Launch Instance Wizard](launching-instance.md)

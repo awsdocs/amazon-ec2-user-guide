@@ -17,13 +17,9 @@ The AWS Free Tier is available for new AWS accounts\. If you are using the AWS F
 
 Reserved Instances are billed for every clock\-hour during the term that you select, regardless of whether an instance is running\. Each clock\-hour starts on the hour \(zero minutes and zero seconds past the hour\) of a standard 24\-hour clock\. For example, 1:00:00 to 1:59:59 is one clock\-hour\. For more information about instance states, see [Instance Lifecycle](ec2-instance-lifecycle.md)\.
 
- 
+A Reserved Instance billing benefit can be applied to a running instance on a per\-second basis\. Per\-second billing is available for instances using an open\-source Linux distribution, such as Amazon Linux and Ubuntu\. Per\-hour billing is used for commercial Linux distributions, such as Red Hat Enterprise Linux and SUSE Linux Enterprise Server\.
 
-
-
-
-
-A Reserved Instance billing benefit is applied to a running instance on a per\-second basis\. A Reserved Instance billing benefit can apply to a maximum of 3600 seconds \(one hour\) of instance usage per clock\-hour\. You can run multiple instances concurrently, but can only receive the benefit of the Reserved Instance discount for a total of 3600 seconds per clock\-hour; instance usage that exceeds 3600 seconds in a clock\-hour is billed at the On\-Demand rate\.
+A Reserved Instance billing benefit can apply to a maximum of 3600 seconds \(one hour\) of instance usage per clock\-hour\. You can run multiple instances concurrently, but can only receive the benefit of the Reserved Instance discount for a total of 3600 seconds per clock\-hour; instance usage that exceeds 3600 seconds in a clock\-hour is billed at the On\-Demand rate\.
 
 For example, if you purchase one `m4.xlarge` Reserved Instance and run four `m4.xlarge` instances concurrently for one hour, one instance is charged at one hour of Reserved Instance usage and the other three instances are charged at three hours of On\-Demand usage\.
 

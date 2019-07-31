@@ -14,11 +14,11 @@ To update the contact information for your account so that you can be sure to be
 ## Types of Scheduled Events<a name="types-of-scheduled-events"></a>
 
 Amazon EC2 supports the following types of scheduled events for your instances:
-+ **Instance stop**: The instance will be stopped\. When you start it again, it's migrated to a new host\. Applies only to instances backed by Amazon EBS\.
-+ **Instance retirement**: The instance will be stopped if it is backed by Amazon EBS, or terminated if it is backed by instance store\.
-+ **Instance reboot**: The instance will be rebooted\.
-+ **System reboot**: The host for the instance will be rebooted\.
-+ **System maintenance**: The instance might be temporarily affected by network maintenance or power maintenance\.
++ **Instance stop**: At the scheduled time, the instance is stopped\. When you start it again, it's migrated to a new host\. Applies only to instances backed by Amazon EBS\.
++ **Instance retirement**: At the scheduled time, the instance is stopped if it is backed by Amazon EBS, or terminated if it is backed by instance store\.
++ **Instance reboot**: At the scheduled time, the instance is rebooted\.
++ **System reboot**: At the scheduled time, the host for the instance is rebooted\.
++ **System maintenance**: At the scheduled time, the instance might be temporarily affected by network maintenance or power maintenance\.
 
 ## Viewing Scheduled Events<a name="viewing_scheduled_events"></a>
 
@@ -38,13 +38,13 @@ In addition to receiving notification of scheduled events in email, you can chec
 ![\[Viewing events in the instance details.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/event-instance-retirement.png)
 
 **To view scheduled events for your instances using the AWS CLI**
-+ Use the following [describe\-instance\-status](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-status.html) command:
++ Use the following [describe\-instance\-status](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-status.html) command\.
 
   ```
   aws ec2 describe-instance-status --instance-id i-1234567890abcdef0 --query "InstanceStatuses[].Events"
   ```
 
-  The following example output shows a reboot event:
+  The following example output shows a reboot event\.
 
   ```
   [
@@ -62,7 +62,7 @@ In addition to receiving notification of scheduled events in email, you can chec
   ]
   ```
 
-  The following example output shows an instance retirement event:
+  The following example output shows an instance retirement event\.
 
   ```
   [
@@ -78,13 +78,13 @@ In addition to receiving notification of scheduled events in email, you can chec
   ```
 
 **To view scheduled events for your instances using the AWS Tools for Windows PowerShell**
-+ Use the following [Get\-EC2InstanceStatus](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2InstanceStatus.html) command:
++ Use the following [Get\-EC2InstanceStatus](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2InstanceStatus.html) command\.
 
   ```
   PS C:\> (Get-EC2InstanceStatus -InstanceId i-1234567890abcdef0).Events
   ```
 
-  The following example output shows an instance retirement event:
+  The following example output shows an instance retirement event\.
 
   ```
   Code         : instance-stop
@@ -93,7 +93,7 @@ In addition to receiving notification of scheduled events in email, you can chec
   ```
 
 **To view scheduled events for your instances using instance metadata**
-+ You can retrieve information about active maintenance events for your instances from the [instance metadata](ec2-instance-metadata.md) as follows:
++ You can retrieve information about active maintenance events for your instances from the [instance metadata](ec2-instance-metadata.md), as follows\.
 
   ```
   [ec2-user ~]$ curl http://169.254.169.254/latest/meta-data/events/maintenance/scheduled
@@ -115,13 +115,13 @@ In addition to receiving notification of scheduled events in email, you can chec
   ```<a name="viewing-event-history"></a>
 
 **To view event history about completed or canceled events for your instances using instance metadata**
-+ You can retrieve information about completed or canceled events for your instances from the [instance metadata](ec2-instance-metadata.md) as follows:
++ You can retrieve information about completed or canceled events for your instances from the [instance metadata](ec2-instance-metadata.md), as follows\.
 
   ```
   [ec2-user ~]$ curl http://169.254.169.254/latest/meta-data/events/maintenance/history
   ```
 
-  The following is example output with information about a system reboot event that was canceled and a system reboot event that was completed, in JSON format\.
+  The following is example output with information about a system reboot event that was canceled, and a system reboot event that was completed, in JSON format\.
 
   ```
   [ 
@@ -149,7 +149,7 @@ In addition to receiving notification of scheduled events in email, you can chec
 When AWS detects irreparable failure of the underlying host for your instance, it schedules the instance to stop or terminate, depending on the type of root device for the instance\. If the root device is an EBS volume, the instance is scheduled to stop\. If the root device is an instance store volume, the instance is scheduled to terminate\. For more information, see [Instance Retirement](instance-retirement.md)\.
 
 **Important**  
-Any data stored on instance store volumes is lost when an instance is stopped or terminated\. This includes instance store volumes that are attached to an instance that has an EBS volume as the root device\. Be sure to save data from your instance store volumes that you will need later before the instance is stopped or terminated\.
+Any data stored on instance store volumes is lost when an instance is stopped or terminated\. This includes instance store volumes that are attached to an instance that has an EBS volume as the root device\. Be sure to save data from your instance store volumes that you might need later before the instance is stopped or terminated\.
 
 **Actions for Instances Backed by Amazon EBS**  
 You can wait for the instance to stop as scheduled\. Alternatively, you can stop and start the instance yourself, which migrates it to a new host\. For more information about stopping your instance, in addition to information about the changes to your instance configuration when it's stopped, see [Stop and Start Your Instance](Stop_Start.md)\.
@@ -178,13 +178,13 @@ You can view whether a reboot event is an instance reboot or a system reboot usi
 1. For each instance, view the value in the **Event Type** column\. The value is either `system-reboot` or `instance-reboot`\.
 
 **To view the type of scheduled reboot event \(AWS CLI\)**
-+ Use the following [describe\-instance\-status](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-status.html) command:
++ Use the following [describe\-instance\-status](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-status.html) command\.
 
   ```
   aws ec2 describe-instance-status --instance-id i-1234567890abcdef0
   ```
 
-  For scheduled reboot events, the value for `Code` is either `system-reboot` or `instance-reboot`\. The following example output shows a `system-reboot` event:
+  For scheduled reboot events, the value for `Code` is either `system-reboot` or `instance-reboot`\. The following example output shows a `system-reboot` event\.
 
   ```
   [
@@ -204,12 +204,12 @@ You can view whether a reboot event is an instance reboot or a system reboot usi
 **Actions for Instance Reboot**  
 You can wait for the instance reboot to occur within its scheduled maintenance window, [reschedule](#reschedule-reboot-event) the instance reboot to a date and time that suits you, or [reboot](ec2-instance-reboot.md) the instance yourself at a time that is convenient for you\.
 
-After your instance is rebooted, the scheduled event is cleared and the event's description is updated\. The pending maintenance to the underlying host is completed, and you can begin using your instance again after it has fully booted\. 
+After your instance is rebooted, the scheduled event is cleared and the event's description is updated\. The pending maintenance to the underlying host is completed, and you can begin using your instance again after it has fully booted\.
 <a name="schedevents_actions_systemreboot"></a>
 **Actions for System Reboot**  
 It is not possible for you to reboot the system yourself\. You can wait for the system reboot to occur during its scheduled maintenance window, or you can [reschedule](#reschedule-reboot-event) the system reboot to a date and time that suits you\. A system reboot typically completes in a matter of minutes\. After the system reboot has occurred, the instance retains its IP address and DNS name, and any data on local instance store volumes is preserved\. After the system reboot is complete, the scheduled event for the instance is cleared, and you can verify that the software on your instance is operating as expected\.
 
-Alternatively, if it is necessary to maintain the instance at a different time and you can't reschedule the system reboot, then you can stop and start an Amazon EBS\-backed instance, which migrates it to a new host\. However, the data on the local instance store volumes is not preserved\. You can also automate an immediate instance stop and start in response to a scheduled system reboot event\. For more information, see [Automating Actions for EC2 Instances](https://docs.aws.amazon.com/health/latest/ug/cloudwatch-events-health.html#automating-instance-actions) in the *AWS Health User Guide*\. For an instance store\-backed instance, if you can't reschedule the system reboot, then you can launch a replacement instance from your most recent AMI, migrate all necessary data to the replacement instance before the scheduled maintenance window, and then terminate the original instance\. 
+Alternatively, if it is necessary to maintain the instance at a different time and you can't reschedule the system reboot, then you can stop and start an Amazon EBS\-backed instance, which migrates it to a new host\. However, the data on the local instance store volumes is not preserved\. You can also automate an immediate instance stop and start in response to a scheduled system reboot event\. For more information, see [Automating Actions for EC2 Instances](https://docs.aws.amazon.com/health/latest/ug/cloudwatch-events-health.html#automating-instance-actions) in the *AWS Health User Guide*\. For an instance store\-backed instance, if you can't reschedule the system reboot, then you can launch a replacement instance from your most recent AMI, migrate all necessary data to the replacement instance before the scheduled maintenance window, and then terminate the original instance\.
 
 ### Rescheduling a Reboot Event<a name="reschedule-reboot-event"></a>
 
@@ -231,17 +231,17 @@ Only events that have an event deadline date, indicated by a value for **Event D
 
 1. Choose **Schedule Event**\.
 **Note**  
-It might take 1\-2 minutes for the updated event start time to reflect in the console\.
+It might take 1\-2 minutes for the updated event start time to be reflected in the console\.
 
 **To reschedule a reboot event \(AWS CLI\)**
 
-1. Only events that have an event deadline date, indicated by a value for `NotBeforeDeadline`, can be rescheduled\. Use the following [describe\-instance\-status](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-status.html) command to view the `NotBeforeDeadline` parameter value:
+1. Only events that have an event deadline date, indicated by a value for `NotBeforeDeadline`, can be rescheduled\. Use the following [describe\-instance\-status](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-status.html) command to view the `NotBeforeDeadline` parameter value\.
 
    ```
    aws ec2 describe-instance-status --instance-id i-1234567890abcdef0
    ```
 
-   The following example output shows a `system-reboot` event that can be rescheduled because `NotBeforeDeadline` contains a value:
+   The following example output shows a `system-reboot` event that can be rescheduled because `NotBeforeDeadline` contains a value\.
 
    ```
    [

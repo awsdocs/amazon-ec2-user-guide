@@ -2,28 +2,11 @@
 
 *Resource\-level permissions* refers to the ability to specify which resources users are allowed to perform actions on\. Amazon EC2 has partial support for resource\-level permissions\. This means that for certain Amazon EC2 actions, you can control when users are allowed to use those actions based on conditions that have to be fulfilled, or specific resources that users are allowed to use\. For example, you can grant users permissions to launch instances, but only of a specific type, and only using a specific AMI\.
 
-The following table describes the Amazon EC2 API actions that currently support resource\-level permissions, as well as the supported resources \(and their ARNs\) and condition keys for each action\. When specifying an ARN, you can use the \* wildcard in your paths; for example, when you cannot or do not want to specify exact resource IDs\. For examples of using wildcards, see [Example Policies for Working with the AWS CLI or an AWS SDK](ExamplePolicies_EC2.md)\.
+If an Amazon EC2 API action does not support resource\-level permissions, you can grant users permissions to use the action, but you have to specify a \* for the resource element of your policy statement\.
 
-**Important**  
-If an Amazon EC2 API action is not listed in this table, then it does not support resource\-level permissions\. If an Amazon EC2 API action does not support resource\-level permissions, you can grant users permissions to use the action, but you have to specify a \* for the resource element of your policy statement\. For an example, see [Example: Read\-Only Access](ExamplePolicies_EC2.md#iam-example-read-only)\. For a list of Amazon EC2 API actions that currently do not support resource\-level permissions, see [Unsupported Resource\-Level Permissions](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ec2-api-permissions.html#ec2-api-unsupported-resource-permissions) in the *Amazon EC2 API Reference*\. 
+For more information about the resources that are created or modified by the Amazon EC2 actions, and the ARNs and Amazon EC2 condition keys that you can use in an IAM policy statement, see [Actions, Resources, and Condition Keys for Amazon EC2](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonec2.html) in the *IAM User Guide*\.
 
-[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-iam-actions-resources.html)
-
-## Resource\-Level Permissions for RunInstances<a name="supported-iam-actions-runinstances"></a>
-
-The [RunInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-RunInstances.html) API action launches one or more instances, and creates and uses a number of Amazon EC2 resources\. The action requires an AMI and creates an instance; and the instance must be associated with a security group\. Launching into a VPC requires a subnet, and creates a network interface\. Launching from an Amazon EBS\-backed AMI creates a volume\. The user must have permissions to use these resources, so they must be specified in the `Resource` element of any policy that uses resource\-level permissions for the `ec2:RunInstances` action\. If you don't intend to use resource\-level permissions with the `ec2:RunInstances` action, you can specify the \* wildcard in the `Resource` element of your statement instead of individual ARNs\.
-
-If you are using resource\-level permissions, the following table describes the minimum resources required to use the `ec2:RunInstances` action\. 
-
-[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-iam-actions-resources.html)
-
-We recommend that you also specify the key pair resource in your policy — even though it's not required to launch an instance, you can't connect to your instance without a key pair\. For examples of using resource\-level permissions with the `ec2:RunInstances` action, see [Launching Instances \(RunInstances\)](ExamplePolicies_EC2.md#iam-example-runinstances)\.
-
-For additional information about resource\-level permissions in Amazon EC2, see the following AWS Security Blog post: [Demystifying EC2 Resource\-Level Permissions](https://aws.amazon.com/blogs/security/demystifying-ec2-resource-level-permissions/)\.
-
-### Resource\-Level Permissions for RunInstances and Launch Templates<a name="supported-iam-actions-runinstances-launch-templates"></a>
-
-You can create a [launch template](ec2-launch-templates.md) that contains the parameters to launch an instance\. When users use the `ec2:RunInstances` action, they can specify the launch template to use to launch instances\. You can apply resource\-level permissions for the launch template resource for the `ec2:RunInstances` action\. For example, you can specify that users can only launch instances using a launch template, and that they must use a specific launch template\. You can also control the parameters that users can or cannot override in the launch template\. This enables you to manage the parameters for launching an instance in a launch template rather than an IAM policy\. For example policies, see [Launch Templates](ExamplePolicies_EC2.md#iam-example-runinstances-launch-templates)\.
+For more information and for example policies, see [IAM Policies for Amazon EC2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-policies-for-amazon-ec2.html) in the *Amazon EC2 User Guide*\.
 
 ## Resource\-Level Permissions for Tagging<a name="supported-iam-actions-tagging"></a>
 

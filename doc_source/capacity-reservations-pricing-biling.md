@@ -32,6 +32,6 @@ When your instance\-hours and reservation\-hours combined exceed your total elig
 
 You can find out about the charges and fees to your account by viewing the AWS Billing and Cost Management console\.
 + The **Dashboard** displays a spend summary for your account\.
-+ On the **Bills** page, under **Details**, expand the **Elastic Compute Cloud** section and the region to get billing information about your Capacity Reservations\.
++ On the **Bills** page, under **Details**, expand the **Elastic Compute Cloud** section and the Region to get billing information about your Capacity Reservations\.
 
 You can view the charges online, or you can download a CSV file\. For more information, see [Capacity Reservation Line Items](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-reports-costusage-cr.html) in the *AWS Billing and Cost Management User Guide*\.

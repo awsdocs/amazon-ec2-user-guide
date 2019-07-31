@@ -22,7 +22,7 @@ To purchase and modify Reserved Instances, ensure that your IAM user account has
 
 When you purchase a Reserved Instance, you must choose an offering for a *platform* that represents the operating system for your instance\.
 
-For SUSE Linux and RHEL distributions, you must choose offerings for those specific platforms\. For all other Linux distributions \(including Ubuntu\), choose an offering for the **Linux/UNIX** platform\.
+For SUSE Linux and RHEL distributions, you must choose offerings for those specific platforms\. For all other Linux distributions \(including Ubuntu\), choose an offering for the **Linux/UNIX** platform\. If you bring your existing RHEL subscription, you must choose an offering for the **Linux/UNIX** platform, not an offering for the RHEL platform\.
 
 ## Buying Standard Reserved Instances<a name="ri-buying-standard"></a>
 

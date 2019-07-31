@@ -1,8 +1,8 @@
 # Status Checks for Your Instances<a name="monitoring-system-instance-status-check"></a>
 
-With instance status monitoring, you can quickly determine whether Amazon EC2 has detected any problems that might prevent your instances from running applications\. Amazon EC2 performs automated checks on every running EC2 instance to identify hardware and software issues\. You can view the results of these status checks to identify specific and detectable problems\. This data augments the information that Amazon EC2 already provides about the intended state of each instance \(such as `pending`, `running`, `stopping`\) as well as the utilization metrics that Amazon CloudWatch monitors \(CPU utilization, network traffic, and disk activity\)\.
+With instance status monitoring, you can quickly determine whether Amazon EC2 has detected any problems that might prevent your instances from running applications\. Amazon EC2 performs automated checks on every running EC2 instance to identify hardware and software issues\. You can view the results of these status checks to identify specific and detectable problems\. The event status data augments the information that Amazon EC2 already provides about the state of each instance \(such as `pending`, `running`, `stopping`\) and the utilization metrics that Amazon CloudWatch monitors \(CPU utilization, network traffic, and disk activity\)\.
 
-Status checks are performed every minute and each returns a pass or a fail status\. If all checks pass, the overall status of the instance is **OK**\. If one or more checks fail, the overall status is **impaired**\. Status checks are built into Amazon EC2, so they cannot be disabled or deleted\. You can, however, create or delete alarms that are triggered based on the result of the status checks\. For example, you can create an alarm to warn you if status checks fail on a specific instance\. For more information, see [Creating and Editing Status Check Alarms](#creating_status_check_alarms)\.
+Status checks are performed every minute, returning a pass or a fail status\. If all checks pass, the overall status of the instance is **OK**\. If one or more checks fail, the overall status is **impaired**\. Status checks are built into Amazon EC2, so they cannot be disabled or deleted\. You can, however, create or delete alarms that are triggered based on the result of the status checks\. For example, you can create an alarm to warn you if status checks fail on a specific instance\. For more information, see [Creating and Editing Status Check Alarms](#creating_status_check_alarms)\.
 
 You can also create an Amazon CloudWatch alarm that monitors an Amazon EC2 instance and automatically recovers the instance if it becomes impaired due to an underlying issue\. For more information, see [Recover Your Instance](ec2-instance-recover.md)\.
 
@@ -17,7 +17,7 @@ You can also create an Amazon CloudWatch alarm that monitors an Amazon EC2 insta
 There are two types of status checks: system status checks and instance status checks\.
 
 **System Status Checks**  
-Monitor the AWS systems on which your instance runs\. These checks detect underlying problems with your instance that require AWS involvement to repair\. When a system status check fails, you can choose to wait for AWS to fix the issue, or you can resolve it yourself\. For instances backed by Amazon EBS, you can stop and start the instance yourself, which in most cases migrates it to a new host\. For instances backed by instance store, you can terminate and replace the instance\.
+Monitor the AWS systems on which your instance runs\. These checks detect underlying problems with your instance that require AWS involvement to repair\. When a system status check fails, you can choose to wait for AWS to fix the issue, or you can resolve it yourself\. For instances backed by Amazon EBS, you can stop and start the instance yourself, which in most cases results in the instance being migrated to a new host\. For instances backed by instance store, you can terminate and replace the instance\.
 
 The following are examples of problems that can cause system status checks to fail:
 + Loss of network connectivity
@@ -26,7 +26,7 @@ The following are examples of problems that can cause system status checks to fa
 + Hardware issues on the physical host that impact network reachability
 
 **Instance Status Checks**  
-Monitor the software and network configuration of your individual instance\. Amazon EC2 checks the health of the instance by sending an address resolution protocol \(ARP\) request to the ENI\. These checks detect problems that require your involvement to repair\. When an instance status check fails, typically you will need to address the problem yourself \(for example, by rebooting the instance or by making instance configuration changes\)\.
+Monitor the software and network configuration of your individual instance\. Amazon EC2 checks the health of the instance by sending an address resolution protocol \(ARP\) request to the network interface \(NIC\)\. These checks detect problems that require your involvement to repair\. When an instance status check fails, you typically must address the problem yourself \(for example, by rebooting the instance or by making instance configuration changes\)\.
 
 The following are examples of problems that can cause instance status checks to fail:
 + Failed system status checks
@@ -60,19 +60,19 @@ You can view status checks using the AWS Management Console\.
 
 You can view status checks for running instances using the [describe\-instance\-status](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-status.html) \(AWS CLI\) command\.
 
-To view the status of all instances, use the following command:
+To view the status of all instances, use the following command\.
 
 ```
 aws ec2 describe-instance-status
 ```
 
-To get the status of all instances with an instance status of `impaired`, use the following command:
+To get the status of all instances with an instance status of `impaired`, use the following command\.
 
 ```
 aws ec2 describe-instance-status --filters Name=instance-status.status,Values=impaired
 ```
 
-To get the status of a single instance, use the following command:
+To get the status of a single instance, use the following command\.
 
 ```
 aws ec2 describe-instance-status --instance-ids i-1234567890abcdef0
@@ -86,7 +86,7 @@ If you have an instance with a failed status check, see [Troubleshooting Instanc
 
 ## Reporting Instance Status<a name="reporting_status"></a>
 
-You can provide feedback if you are having problems with an instance whose status is not shown as impaired, or you want to send AWS additional details about the problems you are experiencing with an impaired instance\.
+You can provide feedback if you are having problems with an instance whose status is not shown as impaired, or if you want to send AWS additional details about the problems you are experiencing with an impaired instance\.
 
 We use reported feedback to identify issues impacting multiple customers, but do not respond to individual account issues\. Providing feedback does not change the status check results that you currently see for the instance\.
 
@@ -104,7 +104,7 @@ We use reported feedback to identify issues impacting multiple customers, but do
 
 ### Reporting Status Feedback Using the Command Line or API<a name="reporting_status-cli"></a>
 
-Use the following [report\-instance\-status](https://docs.aws.amazon.com/cli/latest/reference/ec2/report-instance-status.html) \(AWS CLI\) command to send feedback about the status of an impaired instance:
+Use the following [report\-instance\-status](https://docs.aws.amazon.com/cli/latest/reference/ec2/report-instance-status.html) \(AWS CLI\) command to send feedback about the status of an impaired instance\.
 
 ```
 aws ec2 report-instance-status --instances i-1234567890abcdef0 --status impaired --reason-codes code
@@ -168,13 +168,13 @@ In the following example, the alarm publishes a notification to an SNS topic, `a
 
 1. Select an existing SNS topic or create a new one\. For more information, see [Using the AWS CLI with Amazon SNS](https://docs.aws.amazon.com/cli/latest/userguide/cli-sqs-queue-sns-topic.html) in the *AWS Command Line Interface User Guide*\.
 
-1. Use the following [list\-metrics](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/list-metrics.html) command to view the available Amazon CloudWatch metrics for Amazon EC2:
+1. Use the following [list\-metrics](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/list-metrics.html) command to view the available Amazon CloudWatch metrics for Amazon EC2\.
 
    ```
    aws cloudwatch list-metrics --namespace AWS/EC2
    ```
 
-1. Use the following [put\-metric\-alarm](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/put-metric-alarm.html) command to create the alarm:
+1. Use the following [put\-metric\-alarm](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/put-metric-alarm.html) command to create the alarm\.
 
    ```
    aws cloudwatch put-metric-alarm --alarm-name StatusCheckFailed-Alarm-for-i-1234567890abcdef0 --metric-name StatusCheckFailed --namespace AWS/EC2 --statistic Maximum --dimensions Name=InstanceId,Value=i-1234567890abcdef0 --unit Count --period 300 --evaluation-periods 2 --threshold 1 --comparison-operator GreaterThanOrEqualToThreshold --alarm-actions arn:aws:sns:us-west-2:111122223333:my-sns-topic

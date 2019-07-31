@@ -39,7 +39,7 @@ wget http://download.opensuse.org/repositories/devel:/languages:/perl/SLE_12_SP3
 sudo rpm -i perl-Switch-2.17-32.1.noarch.rpm
 ```
 
-You can also monitor memory and disk metrics on Amazon EC2 instances running Windows by sending this data to CloudWatch Logs\. For more information, see [Sending Logs, Events, and Performance Counters to Amazon CloudWatch](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/send_logs_to_cwl.html) in the *Amazon EC2 User Guide for Windows Instances*\.
+You can also monitor memory and disk metrics on Amazon EC2 instances running Windows by sending this data to CloudWatch Logs\. For more information, see [Collect Metrics and Logs from Amazon EC2 Instances and On\-Premises Servers with the CloudWatch Agent](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Install-CloudWatch-Agent.html) in the *Amazon CloudWatch User Guide*\.
 
 ### Package Contents<a name="mon-scripts-contents"></a>
 

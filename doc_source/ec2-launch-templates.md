@@ -52,9 +52,11 @@ Create a new launch template using parameters that you define, or use an existin
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation pane, choose **Launch Templates**\.
+1. In the navigation pane, choose **Launch Templates**, **Create launch template**\.
 
-1. Choose **Create launch template** and provide a name and description\.
+1. For **Launch template name**, enter a descriptive name for the launch template\. To tag the launch template on creation, choose **Show Tags**, **Add Tag**, and then enter a tag key and value pair\.
+
+1. For **Template version description**, provide a brief description of the launch template version\.
 
 1. For **Launch template contents**, provide the following information:
    + **AMI ID**: An AMI from which to launch the instance\. To search through all available AMIs, choose **Search for AMI**\. To select a commonly used AMI, choose **Quick Start**\. Or, choose **AWS Marketplace** or **Community AMIs**\. You can use an AMI that you own or [find a suitable AMI](finding-an-ami.md)\.
@@ -128,7 +130,7 @@ Providing a CMK without also setting the **Encrypted** parameter results in an e
 
 1. In the navigation pane, choose **Launch Templates**\.
 
-1. Choose **Create launch template**\. Provide a name and description for the launch template\.
+1. Choose **Create launch template**\. Provide a name, description, and tags for the launch template\.
 
 1. For **Source template**, choose a launch template on which to base the new launch template\.
 
@@ -144,7 +146,7 @@ Providing a CMK without also setting the **Encrypted** parameter results in an e
 
 1. Select the instance, and choose **Actions**, **Create Template From Instance**\.
 
-1. Provide a name and description, and adjust the launch parameters as required\.
+1. Provide a name, description, and tags, and adjust the launch parameters as required\.
 **Note**  
 When you create a launch template from an instance, the instance's network interface IDs and IP addresses are not included in the template\.
 
@@ -152,14 +154,15 @@ When you create a launch template from an instance, the instance's network inter
 
 **To create a launch template \(AWS CLI\)**
 + Use the [create\-launch\-template](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-launch-template.html) \(AWS CLI\) command\. The following example creates a launch template that specifies the following:
+  + A tag for the launch template \(`purpose`=`production`\)
   + The instance type \(`r4.4xlarge`\) and AMI \(`ami-8c1be5f6`\) to launch
   + The number of cores \(`4`\) and threads per core \(`2`\) for a total of 8 vCPUs \(4 cores x 2 threads\)
   + The subnet in which to launch the instance \(`subnet-7b16de0c`\)
 
-  The template assigns a public IP address and an IPv6 address to the instance and creates a tag for the instance \(`Name`=`webserver`\)\.
+  The template assigns a public IP address and an IPv6 address to the instance and creates a tag for the instance\(`Name`=`webserver`\)\.
 
   ```
-  aws ec2 create-launch-template --launch-template-name TemplateForWebServer --version-description WebVersion1 --launch-template-data file://template-data.json
+  aws ec2 create-launch-template --launch-template-name TemplateForWebServer --version-description WebVersion1 --tag-specifications 'ResourceType=launch-template,Tags=[{Key=purpose,Value=production}]' --launch-template-data file://template-data.json
   ```
 
   The following is an example `template-data.json` file:

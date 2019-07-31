@@ -376,7 +376,7 @@ Disabling TLS versions 1\.0 and 1\.1 in this manner blocks a small percentage of
    [ec2-user ~]$ yum list installed | grep openssl
    ```
 
-   For example, if the returned information is Apache 2\.4\.34 and OpenSSL 1\.0\.2, we enter this into the generator\. Then we choose the "modern" compatibility model, which creates an `SSLCipherSuite` directive that aggressively enforces security but still works for most browsers\.
+   For example, if the returned information is Apache 2\.4\.34 and OpenSSL 1\.0\.2, we enter this into the generator\. If you choose the "modern" compatibility model, this creates an `SSLCipherSuite` directive that aggressively enforces security but still works for most browsers\. If your software doesn't support the modern configuration, you can update your software or choose the "intermediate" configuration instead\.
 
    ```
    SSLCipherSuite ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:

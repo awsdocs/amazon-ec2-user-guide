@@ -23,8 +23,6 @@ Some of these metrics have differences on Nitro\-based instances\. For a list of
 The `AWS/EBS` namespace includes the following metrics\.
 
 
-**Volume Metrics**  
-
 | Metric | Description | 
 | --- | --- | 
 |  `VolumeReadBytes`  |  Provides information on the read operations in a specified period of time\. The `Sum` statistic reports the total number of bytes transferred during the period\. The `Average` statistic reports the average size of each read operation during the period, except on volumes attached to a Nitro\-based instance, where the average represents the average over the specified period\. The `SampleCount` statistic reports the total number of read operations during the period, except on volumes attached to a Nitro\-based instance, where the sample count represents the number of data points used in the statistical calculation\. For Xen instances, data is reported only when there is read activity on the volume\. The `Minimum` and `Maximum` statistics on this metric are supported only by volumes attached to Nitro\-based instances\. Units: Bytes  | 
@@ -41,7 +39,7 @@ The `AWS/EBS` namespace includes the following metrics\.
 
 ## Dimensions for Amazon EBS Metrics<a name="ebs-metric-dimensions"></a>
 
-For the [volume metrics](#ebs-volume-metrics), the supported dimension is the volume ID \(`VolumeId`\)\. All available statistics are filtered by volume ID\.
+The supported dimension is the volume ID \(`VolumeId`\)\. All available statistics are filtered by volume ID\.
 
 ## Graphs in the Amazon EC2 Console<a name="graphs-in-the-aws-management-console-2"></a>
 

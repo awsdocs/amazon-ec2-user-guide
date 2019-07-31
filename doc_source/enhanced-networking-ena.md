@@ -89,7 +89,9 @@ To check whether an AMI has the enhanced networking `enaSupport` attribute set, 
   ```
 
 **Network Interface Driver**  
-Use the following command to verify that the `ena` module is being used on a particular interface, substituting the interface name that you wish to check\. If you are using a single interface \(default\), it will be `eth0`\.
+Use the following command to verify that the `ena` module is being used on a particular interface, substituting the interface name that you wish to check\. If you are using a single interface \(default\), it this is `eth0`\. If the operating system supports [predictable network names](#predictable-network-names-ena), this could be a name like `ens5`\.
+
+In the following example, the `ena` module is not loaded, because the listed driver is `vif`\.
 
 ```
 [ec2-user ~]$ ethtool -i eth0
@@ -104,7 +106,7 @@ supports-register-dump: no
 supports-priv-flags: no
 ```
 
-In the above case, the `ena` module is not loaded, because the listed driver is `vif`\.
+In this example, the `ena` module is loaded and at the minimum recommended version\. This instance has enhanced networking properly configured\.
 
 ```
 [ec2-user ~]$ ethtool -i eth0
@@ -119,8 +121,6 @@ supports-eeprom-access: no
 supports-register-dump: no
 supports-priv-flags: no
 ```
-
-In this case, the `ena` module is loaded and at the minimum recommended version\. This instance has enhanced networking properly configured\.
 
 ## Enabling Enhanced Networking on the Amazon Linux AMI<a name="enable-enhanced-networking-ena-AL"></a>
 
@@ -259,7 +259,7 @@ The following procedure provides the general steps for enabling enhanced network
    dracut -f -v
    ```
 
-1. Determine if your system uses predictable network interface names by default\. Systems that use systemd or udev versions 197 or greater can rename Ethernet devices and they do not guarantee that a single network interface will be named `eth0`\. This behavior can cause problems connecting to your instance\. For more information and to see other configuration options, see [Predictable Network Interface Names](https://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/) on the freedesktop\.org website\.
+1. <a name="predictable-network-names-ena"></a>Determine if your system uses predictable network interface names by default\. Systems that use systemd or udev versions 197 or greater can rename Ethernet devices and they do not guarantee that a single network interface will be named `eth0`\. This behavior can cause problems connecting to your instance\. For more information and to see other configuration options, see [Predictable Network Interface Names](https://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/) on the freedesktop\.org website\.
 
    1. You can check the systemd or udev versions on RPM\-based systems with the following command:
 

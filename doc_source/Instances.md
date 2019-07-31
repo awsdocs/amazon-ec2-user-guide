@@ -18,4 +18,4 @@ Amazon EC2 supports On\-Demand instances \(the default\), Spot instances, and Re
 Each instance is backed by Amazon EBS or backed by instance store\. Select an AMI based on which type of root volume you need\. For more information, see [Storage for the Root Device](ComponentsAMIs.md#storage-for-the-root-device)\.
 
 **Q\. Can I remotely manage a fleet of EC2 instances *and* machines in my hybrid environment?**  
-AWS Systems Manager lets you remotely and securely manage the configuration of your Amazon EC2 instances, and your on\-premises instances and virtual machines \(VMs\) in hybrid environments, including VMs from other cloud providers\. For more information, see the *[AWS Systems Manager User Guide](https://docs.aws.amazon.com/systems-manager/latest/userguide/)*\.
+AWS Systems Manager enables you to remotely and securely manage the configuration of your Amazon EC2 instances, and your on\-premises instances and virtual machines \(VMs\) in hybrid environments, including VMs from other cloud providers\. For more information, see the *[AWS Systems Manager User Guide](https://docs.aws.amazon.com/systems-manager/latest/userguide/)*\.

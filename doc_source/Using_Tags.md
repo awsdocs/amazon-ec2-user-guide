@@ -50,6 +50,8 @@ The following table describes the Amazon EC2 resources that can be tagged, and t
 |  AMI  |  Yes  | No | 
 |  Bundle task  |  No  | No | 
 |  Capacity Reservation  |  Yes  |  Yes  | 
+|  Client VPN endpoint  |  Yes  |  Yes  | 
+|  Client VPN route  |  No  |  No  | 
 |  Customer gateway  |  Yes  | No | 
 |  Dedicated Host  |  Yes  |  Yes  | 
 |  DHCP option  |  Yes  | No | 
@@ -63,7 +65,7 @@ The following table describes the Amazon EC2 resources that can be tagged, and t
 |  Instance store volume  |  N/A  | N/A | 
 |  Internet gateway  |  Yes  | No | 
 |  Key pair  |  No  | No | 
-|  Launch template  |  Yes  |  No  | 
+|  Launch template  |  Yes  |  Yes  | 
 |  Launch template version  |  No  |  No  | 
 |  NAT gateway  |  Yes  | No | 
 |  Network ACL  |  Yes  | No | 
@@ -75,6 +77,9 @@ The following table describes the Amazon EC2 resources that can be tagged, and t
 |  Spot Instance request  |  Yes  | No | 
 |  Security group  |  Yes  | No | 
 |  Subnet  |  Yes  | No | 
+| Traffic Mirror filter | Yes | Yes | 
+| Traffic Mirror session | Yes | Yes | 
+| Traffic Mirror target | Yes | Yes | 
 | Transit gateway | Yes | Yes | 
 | Transit gateway route table | Yes | Yes | 
 | Transit gateway VPC attachment | Yes | Yes | 

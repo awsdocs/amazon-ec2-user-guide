@@ -1,14 +1,14 @@
 # Working with EFA<a name="efa-working-with"></a>
 
-You can create, use, and manage an EFA much like any other elastic network interface \(ENI\) in Amazon EC2\. However, unlike ENIs, EFAs cannot be attached to or detached from an instance in a running state\.
+You can create, use, and manage an EFA much like any other elastic network interface in Amazon EC2\. However, unlike elastic network interfaces, EFAs cannot be attached to or detached from an instance in a running state\.
 
 ## EFA Requirements<a name="efa-reqs"></a>
 
 To use an EFA, you must do the following:
 + Use one of the following supported instance types: c5n\.18xlarge, i3en\.24xlarge, p3dn\.24xlarge
 + Use one of the following supported AMIs: Amazon Linux, Amazon Linux 2, Red Hat Enterprise Linux 7\.6, CentOS 7\.6, Ubuntu 16\.04, Ubuntu 18\.04
-+ Install the EFA software components\.
-+ Use a security group that allows all inbound and outbound traffic to and from the security group itself\.
++ Install the EFA software components\. For more information, see [Step 3: Install Libfabric and Open MPI](efa-start.md#efa-start-enable) and [Step 4: \(Optional\) Install Intel MPI](efa-start.md#efa-start-impi)\.
++ Use a security group that allows all inbound and outbound traffic to and from the security group itself\. For more information, see [Step 1: Prepare an EFA\-Enabled Security Group](efa-start.md#efa-start-security)\.
 
 **Topics**
 + [EFA Requirements](#efa-reqs)
@@ -50,7 +50,7 @@ You can create an EFA in a subnet in a VPC\. You can't move the EFA to another s
 1. Choose **Yes, Create**\.
 
 **To create a new EFA using the AWS CLI**  
-Use the [create\-network\-interface](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-network-interface.html) command and for `interface-type`, specify `efa`\. For example:
+Use the [create\-network\-interface](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-network-interface.html) command and for `interface-type`, specify `efa`, as shown in the following example\.
 
 ```
 $ aws ec2 create-network-interface --subnet-id subnet-01234567890 --description example_efa --interface-type efa
@@ -60,19 +60,19 @@ $ aws ec2 create-network-interface --subnet-id subnet-01234567890 --description 
 
 You can attach an EFA to any supported instance that is in the `stopped` state\. You cannot attach an EFA to an instance that is in the `running` state\. For more information about the supported instance types, see [Supported Instance Types](efa.md#efa-instance-types)\.
 
-You attach an EFA to an instance in the same way that you attach an ENI to an instance\. For more information, see [Attaching a Network Interface to a Stopped or Running Instance](using-eni.md#attach_eni_running_stopped)\.
+You attach an EFA to an instance in the same way that you attach an elastic network interface to an instance\. For more information, see [Attaching a Network Interface to a Stopped or Running Instance](using-eni.md#attach_eni_running_stopped)\.
 
 ## Attaching an EFA When Launching an Instance<a name="efa-launch"></a>
 
 **To attach an existing EFA when launching an instance \(AWS CLI\)**  
-Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command and for **NetworkInterfaceId**, specify the ID of the EFA\. For example:
+Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command and for **NetworkInterfaceId**, specify the ID of the EFA, as shown in the following example\.
 
 ```
 $ aws ec2 run-instances --image-id ami_id --count 1 --instance-type c5n.18xlarge --key-name my_key_pair --network-interfaces DeviceIndex=0,NetworkInterfaceId=efa_id,Groups=sg_id,SubnetId=subnet_id
 ```
 
 **To attach a new EFA when launching an instance \(AWS CLI\)**  
-Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command and for **InterfaceType**, specify `efa`\. For example:
+Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command and for **InterfaceType**, specify `efa`, as shown in the following example\.
 
 ```
 $ aws ec2 run-instances --image-id ami_id --count 1 --instance-type c5n.18xlarge --key-name my_key_pair --network-interfaces DeviceIndex=0,InterfaceType=efa,Groups=sg_id,SubnetId=subnet_id
@@ -90,13 +90,13 @@ For more information about creating launch templates, see [Creating a Launch Tem
 
 If you have an Elastic IP \(IPv4\) address, you can associate it with an EFA\. If your EFA is provisioned in a subnet that has an associated IPv6 CIDR block, you can assign one or more IPv6 addresses to the EFA\.
 
-You assign an Elastic IP \(IPv4\) and IPv6 address to an EFA in the same way that you assign an IP address to an ENI\. For more information, see:
+You assign an Elastic IP \(IPv4\) and IPv6 address to an EFA in the same way that you assign an IP address to an elastic network interface\. For more information, see:
 + [Associating an Elastic IP Address \(IPv4\)](using-eni.md#associate_eip)
 + [Assigning an IPv6 Address](using-eni.md#eni-assign-ipv6)
 
 ## Unassigning an IP Address from an EFA<a name="efa-ip-unassign"></a>
 
-You unassign an Elastic IP \(IPv4\) and IPv6 address from an EFA in the same way that you unassign an IP address from an ENI\. For more information, see:
+You unassign an Elastic IP \(IPv4\) and IPv6 address from an EFA in the same way that you unassign an IP address from an elastic network interface\. For more information, see:
 + [Disassociating an Elastic IP Address \(IPv4\)](using-eni.md#disassociate_eip)
 + [Unassigning an IPv6 Address](using-eni.md#eni-unassign-ipv6)
 
@@ -104,22 +104,22 @@ You unassign an Elastic IP \(IPv4\) and IPv6 address from an EFA in the same way
 
  You can change the security group that is associated with an EFA\. To enable OS\-bypass functionality, the EFA must be a member of a security group that allows all inbound and outbound traffic to and from the security group itself\.
 
-You change the security group that is associated with an EFA in the same way that you change the security group that is associated with an ENI\. For more information, see [Changing the Security Group](using-eni.md#eni_security_group)\.
+You change the security group that is associated with an EFA in the same way that you change the security group that is associated with an elastic network interface\. For more information, see [Changing the Security Group](using-eni.md#eni_security_group)\.
 
 ## Detaching an EFA<a name="efa-detach"></a>
 
 To detach an EFA from an instance, you must first stop the instance\. You cannot detach an EFA from an instance that is in the running state\.
 
-You detach an EFA from an instance in the same way that you detach an ENI from an instance\. For more information, see [Detaching a Network Interface from an Instance](using-eni.md#detach_eni)\.
+You detach an EFA from an instance in the same way that you detach an elastic network interface from an instance\. For more information, see [Detaching a Network Interface from an Instance](using-eni.md#detach_eni)\.
 
 ## Viewing EFAs<a name="efa-view"></a>
 
 You can view all of the EFAs in your account\.
 
-You view EFAs in the same way that you view ENIs\. For more information, see [Viewing Details about a Network Interface](using-eni.md#view_eni_details)\.
+You view EFAs in the same way that you view elastic network interfaces\. For more information, see [Viewing Details about a Network Interface](using-eni.md#view_eni_details)\.
 
 ## Deleting an EFA<a name="efa-delete"></a>
 
 To delete an EFA, you must first detach it from the instance\. You cannot delete an EFA while it is attached to an instance\.
 
-You delete EFAs in the same way that you delete ENIs\. For more information, see [Deleting a Network Interface](using-eni.md#delete_eni)\.
+You delete EFAs in the same way that you delete elastic network interfaces\. For more information, see [Deleting a Network Interface](using-eni.md#delete_eni)\.

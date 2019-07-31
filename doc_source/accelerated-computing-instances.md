@@ -157,6 +157,7 @@ To help you get started, NVIDIA and others provide AMIs for GPU\-based accelerat
 
 For a list of AMIs with the NVIDIA driver, search AWS Marketplace as follows:
 + [NVIDIA P3 AMIs](http://aws.amazon.com/marketplace/search/results/?page=1&filters=instance_types&instance_types=p3.2xlarge&searchTerms=NVIDIA)
++ [NVIDIA Quadro Virtual Workstation P3 AMIs](http://aws.amazon.com/marketplace/search/results?x=0&y=0&searchTerms=Quadro+NVIDIA)
 + [NVIDIA P2 AMIs](http://aws.amazon.com/marketplace/search/results/?page=1&filters=instance_types&instance_types=p2.xlarge&searchTerms=NVIDIA)
 + [NVIDIA GRID G3 AMIs](http://aws.amazon.com/marketplace/search/results/?page=1&filters=instance_types&instance_types=g3.4xlarge&searchTerms=NVIDIAGRID)
 + [NVIDIA GRID G2 AMIs](http://aws.amazon.com/marketplace/search/results/?page=1&filters=instance_types&instance_types=g2.2xlarge&searchTerms=NVIDIAGRID)

@@ -29,7 +29,7 @@
 ## Enable Inbound Traffic to Your Instance<a name="connection-prereqs-enable-inbound-traffic"></a>
 + **Enable inbound SSH traffic from your IP address to your instance\.**
 
-  Ensure that the security group associated with your instance allows incoming SSH traffic from your IP address\. The default security group for the VPC does not allow incoming SSH traffic by default\. The security group created by the launch wizard enables SSH traffic by default\. For more information, see [Authorizing Inbound Traffic for Your Linux Instances](authorizing-access-to-an-instance.md)\.
+  Ensure that the security group associated with your instance allows incoming SSH traffic from your IP address\. The default security group for the VPC does not allow incoming SSH traffic by default\. The security group created by the launch instance wizard enables SSH traffic by default\. For more information, see [Authorizing Inbound Traffic for Your Linux Instances](authorizing-access-to-an-instance.md)\.
 
 ## Locate the Private Key<a name="connection-prereqs-private-key"></a>
 + **Locate the private key**** and verify permissions**

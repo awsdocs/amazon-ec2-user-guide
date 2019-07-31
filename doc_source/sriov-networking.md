@@ -70,7 +70,9 @@ If the attribute isn't set, `SriovNetSupport` is empty; otherwise, it is set as 
 ```
 
 **Network Interface Driver**  
-Use the following command to verify that the module is being used on a particular interface, substituting the interface name that you wish to check\. If you are using a single interface \(default\), it will be `eth0`\.
+Use the following command to verify that the module is being used on a particular interface, substituting the interface name that you wish to check\. If you are using a single interface \(default\), this is `eth0`\. If the operating system supports [predictable network names](#predictable-network-names-sriov), this could be a name like `ens5`\.
+
+In the following example, the `ixgbevf` module is not loaded, because the listed driver is `vif`\.
 
 ```
 [ec2-user ~]$ ethtool -i eth0
@@ -85,7 +87,7 @@ supports-register-dump: no
 supports-priv-flags: no
 ```
 
-In the above case, the `ixgbevf` module is not loaded, because the listed driver is `vif`\.
+In this example, the `ixgbevf` module is loaded\. This instance has enhanced networking properly configured\.
 
 ```
 [ec2-user ~]$ ethtool -i eth0
@@ -99,8 +101,6 @@ supports-eeprom-access: no
 supports-register-dump: yes
 supports-priv-flags: no
 ```
-
-In this case, the `ixgbevf` module is loaded\. This instance has enhanced networking properly configured\.
 
 ## Enabling Enhanced Networking on Amazon Linux<a name="enable-enhanced-networking"></a>
 
@@ -203,7 +203,7 @@ If you compile the `ixgbevf` module for your current kernel and then upgrade you
 
 1. <a name="other-linux-enhanced-networking-stop-step"></a>Update `initramfs` on your instance to ensure that the new module loads at boot time\.
 
-1. Determine if your system uses predictable network interface names by default\. Systems that use systemd or udev versions 197 or greater can rename Ethernet devices and they do not guarantee that a single network interface will be named `eth0`\. This behavior can cause problems connecting to your instance\. For more information and to see other configuration options, see [Predictable Network Interface Names](https://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/) on the freedesktop\.org website\.
+1. <a name="predictable-network-names-sriov"></a>Determine if your system uses predictable network interface names by default\. Systems that use systemd or udev versions 197 or greater can rename Ethernet devices and they do not guarantee that a single network interface will be named `eth0`\. This behavior can cause problems connecting to your instance\. For more information and to see other configuration options, see [Predictable Network Interface Names](https://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/) on the freedesktop\.org website\.
 
    1. You can check the systemd or udev versions on RPM\-based systems with the following command:
 

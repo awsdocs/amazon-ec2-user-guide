@@ -2,9 +2,9 @@
 
 When you hibernate an instance, we signal the operating system to perform hibernation \(suspend\-to\-disk\), which saves the contents from the instance memory \(RAM\) to your Amazon EBS root volume\. We persist the instance's Amazon EBS root volume and any attached Amazon EBS data volumes\. When you restart your instance, the Amazon EBS root volume is restored to its previous state, the RAM contents are reloaded, and the processes that were previously running on the instance are resumed\. Previously attached data volumes are reattached and the instance retains its instance ID\. 
 
-You can hibernate an instance only if it's [enabled for hibernation](#enabling-hibernation) and it meets the [hibernation prerequisites](#hibernating-prerequisites)\. Hibernation is currently supported only for Amazon Linux\.
+You can hibernate an instance only if it's [enabled for hibernation](#enabling-hibernation) and it meets the [hibernation prerequisites](#hibernating-prerequisites)\.
 
-If an instance or application takes a long time to bootstrap and build a memory footprint to become fully productive, you can use hibernation to "pre\-warm" the instance\. To "pre\-warm" the instance, launch it, bring it to a desired state, and then hibernate it, ready to be resumed to the same state as needed\.
+If an instance or application takes a long time to bootstrap and build a memory footprint to become fully productive, you can use hibernation to pre\-warm the instance\. To pre\-warm the instance, launch it, bring it to a desired state, and then hibernate it, ready to be resumed to the same state as needed\.
 
 We don't charge usage for a hibernated instance when it is in the `stopped` state\. We do charge for instance usage while the instance is in the `stopping` state \(unlike when you [stop an instance](Stop_Start.md) without hibernating it\) when the contents of the RAM are transferred to the Amazon EBS root volume\. We don't charge usage for data transfer fees, but we do charge for the storage for any Amazon EBS volumes, including storage for the RAM contents\.
 
@@ -19,6 +19,7 @@ Hibernation is currently not supported on Windows instances\.
 + [Limitations](#hibernating-not-supported)
 + [Configuring an Existing AMI to Support Hibernation](#hibernation-enabled-AMI)
 + [Enabling Hibernation for an Instance](#enabling-hibernation)
++ [Disabling KASLR on an Instance \(Ubuntu only\)](#hibernation-disable-kaslr)
 + [Hibernating an Instance](#hibernating-instances)
 + [Restarting a Hibernated Instance](#hibernating-resuming)
 + [Troubleshooting Hibernation](#troubleshoot-instance-hibernate)
@@ -44,19 +45,21 @@ For information about how hibernation differs from reboot, stop, and terminate, 
 ## Hibernation Prerequisites<a name="hibernating-prerequisites"></a>
 
 To hibernate an instance, the following prerequisites must be in place:
-+ **Instance families:** The following instance families are supported: C3, C4, C5, M3, M4, M5, R3, R4, and R5, with less than 150 GB of RAM\. Hibernation is not supported for \*\.metal instances\.
-+ **Instance RAM size:** The instance RAM size must be less than 150 GB\.
-+ **Supported AMIs:** The following AMIs support hibernation: Amazon Linux AMI 2018\.03 released 2018\.11\.16 or later\.
++ **Instance families** \- The following instance families are supported: C3, C4, C5, M3, M4, M5, R3, R4, and R5, with less than 150 GB of RAM\. Hibernation is not supported for \*\.metal instances\.
++ **Instance RAM size** \- The instance RAM size must be less than 150 GB\.
++ **Amazon Machine Image \(AMI\)** \- The AMI must be an HVM AMI that supports hibernation\. The following AMIs support hibernation\. To configure your own AMI to support hibernation, see [Configuring an Existing AMI to Support Hibernation](#hibernation-enabled-AMI)\.
+  + Amazon Linux AMI 2018\.03 released 2018\.11\.16 or later
+  + Ubuntu 18\.04 LTS \- Bionic\* AMI released with serial 20190722\.1 or later
 
-  Support for Amazon Linux 2 and Ubuntu is coming soon\. Only HVM AMIs support hibernation\. To configure your own AMI to support hibernation, see [Configuring an Existing AMI to Support Hibernation](#hibernation-enabled-AMI)\.
-+ **Root volume type: **The instance root volume must be an Amazon EBS volume, not an instance store volume\.
-+ **Amazon EBS root volume size:** The root volume must be large enough to store the RAM contents and accommodate your expected usage, for example, OS or applications\. If you enable hibernation, space is allocated on the root volume at launch to store the RAM\.
-+ **Amazon EBS root volume encryption:** To use hibernation, the root volume must be encrypted to ensure the protection of sensitive content that is in memory at the time of hibernation\. When RAM data is moved to the Amazon EBS root volume, it is always encrypted\. Encryption of the root volume is enforced at instance launch\. Use one of the following three options to ensure that the root volume is an encrypted Amazon EBS volume:
+    **\* Disabling KASLR:** To run hibernation on a newly launched instance with Ubuntu 18\.04 LTS \- Bionic, we recommend disabling KASLR \(Kernel Address Space Layout Randomization\)\. On Ubuntu 18\.04 LTS, KASLR is enabled by default\. For more information, see [Disabling KASLR on an Instance \(Ubuntu only\)](#hibernation-disable-kaslr)\.
++ **Root volume type** \- The instance root volume must be an Amazon EBS volume, not an instance store volume\.
++ **Amazon EBS root volume size** \- The root volume must be large enough to store the RAM contents and accommodate your expected usage, for example, OS or applications\. If you enable hibernation, space is allocated on the root volume at launch to store the RAM\.
++ **Amazon EBS root volume encryption** \- To use hibernation, the root volume must be encrypted to ensure the protection of sensitive content that is in memory at the time of hibernation\. When RAM data is moved to the Amazon EBS root volume, it is always encrypted\. Encryption of the root volume is enforced at instance launch\. Use one of the following three options to ensure that the root volume is an encrypted Amazon EBS volume:
   + EBS “single\-step” encryption: In a single run\-instances API call, you can launch encrypted EBS\-backed EC2 instances from an unencrypted AMI and also enable hibernation at the same time\. For more information, see [Using Encryption with EBS\-Backed AMIs](AMIEncryption.md)\.
   + EBS encryption by default: You can enable EBS encryption by default to ensure all new EBS volumes created in your AWS account are encrypted\. This way, you can enable hibernation for your instances without specifying encryption intent at instance launch\. For more information, see [Encryption by Default](EBSEncryption.md#encryption-by-default)\.
   + Encrypted AMI: You can enable EBS encryption by using an encrypted AMI to launch your instance\. If your AMI does not have an encrypted root snapshot, you can copy it to a new AMI and request encryption\. For more information, see [Encrypt an Unencrypted Image during Copy](AMIEncryption.md#copy-unencrypted-to-encrypted) and [Copying an AMI](CopyingAMIs.md#ami-copy-steps)\.
-+ **Enable hibernation at launch:** At launch, enable hibernation using the Amazon EC2 console or the AWS CLI\. You cannot enable hibernation on an existing instance \(running or stopped\)\. For more information, see [Enabling Hibernation for an Instance](#enabling-hibernation)\.
-+ **Purchasing options:** This feature is only available for On\-Demand Instances and Reserved Instances\. For more information, see [Hibernating Interrupted Spot Instances](spot-interruptions.md#hibernate-spot-instances)\.
++ **Enable hibernation at launch** \- At launch, enable hibernation using the Amazon EC2 console or the AWS CLI\. You cannot enable hibernation on an existing instance \(running or stopped\)\. For more information, see [Enabling Hibernation for an Instance](#enabling-hibernation)\.
++ **Purchasing options** \- This feature is available for On\-Demand Instances and Reserved Instances\. It is not available for Spot Instances\. For more information, see [Hibernating Interrupted Spot Instances](spot-interruptions.md#hibernate-spot-instances)\.
 
 ## Limitations<a name="hibernating-not-supported"></a>
 
@@ -81,20 +84,20 @@ We constantly update our platform with upgrades and security patches, which can 
 
 To hibernate an instance that was launched using your own AMI, you must first configure your AMI to support hibernation\. For more information, see [Updating Instance Software](install-updates.md)\.
 
-If you use one of the [supported AMIs](#hibernating-prerequisites), or you create an AMI based on one of the [supported AMIs](#hibernating-prerequisites), you do not need to configure it to support hibernation\. The supported AMIs come preconfigured to support hibernation\.
+If you use one of the [supported AMIs](#hibernating-prerequisites), or you create an AMI based on one of the supported AMIs, you do not need to configure it to support hibernation\. These AMIs are preconfigured to support hibernation\.
 
-**To configure an Amazon Linux AMI to support hibernation \(AWS CLI\)**
+**To configure an Amazon Linux AMI to support hibernation**
 
 1. Update to the latest kernel to 4\.14\.77\-70\.59 or later using the following command:
 
    ```
-   sudo yum update kernel
+   [ec2-user ~]$ sudo yum update kernel
    ```
 
 1. Install the `ec2-hibinit-agent` package from the repositories using the following command:
 
    ```
-   sudo yum install ec2-hibinit-agent
+   [ec2-user ~]$ sudo yum install ec2-hibinit-agent
    ```
 
 1. Reboot the instance\.
@@ -102,16 +105,46 @@ If you use one of the [supported AMIs](#hibernating-prerequisites), or you creat
 1. Confirm that the kernel version is updated to 4\.14\.77\-70\.59 or greater using the following command:
 
    ```
-   uname -a
+   [ec2-user ~]$ uname -a
    ```
 
 1. Stop the instance and create an AMI\. For more information, see [Creating a Linux AMI from an Instance](creating-an-ami-ebs.md#how-to-create-ebs-ami)\.
 
+**To configure an Ubuntu 18\.04 LTS AMI to support hibernation**
+
+1. Update to the latest kernel to 4\.15\.0\-1044 or later using the following command:
+
+   ```
+   [ec2-user ~]$ sudo apt update
+   [ec2-user ~]$ sudo apt dist-upgrade
+   ```
+
+1. Install the `ec2-hibinit-agent` package from the repositories using the following command:
+
+   ```
+   [ec2-user ~]$ sudo apt install ec2-hibinit-agent
+   ```
+
+1. Reboot the instance using the following command\.
+
+   ```
+   [ec2-user ~]$ sudo reboot
+   ```
+
+1. Confirm that the kernel version is updated to 4\.15\.0\-1044 or greater using the following command:
+
+   ```
+   [ec2-user ~]$ uname -a
+   ```
+
 ## Enabling Hibernation for an Instance<a name="enabling-hibernation"></a>
 
-To hibernate an instance, it must first be enabled for hibernation\. At launch, enable hibernation using the console or the command line\. You cannot enable hibernation for an existing instance \(running or stopped\)\.
+To hibernate an instance, it must first be enabled for hibernation\. At launch, enable hibernation using the console or the command line\.
 
-**To enable hibernation \(console\)**
+**Important**  
+You can't enable or disable hibernation for an instance after you launch it\.
+
+**To enable hibernation using the console**
 
 1. Follow the [Launching an Instance Using the Launch Instance Wizard](launching-instance.md) procedure\.
 
@@ -123,43 +156,79 @@ To hibernate an instance, it must first be enabled for hibernation\. At launch, 
 
 1. Continue as prompted by the wizard\. When you've finished reviewing your options on the **Review Instance Launch** page, choose **Launch**\. For more information, see [Launching an Instance Using the Launch Instance Wizard](launching-instance.md)\.
 
-**To enable hibernation \(AWS CLI\)**
-+ Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command to launch an instance\. Enable hibernation using the `--hibernation-options Configured=true` parameter\.
+**To enable hibernation using the AWS CLI**  
+Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command to launch an instance\. Enable hibernation using the `--hibernation-options Configured=true` parameter\.
 
-  ```
-  aws ec2 run-instances --image-id ami-abc12345 --count 1 --instance-type m5.large --key-name MyKeyPair --hibernation-options Configured=true
-  ```
+```
+aws ec2 run-instances --image-id ami-0abcdef1234567890 --instance-type m5.large --hibernation-options Configured=true --count 1 --key-name MyKeyPair
+```
 
-**To view if an instance is enabled for hibernation \(console\)**
+**To view if an instance is enabled for hibernation using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
 1. In the navigation pane, choose **Instances**\.
 
 1. Select the instance and, in the details pane, inspect **Stop \- Hibernation behavior**\. **Enabled** indicates that the instance is enabled for hibernation\.
-**Note**  
-You can't enable or disable hibernation after launch\.
 
-**To view if an instance is enabled for hibernation \(AWS CLI\)**
-+ Use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command and specify the `--filters "Name=hibernation-options.configured,Values=true"` parameter to filter instances that are enabled for hibernation\.
+**To view if an instance is enabled for hibernation using the AWS CLI**  
+Use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command and specify the `--filters "Name=hibernation-options.configured,Values=true"` parameter to filter instances that are enabled for hibernation\.
 
-  ```
-  aws --region us-east-1 ec2 describe-instances --filters "Name=hibernation-options.configured,Values=true"
-  ```
+```
+aws ec2 describe-instances --filters "Name=hibernation-options.configured,Values=true"
+```
 
-  The following field in the output indicates that the instance is enabled for hibernation:
+The following field in the output indicates that the instance is enabled for hibernation:
 
-  ```
-  "HibernationOptions": {
-      "Configured": true
-  }
-  ```
+```
+"HibernationOptions": {
+    "Configured": true
+}
+```
+
+## Disabling KASLR on an Instance \(Ubuntu only\)<a name="hibernation-disable-kaslr"></a>
+
+To run hibernation on a newly launched instance with Ubuntu 18\.04 LTS \- Bionic, released with serial 20190722\.1 or later, we recommend disabling KASLR \(Kernel Address Space Layout Randomization\)\. On Ubuntu 18\.04 LTS, KASLR is enabled by default\. KASLR is a standard Linux kernel security feature that helps to mitigate exposure to and ramifications of yet\-undiscovered memory access vulnerabilities by randomizing the base address value of the kernel\. With KASLR enabled, there is a possibility that the instance might not resume after it has been hibernated\.
+
+To learn more about KASLR, see [Ubuntu Features](https://wiki.ubuntu.com/Security/Features)\.
+
+**To disable KASLR on an instance launched with Ubuntu**
+
+1. Connect to your instance using SSH\. For more information, see [Connecting to Your Linux Instance Using SSH](AccessingInstancesLinux.md)\.
+
+1. Open the `/etc/default/grub.d/50-cloudimg-settings.cfg` file in your editor of choice\. Edit the `GRUB_CMDLINE_LINUX_DEFAULT` line to append the `nokaslr` option to its end, as shown in the following example\.
+
+   ```
+   GRUB_CMDLINE_LINUX_DEFAULT="console=tty1 console=ttyS0 nvme_core.io_timeout=4294967295 nokaslr"
+   ```
+
+1. Save the file and exit your editor\.
+
+1. Run the following command to rebuild the grub configuration\.
+
+   ```
+   [ec2-user ~]$ sudo update-grub
+   ```
+
+1. Reboot the instance\.
+
+   ```
+   [ec2-user ~]$ sudo reboot
+   ```
+
+1. Confirm that `nokaslr` has been added when running the following command\.
+
+   ```
+   [ec2-user ~]$ cat /proc/cmdline
+   ```
+
+   The output of the command should include the `nokaslr` option\.
 
 ## Hibernating an Instance<a name="hibernating-instances"></a>
 
 You can hibernate an instance using the console or the command line if the instance is [enabled for hibernation](#enabling-hibernation) and meets the [hibernation prerequisites](#hibernating-prerequisites)\. If an instance cannot hibernate successfully, a normal shutdown occurs\.
 
-**To hibernate an Amazon EBS\-backed instance \(console\)**
+**To hibernate an Amazon EBS\-backed instance using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -169,41 +238,41 @@ You can hibernate an instance using the console or the command line if the insta
 
 1. In the confirmation dialog box, choose **Yes, Stop \- Hibernate**\. It can take a few minutes for the instance to hibernate\. The **Instance State** changes to **Stopping** while the instance is hibernating, and then **Stopped** when the instance has hibernated\.
 
-**To hibernate an Amazon EBS\-backed instance \(AWS CLI\)**
-+ Use the [stop\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) command and specify the `--hibernate` parameter\.
+**To hibernate an Amazon EBS\-backed instance using the AWS CLI**  
+Use the [stop\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) command and specify the `--hibernate` parameter\.
 
-  ```
-  aws ec2 stop-instances --instance-ids i-1234567890abcdef0 --hibernate
-  ```
+```
+aws ec2 stop-instances --instance-ids i-1234567890abcdef0 --hibernate
+```
 
-**To view if hibernation was initiated on an instance \(console\)**
+**To view if hibernation was initiated on an instance using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
 1. In the navigation pane, choose **Instances**\.
 
-1. Select the instance and, in the details pane, inspect **State transition reason message**\. **Client\.UserInitiatedHibernate: User initiated hibernate** indicates that hibernation was initiated on the instance\.
+1. Select the instance and, in the details pane, inspect **State transition reason message**\. The message **Client\.UserInitiatedHibernate: User initiated hibernate** indicates that hibernation was initiated on the instance\.
 
-**To view if hibernation was initiated on an instance \(AWS CLI\)**
-+ Use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command and specify the `--filters "Name=state-reason-code,Values=Client.UserInitiatedHibernate"` parameter to filter instances on which hibernation was initiated\.
+**To view if hibernation was initiated on an instance using the AWS CLI**  
+Use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command and specify the `state-reason-code` filter to see the instances on which hibernation was initiated\.
 
-  ```
-  aws --region us-east-1 ec2 describe-instances --filters "Name=state-reason-code,Values=Client.UserInitiatedHibernate"
-  ```
+```
+aws ec2 describe-instances --filters "Name=state-reason-code,Values=Client.UserInitiatedHibernate"
+```
 
-  The following field in the output indicates that hibernation was initiated on the instance\.
+The following field in the output indicates that hibernation was initiated on the instance\.
 
-  ```
-  "StateReason": {
-      "Code": Client.UserInitiatedHibernate
-  }
-  ```
+```
+"StateReason": {
+    "Code": "Client.UserInitiatedHibernate"
+}
+```
 
 ## Restarting a Hibernated Instance<a name="hibernating-resuming"></a>
 
 Restart a hibernated instance by starting it in the same way that you would start a stopped instance\.
 
-**To restart a hibernated instance \(console\)**
+**To restart a hibernated instance using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -211,8 +280,12 @@ Restart a hibernated instance by starting it in the same way that you would star
 
 1. Select a hibernated instance, and choose **Actions**, **Instance State**, **Start**\. It can take a few minutes for the instance to enter the `running` state\. During this time, the instance [status checks](monitoring-system-instance-status-check.md#types-of-instance-status-checks) show the instance in a failed state until the instance has restarted\.
 
-**To restart a hibernated instance \(AWS CLI\)**
-+ Use the [start\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/start-instances.html) command\.
+**To restart a hibernated instance using the AWS CLI**  
+Use the [start\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/start-instances.html) command\.
+
+```
+aws ec2 start-instances --instance-ids i-1234567890abcdef0
+```
 
 ## Troubleshooting Hibernation<a name="troubleshoot-instance-hibernate"></a>
 

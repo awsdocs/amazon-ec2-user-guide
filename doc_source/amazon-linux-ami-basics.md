@@ -304,7 +304,7 @@ To be notified when new AMIs are released, you can subscribe using Amazon SNS\.
 
 **To subscribe to Amazon Linux notifications**
 
-1. Open the Amazon SNS console at [https://console\.aws\.amazon\.com/sns/v2/home](https://console.aws.amazon.com/sns/v2/home)\.
+1. Open the Amazon SNS console at [https://console\.aws\.amazon\.com/sns/v3/home](https://console.aws.amazon.com/sns/v3/home)\.
 
 1. In the navigation bar, change the Region to **US East \(N\. Virginia\)**, if necessary\. You must select the Region in which the SNS notification that you are subscribing to was created\.
 
@@ -328,7 +328,7 @@ Whenever AMIs are released, we send notifications to the subscribers of the corr
 
 **To unsubscribe from Amazon Linux notifications**
 
-1. Open the Amazon SNS console at [https://console\.aws\.amazon\.com/sns/v2/home](https://console.aws.amazon.com/sns/v2/home)\.
+1. Open the Amazon SNS console at [https://console\.aws\.amazon\.com/sns/v3/home](https://console.aws.amazon.com/sns/v3/home)\.
 
 1. In the navigation bar, change the Region to **US East \(N\. Virginia\)**, if necessary\. You must use the Region in which the SNS notification was created\.
 

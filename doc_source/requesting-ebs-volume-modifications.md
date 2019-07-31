@@ -68,9 +68,9 @@ Modifying volume size has no practical effect until you also extend the volume's
 
 ## Initializing Elastic Volumes Support \(If Needed\)<a name="initialize-modification-support"></a>
 
-Before you can modify a volume that was attached to an instance before November 1, 2016, you must initialize volume modification support using one of the following actions:
+Before you can modify a volume that was attached to an instance before November 3, 2016 23:40 UTC, you must initialize volume modification support using one of the following actions:
 + Detach and attach the volume
-+ Restart the instance
++ Stop and start the instance
 
 Use one of the following procedures to determine whether your instances are ready for volume modification\.
 
@@ -86,7 +86,7 @@ Use one of the following procedures to determine whether your instances are read
 ![\[Check the Launch Time and Block Devices columns.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/check-volume-modification-support.png)
 
 **To determine whether your instances are ready using the CLI**  
-Use the following [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command to determine whether the volume was attached before November 1, 2016\.
+Use the following [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command to determine whether the volume was attached before November 3, 2016 23:40 UTC\.
 
 ```
 aws ec2 describe-instances --query "Reservations[*].Instances[*].[InstanceId,LaunchTime<='2016-11-01',BlockDeviceMappings[*][Ebs.AttachTime<='2016-11-01']]" --output text
