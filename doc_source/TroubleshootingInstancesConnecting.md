@@ -5,11 +5,11 @@ The following are possible problems you may have and error messages you may see 
 **Topics**
 + [Error connecting to your instance: Connection timed out](#TroubleshootingInstancesConnectionTimeout)
 + [Error: User key not recognized by server](#TroubleshootingInstancesServerError)
-+ [Error: Host key not found, Permission denied \(publickey\), *or* Authentication failed, permission denied](#TroubleshootingInstancesConnectingMindTerm)
++ [Error: Host key not found, Permission denied \(publickey\), *or* Authentication failed, permission denied](#TroubleshootingInstancesConnectingSSH)
 + [Error: Unprotected Private Key File](#troubleshoot-unprotected-key)
 + [Error: Private key must begin with "\-\-\-\-\-BEGIN RSA PRIVATE KEY\-\-\-\-\-" and end with "\-\-\-\-\-END RSA PRIVATE KEY\-\-\-\-\-"](#troubleshoot-private-key-file-format)
 + [Error: Server refused our key *or* No supported authentication methods available](#TroubleshootingInstancesConnectingPuTTY)
-+ [Error Using MindTerm on Safari Browser](#troubleshoot-instance-connect-safari)
++ [Cannot Connect Using My Browser](#troubleshoot-instance-connect-mindterm)
 + [Cannot Ping Instance](#troubleshoot-instance-ping)
 + [Error: Server unexpectedly closed network connection](#troubleshoot-ssh)
 
@@ -123,9 +123,6 @@ To connect to your instance using an IPv6 address, check the following:
   Permission denied (publickey).
   ```
 
-**If you use SSH \(MindTerm\) to connect to your instance**
-+ If Java is not enabled, the server does not recognize the user key\. To enable Java, go to [How do I enable Java in my web browser?](http://java.com/en/download/help/enable_browser.xml) in the Java documentation\.
-
 **If you use PuTTY to connect to your instance**
 + Verify that your private key \(\.pem\) file has been converted to the format recognized by PuTTY \(\.ppk\)\. For more information about converting your private key, see [Connecting to Your Linux Instance from Windows Using PuTTY](putty.md)\.
 **Note**  
@@ -141,9 +138,9 @@ In PuTTYgen, load your private key file and select **Save Private Key** rather t
   + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
 + Verify that you have an inbound security group rule to allow inbound traffic to the appropriate port\. For more information, see [Authorizing Network Access to Your Instances](authorizing-access-to-an-instance.md)\. 
 
-## Error: Host key not found, Permission denied \(publickey\), *or* Authentication failed, permission denied<a name="TroubleshootingInstancesConnectingMindTerm"></a>
+## Error: Host key not found, Permission denied \(publickey\), *or* Authentication failed, permission denied<a name="TroubleshootingInstancesConnectingSSH"></a>
 
-If you connect to your instance using SSH and get any of the following errors, `Host key not found in [directory]`, `Permission denied (publickey)`, or `Authentication failed, permission denied`, verify that you are connecting with the appropriate user name for your AMI *and* that you have specified the proper private key \(`.pem)` file for your instance\. For MindTerm clients, enter the user name in the **User name** box in the **Connect To Your Instance** window\.
+If you connect to your instance using SSH and get any of the following errors, `Host key not found in [directory]`, `Permission denied (publickey)`, or `Authentication failed, permission denied`, verify that you are connecting with the appropriate user name for your AMI *and* that you have specified the proper private key \(`.pem)` file for your instance\.
 
 The appropriate user names are as follows:
 + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
@@ -232,7 +229,7 @@ ssh-keygen -m PEM
 
 ## Error: Server refused our key *or* No supported authentication methods available<a name="TroubleshootingInstancesConnectingPuTTY"></a>
 
-If you use PuTTY to connect to your instance and get either of the following errors, `Error: Server refused our key` or `Error: No supported authentication methods available`, verify that you are connecting with the appropriate user name for your AMI\. Enter the user name in the **User name** box in the **PuTTY Configuration** window\.
+If you use PuTTY to connect to your instance and get either of the following errors, Error: Server refused our key or Error: No supported authentication methods available, verify that you are connecting with the appropriate user name for your AMI\. Type the user name in **User name** in the **PuTTY Configuration** window\.
 
 The appropriate user names are as follows:
 + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
@@ -246,28 +243,15 @@ The appropriate user names are as follows:
 
 You should also verify that your private key \(\.pem\) file has been correctly converted to the format recognized by PuTTY \(\.ppk\)\. For more information about converting your private key, see [Connecting to Your Linux Instance from Windows Using PuTTY](putty.md)\.
 
-## Error Using MindTerm on Safari Browser<a name="troubleshoot-instance-connect-safari"></a>
+## Cannot Connect Using My Browser<a name="troubleshoot-instance-connect-mindterm"></a>
 
-If you use MindTerm to connect to your instance, and are using the Safari web browser, you may get the following error:
+The Amazon EC2 console provides an option to connect to your instances directly from your browser using a Java SSH client\. If your browser doesn't support NPAPI, then you get an error message NPAPI deprecation on Chrome when you connect\. The message recommends that you use a different browser\. However, recent versions of these browsers also do not support NPAPI, so you cannot use them to connect to your instance and you must choose a different method to connect to your instance\.
 
-```
-Error connecting to your_instance_ip, reason: 
- —> Key exchange failed: Host authentication failed
-```
-
-You must update the browser's security settings to allow the AWS Management Console to run the Java plugin in unsafe mode\.
-
-**To enable the Java plugin to run in unsafe mode**
-
-1. In Safari, keep the Amazon EC2 console open, and choose **Safari**, **Preferences**, **Security**\.
-
-1. Choose **Plug\-in Settings** \(or **Manage Website Settings** on older versions of Safari\)\.
-
-1. Choose the **Java** plugin on the left\. 
-
-1. For **Currently Open Websites**, select the AWS Management Console URL and choose **Run in Unsafe Mode**\.
-
-1. When prompted, choose **Trust** in the warning dialog box and choose **Done**\. 
+For more information, see the following resources:
++ General: [NPAPI Wikipedia article](https://en.wikipedia.org/wiki/NPAPI#Support/deprecation)
++ Chrome: [NPAPI deprecation article](https://www.chromium.org/developers/npapi-deprecation)
++ Firefox: [NPAPI deprecation article](https://www.java.com/en/download/faq/firefox_java.xml)
++ Safari: [NPAPI deprecation article](https://java.com/en/download/faq/safari.xml)
 
 ## Cannot Ping Instance<a name="troubleshoot-instance-ping"></a>
 

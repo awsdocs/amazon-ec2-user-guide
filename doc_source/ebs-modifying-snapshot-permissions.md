@@ -47,13 +47,15 @@ The following considerations apply to sharing snapshots:
 
 **To share an encrypted snapshot using the console**
 
-1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
+1. Open the AWS KMS console at [https://console\.aws\.amazon\.com/kms](https://console.aws.amazon.com/kms)\.
 
-1. Choose **Encryption keys** in the navigation pane\.
+1. To change the AWS Region, use the Region selector in the upper\-right corner of the page\.
+
+1. Choose **Customer managed keys** in the navigation pane\.
 
 1. Choose the alias of the customer managed key that you used to encrypt the snapshot\.
 
-1. For each AWS account, choose **Add External Accounts** and enter the AWS account ID where prompted\. When you have added all AWS accounts, choose **Save Changes**\.
+1. Choose **Add other AWS accounts** and enter the AWS account ID as prompted\. To add another account, choose **Add another AWS account** and enter the AWS account ID\. When you have added all AWS accounts, choose **Save changes**\.
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 

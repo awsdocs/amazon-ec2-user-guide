@@ -5,8 +5,8 @@ You can create, use, and manage an EFA much like any other elastic network inter
 ## EFA Requirements<a name="efa-reqs"></a>
 
 To use an EFA, you must do the following:
-+ Use one of the following supported instance types: c5n\.18xlarge, i3en\.24xlarge, p3dn\.24xlarge
-+ Use one of the following supported AMIs: Amazon Linux, Amazon Linux 2, Red Hat Enterprise Linux 7\.6, CentOS 7\.6, Ubuntu 16\.04, Ubuntu 18\.04
++ Use one of the following supported instance types: `c5n.18xlarge`, `c5n.metal`, `i3en.24xlarge`, and `p3dn.24xlarge`\.
++ Use one of the following supported AMIs: Amazon Linux, Amazon Linux 2, Red Hat Enterprise Linux 7\.6, CentOS 7\.6, Ubuntu 16\.04, and Ubuntu 18\.04\.
 + Install the EFA software components\. For more information, see [Step 3: Install Libfabric and Open MPI](efa-start.md#efa-start-enable) and [Step 4: \(Optional\) Install Intel MPI](efa-start.md#efa-start-impi)\.
 + Use a security group that allows all inbound and outbound traffic to and from the security group itself\. For more information, see [Step 1: Prepare an EFA\-Enabled Security Group](efa-start.md#efa-start-security)\.
 

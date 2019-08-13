@@ -133,7 +133,7 @@ This is the only chance for you to save the private key file\. You'll need to pr
 For more information, see [Amazon EC2 Key Pairs](ec2-key-pairs.md)\.
 
 **To connect to your instance using your key pair**  
-To connect to your Linux instance from a computer running Mac or Linux, you'll specify the `.pem` file to your SSH client with the `-i` option and the path to your private key\. To connect to your Linux instance from a computer running Windows, you can use either MindTerm or PuTTY\. If you plan to use PuTTY, you'll need to install it and use the following procedure to convert the `.pem` file to a `.ppk` file\.<a name="prepare-for-putty"></a>
+To connect to your Linux instance from a computer running Mac or Linux, you'll specify the `.pem` file to your SSH client with the `-i` option and the path to your private key\. To connect to your Linux instance from a computer running Windows, you can use PuTTY, the Windows Subsystem for Linux, or AWS Systems Manager Session Manager\. If you plan to use PuTTY, you'll need to use the following procedure to convert the `.pem` file to a `.ppk` file\.<a name="prepare-for-putty"></a>
 
 **\(Optional\) To prepare to connect to a Linux instance from Windows using PuTTY**
 

@@ -4,7 +4,7 @@
 
 When the Capacity Reservation is active, you are charged the equivalent On\-Demand rate whether you run the instances or not\. If you do not use the reservation, this shows up as unused reservation on your EC2 bill\. When you run an instance that matches the attributes of a reservation, you just pay for the instance and nothing for the reservation\. There are no upfront or additional charges\. 
 
-For example, if you create a Capacity Reservation for 20 m4\.large Linux instances and run 15 m4\.large Linux instances in the same Availability Zone, you will be charged for 15 instances and for 5 unused spots in the reservation\.
+For example, if you create a Capacity Reservation for 20 m4\.large Linux instances and run 15 m4\.large Linux instances in the same Availability Zone, you will be charged for 15 active instances and for 5 unused instances in the reservation\.
 
 **Note**  
 Regional RIs billing discounts apply to Capacity Reservations\. AWS automatically applies your active Regional RIs to active and unused Capacity Reservations that have matching attributes\. For more information about Regional RIs, see [Reserved Instances](ec2-reserved-instances.md)\.

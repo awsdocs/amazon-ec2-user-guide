@@ -24,10 +24,9 @@ You can use jumbo frames for traffic between your VPCs and your on\-premises net
 The following instances support jumbo frames:
 + General purpose: A1, M3, M4, M5, M5a, M5ad, M5d, T2, T3, and T3a
 + Compute optimized: C3, C4, C5, C5d, C5n, and CC2
-+ Memory optimized: CR1, R3, R4, R5, R5a, R5ad, R5d, X1, and z1d
++ Memory optimized: CR1, R3, R4, R5, R5a, R5ad, R5d, `u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, X1, and z1d
 + Storage optimized: D2, H1, HS1, I2, I3, and I3en
 + Accelerated computing: F1, G2, G3, P2, and P3
-+ Bare metal: `c5.metal`, `i3.metal`, `m5.metal`, `m5d.metal`, `r5.metal`, `r5d.metal`, `u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, and `z1d.metal`
 
 ## Path MTU Discovery<a name="path_mtu_discovery"></a>
 

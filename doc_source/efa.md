@@ -44,14 +44,11 @@ EFA supports the following Message Passing Interface \(MPI\) implementations:
 
 ## Supported Instance Types<a name="efa-instance-types"></a>
 
-The following instance types support EFAs: c5n\.18xlarge, i3en\.24xlarge, p3dn\.24xlarge
-
-**Note**  
-EFA requires an instance type that has at least 8 GB of memory\.
+The following instance types support EFAs: `c5n.18xlarge`, `c5n.metal`, `i3en.24xlarge`, and `p3dn.24xlarge`\.
 
 ## Supported AMIs<a name="efa-amis"></a>
 
-The following AMIs support EFAs: Amazon Linux, Amazon Linux 2, Red Hat Enterprise Linux 7\.6, CentOS 7\.6, Ubuntu 16\.04, Ubuntu 18\.04
+The following AMIs support EFAs: Amazon Linux, Amazon Linux 2, Red Hat Enterprise Linux 7\.6, CentOS 7\.6, Ubuntu 16\.04, and Ubuntu 18\.04\.
 
 ## EFA Limitations<a name="efa-limits"></a>
 

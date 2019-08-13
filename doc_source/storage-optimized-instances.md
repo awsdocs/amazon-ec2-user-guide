@@ -26,7 +26,7 @@ These instances are well suited for the following applications:
 + Data warehousing applications
 + Distributed file systems
 
-`i3.metal` instances provide your applications with direct access to physical resources of the host server, such as processors and memory\. These instances are well suited for the following:
+Bare metal instances provide your applications with direct access to physical resources of the host server, such as processors and memory\. These instances are well suited for the following:
 + Workloads that require access to low\-level hardware features \(for example, Intel VT\) that are not available or fully supported in virtualized environments
 + Applications that require a non\-virtualized environment for licensing or support
 
@@ -74,6 +74,7 @@ The following is a summary of the hardware specifications for storage optimized 
 | i3en\.6xlarge | 24 | 192 | 
 | i3en\.12xlarge | 48 | 384 | 
 | i3en\.24xlarge | 96 | 768 | 
+| i3en\.metal | 96 | 768 | 
 
 For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
@@ -125,6 +126,7 @@ If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-ba
 |  `i3.4xlarge`  |  825,000  |  360,000  | 
 |  `i3.8xlarge`  |  1\.65 million  |  720,000  | 
 |  `i3.16xlarge`  |  3\.3 million  |  1\.4 million  | 
+|  `i3.metal`  |  3\.3 million  |  1\.4 million  | 
 | `i3en.large` \* | 42,500 | 32,500 | 
 | `i3en.xlarge` \* | 85,000 | 65,000 | 
 | `i3en.2xlarge` \* | 170,000 | 130,000 | 
@@ -132,6 +134,7 @@ If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-ba
 | `i3en.6xlarge` | 500,000 | 400,000 | 
 | `i3en.12xlarge` | 1 million | 800,000 | 
 | `i3en.24xlarge` | 2 million | 1\.6 million | 
+| `i3en.metal` | 2 million | 1\.6 million | 
 
 \* For these instances, you can get up to the specified performance\.
 

@@ -171,7 +171,7 @@ To modify your Reserved Instances, you can use one of the following:
 
 To get the status of your modification, use one of the following:
 + [describe\-reserved\-instances\-modifications](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances-modifications.html) \(AWS CLI\)
-+  [Get\-EC2ReservedInstancesModifications](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ReservedInstancesModifications.html) \(AWS Tools for Windows PowerShell\)
++  [Get\-EC2ReservedInstancesModification](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ReservedInstancesModification.html) \(AWS Tools for Windows PowerShell\)
 + [DescribeReservedInstancesModifications](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeReservedInstancesModifications.html) \(Amazon EC2 API\)
 
 The state returned shows your request as `processing`, `fulfilled`, or `failed`\.

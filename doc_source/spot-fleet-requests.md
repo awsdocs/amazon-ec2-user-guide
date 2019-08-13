@@ -380,12 +380,13 @@ aws ec2 describe-spot-fleet-request-history --spot-fleet-request-id sfr-73fbd2ce
 ## Modifying a Spot Fleet Request<a name="modify-spot-fleet"></a>
 
 You can modify an active Spot Fleet request to complete the following tasks:
-+ Increase the target capacity
-+ Decrease the target capacity
++ Increase the target capacity and On\-Demand portion
++ Decrease the target capacity and On\-Demand portion
 
 **Note**  
-You can't modify a one\-time Spot Fleet request\. You can only modify a Spot Fleet request if you selected **Maintain target capacity** when you created the Spot Fleet request\.  
-You can only modify the Spot Instance portion of a Spot Fleet request; you can't modify the On\-Demand Instance portion of a Spot Fleet request\.
+You can't modify a one\-time Spot Fleet request\. You can only modify a Spot Fleet request if you selected **Maintain target capacity** when you created the Spot Fleet request\.
+
+When you increase the target capacity, the Spot Fleet launches additional Spot Instances\. When you increase the On\-Demand portion, the Spot Fleet launches additional On\-Demand Instances\.
 
 When you increase the target capacity, the Spot Fleet launches the additional Spot Instances according to the allocation strategy for its Spot Fleet request\. If the allocation strategy is `lowestPrice`, the Spot Fleet launches the instances from the lowest\-priced Spot Instance pool in the Spot Fleet request\. If the allocation strategy is `diversified`, the Spot Fleet distributes the instances across the pools in the Spot Fleet request\.
 
@@ -403,7 +404,7 @@ When a Spot Fleet terminates an instance because the target capacity was decreas
 
 1. In **Modify target capacity**, do the following:
 
-   1. Enter the new target capacity\.
+   1. Enter the new target capacity and On\-Demand portion\.
 
    1. \(Optional\) If you are decreasing the target capacity but want to keep the fleet at its current size, clear **Terminate instances**\.
 

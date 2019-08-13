@@ -51,7 +51,7 @@ A self\-signed certificate is acceptable for testing but not production\. If you
    [ec2-user ~]$ sudo systemctl start httpd && sudo systemctl enable httpd
    ```
 
-1. To ensure that all of your software packages are up\-to\-date, perform a quick software update on your instance\. This process may take a few minutes, but it is important to make sure that you have the latest security updates and bug fixes\.
+1. To ensure that all of your software packages are up to date, perform a quick software update on your instance\. This process may take a few minutes, but it is important to make sure that you have the latest security updates and bug fixes\.
 **Note**  
 The `-y` option installs the updates without asking for confirmation\. If you would like to examine the updates before installing, you can omit this option\.
 

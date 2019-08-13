@@ -98,6 +98,7 @@ The following table lists the maximum number of network interfaces per instance 
 | `c5n.4xlarge` | 8 | 30 | 30 | 
 | `c5n.9xlarge` | 8 | 30 | 30 | 
 | `c5n.18xlarge` | 15 | 50 | 50 | 
+| `c5n.metal` | 15 | 50 | 50 | 
 |  `cc2.8xlarge`  |  8  |  30  | IPv6 not supported | 
 |  `cr1.8xlarge`  |  8  |  30  | IPv6 not supported | 
 |  `d2.xlarge`  |  4  |  15  | 15 | 
@@ -136,6 +137,7 @@ The following table lists the maximum number of network interfaces per instance 
 | i3en\.6xlarge | 8 | 30 | 30 | 
 | i3en\.12xlarge | 8 | 30 | 30 | 
 | i3en\.24xlarge | 15 | 50 | 50 | 
+| i3en\.metal | 15 | 50 | 50 | 
 |  `m1.small`  |  2  |  4  | IPv6 not supported | 
 |  `m1.medium`  |  2  |  6  | IPv6 not supported | 
 |  `m1.large`  |  3  |  10  | IPv6 not supported | 
@@ -562,6 +564,11 @@ You can detach a secondary network interface at any time, using either the **Ins
 1. Select the network interface and choose **Detach**\.
 
 1. In the **Detach Network Interface** dialog box, choose **Yes, Detach**\. If the network interface fails to detach from the instance, choose **Force detachment**, and then try again\.
+**Note**  
+Use the **Force detachment** option only as a last resort to detach a network interface from a failed instance\. 
+If you use the **Force detachment** option to detach a network interface, you might not be able to attach a different network interface to the same index on the instance without first stopping and starting the instance\.
+If you force the detachment of a network interface, the [instance metadata](ec2-instance-metadata.md) might not get updated\. This means that the attributes associated with the detached network interface might still be visible\. The instance metadata will get updated when you stop and start the instance\.
+You can’t force the detachment of a network interface from EC2\-Classic instances\.
 
 **To detach a network interface using the command line**
 

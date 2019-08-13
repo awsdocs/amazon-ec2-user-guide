@@ -43,6 +43,9 @@ The following limitations and restrictions apply when selling Reserved Instances
 
 ### Registering as a Seller<a name="ri-market-seller-profile"></a>
 
+**Note**  
+Only the AWS account root user can register an account as a seller\.
+
 To sell in the Reserved Instance Marketplace, you must first register as a seller\. During registration, you provide the following information:
 + **Bank information**—AWS must have your bank information in order to disburse funds collected when you sell your reservations\. The bank you specify must have a US address\. For more information, see [Bank Account for Disbursement](#ri-market-concepts-bank)\.
 + **Tax information**—All sellers are required to complete a tax information interview to determine any necessary tax reporting obligations\. For more information, see [Tax Information](#ri-market-concepts-taxinfo)\.

@@ -86,6 +86,9 @@ To hibernate an instance that was launched using your own AMI, you must first co
 
 If you use one of the [supported AMIs](#hibernating-prerequisites), or you create an AMI based on one of the supported AMIs, you do not need to configure it to support hibernation\. These AMIs are preconfigured to support hibernation\.
 
+------
+#### [ Amazon Linux ]
+
 **To configure an Amazon Linux AMI to support hibernation**
 
 1. Update to the latest kernel to 4\.14\.77\-70\.59 or later using the following command:
@@ -109,6 +112,9 @@ If you use one of the [supported AMIs](#hibernating-prerequisites), or you creat
    ```
 
 1. Stop the instance and create an AMI\. For more information, see [Creating a Linux AMI from an Instance](creating-an-ami-ebs.md#how-to-create-ebs-ami)\.
+
+------
+#### [ Ubuntu ]
 
 **To configure an Ubuntu 18\.04 LTS AMI to support hibernation**
 
@@ -137,12 +143,17 @@ If you use one of the [supported AMIs](#hibernating-prerequisites), or you creat
    [ec2-user ~]$ uname -a
    ```
 
+------
+
 ## Enabling Hibernation for an Instance<a name="enabling-hibernation"></a>
 
 To hibernate an instance, it must first be enabled for hibernation\. At launch, enable hibernation using the console or the command line\.
 
 **Important**  
 You can't enable or disable hibernation for an instance after you launch it\.
+
+------
+#### [ Console ]
 
 **To enable hibernation using the console**
 
@@ -156,12 +167,22 @@ You can't enable or disable hibernation for an instance after you launch it\.
 
 1. Continue as prompted by the wizard\. When you've finished reviewing your options on the **Review Instance Launch** page, choose **Launch**\. For more information, see [Launching an Instance Using the Launch Instance Wizard](launching-instance.md)\.
 
+------
+#### [ AWS CLI ]
+
 **To enable hibernation using the AWS CLI**  
 Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command to launch an instance\. Enable hibernation using the `--hibernation-options Configured=true` parameter\.
 
 ```
 aws ec2 run-instances --image-id ami-0abcdef1234567890 --instance-type m5.large --hibernation-options Configured=true --count 1 --key-name MyKeyPair
 ```
+
+------
+
+ 
+
+------
+#### [ Console ]
 
 **To view if an instance is enabled for hibernation using the console**
 
@@ -170,6 +191,9 @@ aws ec2 run-instances --image-id ami-0abcdef1234567890 --instance-type m5.large 
 1. In the navigation pane, choose **Instances**\.
 
 1. Select the instance and, in the details pane, inspect **Stop \- Hibernation behavior**\. **Enabled** indicates that the instance is enabled for hibernation\.
+
+------
+#### [ AWS CLI ]
 
 **To view if an instance is enabled for hibernation using the AWS CLI**  
 Use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command and specify the `--filters "Name=hibernation-options.configured,Values=true"` parameter to filter instances that are enabled for hibernation\.
@@ -185,6 +209,8 @@ The following field in the output indicates that the instance is enabled for hib
     "Configured": true
 }
 ```
+
+------
 
 ## Disabling KASLR on an Instance \(Ubuntu only\)<a name="hibernation-disable-kaslr"></a>
 
@@ -228,6 +254,9 @@ To learn more about KASLR, see [Ubuntu Features](https://wiki.ubuntu.com/Securit
 
 You can hibernate an instance using the console or the command line if the instance is [enabled for hibernation](#enabling-hibernation) and meets the [hibernation prerequisites](#hibernating-prerequisites)\. If an instance cannot hibernate successfully, a normal shutdown occurs\.
 
+------
+#### [ Console ]
+
 **To hibernate an Amazon EBS\-backed instance using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
@@ -238,12 +267,22 @@ You can hibernate an instance using the console or the command line if the insta
 
 1. In the confirmation dialog box, choose **Yes, Stop \- Hibernate**\. It can take a few minutes for the instance to hibernate\. The **Instance State** changes to **Stopping** while the instance is hibernating, and then **Stopped** when the instance has hibernated\.
 
+------
+#### [ AWS CLI ]
+
 **To hibernate an Amazon EBS\-backed instance using the AWS CLI**  
 Use the [stop\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) command and specify the `--hibernate` parameter\.
 
 ```
 aws ec2 stop-instances --instance-ids i-1234567890abcdef0 --hibernate
 ```
+
+------
+
+ 
+
+------
+#### [ Console ]
 
 **To view if hibernation was initiated on an instance using the console**
 
@@ -252,6 +291,9 @@ aws ec2 stop-instances --instance-ids i-1234567890abcdef0 --hibernate
 1. In the navigation pane, choose **Instances**\.
 
 1. Select the instance and, in the details pane, inspect **State transition reason message**\. The message **Client\.UserInitiatedHibernate: User initiated hibernate** indicates that hibernation was initiated on the instance\.
+
+------
+#### [ AWS CLI ]
 
 **To view if hibernation was initiated on an instance using the AWS CLI**  
 Use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command and specify the `state-reason-code` filter to see the instances on which hibernation was initiated\.
@@ -268,9 +310,14 @@ The following field in the output indicates that hibernation was initiated on th
 }
 ```
 
+------
+
 ## Restarting a Hibernated Instance<a name="hibernating-resuming"></a>
 
 Restart a hibernated instance by starting it in the same way that you would start a stopped instance\.
+
+------
+#### [ Console ]
 
 **To restart a hibernated instance using the console**
 
@@ -280,12 +327,17 @@ Restart a hibernated instance by starting it in the same way that you would star
 
 1. Select a hibernated instance, and choose **Actions**, **Instance State**, **Start**\. It can take a few minutes for the instance to enter the `running` state\. During this time, the instance [status checks](monitoring-system-instance-status-check.md#types-of-instance-status-checks) show the instance in a failed state until the instance has restarted\.
 
+------
+#### [ AWS CLI ]
+
 **To restart a hibernated instance using the AWS CLI**  
 Use the [start\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/start-instances.html) command\.
 
 ```
 aws ec2 start-instances --instance-ids i-1234567890abcdef0
 ```
+
+------
 
 ## Troubleshooting Hibernation<a name="troubleshoot-instance-hibernate"></a>
 

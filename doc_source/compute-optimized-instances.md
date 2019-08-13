@@ -52,6 +52,7 @@ The following is a summary of the hardware specifications for compute optimized 
 | c5n\.4xlarge | 16 | 42 | 
 | c5n\.9xlarge | 36 | 96 | 
 | c5n\.18xlarge | 72 | 192 | 
+| c5n\.metal | 72 | 192 | 
 
 For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
@@ -80,9 +81,9 @@ The following is a summary of network performance for compute optimized instance
 | c5\.9xlarge \| c5d\.9xlarge | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5\.12xlarge \| c5d\.12xlarge | 12 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5n\.4xlarge and smaller | Up to 25 Gbps | [ENA](enhanced-networking-ena.md) | 
-| c5\.18xlarge \| c5\.24xlarge \| c5d\.18xlarge \| c5\.metal | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
+| c5\.18xlarge \| c5\.24xlarge \| c5\.metal \| c5d\.18xlarge | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5n\.9xlarge | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
-| c5n\.18xlarge | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
+| c5n\.18xlarge \| c5n\.metal | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c4\.large | Moderate | [Intel 82599 VF](sriov-networking.md) | 
 | c4\.xlarge \| c4\.2xlarge \| c4\.4xlarge | High | [Intel 82599 VF](sriov-networking.md) | 
 | c4\.8xlarge | 10 Gbps | [Intel 82599 VF](sriov-networking.md) | 

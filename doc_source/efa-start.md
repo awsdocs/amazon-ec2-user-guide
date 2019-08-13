@@ -56,9 +56,9 @@ Launch a temporary instance that you can use to install and configure the EFA so
 
 1. Choose **Launch Instance**\.
 
-1. On the **Choose an AMI** page, choose one of the following supported AMIs and then choose **Select**: Amazon Linux, Amazon Linux 2, Red Hat Enterprise Linux 7\.6, CentOS 7\.6, Ubuntu 16\.04, Ubuntu 18\.04\.
+1. On the **Choose an AMI** page, choose **Select** for one of the following supported AMIs: Amazon Linux, Amazon Linux 2, Red Hat Enterprise Linux 7\.6, CentOS 7\.6, Ubuntu 16\.04, and Ubuntu 18\.04\.
 
-1. On the **Choose an Instance Type** page, select one of the following supported instance types and then choose **Next: Configure Instance Details**: c5n\.18xlarge, i3en\.24xlarge, p3dn\.24xlarge\.
+1. On the **Choose an Instance Type** page, select one of the following supported instance types and then choose **Next: Configure Instance Details**: `c5n.18xlarge`, `c5n.metal`, `i3en.24xlarge`, and `p3dn.24xlarge`\.
 
 1. On the **Configure Instance Details** page, do the following:
 
@@ -251,7 +251,7 @@ It is not an absolute requirement to launch your EFA\-enabled instances into a c
 
 1. On the **Choose an AMI** page, choose **My AMIs**, find the AMI that you created in **Step 5**, and then choose **Select**\.
 
-1. On the **Choose an Instance Type** page, select one of the following supported instance types and then choose **Next: Configure Instance Details**: c5n\.18xlarge, i3en\.24xlarge, p3dn\.24xlarge\.
+1. On the **Choose an Instance Type** page, select one of the following supported instance types and then choose **Next: Configure Instance Details**: `c5n.18xlarge`, `c5n.metal`, `i3en.24xlarge`, and `p3dn.24xlarge`\.
 
 1. On the **Configure Instance Details** page, do the following:
 

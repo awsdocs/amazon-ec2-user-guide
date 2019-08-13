@@ -127,7 +127,7 @@ Used by `/etc/profile.d/aws-apitools-common.sh` to set product\-specific environ
 
 ## Package Repository<a name="package-repository"></a>
 
-Amazon Linux 2 and the Amazon Linux AMI are designed to be used with online package repositories hosted in each Amazon EC2 region\. These repositories provide ongoing updates to packages in Amazon Linux 2 and the Amazon Linux AMI, as well as access to hundreds of additional common open\-source server applications\. The repositories are available in all regions and are accessed using yum update tools\. Hosting repositories in each region enables us to deploy updates quickly and without any data transfer charges\.
+Amazon Linux 2 and the Amazon Linux AMI are designed to be used with online package repositories hosted in each Amazon EC2 AWS Region\. These repositories provide ongoing updates to packages in Amazon Linux 2 and the Amazon Linux AMI, as well as access to hundreds of additional common open\-source server applications\. The repositories are available in all Regions and are accessed using yum update tools\. Hosting repositories in each Region enables us to deploy updates quickly and without any data transfer charges\.
 
 Amazon Linux 2 and the Amazon Linux AMI are updated regularly with security and feature enhancements\. If you do not need to preserve data or customizations for your instances, you can simply launch new instances using the current AMI\. If you need to preserve data or customizations for your instances, you can maintain those instances through the Amazon Linux package repositories\. These repositories contain all the updated packages\. You can choose to apply these updates to your running instances\. Older versions of the AMI and update packages continue to be available for use, even as new versions are released\.
 
@@ -289,7 +289,7 @@ The cloud\-init package supports user\-data handling of a variety of formats:
   + This content is an include file\. The file contains a list of URLs, one per line\. Each of the URLs is read, and their content passed through this same set of rules\. The content read from the URL can be gzipped, MIME\-multi\-part, or plaintext\.
 + Cloud Config Data
   + Begins with `#cloud-config` or `Content-Type: text/cloud-config`\.
-  + This content is cloud\-config data\. For a commented example of supported configuration formats, see the examples \.
+  + This content is cloud\-config data\. For a commented example of supported configuration formats, see the examples\.
 + Upstart job
   + Begins with `#upstart-job` or `Content-Type: text/upstart-job`\.
   + This content is stored in a file in `/etc/init`, and upstart consumes the content as per other upstart jobs\.
@@ -318,7 +318,7 @@ To be notified when new AMIs are released, you can subscribe using Amazon SNS\.
 
    1. For **Protocol**, choose **Email**\.
 
-   1. For **Endpoint**, type an email address that you can use to receive the notifications\.
+   1. For **Endpoint**, enter an email address that you can use to receive the notifications\.
 
    1. Choose **Create subscription**\.
 
@@ -332,6 +332,6 @@ Whenever AMIs are released, we send notifications to the subscribers of the corr
 
 1. In the navigation bar, change the Region to **US East \(N\. Virginia\)**, if necessary\. You must use the Region in which the SNS notification was created\.
 
-1. In the navigation pane, choose **Subscriptions**, select the subscription, and choose **Actions**, **Delete subscriptions**\. \.
+1. In the navigation pane, choose **Subscriptions**, select the subscription, and choose **Actions**, **Delete subscriptions**\.
 
 1. When prompted for confirmation, choose **Delete**\.

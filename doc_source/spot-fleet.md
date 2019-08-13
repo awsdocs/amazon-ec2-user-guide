@@ -36,6 +36,9 @@ The Spot Instances come from the pool with the lowest price\. This is the defaul
 `diversified`  
 The Spot Instances are distributed across all pools\.
 
+`capacityOptimized`  
+The Spot Instances come from the pool with optimal capacity for the number of instances that are launching\.
+
 `InstancePoolsToUseCount`  
 The Spot Instances are distributed across the number of Spot pools that you specify\. This parameter is valid only when used in combination with `lowestPrice`\.
 
@@ -45,13 +48,15 @@ After Spot Instances are terminated due to a change in the Spot price or availab
 
 ### Configuring Spot Fleet for Cost Optimization<a name="spot-fleet-strategy-cost-optimization"></a>
 
-To optimize the costs for your use of Spot Instances, specify the `lowestPrice` allocation strategy so that Spot Fleet automatically deploys the cheapest combination of instance types and Availability Zones based on the current Spot price\.
-
-For On\-Demand Instance target capacity, Spot Fleet always selects the cheapest instance type based on the public On\-Demand price, while continuing to follow the allocation strategy \(either `lowestPrice` or `diversified`\) for Spot Instances\.
+With Spot Instances, pricing changes slowly over time based on long\-term trends in supply and demand, but capacity fluctuates in real time\. The `capacityOptimized` strategy automatically launches Spot Instances into the most available pools by looking at real\-time capacity data and predicting which are the most available\. This works well for workloads such as big data and analytics, image and media rendering, machine learning, and high performance computing that may have a higher cost of interruption associated with restarting work and checkpointing\. By offering the possibility of fewer interruptions, the `capacityOptimized` strategy can lower the overall cost of your workload\.
 
 ### Configuring Spot Fleet for Cost Optimization and Diversification<a name="spot-fleet-strategy-cost-optimization-and-diversified"></a>
 
 To create a fleet of Spot Instances that is both cheap and diversified, use the `lowestPrice` allocation strategy in combination with `InstancePoolsToUseCount`\. Spot Fleet automatically deploys the cheapest combination of instance types and Availability Zones based on the current Spot price across the number of Spot pools that you specify\. This combination can be used to avoid the most expensive Spot Instances\.
+
+### Configuring Spot Fleet for Capacity Optimization<a name="spot-fleet-strategy-capacity-optimized.title"></a>
+
+With Spot Instances, pricing changes slowly over time based on long\-term trends in supply and demand, but capacity fluctuates in real time\. The `capacityOptimized` strategy automatically launches Spot Instances into the most available pools by looking at real\-time capacity data and predicting which are the most available\. This works well for workloads such as big data and analytics, image and media rendering, machine learning, and high performance computing that may have a higher cost of interruption associated with restarting work and checkpointing\. By offering the possibility of fewer interruptions, the `capacityOptimized` strategy can lower the overall cost of your workload\.
 
 ### Choosing an Appropriate Allocation Strategy<a name="allocation-use-cases"></a>
 
@@ -64,6 +69,8 @@ If your fleet is large or runs for a long time, you can improve the availability
 With the `diversified` strategy, the Spot Fleet does not launch Spot Instances into any pools with a Spot price that is equal to or higher than the [On\-Demand price](https://aws.amazon.com/ec2/pricing/)\.
 
 To create a cheap and diversified fleet, use the `lowestPrice` strategy in combination with `InstancePoolsToUseCount`\. You can use a low or high number of Spot pools across which to allocate your Spot Instances\. For example, if you run batch processing, we recommend specifying a low number of Spot pools \(for example, `InstancePoolsToUseCount=2`\) to ensure that your queue always has compute capacity while maximizing savings\. If you run a web service, we recommend specifying a high number of Spot pools \(for example, `InstancePoolsToUseCount=10`\) to minimize the impact if a Spot Instance pool becomes temporarily unavailable\.
+
+If your fleet runs workloads that may have a higher cost of interruption associated with restarting work and checkpointing, then use the `capacityOptimized` strategy\. This strategy offers the possibility of fewer interruptions, which can lower the overall cost of your workload\.
 
 ## Spot Price Overrides<a name="spot-price-overrides"></a>
 
