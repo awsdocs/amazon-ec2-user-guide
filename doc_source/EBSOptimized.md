@@ -24,7 +24,7 @@ The `i2.8xlarge`, `c3.8xlarge`, and `r3.8xlarge` instances do not have dedicated
 The following table lists current\-generation instance types that support EBS optimization\.
 
 
-| Instance type | EBS\-optimized by default | Maximum bandwidth \(Mbps\) | Maximum throughput \(MB/s, 128 KiB I/O\) | Maximum IOPS \(16 KiB I/O\) | 
+| Instance type | EBS\-optimized by default | Maximum bandwidth \(Mib/s\) | Maximum throughput \(Mib/s, 128 KiB I/O\) | Maximum IOPS \(16 KiB I/O\) | 
 | --- | --- | --- | --- | --- | 
 | a1\.medium | Yes | 3,500 | 437\.5 | 20,000 | 
 | a1\.large | Yes | 3,500 | 437\.5 | 20,000 | 
@@ -202,10 +202,10 @@ The following table lists current\-generation instance types that support EBS op
 | z1d\.12xlarge | Yes | 14,000 | 1,750 | 80,000 | 
 | z1d\.metal | Yes | 14,000 | 1,750 | 80,000 | 
 
-\* These instance types can support maximum performance for 30 minutes at least once every 24 hours\. For example, `c5.large` instances can deliver 437\.5 MB/s for 30 minutes at least once every 24 hours\. If you have a workload that requires sustained maximum performance for longer than 30 minutes, select an instance type according to baseline performance as shown in the following table:
+\* These instance types can support maximum performance for 30 minutes at least once every 24 hours\. For example, `c5.large` instances can deliver 437\.5 Mib/s for 30 minutes at least once every 24 hours\. If you have a workload that requires sustained maximum performance for longer than 30 minutes, select an instance type according to baseline performance as shown in the following table:
 
 
-| Instance type | Baseline bandwidth \(Mbps\) | Baseline throughput \(MB/s, 128 KiB I/O\) | Baseline IOPS \(16 KiB I/O\) | 
+| Instance type | Baseline bandwidth \(Mib/s\) | Baseline throughput \(Mib/s, 128 KiB I/O\) | Baseline IOPS \(16 KiB I/O\) | 
 | --- | --- | --- | --- | 
 | c5\.large | 525 | 65\.625 | 4,000 | 
 | c5\.xlarge | 800 | 100 | 6,000 | 
@@ -270,7 +270,7 @@ The following table lists previous\-generation instance types that support EBS o
 
 **Previous Generation Instances**  
 
-| Instance type | EBS\-optimized by default | Maximum bandwidth \(Mbps\) | Maximum throughput \(MB/s, 128 KiB I/O\) | Maximum IOPS \(16 KiB I/O\) | 
+| Instance type | EBS\-optimized by default | Maximum bandwidth \(Mib/s\) | Maximum throughput \(Mib/s, 128 KiB I/O\) | Maximum IOPS \(16 KiB I/O\) | 
 | --- | --- | --- | --- | --- | 
 | c1\.xlarge | No | 1,000 | 125 | 8,000 | 
 | c3\.xlarge | No | 500 | 62\.5 | 4,000 | 
