@@ -7,57 +7,36 @@ BYOIP is not available in all Regions\. For a list of supported Regions, see the
 
 ## Requirements<a name="byoip-requirements"></a>
 + The address range must be registered with your regional internet registry \(RIR\), such as the American Registry for Internet Numbers \(ARIN\) or Réseaux IP Européens Network Coordination Centre \(RIPE\)\. It must be registered to a business or institutional entity and may not be registered to an individual person\.
-+ Supported network record type
-   + For ARIN, the supported network types are "Direct Allocation" and "Direct Assignment"\.
-   + For RIPE, the supported allocation statuses are "ALLOCATED PA", "LEGACY", and "ASSIGNED PI"\.
 + The most specific address range that you can specify is /24\.
 + You can bring each address range to one region at a time\.
 + You can bring 5 address ranges per region to your AWS account\.
 + The addresses in the IP address range must have a clean history\. We may investigate the reputation of the IP address range and reserve the right to reject an IP address range if it contains an IP address that has poor reputation or is associated with malicious behavior\.
-
-The commands in the following procedure require OpenSSL version 1\.0\.2 or later\. 
-This documentation uses the example address range of 198.51.100.0/24. Ensure to replace this example address range with the address range that you are bringing to AWS.  
++ The following are supported:
+   + ARIN \- "Direct Allocation" and "Direct Assignment" network types
+   + RIPE \- "ALLOCATED PA", "LEGACY", and "ASSIGNED PI" allocation statuses 
 
 ## Prepare to Bring Your Address Range to Your AWS Account<a name="prepare-for-byoip"></a>
 
 To ensure that only you can bring your address range to your AWS account, you must authorize Amazon to advertise the address range and provide proof that you own the address range\.
 
-A Route Origin Authorization \(ROA\) is a document that you can create through your RIR\. It contains the address range, the ASNs that are allowed to advertise the address range, and an expiration date\. An ROA authorizes Amazon to advertise an address range under a specific AS number\. 
+A Route Origin Authorization \(ROA\) is a document that you can create through your RIR\. It contains the address range, the ASNs that are allowed to advertise the address range, and an expiration date\. An ROA authorizes Amazon to advertise an address range under a specific AS number\. However, it does not authorize your AWS account to bring the address range to AWS\. To authorize your AWS account to bring an address range to AWS, you must also publish a self\-signed X509 certificate in the RDAP remarks for the address range\. The certificate contains a public key, which AWS uses to verify the authorization\-context signature that you provide\. You should keep your private key secure and use it to sign the authorization\-context message\. 
 
-However, it does not authorize your AWS account to bring the address range to AWS\. To authorize your AWS account to bring an address range to AWS, you must also publish a self\-signed X509 certificate in the RDAP remarks for the address range\. The certificate contains a public key, which AWS uses to verify the authorization\-context signature that you provide\. You should keep your private key secure and use it to sign the authorization\-context message\. 
+**Topics**
++ [Create a ROA Object](#byoip-create-roa-object)
++ [Create a Self\-Signed X509 Certificate](#byoip-certificate)
++ [Create a Signed Authorization Message](#byoip-signed-authorization-message)
 
-**Create Route Origin Authorization (ROA) objects**
+### Create a ROA Object<a name="byoip-create-roa-object"></a>
 
-1. With your Regional Internet Registry (RIR) create ROA objects to authorize Amazon ASNs 16509 and 14618 to advertise your address range, plus the ASNs that are currently authorized to advertise the address range\. You must set the maximum length to the size of the smallest prefix that you want to bring \(for example, /24\)\. It might take up to 24 hours for the ROA to become available to Amazon\. For more information, see the following:
+Create a ROA object to authorize Amazon ASNs 16509 and 14618 to advertise your address range, plus the ASNs that are currently authorized to advertise the address range\. You must set the maximum length to the size of the smallest prefix that you want to bring \(for example, /24\)\. It might take up to 24 hours for the ROA to become available to Amazon\. For more information, see the following:
    + ARIN — [ROA Requests](https://www.arin.net/resources/rpki/roarequest.html)
    + RIPE — [Managing ROAs](https://www.ripe.net/manage-ips-and-asns/resource-management/certification/resource-certification-roa-management)
 
-1. Validate the successful creation of the ROA objects via the `whois` command. Ensure to test your address range against the Amazon ASNs 16509 and 14618, plus the ASNs that are currently authorized to advertise the address range\. In this example a result of "0 - Valid" indicates that the ROA objects for the address range 198.51.100.0/24 were created successfully\. 
+### Create a Self\-Signed X509 Certificate<a name="byoip-certificate"></a>
 
-   ```
-   whois -h whois.bgpmon.net " --roa 16509 198.51.100.0/24"
-   0 - Valid
-   ------------------------
-   ROA Details
-   ------------------------
-   Origin ASN:       AS16509
-   Not valid Before: 2019-02-20 05:00:00
-   Not valid After:  2020-02-20 05:00:00  Expires in 266d11h4m39s
-   Trust Anchor:     rpki.arin.net
-   Prefixes:         198.51.100.0/24 (max length /24)
-   ```
-   While this example shows an error message indicating the ROA object for the Amazon ASN 14618 for the address range 198.51.100.0/24 was not created sucessfully\.  
+Use the following procedure to create a self\-signed X509 certificate and add it to the RDAP record for your RIR\. The openssl commands require OpenSSL version 1\.0\.2 or later\.
 
-   ```
-   whois -h whois.bgpmon.net " --roa 14618 198.51.100.0/24"
-   2 - Not Valid: Invalid Origin ASN, expected 16509
-  
-   ```
-
-**Important**  
-It might take up to 24 hours for the ROA to become visible via the `whois` command.
-
-**Prepare self\-signed X509 key pair**
+**To create a self\-signed X509 certificate and add it to the RDAP record**
 
 1. Generate an RSA 2048\-bit key pair as follows:
 
@@ -80,42 +59,38 @@ It might take up to 24 hours for the ROA to become visible via the `whois` comma
    For ARIN, add the certificate in the "Public Comments" section for your address range\.
 
    For RIPE, add the certificate as a new "desc" field for your address range\.
-   
-1. Validate that the certificate has been uploaded and is valid via the `whois` command. 
 
-   For ARIN use ```whois -a 198.51.100.0/24``` to lookup the RDAP record for the example ip range 198.51.100.0/24\. Check the "Comments" section for the NetRange (network range). The certificate should be added in the "Public Comments" section for the address range\.
+### Create a Signed Authorization Message<a name="byoip-signed-authorization-message"></a>
 
-   For RIPE use ```whois -r 14618 198.51.100.0/24``` to lookup the RDAP record for the example ip range 198.51.100.0/24\. Check the "descr" section for the inetnum object (network range). The certificate should be added as a new "desc" field for the address range\.
+The format of the signed authorization message is as follows, where the date is the expiry date of the message:
+
+```
+1|aws|account|cidr|YYYYMMDD|SHA256|RSAPSS
+```
+
+First, create a plain\-text authorization message and store it in a variable named `text_message` as follows\. Replace the example account number, address range, and expiry date with your own values\.
+
+```
+text_message="1|aws|123456789012|198.51.100.0/24|20191201|SHA256|RSAPSS"
+```
+
+Next, sign the authorization message in `text_message` using the key pair that you created and stores it in a variable named `signed_message` as follows\.
+
+```
+signed_message=$(echo $text_message | tr -d "\n" | openssl dgst -sha256 -sigopt rsa_padding_mode:pss -sigopt rsa_pss_saltlen:-1 -sign private.key -keyform PEM | openssl base64 | tr -- '+=/' '-_~' | tr -d "\n")
+```
 
 ## Provision the Address Range for use with AWS<a name="byoip-provision"></a>
 
-When you provision an address range for use with AWS, you are confirming that you own the address range and authorizing Amazon to advertise it\. We also verify that you own the address range through a signed authorization message\. This message is signed with the self\-signed X509 key pair for which you published the X509 certificate into the RDAP record.
+When you provision an address range for use with AWS, you are confirming that you own the address range and authorizing Amazon to advertise it\. We also verify that you own the address range through a signed authorization message\. This message is signed with the self\-signed X509 key pair you used when updating the RDAP record with the X509 certificate.
 
-1. Create a signed authorization message for the prefix and AWS account\. The format of the message is as follows, where the date is the expiry date of the message:
-
-   ```
-   1|aws|account|cidr|YYYYMMDD|SHA256|RSAPSS
-   ```
-
-   The following command creates a plain\-text authorization message using an example account number, address range, and expiry date, and stores it in a variable named `text_message`\.
-
-   ```
-   text_message="1|aws|123456789012|198.51.100.0/24|20191201|SHA256|RSAPSS"
-   ```
-
-   The following command signs the authorization message in `text_message` using the key pair that you created, and stores it in a variable named `signed_message`:
-
-   ```
-   signed_message=$(echo $text_message | tr -d "\n" | openssl dgst -sha256 -sigopt rsa_padding_mode:pss -sigopt rsa_pss_saltlen:-1 -sign private.key -keyform PEM | openssl base64 | tr -- '+=/' '-_~' | tr -d "\n")
-   ```
-
-1. Provision the address range with the following [provision\-byoip\-cidr](https://docs.aws.amazon.com/cli/latest/reference/ec2/provision-byoip-cidr.html) command\. The `--cidr-authorization-context` parameter uses the variables that you created in the previous section, not the ROA message\.
+To provision the address range, use the following [provision\-byoip\-cidr](https://docs.aws.amazon.com/cli/latest/reference/ec2/provision-byoip-cidr.html) command\. Replace the example address range with your own address range. The `--cidr-authorization-context` parameter uses the variables that you created previously, not the ROA message\.
 
    ```
    aws ec2 provision-byoip-cidr --cidr 198.51.100.0/24 --cidr-authorization-context Message="$text_message",Signature="$signed_message"
    ```
 
-1. Provisioning an address range is an asynchronous operation, so the call returns immediately, but the address range is not ready to use until its status changes from `pending-provision` to `provisioned`\. It can take up to five days to complete the provisioning process\. To monitor the status of the address ranges that you've provisioned, use the following [describe\-byoip\-cidrs](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-byoip-cidrs.html) command:
+Provisioning an address range is an asynchronous operation, so the call returns immediately, but the address range is not ready to use until its status changes from `pending-provision` to `provisioned`\. It can take up to five days to complete the provisioning process\. To monitor the status of the address ranges that you've provisioned, use the following [describe\-byoip\-cidrs](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-byoip-cidrs.html) command:
 
 ```
 aws ec2 describe-byoip-cidrs --max-results 5
