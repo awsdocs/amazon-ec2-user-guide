@@ -12,14 +12,16 @@ BYOIP is not available in all Regions\. For a list of supported Regions, see the
 + You can bring 5 address ranges per region to your AWS account\.
 + The addresses in the IP address range must have a clean history\. We may investigate the reputation of the IP address range and reserve the right to reject an IP address range if it contains an IP address that has poor reputation or is associated with malicious behavior\.
 + The following are supported:
-   + ARIN \- "Direct Allocation" and "Direct Assignment" network types
-   + RIPE \- "ALLOCATED PA", "LEGACY", and "ASSIGNED PI" allocation statuses 
+  + ARIN \- "Direct Allocation" and "Direct Assignment" network types
+  + RIPE \- "ALLOCATED PA", "LEGACY", and "ASSIGNED PI" allocation statuses
 
 ## Prepare to Bring Your Address Range to Your AWS Account<a name="prepare-for-byoip"></a>
 
-To ensure that only you can bring your address range to your AWS account, you must authorize Amazon to advertise the address range and provide proof that you own the address range\.
+To ensure that only you can bring your address range to your AWS account, you must authorize Amazon to advertise the address range and provide proof that you own the address range through a signed authorization message\.
 
-A Route Origin Authorization \(ROA\) is a document that you can create through your RIR\. It contains the address range, the ASNs that are allowed to advertise the address range, and an expiration date\. An ROA authorizes Amazon to advertise an address range under a specific AS number\. However, it does not authorize your AWS account to bring the address range to AWS\. To authorize your AWS account to bring an address range to AWS, you must also publish a self\-signed X509 certificate in the RDAP remarks for the address range\. The certificate contains a public key, which AWS uses to verify the authorization\-context signature that you provide\. You should keep your private key secure and use it to sign the authorization\-context message\. 
+A Route Origin Authorization \(ROA\) is a document that you can create through your RIR\. It contains the address range, the ASNs that are allowed to advertise the address range, and an expiration date\. An ROA authorizes Amazon to advertise an address range under a specific AS number\. However, it does not authorize your AWS account to bring the address range to AWS\. To authorize your AWS account to bring an address range to AWS, you must publish a self\-signed X509 certificate in the RDAP remarks for the address range\. The certificate contains a public key, which AWS uses to verify the authorization\-context signature that you provide\. You should keep your private key secure and use it to sign the authorization\-context message\.
+
+The commands in these tasks are supported on Linux\. On Windows, you can use the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/about) to run Linux commands\.
 
 **Topics**
 + [Create a ROA Object](#byoip-create-roa-object)
@@ -29,8 +31,8 @@ A Route Origin Authorization \(ROA\) is a document that you can create through y
 ### Create a ROA Object<a name="byoip-create-roa-object"></a>
 
 Create a ROA object to authorize Amazon ASNs 16509 and 14618 to advertise your address range, plus the ASNs that are currently authorized to advertise the address range\. You must set the maximum length to the size of the smallest prefix that you want to bring \(for example, /24\)\. It might take up to 24 hours for the ROA to become available to Amazon\. For more information, see the following:
-   + ARIN — [ROA Requests](https://www.arin.net/resources/rpki/roarequest.html)
-   + RIPE — [Managing ROAs](https://www.ripe.net/manage-ips-and-asns/resource-management/certification/resource-certification-roa-management)
++ ARIN — [ROA Requests](https://www.arin.net/resources/rpki/roarequest.html)
++ RIPE — [Managing ROAs](https://www.ripe.net/manage-ips-and-asns/resource-management/certification/resource-certification-roa-management)
 
 ### Create a Self\-Signed X509 Certificate<a name="byoip-certificate"></a>
 
@@ -82,19 +84,21 @@ signed_message=$(echo $text_message | tr -d "\n" | openssl dgst -sha256 -sigopt 
 
 ## Provision the Address Range for use with AWS<a name="byoip-provision"></a>
 
-When you provision an address range for use with AWS, you are confirming that you own the address range and authorizing Amazon to advertise it\. We also verify that you own the address range through a signed authorization message\. This message is signed with the self\-signed X509 key pair you used when updating the RDAP record with the X509 certificate.
+When you provision an address range for use with AWS, you are confirming that you own the address range and authorizing Amazon to advertise it\. We also verify that you own the address range through a signed authorization message\. This message is signed with the self\-signed X509 key pair you used when updating the RDAP record with the X509 certificate\.
 
-To provision the address range, use the following [provision\-byoip\-cidr](https://docs.aws.amazon.com/cli/latest/reference/ec2/provision-byoip-cidr.html) command\. Replace the example address range with your own address range. The `--cidr-authorization-context` parameter uses the variables that you created previously, not the ROA message\.
+To provision the address range, use the following [provision\-byoip\-cidr](https://docs.aws.amazon.com/cli/latest/reference/ec2/provision-byoip-cidr.html) command\. Replace the example address range with your own address range\. The `--cidr-authorization-context` option uses the variables that you created previously, not the ROA message\.
 
-   ```
-   aws ec2 provision-byoip-cidr --cidr 198.51.100.0/24 --cidr-authorization-context Message="$text_message",Signature="$signed_message"
-   ```
+```
+aws ec2 provision-byoip-cidr --cidr address-range --cidr-authorization-context Message="$text_message",Signature="$signed_message"
+```
 
 Provisioning an address range is an asynchronous operation, so the call returns immediately, but the address range is not ready to use until its status changes from `pending-provision` to `provisioned`\. It can take up to five days to complete the provisioning process\. To monitor the status of the address ranges that you've provisioned, use the following [describe\-byoip\-cidrs](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-byoip-cidrs.html) command:
 
 ```
 aws ec2 describe-byoip-cidrs --max-results 5
 ```
+
+To create an Elastic IP address from your address pool, use the [allocate\-address](https://docs.aws.amazon.com/cli/latest/reference/ec2/allocate-address.html) command\. You can use the `--public-ipv4-pool` option to specify the ID of the address pool returned by `describe-byoip-cidrs`, or use the `--address` option to specify an address from the address range that you provisioned\.
 
 ## Advertise the Address Range through AWS<a name="byoip-advertise"></a>
 

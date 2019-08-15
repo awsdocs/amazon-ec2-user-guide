@@ -39,7 +39,7 @@ Use the following procedure to modify an EBS volume\.<a name="console-modify-siz
 
 ## Modifying an EBS Volume Using Elastic Volumes \(AWS CLI\)<a name="modify-ebs-volume-cli"></a>
 
-Use the [modify\-volume](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-volume.html) command modify one or more configuration settings for a volume\. For example, if you have a volume of type `gp2` with a size of 100 GiB, the following command changes its configuration to a volume of type `io1` with 10,000 IOPS and a size of 200 GiB\.
+Use the [modify\-volume](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-volume.html) command to modify one or more configuration settings for a volume\. For example, if you have a volume of type `gp2` with a size of 100 GiB, the following command changes its configuration to a volume of type `io1` with 10,000 IOPS and a size of 200 GiB\.
 
 ```
 aws ec2 modify-volume --volume-type io1 --iops 10000 --size 200 --volume-id vol-11111111111111111 

@@ -2,10 +2,10 @@
 
 Host recovery automatically restarts your instances on to a new replacement host if failures are detected on your Dedicated Host\. Host recovery reduces the need for manual intervention and lowers the operational burden if there is an unexpected Dedicated Host failure\.
 
-Additionally, built\-in integration with automates the tracking and management of your licenses if a host recovery occurs\. 
+Additionally, built\-in integration with AWS License Manager automates the tracking and management of your licenses if a host recovery occurs\. 
 
 **Note**  
- integration is supported only in Regions in which is available\. 
+AWS License Manager integration is supported only in Regions in which AWS License Manager is available\. 
 
 **Topics**
 + [Host Recovery Basics](#dedicated-hosts-recovery-basics)
@@ -44,7 +44,7 @@ When host recovery is initiated, the AWS account owner is notified by email and 
 
 **Stopped instances are not recovered** on to the replacement Dedicated Host\. If you attempt to start a stopped instance that targets the impaired Dedicated Host, the instance start fails\. We recommend that you modify the stopped instance to either target a different Dedicated Host, or to launch on any available Dedicated Host with matching configurations and auto\-placement enabled\.
 
-If you are using to track your licenses, allocates new licenses for the replacement Dedicated Host based on the license configuration limits\. If the license configuration has hard limits that will be breached as a result of the host recovery, the recovery process is not allowed and you are notified of the host recovery failure through an Amazon SNS notification\. If the license configuration has soft limits that will be breached as a result of the host recovery, the recovery is allowed to continue and you are notified of the limit breach through an Amazon SNS notification\. For more information about setting license configuration limits, see [Using License Configurations](https://docs.aws.amazon.com/license-manager/latest/userguide/license-configurations.html) in the * User Guide*\.
+If you are using AWS License Manager to track your licenses, AWS License Manager allocates new licenses for the replacement Dedicated Host based on the license configuration limits\. If the license configuration has hard limits that will be breached as a result of the host recovery, the recovery process is not allowed and you are notified of the host recovery failure through an Amazon SNS notification\. If the license configuration has soft limits that will be breached as a result of the host recovery, the recovery is allowed to continue and you are notified of the limit breach through an Amazon SNS notification\. For more information about setting license configuration limits, see [Using License Configurations](https://docs.aws.amazon.com/license-manager/latest/userguide/license-configurations.html) in the *AWS License Manager User Guide*\.
 
 ## Configuring Host Recovery<a name="dedicated-hosts-recovery-working"></a>
 
@@ -163,7 +163,7 @@ For instance store\-backed instances that could not be automatically recovered, 
 ## Related Services<a name="dedicated-hosts-recovery-related"></a>
 
 Dedicated Host integrates with the following AWS services:
-+ ****—Tracks licenses across your Amazon EC2 Dedicated Hosts \(supported only in Regions in which is available\)\. For more information, see the [ User Guide](https://docs.aws.amazon.com/license-manager/latest/userguide/license-manager.html)\.
++ **AWS License Manager**—Tracks licenses across your Amazon EC2 Dedicated Hosts \(supported only in Regions in which AWS License Manager is available\)\. For more information, see the [ AWS License Manager User Guide](https://docs.aws.amazon.com/license-manager/latest/userguide/license-manager.html)\.
 
 ## Pricing<a name="dedicated-hosts-recovery-pricing"></a>
 

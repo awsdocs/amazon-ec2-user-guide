@@ -1,12 +1,16 @@
-# Getting Console Output<a name="instance-console"></a>
+# Troubleshooting an Unreachable Instance<a name="instance-console"></a>
 
-Console output is a valuable tool for problem diagnosis\. It is especially useful for troubleshooting kernel problems and service configuration issues that could cause an instance to terminate or become unreachable before its SSH daemon can be started\. 
+You can use the following methods to troubleshoot an unreachable instance\.
 
-Similarly, the ability to reboot instances that are otherwise unreachable is valuable for both troubleshooting and general instance management\. 
-
-EC2 instances do not have a physical monitor through which you can view their console output\. They also lack physical controls that allow you to power up, reboot, or shut them down\. Instead, you perform these tasks through the Amazon EC2 API and the command line interface \(CLI\)\. 
+**Topics**
++ [Instance Reboot](#instance-console-rebooting)
++ [Instance Console Output](#instance-console-console-output)
++ [Capture a Screenshot of an Unreachable Instance](#instance-console-screenshot)
++ [Instance Recovery When a Host Computer Fails](#instance-machine-failure)
 
 ## Instance Reboot<a name="instance-console-rebooting"></a>
+
+The ability to reboot instances that are otherwise unreachable is valuable for both troubleshooting and general instance management\.
 
  Just as you can reset a computer by pressing the reset button, you can reset EC2 instances using the Amazon EC2 console, CLI, or API\. For more information, see [Reboot Your Instance](ec2-instance-reboot.md)\. 
 
@@ -14,6 +18,8 @@ EC2 instances do not have a physical monitor through which you can view their co
 For Windows instances, this operation performs a hard reboot that might result in data corruption\. 
 
 ## Instance Console Output<a name="instance-console-console-output"></a>
+
+Console output is a valuable tool for problem diagnosis\. It is especially useful for troubleshooting kernel problems and service configuration issues that could cause an instance to terminate or become unreachable before its SSH daemon can be started\. 
 
 For Linux/Unix, the instance console output displays the exact console output that would normally be displayed on a physical monitor attached to a computer\. The console output returns buffered information that was posted shortly after an instance transition state \(start, stop, reboot, and terminate\)\. The posted output is not continuously updated; only when it is likely to be of the most value\.
 

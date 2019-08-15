@@ -7,6 +7,8 @@ The following table describes important additions to the Amazon EC2 documentatio
 
 | Feature | API Version | Description | Release Date | 
 | --- | --- | --- | --- | 
+| Diagnostic interrupt | 2016\-11\-15 |  You can send a diagnostic interrupt to an unreachable or unresponsive instance to trigger a kernel panic \(on Linux instances\), or a blue screen/stop error \(on Windows instances\)\. For more information, see [Sending a Diagnostic Interrupt \(Advanced Users Only\)](diagnostic-interrupt.md)\.  | 14 August 2019 | 
+| Capacity optimized allocation strategy | 2016\-11\-15 |  Using EC2 Fleet or Spot Fleet, you can now launch Spot Instances from Spot pools with optimal capacity for the number of instances that are launching\. For more information, see [Configuring EC2 Fleet for Capacity Optimization](ec2-fleet-configuration-strategies.md#ec2-fleet-strategy-capacity-optimized)\.  | 12 August 2019 | 
 | On\-Demand Capacity Reservation | 2016\-11\-15 | You can now share your Capacity Reservations across AWS accounts\. For more information, see [Working with Shared Capacity Reservations](capacity-reservation-sharing.md)\. | 29 July 2019 | 
 | Elastic Fabric Adapter | 2016\-11\-15 | EFA now supports Open MPI 3\.1\.4 and Intel MPI 2019 Update 4\. For more information, see [Elastic Fabric Adapter](efa.md)\. | 26 July 2019 | 
 |  Tag launch templates on creation  | 2016\-11\-15 |  You can tag launch templates at creation\. For more information, see [Tagging Your Resources](Using_Tags.md#tag-resources)\.  | 24 July 2019 | 
