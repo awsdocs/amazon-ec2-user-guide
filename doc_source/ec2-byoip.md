@@ -60,7 +60,7 @@ Use the following procedure to create a self\-signed X509 certificate and add it
 
    For ARIN, add the certificate in the "Public Comments" section for your address range\.
 
-   For RIPE, add the certificate as a new "desc" field for your address range\.
+   For RIPE, add the certificate as a new "descr" field for your address range\.
 
 ### Create a Signed Authorization Message<a name="byoip-signed-authorization-message"></a>
 
