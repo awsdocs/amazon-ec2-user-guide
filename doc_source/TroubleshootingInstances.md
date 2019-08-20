@@ -785,7 +785,7 @@ Kernel panic - not syncing: No init found.  Try passing init= option to kernel.
 ```
 
 ### Potential Causes<a name="OpSystemXenbus-potential-cause"></a>
-+ The block device not is connected to the instance
++ The block device is not connected to the instance
 + This instance is using an old instance kernel
 
 ### Suggested Actions<a name="OpSystemXenbus-suggested-actions"></a>
