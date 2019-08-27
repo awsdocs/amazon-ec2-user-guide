@@ -194,7 +194,6 @@ The following tables list the instance types that support specifying CPU options
 
 | Instance type | Default vCPUs | Default CPU cores | Default threads per core | Valid number of CPU cores | Valid number of threads per core | 
 | --- | --- | --- | --- | --- | --- | 
-| i3en\.24xlarge | 96 | 48 | 2 | 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48 | 1, 2 | 
 | d2\.xlarge | 4 | 2 | 2 | 1, 2 | 1, 2 | 
 | d2\.2xlarge | 8 | 4 | 2 | 1, 2, 3, 4 | 1, 2 | 
 | d2\.4xlarge | 16 | 8 | 2 | 1, 2, 3, 4, 5, 6, 7, 8 | 1, 2 | 

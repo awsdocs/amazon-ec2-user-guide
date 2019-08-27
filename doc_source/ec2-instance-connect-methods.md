@@ -23,7 +23,9 @@ The following instructions explain how to connect to your EC2 Linux instance usi
 You can connect to an instance from the Amazon EC2 console by selecting the instance and choosing to connect using EC2 Instance Connect\. Instance Connect handles the permissions and provides a successful connection\.
 
 **Note**  
-To connect using the console, the instance must have a public IP address \(IPv4 or IPv6\)\.
+To connect using the console, the instance must have a public IP address \(IPv4 or IPv6\)\.  
+**Limitation**  
+The Safari browser is currently not supported for EC2 Instance Connect\.
 
 **To connect to your instance using EC2 Instance Connect from the Amazon EC2 console**
 
@@ -80,8 +82,12 @@ You can use your own SSH key and connect to your instance from any SSH client of
    ```
    $ ssh-keygen -t rsa -f my_rsa_key
    ```
-**Note**  
-Only RSA key types in the OpenSSH or SSH2 format are currently supported\. 
+
+**Limitations for EC2 Instance Connect:**
+   + Only RSA key types in the OpenSSH or SSH2 format are currently supported\.
+   + The supported lengths are 2048 and 4096\.
+
+   For more information about SSH key requirements, see [Importing Your Own Public Key to Amazon EC2](ec2-key-pairs.md#how-to-generate-your-own-key-and-import-it-to-aws)\.
 
 1. Push your SSH public key to the instance\.
 

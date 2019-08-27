@@ -186,7 +186,7 @@ We currently do not support tag\-based authorization for Instance Connect\. Tags
 **To grant an IAM user permission for EC2 Instance Connect \(AWS CLI\)**
 
 1. Create a JSON document that includes the following content for the new policy:
-   + If your users only use the console or an SSH client to connect to an instance, use the following content for the policy:
+   + If your users only use an SSH client to connect to an instance, use the following content for the policy:
 
      ```
      {
@@ -203,7 +203,7 @@ We currently do not support tag\-based authorization for Instance Connect\. Tags
      	}]
      }
      ```
-   + If your users use the EC2 Instance Connect CLI to connect to an instance, use the following content for the policy, which includes the `ec2:DescribeInstances` action:
+   + If your users use the console or the EC2 Instance Connect CLI to connect to an instance, use the following content for the policy, which includes the `ec2:DescribeInstances` action:
 
      ```
      {
@@ -228,9 +228,9 @@ We currently do not support tag\-based authorization for Instance Connect\. Tags
      ```
    + The `ec2-instance-connect:SendSSHPublicKey` action grants an IAM user permission to push the public key to an instance\.
    + The `ec2:osuser` condition specifies the default user name for the AMI that you used to launch your instance\. For Amazon Linux 2, the default user name is `ec2-user`\. For the Ubuntu AMI, the default user name is `ubuntu`\.
-   + \(Connecting via EC2 Instance Connect CLI only\) The `ec2:DescribeInstances` action is required because the wrapper makes a describe call at the first step\.
+   + The `ec2:DescribeInstances` action is required when connecting via the EC2 Instance Connect CLI because the wrapper makes a describe call at the first step\. Console users might already have permission to describe instances from another policy\.
 
-   For more information, see [Actions, Resources, and Condition Keys for Amazon EC2](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonec2.html) in the *IAM User Guide*\.
+   For more information, see [Actions, Resources, and Condition Keys for Amazon EC2 Instance Connect](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonec2instanceconnectservice.html) in the *IAM User Guide*\.
 
 1. Use the [create\-policy](https://docs.aws.amazon.com/cli/latest/reference/iam/create-policy.html) command to create a new managed policy, and specify the JSON document that you created to use as the content for the new policy\.
 

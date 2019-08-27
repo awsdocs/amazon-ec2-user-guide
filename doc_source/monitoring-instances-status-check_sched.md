@@ -163,6 +163,9 @@ We recommend that you launch a replacement instance from your most recent AMI an
 
 When AWS must perform tasks such as installing updates or maintaining the underlying host, it can schedule the instance or the underlying host for a reboot\. You can [reschedule most reboot events](#reschedule-reboot-event) so that your instance is rebooted at a specific date and time that suits you\.
 
+**Note**  
+If you stop your linked [EC2\-Classic instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html#classiclink-limitations), it is automatically unlinked from the VPC and the VPC security groups are no longer associated with the instance\. You can link your instance to the VPC again after you've restarted it\. 
+
 ### Viewing Reboot Event Type<a name="view-type-of-scheduled-reboot"></a>
 
 You can view whether a reboot event is an instance reboot or a system reboot using the AWS Management Console, AWS CLI, or Amazon EC2 API\.

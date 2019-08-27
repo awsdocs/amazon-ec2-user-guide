@@ -145,7 +145,7 @@ The following command performs 16 KB random read operations\.
 [ec2-user ~]$ sudo fio --directory=/mnt/p_iops_vol0 --name fio_test_file --direct=1 --rw=randread --bs=16k --size=1G --numjobs=16 --time_based --runtime=180 --group_reporting --norandommap 
 ```
 
-For more information about interpreting the results, see this tutorial: [Inspecting disk IO performance with fio](https://www.linux.com/learn/tutorials/442451-inspecting-disk-io-performance-with-fio/)\.
+For more information about interpreting the results, see this tutorial: [Inspecting disk IO performance with fio](https://www.linux.com/tutorials/inspecting-disk-io-performance-fio/)\.
 
 ### Benchmarking `st1` and `sc1` Volumes<a name="hdd_benchmarking"></a>
 
@@ -206,6 +206,6 @@ Then run the following command:
 [ec2-user ~]$ sudo fio fio_rw_mix.cfg
 ```
 
-For more information about interpreting the results, see the [Inspecting disk I/O performance with fio](https://www.linux.com/learn/tutorials/442451-inspecting-disk-io-performance-with-fio/) tutorial\. 
+For more information about interpreting the results, see this tutorial: [Inspecting disk I/O performance with fio](https://www.linux.com/tutorials/inspecting-disk-io-performance-fio/)\.
 
 Multiple fio jobs for direct I/O, even though using sequential read or write operations, can result in lower than expected throughput for `st1` and `sc1` volumes\. We recommend that you use one direct I/O job and use the `iodepth` parameter to control the number of concurrent I/O operations\. 

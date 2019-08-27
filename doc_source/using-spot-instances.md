@@ -85,6 +85,8 @@ You pay the Spot price for Spot Instances, which is set by Amazon EC2 and adjust
 
 Spot Instances with a predefined duration use a fixed hourly price that remains in effect for the Spot Instance while it runs\.
 
+If you or Amazon EC2 interrupts a running Spot Instance, you are charged for the seconds used or the full hour, or you receive no charge, depending on the operating system used and who interrupted the Spot Instance\. For more information, see [Billing for Interrupted Spot Instances](spot-interruptions.md#billing-for-interrupted-spot-instances)\.
+
 ### View Prices<a name="spot-pricing-view-prices"></a>
 
 To view the current \(updated every five minutes\) lowest Spot price per region and instance type, see the [Spot Instances Pricing](https://aws.amazon.com/ec2/spot/pricing/) page\.

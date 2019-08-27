@@ -11,7 +11,6 @@ There is no additional charge for using ClassicLink\. Standard charges for data 
 + [ClassicLink Limitations](#classiclink-limitations)
 + [Working with ClassicLink](#working-with-classiclink)
 + [Example IAM Policies for ClassicLink](#iam-example-classiclink)
-+ [API and CLI Overview](#classiclink-api-cli)
 + [Example: ClassicLink Security Group Configuration for a Three\-Tier Web Application](#classiclink-security-groups-example)
 
 ## ClassicLink Basics<a name="classiclink-basics"></a>
@@ -21,7 +20,7 @@ There are two steps to linking an EC2\-Classic instance to a VPC using ClassicLi
 **Note**  
 Linking your instance to a VPC is sometimes referred to as *attaching* your instance\.
 
-A linked EC2\-Classic instance can communicate with instances in a VPC, but it does not form part of the VPC\. If you list your instances and filter by VPC, for example, through the `DescribeInstances` API request, or by using the **Instances** screen in the Amazon EC2 console, the results do not return any EC2\-Classic instances that are linked to the VPC\. For more information about viewing your linked EC2\-Classic instances, see [Viewing Your ClassicLink\-Enabled VPCs and Linked EC2\-Classic Instances](#classiclink-describe-vpcs-instances)\.
+A linked EC2\-Classic instance can communicate with instances in a VPC, but it does not form part of the VPC\. If you list your instances and filter by VPC, for example, through the `DescribeInstances` API request, or by using the **Instances** screen in the Amazon EC2 console, the results do not return any EC2\-Classic instances that are linked to the VPC\. For more information about viewing your linked EC2\-Classic instances, see [Viewing Your ClassicLink\-Enabled VPCs and Linked Instances](#classiclink-describe-vpcs-instances)\.
 
 By default, if you use a public DNS hostname to address an instance in a VPC from a linked EC2\-Classic instance, the hostname resolves to the instance's public IP address\. The same occurs if you use a public DNS hostname to address a linked EC2\-Classic instance from an instance in the VPC\. If you want the public DNS hostname to resolve to the private IP address, you can enable ClassicLink DNS support for the VPC\. For more information, see [Enabling ClassicLink DNS Support](#classiclink-enable-dns-support)\.
 
@@ -109,13 +108,13 @@ The ClassicLink features are only visible in the consoles for accounts and regio
 
 **Topics**
 + [Enabling a VPC for ClassicLink](#classiclink-enable-vpc)
-+ [Linking an Instance to a VPC](#classiclink-link-instance)
 + [Creating a VPC with ClassicLink Enabled](#classiclink-vpc-wizard)
-+ [Linking an EC2\-Classic Instance to a VPC at Launch](#classiclink-launch-wizard)
-+ [Viewing Your ClassicLink\-Enabled VPCs and Linked EC2\-Classic Instances](#classiclink-describe-vpcs-instances)
++ [Linking an Instance to a VPC](#classiclink-link-instance)
++ [Linking an Instance to a VPC at Launch](#classiclink-launch-wizard)
++ [Viewing Your ClassicLink\-Enabled VPCs and Linked Instances](#classiclink-describe-vpcs-instances)
 + [Enabling ClassicLink DNS Support](#classiclink-enable-dns-support)
 + [Disabling ClassicLink DNS Support](#classiclink-disable-dns-support)
-+ [Unlinking a EC2\-Classic Instance from a VPC](#classiclink-unlink-instance)
++ [Unlinking an Instance from a VPC](#classiclink-unlink-instance)
 + [Disabling ClassicLink for a VPC](#classiclink-disable-vpc)
 
 ### Enabling a VPC for ClassicLink<a name="classiclink-enable-vpc"></a>
@@ -132,24 +131,7 @@ To link an EC2\-Classic instance to a VPC, you must first enable the VPC for Cla
 
 1. In the confirmation dialog box, choose **Yes, Enable**\.
 
-### Linking an Instance to a VPC<a name="classiclink-link-instance"></a>
-
-After you've enabled a VPC for ClassicLink, you can link an EC2\-Classic instance to it\.
-
-**Note**  
-You can only link a running EC2\-Classic instance to a VPC\. You cannot link an instance that's in the `stopped` state\.
-
-**To link an instance to a VPC**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Instances**\. 
-
-1. Select the running EC2\-Classic instance, choose **Actions**, **ClassicLink**, **Link to VPC**\. You can select more than one instance to link to the same VPC\.
-
-1. In the dialog box that displays, select a VPC from the list\. Only VPCs that have been enabled for ClassicLink are displayed\.
-
-1. Select one or more of the VPC security groups to associate with your instance\. When you are done, choose **Link to VPC**\.
+1. \(Optional\) If you want the public DNS hostname to resolve to the private IP address, enable ClassicLink DNS support for the VPC before you link any instances\. For more information, see [Enabling ClassicLink DNS Support](#classiclink-enable-dns-support)\.
 
 ### Creating a VPC with ClassicLink Enabled<a name="classiclink-vpc-wizard"></a>
 
@@ -165,7 +147,30 @@ You can create a new VPC and immediately enable it for ClassicLink by using the 
 
 1. On the next page of the wizard, choose **Yes** for **Enable ClassicLink**\. Complete the rest of the steps in the wizard to create your VPC\. For more information about using the VPC wizard, see [Scenarios for Amazon VPC](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Scenarios.html) in the *Amazon VPC User Guide*\.
 
-### Linking an EC2\-Classic Instance to a VPC at Launch<a name="classiclink-launch-wizard"></a>
+1. \(Optional\) If you want the public DNS hostname to resolve to the private IP address, enable ClassicLink DNS support for the VPC before you link any instances\. For more information, see [Enabling ClassicLink DNS Support](#classiclink-enable-dns-support)\.
+
+### Linking an Instance to a VPC<a name="classiclink-link-instance"></a>
+
+After you've enabled a VPC for ClassicLink, you can link an EC2\-Classic instance to it\.
+
+**Note**  
+You can only link a running EC2\-Classic instance to a VPC\. You cannot link an instance that's in the `stopped` state\.
+
+If you want the public DNS hostname to resolve to the private IP address, enable ClassicLink DNS support for the VPC before you link the instance\. For more information, see [Enabling ClassicLink DNS Support](#classiclink-enable-dns-support)\.
+
+**To link an instance to a VPC**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances**\. 
+
+1. Select the running EC2\-Classic instance, choose **Actions**, **ClassicLink**, **Link to VPC**\. You can select more than one instance to link to the same VPC\.
+
+1. In the dialog box that displays, select a VPC from the list\. Only VPCs that have been enabled for ClassicLink are displayed\.
+
+1. Select one or more of the VPC security groups to associate with your instance\. When you are done, choose **Link to VPC**\.
+
+### Linking an Instance to a VPC at Launch<a name="classiclink-launch-wizard"></a>
 
 You can use the launch wizard in the Amazon EC2 console to launch an EC2\-Classic instance and immediately link it to a ClassicLink\-enabled VPC\.
 
@@ -181,7 +186,7 @@ Some instance types, such as T2 instance types, can only be launched into a VPC\
 
 1. In the **Link to VPC \(ClassicLink\)** section, select a VPC from **Link to VPC**\. Only ClassicLink\-enabled VPCs are displayed\. Select the security groups from the VPC to associate with the instance\. Complete the other configuration options on the page, and then complete the rest of the steps in the wizard to launch your instance\. For more information about using the launch wizard, see [Launching Your Instance from an AMI](launching-instance.md#launch-instance-console)\.
 
-### Viewing Your ClassicLink\-Enabled VPCs and Linked EC2\-Classic Instances<a name="classiclink-describe-vpcs-instances"></a>
+### Viewing Your ClassicLink\-Enabled VPCs and Linked Instances<a name="classiclink-describe-vpcs-instances"></a>
 
 You can view all of your ClassicLink\-enabled VPCs in the Amazon VPC console, and your linked EC2\-Classic instances in the Amazon EC2 console\.
 
@@ -236,7 +241,7 @@ You can disable ClassicLink DNS support for your VPC so that DNS hostnames that 
 
 1. Choose **No** to disable ClassicLink DNS support, and choose **Save**\.
 
-### Unlinking a EC2\-Classic Instance from a VPC<a name="classiclink-unlink-instance"></a>
+### Unlinking an Instance from a VPC<a name="classiclink-unlink-instance"></a>
 
 If you no longer require a ClassicLink connection between your EC2\-Classic instance and your VPC, you can unlink the instance from the VPC\. Unlinking the instance disassociates the VPC security groups from the instance\.
 
@@ -398,60 +403,6 @@ The following grants users permission to unlink any linked EC2\-Classic instance
    ]
 }
 ```
-
-## API and CLI Overview<a name="classiclink-api-cli"></a>
-
-You can perform the tasks described on this page using the command line or the Query API\. For more information about the command line interfaces and a list of available API actions, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-
-**Enable a VPC for ClassicLink**
-+ [enable\-vpc\-classic\-link](https://docs.aws.amazon.com/cli/latest/reference/ec2/enable-vpc-classic-link.html) \(AWS CLI\)
-+ [Enable\-EC2VpcClassicLink](https://docs.aws.amazon.com/powershell/latest/reference/items/Enable-EC2VpcClassicLink.html) \(AWS Tools for Windows PowerShell\)
-+ [EnableVpcClassicLink](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-EnableVpcClassicLink.html) \(Amazon EC2 Query API\)
-
-**Link \(attach\) an EC2\-Classic instance to a VPC**
-+ [attach\-classic\-link\-vpc](https://docs.aws.amazon.com/cli/latest/reference/ec2/attach-classic-link-vpc.html) \(AWS CLI\)
-+ [Add\-EC2ClassicLinkVpc](https://docs.aws.amazon.com/powershell/latest/reference/items/Add-EC2ClassicLinkVpc.html) \(AWS Tools for Windows PowerShell\)
-+ [AttachClassicLinkVpc](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-AttachClassicLinkVpc.html) \(Amazon EC2 Query API\)
-
-**Unlink \(detach\) an EC2\-Classic instance from a VPC**
-+ [detach\-classic\-link\-vpc](https://docs.aws.amazon.com/cli/latest/reference/ec2/detach-classic-link-vpc.html) \(AWS CLI\)
-+ [Dismount\-EC2ClassicLinkVpc](https://docs.aws.amazon.com/powershell/latest/reference/items/Dismount-EC2ClassicLinkVpc.html) \(AWS Tools for Windows PowerShell\)
-+ [DetachClassicLinkVpc](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DetachClassicLinkVpc.html) \(Amazon EC2 Query API\)
-
-**Disable ClassicLink for a VPC**
-+ [disable\-vpc\-classic\-link](https://docs.aws.amazon.com/cli/latest/reference/ec2/disable-vpc-classic-link.html) \(AWS CLI\)
-+ [Disable\-EC2VpcClassicLink](https://docs.aws.amazon.com/powershell/latest/reference/items/Disable-EC2VpcClassicLink.html) \(AWS Tools for Windows PowerShell\)
-+ [DisableVpcClassicLink](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DisableVpcClassicLink.html) \(Amazon EC2 Query API\)
-
-**Describe the ClassicLink status of VPCs**
-+ [describe\-vpc\-classic\-link](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-vpc-classic-link.html) \(AWS CLI\)
-+ [Get\-EC2VpcClassicLink](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2VpcClassicLink.html) \(AWS Tools for Windows PowerShell\)
-+ [DescribeVpcClassicLink](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeVpcClassicLink.html) \(Amazon EC2 Query API\)
-
-**Describe linked EC2\-Classic instances**
-+ [describe\-classic\-link\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-classic-link-instances.html) \(AWS CLI\)
-+ [Get\-EC2ClassicLinkInstance](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ClassicLinkInstance.html) \(AWS Tools for Windows PowerShell\)
-+ [DescribeClassicLinkInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeClassicLinkInstances.html) \(Amazon EC2 Query API\)
-
-**Enable a VPC peering connection for ClassicLink**
-+ [modify\-vpc\-peering\-connection\-options](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-vpc-peering-connection-options.html) \(AWS CLI\)
-+ [Edit\-EC2VpcPeeringConnectionOption](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2VpcPeeringConnectionOption.html) \(AWS Tools for Windows PowerShell\)
-+ [ModifyVpcPeeringConnectionOptions](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-ModifyVpcPeeringConnectionOptions.html)\(Amazon EC2 Query API\)
-
-**Enable a VPC for ClassicLink DNS support**
-+ [enable\-vpc\-classic\-link\-dns\-support](https://docs.aws.amazon.com/cli/latest/reference/ec2/enable-vpc-classic-link-dns-support.html) \(AWS CLI\)
-+ [Enable\-EC2VpcClassicLinkDnsSupport](https://docs.aws.amazon.com/powershell/latest/reference/items/Enable-EC2VpcClassicLink.html) \(AWS Tools for Windows PowerShell\)
-+ [EnableVpcClassicLinkDnsSupport](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-EnableVpcClassicLinkDnsSupport.html) \(Amazon EC2 Query API\)
-
-**Disable a VPC for ClassicLink DNS support**
-+ [disable\-vpc\-classic\-link\-dns\-support](https://docs.aws.amazon.com/cli/latest/reference/ec2/disable-vpc-classic-link-dns-support.html) \(AWS CLI\)
-+ [Disable\-EC2VpcClassicLinkDnsSupport](https://docs.aws.amazon.com/powershell/latest/reference/items/Disable-EC2VpcClassicLinkDnsSupport.html) \(AWS Tools for Windows PowerShell\)
-+ [DisableVpcClassicLinkDnsSupport](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DisableVpcClassicLinkDnsSupport.html) \(Amazon EC2 Query API\)
-
-**Describe ClassicLink DNS support for VPCs**
-+ [describe\-vpc\-classic\-link\-dns\-support](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-vpc-classic-link-dns-support.html) \(AWS CLI\)
-+ [Get\-EC2VpcClassicLinkDnsSupport](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2VpcClassicLinkDnsSupport.html) \(AWS Tools for Windows PowerShell\)
-+ [DescribeVpcClassicLinkDnsSupport](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeVpcClassicLinkDnsSupport.html) \(Amazon EC2 Query API\)
 
 ## Example: ClassicLink Security Group Configuration for a Three\-Tier Web Application<a name="classiclink-security-groups-example"></a>
 

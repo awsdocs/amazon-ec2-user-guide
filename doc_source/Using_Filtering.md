@@ -105,5 +105,5 @@ Your search can include the literal values of the wildcard characters; you just 
 
 For a list of supported filters per Amazon EC2 resource, see the relevant documentation:
 + For the AWS CLI, see the relevant `describe` command in the *[AWS CLI Command Reference](https://docs.aws.amazon.com/cli/latest/reference/)*\.
-+ For Windows PowerShell, see the relevant `Get` command in the *[AWS Tools for PowerShell Cmdlet Reference](https://docs.aws.amazon.com/powershell/latest/reference/items/Amazon_Elastic_Compute_Cloud_cmdlets.html)*\.
++ For Windows PowerShell, see the relevant `Get` command in the *[AWS Tools for PowerShell Cmdlet Reference](https://docs.aws.amazon.com/powershell/latest/reference)*\.
 + For the Query API, see the relevant `Describe` API action in the *[Amazon EC2 API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/)*\.

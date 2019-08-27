@@ -1,22 +1,25 @@
 # Monitoring Memory and Disk Metrics for Amazon EC2 Linux Instances<a name="mon-scripts"></a>
 
-## New CloudWatch Agent Available<a name="new-cloudwatch-agent"></a>
+You can use Amazon CloudWatch to collect metrics and logs from the operating systems for your EC2 instances\.
 
-A new multi\-platform CloudWatch agent is available\. You can use a single agent to collect both system metrics and log files from Amazon EC2 instances and on\-premises servers\. The new agent supports both Windows Server and Linux and enables you to select the metrics to be collected, including sub\-resource metrics such as per\-CPU core\. We recommend you use the new agent instead of the older monitoring scripts to collect metrics and logs\. For more information about the CloudWatch agent, see [Collect Metrics from Amazon EC2 Instances and On\-Premises Servers with the CloudWatch Agent](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Install-CloudWatch-Agent.html) in the *Amazon CloudWatch User Guide*\.
+## CloudWatch Agent<a name="new-cloudwatch-agent"></a>
 
-The rest of this section is informational for customers who are still using the older Perl scripts for monitoring\. You can download these [Amazon CloudWatch Monitoring Scripts for Linux](https://aws.amazon.com/code/8720044071969977) from the AWS sample code library\.
+You can use the CloudWatch agent to collect both system metrics and log files from Amazon EC2 instances and on\-premises servers\. The agent supports both Windows Server and Linux, and enables you to select the metrics to be collected, including sub\-resource metrics such as per\-CPU core\. We recommend that you use the agent to collect metrics and logs instead of using the monitoring scripts\. For more information, see [Collect Metrics from Amazon EC2 Instances and On\-Premises Servers with the CloudWatch Agent](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Install-CloudWatch-Agent.html) in the *Amazon CloudWatch User Guide*\.
 
 ## CloudWatch Monitoring Scripts<a name="monitoring-scripts-intro"></a>
 
-The Amazon CloudWatch Monitoring Scripts for Amazon Elastic Compute Cloud \(Amazon EC2\) Linux\-based instances demonstrate how to produce and consume Amazon CloudWatch custom metrics\. These sample Perl scripts comprise a fully functional example that reports memory, swap, and disk space utilization metrics for a Linux instance\. 
+**Important**  
+We recommend that you use the CloudWatch agent to collect metrics and logs\. The information about the monitoring scripts is provided for customers who are still using the old monitoring scripts to gather information from their Linux instances\.
+
+The monitoring scripts demonstrate how to produce and consume custom metrics for Amazon CloudWatch\. These sample Perl scripts comprise a fully functional example that reports memory, swap, and disk space utilization metrics for a Linux instance\. 
 
 Standard Amazon CloudWatch usage charges for custom metrics apply to your use of these scripts\. For more information, see the [Amazon CloudWatch](https://aws.amazon.com/cloudwatch/pricing) pricing page\.
 
 **Topics**
 + [Supported Systems](#mon-scripts-systems)
-+ [Package Contents](#mon-scripts-contents)
-+ [Prerequisites](#mon-scripts-perl_prereq)
-+ [Getting Started](#mon-scripts-getstarted)
++ [Required Permissions](#mon-scripts-permissions)
++ [Install Required Packages](#mon-scripts-perl_prereq)
++ [Install Monitoring Scripts](#mon-scripts-getstarted)
 + [mon\-put\-instance\-data\.pl](#using_put_script)
 + [mon\-get\-instance\-stats\.pl](#using_get_script_powershell)
 + [Viewing Your Custom Metrics in the Console](#script_viewmetrics)
@@ -24,40 +27,28 @@ Standard Amazon CloudWatch usage charges for custom metrics apply to your use of
 
 ### Supported Systems<a name="mon-scripts-systems"></a>
 
-These monitoring scripts are intended for use with Amazon EC2 instances running Linux\. The scripts have been tested on instances using the following Amazon Machine Images \(AMIs\), both 32\-bit and 64\-bit versions:
+The monitoring scripts were tested on instances using the following systems:
 + Amazon Linux 2
 + Amazon Linux AMI 2014\.09\.2 and later
-+ Red Hat Enterprise Linux 7\.4 and 6\.9
++ Red Hat Enterprise Linux 6\.9 and 7\.4
 + SUSE Linux Enterprise Server 12
-+ Ubuntu Server 16\.04 and 14\.04
++ Ubuntu Server 14\.04 and 16\.04
 
-**Note**  
-On servers running SUSE Linux Enterprise Server 12, you may need to first download the `perl-Switch` package\. You can download and install this package with the following commands:  
+### Required Permissions<a name="mon-scripts-permissions"></a>
 
-```
-wget http://download.opensuse.org/repositories/devel:/languages:/perl/SLE_12_SP3/noarch/perl-Switch-2.17-32.1.noarch.rpm
-sudo rpm -i perl-Switch-2.17-32.1.noarch.rpm
-```
+Ensure that the scripts have permission to call the following actions by associating an IAM role with your instance:
++ cloudwatch:PutMetricData
++ cloudwatch:GetMetricStatistics
++ cloudwatch:ListMetrics
++ ec2:DescribeTags
 
-You can also monitor memory and disk metrics on Amazon EC2 instances running Windows by sending this data to CloudWatch Logs\. For more information, see [Collect Metrics and Logs from Amazon EC2 Instances and On\-Premises Servers with the CloudWatch Agent](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Install-CloudWatch-Agent.html) in the *Amazon CloudWatch User Guide*\.
+For more information, see [Working with IAM Roles](iam-roles-for-amazon-ec2.md#working-with-iam-roles)\.
 
-### Package Contents<a name="mon-scripts-contents"></a>
+### Install Required Packages<a name="mon-scripts-perl_prereq"></a>
 
-The package for the monitoring scripts contains the following files:
-+ **CloudWatchClient\.pm** – Shared Perl module that simplifies calling Amazon CloudWatch from other scripts\.
-+ **mon\-put\-instance\-data\.pl** – Collects system metrics on an Amazon EC2 instance \(memory, swap, disk space utilization\) and sends them to Amazon CloudWatch\.
-+ **mon\-get\-instance\-stats\.pl** – Queries Amazon CloudWatch and displays the most recent utilization statistics for the EC2 instance on which this script is executed\.
-+ **awscreds\.template** – File template for AWS credentials that stores your access key ID and secret access key\.
-+ **LICENSE\.txt** – Text file containing the Apache 2\.0 license\.
-+ **NOTICE\.txt** – Copyright notice\.
+With some versions of Linux, you must install additional Perl modules before you can use the monitoring scripts\.
 
-### Prerequisites<a name="mon-scripts-perl_prereq"></a>
-
-With some versions of Linux, you must install additional modules before the monitoring scripts will work\.
-
-#### Amazon Linux 2 and Amazon Linux AMI<a name="mon-scripts-alami"></a>
-
-**To install the required packages**
+**To install the required packages on Amazon Linux 2 and Amazon Linux AMI**
 
 1. Log on to your instance\. For more information, see [Connect to Your Linux Instance](AccessingInstances.md)\.
 
@@ -67,9 +58,28 @@ With some versions of Linux, you must install additional modules before the moni
    sudo yum install -y perl-Switch perl-DateTime perl-Sys-Syslog perl-LWP-Protocol-https perl-Digest-SHA.x86_64
    ```
 
-#### Red Hat Enterprise Linux<a name="mon-scripts-redhat"></a>
+**To install the required packages on Ubuntu**
 
-You must install additional Perl modules\.
+1. Log on to your instance\. For more information, see [Connect to Your Linux Instance](AccessingInstances.md)\.
+
+1. At a command prompt, install packages as follows:
+
+   ```
+   sudo apt-get update
+   sudo apt-get install unzip
+   sudo apt-get install libwww-perl libdatetime-perl
+   ```
+
+**To install the required packages on Red Hat Enterprise Linux 7**
+
+1. Log on to your instance\. For more information, see [Connect to Your Linux Instance](AccessingInstances.md)\.
+
+1. At a command prompt, install packages as follows:
+
+   ```
+   sudo yum install perl-Switch perl-DateTime perl-Sys-Syslog perl-LWP-Protocol-https perl-Digest-SHA --enablerepo="rhui-REGION-rhel-server-optional" -y 
+   sudo yum install zip unzip
+   ```
 
 **To install the required packages on Red Hat Enterprise Linux 6\.9**
 
@@ -103,49 +113,25 @@ You must install additional Perl modules\.
    cpan[4]> install Switch
    ```
 
-**To install the required packages on Red Hat Enterprise Linux 7\.4**
-
-1. Log on to your instance\. For more information, see [Connect to Your Linux Instance](AccessingInstances.md)\.
-
-1. At a command prompt, install packages as follows:
-
-   ```
-   sudo yum install perl-Switch perl-DateTime perl-Sys-Syslog perl-LWP-Protocol-https perl-Digest-SHA --enablerepo="rhui-REGION-rhel-server-optional" -y 
-   sudo yum install zip unzip
-   ```
-
-#### SUSE Linux Enterprise Server<a name="mon-scripts-suse"></a>
-
-You must install additional Perl modules\.
-
 **To install the required packages on SUSE**
 
 1. Log on to your instance\. For more information, see [Connect to Your Linux Instance](AccessingInstances.md)\.
 
-1. At a command prompt, install packages as follows:
+1. On servers running SUSE Linux Enterprise Server 12, you might need to download the `perl-Switch` package\. You can download and install this package using the following commands:
+
+   ```
+   wget http://download.opensuse.org/repositories/devel:/languages:/perl/SLE_12_SP3/noarch/perl-Switch-2.17-32.1.noarch.rpm
+   sudo rpm -i perl-Switch-2.17-32.1.noarch.rpm
+   ```
+
+1. Install the required packages as follows:
 
    ```
    sudo zypper install perl-Switch perl-DateTime
    sudo zypper install –y "perl(LWP::Protocol::https)"
    ```
 
-#### Ubuntu Server<a name="mon-scripts-ubuntu"></a>
-
-You must configure your server as follows\.
-
-**To install the required packages on Ubuntu**
-
-1. Log on to your instance\. For more information, see [Connect to Your Linux Instance](AccessingInstances.md)\.
-
-1. At a command prompt, install packages as follows:
-
-   ```
-   sudo apt-get update
-   sudo apt-get install unzip
-   sudo apt-get install libwww-perl libdatetime-perl
-   ```
-
-### Getting Started<a name="mon-scripts-getstarted"></a>
+### Install Monitoring Scripts<a name="mon-scripts-getstarted"></a>
 
 The following steps show you how to download, uncompress, and configure the CloudWatch Monitoring Scripts on an EC2 Linux instance\.
 
@@ -165,26 +151,13 @@ The following steps show you how to download, uncompress, and configure the Clou
    cd aws-scripts-mon
    ```
 
-1. Ensure that the scripts have permission to perform CloudWatch operations using one of the following options:
-   + If you associated an IAM role \(instance profile\) with your instance, verify that it grants permissions to perform the following operations:
-     + cloudwatch:PutMetricData
-     + cloudwatch:GetMetricStatistics
-     + cloudwatch:ListMetrics
-     + ec2:DescribeTags
-   + Specify your AWS credentials in a credentials file\. First, copy the `awscreds.template` file included with the monitoring scripts to `awscreds.conf` as follows:
-
-     ```
-     cp awscreds.template awscreds.conf
-     ```
-
-     Add the following content to the `awscreds.conf` file:
-
-     ```
-     AWSAccessKeyId=my-access-key-id
-     AWSSecretKey=my-secret-access-key
-     ```
-
-     For information about how to view your AWS credentials, see [Understanding and Getting Your Security Credentials](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html) in the *Amazon Web Services General Reference*\.
+The package for the monitoring scripts contains the following files:
++ **CloudWatchClient\.pm** – Shared Perl module that simplifies calling Amazon CloudWatch from other scripts\.
++ **mon\-put\-instance\-data\.pl** – Collects system metrics on an Amazon EC2 instance \(memory, swap, disk space utilization\) and sends them to Amazon CloudWatch\.
++ **mon\-get\-instance\-stats\.pl** – Queries Amazon CloudWatch and displays the most recent utilization statistics for the EC2 instance on which this script is executed\.
++ **awscreds\.template** – File template for AWS credentials that stores your access key ID and secret access key\.
++ **LICENSE\.txt** – Text file containing the Apache 2\.0 license\.
++ **NOTICE\.txt** – Copyright notice\.
 
 ### mon\-put\-instance\-data\.pl<a name="using_put_script"></a>
 
@@ -219,49 +192,40 @@ This script collects memory, swap, and disk space utilization data on the curren
 |   `--help `   |  Displays usage information\.   | 
 |   `--version `   |  Displays the version number of the script\.   | 
 
-#### Examples<a name="using_put_examples"></a>
-
+**Examples**  
 The following examples assume that you provided an IAM role or `awscreds.conf` file\. Otherwise, you must provide credentials using the `--aws-access-key-id` and `--aws-secret-key` parameters for these commands\.
 
-**To perform a simple test run without posting data to CloudWatch**
+The following example performs a simple test run without posting data to CloudWatch\.
 
 ```
 ./mon-put-instance-data.pl --mem-util --verify --verbose
 ```
 
-**To collect all available memory metrics and send them to CloudWatch, counting cache and buffer memory as used**
+The following example collects all available memory metrics and sends them to CloudWatch, counting cache and buffer memory as used
 
 ```
 ./mon-put-instance-data.pl --mem-used-incl-cache-buff --mem-util --mem-used --mem-avail
 ```
 
-**To set a cron schedule for metrics reported to CloudWatch**
-
-1. Start editing the crontab using the following command:
-
-   ```
-   1. crontab -e 
-   ```
-
-1. Add the following command to report memory and disk space utilization to CloudWatch every five minutes:
-
-   ```
-   1. */5 * * * * ~/aws-scripts-mon/mon-put-instance-data.pl --mem-used-incl-cache-buff --mem-util --disk-space-util --disk-path=/ --from-cron
-   ```
-
-   If the script encounters an error, the script will write the error message in the system log\. 
-
-**To collect aggregated metrics for an Auto Scaling group and send them to Amazon CloudWatch without reporting individual instance metrics**
+The following example collects aggregated metrics for an Auto Scaling group and sends them to Amazon CloudWatch without reporting individual instance metrics\.
 
 ```
 ./mon-put-instance-data.pl --mem-util --mem-used --mem-avail --auto-scaling=only
 ```
 
-**To collect aggregated metrics for instance type, AMI ID and region, and send them to Amazon CloudWatch without reporting individual instance metrics**
+The following example collects aggregated metrics for instance type, AMI ID and region, and sends them to Amazon CloudWatch without reporting individual instance metrics
 
 ```
 ./mon-put-instance-data.pl --mem-util --mem-used --mem-avail --aggregated=only
 ```
+
+To set a cron schedule for metrics reported to CloudWatch, start editing the crontab using the crontab \-e command\. Add the following command to report memory and disk space utilization to CloudWatch every five minutes:
+
+```
+1. */5 * * * * ~/aws-scripts-mon/mon-put-instance-data.pl --mem-used-incl-cache-buff --mem-util --disk-space-util --disk-path=/ --from-cron
+```
+
+If the script encounters an error, it writes the error message in the system log\.
 
 ### mon\-get\-instance\-stats\.pl<a name="using_get_script_powershell"></a>
 
@@ -282,8 +246,7 @@ This script queries CloudWatch for statistics on memory, swap, and disk space me
 |   `--help `   |  Displays usage information\.   | 
 |   `--version `   |  Displays the version number of the script\.   | 
 
-#### Example<a name="using_get_examples"></a>
-
+**Example**  
 To get utilization statistics for the last 12 hours, run the following command:
 
 ```

@@ -10,6 +10,7 @@ An On\-Demand Instance specified in an EC2 Fleet or Spot Fleet cannot be interru
 + [Preparing for Interruptions](#using-spot-instances-managing-interruptions)
 + [Preparing for Instance Hibernation](#prepare-for-instance-hibernation)
 + [Spot Instance Interruption Notices](#spot-instance-termination-notices)
++ [Billing for Interrupted Spot Instances](#billing-for-interrupted-spot-instances)
 
 ## Reasons for Interruption<a name="interruption-reasons"></a>
 
@@ -20,7 +21,7 @@ The following are the possible reasons that Amazon EC2 might interrupt your Spot
 
 ## Interruption Behavior<a name="interruption-behavior"></a>
 
-You can specify whether Amazon EC2 should hibernate, stop, or terminate Spot Instances when they are interrupted\. You can choose the interruption behavior that meets your needs\. The default is to terminate Spot Instances when they are interrupted\. To change the interruption behavior, choose an option from **Interruption behavior** in the console or `InstanceInterruptionBehavior` in the launch configuration or the launch template\.
+You can specify whether Amazon EC2 should hibernate, stop, or terminate Spot Instances when they are interrupted\. You can choose the interruption behavior that meets your needs\. The default is to terminate Spot Instances when they are interrupted\. To change the interruption behavior, choose an option from **Interruption behavior** in the console when you are creating a Spot request, or specify `InstanceInterruptionBehavior` in the launch configuration or the launch template\. To change interruption behavior in the console when you are creating a Spot request, choose **Maintain target capacity**\. When you select this option, **Interruption behavior** will appear and you can then specify that the Spot service terminates, stops, or hibernates Spot Instances when they are interrupted\.
 
 ### Stopping Interrupted Spot Instances<a name="stop-spot-instances"></a>
 
@@ -103,7 +104,7 @@ The following procedures help you prepare a Linux instance\. For directions to p
 
 1. Verify that your kernel supports hibernation and update the kernel if necessary\.
 
-1. If your AMI doesn't include the agent, install the agent using the following command:
+1. If your AMI doesn't include the agent, install the agent using the following command\.
 
    ```
    sudo yum update; sudo yum install hibagent
@@ -118,13 +119,13 @@ The following procedures help you prepare a Linux instance\. For directions to p
 
 **To prepare an Ubuntu instance**
 
-1. If your AMI doesn't include the agent, install the agent using the following command:
+1. If your AMI doesn't include the agent, install the agent using the following command\. The hibernation agent is only available on Ubuntu 16\.04 or later\.
 
    ```
    sudo apt-get install hibagent
    ```
 
-1. Add the following to the user data:
+1. Add the following to the user data\.
 
    ```
    #!/bin/bash
@@ -205,3 +206,13 @@ The `termination-time` item specifies the approximate time in UTC when the insta
 If Amazon EC2 is not preparing to terminate the instance, or if you terminated the Spot Instance yourself, the `termination-time` item is either not present \(so you receive an HTTP 404 error\) or contains a value that is not a time value\.
 
 If Amazon EC2 fails to terminate the instance, the request status is set to `fulfilled`\. The `termination-time` value remains in the instance metadata with the original approximate time, which is now in the past\.
+
+## Billing for Interrupted Spot Instances<a name="billing-for-interrupted-spot-instances"></a>
+
+When a Spot Instance \(*not* in a Spot block\) is interrupted, you’re charged as follows\.
+
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-interruptions.html)
+
+When a Spot Instance *in a Spot block* is interrupted, you’re charged as follows\.
+
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-interruptions.html)
