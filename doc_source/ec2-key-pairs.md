@@ -154,9 +154,9 @@ chmod 400 my-key-pair.pem
 
 ## Retrieving the Public Key for Your Key Pair on Windows<a name="retrieving-the-public-key-windows"></a>
 
-On your local Windows computer, you can use PuTTYgen to get the public key for your key pair\. 
+On your local Windows computer, you can use PuTTYgen to get the public key for your key pair\.
 
-Start PuTTYgen, choose **Load**, and select the `.ppk` or `.pem` file\. PuTTYgen displays the public key\.
+Start PuTTYgen and choose **Load**\. Select the `.ppk` or `.pem` file\. PuTTYgen displays the public key under **Public key for pasting into OpenSSH authorized\_keys file**\. You can also view the public key by choosing **Save public key**, specifying a name for the file, saving the file, and then opening the file\.
 
 ## Retrieving the Public Key for Your Key Pair From Your Instance<a name="retrieving-the-public-key-instance"></a>
 

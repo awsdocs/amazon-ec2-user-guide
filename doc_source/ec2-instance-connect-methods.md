@@ -83,7 +83,7 @@ You can use your own SSH key and connect to your instance from any SSH client of
    $ ssh-keygen -t rsa -f my_rsa_key
    ```
 
-**Limitations for EC2 Instance Connect:**
+**Limitations for EC2 Instance Connect**
    + Only RSA key types in the OpenSSH or SSH2 format are currently supported\.
    + The supported lengths are 2048 and 4096\.
 

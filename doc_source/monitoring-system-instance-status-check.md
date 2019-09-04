@@ -2,7 +2,9 @@
 
 With instance status monitoring, you can quickly determine whether Amazon EC2 has detected any problems that might prevent your instances from running applications\. Amazon EC2 performs automated checks on every running EC2 instance to identify hardware and software issues\. You can view the results of these status checks to identify specific and detectable problems\. The event status data augments the information that Amazon EC2 already provides about the state of each instance \(such as `pending`, `running`, `stopping`\) and the utilization metrics that Amazon CloudWatch monitors \(CPU utilization, network traffic, and disk activity\)\.
 
-Status checks are performed every minute, returning a pass or a fail status\. If all checks pass, the overall status of the instance is **OK**\. If one or more checks fail, the overall status is **impaired**\. Status checks are built into Amazon EC2, so they cannot be disabled or deleted\. You can, however, create or delete alarms that are triggered based on the result of the status checks\. For example, you can create an alarm to warn you if status checks fail on a specific instance\. For more information, see [Creating and Editing Status Check Alarms](#creating_status_check_alarms)\.
+Status checks are performed every minute, returning a pass or a fail status\. If all checks pass, the overall status of the instance is **OK**\. If one or more checks fail, the overall status is **impaired**\. Status checks are built into Amazon EC2, so they cannot be disabled or deleted\.
+
+When a status check fails, the corresponding CloudWatch metric for status checks is incremented\. For more information, see [Status Check Metrics](viewing_metrics_with_cloudwatch.md#status-check-metrics)\. You can use these metrics to create CloudWatch alarms that are triggered based on the result of the status checks\. For example, you can create an alarm to warn you if status checks fail on a specific instance\. For more information, see [Creating and Editing Status Check Alarms](#creating_status_check_alarms)\.
 
 You can also create an Amazon CloudWatch alarm that monitors an Amazon EC2 instance and automatically recovers the instance if it becomes impaired due to an underlying issue\. For more information, see [Recover Your Instance](ec2-instance-recover.md)\.
 
@@ -54,9 +56,14 @@ You can view status checks using the AWS Management Console\.
 1. To view the status of a specific instance, select the instance, and then choose the **Status Checks** tab\.  
 ![\[Viewing status\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/status-check-tab.png)
 
-1. If you have an instance with a failed status check and the instance has been unreachable for over 20 minutes, choose **AWS Support** to submit a request for assistance\. To troubleshoot system or instance status check failures yourself, see [Troubleshooting Instances with Failed Status Checks](TroubleshootingInstances.md)\.
+   If you have an instance with a failed status check and the instance has been unreachable for over 20 minutes, choose **AWS Support** to submit a request for assistance\. To troubleshoot system or instance status check failures yourself, see [Troubleshooting Instances with Failed Status Checks](TroubleshootingInstances.md)\.
 
-### Viewing Status Using the Command Line or API<a name="viewing_status-cli"></a>
+1. To review the CloudWatch metrics for status checks, select the instance, and then choose the **Monitoring** tab\. Scroll until you see the graphs for the following metrics:
+   + **Status Check Failed \(Any\)**
+   + **Status Check Failed \(Instance\)**
+   + **Status Check Failed \(System\)**
+
+### Viewing Status Using the Command Line<a name="viewing_status-cli"></a>
 
 You can view status checks for running instances using the [describe\-instance\-status](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-status.html) \(AWS CLI\) command\.
 
@@ -102,7 +109,7 @@ We use reported feedback to identify issues impacting multiple customers, but do
 
 1. Complete the **Report Instance Status** form, and then choose **Submit**\.
 
-### Reporting Status Feedback Using the Command Line or API<a name="reporting_status-cli"></a>
+### Reporting Status Feedback Using the Command Line<a name="reporting_status-cli"></a>
 
 Use the following [report\-instance\-status](https://docs.aws.amazon.com/cli/latest/reference/ec2/report-instance-status.html) \(AWS CLI\) command to send feedback about the status of an impaired instance\.
 
@@ -116,11 +123,11 @@ Alternatively, use the following commands:
 
 ## Creating and Editing Status Check Alarms<a name="creating_status_check_alarms"></a>
 
-You can create instance status and system status alarms to notify you when an instance has a failed status check\.
+You can use the [status check metrics](viewing_metrics_with_cloudwatch.md#status-check-metrics) to create CloudWatch alarms to notify you when an instance has a failed status check\.
 
 ### Creating a Status Check Alarm Using the Console<a name="using-cloudwatch-new-console2"></a>
 
-You can create status check alarms for an existing instance to monitor instance status or system status\. You can configure the alarm to send you a notification by email or stop, terminate, or recover an instance when it fails an [instance status check or system status check](#types-of-instance-status-checks)\.
+Use the following procedure to configure an alarm that sends you a notification by email, or stops, terminates, or recovers an instance when it fails a status check\.
 
 **To create a status check alarm \(console\)**
 
@@ -135,8 +142,8 @@ You can create status check alarms for an existing instance to monitor instance 
 1. \(Optional\) Select **Take the action**, and then select the action that you'd like to take\.
 
 1. In **Whenever**, select the status check that you want to be notified about\.
-**Note**  
-If you selected **Recover this instance** in the previous step, select **Status Check Failed \(System\)**\.
+
+   If you selected **Recover this instance** in the previous step, select **Status Check Failed \(System\)**\.
 
 1. In **For at least**, set the number of periods you want to evaluate and in **consecutive periods**, select the evaluation period duration before triggering the alarm and sending an email\.
 
@@ -148,7 +155,7 @@ If you added an email address to the list of recipients or created a new topic, 
 
 If you need to make changes to an instance status alarm, you can edit it\.
 
-**To edit a status check alarm \(console\)**
+**To edit a status check alarm using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -162,9 +169,9 @@ If you need to make changes to an instance status alarm, you can edit it\.
 
 ### Creating a Status Check Alarm Using the AWS CLI<a name="using-cloudwatch-new-cli2"></a>
 
-In the following example, the alarm publishes a notification to an SNS topic, `arn:aws:sns:us-west-2:111122223333:my-sns-topic`, when the instance fails either the instance check or system status check for at least two consecutive periods\. The metric is `StatusCheckFailed`\.
+In the following example, the alarm publishes a notification to an SNS topic, `arn:aws:sns:us-west-2:111122223333:my-sns-topic`, when the instance fails either the instance check or system status check for at least two consecutive periods\. The CloudWatch metric used is `StatusCheckFailed`\.
 
-**To create a status check alarm \(AWS CLI\)**
+**To create a status check alarm using the AWS CLI**
 
 1. Select an existing SNS topic or create a new one\. For more information, see [Using the AWS CLI with Amazon SNS](https://docs.aws.amazon.com/cli/latest/userguide/cli-sqs-queue-sns-topic.html) in the *AWS Command Line Interface User Guide*\.
 
@@ -180,7 +187,4 @@ In the following example, the alarm publishes a notification to an SNS topic, `a
    aws cloudwatch put-metric-alarm --alarm-name StatusCheckFailed-Alarm-for-i-1234567890abcdef0 --metric-name StatusCheckFailed --namespace AWS/EC2 --statistic Maximum --dimensions Name=InstanceId,Value=i-1234567890abcdef0 --unit Count --period 300 --evaluation-periods 2 --threshold 1 --comparison-operator GreaterThanOrEqualToThreshold --alarm-actions arn:aws:sns:us-west-2:111122223333:my-sns-topic
    ```
 
-**Note**
-   + `--period` is the time frame, in seconds, in which Amazon CloudWatch metrics are collected\. This example uses 300, which is 60 seconds multiplied by 5 minutes\.
-   + `--evaluation-periods` is the number of consecutive periods for which the value of the metric must be compared to the threshold\. This example uses 2\.
-   + `--alarm-actions` is the list of actions to perform when this alarm is triggered\. Each action is specified as an Amazon Resource Name \(ARN\)\. This example configures the alarm to send an email using Amazon SNS\.
+   The period is the time frame, in seconds, in which Amazon CloudWatch metrics are collected\. This example uses 300, which is 60 seconds multiplied by 5 minutes\. The evaluation period is the number of consecutive periods for which the value of the metric must be compared to the threshold\. This example uses 2\. The alarm actions are the actions to perform when this alarm is triggered\. This example configures the alarm to send an email using Amazon SNS\.

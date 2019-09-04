@@ -163,10 +163,9 @@ We recommend that you launch a replacement instance from your most recent AMI an
 
 When AWS must perform tasks such as installing updates or maintaining the underlying host, it can schedule the instance or the underlying host for a reboot\. You can [reschedule most reboot events](#reschedule-reboot-event) so that your instance is rebooted at a specific date and time that suits you\.
 
-**Note**  
-If you stop your linked [EC2\-Classic instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html#classiclink-limitations), it is automatically unlinked from the VPC and the VPC security groups are no longer associated with the instance\. You can link your instance to the VPC again after you've restarted it\. 
+If you stop your linked [EC2\-Classic instance](vpc-classiclink.md#classiclink-limitations), it is automatically unlinked from the VPC and the VPC security groups are no longer associated with the instance\. You can link your instance to the VPC again after you've restarted it\.
 
-### Viewing Reboot Event Type<a name="view-type-of-scheduled-reboot"></a>
+### Viewing the Reboot Event Type<a name="view-type-of-scheduled-reboot"></a>
 
 You can view whether a reboot event is an instance reboot or a system reboot using the AWS Management Console, AWS CLI, or Amazon EC2 API\.
 
@@ -227,14 +226,14 @@ You can reschedule most reboot events so that your instance is rebooted at a spe
 1. Choose **Instance resources** from the filter list\.
 
 1. Select one or more instances, and then choose **Actions**, **Schedule Event**\.
-**Note**  
-Only events that have an event deadline date, indicated by a value for **Event Deadline**, can be rescheduled\. 
+
+   Only events that have an event deadline date, indicated by a value for **Event Deadline**, can be rescheduled\. 
 
 1. For **Event start time**, enter a new date and time for the reboot\. The new date and time must fall before the **Event Deadline**\.
 
 1. Choose **Schedule Event**\.
-**Note**  
-It might take 1\-2 minutes for the updated event start time to be reflected in the console\.
+
+   It might take 1\-2 minutes for the updated event start time to be reflected in the console\.
 
 **To reschedule a reboot event \(AWS CLI\)**
 
@@ -266,8 +265,8 @@ It might take 1\-2 minutes for the updated event start time to be reflected in t
    ```
    aws ec2 modify-instance-event-start-time --instance-id i-1234567890abcdef0 --instance-event-id instance-event-0d59937288b749b32 --not-before 2019-03-25T10:00:00.000
    ```
-**Note**  
-It might take 1\-2 minutes before the [describe\-instance\-status](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-status.html) command returns the updated `not-before` parameter value\.
+
+   It might take 1\-2 minutes before the [describe\-instance\-status](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-status.html) command returns the updated `not-before` parameter value\.
 
 **Limitations for Reboot Events**
 + Only reboot events with an event deadline date can be rescheduled\. The event can be rescheduled up to the event deadline date\. The **Event Deadline** column in the console and the `NotBeforeDeadline` field in the AWS CLI indicate if the event has a deadline date\.

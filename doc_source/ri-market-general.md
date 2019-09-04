@@ -111,6 +111,8 @@ For example, if your Reserved Instance has nine months of its term remaining, yo
 
 As a registered seller, you can choose to sell one or more of your Reserved Instances\. You can choose to sell all of them in one listing or in portions\. In addition, you can list Reserved Instances with any configuration of instance type, platform, and scope\.
 
+The console determines a suggested price\. It checks for offerings that match your Reserved Instance and matches the one with the lowest price\. Otherwise, it calculates a suggested price based on the cost of the Reserved Instance for its remaining time\. If the calculated value is less than $1\.01, the suggested price is $1\.01\.
+
 If you cancel your listing and a portion of that listing has already been sold, the cancellation is not effective on the portion that has been sold\. Only the unsold portion of the listing is no longer available in the Reserved Instance Marketplace\.
 
 **To list a Reserved Instance in the Reserved Instance Marketplace using the AWS Management Console**

@@ -241,7 +241,7 @@ For information about using CloudWatch metrics and alarms to monitor your burst 
 
 ## Cold HDD \(`sc1`\) Volumes<a name="EBSVolumeTypes_sc1"></a>
 
-Cold HDD \(`sc1`\) volumes provide low\-cost magnetic storage that defines performance in terms of throughput rather than IOPS\. With a lower throughput limit than `st1`, `sc1` is a good fit ideal for large, sequential cold\-data workloads\. If you require infrequent access to your data and are looking to save costs, `sc1` provides inexpensive block storage\. Bootable `sc1` volumes are not supported\.
+Cold HDD \(`sc1`\) volumes provide low\-cost magnetic storage that defines performance in terms of throughput rather than IOPS\. With a lower throughput limit than `st1`, `sc1` is a good fit for large, sequential cold\-data workloads\. If you require infrequent access to your data and are looking to save costs, `sc1` provides inexpensive block storage\. Bootable `sc1` volumes are not supported\.
 
 Cold HDD \(`sc1`\) volumes, though similar to Throughput Optimized HDD \(`st1`\) volumes, are designed to support *infrequently* accessed data\.
 

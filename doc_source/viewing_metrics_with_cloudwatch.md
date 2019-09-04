@@ -4,17 +4,16 @@ Amazon EC2 sends metrics to Amazon CloudWatch\. You can use the AWS Management C
 
 For information about getting the statistics for these metrics, see [Get Statistics for Metrics for Your Instances](monitoring_get_statistics.md)\.
 
+**Topics**
++ [Instance Metrics](#ec2-cloudwatch-metrics)
++ [CPU Credit Metrics](#cpu-credit-metrics)
++ [Amazon EBS Metrics for Nitro\-based Instances](#ebs-metrics-nitro)
++ [Status Check Metrics](#status-check-metrics)
++ [Amazon EC2 Metric Dimensions](#ec2-cloudwatch-dimensions)
++ [Listing Metrics Using the Console](#list-ec2-metrics-console)
++ [Listing Metrics Using the AWS CLI](#list-ec2-metrics-cli)
+
 ## Instance Metrics<a name="ec2-cloudwatch-metrics"></a>
-
-The `AWS/EC2` namespace includes the following CPU credit metrics for your [burstable performance instances](burstable-performance-instances.md)\.
-
-
-| Metric | Description | 
-| --- | --- | 
-| CPUCreditUsage |  The number of CPU credits spent by the instance for CPU utilization\. One CPU credit equals one vCPU running at 100% utilization for one minute or an equivalent combination of vCPUs, utilization, and time \(for example, one vCPU running at 50% utilization for two minutes or two vCPUs running at 25% utilization for two minutes\)\. CPU credit metrics are available at a five\-minute frequency only\. If you specify a period greater than five minutes, use the `Sum` statistic instead of the `Average` statistic\. Units: Credits \(vCPU\-minutes\)  | 
-| CPUCreditBalance |  The number of earned CPU credits that an instance has accrued since it was launched or started\. For T2 Standard, the `CPUCreditBalance` also includes the number of launch credits that have been accrued\. Credits are accrued in the credit balance after they are earned, and removed from the credit balance when they are spent\. The credit balance has a maximum limit, determined by the instance size\. After the limit is reached, any new credits that are earned are discarded\. For T2 Standard, launch credits do not count towards the limit\. The credits in the `CPUCreditBalance` are available for the instance to spend to burst beyond its baseline CPU utilization\. When an instance is running, credits in the `CPUCreditBalance` do not expire\. When a T3 or T3a instance stops, the `CPUCreditBalance` value persists for seven days\. Thereafter, all accrued credits are lost\. When a T2 instance stops, the `CPUCreditBalance` value does not persist, and all accrued credits are lost\. CPU credit metrics are available at a five\-minute frequency only\. Units: Credits \(vCPU\-minutes\)  | 
-| CPUSurplusCreditBalance  |  The number of surplus credits that have been spent by an `unlimited` instance when its `CPUCreditBalance` value is zero\. The `CPUSurplusCreditBalance` value is paid down by earned CPU credits\. If the number of surplus credits exceeds the maximum number of credits that the instance can earn in a 24\-hour period, the spent surplus credits above the maximum incur an additional charge\. Units: Credits \(vCPU\-minutes\)   | 
-| CPUSurplusCreditsCharged |  The number of spent surplus credits that are not paid down by earned CPU credits, and which thus incur an additional charge\. Spent surplus credits are charged when any of the following occurs:  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/viewing_metrics_with_cloudwatch.html) Units: Credits \(vCPU\-minutes\)  | 
 
 The `AWS/EC2` namespace includes the following instance metrics\.
 
@@ -31,18 +30,22 @@ The `AWS/EC2` namespace includes the following instance metrics\.
 | `NetworkPacketsIn` |  The number of packets received on all network interfaces by the instance\. This metric identifies the volume of incoming traffic in terms of the number of packets on a single instance\. This metric is available for basic monitoring only\. Units: Count Statistics: Minimum, Maximum, Average  | 
 | `NetworkPacketsOut` |  The number of packets sent out on all network interfaces by the instance\. This metric identifies the volume of outgoing traffic in terms of the number of packets on a single instance\. This metric is available for basic monitoring only\. Units: Count Statistics: Minimum, Maximum, Average  | 
 
-The `AWS/EC2` namespace includes the following status checks metrics\. By default, status check metrics are available at a 1\-minute frequency at no charge\. For a newly\-launched instance, status check metric data is only available after the instance has completed the initialization state \(within a few minutes of the instance entering the running state\)\. For more information about EC2 status checks, see [Status Checks For Your Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-system-instance-status-check.html)\.
+## CPU Credit Metrics<a name="cpu-credit-metrics"></a>
+
+The `AWS/EC2` namespace includes the following CPU credit metrics for your [burstable performance instances](burstable-performance-instances.md)\.
 
 
 | Metric | Description | 
 | --- | --- | 
-| `StatusCheckFailed` |  Reports whether the instance has passed both the instance status check and the system status check in the last minute\. This metric can be either 0 \(passed\) or 1 \(failed\)\. By default, this metric is available at a 1\-minute frequency at no charge\. Units: Count  | 
-| `StatusCheckFailed_Instance` |  Reports whether the instance has passed the instance status check in the last minute\. This metric can be either 0 \(passed\) or 1 \(failed\)\. By default, this metric is available at a 1\-minute frequency at no charge\. Units: Count  | 
-| `StatusCheckFailed_System` |  Reports whether the instance has passed the system status check in the last minute\. This metric can be either 0 \(passed\) or 1 \(failed\)\. By default, this metric is available at a 1\-minute frequency at no charge\. Units: Count  | 
+| CPUCreditUsage |  The number of CPU credits spent by the instance for CPU utilization\. One CPU credit equals one vCPU running at 100% utilization for one minute or an equivalent combination of vCPUs, utilization, and time \(for example, one vCPU running at 50% utilization for two minutes or two vCPUs running at 25% utilization for two minutes\)\. CPU credit metrics are available at a five\-minute frequency only\. If you specify a period greater than five minutes, use the `Sum` statistic instead of the `Average` statistic\. Units: Credits \(vCPU\-minutes\)  | 
+| CPUCreditBalance |  The number of earned CPU credits that an instance has accrued since it was launched or started\. For T2 Standard, the `CPUCreditBalance` also includes the number of launch credits that have been accrued\. Credits are accrued in the credit balance after they are earned, and removed from the credit balance when they are spent\. The credit balance has a maximum limit, determined by the instance size\. After the limit is reached, any new credits that are earned are discarded\. For T2 Standard, launch credits do not count towards the limit\. The credits in the `CPUCreditBalance` are available for the instance to spend to burst beyond its baseline CPU utilization\. When an instance is running, credits in the `CPUCreditBalance` do not expire\. When a T3 or T3a instance stops, the `CPUCreditBalance` value persists for seven days\. Thereafter, all accrued credits are lost\. When a T2 instance stops, the `CPUCreditBalance` value does not persist, and all accrued credits are lost\. CPU credit metrics are available at a five\-minute frequency only\. Units: Credits \(vCPU\-minutes\)  | 
+| CPUSurplusCreditBalance  |  The number of surplus credits that have been spent by an `unlimited` instance when its `CPUCreditBalance` value is zero\. The `CPUSurplusCreditBalance` value is paid down by earned CPU credits\. If the number of surplus credits exceeds the maximum number of credits that the instance can earn in a 24\-hour period, the spent surplus credits above the maximum incur an additional charge\. Units: Credits \(vCPU\-minutes\)   | 
+| CPUSurplusCreditsCharged |  The number of spent surplus credits that are not paid down by earned CPU credits, and which thus incur an additional charge\. Spent surplus credits are charged when any of the following occurs:  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/viewing_metrics_with_cloudwatch.html) Units: Credits \(vCPU\-minutes\)  | 
+
+## Amazon EBS Metrics for Nitro\-based Instances<a name="ebs-metrics-nitro"></a>
 
 The `AWS/EC2` namespace includes the following Amazon EBS metrics for the Nitro\-based instances that are not bare metal instances\. For the list of Nitro\-based instance types, see [Nitro\-based Instances](instance-types.md#ec2-nitro-instances)\.
 
-**Note**  
 Metric values for Nitro\-based instances will always be integers \(whole numbers\), whereas values for Xen\-based instances support decimals\. Therefore, low instance CPU utilization on Nitro\-based instances may appear to be rounded down to 0\.
 
 
@@ -57,9 +60,20 @@ Metric values for Nitro\-based instances will always be integers \(whole numbers
 
 For information about the metrics provided for your EBS volumes, see [Amazon EBS Metrics](using_cloudwatch_ebs.md#ebs-metrics)\. For information about the metrics provided for your Spot fleets, see [CloudWatch Metrics for Spot Fleet](spot-fleet-cloudwatch-metrics.md)\.
 
-## Amazon EC2 Dimensions<a name="ec2-cloudwatch-dimensions"></a>
+## Status Check Metrics<a name="status-check-metrics"></a>
 
- You can use the following dimensions to refine the metrics returned for your instances\.
+The `AWS/EC2` namespace includes the following status check metrics\. By default, status check metrics are available at a 1\-minute frequency at no charge\. For a newly\-launched instance, status check metric data is only available after the instance has completed the initialization state \(within a few minutes of the instance entering the running state\)\. For more information about EC2 status checks, see [Status Checks For Your Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-system-instance-status-check.html)\.
+
+
+| Metric | Description | 
+| --- | --- | 
+| `StatusCheckFailed` |  Reports whether the instance has passed both the instance status check and the system status check in the last minute\. This metric can be either 0 \(passed\) or 1 \(failed\)\. By default, this metric is available at a 1\-minute frequency at no charge\. Units: Count  | 
+| `StatusCheckFailed_Instance` |  Reports whether the instance has passed the instance status check in the last minute\. This metric can be either 0 \(passed\) or 1 \(failed\)\. By default, this metric is available at a 1\-minute frequency at no charge\. Units: Count  | 
+| `StatusCheckFailed_System` |  Reports whether the instance has passed the system status check in the last minute\. This metric can be either 0 \(passed\) or 1 \(failed\)\. By default, this metric is available at a 1\-minute frequency at no charge\. Units: Count  | 
+
+## Amazon EC2 Metric Dimensions<a name="ec2-cloudwatch-dimensions"></a>
+
+You can use the following dimensions to refine the metrics returned for your instances\.
 
 
 |  Dimension  |  Description  | 

@@ -74,7 +74,7 @@ Before you use placement groups, be aware of the following rules:
 + An instance can be launched in one placement group at a time; it cannot span multiple placement groups\.
 + [On\-Demand Capacity Reservation](ec2-capacity-reservations.md#capacity-reservations-limits) and [zonal Reserved Instances](reserved-instances-scope.md) provide a capacity reservation for EC2 instances in a specific Availability Zone\. The capacity reservation can be used by instances in a placement group\. However, it is not possible to explicitly reserve capacity for a placement group\.
 + Instances with a tenancy of `host` cannot be launched in placement groups\.
-+ For instances that are enabled for enhanced networking, traffic between instances within the same Region that is addressed using IPv4 or IPv6 addresses can use up to 5 Gbps for single\-flow traffic and up to 25 Gbps for multi\-flow traffic\. A flow represents a single, point\-to\-point network connection\.
++ For instances that are enabled for enhanced networking, traffic between instances within the same Region that is addressed using IPv4 or IPv6 addresses can use up to 5 Gbps for single\-flow traffic and up to 100 Gbps for multi\-flow traffic\. A flow represents a single, point\-to\-point network connection\.
 
 ### Cluster Placement Group Rules and Limitations<a name="placement-groups-limitations-cluster"></a>
 

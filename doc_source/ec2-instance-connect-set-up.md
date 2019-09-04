@@ -168,7 +168,7 @@ The EC2 Instance Connect CLI provides a similar interface to standard SSH calls,
 There is no need to install the EC2 Instance Connect CLI if users only use the console or an SSH client to connect to an instance\.
 
 **To install the EC2 Instance Connect CLI package**
-+ Use `[pip](https://pip.pypa.io/en/stable/reference/pip_install/)` to install the `ec2instanceconnectcli` package\.
++ Use `[pip](https://docs.aws.amazon.com/cli/latest/userguide/install-linux.html#install-linux-pip)` to install the `ec2instanceconnectcli` package\.
 
   ```
   $ pip install ec2instanceconnectcli

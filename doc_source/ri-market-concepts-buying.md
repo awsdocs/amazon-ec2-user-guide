@@ -46,11 +46,11 @@ To purchase a Standard Reserved Instance from the Reserved Instance Marketplace,
 
 1. To see a summary of the Reserved Instances that you selected, choose **View Cart**\.
 
-1. To complete the order, choose **Purchase**\.
+1. To complete the order, choose **Order**\.
 **Note**  
-If, at the time of purchase, there are offerings similar to your choice but with a lower price, AWS sells you the offerings at the lower price\.
+If, at the time of placing the order, there are offerings similar to your choice but with a lower price, AWS sells you the offerings at the lower price\.
 
-1. The status of your purchase is listed in the **State** column\. When your order is complete, the **State** value changes from `payment-pending` to `active`\. When the Reserved Instance is `active`, it is ready to use\.
+1. The status of your order is listed in the **State** column\. When your order is complete, the **State** value changes from `payment-pending` to `active`\. When the Reserved Instance is `active`, it is ready to use\.
 
 **Note**  
 If the status goes to `retired`, AWS may not have received your payment\. 
@@ -177,11 +177,11 @@ You can buy Convertible Reserved Instances in a specific Availability Zone and g
 
 1. To see a summary of your selection, choose **View Cart**\.
 
-1. To complete the order, choose **Purchase**\.
+1. To complete the order, choose **Order**\.
 **Note**  
-If, at the time of purchase, there are offerings similar to your choice but with a lower price, AWS sells you the offerings at the lower price\.
+If, at the time of placing the order, there are offerings similar to your choice but with a lower price, AWS sells you the offerings at the lower price\.
 
-1. The status of your purchase is listed in the **State** column\. When your order is complete, the **State** value changes from `payment-pending` to `active`\. When the Reserved Instance is `active`, it is ready to use\.
+1. The status of your order is listed in the **State** column\. When your order is complete, the **State** value changes from `payment-pending` to `active`\. When the Reserved Instance is `active`, it is ready to use\.
 
 **Note**  
 If the status goes to `retired`, AWS may not have received your payment\. 

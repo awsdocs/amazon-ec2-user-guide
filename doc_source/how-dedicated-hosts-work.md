@@ -411,7 +411,7 @@ You can purchase reservations using the Amazon EC2 console or command line tools
 
 1. Choose the Dedicated Hosts to associate with the reservation, and then choose **Review**\.
 
-1. Review your order and choose **Purchase**\.
+1. Review your order and choose **Order**\.
 
 **To purchase reservations using the command line tools**
 
