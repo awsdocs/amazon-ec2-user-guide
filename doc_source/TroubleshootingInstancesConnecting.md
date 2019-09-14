@@ -127,7 +127,7 @@ To connect to your instance using an IPv6 address, check the following:
 + Verify that your private key \(\.pem\) file has been converted to the format recognized by PuTTY \(\.ppk\)\. For more information about converting your private key, see [Connecting to Your Linux Instance from Windows Using PuTTY](putty.md)\.
 **Note**  
 In PuTTYgen, load your private key file and select **Save Private Key** rather than **Generate**\. 
-+ Verify that you are connecting with the appropriate user name for your AMI\. Enter the user name in the **Host name** box in the **PuTTY Configuration** window\.
++ Verify that you are connecting with the appropriate user name for your AMI\. Enter the user name in the **User name** box in the **PuTTY Configuration** window\.
   + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
   + For a CentOS AMI, the user name is `centos`\.
   + For a Debian AMI, the user name is `admin` or `root`\.
