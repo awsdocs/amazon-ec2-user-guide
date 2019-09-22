@@ -131,7 +131,7 @@ Amazon EC2 cannot launch all the instances you requested in the same Availabilit
 `bad-parameters`  
 One or more parameters for your Spot request are not valid \(for example, the AMI you specified does not exist\)\. The status message indicates which parameter is not valid\.
 
-`cancelled-before-fulfillment`  
+`canceled-before-fulfillment`  
 The user canceled the Spot request before it was fulfilled\.
 
 `capacity-not-available`  

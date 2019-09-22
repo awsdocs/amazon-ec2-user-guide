@@ -13,7 +13,7 @@ A1 instances are ideally suited for scale\-out workloads that are supported by t
 
 For more information, see [Amazon EC2 A1 Instances](https://aws.amazon.com/ec2/instance-types/a1)\.
 
-**M5, M5a, M5ad, and M5d Instances**
+**M5, M5a, M5ad, M5d Instances**
 
 These instances provide an ideal cloud infrastructure, offering a balance of compute, memory, and networking resources for a broad range of applications that are deployed in the cloud\. M5 instances are well\-suited for the following applications:
 + Web and application servers
@@ -144,7 +144,7 @@ The following is a summary of network performance for general purpose instances 
 | t3\.nano \| t3\.micro \| t3\.small \| t3\.medium \| t3\.large \| t3\.xlarge \| t3\.2xlarge \| t3a\.nano \| t3a\.micro \| t3a\.small \| t3a\.medium \| t3a\.large \| t3a\.xlarge \| t3a\.2xlarge | Up to 5 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  `m4.large`  |  Moderate  |  [Intel 82599 VF](sriov-networking.md)  | 
 |  `m4.xlarge` \| `m4.2xlarge` \| `m4.4xlarge`  |  High  |  [Intel 82599 VF](sriov-networking.md)  | 
-|  `a1.medium` \| `a1.large` \| `a1.xlarge` \| `a1.2xlarge` \| `a1.4xlarge` \| `m5.large` \| `m5.xlarge` \| `m5.2xlarge` \| `m5.4xlarge` \| `m5a.large` \| `m5a.xlarge` \| `m5a.2xlarge` \| `m5a.4xlarge` \| `m5a.8xlarge` \| `m5ad.large` \| `m5ad.xlarge` \| `m5ad.2xlarge` \| `m5ad.4xlarge` \| `m5d.large` \| `m5d.xlarge` \| `m5d.2xlarge` \| `m5d.4xlarge`  |  Up to 10 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `a1.medium` \| `a1.large` \| `a1.xlarge` \| `a1.2xlarge` \| `a1.4xlarge` \| `m5.large` \| `m5.xlarge` \| `m5.2xlarge` \| `m5.4xlarge` \| `m5a.large` \| `m5a.xlarge` \| `m5a.2xlarge` \| `m5a.4xlarge` \| `m5a.8xlarge` \| `m5ad.large` \| `m5ad.xlarge` \| `m5ad.2xlarge` \| `m5ad.4xlarge` \| `m5d.large` \| `m5d.xlarge` \| `m5d.2xlarge` \| `m5d.4xlarge`   |  Up to 10 Gbps  | [ENA](enhanced-networking-ena.md) | 
 |  `m4.10xlarge`  |  10 Gbps  |  [Intel 82599 VF](sriov-networking.md)  | 
 |  `m5.8xlarge` \| `m5.12xlarge` \| `m5a.12xlarge` \| `m5ad.12xlarge` \| `m5d.8xlarge` \| `m5d.12xlarge`  |  10 Gbps  | [ENA](enhanced-networking-ena.md) | 
 |  `m5a.16xlarge` \| `m5ad.16xlarge`  |  12 Gbps  | [ENA](enhanced-networking-ena.md) | 

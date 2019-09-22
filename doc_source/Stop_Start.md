@@ -10,6 +10,7 @@ If you decide that you no longer need an instance, you can terminate it\. As soo
 
 **Topics**
 + [Overview](#instance_stop)
++ [What Happens When You Stop an Instance \(API\)](#what-happens-stop)
 + [Stopping and Starting Your Instances](#starting-stopping-instances)
 + [Modifying a Stopped Instance](#Using_ChangingAttributesWhileInstanceStopped)
 + [Troubleshooting](#troubleshoot-instance-stop)
@@ -38,6 +39,14 @@ You can modify the following attributes of an instance only when it is stopped:
 + RAM disk
 
 If you try to modify these attributes while the instance is running, Amazon EC2 returns the `IncorrectInstanceState` error\.
+
+## What Happens When You Stop an Instance \(API\)<a name="what-happens-stop"></a>
+
+When an EC2 instance is stopped using the `stop-instances` command, the following is registered at the OS level:
++ The API request will send a button press event to the guest\.
++ Various system services will be stopped as a result of the button press event\. **systemd** handles a graceful shutdown of the system\. Graceful shutdown is triggered by the ACPI shutdown button press event from the hypervisor\.
++ ACPI shutdown will be initiated\.
++ The instance will shut down when the graceful shutdown process exits\. There is no configurable OS shutdown time\. 
 
 ## Stopping and Starting Your Instances<a name="starting-stopping-instances"></a>
 

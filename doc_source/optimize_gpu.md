@@ -1,6 +1,6 @@
 # Optimizing GPU Settings<a name="optimize_gpu"></a>
 
-There are several GPU setting optimizations that you can perform to achieve the best performance on G3, P2, and P3 instances\. By default, the NVIDIA driver uses an autoboost feature, which varies the GPU clock speeds\. By disabling the autoboost feature and setting the GPU clock speeds to their maximum frequency, you can consistently achieve the maximum performance with your GPU instances\. The following procedure helps you to configure the GPU settings to be persistent, disable the autoboost feature, and set the GPU clock speeds to their maximum frequency\.
+There are several GPU setting optimizations that you can perform to achieve the best performance on G3, G4, P2, and P3 instances\. By default, the NVIDIA driver uses an autoboost feature, which varies the GPU clock speeds\. By disabling the autoboost feature and setting the GPU clock speeds to their maximum frequency, you can consistently achieve the maximum performance with your GPU instances\. The following procedure helps you to configure the GPU settings to be persistent, disable the autoboost feature, and set the GPU clock speeds to their maximum frequency\.
 
 **To optimize GPU settings**
 
@@ -16,7 +16,7 @@ There are several GPU setting optimizations that you can perform to achieve the 
    [ec2-user ~]$ sudo nvidia-smi --auto-boost-default=0
    ```
 **Note**  
-GPUs on P3 instances do not support autoboost\.
+GPUs on P3 and G4 instances do not support autoboost\.
 
 1. Set all GPU clock speeds to their maximum frequency\. Use the memory and graphics clock speeds specified in the following commands\.
 **Note**  
@@ -25,6 +25,11 @@ Some versions of the NVIDIA driver do not allow setting application clock speed 
 
      ```
      [ec2-user ~]$ sudo nvidia-smi -ac 2505,1177
+     ```
+   + G4 instances:
+
+     ```
+     [ec2-user ~]$ sudo nvidia-smi -ac 5001,1590
      ```
    + P2 instances:
 

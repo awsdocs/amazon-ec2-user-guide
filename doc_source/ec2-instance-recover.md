@@ -10,16 +10,14 @@ Examples of problems that cause system status checks to fail include:
 + Software issues on the physical host
 + Hardware issues on the physical host that impact network reachability
 
-The recover action can also be triggered when an instance is scheduled by AWS to stop or retire due to degradation of the underlying hardware\. For more information about scheduled events, see [Scheduled Events for Your Instances](monitoring-instances-status-check_sched.md)\. 
-
 If your instance has a public IPv4 address, it retains the public IPv4 address after recovery\.
 
 ## Requirements<a name="instance-recovery-requirements"></a>
 
 The recover action is supported only on instances with the following characteristics:
-+ Use one of the following instance types: A1, C3, C4, C5, C5n, M3, M4, M5, M5a, P3, R3, R4, R5, R5a, T2, T3, T3a, X1, or X1e
-+ Use `default` or `dedicated` instance tenancy
-+ Use EBS volumes only \(do not configure instance store volumes\)
++ One of the following instance types: A1, C3, C4, C5, C5n, M3, M4, M5, M5a, P3, R3, R4, R5, R5a, T2, T3, T3a, X1, or X1e
++ The `default` or `dedicated` instance tenancy
++ EBS volumes only \(do not configure instance store volumes\)
 
 ## Troubleshooting Instance Recovery Failures<a name="TroubleshootingInstanceRecovery"></a>
 
@@ -29,6 +27,6 @@ The following issues can cause automatic recovery of your instance to fail:
 + There is an ongoing Service Health Dashboard event that prevented the recovery process from successfully executing\. Refer to [http://status\.aws\.amazon\.com/](http://status.aws.amazon.com/) for the latest service availability information\.
 + The instance has reached the maximum daily allowance of three recovery attempts\.
 
-The automatic recovery process attempts to recover your instance for up to three separate failures per day\. If the instance system status check failure persists, we recommend that you manually start and stop the instance\. For more information, see [Stop and Start Your Instance](Stop_Start.md)\.
+The automatic recovery process attempts to recover your instance for up to three separate failures per day\. If the instance system status check failure persists, we recommend that you manually stop and start the instance\. For more information, see [Stop and Start Your Instance](Stop_Start.md)\.
 
 Your instance may subsequently be retired if automatic recovery fails and a hardware degradation is determined to be the root cause for the original system status check failure\.

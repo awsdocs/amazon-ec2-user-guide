@@ -2,7 +2,7 @@
 
 The following documentation can help you troubleshoot problems that you might have with your instance\.
 
-**Contents**
+**Topics**
 + [Troubleshooting Instance Launch Issues](troubleshooting-launch.md)
 + [Troubleshooting Connecting to Your Instance](TroubleshootingInstancesConnecting.md)
 + [Troubleshooting Stopping Your Instance](TroubleshootingInstancesStopping.md)

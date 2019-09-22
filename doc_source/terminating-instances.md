@@ -6,6 +6,7 @@ You can't connect to or restart an instance after you've terminated it\. However
 
 **Topics**
 + [Instance Termination](#termination-overview)
++ [What Happens When You Terminate an Instance \(API\)](#what-happens-terminate)
 + [Terminating an Instance](#terminating-instances-console)
 + [Enabling Termination Protection for an Instance](#Using_ChangingDisableAPITermination)
 + [Changing the Instance Initiated Shutdown Behavior](#Using_ChangingInstanceInitiatedShutdownBehavior)
@@ -26,11 +27,11 @@ You can control whether an instance should stop or terminate when shutdown is in
 
 If you run a script on instance termination, your instance might have an abnormal termination, because we have no way to ensure that shutdown scripts run\. Amazon EC2 attempts to shut an instance down cleanly and run any system shutdown scripts; however, certain events \(such as hardware failure\) may prevent these system shutdown scripts from running\.
 
-### What Happens When You Terminate an Instance \(API\)<a name="what-happens-terminate"></a>
+## What Happens When You Terminate an Instance \(API\)<a name="what-happens-terminate"></a>
 
-When an EC2 instance is terminated using the terminate\-instances command, the following is registered at the OS level:
+When an EC2 instance is terminated using the `terminate-instances` command, the following is registered at the OS level:
 + The API request will send a button press event to the guest\.
-+ Various system services will be stopped as a result of the button press event\. systemd handles a graceful shutdown of the system\. This is true for both stop and termination\. Graceful shutdown is triggered by the ACPI shutdown button press event from the hypervisor\.
++ Various system services will be stopped as a result of the button press event\. **systemd** handles a graceful shutdown of the system\. Graceful shutdown is triggered by the ACPI shutdown button press event from the hypervisor\.
 + ACPI shutdown will be initiated\.
 + The instance will shut down when the graceful shutdown process exits\. There is no configurable OS shutdown time\. 
 

@@ -7,6 +7,7 @@ The following table describes important additions to the Amazon EC2 documentatio
 
 | Feature | API Version | Description | Release Date | 
 | --- | --- | --- | --- | 
+| G4 instances | 2016\-11\-15 | G4 instances use NVIDIA Tesla GPUs and provide a cost\-effective, high\-performance platform for general purpose GPU computing using the CUDA or machine learning frameworks along with graphics applications using DirectX or OpenGL\. | 19 September 2019 | 
 | Diagnostic interrupt | 2016\-11\-15 |  You can send a diagnostic interrupt to an unreachable or unresponsive instance to trigger a kernel panic \(on Linux instances\), or a blue screen/stop error \(on Windows instances\)\. For more information, see [Sending a Diagnostic Interrupt \(Advanced Users Only\)](diagnostic-interrupt.md)\.  | 14 August 2019 | 
 | Capacity optimized allocation strategy | 2016\-11\-15 |  Using EC2 Fleet or Spot Fleet, you can now launch Spot Instances from Spot pools with optimal capacity for the number of instances that are launching\. For more information, see [Configuring EC2 Fleet for Capacity Optimization](ec2-fleet-configuration-strategies.md#ec2-fleet-strategy-capacity-optimized)\.  | 12 August 2019 | 
 | On\-Demand Capacity Reservation | 2016\-11\-15 | You can now share your Capacity Reservations across AWS accounts\. For more information, see [Working with Shared Capacity Reservations](capacity-reservation-sharing.md)\. | 29 July 2019 | 

@@ -9,6 +9,3 @@ With file storage on Amazon FSx, the code, applications, and tools that Windows 
 As a fully managed service, Amazon FSx for Windows File Server eliminates the administrative overhead of setting up and provisioning file servers and storage volumes\. Additionally, it keeps Windows software up to date, detects and addresses hardware failures, and performs backups\. It also provides rich integration with other AWS services, including AWS Directory Service for Microsoft Active Directory, Amazon WorkSpaces, AWS Key Management Service, and AWS CloudTrail\.
 
 For more information, see the [Amazon FSx for Windows File Server User Guide](https://docs.aws.amazon.com/fsx/latest/WindowsGuide/)\.
-
-**Important**  
-Amazon FSx for Windows File Server is not supported on Linux instances\.

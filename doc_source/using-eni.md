@@ -114,6 +114,12 @@ The following table lists the maximum number of network interfaces per instance 
 | g3\.4xlarge | 8 | 30 | 30 | 
 | g3\.8xlarge | 8 | 30 | 30 | 
 | g3\.16xlarge | 15 | 50 | 50 | 
+| `g4dn.xlarge` | 3 | 10 | 10 | 
+| `g4dn.2xlarge` | 3 | 10 | 10 | 
+| `g4dn.4xlarge` | 3 | 10 | 10 | 
+| `g4dn.8xlarge` | 4 | 15 | 15 | 
+| `g4dn.12xlarge` | 8 | 30 | 30 | 
+| `g4dn.16xlarge` | 15 | 50 | 50 | 
 | h1\.2xlarge | 4 | 15 | 15 | 
 | h1\.4xlarge | 8 | 30 | 30 | 
 | h1\.8xlarge | 8 | 30 | 30 | 
@@ -209,7 +215,7 @@ The following table lists the maximum number of network interfaces per instance 
 | r5\.xlarge | 4 | 15 | 15 | 
 | r5\.2xlarge | 4 | 15 | 15 | 
 | r5\.4xlarge | 8 | 30 | 30 | 
-| `r5.8xlarge` | 8 | 30 | 30 | 
+| r5\.8xlarge | 8 | 30 | 30 | 
 | r5\.12xlarge | 8 | 30 | 30 | 
 | r5\.16xlarge | 15 | 50 | 50 | 
 | r5\.24xlarge | 15 | 50 | 50 | 
@@ -218,7 +224,7 @@ The following table lists the maximum number of network interfaces per instance 
 | r5a\.xlarge | 4 | 15 | 15 | 
 | r5a\.2xlarge | 4 | 15 | 15 | 
 | r5a\.4xlarge | 8 | 30 | 30 | 
-| `r5a.8xlarge` | 8 | 30 | 30 | 
+| r5a\.8xlarge | 8 | 30 | 30 | 
 | r5a\.12xlarge | 8 | 30 | 30 | 
 | r5a\.16xlarge | 15 | 50 | 50 | 
 | r5a\.24xlarge | 15 | 50 | 50 | 
@@ -232,7 +238,7 @@ The following table lists the maximum number of network interfaces per instance 
 | r5d\.xlarge | 4 | 15 | 15 | 
 | r5d\.2xlarge | 4 | 15 | 15 | 
 | r5d\.4xlarge | 8 | 30 | 30 | 
-| `r5d.8xlarge` | 8 | 30 | 30 | 
+| r5d\.8xlarge | 8 | 30 | 30 | 
 | r5d\.12xlarge | 8 | 30 | 30 | 
 | r5d\.16xlarge | 15 | 50 | 50 | 
 | r5d\.24xlarge | 15 | 50 | 50 | 

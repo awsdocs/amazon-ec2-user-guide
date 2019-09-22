@@ -1,14 +1,21 @@
 # Connect Using EC2 Instance Connect<a name="ec2-instance-connect-methods"></a>
 
-The following instructions explain how to connect to your EC2 Linux instance using EC2 Instance Connect\.
+The following instructions explain how to connect to your Linux instance using EC2 Instance Connect\.
 
 **Topics**
-+ [Connect Using EC2 Instance Connect from the Amazon EC2 Console](#ec2-instance-connect-connecting-console)
++ [Connect Using the Browser\-based Client](#ec2-instance-connect-connecting-console)
 + [Connect Using the EC2 Instance Connect CLI](#ec2-instance-connect-connecting-ec2-cli)
-+ [Connect Using Your Own Key and Any SSH Client](#ec2-instance-connect-connecting-aws-cli)
++ [Connect Using Your Own Key and SSH Client](#ec2-instance-connect-connecting-aws-cli)
+
+**Limitations**
++ The following Linux distributions are supported:
+  + Amazon Linux 2 \(any version\)
+  + Ubuntu 16\.04 or later
++ To connect using the Amazon EC2 console, the instance must have a public IP address \(IPv4 or IPv6\)\. You can connect using the EC2 Instance Connect CLI using the private IP address of the instance\.
++ The Safari browser is currently not supported\.
 
 **Prerequisites**
-+ **Install EC2 Instance Connect on your instance\.**
++ **Install Instance Connect on your instance\.**
 
   For more information, see [Set Up EC2 Instance Connect](ec2-instance-connect-set-up.md)\.
 + **\(Optional\) Install an SSH client on your local computer\.**
@@ -18,16 +25,11 @@ The following instructions explain how to connect to your EC2 Linux instance usi
 
   There is no need to install the EC2 Instance Connect CLI if users only use the console or an SSH client to connect to an instance\. For more information, see [Step 3: \(Optional\) Install the EC2 Instance Connect CLI](ec2-instance-connect-set-up.md#ec2-instance-connect-install-eic-CLI)\.
 
-## Connect Using EC2 Instance Connect from the Amazon EC2 Console<a name="ec2-instance-connect-connecting-console"></a>
+## Connect Using the Browser\-based Client<a name="ec2-instance-connect-connecting-console"></a>
 
-You can connect to an instance from the Amazon EC2 console by selecting the instance and choosing to connect using EC2 Instance Connect\. Instance Connect handles the permissions and provides a successful connection\.
+You can connect to an instance using the browser\-based client by selecting the instance from the Amazon EC2 console and choosing to connect using EC2 Instance Connect\. Instance Connect handles the permissions and provides a successful connection\.
 
-**Note**  
-To connect using the console, the instance must have a public IP address \(IPv4 or IPv6\)\.  
-**Limitation**  
-The Safari browser is currently not supported for EC2 Instance Connect\.
-
-**To connect to your instance using EC2 Instance Connect from the Amazon EC2 console**
+**To connect to your instance using the browser\-based client from the Amazon EC2 console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -46,32 +48,31 @@ You can connect to an instance using the EC2 Instance Connect CLI by providing o
 ------
 #### [ Amazon Linux 2 ]
 
-**To connect to an instance using the EC2 Instance Connect CLI**
-+ Use the mssh command and the instance ID to connect to the instance\.
+**To connect to an instance using the EC2 Instance Connect CLI**  
+Use the mssh command with the instance ID as follows\. You do not need to specify the user name for the AMI\.
 
-  For an instance launched using Amazon Linux 2, the default user name is `ec2-user`; you do not need to specify it\.
-
-  ```
-  $ mssh i-001234a4bf70dec41EXAMPLE
-  ```
+```
+$ mssh i-001234a4bf70dec41EXAMPLE
+```
 
 ------
 #### [ Ubuntu ]
 
-**To connect to an instance using the EC2 Instance Connect CLI**
-+ Use the mssh command and the instance ID to connect to the instance\.
+**To connect to an instance using the EC2 Instance Connect CLI**  
+Use the mssh command with the instance ID and the default user name for the Ubuntu AMI as follows\. You must specify the user name for the AMI or you get the following error: Authentication failed\.
 
-  For an instance launched using an Ubuntu AMI, specify the `ubuntu` user name; otherwise, you get an `Authentication failed` error\.
-
-  ```
-  $ mssh ubuntu@i-001234a4bf70dec41EXAMPLE
-  ```
+```
+$ mssh ubuntu@i-001234a4bf70dec41EXAMPLE
+```
 
 ------
 
-## Connect Using Your Own Key and Any SSH Client<a name="ec2-instance-connect-connecting-aws-cli"></a>
+## Connect Using Your Own Key and SSH Client<a name="ec2-instance-connect-connecting-aws-cli"></a>
 
-You can use your own SSH key and connect to your instance from any SSH client of your choice while using the EC2 Instance Connect API so that you can benefit from the Instance Connect capability to push a public key to the instance\.
+You can use your own SSH key and connect to your instance from the SSH client of your choice while using the EC2 Instance Connect API\. This enables you to benefit from the Instance Connect capability to push a public key to the instance\.
+
+**Requirement**  
+The supported RSA key types are OpenSSH and SSH2\. The supported lengths are 2048 and 4096\. For more information, see [Importing Your Own Public Key to Amazon EC2](ec2-key-pairs.md#how-to-generate-your-own-key-and-import-it-to-aws)\.
 
 **To connect to your instance using your own key and any SSH client**
 
@@ -82,12 +83,6 @@ You can use your own SSH key and connect to your instance from any SSH client of
    ```
    $ ssh-keygen -t rsa -f my_rsa_key
    ```
-
-**Limitations for EC2 Instance Connect**
-   + Only RSA key types in the OpenSSH or SSH2 format are currently supported\.
-   + The supported lengths are 2048 and 4096\.
-
-   For more information about SSH key requirements, see [Importing Your Own Public Key to Amazon EC2](ec2-key-pairs.md#how-to-generate-your-own-key-and-import-it-to-aws)\.
 
 1. Push your SSH public key to the instance\.
 

@@ -20,7 +20,7 @@ There is no charge for creating a placement group\.
 
 ## Cluster Placement Groups<a name="placement-groups-cluster"></a>
 
-A cluster placement group is a logical grouping of instances within a single Availability Zone\. A placement group can span peered VPCs in the same Region\. The chief benefit of a cluster placement group, in addition to a 10 Gbps flow limit, is the non\-blocking, non\-oversubscribed, fully bi\-sectional nature of the connectivity\. In other words, all nodes within the placement group can talk to all other nodes within the placement group at the full line rate of 10 Gbps flows and 25 aggregate without any slowing due to over\-subscription\.
+A cluster placement group is a logical grouping of instances within a single Availability Zone\. A placement group can span peered VPCs in the same Region\. The chief benefit of a cluster placement group, in addition to a 10 Gbps flow limit, is the non\-blocking, non\-oversubscribed, fully bi\-sectional nature of the connectivity\. In other words, all nodes within the placement group can talk to all other nodes within the placement group at the full line rate of 10 Gbps flows and 100 Gbps aggregate without any slowing due to over\-subscription\.
 
 The following image shows instances that are placed into a cluster placement group\.
 
@@ -74,13 +74,12 @@ Before you use placement groups, be aware of the following rules:
 + An instance can be launched in one placement group at a time; it cannot span multiple placement groups\.
 + [On\-Demand Capacity Reservation](ec2-capacity-reservations.md#capacity-reservations-limits) and [zonal Reserved Instances](reserved-instances-scope.md) provide a capacity reservation for EC2 instances in a specific Availability Zone\. The capacity reservation can be used by instances in a placement group\. However, it is not possible to explicitly reserve capacity for a placement group\.
 + Instances with a tenancy of `host` cannot be launched in placement groups\.
-+ For instances that are enabled for enhanced networking, traffic between instances within the same Region that is addressed using IPv4 or IPv6 addresses can use up to 5 Gbps for single\-flow traffic and up to 100 Gbps for multi\-flow traffic\. A flow represents a single, point\-to\-point network connection\.
 
 ### Cluster Placement Group Rules and Limitations<a name="placement-groups-limitations-cluster"></a>
 
 The following rules apply to cluster placement groups:
 + The following are the only instance types that you can use when you launch an instance into a cluster placement group:
-  + General purpose: A1, M4, M5, M5a, M5ad, and M5d
+  + General purpose: A1, M4, M5, M5a, M5ad, M5d
   + Compute optimized: C3, C4, C5, C5d, C5n, and `cc2.8xlarge`
   + Memory optimized: `cr1.8xlarge`, R3, R4, R5, R5a, R5ad, R5d, X1, X1e, and z1d
   + Storage optimized: D2, H1, `hs1.8xlarge`, I2, I3, and I3en
@@ -88,7 +87,7 @@ The following rules apply to cluster placement groups:
 + A cluster placement group can't span multiple Availability Zones\.
 + The maximum network throughput speed of traffic between two instances in a cluster placement group is limited by the slower of the two instances\. For applications with high\-throughput requirements, choose an instance type with network connectivity that meets your requirements\.
 + For instances that are enabled for enhanced networking, the following rules apply:
-  + Instances within a cluster placement group can use up to 10 Gbps for single\-flow traffic\.
+  + Instances within a cluster placement group can use up to 10 Gbps for single\-flow traffic\. Instances that are not within a cluster placement group can use up to 5Gbps for single\-flow traffic\.
   + Traffic to and from Amazon S3 buckets within the same Region over the public IP address space or through a VPC endpoint can use all available instance aggregate bandwidth\.
 + You can launch multiple instance types into a cluster placement group\. However, this reduces the likelihood that the required capacity will be available for your launch to succeed\. We recommend using the same instance type for all instances in a cluster placement group\.
 + Network traffic to the internet and over an AWS Direct Connect connection to on\-premises resources is limited to 5 Gbps\.

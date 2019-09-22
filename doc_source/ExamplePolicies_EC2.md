@@ -132,8 +132,8 @@ The third statement allows users to terminate all instances in the US East \(N\.
         "ec2:StartInstances"
       ],
       "Resource": [
-      "arn:aws:ec2:us-east-1:123456789012:instance/i-1234567890abcdef0",
-      "arn:aws:ec2:us-east-1:123456789012:instance/i-0598c7d356eba48d7"
+        "arn:aws:ec2:us-east-1:123456789012:instance/i-1234567890abcdef0",
+        "arn:aws:ec2:us-east-1:123456789012:instance/i-0598c7d356eba48d7"
       ]
     },
     {

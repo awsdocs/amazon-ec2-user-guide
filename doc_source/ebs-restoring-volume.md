@@ -16,17 +16,7 @@ For most applications, amortizing the initialization cost over the lifetime of t
 
 New EBS volumes that are restored from encrypted snapshots are automatically encrypted\. You can also encrypt a volume on\-the\-fly while restoring it from an unencrypted snapshot\. Encrypted volumes can only be attached to instance types that support EBS encryption\. For more information, see [Supported Instance Types](EBSEncryption.md#EBSEncryption_supported_instances)\.
 
-Because of security constraints, you cannot directly restore an EBS volume from a shared encrypted snapshot that you do not own\. You must first create a copy of the snapshot, which you will own\. You can then restore a volume from that copy\. For more information, see [Amazon EBS Encryption](EBSEncryption.md)\.
-
-The following table describes the encryption outcome for each possible combination of settings\.
-
-
-**Encryption Outcomes**  
-[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-restoring-volume.html)
-
-\* This is the default CMK used for EBS encryption for the AWS account and Region\. By default this is a unique AWS managed CMK for EBS, or you can specify a customer managed CMK\. For more information, see [Encryption Key Management](EBSEncryption.md#EBSEncryption_key_mgmt)\.
-
-\*\* This is a customer managed CMK specified for the volume at launch time\. This CMK is used instead of the default CMK for the AWS account and Region\.
+Because of security constraints, you cannot directly restore an EBS volume from a shared encrypted snapshot that you do not own\. You must first create a copy of the snapshot, which you will own\. You can then restore a volume from that copy\. For more information, see [Encryption and Snapshot Copying](ebs-copy-snapshot.md#creating-encrypted-snapshots)\.
 
 ## Creating a Volume from a Snapshot<a name="ebs-create-volume-from-snapshot"></a>
 
@@ -52,7 +42,7 @@ Use the following procedure to create a volume from a snapshot\.
 
 1. For **Size \(GiB\)**, type the size of the volume, or verify that the default size of the snapshot is adequate\.
 
-   If you specify both a volume size and a snapshot, the size must be equal to or greater than the snapshot size\. When you select a volume type and a snapshot, the minimum and maximum sizes for the volume are shown next to **Size**\. Any AWS Marketplace product codes from the snapshot are propagated to the volume\.
+   If you specify both a volume size and a snapshot, the size must be equal to or greater than the snapshot size\. When you select a volume type and a snapshot, the minimum and maximum sizes for the volume are shown next to **Size**\. For more information, see [Constraints on the Size and Configuration of an EBS Volume](volume_constraints.md)\.
 
 1. With a Provisioned IOPS SSD volume, for **IOPS**, type the maximum number of input/output operations per second \(IOPS\) that the volume should support\.
 

@@ -22,8 +22,9 @@ A Capacity Reservation owner can share a Capacity Reservation with:
 + [Instance Limits](#shared-cr-limits)
 
 ## Prerequisites for Sharing Capacity Reservations<a name="sharing-cr-prereq"></a>
-+ Capacity Reservation sharing is not available to new AWS accounts or AWS accounts that have a limited billing history\. New accounts that are linked to a qualified master \(payer\) account or are linked through an AWS organization are exempt from this restriction\.
 + To share a Capacity Reservation, you must own it in your AWS account\. You cannot share a Capacity Reservation that has been shared with you\.
++ You can only share Capacity Reservations for shared tenancy instances\. You cannot share Capacity Reservations for dedicated tenancy instances\.
++ Capacity Reservation sharing is not available to new AWS accounts or AWS accounts that have a limited billing history\. New accounts that are linked to a qualified master \(payer\) account or are linked through an AWS organization are exempt from this restriction\.
 + To share a Capacity Reservation with your AWS organization or an organizational unit in your AWS organization, you must enable sharing with AWS Organizations\. For more information, see [Enable Sharing with AWS Organizations](https://docs.aws.amazon.com/ram/latest/userguide/getting-started-sharing.html) in the *AWS RAM User Guide*\.
 
 ## Related Services<a name="cr-sharing-related"></a>

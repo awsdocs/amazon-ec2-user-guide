@@ -97,13 +97,13 @@ When you sign up for AWS, you can get started with Amazon EC2 for free using the
 
 Amazon EC2 provides the following purchasing options for instances:
 
-On\-Demand Instances  
+**On\-Demand Instances**  
 Pay for the instances that you use by the second, with no long\-term commitments or upfront payments\.
 
-Reserved Instances  
+**Reserved Instances**  
 Make a low, one\-time, up\-front payment for an instance, reserve it for a one\- or three\-year term, and pay a significantly lower hourly rate for these instances\.
 
-Spot Instances  
+**Spot Instances**  
 Request unused EC2 instances, which can lower your costs significantly\.
 
 For a complete list of charges and specific prices for Amazon EC2, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing)\.

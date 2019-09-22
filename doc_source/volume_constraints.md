@@ -2,10 +2,20 @@
 
 The size of an Amazon EBS volume is constrained by the physics and arithmetic of block data storage, as well as by the implementation decisions of operating system \(OS\) and file system designers\. AWS imposes additional limits on volume size to safeguard the reliability of its services\.
 
-The following table summarizes the theoretical and implemented storage capacities for the most commonly used file systems on Amazon EBS, assuming a 4,096 byte block size\. 
+The following sections describe the most important factors that limit the usable size of an EBS volume and offer recommendations for configuring your EBS volumes\.
+
+**Topics**
++ [Storage Capacity](#ebs-storage-capacity)
++ [Service Limitations](#aws_limits)
++ [Partitioning Schemes](#partitioning)
++ [Data Block Sizes](#block_size)
+
+## Storage Capacity<a name="ebs-storage-capacity"></a>
+
+The following table summarizes the theoretical and implemented storage capacities for the most commonly used file systems on Amazon EBS, assuming a 4,096 byte block size\.
 
 
-| Partitioning Scheme | Max\. addressable blocks  | Theoretical max\. size \(blocks × block size\) | Ext4 implemented max\. size\* | XFS implemented max\. size\*\* | NTFS implemented max\. size | Max\. supported by EBS | 
+| Partitioning Scheme | Max addressable blocks  | Theoretical max size \(blocks × block size\) | Ext4 implemented max size\* | XFS implemented max size\*\* | NTFS implemented max size | Max supported by EBS | 
 | --- | --- | --- | --- | --- | --- | --- | 
 | MBR | 232 | 2 TiB | 2 TiB | 2 TiB | 2 TiB | 2 TiB | 
 | GPT | 264 | 8 ZiB = 8 ×10243 TiB | 1 EiB =10242 TiB \(50 TiB certified on RHEL7\) |  500 TiB \(certified on RHEL7\)  | 256 TiB | 16 TiB | 
@@ -14,21 +24,13 @@ The following table summarizes the theoretical and implemented storage capacitie
 
 \*\* [https://access.redhat.com/solutions/1532](https://access.redhat.com/solutions/1532)
 
-The following sections describe the most important factors that limit the usable size of an EBS volume and offer recommendations for configuring your EBS volumes\.
-
-**Topics**
-+ [Service Limitations](#aws_limits)
-+ [Partitioning Schemes](#partitioning)
-+ [Data Block Sizes](#block_size)
-
 ## Service Limitations<a name="aws_limits"></a>
 
 Amazon EBS abstracts the massively distributed storage of a data center into virtual hard disk drives\. To an operating system installed on an EC2 instance, an attached EBS volume appears to be a physical hard disk drive containing 512\-byte disk sectors\. The OS manages the allocation of data blocks \(or clusters\) onto those virtual sectors through its storage management utilities\. The allocation is in conformity with a volume partitioning scheme, such as master boot record \(MBR\) or GUID partition table \(GPT\), and within the capabilities of the installed file system \(ext4, NTFS, and so on\)\. 
 
 EBS is not aware of the data contained in its virtual disk sectors; it only ensures the integrity of the sectors\. This means that AWS actions and OS actions are independent of each other\. When you are selecting a volume size, be aware of the capabilities and limits of both, as in the following cases: 
 + EBS currently supports a maximum volume size of 16 TiB\. This means that you can create an EBS volume as large as 16 TiB, but whether the OS recognizes all of that capacity depends on its own design characteristics and on how the volume is partitioned\.
-+ Amazon EC2 requires Windows boot volumes to use MBR partitioning\. As discussed in [Partitioning Schemes](#partitioning), this means that boot volumes cannot be bigger than 2 TiB\. Windows data volumes are not subject to this limitation and may be GPT\-partitioned\. 
-+ Linux boot volumes may be either MBR or GPT, and Linux GPT boot volumes are not subject to the 2\-TiB limit\.
++ Linux boot volumes may use either the MBR or GPT partitioning scheme\. MBR supports boot volumes up to 2047 GiB\. GPT with GRUB 2 supports boot volumes 2 TiB or larger\. If your Linux AMI uses MBR, your boot volume is limited to 2047 GiB, but your non\-boot volumes do not have this limit\. For more information, see [Making an Amazon EBS Volume Available for Use on Linux](ebs-using-volumes.md)\.
 
 ## Partitioning Schemes<a name="partitioning"></a>
 
@@ -73,7 +75,7 @@ Data storage on a modern hard drive is managed through *logical block addressing
 The industry default size for logical data blocks is currently 4,096 bytes \(4 KiB\)\. Because certain workloads benefit from a smaller or larger block size, file systems support non\-default block sizes that can be specified during formatting\. Scenarios in which non\-default block sizes should be used are outside the scope of this topic, but the choice of block size has consequences for the storage capacity of the volume\. The following table shows storage capacity as a function of block size:
 
 
-| Block size | Max\. volume size | 
+| Block size | Max volume size | 
 | --- | --- | 
 | 4 KiB \(default\) | 16 TiB | 
 | 8 KiB | 32 TiB | 

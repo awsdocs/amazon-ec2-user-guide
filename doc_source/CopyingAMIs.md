@@ -8,6 +8,8 @@ There are no charges for copying an AMI\. However, standard storage and data tra
 
 AWS does not copy launch permissions, user\-defined tags, or Amazon S3 bucket permissions from the source AMI to the new AMI\. After the copy operation is complete, you can apply launch permissions, user\-defined tags, and Amazon S3 bucket permissions to the new AMI\.
 
+You can't copy an AMI that was obtained from the AWS Marketplace, regardless of whether you obtained it directly or it was shared with you\. Instead, launch an EC2 instance using the AWS Marketplace AMI and then create an AMI from the instance\. For more information, see [Creating an Amazon EBS\-Backed Linux AMI](creating-an-ami-ebs.md)\.
+
 ## Permissions for Copying an Instance Store\-Backed AMI<a name="copy-ami-permissions"></a>
 
 If you use an IAM user to copy an instance store\-backed AMI, the user must have the following Amazon S3 permissions: `s3:CreateBucket`, `s3:GetBucketAcl`, `s3:ListAllMyBuckets`, `s3:GetObject`, `s3:PutObject`, and `s3:PutObjectAcl`\.
@@ -79,9 +81,6 @@ If you copy an AMI that has been shared with your account, you are the owner of 
 
 **Resource Permissions**  
 To copy an AMI that was shared with you from another account, the owner of the source AMI must grant you read permissions for the storage that backs the AMI, either the associated EBS snapshot \(for an Amazon EBS\-backed AMI\) or an associated S3 bucket \(for an instance store\-backed AMI\)\. If the shared AMI has encrypted snapshots, the owner must share the key or keys with you as well\.
-
-**Note**  
-You can't copy an AMI with an associated `billingProduct` code that was shared with you from another account\. This includes Windows AMIs and AMIs from the AWS Marketplace\. To copy a shared AMI with a `billingProduct` code, launch an EC2 instance in your account using the shared AMI and then create an AMI from the instance\. For more information, see [Creating an Amazon EBS\-Backed Linux AMI](creating-an-ami-ebs.md)\.
 
 ## Encryption and Copying<a name="ami-copy-encryption"></a>
 

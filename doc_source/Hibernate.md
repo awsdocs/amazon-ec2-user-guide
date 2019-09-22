@@ -45,20 +45,24 @@ For information about how hibernation differs from reboot, stop, and terminate, 
 ## Hibernation Prerequisites<a name="hibernating-prerequisites"></a>
 
 To hibernate an instance, the following prerequisites must be in place:
-+ **Instance families** \- The following instance families are supported: C3, C4, C5, M3, M4, M5, R3, R4, and R5, with less than 150 GB of RAM\. Hibernation is not supported for \*\.metal instances\.
-+ **Instance RAM size** \- The instance RAM size must be less than 150 GB\.
-+ **Amazon Machine Image \(AMI\)** \- The AMI must be an HVM AMI that supports hibernation\. The following AMIs support hibernation\. To configure your own AMI to support hibernation, see [Configuring an Existing AMI to Support Hibernation](#hibernation-enabled-AMI)\.
++ **Supported instance families** \- C3, C4, C5, C5n M3, M4, M5, R3, R4, R5
++ **Instance RAM size** \- must be less than 150 GB
++ **Instance size** \- not supported for bare metal instances
++ **Supported AMIs** \(must be an HVM AMI that supports hibernation\):
+  + Amazon Linux 2 AMI released 2019\.08\.29 or later
   + Amazon Linux AMI 2018\.03 released 2018\.11\.16 or later
-  + Ubuntu 18\.04 LTS \- Bionic\* AMI released with serial 20190722\.1 or later
+  + Ubuntu 18\.04 LTS \- Bionic AMI released with serial number 20190722\.1 or later \- We recommend disabling KASLR on instances with Ubuntu 18\.04 LTS \- Bionic\. For more information, see [Disabling KASLR on an Instance \(Ubuntu only\)](#hibernation-disable-kaslr)\.
 
-    **\* Disabling KASLR:** To run hibernation on a newly launched instance with Ubuntu 18\.04 LTS \- Bionic, we recommend disabling KASLR \(Kernel Address Space Layout Randomization\)\. On Ubuntu 18\.04 LTS, KASLR is enabled by default\. For more information, see [Disabling KASLR on an Instance \(Ubuntu only\)](#hibernation-disable-kaslr)\.
-+ **Root volume type** \- The instance root volume must be an Amazon EBS volume, not an instance store volume\.
-+ **Amazon EBS root volume size** \- The root volume must be large enough to store the RAM contents and accommodate your expected usage, for example, OS or applications\. If you enable hibernation, space is allocated on the root volume at launch to store the RAM\.
+  To configure your own AMI to support hibernation, see [Configuring an Existing AMI to Support Hibernation](#hibernation-enabled-AMI)\.
+
+  Support for Windows and other versions of Ubuntu is coming soon\.
++ **Root volume type** \- must be an Amazon EBS volume, not an instance store volume
++ **Amazon EBS root volume size** \- must be large enough to store the RAM contents and accommodate your expected usage, for example, OS or applications\. If you enable hibernation, space is allocated on the root volume at launch to store the RAM\.
 + **Amazon EBS root volume encryption** \- To use hibernation, the root volume must be encrypted to ensure the protection of sensitive content that is in memory at the time of hibernation\. When RAM data is moved to the Amazon EBS root volume, it is always encrypted\. Encryption of the root volume is enforced at instance launch\. Use one of the following three options to ensure that the root volume is an encrypted Amazon EBS volume:
   + EBS “single\-step” encryption: In a single run\-instances API call, you can launch encrypted EBS\-backed EC2 instances from an unencrypted AMI and also enable hibernation at the same time\. For more information, see [Using Encryption with EBS\-Backed AMIs](AMIEncryption.md)\.
   + EBS encryption by default: You can enable EBS encryption by default to ensure all new EBS volumes created in your AWS account are encrypted\. This way, you can enable hibernation for your instances without specifying encryption intent at instance launch\. For more information, see [Encryption by Default](EBSEncryption.md#encryption-by-default)\.
   + Encrypted AMI: You can enable EBS encryption by using an encrypted AMI to launch your instance\. If your AMI does not have an encrypted root snapshot, you can copy it to a new AMI and request encryption\. For more information, see [Encrypt an Unencrypted Image during Copy](AMIEncryption.md#copy-unencrypted-to-encrypted) and [Copying an AMI](CopyingAMIs.md#ami-copy-steps)\.
-+ **Enable hibernation at launch** \- At launch, enable hibernation using the Amazon EC2 console or the AWS CLI\. You cannot enable hibernation on an existing instance \(running or stopped\)\. For more information, see [Enabling Hibernation for an Instance](#enabling-hibernation)\.
++ **Enable hibernation at launch** \- You cannot enable hibernation on an existing instance \(running or stopped\)\. For more information, see [Enabling Hibernation for an Instance](#enabling-hibernation)\.
 + **Purchasing options** \- This feature is available for On\-Demand Instances and Reserved Instances\. It is not available for Spot Instances\. For more information, see [Hibernating Interrupted Spot Instances](spot-interruptions.md#hibernate-spot-instances)\.
 
 ## Limitations<a name="hibernating-not-supported"></a>
@@ -87,25 +91,60 @@ To hibernate an instance that was launched using your own AMI, you must first co
 If you use one of the [supported AMIs](#hibernating-prerequisites), or you create an AMI based on one of the supported AMIs, you do not need to configure it to support hibernation\. These AMIs are preconfigured to support hibernation\.
 
 ------
-#### [ Amazon Linux ]
+#### [ Amazon Linux 2 ]
 
-**To configure an Amazon Linux AMI to support hibernation**
+**To configure an Amazon Linux 2 AMI to support hibernation**
 
-1. Update to the latest kernel to 4\.14\.77\-70\.59 or later using the following command:
+1. Update to the latest kernel to 4\.14\.138\-114\.102 or later using the following command\.
 
    ```
    [ec2-user ~]$ sudo yum update kernel
    ```
 
-1. Install the `ec2-hibinit-agent` package from the repositories using the following command:
+1. Install the `ec2-hibinit-agent` package from the repositories using the following command\.
 
    ```
    [ec2-user ~]$ sudo yum install ec2-hibinit-agent
    ```
 
-1. Reboot the instance\.
+1. Reboot the instance using the following command\.
 
-1. Confirm that the kernel version is updated to 4\.14\.77\-70\.59 or greater using the following command:
+   ```
+   [ec2-user ~]$ sudo reboot
+   ```
+
+1. Confirm that the kernel version is updated to 4\.14\.138\-114\.102 or later using the following command\.
+
+   ```
+   [ec2-user ~]$ uname -a
+   ```
+
+1. Stop the instance and create an AMI\. For more information, see [Creating a Linux AMI from an Instance](creating-an-ami-ebs.md#how-to-create-ebs-ami)\.
+
+------
+#### [ Amazon Linux ]
+
+**To configure an Amazon Linux AMI to support hibernation**
+
+1. Update to the latest kernel to 4\.14\.77\-70\.59 or later using the following command\.
+
+   ```
+   [ec2-user ~]$ sudo yum update kernel
+   ```
+
+1. Install the `ec2-hibinit-agent` package from the repositories using the following command\.
+
+   ```
+   [ec2-user ~]$ sudo yum install ec2-hibinit-agent
+   ```
+
+1. Reboot the instance using the following command\.
+
+   ```
+   [ec2-user ~]$ sudo reboot
+   ```
+
+1. Confirm that the kernel version is updated to 4\.14\.77\-70\.59 or greater using the following command\.
 
    ```
    [ec2-user ~]$ uname -a
@@ -118,14 +157,14 @@ If you use one of the [supported AMIs](#hibernating-prerequisites), or you creat
 
 **To configure an Ubuntu 18\.04 LTS AMI to support hibernation**
 
-1. Update to the latest kernel to 4\.15\.0\-1044 or later using the following command:
+1. Update to the latest kernel to 4\.15\.0\-1044 or later using the following command\.
 
    ```
    [ec2-user ~]$ sudo apt update
    [ec2-user ~]$ sudo apt dist-upgrade
    ```
 
-1. Install the `ec2-hibinit-agent` package from the repositories using the following command:
+1. Install the `ec2-hibinit-agent` package from the repositories using the following command\.
 
    ```
    [ec2-user ~]$ sudo apt install ec2-hibinit-agent
@@ -137,7 +176,7 @@ If you use one of the [supported AMIs](#hibernating-prerequisites), or you creat
    [ec2-user ~]$ sudo reboot
    ```
 
-1. Confirm that the kernel version is updated to 4\.15\.0\-1044 or greater using the following command:
+1. Confirm that the kernel version is updated to 4\.15\.0\-1044 or greater using the following command\.
 
    ```
    [ec2-user ~]$ uname -a

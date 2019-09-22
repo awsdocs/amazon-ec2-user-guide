@@ -44,7 +44,9 @@ When host recovery is initiated, the AWS account owner is notified by email and 
 
 **Stopped instances are not recovered** on to the replacement Dedicated Host\. If you attempt to start a stopped instance that targets the impaired Dedicated Host, the instance start fails\. We recommend that you modify the stopped instance to either target a different Dedicated Host, or to launch on any available Dedicated Host with matching configurations and auto\-placement enabled\.
 
-If you are using AWS License Manager to track your licenses, AWS License Manager allocates new licenses for the replacement Dedicated Host based on the license configuration limits\. If the license configuration has hard limits that will be breached as a result of the host recovery, the recovery process is not allowed and you are notified of the host recovery failure through an Amazon SNS notification\. If the license configuration has soft limits that will be breached as a result of the host recovery, the recovery is allowed to continue and you are notified of the limit breach through an Amazon SNS notification\. For more information about setting license configuration limits, see [Using License Configurations](https://docs.aws.amazon.com/license-manager/latest/userguide/license-configurations.html) in the *AWS License Manager User Guide*\.
+**Instances with instance storage are not recovered** on to the replacement Dedicated Host\. As a remedial measure, the impaired Dedicated Host is marked for retirement and you receive a retirement notification after the host recovery is complete\. Follow the remedial steps described in the retirement notification within the specified time period to manually recover the remaining instances on the impaired Dedicated Host\.
+
+If you are using AWS License Manager to track your licenses, AWS License Manager allocates new licenses for the replacement Dedicated Host based on the license configuration limits\. If the license configuration has hard limits that will be breached as a result of the host recovery, the recovery process is not allowed and you are notified of the host recovery failure through an Amazon SNS notification\. If the license configuration has soft limits that will be breached as a result of the host recovery, the recovery is allowed to continue and you are notified of the limit breach through an Amazon SNS notification\. For more information, see [Using License Configurations](https://docs.aws.amazon.com/license-manager/latest/userguide/license-configurations.html) in the *AWS License Manager User Guide*\.
 
 ## Configuring Host Recovery<a name="dedicated-hosts-recovery-working"></a>
 
@@ -132,12 +134,13 @@ If the impaired Dedicated Host has instances that do not support host recovery, 
 
 ## Supported Instance Configurations<a name="dedicated-hosts-recovery-instances"></a>
 
-Host recovery is supported only on Dedicated Hosts that are configured for instances with the following characteristics:
-+ Use any instance type, except C5d, M5d, R5d, F1, H1, D2, I2, I3, I3en, P3dn, Z1d, and bare metal instances
-+ Run in an Amazon VPC
-+ Use Amazon EBS volumes only
-**Note**  
-If the impaired Dedicated Host has instances with block device mappings for instance store volumes that do not support host recovery, they remain on the impaired Dedicated Host and are not automatically recovered on to the replacement Dedicated Host during recovery\. As a remedial measure, the impaired Dedicated Host is marked for retirement and you receive a retirement notification after the host recovery is complete\. Follow the remedial steps described in the retirement notification within the specified time period to manually recover the remaining instances on the impaired Dedicated Host\. For more information, see [Manually Recovering Unsupported Instances](#dedicated-hosts-recovery-unsupported)\.
+Host recovery is supported only with instances with a supported configuration\. To recover instances that are not supported, see [Manually Recovering Unsupported Instances](#dedicated-hosts-recovery-unsupported)\.
+
+The following instance configurations are not supported:
++ Instance store volumes
+  + C5d, G4, I3en, M5ad, M5d, P3dn, R5ad, R5d, and z1d instances
+  + D2, F1, HS1, I2, I3, X1, and X1e instances
++ Bare metal instances
 
 ## Manually Recovering Unsupported Instances<a name="dedicated-hosts-recovery-unsupported"></a>
 

@@ -171,7 +171,7 @@ Amazon EC2 implements the following service\-specific condition keys\. For infor
 |  `ec2:EbsOptimized`  |  "ec2:EbsOptimized":"*optimized\-flag*" Where *optimized\-flag* is `true` \| `false` \(for an instance\)  |  Boolean, Null  | 
 |  `ec2:ElasticGpuType`  |  "ec2:ElasticGpuType":"*elastic\-gpu\-type*" Where *elastic\-gpu\-type* is the name of the elastic GPU type  |  String, Null  | 
 | ec2:Encrypted | "ec2:Encrypted":"encrypted\-flag"Where *encrypted\-flag* is `true` \| `false` \(for an EBS volume\) | Boolean, Null | 
-|  `ec2:ImageType`  |  "ec2:ImageType":"*image\-type\-api\-name*" Where *image\-type\-api\-name* is `ami` \| `aki` \| `ari`  |  String, Null  | 
+|  `ec2:ImageType`  |  "ec2:ImageType":"*image\-type\-api\-name*" Where *image\-type\-api\-name* is `machine` \| `aki` \| `ari`  |  String, Null  | 
 |  `ec2:InstanceMarketType`  |  "ec2:InstanceMarketType":"*market\-type*" Where *market\-type* is `spot` \| `on-demand`  |  String, Null  | 
 |  `ec2:InstanceProfile`  |  "ec2:InstanceProfile":"*instance\-profile\-arn*" Where *instance\-profile\-arn* is the instance profile ARN  |  ARN, Null  | 
 | `ec2:InstanceType`  |  "ec2:InstanceType":"*instance\-type\-api\-name*" Where *instance\-type\-api\-name* is the name of the instance type\.  |  String, Null  | 

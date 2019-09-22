@@ -48,7 +48,9 @@ After Spot Instances are terminated due to a change in the Spot price or availab
 
 ### Configuring Spot Fleet for Cost Optimization<a name="spot-fleet-strategy-cost-optimization"></a>
 
-With Spot Instances, pricing changes slowly over time based on long\-term trends in supply and demand, but capacity fluctuates in real time\. The `capacityOptimized` strategy automatically launches Spot Instances into the most available pools by looking at real\-time capacity data and predicting which are the most available\. This works well for workloads such as big data and analytics, image and media rendering, machine learning, and high performance computing that may have a higher cost of interruption associated with restarting work and checkpointing\. By offering the possibility of fewer interruptions, the `capacityOptimized` strategy can lower the overall cost of your workload\.
+To optimize the costs for your use of Spot Instances, specify the `lowestPrice` allocation strategy so that Spot Fleet automatically deploys the least expensive combination of instance types and Availability Zones based on the current Spot price\.
+
+For On\-Demand Instance target capacity, Spot Fleet always selects the least expensive instance type based on the public On\-Demand price, while continuing to follow the allocation strategy \(either `lowestPrice`, `capacityOptimized`, or `diversified`\) for Spot Instances\.
 
 ### Configuring Spot Fleet for Cost Optimization and Diversification<a name="spot-fleet-strategy-cost-optimization-and-diversified"></a>
 

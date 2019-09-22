@@ -4,59 +4,50 @@ Amazon EBS provides the following volume types, which differ in performance char
 + SSD\-backed volumes optimized for transactional workloads involving frequent read/write operations with small I/O size, where the dominant performance attribute is IOPS
 + HDD\-backed volumes optimized for large streaming workloads where throughput \(measured in MiB/s\) is a better performance measure than IOPS
 
-The following table describes the use cases and performance characteristics for each volume type\. 
+There are several factors that can affect the performance of EBS volumes, such as instance configuration, I/O characteristics, and workload demand\. For more information about getting the most out of your EBS volumes, see [Amazon EBS Volume Performance on Linux Instances](EBSPerformance.md)\.
 
-**Note**  
-AWS updates to the performance of EBS volume types may not immediately take effect on your existing volumes\. To see full performance on an older volume, you may first need to perform a `ModifyVolume` action on it\. For more information, see [Modifying the Size, IOPS, or Type of an EBS Volume on Linux](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-modify-volume.html)\.
+For more information about pricing, see [Amazon EBS Pricing](http://aws.amazon.com/ebs/pricing/)\.
+
+## Volume Characteristics<a name="ebs-volume-characteristics"></a>
+
+The following table describes the use cases and performance characteristics for each volume type\. The default volume type is General Purpose SSD \(`gp2`\)\.
 
 
 |  | Solid\-State Drives \(SSD\) | Hard Disk Drives \(HDD\) | 
 | --- | --- | --- | 
-| Volume Type \* | General Purpose SSD \(gp2\) | Provisioned IOPS SSD \(io1\) | Throughput Optimized HDD \(st1\) | Cold HDD \(sc1\) | 
+| Volume Type | General Purpose SSD \(gp2\) | Provisioned IOPS SSD \(io1\) | Throughput Optimized HDD \(st1\) | Cold HDD \(sc1\) | 
 | Description | General purpose SSD volume that balances price and performance for a wide variety of workloads | Highest\-performance SSD volume for mission\-critical low\-latency or high\-throughput workloads  | Low\-cost HDD volume designed for frequently accessed, throughput\-intensive workloads | Lowest cost HDD volume designed for less frequently accessed workloads | 
 | Use Cases |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html)  | 
 | API Name | gp2 | io1 | st1 | sc1 | 
 | Volume Size | 1 GiB \- 16 TiB  | 4 GiB \- 16 TiB  | 500 GiB \- 16 TiB | 500 GiB \- 16 TiB  | 
-| Max\. IOPS\*\*/Volume | 16,000\*\*\*  | 64,000\*\*\*\* | 500 | 250 | 
-| Max\. Throughput/Volume | 250 MiB/s\*\*\* | 1,000 MiB/s† | 500 MiB/s | 250 MiB/s | 
-| Max\. IOPS/Instance†† | 80,000 | 80,000 | 80,000 | 80,000 | 
-| Max\. Throughput/Instance†† | 1,750 MiB/s | 1,750 MiB/s | 1,750 MiB/s | 1,750 MiB/s | 
+| Max IOPS per Volume | 16,000 \(16 KiB I/O\) \* | 64,000 \(16 KiB I/O\) † | 500 \(1 MiB I/O\) | 250 \(1 MiB I/O\) | 
+| Max Throughput per Volume | 250 MiB/s \* | 1,000 MiB/s † | 500 MiB/s | 250 MiB/s | 
+| Max IOPS per Instance †† | 80,000 | 80,000 | 80,000 | 80,000 | 
+| Max Throughput per Instance †† | 1,750 MiB/s | 1,750 MiB/s | 1,750 MiB/s | 1,750 MiB/s | 
 | Dominant Performance Attribute | IOPS | IOPS | MiB/s | MiB/s | 
 
-\* The default EBS volume type is `gp2`\.
+\* The throughput limit is between 128 MiB/s and 250 MiB/s, depending on the volume size\. Volumes greater than 170 GiB and below 334 GiB deliver a maximum throughput of 250 MiB/s if burst credits are available\. Volumes with 334 GiB and above deliver 250 MiB/s irrespective of burst credits\. Older `gp2` volumes might not reach full performance unless you modify the volume\. For more information, see [Amazon EBS Elastic Volumes](ebs-modify-volume.md)\.
 
-\*\* `gp2`/`io1` based on 16 KiB I/O size, `st1`/`sc1` based on 1 MiB I/O size
+† Maximum IOPS and throughput are guaranteed only on [Nitro\-based Instances](instance-types.md#ec2-nitro-instances)\. Other instances guarantee up to 32,000 IOPS and 500 MiB/s\. Older `io1` volumes might not reach full performance unless you modify the volume\. For more information, see [Amazon EBS Elastic Volumes](ebs-modify-volume.md)\.
 
-\*\*\* General Purpose SSD \(gp2\) volumes have a throughput limit between 128 MiB/s and 250 MiB/s depending on volume size\. Volumes greater than 170 GiB and below 334 GiB deliver a maximum throughput of 250 MiB/s if burst credits are available\. Volumes with 334 GiB and above deliver 250 MiB/s irrespective of burst credits\. An older `gp2` volume may not see full performance unless a `ModifyVolume` action is performed on it\. For more information, see [Amazon EBS Elastic Volumes](ebs-modify-volume.md)\.
+†† To achieve this throughput, you must have an instance that supports [EBS optimization](EBSOptimized.md)\.
 
-\*\*\*\* Maximum IOPS of 64,000 is guaranteed only on [Nitro\-based Instances](instance-types.md#ec2-nitro-instances)\. Other instances guarantee performance up to 32,000 IOPS\.
-
-† Maximum throughput of 1,000 MiB/s is guaranteed only on [Nitro\-based Instances](instance-types.md#ec2-nitro-instances)\. Other instances guarantee up to 500 MiB/s\. An older `io1` volume may not see full performance unless a `ModifyVolume` action is performed on it\. For more information, see [Amazon EBS Elastic Volumes](ebs-modify-volume.md)\.
-
-†† To achieve this throughput, you must have an instance that supports it\. For more information, see [Amazon EBS–Optimized Instances](EBSOptimized.md)\.
+### Previous Generation Volume Types<a name="ebs-previous-generation-volumes"></a>
 
 The following table describes previous\-generation EBS volume types\. If you need higher performance or performance consistency than previous\-generation volumes can provide, we recommend that you consider using General Purpose SSD \(`gp2`\) or other current volume types\. For more information, see [Previous Generation Volumes](https://aws.amazon.com/ebs/previous-generation/)\.
 
 
-| Previous Generation Volumes | 
+| Hard Disk Drives \(HDD\) | 
 | --- | 
-| Volume Type | EBS Magnetic | 
-| Description | Previous generation HDD | 
+| Volume Type | Magnetic | 
 | Use Cases | Workloads where data is infrequently accessed | 
 | API Name | standard | 
 | Volume Size | 1 GiB\-1 TiB | 
-| Max\. IOPS/Volume | 40–200 | 
-| Max\. Throughput/Volume | 40–90 MiB/s | 
-| Max\. IOPS/Instance | 80,000 | 
-| Max\. Throughput/Instance | 1,750 MiB/s | 
+| Max IOPS per Volume | 40–200 | 
+| Max Throughput per Volume | 40–90 MiB/s | 
+| Max IOPS per Instance | 80,000 | 
+| Max Throughput per Instance | 1,750 MiB/s | 
 | Dominant Performance Attribute | IOPS | 
-
-**Note**  
-Linux AMIs require GPT partition tables and GRUB 2 for boot volumes 2 TiB \(2048 GiB\) or larger\. Many Linux AMIs today use the MBR partitioning scheme, which only supports up to 2047 GiB boot volumes\. If your instance does not boot with a boot volume that is 2 TiB or larger, the AMI you are using may be limited to a 2047 GiB boot volume size\. Non\-boot volumes do not have this limitation on Linux instances\.
-
-There are several factors that can affect the performance of EBS volumes, such as instance configuration, I/O characteristics, and workload demand\. For more information about getting the most out of your EBS volumes, see [Amazon EBS Volume Performance on Linux Instances](EBSPerformance.md)\.
-
-For more information about pricing for these volume types, see [Amazon EBS Pricing](http://aws.amazon.com/ebs/pricing/)\.
 
 ## General Purpose SSD \(`gp2`\) Volumes<a name="EBSVolumeTypes_gp2"></a>
 
@@ -85,12 +76,12 @@ The following table lists several volume sizes and the associated baseline perfo
 |  1  |  100  |  1802  | 54,000 | 
 |  100  |  300  |  2,000  | 18,000 | 
 |  250  |  750  | 2,400 | 7,200 | 
-|  334 \(Min\. size for max\. throughput\)  | 1002 |  2703  |  5389  | 
+|  334 \(Min\. size for max throughput\)  | 1002 |  2703  |  5389  | 
 |  500  |  1,500  |  3,600  | 3,600 | 
 |  750  |  2,250  |  7,200  | 2,400 | 
 |  1,000  |  3,000  |  N/A\*  |  N/A\*  | 
-|  5,334 \(Min\. size for max\. IOPS\)  |  16,000  |  N/A\*  |  N/A\*  | 
-|  16,384 \(16 TiB, max\. volume size\)  |  16,000  |  N/A\*  |  N/A\*  | 
+|  5,334 \(Min\. size for max IOPS\)  |  16,000  |  N/A\*  |  N/A\*  | 
+|  16,384 \(16 TiB, max volume size\)  |  16,000  |  N/A\*  |  N/A\*  | 
 
 \* Bursting and I/O credits are only relevant to volumes under 1,000 GiB, where burst performance exceeds baseline performance\.
 

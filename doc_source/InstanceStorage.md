@@ -68,6 +68,12 @@ The following table provides the quantity, size, type, and performance optimizat
 |  `f1.16xlarge`  |  4 x 940 GB \(3\.76 TB\)  | NVMe SSD |  | ✔ | 
 | g2\.2xlarge | 1 x 60 GB | SSD | ✔ |  | 
 | g2\.8xlarge | 2 x 120 GB \(240 GB\) | SSD | ✔ |  | 
+| g4dn\.xlarge | 1 x 125 GB | NVMe SSD |  | ✔ | 
+| g4dn\.2xlarge | 1 x 225 GB | NVMe SSD |  | ✔ | 
+| g4dn\.4xlarge | 1 x 225 GB | NVMe SSD |  | ✔ | 
+| g4dn\.8xlarge | 1 x 900 GB | NVMe SSD |  | ✔ | 
+| g4dn\.12xlarge | 1 x 900 GB | NVMe SSD |  | ✔ | 
+| g4dn\.16xlarge | 1 x 900 GB | NVMe SSD |  | ✔ | 
 | h1\.2xlarge | 1 x 2000 GB \(2 TB\) | HDD |  |  | 
 | h1\.4xlarge | 2 x 2000 GB \(4 TB\) | HDD |  |  | 
 | h1\.8xlarge | 4 x 2000 GB \(8 TB\) | HDD |  |  | 

@@ -562,4 +562,4 @@ With AWS CloudTrail, you can track user activity and API usage to demonstrate co
 
 ### AWS CloudFormation<a name="lifecycle-cloudformation"></a>
 
-When deploying resource stacks with AWS CloudFormation, you can include Amazon DLM policies in your AWS CloudFormation templates\. For more information, see [Amazon Data Lifecycle Manager Resource Types Reference](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-reference-dlm.html)\.
+When deploying resource stacks with AWS CloudFormation, you can include Amazon DLM policies in your AWS CloudFormation templates\. For more information, see [Amazon Data Lifecycle Manager Resource Types Reference](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/AWS_DLM.html)\.

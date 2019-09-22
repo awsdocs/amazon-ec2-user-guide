@@ -17,7 +17,7 @@ Decide who requires access to your instance; for example, a single host or a spe
 **Warning**  
 If you use `0.0.0.0/0`, you enable all IPv4 addresses to access your instance using SSH\. If you use `::/0`, you enable all IPv6 address to access your instance\. This is acceptable for a short time in a test environment, but it's unsafe for production environments\. In production, you authorize only a specific IP address or range of addresses to access your instance\.
 
-For more information about security groups, see [Amazon EC2 Security Groups for Linux Instances](using-network-security.md)\.
+Decide whether you'll support SSH access to your instances using EC2 Instance Connect\. If you will not use EC2 Instance Connect, consider uninstalling it or denying the following action in your IAM policies: `ec2-instance-connect:SendSSHPublicKey`\. For more information, see [Uninstall EC2 Instance Connect](ec2-instance-connect-uninstall.md) and [Configure IAM Permissions for EC2 Instance Connect](ec2-instance-connect-set-up.md#ec2-instance-connect-configure-IAM-role)\.
 
 ## Adding a Rule for Inbound SSH Traffic to a Linux Instance<a name="add-rule-authorize-access"></a>
 

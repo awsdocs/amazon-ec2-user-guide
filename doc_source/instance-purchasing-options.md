@@ -13,6 +13,7 @@ If you require a capacity reservation, purchase Reserved Instances or Capacity R
 
 **Topics**
 + [Determining the Instance Lifecycle](#check-instance-lifecycle)
++ [On\-Demand Instances](ec2-on-demand-instances.md)
 + [Reserved Instances](ec2-reserved-instances.md)
 + [Scheduled Reserved Instances](ec2-scheduled-instances.md)
 + [Spot Instances](using-spot-instances.md)
