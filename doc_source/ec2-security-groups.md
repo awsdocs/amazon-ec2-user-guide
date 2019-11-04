@@ -1,4 +1,4 @@
-# Amazon EC2 Security Groups for Linux Instances<a name="using-network-security"></a>
+# Amazon EC2 Security Groups for Linux Instances<a name="ec2-security-groups"></a>
 
 A *security group* acts as a virtual firewall that controls the traffic for one or more instances\. When you launch an instance, you can specify one or more security groups; otherwise, we use the default security group\. You can add rules to each security group that allow traffic to or from its associated instances\. You can modify the rules for a security group at any time; the new rules are automatically applied to all instances that are associated with the security group\. When we decide whether to allow traffic to reach an instance, we evaluate all the rules from all the security groups that are associated with the instance\.
 
@@ -49,7 +49,7 @@ You can assign multiple security groups to an instance, therefore an instance ca
 
 For each rule, you specify the following:
 + **Protocol**: The protocol to allow\. The most common protocols are 6 \(TCP\) 17 \(UDP\), and 1 \(ICMP\)\. 
-+ **Port range** : For TCP, UDP, or a custom protocol, the range of ports to allow\. You can specify a single port number \(for example, `22`\), or range of port numbers \(for example, `7000-8000`\)\.
++ **Port range**: For TCP, UDP, or a custom protocol, the range of ports to allow\. You can specify a single port number \(for example, `22`\), or range of port numbers \(for example, `7000-8000`\)\.
 + **ICMP type and code**: For ICMP, the ICMP type and code\.
 + **Source or destination**: The source \(inbound rules\) or destination \(outbound rules\) for the traffic\. Specify one of these options:
   + An individual IPv4 address\. You must use the `/32` prefix length; for example, `203.0.113.1/32`\. 
@@ -99,7 +99,7 @@ To ensure that traffic is immediately interrupted when you remove a security gro
 
 ## Default Security Groups<a name="default-security-group"></a>
 
-Your AWS account automatically has a *default security group* for the default VPC in each region\. If you don't specify a security group when you launch an instance, the instance is automatically associated with the default security group for the VPC\.
+Your AWS account automatically has a *default security group* for the default VPC in each Region\. If you don't specify a security group when you launch an instance, the instance is automatically associated with the default security group for the VPC\.
 
 A default security group is named `default`, and it has an ID assigned by AWS\. The following are the default rules for each default security group:
 + Allows all inbound traffic from other instances associated with the default security group \(the security group specifies itself as a source security group in its inbound rules\)
@@ -107,7 +107,7 @@ A default security group is named `default`, and it has an ID assigned by AWS\. 
 
 You can add or remove inbound and outbound rules for any default security group\.
 
-You can't delete a default security group\. If you try to delete a default security group, you'll get the following error: `Client.CannotDelete: the specified group: "sg-51530134" name: "default" cannot be deleted by a user`\. 
+You can't delete a default security group\. If you try to delete a default security group, you see the following error: `Client.CannotDelete: the specified group: "sg-51530134" name: "default" cannot be deleted by a user`\. 
 
 ## Custom Security Groups<a name="creating-your-own-security-groups"></a>
 

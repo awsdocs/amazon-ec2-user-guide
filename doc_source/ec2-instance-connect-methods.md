@@ -86,12 +86,12 @@ The supported RSA key types are OpenSSH and SSH2\. The supported lengths are 204
 
 1. Push your SSH public key to the instance\.
 
-   Use the send\-ssh\-public\-key command to push your SSH public key to the instance\. If you launched your instance using Amazon Linux 2, the default user name for the AMI is `ec2-user`\. If you launched your instance using Ubuntu, the default user name for the AMI is `ubuntu`\.
+   Use the [send\-ssh\-public\-key](https://docs.aws.amazon.com/cli/latest/reference/ec2-instance-connect/send-ssh-public-key.html) command to push your SSH public key to the instance\. If you launched your instance using Amazon Linux 2, the default user name for the AMI is `ec2-user`\. If you launched your instance using Ubuntu, the default user name for the AMI is `ubuntu`\.
 
-   In the following example, the public key is pushed to an instance with `id i-001234a4bf70dec41EXAMPLE` in `us-west-2b` for the OS user `ec2-user`:
+   The following example pushes the public key to the specified instance in the specified Availability Zone, to authenticate `ec2-user`:
 
    ```
-   $ aws ec2-instance-connect send-ssh-public-key --region us-west-2 --instance-id i-001234a4bf70dec41EXAMPLE --availability-zone us-west-2b --instance-os-user ec2-user --ssh-public-key file://my_rsa_key.pub
+   $ aws ec2-instance-connect send-ssh-public-key --instance-id i-001234a4bf70dec41EXAMPLE --availability-zone us-west-2b --instance-os-user ec2-user --ssh-public-key file://my_rsa_key.pub
    ```
 
 1. Connect to the instance using your private key\.

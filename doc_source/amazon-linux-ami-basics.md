@@ -160,7 +160,7 @@ To upload your applications onto a running Amazon Linux instance, use scp or sft
 
 Security updates are provided using the package repositories as well as updated AMIs Security alerts are published in the [Amazon Linux Security Center](https://alas.aws.amazon.com)\. For more information about AWS security policies or to report a security problem, go to the [AWS Security Center](https://aws.amazon.com/security/)\.
 
-Amazon Linux is configured to download and install security updates at launch time\. This is controlled using the following cloud\-init setting: `repo_upgrade`\. The following snippet of cloud\-init configuration shows how you can change the settings in the user data text you pass to your instance initialization:
+Amazon Linux is configured to download and install critical or important security updates at launch time\. We recommend that you make the necessary updates for your use case after launch\. For example, you may want to apply all updates \(not just security updates\) at launch, or evaluate each update and apply only the ones applicable to your system\. This is controlled using the following cloud\-init setting: `repo_upgrade`\. The following snippet of cloud\-init configuration shows how you can change the settings in the user data text you pass to your instance initialization:
 
 ```
 #cloud-config
@@ -170,7 +170,7 @@ repo_upgrade: security
 The possible values for `repo_upgrade` are as follows:
 
 `security`  
-Apply outstanding updates that Amazon marks as security updates\.
+Apply outstanding critical or important updates that Amazon marks as security updates\.
 
 `bugfix`  
 Apply updates that Amazon marks as bug fixes\. Bug fixes are a larger set of updates, which include security updates and fixes for various other minor bugs\.

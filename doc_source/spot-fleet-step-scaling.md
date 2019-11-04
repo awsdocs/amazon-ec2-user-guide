@@ -17,23 +17,6 @@ When a Spot Fleet terminates an instance because the target capacity was decreas
 **Prerequisites**
 + Consider which CloudWatch metrics are important to your application\. You can create CloudWatch alarms based on metrics provided by AWS or your own custom metrics\.
 + For the AWS metrics that you will use in your scaling policies, enable CloudWatch metrics collection if the service that provides the metrics does not enable it by default\.
-+ If you use the AWS Management Console to enable automatic scaling for your Spot Fleet, it creates a role named `aws-ec2-spot-fleet-autoscale-role` that grants Amazon EC2 Auto Scaling permission to describe the alarms for your policies, monitor the current capacity of the fleet, and modify the capacity of the fleet\. If you configure automatic scaling using the AWS CLI or an API, you can use this role if it exists, or manually create your own role for this purpose\.
-
-**To create a role manually**
-
-  1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
-
-  1. In the navigation pane, choose **Roles**, and then choose **Create role**\.
-
-  1. For **Select type of trusted entity**, choose **AWS service**\.
-
-  1. For **Choose the service that will use this role**, choose **EC2**\. 
-
-  1. For **Select your use case**, choose **EC2 \- Spot Fleet Auto Scaling**, and then choose **Next: Permissions**\.
-
-  1. For **Attached permissions policy**, the **AmazonEC2SpotFleetAutoscaleRole** policy automatically appears\. Choose **Next: Tags**, and then **Next: Review**\.
-
-  1. For **Review**, type a name for the role and choose **Create role**\.
 
 **To create a CloudWatch alarm**
 
@@ -41,19 +24,35 @@ When a Spot Fleet terminates an instance because the target capacity was decreas
 
 1. In the navigation pane, choose **Alarms**\.
 
-1. Choose **Create Alarm**\.
+1. Choose **Create alarm**\.
 
-1. For **CloudWatch Metrics by Category**, choose a category\. For example, choose **EC2 Spot Metrics**, **Fleet Request Metrics**\.
+1. On the **Specify metric and conditions** page, choose **Select metric**\. 
 
-1. Select a metric and choose **Next**\.
+1. Choose **EC2 Spot**, **Fleet Request Metrics**, select a metric \(for example, CPUUtilization\), and then choose **Select metric**\.
 
-1. For **Alarm Threshold**, type a name and description for the alarm, and set the threshold value and number of time periods for the alarm\.
+   The **Specify metric and conditions** page appears, showing a graph and other information about the metric you selected\. 
 
-1. \(Optional\) To receive notification of a scaling event, for **Actions**, choose **New list** and type your email address\. Otherwise, you can delete the notification now and add one later as needed\.
+1. For **Period**, choose the evaluation period for the alarm, for example, 1 minute\. When evaluating the alarm, each period is aggregated into one data point\. 
+**Note**  
+A shorter period creates a more sensitive alarm\. 
 
-1. Choose **Create Alarm**\.
+1. For **Conditions**, define the alarm by defining the threshold condition\. For example, you can define a threshold to trigger the alarm whenever the value of the metric is greater than or equal to 80 percent\.
 
-**To configure step scaling policies for your Spot Fleet \(console\)**
+1. Under **Additional configuration**, for **Datapoints to alarm**, specify how many datapoints \(evaluation periods\) must be in the ALARM state to trigger the alarm, for example, 1 evaluation period or 2 out of 3 evaluation periods\. This creates an alarm that goes to ALARM state if that many consecutive periods are breaching\. For more information, see [Evaluating an Alarm](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarm-evaluation) in the *Amazon CloudWatch User Guide*\.
+
+1. For **Missing data treatment**, choose one of the options \(or leave the default of **Treat missing data as missing**\)\. For more information, see [Configuring How CloudWatch Alarms Treat Missing Data](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data) in the *Amazon CloudWatch User Guide*\.
+
+1. Choose **Next**\.
+
+1. \(Optional\) To receive notification of a scaling event, for **Notification**, you can choose or create the Amazon SNS topic you want to use to receive notifications\. Otherwise, you can delete the notification now and add one later as needed\.
+
+1. Choose **Next**\.
+
+1. Under **Add a description**, enter a name and description for the alarm and choose **Next**\.
+
+1. Choose **Create alarm**\.
+
+**To configure a step scaling policy for your Spot Fleet \(console\)**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 

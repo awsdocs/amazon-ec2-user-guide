@@ -122,7 +122,7 @@ You must create an IAM role before you can launch an instance with that role or 
 
 1. On the **Attach permissions policy** page, select an AWS managed policy that grants your instances access to the resources that they need\.
 
-1. On the **Review** page, type a name for the role and choose **Create role**\.
+1. On the **Review** page, enter a name for the role and choose **Create role**\.
 
 Alternatively, you can use the AWS CLI to create an IAM role\.<a name="create-iam-role-cli"></a>
 
@@ -314,7 +314,7 @@ Alternatively, use the following Tools for Windows PowerShell commands:
 
 ### Replacing an IAM Role<a name="replace-iam-role"></a>
 
-To replace the IAM role on an instance that already has an attached IAM role, the instance must be in the `running` state\. You can do this if you want to change the IAM role for an instance without detaching the existing one first; for example, to ensure that API actions performed by applications running on the instance are not interrupted\.<a name="replace-iam-role-console"></a>
+To replace the IAM role on an instance that already has an attached IAM role, the instance must be in the `running` state\. You can do this if you want to change the IAM role for an instance without detaching the existing one first\. For example, you can do this to ensure that API actions performed by applications running on the instance are not interrupted\.<a name="replace-iam-role-console"></a>
 
 **To replace an IAM role for an instance \(console\)**
 

@@ -71,45 +71,53 @@ To complete a launch successfully, users must be given permission to use the `ec
 + `ec2:DescribeImages`: To view and select an AMI\. 
 + `ec2:DescribeVpcs`: To view the available network options\.
 + `ec2:DescribeSubnets`: To view all available subnets for the chosen VPC\. 
-+ `ec2:DescribeSecurityGroups`: To view the security groups page in the wizard\. Users can select an existing security group\. 
++ `ec2:DescribeSecurityGroups` or `ec2:CreateSecurityGroup`: To view and select an existing security group, or create a new one\. 
 + `ec2:DescribeKeyPairs` or `ec2:CreateKeyPair`: To select an existing key pair, or create a new one\.
++ `ec2:AuthorizeSecurityGroupIngress` to add inbound rules\.
 
 ```
 {
-   "Version": "2012-10-17",
-   "Statement": [{
-      "Effect": "Allow",
-      "Action": [
-		"ec2:DescribeInstances", "ec2:DescribeImages",
-        "ec2:DescribeKeyPairs","ec2:DescribeVpcs", "ec2:DescribeSubnets", 
-        "ec2:DescribeSecurityGroups"
-      ],
-      "Resource": "*"
-    },
-    {
-      "Effect": "Allow",
-      "Action": "ec2:RunInstances",
-      "Resource": "*"
-    }
-   ]
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:DescribeInstances",
+                "ec2:DescribeImages",
+                "ec2:DescribeKeyPairs",
+                "ec2:DescribeVpcs",
+                "ec2:DescribeSubnets",
+                "ec2:DescribeSecurityGroups",
+                "ec2:CreateSecurityGroup",
+                "ec2:AuthorizeSecurityGroupIngress",
+                "ec2:CreateKeyPair"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": "ec2:RunInstances",
+            "Resource": "*"
+        }
+    ]
 }
 ```
 
 You can add API actions to your policy to provide more options for users, for example:
 + `ec2:DescribeAvailabilityZones`: To view and select a specific Availability Zone\.
 + `ec2:DescribeNetworkInterfaces`: To view and select existing network interfaces for the selected subnet\.
-+ `ec2:CreateSecurityGroup`: To create a new security group; for example, to create the wizard's suggested `launch-wizard-x` security group\. However, this action alone only creates the security group; it does not add or modify any rules\. To add inbound rules, users must be granted permission to use the `ec2:AuthorizeSecurityGroupIngress` API action\. To add outbound rules to VPC security groups, users must be granted permission to use the `ec2:AuthorizeSecurityGroupEgress` API action\. To modify or delete existing rules, users must be granted permission to use the relevant `ec2:RevokeSecurityGroup*` API action\.
++ To add outbound rules to VPC security groups, users must be granted permission to use the `ec2:AuthorizeSecurityGroupEgress` API action\. To modify or delete existing rules, users must be granted permission to use the relevant `ec2:RevokeSecurityGroup*` API action\.
 + `ec2:CreateTags`: To tag the resources that are created by `RunInstances`\. For more information, see [Resource\-Level Permissions for Tagging](ec2-supported-iam-actions-resources.md#supported-iam-actions-tagging)\. If users do not have permission to use this action and they attempt to apply tags on the tagging page of the launch wizard, the launch fails\.
 **Important**  
 Be careful about granting users permission to use the `ec2:CreateTags` action\. This limits your ability to use the `ec2:ResourceTag` condition key to restrict the use of other resources; users can change a resource's tag in order to bypass those restrictions\.
 
 Currently, the Amazon EC2 `Describe*` API actions do not support resource\-level permissions, so you cannot restrict which individual resources users can view in the launch wizard\. However, you can apply resource\-level permissions on the `ec2:RunInstances` API action to restrict which resources users can use to launch an instance\. The launch fails if users select options that they are not authorized to use\. 
 
-**Restrict access to specific instance type, subnet, and region**
+**Restrict access to specific instance type, subnet, and Region**
 
-The following policy allows users to launch `m1.small` instances using AMIs owned by Amazon, and only into a specific subnet \(`subnet-1a2b3c4d`\)\. Users can only launch in the sa\-east\-1 region\. If users select a different region, or select a different instance type, AMI, or subnet in the launch wizard, the launch fails\. 
+The following policy allows users to launch `t2.micro` instances using AMIs owned by Amazon, and only into a specific subnet \(`subnet-1a2b3c4d`\)\. Users can only launch in the sa\-east\-1 Region\. If users select a different Region, or select a different instance type, AMI, or subnet in the launch wizard, the launch fails\. 
 
-The first statement grants users permission to view the options in the launch wizard, as demonstrated in the example above\. The second statement grants users permission to use the network interface, volume, key pair, security group, and subnet resources for the `ec2:RunInstances` action, which are required to launch an instance into a VPC\. For more information about using the `ec2:RunInstances` action, see [Launching Instances \(RunInstances\)](ExamplePolicies_EC2.md#iam-example-runinstances)\. The third and fourth statements grant users permission to use the instance and AMI resources respectively, but only if the instance is an `m1.small` instance, and only if the AMI is owned by Amazon\.
+The first statement grants users permission to view the options in the launch wizard or to create new ones, as explained in the example above\. The second statement grants users permission to use the network interface, volume, key pair, security group, and subnet resources for the `ec2:RunInstances` action, which are required to launch an instance into a VPC\. For more information about using the `ec2:RunInstances` action, see [Launching Instances \(RunInstances\)](ExamplePolicies_EC2.md#iam-example-runinstances)\. The third and fourth statements grant users permission to use the instance and AMI resources respectively, but only if the instance is a `t2.micro` instance, and only if the AMI is owned by Amazon\.
 
 ```
 {
@@ -118,7 +126,7 @@ The first statement grants users permission to view the options in the launch wi
       "Effect": "Allow",
       "Action": [
          "ec2:DescribeInstances", "ec2:DescribeImages",
-         "ec2:DescribeKeyPairs","ec2:DescribeVpcs", "ec2:DescribeSubnets", "ec2:DescribeSecurityGroups"
+         "ec2:DescribeKeyPairs", "ec2:CreateKeyPair", "ec2:DescribeVpcs", "ec2:DescribeSubnets", "ec2:DescribeSecurityGroups", "ec2:CreateSecurityGroup", "ec2AuthorizeSecurityGroupIngress"
 	  ],
 	  "Resource": "*"
    },
@@ -141,7 +149,7 @@ The first statement grants users permission to view the options in the launch wi
       ],
       "Condition": {
          "StringEquals": {
-            "ec2:InstanceType": "m1.small"
+            "ec2:InstanceType": "t2.micro"
          }
       }
    },

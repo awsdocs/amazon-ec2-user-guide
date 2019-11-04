@@ -310,10 +310,9 @@ Use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/e
 
 ### Viewing the Instance Block Device Mapping for Instance Store Volumes<a name="bdm-instance-metadata"></a>
 
-When you view the block device mapping for your instance, you can see only the EBS volumes, not the instance store volumes\. You can use instance metadata to query the complete block device mapping\. The base URI for all requests for instance metadata is `http://169.254.169.254/latest/`\.
+When you view the block device mapping for your instance, you can see only the EBS volumes, not the instance store volumes\. You can use instance metadata to query the non\-NVMe instance store volumes in the block device mapping\. NVMe instance store volumes are not included\.
 
-**Important**  
-NVMe instance store volumes are not included in the block device mapping\.
+The base URI for all requests for instance metadata is `http://169.254.169.254/latest/`\. For more information, see [Instance Metadata and User Data](ec2-instance-metadata.md)\.
 
 First, connect to your running instance\. From the instance, use this query to get its block device mapping\.
 
@@ -338,4 +337,4 @@ To get details about an individual block device in the block device mapping, app
 [ec2-user ~]$ curl http://169.254.169.254/latest/meta-data/block-device-mapping/ephemeral0
 ```
 
-For more information, see [Instance Metadata and User Data](ec2-instance-metadata.md)\.
+The instance type determines the number of instance store volumes that are available to the instance\. If the number of instance store volumes in a block device mapping exceeds the number of instance store volumes available to an instance, the additional volumes are ignored\. To view the instance store volumes for your instance, run the lsblk command\. To learn how many instance store volumes are supported by each instance type, see [Instance Store Volumes](InstanceStorage.md#instance-store-volumes)\.

@@ -65,7 +65,7 @@ The first thing you need to do is get set up to use Amazon EC2\. It can also be 
 You can provision Spot Instances directly using Amazon EC2\. You can also provision Spot Instances using other services in AWS\. For more information, see the following documentation\.
 
 Amazon EC2 Auto Scaling and Spot Instances  
-You can create launch configurations with the maximum price that you are willing to pay, so that Amazon EC2 Auto Scaling can launch Spot Instances\. For more information, see [Launching Spot Instances in Your Auto Scaling Group](https://docs.aws.amazon.com/autoscaling/latest/userguide/asg-launch-spot-instances.html) and [Using Multiple Instance Types and Purchase Options](https://docs.aws.amazon.com/autoscaling/latest/userguide/AutoScalingGroup.html#asg-purchase-options) in the *Amazon EC2 Auto Scaling User Guide*\.
+You can create launch templates or configurations with the maximum price that you are willing to pay, so that Amazon EC2 Auto Scaling can launch Spot Instances\. For more information, see [Launching Spot Instances in Your Auto Scaling Group](https://docs.aws.amazon.com/autoscaling/latest/userguide/asg-launch-spot-instances.html) and [Using Multiple Instance Types and Purchase Options](https://docs.aws.amazon.com/autoscaling/latest/userguide/AutoScalingGroup.html#asg-purchase-options) in the *Amazon EC2 Auto Scaling User Guide*\.
 
 Amazon EMR and Spot Instances  
 There are scenarios where it can be useful to run Spot Instances in an Amazon EMR cluster\. For more information, see [Spot Instances](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-instance-purchasing-options.html#emr-spot-instances) and [When Should You Use Spot Instances](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-instances-guidelines.html#emr-plan-spot-instances) in the *Amazon EMR Management Guide*\.
@@ -89,7 +89,7 @@ If you or Amazon EC2 interrupts a running Spot Instance, you are charged for the
 
 ### View Prices<a name="spot-pricing-view-prices"></a>
 
-To view the current \(updated every five minutes\) lowest Spot price per region and instance type, see the [Spot Instances Pricing](https://aws.amazon.com/ec2/spot/pricing/) page\.
+To view the current \(updated every five minutes\) lowest Spot price per AWS Region and instance type, see the [Spot Instances Pricing](https://aws.amazon.com/ec2/spot/pricing/) page\.
 
 To view the Spot price history for the past three months, use the Amazon EC2 console or the [describe\-spot\-price\-history](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-spot-price-history.html) command \(AWS CLI\)\. For more information, see [Spot Instance Pricing History](using-spot-instances-history.md)\.
 

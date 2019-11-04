@@ -333,7 +333,7 @@ The following example uses the `diversified` allocation strategy\. The launch sp
 }
 ```
 
-A best practice to increase the chance that a spot request can be fulfilled by EC2 capacity in the event of an outage in one of the Availability Zones is to diversify across AZs\. For this scenario, include each AZ available to you in the launch specification\. And, instead of using the same subnet each time, use three unique subnets \(each mapping to a different AZ\)\. 
+A best practice to increase the chance that a spot request can be fulfilled by EC2 capacity in the event of an outage in one of the Availability Zones is to diversify across zones\. For this scenario, include each Availability Zone available to you in the launch specification\. And, instead of using the same subnet each time, use three unique subnets \(each mapping to a different zone\)\. 
 
 **Availability Zone**
 

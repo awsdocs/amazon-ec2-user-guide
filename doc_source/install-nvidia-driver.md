@@ -36,13 +36,49 @@ There are two ways that you can use NVIDIA GRID software for graphics applicatio
 **Option 1: Use an AMI with GRID for your G4 instances**  
 To find an AMI, use this link: [NVIDIA Marketplace offerings](http://aws.amazon.com/marketplace/search/results/?page=1&filters=instance_types&instance_types=g4dn.xlarge&searchTerms=NVIDIA%20GRID)\.
 
-**Option 2: Download the NVIDIA GRID vGaming driver**  
-You can download the NVIDIA GRID driver from Amazon S3 using this link: [NVIDIA Linux Gaming Driver for G4 Instances](https://s3.amazonaws.com/nvidia-gaming/NVIDIA-Linux-x86_64-435.22-grid.run)\.
+**Option 2: Download the NVIDIA GRID vGaming driver**
 
-**Important**  
-This download is available to AWS customers only\. By downloading, you agree to use the downloaded software only to develop AMIs for use with the NVIDIA Tesla T4 hardware\. Upon installation of the software, you are bound by the terms of the [NVIDIA GRID Cloud End User License Agreement](http://aws-nvidia-license-agreement.s3.amazonaws.com/NvidiaGridAWSUserLicenseAgreement.DOCX)\.
+This driver is available to AWS customers only\. By downloading, you agree to use the downloaded software only to develop AMIs for use with the NVIDIA Tesla T4 hardware\. Upon installation of the software, you are bound by the terms of the [NVIDIA GRID Cloud End User License Agreement](http://aws-nvidia-license-agreement.s3.amazonaws.com/NvidiaGridAWSUserLicenseAgreement.DOCX)\.
 
 If you own GRID licenses, you should be able to use those licenses on your G4 instances\. For more information, see [NVIDIA GRID Software Quick Start Guide](https://docs.nvidia.com/grid/latest/grid-software-quick-start-guide/)\.
+
+Use the following procedure to install this driver\.
+
+1. Connect to your Linux instance\. Install gcc and make, if they are not already installed\.
+
+1. Download and install the NVIDIA GRID driver installation utility from Amazon S3 using the following command\.
+
+   ```
+   [ec2-user ~]$ curl -o NVIDIA.run https://s3.amazonaws.com/nvidia-gaming/NVIDIA-Linux-x86_64-435.22-grid.run
+   ```
+
+1. Add permissions to run the driver installation utility using the following command\.
+
+   ```
+   [ec2-user ~]$ chmod +x NVIDIA.run
+   ```
+
+1. Run the installer using the following command\.
+
+   ```
+   [ec2-user ~]$ sudo ./NVIDIA.run
+   ```
+
+1. Use the following command to create the required configuration file\.
+
+   ```
+   [ec2-user ~]$ cat << EOF | sudo tee -a /etc/nvidia/gridd.conf
+   vGamingMarketplace=2
+   EOF
+   ```
+
+1. Use the following command to download and rename the certification file\.
+
+   ```
+   [ec2-user ~]$ sudo curl -o /etc/nvidia/GridSwCert.txt "https://s3.amazonaws.com/nvidia-gaming/GridSwCert-Linux.cert"
+   ```
+
+1. Reboot your instance\.
 
 ## NVIDIA GRID Drivers for G3 Instances<a name="obtain-nvidia-GRID-driver-linux"></a>
 

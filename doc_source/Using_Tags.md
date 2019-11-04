@@ -29,7 +29,7 @@ Tags don't have any semantic meaning to Amazon EC2 and are interpreted strictly 
 
 You can work with tags using the AWS Management Console, the AWS CLI, and the Amazon EC2 API\.
 
-If you're using AWS Identity and Access Management \(IAM\), you can control which users in your AWS account have permission to create, edit, or delete tags\. For more information, see [Controlling Access to Amazon EC2 Resources](UsingIAM.md)\.
+If you're using AWS Identity and Access Management \(IAM\), you can control which users in your AWS account have permission to create, edit, or delete tags\. For more information, see [Identity and Access Management for Amazon EC2](security-iam.md)\.
 
 ## Tagging Your Resources<a name="tag-resources"></a>
 
@@ -46,7 +46,7 @@ The following table describes the Amazon EC2 resources that can be tagged, and t
 
 | Resource | Supports tags | Supports tagging on creation | 
 | --- | --- | --- | 
-|  AFI  |  Yes  |  No  | 
+|  AFI  |  Yes  |  Yes  | 
 |  AMI  |  Yes  | No | 
 |  Bundle task  |  No  | No | 
 |  Capacity Reservation  |  Yes  |  Yes  | 
@@ -109,7 +109,7 @@ The following basic restrictions apply to tags:
 + Maximum value length – 256 Unicode characters in UTF\-8
 + Although EC2 allows for any character in its tags, other services are more restrictive\. The allowed characters across services are: letters, numbers, and spaces representable in UTF\-8, and the following characters: \+ \- = \. \_ : / @\.
 + Tag keys and values are case\-sensitive\.
-+ Don't use the `aws:` prefix for either keys or values; it's reserved for AWS use\. You can't edit or delete tag keys or values with this prefix\. Tags with this prefix do not count against your tags per resource limit\.
++ The `aws:` prefix is reserved for AWS use\. If a tag has a tag key with this prefix, then you can't edit or delete the tag's key or value\. Tags with the `aws:` prefix do not count against your tags per resource limit\.
 
 You can't terminate, stop, or delete a resource based solely on its tags; you must specify the resource identifier\. For example, to delete snapshots that you tagged with a tag key called `DeleteMe`, you must use the `DeleteSnapshots` action with the resource identifiers of the snapshots, such as `snap-1234567890abcdef0`\. 
 

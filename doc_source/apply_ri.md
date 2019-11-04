@@ -14,13 +14,13 @@ Regional Reserved Instances are purchased for a Region and provide Availability 
 
 Regional Reserved Instances also provide instance size flexibility where the Reserved Instance discount applies to instance usage within the instance family, regardless of size\.
 
-**Limitations for instance size flexibility**  
-Instance size flexibility only applies to Reserved Instances that use the Amazon Linux/Unix platform with default tenancy\.
+**Limitations for instance size flexibility**
 
 Instance size flexibility does not apply to the following Reserved Instances:
 + Reserved Instances that are purchased for a specific Availability Zone \(zonal Reserved Instances\)
 + Reserved Instances with dedicated tenancy
-+ Reserved Instances for Windows, Windows with SQL Standard, Windows with SQL Server Enterprise, Windows with SQL Server Web, RHEL, and SLES
++ Reserved Instances for Windows Server, Windows Server with SQL Standard, Windows Server with SQL Server Enterprise, Windows Server with SQL Server Web, RHEL, and SLES
++ Reserved Instances for G4 instances
 
 ### Instance Size Flexibility Determined by Normalization Factor<a name="ri-normalization-factor"></a>
 
@@ -60,7 +60,6 @@ Or, if you have one `t2.large` instance running in your account in the US East \
 
 ![\[Applying a Regional Reserved Instance\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ri-instance-flex-partial.png)
 
-**Note**  
 The normalization factor is also applied when modifying Reserved Instances\. For more information, see [Modifying Reserved Instances](ri-modifying.md)\.
 
 #### Normalization Factor for Bare Metal Instances<a name="ri-normalization-factor-bare-metal"></a>

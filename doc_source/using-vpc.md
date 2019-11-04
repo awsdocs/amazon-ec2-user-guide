@@ -15,4 +15,4 @@ For more information about Amazon VPC, see the following documentation\.
 | --- | --- | 
 |  [Amazon VPC User Guide](https://docs.aws.amazon.com/vpc/latest/userguide/)  |  Describes key concepts and provides instructions for using the features of Amazon VPC\.  | 
 |  [Amazon VPC Peering Guide](https://docs.aws.amazon.com/vpc/latest/peering/)  |  Describes VPC peering connections and provides instructions for using them\.  | 
-|  [Amazon VPC Network Administrator Guide](https://docs.aws.amazon.com/vpc/latest/adminguide/)  |  Helps network administrators configure customer gateways\.  | 
+|  [AWS Site\-to\-Site VPN Network Administrator Guide](https://docs.aws.amazon.com/vpc/latest/adminguide/)  |  Helps network administrators configure customer gateways\.  | 

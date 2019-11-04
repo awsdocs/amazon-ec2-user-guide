@@ -138,10 +138,10 @@ For more information, see the following:
   The following AMIs meet these requirements:
   + Amazon Linux 2
   + Amazon Linux AMI 2018\.03
-  + Ubuntu 14\.04 or later
+  + Ubuntu 14\.04 \(with `linux-aws` kernel\) or later
   + Red Hat Enterprise Linux 7\.4 or later
   + SUSE Linux Enterprise Server 12 SP2 or later
-  + CentOS 7 or later
+  + CentOS 7\.4\.1708 or later
   + FreeBSD 11\.1 or later
 + C5, C5d, and C5n instances support a maximum of 28 attachments, including network interfaces, EBS volumes, and NVMe instance store volumes\. Every instance has at least one network interface attachment\.
 + Launching a bare metal instance boots the underlying server, which includes verifying all hardware and firmware components\. This means that it can take 20 minutes from the time the instance enters the running state until it becomes available over the network\.

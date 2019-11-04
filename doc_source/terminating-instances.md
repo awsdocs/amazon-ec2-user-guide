@@ -2,7 +2,7 @@
 
 You can delete your instance when you no longer need it\. This is referred to as *terminating* your instance\. As soon as the state of an instance changes to `shutting-down` or `terminated`, you stop incurring charges for that instance\.
 
-You can't connect to or restart an instance after you've terminated it\. However, you can launch additional instances using the same AMI\. If you'd rather stop and restart your instance, or hibernate it, see [Stop and Start Your Instance](Stop_Start.md) or [Hibernate Your Instance](Hibernate.md)\. For more information, see [Differences Between Reboot, Stop, Hibernate, and Terminate](ec2-instance-lifecycle.md#lifecycle-differences)\.
+You can't connect to or restart an instance after you've terminated it\. However, you can launch additional instances using the same AMI\. If you'd rather stop and restart your instance, or hibernate it, see [Stop and Start Your Instance](Stop_Start.md) or [Hibernate Your Linux Instance](Hibernate.md)\. For more information, see [Differences Between Reboot, Stop, Hibernate, and Terminate](ec2-instance-lifecycle.md#lifecycle-differences)\.
 
 **Topics**
 + [Instance Termination](#termination-overview)

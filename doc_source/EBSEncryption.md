@@ -50,10 +50,10 @@ Encryption is supported by all EBS volume types\. You can expect the same IOPS p
 ### Supported Instance Types<a name="EBSEncryption_supported_instances"></a>
 
 Amazon EBS encryption is available on the instance types listed below\. You can attach both encrypted and unencrypted volumes to these instance types simultaneously\.
-+ General purpose: A1, M3, M4, M5, M5a, M5ad, M5d, T2, T3, and T3a
++ General purpose: A1, M3, M4, M5, M5a, M5ad, M5d, M5dn, M5n, T2, T3, and T3a
 + Compute optimized: C3, C4, C5, C5d, and C5n
-+ Memory optimized: `cr1.8xlarge`, R3, R4, R5, R5a, R5ad, R5d, `u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, X1, X1e, and z1d
-+ Storage optimized: D2, `h1.2xlarge`, `h1.4xlarge`, I2, and I3
++ Memory optimized: `cr1.8xlarge`, R3, R4, R5, R5a, R5ad, R5d, R5dn, R5n, `u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, `u-18tb1.metal`, `u-24tb1.metal`, X1, X1e, and z1d
++ Storage optimized: D2, `h1.2xlarge`, `h1.4xlarge`, I2, I3, and I3en
 + Accelerated computing: F1, G2, G3, G4, P2, and P3
 
 ### Permissions for IAM Users<a name="ebs-encryption-permissions"></a>
@@ -91,7 +91,7 @@ For more information, see [Default Key Policy](https://docs.aws.amazon.com/kms/l
 
 ## Default Key for EBS Encryption<a name="EBSEncryption_key_mgmt"></a>
 
-Amazon EBS automatically creates a unique AWS managed CMK in each Region where you store AWS resource3\. This key have the alias `alias/aws/ebs`\. By default, Amazon EBS uses this key for encryption\. Alternatively, you can specify a customer managed CMK that you created as the default key for EBS encryption\. Using your own CMK gives you more flexibility, including the ability to create, rotate, and disable keys\.
+Amazon EBS automatically creates a unique AWS managed CMK in each Region where you store AWS resources\. This key has the alias `alias/aws/ebs`\. By default, Amazon EBS uses this key for encryption\. Alternatively, you can specify a customer managed CMK that you created as the default key for EBS encryption\. Using your own CMK gives you more flexibility, including the ability to create, rotate, and disable keys\.
 
 **To configure the default key for EBS encryption for a Region**
 
@@ -107,14 +107,14 @@ Amazon EBS automatically creates a unique AWS managed CMK in each Region where y
 
 ## Encryption by Default<a name="encryption-by-default"></a>
 
-You can configure your AWS account to enforce the encryption of the new EBS volumes and snapshots that you create\. For example, Amazon EBS encrypts the EBS volumes created when you launch an instance and the snapshots that you create from an unencrypted snapshot or volume\.
+You can configure your AWS account to enforce the encryption of the new EBS volumes and snapshot copies that you create\. For example, Amazon EBS encrypts the EBS volumes created when you launch an instance and the snapshots that you copy from an unencrypted snapshot\. For examples of transitioning from unencrypted to encrypted EBS resources, see [Encrypting Unencrypted Resources](#encrypt-unencrypted)\.
 
-Encryption by default has no effect on existing EBS volumes or snapshots\. When you copy unencrypted snapshots or restore unencrypted volumes, the resulting snapshots or volumes are encrypted\. For examples of transitioning from unencrypted to encrypted EBS resources, see [Encrypting Unencrypted Resources](#encrypt-unencrypted)\.
+Encryption by default has no effect on existing EBS volumes or snapshots\.
 
 **Considerations**
 + Encryption by default is a Region\-specific setting\. If you enable it for a Region, you cannot disable it for individual volumes or snapshots in that Region\.
 + When you enable encryption by default, you can launch an instance only if the instance type supports EBS encryption\. For more information, see [Supported Instance Types](#EBSEncryption_supported_instances)\.
-+ When migrating servers using AWS Server Migration Service \(SMS\), do not turn on encryption by default\. If encryption by default is already on and you are experiencing delta replication failures, turn off this feature\.
++ When migrating servers using AWS Server Migration Service \(SMS\), do not turn on encryption by default\. If encryption by default is already on and you are experiencing delta replication failures, turn off encryption by default\. Instead, enable AMI encryption when you create the replication job\.
 
 **To enable encryption by default for a Region**
 
@@ -201,7 +201,7 @@ The following diagram illustrates the process\.
 **Note**  
 If you copy a snapshot and encrypt it to a new CMK, a complete \(non\-incremental\) copy is always created, resulting in additional delay and storage costs\.
 
-You can encrypt an EBS volume by copying an unexpected snapshot to an encrypted snapshot and then creating a volume from the encrypted snapshot\. For more information, see [Copying an Amazon EBS Snapshot](ebs-copy-snapshot.md)\.
+You can encrypt an EBS volume by copying an unencrypted snapshot to an encrypted snapshot and then creating a volume from the encrypted snapshot\. For more information, see [Copying an Amazon EBS Snapshot](ebs-copy-snapshot.md)\.
 
 ### Copy an Unencrypted Snapshot \(Encryption by Default Enabled\)<a name="snapshot-account-on"></a>
 

@@ -15,7 +15,7 @@ If your instance has a public IPv4 address, it retains the public IPv4 address a
 ## Requirements<a name="instance-recovery-requirements"></a>
 
 The recover action is supported only on instances with the following characteristics:
-+ One of the following instance types: A1, C3, C4, C5, C5n, M3, M4, M5, M5a, P3, R3, R4, R5, R5a, T2, T3, T3a, X1, or X1e
++ One of the following instance types: A1, C3, C4, C5, C5n, M3, M4, M5, M5a, M5n, P3, R3, R4, R5, R5a, R5n, T2, T3, T3a, X1, or X1e
 + The `default` or `dedicated` instance tenancy
 + EBS volumes only \(do not configure instance store volumes\)
 

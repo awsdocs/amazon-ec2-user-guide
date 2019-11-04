@@ -79,7 +79,7 @@ If you know the product code, you can filter the results by product code\. This 
 
 ```
 aws ec2 describe-images --owners aws-marketplace \
---filters "Name=product-code,Values=product_code"
+--filters "Name=product-code,Values=product_code" \
 --query "sort_by(Images, &CreationDate)[-1].[ImageId]"
 ```
 

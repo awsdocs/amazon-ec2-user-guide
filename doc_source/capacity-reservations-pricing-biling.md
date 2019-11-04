@@ -6,7 +6,6 @@ When the Capacity Reservation is active, you are charged the equivalent On\-Dema
 
 For example, if you create a Capacity Reservation for 20 m4\.large Linux instances and run 15 m4\.large Linux instances in the same Availability Zone, you will be charged for 15 active instances and for 5 unused instances in the reservation\.
 
-**Note**  
 Regional RIs billing discounts apply to Capacity Reservations\. AWS automatically applies your active Regional RIs to active and unused Capacity Reservations that have matching attributes\. For more information about Regional RIs, see [Reserved Instances](ec2-reserved-instances.md)\.
 
 For more information about Amazon EC2 pricing, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/on-demand/)\.
@@ -23,7 +22,6 @@ The following example shows how a Capacity Reservation is billed\. The Capacity 
 
 Regional RIs billing discounts apply to Capacity Reservations\. AWS automatically applies your active Regional RIs to active Capacity Reservations that have matching attributes\. For more information about Regional RIs, see [Reserved Instances](ec2-reserved-instances.md)\.
 
-**Note**  
 Zonal RI billing discounts do not apply to Capacity Reservations\.
 
 When your instance\-hours and reservation\-hours combined exceed your total eligible discounted Regional RI hours, discounts are preferentially applied to instance\-hours first and then to unused reservation\-hours\.

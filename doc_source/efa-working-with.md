@@ -5,8 +5,8 @@ You can create, use, and manage an EFA much like any other elastic network inter
 ## EFA Requirements<a name="efa-reqs"></a>
 
 To use an EFA, you must do the following:
-+ Use one of the following supported instance types: `c5n.18xlarge`, `c5n.metal`, `i3en.24xlarge`, and `p3dn.24xlarge`\.
-+ Use one of the following supported AMIs: Amazon Linux, Amazon Linux 2, Red Hat Enterprise Linux 7\.6, CentOS 7\.6, Ubuntu 16\.04, and Ubuntu 18\.04\.
++ Use one of the following supported instance types: `c5n.18xlarge`, `c5n.metal`, `i3en.24xlarge`, `m5dn.24xlarge`, `m5n.24xlarge`, `r5dn.24xlarge`, `r5n.24xlarge`, and `p3dn.24xlarge`\.
++ Use one of the following supported AMIs: Amazon Linux, Amazon Linux 2, RHEL 7\.6, RHEL 7\.7, CentOS 7, Ubuntu 16\.04, and Ubuntu 18\.04\.
 + Install the EFA software components\. For more information, see [Step 3: Install Libfabric and Open MPI](efa-start.md#efa-start-enable) and [Step 4: \(Optional\) Install Intel MPI](efa-start.md#efa-start-impi)\.
 + Use a security group that allows all inbound and outbound traffic to and from the security group itself\. For more information, see [Step 1: Prepare an EFA\-Enabled Security Group](efa-start.md#efa-start-security)\.
 
@@ -80,7 +80,7 @@ $ aws ec2 run-instances --image-id ami_id --count 1 --instance-type c5n.18xlarge
 
 ## Adding an EFA to a Launch Template<a name="efa-launch-template"></a>
 
-You can create a launch template that contains the configuration information needed to launch EFA\-enabled instances\. To create an EFA\-enabled launch template, create a new launch template and specify a supported instance type, your EFA\-enabled AMI, and an EFA\-enabled security group\. For more information, see [Getting Started with EFAs](efa-start.md)\.
+You can create a launch template that contains the configuration information needed to launch EFA\-enabled instances\. To create an EFA\-enabled launch template, create a new launch template and specify a supported instance type, your EFA\-enabled AMI, and an EFA\-enabled security group\. For more information, see [Getting Started with EFA](efa-start.md)\.
 
 You can leverage launch templates to launch EFA\-enabled instances with other AWS services, such as AWS Batch\.
 

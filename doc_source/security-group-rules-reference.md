@@ -45,7 +45,7 @@ For the source IP, specify one of the following:
 | TCP | 6 | 5432 \(PostgreSQL\) | The default port to access a PostgreSQL database, for example, on an Amazon RDS instance | 
 | TCP | 6 | 1521 \(Oracle\) | The default port to access an Oracle database, for example, on an Amazon RDS instance | 
 
-You can optionally restrict outbound traffic from your database servers, for example, if you want allow access to the Internet for software updates, but restrict all other kinds of traffic\. You must first remove the default outbound rule that allows all outbound traffic\.
+You can optionally restrict outbound traffic from your database servers, for example, if you want allow access to the internet for software updates, but restrict all other kinds of traffic\. You must first remove the default outbound rule that allows all outbound traffic\.
 
 
 | Protocol type | Protocol number | Port | Destination IP | Notes | 

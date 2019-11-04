@@ -1,10 +1,10 @@
 # Deleting an Amazon EBS Snapshot<a name="ebs-deleting-snapshot"></a>
 
-When you delete a snapshot, only the data referenced exclusively by that snapshot is removed\. Deleting previous snapshots of a volume does not affect your ability to restore volumes from later snapshots of that volume\. 
+When you delete a snapshot, only the data referenced exclusively by that snapshot is removed\. Unique data will not be deleted unless all of the snapshots that reference that data are deleted\. Deleting previous snapshots of a volume does not affect your ability to restore volumes from later snapshots of that volume\. 
 
-Deleting a snapshot of a volume has no effect on the volume\. Deleting a volume has no effect on the snapshots made from it\.
+Deleting a snapshot of a volume has no effect on the volume\. Deleting a volume has no effect on the snapshots made from it\. 
 
-If you make periodic snapshots of a volume, the snapshots are *incremental*\. This means that only the blocks on the device that have changed after your last snapshot are saved in the new snapshot\. Even though snapshots are saved incrementally, the snapshot deletion process is designed so that you need to retain only the most recent snapshot in order to restore the volume\.
+If you make periodic snapshots of a volume, the snapshots are *incremental*\. This means that only the blocks on the device that have changed after your last snapshot are saved in the new snapshot\. Even though snapshots are saved incrementally, the snapshot deletion process is designed so that you need to retain only the most recent snapshot in order to restore the volume\. Data that was present on a volume, held in an earlier snapshot or series of snapshots, that is subsequently deleted from that volume at a later time, is still considered unique data of the earlier snapshots\. This unique data is not deleted from the sequence of snapshots unless all snapshots that reference the unique data are deleted\. 
 
 Deleting a snapshot might not reduce your organization's data storage costs\. Other snapshots might reference that snapshot's data, and referenced data is always preserved\. If you delete a snapshot containing data being used by a later snapshot, costs associated with the referenced data are allocated to the later snapshot\. For more information about how snapshots store data, see [How Incremental Snapshots Work](EBSSnapshots.md#how_snapshots_work) and the example below\.
 

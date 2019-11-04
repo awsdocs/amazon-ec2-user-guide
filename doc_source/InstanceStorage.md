@@ -124,6 +124,14 @@ The following table provides the quantity, size, type, and performance optimizat
 | m5d\.16xlarge | 4 x 600 GB \(2\.4 TB\) | NVMe SSD |  | ✔ | 
 | m5d\.24xlarge | 4 x 900 GB \(3\.6 TB\) | NVMe SSD |  | ✔ | 
 | m5d\.metal | 4 x 900 GB \(3\.6 TB\) | NVMe SSD |  | ✔ | 
+| m5dn\.large | 1 x 75 GB  | NVMe SSD |  | ✔ | 
+| m5dn\.xlarge | 1 x 150 GB | NVMe SSD |  | ✔ | 
+| m5dn\.2xlarge | 1 x 300 GB | NVMe SSD |  | ✔ | 
+| m5dn\.4xlarge | 2 x 300 GB \(600 GB\) | NVMe SSD |  | ✔ | 
+| m5dn\.8xlarge | 2 x 600 GB \(1\.2 TB\) | NVMe SSD |  | ✔ | 
+| m5dn\.12xlarge | 2 x 900 GB \(1\.8 TB\) | NVMe SSD |  | ✔ | 
+| m5dn\.16xlarge | 4 x 600 GB \(2\.4 TB\) | NVMe SSD |  | ✔ | 
+| m5dn\.24xlarge | 4 x 900 GB \(3\.6 TB\) | NVMe SSD |  | ✔ | 
 | p3dn\.24xlarge | 2 x 900 GB \(1\.8 TB\) | NVMe SSD |  | ✔ | 
 |  `r3.large`  |  1 x 32 GB  | SSD |  | ✔ | 
 |  `r3.xlarge`  |  1 x 80 GB  | SSD |  | ✔ | 
@@ -145,6 +153,14 @@ The following table provides the quantity, size, type, and performance optimizat
 | r5d\.16xlarge | 4 x 600 GB \(2\.4 TB\) | NVMe SSD |  | ✔ | 
 | r5d\.24xlarge | 4 x 900 GB \(3\.6 TB\) | NVMe SSD |  | ✔ | 
 | r5d\.metal | 4 x 900 GB \(3\.6 TB\) | NVMe SSD |  | ✔ | 
+| r5dn\.large | 1 x 75 GB | NVMe SSD |  | ✔ | 
+| r5dn\.xlarge | 1 x 150 GB | NVMe SSD |  | ✔ | 
+| r5dn\.2xlarge | 1 x 300 GB | NVMe SSD |  | ✔ | 
+| r5dn\.4xlarge | 2 x 300 GB \(600 GB\) | NVMe SSD |  | ✔ | 
+| r5dn\.8xlarge | 2 x 600 GB \(1\.2 TB\) | NVMe SSD |  | ✔ | 
+| r5dn\.12xlarge | 2 x 900 GB \(1\.8 TB\) | NVMe SSD |  | ✔ | 
+| r5dn\.16xlarge | 4 x 600 GB \(2\.4 TB\) | NVMe SSD |  | ✔ | 
+| r5dn\.24xlarge | 4 x 900 GB \(3\.6 TB\) | NVMe SSD |  | ✔ | 
 |  `x1.16xlarge`  |  1 x 1,920 GB  | SSD |  |  | 
 |  `x1.32xlarge`  |  2 x 1,920 GB \(3\.84 TB\)  | SSD |  |  | 
 |  `x1e.xlarge`  |  1 x 120 GB  | SSD |  |  | 

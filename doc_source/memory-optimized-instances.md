@@ -2,7 +2,7 @@
 
 Memory optimized instances are designed to deliver fast performance for workloads that process large data sets in memory\.
 
-**R4, R5, R5a, R5ad, R5d Instances**
+**R4, R5, R5a, R5ad, R5d, R5dn, and R5n Instances**
 
 These instances are well suited for the following applications:
 + High\-performance, relational \(MySQL\) and NoSQL \(MongoDB, Cassandra\) databases\.
@@ -18,7 +18,7 @@ These instances are well suited for the following applications:
 For more information, see [Amazon EC2 R5 Instances](https://aws.amazon.com/ec2/instance-types/r5)\.
 
 **High memory instances**  
-High memory instances \(`u-6tb1.metal`, `u-9tb1.metal`, and `u-12tb1.metal`\) offer 6 TiB, 9 TiB, and 12 TiB of memory per instance\. These instances are designed to run large in\-memory databases, including production installations of SAP HANA\. They offer bare metal performance with direct access to host hardware\.
+High memory instances \(`u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, `u-18tb1.metal`, and `u-24tb1.metal`\) offer 6 TiB, 9 TiB, 12 TiB, 18 TiB, and 24 TiB of memory per instance\. These instances are designed to run large in\-memory databases, including production installations of SAP HANA\. They offer bare metal performance with direct access to host hardware\.
 
 **X1 Instances**
 
@@ -105,9 +105,27 @@ The following is a summary of the hardware specifications for memory optimized i
 | r5d\.16xlarge | 64 | 512 | 
 | r5d\.24xlarge | 96 | 768 | 
 | r5d\.metal | 96 | 768 | 
+| r5dn\.large | 2 | 16 | 
+| r5dn\.xlarge | 4 | 32 | 
+| r5dn\.2xlarge | 8 | 64 | 
+| r5dn\.4xlarge | 16 | 128 | 
+| r5dn\.8xlarge | 32 | 256 | 
+| r5dn\.12xlarge | 48 | 384 | 
+| r5dn\.16xlarge | 64 | 512 | 
+| r5dn\.24xlarge | 96 | 768 | 
+| r5n\.large | 2 | 16 | 
+| r5n\.xlarge | 4 | 32 | 
+| r5n\.2xlarge | 8 | 64 | 
+| r5n\.4xlarge | 16 | 128 | 
+| r5n\.8xlarge | 32 | 256 | 
+| r5n\.12xlarge | 48 | 384 | 
+| r5n\.16xlarge | 64 | 512 | 
+| r5n\.24xlarge | 96 | 768 | 
 | u\-6tb1\.metal | 448 \* | 6,144 | 
 | u\-9tb1\.metal | 448 \* | 9,216 | 
 | u\-12tb1\.metal | 448 \* | 12,288 | 
+| u\-18tb1\.metal | 448 \* | 18,432 | 
+| u\-24tb1\.metal | 448 \* | 24,576 | 
 | x1\.16xlarge | 64 | 976 | 
 | x1\.32xlarge | 128 | 1,952 | 
 | x1e\.xlarge | 4 | 122 | 
@@ -146,6 +164,8 @@ X1e and X1 instances feature up to 128 vCPUs and are powered by four Intel Xeon 
 
 High memory instances \(`u-6tb1.metal`, `u-9tb1.metal`, and `u-12tb1.metal`\) are the first instances to be powered by an eight\-socket platform with the latest generation Intel Xeon Platinum 8176M \(Skylake\) processors that are optimized for mission\-critical enterprise workloads\.
 
+High Memory instances with 18 TB and 24 TB of memory \(`u-18tb1.metal` and `u-24tb1.metal`\) are the first instances powered by an 8\-socket platform with 2nd Generation Intel Xeon Scalable 8280L \(Cascade Lake\) processors\.
+
 Memory optimized instances enable increased cryptographic performance through the latest Intel AES\-NI feature, support Intel Transactional Synchronization Extensions \(TSX\) to boost the performance of in\-memory transactional data processing, and support Advanced Vector Extensions 2 \(Intel AVX2\) processor instructions to expand most integer commands to 256 bits\.
 
 Some memory optimized instances provide the ability to control processor C\-states and P\-states on Linux\. C\-states control the sleep levels that a core can enter when it is inactive, while P\-states control the desired performance \(measured by CPU frequency\) from a core\. For more information, see [Processor State Control for Your EC2 Instance](processor_state_control.md)\.
@@ -165,7 +185,11 @@ The following is a summary of network performance for memory optimized instances
 |  `r4.8xlarge` \| `r5.8xlarge` \| `r5.12xlarge` \| `r5a.12xlarge` \| `r5ad.12xlarge` \| `r5d.8xlarge` \| `r5d.12xlarge` \| `x1.16xlarge` \| `x1e.16xlarge` \| `z1d.6xlarge`  |  10 Gbps  | [ENA](enhanced-networking-ena.md) | 
 |  `r5a.16xlarge` \| `r5ad.16xlarge`  |  12 Gbps  | [ENA](enhanced-networking-ena.md) | 
 |  `r5.16xlarge` \| `r5a.24xlarge` \| `r5ad.24xlarge` \| `r5d.16xlarge`  |  20 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  `r4.16xlarge` \| `r5.24xlarge` \| `r5.metal` \| `r5d.24xlarge` \| `r5d.metal` \| `u-6tb1.metal` \| `u-9tb1.metal` \| `u-12tb1.metal` \| `x1.32xlarge` \| `x1e.32xlarge` \| `z1d.12xlarge` \| `z1d.metal`  |  25 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `r5dn.4xlarge` and smaller \| `r5n.4xlarge` and smaller   |  Up to 25 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `r4.16xlarge` \| `r5.24xlarge` \| `r5.metal` \| `r5d.24xlarge` \| `r5d.metal` \| `r5dn.8xlarge` \| `r5n.8xlarge` \| `u-6tb1.metal` \| `u-9tb1.metal` \| `u-12tb1.metal` \| `x1.32xlarge` \| `x1e.32xlarge` \| `z1d.12xlarge` \| `z1d.metal`  |  25 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  r5dn\.12xlarge \| r5n\.12xlarge  |  50 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  r5dn\.16xlarge \| r5n\.16xlarge  |  75 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  r5dn\.24xlarge \| r5n\.24xlarge \| u\-18tb1\.metal \| u\-24tb1\.metal  |  100 Gbps  | [ENA](enhanced-networking-ena.md) | 
 
 ## SSD I/O Performance<a name="r5d-z1d-instances-ssd-perf"></a>
 
@@ -189,6 +213,14 @@ If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-ba
 |  `r5d.16xlarge`  |  933,333  |  466,666  | 
 |  `r5d.24xlarge`  |  1,400,000  |  680,000  | 
 |  `r5d.metal`  |  1,400,000  |  680,000  | 
+|  `r5dn.large` \*  |  30,000  |  15,000  | 
+|  `r5dn.xlarge` \*  |  59,000  |  29,000  | 
+|  `r5dn.2xlarge` \*  |  117,000  |  57,000  | 
+|  `r5dn.4xlarge` \*  |  234,000  |  114,000  | 
+|  `r5dn.8xlarge`  |  466,666  |  233,333  | 
+|  `r5dn.12xlarge`  |  700,000  |  340,000  | 
+|  `r5dn.16xlarge`  |  933,333  |  466,666  | 
+|  `r5dn.24xlarge`  |  1,400,000  |  680,000  | 
 |  `z1d.large` \*  |  30,000  |  15,000  | 
 |  `z1d.xlarge` \*  |  59,000  |  29,000  | 
 |  `z1d.2xlarge` \*  |  117,000  |  57,000  | 
@@ -217,9 +249,13 @@ The following is a summary of features for memory optimized instances\.
 | R5a | Yes | Yes | No | Yes | 
 | R5ad | No | Yes | NVME \* | Yes | 
 | R5d | No | Yes | NVME \* | Yes | 
+| R5dn | No | Yes | NVME \* | Yes | 
+| R5n | Yes | Yes | No | Yes | 
 | `u-6tb1.metal` | Yes | Yes | No | No | 
 | `u-9tb1.metal` | Yes | Yes | No | No | 
 | `u-12tb1.metal` | Yes | Yes | No | No | 
+| `u-18tb1.metal` | Yes | Yes | No | No | 
+| `u-24tb1.metal` | Yes | Yes | No | No | 
 | X1 | No | No | SSD | Yes | 
 | X1e | No | No | SSD \* | Yes | 
 | z1d | No | Yes | NVME \* | Yes | 
@@ -251,19 +287,20 @@ The following AMIs support launching memory optimized instances:
 ## Release Notes<a name="memory-instance-limits"></a>
 + R5 and R5d instances feature a 3\.1 GHz Intel Xeon Platinum 8000 series processor\.
 + R5a and R5ad instances feature a 2\.5 GHz AMD EPYC 7000 series processor\.
-+ The following are requirements for high memory, R5, R5a, R5ad, R5d, and z1d instances:
++ The following are requirements for high memory, R5, R5a, R5ad, R5d, R5dn, R5n, and z1d instances:
   + NVMe drivers must be installed\. EBS volumes are exposed as [NVMe block devices](nvme-ebs-volumes.md)\.
   + Elastic Network Adapter \([ENA](enhanced-networking-ena.md)\) drivers must be installed\.
 
   The following AMIs meet these requirements:
   + Amazon Linux 2
   + Amazon Linux AMI 2018\.03
-  + Ubuntu 14\.04 or later
+  + Ubuntu 14\.04 \(with `linux-aws` kernel\) or later
   + Red Hat Enterprise Linux 7\.4 or later
   + SUSE Linux Enterprise Server 12 SP2 or later
-  + CentOS 7 or later
+  + CentOS 7\.4\.1708 or later
   + FreeBSD 11\.1 or later
-+ R5, R5a, R5ad, R5d, and z1d instances support a maximum of 28 attachments, including network interfaces, EBS volumes, and NVMe instance store volumes\. Every instance has at least one network interface attachment\. For example, if you have no additional network interface attachments on an EBS\-only instance, you could attach 27 EBS volumes to that instance\.
++ R5, R5a, R5ad, R5d, R5dn, R5n, and z1d instances support a maximum of 28 attachments, including network interfaces, EBS volumes, and NVMe instance store volumes\. Every instance has at least one network interface attachment\. For example, if you have no additional network interface attachments on an EBS\-only instance, you could attach 27 EBS volumes to that instance\.
++ `u-6tb1.metal`, `u-9tb1.metal`, and `u-12tb1.metal` instances support a maximum of 13 EBS volumes\. `u-18tb1.metal` and `u-24tb1.metal` instances support a maximum of 19 EBS volumes\.
 + Launching a bare metal instance boots the underlying server, which includes verifying all hardware and firmware components\. This means that it can take 20 minutes from the time the instance enters the running state until it becomes available over the network\.
 + To attach or detach EBS volumes or secondary network interfaces from a bare metal instance requires PCIe native hotplug support\. Amazon Linux 2 and the latest versions of the Amazon Linux AMI support PCIe native hotplug, but earlier versions do not\. You must enable the following Linux kernel configuration options:
 

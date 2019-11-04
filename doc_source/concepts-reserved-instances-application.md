@@ -2,9 +2,8 @@
 
 All Reserved Instances provide you with a discount compared to On\-Demand pricing\. With Reserved Instances, you pay for the entire term regardless of actual use\. You can choose to pay for your Reserved Instance upfront, partially upfront, or monthly, depending on the [payment option](ec2-reserved-instances.md#ri-payment-options) specified for the Reserved Instance\. 
 
-When Reserved Instances expire, you are charged On\-Demand rates for EC2 instance usage\. You can set up a billing alert to warn you when your bill exceeds a threshold you define\. For more information, see [Monitoring Charges with Alerts and Notifications](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/monitor-charges.html) in the *AWS Billing and Cost Management User Guide*\.
+When Reserved Instances expire, you are charged On\-Demand rates for EC2 instance usage\. You can queue a Reserved Instance for purchase up to three years in advance\. This can help you ensure that you have uninterrupted coverage\. For more information, see [Queuing Your Purchase](ri-market-concepts-buying.md#ri-queued-purchase)\.
 
-**Note**  
 The AWS Free Tier is available for new AWS accounts\. If you are using the AWS Free Tier to run Amazon EC2 instances, and you purchase a Reserved Instance, you are charged under standard pricing guidelines\. For information, see [AWS Free Tier](https://aws.amazon.com/free)\.
 
 **Topics**

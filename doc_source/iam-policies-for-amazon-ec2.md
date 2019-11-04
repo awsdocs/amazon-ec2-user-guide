@@ -8,7 +8,7 @@ When you attach a policy to a user or group of users, it allows or denies the us
 
 An IAM policy must grant or deny permissions to use one or more Amazon EC2 actions\. It must also specify the resources that can be used with the action, which can be all resources, or in some cases, specific resources\. The policy can also include conditions that you apply to the resource\. 
 
-Amazon EC2 partially supports resource\-level permissions\. This means that for some EC2 API actions, you cannot specify which resource a user is allowed to work with for that action; instead, you have to allow users to work with all resources for that action\. 
+Amazon EC2 partially supports resource\-level permissions\. This means that for some EC2 API actions, you cannot specify which resource a user is allowed to work with for that action\. Instead, you have to allow users to work with all resources for that action\. 
 
 
 | Task | Topic | 

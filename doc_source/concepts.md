@@ -39,7 +39,7 @@ First, you need to get set up to use Amazon EC2\. After you are set up, you are 
 
 **Networking and Security**
 + [Amazon EC2 Key Pairs](ec2-key-pairs.md)
-+ [Security Groups](using-network-security.md)
++ [Security Groups](ec2-security-groups.md)
 + [Elastic IP Addresses](elastic-ip-addresses-eip.md)
 + [Amazon EC2 and Amazon VPC](using-vpc.md)
 

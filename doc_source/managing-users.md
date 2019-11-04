@@ -6,23 +6,25 @@ Each Linux instance launches with a default Linux system user account\. The defa
 Linux system users should not be confused with AWS Identity and Access Management \(IAM\) users\. For more information, see [IAM Users and Groups](https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_WorkingWithGroupsAndUsers.html) in the *IAM User Guide*\.
 
 **Topics**
-+ [Best Practice](#add-user-best-practice)
++ [Considerations](#add-user-best-practice)
 + [Creating a User Account](#create-user-account)
 + [Removing a User Account](#delete-user-acount)
 
-## Best Practice<a name="add-user-best-practice"></a>
+## Considerations<a name="add-user-best-practice"></a>
 
-Using the default user account is adequate for many applications\. However, you may choose to add user accounts so that individuals can have their own files and workspaces\. Furthermore, creating user accounts for new users is much more secure than granting multiple \(possibly inexperienced\) users access to the default user account, because the default user account can cause a lot of damage to a system when used improperly\. For more information, see [Tips for Securing Your EC2 Instance](https://aws.amazon.com/articles/tips-for-securing-your-ec2-instance/)\.
+Using the default user account is adequate for many applications\. However, you may choose to add user accounts so that individuals can have their own files and workspaces\. Furthermore, creating user accounts for new users is much more secure than granting multiple \(possibly inexperienced\) users access to the default user account, because the default user account can cause a lot of damage to a system when used improperly\. For more information, see [Tips for Securing Your EC2 Instance](http://aws.amazon.com/articles/tips-for-securing-your-ec2-instance/)\.
+
+To enable users SSH access to your EC2 instance using a Linux system user account, you must share the SSH key with the user\. Alternatively, you can use EC2 Instance Connect to provide access to users without the need to share and manage SSH keys\. For more information, see [Connecting to Your Linux Instance Using EC2 Instance Connect](Connect-using-EC2-Instance-Connect.md)\.
 
 ## Creating a User Account<a name="create-user-account"></a>
 
 First create the user account, and then add the SSH public key that allows the user to connect to and log into the instance\.
 
 **Prerequisites**
-+ **Create a key pair or use an existing key pair\.**
++ **Create a key pair for each user or use existing key pairs**
 
-  For more information, see [Creating a Key Pair Using Amazon EC2](ec2-key-pairs.md#having-ec2-create-your-key-pair)\.
-+ **Retrieve the public key from the key pair\.**
+  Share the `.pem` files with the corresponding user\. For more information, see [Creating a Key Pair Using Amazon EC2](ec2-key-pairs.md#having-ec2-create-your-key-pair)\.
++ **Retrieve the public key from each key pair**
 
   For more information, see [Retrieving the Public Key for Your Key Pair on Linux](ec2-key-pairs.md#retrieving-the-public-key) or [Retrieving the Public Key for Your Key Pair on Windows](ec2-key-pairs.md#retrieving-the-public-key-windows)\.
 
@@ -89,11 +91,10 @@ Without these exact file permissions, the user will not be able to log in\.
 
 ## Removing a User Account<a name="delete-user-acount"></a>
 
-If a user account is no longer needed, you can remove that account so that it may no longer be used\.
+If a user account is no longer needed, you can remove that account so that it can no longer be used\.
 
-**To remove a user from the system**
-+ Use the userdel command to remove the user account from the system\. When you specify the `-r` parameter, the user's home directory and mail spool are deleted\. To keep the user's home directory and mail spool, omit the `-r` parameter\.
+Use the userdel command to remove the user account from the system\. When you specify the `-r` parameter, the user's home directory and mail spool are deleted\. To keep the user's home directory and mail spool, omit the `-r` parameter\.
 
-  ```
-  [ec2-user ~]$ sudo userdel -r olduser
-  ```
+```
+[ec2-user ~]$ sudo userdel -r olduser
+```

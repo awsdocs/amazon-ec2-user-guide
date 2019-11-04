@@ -11,7 +11,7 @@ The following topics explain the structure of an IAM policy\.
 
 ## Policy Syntax<a name="policy-syntax"></a>
 
-An IAM policy is a JSON document that consists of one or more statements\. Each statement is structured as follows:
+An IAM policy is a JSON document that consists of one or more statements\. Each statement is structured as follows\.
 
 ```
 {
@@ -78,7 +78,7 @@ arn:aws:[service]:[region]:[account]:resourceType/resourcePath
 The service \(for example, `ec2`\)\.
 
 *region*  
-The region for the resource \(for example, `us-east-1`\)\.
+The Region for the resource \(for example, `us-east-1`\)\.
 
 *account*  
 The AWS account ID, with no hyphens \(for example, `123456789012`\)\.
@@ -89,19 +89,19 @@ The type of resource \(for example, `instance`\)\.
 *resourcePath*  
 A path that identifies the resource\. You can use the \* wildcard in your paths\.
 
-For example, you can indicate a specific instance \(`i-1234567890abcdef0`\) in your statement using its ARN as follows: 
+For example, you can indicate a specific instance \(`i-1234567890abcdef0`\) in your statement using its ARN as follows\. 
 
 ```
 "Resource": "arn:aws:ec2:us-east-1:123456789012:instance/i-1234567890abcdef0"
 ```
 
-You can also specify all instances that belong to a specific account by using the \* wildcard as follows:
+You can also specify all instances that belong to a specific account by using the \* wildcard as follows\.
 
 ```
 "Resource": "arn:aws:ec2:us-east-1:123456789012:instance/*"
 ```
 
-To specify all resources, or if a specific API action does not support ARNs, use the \* wildcard in the `Resource` element as follows:
+To specify all resources, or if a specific API action does not support ARNs, use the \* wildcard in the `Resource` element as follows\.
 
 ```
 "Resource": "*"
@@ -113,7 +113,7 @@ The following table describes the ARNs for each type of resource used by the Ama
 | Resource Type | ARN | 
 | --- | --- | 
 |  All Amazon EC2 resources  |  arn:aws:ec2:\*  | 
-|  All Amazon EC2 resources owned by the specified account in the specified region  |  arn:aws:ec2:*region*:*account*:\*  | 
+|  All Amazon EC2 resources owned by the specified account in the specified Region  |  arn:aws:ec2:*region*:*account*:\*  | 
 |  Customer gateway  |  arn:aws:ec2:*region*:*account*:customer\-gateway/*cgw\-id* Where *cgw\-id* is cgw\-*xxxxxxxx*  | 
 |  DHCP options set  |  arn:aws:ec2:*region*:*account*:dhcp\-options/*dhcp\-options\-id* Where *dhcp\-options\-id* is dopt\-*xxxxxxxx*  | 
 |  Elastic GPU  |  arn:aws:ec2:*region*:*account*:elastic\-gpu/\*  | 
@@ -139,7 +139,7 @@ The following table describes the ARNs for each type of resource used by the Ama
 |  VPN connection  |  arn:aws:ec2:*region*:*account*:vpn\-connection/*vpn\-connection\-id* Where *vpn\-connection\-id* is vpn\-*xxxxxxxx*  | 
 |  VPN gateway  |  arn:aws:ec2:*region*:*account*:vpn\-gateway/*vpn\-gateway\-id* Where *vpn\-gateway\-id* is vgw\-*xxxxxxxx*  | 
 
-Many Amazon EC2 API actions involve multiple resources\. For example, `AttachVolume` attaches an Amazon EBS volume to an instance, so an IAM user must have permissions to use the volume and the instance\. To specify multiple resources in a single statement, separate their ARNs with commas, as follows:
+Many Amazon EC2 API actions involve multiple resources\. For example, `AttachVolume` attaches an Amazon EBS volume to an instance, so an IAM user must have permissions to use the volume and the instance\. To specify multiple resources in a single statement, separate their ARNs with commas, as follows\.
 
 ```
 "Resource": ["arn1", "arn2"]
@@ -174,7 +174,7 @@ Amazon EC2 implements the following service\-specific condition keys\. For infor
 |  `ec2:ImageType`  |  "ec2:ImageType":"*image\-type\-api\-name*" Where *image\-type\-api\-name* is `machine` \| `aki` \| `ari`  |  String, Null  | 
 |  `ec2:InstanceMarketType`  |  "ec2:InstanceMarketType":"*market\-type*" Where *market\-type* is `spot` \| `on-demand`  |  String, Null  | 
 |  `ec2:InstanceProfile`  |  "ec2:InstanceProfile":"*instance\-profile\-arn*" Where *instance\-profile\-arn* is the instance profile ARN  |  ARN, Null  | 
-| `ec2:InstanceType`  |  "ec2:InstanceType":"*instance\-type\-api\-name*" Where *instance\-type\-api\-name* is the name of the instance type\.  |  String, Null  | 
+| `ec2:InstanceType`  |  "ec2:InstanceType":"*instance\-type\-api\-name*" Where *instance\-type\-api\-name* is the name of the instance type  |  String, Null  | 
 |  `ec2:IsLaunchTemplateResource`  |  "ec2:IsLaunchTemplateResource":"*launch\-template\-resource\-flag*" Where *launch\-template\-resource\-flag* is `true` \| `false`  |  Boolean, Null  | 
 |  `ec2:LaunchTemplate`  |  "ec2:LaunchTemplate":"*launch\-template\-arn*" Where *launch\-template\-arn* is the launch template ARN  |  ARN, Null  | 
 |  `ec2:Owner`  |  "ec2:Owner":"*account\-id*" Where *account\-id* is `amazon` \| `aws-marketplace` \| *aws\-account\-id*  |  String, Null  | 
@@ -185,7 +185,7 @@ Amazon EC2 implements the following service\-specific condition keys\. For infor
 | ec2:PlacementGroupStrategy |  "ec2:PlacementGroupStrategy":"*placement\-group\-strategy*" Where *placement\-group\-strategy* is `cluster` \| `spread`  | String, Null | 
 |  `ec2:ProductCode`  |  "ec2:ProductCode":"*product\-code*" Where *product\-code* is the product code  |  String, Null  | 
 | `ec2:Public` |  "ec2:Public":"*public\-flag*" Where *public\-flag* is `true` \| `false` \(for an AMI\)  |  Boolean, Null  | 
-|  `ec2:Region`  |  "ec2:Region":"*region\-name*" Where *region\-name* is the name of the region \(for example, `us-east-2`\)\. To list your regions, use [describe\-regions](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-regions.html)\. This condition key can be used with all Amazon EC2 actions\.  |  String, Null  | 
+|  `ec2:Region`  |  "ec2:Region":"*region\-name*" Where *region\-name* is the name of the Region \(for example, `us-east-2`\)\. To list your Regions, use [describe\-regions](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-regions.html)\. This condition key can be used with all Amazon EC2 actions\.  |  String, Null  | 
 | `ec2:RequesterVpc` |  "ec2:RequesterVpc":"*vpc\-arn*" Where *vpc\-arn* is the VPC ARN for the requester VPC in a VPC peering connection  |  ARN, Null  | 
 |  `ec2:ReservedInstancesOfferingType`  |  "ec2:ReservedInstancesOfferingType":"*offering\-type* Where *offering\-type* is `No Upfront` \| `Partial Upfront` \| `All Upfront`  |  String, Null  | 
 |  `ec2:ResourceTag/`*tag\-key*  |  "ec2:ResourceTag/*tag\-key*":"*tag\-value*" Where *tag\-key* and *tag\-value* are the tag\-key pair  |  String, Null  | 

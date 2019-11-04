@@ -11,9 +11,11 @@ A1 instances are ideally suited for scale\-out workloads that are supported by t
 + Distributed data stores
 + Applications that require the Arm instruction set
 
+`a1.metal` instances provide your applications with direct access to physical resources of the host server, such as processors and memory\.
+
 For more information, see [Amazon EC2 A1 Instances](https://aws.amazon.com/ec2/instance-types/a1)\.
 
-**M5, M5a, M5ad, M5d Instances**
+**M5, M5a, M5ad, M5d, M5dn, and M5n Instances**
 
 These instances provide an ideal cloud infrastructure, offering a balance of compute, memory, and networking resources for a broad range of applications that are deployed in the cloud\. M5 instances are well\-suited for the following applications:
 + Web and application servers
@@ -59,6 +61,7 @@ The following is a summary of the hardware specifications for general purpose in
 | a1\.xlarge | 4 | 8 | 
 | a1\.2xlarge | 8 | 16 | 
 | a1\.4xlarge | 16 | 32 | 
+| a1\.metal | 16 | 32 | 
 | m4\.large | 2 | 8 | 
 | m4\.xlarge | 4 | 16 | 
 | m4\.2xlarge | 8 | 32 | 
@@ -97,6 +100,22 @@ The following is a summary of the hardware specifications for general purpose in
 | m5d\.16xlarge | 64 | 256 | 
 | m5d\.24xlarge | 96 | 384 | 
 | m5d\.metal | 96 | 384 | 
+| m5dn\.large | 2 | 8 | 
+| m5dn\.xlarge | 4 | 16 | 
+| m5dn\.2xlarge | 8 | 32 | 
+| m5dn\.4xlarge | 16 | 64 | 
+| m5dn\.8xlarge | 32 | 128 | 
+| m5dn\.12xlarge | 48 | 192 | 
+| m5dn\.16xlarge | 64 | 256 | 
+| m5dn\.24xlarge | 96 | 384 | 
+| m5n\.large | 2 | 8 | 
+| m5n\.xlarge | 4 | 16 | 
+| m5n\.2xlarge | 8 | 32 | 
+| m5n\.4xlarge | 16 | 64 | 
+| m5n\.8xlarge | 32 | 128 | 
+| m5n\.12xlarge | 48 | 192 | 
+| m5n\.16xlarge | 64 | 256 | 
+| m5n\.24xlarge | 96 | 384 | 
 | t2\.nano | 1 | 0\.5 | 
 | t2\.micro | 1 | 1 | 
 | t2\.small | 1 | 2 | 
@@ -144,12 +163,16 @@ The following is a summary of network performance for general purpose instances 
 | t3\.nano \| t3\.micro \| t3\.small \| t3\.medium \| t3\.large \| t3\.xlarge \| t3\.2xlarge \| t3a\.nano \| t3a\.micro \| t3a\.small \| t3a\.medium \| t3a\.large \| t3a\.xlarge \| t3a\.2xlarge | Up to 5 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  `m4.large`  |  Moderate  |  [Intel 82599 VF](sriov-networking.md)  | 
 |  `m4.xlarge` \| `m4.2xlarge` \| `m4.4xlarge`  |  High  |  [Intel 82599 VF](sriov-networking.md)  | 
-|  `a1.medium` \| `a1.large` \| `a1.xlarge` \| `a1.2xlarge` \| `a1.4xlarge` \| `m5.large` \| `m5.xlarge` \| `m5.2xlarge` \| `m5.4xlarge` \| `m5a.large` \| `m5a.xlarge` \| `m5a.2xlarge` \| `m5a.4xlarge` \| `m5a.8xlarge` \| `m5ad.large` \| `m5ad.xlarge` \| `m5ad.2xlarge` \| `m5ad.4xlarge` \| `m5d.large` \| `m5d.xlarge` \| `m5d.2xlarge` \| `m5d.4xlarge`   |  Up to 10 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `a1.medium` \| `a1.large` \| `a1.xlarge` \| `a1.2xlarge` \| `a1.4xlarge` \| `a1.metal` \| `m5.large` \| `m5.xlarge` \| `m5.2xlarge` \| `m5.4xlarge` \| `m5a.large` \| `m5a.xlarge` \| `m5a.2xlarge` \| `m5a.4xlarge` \| `m5a.8xlarge` \| `m5ad.large` \| `m5ad.xlarge` \| `m5ad.2xlarge` \| `m5ad.4xlarge` \| `m5d.large` \| `m5d.xlarge` \| `m5d.2xlarge` \| `m5d.4xlarge`   |  Up to 10 Gbps  | [ENA](enhanced-networking-ena.md) | 
 |  `m4.10xlarge`  |  10 Gbps  |  [Intel 82599 VF](sriov-networking.md)  | 
 |  `m5.8xlarge` \| `m5.12xlarge` \| `m5a.12xlarge` \| `m5ad.12xlarge` \| `m5d.8xlarge` \| `m5d.12xlarge`  |  10 Gbps  | [ENA](enhanced-networking-ena.md) | 
 |  `m5a.16xlarge` \| `m5ad.16xlarge`  |  12 Gbps  | [ENA](enhanced-networking-ena.md) | 
 |  `m5.16xlarge` \| `m5a.24xlarge` \| `m5ad.24xlarge` \| `m5d.16xlarge`  |  20 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  `m4.16xlarge` \| `m5.24xlarge` \| `m5.metal` \| `m5d.24xlarge` \| `m5d.metal`  |  25 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `m5dn.4xlarge` and smaller \| `m5n.4xlarge` and smaller   |  Up to 25 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `m4.16xlarge` \| `m5.24xlarge` \| `m5.metal` \| `m5d.24xlarge` \| `m5d.metal` \| m5dn\.8xlarge \| m5n\.8xlarge  |  25 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  m5dn\.12xlarge \| m5n\.12xlarge  |  50 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  m5dn\.16xlarge \| m5n\.16xlarge  |  75 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  m5dn\.24xlarge \| m5n\.24xlarge  |  100 Gbps  | [ENA](enhanced-networking-ena.md) | 
 
 ## SSD I/O Performance<a name="general-purpose-ssd-perf"></a>
 
@@ -173,6 +196,14 @@ If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-ba
 |  `m5d.16xlarge`  |  933,333  |  466,666  | 
 |  `m5d.24xlarge`  |  1,400,000  |  680,000  | 
 |  `m5d.metal`  |  1,400,000  |  680,000  | 
+|  `m5dn.large` \*  |  30,000  |  15,000  | 
+|  `m5dn.xlarge` \*  |  59,000  |  29,000  | 
+|  `m5dn.2xlarge` \*  |  117,000  |  57,000  | 
+|  `m5dn.4xlarge` \*  |  234,000  |  114,000  | 
+|  `m5dn.8xlarge`  |  466,666  |  233,333  | 
+|  `m5dn.12xlarge`  |  700,000  |  340,000  | 
+|  `m5dn.16xlarge`  |  933,333  |  466,666  | 
+|  `m5dn.24xlarge`  |  1,400,000  |  680,000  | 
 
 \* For these instances, you can get up to the specified performance\.
 
@@ -195,6 +226,8 @@ The following is a summary of features for general purpose instances:
 | M5a | Yes | Yes | No | Yes | 
 | M5ad | No | Yes | NVMe \* | Yes | 
 | M5d | No | Yes | NVMe \* | Yes | 
+| M5dn | No | Yes | NVMe \* | Yes | 
+| M5n | Yes | Yes | No | Yes | 
 | T2 | Yes | No | No | No | 
 | T3 | Yes | Yes | No | No | 
 | T3a | Yes | Yes | No | No | 
@@ -222,19 +255,19 @@ For more information, see the following:
   + Ubuntu 16\.04 or later \(64\-bit Arm\)
   + Red Hat Enterprise Linux 7\.6 or later \(64\-bit Arm\)
   + SUSE Linux Enterprise Server 15 or later \(64\-bit Arm\)
-+ M5, M5a, M5ad, M5d, T3, and T3a instances have the following requirements:
++ M5, M5a, M5ad, M5d, M5dn, M5n, T3, and T3a instances have the following requirements:
   + NVMe drivers must be installed\. EBS volumes are exposed as [NVMe block devices](nvme-ebs-volumes.md)\.
   + Elastic Network Adapter \([ENA](enhanced-networking-ena.md)\) drivers must be installed\.
 
   The following AMIs meet these requirements:
   + Amazon Linux 2
   + Amazon Linux AMI 2018\.03
-  + Ubuntu 14\.04 or later
+  + Ubuntu 14\.04 \(with `linux-aws` kernel\) or later
   + Red Hat Enterprise Linux 7\.4 or later
   + SUSE Linux Enterprise Server 12 SP2 or later
-  + CentOS 7 or later
+  + CentOS 7\.4\.1708 or later
   + FreeBSD 11\.1 or later
-+ A1, M5, M5a, M5ad, M5d, T3, and T3a instances support a maximum of 28 attachments, including network interfaces, EBS volumes, and NVMe instance store volumes\. Every instance has at least one network interface attachment\. For example, if you have no additional network interface attachments on an EBS\-only instance, you could attach 27 EBS volumes to that instance\.
++ A1, M5, M5a, M5ad, M5d, M5dn, M5n, T3, and T3a instances support a maximum of 28 attachments, including network interfaces, EBS volumes, and NVMe instance store volumes\. Every instance has at least one network interface attachment\. For example, if you have no additional network interface attachments on an EBS\-only instance, you could attach 27 EBS volumes to that instance\.
 + Launching a bare metal instance boots the underlying server, which includes verifying all hardware and firmware components\. This means that it can take 20 minutes from the time the instance enters the running state until it becomes available over the network\.
 + To attach or detach EBS volumes or secondary network interfaces from a bare metal instance requires PCIe native hotplug support\. Amazon Linux 2 and the latest versions of the Amazon Linux AMI support PCIe native hotplug, but earlier versions do not\. You must enable the following Linux kernel configuration options:
 
@@ -243,5 +276,5 @@ For more information, see the following:
   CONFIG_PCIEASPM=y
   ```
 + Bare metal instances use a PCI\-based serial device rather than an I/O port\-based serial device\. The upstream Linux kernel and the latest Amazon Linux AMIs support this device\. Bare metal instances also provide an ACPI SPCR table to enable the system to automatically use the PCI\-based serial device\. The latest Windows AMIs automatically use the PCI\-based serial device\.
-+ A1, M5, M5a, M5ad, M5d, T3, and T3a instances should have system\-logind or acpid installed to support clean shutdown through API requests\.
++ A1, M5, M5a, M5ad, M5d, M5dn, M5n, T3, and T3a instances should have system\-logind or acpid installed to support clean shutdown through API requests\.
 + There is a limit on the total number of instances that you can launch in a region, and there are additional limits on some instance types\. For more information, see [How many instances can I run in Amazon EC2?](https://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2)\. To request a limit increase, use the [Amazon EC2 Instance Request Form](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-instances)\.

@@ -138,7 +138,7 @@ Host recovery is supported only with instances with a supported configuration\. 
 
 The following instance configurations are not supported:
 + Instance store volumes
-  + C5d, G4, I3en, M5ad, M5d, P3dn, R5ad, R5d, and z1d instances
+  + C5d, G4, I3en, M5ad, M5d, M5dn, P3dn, R5ad, R5d, R5dn, and z1d instances
   + D2, F1, HS1, I2, I3, X1, and X1e instances
 + Bare metal instances
 

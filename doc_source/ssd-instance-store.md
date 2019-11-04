@@ -11,10 +11,10 @@ Like other instance store volumes, you must map the SSD instance store volumes f
 The following instances offer non\-volatile memory express \(NVMe\) SSD instance store volumes: C5d, I3, I3en, F1, M5ad, M5d, `p3dn.24xlarge`, R5ad, R5d, and z1d\. To access NVMe volumes, the [NVMe drivers](nvme-ebs-volumes.md#install-nvme-driver) must be installed\. The following AMIs meet this requirement:
 + Amazon Linux 2
 + Amazon Linux AMI 2018\.03
-+ Ubuntu 14\.04 or later
++ Ubuntu 14\.04 \(with `linux-aws` kernel\) or later
 + Red Hat Enterprise Linux 7\.4 or later
 + SUSE Linux Enterprise Server 12 SP2 or later
-+ CentOS 7 or later
++ CentOS 7\.4\.1708 or later
 + FreeBSD 11\.1 or later
 
 After you connect to your instance, you can list the NVMe devices using the lspci command\. The following is example output for an `i3.8xlarge` instance, which supports four NVMe devices\.

@@ -281,7 +281,7 @@ You can create a Spot Fleet using the parameters that you define\.
 
    1. \(Optional\) To make your instances reachable from the internet, for **Auto\-assign IPv4 Public IP**, choose **Enable**\.
 
-   1. \(Optional\) To launch your Spot Instances with an IAM role, for **IAM instance profile**, choose the role \.
+   1. \(Optional\) To launch your Spot Instances with an IAM role, for **IAM instance profile**, choose the role\.
 
    1. \(Optional\) To run a start\-up script, copy it to **User data**\.
 

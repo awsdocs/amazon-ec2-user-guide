@@ -112,10 +112,8 @@ We offer a different Amazon Linux 2 VM image for each of the supported virtualiz
 
 ## Step 3: Boot and Connect to Your New VM<a name="amazon-linux-2-virtual-machine-boot"></a>
 
-To boot and connect to your new VM, you must have the `seed.iso` boot image \(created in Step 1\), and an Amazon Linux 2 VM image \(downloaded in Step 2\)\. The steps vary depending on your chosen VM platform\.
+To boot and connect to your new VM, you must have the `seed.iso` boot image \(created in Step 1\) and an Amazon Linux 2 VM image \(downloaded in Step 2\)\. The steps vary depending on your chosen VM platform\.
 
-**Note**  
-You must connect the `seed.iso` boot image to the VM on first boot\.  
-`seed.iso` is evaluated only during the initial boot\.
+You must connect the `seed.iso` boot image to the VM on first boot\. `seed.iso` is evaluated only during the initial boot\.
 
-After the VM has booted, log in using one of the user accounts that is defined in the `user-data` configuration file\. You can disconnect the `seed.iso` boot image from the VM after you have logged in for the first time\.
+After the VM has booted, log in using one of the user accounts that is defined in the `user-data` configuration file\. For virtualization platforms other than VMWare, you can disconnect the `seed.iso` boot image from the VM after you have logged in for the first time\.

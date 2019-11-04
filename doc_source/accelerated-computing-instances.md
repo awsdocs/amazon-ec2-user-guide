@@ -161,7 +161,6 @@ For more information, see the following:
 
 ## Release Notes<a name="gpu-instance-current-limitations"></a>
 + You must launch the instance using an HVM AMI\.
-+ GPU\-based instances can't access the GPU unless the NVIDIA drivers are installed\.
 + The following are requirements for G4 instances:
   + NVMe drivers must be installed\. EBS volumes are exposed as [NVMe block devices](nvme-ebs-volumes.md)\.
   + Elastic Network Adapter \([ENA](enhanced-networking-ena.md)\) drivers must be installed\.
@@ -169,11 +168,12 @@ For more information, see the following:
   The following AMIs meet these requirements:
   + Amazon Linux 2
   + Amazon Linux AMI 2018\.03
-  + Ubuntu 14\.04 or later
+  + Ubuntu 14\.04 \(with `linux-aws` kernel\) or later
   + Red Hat Enterprise Linux 7\.4 or later
   + SUSE Linux Enterprise Server 12 SP2 or later
-  + CentOS 7 or later
+  + CentOS 7\.4\.1708 or later
   + FreeBSD 11\.1 or later
++ GPU\-based instances can't access the GPU unless the NVIDIA drivers are installed\. For more information, see [Installing the NVIDIA Driver on Linux Instances](install-nvidia-driver.md)\.
 + There is a limit of 100 AFIs per region\.
 + There is a limit on the number of instances that you can run\. For more information, see [How many instances can I run in Amazon EC2?](https://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2) in the Amazon EC2 FAQ\. To request an increase in these limits, use the following form: [Request to Increase Amazon EC2 Instance Limit](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-instances)\.
 
@@ -194,4 +194,4 @@ You can launch accelerated computing instances using any HVM AMI\.
 **Important**  
 These AMIs include drivers, software, or toolkits that are developed, owned, or provided by NVIDIA Corporation\. By using these AMIs, you agree to use these NVIDIA drivers, software, or toolkits only on Amazon EC2 instances that include NVIDIA hardware\.
 
-You can also install the NVIDIA driver manually\. For more information, see [Installing the NVIDIA Driver on Linux Instances](install-nvidia-driver.md)\.
+You can also install the NVIDIA driver\. For more information, see [Installing the NVIDIA Driver on Linux Instances](install-nvidia-driver.md)\.

@@ -1,23 +1,21 @@
 # Modifying Reserved Instances<a name="ri-modifying"></a>
 
-When your computing needs change, you can modify your Standard or Convertible Reserved Instances and continue to benefit from the billing benefit\. You can modify the Availability Zone, scope, network platform, or instance size \(within the same instance family\) of your Reserved Instance\. To modify a Reserved Instance, you specify the Reserved Instances that you want to modify, and you specify one or more target configurations\.
+When your needs change, you can modify your Standard or Convertible Reserved Instances and continue to benefit from the billing benefit\. You can modify attributes such as the Availability Zone, instance size \(within the same instance family\), and scope of your Reserved Instance\.
 
 **Note**  
-You can also exchange a Convertible Reserved Instance for another Convertible Reserved Instance with a different configuration, including instance family\. For more information, see [Exchanging Convertible Reserved Instances](ri-convertible-exchange.md)\.
+You can also exchange a Convertible Reserved Instance for another Convertible Reserved Instance with a different configuration\. For more information, see [Exchanging Convertible Reserved Instances](ri-convertible-exchange.md)\.
 
 You can modify all or a subset of your Reserved Instances\. You can separate your original Reserved Instances into two or more new Reserved Instances\. For example, if you have a reservation for 10 instances in `us-east-1a` and decide to move 5 instances to `us-east-1b`, the modification request results in two new reservations: one for 5 instances in `us-east-1a` and the other for 5 instances in `us-east-1b`\.
 
 You can also *merge* two or more Reserved Instances into a single Reserved Instance\. For example, if you have four `t2.small` Reserved Instances of one instance each, you can merge them to create one `t2.large` Reserved Instance\. For more information, see [Support For Modifying Instance Sizes](#ri-modification-instancemove)\.
 
-After modification, the benefit of the Reserved Instances is applied only to instances that match the new parameters\. For example, if you change the Availability Zone of a reservation, the capacity reservation and pricing benefits are automatically applied to instance usage in the new Availability Zone\. Instances that no longer match the new parameters are charged at the On\-Demand rate unless your account has other applicable reservations\. 
+After modification, the benefit of the Reserved Instances is applied only to instances that match the new parameters\. For example, if you change the Availability Zone of a reservation, the capacity reservation and pricing benefits are automatically applied to instance usage in the new Availability Zone\. Instances that no longer match the new parameters are charged at the On\-Demand rate, unless your account has other applicable reservations\.
 
 If your modification request succeeds:
-+ The modified reservation becomes effective immediately and the pricing benefit is applied to the new instances beginning at the hour of the modification request\. For example, if you successfully modify your reservations at 9:15PM, the pricing benefit transfers to your new instance at 9:00PM\. \(You can get the `effective date` of the modified Reserved Instances by using the [DescribeReservedInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeReservedInstances.html) API action or the [describe\-reserved\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances.html) command \(AWS CLI\)\.
++ The modified reservation becomes effective immediately and the pricing benefit is applied to the new instances beginning at the hour of the modification request\. For example, if you successfully modify your reservations at 9:15PM, the pricing benefit transfers to your new instance at 9:00PM\. You can get the effective date of the modified Reserved Instances by using the [describe\-reserved\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances.html) command\.
 + The original reservation is retired\. Its end date is the start date of the new reservation, and the end date of the new reservation is the same as the end date of the original Reserved Instance\. If you modify a three\-year reservation that had 16 months left in its term, the resulting modified reservation is a 16\-month reservation with the same end date as the original one\.
 + The modified reservation lists a $0 fixed price and not the fixed price of the original reservation\.
-
-**Note**  
-The fixed price of the modified reservation does not affect the discount pricing tier calculations applied to your account, which are based on the fixed price of the original reservation\. 
++ The fixed price of the modified reservation does not affect the discount pricing tier calculations applied to your account, which are based on the fixed price of the original reservation\.
 
 If your modification request fails, your Reserved Instances maintain their original configuration, and are immediately available for another modification request\.
 
@@ -40,7 +38,7 @@ You can modify these attributes as follows\.
 | --- | --- | --- | 
 |  Change **Availability Zones** within the same Region  |  Linux and Windows  | \- | 
 |  Change the **scope** from Availability Zone to Region and vice versa  |  Linux and Windows  |  If you change the scope from Availability Zone to Region, you lose the capacity reservation benefit\. If you change the scope from Region to Availability Zone, you lose Availability Zone flexibility and instance size flexibility \(if applicable\)\. For more information, see [How Reserved Instances Are Applied](apply_ri.md)\.  | 
-|  Change the **instance size** within the same instance family  |  Linux only  |  The reservation must use Linux and default tenancy\. You cannot use Red Hat Enterprise Linux or SUSE\. Some instance families are not supported, because there are no other sizes available\. For more information, see [Support For Modifying Instance Sizes](#ri-modification-instancemove)\.  | 
+|  Change the **instance size** within the same instance family  |  Linux only  |  The reservation must use default tenancy\. Some instance families are not supported, because there are no other sizes available\. For more information, see [Support For Modifying Instance Sizes](#ri-modification-instancemove)\.  | 
 |  Change the **network** from EC2\-Classic to Amazon VPC and vice versa  |  Linux and Windows  |  The network platform must be available in your AWS account\. If you created your AWS account after 2013\-12\-04, it does not support EC2\-Classic\.  | 
 
 **Requirements**
@@ -128,11 +126,7 @@ For example, an `i3.metal` instance has a normalization factor of 128\. If you p
 
 ## Submitting Modification Requests<a name="ri-modification-process"></a>
 
-You can modify your Reserved Instances using the Amazon EC2 console, the Amazon EC2 API, or a command line tool\.
-
-### Amazon EC2 Console<a name="ri-modification-process-console"></a>
-
-Before you modify your Reserved Instances, ensure that you have read the applicable [restrictions](#ri-modification-limits)\. If you are modifying instance size, ensure that you've calculated the total [instance size footprint](#ri-modification-instancemove) of the reservations that you want to modify and ensure that it matches the total instance size footprint of your target configurations\.
+Before you modify your Reserved Instances, ensure that you have read the applicable [restrictions](#ri-modification-limits)\. Before you modify the instance size, calculate the total [instance size footprint](#ri-modification-instancemove) of the reservations that you want to modify and ensure that it matches the total instance size footprint of your target configurations\.
 
 **To modify your Reserved Instances using the AWS Management Console**
 
@@ -142,39 +136,31 @@ Before you modify your Reserved Instances, ensure that you have read the applica
 **Note**  
 If your Reserved Instances are not in the active state or cannot be modified, **Modify Reserved Instances** is disabled\.
 
-1. The first entry in the modification table displays attributes of selected Reserved Instances, and at least one target configuration beneath it\. The **Units** column displays the total instance size footprint\. Choose **Add** for each new configuration to add\. Modify the attributes as needed for each configuration, and choose **Continue** when you're done:
+1. The first entry in the modification table displays attributes of selected Reserved Instances, and at least one target configuration beneath it\. The **Units** column displays the total instance size footprint\. Choose **Add** for each new configuration to add\. Modify the attributes as needed for each configuration, and then choose **Continue**:
    + **Scope**: Choose whether the Reserved Instance applies to an Availability Zone or to the whole Region\.
    + **Availability Zone**: Choose the required Availability Zone\. Not applicable for regional Reserved Instances\.
-   + **Instance Type**: Select the required instance type\. Only available for supported platforms\. For more information, see [Requirements and Restrictions for Modification](#ri-modification-limits)\.
+   + **Instance Type**: Select the required instance type\. If your combined target configurations are larger or smaller than the instance size footprint of your original Reserved Instances, the allocated total in the **Units** column displays in red\.
    + **Count**: Specify the number of instances to be covered by the reservation\.
-**Note**  
-If your combined target configurations are larger or smaller than the instance size footprint of your original Reserved Instances, the allocated total in the **Units** column displays in red\.
 
 1. To confirm your modification choices when you finish specifying your target configurations, choose **Submit Modifications**\. If you change your mind at any point, choose **Cancel** to exit the wizard\.
 
-You can determine the status of your modification request by looking at the **State** column in the Reserved Instances screen\. The following table illustrates the possible **State** values\.
+1. You can determine the status of your modification request by looking at the **State** column in the Reserved Instances screen\. The following are the possible states\.
+   + **active* \(pending modification\)*** — Transition state for original Reserved Instances
+   + **retired* \(pending modification\)*** — Transition state for original Reserved Instances while new Reserved Instances are being created
+   + **retired** — Reserved Instances successfully modified and replaced
+   + **active** — One of the following:
+     + New Reserved Instances created from a successful modification request
+     + Original Reserved Instances after a failed modification request
 
+**To modify your Reserved Instances using the command line**
 
-| State | Description | 
-| --- | --- | 
-|  **active* \(pending modification\)***  |  Transition state for original Reserved Instances\.   | 
-|  **retired* \(pending modification\)***  |  Transition state for original Reserved Instances while new Reserved Instances are being created\.   | 
-|  **retired**  |  Reserved Instances successfully modified and replaced\.  | 
-|  **active**  |  New Reserved Instances created from a successful modification request\. \-Or\- Original Reserved Instances after a failed modification request\.  | 
+1. To modify your Reserved Instances, you can use one of the following commands:
+   + [modify\-reserved\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-reserved-instances.html) \(AWS CLI\)
+   + [Edit\-EC2ReservedInstance](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2ReservedInstance.html) \(AWS Tools for Windows PowerShell\)
 
-### Amazon EC2 API or Command Line Tool<a name="ri-modification-process-CLI"></a>
-
-To modify your Reserved Instances, you can use one of the following:
-+ [modify\-reserved\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-reserved-instances.html) \(AWS CLI\)
-+ [Edit\-EC2ReservedInstance](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2ReservedInstance.html) \(AWS Tools for Windows PowerShell\)
-+ [ModifyReservedInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-ModifyReservedInstances.html) \(Amazon EC2 API\)
-
-To get the status of your modification, use one of the following:
-+ [describe\-reserved\-instances\-modifications](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances-modifications.html) \(AWS CLI\)
-+  [Get\-EC2ReservedInstancesModification](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ReservedInstancesModification.html) \(AWS Tools for Windows PowerShell\)
-+ [DescribeReservedInstancesModifications](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeReservedInstancesModifications.html) \(Amazon EC2 API\)
-
-The state returned shows your request as `processing`, `fulfilled`, or `failed`\.
+1. To get the status of your modification request \(`processing`, `fulfilled`, or `failed`\), use one of the following commands:
+   + [describe\-reserved\-instances\-modifications](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances-modifications.html) \(AWS CLI\)
+   + [Get\-EC2ReservedInstancesModification](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ReservedInstancesModification.html) \(AWS Tools for Windows PowerShell\)
 
 ## Troubleshooting Modification Requests<a name="ri-modification-process-messages"></a>
 

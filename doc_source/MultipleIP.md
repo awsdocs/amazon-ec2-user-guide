@@ -15,21 +15,20 @@ It can be useful to assign multiple IP addresses to an instance in your VPC to d
 ## How Multiple IP Addresses Work<a name="MultipleIPReqs"></a>
 
 The following list explains how multiple IP addresses work with network interfaces:
-+ You can assign a secondary private IPv4 address to any network interface\. The network interface can be attached to or detached from the instance\.
++ You can assign a secondary private IPv4 address to any network interface\. The network interface need not be attached to the instance\.
 + You can assign multiple IPv6 addresses to a network interface that's in a subnet that has an associated IPv6 CIDR block\.
-+ You must choose the secondary IPv4 from the IPv4 CIDR block range of the subnet for the network interface\. 
++ You must choose a secondary IPv4 address from the IPv4 CIDR block range of the subnet for the network interface\.
 + You must choose IPv6 addresses from the IPv6 CIDR block range of the subnet for the network interface\.
-+ You associate security groups with network interfaces, not the individual IP addresses\. Therefore, each IP address you specify in a network interface is subject to the security group of its network interface\.
++ You associate security groups with network interfaces, not individual IP addresses\. Therefore, each IP address you specify in a network interface is subject to the security group of its network interface\.
 + Multiple IP addresses can be assigned and unassigned to network interfaces attached to running or stopped instances\.
-+ Secondary private IPv4 addresses that are assigned to a network interface can be reassigned to another one if you explicitly allow it\. 
++ Secondary private IPv4 addresses that are assigned to a network interface can be reassigned to another one if you explicitly allow it\.
 + An IPv6 address cannot be reassigned to another network interface; you must first unassign the IPv6 address from the existing network interface\.
 + When assigning multiple IP addresses to a network interface using the command line tools or API, the entire operation fails if one of the IP addresses can't be assigned\.
-+ Primary private IPv4 addresses, secondary private IPv4 addresses, Elastic IP addresses, and IPv6 addresses remain with the network interface when it is detached from an instance or attached to another instance\. 
-+ Although you can't move the primary network interface from an instance, you can reassign the secondary private IPv4 address of the primary network interface to another network interface\. 
-+ You can move any additional network interface from one instance to another\.
++ Primary private IPv4 addresses, secondary private IPv4 addresses, Elastic IP addresses, and IPv6 addresses remain with a secondary network interface when it is detached from an instance or attached to an instance\.
++ Although you can't detach the primary network interface from an instance, you can reassign the secondary private IPv4 address of the primary network interface to another network interface\.
 
 The following list explains how multiple IP addresses work with Elastic IP addresses \(IPv4 only\):
-+ Each private IPv4 address can be associated with a single Elastic IP address, and vice versa\. 
++ Each private IPv4 address can be associated with a single Elastic IP address, and vice versa\.
 + When a secondary private IPv4 address is reassigned to another interface, the secondary private IPv4 address retains its association with an Elastic IP address\.
 + When a secondary private IPv4 address is unassigned from an interface, an associated Elastic IP address is automatically disassociated from the secondary private IPv4 address\.
 

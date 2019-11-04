@@ -1,16 +1,20 @@
 # Add Instance Store Volumes to Your EC2 Instance<a name="add-instance-store-volumes"></a>
 
-You specify the EBS volumes and instance store volumes for your instance using a block device mapping\. Each entry in a block device mapping includes a device name and the volume that it maps to\. The default block device mapping is specified by the AMI you use\. Alternatively, you can specify a block device mapping for the instance when you launch it\. All the NVMe instance store volumes supported by an instance type are automatically enumerated and assigned a device name on instance launch; including them in the block device mapping for the AMI or the instance has no effect\. For more information, see [Block Device Mapping](block-device-mapping-concepts.md)\.
+You specify the EBS volumes and instance store volumes for your instance using a block device mapping\. Each entry in a block device mapping includes a device name and the volume that it maps to\. The default block device mapping is specified by the AMI you use\. Alternatively, you can specify a block device mapping for the instance when you launch it\.
+
+All the NVMe instance store volumes supported by an instance type are automatically enumerated and assigned a device name on instance launch; including them in the block device mapping for the AMI or the instance has no effect\. For more information, see [Block Device Mapping](block-device-mapping-concepts.md)\.
 
 A block device mapping always specifies the root volume for the instance\. The root volume is either an Amazon EBS volume or an instance store volume\. For more information, see [Storage for the Root Device](ComponentsAMIs.md#storage-for-the-root-device)\. The root volume is mounted automatically\. For instances with an instance store volume for the root volume, the size of this volume varies by AMI, but the maximum size is 10 GB\.
 
 You can use a block device mapping to specify additional EBS volumes when you launch your instance, or you can attach additional EBS volumes after your instance is running\. For more information, see [Amazon EBS Volumes](EBSVolumes.md)\.
 
-You can specify the instance store volumes for your instance only when you launch an instance\. You can't attach instance store volumes to an instance after you've launched it\.
+You can specify the instance store volumes for your instance only when you launch it\. You can't attach instance store volumes to an instance after you've launched it\.
 
-If you change the instance type, an instance store will not be attached to the new instance type\. For more information, see [Changing the Instance Type](ec2-instance-resize.md) \.
+If you change the instance type, an instance store will not be attached to the new instance type\. For more information, see [Changing the Instance Type](ec2-instance-resize.md)\.
 
-The number and size of available instance store volumes for your instance varies by instance type\. Some instance types do not support instance store volumes\. For more information about the instance store volumes support by each instance type, see [Instance Store Volumes](InstanceStorage.md#instance-store-volumes)\. If the instance type you choose for your instance supports instance store volumes, you must add them to the block device mapping for the instance when you launch it\. After you launch the instance, you must ensure that the instance store volumes for your instance are formatted and mounted before you can use them\. The root volume of an instance store\-backed instance is mounted automatically\.
+The number and size of available instance store volumes for your instance varies by instance type\. Some instance types do not support instance store volumes\. If the number of instance store volumes in a block device mapping exceeds the number of instance store volumes available to an instance, the additional volumes are ignored\. For more information about the instance store volumes support by each instance type, see [Instance Store Volumes](InstanceStorage.md#instance-store-volumes)\.
+
+If the instance type you choose for your instance supports non\-NVMe instance store volumes, you must add them to the block device mapping for the instance when you launch it\. NVMe instance store volumes are available by default\. After you launch an instance, you must ensure that the instance store volumes for your instance are formatted and mounted before you can use them\. The root volume of an instance store\-backed instance is mounted automatically\.
 
 **Topics**
 + [Adding Instance Store Volumes to an AMI](#adding-instance-storage-ami)
@@ -19,10 +23,11 @@ The number and size of available instance store volumes for your instance varies
 
 ## Adding Instance Store Volumes to an AMI<a name="adding-instance-storage-ami"></a>
 
-You can create an AMI with a block device mapping that includes instance store volumes\. After you add instance store volumes to an AMI, any instance that you launch from the AMI includes these instance store volumes\. When you launch an instance, you can omit volumes specified in the AMI block device mapping and add new volumes\.
+You can create an AMI with a block device mapping that includes instance store volumes\. If you launch an instance with an instance type that supports instance store volumes and an AMI that specifies instance store volumes in its block device mapping, the instance includes these instance store volumes\. If the number of instance store volumes in the block device mapping exceeds the number of instance store volumes available to the instance, the additional instance store volumes are ignored\.
 
-**Important**  
-For M3 instances, specify instance store volumes in the block device mapping of the instance, not the AMI\. Amazon EC2 might ignore instance store volumes that are specified only in the block device mapping of the AMI\.
+**Considerations**
++ For M3 instances, specify instance store volumes in the block device mapping of the instance, not the AMI\. Amazon EC2 might ignore instance store volumes that are specified only in the block device mapping of the AMI\.
++ When you launch an instance, you can omit non\-NVMe instance store volumes specified in the AMI block device mapping or add instance store volumes\.
 
 **To add instance store volumes to an Amazon EBS\-backed AMI using the console**
 
@@ -48,11 +53,9 @@ You can use one of the following commands\. For more information about these com
 
 When you launch an instance, the default block device mapping is provided by the specified AMI\. If you need additional instance store volumes, you must add them to the instance as you launch it\. You can also omit devices specified in the AMI block device mapping\.
 
-**Important**  
-For M3 instances, you might receive instance store volumes even if you do not specify them in the block device mapping for the instance\.
-
-**Important**  
-For HS1 instances, no matter how many instance store volumes you specify in the block device mapping of an AMI, the block device mapping for an instance launched from the AMI automatically includes the maximum number of supported instance store volumes\. You must explicitly remove the instance store volumes that you don't want from the block device mapping for the instance before you launch it\.
+**Considerations**
++ For M3 instances, you might receive instance store volumes even if you do not specify them in the block device mapping for the instance\.
++ For HS1 instances, no matter how many instance store volumes you specify in the block device mapping of an AMI, the block device mapping for an instance launched from the AMI automatically includes the maximum number of supported instance store volumes\. You must explicitly remove the instance store volumes that you don't want from the block device mapping for the instance before you launch it\.
 
 **To update the block device mapping for an instance using the console**
 
@@ -67,6 +70,8 @@ For HS1 instances, no matter how many instance store volumes you specify in the 
 1. In **Step 4: Add Storage**, modify the existing entries as needed\. For each instance store volume to add, choose **Add New Volume**, from **Volume Type** select an instance store volume, and from **Device** select a device name\. The number of available instance store volumes depends on the instance type\.
 
 1. Complete the wizard and launch the instance\.
+
+1. \(Optional\) To view the instance store volumes available on your instance, run the lsblk command\.
 
 **To update the block device mapping for an instance using the command line**
 

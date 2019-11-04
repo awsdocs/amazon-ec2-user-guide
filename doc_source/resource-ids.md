@@ -13,7 +13,7 @@ Different resource types have different opt\-in periods and deadline dates\. The
 | Resource type | Opt\-in period | Deadline date | 
 | --- | --- | --- | 
 |  `instance` \| `snapshot` \|`reservation` \| `volume`  |  No longer available  |  December 15, 2016  | 
-|  `bundle` \| `conversion-task` \| `customer-gateway` \| `dhcp-options` \| `elastic-ip-allocation` \|  `elastic-ip-association` \| `export-task` \| `flow-log` \| `image` \| `import-task` \| `internet-gateway` \| `network-acl` \| `network-acl-association` \| `network-interface` \| `network-interface-attachment` \| `prefix-list` \|  `route-table` \| `route-table-association` \| `security-group` \| `subnet` \| `subnet-cidr-block-association` \| `vpc` \| `vpc-cidr-block-association` \| `vpc-endpoint` \|  `vpc-peering-connection` \| `vpn-connection` \| `vpn-gateway`  | February 09, 2018 \- June 30, 2018 | June 30, 2018 | 
+|  `bundle` \| `conversion-task` \| `customer-gateway` \| `dhcp-options` \| `elastic-ip-allocation` \|  `elastic-ip-association` \| `export-task` \| `flow-log` \| `image` \| `import-task` \| `internet-gateway` \| `network-acl` \| `network-acl-association` \| `network-interface` \| `network-interface-attachment` \| `prefix-list` \|  `route-table` \| `route-table-association` \| `security-group` \| `subnet` \| `subnet-cidr-block-association` \| `vpc` \| `vpc-cidr-block-association` \| `vpc-endpoint` \|  `vpc-peering-connection` \| `vpn-connection` \| `vpn-gateway`  |  February 09, 2018 \- June 30, 2018  |  June 30, 2018  | 
 
 **During the Opt\-in Period**  
 You can enable or disable longer IDs for a resource at any time during the opt\-in period\. After you've enabled longer IDs for a resource type, any new resources that you create are created with a longer ID\.

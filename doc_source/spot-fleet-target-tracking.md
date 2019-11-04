@@ -29,7 +29,7 @@ Do not edit or delete the CloudWatch alarms that Spot Fleet manages for a target
 
 1. Choose a **Target metric**\.
 
-1. Type a **Target value** for the metric\.
+1. Enter a **Target value** for the metric\.
 
 1. \(Optional\) Set **Cooldown period** to modify the default cooldown period\.
 

@@ -176,19 +176,19 @@ To create an EC2 Fleet, you need only specify the launch template, total target 
       "DryRun": true, 
       "ClientToken": "", 
       "SpotOptions": {
-          "AllocationStrategy": "lowestPrice", 
+          "AllocationStrategy": "lowest-price", 
           "InstanceInterruptionBehavior": "hibernate", 
-          "InstancePoolsToUseCount": 0
+          "InstancePoolsToUseCount": 0,
           "SingleInstanceType": true, 
           "SingleAvailabilityZone": true, 
-          "MaxTotalPrice": 0
+          "MaxTotalPrice": 0,
           "MinTargetCapacity": 0
       }, 
       "OnDemandOptions": {
-          "AllocationStrategy": "prioritized"
+          "AllocationStrategy": "prioritized",
           "SingleInstanceType": true, 
           "SingleAvailabilityZone": true, 
-          "MaxTotalPrice": 0
+          "MaxTotalPrice": 0,
           "MinTargetCapacity": 0
       }, 
       "ExcessCapacityTerminationPolicy": "termination", 
@@ -206,7 +206,7 @@ To create an EC2 Fleet, you need only specify the launch template, total target 
                       "SubnetId": "", 
                       "AvailabilityZone": "", 
                       "WeightedCapacity": null, 
-                      "Priority": null
+                      "Priority": null,
                       "Placement": {
                           "AvailabilityZone": "", 
                           "Affinity": "", 
@@ -250,13 +250,13 @@ To create an EC2 Fleet, you need only specify the launch template, total target 
 Use lowercase for all parameter values; otherwise, you get an error when Amazon EC2 uses the JSON file to launch the EC2 Fleet\.
 
 **AllocationStrategy \(for SpotOptions\)**  
-\(Optional\) Indicates how to allocate the Spot Instance target capacity across the Spot Instance pools specified by the EC2 Fleet\. Valid values are `lowestPrice` and `diversified`\. The default is `lowestPrice`\. Specify the allocation strategy that meets your needs\. For more information, see [Allocation Strategies for Spot Instances](ec2-fleet-configuration-strategies.md#ec2-fleet-allocation-strategy)\.
+\(Optional\) Indicates how to allocate the Spot Instance target capacity across the Spot Instance pools specified by the EC2 Fleet\. Valid values are `lowest-price` and `diversified`\. The default is `lowest-price`\. Specify the allocation strategy that meets your needs\. For more information, see [Allocation Strategies for Spot Instances](ec2-fleet-configuration-strategies.md#ec2-fleet-allocation-strategy)\.
 
 **InstanceInterruptionBehavior**  
 \(Optional\) The behavior when a Spot Instance is interrupted\. Valid values are `hibernate`, `stop`, and `terminate`\. By default, the Spot service terminates Spot Instances when they are interrupted\. If the fleet type is `maintain`, you can specify that the Spot service hibernates or stops Spot Instances when they are interrupted\.
 
 **InstancePoolsToUseCount**  
-The number of Spot pools across which to allocate your target Spot capacity\. Valid only when Spot **AllocationStrategy** is set to `lowestPrice`\. EC2 Fleet selects the cheapest Spot pools and evenly allocates your target Spot capacity across the number of Spot pools that you specify\.
+The number of Spot pools across which to allocate your target Spot capacity\. Valid only when Spot **AllocationStrategy** is set to `lowest-price`\. EC2 Fleet selects the cheapest Spot pools and evenly allocates your target Spot capacity across the number of Spot pools that you specify\.
 
 **SingleInstanceType**  
 Indicates that the fleet uses a single instance type to launch all Spot Instances in the fleet\.
@@ -271,7 +271,7 @@ The maximum amount per hour for Spot Instances that you're willing to pay\.
 The minimum target capacity for Spot Instances in the fleet\. If the minimum target capacity is not reached, the fleet launches no instances\.
 
 **AllocationStrategy \(for OnDemandOptions\)**  
-The order of the launch template overrides to use in fulfilling On\-Demand capacity\. If you specify `lowestPrice`, EC2 Fleet uses price to determine the order, launching the lowest price first\. If you specify prioritized, EC2 Fleet uses the priority that you assigned to each launch template override, launching the highest priority first\. If you do not specify a value, EC2 Fleet defaults to `lowestPrice`\.
+The order of the launch template overrides to use in fulfilling On\-Demand capacity\. If you specify `lowest-price`, EC2 Fleet uses price to determine the order, launching the lowest price first\. If you specify prioritized, EC2 Fleet uses the priority that you assigned to each launch template override, launching the highest priority first\. If you do not specify a value, EC2 Fleet defaults to `lowest-price`\.
 
 **SingleInstanceType**  
 Indicates that the fleet uses a single instance type to launch all On\-Demand Instances in the fleet\.
@@ -578,7 +578,7 @@ The following is example output\.
             "SpotOptions": {
                 "InstanceInterruptionBehavior": "terminate",
                 "InstancePoolsToUseCount": 1, 
-                "AllocationStrategy": "lowestPrice"
+                "AllocationStrategy": "lowest-price"
             }, 
             "FleetState": "active", 
             "ExcessCapacityTerminationPolicy": "termination", 
@@ -642,9 +642,9 @@ You can only modify an EC2 Fleet that has `Type`=`maintain`\.
 
 When you increase the target capacity, the EC2 Fleet launches the additional instances according to the instance purchasing option specified for `DefaultTargetCapacityType`, which are either On\-Demand Instances or Spot Instances\.
 
-If the `DefaultTargetCapacityType` is `spot`, the EC2 Fleet launches the additional Spot Instances according to its allocation strategy\. If the allocation strategy is `lowestPrice`, the fleet launches the instances from the lowest\-priced Spot Instance pool in the request\. If the allocation strategy is `diversified`, the fleet distributes the instances across the pools in the request\.
+If the `DefaultTargetCapacityType` is `spot`, the EC2 Fleet launches the additional Spot Instances according to its allocation strategy\. If the allocation strategy is `lowest-price`, the fleet launches the instances from the lowest\-priced Spot Instance pool in the request\. If the allocation strategy is `diversified`, the fleet distributes the instances across the pools in the request\.
 
-When you decrease the target capacity, the EC2 Fleet deletes any open requests that exceed the new target capacity\. You can request that the fleet terminate instances until the size of the fleet reaches the new target capacity\. If the allocation strategy is `lowestPrice`, the fleet terminates the instances with the highest price per unit\. If the allocation strategy is `diversified`, the fleet terminates instances across the pools\. Alternatively, you can request that EC2 Fleet keep the fleet at its current size, but not replace any Spot Instances that are interrupted or any instances that you terminate manually\.
+When you decrease the target capacity, the EC2 Fleet deletes any open requests that exceed the new target capacity\. You can request that the fleet terminate instances until the size of the fleet reaches the new target capacity\. If the allocation strategy is `lowest-price`, the fleet terminates the instances with the highest price per unit\. If the allocation strategy is `diversified`, the fleet terminates instances across the pools\. Alternatively, you can request that EC2 Fleet keep the fleet at its current size, but not replace any Spot Instances that are interrupted or any instances that you terminate manually\.
 
 When an EC2 Fleet terminates a Spot Instance because the target capacity was decreased, the instance receives a Spot Instance interruption notice\.
 

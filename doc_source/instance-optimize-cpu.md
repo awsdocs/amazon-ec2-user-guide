@@ -20,7 +20,6 @@ You can specify these CPU options during instance launch\. There is no additiona
 ## Rules for Specifying CPU Options<a name="instance-cpu-options-rules"></a>
 
 To specify the CPU options for your instance, be aware of the following rules:
-+ CPU options are currently supported using the Amazon EC2 console, the AWS CLI, an AWS SDK, or the Amazon EC2 API\.
 + CPU options can only be specified during instance launch and cannot be modified after launch\.
 + When you launch an instance, you must specify both the number of CPU cores and threads per core in the request\. For example requests, see [Specifying CPU Options for Your Instance](#instance-specify-cpu-options)\.
 + The number of vCPUs for the instance is the number of CPU cores multiplied by the threads per core\. To specify a custom number of vCPUs, you must specify a valid number of CPU cores and threads per core for the instance type\. You cannot exceed the default number of vCPUs for the instance\. For more information, see [CPU Cores and Threads Per CPU Core Per Instance Type](#cpu-options-supported-instances-values)\.
@@ -124,6 +123,22 @@ The following tables list the instance types that support specifying CPU options
 | m5d\.12xlarge | 48 | 24 | 2 | 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24 | 1, 2 | 
 | m5d\.16xlarge | 64 | 32 | 2 | 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32 | 1, 2 | 
 | m5d\.24xlarge | 96 | 48 | 2 | 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48 | 1, 2 | 
+| m5dn\.large | 2 | 1 | 2 | 1 | 1, 2 | 
+| m5dn\.xlarge | 4 | 2 | 2 | 2 | 1, 2 | 
+| m5dn\.2xlarge | 8 | 4 | 2 | 2, 4 | 1, 2 | 
+| m5dn\.4xlarge | 16 | 8 | 2 | 2, 4, 6, 8 | 1, 2 | 
+| m5dn\.8xlarge | 32 | 16 | 2 | 2, 4, 6, 8, 10, 12, 14, 16 | 1, 2 | 
+| m5dn\.12xlarge | 48 | 24 | 2 | 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24 | 1, 2 | 
+| m5dn\.16xlarge | 64 | 32 | 2 | 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32 | 1, 2 | 
+| m5dn\.24xlarge | 96 | 48 | 2 | 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48 | 1, 2 | 
+| m5n\.large | 2 | 1 | 2 | 1 | 1, 2 | 
+| m5n\.xlarge | 4 | 2 | 2 | 2 | 1, 2 | 
+| m5n\.2xlarge | 8 | 4 | 2 | 2, 4 | 1, 2 | 
+| m5n\.4xlarge | 16 | 8 | 2 | 2, 4, 6, 8 | 1, 2 | 
+| m5n\.8xlarge | 32 | 16 | 2 | 2, 4, 6, 8, 10, 12, 14, 16 | 1, 2 | 
+| m5n\.12xlarge | 48 | 24 | 2 | 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24 | 1, 2 | 
+| m5n\.16xlarge | 64 | 32 | 2 | 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32 | 1, 2 | 
+| m5n\.24xlarge | 96 | 48 | 2 | 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48 | 1, 2 | 
 | t3\.nano | 2 | 1 | 2 | 1 | 1, 2 | 
 | t3\.micro | 2 | 1 | 2 | 1 | 1, 2 | 
 | t3\.small | 2 | 1 | 2 | 1 | 1, 2 | 
@@ -180,6 +195,22 @@ The following tables list the instance types that support specifying CPU options
 | r5d\.12xlarge | 48 | 24 | 2 | 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24 | 1, 2 | 
 | r5d\.16xlarge | 64 | 32 | 2 | 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32 | 1, 2 | 
 | r5d\.24xlarge | 96 | 48 | 2 | 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48 | 1, 2 | 
+| r5dn\.large | 2 | 1 | 2 | 1 | 1, 2 | 
+| r5dn\.xlarge | 4 | 2 | 2 | 2 | 1, 2 | 
+| r5dn\.2xlarge | 8 | 4 | 2 | 2, 4 | 1, 2 | 
+| r5dn\.4xlarge | 16 | 8 | 2 | 2, 4, 6, 8 | 1, 2 | 
+| r5dn\.8xlarge | 32 | 16 | 2 | 2, 4, 6, 8, 10, 12, 14, 16 | 1, 2 | 
+| r5dn\.12xlarge | 48 | 24 | 2 | 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24 | 1, 2 | 
+| r5dn\.16xlarge | 64 | 32 | 2 | 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32 | 1, 2 | 
+| r5dn\.24xlarge | 96 | 48 | 2 | 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48 | 1, 2 | 
+| r5n\.large | 2 | 1 | 2 | 1 | 1, 2 | 
+| r5n\.xlarge | 4 | 2 | 2 | 2 | 1, 2 | 
+| r5n\.2xlarge | 8 | 4 | 2 | 2, 4 | 1, 2 | 
+| r5n\.4xlarge | 16 | 8 | 2 | 2, 4, 6, 8 | 1, 2 | 
+| r5n\.8xlarge | 32 | 16 | 2 | 2, 4, 6, 8, 10, 12, 14, 16 | 1, 2 | 
+| r5n\.12xlarge | 48 | 24 | 2 | 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24 | 1, 2 | 
+| r5n\.16xlarge | 64 | 32 | 2 | 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32 | 1, 2 | 
+| r5n\.24xlarge | 96 | 48 | 2 | 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48 | 1, 2 | 
 | x1\.16xlarge | 64 | 32 | 2 | 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32 | 1, 2 | 
 | x1\.32xlarge | 128 | 64 | 2 | 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64 | 1, 2 | 
 | x1e\.xlarge | 4 | 2 | 2 | 1, 2 | 1, 2 | 

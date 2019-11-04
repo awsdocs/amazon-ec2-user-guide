@@ -21,10 +21,10 @@ The Spot Instance data feed file name uses the following format \(with the date 
 bucket-name.s3.amazonaws.com/{optional prefix}/aws-account-id.YYYY-MM-DD-HH.n.unique-id.gz
 ```
 
-For example, if your bucket name is `myawsbucket` and your prefix is `myprefix`, your file names are similar to the following:
+For example, if your bucket name is `aws-s3-bucket1` and your prefix is `myprefix`, your file names are similar to the following:
 
 ```
-myawsbucket.s3.amazonaws.com/myprefix/111122223333.2014-03-17-20.001.pwBdGTJG.gz
+aws-s3-bucket1.s3.amazonaws.com/myprefix/111122223333.2014-03-17-20.001.pwBdGTJG.gz
 ```
 
 The Spot Instance data feed files are tab\-delimited\. Each line in the data file corresponds to one instance hour and contains the fields listed in the following table\.
@@ -59,7 +59,7 @@ If you update the ACL and remove the permissions for the AWS data feed account, 
 To subscribe to your data feed, use the following [create\-spot\-datafeed\-subscription](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-spot-datafeed-subscription.html) command:
 
 ```
-aws ec2 create-spot-datafeed-subscription --bucket myawsbucket [--prefix myprefix]
+aws ec2 create-spot-datafeed-subscription --bucket aws-s3-bucket1 [--prefix myprefix]
 ```
 
 The following is example output:
@@ -69,7 +69,7 @@ The following is example output:
     "SpotDatafeedSubscription": {
         "OwnerId": "111122223333",
         "Prefix": "myprefix",
-        "Bucket": "myawsbucket",
+        "Bucket": "aws-s3-bucket1",
         "State": "Active"
     }
 }

@@ -135,10 +135,10 @@ When providing permissions, grants are an alternative to key policies\. For more
   The following example is formatted for legibility\. 
 
   ```
-  aws kms create-grant 
-  --region us-east-1 
-  --key-id arn:aws:kms:us-east-1:444455556666:key/1234abcd-12ab-34cd-56ef-1234567890ab 
-  --grantee-principal arn:aws:iam::111122223333:role/AWSServiceRoleForEC2Spot 
+  aws kms create-grant \
+  --region us-east-1 \
+  --key-id arn:aws:kms:us-east-1:444455556666:key/1234abcd-12ab-34cd-56ef-1234567890ab \
+  --grantee-principal arn:aws:iam::111122223333:role/AWSServiceRoleForEC2Spot \
   --operations "Decrypt" "Encrypt" "GenerateDataKey" "GenerateDataKeyWithoutPlaintext" "CreateGrant" "DescribeKey" "ReEncryptFrom" "ReEncryptTo"
   ```
 
@@ -262,7 +262,7 @@ Spot Instance requests are not tagged instantly and for a period of time may app
 To enumerate your Spot Instances, use the [describe\-spot\-instance\-requests](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-spot-instance-requests.html) command with the `--query` option as follows:
 
 ```
-aws ec2 describe-spot-instance-requests --query SpotInstanceRequests[*].{ID:InstanceId}
+aws ec2 describe-spot-instance-requests --query "SpotInstanceRequests[*].{ID:InstanceId}"
 ```
 
 The following is example output:

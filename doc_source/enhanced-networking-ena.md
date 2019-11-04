@@ -16,22 +16,22 @@ Amazon EC2 provides enhanced networking capabilities through the Elastic Network
 ## Requirements<a name="ena-requirements"></a>
 
 To prepare for enhanced networking using the ENA, set up your instance as follows:
-+ Select from the following supported instance types: A1, C5, C5d, C5n, F1, G3, G4, H1, I3, I3en, `m4.16xlarge`, M5, M5a, M5ad, M5d P2, P3, R4, R5, R5a, R5ad, R5d, T3, T3a, `u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, X1, X1e, and z1d\.
++ Select from the following supported instance types: A1, C5, C5d, C5n, F1, G3, G4, H1, I3, I3en, `m4.16xlarge`, M5, M5a, M5ad, M5d, M5dn, M5n P2, P3, R4, R5, R5a, R5ad, R5d, R5dn, R5n, T3, T3a, `u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, `u-18tb1.metal`, `u-24tb1.metal`, X1, X1e, and z1d\.
 + Launch the instance using a supported version of the Linux kernel and a supported distribution, so that ENA enhanced networking is enabled for your instance automatically\. For more information, see [ENA Linux Kernel Driver Release Notes](https://github.com/amzn/amzn-drivers/blob/ena_linux_1.6.0/kernel/linux/ena/RELEASENOTES.md)\.
 + Ensure that the instance has internet connectivity\.
 + Install and configure the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html) or the [AWS Tools for Windows PowerShell](https://docs.aws.amazon.com/powershell/latest/userguide/) on any computer you choose, preferably your local desktop or laptop\. For more information, see [Accessing Amazon EC2](concepts.md#access-ec2)\. Enhanced networking cannot be managed from the Amazon EC2 console\.
-+ If you have important data on the instance that you want to preserve, you should back that data up now by creating an AMI from your instance\. Updating kernels and kernel modules, as well as enabling the `enaSupport` attribute, might render incompatible instances or operating systems unreachable; if you have a recent backup, your data will still be retained if this happens\.
++ If you have important data on the instance that you want to preserve, you should back that data up now by creating an AMI from your instance\. Updating kernels and kernel modules, as well as enabling the `enaSupport` attribute, might render incompatible instances or operating systems unreachable\. If you have a recent backup, your data will still be retained if this happens\.
 
 ## Data Encryption<a name="ena-data-encryption-in-transit"></a>
 
-AWS provides secure and private connectivity between EC2 instances\. In addition, we automatically encrypt in\-transit traffic between C5n, I3en, and P3dn instances in the same VPC or in peered VPCs, using AEAD algorithms with 256\-bit encryption\. This encryption feature uses the offload capabilities of the underlying hardware, and there is no impact on network performance\.
+AWS provides secure and private connectivity between EC2 instances\. In addition, we automatically encrypt in\-transit traffic between supported instances in the same VPC or in peered VPCs, using AEAD algorithms with 256\-bit encryption\. This encryption feature uses the offload capabilities of the underlying hardware, and there is no impact on network performance\. The supported instances are: C5n, G4, I3en, M5dn, M5n, P3dn, R5dn, and R5n\.
 
 ## Testing Whether Enhanced Networking Is Enabled<a name="test-enhanced-networking-ena"></a>
 
 To test whether enhanced networking is already enabled, verify that the `ena` module is installed on your instance and that the `enaSupport` attribute is set\. If your instance satisfies these two conditions, then the ethtool \-i eth*n* command should show that the module is in use on the network interface\.
 
 **Kernel Module \(ena\)**  
-To verify that the `ena` module is installed, use the modinfo command as follows:
+To verify that the `ena` module is installed, use the modinfo command as shown in the following example\.
 
 ```
 [ec2-user ~]$ modinfo ena
@@ -89,7 +89,7 @@ To check whether an AMI has the enhanced networking `enaSupport` attribute set, 
   ```
 
 **Network Interface Driver**  
-Use the following command to verify that the `ena` module is being used on a particular interface, substituting the interface name that you wish to check\. If you are using a single interface \(default\), it this is `eth0`\. If the operating system supports [predictable network names](#predictable-network-names-ena), this could be a name like `ens5`\.
+Use the following command to verify that the `ena` module is being used on a particular interface, substituting the interface name that you want to check\. If you are using a single interface \(default\), it this is `eth0`\. If the operating system supports [predictable network names](#predictable-network-names-ena), this could be a name like `ens5`\.
 
 In the following example, the `ena` module is not loaded, because the listed driver is `vif`\.
 
@@ -253,7 +253,7 @@ The following procedure provides the general steps for enabling enhanced network
 
 1. Run the sudo depmod command to update module dependencies\.
 
-1. <a name="other-linux-enhanced-networking-ena-stop-step"></a>Update `initramfs` on your instance to ensure that the new module loads at boot time\. For example, if your distribution supports dracut, you can use the following command:
+1. <a name="other-linux-enhanced-networking-ena-stop-step"></a>Update `initramfs` on your instance to ensure that the new module loads at boot time\. For example, if your distribution supports dracut, you can use the following command\.
 
    ```
    dracut -f -v
@@ -261,7 +261,7 @@ The following procedure provides the general steps for enabling enhanced network
 
 1. <a name="predictable-network-names-ena"></a>Determine if your system uses predictable network interface names by default\. Systems that use systemd or udev versions 197 or greater can rename Ethernet devices and they do not guarantee that a single network interface will be named `eth0`\. This behavior can cause problems connecting to your instance\. For more information and to see other configuration options, see [Predictable Network Interface Names](https://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/) on the freedesktop\.org website\.
 
-   1. You can check the systemd or udev versions on RPM\-based systems with the following command:
+   1. You can check the systemd or udev versions on RPM\-based systems with the following command\.
 
       ```
       rpm -qa | grep -e '^systemd-[0-9]\+\|^udev-[0-9]\+'
@@ -324,10 +324,10 @@ Follow the previous procedure until the step where you stop the instance\. Creat
 
 ## Enabling Enhanced Networking on Ubuntu with DKMS<a name="enhanced-networking-ena-ubuntu-dkms"></a>
 
-This method is for testing and feedback purposes only\. It is not intended for use with production deployments\. For production employments, see [Enabling Enhanced Networking on Ubuntu](#enhanced-networking-ena-ubuntu)\.
+This method is for testing and feedback purposes only\. It is not intended for use with production deployments\. For production deployments, see [Enabling Enhanced Networking on Ubuntu](#enhanced-networking-ena-ubuntu)\.
 
 **Important**  
-Using DKMS voids the support agreement for your subscription\. Using kmod configurations are an acceptable alternative for running the latest available kernel modules\.
+Using DKMS voids the support agreement for your subscription\. Using kmod configurations is an acceptable alternative for running the latest available kernel modules\.
 
 **To enable enhanced networking with ENA on Ubuntu \(EBS\-backed instances\)**
 
@@ -345,13 +345,13 @@ Using DKMS voids the support agreement for your subscription\. Using kmod config
    ubuntu:~$ git clone https://github.com/amzn/amzn-drivers
    ```
 
-1. Move the `amzn-drivers` package to the `/usr/src/` directory so dkms can find it and build it for each kernel update\. Append the version number \(you can find the current version number in the release notes\) of the source code to the directory name\. For example, version `1.0.0` is shown in the example below\.
+1. Move the `amzn-drivers` package to the `/usr/src/` directory so DKMS can find it and build it for each kernel update\. Append the version number \(you can find the current version number in the release notes\) of the source code to the directory name\. For example, version `1.0.0` is shown in the following example\.
 
    ```
    ubuntu:~$ sudo mv amzn-drivers /usr/src/amzn-drivers-1.0.0
    ```
 
-1. Create the dkms configuration file with the following values, substituting your version of `ena`\.
+1. Create the DKMS configuration file with the following values, substituting your version of `ena`\.
 
    Create the file\.
 
@@ -374,15 +374,15 @@ Using DKMS voids the support agreement for your subscription\. Using kmod config
    AUTOINSTALL="yes"
    ```
 
-1. Add, build, and install the `ena` module on your instance using dkms\.
+1. Add, build, and install the `ena` module on your instance using DKMS\.
 
-   Add the module to dkms
+   Add the module to DKMS\.
 
    ```
    ubuntu:~$ sudo dkms add -m amzn-drivers -v 1.0.0
    ```
 
-   Build the module using dkms\.
+   Build the module using the dkms command\.
 
    ```
    ubuntu:~$ sudo dkms build -m amzn-drivers -v 1.0.0

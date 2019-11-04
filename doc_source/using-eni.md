@@ -15,7 +15,7 @@ A network interface can include the following attributes:
 
 You can create and configure network interfaces in your account and attach them to instances in your VPC\. Your account might also have *requester\-managed* network interfaces, which are created and managed by AWS services to enable you to use other resources and services\. You cannot manage these network interfaces yourself\. For more information, see [Requester\-Managed Network Interfaces](requester-managed-eni.md)\.
 
-All network interfaces have the *eni\-xxxxxxxx* resource identifier\.
+All network interfaces have a resource identifier that starts with *eni\-*\.
 
 **Important**  
 The term 'elastic network interface' is sometimes shortened to 'ENI'\. This is not the same as the Elastic Network Adapter \(ENA\), which is a custom interface that optimizes network performance on some instance types\. For more information, see [Enhanced Networking on Linux](enhanced-networking.md)\.
@@ -65,6 +65,7 @@ The following table lists the maximum number of network interfaces per instance 
 | `a1.xlarge` | 4 | 15 | 15 | 
 | `a1.2xlarge` | 4 | 15 | 15 | 
 | `a1.4xlarge` | 8 | 30 | 30 | 
+| `a1.metal` | 8 | 30 | 30 | 
 |  `c1.medium`  |  2  |  6  | IPv6 not supported | 
 |  `c1.xlarge`  |  4  |  15  | IPv6 not supported | 
 |  `c3.large`  |  3  |  10  | 10 | 
@@ -193,6 +194,22 @@ The following table lists the maximum number of network interfaces per instance 
 | `m5d.16xlarge` | 15 | 50 | 50 | 
 | m5d\.24xlarge | 15 | 50 | 50 | 
 | m5d\.metal | 15 | 50 | 50 | 
+| m5dn\.large | 3 | 10 | 10 | 
+| m5dn\.xlarge | 4 | 15 | 15 | 
+| m5dn\.2xlarge | 4 | 15 | 15 | 
+| m5dn\.4xlarge | 8 | 30 | 30 | 
+| `m5dn.8xlarge` | 8 | 30 | 30 | 
+| m5dn\.12xlarge | 8 | 30 | 30 | 
+| `m5dn.16xlarge` | 15 | 50 | 50 | 
+| m5dn\.24xlarge | 15 | 50 | 50 | 
+| m5n\.large | 3 | 10 | 10 | 
+| m5n\.xlarge | 4 | 15 | 15 | 
+| m5n\.2xlarge | 4 | 15 | 15 | 
+| m5n\.4xlarge | 8 | 30 | 30 | 
+| `m5n.8xlarge` | 8 | 30 | 30 | 
+| m5n\.12xlarge | 8 | 30 | 30 | 
+| `m5n.16xlarge` | 15 | 50 | 50 | 
+| m5n\.24xlarge | 15 | 50 | 50 | 
 | p2\.xlarge | 4 | 15 | 15 | 
 | p2\.8xlarge | 8 | 30 | 30 | 
 | p2\.16xlarge | 8 | 30 | 30 | 
@@ -243,6 +260,22 @@ The following table lists the maximum number of network interfaces per instance 
 | r5d\.16xlarge | 15 | 50 | 50 | 
 | r5d\.24xlarge | 15 | 50 | 50 | 
 | r5d\.metal | 15 | 50 | 50 | 
+| r5dn\.large | 3 | 10 | 10 | 
+| r5dn\.xlarge | 4 | 15 | 15 | 
+| r5dn\.2xlarge | 4 | 15 | 15 | 
+| r5dn\.4xlarge | 8 | 30 | 30 | 
+| r5dn\.8xlarge | 8 | 30 | 30 | 
+| r5dn\.12xlarge | 8 | 30 | 30 | 
+| r5dn\.16xlarge | 15 | 50 | 50 | 
+| r5dn\.24xlarge | 15 | 50 | 50 | 
+| r5n\.large | 3 | 10 | 10 | 
+| r5n\.xlarge | 4 | 15 | 15 | 
+| r5n\.2xlarge | 4 | 15 | 15 | 
+| r5n\.4xlarge | 8 | 30 | 30 | 
+| r5n\.8xlarge | 8 | 30 | 30 | 
+| r5n\.12xlarge | 8 | 30 | 30 | 
+| r5n\.16xlarge | 15 | 50 | 50 | 
+| r5n\.24xlarge | 15 | 50 | 50 | 
 |  `t1.micro`  |  2  |  2  | IPv6 not supported | 
 |  `t2.nano`  |  2  |  2  | 2 | 
 |  `t2.micro`  |  2  |  2  | 2 | 
@@ -268,6 +301,8 @@ The following table lists the maximum number of network interfaces per instance 
 | `u-6tb1.metal` | 5 | 30 | 30 | 
 | `u-9tb1.metal` | 5 | 30 | 30 | 
 | `u-12tb1.metal` | 5 | 30 | 30 | 
+| `u-18tb1.metal` | 15 | 50 | 50 | 
+| `u-24tb1.metal` | 15 | 50 | 50 | 
 | x1\.16xlarge | 8 | 30 | 30 | 
 | x1\.32xlarge | 8 | 30 | 30 | 
 | x1e\.xlarge | 3 | 10 | 10 | 
@@ -283,9 +318,6 @@ The following table lists the maximum number of network interfaces per instance 
 | z1d\.6xlarge | 8 | 30 | 30 | 
 | z1d\.12xlarge | 15 | 50 | 50 | 
 | z1d\.metal | 15 | 50 | 50 | 
-
-**Note**  
-If `f1.16xlarge`, `g3.16xlarge`, `h1.16xlarge`, `i3.16xlarge`, and `r4.16xlarge` instances use more than 31 IPv4 or IPv6 addresses per interface, they cannot access the instance metadata, VPC DNS, and Time Sync services from the 32nd IP address onwards\. If access to these services is needed from all IP addresses on the interface, we recommend using a maximum of 31 IP addresses per interface\.
 
 ## Scenarios for Network Interfaces<a name="scenarios-enis"></a>
 
@@ -317,10 +349,10 @@ If one of your instances serving a particular function fails, its network interf
 
 ## Best Practices for Configuring Network Interfaces<a name="best-practices-for-configuring-network-interfaces"></a>
 + You can attach a network interface to an instance when it's running \(hot attach\), when it's stopped \(warm attach\), or when the instance is being launched \(cold attach\)\.
-+ You can detach secondary \(eth*N*\) network interfaces when the instance is running or stopped\. However, you can't detach the primary \(eth0\) interface\.
-+ If you have multiple subnets in an Availability Zone for the same VPC, you can move a network interface from an instance in one of these subnets to an instance in another one of these subnets\.
-+ When launching an instance from the CLI or API, you can specify the network interfaces to attach to the instance for both the primary \(eth0\) and additional network interfaces\. 
-+ Launching an Amazon Linux or Windows Server instance with multiple network interfaces automatically configures interfaces, private IPv4 addresses, and route tables on the operating system of the instance\. 
++ You can detach secondary network interfaces when the instance is running or stopped\. However, you can't detach the primary network interface \(eth0\)\.
++ You can move a network interface from one instance to another, if the instances are in the same Availability Zone and VPC but in different subnets\.
++ When launching an instance using the CLI, API, or an SDK, you can specify the primary network interface \(eth0\) and additional network interfaces\.
++ Launching an Amazon Linux or Windows Server instance with multiple network interfaces automatically configures interfaces, private IPv4 addresses, and route tables on the operating system of the instance\.
 + A warm or hot attach of an additional network interface may require you to manually bring up the second interface, configure the private IPv4 address, and modify the route table accordingly\. Instances running Amazon Linux or Windows Server automatically recognize the warm or hot attach and configure themselves\.
 + Attaching another network interface to an instance \(for example, a NIC teaming configuration\) cannot be used as a method to increase or double the network bandwidth to or from the dual\-homed instance\.
 + If you attach two or more network interfaces from the same subnet to an instance, you may encounter networking issues such as asymmetric routing\. If possible, use a secondary private IPv4 address on the primary network interface instead\. For more information, see [Assigning a Secondary Private IPv4 Address](MultipleIP.md#ManageMultipleIP)\. 

@@ -13,9 +13,11 @@ To purchase and modify Reserved Instances, ensure that your IAM user account has
 
 **Topics**
 + [Choosing a Platform](#ri-choosing-platform)
++ [Queuing Your Purchase](#ri-queued-purchase)
 + [Buying Standard Reserved Instances](#ri-buying-standard)
 + [Buying Convertible Reserved Instances](#ri-buying-convertible)
 + [Viewing Your Reserved Instances](#view-reserved-instances)
++ [Canceling a Queued Purchase](#cancel-queued-purchase)
 + [Using Your Reserved Instances](#reserved-instances-process)
 
 ## Choosing a Platform<a name="ri-choosing-platform"></a>
@@ -23,6 +25,16 @@ To purchase and modify Reserved Instances, ensure that your IAM user account has
 When you purchase a Reserved Instance, you must choose an offering for a *platform* that represents the operating system for your instance\.
 
 For SUSE Linux and RHEL distributions, you must choose offerings for those specific platforms\. For all other Linux distributions \(including Ubuntu\), choose an offering for the **Linux/UNIX** platform\. If you bring your existing RHEL subscription, you must choose an offering for the **Linux/UNIX** platform, not an offering for the RHEL platform\.
+
+If you purchase a Reserved Instance to apply to an On\-Demand Instance that was launched from an AMI with a billing product code, make sure that the Reserved Instance has the matching billing product code\. If you purchase a Reserved Instance without the matching billing product code, the Reserved Instance will not be applied to the On\-Demand Instance\.
+
+## Queuing Your Purchase<a name="ri-queued-purchase"></a>
+
+By default, when you purchase a Reserved Instance, it is executed immediately\. Alternatively, you can queue your purchases for a future date and time\. For example, you can queue a purchase for around the time that an existing Reserved Instance expires\. This can help you ensure that you have uninterrupted coverage\.
+
+You can queue purchases for regional Reserved Instances, but not zonal Reserved Instances or Reserved Instances from other sellers\. You can queue a purchase up to three years in advance\. On the scheduled date and time, the purchase is executed using the default payment method\. After the payment is successful, the billing benefit is applied\.
+
+You can view your queued purchases in the Amazon EC2 console\. The status of a queued purchase is **queued**\. You can cancel a queued purchase any time before its scheduled time\. For details, see [Canceling a Queued Purchase](#cancel-queued-purchase)\.
 
 ## Buying Standard Reserved Instances<a name="ri-buying-standard"></a>
 
@@ -39,16 +51,18 @@ You can buy Standard Reserved Instances in a specific Availability Zone and get 
 1. To purchase a capacity reservation, choose **Only show offerings that reserve capacity** in the top\-right corner of the purchase screen\. To purchase a regional Reserved Instance, leave the check box unselected\.
 
 1. Select other configurations as needed and choose **Search**\.
-**Note**  
-To purchase a Standard Reserved Instance from the Reserved Instance Marketplace, look for **3rd Party** in the **Seller** column in the search results\. The **Term** column displays non\-standard terms\.
+
+   To purchase a Standard Reserved Instance from the Reserved Instance Marketplace, look for **3rd Party** in the **Seller** column in the search results\. The **Term** column displays non\-standard terms\.
 
 1. Select the Reserved Instances to purchase, enter the quantity, and choose **Add to Cart**\.
 
 1. To see a summary of the Reserved Instances that you selected, choose **View Cart**\.
 
+1. If **Order On** is **Now**, the purchase is completed immediately\. To queue a purchase, choose **Now** and select a date\. You can select a different date for each eligible offering in the cart\. The purchase is queued until 00:00, in the time zone of your browser, on the selected date\. 
+
 1. To complete the order, choose **Order**\.
-**Note**  
-If, at the time of placing the order, there are offerings similar to your choice but with a lower price, AWS sells you the offerings at the lower price\.
+
+   If, at the time of placing the order, there are offerings similar to your choice but with a lower price, AWS sells you the offerings at the lower price\.
 
 1. The status of your order is listed in the **State** column\. When your order is complete, the **State** value changes from `payment-pending` to `active`\. When the Reserved Instance is `active`, it is ready to use\.
 
@@ -63,83 +77,28 @@ If the status goes to `retired`, AWS may not have received your payment\.
    aws ec2 describe-reserved-instances-offerings --instance-type t2.large --offering-class standard --product-description "Linux/UNIX" --instance-tenancy default --filters Name=duration,Values=31536000 Name=scope,Values=Region
    ```
 
-   ```
-   {
-       "ReservedInstancesOfferings": [
-           {
-               "OfferingClass": "standard", 
-               "OfferingType": "No Upfront", 
-               "ProductDescription": "Linux/UNIX", 
-               "InstanceTenancy": "default", 
-               "PricingDetails": [], 
-               "UsagePrice": 0.0, 
-               "RecurringCharges": [
-                   {
-                       "Amount": 0.0672, 
-                       "Frequency": "Hourly"
-                   }
-               ], 
-               "Marketplace": false, 
-               "CurrencyCode": "USD", 
-               "FixedPrice": 0.0, 
-               "Duration": 31536000, 
-               "Scope": "Region", 
-               "ReservedInstancesOfferingId": "bec624df-a8cc-4aad-a72f-4f8abc34caf2", 
-               "InstanceType": "t2.large"
-           }, 
-           {
-               "OfferingClass": "standard", 
-               "OfferingType": "Partial Upfront", 
-               "ProductDescription": "Linux/UNIX", 
-               "InstanceTenancy": "default", 
-               "PricingDetails": [], 
-               "UsagePrice": 0.0, 
-               "RecurringCharges": [
-                   {
-                       "Amount": 0.032, 
-                       "Frequency": "Hourly"
-                   }
-               ], 
-               "Marketplace": false, 
-               "CurrencyCode": "USD", 
-               "FixedPrice": 280.0, 
-               "Duration": 31536000, 
-               "Scope": "Region", 
-               "ReservedInstancesOfferingId": "6b15a842-3acb-4320-bd55-fa43a79f3fe3", 
-               "InstanceType": "t2.large"
-           }, 
-           {
-               "OfferingClass": "standard", 
-               "OfferingType": "All Upfront", 
-               "ProductDescription": "Linux/UNIX", 
-               "InstanceTenancy": "default", 
-               "PricingDetails": [], 
-               "UsagePrice": 0.0, 
-               "RecurringCharges": [], 
-               "Marketplace": false, 
-               "CurrencyCode": "USD", 
-               "FixedPrice": 549.0, 
-               "Duration": 31536000, 
-               "Scope": "Region", 
-               "ReservedInstancesOfferingId": "5062dc97-d284-417b-b09e-8abed1e5a183", 
-               "InstanceType": "t2.large"
-           }
-       ]
-   }
-   ```
-
    To find Reserved Instances on the Reserved Instance Marketplace only, use the `marketplace` filter and do not specify a duration in the request, as the term may be shorter than a 1– or 3\-year term\.
 
    ```
    aws ec2 describe-reserved-instances-offerings --instance-type t2.large --offering-class standard --product-description "Linux/UNIX" --instance-tenancy default --filters Name=marketplace,Values=true
    ```
 
-   When you find a Reserved Instance that meets your needs, take note of the `ReservedInstancesOfferingId`\.
+   When you find a Reserved Instance that meets your needs, take note of the offering ID\. For example:
+
+   ```
+   "ReservedInstancesOfferingId": "bec624df-a8cc-4aad-a72f-4f8abc34caf2"
+   ```
 
 1. Use the [purchase\-reserved\-instances\-offering](https://docs.aws.amazon.com/cli/latest/reference/ec2/purchase-reserved-instances-offering.html) command to buy your Reserved Instance\. You must specify the Reserved Instance offering ID you obtained the previous step and you must specify the number of instances for the reservation\.
 
    ```
-   aws ec2 purchase-reserved-instances-offering --reserved-instances-offering-id ec06327e-dd07-46ee-9398-75b5fexample --instance-count 1
+   aws ec2 purchase-reserved-instances-offering --reserved-instances-offering-id bec624df-a8cc-4aad-a72f-4f8abc34caf2 --instance-count 1
+   ```
+
+   By default, the purchase is completed immediately\. Alternatively, to queue the purchase, add the following parameter to the previous call\.
+
+   ```
+   --purchase-time "2020-12-01T00:00:00Z"
    ```
 
 1. Use the [describe\-reserved\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances.html) command to get the status of your Reserved Instance\.
@@ -153,7 +112,7 @@ Alternatively, use the following AWS Tools for Windows PowerShell commands:
 + [New\-EC2ReservedInstance](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2ReservedInstance.html)
 + [Get\-EC2ReservedInstance](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ReservedInstance.html)
 
-If you already have a running instance that matches the specifications of the Reserved Instance, the billing benefit is immediately applied\. You do not have to restart your instances\. If you do not have a suitable running instance, launch an instance and ensure that you match the same criteria that you specified for your Reserved Instance\. For more information, see [Using Your Reserved Instances](#reserved-instances-process)\. 
+After the purchase is complete, if you already have a running instance that matches the specifications of the Reserved Instance, the billing benefit is immediately applied\. You do not have to restart your instances\. If you do not have a suitable running instance, launch an instance and ensure that you match the same criteria that you specified for your Reserved Instance\. For more information, see [Using Your Reserved Instances](#reserved-instances-process)\. 
 
 For examples of how Reserved Instances are applied to your running instances, see [How Reserved Instances Are Applied](apply_ri.md)\.
 
@@ -177,9 +136,11 @@ You can buy Convertible Reserved Instances in a specific Availability Zone and g
 
 1. To see a summary of your selection, choose **View Cart**\.
 
+1. If **Order On** is **Now**, the purchase is completed immediately\. To queue a purchase, choose **Now** and select a date\. You can select a different date for each eligible offering in the cart\. The purchase is queued until 00:00, in the time zone of your browser, on the selected date\. 
+
 1. To complete the order, choose **Order**\.
-**Note**  
-If, at the time of placing the order, there are offerings similar to your choice but with a lower price, AWS sells you the offerings at the lower price\.
+
+   If, at the time of placing the order, there are offerings similar to your choice but with a lower price, AWS sells you the offerings at the lower price\.
 
 1. The status of your order is listed in the **State** column\. When your order is complete, the **State** value changes from `payment-pending` to `active`\. When the Reserved Instance is `active`, it is ready to use\.
 
@@ -194,77 +155,22 @@ If the status goes to `retired`, AWS may not have received your payment\.
    aws ec2 describe-reserved-instances-offerings --instance-type t2.large --offering-class convertible --product-description "Linux/UNIX" --instance-tenancy default --filters Name=scope,Values=Region
    ```
 
-   ```
-   {
-       "ReservedInstancesOfferings": [
-           {
-               "OfferingClass": "convertible", 
-               "OfferingType": "No Upfront", 
-               "ProductDescription": "Linux/UNIX", 
-               "InstanceTenancy": "default", 
-               "PricingDetails": [], 
-               "UsagePrice": 0.0, 
-               "RecurringCharges": [
-                   {
-                       "Amount": 0.0556, 
-                       "Frequency": "Hourly"
-                   }
-               ], 
-               "Marketplace": false, 
-               "CurrencyCode": "USD", 
-               "FixedPrice": 0.0, 
-               "Duration": 94608000, 
-               "Scope": "Region", 
-               "ReservedInstancesOfferingId": "e242e87b-b75c-4079-8e87-02d53f145204", 
-               "InstanceType": "t2.large"
-           }, 
-           {
-               "OfferingClass": "convertible", 
-               "OfferingType": "Partial Upfront", 
-               "ProductDescription": "Linux/UNIX", 
-               "InstanceTenancy": "default", 
-               "PricingDetails": [], 
-               "UsagePrice": 0.0, 
-               "RecurringCharges": [
-                   {
-                       "Amount": 0.0258, 
-                       "Frequency": "Hourly"
-                   }
-               ], 
-               "Marketplace": false, 
-               "CurrencyCode": "USD", 
-               "FixedPrice": 677.0, 
-               "Duration": 94608000, 
-               "Scope": "Region", 
-               "ReservedInstancesOfferingId": "13486b92-bdd6-4b68-894c-509bcf239ccd", 
-               "InstanceType": "t2.large"
-           }, 
-           {
-               "OfferingClass": "convertible", 
-               "OfferingType": "All Upfront", 
-               "ProductDescription": "Linux/UNIX", 
-               "InstanceTenancy": "default", 
-               "PricingDetails": [], 
-               "UsagePrice": 0.0, 
-               "RecurringCharges": [], 
-               "Marketplace": false, 
-               "CurrencyCode": "USD", 
-               "FixedPrice": 1327.0, 
-               "Duration": 94608000, 
-               "Scope": "Region", 
-               "ReservedInstancesOfferingId": "e00ec34b-4674-4fb9-a0a9-213296ab93aa", 
-               "InstanceType": "t2.large"
-           }
-       ]
-   }
-   ```
+   When you find a Reserved Instance that meets your needs, take note of the offering ID\. For example:
 
-   When you find a Reserved Instance that meets your needs, take note of the `ReservedInstancesOfferingId`\.
+   ```
+   "ReservedInstancesOfferingId": "bec624df-a8cc-4aad-a72f-4f8abc34caf2"
+   ```
 
 1. Use the [purchase\-reserved\-instances\-offering](https://docs.aws.amazon.com/cli/latest/reference/ec2/purchase-reserved-instances-offering.html) command to buy your Reserved Instance\. You must specify the Reserved Instance offering ID you obtained the previous step and you must specify the number of instances for the reservation\.
 
    ```
-   aws ec2 purchase-reserved-instances-offering --reserved-instances-offering-id ec06327e-dd07-46ee-9398-75b5fexample --instance-count 1
+   aws ec2 purchase-reserved-instances-offering --reserved-instances-offering-id bec624df-a8cc-4aad-a72f-4f8abc34caf2 --instance-count 1
+   ```
+
+   By default, the purchase is completed immediately\. Alternatively, to queue the purchase, add the following parameter to the previous call\.
+
+   ```
+   --purchase-time "2020-12-01T00:00:00Z"
    ```
 
 1. Use the [describe\-reserved\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances.html) command to get the status of your Reserved Instance\.
@@ -299,6 +205,22 @@ You can view the Reserved Instances you've purchased using the Amazon EC2 consol
 **To view your Reserved Instances using the command line**
 + [describe\-reserved\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances.html) \(AWS CLI\)
 + [Get\-EC2ReservedInstance](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ReservedInstance.html) \(Tools for Windows PowerShell\)
+
+## Canceling a Queued Purchase<a name="cancel-queued-purchase"></a>
+
+You can queue a purchase up to three years in advance\. You can cancel a queued purchase any time before its scheduled time\.
+
+**To cancel a queued purchase**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Reserved Instances**\.
+
+1. Select one or more Reserved Instances\.
+
+1. Choose **Actions**, **Delete Queued Reserved Instances**\.
+
+1. When prompted for confirmation, choose **Yes, Delete**\.
 
 ## Using Your Reserved Instances<a name="reserved-instances-process"></a>
 

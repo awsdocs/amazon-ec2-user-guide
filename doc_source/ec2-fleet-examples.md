@@ -8,7 +8,7 @@ The following examples show launch configurations that you can use with the [cre
 
 1. [Launch On\-Demand Instances as the primary capacity](#ec2-fleet-config3)
 
-1. [Launch Spot Instances using the lowestPrice allocation strategy](#ec2-fleet-config4)
+1. [Launch Spot Instances using the lowest\-price allocation strategy](#ec2-fleet-config4)
 
 ## Example 1: Launch Spot Instances as the Default Purchasing Option<a name="ec2-fleet-config1"></a>
 
@@ -79,7 +79,7 @@ The following example specifies the total target capacity of 2 instances for the
 
 ## Example 4: Launch Spot Instances Using the Lowest Price Allocation Strategy<a name="ec2-fleet-config4"></a>
 
-If the allocation strategy for Spot Instances is not specified, the default allocation strategy, which is `lowestPrice`, is used\. The following example uses the `lowestPrice` allocation strategy\. The three launch specifications, which override the launch template, have different instance types but the same weighted capacity and subnet\. The total target capacity is 2 instances and the default purchasing option is `spot`\. The EC2 Fleet launches 2 Spot Instances using the instance type of the launch specification with the lowest price\.
+If the allocation strategy for Spot Instances is not specified, the default allocation strategy, which is `lowest-price`, is used\. The following example uses the `lowest-price` allocation strategy\. The three launch specifications, which override the launch template, have different instance types but the same weighted capacity and subnet\. The total target capacity is 2 instances and the default purchasing option is `spot`\. The EC2 Fleet launches 2 Spot Instances using the instance type of the launch specification with the lowest price\.
 
 ```
 {

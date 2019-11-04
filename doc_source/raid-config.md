@@ -21,7 +21,7 @@ The following table compares the common RAID 0 and RAID 1 options\.
 
 | Configuration | Use | Advantages | Disadvantages | 
 | --- | --- | --- | --- | 
-|  RAID 0  |  When I/O performance is more important than fault tolerance; for example, as in a heavily used database \(where data replication is already set up separately\)\.  |  I/O is distributed across the volumes in a stripe\. If you add a volume, you get the straight addition of throughput\.  |  Performance of the stripe is limited to the worst performing volume in the set\. Loss of a single volume results in a complete data loss for the array\.  | 
+|  RAID 0  |  When I/O performance is more important than fault tolerance; for example, as in a heavily used database \(where data replication is already set up separately\)\.  |  I/O is distributed across the volumes in a stripe\. If you add a volume, you get the straight addition of throughput and IOPS\.  |  Performance of the stripe is limited to the worst performing volume in the set\. Loss of a single volume results in a complete data loss for the array\.  | 
 |  RAID 1  |  When fault tolerance is more important than I/O performance; for example, as in a critical application\.  |  Safer from the standpoint of data durability\.  |  Does not provide a write performance improvement; requires more Amazon EC2 to Amazon EBS bandwidth than non\-RAID configurations because the data is written to multiple volumes simultaneously\.   | 
 
 **Important**  

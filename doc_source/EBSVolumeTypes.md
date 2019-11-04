@@ -26,7 +26,7 @@ The following table describes the use cases and performance characteristics for 
 | Max Throughput per Instance †† | 1,750 MiB/s | 1,750 MiB/s | 1,750 MiB/s | 1,750 MiB/s | 
 | Dominant Performance Attribute | IOPS | IOPS | MiB/s | MiB/s | 
 
-\* The throughput limit is between 128 MiB/s and 250 MiB/s, depending on the volume size\. Volumes greater than 170 GiB and below 334 GiB deliver a maximum throughput of 250 MiB/s if burst credits are available\. Volumes with 334 GiB and above deliver 250 MiB/s irrespective of burst credits\. Older `gp2` volumes might not reach full performance unless you modify the volume\. For more information, see [Amazon EBS Elastic Volumes](ebs-modify-volume.md)\.
+\* The throughput limit is between 128 MiB/s and 250 MiB/s, depending on the volume size\. Volumes smaller than 170 GiB deliver a maximum throughput of 128 MiB/s\. Volumes larger than 170 GiB but smaller than 334 GiB deliver a maximum throughput of 250 MiB/s if burst credits are available\. Volumes larger than or equal to 334 GiB deliver 250 MiB/s regardless of burst credits\. Older `gp2` volumes might not reach full performance unless you modify the volume\. For more information, see [Amazon EBS Elastic Volumes](ebs-modify-volume.md)\.
 
 † Maximum IOPS and throughput are guaranteed only on [Nitro\-based Instances](instance-types.md#ec2-nitro-instances)\. Other instances guarantee up to 32,000 IOPS and 500 MiB/s\. Older `io1` volumes might not reach full performance unless you modify the volume\. For more information, see [Amazon EBS Elastic Volumes](ebs-modify-volume.md)\.
 
@@ -63,10 +63,17 @@ Each volume receives an initial I/O credit balance of 5\.4 million I/O credits, 
 
 ![\[Comparing baseline performance and burst IOPS\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/gp2_iops_1.png)
 
-When your volume requires more than the baseline performance I/O level, it draws on I/O credits in the credit balance to burst to the required performance level, up to a maximum of 3,000 IOPS\. Volumes larger than 1,000 GiB have a baseline performance that is equal or greater than the maximum burst performance, and their I/O credit balance never depletes\. When your volume uses fewer I/O credits than it earns in a second, unused I/O credits are added to the I/O credit balance\. The maximum I/O credit balance for a volume is equal to the initial credit balance \(5\.4 million I/O credits\)\.
+When your volume requires more than the baseline performance I/O level, it draws on I/O credits in the credit balance to burst to the required performance level, up to a maximum of 3,000 IOPS\. When your volume uses fewer I/O credits than it earns in a second, unused I/O credits are added to the I/O credit balance\. The maximum I/O credit balance for a volume is equal to the initial credit balance \(5\.4 million I/O credits\)\.
 
-**Note**  
-For a volume 1 TiB or larger, baseline performance is higher than maximum burst performance, so I/O credits are never spent\. If the volume is attached to a Nitro\-based instance, the reported burst balance is 0%\. For a non\-Nitro\-based instance, the reported burst balance is 100%\.
+When the baseline performance of a volume is higher than maximum burst performance, I/O credits are never spent\. If the volume is attached to a [Nitro\-based instance](instance-types.md#ec2-nitro-instances), the burst balance is not reported\. For a non\-Nitro\-based instance, the reported burst balance is 100%\.
+
+The burst duration of a volume is dependent on the size of the volume, the burst IOPS required, and the credit balance when the burst begins\. This is shown in the following equation:
+
+```
+                             (Credit balance)
+Burst duration  =  ------------------------------------
+                   (Burst IOPS) - 3(Volume size in GiB)
+```
 
 The following table lists several volume sizes and the associated baseline performance of the volume \(which is also the rate at which it accumulates I/O credits\), the burst duration at the 3,000 IOPS maximum \(when starting with a full credit balance\), and the time in seconds that the volume would take to refill an empty credit balance\.
 
@@ -83,15 +90,7 @@ The following table lists several volume sizes and the associated baseline perfo
 |  5,334 \(Min\. size for max IOPS\)  |  16,000  |  N/A\*  |  N/A\*  | 
 |  16,384 \(16 TiB, max volume size\)  |  16,000  |  N/A\*  |  N/A\*  | 
 
-\* Bursting and I/O credits are only relevant to volumes under 1,000 GiB, where burst performance exceeds baseline performance\.
-
-The burst duration of a volume is dependent on the size of the volume, the burst IOPS required, and the credit balance when the burst begins\. This is shown in the following equation:
-
-```
-                             (Credit balance)
-Burst duration  =  ------------------------------------
-                   (Burst IOPS) - 3(Volume size in GiB)
-```
+\* The baseline performance of the volume exceeds the maximum burst performance\.
 
 **What happens if I empty my I/O credit balance?**  
 If your `gp2` volume uses all of its I/O credit balance, the maximum IOPS performance of the volume remains at the baseline IOPS performance level \(the rate at which your volume earns credits\) and the volume's maximum throughput is reduced to the baseline IOPS multiplied by the maximum I/O size\. Throughput can never exceed 250 MiB/s\. When I/O demand drops below the baseline level and unused credits are added to the I/O credit balance, the maximum IOPS performance of the volume again exceeds the baseline\. For example, a 100 GiB `gp2` volume with an empty credit balance has a baseline performance of 300 IOPS and a throughput limit of 75 MiB/s \(300 I/O operations per second \* 256 KiB per I/O operation = 75 MiB/s\)\. The larger a volume is, the greater the baseline performance is and the faster it replenishes the credit balance\. For more information about how IOPS are measured, see [I/O Characteristics and Monitoring](ebs-io-characteristics.md)\.

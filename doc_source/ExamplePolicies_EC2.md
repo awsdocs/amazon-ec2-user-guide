@@ -298,7 +298,7 @@ The following policy allows users to create a volume without having to specify t
 
 ## Working with Snapshots<a name="iam-example-manage-snapshots"></a>
 
-This sections contains example policies for both `CreateSnapshot` \(point\-in\-time snapshot of an EBS volume\) and `CreateSnapshots` \(multi\-volume snapshots\)\.
+The following are example policies for both `CreateSnapshot` \(point\-in\-time snapshot of an EBS volume\) and `CreateSnapshots` \(multi\-volume snapshots\)\.
 
 **Topics**
 + [Example: Creating a Snapshot](#iam-creating-snapshot)
@@ -1177,7 +1177,7 @@ In the following example, users can launch instances, but only if they use a spe
 
 ### Elastic GPUs<a name="iam-example-runinstances-egpu"></a>
 
-In the following policy, users can launch an instance and specify an elastic GPU to attach to the instance\. Users can launch instances in any region, but they can only attach an elastic GPU during a launch in the `us-east-2` region\. 
+In the following policy, users can launch an instance and specify an elastic GPU to attach to the instance\. Users can launch instances in any Region, but they can only attach an elastic GPU during a launch in the `us-east-2` Region\. 
 
 The `ec2:ElasticGpuType` condition key uses the `ForAnyValue` modifier to indicate that only the elastic GPU types `eg1.medium` and `eg1.large` are allowed in the request\. 
 

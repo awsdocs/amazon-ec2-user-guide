@@ -17,7 +17,7 @@ Scaling based on a schedule enables you to scale your application in response to
 
 1. For **Name**, specify a name for the scheduled action\.
 
-1. Type a value for **Minimum capacity**, **Maximum capacity**, or both\.
+1. Enter a value for **Minimum capacity**, **Maximum capacity**, or both\.
 
 1. For **Recurrence**, choose **Once**\.
 
@@ -68,4 +68,4 @@ Scaling based on a schedule enables you to scale your application in response to
 Use the following commands:
 + [put\-scheduled\-action](https://docs.aws.amazon.com/cli/latest/reference/application-autoscaling/put-scheduled-action.html)
 + [describe\-scheduled\-actions](https://docs.aws.amazon.com/cli/latest/reference/application-autoscaling/describe-scheduled-actions.html)
-+ [delete\-scheduled\-action](https://docs.aws.amazon.com/cli/latest/reference/application-autoscaling/put-scheduled-action.html)
++ [delete\-scheduled\-action](https://docs.aws.amazon.com/cli/latest/reference/application-autoscaling/delete-scheduled-action.html)

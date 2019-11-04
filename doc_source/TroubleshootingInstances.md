@@ -14,7 +14,6 @@ The following information can help you troubleshoot issues if your instance fail
 + ["FATAL: kernel too old" and "fsck: No such file or directory while trying to open /dev" \(Kernel and AMI mismatch\)](#KernelOld)
 + ["FATAL: Could not load /lib/modules" or "BusyBox" \(Missing kernel modules\)](#KernelMissing)
 + [ERROR Invalid kernel \(EC2 incompatible kernel\)](#KernelInvalid)
-+ [request\_module: runaway loop modprobe \(Looping legacy kernel modprobe on older Linux versions\)](#FilesystemUnknown)
 + [fsck: No such file or directory while trying to open\.\.\. \(File system not found\)](#FilesystemFschk)
 + [General error mounting filesystems \(Failed mount\)](#FilesystemGeneral)
 + [VFS: Unable to mount root fs on unknown\-block \(Root filesystem mismatch\)](#FilesystemKernel)
@@ -88,7 +87,6 @@ For Linux\-based instances that have failed an instance status check, such as th
 + [ERROR Invalid kernel \(EC2 incompatible kernel\)](#KernelInvalid)
 
 **File System Errors**
-+ [request\_module: runaway loop modprobe \(Looping legacy kernel modprobe on older Linux versions\)](#FilesystemUnknown)
 + [fsck: No such file or directory while trying to open\.\.\. \(File system not found\)](#FilesystemFschk)
 + [General error mounting filesystems \(Failed mount\)](#FilesystemGeneral)
 + [VFS: Unable to mount root fs on unknown\-block \(Root filesystem mismatch\)](#FilesystemKernel)
@@ -387,40 +385,6 @@ One or both of the following conditions can cause this problem:
 | --- | --- | 
 |  Amazon EBS\-backed  |  Use the following procedure: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstances.html)  | 
 |  Instance store\-backed  |  Use the following procedure: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstances.html)  | 
-
-## request\_module: runaway loop modprobe \(Looping legacy kernel modprobe on older Linux versions\)<a name="FilesystemUnknown"></a>
-
-This condition is indicated by a system log similar to the one shown below\. Using an unstable or old Linux kernel \(for example, 2\.6\.16\-xenU\) can cause an interminable loop condition at startup\.
-
-```
-Linux version 2.6.16-xenU (builder@xenbat.amazonsa) (gcc version 4.0.1 
-20050727 (Red Hat 4.0.1-5)) #1 SMP Mon May 28 03:41:49 SAST 2007
-
-BIOS-provided physical RAM map:
-
- Xen: 0000000000000000 - 0000000026700000 (usable)
-
-0MB HIGHMEM available.
-...
-
-request_module: runaway loop modprobe binfmt-464c
-
-request_module: runaway loop modprobe binfmt-464c
-
-request_module: runaway loop modprobe binfmt-464c
-
-request_module: runaway loop modprobe binfmt-464c
-
-request_module: runaway loop modprobe binfmt-464c
-```
-
-### Suggested Actions<a name="FilesystemUnknown-suggested-actions"></a>
-
-
-| For this instance type  | Do this | 
-| --- | --- | 
-|  Amazon EBS\-backed  |  Use a newer kernel, either GRUB\-based or static, using one of the following options: Option 1: Terminate the instance and launch a new instance, specifying the `–kernel` and `–ramdisk` parameters\. Option 2: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstances.html)  | 
-|  Instance store\-backed  |  Terminate the instance and launch a new instance, specifying the `–kernel` and `–ramdisk` parameters\.   | 
 
 ## fsck: No such file or directory while trying to open\.\.\. \(File system not found\)<a name="FilesystemFschk"></a>
 
