@@ -100,13 +100,16 @@ Amazon EC2 provides the following purchasing options for instances:
 **On\-Demand Instances**  
 Pay for the instances that you use by the second, with no long\-term commitments or upfront payments\.
 
+**Savings Plans**  
+You can reduce your Amazon EC2 costs by making a commitment to a consistent amount of usage, in USD per hour, for a term of 1 or 3 years\.
+
 **Reserved Instances**  
-Make a low, one\-time, up\-front payment for an instance, reserve it for a one\- or three\-year term, and pay a significantly lower hourly rate for these instances\.
+You can reduce your Amazon EC2 costs by making a commitment to a specific instance configuration, including instance type and Region, for a term of 1 or 3 years\.
 
 **Spot Instances**  
-Request unused EC2 instances, which can lower your costs significantly\.
+Request unused EC2 instances, which can reduce your Amazon EC2 costs significantly\.
 
-For a complete list of charges and specific prices for Amazon EC2, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing)\.
+For a complete list of charges and prices for Amazon EC2, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing)\.
 
 To calculate the cost of a sample provisioned environment, see [Cloud Economics Center](https://aws.amazon.com/economics/)\.
 

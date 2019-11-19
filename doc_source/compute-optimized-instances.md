@@ -45,7 +45,10 @@ The following is a summary of the hardware specifications for compute optimized 
 | c5d\.2xlarge | 8 | 16 | 
 | c5d\.4xlarge | 16 | 32 | 
 | c5d\.9xlarge | 36 | 72 | 
+| c5d\.12xlarge | 48 | 96 | 
 | c5d\.18xlarge | 72 | 144 | 
+| c5d\.24large | 96 | 192 | 
+| c5d\.metal | 96 | 192 | 
 | c5n\.large | 2 | 5\.25 | 
 | c5n\.xlarge | 4 | 10\.5 | 
 | c5n\.2xlarge | 8 | 21 | 
@@ -81,7 +84,7 @@ The following is a summary of network performance for compute optimized instance
 | c5\.9xlarge \| c5d\.9xlarge | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5\.12xlarge \| c5d\.12xlarge | 12 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5n\.4xlarge and smaller | Up to 25 Gbps | [ENA](enhanced-networking-ena.md) | 
-| c5\.18xlarge \| c5\.24xlarge \| c5\.metal \| c5d\.18xlarge | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
+| c5\.18xlarge \| c5\.24xlarge \| c5\.metal \| c5d\.18xlarge \| c5d\.24xlarge \| c5d\.metal | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5n\.9xlarge | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5n\.18xlarge \| c5n\.metal | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c4\.large | Moderate | [Intel 82599 VF](sriov-networking.md) | 
@@ -100,7 +103,10 @@ If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-ba
 |  `c5d.2xlarge` \*  |  80,000  |  37,000  | 
 |  `c5d.4xlarge` \*  |  175,000  |  75,000  | 
 |  `c5d.9xlarge`  |  350,000  |  170,000  | 
+|  `c5d.12xlarge`  |  700,000  |  340,000  | 
 |  `c5d.18xlarge`  |  700,000  |  340,000  | 
+|  `c5d.24xlarge`  |  1,400,000  |  680,000  | 
+|  `c5d.metal`  |  1,400,000  |  680,000  | 
 
 \* For these instances, you can get up to the specified performance\.
 

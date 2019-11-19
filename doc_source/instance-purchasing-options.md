@@ -2,14 +2,17 @@
 
 Amazon EC2 provides the following purchasing options to enable you to optimize your costs based on your needs:
 + **On\-Demand Instances** – Pay, by the second, for the instances that you launch\.
-+ **Reserved Instances** – Purchase, at a significant discount, instances that are always available, for a term from one to three years\.
++ **Savings Plans** – Reduce your Amazon EC2 costs by making a commitment to a consistent amount of usage, in USD per hour, for a term of 1 or 3 years\.
++ **Reserved Instances** – Reduce your Amazon EC2 costs by making a commitment to a consistent instance configuration, including instance type and Region, for a term of 1 or 3 years\.
 + **Scheduled Instances** – Purchase instances that are always available on the specified recurring schedule, for a one\-year term\.
-+ **Spot Instances** – Request unused EC2 instances, which can lower your Amazon EC2 costs significantly\.
++ **Spot Instances** – Request unused EC2 instances, which can reduce your Amazon EC2 costs significantly\.
 + **Dedicated Hosts** – Pay for a physical host that is fully dedicated to running your instances, and bring your existing per\-socket, per\-core, or per\-VM software licenses to reduce costs\.
-+ **Dedicated Instances** – Pay, by the hour, for instances that run on single\-tenant hardware\. 
++ **Dedicated Instances** – Pay, by the hour, for instances that run on single\-tenant hardware\.
 + **Capacity Reservations** – Reserve capacity for your EC2 instances in a specific Availability Zone for any duration\.
 
 If you require a capacity reservation, purchase Reserved Instances or Capacity Reservations for a specific Availability Zone, or purchase Scheduled Instances\. Spot Instances are a cost\-effective choice if you can be flexible about when your applications run and if they can be interrupted\. Dedicated Hosts or Dedicated Instances can help you address compliance requirements and reduce costs by using your existing server\-bound software licenses\. For more information, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/)\.
+
+For more information about Savings Plans, see the [AWS Savings Plans User Guide](https://docs.aws.amazon.com/savingsplans/latest/userguide/)\.
 
 **Topics**
 + [Determining the Instance Lifecycle](#check-instance-lifecycle)

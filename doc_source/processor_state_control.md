@@ -11,8 +11,8 @@ The following instance types provide the ability for an operating system to cont
 
 The following instance types provide the ability for an operating system to control processor C\-states:
 + General purpose: `m5.12xlarge` \| `m5.24xlarge` \| `m5d.12xlarge` \| `m5d.24xlarge`
-+ Compute optimized: `c5.9xlarge` \| `c5.12xlarge` \| `c5.18xlarge` \| `c5.24xlarge` \| `c5d.9xlarge` \| `c5d.18xlarge`
-+ Memory optimized: `r5.12xlarge` \| `r5.24xlarge` \| `r5d.12xlarge` \| `r5d.24xlarge` \| `z1d.6xlarge` \| `z1d.12xlarge`
++ Compute optimized: `c5.9xlarge` \| `c5.12xlarge` \| `c5.18xlarge` \| `c5.24xlarge` \| `c5d.9xlarge` \| `c5d.12xlarge` \| `c5d.18xlarge` \| `c5d.24xlarge`
++ Memory optimized: `r5.12xlarge` \| `r5.24xlarge` \| `r5d.12xlarge` \| `r5d.24xlarge` \| `r5n.24xlarge | ` `z1d.6xlarge` \| `z1d.12xlarge`
 + Storage optimized: `i3en.12xlarge` \| `i3en.24xlarge`
 + Accelerated computing: `p3dn.24xlarge`
 

@@ -12,11 +12,11 @@ Combined with the monitoring features of Amazon CloudWatch Events and AWS CloudT
 + [Permissions for Amazon DLM](#dlm-permissions)
 + [Permissions for IAM Users](#dlm-access-control)
 + [Limits](#dlm-limits)
-+ [Working with Amazon DLM Using the Console](#snapshot-lifecycle-console)
-+ [Working with Amazon DLM Using the Command Line](#snaphot-lifecycle-cli)
-+ [Working with Amazon DLM Using the API](#snaphot-lifecycle-api)
-+ [Working with Amazon DLM to Create and Maintain Multi\-Volume Snapshots Using the Console](#multivolume-lifecycle)
-+ [Working with Amazon DLM to Create and Maintain Multi\-Volume Snapshots Using the CLI](#snaphots-lifecycle-cli)
++ [Using the Amazon DLM Console](#snapshot-lifecycle-console)
++ [Using the AWS CLI](#snaphot-lifecycle-cli)
++ [Using the Amazon DLM API](#snaphot-lifecycle-api)
++ [Create and Maintain Multi\-Volume Snapshots Using the Console](#multivolume-lifecycle)
++ [Create and Maintain Multi\-Volume Snapshots Using the AWS CLI](#snaphots-lifecycle-cli)
 + [Monitoring the Snapshot Lifecycle](#dlm-monitor-lifecycle)
 
 ## Understanding Amazon DLM<a name="dlm-elements"></a>
@@ -52,14 +52,13 @@ The target tags that Amazon DLM uses to associate volumes with a policy can opti
 ### Lifecycle Policies<a name="dlm-lifecycle-policies"></a>
 
 A lifecycle policy consists of these core settings:
-+ Policy type—Defines valid target resource types and actions a policy can manage\. Defaults to `EBS_SNAPSHOT_MANAGEMENT` if not present\. 
-+ Resource type—The AWS resource managed by the policy\. Supported values are EBS volumes and EC2 instances\.
-+ Target tag—The tag that must be associated with an EBS volume or an EC2 instance for it to be managed by the policy\.
-+ Schedule—Defines how often to create snapshots and the maximum number of snapshots to keep\. Snapshot creation starts within an hour of the specified start time\. If creating a new snapshot exceeds the maximum number of snapshots to keep for the volume, the oldest snapshot is deleted\.
++ Resource type—The type of AWS resource managed by the policy\. Supported types are EBS volumes and EC2 instances\.
++ Target tags—The tags that must be associated with an EBS volume or an EC2 instance for it to be managed by the policy\.
++ Schedule—Defines how often to create snapshots and the maximum number of snapshots to keep\. If creating a new snapshot exceeds the maximum number of snapshots to keep for the volume, the oldest snapshot is deleted\.
 
 The following considerations apply to lifecycle policies:
 + A policy does not begin creating snapshots until you set its activation status to *enabled*\. You can configure a policy to be enabled upon creation\.
-+ Snapshots begin to be created by a policy within one hour following the specified start time\.
++ The first snapshot is created by a policy within one hour after the specified start time\.
 + If you modify a policy by removing or changing its target tag, the EBS volumes with that tag are no longer affected by the policy\.
 + If you modify the schedule name for a policy, the snapshots created under the old schedule name are no longer affected by the policy\.
 + If you delete the resource to which a policy applies, the policy no longer manages the previously created snapshots\. You must manually delete the snapshots if they are no longer needed\.
@@ -165,7 +164,7 @@ Your AWS account has the following limits related to Amazon DLM:
 + You can add up to 50 tags per resource\.
 + You can create one schedule per lifecycle policy\.
 
-## Working with Amazon DLM Using the Console<a name="snapshot-lifecycle-console"></a>
+## Using the Amazon DLM Console<a name="snapshot-lifecycle-console"></a>
 
 The following examples show how to use Amazon DLM to perform typical procedures to manage the backups of your EBS volumes\.<a name="console-create-policy"></a>
 
@@ -173,17 +172,18 @@ The following examples show how to use Amazon DLM to perform typical procedures 
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation pane, choose **Elastic Block Store**, **Lifecycle Manager**, **Create snapshot lifecycle policy**\.
+1. In the navigation pane, choose **Elastic Block Store**, **Lifecycle Manager**, then choose **Create snapshot lifecycle policy**\.
 
 1. Provide the following information for your policy as needed:
    + **Description**—A description of the policy\.
-   + **Target with tags**—The resource tags that identify the volumes or instances to back up\.
-   + **Schedule Name**—A name for the backup schedule\.
-   + **Create snapshots every** ***n*** **Hours**—The number of hours between policy runs\. The supported values are 2, 3, 4, 6, 8, 12, and 24\.
-   + **Snapshot creation start time** ***hh***:***mm*** **UTC**—The time of day when policy runs are scheduled to start\. The policy runs start within an hour after the scheduled time\.
-   + **Retention rule**—The maximum number of snapshots to retain for each volume or instance\. The supported range is 1 to 1000\. After the limit is reached, the oldest snapshot is deleted when a new one is created\.
-   + **Copy tags**—Copy all user\-defined tags on a source volume to snapshots of the volume created by this policy\.
-   + **Tag created snapshots**—The resource tags to apply to the snapshots that are created\. These tags are in addition to the tags applied by Amazon DLM\. You can also choose variable tags that can automatically tag all of your snapshots with the corresponding instance\-id or timestamp\.
+   + **Resource type**\-The type of resource, either volumes or instances\.
+   + **Target with these tags**—The resource tags that identify the volumes or instances to back up\.
+   + **Lifecycle policy tags**\-The tags for the lifecycle policy\.
+   + **Schedule name**—A name for the schedule\.
+   + **Run policy every** ***n*** **Hours**—The number of hours between policy runs\. The supported values are 2, 3, 4, 6, 8, 12, and 24\.
+   + **Starting at** ***hh***:***mm*** **UTC**—The time at which the policy runs are scheduled to start\. The first policy run starts within an hour after the scheduled time\.
+   + **Retain**—The maximum number of snapshots to retain for each resource\. The supported range is 1 to 1000\. After the limit is reached, the oldest snapshot is deleted when a new one is created\.
+   + **Tagging information**—Choose whether to copy all user\-defined tags on a source volume to the snapshots created by this policy\. You can also specify additional tags for the snapshots in addition to the tags applied by Amazon DLM\. If the resource type is instance, you can choose to automatically tag your snapshots with the instance ID and timestamp\.
    + **IAM role**—An IAM role that has permissions to create, delete, and describe snapshots, and to describe volumes\. AWS provides a default role, **AWSDataLifecycleManagerDefaultRole**, or you can create a custom IAM role\.
    + **Policy status after creation**—Choose **Enable policy** to start the policy runs at the next scheduled time or **Disable policy** to prevent the policy from running\.
 
@@ -219,13 +219,14 @@ The following examples show how to use Amazon DLM to perform typical procedures 
 
 1. In an existing lifecycle policy, you can modify the following policy values:
    + **Description**—A description of the policy\.
-   + **Target with tags**—The resource tags that identify the volumes or instances to back up\.
-   + **Schedule Name**—A name for the backup schedule\.
-   + **Create snapshots every** ***n*** **Hours**—The number of hours between policy runs\. The supported values are 2, 3, 4, 6, 8, 12, and 24\.
-   + **Snapshot creation start time** ***hh***:***mm*** **UTC**—The time of day when policy runs are scheduled to start\. The policy runs start within an hour after the scheduled time\.
-   + **Retention rule**—The maximum number of snapshots to retain for each volume or instance\. The supported range is 1 to 1000\. After the limit is reached, the oldest snapshot is deleted when a new one is created\.
-   + **Copy tags**—Copy all user\-defined tags on a source volume to snapshots of the volume created by this policy\.
-   + **Tag created snapshots**—The resource tags to apply to the snapshots that are created\. These tags are in addition to the tags applied by Amazon DLM\. You can also choose variable tags that can automatically tag all of your snapshots with the corresponding instance\-id or timestamp\.
+   + **Resource type**\-The type of resource, either volumes or instances\.
+   + **Target with these tags**—The resource tags that identify the volumes or instances to back up\.
+   + **Lifecycle policy tags**\-The tags for the lifecycle policy\.
+   + **Schedule name**—A name for the schedule\.
+   + **Run policy every** ***n*** **Hours**—The number of hours between policy runs\. The supported values are 2, 3, 4, 6, 8, 12, and 24\.
+   + **Starting at** ***hh***:***mm*** **UTC**—The time at which the policy runs are scheduled to start\. The first policy run starts within an hour after the scheduled time\.
+   + **Retain**—The maximum number of snapshots to retain for each resource\. The supported range is 1 to 1000\. After the limit is reached, the oldest snapshot is deleted when a new one is created\.
+   + **Tagging information**—Choose whether to copy all user\-defined tags on a source volume to the snapshots created by this policy\. You can also specify additional tags for the snapshots in addition to the tags applied by Amazon DLM\. If the resource type is instance, you can choose to automatically tag your snapshots with the instance ID and timestamp\.
    + **IAM role**—An IAM role that has permissions to create, delete, and describe snapshots, and to describe volumes\. AWS provides a default role, **AWSDataLifecycleManagerDefaultRole**, or you can create a custom IAM role\.
    + **Policy status after creation**—Choose **Enable policy** to start the policy runs at the next scheduled time or **Disable policy** to prevent the policy from running\.<a name="console-delete-policy"></a>
 
@@ -239,7 +240,7 @@ The following examples show how to use Amazon DLM to perform typical procedures 
 
 1. Choose **Actions**, **Delete policy**\.
 
-## Working with Amazon DLM Using the Command Line<a name="snaphot-lifecycle-cli"></a>
+## Using the AWS CLI<a name="snaphot-lifecycle-cli"></a>
 
 The following examples show how to use Amazon DLM to perform typical procedures to manage the backups of your EBS volumes\.
 
@@ -401,13 +402,13 @@ Use the [delete\-lifecycle\-policy](https://docs.aws.amazon.com/cli/latest/refer
 aws dlm delete-lifecycle-policy --policy-id policy-0123456789abcdef0
 ```
 
-## Working with Amazon DLM Using the API<a name="snaphot-lifecycle-api"></a>
+## Using the Amazon DLM API<a name="snaphot-lifecycle-api"></a>
 
 The [Amazon Data Lifecycle Manager API Reference](https://docs.aws.amazon.com/dlm/latest/APIReference/) provides descriptions and syntax for each of the actions and data types for the Amazon DLM Query API\.
 
-Alternatively, you can use one of the AWS SDKs to access an API that's tailored to the programming language or platform that you're using\. For more information, see [AWS SDKs](http://aws.amazon.com/tools/#SDKs)\.
+Alternatively, you can use one of the AWS SDKs to access the API in a way that's tailored to the programming language or platform that you're using\. For more information, see [AWS SDKs](http://aws.amazon.com/tools/#SDKs)\.
 
-## Working with Amazon DLM to Create and Maintain Multi\-Volume Snapshots Using the Console<a name="multivolume-lifecycle"></a>
+## Create and Maintain Multi\-Volume Snapshots Using the Console<a name="multivolume-lifecycle"></a>
 
 You can create lifecycle policies to automate the creation and deletion of multi\-volume snapshots by using the AWS Management Console, from the AWS CLI, or from the Data Lifecycle Management \(DLM\) APIs\. 
 
@@ -419,19 +420,20 @@ You can create lifecycle policies to automate the creation and deletion of multi
 
 1. Provide the following information for your policy, as needed: 
    + **Description**—A description of the policy\.
-   + **Target with tags**—The resource tags that identify the volumes or instances to back up\.
-   + **Schedule Name**—A name for the backup schedule\.
-   + **Create snapshots every** ***n*** **Hours**—The number of hours between policy runs\. The supported values are 2, 3, 4, 6, 8, 12, and 24\.
-   + **Snapshot creation start time** ***hh***:***mm*** **UTC**—The time of day when policy runs are scheduled to start\. The policy runs start within an hour after the scheduled time\.
-   + **Retention rule**—The maximum number of snapshots to retain for each volume or instance\. The supported range is 1 to 1000\. After the limit is reached, the oldest snapshot is deleted when a new one is created\.
-   + **Copy tags**—Copy all user\-defined tags on a source volume to snapshots of the volume created by this policy\.
-   + **Tag created snapshots**—The resource tags to apply to the snapshots that are created\. These tags are in addition to the tags applied by Amazon DLM\. You can also choose variable tags that can automatically tag all of your snapshots with the corresponding instance\-id or timestamp\.
+   + **Resource type**\-The type of resource, either volumes or instances\.
+   + **Target with these tags**—The resource tags that identify the volumes or instances to back up\.
+   + **Lifecycle policy tags**\-The tags for the lifecycle policy\.
+   + **Schedule name**—A name for the schedule\.
+   + **Run policy every** ***n*** **Hours**—The number of hours between policy runs\. The supported values are 2, 3, 4, 6, 8, 12, and 24\.
+   + **Starting at** ***hh***:***mm*** **UTC**—The time at which the policy runs are scheduled to start\. The first policy run starts within an hour after the scheduled time\.
+   + **Retain**—The maximum number of snapshots to retain for each resource\. The supported range is 1 to 1000\. After the limit is reached, the oldest snapshot is deleted when a new one is created\.
+   + **Tagging information**—Choose whether to copy all user\-defined tags on a source volume to the snapshots created by this policy\. You can also specify additional tags for the snapshots in addition to the tags applied by Amazon DLM\. If the resource type is instance, you can choose to automatically tag your snapshots with the instance ID and timestamp\.
    + **IAM role**—An IAM role that has permissions to create, delete, and describe snapshots, and to describe volumes\. AWS provides a default role, **AWSDataLifecycleManagerDefaultRole**, or you can create a custom IAM role\.
    + **Policy status after creation**—Choose **Enable policy** to start the policy runs at the next scheduled time or **Disable policy** to prevent the policy from running\.
 
 1. Choose **Create Policy**\.
 
-## Working with Amazon DLM to Create and Maintain Multi\-Volume Snapshots Using the CLI<a name="snaphots-lifecycle-cli"></a>
+## Create and Maintain Multi\-Volume Snapshots Using the AWS CLI<a name="snaphots-lifecycle-cli"></a>
 
 The following examples show how to use Amazon DLM to automate creation and deletion of multi\-volume snapshots using the AWS CLI\.
 

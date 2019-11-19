@@ -1,46 +1,48 @@
 # Elastic Fabric Adapter<a name="efa"></a>
 
-An Elastic Fabric Adapter \(EFA\) is a network device that you can attach to your Amazon EC2 instance to accelerate High Performance Computing \(HPC\) applications\. EFA enables you to achieve the application performance of an on\-premises HPC cluster, with the scalability, flexibility, and elasticity provided by the AWS Cloud\.
+An Elastic Fabric Adapter \(EFA\) is a network device that you can attach to your Amazon EC2 instance to accelerate High Performance Computing \(HPC\) and machine learning applications\. EFA enables you to achieve the application performance of an on\-premises HPC cluster, with the scalability, flexibility, and elasticity provided by the AWS Cloud\.
 
-EFA provides lower and more consistent latency and higher throughput than the TCP transport traditionally used in cloud\-based HPC systems\. It enhances the performance of inter\-instance communication that is critical for scaling HPC applications\. It is optimized to work on the existing AWS network infrastructure and it can scale depending on application requirements\.
+EFA provides lower and more consistent latency and higher throughput than the TCP transport traditionally used in cloud\-based HPC systems\. It enhances the performance of inter\-instance communication that is critical for scaling HPC and machine learning applications\. It is optimized to work on the existing AWS network infrastructure and it can scale depending on application requirements\.
 
-EFA integrates with Libfabric 1\.8\.1 and it supports both Open MPI 4\.0\.2 and Intel MPI 2019 Update 4\.
+EFA integrates with Libfabric 1\.8\.1 and it supports Open MPI 4\.0\.2 and Intel MPI 2019 Update 6 for HPC applications, and Nvidia Collective Communications Library \(NCCL\) for machine learning applications\.
 
 **Note**  
 The OS\-bypass capabilities of EFAs are not supported on Windows instances\. If you attach an EFA to a Windows instance, the instance functions as an Elastic Network Adapter, without the added EFA capabilities\.
 
 **Topics**
 + [EFA Basics](#efa-basics)
-+ [Supported MPI Implementations](#efa-mpi)
++ [Supported Interfaces and Libraries](#efa-mpi)
 + [Supported Instance Types](#efa-instance-types)
 + [Supported AMIs](#efa-amis)
 + [EFA Limitations](#efa-limits)
-+ [Getting Started with EFA](efa-start.md)
++ [Getting Started with EFA and MPI](efa-start.md)
++ [Getting Started with EFA and NCCL](efa-start-nccl.md)
 + [Working with EFA](efa-working-with.md)
 + [Monitoring an EFA](efa-working-monitor.md)
 
 ## EFA Basics<a name="efa-basics"></a>
 
-An EFA is an Elastic Network Adapter \(ENA\) with added capabilities\. It provides all of the functionality of an ENA, with an additional OS\-bypass functionality\. OS\-bypass is an access model that allows HPC applications to communicate directly with the network interface hardware to provide low\-latency, reliable transport functionality\.
+An EFA is an Elastic Network Adapter \(ENA\) with added capabilities\. It provides all of the functionality of an ENA, with an additional OS\-bypass functionality\. OS\-bypass is an access model that allows HPC and machine learning applications to communicate directly with the network interface hardware to provide low\-latency, reliable transport functionality\.
 
 ![\[Contrasting a traditional HPC software stack with one that uses an EFA.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/efa_stack.png)
 
 Traditionally, HPC applications use the Message Passing Interface \(MPI\) to interface with the system’s network transport\. In the AWS Cloud, this has meant that applications interface with MPI, which then uses the operating system's TCP/IP stack and the ENA device driver to enable network communication between instances\.
 
-With an EFA, HPC applications use MPI to interface with the *Libfabric* API\. The Libfabric API bypasses the operating system kernel and communicates directly with the EFA device to put packets on the network\. This reduces overhead and enables the HPC application to run more efficiently\.
+With an EFA, HPC applications use MPI or NCCL to interface with the *Libfabric* API\. The Libfabric API bypasses the operating system kernel and communicates directly with the EFA device to put packets on the network\. This reduces overhead and enables the HPC application to run more efficiently\.
 
 **Note**  
 Libfabric is a core component of the OpenFabrics Interfaces \(OFI\) framework, which defines and exports the user\-space API of OFI\. For more information, see the [Libfabric OpenFabrics](https://ofiwg.github.io/libfabric/) website\.
 
 ### Differences between EFAs and ENAs<a name="efa-differences"></a>
 
-Elastic Network Adapters \(ENAs\) provide traditional IP networking features that are required to support VPC networking\. EFAs provide all of the same traditional IP networking features as ENAs, and they also support OS\-bypass capabilities\. OS\-bypass enables HPC applications to bypass the operating system kernel and to communicate directly with the EFA device\.
+Elastic Network Adapters \(ENAs\) provide traditional IP networking features that are required to support VPC networking\. EFAs provide all of the same traditional IP networking features as ENAs, and they also support OS\-bypass capabilities\. OS\-bypass enables HPC and machine learning applications to bypass the operating system kernel and to communicate directly with the EFA device\.
 
-## Supported MPI Implementations<a name="efa-mpi"></a>
+## Supported Interfaces and Libraries<a name="efa-mpi"></a>
 
-EFA supports the following Message Passing Interface \(MPI\) implementations:
+EFA supports the following interfaces and libraries:
 + Open MPI 4\.0\.2
-+ Intel MPI 2019 Update 4
++ Intel MPI 2019 Update 6
++ NVIDIA Collective Communications Library \(NCCL\) 2\.4\.2 and later
 
 ## Supported Instance Types<a name="efa-instance-types"></a>
 

@@ -1,6 +1,6 @@
-# Getting Started with EFA<a name="efa-start"></a>
+# Getting Started with EFA and MPI<a name="efa-start"></a>
 
-In this tutorial, you create an EFA\-enabled AMI and an EFA\-enabled security group, and then launch EFA\-enabled instances into a cluster placement group using that AMI and security group\.
+This tutorial helps you to launch an EFA and MPI\-enabled instance cluster for HPC workloads\. In this tutorial, you will perform the following steps:
 
 **Topics**
 + [Step 1: Prepare an EFA\-Enabled Security Group](#efa-start-security)
@@ -78,24 +78,24 @@ Launch a temporary instance that you can use to install and configure the EFA so
 
 ## Step 3: Install Libfabric and Open MPI<a name="efa-start-enable"></a>
 
-Install the EFA\-enabled kernel, EFA drivers, Libfabric, and Open MPI stack that is required to support EFA on your temporary instance\.
+Install the EFA\-enabled kernel, EFA drivers, libfabric, and Open MPI stack that is required to support EFA on your temporary instance\.
 
-**To install Libfabric and Open MPI on your temporary instance**
+**To install libfabric and Open MPI on your temporary instance**
 
 1. Connect to the instance you launched in **Step 2**\. For more information, see [Connect to Your Linux Instance](AccessingInstances.md)\.
 
 1. Download the EFA software installation files\. To download the latest *stable* version, use the following command\.
 
    ```
-   $ curl -O https://s3-us-west-2.amazonaws.com/aws-efa-installer/aws-efa-installer-1.6.2.tar.gz
+   $ curl -O https://s3-us-west-2.amazonaws.com/aws-efa-installer/aws-efa-installer-1.7.0.tar.gz
    ```
-**Note**  
-You can also get the latest version by replacing the version number with `latest` in the preceding command\.
+
+   You can also get the latest version by replacing the version number with `latest` in the preceding command\.
 
 1. The software installation files are packaged into a compressed `.tar.gz` file\. Extract the files from the compressed `.tar.gz` file and navigate into the extracted directory\.
 
    ```
-   $ tar -xf aws-efa-installer-1.6.2.tar.gz
+   $ tar -xf aws-efa-installer-1.7.0.tar.gz
    ```
 
    ```
@@ -118,7 +118,7 @@ You can also get the latest version by replacing the version number with `latest
    $ fi_info -p efa
    ```
 
-   The command should return information about the Libfabric EFA interfaces\. The following example shows the command output\.
+   The command should return information about the libfabric EFA interfaces\. The following example shows the command output\.
 
    ```
    provider: efa
@@ -146,7 +146,7 @@ You can also get the latest version by replacing the version number with `latest
 **Note**  
 If you intend to use Open MPI, skip this step\. Perform this step only if you intend to use Intel MPI\.
 
-Intel MPI installation requires an additional installation script and environment variable configuration\.
+Intel MPI requires an additional installation and environment variable configuration\.
 
 ### Prerequisites<a name="efa-start-impi-prereq"></a>
 
@@ -154,25 +154,35 @@ Ensure that the user performing the following steps has sudo permissions\.
 
 **To install Intel MPI**
 
-1. Download the Intel MPI installation script\.
+1. To download the Intel MPI installation files, see the [ Intel Developer Zone website](https://software.intel.com/en-us/mpi-library/choose-download/linux)\.
+
+   You must register before you can download the installation files\. After you have registered, do the following:
+
+   1. For **Product**, choose **Intel MPI Library for Linux**\.
+
+   1. For **Version**, choose **2019 Update 6**\.
+
+   1. Choose the button that has the `.tar.gz` file name\. For example, **l\_mpi\_2019\.6\.154\.tgz**\.
+
+1. The installation files are packaged into a compressed `.tar.gz` file\. Extract the files from the compressed `.tar.gz` file and navigate into the extracted directory\.
 
    ```
-   $ curl -O http://registrationcenter-download.intel.com/akdlm/irc_nas/tec/15553/aws_impi.sh
+   $ tar -xf file_name.tgz
    ```
 
-1. Change the script permissions to add group read/write permissions\.
+   ```
+   $ cd directory_name
+   ```
 
-   ```
-   $ chmod 755 aws_impi.sh
-   ```
+1. Open `silent.cfg` using your preferred text editor\. In line 10, change `ACCEPT_EULA=decline` to `ACCEPT_EULA=accept`\. Save the changes and close the file\.
 
 1. Run the installation script\.
 
    ```
-   $ ./aws_impi.sh install
+   $ sudo ./install.sh -s silent.cfg
    ```
 
-   Intel MPI is installed in the `/opt/intel/impi/2019.4.243/intel64` directory\.
+   Intel MPI is installed in the `/opt/intel/impi/` directory by default\.
 
 1. Add the Intel MPI environment variables to the corresponding shell startup scripts to ensure that they are set each time that the instance starts\. Do one of the following depending on your shell\.
 **Note**  
@@ -180,12 +190,12 @@ The **csh** shell is not supported due to environment variable length limitation
    + For **bash**, add the following environment variable to `/home/username/.bashrc` and `/home/username/.bash_profile`\.
 
      ```
-     source /opt/intel/impi/2019.4.243/intel64/bin/mpivars.sh
+     source /opt/intel/impi/2019.6.154/intel64/bin/mpivars.sh -ofi_internal=0
      ```
    + For **tcsh**, add the following environment variable to `/home/username/.cshrc`\.
 
      ```
-     source /opt/intel/impi/2019.4.243/intel64/bin/mpivarsh.csh
+     source /opt/intel/impi/2019.6.154/intel64/bin/mpivarsh.csh -ofi_internal=0
      ```
 
 1. Log out of the instance and then log back in\.
@@ -199,7 +209,7 @@ The **csh** shell is not supported due to environment variable length limitation
    The following example shows the command output\.
 
    ```
-   /opt/intel/compilers_and_libraries_2019.4.243/linux/mpi/intel64/bin/mpicc
+   /opt/intel/compilers_and_libraries_2020.0.154/linux/mpi/intel64/bin/mpicc 
    ```
 
 **Note**  
@@ -214,7 +224,7 @@ You might need to refer to your HPC application’s documentation for installati
 
 ## Step 6: Create an EFA\-Enabled AMI<a name="efa-start-ami"></a>
 
-After you have installed the required software components, you create an EFA\-AMI that you can reuse to launch your EFA\-enabled instances\.
+After you have installed the required software components, you create an EFA and NCCL\-enabled AMI that you can reuse to launch your EFA and NCCL\-enabled instances\.
 
 **To create an AMI from your temporary instance**
 
@@ -222,11 +232,11 @@ After you have installed the required software components, you create an EFA\-AM
 
 1. In the navigation pane, choose **Instances**\.
 
-1. Select the instance that you created in **Step 2** and choose **Actions**, **Image**, **Create Image**\.
+1. Select the instance that you created in **Step 1** and choose **Actions**, **Image**, **Create Image**\.
 
 1. In the **Create Image** window, do the following:
 
-   1. For **Image name**, enter a descriptive name for the AMI, such as `EFA-enabled AMI`\.
+   1. For **Image name**, enter a descriptive name for the AMI\.
 
    1. \(Optional\) For **Image description**, enter a brief description of the AMI\.
 
@@ -238,7 +248,7 @@ After you have installed the required software components, you create an EFA\-AM
 
 ## Step 7: Launch EFA\-Enabled Instances into a Cluster Placement Group<a name="efa-start-instances"></a>
 
-Launch your EFA\-enabled instances into a cluster placement group using the EFA\-enabled AMI that you created in **Step 5**, and the EFA\-enabled security group that you created in **Step 1**\.
+Launch your EFA\-enabled instances into a cluster placement group using the EFA\-enabled AMI that you created in **Step 6**, and the EFA\-enabled security group that you created in **Step 1**\.
 
 **Note**  
 It is not an absolute requirement to launch your EFA\-enabled instances into a cluster placement group\. However, we do recommend running your EFA\-enabled instances in a cluster placement group as it launches the instances into a low\-latency group in a single Availability Zone\.
@@ -249,7 +259,7 @@ It is not an absolute requirement to launch your EFA\-enabled instances into a c
 
 1. Choose **Launch Instance**\.
 
-1. On the **Choose an AMI** page, choose **My AMIs**, find the AMI that you created in **Step 5**, and then choose **Select**\.
+1. On the **Choose an AMI** page, choose **My AMIs**, find the AMI that you created in **Step 6**, and then choose **Select**\.
 
 1. On the **Choose an Instance Type** page, select one of the following supported instance types and then choose **Next: Configure Instance Details**: `c5n.18xlarge`, `c5n.metal`, `i3en.24xlarge`, `m5dn.24xlarge`, `m5n.24xlarge`, `r5dn.24xlarge`, `r5n.24xlarge`, and `p3dn.24xlarge`\.
 
@@ -281,7 +291,7 @@ It is not an absolute requirement to launch your EFA\-enabled instances into a c
 
 ## Step 8 Terminate the Temporary Instance<a name="efa-start-terminate"></a>
 
-At this point, you no longer need the temporary instance that you launched in **Step 2**\. You can terminate the instance to stop incurring charges for it\.
+At this point, you no longer need the temporary instance that you launched in **Step 1**\. You can terminate the instance to stop incurring charges for it\.
 
 **To terminate the temporary instance**
 
@@ -289,4 +299,4 @@ At this point, you no longer need the temporary instance that you launched in **
 
 1. In the navigation pane, choose **Instances**\.
 
-1. Select the temporary instance that you created in **Step 2** and then choose **Actions**, **Instance State**, **Terminate**, **Yes, Terminate**\.
+1. Select the temporary instance that you created in **Step 1** and then choose **Actions**, **Instance State**, **Terminate**, **Yes, Terminate**\.

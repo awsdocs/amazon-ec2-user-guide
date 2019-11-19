@@ -169,7 +169,7 @@ The following is a summary of network performance for general purpose instances 
 |  `m5a.16xlarge` \| `m5ad.16xlarge`  |  12 Gbps  | [ENA](enhanced-networking-ena.md) | 
 |  `m5.16xlarge` \| `m5a.24xlarge` \| `m5ad.24xlarge` \| `m5d.16xlarge`  |  20 Gbps  | [ENA](enhanced-networking-ena.md) | 
 |  `m5dn.4xlarge` and smaller \| `m5n.4xlarge` and smaller   |  Up to 25 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  `m4.16xlarge` \| `m5.24xlarge` \| `m5.metal` \| `m5d.24xlarge` \| `m5d.metal` \| m5dn\.8xlarge \| m5n\.8xlarge  |  25 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `m4.16xlarge` \| `m5.24xlarge` \| `m5.metal` \| `m5d.24xlarge` \| `m5d.metal` \| `m5dn.8xlarge` \| `m5n.8xlarge`  |  25 Gbps  | [ENA](enhanced-networking-ena.md) | 
 |  m5dn\.12xlarge \| m5n\.12xlarge  |  50 Gbps  | [ENA](enhanced-networking-ena.md) | 
 |  m5dn\.16xlarge \| m5n\.16xlarge  |  75 Gbps  | [ENA](enhanced-networking-ena.md) | 
 |  m5dn\.24xlarge \| m5n\.24xlarge  |  100 Gbps  | [ENA](enhanced-networking-ena.md) | 

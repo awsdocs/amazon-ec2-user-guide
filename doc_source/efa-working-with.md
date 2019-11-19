@@ -80,7 +80,7 @@ $ aws ec2 run-instances --image-id ami_id --count 1 --instance-type c5n.18xlarge
 
 ## Adding an EFA to a Launch Template<a name="efa-launch-template"></a>
 
-You can create a launch template that contains the configuration information needed to launch EFA\-enabled instances\. To create an EFA\-enabled launch template, create a new launch template and specify a supported instance type, your EFA\-enabled AMI, and an EFA\-enabled security group\. For more information, see [Getting Started with EFA](efa-start.md)\.
+You can create a launch template that contains the configuration information needed to launch EFA\-enabled instances\. To create an EFA\-enabled launch template, create a new launch template and specify a supported instance type, your EFA\-enabled AMI, and an EFA\-enabled security group\. For more information, see [Getting Started with EFA and MPI](efa-start.md)\.
 
 You can leverage launch templates to launch EFA\-enabled instances with other AWS services, such as AWS Batch\.
 

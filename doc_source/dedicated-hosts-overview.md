@@ -63,6 +63,13 @@ Before you allocate Dedicated Hosts, take note of the following limitations and 
 
 ## Pricing and Billing<a name="dedicated-hosts-billing"></a>
 
+The price for a Dedicated Host varies by payment option\.
+
+**Topics**
++ [On\-Demand Dedicated Hosts](#on-demand-dedicated-hosts)
++ [Dedicated Host Reservations](#dedicated-host-reservations)
++ [Savings Plans](#dedicated-hosts-savings-plans)
+
 ### On\-Demand Dedicated Hosts<a name="on-demand-dedicated-hosts"></a>
 
 On\-Demand billing is automatically activated when you allocate a Dedicated Host to your account\.
@@ -83,3 +90,7 @@ You must have active Dedicated Hosts in your account before you can purchase res
 When a reservation is associated with a Dedicated Host, the Dedicated Host can't be released until the reservation's term is over\.
 
 For more information about reservation pricing, see [Amazon EC2 Dedicated Hosts Pricing](https://aws.amazon.com/ec2/dedicated-hosts/pricing/#reservations)\.
+
+### Savings Plans<a name="dedicated-hosts-savings-plans"></a>
+
+Savings Plans are a flexible pricing model that offer significant savings over On\-Demand Instances\. With Savings Plans, you make a commitment to a consistent amount of usage, in USD per hour, for a term of 1 or 3 years\. This provides you with the flexibility to use the Dedicated Hosts that best meet your needs and continue to save money, instead of making a commitment to a specific Dedicated Host\. For more information, see the [AWS Savings Plans User Guide](https://docs.aws.amazon.com/savingsplans/latest/userguide/)\.

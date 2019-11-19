@@ -56,7 +56,10 @@ The following table provides the quantity, size, type, and performance optimizat
 | c5d\.2xlarge | 1 x 200 GB | NVMe SSD |  | ✔ | 
 | c5d\.4xlarge | 1 x 400 GB | NVMe SSD |  | ✔ | 
 | c5d\.9xlarge | 1 x 900 GB | NVMe SSD |  | ✔ | 
+| c5d\.12xlarge | 2 x 900 GB \(1\.8 TB\) | NVMe SSD |  | ✔ | 
 | c5d\.18xlarge | 2 x 900 GB \(1\.8 TB\) | NVMe SSD |  | ✔ | 
+| c5d\.24xlarge | 4 x 900 GB \(3\.6 TB\) | NVMe SSD |  | ✔ | 
+| c5d\.metal | 4 x 900 GB \(3\.6 TB\) | NVMe SSD |  | ✔ | 
 |  `cc2.8xlarge`  |  4 x 840 GB \(3\.36 TB\)  | HDD | ✔ |  | 
 |  `cr1.8xlarge`  |  2 x 120 GB \(240 GB\)  | SSD | ✔ |  | 
 |  `d2.xlarge`  |  3 x 2,000 GB \(6 TB\)  | HDD |  |  | 

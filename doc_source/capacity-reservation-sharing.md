@@ -2,7 +2,7 @@
 
 Capacity Reservation sharing enables Capacity Reservation owners to share their reserved capacity with other AWS accounts or within an AWS organization\. This enables you to create and manage Capacity Reservations centrally, and share the reserved capacity across multiple AWS accounts or within your AWS organization\.
 
-In this model, the AWS account that owns the Capacity Reservation \(owner\) shares it with other AWS accounts \(consumers\)\. Consumers can launch instances into Capacity Reservations that are shared with them in the same way that they would with Capacity Reservations that they own in their own account\. The Capacity Reservation owner is responsible for managing the Capacity Reservation and the instances that they launch into it\. Owners cannot modify instances that consumers launch into Capacity Reservations that they have shared\. Consumers are responsible for managing the instances that they launch into Capacity Reservations shared with them\. Consumers cannot view or modify instances owned by other consumers or by the Capacity Reservation owner\.
+In this model, the AWS account that owns the Capacity Reservation \(owner\) shares it with other AWS accounts \(consumers\)\. Consumers can launch instances into Capacity Reservations that are shared with them in the same way that they launch instances into Capacity Reservations that they own in their own account\. The Capacity Reservation owner is responsible for managing the Capacity Reservation and the instances that they launch into it\. Owners cannot modify instances that consumers launch into Capacity Reservations that they have shared\. Consumers are responsible for managing the instances that they launch into Capacity Reservations shared with them\. Consumers cannot view or modify instances owned by other consumers or by the Capacity Reservation owner\.
 
 A Capacity Reservation owner can share a Capacity Reservation with:
 + Specific AWS accounts inside or outside of its AWS organization
@@ -66,8 +66,8 @@ You can share a Capacity Reservation that you own using the Amazon EC2 console, 
 1. Choose the Capacity Reservation to share and choose **Actions**, **Share reservation**\.
 
 1. Select the resource share to which to add the Capacity Reservation and choose **Share Capacity Reservation**\.
-**Note**  
-It could take a few minutes for consumers to get access to the shared Capacity Reservation\.
+
+   It could take a few minutes for consumers to get access to the shared Capacity Reservation\.
 
 **To share a Capacity Reservation that you own using the AWS RAM console**  
 See [Creating a Resource Share](https://docs.aws.amazon.com/ram/latest/userguide/working-with-sharing.html#working-with-sharing-create) in the *AWS RAM User Guide*\.

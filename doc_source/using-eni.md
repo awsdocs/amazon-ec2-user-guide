@@ -92,7 +92,10 @@ The following table lists the maximum number of network interfaces per instance 
 | `c5d.2xlarge` | 4 | 15 | 15 | 
 | `c5d.4xlarge` | 8 | 30 | 30 | 
 | `c5d.9xlarge` | 8 | 30 | 30 | 
+| `c5d.12xlarge` | 8 | 30 | 30 | 
 | `c5d.18xlarge` | 15 | 50 | 50 | 
+| `c5d.24xlarge` | 15 | 50 | 50 | 
+| `c5d.metal` | 15 | 50 | 50 | 
 | `c5n.large` | 3 | 10 | 10 | 
 | `c5n.xlarge` | 4 | 15 | 15 | 
 | `c5n.2xlarge` | 4 | 15 | 15 | 

@@ -336,7 +336,7 @@ Alice can use the `ami-launch-index` value to determine which portion of the use
 1. She saves the user data as a variable:
 
    ```
-   [ec2-user ~]$ user_data=`curl http://169.254.169.254/latest/user-data/`
+   [ec2-user ~]$ user_data=`curl http://169.254.169.254/latest/user-data`
    ```
 
 1. Finally, Alice uses the cut command to extract the portion of the user data that is applicable to that instance:

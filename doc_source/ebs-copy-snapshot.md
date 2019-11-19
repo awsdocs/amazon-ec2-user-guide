@@ -29,20 +29,21 @@ If you copy a snapshot and encrypt it to a new CMK, a complete \(non\-incrementa
 
 **Limits**
 + Each account can have up to five concurrent snapshot copy requests to a single destination Region\.
-+ User\-defined tags are not copied from the source snapshot to the new snapshot\. After the copy operation is complete, you can apply user\-defined tags to the new snapshot\. For more information, see [Tagging Your Amazon EC2 Resources](Using_Tags.md)\.
++ User\-defined tags are not copied from the source snapshot to the new snapshot\. You can add user\-defined tags during or after the copy operation\. For more information, see [Tagging Your Amazon EC2 Resources](Using_Tags.md)\.
 + Snapshots created by the `CopySnapshot` action have an arbitrary volume ID that should not be used for any purpose\.
 
 ## Incremental Copying Across Regions<a name="ebs-incremental-copy"></a>
 
-The first snapshot copy to another Region is always a full copy\. For unencrypted snapshots, each subsequent snapshot copy of the same volume is incremental, meaning that AWS copies only the data that changed since your last snapshot copy to the same destination Region\. This allows for faster copying and lower storage costs\.
+Whether a snapshot copy is incremental is determined by the most recently completed snapshot copy\. When you copy a snapshot across Regions, the copy is an incremental copy if the following conditions are met:
++ The snapshot was copied to the destination Region previously\.
++ The most recent snapshot copy still exists in the destination Region\.
++ All copies of the snapshot in the destination Region are either unencrypted or were encrypted using the same CMK\.
 
-In the case of encrypted snapshots, you must encrypt to the same CMK that was used for previous copies to get incremental copies\. The following examples illustrate how this works: 
-+ If you copy an unencrypted snapshot from the US East \(N\. Virginia\) Region to the US West \(Oregon\) Region, the first snapshot copy is a full copy and subsequent snapshot copies of the same volume transferred between the same Regions are incremental\.
-+ If you copy an encrypted snapshot from the US East \(N\. Virginia\) Region to the US West \(Oregon\) Region, the first snapshot copy of the volume is a full copy\.
-  + If you encrypt to the same CMK in a subsequent snapshot copy for the same volume between the same Regions, the copy is incremental\.
-  + If you encrypt to a different CMK in a subsequent snapshot copy for the same volume between the same Regions, the copy is a new full copy of the snapshot\.
+If the most recent snapshot copy was deleted, the next copy is a full copy, not an incremental copy\. If the first copy is still pending when you start another copy, the second copy is also a full copy\. If the first copy is completed but the second copy is still pending when you start another copy, the third copy is incremental to the first copy\.
 
-For more information, see [Re\-Encrypt an Encrypted Snapshot](EBSEncryption.md#reencrypt-snapshot)\.
+We recommend that you tag your snapshots with the volume ID and creation time so that you can keep track of the most recent snapshot copy of a volume in the destination Region\.
+
+To see whether your snapshot copies are incremental, check the [copySnapshot](ebs-cloud-watch-events.md#copy-snapshot-complete) CloudWatch event\.
 
 ## Encryption and Snapshot Copying<a name="creating-encrypted-snapshots"></a>
 
