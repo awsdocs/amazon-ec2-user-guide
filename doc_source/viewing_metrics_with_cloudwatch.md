@@ -29,6 +29,7 @@ The `AWS/EC2` namespace includes the following instance metrics\.
 | `NetworkOut` |  The number of bytes sent out on all network interfaces by the instance\. This metric identifies the volume of outgoing network traffic from a single instance\. The number reported is the number of bytes sent during the period\. If you are using basic \(five\-minute\) monitoring, you can divide this number by 300 to find Bytes/second\. If you have detailed \(one\-minute\) monitoring, divide it by 60\. Units: Bytes  | 
 | `NetworkPacketsIn` |  The number of packets received on all network interfaces by the instance\. This metric identifies the volume of incoming traffic in terms of the number of packets on a single instance\. This metric is available for basic monitoring only\. Units: Count Statistics: Minimum, Maximum, Average  | 
 | `NetworkPacketsOut` |  The number of packets sent out on all network interfaces by the instance\. This metric identifies the volume of outgoing traffic in terms of the number of packets on a single instance\. This metric is available for basic monitoring only\. Units: Count Statistics: Minimum, Maximum, Average  | 
+| `MetadataNoToken` |  The number of times the instance metadata service was accessed not using a token\-backed session\. This metric is used to determine if there are any processes accessing instance metadata that are not using the token\-backed session scheme\. If all requests use token\-backed sessions, the value is 0\. Units: Count  | 
 
 ## CPU Credit Metrics<a name="cpu-credit-metrics"></a>
 

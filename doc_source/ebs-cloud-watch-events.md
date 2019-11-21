@@ -10,6 +10,7 @@ For more information, see [Using Events](https://docs.aws.amazon.com/AmazonCloud
 + [EBS Volume Events](#volume-events)
 + [EBS Snapshot Events](#snapshot-events)
 + [EBS Volume Modification Events](#volume-modification-events)
++ [EBS Fast Snapshot Restore Events](#fast-snapshot-restore-events)
 + [Using Amazon Lambda To Handle CloudWatch Events](#using_lambda)
 
 ## EBS Volume Events<a name="volume-events"></a>
@@ -417,6 +418,52 @@ Amazon EBS sends `modifyVolume` events to CloudWatch Events when a volume is mod
    }
 }
 ```
+
+## EBS Fast Snapshot Restore Events<a name="fast-snapshot-restore-events"></a>
+
+Amazon EBS sends events to CloudWatch Events when the state of fast snapshot restore for a snapshot changes\.
+
+The following is example data for this event\.
+
+```
+{
+   "version": "0",
+   "id": "01234567-0123-0123-0123-012345678901",
+   "detail-type": "EBS Fast Snapshot Restore State-change Notification",
+   "source": "aws.ec2",
+   "account": "123456789012",
+   "time": "yyyy-mm-ddThh:mm:ssZ",
+   "region": "us-east-1",
+   "resources": [
+      "arn:aws:ec2:us-east-1::snapshot/snap-03a55cf56513fa1b6"
+   ],
+   "detail": {
+      "snapshot-id": "snap-1234567890abcdef0",
+      "state": "optimizing",
+      "zone": "us-east-1a",
+      "message": "Client.UserInitiated - Lifecycle state transition",
+   }
+}
+```
+
+The possible values for `state` are `enabling`, `optimizing`, `enabled`, `disabling`, and `disabled`\.
+
+The possible values for `message` are as follows:
+
+`Client.InvalidSnapshot.InvalidState - The requested snapshot transitioned to an invalid state (Error)`  
+A request to enable fast snapshot restore failed and the state transitioned to `disabling` or `disabled`\. Fast snapshot restore cannot be enabled for this snapshot\.
+
+`Client.UserInitiated`  
+The state successfully transitioned to `enabling` or `disabling`\.
+
+`Client.UserInitiated - Lifecycle state transition`  
+The state successfully transitioned to `optimizing`, `enabled`, or `disabled`\.
+
+`Server.InsufficientCapacity - There was insufficient capacity available to satisfy the request`  
+A request to enable fast snapshot restore failed due to insufficient capacity, and the state transitioned to `disabling` or `disabled`\. Wait and then try again\.
+
+`Server.InternalError - An internal error caused the operation to fail`  
+A request to enable fast snapshot restore failed due to an internal error, and the state transitioned to `disabling` or `disabled`\. Wait and then try again\.
 
 ## Using Amazon Lambda To Handle CloudWatch Events<a name="using_lambda"></a>
 

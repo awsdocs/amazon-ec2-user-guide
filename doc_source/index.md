@@ -238,6 +238,7 @@ Amazon's trademarks and trade dress may not be used in
             + [Monitoring the Progress of Volume Modifications](monitoring-volume-modifications.md)
             + [Extending a Linux File System After Resizing a Volume](recognize-expanded-volume-linux.md)
          + [Amazon EBS Encryption](EBSEncryption.md)
+         + [Amazon EBS Fast Snapshot Restore](ebs-fast-snapshot-restore.md)
       + [Amazon EBS and NVMe on Linux Instances](nvme-ebs-volumes.md)
       + [Amazon EBS–Optimized Instances](EBSOptimized.md)
       + [Amazon EBS Volume Performance on Linux Instances](EBSPerformance.md)

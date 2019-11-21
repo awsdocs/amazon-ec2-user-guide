@@ -37,9 +37,23 @@ The `AWS/EBS` namespace includes the following metrics\.
 |  `VolumeConsumedReadWriteOps`  |  Used with Provisioned IOPS SSD volumes only\. The total amount of read and write operations \(normalized to 256K capacity units\) consumed in a specified period of time\. I/O operations that are smaller than 256K each count as 1 consumed IOPS\. I/O operations that are larger than 256K are counted in 256K capacity units\. For example, a 1024K I/O would count as 4 consumed IOPS\. Units: Count  | 
 | `BurstBalance` |  Used with General Purpose SSD \(`gp2`\), Throughput Optimized HDD \(`st1`\), and Cold HDD \(`sc1`\) volumes only\. Provides information about the percentage of I/O credits \(for `gp2`\) or throughput credits \(for `st1` and `sc1`\) remaining in the burst bucket\. Data is reported to CloudWatch only when the volume is active\. If the volume is not attached, no data is reported\. The `Sum` statistic on this metric is not relevant for volumes attached to Nitro\-based instances\. If the baseline performance of the volume exceeds the maximum burst performance, credits are never spent\. The reported burst balance is either 0% \(Nitro\-based instances\) or 100% \(non\-Nitro\-based instances\)\. For more information, see [I/O Credits and Burst Performance](EBSVolumeTypes.md#IOcredit)\. Units: Percent  | 
 
+### Volume Metrics<a name="ebs-volume-metrics"></a>
+
+### Fast Snapshot Restore Metrics<a name="fast-snapshot-restore-metrics"></a>
+
+
+| Metric | Description | 
+| --- | --- | 
+|  `FastSnapshotRestoreCreditsBucketSize`  |  The maximum number of volume create credits that can be accumulated\. This metric is reported per snapshot per Availability Zone\. The most meaningful statistic is `Average`\. The results for the `Minimum` and `Maximum` statistics are the same as for `Average` and could be used instead\.  | 
+|  `FastSnapshotRestoreCreditsBalance`  |  The number of volume create credits available\. This metric is reported per snapshot per Availability Zone\. The most meaningful statistic is `Average`\. The results for the `Minimum` and `Maximum` statistics are the same as for `Average` and could be used instead\.  | 
+
 ## Dimensions for Amazon EBS Metrics<a name="ebs-metric-dimensions"></a>
 
 The supported dimension is the volume ID \(`VolumeId`\)\. All available statistics are filtered by volume ID\.
+
+For the [volume metrics](#ebs-volume-metrics), the supported dimension is the volume ID \(`VolumeId`\)\. All available statistics are filtered by volume ID\.
+
+For the [fast snapshot restore metrics](#fast-snapshot-restore-metrics), the supported dimensions are the snapshot ID \(`SnapshotId`\) and the Availability Zone \(`AvailabilityZone`\)\.
 
 ## Graphs in the Amazon EC2 Console<a name="graphs-in-the-aws-management-console-2"></a>
 

@@ -13,6 +13,7 @@ The following instructions explain how to connect to your Linux instance using E
   + Ubuntu 16\.04 or later
 + To connect using the Amazon EC2 console, the instance must have a public IP address \(IPv4 or IPv6\)\. You can connect using the EC2 Instance Connect CLI using the private IP address of the instance\.
 + The Safari browser is currently not supported\.
++ EC2 Instance Connect works only with Instance Metadata Service Version 1\. If you configure the instance metadata service to require Instance Metadata Service Version 2, you can't use EC2 Instance Connect\. For more information, see [Configuring the Instance Metadata Service](ec2-instance-metadata.md#configuring-instance-metadata-service)\.
 
 **Prerequisites**
 + **Install Instance Connect on your instance\.**

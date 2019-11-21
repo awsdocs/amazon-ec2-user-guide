@@ -1,6 +1,6 @@
 # Instance Identity Documents<a name="instance-identity-documents"></a>
 
-An instance identity document is a JSON file that describes an instance\. The instance identity document is accompanied by a signature and a PKCS7 signature which can be used to verify the accuracy, origin, and authenticity of the information provided in the document\. 
+An instance identity document is a JSON file that describes an instance\. The instance identity document is accompanied by a signature and a PKCS7 signature, which can be used to verify the accuracy, origin, and authenticity of the information provided in the document\. 
 
 The instance identity document is generated when the instance is launched, and exposed to the instance through [instance metadata](ec2-instance-metadata.md)\. It validates the attributes of the instances, such as the instance size, instance type, operating system, and AMI\. 
 
@@ -9,13 +9,13 @@ Due to the dynamic nature of instance identity documents and signatures, we reco
 
 ## Obtaining the Instance Identity Document and Signatures<a name="instance-identity-signatures"></a>
 
-To retrieve the instance identity document, use the following command from your running instance:
+To retrieve the instance identity document, use the following command from your running instance\.
 
 ```
 [ec2-user ~]$ curl http://169.254.169.254/latest/dynamic/instance-identity/document
 ```
 
-The following is example output:
+The following is example output\.
 
 ```
 {
@@ -37,13 +37,13 @@ The following is example output:
 }
 ```
 
-To retrieve the instance identity signature, use the following command from your running instance:
+To retrieve the instance identity signature, use the following command from your running instance\.
 
 ```
 [ec2-user ~]$ curl http://169.254.169.254/latest/dynamic/instance-identity/signature
 ```
 
-The following is example output:
+The following is example output\.
 
 ```
 dExamplesjNQhhJan7pORLpLSr7lJEF4V2DhKGlyoYVBoUYrY9njyBCmhEayaGrhtS/AWY+LPx
@@ -51,13 +51,13 @@ lVSQURF5n0gwPNCuO6ICT0fNrm5IH7w9ydyaexamplejJw8XvWPxbuRkcN0TAA1p4RtCAqm4ms
 x2oALjWSCBExample=
 ```
 
-To retrieve the PKCS7 signature, use the following command from your running instance:
+To retrieve the PKCS7 signature, use the following command from your running instance\.
 
 ```
 [ec2-user ~]$ curl http://169.254.169.254/latest/dynamic/instance-identity/pkcs7
 ```
 
-The following is example output:
+The following is example output\.
 
 ```
 MIICiTCCAfICCQD6m7oRw0uXOjANBgkqhkiG9w0BAQUFADCBiDELMAkGA1UEBhMC
@@ -176,38 +176,38 @@ To get the AWS public certificate for other Regions, contact [AWS Support](https
 
 **To verify the PKCS7 signature**
 
-1. From your instance, create a temporary file for the PKCS7 signature:
+1. From your instance, create a temporary file for the PKCS7 signature\.
 
    ```
    [ec2-user ~]$ PKCS7=$(mktemp)
    ```
 
-1. Add the `-----BEGIN PKCS7-----` header to the temporary PKCS7 file:
+1. Add the `-----BEGIN PKCS7-----` header to the temporary PKCS7 file\.
 
    ```
    [ec2-user ~]$ echo "-----BEGIN PKCS7-----" > $PKCS7
    ```
 
-1. Append the contents of the PKCS7 signature from the instance metadata, plus a new line:
+1. Append the contents of the PKCS7 signature from the instance metadata, plus a new line\.
 
    ```
    [ec2-user ~]$ curl -s http://169.254.169.254/latest/dynamic/instance-identity/pkcs7 >> $PKCS7
    [ec2-user ~]$ echo "" >> $PKCS7
    ```
 
-1. Append the `-----END PKCS7-----` footer:
+1. Append the `-----END PKCS7-----` footer\.
 
    ```
    [ec2-user ~]$ echo "-----END PKCS7-----" >> $PKCS7
    ```
 
-1. Create a temporary file for the instance identity document:
+1. Create a temporary file for the instance identity document\.
 
    ```
    [ec2-user ~]$ DOCUMENT=$(mktemp)
    ```
 
-1. Add the contents of the document from your instance metadata to the temporary document file:
+1. Add the contents of the document from your instance metadata to the temporary document file\.
 
    ```
    [ec2-user ~]$ curl -s http://169.254.169.254/latest/dynamic/instance-identity/document > $DOCUMENT
@@ -215,7 +215,7 @@ To get the AWS public certificate for other Regions, contact [AWS Support](https
 
 1. Open a text editor and create a file named `AWSpubkey`\. Copy and paste the contents of the AWS public certificate above to the file and save it\.
 
-1. Use the OpenSSL tools to verify the signature as follows:
+1. Use the OpenSSL tools to verify the signature as follows\.
 
    ```
    [ec2-user ~]$ openssl smime -verify -in $PKCS7 -inform PEM -content $DOCUMENT -certfile AWSpubkey -noverify > /dev/null
