@@ -20,7 +20,7 @@ The Reserved Instance pricing is determined by the following key variables\.
 
 A Reserved Instance has four instance attributes that determine its price\. The attributes also determine how the Reserved Instance is applied to a running instance in your account\.
 + **Instance type**: For example, `m4.large`\. This is composed of the instance family \(`m4`\) and the instance size \(`large`\)\.
-+ **Scope**: Whether the Reserved Instance applies to a Region \(*regional* Reserved Instance\) or specific Availability Zone \(*zonal* Reserved Instance\)\. For more information, see [Regional and Zonal Reserved Instances \(Scope\)](reserved-instances-scope.md)\.
++ **Region**: The Region in which the Reserved Instance is purchased\.
 + **Tenancy**: Whether your instance runs on shared \(default\) or single\-tenant \(dedicated\) hardware\. For more information, see [Dedicated Instances](dedicated-instance.md)\. 
 + **Platform**: The operating system; for example, Windows or Linux/Unix\. For more information, see [Choosing a Platform](ri-market-concepts-buying.md#ri-choosing-platform)\.
 

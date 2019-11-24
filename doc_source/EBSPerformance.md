@@ -31,7 +31,9 @@ There is a relationship between the maximum performance of your EBS volumes, the
 
 ### Be Aware of the Performance Penalty When Initializing Volumes from Snapshots<a name="initialize"></a>
 
-There is a significant increase in latency when you first access each block of data on a new EBS volume that was restored from a snapshot\. You can avoid this performance hit by accessing each block prior to putting the volume into production\. This process is called *initialization* \(formerly known as pre\-warming\)\. For more information, see [Initializing Amazon EBS Volumes](ebs-initialize.md)\.
+There is a significant increase in latency when you first access each block of data on a new EBS volume that was restored from a snapshot\. You can avoid this performance hit using one of the following options:
++ Access each block prior to putting the volume into production\. This process is called *initialization* \(formerly known as pre\-warming\)\. For more information, see [Initializing Amazon EBS Volumes](ebs-initialize.md)\.
++ Enable fast snapshot restore on a snapshot to ensure that the EBS volumes created from it are fully\-initialized at creation and instantly deliver all of their provisioned performance\. For more information, see [Amazon EBS Fast Snapshot Restore](ebs-fast-snapshot-restore.md)\.
 
 ### Factors That Can Degrade HDD Performance<a name="snapshotting_latency"></a>
 

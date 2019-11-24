@@ -189,7 +189,6 @@ The following examples show how to use Amazon DLM to perform typical procedures 
    + **Starting at** ***hh***:***mm*** **UTC**—The time at which the policy runs are scheduled to start\. The first policy run starts within an hour after the scheduled time\.
    + **Retain**—The maximum number of snapshots to retain for each resource\. The supported range is 1 to 1000\. After the limit is reached, the oldest snapshot is deleted when a new one is created\.
    + **Tagging information**—Choose whether to copy all user\-defined tags on a source volume to the snapshots created by this policy\. You can also specify additional tags for the snapshots in addition to the tags applied by Amazon DLM\. If the resource type is instance, you can choose to automatically tag your snapshots with the instance ID and timestamp\.
-   + **Fast snapshot restore**\-Choose whether to enable fast snapshot restore and in which Availability Zones\. You can also specify the maximum number of snapshots that can be enabled for fast snapshot store\.
    + **IAM role**—An IAM role that has permissions to create, delete, and describe snapshots, and to describe volumes\. AWS provides a default role, **AWSDataLifecycleManagerDefaultRole**, or you can create a custom IAM role\.
    + **Policy status after creation**—Choose **Enable policy** to start the policy runs at the next scheduled time or **Disable policy** to prevent the policy from running\.
 
@@ -233,7 +232,6 @@ The following examples show how to use Amazon DLM to perform typical procedures 
    + **Starting at** ***hh***:***mm*** **UTC**—The time at which the policy runs are scheduled to start\. The first policy run starts within an hour after the scheduled time\.
    + **Retain**—The maximum number of snapshots to retain for each resource\. The supported range is 1 to 1000\. After the limit is reached, the oldest snapshot is deleted when a new one is created\.
    + **Tagging information**—Choose whether to copy all user\-defined tags on a source volume to the snapshots created by this policy\. You can also specify additional tags for the snapshots in addition to the tags applied by Amazon DLM\. If the resource type is instance, you can choose to automatically tag your snapshots with the instance ID and timestamp\.
-   + **Fast snapshot restore**\-Choose whether to enable fast snapshot restore and in which Availability Zones\. You can also specify the maximum number of snapshots that can be enabled for fast snapshot store\.
    + **IAM role**—An IAM role that has permissions to create, delete, and describe snapshots, and to describe volumes\. AWS provides a default role, **AWSDataLifecycleManagerDefaultRole**, or you can create a custom IAM role\.
    + **Policy status after creation**—Choose **Enable policy** to start the policy runs at the next scheduled time or **Disable policy** to prevent the policy from running\.<a name="console-delete-policy"></a>
 
@@ -435,7 +433,6 @@ You can create lifecycle policies to automate the creation and deletion of multi
    + **Starting at** ***hh***:***mm*** **UTC**—The time at which the policy runs are scheduled to start\. The first policy run starts within an hour after the scheduled time\.
    + **Retain**—The maximum number of snapshots to retain for each resource\. The supported range is 1 to 1000\. After the limit is reached, the oldest snapshot is deleted when a new one is created\.
    + **Tagging information**—Choose whether to copy all user\-defined tags on a source volume to the snapshots created by this policy\. You can also specify additional tags for the snapshots in addition to the tags applied by Amazon DLM\. If the resource type is instance, you can choose to automatically tag your snapshots with the instance ID and timestamp\.
-   + **Fast snapshot restore**\-Choose whether to enable fast snapshot restore and in which Availability Zones\. You can also specify the maximum number of snapshots that can be enabled for fast snapshot store\.
    + **IAM role**—An IAM role that has permissions to create, delete, and describe snapshots, and to describe volumes\. AWS provides a default role, **AWSDataLifecycleManagerDefaultRole**, or you can create a custom IAM role\.
    + **Policy status after creation**—Choose **Enable policy** to start the policy runs at the next scheduled time or **Disable policy** to prevent the policy from running\.
 

@@ -2,10 +2,14 @@
 
 New EBS volumes receive their maximum performance the moment that they are available and do not require initialization \(formerly known as pre\-warming\)\.
 
-However, storage blocks on volumes that were restored from snapshots must be pulled down from Amazon S3 and written to the volume before they can be accessed\. This preliminary action takes time and can significantly increase the latency of I/O operations\. For most applications, amortizing this cost over the lifetime of the volume is acceptable\. The volume's performance is restored after all of the blocks have been downloaded and written to the volume\. To avoid this initial performance hit in a production environment, you can perform an initialization to read all of the blocks on the volume before you use it\.
+For volumes that were restored from snapshots, the storage blocks must be pulled down from Amazon S3 and written to the volume before you can access them\. This preliminary action takes time and can cause a significant increase in the latency of I/O operations the first time each block is accessed\. Volume performance is achieved after all blocks have been downloaded and written to the volume\.
 
 **Important**  
 While initializing `io1` volumes that were restored from snapshots, the performance of the volume may drop below 50 percent of its expected level, which causes the volume to display a `warning` state in the **I/O Performance** status check\. This is expected, and you can ignore the `warning` state on `io1` volumes while you are initializing them\. For more information, see [EBS Volume Status Checks](monitoring-volume-status.md#monitoring-volume-checks)\.
+
+For most applications, amortizing the initialization cost over the lifetime of the volume is acceptable\. To avoid this initial performance hit in a production environment, you can use one of the following options:
++ Force the immediate initialization of the entire volume\. For more information, see [Initializing Amazon EBS Volumes](#ebs-initialize)\.
++ Enable fast snapshot restore on a snapshot to ensure that the EBS volumes created from it are fully\-initialized at creation and instantly deliver all of their provisioned performance\. For more information, see [Amazon EBS Fast Snapshot Restore](ebs-fast-snapshot-restore.md)\.
 
 ## Initializing Amazon EBS Volumes on Linux<a name="ebs-initialize-linux"></a>
 

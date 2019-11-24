@@ -20,6 +20,7 @@ Each instance type provides higher or lower minimum performance from a shared re
 + [Memory Optimized Instances](memory-optimized-instances.md)
 + [Storage Optimized Instances](storage-optimized-instances.md)
 + [Linux Accelerated Computing Instances](accelerated-computing-instances.md)
++ [Finding an Instance Type](instance-discovery.md)
 + [Changing the Instance Type](ec2-instance-resize.md)
 
 ## Available Instance Types<a name="AvailableInstanceTypes"></a>

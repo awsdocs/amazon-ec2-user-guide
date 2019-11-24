@@ -6,6 +6,17 @@ The following procedures help you install an Apache web server with PHP and [Mar
 To set up a LAMP web server on Amazon Linux AMI, see [Tutorial: Install a LAMP Web Server with the Amazon Linux AMI](install-LAMP.md)\.  
 If you are trying to set up a LAMP web server on an Ubuntu or Red Hat Enterprise Linux instance, this tutorial will not work for you\. For more information about other distributions, see their specific documentation\. For information about LAMP web servers on Ubuntu, see the Ubuntu community documentation [ApacheMySQLPHP](https://help.ubuntu.com/community/ApacheMySQLPHP) topic\. 
 
+**Option: Complete this tutorial using automation**  
+To complete this tutorial using AWS Systems Manager Automation instead of the following tasks, run the [AWSDocs\-InstallALAMPServer\-AL2](https://console.aws.amazon.com/systems-manager/automation/execute/AWSDocs-InstallALAMPServer-AL2) Automation document\.
+
+**Topics**
++ [Step 1: Prepare the LAMP Server](#prepare-lamp-server)
++ [Step 2: Test Your LAMP Server](#test-lamp-server)
++ [Step 3: Secure the Database Server](#secure-mariadb-lamp-server)
++ [Step 4: \(Optional\) Install phpMyAdmin](#install-phpmyadmin-lamp-server)
++ [Troubleshooting](#lamp-troubleshooting)
++ [Related Topics](#lamp-more-info)
+
 ## Step 1: Prepare the LAMP Server<a name="prepare-lamp-server"></a>
 
 **Prerequisites**  

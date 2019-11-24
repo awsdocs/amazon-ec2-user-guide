@@ -8,9 +8,13 @@ New volumes created from existing EBS snapshots load lazily in the background\. 
 
 ## EBS Performance<a name="new-ebs-volume-performance"></a>
 
-New EBS volumes receive their maximum performance the moment that they are available and do not require initialization \(formerly known as pre\-warming\)\. However, storage blocks on volumes that were restored from snapshots must be initialized \(pulled down from Amazon S3 and written to the volume\) before you can access the block\. This preliminary action takes time and can cause a significant increase in the latency of an I/O operation the first time each block is accessed\. Performance is restored after the data is accessed once\.
+New EBS volumes receive their maximum performance the moment that they are available and do not require initialization \(formerly known as pre\-warming\)\.
 
-For most applications, amortizing the initialization cost over the lifetime of the volume is acceptable\. To ensure that your restored volume always functions at peak capacity in production, you can force the immediate initialization of the entire volume using dd or fio\. For more information, see [Initializing Amazon EBS Volumes](ebs-initialize.md)\.
+For volumes that were restored from snapshots, the storage blocks must be pulled down from Amazon S3 and written to the volume before you can access them\. This preliminary action takes time and can cause a significant increase in the latency of I/O operations the first time each block is accessed\. Volume performance is achieved after all blocks have been downloaded and written to the volume\.
+
+For most applications, amortizing the initialization cost over the lifetime of the volume is acceptable\. To avoid this initial performance hit in a production environment, you can use one of the following options:
++ Force the immediate initialization of the entire volume\. For more information, see [Initializing Amazon EBS Volumes](ebs-initialize.md)\.
++ Enable fast snapshot restore on a snapshot to ensure that the EBS volumes created from it are fully\-initialized at creation and instantly deliver all of their provisioned performance\. For more information, see [Amazon EBS Fast Snapshot Restore](ebs-fast-snapshot-restore.md)\.
 
 ## EBS Encryption<a name="new-volume-ebs-encryption"></a>
 

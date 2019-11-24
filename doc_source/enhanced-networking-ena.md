@@ -4,7 +4,6 @@ Amazon EC2 provides enhanced networking capabilities through the Elastic Network
 
 **Topics**
 + [Requirements](#ena-requirements)
-+ [Data Encryption](#ena-data-encryption-in-transit)
 + [Testing Whether Enhanced Networking Is Enabled](#test-enhanced-networking-ena)
 + [Enabling Enhanced Networking on the Amazon Linux AMI](#enable-enhanced-networking-ena-AL)
 + [Enabling Enhanced Networking on Ubuntu](#enhanced-networking-ena-ubuntu)
@@ -21,10 +20,6 @@ To prepare for enhanced networking using the ENA, set up your instance as follow
 + Ensure that the instance has internet connectivity\.
 + Install and configure the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html) or the [AWS Tools for Windows PowerShell](https://docs.aws.amazon.com/powershell/latest/userguide/) on any computer you choose, preferably your local desktop or laptop\. For more information, see [Accessing Amazon EC2](concepts.md#access-ec2)\. Enhanced networking cannot be managed from the Amazon EC2 console\.
 + If you have important data on the instance that you want to preserve, you should back that data up now by creating an AMI from your instance\. Updating kernels and kernel modules, as well as enabling the `enaSupport` attribute, might render incompatible instances or operating systems unreachable\. If you have a recent backup, your data will still be retained if this happens\.
-
-## Data Encryption<a name="ena-data-encryption-in-transit"></a>
-
-AWS provides secure and private connectivity between EC2 instances\. In addition, we automatically encrypt in\-transit traffic between supported instances in the same VPC or in peered VPCs, using AEAD algorithms with 256\-bit encryption\. This encryption feature uses the offload capabilities of the underlying hardware, and there is no impact on network performance\. The supported instances are: C5n, G4, I3en, M5dn, M5n, P3dn, R5dn, and R5n\.
 
 ## Testing Whether Enhanced Networking Is Enabled<a name="test-enhanced-networking-ena"></a>
 

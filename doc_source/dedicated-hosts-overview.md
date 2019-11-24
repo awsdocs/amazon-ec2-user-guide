@@ -1,12 +1,12 @@
 # Dedicated Hosts<a name="dedicated-hosts-overview"></a>
 
-An Amazon EC2 Dedicated Host is a physical server with EC2 instance capacity fully dedicated to your use\. Dedicated Hosts allow you to use your existing per\-socket, per\-core, or per\-VM software licenses, including Windows Server, Microsoft SQL Server, SUSE, Linux Enterprise Server, and so on\.
+An Amazon EC2 Dedicated Host is a physical server with EC2 instance capacity fully dedicated to your use\. Dedicated Hosts allow you to use your existing per\-socket, per\-core, or per\-VM software licenses, including Windows Server, Microsoft SQL Server, SUSE, and Linux Enterprise Server\.
 
 **Topics**
 + [Differences between Dedicated Hosts and Dedicated Instances](#dedicated-hosts-dedicated-instances)
 + [Bring Your Own License](#dedicated-hosts-BYOL)
-+ [Dedicated Host Instance Capacity](#dedicated-hosts-configurations)
-+ [Dedicated Hosts Limitations and Restrictions](#dedicated-hosts-limitations)
++ [Dedicated Host Instance Capacity](#dedicated-hosts-limits)
++ [Dedicated Hosts Restrictions](#dedicated-hosts-limitations)
 + [Pricing and Billing](#dedicated-hosts-billing)
 + [Working with Dedicated Hosts](how-dedicated-hosts-work.md)
 + [Host Recovery](dedicated-hosts-recovery.md)
@@ -45,17 +45,25 @@ These are the general steps to follow in order to bring your own volume licensed
 **Note**  
 To track how your images are used in AWS, enable host recording in AWS Config\. You can use AWS Config to record configuration changes to a Dedicated Host and use the output as a data source for license reporting\. For more information, see [Tracking Configuration Changes](dedicated-hosts-aws-config.md)\. 
 
-## Dedicated Host Instance Capacity<a name="dedicated-hosts-configurations"></a>
+## Dedicated Host Instance Capacity<a name="dedicated-hosts-limits"></a>
 
-Dedicated Hosts are configured to support a single instance type and size capacity\. The number of instances you can launch onto a Dedicated Host depends on the instance type that the Dedicated Host is configured to support\. For example, if you allocated a `c3.xlarge` Dedicated Host, you'd have the right to launch up to eight `c3.xlarge` instances on the Dedicated Host\. To determine the number of instance type sizes that you can run on a particular Dedicated Host, see [Amazon EC2 Dedicated Hosts Pricing](https://aws.amazon.com/ec2/dedicated-hosts/pricing/)\.
+Dedicated Hosts powered by the AWS Nitro System can support multiple instance types within the same instance family\. For example, when you allocate an `r5` Dedicated Host, you can use a host with 2 sockets and 48 physical cores on which you can run different instance types, such as `r5.2xlarge` and `r5.4xlarge`\. You can run any number of instances up to the core capacity associated with the host\. For example, the table below shows the different instance type combinations you can run on a Dedicated Host\.
 
-## Dedicated Hosts Limitations and Restrictions<a name="dedicated-hosts-limitations"></a>
+
+| Instance family | Example instance type combinations | 
+| --- | --- | 
+| `R5` |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-hosts-overview.html)  | 
+| `C5` |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-hosts-overview.html)  | 
+| `M5` |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-hosts-overview.html)  | 
+
+For instance families that are not powered by the AWS Nitro system, you can only configure the Dedicated Host for a specific instance type\. For a list of all instance families and instance type configurations supported on Dedicated Hosts see [Amazon EC2 Dedicated Host Pricing](http://aws.amazon.com/ec2/dedicated-hosts/pricing/)\.
+
+## Dedicated Hosts Restrictions<a name="dedicated-hosts-limitations"></a>
 
 Before you allocate Dedicated Hosts, take note of the following limitations and restrictions:
-+ RHEL, SUSE Linux, and Windows AMIs \(whether offered by AWS or on the AWS Marketplace\) cannot be used with Dedicated Hosts\.
++ RHEL, SUSE Linux, and Windows AMIs \(whether offered by AWS or on the AWS Marketplace\) can't be used with Dedicated Hosts\.
 + Up to two On\-Demand Dedicated Hosts per instance family, per Region can be allocated\. It is possible to request a limit increase: [Request to Raise Allocation Limit on Amazon EC2 Dedicated Hosts](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=)\.
 + The instances that run on a Dedicated Host can only be launched in a VPC\.
-+ Host limits are independent from instance limits\. Instances that you are running on Dedicated Hosts do not count towards your instance limits\.
 + Auto Scaling groups are not supported\.
 + Amazon RDS instances are not supported\.
 + The AWS Free Usage tier is not available for Dedicated Hosts\.
@@ -93,4 +101,4 @@ For more information about reservation pricing, see [Amazon EC2 Dedicated Hosts 
 
 ### Savings Plans<a name="dedicated-hosts-savings-plans"></a>
 
-Savings Plans are a flexible pricing model that offer significant savings over On\-Demand Instances\. With Savings Plans, you make a commitment to a consistent amount of usage, in USD per hour, for a term of 1 or 3 years\. This provides you with the flexibility to use the Dedicated Hosts that best meet your needs and continue to save money, instead of making a commitment to a specific Dedicated Host\. For more information, see the [AWS Savings Plans User Guide](https://docs.aws.amazon.com/savingsplans/latest/userguide/)\.
+Savings Plans are a flexible pricing model that offers significant savings over On\-Demand Instances\. With Savings Plans, you make a commitment to a consistent amount of usage, in USD per hour, for a term of one or three years\. This provides you with the flexibility to use the Dedicated Hosts that best meet your needs and continue to save money, instead of making a commitment to a specific Dedicated Host\. For more information, see the [AWS Savings Plans User Guide](https://docs.aws.amazon.com/savingsplans/latest/userguide/)\.

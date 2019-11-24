@@ -77,7 +77,7 @@ For more information about enabling host recovery at the time of Dedicated Host 
 Use the [modify\-hosts](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-hosts.html) command and specify the `host-recovery` parameter\.
 
 ```
-$ aws ec2 modify-hosts --host-recovery on --host-ids h-1234567890
+$ aws ec2 modify-hosts --host-recovery on --host-ids h-012a3456b7890cdef
 ```
 
 ### Disabling Host Recovery<a name="dedicated-hosts-recovery-disable"></a>
@@ -98,7 +98,7 @@ You can disable host recovery at any time after the Dedicated Host has been allo
 Use the [modify\-hosts](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-hosts.html) command and specify the `host-recovery` parameter\.
 
 ```
-$ aws ec2 modify-hosts --host-recovery off --host-ids h-1234567890
+$ aws ec2 modify-hosts --host-recovery off --host-ids h-012a3456b7890cdef
 ```
 
 ### Viewing Host Recovery Configuration<a name="dedicated-hosts-recovery-view"></a>
@@ -117,16 +117,16 @@ You can view the host recovery configuration for a Dedicated Host at any time\.
 Use the [describe\-hosts](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-hosts.html) command\.
 
 ```
-$ aws ec2 describe-hosts --host-ids h-1234567890
+$ aws ec2 describe-hosts --host-ids h-012a3456b7890cdef
 ```
 
 The `HostRecovery` response element indicates whether host recovery is enabled or disabled\.
 
 ## Host Recovery States<a name="dedicated-hosts-recovery-states"></a>
 
-When a Dedicated Host failure is detected, the impaired Dedicated Host enters the `under-assessment` state, and all of the instances enter the `impaired` state\. You cannot launch instances on to the impaired Dedicated Host while it is in the `under-assessment` state\.
+When a Dedicated Host failure is detected, the impaired Dedicated Host enters the `under-assessment` state, and all of the instances enter the `impaired` state\. You can't launch instances on to the impaired Dedicated Host while it is in the `under-assessment` state\.
 
-After the replacement Dedicated Host is allocated, it enters the `pending` state\. It remains in this state until the host recovery process is complete\. You cannot launch instances on to the replacement Dedicated Host while it is in the `pending` state\. Recovered instances on the replacement Dedicated Host remain in the `impaired` state during the recovery process\.
+After the replacement Dedicated Host is allocated, it enters the `pending` state\. It remains in this state until the host recovery process is complete\. You can't launch instances on to the replacement Dedicated Host while it is in the `pending` state\. Recovered instances on the replacement Dedicated Host remain in the `impaired` state during the recovery process\.
 
 After the host recovery is complete, the replacement Dedicated Host enters the `available` state, and the recovered instances return to the `running` state\. You can launch instances on to the replacement Dedicated Host after it enters the `available` state\. The original impaired Dedicated Host is permanently released and it enters the `released-permanent-failure` state\.
 

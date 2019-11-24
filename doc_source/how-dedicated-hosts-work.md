@@ -5,10 +5,11 @@ To use a Dedicated Host, you first allocate hosts for use in your account\. You 
 If you no longer need an On\-Demand host, you can stop the instances running on the host, direct them to launch on a different host, and then *release* the host\.
 
 **Topics**
-+ [Understanding Auto\-Placement and Affinity](#dedicated-hosts-understanding)
 + [Allocating Dedicated Hosts](#dedicated-hosts-allocating)
 + [Launching Instances onto Dedicated Hosts](#launching-dedicated-hosts-instances)
++ [Understanding Auto\-Placement and Affinity](#dedicated-hosts-understanding)
 + [Modifying Dedicated Host Auto\-Placement](#modify-host-auto-placement)
++ [Modifying the Supported Instance Types](#modify-host-support)
 + [Modifying Instance Tenancy and Affinity](#moving-instances-dedicated-hosts)
 + [Viewing Dedicated Hosts](#dedicated-hosts-managing)
 + [Tagging Dedicated Hosts](#dedicated-hosts-tagging)
@@ -18,31 +19,11 @@ If you no longer need an On\-Demand host, you can stop the instances running on 
 + [Viewing Dedicated Host Reservations](#viewing-host-reservations)
 + [Tagging Dedicated Host Reservations](#tagging-host-reservations)
 
-## Understanding Auto\-Placement and Affinity<a name="dedicated-hosts-understanding"></a>
-
-Placement control happens on both the instance level and host level\.
-
-### Auto\-Placement<a name="dedicated-hosts-auto-placement"></a>
-
-Auto\-placement allows you to manage whether instances that you launch are launched onto a specific host, or onto any available host that has matching configurations\. Auto\-placement must be configured at the host level\.
-
-When a Dedicated Host's auto\-placement is *disabled*, it only accepts *Host* tenancy instance launches that specify its unique host ID\. This is the default setting for new Dedicated Hosts\.
-
-When a Dedicated Host's auto\-placement is *enabled*, it accepts any untargeted instance launches that match its instance type configuration\.
-
-When launching an instance, you need to configure its tenancy\. Launching an instance onto a Dedicated Host without providing a specific `HostId`, enables it to launch on any Dedicated Host that has auto\-placement *enabled* and matches its instance type\.
-
-### Host Affinity<a name="dedicated-hosts-affinity"></a>
-
-Host Affinity is configured at the instance level\. It establishes a launch relationship between an instance and a Dedicated Host\.
-
-When affinity is set to `Host`, an instance launched onto a specific host always restarts on the same host if stopped\. This applies to both targeted and untargeted launches\.
-
-When affinity is set to `Off`, and you stop and restart the instance, it can be restarted on any available host\. However, it tries to launch back onto the last Dedicated Host on which it ran \(on a best\-effort basis\)\.
-
 ## Allocating Dedicated Hosts<a name="dedicated-hosts-allocating"></a>
 
-To begin using Dedicated Hosts, they must be allocated to your account\. You can allocate Dedicated Hosts to your account using the Amazon EC2 console or the command line tools\.
+To begin using Dedicated Hosts, you must allocate Dedicated Hosts in your account using the Amazon EC2 console or the command line tools\.
+
+After you allocate the Dedicated Host, the Dedicated Host capacity is made available in your account immediately and you can start launching instances onto the Dedicated Host\.
 
 **To allocate Dedicated Hosts using the Amazon EC2 console**
 
@@ -50,19 +31,19 @@ To begin using Dedicated Hosts, they must be allocated to your account\. You can
 
 1. In the navigation pane, choose **Dedicated Hosts**, **Allocate Dedicated Host**\.
 
-1. Configure the following Dedicated Host options:
+1. For **Instance family**, choose the instance family for the Dedicated Host\.
 
-   1. **Instance type**—The type of instance that you want to launch on the Dedicated Host\.
+1. Specify whether the Dedicated Host supports multiple instance types within the selected instance family, or a specific instance type only\. Do one of the following\.
+   + To configure the Dedicated Host to support multiple instance types in the selected instance family, select **Support multiple instance types**\. Enabling this allows you to launch different instance types from the same instance family onto the Dedicated Host\. For example, if you choose the `m5` instance family and choose this option, you can launch `m5.xlarge` and `m5.4xlarge` instances onto the Dedicated Host\. The following instance families can be configured to support multiple instance types: A1, C5, C5n, M5, M5n, R5, and R5n\.
+   + To configure the Dedicated Host to support a specific instance type within the selected instance family, clear **Support multiple instance types**, and then for **Instance type**, choose the instance type to support\. Enabling this allows you to launch a single instance type on the Dedicated Host\. For example, if you choose this option and specify `m5.4xlarge` as the supported instance type, you can launch only `m5.4xlarge` instances onto the Dedicated Host\.
 
-   1. **Availability Zone**—The Availability Zone in which the Dedicated Host is located\.
+1. For **Availability Zone**, choose the Availability Zone in which to allocate the Dedicated Host\.
 
-   1. To allow the Dedicated Host to accept untargeted instance launches that match its instance type, for **Instance auto\-placement**, choose **Enable**\.
+1. To allow the Dedicated Host to accept untargeted instance launches that match its instance type, for **Instance auto\-placement**, choose **Enable**\. For more information about auto\-placement, see [Understanding Auto\-Placement and Affinity](#dedicated-hosts-understanding)\.
 
-      For more information about auto\-placement, see [Understanding Auto\-Placement and Affinity](#dedicated-hosts-understanding)\.
+1. To enable host recovery for the Dedicated Host, for **Host recovery** choose **Enable**\. For more information, see [Host Recovery](dedicated-hosts-recovery.md)\.
 
-   1. To enable host recovery for the Dedicated Host, for **Host recovery** choose **Enable**\. For more information, see [Host Recovery](dedicated-hosts-recovery.md)\.
-
-   1. **Quantity**—The number of Dedicated Hosts to allocate with these options\.
+1. For **Quantity**, enter the number of Dedicated Hosts to allocate\.
 
 1. \(Optional\) Choose **Add Tag** and enter a tag key and a tag value\.
 
@@ -70,11 +51,25 @@ To begin using Dedicated Hosts, they must be allocated to your account\. You can
 
 **To allocate Dedicated Hosts using the command line tools**
 
-Use one of the following commands\. The following commands allocate a Dedicated Host that supports *untargeted* `m4.large` instance launches in the `eu-west-1a` Availability Zone, enable host recovery, and apply a tag with a key of `purpose` and a value of `production`\.
+Use one of the following commands\. 
+
+The following commands allocate a Dedicated Host that supports multiple instance types from the `m5` instance family in `us-east-1a` Availability Zone\. The host also has host recovery enabled and it has auto\-placement turned disabled\.
 + [allocate\-hosts](https://docs.aws.amazon.com/cli/latest/reference/ec2/allocate-hosts.html) \(AWS CLI\)
 
   ```
-  aws ec2 allocate-hosts --instance-type "m4.large" --availability-zone "eu-west-1a" --auto-placement "off" --host-recovery "on" --quantity 1 --tag-specifications 'ResourceType=dedicated-host,Tags=[{Key=purpose,Value=production}]'
+  aws ec2 allocate-hosts --instance-family "m5" --availability-zone "us-east-1a" --auto-placement "off" --host-recovery "on" --quantity 1 
+  ```
++ [New\-EC2Host](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Host.html) \(AWS Tools for Windows PowerShell\)
+
+  ```
+  PS C:\> New-EC2Host -InstanceFamily m5 -AvailabilityZone us-east-1a -AutoPlacement Off -HostRecovery On -Quantity 1
+  ```
+
+The following commands allocate a Dedicated Host that supports *untargeted* `m4.large` instance launches in the `eu-west-1a` Availability Zone, enable host recovery, and apply a tag with a key of `purpose` and a value of `production`\.
++ [allocate\-hosts](https://docs.aws.amazon.com/cli/latest/reference/ec2/allocate-hosts.html) \(AWS CLI\)
+
+  ```
+  aws ec2 allocate-hosts --instance-type "m4.large" --availability-zone "eu-west-1a" --auto-placement "on" --host-recovery "on" --quantity 1 --tag-specifications 'ResourceType=dedicated-host,Tags=[{Key=purpose,Value=production}]'
   ```
 + [New\-EC2Host](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Host.html) \(AWS Tools for Windows PowerShell\)
 
@@ -90,21 +85,17 @@ Use one of the following commands\. The following commands allocate a Dedicated 
   The following command allocates the Dedicated Host and applies the tag specified in the `$tagspec` object\.
 
   ```
-  PS C:\> New-EC2Host -InstanceType m4.large -AvailabilityZone eu-west-1a -AutoPlacement Off -HostRecovery On -Quantity 1 -TagSpecification $tagspec
+  PS C:\> New-EC2Host -InstanceType m4.large -AvailabilityZone eu-west-1a -AutoPlacement On -HostRecovery On -Quantity 1 -TagSpecification $tagspec
   ```
-
-The Dedicated Host capacity is made available in your account immediately\.
-
-If you launch instances with `host` tenancy but do not have any active Dedicated Host in your account, you receive an error and the instance launch fails\.
 
 ## Launching Instances onto Dedicated Hosts<a name="launching-dedicated-hosts-instances"></a>
 
-After you have allocated a Dedicated Host, you can launch instances onto it\. You cannot launch instances with `host` tenancy if you do not have active Dedicated Hosts with enough available capacity for the instance type that you are launching\.
+After you have allocated a Dedicated Host, you can launch instances onto it\. You can't launch instances with `host` tenancy if you do not have active Dedicated Hosts with enough available capacity for the instance type that you are launching\.
 
 **Note**  
 The instances launched onto Dedicated Hosts can only be launched in a VPC\. For more information, see [Introduction to VPC](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Introduction.html)\.
 
-Before you launch your instances, take note of the limitations\. For more information, see [Dedicated Hosts Limitations and Restrictions](dedicated-hosts-overview.md#dedicated-hosts-limitations)\.
+Before you launch your instances, take note of the limitations\. For more information, see [Dedicated Hosts Restrictions](dedicated-hosts-overview.md#dedicated-hosts-limitations)\.
 
 **To launch an instance onto a specific Dedicated Host from the Dedicated Hosts page**
 
@@ -112,21 +103,21 @@ Before you launch your instances, take note of the limitations\. For more inform
 
 1. Choose **Dedicated Hosts** in the navigation pane\.
 
-1. On the **Dedicated Hosts** page, select a host choose **Actions**, **Launch Instance\(s\) onto Host**\.
+1. On the **Dedicated Hosts** page, select a host and choose **Actions**, **Launch Instance\(s\) onto Host**\.
 
 1. Select an AMI from the list\. Windows, SUSE, and RHEL AMIs provided by Amazon EC2 can't be used with Dedicated Hosts\.
 
-1. On the **Choose an Instance Type** page, keep the instance type that is selected by default, and then choose **Next: Configure Instance Details**\. 
+1. On the **Choose an Instance Type** page, select the instance type to launch and then choose **Next: Configure Instance Details**\. 
 
-   The instance type is determined by the host that you selected\.
+   If the Dedicated Host supports a single instance type only, the supported instance type is selected by default and can't be changed\. If the Dedicated Host supports multiple instance types, you must select an instance type within the supported instance family based on the Dedicated Host's available instance capacity\.
 
 1. On the **Configure Instance Details** page, configure the instance settings to suit your needs, and then for **Affinity**, choose one of the following options:
    + **Off**—The instance launches onto the specified host, but it is not guaranteed to restart on the same Dedicated Host if stopped\.
    + **Host**—If stopped, the instance always restarts on this specific host\.
 
    For more information about Affinity, see [Understanding Auto\-Placement and Affinity](#dedicated-hosts-understanding)\.
-**Note**  
-The **Tenancy** and **Host** options are pre\-configured based on the host that you selected\.
+
+   The **Tenancy** and **Host** options are pre\-configured based on the host that you selected\.
 
 1. Choose **Review and Launch**\.
 
@@ -146,14 +137,14 @@ The **Tenancy** and **Host** options are pre\-configured based on the host that 
 
 1. On the **Configure Instance Details** page, configure the instance settings to suit your needs, and then configure the following Dedicated Host\-specific settings:
    + Tenancy—Choose **Dedicated Host \- Launch this instance on a Dedicated Host**\.
-   + Host—Choose either **Use auto\-placement** to launch the instance on any Dedicated Host that has auto\-placement enabled, or select a specific Dedicated Host in the list\. If Dedicated Hosts does not support the selected instance type, it is disabled in the list\.
+   + Host—Choose either **Use auto\-placement** to launch the instance on any Dedicated Host that has auto\-placement enabled, or select a specific Dedicated Host in the list\. The list displays only Dedicated Hosts that support the selected instance type\.
    + Affinity—Choose one of the following options:
      + **Off**—The instance launches onto the specified host, but it is not guaranteed to restart on it if stopped\.
      + **Host**—If stopped, the instance always restarts on the specified host\.
 
    For more information, see [Understanding Auto\-Placement and Affinity](#dedicated-hosts-understanding)\.
-**Note**  
-If you are unable to see these settings, check that you have selected a VPC in the **Network** menu\.
+
+   If you are unable to see these settings, check that you have selected a VPC in the **Network** menu\.
 
 1. Choose **Review and Launch**\.
 
@@ -166,6 +157,28 @@ If you are unable to see these settings, check that you have selected a VPC in t
 Use one of the following commands and specify the instance affinity, tenancy, and host in the `Placement` request parameter:
 + [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) \(AWS CLI\)
 + [New\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
+
+## Understanding Auto\-Placement and Affinity<a name="dedicated-hosts-understanding"></a>
+
+Placement control for Dedicated Hosts happens on both the instance level and host level\.
+
+### Auto\-Placement<a name="dedicated-hosts-auto-placement"></a>
+
+Auto\-placement is configured at the host level\. It allows you to manage whether instances that you launch are launched onto a specific host, or onto any available host that has matching configurations\.
+
+When a Dedicated Host's auto\-placement is *disabled*, it only accepts *Host* tenancy instance launches that specify its unique host ID\. This is the default setting for new Dedicated Hosts\.
+
+When a Dedicated Host's auto\-placement is *enabled*, it accepts any untargeted instance launches that match its instance type configuration\.
+
+When launching an instance, you need to configure its tenancy\. Launching an instance onto a Dedicated Host without providing a specific `HostId`, enables it to launch on any Dedicated Host that has auto\-placement *enabled* and matches its instance type\.
+
+### Host Affinity<a name="dedicated-hosts-affinity"></a>
+
+Host Affinity is configured at the instance level\. It establishes a launch relationship between an instance and a Dedicated Host\.
+
+When affinity is set to `Host`, an instance launched onto a specific host always restarts on the same host if stopped\. This applies to both targeted and untargeted launches\.
+
+When affinity is set to `Off`, and you stop and restart the instance, it can be restarted on any available host\. However, it tries to launch back onto the last Dedicated Host on which it ran \(on a best\-effort basis\)\.
 
 ## Modifying Dedicated Host Auto\-Placement<a name="modify-host-auto-placement"></a>
 
@@ -197,11 +210,64 @@ Use one of the following commands\. The following examples enable auto\-placemen
   PS C:\> Edit-EC2Host --AutoPlacement 1 --HostId h-012a3456b7890cdef
   ```
 
+## Modifying the Supported Instance Types<a name="modify-host-support"></a>
+
+You can modify a Dedicated Host to change the instance types that it supports\. If it currently supports a single instance type, you can modify it to support multiple instance types within that instance family\. Similarly, if it currently supports multiple instance types, you can modify it to support a specific instance type only\.
+
+To modify a Dedicated Host to support multiple instance types, you must first stop all running instances on the host\. The modification takes approximately 10 minutes to complete\. The Dedicated Host transitions to the `pending` state while the modification is in progress\. You can't start stopped instances or launch new instances on the Dedicated Host while it is in the `pending` state\. The following instance families can be modified to support multiple instance types: A1, C5, C5n, M5, M5n, R5, and R5n\.
+
+To modify a Dedicated Host that supports multiple instance types to support only a specific instance type, the host must either have no running instances, or the running instances must be of the instance type that you want the host to support\. For example, to modify a host that supports multiple instance types in the `m5` instance family to support only `m5.large` instances, the Dedicated Host must either have no running instances, or it must have only `m5.large` instances running on it\.
+
+**To modify the supported instance types for a Dedicated Host using the Amazon EC2 console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the Navigation pane, choose **Dedicated Host**\.
+
+1. Select the Dedicated Host to modify and choose **Actions**, **Modify Supported Instance Types**\.
+
+1. Do one of the following, depending on the Dedicated Host's current configuration\.
+   + If the Dedicated Host currently supports a specific instance type, **No** is selected for **Support multiple instance types**\. To modify the host to support multiple types in the current instance family, for **Support multiple instance types**, select **Yes**\.
+
+     You must first stop all instances running on the host before modifying it to support multiple instance types\.
+   + If the Dedicated Host currently supports multiple instance types in an instance family, **Yes** is selected for **Support multiple instance types**, and **Instance family** displays the supported instance family\. To modify the host to support a specific instance type, for **Support multiple instance types**, select **No**, and then for **Instance type**, select the specific instance type to support\.
+
+     You can't change the instance family supported by the Dedicated Host\.
+
+1. Choose **Save**\.
+
+**To modify the instance types that are supported by a Dedicated Host using the command line tools**  
+Use [modify\-hosts](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-hosts.html) \(AWS CLI\) or [Edit\-EC2Host](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2Host.html) \(AWS Tools for Windows PowerShell\) commands\.
+
+The following command modifies a Dedicated Host to support multiple instance types within the `m5` instance family\.
++ [modify\-hosts](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-hosts.html) \(AWS CLI\)
+
+  ```
+  aws ec2 modify-hosts --instance-family m5 --host-ids h-012a3456b7890cdef
+  ```
++ [Edit\-EC2Host](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2Host.html) \(AWS Tools for Windows PowerShell\)
+
+  ```
+  PS C:\> Edit-EC2Host --InstanceFamily m5 --HostId h-012a3456b7890cdef
+  ```
+
+The following command modifies a Dedicated Host to support `m5.xlarge` instances only\.
++ [modify\-hosts](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-hosts.html) \(AWS CLI\)
+
+  ```
+  aws ec2 modify-hosts --instance-type m5.xlarge --instance-family --host-ids h-012a3456b7890cdef
+  ```
++ [Edit\-EC2Host](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2Host.html) \(AWS Tools for Windows PowerShell\)
+
+  ```
+  PS C:\> Edit-EC2Host --InstanceType m5.xlarge --HostId h-012a3456b7890cdef
+  ```
+
 ## Modifying Instance Tenancy and Affinity<a name="moving-instances-dedicated-hosts"></a>
 
-You can change the tenancy of an instance from `dedicated` to `host`, or from `host` to `dedicated`, after you have launched it\.
+You can change the tenancy of an instance from `dedicated` to `host`, or from `host` to `dedicated`, after you have launched it\. You can also modify the affinity between the instance and the host\. To modify either instance tenancy or affinity, the instance must be in the `stopped` state\.
 
-**To modify instance tenancy and affinity using the Amazon EC2 console**
+**To modify instance tenancy or affinity using the Amazon EC2 console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -224,7 +290,7 @@ You can change the tenancy of an instance from `dedicated` to `host`, or from `h
 
 1. Choose **Save**\.
 
-**To modify instance tenancy and affinity using the command line tools**
+**To modify instance tenancy or affinity using the command line tools**
 
 Use one of the following commands\. The following examples change the specified instance's affinity from `default` to `host`, and specify the Dedicated Host that the instance has affinity with\.
 + [modify\-instance\-placement](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-placement.html) \(AWS CLI\)
@@ -242,29 +308,63 @@ Use one of the following commands\. The following examples change the specified 
 
 You can view details about a Dedicated Host and the individual instances on it\.
 
-**To view details of instances on a Dedicated Host using the Amazon EC2 console**
+**To view the details of a Dedicated Host using the Amazon EC2 console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
 1. In the navigation pane, choose **Dedicated Hosts**\.
 
-1. On the **Dedicated Hosts** page, select the host to view more information about\.
+1. On the **Dedicated Hosts** page, select a host\.
 
-1. For information about the host, choose **Description**\. For information about instances running on the host, choose **Instances**\.
+1. For information about the host, choose **Description**\. **Available vCPUs** indicates the vCPUs that are available on the Dedicated Host for new instance launches\. For example, a Dedicated Host that supports multiple instance types within the `c5` instance family, and that has no instances running on it, has 72 available vCPUs\. This means that you can launch different combinations of instance types onto the Dedicated Host to consume the 72 available vCPUs\.
 
-**To view details of instances on a Dedicated Host using the command line tools**
+   For information about instances running on the host, choose **Instances**\.
+
+**To view details of the instances on a Dedicated Host using the command line tools**
 
 Use one of the following commands:
 + [describe\-hosts](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-hosts.html) \(AWS CLI\)
 
   ```
-  aws ec2 describe-hosts --host-id host_id
+  aws ec2 describe-hosts --host-id h-012a3456b7890cdef
   ```
 + [Get\-EC2Host](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Host.html) \(AWS Tools for Windows PowerShell\)
 
   ```
-  PS C:\> Get-EC2Host -HostId host_id
+  PS C:\> Get-EC2Host -HostId h-012a3456b7890cdef
   ```
+
+**To view a Dedicated Host's instance capacity using the command line tools**
+
+Use one of the following commands:
++ [describe\-hosts](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-hosts.html) \(AWS CLI\)
+
+  ```
+  aws ec2 describe-hosts --host-id h-012a3456b7890cdef
+  ```
++ [Get\-EC2Host](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Host.html) \(AWS Tools for Windows PowerShell\)
+
+  ```
+  PS C:\> Get-EC2Host -HostId h-012a3456b7890cdef
+  ```
+
+The following example uses the [describe\-hosts](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-hosts.html) \(AWS CLI\) command to view the available instance capacity for a Dedicated Host that supports multiple instance types within the `c5` instance family\. The Dedicated Host already has two `c5.4xlarge` instances and four `c5.2xlarge` instances running on it\.
+
+```
+$  aws ec2 describe-hosts --host-id h-012a3456b7890cdef
+```
+
+```
+"AvailableInstanceCapacity": [
+    { "AvailableCapacity": 2,
+      "InstanceType": "c5.xlarge",
+      "TotalCapacity": 18 },
+    { "AvailableCapacity": 4,
+      "InstanceType": "c5.large",
+      "TotalCapacity": 36 }
+  ],
+"AvailableVCpus": 8
+```
 
 ## Tagging Dedicated Hosts<a name="dedicated-hosts-tagging"></a>
 
@@ -334,12 +434,12 @@ Use one of the following commands and then review the `state` property in the `h
 + [describe\-hosts](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-hosts.html) \(AWS CLI\)
 
   ```
-  aws ec2 describe-hosts --host-id host_id
+  aws ec2 describe-hosts --host-id h-012a3456b7890cdef
   ```
 + [Get\-EC2Host](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Host.html) \(AWS Tools for Windows PowerShell\)
 
   ```
-  PS C:\> Get-EC2Host -HostId host_id
+  PS C:\> Get-EC2Host -HostId h-012a3456b7890cdef
   ```
 
 The following table explains the possible Dedicated Host states\.
@@ -348,10 +448,10 @@ The following table explains the possible Dedicated Host states\.
 | **State** | **Description** | 
 | --- | --- | 
 | available | AWS hasn't detected an issue with the Dedicated Host\. No maintenance or repairs are scheduled\. Instances can be launched onto this Dedicated Host\. | 
-| released | The Dedicated Host has been released\. The host ID is no longer in use\. Released hosts cannot be reused\. | 
-| under\-assessment | AWS is exploring a possible issue with the Dedicated Host\. If action must be taken, you are notified via the AWS Management Console or email\. Instances cannot be launched onto a Dedicated Host in this state\. | 
-| pending | A host recovery is in progress\. For more information, see [Host Recovery](dedicated-hosts-recovery.md)\. | 
-| permanent\-failure | An unrecoverable failure has been detected\. You receive an eviction notice through your instances and by email\. Your instances might continue to run\. If you stop or terminate all instances on a Dedicated Host with this state, AWS retires the host\. AWS does not restart instances in this state\. Instances cannot be launched onto Dedicated Hosts in this state\. | 
+| released | The Dedicated Host has been released\. The host ID is no longer in use\. Released hosts can't be reused\. | 
+| under\-assessment | AWS is exploring a possible issue with the Dedicated Host\. If action must be taken, you are notified via the AWS Management Console or email\. Instances can't be launched onto a Dedicated Host in this state\. | 
+| pending | The Dedicated Host cannot be used for new instance launches\. It is either being [ modified to support multiple instance types](#modify-host-support), or a [host recovery](dedicated-hosts-recovery.md) is in progress\. | 
+| permanent\-failure | An unrecoverable failure has been detected\. You receive an eviction notice through your instances and by email\. Your instances might continue to run\. If you stop or terminate all instances on a Dedicated Host with this state, AWS retires the host\. AWS does not restart instances in this state\. Instances can't be launched onto Dedicated Hosts in this state\. | 
 | released\-permanent\-failure | AWS permanently releases Dedicated Hosts that have failed and no longer have running instances on them\. The Dedicated Host ID is no longer available for use\. | 
 
 ## Releasing Dedicated Hosts<a name="dedicated-hosts-releasing"></a>
@@ -376,15 +476,15 @@ Use one of the following commands:
 + [release\-hosts](https://docs.aws.amazon.com/cli/latest/reference/ec2/release-hosts.html) \(AWS CLI\)
 
   ```
-  aws ec2 release-hosts --host-ids host_id
+  aws ec2 release-hosts --host-ids h-012a3456b7890cdef
   ```
 + [Remove\-EC2Hosts](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Host.html) \(AWS Tools for Windows PowerShell\)
 
   ```
-  PS C:\> Remove-EC2Hosts -HostId host_id
+  PS C:\> Remove-EC2Hosts -HostId h-012a3456b7890cdef
   ```
 
-After you release a Dedicated Host, you cannot reuse the same host or host ID again, and you are no longer charged On\-Demand billing rates for it\. The Dedicated Host's state is changed to `released`, and you are not able to launch any instances onto that host\.
+After you release a Dedicated Host, you can't reuse the same host or host ID again, and you are no longer charged On\-Demand billing rates for it\. The Dedicated Host's state is changed to `released`, and you are not able to launch any instances onto that host\.
 
 **Note**  
 If you have recently released Dedicated Hosts, it may take some time for them to stop counting towards your limit\. During this time, you may experience `LimitExceeded` errors when trying to allocate new Dedicated Hosts\. If this is the case, try allocating new hosts again after a few minutes\.
@@ -417,7 +517,7 @@ You can purchase reservations using the Amazon EC2 console or command line tools
 
 1. Use one of the following commands to list the available offerings that match your needs\. The following examples list the offerings that support instances in the `m4` instance family and have a one\-year term\.
 **Note**  
-The term is specified in seconds\. A one\-year term includes 31536000 seconds, and a three\-year term includes 94608000 seconds\.
+The term is specified in seconds\. A one\-year term includes 31,536,000 seconds, and a three\-year term includes 94,608,000 seconds\.
    + [describe\-host\-reservation\-offerings](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-host-reservation-offerings.html) \(AWS CLI\)
 
      ```
