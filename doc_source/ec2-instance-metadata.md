@@ -301,7 +301,7 @@ This example gets the top\-level metadata items\. For more information, see [Ins
 
 ```
 [ec2-user ~]$ TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` \ 
-&& curl -H "X-aws-ec2-metadata-token: $TOKEN" -v http://169.254.169.254/latest/meta-data/latest/meta-data/    
+&& curl -H "X-aws-ec2-metadata-token: $TOKEN" -v http://169.254.169.254/latest/meta-data/    
 ami-id
 ami-launch-index
 ami-manifest-path

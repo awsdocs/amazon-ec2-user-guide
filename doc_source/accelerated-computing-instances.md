@@ -23,6 +23,7 @@ You can cluster accelerated computing instances into a cluster placement group\.
 + [Activate NVIDIA GRID Virtual Applications on G3 Instances](activate_grid.md)
 + [Optimizing GPU Settings](optimize_gpu.md)
 + [Getting Started with FPGA Development](fpga-getting-started.md)
++ [Getting Started with AWS Inferentia Development](inf-getting-started.md)
 
 For information about Windows accelerated computing instances, see [Windows Accelerated Computing Instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/accelerated-computing-instances.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
@@ -36,6 +37,13 @@ F1 instances use Xilinx UltraScale\+ VU9P FPGAs and are designed to accelerate c
 Developers can use the FPGA Developer AMI and AWS Hardware Developer Kit to create custom hardware accelerations for use on F1 instances\. The FPGA Developer AMI includes development tools for full\-cycle FPGA development in the cloud\. Using these tools, developers can create and share Amazon FPGA Images \(AFIs\) that can be loaded onto the FPGA of an F1 instance\.
 
 For more information, see [Amazon EC2 F1 Instances](https://aws.amazon.com/ec2/instance-types/f1/)\.
+
+**Inf1 Instances**  
+Inf1 instances use AWS Inferentia machine learning inference chips\. Inferentia was developed to enable highly cost\-effective low latency inference performance at any scale\.
+
+Developers can use the AWS Deep Learning AMI which comes with prepackaged and optimized software for AWS Inferentia\.
+
+For more information, see [Amazon EC2 Inf1 Instances](https://aws.amazon.com/ec2/instance-types/inf1/)\.
 <a name="p3-instances"></a>
 **P3 Instances**  
 P3 instances use NVIDIA Tesla V100 GPUs and are designed for general purpose GPU computing using the CUDA or OpenCL programming models or through a machine learning framework\. P3 instances provide high\-bandwidth networking, powerful half, single, and double\-precision floating\-point capabilities, and up to 32 GiB of memory per GPU, which makes them ideal for deep learning, computational fluid dynamics, computational finance, seismic analysis, molecular modeling, genomics, rendering, and other server\-side GPU compute workloads\. Tesla V100 GPUs do not support graphics mode\. For more information, see [Amazon EC2 P3 Instances](https://aws.amazon.com/ec2/instance-types/p3)\.
@@ -105,6 +113,10 @@ The following is a summary of the hardware specifications for accelerated comput
 | f1\.2xlarge | 8 | 122 | 1 | 
 | f1\.4xlarge | 16 | 244 | 2 | 
 | f1\.16xlarge | 64 | 976 | 8 | 
+| inf1\.xlarge | 4 | 8 | 1 | 
+| inf1\.2xlarge | 8 | 16 | 1 | 
+| inf1\.6xlarge | 24 | 48 | 4 | 
+| inf1\.24xlarge | 96 | 192 | 16 | 
 
 For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
@@ -133,10 +145,10 @@ The following is a summary of network performance for accelerated computing inst
 | --- | --- | --- | 
 |  `f1.2xlarge` \| `f1.4xlarge` \| `g3.4xlarge` \| `p3.2xlarge`  |  Up to 10 Gbps  |  [ENA](enhanced-networking-ena.md)  | 
 |  `g3s.xlarge` \| `g3.8xlarge` \| `p2.8xlarge` \| `p3.8xlarge`  |  10 Gbps  |  [ENA](enhanced-networking-ena.md)  | 
-|  `g4dn.xlarge` \| `g4dn.2xlarge` \| `g4dn.4xlarge`  |  Up to 25 Gbps  |  [ENA](enhanced-networking-ena.md)  | 
-|  `f1.16xlarge` \| `g3.16xlarge` \| `p2.16xlarge` \| `p3.16xlarge`  |  25 Gbps  |  [ENA](enhanced-networking-ena.md)  | 
+|  `g4dn.xlarge` \| `g4dn.2xlarge` \| `g4dn.4xlarge` \| `inf1.xlarge` \| `inf1.2xlarge`  |  Up to 25 Gbps  |  [ENA](enhanced-networking-ena.md)  | 
+|  `f1.16xlarge` \| `g3.16xlarge` \| `inf1.6xlarge` \| `p2.16xlarge` \| `p3.16xlarge`  |  25 Gbps  |  [ENA](enhanced-networking-ena.md)  | 
 |  `g4dn.8xlarge` \| `g4dn.12xlarge` \| `g4dn.16xlarge`  |  50 Gbps  |  [ENA](enhanced-networking-ena.md)  | 
-| `p3dn.24xlarge` | 100 Gbps |  [ENA](enhanced-networking-ena.md)  | 
+| `inf1.24xlarge` \| `p3dn.24xlarge` | 100 Gbps |  [ENA](enhanced-networking-ena.md)  | 
 
 ## Instance Features<a name="gpu-instances-features"></a>
 
@@ -148,6 +160,7 @@ The following is a summary of features for accelerated computing instances\.
 | G2 | No | No | SSD | Yes | 
 | G3 | Yes | No | No | Yes | 
 | G4 | No | Yes | NVMe \* | Yes | 
+| Inf1 | Yes | No | No | Yes | 
 | P2 | Yes | No | No | Yes | 
 | P3 |  `p3dn.24xlarge`: No All other sizes: Yes  |  `p3dn.24xlarge`: Yes All other sizes: No  | `p3dn.24xlarge`: NVMe \* | Yes | 
 | F1 | No | No | NVMe \* | Yes | 

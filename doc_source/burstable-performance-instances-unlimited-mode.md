@@ -13,10 +13,10 @@ If you use a `t2.micro` instance under the [AWS Free Tier](https://aws.amazon.co
 
 ## Unlimited Mode Concepts<a name="burstable-performance-instances-unlimited-mode-concepts"></a>
 
-The `unlimited` mode is a credit configuration option for burstable performance instances\. It can be enabled or disabled at any time for a running or stopped instance\.
+The `unlimited` mode is a credit configuration option for burstable performance instances\. It can be enabled or disabled at any time for a running or stopped instance\. You can set `unlimited` as the default credit option at the account level per AWS Region, per burstable performance instance family, so that all new burstable performance instances in the account launch using the default credit option\.
 
 **Note**  
-T3 and T3a instances are launched as `unlimited` by default\. T2 instances are launched as `standard` by default\.
+T3 and T3a instances are launched as `unlimited` by default\. T2 instances are launched as `standard` by default\. You can change the default at the account level per AWS Region\. For more information, see [Setting the Default Credit Specification for the Account](burstable-performance-instances-how-to.md#burstable-performance-instance-set-default-credit-specification-for-account)\.
 
 ### How Unlimited Burstable Performance Instances Work<a name="how-burstable-performance-instances-unlimited-works"></a>
 
@@ -103,9 +103,11 @@ T3 and T3a instances never receive launch credits\.
 
 T3 and T3a instances launch as `unlimited` by default\. T2 instances launch as `standard` by default, but you can enable `unlimited` at launch\.
 
-You can switch from `unlimited` to `standard`, and from `standard` to `unlimited`, at any time on a running or stopped instance\. For more information, see [Launching a Burstable Performance Instance as Unlimited or Standard](burstable-performance-instances-how-to.md#launch-burstable-performance-instances) and [Modifying the Credit Specification of a Burstable Performance Instance](burstable-performance-instances-how-to.md#modify-burstable-performance-instances)\. 
+You can switch from `unlimited` to `standard`, and from `standard` to `unlimited`, at any time on a running or stopped instance\. For more information, see [Launching a Burstable Performance Instance as Unlimited or Standard](burstable-performance-instances-how-to.md#launch-burstable-performance-instances) and [Modifying the Credit Specification of a Burstable Performance Instance](burstable-performance-instances-how-to.md#modify-burstable-performance-instances)\.
 
-You can check whether your burstable performance instance is configured as `unlimited` or `standard` using the Amazon EC2 console or the AWS CLI\. For more information, see [Viewing the Credit Specification of a Burstable Performance Instance](burstable-performance-instances-how-to.md#describe-burstable-performance-instances)\.
+You can set `unlimited` as the default credit option at the account level per AWS Region, per burstable performance instance family, so that all new burstable performance instances in the account launch using the default credit option\. For more information, see [Setting the Default Credit Specification for the Account](burstable-performance-instances-how-to.md#burstable-performance-instance-set-default-credit-specification-for-account)\.
+
+You can check whether your burstable performance instance is configured as `unlimited` or `standard` using the Amazon EC2 console or the AWS CLI\. For more information, see [Viewing the Credit Specification of a Burstable Performance Instance](burstable-performance-instances-how-to.md#describe-burstable-performance-instances) and [Viewing the Default Credit Specification](burstable-performance-instances-how-to.md#burstable-performance-instances-get-default-credit-specification)\.
 
 ### What Happens to Credits when Switching between Unlimited and Standard<a name="unlimited-mode-switching-and-credits"></a>
 

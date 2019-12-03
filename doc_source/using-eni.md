@@ -148,6 +148,10 @@ The following table lists the maximum number of network interfaces per instance 
 | i3en\.12xlarge | 8 | 30 | 30 | 
 | i3en\.24xlarge | 15 | 50 | 50 | 
 | i3en\.metal | 15 | 50 | 50 | 
+| `inf1.xlarge` | 4 | 10 | 10 | 
+| `inf1.2xlarge` | 4 | 10 | 10 | 
+| `inf1.6xlarge` | 8 | 30 | 30 | 
+| `inf1.24xlarge` | 15 | 50 | 50 | 
 |  `m1.small`  |  2  |  4  | IPv6 not supported | 
 |  `m1.medium`  |  2  |  6  | IPv6 not supported | 
 |  `m1.large`  |  3  |  10  | IPv6 not supported | 

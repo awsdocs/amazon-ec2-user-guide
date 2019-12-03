@@ -92,6 +92,10 @@ The following table lists the instance types that support EBS optimization and E
 | i3en\.12xlarge | 7,000 | 875 | 40,000 | 
 | i3en\.24xlarge | 14,000 | 1,750 | 80,000 | 
 | i3en\.metal | 14,000 | 1,750 | 80,000 | 
+| inf1\.xlarge | 3,500 | 437\.5 | 20,000 | 
+| inf1\.2xlarge | 3,500 | 437\.5 | 20,000 | 
+| inf1\.6xlarge | 3,500 | 437\.5 | 20,000 | 
+| inf1\.24xlarge | 14,000 | 1,750 | 80,000 | 
 | m4\.large | 450 | 56\.25 | 3,600 | 
 | m4\.xlarge | 750 | 93\.75 | 6,000 | 
 | m4\.2xlarge | 1,000 | 125 | 8,000 | 

@@ -96,7 +96,7 @@ To provision the address range, use the following [provision\-byoip\-cidr](https
 aws ec2 provision-byoip-cidr --cidr address-range --cidr-authorization-context Message="$text_message",Signature="$signed_message"
 ```
 
-Provisioning an address range is an asynchronous operation, so the call returns immediately, but the address range is not ready to use until its status changes from `pending-provision` to `provisioned`\. It can take up to five days to complete the provisioning process\. To monitor the status of the address ranges that you've provisioned, use the following [describe\-byoip\-cidrs](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-byoip-cidrs.html) command\.
+Provisioning an address range is an asynchronous operation, so the call returns immediately, but the address range is not ready to use until its status changes from `pending-provision` to `provisioned`\. It can take up to three weeks to complete the provisioning process\. To monitor the status of the address ranges that you've provisioned, use the following [describe\-byoip\-cidrs](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-byoip-cidrs.html) command\.
 
 ```
 aws ec2 describe-byoip-cidrs --max-results 5

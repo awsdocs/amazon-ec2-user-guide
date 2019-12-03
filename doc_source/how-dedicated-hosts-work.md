@@ -4,9 +4,12 @@ To use a Dedicated Host, you first allocate hosts for use in your account\. You 
 
 If you no longer need an On\-Demand host, you can stop the instances running on the host, direct them to launch on a different host, and then *release* the host\.
 
+Dedicated Hosts are also integrated with AWS License Manager\. With License Manager, you can create a host resource group, which is a collection of Dedicated Hosts that are managed as a single entity\. When creating a host resource group, you specify the host management preferences, such as auto\-allocate and auto\-release, for the Dedicated Hosts\. This allows you to launch instances onto Dedicated Hosts without manually allocating and managing those hosts\. For more information, see [ Host Resource Groups](https://docs.aws.amazon.com/license-manager/latest/userguide/host-resource-groups.html) in the *AWS License Manager User Guide*\.
+
 **Topics**
 + [Allocating Dedicated Hosts](#dedicated-hosts-allocating)
-+ [Launching Instances onto Dedicated Hosts](#launching-dedicated-hosts-instances)
++ [Launching Instances onto a Dedicated Host](#launching-dedicated-hosts-instances)
++ [Launching Instances into a Host Resource Group](#launching-hrg-instances)
 + [Understanding Auto\-Placement and Affinity](#dedicated-hosts-understanding)
 + [Modifying Dedicated Host Auto\-Placement](#modify-host-auto-placement)
 + [Modifying the Supported Instance Types](#modify-host-support)
@@ -88,7 +91,7 @@ The following commands allocate a Dedicated Host that supports *untargeted* `m4.
   PS C:\> New-EC2Host -InstanceType m4.large -AvailabilityZone eu-west-1a -AutoPlacement On -HostRecovery On -Quantity 1 -TagSpecification $tagspec
   ```
 
-## Launching Instances onto Dedicated Hosts<a name="launching-dedicated-hosts-instances"></a>
+## Launching Instances onto a Dedicated Host<a name="launching-dedicated-hosts-instances"></a>
 
 After you have allocated a Dedicated Host, you can launch instances onto it\. You can't launch instances with `host` tenancy if you do not have active Dedicated Hosts with enough available capacity for the instance type that you are launching\.
 
@@ -157,6 +160,36 @@ Before you launch your instances, take note of the limitations\. For more inform
 Use one of the following commands and specify the instance affinity, tenancy, and host in the `Placement` request parameter:
 + [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) \(AWS CLI\)
 + [New\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
+
+## Launching Instances into a Host Resource Group<a name="launching-hrg-instances"></a>
+
+When you launch an instance into a host resource group that has a Dedicated Host with available instance capacity, Amazon EC2 launches the instance onto that host\. If the host resource group does not have a host with available instance capacity, Amazon EC2 automatically allocates a new host in the host resource group, and then launches the instance onto that host\. For more information, see [ Host Resource Groups](https://docs.aws.amazon.com/license-manager/latest/userguide/host-resource-groups.html) in the *AWS License Manager User Guide*\.
+
+**To launch an instance into a host resource group**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances**, **Launch Instance**\.
+
+1. Select an AMI from the list\. Windows, SUSE, and RHEL AMIs provided by Amazon EC2 can't be used with Dedicated Hosts\.
+
+1. Select the type of instance to launch and choose **Next: Configure Instance Details**\.
+
+1. On the **Configure Instance Details** page, configure the instance settings to suit your needs, and then do the following:
+
+   1. For **Tenancy**, choose **Dedicated Host**\.
+
+   1. For **Host resource group**, choose **Launch instance into a host resource group**\.
+
+   1. For **Host resource group name**, choose the host resource group in which to launch the instance\.
+
+   You can't target a specific host by choosing a host ID, and you can't enable instance affinity when launching an instance into a host resource group\.
+
+1. Choose **Review and Launch**\.
+
+1. On the **Review Instance Launch** page, choose **Launch**\.
+
+1. When prompted, select an existing key pair or create a new one, and then choose **Launch Instances**\.
 
 ## Understanding Auto\-Placement and Affinity<a name="dedicated-hosts-understanding"></a>
 

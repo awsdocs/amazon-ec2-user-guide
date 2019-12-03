@@ -26,7 +26,7 @@ By default, an instance cannot receive traffic that is not specifically addresse
 
 ## Controlling Network Traffic<a name="control-network-traffic"></a>
 
-Consider the following options for security network traffic to your EC2 instances:
+Consider the following options for controlling network traffic to your EC2 instances:
 + Restrict access to your instances using [security groups](ec2-security-groups.md)\. For example, you can allow traffic only from the address ranges for your corporate network\.
 + Use private subnets for your instances if they should not be accessed directly from the internet\. Use a bastion host or NAT gateway for internet access from an instance in a private subnet\.
 + Use AWS Virtual Private Network or AWS Direct Connect to establish private connections from your remote networks to your VPCs\. For more information, see [Network\-to\-Amazon VPC Connectivity Options](https://docs.aws.amazon.com/whitepapers/latest/aws-vpc-connectivity-options/network-to-amazon-vpc-connectivity-options.html)\.

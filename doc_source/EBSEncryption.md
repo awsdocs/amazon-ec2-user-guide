@@ -54,7 +54,7 @@ Amazon EBS encryption is available on the instance types listed below\. You can 
 + Compute optimized: C3, C4, C5, C5d, and C5n
 + Memory optimized: `cr1.8xlarge`, R3, R4, R5, R5a, R5ad, R5d, R5dn, R5n, `u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, `u-18tb1.metal`, `u-24tb1.metal`, X1, X1e, and z1d
 + Storage optimized: D2, `h1.2xlarge`, `h1.4xlarge`, I2, I3, and I3en
-+ Accelerated computing: F1, G2, G3, G4, P2, and P3
++ Accelerated computing: F1, G2, G3, G4, Inf1, P2, and P3
 
 ### Permissions for IAM Users<a name="ebs-encryption-permissions"></a>
 

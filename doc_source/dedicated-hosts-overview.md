@@ -9,6 +9,7 @@ An Amazon EC2 Dedicated Host is a physical server with EC2 instance capacity ful
 + [Dedicated Hosts Restrictions](#dedicated-hosts-limitations)
 + [Pricing and Billing](#dedicated-hosts-billing)
 + [Working with Dedicated Hosts](how-dedicated-hosts-work.md)
++ [Working with Shared Dedicated Hosts](dh-sharing.md)
 + [Host Recovery](dedicated-hosts-recovery.md)
 + [Tracking Configuration Changes](dedicated-hosts-aws-config.md)
 

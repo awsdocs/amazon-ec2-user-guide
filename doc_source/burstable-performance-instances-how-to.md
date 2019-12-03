@@ -1,6 +1,6 @@
 # Working with Burstable Performance Instances<a name="burstable-performance-instances-how-to"></a>
 
-The steps for launching, monitoring, and modifying these instances are similar\. The key difference is the default credit specification when they launch: 
+The steps for launching, monitoring, and modifying these instances are similar\. The key difference is the default credit specification when they launch\. If you do not change the default credit specification, the defaults are:
 + T3 and T3a instances launch as `unlimited` by default\.
 + T2 instances launch as `standard` by default\.
 
@@ -9,6 +9,8 @@ The steps for launching, monitoring, and modifying these instances are similar\.
 + [Using an Auto Scaling Group to Launch a Burstable Performance Instance as Unlimited](#burstable-performance-instances-auto-scaling-grp)
 + [Viewing the Credit Specification of a Burstable Performance Instance](#describe-burstable-performance-instances)
 + [Modifying the Credit Specification of a Burstable Performance Instance](#modify-burstable-performance-instances)
++ [Setting the Default Credit Specification for the Account](#burstable-performance-instance-set-default-credit-specification-for-account)
++ [Viewing the Default Credit Specification](#burstable-performance-instances-get-default-credit-specification)
 
 ## Launching a Burstable Performance Instance as Unlimited or Standard<a name="launch-burstable-performance-instances"></a>
 
@@ -174,4 +176,33 @@ The following is example output:
   ],
   "UnsuccessfulInstanceCreditSpecifications": []
 }
+```
+
+## Setting the Default Credit Specification for the Account<a name="burstable-performance-instance-set-default-credit-specification-for-account"></a>
+
+You can set the default credit specification at the account level per AWS Region\. You specify the default credit specification per instance family \(T2, T3, or T3a\)\.
+
+If you use the Launch Instance Wizard in the AWS Management Console to launch instances, the value for **T2/T3 Unlimited** overrides the account\-level default credit specification\. If you use the AWS CLI to launch instances, all new burstable performance instances in the account launch using the default credit option\. The credit specification for existing running or stopped instances is not affected\.
+
+The `modify-default-credit-specification` API is an asynchronous operation, which works at an AWS Region level and modifies the credit option for each Availability Zone\. All zones in a Region are updated within five minutes\. But if instances are launched during this operation, they might not get the new credit option until the zone is updated\. To verify whether the update has occurred, you can call `get-default-credit-specification` and check the default credit specification for updates\. For more information, see [Viewing the Default Credit Specification](#burstable-performance-instances-get-default-credit-specification)\.
+
+**Note**  
+The default credit specification for an instance family can be modified only once in a rolling 5\-minute period, and up to four times in a rolling 24\-hour period\.
+
+**To set the default credit specification at the account level \(AWS CLI\)**  
+Use the [modify\-default\-credit\-specification](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-default-credit-specification.html) command\. Specify the AWS Region, instance family, and the default credit specification using the `--cpu-credits` parameter\. Valid default credit specifications are `unlimited` and `standard`\.
+
+```
+aws ec2 modify-default-credit-specification --region us-east-1 --instance-family t2 —-cpu-credits unlimited
+```
+
+## Viewing the Default Credit Specification<a name="burstable-performance-instances-get-default-credit-specification"></a>
+
+You can view the default credit specification of a burstable performance instance family at the account level per AWS Region\.
+
+**To view the default credit specification at the account level \(AWS CLI\)**  
+Use the [get\-default\-credit\-specification](https://docs.aws.amazon.com/cli/latest/reference/ec2/get-default-credit-specification.html) command\. Specify the AWS Region and instance family\.
+
+```
+aws ec2 get-default-credit-specification --region us-east-1 --instance-family t2
 ```

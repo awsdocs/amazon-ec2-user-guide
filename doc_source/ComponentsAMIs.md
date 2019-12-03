@@ -1,7 +1,7 @@
 # AMI Types<a name="ComponentsAMIs"></a>
 
 You can select an AMI to use based on the following characteristics:
-+ Region \(see [Regions and Availability Zones](using-regions-availability-zones.md)\)
++ Region \(see [Regions, Availability Zones, and Local Zones](using-regions-availability-zones.md)\)
 + Operating system
 + Architecture \(32\-bit or 64\-bit\)
 + [Launch Permissions](#launch-permissions)

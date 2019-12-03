@@ -8,10 +8,10 @@ A burstable performance instance configured as `standard` is suited to workloads
 
 ## Standard Mode Concepts<a name="burstable-performance-instances-standard-mode-concepts"></a>
 
-The `standard` mode is a configuration option for burstable performance instances\. It can be enabled or disabled at any time for a running or stopped instance\.
+The `standard` mode is a configuration option for burstable performance instances\. It can be enabled or disabled at any time for a running or stopped instance\. You can set `standard` as the default credit option at the account level per AWS Region, per burstable performance instance family, so that all new burstable performance instances in the account launch using the default credit option\.
 
 **Note**  
-T3 and T3a instances are launched as `unlimited` by default\. T2 instances are launched as `standard` by default\.
+T3 and T3a instances are launched as `unlimited` by default\. T2 instances are launched as `standard` by default\. You can change the default at the account level per AWS Region\. For more information, see [Setting the Default Credit Specification for the Account](burstable-performance-instances-how-to.md#burstable-performance-instance-set-default-credit-specification-for-account)\.
 
 ### How Standard Burstable Performance Instances Work<a name="how-burstable-performance-instances-standard-works"></a>
 

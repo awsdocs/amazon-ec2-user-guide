@@ -33,7 +33,6 @@ In the event of an outage of one of the Availability Zones, there is a chance th
 | Status Code | Request State | Instance State | 
 | --- | --- | --- | 
 |  `capacity-not-available`  |  `open`  |  n/a  | 
-|  `capacity-oversubscribed`  |  `open`  |  n/a  | 
 |  `price-too-low`  |  `open`  |  n/a  | 
 |  `not-scheduled-yet`  |  `open`  |  n/a  | 
 |  `launch-group-constraint`  |  `open`  |  n/a  | 
@@ -74,7 +73,7 @@ When all the specifications for your Spot Instances are met, your Spot request i
 |  `fulfilled`  |  `active`  |  `stopped` → `running`  | 
 
 **Fulfilled\-terminal**  
-Your Spot Instances continue to run as long as your maximum price is at or above the Spot price, there is available capacity for your instance type, and you don't terminate the instance\. If a change in the Spot price or available capacity requires Amazon EC2 to terminate your Spot Instances, the Spot request goes into a terminal state\. For example, if your price equals the Spot price but Spot Instances are not available, the status code is `instance-terminated-capacity-oversubscribed`\. A request also goes into the terminal state if you cancel the Spot request or terminate the Spot Instances\.
+Your Spot Instances continue to run as long as your maximum price is at or above the Spot price, there is available capacity for your instance type, and you don't terminate the instance\. If a change in the Spot price or available capacity requires Amazon EC2 to terminate your Spot Instances, the Spot request goes into a terminal state\. A request also goes into the terminal state if you cancel the Spot request or terminate the Spot Instances\.
 
 
 | Status Code | Request State | Instance State | 
@@ -84,14 +83,12 @@ Your Spot Instances continue to run as long as your maximum price is at or above
 |  `marked-for-termination`  |  `closed`  |  `running`  | 
 |  `instance-stopped-by-price`  |  `disabled`  |  `stopped`  | 
 |  `instance-stopped-by-user`  |  `disabled`  |  `stopped`  | 
-|  `instance-stopped-capacity-oversubscribed`  |  `disabled`  |  `stopped`  | 
 |  `instance-stopped-no-capacity`  |  `disabled`  |  `stopped`  | 
 |  `instance-terminated-by-price`  |  `closed` \(one\-time\), `open` \(persistent\)  |  `terminated`  | 
 |  `instance-terminated-by-schedule`  |  `closed`  |  `terminated`  | 
 |  `instance-terminated-by-service`  |  `cancelled`  |  `terminated`  | 
 |  `instance-terminated-by-user` †  |  `closed` or `cancelled` \*  |  `terminated`  | 
 |  `instance-terminated-no-capacity`  |  `closed` \(one\-time\), `open` \(persistent\)  |  `terminated`  | 
-|  `instance-terminated-capacity-oversubscribed`  |  `closed` \(one\-time\), `open` \(persistent\)  |  `terminated`  | 
 |  `instance-terminated-launch-group-constraint`  |  `closed` \(one\-time\), `open` \(persistent\)  |  `terminated`  | 
 
 † A Spot Instance can only get to this state if a user runs the shutdown command from the instance\. We do not recommend that you do this, as the Spot service might restart the instance\.
@@ -137,9 +134,6 @@ The user canceled the Spot request before it was fulfilled\.
 `capacity-not-available`  
 There is not enough capacity available for the instances that you requested\.
 
-`capacity-oversubscribed`  
-There is not enough capacity available for the instances that you requested\.
-
 `constraint-not-fulfillable`  
 The Spot request can't be fulfilled because one or more constraints are not valid \(for example, the Availability Zone does not exist\)\. The status message indicates which constraint is not valid\.
 
@@ -151,9 +145,6 @@ Your instance was stopped because the Spot price exceeded your maximum price\.
 
 `instance-stopped-by-user`  
 Your instance was stopped because a user ran shutdown \-h from the instance\.
-
-`instance-stopped-capacity-oversubscribed`  
-Your instance was stopped because the number of Spot requests with maximum prices equal to or higher than the Spot price exceeded the available capacity in this Spot Instance pool\. The Spot price might not have changed\.
 
 `instance-stopped-no-capacity`  
 Your instance was stopped because there was no longer enough Spot capacity available for the instance\.
@@ -169,9 +160,6 @@ Your instance was terminated from a stopped state\.
 
 `instance-terminated-by-user` or `spot-instance-terminated-by-user`  
 You terminated a Spot Instance that had been fulfilled, so the request state is `closed` \(unless it's a persistent request\) and the instance state is `terminated`\.
-
- `instance-terminated-capacity-oversubscribed`   
-Your instance was terminated because the number of Spot requests with maximum prices equal to or higher than the Spot price exceeded the available capacity in this Spot Instance pool\. The Spot price might not have changed\.
 
 `instance-terminated-launch-group-constraint`  
 One or more of the instances in your launch group was terminated, so the launch group constraint is no longer fulfilled\.

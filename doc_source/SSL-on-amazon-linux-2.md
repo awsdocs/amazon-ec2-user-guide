@@ -494,7 +494,7 @@ Complete the following procedures before you install Certbot\.
       ...
       ```
 
-1. Edit the main Apache configuration file, `/etc/httpd/conf/httpd.conf`\. Locate the "`listen 80`" directive and add the following lines after it, replacing the example domain names with the actual Common Name and Subject Alternative Name \(SAN\)\.
+1. Edit the main Apache configuration file, `/etc/httpd/conf/httpd.conf`\. Locate the "`Listen 80`" directive and add the following lines after it, replacing the example domain names with the actual Common Name and Subject Alternative Name \(SAN\)\.
 
    ```
    <VirtualHost *:80>
