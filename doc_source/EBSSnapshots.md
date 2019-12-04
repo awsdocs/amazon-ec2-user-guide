@@ -19,6 +19,7 @@ You can track the status of your EBS snapshots through CloudWatch Events\. For m
 + [Copying an Amazon EBS Snapshot](ebs-copy-snapshot.md)
 + [Viewing Amazon EBS Snapshot Information](ebs-describing-snapshots.md)
 + [Sharing an Amazon EBS Snapshot](ebs-modifying-snapshot-permissions.md)
++ [Accessing the Contents of an EBS Snapshot](ebs-accessing-snapshot.md)
 + [Automating the Amazon EBS Snapshot Lifecycle](snapshot-lifecycle.md)
 
 ## How Incremental Snapshots Work<a name="how_snapshots_work"></a>

@@ -15,6 +15,7 @@ The following examples show policy statements that you could use to control the 
 + [Working with Route Tables](#iam-example-route-tables)
 + [Allowing a Specific Instance to View Resources in Other AWS Services](#iam-example-source-instance)
 + [Working with Launch Templates](#iam-example-launch-templates)
++ [Working with Instance Metadata](#iam-example-instance-metadata)
 
 ## Example: Read\-Only Access<a name="iam-example-read-only"></a>
 
@@ -1642,5 +1643,96 @@ The following policy allows users to delete any launch template and launch templ
       }
     }
   ]
+}
+```
+
+## Example: Working with Instance Metadata<a name="iam-example-instance-metadata"></a>
+
+The following policies ensure that users can only retrieve [instance metadata](ec2-instance-metadata.md) using Instance Metadata Service Version 2 \(IMDSv2\)\. You can combine the following four policies into one policy with four statements\. When combined as one policy, you can use the policy as a service control policy \(SCP\)\. It can work equally well as a *deny* policy that you apply to an existing IAM policy \(taking away and limiting existing permission\), or as a Service Control Policy that is applied globally across an account, an OU, or an entire Organization\.
+
+The following policy specifies that you can’t call the RunInstances API unless the instance is also opted in to require the use of IMDSv2 \(indicated by `"ec2:MetadataHttpTokens": "required"`\)\. If you do not specify that the instance requires IMDSv2, you get an `UnauthorizedOperation` error when you call the RunInstances API\.
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "RequireImdsV2",
+            "Effect": "Deny",
+            "Action": "ec2:RunInstances",
+            "Resource": "arn:aws:ec2:*:*:instance/*",
+            "Condition": {
+                "StringNotEquals": {
+                    "ec2:MetadataHttpTokens": "required"
+                }
+            }
+        }
+    ]
+}
+```
+
+The following policy specifies that you can’t call the RunInstances API unless you also specify a hop limit, and the hop limit can’t be more than 3\. If you fail to do that, you get an `UnauthorizedOperation` error when you call the RunInstances API\.
+
+**Note**  
+When the following policy and the preceding one are applied to an account via an SCP, you can’t use the EC2 console to launch instances because the console doesn’t yet support the `MetadataHttpTokens` and `MetadataHttpPutResponseHopLimit` parameters\.
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "MaxImdsHopLimit",
+            "Effect": "Deny",
+            "Action": "ec2:RunInstances",
+            "Resource": "arn:aws:ec2:*:*:instance/*",
+            "Condition": {
+                "NumericGreaterThan": {
+                    "ec2:MetadataHttpPutResponseHopLimit": "3"
+                }
+            }
+        }
+    ]
+}
+```
+
+The following policy removes the ability for the general population of administrators to modify instance metadata options, and permits only users with the role `ec2-imds-admins` to make changes\. If any principal other than the `ec2-imds-admins` role tries to call the ModifyInstanceMetadataOptions API, it will get an `UnauthorizedOperation` error\. This statement could be used to control the use of the ModifyInstanceMetadataOptions API; there are currently no fine\-grained access controls \(conditions\) for the ModifyInstanceMetadataOptions API\.
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AllowOnlyImdsAdminsToModifySettings",
+            "Effect": "Deny",
+            "Action": "ec2:ModifyInstanceMetadataOptions",
+            "Resource": "*",
+            "Condition": {
+                "StringNotLike": {
+                    "aws:PrincipalARN": "arn:aws:iam::*:role/ec2-imds-admins"
+                }
+            }
+        }
+    ]
+}
+```
+
+The following policy specifies that if this policy is applied to a role, and the role is assumed by the EC2 service and the resulting credentials are used to sign a request, then the request must be signed by EC2 role credentials retrieved from IMDSv2\. Otherwise, all of its API calls will get an `UnauthorizedOperation` error\. This statement/policy can be applied generally because, if the request is not signed by EC2 role credentials, it has no effect\.
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "RequireAllEc2RolesToUseV2",
+            "Effect": "Deny",
+            "Action": "*",
+            "Resource": "*",
+            "Condition": {
+                "NumericLessThan": {
+                    "ec2:RoleDelivery": "2.0"
+                }
+            }
+        }
+    ]
 }
 ```

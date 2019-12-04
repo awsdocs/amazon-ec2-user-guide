@@ -240,6 +240,7 @@ Amazon's trademarks and trade dress may not be used in
          + [Copying an Amazon EBS Snapshot](ebs-copy-snapshot.md)
          + [Viewing Amazon EBS Snapshot Information](ebs-describing-snapshots.md)
          + [Sharing an Amazon EBS Snapshot](ebs-modifying-snapshot-permissions.md)
+         + [Accessing the Contents of an EBS Snapshot](ebs-accessing-snapshot.md)
          + [Automating the Amazon EBS Snapshot Lifecycle](snapshot-lifecycle.md)
       + [Amazon EBS Data Services](ebs-data-services.md)
          + [Amazon EBS Elastic Volumes](ebs-modify-volume.md)

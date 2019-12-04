@@ -41,6 +41,8 @@ A1, C5, C5d, C5n, G4, I3en, Inf1, M5, M5a, M5ad, M5d, M5dn, M5n, `p3dn.24xlarge`
 
 `i3.metal`, `m5.metal`, `m5d.metal`, `r5.metal`, `r5d.metal`, and `z1d.metal` instances support a maximum of 31 EBS volumes\.
 
+`inf1.xlarge` and `inf1.2xlarge` instances support a maximum of 26 EBS volumes\. `inf1.6xlarge` instances support a maximum of 23 volumes\. `inf1.24xlarge` instances support a maximum of 11 EBS volumes\.
+
 `u-6tb1.metal`, `u-9tb1.metal`, and `u-12tb1.metal` instances support a maximum of 13 EBS volumes\. `u-18tb1.metal` and `u-24tb1.metal` instances support a maximum of 19 EBS volumes\.
 
 ## Bandwidth versus Capacity<a name="storage-bandwidth"></a>
