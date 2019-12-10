@@ -14,6 +14,11 @@ Amazon Linux 2 2\.0\.20190618 or later comes preconfigured with EC2 Instance Con
   + Ubuntu 16\.04 or later
 + If you configured the `AuthorizedKeysCommand` and `AuthorizedKeysCommandUser` settings for SSH authentication, the EC2 Instance Connect installation will not update them\. As a result, you cannot use Instance Connect\.
 + EC2 Instance Connect works only with Instance Metadata Service Version 1\. If you configure the instance metadata service to require Instance Metadata Service Version 2, you can't use EC2 Instance Connect\. For more information, see [Configuring the Instance Metadata Service](ec2-instance-metadata.md#configuring-instance-metadata-service)\.
++ EC2 with Amazon Linux 2 has wrong permission in root folder; that cause this error in `/var/log/secure`
+```
+Dec 10 16:14:31 ip-10-0-100-45 sshd[1124]: error: Unsafe AuthorizedKeysCommand "/opt/aws/bin/eic_run_authorized_keys": bad ownership or modes for directory /
+```
+Change root folder permissions to 755
 
 **Prerequisites**
 + **Verify the general prerequisites for connecting to your instance using SSH\.**
