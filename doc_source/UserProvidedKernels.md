@@ -161,7 +161,7 @@ We continue to provide hd00 AKIs for backward compatibility in regions where the
 |  aki\-66506305  |  pv\-grub\-hd0\_1\.05\-x86\_64\.gz  | 
 
 
-**eu\-central\-1, EU \(Frankfurt\)**  
+**eu\-central\-1, Europe \(Frankfurt\)**  
 
 | Image ID | Image Name | 
 | --- | --- | 
@@ -169,7 +169,7 @@ We continue to provide hd00 AKIs for backward compatibility in regions where the
 |  aki\-931fe3fc  |  pv\-grub\-hd0\_1\.05\-x86\_64\.gz  | 
 
 
-**eu\-west\-1, EU \(Ireland\)**  
+**eu\-west\-1, Europe \(Ireland\)**  
 
 | Image ID | Image Name | 
 | --- | --- | 

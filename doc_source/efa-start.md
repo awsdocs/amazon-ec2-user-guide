@@ -185,17 +185,15 @@ Ensure that the user performing the following steps has sudo permissions\.
    Intel MPI is installed in the `/opt/intel/impi/` directory by default\.
 
 1. Add the Intel MPI environment variables to the corresponding shell startup scripts to ensure that they are set each time that the instance starts\. Do one of the following depending on your shell\.
-**Note**  
-The **csh** shell is not supported due to environment variable length limitations\.
    + For **bash**, add the following environment variable to `/home/username/.bashrc` and `/home/username/.bash_profile`\.
 
      ```
-     source /opt/intel/impi/2019.6.154/intel64/bin/mpivars.sh -ofi_internal=0
+     source /opt/intel/impi/2019.6.154/intel64/bin/mpivars.sh
      ```
-   + For **tcsh**, add the following environment variable to `/home/username/.cshrc`\.
+   + For **csh and tcsh**, add the following environment variable to `/home/username/.cshrc`\.
 
      ```
-     source /opt/intel/impi/2019.6.154/intel64/bin/mpivarsh.csh -ofi_internal=0
+     source /opt/intel/impi/2019.6.154/intel64/bin/mpivarsh.csh
      ```
 
 1. Log out of the instance and then log back in\.

@@ -38,7 +38,7 @@ If your instance fails a status check or is not running your applications as exp
 
 When you stop your instance, it enters the `stopping` state, and then the `stopped` state\. We don't charge usage or data transfer fees for your instance after you stop it, but we do charge for the storage for any Amazon EBS volumes\. While your instance is in the `stopped` state, you can modify certain attributes of the instance, including the instance type\.
 
-When you start your instance, it enters the `pending` state, and in most cases, we move the instance to a new host computer\. \(Your instance may stay on the same host computer if there are no problems with the host computer\.\) When you stop and start your instance, you lose any data on the instance store volumes on the previous host computer\.
+When you start your instance, it enters the `pending` state, and in most cases, we move the instance to a new host computer\. \(Your instance might stay on the same host computer if there are no problems with the host computer\.\) When you stop and start your instance, you lose any data on the instance store volumes on the previous host computer\.
 
 Your instance retains its private IPv4 address, which means that an Elastic IP address associated with the private IPv4 address or network interface is still associated with your instance\. If your instance has an IPv6 address, it retains its IPv6 address\.
 
@@ -52,7 +52,7 @@ When you hibernate an instance, we signal the operating system to perform hibern
 
 When you hibernate your instance, it enters the `stopping` state, and then the `stopped` state\. We don't charge usage for a hibernated instance when it is in the `stopped` state, but we do charge while it is in the `stopping` state, unlike when you [stop an instance](#instance-stop-start) without hibernating it\. We don't charge usage for data transfer fees, but we do charge for the storage for any Amazon EBS volumes, including storage for the RAM data\.
 
-When you restart your hibernated instance, it enters the `pending` state, and in most cases, we move the instance to a new host computer\. Your instance may stay on the same host computer if there are no problems with the host computer\.
+When you restart your hibernated instance, it enters the `pending` state, and in most cases, we move the instance to a new host computer\. Your instance might stay on the same host computer if there are no problems with the host computer\.
 
 Your instance retains its private IPv4 address, which means that an Elastic IP address associated with the private IPv4 address or network interface is still associated with your instance\. If your instance has an IPv6 address, it retains its IPv6 address\.
 

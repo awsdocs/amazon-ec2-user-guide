@@ -118,7 +118,7 @@ When you select an instance type, this determines the networking and storage fea
 
 **Storage features**
 + Some instance types support EBS volumes and instance store volumes, while other instance types support only EBS volumes\. Some instance types that support instance store volumes use solid state drives \(SSD\) to deliver very high random I/O performance\. Some instance types support NVMe instance store volumes\. Some instance types support NVMe EBS volumes\. For more information, see [Amazon EBS and NVMe on Linux Instances](nvme-ebs-volumes.md) and [NVMe SSD Volumes](ssd-instance-store.md#nvme-ssd-volumes)\.
-+ To obtain additional, dedicated capacity for Amazon EBS I/O, you can launch some instance types as EBS–optimized instances\. Some instance types are EBS–optimized by default\. For more information, see [Amazon EBS–Optimized Instances](EBSOptimized.md)\.
++ To obtain additional, dedicated capacity for Amazon EBS I/O, you can launch some instance types as EBS–optimized instances\. Some instance types are EBS–optimized by default\. For more information, see [Amazon EBS–Optimized Instances](ebs-optimized.md)\.
 
 ### Summary of Networking and Storage Features<a name="instance-type-summary-table"></a>
 

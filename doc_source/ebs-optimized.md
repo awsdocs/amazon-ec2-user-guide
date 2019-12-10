@@ -1,8 +1,8 @@
-# Amazon EBS–Optimized Instances<a name="EBSOptimized"></a>
+# Amazon EBS–Optimized Instances<a name="ebs-optimized"></a>
 
 An Amazon EBS–optimized instance uses an optimized configuration stack and provides additional, dedicated capacity for Amazon EBS I/O\. This optimization provides the best performance for your EBS volumes by minimizing contention between Amazon EBS I/O and other traffic from your instance\.
 
-EBS–optimized instances deliver dedicated bandwidth to Amazon EBS\. When attached to an EBS–optimized instance, General Purpose SSD \(`gp2`\) volumes are designed to deliver their baseline and burst performance 99% of the time, and Provisioned IOPS SSD \(`io1`\) volumes are designed to deliver their provisioned performance 99\.9% of the time\. Both Throughput Optimized HDD \(`st1`\) and Cold HDD \(`sc1`\) guarantee performance consistency of 90% of burst throughput 99% of the time\. Non\-compliant periods are approximately uniformly distributed, targeting 99% of expected total throughput each hour\. For more information, see [Amazon EBS Volume Types](EBSVolumeTypes.md)\.
+EBS–optimized instances deliver dedicated bandwidth to Amazon EBS\. When attached to an EBS–optimized instance, General Purpose SSD \(`gp2`\) volumes are designed to deliver their baseline and burst performance 99% of the time, and Provisioned IOPS SSD \(`io1`\) volumes are designed to deliver their provisioned performance 99\.9% of the time\. Both Throughput Optimized HDD \(`st1`\) and Cold HDD \(`sc1`\) guarantee performance consistency of 90% of burst throughput 99% of the time\. Non\-compliant periods are approximately uniformly distributed, targeting 99% of expected total throughput each hour\. For more information, see [Amazon EBS Volume Types](ebs-volume-types.md)\.
 
 **Topics**
 + [Supported Instance Types](#ebs-optimization-support)
@@ -46,9 +46,9 @@ The following table lists the instance types that support EBS optimization and E
 | c5d\.4xlarge | 4,750 | 593\.75 | 20,000 | 
 | c5d\.9xlarge | 9,500 | 1,187\.5 | 40,000 | 
 | c5d\.12xlarge | 9,500 | 1,187\.5 | 40,000 | 
-| c5d\.18xlarge | 14,000 | 2,375 | 80,000 | 
-| c5d\.24xlarge | 14,000 | 2,375 | 80,000 | 
-| c5d\.metal | 14,000 | 2,375 | 80,000 | 
+| c5d\.18xlarge | 19,000 | 2,375 | 80,000 | 
+| c5d\.24xlarge | 19,000 | 2,375 | 80,000 | 
+| c5d\.metal | 19,000 | 2,375 | 80,000 | 
 | c5n\.large \* | 4,750 | 593\.75 | 20,000 | 
 | c5n\.xlarge \* | 4,750 | 593\.75 | 20,000 | 
 | c5n\.2xlarge \* | 4,750 | 593\.75 | 20,000 | 

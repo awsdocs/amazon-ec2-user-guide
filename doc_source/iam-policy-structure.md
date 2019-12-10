@@ -193,7 +193,7 @@ Amazon EC2 implements the following service\-specific condition keys\. For infor
 |  `ec2:SnapshotTime`  |  "ec2:SnapshotTime":"*time*" Where *time* is the snapshot creation time \(for example, 2013\-06\-01T00:00:00Z\)  |  Date, Null  | 
 |  `ec2:Subnet`  |  "ec2:Subnet":"*subnet\-arn*" Where *subnet\-arn* is the subnet ARN  |  ARN, Null  | 
 |  `ec2:Tenancy`  |  "ec2:Tenancy":"*tenancy\-attribute*" Where *tenancy\-attribute* is `default` \| `dedicated` \| `host`  |  String, Null  | 
-|  `ec2:VolumeIops`  |  "ec2:VolumeIops":"*volume\-iops*" Where *volume\-iops* is the input/output operations per second \(IOPS\)\. For more information, see [Amazon EBS Volume Types](EBSVolumeTypes.md)\.  |  Numeric, Null  | 
+|  `ec2:VolumeIops`  |  "ec2:VolumeIops":"*volume\-iops*" Where *volume\-iops* is the input/output operations per second \(IOPS\)\. For more information, see [Amazon EBS Volume Types](ebs-volume-types.md)\.  |  Numeric, Null  | 
 |  `ec2:VolumeSize`  |  "ec2:VolumeSize":"*volume\-size*" Where *volume\-size* is the size of the volume, in GiB  |  Numeric, Null  | 
 |  `ec2:VolumeType`  |  "ec2:VolumeType":"*volume\-type\-name*" Where *volume\-type\-name* is `gp2` for General Purpose SSD volumes, `io1` for Provisioned IOPS SSD volumes, `st1` for Throughput Optimized HDD volumes, `sc1` for Cold HDD volumes, or `standard` for Magnetic volumes\.  |  String, Null  | 
 |  `ec2:Vpc`  |  "ec2:Vpc":"*vpc\-arn*" Where *vpc\-arn* is the VPC ARN  |  ARN, Null  | 

@@ -97,11 +97,11 @@ The following table lists the Regions provided by an AWS account\. You can't des
 |  `ap-southeast-2`  |  Asia Pacific \(Sydney\)  | Not required | No | 
 |  `ap-northeast-1`  |  Asia Pacific \(Tokyo\)  | Not required | No | 
 |  `ca-central-1`  |  Canada \(Central\)  | Not required | No | 
-|  `eu-central-1`  |  EU \(Frankfurt\)  | Not required | No | 
-|  `eu-west-1`  |  EU \(Ireland\)  | Not required | No | 
-|  `eu-west-2`  |  EU \(London\)  | Not required | No | 
-|  `eu-west-3`  |  EU \(Paris\)  | Not required | No | 
-|  `eu-north-1`  |  EU \(Stockholm\)  | Not required | No | 
+|  `eu-central-1`  |  Europe \(Frankfurt\)  | Not required | No | 
+|  `eu-west-1`  |  Europe \(Ireland\)  | Not required | No | 
+|  `eu-west-2`  |  Europe \(London\)  | Not required | No | 
+|  `eu-west-3`  |  Europe \(Paris\)  | Not required | No | 
+|  `eu-north-1`  |  Europe \(Stockholm\)  | Not required | No | 
 |  `me-south-1`  |  Middle East \(Bahrain\)  | Required | No | 
 |  `sa-east-1`  |  South America \(São Paulo\)  | Not required | No | 
 

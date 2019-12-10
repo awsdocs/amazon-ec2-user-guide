@@ -18,7 +18,7 @@ PV AMIs boot with a special boot loader called PV\-GRUB, which starts the boot c
 
 The following previous generation instance types support PV AMIs: C1, C3, HS1, M1, M3, M2, and T1\. Current generation instance types do not support PV AMIs\.
 
-The following AWS regions support PV instances: Asia Pacific \(Tokyo\), Asia Pacific \(Singapore\), Asia Pacific \(Sydney\), EU \(Frankfurt\), EU \(Ireland\), South America \(São Paulo\), US East \(N\. Virginia\), US West \(N\. California\), and US West \(Oregon\)\.
+The following AWS regions support PV instances: Asia Pacific \(Tokyo\), Asia Pacific \(Singapore\), Asia Pacific \(Sydney\), Europe \(Frankfurt\), Europe \(Ireland\), South America \(São Paulo\), US East \(N\. Virginia\), US West \(N\. California\), and US West \(Oregon\)\.
 
 To find a PV AMI, verify that the virtualization type of the AMI is set to `paravirtual`, using the console or the [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command\.
 

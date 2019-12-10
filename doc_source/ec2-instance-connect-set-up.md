@@ -13,7 +13,7 @@ Amazon Linux 2 2\.0\.20190618 or later comes preconfigured with EC2 Instance Con
   + Amazon Linux 2 \(any version\)
   + Ubuntu 16\.04 or later
 + If you configured the `AuthorizedKeysCommand` and `AuthorizedKeysCommandUser` settings for SSH authentication, the EC2 Instance Connect installation will not update them\. As a result, you cannot use Instance Connect\.
-+ EC2 Instance Connect works only with Instance Metadata Service Version 1\. If you configure the instance metadata service to require Instance Metadata Service Version 2, you can't use EC2 Instance Connect\. For more information, see [Configuring the Instance Metadata Service](ec2-instance-metadata.md#configuring-instance-metadata-service)\.
++ EC2 Instance Connect works only with Instance Metadata Service Version 1\. If you configure the instance metadata service to require Instance Metadata Service Version 2, you can't use EC2 Instance Connect\. For more information, see [Configuring the Instance Metadata Service](configuring-instance-metadata-service.md)\.
 
 **Prerequisites**
 + **Verify the general prerequisites for connecting to your instance using SSH\.**
@@ -173,7 +173,7 @@ $ pip install ec2instanceconnectcli
 
 ## Step 4: Configure IAM Permissions for EC2 Instance Connect<a name="ec2-instance-connect-configure-IAM-role"></a>
 
-For your IAM users to connect to an instance using EC2 Instance Connect, you must grant them permission to push the public key to the instance\. For more information, see [Actions, Resources, and Condition Keys for Amazon EC2 Instance Connect](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonec2instanceconnectservice.html) in the *IAM User Guide*\.
+For your IAM users to connect to an instance using EC2 Instance Connect, you must grant them permission to push the public key to the instance\. For more information, see [Actions, Resources, and Condition Keys for Amazon EC2 Instance Connect](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonec2instanceconnect.html) in the *IAM User Guide*\.
 
 The following instructions explain how to create the policy and attach it using the AWS CLI\. For instructions that use the AWS Management Console, see [Creating IAM Policies \(Console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html#access_policies_create-start) and [Adding Permissions by Attaching Policies Directly to the User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html#users_change_permissions-add-directly-console) in the *IAM User Guide*\.
 

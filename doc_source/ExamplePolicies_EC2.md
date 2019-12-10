@@ -37,7 +37,7 @@ Users don't have permission to perform any actions on the resources \(unless ano
 
 ## Example: Restricting Access to a Specific Region<a name="iam-example-region"></a>
 
-The following policy denies users permission to use all Amazon EC2 API actions unless the Region is EU \(Frankfurt\)\. It uses the global condition key `aws:RequestedRegion`, which is supported by all Amazon EC2 API actions\.
+The following policy denies users permission to use all Amazon EC2 API actions unless the Region is Europe \(Frankfurt\)\. It uses the global condition key `aws:RequestedRegion`, which is supported by all Amazon EC2 API actions\.
 
 ```
 {
@@ -1649,6 +1649,9 @@ The following policy allows users to delete any launch template and launch templ
 ## Example: Working with Instance Metadata<a name="iam-example-instance-metadata"></a>
 
 The following policies ensure that users can only retrieve [instance metadata](ec2-instance-metadata.md) using Instance Metadata Service Version 2 \(IMDSv2\)\. You can combine the following four policies into one policy with four statements\. When combined as one policy, you can use the policy as a service control policy \(SCP\)\. It can work equally well as a *deny* policy that you apply to an existing IAM policy \(taking away and limiting existing permission\), or as a Service Control Policy that is applied globally across an account, an OU, or an entire Organization\.
+
+**Note**  
+The following RunInstances metadata options policies must be used in conjunction with a policy that gives the principal the privilege to launch an instance with RunInstances\. If the principal does not also have RunInstances permissions, it will not be able to launch an instance\. For more information, see the policies in [Working with Instances](#iam-example-instances) and [Launching Instances \(RunInstances\)](#iam-example-runinstances)\.
 
 The following policy specifies that you can’t call the RunInstances API unless the instance is also opted in to require the use of IMDSv2 \(indicated by `"ec2:MetadataHttpTokens": "required"`\)\. If you do not specify that the instance requires IMDSv2, you get an `UnauthorizedOperation` error when you call the RunInstances API\.
 

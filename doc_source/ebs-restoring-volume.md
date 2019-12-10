@@ -38,7 +38,7 @@ Use the following procedure to create a volume from a snapshot\.
 
 1. Choose **Create Volume**\.
 
-1. For **Volume Type**, choose a volume type\. For more information, see [Amazon EBS Volume Types](EBSVolumeTypes.md)\.
+1. For **Volume Type**, choose a volume type\. For more information, see [Amazon EBS Volume Types](ebs-volume-types.md)\.
 
 1. For **Snapshot ID**, start typing the ID or description of the snapshot from which you are restoring the volume, and choose it from the list of suggested options\.
 

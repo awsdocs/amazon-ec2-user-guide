@@ -49,7 +49,7 @@ If an Amazon EBS\-backed instance fails, you can restore your session by followi
 
   1. Reattach the Amazon EBS volumes to the new instance\.
 
-For more information, see [Amazon EBS Volumes](EBSVolumes.md)\.
+For more information, see [Amazon EBS Volumes](ebs-volumes.md)\.
 
 ## Choosing an AMI by Root Device Type<a name="choose-an-ami-by-root-device"></a>
 

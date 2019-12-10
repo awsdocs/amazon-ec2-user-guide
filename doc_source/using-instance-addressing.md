@@ -22,7 +22,7 @@ When you launch an instance, we allocate a primary private IPv4 address for the 
 
 An instance receives a primary private IP address from the IPv4 address range of the subnet\. For more information, see [VPC and Subnet Sizing](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html#VPC_Sizing) in the *Amazon VPC User Guide*\. If you don't specify a primary private IP address when you launch the instance, we select an available IP address in the subnet's IPv4 range for you\. Each instance has a default network interface \(eth0\) that is assigned the primary private IPv4 address\. You can also specify additional private IPv4 addresses, known as *secondary private IPv4 addresses*\. Unlike primary private IP addresses, secondary private IP addresses can be reassigned from one instance to another\. For more information, see [Multiple IP Addresses](MultipleIP.md)\. 
 
-A private IPv4 address remains associated with the network interface when the instance is stopped and restarted, and is released when the instance is terminated\.
+A private IPv4 address, regardless of whether it is a primary or secondary address, remains associated with the network interface when the instance is stopped and restarted, and is released when the instance is terminated\.
 
 ## Public IPv4 Addresses and External DNS Hostnames<a name="concepts-public-addresses"></a>
 

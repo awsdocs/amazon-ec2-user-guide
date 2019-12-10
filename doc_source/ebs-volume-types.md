@@ -1,4 +1,4 @@
-# Amazon EBS Volume Types<a name="EBSVolumeTypes"></a>
+# Amazon EBS Volume Types<a name="ebs-volume-types"></a>
 
 Amazon EBS provides the following volume types, which differ in performance characteristics and price, so that you can tailor your storage performance and cost to the needs of your applications\. The volumes types fall into two categories:
 + SSD\-backed volumes optimized for transactional workloads involving frequent read/write operations with small I/O size, where the dominant performance attribute is IOPS
@@ -17,7 +17,7 @@ The following table describes the use cases and performance characteristics for 
 | --- | --- | --- | 
 | Volume Type | General Purpose SSD \(gp2\) | Provisioned IOPS SSD \(io1\) | Throughput Optimized HDD \(st1\) | Cold HDD \(sc1\) | 
 | Description | General purpose SSD volume that balances price and performance for a wide variety of workloads | Highest\-performance SSD volume for mission\-critical low\-latency or high\-throughput workloads  | Low\-cost HDD volume designed for frequently accessed, throughput\-intensive workloads | Lowest cost HDD volume designed for less frequently accessed workloads | 
-| Use Cases |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html)  | 
+| Use Cases |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html)  | 
 | API Name | gp2 | io1 | st1 | sc1 | 
 | Volume Size | 1 GiB \- 16 TiB  | 4 GiB \- 16 TiB  | 500 GiB \- 16 TiB | 500 GiB \- 16 TiB  | 
 | Max IOPS per Volume | 16,000 \(16 KiB I/O\) \* | 64,000 \(16 KiB I/O\) † | 500 \(1 MiB I/O\) | 250 \(1 MiB I/O\) | 
@@ -30,7 +30,7 @@ The following table describes the use cases and performance characteristics for 
 
 † Maximum IOPS and throughput are guaranteed only on [Nitro\-based Instances](instance-types.md#ec2-nitro-instances)\. Other instances guarantee up to 32,000 IOPS and 500 MiB/s\. Older `io1` volumes might not reach full performance unless you modify the volume\. For more information, see [Amazon EBS Elastic Volumes](ebs-modify-volume.md)\.
 
-†† To achieve this throughput, you must have an instance that supports [EBS optimization](EBSOptimized.md)\.
+†† To achieve this throughput, you must have an instance that supports [EBS optimization](ebs-optimized.md)\.
 
 ### Previous Generation Volume Types<a name="ebs-previous-generation-volumes"></a>
 
@@ -394,7 +394,7 @@ Throughput for `st1` and `sc1` volumes is always determined by the smaller of th
 + Throughput limits of the volume
 + Throughput limits of the instance
 
-As for all Amazon EBS volumes, we recommend that you select an appropriate EBS\-optimized EC2 instance in order to avoid network bottlenecks\. For more information, see [Amazon EBS–Optimized Instances](EBSOptimized.md)\.
+As for all Amazon EBS volumes, we recommend that you select an appropriate EBS\-optimized EC2 instance in order to avoid network bottlenecks\. For more information, see [Amazon EBS–Optimized Instances](ebs-optimized.md)\.
 
 ## Monitoring the Burst Bucket Balance for `gp2`, `st1`, and `sc1` Volumes<a name="monitoring_burstbucket"></a>
 

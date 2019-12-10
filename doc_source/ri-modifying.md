@@ -132,17 +132,17 @@ Before you modify your Reserved Instances, ensure that you have read the applica
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. On the **Reserved Instances** page, select one or more Reserved Instances to modify, and choose **Modify Reserved Instances**\.
+1. On the **Reserved Instances** page, select one or more Reserved Instances to modify, and choose **Actions**, **Modify Reserved Instances**\.
 **Note**  
 If your Reserved Instances are not in the active state or cannot be modified, **Modify Reserved Instances** is disabled\.
 
 1. The first entry in the modification table displays attributes of selected Reserved Instances, and at least one target configuration beneath it\. The **Units** column displays the total instance size footprint\. Choose **Add** for each new configuration to add\. Modify the attributes as needed for each configuration, and then choose **Continue**:
-   + **Scope**: Choose whether the Reserved Instance applies to an Availability Zone or to the whole Region\.
+   + **Scope**: Choose whether the configuration applies to an Availability Zone or to the whole Region\.
    + **Availability Zone**: Choose the required Availability Zone\. Not applicable for regional Reserved Instances\.
-   + **Instance Type**: Select the required instance type\. If your combined target configurations are larger or smaller than the instance size footprint of your original Reserved Instances, the allocated total in the **Units** column displays in red\.
-   + **Count**: Specify the number of instances to be covered by the reservation\.
+   + **Instance Type**: Select the required instance type\. The combined configurations must equal the instance size footprint of your original configurations\.
+   + **Count**: Specify the number of instances\. To split the Reserved Instances into multiple configurations, reduce the count, choose **Add**, and specify a count for the additional configuration\. For example, if you have a single configuration with a count of 10, you can change its count to 6 and add a configuration with a count of 4\. This process retires the original Reserved Instance after the new Reserved Instances are activated\.
 
-1. To confirm your modification choices when you finish specifying your target configurations, choose **Submit Modifications**\. If you change your mind at any point, choose **Cancel** to exit the wizard\.
+1. To confirm your modification choices when you finish specifying your target configurations, choose **Submit Modifications**\.
 
 1. You can determine the status of your modification request by looking at the **State** column in the Reserved Instances screen\. The following are the possible states\.
    + **active* \(pending modification\)*** — Transition state for original Reserved Instances

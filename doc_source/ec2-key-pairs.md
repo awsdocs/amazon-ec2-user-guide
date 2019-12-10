@@ -176,7 +176,7 @@ BQoQzd8v7yeb7OzlPnWOyN0qFU0XA246RA8QFYiCNYwI3f05p6KLxEXAMPLE my-key-pair
 
 If you change the key pair that you use to connect to the instance, we don't update the instance metadata to show the new public key; you'll continue to see the public key for the key pair you specified when you launched the instance in the instance metadata\.
 
-For more information, see [Retrieving Instance Metadata](ec2-instance-metadata.md#instancedata-data-retrieval)\.
+For more information, see [Retrieving Instance Metadata](instancedata-data-retrieval.md)\.
 
 Alternatively, on a Linux instance, the public key content is placed in an entry within `~/.ssh/authorized_keys`\. You can open this file in an editor\. The following is an example entry for the key pair named **my\-key\-pair**\. It consists of the public key followed by the name of the key pair\. For example:
 

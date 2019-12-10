@@ -55,8 +55,8 @@ If you are unable to reach your instance via SSH or RDP, you can capture a scree
 + US East \(Ohio\) Region
 + US West \(Oregon\) Region
 + US West \(N\. California\) Region
-+ EU \(Ireland\) Region
-+ EU \(Frankfurt\) Region
++ Europe \(Ireland\) Region
++ Europe \(Frankfurt\) Region
 +  Asia Pacific \(Tokyo\) Region
 + Asia Pacific \(Seoul\) Region
 + Asia Pacific \(Singapore\) Region
@@ -64,8 +64,8 @@ If you are unable to reach your instance via SSH or RDP, you can capture a scree
 + South America \(São Paulo\) Region\)
 + Asia Pacific \(Mumbai\) Region
 + Canada \(Central\) Region\)
-+ EU \(London\) Region
-+ EU \(Paris\) Region
++ Europe \(London\) Region
++ Europe \(Paris\) Region
 
 **To access the instance console**
 

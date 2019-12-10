@@ -165,7 +165,7 @@ Adding these tasks at boot time adds to the amount of time it takes to boot an i
 
 ## User Data and the AWS CLI<a name="user-data-api-cli"></a>
 
-You can use the AWS CLI to specify, modify, and view the user data for your instance\. For information about viewing user data from your instance using instance metadata, see [Retrieve Instance User Data](ec2-instance-metadata.md#instancedata-user-data-retrieval)\.
+You can use the AWS CLI to specify, modify, and view the user data for your instance\. For information about viewing user data from your instance using instance metadata, see [Retrieve Instance User Data](instancedata-add-user-data.md#instancedata-user-data-retrieval)\.
 
 On Windows, you can use the AWS Tools for Windows PowerShell instead of using the AWS CLI\. For more information, see [User Data and the Tools for Windows PowerShell](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-windows-user-data.html#user-data-powershell) in the *Amazon EC2 User Guide for Windows Instances*\.
 

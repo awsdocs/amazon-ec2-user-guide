@@ -7,7 +7,6 @@ AWS updates to the performance of EBS volume types may not immediately take effe
 
 **Topics**
 + [Amazon EBS Performance Tips](#tips)
-+ [Amazon EC2 Instance Configuration](ebs-ec2-config.md)
 + [I/O Characteristics and Monitoring](ebs-io-characteristics.md)
 + [Initializing Amazon EBS Volumes](ebs-initialize.md)
 + [RAID Configuration on Linux](raid-config.md)
@@ -19,7 +18,7 @@ These tips represent best practices for getting optimal performance from your EB
 
 ### Use EBS\-Optimized Instances<a name="optimize"></a>
 
-On instances without support for EBS\-optimized throughput, network traffic can contend with traffic between your instance and your EBS volumes; on EBS\-optimized instances, the two types of traffic are kept separate\. Some EBS\-optimized instance configurations incur an extra cost \(such as C3, R3, and M3\), while others are always EBS\-optimized at no extra cost \(such as M4, C4, C5, and D2\)\. For more information, see [Amazon EC2 Instance Configuration](ebs-ec2-config.md)\.
+On instances without support for EBS\-optimized throughput, network traffic can contend with traffic between your instance and your EBS volumes; on EBS\-optimized instances, the two types of traffic are kept separate\. Some EBS\-optimized instance configurations incur an extra cost \(such as C3, R3, and M3\), while others are always EBS\-optimized at no extra cost \(such as M4, C4, C5, and D2\)\. For more information, see [Amazon EBS–Optimized Instances](ebs-optimized.md)\.
 
 ### Understand How Performance is Calculated<a name="performance_calculation"></a>
 
@@ -37,7 +36,7 @@ There is a significant increase in latency when you first access each block of d
 
 ### Factors That Can Degrade HDD Performance<a name="snapshotting_latency"></a>
 
-When you create a snapshot of a Throughput Optimized HDD \(`st1`\) or Cold HDD \(`sc1`\) volume, performance may drop as far as the volume's baseline value while the snapshot is in progress\. This behavior is specific to these volume types\. Other factors that can limit performance include driving more throughput than the instance can support, the performance penalty encountered while initializing volumes restored from a snapshot, and excessive amounts of small, random I/O on the volume\. For more information about calculating throughput for HDD volumes, see [Amazon EBS Volume Types](EBSVolumeTypes.md)\.
+When you create a snapshot of a Throughput Optimized HDD \(`st1`\) or Cold HDD \(`sc1`\) volume, performance may drop as far as the volume's baseline value while the snapshot is in progress\. This behavior is specific to these volume types\. Other factors that can limit performance include driving more throughput than the instance can support, the performance penalty encountered while initializing volumes restored from a snapshot, and excessive amounts of small, random I/O on the volume\. For more information about calculating throughput for HDD volumes, see [Amazon EBS Volume Types](ebs-volume-types.md)\.
 
 Your performance can also be impacted if your application isn’t sending enough I/O requests\. This can be monitored by looking at your volume’s queue length and I/O size\. The queue length is the number of pending I/O requests from your application to your volume\. For maximum consistency, HDD\-backed volumes must maintain a queue length \(rounded to the nearest whole number\) of 4 or more when performing 1 MiB sequential I/O\. For more information about ensuring consistent performance of your volumes, see [I/O Characteristics and Monitoring](ebs-io-characteristics.md)
 
