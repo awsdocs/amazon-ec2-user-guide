@@ -3,7 +3,7 @@
 The following table lists the categories of instance metadata\.
 
 **Important**  
-Category names that are formatted in red text are placeholders for data that is unique to your instance; for example, *mac* represents the MAC address for the network interface\. You must replace the placeholders with the actual values\.
+Some of the category names in the following table are placeholders for data that is unique to your instance\. For example, *mac* represents the MAC address for the network interface\. You must replace the placeholders with the actual values\.
 
 
 | Data | Description | Version Introduced | 

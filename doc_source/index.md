@@ -134,7 +134,7 @@ Amazon's trademarks and trade dress may not be used in
             + [Uninstall EC2 Instance Connect](ec2-instance-connect-uninstall.md)
          + [Connecting to Your Linux Instance from Windows Using PuTTY](putty.md)
          + [Connecting to Your Linux Instance from Windows Using Windows Subsystem for Linux](WSL.md)
-         + [Connecting to Your Linux Instance Using AWS Systems Manager Session Manager](session-manager.md)
+         + [Connecting to Your Linux Instance Using Session Manager](session-manager.md)
       + [Stop and Start Your Instance](Stop_Start.md)
       + [Hibernate Your Linux Instance](Hibernate.md)
       + [Reboot Your Instance](ec2-instance-reboot.md)

@@ -25,7 +25,7 @@ Compute Optimizer classifies its findings for EC2 instances as follows:
 + **Under\-provisioned** – An EC2 instance is considered under\-provisioned when at least one specification of your instance, such as CPU, memory, or network, does not meet the performance requirements of your workload\. Under\-provisioned EC2 instances might lead to poor application performance\. 
 + **Over\-provisioned** – An EC2 instance is considered over\-provisioned when at least one specification of your instance, such as CPU, memory, or network, can be sized down while still meeting the performance requirements of your workload, and when no specification is under\-provisioned\. Over\-provisioned EC2 instances might lead to unnecessary infrastructure cost\. 
 + **Optimized** – An EC2 instance is considered optimized when all specifications of your instance, such as CPU, memory, and network, meet the performance requirements of your workload, and the instance is not over\-provisioned\. An optimized EC2 instance runs your workloads with optimal performance and infrastructure cost\. For optimized instances, Compute Optimizer might sometimes recommend a new generation instance type\. 
-+ **None** – There are no recommendations for this instance\. This might occur if you've been opted in to Computer Optimizer for less than 12 hours, or when the instance has been running for less than 30 hours, or when the instance type is not supported by Compute Optimizer\. For more information, see [Limitations](#compute-optimizer-limitations) in the previous section\.
++ **None** – There are no recommendations for this instance\. This might occur if you've been opted in to Compute Optimizer for less than 12 hours, or when the instance has been running for less than 30 hours, or when the instance type is not supported by Compute Optimizer\. For more information, see [Limitations](#compute-optimizer-limitations) in the previous section\.
 
 ## Viewing Recommendations<a name="viewing-recommendations"></a>
 
@@ -80,7 +80,6 @@ Before changing an instance type, consider the following:
 
 There are other considerations when resizing an EC2 instance\. For more information, see [Changing the Instance Type](ec2-instance-resize.md)\.
 
-**Additional resources**  
-In addition to the topics on this page, see the following resources:
+**Additional resources**
 + [Instance Types](instance-types.md)
-+ [Compute Optimizer User Guide](https://docs.aws.amazon.com/compute-optimizer/latest/ug)
++ [AWS Compute Optimizer User Guide](https://docs.aws.amazon.com/compute-optimizer/latest/ug/)

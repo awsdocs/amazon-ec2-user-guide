@@ -16,6 +16,8 @@ We designed IAM roles so that your applications can securely make API requests f
 
 For example, you can use IAM roles to grant permissions to applications running on your instances that need to use a bucket in Amazon S3\. You can specify permissions for IAM roles by creating a policy in JSON format\. These are similar to the policies that you create for IAM users\. If you change a role, the change is propagated to all instances\.
 
+When creating IAM roles, associate least privilege IAM policies that restrict access to the specific API calls the application requires\.
+
 You cannot attach multiple IAM roles to a single instance, but you can attach a single IAM role to multiple instances\. For more information about creating and using IAM roles, see [Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/WorkingWithRoles.html) in the *IAM User Guide*\.
 
 You can apply resource\-level permissions to your IAM policies to control the users' ability to attach, replace, or detach IAM roles for an instance\. For more information, see [Supported Resource\-Level Permissions for Amazon EC2 API Actions](ec2-supported-iam-actions-resources.md) and the following example: [Example: Working with IAM Roles](ExamplePolicies_EC2.md#iam-example-iam-roles)\.
@@ -45,9 +47,22 @@ If you use services that use instance metadata with IAM roles, ensure that you d
 
 The following command retrieves the security credentials for an IAM role named `s3access`\.
 
+------
+#### [ IMDSv2 ]
+
 ```
-curl http://169.254.169.254/latest/meta-data/iam/security-credentials/s3access
+[ec2-user ~]$ TOKEN=`curl -X PUT "http://169.254.169.254/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` \
+&& curl -H "X-aws-ec2-metadata-token: $TOKEN" -v http://169.254.169.254/latest/meta-data/iam/security-credentials/s3access
 ```
+
+------
+#### [ IMDSv1 ]
+
+```
+[ec2-user ~]$ curl http://169.254.169.254/latest/meta-data/iam/security-credentials/s3access
+```
+
+------
 
 The following is example output\.
 
@@ -63,7 +78,7 @@ The following is example output\.
 }
 ```
 
-For applications, AWS CLI, and Tools for Windows PowerShell commands that run on the instance, you do not have to explicitly get the temporary security credentials — the AWS SDKs, AWS CLI, and Tools for Windows PowerShell automatically get the credentials from the EC2 instance metadata service and use them\. To make a call outside of the instance using temporary security credentials \(for example, to test IAM policies\), you must provide the access key, secret key, and the session token\. For more information, see [Using Temporary Security Credentials to Request Access to AWS Resources](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html) in the *IAM User Guide*\.
+For applications, AWS CLI, and Tools for Windows PowerShell commands that run on the instance, you do not have to explicitly get the temporary security credentials—the AWS SDKs, AWS CLI, and Tools for Windows PowerShell automatically get the credentials from the EC2 instance metadata service and use them\. To make a call outside of the instance using temporary security credentials \(for example, to test IAM policies\), you must provide the access key, secret key, and the session token\. For more information, see [Using Temporary Security Credentials to Request Access to AWS Resources](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html) in the *IAM User Guide*\.
 
 For more information about instance metadata, see [Instance Metadata and User Data](ec2-instance-metadata.md)\. 
 
@@ -246,9 +261,22 @@ The **IAM role** list displays the name of the instance profile that you created
 
 1. If you are using the Amazon EC2 API actions in your application, retrieve the AWS security credentials made available on the instance and use them to sign the requests\. The AWS SDK does this for you\.
 
+------
+#### [ IMDSv2 ]
+
    ```
-   curl http://169.254.169.254/latest/meta-data/iam/security-credentials/role_name
+   [ec2-user ~]$ TOKEN=`curl -X PUT "http://169.254.169.254/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` \
+   && curl -H "X-aws-ec2-metadata-token: $TOKEN" –v http://169.254.169.254/latest/meta-data/iam/security-credentials/role_name
    ```
+
+------
+#### [ IMDSv1 ]
+
+   ```
+   [ec2-user ~]$ curl http://169.254.169.254/latest/meta-data/iam/security-credentials/role_name
+   ```
+
+------
 
 Alternatively, you can use the AWS CLI to associate a role with an instance during launch\. You must specify the instance profile in the command\.<a name="launch-instance-with-role-cli"></a>
 

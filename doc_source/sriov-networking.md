@@ -23,10 +23,10 @@ Enhanced networking is supported only for HVM instances\. Enabling enhanced netw
 
 ## Testing Whether Enhanced Networking Is Enabled<a name="test-enhanced-networking"></a>
 
-Enhanced networking with the Intel 82599 VF interface is enabled if the `ixgbevf` module is installed on your instance and the `sriovNetSupport` attribute is set\.
+Enhanced networking with the Intel 82599 VF interface is enabled if the `ixgbevf` module is installed on your instance and the `sriovNetSupport` attribute is set\. 
 
-**Instance Attribute \(sriovNetSupport\)**
-To check whether an instance has the enhanced networking `sriovNetSupport` attribute set, use one of the following commands\. If the attribute is set, the response is `simple`\.
+**Instance Attribute \(sriovNetSupport\)**  
+To check whether an instance has the enhanced networking `sriovNetSupport` attribute set, use one of the following commands:
 + [describe\-instance\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-attribute.html) \(AWS CLI\)
 
   ```
@@ -38,7 +38,7 @@ To check whether an instance has the enhanced networking `sriovNetSupport` attri
   Get-EC2InstanceAttribute -InstanceId instance-id -Attribute sriovNetSupport
   ```
 
-If the attribute isn't set, `SriovNetSupport` is empty\. Otherwise, it is set as shown in the following\.
+If the attribute isn't set, `SriovNetSupport` is empty\. If the attribute is set, the value is simple, as shown in the following example output\.
 
 ```
 "SriovNetSupport": {
@@ -46,21 +46,22 @@ If the attribute isn't set, `SriovNetSupport` is empty\. Otherwise, it is set as
 },
 ```
 
-**Image Attribute \(sriovNetSupport\)**
-To check whether an AMI already has the enhanced networking `sriovNetSupport` attribute set, use one of the following commands\. If the attribute is set, the response is `simple`\.
+**Image Attribute \(sriovNetSupport\)**  
+To check whether an AMI already has the enhanced networking `sriovNetSupport` attribute set, use one of the following commands:
 + [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) \(AWS CLI\)
 
   ```
   aws ec2 describe-images --image-id ami_id --query "Images[].SriovNetSupport"
   ```
-
-+ [Get\-EC2Image](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Image.html) \(Tools for Windows PowerShell\)
++ [Get\-EC2Image](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Image.html) \(AWS Tools for Windows PowerShell\)
 
   ```
-  (Get-EC2Image -ImageId ami_id).SriovNetSupport
+  (Get-EC2Image -ImageId ami-id).SriovNetSupport
   ```
 
-**Network Interface Driver**
+If the attribute isn't set, `SriovNetSupport` is empty\. If the attribute is set, the value is simple\.
+
+**Network Interface Driver**  
 Use the following command to verify that the module is being used on a particular interface, substituting the interface name that you want to check\. If you are using a single interface \(default\), this is `eth0`\. If the operating system supports [predictable network names](#predictable-network-names-sriov), this could be a name like `ens5`\.
 
 In the following example, the `ixgbevf` module is not loaded, because the listed driver is `vif`\.

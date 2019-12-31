@@ -1,6 +1,6 @@
 # Stop and Start Your Instance<a name="Stop_Start"></a>
 
-You can stop and restart your instance if it has an Amazon EBS volume as its root device\. The instance retains its instance ID, but can change as described in the [Overview](#instance_stop) section\.
+You can stop and start your instance if it has an Amazon EBS volume as its root device\. The instance retains its instance ID, but can change as described in the [Overview](#instance_stop) section\.
 
 When you stop an instance, we shut it down\. We don't charge usage for a stopped instance, or data transfer fees, but we do charge for the storage for any Amazon EBS volumes\. Each time you start a stopped instance we charge a minimum of one minute for usage\. After one minute, we charge only for the seconds you use\. For example, if you run an instance for 20 seconds and then stop it, we charge for a full one minute\. If you run an instance for 3 minutes and 40 seconds, we charge for exactly 3 minutes and 40 seconds of usage\.
 
@@ -24,11 +24,11 @@ When you stop a running instance, the following happens:
 + Any Amazon EBS volumes remain attached to the instance, and their data persists\.
 + Any data stored in the RAM of the host computer or the instance store volumes of the host computer is gone\.
 + In most cases, the instance is migrated to a new underlying host computer when it's started\.
-+ The instance retains its private IPv4 addresses and any IPv6 addresses when stopped and restarted\. We release the public IPv4 address and assign a new one when you restart it\.
++ The instance retains its private IPv4 addresses and any IPv6 addresses when stopped and started\. We release the public IPv4 address and assign a new one when you start it\.
 + The instance retains its associated Elastic IP addresses\. You're charged for any Elastic IP addresses associated with a stopped instance\. With EC2\-Classic, an Elastic IP address is dissociated from your instance when you stop it\. For more information, see [EC2\-Classic](ec2-classic-platform.md)\.
 + When you stop and start a Windows instance, the EC2Config service performs tasks on the instance, such as changing the drive letters for any attached Amazon EBS volumes\. For more information about these defaults and how you can change them, see [Configuring a Windows Instance Using the EC2Config Service](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2config-service.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 + If your instance is in an Auto Scaling group, the Amazon EC2 Auto Scaling service marks the stopped instance as unhealthy, and may terminate it and launch a replacement instance\. For more information, see [Health Checks for Auto Scaling Instances](https://docs.aws.amazon.com/autoscaling/latest/userguide/healthcheck.html) in the *Amazon EC2 Auto Scaling User Guide*\.
-+ When you stop a ClassicLink instance, it's unlinked from the VPC to which it was linked\. You must link the instance to the VPC again after restarting it\. For more information about ClassicLink, see [ClassicLink](vpc-classiclink.md)\.
++ When you stop a ClassicLink instance, it's unlinked from the VPC to which it was linked\. You must link the instance to the VPC again after starting it\. For more information about ClassicLink, see [ClassicLink](vpc-classiclink.md)\.
 
 For more information, see [Differences Between Reboot, Stop, Hibernate, and Terminate](ec2-instance-lifecycle.md#lifecycle-differences)\.
 
@@ -50,7 +50,7 @@ When an EC2 instance is stopped using the `stop-instances` command, the followin
 
 ## Stopping and Starting Your Instances<a name="starting-stopping-instances"></a>
 
-You can start and stop your Amazon EBS\-backed instance using the console or the command line\.
+You can stop and start your Amazon EBS\-backed instance using the console or the command line\.
 
 By default, when you initiate a shutdown from an Amazon EBS\-backed instance \(using the shutdown or poweroff command\), the instance stops\. You can change this behavior so that it terminates instead\. For more information, see [Changing the Instance Initiated Shutdown Behavior](terminating-instances.md#Using_ChangingInstanceInitiatedShutdownBehavior)\.
 
@@ -58,7 +58,7 @@ By default, when you initiate a shutdown from an Amazon EBS\-backed instance \(u
 
 1. In the navigation pane, choose **Instances**, and select the instance\.
 
-1. Choose **Actions**, select **Instance State**, and then choose **Stop**\. If **Stop** is disabled, either the instance is already stopped or its root device is an instance store volume\.
+1. Choose **Actions**, **Instance State**, **Stop**\. If **Stop** is disabled, either the instance is already stopped or its root device is an instance store volume\.
 **Warning**  
 When you stop an instance, the data on any instance store volumes is erased\. To keep data from instance store volumes, be sure to back it up to persistent storage\.
 
@@ -66,7 +66,7 @@ When you stop an instance, the data on any instance store volumes is erased\. To
 
 1. While your instance is stopped, you can modify certain instance attributes\. For more information, see [Modifying a Stopped Instance](#Using_ChangingAttributesWhileInstanceStopped)\.
 
-1. To restart the stopped instance, select the instance, and choose **Actions**, **Instance State**, **Start**\.
+1. To start the stopped instance, select the instance, and choose **Actions**, **Instance State**, **Start**\.
 
 1. In the confirmation dialog box, choose **Yes, Start**\. It can take a few minutes for the instance to enter the `running` state\.
 

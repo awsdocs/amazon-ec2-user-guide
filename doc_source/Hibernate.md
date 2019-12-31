@@ -1,6 +1,6 @@
 # Hibernate Your Linux Instance<a name="Hibernate"></a>
 
-When you hibernate an instance, we signal the operating system to perform hibernation \(suspend\-to\-disk\)\. Hibernation saves the contents from the instance memory \(RAM\) to your Amazon EBS root volume\. We persist the instance's Amazon EBS root volume and any attached Amazon EBS data volumes\. When you restart your instance:
+When you hibernate an instance, we signal the operating system to perform hibernation \(suspend\-to\-disk\)\. Hibernation saves the contents from the instance memory \(RAM\) to your Amazon EBS root volume\. We persist the instance's Amazon EBS root volume and any attached Amazon EBS data volumes\. When you start your instance:
 + The Amazon EBS root volume is restored to its previous state
 + The RAM contents are reloaded
 + The processes that were previously running on the instance are resumed
@@ -31,7 +31,7 @@ For information about using hibernation on Windows instances, see [Hibernate You
 + [Enabling Hibernation for an Instance](#enabling-hibernation)
 + [Disabling KASLR on an Instance \(Ubuntu only\)](#hibernation-disable-kaslr)
 + [Hibernating an Instance](#hibernating-instances)
-+ [Restarting a Hibernated Instance](#hibernating-resuming)
++ [Starting a Hibernated Instance](#hibernating-resuming)
 + [Troubleshooting Hibernation](#troubleshoot-instance-hibernate)
 
 ## Overview of Hibernation<a name="instance_hibernate"></a>
@@ -44,11 +44,11 @@ When you hibernate a running instance, the following happens:
 + When you initiate hibernation, the instance moves to the `stopping` state\. We signal the operating system to perform hibernation \(suspend\-to\-disk\)\. The hibernation freezes all of the processes, saves the contents of the RAM to the Amazon EBS root volume, and then performs a regular shutdown\.
 + After the shutdown is complete, the instance moves to the `stopped` state\.
 + Any Amazon EBS volumes remain attached to the instance, and their data persists, including the saved contents of the RAM\.
-+ In most cases, the instance is migrated to a new underlying host computer when it's restarted\. This is also what happens when you stop and restart an instance\.
-+ When you restart the instance, the instance boots up and the operating system reads in the contents of the RAM from the Amazon EBS root volume, before unfreezing processes to resume its state\.
-+ The instance retains its private IPv4 addresses and any IPv6 addresses when hibernated and restarted\. We release the public IPv4 address and assign a new one when you restart it\.
++ In most cases, the instance is migrated to a new underlying host computer when it's started\. This is also what happens when you stop and start an instance\.
++ When you start the instance, the instance boots up and the operating system reads in the contents of the RAM from the Amazon EBS root volume, before unfreezing processes to resume its state\.
++ The instance retains its private IPv4 addresses and any IPv6 addresses when hibernated and started\. We release the public IPv4 address and assign a new one when you start it\.
 + The instance retains its associated Elastic IP addresses\. You're charged for any Elastic IP addresses associated with a hibernated instance\. With EC2\-Classic, an Elastic IP address is disassociated from your instance when you hibernate it\. For more information, see [EC2\-Classic](ec2-classic-platform.md)\.
-+ When you hibernate a ClassicLink instance, it's unlinked from the VPC to which it was linked\. You must link the instance to the VPC again after restarting it\. For more information, see [ClassicLink](vpc-classiclink.md)\.
++ When you hibernate a ClassicLink instance, it's unlinked from the VPC to which it was linked\. You must link the instance to the VPC again after starting it\. For more information, see [ClassicLink](vpc-classiclink.md)\.
 
 For information about how hibernation differs from reboot, stop, and terminate, see [Differences Between Reboot, Stop, Hibernate, and Terminate](ec2-instance-lifecycle.md#lifecycle-differences)\.
 
@@ -85,8 +85,8 @@ To hibernate an instance, the following prerequisites must be in place:
 + You can't stop or hibernate instance store\-backed instances\.\*
 + You can't hibernate an instance that has more than 150 GB of RAM\.
 + You cannot hibernate an instance that is in an Auto Scaling group or used by Amazon ECS\. If your instance is in an Auto Scaling group and you try to hibernate it, the Amazon EC2 Auto Scaling service marks the stopped instance as unhealthy, and may terminate it and launch a replacement instance\. For more information, see [Health Checks for Auto Scaling Instances](https://docs.aws.amazon.com/autoscaling/latest/userguide/healthcheck.html) in the *Amazon EC2 Auto Scaling User Guide*\.
-+ We do not support keeping an instance hibernated for more than 60 days\. To keep the instance for longer than 60 days, you must restart the hibernated instance, stop the instance, and restart it\.
-+ We constantly update our platform with upgrades and security patches, which can conflict with existing hibernated instances\. We notify you about critical updates that require a restart for hibernated instances so that we can perform a shutdown or a reboot to apply the necessary upgrades and security patches\.
++ We do not support keeping an instance hibernated for more than 60 days\. To keep the instance for longer than 60 days, you must start the hibernated instance, stop the instance, and start it\.
++ We constantly update our platform with upgrades and security patches, which can conflict with existing hibernated instances\. We notify you about critical updates that require a start for hibernated instances so that we can perform a shutdown or a reboot to apply the necessary upgrades and security patches\.
 
 \*For C3 and R3 instances that are enabled for hibernation, do not use instance store volumes\.
 
@@ -401,25 +401,25 @@ The output lists the EC2 instances on which hibernation was initiated\.
 
 ------
 
-## Restarting a Hibernated Instance<a name="hibernating-resuming"></a>
+## Starting a Hibernated Instance<a name="hibernating-resuming"></a>
 
-Restart a hibernated instance by starting it in the same way that you would start a stopped instance\.
+Start a hibernated instance by starting it in the same way that you would start a stopped instance\.
 
 ------
 #### [ Console ]
 
-**To restart a hibernated instance using the console**
+**To start a hibernated instance using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
 1. In the navigation pane, choose **Instances**\.
 
-1. Select a hibernated instance, and choose **Actions**, **Instance State**, **Start**\. It can take a few minutes for the instance to enter the `running` state\. During this time, the instance [status checks](monitoring-system-instance-status-check.md#types-of-instance-status-checks) show the instance in a failed state until the instance has restarted\.
+1. Select a hibernated instance, and choose **Actions**, **Instance State**, **Start**\. It can take a few minutes for the instance to enter the `running` state\. During this time, the instance [status checks](monitoring-system-instance-status-check.md#types-of-instance-status-checks) show the instance in a failed state until the instance has started\.
 
 ------
 #### [ AWS CLI ]
 
-**To restart a hibernated instance using the AWS CLI**  
+**To start a hibernated instance using the AWS CLI**  
 Use the [start\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/start-instances.html) command\.
 
 ```
@@ -429,7 +429,7 @@ aws ec2 start-instances --instance-ids i-1234567890abcdef0
 ------
 #### [ AWS Tools for Windows PowerShell ]
 
-**To restart a hibernated instance using the AWS Tools for Windows PowerShell**  
+**To start a hibernated instance using the AWS Tools for Windows PowerShell**  
 Use the [Start\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Start-EC2Instance.html) command\.
 
 ```

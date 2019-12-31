@@ -112,7 +112,9 @@ Before you launch your instances, take note of the limitations\. For more inform
 
 1. On the **Choose an Instance Type** page, select the instance type to launch and then choose **Next: Configure Instance Details**\. 
 
-   If the Dedicated Host supports a single instance type only, the supported instance type is selected by default and can't be changed\. If the Dedicated Host supports multiple instance types, you must select an instance type within the supported instance family based on the Dedicated Host's available instance capacity\.
+   If the Dedicated Host supports a single instance type only, the supported instance type is selected by default and can't be changed\.
+
+   If the Dedicated Host supports multiple instance types, you must select an instance type within the supported instance family based on the Dedicated Host's available instance capacity\. We recommend that you launch the larger instance sizes first, and then fill the remaining instance capacity with the smaller instance sizes as needed\.
 
 1. On the **Configure Instance Details** page, configure the instance settings to suit your needs, and then for **Affinity**, choose one of the following options:
    + **Off**—The instance launches onto the specified host, but it is not guaranteed to restart on the same Dedicated Host if stopped\.

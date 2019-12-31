@@ -65,7 +65,7 @@ Before you allocate Dedicated Hosts, take note of the following limitations and 
 + RHEL, SUSE Linux, and Windows AMIs \(whether offered by AWS or on the AWS Marketplace\) can't be used with Dedicated Hosts\.
 + Up to two On\-Demand Dedicated Hosts per instance family, per Region can be allocated\. It is possible to request a limit increase: [Request to Raise Allocation Limit on Amazon EC2 Dedicated Hosts](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=)\.
 + The instances that run on a Dedicated Host can only be launched in a VPC\.
-+ Auto Scaling groups are supported only when using a launch template that specifies a host resource group\. For more information, see [ Creating a Launch Template for an Auto Scaling Group](https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-launch-template.html) in the *Amazon EC2 Auto Scaling User Guide*\.
++ Auto Scaling groups are supported when using a launch template that specifies a host resource group\. For more information, see [ Creating a Launch Template for an Auto Scaling Group](https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-launch-template.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 + Amazon RDS instances are not supported\.
 + The AWS Free Usage tier is not available for Dedicated Hosts\.
 + Instance placement control refers to managing instance launches onto Dedicated Hosts\. Placement groups are not supported for Dedicated Hosts\.

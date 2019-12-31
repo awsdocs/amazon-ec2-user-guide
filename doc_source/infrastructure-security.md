@@ -36,4 +36,6 @@ Consider the following options for controlling network traffic to your EC2 insta
 + Use [AWS Systems Manager Session Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html) to access your instances remotely instead of opening inbound SSH ports and managing SSH keys\.
 + Use [AWS Systems Manager Run Command](https://docs.aws.amazon.com/systems-manager/latest/userguide/execute-remote-commands.html) to automate common administrative tasks instead of opening inbound SSH ports and managing SSH keys\.
 
+In addition to restricting network access to each Amazon EC2 instance, Amazon VPC supports implementing additional network security controls like in\-line gateways, proxy servers, and various network monitoring options\.
+
 For more information, see [Securing Amazon EC2 Instances](http://aws.amazon.com/answers/security/aws-securing-ec2-instances/)\.

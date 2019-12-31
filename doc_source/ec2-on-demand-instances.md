@@ -8,6 +8,14 @@ We recommend that you use On\-Demand Instances for applications with short\-term
 
 For significant savings over On\-Demand Instances, use [AWS Savings Plans](http://aws.amazon.com/savingsplans/), [Spot Instances](using-spot-instances.md), or [Reserved Instances](ec2-reserved-instances.md)\.
 
+**Contents**
++ [Working With On\-Demand Instances](#working-with-on-demand-instances)
++ [On\-Demand Instance Limits](#ec2-on-demand-instances-limits)
+  + [Calculating How Many vCPUs You Need](#vcpu-limits-calculator)
+  + [Requesting a Limit Increase](#vcpu-limits-request-increase)
+  + [Monitoring On\-Demand Instance Limits and Usage](#monitoring-on-demand-limits)
++ [Querying the Prices of AWS Services](#query-aws-price-list)
+
 ## Working With On\-Demand Instances<a name="working-with-on-demand-instances"></a>
 
 You can work with On\-Demand Instances in the following ways:
@@ -72,7 +80,7 @@ You can view and use the following controls and information:
 
 **To calculate the number of required vCPUs**
 
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\. 
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
 1. From the navigation bar, select a Region\.
 
@@ -95,3 +103,7 @@ You can request a limit increase for each On\-Demand Instance limit type from th
 You can view and manage your On\-Demand Instance limits from the [Limits page](https://console.aws.amazon.com/ec2/#Limits) in the Amazon EC2 console, from the Amazon EC2 [Services quotas page](https://console.aws.amazon.com/servicequotas/#!/services/ec2/quotas) in the Service Quotas console, and from the [Service Limits page](https://console.aws.amazon.com/trustedadvisor/home?#/category/service-limits) in the AWS Trusted Advisor console\. For more information, see [Amazon EC2 Service Limits](ec2-resource-limits.md) in the *Amazon EC2 User Guide for Linux Instances*, [Viewing a Service Quota](https://docs.aws.amazon.com/servicequotas/latest/userguide/gs-request-quota.html) in the *Service Quotas User Guide*, and [AWS Trusted Advisor](http://aws.amazon.com/premiumsupport/technology/trusted-advisor/)\.
 
 With Amazon CloudWatch metrics integration, you can monitor EC2 usage against limits\. You can also configure alarms to warn about approaching limits\. For more information, see [Using Amazon CloudWatch Alarms](https://docs.aws.amazon.com/servicequotas/latest/userguide/configure-cloudwatch.html) in the *Service Quotas User Guide*\.
+
+## Querying the Prices of AWS Services<a name="query-aws-price-list"></a>
+
+You can use the Price List Service API or the AWS Price List API to query the prices of On\-Demand Instances\. For more information, see [Using the AWS Price List API](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/price-changes.html) in the *AWS Billing and Cost Management User Guide*\.

@@ -193,7 +193,7 @@ The default credit specification for an instance family can be modified only onc
 Use the [modify\-default\-credit\-specification](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-default-credit-specification.html) command\. Specify the AWS Region, instance family, and the default credit specification using the `--cpu-credits` parameter\. Valid default credit specifications are `unlimited` and `standard`\.
 
 ```
-aws ec2 modify-default-credit-specification --region us-east-1 --instance-family t2 —-cpu-credits unlimited
+aws ec2 modify-default-credit-specification --region us-east-1 --instance-family t2 --cpu-credits unlimited
 ```
 
 ## Viewing the Default Credit Specification<a name="burstable-performance-instances-get-default-credit-specification"></a>

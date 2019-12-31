@@ -299,6 +299,7 @@ The following AMIs support launching memory optimized instances:
   + SUSE Linux Enterprise Server 12 SP2 or later
   + CentOS 7\.4\.1708 or later
   + FreeBSD 11\.1 or later
+  + Debian GNU/Linux 9 or later
 + R5, R5a, R5ad, R5d, R5dn, R5n, and z1d instances support a maximum of 28 attachments, including network interfaces, EBS volumes, and NVMe instance store volumes\. Every instance has at least one network interface attachment\. For example, if you have no additional network interface attachments on an EBS\-only instance, you could attach 27 EBS volumes to that instance\.
 + `u-6tb1.metal`, `u-9tb1.metal`, and `u-12tb1.metal` instances support a maximum of 13 EBS volumes\. `u-18tb1.metal` and `u-24tb1.metal` instances support a maximum of 19 EBS volumes\.
 + Launching a bare metal instance boots the underlying server, which includes verifying all hardware and firmware components\. This means that it can take 20 minutes from the time the instance enters the running state until it becomes available over the network\.

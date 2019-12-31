@@ -5,12 +5,13 @@ This list of practices will help you get the maximum benefit from Amazon EC2\.
 **Security and Network**
 + Manage access to AWS resources and APIs using identity federation, IAM users, and IAM roles\. Establish credential management policies and procedures for creating, distributing, rotating, and revoking AWS access credentials\. For more information, see [IAM Best Practices](https://docs.aws.amazon.com/IAM/latest/UserGuide/IAMBestPractices.html) in the *IAM User Guide*\.
 + Implement the least permissive rules for your security group\. For more information, see [Security Group Rules](ec2-security-groups.md#security-group-rules)\.
-+ Regularly patch, update, and secure the operating system and applications on your instance\. For more information about updating Amazon Linux 2 or the Amazon Linux AMI, see [Managing Software on Your Linux Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/managing-software.html)\. For more information about updating your Windows instance, see [Updating Your Windows Instance](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/windows-ami-version-history.html#update-windows-instance) in the *Amazon EC2 User Guide for Windows Instances*\.
++ Regularly patch, update, and secure the operating system and applications on your instance\. For more information about updating Amazon Linux 2 or the Amazon Linux AMI, see [Managing Software on Your Linux Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/managing-software.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 **Storage**
 + Understand the implications of the root device type for data persistence, backup, and recovery\. For more information, see [Storage for the Root Device](ComponentsAMIs.md#storage-for-the-root-device)\.
 + Use separate Amazon EBS volumes for the operating system versus your data\. Ensure that the volume with your data persists after instance termination\. For more information, see [Preserving Amazon EBS Volumes on Instance Termination](terminating-instances.md#preserving-volumes-on-termination)\.
 + Use the instance store available for your instance to store temporary data\. Remember that the data stored in instance store is deleted when you stop or terminate your instance\. If you use instance store for database storage, ensure that you have a cluster with a replication factor that ensures fault tolerance\.
++ Encrypt EBS volumes and snapshots\. For more information, see [Amazon EBS Encryption](EBSEncryption.md)\.
 
 **Resource Management**
 + Use instance metadata and custom resource tags to track and identify your AWS resources\. For more information, see [Instance Metadata and User Data](ec2-instance-metadata.md) and [Tagging Your Amazon EC2 Resources](Using_Tags.md)\.

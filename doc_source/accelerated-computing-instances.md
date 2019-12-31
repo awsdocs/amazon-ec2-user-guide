@@ -186,6 +186,7 @@ For more information, see the following:
   + SUSE Linux Enterprise Server 12 SP2 or later
   + CentOS 7\.4\.1708 or later
   + FreeBSD 11\.1 or later
+  + Debian GNU/Linux 9 or later
 + GPU\-based instances can't access the GPU unless the NVIDIA drivers are installed\. For more information, see [Installing the NVIDIA Driver on Linux Instances](install-nvidia-driver.md)\.
 + There is a limit of 100 AFIs per region\.
 + There is a limit on the number of instances that you can run\. For more information, see [How many instances can I run in Amazon EC2?](https://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2) in the Amazon EC2 FAQ\. To request an increase in these limits, use the following form: [Request to Increase Amazon EC2 Instance Limit](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-instances)\.

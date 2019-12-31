@@ -1,6 +1,6 @@
 # Automating the Amazon EBS Snapshot Lifecycle<a name="snapshot-lifecycle"></a>
 
-You can use Amazon Data Lifecycle Manager \(Amazon Data Lifecycle Manager\) to automate the creation, retention, and deletion of snapshots taken to back up your Amazon EBS volumes\. Automating snapshot management helps you to:
+You can use Amazon Data Lifecycle Manager to automate the creation, retention, and deletion of snapshots taken to back up your Amazon EBS volumes\. Automating snapshot management helps you to:
 + Protect valuable data by enforcing a regular backup schedule\.
 + Retain backups as required by auditors or internal compliance\.
 + Reduce storage costs by deleting outdated backups\.
@@ -72,7 +72,6 @@ The following considerations apply to lifecycle policies:
 + If you disable a policy with a retention schedule based on the age of each snapshot, the snapshots whose retention periods expire while the policy is disabled are retained indefinitely\. You must delete these snapshots manually\. When you enable the policy again, Amazon Data Lifecycle Manager resumes deleting snapshots as their retention periods expire\.
 + If you delete the resource to which a policy applies, the policy no longer manages the previously created snapshots\. You must manually delete the snapshots if they are no longer needed\.
 + You can create multiple policies to back up an EBS volume or an EC2 instance\. For example, if an EBS volume has two tags, where tag A is the target for policy A to create a snapshot every 12 hours, and tag B is the target for policy B to create a snapshot every 24 hours, Amazon Data Lifecycle Manager creates snapshots according to the schedules for both policies\.
-+ When you copy a snapshot created by a policy, the retention rule is not carried over to the copy\. This ensures that Amazon Data Lifecycle Manager does not delete snapshots that should be retained for a longer period of time\.
 
 The following considerations apply to lifecycle policies and [fast snapshot restore](ebs-fast-snapshot-restore.md):
 + A snapshot that is enabled for fast snapshot restore remains enabled even if you delete or disable the lifecycle policy, disable fast snapshot restore for the lifecycle policy, or disable fast snapshot restore for the Availability Zone\. You can disable fast snapshot restore for these snapshots manually\.
@@ -194,6 +193,7 @@ The following examples show how to use Amazon Data Lifecycle Manager to perform 
    + **Run policy every** ***n*** **Hours**–The number of hours between policy runs\. The supported values are 2, 3, 4, 6, 8, 12, and 24\.
    + **Starting at ***hh*:***mm*** **UTC**–The time at which the policy runs are scheduled to start\. The first policy run starts within an hour after the scheduled time\.
    + **Retain**–You can retain snapshots based on either the total count of snapshots or the age of each snapshot\. For retention based on the count, the range is 1 to 1000\. After the maximum count is reached, the oldest snapshot is deleted when a new one is created\. For age\-based retention, the range is 1 day to 100 years\. After the retention period of each snapshot expires, it is deleted\. The retention period should be greater than or equal to the creation interval\.
+   + **Cross Region copy**–You can copy each snapshot to up at three additional Regions\. For each Region, you can choose different retention policies and whether to copy all tags or no tags\. If the source snapshot is encrypted or if encryption by default is enabled, the snapshots copies are encrypted\. If the source snapshot is unencrypted, you can enable encryption\. If you do not specify a CMK, the snapshots are encrypted using the default key for EBS encryption in each destination Region\. You must ensure that you do not exceed the number of concurrent snapshot copies per Region\.
    + **Tagging information**–Choose whether to copy all user\-defined tags on a source volume to the snapshots created by this policy\. You can also specify additional tags for the snapshots in addition to the tags applied by Amazon Data Lifecycle Manager\. If the resource type is instance, you can choose to automatically tag your snapshots with the instance ID and timestamp\.
    + **Fast snapshot restore**–Choose whether to enable fast snapshot restore and in which Availability Zones\. You can also specify the maximum number of snapshots that can be enabled for fast snapshot store\.
    + **IAM role**–An IAM role that has permissions to create, delete, and describe snapshots, and to describe volumes\. AWS provides a default role, **AWSDataLifecycleManagerDefaultRole**, or you can create a custom IAM role\.

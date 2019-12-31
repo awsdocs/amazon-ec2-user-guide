@@ -16,6 +16,7 @@ The following instances offer non\-volatile memory express \(NVMe\) SSD instance
 + SUSE Linux Enterprise Server 12 SP2 or later
 + CentOS 7\.4\.1708 or later
 + FreeBSD 11\.1 or later
++ Debian GNU/Linux 9 or later
 
 After you connect to your instance, you can list the NVMe devices using the lspci command\. The following is example output for an `i3.8xlarge` instance, which supports four NVMe devices\.
 
