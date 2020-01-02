@@ -340,6 +340,12 @@ If you have a domain name associated with your EC2 instance's EIP address, you c
 **Configure Your Blog**  
 You can configure your blog to use different [themes](https://wordpress.org/themes/) and [plugins](https://wordpress.org/plugins/) to offer a more personalized experience for your readers\. However, sometimes the installation process can backfire, causing you to lose your entire blog\. We strongly recommend that you create a backup Amazon Machine Image \(AMI\) of your instance before attempting to install any themes or plugins so you can restore your blog if anything goes wrong during installation\. For more information, see [Creating Your Own AMI](AMIs.md#creating-an-ami)\.
 
+One of the first things you may want to do, once you've installed Wordpress, is crop an image for the header\.  You'll need the PHP graphic library for this\.  The following assumes you have PHP7.0 installed\.
+
+   ```
+   [ec2-user ~]$ sudo yum install php70-gd
+   ```
+
 **Increase Capacity**  
 If your WordPress blog becomes popular and you need more compute power or storage, consider the following steps:
 + Expand the storage space on your instance\. For more information, see [Amazon EBS Elastic Volumes](ebs-modify-volume.md)\.
