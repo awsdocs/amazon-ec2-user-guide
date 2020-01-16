@@ -48,7 +48,7 @@ If you are using an AMI that does not include the NVMe driver, you can install t
 1. Ubuntu 16\.04 and later include the `linux-aws` package, which contains the NVMe and ENA drivers required by Nitro\-based instances\. Upgrade the `linux-aws` package to receive the latest version as follows:
 
    ```
-   [ec2-user ~]$ sudo apt-get upgrade -y linux-aws
+   [ec2-user ~]$ sudo apt-get install --only-upgrade -y linux-aws
    ```
 
    For Ubuntu 14\.04, you can install the latest `linux-aws` package as follows:
