@@ -112,7 +112,7 @@ The following table describes the ARNs for each type of resource used by the Ama
 
 | Resource Type | ARN | 
 | --- | --- | 
-|  All Amazon EC2 resources  |  arn:aws:ec2:\*  | 
+|  All Amazon EC2 resources  |  arn:aws:ec2:::\*  | 
 |  All Amazon EC2 resources owned by the specified account in the specified Region  |  arn:aws:ec2:*region*:*account*:\*  | 
 |  Customer gateway  |  arn:aws:ec2:*region*:*account*:customer\-gateway/*cgw\-id* Where *cgw\-id* is cgw\-*xxxxxxxx*  | 
 |  DHCP options set  |  arn:aws:ec2:*region*:*account*:dhcp\-options/*dhcp\-options\-id* Where *dhcp\-options\-id* is dopt\-*xxxxxxxx*  | 
@@ -167,14 +167,14 @@ Amazon EC2 implements the following service\-specific condition keys\. For infor
 |  `ec2:AuthorizedService`  |  "ec2:AuthorizedService":"*service\-principal*" Where *service\-principal* is the service principal \(for example, ecs\.amazonaws\.com\)  |  String, Null  | 
 |  `ec2:AuthorizedUser`  |  "ec2:AuthorizedUser":"*principal\-arn*" Where *principal\-arn* is the ARN for the principal \(for example, arn:aws:iam::123456789012:root\)  |  ARN, Null  | 
 |  `ec2:AvailabilityZone`  |  "ec2:AvailabilityZone":"*az\-api\-name*" Where *az\-api\-name* is the name of the Availability Zone \(for example, `us-east-2a`\) To list your Availability Zones, use [describe\-availability\-zones](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-availability-zones.html)  |  String, Null  | 
-| ec2:CreateAction | "ec2:CreateAction":"api\-name"Where *api\-name* is the name of the resource\-creating action \(for example, `RunInstances`\) | String, Null | 
+|  `ec2:CreateAction`  | "ec2:CreateAction":"api\-name"Where *api\-name* is the name of the resource\-creating action \(for example, `RunInstances`\) | String, Null | 
 |  `ec2:EbsOptimized`  |  "ec2:EbsOptimized":"*optimized\-flag*" Where *optimized\-flag* is `true` \| `false` \(for an instance\)  |  Boolean, Null  | 
 |  `ec2:ElasticGpuType`  |  "ec2:ElasticGpuType":"*elastic\-gpu\-type*" Where *elastic\-gpu\-type* is the name of the elastic GPU type  |  String, Null  | 
-| ec2:Encrypted | "ec2:Encrypted":"encrypted\-flag"Where *encrypted\-flag* is `true` \| `false` \(for an EBS volume\) | Boolean, Null | 
+|  `ec2:Encrypted`  | "ec2:Encrypted":"encrypted\-flag"Where *encrypted\-flag* is `true` \| `false` \(for an EBS volume\) | Boolean, Null | 
 |  `ec2:ImageType`  |  "ec2:ImageType":"*image\-type\-api\-name*" Where *image\-type\-api\-name* is `machine` \| `aki` \| `ari`  |  String, Null  | 
 |  `ec2:InstanceMarketType`  |  "ec2:InstanceMarketType":"*market\-type*" Where *market\-type* is `spot` \| `on-demand`  |  String, Null  | 
 |  `ec2:InstanceProfile`  |  "ec2:InstanceProfile":"*instance\-profile\-arn*" Where *instance\-profile\-arn* is the instance profile ARN  |  ARN, Null  | 
-| `ec2:InstanceType`  |  "ec2:InstanceType":"*instance\-type\-api\-name*" Where *instance\-type\-api\-name* is the name of the instance type  |  String, Null  | 
+|  `ec2:InstanceType`  |  "ec2:InstanceType":"*instance\-type\-api\-name*" Where *instance\-type\-api\-name* is the name of the instance type  |  String, Null  | 
 |  `ec2:IsLaunchTemplateResource`  |  "ec2:IsLaunchTemplateResource":"*launch\-template\-resource\-flag*" Where *launch\-template\-resource\-flag* is `true` \| `false`  |  Boolean, Null  | 
 |  `ec2:LaunchTemplate`  |  "ec2:LaunchTemplate":"*launch\-template\-arn*" Where *launch\-template\-arn* is the launch template ARN  |  ARN, Null  | 
 |  `ec2:Owner`  |  "ec2:Owner":"*account\-id*" Where *account\-id* is `amazon` \| `aws-marketplace` \| *aws\-account\-id*  |  String, Null  | 
@@ -182,11 +182,11 @@ Amazon EC2 implements the following service\-specific condition keys\. For infor
 |  `ec2:ParentVolume`  |  "ec2:ParentVolume":"*volume\-arn*" Where *volume\-arn* is the volume ARN  |  ARN, Null  | 
 |  `ec2:Permission`  |  "ec2:Permission":"*permission*" Where *permission* is `INSTANCE-ATTACH` \| `EIP-ASSOCIATE`  |  String, Null  | 
 |  `ec2:PlacementGroup`  |  "ec2:PlacementGroup":"*placement\-group\-arn*" Where *placement\-group\-arn* is the placement group ARN  |  ARN, Null  | 
-| ec2:PlacementGroupStrategy |  "ec2:PlacementGroupStrategy":"*placement\-group\-strategy*" Where *placement\-group\-strategy* is `cluster` \| `spread`  | String, Null | 
+|  `ec2:PlacementGroupStrategy`  |  "ec2:PlacementGroupStrategy":"*placement\-group\-strategy*" Where *placement\-group\-strategy* is `cluster` \| `spread`  | String, Null | 
 |  `ec2:ProductCode`  |  "ec2:ProductCode":"*product\-code*" Where *product\-code* is the product code  |  String, Null  | 
-| `ec2:Public` |  "ec2:Public":"*public\-flag*" Where *public\-flag* is `true` \| `false` \(for an AMI\)  |  Boolean, Null  | 
+|  `ec2:Public`  |  "ec2:Public":"*public\-flag*" Where *public\-flag* is `true` \| `false` \(for an AMI\)  |  Boolean, Null  | 
 |  `ec2:Region`  |  "ec2:Region":"*region\-name*" Where *region\-name* is the name of the Region \(for example, `us-east-2`\)\. To list your Regions, use [describe\-regions](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-regions.html)\. This condition key can be used with all Amazon EC2 actions\.  |  String, Null  | 
-| `ec2:RequesterVpc` |  "ec2:RequesterVpc":"*vpc\-arn*" Where *vpc\-arn* is the VPC ARN for the requester VPC in a VPC peering connection  |  ARN, Null  | 
+|  `ec2:RequesterVpc`  |  "ec2:RequesterVpc":"*vpc\-arn*" Where *vpc\-arn* is the VPC ARN for the requester VPC in a VPC peering connection  |  ARN, Null  | 
 |  `ec2:ReservedInstancesOfferingType`  |  "ec2:ReservedInstancesOfferingType":"*offering\-type* Where *offering\-type* is `No Upfront` \| `Partial Upfront` \| `All Upfront`  |  String, Null  | 
 |  `ec2:ResourceTag/`*tag\-key*  |  "ec2:ResourceTag/*tag\-key*":"*tag\-value*" Where *tag\-key* and *tag\-value* are the tag\-key pair  |  String, Null  | 
 |  `ec2:RootDeviceType`  |  "ec2:RootDeviceType":"*root\-device\-type\-name*" Where *root\-device\-type\-name* is `ebs` \| `instance-store`  |  String, Null  | 
