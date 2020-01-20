@@ -190,7 +190,9 @@ The following table lists the maximum number of network interfaces per instance 
 | m5ad\.xlarge | 4 | 15 | 15 | 
 | m5ad\.2xlarge | 4 | 15 | 15 | 
 | m5ad\.4xlarge | 8 | 30 | 30 | 
+| `m5ad.8xlarge` | 8 | 30 | 30 | 
 | m5ad\.12xlarge | 8 | 30 | 30 | 
+| `m5ad.16xlarge` | 15 | 50 | 50 | 
 | m5ad\.24xlarge | 15 | 50 | 50 | 
 | m5d\.large | 3 | 10 | 10 | 
 | m5d\.xlarge | 4 | 15 | 15 | 
@@ -256,7 +258,9 @@ The following table lists the maximum number of network interfaces per instance 
 | r5ad\.xlarge | 4 | 15 | 15 | 
 | r5ad\.2xlarge | 4 | 15 | 15 | 
 | r5ad\.4xlarge | 8 | 30 | 30 | 
+| r5ad\.8xlarge | 8 | 30 | 30 | 
 | r5ad\.12xlarge | 8 | 30 | 30 | 
+| r5ad\.16xlarge | 15 | 50 | 50 | 
 | r5ad\.24xlarge | 15 | 50 | 50 | 
 | r5d\.large | 3 | 10 | 10 | 
 | r5d\.xlarge | 4 | 15 | 15 | 

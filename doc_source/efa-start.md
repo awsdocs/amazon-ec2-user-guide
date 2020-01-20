@@ -5,12 +5,13 @@ This tutorial helps you to launch an EFA and MPI\-enabled instance cluster for H
 **Topics**
 + [Step 1: Prepare an EFA\-Enabled Security Group](#efa-start-security)
 + [Step 2: Launch a Temporary Instance](#efa-start-tempinstance)
-+ [Step 3: Install Libfabric and Open MPI](#efa-start-enable)
++ [Step 3: Install the EFA Software](#efa-start-enable)
 + [Step 4: \(Optional\) Install Intel MPI](#efa-start-impi)
 + [Step 5: Install Your HPC Application](#efa-start-hpc-app)
 + [Step 6: Create an EFA\-Enabled AMI](#efa-start-ami)
 + [Step 7: Launch EFA\-Enabled Instances into a Cluster Placement Group](#efa-start-instances)
-+ [Step 8 Terminate the Temporary Instance](#efa-start-terminate)
++ [Step 8: Terminate the Temporary Instance](#efa-start-terminate)
++ [Step 9: Enable Passwordless SSH](#efa-start-passwordless)
 
 ## Step 1: Prepare an EFA\-Enabled Security Group<a name="efa-start-security"></a>
 
@@ -72,22 +73,40 @@ Launch a temporary instance that you can use to install and configure the EFA so
 
 1. On the **Add Tags** page, specify a tag that you can use to identify the temporary instance, and then choose **Next: Configure Security Group**\.
 
-1. On the **Configure Security Group** page, for **Assign a security group**, select **Select an existing security group**, and then select the security group that you created in **Step 1\.**
+1. On the **Configure Security Group** page, for **Assign a security group**, select **Select an existing security group**, and then select the security group that you created in **Step 1**\.
 
 1. On the **Review Instance Launch** page, review the settings, and then choose **Launch** to choose a key pair and to launch your instance\.
 
-## Step 3: Install Libfabric and Open MPI<a name="efa-start-enable"></a>
+## Step 3: Install the EFA Software<a name="efa-start-enable"></a>
 
-Install the EFA\-enabled kernel, EFA drivers, libfabric, and Open MPI stack that is required to support EFA on your temporary instance\.
+Install the EFA\-enabled kernel, EFA drivers, Libfabric, and Open MPI stack that is required to support EFA on your temporary instance\.
 
-**To install libfabric and Open MPI on your temporary instance**
+The steps differ depending on whether you intend to use EFA with Open MPI or with Intel MPI\.
+
+**To install the EFA software**
 
 1. Connect to the instance you launched in **Step 2**\. For more information, see [Connect to Your Linux Instance](AccessingInstances.md)\.
+
+1. To ensure that all of your software packages are up to date, perform a quick software update on your instance\. This process may take a few minutes\.
+   + Amazon Linux, Amazon Linux 2, RHEL 7\.6/7\.7, CentOS 7
+
+     ```
+     $ sudo yum update -y
+     ```
+   + Ubuntu 16\.04 and Ubuntu 18\.04
+
+     ```
+     $ sudo apt-get update -y
+     ```
+
+     ```
+     $ sudo apt-get upgrade -y
+     ```
 
 1. Download the EFA software installation files\. To download the latest *stable* version, use the following command\.
 
    ```
-   $ curl -O https://s3-us-west-2.amazonaws.com/aws-efa-installer/aws-efa-installer-1.7.1.tar.gz
+   $ curl -O https://s3-us-west-2.amazonaws.com/aws-efa-installer/aws-efa-installer-1.8.2.tar.gz
    ```
 
    You can also get the latest version by replacing the version number with `latest` in the preceding command\.
@@ -95,20 +114,23 @@ Install the EFA\-enabled kernel, EFA drivers, libfabric, and Open MPI stack that
 1. The software installation files are packaged into a compressed `.tar.gz` file\. Extract the files from the compressed `.tar.gz` file and navigate into the extracted directory\.
 
    ```
-   $ tar -xf aws-efa-installer-1.7.1.tar.gz
+   $ tar -xf aws-efa-installer-1.8.2.tar.gz
    ```
 
    ```
    $ cd aws-efa-installer
    ```
 
-1. Run the EFA software installation script\.
+1. Install the EFA software\.
+   + If you intend to use EFA with Open MPI, you must install the EFA software with Libfabric and Open MPI, and you must skip **Step 4: Install Intel MPI**\.
 
-   ```
-   $ sudo ./efa_installer.sh -y
-   ```
+     To install the EFA software with Libfabric and Open MPI, run the following command\.
 
-   Libfabric is installed in the `/opt/amazon/efa` directory, while Open MPI is installed in the `/opt/amazon/openmpi` directory\.
+     ```
+     $ sudo ./efa_installer.sh -y
+     ```
+
+     Libfabric is installed in the `/opt/amazon/efa` directory, while Open MPI is installed in the `/opt/amazon/openmpi` directory\.
 
 1. Log out of the instance and then log back in\.
 
@@ -118,7 +140,7 @@ Install the EFA\-enabled kernel, EFA drivers, libfabric, and Open MPI stack that
    $ fi_info -p efa
    ```
 
-   The command should return information about the libfabric EFA interfaces\. The following example shows the command output\.
+   The command should return information about the Libfabric EFA interfaces\. The following example shows the command output\.
 
    ```
    provider: efa
@@ -143,7 +165,7 @@ Install the EFA\-enabled kernel, EFA drivers, libfabric, and Open MPI stack that
 
 ## Step 4: \(Optional\) Install Intel MPI<a name="efa-start-impi"></a>
 
-**Note**  
+**Important**  
 If you intend to use Open MPI, skip this step\. Perform this step only if you intend to use Intel MPI\.
 
 Intel MPI requires an additional installation and environment variable configuration\.
@@ -160,9 +182,7 @@ Ensure that the user performing the following steps has sudo permissions\.
 
    1. For **Product**, choose **Intel MPI Library for Linux**\.
 
-   1. For **Version**, choose **2019 Update 6**\.
-
-   1. Choose the button that has the `.tar.gz` file name\. For example, **l\_mpi\_2019\.6\.154\.tgz**\.
+   1. For **Version**, choose **2019 Update 6**, and then choose **Full Product**\.
 
 1. The installation files are packaged into a compressed `.tar.gz` file\. Extract the files from the compressed `.tar.gz` file and navigate into the extracted directory\.
 
@@ -188,12 +208,12 @@ Ensure that the user performing the following steps has sudo permissions\.
    + For **bash**, add the following environment variable to `/home/username/.bashrc` and `/home/username/.bash_profile`\.
 
      ```
-     source /opt/intel/impi/2019.6.154/intel64/bin/mpivars.sh
+     source /opt/intel/compilers_and_libraries/linux/mpi/intel64/bin/mpivars.sh
      ```
    + For **csh and tcsh**, add the following environment variable to `/home/username/.cshrc`\.
 
      ```
-     source /opt/intel/impi/2019.6.154/intel64/bin/mpivarsh.csh
+     source /opt/intel/compilers_and_libraries/linux/mpi/intel64/bin/mpivars.csh
      ```
 
 1. Log out of the instance and then log back in\.
@@ -204,11 +224,7 @@ Ensure that the user performing the following steps has sudo permissions\.
    $ which mpicc
    ```
 
-   The following example shows the command output\.
-
-   ```
-   /opt/intel/compilers_and_libraries_2020.0.154/linux/mpi/intel64/bin/mpicc 
-   ```
+   Ensure that the returned path includes the `/opt/intel/` subdirectory\.
 
 **Note**  
 If you no longer want to use Intel MPI, remove the environment variables from the shell startup scripts\.
@@ -281,13 +297,13 @@ It is not an absolute requirement to launch your EFA\-enabled instances into a c
 
 1. On the **Add Tags** page, specify tags for the instances, such as a user\-friendly name, and then choose **Next: Configure Security Group**\.
 
-1. On the **Configure Security Group** page, for **Assign a security group**, select **Select an existing security group**, and then select the security group that you created in **Step 1\.**
+1. On the **Configure Security Group** page, for **Assign a security group**, select **Select an existing security group**, and then select the security group that you created in **Step 1**\.
 
 1. Choose **Review and Launch**\.
 
 1. On the **Review Instance Launch** page, review the settings, and then choose **Launch** to choose a key pair and to launch your instances\.
 
-## Step 8 Terminate the Temporary Instance<a name="efa-start-terminate"></a>
+## Step 8: Terminate the Temporary Instance<a name="efa-start-terminate"></a>
 
 At this point, you no longer need the temporary instance that you launched in **Step 1**\. You can terminate the instance to stop incurring charges for it\.
 
@@ -298,3 +314,50 @@ At this point, you no longer need the temporary instance that you launched in **
 1. In the navigation pane, choose **Instances**\.
 
 1. Select the temporary instance that you created in **Step 1** and then choose **Actions**, **Instance State**, **Terminate**, **Yes, Terminate**\.
+
+## Step 9: Enable Passwordless SSH<a name="efa-start-passwordless"></a>
+
+To enable your applications to run across all of the instances in your cluster, you must enable passwordless SSH access from the leader node to the member nodes\. The leader node is the instance from which you run your applications\. The remaining instances in the cluster are the member nodes\.
+
+**To enable passwordless SSH between the instances in the cluster**
+
+1. Select one instance in the cluster as the leader node, and connect to it\.
+
+1. Disable `strictHostKeyChecking` and enable `ForwardAgent` on the leader node\. Open `~/.ssh/config` using your preferred text editor and add the following\.
+
+   ```
+   Host *
+       ForwardAgent yes
+   Host *
+       StrictHostKeyChecking no
+   ```
+
+1. Generate an RSA key pair\.
+
+   ```
+   $ ssh-keygen -t rsa -N "" -f /home/ubuntu/.ssh/id_rsa
+   ```
+
+   The key pair is created in the `$HOME/.ssh/` directory\.
+
+1. Change the permissions of the private key on the leader node\.
+
+   ```
+   $ chmod 600 ~/.ssh/id_rsa
+   ```
+
+1. Open `~/.ssh/id_rsa.pub` using your preferred text editor and copy the key\.
+
+1. For each member node in the cluster, do the following:
+
+   1. Connect to the instance\.
+
+   1. Open `~/.ssh/authorized_keys` using your preferred text editor and add the public key that you copied earlier\.
+
+1. To test that the passwordless SSH is functioning as expected, connect to your leader node and run the following command\.
+
+   ```
+   $ ssh member_node_private_ip
+   ```
+
+   You should connect to the member node without being prompted for a key or password\.

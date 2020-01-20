@@ -59,7 +59,7 @@ For example, you could create a policy that manages all EBS volumes with the tag
 
 Your AWS account has the following quotas related to Amazon Data Lifecycle Manager:
 + You can create up to 100 lifecycle policies per Region\.
-+ You can add up to 50 tags per resource\.
++ You can add up to 45 tags per resource\.
 + You can create one schedule per lifecycle policy\.
 
 The following considerations apply to lifecycle policies:

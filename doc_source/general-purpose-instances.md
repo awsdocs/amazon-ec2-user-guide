@@ -89,7 +89,9 @@ The following is a summary of the hardware specifications for general purpose in
 | m5ad\.xlarge | 4 | 16 | 
 | m5ad\.2xlarge | 8 | 32 | 
 | m5ad\.4xlarge | 16 | 64 | 
+| m5ad\.8xlarge | 32 | 128 | 
 | m5ad\.12xlarge | 48 | 192 | 
+| m5ad\.16xlarge | 64 | 256 | 
 | m5ad\.24xlarge | 96 | 384 | 
 | m5d\.large | 2 | 8 | 
 | m5d\.xlarge | 4 | 16 | 
@@ -163,7 +165,7 @@ The following is a summary of network performance for general purpose instances 
 | t3\.nano \| t3\.micro \| t3\.small \| t3\.medium \| t3\.large \| t3\.xlarge \| t3\.2xlarge \| t3a\.nano \| t3a\.micro \| t3a\.small \| t3a\.medium \| t3a\.large \| t3a\.xlarge \| t3a\.2xlarge | Up to 5 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  `m4.large`  |  Moderate  |  [Intel 82599 VF](sriov-networking.md)  | 
 |  `m4.xlarge` \| `m4.2xlarge` \| `m4.4xlarge`  |  High  |  [Intel 82599 VF](sriov-networking.md)  | 
-|  `a1.medium` \| `a1.large` \| `a1.xlarge` \| `a1.2xlarge` \| `a1.4xlarge` \| `a1.metal` \| `m5.large` \| `m5.xlarge` \| `m5.2xlarge` \| `m5.4xlarge` \| `m5a.large` \| `m5a.xlarge` \| `m5a.2xlarge` \| `m5a.4xlarge` \| `m5a.8xlarge` \| `m5ad.large` \| `m5ad.xlarge` \| `m5ad.2xlarge` \| `m5ad.4xlarge` \| `m5d.large` \| `m5d.xlarge` \| `m5d.2xlarge` \| `m5d.4xlarge`   |  Up to 10 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  `a1.medium` \| `a1.large` \| `a1.xlarge` \| `a1.2xlarge` \| `a1.4xlarge` \| `a1.metal` \| `m5.large` \| `m5.xlarge` \| `m5.2xlarge` \| `m5.4xlarge` \| `m5a.large` \| `m5a.xlarge` \| `m5a.2xlarge` \| `m5a.4xlarge` \| `m5a.8xlarge` \| `m5ad.large` \| `m5ad.xlarge` \| `m5ad.2xlarge` \| `m5ad.4xlarge` \| `m5ad.8xlarge` \| `m5d.large` \| `m5d.xlarge` \| `m5d.2xlarge` \| `m5d.4xlarge`   |  Up to 10 Gbps  | [ENA](enhanced-networking-ena.md) | 
 |  `m4.10xlarge`  |  10 Gbps  |  [Intel 82599 VF](sriov-networking.md)  | 
 |  `m5.8xlarge` \| `m5.12xlarge` \| `m5a.12xlarge` \| `m5ad.12xlarge` \| `m5d.8xlarge` \| `m5d.12xlarge`  |  10 Gbps  | [ENA](enhanced-networking-ena.md) | 
 |  `m5a.16xlarge` \| `m5ad.16xlarge`  |  12 Gbps  | [ENA](enhanced-networking-ena.md) | 
@@ -185,7 +187,9 @@ If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-ba
 |  `m5ad.xlarge` \*  |  59,000  |  29,000  | 
 |  `m5ad.2xlarge` \*  |  117,000  |  57,000  | 
 |  `m5ad.4xlarge` \*  |  234,000  |  114,000  | 
+|  `m5ad.8xlarge`  |  466,666  |  233,333  | 
 |  `m5ad.12xlarge`  |  700,000  |  340,000  | 
+|  `m5ad.16xlarge`  |  933,333  |  466,666  | 
 |  `m5ad.24xlarge`  |  1,400,000  |  680,000  | 
 |  `m5d.large` \*  |  30,000  |  15,000  | 
 |  `m5d.xlarge` \*  |  59,000  |  29,000  | 
@@ -240,15 +244,15 @@ For more information, see the following:
 + [Placement Groups](placement-groups.md)
 
 ## Release Notes<a name="general-purpose-instances-limits"></a>
-+ M5, M5d, and T3 instances feature a 3\.1 GHz Intel Xeon Platinum 8000 series processor\.
++ M5, M5d, and T3 instances feature a 3\.1 GHz Intel Xeon Platinum 8000 series processor from either the first generation \(Skylake\-SP\) or second generation \(Cascade Lake\)\.
 + M5a, M5ad, and T3a instances feature a 2\.5 GHz AMD EPYC 7000 series processor\.
 + A1 instances feature a 2\.3 GHz AWS Graviton processor based on 64\-bit Arm architecture\.
 + M4, M5, M5a, M5ad, M5d, `t2.large` and larger, and `t3.large` and larger, and `t3a.large` and larger instance types require 64\-bit HVM AMIs\. They have high\-memory, and require a 64\-bit operating system to take advantage of that capacity\. HVM AMIs provide superior performance in comparison to paravirtual \(PV\) AMIs on high\-memory instance types\. In addition, you must use an HVM AMI to take advantage of enhanced networking\.
 + A1 instances have the following requirements:
-  + Must have the NVMe drivers installed\. EBS volumes are exposed as [NVMe block devices](nvme-ebs-volumes.md)\.
-  + Must have the Elastic Network Adapter \([ENA](enhanced-networking-ena.md)\) drivers installed\.
-  + Must use an AMI for the 64\-bit Arm architecture\.
-  + Must support booting through UEFI with ACPI tables and support ACPI hot\-plug of PCI devices\.
+  + Use an AMI for the 64\-bit Arm architecture\.
+  + [NVMe drivers](nvme-ebs-volumes.md) must be installed
+  + [Elastic Network Adapter \(ENA\) drivers](enhanced-networking-ena.md) must be installed
+  + Support booting through UEFI with ACPI tables and support ACPI hot\-plug of PCI devices\.
 
   The following AMIs meet these requirements:
   + Amazon Linux 2 \(64\-bit Arm\)
@@ -256,10 +260,10 @@ For more information, see the following:
   + Red Hat Enterprise Linux 7\.6 or later \(64\-bit Arm\)
   + SUSE Linux Enterprise Server 15 or later \(64\-bit Arm\)
 + M5, M5a, M5ad, M5d, M5dn, M5n, T3, and T3a instances have the following requirements:
-  + NVMe drivers must be installed\. EBS volumes are exposed as [NVMe block devices](nvme-ebs-volumes.md)\.
-  + Elastic Network Adapter \([ENA](enhanced-networking-ena.md)\) drivers must be installed\.
+  + [NVMe drivers](nvme-ebs-volumes.md) must be installed
+  + [Elastic Network Adapter \(ENA\) drivers](enhanced-networking-ena.md) must be installed
 
-  The following AMIs meet these requirements:
+  The following Linux AMIs meet these requirements:
   + Amazon Linux 2
   + Amazon Linux AMI 2018\.03
   + Ubuntu 14\.04 \(with `linux-aws` kernel\) or later

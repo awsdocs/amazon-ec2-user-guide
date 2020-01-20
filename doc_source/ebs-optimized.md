@@ -123,7 +123,7 @@ The following table lists the instance types that support EBS optimization and E
 | m5ad\.xlarge \* | 2,120 | 265 | 16,000 | 
 | m5ad\.2xlarge \* | 2,120 | 265 | 16,000 | 
 | m5ad\.4xlarge | 2,120 | 265 | 16,000 | 
-| m5ad\.12xlarge | 5,000 | 675 | 30,000 | 
+| m5ad\.12xlarge | 5,000 | 625 | 30,000 | 
 | m5ad\.24xlarge | 10,000 | 1,250 | 60,000 | 
 | m5d\.large \* | 4,750 | 593\.75 | 18,750 | 
 | m5d\.xlarge \* | 4,750 | 593\.75 | 18,750 | 

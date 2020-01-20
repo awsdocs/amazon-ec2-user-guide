@@ -11,7 +11,7 @@ AWS License Manager integration is supported only in Regions in which AWS Licens
 + [Host Recovery Basics](#dedicated-hosts-recovery-basics)
 + [Configuring Host Recovery](#dedicated-hosts-recovery-working)
 + [Host Recovery States](#dedicated-hosts-recovery-states)
-+ [Supported Instance Configurations](#dedicated-hosts-recovery-instances)
++ [Unsupported Instance Configurations](#dedicated-hosts-recovery-instances)
 + [Manually Recovering Unsupported Instances](#dedicated-hosts-recovery-unsupported)
 + [Related Services](#dedicated-hosts-recovery-related)
 + [Pricing](#dedicated-hosts-recovery-pricing)
@@ -132,14 +132,9 @@ After the host recovery is complete, the replacement Dedicated Host enters the `
 
 If the impaired Dedicated Host has instances that do not support host recovery, such as instances with instance store\-backed volumes, the Dedicated Host is not released\. Instead, it is marked for retirement and enters the `permanent-failure` state\.
 
-## Supported Instance Configurations<a name="dedicated-hosts-recovery-instances"></a>
+## Unsupported Instance Configurations<a name="dedicated-hosts-recovery-instances"></a>
 
-Host recovery is supported only with instances with a supported configuration\. To recover instances that are not supported, see [Manually Recovering Unsupported Instances](#dedicated-hosts-recovery-unsupported)\.
-
-The following instance configurations are not supported:
-+ Instance store volumes
-  + C5d, G4, I3en, M5ad, M5d, M5dn, P3dn, R5ad, R5d, R5dn, and z1d instances
-  + D2, F1, HS1, I2, I3, X1, and X1e instances
+Host recovery is not supported for instances with [instance store volumes](InstanceStorage.md#instance-store-volumes)\. To recover instances that are not supported, see [Manually Recovering Unsupported Instances](#dedicated-hosts-recovery-unsupported)\.
 
 ## Manually Recovering Unsupported Instances<a name="dedicated-hosts-recovery-unsupported"></a>
 

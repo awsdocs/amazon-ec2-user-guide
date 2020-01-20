@@ -41,7 +41,7 @@ Some applications may not be compatible with the following recommended software 
    Use the yum install command to install multiple software packages and all related dependencies at the same time\.
 
    ```
-   [ec2-user ~]$ sudo yum install -y httpd24 php70 mysql56-server php70-mysqlnd
+   [ec2-user ~]$ sudo yum install -y httpd24 php72 mysql57-server php72-mysqlnd
    ```
 **Note**  
 If you receive the error `No package package-name available`, then your instance was not launched with the Amazon Linux AMI \(perhaps you are using Amazon Linux 2 instead\)\. You can view your version of Amazon Linux with the following command\.  
@@ -189,12 +189,12 @@ If your server is installed and running, and your file permissions are set corre
    ```
 
    You should see the PHP information page:  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/phpinfo5.6.6.png)
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/phpinfo7.2.10.png)
 
    If you do not see this page, verify that the `/var/www/html/phpinfo.php` file was created properly in the previous step\. You can also verify that all of the required packages were installed with the following command\. The package versions in the second column do not need to match this example output\.
 
    ```
-   [ec2-user ~]$ sudo yum list installed httpd24 php70 mysql56-server php70-mysqlnd
+   [ec2-user ~]$ sudo yum list installed httpd24 php72 mysql57-server php72-mysqlnd
    Loaded plugins: priorities, update-motd, upgrade-helper
    Installed Packages
    httpd24.x86_64                          2.4.25-1.68.amzn1                    @amzn-updates
@@ -282,7 +282,7 @@ The Amazon Linux package management system does not currently support the automa
 1. Install the required dependencies\.
 
    ```
-   [ec2-user ~]$ sudo yum install php70-mbstring.x86_64 php70-zip.x86_64 -y
+   [ec2-user ~]$ sudo yum install php72-mbstring.x86_64 -y
    ```
 
 1. Restart Apache\.
@@ -377,7 +377,7 @@ The well\-tested previous version of this tutorial called for the following core
 If you have already installed the latest packages as recommended at the start of this tutorial, you must first uninstall these packages and other dependencies as follows:
 
 ```
-[ec2-user ~]$ sudo yum remove -y httpd24 php70 mysql56-server php70-mysqlnd perl-DBD-MySQL56
+[ec2-user ~]$ sudo yum remove -y httpd24 php72 mysql57-server php72-mysqlnd perl-DBD-MySQL57
 ```
 
 Next, install the replacement environment:
@@ -389,7 +389,7 @@ Next, install the replacement environment:
 If you decide later to upgrade to the recommended environment, you must first remove the customized packages and dependencies:
 
 ```
-[ec2-user ~]$ sudo yum remove -y  httpd24 php56 mysql55-server php56-mysqlnd perl-DBD-MySQL55
+[ec2-user ~]$ sudo yum remove -y  httpd24 php56 mysql55-server php56-mysqlnd perl-DBD-MySQL56
 ```
 
 Now you can install the latest packages, as described earlier\.

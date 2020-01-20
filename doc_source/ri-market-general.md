@@ -34,12 +34,13 @@ You own your Reserved Instance until it's sold\. After the sale, you've given up
 Before you can sell your unused reservations, you must register as a seller in the Reserved Instance Marketplace\. For information, see [Registering as a Seller](#ri-market-seller-profile)\.
 
 The following limitations and restrictions apply when selling Reserved Instances:
-+ Only Amazon EC2 Standard Reserved Instances can be sold in the Reserved Instance Marketplace\. Convertible Reserved Instances cannot be sold\. There must be at least one month remaining in the term of the Standard Reserved Instance\.
++ Only Amazon EC2 Standard Reserved Instances can be sold in the Reserved Instance Marketplace\. Amazon EC2 Convertible Reserved Instances cannot be sold\. Reserved Instances for other AWS, such as Amazon RDS and Amazon ElastiCache, cannot be sold\.
++ There must be at least one month remaining in the term of the Standard Reserved Instance\.
++ You cannot sell a Standard Reserved Instance in a Region that is disabled by default \(Asia Pacific \(Hong Kong\) and Middle East \(Bahrain\)\)\.
 + The minimum price allowed in the Reserved Instance Marketplace is $0\.00\.
 + You can sell No Upfront, Partial Upfront, or All Upfront Reserved Instances in the Reserved Instance Marketplace\. If there is an upfront payment on a Reserved Instance, it can be sold only after AWS has received the upfront payment and the reservation has been active \(you've owned it\) for at least 30 days\.
 + You cannot modify your listing in the Reserved Instance Marketplace directly\. However, you can change your listing by first canceling it and then creating another listing with new parameters\. For information, see [Pricing Your Reserved Instances](#ri-market-concepts-pricing)\. You can also modify your Reserved Instances before listing them\. For information, see [Modifying Reserved Instances](ri-modifying.md)\.
 + AWS charges a service fee of 12 percent of the total upfront price of each Standard Reserved Instance you sell in the Reserved Instance Marketplace\. The upfront price is the price the seller is charging for the Standard Reserved Instance\.
-+ Only Amazon EC2 Standard Reserved Instances can be sold in the Reserved Instance Marketplace\. Other AWS Reserved Instances, such as Amazon RDS and Amazon ElastiCache Reserved Instances cannot be sold in the Reserved Instance Marketplace\.
 
 ### Registering as a Seller<a name="ri-market-seller-profile"></a>
 

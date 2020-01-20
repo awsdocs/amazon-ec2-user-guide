@@ -119,7 +119,9 @@ The following tables list the instance types that support specifying CPU options
 | m5ad\.xlarge | 4 | 2 | 2 | 2 | 1, 2 | 
 | m5ad\.2xlarge | 8 | 4 | 2 | 2, 4 | 1, 2 | 
 | m5ad\.4xlarge | 16 | 8 | 2 | 2, 4, 6, 8 | 1, 2 | 
+| m5ad\.8xlarge | 32 | 16 | 2 | 2, 4, 6, 8, 10, 12, 14, 16 | 1, 2 | 
 | m5ad\.12xlarge | 48 | 24 | 2 | 6, 12, 18, 24 | 1, 2 | 
+| m5ad\.16xlarge | 64 | 32 | 2 | 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32 | 1, 2 | 
 | m5ad\.24xlarge | 96 | 48 | 2 | 12, 18, 24, 36, 48 | 1, 2 | 
 | m5d\.large | 2 | 1 | 2 | 1 | 1, 2 | 
 | m5d\.xlarge | 4 | 2 | 2 | 2 | 1, 2 | 
@@ -191,7 +193,9 @@ The following tables list the instance types that support specifying CPU options
 | r5ad\.xlarge | 4 | 2 | 2 | 2 | 1, 2 | 
 | r5ad\.2xlarge | 8 | 4 | 2 | 2, 4 | 1, 2 | 
 | r5ad\.4xlarge | 16 | 8 | 2 | 2, 4, 6, 8 | 1, 2 | 
+| r5ad\.8xlarge | 32 | 16 | 2 | 2, 4, 6, 8, 10, 12, 14, 16 | 1, 2 | 
 | r5ad\.12xlarge | 48 | 24 | 2 | 6, 12, 18, 24 | 1, 2 | 
+| r5ad\.16xlarge | 64 | 32 | 2 | 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32 | 1, 2 | 
 | r5ad\.24xlarge | 96 | 48 | 2 | 12, 18, 24, 36, 48 | 1, 2 | 
 | r5d\.large | 2 | 1 | 2 | 1 | 1, 2 | 
 | r5d\.xlarge | 4 | 2 | 2 | 2 | 1, 2 | 

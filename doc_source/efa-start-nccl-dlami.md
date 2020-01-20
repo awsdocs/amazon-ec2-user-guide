@@ -16,7 +16,7 @@ For more information, see the [ *AWS Deep Learning AMI User Guide*](https://docs
 + [Step 5: Create an EFA and NCCL\-Enabled AMI](#nccl-start-dlami-ami)
 + [Step 6: Terminate the Temporary Instance](#nccl-start-dlami-terminate)
 + [Step 7: Launch EFA and NCCL\-Enabled Instances into a Cluster Placement Group](#nccl-start-dlami-cluster)
-+ [Step 8: Enable Passwordless SSH](#nccl-start-dlami-terminate)
++ [Step 8: Enable Passwordless SSH](#nccl-start-dlami-passwordless)
 
 ## Step 1: Prepare an EFA\-Enabled Security Group<a name="nccl-start-dlami-sg"></a>
 
@@ -78,7 +78,7 @@ Launch a temporary instance that you can use to install and configure the EFA so
 
 1. On the **Add Tags** page, specify a tag that you can use to identify the temporary instance, and then choose **Next: Configure Security Group**\.
 
-1. On the **Configure Security Group** page, for **Assign a security group**, select **Select an existing security group**\. Then select the security group that you created in **Step 1\.**
+1. On the **Configure Security Group** page, for **Assign a security group**, select **Select an existing security group**\. Then select the security group that you created in **Step 1**\.
 
 1. On the **Review Instance Launch** page, review the settings, and then choose **Launch** to choose a key pair and to launch your instance\.
 
@@ -90,9 +90,22 @@ Run a test to ensure that your temporary instance is properly configured for EFA
 
 1. Create a host file that specifies the hosts on which to run the tests\. The following command creates a host file named `my-hosts` that includes a reference to the instance itself\.
 
+------
+#### [ IMDSv2 ]
+
    ```
-   $ curl http://169.254.169.254/latest/meta-data/local-ipv4 >> my-hosts
+   [ec2-user ~]$ TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` \
+   && curl -H "X-aws-ec2-metadata-token: $TOKEN" –v http://169.254.169.254/latest/meta-data/local-ipv4 >> my-hosts
    ```
+
+------
+#### [ IMDSv1 ]
+
+   ```
+   [ec2-user ~]$ curl http://169.254.169.254/latest/meta-data/local-ipv4 >> my-hosts
+   ```
+
+------
 
 1. Run the test and specify the host file \(`--hostfile`\) and the number of GPUs to use \(`-n`\)\. The following command runs the `all_reduce_perf` test on 8 GPUs on the instance itself, and specifies the following environment variables\.
    + `FI_PROVIDER="efa"`—specifies the fabric interface provider\. This must be set to `"efa"`\.
@@ -196,9 +209,9 @@ Launch your EFA and NCCL\-enabled instances into a cluster placement group using
 
 1. On the **Review Instance Launch** page, review the settings, and then choose **Launch** to choose a key pair and to launch your instances\.
 
-## Step 8: Enable Passwordless SSH<a name="nccl-start-dlami-terminate"></a>
+## Step 8: Enable Passwordless SSH<a name="nccl-start-dlami-passwordless"></a>
 
-To enable your machine learning applications to run across all of the instances in your cluster, you must enable passwordless SSH access from the leader node to the member nodes\. The leader node is the instance from which you run your applications\. The remaining instances in the cluster are the member nodes\.
+To enable your applications to run across all of the instances in your cluster, you must enable passwordless SSH access from the leader node to the member nodes\. The leader node is the instance from which you run your applications\. The remaining instances in the cluster are the member nodes\.
 
 **To enable passwordless SSH between the instances in the cluster**
 
@@ -207,10 +220,10 @@ To enable your machine learning applications to run across all of the instances 
 1. Disable `strictHostKeyChecking` and enable `ForwardAgent` on the leader node\. Open `~/.ssh/config` using your preferred text editor and add the following\.
 
    ```
-   $ Host *
-   	    ForwardAgent yes
-   	Host *
-   	    StrictHostKeyChecking no
+   Host *
+       ForwardAgent yes
+   Host *
+       StrictHostKeyChecking no
    ```
 
 1. Generate an RSA key pair\.

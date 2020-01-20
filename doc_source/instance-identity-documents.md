@@ -11,9 +11,22 @@ Due to the dynamic nature of instance identity documents and signatures, we reco
 
 To retrieve the instance identity document, use the following command from your running instance\.
 
+------
+#### [ IMDSv2 ]
+
+```
+[ec2-user ~]$ TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` \
+&& curl -H "X-aws-ec2-metadata-token: $TOKEN" –v http://169.254.169.254/latest/dynamic/instance-identity/document
+```
+
+------
+#### [ IMDSv1 ]
+
 ```
 [ec2-user ~]$ curl http://169.254.169.254/latest/dynamic/instance-identity/document
 ```
+
+------
 
 The following is example output\.
 
@@ -39,9 +52,22 @@ The following is example output\.
 
 To retrieve the instance identity signature, use the following command from your running instance\.
 
+------
+#### [ IMDSv2 ]
+
+```
+[ec2-user ~]$ TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` \
+&& curl -H "X-aws-ec2-metadata-token: $TOKEN" –v http://169.254.169.254/latest/dynamic/instance-identity/signature
+```
+
+------
+#### [ IMDSv1 ]
+
 ```
 [ec2-user ~]$ curl http://169.254.169.254/latest/dynamic/instance-identity/signature
 ```
+
+------
 
 The following is example output\.
 
@@ -53,9 +79,22 @@ x2oALjWSCBExample=
 
 To retrieve the PKCS7 signature, use the following command from your running instance\.
 
+------
+#### [ IMDSv2 ]
+
 ```
-[ec2-user ~]$ curl http://169.254.169.254/latest/dynamic/instance-identity/pkcs7
+[ec2-user ~]$ TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` \
+&& curl -H "X-aws-ec2-metadata-token: $TOKEN" –v http://169.254.169.254/latest/dynamic/instance-identity/pkcs7
 ```
+
+------
+#### [ IMDSv1 ]
+
+```
+[ec2-user ~]$ curl http://169.254.169.254//latest/dynamic/instance-identity/pkcs7
+```
+
+------
 
 The following is example output\.
 
@@ -190,10 +229,24 @@ To get the AWS public certificate for other Regions, contact [AWS Support](https
 
 1. Append the contents of the PKCS7 signature from the instance metadata, plus a new line\.
 
+------
+#### [ IMDSv2 ]
+
+   ```
+   [ec2-user ~]$ TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` \
+   && curl -H "X-aws-ec2-metadata-token: $TOKEN" –s http://169.254.169.254/latest/dynamic/instance-identity/pkcs7 >> $PKCS7
+   [ec2-user ~]$ echo "" >> $PKCS7
+   ```
+
+------
+#### [ IMDSv1 ]
+
    ```
    [ec2-user ~]$ curl -s http://169.254.169.254/latest/dynamic/instance-identity/pkcs7 >> $PKCS7
    [ec2-user ~]$ echo "" >> $PKCS7
    ```
+
+------
 
 1. Append the `-----END PKCS7-----` footer\.
 
@@ -209,9 +262,22 @@ To get the AWS public certificate for other Regions, contact [AWS Support](https
 
 1. Add the contents of the document from your instance metadata to the temporary document file\.
 
+------
+#### [ IMDSv2 ]
+
+   ```
+   [ec2-user ~]$ TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` \
+   && curl -H "X-aws-ec2-metadata-token: $TOKEN" -s http://169.254.169.254/latest/dynamic/instance-identity/document > $DOCUMENT
+   ```
+
+------
+#### [ IMDSv1 ]
+
    ```
    [ec2-user ~]$ curl -s http://169.254.169.254/latest/dynamic/instance-identity/document > $DOCUMENT
    ```
+
+------
 
 1. Open a text editor and create a file named `AWSpubkey`\. Copy and paste the contents of the AWS public certificate above to the file and save it\.
 

@@ -37,10 +37,10 @@ On Amazon Linux 2, the default `chrony` configuration is already set up to use t
 
    If the line is present, then the Amazon Time Sync Service is already configured and you can go to the next step\. If not, add the line after any other `server` or `pool` statements that are already present in the file, and save your changes\.
 
-1. Start the `chrony` daemon \(`chronyd`\)\.
+1. Restart the `chrony` daemon \(`chronyd`\)\.
 
    ```
-   [ec2-user ~]$ sudo service chronyd start
+   [ec2-user ~]$ sudo service chronyd restart
    ```
 
    ```

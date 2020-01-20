@@ -165,11 +165,24 @@ The following is an example of the event for Spot Instance interruption\. The po
 
 ### instance\-action<a name="instance-action-metadata"></a>
 
-If your Spot Instance is marked to be stopped or terminated by the Spot service, the `instance-action` item is present in your instance metadata\. Otherwise, it is not present\. You can retrieve `instance-action` as follows\.
+If your Spot Instance is marked to be stopped or terminated by the Spot service, the `instance-action` item is present in your [instance metadata](ec2-instance-metadata.md)\. Otherwise, it is not present\. You can retrieve `instance-action` as follows\.
+
+------
+#### [ IMDSv2 ]
+
+```
+[ec2-user ~]$ TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` \
+&& curl -H "X-aws-ec2-metadata-token: $TOKEN" –v http://169.254.169.254/latest/meta-data/spot/instance-action
+```
+
+------
+#### [ IMDSv1 ]
 
 ```
 [ec2-user ~]$ curl http://169.254.169.254/latest/meta-data/spot/instance-action
 ```
+
+------
 
 The `instance-action` item specifies the action and the approximate time, in UTC, when the action will occur\.
 
@@ -193,9 +206,22 @@ This item is maintained for backward compatibility; you should use `instance-act
 
 If your Spot Instance is marked for termination by the Spot service, the `termination-time` item is present in your instance metadata\. Otherwise, it is not present\. You can retrieve `termination-time` as follows\.
 
+------
+#### [ IMDSv2 ]
+
+```
+[ec2-user ~]$ TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"`
+[ec2-user ~]$ if curl -H "X-aws-ec2-metadata-token: $TOKEN" -s http://169.254.169.254/latest/meta-data/spot/termination-time | grep -q .*T.*Z; then echo terminated; fi
+```
+
+------
+#### [ IMDSv1 ]
+
 ```
 [ec2-user ~]$ if curl -s http://169.254.169.254/latest/meta-data/spot/termination-time | grep -q .*T.*Z; then echo terminated; fi
 ```
+
+------
 
 The `termination-time` item specifies the approximate time in UTC when the instance receives the shutdown signal\. For example:
 

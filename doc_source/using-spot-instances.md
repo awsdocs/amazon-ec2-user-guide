@@ -29,7 +29,7 @@ The following table lists the key differences between Spot Instances and On\-Dem
 |  Launch time  |  Can only be launched immediately if the Spot Request is active and capacity is available\.  |  Can only be launched immediately if you make a manual launch request and capacity is available\.  | 
 |  Available capacity  |  If capacity is not available, the Spot Request continues to automatically make the launch request until capacity becomes available\.  |  If capacity is not available when you make a launch request, you get an insufficient capacity error \(ICE\)\.  | 
 |  Hourly price  |  The hourly price for Spot Instances varies based on demand\.  |  The hourly price for On\-Demand Instances is static\.  | 
-|  Instance interruption  |  You can’t stop and start an Amazon EBS\-backed Spot Instance; only the Amazon EC2 Spot service can do this\. The Amazon EC2 Spot service can [interrupt](spot-interruptions.md) an individual Spot Instance if capacity is no longer available, the Spot price exceeds your maximum price, or demand for Spot Instances increases\.   |  You determine when an On\-Demand Instance is interrupted \(stopped or terminated\)\.  | 
+|  Instance interruption  |  You can stop and start an Amazon EBS\-backed Spot Instance\. In addition, the Amazon EC2 Spot service can [interrupt](spot-interruptions.md) an individual Spot Instance if capacity is no longer available, the Spot price exceeds your maximum price, or demand for Spot Instances increases\.   |  You determine when an On\-Demand Instance is interrupted \(stopped, hibernated, or terminated\)\.  | 
 
 ### Strategies for Using Spot Instances<a name="spot-strategy"></a>
 

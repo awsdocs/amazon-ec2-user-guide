@@ -2,21 +2,21 @@
 
 To help you track your Spot Instance requests and plan your use of Spot Instances, use the request status provided by Amazon EC2\. For example, the request status can provide the reason why your Spot request isn't fulfilled yet, or list the constraints that are preventing the fulfillment of your Spot request\.
 
-At each step of the process—also called the Spot request *lifecycle*, specific events determine successive request states\.
+At each step of the process—also called the Spot request *lifecycle*—specific events determine successive request states\.
 
 **Topics**
-+ [Life Cycle of a Spot Request](#spot-instances-bid-status-lifecycle)
++ [Lifecycle of a Spot Request](#spot-instances-bid-status-lifecycle)
 + [Getting Request Status Information](#get-spot-instance-bid-status)
 + [Spot Request Status Codes](#spot-instance-bid-status-understand)
 
-## Life Cycle of a Spot Request<a name="spot-instances-bid-status-lifecycle"></a>
+## Lifecycle of a Spot Request<a name="spot-instances-bid-status-lifecycle"></a>
 
 The following diagram shows you the paths that your Spot request can follow throughout its lifecycle, from submission to termination\. Each step is depicted as a node, and the status code for each node describes the status of the Spot request and Spot Instance\.
 
-![\[Life cycle of a Spot request\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/spot-bid-status-diagram.png)
+![\[Life cycle of a Spot Instance request\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/spot-request-status-diagram.png)
 
 **Pending evaluation**  
-As soon as you make a Spot Instance request, it goes into the `pending-evaluation` state unless one or more request parameters are not valid \(`bad-parameters`\)\.
+As soon as you create a Spot Instance request, it goes into the `pending-evaluation` state unless one or more request parameters are not valid \(`bad-parameters`\)\.
 
 
 | Status Code | Request State | Instance State | 
@@ -72,6 +72,18 @@ When all the specifications for your Spot Instances are met, your Spot request i
 |  `fulfilled`  |  `active`  |  `pending` → `running`  | 
 |  `fulfilled`  |  `active`  |  `stopped` → `running`  | 
 
+If you stop a Spot Instance, your Spot request goes into the `marked-for-stop` or `instance-stopped-by-user` state until the Spot Instance can be started again or the request is cancelled\. 
+
+
+| Status Code | Request State | Instance State | 
+| --- | --- | --- | 
+|  `marked-for-stop`  | active |  `stopping`  | 
+|  `instance-stopped-by-user`\*  |  `disabled` or `cancelled`\*\*  |  `stopped`  | 
+
+\* A Spot Instance goes into the `instance-stopped-by-user` state if you stop the instance or run the shutdown command from the instance\. After you've stopped the instance, you can start it again\. On restart, the Spot Instance request returns to the `pending-evaluation` state and then Amazon EC2 launches a new Spot Instance when the constraints are met\. 
+
+\*\* The Spot request state is `disabled` if you stop the Spot Instance but do not cancel the request\. The request state is `cancelled` if your spot instance is stopped and the request expires\. 
+
 **Fulfilled\-terminal**  
 Your Spot Instances continue to run as long as your maximum price is at or above the Spot price, there is available capacity for your instance type, and you don't terminate the instance\. If a change in the Spot price or available capacity requires Amazon EC2 to terminate your Spot Instances, the Spot request goes into a terminal state\. A request also goes into the terminal state if you cancel the Spot request or terminate the Spot Instances\.
 
@@ -87,11 +99,9 @@ Your Spot Instances continue to run as long as your maximum price is at or above
 |  `instance-terminated-by-price`  |  `closed` \(one\-time\), `open` \(persistent\)  |  `terminated`  | 
 |  `instance-terminated-by-schedule`  |  `closed`  |  `terminated`  | 
 |  `instance-terminated-by-service`  |  `cancelled`  |  `terminated`  | 
-|  `instance-terminated-by-user` †  |  `closed` or `cancelled` \*  |  `terminated`  | 
+|  `instance-terminated-by-user`  |  `closed` or `cancelled` \*  |  `terminated`  | 
 |  `instance-terminated-no-capacity`  |  `closed` \(one\-time\), `open` \(persistent\)  |  `terminated`  | 
 |  `instance-terminated-launch-group-constraint`  |  `closed` \(one\-time\), `open` \(persistent\)  |  `terminated`  | 
-
-† A Spot Instance can only get to this state if a user runs the shutdown command from the instance\. We do not recommend that you do this, as the Spot service might restart the instance\.
 
 \* The request state is `closed` if you terminate the instance but do not cancel the request\. The request state is `cancelled` if you terminate the instance and cancel the request\. Even if you terminate a Spot Instance before you cancel its request, there might be a delay before Amazon EC2 detects that your Spot Instance was terminated\. In this case, the request state can either be `closed` or `cancelled`\.
 
@@ -144,7 +154,7 @@ The Spot request is `active`, and Amazon EC2 is launching your Spot Instances\.
 Your instance was stopped because the Spot price exceeded your maximum price\.
 
 `instance-stopped-by-user`  
-Your instance was stopped because a user ran shutdown \-h from the instance\.
+Your instance was stopped because a user stopped the instance or ran the shutdown command from the instance\.
 
 `instance-stopped-no-capacity`  
 Your instance was stopped because there was no longer enough Spot capacity available for the instance\.

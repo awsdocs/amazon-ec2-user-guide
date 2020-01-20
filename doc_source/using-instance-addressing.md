@@ -133,19 +133,45 @@ The public IPv4 address is displayed as a property of the network interface in t
 
 **To determine your instance's IPv4 addresses using instance metadata**
 
-1. Connect to your instance\.
+1. Connect to your instance\. For more information, see [Connect to Your Linux Instance](AccessingInstances.md)\.
 
 1. Use the following command to access the private IP address:
+
+------
+#### [ IMDSv2 ]
+
+   ```
+   [ec2-user ~]$ TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` \
+   && curl -H "X-aws-ec2-metadata-token: $TOKEN" –v http://169.254.169.254/latest/meta-data/local-ipv4
+   ```
+
+------
+#### [ IMDSv1 ]
 
    ```
    [ec2-user ~]$ curl http://169.254.169.254/latest/meta-data/local-ipv4
    ```
 
+------
+
 1. Use the following command to access the public IP address:
+
+------
+#### [ IMDSv2 ]
+
+   ```
+   [ec2-user ~]$ TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` \
+   && curl -H "X-aws-ec2-metadata-token: $TOKEN" –v http://169.254.169.254/latest/meta-data/public-ipv4
+   ```
+
+------
+#### [ IMDSv1 ]
 
    ```
    [ec2-user ~]$ curl http://169.254.169.254/latest/meta-data/public-ipv4
    ```
+
+------
 
    Note that if an Elastic IP address is associated with the instance, the value returned is that of the Elastic IP address\.
 
@@ -163,13 +189,26 @@ You can use the Amazon EC2 console to determine the IPv6 addresses of your insta
 
 **To determine your instance's IPv6 addresses using instance metadata**
 
-1. Connect to your instance\.
+1. Connect to your instance\. For more information, see [Connect to Your Linux Instance](AccessingInstances.md)\.
 
-1. Use the following command to view the IPv6 address \(you can get the MAC address from `http://169.254.169.254/latest/meta-data/network/interfaces/macs/`\):
+1. Use the following command to view the IPv6 address \(you can get the MAC address from `http://169.254.169.254/latest/meta-data/network/interfaces/macs/`\)\.
+
+------
+#### [ IMDSv2 ]
+
+   ```
+   [ec2-user ~]$ TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` \
+   && curl -H "X-aws-ec2-metadata-token: $TOKEN" –v http://169.254.169.254/latest/meta-data/network/interfaces/macs/mac-address/ipv6s
+   ```
+
+------
+#### [ IMDSv1 ]
 
    ```
    [ec2-user ~]$ curl http://169.254.169.254/latest/meta-data/network/interfaces/macs/mac-address/ipv6s
    ```
+
+------
 
 ### Assigning a Public IPv4 Address During Instance Launch<a name="public-ip-addresses"></a>
 

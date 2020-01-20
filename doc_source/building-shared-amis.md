@@ -110,6 +110,27 @@ To log in through SSH, your AMI must retrieve the key value at boot and append i
 
 Many distributions, including Amazon Linux and Ubuntu, use the `cloud-init` package to inject public key credentials for a configured user\. If your distribution does not support `cloud-init`, you can add the following code to a system start\-up script \(such as `/etc/rc.local`\) to pull in the public key you specified at launch for the root user\.
 
+------
+#### [ IMDSv2 ]
+
+```
+if [ ! -d /root/.ssh ] ; then
+        mkdir -p /root/.ssh
+        chmod 700 /root/.ssh
+fi
+# Fetch public key using HTTP
+TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` \
+&& curl -H "X-aws-ec2-metadata-token: $TOKEN" -v http://169.254.169.254/latest/meta-data/public-keys/0/openssh-key > /tmp/my-key
+if [ $? -eq 0 ] ; then
+        cat /tmp/my-key >> /root/.ssh/authorized_keys
+        chmod 700 /root/.ssh/authorized_keys
+        rm /tmp/my-key
+fi
+```
+
+------
+#### [ IMDSv1 ]
+
 ```
 if [ ! -d /root/.ssh ] ; then
         mkdir -p /root/.ssh
@@ -123,6 +144,8 @@ if [ $? -eq 0 ] ; then
         rm /tmp/my-key
 fi
 ```
+
+------
 
  This can be applied to any user account; you do not need to restrict it to `root`\. 
 

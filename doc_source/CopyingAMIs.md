@@ -4,7 +4,7 @@ You can copy an Amazon Machine Image \(AMI\) within or across AWS Regions using 
 
 Copying a source AMI results in an identical but distinct target AMI with its own unique identifier\. In the case of an Amazon EBS\-backed AMI, each of its backing snapshots is, by default, copied to an identical but distinct target snapshot\. \(The sole exceptions are when you choose to encrypt or re\-encrypt the snapshot\.\) You can change or deregister the source AMI with no effect on the target AMI\. The reverse is also true\.
 
-There are no charges for copying an AMI\. However, standard storage and data transfer rates apply\.
+There are no charges for copying an AMI\. However, standard storage and data transfer rates apply\. If you copy an EBS\-backed AMI, you will incur charges for the storage of any additional EBS snapshots\. 
 
 AWS does not copy launch permissions, user\-defined tags, or Amazon S3 bucket permissions from the source AMI to the new AMI\. After the copy operation is complete, you can apply launch permissions, user\-defined tags, and Amazon S3 bucket permissions to the new AMI\.
 

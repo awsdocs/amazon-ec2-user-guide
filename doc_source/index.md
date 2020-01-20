@@ -1,7 +1,7 @@
 # Amazon Elastic Compute Cloud User Guide for Linux Instances
 
 -----
-*****Copyright &copy; 2019 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy; 2020 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -66,8 +66,8 @@ Amazon's trademarks and trade dress may not be used in
       + [Memory Optimized Instances](memory-optimized-instances.md)
       + [Storage Optimized Instances](storage-optimized-instances.md)
       + [Linux Accelerated Computing Instances](accelerated-computing-instances.md)
-         + [Installing the NVIDIA Driver on Linux Instances](install-nvidia-driver.md)
-         + [Activate NVIDIA GRID Virtual Applications on G3 Instances](activate_grid.md)
+         + [Installing NVIDIA Drivers on Linux Instances](install-nvidia-driver.md)
+         + [Activate NVIDIA GRID Virtual Applications](activate_grid.md)
          + [Optimizing GPU Settings](optimize_gpu.md)
          + [Getting Started with FPGA Development](fpga-getting-started.md)
          + [Getting Started with AWS Inferentia Development](inf-getting-started.md)

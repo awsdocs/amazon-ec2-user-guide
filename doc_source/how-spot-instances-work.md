@@ -1,10 +1,10 @@
 # How Spot Instances Work<a name="how-spot-instances-work"></a>
 
-To use Spot Instances, create a *Spot Instance request* or a *Spot Fleet request*\. The request can include the maximum price that you are willing to pay per hour per instance \(the default is the On\-Demand price\), and other constraints such as the instance type and Availability Zone\. If your maximum price exceeds the current Spot price for the specified instance, and capacity is available, your request is fulfilled immediately\. Otherwise, the request is fulfilled whenever the maximum price exceeds the Spot price and the capacity is available\. Spot Instances run until you terminate them or until Amazon EC2 must interrupt them \(known as a *Spot Instance interruption*\)\.
+To use Spot Instances, create a *Spot Instance request* or a *Spot Fleet request*\. The request can include the maximum price that you are willing to pay per hour per instance \(the default is the On\-Demand price\), and other constraints such as the instance type and Availability Zone\. If your maximum price exceeds the current Spot price for the specified instance, and capacity is available, your request is fulfilled immediately\. Otherwise, the request is fulfilled whenever the maximum price exceeds the Spot price and the capacity is available\. Spot Instances run until you stop or terminate them, or until Amazon EC2 must interrupt them \(known as a *Spot Instance interruption*\)\.
 
 When you use Spot Instances, you must be prepared for interruptions\. Amazon EC2 can interrupt your Spot Instance when the Spot price exceeds your maximum price, when the demand for Spot Instances rises, or when the supply of Spot Instances decreases\. When Amazon EC2 interrupts a Spot Instance, it provides a Spot Instance interruption notice, which gives the instance a two\-minute warning before Amazon EC2 interrupts it\. You can't enable termination protection for Spot Instances\. For more information, see [Spot Instance Interruptions](spot-interruptions.md)\.
 
-You can't stop and start an Amazon EBS\-backed instance if it is a Spot Instance \(only the Spot service can stop and start a Spot Instance\), but you can reboot or terminate a Spot Instance\.
+You can stop, start, reboot, or terminate an Amazon EBS\-backed instance\. The Spot service can stop, terminate, or hibernate a Spot Instance when it interrupts it\.
 
 **Topics**
 + [Launching Spot Instances in a Launch Group](#spot-launch-group)

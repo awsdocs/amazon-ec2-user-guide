@@ -285,13 +285,13 @@ The following AMIs support launching memory optimized instances:
 + Windows Server 2008 SP2 64\-bit
 
 ## Release Notes<a name="memory-instance-limits"></a>
-+ R5 and R5d instances feature a 3\.1 GHz Intel Xeon Platinum 8000 series processor\.
++ R5 and R5d instances feature a 3\.1 GHz Intel Xeon Platinum 8000 series processor from either the first generation \(Skylake\-SP\) or second generation \(Cascade Lake\)\.
 + R5a and R5ad instances feature a 2\.5 GHz AMD EPYC 7000 series processor\.
 + The following are requirements for high memory, R5, R5a, R5ad, R5d, R5dn, R5n, and z1d instances:
-  + NVMe drivers must be installed\. EBS volumes are exposed as [NVMe block devices](nvme-ebs-volumes.md)\.
-  + Elastic Network Adapter \([ENA](enhanced-networking-ena.md)\) drivers must be installed\.
+  + [NVMe drivers](nvme-ebs-volumes.md) must be installed
+  + [Elastic Network Adapter \(ENA\) drivers](enhanced-networking-ena.md) must be installed
 
-  The following AMIs meet these requirements:
+  The following Linux AMIs meet these requirements:
   + Amazon Linux 2
   + Amazon Linux AMI 2018\.03
   + Ubuntu 14\.04 \(with `linux-aws` kernel\) or later

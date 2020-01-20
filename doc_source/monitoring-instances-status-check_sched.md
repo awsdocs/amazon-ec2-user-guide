@@ -95,9 +95,22 @@ In addition to receiving notification of scheduled events in email, you can chec
 **To view scheduled events for your instances using instance metadata**
 + You can retrieve information about active maintenance events for your instances from the [instance metadata](ec2-instance-metadata.md), as follows\.
 
+------
+#### [ IMDSv2 ]
+
+  ```
+  [ec2-user ~]$ TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` \
+  && curl -H "X-aws-ec2-metadata-token: $TOKEN" –v http://169.254.169.254/latest/meta-data/events/maintenance/scheduled
+  ```
+
+------
+#### [ IMDSv1 ]
+
   ```
   [ec2-user ~]$ curl http://169.254.169.254/latest/meta-data/events/maintenance/scheduled
   ```
+
+------
 
   The following is example output with information about a scheduled system reboot event, in JSON format\.
 
@@ -117,9 +130,22 @@ In addition to receiving notification of scheduled events in email, you can chec
 **To view event history about completed or canceled events for your instances using instance metadata**
 + You can retrieve information about completed or canceled events for your instances from the [instance metadata](ec2-instance-metadata.md), as follows\.
 
+------
+#### [ IMDSv2 ]
+
+  ```
+  [ec2-user ~]$ TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` \
+  && curl -H "X-aws-ec2-metadata-token: $TOKEN" –v http://169.254.169.254/latest/meta-data/events/maintenance/history
+  ```
+
+------
+#### [ IMDSv1 ]
+
   ```
   [ec2-user ~]$ curl http://169.254.169.254/latest/meta-data/events/maintenance/history
   ```
+
+------
 
   The following is example output with information about a system reboot event that was canceled, and a system reboot event that was completed, in JSON format\.
 

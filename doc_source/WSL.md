@@ -1,13 +1,13 @@
 # Connecting to Your Linux Instance from Windows Using Windows Subsystem for Linux<a name="WSL"></a>
 
+After you launch your instance, you can connect to it and use it the way that you'd use a computer sitting in front of you\.
+
 The following instructions explain how to connect to your instance using a Linux distribution on the Windows Subsystem for Linux \(WSL\)\. WSL is a free download and enables you to run native Linux command line tools directly on Windows, alongside your traditional Windows desktop, without the overhead of a virtual machine\. 
 
 By installing WSL, you can use a native Linux environment to connect to your Linux EC2 instances instead of using PuTTY or PuTTYgen\. The Linux environment makes it easier to connect to your Linux instances because it comes with a native SSH client that you can use to connect to your Linux instances and change the permissions of the \.pem key file\. The Amazon EC2 console provides the SSH command for connecting to the Linux instance, and you can get verbose output from the SSH command for troubleshooting\. For more information, see the [Windows Subsystem for Linux Documentation](https://docs.microsoft.com/en-us/windows/wsl/about)\.
 
-After you launch your instance, you can connect to it and use it the way that you'd use a computer sitting in front of you\.
-
 **Note**  
-After you launch an instance, it can take a few minutes for the instance to be ready so that you can connect to it\. Check that your instance has passed its status checks\. You can view this information in the **Status Checks** column on the **Instances** page\.
+After you've installed the WSL, all the prerequisites and steps are the same as those described in [Connecting to Your Linux Instance Using SSH](AccessingInstancesLinux.md), and the experience is just like using native Linux\.
 
 If you receive an error while attempting to connect to your instance, see [Troubleshooting Connecting to Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html)\.
 
@@ -17,25 +17,25 @@ If you receive an error while attempting to connect to your instance, see [Troub
 + [Transferring Files to Linux Instances from Linux Using SCP](#Connect-Linux-WSL-SCP)
 + [Uninstalling WSL](#uninstall-WSL)
 
-**Note**  
-After you've installed the WSL, all the prerequisites and steps are the same as those described in [Connecting to Your Linux Instance Using SSH](AccessingInstancesLinux.md), and the experience is just like using native Linux\.
-
 ## Prerequisites<a name="ssh-prereqs"></a>
 
-Before you connect to your Linux instance, complete the following prerequisites:
-+ **Verify the general prerequisites for connecting to your instance\.**
+Before you connect to your Linux instance, complete the following prerequisites\.
 
-  For more information, see [General Prerequisites for Connecting to Your Instance](connection-prereqs.md)\.
-+ **Install the Windows Subsystem for Linux \(WSL\) and a Linux distribution on your local computer\.**
+**Verify that the instance is ready**  
+After you launch an instance, it can take a few minutes for the instance to be ready so that you can connect to it\. Check that your instance has passed its status checks\. You can view this information in the **Status Checks** column on the **Instances** page\.
 
-  Install the WSL and a Linux distribution using the instructions in the [Windows 10 Installation Guide](https://docs.microsoft.com/en-us/windows/wsl/install-win10)\. The example in the instructions installs the Ubuntu distribution of Linux, but you can install any distribution\. You are prompted to restart your computer for the changes to take effect\.
-+ **Copy the private key from Windows to WSL\.**
+**Verify the general prerequisites for connecting to your instance**  
+For more information, see [General Prerequisites for Connecting to Your Instance](connection-prereqs.md)\.
 
-  In a WSL terminal window, copy the `.pem` file \(for the key pair that you specified when you launched the instance\) from Windows to WSL\. Note the fully qualified path to the `.pem` file on WSL to use when connecting to your instance\. For information about how to specify the path to your Windows hard drive, see [How do I access my C drive?](https://docs.microsoft.com/en-us/windows/wsl/faq#how-do-i-access-my-c-drive)\.
+**Install the Windows Subsystem for Linux \(WSL\) and a Linux distribution on your local computer**  
+Install the WSL and a Linux distribution using the instructions in the [Windows 10 Installation Guide](https://docs.microsoft.com/en-us/windows/wsl/install-win10)\. The example in the instructions installs the Ubuntu distribution of Linux, but you can install any distribution\. You are prompted to restart your computer for the changes to take effect\.
 
-  ```
-  cp /mnt/<Windows drive letter>/path/my-key-pair.pem ~/WSL-path/my-key-pair.pem
-  ```
+**Copy the private key from Windows to WSL**  
+In a WSL terminal window, copy the `.pem` file \(for the key pair that you specified when you launched the instance\) from Windows to WSL\. Note the fully\-qualified path to the `.pem` file on WSL to use when connecting to your instance\. For information about how to specify the path to your Windows hard drive, see [How do I access my C drive?](https://docs.microsoft.com/en-us/windows/wsl/faq#how-do-i-access-my-c-drive)  
+
+```
+cp /mnt/<Windows drive letter>/path/my-key-pair.pem ~/WSL-path/my-key-pair.pem
+```
 
 ## Connect to Your Linux Instance using WSL<a name="Connect-Linux-WSL"></a>
 

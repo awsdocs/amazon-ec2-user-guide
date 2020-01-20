@@ -79,7 +79,28 @@ There are other ways that you can mount the volume \(for example, on an already 
 
    1. \[Nondefault VPC\] For **Auto\-assign Public IP**, choose **Enable**\. Otherwise, your instances do not get public IP addresses or public DNS names\.
 
-   1. Under **Advanced Details**, select **As text**, and paste the following script into **User data**\. Update **FILE\_SYSTEM\_ID** with the ID of your file system\. You can optionally update **MOUNT\_POINT** with a directory for your mounted file system\. 
+   1. Under **Advanced Details**, select **As text**, and paste the following script into **User data**\. Update **FILE\_SYSTEM\_ID** with the ID of your file system\. You can optionally update **MOUNT\_POINT** with a directory for your mounted file system\.
+
+------
+#### [ IMDSv2 ]
+
+      ```
+      #!/bin/bash
+      yum update -y
+      yum install -y nfs-utils
+      FILE_SYSTEM_ID=fs-xxxxxxxx
+      TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"`
+      AVAILABILITY_ZONE=$(curl -H "X-aws-ec2-metadata-token: $TOKEN" -s http://169.254.169.254/latest/meta-data/placement/availability-zone)
+      REGION=${AVAILABILITY_ZONE:0:-1}
+      MOUNT_POINT=/mnt/efs
+      mkdir -p ${MOUNT_POINT}
+      chown ec2-user:ec2-user ${MOUNT_POINT}
+      echo ${FILE_SYSTEM_ID}.efs.${REGION}.amazonaws.com:/ ${MOUNT_POINT} nfs4 nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,_netdev 0 0 >> /etc/fstab
+      mount -a -t nfs4
+      ```
+
+------
+#### [ IMDSv1 ]
 
       ```
       #!/bin/bash
@@ -94,6 +115,8 @@ There are other ways that you can mount the volume \(for example, on an already 
       echo ${FILE_SYSTEM_ID}.efs.${REGION}.amazonaws.com:/ ${MOUNT_POINT} nfs4 nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,_netdev 0 0 >> /etc/fstab
       mount -a -t nfs4
       ```
+
+------
 
    1. Advance to Step 6 of the wizard\.
 

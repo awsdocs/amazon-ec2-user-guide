@@ -162,9 +162,22 @@ Start PuTTYgen and choose **Load**\. Select the `.ppk` or `.pem` file\. PuTTYgen
 
 The public key that you specified when you launched an instance is also available to you through its instance metadata\. To view the public key that you specified when launching the instance, use the following command from your instance:
 
+------
+#### [ IMDSv2 ]
+
+```
+[ec2-user ~]$ TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` \
+&& curl -H "X-aws-ec2-metadata-token: $TOKEN" –v http://169.254.169.254/latest/meta-data/public-keys/0/openssh-key
+```
+
+------
+#### [ IMDSv1 ]
+
 ```
 [ec2-user ~]$ curl http://169.254.169.254/latest/meta-data/public-keys/0/openssh-key
 ```
+
+------
 
 ```
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQClKsfkNkuSevGj3eYhCe53pcjqP3maAhDFcvBS7O6V

@@ -18,9 +18,8 @@ You can cluster accelerated computing instances into a cluster placement group\.
 + [Network Performance](#gpu-network-performance)
 + [Instance Features](#gpu-instances-features)
 + [Release Notes](#gpu-instance-current-limitations)
-+ [AMIs for GPU\-Based Accelerated Computing Instances](#gpu-operating-systems)
-+ [Installing the NVIDIA Driver on Linux Instances](install-nvidia-driver.md)
-+ [Activate NVIDIA GRID Virtual Applications on G3 Instances](activate_grid.md)
++ [Installing NVIDIA Drivers on Linux Instances](install-nvidia-driver.md)
++ [Activate NVIDIA GRID Virtual Applications](activate_grid.md)
 + [Optimizing GPU Settings](optimize_gpu.md)
 + [Getting Started with FPGA Development](fpga-getting-started.md)
 + [Getting Started with AWS Inferentia Development](inf-getting-started.md)
@@ -79,7 +78,7 @@ G4 instances support NVIDIA GRID Virtual Workstation\. For more information, see
 **G3 Instances**  
 G3 instances use NVIDIA Tesla M60 GPUs and provide a cost\-effective, high\-performance platform for graphics applications using DirectX or OpenGL\. G3 instances also provide NVIDIA GRID Virtual Workstation features, such as support for four monitors with resolutions up to 4096x2160, and NVIDIA GRID Virtual Applications\. G3 instances are well\-suited for applications such as 3D visualizations, graphics\-intensive remote workstations, 3D rendering, video encoding, virtual reality, and other server\-side graphics workloads requiring massively parallel processing power\. 
 
-G3 instances support NVIDIA GRID Virtual Workstation and NVIDIA GRID Virtual Applications\. To activate either of these features, see [Activate NVIDIA GRID Virtual Applications on G3 Instances](activate_grid.md)\.
+G3 instances support NVIDIA GRID Virtual Workstation and NVIDIA GRID Virtual Applications\. To activate either of these features, see [Activate NVIDIA GRID Virtual Applications](activate_grid.md)\.
 <a name="g2-instances"></a>
 **G2 Instances**  
 G2 instances use NVIDIA GRID K520 GPUs and provide a cost\-effective, high\-performance platform for graphics applications using DirectX or OpenGL\. NVIDIA GRID GPUs also support NVIDIA’s fast capture and encode API operations\. Example applications include video creation services, 3D visualizations, streaming graphics\-intensive applications, and other server\-side graphics workloads\.
@@ -175,10 +174,10 @@ For more information, see the following:
 ## Release Notes<a name="gpu-instance-current-limitations"></a>
 + You must launch the instance using an HVM AMI\.
 + The following are requirements for G4 instances:
-  + NVMe drivers must be installed\. EBS volumes are exposed as [NVMe block devices](nvme-ebs-volumes.md)\.
-  + Elastic Network Adapter \([ENA](enhanced-networking-ena.md)\) drivers must be installed\.
+  + [NVMe drivers](nvme-ebs-volumes.md) must be installed
+  + [Elastic Network Adapter \(ENA\) drivers](enhanced-networking-ena.md) must be installed
 
-  The following AMIs meet these requirements:
+  The following Linux AMIs meet these requirements:
   + Amazon Linux 2
   + Amazon Linux AMI 2018\.03
   + Ubuntu 14\.04 \(with `linux-aws` kernel\) or later
@@ -187,25 +186,6 @@ For more information, see the following:
   + CentOS 7\.4\.1708 or later
   + FreeBSD 11\.1 or later
   + Debian GNU/Linux 9 or later
-+ GPU\-based instances can't access the GPU unless the NVIDIA drivers are installed\. For more information, see [Installing the NVIDIA Driver on Linux Instances](install-nvidia-driver.md)\.
++ GPU\-based instances can't access the GPU unless the NVIDIA drivers are installed\. For more information, see [Installing NVIDIA Drivers on Linux Instances](install-nvidia-driver.md)\.
 + There is a limit of 100 AFIs per region\.
 + There is a limit on the number of instances that you can run\. For more information, see [How many instances can I run in Amazon EC2?](https://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2) in the Amazon EC2 FAQ\. To request an increase in these limits, use the following form: [Request to Increase Amazon EC2 Instance Limit](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-instances)\.
-
-## AMIs for GPU\-Based Accelerated Computing Instances<a name="gpu-operating-systems"></a>
-
-To help you get started, NVIDIA and others provide AMIs for GPU\-based accelerated computing instances\. These reference AMIs include the NVIDIA driver, which enables full functionality and performance of the NVIDIA GPUs\.
-
-For a list of AMIs with the NVIDIA driver, search AWS Marketplace as follows:
-+ [NVIDIA P3 AMIs](http://aws.amazon.com/marketplace/search/results/?page=1&filters=instance_types&instance_types=p3.2xlarge&searchTerms=NVIDIA)
-+ [NVIDIA Quadro Virtual Workstation P3 AMIs](http://aws.amazon.com/marketplace/search/results?x=0&y=0&searchTerms=Quadro+NVIDIA)
-+ [NVIDIA P2 AMIs](http://aws.amazon.com/marketplace/search/results/?page=1&filters=instance_types&instance_types=p2.xlarge&searchTerms=NVIDIA)
-+ [NVIDIA GRID G4 AMIs](http://aws.amazon.com/marketplace/search/results/?page=1&filters=instance_types&instance_types=g4dn.xlarge&searchTerms=NVIDIA%20GRID)
-+ [NVIDIA GRID G3 AMIs](http://aws.amazon.com/marketplace/search/results/?page=1&filters=instance_types&instance_types=g3.4xlarge&searchTerms=NVIDIAGRID)
-+ [NVIDIA GRID G2 AMIs](http://aws.amazon.com/marketplace/search/results/?page=1&filters=instance_types&instance_types=g2.2xlarge&searchTerms=NVIDIAGRID)
-
-You can launch accelerated computing instances using any HVM AMI\.
-
-**Important**  
-These AMIs include drivers, software, or toolkits that are developed, owned, or provided by NVIDIA Corporation\. By using these AMIs, you agree to use these NVIDIA drivers, software, or toolkits only on Amazon EC2 instances that include NVIDIA hardware\.
-
-You can also install the NVIDIA driver\. For more information, see [Installing the NVIDIA Driver on Linux Instances](install-nvidia-driver.md)\.

@@ -316,9 +316,22 @@ The base URI for all requests for instance metadata is `http://169.254.169.254/l
 
 First, connect to your running instance\. From the instance, use this query to get its block device mapping\.
 
+------
+#### [ IMDSv2 ]
+
+```
+[ec2-user ~]$ TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` \
+&& curl -H "X-aws-ec2-metadata-token: $TOKEN" –v http://169.254.169.254/latest/meta-data/block-device-mapping/
+```
+
+------
+#### [ IMDSv1 ]
+
 ```
 [ec2-user ~]$ curl http://169.254.169.254/latest/meta-data/block-device-mapping/
 ```
+
+------
 
 The response includes the names of the block devices for the instance\. For example, the output for an instance store–backed `m1.small` instance looks like this\.
 
@@ -333,8 +346,21 @@ The `ami` device is the root device as seen by the instance\. The instance store
 
 To get details about an individual block device in the block device mapping, append its name to the previous query, as shown here\.
 
+------
+#### [ IMDSv2 ]
+
+```
+[ec2-user ~]$ TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` \
+&& curl -H "X-aws-ec2-metadata-token: $TOKEN" –v http://169.254.169.254/latest/meta-data/block-device-mapping/ephemeral0
+```
+
+------
+#### [ IMDSv1 ]
+
 ```
 [ec2-user ~]$ curl http://169.254.169.254/latest/meta-data/block-device-mapping/ephemeral0
 ```
+
+------
 
 The instance type determines the number of instance store volumes that are available to the instance\. If the number of instance store volumes in a block device mapping exceeds the number of instance store volumes available to an instance, the additional volumes are ignored\. To view the instance store volumes for your instance, run the lsblk command\. To learn how many instance store volumes are supported by each instance type, see [Instance Store Volumes](InstanceStorage.md#instance-store-volumes)\.

@@ -36,9 +36,6 @@ If you're new to Amazon EC2, see [How to Get Started with Amazon EC2](concepts.m
 
 There is a limit on the number of running On\-Demand Instances per AWS account per Region\. On\-Demand Instance limits are managed in terms of the *number of virtual central processing units \(vCPUs\)* that your running On\-Demand Instances are using, regardless of the instance type\.
 
-**Note**  
-On\-Demand Instance count\-based limits, managed in terms of the number of instances per instance type, are no longer available\. For more information, see [EC2 On\-Demand Instance limits](http://aws.amazon.com/ec2/faqs/#EC2_On-Demand_Instance_limits)\.
-
 There are five On\-Demand Instance limits, listed in the following table\. Each limit specifies the vCPU limit for one or more instance families\. For information about the different instance families, generations, and sizes, see [Amazon EC2 Instance Types](http://aws.amazon.com/ec2/instance-types/)\.
 
 
@@ -59,6 +56,8 @@ With vCPU limits, you can use your limit in terms of the number of vCPUs require
 
 You can use the vCPU limits calculator to determine the number of vCPUs that you require for your application needs\.
 
+When using the calculator, keep the following in mind: The calculator assumes that you have reached your current limit\. The value that you enter for **Instance Count** is the number of instances that you need to launch *in addition* to what is permitted by your current limit\. The calculator adds your current limit to the **Instance Count** to arrive at a new limit\.
+
 The following screenshot shows the vCPU limits calculator\.
 
 ![\[The vCPU limit calculator in the Amazon EC2 console.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/vCPU-limit-calculator.png)
@@ -66,16 +65,16 @@ The following screenshot shows the vCPU limits calculator\.
 You can view and use the following controls and information:
 + **Instance type** – The instance types that you add to the vCPU limits calculator\.
 + **Instance count** – The number of instances that you require for the selected instance type\.
-+ **vCPU count** – The number of vCPUs that correspond to the **Instance count**\.
++ **vCPU count** – The number of vCPUs that corresponds to the **Instance count**\.
 + **Current limit** – Your current limit for the limit type to which the instance type belongs\. The limit applies to all instance types of the same limit type\. For example, in the preceding screenshot, the current limit for `m5.2xlarge` and `c5.4xlarge` is 1,920 vCPUs, which is the limit for all the instance types that belong to the All Standard instances limit\.
-+ **New limit** – The new limit, in number of vCPUs, that is required to launch the number of instances that you specified\.
++ **New limit** – The new limit, in number of vCPUs, which is calculated by adding **vCPU count** and **Current limit**\.
 + **X** – Choose the **X** to remove the row\.
 + **Add instance type** – Choose **Add instance type** to add another instance type to the calculator\.
 + **Limits calculation** – Displays the current limit, vCPUs needed, and new limit for the limit types\.
   + **Instance limit name** – The limit type for the instance types that you selected\.
   + **Current limit** – The current limit for the limit type\.
-  + **vCPUs needed** – The number of vCPUs that correspond to the number of instances that you specified\. For the All Standard instances limit type, the vCPUs needed is calculated by adding the values for **vCPU count** for all the instance types of this limit type\.
-  + **New limit** – The new limit is calculated by adding the values for **Current limit** and **vCPUs needed**\.
+  + **vCPUs needed** – The number of vCPUs that corresponds to the number of instances that you specified in **Instance count**\. For the All Standard instances limit type, the vCPUs needed is calculated by adding the values for **vCPU count** for all the instance types of this limit type\.
+  + **New limit** – The new limit is calculated by adding **Current limit** and **vCPUs needed**\.
   + **Options** – Choose **Request limit increase** to request a limit increase for the corresponding limit type\.
 
 **To calculate the number of required vCPUs**

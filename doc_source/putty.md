@@ -1,24 +1,24 @@
 # Connecting to Your Linux Instance from Windows Using PuTTY<a name="putty"></a>
 
-The following instructions explain how to connect to your instance using PuTTY, a free SSH client for Windows\. If you receive an error while attempting to connect to your instance, see [Troubleshooting Connecting to Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html)\.
-
 After you launch your instance, you can connect to it and use it the way that you'd use a computer sitting in front of you\.
 
-**Note**  
-After you launch an instance, it can take a few minutes for the instance to be ready so that you can connect to it\. Check that your instance has passed its status checks\. You can view this information in the **Status Checks** column on the **Instances** page\.
+The following instructions explain how to connect to your instance using PuTTY, a free SSH client for Windows\. If you receive an error while attempting to connect to your instance, see [Troubleshooting Connecting to Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html)\.
 
 ## Prerequisites<a name="putty-prereqs"></a>
 
-Before you connect to your Linux instance using PuTTY, complete the following prerequisites:
-+ **Verify the general prerequisites for connecting to your instance\.**
+Before you connect to your Linux instance using PuTTY, complete the following prerequisites\.
 
-  For more information, see [General Prerequisites for Connecting to Your Instance](connection-prereqs.md)\.
-+ **Install PuTTY on your local computer\.**
+**Verify that the instance is ready**  
+After you launch an instance, it can take a few minutes for the instance to be ready so that you can connect to it\. Check that your instance has passed its status checks\. You can view this information in the **Status Checks** column on the **Instances** page\.
 
-  Download and install PuTTY from the [PuTTY download page](http://www.chiark.greenend.org.uk/~sgtatham/putty/)\. If you already have an older version of PuTTY installed, we recommend that you download the latest version\. Be sure to install the entire suite\.
-+ **Convert your private key using PuTTYgen**
+**Verify the general prerequisites for connecting to your instance**  
+For more information, see [General Prerequisites for Connecting to Your Instance](connection-prereqs.md)\.
 
-  Locate the private key \(\.pem file\) for the key pair that you specified when you launched the instance\. Convert the \.pem file to a \.ppk file for use with PuTTY\. For more information, follow the steps in the next section\.
+**Install PuTTY on your local computer**  
+Download and install PuTTY from the [PuTTY download page](http://www.chiark.greenend.org.uk/~sgtatham/putty/)\. If you already have an older version of PuTTY installed, we recommend that you download the latest version\. Be sure to install the entire suite\.
+
+**Convert your private key using PuTTYgen**  
+Locate the private key \(\.pem file\) for the key pair that you specified when you launched the instance\. Convert the \.pem file to a \.ppk file for use with PuTTY\. For more information, follow the steps in the next section\.
 
 ### Convert Your Private Key Using PuTTYgen<a name="putty-private-key"></a>
 
@@ -26,29 +26,27 @@ PuTTY does not natively support the private key format for SSH keys\. PuTTY prov
 
 **To convert your private key**
 
-1. From the **Start** menu, choose **All Programs**, PuTTY, PuTTYgen\.
+1. From the **Start** menu, choose **All Programs**, **PuTTY**, **PuTTYgen**\.
 
-1. Under **Type of key to generate**, choose **RSA**\.  
+1. Under **Type of key to generate**, choose **RSA**\. If you're using an older version of PuTTYgen, choose **SSH\-2 RSA**\.  
 ![\[RSA key in PuTTYgen\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/puttygen-key-type.png)
 
-   If you're using an older version of PuTTYgen, choose **SSH\-2 RSA**\.
-
-1. Choose **Load**\. By default, PuTTYgen displays only files with the extension `.ppk`\. To locate your `.pem` file, select the option to display files of all types\.  
+1. Choose **Load**\. By default, PuTTYgen displays only files with the extension `.ppk`\. To locate your `.pem` file, choose the option to display files of all types\.  
 ![\[Select all file types\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/puttygen-load-key.png)
 
-1. Select your `.pem` file for the key pair that you specified when you launched your instance and choose **Open**\. Choose **OK**\.
+1. Select your `.pem` file for the key pair that you specified when you launched your instance and choose **Open**\. PuTTYgen displays a notice that the `.pem` file was successfully imported\. Choose **OK**\.
 
 1. To save the key in the format that PuTTY can use, choose **Save private key**\. PuTTYgen displays a warning about saving the key without a passphrase\. Choose **Yes**\.
 **Note**  
 A passphrase on a private key is an extra layer of protection\. Even if your private key is discovered, it can't be used without the passphrase\. The downside to using a passphrase is that it makes automation harder because human intervention is needed to log on to an instance, or to copy files to an instance\.
 
-1. Specify the same name for the key that you used for the key pair \(for example, `my-key-pair`\)\. PuTTY automatically adds the `.ppk` file extension\. 
+1. Specify the same name for the key that you used for the key pair \(for example, `my-key-pair`\) and choose **Save**\. PuTTY automatically adds the `.ppk` file extension\. 
 
 Your private key is now in the correct format for use with PuTTY\. You can now connect to your instance using PuTTY's SSH client\.
 
 ## Connecting to Your Linux Instance<a name="putty-ssh"></a>
 
-Use the following procedure to connect to your Linux instance using PuTTY\. You need the `.ppk` file that you created for your private key\. If you receive an error while attempting to connect to your instance, see [Troubleshooting Connecting to Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html)\.
+Use the following procedure to connect to your Linux instance using PuTTY\. You need the `.ppk` file that you created for your private key\. For more information, see [Convert Your Private Key Using PuTTYgen](#putty-private-key) in the preceding section\. If you receive an error while attempting to connect to your instance, see [Troubleshooting Connecting to Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html)\.
 
 **To connect to your instance using PuTTY**
 
@@ -56,7 +54,13 @@ Use the following procedure to connect to your Linux instance using PuTTY\. You 
 
 1. In the **Category** pane, choose **Session** and complete the following fields:
 
-   1. In the **Host Name** box, enter *user\_name*@*public\_dns\_name* \(see [Get Information About Your Instance](connection-prereqs.md#connection-prereqs-get-info-about-instance) for how to get the public DNS name of the instance\)\. Be sure to specify the appropriate user name for your AMI\. For example:
+   1. In the **Host Name** box, do one of the following:
+      + To connect using your instance's public DNS, enter *user\_name*@*public\_dns\_name*\.
+      + \(IPv6 only\) To connect using your instance's IPv6 address, enter *user\_name*@*ipv6\_address*\.
+
+      For information about how to get the public DNS name or IPv6 address of the instance, see [Get Information About Your Instance](connection-prereqs.md#connection-prereqs-get-info-about-instance)\.
+
+      For *user\_name*, be sure to specify the appropriate user name for your AMI\. For example:
       + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
       + For a CentOS AMI, the user name is `centos`\.
       + For a Debian AMI, the user name is `admin` or `root`\.
@@ -66,19 +70,9 @@ Use the following procedure to connect to your Linux instance using PuTTY\. You 
       + For an Ubuntu AMI, the user name is `ubuntu`\.
       + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
 
-   1. \(IPv6 only\) To connect using your instance's IPv6 address, enter *user\_name*@*ipv6\_address*\. Be sure to specify the appropriate user name for your AMI\. For example:
-      + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
-      + For a CentOS AMI, the user name is `centos`\.
-      + For a Debian AMI, the user name is `admin` or `root`\.
-      + For a Fedora AMI, the user name is `ec2-user` or `fedora`\.
-      + For a RHEL AMI, the user name is `ec2-user` or `root`\.
-      + For a SUSE AMI, the user name is `ec2-user` or `root`\.
-      + For an Ubuntu AMI, the user name is `ubuntu`\.
-      + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
+   1. Ensure that the **Port** value is 22\.
 
-   1. Under **Connection type**, select **SSH**\.
-
-   1. Ensure that the **Port** value is 22\.  
+   1. Under **Connection type**, select **SSH**\.  
 ![\[PuTTY configuration - Session\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/putty-session-config.png)
 
 1. \(Optional\) You can configure PuTTY to automatically send 'keepalive' data at regular intervals to keep the session active\. This is useful to avoid disconnecting from your instance due to session inactivity\. In the **Category** pane, choose **Connection**, and then enter the required interval in the **Seconds between keepalives** field\. For example, if your session disconnects after 10 minutes of inactivity, enter 180 to configure PuTTY to send keepalive data every 3 minutes\.
@@ -96,9 +90,9 @@ Use the following procedure to connect to your Linux instance using PuTTY\. You 
 
 1. If this is the first time you have connected to this instance, PuTTY displays a security alert dialog box that asks whether you trust the host to which you are connecting\.
 
-1. \(Optional\) Verify that the fingerprint in the security alert dialog box matches the fingerprint that you previously obtained in [\(Optional\) Get the Instance Fingerprint](connection-prereqs.md#connection-prereqs-fingerprint)\. If these fingerprints don't match, someone might be attempting a "man\-in\-the\-middle" attack\. If they match, continue to the next step\.
+   1. \(Optional\) Verify that the fingerprint in the security alert dialog box matches the fingerprint that you previously obtained in [\(Optional\) Get the Instance Fingerprint](connection-prereqs.md#connection-prereqs-fingerprint)\. If these fingerprints don't match, someone might be attempting a "man\-in\-the\-middle" attack\. If they match, continue to the next step\.
 
-1. Choose **Yes**\. A window opens and you are connected to your instance\.
+   1. Choose **Yes**\. A window opens and you are connected to your instance\.
 **Note**  
 If you specified a passphrase when you converted your private key to PuTTY's format, you must provide that passphrase when you log in to the instance\.
 

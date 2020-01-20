@@ -4,7 +4,7 @@ An Elastic Fabric Adapter \(EFA\) is a network device that you can attach to you
 
 EFA provides lower and more consistent latency and higher throughput than the TCP transport traditionally used in cloud\-based HPC systems\. It enhances the performance of inter\-instance communication that is critical for scaling HPC and machine learning applications\. It is optimized to work on the existing AWS network infrastructure and it can scale depending on application requirements\.
 
-EFA integrates with Libfabric 1\.8\.1 and it supports Open MPI 4\.0\.2 and Intel MPI 2019 Update 6 for HPC applications, and Nvidia Collective Communications Library \(NCCL\) for machine learning applications\.
+EFA integrates with Libfabric 1\.9\.0 and it supports Open MPI 4\.0\.2 and Intel MPI 2019 Update 6 for HPC applications, and Nvidia Collective Communications Library \(NCCL\) for machine learning applications\.
 
 **Note**  
 The OS\-bypass capabilities of EFAs are not supported on Windows instances\. If you attach an EFA to a Windows instance, the instance functions as an Elastic Network Adapter, without the added EFA capabilities\.

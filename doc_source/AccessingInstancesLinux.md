@@ -1,21 +1,24 @@
 # Connecting to Your Linux Instance Using SSH<a name="AccessingInstancesLinux"></a>
 
-The following instructions explain how to connect to your instance using an SSH client\. If you receive an error while attempting to connect to your instance, see [Troubleshooting Connecting to Your Instance](TroubleshootingInstancesConnecting.md)\.
-
 After you launch your instance, you can connect to it and use it the way that you'd use a computer sitting in front of you\.
 
-**Note**  
-After you launch an instance, it can take a few minutes for the instance to be ready so that you can connect to it\. Check that your instance has passed its status checks\. You can view this information in the **Status Checks** column on the **Instances** page\.
+The following instructions explain how to connect to your instance using an SSH client\. If you receive an error while attempting to connect to your instance, see [Troubleshooting Connecting to Your Instance](TroubleshootingInstancesConnecting.md)\.
 
 ## Prerequisites<a name="ssh-prereqs"></a>
 
-Before you connect to your Linux instance, complete the following prerequisites:
-+ **Verify the general prerequisites for connecting to your instance\.**
+Before you connect to your Linux instance, complete the following prerequisites\.
 
-  For more information, see [General Prerequisites for Connecting to Your Instance](connection-prereqs.md)\.
-+ **Install an SSH client on your local computer\.**
+**Verify that the instance is ready**  
+After you launch an instance, it can take a few minutes for the instance to be ready so that you can connect to it\. Check that your instance has passed its status checks\. You can view this information in the **Status Checks** column on the **Instances** page\.
 
-  Your local computer most likely has an SSH client installed by default\. You can check for an SSH client by typing ssh at the command line\. If your local computer doesn't recognize the command, you can install an SSH client\. For information about installing an SSH client on Linux or macOS X, see [http://www\.openssh\.com](http://www.openssh.com/)\. For information about installing an SSH client on Windows 10, see [OpenSSH in Windows](https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_overview)\.
+**Verify the general prerequisites for connecting to your instance**  
+For more information, see [General Prerequisites for Connecting to Your Instance](connection-prereqs.md)\.
+
+**Install an SSH client on your local computer as needed**  
+Your local computer might have an SSH client installed by default\. You can verify this by typing ssh at the command line\. If your compute doesn't recognize the command, you can install an SSH client\.  
++ Recent versions of Windows Server 2019 and Windows 10 \- OpenSSH is included as an installable component\. For information, see [OpenSSH in Windows](https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_overview)\.
++ Earlier versions of Windows \- Download and install OpenSSH\. For more information, see [Win32\-OpenSSH](https://github.com/PowerShell/Win32-OpenSSH/wiki)\.
++ Linux and macOS X \- Download and install OpenSSH\. For more information, see [http://www\.openssh\.com](http://www.openssh.com/)\.
 
 ## Connect to Your Linux Instance using an SSH Client<a name="AccessingInstancesLinuxSSHClient"></a>
 

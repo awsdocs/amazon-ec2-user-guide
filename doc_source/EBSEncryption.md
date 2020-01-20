@@ -31,11 +31,11 @@ Amazon EBS works with AWS KMS to encrypt and decrypt your EBS volumes as follows
 
 1. AWS KMS generates a new data key, encrypts it under the specified CMK, and sends the encrypted data key to Amazon EBS to be stored with the volume metadata\.
 
-1. When you attach an encrypted volume to an instance, Amazon EBS sends a [Decrypt](https://docs.aws.amazon.com/kms/latest/APIReference/API_Decrypt.html) request to AWS KMS, specifying the encrypted data key\.
+1. When you attach an encrypted volume to an instance, Amazon EC2 sends a [Decrypt](https://docs.aws.amazon.com/kms/latest/APIReference/API_Decrypt.html) request to AWS KMS, specifying the encrypted data key\.
 
-1. AWS KMS decrypts the encrypted data key and sends the decrypted data key to Amazon EBS\.
+1. AWS KMS decrypts the encrypted data key and sends the decrypted data key to Amazon EC2\.
 
-1. Amazon EBS uses the plaintext data key in hypervisor memory to encrypt disk I/O to the volume\. The plaintext data key persists in memory as long as the volume is attached to the instance\.
+1. Amazon EC2 uses the plaintext data key in hypervisor memory to encrypt disk I/O to the volume\. The plaintext data key persists in memory as long as the volume is attached to the instance\.
 
 For more information, see [How Amazon Elastic Block Store \(Amazon EBS\) Uses AWS KMS](https://docs.aws.amazon.com/kms/latest/developerguide/services-ebs.html) and [AWS KMS Log File Entries](https://docs.aws.amazon.com/kms/latest/developerguide/ct-ec2two.html) in the *AWS Key Management Service Developer Guide*\.
 
@@ -94,7 +94,7 @@ For more information, see [Default Key Policy](https://docs.aws.amazon.com/kms/l
 Amazon EBS automatically creates a unique AWS managed CMK in each Region where you store AWS resources\. This key has the alias `alias/aws/ebs`\. By default, Amazon EBS uses this key for encryption\. Alternatively, you can specify a symmetric customer managed CMK that you created as the default key for EBS encryption\. Using your own CMK gives you more flexibility, including the ability to create, rotate, and disable keys\. 
 
 **Important**  
-Amazon EBS does not support asymmetric CMKs\. For more information, see [Using Symmetric and Asymmetric Kyes](https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html) in the *AWS Key Management Service Developer Guide*\.
+Amazon EBS does not support asymmetric CMKs\. For more information, see [Using Symmetric and Asymmetric Keys](https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html) in the *AWS Key Management Service Developer Guide*\.
 
 **To configure the default key for EBS encryption for a Region**
 

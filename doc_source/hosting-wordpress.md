@@ -54,7 +54,7 @@ Your WordPress installation needs to store information, such as blog posts and u
 
 1. Log in to the database server as the `root` user\. Enter your database `root` password when prompted; this may be different than your `root` system password, or it may even be empty if you have not secured your database server\.
 
-   If you have not secured your database server yet, it is important that you do so\. For more information, see [To secure the database server](install-LAMP.md#SecuringMySQLProcedure)\.
+   If you have not secured your database server yet, it is important that you do so\. For more information, see [To secure the MariaDB server](ec2-lamp-amazon-linux-2.md#securing-maria-db) \(Amazon Linux 2\) or [To secure the database server](install-LAMP.md#SecuringMySQLProcedure) \(Amazon Linux AMI\)\.
 
    ```
    [ec2-user ~]$ mysql -u root -p
@@ -148,21 +148,18 @@ The values below are for example purposes only; do not use these values for your
    1. Save the file and exit your text editor\.
 
 **To install your WordPress files under the Apache document root**
++ Now that you've unzipped the installation folder, created a MySQL database and user, and customized the WordPress configuration file, you are ready to copy your installation files to your web server document root so you can run the installation script that completes your installation\. The location of these files depends on whether you want your WordPress blog to be available at the actual root of your web server \(for example, `my.public.dns.amazonaws.com`\) or in a subdirectory or folder under the root \(for example, `my.public.dns.amazonaws.com/blog`\)\.
+  + If you want WordPress to run at your document root, copy the contents of the wordpress installation directory \(but not the directory itself\) as follows: 
 
-1. Now that you've unzipped the installation folder, created a MySQL database and user, and customized the WordPress configuration file, you are ready to copy your installation files to your web server document root so you can run the installation script that completes your installation\. The location of these files depends on whether you want your WordPress blog to be available at the actual root of your web server \(for example, `my.public.dns.amazonaws.com`\) or in a subdirectory or folder under the root \(for example, `my.public.dns.amazonaws.com/blog`\)\.
+    ```
+    [ec2-user ~]$ cp -r wordpress/* /var/www/html/
+    ```
+  + If you want WordPress to run in an alternative directory under the document root, first create that directory, and then copy the files to it\. In this example, WordPress will run from the directory `blog`:
 
-1. If you want WordPress to run at your document root, copy the contents of the wordpress installation directory \(but not the directory itself\) as follows: 
-
-   ```
-   [ec2-user ~]$ cp -r wordpress/* /var/www/html/
-   ```
-
-1. If you want WordPress to run in an alternative directory under the document root, first create that directory, and then copy the files to it\. In this example, WordPress will run from the directory `blog`:
-
-   ```
-   [ec2-user ~]$ mkdir /var/www/html/blog
-   [ec2-user ~]$ cp -r wordpress/* /var/www/html/blog/
-   ```
+    ```
+    [ec2-user ~]$ mkdir /var/www/html/blog
+    [ec2-user ~]$ cp -r wordpress/* /var/www/html/blog/
+    ```
 
 **Important**  
 For security purposes, if you are not moving on to the next procedure immediately, stop the Apache web server \(`httpd`\) now\. After you move your installation under the Apache document root, the WordPress installation script is unprotected and an attacker could gain access to your blog if the Apache web server were running\. To stop the Apache web server, enter the command sudo service httpd stop\. If you are moving on to the next procedure, you do not need to stop the Apache web server\.
