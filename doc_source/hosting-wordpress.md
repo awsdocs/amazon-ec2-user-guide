@@ -219,6 +219,13 @@ There are multiple `AllowOverride` lines in this file; be sure you change the li
 
 1. Save the file and exit your text editor\.
 
+**To install the PHP graphics drawing library**  
+The GD library for PHP enables you to modify images\. Install this library as follows if you need to crop the header image for your blog\.
+
+```
+[ec2-user ~]$ sudo yum install php72-gd
+```
+
 **To fix file permissions for the Apache web server**
 
 Some of the available features in WordPress require write access to the Apache document root \(such as uploading media though the Administration screens\)\. If you have not already done so, apply the following group memberships and permissions \(as described in greater detail in the [LAMP web server tutorial](install-LAMP.md)\)\.
@@ -339,12 +346,6 @@ If you have a domain name associated with your EC2 instance's EIP address, you c
 
 **Configure Your Blog**  
 You can configure your blog to use different [themes](https://wordpress.org/themes/) and [plugins](https://wordpress.org/plugins/) to offer a more personalized experience for your readers\. However, sometimes the installation process can backfire, causing you to lose your entire blog\. We strongly recommend that you create a backup Amazon Machine Image \(AMI\) of your instance before attempting to install any themes or plugins so you can restore your blog if anything goes wrong during installation\. For more information, see [Creating Your Own AMI](AMIs.md#creating-an-ami)\.
-
-One of the first things you may want to do, once you've installed Wordpress, is crop an image for the header\.  You'll need the PHP graphic library for this\.  The following assumes you have PHP7.0 installed\.
-
-   ```
-   [ec2-user ~]$ sudo yum install php70-gd
-   ```
 
 **Increase Capacity**  
 If your WordPress blog becomes popular and you need more compute power or storage, consider the following steps:
