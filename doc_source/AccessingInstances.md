@@ -6,7 +6,7 @@ To connect to a Windows instance, see [Connecting to Your Windows Instance](http
 
 ## Connection Options<a name="connection-method"></a>
 
-The operating system your local computer determines the options that you have to connect from your local computer to your Linux instance\.
+The operating system of your local computer determines the options that you have to connect from your local computer to your Linux instance\.
 
 **Options for Linux and macOS X**  
 + [SSH client](AccessingInstancesLinux.md)

@@ -13,6 +13,7 @@ If you need to find a Windows AMI, see [Finding a Windows AMI](https://docs.aws.
 **Topics**
 + [Finding a Linux AMI Using the Amazon EC2 Console](#finding-an-ami-console)
 + [Finding an AMI Using the AWS CLI](#finding-an-ami-aws-cli)
++ [Finding the Latest Amazon Linux AMI Using Systems Manager](#finding-an-ami-parameter-store)
 + [Finding a Quick Start AMI](#finding-quick-start-ami)
 
 ## Finding a Linux AMI Using the Amazon EC2 Console<a name="finding-an-ami-console"></a>
@@ -63,6 +64,10 @@ You can add the following filter to the previous command to display only AMIs ba
 
 **Important**  
 Omitting the `--owners` flag from the describe\-images command will return all images for which you have launch permissions, regardless of ownership\.
+
+## Finding the Latest Amazon Linux AMI Using Systems Manager<a name="finding-an-ami-parameter-store"></a>
+
+You can query the AWS Systems Manager Parameter Store for ID of the latest Amazon Linux AMI\. For more information, see [Query for the latest Amazon Linux AMI IDs Using AWS Systems Manager Parameter Store](http://aws.amazon.com/blogs/compute/query-for-the-latest-amazon-linux-ami-ids-using-aws-systems-manager-parameter-store/)\.
 
 ## Finding a Quick Start AMI<a name="finding-quick-start-ami"></a>
 

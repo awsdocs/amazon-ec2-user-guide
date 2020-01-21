@@ -137,4 +137,4 @@ Use AWS CloudTrail to audit the users that connect to your instances via EC2 Ins
    }
    ```
 
-   If you have configured your AWS account to collect CloudTrail events in an S3 bucket, you can download and audit the information programmatically\. For more information, see [Getting and Viewing Your CloudTrail Log Files](https://docs.aws.amazon.com/awscloudtrail/latest/userguide//get-and-view-cloudtrail-log-files.html) in the *AWS CloudTrail User Guide*\.
+   If you have configured your AWS account to collect CloudTrail events in an S3 bucket, you can download and audit the information programmatically\. For more information, see [Getting and Viewing Your CloudTrail Log Files](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/get-and-view-cloudtrail-log-files.html) in the *AWS CloudTrail User Guide*\.

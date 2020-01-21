@@ -4,8 +4,7 @@ You can back up the data on your Amazon EBS volumes to Amazon S3 by taking point
 
 When you create an EBS volume based on a snapshot, the new volume begins as an exact replica of the original volume that was used to create the snapshot\. The replicated volume loads data in the background so that you can begin using it immediately\. If you access data that hasn't been loaded yet, the volume immediately downloads the requested data from Amazon S3, and then continues loading the rest of the volume's data in the background\. For more information, see [Creating Amazon EBS Snapshots](ebs-creating-snapshot.md)\.
 
- **Multi\-Volume Snapshots**
-
+**Multi\-Volume Snapshots**  
 Snapshots can be used to create a backup of critical workloads, such as a large database or a file system that spans across multiple EBS volumes\. Multi\-volume snapshots allow you to take exact point\-in\-time, data coordinated, and crash\-consistent snapshots across multiple EBS volumes attached to an EC2 instance\. You are no longer required to stop your instance or to coordinate between volumes to ensure crash consistency, because snapshots are automatically taken across multiple EBS volumes\. For more information, see the steps for creating a multi\-volume EBS snapshot under [Creating Amazon EBS Snapshots](ebs-creating-snapshot.md)\.
 
 You can track the status of your EBS snapshots through CloudWatch Events\. For more information, see [Amazon CloudWatch Events for Amazon EBS](ebs-cloud-watch-events.md)\.
