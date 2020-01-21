@@ -216,6 +216,13 @@ There are multiple `AllowOverride` lines in this file; be sure you change the li
 
 1. Save the file and exit your text editor\.
 
+**To install the PHP graphics drawing library**  
+The GD library for PHP enables you to modify images\. Install this library as follows if you need to crop the header image for your blog\.
+
+```
+[ec2-user ~]$ sudo yum install php72-gd
+```
+
 **To fix file permissions for the Apache web server**
 
 Some of the available features in WordPress require write access to the Apache document root \(such as uploading media though the Administration screens\)\. If you have not already done so, apply the following group memberships and permissions \(as described in greater detail in the [LAMP web server tutorial](install-LAMP.md)\)\.
