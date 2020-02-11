@@ -170,7 +170,7 @@ You can configure the root volume to persist for a running instance using the co
 Use the [modify\-instance\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) command and include a block device mapping that sets the `DeleteOnTermination` attribute to `false`\.
 
 ```
-$ aws ec2 modify-instance-attribute --instance-id i-1234567890abcdef0 --block-device-mappings "[{\"DeviceName\": \"/dev/xvda\",\"Ebs\":{\"DeleteOnTermination\":true}}]"
+$ aws ec2 modify-instance-attribute --instance-id i-1234567890abcdef0 --block-device-mappings "[{\"DeviceName\": \"/dev/xvda\",\"Ebs\":{\"DeleteOnTermination\":false}}]"
 ```
 
 **To configure the root volume to persist for a running instance using the AWS Tools for Windows PowerShell**  

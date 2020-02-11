@@ -89,7 +89,7 @@ If you try to connect to your instance and get the error message, `unable to loa
 
 1. Create a new key pair\. For more information, see [Creating a Key Pair Using Amazon EC2](ec2-key-pairs.md#having-ec2-create-your-key-pair)\.
 
-1. Add the new key pair to your instance\. For more information, see [Connecting to Your Linux Instance if You Lose Your Private Key](ec2-key-pairs.md#replacing-lost-key-pair)\.
+1. Add the new key pair to your instance\. For more information, see [Connecting to Your Linux Instance If You Lose Your Private Key](ec2-key-pairs.md#replacing-lost-key-pair)\.
 
 1. Connect to your instance using the new key pair\.
 
@@ -177,7 +177,7 @@ Confirm that you are using the private key file that corresponds to the key pair
 
 1. Select your instance\. In the **Description** tab, verify the value of **Key pair name**\.
 
-1. If you did not specify a key pair when you launched the instance, you can terminate the instance and launch a new instance, ensuring that you specify a key pair\. If this is an instance that you have been using but you no longer have the `.pem` file for your key pair, you can replace the key pair with a new one\. For more information, see [Connecting to Your Linux Instance if You Lose Your Private Key](ec2-key-pairs.md#replacing-lost-key-pair)\.
+1. If you did not specify a key pair when you launched the instance, you can terminate the instance and launch a new instance, ensuring that you specify a key pair\. If this is an instance that you have been using but you no longer have the `.pem` file for your key pair, you can replace the key pair with a new one\. For more information, see [Connecting to Your Linux Instance If You Lose Your Private Key](ec2-key-pairs.md#replacing-lost-key-pair)\.
 
 If you generated your own key pair, ensure that your key generator is set up to create RSA keys\. DSA keys are not accepted\.
 

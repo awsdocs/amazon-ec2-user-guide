@@ -20,8 +20,6 @@ Use the **EC2 Limits** page in the Amazon EC2 console to view the current limits
 1. From the navigation pane, choose **Limits**\.
 
 1. Locate the resource in the list\. You can use the search fields to filter the list by resource name or resource group\. The **Current limit** column displays the current maximum for the resource for your account\.
-**Note**  
-If you've opted in to vCPU\-based instance limits for On\-Demand Instances, you'll see five vCPU\-based On\-Demand Instance limits\. Each limit specifies the vCPU limit for one or more instance families\. For more information, see [On\-Demand Instance Limits](ec2-on-demand-instances.md#ec2-on-demand-instances-limits)\.
 
 ## Requesting a Limit Increase<a name="request-increase"></a>
 

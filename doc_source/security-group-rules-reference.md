@@ -33,7 +33,7 @@ The following inbound rules allow HTTP and HTTPS access from any IP address\. If
 The following inbound rules are examples of rules you might add for database access, depending on what type of database you're running on your instance\. For more information about Amazon RDS instances, see the [Amazon RDS User Guide](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/)\.
 
 For the source IP, specify one of the following:
-+ A specific IP address or range of IP addresses in your local network
++ A specific IP address or range of IP addresses \(in CIDR block notation\) in your local network
 + A security group ID for a group of instances that access the database
 
 
@@ -62,8 +62,8 @@ To connect to your instance, your security group must have inbound rules that al
 
 | Protocol type | Protocol number | Port | Source IP | 
 | --- | --- | --- | --- | 
-| TCP | 6 | 22 \(SSH\) | The public IPv4 address of your computer, or a range of IP addresses in your local network\. If your VPC is enabled for IPv6 and your instance has an IPv6 address, you can enter an IPv6 address or range\. | 
-| TCP | 6 | 3389 \(RDP\) | The public IPv4 address of your computer, or a range of IP addresses in your local network\. If your VPC is enabled for IPv6 and your instance has an IPv6 address, you can enter an IPv6 address or range\. | 
+| TCP | 6 | 22 \(SSH\) | The public IPv4 address of your computer, or a range of IP addresses \(in CIDR block notation\) in your local network\. If your VPC is enabled for IPv6 and your instance has an IPv6 address, you can enter an IPv6 address or range\. | 
+| TCP | 6 | 3389 \(RDP\) | The public IPv4 address of your computer, or a range of IP addresses \(in CIDR block notation\) in your local network\. If your VPC is enabled for IPv6 and your instance has an IPv6 address, you can enter an IPv6 address or range\. | 
 
 ## Rules to Connect to Instances from an Instance with the Same Security Group<a name="sg-rules-other-instances"></a>
 
@@ -98,21 +98,21 @@ The `ping` command is a type of ICMP traffic\. To ping your instance, you must a
 
 | Protocol type | Protocol number | ICMP type | ICMP code | Source IP | 
 | --- | --- | --- | --- | --- | 
-| ICMP | 1 | 8 \(Echo\) | N/A | The public IPv4 address of your computer, or a range of IPv4 addresses in your local network | 
+| ICMP | 1 | 8 \(Echo\) | N/A | The public IPv4 address of your computer, or a range of IPv4 addresses \(in CIDR block notation\) in your local network | 
 
 To use the `ping6` command to ping the IPv6 address for your instance, you must add the following inbound ICMPv6 rule\.
 
 
 | Protocol type | Protocol number | ICMP type | ICMP code | Source IP | 
 | --- | --- | --- | --- | --- | 
-| ICMPv6 | 58 | 128 \(Echo\) | 0 | The IPv6 address of your computer, or a range of IPv6 addresses in your local network | 
+| ICMPv6 | 58 | 128 \(Echo\) | 0 | The IPv6 address of your computer, or a range of IPv6 addresses \(in CIDR block notation\) in your local network | 
 
 ## DNS Server Rules<a name="sg-rules-dns"></a>
 
 If you've set up your EC2 instance as a DNS server, you must ensure that TCP and UDP traffic can reach your DNS server over port 53\. 
 
 For the source IP, specify one of the following:
-+ An IP address or range of IP addresses in a network
++ An IP address or range of IP addresses \(in CIDR block notation\) in a network
 + The ID of a security group for the set of instances in your network that require access to the DNS server
 
 
@@ -135,7 +135,7 @@ To mount an Amazon EFS file system on your Amazon EC2 instance, you must connect
 
 | Protocol type | Protocol number | Ports | Source IP | Notes | 
 | --- | --- | --- | --- | --- | 
-| TCP | 6 | 22 \(SSH\) | The IP address range of your local computer, or the range of IP addresses for your network\. | Allows inbound SSH access from your local computer\. | 
+| TCP | 6 | 22 \(SSH\) | The IP address range of your local computer, or the range of IP addresses \(in CIDR block notation\) for your network\. | Allows inbound SSH access from your local computer\. | 
 
 ## Elastic Load Balancing Rules<a name="sg-rules-elb"></a>
 

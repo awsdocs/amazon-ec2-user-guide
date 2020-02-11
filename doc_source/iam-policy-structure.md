@@ -176,6 +176,9 @@ Amazon EC2 implements the following service\-specific condition keys\. For infor
 | `ec2:InstanceType`  |  "ec2:InstanceType":"*instance\-type\-api\-name*" Where *instance\-type\-api\-name* is the name of the instance type  |  String, Null  | 
 |  `ec2:IsLaunchTemplateResource`  |  "ec2:IsLaunchTemplateResource":"*launch\-template\-resource\-flag*" Where *launch\-template\-resource\-flag* is `true` \| `false`  |  Boolean, Null  | 
 |  `ec2:LaunchTemplate`  |  "ec2:LaunchTemplate":"*launch\-template\-arn*" Where *launch\-template\-arn* is the launch template ARN  |  ARN, Null  | 
+|  `ec2:MetadataHttpEndpoint`  |  "ec2:MetadataHttpEndpoint":"*metadata\-endpoint\-flag*" Where *metadata\-endpoint\-flag* is `enabled` \| `disabled`  |  String, Null  | 
+|  `ec2:MetadataHttpPutResponseHopLimit`  |  "ec2:MetadataHttpPutResponseHopLimit":"*hop\-limit*" Where *hop\-limit* is the number of allowed hops  |  Numeric, Null  | 
+|  `ec2:MetadataHttpTokens`  |  "ec2:MetadataHttpTokens":"*token\-usage\-flag*" Where *token\-usage\-flag* is `optional` \| `required`  |  String, Null  | 
 |  `ec2:Owner`  |  "ec2:Owner":"*account\-id*" Where *account\-id* is `amazon` \| `aws-marketplace` \| *aws\-account\-id*  |  String, Null  | 
 | `ec2:ParentSnapshot` |  "ec2:ParentSnapshot":"*snapshot\-arn*" Where *snapshot\-arn* is the snapshot ARN  |  ARN, Null  | 
 |  `ec2:ParentVolume`  |  "ec2:ParentVolume":"*volume\-arn*" Where *volume\-arn* is the volume ARN  |  ARN, Null  | 

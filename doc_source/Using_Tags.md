@@ -93,8 +93,8 @@ The following table describes the Amazon EC2 resources that can be tagged, and t
 | Virtual private gateway | Yes | No | 
 | VPC | Yes | No | 
 | VPC endpoint | Yes | No | 
-| VPC endpoint service | Yes | No | 
-| VPC endpoint service configuration | Yes | No | 
+| VPC endpoint service | Yes | Yes | 
+| VPC endpoint service configuration | Yes | Yes | 
 | VPC flow log | No | No | 
 | VPC peering connection | Yes | No | 
 | VPN connection | Yes | No | 

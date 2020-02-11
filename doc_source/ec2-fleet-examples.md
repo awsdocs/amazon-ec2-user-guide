@@ -208,7 +208,7 @@ The fleet type must be `instant`\. Capacity Reservations are not supported for o
 ```
 
 After you create the `instant` fleet using the preceding configuration, the following 12 instances are launched to meet the target capacity:
-+ 5 c4\.large On\-Demand Instances in us\-east\-1a – c4\.large in us\-east\-1a is prioritized first, and there are 5 available unused Capacity Reservations
++ 5 c4\.large On\-Demand Instances in us\-east\-1a – c4\.large in us\-east\-1a is prioritized first, and there are 5 available unused c4\.large Capacity Reservations
 + 5 c3\.large On\-Demand Instances in us\-east\-1a – c3\.large in us\-east\-1a is prioritized second, and there are 5 available unused c3\.large Capacity Reservations
 + 2 c5\.large On\-Demand Instances in us\-east\-1a – c5\.large in us\-east\-1a is prioritized third, and there are 5 available unused c5\.large Capacity Reservations of which only 2 are needed to meet the target capacity
 
@@ -325,7 +325,7 @@ The fleet type must be `instant`\. Capacity Reservations are not supported for o
 ```
 
 After you create the `instant` fleet using the preceding configuration, the following 16 instances are launched to meet the target capacity:
-+ 6 c4\.large On\-Demand Instances in us\-east\-1a – c4\.large in us\-east\-1a is prioritized first, and there are 5 available unused Capacity Reservations\. The Capacity Reservations are used first to launch 5 On\-Demand Instances plus an additional On\-Demand Instance is launched according to the On\-Demand allocation strategy, which is `prioritized` in this example\.
++ 6 c4\.large On\-Demand Instances in us\-east\-1a – c4\.large in us\-east\-1a is prioritized first, and there are 5 available unused c4\.large Capacity Reservations\. The Capacity Reservations are used first to launch 5 On\-Demand Instances plus an additional On\-Demand Instance is launched according to the On\-Demand allocation strategy, which is `prioritized` in this example\.
 + 5 c3\.large On\-Demand Instances in us\-east\-1a – c3\.large in us\-east\-1a is prioritized second, and there are 5 available unused c3\.large Capacity Reservations
 + 5 c5\.large On\-Demand Instances in us\-east\-1a – c5\.large in us\-east\-1a is prioritized third, and there are 5 available unused c5\.large Capacity Reservations
 
@@ -444,9 +444,9 @@ The fleet type must be `instant`\. Capacity Reservations are not supported for o
 ```
 
 After you create the `instant` fleet using the preceding configuration, the following 12 instances are launched to meet the target capacity:
-+ 5 m5\.large On\-Demand Instances in us\-east\-1a – m5\.large in us\-east\-1a is the lowest price, and there are 5 available unused Capacity Reservations
-+ 5 m4\.xlarge On\-Demand Instances in us\-east\-1a – m4\.xlarge in us\-east\-1a is the next lowest price, and there are 5 available unused c3\.large Capacity Reservations
-+ 2 m4\.2xlarge On\-Demand Instances in us\-east\-1a – m4\.2xlarge in us\-east\-1a is the third lowest price, and there are 5 available unused c5\.large Capacity Reservations of which only 2 are needed to meet the target capacity
++ 5 m5\.large On\-Demand Instances in us\-east\-1a – m5\.large in us\-east\-1a is the lowest price, and there are 5 available unused m5\.large Capacity Reservations
++ 5 m4\.xlarge On\-Demand Instances in us\-east\-1a – m4\.xlarge in us\-east\-1a is the next lowest price, and there are 5 available unused m4\.xlarge Capacity Reservations
++ 2 m4\.2xlarge On\-Demand Instances in us\-east\-1a – m4\.2xlarge in us\-east\-1a is the third lowest price, and there are 5 available unused m4\.2xlarge Capacity Reservations of which only 2 are needed to meet the target capacity
 
 After the fleet is launched, you can run [describe\-capacity\-reservations](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-capacity-reservations.html) to see how many unused Capacity Reservations are remaining\. In this example, you should see the following response, which shows that all of the m5\.large and m4\.xlarge Capacity Reservations were used, with 3 m4\.2xlarge Capacity Reservations remaining unused\.
 
@@ -563,9 +563,9 @@ The fleet type must be `instant`\. Capacity Reservations are not supported for o
 ```
 
 After you create the `instant` fleet using the preceding configuration, the following 16 instances are launched to meet the target capacity:
-+ 6 m5\.large On\-Demand Instances in us\-east\-1a – m5\.large in us\-east\-1a is the lowest price, and there are 5 available unused Capacity Reservations\. The Capacity Reservations are used first to launch 5 On\-Demand Instances plus an additional On\-Demand Instance is launched according to the On\-Demand allocation strategy, which is `lowest-price` in this example\.
-+ 5 m4\.xlarge On\-Demand Instances in us\-east\-1a – m4\.xlarge in us\-east\-1a is the next lowest price, and there are 5 available unused c3\.large Capacity Reservations
-+ 5 m4\.2xlarge On\-Demand Instances in us\-east\-1a – m4\.2xlarge in us\-east\-1a is the third lowest price, and there are 5 available unused c5\.large Capacity Reservations
++ 6 m5\.large On\-Demand Instances in us\-east\-1a – m5\.large in us\-east\-1a is the lowest price, and there are 5 available unused m5\.large Capacity Reservations\. The Capacity Reservations are used first to launch 5 On\-Demand Instances plus an additional On\-Demand Instance is launched according to the On\-Demand allocation strategy, which is `lowest-price` in this example\.
++ 5 m4\.xlarge On\-Demand Instances in us\-east\-1a – m4\.xlarge in us\-east\-1a is the next lowest price, and there are 5 available unused m4\.xlarge Capacity Reservations
++ 5 m4\.2xlarge On\-Demand Instances in us\-east\-1a – m4\.2xlarge in us\-east\-1a is the third lowest price, and there are 5 available unused m4\.2xlarge Capacity Reservations
 
 After the fleet is launched, you can run [describe\-capacity\-reservations](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-capacity-reservations.html) to see how many unused Capacity Reservations are remaining\. In this example, you should see the following response, which shows that all of the Capacity Reservations in all of the pools were used\.
 

@@ -26,13 +26,17 @@ The following image shows instances that are placed into a cluster placement gro
 
 ![\[A cluster placement group\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/placement-group-cluster.png)
 
-Cluster placement groups are recommended for applications that benefit from low network latency, high network throughput, or both, and if the majority of the network traffic is between the instances in the group\. To provide the lowest latency and the highest packet\-per\-second network performance for your placement group, choose an instance type that supports enhanced networking\. For more information, see [Enhanced Networking](enhanced-networking.md)\.
+Cluster placement groups are recommended for applications that benefit from low network latency, high network throughput, or both\. They are also recommended when the majority of the network traffic is between the instances in the group\. To provide the lowest latency and the highest packet\-per\-second network performance for your placement group, choose an instance type that supports enhanced networking\. For more information, see [Enhanced Networking](enhanced-networking.md)\.
 
-We recommend that you launch the number of instances that you need in the placement group in a single launch request and that you use the same instance type for all instances in the placement group\. If you try to add more instances to the placement group later, or if you try to launch more than one instance type in the placement group, you increase your chances of getting an insufficient capacity error\.
+We recommend that you launch your instances in the following way:
++ Use a single launch request to launch the number of instances that you need in the placement group\.
++ Use the same instance type for all instances in the placement group\. 
+
+If you try to add more instances to the placement group later, or if you try to launch more than one instance type in the placement group, you increase your chances of getting an insufficient capacity error\.
 
 If you stop an instance in a placement group and then start it again, it still runs in the placement group\. However, the start fails if there isn't enough capacity for the instance\.
 
-If you receive a capacity error when launching an instance in a placement group that already has running instances, stop and start all of the instances in the placement group, and try the launch again\. Restarting the instances may migrate them to hardware that has capacity for all the requested instances\.
+If you receive a capacity error when launching an instance in a placement group that already has running instances, stop and start all of the instances in the placement group, and try the launch again\. Starting the instances may migrate them to hardware that has capacity for all of the requested instances\.
 
 ## Partition Placement Groups<a name="placement-groups-partition"></a>
 
@@ -46,7 +50,7 @@ Partition placement groups can be used to deploy large distributed and replicate
 
 A partition placement group can have partitions in multiple Availability Zones in the same Region\. A partition placement group can have a maximum of seven partitions per Availability Zone\. The number of instances that can be launched into a partition placement group is limited only by the limits of your account\. 
 
-In addition, partition placement groups offer visibility into the partitions—you can see which instances are in which partitions\. You can share this information with topology\-aware applications, such as HDFS, HBase, and Cassandra\. These applications use this information to make intelligent data replication decisions for increasing data availability and durability\.
+In addition, partition placement groups offer visibility into the partitions — you can see which instances are in which partitions\. You can share this information with topology\-aware applications, such as HDFS, HBase, and Cassandra\. These applications use this information to make intelligent data replication decisions for increasing data availability and durability\.
 
 If you start or launch an instance in a partition placement group and there is insufficient unique hardware to fulfill the request, the request fails\. Amazon EC2 makes more distinct hardware available over time, so you can try your request again later\.
 
@@ -69,7 +73,7 @@ If you start or launch an instance in a spread placement group and there is insu
 ### General Rules and Limitations<a name="placement-groups-limitations-general"></a>
 
 Before you use placement groups, be aware of the following rules:
-+ The name you specify for a placement group must be unique within your AWS account for the Region\.
++ The name that you specify for a placement group must be unique within your AWS account for the Region\.
 + You can't merge placement groups\.
 + An instance can be launched in one placement group at a time; it cannot span multiple placement groups\.
 + [On\-Demand Capacity Reservation](ec2-capacity-reservations.md#capacity-reservations-limits) and [zonal Reserved Instances](reserved-instances-scope.md) provide a capacity reservation for EC2 instances in a specific Availability Zone\. The capacity reservation can be used by instances in a placement group\. However, it is not possible to explicitly reserve capacity for a placement group\.
@@ -78,7 +82,7 @@ Before you use placement groups, be aware of the following rules:
 ### Cluster Placement Group Rules and Limitations<a name="placement-groups-limitations-cluster"></a>
 
 The following rules apply to cluster placement groups:
-+ The following are the only instance types that you can use when you launch an instance into a cluster placement group:
++ When you launch an instance into a cluster placement group, you must use one of the following instance types:
   + General purpose: A1, M4, M5, M5a, M5ad, M5d, M5dn, and M5n
   + Compute optimized: C3, C4, C5, C5d, C5n, and `cc2.8xlarge`
   + Memory optimized: `cr1.8xlarge`, R3, R4, R5, R5a, R5ad, R5d, R5dn, R5n, X1, X1e, and z1d
@@ -103,77 +107,122 @@ The following rules apply to partition placement groups:
 ### Spread Placement Group Rules and Limitations<a name="placement-groups-limitations-spread"></a>
 
 The following rules apply to spread placement groups:
-+ A spread placement group supports a maximum of seven running instances per Availability Zone\. For example, in a Region with three Availability Zones, you can run a total of 21 instances in the group \(seven per zone\)\. If you try to start an eighth instance in the same Availability Zone and in the same spread placement group, the instance will not launch\. If you need to have more than seven instances in an Availability Zone, then the recommendation is to use multiple spread placement groups\. This does not provide guarantees about the spread of instances between groups, but does ensure the spread for each group to limit impact from certain classes of failures\. 
++ A spread placement group supports a maximum of seven running instances per Availability Zone\. For example, in a Region with three Availability Zones, you can run a total of 21 instances in the group \(seven per zone\)\. If you try to start an eighth instance in the same Availability Zone and in the same spread placement group, the instance will not launch\. If you need to have more than seven instances in an Availability Zone, then the recommendation is to use multiple spread placement groups\. Using multiple spread placement groups does not provide guarantees about the spread of instances between groups, but it does ensure the spread for each group, thus limiting impact from certain classes of failures\. 
 + Spread placement groups are not supported for Dedicated Instances or Dedicated Hosts\.
 
 ## Creating a Placement Group<a name="create-placement-group"></a>
 
-You can create a placement group using the Amazon EC2 console or the command line\.
+You can create a placement group using one of the following methods\.
 
-**To create a placement group \(console\)**
+------
+#### [ New console ]
+
+**To create a placement group using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Placement Groups**, **Create placement group**\.
+
+1. Specify a name for the group\.
+
+1. Choose the placement strategy for the group\. If you choose **Partition**, choose the number of partitions within the group\.
+
+1. Choose **Create group**\.
+
+------
+#### [ Old console ]
+
+**To create a placement group using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
 1. In the navigation pane, choose **Placement Groups**, **Create Placement Group**\.
 
-1. Specify a name for the group\. 
+1. Specify a name for the group\.
 
-1. Choose the strategy for the group\. If you choose **Partition**, specify the number of partitions within the group\.
+1. Choose the placement strategy for the group\. If you choose **Partition**, specify the number of partitions within the group\.
 
 1. Choose **Create**\.
 
-**To create a placement group \(command line\)**
-+ [create\-placement\-group](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-placement-group.html) \(AWS CLI\)
-+ [New\-EC2PlacementGroup](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2PlacementGroup.html) \(AWS Tools for Windows PowerShell\)
+------
+#### [ AWS CLI ]
 
-**To create a partition placement group \(AWS CLI\)**
-+ Use the [create\-placement\-group](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-placement-group.html) command and specify the `--strategy` parameter with the value `partition` and the `--partition-count` parameter\. In this example, the partition placement group is named `HDFS-Group-A` and is created with five partitions\.
+**To create a placement group using the AWS CLI**  
+Use the [create\-placement\-group](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-placement-group.html) command\. In this example, the placement group name is `my-cluster` and the placement strategy is `cluster`\.
 
-  ```
-  aws ec2 create-placement-group --group-name HDFS-Group-A --strategy partition --partition-count 5
-  ```
+```
+aws ec2 create-placement-group --group-name my-cluster --strategy cluster
+```
+
+**To create a partition placement group using the AWS CLI**  
+Use the [create\-placement\-group](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-placement-group.html) command\. Specify the `--strategy` parameter with the value `partition`, and specify the `--partition-count` parameter with the desired number of partitions\. In this example, the partition placement group is named `HDFS-Group-A` and is created with five partitions\.
+
+```
+aws ec2 create-placement-group --group-name HDFS-Group-A --strategy partition --partition-count 5
+```
+
+------
+#### [ PowerShell  ]
+
+**To create a placement group using the AWS Tools for Windows PowerShell**  
+Use the [New\-EC2PlacementGroup](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2PlacementGroup.html) command\.
+
+------
 
 ## Launching Instances in a Placement Group<a name="launch-instance-placement-group"></a>
 
-You can create an AMI specifically for the instances to be launched in a placement group\. To do this, launch an instance and install the required software and applications on the instance\. Then, create an AMI from the instance\. For more information, see [Creating an Amazon EBS\-Backed Linux AMI](creating-an-ami-ebs.md)\.<a name="launch_cluster_instance"></a>
+You can launch an instance into a placement group if the [placement group rules and limitations are met](#concepts-placement-groups) using one of the following methods\.
 
-**To launch instances into a placement group \(console\)**
+------
+#### [ Console ]<a name="launch_cluster_instance"></a>
+
+**To launch instances into a placement group using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
 1. In the navigation pane, choose **Instances**\.
 
 1. Choose **Launch Instance**\. Complete the wizard as directed, taking care to do the following:
-   + On the **Choose an Amazon Machine Image \(AMI\)** page, select an AMI\. To select an AMI you created, choose **My AMIs**\.
    + On the **Choose an Instance Type** page, select an instance type that can be launched into a placement group\.
    + On the **Configure Instance Details** page, the following fields are applicable to placement groups:
      + For **Number of instances**, enter the total number of instances that you need in this placement group, because you might not be able to add instances to the placement group later\.
-     + For **Placement group**, select the **Add instance to placement group** check box\. If you do not see **Placement group** on this page, verify that you have selected an instance type that can be launched into a placement group; otherwise, this option is not available\.
+     + For **Placement group**, select the **Add instance to placement group** check box\. If you do not see **Placement group** on this page, verify that you have selected an instance type that can be launched into a placement group\. Otherwise, this option is not available\.
      + For **Placement group name**, you can choose to add the instances to an existing placement group or to a new placement group that you create\.
-     + For **Placement group strategy**, choose the appropriate strategy\. If you choose **partition**, for **Target partition**, choose **Auto distribution** to have Amazon EC2 do a best effort to distribute the instances evenly across all the partitions in the group; or, specify the partition in which to launch the instances\.
+     + For **Placement group strategy**, choose the appropriate strategy\. If you choose **partition**, for **Target partition**, choose **Auto distribution** to have Amazon EC2 do a best effort to distribute the instances evenly across all the partitions in the group\. Alternatively, specify the partition in which to launch the instances\.
 
-**To launch instances into a placement group \(command line\)**
+------
+#### [ AWS CLI ]
 
-1. Create an AMI for your instances using one of the following commands:
-   + [create\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-image.html) \(AWS CLI\)
-   + [New\-EC2Image](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Image.html) \(AWS Tools for Windows PowerShell\)
+**To launch instances into a placement group using the AWS CLI**  
+Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command and specify the placement group name using the `--placement "GroupName = my-cluster"` parameter\. In this example, the placement group is named `my-cluster`\.
 
-1. Launch instances into your placement group using one of the following options:
-   + `--placement` with [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) \(AWS CLI\)
-   + `-PlacementGroup` with [New\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
+```
+aws ec2 run-instances --placement "GroupName = my-cluster"
+```
 
-**To launch instances into a specific partition of a partition placement group \(AWS CLI\)**
-+ Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command and specify the placement group name and partition using the `--placement "GroupName = HDFS-Group-A, PartitionNumber = 3"` parameter\. In this example, the placement group is named `HDFS-Group-A` and the partition number is `3`\.
+**To launch instances into a specific partition of a partition placement group using the AWS CLI**  
+Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command and specify the placement group name and partition using the `--placement "GroupName = HDFS-Group-A, PartitionNumber = 3"` parameter\. In this example, the placement group is named `HDFS-Group-A` and the partition number is `3`\.
 
-  ```
-  aws ec2 run-instances --placement "GroupName = HDFS-Group-A, PartitionNumber = 3"
-  ```
+```
+aws ec2 run-instances --placement "GroupName = HDFS-Group-A, PartitionNumber = 3"
+```
+
+------
+#### [ PowerShell ]
+
+**To launch instances into a placement group using AWS Tools for Windows PowerShell**  
+Use the [New\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) command and specify the placement group name using the `-Placement_GroupName` parameter\.
+
+------
 
 ## Describing Instances in a Placement Group<a name="describe-instance-placement"></a>
 
-You can view the placement information of your instances using the Amazon EC2 console or the command line\. The placement group is viewable using the console\. The partition number for instances in a partition placement group is currently only viewable using the API or AWS CLI\.
+You can view the placement information of your instances using one of the following methods\. You can also filter partition placement groups by the partition number using the AWS CLI\.
 
-**To view the placement group of an instance \(console\)**
+------
+#### [ Console ]
+
+**To view the placement group and partition number of an instance using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -181,116 +230,159 @@ You can view the placement information of your instances using the Amazon EC2 co
 
 1. Select the instance and, in the details pane, inspect **Placement group**\. If the instance is not in a placement group, the field is empty\. Otherwise, the placement group name is displayed\. If the placement group is a partition placement group, inspect **Partition number** for the partition number for the instance\.
 
-**To view the partition number for an instance in a partition placement group \(AWS CLI\)**
-+ Use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command and specify the `--instance-id` parameter\.
+------
+#### [ AWS CLI ]
 
-  ```
-  aws ec2 describe-instances --instance-id i-0123a456700123456
-  ```
+**To view the partition number for an instance in a partition placement group using the AWS CLI**  
+Use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command and specify the `--instance-id` parameter\.
 
-  The response contains the placement information, which includes the placement group name and the partition number for the instance\.
+```
+aws ec2 describe-instances --instance-id i-0123a456700123456
+```
 
-  ```
-  "Placement": {
-       "AvailabilityZone": "us-east-1c",
-       "GroupName": "HDFS-Group-A",
-       "PartitionNumber": 3,
-       "Tenancy": "default"
-  }
-  ```
+The response contains the placement information, which includes the placement group name and the partition number for the instance\.
 
-**To filter instances for a specific partition placement group and partition number \(AWS CLI\)**
-+ Use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command and specify the `--filters` parameter with the `placement-group-name` and `placement-partition-number` filters\. In this example, the placement group is named `HDFS-Group-A` and the partition number is `7`\.
+```
+"Placement": {
+     "AvailabilityZone": "us-east-1c",
+     "GroupName": "HDFS-Group-A",
+     "PartitionNumber": 3,
+     "Tenancy": "default"
+}
+```
 
-  ```
-  aws ec2 describe-instances --filters "Name = placement-group-name, Values = HDFS-Group-A" "Name = placement-partition-number, Values = 7"
-  ```
+**To filter instances for a specific partition placement group and partition number using the AWS CLI**  
+Use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command and specify the `--filters` parameter with the `placement-group-name` and `placement-partition-number` filters\. In this example, the placement group is named `HDFS-Group-A` and the partition number is `7`\.
 
-  The response lists all the instances that are in the specified partition within the specified placement group\. The following is example output showing only the instance ID, instance type, and placement information for the returned instances\.
+```
+aws ec2 describe-instances --filters "Name = placement-group-name, Values = HDFS-Group-A" "Name = placement-partition-number, Values = 7"
+```
 
-  ```
-  "Instances": [
-                  {   
-                      "InstanceId": "i-0a1bc23d4567e8f90",
-                      "InstanceType": "r4.large",
-                      },
-                    
-                      "Placement": {
-                          "AvailabilityZone": "us-east-1c",
-                          "GroupName": "HDFS-Group-A",
-                          "PartitionNumber": 7,
-                          "Tenancy": "default"
-                      }
-  
-                  {   
-                      "InstanceId": "i-0a9b876cd5d4ef321",
-                      "InstanceType": "r4.large",
-                      },
-  
-                      "Placement": {
-                          "AvailabilityZone": "us-east-1c",
-                          "GroupName": "HDFS-Group-A",
-                          "PartitionNumber": 7,
-                          "Tenancy": "default"
-                      }
-                ],
-  ```
+The response lists all the instances that are in the specified partition within the specified placement group\. The following is example output showing only the instance ID, instance type, and placement information for the returned instances\.
+
+```
+"Instances": [
+                {   
+                    "InstanceId": "i-0a1bc23d4567e8f90",
+                    "InstanceType": "r4.large",
+                    },
+                  
+                    "Placement": {
+                        "AvailabilityZone": "us-east-1c",
+                        "GroupName": "HDFS-Group-A",
+                        "PartitionNumber": 7,
+                        "Tenancy": "default"
+                    }
+
+                {   
+                    "InstanceId": "i-0a9b876cd5d4ef321",
+                    "InstanceType": "r4.large",
+                    },
+
+                    "Placement": {
+                        "AvailabilityZone": "us-east-1c",
+                        "GroupName": "HDFS-Group-A",
+                        "PartitionNumber": 7,
+                        "Tenancy": "default"
+                    }
+              ],
+```
+
+------
 
 ## Changing the Placement Group for an Instance<a name="change-instance-placement-group"></a>
 
-You can move an existing instance to a placement group, move an instance from one placement group to another, or remove an instance from a placement group\. Before you begin, the instance must be in the `stopped` state\.
+You can change the placement group for an instance in any of the following ways:
++ Move an existing instance to a placement group
++ Move an instance from one placement group to another
++ Remove an instance from a placement group 
 
-You can change the placement group for an instance using the command line or an AWS SDK\.
+Before you move or remove the instance, the instance must be in the `stopped` state\. You can move or remove an instance using the AWS CLI or an AWS SDK\.
 
-**To move an instance to a placement group \(command line\)**
+------
+#### [ AWS CLI ]
 
-1. Stop the instance using one of the following commands:
-   + [stop\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) \(AWS CLI\)
-   + [Stop\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Stop-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
+**To move an instance to a placement group using the AWS CLI**
 
-1. Use the [modify\-instance\-placement](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-placement.html) command \(AWS CLI\) and specify the name of the placement group to which to move the instance\.
+1. Stop the instance using the [stop\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) command\.
+
+1. Use the [modify\-instance\-placement](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-placement.html) command and specify the name of the placement group to which to move the instance\.
 
    ```
    aws ec2 modify-instance-placement --instance-id i-0123a456700123456 --group-name MySpreadGroup
    ```
 
-   Alternatively, use the [Edit\-EC2InstancePlacement](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2InstancePlacement.html) command \(AWS Tools for Windows PowerShell\)\.
+1. Start the instance using the [start\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/start-instances.html) command\.
 
-1. Restart the instance using one of the following commands:
-   + [start\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/start-instances.html) \(AWS CLI\)
-   + [Start\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Start-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
+------
+#### [ PowerShell ]
 
-**To remove an instance from a placement group \(command line\)**
+**To move an instance to a placement group using the AWS Tools for Windows PowerShell**
 
-1. Stop the instance using one of the following commands:
-   + [stop\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) \(AWS CLI\)
-   + [Stop\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Stop-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
+1. Stop the instance using the [Stop\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Stop-EC2Instance.html) command\.
 
-1. Use the [modify\-instance\-placement](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-placement.html) command \(AWS CLI\) and specify an empty string for the group name\.
+1. Use the [Edit\-EC2InstancePlacement](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2InstancePlacement.html) command and specify the name of the placement group to which to move the instance\.
+
+1. Start the instance using the [Start\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Start-EC2Instance.html) command\.
+
+------
+
+ 
+
+------
+#### [ AWS CLI ]
+
+**To remove an instance from a placement group using the AWS CLI**
+
+1. Stop the instance using the [stop\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) command\.
+
+1. Use the [modify\-instance\-placement](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-placement.html) command and specify an empty string for the placement group name\.
 
    ```
    aws ec2 modify-instance-placement --instance-id i-0123a456700123456 --group-name ""
    ```
 
-   Alternatively, use the [Edit\-EC2InstancePlacement](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2InstancePlacement.html) command \(AWS Tools for Windows PowerShell\)\.
+1. Start the instance using the [start\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/start-instances.html) command\.
 
-1. Restart the instance using one of the following commands:
-   + [start\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/start-instances.html) \(AWS CLI\)
-   + [Start\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Start-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
+------
+#### [ PowerShell ]
+
+**To remove an instance from a placement group using the AWS Tools for Windows PowerShell**
+
+1. Stop the instance using the [Stop\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Stop-EC2Instance.html) command\.
+
+1. Use the [Edit\-EC2InstancePlacement](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2InstancePlacement.html) command and specify an empty string for the placement group name\.
+
+1. Start the instance using the [Start\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Start-EC2Instance.html) command\.
+
+------
 
 ## Deleting a Placement Group<a name="delete-placement-group"></a>
 
-If you need to replace a placement group or no longer need one, you can delete it\. Before you can delete your placement group, you must terminate all instances that you launched into the placement group, or move them to another placement group\.
+If you need to replace a placement group or no longer need one, you can delete it\. You can delete a placement group using one of the following methods\.
 
-**To terminate or move instances and delete a placement group \(console\)**
+**Important**  
+Before you can delete a placement group, it must contain no instances\. You can [terminate](terminating-instances.md#terminating-instances-console) all instances that you launched into the placement group, [move](#move-instance-to-placement-group) them to another placement group, or [remove](#remove-instance-from-placement-group) them from the placement group\. You can verify that an instance is in a placement group before you terminate or move it by selecting the instance in the **Instances** screen and checking the value of **Placement group** in the details pane\.
+
+------
+#### [ New console ]
+
+**To delete a placement group using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation pane, choose **Instances**\.
+1. In the navigation pane, choose **Placement Groups**\.
 
-1. Select and terminate all instances in the placement group\. You can verify that the instance is in a placement group before you terminate it by checking the value of **Placement Group** in the details pane\.
+1. Select the placement group and choose **Delete**\.
 
-   Alternatively, follow the steps in [Changing the Placement Group for an Instance](#change-instance-placement-group) to move the instances to a different placement group\.
+1. When prompted for confirmation, enter **Delete** and then choose **Delete**\.
+
+------
+#### [ Old console ]
+
+**To delete a placement group using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
 1. In the navigation pane, choose **Placement Groups**\.
 
@@ -298,8 +390,20 @@ If you need to replace a placement group or no longer need one, you can delete i
 
 1. When prompted for confirmation, choose **Delete**\.
 
-**To terminate instances and delete a placement group \(command line\)**
+------
+#### [ AWS CLI ]
 
-You can use one of the following sets of commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [terminate\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/terminate-instances.html) and [delete\-placement\-group](https://docs.aws.amazon.com/cli/latest/reference/ec2/delete-placement-group.html) \(AWS CLI\)
-+ [Remove\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2Instance.html) and [Remove\-EC2PlacementGroup](https://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2PlacementGroup.html) \(AWS Tools for Windows PowerShell\)
+**To delete a placement group using the AWS CLI**  
+ Use the [delete\-placement\-group](https://docs.aws.amazon.com/cli/latest/reference/ec2/delete-placement-group.html) command and specify the placement group name to delete the placement group\. In this example, the placement group name is `my-cluster`\.
+
+```
+aws ec2 delete-placement-group --group-name my-cluster
+```
+
+------
+#### [ PowerShell ]
+
+**To delete a placement group using the AWS Tools for Windows PowerShell**  
+Use the [Remove\-EC2PlacementGroup](https://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2PlacementGroup.html) command to delete the placement group\.
+
+------

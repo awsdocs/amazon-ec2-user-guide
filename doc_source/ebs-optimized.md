@@ -61,9 +61,9 @@ The following table lists the instance types that support EBS optimization and E
 | d2\.4xlarge | 2,000 | 250 | 16,000 | 
 | d2\.8xlarge | 4,000 | 500 | 32,000 | 
 | f1\.2xlarge | 1,700 | 212\.5 | 12,000 | 
-| f1\.4xlarge | 3,500 | 400 | 44,000 | 
+| f1\.4xlarge | 3,500 | 437\.5 | 44,000 | 
 | f1\.16xlarge | 14,000 | 1,750 | 75,000 | 
-| g3s\.xlarge | 850 | 100 | 5,000 | 
+| g3s\.xlarge | 850 | 106\.25 | 5,000 | 
 | g3\.4xlarge | 3,500 | 437\.5 | 20,000 | 
 | g3\.8xlarge | 7,000 | 875 | 40,000 | 
 | g3\.16xlarge | 14,000 | 1,750 | 80,000 | 
@@ -153,7 +153,7 @@ The following table lists the instance types that support EBS optimization and E
 | p2\.xlarge | 750 | 93\.75 | 6,000 | 
 | p2\.8xlarge | 5,000 | 625 | 32,500 | 
 | p2\.16xlarge | 10,000 | 1,250 | 65,000 | 
-| p3\.2xlarge | 1,750 | 218 | 10,000 | 
+| p3\.2xlarge | 1,750 | 218\.75 | 10,000 | 
 | p3\.8xlarge | 7,000 | 875 | 40,000 | 
 | p3\.16xlarge | 14,000 | 1,750 | 80,000 | 
 | p3dn\.24xlarge | 19,000 | 2,375 | 80,000 | 
@@ -168,7 +168,7 @@ The following table lists the instance types that support EBS optimization and E
 | r5\.2xlarge \* | 4,750 | 593\.75 | 18,750 | 
 | r5\.4xlarge | 4,750 | 593\.75 | 18,750 | 
 | r5\.8xlarge | 6,800 | 850 | 30,000 | 
-| r5\.12xlarge | 9,500 | 1,187 | 40,000 | 
+| r5\.12xlarge | 9,500 | 1,187\.5 | 40,000 | 
 | r5\.16xlarge | 13,600 | 1,700 | 60,000 | 
 | r5\.24xlarge | 19,000 | 2,375 | 80,000 | 
 | r5\.metal | 19,000 | 2,375 | 80,000 | 
@@ -176,7 +176,7 @@ The following table lists the instance types that support EBS optimization and E
 | r5a\.xlarge \* | 2,120 | 265 | 16,000 | 
 | r5a\.2xlarge \* | 2,120 | 265 | 16,000 | 
 | r5a\.4xlarge | 2,120 | 265 | 16,000 | 
-| r5a\.8xlarge | 3,500 | 437\.5 | 32,000 | 
+| r5a\.8xlarge | 3,500 | 437\.5 | 20,000 | 
 | r5a\.12xlarge | 5,000 | 625 | 30,000 | 
 | r5a\.16xlarge | 7,000 | 875 | 40,000 | 
 | r5a\.24xlarge | 10,000 | 1,250 | 60,000 | 
@@ -191,7 +191,7 @@ The following table lists the instance types that support EBS optimization and E
 | r5d\.2xlarge \* | 4,750 | 593\.75 | 18,750 | 
 | r5d\.4xlarge | 4,750 | 593\.75 | 18,750 | 
 | r5d\.8xlarge | 6,800 | 850 | 30,000 | 
-| r5d\.12xlarge | 9,500 | 1,187 | 40,000 | 
+| r5d\.12xlarge | 9,500 | 1,187\.5 | 40,000 | 
 | r5d\.16xlarge | 13,600 | 1,700 | 60,000 | 
 | r5d\.24xlarge | 19,000 | 2,375 | 80,000 | 
 | r5d\.metal | 19,000 | 2,375 | 80,000 | 
@@ -200,7 +200,7 @@ The following table lists the instance types that support EBS optimization and E
 | r5dn\.2xlarge \* | 4,750 | 593\.75 | 18,750 | 
 | r5dn\.4xlarge | 4,750 | 593\.75 | 18,750 | 
 | r5dn\.8xlarge | 6,800 | 850 | 30,000 | 
-| r5dn\.12xlarge | 9,500 | 1,187 | 40,000 | 
+| r5dn\.12xlarge | 9,500 | 1,187\.5 | 40,000 | 
 | r5dn\.16xlarge | 13,600 | 1,700 | 60,000 | 
 | r5dn\.24xlarge | 19,000 | 2,375 | 80,000 | 
 | r5n\.large \* | 4,750 | 593\.75 | 18,750 | 
@@ -208,7 +208,7 @@ The following table lists the instance types that support EBS optimization and E
 | r5n\.2xlarge \* | 4,750 | 593\.75 | 18,750 | 
 | r5n\.4xlarge | 4,750 | 593\.75 | 18,750 | 
 | r5n\.8xlarge | 6,800 | 850 | 30,000 | 
-| r5n\.12xlarge | 9,500 | 1,187 | 40,000 | 
+| r5n\.12xlarge | 9,500 | 1,187\.5 | 40,000 | 
 | r5n\.16xlarge | 13,600 | 1,700 | 60,000 | 
 | r5n\.24xlarge | 19,000 | 2,375 | 80,000 | 
 | t3\.nano \* | 1,536 | 192 | 11,800 | 
@@ -238,10 +238,10 @@ The following table lists the instance types that support EBS optimization and E
 | x1e\.8xlarge | 3,500 | 437\.5 | 20,000 | 
 | x1e\.16xlarge | 7,000 | 875 | 40,000 | 
 | x1e\.32xlarge | 14,000 | 1,750 | 80,000 | 
-| z1d\.large \* | 2,333 | 291 | 13,333 | 
-| z1d\.xlarge \* | 2,333 | 291 | 13,333 | 
-| z1d\.2xlarge | 2,333 | 292 | 13,333 | 
-| z1d\.3xlarge | 3,500 | 438 | 20,000 | 
+| z1d\.large \* | 2,333 | 291\.63 | 13,333 | 
+| z1d\.xlarge \* | 2,333 | 291\.63 | 13,333 | 
+| z1d\.2xlarge | 2,333 | 291\.63 | 13,333 | 
+| z1d\.3xlarge | 3,500 | 437\.5 | 20,000 | 
 | z1d\.6xlarge | 7,000 | 875 | 40,000 | 
 | z1d\.12xlarge | 14,000 | 1,750 | 80,000 | 
 | z1d\.metal | 14,000 | 1,750 | 80,000 | 
@@ -273,10 +273,10 @@ The following table lists the instance types that support EBS optimization and E
 | m5\.2xlarge | 2,300 | 287\.5 | 12,000 | 
 | m5a\.large | 480 | 60 | 3,600 | 
 | m5a\.xlarge | 800 | 100 | 6,000 | 
-| m5a\.2xlarge | 1,166 | 146 | 8,333 | 
+| m5a\.2xlarge | 1,166 | 145\.75 | 8,333 | 
 | m5ad\.large | 480 | 60 | 3,600 | 
 | m5ad\.xlarge | 800 | 100 | 6,000 | 
-| m5ad\.2xlarge | 1,166 | 146 | 8,333 | 
+| m5ad\.2xlarge | 1,166 | 145\.75 | 8,333 | 
 | m5d\.large | 650 | 81\.25 | 3,600 | 
 | m5d\.xlarge | 1,150 | 143\.75 | 6,000 | 
 | m5d\.2xlarge | 2,300 | 287\.5 | 12,000 | 
@@ -291,10 +291,10 @@ The following table lists the instance types that support EBS optimization and E
 | r5\.2xlarge | 2,300 | 287\.5 | 12,000 | 
 | r5a\.large | 480 | 60 | 3,600 | 
 | r5a\.xlarge | 800 | 100 | 6,000 | 
-| r5a\.2xlarge | 1,166 | 146 | 8,333 | 
+| r5a\.2xlarge | 1,166 | 145\.75 | 8,333 | 
 | r5ad\.large | 480 | 60 | 3,600 | 
 | r5ad\.xlarge | 800 | 100 | 6,000 | 
-| r5ad\.2xlarge | 1,166 | 146 | 8,333 | 
+| r5ad\.2xlarge | 1,166 | 145\.75 | 8,333 | 
 | r5d\.large | 650 | 81\.25 | 3,600 | 
 | r5d\.xlarge | 1,150 | 143\.75 | 6,000 | 
 | r5d\.2xlarge | 2,300 | 287\.5 | 12,000 | 
@@ -318,8 +318,8 @@ The following table lists the instance types that support EBS optimization and E
 | t3a\.large | 512 | 64 | 4,000 | 
 | t3a\.xlarge | 512 | 64 | 4,000 | 
 | t3a\.2xlarge | 512 | 64 | 4,000 | 
-| z1d\.large | 583 | 73 | 3,333 | 
-| z1d\.xlarge | 1,167 | 146 | 6,667 | 
+| z1d\.large | 583 | 72\.88 | 3,333 | 
+| z1d\.xlarge | 1,167 | 145\.88 | 6,667 | 
 
 The `EBSIOBalance%` and `EBSByteBalance%` metrics can help you determine if your instances are sized correctly\. You can view these metrics in the CloudWatch console and set an alarm that is triggered based on a threshold you specify\. These metrics are expressed as a percentage\. Instances with a consistently low balance percentage are candidates for upsizing\. Instances where the balance percentage never drops below 100% are candidates for downsizing\. For more information, see [Monitoring Your Instances Using CloudWatch](using-cloudwatch.md)\.
 

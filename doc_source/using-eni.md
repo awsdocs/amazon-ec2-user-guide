@@ -55,10 +55,10 @@ You can enable a VPC flow log on your network interface to capture information a
 
 ## IP Addresses Per Network Interface Per Instance Type<a name="AvailableIpPerENI"></a>
 
-The following table lists the maximum number of network interfaces per instance type, and the maximum number of private IPv4 addresses and IPv6 addresses per network interface\. The limit for IPv6 addresses is separate from the limit for private IPv4 addresses per network interface\. Not all instance types support IPv6 addressing\. Network interfaces, multiple private IPv4 addresses, and IPv6 addresses are only available for instances running in a VPC\. For more information, see [Multiple IP Addresses](MultipleIP.md)\. For more information about IPv6 in VPC, see [IP Addressing in Your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html) in the *Amazon VPC User Guide*\.
+The following table lists the maximum number of network interfaces per instance type, and the maximum number of private IPv4 addresses and IPv6 addresses per network interface\. The limit for IPv6 addresses is separate from the limit for private IPv4 addresses per network interface\. Not all instance types support IPv6 addressing\. Network interfaces, multiple private IPv4 addresses, and IPv6 addresses are only available for instances running in a VPC\. IPv6 addresses are public and reachable over the Internet\. For more information, see [Multiple IP Addresses](MultipleIP.md)\. For more information about IPv6 in VPC, see [IP Addressing in Your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html) in the *Amazon VPC User Guide*\.
 
 
-| Instance Type | Maximum Network Interfaces | IPv4 Addresses per Interface | IPv6 Addresses per Interface | 
+| Instance Type | Maximum Network Interfaces | Private IPv4 Addresses per Interface | IPv6 Addresses per Interface | 
 | --- | --- | --- | --- | 
 | `a1.medium` | 2 | 4 | 4 | 
 | `a1.large` | 3 | 10 | 10 | 

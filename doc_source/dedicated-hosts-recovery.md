@@ -11,7 +11,7 @@ AWS License Manager integration is supported only in Regions in which AWS Licens
 + [Host Recovery Basics](#dedicated-hosts-recovery-basics)
 + [Configuring Host Recovery](#dedicated-hosts-recovery-working)
 + [Host Recovery States](#dedicated-hosts-recovery-states)
-+ [Unsupported Instance Configurations](#dedicated-hosts-recovery-instances)
++ [Supported Instance Types](#dedicated-hosts-recovery-instances)
 + [Manually Recovering Unsupported Instances](#dedicated-hosts-recovery-unsupported)
 + [Related Services](#dedicated-hosts-recovery-related)
 + [Pricing](#dedicated-hosts-recovery-pricing)
@@ -132,9 +132,11 @@ After the host recovery is complete, the replacement Dedicated Host enters the `
 
 If the impaired Dedicated Host has instances that do not support host recovery, such as instances with instance store\-backed volumes, the Dedicated Host is not released\. Instead, it is marked for retirement and enters the `permanent-failure` state\.
 
-## Unsupported Instance Configurations<a name="dedicated-hosts-recovery-instances"></a>
+## Supported Instance Types<a name="dedicated-hosts-recovery-instances"></a>
 
-Host recovery is not supported for instances with [instance store volumes](InstanceStorage.md#instance-store-volumes)\. To recover instances that are not supported, see [Manually Recovering Unsupported Instances](#dedicated-hosts-recovery-unsupported)\.
+Host recovery is supported for the following instance families: A1, C3, C4, C5, C5n, Inf1, M3, M4, M5, M5n, P3, R3, R4, R5, R5n, X1, X1e, u\-6tb1, u\-9tb1, u\-12tb1, u\-18tb1, and u\-24tb1\.
+
+To recover instances that are not supported, see [Manually Recovering Unsupported Instances](#dedicated-hosts-recovery-unsupported)\.
 
 ## Manually Recovering Unsupported Instances<a name="dedicated-hosts-recovery-unsupported"></a>
 

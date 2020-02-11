@@ -20,8 +20,6 @@ For most applications, amortizing the initialization cost over the lifetime of t
 
 New EBS volumes that are restored from encrypted snapshots are automatically encrypted\. You can also encrypt a volume on\-the\-fly while restoring it from an unencrypted snapshot\. Encrypted volumes can only be attached to instance types that support EBS encryption\. For more information, see [Supported Instance Types](EBSEncryption.md#EBSEncryption_supported_instances)\.
 
-Because of security constraints, you cannot directly restore an EBS volume from a shared encrypted snapshot that you do not own\. You must first create a copy of the snapshot, which you will own\. You can then restore a volume from that copy\. For more information, see [Encryption and Snapshot Copying](ebs-copy-snapshot.md#creating-encrypted-snapshots)\.
-
 ## Creating a Volume from a Snapshot<a name="ebs-create-volume-from-snapshot"></a>
 
 Use the following procedure to create a volume from a snapshot\.

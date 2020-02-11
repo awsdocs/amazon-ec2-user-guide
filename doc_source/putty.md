@@ -55,8 +55,8 @@ Use the following procedure to connect to your Linux instance using PuTTY\. You 
 1. In the **Category** pane, choose **Session** and complete the following fields:
 
    1. In the **Host Name** box, do one of the following:
-      + To connect using your instance's public DNS, enter *user\_name*@*public\_dns\_name*\.
-      + \(IPv6 only\) To connect using your instance's IPv6 address, enter *user\_name*@*ipv6\_address*\.
+      + \(Public DNS\) To connect using your instance's public DNS, enter *user\_name*@*public\_dns\_name*\.
+      + \(IPv6\) Alternatively, if your instance has an IPv6 address, to connect using your instance's IPv6 address, enter *user\_name*@*ipv6\_address*\.
 
       For information about how to get the public DNS name or IPv6 address of the instance, see [Get Information About Your Instance](connection-prereqs.md#connection-prereqs-get-info-about-instance)\.
 

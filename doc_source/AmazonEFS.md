@@ -30,7 +30,7 @@ Amazon EFS enables you to create a file system that multiple instances can mount
 
 1. Choose **Create file system**\.
 
-1. On the **Configure file system access** page, do the following:
+1. On the **Configure network access** page, do the following:
 
    1. For **VPC**, select the VPC to use for your instances\.
 
@@ -40,13 +40,17 @@ Amazon EFS enables you to create a file system that multiple instances can mount
 
    1. Choose **Next Step**\.
 
-1. On the **Configure optional settings** page, do the following:
+1. On the **Configure file system settings** page, do the following:
 
    1. For the tag with Key=Name, type a name for the file system in **Value**\.
+
+   1. For **Choose throughput mode**, keep the default option, **Bursting**\.
 
    1. For **Choose performance mode**, keep the default option, **General Purpose**\.
 
    1. Choose **Next Step**\.
+
+1. On the **Configure client access** page, keep the default settings and choose **Next Step**\.
 
 1. On the **Review and create** page, choose **Create File System**\.
 

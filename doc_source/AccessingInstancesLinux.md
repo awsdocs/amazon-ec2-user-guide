@@ -26,11 +26,17 @@ Use the following procedure to connect to your Linux instance using an SSH clien
 
 **To connect to your instance using SSH**
 
-1. In a terminal window, use the ssh command to connect to the instance\. You specify the private key \(`.pem`\) file, the user name for your AMI, and the public DNS name for your instance\. For example, if you used Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\. For more information about finding the user name for an AMI and the DNS name for an instance, see [Get Information About Your Instance](connection-prereqs.md#connection-prereqs-get-info-about-instance)\.
+1. In a terminal window, use the ssh command to connect to the instance\. You specify the path and file name of the private key \(`.pem`\), the user name for your AMI, and the public DNS name or IPv6 address for your instance\. For more information about how to find the private key, the user name for an AMI, and the DNS name or IPv6 address for an instance, see [Locate the Private Key](connection-prereqs.md#connection-prereqs-private-key) and [Get Information About Your Instance](connection-prereqs.md#connection-prereqs-get-info-about-instance)\. To connect to your instance, do one of the following:
+   + \(Public DNS\) To connect using your instance's public DNS, enter the following command\.
 
-   ```
-   ssh -i /path/my-key-pair.pem ec2-user@ec2-198-51-100-1.compute-1.amazonaws.com
-   ```
+     ```
+     ssh -i /path/my-key-pair.pem ec2-user@ec2-198-51-100-1.compute-1.amazonaws.com
+     ```
+   + \(IPv6\) Alternatively, if your instance has an IPv6 address, to connect using your instance's IPv6 address, enter the following command\.
+
+     ```
+     ssh -i /path/my-key-pair.pem ec2-user@2001:db8:1234:1a00:9691:9503:25ad:1761
+     ```
 
    You see a response like the following:
 
@@ -39,12 +45,6 @@ Use the following procedure to connect to your Linux instance using an SSH clien
    can't be established.
    RSA key fingerprint is 1f:51:ae:28:bf:89:e9:d8:1f:25:5d:37:2d:7d:b8:ca:9f:f5:f1:6f.
    Are you sure you want to continue connecting (yes/no)?
-   ```
-
-1. \(IPv6 only\) Alternatively, you can connect to the instance using its IPv6 address\. Specify the ssh command with the path to the private key \(\.pem\) file, the appropriate user name, and the IPv6 address\. For example, if you used Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
-
-   ```
-   ssh -i /path/my-key-pair.pem ec2-user@2001:db8:1234:1a00:9691:9503:25ad:1761
    ```
 
 1. \(Optional\) Verify that the fingerprint in the security alert matches the fingerprint that you previously obtained in [\(Optional\) Get the Instance Fingerprint](connection-prereqs.md#connection-prereqs-fingerprint)\. If these fingerprints don't match, someone might be attempting a "man\-in\-the\-middle" attack\. If they match, continue to the next step\.

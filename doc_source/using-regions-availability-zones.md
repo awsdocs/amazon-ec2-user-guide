@@ -48,7 +48,7 @@ As Availability Zones grow over time, our ability to expand them can become cons
 
 You can list the Availability Zones that are available to your account\. For more information, see [Describing Your Regions, Availability Zones, and Local Zones](#using-regions-availability-zones-describe)\.
 
-### Local Zones<a name="concepts-local-zones"></a>
+### Local Zones<a name="network-border-group"></a>
 
 When you launch an instance, you can optionally select a Local Zone so that your applications are closer to your end users\. 
 
@@ -72,6 +72,14 @@ You can list the Local Zones that are available to your account\. For more infor
 You connect to the public internet by using an internet gateway that resides in the Local Zone\. This configuration provides customers local incoming and outgoing traffic which helps reduce latency\.
 
 Local Zones also support connections to AWS Direct Connect, allowing customers to route their traffic over a private network connection\. 
+
+### Network Border Groups<a name="network-border-group"></a>
+
+A network border group is a unique set of Availability Zones or Local Zones from where AWS advertises IP addresses\. You can allocate the following resources from a network border group:
++ Elastic IPv4 addresses that Amazon provides
++ IPv6 Amazon\-provided VPC addresses
+
+A network border group limits the addresses to the group\. IP addresses cannot move between network border groups\.
 
 ## Available Regions<a name="concepts-available-regions"></a>
 

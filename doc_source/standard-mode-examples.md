@@ -37,13 +37,11 @@ The following workflow references the numbered points on the graph:
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/t3_standard_graph.png)
 
-### <a name="period-1-t3"></a>
-
 ## Example 2: Explaining Credit Use with T2 Standard<a name="t2-standard-example"></a>
 
 In this example, you see how a `t2.nano` instance launched as `standard` earns, accrues, and spends *launch* and *earned* credits\. You see how the credit balance reflects not only accrued *earned* credits, but also accrued *launch* credits\.
 
-A `t2.nano` instance gets 30 launch credits when it is launched, and earns 72 credits every 24 hours\. Its credit balance limit is 72 earned credits; launch credits do not count towards the limit\. After the limit is reached, new credits that are earned are discarded\. For more information about the number of credits that can be earned and accrued, see the [credit table](burstable-credits-baseline-concepts.md#burstable-performance-instances-credit-table)\. For more information about limits, see [Launch Credit Limits](burstable-performance-instances-standard-mode.md#launch-credit-limits)\.
+A `t2.nano` instance gets 30 launch credits when it is launched, and earns 72 credits every 24 hours\. Its credit balance limit is 72 earned credits; launch credits do not count towards the limit\. After the limit is reached, new credits that are earned are discarded\. For more information about the number of credits that can be earned and accrued, see the [credit table](burstable-credits-baseline-concepts.md#burstable-performance-instances-credit-table)\. For more information about limits, see [Launch Credit Limits](burstable-performance-instances-standard-mode-concepts.md#launch-credit-limits)\.
 
 You might launch a T2 Standard instance and use it immediately\. Or, you might launch a T2 Standard instance and leave it idle for a few days before running applications on it\. Whether an instance is used or remains idle determines if credits are spent or accrued\. If an instance remains idle for 24 hours from the time it is launched, the credit balance appears to exceed its limit because the balance reflects both accrued earned credits and accrued launch credits\. However, after CPU is used, the launch credits are spent first\. Thereafter, the limit always reflects the maximum number of earned credits that can be accrued\. 
 

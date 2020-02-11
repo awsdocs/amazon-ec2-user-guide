@@ -21,7 +21,7 @@ The data on NVMe instance store volumes is encrypted using an XTS\-AES\-256 ciph
 
 ## Encryption in Transit<a name="encryption-transit"></a>
 
-AWS provides secure and private connectivity between EC2 instances\. In addition, we automatically encrypt in\-transit traffic between supported instances in the same VPC or in peered VPCs, using AEAD algorithms with 256\-bit encryption\. This encryption feature uses the offload capabilities of the underlying hardware, and there is no impact on network performance\. The supported instances are: C5n, G4, I3en, M5dn, M5n, P3dn, R5dn, and R5n\.
+AWS provides secure and private connectivity between EC2 instances of all types\. In addition, we automatically encrypt in\-transit traffic between supported instances in the same VPC or in peered VPCs, using AEAD algorithms with 256\-bit encryption\. This encryption feature uses the offload capabilities of the underlying hardware, and there is no impact on network performance\. The following instances support the additional in\-transit traffic encrytpion: C5n, G4, I3en, M5dn, M5n, P3dn, R5dn, and R5n\.
 
 SSH provides a secure communications channel for remote access to your Linux instances\. Remote access to your instances using AWS Systems Manager Session Manager and Run Command is encrypted using TLS 1\.2, and requests to create a connection are signed using SigV4\.
 

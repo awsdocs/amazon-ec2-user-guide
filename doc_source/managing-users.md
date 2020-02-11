@@ -36,6 +36,18 @@ First create the user account, and then add the SSH public key that allows the u
    [ec2-user ~]$ sudo adduser newuser
    ```
 
+   \[Linux 2\] When adding a user to Amazon Linux 2 , make sure you are logged in as root user before running the adduser command \(sudo su\)\. Then add the new user and password for the new user\.
+
+   ```
+   [ec2-user]# useradd newuser 
+   ```
+
+   ```
+   [ec2-user]# passwd newuser password
+   ```
+
+   You will be prompted to enter a password for the new user\.
+
    \[Ubuntu\] When adding a user to an Ubuntu system, include the `--disabled-password` parameter with this command to avoid adding a password to the account\.
 
    ```

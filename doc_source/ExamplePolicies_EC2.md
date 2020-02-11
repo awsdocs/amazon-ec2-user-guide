@@ -1653,6 +1653,8 @@ The following policies ensure that users can only retrieve [instance metadata](e
 **Note**  
 The following RunInstances metadata options policies must be used in conjunction with a policy that gives the principal the privilege to launch an instance with RunInstances\. If the principal does not also have RunInstances permissions, it will not be able to launch an instance\. For more information, see the policies in [Working with Instances](#iam-example-instances) and [Launching Instances \(RunInstances\)](#iam-example-runinstances)\.
 
+### Require the Use of IMDSv2<a name="iam-example-instance-metadata-requireIMDSv2"></a>
+
 The following policy specifies that you can’t call the RunInstances API unless the instance is also opted in to require the use of IMDSv2 \(indicated by `"ec2:MetadataHttpTokens": "required"`\)\. If you do not specify that the instance requires IMDSv2, you get an `UnauthorizedOperation` error when you call the RunInstances API\.
 
 ```
@@ -1673,6 +1675,8 @@ The following policy specifies that you can’t call the RunInstances API unless
     ]
 }
 ```
+
+### Specify Maximum Hop Limit<a name="iam-example-instance-metadata-maxHopLimit"></a>
 
 The following policy specifies that you can’t call the RunInstances API unless you also specify a hop limit, and the hop limit can’t be more than 3\. If you fail to do that, you get an `UnauthorizedOperation` error when you call the RunInstances API\.
 
@@ -1698,6 +1702,8 @@ When the following policy and the preceding one are applied to an account via an
 }
 ```
 
+### Limit Who can Modify the Instance Metadata Options<a name="iam-example-instance-metadata-limit-modify-IMDS-options"></a>
+
 The following policy removes the ability for the general population of administrators to modify instance metadata options, and permits only users with the role `ec2-imds-admins` to make changes\. If any principal other than the `ec2-imds-admins` role tries to call the ModifyInstanceMetadataOptions API, it will get an `UnauthorizedOperation` error\. This statement could be used to control the use of the ModifyInstanceMetadataOptions API; there are currently no fine\-grained access controls \(conditions\) for the ModifyInstanceMetadataOptions API\.
 
 ```
@@ -1718,6 +1724,8 @@ The following policy removes the ability for the general population of administr
     ]
 }
 ```
+
+### Require Role Credentials to be Retrieved from IMDSv2<a name="iam-example-instance-metadata-require-roles-to-use-IMDSv2-credentials"></a>
 
 The following policy specifies that if this policy is applied to a role, and the role is assumed by the EC2 service and the resulting credentials are used to sign a request, then the request must be signed by EC2 role credentials retrieved from IMDSv2\. Otherwise, all of its API calls will get an `UnauthorizedOperation` error\. This statement/policy can be applied generally because, if the request is not signed by EC2 role credentials, it has no effect\.
 

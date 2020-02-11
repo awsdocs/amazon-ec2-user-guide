@@ -7,6 +7,7 @@ The following table describes important additions to the Amazon EC2 documentatio
 
 | Feature | API Version | Description | Release Date | 
 | --- | --- | --- | --- | 
+| Platform details and billing information associated with an AMI | 2016\-11\-15 |  You can determine the platform details and billing information associated with an Amazon Machine Image \(AMI\) before you launch an On\-Demand Instance or Spot Instance, or purchase a Reserved Instance\. For more information, see [Obtaining Billing Information](ami-billing-info.md)\.  | 6 February 2020 | 
 | Stop and start a Spot Instance | 2016\-11\-15 |  You can now stop your Spot Instances backed by Amazon EBS and start them at will, instead of relying on the `stop` interruption behavior\. For more information, see [Stopping a Spot Instance](spot-requests.md#stopping-a-spot-instance)\.  | 13 January 2020 | 
 | Resource tagging | 2016\-11\-15 |  You can tag egress\-only internet gateways, local gateways, local gateway route tables, local gateway virtual interfaces, local gateway virtual interface groups, local gateway route table VPC associations, and local gateway route table virtual interface group associations\. For more information, see [Tagging Your Resources](Using_Tags.md#tag-resources)\.  | 10 January 2020 | 
 | Session Manager | 2016\-11\-15 | You can start a Session Manager session with an instance from the Amazon EC2 console\. For more information, see [Connecting to Your Linux Instance Using Session Manager](session-manager.md)\. | 18 December 2019 | 

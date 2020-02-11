@@ -20,6 +20,6 @@ Here's an example of some of the questions that you can answer when using Cost E
 
    The report opens in Cost Explorer\. It provides a preconfigured view, based on fixed filter settings, that displays information about your usage and cost trends\.
 **Note**  
-You must enable Cost Explorer in your account before you can use it\. See [Enabling Cost Explorer](https://docs.aws.amazon.com/awsaccountbilling;/latest/aboutv2/ce-enable.html)\.
+You must enable Cost Explorer in your account before you can use it\. For more information, see [ Enabling Cost Explorer](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/ce-enable.html)\.
 
 For more information about working with reports in Cost Explorer, including saving reports, see [Analyzing Your Costs with Cost Explorer](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-explorer-what-is.html)\.

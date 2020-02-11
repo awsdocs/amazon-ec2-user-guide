@@ -44,6 +44,7 @@ There are five On\-Demand Instance limits, listed in the following table\. Each 
 |  Running On\-Demand Standard \(A, C, D, H, I, M, R, T, and Z\) instances  |  1152 vCPUs  | 
 |  Running On\-Demand F instances  |  128 vCPUs  | 
 |  Running On\-Demand G instances  |  128 vCPUs  | 
+|  Running On\-Demand Inf instances  | 128 vCPUs | 
 |  Running On\-Demand P instances  |  128 vCPUs  | 
 |  Running On\-Demand X instances  |  128 vCPUs  | 
 

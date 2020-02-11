@@ -50,103 +50,120 @@ Use of Instance Metadata Service Version 2 \(IMDSv2\) is optional\. Instance Met
 
 If your software uses IMDSv1, use the following tools to help reconfigure your software to use IMDSv2\.
 + **AWS software:** The latest versions of the AWS SDKs and CLIs support IMDSv2\. To use IMDSv2, make sure that your EC2 instances have the latest versions of the AWS SDKs and CLIs\. For information about updating the CLI, see [Upgrading to the latest version of the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-linux.html#install-linux-awscli-upgrade) in the *AWS Command Line Interface User Guide*\.
-+ **CloudWatch**: IMDSv1 does not use token\-backed sessions\. You can track the number of calls to the instance metadata service that are not using token\-backed sessions through the CloudWatch metric `MetadataNoToken`\. This metric tracks the number of calls that are using IMDSv1\. By tracking this metric to zero, you can determine if and when all of your software has been upgraded to use IMDSv2\. For more information, see [Instance Metrics](viewing_metrics_with_cloudwatch.md#ec2-cloudwatch-metrics)\.
++ **CloudWatch**: IMDSv2 uses token\-backed sessions, while IMDSv1 does not\. The `MetadataNoToken` CloudWatch metric tracks the number of calls to the instance metadata service that are using IMDSv1\. By tracking this metric to zero, you can determine if and when all of your software has been upgraded to use IMDSv2\. For more information, see [Instance Metrics](viewing_metrics_with_cloudwatch.md#ec2-cloudwatch-metrics)\.
 + **Updates to EC2 APIs and CLIs**: For existing instances, you can use the [modify\-instance\-metadata\-options](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-metadata-options.html) CLI command \(or the [ModifyInstanceMetadataOptions](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyInstanceMetadataOptions.html) API\) to require the use of IMDSv2\. For new instances, you can use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) CLI command \(or the [RunInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html) API\) and the `metadata-options` parameter to launch new instances that require the use of IMDSv2\.
-+ **IAM policies and SCPs**: You can use condition keys to block users from launching new instances or from modifying running instances, unless they specify the use of IMDSv2 only\. You can also use another condition key to block subsequent API calls made with EC2 Role credentials obtained via IMDSv1\. Those condition keys, which are described in the following section, can be used either in IAM policies or AWS Organizations service control policies \(SCPs\)\. For more information, see **When all of your instances are transitioned to IMDSv2** in the following section\. For example IAM policies, see [Example: Working with Instance Metadata](ExamplePolicies_EC2.md#iam-example-instance-metadata)\.
++ **IAM policies and SCPs**: You can use an IAM condition to enforce that IAM users can't launch an instance unless it uses IMDSv2\. You can also use IAM conditions to enforce that IAM users can't modify running instances to re\-enable IMDSv1, and to enforce that the instance metadata service is available on the instance\.
+
+  The `ec2:MetadataHttpTokens`, `ec2:MetadataHttpPutResponseHopLimit`, and `ec2:MetadataHttpEndpoint` IAM condition keys can be used to control the use of the [RunInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html) and the [ModifyInstanceMetadataOptions](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyInstanceMetadataOptions.html) API and corresponding CLI\. If a policy is created, and a parameter in the API call does not match the state specified in the policy using the condition key, the API or CLI call fails with an `UnauthorizedOperation` response\. These condition keys can be used either in IAM policies or AWS Organizations service control policies \(SCPs\)\.
+
+  Furthermore, you can choose an additional layer of protection to enforce the change from IMDSv1 to IMDSv2\. At the access management layer with respect to the APIs called via EC2 Role credentials, you can use a new condition key in either IAM policies or AWS Organizations service control policies \(SCPs\)\. Specifically, by using the policy condition key `ec2:RoleDelivery` with a value of `2.0` in your IAM policies, API calls made with EC2 Role credentials obtained from IMDSv1 will receive an `UnauthorizedOperation` response\. The same thing can be achieved more broadly with that condition required by an SCP\. This ensures that credentials delivered via IMDSv1 cannot actually be used to call APIs because any API calls not matching the specified condition will receive an `UnauthorizedOperation` error\. For example IAM policies, see [Example: Working with Instance Metadata](ExamplePolicies_EC2.md#iam-example-instance-metadata)\. For more information, see [Service Control Policies](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scp.html) in the *AWS Organizations User Guide*\.
 
 **Recommended path to requiring IMDSv2 access**
 
 Using the above tools, we recommend that you follow this path for transitioning to IMDSv2:
 
-1. **At the start**
+### Step 1: At the start<a name="path-step-1"></a>
 
-   Update the SDKs, CLIs, and your software that use Role credentials on their EC2 instances to IMDSv2\-compatible versions\. Then, change your software that directly accesses instance metadata \(in other words, that does not use an SDK\) using the IMDSv2 requests\. For information about updating the CLI, see [Upgrading to the latest version of the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-linux.html#install-linux-awscli-upgrade) in the *AWS Command Line Interface User Guide*\.
+Update the SDKs, CLIs, and your software that use Role credentials on their EC2 instances to IMDSv2\-compatible versions\. For information about updating the CLI, see [Upgrading to the latest version of the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-linux.html#install-linux-awscli-upgrade) in the *AWS Command Line Interface User Guide*\.
 
-1. **During the transition**
+Then, change your software that directly accesses instance metadata \(in other words, that does not use an SDK\) using the IMDSv2 requests\. 
 
-   Track your transition progress by looking at the CloudWatch metric `MetadataNoToken`, which shows the number of calls to IMDSv1 on your instances\. For more information, see [Instance Metrics](viewing_metrics_with_cloudwatch.md#ec2-cloudwatch-metrics)\. 
+### Step 2: During the transition<a name="path-step-2"></a>
 
-1. **When everything is ready on all instances**
+Track your transition progress by using the CloudWatch metric `MetadataNoToken`\. This metric shows the number of calls to the instance metadata service that are using IMDSv1 on your instances\. For more information, see [Instance Metrics](viewing_metrics_with_cloudwatch.md#ec2-cloudwatch-metrics)\. 
 
-   Everything is ready on all instances when the CloudWatch metric `MetadataNoToken` records zero usage\. At this stage, you can require IMDSv2 use through the [modify\-instance\-metadata\-options](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-metadata-options.html) command\. You can make these changes on running instances; you do not need to restart your instances\. For newly\-launched instances, you can use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command to specify that only IMDSv2 is to be used\. Specifying your instance metadata options is available only through the API or AWS CLI; it is currently not available via the AWS Management Console\. For more information, see [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) and [modify\-instance\-metadata\-options](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-metadata-options.html) in the *AWS CLI Command Reference*\.
+### Step 3: When everything is ready on all instances<a name="path-step-3"></a>
 
-1. **When all of your instances are transitioned to IMDSv2**
+Everything is ready on all instances when the CloudWatch metric `MetadataNoToken` records zero IMDSv1 usage\. At this stage, you can do the following:
++ For existing instances: You can require IMDSv2 use through the [modify\-instance\-metadata\-options](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-metadata-options.html) command\. You can make these changes on running instances; you do not need to restart your instances\. 
++ For new instances: When launching a new instance, you can use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command to specify that only IMDSv2 is to be used\.
 
-   You can use an IAM condition to enforce that IAM users can't launch an instance unless it uses IMDSv2\. For more information, see **To enforce the use of IMDSv2 on all new instances** in the following section\. You can also use IAM conditions to enforce that IAM users can't modify running instances to re\-enable IMDSv1, and to enforce that the instance metadata service is available on the instance\. 
+Specifying instance metadata options is available only through the API or AWS CLI; it is currently not available via the AWS Management Console\. For more information, see [Configuring the Instance Metadata Options](#configuring-instance-metadata-options)\.
 
-   Furthermore, you can choose an additional layer of protection to enforce the change from IMDSv1 to IMDSv2\. At the access management layer with respect to the APIs called via EC2 Role credentials, you can use a new condition key in either IAM policies or AWS Organizations service control policies \(SCPs\)\. Specifically, by using the policy condition key `ec2:RoleDelivery` with a value of `2.0` in your IAM policies, API calls made with EC2 Role credentials obtained from IMDSv1 will receive an `UnauthorizedOperation` response\. The same thing can be achieved more broadly with that condition required by an SCP\. This ensures that credentials delivered via IMDSv1 cannot actually be used to call APIs because any API calls not matching the specified condition will receive an `UnauthorizedOperation` error\. For example IAM policies, see [Example: Working with Instance Metadata](ExamplePolicies_EC2.md#iam-example-instance-metadata)\. For more information, see [Service Control Policies](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scp.html) in the *AWS Organizations User Guide*\.
+### Step 4: When all of your instances are transitioned to IMDSv2<a name="path-step-4"></a>
+
+The `ec2:MetadataHttpTokens`, `ec2:MetadataHttpPutResponseHopLimit`, and `ec2:MetadataHttpEndpoint` IAM condition keys can be used to control the use of the [RunInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html) and the [ModifyInstanceMetadataOptions](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyInstanceMetadataOptions.html) API and corresponding CLI\. If a policy is created, and a parameter in the API call does not match the state specified in the policy using the condition key, the API or CLI call fails with an `UnauthorizedOperation` response\. For example IAM policies, see [Example: Working with Instance Metadata](ExamplePolicies_EC2.md#iam-example-instance-metadata)\.
 
 ## Configuring the Instance Metadata Options<a name="configuring-instance-metadata-options"></a>
 
-Instance metadata options allow you to configure new or existing instances to require the use of IMDSv2 when requesting instance metadata, specify the `PUT` response hop limit, and turn off access to instance metadata\. You can also use condition keys in an IAM policy or SCP that allows an instance to launch only if it's configured to require the use of IMDSv2, or to restrict the number of allowed hops, or to enforce that the IMDS is disabled altogether\. To configure the instance metadata options on new or existing instances, you use the AWS SDK or CLI\. For more information, see [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) and [modify\-instance\-metadata\-options](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-metadata-options.html) in the *AWS CLI Command Reference*\.
+Instance metadata options allow you to configure new or existing instances to do the following:
++ Require the use of IMDSv2 when requesting instance metadata
++ Specify the `PUT` response hop limit
++ Turn off access to instance metadata
+
+You can also use IAM condition keys in an IAM policy or SCP to do the following:
++ Allow an instance to launch only if it's configured to require the use of IMDSv2
++ Restrict the number of allowed hops
++ Turn off access to instance metadata
+
+To configure the instance metadata options on new or existing instances, you use the AWS SDK or CLI\. For more information, see [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) and [modify\-instance\-metadata\-options](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-metadata-options.html) in the *AWS CLI Command Reference*\.
 
 **Note**  
 You should proceed cautiously and conduct careful testing before making any changes\. Take note of the following:  
 If you enforce the use of IMDSv2, applications or agents that use IMDSv1 for instance metadata access will break\.
 If you turn off all access to instance metadata, applications or agents that rely on instance metadata access to function will break\.
 
-**To enforce the use of IMDSv2 on all new instances**
+**Topics**
++ [Configuring Instance Metadata Options for New Instances](#configuring-IMDS-new-instances)
++ [Configuring Instance Metadata Options for Existing Instances](#configuring-IMDS-existing-instances)
 
-To ensure that IAM users can only launch instances that require the use of IMDSv2 when requesting instance metadata, you can specify that the condition to require IMDSv2 must be met before an instance can be launched\.
+### Configuring Instance Metadata Options for New Instances<a name="configuring-IMDS-new-instances"></a>
 
-The following instructions explain how to create the policy and attach it using the AWS CLI\. For instructions that use the AWS Management Console, see [Creating IAM Policies \(Console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html#access_policies_create-start) and [Adding Permissions by Attaching Policies Directly to the User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html#users_change_permissions-add-directly-console) in the *IAM User Guide*\.
+You can require the use IMDSv2 on an instance when you launch it\. You can also create an IAM policy that prevents users from launching new instances unless they require IMDSv2 on the new instance\.
 
-1. Create a JSON policy document that includes the following:
-   + The `ec2:RunInstances` action\. This grants an IAM user permission to launch new instances\.
-   + The `ec2:MetadataHttpTokens` condition set to `required`\. This specifies that, for the instance to launch, it must be configured to require IMDSv2, which uses a secure token header for instance metadata retrieval requests\.
+**To require the use of IMDSv2 on a new instance**  
+The following [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) example launches a `c3.large` instance with `metadata-options` set to `HttpTokens=required`\. Because the secure token header is set to `required` for metadata retrieval requests, this opts in the instance to require using IMDSv2 when requesting instance metadata\.
 
-   The following is an example policy document\.
+**Note**  
+When specifying a value for `HttpTokens`, you must also set `HttpEndpoint` to `enabled`\.
+In the example, the `--count` and `--security-group` parameters are not included\. For `--count`, the default is `1`\. If you have a default VPC and a default security group, they are used\.
 
-   ```
-   {
-   	"Version": "2012-10-17",
-   	"Statement": [{
-   		"Sid": "RunInstanceWithImdsV2Only",
-   		"Effect": "Allow",
-   		"Action": "ec2:RunInstances",
-   		"Resource": "*",
-   		"Condition": {
-   			"StringEquals": {
-   				"ec2:MetadataHttpTokens": "required"
-   			}
-   		}
-   	}]
-   }
-   ```
+```
+aws ec2 run-instances \
+    --image-id ami-1a2b3c4d \
+    --instance-type c3.large \
+    --key-name MyKeyPair \
+    --metadata-options "HttpEndpoint=enabled,HttpTokens=required"
+```
 
-1. Use the [create\-policy](https://docs.aws.amazon.com/cli/latest/reference/iam/create-policy.html) command to create a new managed policy, and specify the JSON document that you created to use as the content for the new policy\.
+**To enforce the use of IMDSv2 on all new instances**  
+To ensure that IAM users can only launch instances that require the use of IMDSv2 when requesting instance metadata, you can specify that the condition to require IMDSv2 must be met before an instance can be launched\. For the example IAM policy, see [Example: Working with Instance Metadata](ExamplePolicies_EC2.md#iam-example-instance-metadata)\.
 
-   ```
-   $ aws iam create-policy --policy-name my-policy --policy-document file://JSON-file-name
-   ```
+### Configuring Instance Metadata Options for Existing Instances<a name="configuring-IMDS-existing-instances"></a>
 
-1. Use the [attach\-user\-policy](https://docs.aws.amazon.com/cli/latest/reference/iam/create-policy.html) command to attach the managed policy to the specified IAM user\. For the `--user-name` parameter, specify the friendly name \(not the ARN\) of the IAM user\.
-
-   ```
-   $ aws iam attach-user-policy --policy-arn arn:aws:iam::account-id:policy/my-policy --user-name IAM-friendly-name
-   ```
-
-The `ec2:MetadataHttpTokens`, `ec2:MetadataHttpPutResponseHopLimit`, and `ec2:MetadataHttpEndpoint` IAM condition keys can also be used to control the use of the [RunInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html) and the [ModifyInstanceMetadataOptions](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyInstanceMetadataOptions.html) API and corresponding CLI\. For the valid conditions for these keys, see [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) and [modify\-instance\-metadata\-options](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-metadata-options.html) in the *AWS CLI Command Reference*\. If a policy is created, and a parameter in the API call does not match the state specified in the policy using the condition key, the API or CLI call fails with an `UnauthorizedOperation` response\. For more example IAM policies, see [Example: Working with Instance Metadata](ExamplePolicies_EC2.md#iam-example-instance-metadata)\.
+You can require the use IMDSv2 on an existing instance\. You can also change the PUT response hop limit and turn off access to instance metadata on an existing instance\. You can also create an IAM policy that prevents users from modifying the instance metadata options on an existing instance\.
 
 **To require the use of IMDSv2 on an existing instance**  
-For existing instances, you can opt in to require that IMDSv2 is used when requesting instance metadata\. Use the [modify\-instance\-metadata\-options](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-metadata-options.html) CLI command and set the `http-tokens` parameter to `required`\. Note that when specifying a value for `http-tokens`, you must also set `http-endpoint` to `enabled`\.
+For existing instances, you can opt in to require that IMDSv2 is used when requesting instance metadata\. Use the [modify\-instance\-metadata\-options](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-metadata-options.html) CLI command and set the `http-tokens` parameter to `required`\.
+
+**Note**  
+When specifying a value for `http-tokens`, you must also set `http-endpoint` to `enabled`\.
 
 ```
-aws ec2 modify-instance-metadata-options --instance-id i-1234567898abcdef0 --http-tokens required --http-endpoint enabled
+aws ec2 modify-instance-metadata-options \
+    --instance-id i-1234567898abcdef0 \
+    --http-tokens required \
+    --http-endpoint enabled
 ```
-
-To control the use of the [ModifyInstanceMetadataOptions](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyInstanceMetadataOptions.html) API as well as the [RunInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html) API using IAM policies, see [Example: Working with Instance Metadata](ExamplePolicies_EC2.md#iam-example-instance-metadata)\.
 
 **To change the PUT response hop limit on an existing instance**  
 For existing instances, you can change the settings of the `PUT` response hop limit\. Use the [modify\-instance\-metadata\-options](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-metadata-options.html) CLI command and set the `http-put-response-hop-limit` parameter to the required number of hops\. In the following example, the hop limit is set to `3`\. Note that when specifying a value for `http-put-response-hop-limit`, you must also set `http-endpoint` to `enabled`\.
 
 ```
-aws ec2 modify-instance-metadata-options --instance-id i-1234567898abcdef0 --http-put-response-hop-limit 3 --http-endpoint enabled
+aws ec2 modify-instance-metadata-options \
+    --instance-id i-1234567898abcdef0 \
+    --http-put-response-hop-limit 3 \
+    --http-endpoint enabled
 ```
 
 **To turn off access to instance metadata on an existing instance**  
 For existing instances, you can turn off access to your instance metadata by disabling the HTTP endpoint of the instance metadata service, regardless of which version of the instance metadata service you are using\. You can reverse this change at any time by enabling the HTTP endpoint\. Use the [modify\-instance\-metadata\-options](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-metadata-options.html) CLI command and set the `http-endpoint` parameter to `disabled`\.
 
 ```
-aws ec2 modify-instance-metadata-options --instance-id i-1234567898abcdef0 --http-endpoint disabled
+aws ec2 modify-instance-metadata-options \
+    --instance-id i-1234567898abcdef0 \
+    --http-endpoint disabled
 ```
+
+**To control the use of modify\-instance\-metadata\-options**  
+To control which IAM users can modify the instance metadata options on an existing instance, you can specify a policy that prevents all users other than users with a specified role to use the [ModifyInstanceMetadataOptions](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyInstanceMetadataOptions.html) API\. For the example IAM policy, see [Example: Working with Instance Metadata](ExamplePolicies_EC2.md#iam-example-instance-metadata)\.

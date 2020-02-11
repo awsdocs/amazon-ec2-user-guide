@@ -21,9 +21,9 @@ After you launch an instance from an AMI, you can connect to it\. When you are c
 
 You can launch an instance from an existing AMI, customize the instance, and then save this updated configuration as a custom AMI\. Instances launched from this new custom AMI include the customizations that you made when you created the AMI\.
 
-The root storage device of the instance determines the process you follow to create an AMI\. The root volume of an instance is either an Amazon EBS volume or an instance store volume\. For information, see [Amazon EC2 Root Device Volume](RootDeviceStorage.md)\.
-
-To create an Amazon EBS\-backed AMI, see [Creating an Amazon EBS\-Backed Linux AMI](creating-an-ami-ebs.md)\. To create an instance store\-backed AMI, see [Creating an Instance Store\-Backed Linux AMI](creating-an-ami-instance-store.md)\.
+The root storage device of the instance determines the process you follow to create an AMI\. The root volume of an instance is either an Amazon EBS volume or an instance store volume\. For more information about the root device volume, see [Amazon EC2 Root Device Volume](RootDeviceStorage.md)\.
++ To create an Amazon EBS\-backed AMI, see [Creating an Amazon EBS\-Backed Linux AMI](creating-an-ami-ebs.md)\.
++ To create an instance store\-backed AMI, see [Creating an Instance Store\-Backed Linux AMI](creating-an-ami-instance-store.md)\.
 
 To help categorize and manage your AMIs, you can assign custom *tags* to them\. For more information, see [Tagging Your Amazon EC2 Resources](Using_Tags.md)\.
 

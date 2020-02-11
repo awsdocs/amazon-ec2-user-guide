@@ -2,7 +2,9 @@
 
 You can use the Amazon Elastic Block Store \(EBS\) direct APIs to directly read the data on your EBS snapshots, and identify the difference between two snapshots\. You can view the details of blocks in an EBS snapshot, compare the block difference between two snapshots, and directly access the data in a snapshot\. If you’re an independent software vendor \(ISV\) who offers backup services for EBS, the EBS direct APIs makes it easier and more cost\-effective to track incremental changes on your EBS volumes via EBS snapshots\. This can be done without having to create new volumes from EBS snapshots, and then use EC2 instances to compare the differences\.
 
-This user guide provides an overview of the elements that make up the EBS direct APIs, and examples of how to use them effectively\. For more information about the actions, data types, parameters, and errors of the APIs, see the [EBS direct APIs reference](https://docs.aws.amazon.com/ebs/latest/APIReference/)\.
+This user guide provides an overview of the elements that make up the EBS direct APIs, and examples of how to use them effectively\. For more information about the actions, data types, parameters, and errors of the APIs, see the [EBS direct APIs reference](https://docs.aws.amazon.com/ebs/latest/APIReference/)\. For more information about the supported AWS Regions, endpoints, and service quotas for the EBS direct APIs, see [Amazon Elastic Block Store Endpoints and Quotas](https://docs.aws.amazon.com/general/latest/gr/ebs-service.html) in the *AWS General Reference*\.
+
+**Topics**
 + [Understanding the EBS direct APIs](#ebsapi-elements)
 + [Permissions for IAM Users](#ebsapi-permissions)
 + [Working with EBS direct APIs Using the Command Line](#ebsapi-examples)
@@ -33,7 +35,7 @@ A block index is the offset position of a block within a snapshot, and it is use
 A block token is the identifying hash of a block within a snapshot, and it is used to locate the block data\.
 
 **Note**  
-Block tokens returned by EBS direct APIs are temporary\. Block tokens change if you run another `ListSnapshotBlocks` or `ListChangedBlocks`request for the same snapshot\.
+Block tokens returned by EBS direct APIs are temporary\. Block tokens change if you run another `ListSnapshotBlocks` or `ListChangedBlocks` request for the same snapshot\.
 
 ### List Snapshot Blocks<a name="ebsapi-listsnapshotblocks"></a>
 

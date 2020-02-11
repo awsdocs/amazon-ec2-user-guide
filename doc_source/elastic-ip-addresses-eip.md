@@ -24,6 +24,7 @@ The following are the basic characteristics of an Elastic IP address:
 + When you associate an Elastic IP address with an instance that previously had a public IPv4 address, the public DNS hostname of the instance changes to match the Elastic IP address\. 
 + We resolve a public DNS hostname to the public IPv4 address or the Elastic IP address of the instance outside the network of the instance, and to the private IPv4 address of the instance from within the network of the instance\. 
 + When you allocate an Elastic IP address from an IP address pool that you have brought to your AWS account, it does not count toward your Elastic IP address limits\.
++ When you allocate the Elastic IP addresses, you can associate the Elastic IP addresses with a network border group\. This is the location from which we advertise the CIDR block\. Setting the network border group limits the CIDR block to this group\. If you do not specify the network border group, we set the border group containing all of the Availability Zones in the Region \(for example, `us-west-2`\)\.
 
 ## Working with Elastic IP Addresses<a name="working-with-eips"></a>
 
@@ -50,9 +51,11 @@ You can allocate an Elastic IP address using the Amazon EC2 console or the comma
 
 1. In the navigation pane, choose **Elastic IPs**\.
 
-1. Choose **Allocate new address**\.
+1. Choose **Allocate Elastic IP address**\.
 
-1. For **IPv4 address pool**, choose **Amazon pool**\.
+1. From **Network Border Group**, select the group from where AWS advertises the IP addresses\.
+
+1. For **Public IPv4 address pool**, choose **Amazon's pool of IPv4**\.
 
 1. Choose **Allocate**, and close the confirmation screen\.
 

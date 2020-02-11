@@ -70,6 +70,12 @@ You can run a Dedicated Spot Instance by specifying a tenancy of `dedicated` whe
 
 Pricing for Dedicated Instances is different to pricing for On\-Demand Instances\. For more information, see the [Amazon EC2 Dedicated Instances product page](https://aws.amazon.com/dedicated-instances)\.
 
+### Burstable Performance Instances with Dedicated Instances<a name="dedicated-instance-burstable"></a>
+
+You can leverage the benefits of running on dedicated tenancy hardware with [Burstable Performance Instances](burstable-performance-instances.md)\. T3 Dedicated Instances launch in unlimited mode by default, and they provide a baseline level of CPU performance with the ability to burst to a higher CPU level when required by your workload\. The T3 baseline performance and ability to burst are governed by CPU credits\. Because of the burstable nature of the T3 instance types, we recommend that you monitor how your T3 instances use the CPU resources of the dedicated hardware for the best performance\. T3 Dedicated Instances are intended for customers with diverse workloads that display random CPU behavior, but that ideally have average CPU usage at or below the baseline usages\. For more information, see [CPU Credits and Baseline Performance for Burstable Performance Instances](burstable-credits-baseline-concepts.md)\.
+
+Amazon EC2 has systems in place to identify and correct variability in performance\. However, it is still possible to experience short term variability if you launch multiple T3 Dedicated Instances that have correlated CPU usage patterns\. For these more demanding or correlated workloads, we recommend using M5 or M5a Dedicated Instances rather than T3 Dedicated Instances\.
+
 ## Working with Dedicated Instances<a name="dedicated-usage-overview"></a>
 
 You can create a VPC with an instance tenancy of `dedicated` to ensure that all instances launched into the VPC are Dedicated Instances\. Alternatively, you can specify the tenancy of the instance during launch\. 

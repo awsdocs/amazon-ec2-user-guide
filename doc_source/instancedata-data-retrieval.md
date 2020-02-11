@@ -35,7 +35,7 @@ You can use a tool such as cURL, as shown in the following example\.
 
 ------
 
-You can also download the [Instance Metadata Query tool](https://aws.amazon.com/code/ec2-instance-metadata-query-tool/), which allows you to query the instance metadata using instance metadata service version 1\.0 without having to enter the full URI or category names\.
+You can also download the [Instance Metadata Query tool](https://aws.amazon.com/code/ec2-instance-metadata-query-tool/), which allows you to query the instance metadata using Instance Metadata Service Version 1 without having to enter the full URI or category names\.
 
 ## Responses and Error Messages<a name="instance-metadata-returns"></a>
 
@@ -127,7 +127,7 @@ This example gets the top\-level metadata items\. For more information, see [Ins
 #### [ IMDSv2 ]
 
 ```
-[ec2-user ~]$ TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` \ 
+[ec2-user ~]$ TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` \
 && curl -H "X-aws-ec2-metadata-token: $TOKEN" -v http://169.254.169.254/latest/meta-data/    
 ami-id
 ami-launch-index
