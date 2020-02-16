@@ -10,6 +10,7 @@ For information about getting the statistics for these metrics, see [Get Statist
 + [Amazon EBS Metrics for Nitro\-based Instances](#ebs-metrics-nitro)
 + [Status Check Metrics](#status-check-metrics)
 + [Amazon EC2 Metric Dimensions](#ec2-cloudwatch-dimensions)
++ [Amazon EC2 Usage Metrics](#service-quota-metrics)
 + [Listing Metrics Using the Console](#list-ec2-metrics-console)
 + [Listing Metrics Using the AWS CLI](#list-ec2-metrics-cli)
 
@@ -74,7 +75,7 @@ The `AWS/EC2` namespace includes the following status check metrics\. By default
 
 ## Amazon EC2 Metric Dimensions<a name="ec2-cloudwatch-dimensions"></a>
 
-You can use the following dimensions to refine the metrics returned for your instances\.
+You can use the following dimensions to refine the metrics listed in the previous tables\.
 
 
 |  Dimension  |  Description  | 
@@ -83,6 +84,29 @@ You can use the following dimensions to refine the metrics returned for your ins
 |  ImageId  |  This dimension filters the data you request for all instances running this Amazon EC2 Amazon Machine Image \(AMI\)\. Available for instances with Detailed Monitoring enabled\.  | 
 |  InstanceId  |  This dimension filters the data you request for the identified instance only\. This helps you pinpoint an exact instance from which to monitor data\.  | 
 |  InstanceType  |  This dimension filters the data you request for all instances running with this specified instance type\. This helps you categorize your data by the type of instance running\. For example, you might compare data from an m1\.small instance and an m1\.large instance to determine which has the better business value for your application\. Available for instances with Detailed Monitoring enabled\.  | 
+
+## Amazon EC2 Usage Metrics<a name="service-quota-metrics"></a>
+
+You can use CloudWatch usage metrics to provide visibility into your account's usage of resources\. Use these metrics to visualize your current service usage on CloudWatch graphs and dashboards\.
+
+Amazon EC2 usage metrics correspond to AWS service quotas\. You can configure alarms that alert you when your usage approaches a service quota\. For more information about CloudWatch integration with service quotas, see [Service Quotas Integration and Usage Metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Service-Quota-Integration.html)\.
+
+Amazon EC2 publishes the following metrics in the `AWS/Usage` namespace\.
+
+
+| Metric | Description | 
+| --- | --- | 
+| `ResourceCount` |  The number of the specified resources running in your account\. The resources are defined by the dimensions associated with the metric\. The most useful statistic for this metric is `MAXIMUM`, which represents the maximum number of resources used during the 1\-minute period\.  | 
+
+The following dimensions are used to refine the usage metrics that are published by Amazon EC2\.
+
+
+|  Dimension  |  Description  | 
+| --- | --- | 
+|  Service  |  The name of the AWS service containing the resource\. For Amazon EC2 usage metrics, the value for this dimension is `EC2`\.  | 
+|  Type  |  The type of entity that is being reported\. Currently, the only valid value for Amazon EC2 usage metrics is `Resource`\.  | 
+|  Resource  |  The type of resource that is running\. Currently, the only valid value for Amazon EC2 usage metrics is `vCPU`, which returns information on instances that are running\.  | 
+|  Class  |  The class of resource being tracked\. For Amazon EC2 usage metrics with `vCPU` as the value of the `Resource` dimension, the valid values are `Standard/OnDemand`, `F/OnDemand`, `G/OnDemand`, `Inf/OnDemand`, `P/OnDemand`, and `X/OnDemand`\. The values for this dimension define the first letter of the instance types that are reported by the metric\. For example, `Standard/OnDemand` returns information about all running instances with types that start with A, C, D, H, I, M, R, T, and Z, and `G/OnDemand` returns information about all running instances with types that start with G\.  | 
 
 ## Listing Metrics Using the Console<a name="list-ec2-metrics-console"></a>
 

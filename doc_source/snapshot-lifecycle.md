@@ -85,6 +85,9 @@ The following considerations apply to lifecycle policies and [fast snapshot rest
 + If you enable fast snapshot restore and you exceed the maximum number of snapshots that can be enabled for fast snapshot restore, Amazon Data Lifecycle Manager creates snapshots as scheduled but does not enable them for fast snapshot restore\. After a snapshot that is enabled for fast snapshot restore is deleted, the next snapshot Amazon Data Lifecycle Manager creates is enabled for fast snapshot restore\.
 + When you enable fast snapshot restore for a snapshot, it takes 60 minutes per TiB to optimize the snapshot\. We recommend that you create a schedule that ensures that each snapshot is fully optimized before Amazon Data Lifecycle Manager creates the next snapshot\.
 
+The following considerations apply to lifecycle policies and [Multi\-Attach](ebs-volumes-multi.md) enabled volumes:
++ When creating a lifecycle policy based on instance tags for Multi\-Volume snapshots, Amazon Data Lifecycle Manager initiates a snapshot of the volume for each attached instance\. Use the *timestamp* tag to identify the set of time\-consistent snapshots created from the attached instances\.
+
 ## Prerequisites<a name="dlm-prerequisites"></a>
 
 The following prerequisites are required by Amazon Data Lifecycle Manager\.

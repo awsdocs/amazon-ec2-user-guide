@@ -238,6 +238,7 @@ Amazon's trademarks and trade dress may not be used in
          + [Creating an Amazon EBS Volume](ebs-creating-volume.md)
          + [Restoring an Amazon EBS Volume from a Snapshot](ebs-restoring-volume.md)
          + [Attaching an Amazon EBS Volume to an Instance](ebs-attaching-volume.md)
+         + [Attaching a Volume to Multiple Instances with Amazon EBS Multi-Attach](ebs-volumes-multi.md)
          + [Making an Amazon EBS Volume Available for Use on Linux](ebs-using-volumes.md)
          + [Viewing Information about an Amazon EBS Volume](ebs-describing-volumes.md)
          + [Monitoring the Status of Your Volumes](monitoring-volume-status.md)

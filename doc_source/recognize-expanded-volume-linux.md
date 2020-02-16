@@ -129,8 +129,8 @@ You can verify that each file system reflects the increased volume size by using
 ```
 [ec2-user ~]$ df -h
 Filesystem       Size  Used Avail Use% Mounted on
-/dev/xvda1        16G  1.9G   14G  12% /
-/dev/xvdf1        30G   45M   30G   1% /data
+/dev/xvda1        16G  1.9G  14G  12% /
+/dev/xvdf1        30G   45M  30G   1% /data
 ...
 ```
 

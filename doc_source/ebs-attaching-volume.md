@@ -1,6 +1,6 @@
 # Attaching an Amazon EBS Volume to an Instance<a name="ebs-attaching-volume"></a>
 
-You can attach an available EBS volume to one of your instances that is in the same Availability Zone as the volume\.
+You can attach an available EBS volume to one or more of your instances that is in the same Availability Zone as the volume\.
 
 **Prerequisites**
 + Determine how many volumes you can attach to your instance\. For more information, see [Instance Volume Limits](volume_limits.md)\.

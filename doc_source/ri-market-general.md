@@ -94,7 +94,7 @@ For more information about IRS requirements and Form 1099\-K, see the [IRS](http
 
 ### Pricing Your Reserved Instances<a name="ri-market-concepts-pricing"></a>
 
-The upfront fee is the only fee that you can specify for the Reserved Instance that you're selling\. The upfront fee is the one\-time fee that the buyer pays when they purchase a Reserved Instance\. You cannot specify the usage fee or the recurring fee; The buyer pays the same usage or recurring fees that were set when the reservations were originally purchased\.
+The upfront fee is the only fee that you can specify for the Reserved Instance that you're selling\. The upfront fee is the one\-time fee that the buyer pays when they purchase a Reserved Instance\.
 
 The following are important limits to note:
 + **You can sell up to $50,000 in Reserved Instances per year**\. To sell more, complete the [Request to Raise Sales Limit on Amazon EC2 Reserved Instances](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-reserved-instance-sales) form\.

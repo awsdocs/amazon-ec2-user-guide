@@ -51,6 +51,7 @@ Amazon EC2 processes your modification request if there is sufficient capacity f
 + There must be a match between the instance size footprint of the active reservation and the target configuration\. For more information, see [Support For Modifying Instance Sizes](#ri-modification-instancemove)\.
 + The input Reserved Instances are all Standard Reserved Instances or all Convertible Reserved Instances, not some of each type
 + The input Reserved Instances must expire within the same hour, if they are Standard Reserved Instances
++ The Reserved Instance is not a G4 instance\.
 
 ## Support For Modifying Instance Sizes<a name="ri-modification-instancemove"></a>
 

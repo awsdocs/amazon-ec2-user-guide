@@ -1,6 +1,6 @@
 # Amazon EBS Volumes<a name="ebs-volumes"></a>
 
-An Amazon EBS volume is a durable, block\-level storage device that you can attach to a single EC2 instance\. You can use EBS volumes as primary storage for data that requires frequent updates, such as the system drive for an instance or storage for a database application\. You can also use them for throughput\-intensive applications that perform continuous disk scans\. EBS volumes persist independently from the running life of an EC2 instance\. 
+An Amazon EBS volume is a durable, block\-level storage device that you can attach to one or more instances\. You can use EBS volumes as primary storage for data that requires frequent updates, such as the system drive for an instance or storage for a database application\. You can also use them for throughput\-intensive applications that perform continuous disk scans\. EBS volumes persist independently from the running life of an EC2 instance\. 
 
 After a volume is attached to an instance, you can use it like any other physical hard drive\. EBS volumes are flexible\. For current\-generation volumes attached to current\-generation instance types, you can dynamically increase size, modify the provisioned IOPS capacity, and change volume type on live production volumes\. 
 
@@ -13,6 +13,7 @@ Amazon EBS provides the following volume types: General Purpose SSD \(`gp2`\), P
 + [Creating an Amazon EBS Volume](ebs-creating-volume.md)
 + [Restoring an Amazon EBS Volume from a Snapshot](ebs-restoring-volume.md)
 + [Attaching an Amazon EBS Volume to an Instance](ebs-attaching-volume.md)
++ [Attaching a Volume to Multiple Instances with Amazon EBS Multi\-Attach](ebs-volumes-multi.md)
 + [Making an Amazon EBS Volume Available for Use on Linux](ebs-using-volumes.md)
 + [Viewing Information about an Amazon EBS Volume](ebs-describing-volumes.md)
 + [Monitoring the Status of Your Volumes](monitoring-volume-status.md)
@@ -26,7 +27,7 @@ EBS volumes provide several benefits that are not supported by instance store vo
 
   When you create an EBS volume in an Availability Zone, it is automatically replicated within that zone to prevent data loss due to failure of any single hardware component\. After you create a volume, you can attach it to any EC2 instance in the same Availability Zone\. After you attach a volume, it appears as a native block device similar to a hard drive or other physical device\. At that point, the instance can interact with the volume just as it would with a local drive\. The instance can format the EBS volume with a file system, such as ext3, and then install applications\. 
 
-  An EBS volume can be attached to only one instance at a time, but multiple volumes can be attached to a single instance\. If you attach multiple volumes to a device that you have named, you can stripe data across the volumes for increased I/O and throughput performance\.
+  You can attach an EBS volume to one or more instances\. You can also attach multiple EBS volumes to a single instance\. If you attach multiple volumes to a device that you have named, you can stripe data across the volumes for increased I/O and throughput performance\.
 
   An EBS volume and the instance to which it attaches must be in the same Availability Zone\.
 

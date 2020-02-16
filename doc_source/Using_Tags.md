@@ -65,6 +65,7 @@ The following table describes the Amazon EC2 resources that can be tagged, and t
 |  Instance  |  Yes  | Yes | 
 |  Instance store volume  |  N/A  | N/A | 
 |  Internet gateway  |  Yes  | No | 
+|  IP address pool \(BYOIP\)  |  Yes  |  No  | 
 |  Key pair  |  Yes  | No | 
 |  Launch template  |  Yes  |  Yes  | 
 |  Launch template version  |  No  |  No  | 
@@ -81,6 +82,7 @@ The following table describes the Amazon EC2 resources that can be tagged, and t
 |  Reserved Instance  |  Yes  | No | 
 |  Reserved Instance listing  |  No  | No | 
 | Route table |  Yes  | No | 
+|  Spot Fleet request  |  Yes  | Yes | 
 |  Spot Instance request  |  Yes  | No | 
 |  Security group  |  Yes  | No | 
 |  Subnet  |  Yes  | No | 

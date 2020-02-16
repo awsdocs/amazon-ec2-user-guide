@@ -61,7 +61,10 @@ To hibernate an instance, the following prerequisites must be in place:
 + **Supported AMIs** \(must be an HVM AMI that supports hibernation\):
   + Amazon Linux 2 AMI released 2019\.08\.29 or later\.
   + Amazon Linux AMI 2018\.03 released 2018\.11\.16 or later\.
-  + Ubuntu 18\.04 LTS \- Bionic AMI released with serial number 20190722\.1 or later\. We recommend disabling KASLR on instances with Ubuntu 18\.04 LTS \- Bionic\. For more information, see [Disabling KASLR on an Instance \(Ubuntu only\)](#hibernation-disable-kaslr)\.
+  + Ubuntu 18\.04 LTS \- Bionic AMI released with serial number 20190722\.1 or later\.\*
+  + Ubuntu 16\.04 LTS \- Xenial AMI\.\* \([Additional configuration](#ubuntu-16.04) is required\.\)
+
+    \*We recommend disabling KASLR on instances with Ubuntu 18\.04 LTS \- Bionic and Ubuntu 16\.04 LTS \- Xenial\. For more information, see [Disabling KASLR on an Instance \(Ubuntu only\)](#hibernation-disable-kaslr)\.
 
   To configure your own AMI to support hibernation, see [Configuring an Existing AMI to Support Hibernation](#hibernation-enabled-AMI)\.
 
@@ -94,7 +97,7 @@ To hibernate an instance, the following prerequisites must be in place:
 
 To hibernate an instance that was launched using your own AMI, you must first configure your AMI to support hibernation\. For more information, see [Updating Instance Software](install-updates.md)\.
 
-If you use one of the [supported AMIs](#hibernating-prerequisites), or if you create an AMI based on one of the supported AMIs, you do not need to configure it to support hibernation\. These AMIs are preconfigured to support hibernation\.
+If you use one of the [supported AMIs](#hibernating-prerequisites) \(except Ubuntu 16\.04 LTS\), or if you create an AMI based on one of the supported AMIs, you do not need to configure it to support hibernation\. These AMIs are preconfigured to support hibernation\. To configure Ubuntu 16\.04 LTS to support hibernation, you need to install the linux\-aws\-hwe kernel package version 4\.15\.0\-1058\-aws or later and the ec2\-hibinit\-agent\. For the configuration steps, choose the **Ubuntu 16\.04 \- Xenial** tab below\.
 
 ------
 #### [ Amazon Linux 2 ]
@@ -159,11 +162,11 @@ If you use one of the [supported AMIs](#hibernating-prerequisites), or if you cr
 1. Stop the instance and create an AMI\. For more information, see [Creating a Linux AMI from an Instance](creating-an-ami-ebs.md#how-to-create-ebs-ami)\.
 
 ------
-#### [ Ubuntu ]
+#### [ Ubuntu 18\.04 \- Bionic ]
 
 **To configure an Ubuntu 18\.04 LTS AMI to support hibernation**
 
-1. Update to the latest kernel to 4\.15\.0\-1044 or later using the following command\.
+1. Update to the latest kernel to 4\.15\.0\-1044 or later using the following commands\.
 
    ```
    [ec2-user ~]$ sudo apt update
@@ -182,7 +185,39 @@ If you use one of the [supported AMIs](#hibernating-prerequisites), or if you cr
    [ec2-user ~]$ sudo reboot
    ```
 
-1. Confirm that the kernel version is updated to 4\.15\.0\-1044 or greater using the following command\.
+1. Confirm that the kernel version is updated to 4\.15\.0\-1044 or later using the following command\.
+
+   ```
+   [ec2-user ~]$ uname -a
+   ```
+
+------
+#### [ Ubuntu 16\.04 \- Xenial ]
+
+**To configure an Ubuntu 16\.04 LTS AMI to support hibernation**
+
+1. Update to the latest kernel to 4\.15\.0\-1058\-aws or later using the following commands\.
+
+   ```
+   [ec2-user ~]$ sudo apt update
+   [ec2-user ~]$ sudo apt install linux-aws-hwe
+   ```
+**Note**  
+The linux\-aws\-hwe kernel package is fully supported by Canonical\. The package will continue to receive regular updates until standard support for Ubuntu 16\.04 LTS ends in April 2021, and will receive additional security updates until the Extended Security Maintenance support ends in 2024\. For more information, see [Amazon EC2 Hibernation for Ubuntu 16\.04 LTS now available](https://ubuntu.com/blog/amazon-ec2-hibernation-for-ubuntu-16-04-lts-now-available) on the Canonical Ubuntu Blog\.
+
+1. Install the `ec2-hibinit-agent` package from the repositories using the following command\.
+
+   ```
+   [ec2-user ~]$ sudo apt install ec2-hibinit-agent
+   ```
+
+1. Reboot the instance using the following command\.
+
+   ```
+   [ec2-user ~]$ sudo reboot
+   ```
+
+1. Confirm that the kernel version is updated to 4\.15\.0\-1058\-aws or later using the following command\.
 
    ```
    [ec2-user ~]$ uname -a
@@ -281,7 +316,7 @@ The output lists the EC2 instances that are enabled for hibernation\.
 
 ## Disabling KASLR on an Instance \(Ubuntu only\)<a name="hibernation-disable-kaslr"></a>
 
-To run hibernation on a newly launched instance with Ubuntu 18\.04 LTS \- Bionic, released with serial 20190722\.1 or later, we recommend disabling KASLR \(Kernel Address Space Layout Randomization\)\. On Ubuntu 18\.04 LTS, KASLR is enabled by default\. KASLR is a standard Linux kernel security feature that helps to mitigate exposure to and ramifications of yet\-undiscovered memory access vulnerabilities by randomizing the base address value of the kernel\. With KASLR enabled, there is a possibility that the instance might not resume after it has been hibernated\.
+To run hibernation on a newly launched instance with Ubuntu 16\.04 LTS \- Xenial or Ubuntu 18\.04 LTS \- Bionic released with serial 20190722\.1 or later, we recommend disabling KASLR \(Kernel Address Space Layout Randomization\)\. On Ubuntu 16\.04 LTS or Ubuntu 18\.04 LTS, KASLR is enabled by default\. KASLR is a standard Linux kernel security feature that helps to mitigate exposure to and ramifications of yet\-undiscovered memory access vulnerabilities by randomizing the base address value of the kernel\. With KASLR enabled, there is a possibility that the instance might not resume after it has been hibernated\.
 
 To learn more about KASLR, see [Ubuntu Features](https://wiki.ubuntu.com/Security/Features)\.
 

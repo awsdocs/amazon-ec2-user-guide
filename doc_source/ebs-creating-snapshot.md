@@ -21,7 +21,7 @@ If you copy a snapshot and encrypt it to a new CMK, a complete \(non\-incrementa
 
 ## Multi\-Volume Snapshots<a name="ebs-create-snapshot-multi-volume"></a>
 
-You can create multi\-volume snapshots, which are point\-in\-time snapshots for all EBS volumes attached to a single EC2 instance\. You can also create lifecycle policies to automate the creation and retention of multi\-volume snapshots\. For more information, see [Automating the Amazon EBS Snapshot Lifecycle](snapshot-lifecycle.md)\.
+You can create multi\-volume snapshots, which are point\-in\-time snapshots for all EBS volumes attached to an EC2 instance\. You can also create lifecycle policies to automate the creation and retention of multi\-volume snapshots\. For more information, see [Automating the Amazon EBS Snapshot Lifecycle](snapshot-lifecycle.md)\.
 
 After the snapshots are created, each snapshot is treated as an individual snapshot\. You can perform all snapshot operations, such as restore, delete, and cross\-region/account copy, just as you would with a single volume snapshot\. You can also tag your multi\-volume snapshots as you would a single volume snapshot\. We recommend you tag your multiple volume snapshots to manage them collectively during restore, copy, or retention\.
 

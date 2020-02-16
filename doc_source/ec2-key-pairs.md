@@ -54,7 +54,7 @@ You can create a key pair using one of the following methods\.
 
 1. For **Name**, enter a descriptive name for the key pair\.
 
-1. For **File format**, choose the format in which to save the private key\. To save the private key in a format that can be used with OpenSHH, choose **pem**\. To save the private key in a format that can be used with PuTTY, choose **ppk**\.
+1. For **File format**, choose the format in which to save the private key\. To save the private key in a format that can be used with OpenSSH, choose **pem**\. To save the private key in a format that can be used with PuTTY, choose **ppk**\.
 
 1. Choose **Create key pair**\.
 

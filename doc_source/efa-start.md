@@ -6,12 +6,13 @@ This tutorial helps you to launch an EFA and MPI\-enabled instance cluster for H
 + [Step 1: Prepare an EFA\-Enabled Security Group](#efa-start-security)
 + [Step 2: Launch a Temporary Instance](#efa-start-tempinstance)
 + [Step 3: Install the EFA Software](#efa-start-enable)
-+ [Step 4: \(Optional\) Install Intel MPI](#efa-start-impi)
-+ [Step 5: Install Your HPC Application](#efa-start-hpc-app)
-+ [Step 6: Create an EFA\-Enabled AMI](#efa-start-ami)
-+ [Step 7: Launch EFA\-Enabled Instances into a Cluster Placement Group](#efa-start-instances)
-+ [Step 8: Terminate the Temporary Instance](#efa-start-terminate)
-+ [Step 9: Enable Passwordless SSH](#efa-start-passwordless)
++ [Step 4: Disable Ptrace Protection](#efa-start-ptrace)
++ [Step 5: \(Optional\) Install Intel MPI](#efa-start-impi)
++ [Step 6: Install Your HPC Application](#efa-start-hpc-app)
++ [Step 7: Create an EFA\-Enabled AMI](#efa-start-ami)
++ [Step 8: Launch EFA\-Enabled Instances into a Cluster Placement Group](#efa-start-instances)
++ [Step 9: Terminate the Temporary Instance](#efa-start-terminate)
++ [Step 10: Enable Passwordless SSH](#efa-start-passwordless)
 
 ## Step 1: Prepare an EFA\-Enabled Security Group<a name="efa-start-security"></a>
 
@@ -69,7 +70,7 @@ Launch a temporary instance that you can use to install and configure the EFA so
 
    1. Choose **Next: Add Storage**\.
 
-1. On the **Add Storage** page, specify the volumes to attach to the instances in addition to the volumes specified by the AMI \(such as the root device volume\), and then choose **Next: Add Tags**\.
+1. On the **Add Storage** page, specify the volumes to attach to the instances in addition to the volumes that are specified by the AMI \(such as the root device volume\)\. Then choose **Next: Add Tags**\.
 
 1. On the **Add Tags** page, specify a tag that you can use to identify the temporary instance, and then choose **Next: Configure Security Group**\.
 
@@ -106,7 +107,7 @@ The steps differ depending on whether you intend to use EFA with Open MPI or wit
 1. Download the EFA software installation files\. To download the latest *stable* version, use the following command\.
 
    ```
-   $ curl -O https://s3-us-west-2.amazonaws.com/aws-efa-installer/aws-efa-installer-1.8.2.tar.gz
+   $ curl -O https://s3-us-west-2.amazonaws.com/aws-efa-installer/aws-efa-installer-1.8.3.tar.gz
    ```
 
    You can also get the latest version by replacing the version number with `latest` in the preceding command\.
@@ -114,7 +115,7 @@ The steps differ depending on whether you intend to use EFA with Open MPI or wit
 1. The software installation files are packaged into a compressed `.tar.gz` file\. Extract the files from the compressed `.tar.gz` file and navigate into the extracted directory\.
 
    ```
-   $ tar -xf aws-efa-installer-1.8.2.tar.gz
+   $ tar -xf aws-efa-installer-1.8.3.tar.gz
    ```
 
    ```
@@ -170,7 +171,22 @@ The steps differ depending on whether you intend to use EFA with Open MPI or wit
        protocol: FI_PROTO_RXD
    ```
 
-## Step 4: \(Optional\) Install Intel MPI<a name="efa-start-impi"></a>
+## Step 4: Disable Ptrace Protection<a name="efa-start-ptrace"></a>
+
+To improve your HPC application's performance, Libfabric uses the instance's local memory for interprocess communications when the processes are running on the same instance\. 
+
+The shared memory feature uses Cross Memory Attach \(CMA\), which is not supported with *ptrace protection*\. If you are using a Linux distribution that has ptrace protection enabled by default, such as Ubuntu, you must disable it\. If your Linux distribution does not have ptrace protection enabled by default, skip this step\.
+
+**To disable ptrace protection**  
+Do one of the following:
++ To temporarily disable ptrace protection for testing purposes, run the following command\.
+
+  ```
+  $ sudo sysctl -w kernel.yama.ptrace_scope=0
+  ```
++ To permanently disable ptrace protection, add `kernel.yama.ptrace_scope = 0` to `/etc/sysctl.d/10-ptrace.conf` and reboot the instance\.
+
+## Step 5: \(Optional\) Install Intel MPI<a name="efa-start-impi"></a>
 
 **Important**  
 If you intend to use Open MPI, skip this step\. Perform this step only if you intend to use Intel MPI\.
@@ -236,14 +252,14 @@ Ensure that the user performing the following steps has sudo permissions\.
 **Note**  
 If you no longer want to use Intel MPI, remove the environment variables from the shell startup scripts\.
 
-## Step 5: Install Your HPC Application<a name="efa-start-hpc-app"></a>
+## Step 6: Install Your HPC Application<a name="efa-start-hpc-app"></a>
 
 Install the HPC application on the temporary instance\. The installation procedure varies depending on the specific HPC application\. For more information about installing software on your Linux instance, see [Managing Software on Your Linux Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/managing-software.html)\.
 
 **Note**  
 You might need to refer to your HPC application’s documentation for installation instructions\.
 
-## Step 6: Create an EFA\-Enabled AMI<a name="efa-start-ami"></a>
+## Step 7: Create an EFA\-Enabled AMI<a name="efa-start-ami"></a>
 
 After you have installed the required software components, you create an EFA and NCCL\-enabled AMI that you can reuse to launch your EFA and NCCL\-enabled instances\.
 
@@ -267,7 +283,7 @@ After you have installed the required software components, you create an EFA and
 
 1. Locate the AMI you created in the list\. Wait for the Status to transition from `pending` to `available` before continuing to the next step\.
 
-## Step 7: Launch EFA\-Enabled Instances into a Cluster Placement Group<a name="efa-start-instances"></a>
+## Step 8: Launch EFA\-Enabled Instances into a Cluster Placement Group<a name="efa-start-instances"></a>
 
 Launch your EFA\-enabled instances into a cluster placement group using the EFA\-enabled AMI that you created in **Step 6**, and the EFA\-enabled security group that you created in **Step 1**\.
 
@@ -310,7 +326,7 @@ It is not an absolute requirement to launch your EFA\-enabled instances into a c
 
 1. On the **Review Instance Launch** page, review the settings, and then choose **Launch** to choose a key pair and to launch your instances\.
 
-## Step 8: Terminate the Temporary Instance<a name="efa-start-terminate"></a>
+## Step 9: Terminate the Temporary Instance<a name="efa-start-terminate"></a>
 
 At this point, you no longer need the temporary instance that you launched in **Step 1**\. You can terminate the instance to stop incurring charges for it\.
 
@@ -322,7 +338,7 @@ At this point, you no longer need the temporary instance that you launched in **
 
 1. Select the temporary instance that you created in **Step 1** and then choose **Actions**, **Instance State**, **Terminate**, **Yes, Terminate**\.
 
-## Step 9: Enable Passwordless SSH<a name="efa-start-passwordless"></a>
+## Step 10: Enable Passwordless SSH<a name="efa-start-passwordless"></a>
 
 To enable your applications to run across all of the instances in your cluster, you must enable passwordless SSH access from the leader node to the member nodes\. The leader node is the instance from which you run your applications\. The remaining instances in the cluster are the member nodes\.
 

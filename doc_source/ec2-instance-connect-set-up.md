@@ -13,7 +13,6 @@ Amazon Linux 2 2\.0\.20190618 or later comes preconfigured with EC2 Instance Con
   + Amazon Linux 2 \(any version\)
   + Ubuntu 16\.04 or later
 + If you configured the `AuthorizedKeysCommand` and `AuthorizedKeysCommandUser` settings for SSH authentication, the EC2 Instance Connect installation will not update them\. As a result, you cannot use Instance Connect\.
-+ EC2 Instance Connect works only with Instance Metadata Service Version 1\. If you configure the instance metadata service to require Instance Metadata Service Version 2, you can't use EC2 Instance Connect\. For more information, see [Configuring the Instance Metadata Service](configuring-instance-metadata-service.md)\.
 
 **Prerequisites**
 + **Verify the general prerequisites for connecting to your instance using SSH\.**
