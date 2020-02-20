@@ -18,7 +18,7 @@ For the following tasks, suppose that you have resized the boot volume of an ins
 
 To verify the file system in use for each volume on your instance, [connect to your instance](AccessingInstances.md) and run the file \-s command\.
 
-**Example Example: File Systems on a Nitro\-based Instance**  
+**Example: File Systems on a Nitro\-based Instance**  
 The following example shows a [Nitro\-based instance](instance-types.md#ec2-nitro-instances) that has a boot volume with an XFS file system and an additional volume with an XFS file system\.  
 
 ```
@@ -29,7 +29,7 @@ The following example shows a [Nitro\-based instance](instance-types.md#ec2-nitr
 /dev/nvme1n1:     SGI XFS filesystem data ...
 ```
 
-**Example Example: File Systems on a T2 Instance**  
+**Example: File Systems on a T2 Instance**  
 The following example shows a T2 instance that has a boot volume with an ext4 file system and an additional volume with an XFS file system\.  
 
 ```
@@ -45,7 +45,7 @@ Your EBS volume might have a partition that contains the file system and data\. 
 
 Use the lsblk command to display information about the block devices attached to your instance\. If a resized volume has a partition and the partition does not reflect the new size of the volume, use the growpart command to extend the partition\. For information about extending an LVM partition, see [Extending a logical volume](https://www.tldp.org/HOWTO/html_single/LVM-HOWTO/#extendlv)\.
 
-**Example Example: Partitions on a Nitro\-based Instance**  
+**Example: Partitions on a Nitro\-based Instance**  
 The following example shows the volumes on a Nitro\-based instance:  
 
 ```
@@ -74,7 +74,7 @@ nvme0n1       259:1    0  16G  0 disk
 └─nvme0n1p128 259:3    0   1M  0 part
 ```
 
-**Example Example: Partitions on a T2 Instance**  
+**Example: Partitions on a T2 Instance**  
 The following example shows the volumes on a T2 instance:  
 
 ```
@@ -108,7 +108,7 @@ xvdf    202:80   0  30G  0 disk
 
 Use a file system\-specific command to resize each file system to the new volume capacity\. For a file system other than the examples shown here, refer to the documentation for the file system for instructions\.
 
-**Example Example: Extend an ext2, ext3, or ext4 file system**  
+**Example: Extend an ext2, ext3, or ext4 file system**  
 Use the df \-h command to verify the size of the file system for each volume\. In this example, both `/dev/xvda1` and `/dev/xvdf` reflect the original size of the volumes, 8 GB\.  
 
 ```
@@ -134,7 +134,7 @@ Filesystem       Size  Used Avail Use% Mounted on
 ...
 ```
 
-**Example Example: Extend an XFS file system**  
+**Example: Extend an XFS file system**  
 Use the df \-h command to verify the size of the file system for each volume\. In this example, each file system reflects the original volume size, 8 GB\.  
 
 ```
