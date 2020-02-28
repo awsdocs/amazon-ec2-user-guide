@@ -236,7 +236,7 @@ The migration process involves:
 
 1. Launch an instance from the AMI that you just created, specifying the new Availability Zone or subnet\. You can use the same instance type as the original instance, or select a new instance type\. For more information, see [Launching Instances in an Availability Zone or Local Zone](#using-regions-availability-zones-launching)\.
 
-1. If the original instance has an associated Elastic IP address, associate it with the new instance\. For more information, see [Disassociating an Elastic IP Address and Reassociating with a Different Instance](elastic-ip-addresses-eip.md#using-instance-addressing-eips-associating-different)\.
+1. If the original instance has an associated Elastic IP address, associate it with the new instance\. For more information, see [Disassociating an Elastic IP Address](elastic-ip-addresses-eip.md#using-instance-addressing-eips-associating-different)\.
 
 1. If the original instance is a Reserved Instance, change the Availability Zone for your reservation\. \(If you also changed the instance type, you can also change the instance type for your reservation\.\) For more information, see [Submitting Modification Requests](ri-modifying.md#ri-modification-process)\.
 

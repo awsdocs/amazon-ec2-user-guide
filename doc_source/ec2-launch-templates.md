@@ -40,9 +40,9 @@ To launch instances, IAM users must have permissions to use the `ec2:RunInstance
 
 ## Controlling the Use of Launch Templates<a name="launch-template-permissions"></a>
 
-By default, IAM users do not have permissions to work with launch templates\. You can create an IAM user policy that grants users permissions to create, modify, describe, and delete launch templates and launch template versions\. You can also apply resource\-level permissions to some launch template actions to control a user's ability to use specific resources for those actions\. For more information, see [Supported Resource\-Level Permissions for Amazon EC2 API Actions](ec2-supported-iam-actions-resources.md) and the following example policies: [Example: Working with Launch Templates](ExamplePolicies_EC2.md#iam-example-launch-templates)\.
+By default, IAM users do not have permissions to work with launch templates\. You can create an IAM user policy that grants users permissions to create, modify, describe, and delete launch templates and launch template versions\. You can also apply resource\-level permissions to some launch template actions to control a user's ability to use specific resources for those actions\. For more information, see the following example policies: [Example: Working with Launch Templates](ExamplePolicies_EC2.md#iam-example-launch-templates)\.
 
-Take care when granting users permissions to use the `ec2:CreateLaunchTemplate` and `ec2:CreateLaunchTemplateVersion` actions\. These actions do not support resource\-level permissions that enable you to control which resources users can specify in the launch template\. To restrict the resources that are used to launch an instance, ensure that you grant permissions to create launch templates and launch template versions only to appropriate administrators\.
+Take care when granting users permissions to use the `ec2:CreateLaunchTemplate` and `ec2:CreateLaunchTemplateVersion` actions\. You cannot use resource\-level permissions to control which resources users can specify in the launch template\. To restrict the resources that are used to launch an instance, ensure that you grant permissions to create launch templates and launch template versions only to appropriate administrators\.
 
 ## Creating a Launch Template<a name="create-launch-template"></a>
 

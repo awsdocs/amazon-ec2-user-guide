@@ -2,7 +2,7 @@
 
 An *Elastic IP address* is a static IPv4 address designed for dynamic cloud computing\. An Elastic IP address is associated with your AWS account\. With an Elastic IP address, you can mask the failure of an instance or software by rapidly remapping the address to another instance in your account\. 
 
-An Elastic IP address is a public IPv4 address, which is reachable from the internet\. If your instance does not have a public IPv4 address, you can associate an Elastic IP address with your instance to enable communication with the internet; for example, to connect to your instance from your local computer\.
+An Elastic IP address is a public IPv4 address, which is reachable from the internet\. If your instance does not have a public IPv4 address, you can associate an Elastic IP address with your instance to enable communication with the internet\. For example, this allows you to connect to your instance from your local computer\.
 
 We currently do not support Elastic IP addresses for IPv6\.
 
@@ -21,8 +21,8 @@ The following are the basic characteristics of an Elastic IP address:
 + A disassociated Elastic IP address remains allocated to your account until you explicitly release it\.
 + To ensure efficient use of Elastic IP addresses, we impose a small hourly charge if an Elastic IP address is not associated with a running instance, or if it is associated with a stopped instance or an unattached network interface\. While your instance is running, you are not charged for one Elastic IP address associated with the instance, but you are charged for any additional Elastic IP addresses associated with the instance\. For more information, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/on-demand/#Elastic_IP_Addresses)\.
 + An Elastic IP address is for use in a specific network border group only\. 
-+ When you associate an Elastic IP address with an instance that previously had a public IPv4 address, the public DNS hostname of the instance changes to match the Elastic IP address\. 
-+ We resolve a public DNS hostname to the public IPv4 address or the Elastic IP address of the instance outside the network of the instance, and to the private IPv4 address of the instance from within the network of the instance\. 
++ When you associate an Elastic IP address with an instance that previously had a public IPv4 address, the public DNS host name of the instance changes to match the Elastic IP address\. 
++ We resolve a public DNS host name to the public IPv4 address or the Elastic IP address of the instance outside the network of the instance, and to the private IPv4 address of the instance from within the network of the instance\. 
 + When you allocate an Elastic IP address from an IP address pool that you have brought to your AWS account, it does not count toward your Elastic IP address limits\.
 + When you allocate the Elastic IP addresses, you can associate the Elastic IP addresses with a network border group\. This is the location from which we advertise the CIDR block\. Setting the network border group limits the CIDR block to this group\. If you do not specify the network border group, we set the border group containing all of the Availability Zones in the Region \(for example, `us-west-2`\)\.
 
@@ -34,8 +34,8 @@ The following sections describe how you can work with Elastic IP addresses\.
 + [Allocating an Elastic IP Address](#using-instance-addressing-eips-allocating)
 + [Describing Your Elastic IP Addresses](#using-instance-addressing-eips-describing)
 + [Tagging an Elastic IP Address](#using-instance-addressing-eips-tagging)
-+ [Associating an Elastic IP Address with a Running Instance](#using-instance-addressing-eips-associating)
-+ [Disassociating an Elastic IP Address and Reassociating with a Different Instance](#using-instance-addressing-eips-associating-different)
++ [Associating an Elastic IP Address with a Running Instance or Network Interface](#using-instance-addressing-eips-associating)
++ [Disassociating an Elastic IP Address](#using-instance-addressing-eips-associating-different)
 + [Releasing an Elastic IP Address](#using-instance-addressing-eips-releasing)
 + [Recovering an Elastic IP Address](#using-eip-recovering)
 
@@ -43,9 +43,12 @@ The following sections describe how you can work with Elastic IP addresses\.
 
 You can allocate an Elastic IP address from Amazon's pool of public IPv4 addresses, or from a custom IP address pool that you have brought to your AWS account\. For more information about bringing your own IP address range to your AWS account, see [Bring Your Own IP Addresses \(BYOIP\)](ec2-byoip.md)\.
 
-You can allocate an Elastic IP address using the Amazon EC2 console or the command line\.
+You can allocate an Elastic IP address using one of the following methods\.
 
-**To allocate an Elastic IP address from Amazon's pool of public IPv4 addresses using the console**
+------
+#### [ New console ]
+
+**To allocate an Elastic IP address**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -53,13 +56,18 @@ You can allocate an Elastic IP address using the Amazon EC2 console or the comma
 
 1. Choose **Allocate Elastic IP address**\.
 
-1. From **Network Border Group**, select the group from where AWS advertises the IP addresses\.
+1. For **Scope**, choose either **VPC** or **EC2\-Classic** depending on the scope in which it will be used\.
 
-1. For **Public IPv4 address pool**, choose **Amazon's pool of IPv4**\.
+1. \(VPC scope only\) For **Public IPv4 address pool** choose one of the following:
+   + **Amazon's pool of IP addresses**—If you want an IPv4 address to be allocated from Amazon's pool of IP addresses\.
+   + **My pool of public IPv4 addresses**—If you want to allocate an IPv4 address from an IP address pool that you have brought toyour AWS account\. This option is disabled if you do not have any IP address pools\.
 
-1. Choose **Allocate**, and close the confirmation screen\.
+1. Choose **Allocate**\.
 
-**To allocate an Elastic IP address from an IP address pool that you own using the console**
+------
+#### [ Old console ]
+
+**To allocate an Elastic IP address**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -67,27 +75,43 @@ You can allocate an Elastic IP address using the Amazon EC2 console or the comma
 
 1. Choose **Allocate new address**\.
 
-1. For **IPv4 address pool**, choose **Owned by me** and then select the IP address pool\.
-
-   To see the IP address range of the selected address pool and the number of IP addresses already allocated from the address pool, see **Address ranges**\.
-
-1. For **IPv4 address**, do one of the following:
-   + To let Amazon EC2 select an IP address from the address pool, choose **No preference**\.
-   + To select a specific IP address from the address pool, choose **Select an address** and then type the IP address\.
+1. For **IPv4 address pool**, choose **Amazon pool**\.
 
 1. Choose **Allocate**, and close the confirmation screen\.
 
-**To allocate an Elastic IP address using the command line**
+------
+#### [ AWS CLI ]
 
-You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [allocate\-address](https://docs.aws.amazon.com/cli/latest/reference/ec2/allocate-address.html) \(AWS CLI\)
-+ [New\-EC2Address](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Address.html) \(AWS Tools for Windows PowerShell\)
+**To allocate an Elastic IP address**  
+Use the [allocate\-address](https://docs.aws.amazon.com/cli/latest/reference/ec2/allocate-address.html) AWS CLI command\.
+
+------
+#### [ PowerShell ]
+
+**To allocate an Elastic IP address**  
+Use the [New\-EC2Address](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Address.html) AWS Tools for Windows PowerShell command\.
+
+------
 
 ### Describing Your Elastic IP Addresses<a name="using-instance-addressing-eips-describing"></a>
 
-You can describe an Elastic IP address using the Amazon EC2 or the command line\.
+You can describe an Elastic IP address using one of the following methods\.
 
-**To describe your Elastic IP addresses using the console**
+------
+#### [ New console ]
+
+**To describe your Elastic IP addresses**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Elastic IPs**\.
+
+1. Select the Elastic IP address to view and choose **Actions**, **View details**\.
+
+------
+#### [ Old console ]
+
+**To describe your Elastic IP addresses**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -95,20 +119,54 @@ You can describe an Elastic IP address using the Amazon EC2 or the command line\
 
 1. Select a filter from the Resource Attribute list to begin searching\. You can use multiple filters in a single search\.
 
-**To describe your Elastic IP addresses using the command line**
+------
+#### [ AWS CLI ]
 
-You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [describe\-addresses](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-addresses.html) \(AWS CLI\)
-+ [Get\-EC2Address](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Address.html) \(AWS Tools for Windows PowerShell\)
+**To describe your Elastic IP addresses**  
+Use the [describe\-addresses](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-addresses.html) AWS CLI command\.
+
+------
+#### [ PowerShell ]
+
+**To describe your Elastic IP addresses**  
+Use the [Get\-EC2Address](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Address.html) AWS Tools for Windows PowerShell command\.
+
+------
 
 ### Tagging an Elastic IP Address<a name="using-instance-addressing-eips-tagging"></a>
 
-You can assign custom tags to your Elastic IP addresses to categorize them in different ways, for example, by purpose, owner, or environment\. This helps you to quickly find a specific Elastic IP address based on the custom tags you've assigned it\.
+You can assign custom tags to your Elastic IP addresses to categorize them in different ways, for example, by purpose, owner, or environment\. This helps you to quickly find a specific Elastic IP address based on the custom tags that you assigned to it\.
+
+You can only tag Elastic IP addresses that are in the VPC scope\.
 
 **Note**  
 Cost allocation tracking using Elastic IP address tags is not supported\.
 
-**To tag an Elastic IP address using the console**
+You can tag an Elastic IP address using one of the following methods\.
+
+------
+#### [ New console ]
+
+**To tag an Elastic IP address**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Elastic IPs**\. 
+
+1. Select the Elastic IP address to tag and choose **Actions**, **View details**\. 
+
+1. In the **Tags** section, choose **Manage tags**\.
+
+1. Specify a tag key and value pair\.
+
+1. \(Optional\) Choose **Add tag** to add additional tags\.
+
+1. Choose **Save**\.
+
+------
+#### [ Old console ]
+
+**To tag an Elastic IP address**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -124,35 +182,81 @@ Cost allocation tracking using Elastic IP address tags is not supported\.
 
 1. Choose **Save**\.
 
-**To tag an Elastic IP address using the command line**
+------
+#### [ AWS CLI ]
 
-You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [create\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-tags.html) \(AWS CLI\)
+**To tag an Elastic IP address**  
+Use the [create\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-tags.html) AWS CLI command\.
 
-  ```
-  aws ec2 create-tags --resources eipalloc-12345678 --tags Key=Owner,Value=TeamA
-  ```
-+ [New\-EC2Tag](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Tag.html) \(AWS Tools for Windows PowerShell\)
+```
+aws ec2 create-tags --resources eipalloc-12345678 --tags Key=Owner,Value=TeamA
+```
 
-  The `New-EC2Tag` command needs a `Tag` parameter, which specifies the key and value pair to be used for the Elastic IP address tag\. The following commands create the `Tag` parameter:
+------
+#### [ PowerShell ]
 
-  ```
-  PS C:\> $tag = New-Object Amazon.EC2.Model.Tag
-  PS C:\> $tag.Key = "Owner"
-  PS C:\> $tag.Value = "TeamA"
-  ```
+**To tag an Elastic IP address**  
+Use the [New\-EC2Tag](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Tag.html) AWS Tools for Windows PowerShell command\.
 
-  ```
-  PS C:\> New-EC2Tag -Resource eipalloc-12345678 -Tag $tag
-  ```
+The `New-EC2Tag` command needs a `Tag` parameter, which specifies the key and value pair to be used for the Elastic IP address tag\. The following commands create the `Tag` parameter\.
 
-### Associating an Elastic IP Address with a Running Instance<a name="using-instance-addressing-eips-associating"></a>
+```
+PS C:\> $tag = New-Object Amazon.EC2.Model.Tag
+PS C:\> $tag.Key = "Owner"
+PS C:\> $tag.Value = "TeamA"
+```
 
-You can associate an Elastic IP address to an instance using the Amazon EC2 console or the command line\.
+```
+PS C:\> New-EC2Tag -Resource eipalloc-12345678 -Tag $tag
+```
+
+------
+
+### Associating an Elastic IP Address with a Running Instance or Network Interface<a name="using-instance-addressing-eips-associating"></a>
 
 If you're associating an Elastic IP address with your instance to enable communication with the internet, you must also ensure that your instance is in a public subnet\. For more information, see [Internet Gateways](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html) in the *Amazon VPC User Guide*\.
 
-**To associate an Elastic IP address with an instance using the console**
+You can associate an Elastic IP address with an instance or network interface using one of the following methods\.
+
+------
+#### [ New console ]
+
+**To associate an Elastic IP address with an instance**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Elastic IPs**\. 
+
+1. Select the Elastic IP address to associate and choose **Actions**, **Associate Elastic IP address**\. 
+
+1. For **Resource type**, choose **Instance**\.
+
+1. For instance, choose the instance with which to associate the Elastic IP address\. You can also enter text to search for a specific instance\.
+
+1. \(Optiona\) For **Private IP address**, specify a private IP address with which to associate the Elastic IP address\.
+
+1. Choose **Associate**\.
+
+**To associate an Elastic IP address with a network interface**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Elastic IPs**\. 
+
+1. Select the Elastic IP address to associate and choose **Actions**, **Associate Elastic IP address**\. 
+
+1. For **Resource type**, choose **Network interface**\.
+
+1. For **Network interface**, choose the network interface with which to associate the Elastic IP address\. You can also enter text to search for a specific network interface\.
+
+1. \(Optiona\) For **Private IP address**, specify a private IP address with which to associate the Elastic IP address\.
+
+1. Choose **Associate**\.
+
+------
+#### [ Old console ]
+
+**To associate an Elastic IP address with an instance**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -162,17 +266,43 @@ If you're associating an Elastic IP address with your instance to enable communi
 
 1. Select the instance from **Instance** and then choose **Associate**\.
 
-**To associate an Elastic IP address using the command line**
+------
+#### [ AWS CLI ]
 
-You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [associate\-address](https://docs.aws.amazon.com/cli/latest/reference/ec2/associate-address.html) \(AWS CLI\)
-+ [Register\-EC2Address](https://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2Address.html) \(AWS Tools for Windows PowerShell\)
+**To associate an Elastic IP address**  
+Use the [associate\-address](https://docs.aws.amazon.com/cli/latest/reference/ec2/associate-address.html) AWS CLI command\.
 
-### Disassociating an Elastic IP Address and Reassociating with a Different Instance<a name="using-instance-addressing-eips-associating-different"></a>
+------
+#### [ PowerShell ]
 
-You can disassociate an Elastic IP address and then reassociate it using the Amazon EC2 console or the command line\.
+**To associate an Elastic IP address**  
+Use the [Register\-EC2Address](https://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2Address.html) AWS Tools for Windows PowerShell command\.
 
-**To disassociate and reassociate an Elastic IP address using the console**
+------
+
+### Disassociating an Elastic IP Address<a name="using-instance-addressing-eips-associating-different"></a>
+
+You can disassociate an Elastic IP address from an instance or network interface at any time\. After you disassociate the Elastic IP address, you can reassociate it with another resource\.
+
+You can disassociate an Elastic IP address using one of the following methods\.
+
+------
+#### [ New console ]
+
+**To disassociate and reassociate an Elastic IP address**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Elastic IPs**\.
+
+1. Select the Elastic IP address to disassociate, choose **Actions**, **Disassociate Elastic IP address**\.
+
+1. Choose **Disassociate**\.
+
+------
+#### [ Old console ]
+
+**To disassociate and reassociate an Elastic IP address**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -182,27 +312,41 @@ You can disassociate an Elastic IP address and then reassociate it using the Ama
 
 1. Choose **Disassociate address**\.
 
-1. Select the address that you disassociated in the previous step\. For **Actions**, choose **Associate address**\.
+------
+#### [ AWS CLI ]
 
-1. Select the new instance from **Instance**, and then choose **Associate**\. 
+**To disassociate an Elastic IP address**  
+Use the [disassociate\-address](https://docs.aws.amazon.com/cli/latest/reference/ec2/disassociate-address.html) AWS CLI command\.
 
-**To disassociate an Elastic IP address using the command line**
+------
+#### [ PowerShell ]
 
-You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [disassociate\-address](https://docs.aws.amazon.com/cli/latest/reference/ec2/disassociate-address.html) \(AWS CLI\)
-+ [Unregister\-EC2Address](https://docs.aws.amazon.com/powershell/latest/reference/items/Unregister-EC2Address.html) \(AWS Tools for Windows PowerShell\)
+**To disassociate an Elastic IP address**  
+Use the [Unregister\-EC2Address](https://docs.aws.amazon.com/powershell/latest/reference/items/Unregister-EC2Address.html) AWS Tools for Windows PowerShell command\.
 
-**To associate an Elastic IP address using the command line**
-
-You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [associate\-address](https://docs.aws.amazon.com/cli/latest/reference/ec2/associate-address.html) \(AWS CLI\)
-+ [Register\-EC2Address](https://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2Address.html) \(AWS Tools for Windows PowerShell\)
+------
 
 ### Releasing an Elastic IP Address<a name="using-instance-addressing-eips-releasing"></a>
 
-If you no longer need an Elastic IP address, we recommend that you release it \(the address must not be associated with an instance\)\.
+If you no longer need an Elastic IP address, we recommend that you release it using one of the following methods\. The address that you release must not be associated with an instance\.
 
-**To release an Elastic IP address using the console**
+------
+#### [ New console ]
+
+**To release an Elastic IP address**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Elastic IPs**\.
+
+1. Select the Elastic IP address to release and choose **Actions**, **Release Elastic IP addresses**\.
+
+1. Choose **Release**\.
+
+------
+#### [ Old console ]
+
+**To release an Elastic IP address**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -210,11 +354,19 @@ If you no longer need an Elastic IP address, we recommend that you release it \(
 
 1. Select the Elastic IP address, choose **Actions**, and then select **Release addresses**\. Choose **Release** when prompted\.
 
-**To release an Elastic IP address using the command line**
+------
+#### [ AWS CLI ]
 
-You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [release\-address](https://docs.aws.amazon.com/cli/latest/reference/ec2/release-address.html) \(AWS CLI\)
-+ [Remove\-EC2Address](https://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2Address.html) \(AWS Tools for Windows PowerShell\)
+**To release an Elastic IP address**  
+Use the [release\-address](https://docs.aws.amazon.com/cli/latest/reference/ec2/release-address.html) AWS CLI command\.
+
+------
+#### [ PowerShell ]
+
+**To release an Elastic IP address**  
+Use the [Remove\-EC2Address](https://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2Address.html) AWS Tools for Windows PowerShell command\.
+
+------
 
 ### Recovering an Elastic IP Address<a name="using-eip-recovering"></a>
 
@@ -223,25 +375,33 @@ If you have released your Elastic IP address, you might be able to recover it\. 
 + You cannot recover tags associated with an Elastic IP address\.
 + You can recover an Elastic IP address using the Amazon EC2 API or a command line tool only\.
 
-**To recover an Elastic IP address using the command line**
+------
+#### [ AWS CLI ]
 
-You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [allocate\-address](https://docs.aws.amazon.com/cli/latest/reference/ec2/allocate-address.html) \(AWS CLI\) — Specify the IP address using the `--address` parameter as follows\.
+**To recover an Elastic IP address**  
+Use the [allocate\-address](https://docs.aws.amazon.com/cli/latest/reference/ec2/allocate-address.html) AWS CLI command and specify the IP address using the `--address` parameter as follows\.
 
-  ```
-  aws ec2 allocate-address --domain vpc --address 203.0.113.3
-  ```
-+ [New\-EC2Address](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Address.html) \(AWS Tools for Windows PowerShell\) — Specify the IP address using the `-Address` parameter as follows\.
+```
+aws ec2 allocate-address --domain vpc --address 203.0.113.3
+```
 
-  ```
-  PS C:\> New-EC2Address -Address 203.0.113.3 -Domain vpc -Region us-east-1
-  ```
+------
+#### [ PowerShell ]
+
+**To recover an Elastic IP address**  
+Use the [New\-EC2Address](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Address.html) AWS Tools for Windows PowerShell command and specify the IP address using the `-Address` parameter as follows\.
+
+```
+PS C:\> New-EC2Address -Address 203.0.113.3 -Domain vpc -Region us-east-1
+```
+
+------
 
 ## Using Reverse DNS for Email Applications<a name="Using_Elastic_Addressing_Reverse_DNS"></a>
 
-If you intend to send email to third parties from an instance, we suggest you provision one or more Elastic IP addresses and provide them to us\. AWS works with ISPs and internet anti\-spam organizations to reduce the chance that your email sent from these addresses will be flagged as spam\.
+If you intend to send email to third parties from an instance, we suggest that you provision one or more Elastic IP addresses and provide them to AWS\. AWS works with ISPs and internet anti\-spam organizations to reduce the chance that your email sent from these addresses will be flagged as spam\.
 
-In addition, assigning a static reverse DNS record to your Elastic IP address used to send email can help avoid having email flagged as spam by some anti\-spam organizations\. Note that a corresponding forward DNS record \(record type A\) pointing to your Elastic IP address must exist before we can create your reverse DNS record\. 
+In addition, assigning a static reverse DNS record to your Elastic IP address that is used to send email can help avoid having email flagged as spam by some anti\-spam organizations\. Note that a corresponding forward DNS record \(record type A\) pointing to your Elastic IP address must exist before we can create your reverse DNS record\. 
 
 If a reverse DNS record is associated with an Elastic IP address, the Elastic IP address is locked to your account and cannot be released from your account until the record is removed\. 
 

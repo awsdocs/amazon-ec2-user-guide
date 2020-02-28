@@ -70,7 +70,7 @@ By default, the AMI bundling process creates a compressed, encrypted collection 
       [root ec2-user]# ec2-bundle-vol -k /tmp/cert/pk-HKZYKTAIG2ECMXYIBH3HXV4ZBEXAMPLE.pem -c /tmp/cert/cert-HKZYKTAIG2ECMXYIBH3HXV4ZBEXAMPLE.pem -u 123456789012 -r x86_64 -e /tmp/cert --partition gpt
       ```
 **Note**  
-For the China \(Beijing\) and AWS GovCloud \(US\-West\) regions, use the `--ec2cert` parameter and specify the certificates as per the [prerequisites](creating-an-ami-instance-store.md#bundle-ami-prerequisites)\.
+For the China \(Beijing\) and AWS GovCloud \(US\-West\) Regions, use the `--ec2cert` parameter and specify the certificates as per the [prerequisites](creating-an-ami-instance-store.md#bundle-ami-prerequisites)\.
 
       It can take a few minutes to create the image\. When this command completes, your `/tmp` \(or non\-default\) directory contains the bundle \(`image.manifest.xml`, plus multiple `image.part.`*xx* files\)\.
 
@@ -127,7 +127,7 @@ For a list of excluded files, see [ec2\-bundle\-vol](ami-tools-commands.md#ami-b
    [ec2-user ~]$ ec2-upload-bundle -b my-s3-bucket/bundle_folder/bundle_name -m /tmp/image.manifest.xml -a your_access_key_id -s your_secret_access_key
    ```
 **Important**  
-To register your AMI in a region other than US East \(N\. Virginia\), you must specify both the target region with the `--region` option and a bucket path that already exists in the target region or a unique bucket path that can be created in the target region\.
+To register your AMI in a Region other than US East \(N\. Virginia\), you must specify both the target Region with the `--region` option and a bucket path that already exists in the target Region or a unique bucket path that can be created in the target Region\.
 
 1. \(Optional\) After the bundle is uploaded to Amazon S3, you can remove the bundle from the `/tmp` directory on the instance using the following rm command:
 
@@ -143,11 +143,11 @@ If you specified a path with the `-d /path/to/bundle/storage` option in [Step 2]
    [ec2-user ~]$ aws ec2 register-image --image-location my-s3-bucket/bundle_folder/bundle_name/image.manifest.xml --name AMI_name --virtualization-type hvm
    ```
 **Important**  
-If you previously specified a region for the [ec2\-upload\-bundle](ami-tools-commands.md#ami-upload-bundle) command, specify that region again for this command\.
+If you previously specified a Region for the [ec2\-upload\-bundle](ami-tools-commands.md#ami-upload-bundle) command, specify that Region again for this command\.
 
 ## Creating an AMI from an Instance Store\-Backed Ubuntu Instance<a name="ubuntu_instructions"></a>
 
-This section describes the creation of an AMI from an Ubuntu Linux instance\. The following procedures may not work for instances running other Linux distributions\. For procedures specific to Amazon Linux, see [Creating an AMI from an Instance Store\-Backed Amazon Linux Instance](#amazon_linux_instructions)\.
+This section describes the creation of an AMI from an Ubuntu Linux instance with an instance store volume as the root volume\. The following procedures may not work for instances running other Linux distributions\. For procedures specific to Amazon Linux, see [Creating an AMI from an Instance Store\-Backed Amazon Linux Instance](#amazon_linux_instructions)\.
 
 **To prepare to use the AMI Tools \(HVM instances only\)**
 
@@ -164,19 +164,12 @@ HVM instances also require partitioning tools to be installed for the AMI tools 
       grub-install (GRUB) 1.99-21ubuntu3.10
       ```
 
-      In this example, the GRUB version is greater than 0\.9*x*, so GRUB Legacy must be installed\. Proceed to [Step 2](#grub-install-step)\. If GRUB Legacy is already present, you can skip to [Step 2](#partition)\.
+      In this example, the GRUB version is greater than 0\.9*x*, so you must install GRUB Legacy\. Proceed to [Step 2](#grub-install-step)\. If GRUB Legacy is already present, you can skip to [Step 2](#partition)\.
 
    1. <a name="grub-install-step"></a>Install the `grub` package using the following command\.
 
       ```
       ubuntu:~$ sudo apt-get install -y grub
-      ```
-
-      Verify that your instance is using GRUB Legacy\.
-
-      ```
-      ubuntu:~$ grub --version
-      grub (GNU GRUB 0.97)
       ```
 
 1. <a name="partition"></a>Install the following partition management packages using the package manager for your distribution\. 
@@ -346,7 +339,7 @@ For Ubuntu 14\.04 and later HVM instances, add the `--partition mbr` flag to bun
    ubuntu:~$ ec2-upload-bundle -b my-s3-bucket/bundle_folder/bundle_name -m /tmp/image.manifest.xml -a your_access_key_id -s your_secret_access_key
    ```
 **Important**  
-If you intend to register your AMI in a region other than US East \(N\. Virginia\), you must specify both the target region with the `--region` option and a bucket path that already exists in the target region or a unique bucket path that can be created in the target region\.
+If you intend to register your AMI in a Region other than US East \(N\. Virginia\), you must specify both the target Region with the `--region` option and a bucket path that already exists in the target Region or a unique bucket path that can be created in the target Region\.
 
 1. \(Optional\) After the bundle is uploaded to Amazon S3, you can remove the bundle from the `/tmp` directory on the instance using the following rm command:
 
@@ -362,6 +355,6 @@ If you specified a path with the `-d /path/to/bundle/storage` option in [Step 2]
    ubuntu:~$ aws ec2 register-image --image-location my-s3-bucket/bundle_folder/bundle_name/image.manifest.xml --name AMI_name --virtualization-type hvm
    ```
 **Important**  
-If you previously specified a region for the [ec2\-upload\-bundle](ami-tools-commands.md#ami-upload-bundle) command, specify that region again for this command\.
+If you previously specified a Region for the [ec2\-upload\-bundle](ami-tools-commands.md#ami-upload-bundle) command, specify that Region again for this command\.
 
 1. \[Ubuntu 14\.04 and later\] Uncomment the EFI entry in `/etc/fstab`; otherwise, your running instance will not be able to reboot\.

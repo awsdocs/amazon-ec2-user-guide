@@ -18,6 +18,7 @@ To purchase and modify Reserved Instances, ensure that your IAM user account has
 + [Buying Convertible Reserved Instances](#ri-buying-convertible)
 + [Viewing Your Reserved Instances](#view-reserved-instances)
 + [Canceling a Queued Purchase](#cancel-queued-purchase)
++ [Renewing a Reserved Instance](#renew-ri)
 + [Using Your Reserved Instances](#reserved-instances-process)
 
 ## Choosing a Platform<a name="ri-choosing-platform"></a>
@@ -221,6 +222,26 @@ You can queue a purchase up to three years in advance\. You can cancel a queued 
 1. Choose **Actions**, **Delete Queued Reserved Instances**\.
 
 1. When prompted for confirmation, choose **Yes, Delete**\.
+
+**To cancel a queued purchase using the command line**
++ [delete\-queued\-reserved\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/delete-queued-reserved-instances.html) \(AWS CLI\)
++ [Remove\-EC2QueuedReservedInstance](https://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2QueuedReservedInstance.html) \(Tools for Windows PowerShell\)
+
+## Renewing a Reserved Instance<a name="renew-ri"></a>
+
+You can renew a Reserved Instance before it is scheduled to expire\. Renewing a Reserved Instance queues the purchase of a Reserved Instance with the same configuration until the current Reserved Instance expires\.
+
+**To renew an Reserved Instance using a queued purchase**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Reserved Instances**\.
+
+1. Select one or more Reserved Instances\.
+
+1. Choose **Actions**, **Renew Reserved Instances**\.
+
+1. To complete the order, choose **Order**\.
 
 ## Using Your Reserved Instances<a name="reserved-instances-process"></a>
 

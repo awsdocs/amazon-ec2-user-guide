@@ -73,8 +73,8 @@ Required: No
 
 `--ec2cert` *path*  
 The path to the Amazon EC2 X\.509 public key certificate used to encrypt the image manifest\.  
-The `us-gov-west-1` and `cn-north-1` regions use a non\-default public key certificate and the path to that certificate must be specified with this option\. The path to the certificate varies based on the installation method of the AMI tools\. For Amazon Linux, the certificates are located at `/opt/aws/amitools/ec2/etc/ec2/amitools/`\. If you installed the AMI tools from the RPM or ZIP file in [Setting Up the AMI Tools](set-up-ami-tools.md), the certificates are located at `$EC2_AMITOOL_HOME/etc/ec2/amitools/`\.  
-Required: Only for the `us-gov-west-1` and `cn-north-1` regions\.
+The `us-gov-west-1` and `cn-north-1` Regions use a non\-default public key certificate and the path to that certificate must be specified with this option\. The path to the certificate varies based on the installation method of the AMI tools\. For Amazon Linux, the certificates are located at `/opt/aws/amitools/ec2/etc/ec2/amitools/`\. If you installed the AMI tools from the RPM or ZIP file in [Setting Up the AMI Tools](set-up-ami-tools.md), the certificates are located at `$EC2_AMITOOL_HOME/etc/ec2/amitools/`\.  
+Required: Only for the `us-gov-west-1` and `cn-north-1` Regions\.
 
 `-r, --arch` *architecture*  
 Image architecture\. If you don't provide the architecture on the command line, you'll be prompted for it when bundling starts\.  
@@ -178,8 +178,8 @@ Required: No
 
 `--ec2cert` *path*  
 The path to the Amazon EC2 X\.509 public key certificate used to encrypt the image manifest\.  
-The `us-gov-west-1` and `cn-north-1` regions use a non\-default public key certificate and the path to that certificate must be specified with this option\. The path to the certificate varies based on the installation method of the AMI tools\. For Amazon Linux, the certificates are located at `/opt/aws/amitools/ec2/etc/ec2/amitools/`\. If you installed the AMI tools from the RPM or ZIP file in [Setting Up the AMI Tools](set-up-ami-tools.md), the certificates are located at `$EC2_AMITOOL_HOME/etc/ec2/amitools/`\.  
-Required: Only for the `us-gov-west-1` and `cn-north-1` regions\.
+The `us-gov-west-1` and `cn-north-1` Regions use a non\-default public key certificate and the path to that certificate must be specified with this option\. The path to the certificate varies based on the installation method of the AMI tools\. For Amazon Linux, the certificates are located at `/opt/aws/amitools/ec2/etc/ec2/amitools/`\. If you installed the AMI tools from the RPM or ZIP file in [Setting Up the AMI Tools](set-up-ami-tools.md), the certificates are located at `$EC2_AMITOOL_HOME/etc/ec2/amitools/`\.  
+Required: Only for the `us-gov-west-1` and `cn-north-1` Regions\.
 
 `-r, --arch ` *architecture*  
 The image architecture\. If you don't provide this on the command line, you'll be prompted to provide it when the bundling starts\.  
@@ -336,7 +336,7 @@ Required: Only when you are using temporary security credentials\.
 Default: The value of the `AWS_DELEGATION_TOKEN` environment variable \(if set\)\.
 
 `--region`*region*  
-The region to use in the request signature\.  
+The Region to use in the request signature\.  
 Default: `us-east-1`  
 Required: Required if using signature version 4
 
@@ -432,7 +432,7 @@ Default: `https://s3.amazonaws.com/`
 Required: No
 
 `--region` *region*  
-The region to use in the request signature\.  
+The Region to use in the request signature\.  
 Default: `us-east-1`  
 Required: Required if using signature version 4
 
@@ -492,7 +492,7 @@ Downloaded image.part.06 from aws-s3-bucket1
 
 ### Description<a name="migrate-manifest-description"></a>
 
-Modifies an instance store\-backed Linux AMI \(for example, its certificate, kernel, and RAM disk\) so that it supports a different region\.
+Modifies an instance store\-backed Linux AMI \(for example, its certificate, kernel, and RAM disk\) so that it supports a different Region\.
 
 ### Syntax<a name="migrate-manifest-request"></a>
 
@@ -521,7 +521,7 @@ The AWS secret access key\.
 Required: Required if using automatic mapping\.
 
 `--region` *region*  
-The region to look up in the mapping file\.  
+The Region to look up in the mapping file\.  
 Required: Required if using automatic mapping\.
 
 `--no-mapping`  
@@ -531,8 +531,8 @@ Required: Required if you're not providing the `-a`, `-s`, and `--region` option
 
 `--ec2cert` *path*  
 The path to the Amazon EC2 X\.509 public key certificate used to encrypt the image manifest\.  
-The `us-gov-west-1` and `cn-north-1` regions use a non\-default public key certificate and the path to that certificate must be specified with this option\. The path to the certificate varies based on the installation method of the AMI tools\. For Amazon Linux, the certificates are located at `/opt/aws/amitools/ec2/etc/ec2/amitools/`\. If you installed the AMI tools from the ZIP file in [Setting Up the AMI Tools](set-up-ami-tools.md), the certificates are located at `$EC2_AMITOOL_HOME/etc/ec2/amitools/`\.  
-Required: Only for the `us-gov-west-1` and `cn-north-1` regions\.
+The `us-gov-west-1` and `cn-north-1` Regions use a non\-default public key certificate and the path to that certificate must be specified with this option\. The path to the certificate varies based on the installation method of the AMI tools\. For Amazon Linux, the certificates are located at `/opt/aws/amitools/ec2/etc/ec2/amitools/`\. If you installed the AMI tools from the ZIP file in [Setting Up the AMI Tools](set-up-ami-tools.md), the certificates are located at `$EC2_AMITOOL_HOME/etc/ec2/amitools/`\.  
+Required: Only for the `us-gov-west-1` and `cn-north-1` Regions\.
 
 `--kernel` *kernel\_id*  
 The ID of the kernel to select\.  
@@ -645,12 +645,12 @@ Default: `https://s3.amazonaws.com/`
 Required: No
 
 `--region` *region*  
-The region to use in the request signature for the destination S3 bucket\.  
-+ If the bucket doesn't exist and you don't specify a region, the tool creates the bucket without a location constraint \(in `us-east-1`\)\.
-+ If the bucket doesn't exist and you specify a region, the tool creates the bucket in the specified region\.
-+ If the bucket exists and you don't specify a region, the tool uses the bucket's location\.
-+ If the bucket exists and you specify `us-east-1` as the region, the tool uses the bucket's actual location without any error message, any existing matching files are over\-written\.
-+ If the bucket exists and you specify a region \(other than `us-east-1`\) that doesn't match the bucket's actual location, the tool exits with an error\.
+The Region to use in the request signature for the destination S3 bucket\.  
++ If the bucket doesn't exist and you don't specify a Region, the tool creates the bucket without a location constraint \(in `us-east-1`\)\.
++ If the bucket doesn't exist and you specify a Region, the tool creates the bucket in the specified Region\.
++ If the bucket exists and you don't specify a Region, the tool uses the bucket's location\.
++ If the bucket exists and you specify `us-east-1` as the Region, the tool uses the bucket's actual location without any error message, any existing matching files are over\-written\.
++ If the bucket exists and you specify a Region \(other than `us-east-1`\) that doesn't match the bucket's actual location, the tool exits with an error\.
 If your bucket is constrained to the `EU` location \(and not `eu-west-1`\), use the `--location` flag instead\. The `--location` flag is the only way to target that specific location restraint\.  
 Default: `us-east-1`  
 Required: Required if using signature version 4
@@ -687,7 +687,7 @@ Required: No
 `--location` *location*  
 Deprecated\. Use the `--region` option instead, unless your bucket is constrained to the `EU` location \(and not `eu-west-1`\)\. The `--location` flag is the only way to target that specific location restraint\.  
 The location constraint of the destination Amazon S3 bucket\. If the bucket exists and you specify a location that doesn't match the bucket's actual location, the tool exits with an error\. If the bucket exists and you don't specify a location, the tool uses the bucket's location\. If the bucket doesn't exist and you specify a location, the tool creates the bucket in the specified location\. If the bucket doesn't exist and you don't specify a location, the tool creates the bucket without a location constraint \(in `us-east-1`\)\.   
-Default: If `--region` is specified, the location is set to that specified region\. If `--region` is not specified, the location defaults to `us-east-1`\.  
+Default: If `--region` is specified, the location is set to that specified Region\. If `--region` is not specified, the location defaults to `us-east-1`\.  
 Required: No
 
 ### Output<a name="upload-bundle-output"></a>

@@ -11,9 +11,10 @@ The following instructions explain how to connect to your Linux instance using E
 + The following Linux distributions are supported:
   + Amazon Linux 2 \(any version\)
   + Ubuntu 16\.04 or later
-+ To connect using the Amazon EC2 console, the instance must have a public IP address \(IPv4 or IPv6\)\. You can connect using the EC2 Instance Connect CLI using the private IP address of the instance\.
++ To connect using the browser\-based client, the instance must have a public IPv4 address\.
++ To connect using the EC2 Instance Connect CLI, your instance does not need to have a public IPv4 address because the private IP address can be used\. If your instance has both a public and private IP address, the API first tries to connect using the public IP address\.
++ EC2 Instance Connect does not support connecting using an IPv6 address\.
 + The Safari browser is currently not supported\.
-+ EC2 Instance Connect works only with Instance Metadata Service Version 1\. If you configure the instance metadata service to require Instance Metadata Service Version 2, you can't use EC2 Instance Connect\. For more information, see [Configuring the Instance Metadata Service](configuring-instance-metadata-service.md)\.
 
 **Prerequisites**
 + **Install Instance Connect on your instance\.**

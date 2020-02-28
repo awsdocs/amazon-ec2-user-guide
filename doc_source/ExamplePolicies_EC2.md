@@ -1,6 +1,6 @@
 # Example Policies for Working with the AWS CLI or an AWS SDK<a name="ExamplePolicies_EC2"></a>
 
-The following examples show policy statements that you could use to control the permissions that IAM users have to Amazon EC2\. These policies are designed for requests that are made with the AWS CLI or an AWS SDK\. For example policies for working in the Amazon EC2 console, see [Example Policies for Working in the Amazon EC2 Console](iam-policies-ec2-console.md)\. For examples of IAM policies specific to Amazon VPC, see [Controlling Access to Amazon VPC Resources](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_IAM.html)\.
+The following examples show policy statements that you could use to control the permissions that IAM users have to Amazon EC2\. These policies are designed for requests that are made with the AWS CLI or an AWS SDK\. For example policies for working in the Amazon EC2 console, see [Example Policies for Working in the Amazon EC2 Console](iam-policies-ec2-console.md)\. For examples of IAM policies specific to Amazon VPC, see [Identity and Access Management for Amazon VPC](https://docs.aws.amazon.com/vpc/latest/userguide/security-iam.html)\.
 
 **Topics**
 + [Read\-Only Access](#iam-example-read-only)
@@ -19,7 +19,7 @@ The following examples show policy statements that you could use to control the 
 
 ## Example: Read\-Only Access<a name="iam-example-read-only"></a>
 
-The following policy grants users permissions to use all Amazon EC2 API actions whose names begin with `Describe`\. The `Resource` element uses a wildcard to indicate that users can specify all resources with these API actions\. The \* wildcard is also necessary in cases where the API action does not support resource\-level permissions\. For more information about which ARNs you can use with which Amazon EC2 API actions, see [Supported Resource\-Level Permissions for Amazon EC2 API Actions](ec2-supported-iam-actions-resources.md)\. 
+The following policy grants users permissions to use all Amazon EC2 API actions whose names begin with `Describe`\. The `Resource` element uses a wildcard to indicate that users can specify all resources with these API actions\. The \* wildcard is also necessary in cases where the API action does not support resource\-level permissions\. For more information about which ARNs you can use with which Amazon EC2 API actions, see [Actions, Resources, and Condition Keys for Amazon EC2](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonec2.html) in the *IAM User Guide*\.
 
 Users don't have permission to perform any actions on the resources \(unless another statement grants them permission to do so\) because they're denied permission to use API actions by default\.
 
@@ -85,7 +85,7 @@ Alternatively, you can use the condition key `ec2:Region`, which is specific to 
 
 ### Example: Describe, Launch, Stop, Start, and Terminate All Instances<a name="iam-example-instances-all"></a>
 
-The following policy grants users permissions to use the API actions specified in the `Action` element\. The `Resource` element uses a \* wildcard to indicate that users can specify all resources with these API actions\. The \* wildcard is also necessary in cases where the API action does not support resource\-level permissions\. For more information about which ARNs you can use with which Amazon EC2 API actions, see [Supported Resource\-Level Permissions for Amazon EC2 API Actions](ec2-supported-iam-actions-resources.md)\. 
+The following policy grants users permissions to use the API actions specified in the `Action` element\. The `Resource` element uses a \* wildcard to indicate that users can specify all resources with these API actions\. The \* wildcard is also necessary in cases where the API action does not support resource\-level permissions\. For more information about which ARNs you can use with which Amazon EC2 API actions, see [Actions, Resources, and Condition Keys for Amazon EC2](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonec2.html) in the *IAM User Guide*\.
 
 The users don't have permission to use any other API actions \(unless another statement grants them permission to do so\) because users are denied permission to use API actions by default\.
 
@@ -111,7 +111,7 @@ The users don't have permission to use any other API actions \(unless another st
 
 The following policy allows users to describe all instances, to start and stop only instances i\-1234567890abcdef0 and i\-0598c7d356eba48d7, and to terminate only instances in the US East \(N\. Virginia\) Region \(`us-east-1`\) with the resource tag "`purpose=test`"\. 
 
-The first statement uses a \* wildcard for the `Resource` element to indicate that users can specify all resources with the action; in this case, they can list all instances\. The \* wildcard is also necessary in cases where the API action does not support resource\-level permissions \(in this case, `ec2:DescribeInstances`\)\. For more information about which ARNs you can use with which Amazon EC2 API actions, see [Supported Resource\-Level Permissions for Amazon EC2 API Actions](ec2-supported-iam-actions-resources.md)\. 
+The first statement uses a \* wildcard for the `Resource` element to indicate that users can specify all resources with the action; in this case, they can list all instances\. The \* wildcard is also necessary in cases where the API action does not support resource\-level permissions \(in this case, `ec2:DescribeInstances`\)\. For more information about which ARNs you can use with which Amazon EC2 API actions, see [Actions, Resources, and Condition Keys for Amazon EC2](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonec2.html) in the *IAM User Guide*\.
 
 The second statement uses resource\-level permissions for the `StopInstances` and `StartInstances` actions\. The specific instances are indicated by their ARNs in the `Resource` element\.
 
@@ -229,7 +229,7 @@ The following policy allows users to use the [CreateVolume](https://docs.aws.ama
 
 The following policy includes the `aws:RequestTag` condition key that requires users to tag any volumes they create with the tags `costcenter=115` and `stack=prod`\. The `aws:TagKeys` condition key uses the `ForAllValues` modifier to indicate that only the keys `costcenter` and `stack` are allowed in the request \(no other tags can be specified\)\. If users don't pass these specific tags, or if they don't specify tags at all, the request fails\. 
 
-For resource\-creating actions that apply tags, users must also have permissions to use the `CreateTags` action\. The second statement uses the `ec2:CreateAction` condition key to allow users to create tags only in the context of `CreateVolume`\. Users cannot tag existing volumes or any other resources\. For more information, see [Resource\-Level Permissions for Tagging](ec2-supported-iam-actions-resources.md#supported-iam-actions-tagging)\.
+For resource\-creating actions that apply tags, users must also have permissions to use the `CreateTags` action\. The second statement uses the `ec2:CreateAction` condition key to allow users to create tags only in the context of `CreateVolume`\. Users cannot tag existing volumes or any other resources\. For more information, see [Granting Permission to Tag Resources During Creation](supported-iam-actions-tagging.md)\.
 
 ```
 {
@@ -373,7 +373,7 @@ The following policy allows customers to use the [CreateSnapshots](https://docs.
 
 The following policy includes the `aws:RequestTag` condition key that requires the customer to apply the tags `costcenter=115` and `stack=prod` to any new snapshot\. The `aws:TagKeys` condition key uses the `ForAllValues` modifier to indicate that only the keys `costcenter` and `stack` can be specified in the request\. The request fails if either of these conditions is not met\.
 
-For resource\-creating actions that apply tags, customers must also have permissions to use the `CreateTags` action\. The third statement uses the `ec2:CreateAction` condition key to allow customers to create tags only in the context of `CreateSnapshot`\. Customers cannot tag existing volumes or any other resources\. For more information, see [Resource\-Level Permissions for Tagging](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-iam-actions-resources.html#supported-iam-actions-tagging)\.
+For resource\-creating actions that apply tags, customers must also have permissions to use the `CreateTags` action\. The third statement uses the `ec2:CreateAction` condition key to allow customers to create tags only in the context of `CreateSnapshot`\. Customers cannot tag existing volumes or any other resources\. For more information, see [Granting Permission to Tag Resources During Creation](supported-iam-actions-tagging.md)\.
 
 ```
 {
@@ -973,7 +973,7 @@ The following policy allows users to launch instances only if the EBS volumes fo
 
 The following policy allows users to launch instances and tag the instances during creation\. For resource\-creating actions that apply tags, users must have permissions to use the `CreateTags` action\. The second statement uses the `ec2:CreateAction` condition key to allow users to create tags only in the context of `RunInstances`, and only for instances\. Users cannot tag existing resources, and users cannot tag volumes using the `RunInstances` request\. 
 
-For more information, see [Resource\-Level Permissions for Tagging](ec2-supported-iam-actions-resources.md#supported-iam-actions-tagging)\.
+For more information, see [Granting Permission to Tag Resources During Creation](supported-iam-actions-tagging.md)\.
 
 ```
 {
@@ -1245,7 +1245,7 @@ In the following example, users can launch instances, but only if they use a spe
 }
 ```
 
-In this example, users can launch instances only if they use a launch template\. The policy uses the `ec2:IsLaunchTemplateResource` condition key to prevent users from overriding any of the launch template resources in the `RunInstances` request\.
+In this example, users can launch instances only if they use a launch template\. The policy uses the `ec2:IsLaunchTemplateResource` condition key to prevent users from overriding any pre\-existing ARNs in the launch template\.
 
 ```
 {
@@ -1406,7 +1406,7 @@ The following policy allows users to use the `CreateTags` action to apply tags t
 }
 ```
 
-The following policy allows users to tag any taggable resource that already has a tag with a key of `owner` and a value of the IAM username\. In addition, users must specify a tag with a key of `environment` and a value of either `test` or `prod` in the request\. Users can specify additional tags in the request\.
+The following policy allows users to tag any taggable resource that already has a tag with a key of `owner` and a value of the IAM username\. In addition, users must specify a tag with a key of `anycompany:environment-type` and a value of either `test` or `prod` in the request\. Users can specify additional tags in the request\.
 
 ```
 {
@@ -1420,7 +1420,7 @@ The following policy allows users to tag any taggable resource that already has 
             "Resource": "arn:aws:ec2:region:account:*/*",
             "Condition": {
                 "StringEquals": {
-                    "aws:RequestTag/environment": ["test","prod"],
+                    "aws:RequestTag/anycompany:environment-type": ["test","prod"],
                     "ec2:ResourceTag/owner": "${aws:username}"
                 }
             }
@@ -1646,7 +1646,7 @@ The following policy allows users to delete any launch template and launch templ
 }
 ```
 
-## Example: Working with Instance Metadata<a name="iam-example-instance-metadata"></a>
+## Working with Instance Metadata<a name="iam-example-instance-metadata"></a>
 
 The following policies ensure that users can only retrieve [instance metadata](ec2-instance-metadata.md) using Instance Metadata Service Version 2 \(IMDSv2\)\. You can combine the following four policies into one policy with four statements\. When combined as one policy, you can use the policy as a service control policy \(SCP\)\. It can work equally well as a *deny* policy that you apply to an existing IAM policy \(taking away and limiting existing permission\), or as an SCP that is applied globally across an account, an organizational unit \(OU\), or an entire organization\.
 
@@ -1662,6 +1662,12 @@ For new launch templates, configure the instance metadata options in the launch 
 In the policy that gives any principal the permission to use a launch template, restrict association of `$latest` and `$default` by specifying `"autoscaling:LaunchTemplateVersionSpecified": "true"`\. By restricting the use to a specific version of a launch template, you can ensure that new instances will be launched using the version in which the instance metadata options are configured\. For more information, see [LaunchTemplateSpecification](https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_LaunchTemplateSpecification.html) in the *Amazon EC2 Auto Scaling API Reference*, specifically the `Version` parameter\.
 For an Auto Scaling group that uses a launch configuration, replace the launch configuration with a launch template\. For more information, see [Replacing a Launch Configuration with a Launch Template](https://docs.aws.amazon.com/autoscaling/ec2/userguide/replace-launch-config.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 For an Auto Scaling group that uses a launch template, make sure that it uses a new launch template with the instance metadata options configured, or uses a new version of the current launch template with the instance metadata options configured\. For more information, see [update\-auto\-scaling\-group ](https://docs.aws.amazon.com/cli/latest/reference/autoscaling/update-auto-scaling-group.html) in the *AWS CLI Command Reference*\.
+
+**Topics**
++ [Require the Use of IMDSv2](#iam-example-instance-metadata-requireIMDSv2)
++ [Specify Maximum Hop Limit](#iam-example-instance-metadata-maxHopLimit)
++ [Limit Who can Modify the Instance Metadata Options](#iam-example-instance-metadata-limit-modify-IMDS-options)
++ [Require Role Credentials to be Retrieved from IMDSv2](#iam-example-instance-metadata-require-roles-to-use-IMDSv2-credentials)
 
 ### Require the Use of IMDSv2<a name="iam-example-instance-metadata-requireIMDSv2"></a>
 

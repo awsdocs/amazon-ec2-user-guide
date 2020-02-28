@@ -244,7 +244,7 @@ The following procedure provides the general steps for enabling enhanced network
    git clone https://github.com/amzn/amzn-drivers
    ```
 
-1. Compile and install the `ena` module on your instance\.
+1. Compile and install the `ena` module on your instance\. These steps depend on the Linux distribution\. For more information about compiling the module on Red Hat Enterprise Linux, see the [AWS Knowledge Center article](http://aws.amazon.com/premiumsupport/knowledge-center/install-ena-driver-rhel-ec2/)\.
 
 1. Run the sudo depmod command to update module dependencies\.
 

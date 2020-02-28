@@ -17,7 +17,7 @@ You can uninstall EC2 Instance Connect on Amazon Linux 2 2\.0\.20190618 or later
    $ ssh -i my_ec2_private_key.pem ec2-user@ec2-a-b-c-d.us-west-2.compute.amazonaws.com
    ```
 
-1. Uninstall the `ec2-instance-connect` package using the following yum command\.
+1. Uninstall the `ec2-instance-connect` package using the yum command\.
 
    ```
    [ec2-user ~]$ sudo yum remove ec2-instance-connect
@@ -36,7 +36,7 @@ You can uninstall EC2 Instance Connect on Amazon Linux 2 2\.0\.20190618 or later
    $ ssh -i my_ec2_private_key.pem ubuntu@ec2-a-b-c-d.us-west-2.compute.amazonaws.com
    ```
 
-1. Uninstall the `ec2-instance-connect` package using the following apt\-get command\.
+1. Uninstall the `ec2-instance-connect` package using the apt\-get command\.
 
    ```
    ubuntu:~$ sudo apt-get remove ec2-instance-connect

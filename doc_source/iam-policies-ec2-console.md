@@ -39,7 +39,7 @@ Alternatively, you can provide read\-only access to a subset of resources\. To d
 ```
 
 **Note**  
-The Amazon EC2 `ec2:Describe*` API actions do not support resource\-level permissions, so you cannot control which individual resources users can view in the console\. Therefore, the \* wildcard is necessary in the `Resource` element of the above statement\. For more information about which ARNs you can use with which Amazon EC2 API actions, see [Supported Resource\-Level Permissions for Amazon EC2 API Actions](ec2-supported-iam-actions-resources.md)\. 
+The Amazon EC2 `ec2:Describe*` API actions do not support resource\-level permissions, so you cannot control which individual resources users can view in the console\. Therefore, the \* wildcard is necessary in the `Resource` element of the above statement\. For more information about which ARNs you can use with which Amazon EC2 API actions, see [Actions, Resources, and Condition Keys for Amazon EC2](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonec2.html) in the *IAM User Guide*\.
 
 **View instances and CloudWatch metrics**
 
@@ -107,7 +107,7 @@ You can add API actions to your policy to provide more options for users, for ex
 + `ec2:DescribeAvailabilityZones`: To view and select a specific Availability Zone\.
 + `ec2:DescribeNetworkInterfaces`: To view and select existing network interfaces for the selected subnet\.
 + To add outbound rules to VPC security groups, users must be granted permission to use the `ec2:AuthorizeSecurityGroupEgress` API action\. To modify or delete existing rules, users must be granted permission to use the relevant `ec2:RevokeSecurityGroup*` API action\.
-+ `ec2:CreateTags`: To tag the resources that are created by `RunInstances`\. For more information, see [Resource\-Level Permissions for Tagging](ec2-supported-iam-actions-resources.md#supported-iam-actions-tagging)\. If users do not have permission to use this action and they attempt to apply tags on the tagging page of the launch wizard, the launch fails\.
++ `ec2:CreateTags`: To tag the resources that are created by `RunInstances`\. For more information, see [Granting Permission to Tag Resources During Creation](supported-iam-actions-tagging.md)\. If users do not have permission to use this action and they attempt to apply tags on the tagging page of the launch wizard, the launch fails\.
 **Important**  
 Be careful about granting users permission to use the `ec2:CreateTags` action\. This limits your ability to use the `ec2:ResourceTag` condition key to restrict the use of other resources; users can change a resource's tag in order to bypass those restrictions\.
 

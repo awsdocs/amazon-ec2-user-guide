@@ -19,7 +19,7 @@ For the following tasks, suppose that you have resized the boot volume of an ins
 To verify the file system in use for each volume on your instance, [connect to your instance](AccessingInstances.md) and run the file \-s command\.
 
 **Example: File Systems on a Nitro\-based Instance**  
-The following example shows a [Nitro\-based instance](instance-types.md#ec2-nitro-instances) that has a boot volume with an XFS file system and an additional volume with an XFS file system\.  
+The following example shows a [Nitro\-based instance](instance-types.md#ec2-nitro-instances) that has a boot volume with an XFS file system and an additional volume with an XFS file system\.
 
 ```
 [ec2-user ~]$ sudo file -s /dev/nvme?n*
@@ -30,7 +30,7 @@ The following example shows a [Nitro\-based instance](instance-types.md#ec2-nitr
 ```
 
 **Example: File Systems on a T2 Instance**  
-The following example shows a T2 instance that has a boot volume with an ext4 file system and an additional volume with an XFS file system\.  
+The following example shows a T2 instance that has a boot volume with an ext4 file system and an additional volume with an XFS file system\.
 
 ```
 [ec2-user ~]$ sudo file -s /dev/xvd*
@@ -46,7 +46,7 @@ Your EBS volume might have a partition that contains the file system and data\. 
 Use the lsblk command to display information about the block devices attached to your instance\. If a resized volume has a partition and the partition does not reflect the new size of the volume, use the growpart command to extend the partition\. For information about extending an LVM partition, see [Extending a logical volume](https://www.tldp.org/HOWTO/html_single/LVM-HOWTO/#extendlv)\.
 
 **Example: Partitions on a Nitro\-based Instance**  
-The following example shows the volumes on a Nitro\-based instance:  
+The following example shows the volumes on a Nitro\-based instance:
 
 ```
 [ec2-user ~]$ lsblk
@@ -58,12 +58,14 @@ nvme0n1       259:1    0  16G  0 disk
 ```
 + The root volume, `/dev/nvme0n1`, has a partition, `/dev/nvme0n1p1`\. While the size of the root volume reflects the new size, 16 GB, the size of the partition reflects the original size, 8 GB, and must be extended before you can extend the file system\.
 + The volume `/dev/nvme1n1` has no partitions\. The size of the volume reflects the new size, 30 GB\.
-To extend the partition on the root volume, use the following growpart command\. Notice that there is a space between the device name and the partition number\.  
+
+To extend the partition on the root volume, use the following growpart command\. Notice that there is a space between the device name and the partition number\.
 
 ```
 [ec2-user ~]$ sudo growpart /dev/nvme0n1 1
 ```
-You can verify that the partition reflects the increased volume size by using the lsblk command again\.  
+
+You can verify that the partition reflects the increased volume size by using the lsblk command again\.
 
 ```
 [ec2-user ~]$ lsblk
@@ -75,7 +77,7 @@ nvme0n1       259:1    0  16G  0 disk
 ```
 
 **Example: Partitions on a T2 Instance**  
-The following example shows the volumes on a T2 instance:  
+The following example shows the volumes on a T2 instance:
 
 ```
 [ec2-user ~]$ lsblk
@@ -87,13 +89,15 @@ xvdf    202:80   0  30G  0 disk
 ```
 + The root volume, `/dev/xvda`, has a partition, `/dev/xvda1`\. While the size of the volume is 16 GB, the size of the partition is still 8 GB and must be extended\.
 + The volume `/dev/xvdf` has a partition, `/dev/xvdf1`\. While the size of the volume is 30G, the size of the partition is still 8 GB and must be extended\.
-To extend the partition on each volume, use the following growpart commands\. Note that there is a space between the device name and the partition number\.  
+
+To extend the partition on each volume, use the following growpart commands\. Note that there is a space between the device name and the partition number\.
 
 ```
 [ec2-user ~]$ sudo growpart /dev/xvda 1
 [ec2-user ~]$ sudo growpart /dev/xvdf 1
 ```
-You can verify that the partitions reflect the increased volume size by using the lsblk command again\.  
+
+You can verify that the partitions reflect the increased volume size by using the lsblk command again\.
 
 ```
 [ec2-user ~]$ lsblk
@@ -109,7 +113,7 @@ xvdf    202:80   0  30G  0 disk
 Use a file system\-specific command to resize each file system to the new volume capacity\. For a file system other than the examples shown here, refer to the documentation for the file system for instructions\.
 
 **Example: Extend an ext2, ext3, or ext4 file system**  
-Use the df \-h command to verify the size of the file system for each volume\. In this example, both `/dev/xvda1` and `/dev/xvdf` reflect the original size of the volumes, 8 GB\.  
+Use the df \-h command to verify the size of the file system for each volume\. In this example, both `/dev/xvda1` and `/dev/xvdf` reflect the original size of the volumes, 8 GB\.
 
 ```
 [ec2-user ~]$ df -h
@@ -118,13 +122,15 @@ Filesystem       Size  Used Avail Use% Mounted on
 /dev/xvdf1       8.0G   45M  8.0G   1% /data
 ...
 ```
-Use the resize2fs command to extend the file system on each volume\.  
+
+Use the resize2fs command to extend the file system on each volume\.
 
 ```
 [ec2-user ~]$ sudo resize2fs /dev/xvda1
 [ec2-user ~]$ sudo resize2fs /dev/xvdf1
 ```
-You can verify that each file system reflects the increased volume size by using the df \-h command again\.  
+
+You can verify that each file system reflects the increased volume size by using the df \-h command again\.
 
 ```
 [ec2-user ~]$ df -h
@@ -135,7 +141,7 @@ Filesystem       Size  Used Avail Use% Mounted on
 ```
 
 **Example: Extend an XFS file system**  
-Use the df \-h command to verify the size of the file system for each volume\. In this example, each file system reflects the original volume size, 8 GB\.  
+Use the df \-h command to verify the size of the file system for each volume\. In this example, each file system reflects the original volume size, 8 GB\.
 
 ```
 [ec2-user ~]$ df -h
@@ -144,18 +150,21 @@ Filesystem       Size  Used Avail Use% Mounted on
 /dev/nvme1n1     8.0G   33M  8.0G   1% /data
 ...
 ```
-To extend the XFS file system, install the XFS tools as follows, if they are not already installed\.  
+
+To extend the XFS file system, install the XFS tools as follows, if they are not already installed\.
 
 ```
 [ec2-user ~]$ sudo yum install xfsprogs
 ```
-Use the xfs\_growfs command to extend the file system on each volume\. In this example, `/` and `/data` are the volume mount points shown in the output for df \-h\.  
+
+Use the xfs\_growfs command to extend the file system on each volume\. In this example, `/` and `/data` are the volume mount points shown in the output for df \-h\.
 
 ```
 [ec2-user ~]$ sudo xfs_growfs -d /
 [ec2-user ~]$ sudo xfs_growfs -d /data
 ```
-You can verify that each file system reflects the increased volume size by using the df \-h command again\.  
+
+You can verify that each file system reflects the increased volume size by using the df \-h command again\.
 
 ```
 [ec2-user ~]$ df -h

@@ -39,7 +39,7 @@ For more information about how device names related to volumes, see [Mapping Dis
 
 A1, C5, C5d, C5n, G4, I3en, Inf1, M5, M5a, M5ad, M5d, M5dn, M5n, `p3dn.24xlarge`, R5, R5a, R5ad, R5d, R5dn, R5n, T3, T3a, and z1d instances support a maximum of 28 attachments, including network interfaces, EBS volumes, and NVMe instance store volumes\. Every instance has at least one network interface attachment\. NVMe instance store volumes are automatically attached\. For example, if you have no additional network interface attachments on an EBS\-only instance, you can attach up to 27 EBS volumes to it\. If you have one additional network interface on an instance with 2 NVMe instance store volumes, you can attach 24 EBS volumes to it\. For more information, see [Elastic Network Interfaces](using-eni.md) and [Instance Store Volumes](InstanceStorage.md#instance-store-volumes)\.
 
-`i3.metal`, `m5.metal`, `m5d.metal`, `r5.metal`, `r5d.metal`, and `z1d.metal` instances support a maximum of 31 EBS volumes\.
+`c5.metal`, `c5d.metal`, `i3.metal`, `m5.metal`, `m5d.metal`, `r5.metal`, `r5d.metal`, and `z1d.metal` instances support a maximum of 31 EBS volumes\.
 
 `inf1.xlarge` and `inf1.2xlarge` instances support a maximum of 26 EBS volumes\. `inf1.6xlarge` instances support a maximum of 23 volumes\. `inf1.24xlarge` instances support a maximum of 11 EBS volumes\.
 

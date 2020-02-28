@@ -17,7 +17,7 @@ In this tutorial, we use Amazon EC2 Auto Scaling with Elastic Load Balancing to 
 
 This tutorial assumes that you have already done the following:
 
-1. Created a virtual private cloud \(VPC\) with one public subnet in two or more Availability Zones\. If you haven't done so, see [Create a Virtual Private Cloud \(VPC\)](get-set-up-for-amazon-ec2.md#create-a-vpc)\.
+1. Created a virtual private cloud \(VPC\) with one public subnet in two or more Availability Zones\.
 
 1. Launched an instance in the VPC\.
 

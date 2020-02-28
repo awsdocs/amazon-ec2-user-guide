@@ -86,7 +86,7 @@ Volume ID: vol-01324f611e2463981
 Amazon Linux also creates a symbolic link from the device name in the block device mapping \(for example, `/dev/sdf`\), to the NVMe device name\.
 
 **Other Linux AMIs**  
-With a kernel version of 4\.2 or later, you can run the nvme id\-ctrl command as follows to map an NVMe device to a volume ID\. First, install the NVMe command line package, `nvme-cli`, using the package management tools for your Linux distribution\.
+With a kernel version of 4\.2 or later, you can run the nvme id\-ctrl command as follows to map an NVMe device to a volume ID\. First, install the NVMe command line package, `nvme-cli`, using the package management tools for your Linux distribution\. For download and installation instructions for other distributions, refer to the documentation specific to your distribution\.
 
 The following example gets the volume ID and device name\. The device name is available through the NVMe controller vendor\-specific extension \(bytes 384:4095 of the controller identification\):
 

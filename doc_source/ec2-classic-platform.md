@@ -73,7 +73,7 @@ Most of the newer instance types require a VPC\. The following are the only inst
 + Accelerated computing: G2
 
 If your account supports EC2\-Classic but you have not created a nondefault VPC, you can do one of the following to launch instances that require a VPC:
-+ Create a nondefault VPC and launch your VPC\-only instance into it by specifying a subnet ID or a network interface ID in the request\. Note that you must create a nondefault VPC if you do not have a default VPC and you are using the AWS CLI, Amazon EC2 API, or AWS SDK to launch a VPC\-only instance\. For more information, see [Create a Virtual Private Cloud \(VPC\)](get-set-up-for-amazon-ec2.md#create-a-vpc)\.
++ Create a nondefault VPC and launch your VPC\-only instance into it by specifying a subnet ID or a network interface ID in the request\. Note that you must create a nondefault VPC if you do not have a default VPC and you are using the AWS CLI, Amazon EC2 API, or AWS SDK to launch a VPC\-only instance\.
 + Launch your VPC\-only instance using the Amazon EC2 console\. The Amazon EC2 console creates a nondefault VPC in your account and launches the instance into the subnet in the first Availability Zone\. The console creates the VPC with the following attributes:
   + One subnet in each Availability Zone, with the public IPv4 addressing attribute set to `true` so that instances receive a public IPv4 address\. For more information, see [IP Addressing in Your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html) in the *Amazon VPC User Guide*\.
   + An Internet gateway, and a main route table that routes traffic in the VPC to the Internet gateway\. This enables the instances you launch in the VPC to communicate over the Internet\. For more information, see [Internet Gateways](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html) in the *Amazon VPC User Guide*\.
@@ -147,7 +147,7 @@ If your account supports EC2\-Classic, you can migrate Elastic IP addresses that
 
 After you've migrated an Elastic IP address to a VPC, you cannot use it with EC2\-Classic\. However, if required, you can restore it to EC2\-Classic\. You cannot migrate an Elastic IP address that was originally allocated for use with a VPC to EC2\-Classic\.
 
-To migrate an Elastic IP address, it must not be associated with an instance\. For more information about disassociating an Elastic IP address from an instance, see [Disassociating an Elastic IP Address and Reassociating with a Different Instance](elastic-ip-addresses-eip.md#using-instance-addressing-eips-associating-different)\.
+To migrate an Elastic IP address, it must not be associated with an instance\. For more information about disassociating an Elastic IP address from an instance, see [Disassociating an Elastic IP Address](elastic-ip-addresses-eip.md#using-instance-addressing-eips-associating-different)\.
 
 You can migrate as many EC2\-Classic Elastic IP addresses as you can have in your account\. However, when you migrate an Elastic IP address, it counts against your Elastic IP address limit for VPCs\. You cannot migrate an Elastic IP address if it will result in your exceeding your limit\. Similarly, when you restore an Elastic IP address to EC2\-Classic, it counts against your Elastic IP address limit for EC2\-Classic\. For more information, see [Elastic IP Address Limit](elastic-ip-addresses-eip.md#using-instance-addressing-limit)\. 
 

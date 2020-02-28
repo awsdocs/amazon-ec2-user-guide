@@ -199,19 +199,17 @@ chkconfig httpd on
 
 **Example: Modify the User Data of a Stopped Instance**  
 You can modify the user data of a stopped instance using the [modify\-instance\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) command\. With modify\-instance\-attribute, the AWS CLI does not perform base64 encoding of the user data for you\.
++ On a **Linux** computer, use the base64 command to encode the user data\.
 
-On Linux, use the base64 command to encode the user data\.
+  ```
+  base64 my_script.txt >my_script_base64.txt
+  ```
++ On a **Windows** computer, use the certutil command to encode the user data\. Before you can use this file with the AWS CLI, you must remove the first \(BEGIN CERTIFICATE\) and last \(END CERTIFICATE\) lines\.
 
-```
-base64 my_script.txt >my_script_base64.txt
-```
-
-On Windows, use the certutil command to encode the user data\. Before you can use this file with the AWS CLI, you must remove the first \(BEGIN CERTIFICATE\) and last \(END CERTIFICATE\) lines\.
-
-```
-certutil -encode my_script.txt my_script_base64.txt
-notepad my_script_base64.txt
-```
+  ```
+  certutil -encode my_script.txt my_script_base64.txt
+  notepad my_script_base64.txt
+  ```
 
 Use the `--attribute` and `--value` parameters to use the encoded text file to specify the user data\. Be sure to use the `file://` prefix to specify the file\.
 
@@ -236,20 +234,18 @@ The following is example output with the user data base64 encoded\.
     "InstanceId": "i-1234567890abcdef0"
 }
 ```
++ On a **Linux** computer , use the `--query` option to get the encoded user data and the base64 command to decode it\.
 
-On Linux, use the `--query` option to get the encoded user data and the base64 command to decode it\.
+  ```
+  aws ec2 describe-instance-attribute --instance-id i-1234567890abcdef0 --attribute userData --output text --query "UserData.Value" | base64 --decode
+  ```
++ On a **Windows** computer, use the `--query` option to get the coded user data and the certutil command to decode it\. Note that the encoded output is stored in a file and the decoded output is stored in another file\.
 
-```
-aws ec2 describe-instance-attribute --instance-id i-1234567890abcdef0 --attribute userData --output text --query "UserData.Value" | base64 --decode
-```
-
-On Windows, use the `--query` option to get the coded user data and the certutil command to decode it\. Note that the encoded output is stored in a file and the decoded output is stored in another file\.
-
-```
-aws ec2 describe-instance-attribute --instance-id i-1234567890abcdef0 --attribute userData --output text --query "UserData.Value" >my_output.txt
-certutil -decode my_output.txt my_output_decoded.txt
-type my_output_decoded.txt
-```
+  ```
+  aws ec2 describe-instance-attribute --instance-id i-1234567890abcdef0 --attribute userData --output text --query "UserData.Value" >my_output.txt
+  certutil -decode my_output.txt my_output_decoded.txt
+  type my_output_decoded.txt
+  ```
 
 The following is example output\.
 

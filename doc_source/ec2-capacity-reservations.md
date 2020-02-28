@@ -9,13 +9,13 @@ When you create a Capacity Reservation, you specify:
 
 Capacity Reservations can only be used by instances that match their attributes\. By default, they are automatically used by running instances that match the attributes\. If you don't have any running instances that match the attributes of the Capacity Reservation, it remains unused until you launch an instance with matching attributes\.
 
-In addition, you can use Savings Plans and regional Reserved Instances with your Capacity Reservations to benefit from billing discounts\. AWS automatically applies your discount when the attributes of a Capacity Reservation match the attributes of a Savings Plan or regional Reserved Instance\. For more information, see [Billing Discounts](capacity-reservations-pricing-biling.md#capacity-reservations-discounts)\.
+In addition, you can use Savings Plans and regional Reserved Instances with your Capacity Reservations to benefit from billing discounts\. AWS automatically applies your discount when the attributes of a Capacity Reservation match the attributes of a Savings Plan or regional Reserved Instance\. For more information, see [Billing Discounts](capacity-reservations-pricing-billing.md#capacity-reservations-discounts)\.
 
 **Topics**
 + [Differences Between Capacity Reservations, Reserved Instances, and Savings Plans](#capacity-reservations-differences)
 + [Capacity Reservation Limits](#capacity-reservations-limits)
 + [Capacity Reservation Limitations and Restrictions](#capacity-reservations-limitations)
-+ [Capacity Reservation Pricing and Billing](capacity-reservations-pricing-biling.md)
++ [Capacity Reservation Pricing and Billing](capacity-reservations-pricing-billing.md)
 + [Working with Capacity Reservations](capacity-reservations-using.md)
 + [Working with Shared Capacity Reservations](capacity-reservation-sharing.md)
 

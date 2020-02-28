@@ -2,11 +2,8 @@
 
 Amazon Linux is provided by Amazon Web Services \(AWS\)\. It is designed to provide a stable, secure, and high\-performance execution environment for applications running on Amazon EC2\. It also includes packages that enable easy integration with AWS, including launch configuration tools and many popular AWS libraries and tools\. AWS provides ongoing security and maintenance updates for all instances running Amazon Linux\. Many applications developed on CentOS \(and similar distributions\) run on Amazon Linux\.
 
-AWS provides two versions of Amazon Linux: Amazon Linux 2 and the Amazon Linux AMI\. For more information, including the complete list of AMIs, see [Amazon Linux 2](https://aws.amazon.com/amazon-linux-2/) and [Amazon Linux AMI](https://aws.amazon.com/amazon-linux-ami/)\. For Amazon Linux Docker container images, see [amazonlinux](https://hub.docker.com/_/amazonlinux/) on Docker Hub\.
-
-If you are migrating from another Linux distribution to Amazon Linux, we recommend that you migrate to Amazon Linux 2\. If you are currently using the Amazon Linux AMI, we recommend that you migrate to Amazon Linux 2\. To migrate to Amazon Linux 2, launch an instance or create a virtual machine using the current image\. Install your application on Amazon Linux 2, plus any packages required by your application\. Test your application, and make any changes required for it to run on Amazon Linux 2\. For more information about running Amazon Linux outside AWS, see [Running Amazon Linux 2 as a Virtual Machine On\-Premises](amazon-linux-2-virtual-machine.md)\.
-
 **Topics**
++ [Amazon Linux Availability](#amazon-linux-availability)
 + [Connecting to an Amazon Linux Instance](#connect-to-amazon-linux-limits)
 + [Identifying Amazon Linux Images](#amazon-linux-image-id)
 + [AWS Command Line Tools](#amazon-linux-aws-command-line-tools)
@@ -16,6 +13,14 @@ If you are migrating from another Linux distribution to Amazon Linux, we recomme
 + [cloud\-init](#amazon-linux-cloud-init)
 + [Subscribing to Amazon Linux Notifications](#linux-ami-notifications)
 + [Running Amazon Linux 2 as a Virtual Machine On\-Premises](amazon-linux-2-virtual-machine.md)
+
+## Amazon Linux Availability<a name="amazon-linux-availability"></a>
+
+AWS provides Amazon Linux 2 and the Amazon Linux AMI\. If you are migrating from another Linux distribution to Amazon Linux, we recommend that you migrate to Amazon Linux 2\.
+
+The last version of the Amazon Linux AMI, 2018\.03, reaches the end of standard support on December 31, 2020\. For more information, see the following blog post: [Amazon Linux AMI end of life](http://aws.amazon.com/blogs/aws/update-on-amazon-linux-ami-end-of-life/)\. If you are currently using the Amazon Linux AMI, we recommend that you migrate to Amazon Linux 2\. To migrate to Amazon Linux 2, launch an instance or create a virtual machine using the current Amazon Linux 2 image\. Install your applications, plus any required packages\. Test your application, and make any changes required for it to run on Amazon Linux 2\.
+
+For more information, see [Amazon Linux 2](https://aws.amazon.com/amazon-linux-2/) and [Amazon Linux AMI](https://aws.amazon.com/amazon-linux-ami/)\. For Amazon Linux Docker container images, see [amazonlinux](https://hub.docker.com/_/amazonlinux/) on Docker Hub\.
 
 ## Connecting to an Amazon Linux Instance<a name="connect-to-amazon-linux-limits"></a>
 

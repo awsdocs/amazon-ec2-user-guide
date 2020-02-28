@@ -23,7 +23,7 @@ Multi\-Attach enabled volumes support many of the features that are supported by
 + Multi\-Attach is supported exclusively on [Provisioned IOPS SSD \(io1\) volumes](ebs-volume-types.md#EBSVolumeTypes_piops)\.
 + Multi\-Attach is available in the `us-east-1`, `us-east-2`, `us-west-2`, `eu-west-1`, and `ap-northeast-2` Regions\.
 + Multi\-Attach enabled volumes can't be created as boot volumes\.
-+ Multi\-Attach enabled volumes can be attach to one device per instance\.
++ Multi\-Attach enabled volumes can be attached to one block device mapping per instance\.
 + You can't enable or disable Multi\-Attach after volume creation\.
 + You can't change the volume type, size, or Provisioned IOPS of a Multi\-Attach enabled volume\.
 + Multi\-Attach can't be enabled during instance launch using either the Amazon EC2 console or RunInstances API\.

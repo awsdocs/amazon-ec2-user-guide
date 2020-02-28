@@ -28,7 +28,7 @@ The following table describes the use cases and performance characteristics for 
 
 \* The throughput limit is between 128 MiB/s and 250 MiB/s, depending on the volume size\. Volumes smaller than 170 GiB deliver a maximum throughput of 128 MiB/s\. Volumes larger than 170 GiB but smaller than 334 GiB deliver a maximum throughput of 250 MiB/s if burst credits are available\. Volumes larger than or equal to 334 GiB deliver 250 MiB/s regardless of burst credits\. Older `gp2` volumes might not reach full performance unless you modify the volume\. For more information, see [Amazon EBS Elastic Volumes](ebs-modify-volume.md)\.
 
-† Maximum IOPS and throughput are guaranteed only on [Nitro\-based Instances](instance-types.md#ec2-nitro-instances) provsioned with more than 32,000 IOPS\. Other instances guarantee up to 32,000 IOPS and 500 MiB/s\. Older `io1` volumes might not reach full performance unless you modify the volume\. For more information, see [Amazon EBS Elastic Volumes](ebs-modify-volume.md)\.
+† Maximum IOPS and throughput are guaranteed only on [Nitro\-based Instances](instance-types.md#ec2-nitro-instances) provisioned with more than 32,000 IOPS\. Other instances guarantee up to 32,000 IOPS and 500 MiB/s\. Older `io1` volumes might not reach full performance unless you modify the volume\. For more information, see [Amazon EBS Elastic Volumes](ebs-modify-volume.md)\.
 
 †† To achieve this throughput, you must have an instance that supports [EBS optimization](ebs-optimized.md)\.
 
@@ -51,7 +51,7 @@ The following table describes previous\-generation EBS volume types\. If you nee
 
 ## General Purpose SSD \(`gp2`\) Volumes<a name="EBSVolumeTypes_gp2"></a>
 
-General Purpose SSD \(`gp2`\) volumes offer cost\-effective storage that is ideal for a broad range of workloads\. These volumes deliver single\-digit millisecond latencies and the ability to burst to 3,000 IOPS for extended periods of time\. Between a minimum of 100 IOPS \(at 33\.33 GiB and below\) and a maximum of 16,000 IOPS \(at 5,334 GiB and above\), baseline performance scales linearly at 3 IOPS per GiB of volume size\. AWS designs `gp2` volumes to deliver 90% of the provisioned performance 99% of the time\. A `gp2` volume can range in size from 1 GiB to 16 TiB\.
+General Purpose SSD \(`gp2`\) volumes offer cost\-effective storage that is ideal for a broad range of workloads\. These volumes deliver single\-digit millisecond latencies and the ability to burst to 3,000 IOPS for extended periods of time\. Between a minimum of 100 IOPS \(at 33\.33 GiB and below\) and a maximum of 16,000 IOPS \(at 5,334 GiB and above\), baseline performance scales linearly at 3 IOPS per GiB of volume size\. AWS designs `gp2` volumes to deliver their provisioned performance 99% of the time\. A `gp2` volume can range in size from 1 GiB to 16 TiB\.
 
 ### I/O Credits and Burst Performance<a name="IOcredit"></a>
 
@@ -308,7 +308,7 @@ For information about using CloudWatch metrics and alarms to monitor your burst 
 Magnetic volumes are backed by magnetic drives and are suited for workloads where data is accessed infrequently, and scenarios where low\-cost storage for small volume sizes is important\. These volumes deliver approximately 100 IOPS on average, with burst capability of up to hundreds of IOPS, and they can range in size from 1 GiB to 1 TiB\.
 
 **Note**  
-Magnetic is a Previous Generation Volume\. For new applications, we recommend using one of the newer volume types\. For more information, see [Previous Generation Volumes](http://aws.amazon.com/ebs/previous-generation/)\.
+Magnetic is a previous generation volume type\. For new applications, we recommend using one of the newer volume types\. For more information, see [Previous Generation Volumes](http://aws.amazon.com/ebs/previous-generation/)\.
 
 For information about using CloudWatch metrics and alarms to monitor your burst bucket balance, see [Monitoring the Burst Bucket Balance for `gp2`, `st1`, and `sc1` Volumes](#monitoring_burstbucket)\.
 
