@@ -16,6 +16,7 @@ We currently do not support Elastic IP addresses for IPv6\.
 
 The following are the basic characteristics of an Elastic IP address:
 + To use an Elastic IP address, you first allocate one to your account, and then associate it with your instance or a network interface\.
++ When you associate an Elastic IP address with an instance, it is also associated with the instance's primary network interface\. When you associate an Elastic IP address with a network interface that is attached to an instance, it is also associated with the instance\.
 + When you associate an Elastic IP address with an instance or its primary network interface, the instance's public IPv4 address \(if it had one\) is released back into Amazon's pool of public IPv4 addresses\. You cannot reuse a public IPv4 address, and you cannot convert a public IPv4 address to an Elastic IP address\. For more information, see [Public IPv4 Addresses and External DNS Hostnames](using-instance-addressing.md#concepts-public-addresses)\.
 + You can disassociate an Elastic IP address from a resource, and reassociate it with a different resource\. Any open connections to an instance continue to work for a time even after you disassociate its Elastic IP address and reassociate it with another instance\. We recommend that you reopen these connections using the reassociated Elastic IP address\.
 + A disassociated Elastic IP address remains allocated to your account until you explicitly release it\.
@@ -60,7 +61,7 @@ You can allocate an Elastic IP address using one of the following methods\.
 
 1. \(VPC scope only\) For **Public IPv4 address pool** choose one of the following:
    + **Amazon's pool of IP addresses**—If you want an IPv4 address to be allocated from Amazon's pool of IP addresses\.
-   + **My pool of public IPv4 addresses**—If you want to allocate an IPv4 address from an IP address pool that you have brought toyour AWS account\. This option is disabled if you do not have any IP address pools\.
+   + **My pool of public IPv4 addresses**—If you want to allocate an IPv4 address from an IP address pool that you have brought to your AWS account\. This option is disabled if you do not have any IP address pools\.
 
 1. Choose **Allocate**\.
 
@@ -233,7 +234,7 @@ You can associate an Elastic IP address with an instance or network interface us
 
 1. For instance, choose the instance with which to associate the Elastic IP address\. You can also enter text to search for a specific instance\.
 
-1. \(Optiona\) For **Private IP address**, specify a private IP address with which to associate the Elastic IP address\.
+1. \(Optional\) For **Private IP address**, specify a private IP address with which to associate the Elastic IP address\.
 
 1. Choose **Associate**\.
 
@@ -249,7 +250,7 @@ You can associate an Elastic IP address with an instance or network interface us
 
 1. For **Network interface**, choose the network interface with which to associate the Elastic IP address\. You can also enter text to search for a specific network interface\.
 
-1. \(Optiona\) For **Private IP address**, specify a private IP address with which to associate the Elastic IP address\.
+1. \(Optional\) For **Private IP address**, specify a private IP address with which to associate the Elastic IP address\.
 
 1. Choose **Associate**\.
 

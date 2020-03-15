@@ -9,6 +9,7 @@ For information about getting the statistics for these metrics, see [Get Statist
 + [CPU Credit Metrics](#cpu-credit-metrics)
 + [Amazon EBS Metrics for Nitro\-based Instances](#ebs-metrics-nitro)
 + [Status Check Metrics](#status-check-metrics)
++ [Traffic Mirroring Metrics](#traffic-mirroring-metrics)
 + [Amazon EC2 Metric Dimensions](#ec2-cloudwatch-dimensions)
 + [Amazon EC2 Usage Metrics](#service-quota-metrics)
 + [Listing Metrics Using the Console](#list-ec2-metrics-console)
@@ -72,6 +73,10 @@ The `AWS/EC2` namespace includes the following status check metrics\. By default
 | `StatusCheckFailed` |  Reports whether the instance has passed both the instance status check and the system status check in the last minute\. This metric can be either 0 \(passed\) or 1 \(failed\)\. By default, this metric is available at a 1\-minute frequency at no charge\. Units: Count  | 
 | `StatusCheckFailed_Instance` |  Reports whether the instance has passed the instance status check in the last minute\. This metric can be either 0 \(passed\) or 1 \(failed\)\. By default, this metric is available at a 1\-minute frequency at no charge\. Units: Count  | 
 | `StatusCheckFailed_System` |  Reports whether the instance has passed the system status check in the last minute\. This metric can be either 0 \(passed\) or 1 \(failed\)\. By default, this metric is available at a 1\-minute frequency at no charge\. Units: Count  | 
+
+## Traffic Mirroring Metrics<a name="traffic-mirroring-metrics"></a>
+
+The `AWS/EC2` namespace includes metrics for mirrored traffic\. For more information, see [Monitoring Mirrored Traffic Using Amazon CloudWatch](https://docs.aws.amazon.com/vpc/latest/mirroring/traffic-mirror-cloudwatch.html) in the *Amazon VPC Traffic Mirroring Guide*\.
 
 ## Amazon EC2 Metric Dimensions<a name="ec2-cloudwatch-dimensions"></a>
 

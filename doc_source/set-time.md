@@ -206,7 +206,7 @@ If this line is not present, add it\. Comment out any other server or pool lines
 Amazon Linux instances are set to the UTC \(Coordinated Universal Time\) time zone by default, but you may wish to change the time on an instance to the local time or to another time zone in your network\.
 
 **Important**  
-These procedures are intended for use with Amazon Linux\. For more information about other distributions, see their specific documentation\.
+This information applies to Amazon Linux\. For information about other distributions, see their specific documentation\.
 
 **To change the time zone on an instance**
 

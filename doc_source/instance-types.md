@@ -30,7 +30,7 @@ Amazon EC2 provides the instance types listed in the following tables\.
 
 ### Current Generation Instances<a name="current-gen-instances"></a>
 
-For the best performance, we recommend that you use the current generation instance types when you launch new instances\.
+For the best performance, we recommend that you use the current generation instance types when you launch new instances\. To determine which instance types are available in which Regions or Availability Zones, use the [describe\-instance\-type\-offerings](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-type-offerings.html) command\. To describe the characteristics of an instance type, use the [describe\-instance\-types](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-types.html) command\.
 
 For more information about the current generation instance types, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
@@ -104,7 +104,7 @@ For more information, see the following videos:
 
 ## Networking and Storage Features<a name="instance-networking-storage"></a>
 
-When you select an instance type, this determines the networking and storage features that are available\.
+When you select an instance type, this determines the networking and storage features that are available\. To describe an instance type, use the [describe\-instance\-types](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-types.html) command\.
 
 **Networking features**
 + IPv6 is supported on all current generation instance types and the C3, R3, and I2 previous generation instance types\.

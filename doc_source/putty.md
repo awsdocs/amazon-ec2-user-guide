@@ -85,8 +85,7 @@ Use the following procedure to connect to your Linux instance using PuTTY\. You 
 
    1. \(Optional\) If you plan to start this session again later, you can save the session information for future use\. Under **Category**, choose **Session**, enter a name for the session in **Saved Sessions**, and then choose **Save**\.
 
-   1. Choose **Open**\.  
-![\[PuTTY configuration - Auth\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/putty-auth-config.png)
+   1. Choose **Open**\.
 
 1. If this is the first time you have connected to this instance, PuTTY displays a security alert dialog box that asks whether you trust the host to which you are connecting\.
 

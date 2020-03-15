@@ -1,6 +1,8 @@
 # Sharing an Amazon EBS Snapshot<a name="ebs-modifying-snapshot-permissions"></a>
 
-By modifying the permissions of a snapshot, you can share it with the AWS accounts that you specify\. Users that you have authorized can use the snapshots you share as the basis for creating their own EBS volumes, while your original snapshot remains unaffected\. If you choose, you can make your unencrypted snapshots available publicly to all AWS users\. You can't make your encrypted snapshots available publicly\. 
+By modifying the permissions of a snapshot, you can share it with the AWS accounts that you specify\. Users that you have authorized can use the snapshots you share as the basis for creating their own EBS volumes, while your original snapshot remains unaffected\.
+
+If you choose, you can make your unencrypted snapshots available publicly to all AWS users\. You can't make your encrypted snapshots available publicly\. 
 
 When you share an encrypted snapshot, you must also share the customer managed CMK used to encrypt the snapshot\. You can apply cross\-account permissions to a customer managed CMK either when it is created or at a later time\.
 
@@ -53,9 +55,47 @@ The following considerations apply to sharing snapshots:
 
 1. Choose **Customer managed keys** in the navigation pane\.
 
-1. Choose the alias of the customer managed key that you used to encrypt the snapshot\.
+1. In the **Alias** column, choose the alias \(text link\) of the customer managed key that you used to encrypt the snapshot\. The key details open in a new page\.
 
-1. Choose **Add other AWS accounts** and enter the AWS account ID as prompted\. To add another account, choose **Add another AWS account** and enter the AWS account ID\. When you have added all AWS accounts, choose **Save changes**\.
+1. In the **Key policy** section, you see either the *policy view* or the *default view*\. The policy view displays the key policy document\. The default view displays sections for **Key administrators**, **Key deletion**, **Key Use**, and **Other AWS accounts**\. The default view displays if you created the policy in the console and have not customized it\. If the default view is not available, you'll need to manually edit the policy in the policy view\. For more information, see [Viewing a Key Policy \(Console\)](https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-viewing.html#key-policy-viewing-console) in the *AWS Key Management Service Developer Guide*\.
+
+   Use either the policy view or the default view, depending on which view you can access, to add one or more AWS account IDs to the policy, as follows:
+   + \(Policy view\) Choose **Edit**\. Add one or more AWS account IDs to the following statements: `"Allow use of the key"` and `"Allow attachment of persistent resources"`\. Choose **Save changes**\. In the following example, the AWS account ID `444455556666` is added to the policy\.
+
+     ```
+     {
+       "Sid": "Allow use of the key",
+       "Effect": "Allow",
+       "Principal": {"AWS": [
+         "arn:aws:iam::111122223333:user/CMKUser",
+         "arn:aws:iam::444455556666:root"
+       ]},
+       "Action": [
+         "kms:Encrypt",
+         "kms:Decrypt",
+         "kms:ReEncrypt*",
+         "kms:GenerateDataKey*",
+         "kms:DescribeKey"
+       ],
+       "Resource": "*"
+     },
+     {
+       "Sid": "Allow attachment of persistent resources",
+       "Effect": "Allow",
+       "Principal": {"AWS": [
+         "arn:aws:iam::111122223333:user/CMKUser",
+         "arn:aws:iam::444455556666:root"
+       ]},
+       "Action": [
+         "kms:CreateGrant",
+         "kms:ListGrants",
+         "kms:RevokeGrant"
+       ],
+       "Resource": "*",
+       "Condition": {"Bool": {"kms:GrantIsForAWSResource": true}}
+     }
+     ```
+   + \(Default view\) Scroll down to **Other AWS accounts**\. Choose **Add other AWS accounts** and enter the AWS account ID as prompted\. To add another account, choose **Add another AWS account** and enter the AWS account ID\. When you have added all AWS accounts, choose **Save changes**\.
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 

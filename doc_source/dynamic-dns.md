@@ -5,7 +5,7 @@ When you launch an EC2 instance, it is assigned a public IP address and a public
 Dynamic DNS services provide custom DNS host names within their domain area that can be easy to remember and that can also be more relevant to your host's use case; some of these services are also free of charge\. You can use a dynamic DNS provider with Amazon EC2 and configure the instance to update the IP address associated with a public DNS name each time the instance starts\. There are many different providers to choose from, and the specific details of choosing a provider and registering a name with them are outside the scope of this guide\.
 
 **Important**  
-These procedures are intended for use with Amazon Linux\. For more information about other distributions, see their specific documentation\.<a name="procedure-dynamic-dns"></a>
+This information applies to Amazon Linux\. For information about other distributions, see their specific documentation\.<a name="procedure-dynamic-dns"></a>
 
 **To use dynamic DNS with Amazon EC2**
 

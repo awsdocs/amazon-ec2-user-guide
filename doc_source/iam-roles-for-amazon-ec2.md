@@ -139,102 +139,99 @@ You must create an IAM role before you can launch an instance with that role or 
 
 1. On the **Review** page, enter a name for the role and choose **Create role**\.
 
-Alternatively, you can use the AWS CLI to create an IAM role\.<a name="create-iam-role-cli"></a>
+Alternatively, you can use the AWS CLI to create an IAM role\. The following example creates an IAM role with a policy that allows the role to use an Amazon S3 bucket\.<a name="create-iam-role-cli"></a>
 
 **To create an IAM role and instance profile \(AWS CLI\)**
-+ Create an IAM role with a policy that allows the role to use an Amazon S3 bucket\.
 
-  1. Create the following trust policy and save it in a text file named `ec2-role-trust-policy.json`\.
+1. Create the following trust policy and save it in a text file named `ec2-role-trust-policy.json`\.
 
-     ```
-     {
-       "Version": "2012-10-17",
-       "Statement": [
-         {
-           "Effect": "Allow",
-           "Principal": { "Service": "ec2.amazonaws.com"},
-           "Action": "sts:AssumeRole"
-         }
-       ]
-     }
-     ```
+   ```
+   {
+     "Version": "2012-10-17",
+     "Statement": [
+       {
+         "Effect": "Allow",
+         "Principal": { "Service": "ec2.amazonaws.com"},
+         "Action": "sts:AssumeRole"
+       }
+     ]
+   }
+   ```
 
-  1. Create the `s3access` role and specify the trust policy that you created\.
+1. Create the `s3access` role and specify the trust policy that you created using the [create\-role](https://docs.aws.amazon.com/cli/latest/reference/iam/create-role.html) command\.
 
-     ```
-     aws iam create-role --role-name s3access --assume-role-policy-document file://ec2-role-trust-policy.json
-     {
-         "Role": {
-             "AssumeRolePolicyDocument": {
-                 "Version": "2012-10-17",
-                 "Statement": [
-                     {
-                         "Action": "sts:AssumeRole",
-                         "Effect": "Allow",
-                         "Principal": {
-                             "Service": "ec2.amazonaws.com"
-                         }
-                     }
-                 ]
-             },
-             "RoleId": "AROAIIZKPBKS2LEXAMPLE",
-             "CreateDate": "2013-12-12T23:46:37.247Z",
-             "RoleName": "s3access",
-             "Path": "/",
-             "Arn": "arn:aws:iam::123456789012:role/s3access"
-         }
-     }
-     ```
+   ```
+   aws iam create-role --role-name s3access --assume-role-policy-document file://ec2-role-trust-policy.json
+   {
+       "Role": {
+           "AssumeRolePolicyDocument": {
+               "Version": "2012-10-17",
+               "Statement": [
+                   {
+                       "Action": "sts:AssumeRole",
+                       "Effect": "Allow",
+                       "Principal": {
+                           "Service": "ec2.amazonaws.com"
+                       }
+                   }
+               ]
+           },
+           "RoleId": "AROAIIZKPBKS2LEXAMPLE",
+           "CreateDate": "2013-12-12T23:46:37.247Z",
+           "RoleName": "s3access",
+           "Path": "/",
+           "Arn": "arn:aws:iam::123456789012:role/s3access"
+       }
+   }
+   ```
 
-  1. Create an access policy and save it in a text file named `ec2-role-access-policy.json`\. For example, this policy grants administrative permissions for Amazon S3 to applications running on the instance\.
+1. Create an access policy and save it in a text file named `ec2-role-access-policy.json`\. For example, this policy grants administrative permissions for Amazon S3 to applications running on the instance\.
 
-     ```
-     {
-       "Version": "2012-10-17",
-       "Statement": [
-         {
-           "Effect": "Allow",
-           "Action": ["s3:*"],
-           "Resource": ["*"]
-         }
-       ]
-     }
-     ```
+   ```
+   {
+     "Version": "2012-10-17",
+     "Statement": [
+       {
+         "Effect": "Allow",
+         "Action": ["s3:*"],
+         "Resource": ["*"]
+       }
+     ]
+   }
+   ```
 
-  1. Attach the access policy to the role\.
+1. Attach the access policy to the role using the [put\-role\-policy](https://docs.aws.amazon.com/cli/latest/reference/iam/put-role-policy.html) command\.
 
-     ```
-     aws iam put-role-policy --role-name s3access --policy-name S3-Permissions --policy-document file://ec2-role-access-policy.json
-     ```
+   ```
+   aws iam put-role-policy --role-name s3access --policy-name S3-Permissions --policy-document file://ec2-role-access-policy.json
+   ```
 
-  1. Create an instance profile named `s3access-profile`\.
+1. Create an instance profile named `s3access-profile` using the [create\-instance\-profile](https://docs.aws.amazon.com/cli/latest/reference/iam/create-instance-profile.html) command\.
 
-     ```
-     aws iam create-instance-profile --instance-profile-name s3access-profile
-     {
-         "InstanceProfile": {
-             "InstanceProfileId": "AIPAJTLBPJLEGREXAMPLE",
-             "Roles": [],
-             "CreateDate": "2013-12-12T23:53:34.093Z",
-             "InstanceProfileName": "s3access-profile",
-             "Path": "/",
-             "Arn": "arn:aws:iam::123456789012:instance-profile/s3access-profile"
-         }
-     }
-     ```
+   ```
+   aws iam create-instance-profile --instance-profile-name s3access-profile
+   {
+       "InstanceProfile": {
+           "InstanceProfileId": "AIPAJTLBPJLEGREXAMPLE",
+           "Roles": [],
+           "CreateDate": "2013-12-12T23:53:34.093Z",
+           "InstanceProfileName": "s3access-profile",
+           "Path": "/",
+           "Arn": "arn:aws:iam::123456789012:instance-profile/s3access-profile"
+       }
+   }
+   ```
 
-  1. Add the `s3access` role to the `s3access-profile` instance profile\.
+1. Add the `s3access` role to the `s3access-profile` instance profile\.
 
-     ```
-     aws iam add-role-to-instance-profile --instance-profile-name s3access-profile --role-name s3access
-     ```
+   ```
+   aws iam add-role-to-instance-profile --instance-profile-name s3access-profile --role-name s3access
+   ```
 
-  For more information about these commands, see [create\-role](https://docs.aws.amazon.com/cli/latest/reference/iam/create-role.html), [put\-role\-policy](https://docs.aws.amazon.com/cli/latest/reference/iam/put-role-policy.html), and [create\-instance\-profile](https://docs.aws.amazon.com/cli/latest/reference/iam/create-instance-profile.html) in the *AWS CLI Command Reference*\. 
-
-  Alternatively, you can use the following AWS Tools for Windows PowerShell commands:
-  + [New\-IAMRole](https://docs.aws.amazon.com/powershell/latest/reference/items/New-IAMRole.html)
-  + [Register\-IAMRolePolicy](https://docs.aws.amazon.com/powershell/latest/reference/items/Register-IAMRolePolicy.html)
-  + [New\-IAMInstanceProfile](https://docs.aws.amazon.com/powershell/latest/reference/items/New-IAMInstanceProfile.html)
+Alternatively, you can use the following AWS Tools for Windows PowerShell commands:
++ [New\-IAMRole](https://docs.aws.amazon.com/powershell/latest/reference/items/New-IAMRole.html)
++ [Register\-IAMRolePolicy](https://docs.aws.amazon.com/powershell/latest/reference/items/Register-IAMRolePolicy.html)
++ [New\-IAMInstanceProfile](https://docs.aws.amazon.com/powershell/latest/reference/items/New-IAMInstanceProfile.html)
 
 ### Launching an Instance with an IAM Role<a name="launch-instance-with-role"></a>
 

@@ -73,7 +73,6 @@ The following table lists the instance types that support EBS optimization and E
 | g4dn\.8xlarge | 9,500 | 1,187\.5 | 40,000 | 
 | g4dn\.12xlarge | 9,500 | 1,187\.5 | 40,000 | 
 | g4dn\.16xlarge | 9,500 | 1,187\.5 | 40,000 | 
-| g4dn\.metal | 19,000 | 2,375 | 80,000 | 
 | h1\.2xlarge | 1,750 | 218\.75 | 12,000 | 
 | h1\.4xlarge | 3,500 | 437\.5 | 20,000 | 
 | h1\.8xlarge | 7,000 | 875 | 40,000 | 

@@ -10,8 +10,9 @@ Amazon operates state\-of\-the\-art, highly available data centers\. Although ra
 + [Regions and Endpoints](#using-regions-endpoints)
 + [Describing Your Regions, Availability Zones, and Local Zones](#using-regions-availability-zones-describe)
 + [Specifying the Region for a Resource](#using-regions-availability-zones-setup)
-+ [Opting in to a Local Zone](#using-regions-availability-zones-opt-in-local)
-+ [Launching Instances in an Availability Zone or Local Zone](#using-regions-availability-zones-launching)
++ [Enabling Local Zones](#enable-zone-group)
++ [Disabling Local Zones](#disable-zone-group)
++ [Launching Instances in an Availability Zone or a Local Zone](#using-regions-availability-zones-launching)
 + [Migrating an Instance to Another Availability Zone](#migrating-instance-availability-zone)
 
 ## Region, Availability Zone, and Local Zone Concepts<a name="concepts-regions-availability-zones"></a>
@@ -21,6 +22,12 @@ Each Region is completely independent\. Each Availability Zone is isolated, but 
 ![\[Regions, Availability Zones, and Local Zones\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/aws_regions.png)
 
 Amazon EC2 resources are one of the following: global, tied to a Region, an Availability Zone, or a Local Zone\. For more information, see [Resource Locations](resources.md)\.
+
+**Topics**
++ [Regions](#concepts-regions)
++ [Availability Zones](#concepts-availability-zones)
++ [Local Zones](#concepts-local-zones)
++ [Network Border Groups](#network-border-group)
 
 ### Regions<a name="concepts-regions"></a>
 
@@ -48,30 +55,21 @@ As Availability Zones grow over time, our ability to expand them can become cons
 
 You can list the Availability Zones that are available to your account\. For more information, see [Describing Your Regions, Availability Zones, and Local Zones](#using-regions-availability-zones-describe)\.
 
-### Local Zones<a name="network-border-group"></a>
+### Local Zones<a name="concepts-local-zones"></a>
 
-When you launch an instance, you can optionally select a Local Zone so that your applications are closer to your end users\. 
-
-Local Zones allow you to seamlessly connect to the full range of services in the AWS Region such as Amazon Simple Storage Service and Amazon DynamoDB through the same APIs and tool sets\.
-
-Local Zones are not available in every Region\. For information about the Regions that support Local Zones, see [Available Regions](#concepts-available-regions)\. 
+A Local Zone is an extension of an AWS Region in geographic proximity to your users\. When you launch an instance, you can select a subnet in a Local Zone\. Local Zones have their own connections to the internet and support AWS Direct Connect, so resources created in a Local Zone can serve local users with very low\-latency communications\. For more information, see [AWS Local Zones](http://aws.amazon.com/about-aws/global-infrastructure/localzones/)\.
 
 A Local Zone is represented by a Region code followed by an identifier that indicates the location, for example, `us-west-2-lax-1a`\.
 
-To use Local Zones, you must first opt in\. For more information, see [Opting in to a Local Zone](#using-regions-availability-zones-opt-in-local)\.
-
-After you opt in to a Local Zone, you can launch any of the following resources in the Local Zone:
-+ Amazon Virtual Private Cloud subnet
+To use a Local Zone, you must first enable it\. For more information, see [Enabling Local Zones](#enable-zone-group)\. Next, create a subnet in the Local Zone\. Finally, launch any of the following resources in the Local Zone subnet, so that your applications are closer to your end users:
 + Amazon EC2 instances
 + Amazon EBS volumes
 + Amazon FSx file servers
 + Application Load Balancer
 
+Local Zones are not available in every Region\. For information about the Regions that support Local Zones, see [Available Regions](#concepts-available-regions)\.
+
 You can list the Local Zones that are available to your account\. For more information, see [Describing Your Regions, Availability Zones, and Local Zones](#using-regions-availability-zones-describe)\.
-
-You connect to the public internet by using an internet gateway that resides in the Local Zone\. This configuration provides customers local incoming and outgoing traffic which helps reduce latency\.
-
-Local Zones also support connections to AWS Direct Connect, allowing customers to route their traffic over a private network connection\. 
 
 ### Network Border Groups<a name="network-border-group"></a>
 
@@ -96,7 +94,7 @@ The following table lists the Regions provided by an AWS account\. You can't des
 |  `us-east-2`  |  US East \(Ohio\)  | Not required | No | 
 |  `us-east-1`  |  US East \(N\. Virginia\)  | Not required | No | 
 |  `us-west-1`  |  US West \(N\. California\)  | Not required | No | 
-|  `us-west-2`  |  US West \(Oregon\)  | Not required | Yes \- us\-west\-2\-lax\-1a You must opt in to the Local Zone\. | 
+|  `us-west-2`  |  US West \(Oregon\)  | Not required | Yes \- us\-west\-2\-lax\-1a You must enable the Local Zone\. | 
 |  `ap-east-1`  |  Asia Pacific \(Hong Kong\)  | Required | No | 
 |  `ap-south-1`  |  Asia Pacific \(Mumbai\)  | Not required | No | 
 |  `ap-northeast-3`  |  Asia Pacific \(Osaka\-Local\)  | Not required | No | 
@@ -202,13 +200,42 @@ Alternatively, you can use the `--region` \(AWS CLI\) or `-Region` \(AWS Tools f
 
 For more information about the endpoints for Amazon EC2, see [Amazon Elastic Compute Cloud Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#ec2_region)\.
 
-## Opting in to a Local Zone<a name="using-regions-availability-zones-opt-in-local"></a>
+## Enabling Local Zones<a name="enable-zone-group"></a>
 
-Before you specify a Local Zone for a resource, or service, you must opt in to the Local Zone\.
+Before you specify a Local Zone for a resource or service, you must enable the zone\.
 
-To a Local Zone, go to [AWS Local Zone](https://aws.amazon.com/local-zones/) site, and then make a request\. 
+You can enable Local Zones using the AWS Management Console or the AWS CLI\.
 
-## Launching Instances in an Availability Zone or Local Zone<a name="using-regions-availability-zones-launching"></a>
+**Note**  
+We enable all Availability Zones by default and you cannot disable them\.  
+ Some AWS resources might not be available in all Regions\. Make sure that you can create the resources that you need in the desired Regions or Local Zones before launching an instance in a specific Local Zone\.
+
+**To enable Local Zones using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. Use the Region selector in the navigation bar, and select your Region\.  
+![\[Use the console Region selector\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/LocalZone.PNG)
+
+1. On the navigation pane, choose **EC2 Dashboard**\.
+
+1. Under **Availability Zone status**, choose **Enable additional Local Zones**\.
+
+1. Under **Local Zone Groups**, turn on each Local Zone that you want to enable\.
+
+1. In the **Enable** confirmation dialog box, enter **Enable**, and then choose **OK**\.
+
+**To enable Local Zones using the AWS CLI**
++ Use the [modify\-availability\-zone\-group](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-availability-zone-group.html) command\.
+
+## Disabling Local Zones<a name="disable-zone-group"></a>
+
+You must contact [AWS Support](https://console.aws.amazon.com/support/home#/case/create%3FissueType=customer-service%26serviceCode=general-info%26getting-started%26categoryCode=using-aws%26services) to disable a Local Zone\.
+
+**Important**  
+Remove all resources before you disable a Local Zone\. Any resources that are left in the Local Zone incur charges\. After you remove the resources, create a case with [AWS Support](https://console.aws.amazon.com/support/home#/case/create%3FissueType=customer-service%26serviceCode=general-info%26getting-started%26categoryCode=using-aws%26services) with the title **Disable Zone Group**\. 
+
+## Launching Instances in an Availability Zone or a Local Zone<a name="using-regions-availability-zones-launching"></a>
 
 When you launch an instance, select a Region that puts your instances closer to specific customers, or meets the legal or other requirements that you have\. By launching your instances in separate Availability Zones, you can protect your applications from the failure of a single location\. 
 
@@ -234,7 +261,7 @@ The migration process involves:
 
 1. If you need to preserve the private IPv4 address of the instance, you must delete the subnet in the current Availability Zone and then create a subnet in the new Availability Zone with the same IPv4 address range as the original subnet\. Note that you must terminate all instances in a subnet before you can delete it\. Therefore, you should create AMIs from all of the instances in your subnet so that you can move all instances from the current subnet to the new subnet\.
 
-1. Launch an instance from the AMI that you just created, specifying the new Availability Zone or subnet\. You can use the same instance type as the original instance, or select a new instance type\. For more information, see [Launching Instances in an Availability Zone or Local Zone](#using-regions-availability-zones-launching)\.
+1. Launch an instance from the AMI that you just created, specifying the new Availability Zone or subnet\. You can use the same instance type as the original instance, or select a new instance type\. For more information, see [Launching Instances in an Availability Zone or a Local Zone](#using-regions-availability-zones-launching)\.
 
 1. If the original instance has an associated Elastic IP address, associate it with the new instance\. For more information, see [Disassociating an Elastic IP Address](elastic-ip-addresses-eip.md#using-instance-addressing-eips-associating-different)\.
 

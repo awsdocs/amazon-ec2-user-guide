@@ -75,7 +75,7 @@ The following table describes the Amazon EC2 resources that can be tagged, and t
 |  Local gateway virtual interface group  |  Yes  |  No  | 
 |  Local gateway route table VPC association  |  Yes  |  No  | 
 |  Local gateway route table virtual interface group association  |  Yes  |  No  | 
-|  NAT gateway  |  Yes  | No | 
+|  NAT gateway  |  Yes  | Yes | 
 |  Network ACL  |  Yes  | No | 
 |  Network interface  |  Yes  | No | 
 |  Placement group  |  Yes  | No | 
@@ -94,10 +94,10 @@ The following table describes the Amazon EC2 resources that can be tagged, and t
 | Transit gateway VPC attachment | Yes | Yes | 
 | Virtual private gateway | Yes | No | 
 | VPC | Yes | No | 
-| VPC endpoint | Yes | No | 
+| VPC endpoint | Yes | Yes | 
 | VPC endpoint service | Yes | Yes | 
 | VPC endpoint service configuration | Yes | Yes | 
-| VPC flow log | No | No | 
+| VPC flow log | Yes | Yes | 
 | VPC peering connection | Yes | No | 
 | VPN connection | Yes | No | 
 

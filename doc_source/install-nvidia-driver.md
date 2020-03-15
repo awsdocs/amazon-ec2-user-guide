@@ -86,7 +86,7 @@ Log on to your Linux instance and download the 64\-bit NVIDIA driver appropriate
 † G4 instances require driver version 426\.00 or later\.
 
 **To install the NVIDIA driver on Linux**  
-For more information about installing and configuring the driver, choose the **ADDITIONAL INFORMATION** tab on the download page for the driver on the NVIDIA website and choose the **README** link\.
+For more information about installing and configuring the driver, see the [NVIDIA Driver Installation Quickstart Guide](https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html)\. 
 
 ### Option 3: GRID Drivers \(G3 and G4 Instances\)<a name="nvidia-GRID-driver"></a>
 

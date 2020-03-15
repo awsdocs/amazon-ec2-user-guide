@@ -29,9 +29,11 @@ Use the following procedure to view the progress of one or more volume modificat
 
 1. In the navigation pane, choose **Volumes**\.
 
-1. Select the volume\. The volume status is displayed in the **State** column and in the **State** field of the details pane\. In this example, the modification state is **completed**\.
+1. Select the volume\. The volume modification state is displayed in the **State** column and in the **State** field in the details pane\. In the following screenshot, the selected volume's modification state is **optimizing**\. The next volume in the list has a state of **modifying**\.
+**Note**  
+The **State** column and field also show the volume's availability status, which can be **creating**, **available**, **in\-use**, **deleting**, **deleted**, or **error**\.
 
-1. Open the information icon next to the **State** field to display before and after information about the most recent modification action, as shown in this example\.  
+1. Choose the text in the **State** field to display before and after information about the most recent modification action, as shown in this screenshot\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/monitor_modifications.png)
 
 ## Monitoring the Progress of a Volume Modification \(AWS CLI\)<a name="api_cli_monitoring"></a>

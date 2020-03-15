@@ -77,7 +77,7 @@ If your account supports EC2\-Classic but you have not created a nondefault VPC,
 + Launch your VPC\-only instance using the Amazon EC2 console\. The Amazon EC2 console creates a nondefault VPC in your account and launches the instance into the subnet in the first Availability Zone\. The console creates the VPC with the following attributes:
   + One subnet in each Availability Zone, with the public IPv4 addressing attribute set to `true` so that instances receive a public IPv4 address\. For more information, see [IP Addressing in Your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html) in the *Amazon VPC User Guide*\.
   + An Internet gateway, and a main route table that routes traffic in the VPC to the Internet gateway\. This enables the instances you launch in the VPC to communicate over the Internet\. For more information, see [Internet Gateways](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html) in the *Amazon VPC User Guide*\.
-  + A default security group for the VPC and a default network ACL that is associated with each subnet\. For more information, see [Security in Your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Security.html) in the *Amazon VPC User Guide*\.
+  + A default security group for the VPC and a default network ACL that is associated with each subnet\. For more information, see [Security Groups for Your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html) in the *Amazon VPC User Guide*\.
 
 If you have other resources in EC2\-Classic, you can take steps to migrate them to a VPC\. For more information, see [Migrating from a Linux Instance in EC2\-Classic to a Linux Instance in a VPC](vpc-migrate.md)\.
 

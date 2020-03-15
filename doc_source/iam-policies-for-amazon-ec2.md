@@ -17,7 +17,7 @@ Amazon EC2 partially supports resource\-level permissions\. This means that for 
 | Define actions in your policy | [Actions for Amazon EC2](iam-policy-structure.md#UsingWithEC2_Actions) | 
 | Define specific resources in your policy | [Amazon Resource Names \(ARNs\) for Amazon EC2](iam-policy-structure.md#EC2_ARN_Format) | 
 | Apply conditions to the use of the resources | [Condition Keys for Amazon EC2](iam-policy-structure.md#amazon-ec2-keys) | 
-| Work with the available resource\-level permissions for Amazon EC2 | [Actions, Resources, and Condition Keys for Amazon EC2](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonec2.html) \(IAM User Guide | 
+| Work with the available resource\-level permissions for Amazon EC2 | [Actions, Resources, and Condition Keys for Amazon EC2](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonec2.html) \(IAM User Guide\) | 
 | Test your policy |  [Checking That Users Have the Required Permissions](iam-policy-structure.md#check-required-permissions)  | 
 | Example policies for a CLI or SDK | [Example Policies for Working with the AWS CLI or an AWS SDK](ExamplePolicies_EC2.md) | 
 | Example policies for the Amazon EC2 console | [Example Policies for Working in the Amazon EC2 Console](iam-policies-ec2-console.md) | 

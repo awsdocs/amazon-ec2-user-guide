@@ -3,7 +3,7 @@
 By default, Amazon Linux instances launch with two repositories enabled: `amzn-main` and `amzn-updates`\. While there are many packages available in these repositories that are updated by Amazon Web Services, there may be a package that you wish to install that is contained in another repository\.
 
 **Important**  
-These procedures are intended for use with Amazon Linux\. For more information about other distributions, see their specific documentation\.
+This information applies to Amazon Linux\. For information about other distributions, see their specific documentation\.
 
 To install a package from a different repository with yum, you need to add the repository information to the `/etc/yum.conf` file or to its own `repository.repo` file in the `/etc/yum.repos.d` directory\. You can do this manually, but most yum repositories provide their own `repository.repo` file at their repository URL\.
 

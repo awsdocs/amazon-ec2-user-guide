@@ -31,7 +31,7 @@ Each launch specification includes the information that Amazon EC2 needs to laun
 ## Spot Fleet Request States<a name="spot-fleet-states"></a>
 
 A Spot Fleet request can be in one of the following states:
-+ `submitted` – The Spot Fleet request is being evaluated and Amazon EC2 is preparing to launch the target number of Spot Instances\.
++ `submitted` – The Spot Fleet request is being evaluated and Amazon EC2 is preparing to launch the target number of instances\.
 + `active` – The Spot Fleet has been validated and Amazon EC2 is attempting to maintain the target number of running Spot Instances\. The request remains in this state until it is modified or canceled\.
 + `modifying` – The Spot Fleet request is being modified\. The request remains in this state until the modification is fully processed or the Spot Fleet is canceled\. A one\-time `request` cannot be modified, and this state does not apply to such Spot requests\.
 + `cancelled_running` – The Spot Fleet is canceled and does not launch additional Spot Instances\. Its existing Spot Instances continue to run until they are interrupted or terminated\. The request remains in this state until all instances are interrupted or terminated\.
@@ -44,7 +44,7 @@ The following illustration represents the transitions between the request states
 
 ## Spot Fleet Prerequisites<a name="spot-fleet-prerequisites"></a>
 
-If you use the Amazon EC2 console to create a Spot Fleet, it creates a role named aws\-ec2\-spot\-fleet\-tagging\-role that grants the Spot Fleet permission to request, launch, terminate, and tag instances on your behalf\. This role is selected when you create your Spot Fleet request\. If you use the AWS CLI or an API instead, you must ensure that this role exists\. You can either use the Request Spot Instances wizard \(the role is created when you advance to the second page of the wizard\) or use the IAM console as follows\.
+If you use the Amazon EC2 console to create a Spot Fleet, it creates a role named `aws-ec2-spot-fleet-tagging-role` that grants the Spot Fleet permission to request, launch, terminate, and tag instances on your behalf\. This role is selected when you create your Spot Fleet request\. If you use the AWS CLI or an API instead, you must ensure that this role exists\. You can either use the Request Spot Instances wizard \(the role is created when you advance to the second page of the wizard\) or use the IAM console as follows\.
 
 **Important**  
 If you choose to tag instances in the fleet and you choose to maintain target capacity \(the Spot Fleet request is of type `maintain`\), the differences in permissions of the IAM user and the `IamFleetRole` might lead to inconsistent tagging behavior of instances in the fleet\. If the `IamFleetRole` does not include the `CreateTags` permission, some of the instances launched by the fleet might not be tagged\. While we are working to fix this inconsistency, to ensure that all instances launched by the fleet are tagged, we recommend that you use the `aws-ec2-spot-fleet-tagging-role` role for the `IamFleetRole`\. Alternatively, to use an existing role, attach the `AmazonEC2SpotFleetTaggingRole` AWS Managed Policy to the existing role\. Otherwise, you need to manually add the `CreateTags` permission to your existing policy\.

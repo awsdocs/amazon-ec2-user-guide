@@ -3,7 +3,7 @@
 It is important to keep software up\-to\-date\. Many packages in a Linux distribution are updated frequently to fix bugs, add features, and protect against security exploits\. When you first launch and connect to an Amazon Linux instance, you may see a message asking you to update software packages for security purposes\. This section shows how to update an entire system, or just a single package\.
 
 **Important**  
-These procedures are intended for use with Amazon Linux\. For more information about other distributions, see their specific documentation\.
+This information applies to Amazon Linux\. For information about other distributions, see their specific documentation\.
 
 **To update all packages on an Amazon Linux instance**
 

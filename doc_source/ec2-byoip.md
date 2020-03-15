@@ -11,7 +11,7 @@ BYOIP is not available in all Regions\. For a list of supported Regions, see the
 + You can bring each address range to one Region at a time\.
 + You can bring five address ranges per Region to your AWS account\.
 + The addresses in the IP address range must have a clean history\. We might investigate the reputation of the IP address range and reserve the right to reject an IP address range if it contains an IP address that has poor reputation or is associated with malicious behavior\.
-+ The following are supported:
++ You must own the IP address that you use\. This means that only the following are supported:
   + ARIN \- "Direct Allocation" and "Direct Assignment" network types
   + RIPE \- "ALLOCATED PA", "LEGACY", and "ASSIGNED PI" allocation statuses
   + APNIC – "ALLOCATED PORTABLE" and "ASSIGNED PORTABLE" allocation statuses
