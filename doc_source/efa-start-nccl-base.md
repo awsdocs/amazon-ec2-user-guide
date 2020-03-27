@@ -108,7 +108,7 @@ Install the EFA\-enabled kernel, EFA drivers, Libfabric, and Open MPI stack that
 1. Download the EFA software installation files\. To download the latest *stable* version, use the following command\.
 
    ```
-   $ curl -O https://s3-us-west-2.amazonaws.com/aws-efa-installer/aws-efa-installer-1.8.3.tar.gz
+   $ curl -O https://s3.us-west-2.amazonaws.com/aws-efa-installer/aws-efa-installer-1.8.3.tar.gz
    ```
 
    You can also get the latest version by replacing the version number with `latest` in the preceding command\.
@@ -458,7 +458,7 @@ You might need to refer to your machine learning application’s documentation f
 
 ## Step 10: Create an EFA and NCCL\-Enabled AMI<a name="nccl-start-base-ami"></a>
 
-After you have installed the required software components, you create an EFA and NCCL\-enabled AMI that you can reuse to launch your EFA and NCCL\-enabled instances\.
+After you have installed the required software components, you create an AMI that you can reuse to launch your EFA\-enabled instances\.
 
 **To create an AMI from your temporary instance**
 

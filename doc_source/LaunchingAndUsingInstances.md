@@ -1,4 +1,4 @@
-# Launch Your Instance<a name="LaunchingAndUsingInstances"></a>
+# Launch your instance<a name="LaunchingAndUsingInstances"></a>
 
 An instance is a virtual server in the AWS Cloud\. You launch an instance from an Amazon Machine Image \(AMI\)\. The AMI provides the operating system, application server, and applications for your instance\.
 
@@ -9,10 +9,10 @@ You can launch an instance using the following methods\.
 
 | Method | Documentation | 
 | --- | --- | 
-|  \[Amazon EC2 console\] Use the launch instance wizard to specify the launch parameters\.  |  [Launching an Instance Using the Launch Instance Wizard](launching-instance.md)  | 
+|  \[Amazon EC2 console\] Use the launch instance wizard to specify the launch parameters\.  |  [Launching an instance using the Launch Instance Wizard](launching-instance.md)  | 
 |  \[Amazon EC2 console\] Create a launch template and launch the instance from the launch template\.  |  [Launching an Instance from a Launch Template](ec2-launch-templates.md)  | 
-| \[Amazon EC2 console\] Use an existing instance as the base\. |  [Launching an Instance Using Parameters from an Existing Instance](launch-more-like-this.md)  | 
-|  \[Amazon EC2 console\] Use an Amazon EBS snapshot that you created\.  |  [Launching a Linux Instance from a Backup](instance-launch-snapshot.md)  | 
+| \[Amazon EC2 console\] Use an existing instance as the base\. |  [Launching an instance using parameters from an existing instance](launch-more-like-this.md)  | 
+|  \[Amazon EC2 console\] Use an Amazon EBS snapshot that you created\.  |  [Launching a Linux instance from a backup](instance-launch-snapshot.md)  | 
 |  \[Amazon EC2 console\] Use an AMI that you purchased from the AWS Marketplace\.  |  [Launching an AWS Marketplace Instance](launch-marketplace-console.md)  | 
 |  \[AWS CLI\] Use an AMI that you select\.  |  [Using Amazon EC2 through the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-services-ec2-instances.html)  | 
 |  \[AWS Tools for Windows PowerShell\] Use an AMI that you select\.  |  [Amazon EC2 from the AWS Tools for Windows PowerShell](https://docs.aws.amazon.com/powershell/latest/userguide/pstools-ec2.html)  | 

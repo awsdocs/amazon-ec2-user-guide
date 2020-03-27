@@ -1,4 +1,4 @@
-# Launching an Instance Using Parameters from an Existing Instance<a name="launch-more-like-this"></a>
+# Launching an instance using parameters from an existing instance<a name="launch-more-like-this"></a>
 
 The Amazon EC2 console provides a **Launch More Like This** wizard option that enables you to use a current instance as a base for launching other instances\. This option automatically populates the Amazon EC2 launch wizard with certain configuration details from the selected instance\. 
 

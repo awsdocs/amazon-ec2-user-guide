@@ -24,6 +24,9 @@ These drivers are certified to provide optimal performance for professional visu
 Gaming drivers  
 These drivers contain optimizations for gaming and are updated frequently to provide performance enhancements\. They support a single 4K display per GPU\.
 
+**NVIDIA Control Panel**  
+The NVIDIA control panel is supported with GRID and Gaming drivers\. It is not supported with Tesla drivers\.
+
 **Supported APIs**
 + OpenCL, OpenGL, and Vulkan
 + NVIDIA CUDA and related libraries \(for example, cuDNN, TensorRT, nvJPEG, and cuBLAS\)
@@ -83,14 +86,14 @@ Log on to your Linux instance and download the 64\-bit NVIDIA driver appropriate
 | P2 | K\-Series | K80 | 
 | P3 | V\-Series | V100 | 
 
-† G4 instances require driver version 426\.00 or later\.
+† G4 instances require driver version 418\.87 or later\.
 
 **To install the NVIDIA driver on Linux**  
 For more information about installing and configuring the driver, see the [NVIDIA Driver Installation Quickstart Guide](https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html)\. 
 
 ### Option 3: GRID Drivers \(G3 and G4 Instances\)<a name="nvidia-GRID-driver"></a>
 
-These downloads are available to AWS customers only\. By downloading, you agree to use the downloaded software only to develop AMIs for use with the NVIDIA Tesla T4 or NVIDIA Tesla M60 hardware\. Upon installation of the software, you are bound by the terms of the [NVIDIA GRID Cloud End User License Agreement](http://aws-nvidia-license-agreement.s3.amazonaws.com/NvidiaGridAWSUserLicenseAgreement.DOCX)\.
+These downloads are available to AWS customers only\. By downloading, you agree to use the downloaded software only to develop AMIs for use with the NVIDIA Tesla T4 or NVIDIA Tesla M60 hardware\. Upon installation of the software, you are bound by the terms of the [NVIDIA GRID Cloud End User License Agreement](https://aws-nvidia-license-agreement.s3.amazonaws.com/NvidiaGridAWSUserLicenseAgreement.DOCX)\.
 
 **To install the NVIDIA GRID driver on your Linux instance**
 
@@ -218,7 +221,7 @@ These downloads are available to AWS customers only\. By downloading, you agree 
 
 ### Option 4: NVIDIA Gaming Drivers \(G4 Instances\)<a name="nvidia-gaming-driver"></a>
 
-These drivers are available to AWS customers only\. By downloading them, you agree to use the downloaded software only to develop AMIs for use with the NVIDIA Tesla T4 hardware\. Upon installation of the software, you are bound by the terms of the [NVIDIA GRID Cloud End User License Agreement](http://aws-nvidia-license-agreement.s3.amazonaws.com/NvidiaGridAWSUserLicenseAgreement.DOCX)\.
+These drivers are available to AWS customers only\. By downloading them, you agree to use the downloaded software only to develop AMIs for use with the NVIDIA Tesla T4 hardware\. Upon installation of the software, you are bound by the terms of the [NVIDIA GRID Cloud End User License Agreement](https://aws-nvidia-license-agreement.s3.amazonaws.com/NvidiaGridAWSUserLicenseAgreement.DOCX)\.
 
 **To install the NVIDIA gaming driver on your Linux instance**
 

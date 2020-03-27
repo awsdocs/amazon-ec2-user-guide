@@ -8,7 +8,7 @@ New EBS volumes receive their maximum performance the moment that they are avail
 
 **Methods of Creating a Volume**
 + You can create an EBS volume and attach it to a running instance\. For more information, see the procedure below\.
-+ You can create and attach EBS volumes when you launch instances by specifying a block device mapping\. For more information, see [Launching an Instance Using the Launch Instance Wizard](launching-instance.md) and [Block Device Mapping](block-device-mapping-concepts.md)\.
++ You can create and attach EBS volumes when you launch instances by specifying a block device mapping\. For more information, see [Launching an instance using the Launch Instance Wizard](launching-instance.md) and [Block Device Mapping](block-device-mapping-concepts.md)\.
 + You can restore volumes from previously created snapshots\. For more information, see [Restoring an Amazon EBS Volume from a Snapshot](ebs-restoring-volume.md)\.
 
 **To create a new \(empty\) EBS volume using the console**

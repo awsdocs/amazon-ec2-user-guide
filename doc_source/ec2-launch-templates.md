@@ -61,7 +61,7 @@ Create a new launch template using parameters that you define, or use an existin
 1. For **Launch template contents**, provide the following information:
    + **AMI ID**: An AMI from which to launch the instance\. To search through all available AMIs, choose **Search for AMI**\. To select a commonly used AMI, choose **Quick Start**\. Or, choose **AWS Marketplace** or **Community AMIs**\. You can use an AMI that you own or [find a suitable AMI](finding-an-ami.md)\.
    + **Instance type**: Ensure that the instance type is compatible with the AMI that you've specified\. For more information, see [Instance Types](instance-types.md)\. 
-   + **Key pair name**: The key pair for the instance\. For more information, see [Amazon EC2 Key Pairs](ec2-key-pairs.md)\.
+   + **Key pair name**: The key pair for the instance\. For more information, see [Amazon EC2 key pairs](ec2-key-pairs.md)\.
    + **Network type**: If applicable, whether to launch the instance into a VPC or EC2\-Classic\. If you choose **VPC**, specify the subnet in the **Network interfaces** section\. If you choose **Classic**, ensure that the specified instance type is supported in EC2\-Classic and specify the Availability Zone for the instance\.
    + **Security Groups**: One or more security groups to associate with the instance\. For more information, see [Amazon EC2 Security Groups for Linux Instances](ec2-security-groups.md)\.
 

@@ -55,7 +55,7 @@ For information about how hibernation differs from reboot, stop, and terminate, 
 ## Hibernation Prerequisites<a name="hibernating-prerequisites"></a>
 
 To hibernate an instance, the following prerequisites must be in place:
-+ **Supported instance families** \- C3, C4, C5, M3, M4, M5, R3, R4, and R5\.
++ **Supported instance families** \- C3, C4, C5, M3, M4, M5, R3, R4, R5, and T2\.
 + **Instance RAM size** \- must be less than 150 GB\.
 + **Instance size** \- not supported for bare metal instances\.
 + **Supported AMIs** \(must be an HVM AMI that supports hibernation\):
@@ -237,7 +237,7 @@ You can't enable or disable hibernation for an instance after you launch it\.
 
 **To enable hibernation using the console**
 
-1. Follow the [Launching an Instance Using the Launch Instance Wizard](launching-instance.md) procedure\.
+1. Follow the [Launching an instance using the Launch Instance Wizard](launching-instance.md) procedure\.
 
 1. On the **Choose an Amazon Machine Image \(AMI\)** page, select an AMI that supports hibernation\. For more information about supported AMIs, see [Hibernation Prerequisites](#hibernating-prerequisites)\.
 
@@ -245,7 +245,7 @@ You can't enable or disable hibernation for an instance after you launch it\.
 
 1. On the **Configure Instance Details** page, for **Stop \- Hibernate Behavior**, select the **Enable hibernation as an additional stop behavior** check box\.
 
-1. Continue as prompted by the wizard\. When you've finished reviewing your options on the **Review Instance Launch** page, choose **Launch**\. For more information, see [Launching an Instance Using the Launch Instance Wizard](launching-instance.md)\.
+1. Continue as prompted by the wizard\. When you've finished reviewing your options on the **Review Instance Launch** page, choose **Launch**\. For more information, see [Launching an instance using the Launch Instance Wizard](launching-instance.md)\.
 
 ------
 #### [ AWS CLI ]

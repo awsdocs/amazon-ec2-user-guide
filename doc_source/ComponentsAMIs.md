@@ -60,7 +60,7 @@ You can use one of the following commands\. For more information about these com
 
 ### Stopped State<a name="ec2-bootfromebs-stopped-state"></a>
 
-You can stop an Amazon EBS\-backed instance, but not an Amazon EC2 instance store\-backed instance\. Stopping causes the instance to stop running \(its status goes from `running` to `stopping` to `stopped`\)\. A stopped instance persists in Amazon EBS, which allows it to be restarted\. Stopping is different from terminating; you can't restart a terminated instance\. Because Amazon EC2 instance store\-backed instances can't be stopped, they're either running or terminated\. For more information about what happens and what you can do while an instance is stopped, see [Stop and Start Your Instance](Stop_Start.md)\.
+You can stop an Amazon EBS\-backed instance, but not an Amazon EC2 instance store\-backed instance\. Stopping causes the instance to stop running \(its status goes from `running` to `stopping` to `stopped`\)\. A stopped instance persists in Amazon EBS, which allows it to be restarted\. Stopping is different from terminating; you can't restart a terminated instance\. Because Amazon EC2 instance store\-backed instances can't be stopped, they're either running or terminated\. For more information about what happens and what you can do while an instance is stopped, see [Stop and start your instance](Stop_Start.md)\.
 
 ### Default Data Storage and Persistence<a name="ec2-bootfromebs-default-data-storage-and-persistence"></a>
 

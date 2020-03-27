@@ -264,6 +264,6 @@ If you're launching an instance to take advantage of the billing benefit of a Re
 + Availability Zone: If you purchased a Reserved Instance for a specific Availability Zone, you must launch the instance into the same Availability Zone\. If you purchased a regional Reserved Instance, you can launch your instance into any Availability Zone\.
 + Tenancy: The tenancy of your instance must match the tenancy of the Reserved Instance; for example, `dedicated` or `shared`\. For more information, see [Dedicated Instances](dedicated-instance.md)\.
 
-For more information, see [Launching an Instance Using the Launch Instance Wizard](launching-instance.md)\. For examples of how Reserved Instances are applied to your running instances, see [How Reserved Instances Are Applied](apply_ri.md)\.
+For more information, see [Launching an instance using the Launch Instance Wizard](launching-instance.md)\. For examples of how Reserved Instances are applied to your running instances, see [How Reserved Instances Are Applied](apply_ri.md)\.
 
 You can use Amazon EC2 Auto Scaling or other AWS services to launch the On\-Demand Instances that use your Reserved Instance benefits\. For more information, see the [Amazon EC2 Auto Scaling User Guide](https://docs.aws.amazon.com/autoscaling/latest/userguide/WhatIsAutoScaling.html)\.

@@ -101,7 +101,7 @@ If there is an unrecoverable issue with the hardware of an underlying host compu
 
 1. Restore any important data\.
 
-For more information, see [Stop and Start Your Instance](Stop_Start.md)\.
+For more information, see [Stop and start your instance](Stop_Start.md)\.
 
 **To recover an instance store\-backed instance running on a host computer that failed**
 

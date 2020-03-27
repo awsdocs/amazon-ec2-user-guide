@@ -27,9 +27,17 @@ The following AMIs include the required NVMe drivers:
 
 For more information about NVMe drivers on Windows instances, see [Amazon EBS and NVMe on Windows Instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/nvme-ebs-volumes.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
-If you are using an AMI that does not include the NVMe driver, you can install the driver on your instance using the following procedure\.
+**Confirm that your instance has the NVMe driver**  
+You can confirm that your instance has the NVMe driver and check the driver version using the following command\.
 
-**To install the NVMe driver**
+```
+$ modinfo nvme
+```
+
+If the instance has the NVMe driver, the command returns information about the driver\.
+
+**Update the NVMe driver**  
+If your instance has the NVMe driver, you can update the driver to the latest version using the following procedure\.
 
 1. Connect to your instance\.
 

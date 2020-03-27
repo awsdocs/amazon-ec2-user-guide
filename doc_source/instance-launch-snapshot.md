@@ -1,4 +1,4 @@
-# Launching a Linux Instance from a Backup<a name="instance-launch-snapshot"></a>
+# Launching a Linux instance from a backup<a name="instance-launch-snapshot"></a>
 
 With an Amazon EBS\-backed Linux instance, you can back up the root device volume of the instance by creating a snapshot\. When you have a snapshot of the root device volume of an instance, you can terminate that instance and then later launch a new instance from the snapshot\. This can be useful if you don't have the original AMI that you launched an instance from, but you need to be able to launch an instance using the same image\.
 
@@ -25,4 +25,4 @@ Use the following procedure to create an AMI from the root volume of your instan
 
 1. In the navigation pane, choose **AMIs**\.
 
-1. Choose the AMI that you just created, and then choose **Launch**\. Follow the wizard to launch your instance\. For more information about how to configure each step in the wizard, see [Launching an Instance Using the Launch Instance Wizard](launching-instance.md)\.
+1. Choose the AMI that you just created, and then choose **Launch**\. Follow the wizard to launch your instance\. For more information about how to configure each step in the wizard, see [Launching an instance using the Launch Instance Wizard](launching-instance.md)\.

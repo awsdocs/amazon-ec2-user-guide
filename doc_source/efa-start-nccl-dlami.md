@@ -135,7 +135,7 @@ You might need to refer to your machine learning application’s documentation f
 
 ## Step 5: Create an EFA and NCCL\-Enabled AMI<a name="nccl-start-dlami-ami"></a>
 
-After you have installed the required software components, you create an EFA and NCCL\-enabled AMI that you can reuse to launch your EFA and NCCL\-enabled instances\.
+After you have installed the required software components, you create an AMI that you can reuse to launch your EFA\-enabled instances\.
 
 **To create an AMI from your temporary instance**
 

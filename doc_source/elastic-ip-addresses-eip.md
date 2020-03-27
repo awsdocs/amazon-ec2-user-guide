@@ -62,6 +62,7 @@ You can allocate an Elastic IP address using one of the following methods\.
 1. \(VPC scope only\) For **Public IPv4 address pool** choose one of the following:
    + **Amazon's pool of IP addresses**—If you want an IPv4 address to be allocated from Amazon's pool of IP addresses\.
    + **My pool of public IPv4 addresses**—If you want to allocate an IPv4 address from an IP address pool that you have brought to your AWS account\. This option is disabled if you do not have any IP address pools\.
+   + **Customer owned pool of IPv4 addresses**—If you want to allocate an IPv4 address from a pool created from your on\-premises network for use with an AWS Outpost\. This option is disabled if you do not have an AWS Outpost\.
 
 1. Choose **Allocate**\.
 

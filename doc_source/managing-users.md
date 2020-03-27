@@ -96,7 +96,7 @@ Without these exact file permissions, the user will not be able to log in\.
 **Important**  
 Ensure that you paste the public key in one continuous line\. The public key must not be split over multiple lines\.
 
-      The user should now be able to log into the `newuser` account on your instance, using the private key that corresponds to the public key that you added to the `authorized_keys` file\.
+      The user should now be able to log into the `newuser` account on your instance, using the private key that corresponds to the public key that you added to the `authorized_keys` file\. For more information about the different methods of connecting to a Linux instance, see [Connect to Your Linux Instance](AccessingInstances.md)\.
 
 ## Removing a User Account<a name="delete-user-acount"></a>
 

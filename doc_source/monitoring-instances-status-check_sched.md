@@ -10,6 +10,7 @@ To update the contact information for your account so that you can be sure to be
 + [Working with Instances Scheduled to Stop or Retire](#schedevents_actions_retire)
 + [Working with Instances Scheduled for Reboot](#schedevents_actions_reboot)
 + [Working with Instances Scheduled for Maintenance](#schedevents_actions_maintenance)
++ [Rescheduling a Scheduled Event](#reschedule-event)
 
 ## Types of Scheduled Events<a name="types-of-scheduled-events"></a>
 
@@ -198,7 +199,7 @@ When AWS detects irreparable failure of the underlying host for your instance, i
 Any data stored on instance store volumes is lost when an instance is stopped or terminated\. This includes instance store volumes that are attached to an instance that has an EBS volume as the root device\. Be sure to save data from your instance store volumes that you might need later before the instance is stopped or terminated\.
 
 **Actions for Instances Backed by Amazon EBS**  
-You can wait for the instance to stop as scheduled\. Alternatively, you can stop and start the instance yourself, which migrates it to a new host\. For more information about stopping your instance, in addition to information about the changes to your instance configuration when it's stopped, see [Stop and Start Your Instance](Stop_Start.md)\.
+You can wait for the instance to stop as scheduled\. Alternatively, you can stop and start the instance yourself, which migrates it to a new host\. For more information about stopping your instance, in addition to information about the changes to your instance configuration when it's stopped, see [Stop and start your instance](Stop_Start.md)\.
 
 You can automate an immediate stop and start in response to a scheduled instance stop event\. For more information, see [Automating Actions for EC2 Instances](https://docs.aws.amazon.com/health/latest/ug/cloudwatch-events-health.html#automating-instance-actions) in the *AWS Health User Guide*\.
 
@@ -207,7 +208,7 @@ We recommend that you launch a replacement instance from your most recent AMI an
 
 ## Working with Instances Scheduled for Reboot<a name="schedevents_actions_reboot"></a>
 
-When AWS must perform tasks such as installing updates or maintaining the underlying host, it can schedule the instance or the underlying host for a reboot\. You can [reschedule most reboot events](#reschedule-reboot-event) so that your instance is rebooted at a specific date and time that suits you\.
+When AWS must perform tasks such as installing updates or maintaining the underlying host, it can schedule the instance or the underlying host for a reboot\. You can [reschedule most reboot events](#reschedule-event) so that your instance is rebooted at a specific date and time that suits you\.
 
 If you stop your linked [EC2\-Classic instance](vpc-classiclink.md#classiclink-limitations), it is automatically unlinked from the VPC and the VPC security groups are no longer associated with the instance\. You can link your instance to the VPC again after you've restarted it\.
 
@@ -271,25 +272,43 @@ For scheduled reboot events, the value for `Code` is either `system-reboot` or `
 ------
 <a name="schedevents_actions_instancereboot"></a>
 **Actions for Instance Reboot**  
-You can wait for the instance reboot to occur within its scheduled maintenance window, [reschedule](#reschedule-reboot-event) the instance reboot to a date and time that suits you, or [reboot](ec2-instance-reboot.md) the instance yourself at a time that is convenient for you\.
+You can wait for the instance reboot to occur within its scheduled maintenance window, [reschedule](#reschedule-event) the instance reboot to a date and time that suits you, or [reboot](ec2-instance-reboot.md) the instance yourself at a time that is convenient for you\.
 
 After your instance is rebooted, the scheduled event is cleared and the event's description is updated\. The pending maintenance to the underlying host is completed, and you can begin using your instance again after it has fully booted\.
 <a name="schedevents_actions_systemreboot"></a>
 **Actions for System Reboot**  
-It is not possible for you to reboot the system yourself\. You can wait for the system reboot to occur during its scheduled maintenance window, or you can [reschedule](#reschedule-reboot-event) the system reboot to a date and time that suits you\. A system reboot typically completes in a matter of minutes\. After the system reboot has occurred, the instance retains its IP address and DNS name, and any data on local instance store volumes is preserved\. After the system reboot is complete, the scheduled event for the instance is cleared, and you can verify that the software on your instance is operating as expected\.
+It is not possible for you to reboot the system yourself\. You can wait for the system reboot to occur during its scheduled maintenance window, or you can [reschedule](#reschedule-event) the system reboot to a date and time that suits you\. A system reboot typically completes in a matter of minutes\. After the system reboot has occurred, the instance retains its IP address and DNS name, and any data on local instance store volumes is preserved\. After the system reboot is complete, the scheduled event for the instance is cleared, and you can verify that the software on your instance is operating as expected\.
 
 Alternatively, if it is necessary to maintain the instance at a different time and you can't reschedule the system reboot, then you can stop and start an Amazon EBS\-backed instance, which migrates it to a new host\. However, the data on the local instance store volumes is not preserved\. You can also automate an immediate instance stop and start in response to a scheduled system reboot event\. For more information, see [Automating Actions for EC2 Instances](https://docs.aws.amazon.com/health/latest/ug/cloudwatch-events-health.html#automating-instance-actions) in the *AWS Health User Guide*\. For an instance store\-backed instance, if you can't reschedule the system reboot, then you can launch a replacement instance from your most recent AMI, migrate all necessary data to the replacement instance before the scheduled maintenance window, and then terminate the original instance\.
 
-### Rescheduling a Reboot Event<a name="reschedule-reboot-event"></a>
+## Working with Instances Scheduled for Maintenance<a name="schedevents_actions_maintenance"></a>
 
-You can reschedule a reboot event so that your instance is rebooted at a specific date and time that suits you\. Only events that have a deadline date can be rescheduled\. There are other [limitations for rescheduling a reboot event](#limitations-for-reboot-events)\.
+When AWS must maintain the underlying host for an instance, it schedules the instance for maintenance\. There are two types of maintenance events: network maintenance and power maintenance\.
 
-You can reschedule a reboot event using one of the following methods\.
+During network maintenance, scheduled instances lose network connectivity for a brief period of time\. Normal network connectivity to your instance is restored after maintenance is complete\.
+
+During power maintenance, scheduled instances are taken offline for a brief period, and then rebooted\. When a reboot is performed, all of your instance's configuration settings are retained\.
+
+After your instance has rebooted \(this normally takes a few minutes\), verify that your application is working as expected\. At this point, your instance should no longer have a scheduled event associated with it, or if it does, the description of the scheduled event begins with **\[Completed\]**\. It sometimes takes up to 1 hour for the instance status description to refresh\. Completed maintenance events are displayed on the Amazon EC2 console dashboard for up to a week\.
+
+**Actions for Instances Backed by Amazon EBS**  
+You can wait for the maintenance to occur as scheduled\. Alternatively, you can stop and start the instance, which migrates it to a new host\. For more information about stopping your instance, in addition to information about the changes to your instance configuration when it's stopped, see [Stop and start your instance](Stop_Start.md)\.
+
+You can automate an immediate stop and start in response to a scheduled maintenance event\. For more information, see [Automating Actions for EC2 Instances](https://docs.aws.amazon.com/health/latest/ug/cloudwatch-events-health.html#automating-instance-actions) in the *AWS Health User Guide*\.
+
+**Actions for Instances Backed by Instance Store**  
+You can wait for the maintenance to occur as scheduled\. Alternatively, if you want to maintain normal operation during a scheduled maintenance window, you can launch a replacement instance from your most recent AMI, migrate all necessary data to the replacement instance before the scheduled maintenance window, and then terminate the original instance\.
+
+## Rescheduling a Scheduled Event<a name="reschedule-event"></a>
+
+You can reschedule an event so that it occurs at a specific date and time that suits you\. Only events that have a deadline date can be rescheduled\. There are other [limitations for rescheduling an event](#limitations-for-rescheduling)\.
+
+You can reschedule an event using one of the following methods\.
 
 ------
 #### [ New console ]
 
-**To reschedule a reboot event using the console**
+**To reschedule an event using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -301,7 +320,7 @@ You can reschedule a reboot event using one of the following methods\.
 
    Only events that have an event deadline date, indicated by a value for **Deadline**, can be rescheduled\. If one of the selected events does not have a deadline date, **Actions**, **Schedule event** is disabled\.
 
-1. For **New start time**, enter a new date and time for the reboot\. The new date and time must occur before the **Event deadline**\.
+1. For **New start time**, enter a new date and time for the event\. The new date and time must occur before the **Event deadline**\.
 
 1. Choose **Save**\.
 
@@ -310,7 +329,7 @@ You can reschedule a reboot event using one of the following methods\.
 ------
 #### [ Old console ]
 
-**To reschedule a reboot event using the console**
+**To reschedule an event using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -322,7 +341,7 @@ You can reschedule a reboot event using one of the following methods\.
 
    Only events that have an event deadline date, indicated by a value for **Event Deadline**, can be rescheduled\. 
 
-1. For **Event start time**, enter a new date and time for the reboot\. The new date and time must occur before the **Event Deadline**\.
+1. For **Event start time**, enter a new date and time for the event\. The new date and time must occur before the **Event Deadline**\.
 
 1. Choose **Schedule Event**\.
 
@@ -331,7 +350,7 @@ You can reschedule a reboot event using one of the following methods\.
 ------
 #### [ AWS CLI ]
 
-**To reschedule a reboot event using the AWS CLI**
+**To reschedule an event using the AWS CLI**
 
 1. Only events that have an event deadline date, indicated by a value for `NotBeforeDeadline`, can be rescheduled\. Use the [describe\-instance\-status](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-status.html) command to view the `NotBeforeDeadline` parameter value\.
 
@@ -366,26 +385,8 @@ You can reschedule a reboot event using one of the following methods\.
 
 ------
 
-#### Limitations for Reboot Events<a name="limitations-for-reboot-events"></a>
-+ Only reboot events with an event deadline date can be rescheduled\. The event can be rescheduled up to the event deadline date\. The **Deadline** column in the console and the `NotBeforeDeadline` field in the AWS CLI indicate if the event has a deadline date\.
-+ Only reboot events that have not yet started can be rescheduled\. The **Start time** column in the console and the `NotBefore` field in the AWS CLI indicate the event start time\. Reboot events that are scheduled to start in the next 5 minutes cannot be rescheduled\.
+### Limitations<a name="limitations-for-rescheduling"></a>
++ Only events with an event deadline date can be rescheduled\. The event can be rescheduled up to the event deadline date\. The **Deadline** column in the console and the `NotBeforeDeadline` field in the AWS CLI indicate if the event has a deadline date\.
++ Only events that have not yet started can be rescheduled\. The **Start time** column in the console and the `NotBefore` field in the AWS CLI indicate the event start time\. Events that are scheduled to start in the next 5 minutes cannot be rescheduled\.
 + The new event start time must be at least 60 minutes from the current time\.
 + If you reschedule multiple events using the console, the event deadline date is determined by the event with the earliest event deadline date\. 
-
-## Working with Instances Scheduled for Maintenance<a name="schedevents_actions_maintenance"></a>
-
-When AWS must maintain the underlying host for an instance, it schedules the instance for maintenance\. There are two types of maintenance events: network maintenance and power maintenance\.
-
-During network maintenance, scheduled instances lose network connectivity for a brief period of time\. Normal network connectivity to your instance is restored after maintenance is complete\.
-
-During power maintenance, scheduled instances are taken offline for a brief period, and then rebooted\. When a reboot is performed, all of your instance's configuration settings are retained\.
-
-After your instance has rebooted \(this normally takes a few minutes\), verify that your application is working as expected\. At this point, your instance should no longer have a scheduled event associated with it, or if it does, the description of the scheduled event begins with **\[Completed\]**\. It sometimes takes up to 1 hour for the instance status description to refresh\. Completed maintenance events are displayed on the Amazon EC2 console dashboard for up to a week\.
-
-**Actions for Instances Backed by Amazon EBS**  
-You can wait for the maintenance to occur as scheduled\. Alternatively, you can stop and start the instance, which migrates it to a new host\. For more information about stopping your instance, in addition to information about the changes to your instance configuration when it's stopped, see [Stop and Start Your Instance](Stop_Start.md)\.
-
-You can automate an immediate stop and start in response to a scheduled maintenance event\. For more information, see [Automating Actions for EC2 Instances](https://docs.aws.amazon.com/health/latest/ug/cloudwatch-events-health.html#automating-instance-actions) in the *AWS Health User Guide*\.
-
-**Actions for Instances Backed by Instance Store**  
-You can wait for the maintenance to occur as scheduled\. Alternatively, if you want to maintain normal operation during a scheduled maintenance window, you can launch a replacement instance from your most recent AMI, migrate all necessary data to the replacement instance before the scheduled maintenance window, and then terminate the original instance\.

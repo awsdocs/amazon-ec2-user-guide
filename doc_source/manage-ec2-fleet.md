@@ -7,18 +7,18 @@ If your fleet includes Spot Instances, Amazon EC2 can attempt to maintain your f
 An EC2 Fleet request remains active until it expires or you delete it\. When you delete a fleet, you can specify whether deletion terminates the instances in that fleet\.
 
 **Topics**
-+ [EC2 Fleet Request States](#EC2-fleet-states)
-+ [EC2 Fleet Prerequisites](#ec2-fleet-prerequisites)
-+ [EC2 Fleet Health Checks](#ec2-fleet-health-checks)
-+ [Generating an EC2 Fleet JSON Configuration File](#ec2-fleet-cli-skeleton)
++ [EC2 Fleet request states](#EC2-fleet-states)
++ [EC2 Fleet prerequisites](#ec2-fleet-prerequisites)
++ [EC2 Fleet health checks](#ec2-fleet-health-checks)
++ [Generating an EC2 Fleet JSON configuration file](#ec2-fleet-cli-skeleton)
 + [Creating an EC2 Fleet](#create-ec2-fleet)
 + [Tagging an EC2 Fleet](#tag-ec2-fleet)
-+ [Monitoring Your EC2 Fleet](#manage-ec2-fleet)
++ [Monitoring your EC2 Fleet](#manage-ec2-fleet)
 + [Modifying an EC2 Fleet](#modify-ec2-fleet)
 + [Deleting an EC2 Fleet](#delete-fleet)
 + [EC2 Fleet Example Configurations](ec2-fleet-examples.md)
 
-## EC2 Fleet Request States<a name="EC2-fleet-states"></a>
+## EC2 Fleet request states<a name="EC2-fleet-states"></a>
 
 An EC2 Fleet request can be in one of the following states:
 + `submitted` – The EC2 Fleet request is being evaluated and Amazon EC2 is preparing to launch the target number of instances, which can include On\-Demand Instances, Spot Instances, or both\.
@@ -32,15 +32,15 @@ The following illustration represents the transitions between the EC2 Fleet requ
 
 ![\[EC2 Fleet request states\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/EC2_fleet_states.png)
 
-## EC2 Fleet Prerequisites<a name="ec2-fleet-prerequisites"></a>
+## EC2 Fleet prerequisites<a name="ec2-fleet-prerequisites"></a>
 
 To create an EC2 Fleet, the following prerequisites must be in place\.
 
-### Launch Template<a name="ec2-fleet-prerequisites-launch-template"></a>
+### Launch template<a name="ec2-fleet-prerequisites-launch-template"></a>
 
 A launch template includes information about the instances to launch, such as the instance type, Availability Zone, and the maximum price that you are willing to pay\. For more information, see [Launching an Instance from a Launch Template](ec2-launch-templates.md)\.
 
-### Service\-Linked Role for EC2 Fleet<a name="ec2-fleet-service-linked-role"></a>
+### Service\-linked role for EC2 Fleet<a name="ec2-fleet-service-linked-role"></a>
 
 The `AWSServiceRoleForEC2Fleet` role grants the EC2 Fleet permission to request, launch, terminate, and tag instances on your behalf\. Amazon EC2 uses this service\-linked role to complete the following actions:
 + `ec2:RequestSpotInstances` – Request Spot Instances\.
@@ -50,7 +50,12 @@ The `AWSServiceRoleForEC2Fleet` role grants the EC2 Fleet permission to request,
 + `ec2:DescribeSubnets` – Describe the subnets for Spot Instances\.
 + `ec2:CreateTags` – Add system tags to Spot Instances\.
 
-Ensure that this role exists before you use the AWS CLI or an API to create an EC2 Fleet\. To create the role, use the IAM console as follows\.
+Ensure that this role exists before you use the AWS CLI or an API to create an EC2 Fleet\.
+
+**Note**  
+An `instant` EC2 Fleet does not require this role\.
+
+To create the role, use the IAM console as follows\.
 
 **To create the AWSServiceRoleForEC2Fleet role for EC2 Fleet**
 
@@ -68,7 +73,7 @@ If you no longer need to use EC2 Fleet, we recommend that you delete the **AWSSe
 
 For more information, see [Using Service\-Linked Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html) in the *IAM User Guide*\.
 
-### Granting Access to CMKs for Use with Encrypted AMIs and EBS Snapshots<a name="ec2-fleet-service-linked-roles-access-to-cmks"></a>
+### Granting access to CMKs for use with encrypted AMIs and EBS snapshots<a name="ec2-fleet-service-linked-roles-access-to-cmks"></a>
 
 If you specify an [encrypted AMI](AMIEncryption.md) or an [encrypted Amazon EBS snapshot](EBSEncryption.md) in your EC2 Fleet and you use a customer managed customer master key \(CMK\) for encryption, you must grant the **AWSServiceRoleForEC2Fleet** role permission to use the CMK so that Amazon EC2 can launch instances on your behalf\. To do this, you must add a grant to the CMK, as shown in the following procedure\.
 
@@ -77,17 +82,15 @@ When providing permissions, grants are an alternative to key policies\. For more
 **To grant the AWSServiceRoleForEC2Fleet role permissions to use the CMK**
 + Use the [create\-grant](https://docs.aws.amazon.com/cli/latest/reference/kms/create-grant.html) command to add a grant to the CMK and to specify the principal \(the **AWSServiceRoleForEC2Fleet** service\-linked role\) that is given permission to perform the operations that the grant permits\. The CMK is specified by the `key-id` parameter and the ARN of the CMK\. The principal is specified by the `grantee-principal` parameter and the ARN of the **AWSServiceRoleForEC2Fleet** service\-linked role\.
 
-  The following example is formatted for legibility\. 
-
   ```
-  aws kms create-grant 
-  --region us-east-1 
-  --key-id arn:aws:kms:us-east-1:444455556666:key/1234abcd-12ab-34cd-56ef-1234567890ab 
-  --grantee-principal arn:aws:iam::111122223333:role/AWSServiceRoleForEC2Fleet 
-  --operations "Decrypt" "Encrypt" "GenerateDataKey" "GenerateDataKeyWithoutPlaintext" "CreateGrant" "DescribeKey" "ReEncryptFrom" "ReEncryptTo"
+  aws kms create-grant \
+      --region us-east-1 \
+      --key-id arn:aws:kms:us-east-1:444455556666:key/1234abcd-12ab-34cd-56ef-1234567890ab \
+      --grantee-principal arn:aws:iam::111122223333:role/AWSServiceRoleForEC2Fleet \
+      --operations "Decrypt" "Encrypt" "GenerateDataKey" "GenerateDataKeyWithoutPlaintext" "CreateGrant" "DescribeKey" "ReEncryptFrom" "ReEncryptTo"
   ```
 
-### EC2 Fleet and IAM Users<a name="ec2-fleet-iam-users"></a>
+### EC2 Fleet and IAM users<a name="ec2-fleet-iam-users"></a>
 
 If your IAM users will create or manage an EC2 Fleet, be sure to grant them the required permissions as follows\.
 
@@ -147,7 +150,7 @@ If your IAM users will create or manage an EC2 Fleet, be sure to grant them the 
 
 1. Choose **Add permissions**\.
 
-## EC2 Fleet Health Checks<a name="ec2-fleet-health-checks"></a>
+## EC2 Fleet health checks<a name="ec2-fleet-health-checks"></a>
 
 EC2 Fleet checks the health status of the instances in the fleet every two minutes\. The health status of an instance is either `healthy` or `unhealthy`\. The fleet determines the health status of an instance using the status checks provided by Amazon EC2\. If the status of either the instance status check or the system status check is `impaired` for three consecutive health checks, the health status of the instance is `unhealthy`\. Otherwise, the health status is `healthy`\. For more information, see [Status Checks for Your Instances](monitoring-system-instance-status-check.md)\.
 
@@ -158,7 +161,7 @@ You can configure your EC2 Fleet to replace unhealthy instances\. After enabling
 + You can configure your EC2 Fleet to replace unhealthy instances only when you create it\.
 + IAM users can use health check replacement only if they have permission to call the `ec2:DescribeInstanceStatus` action\.
 
-## Generating an EC2 Fleet JSON Configuration File<a name="ec2-fleet-cli-skeleton"></a>
+## Generating an EC2 Fleet JSON configuration file<a name="ec2-fleet-cli-skeleton"></a>
 
 To create an EC2 Fleet, you need only specify the launch template, total target capacity, and whether the default purchasing option is On\-Demand or Spot\. If you do not specify a parameter, the fleet uses the default value\. To view the full list of fleet configuration parameters, you can generate a JSON file as follows\.
 
@@ -166,7 +169,8 @@ To create an EC2 Fleet, you need only specify the launch template, total target 
 + Use the [create\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-fleet.html) \(AWS CLI\) command and the `--generate-cli-skeleton` parameter to generate an EC2 Fleet JSON file:
 
   ```
-  aws ec2 create-fleet --generate-cli-skeleton
+  aws ec2 create-fleet \
+      --generate-cli-skeleton
   ```
 
   The following EC2 Fleet parameters are available:
@@ -244,13 +248,13 @@ To create an EC2 Fleet, you need only specify the launch template, total target 
   }
   ```
 
-### EC2 Fleet JSON Configuration File Reference<a name="ec2-fleet-json-reference"></a>
+### EC2 Fleet JSON configuration file reference<a name="ec2-fleet-json-reference"></a>
 
 **Note**  
 Use lowercase for all parameter values; otherwise, you get an error when Amazon EC2 uses the JSON file to launch the EC2 Fleet\.
 
 **AllocationStrategy \(for SpotOptions\)**  
-\(Optional\) Indicates how to allocate the Spot Instance target capacity across the Spot Instance pools specified by the EC2 Fleet\. Valid values are `lowest-price` and `diversified`\. The default is `lowest-price`\. Specify the allocation strategy that meets your needs\. For more information, see [Allocation Strategies for Spot Instances](ec2-fleet-configuration-strategies.md#ec2-fleet-allocation-strategy)\.
+\(Optional\) Indicates how to allocate the Spot Instance target capacity across the Spot Instance pools specified by the EC2 Fleet\. Valid values are `lowest-price` and `diversified`\. The default is `lowest-price`\. Specify the allocation strategy that meets your needs\. For more information, see [Allocation strategies for Spot Instances](ec2-fleet-configuration-strategies.md#ec2-fleet-allocation-strategy)\.
 
 **InstanceInterruptionBehavior**  
 \(Optional\) The behavior when a Spot Instance is interrupted\. Valid values are `hibernate`, `stop`, and `terminate`\. By default, the Spot service terminates Spot Instances when they are interrupted\. If the fleet type is `maintain`, you can specify that the Spot service hibernates or stops Spot Instances when they are interrupted\.
@@ -333,7 +337,7 @@ If the value for `TotalTargetCapacity` is higher than the combined values for `O
 \(Optional\) By default, Amazon EC2 terminates your instances when the EC2 Fleet request expires\. The default value is `true`\. To keep them running after your request expires, do not enter a value for this parameter\.
 
 **Type**  
-\(Optional\) Indicates whether the EC2 Fleet submits a synchronous one\-time request for your desired capacity \(`instant`\), or an asynchronous one\-time request for your desired capacity, but with no attempt maintain the capacity or to submit requests in alternative capacity pools if capacity is unavailable \(`request`\), or submits an asynchronous request for your desired capacity and continues to maintain your desired capacity by replenishing interrupted Spot Instances \(`maintain`\)\. Valid values are `instant`, `request`, and `maintain`\. The default value is `maintain`\. For more information, see [EC2 Fleet Request Types](ec2-fleet-configuration-strategies.md#ec2-fleet-request-type)\.
+\(Optional\) Indicates whether the EC2 Fleet submits a synchronous one\-time request for your desired capacity \(`instant`\), or an asynchronous one\-time request for your desired capacity, but with no attempt maintain the capacity or to submit requests in alternative capacity pools if capacity is unavailable \(`request`\), or submits an asynchronous request for your desired capacity and continues to maintain your desired capacity by replenishing interrupted Spot Instances \(`maintain`\)\. Valid values are `instant`, `request`, and `maintain`\. The default value is `maintain`\. For more information, see [EC2 Fleet request types](ec2-fleet-configuration-strategies.md#ec2-fleet-request-type)\.
 
 **ValidFrom**  
 \(Optional\) To create a request that is valid only during a specific time period, enter a start date\.
@@ -353,15 +357,16 @@ When you create an EC2 Fleet, you must specify a launch template that includes i
 
 You can create an EC2 Fleet that includes multiple launch specifications that override the launch template\. The launch specifications can vary by instance type, Availability Zone, subnet, and maximum price, and can include a different weighted capacity\.
 
-When you create an EC2 Fleet, use a JSON file to specify information about the instances to launch\. For more information, see [EC2 Fleet JSON Configuration File Reference](#ec2-fleet-json-reference)\.
+When you create an EC2 Fleet, use a JSON file to specify information about the instances to launch\. For more information, see [EC2 Fleet JSON configuration file reference](#ec2-fleet-json-reference)\.
 
 EC2 Fleets can only be created using the AWS CLI\.
 
 **To create an EC2 Fleet \(AWS CLI\)**
-+ Use the following [create\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-fleet.html) \(AWS CLI\) command to create an EC2 Fleet\.
++ Use the [create\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-fleet.html) \(AWS CLI\) command to create an EC2 Fleet\.
 
 ```
-aws ec2 create-fleet --cli-input-json file://file_name.json
+aws ec2 create-fleet \
+    --cli-input-json file://file_name.json
 ```
 
 For example configuration files, see [EC2 Fleet Example Configurations](ec2-fleet-examples.md)\.
@@ -529,20 +534,22 @@ To tag an EC2 Fleet request when you create it, specify the key\-value pair in t
 To tag instances when they are launched by the fleet, specify the tags in the [launch template](ec2-launch-templates.md#create-launch-template) that is referenced in the EC2 Fleet request\.
 
 **To tag an existing EC2 Fleet request and instance \(AWS CLI\)**  
-Use the following [create\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-tags.html) command to tag existing resources\.
+Use the [create\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-tags.html) command to tag existing resources\.
 
 ```
-aws ec2 create-tags --resources fleet-12a34b55-67cd-8ef9-ba9b-9208dEXAMPLE i-1234567890abcdef0 --tags Key=purpose,Value=test
+aws ec2 create-tags \
+    --resources fleet-12a34b55-67cd-8ef9-ba9b-9208dEXAMPLE i-1234567890abcdef0 \
+    --tags Key=purpose,Value=test
 ```
 
-## Monitoring Your EC2 Fleet<a name="manage-ec2-fleet"></a>
+## Monitoring your EC2 Fleet<a name="manage-ec2-fleet"></a>
 
 The EC2 Fleet launches On\-Demand Instances when there is available capacity, and launches Spot Instances when your maximum price exceeds the Spot price and capacity is available\. The On\-Demand Instances run until you terminate them, and the Spot Instances run until they are interrupted or you terminate them\.
 
 The returned list of running instances is refreshed periodically and might be out of date\.
 
 **To monitor your EC2 Fleet \(AWS CLI\)**  
-Use the following [describe\-fleets](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-fleets.html) command to describe your EC2 Fleets\.
+Use the [describe\-fleets](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-fleets.html) command to describe your EC2 Fleets\.
 
 ```
 aws ec2 describe-fleets
@@ -588,10 +595,11 @@ The following is example output\.
 }
 ```
 
-Use the following [describe\-fleet\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-fleet-instances.html) command to describe the instances for the specified EC2 Fleet\.
+Use the [describe\-fleet\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-fleet-instances.html) command to describe the instances for the specified EC2 Fleet\.
 
 ```
-aws ec2 describe-fleet-instances --fleet-id fleet-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE
+aws ec2 describe-fleet-instances \
+    --fleet-id fleet-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE
 ```
 
 ```
@@ -614,7 +622,7 @@ aws ec2 describe-fleet-instances --fleet-id fleet-73fbd2ce-aa30-494c-8788-1cee4E
 }
 ```
 
-Use the following [describe\-fleet\-history](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-spot-fleet-request-history.html) command to describe the history for the specified EC2 Fleet for the specified time\. 
+Use the [describe\-fleet\-history](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-spot-fleet-request-history.html) command to describe the history for the specified EC2 Fleet for the specified time\. 
 
 ```
 aws ec2 describe-fleet-history --fleet-request-id fleet-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE --start-time 2018-04-10T00:00:00Z
@@ -633,12 +641,11 @@ aws ec2 describe-fleet-history --fleet-request-id fleet-73fbd2ce-aa30-494c-8788-
 
 You can modify an EC2 Fleet that is in the `submitted` or `active` state\. When you modify a fleet, it enters the `modifying` state\.
 
+You can only modify an EC2 Fleet that is of type `maintain`\. You cannot modify an EC2 Fleet of type `request` or `instant`\.
+
 You can modify the following parameters of an EC2 Fleet:
 + `target-capacity-specification` – Increase or decrease the target capacity for `TotalTargetCapacity`, `OnDemandTargetCapacity`, and `SpotTargetCapacity`\.
 + `excess-capacity-termination-policy` – Whether running instances should be terminated if the total target capacity of the EC2 Fleet is decreased below the current size of the fleet\. Valid values are `no-termination` and `termination`\.
-
-**Note**  
-You can only modify an EC2 Fleet that has `Type`=`maintain`\.
 
 When you increase the target capacity, the EC2 Fleet launches the additional instances according to the instance purchasing option specified for `DefaultTargetCapacityType`, which are either On\-Demand Instances or Spot Instances\.
 
@@ -649,16 +656,21 @@ When you decrease the target capacity, the EC2 Fleet deletes any open requests t
 When an EC2 Fleet terminates a Spot Instance because the target capacity was decreased, the instance receives a Spot Instance interruption notice\.
 
 **To modify an EC2 Fleet \(AWS CLI\)**  
-Use the following [modify\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-fleet.html) command to update the target capacity of the specified EC2 Fleet\.
+Use the [modify\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-fleet.html) command to update the target capacity of the specified EC2 Fleet\.
 
 ```
-aws ec2 modify-fleet --fleet-id fleet-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE --target-capacity-specification TotalTargetCapacity=20
+aws ec2 modify-fleet \
+    --fleet-id fleet-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE \
+    --target-capacity-specification TotalTargetCapacity=20
 ```
 
 If you are decreasing the target capacity but want to keep the fleet at its current size, you can modify the previous command as follows\.
 
 ```
-aws ec2 modify-fleet --fleet-id fleet-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE --target-capacity-specification TotalTargetCapacity=10 --excess-capacity-termination-policy no-termination
+aws ec2 modify-fleet \
+    --fleet-id fleet-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE \
+    --target-capacity-specification TotalTargetCapacity=10 \
+    --excess-capacity-termination-policy no-termination
 ```
 
 ## Deleting an EC2 Fleet<a name="delete-fleet"></a>
@@ -667,11 +679,15 @@ If you no longer require an EC2 Fleet, you can delete it\. After you delete a fl
 
 You must specify whether the EC2 Fleet must terminate its instances\. If you specify that the instances must be terminated when the fleet is deleted, it enters the `deleted_terminating` state\. Otherwise, it enters the `deleted_running` state, and the instances continue to run until they are interrupted or you terminate them manually\.
 
+You can only delete fleets of type `request` and `maintain`\. You cannot delete an `instant` EC2 Fleet\.
+
 **To delete an EC2 Fleet \(AWS CLI\)**  
 Use the [delete\-fleets](https://docs.aws.amazon.com/cli/latest/reference/ec2/delete-fleets.html) command and the `--terminate-instances` parameter to delete the specified EC2 Fleet and terminate the instances\.
 
 ```
-aws ec2 delete-fleets --fleet-ids fleet-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE --terminate-instances
+aws ec2 delete-fleets \
+    --fleet-ids fleet-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE \
+    --terminate-instances
 ```
 
 The following is example output\.
@@ -692,7 +708,9 @@ The following is example output\.
 You can modify the previous command using the `--no-terminate-instances` parameter to delete the specified EC2 Fleet without terminating the instances\.
 
 ```
-aws ec2 delete-fleets --fleet-ids fleet-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE --no-terminate-instances
+aws ec2 delete-fleets \
+    --fleet-ids fleet-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE \
+    --no-terminate-instances
 ```
 
 The following is example output\.

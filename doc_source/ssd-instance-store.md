@@ -1,14 +1,12 @@
 # SSD Instance Store Volumes<a name="ssd-instance-store"></a>
 
-The following instances support instance store volumes that use solid state drives \(SSD\) to deliver high random I/O performance: C3, G2, I2, M3, R3, and X1\. For more information about the instance store volumes support by each instance type, see [Instance Store Volumes](InstanceStorage.md#instance-store-volumes)\.
-
 To ensure the best IOPS performance from your SSD instance store volumes on Linux, we recommend that you use the most recent version of Amazon Linux, or another Linux AMI with a kernel version of 3\.8 or later\. If you do not use a Linux AMI with a kernel version of 3\.8 or later, your instance won't achieve the maximum IOPS performance available for these instance types\.
 
 Like other instance store volumes, you must map the SSD instance store volumes for your instance when you launch it\. The data on an SSD instance volume persists only for the life of its associated instance\. For more information, see [Add Instance Store Volumes to Your EC2 Instance](add-instance-store-volumes.md)\.
 
 ## NVMe SSD Volumes<a name="nvme-ssd-volumes"></a>
 
-The following instances offer non\-volatile memory express \(NVMe\) SSD instance store volumes: C5d, I3, I3en, F1, M5ad, M5d, `p3dn.24xlarge`, R5ad, R5d, and z1d\. To access NVMe volumes, the [NVMe drivers](nvme-ebs-volumes.md#install-nvme-driver) must be installed\. The following AMIs meet this requirement:
+The following instances offer non\-volatile memory express \(NVMe\) solid state drives \(SSD\) instance store volumes: C5d, G4, I3, I3en, F1, M5ad, M5d, `p3dn.24xlarge`, R5ad, R5d, and z1d\. To access NVMe volumes, the [NVMe drivers](nvme-ebs-volumes.md#install-nvme-driver) must be installed\. The following AMIs meet this requirement:
 + Amazon Linux 2
 + Amazon Linux AMI 2018\.03
 + Ubuntu 14\.04 \(with `linux-aws` kernel\) or later
@@ -55,10 +53,14 @@ The NVMe volumes are compliant with the NVMe 1\.0e specification\. You can use t
 
 The data on NVMe instance storage is encrypted using an XTS\-AES\-256 block cipher implemented in a hardware module on the instance\. The encryption keys are generated using the hardware module and are unique to each NVMe instance storage device\. All encryption keys are destroyed when the instance is stopped or terminated and cannot be recovered\. You cannot disable this encryption and you cannot provide your own encryption key\.
 
+## Non\-NVMe SSD Volumes<a name="ssd-volumes"></a>
+
+The following instances support instance store volumes that use non\-NVMe SSDs to deliver high random I/O performance: C3, G2, I2, M3, R3, and X1\. For more information about the instance store volumes support by each instance type, see [Instance Store Volumes](InstanceStorage.md#instance-store-volumes)\.
+
 ## Instance Store Volume TRIM Support<a name="InstanceStoreTrimSupport"></a>
 
-The following instances support SSD volumes with TRIM: C5d, F1, I2, I3, I3en, M5ad, M5d, `p3dn.24xlarge`, R3, R5ad, R5d, and z1d\.
+The following instances support SSD volumes with TRIM: C5d, F1, G4, I2, I3, I3en, M5ad, M5d, `p3dn.24xlarge`, R3, R5ad, R5d, and z1d\.
 
-Instance store volumes that support TRIM are fully trimmed before they are allocated to your instance\. These volumes are not formatted with a file system when an instance launches, so you must format them before they can be mounted and used\. For faster access to these volumes, you should skip the TRIM operation when you format them\.
+Instance store volumes that support TRIM are fully trimmed before they are allocated to your instance\. These volumes are not formatted with a file system when an instance launches, so you must format them before they can be mounted and used\. For faster access to these volumes, you should skip the TRIM operation when you format them\. 
 
-With instance store volumes that support TRIM, you can use the TRIM command to notify the SSD controller when you no longer need data that you've written\. This provides the controller with more free space, which can reduce write amplification and increase performance\. On Linux, use the `fstrim` command to enable periodic TRIM\. 
+With instance store volumes that support TRIM, you can use the TRIM command to notify the SSD controller when you no longer need data that you've written\. This provides the controller with more free space, which can reduce write amplification and increase performance\. On Linux, use the `fstrim` command to enable periodic TRIM\.

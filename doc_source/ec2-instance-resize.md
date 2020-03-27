@@ -42,7 +42,7 @@ You must stop your Amazon EBS–backed instance before you can change its instan
 + If your instance is in a [cluster placement group](placement-groups.md#placement-groups-cluster) and, after changing the instance type, the instance start fails, try the following: stop all the instances in the cluster placement group, change the instance type for the affected instance, and then restart all the instances in the cluster placement group\. 
 + Ensure that you plan for downtime while your instance is stopped\. Stopping and resizing an instance may take a few minutes, and restarting your instance may take a variable amount of time depending on your application's startup scripts\.
 
-For more information, see [Stop and Start Your Instance](Stop_Start.md)\.
+For more information, see [Stop and start your instance](Stop_Start.md)\.
 
 Use the following procedure to resize an Amazon EBS–backed instance using the AWS Management Console\.
 

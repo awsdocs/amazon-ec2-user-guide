@@ -184,7 +184,7 @@ You can use the launch wizard in the Amazon EC2 console to launch an EC2\-Classi
 **Note**  
 Some instance types, such as T2 instance types, can only be launched into a VPC\. Ensure that you select an instance type that can be launched into EC2\-Classic\.
 
-1. In the **Link to VPC \(ClassicLink\)** section, select a VPC from **Link to VPC**\. Only ClassicLink\-enabled VPCs are displayed\. Select the security groups from the VPC to associate with the instance\. Complete the other configuration options on the page, and then complete the rest of the steps in the wizard to launch your instance\. For more information about using the launch wizard, see [Launching Your Instance from an AMI](launching-instance.md#launch-instance-console)\.
+1. In the **Link to VPC \(ClassicLink\)** section, select a VPC from **Link to VPC**\. Only ClassicLink\-enabled VPCs are displayed\. Select the security groups from the VPC to associate with the instance\. Complete the other configuration options on the page, and then complete the rest of the steps in the wizard to launch your instance\. For more information about using the launch wizard, see [Launching your instance from an AMI](launching-instance.md#launch-instance-console)\.
 
 ### Viewing Your ClassicLink\-Enabled VPCs and Linked Instances<a name="classiclink-describe-vpcs-instances"></a>
 

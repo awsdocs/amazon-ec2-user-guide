@@ -9,7 +9,7 @@ When working with instance user data, keep the following in mind:
 
 ## Specify Instance User Data at Launch<a name="specify-user-data-launch"></a>
 
-You can specify user data when you launch an instance\. For more information, see [Launching an Instance Using the Launch Instance Wizard](launching-instance.md) and [Running Commands on Your Linux Instance at Launch](user-data.md)\.
+You can specify user data when you launch an instance\. For more information, see [Launching an instance using the Launch Instance Wizard](launching-instance.md) and [Running Commands on Your Linux Instance at Launch](user-data.md)\.
 
 ## Modify Instance User Data<a name="modify-user-data-run"></a>
 

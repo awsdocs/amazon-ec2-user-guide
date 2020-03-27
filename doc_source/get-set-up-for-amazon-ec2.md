@@ -65,7 +65,7 @@ This is the only chance for you to save the private key file\. You'll need to pr
 
    If you do not set these permissions, then you cannot connect to your instance using this key pair\. For more information, see [Error: Unprotected Private Key File](TroubleshootingInstancesConnecting.md#troubleshoot-unprotected-key)\.
 
-For more information, see [Amazon EC2 Key Pairs](ec2-key-pairs.md)\.
+For more information, see [Amazon EC2 key pairs](ec2-key-pairs.md)\.
 
 ## Create a Security Group<a name="create-a-base-security-group"></a>
 

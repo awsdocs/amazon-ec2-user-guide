@@ -17,7 +17,7 @@ An Amazon EC2 Dedicated Host is a physical server with EC2 instance capacity ful
 
 Dedicated Hosts and Dedicated Instances can both be used to launch Amazon EC2 instances onto physical servers that are dedicated for your use\.
 
-There are no performance, security, or physical differences between Dedicated Instances and instances on Dedicated Hosts\. The following table highlights some of the key differences between Dedicated Hosts and Dedicated Instances:
+There are no performance, security, or physical differences between Dedicated Instances and instances on Dedicated Hosts\. However, there are some differences between the two\. The following table highlights some of the key differences between Dedicated Hosts and Dedicated Instances:
 
 
 |  | Dedicated Host | Dedicated Instance | 
@@ -41,7 +41,7 @@ These are the general steps to follow in order to bring your own volume licensed
 
 1. After you import your machine image, you can launch instances from it onto active Dedicated Hosts in your account\.
 
-1. When you run these instances, depending on the operating system, you may be required to activate these instances against your own KMS server\.
+1. When you run these instances, depending on the operating system, you might be required to activate these instances against your own KMS server\.
 
 **Note**  
 To track how your images are used in AWS, enable host recording in AWS Config\. You can use AWS Config to record configuration changes to a Dedicated Host and use the output as a data source for license reporting\. For more information, see [Tracking Configuration Changes](dedicated-hosts-aws-config.md)\. 

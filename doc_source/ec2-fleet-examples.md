@@ -1,18 +1,18 @@
 # EC2 Fleet Example Configurations<a name="ec2-fleet-examples"></a>
 
-The following examples show launch configurations that you can use with the [create\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-fleet.html) command to create an EC2 Fleet\. For more information about the [create\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-fleet.html) parameters, see the [EC2 Fleet JSON Configuration File Reference](manage-ec2-fleet.md#ec2-fleet-json-reference)\.
+The following examples show launch configurations that you can use with the [create\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-fleet.html) command to create an EC2 Fleet\. For more information about the [create\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-fleet.html) parameters, see the [EC2 Fleet JSON configuration file reference](manage-ec2-fleet.md#ec2-fleet-json-reference)\.
 
 **Topics**
-+ [Example 1: Launch Spot Instances as the Default Purchasing Option](#ec2-fleet-config1)
-+ [Example 2: Launch On\-Demand Instances as the Default Purchasing Option](#ec2-fleet-config2)
-+ [Example 3: Launch On\-Demand Instances as the Primary Capacity](#ec2-fleet-config3)
-+ [Example 4: Launch Spot Instances Using the Lowest Price Allocation Strategy](#ec2-fleet-config4)
-+ [Example 5: Launch On\-Demand Instances Using Capacity Reservations and the Prioritized Allocation Strategy](#ec2-fleet-config5)
-+ [Example 6: Launch On\-Demand Instances Using Capacity Reservations and the Prioritized Allocation Strategy when the Total Target Capacity is more than the number of Unused Capacity Reservations](#ec2-fleet-config6)
-+ [Example 7: Launch On\-Demand Instances Using Capacity Reservations and the Lowest\-Price Allocation Strategy](#ec2-fleet-config7)
-+ [Example 8: Launch On\-Demand Instances Using Capacity Reservations and the Lowest\-Price Allocation Strategy when the Total Target Capacity is more than the number of Unused Capacity Reservations](#ec2-fleet-config8)
++ [Example 1: Launch Spot Instances as the default purchasing option](#ec2-fleet-config1)
++ [Example 2: Launch On\-Demand Instances as the default purchasing option](#ec2-fleet-config2)
++ [Example 3: Launch On\-Demand Instances as the primary capacity](#ec2-fleet-config3)
++ [Example 4: Launch Spot Instances using the `lowest-price` allocation strategy](#ec2-fleet-config4)
++ [Example 5: Launch On\-Demand Instances using Capacity Reservations and the `prioritized` allocation strategy](#ec2-fleet-config5)
++ [Example 6: Launch On\-Demand Instances using Capacity Reservations and the `prioritized` allocation strategy when the total target capacity is more than the number of unused Capacity Reservations](#ec2-fleet-config6)
++ [Example 7: Launch On\-Demand Instances using Capacity Reservations and the `lowest-price` allocation strategy](#ec2-fleet-config7)
++ [Example 8: Launch On\-Demand Instances using Capacity Reservations and the `lowest-price` allocation strategy when the total target capacity is more than the number of unused Capacity Reservations](#ec2-fleet-config8)
 
-## Example 1: Launch Spot Instances as the Default Purchasing Option<a name="ec2-fleet-config1"></a>
+## Example 1: Launch Spot Instances as the default purchasing option<a name="ec2-fleet-config1"></a>
 
 The following example specifies the minimum parameters required in an EC2 Fleet: a launch template, target capacity, and default purchasing option\. The launch template is identified by its launch template ID and version number\. The target capacity for the fleet is 2 instances, and the default purchasing option is `spot`, which results in the fleet launching 2 Spot Instances\.
 
@@ -34,7 +34,7 @@ The following example specifies the minimum parameters required in an EC2 Fleet:
 }
 ```
 
-## Example 2: Launch On\-Demand Instances as the Default Purchasing Option<a name="ec2-fleet-config2"></a>
+## Example 2: Launch On\-Demand Instances as the default purchasing option<a name="ec2-fleet-config2"></a>
 
 The following example specifies the minimum parameters required in an EC2 Fleet: a launch template, target capacity, and default purchasing option\. The launch template is identified by its launch template ID and version number\. The target capacity for the fleet is 2 instances, and the default purchasing option is `on-demand`, which results in the fleet launching 2 On\-Demand Instances\.
 
@@ -56,7 +56,7 @@ The following example specifies the minimum parameters required in an EC2 Fleet:
 }
 ```
 
-## Example 3: Launch On\-Demand Instances as the Primary Capacity<a name="ec2-fleet-config3"></a>
+## Example 3: Launch On\-Demand Instances as the primary capacity<a name="ec2-fleet-config3"></a>
 
 The following example specifies the total target capacity of 2 instances for the fleet, and a target capacity of 1 On\-Demand Instance\. The default purchasing option is `spot`\. The fleet launches 1 On\-Demand Instance as specified, but needs to launch one more instance to fulfill the total target capacity\. The purchasing option for the difference is calculated as `TotalTargetCapacity` – `OnDemandTargetCapacity` = `DefaultTargetCapacityType`, which results in the fleet launching 1 Spot Instance\.
 
@@ -79,7 +79,7 @@ The following example specifies the total target capacity of 2 instances for the
 }
 ```
 
-## Example 4: Launch Spot Instances Using the Lowest Price Allocation Strategy<a name="ec2-fleet-config4"></a>
+## Example 4: Launch Spot Instances using the `lowest-price` allocation strategy<a name="ec2-fleet-config4"></a>
 
 If the allocation strategy for Spot Instances is not specified, the default allocation strategy, which is `lowest-price`, is used\. The following example uses the `lowest-price` allocation strategy\. The three launch specifications, which override the launch template, have different instance types but the same weighted capacity and subnet\. The total target capacity is 2 instances and the default purchasing option is `spot`\. The EC2 Fleet launches 2 Spot Instances using the instance type of the launch specification with the lowest price\.
 
@@ -118,7 +118,7 @@ If the allocation strategy for Spot Instances is not specified, the default allo
 }
 ```
 
-## Example 5: Launch On\-Demand Instances Using Capacity Reservations and the Prioritized Allocation Strategy<a name="ec2-fleet-config5"></a>
+## Example 5: Launch On\-Demand Instances using Capacity Reservations and the `prioritized` allocation strategy<a name="ec2-fleet-config5"></a>
 
 You can configure a fleet to use On\-Demand Capacity Reservations first when launching On\-Demand Instances by setting the usage strategy for Capacity Reservations to `use-capacity-reservations-first`\. And if multiple instance pools have unused Capacity Reservations, the chosen On\-Demand allocation strategy is applied\. In this example, the On\-Demand allocation strategy is `prioritized`\.
 
@@ -234,7 +234,7 @@ After the fleet is launched, you can run [describe\-capacity\-reservations](http
 }
 ```
 
-## Example 6: Launch On\-Demand Instances Using Capacity Reservations and the Prioritized Allocation Strategy when the Total Target Capacity is more than the number of Unused Capacity Reservations<a name="ec2-fleet-config6"></a>
+## Example 6: Launch On\-Demand Instances using Capacity Reservations and the `prioritized` allocation strategy when the total target capacity is more than the number of unused Capacity Reservations<a name="ec2-fleet-config6"></a>
 
 You can configure a fleet to use On\-Demand Capacity Reservations first when launching On\-Demand Instances by setting the usage strategy for Capacity Reservations to `use-capacity-reservations-first`\. And if the number of unused Capacity Reservations is less than the On\-Demand target capacity, the remaining On\-Demand target capacity is launched according to the chosen On\-Demand allocation strategy\. In this example, the On\-Demand allocation strategy is `prioritized`\.
 
@@ -351,7 +351,7 @@ After the fleet is launched, you can run [describe\-capacity\-reservations](http
 }
 ```
 
-## Example 7: Launch On\-Demand Instances Using Capacity Reservations and the Lowest\-Price Allocation Strategy<a name="ec2-fleet-config7"></a>
+## Example 7: Launch On\-Demand Instances using Capacity Reservations and the `lowest-price` allocation strategy<a name="ec2-fleet-config7"></a>
 
 You can configure a fleet to use On\-Demand Capacity Reservations first when launching On\-Demand Instances by setting the usage strategy for Capacity Reservations to `use-capacity-reservations-first`\. And if multiple instance pools have unused Capacity Reservations, the chosen On\-Demand allocation strategy is applied\. In this example, the On\-Demand allocation strategy is `lowest-price`\.
 
@@ -470,7 +470,7 @@ After the fleet is launched, you can run [describe\-capacity\-reservations](http
 }
 ```
 
-## Example 8: Launch On\-Demand Instances Using Capacity Reservations and the Lowest\-Price Allocation Strategy when the Total Target Capacity is more than the number of Unused Capacity Reservations<a name="ec2-fleet-config8"></a>
+## Example 8: Launch On\-Demand Instances using Capacity Reservations and the `lowest-price` allocation strategy when the total target capacity is more than the number of unused Capacity Reservations<a name="ec2-fleet-config8"></a>
 
 You can configure a fleet to use On\-Demand Capacity Reservations first when launching On\-Demand Instances by setting the usage strategy for Capacity Reservations to `use-capacity-reservations-first`\. And if the number of unused Capacity Reservations is less than the On\-Demand target capacity, the remaining On\-Demand target capacity is launched according to the chosen On\-Demand allocation strategy\. In this example, the On\-Demand allocation strategy is `lowest-price`\.
 

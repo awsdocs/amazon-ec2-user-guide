@@ -30,7 +30,7 @@ When you launch an instance, it enters the `pending` state\. The instance type t
 
 As soon as your instance transitions to the `running` state, you're billed for each second, with a one\-minute minimum, that you keep the instance running, even if the instance remains idle and you don't connect to it\.
 
-For more information, see [Launch Your Instance](LaunchingAndUsingInstances.md) and [Connect to Your Linux Instance](AccessingInstances.md)\.
+For more information, see [Launch your instance](LaunchingAndUsingInstances.md) and [Connect to Your Linux Instance](AccessingInstances.md)\.
 
 ## Instance Stop and Start \(Amazon EBS\-Backed Instances Only\)<a name="instance-stop-start"></a>
 
@@ -44,7 +44,7 @@ Your instance retains its private IPv4 address, which means that an Elastic IP a
 
 Each time you transition an instance from `stopped` to `running`, we charge per second when the instance is running, with a minimum of one minute every time you start your instance\.
 
-For more information, see [Stop and Start Your Instance](Stop_Start.md)\.
+For more information, see [Stop and start your instance](Stop_Start.md)\.
 
 ## Instance Hibernate \(Amazon EBS\-Backed Instances Only\)<a name="instance-hibernate"></a>
 

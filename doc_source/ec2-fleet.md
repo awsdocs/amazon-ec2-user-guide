@@ -20,19 +20,19 @@ If you have Reserved Instances and you specify On\-Demand Instances in your flee
 There is no additional charge for using EC2 Fleet\. You pay only for the EC2 instances that the fleet launches for you\.
 
 **Topics**
-+ [EC2 Fleet Limitations](#EC2-fleet-limitations)
-+ [EC2 Fleet Limits](#ec2-fleet-limits)
-+ [EC2 Fleet Configuration Strategies](ec2-fleet-configuration-strategies.md)
++ [EC2 Fleet limitations](#EC2-fleet-limitations)
++ [EC2 Fleet limits](#ec2-fleet-limits)
++ [EC2 Fleet configuration strategies](ec2-fleet-configuration-strategies.md)
 + [Managing an EC2 Fleet](manage-ec2-fleet.md)
 
-## EC2 Fleet Limitations<a name="EC2-fleet-limitations"></a>
+## EC2 Fleet limitations<a name="EC2-fleet-limitations"></a>
 
 The following limitations apply to EC2 Fleet:
 + EC2 Fleet is available only through the API or AWS CLI\.
 + An EC2 Fleet request can't span AWS Regions\. You need to create a separate EC2 Fleet for each Region\.
 + An EC2 Fleet request can't span different subnets from the same Availability Zone\.
 
-## EC2 Fleet Limits<a name="ec2-fleet-limits"></a>
+## EC2 Fleet limits<a name="ec2-fleet-limits"></a>
 
 The usual Amazon EC2 limits apply to instances launched by an EC2 Fleet, such as Spot request price limits, instance limits, and volume limits\. In addition, the following limits apply:
 + The number of active EC2 Fleets per AWS Region: 1,000 \* †

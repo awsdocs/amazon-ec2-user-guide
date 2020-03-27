@@ -87,9 +87,9 @@ If you try to connect to your instance and get the error message, `unable to loa
 
 **If the private key file is incorrectly configured, follow these steps to resolve the error**
 
-1. Create a new key pair\. For more information, see [Creating a Key Pair Using Amazon EC2](ec2-key-pairs.md#having-ec2-create-your-key-pair)\.
+1. Create a new key pair\. For more information, see [Creating a key pair using Amazon EC2](ec2-key-pairs.md#having-ec2-create-your-key-pair)\.
 
-1. Add the new key pair to your instance\. For more information, see [Connecting to Your Linux Instance If You Lose Your Private Key](ec2-key-pairs.md#replacing-lost-key-pair)\.
+1. Add the new key pair to your instance\. For more information, see [Connecting to your Linux instance if you lose your private key](ec2-key-pairs.md#replacing-lost-key-pair)\.
 
 1. Connect to your instance using the new key pair\.
 
@@ -177,7 +177,7 @@ Confirm that you are using the private key file that corresponds to the key pair
 
 1. Select your instance\. In the **Description** tab, verify the value of **Key pair name**\.
 
-1. If you did not specify a key pair when you launched the instance, you can terminate the instance and launch a new instance, ensuring that you specify a key pair\. If this is an instance that you have been using but you no longer have the `.pem` file for your key pair, you can replace the key pair with a new one\. For more information, see [Connecting to Your Linux Instance If You Lose Your Private Key](ec2-key-pairs.md#replacing-lost-key-pair)\.
+1. If you did not specify a key pair when you launched the instance, you can terminate the instance and launch a new instance, ensuring that you specify a key pair\. If this is an instance that you have been using but you no longer have the `.pem` file for your key pair, you can replace the key pair with a new one\. For more information, see [Connecting to your Linux instance if you lose your private key](ec2-key-pairs.md#replacing-lost-key-pair)\.
 
 If you generated your own key pair, ensure that your key generator is set up to create RSA keys\. DSA keys are not accepted\.
 
@@ -185,7 +185,7 @@ If you get a `Permission denied (publickey)` error and none of the above applies
 
 **To verify the permissions on your instance**
 
-1. Stop your instance and detach the root volume\. For more information, see [Stop and Start Your Instance](Stop_Start.md) and [Detaching an Amazon EBS Volume from an Instance](ebs-detaching-volume.md)\.
+1. Stop your instance and detach the root volume\. For more information, see [Stop and start your instance](Stop_Start.md) and [Detaching an Amazon EBS Volume from an Instance](ebs-detaching-volume.md)\.
 
 1. Launch a temporary instance in the same Availability Zone as your current instance \(use a similar or the same AMI as you used for your current instance\), and attach the root volume to the temporary instance\. For more information, see [Attaching an Amazon EBS Volume to an Instance](ebs-attaching-volume.md)\.
 

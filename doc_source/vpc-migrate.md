@@ -111,7 +111,7 @@ You can use the Amazon EC2 launch wizard to launch an instance into your VPC\.
 
 1. Review your instance details, then choose **Launch** to specify a key pair and launch your instance\.
 
-For more information about the parameters you can configure in each step of the wizard, see [Launching an Instance Using the Launch Instance Wizard](launching-instance.md)\.
+For more information about the parameters you can configure in each step of the wizard, see [Launching an instance using the Launch Instance Wizard](launching-instance.md)\.
 
 #### Using Your New, VPC\-Only Account<a name="use-vpc-only-account"></a>
 
@@ -147,7 +147,7 @@ To launch an instance in your new AWS account, you'll first have to share the AM
 
 1. Review your instance details, then choose **Launch** to specify a key pair and launch your instance\.
 
-For more information about the parameters you can configure in each step of the wizard, see [Launching an Instance Using the Launch Instance Wizard](launching-instance.md)\.
+For more information about the parameters you can configure in each step of the wizard, see [Launching an instance using the Launch Instance Wizard](launching-instance.md)\.
 
 ### Example: Migrating a Simple Web Application<a name="vpc-migrate-example"></a>
 
@@ -269,7 +269,7 @@ The next step in the migration process is to launch instances into your VPC so t
 
 1. Review your instance details, then choose **Launch** to specify a key pair and launch your instance\.
 
-For more information about the parameters you can configure in each step of the wizard, see [Launching an Instance Using the Launch Instance Wizard](launching-instance.md)\.
+For more information about the parameters you can configure in each step of the wizard, see [Launching an instance using the Launch Instance Wizard](launching-instance.md)\.
 
 After you've launched your instance and it's in the `running` state, you can connect to it and configure it as required\.
 

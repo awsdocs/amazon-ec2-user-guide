@@ -229,7 +229,7 @@ You can't manually disassociate the public IP address from your instance after l
 **Important**  
 You cannot auto\-assign a public IP address if you specify more than one network interface\. Additionally, you cannot override the subnet setting using the auto\-assign public IP feature if you specify an existing network interface for eth0\. 
 
-1. Follow the steps on the next pages of the wizard to complete your instance's setup\. For more information about the wizard configuration options, see [Launching an Instance Using the Launch Instance Wizard](launching-instance.md)\. On the final **Review Instance Launch** page, review your settings, and then choose **Launch** to choose a key pair and launch your instance\.
+1. Follow the steps on the next pages of the wizard to complete your instance's setup\. For more information about the wizard configuration options, see [Launching an instance using the Launch Instance Wizard](launching-instance.md)\. On the final **Review Instance Launch** page, review your settings, and then choose **Launch** to choose a key pair and launch your instance\.
 
 1. On the **Instances** page, select your new instance and view its public IP address in **IPv4 Public IP** field in the details pane\.
 

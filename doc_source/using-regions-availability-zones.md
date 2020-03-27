@@ -66,6 +66,7 @@ To use a Local Zone, you must first enable it\. For more information, see [Enabl
 + Amazon EBS volumes
 + Amazon FSx file servers
 + Application Load Balancer
++ Dedicated Hosts
 
 Local Zones are not available in every Region\. For information about the Regions that support Local Zones, see [Available Regions](#concepts-available-regions)\.
 

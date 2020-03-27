@@ -1,6 +1,16 @@
 # Enabling Enhanced Networking with the Elastic Network Adapter \(ENA\) on Linux Instances<a name="enhanced-networking-ena"></a>
 
-Amazon EC2 provides enhanced networking capabilities through the Elastic Network Adapter \(ENA\)\.
+Amazon EC2 provides enhanced networking capabilities through the Elastic Network Adapter \(ENA\)\. To use enhanced networking, you must install the required ENA module and enable ENA support\.
+
+The following AMIs include the required ENA module and have ENA support enabled:
++ Amazon Linux 2
++ Amazon Linux AMI 2018\.03
++ Ubuntu 14\.04 \(with `linux-aws` kernel\) or later
++ Red Hat Enterprise Linux 7\.4 or later
++ SUSE Linux Enterprise Server 12 SP2 or later
++ CentOS 7\.4\.1708 or later
++ FreeBSD 11\.1 or later
++ Debian GNU/Linux 9 or later
 
 **Topics**
 + [Requirements](#ena-requirements)
@@ -119,7 +129,7 @@ supports-priv-flags: no
 
 ## Enabling Enhanced Networking on the Amazon Linux AMI<a name="enable-enhanced-networking-ena-AL"></a>
 
-Amazon Linux 2 and the latest versions of the Amazon Linux AMI have the module required for enhanced networking installed and have the required `enaSupport` attribute set\. Therefore, if you launch an instance with an HVM version of Amazon Linux on a supported instance type, enhanced networking is already enabled for your instance\. For more information, see [Testing Whether Enhanced Networking Is Enabled](#test-enhanced-networking-ena)\.
+Amazon Linux 2 and the latest versions of the Amazon Linux AMI include the module required for enhanced networking with ENA installed and have ENA support enabled\. Therefore, if you launch an instance with an HVM version of Amazon Linux on a supported instance type, enhanced networking is already enabled for your instance\. For more information, see [Testing Whether Enhanced Networking Is Enabled](#test-enhanced-networking-ena)\.
 
 If you launched your instance using an older Amazon Linux AMI and it does not have enhanced networking enabled already, use the following procedure to enable enhanced networking\.
 
@@ -177,7 +187,7 @@ Follow the previous procedure until the step where you stop the instance\. Creat
 
 ## Enabling Enhanced Networking on Ubuntu<a name="enhanced-networking-ena-ubuntu"></a>
 
-The latest Ubuntu HVM AMIs have the module required for enhanced networking with ENA installed and have the required `enaSupport` attribute set\. Therefore, if you launch an instance with the latest Ubuntu HVM AMI on a supported instance type, enhanced networking is already enabled for your instance\. For more information, see [Testing Whether Enhanced Networking Is Enabled](#test-enhanced-networking-ena)\. 
+The latest Ubuntu HVM AMIs include the module required for enhanced networking with ENA installed and have ENA support enabled\. Therefore, if you launch an instance with the latest Ubuntu HVM AMI on a supported instance type, enhanced networking is already enabled for your instance\. For more information, see [Testing Whether Enhanced Networking Is Enabled](#test-enhanced-networking-ena)\. 
 
 If you launched your instance using an older AMI and it does not have enhanced networking enabled already, you can install the `linux-aws` kernel package to get the latest enhanced networking drivers and update the required attribute\.
 
@@ -232,7 +242,9 @@ Follow the previous procedure until the step where you stop the instance\. Creat
 
 ## Enabling Enhanced Networking on Linux<a name="enhanced-networking-ena-linux"></a>
 
-The following procedure provides the general steps for enabling enhanced networking on a Linux distribution other than Amazon Linux AMI or Ubuntu, such as SUSE Linux Enterprise Server \(SLES\), Red Hat Enterprise Linux, or CentOS\. Before you begin, see [Testing Whether Enhanced Networking Is Enabled](#test-enhanced-networking-ena) to check if your instance is already enabled for enhanced networking\. For more information, such as detailed syntax for commands, file locations, or package and tool support, see the specific documentation for your Linux distribution\.
+The latest AMIs for Red Hat Enterprise Linux, SUSE Linux Enterprise Server, and CentOS include the module required for enhanced networking with ENA and have ENA support enabled\. Therefore, if you launch an instance with the latest AMI on a supported instance type, enhanced networking is already enabled for your instance\. For more information, see [Testing Whether Enhanced Networking Is Enabled](#test-enhanced-networking-ena)\.
+
+The following procedure provides the general steps for enabling enhanced networking on a Linux distribution other than Amazon Linux AMI or Ubuntu\. For more information, such as detailed syntax for commands, file locations, or package and tool support, see the documentation for your Linux distribution\.
 
 **To enable enhanced networking on Linux**
 

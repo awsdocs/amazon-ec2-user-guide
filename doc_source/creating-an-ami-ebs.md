@@ -33,9 +33,9 @@ You can create an AMI using the AWS Management Console or the command line\. The
 
 **To create an AMI from an instance using the console**
 
-1. Select an appropriate EBS\-backed AMI to serve as a starting point for your new AMI, and configure it as needed before launch\. For more information, see [Launching an Instance Using the Launch Instance Wizard](launching-instance.md)\.
+1. Select an appropriate EBS\-backed AMI to serve as a starting point for your new AMI, and configure it as needed before launch\. For more information, see [Launching an instance using the Launch Instance Wizard](launching-instance.md)\.
 
-1. Choose **Launch** to launch an instance of the EBS\-backed AMI that you've selected\. Accept the default values as you step through the wizard\. For more information, see [Launching an Instance Using the Launch Instance Wizard](launching-instance.md)\.
+1. Choose **Launch** to launch an instance of the EBS\-backed AMI that you've selected\. Accept the default values as you step through the wizard\. For more information, see [Launching an instance using the Launch Instance Wizard](launching-instance.md)\.
 
 1. While the instance is running, connect to it\. You can perform any of the following actions on your instance to customize it for your needs:
    + Install software and applications
@@ -65,7 +65,7 @@ If you select **No reboot**, we can't guarantee the file system integrity of the
 
    \(Optional\) To view the snapshot that was created for the new AMI, choose **Snapshots**\. When you launch an instance from this AMI, we use this snapshot to create its root device volume\.
 
-1. Launch an instance from your new AMI\. For more information, see [Launching an Instance Using the Launch Instance Wizard](launching-instance.md)\.
+1. Launch an instance from your new AMI\. For more information, see [Launching an instance using the Launch Instance Wizard](launching-instance.md)\.
 
 1. The new running instance contains all of the customizations that you applied in previous steps\.
 

@@ -1,4 +1,4 @@
-# Stop and Start Your Instance<a name="Stop_Start"></a>
+# Stop and start your instance<a name="Stop_Start"></a>
 
 You can stop and start your instance if it has an Amazon EBS volume as its root device\. The instance retains its instance ID, but can change as described in the [Overview](#instance_stop) section\.
 
@@ -10,9 +10,9 @@ If you decide that you no longer need an instance, you can terminate it\. As soo
 
 **Topics**
 + [Overview](#instance_stop)
-+ [What Happens When You Stop an Instance \(API\)](#what-happens-stop)
-+ [Stopping and Starting Your Instances](#starting-stopping-instances)
-+ [Modifying a Stopped Instance](#Using_ChangingAttributesWhileInstanceStopped)
++ [What happens when you stop an instance \(API\)](#what-happens-stop)
++ [Stopping and starting your instances](#starting-stopping-instances)
++ [Modifying a stopped instance](#Using_ChangingAttributesWhileInstanceStopped)
 + [Troubleshooting](#troubleshoot-instance-stop)
 
 ## Overview<a name="instance_stop"></a>
@@ -40,15 +40,16 @@ You can modify the following attributes of an instance only when it is stopped:
 
 If you try to modify these attributes while the instance is running, Amazon EC2 returns the `IncorrectInstanceState` error\.
 
-## What Happens When You Stop an Instance \(API\)<a name="what-happens-stop"></a>
+## What happens when you stop an instance \(API\)<a name="what-happens-stop"></a>
 
 When an EC2 instance is stopped using the `stop-instances` command, the following is registered at the OS level:
 + The API request will send a button press event to the guest\.
 + Various system services will be stopped as a result of the button press event\. **systemd** handles a graceful shutdown of the system\. Graceful shutdown is triggered by the ACPI shutdown button press event from the hypervisor\.
 + ACPI shutdown will be initiated\.
-+ The instance will shut down when the graceful shutdown process exits\. There is no configurable OS shutdown time\. 
++ The instance will shut down when the graceful shutdown process exits\. There is no configurable OS shutdown time\.
++ If the instance OS does not shut down cleanly within four minutes, a hard reboot is performed\.
 
-## Stopping and Starting Your Instances<a name="starting-stopping-instances"></a>
+## Stopping and starting your instances<a name="starting-stopping-instances"></a>
 
 You can stop and start your Amazon EBS\-backed instance using the console or the command line\.
 
@@ -64,7 +65,7 @@ When you stop an instance, the data on any instance store volumes is erased\. To
 
 1. In the confirmation dialog box, choose **Yes, Stop**\. It can take a few minutes for the instance to stop\.
 
-1. While your instance is stopped, you can modify certain instance attributes\. For more information, see [Modifying a Stopped Instance](#Using_ChangingAttributesWhileInstanceStopped)\.
+1. While your instance is stopped, you can modify certain instance attributes\. For more information, see [Modifying a stopped instance](#Using_ChangingAttributesWhileInstanceStopped)\.
 
 1. To start the stopped instance, select the instance, and choose **Actions**, **Instance State**, **Start**\.
 
@@ -76,7 +77,7 @@ You can use one of the following commands\. For more information about these com
 + [stop\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) and [start\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/start-instances.html) \(AWS CLI\)
 + [Stop\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Stop-EC2Instance.html) and [Start\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Start-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
 
-## Modifying a Stopped Instance<a name="Using_ChangingAttributesWhileInstanceStopped"></a>
+## Modifying a stopped instance<a name="Using_ChangingAttributesWhileInstanceStopped"></a>
 
 You can change the instance type, user data, and EBS\-optimization attributes of a stopped instance using the AWS Management Console or the command line interface\. You can't use the AWS Management Console to modify the `DeleteOnTermination`, kernel, or RAM disk attributes\.
 

@@ -143,11 +143,11 @@ To recover instances that are not supported, see [Manually Recovering Unsupporte
 Host recovery does not support recovering instances that use instance store volumes\. Follow the instructions below to manually recover any of your instances that could not be automatically recovered\.
 
 **Warning**  
-Data on instance store volumes is lost when an instance is stopped or terminated\. This includes instance store volumes that are attached to an instance that has an EBS volume as the root device\. To keep data from instance store volumes, back it up to persistent storage before the instance is stopped or terminated\.
+Data on instance store volumes is lost when an instance is stopped or terminated\. This includes instance store volumes that are attached to an instance that has an EBS volume as the root device\. To protect data from instance store volumes, back it up to persistent storage before the instance is stopped or terminated\.
 
 ### Manually Recovering EBS\-Backed Instances<a name="dedicated-hosts-recovery-ebs"></a>
 
-For EBS\-backed instances that could not be automatically recovered, we recommend that you manually stop and start the instances to recover them onto a new Dedicated Host\. For more information about stopping your instance, and about the changes that occur in your instance configuration when it's stopped, see [Stop and Start Your Instance](Stop_Start.md)\.
+For EBS\-backed instances that could not be automatically recovered, we recommend that you manually stop and start the instances to recover them onto a new Dedicated Host\. For more information about stopping your instance, and about the changes that occur in your instance configuration when it's stopped, see [Stop and start your instance](Stop_Start.md)\.
 
 ### Manually Recovering Instance Store\-Backed Instances<a name="dedicated-hosts-recovery-instancestore"></a>
 

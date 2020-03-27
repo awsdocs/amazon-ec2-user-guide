@@ -149,7 +149,7 @@ An `io1` volume provisioned with up to 32,000 IOPS supports a maximum I/O size o
 
 ![\[Throughput limits for io1 volumes\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/io1_throughput.png)
 
-Your per\-I/O latency experience depends on the IOPS provisioned and your workload pattern\. For the best per\-I/O latency experience, we recommend that you provision an IOPS\-to\-GiB ratio greater than 2:1\. For example, a 2,000 IOPS volume should be smaller than 1,000 GiB\.
+Your per\-I/O latency experience depends on the IOPS provisioned and your workload profile\. For the best I/O latency experience, ensure that you provision IOPS to meet the I/O profile of your workload\.
 
 **Note**  
 Some AWS accounts created before 2012 might have access to Availability Zones in us\-west\-1 or ap\-northeast\-1 that do not support Provisioned IOPS SSD \(`io1`\) volumes\. If you are unable to create an `io1` volume \(or launch an instance with an `io1` volume in its block device mapping\) in one of these Regions, try a different Availability Zone in the Region\. You can verify that an Availability Zone supports `io1` volumes by creating a 4 GiB `io1` volume in that zone\.

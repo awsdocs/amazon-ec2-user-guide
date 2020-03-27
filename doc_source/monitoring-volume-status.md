@@ -183,7 +183,7 @@ This procedure may cause the loss of write I/Os that were suspended when volume 
    1. In the details pane, choose **Enable Volume IO**, and then choose **Yes, Enable**\.   
 ![\[Enable IO\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/EnableIO_volumepage_gwt.png)
 
-1. Attach the volume to another instance\. For more information, see [Launch Your Instance](LaunchingAndUsingInstances.md) and [Attaching an Amazon EBS Volume to an Instance](ebs-attaching-volume.md)\.
+1. Attach the volume to another instance\. For more information, see [Launch your instance](LaunchingAndUsingInstances.md) and [Attaching an Amazon EBS Volume to an Instance](ebs-attaching-volume.md)\.
 
 1. Check the data on the volume\.
 

@@ -10,10 +10,11 @@ This documentation helps you understand how to apply the shared responsibility m
 
 **Topics**
 + [Infrastructure Security in Amazon EC2](infrastructure-security.md)
++ [Amazon EC2 and Interface VPC Endpoints](interface-vpc-endpoints.md)
 + [Resilience in Amazon EC2](disaster-recovery-resiliency.md)
 + [Data Protection in Amazon EC2](data-protection.md)
 + [Identity and Access Management for Amazon EC2](security-iam.md)
-+ [Amazon EC2 Key Pairs](ec2-key-pairs.md)
++ [Amazon EC2 key pairs](ec2-key-pairs.md)
 + [Amazon EC2 Security Groups for Linux Instances](ec2-security-groups.md)
 + [Update Management in Amazon EC2](update-management.md)
 + [Compliance Validation for Amazon EC2](compliance-validation.md)

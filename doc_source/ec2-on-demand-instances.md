@@ -19,9 +19,9 @@ For significant savings over On\-Demand Instances, use [AWS Savings Plans](http:
 ## Working With On\-Demand Instances<a name="working-with-on-demand-instances"></a>
 
 You can work with On\-Demand Instances in the following ways:
-+ [Launch Your Instance](LaunchingAndUsingInstances.md)
++ [Launch your instance](LaunchingAndUsingInstances.md)
 + [Connect to Your Linux Instance](AccessingInstances.md)
-+ [Stop and Start Your Instance](Stop_Start.md)
++ [Stop and start your instance](Stop_Start.md)
 + [Hibernate Your Linux Instance](Hibernate.md)
 + [Reboot Your Instance](ec2-instance-reboot.md)
 + [Instance Retirement](instance-retirement.md)

@@ -107,7 +107,7 @@ The steps differ depending on whether you intend to use EFA with Open MPI or wit
 1. Download the EFA software installation files\. To download the latest *stable* version, use the following command\.
 
    ```
-   $ curl -O https://s3-us-west-2.amazonaws.com/aws-efa-installer/aws-efa-installer-1.8.3.tar.gz
+   $ curl -O https://s3.us-west-2.amazonaws.com/aws-efa-installer/aws-efa-installer-1.8.3.tar.gz
    ```
 
    You can also get the latest version by replacing the version number with `latest` in the preceding command\.
@@ -261,7 +261,7 @@ You might need to refer to your HPC application’s documentation for installati
 
 ## Step 7: Create an EFA\-Enabled AMI<a name="efa-start-ami"></a>
 
-After you have installed the required software components, you create an EFA and NCCL\-enabled AMI that you can reuse to launch your EFA and NCCL\-enabled instances\.
+After you have installed the required software components, you create an AMI that you can reuse to launch your EFA\-enabled instances\.
 
 **To create an AMI from your temporary instance**
 
