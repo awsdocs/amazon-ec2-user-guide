@@ -1,12 +1,12 @@
-# Examples: Standard Mode<a name="standard-mode-examples"></a>
+# Standard mode examples<a name="standard-mode-examples"></a>
 
 The following examples explain credit use when instances are configured as `standard`\.
 
 **Topics**
-+ [Example 1: Explaining Credit Use with T3 Standard](#t3_standard_example)
-+ [Example 2: Explaining Credit Use with T2 Standard](#t2-standard-example)
++ [Example 1: Explaining credit use with T3 Standard](#t3_standard_example)
++ [Example 2: Explaining credit use with T2 Standard](#t2-standard-example)
 
-## Example 1: Explaining Credit Use with T3 Standard<a name="t3_standard_example"></a>
+## Example 1: Explaining credit use with T3 Standard<a name="t3_standard_example"></a>
 
 In this example, you see how a `t3.nano` instance launched as `standard` earns, accrues, and spends *earned* credits\. You see how the credit balance reflects the accrued *earned* credits\.
 
@@ -37,11 +37,11 @@ The following workflow references the numbered points on the graph:
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/t3_standard_graph.png)
 
-## Example 2: Explaining Credit Use with T2 Standard<a name="t2-standard-example"></a>
+## Example 2: Explaining credit use with T2 Standard<a name="t2-standard-example"></a>
 
 In this example, you see how a `t2.nano` instance launched as `standard` earns, accrues, and spends *launch* and *earned* credits\. You see how the credit balance reflects not only accrued *earned* credits, but also accrued *launch* credits\.
 
-A `t2.nano` instance gets 30 launch credits when it is launched, and earns 72 credits every 24 hours\. Its credit balance limit is 72 earned credits; launch credits do not count towards the limit\. After the limit is reached, new credits that are earned are discarded\. For more information about the number of credits that can be earned and accrued, see the [credit table](burstable-credits-baseline-concepts.md#burstable-performance-instances-credit-table)\. For more information about limits, see [Launch Credit Limits](burstable-performance-instances-standard-mode-concepts.md#launch-credit-limits)\.
+A `t2.nano` instance gets 30 launch credits when it is launched, and earns 72 credits every 24 hours\. Its credit balance limit is 72 earned credits; launch credits do not count towards the limit\. After the limit is reached, new credits that are earned are discarded\. For more information about the number of credits that can be earned and accrued, see the [credit table](burstable-credits-baseline-concepts.md#burstable-performance-instances-credit-table)\. For more information about limits, see [Launch credit limits](burstable-performance-instances-standard-mode-concepts.md#launch-credit-limits)\.
 
 You might launch a T2 Standard instance and use it immediately\. Or, you might launch a T2 Standard instance and leave it idle for a few days before running applications on it\. Whether an instance is used or remains idle determines if credits are spent or accrued\. If an instance remains idle for 24 hours from the time it is launched, the credit balance appears to exceed its limit because the balance reflects both accrued earned credits and accrued launch credits\. However, after CPU is used, the launch credits are spent first\. Thereafter, the limit always reflects the maximum number of earned credits that can be accrued\. 
 
@@ -73,8 +73,6 @@ For the next 12 hours, the instance continues to remain idle and earn credits, b
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/t2-graph2.png)
 
 
-****  
-
 |  |  | 
 | --- |--- |
 | Credit Spend Rate | 0 credits per 24 hours \(0% CPU utilization\) | 
@@ -91,8 +89,6 @@ For the next 25 hours, the instance uses 2% CPU, which requires 30 credits\. In 
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/t2-graph3.png)
 
-
-****  
 
 |  |  | 
 | --- |--- |
@@ -113,8 +109,6 @@ The balance does not decrease because the credit earn rate is higher than the cr
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/t2-graph4.png)
 
 
-****  
-
 |  |  | 
 | --- |--- |
 | Credit Spend Rate | 28\.8 credits per 24 hours \(1\.2 credits per hour, 2% CPU utilization, 40% of credit earn rate\)—13\.2 credits over 11 hours | 
@@ -131,8 +125,6 @@ For the next three hours, the instance bursts at 20% CPU utilization, which requ
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/t2-graph5.png)
 
-
-****  
 
 |  |  | 
 | --- |--- |
@@ -155,8 +147,6 @@ In this period, there are no accrued launch credits, and the number of accrued e
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/t2-graph6.png)
 
 
-****  
-
 |  |  | 
 | --- |--- |
 | Credit Spend Rate | 28\.8 credits per 24 hours \(1\.2 credits per hour, 2% CPU utilization, 40% of credit earn rate\)—18 credits over 15 hours | 
@@ -175,8 +165,6 @@ In Period 2, the credit balance included 30 accrued launch credits\. The launch 
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/t2-graph7.png)
 
-
-****  
 
 |  |  | 
 | --- |--- |

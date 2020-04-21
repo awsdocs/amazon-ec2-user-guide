@@ -20,7 +20,7 @@ To complete this tutorial using AWS Systems Manager Automation instead of the fo
 ## Step 1: Prepare the LAMP Server<a name="prepare-lamp-server"></a>
 
 **Prerequisites**  
-This tutorial assumes that you have already launched a new instance using Amazon Linux 2, with a public DNS name that is reachable from the internet\. For more information, see [Step 1: Launch an Instance](EC2_GetStarted.md#ec2-launch-instance)\. You must also have configured your security group to allow SSH \(port 22\), HTTP \(port 80\), and HTTPS \(port 443\) connections\. For more information about these prerequisites, see [Authorizing Inbound Traffic for Your Linux Instances](authorizing-access-to-an-instance.md)\.
+This tutorial assumes that you have already launched a new instance using Amazon Linux 2, with a public DNS name that is reachable from the internet\. For more information, see [Step 1: Launch an instance](EC2_GetStarted.md#ec2-launch-instance)\. You must also have configured your security group to allow SSH \(port 22\), HTTP \(port 80\), and HTTPS \(port 443\) connections\. For more information about these prerequisites, see [Authorizing inbound traffic for your Linux instances](authorizing-access-to-an-instance.md)\.
 
 **Note**  
 The following procedure installs the latest PHP version available on Amazon Linux 2, currently PHP 7\.2\. If you plan to use PHP applications other than those described in this tutorial, you should check their compatibility with PHP 7\.2\.<a name="install_apache-2"></a>

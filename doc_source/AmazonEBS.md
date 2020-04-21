@@ -12,9 +12,9 @@ Amazon EBS is recommended when data must be quickly accessible and requires long
 + [Features of Amazon EBS](#ebs-features)
 + [Amazon EBS Volumes](ebs-volumes.md)
 + [Amazon EBS Snapshots](EBSSnapshots.md)
-+ [Amazon EBS Data Services](ebs-data-services.md)
++ [Amazon EBS data services](ebs-data-services.md)
 + [Amazon EBS and NVMe on Linux Instances](nvme-ebs-volumes.md)
-+ [Amazon EBS–Optimized Instances](ebs-optimized.md)
++ [Amazon EBS–optimized instances](ebs-optimized.md)
 + [Amazon EBS Volume Performance on Linux Instances](EBSPerformance.md)
 + [Amazon CloudWatch Metrics for Amazon EBS](using_cloudwatch_ebs.md)
 + [Amazon CloudWatch Events for Amazon EBS](ebs-cloud-watch-events.md)
@@ -26,6 +26,6 @@ Amazon EBS is recommended when data must be quickly accessible and requires long
   + Provisioned IOPS SSD volumes support up to 64,000 IOPS and 1,000 MiB/s of throughput\. This allows you to predictably scale to tens of thousands of IOPS per EC2 instance\. For more information, see [Provisioned IOPS SSD \(`io1`\) Volumes](ebs-volume-types.md#EBSVolumeTypes_piops)\.
   + Throughput Optimized HDD volumes provide low\-cost magnetic storage that defines performance in terms of throughput rather than IOPS\. These volumes are ideal for large, sequential workloads such as Amazon EMR, ETL, data warehouses, and log processing\. For more information, see [Throughput Optimized HDD \(`st1`\) Volumes](ebs-volume-types.md#EBSVolumeTypes_st1)\.
   + Cold HDD volumes provide low\-cost magnetic storage that defines performance in terms of throughput rather than IOPS\. These volumes are ideal for large, sequential, cold\-data workloads\. If you require infrequent access to your data and are looking to save costs, these volumes provides inexpensive block storage\. For more information, see [Cold HDD \(`sc1`\) Volumes](ebs-volume-types.md#EBSVolumeTypes_sc1)\.
-+ You can create your EBS volumes as encrypted volumes, in order to meet a wide range of data\-at\-rest encryption requirements for regulated/audited data and applications\. When you create an encrypted EBS volume and attach it to a supported instance type, data stored at rest on the volume, disk I/O, and snapshots created from the volume are all encrypted\. The encryption occurs on the servers that host EC2 instances, providing encryption of data\-in\-transit from EC2 instances to EBS storage\. For more information, see [Amazon EBS Encryption](EBSEncryption.md)\.
++ You can create your EBS volumes as encrypted volumes, in order to meet a wide range of data\-at\-rest encryption requirements for regulated/audited data and applications\. When you create an encrypted EBS volume and attach it to a supported instance type, data stored at rest on the volume, disk I/O, and snapshots created from the volume are all encrypted\. The encryption occurs on the servers that host EC2 instances, providing encryption of data\-in\-transit from EC2 instances to EBS storage\. For more information, see [Amazon EBS encryption](EBSEncryption.md)\.
 + You can create point\-in\-time snapshots of EBS volumes, which are persisted to Amazon S3\. Snapshots protect data for long\-term durability, and they can be used as the starting point for new EBS volumes\. The same snapshot can be used to instantiate as many volumes as you wish\. These snapshots can be copied across AWS Regions\. For more information, see [Amazon EBS Snapshots](EBSSnapshots.md)\. 
 + Performance metrics, such as bandwidth, throughput, latency, and average queue length, are available through the AWS Management Console\. These metrics, provided by Amazon CloudWatch, allow you to monitor the performance of your volumes to make sure that you are providing enough performance for your applications without paying for resources you don't need\. For more information, see [Amazon EBS Volume Performance on Linux Instances](EBSPerformance.md)\.

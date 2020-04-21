@@ -2,18 +2,18 @@
 
 The Elastic Network Adapter \(ENA\) is designed to improve operating system health and reduce the chances of long\-term disruption because of unexpected hardware behavior and or failures\. The ENA architecture keeps device or driver failures as transparent to the system as possible\. This topic provides troubleshooting information for ENA\.
 
-If you are unable to connect to your instance, start with the [Troubleshooting Connectivity Issues](#ena-connectivity-issues) section\. 
+If you are unable to connect to your instance, start with the [Troubleshooting connectivity issues](#ena-connectivity-issues) section\. 
 
 If you are able to connect to your instance, you can gather diagnostic information by using the failure detection and recovery mechanisms that are covered in the later sections of this topic\.
 
 **Topics**
-+ [Troubleshooting Connectivity Issues](#ena-connectivity-issues)
-+ [Keep\-Alive Mechanism](#ena-keep-alive)
-+ [Register Read Timeout](#register-read-timeout-ena)
++ [Troubleshooting connectivity issues](#ena-connectivity-issues)
++ [Keep\-alive mechanism](#ena-keep-alive)
++ [Register read timeout](#register-read-timeout-ena)
 + [Statistics](#statistics-ena)
-+ [Driver Error Logs in syslog](#driver-error-logs-ena)
++ [Driver error logs in syslog](#driver-error-logs-ena)
 
-## Troubleshooting Connectivity Issues<a name="ena-connectivity-issues"></a>
+## Troubleshooting connectivity issues<a name="ena-connectivity-issues"></a>
 
 If you lose connectivity while enabling enhanced networking, the `ena` module might be incompatible with your instance's current running kernel\. This can happen if you install the module for a specific kernel version \(without dkms, or with an improperly configured dkms\.conf file\) and then your instance kernel is updated\. If the instance kernel that is loaded at boot time does not have the `ena` module properly installed, your instance will not recognize the network adapter and your instance becomes unreachable\.
 
@@ -36,10 +36,10 @@ If you are using an instance store\-backed instance, you can't stop the instance
 
 1. From your local computer, start the instance using the Amazon EC2 console or one of the following commands: [start\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/start-instances.html) \(AWS CLI\), [Start\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Start-EC2Instance.html) \(AWS Tools for Windows PowerShell\)\. If your instance is managed by AWS OpsWorks, you should start the instance in the AWS OpsWorks console so that the instance state remains in sync\.
 
-1. \(Optional\) Connect to your instance and try reinstalling the `ena` module with your current kernel version by following the steps in [Enabling Enhanced Networking with the Elastic Network Adapter \(ENA\) on Linux Instances](enhanced-networking-ena.md)\.
+1. \(Optional\) Connect to your instance and try reinstalling the `ena` module with your current kernel version by following the steps in [Enabling enhanced networking with the Elastic Network Adapter \(ENA\) on Linux instances](enhanced-networking-ena.md)\.
 <a name="disable-enhanced-networking-ena-instance-store"></a>
 **To disable enhanced networking with ENA \(instance store\-backed instances\)**  
-If your instance is an instance store\-backed instance, create a new AMI as described in [Creating an Instance Store\-Backed Linux AMI](creating-an-ami-instance-store.md)\. Be sure to disable the enhanced networking `enaSupport` attribute when you register the AMI\.
+If your instance is an instance store\-backed instance, create a new AMI as described in [Creating an instance store\-backed Linux AMI](creating-an-ami-instance-store.md)\. Be sure to disable the enhanced networking `enaSupport` attribute when you register the AMI\.
 + [register\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) \(AWS CLI\)
 
   ```
@@ -51,7 +51,7 @@ If your instance is an instance store\-backed instance, create a new AMI as desc
   C:\> Register-EC2Image -EnaSupport $false ...
   ```
 
-## Keep\-Alive Mechanism<a name="ena-keep-alive"></a>
+## Keep\-alive mechanism<a name="ena-keep-alive"></a>
 
 The ENA device posts keep\-alive events at a fixed rate \(usually once every second\)\. The ENA driver implements a watchdog mechanism, which checks for the presence of these keep\-alive messages\. If a message or messages are present, the watchdog is rearmed, otherwise the driver concludes that the device experienced a failure and then does the following:
 + Dumps its current statistics to syslog
@@ -98,7 +98,7 @@ Below is an example of the reset procedure:
 [18512.775945] ena 0000:00:07.0: Device reset completed successfully // The reset process is complete
 ```
 
-## Register Read Timeout<a name="register-read-timeout-ena"></a>
+## Register read timeout<a name="register-read-timeout-ena"></a>
 
 The ENA architecture suggests a limited usage of memory mapped I/O \(MMIO\) read operations\. MMIO registers are accessed by the ENA device driver only during its initialization procedure\. 
 
@@ -238,7 +238,7 @@ The number of times that the driver tried to submit new admin command, but the q
 `ena_admin_q_no_completion: N`  
 The number of times that the driver did not get an admin completion for a command\.
 
-## Driver Error Logs in syslog<a name="driver-error-logs-ena"></a>
+## Driver error logs in syslog<a name="driver-error-logs-ena"></a>
 
 The ENA driver writes log messages to syslog during system boot\. You can examine these logs to look for errors if you are experiencing issues\. Below is an example of information logged by the ENA driver in syslog during system boot, along with some annotations for select messages\.
 

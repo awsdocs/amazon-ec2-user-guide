@@ -48,5 +48,5 @@ mlocate.x86_64 : An utility for finding files by name
 Multiple word search queries in quotation marks only return results that match the exact query\. If you don't see the expected package, simplify your search to one keyword and then scan the results\. You can also try keyword synonyms to broaden your search\.
 
 For more information about packages for Amazon Linux 2 and Amazon Linux, see the following:
-+ [Package Repository](amazon-linux-ami-basics.md#package-repository)
-+ [Extras Library \(Amazon Linux 2\)](amazon-linux-ami-basics.md#extras-library)
++ [Package repository](amazon-linux-ami-basics.md#package-repository)
++ [Extras library \(Amazon Linux 2\)](amazon-linux-ami-basics.md#extras-library)

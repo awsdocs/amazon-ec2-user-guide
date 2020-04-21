@@ -1,4 +1,4 @@
-# Troubleshooting Stopping Your Instance<a name="TroubleshootingInstancesStopping"></a>
+# Troubleshooting stopping your instance<a name="TroubleshootingInstancesStopping"></a>
 
 If you have stopped your Amazon EBS\-backed instance and it appears stuck in the `stopping` state, there may be an issue with the underlying host computer\.
 
@@ -14,7 +14,7 @@ Force the instance to stop using either the console or the AWS CLI\.
 
 If, after 10 minutes, the instance has not stopped, post a request for help in the [Amazon EC2 forum](https://forums.aws.amazon.com/forum.jspa?forumID=30)\. To help expedite a resolution, include the instance ID, and describe the steps that you've already taken\. Alternatively, if you have a support plan, create a technical support case in the [Support Center](https://console.aws.amazon.com/support/home#/)\.
 
-## Creating a Replacement Instance<a name="Creating_Replacement_Instance"></a>
+## Creating a replacement instance<a name="Creating_Replacement_Instance"></a>
 
 To attempt to resolve the problem while you are waiting for assistance from the [Amazon EC2 forum](https://forums.aws.amazon.com/forum.jspa?forumID=30) or the [Support Center](https://console.aws.amazon.com/support/home#/), create a replacement instance\. Create an AMI of the stuck instance, and launch a new instance using the new AMI\. 
 
@@ -32,7 +32,7 @@ To attempt to resolve the problem while you are waiting for assistance from the 
 
    1. Choose **No reboot**\.
 
-   For more information, see [Creating a Linux AMI from an Instance](creating-an-ami-ebs.md#how-to-create-ebs-ami)\.
+   For more information, see [Creating a Linux AMI from an instance](creating-an-ami-ebs.md#how-to-create-ebs-ami)\.
 
 1. Launch a new instance from the AMI and verify that the new instance is working\.
 

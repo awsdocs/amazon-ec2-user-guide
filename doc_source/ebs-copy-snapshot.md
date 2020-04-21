@@ -28,20 +28,20 @@ If you copy a snapshot and encrypt it to a new CMK, a complete \(non\-incrementa
 + You can copy AWS Marketplace, VM Import/Export, and AWS Storage Gateway snapshots, but you must verify that the snapshot is supported in the destination Region\.
 
 **Limits**
-+ Each account can have up to five concurrent snapshot copy requests to a single destination Region\.
-+ User\-defined tags are not copied from the source snapshot to the new snapshot\. You can add user\-defined tags during or after the copy operation\. For more information, see [Tagging Your Amazon EC2 Resources](Using_Tags.md)\.
++ Each account can have up to twenty concurrent snapshot copy requests to a single destination Region\.
++ User\-defined tags are not copied from the source snapshot to the new snapshot\. You can add user\-defined tags during or after the copy operation\. For more information, see [Tagging your Amazon EC2 resources](Using_Tags.md)\.
 + Snapshots created by the `CopySnapshot` action have an arbitrary volume ID that should not be used for any purpose\.
 
-## Incremental Copying Across Regions<a name="ebs-incremental-copy"></a>
+## Incremental Snapshot Copying<a name="ebs-incremental-copy"></a>
 
-Whether a snapshot copy is incremental is determined by the most recently completed snapshot copy\. When you copy a snapshot across Regions, the copy is an incremental copy if the following conditions are met:
-+ The snapshot was copied to the destination Region previously\.
-+ The most recent snapshot copy still exists in the destination Region\.
-+ All copies of the snapshot in the destination Region are either unencrypted or were encrypted using the same CMK\.
+Whether a snapshot copy is incremental is determined by the most recently completed snapshot copy\. When you copy a snapshot across Regions or accounts, the copy is an incremental copy if the following conditions are met:
++ The snapshot was copied to the destination Region or account previously\.
++ The most recent snapshot copy still exists in the destination Region or account\.
++ All copies of the snapshot in the destination Region or account are either unencrypted or were encrypted using the same CMK\.
 
-If the most recent snapshot copy was deleted, the next copy is a full copy, not an incremental copy\. If the first copy is still pending when you start another copy, the second copy is also a full copy\. If the first copy is completed but the second copy is still pending when you start another copy, the third copy is incremental to the first copy\.
+If the most recent snapshot copy was deleted, the next copy is a full copy, not an incremental copy\. If a copy is still pending when you start a another copy, the second copy starts only after the first copy finishes\.
 
-We recommend that you tag your snapshots with the volume ID and creation time so that you can keep track of the most recent snapshot copy of a volume in the destination Region\.
+We recommend that you tag your snapshots with the volume ID and creation time so that you can keep track of the most recent snapshot copy of a volume in the destination Region or account\.
 
 To see whether your snapshot copies are incremental, check the [copySnapshot](ebs-cloud-watch-events.md#copy-snapshot-complete) CloudWatch event\.
 
@@ -61,7 +61,7 @@ The following table describes the encryption outcome for each possible combinati
 **Encryption outcomes: Copying a snapshot**  
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-copy-snapshot.html)
 
-\* This is the default CMK used for EBS encryption for the AWS account and Region\. By default this is a unique AWS managed CMK for EBS, or you can specify a customer managed CMK\. For more information, see [Default Key for EBS Encryption](EBSEncryption.md#EBSEncryption_key_mgmt)\.
+\* This is the default CMK used for EBS encryption for the AWS account and Region\. By default this is a unique AWS managed CMK for EBS, or you can specify a customer managed CMK\. For more information, see [Default key for EBS encryption](EBSEncryption.md#EBSEncryption_key_mgmt)\.
 
 \*\* This is a customer managed CMK specified for the copy action\. This CMK is used instead of the default CMK for the AWS account and Region\.
 

@@ -2,7 +2,7 @@
 
 After you launch your instance, you can connect to it and use it the way that you'd use a computer sitting in front of you\.
 
-The following instructions explain how to connect to your instance using an SSH client\. If you receive an error while attempting to connect to your instance, see [Troubleshooting Connecting to Your Instance](TroubleshootingInstancesConnecting.md)\.
+The following instructions explain how to connect to your instance using an SSH client\. If you receive an error while attempting to connect to your instance, see [Troubleshooting connecting to your instance](TroubleshootingInstancesConnecting.md)\.
 
 ## Prerequisites<a name="ssh-prereqs"></a>
 
@@ -22,7 +22,7 @@ Your local computer might have an SSH client installed by default\. You can veri
 
 ## Connect to Your Linux Instance using an SSH Client<a name="AccessingInstancesLinuxSSHClient"></a>
 
-Use the following procedure to connect to your Linux instance using an SSH client\. If you receive an error while attempting to connect to your instance, see [Troubleshooting Connecting to Your Instance](TroubleshootingInstancesConnecting.md)\.
+Use the following procedure to connect to your Linux instance using an SSH client\. If you receive an error while attempting to connect to your instance, see [Troubleshooting connecting to your instance](TroubleshootingInstancesConnecting.md)\.
 
 **To connect to your instance using SSH**
 

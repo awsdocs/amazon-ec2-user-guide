@@ -20,13 +20,13 @@ These procedures are intended for use with Amazon Linux 2\. We also assume that 
 ## Prerequisites<a name="ssl_prereq"></a>
 
 Before you begin this tutorial, complete the following steps:
-+ Launch an EBS\-backed Amazon Linux 2 instance\. For more information, see [Step 1: Launch an Instance](EC2_GetStarted.md#ec2-launch-instance)\. 
++ Launch an EBS\-backed Amazon Linux 2 instance\. For more information, see [Step 1: Launch an instance](EC2_GetStarted.md#ec2-launch-instance)\. 
 + Configure your security groups to allow your instance to accept connections on the following TCP ports: 
   + SSH \(port 22\)
   + HTTP \(port 80\)
   + HTTPS \(port 443\)
 
-  For more information, see [Authorizing Inbound Traffic for Your Linux Instances](authorizing-access-to-an-instance.md)\.
+  For more information, see [Authorizing inbound traffic for your Linux instances](authorizing-access-to-an-instance.md)\.
 + Install the Apache web server\. For step\-by\-step instructions, see [Tutorial: Install a LAMP Web Server on Amazon Linux 2](ec2-lamp-amazon-linux-2.md)\. Only the httpd package and its dependencies are needed, so you can ignore the instructions involving PHP and MariaDB\.
 + To identify and authenticate websites, the TLS public key infrastructure \(PKI\) relies on the Domain Name System \(DNS\)\. To use your EC2 instance to host a public website, you need to register a domain name for your web server or transfer an existing domain name to your Amazon EC2 host\. Numerous third\-party domain registration and DNS hosting services are available for this, or you can use [Amazon Route 53](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/Welcome.html)\. 
 
@@ -512,7 +512,7 @@ Complete the following procedures before you install Certbot\.
 
 ### Install and Run Certbot<a name="install"></a>
 
-This procedure is based on the EFF documentation for installing Certbot on [ Fedora](https://certbot.eff.org/docs/install.html#alternate-installation-methods) and on [RHEL 7](https://certbot.eff.org/#centosrhel7-apache)\. It describes the default use of Certbot, resulting in a certificate based on a 2048\-bit RSA key\. If you want to experiment with customized keys, you might start with [Using ECDSA certificates with Let's Encrypt](https://www.ericlight.com/using-ecdsa-certificates-with-lets-encrypt)\.
+This procedure is based on the EFF documentation for installing Certbot on [ Fedora](https://certbot.eff.org/docs/install.html#alternate-installation-methods) and on [RHEL 7](https://certbot.eff.org/#centosrhel7-apache)\. It describes the default use of Certbot, resulting in a certificate based on a 2048\-bit RSA key\.
 
 1. Install Certbot packages and dependencies using the following command\.
 

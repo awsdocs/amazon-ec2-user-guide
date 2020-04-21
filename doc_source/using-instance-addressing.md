@@ -46,16 +46,16 @@ You cannot manually associate or disassociate a public IP address from your inst
 
 If you require a persistent public IP address that can be associated to and from instances as you require, use an Elastic IP address instead\.
 
-If you use dynamic DNS to map an existing DNS name to a new instance's public IP address, it might take up to 24 hours for the IP address to propagate through the Internet\. As a result, new instances might not receive traffic while terminated instances continue to receive requests\. To solve this problem, use an Elastic IP address\. You can allocate your own Elastic IP address, and associate it with your instance\. For more information, see [Elastic IP Addresses](elastic-ip-addresses-eip.md)\. 
+If you use dynamic DNS to map an existing DNS name to a new instance's public IP address, it might take up to 24 hours for the IP address to propagate through the Internet\. As a result, new instances might not receive traffic while terminated instances continue to receive requests\. To solve this problem, use an Elastic IP address\. You can allocate your own Elastic IP address, and associate it with your instance\. For more information, see [Elastic IP addresses](elastic-ip-addresses-eip.md)\. 
 
 If you assign an Elastic IP address to an instance, it receives an IPv4 DNS hostname if DNS hostnames are enabled\. For more information, see [Using DNS with Your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html) in the *Amazon VPC User Guide*\.
 
 **Note**  
-Instances that access other instances through their public NAT IP address are charged for regional or Internet data transfer, depending on whether the instances are in the same region\. 
+Instances that access other instances through their public NAT IP address are charged for regional or Internet data transfer, depending on whether the instances are in the same Region\.
 
 ## Elastic IP Addresses \(IPv4\)<a name="ip-addressing-eips"></a>
 
-An Elastic IP address is a public IPv4 address that you can allocate to your account\. You can associate it to and from instances as you require, and it's allocated to your account until you choose to release it\. For more information about Elastic IP addresses and how to use them, see [Elastic IP Addresses](elastic-ip-addresses-eip.md)\.
+An Elastic IP address is a public IPv4 address that you can allocate to your account\. You can associate it to and from instances as you require, and it's allocated to your account until you choose to release it\. For more information about Elastic IP addresses and how to use them, see [Elastic IP addresses](elastic-ip-addresses-eip.md)\.
 
 We do not support Elastic IP addresses for IPv6\.
 
@@ -95,7 +95,7 @@ You can view the IP addresses assigned to your instance, assign a public IPv4 ad
 
 ### Determining Your Public, Private, and Elastic IP Addresses<a name="using-instance-addressing-common"></a>
 
-You can use the Amazon EC2 console to determine the private IPv4 addresses, public IPv4 addresses, and Elastic IP addresses of your instances\. You can also determine the public IPv4 and private IPv4 addresses of your instance from within your instance by using instance metadata\. For more information, see [Instance Metadata and User Data](ec2-instance-metadata.md)\.
+You can use the Amazon EC2 console to determine the private IPv4 addresses, public IPv4 addresses, and Elastic IP addresses of your instances\. You can also determine the public IPv4 and private IPv4 addresses of your instance from within your instance by using instance metadata\. For more information, see [Instance metadata and user data](ec2-instance-metadata.md)\.
 
 **To determine your instance's private IPv4 addresses using the console**
 
@@ -215,7 +215,7 @@ You can use the Amazon EC2 console to determine the IPv6 addresses of your insta
 Each subnet has an attribute that determines whether instances launched into that subnet are assigned a public IP address\. By default, nondefault subnets have this attribute set to false, and default subnets have this attribute set to true\. When you launch an instance, a public IPv4 addressing feature is also available for you to control whether your instance is assigned a public IPv4 address; you can override the default behavior of the subnet's IP addressing attribute\. The public IPv4 address is assigned from Amazon's pool of public IPv4 addresses, and is assigned to the network interface with the device index of eth0\. This feature depends on certain conditions at the time you launch your instance\. 
 
 **Important**  
-You can't manually disassociate the public IP address from your instance after launch\. Instead, it's automatically released in certain cases, after which you cannot reuse it\. For more information, see [Public IPv4 Addresses and External DNS Hostnames](#concepts-public-addresses)\. If you require a persistent public IP address that you can associate or disassociate at will, assign an Elastic IP address to the instance after launch instead\. For more information, see [Elastic IP Addresses](elastic-ip-addresses-eip.md)\.
+You can't manually disassociate the public IP address from your instance after launch\. Instead, it's automatically released in certain cases, after which you cannot reuse it\. For more information, see [Public IPv4 Addresses and External DNS Hostnames](#concepts-public-addresses)\. If you require a persistent public IP address that you can associate or disassociate at will, assign an Elastic IP address to the instance after launch instead\. For more information, see [Elastic IP addresses](elastic-ip-addresses-eip.md)\.
 
 **To access the public IP addressing feature when launching an instance**
 
@@ -233,7 +233,7 @@ You cannot auto\-assign a public IP address if you specify more than one network
 
 1. On the **Instances** page, select your new instance and view its public IP address in **IPv4 Public IP** field in the details pane\.
 
-The public IP addressing feature is only available during launch\. However, whether you assign a public IP address to your instance during launch or not, you can associate an Elastic IP address with your instance after it's launched\. For more information, see [Elastic IP Addresses](elastic-ip-addresses-eip.md)\. You can also modify your subnet's public IPv4 addressing behavior\. For more information, see [Modifying the Public IPv4 Addressing Attribute for Your Subnet](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html#subnet-public-ip)\.<a name="publicip-cli"></a>
+The public IP addressing feature is only available during launch\. However, whether you assign a public IP address to your instance during launch or not, you can associate an Elastic IP address with your instance after it's launched\. For more information, see [Elastic IP addresses](elastic-ip-addresses-eip.md)\. You can also modify your subnet's public IPv4 addressing behavior\. For more information, see [Modifying the Public IPv4 Addressing Attribute for Your Subnet](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html#subnet-public-ip)\.<a name="publicip-cli"></a>
 
 **To enable or disable the public IP addressing feature using the command line**
 

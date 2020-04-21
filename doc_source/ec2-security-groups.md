@@ -211,8 +211,9 @@ For more information about choosing security group rules for specific types of a
 
 1. In the dialog, choose **Add Rule** and do the following:
    + For **Type**, select the protocol\.
-   + If you select a custom TCP or UDP protocol, specify the port range in **Port Range**\. 
-   + If you select a custom ICMP protocol, choose the ICMP type name from **Protocol**, and, if applicable, the code name from **Port Range**\.
+     + If you select a custom TCP or UDP protocol, specify the port range in **Port Range**\. 
+     + If you select a custom ICMP protocol, choose the ICMP type name from **Protocol**, and, if applicable, the code name from **Port Range**\.
+     + If you select **Custom Protocol**, then for **Protocol**, enter either the protocol name or the protocol number\. For example, for the Encap Security Payload protocol, enter either `ESP` or `50`\. For a complete list of protocol names and numbers, see [ Protocol Numbers](https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml)\.
    + For **Source**, choose one of the following:
      + **Custom**: in the provided field, you must specify an IP address in CIDR notation, a CIDR block, or another security group\.
      + **Anywhere**: automatically adds the `0.0.0.0/0` IPv4 CIDR block\. This option enables all traffic of the specified type to reach your instance\. This is acceptable for a short time in a test environment, but it's unsafe for production environments\. In production, authorize only a specific IP address or range of addresses to access your instance\.

@@ -12,7 +12,7 @@ After you have successfully launched and logged into your Amazon Linux instance,
 + [Changing the Hostname of Your Linux Instance](set-hostname.md)
 + [Setting Up Dynamic DNS on Your Linux Instance](dynamic-dns.md)
 + [Running Commands on Your Linux Instance at Launch](user-data.md)
-+ [Instance Metadata and User Data](ec2-instance-metadata.md)
++ [Instance metadata and user data](ec2-instance-metadata.md)
 
 ## Common Configuration Scenarios<a name="configuration-scenarios"></a>
 

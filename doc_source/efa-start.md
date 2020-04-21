@@ -107,7 +107,7 @@ The steps differ depending on whether you intend to use EFA with Open MPI or wit
 1. Download the EFA software installation files\. To download the latest *stable* version, use the following command\.
 
    ```
-   $ curl -O https://s3.us-west-2.amazonaws.com/aws-efa-installer/aws-efa-installer-1.8.3.tar.gz
+   $ curl -O https://s3.us-west-2.amazonaws.com/aws-efa-installer/aws-efa-installer-1.8.4.tar.gz
    ```
 
    You can also get the latest version by replacing the version number with `latest` in the preceding command\.
@@ -115,7 +115,7 @@ The steps differ depending on whether you intend to use EFA with Open MPI or wit
 1. The software installation files are packaged into a compressed `.tar.gz` file\. Extract the files from the compressed `.tar.gz` file and navigate into the extracted directory\.
 
    ```
-   $ tar -xf aws-efa-installer-1.8.3.tar.gz
+   $ tar -xf aws-efa-installer-1.8.4.tar.gz
    ```
 
    ```

@@ -1,4 +1,4 @@
-# Spot Instance Data Feed<a name="spot-data-feeds"></a>
+# Spot Instance data feed<a name="spot-data-feeds"></a>
 
 To help you understand the charges for your Spot Instances, Amazon EC2 provides a data feed that describes your Spot Instance usage and pricing\. This data feed is sent to an Amazon S3 bucket that you specify when you subscribe to the data feed\.
 
@@ -8,12 +8,12 @@ Data feed files arrive in your bucket typically once an hour, and each hour of u
 If you don't have a Spot Instance running during a certain hour, you don't receive a data feed file for that hour\.
 
 **Topics**
-+ [Data Feed File Name and Format](#using-spot-instances-format)
-+ [Amazon S3 Bucket Requirements](#using-spot-instances-dfs3)
-+ [Subscribing to Your Spot Instance Data Feed](#using-spot-instances-datafeed-all)
-+ [Deleting Your Spot Instance Data Feed](#using-spot-instances-datafeed-delete)
++ [Data feed file name and format](#using-spot-instances-format)
++ [Amazon S3 bucket requirements](#using-spot-instances-dfs3)
++ [Subscribing to your Spot Instance data feed](#using-spot-instances-datafeed-all)
++ [Deleting your Spot Instance data feed](#using-spot-instances-datafeed-delete)
 
-## Data Feed File Name and Format<a name="using-spot-instances-format"></a>
+## Data feed file name and format<a name="using-spot-instances-format"></a>
 
 The Spot Instance data feed file name uses the following format \(with the date and hour in UTC\): 
 
@@ -42,7 +42,7 @@ The Spot Instance data feed files are tab\-delimited\. Each line in the data fil
 |   `Charge`   |  The price charged for this instance usage\.  | 
 |   `Version`   |  The version included in the data feed file name for this record\.  | 
 
-## Amazon S3 Bucket Requirements<a name="using-spot-instances-dfs3"></a>
+## Amazon S3 bucket requirements<a name="using-spot-instances-dfs3"></a>
 
 When you subscribe to the data feed, you must specify an Amazon S3 bucket to store the data feed files\. Before you choose an Amazon S3 bucket for the data feed, consider the following:
 + You must have `FULL_CONTROL` permission to the bucket, which includes permission for the `s3:GetBucketAcl` and `s3:PutBucketAcl` actions\.
@@ -54,12 +54,14 @@ If you update the ACL and remove the permissions for the AWS data feed account, 
 + Each data feed file has its own ACL \(separate from the ACL for the bucket\)\. The bucket owner has `FULL_CONTROL` permission to the data files\. The AWS data feed account has read and write permissions\.
 + If you delete your data feed subscription, Amazon EC2 doesn't remove the read and write permissions for the AWS data feed account on either the bucket or the data files\. You must remove these permissions yourself\.
 
-## Subscribing to Your Spot Instance Data Feed<a name="using-spot-instances-datafeed-all"></a>
+## Subscribing to your Spot Instance data feed<a name="using-spot-instances-datafeed-all"></a>
 
-To subscribe to your data feed, use the following [create\-spot\-datafeed\-subscription](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-spot-datafeed-subscription.html) command:
+To subscribe to your data feed, use the [create\-spot\-datafeed\-subscription](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-spot-datafeed-subscription.html) command\.
 
 ```
-aws ec2 create-spot-datafeed-subscription --bucket aws-s3-bucket1 [--prefix myprefix]
+aws ec2 create-spot-datafeed-subscription \
+    --bucket aws-s3-bucket1 \
+    [--prefix myprefix]
 ```
 
 The following is example output:
@@ -75,9 +77,9 @@ The following is example output:
 }
 ```
 
-## Deleting Your Spot Instance Data Feed<a name="using-spot-instances-datafeed-delete"></a>
+## Deleting your Spot Instance data feed<a name="using-spot-instances-datafeed-delete"></a>
 
-To delete your data feed, use the following [delete\-spot\-datafeed\-subscription](https://docs.aws.amazon.com/cli/latest/reference/ec2/delete-spot-datafeed-subscription.html) command:
+To delete your data feed, use the [delete\-spot\-datafeed\-subscription](https://docs.aws.amazon.com/cli/latest/reference/ec2/delete-spot-datafeed-subscription.html) command\.
 
 ```
 aws ec2 delete-spot-datafeed-subscription

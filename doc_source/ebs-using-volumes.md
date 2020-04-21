@@ -16,7 +16,7 @@ Suppose that you have an EC2 instance with an EBS volume for the root device, `/
 
 1. The device could be attached to the instance with a different device name than you specified in the block device mapping\. For more information, see [Device Naming on Linux Instances](device_naming.md)\. Use the lsblk command to view your available disk devices and their mount points \(if applicable\) to help you determine the correct device name to use\. The output of lsblk removes the `/dev/` prefix from full device paths\.
 
-   The following is example output for a [Nitro\-based instance](instance-types.md#ec2-nitro-instances), which exposes EBS volumes as NVMe block devices\. The root device is `/dev/nvme0n1`\. The attached volume is `/dev/nvme1n1`, which is not yet mounted\.
+   The following is example output for an instance built on the [Nitro System](instance-types.md#ec2-nitro-instances), which exposes EBS volumes as NVMe block devices\. The root device is `/dev/nvme0n1`\. The attached volume is `/dev/nvme1n1`, which is not yet mounted\.
 
    ```
    [ec2-user ~]$ lsblk

@@ -1,4 +1,4 @@
-# IAM Policies for Amazon EC2<a name="iam-policies-for-amazon-ec2"></a>
+# IAM policies for Amazon EC2<a name="iam-policies-for-amazon-ec2"></a>
 
 By default, IAM users don't have permission to create or modify Amazon EC2 resources, or perform tasks using the Amazon EC2 API\. \(This means that they also can't do so using the Amazon EC2 console or CLI\.\) To allow IAM users to create or modify resources and perform tasks, you must create IAM policies that grant IAM users permission to use the specific resources and API actions they'll need, and then attach those policies to the IAM users or groups that require those permissions\.
 
@@ -13,11 +13,11 @@ Amazon EC2 partially supports resource\-level permissions\. This means that for 
 
 | Task | Topic | 
 | --- | --- | 
-| Understand the basic structure of a policy | [Policy Syntax](iam-policy-structure.md#policy-syntax) | 
+| Understand the basic structure of a policy | [Policy syntax](iam-policy-structure.md#policy-syntax) | 
 | Define actions in your policy | [Actions for Amazon EC2](iam-policy-structure.md#UsingWithEC2_Actions) | 
 | Define specific resources in your policy | [Amazon Resource Names \(ARNs\) for Amazon EC2](iam-policy-structure.md#EC2_ARN_Format) | 
-| Apply conditions to the use of the resources | [Condition Keys for Amazon EC2](iam-policy-structure.md#amazon-ec2-keys) | 
+| Apply conditions to the use of the resources | [Condition keys for Amazon EC2](iam-policy-structure.md#amazon-ec2-keys) | 
 | Work with the available resource\-level permissions for Amazon EC2 | [Actions, Resources, and Condition Keys for Amazon EC2](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonec2.html) \(IAM User Guide\) | 
-| Test your policy |  [Checking That Users Have the Required Permissions](iam-policy-structure.md#check-required-permissions)  | 
-| Example policies for a CLI or SDK | [Example Policies for Working with the AWS CLI or an AWS SDK](ExamplePolicies_EC2.md) | 
-| Example policies for the Amazon EC2 console | [Example Policies for Working in the Amazon EC2 Console](iam-policies-ec2-console.md) | 
+| Test your policy |  [Checking that users have the required permissions](iam-policy-structure.md#check-required-permissions)  | 
+| Example policies for a CLI or SDK | [Example policies for working with the AWS CLI or an AWS SDK](ExamplePolicies_EC2.md) | 
+| Example policies for the Amazon EC2 console | [Example policies for working in the Amazon EC2 console](iam-policies-ec2-console.md) | 

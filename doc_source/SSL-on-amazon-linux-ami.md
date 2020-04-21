@@ -20,13 +20,13 @@ These procedures are intended for use with the Amazon Linux AMI\. If you are try
 ## Prerequisites<a name="ssl-prereq-alami"></a>
 
 Before you begin this tutorial, complete the following steps:
-+ Launch an EBS\-backed instance using the Amazon Linux AMI\. For more information, see [Step 1: Launch an Instance](EC2_GetStarted.md#ec2-launch-instance)\. 
++ Launch an EBS\-backed instance using the Amazon Linux AMI\. For more information, see [Step 1: Launch an instance](EC2_GetStarted.md#ec2-launch-instance)\. 
 + Configure your security group to allow your instance to accept connections on the following TCP ports: 
   + SSH \(port 22\)
   + HTTP \(port 80\)
   + HTTPS \(port 443\)
 
-  For more information, see [Authorizing Inbound Traffic for Your Linux Instances](authorizing-access-to-an-instance.md)\.
+  For more information, see [Authorizing inbound traffic for your Linux instances](authorizing-access-to-an-instance.md)\.
 + Install Apache web server\. For step\-by\-step instructions, see [Tutorial: Installing a LAMP Web Server on Amazon Linux](install-LAMP.md)\. Only the http24 package and its dependencies are needed; you can ignore the instructions involving PHP and MySQL\.
 + To identify and authenticate web sites, the TLS public key infrastructure \(PKI\) relies on the Domain Name System \(DNS\)\. To use your EC2 instance to host a public web site, you need to register a domain name for your web server or transfer an existing domain name to your Amazon EC2 host\. Numerous third\-party domain registration and DNS hosting services are available for this, or you can use [Amazon Route 53](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/Welcome.html)\. 
 

@@ -38,7 +38,7 @@ To create an EC2 Fleet, the following prerequisites must be in place\.
 
 ### Launch template<a name="ec2-fleet-prerequisites-launch-template"></a>
 
-A launch template includes information about the instances to launch, such as the instance type, Availability Zone, and the maximum price that you are willing to pay\. For more information, see [Launching an Instance from a Launch Template](ec2-launch-templates.md)\.
+A launch template includes information about the instances to launch, such as the instance type, Availability Zone, and the maximum price that you are willing to pay\. For more information, see [Launching an instance from a launch template](ec2-launch-templates.md)\.
 
 ### Service\-linked role for EC2 Fleet<a name="ec2-fleet-service-linked-role"></a>
 
@@ -293,13 +293,13 @@ The minimum target capacity for On\-Demand Instances in the fleet\. If the minim
 \(Optional\) Indicates whether running instances should be terminated if the total target capacity of the EC2 Fleet is decreased below the current size of the EC2 Fleet\. Valid values are `no-termination` and `termination`\.
 
 **LaunchTemplateId**  
-The ID of the launch template to use\. You must specify either the launch template ID or launch template name\. The launch template must specify an Amazon Machine Image \(AMI\)\. For more information about creating launch templates, see [Launching an Instance from a Launch Template](ec2-launch-templates.md)\.
+The ID of the launch template to use\. You must specify either the launch template ID or launch template name\. The launch template must specify an Amazon Machine Image \(AMI\)\. For information about creating launch templates, see [Launching an instance from a launch template](ec2-launch-templates.md)\.
 
 **LaunchTemplateName**  
-The name of the launch template to use\. You must specify either the launch template ID or launch template name\. The launch template must specify an Amazon Machine Image \(AMI\)\. For more information, see [Launching an Instance from a Launch Template](ec2-launch-templates.md)\.
+The name of the launch template to use\. You must specify either the launch template ID or launch template name\. The launch template must specify an Amazon Machine Image \(AMI\)\. For more information, see [Launching an instance from a launch template](ec2-launch-templates.md)\.
 
 **Version**  
-The version number of the launch template\.
+The launch template version number, `$Latest`, or `$Default`\. You must specify a value, otherwise the request fails\. If the value is `$Latest`, Amazon EC2 uses the latest version of the launch template\. If the value is `$Default`, Amazon EC2 uses the default version of the launch template\. For more information, see [Managing launch template versions](ec2-launch-templates.md#manage-launch-template-versions)\.
 
 **InstanceType**  
 \(Optional\) The instance type\. If entered, this value overrides the launch template\. The instance types must have the minimum hardware specifications that you need \(vCPUs, memory, or storage\)\.
@@ -349,7 +349,7 @@ If the value for `TotalTargetCapacity` is higher than the combined values for `O
 \(Optional\) To replace unhealthy instances in an EC2 Fleet that is configured to `maintain` the fleet, enter `true`\. Otherwise, leave this parameter empty\.
 
 **TagSpecifications**  
-\(Optional\) The key\-value pair for tagging the EC2 Fleet request on creation\. The value for `ResourceType` must be `fleet`, otherwise the fleet request fails\. To tag instances at launch, specify the tags in the [launch template](ec2-launch-templates.md#create-launch-template)\. For information about tagging after launch, see [Tagging Your Resources](Using_Tags.md#tag-resources)\.
+\(Optional\) The key\-value pair for tagging the EC2 Fleet request on creation\. The value for `ResourceType` must be `fleet`, otherwise the fleet request fails\. To tag instances at launch, specify the tags in the [launch template](ec2-launch-templates.md#create-launch-template)\. For information about tagging after launch, see [Tagging your resources](Using_Tags.md#tag-resources)\.
 
 ## Creating an EC2 Fleet<a name="create-ec2-fleet"></a>
 
@@ -523,7 +523,7 @@ The following is example output for a fleet of type `instant` that launched no i
 
 ## Tagging an EC2 Fleet<a name="tag-ec2-fleet"></a>
 
-To help categorize and manage your EC2 Fleet requests, you can tag them with custom metadata\. For more information, see [Tagging Your Amazon EC2 Resources](Using_Tags.md)\.
+To help categorize and manage your EC2 Fleet requests, you can tag them with custom metadata\. For more information, see [Tagging your Amazon EC2 resources](Using_Tags.md)\.
 
 You can assign a tag to an EC2 Fleet request when you create it, or afterward\. Tags assigned to the fleet request are not assigned to the instances launched by the fleet\.
 

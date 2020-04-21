@@ -1,20 +1,20 @@
-# Creating an Amazon EBS\-Backed Linux AMI<a name="creating-an-ami-ebs"></a>
+# Creating an Amazon EBS\-backed Linux AMI<a name="creating-an-ami-ebs"></a>
 
 To create an Amazon EBS\-backed Linux AMI, start from an instance that you've launched from an existing Amazon EBS\-backed Linux AMI\. This can be an AMI you have obtained from the AWS Marketplace, an AMI you have created using the [AWS Server Migration Service](https://aws.amazon.com/server-migration-service/) or [VM Import/Export](https://docs.aws.amazon.com/vm-import/latest/userguide/what-is-vmimport.html), or any other AMI you can access\. After you customize the instance to suit your needs, create and register a new AMI, which you can use to launch new instances with these customizations\.
 
 The procedures described below work for Amazon EC2 instances backed by encrypted Amazon EBS volumes \(including the root volume\) as well as for unencrypted volumes\.
 
-The AMI creation process is different for instance store\-backed AMIs\. For more information about the differences between Amazon EBS\-backed and instance store\-backed instances, and how to determine the root device type for your instance, see [Storage for the Root Device](ComponentsAMIs.md#storage-for-the-root-device)\. For more information about creating an instance store\-backed Linux AMI, see [Creating an Instance Store\-Backed Linux AMI](creating-an-ami-instance-store.md)\.
+The AMI creation process is different for instance store\-backed AMIs\. For more information about the differences between Amazon EBS\-backed and instance store\-backed instances, and how to determine the root device type for your instance, see [Storage for the root device](ComponentsAMIs.md#storage-for-the-root-device)\. For more information about creating an instance store\-backed Linux AMI, see [Creating an instance store\-backed Linux AMI](creating-an-ami-instance-store.md)\.
 
 For more information about creating an Amazon EBS\-backed Windows AMI, see [Creating an Amazon EBS\-Backed Windows AMI](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/Creating_EBSbacked_WinAMI.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
-## Overview of Creating Amazon EBS\-Backed AMIs<a name="process-creating-an-ami-ebs"></a>
+## Overview of creating Amazon EBS\-backed AMIs<a name="process-creating-an-ami-ebs"></a>
 
 First, launch an instance from an AMI that's similar to the AMI that you'd like to create\. You can connect to your instance and customize it\. When the instance is configured correctly, ensure data integrity by stopping the instance before you create an AMI, then create the image\. When you create an Amazon EBS\-backed AMI, we automatically register it for you\.
 
 Amazon EC2 powers down the instance before creating the AMI to ensure that everything on the instance is stopped and in a consistent state during the creation process\. If you're confident that your instance is in a consistent state appropriate for AMI creation, you can tell Amazon EC2 not to power down and reboot the instance\. Some file systems, such as XFS, can freeze and unfreeze activity, making it safe to create the image without rebooting the instance\.
 
-During the AMI\-creation process, Amazon EC2 creates snapshots of your instance's root volume and any other EBS volumes attached to your instance\. You're charged for the snapshots until you deregister the AMI and delete the snapshots\. For more information, see [Deregistering Your Linux AMI](deregister-ami.md)\. If any volumes attached to the instance are encrypted, the new AMI only launches successfully on instances that support Amazon EBS encryption\. For more information, see [Amazon EBS Encryption](EBSEncryption.md)\.
+During the AMI\-creation process, Amazon EC2 creates snapshots of your instance's root volume and any other EBS volumes attached to your instance\. You're charged for the snapshots until you deregister the AMI and delete the snapshots\. For more information, see [Deregistering your Linux AMI](deregister-ami.md)\. If any volumes attached to the instance are encrypted, the new AMI only launches successfully on instances that support Amazon EBS encryption\. For more information, see [Amazon EBS encryption](EBSEncryption.md)\.
 
 Depending on the size of the volumes, it can take several minutes for the AMI\-creation process to complete \(sometimes up to 24 hours\)\. You may find it more efficient to create snapshots of your volumes before creating your AMI\. This way, only small, incremental snapshots need to be created when the AMI is created, and the process completes more quickly \(the total time for snapshot creation remains the same\)\. For more information, see [Creating Amazon EBS Snapshots](ebs-creating-snapshot.md)\.
 
@@ -25,7 +25,7 @@ If you add instance\-store volumes or EBS volumes to your instance in addition t
 **Note**  
 When you create a new instance from an EBS\-backed AMI, you should initialize both its root volume and any additional EBS storage before putting it into production\. For more information, see [Initializing Amazon EBS Volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-initialize.html)\.
 
-## Creating a Linux AMI from an Instance<a name="how-to-create-ebs-ami"></a>
+## Creating a Linux AMI from an instance<a name="how-to-create-ebs-ami"></a>
 
 You can create an AMI using the AWS Management Console or the command line\. The following diagram summarizes the process for creating an Amazon EBS\-backed AMI from a running EC2 instance\. Start with an existing AMI, launch an instance, customize it, create a new AMI from it, and finally launch an instance of your new AMI\. The steps in the following diagram match the steps in the procedure below\.
 
@@ -69,13 +69,13 @@ If you select **No reboot**, we can't guarantee the file system integrity of the
 
 1. The new running instance contains all of the customizations that you applied in previous steps\.
 
-### To Create an AMI from an Instance Using the Command Line<a name="create-ami-cli"></a>
+### To create an AMI from an instance using the command line<a name="create-ami-cli"></a>
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
 + [create\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-image.html) \(AWS CLI\)
 + [New\-EC2Image](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Image.html) \(AWS Tools for Windows PowerShell\)
 
-## Creating a Linux AMI from a Snapshot<a name="creating-launching-ami-from-snapshot"></a>
+## Creating a Linux AMI from a snapshot<a name="creating-launching-ami-from-snapshot"></a>
 
 If you have a snapshot of the root device volume of an instance, you can create an AMI from this snapshot using the AWS Management Console or the command line\.
 
@@ -90,9 +90,9 @@ If you have a snapshot of the root device volume of an instance, you can create 
 1. In the **Create Image from EBS Snapshot** dialog box, complete the fields to create your AMI, then choose **Create**\. If you're re\-creating a parent instance, then choose the same options as the parent instance\.
    + **Architecture**: Choose **i386** for 32\-bit or **x86\_64** for 64\-bit\.
    + **Root device name**: Enter the appropriate name for the root volume\. For more information, see [Device Naming on Linux Instances](device_naming.md)\.
-   + **Virtualization type**: Choose whether instances launched from this AMI use paravirtual \(PV\) or hardware virtual machine \(HVM\) virtualization\. For more information, see [Linux AMI Virtualization Types](virtualization_types.md)\.
+   + **Virtualization type**: Choose whether instances launched from this AMI use paravirtual \(PV\) or hardware virtual machine \(HVM\) virtualization\. For more information, see [Linux AMI virtualization types](virtualization_types.md)\.
    + \(PV virtualization type only\) **Kernel ID** and **RAM disk ID**: Choose the AKI and ARI from the lists\. If you choose the default AKI or don't choose an AKI, you must specify an AKI every time you launch an instance using this AMI\. In addition, your instance may fail the health checks if the default AKI is incompatible with the instance\.
-   + \(Optional\) **Block Device Mappings**: Add volumes or expand the default size of the root volume for the AMI\. For more information about resizing the file system on your instance for a larger volume, see [Extending a Linux File System After Resizing a Volume](recognize-expanded-volume-linux.md)\.
+   + \(Optional\) **Block Device Mappings**: Add volumes or expand the default size of the root volume for the AMI\. For more information about resizing the file system on your instance for a larger volume, see [Extending a Linux file system after resizing a volume](recognize-expanded-volume-linux.md)\.
 
 **To create an AMI from a snapshot using the command line**
 

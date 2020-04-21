@@ -14,11 +14,11 @@ For volumes that were restored from snapshots, the storage blocks must be pulled
 
 For most applications, amortizing the initialization cost over the lifetime of the volume is acceptable\. To avoid this initial performance hit in a production environment, you can use one of the following options:
 + Force the immediate initialization of the entire volume\. For more information, see [Initializing Amazon EBS Volumes](ebs-initialize.md)\.
-+ Enable fast snapshot restore on a snapshot to ensure that the EBS volumes created from it are fully\-initialized at creation and instantly deliver all of their provisioned performance\. For more information, see [Amazon EBS Fast Snapshot Restore](ebs-fast-snapshot-restore.md)\.
++ Enable fast snapshot restore on a snapshot to ensure that the EBS volumes created from it are fully\-initialized at creation and instantly deliver all of their provisioned performance\. For more information, see [Amazon EBS fast snapshot restore](ebs-fast-snapshot-restore.md)\.
 
 ## EBS Encryption<a name="new-volume-ebs-encryption"></a>
 
-New EBS volumes that are restored from encrypted snapshots are automatically encrypted\. You can also encrypt a volume on\-the\-fly while restoring it from an unencrypted snapshot\. Encrypted volumes can only be attached to instance types that support EBS encryption\. For more information, see [Supported Instance Types](EBSEncryption.md#EBSEncryption_supported_instances)\.
+New EBS volumes that are restored from encrypted snapshots are automatically encrypted\. You can also encrypt a volume on\-the\-fly while restoring it from an unencrypted snapshot\. Encrypted volumes can only be attached to instance types that support EBS encryption\. For more information, see [Supported instance types](EBSEncryption.md#EBSEncryption_supported_instances)\.
 
 ## Creating a Volume from a Snapshot<a name="ebs-create-volume-from-snapshot"></a>
 
@@ -28,9 +28,9 @@ Use the following procedure to create a volume from a snapshot\.
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. From the navigation bar, select the region that your snapshot is located in\.
+1. From the navigation bar, select the Region that your snapshot is located in\.
 
-   To restore the snapshot to a volume in a different region, you can copy your snapshot to the new region and then restore it to a volume in that region\. For more information, see [Copying an Amazon EBS Snapshot](ebs-copy-snapshot.md)\.
+   To restore the snapshot to a volume in a different region, you can copy your snapshot to the new Region and then restore it to a volume in that Region\. For more information, see [Copying an Amazon EBS Snapshot](ebs-copy-snapshot.md)\.
 
 1. In the navigation pane, choose **ELASTIC BLOCK STORE**, **Volumes**\.
 

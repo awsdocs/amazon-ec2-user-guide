@@ -28,7 +28,7 @@ The following table describes the use cases and performance characteristics for 
 
 \* The throughput limit is between 128 MiB/s and 250 MiB/s, depending on the volume size\. Volumes smaller than 170 GiB deliver a maximum throughput of 128 MiB/s\. Volumes larger than 170 GiB but smaller than 334 GiB deliver a maximum throughput of 250 MiB/s if burst credits are available\. Volumes larger than or equal to 334 GiB deliver 250 MiB/s regardless of burst credits\. Older `gp2` volumes might not reach full performance unless you modify the volume\. For more information, see [Amazon EBS Elastic Volumes](ebs-modify-volume.md)\.
 
-† Maximum IOPS and throughput are guaranteed only on [Nitro\-based Instances](instance-types.md#ec2-nitro-instances) provisioned with more than 32,000 IOPS\. Other instances guarantee up to 32,000 IOPS and 500 MiB/s\. Older `io1` volumes might not reach full performance unless you modify the volume\. For more information, see [Amazon EBS Elastic Volumes](ebs-modify-volume.md)\.
+† Maximum IOPS and throughput are guaranteed only on [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances) provisioned with more than 32,000 IOPS\. Other instances guarantee up to 32,000 IOPS and 500 MiB/s\. Older `io1` volumes might not reach full performance unless you modify the volume\. For more information, see [Amazon EBS Elastic Volumes](ebs-modify-volume.md)\.
 
 †† To achieve this throughput, you must have an instance that supports [EBS optimization](ebs-optimized.md)\.
 
@@ -65,7 +65,7 @@ Each volume receives an initial I/O credit balance of 5\.4 million I/O credits, 
 
 When your volume requires more than the baseline performance I/O level, it draws on I/O credits in the credit balance to burst to the required performance level, up to a maximum of 3,000 IOPS\. When your volume uses fewer I/O credits than it earns in a second, unused I/O credits are added to the I/O credit balance\. The maximum I/O credit balance for a volume is equal to the initial credit balance \(5\.4 million I/O credits\)\.
 
-When the baseline performance of a volume is higher than maximum burst performance, I/O credits are never spent\. If the volume is attached to a [Nitro\-based instance](instance-types.md#ec2-nitro-instances), the burst balance is not reported\. For a non\-Nitro\-based instance, the reported burst balance is 100%\.
+When the baseline performance of a volume is higher than maximum burst performance, I/O credits are never spent\. If the volume is attached to an instance built on the [Nitro System](instance-types.md#ec2-nitro-instances), the burst balance is not reported\. For other instances, the reported burst balance is 100%\.
 
 The burst duration of a volume is dependent on the size of the volume, the burst IOPS required, and the credit balance when the burst begins\. This is shown in the following equation:
 
@@ -141,9 +141,9 @@ V  =  -----
 
 ## Provisioned IOPS SSD \(`io1`\) Volumes<a name="EBSVolumeTypes_piops"></a>
 
-Provisioned IOPS SSD \(`io1`\) volumes are designed to meet the needs of I/O\-intensive workloads, particularly database workloads, that are sensitive to storage performance and consistency\. Unlike `gp2`, which uses a bucket and credit model to calculate performance, an `io1` volume allows you to specify a consistent IOPS rate when you create the volume, and Amazon EBS delivers the provisioned IOPS performance 99\.9 percent of the time\.
+Provisioned IOPS SSD \(`io1`\) volumes are designed to meet the needs of I/O\-intensive workloads, particularly database workloads, that are sensitive to storage performance and consistency\. Unlike `gp2`, which uses a bucket and credit model to calculate performance, an `io1` volume allows you to specify a consistent IOPS rate when you create the volume, and Amazon EBS delivers the provisioned performance 99\.9 percent of the time\.
 
-An `io1` volume can range in size from 4 GiB to 16 TiB\. You can provision from 100 IOPS up to 64,000 IOPS per volume on [Nitro\-based Instances](instance-types.md#ec2-nitro-instances) instances and up to 32,000 on other instances\. The maximum ratio of provisioned IOPS to requested volume size \(in GiB\) is 50:1\. For example, a 100 GiB volume can be provisioned with up to 5,000 IOPS\. On a supported instance type, any volume 1,280 GiB in size or greater allows provisioning up to the 64,000 IOPS maximum \(50 × 1,280 GiB = 64,000\)\.
+An `io1` volume can range in size from 4 GiB to 16 TiB\. You can provision from 100 IOPS up to 64,000 IOPS per volume on [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances) and up to 32,000 on other instances\. The maximum ratio of provisioned IOPS to requested volume size \(in GiB\) is 50:1\. For example, a 100 GiB volume can be provisioned with up to 5,000 IOPS\. On a supported instance type, any volume 1,280 GiB in size or greater allows provisioning up to the 64,000 IOPS maximum \(50 × 1,280 GiB = 64,000\)\.
 
 An `io1` volume provisioned with up to 32,000 IOPS supports a maximum I/O size of 256 KiB and yields as much as 500 MiB/s of throughput\. With the I/O size at the maximum, peak throughput is reached at 2,000 IOPS\. A volume provisioned with more than 32,000 IOPS \(up to the cap of 64,000 IOPS\) supports a maximum I/O size of 16 KiB and yields as much as 1,000 MiB/s of throughput\. The following graph illustrates these performance characteristics:
 
@@ -394,7 +394,7 @@ Throughput for `st1` and `sc1` volumes is always determined by the smaller of th
 + Throughput limits of the volume
 + Throughput limits of the instance
 
-As for all Amazon EBS volumes, we recommend that you select an appropriate EBS\-optimized EC2 instance in order to avoid network bottlenecks\. For more information, see [Amazon EBS–Optimized Instances](ebs-optimized.md)\.
+As for all Amazon EBS volumes, we recommend that you select an appropriate EBS\-optimized EC2 instance in order to avoid network bottlenecks\. For more information, see [Amazon EBS–optimized instances](ebs-optimized.md)\.
 
 ## Monitoring the Burst Bucket Balance for `gp2`, `st1`, and `sc1` Volumes<a name="monitoring_burstbucket"></a>
 

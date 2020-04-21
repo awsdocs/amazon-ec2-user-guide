@@ -30,7 +30,7 @@ You can work with On\-Demand Instances in the following ways:
 + [Configuring Your Amazon Linux Instance](Configure_Instance.md)
 + [Identify EC2 Linux Instances](identify_ec2_instances.md)
 
-If you're new to Amazon EC2, see [How to Get Started with Amazon EC2](concepts.md#how-to-get-started)\.
+If you're new to Amazon EC2, see [How to get started with Amazon EC2](concepts.md#how-to-get-started)\.
 
 ## On\-Demand Instance Limits<a name="ec2-on-demand-instances-limits"></a>
 
@@ -96,11 +96,11 @@ You can view and use the following controls and information:
 
 ### Requesting a Limit Increase<a name="vcpu-limits-request-increase"></a>
 
-You can request a limit increase for each On\-Demand Instance limit type from the [Limits page](https://console.aws.amazon.com/ec2/#Limits) or the vCPU limits calculator in the Amazon EC2 console\. Complete the required fields on the AWS Support Center [limit increase form](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-instances) with your use case\. For **Primary Instance Type**, select the limit type that corresponds to the **Instance limit name** in the vCPU limits calculator\. For the new limit value, use the value that appears in the **New limit** column in the vCPU limits calculator\. For more information about requesting a limit increase, see [Amazon EC2 Service Limits](ec2-resource-limits.md)\.
+You can request a limit increase for each On\-Demand Instance limit type from the [Limits page](https://console.aws.amazon.com/ec2/#Limits) or the vCPU limits calculator in the Amazon EC2 console\. Complete the required fields on the AWS Support Center [limit increase form](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-instances) with your use case\. For **Primary Instance Type**, select the limit type that corresponds to the **Instance limit name** in the vCPU limits calculator\. For the new limit value, use the value that appears in the **New limit** column in the vCPU limits calculator\. For more information about requesting a limit increase, see [Amazon EC2 Service Quotas](ec2-resource-limits.md)\.
 
 ### Monitoring On\-Demand Instance Limits and Usage<a name="monitoring-on-demand-limits"></a>
 
-You can view and manage your On\-Demand Instance limits from the [Limits page](https://console.aws.amazon.com/ec2/#Limits) in the Amazon EC2 console, from the Amazon EC2 [Services quotas page](https://console.aws.amazon.com/servicequotas/#!/services/ec2/quotas) in the Service Quotas console, and from the [Service Limits page](https://console.aws.amazon.com/trustedadvisor/home?#/category/service-limits) in the AWS Trusted Advisor console\. For more information, see [Amazon EC2 Service Limits](ec2-resource-limits.md) in the *Amazon EC2 User Guide for Linux Instances*, [Viewing a Service Quota](https://docs.aws.amazon.com/servicequotas/latest/userguide/gs-request-quota.html) in the *Service Quotas User Guide*, and [AWS Trusted Advisor](http://aws.amazon.com/premiumsupport/technology/trusted-advisor/)\.
+You can view and manage your On\-Demand Instance limits from the [Limits page](https://console.aws.amazon.com/ec2/#Limits) in the Amazon EC2 console, from the Amazon EC2 [Services quotas page](https://console.aws.amazon.com/servicequotas/#!/services/ec2/quotas) in the Service Quotas console, and from the [Service Limits page](https://console.aws.amazon.com/trustedadvisor/home?#/category/service-limits) in the AWS Trusted Advisor console\. For more information, see [Amazon EC2 Service Quotas](ec2-resource-limits.md) in the *Amazon EC2 User Guide for Linux Instances*, [Viewing a Service Quota](https://docs.aws.amazon.com/servicequotas/latest/userguide/gs-request-quota.html) in the *Service Quotas User Guide*, and [AWS Trusted Advisor](http://aws.amazon.com/premiumsupport/technology/trusted-advisor/)\.
 
 With Amazon CloudWatch metrics integration, you can monitor EC2 usage against limits\. You can also configure alarms to warn about approaching limits\. For more information, see [Using Amazon CloudWatch Alarms](https://docs.aws.amazon.com/servicequotas/latest/userguide/configure-cloudwatch.html) in the *Service Quotas User Guide*\.
 

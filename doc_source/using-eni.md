@@ -18,7 +18,7 @@ You can create and configure network interfaces in your account and attach them 
 All network interfaces have a resource identifier that starts with *eni\-*\.
 
 **Important**  
-The term 'elastic network interface' is sometimes shortened to 'ENI'\. This is not the same as the Elastic Network Adapter \(ENA\), which is a custom interface that optimizes network performance on some instance types\. For more information, see [Enhanced Networking on Linux](enhanced-networking.md)\.
+The term 'elastic network interface' is sometimes shortened to 'ENI'\. This is not the same as the Elastic Network Adapter \(ENA\), which is a custom interface that optimizes network performance on some instance types\. For more information, see [Enhanced networking on Linux](enhanced-networking.md)\.
 
 **Topics**
 + [Network Interface Basics](#eni-basics)
@@ -592,7 +592,7 @@ You can use one of the following commands\. For more information about these com
 
 ### Detaching a Network Interface from an Instance<a name="detach_eni"></a>
 
-You can detach a secondary network interface at any time, using either the **Instances** or **Network Interfaces** page of the Amazon EC2 console\.
+You can detach a secondary network interface that is attached to an EC2 instance at any time, using either the **Instances** or **Network Interfaces** page of the Amazon EC2 console\.
 
 **To detach a network interface from an instance using the Instances page**
 
@@ -604,20 +604,21 @@ You can detach a secondary network interface at any time, using either the **Ins
 
 1. In the **Detach Network Interface** dialog box, select the network interface and choose **Detach**\.
 
+You can't use the Amazon EC2 console to detach a network interface that is attached to a resource from another service, such as an Elastic Load Balancing load balancer, a Lambda function, a WorkSpace, or a NAT gateway\. The network interfaces for those resources will be deleted when the resource is deleted\.
+
 **To detach a network interface from an instance using the Network Interfaces page**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
 1. In the navigation pane, choose **Network Interfaces**\.
 
-1. Select the network interface and choose **Detach**\.
+1. Select the network interface and check the description to verify that the network interface is attached to an instance, not another type of resource\. If the resource is an EC2 instance, choose **Detach**\.
 
-1. In the **Detach Network Interface** dialog box, choose **Yes, Detach**\. If the network interface fails to detach from the instance, choose **Force detachment**, and then try again\.
-**Note**  
-Use the **Force detachment** option only as a last resort to detach a network interface from a failed instance\. 
-If you use the **Force detachment** option to detach a network interface, you might not be able to attach a different network interface to the same index on the instance without first stopping and starting the instance\.
-If you force the detachment of a network interface, the [instance metadata](ec2-instance-metadata.md) might not get updated\. This means that the attributes associated with the detached network interface might still be visible\. The instance metadata will get updated when you stop and start the instance\.
-You can’t force the detachment of a network interface from EC2\-Classic instances\.
+   If the network interface is the primary network interface for the instance, the **Detach** button is disabled\.
+
+1. When prompted for confirmation, choose **Yes, Detach**\.
+
+1. If the network interface fails to detach from the instance, choose **Force detachment** and then try again\. We recommend that you choose this option only as a last resort\. Forcing a detachment can prevent you from attaching a different network interface on the same index until you restart the instance\. It can also prevent the instance metadata from reflecting that the network interface was detached until you restart the instance\.
 
 **To detach a network interface using the command line**
 
@@ -798,7 +799,7 @@ You can use one of the following commands\. For more information about these com
 
 ### Adding or Editing Tags<a name="eni_add_edit_tags"></a>
 
-Tags are metadata that you can add to a network interface\. Tags are private and are only visible to your account\. Each tag consists of a key and an optional value\. For more information about tags, see [Tagging Your Amazon EC2 Resources](Using_Tags.md)\.
+Tags are metadata that you can add to a network interface\. Tags are private and are only visible to your account\. Each tag consists of a key and an optional value\. For more information about tags, see [Tagging your Amazon EC2 resources](Using_Tags.md)\.
 
 **To add or edit tags for a network interface using the console**
 

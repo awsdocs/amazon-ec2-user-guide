@@ -1,4 +1,4 @@
-# Instance Types<a name="instance-types"></a>
+# Instance types<a name="instance-types"></a>
 
 When you launch an instance, the *instance type* that you specify determines the hardware of the host computer used for your instance\. Each instance type offers different compute, memory, and storage capabilities and are grouped in instance families based on these capabilities\. Select an instance type based on the requirements of the application or software that you plan to run on your instance\.
 
@@ -9,26 +9,26 @@ Amazon EC2 dedicates some resources of the host computer, such as CPU, memory, a
 Each instance type provides higher or lower minimum performance from a shared resource\. For example, instance types with high I/O performance have a larger allocation of shared resources\. Allocating a larger share of shared resources also reduces the variance of I/O performance\. For most applications, moderate I/O performance is more than enough\. However, for applications that require greater or more consistent I/O performance, consider an instance type with higher I/O performance\.
 
 **Topics**
-+ [Available Instance Types](#AvailableInstanceTypes)
-+ [Hardware Specifications](#instance-hardware-specs)
-+ [AMI Virtualization Types](#instance-virtualization-type)
-+ [Nitro\-based Instances](#ec2-nitro-instances)
-+ [Networking and Storage Features](#instance-networking-storage)
-+ [Instance Limits](#instance-type-limits)
-+ [General Purpose Instances](general-purpose-instances.md)
-+ [Compute Optimized Instances](compute-optimized-instances.md)
-+ [Memory Optimized Instances](memory-optimized-instances.md)
-+ [Storage Optimized Instances](storage-optimized-instances.md)
-+ [Linux Accelerated Computing Instances](accelerated-computing-instances.md)
-+ [Finding an Instance Type](instance-discovery.md)
-+ [Changing the Instance Type](ec2-instance-resize.md)
-+ [Getting Recommendations for an Instance Type](ec2-instance-recommendations.md)
++ [Available instance types](#AvailableInstanceTypes)
++ [Hardware specifications](#instance-hardware-specs)
++ [AMI virtualization types](#instance-virtualization-type)
++ [Instances built on the Nitro System](#ec2-nitro-instances)
++ [Networking and storage features](#instance-networking-storage)
++ [Instance limits](#instance-type-limits)
++ [General purpose instances](general-purpose-instances.md)
++ [Compute optimized instances](compute-optimized-instances.md)
++ [Memory optimized instances](memory-optimized-instances.md)
++ [Storage optimized instances](storage-optimized-instances.md)
++ [Linux accelerated computing instances](accelerated-computing-instances.md)
++ [Finding an instance type](instance-discovery.md)
++ [Changing the instance type](ec2-instance-resize.md)
++ [Getting recommendations for an instance type](ec2-instance-recommendations.md)
 
-## Available Instance Types<a name="AvailableInstanceTypes"></a>
+## Available instance types<a name="AvailableInstanceTypes"></a>
 
 Amazon EC2 provides the instance types listed in the following tables\.
 
-### Current Generation Instances<a name="current-gen-instances"></a>
+### Current generation instances<a name="current-gen-instances"></a>
 
 For the best performance, we recommend that you use the current generation instance types when you launch new instances\. To determine which instance types are available in which Regions or Availability Zones, use the [describe\-instance\-type\-offerings](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-type-offerings.html) command\. To describe the characteristics of an instance type, use the [describe\-instance\-types](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-types.html) command\.
 
@@ -43,7 +43,7 @@ For more information about the current generation instance types, see [Amazon EC
 | Storage optimized | `d2.xlarge` \| `d2.2xlarge` \| `d2.4xlarge` \| `d2.8xlarge` \| `h1.2xlarge` \| `h1.4xlarge` \| `h1.8xlarge` \| `h1.16xlarge` \| `i3.large` \| `i3.xlarge` \| `i3.2xlarge` \| `i3.4xlarge` \| `i3.8xlarge` \| `i3.16xlarge` \| `i3.metal` \| `i3en.large` \| `i3en.xlarge` \| `i3en.2xlarge` \| `i3en.3xlarge` \| `i3en.6xlarge` \| `i3en.12xlarge` \| `i3en.24xlarge` \| `i3en.metal` | 
 | Accelerated computing | `f1.2xlarge` \| `f1.4xlarge` \| `f1.16xlarge` \| `g3s.xlarge` \| `g3.4xlarge` \| `g3.8xlarge` \| `g3.16xlarge` \| `g4dn.xlarge` \| `g4dn.2xlarge` \| `g4dn.4xlarge` \| `g4dn.8xlarge` \| `g4dn.12xlarge` \| `g4dn.16xlarge` \| `p2.xlarge` \| `p2.8xlarge` \| `p2.16xlarge` \| `p3.2xlarge` \| `p3.8xlarge` \| `p3.16xlarge` \| `p3dn.24xlarge` \| `inf1.xlarge` \| `inf1.2xlarge` \| `inf1.6xlarge` \| `inf1.24xlarge` | 
 
-### Previous Generation Instances<a name="previous-gen-instances"></a>
+### Previous generation instances<a name="previous-gen-instances"></a>
 
 Amazon Web Services offers previous generation instances for users who have optimized their applications around these instances and have yet to upgrade\. We encourage you to use the latest generation of instances to get the best performance, but we continue to support these previous generation instances\. If you are currently using a previous generation instance, you can see which current generation instance would be a suitable upgrade\. For more information, see [Previous Generation Instances](https://aws.amazon.com/ec2/previous-generation/)\.
 
@@ -56,31 +56,30 @@ Amazon Web Services offers previous generation instances for users who have opti
 | Storage optimized | `hs1.8xlarge` \| `i2.xlarge` \| `i2.2xlarge` \| `i2.4xlarge` \| `i2.8xlarge` | 
 | Accelerated computing | `g2.2xlarge` \| `g2.8xlarge` | 
 
-## Hardware Specifications<a name="instance-hardware-specs"></a>
+## Hardware specifications<a name="instance-hardware-specs"></a>
 
 For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
 To determine which instance type best meets your needs, we recommend that you launch an instance and use your own benchmark application\. Because you pay by the instance second, it's convenient and inexpensive to test multiple instance types before making a decision\.
 
-If your needs change, even after you make a decision, you can resize your instance later\. For more information, see [Changing the Instance Type](ec2-instance-resize.md)\.
+If your needs change, even after you make a decision, you can resize your instance later\. For more information, see [Changing the instance type](ec2-instance-resize.md)\.
 
 **Note**  
 Amazon EC2 instances typically run on 64\-bit virtual Intel processors as specified in the instance type product pages\. For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\. However, confusion may result from industry naming conventions for 64\-bit CPUs\. Chip manufacturer Advanced Micro Devices \(AMD\) introduced the first commercially successful 64\-bit architecture based on the Intel x86 instruction set\. Consequently, the architecture is widely referred to as AMD64 regardless of the chip manufacturer\. Windows and several Linux distributions follow this practice\. This explains why the internal system information on an Ubuntu or Windows EC2 instance displays the CPU architecture as AMD64 even though the instances are running on Intel hardware\.
 
-## AMI Virtualization Types<a name="instance-virtualization-type"></a>
+## AMI virtualization types<a name="instance-virtualization-type"></a>
 
-<a name="virtualization"></a>The virtualization type of your instance is determined by the AMI that you use to launch it\. Current generation instance types support hardware virtual machine \(HVM\) only\. Some previous generation instance types support paravirtual \(PV\) and some AWS regions support PV instances\. For more information, see [Linux AMI Virtualization Types](virtualization_types.md)\.
+<a name="virtualization"></a>The virtualization type of your instance is determined by the AMI that you use to launch it\. Current generation instance types support hardware virtual machine \(HVM\) only\. Some previous generation instance types support paravirtual \(PV\) and some AWS regions support PV instances\. For more information, see [Linux AMI virtualization types](virtualization_types.md)\.
 
 For best performance, we recommend that you use an HVM AMI\. In addition, HVM AMIs are required to take advantage of enhanced networking\. HVM virtualization uses hardware\-assist technology provided by the AWS platform\. With HVM virtualization, the guest VM runs as if it were on a native hardware platform, except that it still uses PV network and storage drivers for improved performance\.
 
-## Nitro\-based Instances<a name="ec2-nitro-instances"></a>
+## Instances built on the Nitro System<a name="ec2-nitro-instances"></a>
 
-The Nitro system is a collection of AWS\-built hardware and software components that enable high performance, high availability, and high security\. In addition, the Nitro system provides bare metal capabilities that eliminate virtualization overhead and support workloads that require full access to host hardware\.
+The Nitro System is a collection of AWS\-built hardware and software components that enable high performance, high availability, and high security\. In addition, the Nitro System provides bare metal capabilities that eliminate virtualization overhead and support workloads that require full access to host hardware\. For more information, see [AWS Nitro System](http://aws.amazon.com/ec2/nitro/)\.
 
-**Nitro Components**
+**Nitro components**
 
-The following components are part of the Nitro system:
-+ Nitro hypervisor \- A lightweight hypervisor that manages memory and CPU allocation and delivers performance that is indistinguishable from bare metal for most workloads\.
+The following components are part of the Nitro System:
 + Nitro card
   + Local NVMe storage volumes
   + Networking hardware support
@@ -88,21 +87,22 @@ The following components are part of the Nitro system:
   + Monitoring
   + Security
 + Nitro security chip, integrated into the motherboard
++ Nitro hypervisor \- A lightweight hypervisor that manages memory and CPU allocation and delivers performance that is indistinguishable from bare metal for most workloads\.
 
-**Instance Types**
+**Instance types**
 
-The following instances are based on the Nitro system:
+The following instances are built on the Nitro System:
 + A1, C5, C5d, C5n, G4, I3en, Inf1, M5, M5a, M5ad, M5d, M5dn, M5n, `p3dn.24xlarge`, R5, R5a, R5ad, R5d, R5dn, R5n, T3, T3a, and z1d
 + Bare metal: `a1.metal`, `c5.metal`, `c5d.metal`, `c5n.metal`, `i3.metal`, `i3en.metal`, `m5.metal`, `m5d.metal`, `r5.metal`, `r5d.metal`, `u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, `u-18tb1.metal`, `u-24tb1.metal`, and `z1d.metal`
 
-**Resources**
+**Learn more**
 
 For more information, see the following videos:
 + [AWS re:Invent 2017: The Amazon EC2 Nitro System Architecture](https://www.youtube.com/watch?v=02EbskIXCOc)
 + [AWS re:Invent 2017: Amazon EC2 Bare Metal Instances](https://www.youtube.com/watch?v=o9_4uGvbvnk)
 + [The Nitro Project: Next\-Generation EC2 Infrastructure](https://www.slideshare.net/AmazonWebServices/the-nitro-project-nextgeneration-ec2-infrastructure-aws-online-tech-talks)
 
-## Networking and Storage Features<a name="instance-networking-storage"></a>
+## Networking and storage features<a name="instance-networking-storage"></a>
 
 When you select an instance type, this determines the networking and storage features that are available\. To describe an instance type, use the [describe\-instance\-types](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-types.html) command\.
 
@@ -110,17 +110,17 @@ When you select an instance type, this determines the networking and storage fea
 + IPv6 is supported on all current generation instance types and the C3, R3, and I2 previous generation instance types\.
 + To maximize the networking and bandwidth performance of your instance type, you can do the following:
   + Launch supported instance types into a cluster placement group to optimize your instances for high performance computing \(HPC\) applications\. Instances in a common cluster placement group can benefit from high\-bandwidth, low\-latency networking\. For more information, see [Placement Groups](placement-groups.md)\.
-  + Enable enhanced networking for supported current generation instance types to get significantly higher packet per second \(PPS\) performance, lower network jitter, and lower latencies\. For more information, see [Enhanced Networking on Linux](enhanced-networking.md)\. 
+  + Enable enhanced networking for supported current generation instance types to get significantly higher packet per second \(PPS\) performance, lower network jitter, and lower latencies\. For more information, see [Enhanced networking on Linux](enhanced-networking.md)\. 
 + Current generation instance types that are enabled for enhanced networking have the following networking performance attributes:
-  + Traffic within the same region over private IPv4 or IPv6 can support 5 Gbps for single\-flow traffic and up to 25 Gbps for multi\-flow traffic \(depending on the instance type\)\.
-  + Traffic to and from Amazon S3 buckets within the same region over the public IP address space or through a VPC endpoint can use all available instance aggregate bandwidth\.
+  + Traffic within the same Region over private IPv4 or IPv6 can support 5 Gbps for single\-flow traffic and up to 25 Gbps for multi\-flow traffic \(depending on the instance type\)\.
+  + Traffic to and from Amazon S3 buckets within the same Region over the public IP address space or through a VPC endpoint can use all available instance aggregate bandwidth\.
 + The maximum supported MTU varies across instance types\. All Amazon EC2 instance types support standard Ethernet V2 1500 MTU frames\. All current generation instances support 9001 MTU, or jumbo frames, and some previous generation instances support them as well\. For more information, see [Network Maximum Transmission Unit \(MTU\) for Your EC2 Instance](network_mtu.md)\.
 
 **Storage features**
 + Some instance types support EBS volumes and instance store volumes, while other instance types support only EBS volumes\. Some instance types that support instance store volumes use solid state drives \(SSD\) to deliver very high random I/O performance\. Some instance types support NVMe instance store volumes\. Some instance types support NVMe EBS volumes\. For more information, see [Amazon EBS and NVMe on Linux Instances](nvme-ebs-volumes.md) and [NVMe SSD Volumes](ssd-instance-store.md#nvme-ssd-volumes)\.
-+ To obtain additional, dedicated capacity for Amazon EBS I/O, you can launch some instance types as EBS–optimized instances\. Some instance types are EBS–optimized by default\. For more information, see [Amazon EBS–Optimized Instances](ebs-optimized.md)\.
++ To obtain additional, dedicated capacity for Amazon EBS I/O, you can launch some instance types as EBS–optimized instances\. Some instance types are EBS–optimized by default\. For more information, see [Amazon EBS–optimized instances](ebs-optimized.md)\.
 
-### Summary of Networking and Storage Features<a name="instance-type-summary-table"></a>
+### Summary of networking and storage features<a name="instance-type-summary-table"></a>
 
 The following table summarizes the networking and storage features supported by current generation instance types\.
 
@@ -178,10 +178,10 @@ The following table summarizes the networking and storage features supported by 
 |  M3  |  SSD  | No | No | 
 |  R3  |  SSD  |  Yes  |  Intel 82599 VF  | 
 
-## Instance Limits<a name="instance-type-limits"></a>
+## Instance limits<a name="instance-type-limits"></a>
 
 There is a limit on the total number of instances that you can launch in a region, and there are additional limits on some instance types\.
 
 For more information about the default limits, see [How many instances can I run in Amazon EC2?](https://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2)
 
-For more information about viewing your current limits or requesting an increase in your current limits, see [Amazon EC2 Service Limits](ec2-resource-limits.md)\.
+For more information about viewing your current limits or requesting an increase in your current limits, see [Amazon EC2 Service Quotas](ec2-resource-limits.md)\.

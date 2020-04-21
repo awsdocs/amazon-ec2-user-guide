@@ -1,4 +1,4 @@
-# Detaching an Amazon EBS Volume from an Instance<a name="ebs-detaching-volume"></a>
+# Detaching an Amazon EBS volume from a Linux instance<a name="ebs-detaching-volume"></a>
 
 You can detach an Amazon EBS volume from an instance explicitly or by terminating the instance\. However, if the instance is running, you must first unmount the volume from the instance\.
 
@@ -13,9 +13,11 @@ This example unmounts the volume and then explicitly detaches it from the instan
 
 You can reattach a volume that you detached \(without unmounting it\), but it might not get the same mount point\. If there were writes to the volume in progress when it was detached, the data on the volume might be out of sync\.
 
+You can get directions for volumes on a Windows instance from [Detaching a volume from a Windows instance](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ebs-detaching-volume.html) in the *Amazon EC2 User Guide for Windows Instances*\.
+
 **To detach an EBS volume using the console**
 
-1. Use the following command to unmount the `/dev/sdh` device\.
+1. From your Linux instance, use the following command to unmount the `/dev/sdh` device\.
 
    ```
    [ec2-user ~]$ umount -d /dev/sdh
@@ -31,7 +33,7 @@ You can reattach a volume that you detached \(without unmounting it\), but it mi
 
 **To detach an EBS volume from an instance using the command line**
 
-You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
+After unmounting the volume, you can use one of the following commands to detach it\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
 + [detach\-volume](https://docs.aws.amazon.com/cli/latest/reference/ec2/detach-volume.html) \(AWS CLI\)
 + [Dismount\-EC2Volume](https://docs.aws.amazon.com/powershell/latest/reference/items/Dismount-EC2Volume.html) \(AWS Tools for Windows PowerShell\)
 

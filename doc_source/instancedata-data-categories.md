@@ -1,4 +1,4 @@
-# Instance Metadata Categories<a name="instancedata-data-categories"></a>
+# Instance metadata categories<a name="instancedata-data-categories"></a>
 
 The following table lists the categories of instance metadata\.
 
@@ -6,7 +6,7 @@ The following table lists the categories of instance metadata\.
 Some of the category names in the following table are placeholders for data that is unique to your instance\. For example, *mac* represents the MAC address for the network interface\. You must replace the placeholders with the actual values\.
 
 
-| Data | Description | Version Introduced | 
+| Data | Description | Version introduced | 
 | --- | --- | --- | 
 |  ami\-id  | The AMI ID used to launch the instance\. | 1\.0 | 
 |  ami\-launch\-index  | If you started more than one instance at the same time, this value indicates the order in which the instance was launched\. The value of the first instance launched is 0\. | 1\.0 | 
@@ -23,12 +23,12 @@ Some of the category names in the following table are placeholders for data that
 | events/maintenance/scheduled | If there are active maintenance events for the instance, contains a JSON string with information about the events\. For more information, see [Viewing Scheduled Events](monitoring-instances-status-check_sched.md#viewing_scheduled_events)\. | 2018\-08\-17 | 
 | hostname | The private IPv4 DNS hostname of the instance\. In cases where multiple network interfaces are present, this refers to the eth0 device \(the device for which the device number is 0\)\. | 1\.0 | 
 |  iam/info  | If there is an IAM role associated with the instance, contains information about the last time the instance profile was updated, including the instance's LastUpdated date, InstanceProfileArn, and InstanceProfileId\. Otherwise, not present\. | 2012\-01\-12 | 
-|  iam/security\-credentials/role\-name  | If there is an IAM role associated with the instance, role\-name is the name of the role, and role\-name contains the temporary security credentials associated with the role \(for more information, see [Retrieving Security Credentials from Instance Metadata](iam-roles-for-amazon-ec2.md#instance-metadata-security-credentials)\)\. Otherwise, not present\. | 2012\-01\-12 | 
+|  iam/security\-credentials/role\-name  | If there is an IAM role associated with the instance, role\-name is the name of the role, and role\-name contains the temporary security credentials associated with the role \(for more information, see [Retrieving security credentials from instance metadata](iam-roles-for-amazon-ec2.md#instance-metadata-security-credentials)\)\. Otherwise, not present\. | 2012\-01\-12 | 
 | identity\-credentials/ec2/info | \[Reserved for internal use only\] Information about the credentials that AWS uses to identify an instance to the rest of the Amazon EC2 infrastructure\. | 2018\-05\-23 | 
 | identity\-credentials/ec2/security\-credentials/ec2\-instance | \[Reserved for internal use only\] The credentials that AWS uses to identify an instance to the rest of the Amazon EC2 infrastructure\. | 2018\-05\-23 | 
 |  instance\-action  | Notifies the instance that it should reboot in preparation for bundling\. Valid values: none \| shutdown \| bundle\-pending\. | 2008\-09\-01 | 
 |  instance\-id  | The ID of this instance\. | 1\.0 | 
-|  instance\-type  | The type of instance\. For more information, see [Instance Types](instance-types.md)\. | 2007\-08\-29 | 
+|  instance\-type  | The type of instance\. For more information, see [Instance types](instance-types.md)\. | 2007\-08\-29 | 
 |  kernel\-id  | The ID of the kernel launched with this instance, if applicable\. | 2008\-02\-01 | 
 |  local\-hostname  | The private IPv4 DNS hostname of the instance\. In cases where multiple network interfaces are present, this refers to the eth0 device \(the device for which the device number is 0\)\. | 2007\-01\-19 | 
 |  local\-ipv4  | The private IPv4 address of the instance\. In cases where multiple network interfaces are present, this refers to the eth0 device \(the device for which the device number is 0\)\. | 1\.0 | 
@@ -66,7 +66,7 @@ Some of the category names in the following table are placeholders for data that
 |  spot/instance\-action  |  The action \(hibernate, stop, or terminate\) and the approximate time, in UTC, when the action will occur\. This item is present only if the Spot Instance has been marked for hibernate, stop, or terminate\. For more information, see [instance\-action](spot-interruptions.md#instance-action-metadata)\.  | 2016\-11\-15 | 
 |  spot/termination\-time  |  The approximate time, in UTC, that the operating system for your Spot Instance will receive the shutdown signal\. This item is present and contains a time value \(for example, 2015\-01\-05T18:02:00Z\) only if the Spot Instance has been marked for termination by Amazon EC2\. The termination\-time item is not set to a time if you terminated the Spot Instance yourself\. For more information, see [termination\-time](spot-interruptions.md#termination-time-metadata)\.  | 2014\-11\-05 | 
 
-## Dynamic Data Categories<a name="dynamic-data-categories"></a>
+## Dynamic data categories<a name="dynamic-data-categories"></a>
 
 The following table lists the categories of dynamic data\.
 
@@ -74,6 +74,6 @@ The following table lists the categories of dynamic data\.
 | Data | Description | Version introduced | 
 | --- | --- | --- | 
 |  fws/instance\-monitoring  | Value showing whether the customer has enabled detailed one\-minute monitoring in CloudWatch\. Valid values: enabled \| disabled | 2009\-04\-04 | 
-| instance\-identity/document  | JSON containing instance attributes, such as instance\-id, private IP address, etc\. See [Instance Identity Documents](instance-identity-documents.md)\.  | 2009\-04\-04 | 
-| instance\-identity/pkcs7  | Used to verify the document's authenticity and content against the signature\. See [Instance Identity Documents](instance-identity-documents.md)\.  | 2009\-04\-04 | 
-| instance\-identity/signature  | Data that can be used by other parties to verify its origin and authenticity\. See [Instance Identity Documents](instance-identity-documents.md)\.  | 2009\-04\-04 | 
+| instance\-identity/document  | JSON containing instance attributes, such as instance\-id, private IP address, etc\. See [Instance identity documents](instance-identity-documents.md)\.  | 2009\-04\-04 | 
+| instance\-identity/pkcs7  | Used to verify the document's authenticity and content against the signature\. See [Instance identity documents](instance-identity-documents.md)\.  | 2009\-04\-04 | 
+| instance\-identity/signature  | Data that can be used by other parties to verify its origin and authenticity\. See [Instance identity documents](instance-identity-documents.md)\.  | 2009\-04\-04 | 

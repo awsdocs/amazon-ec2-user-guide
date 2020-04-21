@@ -7,7 +7,7 @@ An *EC2 Fleet* contains the configuration information to launch a fleet—or gro
 
 You can also set a maximum amount per hour that you’re willing to pay for your fleet, and EC2 Fleet launches instances until it reaches the maximum amount\. When the maximum amount you're willing to pay is reached, the fleet stops launching instances even if it hasn’t met the target capacity\.
 
-The EC2 Fleet attempts to launch the number of instances that are required to meet the target capacity specified in your request\. If you specified a total maximum price per hour, it fulfills the capacity until it reaches the maximum amount that you’re willing to pay\. The fleet can also attempt to maintain its target Spot capacity if your Spot Instances are interrupted\. For more information, see [How Spot Instances Work](how-spot-instances-work.md)\.
+The EC2 Fleet attempts to launch the number of instances that are required to meet the target capacity specified in your request\. If you specified a total maximum price per hour, it fulfills the capacity until it reaches the maximum amount that you’re willing to pay\. The fleet can also attempt to maintain its target Spot capacity if your Spot Instances are interrupted\. For more information, see [How Spot Instances work](how-spot-instances-work.md)\.
 
 ![\[A sample EC2 fleet\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ec2-fleet.png)
 
@@ -53,7 +53,7 @@ If you plan to use your T3 Spot Instances immediately and for a short duration, 
 
 If you launch your T3 Spot Instances in [`unlimited`](burstable-performance-instances-unlimited-mode.md) mode and burst CPU immediately, you'll spend surplus credits for bursting\. If you use the instance for a short duration, your instance doesn't have time to accrue CPU credits to pay down the surplus credits, and you are charged for the surplus credits when you terminate your instance\.
 
-`Unlimited` mode for T3 Spot Instances is suitable only if the instance runs for long enough to accrue CPU credits for bursting\. Otherwise, paying for surplus credits makes T3 Spot Instances more expensive than M5 or C5 instances\. For more information, see [When to Use Unlimited Mode vs Fixed CPU](burstable-performance-instances-unlimited-mode-concepts.md#when-to-use-unlimited-mode)\.
+`Unlimited` mode for T3 Spot Instances is suitable only if the instance runs for long enough to accrue CPU credits for bursting\. Otherwise, paying for surplus credits makes T3 Spot Instances more expensive than M5 or C5 instances\. For more information, see [When to use unlimited mode versus fixed CPU](burstable-performance-instances-unlimited-mode-concepts.md#when-to-use-unlimited-mode)\.
 
 ### T2 Spot Instances<a name="ec2-fleet-t2-spot-instances"></a>
 

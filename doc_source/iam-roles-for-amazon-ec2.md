@@ -1,4 +1,4 @@
-# IAM Roles for Amazon EC2<a name="iam-roles-for-amazon-ec2"></a>
+# IAM roles for Amazon EC2<a name="iam-roles-for-amazon-ec2"></a>
 
 Applications must sign their API requests with AWS credentials\. Therefore, if you are an application developer, you need a strategy for managing credentials for your applications that run on EC2 instances\. For example, you can securely distribute your AWS credentials to the instances, enabling the applications on those instances to use your credentials to sign requests, while protecting your credentials from other users\. However, it's challenging to securely distribute credentials to each instance, especially those that AWS creates on your behalf, such as Spot Instances or instances in Auto Scaling groups\. You must also be able to update the credentials on each instance when you rotate your AWS credentials\.
 
@@ -20,15 +20,15 @@ When creating IAM roles, associate least privilege IAM policies that restrict ac
 
 You cannot attach multiple IAM roles to a single instance, but you can attach a single IAM role to multiple instances\. For more information about creating and using IAM roles, see [Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/WorkingWithRoles.html) in the *IAM User Guide*\.
 
-You can apply resource\-level permissions to your IAM policies to control the users' ability to attach, replace, or detach IAM roles for an instance\. For more information, see [Supported Resource\-Level Permissions for Amazon EC2 API Actions](iam-policy-structure.md#ec2-supported-iam-actions-resources) and the following example: [Example: Working with IAM Roles](ExamplePolicies_EC2.md#iam-example-iam-roles)\.
+You can apply resource\-level permissions to your IAM policies to control the users' ability to attach, replace, or detach IAM roles for an instance\. For more information, see [Supported resource\-level permissions for Amazon EC2 API actions](iam-policy-structure.md#ec2-supported-iam-actions-resources) and the following example: [Example: Working with IAM roles](ExamplePolicies_EC2.md#iam-example-iam-roles)\.
 
 **Topics**
-+ [Instance Profiles](#ec2-instance-profile)
-+ [Retrieving Security Credentials from Instance Metadata](#instance-metadata-security-credentials)
-+ [Granting an IAM User Permission to Pass an IAM Role to an Instance](#permission-to-pass-iam-roles)
-+ [Working with IAM Roles](#working-with-iam-roles)
++ [Instance profiles](#ec2-instance-profile)
++ [Retrieving security credentials from instance metadata](#instance-metadata-security-credentials)
++ [Granting an IAM user permission to pass an IAM role to an instance](#permission-to-pass-iam-roles)
++ [Working with IAM roles](#working-with-iam-roles)
 
-## Instance Profiles<a name="ec2-instance-profile"></a>
+## Instance profiles<a name="ec2-instance-profile"></a>
 
 Amazon EC2 uses an *instance profile* as a container for an IAM role\. When you create an IAM role using the IAM console, the console creates an instance profile automatically and gives it the same name as the role to which it corresponds\. If you use the Amazon EC2 console to launch an instance with an IAM role or to attach an IAM role to an instance, you choose the role based on a list of instance profile names\. 
 
@@ -38,7 +38,7 @@ An instance profile can contain only one IAM role\. This limit cannot be increas
 
 For more information, see [Instance Profiles](https://docs.aws.amazon.com/IAM/latest/UserGuide/instance-profiles.html) in the *IAM User Guide*\.
 
-## Retrieving Security Credentials from Instance Metadata<a name="instance-metadata-security-credentials"></a>
+## Retrieving security credentials from instance metadata<a name="instance-metadata-security-credentials"></a>
 
 An application on the instance retrieves the security credentials provided by the role from the instance metadata item `iam/security-credentials/`*role\-name*\. The application is granted the permissions for the actions and resources that you've defined for the role through the security credentials associated with the role\. These security credentials are temporary and we rotate them automatically\. We make new credentials available at least five minutes before the expiration of the old credentials\.
 
@@ -80,9 +80,9 @@ The following is example output\.
 
 For applications, AWS CLI, and Tools for Windows PowerShell commands that run on the instance, you do not have to explicitly get the temporary security credentials—the AWS SDKs, AWS CLI, and Tools for Windows PowerShell automatically get the credentials from the EC2 instance metadata service and use them\. To make a call outside of the instance using temporary security credentials \(for example, to test IAM policies\), you must provide the access key, secret key, and the session token\. For more information, see [Using Temporary Security Credentials to Request Access to AWS Resources](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html) in the *IAM User Guide*\.
 
-For more information about instance metadata, see [Instance Metadata and User Data](ec2-instance-metadata.md)\. 
+For more information about instance metadata, see [Instance metadata and user data](ec2-instance-metadata.md)\. 
 
-## Granting an IAM User Permission to Pass an IAM Role to an Instance<a name="permission-to-pass-iam-roles"></a>
+## Granting an IAM user permission to pass an IAM role to an instance<a name="permission-to-pass-iam-roles"></a>
 
 To enable an IAM user to launch an instance with an IAM role or to attach or replace an IAM role for an existing instance, you must grant the user permission to pass the role to the instance\.
 
@@ -112,18 +112,18 @@ The following IAM policy grants users permission to launch instances \(`ec2:RunI
 
 This policy grants IAM users access to all your roles by specifying the resource as "\*" in the policy\. However, consider whether users who launch instances with your roles \(ones that exist or that you create later on\) might be granted permissions that they don't need or shouldn't have\.
 
-## Working with IAM Roles<a name="working-with-iam-roles"></a>
+## Working with IAM roles<a name="working-with-iam-roles"></a>
 
 You can create an IAM role and attach it to an instance during or after launch\. You can also replace or detach an IAM role for an instance\.
 
 **Topics**
-+ [Creating an IAM Role](#create-iam-role)
-+ [Launching an Instance with an IAM Role](#launch-instance-with-role)
-+ [Attaching an IAM Role to an Instance](#attach-iam-role)
-+ [Replacing an IAM Role](#replace-iam-role)
-+ [Detaching an IAM Role](#detach-iam-role)
++ [Creating an IAM role](#create-iam-role)
++ [Launching an instance with an IAM role](#launch-instance-with-role)
++ [Attaching an IAM role to an instance](#attach-iam-role)
++ [Replacing an IAM role](#replace-iam-role)
++ [Detaching an IAM role](#detach-iam-role)
 
-### Creating an IAM Role<a name="create-iam-role"></a>
+### Creating an IAM role<a name="create-iam-role"></a>
 
 You must create an IAM role before you can launch an instance with that role or attach it to an instance\.<a name="create-iam-role-console"></a>
 
@@ -233,7 +233,7 @@ Alternatively, you can use the following AWS Tools for Windows PowerShell comman
 + [Register\-IAMRolePolicy](https://docs.aws.amazon.com/powershell/latest/reference/items/Register-IAMRolePolicy.html)
 + [New\-IAMInstanceProfile](https://docs.aws.amazon.com/powershell/latest/reference/items/New-IAMInstanceProfile.html)
 
-### Launching an Instance with an IAM Role<a name="launch-instance-with-role"></a>
+### Launching an instance with an IAM role<a name="launch-instance-with-role"></a>
 
 After you've created an IAM role, you can launch an instance, and associate that role with the instance during launch\.
 
@@ -293,7 +293,7 @@ Alternatively, you can use the AWS CLI to associate a role with an instance duri
    curl http://169.254.169.254/latest/meta-data/iam/security-credentials/role_name
    ```
 
-### Attaching an IAM Role to an Instance<a name="attach-iam-role"></a>
+### Attaching an IAM role to an instance<a name="attach-iam-role"></a>
 
 To attach an IAM role to an instance that has no role, the instance can be in the `stopped` or `running` state\.<a name="attach-iam-role-console"></a>
 
@@ -337,7 +337,7 @@ Alternatively, use the following Tools for Windows PowerShell commands:
 + [Get\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html)
 + [Register\-EC2IamInstanceProfile](https://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2IamInstanceProfile.html)
 
-### Replacing an IAM Role<a name="replace-iam-role"></a>
+### Replacing an IAM role<a name="replace-iam-role"></a>
 
 To replace the IAM role on an instance that already has an attached IAM role, the instance must be in the `running` state\. You can do this if you want to change the IAM role for an instance without detaching the existing one first\. For example, you can do this to ensure that API actions performed by applications running on the instance are not interrupted\.<a name="replace-iam-role-console"></a>
 
@@ -381,7 +381,7 @@ Alternatively, use the following Tools for Windows PowerShell commands:
 + [Get\-EC2IamInstanceProfileAssociation](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2IamInstanceProfileAssociation.html)
 + [Set\-EC2IamInstanceProfileAssociation](https://docs.aws.amazon.com/powershell/latest/reference/items/Set-EC2IamInstanceProfileAssociation.html)
 
-### Detaching an IAM Role<a name="detach-iam-role"></a>
+### Detaching an IAM role<a name="detach-iam-role"></a>
 
 You can detach an IAM role from a running or stopped instance\. <a name="detach-iam-role-console"></a>
 

@@ -64,7 +64,7 @@ You can assign the secondary private IPv4 address to the network interface for a
 1. In the **Network Interfaces** section, do the following, and then choose **Next: Add Storage**:
    + To add another network interface, choose **Add Device**\. The console enables you to specify up to two network interfaces when you launch an instance\. After you launch the instance, choose **Network Interfaces** in the navigation pane to add additional network interfaces\. The total number of network interfaces that you can attach varies by instance type\. For more information, see [IP Addresses Per Network Interface Per Instance Type](using-eni.md#AvailableIpPerENI)\. 
 **Important**  
-When you add a second network interface, the system can no longer auto\-assign a public IPv4 address\. You will not be able to connect to the instance over IPv4 unless you assign an Elastic IP address to the primary network interface \(eth0\)\. You can assign the Elastic IP address after you complete the Launch wizard\. For more information, see [Working with Elastic IP Addresses](elastic-ip-addresses-eip.md#working-with-eips)\.
+When you add a second network interface, the system can no longer auto\-assign a public IPv4 address\. You will not be able to connect to the instance over IPv4 unless you assign an Elastic IP address to the primary network interface \(eth0\)\. You can assign the Elastic IP address after you complete the Launch wizard\. For more information, see [Working with Elastic IP addresses](elastic-ip-addresses-eip.md#working-with-eips)\.
    + For each network interface, under **Secondary IP addresses**, choose **Add IP**, and then enter a private IP address from the subnet range, or accept the default `Auto-assign` value to let Amazon select an address\.
 
 1. On the next **Add Storage** page, you can specify volumes to attach to the instance besides the volumes specified by the AMI \(such as the root device volume\), and then choose **Next: Add Tags**\.
@@ -112,7 +112,7 @@ After you assign a secondary private IPv4 address to your instance, you need to 
 + If you are using Amazon Linux, the ec2\-net\-utils package can take care of this step for you\. It configures additional network interfaces that you attach while the instance is running, refreshes secondary IPv4 addresses during DHCP lease renewal, and updates the related routing rules\. You can immediately refresh the list of interfaces by using the command `sudo service network restart` and then view the up\-to\-date list using `ip addr li`\. If you require manual control over your network configuration, you can remove the ec2\-net\-utils package\. For more information, see [Configuring Your Network Interface Using ec2\-net\-utils](using-eni.md#ec2-net-utils)\.
 + If you are using another Linux distribution, see the documentation for your Linux distribution\. Search for information about configuring additional network interfaces and secondary IPv4 addresses\. If the instance has two or more interfaces on the same subnet, search for information about using routing rules to work around asymmetric routing\.
 
-For information about configuring a Windows instance, see [Configuring a Secondary Private IP Address for Your Windows Instance in a VPC](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/config-windows-multiple-ip.html) in the *Amazon EC2 User Guide for Windows Instances*\.
+For information about configuring a Windows instance, see [Configuring a secondary private IP address for your Windows instance in a VPC](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/config-windows-multiple-ip.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
 ### Associating an Elastic IP Address with the Secondary Private IPv4 Address<a name="StepThreeEIP"></a>
 
@@ -207,7 +207,7 @@ You can assign one or more IPv6 addresses to your instance during launch or afte
 
 1. From the dashboard, choose **Launch Instance**\.
 
-1. Select an AMI, choose an instance type, and choose **Next: Configure Instance Details**\. Ensure that you choose an instance type that support IPv6\. For more information, see [Instance Types](instance-types.md)\.
+1. Select an AMI, choose an instance type, and choose **Next: Configure Instance Details**\. Ensure that you choose an instance type that support IPv6\. For more information, see [Instance types](instance-types.md)\.
 
 1. On the **Configure Instance Details** page, select a VPC from the **Network** list, and a subnet from the **Subnet** list\. 
 

@@ -38,7 +38,7 @@ Amazon Data Lifecycle Manager uses resource tags to identify the EBS volumes to 
 
 You can't use a '\\' or '=' character in a tag key\.
 
-For more information, see [Tagging Your Amazon EC2 Resources](Using_Tags.md)\.
+For more information, see [Tagging your Amazon EC2 resources](Using_Tags.md)\.
 
 ### Snapshot Tags<a name="dlm-tagging-snapshots"></a>
 
@@ -77,7 +77,8 @@ The following considerations apply to lifecycle policies:
 + If you modify a retention schedule based on time to use a new time interval, the new interval is used only for new snapshots\. The new schedule does not affect the retention schedule of existing snapshots created by this policy\.
 + You cannot change the retention schedule of a policy from the count of snapshots to the age of each snapshot\. To make this change, you must create a new policy\.
 + If you disable a policy with a retention schedule based on the age of each snapshot, the snapshots whose retention periods expire while the policy is disabled are retained indefinitely\. You must delete these snapshots manually\. When you enable the policy again, Amazon Data Lifecycle Manager resumes deleting snapshots as their retention periods expire\.
-+ If you delete the resource to which a policy applies, the policy no longer manages the previously created snapshots\. You must manually delete the snapshots if they are no longer needed\.
++ If you delete the resource to which a policy with count\-based retention applies, the policy no longer manages the previously created snapshots\. You must manually delete the snapshots if they are no longer needed\.
++ If you delete the resource to which a policy with age\-based retention applies, the policy continues to delete snapshots on the defined schedule, up to the last snapshot\. You must manually delete the last snapshot if it is no longer needed\.
 + You can create multiple policies to back up an EBS volume or an EC2 instance\. For example, if an EBS volume has two tags, where tag A is the target for policy A to create a snapshot every 12 hours, and tag B is the target for policy B to create a snapshot every 24 hours, Amazon Data Lifecycle Manager creates snapshots according to the schedules for both policies\.
 
 The following considerations apply to lifecycle policies and [fast snapshot restore](ebs-fast-snapshot-restore.md):
@@ -85,7 +86,7 @@ The following considerations apply to lifecycle policies and [fast snapshot rest
 + If you enable fast snapshot restore and you exceed the maximum number of snapshots that can be enabled for fast snapshot restore, Amazon Data Lifecycle Manager creates snapshots as scheduled but does not enable them for fast snapshot restore\. After a snapshot that is enabled for fast snapshot restore is deleted, the next snapshot Amazon Data Lifecycle Manager creates is enabled for fast snapshot restore\.
 + When you enable fast snapshot restore for a snapshot, it takes 60 minutes per TiB to optimize the snapshot\. We recommend that you create a schedule that ensures that each snapshot is fully optimized before Amazon Data Lifecycle Manager creates the next snapshot\.
 
-The following considerations apply to lifecycle policies and [Multi\-Attach](ebs-volumes-multi.md) enabled volumes:
+The following considerations apply to lifecycle policies and [multi\-attach](ebs-volumes-multi.md) enabled volumes:
 + When creating a lifecycle policy based on instance tags for Multi\-Volume snapshots, Amazon Data Lifecycle Manager initiates a snapshot of the volume for each attached instance\. Use the *timestamp* tag to identify the set of time\-consistent snapshots created from the attached instances\.
 
 ## Prerequisites<a name="dlm-prerequisites"></a>

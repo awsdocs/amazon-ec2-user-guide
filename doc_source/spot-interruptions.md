@@ -1,29 +1,29 @@
-# Spot Instance Interruptions<a name="spot-interruptions"></a>
+# Spot Instance interruptions<a name="spot-interruptions"></a>
 
 Demand for Spot Instances can vary significantly from moment to moment, and the availability of Spot Instances can also vary significantly depending on how many unused EC2 instances are available\. It is always possible that your Spot Instance might be interrupted\. Therefore, you must ensure that your application is prepared for a Spot Instance interruption\.
 
 An On\-Demand Instance specified in an EC2 Fleet or Spot Fleet cannot be interrupted\.
 
 **Topics**
-+ [Reasons for Interruption](#interruption-reasons)
-+ [Interruption Behavior](#interruption-behavior)
-+ [Preparing for Interruptions](#using-spot-instances-managing-interruptions)
-+ [Preparing for Instance Hibernation](#prepare-for-instance-hibernation)
-+ [Spot Instance Interruption Notices](#spot-instance-termination-notices)
-+ [Billing for Interrupted Spot Instances](#billing-for-interrupted-spot-instances)
++ [Reasons for interruption](#interruption-reasons)
++ [Interruption behavior](#interruption-behavior)
++ [Preparing for interruptions](#using-spot-instances-managing-interruptions)
++ [Preparing for instance hibernation](#prepare-for-instance-hibernation)
++ [Spot Instance interruption notices](#spot-instance-termination-notices)
++ [Billing for interrupted Spot Instances](#billing-for-interrupted-spot-instances)
 
-## Reasons for Interruption<a name="interruption-reasons"></a>
+## Reasons for interruption<a name="interruption-reasons"></a>
 
 The following are the possible reasons that Amazon EC2 might interrupt your Spot Instances:
 + Price – The Spot price is greater than your maximum price\.
 + Capacity – If there are not enough unused EC2 instances to meet the demand for Spot Instances, Amazon EC2 interrupts Spot Instances\. The order in which the instances are interrupted is determined by Amazon EC2\.
 + Constraints – If your request includes a constraint such as a launch group or an Availability Zone group, these Spot Instances are terminated as a group when the constraint can no longer be met\.
 
-## Interruption Behavior<a name="interruption-behavior"></a>
+## Interruption behavior<a name="interruption-behavior"></a>
 
 You can specify whether Amazon EC2 should hibernate, stop, or terminate Spot Instances when they are interrupted\. You can choose the interruption behavior that meets your needs\. The default is to terminate Spot Instances when they are interrupted\. To change the interruption behavior, choose an option from **Interruption behavior** in the console when you are creating a Spot request, or specify `InstanceInterruptionBehavior` in the launch configuration or the launch template\. To change interruption behavior in the console when you are creating a Spot request, choose **Maintain target capacity**\. When you select this option, **Interruption behavior** will appear and you can then specify that the Spot service terminates, stops, or hibernates Spot Instances when they are interrupted\.
 
-### Stopping Interrupted Spot Instances<a name="stop-spot-instances"></a>
+### Stopping interrupted Spot Instances<a name="stop-spot-instances"></a>
 
 You can change the behavior so that Amazon EC2 stops Spot Instances when they are interrupted if the following requirements are met\.
 
@@ -46,7 +46,7 @@ You can terminate a Spot Instance while it is stopped\. If you cancel a Spot req
 
 While a Spot Instance is stopped, you are charged only for the EBS volumes, which are preserved\. With EC2 Fleet and Spot Fleet, if you have many stopped instances, you can exceed the limit on the number of EBS volumes for your account\.
 
-### Hibernating Interrupted Spot Instances<a name="hibernate-spot-instances"></a>
+### Hibernating interrupted Spot Instances<a name="hibernate-spot-instances"></a>
 
 You can change the behavior so that Amazon EC2 hibernates Spot Instances when they are interrupted if the following requirements are met\.
 
@@ -68,9 +68,9 @@ You can change the behavior so that Amazon EC2 hibernates Spot Instances when th
 
 **Recommendation**
 + We strongly recommend that you use an encrypted Amazon EBS volume as the root volume, because instance memory is stored on the root volume during hibernation\. This ensures that the contents of memory \(RAM\) are encrypted when the data is at rest on the volume and when data is moving between the instance and volume\. Use one of the following three options to ensure that the root volume is an encrypted Amazon EBS volume:
-  + EBS “single\-step” encryption: In a single run\-instances API call, you can launch encrypted EBS\-backed EC2 instances from an unencrypted AMI\. For more information, see [Using Encryption with EBS\-Backed AMIs](AMIEncryption.md)\.
-  + EBS encryption by default: You can enable EBS encryption by default to ensure all new EBS volumes created in your AWS account are encrypted\. For more information, see [Encryption by Default](EBSEncryption.md#encryption-by-default)\.
-  + Encrypted AMI: You can enable EBS encryption by using an encrypted AMI to launch your instance\. If your AMI does not have an encrypted root snapshot, you can copy it to a new AMI and request encryption\. For more information, see [Encrypt an Unencrypted Image during Copy](AMIEncryption.md#copy-unencrypted-to-encrypted) and [Copying an AMI](CopyingAMIs.md#ami-copy-steps)\. 
+  + EBS “single\-step” encryption: In a single run\-instances API call, you can launch encrypted EBS\-backed EC2 instances from an unencrypted AMI\. For more information, see [Using encryption with EBS\-backed AMIs](AMIEncryption.md)\.
+  + EBS encryption by default: You can enable EBS encryption by default to ensure all new EBS volumes created in your AWS account are encrypted\. For more information, see [Encryption by default](EBSEncryption.md#encryption-by-default)\.
+  + Encrypted AMI: You can enable EBS encryption by using an encrypted AMI to launch your instance\. If your AMI does not have an encrypted root snapshot, you can copy it to a new AMI and request encryption\. For more information, see [Encrypt an unencrypted image during copy](AMIEncryption.md#copy-unencrypted-to-encrypted) and [Copying an AMI](CopyingAMIs.md#ami-copy-steps)\. 
 
 When a Spot Instance is hibernated by the Spot service, the EBS volumes are preserved and instance memory \(RAM\) is preserved on the root volume\. The private IP addresses of the instance are also preserved\. Instance storage volumes and public IP addresses, other than Elastic IP addresses, are not preserved\. While the instance is hibernating, you are charged only for the EBS volumes\. With EC2 Fleet and Spot Fleet, if you have many hibernated instances, you can exceed the limit on the number of EBS volumes for your account\.
 
@@ -80,11 +80,11 @@ When the Spot service hibernates a Spot Instance, you receive an interruption no
 
 After a Spot Instance is hibernated by the Spot service, it can only be resumed by the Spot service\. The Spot service resumes the instance when capacity becomes available with a Spot price that is less than your specified maximum price\.
 
-For more information, see [Preparing for Instance Hibernation](#prepare-for-instance-hibernation)\.
+For more information, see [Preparing for instance hibernation](#prepare-for-instance-hibernation)\.
 
 For information about hibernating On\-Demand Instances, see [Hibernate Your Linux Instance](Hibernate.md)\.
 
-## Preparing for Interruptions<a name="using-spot-instances-managing-interruptions"></a>
+## Preparing for interruptions<a name="using-spot-instances-managing-interruptions"></a>
 
 Here are some best practices to follow when you use Spot Instances:
 + Use the default maximum price, which is the On\-Demand price\.
@@ -94,7 +94,7 @@ Here are some best practices to follow when you use Spot Instances:
 + Use Spot Instance interruption notices to monitor the status of your Spot Instances\.
 + While we make every effort to provide this warning as soon as possible, it is possible that your Spot Instance is terminated before the warning can be made available\. Test your application to ensure that it handles an unexpected instance termination gracefully, even if you are testing for interruption notices\. You can do so by running the application using an On\-Demand Instance and then terminating the On\-Demand Instance yourself\.
 
-## Preparing for Instance Hibernation<a name="prepare-for-instance-hibernation"></a>
+## Preparing for instance hibernation<a name="prepare-for-instance-hibernation"></a>
 
 You must install a hibernation agent on your instance, unless you used an AMI that already includes the agent\. You must run the agent on instance startup, whether the agent was included in your AMI or you installed it yourself\.
 
@@ -132,7 +132,7 @@ The following procedures help you prepare a Linux instance\. For directions to p
    /usr/bin/enable-ec2-spot-hibernation
    ```
 
-## Spot Instance Interruption Notices<a name="spot-instance-termination-notices"></a>
+## Spot Instance interruption notices<a name="spot-instance-termination-notices"></a>
 
 The best way to protect against Spot Instance interruption is to architect your application to be fault\-tolerant\. In addition, you can take advantage of *Spot Instance interruption notices*, which provide a two\-minute warning before Amazon EC2 must stop or terminate your Spot Instance\. We recommend that you check for these warnings every 5 seconds\. 
 
@@ -140,7 +140,7 @@ This warning is made available as a CloudWatch event and as an item in the [inst
 
 If you specify hibernation as the interruption behavior, you receive an interruption notice, but you do not receive a two\-minute warning because the hibernation process begins immediately\.
 
-### EC2 Spot Instance Interruption Notice<a name="ec2-spot-instance-interruption-warning-event"></a>
+### EC2 Spot Instance interruption notice<a name="ec2-spot-instance-interruption-warning-event"></a>
 
 When Amazon EC2 is going to interrupt your Spot Instance, it emits an event two minutes prior to the actual interruption\. This event can be detected by Amazon CloudWatch Events\. For more information, see the [Amazon CloudWatch Events User Guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/)\.
 
@@ -186,13 +186,13 @@ If your Spot Instance is marked to be stopped or terminated by the Spot service,
 
 The `instance-action` item specifies the action and the approximate time, in UTC, when the action will occur\.
 
- The following example indicates the time at which this instance will be stopped:
+ The following example indicates the time at which this instance will be stopped\.
 
 ```
 {"action": "stop", "time": "2017-09-18T08:22:00Z"}
 ```
 
-The following example indicates the time at which this instance will be terminated:
+The following example indicates the time at which this instance will be terminated\.
 
 ```
 {"action": "terminate", "time": "2017-09-18T08:22:00Z"}
@@ -233,7 +233,7 @@ If Amazon EC2 is not preparing to terminate the instance, or if you terminated t
 
 If Amazon EC2 fails to terminate the instance, the request status is set to `fulfilled`\. The `termination-time` value remains in the instance metadata with the original approximate time, which is now in the past\.
 
-## Billing for Interrupted Spot Instances<a name="billing-for-interrupted-spot-instances"></a>
+## Billing for interrupted Spot Instances<a name="billing-for-interrupted-spot-instances"></a>
 
 When a Spot Instance \(*not* in a Spot block\) is interrupted, you’re charged as follows\.
 

@@ -7,7 +7,7 @@ You can also exchange a Convertible Reserved Instance for another Convertible Re
 
 You can modify all or a subset of your Reserved Instances\. You can separate your original Reserved Instances into two or more new Reserved Instances\. For example, if you have a reservation for 10 instances in `us-east-1a` and decide to move 5 instances to `us-east-1b`, the modification request results in two new reservations: one for 5 instances in `us-east-1a` and the other for 5 instances in `us-east-1b`\.
 
-You can also *merge* two or more Reserved Instances into a single Reserved Instance\. For example, if you have four `t2.small` Reserved Instances of one instance each, you can merge them to create one `t2.large` Reserved Instance\. For more information, see [Support For Modifying Instance Sizes](#ri-modification-instancemove)\.
+You can also *merge* two or more Reserved Instances into a single Reserved Instance\. For example, if you have four `t2.small` Reserved Instances of one instance each, you can merge them to create one `t2.large` Reserved Instance\. For more information, see [Support for modifying instance sizes](#ri-modification-instancemove)\.
 
 After modification, the benefit of the Reserved Instances is applied only to instances that match the new parameters\. For example, if you change the Availability Zone of a reservation, the capacity reservation and pricing benefits are automatically applied to instance usage in the new Availability Zone\. Instances that no longer match the new parameters are charged at the On\-Demand rate, unless your account has other applicable reservations\.
 
@@ -24,12 +24,12 @@ There is no fee for modification, and you do not receive any new bills or invoic
 You can modify your reservations as frequently as you like, but you cannot change or cancel a pending modification request after you submit it\. After the modification has completed successfully, you can submit another modification request to roll back any changes you made, if needed\.
 
 **Topics**
-+ [Requirements and Restrictions for Modification](#ri-modification-limits)
-+ [Support For Modifying Instance Sizes](#ri-modification-instancemove)
-+ [Submitting Modification Requests](#ri-modification-process)
-+ [Troubleshooting Modification Requests](#ri-modification-process-messages)
++ [Requirements and restrictions for modification](#ri-modification-limits)
++ [Support for modifying instance sizes](#ri-modification-instancemove)
++ [Submitting modification requests](#ri-modification-process)
++ [Troubleshooting modification requests](#ri-modification-process-messages)
 
-## Requirements and Restrictions for Modification<a name="ri-modification-limits"></a>
+## Requirements and restrictions for modification<a name="ri-modification-limits"></a>
 
 You can modify these attributes as follows\.
 
@@ -37,8 +37,8 @@ You can modify these attributes as follows\.
 | Modifiable attribute | Supported platforms | Limitations | 
 | --- | --- | --- | 
 |  Change **Availability Zones** within the same Region  |  Linux and Windows  | \- | 
-|  Change the **scope** from Availability Zone to Region and vice versa  |  Linux and Windows  |  If you change the scope from Availability Zone to Region, you lose the capacity reservation benefit\. If you change the scope from Region to Availability Zone, you lose Availability Zone flexibility and instance size flexibility \(if applicable\)\. For more information, see [How Reserved Instances Are Applied](apply_ri.md)\.  | 
-|  Change the **instance size** within the same instance family  |  Linux/UNIX only Instance size flexibility is not available for Reserved Instances on the other platforms, which include Linux with SQL Server Standard, Linux with SQL Server Web, Linux with SQL Server Enterprise, Red Hat Enterprise Linux, SUSE Linux, Windows, Windows with SQL Standard, Windows with SQL Server Enterprise, and Windows with SQL Server Web\.  |  The reservation must use default tenancy\. Some instance families are not supported, because there are no other sizes available\. For more information, see [Support For Modifying Instance Sizes](#ri-modification-instancemove)\.  | 
+|  Change the **scope** from Availability Zone to Region and vice versa  |  Linux and Windows  |  If you change the scope from Availability Zone to Region, you lose the capacity reservation benefit\. If you change the scope from Region to Availability Zone, you lose Availability Zone flexibility and instance size flexibility \(if applicable\)\. For more information, see [How Reserved Instances are applied](apply_ri.md)\.  | 
+|  Change the **instance size** within the same instance family  |  Linux/UNIX only Instance size flexibility is not available for Reserved Instances on the other platforms, which include Linux with SQL Server Standard, Linux with SQL Server Web, Linux with SQL Server Enterprise, Red Hat Enterprise Linux, SUSE Linux, Windows, Windows with SQL Standard, Windows with SQL Server Enterprise, and Windows with SQL Server Web\.  |  The reservation must use default tenancy\. Some instance families are not supported, because there are no other sizes available\. For more information, see [Support for modifying instance sizes](#ri-modification-instancemove)\.  | 
 |  Change the **network** from EC2\-Classic to Amazon VPC and vice versa  |  Linux and Windows  |  The network platform must be available in your AWS account\. If you created your AWS account after 2013\-12\-04, it does not support EC2\-Classic\.  | 
 
 **Requirements**
@@ -48,12 +48,12 @@ Amazon EC2 processes your modification request if there is sufficient capacity f
 + The Reserved Instance must be active
 + There cannot be a pending modification request
 + The Reserved Instance is not listed in the Reserved Instance Marketplace
-+ There must be a match between the instance size footprint of the active reservation and the target configuration\. For more information, see [Support For Modifying Instance Sizes](#ri-modification-instancemove)\.
++ There must be a match between the instance size footprint of the active reservation and the target configuration\. For more information, see [Support for modifying instance sizes](#ri-modification-instancemove)\.
 + The input Reserved Instances are all Standard Reserved Instances or all Convertible Reserved Instances, not some of each type
 + The input Reserved Instances must expire within the same hour, if they are Standard Reserved Instances
 + The Reserved Instance is not a G4 instance\.
 
-## Support For Modifying Instance Sizes<a name="ri-modification-instancemove"></a>
+## Support for modifying instance sizes<a name="ri-modification-instancemove"></a>
 
 You can modify the instance size of a Reserved Instance if the platform is Linux/UNIX and the instance family has multiple sizes\.
 
@@ -102,7 +102,7 @@ You can also modify a reservation to divide it into two or more reservations\. I
 
 ![\[Modifying Reserved Instances\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ri-modify-divide.png)
 
-### Normalization Factor for Bare Metal Instances<a name="ri-normalization-factor-bare-metal-2"></a>
+### Normalization factor for bare metal instances<a name="ri-normalization-factor-bare-metal-2"></a>
 
 You can modify `.metal` Reserved Instances into other sizes within the same family, and, similarly, you can modify other sized Reserved Instances in the same family into `.metal` Reserved Instances\. A bare metal instance is the same size as the largest instance within the same instance family\. For example, an `i3.metal` is the same size as an `i3.16xlarge`, so they have the same normalization factor\.
 
@@ -125,7 +125,7 @@ For example, an `i3.metal` instance has a normalization factor of 128\. If you p
 + An `i3.8xlarge` is half the size of an `i3.metal` instance, so its normalization factor is 64 \(128/2\)\. The reservation for one `i3.metal` instance can be divided into two `i3.8xlarge` instances\.
 + An `i3.4xlarge` is a quarter the size of an `i3.metal` instance, so its normalization factor is 32 \(128/4\)\. The reservation for one `i3.metal` instance can be divided into four `i3.4xlarge` instances\.
 
-## Submitting Modification Requests<a name="ri-modification-process"></a>
+## Submitting modification requests<a name="ri-modification-process"></a>
 
 Before you modify your Reserved Instances, ensure that you have read the applicable [restrictions](#ri-modification-limits)\. Before you modify the instance size, calculate the total [instance size footprint](#ri-modification-instancemove) of the reservations that you want to modify and ensure that it matches the total instance size footprint of your target configurations\.
 
@@ -163,7 +163,7 @@ If your Reserved Instances are not in the active state or cannot be modified, **
    + [describe\-reserved\-instances\-modifications](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances-modifications.html) \(AWS CLI\)
    + [Get\-EC2ReservedInstancesModification](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ReservedInstancesModification.html) \(AWS Tools for Windows PowerShell\)
 
-## Troubleshooting Modification Requests<a name="ri-modification-process-messages"></a>
+## Troubleshooting modification requests<a name="ri-modification-process-messages"></a>
 
 If the target configuration settings that you requested were unique, you receive a message that your request is being processed\. At this point, Amazon EC2 has only determined that the parameters of your modification request are valid\. Your modification request can still fail during processing due to unavailable capacity\.
 

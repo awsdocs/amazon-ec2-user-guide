@@ -3,18 +3,18 @@
 Amazon Linux is provided by Amazon Web Services \(AWS\)\. It is designed to provide a stable, secure, and high\-performance execution environment for applications running on Amazon EC2\. It also includes packages that enable easy integration with AWS, including launch configuration tools and many popular AWS libraries and tools\. AWS provides ongoing security and maintenance updates for all instances running Amazon Linux\. Many applications developed on CentOS \(and similar distributions\) run on Amazon Linux\.
 
 **Topics**
-+ [Amazon Linux Availability](#amazon-linux-availability)
-+ [Connecting to an Amazon Linux Instance](#connect-to-amazon-linux-limits)
-+ [Identifying Amazon Linux Images](#amazon-linux-image-id)
-+ [AWS Command Line Tools](#amazon-linux-aws-command-line-tools)
-+ [Package Repository](#package-repository)
-+ [Extras Library \(Amazon Linux 2\)](#extras-library)
-+ [Accessing Source Packages for Reference](#amazon-linux-source-packages)
++ [Amazon Linux availability](#amazon-linux-availability)
++ [Connecting to an Amazon Linux instance](#connect-to-amazon-linux-limits)
++ [Identifying Amazon Linux images](#amazon-linux-image-id)
++ [AWS command line tools](#amazon-linux-aws-command-line-tools)
++ [Package repository](#package-repository)
++ [Extras library \(Amazon Linux 2\)](#extras-library)
++ [Accessing source packages for reference](#amazon-linux-source-packages)
 + [cloud\-init](#amazon-linux-cloud-init)
-+ [Subscribing to Amazon Linux Notifications](#linux-ami-notifications)
-+ [Running Amazon Linux 2 as a Virtual Machine On\-Premises](amazon-linux-2-virtual-machine.md)
++ [Subscribing to Amazon Linux notifications](#linux-ami-notifications)
++ [Running Amazon Linux 2 as a virtual machine on\-premises](amazon-linux-2-virtual-machine.md)
 
-## Amazon Linux Availability<a name="amazon-linux-availability"></a>
+## Amazon Linux availability<a name="amazon-linux-availability"></a>
 
 AWS provides Amazon Linux 2 and the Amazon Linux AMI\. If you are migrating from another Linux distribution to Amazon Linux, we recommend that you migrate to Amazon Linux 2\.
 
@@ -22,11 +22,11 @@ The last version of the Amazon Linux AMI, 2018\.03, reaches the end of standard 
 
 For more information, see [Amazon Linux 2](https://aws.amazon.com/amazon-linux-2/) and [Amazon Linux AMI](https://aws.amazon.com/amazon-linux-ami/)\. For Amazon Linux Docker container images, see [amazonlinux](https://hub.docker.com/_/amazonlinux/) on Docker Hub\.
 
-## Connecting to an Amazon Linux Instance<a name="connect-to-amazon-linux-limits"></a>
+## Connecting to an Amazon Linux instance<a name="connect-to-amazon-linux-limits"></a>
 
 Amazon Linux does not allow remote root SSH by default\. Also, password authentication is disabled to prevent brute\-force password attacks\. To enable SSH logins to an Amazon Linux instance, you must provide your key pair to the instance at launch\. You must also set the security group used to launch your instance to allow SSH access\. By default, the only account that can log in remotely using SSH is ec2\-user; this account also has sudo privileges\. If you enable remote root log in, be aware that it is less secure than relying on key pairs and a secondary user\.
 
-## Identifying Amazon Linux Images<a name="amazon-linux-image-id"></a>
+## Identifying Amazon Linux images<a name="amazon-linux-image-id"></a>
 
 Each image contains a unique `/etc/image-id` file that identifies it\. This file contains the following information about the image:
 + `image_name`, `image_version`, `image_arch` — Values from the build recipe that Amazon used to construct the image\.
@@ -99,7 +99,7 @@ The following is an example of `/etc/system-release` for the current Amazon Linu
 Amazon Linux AMI release 2018.03
 ```
 
-## AWS Command Line Tools<a name="amazon-linux-aws-command-line-tools"></a>
+## AWS command line tools<a name="amazon-linux-aws-command-line-tools"></a>
 
 The following command line tools for AWS integration and usage are included in the Amazon Linux AMI, or in the default repositories for Amazon Linux 2\. For the complete list of packages in the Amazon Linux AMI, see [Amazon Linux AMI 2017\.09 Packages](https://aws.amazon.com/amazon-linux-ami/2017.09-packages/)\.
 + aws\-amitools\-ec2
@@ -130,7 +130,7 @@ Products are installed in directories of the form *name*\-*version* and a symbol
 `/opt/aws/{apitools|amitools}/name/environment.sh`  
 Used by `/etc/profile.d/aws-apitools-common.sh` to set product\-specific environment variables, such as `EC2_HOME`\.
 
-## Package Repository<a name="package-repository"></a>
+## Package repository<a name="package-repository"></a>
 
 Amazon Linux 2 and the Amazon Linux AMI are designed to be used with online package repositories hosted in each Amazon EC2 AWS Region\. These repositories provide ongoing updates to packages in Amazon Linux 2 and the Amazon Linux AMI, as well as access to hundreds of additional common open\-source server applications\. The repositories are available in all Regions and are accessed using yum update tools\. Hosting repositories in each Region enables us to deploy updates quickly and without any data transfer charges\.
 
@@ -161,9 +161,9 @@ If you find that Amazon Linux does not contain an application you need, you can 
 
 To upload your applications onto a running Amazon Linux instance, use scp or sftp and then configure the application by logging on to your instance\. Your applications can also be uploaded during the instance launch by using the PACKAGE\_SETUP action from the built\-in cloud\-init package\. For more information, see [cloud\-init](#amazon-linux-cloud-init)\. 
 
-### Security Updates<a name="security-updates"></a>
+### Security updates<a name="security-updates"></a>
 
-Security updates are provided using the package repositories as well as updated AMIs Security alerts are published in the [Amazon Linux Security Center](https://alas.aws.amazon.com)\. For more information about AWS security policies or to report a security problem, go to the [AWS Security Center](https://aws.amazon.com/security/)\.
+Security updates are provided using the package repositories as well as updated AMI security alerts are published in the [Amazon Linux Security Center](https://alas.aws.amazon.com)\. For more information about AWS security policies or to report a security problem, go to the [AWS Security Center](https://aws.amazon.com/security/)\.
 
 Amazon Linux is configured to download and install critical or important security updates at launch time\. We recommend that you make the necessary updates for your use case after launch\. For example, you may want to apply all updates \(not just security updates\) at launch, or evaluate each update and apply only the ones applicable to your system\. This is controlled using the following cloud\-init setting: `repo_upgrade`\. The following snippet of cloud\-init configuration shows how you can change the settings in the user data text you pass to your instance initialization:
 
@@ -188,7 +188,7 @@ Do not apply any updates to the instance on startup\.
 
 The default setting for `repo_upgrade` is security\. That is, if you don't specify a different value in your user data, by default, Amazon Linux performs the security upgrades at launch for any packages installed at that time\. Amazon Linux also notifies you of any updates to the installed packages by listing the number of available updates upon login using the `/etc/motd` file\. To install these updates, you need to run sudo yum upgrade on the instance\. 
 
-### Repository Configuration<a name="repository-config"></a>
+### Repository configuration<a name="repository-config"></a>
 
 With Amazon Linux, AMIs are treated as snapshots in time, with a repository and update structure that always gives you the latest packages when you run yum update \-y\.
 
@@ -214,7 +214,7 @@ repo_releasever: 2017.09
 
 1. To clear the cache, run yum clean all \.
 
-## Extras Library \(Amazon Linux 2\)<a name="extras-library"></a>
+## Extras library \(Amazon Linux 2\)<a name="extras-library"></a>
 
 With Amazon Linux 2, you can use the Extras Library to install application and software updates on your instances\. These software updates are known as *topics*\. You can install a specific version of a topic or omit the version information to use the most recent version\.
 
@@ -236,7 +236,7 @@ To enable topics and install specific versions of their packages to ensure stabi
 [ec2-user ~]$ sudo amazon-linux-extras install topic=version topic=version
 ```
 
-## Accessing Source Packages for Reference<a name="amazon-linux-source-packages"></a>
+## Accessing source packages for reference<a name="amazon-linux-source-packages"></a>
 
 You can view the source of packages you have installed on your instance for reference purposes by using tools provided in Amazon Linux\. Source packages are available for all of the packages included in Amazon Linux and the online package repository\. Simply determine the package name for the source package you want to install and use the yumdownloader \-\-source command to view source within your running instance\. For example:
 
@@ -277,7 +277,7 @@ The cloud\-init package performs these \(and other\) common configuration tasks 
     For more control over mounts, see [Mounts](http://cloudinit.readthedocs.io/en/latest/topics/modules.html#mounts) in the cloud\-init documentation\.
   + Instance store volumes that support TRIM are not formatted when an instance launches, so you must partition and format them before you can mount them\. For more information, see [Instance Store Volume TRIM Support](ssd-instance-store.md#InstanceStoreTrimSupport)\. You can use the `disk_setup` module to partition and format your instance store volumes at boot\. For more information, see [Disk Setup](http://cloudinit.readthedocs.io/en/latest/topics/modules.html#disk-setup) in the cloud\-init documentation\.
 
-### Supported User\-Data Formats<a name="supported-user-data-formats"></a>
+### Supported user\-data formats<a name="supported-user-data-formats"></a>
 
 The cloud\-init package supports user\-data handling of a variety of formats:
 + Gzip
@@ -303,7 +303,7 @@ The cloud\-init package supports user\-data handling of a variety of formats:
   + This content is boothook data\. It is stored in a file under `/var/lib/cloud` and then executed immediately\.
   +  This is the earliest "hook" available\. There is no mechanism provided for running it only one time\. The boothook must take care of this itself\. It is provided with the instance ID in the environment variable `INSTANCE_ID`\. Use this variable to provide a once\-per\-instance set of boothook data\.
 
-## Subscribing to Amazon Linux Notifications<a name="linux-ami-notifications"></a>
+## Subscribing to Amazon Linux notifications<a name="linux-ami-notifications"></a>
 
 To be notified when new AMIs are released, you can subscribe using Amazon SNS\.
 

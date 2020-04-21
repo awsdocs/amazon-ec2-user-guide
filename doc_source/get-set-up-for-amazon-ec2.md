@@ -1,16 +1,16 @@
-# Setting Up with Amazon EC2<a name="get-set-up-for-amazon-ec2"></a>
+# Setting up with Amazon EC2<a name="get-set-up-for-amazon-ec2"></a>
 
 If you've already signed up for Amazon Web Services \(AWS\), you can start using Amazon EC2 immediately\. You can open the Amazon EC2 console, choose **Launch Instance**, and follow the steps in the launch wizard to launch your first instance\. 
 
 If you haven't signed up for AWS yet, or if you need assistance launching your first instance, complete the following tasks to get set up to use Amazon EC2: 
 
-1. [Sign Up for AWS](#sign-up-for-aws)
+1. [Sign up for AWS](#sign-up-for-aws)
 
-1. [Create a Key Pair](#create-a-key-pair)
+1. [Create a key pair](#create-a-key-pair)
 
-1. [Create a Security Group](#create-a-base-security-group)
+1. [Create a security group](#create-a-base-security-group)
 
-## Sign Up for AWS<a name="sign-up-for-aws"></a>
+## Sign up for AWS<a name="sign-up-for-aws"></a>
 
 When you sign up for Amazon Web Services \(AWS\), your AWS account is automatically signed up for all services in AWS, including Amazon EC2\. You are charged only for the services that you use\.
 
@@ -26,7 +26,7 @@ If you have an AWS account already, skip to the next task\. If you don't have an
 
    Part of the sign\-up procedure involves receiving a phone call and entering a verification code on the phone keypad\.
 
-## Create a Key Pair<a name="create-a-key-pair"></a>
+## Create a key pair<a name="create-a-key-pair"></a>
 
 AWS uses public\-key cryptography to secure the login information for your instance\. A Linux instance has no password; you use a key pair to log in to your instance securely\. You specify the name of the key pair when you launch your instance, then provide the private key when you log in using SSH\. 
 
@@ -63,11 +63,11 @@ This is the only chance for you to save the private key file\. You'll need to pr
    chmod 400 your_user_name-key-pair-region_name.pem
    ```
 
-   If you do not set these permissions, then you cannot connect to your instance using this key pair\. For more information, see [Error: Unprotected Private Key File](TroubleshootingInstancesConnecting.md#troubleshoot-unprotected-key)\.
+   If you do not set these permissions, then you cannot connect to your instance using this key pair\. For more information, see [Error: Unprotected private key file](TroubleshootingInstancesConnecting.md#troubleshoot-unprotected-key)\.
 
-For more information, see [Amazon EC2 key pairs](ec2-key-pairs.md)\.
+For more information, see [Amazon EC2 key pairs and Linux instances](ec2-key-pairs.md)\.
 
-## Create a Security Group<a name="create-a-base-security-group"></a>
+## Create a security group<a name="create-a-base-security-group"></a>
 
 Security groups act as a firewall for associated instances, controlling both inbound and outbound traffic at the instance level\. You must add rules to a security group that enable you to connect to your instance from your IP address using SSH\. You can also add rules that allow inbound and outbound HTTP and HTTPS access from anywhere\.
 

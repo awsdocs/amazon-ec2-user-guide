@@ -1,4 +1,4 @@
-# Example: AMI Launch Index Value<a name="AMI-launch-index-examples"></a>
+# Example: AMI launch index value<a name="AMI-launch-index-examples"></a>
 
 This example demonstrates how you can use both user data and instance metadata to configure your instances\. 
 
@@ -19,7 +19,7 @@ aws ec2 run-instances --image-id ami-0abcdef1234567890 --count 4 --instance-type
 ```
 
 After they're launched, all instances have a copy of the user data and the common metadata shown here:
-+ AMI id: ami\-0abcdef1234567890
++ AMI ID: ami\-0abcdef1234567890
 + Reservation ID: r\-1234567890abcabc0
 + Public keys: none 
 + Security group name: default

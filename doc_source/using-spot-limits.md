@@ -1,24 +1,25 @@
-# Spot Instance Limits<a name="using-spot-limits"></a>
+# Spot Instance limits<a name="using-spot-limits"></a>
 
 Spot Instance requests are subject to the following limits:
 
 **Topics**
-+ [Spot Request Limits](#spot-limits-general)
-+ [Spot Fleet Limits](#spot-fleet-limitations)
++ [Spot request limits](#spot-limits-general)
++ [Spot Fleet limits](#spot-fleet-limitations)
 + [T3 Spot Instances](#t3-spot-instances)
 + [T2 Spot Instances](#t2-spot-instances)
 
-## Spot Request Limits<a name="spot-limits-general"></a>
+## Spot request limits<a name="spot-limits-general"></a>
 
 By default, there is an account limit of 20 Spot Instances per Region\. If you terminate your Spot Instance but do not cancel the request, the request counts against this limit until Amazon EC2 detects the termination and closes the request\.
 
-Spot Instance limits are dynamic\. When your account is new, your limit might be lower than 20 to start, but can increase over time\. In addition, your account might have limits on specific Spot Instance types\. If you submit a Spot Instance request and you receive the error `Max spot instance count exceeded`, you can complete the AWS Support Center [Create case](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-spot-instances) form to request a Spot Instance limit increase\. For **Limit type**, choose **EC2 Spot Instances**\. For more information, see [Amazon EC2 Service Limits](ec2-resource-limits.md)\.
+Spot Instance limits are dynamic\. When your account is new, your limit might be lower than 20 to start, but can increase over time\. In addition, your account might have limits on specific Spot Instance types\. If you submit a Spot Instance request and you receive the error `Max spot instance count exceeded`, you can complete the AWS Support Center [Create case](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-spot-instances) form to request a Spot Instance limit increase\. For **Limit type**, choose **EC2 Spot Instances**\. For more information, see [Amazon EC2 Service Quotas](ec2-resource-limits.md)\.
 
-## Spot Fleet Limits<a name="spot-fleet-limitations"></a>
+## Spot Fleet limits<a name="spot-fleet-limitations"></a>
 
 The usual Amazon EC2 limits apply to instances launched by a Spot Fleet or an EC2 Fleet, such as Spot request price limits, instance limits, and volume limits\. In addition, the following limits apply:
 + The number of active Spot Fleets and EC2 Fleets per Region: 1,000\*
-+ The number of launch specifications per fleet: 50\*
++ The number of launch specifications per fleet: 300\*
++ The launch template plus number of overrides per fleet: 300\*
 + The size of the user data in a launch specification: 16 KB\*
 + The target capacity per Spot Fleet or EC2 Fleet: 10,000
 + The target capacity across all Spot Fleets and EC2 Fleets in a Region: 100,000
@@ -35,7 +36,7 @@ If you plan to use your T3 Spot Instances immediately and for a short duration, 
 
 If you launch your T3 Spot Instances in [`unlimited`](burstable-performance-instances-unlimited-mode.md) mode and burst CPU immediately, you'll spend surplus credits for bursting\. If you use the instance for a short duration, your instance doesn't have time to accrue CPU credits to pay down the surplus credits, and you are charged for the surplus credits when you terminate your instance\.
 
-`Unlimited` mode for T3 Spot Instances is suitable only if the instance runs for long enough to accrue CPU credits for bursting\. Otherwise, paying for surplus credits makes T3 Spot Instances more expensive than M5 or C5 instances\. For more information, see [When to Use Unlimited Mode vs Fixed CPU](burstable-performance-instances-unlimited-mode-concepts.md#when-to-use-unlimited-mode)\.
+`Unlimited` mode for T3 Spot Instances is suitable only if the instance runs for long enough to accrue CPU credits for bursting\. Otherwise, paying for surplus credits makes T3 Spot Instances more expensive than M5 or C5 instances\. For more information, see [When to use unlimited mode versus fixed CPU](burstable-performance-instances-unlimited-mode-concepts.md#when-to-use-unlimited-mode)\.
 
 ## T2 Spot Instances<a name="t2-spot-instances"></a>
 

@@ -1,4 +1,4 @@
-# Accessing the Contents of an EBS Snapshot<a name="ebs-accessing-snapshot"></a>
+# Accessing the contents of an EBS snapshot<a name="ebs-accessing-snapshot"></a>
 
 You can use the Amazon Elastic Block Store \(EBS\) direct APIs to directly read the data on your EBS snapshots, and identify the difference between two snapshots\. You can view the details of blocks in an EBS snapshot, compare the block difference between two snapshots, and directly access the data in a snapshot\. If you’re an independent software vendor \(ISV\) who offers backup services for EBS, the EBS direct APIs makes it easier and more cost\-effective to track incremental changes on your EBS volumes via EBS snapshots\. This can be done without having to create new volumes from EBS snapshots, and then use EC2 instances to compare the differences\.
 
@@ -6,10 +6,10 @@ This user guide provides an overview of the elements that make up the EBS direct
 
 **Topics**
 + [Understanding the EBS direct APIs](#ebsapi-elements)
-+ [Permissions for IAM Users](#ebsapi-permissions)
-+ [Working with EBS direct APIs Using the Command Line](#ebsapi-examples)
-+ [Working with the EBS direct APIs Using the API or AWS SDKs](#ebsapi-sdk)
-+ [Frequently Asked Questions for the EBS direct APIs](#ebsapi-faq)
++ [Permissions for IAM users](#ebsapi-permissions)
++ [Working with EBS direct APIs using the command line](#ebsapi-examples)
++ [Working with the EBS direct APIs using the API or AWS SDKs](#ebsapi-sdk)
++ [Frequently asked questions for the EBS direct APIs](#ebsapi-faq)
 
 ## Understanding the EBS direct APIs<a name="ebsapi-elements"></a>
 
@@ -26,26 +26,26 @@ Public snapshots are not supported by the EBS direct APIs\.
 
 A block is a fragment of data within a snapshot\. Each snapshot can contain thousands of blocks\. All blocks in a snapshot are of a fixed size\.
 
-### Block Indexes<a name="ebsapi-block-indexes"></a>
+### Block indexes<a name="ebsapi-block-indexes"></a>
 
 A block index is the offset position of a block within a snapshot, and it is used to identify the block\. Multiply the `BlockIndex` value with the `BlockSize` value \(`BlockIndex` \* `BlockSize`\) to identify the logical offset of the data in the logical block\.
 
-### Block Tokens<a name="ebsapi-block-tokens"></a>
+### Block tokens<a name="ebsapi-block-tokens"></a>
 
 A block token is the identifying hash of a block within a snapshot, and it is used to locate the block data\.
 
 **Note**  
 Block tokens returned by EBS direct APIs are temporary\. Block tokens change if you run another `ListSnapshotBlocks` or `ListChangedBlocks` request for the same snapshot\.
 
-### List Snapshot Blocks<a name="ebsapi-listsnapshotblocks"></a>
+### List snapshot blocks<a name="ebsapi-listsnapshotblocks"></a>
 
 The `ListSnapshotBlocks` API operation returns the block indexes and block tokens for blocks in the specified snapshot\. For more information, see [ListSnapshotBlocks](https://docs.aws.amazon.com/ebs/latest/APIReference/API_ListSnapshotBlocks.html) in the *EBS direct APIs reference*\.
 
-### List Changed Blocks<a name="ebsapi-listchangedblocks"></a>
+### List changed blocks<a name="ebsapi-listchangedblocks"></a>
 
 The `ListChangedBlocks` API operation returns the block indexes and block tokens for blocks that are different between two specified snapshots of the same volume/snapshot lineage\. For more information, see [ListChangedBlocks](https://docs.aws.amazon.com/ebs/latest/APIReference/API_ListChangedBlocks.html) in the *EBS direct APIs reference*\.
 
-### Get Snapshot Blocks<a name="ebsapi-getsnapshotblocks"></a>
+### Get snapshot blocks<a name="ebsapi-getsnapshotblocks"></a>
 
 The `GetSnapshotBlock` API operation returns the data in a block for the specified snapshot ID, block index, and block token\. For more information, see [GetSnapshotBlock](https://docs.aws.amazon.com/ebs/latest/APIReference/API_GetSnapshotBlock.html) in the *EBS direct APIs reference*\.
 
@@ -53,7 +53,7 @@ The `GetSnapshotBlock` API operation returns the data in a block for the specifi
 
 Use the `ListSnapshotBlocks` or `ListChangedBlocks` API operations to identify the block indexes and block tokens of blocks for which you want to get data\. Then, use the `GetSnapshotBlock` API operation to get the data from the blocks in a snapshot\. Examples for how to run these operations using the AWS CLI are provided later in this guide\.
 
-## Permissions for IAM Users<a name="ebsapi-permissions"></a>
+## Permissions for IAM users<a name="ebsapi-permissions"></a>
 
 An IAM user must have the following policies to use the EBS direct APIs\.
 
@@ -77,7 +77,7 @@ The following policy grants full access to the EBS direct APIs\.
 }
 ```
 
-The following policy grants access to a specific snapshot in a specific AWS Region\. In the policy, replace *<SnapshotID>* with the ID of the snapshot, and *<Region>* with the region of the snapshot\.
+The following policy grants access to a specific snapshot in a specific AWS Region\. In the policy, replace *<SnapshotID>* with the ID of the snapshot, and *<Region>* with the Region of the snapshot\.
 
 ```
 {
@@ -194,7 +194,7 @@ The following policy grants access to decrypt an encrypted snapshot using a spec
 
 For more information, see [Changing Permissions for an IAM User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html) in the *IAM User Guide*\.
 
-## Working with EBS direct APIs Using the Command Line<a name="ebsapi-examples"></a>
+## Working with EBS direct APIs using the command line<a name="ebsapi-examples"></a>
 
 The following examples show how to use the EBS direct APIs using the AWS Command Line Interface \(AWS CLI\)\. For more information about installing and configuring the AWS CLI, see [Installing the AWS CLI version 1](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv1.html) and [Quickly Configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html#cli-quick-configuration)\.
 
@@ -300,7 +300,7 @@ The following is an example response\. It shows the size of the data returned, t
 }
 ```
 
-## Working with the EBS direct APIs Using the API or AWS SDKs<a name="ebsapi-sdk"></a>
+## Working with the EBS direct APIs using the API or AWS SDKs<a name="ebsapi-sdk"></a>
 
 The [EBS direct APIs Reference](https://docs.aws.amazon.com/ebs/latest/APIReference/) provides descriptions and syntax for each of the service’s actions and data types\. You can also use one of the AWS SDKs to access an API that's tailored to the programming language or platform that you're using\. For more information, see [AWS SDKs](http://aws.amazon.com/tools/#SDKs)\.
 
@@ -308,7 +308,7 @@ The EBS direct APIs require an AWS Signature Version 4 signature\. For more info
 
 You need to learn how to sign HTTP requests only if you intend to manually create them\. When you use the AWS Command Line Interface \(AWS CLI\) or one of the AWS SDKs to make requests to AWS, these tools automatically sign the requests for you with the access key that you specify when you configure the tools\. When you use these tools, you don't need to learn how to sign requests yourself\. 
 
-## Frequently Asked Questions for the EBS direct APIs<a name="ebsapi-faq"></a>
+## Frequently asked questions for the EBS direct APIs<a name="ebsapi-faq"></a>
 
 **Can a snapshot be accessed using the EBS direct APIs if it has a pending status?**  
 No\. The snapshot can only be accessed if it has a completed status\.

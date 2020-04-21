@@ -35,7 +35,7 @@ To start using a VPC, ensure that you have one in your account\. You can create 
 You cannot use the same security groups between EC2\-Classic and a VPC\. However, if you want your instances in your VPC to have the same security group rules as your EC2\-Classic instances, you can use the Amazon EC2 console to copy your existing EC2\-Classic security group rules to a new VPC security group\. 
 
 **Important**  
-You can only copy security group rules to a new security group in the same AWS account in the same region\. If you've created a new AWS account, you cannot use this method to copy your existing security group rules to your new account\. You'll have to create a new security group, and add the rules yourself\. For more information about creating a new security group, see [Amazon EC2 Security Groups for Linux Instances](ec2-security-groups.md)\.
+You can only copy security group rules to a new security group in the same AWS account in the same Region\. If you've created a new AWS account, you cannot use this method to copy your existing security group rules to your new account\. You'll have to create a new security group, and add the rules yourself\. For more information about creating a new security group, see [Amazon EC2 Security Groups for Linux Instances](ec2-security-groups.md)\.
 
 **To copy your security group rules to a new security group**
 
@@ -62,14 +62,14 @@ The method you use to create your AMI depends on the root device type of your in
 The following table provides options for you to create your AMI based on the root device type of your instance, and the software platform\.
 
 **Important**  
-Some instance types support both PV and HVM virtualization, while others support only one or the other\. If you plan to use your AMI to launch a different instance type than your current instance type, check that the instance type supports the type of virtualization that your AMI offers\. If your AMI supports PV virtualization, and you want to use an instance type that supports HVM virtualization, you may have to reinstall your software on a base HVM AMI\. For more information about PV and HVM virtualization, see [Linux AMI Virtualization Types](virtualization_types.md)\.
+Some instance types support both PV and HVM virtualization, while others support only one or the other\. If you plan to use your AMI to launch a different instance type than your current instance type, check that the instance type supports the type of virtualization that your AMI offers\. If your AMI supports PV virtualization, and you want to use an instance type that supports HVM virtualization, you may have to reinstall your software on a base HVM AMI\. For more information about PV and HVM virtualization, see [Linux AMI virtualization types](virtualization_types.md)\.
 
 
 | Instance Root Device Type | Action | 
 | --- | --- | 
-| EBS | Create an EBS\-backed AMI from your instance\. For more information, see [Creating an Amazon EBS\-Backed Linux AMI](creating-an-ami-ebs.md)\. | 
-| Instance store | Create an instance store\-backed AMI from your instance using the AMI tools\. For more information, see [Creating an Instance Store\-Backed Linux AMI](creating-an-ami-instance-store.md)\. | 
-| Instance store | Convert your instance store\-backed instance to an EBS\-backed instances\. For more information, see [Converting your Instance Store\-Backed AMI to an Amazon EBS\-Backed AMI](Using_ConvertingS3toEBS.md)\.  | 
+| EBS | Create an EBS\-backed AMI from your instance\. For more information, see [Creating an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md)\. | 
+| Instance store | Create an instance store\-backed AMI from your instance using the AMI tools\. For more information, see [Creating an instance store\-backed Linux AMI](creating-an-ami-instance-store.md)\. | 
+| Instance store | Convert your instance store\-backed instance to an EBS\-backed instances\. For more information, see [Converting your instance store\-backed AMI to an Amazon EBS\-backed AMI](Using_ConvertingS3toEBS.md)\.  | 
 
 #### \(Optional\) Store Your Data on Amazon EBS Volumes<a name="vpc-migrate-create-volumes"></a>
 
@@ -226,14 +226,14 @@ The method you use to create your AMI depends on the root device type of your in
 The following table provides options for you to create your AMI based on the root device type of your instance, and the software platform\.
 
 **Important**  
-Some instance types support both PV and HVM virtualization, while others support only one or the other\. If you plan to use your AMI to launch a different instance type than your current instance type, check that the instance type supports the type of virtualization that your AMI offers\. If your AMI supports PV virtualization, and you want to use an instance type that supports HVM virtualization, you may have to reinstall your software on a base HVM AMI\. For more information about PV and HVM virtualization, see [Linux AMI Virtualization Types](virtualization_types.md)\.
+Some instance types support both PV and HVM virtualization, while others support only one or the other\. If you plan to use your AMI to launch a different instance type than your current instance type, check that the instance type supports the type of virtualization that your AMI offers\. If your AMI supports PV virtualization, and you want to use an instance type that supports HVM virtualization, you may have to reinstall your software on a base HVM AMI\. For more information about PV and HVM virtualization, see [Linux AMI virtualization types](virtualization_types.md)\.
 
 
 | Instance Root Device Type | Action | 
 | --- | --- | 
-| EBS | Create an EBS\-backed AMI from your instance\. For more information, see [Creating an Amazon EBS\-Backed Linux AMI](creating-an-ami-ebs.md)\. | 
-| Instance store | Create an instance store\-backed AMI from your instance using the AMI tools\. For more information, see [Creating an Instance Store\-Backed Linux AMI](creating-an-ami-instance-store.md)\. | 
-| Instance store | Convert your instance store\-backed instance to an EBS\-backed instance\. For more information, see [Converting your Instance Store\-Backed AMI to an Amazon EBS\-Backed AMI](Using_ConvertingS3toEBS.md)\. | 
+| EBS | Create an EBS\-backed AMI from your instance\. For more information, see [Creating an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md)\. | 
+| Instance store | Create an instance store\-backed AMI from your instance using the AMI tools\. For more information, see [Creating an instance store\-backed Linux AMI](creating-an-ami-instance-store.md)\. | 
+| Instance store | Convert your instance store\-backed instance to an EBS\-backed instance\. For more information, see [Converting your instance store\-backed AMI to an Amazon EBS\-backed AMI](Using_ConvertingS3toEBS.md)\. | 
 
 #### \(Optional\) Store Your Data on Amazon EBS Volumes<a name="classiclink-migrate-create-volumes"></a>
 

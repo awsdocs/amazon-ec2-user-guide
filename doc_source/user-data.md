@@ -23,7 +23,7 @@ In the following examples, the commands from the [Install a LAMP Web Server on A
 
 ## Prerequisites<a name="user-data-requirements"></a>
 
-The following examples assume that your instance has a public DNS name that is reachable from the Internet\. For more information, see [Step 1: Launch an Instance](EC2_GetStarted.md#ec2-launch-instance)\. You must also configure your security group to allow SSH \(port 22\), HTTP \(port 80\), and HTTPS \(port 443\) connections\. For more information about these prerequisites, see [Setting Up with Amazon EC2](get-set-up-for-amazon-ec2.md)\.
+The following examples assume that your instance has a public DNS name that is reachable from the Internet\. For more information, see [Step 1: Launch an instance](EC2_GetStarted.md#ec2-launch-instance)\. You must also configure your security group to allow SSH \(port 22\), HTTP \(port 80\), and HTTPS \(port 443\) connections\. For more information about these prerequisites, see [Setting up with Amazon EC2](get-set-up-for-amazon-ec2.md)\.
 
 Also, these instructions are intended for use with Amazon Linux 2, and the commands and directives may not work for other Linux distributions\. For more information about other distributions, such as their support for cloud\-init, see their specific documentation\.
 
@@ -48,7 +48,7 @@ You can specify instance user data when you launch the instance\. If the root vo
 
 ### Specify Instance User Data at Launch<a name="user-data-launch-instance-wizard"></a>
 
-Follow the procedure for launching an instance at [Launching your instance from an AMI](launching-instance.md#launch-instance-console), but when you get to [Step 3: Configure Instance Details](launching-instance.md#configure_instance_details_step) in that procedure, copy your shell script in the **User data** field, and then complete the launch procedure\.
+Follow the procedure for launching an instance at [Launching an instance using the Launch Instance Wizard](launching-instance.md), but when you get to [Step 3: Configure Instance Details](launching-instance.md#configure_instance_details_step) in that procedure, copy your shell script in the **User data** field, and then complete the launch procedure\.
 
 In the example script below, the script creates and configures our web server\.
 
@@ -120,7 +120,7 @@ Adding these tasks at boot time adds to the amount of time it takes to boot an i
 
 **To pass cloud\-init directives to an instance with user data**
 
-1. Follow the procedure for launching an instance at [Launching your instance from an AMI](launching-instance.md#launch-instance-console), but when you get to [Step 3: Configure Instance Details](launching-instance.md#configure_instance_details_step) in that procedure, enter your cloud\-init directive text in the **User data** field, and then complete the launch procedure\.
+1. Follow the procedure for launching an instance at [Launching an instance using the Launch Instance Wizard](launching-instance.md), but when you get to [Step 3: Configure Instance Details](launching-instance.md#configure_instance_details_step) in that procedure, enter your cloud\-init directive text in the **User data** field, and then complete the launch procedure\.
 
    In the example below, the directives create and configure a web server on Amazon Linux 2\. The `#cloud-config` line at the top is required in order to identify the commands as cloud\-init directives\.
 
@@ -165,7 +165,7 @@ Adding these tasks at boot time adds to the amount of time it takes to boot an i
 
 ## User Data and the AWS CLI<a name="user-data-api-cli"></a>
 
-You can use the AWS CLI to specify, modify, and view the user data for your instance\. For information about viewing user data from your instance using instance metadata, see [Retrieve Instance User Data](instancedata-add-user-data.md#instancedata-user-data-retrieval)\.
+You can use the AWS CLI to specify, modify, and view the user data for your instance\. For information about viewing user data from your instance using instance metadata, see [Retrieve instance user data](instancedata-add-user-data.md#instancedata-user-data-retrieval)\.
 
 On Windows, you can use the AWS Tools for Windows PowerShell instead of using the AWS CLI\. For more information, see [User Data and the Tools for Windows PowerShell](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-windows-user-data.html#user-data-powershell) in the *Amazon EC2 User Guide for Windows Instances*\.
 

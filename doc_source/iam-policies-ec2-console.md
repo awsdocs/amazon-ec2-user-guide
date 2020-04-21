@@ -1,4 +1,4 @@
-# Example Policies for Working in the Amazon EC2 Console<a name="iam-policies-ec2-console"></a>
+# Example policies for working in the Amazon EC2 console<a name="iam-policies-ec2-console"></a>
 
 You can use IAM policies to grant users permissions to view and work with specific resources in the Amazon EC2 console\. You can use the example policies in the previous section; however, they are designed for requests that are made with the AWS CLI or an AWS SDK\. The console uses additional API actions for its features, so these policies may not work as expected\. For example, a user that has permission to use only the `DescribeVolumes` API action will encounter errors when trying to view volumes in the console\. This section demonstrates policies that enable users to work with specific parts of the console\.
 
@@ -6,18 +6,18 @@ You can use IAM policies to grant users permissions to view and work with specif
 To help you work out which API actions are required to perform tasks in the console, you can use a service such as AWS CloudTrail\. For more information, see the [AWS CloudTrail User Guide](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/)\. If your policy does not grant permission to create or modify a specific resource, the console displays an encoded message with diagnostic information\. You can decode the message using the [DecodeAuthorizationMessage](https://docs.aws.amazon.com/STS/latest/APIReference/API_DecodeAuthorizationMessage.html) API action for AWS STS, or the [decode\-authorization\-message](https://docs.aws.amazon.com/cli/latest/reference/sts/decode-authorization-message.html) command in the AWS CLI\.
 
 **Topics**
-+ [Read\-Only Access](#ex-read-only)
-+ [Using the EC2 Launch Wizard](#ex-launch-wizard)
-+ [Working with Volumes](#ex-volumes)
-+ [Working with Security Groups](#ex-security-groups)
-+ [Working with Elastic IP Addresses](#ex-eip)
++ [Read\-only access](#ex-read-only)
++ [Using the EC2 launch wizard](#ex-launch-wizard)
++ [Working with volumes](#ex-volumes)
++ [Working with security groups](#ex-security-groups)
++ [Working with Elastic IP addresses](#ex-eip)
 + [Working with Reserved Instances](#ex-reservedinstances)
 
 For additional information about creating policies for the Amazon EC2 console, see the following AWS Security Blog post: [Granting Users Permission to Work in the Amazon EC2 Console](https://aws.amazon.com/blogs/security/granting-users-permission-to-work-in-the-amazon-ec2-console/)\.
 
-## Example: Read\-Only Access<a name="ex-read-only"></a>
+## Example: Read\-only access<a name="ex-read-only"></a>
 
-To allow users to view all resources in the Amazon EC2 console, you can use the same policy as the following example: [Example: Read\-Only Access](ExamplePolicies_EC2.md#iam-example-read-only)\. Users cannot perform any actions on those resources or create new resources, unless another statement grants them permission to do so\.
+To allow users to view all resources in the Amazon EC2 console, you can use the same policy as the following example: [Example: Read\-only access](ExamplePolicies_EC2.md#iam-example-read-only)\. Users cannot perform any actions on those resources or create new resources, unless another statement grants them permission to do so\.
 
 **View instances, AMIs, and snapshots**
 
@@ -29,8 +29,10 @@ Alternatively, you can provide read\-only access to a subset of resources\. To d
    "Statement": [{
       "Effect": "Allow",
       "Action": [
-         "ec2:DescribeInstances", "ec2:DescribeImages",
-         "ec2:DescribeTags", "ec2:DescribeSnapshots"
+         "ec2:DescribeInstances", 
+         "ec2:DescribeImages",
+         "ec2:DescribeTags", 
+         "ec2:DescribeSnapshots"
       ],
       "Resource": "*"
    }
@@ -61,7 +63,7 @@ The following policy allows users to view instances in the Amazon EC2 console, a
 }
 ```
 
-## Example: Using the EC2 Launch Wizard<a name="ex-launch-wizard"></a>
+## Example: Using the EC2 launch wizard<a name="ex-launch-wizard"></a>
 
 The Amazon EC2 launch wizard is a series of screens with options to configure and launch an instance\. Your policy must include permission to use the API actions that allow users to work with the wizard's options\. If your policy does not include permission to use those actions, some items in the wizard cannot load properly, and users cannot complete a launch\.
 
@@ -107,7 +109,7 @@ You can add API actions to your policy to provide more options for users, for ex
 + `ec2:DescribeAvailabilityZones`: To view and select a specific Availability Zone\.
 + `ec2:DescribeNetworkInterfaces`: To view and select existing network interfaces for the selected subnet\.
 + To add outbound rules to VPC security groups, users must be granted permission to use the `ec2:AuthorizeSecurityGroupEgress` API action\. To modify or delete existing rules, users must be granted permission to use the relevant `ec2:RevokeSecurityGroup*` API action\.
-+ `ec2:CreateTags`: To tag the resources that are created by `RunInstances`\. For more information, see [Granting Permission to Tag Resources During Creation](supported-iam-actions-tagging.md)\. If users do not have permission to use this action and they attempt to apply tags on the tagging page of the launch wizard, the launch fails\.
++ `ec2:CreateTags`: To tag the resources that are created by `RunInstances`\. For more information, see [Granting permission to tag resources during creation](supported-iam-actions-tagging.md)\. If users do not have permission to use this action and they attempt to apply tags on the tagging page of the launch wizard, the launch fails\.
 **Important**  
 Be careful about granting users permission to use the `ec2:CreateTags` action\. This limits your ability to use the `ec2:ResourceTag` condition key to restrict the use of other resources; users can change a resource's tag in order to bypass those restrictions\.
 
@@ -117,7 +119,7 @@ Currently, the Amazon EC2 `Describe*` API actions do not support resource\-level
 
 The following policy allows users to launch `t2.micro` instances using AMIs owned by Amazon, and only into a specific subnet \(`subnet-1a2b3c4d`\)\. Users can only launch in the sa\-east\-1 Region\. If users select a different Region, or select a different instance type, AMI, or subnet in the launch wizard, the launch fails\. 
 
-The first statement grants users permission to view the options in the launch wizard or to create new ones, as explained in the example above\. The second statement grants users permission to use the network interface, volume, key pair, security group, and subnet resources for the `ec2:RunInstances` action, which are required to launch an instance into a VPC\. For more information about using the `ec2:RunInstances` action, see [Launching Instances \(RunInstances\)](ExamplePolicies_EC2.md#iam-example-runinstances)\. The third and fourth statements grant users permission to use the instance and AMI resources respectively, but only if the instance is a `t2.micro` instance, and only if the AMI is owned by Amazon\.
+The first statement grants users permission to view the options in the launch wizard or to create new ones, as explained in the example above\. The second statement grants users permission to use the network interface, volume, key pair, security group, and subnet resources for the `ec2:RunInstances` action, which are required to launch an instance into a VPC\. For more information about using the `ec2:RunInstances` action, see [Launching instances \(RunInstances\)](ExamplePolicies_EC2.md#iam-example-runinstances)\. The third and fourth statements grant users permission to use the instance and AMI resources respectively, but only if the instance is a `t2.micro` instance, and only if the AMI is owned by Amazon\.
 
 ```
 {
@@ -125,8 +127,15 @@ The first statement grants users permission to view the options in the launch wi
    "Statement": [{
       "Effect": "Allow",
       "Action": [
-         "ec2:DescribeInstances", "ec2:DescribeImages",
-         "ec2:DescribeKeyPairs", "ec2:CreateKeyPair", "ec2:DescribeVpcs", "ec2:DescribeSubnets", "ec2:DescribeSecurityGroups", "ec2:CreateSecurityGroup", "ec2:AuthorizeSecurityGroupIngress"
+         "ec2:DescribeInstances", 
+         "ec2:DescribeImages", 
+         "ec2:DescribeKeyPairs", 
+         "ec2:CreateKeyPair", 
+         "ec2:DescribeVpcs", 
+         "ec2:DescribeSubnets", 
+         "ec2:DescribeSecurityGroups", 
+         "ec2:CreateSecurityGroup", 
+         "ec2:AuthorizeSecurityGroupIngress"
 	  ],
 	  "Resource": "*"
    },
@@ -169,7 +178,7 @@ The first statement grants users permission to view the options in the launch wi
 }
 ```
 
-## Example: Working with Volumes<a name="ex-volumes"></a>
+## Example: Working with volumes<a name="ex-volumes"></a>
 
 The following policy grants users permission to view and create volumes, and attach and detach volumes to specific instances\. 
 
@@ -217,11 +226,11 @@ Users cannot tag the volumes that they create \(either during or after volume cr
 }
 ```
 
-## Example: Working with Security Groups<a name="ex-security-groups"></a>
+## Example: Working with security groups<a name="ex-security-groups"></a>
 
 **View security groups and add and remove rules**
 
-The following policy grants users permission to view security groups in the Amazon EC2 console, and to add and remove inbound and outbound rules for existing security groups that have the tag `Department=Test`\.
+The following policy grants users permission to view security groups in the Amazon EC2 console, to add and remove inbound and outbound rules, and to modify rule descriptions for existing security groups that have the tag `Department=Test`\.
 
 In the first statement, the `ec2:DescribeTags` action allows users to view tags in the console, which makes it easier for users to identify the security groups that they are allowed to modify\.
 
@@ -231,15 +240,20 @@ In the first statement, the `ec2:DescribeTags` action allows users to view tags 
    "Statement": [{
       "Effect": "Allow",
       "Action": [
-         "ec2:DescribeSecurityGroups", "ec2:DescribeTags"
+         "ec2:DescribeSecurityGroups", 
+         "ec2:DescribeTags"
       ],
       "Resource": "*"
     },
     {
       "Effect": "Allow",
       "Action": [
-         "ec2:AuthorizeSecurityGroupIngress", "ec2:RevokeSecurityGroupIngress",
-         "ec2:AuthorizeSecurityGroupEgress", "ec2:RevokeSecurityGroupEgress"
+         "ec2:AuthorizeSecurityGroupIngress", 
+         "ec2:RevokeSecurityGroupIngress", 
+         "ec2:AuthorizeSecurityGroupEgress", 
+         "ec2:RevokeSecurityGroupEgress", 
+         "ec2:UpdateSecurityGroupRuleDescriptionsIngress", 
+         "ec2:UpdateSecurityGroupRuleDescriptionsEgress"
       ],
       "Resource": [
          "arn:aws:ec2:region:111122223333:security-group/*"
@@ -266,6 +280,8 @@ With these permissions, users can create a new security group successfully, but 
 + `ec2:RevokeSecurityGroupIngress`: To modify or delete existing inbound rules\. This is useful to allow users to use the **Copy to new** feature in the console\. This feature opens the **Create Security Group** dialog box and populates it with the same rules as the security group that was selected\. 
 + `ec2:RevokeSecurityGroupEgress`: To modify or delete outbound rules for VPC security groups\. This is useful to allow users to modify or delete the default outbound rule that allows all outbound traffic\.
 + `ec2:DeleteSecurityGroup`: To cater for when invalid rules cannot be saved\. The console first creates the security group, and then adds the specified rules\. If the rules are invalid, the action fails, and the console attempts to delete the security group\. The user remains in the **Create Security Group** dialog box so that they can correct the invalid rule and try to create the security group again\. This API action is not required, but if a user is not granted permission to use it and attempts to create a security group with invalid rules, the security group is created without any rules, and the user must add them afterward\.
++ `ec2:UpdateSecurityGroupRuleDescriptionsIngress`: To add or update descriptions of ingress \(inbound\) security group rules\.
++ `ec2:UpdateSecurityGroupRuleDescriptionsEgress`: To add or update descriptions of egress \(outbound\) security group rules\.
 
 Currently, the `ec2:CreateSecurityGroup` API action does not support resource\-level permissions; however, you can apply resource\-level permissions to the `ec2:AuthorizeSecurityGroupIngress` and `ec2:AuthorizeSecurityGroupEgress` actions to control how users can create rules\.
 
@@ -277,14 +293,18 @@ The following policy grants users permission to use the **Create Security Group*
    "Statement": [{
       "Effect": "Allow",
       "Action": [
-        "ec2:DescribeSecurityGroups", "ec2:CreateSecurityGroup", "ec2:DescribeVpcs"
+        "ec2:DescribeSecurityGroups", 
+        "ec2:CreateSecurityGroup", 
+        "ec2:DescribeVpcs"
       ],
       "Resource": "*"
     },
     {
       "Effect": "Allow",
       "Action": [
-        "ec2:DeleteSecurityGroup", "ec2:AuthorizeSecurityGroupIngress", "ec2:AuthorizeSecurityGroupEgress"
+        "ec2:DeleteSecurityGroup", 
+        "ec2:AuthorizeSecurityGroupIngress", 
+        "ec2:AuthorizeSecurityGroupEgress"
       ],
       "Resource": "arn:aws:ec2:region:111122223333:security-group/*",
       "Condition":{
@@ -297,7 +317,7 @@ The following policy grants users permission to use the **Create Security Group*
 }
 ```
 
-## Example: Working with Elastic IP Addresses<a name="ex-eip"></a>
+## Example: Working with Elastic IP addresses<a name="ex-eip"></a>
 
 To allow users to view Elastic IP addresses in the Amazon EC2 console, you must grant users permission to use the `ec2:DescribeAddresses` action\.
 
@@ -340,9 +360,12 @@ This policy allows users to view all the Reserved Instances, as well as On\-Dema
    "Statement": [{
       "Effect": "Allow",
       "Action": [
-         "ec2:DescribeReservedInstances", "ec2:ModifyReservedInstances",
-         "ec2:PurchaseReservedInstancesOffering", "ec2:DescribeInstances",
-         "ec2:DescribeAvailabilityZones", "ec2:DescribeReservedInstancesOfferings"
+         "ec2:DescribeReservedInstances", 
+         "ec2:ModifyReservedInstances",
+         "ec2:PurchaseReservedInstancesOffering", 
+         "ec2:DescribeInstances",
+         "ec2:DescribeAvailabilityZones", 
+         "ec2:DescribeReservedInstancesOfferings"
       ],
       "Resource": "*"
    }
@@ -350,6 +373,6 @@ This policy allows users to view all the Reserved Instances, as well as On\-Dema
 }
 ```
 
- The `ec2:DescribeAvailabilityZones` action is necessary to ensure that the Amazon EC2 console can display information about the Availability Zones in which you can purchase Reserved Instances\. The `ec2:DescribeInstances` action is not required, but ensures that the user can view the instances in the account and purchase reservations to match the correct specifications\.
+The `ec2:DescribeAvailabilityZones` action is necessary to ensure that the Amazon EC2 console can display information about the Availability Zones in which you can purchase Reserved Instances\. The `ec2:DescribeInstances` action is not required, but ensures that the user can view the instances in the account and purchase reservations to match the correct specifications\.
 
 You can adjust the API actions to limit user access, for example removing `ec2:DescribeInstances` and `ec2:DescribeAvailabilityZones` means the user has read\-only access\.

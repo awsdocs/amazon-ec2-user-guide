@@ -1,4 +1,4 @@
-# Amazon EC2 Root Device Volume<a name="RootDeviceStorage"></a>
+# Amazon EC2 root device volume<a name="RootDeviceStorage"></a>
 
 When you launch an instance, the *root device volume* contains the image used to boot the instance\. When we introduced Amazon EC2, all AMIs were backed by Amazon EC2 instance store, which means the root device for an instance launched from the AMI is an instance store volume created from a template stored in Amazon S3\. After we introduced Amazon EBS, we introduced AMIs that are backed by Amazon EBS\. This means that the root device for an instance launched from the AMI is an Amazon EBS volume created from an Amazon EBS snapshot\.
 
@@ -7,16 +7,16 @@ You can choose between AMIs backed by Amazon EC2 instance store and AMIs backed 
 For more information about the device names Amazon EC2 uses for your root volumes, see [Device Naming on Linux Instances](device_naming.md)\.
 
 **Topics**
-+ [Root Device Storage Concepts](#RootDeviceStorageConcepts)
-+ [Choosing an AMI by Root Device Type](#choose-an-ami-by-root-device)
-+ [Determining the Root Device Type of Your Instance](#display-instance-root-device-type)
-+ [Changing the Root Device Volume to Persist](#Using_RootDeviceStorage)
++ [Root device storage concepts](#RootDeviceStorageConcepts)
++ [Choosing an AMI by root device type](#choose-an-ami-by-root-device)
++ [Determining the root device type of your instance](#display-instance-root-device-type)
++ [Changing the root volume to persist](#Using_RootDeviceStorage)
 
-## Root Device Storage Concepts<a name="RootDeviceStorageConcepts"></a>
+## Root device storage concepts<a name="RootDeviceStorageConcepts"></a>
 
-You can launch an instance from either an instance store\-backed AMI or an Amazon EBS\-backed AMI\. The description of an AMI includes which type of AMI it is; you'll see the root device referred to in some places as either `ebs` \(for Amazon EBS\-backed\) or `instance store` \(for instance store\-backed\)\. This is important because there are significant differences between what you can do with each type of AMI\. For more information about these differences, see [Storage for the Root Device](ComponentsAMIs.md#storage-for-the-root-device)\.
+You can launch an instance from either an instance store\-backed AMI or an Amazon EBS\-backed AMI\. The description of an AMI includes which type of AMI it is; you'll see the root device referred to in some places as either `ebs` \(for Amazon EBS\-backed\) or `instance store` \(for instance store\-backed\)\. This is important because there are significant differences between what you can do with each type of AMI\. For more information about these differences, see [Storage for the root device](ComponentsAMIs.md#storage-for-the-root-device)\.
 
-**Instance Store\-backed Instances**  
+**Instance store\-backed instances**  
 Instances that use instance stores for the root device automatically have one or more instance store volumes available, with one volume serving as the root device volume\. When an instance is launched, the image that is used to boot the instance is copied to the root volume\. Note that you can optionally use additional instance store volumes, depending on the instance type\.
 
 Any data on the instance store volumes persists as long as the instance is running, but this data is deleted when the instance is terminated \(instance store\-backed instances do not support the **Stop** action\) or if it fails \(such as if an underlying drive has issues\)\.
@@ -27,7 +27,7 @@ After an instance store\-backed instance fails or terminates, it cannot be resto
 
 For more information, see [Amazon EC2 Instance Store](InstanceStorage.md)\.
 
-**Amazon EBS\-backed Instances**  
+**Amazon EBS\-backed instances**  
 Instances that use Amazon EBS for the root device automatically have an Amazon EBS volume attached\. When you launch an Amazon EBS\-backed instance, we create an Amazon EBS volume for each Amazon EBS snapshot referenced by the AMI you use\. You can optionally use other Amazon EBS volumes or instance store volumes, depending on the instance type\.
 
 ![\[Root device volume and other Amazon EBS volumes of an Amazon EBS-backed instance\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ebs_backed_instance.png)
@@ -36,7 +36,7 @@ An Amazon EBS\-backed instance can be stopped and later restarted without affect
 
 If an Amazon EBS\-backed instance fails, you can restore your session by following one of these methods:
 + Stop and then start again \(try this method first\)\.
-+ Automatically snapshot all relevant volumes and create a new AMI\. For more information, see [Creating an Amazon EBS\-Backed Linux AMI](creating-an-ami-ebs.md)\.
++ Automatically snapshot all relevant volumes and create a new AMI\. For more information, see [Creating an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md)\.
 + Attach the volume to the new instance by following these steps:
 
   1. Create a snapshot of the root volume\.
@@ -51,7 +51,7 @@ If an Amazon EBS\-backed instance fails, you can restore your session by followi
 
 For more information, see [Amazon EBS Volumes](ebs-volumes.md)\.
 
-## Choosing an AMI by Root Device Type<a name="choose-an-ami-by-root-device"></a>
+## Choosing an AMI by root device type<a name="choose-an-ami-by-root-device"></a>
 
 The AMI that you specify when you launch your instance determines the type of root device volume that your instance has\.
 
@@ -85,7 +85,7 @@ You can use one of the following commands\. For more information about these com
 + [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) \(AWS CLI\)
 + [Get\-EC2Image](https://docs.aws.amazon.com/powershell/latest/userguide/pstools-ec2-get-amis.html#pstools-ec2-get-image) \(AWS Tools for Windows PowerShell\)
 
-## Determining the Root Device Type of Your Instance<a name="display-instance-root-device-type"></a>
+## Determining the root device type of your instance<a name="display-instance-root-device-type"></a>
 
 **To determine the root device type of an instance using the console**
 
@@ -103,16 +103,16 @@ You can use one of the following commands\. For more information about these com
 + [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) \(AWS CLI\)
 + [Get\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
 
-## Changing the Root Device Volume to Persist<a name="Using_RootDeviceStorage"></a>
+## Changing the root volume to persist<a name="Using_RootDeviceStorage"></a>
 
-By default, the root device volume for an AMI backed by Amazon EBS is deleted when the instance terminates\. You can change the default behavior to ensure that the volume persists after the instance terminates\. To change the default behavior, set the `DeleteOnTermination` attribute to `false` using a block device mapping\.
+By default, the root volume for an AMI backed by Amazon EBS is deleted when the instance terminates\. You can change the default behavior to ensure that the volume persists after the instance terminates\. To change the default behavior, set the `DeleteOnTermination` attribute to `false` using a block device mapping\.
 
 **Topics**
-+ [Configuring the Root Volume to Persist During Instance Launch](#Using_ChangeRootDeviceVolumeToPersist)
-+ [Configuring the Root Volume to Persist for a Running Instance](#set-deleteOnTermination-aws-cli)
-+ [Confirming That a Root Volume Is Configured to Persist](#Using_ConfirmRootDeviceVolumeToPersist)
++ [Configuring the root volume to persist during instance launch](#Using_ChangeRootDeviceVolumeToPersist)
++ [Configuring the root volume to persist for an existing instance](#set-deleteOnTermination-aws-cli)
++ [Confirming that a root volume is configured to persist](#Using_ConfirmRootDeviceVolumeToPersist)
 
-### Configuring the Root Volume to Persist During Instance Launch<a name="Using_ChangeRootDeviceVolumeToPersist"></a>
+### Configuring the root volume to persist during instance launch<a name="Using_ChangeRootDeviceVolumeToPersist"></a>
 
 You can configure the root volume to persist when you launch an instance using the Amazon EC2 console or the command line tools\.
 
@@ -162,19 +162,19 @@ C:\> $bdm.Ebs = $ebs
 C:\> New-EC2Instance -ImageId ami-0abcdef1234567890 -BlockDeviceMapping $bdm ...other parameters...
 ```
 
-### Configuring the Root Volume to Persist for a Running Instance<a name="set-deleteOnTermination-aws-cli"></a>
+### Configuring the root volume to persist for an existing instance<a name="set-deleteOnTermination-aws-cli"></a>
 
-You can configure the root volume to persist for a running instance using the command line tools only\.
+You can configure the root volume to persist for a running instance using the command line tools only\. If the instance is running, you must stop it first\.
 
-**To configure the root volume to persist for a running instance using the AWS CLI**  
-Use the [modify\-instance\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) command and include a block device mapping that sets the `DeleteOnTermination` attribute to `false`\.
+**To configure the root volume to persist for an existing instance using the AWS CLI**  
+If the instance is running, use the [stop\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) command to stop it\. After the instance is stopped, use the [modify\-instance\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) command with a block device mapping that sets the `DeleteOnTermination` attribute to `false`\.
 
 ```
-$ aws ec2 modify-instance-attribute --instance-id i-1234567890abcdef0 --block-device-mappings "[{\"DeviceName\": \"/dev/xvda\",\"Ebs\":{\"DeleteOnTermination\":false}}]"
+aws ec2 modify-instance-attribute --instance-id i-1234567890abcdef0 --block-device-mappings "[{\"DeviceName\": \"/dev/xvda\",\"Ebs\":{\"DeleteOnTermination\":false}}]"
 ```
 
-**To configure the root volume to persist for a running instance using the AWS Tools for Windows PowerShell**  
-Use the [ Edit\-EC2InstanceAttribute](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2InstanceAttribute.html) command and include a block device mapping that sets the `DeleteOnTermination` attribute to `false`\.
+**To configure the root volume to persist for an existing instance using the AWS Tools for Windows PowerShell**  
+If the instance is running, use the [Stop\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Stop-EC2Instance.html) command to stop it\. After the instance is stopped, use the [Edit\-EC2InstanceAttribute](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2InstanceAttribute.html) command with a block device mapping that sets the `DeleteOnTermination` attribute to `false`\.
 
 ```
 C:\> $ebs = New-Object Amazon.EC2.Model.EbsInstanceBlockDeviceSpecification
@@ -185,7 +185,7 @@ C:\> $bdm.Ebs = $ebs
 C:\> Edit-EC2InstanceAttribute -InstanceId i-1234567890abcdef0 -BlockDeviceMapping $bdm
 ```
 
-### Confirming That a Root Volume Is Configured to Persist<a name="Using_ConfirmRootDeviceVolumeToPersist"></a>
+### Confirming that a root volume is configured to persist<a name="Using_ConfirmRootDeviceVolumeToPersist"></a>
 
 You can confirm that a root volume is configured to persist using the Amazon EC2 console or the command line tools\.
 

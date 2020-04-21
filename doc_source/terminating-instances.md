@@ -64,7 +64,7 @@ By default, you can terminate your instance using the Amazon EC2 console, comman
 The `DisableApiTermination` attribute does not prevent you from terminating an instance by initiating shutdown from the instance \(using an operating system command for system shutdown\) when the `InstanceInitiatedShutdownBehavior` attribute is set\. For more information, see [Changing the Instance Initiated Shutdown Behavior](#Using_ChangingInstanceInitiatedShutdownBehavior)\.
 
 **Limitations**  
-You can't enable termination protection for Spot Instances—a Spot Instance is terminated when the Spot price exceeds the amount you're willing to pay for Spot Instances\. However, you can prepare your application to handle Spot Instance interruptions\. For more information, see [Spot Instance Interruptions](spot-interruptions.md)\.
+You can't enable termination protection for Spot Instances—a Spot Instance is terminated when the Spot price exceeds the amount you're willing to pay for Spot Instances\. However, you can prepare your application to handle Spot Instance interruptions\. For more information, see [Spot Instance interruptions](spot-interruptions.md)\.
 
 The `DisableApiTermination` attribute does not prevent Amazon EC2 Auto Scaling from terminating an instance\. For instances in an Auto Scaling group, use the following Amazon EC2 Auto Scaling features instead of Amazon EC2 termination protection:
 + To prevent instances that are part of an Auto Scaling group from terminating on scale in, use instance protection\. For more information, see [Instance Protection](https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-instance-termination.html#instance-protection) in the *Amazon EC2 Auto Scaling User Guide*\.
@@ -211,4 +211,4 @@ Specify the following in `mapping.json`:
 
 ## Troubleshooting<a name="troubleshoot-instance-terminate"></a>
 
-If your instance is in the `shutting-down` state for longer than usual, it will eventually be cleaned up \(terminated\) by automated processes within the Amazon EC2 service\. For more information, see [Troubleshooting Terminating \(Shutting Down\) Your Instance](TroubleshootingInstancesShuttingDown.md)\. 
+If your instance is in the `shutting-down` state for longer than usual, it will eventually be cleaned up \(terminated\) by automated processes within the Amazon EC2 service\. For more information, see [Troubleshooting terminating \(shutting down\) your instance](TroubleshootingInstancesShuttingDown.md)\. 

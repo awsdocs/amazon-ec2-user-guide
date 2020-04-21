@@ -6,7 +6,7 @@ Multi\-Attach enabled volumes support many of the features that are supported by
 + [Tagging](Using_Tags.md)
 + [Amazon EBS Snapshots](EBSSnapshots.md)
 + [Automating the Amazon EBS Snapshot Lifecycle](snapshot-lifecycle.md)
-+ [Amazon EBS Encryption](EBSEncryption.md)
++ [Amazon EBS encryption](EBSEncryption.md)
 + [Amazon CloudWatch Metrics for Amazon EBS](using_cloudwatch_ebs.md)
 + [Amazon CloudWatch Events for Amazon EBS](ebs-cloud-watch-events.md)
 
@@ -19,9 +19,9 @@ Multi\-Attach enabled volumes support many of the features that are supported by
 
 ## Considerations and Limitations<a name="considerations"></a>
 + Multi\-Attach enabled volumes do not support I/O fencing\. I/O fencing protocols control write access in a shared storage environment to maintain data consistency\. Your applications must provide write ordering for the attached instances to maintain data consistency\.
-+ Multi\-Attach enabled volumes can be attached to up to 16 [Nitro\-based instances](instance-types.md#ec2-nitro-instances) that are in the same Availability Zone\.
++ Multi\-Attach enabled volumes can be attached to up to 16 instances built on the [Nitro System](instance-types.md#ec2-nitro-instances) that are in the same Availability Zone\.
 + Multi\-Attach is supported exclusively on [Provisioned IOPS SSD \(io1\) volumes](ebs-volume-types.md#EBSVolumeTypes_piops)\.
-+ Multi\-Attach is available in the `us-east-1`, `us-east-2`, `us-west-2`, `eu-west-1`, and `ap-northeast-2` Regions\.
++ Multi\-Attach is available in the `us-east-1`, `us-west-2`, `eu-west-1`, and `ap-northeast-2` Regions\.
 + Multi\-Attach enabled volumes can't be created as boot volumes\.
 + Multi\-Attach enabled volumes can be attached to one block device mapping per instance\.
 + You can't enable or disable Multi\-Attach after volume creation\.

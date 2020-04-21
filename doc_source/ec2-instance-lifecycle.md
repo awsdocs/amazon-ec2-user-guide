@@ -2,7 +2,7 @@
 
 By working with Amazon EC2 to manage your instances from the moment you launch them through their termination, you ensure that your customers have the best possible experience with the applications or sites that you host on your instances\.
 
-The following illustration represents the transitions between instance states\. Notice that you can't stop and start an instance store\-backed instance\. For more information about instance store\-backed instances, see [Storage for the Root Device](ComponentsAMIs.md#storage-for-the-root-device)\.
+The following illustration represents the transitions between instance states\. Notice that you can't stop and start an instance store\-backed instance\. For more information about instance store\-backed instances, see [Storage for the root device](ComponentsAMIs.md#storage-for-the-root-device)\.
 
 ![\[The instance lifecycle\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/instance_lifecycle.png)
 

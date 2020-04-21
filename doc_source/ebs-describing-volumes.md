@@ -1,6 +1,6 @@
 # Viewing Information about an Amazon EBS Volume<a name="ebs-describing-volumes"></a>
 
-You can view descriptive information about your EBS volumes\. For example, you can view information about all volumes in a specific region or view detailed information about a single volume, including its size, volume type, whether the volume is encrypted, which master key was used to encrypt the volume, and the specific instance to which the volume is attached\.
+You can view descriptive information about your EBS volumes\. For example, you can view information about all volumes in a specific Region or view detailed information about a single volume, including its size, volume type, whether the volume is encrypted, which master key was used to encrypt the volume, and the specific instance to which the volume is attached\.
 
 You can get additional information about your EBS volumes, such as how much disk space is available, from the operating system on the instance\.
 

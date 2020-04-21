@@ -1,4 +1,4 @@
-# Instance Identity Documents<a name="instance-identity-documents"></a>
+# Instance identity documents<a name="instance-identity-documents"></a>
 
 An instance identity document is a JSON file that describes an instance\. The instance identity document is accompanied by a signature and a PKCS7 signature, which can be used to verify the accuracy, origin, and authenticity of the information provided in the document\. 
 
@@ -7,7 +7,7 @@ The instance identity document is generated when the instance is launched, and e
 **Important**  
 Due to the dynamic nature of instance identity documents and signatures, we recommend retrieving the instance identity document and signature regularly\.
 
-## Obtaining the Instance Identity Document and Signatures<a name="instance-identity-signatures"></a>
+## Obtaining the instance identity document and signatures<a name="instance-identity-signatures"></a>
 
 To retrieve the instance identity document, use the following command from your running instance\.
 
@@ -115,7 +115,7 @@ FFBjvSfpJIlJ00zbhNYS5f6GuoEDmFJl0ZxBHjJnyp378OD8uTs7fLvjx79LjSTb
 NYiytVbZPQUQ5Yaxu2jXnimvw3rrszlaEXAMPLE
 ```
 
-## Verifying the PKCS7 Signature<a name="instance-identity-signature-verification-example"></a>
+## Verifying the PKCS7 signature<a name="instance-identity-signature-verification-example"></a>
 
 You can use the PKCS7 signature to verify your instance by validating it against the appropriate AWS public certificate\.
 

@@ -31,7 +31,7 @@ The `AWS/EC2` namespace includes the following instance metrics\.
 | `NetworkOut` |  The number of bytes sent out on all network interfaces by the instance\. This metric identifies the volume of outgoing network traffic from a single instance\. The number reported is the number of bytes sent during the period\. If you are using basic \(five\-minute\) monitoring, you can divide this number by 300 to find Bytes/second\. If you have detailed \(one\-minute\) monitoring, divide it by 60\. Units: Bytes  | 
 | `NetworkPacketsIn` |  The number of packets received on all network interfaces by the instance\. This metric identifies the volume of incoming traffic in terms of the number of packets on a single instance\. This metric is available for basic monitoring only\. Units: Count Statistics: Minimum, Maximum, Average  | 
 | `NetworkPacketsOut` |  The number of packets sent out on all network interfaces by the instance\. This metric identifies the volume of outgoing traffic in terms of the number of packets on a single instance\. This metric is available for basic monitoring only\. Units: Count Statistics: Minimum, Maximum, Average  | 
-| `MetadataNoToken` |  The number of times the instance metadata service was succesfully accessed using a method that does not use a token\. This metric is used to determine if there are any processes accessing instance metadata that are using Instance Metadata Service Version 1, which does not use a token\. If all requests use token\-backed sessions, i\.e\., Instance Metadata Service Version 2, the value is 0\. For more information, see [Transitioning to Using Instance Metadata Service Version 2](configuring-instance-metadata-service.md#instance-metadata-transition-to-version-2)\. Units: Count  | 
+| `MetadataNoToken` |  The number of times the instance metadata service was succesfully accessed using a method that does not use a token\. This metric is used to determine if there are any processes accessing instance metadata that are using Instance Metadata Service Version 1, which does not use a token\. If all requests use token\-backed sessions, i\.e\., Instance Metadata Service Version 2, the value is 0\. For more information, see [Transitioning to using Instance Metadata Service Version 2](configuring-instance-metadata-service.md#instance-metadata-transition-to-version-2)\. Units: Count  | 
 
 ## CPU Credit Metrics<a name="cpu-credit-metrics"></a>
 
@@ -47,7 +47,7 @@ The `AWS/EC2` namespace includes the following CPU credit metrics for your [burs
 
 ## Amazon EBS Metrics for Nitro\-based Instances<a name="ebs-metrics-nitro"></a>
 
-The `AWS/EC2` namespace includes the following Amazon EBS metrics for the Nitro\-based instances that are not bare metal instances\. For the list of Nitro\-based instance types, see [Nitro\-based Instances](instance-types.md#ec2-nitro-instances)\.
+The `AWS/EC2` namespace includes the following Amazon EBS metrics for the Nitro\-based instances that are not bare metal instances\. For the list of Nitro\-based instance types, see [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances)\.
 
 Metric values for Nitro\-based instances will always be integers \(whole numbers\), whereas values for Xen\-based instances support decimals\. Therefore, low instance CPU utilization on Nitro\-based instances may appear to be rounded down to 0\.
 
@@ -61,7 +61,7 @@ Metric values for Nitro\-based instances will always be integers \(whole numbers
 |  `EBSIOBalance%`  |  Available only for the smaller instance sizes\. Provides information about the percentage of I/O credits remaining in the burst bucket\. This metric is available for basic monitoring only\. The `Sum` statistic is not applicable to this metric\. Unit: Percent  | 
 |  `EBSByteBalance%`  |  Available only for the smaller instance sizes\. Provides information about the percentage of throughput credits remaining in the burst bucket\. This metric is available for basic monitoring only\. The `Sum` statistic is not applicable to this metric\. Unit: Percent  | 
 
-For information about the metrics provided for your EBS volumes, see [Amazon EBS Metrics](using_cloudwatch_ebs.md#ebs-metrics)\. For information about the metrics provided for your Spot fleets, see [CloudWatch Metrics for Spot Fleet](spot-fleet-cloudwatch-metrics.md)\.
+For information about the metrics provided for your EBS volumes, see [Amazon EBS Metrics](using_cloudwatch_ebs.md#ebs-metrics)\. For information about the metrics provided for your Spot fleets, see [CloudWatch metrics for Spot Fleet](spot-fleet-cloudwatch-metrics.md)\.
 
 ## Status Check Metrics<a name="status-check-metrics"></a>
 

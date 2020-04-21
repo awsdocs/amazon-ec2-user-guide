@@ -1,4 +1,4 @@
-# Converting your Instance Store\-Backed AMI to an Amazon EBS\-Backed AMI<a name="Using_ConvertingS3toEBS"></a>
+# Converting your instance store\-backed AMI to an Amazon EBS\-backed AMI<a name="Using_ConvertingS3toEBS"></a>
 
 You can convert an instance store\-backed Linux AMI that you own to an Amazon EBS\-backed Linux AMI\. 
 

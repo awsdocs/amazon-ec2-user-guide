@@ -1,16 +1,16 @@
-# Deregistering Your Linux AMI<a name="deregister-ami"></a>
+# Deregistering your Linux AMI<a name="deregister-ami"></a>
 
 You can deregister an AMI when you have finished using it\. After you deregister an AMI, you can't use it to launch new instances\.
 
 When you deregister an AMI, it doesn't affect any instances that you've already launched from the AMI\. You'll continue to incur usage costs for these instances\. Therefore, if you are finished with these instances, you should terminate them\.
 
-The procedure that you'll use to clean up your AMI depends on whether it is backed by Amazon EBS or instance store\. For more information, see [Determining the Root Device Type of Your AMI](ComponentsAMIs.md#display-ami-root-device-type)\.
+The procedure that you'll use to clean up your AMI depends on whether it is backed by Amazon EBS or instance store\. For more information, see [Determining the root device type of your AMI](ComponentsAMIs.md#display-ami-root-device-type)\.
 
 **Topics**
-+ [Cleaning Up Your Amazon EBS\-Backed AMI](#clean-up-ebs-ami)
-+ [Cleaning Up Your Instance Store\-Backed AMI](#clean-up-s3-ami)
++ [Cleaning up your Amazon EBS\-backed AMI](#clean-up-ebs-ami)
++ [Cleaning up your instance store\-backed AMI](#clean-up-s3-ami)
 
-## Cleaning Up Your Amazon EBS\-Backed AMI<a name="clean-up-ebs-ami"></a>
+## Cleaning up your Amazon EBS\-backed AMI<a name="clean-up-ebs-ami"></a>
 
 When you deregister an Amazon EBS\-backed AMI, it doesn't affect the snapshot\(s\) that were created for the volume\(s\) of the instance during the AMI creation process\. You'll continue to incur storage costs for the snapshots\. Therefore, if you are finished with the snapshots, you should delete them\. 
 
@@ -30,7 +30,7 @@ It may take a few minutes before the console removes the AMI from the list\. Cho
 
 1. \(Optional\) If you are finished with an instance that you launched from the AMI, terminate it\. In the navigation pane, choose **Instances**\. Select the instance, choose **Actions**, then **Instance State**, and then **Terminate**\. When prompted for confirmation, choose **Yes, Terminate**\.
 
-## Cleaning Up Your Instance Store\-Backed AMI<a name="clean-up-s3-ami"></a>
+## Cleaning up your instance store\-backed AMI<a name="clean-up-s3-ami"></a>
 
 When you deregister an instance store\-backed AMI, it doesn't affect the files that you uploaded to Amazon S3 when you created the AMI\. You'll continue to incur usage costs for these files in Amazon S3\. Therefore, if you are finished with these files, you should delete them\.
 

@@ -1,16 +1,16 @@
-# Troubleshooting Instances<a name="ec2-instance-troubleshoot"></a>
+# Troubleshooting EC2 instances<a name="ec2-instance-troubleshoot"></a>
 
 The following documentation can help you troubleshoot problems that you might have with your instance\.
 
 **Topics**
-+ [Troubleshooting Instance Launch Issues](troubleshooting-launch.md)
-+ [Troubleshooting Connecting to Your Instance](TroubleshootingInstancesConnecting.md)
-+ [Troubleshooting Stopping Your Instance](TroubleshootingInstancesStopping.md)
-+ [Troubleshooting Terminating \(Shutting Down\) Your Instance](TroubleshootingInstancesShuttingDown.md)
-+ [Troubleshooting Instances with Failed Status Checks](TroubleshootingInstances.md)
-+ [Troubleshooting an Unreachable Instance](instance-console.md)
-+ [Booting from the Wrong Volume](instance-booting-from-wrong-volume.md)
++ [Troubleshooting instance launch issues](troubleshooting-launch.md)
++ [Troubleshooting connecting to your instance](TroubleshootingInstancesConnecting.md)
++ [Troubleshooting stopping your instance](TroubleshootingInstancesStopping.md)
++ [Troubleshooting terminating \(shutting down\) your instance](TroubleshootingInstancesShuttingDown.md)
++ [Troubleshooting instances with failed status checks](TroubleshootingInstances.md)
++ [Troubleshooting an unreachable instance](instance-console.md)
++ [Booting from the wrong volume](instance-booting-from-wrong-volume.md)
 + [Using EC2Rescue for Linux](Linux-Server-EC2Rescue.md)
-+ [Sending a Diagnostic Interrupt \(Advanced Users Only\)](diagnostic-interrupt.md)
++ [Sending a diagnostic interrupt \(for advanced users\)](diagnostic-interrupt.md)
 
 For additional help with Windows instances, see [Troubleshooting Windows Instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/troubleshooting-windows-instances.html) in the *Amazon EC2 User Guide for Windows Instances*\.

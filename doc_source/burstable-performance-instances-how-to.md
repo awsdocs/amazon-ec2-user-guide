@@ -1,26 +1,26 @@
-# Working with Burstable Performance Instances<a name="burstable-performance-instances-how-to"></a>
+# Working with burstable performance instances<a name="burstable-performance-instances-how-to"></a>
 
 The steps for launching, monitoring, and modifying these instances are similar\. The key difference is the default credit specification when they launch\. If you do not change the default credit specification, the defaults are:
 + T3 and T3a instances launch as `unlimited` by default\.
 + T2 instances launch as `standard` by default\.
 
 **Topics**
-+ [Launching a Burstable Performance Instance as Unlimited or Standard](#launch-burstable-performance-instances)
-+ [Using an Auto Scaling Group to Launch a Burstable Performance Instance as Unlimited](#burstable-performance-instances-auto-scaling-grp)
-+ [Viewing the Credit Specification of a Burstable Performance Instance](#describe-burstable-performance-instances)
-+ [Modifying the Credit Specification of a Burstable Performance Instance](#modify-burstable-performance-instances)
-+ [Setting the Default Credit Specification for the Account](#burstable-performance-instance-set-default-credit-specification-for-account)
-+ [Viewing the Default Credit Specification](#burstable-performance-instances-get-default-credit-specification)
++ [Launching a burstable Pprformance instance as Unlimited or Standard](#launch-burstable-performance-instances)
++ [Using an Auto Scaling group to launch a burstable performance instance as Unlimited](#burstable-performance-instances-auto-scaling-grp)
++ [Viewing the credit specification of a burstable performance instance](#describe-burstable-performance-instances)
++ [Modifying the credit specification of a burstable performance instance](#modify-burstable-performance-instances)
++ [Setting the default credit specification for the account](#burstable-performance-instance-set-default-credit-specification-for-account)
++ [Viewing the default credit specification](#burstable-performance-instances-get-default-credit-specification)
 
-## Launching a Burstable Performance Instance as Unlimited or Standard<a name="launch-burstable-performance-instances"></a>
+## Launching a burstable Pprformance instance as Unlimited or Standard<a name="launch-burstable-performance-instances"></a>
 
 T3 and T3a instances launch as `unlimited` by default\. T2 instances launch as `standard` by default\.
 
-For more information about AMI and driver requirements for these instances, see [Release Notes](general-purpose-instances.md#general-purpose-instances-limits)\.
+For more information about AMI and driver requirements for these instances, see [Release notes](general-purpose-instances.md#general-purpose-instances-limits)\.
 
-You must launch your instances using an Amazon EBS volume as the root device\. For more information, see [Amazon EC2 Root Device Volume](RootDeviceStorage.md)\.
+You must launch your instances using an Amazon EBS volume as the root device\. For more information, see [Amazon EC2 root device volume](RootDeviceStorage.md)\.
 
-You can launch your instances as `unlimited` or `standard` using the Amazon EC2 console, an AWS SDK, a command line tool, or with an Auto Scaling group\. For more information, see [Using an Auto Scaling Group to Launch a Burstable Performance Instance as Unlimited](#burstable-performance-instances-auto-scaling-grp)\.
+You can launch your instances as `unlimited` or `standard` using the Amazon EC2 console, an AWS SDK, a command line tool, or with an Auto Scaling group\. For more information, see [Using an Auto Scaling group to launch a burstable performance instance as Unlimited](#burstable-performance-instances-auto-scaling-grp)\.
 
 **To launch a burstable performance instance as Unlimited or Standard \(console\)**
 
@@ -45,11 +45,11 @@ Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/ru
 aws ec2 run-instances --image-id ami-abc12345 --count 1 --instance-type t3.micro --key-name MyKeyPair --credit-specification "CpuCredits=unlimited"
 ```
 
-## Using an Auto Scaling Group to Launch a Burstable Performance Instance as Unlimited<a name="burstable-performance-instances-auto-scaling-grp"></a>
+## Using an Auto Scaling group to launch a burstable performance instance as Unlimited<a name="burstable-performance-instances-auto-scaling-grp"></a>
 
 When burstable performance instances are launched or started, they require CPU credits for a good bootstrapping experience\. If you use an Auto Scaling group to launch your instances, we recommend that you configure your instances as `unlimited`\. If you do, the instances use surplus credits when they are automatically launched or restarted by the Auto Scaling group\. Using surplus credits prevents performance restrictions\.
 
-### Creating a Launch Template<a name="burstable-performance-instances-asg-launch-template"></a>
+### Creating a launch template<a name="burstable-performance-instances-asg-launch-template"></a>
 
 You must use a *launch template* for launching instances as `unlimited` in an Auto Scaling group\. A launch configuration does not support launching instances as `unlimited`\.
 
@@ -72,7 +72,7 @@ Use the [create\-launch\-template](https://docs.aws.amazon.com/cli/latest/refere
 aws ec2 create-launch-template --launch-template-name MyLaunchTemplate --version-description FirstVersion --launch-template-data ImageId=ami-8c1be5f6,InstanceType=t3.medium,CreditSpecification={CpuCredits=unlimited}
 ```
 
-### Associating an Auto Scaling Group with a Launch Template<a name="burstable-performance-instances-create-asg-with-launch-template"></a>
+### Associating an Auto Scaling group with a launch template<a name="burstable-performance-instances-create-asg-with-launch-template"></a>
 
 To associate the launch template with an Auto Scaling group, create the Auto Scaling group using the launch template, or add the launch template to an existing Auto Scaling group\.
 
@@ -106,7 +106,7 @@ Use the [create\-auto\-scaling\-group](https://docs.aws.amazon.com/cli/latest/re
 **To add a launch template to an existing Auto Scaling group \(AWS CLI\)**  
 Use the [update\-auto\-scaling\-group](https://docs.aws.amazon.com/cli/latest/reference/autoscaling/update-auto-scaling-group.html) AWS CLI command and specify the `--launch-template` parameter\. 
 
-## Viewing the Credit Specification of a Burstable Performance Instance<a name="describe-burstable-performance-instances"></a>
+## Viewing the credit specification of a burstable performance instance<a name="describe-burstable-performance-instances"></a>
 
 You can view the credit specification \(`unlimited` or `standard`\) of a running or stopped instance\.
 
@@ -141,7 +141,7 @@ The following is example output:
 }
 ```
 
-## Modifying the Credit Specification of a Burstable Performance Instance<a name="modify-burstable-performance-instances"></a>
+## Modifying the credit specification of a burstable performance instance<a name="modify-burstable-performance-instances"></a>
 
 You can switch the credit specification of a running or stopped instance at any time between `unlimited` and `standard`\.
 
@@ -178,13 +178,13 @@ The following is example output:
 }
 ```
 
-## Setting the Default Credit Specification for the Account<a name="burstable-performance-instance-set-default-credit-specification-for-account"></a>
+## Setting the default credit specification for the account<a name="burstable-performance-instance-set-default-credit-specification-for-account"></a>
 
 You can set the default credit specification at the account level per AWS Region\. You specify the default credit specification per instance family \(T2, T3, or T3a\)\.
 
 If you use the Launch Instance Wizard in the AWS Management Console to launch instances, the value for **T2/T3 Unlimited** overrides the account\-level default credit specification\. If you use the AWS CLI to launch instances, all new burstable performance instances in the account launch using the default credit option\. The credit specification for existing running or stopped instances is not affected\.
 
-The `modify-default-credit-specification` API is an asynchronous operation, which works at an AWS Region level and modifies the credit option for each Availability Zone\. All zones in a Region are updated within five minutes\. But if instances are launched during this operation, they might not get the new credit option until the zone is updated\. To verify whether the update has occurred, you can call `get-default-credit-specification` and check the default credit specification for updates\. For more information, see [Viewing the Default Credit Specification](#burstable-performance-instances-get-default-credit-specification)\.
+The `modify-default-credit-specification` API is an asynchronous operation, which works at an AWS Region level and modifies the credit option for each Availability Zone\. All zones in a Region are updated within five minutes\. But if instances are launched during this operation, they might not get the new credit option until the zone is updated\. To verify whether the update has occurred, you can call `get-default-credit-specification` and check the default credit specification for updates\. For more information, see [Viewing the default credit specification](#burstable-performance-instances-get-default-credit-specification)\.
 
 **Note**  
 The default credit specification for an instance family can be modified only once in a rolling 5\-minute period, and up to four times in a rolling 24\-hour period\.
@@ -196,7 +196,7 @@ Use the [modify\-default\-credit\-specification](https://docs.aws.amazon.com/cli
 aws ec2 modify-default-credit-specification --region us-east-1 --instance-family t2 --cpu-credits unlimited
 ```
 
-## Viewing the Default Credit Specification<a name="burstable-performance-instances-get-default-credit-specification"></a>
+## Viewing the default credit specification<a name="burstable-performance-instances-get-default-credit-specification"></a>
 
 You can view the default credit specification of a burstable performance instance family at the account level per AWS Region\.
 

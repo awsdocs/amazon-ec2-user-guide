@@ -42,7 +42,7 @@ Use the following procedure to determine the lifecycle of an instance\.
 
 1. On the **Description** tab, find **Lifecycle**\. If the value is `spot`, the instance is a Spot Instance\. If the value is `scheduled`, the instance is a Scheduled Instance\. If the value is `normal`, the instance is either an On\-Demand Instance or a Reserved Instance\.
 
-1. \(Optional\) If you have purchased a Reserved Instance and want to verify that it is being applied, you can check the usage reports for Amazon EC2\. For more information, see [Amazon EC2 Usage Reports](usage-reports.md)\.
+1. \(Optional\) If you have purchased a Reserved Instance and want to verify that it is being applied, you can check the usage reports for Amazon EC2\. For more information, see [Amazon EC2 usage reports](usage-reports.md)\.
 
 **To determine the instance lifecycle using the AWS CLI**  
 Use the following [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command:

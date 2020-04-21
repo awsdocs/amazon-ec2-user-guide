@@ -74,7 +74,7 @@ $ mssh ubuntu@i-001234a4bf70dec41EXAMPLE
 You can use your own SSH key and connect to your instance from the SSH client of your choice while using the EC2 Instance Connect API\. This enables you to benefit from the Instance Connect capability to push a public key to the instance\.
 
 **Requirement**  
-The supported RSA key types are OpenSSH and SSH2\. The supported lengths are 2048 and 4096\. For more information, see [Importing your own public key to Amazon EC2](ec2-key-pairs.md#how-to-generate-your-own-key-and-import-it-to-aws)\.
+The supported RSA key types are OpenSSH and SSH2\. The supported lengths are 2048 and 4096\. For more information, see [Option 2: Import your own public key to Amazon EC2](ec2-key-pairs.md#how-to-generate-your-own-key-and-import-it-to-aws)\.
 
 **To connect to your instance using your own key and any SSH client**
 

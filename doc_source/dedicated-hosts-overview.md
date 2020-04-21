@@ -62,7 +62,7 @@ For instance families that are not powered by the AWS Nitro system, you can only
 ## Dedicated Hosts Restrictions<a name="dedicated-hosts-limitations"></a>
 
 Before you allocate Dedicated Hosts, take note of the following limitations and restrictions:
-+ RHEL, SUSE Linux, and Windows AMIs \(whether offered by AWS or on the AWS Marketplace\) can't be used with Dedicated Hosts\.
++ RHEL, SUSE Linux, and SQL Server AMIs \(whether offered by AWS or on the AWS Marketplace\) can't be used with Dedicated Hosts\.
 + Up to two On\-Demand Dedicated Hosts per instance family, per Region can be allocated\. It is possible to request a limit increase: [Request to Raise Allocation Limit on Amazon EC2 Dedicated Hosts](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=)\.
 + The instances that run on a Dedicated Host can only be launched in a VPC\.
 + Auto Scaling groups are supported when using a launch template that specifies a host resource group\. For more information, see [ Creating a Launch Template for an Auto Scaling Group](https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-launch-template.html) in the *Amazon EC2 Auto Scaling User Guide*\.
@@ -78,12 +78,13 @@ The price for a Dedicated Host varies by payment option\.
 + [On\-Demand Dedicated Hosts](#on-demand-dedicated-hosts)
 + [Dedicated Host Reservations](#dedicated-host-reservations)
 + [Savings Plans](#dedicated-hosts-savings-plans)
++ [Pricing for Windows Server on Dedicated Hosts](#dh-win-billing)
 
 ### On\-Demand Dedicated Hosts<a name="on-demand-dedicated-hosts"></a>
 
 On\-Demand billing is automatically activated when you allocate a Dedicated Host to your account\.
 
-The On\-Demand price for a Dedicated Host varies by instance family and Region\. You are charged an hourly rate for the Dedicated Host, regardless of the quantity or the size of instances that you choose to launch on it\. In other words, you are charged for the entire Dedicated Host, and not the individual instances that you choose to run on it\. For more information about On\-Demand pricing, see [Amazon EC2 Dedicated Hosts On\-Demand Pricing](https://aws.amazon.com/ec2/dedicated-hosts/pricing/#on-demand)\.
+The On\-Demand price for a Dedicated Host varies by instance family and Region\. You pay per second \(with a minimum of 60 seconds\) for active Dedicated Host, regardless of the quantity or the size of instances that you choose to launch on it\. For more information about On\-Demand pricing, see [Amazon EC2 Dedicated Hosts On\-Demand Pricing](http://aws.amazon.com/ec2/dedicated-hosts/pricing/#on-demand)\.
 
 You can release an On\-Demand Dedicated Host at any time to stop accruing charges for it\. For information about releasing a Dedicated Host, see [Releasing Dedicated Hosts](how-dedicated-hosts-work.md#dedicated-hosts-releasing)\.
 
@@ -103,3 +104,9 @@ For more information about reservation pricing, see [Amazon EC2 Dedicated Hosts 
 ### Savings Plans<a name="dedicated-hosts-savings-plans"></a>
 
 Savings Plans are a flexible pricing model that offers significant savings over On\-Demand Instances\. With Savings Plans, you make a commitment to a consistent amount of usage, in USD per hour, for a term of one or three years\. This provides you with the flexibility to use the Dedicated Hosts that best meet your needs and continue to save money, instead of making a commitment to a specific Dedicated Host\. For more information, see the [AWS Savings Plans User Guide](https://docs.aws.amazon.com/savingsplans/latest/userguide/)\.
+
+### Pricing for Windows Server on Dedicated Hosts<a name="dh-win-billing"></a>
+
+Subject to Microsoft licensing terms, you can bring your existing Windows Server and SQL Server licenses to Dedicated Hosts\. There is no additional charge for software usage if you choose to bring your own licenses\.
+
+In addition, you can also use Windows Server AMIs provided by Amazon to run the latest versions of Windows Server on Dedicated Hosts\. This is common for scenarios where you have existing SQL Server licenses eligible to run on Dedicated Hosts, but need Windows Server to run the SQL Server workload\. Windows Server AMIs provided by Amazon are supported on [ current generation instance types](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#current-gen-instances) only\. For more information, see [ Amazon EC2 Dedicated Hosts Pricing](http://aws.amazon.com/ec2/dedicated-hosts/pricing#windows-dh)\.

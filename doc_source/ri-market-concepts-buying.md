@@ -12,16 +12,16 @@ Before you confirm your purchase, review the details of the Reserved Instance th
 To purchase and modify Reserved Instances, ensure that your IAM user account has the appropriate permissions, such as the ability to describe Availability Zones\. For information, see [Example Policies for Working With the AWS CLI or an AWS SDK](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ExamplePolicies_EC2.html#iam-example-reservedinstances) and [Example Policies for Working in the Amazon EC2 Console](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-policies-ec2-console.html#ex-reservedinstances)\.
 
 **Topics**
-+ [Choosing a Platform](#ri-choosing-platform)
-+ [Queuing Your Purchase](#ri-queued-purchase)
++ [Choosing a platform](#ri-choosing-platform)
++ [Queuing your purchase](#ri-queued-purchase)
 + [Buying Standard Reserved Instances](#ri-buying-standard)
 + [Buying Convertible Reserved Instances](#ri-buying-convertible)
-+ [Viewing Your Reserved Instances](#view-reserved-instances)
-+ [Canceling a Queued Purchase](#cancel-queued-purchase)
++ [Viewing your Reserved Instances](#view-reserved-instances)
++ [Canceling a queued purchase](#cancel-queued-purchase)
 + [Renewing a Reserved Instance](#renew-ri)
-+ [Using Your Reserved Instances](#reserved-instances-process)
++ [Using your Reserved Instances](#reserved-instances-process)
 
-## Choosing a Platform<a name="ri-choosing-platform"></a>
+## Choosing a platform<a name="ri-choosing-platform"></a>
 
 Amazon EC2 supports the following Linux platforms for Reserved Instances:
 + Linux/UNIX
@@ -36,17 +36,19 @@ When you purchase a Reserved Instance, you must choose an offering for a *platfo
 + For all other Linux distributions \(including Ubuntu\), choose an offering for the **Linux/UNIX** platform\.
 + If you bring your existing RHEL subscription, you must choose an offering for the **Linux/UNIX** platform, not an offering for the **Red Hat Enterprise Linux** platform\.
 
-For information about the supported platforms for Windows, see [Choosing a Platform](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ri-market-concepts-buying.html#ri-choosing-platform) in the *Amazon EC2 User Guide for Windows Instances*\.
+**Important**  
+If you purchase a Reserved Instance to apply to an On\-Demand Instance that was launched from an AMI with a billing product code, make sure that the Reserved Instance has the matching billing product code\. If you purchase a Reserved Instance without the matching billing product code, the Reserved Instance will not be applied to the On\-Demand Instance\. For more information about how to obtain the AMI billing code, see [Obtaining billing information](ami-billing-info.md)\.
+Reserved Instances do not apply to On\-Demand Instances that were launched from AWS Marketplace AMIs\.
 
-If you purchase a Reserved Instance to apply to an On\-Demand Instance that was launched from an AMI with a billing product code, make sure that the Reserved Instance has the matching billing product code\. If you purchase a Reserved Instance without the matching billing product code, the Reserved Instance will not be applied to the On\-Demand Instance\. For more information about how to obtain the AMI billing code, see [Obtaining Billing Information](ami-billing-info.md)\.
+For information about the supported platforms for Windows, see [Choosing a platform](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ri-market-concepts-buying.html#ri-choosing-platform) in the *Amazon EC2 User Guide for Windows Instances*\.
 
-## Queuing Your Purchase<a name="ri-queued-purchase"></a>
+## Queuing your purchase<a name="ri-queued-purchase"></a>
 
 By default, when you purchase a Reserved Instance, it is executed immediately\. Alternatively, you can queue your purchases for a future date and time\. For example, you can queue a purchase for around the time that an existing Reserved Instance expires\. This can help you ensure that you have uninterrupted coverage\.
 
 You can queue purchases for regional Reserved Instances, but not zonal Reserved Instances or Reserved Instances from other sellers\. You can queue a purchase up to three years in advance\. On the scheduled date and time, the purchase is executed using the default payment method\. After the payment is successful, the billing benefit is applied\.
 
-You can view your queued purchases in the Amazon EC2 console\. The status of a queued purchase is **queued**\. You can cancel a queued purchase any time before its scheduled time\. For details, see [Canceling a Queued Purchase](#cancel-queued-purchase)\.
+You can view your queued purchases in the Amazon EC2 console\. The status of a queued purchase is **queued**\. You can cancel a queued purchase any time before its scheduled time\. For details, see [Canceling a queued purchase](#cancel-queued-purchase)\.
 
 ## Buying Standard Reserved Instances<a name="ri-buying-standard"></a>
 
@@ -83,16 +85,26 @@ If the status goes to `retired`, AWS may not have received your payment\.
 
 **To buy a Standard Reserved Instance using the AWS CLI**
 
-1. Find available Reserved Instances using the [describe\-reserved\-instances\-offerings](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances-offerings.html) command\. Specify `standard` for the `--offering-class` parameter to return only Standard Reserved Instances\. You can apply additional parameters to narrow your results; for example, if you want to purchase a regional `t2.large` Reserved Instance with a default tenancy for `Linux/UNIX` for a 1\-year term only:
+1. Find available Reserved Instances using the [describe\-reserved\-instances\-offerings](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances-offerings.html) command\. Specify `standard` for the `--offering-class` parameter to return only Standard Reserved Instances\. You can apply additional parameters to narrow your results\. For example, if you want to purchase a regional `t2.large` Reserved Instance with a default tenancy for `Linux/UNIX` for a 1\-year term only:
 
    ```
-   aws ec2 describe-reserved-instances-offerings --instance-type t2.large --offering-class standard --product-description "Linux/UNIX" --instance-tenancy default --filters Name=duration,Values=31536000 Name=scope,Values=Region
+   aws ec2 describe-reserved-instances-offerings \
+       --instance-type t2.large \
+       --offering-class standard \
+       --product-description "Linux/UNIX" \
+       --instance-tenancy default \
+       --filters Name=duration,Values=31536000 Name=scope,Values=Region
    ```
 
    To find Reserved Instances on the Reserved Instance Marketplace only, use the `marketplace` filter and do not specify a duration in the request, as the term may be shorter than a 1– or 3\-year term\.
 
    ```
-   aws ec2 describe-reserved-instances-offerings --instance-type t2.large --offering-class standard --product-description "Linux/UNIX" --instance-tenancy default --filters Name=marketplace,Values=true
+   aws ec2 describe-reserved-instances-offerings \
+       --instance-type t2.large \
+       --offering-class standard \
+       --product-description "Linux/UNIX" \
+       --instance-tenancy default \
+       --filters Name=marketplace,Values=true
    ```
 
    When you find a Reserved Instance that meets your needs, take note of the offering ID\. For example:
@@ -104,7 +116,9 @@ If the status goes to `retired`, AWS may not have received your payment\.
 1. Use the [purchase\-reserved\-instances\-offering](https://docs.aws.amazon.com/cli/latest/reference/ec2/purchase-reserved-instances-offering.html) command to buy your Reserved Instance\. You must specify the Reserved Instance offering ID you obtained the previous step and you must specify the number of instances for the reservation\.
 
    ```
-   aws ec2 purchase-reserved-instances-offering --reserved-instances-offering-id bec624df-a8cc-4aad-a72f-4f8abc34caf2 --instance-count 1
+   aws ec2 purchase-reserved-instances-offering \
+       --reserved-instances-offering-id bec624df-a8cc-4aad-a72f-4f8abc34caf2 \
+       --instance-count 1
    ```
 
    By default, the purchase is completed immediately\. Alternatively, to queue the purchase, add the following parameter to the previous call\.
@@ -124,9 +138,9 @@ Alternatively, use the following AWS Tools for Windows PowerShell commands:
 + [New\-EC2ReservedInstance](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2ReservedInstance.html)
 + [Get\-EC2ReservedInstance](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ReservedInstance.html)
 
-After the purchase is complete, if you already have a running instance that matches the specifications of the Reserved Instance, the billing benefit is immediately applied\. You do not have to restart your instances\. If you do not have a suitable running instance, launch an instance and ensure that you match the same criteria that you specified for your Reserved Instance\. For more information, see [Using Your Reserved Instances](#reserved-instances-process)\. 
+After the purchase is complete, if you already have a running instance that matches the specifications of the Reserved Instance, the billing benefit is immediately applied\. You do not have to restart your instances\. If you do not have a suitable running instance, launch an instance and ensure that you match the same criteria that you specified for your Reserved Instance\. For more information, see [Using your Reserved Instances](#reserved-instances-process)\. 
 
-For examples of how Reserved Instances are applied to your running instances, see [How Reserved Instances Are Applied](apply_ri.md)\.
+For examples of how Reserved Instances are applied to your running instances, see [How Reserved Instances are applied](apply_ri.md)\.
 
 ## Buying Convertible Reserved Instances<a name="ri-buying-convertible"></a>
 
@@ -164,7 +178,12 @@ If the status goes to `retired`, AWS may not have received your payment\.
 1. Find available Reserved Instances using the [describe\-reserved\-instances\-offerings](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances-offerings.html) command\. Specify `convertible` for the `--offering-class` parameter to return only Convertible Reserved Instances\. You can apply additional parameters to narrow your results; for example, if you want to purchase a regional `t2.large` Reserved Instance with a default tenancy for `Linux/UNIX`:
 
    ```
-   aws ec2 describe-reserved-instances-offerings --instance-type t2.large --offering-class convertible --product-description "Linux/UNIX" --instance-tenancy default --filters Name=scope,Values=Region
+   aws ec2 describe-reserved-instances-offerings \
+       --instance-type t2.large \
+       --offering-class convertible \
+       --product-description "Linux/UNIX" \
+       --instance-tenancy default \
+       --filters Name=scope,Values=Region
    ```
 
    When you find a Reserved Instance that meets your needs, take note of the offering ID\. For example:
@@ -176,7 +195,9 @@ If the status goes to `retired`, AWS may not have received your payment\.
 1. Use the [purchase\-reserved\-instances\-offering](https://docs.aws.amazon.com/cli/latest/reference/ec2/purchase-reserved-instances-offering.html) command to buy your Reserved Instance\. You must specify the Reserved Instance offering ID you obtained the previous step and you must specify the number of instances for the reservation\.
 
    ```
-   aws ec2 purchase-reserved-instances-offering --reserved-instances-offering-id bec624df-a8cc-4aad-a72f-4f8abc34caf2 --instance-count 1
+   aws ec2 purchase-reserved-instances-offering \
+       --reserved-instances-offering-id bec624df-a8cc-4aad-a72f-4f8abc34caf2 \
+       --instance-count 1
    ```
 
    By default, the purchase is completed immediately\. Alternatively, to queue the purchase, add the following parameter to the previous call\.
@@ -196,11 +217,11 @@ Alternatively, use the following AWS Tools for Windows PowerShell commands:
 + [New\-EC2ReservedInstance](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2ReservedInstance.html)
 + [Get\-EC2ReservedInstance](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ReservedInstance.html)
 
-If you already have a running instance that matches the specifications of the Reserved Instance, the billing benefit is immediately applied\. You do not have to restart your instances\. If you do not have a suitable running instance, launch an instance and ensure that you match the same criteria that you specified for your Reserved Instance\. For more information, see [Using Your Reserved Instances](#reserved-instances-process)\. 
+If you already have a running instance that matches the specifications of the Reserved Instance, the billing benefit is immediately applied\. You do not have to restart your instances\. If you do not have a suitable running instance, launch an instance and ensure that you match the same criteria that you specified for your Reserved Instance\. For more information, see [Using your Reserved Instances](#reserved-instances-process)\. 
 
-For examples of how Reserved Instances are applied to your running instances, see [How Reserved Instances Are Applied](apply_ri.md)\.
+For examples of how Reserved Instances are applied to your running instances, see [How Reserved Instances are applied](apply_ri.md)\.
 
-## Viewing Your Reserved Instances<a name="view-reserved-instances"></a>
+## Viewing your Reserved Instances<a name="view-reserved-instances"></a>
 
 You can view the Reserved Instances you've purchased using the Amazon EC2 console, or a command line tool\.
 
@@ -212,13 +233,13 @@ You can view the Reserved Instances you've purchased using the Amazon EC2 consol
 
 1. Your active and retired Reserved Instances are listed\. The **State** column displays the state\. 
 
-1. If you are a seller in the Reserved Instance Marketplace the **My Listings** tab displays the status of a reservation that's listed in the [Reserved Instance Marketplace](ri-market-general.md)\. For more information, see [Reserved Instance Listing States](ri-market-general.md#ri-listing-states)\.
+1. If you are a seller in the Reserved Instance Marketplace the **My Listings** tab displays the status of a reservation that's listed in the [Reserved Instance Marketplace](ri-market-general.md)\. For more information, see [Reserved Instance listing states](ri-market-general.md#ri-listing-states)\.
 
 **To view your Reserved Instances using the command line**
 + [describe\-reserved\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances.html) \(AWS CLI\)
 + [Get\-EC2ReservedInstance](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ReservedInstance.html) \(Tools for Windows PowerShell\)
 
-## Canceling a Queued Purchase<a name="cancel-queued-purchase"></a>
+## Canceling a queued purchase<a name="cancel-queued-purchase"></a>
 
 You can queue a purchase up to three years in advance\. You can cancel a queued purchase any time before its scheduled time\.
 
@@ -254,7 +275,7 @@ You can renew a Reserved Instance before it is scheduled to expire\. Renewing a 
 
 1. To complete the order, choose **Order**\.
 
-## Using Your Reserved Instances<a name="reserved-instances-process"></a>
+## Using your Reserved Instances<a name="reserved-instances-process"></a>
 
 Reserved Instances are automatically applied to running On\-Demand Instances provided that the specifications match\. If you have no running On\-Demand Instances that match the specifications of your Reserved Instance, the Reserved Instance is unused until you launch an instance with the required specifications\. 
 
@@ -264,6 +285,6 @@ If you're launching an instance to take advantage of the billing benefit of a Re
 + Availability Zone: If you purchased a Reserved Instance for a specific Availability Zone, you must launch the instance into the same Availability Zone\. If you purchased a regional Reserved Instance, you can launch your instance into any Availability Zone\.
 + Tenancy: The tenancy of your instance must match the tenancy of the Reserved Instance; for example, `dedicated` or `shared`\. For more information, see [Dedicated Instances](dedicated-instance.md)\.
 
-For more information, see [Launching an instance using the Launch Instance Wizard](launching-instance.md)\. For examples of how Reserved Instances are applied to your running instances, see [How Reserved Instances Are Applied](apply_ri.md)\.
+For more information, see [Launching an instance using the Launch Instance Wizard](launching-instance.md)\. For examples of how Reserved Instances are applied to your running instances, see [How Reserved Instances are applied](apply_ri.md)\.
 
 You can use Amazon EC2 Auto Scaling or other AWS services to launch the On\-Demand Instances that use your Reserved Instance benefits\. For more information, see the [Amazon EC2 Auto Scaling User Guide](https://docs.aws.amazon.com/autoscaling/latest/userguide/WhatIsAutoScaling.html)\.

@@ -15,14 +15,14 @@ The following figure shows the relationship between these storage options and yo
 **Amazon EBS**  
 Amazon EBS provides durable, block\-level storage volumes that you can attach to a running instance\. You can use Amazon EBS as a primary storage device for data that requires frequent and granular updates\. For example, Amazon EBS is the recommended storage option when you run a database on an instance\.
 
-An EBS volume behaves like a raw, unformatted, external block device that you can attach to a single instance\. The volume persists independently from the running life of an instance\. After an EBS volume is attached to an instance, you can use it like any other physical hard drive\. As illustrated in the previous figure, multiple volumes can be attached to an instance\. You can also detach an EBS volume from one instance and attach it to another instance\. You can dynamically change the configuration of a volume attached to an instance\. EBS volumes can also be created as encrypted volumes using the Amazon EBS encryption feature\. For more information, see [Amazon EBS Encryption](EBSEncryption.md)\.
+An EBS volume behaves like a raw, unformatted, external block device that you can attach to a single instance\. The volume persists independently from the running life of an instance\. After an EBS volume is attached to an instance, you can use it like any other physical hard drive\. As illustrated in the previous figure, multiple volumes can be attached to an instance\. You can also detach an EBS volume from one instance and attach it to another instance\. You can dynamically change the configuration of a volume attached to an instance\. EBS volumes can also be created as encrypted volumes using the Amazon EBS encryption feature\. For more information, see [Amazon EBS encryption](EBSEncryption.md)\.
 
 To keep a backup copy of your data, you can create a *snapshot* of an EBS volume, which is stored in Amazon S3\. You can create an EBS volume from a snapshot, and attach it to another instance\. For more information, see [Amazon Elastic Block Store \(Amazon EBS\)](AmazonEBS.md)\.
 
-**Amazon EC2 Instance Store**  
+**Amazon EC2 instance store**  
 Many instances can access storage from disks that are physically attached to the host computer\. This disk storage is referred to as *instance store*\. Instance store provides temporary block\-level storage for instances\. The data on an instance store volume persists only during the life of the associated instance; if you stop or terminate an instance, any data on instance store volumes is lost\. For more information, see [Amazon EC2 Instance Store](InstanceStorage.md)\.
 
-**Amazon EFS File System**  
+**Amazon EFS file system**  
 Amazon EFS provides scalable file storage for use with Amazon EC2\. You can create an EFS file system and configure your instances to mount the file system\. You can use an EFS file system as a common data source for workloads and applications running on multiple instances\. For more information, see [Amazon Elastic File System \(Amazon EFS\)](AmazonEFS.md)\.
 
 **Amazon S3**  

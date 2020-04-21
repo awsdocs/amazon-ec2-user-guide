@@ -1,4 +1,4 @@
-# Running Amazon Linux 2 as a Virtual Machine On\-Premises<a name="amazon-linux-2-virtual-machine"></a>
+# Running Amazon Linux 2 as a virtual machine on\-premises<a name="amazon-linux-2-virtual-machine"></a>
 
 Use the Amazon Linux 2 virtual machine \(VM\) images for on\-premises development and testing\. These images are available for use on the following virtualization platforms:
 + VMWare
@@ -7,11 +7,11 @@ Use the Amazon Linux 2 virtual machine \(VM\) images for on\-premises developmen
 + Microsoft Hyper\-V
 
 To use the Amazon Linux 2 virtual machine images with one of the supported virtualization platforms, do the following:
-+ [Step 1: Prepare the `seed.iso` Boot Image](#amazon-linux-2-virtual-machine-prepare)
-+ [Step 2: Download the Amazon Linux 2 VM Image](#amazon-linux-2-virtual-machine-download)
-+ [Step 3: Boot and Connect to Your New VM](#amazon-linux-2-virtual-machine-boot)
++ [Step 1: Prepare the `seed.iso` boot image](#amazon-linux-2-virtual-machine-prepare)
++ [Step 2: Download the Amazon Linux 2 VM image](#amazon-linux-2-virtual-machine-download)
++ [Step 3: Boot and connect to your new VM](#amazon-linux-2-virtual-machine-boot)
 
-## Step 1: Prepare the `seed.iso` Boot Image<a name="amazon-linux-2-virtual-machine-prepare"></a>
+## Step 1: Prepare the `seed.iso` boot image<a name="amazon-linux-2-virtual-machine-prepare"></a>
 
 The `seed.iso` boot image includes the initial configuration information that is needed to boot your new VM, such as the network configuration, host name, and user data\.
 
@@ -102,7 +102,7 @@ To generate the `seed.iso` boot image, you need two configuration files:
    $ hdiutil makehybrid -o seed.iso -hfs -joliet -iso -default-volume-name cidata seedconfig/
    ```
 
-## Step 2: Download the Amazon Linux 2 VM Image<a name="amazon-linux-2-virtual-machine-download"></a>
+## Step 2: Download the Amazon Linux 2 VM image<a name="amazon-linux-2-virtual-machine-download"></a>
 
 We offer a different Amazon Linux 2 VM image for each of the supported virtualization platforms\. Download the correct VM image for your chosen platform:
 + [ VMWare](https://cdn.amazonlinux.com/os-images/latest/vmware/)
@@ -110,7 +110,7 @@ We offer a different Amazon Linux 2 VM image for each of the supported virtualiz
 + [ Oracle VirtualBox](https://cdn.amazonlinux.com/os-images/latest/virtualbox/)
 + [ Microsoft Hyper\-V](https://cdn.amazonlinux.com/os-images/latest/hyperv/)
 
-## Step 3: Boot and Connect to Your New VM<a name="amazon-linux-2-virtual-machine-boot"></a>
+## Step 3: Boot and connect to your new VM<a name="amazon-linux-2-virtual-machine-boot"></a>
 
 To boot and connect to your new VM, you must have the `seed.iso` boot image \(created in Step 1\) and an Amazon Linux 2 VM image \(downloaded in Step 2\)\. The steps vary depending on your chosen VM platform\.
 

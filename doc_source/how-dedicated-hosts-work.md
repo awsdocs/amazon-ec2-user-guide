@@ -151,7 +151,7 @@ You can launch an instance onto a Dedicated Host using the following methods\.
 
 1. On the **Dedicated Hosts** page, select a host and choose **Actions**, **Launch Instance\(s\) onto Host**\.
 
-1. Select an AMI from the list\. Windows, SUSE, and RHEL AMIs provided by Amazon EC2 can't be used with Dedicated Hosts\.
+1. Select an AMI from the list\. SQL Server, SUSE, and RHEL AMIs provided by Amazon EC2 can't be used with Dedicated Hosts\.
 
 1. On the **Choose an Instance Type** page, select the instance type to launch and then choose **Next: Configure Instance Details**\. 
 
@@ -179,7 +179,7 @@ You can launch an instance onto a Dedicated Host using the following methods\.
 
 1. In the navigation pane, choose **Instances**, **Launch Instance**\.
 
-1. Select an AMI from the list\. Windows, SUSE, and RHEL AMIs provided by Amazon EC2 can't be used with Dedicated Hosts\.
+1. Select an AMI from the list\. SQL Server, SUSE, and RHEL AMIs provided by Amazon EC2 can't be used with Dedicated Hosts\.
 
 1. Select the type of instance to launch and choose **Next: Configure Instance Details**\.
 
@@ -229,7 +229,7 @@ You can launch an instance into a host resource group using the following method
 
 1. In the navigation pane, choose **Instances**, **Launch Instance**\.
 
-1. Select an AMI from the list\. Windows, SUSE, and RHEL AMIs provided by Amazon EC2 can't be used with Dedicated Hosts\.
+1. Select an AMI from the list\. SQL Server, SUSE, and RHEL AMIs provided by Amazon EC2 can't be used with Dedicated Hosts\.
 
 1. Select the type of instance to launch and choose **Next: Configure Instance Details**\.
 

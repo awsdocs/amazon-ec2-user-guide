@@ -1,4 +1,4 @@
-# Tagging Your Amazon EC2 Resources<a name="Using_Tags"></a>
+# Tagging your Amazon EC2 resources<a name="Using_Tags"></a>
 
 To help you manage your instances, images, and other Amazon EC2 resources, you can optionally assign your own metadata to each resource in the form of *tags*\. This topic describes tags and shows you how to create them\.
 
@@ -6,14 +6,14 @@ To help you manage your instances, images, and other Amazon EC2 resources, you c
 Tag keys and their values are returned by many different API calls\. Denying access to `DescribeTags` doesn’t automatically deny access to tags returned by other APIs\. As a best practice, we recommend that you do not include sensitive data in your tags\.
 
 **Topics**
-+ [Tag Basics](#tag-basics)
-+ [Tagging Your Resources](#tag-resources)
-+ [Tag Restrictions](#tag-restrictions)
-+ [Tagging Your Resources for Billing](#tag-resources-for-billing)
-+ [Working with Tags Using the Console](#Using_Tags_Console)
-+ [Working with Tags Using the CLI or API](#Using_Tags_CLI)
++ [Tag basics](#tag-basics)
++ [Tagging your resources](#tag-resources)
++ [Tag restrictions](#tag-restrictions)
++ [Tagging your resources for billing](#tag-resources-for-billing)
++ [Working with tags using the console](#Using_Tags_Console)
++ [Working with tags using the CLI or API](#Using_Tags_CLI)
 
-## Tag Basics<a name="tag-basics"></a>
+## Tag basics<a name="tag-basics"></a>
 
 A tag is a label that you assign to an AWS resource\. Each tag consists of a *key* and an optional *value*, both of which you define\.
 
@@ -29,9 +29,9 @@ Tags don't have any semantic meaning to Amazon EC2 and are interpreted strictly 
 
 You can work with tags using the AWS Management Console, the AWS CLI, and the Amazon EC2 API\.
 
-If you're using AWS Identity and Access Management \(IAM\), you can control which users in your AWS account have permission to create, edit, or delete tags\. For more information, see [Identity and Access Management for Amazon EC2](security-iam.md)\.
+If you're using AWS Identity and Access Management \(IAM\), you can control which users in your AWS account have permission to create, edit, or delete tags\. For more information, see [Identity and access management for Amazon EC2](security-iam.md)\.
 
-## Tagging Your Resources<a name="tag-resources"></a>
+## Tagging your resources<a name="tag-resources"></a>
 
 You can tag most Amazon EC2 resources that already exist in your account\. The [table](#tag-ec2-resources-table) below lists the resources that support tagging\.
 
@@ -42,7 +42,7 @@ If you're using the Amazon EC2 API, the AWS CLI, or an AWS SDK, you can use the 
 The following table describes the Amazon EC2 resources that can be tagged, and the resources that can be tagged on creation using the Amazon EC2 API, the AWS CLI, or an AWS SDK\.
 
 
-**Tagging Support for Amazon EC2 Resources**  
+**Tagging support for Amazon EC2 resources**  
 
 | Resource | Supports tags | Supports tagging on creation | 
 | --- | --- | --- | 
@@ -66,7 +66,7 @@ The following table describes the Amazon EC2 resources that can be tagged, and t
 |  Instance store volume  |  N/A  | N/A | 
 |  Internet gateway  |  Yes  | No | 
 |  IP address pool \(BYOIP\)  |  Yes  |  No  | 
-|  Key pair  |  Yes  | No | 
+|  Key pair  |  Yes  | Yes | 
 |  Launch template  |  Yes  |  Yes  | 
 |  Launch template version  |  No  |  No  | 
 |   Local gateway  |  Yes  |  No  | 
@@ -78,7 +78,7 @@ The following table describes the Amazon EC2 resources that can be tagged, and t
 |  NAT gateway  |  Yes  | Yes | 
 |  Network ACL  |  Yes  | No | 
 |  Network interface  |  Yes  | No | 
-|  Placement group  |  Yes  | No | 
+|  Placement group  |  Yes  | Yes | 
 |  Reserved Instance  |  Yes  | No | 
 |  Reserved Instance listing  |  No  | No | 
 | Route table |  Yes  | No | 
@@ -105,11 +105,11 @@ You can tag instances and volumes on creation using the Amazon EC2 Launch Instan
 
 You can apply tag\-based resource\-level permissions in your IAM policies to the Amazon EC2 API actions that support tagging on creation to implement granular control over the users and groups that can tag resources on creation\. Your resources are properly secured from creation—tags are applied immediately to your resources, therefore any tag\-based resource\-level permissions controlling the use of resources are immediately effective\. Your resources can be tracked and reported on more accurately\. You can enforce the use of tagging on new resources, and control which tag keys and values are set on your resources\. 
 
-You can also apply resource\-level permissions to the `CreateTags` and `DeleteTags` Amazon EC2 API actions in your IAM policies to control which tag keys and values are set on your existing resources\. For more information, see [Example: Tagging Resources](ExamplePolicies_EC2.md#iam-example-taggingresources)\. 
+You can also apply resource\-level permissions to the `CreateTags` and `DeleteTags` Amazon EC2 API actions in your IAM policies to control which tag keys and values are set on your existing resources\. For more information, see [Example: Tagging resources](ExamplePolicies_EC2.md#iam-example-taggingresources)\. 
 
 For more information about tagging your resources for billing, see [Using Cost Allocation Tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html) in the *AWS Billing and Cost Management User Guide*\.
 
-## Tag Restrictions<a name="tag-restrictions"></a>
+## Tag restrictions<a name="tag-restrictions"></a>
 
 The following basic restrictions apply to tags:
 + Maximum number of tags per resource – 50
@@ -124,9 +124,9 @@ You can't terminate, stop, or delete a resource based solely on its tags; you mu
 
 You can tag public or shared resources, but the tags you assign are available only to your AWS account and not to the other accounts sharing the resource\.
 
-You can't tag all resources\. For more information, see [Tagging Support for Amazon EC2 Resources](#tag-ec2-resources-table)\.
+You can't tag all resources\. For more information, see [Tagging support for Amazon EC2 resources](#tag-ec2-resources-table)\.
 
-## Tagging Your Resources for Billing<a name="tag-resources-for-billing"></a>
+## Tagging your resources for billing<a name="tag-resources-for-billing"></a>
 
 You can use tags to organize your AWS bill to reflect your own cost structure\. To do this, sign up to get your AWS account bill with tag key values included\. For more information about setting up a cost allocation report with tags, see [The Monthly Cost Allocation Report](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/configurecostallocreport.html) in *AWS Billing and Cost Management User Guide*\. To see the cost of your combined resources, you can organize your billing information based on resources that have the same tag key values\. For example, you can tag several resources with a specific application name, and then organize your billing information to see the total cost of that application across several services\. For more information, see [Using Cost Allocation Tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html) in the *AWS Billing and Cost Management User Guide*\.
 
@@ -138,38 +138,38 @@ Cost allocation tags can indicate which resources are contributing to costs, but
 **Note**  
 Elastic IP addresses that are tagged do not appear on your cost allocation report\.
 
-## Working with Tags Using the Console<a name="Using_Tags_Console"></a>
+## Working with tags using the console<a name="Using_Tags_Console"></a>
 
 Using the Amazon EC2 console, you can see which tags are in use across all of your Amazon EC2 resources in the same Region\. You can view tags by resource and by resource type, and you can also view how many items of each resource type are associated with a specified tag\. You can also use the Amazon EC2 console to apply or remove tags from one or more resources at a time\.
 
-For more information about using filters when listing your resources, see [Listing and Filtering Your Resources](Using_Filtering.md)\.
+For more information about using filters when listing your resources, see [Listing and filtering your resources](Using_Filtering.md)\.
 
 For ease of use and best results, use Tag Editor in the AWS Management Console, which provides a central, unified way to create and manage your tags\. For more information, see [Working with Tag Editor](https://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/tag-editor.html) in *Getting Started with the AWS Management Console*\.
 
 **Topics**
-+ [Displaying Tags](#displaying-tags)
-+ [Adding and Deleting Tags on an Individual Resource](#adding-or-deleting-tags)
-+ [Adding and Deleting Tags to a Group of Resources](#adding-or-deleting-tags-group)
-+ [Adding a Tag When You Launch an Instance](#instance-details-tags)
-+ [Filtering a List of Resources by Tag](#filtering-the-list-by-tag)
++ [Displaying tags](#displaying-tags)
++ [Adding and deleting tags on an individual resource](#adding-or-deleting-tags)
++ [Adding and deleting tags to a group of resources](#adding-or-deleting-tags-group)
++ [Adding a tag when you launch an instance](#instance-details-tags)
++ [Filtering a list of resources by tag](#filtering-the-list-by-tag)
 
-### Displaying Tags<a name="displaying-tags"></a>
+### Displaying tags<a name="displaying-tags"></a>
 
 You can display tags in two different ways in the Amazon EC2 console\. You can display the tags for an individual resource or for all resources\.
 
-**Displaying Tags for Individual Resources**  
+**Displaying tags for individual resources**  
 When you select a resource\-specific page in the Amazon EC2 console, it displays a list of those resources\. For example, if you select **Instances** from the navigation pane, the console displays a list of Amazon EC2 instances\. When you select a resource from one of these lists \(for example, an instance\), if the resource supports tags, you can view and manage its tags\. On most resource pages, you can view the tags in the **Tags** tab on the details pane\.
 
 You can add a column to the resource list that displays all values for tags with the same key\. This column enables you to sort and filter the resource list by the tag\. There are two ways to add a new column to the resource list to display your tags\.
 + On the **Tags** tab, select **Show Column**\. A new column is added to the console\.
 + Choose the **Show/Hide Columns** gear\-shaped icon, and in the **Show/Hide Columns** dialog box, select the tag key under **Your Tag Keys**\.
 
-**Displaying Tags for All Resources**  
+**Displaying tags for all resources**  
 You can display tags across all resources by selecting **Tags** from the navigation pane in the Amazon EC2 console\. The following image shows the **Tags** pane, which lists all tags in use by resource type\.
 
 ![\[The Tags pane in the Amazon EC2 console\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/Tags_Pane.png)
 
-### Adding and Deleting Tags on an Individual Resource<a name="adding-or-deleting-tags"></a>
+### Adding and deleting tags on an individual resource<a name="adding-or-deleting-tags"></a>
 
 You can manage tags for an individual resource directly from the resource's page\. 
 
@@ -177,7 +177,7 @@ You can manage tags for an individual resource directly from the resource's page
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. From the navigation bar, select the Region that meets your needs\. This choice is important because some Amazon EC2 resources can be shared between Regions, while others can't\. For more information, see [Resource Locations](resources.md)\.
+1. From the navigation bar, select the Region that meets your needs\. This choice is important because some Amazon EC2 resources can be shared between Regions, while others can't\. For more information, see [Resource locations](resources.md)\.
 
 1. In the navigation pane, select a resource type \(for example, **Instances**\)\.
 
@@ -189,7 +189,7 @@ You can manage tags for an individual resource directly from the resource's page
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. From the navigation bar, select the Region that meets your needs\. This choice is important because some Amazon EC2 resources can be shared between Regions, while others can't\. For more information, see [Resource Locations](resources.md)\.
+1. From the navigation bar, select the Region that meets your needs\. This choice is important because some Amazon EC2 resources can be shared between Regions, while others can't\. For more information, see [Resource locations](resources.md)\.
 
 1. In the navigation pane, choose a resource type \(for example, **Instances**\)\.
 
@@ -197,13 +197,13 @@ You can manage tags for an individual resource directly from the resource's page
 
 1. Choose **Add/Edit Tags**, select the **Delete** icon for the tag, and choose **Save**\.
 
-### Adding and Deleting Tags to a Group of Resources<a name="adding-or-deleting-tags-group"></a>
+### Adding and deleting tags to a group of resources<a name="adding-or-deleting-tags-group"></a>
 
 **To add a tag to a group of resources**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. From the navigation bar, select the Region that meets your needs\. This choice is important because some Amazon EC2 resources can be shared between Regions, while others can't\. For more information, see [Resource Locations](resources.md)\.
+1. From the navigation bar, select the Region that meets your needs\. This choice is important because some Amazon EC2 resources can be shared between Regions, while others can't\. For more information, see [Resource locations](resources.md)\.
 
 1. In the navigation pane, choose **Tags**\.
 
@@ -221,7 +221,7 @@ If you add a new tag with the same tag key as an existing tag, the new tag overw
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. From the navigation bar, select the Region that meets your needs\. This choice is important because some Amazon EC2 resources can be shared between Regions, while others can't\. For more information, see [Resource Locations](resources.md)\.
+1. From the navigation bar, select the Region that meets your needs\. This choice is important because some Amazon EC2 resources can be shared between Regions, while others can't\. For more information, see [Resource locations](resources.md)\.
 
 1. In the navigation pane, choose **Tags**, **Manage Tags**\.
 
@@ -233,11 +233,11 @@ If you add a new tag with the same tag key as an existing tag, the new tag overw
 
 1. Under **Remove Tag**, for **Key**, type the tag's name and choose **Remove Tag**\.
 
-### Adding a Tag When You Launch an Instance<a name="instance-details-tags"></a>
+### Adding a tag when you launch an instance<a name="instance-details-tags"></a>
 
 **To add a tag using the Launch Wizard**
 
-1. From the navigation bar, select the Region for the instance\. This choice is important because some Amazon EC2 resources can be shared between Regions, while others can't\. Select the Region that meets your needs\. For more information, see [Resource Locations](resources.md)\.
+1. From the navigation bar, select the Region for the instance\. This choice is important because some Amazon EC2 resources can be shared between Regions, while others can't\. Select the Region that meets your needs\. For more information, see [Resource locations](resources.md)\.
 
 1. Choose **Launch Instance**\.
 
@@ -253,7 +253,7 @@ If you add a new tag with the same tag key as an existing tag, the new tag overw
 
 1. Review your settings\. When you're satisfied with your selections, choose **Launch**\. Select an existing key pair or create a new one, select the acknowledgment check box, and then choose **Launch Instances**\.
 
-### Filtering a List of Resources by Tag<a name="filtering-the-list-by-tag"></a>
+### Filtering a list of resources by tag<a name="filtering-the-list-by-tag"></a>
 
 You can filter your list of resources based on one or more tag keys and tag values\.
 
@@ -271,9 +271,9 @@ You can filter your list of resources based on one or more tag keys and tag valu
 
 1. Select the tag values, and then choose **Apply Filter** to filter the results list\.
 **Note**  
-For more information about filters, see [Listing and Filtering Your Resources](Using_Filtering.md)\.
+For more information about filters, see [Listing and filtering your resources](Using_Filtering.md)\.
 
-## Working with Tags Using the CLI or API<a name="Using_Tags_CLI"></a>
+## Working with tags using the CLI or API<a name="Using_Tags_CLI"></a>
 
 Use the following to add, update, list, and delete the tags for your resources\. The corresponding documentation provides examples\.
 

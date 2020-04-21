@@ -1,32 +1,35 @@
-# Obtaining Billing Information<a name="ami-billing-info"></a>
+# Obtaining billing information<a name="ami-billing-info"></a>
 
-You can determine the platform details and billing information associated with an Amazon Machine Image \(AMI\) before you launch an On\-Demand Instance or Spot Instance, or purchase a Reserved Instance\. For Spot Instances, you can use the platform details to confirm that the AMI is supported for Spot Instances\. When purchasing a Reserved Instance, you can make sure that, for **Platform**, you select the correct value that maps to `PlatformDetails` on the AMI\. By knowing the billing information before launching an instance or purchasing a Reserved Instance, you reduce the chance of erroneously launching instances from incorrect AMIs and incurring unplanned costs\.
+You can determine the platform details and billing information associated with an Amazon Machine Image \(AMI\) before you launch an On\-Demand Instance or Spot Instance, or purchase a Reserved Instance\. For Spot Instances, you can use the platform details to confirm that the AMI is supported for Spot Instances\. When purchasing a Reserved Instance, you can make sure that, for **Platform**, you select the correct value that maps to **Platform details** on the AMI\. By knowing the billing information before launching an instance or purchasing a Reserved Instance, you reduce the chance of erroneously launching instances from incorrect AMIs and incurring unplanned costs\.
 
 For more information about instance pricing, see [Amazon EC2 pricing](http://aws.amazon.com/ec2/pricing/)\.
 
 **Topics**
-+ [AMI Billing Information Fields](#billing-info-fields)
-+ [Platform Details and Usage Operation Billing Codes](#billing-info)
-+ [Viewing Platform Details and Billing Information](#view-billing-info)
++ [AMI billing information fields](#billing-info-fields)
++ [Platform details and usage operation values](#billing-info)
++ [Viewing platform details and usage operation values](#view-billing-info)
++ [Confirm billing information on your bill](#compare-billing-info-on-bill)
 
-## AMI Billing Information Fields<a name="billing-info-fields"></a>
+## AMI billing information fields<a name="billing-info-fields"></a>
 
-The [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command returns the following information about an AMI:
+The following fields provide billing information associated with an AMI:
 
-PlatformDetails  
+Platform details  
  The platform details associated with the billing code of the AMI\. For example, `Red Hat Enterprise Linux`\.
 
-UsageOperation  
-The operation of the Amazon EC2 instance and the billing code that is associated with the AMI\. `UsageOperation` corresponds to the [lineitem/Operation](https://docs.aws.amazon.com/cur/latest/userguide/Lineitem-columns.html#Lineitem-details-O-Operation) column on your AWS Cost and Usage Report \(CUR\) and in the [AWS Price List API](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/price-changes.html)\. For the list of `UsageOperation` codes, see [Platform Details and Usage Operation Billing Codes](#billing-info) in the following section\.
+Usage operation  
+The operation of the Amazon EC2 instance and the billing code that is associated with the AMI\. For example, `RunInstances:0010`\. **Usage operation** corresponds to the [lineitem/Operation](https://docs.aws.amazon.com/cur/latest/userguide/Lineitem-columns.html#Lineitem-details-O-Operation) column on your AWS Cost and Usage Report \(CUR\) and in the [AWS Price List API](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/price-changes.html)\. For the list of **Usage operation** codes, see [Platform details and usage operation values](#billing-info) in the following section\.
 
-## Platform Details and Usage Operation Billing Codes<a name="billing-info"></a>
+You can view these fields on the **Instances** or **AMIs** page in the Amazon EC2 console, or in the response that is returned by the [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command\.
 
-The following table lists the `PlatformDetails` and `UsageOperation` values that can be returned when you run the [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command on an AMI\.
+## Platform details and usage operation values<a name="billing-info"></a>
+
+The following table lists the platform details and usage operation values that can be displayed on the **Instances** or **AMIs** page in the Amazon EC2 console, or in the response that is returned by the [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command\.
 
 
 ****  
 
-|  PlatformDetails  |  UsageOperation \*\*  | 
+|  Platform details  |  Usage operation \*\*  | 
 | --- | --- | 
 |  Linux/UNIX  |  RunInstances  | 
 |  Red Hat BYOL Linux  |  RunInstances:00g0  | 
@@ -41,20 +44,32 @@ The following table lists the `PlatformDetails` and `UsageOperation` values that
 |  Windows with SQL Server Standard \*  |  RunInstances:0006  | 
 |  Windows with SQL Server Web \*  |  RunInstances:0202  | 
 
-\* If two software licenses are associated with an AMI, the `PlatformDetails` field shows both\.
+\* If two software licenses are associated with an AMI, the **Platform details** field shows both\.
 
-\*\* If you are running Spot Instances, the `[lineitem/Operation](https://docs.aws.amazon.com/cur/latest/userguide/Lineitem-columns.html#Lineitem-details-O-Operation)` on your AWS Cost and Usage Report might be different from the `UsageOperation` value that is listed here\. For example, if `[lineitem/Operation](https://docs.aws.amazon.com/cur/latest/userguide/Lineitem-columns.html#Lineitem-details-O-Operation)` displays `RunInstances:0010:SV006`, it means that Amazon EC2 is running Red Hat Enterprise Linux Spot Instance\-hour in US East \(Virginia\) in VPC Zone \#6\.
+\*\* If you are running Spot Instances, the `[lineitem/Operation](https://docs.aws.amazon.com/cur/latest/userguide/Lineitem-columns.html#Lineitem-details-O-Operation)` on your AWS Cost and Usage Report might be different from the **Usage operation** value that is listed here\. For example, if `[lineitem/Operation](https://docs.aws.amazon.com/cur/latest/userguide/Lineitem-columns.html#Lineitem-details-O-Operation)` displays `RunInstances:0010:SV006`, it means that Amazon EC2 is running Red Hat Enterprise Linux Spot Instance\-hour in US East \(Virginia\) in VPC Zone \#6\.
 
-## Viewing Platform Details and Billing Information<a name="view-billing-info"></a>
+## Viewing platform details and usage operation values<a name="view-billing-info"></a>
 
-**To view the platform details and billing information associated with an AMI**  
+You can view the platform details and usage operation values associated with an AMI from the AMI or from the instance\. You can view these values in the Amazon EC2 console or by using the AWS CLI\.
+
+### From the AMI<a name="view-billing-info-AMI"></a>
+
+**To view the platform details and usage operation associated with an AMI \(console\)**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **AMIs**, and then select an AMI\.
+
+1. On the **Details** tab, check the values for **Platform details** and **Usage operation**\.
+
+**To view the platform details and usage operation associated with an AMI \(AWS CLI\)**  
 Use the [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command\.
 
 ```
 $ aws ec2 describe-images --image-ids ami-0123456789EXAMPLE
 ```
 
-The following example output shows the `PlatformDetails` and `UsageOperation` fields\. In this example, the ami\-0123456789EXAMPLE platform is `Red Hat Enterprise Linux` and the usage operation is `RunInstances:0010`\.
+The following example output shows the `PlatformDetails` and `UsageOperation` fields\. In this example, the ami\-0123456789EXAMPLE platform is `Red Hat Enterprise Linux` and the usage operation and billing code is `RunInstances:0010`\.
 
 ```
 {
@@ -95,8 +110,24 @@ The following example output shows the `PlatformDetails` and `UsageOperation` fi
 }
 ```
 
-To ensure that you're not incurring unplanned costs, you can confirm that the billing information in your AWS Cost and Usage Report matches the billing information that was returned from [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html)\. If you launched an instance using ami\-0123456789EXAMPLE, you can check the billing information for the instance in your AWS Cost and Usage Report\. Find the instance ID and check the corresponding value in the `[lineitem/Operation](https://docs.aws.amazon.com/cur/latest/userguide/Lineitem-columns.html#Lineitem-details-O-Operation)` column\. In this example\. the value should should be `RunInstances:0010`\.
+### From the instance<a name="view-billing-info-instance"></a>
 
-**To view the platform details and billing information associated with an instance**
+**To view the platform details and usage operation associated with an AMI \(console\)**
 
-After you have launched an instance, you can find the billing information by inspecting the `billingProducts` field in the instance metadata\. For more information, see [Obtaining the Instance Identity Document and Signatures](instance-identity-documents.md#instance-identity-signatures)\. Alternatively, you can use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command to obtain the AMI ID for the instance, and then use the [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command, as described in the preceding procedure, to obtain the billing information from the `PlatformDetails` and `UsageOperation` fields in the response\.
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances**, and then select an instance\.
+
+1. On the **Details** tab, check the values for **Platform details** and **Usage operation**\.
+
+**To view the platform details and usage operation associated with an AMI \(console\)**
+
+After you have launched an instance, you can find the billing information by inspecting the `billingProducts` field in the instance metadata\. For more information, see [Obtaining the instance identity document and signatures](instance-identity-documents.md#instance-identity-signatures)\.
+
+Alternatively, you can use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command to obtain the AMI ID for the instance, and then use the [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command, as described in the preceding procedure, to obtain the billing information from the `PlatformDetails` and `UsageOperation` fields in the response\.
+
+## Confirm billing information on your bill<a name="compare-billing-info-on-bill"></a>
+
+To ensure that you're not incurring unplanned costs, you can confirm that the billing information for an instance in your AWS Cost and Usage Report \(CUR\) matches the billing information associated with the AMI that you used to launch the instance\. To confirm the billing information, find the instance ID in your CUR and check the corresponding value in the `[lineitem/Operation](https://docs.aws.amazon.com/cur/latest/userguide/Lineitem-columns.html#Lineitem-details-O-Operation)` column\. The value should match the value for **Usage operation** associated with the AMI\.
+
+For example, the AMI, `ami-0123456789EXAMPLE`, has the following billing information: **Platform details** = `Red Hat Enterprise Linux` and **Usage operation** = `RunInstances:0010`\. If you launched an instance using this AMI, you can find the instance ID in your CUR and check the corresponding value in the `[lineitem/Operation](https://docs.aws.amazon.com/cur/latest/userguide/Lineitem-columns.html#Lineitem-details-O-Operation)` column\. In this example\. the value should be `RunInstances:0010`\.

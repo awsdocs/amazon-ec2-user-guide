@@ -2,7 +2,7 @@
 
 When you attach a volume to your instance, you include a device name for the volume\. This device name is used by Amazon EC2\. The block device driver for the instance assigns the actual volume name when mounting the volume, and the name assigned can be different from the name that Amazon EC2 uses\.
 
-The number of volumes that your instance can support is determined by the operating system\. For more information, see [Instance Volume Limits](volume_limits.md)\.
+The number of volumes that your instance can support is determined by the operating system\. For more information, see [Instance volume limits](volume_limits.md)\.
 
 **Topics**
 + [Available Device Names](#available-ec2-device-names)
@@ -12,7 +12,7 @@ For information about device names on Windows instances, see [Device Naming on W
 
 ## Available Device Names<a name="available-ec2-device-names"></a>
 
-There are two types of virtualization available for Linux instances: paravirtual \(PV\) and hardware virtual machine \(HVM\)\. The virtualization type of an instance is determined by the AMI used to launch the instance\. All instance types support HVM AMIs\. Some previous generation instance types support PV AMIs\. Be sure to note the virtualization type of your AMI because the recommended and available device names that you can use depend on the virtualization type of your instance\. For more information, see [Linux AMI Virtualization Types](virtualization_types.md)\.
+There are two types of virtualization available for Linux instances: paravirtual \(PV\) and hardware virtual machine \(HVM\)\. The virtualization type of an instance is determined by the AMI used to launch the instance\. All instance types support HVM AMIs\. Some previous generation instance types support PV AMIs\. Be sure to note the virtualization type of your AMI because the recommended and available device names that you can use depend on the virtualization type of your instance\. For more information, see [Linux AMI virtualization types](virtualization_types.md)\.
 
 The following table lists the available device names that you can specify in a block device mapping or when attaching an EBS volume\.
 
