@@ -96,6 +96,7 @@ The following table lists the Regions provided by an AWS account\. You can't des
 |  `us-east-1`  |  US East \(N\. Virginia\)  | Not required | No | 
 |  `us-west-1`  |  US West \(N\. California\)  | Not required | No | 
 |  `us-west-2`  |  US West \(Oregon\)  | Not required | Yes \- us\-west\-2\-lax\-1a You must enable the Local Zone\. | 
+|  `af-south-1` |  Africa (Cape Town)  | Required | No | 
 |  `ap-east-1`  |  Asia Pacific \(Hong Kong\)  | Required | No | 
 |  `ap-south-1`  |  Asia Pacific \(Mumbai\)  | Not required | No | 
 |  `ap-northeast-3`  |  Asia Pacific \(Osaka\-Local\)  | Not required | No | 
