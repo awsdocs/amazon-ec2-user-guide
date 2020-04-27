@@ -30,7 +30,7 @@ When you launch an instance, it enters the `pending` state\. The instance type t
 
 As soon as your instance transitions to the `running` state, you're billed for each second, with a one\-minute minimum, that you keep the instance running, even if the instance remains idle and you don't connect to it\.
 
-For more information, see [Launch your instance](LaunchingAndUsingInstances.md) and [Connect to Your Linux Instance](AccessingInstances.md)\.
+For more information, see [Launch your instance](LaunchingAndUsingInstances.md) and [Connect to your Linux instance](AccessingInstances.md)\.
 
 ## Instance Stop and Start \(Amazon EBS\-Backed Instances Only\)<a name="instance-stop-start"></a>
 

@@ -2,7 +2,7 @@
 
 An Amazon EBS–optimized instance uses an optimized configuration stack and provides additional, dedicated capacity for Amazon EBS I/O\. This optimization provides the best performance for your EBS volumes by minimizing contention between Amazon EBS I/O and other traffic from your instance\.
 
-EBS–optimized instances deliver dedicated bandwidth to Amazon EBS\. When attached to an EBS–optimized instance, General Purpose SSD \(`gp2`\) volumes are designed to deliver their baseline and burst performance 99% of the time, and Provisioned IOPS SSD \(`io1`\) volumes are designed to deliver their provisioned performance 99\.9% of the time\. Both Throughput Optimized HDD \(`st1`\) and Cold HDD \(`sc1`\) guarantee performance consistency of 90% of burst throughput 99% of the time\. Non\-compliant periods are approximately uniformly distributed, targeting 99% of expected total throughput each hour\. For more information, see [Amazon EBS Volume Types](ebs-volume-types.md)\.
+EBS–optimized instances deliver dedicated bandwidth to Amazon EBS\. When attached to an EBS–optimized instance, General Purpose SSD \(`gp2`\) volumes are designed to deliver their baseline and burst performance 99% of the time, and Provisioned IOPS SSD \(`io1`\) volumes are designed to deliver their provisioned performance 99\.9% of the time\. Both Throughput Optimized HDD \(`st1`\) and Cold HDD \(`sc1`\) guarantee performance consistency of 90% of burst throughput 99% of the time\. Non\-compliant periods are approximately uniformly distributed, targeting 99% of expected total throughput each hour\. For more information, see [Amazon EBS volume types](ebs-volume-types.md)\.
 
 **Topics**
 + [Supported instance types](#ebs-optimization-support)

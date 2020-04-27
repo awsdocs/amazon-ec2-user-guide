@@ -6,7 +6,7 @@ All the NVMe instance store volumes supported by an instance type are automatica
 
 A block device mapping always specifies the root volume for the instance\. The root volume is either an Amazon EBS volume or an instance store volume\. For more information, see [Storage for the root device](ComponentsAMIs.md#storage-for-the-root-device)\. The root volume is mounted automatically\. For instances with an instance store volume for the root volume, the size of this volume varies by AMI, but the maximum size is 10 GB\.
 
-You can use a block device mapping to specify additional EBS volumes when you launch your instance, or you can attach additional EBS volumes after your instance is running\. For more information, see [Amazon EBS Volumes](ebs-volumes.md)\.
+You can use a block device mapping to specify additional EBS volumes when you launch your instance, or you can attach additional EBS volumes after your instance is running\. For more information, see [Amazon EBS volumes](ebs-volumes.md)\.
 
 You can specify the instance store volumes for your instance only when you launch it\. You can't attach instance store volumes to an instance after you've launched it\.
 

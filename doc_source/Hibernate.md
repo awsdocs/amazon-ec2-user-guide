@@ -322,7 +322,7 @@ To learn more about KASLR, see [Ubuntu Features](https://wiki.ubuntu.com/Securit
 
 **To disable KASLR on an instance launched with Ubuntu**
 
-1. Connect to your instance using SSH\. For more information, see [Connecting to Your Linux Instance Using SSH](AccessingInstancesLinux.md)\.
+1. Connect to your instance using SSH\. For more information, see [Connecting to your Linux instance using SSH](AccessingInstancesLinux.md)\.
 
 1. Open the `/etc/default/grub.d/50-cloudimg-settings.cfg` file in your editor of choice\. Edit the `GRUB_CMDLINE_LINUX_DEFAULT` line to append the `nokaslr` option to its end, as shown in the following example\.
 

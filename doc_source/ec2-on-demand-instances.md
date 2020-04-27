@@ -20,7 +20,7 @@ For significant savings over On\-Demand Instances, use [AWS Savings Plans](http:
 
 You can work with On\-Demand Instances in the following ways:
 + [Launch your instance](LaunchingAndUsingInstances.md)
-+ [Connect to Your Linux Instance](AccessingInstances.md)
++ [Connect to your Linux instance](AccessingInstances.md)
 + [Stop and start your instance](Stop_Start.md)
 + [Hibernate Your Linux Instance](Hibernate.md)
 + [Reboot Your Instance](ec2-instance-reboot.md)

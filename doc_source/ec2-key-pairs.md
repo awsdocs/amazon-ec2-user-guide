@@ -6,7 +6,7 @@ The keys that Amazon EC2 uses are 2048\-bit SSH\-2 RSA keys\. You can have up to
 
 Because Amazon EC2 doesn't keep a copy of your private key, there is no way to recover a private key if you lose it\. However, there can still be a way to connect to instances that use a lost key pair\. For more information, see [Connecting to your Linux instance if you lose your private key](replacing-lost-key-pair.md)\.
 
-When you launch an instance, you are prompted for the name of a key pair\. If you plan to connect to the instance using SSH, you must specify a key pair\. At boot time, the public key content is placed on your Linux instance in an entry within `~/.ssh/authorized_keys`\. When you connect to your Linux instance using SSH, you must specify the private key that corresponds to the public key content to log in\. For more information, see [Connect to Your Linux Instance](AccessingInstances.md)\. \.
+When you launch an instance, you are prompted for the name of a key pair\. If you plan to connect to the instance using SSH, you must specify a key pair\. At boot time, the public key content is placed on your Linux instance in an entry within `~/.ssh/authorized_keys`\. When you connect to your Linux instance using SSH, you must specify the private key that corresponds to the public key content to log in\. For more information, see [Connect to your Linux instance](AccessingInstances.md)\. \.
 
 **Topics**
 + [Preparing a key pair](#prepare-key-pair)

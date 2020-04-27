@@ -1,4 +1,4 @@
-# Deleting an Amazon EBS Volume<a name="ebs-deleting-volume"></a>
+# Deleting an Amazon EBS volume<a name="ebs-deleting-volume"></a>
 
 After you no longer need an Amazon EBS volume, you can delete it\. After deletion, its data is gone and the volume can't be attached to any instance\. However, before deletion, you can store a snapshot of the volume, which you can use to re\-create the volume later\. 
 

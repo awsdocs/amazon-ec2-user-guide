@@ -42,7 +42,7 @@ The following sections describe how you can work with Elastic IP addresses\.
 
 ### Allocating an Elastic IP address<a name="using-instance-addressing-eips-allocating"></a>
 
-You can allocate an Elastic IP address from Amazon's pool of public IPv4 addresses, or from a custom IP address pool that you have brought to your AWS account\. For more information about bringing your own IP address range to your AWS account, see [Bring Your Own IP Addresses \(BYOIP\)](ec2-byoip.md)\.
+You can allocate an Elastic IP address from Amazon's pool of public IPv4 addresses, or from a custom IP address pool that you have brought to your AWS account\. For more information about bringing your own IP address range to your AWS account, see [Bring your own IP addresses \(BYOIP\)](ec2-byoip.md)\.
 
 You can allocate an Elastic IP address using one of the following methods\.
 

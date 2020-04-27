@@ -50,7 +50,7 @@ With some versions of Linux, you must install additional Perl modules before you
 
 **To install the required packages on Amazon Linux 2 and Amazon Linux AMI**
 
-1. Log on to your instance\. For more information, see [Connect to Your Linux Instance](AccessingInstances.md)\.
+1. Log on to your instance\. For more information, see [Connect to your Linux instance](AccessingInstances.md)\.
 
 1. At a command prompt, install packages as follows:
 
@@ -60,7 +60,7 @@ With some versions of Linux, you must install additional Perl modules before you
 
 **To install the required packages on Ubuntu**
 
-1. Log on to your instance\. For more information, see [Connect to Your Linux Instance](AccessingInstances.md)\.
+1. Log on to your instance\. For more information, see [Connect to your Linux instance](AccessingInstances.md)\.
 
 1. At a command prompt, install packages as follows:
 
@@ -72,7 +72,7 @@ With some versions of Linux, you must install additional Perl modules before you
 
 **To install the required packages on Red Hat Enterprise Linux 7**
 
-1. Log on to your instance\. For more information, see [Connect to Your Linux Instance](AccessingInstances.md)\.
+1. Log on to your instance\. For more information, see [Connect to your Linux instance](AccessingInstances.md)\.
 
 1. At a command prompt, install packages as follows:
 
@@ -83,7 +83,7 @@ With some versions of Linux, you must install additional Perl modules before you
 
 **To install the required packages on Red Hat Enterprise Linux 6\.9**
 
-1. Log on to your instance\. For more information, see [Connect to Your Linux Instance](AccessingInstances.md)\.
+1. Log on to your instance\. For more information, see [Connect to your Linux instance](AccessingInstances.md)\.
 
 1. At a command prompt, install packages as follows:
 
@@ -115,7 +115,7 @@ With some versions of Linux, you must install additional Perl modules before you
 
 **To install the required packages on SUSE**
 
-1. Log on to your instance\. For more information, see [Connect to Your Linux Instance](AccessingInstances.md)\.
+1. Log on to your instance\. For more information, see [Connect to your Linux instance](AccessingInstances.md)\.
 
 1. On servers running SUSE Linux Enterprise Server 12, you might need to download the `perl-Switch` package\. You can download and install this package using the following commands:
 

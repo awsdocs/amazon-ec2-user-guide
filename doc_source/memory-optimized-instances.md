@@ -16,7 +16,7 @@ Bare metal instances, such as `r5.metal`, provide your applications with direct 
 For more information, see [Amazon EC2 R5 Instances](https://aws.amazon.com/ec2/instance-types/r5)\.
 
 **High memory instances**  
-High memory instances \(`u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, `u-18tb1.metal`, and `u-24tb1.metal`\) offer 6 TiB, 9 TiB, 12 TiB, 18 TiB, and 24 TiB of memory per instance\. These instances are designed to run large in\-memory databases, including production installations of SAP HANA\. They offer bare metal performance with direct access to host hardware\. For more information, see [Amazon EC2 High Memory Instances](https://docs.aws.amazon.com/ec2/instance-types/high-memory/)\.
+High memory instances \(`u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, `u-18tb1.metal`, and `u-24tb1.metal`\) offer 6 TiB, 9 TiB, 12 TiB, 18 TiB, and 24 TiB of memory per instance\. These instances are designed to run large in\-memory databases, including production installations of SAP HANA\. They offer bare metal performance with direct access to host hardware\. For more information, see [Amazon EC2 High Memory Instances](http://aws.amazon.com/ec2/instance-types/high-memory/)\.
 
 **X1 instances**
 

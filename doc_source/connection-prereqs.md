@@ -1,12 +1,12 @@
-# General Prerequisites for Connecting to Your Instance<a name="connection-prereqs"></a>
+# General prerequisites for connecting to your instance<a name="connection-prereqs"></a>
 
 **Topics**
-+ [Get Information About Your Instance](#connection-prereqs-get-info-about-instance)
-+ [Enable Inbound Traffic to Your Instance](#connection-prereqs-enable-inbound-traffic)
-+ [Locate the Private Key](#connection-prereqs-private-key)
-+ [\(Optional\) Get the Instance Fingerprint](#connection-prereqs-fingerprint)
++ [Get information about your instance](#connection-prereqs-get-info-about-instance)
++ [Enable inbound traffic to your instance](#connection-prereqs-enable-inbound-traffic)
++ [Locate the private key](#connection-prereqs-private-key)
++ [\(Optional\) Get the instance fingerprint](#connection-prereqs-fingerprint)
 
-## Get Information About Your Instance<a name="connection-prereqs-get-info-about-instance"></a>
+## Get information about your instance<a name="connection-prereqs-get-info-about-instance"></a>
 + **Get the ID of the instance\.**
 
   You can get the ID of your instance using the Amazon EC2 console \(from the **Instance ID** column\)\. If you prefer, you can use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) \(AWS CLI\) or [Get\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html) \(AWS Tools for Windows PowerShell\) command\.
@@ -26,12 +26,12 @@
   + For an Ubuntu AMI, the user name is `ubuntu`\.
   + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
 
-## Enable Inbound Traffic to Your Instance<a name="connection-prereqs-enable-inbound-traffic"></a>
+## Enable inbound traffic to your instance<a name="connection-prereqs-enable-inbound-traffic"></a>
 + **Enable inbound SSH traffic from your IP address to your instance\.**
 
   Ensure that the security group associated with your instance allows incoming SSH traffic from your IP address\. The default security group for the VPC does not allow incoming SSH traffic by default\. The security group created by the launch instance wizard enables SSH traffic by default\. For more information, see [Authorizing inbound traffic for your Linux instances](authorizing-access-to-an-instance.md)\.
 
-## Locate the Private Key<a name="connection-prereqs-private-key"></a>
+## Locate the private key<a name="connection-prereqs-private-key"></a>
 + **Locate the private key**** and verify permissions**
 
   Get the fully\-qualified path to the location on your computer of the `.pem` file for the key pair that you specified when you launched the instance\. For more information about how you created your key pair, see [Creating a Key Pair Using Amazon EC2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#having-ec2-create-your-key-pair)\.
@@ -50,7 +50,7 @@
 
    If you do not set these permissions, then you cannot connect to your instance using this key pair\. For more information, see [Error: Unprotected private key file](TroubleshootingInstancesConnecting.md#troubleshoot-unprotected-key)\.
 
-## \(Optional\) Get the Instance Fingerprint<a name="connection-prereqs-fingerprint"></a>
+## \(Optional\) Get the instance fingerprint<a name="connection-prereqs-fingerprint"></a>
 
 To protect yourself from man\-in\-the\-middle attacks, you can verify the RSA key fingerprint when you connect to your instance\. Verifying the fingerprint is useful if you've launched your instance from a public AMI from a third party\.
 

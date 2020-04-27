@@ -1,4 +1,4 @@
-# Attaching an Amazon EBS Volume to an Instance<a name="ebs-attaching-volume"></a>
+# Attaching an Amazon EBS volume to an instance<a name="ebs-attaching-volume"></a>
 
 You can attach an available EBS volume to one or more of your instances that is in the same Availability Zone as the volume\.
 
@@ -25,7 +25,7 @@ You can attach an available EBS volume to one or more of your instances that is 
 
 1. Choose **Attach**\.
 
-1. Connect to your instance and mount the volume\. For more information, see [Making an Amazon EBS Volume Available for Use on Linux](ebs-using-volumes.md)\.
+1. Connect to your instance and mount the volume\. For more information, see [Making an Amazon EBS volume available for use on Linux](ebs-using-volumes.md)\.
 
 **To attach an EBS volume to an instance using the command line**
 

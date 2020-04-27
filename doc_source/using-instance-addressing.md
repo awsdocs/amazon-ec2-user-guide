@@ -133,7 +133,7 @@ The public IPv4 address is displayed as a property of the network interface in t
 
 **To determine your instance's IPv4 addresses using instance metadata**
 
-1. Connect to your instance\. For more information, see [Connect to Your Linux Instance](AccessingInstances.md)\.
+1. Connect to your instance\. For more information, see [Connect to your Linux instance](AccessingInstances.md)\.
 
 1. Use the following command to access the private IP address:
 
@@ -189,7 +189,7 @@ You can use the Amazon EC2 console to determine the IPv6 addresses of your insta
 
 **To determine your instance's IPv6 addresses using instance metadata**
 
-1. Connect to your instance\. For more information, see [Connect to Your Linux Instance](AccessingInstances.md)\.
+1. Connect to your instance\. For more information, see [Connect to your Linux instance](AccessingInstances.md)\.
 
 1. Use the following command to view the IPv6 address \(you can get the MAC address from `http://169.254.169.254/latest/meta-data/network/interfaces/macs/`\)\.
 

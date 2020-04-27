@@ -1,26 +1,26 @@
-# Amazon EBS Volumes<a name="ebs-volumes"></a>
+# Amazon EBS volumes<a name="ebs-volumes"></a>
 
 An Amazon EBS volume is a durable, block\-level storage device that you can attach to one instance or to multiple instances at the same time\. You can use EBS volumes as primary storage for data that requires frequent updates, such as the system drive for an instance or storage for a database application\. You can also use them for throughput\-intensive applications that perform continuous disk scans\. EBS volumes persist independently from the running life of an EC2 instance\. 
 
 You can attach multiple EBS volumes to a single instance\. The volume and instance must be in the same Availability Zone\. After you attach a volume to an instance, you can use it like any other physical hard drive\. EBS volumes are flexible\. For current\-generation volumes attached to current\-generation instance types, you can dynamically increase size, modify the provisioned IOPS capacity, and change volume type on live production volumes\.
 
-Amazon EBS provides the following volume types: General Purpose SSD \(`gp2`\), Provisioned IOPS SSD \(`io1`\), Throughput Optimized HDD \(`st1`\), Cold HDD \(`sc1`\), and Magnetic \(`standard`, a previous\-generation type\)\. They differ in performance characteristics and price, allowing you to tailor your storage performance and cost to the needs of your applications\. For more information, see [Amazon EBS Volume Types](ebs-volume-types.md)\.
+Amazon EBS provides the following volume types: General Purpose SSD \(`gp2`\), Provisioned IOPS SSD \(`io1`\), Throughput Optimized HDD \(`st1`\), Cold HDD \(`sc1`\), and Magnetic \(`standard`, a previous\-generation type\)\. They differ in performance characteristics and price, allowing you to tailor your storage performance and cost to the needs of your applications\. For more information, see [Amazon EBS volume types](ebs-volume-types.md)\.
 
 **Topics**
-+ [Benefits of Using EBS Volumes](#EBSFeatures)
-+ [Amazon EBS Volume Types](ebs-volume-types.md)
-+ [Constraints on the Size and Configuration of an EBS Volume](volume_constraints.md)
-+ [Creating an Amazon EBS Volume](ebs-creating-volume.md)
-+ [Restoring an Amazon EBS Volume from a Snapshot](ebs-restoring-volume.md)
-+ [Attaching an Amazon EBS Volume to an Instance](ebs-attaching-volume.md)
-+ [Attaching a Volume to Multiple Instances with Amazon EBS Multi\-Attach](ebs-volumes-multi.md)
-+ [Making an Amazon EBS Volume Available for Use on Linux](ebs-using-volumes.md)
-+ [Viewing Information about an Amazon EBS Volume](ebs-describing-volumes.md)
-+ [Monitoring the Status of Your Volumes](monitoring-volume-status.md)
++ [Benefits of using EBS volumes](#EBSFeatures)
++ [Amazon EBS volume types](ebs-volume-types.md)
++ [Constraints on the size and configuration of an EBS volume](volume_constraints.md)
++ [Creating an Amazon EBS volume](ebs-creating-volume.md)
++ [Restoring an Amazon EBS volume from a snapshot](ebs-restoring-volume.md)
++ [Attaching an Amazon EBS volume to an instance](ebs-attaching-volume.md)
++ [Attaching a volume to multiple instances with Amazon EBS Multi\-Attach](ebs-volumes-multi.md)
++ [Making an Amazon EBS volume available for use on Linux](ebs-using-volumes.md)
++ [Viewing information about an Amazon EBS volume](ebs-describing-volumes.md)
++ [Monitoring the status of your volumes](monitoring-volume-status.md)
 + [Detaching an Amazon EBS volume from a Linux instance](ebs-detaching-volume.md)
-+ [Deleting an Amazon EBS Volume](ebs-deleting-volume.md)
++ [Deleting an Amazon EBS volume](ebs-deleting-volume.md)
 
-## Benefits of Using EBS Volumes<a name="EBSFeatures"></a>
+## Benefits of using EBS volumes<a name="EBSFeatures"></a>
 
 EBS volumes provide benefits that are not provided by instance store volumes\.
 
@@ -30,7 +30,7 @@ When you create an EBS volume, it is automatically replicated within its Availab
 
 If you attach multiple volumes to a device that you have named, you can stripe data across the volumes for increased I/O and throughput performance\.
 
-You can attach an `io1` EBS volume to up to 16 Nitro\-based instances\. For more information, see [Attaching a Volume to Multiple Instances with Amazon EBS Multi\-Attach](ebs-volumes-multi.md)\. Otherwise, you can attach an EBS volume to a single instance\.
+You can attach an `io1` EBS volume to up to 16 Nitro\-based instances\. For more information, see [Attaching a volume to multiple instances with Amazon EBS Multi\-Attach](ebs-volumes-multi.md)\. Otherwise, you can attach an EBS volume to a single instance\.
 
 You can get monitoring data for your EBS volumes, including root device volumes for EBS\-backed instances, at no additional charge\. For more information about monitoring metrics, see [Amazon CloudWatch Metrics for Amazon EBS](using_cloudwatch_ebs.md)\. For information about tracking the status of your volumes, see [Amazon CloudWatch Events for Amazon EBS](ebs-cloud-watch-events.md)\.
 

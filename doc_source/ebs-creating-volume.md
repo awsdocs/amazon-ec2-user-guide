@@ -1,4 +1,4 @@
-# Creating an Amazon EBS Volume<a name="ebs-creating-volume"></a>
+# Creating an Amazon EBS volume<a name="ebs-creating-volume"></a>
 
 You can create an Amazon EBS volume that you can then attach to any EC2 instance within the same Availability Zone\. You can choose to create an encrypted EBS volume, but encrypted volumes can only be attached to supported instance types\. For more information, see [Supported instance types](EBSEncryption.md#EBSEncryption_supported_instances)\.
 
@@ -6,10 +6,10 @@ If you are creating a volume for a high\-performance storage scenario, you shoul
 
 New EBS volumes receive their maximum performance the moment that they are available and do not require initialization \(formerly known as pre\-warming\)\. However, storage blocks on volumes that were restored from snapshots must be initialized \(pulled down from Amazon S3 and written to the volume\) before you can access the block\. This preliminary action takes time and can cause a significant increase in the latency of an I/O operation the first time each block is accessed\. For most applications, amortizing this cost over the lifetime of the volume is acceptable\. Performance is restored after the data is accessed once\. For more information, see [Initializing Amazon EBS Volumes](ebs-initialize.md)\.
 
-**Methods of Creating a Volume**
+**Methods of creating a volume**
 + You can create an EBS volume and attach it to a running instance\. For more information, see the procedure below\.
 + You can create and attach EBS volumes when you launch instances by specifying a block device mapping\. For more information, see [Launching an instance using the Launch Instance Wizard](launching-instance.md) and [Block Device Mapping](block-device-mapping-concepts.md)\.
-+ You can restore volumes from previously created snapshots\. For more information, see [Restoring an Amazon EBS Volume from a Snapshot](ebs-restoring-volume.md)\.
++ You can restore volumes from previously created snapshots\. For more information, see [Restoring an Amazon EBS volume from a snapshot](ebs-restoring-volume.md)\.
 
 **To create a new \(empty\) EBS volume using the console**
 
@@ -21,9 +21,9 @@ New EBS volumes receive their maximum performance the moment that they are avail
 
 1. Choose **Create Volume**\.
 
-1. For **Volume Type**, choose a volume type\. For more information, see [Amazon EBS Volume Types](ebs-volume-types.md)\.
+1. For **Volume Type**, choose a volume type\. For more information, see [Amazon EBS volume types](ebs-volume-types.md)\.
 
-1. For **Size \(GiB\)**, type the size of the volume\. For more information, see [Constraints on the Size and Configuration of an EBS Volume](volume_constraints.md)\.
+1. For **Size \(GiB\)**, type the size of the volume\. For more information, see [Constraints on the size and configuration of an EBS volume](volume_constraints.md)\.
 
 1. With a Provisioned IOPS SSD volume, for **IOPS**, type the maximum number of input/output operations per second \(IOPS\) that the volume should support\.
 
@@ -33,7 +33,7 @@ New EBS volumes receive their maximum performance the moment that they are avail
 
 1. \(Optional\) Choose **Create additional tags** to add tags to the volume\. For each tag, provide a tag key and a tag value\. For more information, see [Tagging your Amazon EC2 resources](Using_Tags.md)\.
 
-1. Choose **Create Volume**\. After the volume status is **Available**, you can attach the volume to an instance\. For more information, see [Attaching an Amazon EBS Volume to an Instance](ebs-attaching-volume.md)\.
+1. Choose **Create Volume**\. After the volume status is **Available**, you can attach the volume to an instance\. For more information, see [Attaching an Amazon EBS volume to an instance](ebs-attaching-volume.md)\.
 
 **To create a new \(empty\) EBS volume using the command line**
 

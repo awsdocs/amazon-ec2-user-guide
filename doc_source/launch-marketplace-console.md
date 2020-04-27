@@ -28,7 +28,7 @@ You are not charged for using the product until you have launched an instance wi
 **Note**  
 You are charged the subscription price as long as your instance is running, even if it is idle\. If your instance is stopped, you may still be charged for storage\.
 
-1. When your instance is in the `running` state, you can connect to it\. To do this, select your instance in the list and choose **Connect**\. Follow the instructions in the dialog\. For more information about connecting to your instance, see [Connect to Your Linux Instance](AccessingInstances.md)\.
+1. When your instance is in the `running` state, you can connect to it\. To do this, select your instance in the list and choose **Connect**\. Follow the instructions in the dialog\. For more information about connecting to your instance, see [Connect to your Linux instance](AccessingInstances.md)\.
 **Important**  
 Check the vendor's usage instructions carefully, as you may need to use a specific user name to log in to the instance\. For more information about accessing your subscription details, see [Managing your AWS Marketplace subscriptions](paid-amis.md#marketplace-manage-subscriptions)\.
 

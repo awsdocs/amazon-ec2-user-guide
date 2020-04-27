@@ -1,9 +1,10 @@
-# Bring Your Own IP Addresses \(BYOIP\)<a name="ec2-byoip"></a>
+# Bring your own IP addresses \(BYOIP\)<a name="ec2-byoip"></a>
 
 You can bring part or all of your public IPv4 address range from your on\-premises network to your AWS account\. You continue to own the address range, but AWS advertises it on the internet\. After you bring the address range to AWS, it appears in your account as an address pool\. You can create an Elastic IP address from your address pool and use it with your AWS resources, such as EC2 instances, NAT gateways, and Network Load Balancers\.
 
 **Important**  
-BYOIP is not available in all Regions\. For a list of supported Regions, see the [FAQ for Bring Your Own IP](https://aws.amazon.com/vpc/faqs/#Bring_Your_Own_IP)\.
+BYOIP is not available in all Regions\. For a list of supported Regions, see the [FAQ for Bring Your Own IP](https://aws.amazon.com/vpc/faqs/#Bring_Your_Own_IP)\.  
+BYOIP for IPv6 is currently a limited preview only\.
 
 ## Requirements<a name="byoip-requirements"></a>
 + The address range must be registered with your Regional internet registry \(RIR\), such as the American Registry for Internet Numbers \(ARIN\), Réseaux IP Européens Network Coordination Centre \(RIPE\), or Asia\-Pacific Network Information Centre \(APNIC\)\. It must be registered to a business or institutional entity and can not be registered to an individual person\.
@@ -16,7 +17,7 @@ BYOIP is not available in all Regions\. For a list of supported Regions, see the
   + RIPE \- "ALLOCATED PA", "LEGACY", and "ASSIGNED PI" allocation statuses
   + APNIC – "ALLOCATED PORTABLE" and "ASSIGNED PORTABLE" allocation statuses
 
-## Prepare to Bring Your Address Range to Your AWS Account<a name="prepare-for-byoip"></a>
+## Prepare to bring your address range to your AWS account<a name="prepare-for-byoip"></a>
 
 To ensure that only you can bring your address range to your AWS account, you must authorize Amazon to advertise the address range\. You must also provide proof that you own the address range through a signed authorization message\.
 
@@ -25,18 +26,18 @@ A Route Origin Authorization \(ROA\) is a cryptographic statement about your rou
 The commands in these tasks are supported on Linux\. On Windows, you can use the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/about) to run Linux commands\.
 
 **Topics**
-+ [Create a ROA Object](#byoip-create-roa-object)
-+ [Create a Self\-Signed X509 Certificate](#byoip-certificate)
-+ [Create a Signed Authorization Message](#byoip-signed-authorization-message)
++ [Create a ROA object](#byoip-create-roa-object)
++ [Create a self\-signed X509 certificate](#byoip-certificate)
++ [Create a signed authorization message](#byoip-signed-authorization-message)
 
-### Create a ROA Object<a name="byoip-create-roa-object"></a>
+### Create a ROA object<a name="byoip-create-roa-object"></a>
 
 Create a ROA object to authorize Amazon ASNs 16509 and 14618 to advertise your address range, plus the ASNs that are currently authorized to advertise the address range\. You must set the maximum length to the size of the smallest prefix that you want to bring \(for example, /24\)\. It might take up to 24 hours for the ROA to become available to Amazon\. For more information, see the following:
 + ARIN — [ROA Requests](https://www.arin.net/resources/rpki/roarequest.html)
 + RIPE — [Managing ROAs](https://www.ripe.net/manage-ips-and-asns/resource-management/certification/resource-certification-roa-management)
 + APNIC — [Route Management](https://www.apnic.net/wp-content/uploads/2017/01/route-roa-management-guide.pdf)
 
-### Create a Self\-Signed X509 Certificate<a name="byoip-certificate"></a>
+### Create a self\-signed X509 certificate<a name="byoip-certificate"></a>
 
 Use the following procedure to create a self\-signed X509 certificate and add it to the RDAP record for your RIR\. The openssl commands require OpenSSL version 1\.0\.2 or later\.
 
@@ -66,7 +67,7 @@ Use the following procedure to create a self\-signed X509 certificate and add it
 
    For APNIC, email the public key to [helpdesk@apnic\.net](mailto:helpdesk@apnic.net) to manually add it to the "remarks" field\. Send the email using the APNIC authorized contact for the IP addresses\.
 
-### Create a Signed Authorization Message<a name="byoip-signed-authorization-message"></a>
+### Create a signed authorization message<a name="byoip-signed-authorization-message"></a>
 
 The format of the signed authorization message is as follows, where the date is the expiry date of the message\.
 
@@ -86,7 +87,7 @@ Next, sign the authorization message in `text_message` using the key pair that y
 signed_message=$(echo $text_message | tr -d "\n" | openssl dgst -sha256 -sigopt rsa_padding_mode:pss -sigopt rsa_pss_saltlen:-1 -sign private.key -keyform PEM | openssl base64 | tr -- '+=/' '-_~' | tr -d "\n")
 ```
 
-## Provision the Address Range for use with AWS<a name="byoip-provision"></a>
+## Provision the address range for use with AWS<a name="byoip-provision"></a>
 
 When you provision an address range for use with AWS, you are confirming that you own the address range and are authorizing Amazon to advertise it\. We also verify that you own the address range through a signed authorization message\. This message is signed with the self\-signed X509 key pair that you used when updating the RDAP record with the X509 certificate\.
 
@@ -104,7 +105,7 @@ aws ec2 describe-byoip-cidrs --max-results 5
 
 To create an Elastic IP address from your address pool, use the [allocate\-address](https://docs.aws.amazon.com/cli/latest/reference/ec2/allocate-address.html) command\. You can use the `--public-ipv4-pool` option to specify the ID of the address pool returned by `describe-byoip-cidrs`\. Or you can use the `--address` option to specify an address from the address range that you provisioned\.
 
-## Advertise the Address Range through AWS<a name="byoip-advertise"></a>
+## Advertise the address range through AWS<a name="byoip-advertise"></a>
 
 After the address range is provisioned, it is ready to be advertised\. You must advertise the exact address range that you provisioned\. You can't advertise only a portion of the provisioned address range\.
 
@@ -130,7 +131,7 @@ aws ec2 withdraw-byoip-cidr --cidr address-range
 **Important**  
 You can run the withdraw\-byoip\-cidr command at most once every 10 seconds, even if you specify different address ranges each time\.
 
-## Deprovision the Address Range<a name="byoip-deprovision"></a>
+## Deprovision the address range<a name="byoip-deprovision"></a>
 
 To stop using your address range with AWS, you release any Elastic IP addresses still allocated from the address pool, stop advertising the address range, and then deprovision the address range\.
 

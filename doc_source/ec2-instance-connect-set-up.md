@@ -1,12 +1,12 @@
-# Set Up EC2 Instance Connect<a name="ec2-instance-connect-set-up"></a>
+# Set up EC2 Instance Connect<a name="ec2-instance-connect-set-up"></a>
 
 Amazon Linux 2 2\.0\.20190618 or later comes preconfigured with EC2 Instance Connect\. For other supported Linux distributions, you must set up Instance Connect for every instance that will support using Instance Connect\. This is a one\-time requirement for each instance\.
 
 **Topics**
-+ [Step 1: Configure Network Access to an Instance](#ec2-instance-connect-setup-security-group)
-+ [Step 2: Install EC2 Instance Connect on an Instance](#ec2-instance-connect-install)
++ [Step 1: Configure network access to an instance](#ec2-instance-connect-setup-security-group)
++ [Step 2: Install EC2 Instance Connect on an instance](#ec2-instance-connect-install)
 + [Step 3: \(Optional\) Install the EC2 Instance Connect CLI](#ec2-instance-connect-install-eic-CLI)
-+ [Step 4: Configure IAM Permissions for EC2 Instance Connect](#ec2-instance-connect-configure-IAM-role)
++ [Step 4: Configure IAM permissions for EC2 Instance Connect](#ec2-instance-connect-configure-IAM-role)
 
 **Limitations**
 + The following Linux distributions are supported:
@@ -17,7 +17,7 @@ Amazon Linux 2 2\.0\.20190618 or later comes preconfigured with EC2 Instance Con
 **Prerequisites**
 + **Verify the general prerequisites for connecting to your instance using SSH\.**
 
-  For more information, see [General Prerequisites for Connecting to Your Instance](connection-prereqs.md)\.
+  For more information, see [General prerequisites for connecting to your instance](connection-prereqs.md)\.
 + **Install an SSH client on your local computer\.**
 
   Your local computer most likely has an SSH client installed by default\. You can check for an SSH client by typing ssh at the command line\. If your local computer doesn't recognize the command, you can install an SSH client\. For information about installing an SSH client on Linux or macOS X, see [http://www\.openssh\.com](http://www.openssh.com/)\. For information about installing an SSH client on Windows 10, see [OpenSSH in Windows](https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_overview)\.
@@ -28,13 +28,13 @@ Amazon Linux 2 2\.0\.20190618 or later comes preconfigured with EC2 Instance Con
 
   To install EC2 Instance Connect on an Ubuntu instance, you must use the AWS CLI on the instance\. For more information about installing the AWS CLI, see [Installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html) in the *AWS Command Line Interface User Guide*\.
 
-## Step 1: Configure Network Access to an Instance<a name="ec2-instance-connect-setup-security-group"></a>
+## Step 1: Configure network access to an instance<a name="ec2-instance-connect-setup-security-group"></a>
 
 You must configure the following network access to your instance so that you can install EC2 Instance Connect and enable your users to connect to your instance:
 + Ensure that the security group associated with your instance [allows inbound SSH traffic](authorizing-access-to-an-instance.md#add-rule-authorize-access) on port 22 from your IP address\. The default security group for the VPC does not allow incoming SSH traffic by default\. The security group created by the launch wizard allows incoming SSH traffic by default\. For more information, see [Authorizing inbound traffic for your Linux instances](authorizing-access-to-an-instance.md)\.
 + \(Browser\-based client\) We recommend that your instance allows inbound SSH traffic from the [recommended IP block published for the service](https://ip-ranges.amazonaws.com/ip-ranges.json)\. Use the `EC2_INSTANCE_CONNECT` filter for the `service` parameter to get the IP address ranges in the EC2 Instance Connect subset\. For more information, see [AWS IP Address Ranges](https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html) in the *Amazon Web Services General Reference*\.
 
-## Step 2: Install EC2 Instance Connect on an Instance<a name="ec2-instance-connect-install"></a>
+## Step 2: Install EC2 Instance Connect on an instance<a name="ec2-instance-connect-install"></a>
 
 Installing EC2 Instance Connect configures the SSH daemon on the instance\. The procedure for installing EC2 Instance Connect is different for instances launched using Amazon Linux 2 and Ubuntu\.
 
@@ -53,7 +53,7 @@ Installing EC2 Instance Connect configures the SSH daemon on the instance\. The 
    $ ssh -i my_ec2_private_key.pem ec2-user@ec2-a-b-c-d.us-west-2.compute.amazonaws.com
    ```
 
-   For more information about connecting to your instance, see [Connecting to Your Linux Instance Using SSH](AccessingInstancesLinux.md)\.
+   For more information about connecting to your instance, see [Connecting to your Linux instance using SSH](AccessingInstancesLinux.md)\.
 
 1. Install the EC2 Instance Connect package on your instance\.
 
@@ -106,7 +106,7 @@ If you previously configured `AuthorizedKeysCommand` and `AuthorizedKeysCommandU
    $ ssh -i my_ec2_private_key.pem ubuntu@ec2-a-b-c-d.us-west-2.compute.amazonaws.com
    ```
 
-   For more information about connecting to your instance, see [Connecting to Your Linux Instance Using SSH](AccessingInstancesLinux.md)\.
+   For more information about connecting to your instance, see [Connecting to your Linux instance using SSH](AccessingInstancesLinux.md)\.
 
 1. \(Optional\) Ensure your instance has the latest Ubuntu AMI\.
 
@@ -170,7 +170,7 @@ Use `[pip](https://docs.aws.amazon.com/cli/latest/userguide/install-linux.html#i
 $ pip install ec2instanceconnectcli
 ```
 
-## Step 4: Configure IAM Permissions for EC2 Instance Connect<a name="ec2-instance-connect-configure-IAM-role"></a>
+## Step 4: Configure IAM permissions for EC2 Instance Connect<a name="ec2-instance-connect-configure-IAM-role"></a>
 
 For your IAM users to connect to an instance using EC2 Instance Connect, you must grant them permission to push the public key to the instance\. For more information, see [Actions, Resources, and Condition Keys for Amazon EC2 Instance Connect](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonec2instanceconnect.html) in the *IAM User Guide*\.
 

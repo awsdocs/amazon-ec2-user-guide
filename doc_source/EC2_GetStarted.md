@@ -78,7 +78,7 @@ Don't select the **Proceed without a key pair** option\. If you launch your inst
 
 ## Step 2: Connect to your instance<a name="ec2-connect-to-instance-linux"></a>
 
-There are several ways to connect to your Linux instance\. For more information, see [Connect to Your Linux Instance](AccessingInstances.md)\.
+There are several ways to connect to your Linux instance\. For more information, see [Connect to your Linux instance](AccessingInstances.md)\.
 
 **Important**  
 You can't connect to your instance unless you launched it with a key pair for which you have the `.pem` file and you launched it with a security group that allows SSH access from your computer\. If you can't connect to your instance, see [Troubleshooting connecting to your instance](TroubleshootingInstancesConnecting.md) for assistance\.
@@ -107,5 +107,5 @@ If you launched an instance that is not within the [AWS Free Tier](https://aws.a
 After you start your instance, you might want to try some of the following exercises:
 + Learn how to remotely manage your EC2 instance using Run Command\. For more information, see [AWS Systems Manager Run Command](https://docs.aws.amazon.com/systems-manager/latest/userguide/execute-remote-commands.html) in the *AWS Systems Manager User Guide*\.
 + Configure a CloudWatch alarm to notify you if your usage exceeds the Free Tier\. For more information, see [Create a Billing Alarm](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/free-tier-alarms.html) in the *AWS Billing and Cost Management User Guide*\.
-+ Add an EBS volume\. For more information, see [Creating an Amazon EBS Volume](ebs-creating-volume.md) and [Attaching an Amazon EBS Volume to an Instance](ebs-attaching-volume.md)\.
++ Add an EBS volume\. For more information, see [Creating an Amazon EBS volume](ebs-creating-volume.md) and [Attaching an Amazon EBS volume to an instance](ebs-attaching-volume.md)\.
 + Install the LAMP stack\. For more information, see [Tutorial: Install a LAMP Web Server on Amazon Linux 2](ec2-lamp-amazon-linux-2.md)\.

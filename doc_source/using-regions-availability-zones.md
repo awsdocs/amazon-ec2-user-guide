@@ -21,7 +21,7 @@ Each Region is completely independent\. Each Availability Zone is isolated, but 
 
 ![\[Regions, Availability Zones, and Local Zones\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/aws_regions.png)
 
-Amazon EC2 resources are one of the following: global, tied to a Region, an Availability Zone, or a Local Zone\. For more information, see [Resource locations](resources.md)\.
+Amazon EC2 resources are one of the following: global, or tied to a Region, an Availability Zone, or a Local Zone\. For more information, see [Resource locations](resources.md)\.
 
 **Topics**
 + [Regions](#concepts-regions)
@@ -49,7 +49,7 @@ An Availability Zone is represented by a Region code followed by a letter identi
 
 To coordinate Availability Zones across accounts, you must use the *AZ ID*, which is a unique and consistent identifier for an Availability Zone\. For example, `use1-az1` is an AZ ID for the `us-east-1` Region and it has the same location in every AWS account\.
 
-Viewing AZ IDs enables you to determine the location of resources in one account relative to the resources in another account\. For example, if you share a subnet in the Availability Zone with the AZ ID `use-az2` with another account, this subnet is available to that account in the Availability Zone whose AZ ID is also `use-az2`\. The AZ ID for each VPC and subnet is displayed in the Amazon VPC console\. For more information, see [Working with VPC Sharing](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-sharing.html) in the *Amazon VPC User Guide*\.
+Viewing AZ IDs enables you to determine the location of resources in one account relative to the resources in another account\. For example, if you share a subnet in the Availability Zone with the AZ ID `use-az2` with another account, this subnet is available to that account in the Availability Zone whose AZ ID is also `use-az2`\. The AZ ID for each VPC and subnet is displayed in the Amazon VPC console\. For more information, see [Working with Shared VPCs](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-sharing.html) in the *Amazon VPC User Guide*\.
 
 As Availability Zones grow over time, our ability to expand them can become constrained\. If this happens, we might restrict you from launching an instance in a constrained Availability Zone unless you already have an instance in that Availability Zone\. Eventually, we might also remove the constrained Availability Zone from the list of Availability Zones for new accounts\. Therefore, your account might have a different number of available Availability Zones in a Region than another account\. 
 
@@ -95,8 +95,8 @@ The following table lists the Regions provided by an AWS account\. You can't des
 |  `us-east-2`  |  US East \(Ohio\)  | Not required | No | 
 |  `us-east-1`  |  US East \(N\. Virginia\)  | Not required | No | 
 |  `us-west-1`  |  US West \(N\. California\)  | Not required | No | 
-|  `us-west-2`  |  US West \(Oregon\)  | Not required | Yes \- us\-west\-2\-lax\-1a You must enable the Local Zone\. | 
-|  `af-south-1` |  Africa (Cape Town)  | Required | No | 
+|  `us-west-2`  |  US West \(Oregon\)  | Not required | us\-west\-2\-lax\-1a | 
+| af\-south\-1 | Africa \(Cape Town\) | Required | No | 
 |  `ap-east-1`  |  Asia Pacific \(Hong Kong\)  | Required | No | 
 |  `ap-south-1`  |  Asia Pacific \(Mumbai\)  | Not required | No | 
 |  `ap-northeast-3`  |  Asia Pacific \(Osaka\-Local\)  | Not required | No | 
@@ -119,7 +119,7 @@ The number and mapping of Availability Zones per Region may vary between AWS acc
 
 ## Regions and endpoints<a name="using-regions-endpoints"></a>
 
-When you work with an instance using the command line interface or API actions, you must specify its Regional endpoint\. For more information about the Regions and endpoints for Amazon EC2, see [Amazon EC2 endpoints adn quotas](https://docs.aws.amazon.com/general/latest/gr/ec2-service.html) in the *Amazon Web Services General Reference*\.
+When you work with an instance using the command line interface or API actions, you must specify its Regional endpoint\. For more information about the Regions and endpoints for Amazon EC2, see [Amazon EC2 endpoints and quotas](https://docs.aws.amazon.com/general/latest/gr/ec2-service.html) in the *Amazon Web Services General Reference*\.
 
 For more information about endpoints and protocols in AWS GovCloud \(US\-West\), see [AWS GovCloud \(US\-West\) Endpoints](https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/using-govcloud-endpoints.html) in the *AWS GovCloud \(US\) User Guide*\.
 
@@ -222,6 +222,8 @@ We enable all Availability Zones by default and you cannot disable them\.
 1. On the navigation pane, choose **EC2 Dashboard**\.
 
 1. Under **Availability Zone status**, choose **Enable additional Local Zones**\.
+**Note**  
+This option is only available if **New EC2 Experience** is enabled in the console\.
 
 1. Under **Local Zone Groups**, turn on each Local Zone that you want to enable\.
 

@@ -86,7 +86,7 @@ The steps differ depending on whether you intend to use EFA with Open MPI or wit
 
 **To install the EFA software**
 
-1. Connect to the instance you launched in **Step 2**\. For more information, see [Connect to Your Linux Instance](AccessingInstances.md)\.
+1. Connect to the instance you launched in **Step 2**\. For more information, see [Connect to your Linux instance](AccessingInstances.md)\.
 
 1. To ensure that all of your software packages are up to date, perform a quick software update on your instance\. This process may take a few minutes\.
    + Amazon Linux, Amazon Linux 2, RHEL 7\.6/7\.7, CentOS 7

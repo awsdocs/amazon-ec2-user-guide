@@ -109,7 +109,7 @@ A common scenario for disabling deeper sleep states is a Redis database applicat
 1.  Run the following command to rebuild the boot configuration\.
 
    ```
-   [ec2-user ~]$ grub2-mkconfig -o /boot/grub2/grub.cfg
+   [ec2-user ~]$ sudo grub2-mkconfig -o /boot/grub2/grub.cfg
    ```
 
 1. Reboot your instance to enable the new kernel option\.

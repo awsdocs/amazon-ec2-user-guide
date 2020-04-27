@@ -78,11 +78,11 @@ Create a new launch template using parameters that you define, or use an existin
    + **Security groups**: One or more security groups to associate with the instance\. For more information, see [Amazon EC2 Security Groups for Linux Instances](ec2-security-groups.md)\.
 
 1. For **Storage \(volumes\)**, specify volumes to attach to the instance besides the volumes specified by the AMI \(**Volume 1 \(AMI Root\)**\)\. To add a new volume, choose **Add new volume**\.
-   + **Volume type**: The instance store or Amazon EBS volumes with which to associate your instance\. The type of volume depends on the instance type that you've chosen\. For more information, see [Amazon EC2 Instance Store](InstanceStorage.md) and [Amazon EBS Volumes](ebs-volumes.md)\.
+   + **Volume type**: The instance store or Amazon EBS volumes with which to associate your instance\. The type of volume depends on the instance type that you've chosen\. For more information, see [Amazon EC2 Instance Store](InstanceStorage.md) and [Amazon EBS volumes](ebs-volumes.md)\.
    + **Device name**: A device name for the volume\.
    + **Snapshot**: The ID of the snapshot from which to create the volume\.
    + **Size**: For Amazon EBS volumes, the storage size\.
-   + **Volume type**: For Amazon EBS volumes, the volume type\. For more information, see [Amazon EBS Volume Types](ebs-volume-types.md)\.
+   + **Volume type**: For Amazon EBS volumes, the volume type\. For more information, see [Amazon EBS volume types](ebs-volume-types.md)\.
    + **IOPS**: For the Provisioned IOPS SSD volume type, the number of I/O operations per second \(IOPS\) that the volume can support\.
    + **Delete on termination**: For Amazon EBS volumes, whether to delete the volume when the instance is terminated\. For more information, see [Preserving Amazon EBS Volumes on Instance Termination](terminating-instances.md#preserving-volumes-on-termination)\.
    + **Encrypted**: If the instance type supports EBS encryption, you can enable encryption for the volume\. If you have enabled encryption by default in this Region, encryption is enabled for you\. For more information, see [Amazon EBS encryption](EBSEncryption.md)\.
@@ -160,11 +160,11 @@ Create a new launch template using parameters that you define, or use an existin
    + **Elastic Fabric Adapter**: Indicates whether the network interface is an Elastic Fabric Adapter\. For more information, see [ Elastic Fabric Adapter](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html)\.
 
 1. For **Storage \(Volumes\)**, specify volumes to attach to the instance besides the volumes specified by the AMI\.
-   + **Volume type**: The instance store or Amazon EBS volumes with which to associate your instance\. The type of volume depends on the instance type that you've chosen\. For more information, see [Amazon EC2 Instance Store](InstanceStorage.md) and [Amazon EBS Volumes](ebs-volumes.md)\.
+   + **Volume type**: The instance store or Amazon EBS volumes with which to associate your instance\. The type of volume depends on the instance type that you've chosen\. For more information, see [Amazon EC2 Instance Store](InstanceStorage.md) and [Amazon EBS volumes](ebs-volumes.md)\.
    + **Device name**: A device name for the volume\.
    + **Snapshot**: The ID of the snapshot from which to create the volume\.
    + **Size**: For Amazon EBS volumes, the storage size\.
-   + **Volume type**: For Amazon EBS volumes, the volume type\. For more information, see [Amazon EBS Volume Types](ebs-volume-types.md)\.
+   + **Volume type**: For Amazon EBS volumes, the volume type\. For more information, see [Amazon EBS volume types](ebs-volume-types.md)\.
    + **IOPS**: For the Provisioned IOPS SSD volume type, the number of I/O operations per second \(IOPS\) that the volume can support\.
    + **Delete on termination**: For Amazon EBS volumes, whether to delete the volume when the instance is terminated\. For more information, see [Preserving Amazon EBS Volumes on Instance Termination](terminating-instances.md#preserving-volumes-on-termination)\.
    + **Encrypted**: If the instance type supports EBS encryption, you can enable encryption for the volume\. If you have enabled encryption by default in this Region, encryption is enabled for you\. For more information, see [Amazon EBS encryption](EBSEncryption.md)\.

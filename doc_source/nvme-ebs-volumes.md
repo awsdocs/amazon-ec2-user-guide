@@ -79,7 +79,7 @@ EBS uses single\-root I/O virtualization \(SR\-IOV\) to provide volume attachmen
 We recommend that you use stable identifiers for your EBS volumes within your instance, such as one of the following:
 + For Nitro\-based instances, the block device mappings that are specified in the Amazon EC2 console when you are attaching an EBS volume or during `AttachVolume` or `RunInstances` API calls are captured in the vendor\-specific data field of the NVMe controller identification\. With Amazon Linux AMIs later than version 2017\.09\.01, we provide a `udev` rule that reads this data and creates a symbolic link to the block\-device mapping\.
 + NVMe EBS volumes have the EBS volume ID set as the serial number in the device identification\.
-+ When a device is formatted, a UUID is generated that persists for the life of the filesystem\. A device label can be specified at the same time\. For more information, see [Making an Amazon EBS Volume Available for Use on Linux](ebs-using-volumes.md) and [Booting from the wrong volume](instance-booting-from-wrong-volume.md)\.
++ When a device is formatted, a UUID is generated that persists for the life of the filesystem\. A device label can be specified at the same time\. For more information, see [Making an Amazon EBS volume available for use on Linux](ebs-using-volumes.md) and [Booting from the wrong volume](instance-booting-from-wrong-volume.md)\.
 
 **Amazon Linux AMIs**  
 With Amazon Linux AMI 2017\.09\.01 or later \(including Amazon Linux 2\), you can run the ebsnvme\-id command as follows to map the NVMe device name to a volume ID and device name:
@@ -121,7 +121,7 @@ nvme0n1       259:0   0    8G  0 disk
 
 ## Working with NVMe EBS Volumes<a name="using-nvme-ebs-volumes"></a>
 
-To format and mount an NVMe EBS volume, see [Making an Amazon EBS Volume Available for Use on Linux](ebs-using-volumes.md)\.
+To format and mount an NVMe EBS volume, see [Making an Amazon EBS volume available for use on Linux](ebs-using-volumes.md)\.
 
 If you are using Linux kernel 4\.2 or later, any change you make to the volume size of an NVMe EBS volume is automatically reflected in the instance\. For older Linux kernels, you might need to detach and attach the EBS volume or reboot the instance for the size change to be reflected\. With Linux kernel 3\.19 or later, you can use the hdparm command as follows to force a rescan of the NVMe device:
 

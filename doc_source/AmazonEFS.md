@@ -138,7 +138,7 @@ You can connect to your instances and verify that the file system is mounted to 
 
 **To verify that the file system is mounted**
 
-1. Connect to your instances\. For more information, see [Connect to Your Linux Instance](AccessingInstances.md)\.
+1. Connect to your instances\. For more information, see [Connect to your Linux instance](AccessingInstances.md)\.
 
 1. From the terminal window for each instance, run the df \-T command to verify that the EFS file system is mounted\.
 

@@ -137,7 +137,7 @@ If you try to connect to your instance and get the error message, `unable to loa
   ```
 
 **If you use PuTTY to connect to your instance**
-+ Verify that your private key \(\.pem\) file has been converted to the format recognized by PuTTY \(\.ppk\)\. For more information about converting your private key, see [Connecting to Your Linux Instance from Windows Using PuTTY](putty.md)\.
++ Verify that your private key \(\.pem\) file has been converted to the format recognized by PuTTY \(\.ppk\)\. For more information about converting your private key, see [Connecting to your Linux instance from Windows using PuTTY](putty.md)\.
 **Note**  
 In PuTTYgen, load your private key file and select **Save Private Key** rather than **Generate**\. 
 + Verify that you are connecting with the appropriate user name for your AMI\. Enter the user name in the **Host name** box in the **PuTTY Configuration** window\.
@@ -187,9 +187,9 @@ If you get a `Permission denied (publickey)` error and none of the above applies
 
 1. Stop your instance and detach the root volume\. For more information, see [Stop and start your instance](Stop_Start.md) and [Detaching an Amazon EBS volume from a Linux instance](ebs-detaching-volume.md)\.
 
-1. Launch a temporary instance in the same Availability Zone as your current instance \(use a similar or the same AMI as you used for your current instance\), and attach the root volume to the temporary instance\. For more information, see [Attaching an Amazon EBS Volume to an Instance](ebs-attaching-volume.md)\.
+1. Launch a temporary instance in the same Availability Zone as your current instance \(use a similar or the same AMI as you used for your current instance\), and attach the root volume to the temporary instance\. For more information, see [Attaching an Amazon EBS volume to an instance](ebs-attaching-volume.md)\.
 
-1. Connect to the temporary instance, create a mount point, and mount the volume that you attached\. For more information, see [Making an Amazon EBS Volume Available for Use on Linux](ebs-using-volumes.md)\.
+1. Connect to the temporary instance, create a mount point, and mount the volume that you attached\. For more information, see [Making an Amazon EBS volume available for use on Linux](ebs-using-volumes.md)\.
 
 1. From the temporary instance, check the permissions of the `/home/ec2-user/` directory of the attached volume\. If necessary, adjust the permissions as follows:
 
@@ -254,7 +254,7 @@ The appropriate user names are as follows:
 + For an Ubuntu AMI, the user name is `ubuntu`\.
 + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
 
-You should also verify that your private key \(\.pem\) file has been correctly converted to the format recognized by PuTTY \(\.ppk\)\. For more information about converting your private key, see [Connecting to Your Linux Instance from Windows Using PuTTY](putty.md)\.
+You should also verify that your private key \(\.pem\) file has been correctly converted to the format recognized by PuTTY \(\.ppk\)\. For more information about converting your private key, see [Connecting to your Linux instance from Windows using PuTTY](putty.md)\.
 
 ## Cannot connect using my browser<a name="troubleshoot-instance-connect-mindterm"></a>
 

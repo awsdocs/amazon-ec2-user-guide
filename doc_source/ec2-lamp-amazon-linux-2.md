@@ -342,8 +342,8 @@ Perform the following checks to see if your Apache web server is running and acc
 ## Related Topics<a name="lamp-more-info"></a>
 
 For more information about transferring files to your instance or installing a WordPress blog on your web server, see the following documentation:
-+ [Transferring Files to Your Linux Instance Using WinSCP](putty.md#Transfer_WinSCP)
-+ [Transferring Files to Linux Instances from Linux Using SCP](AccessingInstancesLinux.md#AccessingInstancesLinuxSCP)
++ [Transferring files to your Linux instance using WinSCP](putty.md#Transfer_WinSCP)
++ [Transferring files to Linux instances from Linux using SCP](AccessingInstancesLinux.md#AccessingInstancesLinuxSCP)
 + [Tutorial: Hosting a WordPress Blog with Amazon Linux](hosting-wordpress.md)
 
 For more information about the commands and software used in this tutorial, see the following webpages:

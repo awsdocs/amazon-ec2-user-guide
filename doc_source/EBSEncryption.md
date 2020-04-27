@@ -145,7 +145,7 @@ You cannot change the CMK that is associated with an existing snapshot or volume
 
 ### Encrypting an empty volume on creation<a name="new-encrypted-volumes"></a>
 
-When you create a new, empty EBS volume, you can encrypt it by enabling encryption for the specific volume creation operation\. If you enabled EBS encryption by default, the volume is automatically encrypted\. By default, the volume is encrypted to your default key for EBS encryption\. Alternatively, you can specify a different symmetric CMK for the specific volume creation operation\. The volume is encrypted by the time it is first available, so your data is always secured\. For detailed procedures, see [Creating an Amazon EBS Volume](ebs-creating-volume.md)\.
+When you create a new, empty EBS volume, you can encrypt it by enabling encryption for the specific volume creation operation\. If you enabled EBS encryption by default, the volume is automatically encrypted\. By default, the volume is encrypted to your default key for EBS encryption\. Alternatively, you can specify a different symmetric CMK for the specific volume creation operation\. The volume is encrypted by the time it is first available, so your data is always secured\. For detailed procedures, see [Creating an Amazon EBS volume](ebs-creating-volume.md)\.
 
 By default, the CMK that you selected when creating a volume encrypts the snapshots that you make from the volume and the volumes that you restore from those encrypted snapshots\. You cannot remove encryption from an encrypted volume or snapshot, which means that a volume restored from an encrypted snapshot, or a copy of an encrypted snapshot, is always encrypted\.
 
@@ -153,7 +153,7 @@ Public snapshots of encrypted volumes are not supported, but you can share an en
 
 ### Encrypting unencrypted resources<a name="encrypt-unencrypted"></a>
 
-Although there is no direct way to encrypt an existing unencrypted volume or snapshot, you can encrypt them by creating either a volume or a snapshot\. If you enabled encryption by default, Amazon EBS encrypts the resulting new volume or snapshot using your default key for EBS encryption\. Even if you have not enabled encryption by default, you can enable encryption when you create an individual volume or snapshot\. Whether you enable encryption by default or in individual creation operations, you can override the default key for EBS encryption and select a symmetric customer managed CMK\. For more information, see [Creating an Amazon EBS Volume](ebs-creating-volume.md) and [Copying an Amazon EBS Snapshot](ebs-copy-snapshot.md)\.
+Although there is no direct way to encrypt an existing unencrypted volume or snapshot, you can encrypt them by creating either a volume or a snapshot\. If you enabled encryption by default, Amazon EBS encrypts the resulting new volume or snapshot using your default key for EBS encryption\. Even if you have not enabled encryption by default, you can enable encryption when you create an individual volume or snapshot\. Whether you enable encryption by default or in individual creation operations, you can override the default key for EBS encryption and select a symmetric customer managed CMK\. For more information, see [Creating an Amazon EBS volume](ebs-creating-volume.md) and [Copying an Amazon EBS Snapshot](ebs-copy-snapshot.md)\.
 
 To encrypt the snapshot copy to a customer managed CMK, you must both enable encryption and specify the key, as shown in [Copy an unencrypted snapshot \(encryption by default not enabled\)](#snapshot-account-off)\. 
 
@@ -186,7 +186,7 @@ Without encryption by default enabled, a volume restored from an unencrypted sna
 
 If you leave out the `KmsKeyId` parameter, the resulting volume is encrypted using your default key for EBS encryption\. You must specify a key ID to encrypt the volume to a different CMK\.
 
-For more information, see [Restoring an Amazon EBS Volume from a Snapshot](ebs-restoring-volume.md)\.
+For more information, see [Restoring an Amazon EBS volume from a snapshot](ebs-restoring-volume.md)\.
 
 ### Restore an unencrypted volume \(encryption by default enabled\)<a name="volume-account-on"></a>
 
@@ -227,7 +227,7 @@ When the `CreateVolume` action operates on an encrypted snapshot, you have the o
 **Note**  
 If you copy a snapshot and encrypt it to a new CMK, a complete \(non\-incremental\) copy is always created, resulting in additional delay and storage costs\.
 
-For more information, see [Restoring an Amazon EBS Volume from a Snapshot](ebs-restoring-volume.md)\.
+For more information, see [Restoring an Amazon EBS volume from a snapshot](ebs-restoring-volume.md)\.
 
 ### Re\-encrypt an encrypted snapshot<a name="reencrypt-snapshot"></a>
 
