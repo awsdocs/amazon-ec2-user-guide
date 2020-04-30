@@ -340,3 +340,66 @@ Whenever AMIs are released, we send notifications to the subscribers of the corr
 1. In the navigation pane, choose **Subscriptions**, select the subscription, and choose **Actions**, **Delete subscriptions**\.
 
 1. When prompted for confirmation, choose **Delete**\.
+
+## Amazon SNS Message Format<a name="ALAMI-Notification-format"></a>
+
+The schema for the SNS Message is below:
+
+```
+{
+    "description": "Validates output from AMI Release SNS message",
+    "type": "object",
+    "properties": {
+        "v1": {
+            "type": "object",
+            "properties": {
+                "ReleaseVersion": {
+                    "description": "Major release (ex. 2018.03)",
+                    "type": "string"
+                },
+                "ImageVersion": {
+                    "description": "Full release (ex. 2018.03.0.20180412)",
+                    "type": "string"
+                },
+                "ReleaseNotes": {
+                    "description": "Human-readable string with extra information",
+                    "type": "string"
+                },
+                "Regions": {
+                    "type": "object",
+                    "description": "Each key will be a region name (ex. us-east-1)",
+                    "additionalProperties": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "Name": {
+                                    "description": "AMI Name (ex. amzn-ami-hvm-2018.03.0.20180412-x86_64-gp2)",
+                                    "type": "string"
+                                },
+                                "ImageId": {
+                                    "description": "AMI Name (ex.ami-467ca739)",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "Name",
+                                "ImageId"
+                            ]
+                        }
+                    }
+                }
+            },
+            "required": [
+                "ReleaseVersion",
+                "ImageVersion",
+                "ReleaseNotes",
+                "Regions"
+            ]
+        }
+    },
+    "required": [
+        "v1"
+    ]
+}
+```
