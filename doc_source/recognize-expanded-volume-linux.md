@@ -1,6 +1,6 @@
 # Extending a Linux file system after resizing a volume<a name="recognize-expanded-volume-linux"></a>
 
-After you increase the size of an EBS volume, you must use file system–specific commands to extend the file system to the larger size\. You can resize the file system as soon as the volume enters the `optimizing` state\.
+After you [increase the size of an EBS volume](requesting-ebs-volume-modifications.md), you must use file system–specific commands to extend the file system to the larger size\. You can resize the file system as soon as the volume enters the `optimizing` state\.
 
 **Important**  
 Before extending a file system that contains valuable data, it is best practice to create a snapshot of the volume, in case you need to roll back your changes\. For more information, see [Creating Amazon EBS Snapshots](ebs-creating-snapshot.md)\. If your Linux AMI uses the MBR partitioning scheme, you are limited to a boot volume size of up to 2 TiB\. For more information, see [Requirements for Linux volumes](modify-volume-requirements.md#linux-volumes) and [Constraints on the size and configuration of an EBS volume](volume_constraints.md)\. 

@@ -1,6 +1,6 @@
 # Getting started with Amazon EC2 Linux instances<a name="EC2_GetStarted"></a>
 
-Let's get started with Amazon Elastic Compute Cloud \(Amazon EC2\) by launching, connecting to, and using a Linux instance\. An *instance* is a virtual server in the AWS cloud\. With Amazon EC2, you can set up and configure the operating system and applications that run on your instance\.
+Let's get started with Amazon Elastic Compute Cloud \(Amazon EC2\) by launching, connecting to, and using a Linux instance\. To get started with a Windows instance, see [Getting started with Amazon EC2 Windows instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/EC2_GetStarted.html)\. An *instance* is a virtual server in the AWS cloud\. With Amazon EC2, you can set up and configure the operating system and applications that run on your instance\.
 
 When you sign up for AWS, you can get started with Amazon EC2 using the [AWS Free Tier](https://aws.amazon.com/free/)\. If you created your AWS account less than 12 months ago, and have not already exceeded the free tier benefits for Amazon EC2, it will not cost you anything to complete this tutorial, because we help you select options that are within the free tier benefits\. Otherwise, you'll incur the standard Amazon EC2 usage fees from the time that you launch the instance until you terminate the instance \(which is the final task of this tutorial\), even if it remains idle\.
 

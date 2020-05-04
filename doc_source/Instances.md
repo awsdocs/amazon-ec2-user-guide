@@ -1,4 +1,4 @@
-# Amazon EC2 Instances<a name="Instances"></a>
+# Amazon EC2 instances<a name="Instances"></a>
 
 If you're new to Amazon EC2, see the following topics to get started:
 + [What is Amazon EC2?](concepts.md)
@@ -12,7 +12,7 @@ Before you launch a production environment, you need to answer the following que
 Amazon EC2 provides different instance types to enable you to choose the CPU, memory, storage, and networking capacity that you need to run your applications\. For more information, see [Instance types](instance-types.md)\.
 
 **Q\. What purchasing option best meets my needs?**  
-Amazon EC2 supports On\-Demand Instances \(the default\), Spot Instances, and Reserved Instances\. For more information, see [Instance Purchasing Options](instance-purchasing-options.md)\.
+Amazon EC2 supports On\-Demand Instances \(the default\), Spot Instances, and Reserved Instances\. For more information, see [Instance purchasing options](instance-purchasing-options.md)\.
 
 **Q\. Which type of root volume meets my needs?**  
 Each instance is backed by Amazon EBS or backed by instance store\. Select an AMI based on which type of root volume you need\. For more information, see [Storage for the root device](ComponentsAMIs.md#storage-for-the-root-device)\.

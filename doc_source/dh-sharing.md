@@ -1,4 +1,4 @@
-# Working with Shared Dedicated Hosts<a name="dh-sharing"></a>
+# Working with shared Dedicated Hosts<a name="dh-sharing"></a>
 
 Dedicated Host sharing enables Dedicated Host owners to share their Dedicated Hosts with other AWS accounts or within an AWS organization\. This enables you to create and manage Dedicated Hosts centrally, and share the Dedicated Host across multiple AWS accounts or within your AWS organization\.
 
@@ -10,23 +10,23 @@ A Dedicated Host owner can share a Dedicated Host with:
 + Its entire AWS organization
 
 **Topics**
-+ [Prerequisites for Sharing Dedicated Hosts](#dh-sharing-prereq)
-+ [Related Services](#dh-sharing-related)
-+ [Sharing Across Availability Zones](#dh-sharing-azs)
++ [Prerequisites for sharing Dedicated Hosts](#dh-sharing-prereq)
++ [Related services](#dh-sharing-related)
++ [Sharing across Availability Zones](#dh-sharing-azs)
 + [Sharing a Dedicated Host](#sharing-dh)
-+ [Unsharing a Shared Dedicated Host](#unsharing-dh)
-+ [Identifying a Shared Dedicated Host](#identifying-shared-dh)
-+ [Viewing Instances Running on a Shared Dedicated Host](#shared-dh-usage)
-+ [Shared Dedicated Host Permissions](#shared-dh-perms)
-+ [Billing and Metering](#shared-dh-billing)
-+ [Dedicated Host Limits](#shared-dh-limits)
-+ [Host Recovery and Dedicated Host Sharing](#dh-sharing-retirement)
++ [Unsharing a shared Dedicated Host](#unsharing-dh)
++ [Identifying a shared Dedicated Host](#identifying-shared-dh)
++ [Viewing instances running on a shared Dedicated Host](#shared-dh-usage)
++ [Shared Dedicated Host permissions](#shared-dh-perms)
++ [Billing and metering](#shared-dh-billing)
++ [Dedicated Host limits](#shared-dh-limits)
++ [Host recovery and Dedicated Host sharing](#dh-sharing-retirement)
 
-## Prerequisites for Sharing Dedicated Hosts<a name="dh-sharing-prereq"></a>
+## Prerequisites for sharing Dedicated Hosts<a name="dh-sharing-prereq"></a>
 + To share a Dedicated Host, you must own it in your AWS account\. You can't share a Dedicated Host that has been shared with you\.
 + To share a Dedicated Host with your AWS organization or an organizational unit in your AWS organization, you must enable sharing with AWS Organizations\. For more information, see [Enable Sharing with AWS Organizations](https://docs.aws.amazon.com/ram/latest/userguide/getting-started-sharing.html) in the *AWS RAM User Guide*\.
 
-## Related Services<a name="dh-sharing-related"></a>
+## Related services<a name="dh-sharing-related"></a>
 
 ### AWS Resource Access Manager<a name="related-ram"></a>
 
@@ -34,7 +34,7 @@ Dedicated Host sharing integrates with AWS Resource Access Manager \(AWS RAM\)\.
 
 For more information about AWS RAM, see the *[AWS RAM User Guide](https://docs.aws.amazon.com/ram/latest/userguide/)*\.
 
-## Sharing Across Availability Zones<a name="dh-sharing-azs"></a>
+## Sharing across Availability Zones<a name="dh-sharing-azs"></a>
 
 To ensure that resources are distributed across the Availability Zones for a Region, we independently map Availability Zones to names for each account\. This could lead to Availability Zone naming differences across accounts\. For example, the Availability Zone `us-east-1a` for your AWS account might not have the same location as `us-east-1a` for another AWS account\.
 
@@ -68,7 +68,7 @@ See [Creating a Resource Share](https://docs.aws.amazon.com/ram/latest/userguide
 **To share a Dedicated Host that you own using the AWS CLI**  
 Use the [create\-resource\-share](https://docs.aws.amazon.com/cli/latest/reference/ram/create-resource-share.html) command\.
 
-## Unsharing a Shared Dedicated Host<a name="unsharing-dh"></a>
+## Unsharing a shared Dedicated Host<a name="unsharing-dh"></a>
 
 The Dedicated Host owner can unshare a shared Dedicated Host at any time\. When you unshare a shared Dedicated Host, the following rules apply:
 + Consumers with whom the Dedicated Host was shared can no longer launch new instances onto it\.
@@ -82,7 +82,7 @@ See [Updating a Resource Share](https://docs.aws.amazon.com/ram/latest/userguide
 **To unshare a shared Dedicated Host that you own using the AWS CLI**  
 Use the [ disassociate\-resource\-share](https://docs.aws.amazon.com/cli/latest/reference/ram/disassociate-resource-share.html) command\.
 
-## Identifying a Shared Dedicated Host<a name="identifying-shared-dh"></a>
+## Identifying a shared Dedicated Host<a name="identifying-shared-dh"></a>
 
 Owners and consumers can identify shared Dedicated Hosts using the Amazon EC2 console and AWS CLI\.
 
@@ -95,7 +95,7 @@ Owners and consumers can identify shared Dedicated Hosts using the Amazon EC2 co
 **To identify a shared Dedicated Host using the AWS CLI**  
 Use the [ describe\-hosts](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-hosts.html) command\. The command returns the Dedicated Hosts that you own and Dedicated Hosts that are shared with you\.
 
-## Viewing Instances Running on a Shared Dedicated Host<a name="shared-dh-usage"></a>
+## Viewing instances running on a shared Dedicated Host<a name="shared-dh-usage"></a>
 
 Owners and consumers can view the instances running on a shared Dedicated Host at any time using the Amazon EC2 console and the AWS CLI\.
 
@@ -110,17 +110,17 @@ Owners and consumers can view the instances running on a shared Dedicated Host a
 **To view the instances running on a shared Dedicated Host using the AWS CLI**  
 Use the [describe\-hosts](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-hosts.html) command\. The command returns the instances running on each Dedicated Host\. Owners see all of the instances running on the host\. Consumers only see running instances that they launched on the shared hosts\. `InstanceOwnerId` shows the AWS account ID of the instance owner\.
 
-## Shared Dedicated Host Permissions<a name="shared-dh-perms"></a>
+## Shared Dedicated Host permissions<a name="shared-dh-perms"></a>
 
-### Permissions for Owners<a name="shared-dh-perms-owner"></a>
+### Permissions for owners<a name="shared-dh-perms-owner"></a>
 
 Owners are responsible for managing their shared Dedicated Hosts and the instances that they launch onto them\. Owners can view all instances running on the shared Dedicated Host, including those launched by consumers\. However, owners can't take any action on running instances that were launched by consumers\.
 
-### Permissions for Consumers<a name="shared-dh-perms-consumer"></a>
+### Permissions for consumers<a name="shared-dh-perms-consumer"></a>
 
 Consumers are responsible for managing the instances that they launch onto a shared Dedicated Host\. Consumers can't modify the shared Dedicated Host in any way, and they can't view or modify instances that were launched by other consumers or the Dedicated Host owner\.
 
-## Billing and Metering<a name="shared-dh-billing"></a>
+## Billing and metering<a name="shared-dh-billing"></a>
 
 There are no additional charges for sharing Dedicated Hosts\.
 
@@ -128,12 +128,12 @@ Owners are billed for Dedicated Hosts that they share\. Consumers are not billed
 
 Dedicated Host Reservations continue to provide billing discounts for shared Dedicated Hosts\. Only Dedicated Host owners can purchase Dedicated Host Reservations for shared Dedicated Hosts that they own\.
 
-## Dedicated Host Limits<a name="shared-dh-limits"></a>
+## Dedicated Host limits<a name="shared-dh-limits"></a>
 
 Shared Dedicated Hosts count towards the owner's Dedicated Hosts limits only\. Consumer's Dedicated Hosts limits are not affected by Dedicated Hosts that have been shared with them\. Similarly, instances that consumers launch onto shared Dedicated Hosts do not count towards their instance limits\.
 
-## Host Recovery and Dedicated Host Sharing<a name="dh-sharing-retirement"></a>
+## Host recovery and Dedicated Host sharing<a name="dh-sharing-retirement"></a>
 
 Host recovery recovers instances launched by the Dedicated Host owner and the consumers with whom it has been shared\. The replacement Dedicated Host is allocated to the owner's account\. It is added to the same resource shares as the original Dedicated Host, and it is shared with the same consumers\.
 
-For more information, see [Host Recovery](dedicated-hosts-recovery.md)\.
+For more information, see [Host recovery](dedicated-hosts-recovery.md)\.

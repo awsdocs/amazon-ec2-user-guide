@@ -119,7 +119,7 @@ The following is a summary of the hardware specifications for accelerated comput
 
 For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
-For more information about specifying CPU options, see [Optimizing CPU Options](instance-optimize-cpu.md)\.
+For more information about specifying CPU options, see [Optimizing CPU options](instance-optimize-cpu.md)\.
 
 ## Instance performance<a name="gpu-instance-performance"></a>
 
@@ -127,7 +127,7 @@ There are several GPU setting optimizations that you can perform to achieve the 
 
 EBS\-optimized instances enable you to get consistently high performance for your EBS volumes by eliminating contention between Amazon EBS I/O and other network traffic from your instance\. Some accelerated computing instances are EBS\-optimized by default at no additional cost\. For more information, see [Amazon EBS–optimized instances](ebs-optimized.md)\.
 
-Some accelerated computing instance types provide the ability to control processor C\-states and P\-states on Linux\. C\-states control the sleep levels that a core can enter when it is inactive, while P\-states control the desired performance \(in CPU frequency\) from a core\. For more information, see [Processor State Control for Your EC2 Instance](processor_state_control.md)\.
+Some accelerated computing instance types provide the ability to control processor C\-states and P\-states on Linux\. C\-states control the sleep levels that a core can enter when it is inactive, while P\-states control the desired performance \(in CPU frequency\) from a core\. For more information, see [Processor state control for your EC2 instance](processor_state_control.md)\.
 
 ## Network performance<a name="gpu-network-performance"></a>
 
@@ -138,12 +138,12 @@ The following is a summary of network performance for accelerated computing inst
 
 | Instance type | Network performance | Enhanced networking | 
 | --- | --- | --- | 
-|  `f1.2xlarge` \| `f1.4xlarge` \| `g3.4xlarge` \| `p3.2xlarge`  |  Up to 10 Gbps †  |  [ENA](enhanced-networking-ena.md)  | 
-|  `g3s.xlarge` \| `g3.8xlarge` \| `p2.8xlarge` \| `p3.8xlarge`  |  10 Gbps  |  [ENA](enhanced-networking-ena.md)  | 
-|  `g4dn.xlarge` \| `g4dn.2xlarge` \| `g4dn.4xlarge` \| `inf1.xlarge` \| `inf1.2xlarge`  |  Up to 25 Gbps †  |  [ENA](enhanced-networking-ena.md)  | 
-|  `f1.16xlarge` \| `g3.16xlarge` \| `inf1.6xlarge` \| `p2.16xlarge` \| `p3.16xlarge`  |  25 Gbps  |  [ENA](enhanced-networking-ena.md)  | 
-|  `g4dn.8xlarge` \| `g4dn.12xlarge` \| `g4dn.16xlarge`  |  50 Gbps  |  [ENA](enhanced-networking-ena.md)  | 
-| `inf1.24xlarge` \| `p3dn.24xlarge` | 100 Gbps |  [ENA](enhanced-networking-ena.md)  | 
+|  f1\.2xlarge \| f1\.4xlarge \| g3\.4xlarge \| p3\.2xlarge  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
+|  g3s\.xlarge \| g3\.8xlarge \| p2\.8xlarge \| p3\.8xlarge  | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  g4dn\.xlarge \| g4dn\.2xlarge \| g4dn\.4xlarge \| inf1\.xlarge \| inf1\.2xlarge  | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
+|  f1\.16xlarge \| g3\.16xlarge \| inf1\.6xlarge \| p2\.16xlarge \| p3\.16xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  g4dn\.8xlarge \| g4dn\.12xlarge \| g4dn\.16xlarge  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
+| inf1\.24xlarge \| p3dn\.24xlarge | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
 
 † These instances use a network I/O credit mechanism to allocate network bandwidth to instances based on average bandwidth utilization\. They accrue credits when their bandwidth is below their baseline bandwidth, and can use these credits when they perform network data transfers\. For more information, open a support case and ask about baseline bandwidth for the specific instance types that you are interested in\.
 
@@ -159,7 +159,7 @@ The following is a summary of features for accelerated computing instances\.
 | G4 | No | Yes | NVMe \* | Yes | 
 | Inf1 | Yes | No | No | Yes | 
 | P2 | Yes | No | No | Yes | 
-| P3 |  `p3dn.24xlarge`: No All other sizes: Yes  |  `p3dn.24xlarge`: Yes All other sizes: No  | `p3dn.24xlarge`: NVMe \* | Yes | 
+| P3 |  p3dn\.24xlarge: No All other sizes: Yes  |  p3dn\.24xlarge: Yes All other sizes: No  | p3dn\.24xlarge: NVMe \* | Yes | 
 | F1 | No | No | NVMe \* | Yes | 
 
 **\*** The root device volume must be an Amazon EBS volume\.

@@ -2,7 +2,7 @@
 
 You can use the following features to monitor the performance of your Elastic Fabric Adapters\.
 
-## Amazon VPC Flow Logs<a name="efa-flowlog"></a>
+## Amazon VPC flow logs<a name="efa-flowlog"></a>
 
 You can create an Amazon VPC Flow Log to capture information about the traffic going to and from an EFA\. Flow log data can be published to Amazon CloudWatch Logs and Amazon S3\. After you create a flow log, you can retrieve and view its data in the chosen destination\. For more information, see [VPC Flow Logs](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html) in the *Amazon VPC User Guide*\.
 

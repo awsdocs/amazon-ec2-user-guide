@@ -56,7 +56,7 @@ When you start your hibernated instance, it enters the `pending` state, and in m
 
 Your instance retains its private IPv4 address, which means that an Elastic IP address associated with the private IPv4 address or network interface is still associated with your instance\. If your instance has an IPv6 address, it retains its IPv6 address\.
 
-For more information, see [Hibernate Your Linux Instance](Hibernate.md)\.
+For more information, see [Hibernate your Linux instance](Hibernate.md)\.
 
 ## Instance Reboot<a name="instance-reboot"></a>
 

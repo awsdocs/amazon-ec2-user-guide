@@ -82,7 +82,7 @@ After a Spot Instance is hibernated by the Spot service, it can only be resumed 
 
 For more information, see [Preparing for instance hibernation](#prepare-for-instance-hibernation)\.
 
-For information about hibernating On\-Demand Instances, see [Hibernate Your Linux Instance](Hibernate.md)\.
+For information about hibernating On\-Demand Instances, see [Hibernate your Linux instance](Hibernate.md)\.
 
 ## Preparing for interruptions<a name="using-spot-instances-managing-interruptions"></a>
 

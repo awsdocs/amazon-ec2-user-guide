@@ -98,7 +98,7 @@ You can view the current versions of these packages with the following command:
       22        tcp          0.0.0.0/0          ✔
       ```
 
-      Using the procedures in [Adding Rules to a Security Group](ec2-security-groups.md#adding-security-group-rule), add a new inbound security rule with the following values:
+      Using the procedures in [Adding Rules to a Security Group](working-with-security-groups.md#adding-security-group-rule), add a new inbound security rule with the following values:
       + **Type**: HTTP
       + **Protocol**: TCP
       + **Port Range**: 80
@@ -106,7 +106,7 @@ You can view the current versions of these packages with the following command:
 
 1. Test your web server\. In a web browser, type the public DNS address \(or the public IP address\) of your instance\. If there is no content in `/var/www/html`, you should see the Apache test page\. You can get the public DNS for your instance using the Amazon EC2 console \(check the **Public DNS** column; if this column is hidden, choose **Show/Hide Columns** \(the gear\-shaped icon\) and choose **Public DNS**\)\.
 
-   If you are unable to see the Apache test page, check that the security group you are using contains a rule to allow HTTP \(port 80\) traffic\. For information about adding an HTTP rule to your security group, see [Adding Rules to a Security Group](ec2-security-groups.md#adding-security-group-rule)\.
+   If you are unable to see the Apache test page, check that the security group you are using contains a rule to allow HTTP \(port 80\) traffic\. For information about adding an HTTP rule to your security group, see [Adding Rules to a Security Group](working-with-security-groups.md#adding-security-group-rule)\.
 **Important**  
 If you are not using Amazon Linux, you may also need to configure the firewall on your instance to allow these connections\. For more information about how to configure the firewall, see the documentation for your specific distribution\.  
 ![\[Apache test page\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/apache_test_page_al2_2.4.png)
@@ -337,7 +337,7 @@ Perform the following checks to see if your Apache web server is running and acc
   If the httpd process is not running, repeat the steps described in [To prepare the LAMP server](#install_apache-2)\.
 + **Is the firewall correctly configured?**
 
-  If you are unable to see the Apache test page, check that the security group you are using contains a rule to allow HTTP \(port 80\) traffic\. For information about adding an HTTP rule to your security group, see [Adding Rules to a Security Group](ec2-security-groups.md#adding-security-group-rule)\.
+  If you are unable to see the Apache test page, check that the security group you are using contains a rule to allow HTTP \(port 80\) traffic\. For information about adding an HTTP rule to your security group, see [Adding Rules to a Security Group](working-with-security-groups.md#adding-security-group-rule)\.
 
 ## Related Topics<a name="lamp-more-info"></a>
 

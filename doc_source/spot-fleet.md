@@ -56,7 +56,7 @@ For On\-Demand Instance target capacity, Spot Fleet always selects the least exp
 
 To create a fleet of Spot Instances that is both cheap and diversified, use the `lowestPrice` allocation strategy in combination with `InstancePoolsToUseCount`\. Spot Fleet automatically deploys the cheapest combination of instance types and Availability Zones based on the current Spot price across the number of Spot pools that you specify\. This combination can be used to avoid the most expensive Spot Instances\.
 
-### Configuring Spot Fleet for capacity optimization<a name="spot-fleet-strategy-capacity-optimized.title"></a>
+### Configuring Spot Fleet for capacity optimization<a name="spot-fleet-strategy-capacity-optimized"></a>
 
 With Spot Instances, pricing changes slowly over time based on long\-term trends in supply and demand, but capacity fluctuates in real time\. The `capacityOptimized` strategy automatically launches Spot Instances into the most available pools by looking at real\-time capacity data and predicting which are the most available\. This works well for workloads such as big data and analytics, image and media rendering, machine learning, and high performance computing that may have a higher cost of interruption associated with restarting work and checkpointing\. By offering the possibility of fewer interruptions, the `capacityOptimized` strategy can lower the overall cost of your workload\.
 

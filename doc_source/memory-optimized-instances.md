@@ -144,7 +144,7 @@ The following is a summary of the hardware specifications for memory optimized i
 
 For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
-For more information about specifying CPU options, see [Optimizing CPU Options](instance-optimize-cpu.md)\.
+For more information about specifying CPU options, see [Optimizing CPU options](instance-optimize-cpu.md)\.
 
 ## Memory performance<a name="memory-perf"></a>
 
@@ -166,7 +166,7 @@ High Memory instances with 18 TB and 24 TB of memory \(`u-18tb1.metal` and `u-24
 
 Memory optimized instances enable increased cryptographic performance through the latest Intel AES\-NI feature, support Intel Transactional Synchronization Extensions \(TSX\) to boost the performance of in\-memory transactional data processing, and support Advanced Vector Extensions 2 \(Intel AVX2\) processor instructions to expand most integer commands to 256 bits\.
 
-Some memory optimized instances provide the ability to control processor C\-states and P\-states on Linux\. C\-states control the sleep levels that a core can enter when it is inactive, while P\-states control the desired performance \(measured by CPU frequency\) from a core\. For more information, see [Processor State Control for Your EC2 Instance](processor_state_control.md)\.
+Some memory optimized instances provide the ability to control processor C\-states and P\-states on Linux\. C\-states control the sleep levels that a core can enter when it is inactive, while P\-states control the desired performance \(measured by CPU frequency\) from a core\. For more information, see [Processor state control for your EC2 instance](processor_state_control.md)\.
 
 ## Network performance<a name="memory-network-perf"></a>
 
@@ -177,15 +177,15 @@ The following is a summary of network performance for memory optimized instances
 
 | Instance type | Network performance | Enhanced networking | 
 | --- | --- | --- | 
-|  `r4.4xlarge` and smaller \| `r5.4xlarge` and smaller \| `r5a.8xlarge` and smaller \| `r5ad.4xlarge` and smaller \|  `r5d.4xlarge` and smaller \| `x1e.8large` and smaller \| `z1d.3xlarge` and smaller  |  Up to 10 Gbps †  | [ENA](enhanced-networking-ena.md) | 
-|  `r4.8xlarge` \| `r5.8xlarge` \| `r5.12xlarge` \| `r5a.12xlarge` \| `r5ad.12xlarge` \| `r5d.8xlarge` \| `r5d.12xlarge` \| `x1.16xlarge` \| `x1e.16xlarge` \| `z1d.6xlarge`  |  10 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  `r5a.16xlarge` \| `r5ad.16xlarge`   |  12 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  `r5.16xlarge` \| `r5a.24xlarge` \| `r5ad.24xlarge` \| `r5d.16xlarge`   |  20 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  `r5dn.4xlarge` and smaller \| `r5n.4xlarge` and smaller  |  Up to 25 Gbps †  | [ENA](enhanced-networking-ena.md) | 
-|  `r4.16xlarge` \| `r5.24xlarge` \| `r5.metal` \| `r5d.24xlarge` \| `r5d.metal` \| `r5dn.8xlarge` \| `r5n.8xlarge` \| `u-6tb1.metal` \| `u-9tb1.metal` \| `u-12tb1.metal` \| `x1.32xlarge` \| `x1e.32xlarge` \| `z1d.12xlarge` \| `z1d.metal`  |  25 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  r5dn\.12xlarge \| r5n\.12xlarge  |  50 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  r5dn\.16xlarge \| r5n\.16xlarge  |  75 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  r5dn\.24xlarge \| r5n\.24xlarge \| u\-18tb1\.metal \| u\-24tb1\.metal  |  100 Gbps  | [ENA](enhanced-networking-ena.md) | 
+|  r4\.4xlarge and smaller \| r5\.4xlarge and smaller \| r5a\.8xlarge and smaller \| r5ad\.4xlarge and smaller \|  r5d\.4xlarge and smaller \| x1e\.8large and smaller \| z1d\.3xlarge and smaller  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
+|  r4\.8xlarge \| r5\.8xlarge \| r5\.12xlarge \| r5a\.12xlarge \| r5ad\.12xlarge \| r5d\.8xlarge \| r5d\.12xlarge \| x1\.16xlarge \| x1e\.16xlarge \| z1d\.6xlarge  | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  r5a\.16xlarge \| r5ad\.16xlarge  | 12 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  r5\.16xlarge \| r5a\.24xlarge \| r5ad\.24xlarge \| r5d\.16xlarge  | 20 Gbps | [ENA](enhanced-networking-ena.md) | 
+| r5dn\.4xlarge and smaller \| r5n\.4xlarge and smaller | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
+|  r4\.16xlarge \| r5\.24xlarge \| r5\.metal \| r5d\.24xlarge \| r5d\.metal \| r5dn\.8xlarge \| r5n\.8xlarge \| u\-6tb1\.metal \| u\-9tb1\.metal \| u\-12tb1\.metal \| x1\.32xlarge \| x1e\.32xlarge \| z1d\.12xlarge \| z1d\.metal  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
+| r5dn\.12xlarge \| r5n\.12xlarge | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
+| r5dn\.16xlarge \| r5n\.16xlarge | 75 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  r5dn\.24xlarge \| r5n\.24xlarge \| u\-18tb1\.metal \| u\-24tb1\.metal  | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
 
 † These instances use a network I/O credit mechanism to allocate network bandwidth to instances based on average bandwidth utilization\. They accrue credits when their bandwidth is below their baseline bandwidth, and can use these credits when they perform network data transfers\. For more information, open a support case and ask about baseline bandwidth for the specific instance types that you are interested in\.
 
@@ -196,36 +196,36 @@ If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-ba
 
 | Instance Size | 100% Random Read IOPS | Write IOPS | 
 | --- | --- | --- | 
-|  `r5ad.large` \*  |  30,000  |  15,000  | 
-|  `r5ad.xlarge` \*  |  59,000  |  29,000  | 
-|  `r5ad.2xlarge` \*  |  117,000  |  57,000  | 
-|  `r5ad.4xlarge` \*  |  234,000  |  114,000  | 
-|  `r5ad.12xlarge`  |  700,000  |  340,000  | 
-|  `r5ad.24xlarge`  |  1,400,000  |  680,000  | 
-|  `r5d.large` \*  |  30,000  |  15,000  | 
-|  `r5d.xlarge` \*  |  59,000  |  29,000  | 
-|  `r5d.2xlarge` \*  |  117,000  |  57,000  | 
-|  `r5d.4xlarge` \*  |  234,000  |  114,000  | 
-|  `r5d.8xlarge`  |  466,666  |  233,333  | 
-|  `r5d.12xlarge`  |  700,000  |  340,000  | 
-|  `r5d.16xlarge`  |  933,333  |  466,666  | 
-|  `r5d.24xlarge`  |  1,400,000  |  680,000  | 
-|  `r5d.metal`  |  1,400,000  |  680,000  | 
-|  `r5dn.large` \*  |  30,000  |  15,000  | 
-|  `r5dn.xlarge` \*  |  59,000  |  29,000  | 
-|  `r5dn.2xlarge` \*  |  117,000  |  57,000  | 
-|  `r5dn.4xlarge` \*  |  234,000  |  114,000  | 
-|  `r5dn.8xlarge`  |  466,666  |  233,333  | 
-|  `r5dn.12xlarge`  |  700,000  |  340,000  | 
-|  `r5dn.16xlarge`  |  933,333  |  466,666  | 
-|  `r5dn.24xlarge`  |  1,400,000  |  680,000  | 
-|  `z1d.large` \*  |  30,000  |  15,000  | 
-|  `z1d.xlarge` \*  |  59,000  |  29,000  | 
-|  `z1d.2xlarge` \*  |  117,000  |  57,000  | 
-|  `z1d.3xlarge` \*  |  175,000  |  75,000  | 
-|  `z1d.6xlarge`  |  350,000  |  170,000  | 
-|  `z1d.12xlarge`  |  700,000  |  340,000  | 
-|  `z1d.metal`  |  700,000  |  340,000  | 
+| r5ad\.large \* | 30,000 | 15,000 | 
+| r5ad\.xlarge \* | 59,000 | 29,000 | 
+| r5ad\.2xlarge \*  | 117,000 | 57,000 | 
+| r5ad\.4xlarge \* | 234,000 | 114,000 | 
+| r5ad\.12xlarge | 700,000 | 340,000 | 
+| r5ad\.24xlarge | 1,400,000 | 680,000 | 
+| r5d\.large \* | 30,000 | 15,000 | 
+| r5d\.xlarge \* | 59,000 | 29,000 | 
+| r5d\.2xlarge \* | 117,000 | 57,000 | 
+| r5d\.4xlarge \* | 234,000 | 114,000 | 
+| r5d\.8xlarge | 466,666 | 233,333 | 
+| r5d\.12xlarge | 700,000 | 340,000 | 
+| r5d\.16xlarge  | 933,333 | 466,666 | 
+| r5d\.24xlarge | 1,400,000 | 680,000 | 
+| r5d\.metal | 1,400,000 | 680,000 | 
+| r5dn\.large \* | 30,000 | 15,000 | 
+| r5dn\.xlarge \* | 59,000 | 29,000 | 
+| r5dn\.2xlarge \* | 117,000 | 57,000 | 
+| r5dn\.4xlarge \* | 234,000 | 114,000 | 
+| r5dn\.8xlarge | 466,666 | 233,333 | 
+| r5dn\.12xlarge | 700,000 | 340,000 | 
+| r5dn\.16xlarge | 933,333 | 466,666 | 
+| r5dn\.24xlarge | 1,400,000 | 680,000 | 
+| z1d\.large \* | 30,000 | 15,000 | 
+| z1d\.xlarge \* | 59,000 | 29,000 | 
+| z1d\.2xlarge \* | 117,000 | 57,000 | 
+| z1d\.3xlarge \* | 175,000 | 75,000 | 
+| z1d\.6xlarge | 350,000 | 170,000 | 
+| z1d\.12xlarge | 700,000 | 340,000 | 
+| z1d\.metal | 700,000 | 340,000 | 
 
 \* For these instances, you can get up to the specified performance\.
 
@@ -249,11 +249,11 @@ The following is a summary of features for memory optimized instances\.
 | R5d | No | Yes | NVME \* | Yes | 
 | R5dn | No | Yes | NVME \* | Yes | 
 | R5n | Yes | Yes | No | Yes | 
-| `u-6tb1.metal` | Yes | Yes | No | No | 
-| `u-9tb1.metal` | Yes | Yes | No | No | 
-| `u-12tb1.metal` | Yes | Yes | No | No | 
-| `u-18tb1.metal` | Yes | Yes | No | No | 
-| `u-24tb1.metal` | Yes | Yes | No | No | 
+| u\-6tb1\.metal | Yes | Yes | No | No | 
+| u\-9tb1\.metal | Yes | Yes | No | No | 
+| u\-12tb1\.metal | Yes | Yes | No | No | 
+| u\-18tb1\.metal | Yes | Yes | No | No | 
+| u\-24tb1\.metal | Yes | Yes | No | No | 
 | X1 | No | No | SSD | Yes | 
 | X1e | No | No | SSD \* | Yes | 
 | z1d | No | Yes | NVME \* | Yes | 

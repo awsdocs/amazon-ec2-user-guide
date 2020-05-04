@@ -1,23 +1,23 @@
-# Using a Base AMI<a name="efa-start-nccl-base"></a>
+# Using a base AMI<a name="efa-start-nccl-base"></a>
 
 The following steps help you to get started with one of the following base AMIs: Amazon Linux, Amazon Linux 2, RHEL 7\.6, RHEL 7\.7, CentOS 7, Ubuntu 16\.04, and Ubuntu 18\.04\.
 
 **Topics**
-+ [Step 1: Prepare an EFA\-Enabled Security Group](#nccl-start-base-setup)
-+ [Step 2: Launch a Temporary Instance](#nccl-start-base-temp)
-+ [Step 3: Install the EFA Software](#nccl-start-base-enable)
-+ [Step 4: Install Nvidia GPU Drivers and the Nvidia CUDA Toolkit](#nccl-start-base-drivers)
++ [Step 1: Prepare an EFA\-enabled security group](#nccl-start-base-setup)
++ [Step 2: Launch a temporary instance](#nccl-start-base-temp)
++ [Step 3: Install the EFA software](#nccl-start-base-enable)
++ [Step 4: Install Nvidia GPU drivers and the Nvidia CUDA toolkit](#nccl-start-base-drivers)
 + [Step 5: Install NCCL](#nccl-start-base-nccl)
-+ [Step 6: Install the aws\-ofi\-nccl Plugin](#nccl-start-base-plugin)
-+ [Step 7: Install the NCCL Tests](#nccl-start-base-tests)
-+ [Step 8: Test Your EFA and NCCL Configuration](#nccl-start-base-test)
-+ [Step 9: Install Your Machine Learning Applications](#nccl-start-base-app)
-+ [Step 10: Create an EFA and NCCL\-Enabled AMI](#nccl-start-base-ami)
-+ [Step 11: Terminate the Temporary Instance](#nccl-start-base-terminate)
-+ [Step 12: Launch EFA and NCCL\-Enabled Instances into a Cluster Placement Group](#nccl-start-base-cluster)
-+ [Step 13: Enable Passwordless SSH](#nccl-start-base-passwordless)
++ [Step 6: Install the aws\-ofi\-nccl plugin](#nccl-start-base-plugin)
++ [Step 7: Install the NCCL tests](#nccl-start-base-tests)
++ [Step 8: Test your EFA and NCCL configuration](#nccl-start-base-test)
++ [Step 9: Install your machine learning applications](#nccl-start-base-app)
++ [Step 10: Create an EFA and NCCL\-enabled AMI](#nccl-start-base-ami)
++ [Step 11: Terminate the temporary instance](#nccl-start-base-terminate)
++ [Step 12: Launch EFA and NCCL\-enabled instances into a cluster placement group](#nccl-start-base-cluster)
++ [Step 13: Enable passwordless SSH](#nccl-start-base-passwordless)
 
-## Step 1: Prepare an EFA\-Enabled Security Group<a name="nccl-start-base-setup"></a>
+## Step 1: Prepare an EFA\-enabled security group<a name="nccl-start-base-setup"></a>
 
 An EFA requires a security group that allows all inbound and outbound traffic to and from the security group itself\.
 
@@ -51,7 +51,7 @@ An EFA requires a security group that allows all inbound and outbound traffic to
 
    1. Choose **Save**\.
 
-## Step 2: Launch a Temporary Instance<a name="nccl-start-base-temp"></a>
+## Step 2: Launch a temporary instance<a name="nccl-start-base-temp"></a>
 
 Launch a temporary instance that you can use to install and configure the EFA software components\. You use this instance to create an EFA\-enabled AMI from which you can launch your EFA\-enabled instances\.
 
@@ -81,7 +81,7 @@ Launch a temporary instance that you can use to install and configure the EFA so
 
 1. On the **Review Instance Launch** page, review the settings, and then choose **Launch** to choose a key pair and to launch your instance\.
 
-## Step 3: Install the EFA Software<a name="nccl-start-base-enable"></a>
+## Step 3: Install the EFA software<a name="nccl-start-base-enable"></a>
 
 Install the EFA\-enabled kernel, EFA drivers, Libfabric, and Open MPI stack that is required to support EFA on your temporary instance\.
 
@@ -162,7 +162,7 @@ Install the EFA\-enabled kernel, EFA drivers, Libfabric, and Open MPI stack that
        protocol: FI_PROTO_RXD
    ```
 
-## Step 4: Install Nvidia GPU Drivers and the Nvidia CUDA Toolkit<a name="nccl-start-base-drivers"></a>
+## Step 4: Install Nvidia GPU drivers and the Nvidia CUDA toolkit<a name="nccl-start-base-drivers"></a>
 
 **To install the Nvidia GPU Drivers and the Nvidia CUDA toolkit**
 
@@ -288,7 +288,7 @@ Install NCCL\. For more information about NCCL, see the [NCCL repository](https:
    $ make -j src.build
    ```
 
-## Step 6: Install the aws\-ofi\-nccl Plugin<a name="nccl-start-base-plugin"></a>
+## Step 6: Install the aws\-ofi\-nccl plugin<a name="nccl-start-base-plugin"></a>
 
 The aws\-ofi\-nccl plugin maps NCCL's connection\-oriented transport APIs to Libfabric's connection\-less reliable interface\. This enables you to use Libfabric as a network provider while running NCCL\-based applications\. For more information about the aws\-ofi\-nccl plugin, see the [aws\-ofi\-nccl repository](https://github.com/aws/aws-ofi-nccl)\.
 
@@ -344,7 +344,7 @@ The aws\-ofi\-nccl plugin maps NCCL's connection\-oriented transport APIs to Lib
    $ sudo make install
    ```
 
-## Step 7: Install the NCCL Tests<a name="nccl-start-base-tests"></a>
+## Step 7: Install the NCCL tests<a name="nccl-start-base-tests"></a>
 
 Install the NCCL tests\. The NCCL tests enable you to confirm that NCCL is properly installed and that it is operating as expected\. For more information about the NCCL tests, see the [nccl\-tests repository](https://github.com/NVIDIA/nccl-tests)\.
 
@@ -390,7 +390,7 @@ Install the NCCL tests\. The NCCL tests enable you to confirm that NCCL is prope
    $ make MPI=1 MPI_HOME=/opt/amazon/openmpi NCCL_HOME=$HOME/nccl/build CUDA_HOME=/usr/local/cuda-10.1
    ```
 
-## Step 8: Test Your EFA and NCCL Configuration<a name="nccl-start-base-test"></a>
+## Step 8: Test your EFA and NCCL configuration<a name="nccl-start-base-test"></a>
 
 Run a test to ensure that your temporary instance is properly configured for EFA and NCCL\. 
 
@@ -449,14 +449,14 @@ Run a test to ensure that your temporary instance is properly configured for EFA
      	$HOME/nccl-tests/build/all_reduce_perf -b 8 -e 1G -f 2 -g 1 -c 1 -n 100
      ```
 
-## Step 9: Install Your Machine Learning Applications<a name="nccl-start-base-app"></a>
+## Step 9: Install your machine learning applications<a name="nccl-start-base-app"></a>
 
 Install the machine learning applications on the temporary instance\. The installation procedure varies depending on the specific machine learning application\. For more information about installing software on your Linux instance, see [Managing Software on Your Linux Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/managing-software.html)\.
 
 **Note**  
 You might need to refer to your machine learning application’s documentation for installation instructions\.
 
-## Step 10: Create an EFA and NCCL\-Enabled AMI<a name="nccl-start-base-ami"></a>
+## Step 10: Create an EFA and NCCL\-enabled AMI<a name="nccl-start-base-ami"></a>
 
 After you have installed the required software components, you create an AMI that you can reuse to launch your EFA\-enabled instances\.
 
@@ -480,7 +480,7 @@ After you have installed the required software components, you create an AMI tha
 
 1. Locate the AMI you created in the list\. Wait for the Status to transition from `pending` to `available` before continuing to the next step\.
 
-## Step 11: Terminate the Temporary Instance<a name="nccl-start-base-terminate"></a>
+## Step 11: Terminate the temporary instance<a name="nccl-start-base-terminate"></a>
 
 At this point, you no longer need the temporary instance that you launched in **Step 1**\. You can terminate the instance to stop incurring charges for it\.
 
@@ -492,7 +492,7 @@ At this point, you no longer need the temporary instance that you launched in **
 
 1. Select the temporary instance that you created in **Step 1** and then choose **Actions**, **Instance State**, **Terminate**, **Yes, Terminate**\.
 
-## Step 12: Launch EFA and NCCL\-Enabled Instances into a Cluster Placement Group<a name="nccl-start-base-cluster"></a>
+## Step 12: Launch EFA and NCCL\-enabled instances into a cluster placement group<a name="nccl-start-base-cluster"></a>
 
 Launch your EFA and NCCL\-enabled instances into a cluster placement group using the EFA\-enabled AMI and the EFA\-enabled security group that you created earlier\.
 
@@ -532,7 +532,7 @@ Launch your EFA and NCCL\-enabled instances into a cluster placement group using
 
 1. On the **Review Instance Launch** page, review the settings, and then choose **Launch** to choose a key pair and to launch your instances\.
 
-## Step 13: Enable Passwordless SSH<a name="nccl-start-base-passwordless"></a>
+## Step 13: Enable passwordless SSH<a name="nccl-start-base-passwordless"></a>
 
 To enable your applications to run across all of the instances in your cluster, you must enable passwordless SSH access from the leader node to the member nodes\. The leader node is the instance from which you run your applications\. The remaining instances in the cluster are the member nodes\.
 

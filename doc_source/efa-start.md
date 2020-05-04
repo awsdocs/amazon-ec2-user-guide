@@ -1,20 +1,20 @@
-# Getting Started with EFA and MPI<a name="efa-start"></a>
+# Getting started with EFA and MPI<a name="efa-start"></a>
 
 This tutorial helps you to launch an EFA and MPI\-enabled instance cluster for HPC workloads\. In this tutorial, you will perform the following steps:
 
 **Topics**
-+ [Step 1: Prepare an EFA\-Enabled Security Group](#efa-start-security)
-+ [Step 2: Launch a Temporary Instance](#efa-start-tempinstance)
-+ [Step 3: Install the EFA Software](#efa-start-enable)
-+ [Step 4: Disable Ptrace Protection](#efa-start-ptrace)
++ [Step 1: Prepare an EFA\-enabled security group](#efa-start-security)
++ [Step 2: Launch a temporary instance](#efa-start-tempinstance)
++ [Step 3: Install the EFA software](#efa-start-enable)
++ [Step 4: Disable ptrace protection](#efa-start-ptrace)
 + [Step 5: \(Optional\) Install Intel MPI](#efa-start-impi)
-+ [Step 6: Install Your HPC Application](#efa-start-hpc-app)
-+ [Step 7: Create an EFA\-Enabled AMI](#efa-start-ami)
-+ [Step 8: Launch EFA\-Enabled Instances into a Cluster Placement Group](#efa-start-instances)
-+ [Step 9: Terminate the Temporary Instance](#efa-start-terminate)
-+ [Step 10: Enable Passwordless SSH](#efa-start-passwordless)
++ [Step 6: Install your HPC application](#efa-start-hpc-app)
++ [Step 7: Create an EFA\-enabled AMI](#efa-start-ami)
++ [Step 8: Launch EFA\-enabled instances into a cluster placement group](#efa-start-instances)
++ [Step 9: Terminate the temporary instance](#efa-start-terminate)
++ [Step 10: Enable passwordless SSH](#efa-start-passwordless)
 
-## Step 1: Prepare an EFA\-Enabled Security Group<a name="efa-start-security"></a>
+## Step 1: Prepare an EFA\-enabled security group<a name="efa-start-security"></a>
 
 An EFA requires a security group that allows all inbound and outbound traffic to and from the security group itself\.
 
@@ -48,7 +48,7 @@ An EFA requires a security group that allows all inbound and outbound traffic to
 
    1. Choose **Save**\.
 
-## Step 2: Launch a Temporary Instance<a name="efa-start-tempinstance"></a>
+## Step 2: Launch a temporary instance<a name="efa-start-tempinstance"></a>
 
 Launch a temporary instance that you can use to install and configure the EFA software components\. You use this instance to create an EFA\-enabled AMI from which you can launch your EFA\-enabled instances\.
 
@@ -78,7 +78,7 @@ Launch a temporary instance that you can use to install and configure the EFA so
 
 1. On the **Review Instance Launch** page, review the settings, and then choose **Launch** to choose a key pair and to launch your instance\.
 
-## Step 3: Install the EFA Software<a name="efa-start-enable"></a>
+## Step 3: Install the EFA software<a name="efa-start-enable"></a>
 
 Install the EFA\-enabled kernel, EFA drivers, Libfabric, and Open MPI stack that is required to support EFA on your temporary instance\.
 
@@ -171,7 +171,7 @@ The steps differ depending on whether you intend to use EFA with Open MPI or wit
        protocol: FI_PROTO_RXD
    ```
 
-## Step 4: Disable Ptrace Protection<a name="efa-start-ptrace"></a>
+## Step 4: Disable ptrace protection<a name="efa-start-ptrace"></a>
 
 To improve your HPC application's performance, Libfabric uses the instance's local memory for interprocess communications when the processes are running on the same instance\. 
 
@@ -252,14 +252,14 @@ Ensure that the user performing the following steps has sudo permissions\.
 **Note**  
 If you no longer want to use Intel MPI, remove the environment variables from the shell startup scripts\.
 
-## Step 6: Install Your HPC Application<a name="efa-start-hpc-app"></a>
+## Step 6: Install your HPC application<a name="efa-start-hpc-app"></a>
 
 Install the HPC application on the temporary instance\. The installation procedure varies depending on the specific HPC application\. For more information about installing software on your Linux instance, see [Managing Software on Your Linux Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/managing-software.html)\.
 
 **Note**  
 You might need to refer to your HPC application’s documentation for installation instructions\.
 
-## Step 7: Create an EFA\-Enabled AMI<a name="efa-start-ami"></a>
+## Step 7: Create an EFA\-enabled AMI<a name="efa-start-ami"></a>
 
 After you have installed the required software components, you create an AMI that you can reuse to launch your EFA\-enabled instances\.
 
@@ -283,7 +283,7 @@ After you have installed the required software components, you create an AMI tha
 
 1. Locate the AMI you created in the list\. Wait for the Status to transition from `pending` to `available` before continuing to the next step\.
 
-## Step 8: Launch EFA\-Enabled Instances into a Cluster Placement Group<a name="efa-start-instances"></a>
+## Step 8: Launch EFA\-enabled instances into a cluster placement group<a name="efa-start-instances"></a>
 
 Launch your EFA\-enabled instances into a cluster placement group using the EFA\-enabled AMI that you created in **Step 6**, and the EFA\-enabled security group that you created in **Step 1**\.
 
@@ -326,7 +326,7 @@ It is not an absolute requirement to launch your EFA\-enabled instances into a c
 
 1. On the **Review Instance Launch** page, review the settings, and then choose **Launch** to choose a key pair and to launch your instances\.
 
-## Step 9: Terminate the Temporary Instance<a name="efa-start-terminate"></a>
+## Step 9: Terminate the temporary instance<a name="efa-start-terminate"></a>
 
 At this point, you no longer need the temporary instance that you launched in **Step 1**\. You can terminate the instance to stop incurring charges for it\.
 
@@ -338,7 +338,7 @@ At this point, you no longer need the temporary instance that you launched in **
 
 1. Select the temporary instance that you created in **Step 1** and then choose **Actions**, **Instance State**, **Terminate**, **Yes, Terminate**\.
 
-## Step 10: Enable Passwordless SSH<a name="efa-start-passwordless"></a>
+## Step 10: Enable passwordless SSH<a name="efa-start-passwordless"></a>
 
 To enable your applications to run across all of the instances in your cluster, you must enable passwordless SSH access from the leader node to the member nodes\. The leader node is the instance from which you run your applications\. The remaining instances in the cluster are the member nodes\.
 

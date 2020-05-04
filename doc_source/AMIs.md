@@ -15,7 +15,7 @@ The following diagram summarizes the AMI lifecycle\. After you create and regist
 
 You can search for an AMI that meets the criteria for your instance\. You can search for AMIs provided by AWS or AMIs provided by the community\. For more information, see [AMI types](ComponentsAMIs.md) and [Finding a Linux AMI](finding-an-ami.md)\.
 
-After you launch an instance from an AMI, you can connect to it\. When you are connected to an instance, you can use it just like you use any other server\. For information about launching, connecting, and using your instance, see [Amazon EC2 Instances](Instances.md)\.
+After you launch an instance from an AMI, you can connect to it\. When you are connected to an instance, you can use it just like you use any other server\. For information about launching, connecting, and using your instance, see [Amazon EC2 instances](Instances.md)\.
 
 ## Creating your own AMI<a name="creating-an-ami"></a>
 

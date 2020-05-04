@@ -3,8 +3,7 @@
 You can bring part or all of your public IPv4 address range from your on\-premises network to your AWS account\. You continue to own the address range, but AWS advertises it on the internet\. After you bring the address range to AWS, it appears in your account as an address pool\. You can create an Elastic IP address from your address pool and use it with your AWS resources, such as EC2 instances, NAT gateways, and Network Load Balancers\.
 
 **Important**  
-BYOIP is not available in all Regions\. For a list of supported Regions, see the [FAQ for Bring Your Own IP](https://aws.amazon.com/vpc/faqs/#Bring_Your_Own_IP)\.  
-BYOIP for IPv6 is currently a limited preview only\.
+BYOIP is not available in all Regions\. For a list of supported Regions, see the [FAQ for Bring Your Own IP](https://aws.amazon.com/vpc/faqs/#Bring_Your_Own_IP)\.
 
 ## Requirements<a name="byoip-requirements"></a>
 + The address range must be registered with your Regional internet registry \(RIR\), such as the American Registry for Internet Numbers \(ARIN\), Réseaux IP Européens Network Coordination Centre \(RIPE\), or Asia\-Pacific Network Information Centre \(APNIC\)\. It must be registered to a business or institutional entity and can not be registered to an individual person\.

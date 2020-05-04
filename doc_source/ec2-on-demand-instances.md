@@ -22,7 +22,7 @@ You can work with On\-Demand Instances in the following ways:
 + [Launch your instance](LaunchingAndUsingInstances.md)
 + [Connect to your Linux instance](AccessingInstances.md)
 + [Stop and start your instance](Stop_Start.md)
-+ [Hibernate Your Linux Instance](Hibernate.md)
++ [Hibernate your Linux instance](Hibernate.md)
 + [Reboot Your Instance](ec2-instance-reboot.md)
 + [Instance Retirement](instance-retirement.md)
 + [Terminate Your Instance](terminating-instances.md)

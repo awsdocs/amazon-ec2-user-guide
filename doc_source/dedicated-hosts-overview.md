@@ -4,14 +4,14 @@ An Amazon EC2 Dedicated Host is a physical server with EC2 instance capacity ful
 
 **Topics**
 + [Differences between Dedicated Hosts and Dedicated Instances](#dedicated-hosts-dedicated-instances)
-+ [Bring Your Own License](#dedicated-hosts-BYOL)
-+ [Dedicated Host Instance Capacity](#dedicated-hosts-limits)
-+ [Dedicated Hosts Restrictions](#dedicated-hosts-limitations)
-+ [Pricing and Billing](#dedicated-hosts-billing)
++ [Bring your own license](#dedicated-hosts-BYOL)
++ [Dedicated Host instance capacity](#dedicated-hosts-limits)
++ [Dedicated Hosts restrictions](#dedicated-hosts-limitations)
++ [Pricing and billing](#dedicated-hosts-billing)
 + [Working with Dedicated Hosts](how-dedicated-hosts-work.md)
-+ [Working with Shared Dedicated Hosts](dh-sharing.md)
-+ [Host Recovery](dedicated-hosts-recovery.md)
-+ [Tracking Configuration Changes](dedicated-hosts-aws-config.md)
++ [Working with shared Dedicated Hosts](dh-sharing.md)
++ [Host recovery](dedicated-hosts-recovery.md)
++ [Tracking configuration changes](dedicated-hosts-aws-config.md)
 
 ## Differences between Dedicated Hosts and Dedicated Instances<a name="dedicated-hosts-dedicated-instances"></a>
 
@@ -26,10 +26,10 @@ There are no performance, security, or physical differences between Dedicated In
 | Visibility of sockets, cores, and host ID | Provides visibility of the number of sockets and physical cores | No visibility | 
 | Host and instance affinity | Allows you to consistently deploy your instances to the same physical server over time | Not supported | 
 | Targeted instance placement | Provides additional visibility and control over how instances are placed on a physical server | Not supported | 
-| Automatic instance recovery | Supported\. For more information, see [Host Recovery](dedicated-hosts-recovery.md)\. | Supported | 
+| Automatic instance recovery | Supported\. For more information, see [Host recovery](dedicated-hosts-recovery.md)\. | Supported | 
 | Bring Your Own License \(BYOL\) | Supported | Not supported | 
 
-## Bring Your Own License<a name="dedicated-hosts-BYOL"></a>
+## Bring your own license<a name="dedicated-hosts-BYOL"></a>
 
 Dedicated Hosts allow you to use your existing per\-socket, per\-core, or per\-VM software licenses\. When you bring your own license, you are responsible for managing your own licenses\. However, Amazon EC2 has features that help you maintain license compliance, such as instance affinity and targeted placement\.
 
@@ -44,22 +44,22 @@ These are the general steps to follow in order to bring your own volume licensed
 1. When you run these instances, depending on the operating system, you might be required to activate these instances against your own KMS server\.
 
 **Note**  
-To track how your images are used in AWS, enable host recording in AWS Config\. You can use AWS Config to record configuration changes to a Dedicated Host and use the output as a data source for license reporting\. For more information, see [Tracking Configuration Changes](dedicated-hosts-aws-config.md)\. 
+To track how your images are used in AWS, enable host recording in AWS Config\. You can use AWS Config to record configuration changes to a Dedicated Host and use the output as a data source for license reporting\. For more information, see [Tracking configuration changes](dedicated-hosts-aws-config.md)\. 
 
-## Dedicated Host Instance Capacity<a name="dedicated-hosts-limits"></a>
+## Dedicated Host instance capacity<a name="dedicated-hosts-limits"></a>
 
-Dedicated Hosts powered by the AWS Nitro System can support multiple instance types within the same instance family\. For example, when you allocate an `r5` Dedicated Host, you can use a host with 2 sockets and 48 physical cores on which you can run different instance types, such as `r5.2xlarge` and `r5.4xlarge`\. You can run any number of instances up to the core capacity associated with the host\. For example, the table below shows the different instance type combinations you can run on a Dedicated Host\.
+Dedicated Hosts powered by the AWS Nitro System can support multiple instance types within the same instance family on a host\. For example, when you allocate an `r5` Dedicated Host, you can use a host with 2 sockets and 48 physical cores on which you can run different instance types, such as `r5.2xlarge` and `r5.4xlarge`\. You can run any number of instances up to the core capacity associated with the host\. For example, the table below shows the different instance type combinations you can run on a Dedicated Host\.
 
 
 | Instance family | Example instance type combinations | 
 | --- | --- | 
-| `R5` |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-hosts-overview.html)  | 
-| `C5` |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-hosts-overview.html)  | 
-| `M5` |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-hosts-overview.html)  | 
+| R5 |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-hosts-overview.html)  | 
+| C5 |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-hosts-overview.html)  | 
+| M5 |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-hosts-overview.html)  | 
 
-For instance families that are not powered by the AWS Nitro system, you can only configure the Dedicated Host for a specific instance type\. For a list of all instance families and instance type configurations supported on Dedicated Hosts see [Amazon EC2 Dedicated Host Pricing](http://aws.amazon.com/ec2/dedicated-hosts/pricing/)\.
+For instance families that are not powered by the AWS Nitro System, you can configure the Dedicated Host only for a single instance type\. For more information about the instance families and instance type configurations supported on Dedicated Hosts see [Amazon EC2 Dedicated Host Pricing](http://aws.amazon.com/ec2/dedicated-hosts/pricing/)\.
 
-## Dedicated Hosts Restrictions<a name="dedicated-hosts-limitations"></a>
+## Dedicated Hosts restrictions<a name="dedicated-hosts-limitations"></a>
 
 Before you allocate Dedicated Hosts, take note of the following limitations and restrictions:
 + RHEL, SUSE Linux, and SQL Server AMIs \(whether offered by AWS or on the AWS Marketplace\) can't be used with Dedicated Hosts\.
@@ -70,7 +70,7 @@ Before you allocate Dedicated Hosts, take note of the following limitations and 
 + The AWS Free Usage tier is not available for Dedicated Hosts\.
 + Instance placement control refers to managing instance launches onto Dedicated Hosts\. Placement groups are not supported for Dedicated Hosts\.
 
-## Pricing and Billing<a name="dedicated-hosts-billing"></a>
+## Pricing and billing<a name="dedicated-hosts-billing"></a>
 
 The price for a Dedicated Host varies by payment option\.
 

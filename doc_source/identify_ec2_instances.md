@@ -6,7 +6,7 @@ For information about identifying Windows instances, see [Identify EC2 Windows I
 
 ## Inspecting the Instance Identity Document<a name="inspect-document"></a>
 
-For a definitive and cryptographically verified method of identifying an EC2 instance, check the instance identity document, including its signature\. These documents are available on every EC2 instance at the local, non\-routable address `http://169.254.169.254/latest/dynamic/instance-identity/`\. For more information, see [Instance identity documents](instance-identity-documents.md)\.
+For a definitive and cryptographically verified method of identifying an EC2 instance, check the instance identity document, including its signature\. These documents are available on every EC2 instance at the local, non\-routable address `http://169.254.169.254/latest/dynamic/instance-identity/`\. For more information, see [Instance Identity Documents](instance-identity-documents.md)\.
 
 ## Inspecting the System UUID<a name="inspect-uuid"></a>
 

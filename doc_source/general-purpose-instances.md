@@ -139,13 +139,13 @@ The following is a summary of the hardware specifications for general purpose in
 
 For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
-For more information about specifying CPU options, see [Optimizing CPU Options](instance-optimize-cpu.md)\.
+For more information about specifying CPU options, see [Optimizing CPU options](instance-optimize-cpu.md)\.
 
 ## Instance performance<a name="general-purpose-performance"></a>
 
 EBS\-optimized instances enable you to get consistently high performance for your EBS volumes by eliminating contention between Amazon EBS I/O and other network traffic from your instance\. Some general purpose instances are EBS\-optimized by default at no additional cost\. For more information, see [Amazon EBS–optimized instances](ebs-optimized.md)\.
 
-Some general purpose instance types provide the ability to control processor C\-states and P\-states on Linux\. C\-states control the sleep levels that a core can enter when it is inactive, while P\-states control the desired performance \(in CPU frequency\) from a core\. For more information, see [Processor State Control for Your EC2 Instance](processor_state_control.md)\.
+Some general purpose instance types provide the ability to control processor C\-states and P\-states on Linux\. C\-states control the sleep levels that a core can enter when it is inactive, while P\-states control the desired performance \(in CPU frequency\) from a core\. For more information, see [Processor state control for your EC2 instance](processor_state_control.md)\.
 
 ## Network performance<a name="general-purpose-network-performance"></a>
 
@@ -158,18 +158,18 @@ The following is a summary of network performance for general purpose instances 
 | --- | --- | --- | 
 | t2\.nano \| t2\.micro \| t2\.small \| t2\.medium \| t2\.large \| t2\.xlarge \| t2\.2xlarge | Up to 1 Gbps | Not supported | 
 | t3\.nano \| t3\.micro \| t3\.small \| t3\.medium \| t3\.large \| t3\.xlarge \| t3\.2xlarge \| t3a\.nano \| t3a\.micro \| t3a\.small \| t3a\.medium \| t3a\.large \| t3a\.xlarge \| t3a\.2xlarge | Up to 5 Gbps † | [ENA](enhanced-networking-ena.md) | 
-|  `m4.large`  |  Moderate  |  [Intel 82599 VF](sriov-networking.md)  | 
-|  `m4.xlarge` \| `m4.2xlarge` \| `m4.4xlarge`  |  High  |  [Intel 82599 VF](sriov-networking.md)  | 
-|  `a1.4xlarge` and smaller \|  `a1.metal` \|  `m5.4xlarge` and smaller \| `m5a.8xlarge` and smaller \| `m5ad.8xlarge` and smaller \| `m5d.4xlarge` and smaller   |  Up to 10 Gbps †  | [ENA](enhanced-networking-ena.md) | 
-|  `m4.10xlarge`  |  10 Gbps  |  [Intel 82599 VF](sriov-networking.md)  | 
-|  `m5.8xlarge` \| `m5.12xlarge` \| `m5a.12xlarge` \| `m5ad.12xlarge` \| `m5d.8xlarge` \| `m5d.12xlarge`  |  10 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  `m5a.16xlarge` \| `m5ad.16xlarge`   |  12 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  `m5.16xlarge` \| `m5a.24xlarge` \| `m5ad.24xlarge` \| `m5d.16xlarge`   |  20 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  `m5dn.4xlarge` and smaller \| `m5n.4xlarge` and smaller   |  Up to 25 Gbps †  | [ENA](enhanced-networking-ena.md) | 
-|  `m4.16xlarge` \| `m5.24xlarge` \| `m5.metal` \| `m5d.24xlarge` \| `m5d.metal` \| `m5dn.8xlarge` \| `m5n.8xlarge`   |  25 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  m5dn\.12xlarge \| m5n\.12xlarge  |  50 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  m5dn\.16xlarge \| m5n\.16xlarge  |  75 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  m5dn\.24xlarge \| m5n\.24xlarge  |  100 Gbps  | [ENA](enhanced-networking-ena.md) | 
+| m4\.large | Moderate | [Intel 82599 VF](sriov-networking.md) | 
+|  m4\.xlarge \| m4\.2xlarge \| m4\.4xlarge  | High | [Intel 82599 VF](sriov-networking.md) | 
+|  a1\.4xlarge and smaller \|  a1\.metal \|  m5\.4xlarge and smaller \| m5a\.8xlarge and smaller \| m5ad\.8xlarge and smaller \| m5d\.4xlarge and smaller  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
+| m4\.10xlarge | 10 Gbps | [Intel 82599 VF](sriov-networking.md) | 
+|  m5\.8xlarge \| m5\.12xlarge \| m5a\.12xlarge \| m5ad\.12xlarge \| m5d\.8xlarge \| m5d\.12xlarge  | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  m5a\.16xlarge \| m5ad\.16xlarge  | 12 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  m5\.16xlarge \| m5a\.24xlarge \| m5ad\.24xlarge \| m5d\.16xlarge  | 20 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  m5dn\.4xlarge and smaller \| m5n\.4xlarge and smaller  | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
+|  m4\.16xlarge \| m5\.24xlarge \| m5\.metal \| m5d\.24xlarge \| m5d\.metal \| m5dn\.8xlarge \| m5n\.8xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  m5dn\.12xlarge \| m5n\.12xlarge  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  m5dn\.16xlarge \| m5n\.16xlarge  | 75 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  m5dn\.24xlarge \| m5n\.24xlarge  | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
 
 † These instances use a network I/O credit mechanism to allocate network bandwidth to instances based on average bandwidth utilization\. They accrue credits when their bandwidth is below their baseline bandwidth, and can use these credits when they perform network data transfers\. For more information, open a support case and ask about baseline bandwidth for the specific instance types that you are interested in\.
 
@@ -180,31 +180,31 @@ If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-ba
 
 | Instance Size | 100% Random Read IOPS | Write IOPS | 
 | --- | --- | --- | 
-|  `m5ad.large` \*  |  30,000  |  15,000  | 
-|  `m5ad.xlarge` \*  |  59,000  |  29,000  | 
-|  `m5ad.2xlarge` \*  |  117,000  |  57,000  | 
-|  `m5ad.4xlarge` \*  |  234,000  |  114,000  | 
-|  `m5ad.8xlarge`  |  466,666  |  233,333  | 
-|  `m5ad.12xlarge`  |  700,000  |  340,000  | 
-|  `m5ad.16xlarge`  |  933,333  |  466,666  | 
-|  `m5ad.24xlarge`  |  1,400,000  |  680,000  | 
-|  `m5d.large` \*  |  30,000  |  15,000  | 
-|  `m5d.xlarge` \*  |  59,000  |  29,000  | 
-|  `m5d.2xlarge` \*  |  117,000  |  57,000  | 
-|  `m5d.4xlarge` \*  |  234,000  |  114,000  | 
-|  `m5d.8xlarge`  |  466,666  |  233,333  | 
-|  `m5d.12xlarge`  |  700,000  |  340,000  | 
-|  `m5d.16xlarge`  |  933,333  |  466,666  | 
-|  `m5d.24xlarge`  |  1,400,000  |  680,000  | 
-|  `m5d.metal`  |  1,400,000  |  680,000  | 
-|  `m5dn.large` \*  |  30,000  |  15,000  | 
-|  `m5dn.xlarge` \*  |  59,000  |  29,000  | 
-|  `m5dn.2xlarge` \*  |  117,000  |  57,000  | 
-|  `m5dn.4xlarge` \*  |  234,000  |  114,000  | 
-|  `m5dn.8xlarge`  |  466,666  |  233,333  | 
-|  `m5dn.12xlarge`  |  700,000  |  340,000  | 
-|  `m5dn.16xlarge`  |  933,333  |  466,666  | 
-|  `m5dn.24xlarge`  |  1,400,000  |  680,000  | 
+| m5ad\.large \* | 30,000 | 15,000 | 
+| m5ad\.xlarge \* |  59,000  |  29,000  | 
+| m5ad\.2xlarge \* |  117,000  |  57,000  | 
+| m5ad\.4xlarge \* |  234,000  |  114,000  | 
+| m5ad\.8xlarge |  466,666  |  233,333  | 
+| m5ad\.12xlarge |  700,000  |  340,000  | 
+| m5ad\.16xlarge  |  933,333  |  466,666  | 
+| m5ad\.24xlarge |  1,400,000  |  680,000  | 
+| m5d\.large \* |  30,000  |  15,000  | 
+| m5d\.xlarge \* |  59,000  |  29,000  | 
+| m5d\.2xlarge \* |  117,000  |  57,000  | 
+| m5d\.4xlarge \* |  234,000  |  114,000  | 
+| m5d\.8xlarge |  466,666  |  233,333  | 
+| m5d\.12xlarge  |  700,000  |  340,000  | 
+| m5d\.16xlarge |  933,333  |  466,666  | 
+| m5d\.24xlarge |  1,400,000  |  680,000  | 
+| m5d\.metal |  1,400,000  |  680,000  | 
+| m5dn\.large \* |  30,000  |  15,000  | 
+| m5dn\.xlarge \* |  59,000  |  29,000  | 
+| m5dn\.2xlarge \*  |  117,000  |  57,000  | 
+| m5dn\.4xlarge \* |  234,000  |  114,000  | 
+| m5dn\.8xlarge |  466,666  |  233,333  | 
+| m5dn\.12xlarge |  700,000  |  340,000  | 
+| m5dn\.16xlarge | 933,333 |  466,666  | 
+| m5dn\.24xlarge  |  1,400,000  |  680,000  | 
 
 \* For these instances, you can get up to the specified performance\.
 

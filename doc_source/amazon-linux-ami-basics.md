@@ -13,6 +13,7 @@ Amazon Linux is provided by Amazon Web Services \(AWS\)\. It is designed to prov
 + [cloud\-init](#amazon-linux-cloud-init)
 + [Subscribing to Amazon Linux notifications](#linux-ami-notifications)
 + [Running Amazon Linux 2 as a virtual machine on\-premises](amazon-linux-2-virtual-machine.md)
++ [Kernel Live Patching on Amazon Linux 2](al2-live-patching.md)
 
 ## Amazon Linux availability<a name="amazon-linux-availability"></a>
 
@@ -341,9 +342,8 @@ Whenever AMIs are released, we send notifications to the subscribers of the corr
 
 1. When prompted for confirmation, choose **Delete**\.
 
-## Amazon SNS Message Format<a name="ALAMI-Notification-format"></a>
-
-The schema for the SNS Message is below:
+**Amazon Linux AMI SNS message format**  
+The schema for the SNS message is as follows\. 
 
 ```
 {

@@ -1,4 +1,4 @@
-# Processor State Control for Your EC2 Instance<a name="processor_state_control"></a>
+# Processor state control for your EC2 instance<a name="processor_state_control"></a>
 
 C\-states control the sleep levels that a core can enter when it is idle\. C\-states are numbered starting with C0 \(the shallowest state where the core is totally awake and executing instructions\) and go to C6 \(the deepest idle state where a core is powered off\)\. P\-states control the desired performance \(in CPU frequency\) from a core\. P\-states are numbered starting from P0 \(the highest performance setting where the core is allowed to use Intel Turbo Boost Technology to increase frequency if possible\), and they go from P1 \(the P\-state that requests the maximum baseline frequency\) to P15 \(the lowest possible frequency\)\.
 
@@ -25,11 +25,11 @@ The examples on this page use the turbostat utility \(which is available on Amaz
 If the output does not display the C\-state information, include the \-\-debug option in the command \(sudo turbostat \-\-debug stress *<options>*\)\.
 
 **Topics**
-+ [Highest Performance with Maximum Turbo Boost Frequency](#turbo-perf)
-+ [High Performance and Low Latency by Limiting Deeper C\-states](#c-states)
-+ [Baseline Performance with the Lowest Variability](#baseline-perf)
++ [Highest performance with maximum Turbo Boost frequency](#turbo-perf)
++ [High performance and low latency by limiting deeper C\-states](#c-states)
++ [Baseline performance with the lowest variability](#baseline-perf)
 
-## Highest Performance with Maximum Turbo Boost Frequency<a name="turbo-perf"></a>
+## Highest performance with maximum Turbo Boost frequency<a name="turbo-perf"></a>
 
 This is the default processor state control configuration for the Amazon Linux AMI, and it is recommended for most workloads\. This configuration provides the highest performance with lower variability\. Allowing inactive cores to enter deeper sleep states provides the thermal headroom required for single or dual core processes to reach their maximum Turbo Boost potential\.
 
@@ -83,7 +83,7 @@ pk cor CPU    %c0  GHz  TSC SMI    %c1    %c3    %c6    %c7   %pc2   %pc3   %pc6
 ...
 ```
 
-## High Performance and Low Latency by Limiting Deeper C\-states<a name="c-states"></a>
+## High performance and low latency by limiting deeper C\-states<a name="c-states"></a>
 
 C\-states control the sleep levels that a core may enter when it is inactive\. You may want to control C\-states to tune your system for latency versus performance\. Putting cores to sleep takes time, and although a sleeping core allows more headroom for another core to boost to a higher frequency, it takes time for that sleeping core to wake back up and perform work\. For example, if a core that is assigned to handle network packet interrupts is asleep, there may be a delay in servicing that interrupt\. You can configure the system to not use deeper C\-states, which reduces the processor reaction latency, but that in turn also reduces the headroom available to other cores for Turbo Boost\.
 
@@ -170,7 +170,7 @@ pk cor CPU    %c0  GHz  TSC SMI    %c1    %c3    %c6    %c7   %pc2   %pc3   %pc6
 
 In this example, the cores for vCPUs 19 and 28 are running at 3\.2 GHz, and the other cores are in the `C1` C\-state, awaiting instruction\. Although the working cores are not reaching their maximum Turbo Boost frequency, the inactive cores will be much faster to respond to new requests than they would be in the deeper `C6` C\-state\.
 
-## Baseline Performance with the Lowest Variability<a name="baseline-perf"></a>
+## Baseline performance with the lowest variability<a name="baseline-perf"></a>
 
 You can reduce the variability of processor frequency with P\-states\. P\-states control the desired performance \(in CPU frequency\) from a core\. Most workloads perform better in P0, which requests Turbo Boost\. But you may want to tune your system for consistent performance rather than bursty performance that can happen when Turbo Boost frequencies are enabled\. 
 

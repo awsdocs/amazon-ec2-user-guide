@@ -38,7 +38,7 @@ The following is a summary of the hardware specifications for compute optimized 
 | c5\.9xlarge | 36 | 72 | 
 | c5\.12xlarge | 48 | 96 | 
 | c5\.18xlarge | 72 | 144 | 
-| c5\.24large | 96 | 192 | 
+| c5\.24xlarge | 96 | 192 | 
 | c5\.metal | 96 | 192 | 
 | c5d\.large | 2 | 4 | 
 | c5d\.xlarge | 4 | 8 | 
@@ -47,7 +47,7 @@ The following is a summary of the hardware specifications for compute optimized 
 | c5d\.9xlarge | 36 | 72 | 
 | c5d\.12xlarge | 48 | 96 | 
 | c5d\.18xlarge | 72 | 144 | 
-| c5d\.24large | 96 | 192 | 
+| c5d\.24xlarge | 96 | 192 | 
 | c5d\.metal | 96 | 192 | 
 | c5n\.large | 2 | 5\.25 | 
 | c5n\.xlarge | 4 | 10\.5 | 
@@ -59,13 +59,13 @@ The following is a summary of the hardware specifications for compute optimized 
 
 For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
-For more information about specifying CPU options, see [Optimizing CPU Options](instance-optimize-cpu.md)\.
+For more information about specifying CPU options, see [Optimizing CPU options](instance-optimize-cpu.md)\.
 
 ## Instance performance<a name="compute-performance"></a>
 
 EBS\-optimized instances enable you to get consistently high performance for your EBS volumes by eliminating contention between Amazon EBS I/O and other network traffic from your instance\. Some compute optimized instances are EBS\-optimized by default at no additional cost\. For more information, see [Amazon EBS–optimized instances](ebs-optimized.md)\.
 
-Some compute optimized instance types provide the ability to control processor C\-states and P\-states on Linux\. C\-states control the sleep levels that a core can enter when it is inactive, while P\-states control the desired performance \(in CPU frequency\) from a core\. For more information, see [Processor State Control for Your EC2 Instance](processor_state_control.md)\.
+Some compute optimized instance types provide the ability to control processor C\-states and P\-states on Linux\. C\-states control the sleep levels that a core can enter when it is inactive, while P\-states control the desired performance \(in CPU frequency\) from a core\. For more information, see [Processor state control for your EC2 instance](processor_state_control.md)\.
 
 ## Network performance<a name="compute-network-performance"></a>
 
@@ -76,11 +76,11 @@ The following is a summary of network performance for compute optimized instance
 
 | Instance type | Network performance | Enhanced networking | 
 | --- | --- | --- | 
-|  `c5.4xlarge` and smaller \| `c5d.4xlarge` and smaller  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
+| c5\.4xlarge and smaller \| c5d\.4xlarge and smaller  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
 | c5\.9xlarge \| c5d\.9xlarge | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5\.12xlarge \| c5d\.12xlarge  | 12 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5n\.4xlarge and smaller | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
-| c5\.18xlarge \| c5\.24xlarge \| c5\.metal \| c5d\.18xlarge \| c5d\.24xlarge \| c5d\.metal | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
+| c5\.18xlarge \| c5\.24xlarge \| c5\.metal \| c5d\.18xlarge \| c5d\.24xlarge \| c5d\.metal  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5n\.9xlarge | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5n\.18xlarge \| c5n\.metal | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c4\.large | Moderate | [Intel 82599 VF](sriov-networking.md) | 
@@ -96,15 +96,15 @@ If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-ba
 
 | Instance Size | 100% Random Read IOPS | Write IOPS | 
 | --- | --- | --- | 
-|  `c5d.large` \*  |  20,000  |  9,000  | 
-|  `c5d.xlarge` \*  |  40,000  |  18,000  | 
-|  `c5d.2xlarge` \*  |  80,000  |  37,000  | 
-|  `c5d.4xlarge` \*  |  175,000  |  75,000  | 
-|  `c5d.9xlarge`  |  350,000  |  170,000  | 
-|  `c5d.12xlarge`  |  700,000  |  340,000  | 
-|  `c5d.18xlarge`  |  700,000  |  340,000  | 
-|  `c5d.24xlarge`  |  1,400,000  |  680,000  | 
-|  `c5d.metal`  |  1,400,000  |  680,000  | 
+| c5d\.large \* |  20,000  |  9,000  | 
+| c5d\.xlarge \* |  40,000  |  18,000  | 
+| c5d\.2xlarge \* |  80,000  |  37,000  | 
+| c5d\.4xlarge \* |  175,000  |  75,000  | 
+| c5d\.9xlarge |  350,000  |  170,000  | 
+| c5d\.12xlarge |  700,000  |  340,000  | 
+| c5d\.18xlarge |  700,000  |  340,000  | 
+| c5d\.24xlarge |  1,400,000  |  680,000  | 
+| c5d\.metal |  1,400,000  |  680,000  | 
 
 \* For these instances, you can get up to the specified performance\.
 

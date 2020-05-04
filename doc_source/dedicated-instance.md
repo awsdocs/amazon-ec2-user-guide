@@ -137,7 +137,7 @@ Ensure that you choose an instance type that's supported as a Dedicated Instance
 
 1. Continue as prompted by the wizard\. When you've finished reviewing your options on the **Review Instance Launch** page, choose **Launch** to choose a key pair and launch the Dedicated Instance\.
 
-For more information about launching an instance with a tenancy of `host`, see [Launching Instances onto a Dedicated Host](how-dedicated-hosts-work.md#launching-dedicated-hosts-instances)\.
+For more information about launching an instance with a tenancy of `host`, see [Launching instances onto a Dedicated Host](how-dedicated-hosts-work.md#launching-dedicated-hosts-instances)\.
 
 **To set the tenancy option for an instance during launch using the command line**
 + [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) \(AWS CLI\)

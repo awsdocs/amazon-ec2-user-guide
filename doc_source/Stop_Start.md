@@ -6,7 +6,7 @@ When you stop an instance, we shut it down\. We don't charge usage for a stopped
 
 While the instance is stopped, you can treat its root volume like any other volume, and modify it \(for example, repair file system problems or update software\)\. You just detach the volume from the stopped instance, attach it to a running instance, make your changes, detach it from the running instance, and then reattach it to the stopped instance\. Make sure that you reattach it using the storage device name that's specified as the root device in the block device mapping for the instance\.
 
-If you decide that you no longer need an instance, you can terminate it\. As soon as the state of an instance changes to `shutting-down` or `terminated`, we stop charging for that instance\. For more information, see [Terminate Your Instance](terminating-instances.md)\. If you'd rather hibernate the instance, see [Hibernate Your Linux Instance](Hibernate.md)\. For more information, see [Differences Between Reboot, Stop, Hibernate, and Terminate](ec2-instance-lifecycle.md#lifecycle-differences)\.
+If you decide that you no longer need an instance, you can terminate it\. As soon as the state of an instance changes to `shutting-down` or `terminated`, we stop charging for that instance\. For more information, see [Terminate Your Instance](terminating-instances.md)\. If you'd rather hibernate the instance, see [Hibernate your Linux instance](Hibernate.md)\. For more information, see [Differences Between Reboot, Stop, Hibernate, and Terminate](ec2-instance-lifecycle.md#lifecycle-differences)\.
 
 **Topics**
 + [Overview](#instance_stop)

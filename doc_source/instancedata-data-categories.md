@@ -74,6 +74,6 @@ The following table lists the categories of dynamic data\.
 | Data | Description | Version introduced | 
 | --- | --- | --- | 
 |  fws/instance\-monitoring  | Value showing whether the customer has enabled detailed one\-minute monitoring in CloudWatch\. Valid values: enabled \| disabled | 2009\-04\-04 | 
-| instance\-identity/document  | JSON containing instance attributes, such as instance\-id, private IP address, etc\. See [Instance identity documents](instance-identity-documents.md)\.  | 2009\-04\-04 | 
-| instance\-identity/pkcs7  | Used to verify the document's authenticity and content against the signature\. See [Instance identity documents](instance-identity-documents.md)\.  | 2009\-04\-04 | 
-| instance\-identity/signature  | Data that can be used by other parties to verify its origin and authenticity\. See [Instance identity documents](instance-identity-documents.md)\.  | 2009\-04\-04 | 
+| instance\-identity/document  | JSON containing instance attributes, such as instance\-id, private IP address, etc\. See [Instance Identity Documents](instance-identity-documents.md)\.  | 2009\-04\-04 | 
+| instance\-identity/pkcs7  | Used to verify the document's authenticity and content against the signature\. See [Instance Identity Documents](instance-identity-documents.md)\.  | 2009\-04\-04 | 
+| instance\-identity/signature  | Data that can be used by other parties to verify its origin and authenticity\. See [Instance Identity Documents](instance-identity-documents.md)\.  | 2009\-04\-04 | 

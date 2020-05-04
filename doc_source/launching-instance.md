@@ -79,9 +79,9 @@ To ensure faster instance launches, break up large requests into smaller batches
 + **Placement group**: A placement group determines the placement strategy of your instances\. Select an existing placement group, or create a new one\. This option is only available if you've selected an instance type that supports placement groups\. For more information, see [Placement Groups](placement-groups.md)\.
 + **Capacity Reservation**: Specify whether to launch the instance into shared capacity or an existing Capacity Reservation\. For more information, see [Launching Instances into an Existing Capacity Reservation](capacity-reservations-using.md#capacity-reservations-launch)\.
 + **IAM role**: Select an AWS Identity and Access Management \(IAM\) role to associate with the instance\. For more information, see [IAM roles for Amazon EC2](iam-roles-for-amazon-ec2.md)\.
-+ **CPU options**: Choose **Specify CPU options** to specify a custom number of vCPUs during launch\. Set the number of CPU cores and threads per core\. For more information, see [Optimizing CPU Options](instance-optimize-cpu.md)\.
++ **CPU options**: Choose **Specify CPU options** to specify a custom number of vCPUs during launch\. Set the number of CPU cores and threads per core\. For more information, see [Optimizing CPU options](instance-optimize-cpu.md)\.
 + **Shutdown behavior**: Select whether the instance should stop or terminate when shut down\. For more information, see [Changing the Instance Initiated Shutdown Behavior](terminating-instances.md#Using_ChangingInstanceInitiatedShutdownBehavior)\.
-+ **Stop \- Hibernate behavior**: To enable hibernation, select this check box\. This option is only available if your instance meets the hibernation prerequisites\. For more information, see [Hibernate Your Linux Instance](Hibernate.md)\.
++ **Stop \- Hibernate behavior**: To enable hibernation, select this check box\. This option is only available if your instance meets the hibernation prerequisites\. For more information, see [Hibernate your Linux instance](Hibernate.md)\.
 + **Enable termination protection**: To prevent accidental termination, select this check box\. For more information, see [Enabling Termination Protection for an Instance](terminating-instances.md#Using_ChangingDisableAPITermination)\.
 + **Monitoring**: Select this check box to enable detailed monitoring of your instance using Amazon CloudWatch\. Additional charges apply\. For more information, see [Monitoring Your Instances Using CloudWatch](using-cloudwatch.md)\.
 + **EBS\-optimized instance**: An Amazon EBS\-optimized instance uses an optimized configuration stack and provides additional, dedicated capacity for Amazon EBS I/O\. If the instance type supports this feature, select this check box to enable it\. Additional charges apply\. For more information, see [Amazon EBS–optimized instances](ebs-optimized.md)\.
@@ -136,7 +136,7 @@ On the **Review Instance Launch** page, check the details of your instance, and 
 
 When you are ready, choose **Launch**\.
 
-In the **Select an existing key pair or create a new key pair** dialog box, you can choose an existing key pair, or create a new one\. For example, choose **Choose an existing key pair**, then select the key pair you created when getting set up\.
+In the **Select an existing key pair or create a new key pair** dialog box, you can choose an existing key pair, or create a new one\. For example, choose **Choose an existing key pair**, then select the key pair you created when getting set up\. For more information, see [Amazon EC2 key pairs and Linux instances](ec2-key-pairs.md)\.
 
 To launch your instance, select the acknowledgment check box, then choose **Launch Instances**\.
 
