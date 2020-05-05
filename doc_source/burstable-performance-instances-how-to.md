@@ -12,7 +12,7 @@ The steps for launching, monitoring, and modifying these instances are similar\.
 + [Setting the default credit specification for the account](#burstable-performance-instance-set-default-credit-specification-for-account)
 + [Viewing the default credit specification](#burstable-performance-instances-get-default-credit-specification)
 
-## Launching a burstable Performance instance as Unlimited or Standard<a name="launch-burstable-performance-instances"></a>
+## Launching a burstable performance instance as Unlimited or Standard<a name="launch-burstable-performance-instances"></a>
 
 T3 and T3a instances launch as `unlimited` by default\. T2 instances launch as `standard` by default\.
 
