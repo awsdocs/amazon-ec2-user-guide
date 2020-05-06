@@ -7,6 +7,7 @@ To update the contact information for your account so that you can be sure to be
 **Topics**
 + [Types of Scheduled Events](#types-of-scheduled-events)
 + [Viewing Scheduled Events](#viewing_scheduled_events)
++ [Customizing scheduled event notifications](#customizing_scheduled_event_notifications)
 + [Working with Instances Scheduled to Stop or Retire](#schedevents_actions_retire)
 + [Working with Instances Scheduled for Reboot](#schedevents_actions_reboot)
 + [Working with Instances Scheduled for Maintenance](#schedevents_actions_maintenance)
@@ -187,6 +188,134 @@ The following is example output with information about a system reboot event tha
     "State" : "completed"
   }
 ]
+```
+
+------
+
+## Customizing scheduled event notifications<a name="customizing_scheduled_event_notifications"></a>
+
+You can customize scheduled event notifications to include tags in the email notification\. This makes it easier to identify the affected resource \(instances or Dedicated Hosts\) and to prioritize actions for the upcoming event\.
+
+When you customize event notifications to include tags, you can choose to include:
++ All of the tags that are associated with the affected resource
++ Only specific tags that are associated with the affected resource
+
+For example, suppose that you assign `application`, `costcenter`, `project`, and `owner` tags to all of your instances\. You can choose to include all of the tags in event notifications\. Alternatively, if you'd like to see only the `owner` and `project` tags in event notifications, then you can choose to include only those tags\.
+
+After you select the tags to include, the event notifications will include the resource ID \(instance ID or Dedicated Host ID\) and the tag key and value pairs that are associated with the affected resource\.
+
+**Topics**
++ [Including tags in event notifications](#register-tags)
++ [Removing tags from event notifications](#deregister-tags)
++ [Viewing the tags to be included in event notifications](#view-tags)
+
+### Including tags in event notifications<a name="register-tags"></a>
+
+The tags that you choose to include apply to all resources \(instances and Dedicated Hosts\) in the selected Region\. To customize event notifications in other Regions, first select the required Region and then perform the following steps\.
+
+You can include tags in event notifications using one of the following methods\.
+
+------
+#### [ New console ]
+
+**To include tags in event notifications**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Events**\.
+
+1. Choose **Actions**, **Manage event notifications**\.
+
+1. Select **Include resource tags in event notifications**\.
+
+1. Do one of the following, depending on the tags that you want to include in event notifications:
+   + To include all of the tags associated with the affected instance or Dedicated Host, select **Include all resource tags**\.
+   + To manually select the tags to include, select **Choose the tags to include**, and then for **Choose the tags to include**, enter the tag key and press **Enter**\.
+
+1. Choose **Save**\.
+
+------
+#### [ AWS CLI ]
+
+**To include all tags in event notifications**  
+Use the [ register\-instance\-event\-notification\-attributes](https://docs.aws.amazon.com/cli/latest/reference/ec2/register-instance-event-notification-attributes.html) AWS CLI command and set the `IncludeAllTagsOfInstance` parameter to `true`\.
+
+```
+$ aws ec2 register-instance-event-notification-attributes --instance-tag-attribute 'IncludeAllTagsOfInstance=true'
+```
+
+**To include specific tags in event notifications**  
+Use the [ register\-instance\-event\-notification\-attributes](https://docs.aws.amazon.com/cli/latest/reference/ec2/register-instance-event-notification-attributes.html) AWS CLI command and specify the tags to include using the `InstanceTagKeys` parameter\.
+
+```
+$ aws ec2 register-instance-event-notification-attributes --instance-tag-attribute 'InstanceTagKeys=["tag_key_1", "tag_key_2", "tag_key_3"]'
+```
+
+------
+
+### Removing tags from event notifications<a name="deregister-tags"></a>
+
+You can remove tags from event notifications using one of the following methods\.
+
+------
+#### [ New console ]
+
+**To remove tags from event notifications**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Events**\.
+
+1. Choose **Actions**, **Manage event notifications**\.
+
+1. Do one of the following, depending on the tag that you want to remove from event notifications\.
+   + To remove all tags from event notifications, clear **Include resource tags in event notifications**\.
+   + To remove specific tags from event notifications, choose **Remove** \(**X**\) for the tags listed below the **Choose the tags to include** field\.
+
+1. Choose **Save**\.
+
+------
+#### [ AWS CLI ]
+
+**To remove all tags from event notifications**  
+Use the [ deregister\-instance\-event\-notification\-attributes](https://docs.aws.amazon.com/cli/latest/reference/ec2/deregister-instance-event-notification-attributes.html) AWS CLI command and set the `IncludeAllTagsOfInstance` parameter to `false`\.
+
+```
+$ aws ec2 deregister-instance-event-notification-attributes --instance-tag-attribute 'IncludeAllTagsOfInstance=false'
+```
+
+**To remove specific tags from event notifications**  
+Use the [ deregister\-instance\-event\-notification\-attributes](https://docs.aws.amazon.com/cli/latest/reference/ec2/deregister-instance-event-notification-attributes.html) AWS CLI command and specify the tags to remove using the `InstanceTagKeys` parameter\.
+
+```
+$ aws ec2 deregister-instance-event-notification-attributes --instance-tag-attribute 'InstanceTagKeys=["tag_key_1", "tag_key_2", "tag_key_3"]'
+```
+
+------
+
+### Viewing the tags to be included in event notifications<a name="view-tags"></a>
+
+You can view the tags that are to be included in event notifications using one of the following methods\.
+
+------
+#### [ New console ]
+
+**To view the tags that are to be included in event notifications**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Events**\.
+
+1. Choose **Actions**, **Manage event notifications**\.
+
+------
+#### [ AWS CLI ]
+
+**To view the tags that are to be included in event notifications**  
+Use the [ describe\-instance\-event\-notification\-attributes](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-event-notification-attributes.html) AWS CLI command\.
+
+```
+$ aws ec2 describe-instance-event-notification-attributes
 ```
 
 ------

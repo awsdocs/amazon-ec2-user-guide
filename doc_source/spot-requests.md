@@ -253,7 +253,7 @@ If you no longer want your Spot Instance request, you can cancel it\. You can on
 + Your Spot Instance request is `active` when your request has been fulfilled and Spot Instances have launched as a result\. 
 + Your Spot Instance request is `disabled` when you stop your Spot Instance\.
 
-If your Spot Instance request is `active` and has an associated running Spot Instance, or your Spot Instance request is `disabled` and has an associated stopped Spot Instance, canceling the request does not terminate the instance\. For more information about terminating a Spot Instance, see [Terminating a Spot Instance](#terminating-a-spot-instance)\.
+If your Spot Instance request is `active` and has an associated running Spot Instance, canceling the request does not terminate the instance\. For more information about terminating a Spot Instance, see [Terminating a Spot Instance](#terminating-a-spot-instance)\.
 
 **To cancel a Spot Instance request \(console\)**
 

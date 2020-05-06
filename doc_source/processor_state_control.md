@@ -5,7 +5,7 @@ C\-states control the sleep levels that a core can enter when it is idle\. C\-st
 The following instance types provide the ability for an operating system to control processor C\-states and P\-states:
 + General purpose: `m4.10xlarge` \| `m4.16xlarge` \| `m5.metal` \| `m5d.metal`
 + Compute optimized: `c4.8xlarge` \| `c5.metal` \| `c5n.metal`
-+ Memory optimized: `r4.8xlarge` \| `r4.16xlarge` \| `r5.metal` \| `r5d.metal` \| `u-6tb1.metal` \| `u-9tb1.metal` \| `u-12tb1.metal` \| `x1.16xlarge` \| `x1.32xlarge` \| `x1e.8xlarge` \| `x1e.16xlarge` \| `x1e.32xlarge` \| z1d\.metal
++ Memory optimized: `r4.8xlarge` \| `r4.16xlarge` \| `r5.metal` \| `r5d.metal` \| `u-6tb1.metal` \| `u-9tb1.metal` \| `u-12tb1.metal` \| `x1.16xlarge` \| `x1.32xlarge` \| `x1e.8xlarge` \| `x1e.16xlarge` \| `x1e.32xlarge` \| `z1d.metal`
 + Storage optimized: `d2.8xlarge` \| `i3.8xlarge` \| `i3.16xlarge` \| `i3.metal` \| `i3en.metal` \| `h1.8xlarge` \| `h1.16xlarge`
 + Accelerated computing: `f1.16xlarge` \| `g3.16xlarge` \| `p2.16xlarge` \| `p3.16xlarge`
 

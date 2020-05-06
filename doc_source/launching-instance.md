@@ -27,15 +27,19 @@ When you launch an instance that's not within the [AWS Free Tier](https://aws.am
 
 ## Step 1: Choose an Amazon Machine Image \(AMI\)<a name="step-1-AMI"></a>
 
-When you launch an instance, you must select a configuration, known as an Amazon Machine Image \(AMI\)\. An AMI contains the information required to create a new instance\. For example, an AMI might contain the software required to act as a web server: for example, Linux, Apache, and your website\.
+When you launch an instance, you must select a configuration, known as an Amazon Machine Image \(AMI\)\. An AMI contains the information required to create a new instance\. For example, an AMI might contain the software required to act as a web server, such as Linux, Apache, and your website\.
 
-On the **Choose an Amazon Machine Image \(AMI\)** page, choose an AMI as follows:
+When you launch an instance, you can either select an AMI from the list, or you can select a Systems Manager parameter that points to an AMI ID\. For more information, see [Using a Systems Manager parameter to find an AMI](finding-an-ami.md#using-systems-manager-parameter-to-find-AMI)\.
+
+On the **Choose an Amazon Machine Image \(AMI\)** page, use one of two options to choose an AMI\. Either [search the list of AMIs](#procedure-search-list-of-AMIs), or [search by Systems Manager parameter](#procedure-by-systems-manager-parameter)\.<a name="procedure-search-list-of-AMIs"></a>
+
+**By searching the list of AMIs**
 
 1. Select the type of AMI to use in the left pane:  
 **Quick Start**  
 A selection of popular AMIs to help you get started quickly\. To select an AMI that is eligible for the free tier, choose **Free tier only** in the left pane\. These AMIs are marked **Free tier eligible**\.  
 **My AMIs**  
-The private AMIs that you own, or private AMIs that have been shared with you\. To view AMIs shared with you, choose **Shared with me** in the left pane\.  
+The private AMIs that you own, or private AMIs that have been shared with you\. To view AMIs that are shared with you, choose **Shared with me** in the left pane\.  
 **AWS Marketplace**  
 An online store where you can buy software that runs on AWS, including AMIs\. For more information about launching an instance from the AWS Marketplace, see [Launching an AWS Marketplace instance](launch-marketplace-console.md)\.  
 **Community AMIs**  
@@ -45,7 +49,17 @@ The AMIs that AWS community members have made available for others to use\. To f
 
 1. Check the **Virtualization type** listed for each AMI\. Notice which AMIs are the type that you need, either `hvm` or `paravirtual`\. For example, some instance types require HVM\. For more information, see [Linux AMI virtualization types](virtualization_types.md)\.
 
-1. Choose an AMI that meets your needs, and then choose **Select**\.
+1. Choose an AMI that meets your needs, and then choose **Select**\.<a name="procedure-by-systems-manager-parameter"></a>
+
+**By Systems Manager parameter**
+
+1. Choose **Search by Systems Manager parameter** \(at top right\)\.
+
+1. For **Systems Manager parameter**, select a parameter\. The corresponding AMI ID appears next to **Currently resolves to**\.
+
+1. Choose **Search**\. The AMIs that match the AMI ID appear in the list\.
+
+1. Select the AMI from the list, and choose **Select**\.
 
 ## Step 2: Choose an Instance Type<a name="choose-an-instance-type-page"></a>
 

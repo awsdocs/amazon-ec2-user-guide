@@ -7,6 +7,8 @@ The following table describes important additions to the Amazon EC2 documentatio
 
 | Feature | API Version | Description | Release Date | 
 | --- | --- | --- | --- | 
+| AWS Systems Manager parameter points to an AMI ID | 2016\-11\-15 |  When you launch an instance, you can specify an AWS Systems Manager parameter that points to an AMI ID\. For more information, see [Using a Systems Manager parameter to find an AMI](finding-an-ami.md#using-systems-manager-parameter-to-find-AMI)\.  | 05 May 2020 | 
+| Customize scheduled event notifications | 2016\-11\-15 |  You can customize scheduled event notifications to include tags in the email notification\. For more information, see [Customizing scheduled event notifications](monitoring-instances-status-check_sched.md#customizing_scheduled_event_notifications)\.  | 04 May 2020 | 
 | Amazon Linux 2 Kernel Live Patching | 2016\-11\-15 |  Kernel Live Patching for Amazon Linux 2 enables you to apply security vulnerability and critical bug patches to a running Linux kernel, without reboots or disruptions to running applications\. For more information, see [Kernel Live Patching on Amazon Linux 2](al2-live-patching.md)\.  | 28 April 2020 | 
 | Windows Server on Dedicated Hosts | 2016\-11\-15 |  You can use Windows Server AMIs provided by Amazon to run the latest versions of Windows Server on Dedicated Hosts\. For more information, see [Dedicated Hosts](dedicated-hosts-overview.md)\.  | 07 April 2020 | 
 | Self\-service option to enable Local Zones | 2016\-11\-15 |  You can enable Local Zones using the AWS Management Console or the AWS CLI\. For more information, see [Enabling Local Zones](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#enable-zone-group)\.  | 05 March 2020 | 

@@ -20,7 +20,7 @@ High memory instances \(`u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, `u-18tb
 
 **X1 instances**
 
- instances are well suited for the following applications:
+These instances are well suited for the following applications:
 + In\-memory databases such as SAP HANA, including SAP\-certified support for Business Suite S/4HANA, Business Suite on HANA \(SoH\), Business Warehouse on HANA \(BW\), and Data Mart Solutions on HANA\. For more information, see [SAP HANA on the AWS Cloud](https://aws.amazon.com/sap/solutions/saphana/)\.
 + Big\-data processing engines such as Apache Spark or Presto\.
 + High\-performance computing \(HPC\) applications\.
@@ -53,7 +53,7 @@ For more information, see [Amazon EC2 z1d Instances](https://aws.amazon.com/ec2/
 + [Memory performance](#memory-perf)
 + [Instance performance](#memory-compute-perf)
 + [Network performance](#memory-network-perf)
-+ [SSD I/O performance](#r5d-z1d-instances-ssd-perf)
++ [SSD I/O performance](#instances-ssd-perf)
 + [Instance features](#memory-instances-features)
 + [Support for vCPUs](#high-cpu-support)
 + [Release notes](#memory-instance-limits)
@@ -189,7 +189,7 @@ The following is a summary of network performance for memory optimized instances
 
 † These instances use a network I/O credit mechanism to allocate network bandwidth to instances based on average bandwidth utilization\. They accrue credits when their bandwidth is below their baseline bandwidth, and can use these credits when they perform network data transfers\. For more information, open a support case and ask about baseline bandwidth for the specific instance types that you are interested in\.
 
-## SSD I/O performance<a name="r5d-z1d-instances-ssd-perf"></a>
+## SSD I/O performance<a name="instances-ssd-perf"></a>
 
 If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-based instance store volumes available to your instance, you get the IOPS \(4,096 byte block size\) performance listed in the following table \(at queue depth saturation\)\. Otherwise, you get lower IOPS performance\.
 

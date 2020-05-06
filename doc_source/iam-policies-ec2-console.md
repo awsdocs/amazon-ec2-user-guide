@@ -73,9 +73,9 @@ To complete a launch successfully, users must be given permission to use the `ec
 + `ec2:DescribeImages`: To view and select an AMI\. 
 + `ec2:DescribeVpcs`: To view the available network options\.
 + `ec2:DescribeSubnets`: To view all available subnets for the chosen VPC\. 
-+ `ec2:DescribeSecurityGroups` or `ec2:CreateSecurityGroup`: To view and select an existing security group, or create a new one\. 
-+ `ec2:DescribeKeyPairs` or `ec2:CreateKeyPair`: To select an existing key pair, or create a new one\.
-+ `ec2:AuthorizeSecurityGroupIngress` to add inbound rules\.
++ `ec2:DescribeSecurityGroups` or `ec2:CreateSecurityGroup`: To view and select an existing security group, or to create a new one\. 
++ `ec2:DescribeKeyPairs` or `ec2:CreateKeyPair`: To select an existing key pair, or to create a new one\.
++ `ec2:AuthorizeSecurityGroupIngress`: To add inbound rules\.
 
 ```
 {
@@ -111,11 +111,12 @@ You can add API actions to your policy to provide more options for users, for ex
 + To add outbound rules to VPC security groups, users must be granted permission to use the `ec2:AuthorizeSecurityGroupEgress` API action\. To modify or delete existing rules, users must be granted permission to use the relevant `ec2:RevokeSecurityGroup*` API action\.
 + `ec2:CreateTags`: To tag the resources that are created by `RunInstances`\. For more information, see [Granting permission to tag resources during creation](supported-iam-actions-tagging.md)\. If users do not have permission to use this action and they attempt to apply tags on the tagging page of the launch wizard, the launch fails\.
 **Important**  
-Be careful about granting users permission to use the `ec2:CreateTags` action\. This limits your ability to use the `ec2:ResourceTag` condition key to restrict the use of other resources; users can change a resource's tag in order to bypass those restrictions\.
+Be careful about granting users permission to use the `ec2:CreateTags` action, because doing so limits your ability to use the `ec2:ResourceTag` condition key to restrict their use of other resources\. If you grant users permission to use the `ec2:CreateTags` action, they can change a resource's tag in order to bypass those restrictions\. For more information, see [Controlling access using EC2 resource tags](control-access-with-tags.md)\.
++ To use Systems Manager parameters when selecting an AMI, you must add `ssm:DescribeParameters` and `ssm:GetParameters` to your policy\. `ssm:DescribeParameters` grants your IAM users the permission to view and select Systems Manager parameters\. `ssm:GetParameters` grants your IAM users the permission to get the values of the Systems Manager parameters\. You can also restrict access to specific Systems Manager parameters\. For more information, see **Restrict access to specific Systems Manager parameters** later in this section\.
 
 Currently, the Amazon EC2 `Describe*` API actions do not support resource\-level permissions, so you cannot restrict which individual resources users can view in the launch wizard\. However, you can apply resource\-level permissions on the `ec2:RunInstances` API action to restrict which resources users can use to launch an instance\. The launch fails if users select options that they are not authorized to use\. 
 
-**Restrict access to specific instance type, subnet, and Region**
+**Restrict access to a specific instance type, subnet, and Region**
 
 The following policy allows users to launch `t2.micro` instances using AMIs owned by Amazon, and only into a specific subnet \(`subnet-1a2b3c4d`\)\. Users can only launch in the sa\-east\-1 Region\. If users select a different Region, or select a different instance type, AMI, or subnet in the launch wizard, the launch fails\. 
 
@@ -173,6 +174,33 @@ The first statement grants users permission to view the options in the launch wi
             "ec2:Owner": "amazon"
          }
       }
+   }
+   ]
+}
+```
+
+**Restrict access to specific Systems Manager parameters**
+
+The following policy grants access to use Systems Manager parameters with a specific name\.
+
+The first statement grants users the permission to view Systems Manager parameters when selecting an AMI in the launch wizard\. The second statement grants users the permission to only use parameters that are named `prod-*`\.
+
+```
+{
+   "Version": "2012-10-17",
+   "Statement": [{
+      "Effect": "Allow",
+      "Action": [
+         "ssm:DescribeParameters"
+      ],
+      "Resource": "*"
+   },
+   {
+      "Effect": "Allow",
+      "Action": [
+      "ssm:GetParameters"
+   ],
+   "Resource": "arn:aws:ssm:us-east-2:123456123:parameter/prod-*"
    }
    ]
 }

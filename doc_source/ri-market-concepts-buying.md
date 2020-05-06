@@ -38,7 +38,7 @@ When you purchase a Reserved Instance, you must choose an offering for a *platfo
 
 **Important**  
 If you purchase a Reserved Instance to apply to an On\-Demand Instance that was launched from an AMI with a billing product code, make sure that the Reserved Instance has the matching billing product code\. If you purchase a Reserved Instance without the matching billing product code, the Reserved Instance will not be applied to the On\-Demand Instance\. For more information about how to obtain the AMI billing code, see [Obtaining billing information](ami-billing-info.md)\.
-Reserved Instances do not apply to On\-Demand Instances that were launched from AWS Marketplace AMIs\.
+If you plan to purchase a Reserved Instance to apply to an On\-Demand Instance that was launched from an AWS Marketplace AMI, first check the `PlatformDetails` field of the AMI\. The `PlatformDetails` field indicates which Reserved Instance to purchase\. The platform details of the AMI must match the platform of the Reserved Instance, otherwise the Reserved Instance will not be applied to the On\-Demand Instance\. For information about how to view the platform details of the AMI, see [Obtaining billing information](ami-billing-info.md)\.
 
 For information about the supported platforms for Windows, see [Choosing a platform](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ri-market-concepts-buying.html#ri-choosing-platform) in the *Amazon EC2 User Guide for Windows Instances*\.
 

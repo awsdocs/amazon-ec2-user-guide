@@ -5,7 +5,7 @@ The steps for launching, monitoring, and modifying these instances are similar\.
 + T2 instances launch as `standard` by default\.
 
 **Topics**
-+ [Launching a burstable Performance instance as Unlimited or Standard](#launch-burstable-performance-instances)
++ [Launching a burstable performance instance as Unlimited or Standard](#launch-burstable-performance-instances)
 + [Using an Auto Scaling group to launch a burstable performance instance as Unlimited](#burstable-performance-instances-auto-scaling-grp)
 + [Viewing the credit specification of a burstable performance instance](#describe-burstable-performance-instances)
 + [Modifying the credit specification of a burstable performance instance](#modify-burstable-performance-instances)
