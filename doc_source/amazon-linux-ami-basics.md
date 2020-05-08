@@ -236,15 +236,19 @@ To enable topics and install specific versions of their packages to ensure stabi
 [ec2-user ~]$ sudo amazon-linux-extras install topic=version topic=version
 ```
 
-The amazon-linux-extras utility is managing what yum repositories are enabled, so if you want to remove an installed extra, you can remove all packages installed from that topic, and then (optionally) disable the repo. Below is an example where we install the memcached1.5 Extras topic, and then remove all the packages installed from it, and disable the repository:
-
+To remove a package installed from a topic, use the following command:
 ```
-[ec2-user ~]$ sudo amazon-linux-extras install memcached1.5
-[ec2-user ~]$ sudo yum remove $(yum list installed | grep amzn2extra-memcached1.5 | awk '{ print $1 }')
-[ec2-user ~]$ sudo amazon-linux-extras disable memcached1.5
+[ec2-user ~]$ sudo yum remove $(yum list installed | grep amzn2extra-topic | awk '{ print $1 }')
 ```
+**Note**
+This command does not remove packages that were installed as dependencies of the extra.
 
-Note that this does not remove any packages installed as dependencies of the Extra. Since configuration and data files that work with an Extra may not work with the version of the software in Core, we do not officially support disabling Extras.
+To disable a topic and make the packages inaccessible to the yum package manager, use the following command:
+```
+[ec2-user ~]$ sudo amazon-linux-extras disable topic
+```
+**Important** 
+This command is intended for advanced users. Improper usage of this command could cause package compatibility conflicts. 
 
 
 ## Accessing Source Packages for Reference<a name="amazon-linux-source-packages"></a>
