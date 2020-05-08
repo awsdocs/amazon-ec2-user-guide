@@ -1,17 +1,17 @@
-# Installing NVIDIA Drivers on Linux Instances<a name="install-nvidia-driver"></a>
+# Installing NVIDIA drivers on Linux instances<a name="install-nvidia-driver"></a>
 
 An instance with an attached GPU, such as a P3 or G4 instance, must have the appropriate NVIDIA driver installed\. Depending on the instance type, you can either download a public NVIDIA driver, download a driver from Amazon S3 that is available only to AWS customers, or use an AMI with the driver pre\-installed\.
 
 **Contents**
-+ [Types of NVIDIA Drivers](#nvidia-driver-types)
-+ [Available Drivers by Instance Type](#nvidia-driver-instance-type)
-+ [Installation Options](#nvidia-installation-options)
-  + [Option 1: AMIs with the NVIDIA Drivers Installed](#preinstalled-nvidia-driver)
-  + [Option 2: Public NVIDIA Tesla Drivers](#public-nvidia-driver)
-  + [Option 3: GRID Drivers \(G3 and G4 Instances\)](#nvidia-GRID-driver)
-  + [Option 4: NVIDIA Gaming Drivers \(G4 Instances\)](#nvidia-gaming-driver)
++ [Types of NVIDIA drivers](#nvidia-driver-types)
++ [Available drivers by instance type](#nvidia-driver-instance-type)
++ [Installation options](#nvidia-installation-options)
+  + [Option 1: AMIs with the NVIDIA drivers installed](#preinstalled-nvidia-driver)
+  + [Option 2: Public NVIDIA Tesla drivers](#public-nvidia-driver)
+  + [Option 3: GRID drivers \(G3 and G4 instances\)](#nvidia-GRID-driver)
+  + [Option 4: NVIDIA gaming drivers \(G4 instances\)](#nvidia-gaming-driver)
 
-## Types of NVIDIA Drivers<a name="nvidia-driver-types"></a>
+## Types of NVIDIA drivers<a name="nvidia-driver-types"></a>
 
 The following are the main types of NVIDIA drivers that can be used with GPU\-based instances\.
 
@@ -24,7 +24,7 @@ These drivers are certified to provide optimal performance for professional visu
 Gaming drivers  
 These drivers contain optimizations for gaming and are updated frequently to provide performance enhancements\. They support a single 4K display per GPU\.
 
-**NVIDIA Control Panel**  
+**NVIDIA control panel**  
 The NVIDIA control panel is supported with GRID and Gaming drivers\. It is not supported with Tesla drivers\.
 
 **Supported APIs**
@@ -32,12 +32,12 @@ The NVIDIA control panel is supported with GRID and Gaming drivers\. It is not s
 + NVIDIA CUDA and related libraries \(for example, cuDNN, TensorRT, nvJPEG, and cuBLAS\)
 + NVENC for video encoding and NVDEC for video decoding
 
-## Available Drivers by Instance Type<a name="nvidia-driver-instance-type"></a>
+## Available drivers by instance type<a name="nvidia-driver-instance-type"></a>
 
 The following table summarizes the supported NVIDIA drivers for each GPU instance type\.
 
 
-| Instance Type | Tesla Driver | GRID Driver | Gaming Driver | 
+| Instance type | Tesla driver | GRID driver | Gaming driver | 
 | --- | --- | --- | --- | 
 | G2 | Yes | No | No | 
 | G3 | Yes | Yes | No | 
@@ -47,17 +47,17 @@ The following table summarizes the supported NVIDIA drivers for each GPU instanc
 
 † Using Marketplace AMIs only
 
-## Installation Options<a name="nvidia-installation-options"></a>
+## Installation options<a name="nvidia-installation-options"></a>
 
 Use one of the following options to get the NVIDIA drivers required for your GPU instance\.
 
 **Topics**
-+ [Option 1: AMIs with the NVIDIA Drivers Installed](#preinstalled-nvidia-driver)
-+ [Option 2: Public NVIDIA Tesla Drivers](#public-nvidia-driver)
-+ [Option 3: GRID Drivers \(G3 and G4 Instances\)](#nvidia-GRID-driver)
-+ [Option 4: NVIDIA Gaming Drivers \(G4 Instances\)](#nvidia-gaming-driver)
++ [Option 1: AMIs with the NVIDIA drivers installed](#preinstalled-nvidia-driver)
++ [Option 2: Public NVIDIA Tesla drivers](#public-nvidia-driver)
++ [Option 3: GRID drivers \(G3 and G4 instances\)](#nvidia-GRID-driver)
++ [Option 4: NVIDIA gaming drivers \(G4 instances\)](#nvidia-gaming-driver)
 
-### Option 1: AMIs with the NVIDIA Drivers Installed<a name="preinstalled-nvidia-driver"></a>
+### Option 1: AMIs with the NVIDIA drivers installed<a name="preinstalled-nvidia-driver"></a>
 
 AWS and NVIDIA offer different Amazon Machine Images \(AMI\) that come with the NVIDIA drivers installed\.
 + [Marketplace offerings with the Tesla driver](http://aws.amazon.com/marketplace/search/results?page=1&filters=VendorId&VendorId=e6a5002c-6dd0-4d1e-8196-0a1d1857229b%2Cc568fe05-e33b-411c-b0ab-047218431da9&searchTerms=tesla+driver)
@@ -72,7 +72,7 @@ To update the driver version installed using one of these AMIs, you must uninsta
 
 The CUDA toolkit package has dependencies on the NVIDIA drivers\. Uninstalling the NVIDIA packages erases the CUDA toolkit\. You must reinstall the CUDA toolkit after installing the NVIDIA driver\.
 
-### Option 2: Public NVIDIA Tesla Drivers<a name="public-nvidia-driver"></a>
+### Option 2: Public NVIDIA Tesla drivers<a name="public-nvidia-driver"></a>
 
 **To download the NVIDIA driver**  
 Log on to your Linux instance and download the 64\-bit NVIDIA driver appropriate for the instance type from [http://www\.nvidia\.com/Download/Find\.aspx](http://www.nvidia.com/Download/Find.aspx)\.
@@ -91,7 +91,7 @@ Log on to your Linux instance and download the 64\-bit NVIDIA driver appropriate
 **To install the NVIDIA driver on Linux**  
 For more information about installing and configuring the driver, see the [NVIDIA Driver Installation Quickstart Guide](https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html)\. 
 
-### Option 3: GRID Drivers \(G3 and G4 Instances\)<a name="nvidia-GRID-driver"></a>
+### Option 3: GRID drivers \(G3 and G4 instances\)<a name="nvidia-GRID-driver"></a>
 
 These downloads are available to AWS customers only\. By downloading, you agree to use the downloaded software only to develop AMIs for use with the NVIDIA Tesla T4 or NVIDIA Tesla M60 hardware\. Upon installation of the software, you are bound by the terms of the [NVIDIA GRID Cloud End User License Agreement](https://aws-nvidia-license-agreement.s3.amazonaws.com/NvidiaGridAWSUserLicenseAgreement.DOCX)\.
 
@@ -217,9 +217,7 @@ These downloads are available to AWS customers only\. By downloading, you agree 
 
 1. \(Optional\) NVIDIA Quadro Virtual Workstation mode is enabled by default\. To activate GRID Virtual Applications for RDSH Application hosting capabilities, complete the GRID Virtual Application activation steps in [Activate NVIDIA GRID Virtual Applications](activate_grid.md)\.
 
-1. \(Optional\) NVIDIA Quadro Virtual Workstation mode is enabled by default\. To activate NVIDIA GRID Virtual Applications, complete the GRID vApps activation steps in [Activate NVIDIA GRID Virtual Applications](activate_grid.md)\.
-
-### Option 4: NVIDIA Gaming Drivers \(G4 Instances\)<a name="nvidia-gaming-driver"></a>
+### Option 4: NVIDIA gaming drivers \(G4 instances\)<a name="nvidia-gaming-driver"></a>
 
 These drivers are available to AWS customers only\. By downloading them, you agree to use the downloaded software only to develop AMIs for use with the NVIDIA Tesla T4 hardware\. Upon installation of the software, you are bound by the terms of the [NVIDIA GRID Cloud End User License Agreement](https://aws-nvidia-license-agreement.s3.amazonaws.com/NvidiaGridAWSUserLicenseAgreement.DOCX)\.
 
@@ -332,17 +330,21 @@ These drivers are available to AWS customers only\. By downloading them, you agr
    ```
 
 1. Use the following command to download and rename the certification file\.
+   + For version 440\.68 or later:
 
-   ```
-   [ec2-user ~]$ sudo curl -o /etc/nvidia/GridSwCert.txt "https://s3.amazonaws.com/nvidia-gaming/GridSwCert-Linux.cert"
-   ```
+     ```
+     [ec2-user ~]$ sudo curl -o /etc/nvidia/GridSwCert.txt "https://nvidia-gaming.s3.amazonaws.com/GridSwCert-Archive/GridSwCert-Linux_2020_04.cert"
+     ```
+   + For earlier versions:
+
+     ```
+     [ec2-user ~]$ sudo curl -o /etc/nvidia/GridSwCert.txt "https://nvidia-gaming.s3.amazonaws.com/GridSwCert-Archive/GridSwCert-Linux_2019_09.cert"
+     ```
 
 1. Reboot the instance\.
 
    ```
    [ec2-user ~]$ sudo reboot
    ```
-
-1. \(Optional\) To help take advantage of the single display of up to 4K resolution, set up the high\-performance display protocol [NICE DCV](https://docs.aws.amazon.com/dcv)\.
 
 1. \(Optional\) To help take advantage of the four displays of up to 4K resolution, set up the high\-performance display protocol [NICE DCV](https://docs.aws.amazon.com/dcv)\.

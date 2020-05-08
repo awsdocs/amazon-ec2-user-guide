@@ -1,4 +1,4 @@
-# Instance Purchasing Options<a name="instance-purchasing-options"></a>
+# Instance purchasing options<a name="instance-purchasing-options"></a>
 
 Amazon EC2 provides the following purchasing options to enable you to optimize your costs based on your needs:
 + **On\-Demand Instances** – Pay, by the second, for the instances that you launch\.
@@ -15,7 +15,7 @@ If you require a capacity reservation, purchase Reserved Instances or Capacity R
 For more information about Savings Plans, see the [AWS Savings Plans User Guide](https://docs.aws.amazon.com/savingsplans/latest/userguide/)\.
 
 **Topics**
-+ [Determining the Instance Lifecycle](#check-instance-lifecycle)
++ [Determining the instance lifecycle](#check-instance-lifecycle)
 + [On\-Demand Instances](ec2-on-demand-instances.md)
 + [Reserved Instances](ec2-reserved-instances.md)
 + [Scheduled Reserved Instances](ec2-scheduled-instances.md)
@@ -24,7 +24,7 @@ For more information about Savings Plans, see the [AWS Savings Plans User Guide]
 + [Dedicated Instances](dedicated-instance.md)
 + [On\-Demand Capacity Reservations](ec2-capacity-reservations.md)
 
-## Determining the Instance Lifecycle<a name="check-instance-lifecycle"></a>
+## Determining the instance lifecycle<a name="check-instance-lifecycle"></a>
 
 The lifecycle of an instance starts when it is launched and ends when it is terminated\. The purchasing option that you choose affects the lifecycle of the instance\. For example, an On\-Demand Instance runs when you launch it and ends when you terminate it\. A Spot Instance runs as long as capacity is available and your maximum price is higher than the Spot price\. You can launch a Scheduled Instance during its scheduled time period; Amazon EC2 launches the instances and then terminates them three minutes before the time period ends\.
 
@@ -42,7 +42,7 @@ Use the following procedure to determine the lifecycle of an instance\.
 
 1. On the **Description** tab, find **Lifecycle**\. If the value is `spot`, the instance is a Spot Instance\. If the value is `scheduled`, the instance is a Scheduled Instance\. If the value is `normal`, the instance is either an On\-Demand Instance or a Reserved Instance\.
 
-1. \(Optional\) If you have purchased a Reserved Instance and want to verify that it is being applied, you can check the usage reports for Amazon EC2\. For more information, see [Amazon EC2 Usage Reports](usage-reports.md)\.
+1. \(Optional\) If you have purchased a Reserved Instance and want to verify that it is being applied, you can check the usage reports for Amazon EC2\. For more information, see [Amazon EC2 usage reports](usage-reports.md)\.
 
 **To determine the instance lifecycle using the AWS CLI**  
 Use the following [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command:

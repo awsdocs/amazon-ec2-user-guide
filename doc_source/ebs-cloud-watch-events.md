@@ -1,6 +1,6 @@
 # Amazon CloudWatch Events for Amazon EBS<a name="ebs-cloud-watch-events"></a>
 
-Amazon EBS emits notifications based on Amazon CloudWatch Events for a variety of volume, snapshot, and encryption status changes\. With CloudWatch Events, you can establish rules that trigger programmatic actions in response to a change in volume, snapshot, or encryption key state\. For example, when a snapshot is created, you can trigger an AWS Lambda function to share the completed snapshot with another account or copy it to another region for disaster\-recovery purposes\.
+Amazon EBS emits notifications based on Amazon CloudWatch Events for a variety of volume, snapshot, and encryption status changes\. With CloudWatch Events, you can establish rules that trigger programmatic actions in response to a change in volume, snapshot, or encryption key state\. For example, when a snapshot is created, you can trigger an AWS Lambda function to share the completed snapshot with another account or copy it to another Region for disaster\-recovery purposes\.
 
 Events in CloudWatch are represented as JSON objects\. The fields that are unique to the event are contained in the "detail" section of the JSON object\. The "event" field contains the event name\. The "result" field contains the completed status of the action that triggered the event\. For more information, see [Event Patterns in CloudWatch Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CloudWatchEventsandEventPatterns.html) in the *Amazon CloudWatch Events User Guide*\.
 
@@ -469,9 +469,9 @@ A request to enable fast snapshot restore failed due to an internal error, and t
 
 You can use Amazon EBS and CloudWatch Events to automate your data\-backup workflow\. This requires you to create an IAM policy, a AWS Lambda function to handle the event, and an Amazon CloudWatch Events rule that matches incoming events and routes them to the Lambda function\.
 
-The following procedure uses the `createSnapshot` event to automatically copy a completed snapshot to another region for disaster recovery\. 
+The following procedure uses the `createSnapshot` event to automatically copy a completed snapshot to another Region for disaster recovery\. 
 
-**To copy a completed snapshot to another region**
+**To copy a completed snapshot to another Region**
 
 1. Create an IAM policy, such as the one shown in the following example, to provide permissions to execute a `CopySnapshot` action and write to the CloudWatch Events log\. Assign the policy to the IAM user that will handle the CloudWatch event\.
 
@@ -521,7 +521,7 @@ The following procedure uses the `createSnapshot` event to automatically copy a 
        const description = `Snapshot copy from ${snapshotId} in ${sourceRegion}.`;
        console.log ("snapshotId:", snapshotId);
    
-       // Load EC2 class and update the configuration to use destination region to initiate the snapshot.
+       // Load EC2 class and update the configuration to use destination Region to initiate the snapshot.
        AWS.config.update({region: destinationRegion});
        var ec2 = new AWS.EC2();
    
@@ -536,12 +536,12 @@ The following procedure uses the `createSnapshot` event to automatically copy a 
        // Execute the copy snapshot and log any errors
        ec2.copySnapshot(copySnapshotParams, (err, data) => {
            if (err) {
-               const errorMessage = `Error copying snapshot ${snapshotId} to region ${destinationRegion}.`;
+               const errorMessage = `Error copying snapshot ${snapshotId} to Region ${destinationRegion}.`;
                console.log(errorMessage);
                console.log(err);
                callback(errorMessage);
            } else {
-               const successMessage = `Successfully started copy of snapshot ${snapshotId} to region ${destinationRegion}.`;
+               const successMessage = `Successfully started copy of snapshot ${snapshotId} to Region ${destinationRegion}.`;
                console.log(successMessage);
                console.log(data);
                callback(null, successMessage);
@@ -550,7 +550,7 @@ The following procedure uses the `createSnapshot` event to automatically copy a 
    };
    ```
 
-   To ensure that your Lambda function is available from the CloudWatch console, create it in the region where the CloudWatch event will occur\. For more information, see the [AWS Lambda Developer Guide](https://docs.aws.amazon.com/lambda/latest/dg/)\.
+   To ensure that your Lambda function is available from the CloudWatch console, create it in the Region where the CloudWatch event will occur\. For more information, see the [AWS Lambda Developer Guide](https://docs.aws.amazon.com/lambda/latest/dg/)\.
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 

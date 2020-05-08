@@ -56,7 +56,7 @@ You can view status checks using the AWS Management Console\.
 1. To view the status of a specific instance, select the instance, and then choose the **Status Checks** tab\.  
 ![\[Viewing status\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/status-check-tab.png)
 
-   If you have an instance with a failed status check and the instance has been unreachable for over 20 minutes, choose **AWS Support** to submit a request for assistance\. To troubleshoot system or instance status check failures yourself, see [Troubleshooting Instances with Failed Status Checks](TroubleshootingInstances.md)\.
+   If you have an instance with a failed status check and the instance has been unreachable for over 20 minutes, choose **AWS Support** to submit a request for assistance\. To troubleshoot system or instance status check failures yourself, see [Troubleshooting instances with failed status checks](TroubleshootingInstances.md)\.
 
 1. To review the CloudWatch metrics for status checks, select the instance, and then choose the **Monitoring** tab\. Scroll until you see the graphs for the following metrics:
    + **Status Check Failed \(Any\)**
@@ -89,7 +89,7 @@ Alternatively, use the following commands:
 +  [Get\-EC2InstanceStatus](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2InstanceStatus.html) \(AWS Tools for Windows PowerShell\) 
 +  [DescribeInstanceStatus](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeInstanceStatus.html) \(Amazon EC2 Query API\)
 
-If you have an instance with a failed status check, see [Troubleshooting Instances with Failed Status Checks](TroubleshootingInstances.md)\.
+If you have an instance with a failed status check, see [Troubleshooting instances with failed status checks](TroubleshootingInstances.md)\.
 
 ## Reporting Instance Status<a name="reporting_status"></a>
 

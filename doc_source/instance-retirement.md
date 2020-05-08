@@ -16,10 +16,10 @@ If your instance is scheduled for retirement, you'll receive an email prior to t
 
 1. Open the Amazon EC2 console\.
 
-1. In the navigation pane, choose **EC2 Dashboard**\. Under **Scheduled Events**, you can see the events associated with your Amazon EC2 instances and volumes, organized by region\.  
+1. In the navigation pane, choose **EC2 Dashboard**\. Under **Scheduled Events**, you can see the events associated with your Amazon EC2 instances and volumes, organized by Region\.  
 ![\[Scheduled events\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/sched-events-instance.png)
 
-1. If you have an instance with a scheduled event listed, select its link below the region name to go to the **Events** page\.
+1. If you have an instance with a scheduled event listed, select its link below the Region name to go to the **Events** page\.
 
 1. The **Events** page lists all resources with events associated with them\. To view instances that are scheduled for retirement, select **Instance resources** from the first filter list, and then **Instance stop or retirement** from the second filter list\.
 
@@ -62,6 +62,6 @@ If your instance store\-backed instance passes its retirement date, it is termin
 | Instance Root Device Type | Action | 
 | --- | --- | 
 | EBS | Create an EBS\-backed AMI from your instance so that you have a backup\. Wait for the scheduled retirement date \- when the instance is stopped \- or stop the instance yourself before the retirement date\. You can start the instance again at any time\. For more information about stopping and starting your instance, and what to expect when your instance is stopped, such as the effect on public, private and Elastic IP addresses associated with your instance, see [Stop and start your instance](Stop_Start.md)\. | 
-| EBS | Create an EBS\-backed AMI from your instance, and launch a replacement instance\. For more information, see [Creating an Amazon EBS\-Backed Linux AMI](creating-an-ami-ebs.md)\. | 
-| Instance store | Create an instance store\-backed AMI from your instance using the AMI tools, and launch a replacement instance\. For more information, see [Creating an Instance Store\-Backed Linux AMI](creating-an-ami-instance-store.md)\. | 
-| Instance store | Convert your instance to an EBS\-backed instance by transferring your data to an EBS volume, taking a snapshot of the volume, and then creating an AMI from the snapshot\. You can launch a replacement instance from your new AMI\. For more information, see [Converting your Instance Store\-Backed AMI to an Amazon EBS\-Backed AMI](Using_ConvertingS3toEBS.md)\. | 
+| EBS | Create an EBS\-backed AMI from your instance, and launch a replacement instance\. For more information, see [Creating an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md)\. | 
+| Instance store | Create an instance store\-backed AMI from your instance using the AMI tools, and launch a replacement instance\. For more information, see [Creating an instance store\-backed Linux AMI](creating-an-ami-instance-store.md)\. | 
+| Instance store | Convert your instance to an EBS\-backed instance by transferring your data to an EBS volume, taking a snapshot of the volume, and then creating an AMI from the snapshot\. You can launch a replacement instance from your new AMI\. For more information, see [Converting your instance store\-backed AMI to an Amazon EBS\-backed AMI](Using_ConvertingS3toEBS.md)\. | 

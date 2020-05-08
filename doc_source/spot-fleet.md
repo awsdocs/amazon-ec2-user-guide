@@ -1,4 +1,4 @@
-# How Spot Fleet Works<a name="spot-fleet"></a>
+# How Spot Fleet works<a name="spot-fleet"></a>
 
 A *Spot Fleet* is a collection, or fleet, of Spot Instances, and optionally On\-Demand Instances\. 
 
@@ -10,23 +10,23 @@ A *Spot Instance pool* is a set of unused EC2 instances with the same instance t
 
 **Topics**
 + [On\-Demand in Spot Fleet](#on-demand-in-spot)
-+ [Allocation Strategy for Spot Instances](#spot-fleet-allocation-strategy)
-+ [Spot Price Overrides](#spot-price-overrides)
-+ [Control Spending](#spot-fleet-control-spending)
-+ [Spot Fleet Instance Weighting](#spot-instance-weighting)
-+ [Walkthrough: Using Spot Fleet with Instance Weighting](#instance-weighting-walkthrough)
++ [Allocation strategy for Spot Instances](#spot-fleet-allocation-strategy)
++ [Spot price overrides](#spot-price-overrides)
++ [Control spending](#spot-fleet-control-spending)
++ [Spot Fleet instance weighting](#spot-instance-weighting)
++ [Walkthrough: Using Spot Fleet with instance weighting](#instance-weighting-walkthrough)
 
 ## On\-Demand in Spot Fleet<a name="on-demand-in-spot"></a>
 
 To ensure that you always have instance capacity, you can include a request for On\-Demand capacity in your Spot Fleet request\. In your Spot Fleet request, you specify your desired target capacity and how much of that capacity must be On\-Demand\. The balance comprises Spot capacity, which is launched if there is available Amazon EC2 capacity and availability\. For example, if in your Spot Fleet request you specify target capacity as 10 and On\-Demand capacity as 8, Amazon EC2 launches 8 capacity units as On\-Demand, and 2 capacity units \(10\-8=2\) as Spot\.
 
-### Prioritizing Instance Types for On\-Demand Capacity<a name="spot-fleet-on-demand-priority"></a>
+### Prioritizing instance types for On\-Demand capacity<a name="spot-fleet-on-demand-priority"></a>
 
 When Spot Fleet attempts to fulfill your On\-Demand capacity, it defaults to launching the lowest\-priced instance type first\. If `OnDemandAllocationStrategy` is set to `prioritized`, Spot Fleet uses priority to determine which instance type to use first in fulfilling On\-Demand capacity\. The priority is assigned to the launch template override, and the highest priority is launched first\.
 
 For example, you have configured three launch template overrides, each with a different instance type: `c3.large`, `c4.large`, and `c5.large`\. The On\-Demand price for `c5.large` is less than for `c4.large`\. `c3.large` is the cheapest\. If you do not use priority to determine the order, the fleet fulfills On\-Demand capacity by starting with `c3.large`, and then `c5.large`\. Because you often have unused Reserved Instances for `c4.large`, you can set the launch template override priority so that the order is `c4.large`, `c3.large`, and then `c5.large`\.
 
-## Allocation Strategy for Spot Instances<a name="spot-fleet-allocation-strategy"></a>
+## Allocation strategy for Spot Instances<a name="spot-fleet-allocation-strategy"></a>
 
 The allocation strategy for the Spot Instances in your Spot Fleet determines how it fulfills your Spot Fleet request from the possible Spot Instance pools represented by its launch specifications\. The following are the allocation strategies that you can specify in your Spot Fleet request:
 
@@ -42,25 +42,25 @@ The Spot Instances come from the pool with optimal capacity for the number of in
 `InstancePoolsToUseCount`  
 The Spot Instances are distributed across the number of Spot pools that you specify\. This parameter is valid only when used in combination with `lowestPrice`\.
 
-### Maintaining Target Capacity<a name="maintain-fleet-capacity"></a>
+### Maintaining target capacity<a name="maintain-fleet-capacity"></a>
 
 After Spot Instances are terminated due to a change in the Spot price or available capacity of a Spot Instance pool, a Spot Fleet of type `maintain` launches replacement Spot Instances\. If the allocation strategy is `lowestPrice`, the fleet launches replacement instances in the pool where the Spot price is currently the lowest\. If the allocation strategy is `diversified`, the fleet distributes the replacement Spot Instances across the remaining pools\. If the allocation strategy is `lowestPrice` in combination with `InstancePoolsToUseCount`, the fleet selects the Spot pools with the lowest price and launches Spot Instances across the number of Spot pools that you specify\.
 
-### Configuring Spot Fleet for Cost Optimization<a name="spot-fleet-strategy-cost-optimization"></a>
+### Configuring Spot Fleet for cost optimization<a name="spot-fleet-strategy-cost-optimization"></a>
 
 To optimize the costs for your use of Spot Instances, specify the `lowestPrice` allocation strategy so that Spot Fleet automatically deploys the least expensive combination of instance types and Availability Zones based on the current Spot price\.
 
 For On\-Demand Instance target capacity, Spot Fleet always selects the least expensive instance type based on the public On\-Demand price, while continuing to follow the allocation strategy \(either `lowestPrice`, `capacityOptimized`, or `diversified`\) for Spot Instances\.
 
-### Configuring Spot Fleet for Cost Optimization and Diversification<a name="spot-fleet-strategy-cost-optimization-and-diversified"></a>
+### Configuring Spot Fleet for cost optimization and diversification<a name="spot-fleet-strategy-cost-optimization-and-diversified"></a>
 
 To create a fleet of Spot Instances that is both cheap and diversified, use the `lowestPrice` allocation strategy in combination with `InstancePoolsToUseCount`\. Spot Fleet automatically deploys the cheapest combination of instance types and Availability Zones based on the current Spot price across the number of Spot pools that you specify\. This combination can be used to avoid the most expensive Spot Instances\.
 
-### Configuring Spot Fleet for Capacity Optimization<a name="spot-fleet-strategy-capacity-optimized.title"></a>
+### Configuring Spot Fleet for capacity optimization<a name="spot-fleet-strategy-capacity-optimized"></a>
 
 With Spot Instances, pricing changes slowly over time based on long\-term trends in supply and demand, but capacity fluctuates in real time\. The `capacityOptimized` strategy automatically launches Spot Instances into the most available pools by looking at real\-time capacity data and predicting which are the most available\. This works well for workloads such as big data and analytics, image and media rendering, machine learning, and high performance computing that may have a higher cost of interruption associated with restarting work and checkpointing\. By offering the possibility of fewer interruptions, the `capacityOptimized` strategy can lower the overall cost of your workload\.
 
-### Choosing an Appropriate Allocation Strategy<a name="allocation-use-cases"></a>
+### Choosing an appropriate allocation strategy<a name="allocation-use-cases"></a>
 
 You can optimize your Spot Fleets based on your use case\.
 
@@ -74,13 +74,13 @@ To create a cheap and diversified fleet, use the `lowestPrice` strategy in combi
 
 If your fleet runs workloads that may have a higher cost of interruption associated with restarting work and checkpointing, then use the `capacityOptimized` strategy\. This strategy offers the possibility of fewer interruptions, which can lower the overall cost of your workload\.
 
-## Spot Price Overrides<a name="spot-price-overrides"></a>
+## Spot price overrides<a name="spot-price-overrides"></a>
 
 Each Spot Fleet request can include a global maximum price, or use the default \(the On\-Demand price\)\. Spot Fleet uses this as the default maximum price for each of its launch specifications\.
 
 You can optionally specify a maximum price in one or more launch specifications\. This price is specific to the launch specification\. If a launch specification includes a specific price, the Spot Fleet uses this maximum price, overriding the global maximum price\. Any other launch specifications that do not include a specific maximum price still use the global maximum price\.
 
-## Control Spending<a name="spot-fleet-control-spending"></a>
+## Control spending<a name="spot-fleet-control-spending"></a>
 
 Spot Fleet stops launching instances when it has either reached the target capacity or the maximum amount you’re willing to pay\. To control the amount you pay per hour for your fleet, you can specify the `SpotMaxTotalPrice` for Spot Instances and the `OnDemandMaxTotalPrice` for On\-Demand Instances\. When the maximum total price is reached, Spot Fleet stops launching instances even if it hasn’t met the target capacity\.
 
@@ -104,7 +104,7 @@ Given a request for `m4.large` On\-Demand Instances, where:
 
 If Spot Fleet launches the On\-Demand target capacity \(10 On\-Demand Instances\), the total cost per hour would be $1\.00\. This is more than the amount \($0\.80\) specified for `OnDemandMaxTotalPrice`\. To prevent spending more than you're willing to pay, Spot Fleet launches only 8 On\-Demand Instances \(below the On\-Demand target capacity\) because launching more would exceed the `OnDemandMaxTotalPrice`\.
 
-## Spot Fleet Instance Weighting<a name="spot-instance-weighting"></a>
+## Spot Fleet instance weighting<a name="spot-instance-weighting"></a>
 
 When you request a fleet of Spot Instances, you can define the capacity units that each instance type would contribute to your application's performance, and adjust your maximum price for each Spot Instance pool accordingly using *instance weighting*\.
 
@@ -130,7 +130,7 @@ Use Spot Fleet instance weighting as follows to provision the target capacity th
 
 1. For each launch configuration, specify the weight, which is the number of units that the instance type represents toward the target capacity\.
 
-**Instance Weighting Example**  
+**Instance weighting example**  
 Consider a Spot Fleet request with the following configuration:
 + A target capacity of 24
 + A launch specification with an instance type `r3.2xlarge` and a weight of 6
@@ -140,7 +140,7 @@ The weights represent the number of units that instance type represents toward t
 
 If the second launch specification provides the lowest price per unit \(price for `c3.xlarge` per instance hour divided by 5\), the Spot Fleet would launch five of these instances \(24 divided by 5, result rounded up\)\.
 
-**Instance Weighting and Allocation Strategy**  
+**Instance weighting and allocation strategy**  
 Consider a Spot Fleet request with the following configuration:
 + A target capacity of 30
 + A launch specification with an instance type `c3.2xlarge` and a weight of 8
@@ -149,7 +149,7 @@ Consider a Spot Fleet request with the following configuration:
 
 The Spot Fleet would launch four instances \(30 divided by 8, result rounded up\)\. With the `lowestPrice` strategy, all four instances come from the pool that provides the lowest price per unit\. With the `diversified` strategy, the Spot Fleet launches one instance in each of the three pools, and the fourth instance in whichever pool provides the lowest price per unit\.
 
-## Walkthrough: Using Spot Fleet with Instance Weighting<a name="instance-weighting-walkthrough"></a>
+## Walkthrough: Using Spot Fleet with instance weighting<a name="instance-weighting-walkthrough"></a>
 
 This walkthrough uses a fictitious company called Example Corp to illustrate the process of requesting a Spot Fleet using instance weighting\.
 
@@ -161,7 +161,7 @@ Example Corp, a pharmaceutical company, wants to leverage the computational powe
 
 Example Corp first reviews [Spot Best Practices](https://aws.amazon.com/ec2/spot/getting-started/#bestpractices)\. Next, Example Corp determines the following requirements for their Spot Fleet\.
 
-**Instance Types**  
+**Instance types**  
 Example Corp has a compute\- and memory\-intensive application that performs best with at least 60 GB of memory and eight virtual CPUs \(vCPUs\)\. They want to maximize these resources for the application at the lowest possible price\. Example Corp decides that any of the following EC2 instance types would meet their needs:
 
 
@@ -171,10 +171,10 @@ Example Corp has a compute\- and memory\-intensive application that performs bes
 | r3\.4xlarge | 122 | 16 | 
 | r3\.8xlarge | 244 | 32 | 
 
-**Target Capacity in Units**  
+**Target capacity in units**  
 With instance weighting, target capacity can equal a number of instances \(the default\) or a combination of factors such as cores \(vCPUs\), memory \(GiBs\), and storage \(GBs\)\. By considering the base for their application \(60 GB of RAM and eight vCPUs\) as 1 unit, Example Corp decides that 20 times this amount would meet their needs\. So the company sets the target capacity of their Spot Fleet request to 20\.
 
-**Instance Weights**  
+**Instance weights**  
 After determining the target capacity, Example Corp calculates instance weights\. To calculate the instance weight for each instance type, they determine the units of each instance type that are required to reach the target capacity as follows:
 + r3\.2xlarge \(61\.0 GB, 8 vCPUs\) = 1 unit of 20
 + r3\.4xlarge \(122\.0 GB, 16 vCPUs\) = 2 units of 20
@@ -182,7 +182,7 @@ After determining the target capacity, Example Corp calculates instance weights\
 
 Therefore, Example Corp assigns instance weights of 1, 2, and 4 to the respective launch configurations in their Spot Fleet request\.
 
-**Price Per Unit Hour**  
+**Price per unit hour**  
 Example Corp uses the [On\-Demand price](https://aws.amazon.com/ec2/pricing/) per instance hour as a starting point for their price\. They could also use recent Spot prices, or a combination of the two\. To calculate the price per unit hour, they divide their starting price per instance hour by the weight\. For example:
 
 
@@ -194,11 +194,11 @@ Example Corp uses the [On\-Demand price](https://aws.amazon.com/ec2/pricing/) pe
 
 Example Corp could use a global price per unit hour of $0\.7 and be competitive for all three instance types\. They could also use a global price per unit hour of $0\.7 and a specific price per unit hour of $0\.9 in the `r3.8xlarge` launch specification\.
 
-### Verifying Permissions<a name="instance-weighting-walkthrough-permissions"></a>
+### Verifying permissions<a name="instance-weighting-walkthrough-permissions"></a>
 
-Before creating a Spot Fleet request, Example Corp verifies that it has an IAM role with the required permissions\. For more information, see [Spot Fleet Prerequisites](spot-fleet-requests.md#spot-fleet-prerequisites)\.
+Before creating a Spot Fleet request, Example Corp verifies that it has an IAM role with the required permissions\. For more information, see [Spot Fleet prerequisites](spot-fleet-requests.md#spot-fleet-prerequisites)\.
 
-### Creating the Request<a name="instance-weighting-walkthrough-request"></a>
+### Creating the request<a name="instance-weighting-walkthrough-request"></a>
 
 Example Corp creates a file, `config.json`, with the following configuration for its Spot Fleet request:
 
@@ -231,13 +231,13 @@ Example Corp creates a file, `config.json`, with the following configuration for
 }
 ```
 
-Example Corp creates the Spot Fleet request using the following [request\-spot\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-fleet.html) command:
+Example Corp creates the Spot Fleet request using the [request\-spot\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-fleet.html) command\.
 
 ```
 aws ec2 request-spot-fleet --spot-fleet-request-config file://config.json
 ```
 
-For more information, see [Spot Fleet Requests](spot-fleet-requests.md)\.
+For more information, see [Spot Fleet requests](spot-fleet-requests.md)\.
 
 ### Fulfillment<a name="instance-weighting-walkthrough-fulfillment"></a>
 

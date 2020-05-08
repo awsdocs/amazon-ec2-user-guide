@@ -1,4 +1,4 @@
-# CloudWatch Metrics for Spot Fleet<a name="spot-fleet-cloudwatch-metrics"></a>
+# CloudWatch metrics for Spot Fleet<a name="spot-fleet-cloudwatch-metrics"></a>
 
 Amazon EC2 provides Amazon CloudWatch metrics that you can use to monitor your Spot Fleet\.
 
@@ -7,7 +7,7 @@ To ensure accuracy, we recommend that you enable detailed monitoring when using 
 
 For more information about CloudWatch metrics provided by Amazon EC2, see [Monitoring Your Instances Using CloudWatch](using-cloudwatch.md)\.
 
-## Spot Fleet Metrics<a name="spot-fleet-metrics"></a>
+## Spot Fleet metrics<a name="spot-fleet-metrics"></a>
 
 The `AWS/EC2Spot` namespace includes the following metrics, plus the CloudWatch metrics for the Spot Instances in your fleet\. For more information, see [Instance Metrics](viewing_metrics_with_cloudwatch.md#ec2-cloudwatch-metrics)\.
 
@@ -28,7 +28,7 @@ The `AWS/EC2Spot` namespace includes the following metrics\.
 
 If the unit of measure for a metric is `Count`, the most useful statistic is `Average`\.
 
-## Spot Fleet Dimensions<a name="spot-fleet-dimensions"></a>
+## Spot Fleet dimensions<a name="spot-fleet-dimensions"></a>
 
 To filter the data for your Spot Fleet, use the following dimensions\.
 
@@ -39,7 +39,7 @@ To filter the data for your Spot Fleet, use the following dimensions\.
 | `FleetRequestId` |  Filter the data by Spot Fleet request\.  | 
 | `InstanceType` |  Filter the data by instance type\.  | 
 
-## View the CloudWatch Metrics for Your Spot Fleet<a name="view-spot-metrics"></a>
+## View the CloudWatch metrics for your Spot Fleet<a name="view-spot-metrics"></a>
 
 You can view the CloudWatch metrics for your Spot Fleet using the Amazon CloudWatch console\. These metrics are displayed as monitoring graphs\. These graphs show data points if the Spot Fleet is active\.
 

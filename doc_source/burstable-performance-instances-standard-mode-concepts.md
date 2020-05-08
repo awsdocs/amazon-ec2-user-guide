@@ -1,11 +1,11 @@
-# Standard Mode Concepts<a name="burstable-performance-instances-standard-mode-concepts"></a>
+# Standard mode concepts<a name="burstable-performance-instances-standard-mode-concepts"></a>
 
 The `standard` mode is a configuration option for burstable performance instances\. It can be enabled or disabled at any time for a running or stopped instance\. You can set `standard` as the default credit option at the account level per AWS Region, per burstable performance instance family, so that all new burstable performance instances in the account launch using the default credit option\.
 
 **Note**  
-T3 and T3a instances are launched as `unlimited` by default\. T2 instances are launched as `standard` by default\. You can change the default at the account level per AWS Region\. For more information, see [Setting the Default Credit Specification for the Account](burstable-performance-instances-how-to.md#burstable-performance-instance-set-default-credit-specification-for-account)\.
+T3 and T3a instances are launched as `unlimited` by default\. T2 instances are launched as `standard` by default\. You can change the default at the account level per AWS Region\. For more information, see [Setting the default credit specification for the account](burstable-performance-instances-how-to.md#burstable-performance-instance-set-default-credit-specification-for-account)\.
 
-## How Standard Burstable Performance Instances Work<a name="how-burstable-performance-instances-standard-works"></a>
+## How standard burstable performance instances work<a name="how-burstable-performance-instances-standard-works"></a>
 
 When a burstable performance instance configured as `standard` is in a running state, it continuously earns \(at a millisecond\-level resolution\) a set rate of earned credits per hour\. For T2 Standard, when the instance is stopped, it loses all its accrued credits, and its credit balance is reset to zero\. When it is restarted, it receives a new set of launch credits, and begins to accrue earned credits\. For T3 and T3a Standard, the CPU credit balance persists for seven days after the instance stops and the credits are lost thereafter\. If you start the instance within seven days, no credits are lost\.
 
@@ -13,7 +13,7 @@ A T2 Standard instance receives two types of CPU credits: *earned credits* and *
 
 T3 and T3a Standard instances do not receive launch credits\.
 
-## Launch Credits<a name="launch-credits"></a>
+## Launch credits<a name="launch-credits"></a>
 
 T2 Standard instances get 30 launch credits per vCPU at launch or start\. For example, a `t2.micro` instance has one vCPU and gets 30 launch credits, while a `t2.xlarge` instance has four vCPUs and gets 120 launch credits\. Launch credits are designed to provide a good startup experience to allow instances to burst immediately after launch before they have accrued earned credits\.
 
@@ -33,14 +33,14 @@ The following table lists the initial CPU credit allocation received at launch o
 |  `t2.xlarge`  |  120  |  4  | 
 |  `t2.2xlarge`  |  240  |  8  | 
 
-## Launch Credit Limits<a name="launch-credit-limits"></a>
+## Launch credit limits<a name="launch-credit-limits"></a>
 
 There is a limit to the number of times T2 Standard instances can receive launch credits\. The default limit is 100 launches or starts of all T2 Standard instances combined per account, per Region, per rolling 24\-hour period\. For example, the limit is reached when one instance is stopped and started 100 times within a 24\-hour period, or when 100 instances are launched within a 24\-hour period, or other combinations that equate to 100 starts\. New accounts may have a lower limit, which increases over time based on your usage\.
 
 **Tip**  
-To ensure that your workloads always get the performance they need, switch to [Unlimited Mode for Burstable Performance Instances](burstable-performance-instances-unlimited-mode.md) or consider using a larger instance size\.
+To ensure that your workloads always get the performance they need, switch to [Unlimited mode for burstable performance instances](burstable-performance-instances-unlimited-mode.md) or consider using a larger instance size\.
 
-## Differences Between Launch Credits and Earned Credits<a name="burstable-performance-instances-diff-launch-earned-credits"></a>
+## Differences between launch credits and earned credits<a name="burstable-performance-instances-diff-launch-earned-credits"></a>
 
 The following table lists the differences between launch credits and earned credits\.
 

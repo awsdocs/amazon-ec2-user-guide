@@ -1,8 +1,8 @@
-# Retrieving Instance Metadata<a name="instancedata-data-retrieval"></a>
+# Retrieving instance metadata<a name="instancedata-data-retrieval"></a>
 
 Because your instance metadata is available from your running instance, you do not need to use the Amazon EC2 console or the AWS CLI\. This can be helpful when you're writing scripts to run from your instance\. For example, you can access the local IP address of your instance from instance metadata to manage a connection to an external application\.
 
-Instance metadata is divided into categories\. For a description of each instance metadata category, see [Instance Metadata Categories](instancedata-data-categories.md)\.
+Instance metadata is divided into categories\. For a description of each instance metadata category, see [Instance metadata categories](instancedata-data-categories.md)\.
 
 To view all categories of instance metadata from within a running instance, use the following URI\.
 
@@ -14,7 +14,7 @@ The IP address `169.254.169.254` is a link\-local address and is valid only from
 
 Note that you are not billed for HTTP requests used to retrieve instance metadata and user data\.
 
-The command format is different, depending on whether you use IMDSv1 or IMDSv2\. By default, you can use both instance metadata services\. To require the use of IMDSv2, see [Configuring the Instance Metadata Service](configuring-instance-metadata-service.md)\.
+The command format is different, depending on whether you use IMDSv1 or IMDSv2\. By default, you can use both instance metadata services\. To require the use of IMDSv2, see [Configuring the instance metadata service](configuring-instance-metadata-service.md)\.
 
 You can use a tool such as cURL, as shown in the following example\.
 
@@ -37,7 +37,7 @@ You can use a tool such as cURL, as shown in the following example\.
 
 You can also download the [Instance Metadata Query tool](https://aws.amazon.com/code/ec2-instance-metadata-query-tool/), which allows you to query the instance metadata using Instance Metadata Service Version 1 without having to enter the full URI or category names\.
 
-## Responses and Error Messages<a name="instance-metadata-returns"></a>
+## Responses and error messages<a name="instance-metadata-returns"></a>
 
 All instance metadata is returned as text \(HTTP content type `text/plain`\)\.
 
@@ -50,17 +50,17 @@ For requests made using Instance Metadata Service Version 2, the following HTTP 
 + `401 - Unauthorized` – The `GET` request uses an invalid token\. The recommended action is to generate a new token\.
 + `403 - Forbidden` – The request is not allowed or the instance metadata service is turned off\.
 
-## Examples of Retrieving Instance Metadata<a name="instancedata-meta-data-retrieval-examples"></a>
+## Examples of retrieving instance metadata<a name="instancedata-meta-data-retrieval-examples"></a>
 
 **Topics**
-+ [Get the Available Versions of the Instance Metadata](#instance-metadata-ex-1)
-+ [Get the Top\-Level Metadata Items](#instance-metadata-ex-2)
-+ [Get the List of Available Public Keys](#instance-metadata-ex-3)
-+ [Show the Formats in Which Public Key 0 Is Available](#instance-metadata-ex-4)
-+ [Get Public Key 0 \(in the OpenSSH Key Format\)](#instance-metadata-ex-5)
-+ [Get the Subnet ID for an Instance](#instance-metadata-ex-6)
++ [Get the available versions of the instance metadata](#instance-metadata-ex-1)
++ [Get the top\-level metadata items](#instance-metadata-ex-2)
++ [Get the list of available public keys](#instance-metadata-ex-3)
++ [Show the formats in which public key 0 is available](#instance-metadata-ex-4)
++ [Get public key 0 \(in the OpenSSH key format\)](#instance-metadata-ex-5)
++ [Get the subnet ID for an instance](#instance-metadata-ex-6)
 
-### Get the Available Versions of the Instance Metadata<a name="instance-metadata-ex-1"></a>
+### Get the available versions of the instance metadata<a name="instance-metadata-ex-1"></a>
 
 This example gets the available versions of the instance metadata\. These versions do not necessarily correlate with an Amazon EC2 API version\. The earlier versions are available to you in case you have scripts that rely on the structure and information present in a previous version\. 
 
@@ -119,9 +119,9 @@ latest
 
 ------
 
-### Get the Top\-Level Metadata Items<a name="instance-metadata-ex-2"></a>
+### Get the top\-level metadata items<a name="instance-metadata-ex-2"></a>
 
-This example gets the top\-level metadata items\. For more information, see [Instance Metadata Categories](instancedata-data-categories.md)\.
+This example gets the top\-level metadata items\. For more information, see [Instance metadata categories](instancedata-data-categories.md)\.
 
 ------
 #### [ IMDSv2 ]
@@ -266,7 +266,7 @@ ec2-203-0-113-25.compute-1.amazonaws.com
 
 ------
 
-### Get the List of Available Public Keys<a name="instance-metadata-ex-3"></a>
+### Get the list of available public keys<a name="instance-metadata-ex-3"></a>
 
 This example gets the list of available public keys\.
 
@@ -289,7 +289,7 @@ This example gets the list of available public keys\.
 
 ------
 
-### Show the Formats in Which Public Key 0 Is Available<a name="instance-metadata-ex-4"></a>
+### Show the formats in which public key 0 is available<a name="instance-metadata-ex-4"></a>
 
 This example shows the formats in which public key 0 is available\.
 
@@ -312,7 +312,7 @@ openssh-key
 
 ------
 
-### Get Public Key 0 \(in the OpenSSH Key Format\)<a name="instance-metadata-ex-5"></a>
+### Get public key 0 \(in the OpenSSH key format\)<a name="instance-metadata-ex-5"></a>
 
 This example gets public key 0 \(in the OpenSSH key format\)\.
 
@@ -361,7 +361,7 @@ NYiytVbZPQUQ5Yaxu2jXnimvw3rrszlaEXAMPLE my-public-key
 
 ------
 
-### Get the Subnet ID for an Instance<a name="instance-metadata-ex-6"></a>
+### Get the subnet ID for an instance<a name="instance-metadata-ex-6"></a>
 
 This example gets the subnet ID for an instance\.
 
@@ -392,7 +392,7 @@ If you're using the instance metadata service to retrieve AWS security credentia
 
 If you are throttled while accessing the instance metadata service, retry your query with an exponential backoff strategy\.
 
-## Limiting Instance Metadata Service Access<a name="instance-metadata-limiting-access"></a>
+## Limiting instance metadata service access<a name="instance-metadata-limiting-access"></a>
 
 You can consider using local firewall rules to disable access from some or all processes to the instance metadata service\.
 

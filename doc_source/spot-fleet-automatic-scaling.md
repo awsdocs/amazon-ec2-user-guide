@@ -1,4 +1,4 @@
-# Automatic Scaling for Spot Fleet<a name="spot-fleet-automatic-scaling"></a>
+# Automatic scaling for Spot Fleet<a name="spot-fleet-automatic-scaling"></a>
 
 *Automatic scaling* is the ability to increase or decrease the target capacity of your Spot Fleet automatically based on demand\. A Spot Fleet can either launch instances \(scale out\) or terminate instances \(scale in\), within the range that you choose, in response to one or more scaling policies\.
 
@@ -11,14 +11,14 @@ If you are using [instance weighting](spot-fleet.md#spot-instance-weighting), ke
 
 The scaling policies that you create for Spot Fleet support a cooldown period\. This is the number of seconds after a scaling activity completes where previous trigger\-related scaling activities can influence future scaling events\. For scale\-out policies, while the cooldown period is in effect, the capacity that has been added by the previous scale\-out event that initiated the cooldown is calculated as part of the desired capacity for the next scale out\. The intention is to continuously \(but not excessively\) scale out\. For scale in policies, the cooldown period is used to block subsequent scale in requests until it has expired\. The intention is to scale in conservatively to protect your application's availability\. However, if another alarm triggers a scale\-out policy during the cooldown period after a scale\-in, automatic scaling scales out your scalable target immediately\.
 
-We recommend that you scale based on instance metrics with a 1\-minute frequency because that ensures a faster response to utilization changes\. Scaling on metrics with a 5\-minute frequency can result in slower response time and scaling on stale metric data\. To send metric data for your instances to CloudWatch in 1\-minute periods, you must specifically enable detailed monitoring\. For more information, see [Enable or Disable Detailed Monitoring for Your Instances](using-cloudwatch-new.md) and [Create a Spot Fleet Request Using Defined Parameters \(Console\)](spot-fleet-requests.md#create-spot-fleet-advanced)\.
+We recommend that you scale based on instance metrics with a 1\-minute frequency because that ensures a faster response to utilization changes\. Scaling on metrics with a 5\-minute frequency can result in slower response time and scaling on stale metric data\. To send metric data for your instances to CloudWatch in 1\-minute periods, you must specifically enable detailed monitoring\. For more information, see [Enable or Disable Detailed Monitoring for Your Instances](using-cloudwatch-new.md) and [Create a Spot Fleet request using defined parameters \(console\)](spot-fleet-requests.md#create-spot-fleet-advanced)\.
 
 For more information about configuring scaling for Spot Fleet, see the following resources:
 + [application\-autoscaling](https://docs.aws.amazon.com/cli/latest/reference/application-autoscaling) section of the *AWS CLI Command Reference*
 + [Application Auto Scaling API Reference](https://docs.aws.amazon.com/autoscaling/application/APIReference/)
 + [Application Auto Scaling User Guide](https://docs.aws.amazon.com/autoscaling/application/userguide/)
 
-## IAM Permissions Required for Spot Fleet Auto Scaling<a name="spot-fleet-auto-scaling-IAM"></a>
+## IAM permissions required for Spot Fleet automatic scaling<a name="spot-fleet-auto-scaling-IAM"></a>
 
 Automatic scaling for Spot Fleet is made possible by a combination of the Amazon EC2, Amazon CloudWatch, and Application Auto Scaling APIs\. Spot Fleet requests are created with Amazon EC2, alarms are created with CloudWatch, and scaling policies are created with Application Auto Scaling\. 
 

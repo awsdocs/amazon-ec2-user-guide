@@ -6,7 +6,7 @@ When you stop an instance, we shut it down\. We don't charge usage for a stopped
 
 While the instance is stopped, you can treat its root volume like any other volume, and modify it \(for example, repair file system problems or update software\)\. You just detach the volume from the stopped instance, attach it to a running instance, make your changes, detach it from the running instance, and then reattach it to the stopped instance\. Make sure that you reattach it using the storage device name that's specified as the root device in the block device mapping for the instance\.
 
-If you decide that you no longer need an instance, you can terminate it\. As soon as the state of an instance changes to `shutting-down` or `terminated`, we stop charging for that instance\. For more information, see [Terminate Your Instance](terminating-instances.md)\. If you'd rather hibernate the instance, see [Hibernate Your Linux Instance](Hibernate.md)\. For more information, see [Differences Between Reboot, Stop, Hibernate, and Terminate](ec2-instance-lifecycle.md#lifecycle-differences)\.
+If you decide that you no longer need an instance, you can terminate it\. As soon as the state of an instance changes to `shutting-down` or `terminated`, we stop charging for that instance\. For more information, see [Terminate Your Instance](terminating-instances.md)\. If you'd rather hibernate the instance, see [Hibernate your Linux instance](Hibernate.md)\. For more information, see [Differences Between Reboot, Stop, Hibernate, and Terminate](ec2-instance-lifecycle.md#lifecycle-differences)\.
 
 **Topics**
 + [Overview](#instance_stop)
@@ -17,7 +17,7 @@ If you decide that you no longer need an instance, you can terminate it\. As soo
 
 ## Overview<a name="instance_stop"></a>
 
-You can only stop an Amazon EBS\-backed instance\. To verify the root device type of your instance, describe the instance and check whether the device type of its root volume is `ebs` \(Amazon EBS\-backed instance\) or `instance store` \(instance store\-backed instance\)\. For more information, see [Determining the Root Device Type of Your AMI](ComponentsAMIs.md#display-ami-root-device-type)\.
+You can only stop an Amazon EBS\-backed instance\. To verify the root device type of your instance, describe the instance and check whether the device type of its root volume is `ebs` \(Amazon EBS\-backed instance\) or `instance store` \(instance store\-backed instance\)\. For more information, see [Determining the root device type of your AMI](ComponentsAMIs.md#display-ami-root-device-type)\.
 
 When you stop a running instance, the following happens:
 + The instance performs a normal shutdown and stops running; its status changes to `stopping` and then `stopped`\.
@@ -26,7 +26,7 @@ When you stop a running instance, the following happens:
 + In most cases, the instance is migrated to a new underlying host computer when it's started\.
 + The instance retains its private IPv4 addresses and any IPv6 addresses when stopped and started\. We release the public IPv4 address and assign a new one when you start it\.
 + The instance retains its associated Elastic IP addresses\. You're charged for any Elastic IP addresses associated with a stopped instance\. With EC2\-Classic, an Elastic IP address is dissociated from your instance when you stop it\. For more information, see [EC2\-Classic](ec2-classic-platform.md)\.
-+ When you stop and start a Windows instance, the EC2Config service performs tasks on the instance, such as changing the drive letters for any attached Amazon EBS volumes\. For more information about these defaults and how you can change them, see [Configuring a Windows Instance Using the EC2Config Service](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2config-service.html) in the *Amazon EC2 User Guide for Windows Instances*\.
++ When you stop and start a Windows instance, the EC2Config service performs tasks on the instance, such as changing the drive letters for any attached Amazon EBS volumes\. For more information about these defaults and how you can change them, see [Configuring a Windows instance using the EC2Config service](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2config-service.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 + If your instance is in an Auto Scaling group, the Amazon EC2 Auto Scaling service marks the stopped instance as unhealthy, and may terminate it and launch a replacement instance\. For more information, see [Health Checks for Auto Scaling Instances](https://docs.aws.amazon.com/autoscaling/latest/userguide/healthcheck.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 + When you stop a ClassicLink instance, it's unlinked from the VPC to which it was linked\. You must link the instance to the VPC again after starting it\. For more information about ClassicLink, see [ClassicLink](vpc-classiclink.md)\.
 
@@ -82,8 +82,8 @@ You can use one of the following commands\. For more information about these com
 You can change the instance type, user data, and EBS\-optimization attributes of a stopped instance using the AWS Management Console or the command line interface\. You can't use the AWS Management Console to modify the `DeleteOnTermination`, kernel, or RAM disk attributes\.
 
 **To modify an instance attribute**
-+ To change the instance type, see [Changing the Instance Type](ec2-instance-resize.md)\.
-+ To change the user data for your instance, see [Working with Instance User Data](instancedata-add-user-data.md)\.
++ To change the instance type, see [Changing the instance type](ec2-instance-resize.md)\.
++ To change the user data for your instance, see [Working with instance user data](instancedata-add-user-data.md)\.
 + To enable or disable EBS–optimization for your instance, see [Modifying EBS–Optimization](ebs-optimized.md#modify-ebs-optimized-attribute)\.
 + To change the `DeleteOnTermination` attribute of the root volume for your instance, see [Updating the Block Device Mapping of a Running Instance](block-device-mapping-concepts.md#update-instance-bdm)\.
 
@@ -95,4 +95,4 @@ You can use one of the following commands\. For more information about these com
 
 ## Troubleshooting<a name="troubleshoot-instance-stop"></a>
 
-If you have stopped your Amazon EBS\-backed instance and it appears "stuck" in the `stopping` state, you can forcibly stop it\. For more information, see [Troubleshooting Stopping Your Instance](TroubleshootingInstancesStopping.md)\.
+If you have stopped your Amazon EBS\-backed instance and it appears "stuck" in the `stopping` state, you can forcibly stop it\. For more information, see [Troubleshooting stopping your instance](TroubleshootingInstancesStopping.md)\.

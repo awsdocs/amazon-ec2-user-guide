@@ -1,6 +1,6 @@
 # Security Group Rules Reference<a name="security-group-rules-reference"></a>
 
-You can create a security group and add rules that reflect the role of the instance that's associated with the security group\. For example, an instance that's configured as a web server needs security group rules that allow inbound HTTP and HTTPS access, and a database instance needs rules that allow access for the type of database, such as access over port 3306 for MySQL\.
+You can create a security group and add rules that reflect the role of the instance that's associated with the security group\. For example, an instance that's configured as a web server needs security group rules that allow inbound HTTP and HTTPS access\. Likewise, a database instance needs rules that allow access for the type of database, such as access over port 3306 for MySQL\.
 
 The following are examples of the kinds of rules that you can add to security groups for specific kinds of access\.
 
@@ -45,7 +45,7 @@ For the source IP, specify one of the following:
 | TCP | 6 | 5432 \(PostgreSQL\) | The default port to access a PostgreSQL database, for example, on an Amazon RDS instance | 
 | TCP | 6 | 1521 \(Oracle\) | The default port to access an Oracle database, for example, on an Amazon RDS instance | 
 
-You can optionally restrict outbound traffic from your database servers, for example, if you want allow access to the internet for software updates, but restrict all other kinds of traffic\. You must first remove the default outbound rule that allows all outbound traffic\.
+You can optionally restrict outbound traffic from your database servers\. For example, you might want to allow access to the internet for software updates, but restrict all other kinds of traffic\. You must first remove the default outbound rule that allows all outbound traffic\.
 
 
 | Protocol type | Protocol number | Port | Destination IP | Notes | 

@@ -13,7 +13,7 @@ Ethernet frames can come in different formats, and the most common format is the
 
 ## Jumbo Frames \(9001 MTU\)<a name="jumbo_frame_instances"></a>
 
-Jumbo frames allow more than 1500 bytes of data by increasing the payload size per packet, and thus increasing the percentage of the packet that is not packet overhead\. Fewer packets are needed to send the same amount of usable data\. However, outside of a given AWS region \(EC2\-Classic\), a single VPC, or a VPC peering connection, you will experience a maximum path of 1500 MTU\. VPN connections and traffic sent over an Internet gateway are limited to 1500 MTU\. If packets are over 1500 bytes, they are fragmented, or they are dropped if the `Don't Fragment` flag is set in the IP header\.
+Jumbo frames allow more than 1500 bytes of data by increasing the payload size per packet, and thus increasing the percentage of the packet that is not packet overhead\. Fewer packets are needed to send the same amount of usable data\. However, outside of a given AWS Region \(EC2\-Classic\), a single VPC, or a VPC peering connection, you will experience a maximum path of 1500 MTU\. VPN connections and traffic sent over an Internet gateway are limited to 1500 MTU\. If packets are over 1500 bytes, they are fragmented, or they are dropped if the `Don't Fragment` flag is set in the IP header\.
 
 Jumbo frames should be used with caution for Internet\-bound traffic or any traffic that leaves a VPC\. Packets are fragmented by intermediate systems, which slows down this traffic\. To use jumbo frames inside a VPC and not slow traffic that's bound for outside the VPC, you can configure the MTU size by route, or use multiple elastic network interfaces with different MTU sizes and different routes\.
 

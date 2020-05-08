@@ -2,7 +2,7 @@
 
 You can delete your instance when you no longer need it\. This is referred to as *terminating* your instance\. As soon as the state of an instance changes to `shutting-down` or `terminated`, you stop incurring charges for that instance\.
 
-You can't connect to or start an instance after you've terminated it\. However, you can launch additional instances using the same AMI\. If you'd rather stop and start your instance, or hibernate it, see [Stop and start your instance](Stop_Start.md) or [Hibernate Your Linux Instance](Hibernate.md)\. For more information, see [Differences Between Reboot, Stop, Hibernate, and Terminate](ec2-instance-lifecycle.md#lifecycle-differences)\.
+You can't connect to or start an instance after you've terminated it\. However, you can launch additional instances using the same AMI\. If you'd rather stop and start your instance, or hibernate it, see [Stop and start your instance](Stop_Start.md) or [Hibernate your Linux instance](Hibernate.md)\. For more information, see [Differences Between Reboot, Stop, Hibernate, and Terminate](ec2-instance-lifecycle.md#lifecycle-differences)\.
 
 **Topics**
 + [Instance Termination](#termination-overview)
@@ -64,7 +64,7 @@ By default, you can terminate your instance using the Amazon EC2 console, comman
 The `DisableApiTermination` attribute does not prevent you from terminating an instance by initiating shutdown from the instance \(using an operating system command for system shutdown\) when the `InstanceInitiatedShutdownBehavior` attribute is set\. For more information, see [Changing the Instance Initiated Shutdown Behavior](#Using_ChangingInstanceInitiatedShutdownBehavior)\.
 
 **Limitations**  
-You can't enable termination protection for Spot Instances—a Spot Instance is terminated when the Spot price exceeds the amount you're willing to pay for Spot Instances\. However, you can prepare your application to handle Spot Instance interruptions\. For more information, see [Spot Instance Interruptions](spot-interruptions.md)\.
+You can't enable termination protection for Spot Instances—a Spot Instance is terminated when the Spot price exceeds the amount you're willing to pay for Spot Instances\. However, you can prepare your application to handle Spot Instance interruptions\. For more information, see [Spot Instance interruptions](spot-interruptions.md)\.
 
 The `DisableApiTermination` attribute does not prevent Amazon EC2 Auto Scaling from terminating an instance\. For instances in an Auto Scaling group, use the following Amazon EC2 Auto Scaling features instead of Amazon EC2 termination protection:
 + To prevent instances that are part of an Auto Scaling group from terminating on scale in, use instance protection\. For more information, see [Instance Protection](https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-instance-termination.html#instance-protection) in the *Amazon EC2 Auto Scaling User Guide*\.
@@ -126,7 +126,7 @@ When an instance terminates, Amazon EC2 uses the value of the `DeleteOnTerminati
 
 By default, the `DeletionOnTermination` attribute for the root volume of an instance is set to `true`\. Therefore, the default is to delete the root volume of an instance when the instance terminates\. The `DeletionOnTermination` attribute can be set by the creator of an AMI as well as by the person who launches an instance\. When the attribute is changed by the creator of an AMI or by the person who launches an instance, the new setting overrides the original AMI default setting\. We recommend that you verify the default setting for the `DeletionOnTermination` attribute after you launch an instance with an AMI\. 
 
-By default, when you attach an EBS volume to an instance, its `DeleteOnTermination` attribute is set to `false`\. Therefore, the default is to preserve these volumes\. After the instance terminates, you can take a snapshot of the preserved volume or attach it to another instance\. You must delete a volume to avoid incurring further charges\. For more information, see [Deleting an Amazon EBS Volume](ebs-deleting-volume.md)\.
+By default, when you attach an EBS volume to an instance, its `DeleteOnTermination` attribute is set to `false`\. Therefore, the default is to preserve these volumes\. After the instance terminates, you can take a snapshot of the preserved volume or attach it to another instance\. You must delete a volume to avoid incurring further charges\. For more information, see [Deleting an Amazon EBS volume](ebs-deleting-volume.md)\.
 
 To verify the value of the `DeleteOnTermination` attribute for an EBS volume that is in use, look at the instance's block device mapping\. For more information, see [Viewing the EBS Volumes in an Instance Block Device Mapping](block-device-mapping-concepts.md#view-instance-bdm)\.
 
@@ -211,4 +211,4 @@ Specify the following in `mapping.json`:
 
 ## Troubleshooting<a name="troubleshoot-instance-terminate"></a>
 
-If your instance is in the `shutting-down` state for longer than usual, it will eventually be cleaned up \(terminated\) by automated processes within the Amazon EC2 service\. For more information, see [Troubleshooting Terminating \(Shutting Down\) Your Instance](TroubleshootingInstancesShuttingDown.md)\. 
+If your instance is in the `shutting-down` state for longer than usual, it will eventually be cleaned up \(terminated\) by automated processes within the Amazon EC2 service\. For more information, see [Troubleshooting terminating \(shutting down\) your instance](TroubleshootingInstancesShuttingDown.md)\. 

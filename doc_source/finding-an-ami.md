@@ -11,24 +11,25 @@ Before you can launch an instance, you must select an AMI to use\. As you select
 If you need to find a Windows AMI, see [Finding a Windows AMI](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/finding-an-ami.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
 **Topics**
-+ [Finding a Linux AMI Using the Amazon EC2 Console](#finding-an-ami-console)
-+ [Finding an AMI Using the AWS CLI](#finding-an-ami-aws-cli)
-+ [Finding the Latest Amazon Linux AMI Using Systems Manager](#finding-an-ami-parameter-store)
++ [Finding a Linux AMI using the Amazon EC2 console](#finding-an-ami-console)
++ [Finding an AMI using the AWS CLI](#finding-an-ami-aws-cli)
++ [Finding the latest Amazon Linux AMI using Systems Manager](#finding-an-ami-parameter-store)
++ [Using a Systems Manager parameter to find an AMI](#using-systems-manager-parameter-to-find-AMI)
 + [Finding a Quick Start AMI](#finding-quick-start-ami)
 
-## Finding a Linux AMI Using the Amazon EC2 Console<a name="finding-an-ami-console"></a>
+## Finding a Linux AMI using the Amazon EC2 console<a name="finding-an-ami-console"></a>
 
-You can find Linux AMIs using the Amazon EC2 console\. You can search through all available AMIs using the **Images** page, or select from commonly used AMIs on the **Quick Start** tab when you use the console to launch an instance\. AMI IDs are unique to each region\.
+You can find Linux AMIs using the Amazon EC2 console\. You can select from the list of AMIs when you use the launch wizard to launch an instance, or you can search through all available AMIs using the **Images** page\. AMI IDs are unique to each AWS Region\.
 
-**To find a Linux AMI using the Choose AMI page**
+**To find a Linux AMI using the launch wizard**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
 1. From the navigation bar, select the Region in which to launch your instances\. You can select any Region that's available to you, regardless of your location\.
 
-1. From the console dashboard, choose **Launch Instance**\.
+1. From the console dashboard, choose **Launch instance**\.
 
-1. On the **Quick Start** tab, select from one of the commonly used AMIs in the list\. If you don't see the AMI that you need, select the **AWS Marketplace** or **Community AMIs** tab to find additional AMIs\.
+1. On the **Quick Start** tab, select from one of the commonly used AMIs in the list\. If you don't see the AMI that you need, select the **My AMIs**, **AWS Marketplace**, or **Community AMIs** tab to find additional AMIs\. For more information, see [Step 1: Choose an Amazon Machine Image \(AMI\)](launching-instance.md#step-1-AMI)\.
 
 **To find a Linux AMI using the Images page**
 
@@ -42,11 +43,11 @@ You can find Linux AMIs using the Amazon EC2 console\. You can search through al
 
 1. \(Optional\) Choose the **Show/Hide Columns** icon to select which image attributes to display, such as the root device type\. Alternatively, you can select an AMI from the list and view its properties in the **Details** tab\.
 
-1. Before you select an AMI, it's important that you check whether it's backed by instance store or by Amazon EBS and that you are aware of the effects of this difference\. For more information, see [Storage for the Root Device](ComponentsAMIs.md#storage-for-the-root-device)\.
+1. Before you select an AMI, it's important that you check whether it's backed by instance store or by Amazon EBS and that you are aware of the effects of this difference\. For more information, see [Storage for the root device](ComponentsAMIs.md#storage-for-the-root-device)\.
 
-1. To launch an instance from this AMI, select it and then choose **Launch**\. For more information about launching an instance using the console, see [Launching Your Instance from an AMI](launching-instance.md#choose-an-instance-type-page)\. If you're not ready to launch the instance now, make note of the AMI ID for later\.
+1. To launch an instance from this AMI, select it and then choose **Launch**\. For more information about launching an instance using the console, see [Launching your instance from an AMI](launching-instance.md#choose-an-instance-type-page)\. If you're not ready to launch the instance now, make note of the AMI ID for later\.
 
-## Finding an AMI Using the AWS CLI<a name="finding-an-ami-aws-cli"></a>
+## Finding an AMI using the AWS CLI<a name="finding-an-ami-aws-cli"></a>
 
 You can use AWS CLI commands for Amazon EC2 to list only the Linux AMIs that meet your needs\. After locating an AMI that meets your needs, make note of its ID so that you can use it to launch instances\. For more information, see [Launching an Instance Using the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-ec2-launch.html#launching-instances) in the *AWS Command Line Interface User Guide*\.
 
@@ -56,7 +57,7 @@ The [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/desc
 aws ec2 describe-images --owners self amazon
 ```
 
-You can add the following filter to the previous command to display only AMIs backed by Amazon EBS:
+You can add the following filter to the previous command to display only AMIs backed by Amazon EBS\.
 
 ```
 --filters "Name=root-device-type,Values=ebs"
@@ -65,42 +66,125 @@ You can add the following filter to the previous command to display only AMIs ba
 **Important**  
 Omitting the `--owners` flag from the describe\-images command will return all images for which you have launch permissions, regardless of ownership\.
 
-## Finding the Latest Amazon Linux AMI Using Systems Manager<a name="finding-an-ami-parameter-store"></a>
+## Finding the latest Amazon Linux AMI using Systems Manager<a name="finding-an-ami-parameter-store"></a>
 
-You can query the AWS Systems Manager Parameter Store for ID of the latest Amazon Linux AMI\. For more information, see [Query for the latest Amazon Linux AMI IDs Using AWS Systems Manager Parameter Store](http://aws.amazon.com/blogs/compute/query-for-the-latest-amazon-linux-ami-ids-using-aws-systems-manager-parameter-store/)\.
+Amazon EC2 provides AWS Systems Manager parameters for AWS\-maintained public AMIs that you can use when launching instances\. For example, the EC2\-provided parameter `/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2` is available in all Regions and always points to the latest version of the Amazon Linux 2 AMI in a given Region\. 
+
+The Amazon EC2 AMI public parameters are available from the following paths:
++ `/aws/service/ami-amazon-linux-latest`
++ `/aws/service/ami-windows-latest`
+
+You can view a list of all Linux AMIs in the current AWS Region by using the following command in the AWS CLI\.
+
+```
+aws ssm get-parameters-by-path --path /aws/service/ami-amazon-linux-latest --query Parameters[].Name
+```
+
+For more information, see [Using public parameters](https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-public-parameters.html) in the *AWS Systems Manager User Guide* and [Query for the latest Amazon Linux AMI IDs Using AWS Systems Manager Parameter Store](http://aws.amazon.com/blogs/compute/query-for-the-latest-amazon-linux-ami-ids-using-aws-systems-manager-parameter-store/)\.
+
+## Using a Systems Manager parameter to find an AMI<a name="using-systems-manager-parameter-to-find-AMI"></a>
+
+When you launch an instance using the EC2 launch wizard in the console, you can either select an AMI from the list, or you can select an AWS Systems Manager parameter that points to an AMI ID\.
+
+A Systems Manager parameter is a customer\-defined key\-value pair that you can create in Systems Manager Parameter Store\. The Parameter Store provides a central store to externalize your application configuration values\. For more information, see [AWS Systems Manager Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html) in the *AWS Systems Manager User Guide*\.
+
+When you create a parameter that points to an AMI ID, make sure that you specify the data type as `aws:ec2:image`\. This data type ensures that when the parameter is created or modified, the parameter value is validated as an AMI ID\. For more information, see [Native parameter support for Amazon Machine Image IDs](https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-ec2-aliases.html) in the *AWS Systems Manager User Guide*\.
+
+### Use cases<a name="systems-parameter-use-case"></a>
+
+By using Systems Manager parameters to point to AMI IDs, you can make it easier for your users to select the correct AMI when launching instances, and you can simplify the maintenance of automation code\.
+
+**Easier for users**
+
+If you require instances to be launched using a specific AMI, and if that AMI is updated regularly, we recommend that you require your users to select a Systems Manager parameter to find the AMI\. By requiring your users to select a Systems Manager parameter, you can ensure that the latest AMI is used to launch instances\.
+
+For example, every month in your organization you might create a new version of your AMI that has the latest operating system and application patches\. You also require your users to launch instances using the latest version of your AMI\. To ensure that your users use the latest version, you can create a Systems Manager parameter \(for example, `golden-ami`\) that points to the correct AMI ID\. Each time a new version of the AMI is created, you update the AMI ID value in the parameter so that it always points to the latest AMI\. Your users don't need to know about the periodic updates to the AMI, because they continue to select the same Systems Manager parameter every time\. By having users select a Systems Manager parameter, you make it easier for them to select the correct AMI for an instance launch\.
+
+**Simplify automation code maintenance**
+
+If you use automation code to launch your instances, you can specify the Systems Manager parameter instead of the AMI ID\. If a new version of the AMI is created, you change the AMI ID value in the parameter so that it points to the latest AMI\. The automation code that references the parameter doesn’t need to be modified every time a new version of the AMI is created\. This greatly simplifies maintenance of automation and helps drive down deployment costs\.
+
+**Note**  
+Running instances are not affected when you change the AMI ID to which the Systems Manager parameter points\.
+
+**To find a Linux AMI using a Systems Manager parameter**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. From the navigation bar, select the Region in which to launch your instances\. You can select any Region that's available to you, regardless of your location\.
+
+1. From the console dashboard, choose **Launch instance**\.
+
+1. Choose **Search by Systems Manager parameter** \(at top right\)\.
+
+1. For **Systems Manager parameter**, select a parameter\. The corresponding AMI ID appears next to **Currently resolves to**\.
+
+1. Choose **Search**\. The AMIs that match the AMI ID appear in the list\.
+
+1. Select the AMI from the list, and choose **Select**\.
+
+For more information about launching an instance from an AMI using the launch wizard, see [Step 1: Choose an Amazon Machine Image \(AMI\)](launching-instance.md#step-1-AMI)\.
+
+### Permissions<a name="system-manager-permissions"></a>
+
+If you use Systems Manager parameters that point to AMI IDs in the launch instance wizard, you must add `ssm:DescribeParameters` and `ssm:GetParameters` to your IAM policy\. `ssm:DescribeParameters` grants your IAM users the permission to view and select Systems Manager parameters\. `ssm:GetParameters` grants your IAM users the permission to get the values of the Systems Manager parameters\. You can also restrict access to specific Systems Manager parameters\. For more information, see [Using the EC2 launch wizard](iam-policies-ec2-console.md#ex-launch-wizard)\.
+
+### Limitations<a name="AMI-systems-manager-parameter-limitations"></a>
+
+AMIs and Systems Manager parameters are Region specific\. To use the same Systems Manager parameter name across Regions, create a Systems Manager parameter in each Region with the same name \(for example, `golden-ami`\)\. In each Region, point the Systems Manager parameter to an AMI in that Region\.
 
 ## Finding a Quick Start AMI<a name="finding-quick-start-ami"></a>
 
 When you launch an instance using the Amazon EC2 console, the **Choose an Amazon Machine Image \(AMI\)** page includes a list of popular AMIs on the **Quick Start** tab\. If you want to automate launching an instance using one of these quick start AMIs, you'll need to programatically locate the ID of the current version of the AMI\.
 
-To locate the current version of a quick start AMI, you can enumerate all AMIs with its AMI name, and then find the one with the most recent creation date\.
+To locate the current version of a Quick Start AMI, you can enumerate all AMIs with its AMI name, and then find the one with the most recent creation date\.
 
 **Example Example: Find the current Amazon Linux 2 AMI**  
 
 ```
-aws ec2 describe-images --owners amazon --filters 'Name=name,Values=amzn2-ami-hvm-2.0.????????.?-x86_64-gp2' 'Name=state,Values=available' --query 'reverse(sort_by(Images, &CreationDate))[:1].ImageId' --output text
+aws ec2 describe-images \
+    --owners amazon \
+    --filters 'Name=name,Values=amzn2-ami-hvm-2.0.????????.?-x86_64-gp2' 'Name=state,Values=available' \
+    --query 'reverse(sort_by(Images, &CreationDate))[:1].ImageId' \
+    --output text
 ```
 
 **Example Example: Find the current Amazon Linux AMI**  
 
 ```
-aws ec2 describe-images --owners amazon --filters 'Name=name,Values=amzn-ami-hvm-????.??.?.????????-x86_64-gp2' 'Name=state,Values=available' --query 'reverse(sort_by(Images, &CreationDate))[:1].ImageId' --output text
+aws ec2 describe-images \
+    --owners amazon \
+    --filters 'Name=name,Values=amzn-ami-hvm-????.??.?.????????-x86_64-gp2' 'Name=state,Values=available' \
+    --query 'reverse(sort_by(Images, &CreationDate))[:1].ImageId' \
+    --output text
 ```
 
 **Example Example: Find the current Ubuntu Server 16\.04 LTS AMI**  
 
 ```
-aws ec2 describe-images --owners 099720109477 --filters 'Name=name,Values=ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-????????' 'Name=state,Values=available' --query 'reverse(sort_by(Images, &CreationDate))[:1].ImageId' --output text
+aws ec2 describe-images \
+    --owners 099720109477 \
+    --filters 'Name=name,Values=ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-????????' 'Name=state,Values=available' \
+    --query 'reverse(sort_by(Images, &CreationDate))[:1].ImageId' \
+    --output text
 ```
 
 **Example Example: Find the current Red Hat Enterprise Linux 7\.5 AMI**  
 
 ```
-aws ec2 describe-images --owners 309956199498 --filters 'Name=name,Values=RHEL-7.5_HVM_GA*' 'Name=state,Values=available' --query 'reverse(sort_by(Images, &CreationDate))[:1].ImageId' --output text
+aws ec2 describe-images \
+    --owners 309956199498 \
+    --filters 'Name=name,Values=RHEL-7.5_HVM_GA*' 'Name=state,Values=available' \
+    --query 'reverse(sort_by(Images, &CreationDate))[:1].ImageId' \
+    --output text
 ```
 
 **Example Example: Find the current SUSE Linux Enterprise Server 15 AMI**  
 
 ```
-aws ec2 describe-images --owners amazon --filters 'Name=name,Values=suse-sles-15-v????????-hvm-ssd-x86_64' 'Name=state,Values=available' --query 'reverse(sort_by(Images, &CreationDate))[:1].ImageId' --output text
+aws ec2 describe-images \
+    --owners amazon \
+    --filters 'Name=name,Values=suse-sles-15-v????????-hvm-ssd-x86_64' 'Name=state,Values=available' \
+    --query 'reverse(sort_by(Images, &CreationDate))[:1].ImageId' \
+    --output text
 ```

@@ -18,7 +18,7 @@ Amazon EFS is not supported on Windows instances\.
 + Create a security group \(for example, efs\-sg\) to associate with the EC2 instances and EFS mount target, and add the following rules:
   + Allow inbound SSH connections to the EC2 instances from your computer \(the source is the CIDR block for your network\)\.
   + Allow inbound NFS connections to the file system via the EFS mount target from the EC2 instances that are associated with this security group \(the source is the security group itself\)\. For more information, see [Amazon EFS Rules](security-group-rules-reference.md#sg-rules-efs), and [Security Groups for Amazon EC2 Instances and Mount Targets](https://docs.aws.amazon.com/efs/latest/ug/security-considerations.html#network-access) in the *Amazon Elastic File System User Guide*\.
-+ Create a key pair\. You must specify a key pair when you configure your instances or you can't connect to them\. For more information, see [Create a Key Pair](get-set-up-for-amazon-ec2.md#create-a-key-pair)\.
++ Create a key pair\. You must specify a key pair when you configure your instances or you can't connect to them\. For more information, see [Create a key pair](get-set-up-for-amazon-ec2.md#create-a-key-pair)\.
 
 ## Step 1: Create an EFS File System<a name="efs-create-file-system"></a>
 
@@ -138,7 +138,7 @@ You can connect to your instances and verify that the file system is mounted to 
 
 **To verify that the file system is mounted**
 
-1. Connect to your instances\. For more information, see [Connect to Your Linux Instance](AccessingInstances.md)\.
+1. Connect to your instances\. For more information, see [Connect to your Linux instance](AccessingInstances.md)\.
 
 1. From the terminal window for each instance, run the df \-T command to verify that the EFS file system is mounted\.
 

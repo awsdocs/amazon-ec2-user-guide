@@ -1,16 +1,16 @@
-# Requirements When Modifying Volumes<a name="modify-volume-requirements"></a>
+# Requirements when modifying volumes<a name="modify-volume-requirements"></a>
 
-The following requirements and limitations apply when you modify an Amazon EBS volume\. To learn more about the general requirements for EBS volumes, see [Constraints on the Size and Configuration of an EBS Volume](volume_constraints.md)\.
+The following requirements and limitations apply when you modify an Amazon EBS volume\. To learn more about the general requirements for EBS volumes, see [Constraints on the size and configuration of an EBS volume](volume_constraints.md)\.
 
-## Amazon EC2 Instance Support<a name="instance-support"></a>
+## Supported instance types<a name="instance-support"></a>
 
 Elastic Volumes are supported on the following instances:
 + All [current\-generation instances](instance-types.md#current-gen-instances)
 + Previous\-generation instance families C1, C3, CC2, CR1, G2, I2, M1, M3, and R3
 
-If your instance type does not support Elastic Volumes, see [Modifying an EBS Volume If Elastic Volumes Is Unsupported](requesting-ebs-volume-modifications.md#modify-volume-stop-start)\.
+If your instance type does not support Elastic Volumes, see [Modifying an EBS volume if Elastic Volumes is not supported](requesting-ebs-volume-modifications.md#modify-volume-stop-start)\.
 
-## Requirements for Linux Volumes<a name="linux-volumes"></a>
+## Requirements for Linux volumes<a name="linux-volumes"></a>
 
 Linux AMIs require a GUID partition table \(GPT\) and GRUB 2 for boot volumes that are 2 TiB \(2,048 GiB\) or larger\. Many Linux AMIs today still use the MBR partitioning scheme, which only supports boot volume sizes up to 2 TiB\. If your instance does not boot with a boot volume larger than 2 TiB, the AMI you are using may be limited to a boot volume size of less than 2 TiB\. Non\-boot volumes do not have this limitation on Linux instances\. For requirements affecting Windows volumes, see [Requirements for Windows Volumes](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/volume_constraints.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
@@ -48,9 +48,9 @@ GPT fdisk (gdisk) version 0.8.8
 
 ## Limitations<a name="elastic-volumes-limitations"></a>
 + Elastic Volume operations are not supported on Multi\-Attach enabled Amazon EBS volumes\.
-+ The new volume size cannot exceed the supported volume capacity\. For more information, see [Constraints on the Size and Configuration of an EBS Volume](volume_constraints.md)\.
++ The new volume size cannot exceed the supported volume capacity\. For more information, see [Constraints on the size and configuration of an EBS volume](volume_constraints.md)\.
 + If the volume was attached before November 3, 2016 23:40 UTC, you must initialize Elastic Volumes support\. For more information, see [Initializing Elastic Volumes Support](requesting-ebs-volume-modifications.md#initialize-modification-support)\.
-+ If you are using an unsupported previous\-generation instance type, or if you encounter an error while attempting a volume modification, see [Modifying an EBS Volume If Elastic Volumes Is Unsupported](requesting-ebs-volume-modifications.md#modify-volume-stop-start)\.
++ If you are using an unsupported previous\-generation instance type, or if you encounter an error while attempting a volume modification, see [Modifying an EBS volume if Elastic Volumes is not supported](requesting-ebs-volume-modifications.md#modify-volume-stop-start)\.
 + A `gp2` volume that is attached to an instance as a root volume cannot be modified to an `st1` or `sc1` volume\. If detached and modified to `st1` or `sc1`, it cannot be attached to an instance as the root volume\.
 + A `gp2` volume cannot be modified to an `st1` or `sc1` volume if the requested volume size is below the minimum size for `st1` and `sc1` volumes\.
 + In some cases, you must detach the volume or stop the instance for modification to proceed\. If you encounter an error message while attempting to modify an EBS volume, or if you are modifying an EBS volume attached to a previous\-generation instance type, take one of the following steps:

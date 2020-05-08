@@ -6,13 +6,13 @@ After you have successfully launched and logged into your Amazon Linux instance,
 + [Common Configuration Scenarios](#configuration-scenarios)
 + [Managing Software on Your Linux Instance](managing-software.md)
 + [Managing User Accounts on Your Linux Instance](managing-users.md)
-+ [Processor State Control for Your EC2 Instance](processor_state_control.md)
++ [Processor state control for your EC2 instance](processor_state_control.md)
 + [Setting the Time for Your Linux Instance](set-time.md)
-+ [Optimizing CPU Options](instance-optimize-cpu.md)
++ [Optimizing CPU options](instance-optimize-cpu.md)
 + [Changing the Hostname of Your Linux Instance](set-hostname.md)
 + [Setting Up Dynamic DNS on Your Linux Instance](dynamic-dns.md)
 + [Running Commands on Your Linux Instance at Launch](user-data.md)
-+ [Instance Metadata and User Data](ec2-instance-metadata.md)
++ [Instance metadata and user data](ec2-instance-metadata.md)
 
 ## Common Configuration Scenarios<a name="configuration-scenarios"></a>
 

@@ -50,3 +50,4 @@ Before you create Capacity Reservations, take note of the following limitations 
 + Capacity Reservations can't be created in placement groups
 + Capacity Reservations can't be used with Dedicated Hosts
 + Capacity Reservations can't be used with Bring Your Own License \(BYOL\)
++ Capacity Reservations can't be used with Local Zones

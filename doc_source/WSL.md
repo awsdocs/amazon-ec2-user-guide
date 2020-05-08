@@ -1,4 +1,4 @@
-# Connecting to Your Linux Instance from Windows Using Windows Subsystem for Linux<a name="WSL"></a>
+# Connecting to your Linux instance from Windows using Windows Subsystem for Linux<a name="WSL"></a>
 
 After you launch your instance, you can connect to it and use it the way that you'd use a computer sitting in front of you\.
 
@@ -7,14 +7,14 @@ The following instructions explain how to connect to your instance using a Linux
 By installing WSL, you can use a native Linux environment to connect to your Linux EC2 instances instead of using PuTTY or PuTTYgen\. The Linux environment makes it easier to connect to your Linux instances because it comes with a native SSH client that you can use to connect to your Linux instances and change the permissions of the \.pem key file\. The Amazon EC2 console provides the SSH command for connecting to the Linux instance, and you can get verbose output from the SSH command for troubleshooting\. For more information, see the [Windows Subsystem for Linux Documentation](https://docs.microsoft.com/en-us/windows/wsl/about)\.
 
 **Note**  
-After you've installed the WSL, all the prerequisites and steps are the same as those described in [Connecting to Your Linux Instance Using SSH](AccessingInstancesLinux.md), and the experience is just like using native Linux\.
+After you've installed the WSL, all the prerequisites and steps are the same as those described in [Connecting to your Linux instance using SSH](AccessingInstancesLinux.md), and the experience is just like using native Linux\.
 
 If you receive an error while attempting to connect to your instance, see [Troubleshooting Connecting to Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html)\.
 
 **Contents**
 + [Prerequisites](#ssh-prereqs)
-+ [Connect to Your Linux Instance using WSL](#Connect-Linux-WSL)
-+ [Transferring Files to Linux Instances from Linux Using SCP](#Connect-Linux-WSL-SCP)
++ [Connect to your Linux instance using WSL](#Connect-Linux-WSL)
++ [Transferring files to Linux instances from Linux using SCP](#Connect-Linux-WSL-SCP)
 + [Uninstalling WSL](#uninstall-WSL)
 
 ## Prerequisites<a name="ssh-prereqs"></a>
@@ -25,7 +25,7 @@ Before you connect to your Linux instance, complete the following prerequisites\
 After you launch an instance, it can take a few minutes for the instance to be ready so that you can connect to it\. Check that your instance has passed its status checks\. You can view this information in the **Status Checks** column on the **Instances** page\.
 
 **Verify the general prerequisites for connecting to your instance**  
-For more information, see [General Prerequisites for Connecting to Your Instance](connection-prereqs.md)\.
+For more information, see [General prerequisites for connecting to your instance](connection-prereqs.md)\.
 
 **Install the Windows Subsystem for Linux \(WSL\) and a Linux distribution on your local computer**  
 Install the WSL and a Linux distribution using the instructions in the [Windows 10 Installation Guide](https://docs.microsoft.com/en-us/windows/wsl/install-win10)\. The example in the instructions installs the Ubuntu distribution of Linux, but you can install any distribution\. You are prompted to restart your computer for the changes to take effect\.
@@ -37,13 +37,13 @@ In a WSL terminal window, copy the `.pem` file \(for the key pair that you speci
 cp /mnt/<Windows drive letter>/path/my-key-pair.pem ~/WSL-path/my-key-pair.pem
 ```
 
-## Connect to Your Linux Instance using WSL<a name="Connect-Linux-WSL"></a>
+## Connect to your Linux instance using WSL<a name="Connect-Linux-WSL"></a>
 
 Use the following procedure to connect to your Linux instance using the Windows Subsystem for Linux \(WSL\)\. If you receive an error while attempting to connect to your instance, see [Troubleshooting Connecting to Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html)\.
 
 **To connect to your instance using SSH**
 
-1. In a terminal window, use the ssh command to connect to the instance\. You specify the private key \(`.pem`\) file, the user name for your AMI, and the public DNS name for your instance\. For example, if you used Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\. For more information about finding the user name for an AMI and the DNS name for an instance, see [Get Information About Your Instance](connection-prereqs.md#connection-prereqs-get-info-about-instance)\.
+1. In a terminal window, use the ssh command to connect to the instance\. You specify the private key \(`.pem`\) file, the user name for your AMI, and the public DNS name for your instance\. For example, if you used Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\. For more information about finding the user name for an AMI and the DNS name for an instance, see [Get information about your instance](connection-prereqs.md#connection-prereqs-get-info-about-instance)\.
 
    ```
    sudo ssh -i /path/my-key-pair.pem ec2-user@ec2-198-51-100-1.compute-1.amazonaws.com
@@ -64,7 +64,7 @@ Use the following procedure to connect to your Linux instance using the Windows 
    sudo ssh -i /path/my-key-pair.pem ec2-user@2001:db8:1234:1a00:9691:9503:25ad:1761
    ```
 
-1. \(Optional\) Verify that the fingerprint in the security alert matches the fingerprint that you previously obtained in [\(Optional\) Get the Instance Fingerprint](connection-prereqs.md#connection-prereqs-fingerprint)\. If these fingerprints don't match, someone might be attempting a "man\-in\-the\-middle" attack\. If they match, continue to the next step\.
+1. \(Optional\) Verify that the fingerprint in the security alert matches the fingerprint that you previously obtained in [\(Optional\) Get the instance fingerprint](connection-prereqs.md#connection-prereqs-fingerprint)\. If these fingerprints don't match, someone might be attempting a "man\-in\-the\-middle" attack\. If they match, continue to the next step\.
 
 1. Enter `yes`\.
 
@@ -75,14 +75,14 @@ Use the following procedure to connect to your Linux instance using the Windows 
    to the list of known hosts.
    ```
 
-## Transferring Files to Linux Instances from Linux Using SCP<a name="Connect-Linux-WSL-SCP"></a>
+## Transferring files to Linux instances from Linux using SCP<a name="Connect-Linux-WSL-SCP"></a>
 
 One way to transfer files between your local computer and a Linux instance is to use the secure copy protocol \(SCP\)\. This section describes how to transfer files with SCP\. The procedure is similar to the procedure for connecting to an instance with SSH\. 
 
 **Prerequisites**
 + **Verify the general prerequisites for transferring files to your instance\.**
 
-  The general prerequisites for transferring files to an instance are the same as the general prerequisites for connecting to an instance\. For more information, see [General Prerequisites for Connecting to Your Instance](connection-prereqs.md)\.
+  The general prerequisites for transferring files to an instance are the same as the general prerequisites for connecting to an instance\. For more information, see [General prerequisites for connecting to your instance](connection-prereqs.md)\.
 + **Install an SCP client**
 
   Most Linux, Unix, and Apple computers include an SCP client by default\. If yours doesn't, the OpenSSH project provides a free implementation of the full suite of SSH tools, including an SCP client\. For more information, see [http://www\.openssh\.org](http://www.openssh.org/)\.
@@ -112,7 +112,7 @@ The following procedure steps you through using SCP to transfer a file\. If you'
    scp -i /path/my-key-pair.pem /path/SampleFile.txt ec2-user@\[2001:db8:1234:1a00:9691:9503:25ad:1761\]:~
    ```
 
-1. \(Optional\) Verify that the fingerprint in the security alert matches the fingerprint that you previously obtained in [\(Optional\) Get the Instance Fingerprint](connection-prereqs.md#connection-prereqs-fingerprint)\. If these fingerprints don't match, someone might be attempting a "man\-in\-the\-middle" attack\. If they match, continue to the next step\.
+1. \(Optional\) Verify that the fingerprint in the security alert matches the fingerprint that you previously obtained in [\(Optional\) Get the instance fingerprint](connection-prereqs.md#connection-prereqs-fingerprint)\. If these fingerprints don't match, someone might be attempting a "man\-in\-the\-middle" attack\. If they match, continue to the next step\.
 
 1. Enter **yes**\.
 

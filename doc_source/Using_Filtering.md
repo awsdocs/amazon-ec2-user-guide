@@ -1,14 +1,14 @@
-# Listing and Filtering Your Resources<a name="Using_Filtering"></a>
+# Listing and filtering your resources<a name="Using_Filtering"></a>
 
 You can get a list of some types of resource using the Amazon EC2 console\. You can get a list of each type of resource using its corresponding command or API action\. If you have many resources, you can filter the results to include only the resources that match certain criteria\.
 
 **Topics**
-+ [Advanced Search](#advancedsearch)
-+ [Listing Resources Using the Console](#listing-resources)
-+ [Filtering Resources Using the Console](#filtering-resources)
-+ [Listing and Filtering Using the CLI and API](#Filtering_Resources_CLI)
++ [Advanced search](#advancedsearch)
++ [Listing resources using the console](#listing-resources)
++ [Filtering resources using the console](#filtering-resources)
++ [Listing and filtering using the CLI and API](#Filtering_Resources_CLI)
 
-## Advanced Search<a name="advancedsearch"></a>
+## Advanced search<a name="advancedsearch"></a>
 
 Advanced search allows you to search using a combination of filters to achieve precise results\. You can filter by keywords, user\-defined tag keys, and predefined resource attributes\.
 
@@ -46,7 +46,7 @@ After you have the precise results of your search, you can bookmark the URL for 
 
 In general, multiple filters with the same key field \(for example, tag:Name, search, Instance State\) are automatically joined with OR\. This is intentional, as the vast majority of filters would not be logical if they were joined with AND\. For example, you would get zero results for a search on Instance State=running AND Instance State=stopped\. In many cases, you can granulate the results by using complementary search terms on different key fields, where the AND rule is automatically applied instead\. If you search for tag: Name:=All values and tag:Instance State=running, you get search results that contain both those criteria\. To fine\-tune your results, simply remove one filter in the string until the results fit your requirements\.
 
-## Listing Resources Using the Console<a name="listing-resources"></a>
+## Listing resources using the console<a name="listing-resources"></a>
 
 You can view the most common Amazon EC2 resource types using the console\. To view additional resources, use the command line interface or the API actions\.
 
@@ -59,7 +59,7 @@ You can view the most common Amazon EC2 resource types using the console\. To vi
 
 1. The page displays all the available resources\.
 
-## Filtering Resources Using the Console<a name="filtering-resources"></a>
+## Filtering resources using the console<a name="filtering-resources"></a>
 
 You can perform filtering and sorting of the most common resource types using the Amazon EC2 console\. For example, you can use the search bar on the instances page to sort instances by tags, attributes, or keywords\. 
 
@@ -87,7 +87,7 @@ You can also use the search field on each page to find resources with specific a
 
 1. Any AMIs that meet this criteria are displayed\.
 
-## Listing and Filtering Using the CLI and API<a name="Filtering_Resources_CLI"></a>
+## Listing and filtering using the CLI and API<a name="Filtering_Resources_CLI"></a>
 
 Each resource type has a corresponding CLI command or API request that you use to list resources of that type\. For example, you can list Amazon Machine Images \(AMIs\) using `ec2-describe-images` or `DescribeImages`\. The response contains information for all your resources\. 
 

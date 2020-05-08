@@ -1,4 +1,4 @@
-# Amazon EC2 Usage Reports<a name="usage-reports"></a>
+# Amazon EC2 usage reports<a name="usage-reports"></a>
 
 AWS provides a free reporting tool called Cost Explorer that enables you to analyze the cost and usage of your EC2 instances and the usage of your Reserved Instances\.
 

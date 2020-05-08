@@ -1,4 +1,4 @@
-# Working with Instance User Data<a name="instancedata-add-user-data"></a>
+# Working with instance user data<a name="instancedata-add-user-data"></a>
 
 When working with instance user data, keep the following in mind:
 + User data must be base64\-encoded\. The Amazon EC2 console can perform the base64\-encoding for you or accept base64\-encoded input\.
@@ -7,15 +7,15 @@ When working with instance user data, keep the following in mind:
 + User data is treated as opaque data: what you give is what you get back\. It is up to the instance to be able to interpret it\.
 + If you stop an instance, modify its user data, and start the instance, the updated user data is not executed when you start the instance\.
 
-## Specify Instance User Data at Launch<a name="specify-user-data-launch"></a>
+## Specify instance user data at launch<a name="specify-user-data-launch"></a>
 
 You can specify user data when you launch an instance\. For more information, see [Launching an instance using the Launch Instance Wizard](launching-instance.md) and [Running Commands on Your Linux Instance at Launch](user-data.md)\.
 
-## Modify Instance User Data<a name="modify-user-data-run"></a>
+## Modify instance user data<a name="modify-user-data-run"></a>
 
 You can modify user data for an instance in the stopped state if the root volume is an EBS volume\. For more information, see [View and Update the Instance User Data](user-data.md#user-data-view-change)\.
 
-## Retrieve Instance User Data<a name="instancedata-user-data-retrieval"></a>
+## Retrieve instance user data<a name="instancedata-user-data-retrieval"></a>
 
 To retrieve user data from within a running instance, use the following URI\.
 

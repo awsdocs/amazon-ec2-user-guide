@@ -1,4 +1,4 @@
-# Scale Spot Fleet Using Step Scaling Policies<a name="spot-fleet-step-scaling"></a>
+# Scale Spot Fleet using step scaling policies<a name="spot-fleet-step-scaling"></a>
 
 With step scaling policies, you specify CloudWatch alarms to trigger the scaling process\. For example, if you want to scale out when CPU utilization reaches a certain level, create an alarm using the `CPUUtilization` metric provided by Amazon EC2\.
 
@@ -11,7 +11,7 @@ When an alarm is triggered, the automatic scaling process calculates the new tar
 
 When a Spot Fleet terminates an instance because the target capacity was decreased, the instance receives a Spot Instance interruption notice\.
 
-**Limits**
+**Limitation**
 + The Spot Fleet request must have a request type of `maintain`\. Automatic scaling is not supported for one\-time requests or Spot blocks\.
 
 **Prerequisites**

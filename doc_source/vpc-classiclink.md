@@ -1,32 +1,32 @@
 # ClassicLink<a name="vpc-classiclink"></a>
 
-ClassicLink allows you to link EC2\-Classic instances to a VPC in your account, within the same region\. If you associate the VPC security groups with a EC2\-Classic instance, this enables communication between your EC2\-Classic instance and instances in your VPC using private IPv4 addresses\. ClassicLink removes the need to make use of public IPv4 addresses or Elastic IP addresses to enable communication between instances in these platforms\.
+ClassicLink allows you to link EC2\-Classic instances to a VPC in your account, within the same Region\. If you associate the VPC security groups with a EC2\-Classic instance, this enables communication between your EC2\-Classic instance and instances in your VPC using private IPv4 addresses\. ClassicLink removes the need to make use of public IPv4 addresses or Elastic IP addresses to enable communication between instances in these platforms\.
 
 ClassicLink is available to all users with accounts that support the EC2\-Classic platform, and can be used with any EC2\-Classic instance\. For more information about migrating your resources to a VPC, see [Migrating from a Linux Instance in EC2\-Classic to a Linux Instance in a VPC](vpc-migrate.md)\.
 
 There is no additional charge for using ClassicLink\. Standard charges for data transfer and instance usage apply\.
 
 **Topics**
-+ [ClassicLink Basics](#classiclink-basics)
-+ [ClassicLink Limitations](#classiclink-limitations)
++ [ClassicLink basics](#classiclink-basics)
++ [ClassicLink limitations](#classiclink-limitations)
 + [Working with ClassicLink](#working-with-classiclink)
-+ [Example IAM Policies for ClassicLink](#iam-example-classiclink)
-+ [Example: ClassicLink Security Group Configuration for a Three\-Tier Web Application](#classiclink-security-groups-example)
++ [Example IAM policies for ClassicLink](#iam-example-classiclink)
++ [Example: ClassicLink security group configuration for a three\-tier web application](#classiclink-security-groups-example)
 
-## ClassicLink Basics<a name="classiclink-basics"></a>
+## ClassicLink basics<a name="classiclink-basics"></a>
 
-There are two steps to linking an EC2\-Classic instance to a VPC using ClassicLink\. First, you must enable the VPC for ClassicLink\. By default, all VPCs in your account are not enabled for ClassicLink, to maintain their isolation\. After you've enabled the VPC for ClassicLink, you can then link any running EC2\-Classic instance in the same region in your account to that VPC\. Linking your instance includes selecting security groups from the VPC to associate with your EC2\-Classic instance\. After you've linked the instance, it can communicate with instances in your VPC using their private IP addresses, provided the VPC security groups allow it\. Your EC2\-Classic instance does not lose its private IP address when linked to the VPC\.
+There are two steps to linking an EC2\-Classic instance to a VPC using ClassicLink\. First, you must enable the VPC for ClassicLink\. By default, all VPCs in your account are not enabled for ClassicLink, to maintain their isolation\. After you've enabled the VPC for ClassicLink, you can then link any running EC2\-Classic instance in the same Region in your account to that VPC\. Linking your instance includes selecting security groups from the VPC to associate with your EC2\-Classic instance\. After you've linked the instance, it can communicate with instances in your VPC using their private IP addresses, provided the VPC security groups allow it\. Your EC2\-Classic instance does not lose its private IP address when linked to the VPC\.
 
 **Note**  
 Linking your instance to a VPC is sometimes referred to as *attaching* your instance\.
 
-A linked EC2\-Classic instance can communicate with instances in a VPC, but it does not form part of the VPC\. If you list your instances and filter by VPC, for example, through the `DescribeInstances` API request, or by using the **Instances** screen in the Amazon EC2 console, the results do not return any EC2\-Classic instances that are linked to the VPC\. For more information about viewing your linked EC2\-Classic instances, see [Viewing Your ClassicLink\-Enabled VPCs and Linked Instances](#classiclink-describe-vpcs-instances)\.
+A linked EC2\-Classic instance can communicate with instances in a VPC, but it does not form part of the VPC\. If you list your instances and filter by VPC, for example, through the `DescribeInstances` API request, or by using the **Instances** screen in the Amazon EC2 console, the results do not return any EC2\-Classic instances that are linked to the VPC\. For more information about viewing your linked EC2\-Classic instances, see [Viewing your ClassicLink\-enabled VPCs and linked instances](#classiclink-describe-vpcs-instances)\.
 
-By default, if you use a public DNS hostname to address an instance in a VPC from a linked EC2\-Classic instance, the hostname resolves to the instance's public IP address\. The same occurs if you use a public DNS hostname to address a linked EC2\-Classic instance from an instance in the VPC\. If you want the public DNS hostname to resolve to the private IP address, you can enable ClassicLink DNS support for the VPC\. For more information, see [Enabling ClassicLink DNS Support](#classiclink-enable-dns-support)\.
+By default, if you use a public DNS hostname to address an instance in a VPC from a linked EC2\-Classic instance, the hostname resolves to the instance's public IP address\. The same occurs if you use a public DNS hostname to address a linked EC2\-Classic instance from an instance in the VPC\. If you want the public DNS hostname to resolve to the private IP address, you can enable ClassicLink DNS support for the VPC\. For more information, see [Enabling ClassicLink DNS support](#classiclink-enable-dns-support)\.
 
 If you no longer require a ClassicLink connection between your instance and the VPC, you can unlink the EC2\-Classic instance from the VPC\. This disassociates the VPC security groups from the EC2\-Classic instance\. A linked EC2\-Classic instance is automatically unlinked from a VPC when it's stopped\. After you've unlinked all linked EC2\-Classic instances from the VPC, you can disable ClassicLink for the VPC\.
 
-### Using Other AWS Services in Your VPC With ClassicLink<a name="classiclink-other-services"></a>
+### Using other AWS services in your VPC with ClassicLink<a name="classiclink-other-services"></a>
 
 Linked EC2\-Classic instances can access the following AWS services in the VPC: Amazon Redshift, Amazon ElastiCache, Elastic Load Balancing, and Amazon RDS\. However, instances in the VPC cannot access the AWS services provisioned by the EC2\-Classic platform using ClassicLink\.
 
@@ -52,15 +52,15 @@ You can use the Amazon EC2 console to find the private IP addresses of your Amaz
 
 1. In the details pane, get the private IP address from the **Primary private IPv4 IP** field\. 
 
-### Controlling the Use of ClassicLink<a name="classiclink-iam"></a>
+### Controlling the use of ClassicLink<a name="classiclink-iam"></a>
 
-By default, IAM users do not have permission to work with ClassicLink\. You can create an IAM policy that grants users permissions to enable or disable a VPC for ClassicLink, link or unlink an instance to a ClassicLink\-enabled VPC, and to view ClassicLink\-enabled VPCs and linked EC2\-Classic instances\. For more information about IAM policies for Amazon EC2, see [IAM Policies for Amazon EC2](iam-policies-for-amazon-ec2.md)\. 
+By default, IAM users do not have permission to work with ClassicLink\. You can create an IAM policy that grants users permissions to enable or disable a VPC for ClassicLink, link or unlink an instance to a ClassicLink\-enabled VPC, and to view ClassicLink\-enabled VPCs and linked EC2\-Classic instances\. For more information about IAM policies for Amazon EC2, see [IAM policies for Amazon EC2](iam-policies-for-amazon-ec2.md)\. 
 
-For more information about policies for working with ClassicLink, see the following example: [Example IAM Policies for ClassicLink](#iam-example-classiclink)\.
+For more information about policies for working with ClassicLink, see the following example: [Example IAM policies for ClassicLink](#iam-example-classiclink)\.
 
-### Security Groups in ClassicLink<a name="classiclink-security-groups"></a>
+### Security groups in ClassicLink<a name="classiclink-security-groups"></a>
 
-Linking your EC2\-Classic instance to a VPC does not affect your EC2\-Classic security groups\. They continue to control all traffic to and from the instance\. This excludes traffic to and from instances in the VPC, which is controlled by the VPC security groups that you associated with the EC2\-Classic instance\. EC2\-Classic instances that are linked to the same VPC cannot communicate with each other through the VPC; regardless of whether they are associated with the same VPC security group\. Communication between EC2\-Classic instances is controlled by the EC2\-Classic security groups associated with those instances\. For an example of a security group configuration, see [Example: ClassicLink Security Group Configuration for a Three\-Tier Web Application](#classiclink-security-groups-example)\.
+Linking your EC2\-Classic instance to a VPC does not affect your EC2\-Classic security groups\. They continue to control all traffic to and from the instance\. This excludes traffic to and from instances in the VPC, which is controlled by the VPC security groups that you associated with the EC2\-Classic instance\. EC2\-Classic instances that are linked to the same VPC cannot communicate with each other through the VPC; regardless of whether they are associated with the same VPC security group\. Communication between EC2\-Classic instances is controlled by the EC2\-Classic security groups associated with those instances\. For an example of a security group configuration, see [Example: ClassicLink security group configuration for a three\-tier web application](#classiclink-security-groups-example)\.
 
 After you've linked your instance to a VPC, you cannot change which VPC security groups are associated with the instance\. To associate different security groups with your instance, you must first unlink the instance, and then link it to the VPC again, choosing the required security groups\.
 
@@ -75,7 +75,7 @@ If your VPC CIDR block is a publicly routable IP address range, consider the sec
 
 For more information about route tables and routing in your VPC, see [Route Tables](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html) in the *Amazon VPC User Guide*\.
 
-### Enabling a VPC Peering Connection for ClassicLink<a name="classiclink-peering"></a>
+### Enabling a VPC peering connection for ClassicLink<a name="classiclink-peering"></a>
 
 If you have a VPC peering connection between two VPCs, and there are one or more EC2\-Classic instances that are linked to one or both of the VPCs via ClassicLink, you can extend the VPC peering connection to enable communication between the EC2\-Classic instances and the instances in the VPC on the other side of the VPC peering connection\. This enables the EC2\-Classic instances and the instances in the VPC to communicate using private IP addresses\. To do this, you can enable a local VPC to communicate with a linked EC2\-Classic instance in a peer VPC, or you can enable a local linked EC2\-Classic instance to communicate with instances in a peer VPC\.
 
@@ -83,12 +83,12 @@ If you enable a local VPC to communicate with a linked EC2\-Classic instance in 
 
 For more information and examples, see [Configurations With ClassicLink](https://docs.aws.amazon.com/vpc/latest/peering/peering-configurations-classiclink.html) in the *Amazon VPC Peering Guide*\.
 
-## ClassicLink Limitations<a name="classiclink-limitations"></a>
+## ClassicLink limitations<a name="classiclink-limitations"></a>
 
 To use the ClassicLink feature, you need to be aware of the following limitations:
 + You can link an EC2\-Classic instance to only one VPC at a time\.
 + If you stop your linked EC2\-Classic instance, it's automatically unlinked from the VPC and the VPC security groups are no longer associated with the instance\. You can link your instance to the VPC again after you've restarted it\.
-+ You cannot link an EC2\-Classic instance to a VPC that's in a different region or a different AWS account\.
++ You cannot link an EC2\-Classic instance to a VPC that's in a different Region or a different AWS account\.
 + You cannot use ClassicLink to link a VPC instance to a different VPC, or to a EC2\-Classic resource\. To establish a private connection between VPCs, you can use a VPC peering connection\. For more information, see the [Amazon VPC Peering Guide](https://docs.aws.amazon.com/vpc/latest/peering/)\.
 + You cannot associate a VPC Elastic IP address with a linked EC2\-Classic instance\.
 + You cannot enable EC2\-Classic instances for IPv6 communication\. You can associate an IPv6 CIDR block with your VPC and assign IPv6 address to resources in your VPC, however, communication between a ClassicLinked instance and resources in the VPC is over IPv4 only\.
@@ -108,13 +108,13 @@ The ClassicLink features are only visible in the consoles for accounts and regio
 
 **Topics**
 + [Enabling a VPC for ClassicLink](#classiclink-enable-vpc)
-+ [Creating a VPC with ClassicLink Enabled](#classiclink-vpc-wizard)
-+ [Linking an Instance to a VPC](#classiclink-link-instance)
-+ [Linking an Instance to a VPC at Launch](#classiclink-launch-wizard)
-+ [Viewing Your ClassicLink\-Enabled VPCs and Linked Instances](#classiclink-describe-vpcs-instances)
-+ [Enabling ClassicLink DNS Support](#classiclink-enable-dns-support)
-+ [Disabling ClassicLink DNS Support](#classiclink-disable-dns-support)
-+ [Unlinking an Instance from a VPC](#classiclink-unlink-instance)
++ [Creating a VPC with ClassicLink enabled](#classiclink-vpc-wizard)
++ [Linking an instance to a VPC](#classiclink-link-instance)
++ [Linking an instance to a VPC at launch](#classiclink-launch-wizard)
++ [Viewing your ClassicLink\-enabled VPCs and linked instances](#classiclink-describe-vpcs-instances)
++ [Enabling ClassicLink DNS support](#classiclink-enable-dns-support)
++ [Disabling ClassicLink DNS support](#classiclink-disable-dns-support)
++ [Unlinking an instance from a VPC](#classiclink-unlink-instance)
 + [Disabling ClassicLink for a VPC](#classiclink-disable-vpc)
 
 ### Enabling a VPC for ClassicLink<a name="classiclink-enable-vpc"></a>
@@ -131,9 +131,9 @@ To link an EC2\-Classic instance to a VPC, you must first enable the VPC for Cla
 
 1. In the confirmation dialog box, choose **Yes, Enable**\.
 
-1. \(Optional\) If you want the public DNS hostname to resolve to the private IP address, enable ClassicLink DNS support for the VPC before you link any instances\. For more information, see [Enabling ClassicLink DNS Support](#classiclink-enable-dns-support)\.
+1. \(Optional\) If you want the public DNS hostname to resolve to the private IP address, enable ClassicLink DNS support for the VPC before you link any instances\. For more information, see [Enabling ClassicLink DNS support](#classiclink-enable-dns-support)\.
 
-### Creating a VPC with ClassicLink Enabled<a name="classiclink-vpc-wizard"></a>
+### Creating a VPC with ClassicLink enabled<a name="classiclink-vpc-wizard"></a>
 
 You can create a new VPC and immediately enable it for ClassicLink by using the VPC wizard in the Amazon VPC console\.
 
@@ -147,16 +147,16 @@ You can create a new VPC and immediately enable it for ClassicLink by using the 
 
 1. On the next page of the wizard, choose **Yes** for **Enable ClassicLink**\. Complete the rest of the steps in the wizard to create your VPC\. For more information about using the VPC wizard, see [Scenarios for Amazon VPC](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Scenarios.html) in the *Amazon VPC User Guide*\.
 
-1. \(Optional\) If you want the public DNS hostname to resolve to the private IP address, enable ClassicLink DNS support for the VPC before you link any instances\. For more information, see [Enabling ClassicLink DNS Support](#classiclink-enable-dns-support)\.
+1. \(Optional\) If you want the public DNS hostname to resolve to the private IP address, enable ClassicLink DNS support for the VPC before you link any instances\. For more information, see [Enabling ClassicLink DNS support](#classiclink-enable-dns-support)\.
 
-### Linking an Instance to a VPC<a name="classiclink-link-instance"></a>
+### Linking an instance to a VPC<a name="classiclink-link-instance"></a>
 
 After you've enabled a VPC for ClassicLink, you can link an EC2\-Classic instance to it\.
 
 **Note**  
 You can only link a running EC2\-Classic instance to a VPC\. You cannot link an instance that's in the `stopped` state\.
 
-If you want the public DNS hostname to resolve to the private IP address, enable ClassicLink DNS support for the VPC before you link the instance\. For more information, see [Enabling ClassicLink DNS Support](#classiclink-enable-dns-support)\.
+If you want the public DNS hostname to resolve to the private IP address, enable ClassicLink DNS support for the VPC before you link the instance\. For more information, see [Enabling ClassicLink DNS support](#classiclink-enable-dns-support)\.
 
 **To link an instance to a VPC**
 
@@ -170,7 +170,7 @@ If you want the public DNS hostname to resolve to the private IP address, enable
 
 1. Select one or more of the VPC security groups to associate with your instance\. When you are done, choose **Link to VPC**\.
 
-### Linking an Instance to a VPC at Launch<a name="classiclink-launch-wizard"></a>
+### Linking an instance to a VPC at launch<a name="classiclink-launch-wizard"></a>
 
 You can use the launch wizard in the Amazon EC2 console to launch an EC2\-Classic instance and immediately link it to a ClassicLink\-enabled VPC\.
 
@@ -184,9 +184,9 @@ You can use the launch wizard in the Amazon EC2 console to launch an EC2\-Classi
 **Note**  
 Some instance types, such as T2 instance types, can only be launched into a VPC\. Ensure that you select an instance type that can be launched into EC2\-Classic\.
 
-1. In the **Link to VPC \(ClassicLink\)** section, select a VPC from **Link to VPC**\. Only ClassicLink\-enabled VPCs are displayed\. Select the security groups from the VPC to associate with the instance\. Complete the other configuration options on the page, and then complete the rest of the steps in the wizard to launch your instance\. For more information about using the launch wizard, see [Launching your instance from an AMI](launching-instance.md#launch-instance-console)\.
+1. In the **Link to VPC \(ClassicLink\)** section, select a VPC from **Link to VPC**\. Only ClassicLink\-enabled VPCs are displayed\. Select the security groups from the VPC to associate with the instance\. Complete the other configuration options on the page, and then complete the rest of the steps in the wizard to launch your instance\. For more information about using the launch wizard, see [Launching an instance using the Launch Instance Wizard](launching-instance.md)\.
 
-### Viewing Your ClassicLink\-Enabled VPCs and Linked Instances<a name="classiclink-describe-vpcs-instances"></a>
+### Viewing your ClassicLink\-enabled VPCs and linked instances<a name="classiclink-describe-vpcs-instances"></a>
 
 You can view all of your ClassicLink\-enabled VPCs in the Amazon VPC console, and your linked EC2\-Classic instances in the Amazon EC2 console\.
 
@@ -210,7 +210,7 @@ You can view all of your ClassicLink\-enabled VPCs in the Amazon VPC console, an
 
 1. Alternatively, you can filter your instances to display only linked EC2\-Classic instances for a specific VPC or security group\. In the search bar, start typing `ClassicLink`, select the relevant ClassicLink resource attribute, and then select the security group ID or the VPC ID\.
 
-### Enabling ClassicLink DNS Support<a name="classiclink-enable-dns-support"></a>
+### Enabling ClassicLink DNS support<a name="classiclink-enable-dns-support"></a>
 
 You can enable ClassicLink DNS support for your VPC so that DNS hostnames that are addressed between linked EC2\-Classic instances and instances in the VPC resolve to private IP addresses and not public IP addresses\. For this feature to work, your VPC must be enabled for DNS hostnames and DNS resolution\.
 
@@ -225,9 +225,9 @@ If you enable ClassicLink DNS support for your VPC, your linked EC2\-Classic ins
 
 1. Select your VPC, and choose **Actions**, **Edit ClassicLink DNS Support**\.
 
-1. Choose **Yes** to enable ClassicLink DNS support, and choose **Save**\.
+1. For **ClassicLink DNS Support**, choose **Enable**, and then choose **Save**\.
 
-### Disabling ClassicLink DNS Support<a name="classiclink-disable-dns-support"></a>
+### Disabling ClassicLink DNS support<a name="classiclink-disable-dns-support"></a>
 
 You can disable ClassicLink DNS support for your VPC so that DNS hostnames that are addressed between linked EC2\-Classic instances and instances in the VPC resolve to public IP addresses and not private IP addresses\.
 
@@ -239,9 +239,9 @@ You can disable ClassicLink DNS support for your VPC so that DNS hostnames that 
 
 1. Select your VPC, and choose **Actions**, **Edit ClassicLink DNS Support**\.
 
-1. Choose **No** to disable ClassicLink DNS support, and choose **Save**\.
+1. For **ClassicLink DNS Support**, clear the **Enable** check box, and then choose **Save**\.
 
-### Unlinking an Instance from a VPC<a name="classiclink-unlink-instance"></a>
+### Unlinking an instance from a VPC<a name="classiclink-unlink-instance"></a>
 
 If you no longer require a ClassicLink connection between your EC2\-Classic instance and your VPC, you can unlink the instance from the VPC\. Unlinking the instance disassociates the VPC security groups from the instance\.
 
@@ -272,17 +272,17 @@ If you no longer require a connection between EC2\-Classic instances and your VP
 
 1. In the confirmation dialog box, choose **Yes, Disable**\.
 
-## Example IAM Policies for ClassicLink<a name="iam-example-classiclink"></a>
+## Example IAM policies for ClassicLink<a name="iam-example-classiclink"></a>
 
 You can enable a VPC for ClassicLink and then link an EC2\-Classic instance to the VPC\. You can also view your ClassicLink\-enabled VPCs, and all of your EC2\-Classic instances that are linked to a VPC\. You can create policies with resource\-level permission for the `ec2:EnableVpcClassicLink`, `ec2:DisableVpcClassicLink`, `ec2:AttachClassicLinkVpc`, and `ec2:DetachClassicLinkVpc` actions to control how users are able to use those actions\. Resource\-level permissions are not supported for `ec2:Describe*` actions\.
 
 **Topics**
-+ [Full Permissions to Work with ClassicLink](#iam-example-classiclink-full)
-+ [Enable and Disable a VPC for ClassicLink](#iam-example-classiclink-enable)
-+ [Link Instances](#iam-example-classiclink-link)
-+ [Unlink Instances](#iam-example-classiclink-unlink)
++ [Full permissions to work with ClassicLink](#iam-example-classiclink-full)
++ [Enable and disable a VPC for ClassicLink](#iam-example-classiclink-enable)
++ [Link instances](#iam-example-classiclink-link)
++ [Unlink instances](#iam-example-classiclink-unlink)
 
-### Full Permissions to Work with ClassicLink<a name="iam-example-classiclink-full"></a>
+### Full permissions to work with ClassicLink<a name="iam-example-classiclink-full"></a>
 
 The following policy grants users permissions to view ClassicLink\-enabled VPCs and linked EC2\-Classic instances, to enable and disable a VPC for ClassicLink, and to link and unlink instances from a ClassicLink\-enabled VPC\. 
 
@@ -302,7 +302,7 @@ The following policy grants users permissions to view ClassicLink\-enabled VPCs 
 }
 ```
 
-### Enable and Disable a VPC for ClassicLink<a name="iam-example-classiclink-enable"></a>
+### Enable and disable a VPC for ClassicLink<a name="iam-example-classiclink-enable"></a>
 
 The following policy allows user to enable and disable VPCs for ClassicLink that have the specific tag '`purpose=classiclink`'\. Users cannot enable or disable any other VPCs for ClassicLink\. 
 
@@ -324,7 +324,7 @@ The following policy allows user to enable and disable VPCs for ClassicLink that
 }
 ```
 
-### Link Instances<a name="iam-example-classiclink-link"></a>
+### Link instances<a name="iam-example-classiclink-link"></a>
 
 The following policy grants users permissions to link instances to a VPC only if the instance is an `m3.large` instance type\. The second statement allows users to use the VPC and security group resources, which are required to link an instance to a VPC\.
 
@@ -374,7 +374,7 @@ The following policy grants users permissions to link instances to a specific VP
 }
 ```
 
-### Unlink Instances<a name="iam-example-classiclink-unlink"></a>
+### Unlink instances<a name="iam-example-classiclink-unlink"></a>
 
 The following grants users permission to unlink any linked EC2\-Classic instance from a VPC, but only if the instance has the tag "`unlink=true`"\. The second statement grants users permissions to use the VPC resource, which is required to unlink an instance from a VPC\.
 
@@ -404,7 +404,7 @@ The following grants users permission to unlink any linked EC2\-Classic instance
 }
 ```
 
-## Example: ClassicLink Security Group Configuration for a Three\-Tier Web Application<a name="classiclink-security-groups-example"></a>
+## Example: ClassicLink security group configuration for a three\-tier web application<a name="classiclink-security-groups-example"></a>
 
 In this example, you have an application with three instances: a public\-facing web server, an application server, and a database server\. Your web server accepts HTTPS traffic from the Internet, and then communicates with your application server over TCP port 6001\. Your application server then communicates with your database server over TCP port 6004\. You're in the process of migrating your entire application to a VPC in your account\. You've already migrated your application server and your database server to your VPC\. Your web server is still in EC2\-Classic and linked to your VPC via ClassicLink\. 
 
@@ -414,7 +414,7 @@ The following diagram displays the architecture of your instances, and their sec
 
 ![\[Security group configuration using ClassicLink.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/classiclink-security-groups-example-diagram.png)
 
-**Security Groups for Your Web Server \(`sg-1a1a1a1a` and `sg-2b2b2b2b`\)**  
+**Security groups for your web server \(`sg-1a1a1a1a` and `sg-2b2b2b2b`\)**  
 You have one security group in EC2\-Classic, and the other in your VPC\. You associated the VPC security group with your web server instance when you linked the instance to your VPC via ClassicLink\. The VPC security group enables you to control the outbound traffic from your web server to your application server\.
 
 The following are the security group rules for the EC2\-Classic security group \(`sg-1a1a1a1a`\)\.
@@ -435,7 +435,7 @@ The following are the security group rules for the VPC security group \(`sg-2b2b
 |  Destination  |  Type  |  Port Range  |  Comments  | 
 |  sg\-3c3c3c3c  |  TCP  |  6001  |  Allows outbound traffic from your web server to your application server in your VPC \(or to any other instance associated with `sg-3c3c3c3c`\)\.  | 
 
-**Security Group for Your Application Server \(`sg-3c3c3c3c`\)**  
+**Security group for your application server \(`sg-3c3c3c3c`\)**  
 The following are the security group rules for the VPC security group that's associated with your application server\.
 
 
@@ -448,7 +448,7 @@ The following are the security group rules for the VPC security group that's ass
 |  Destination  |  Type  |  Port Range  |  Comments  | 
 | sg\-4d4d4d4d | TCP | 6004 | Allows outbound traffic from the application server to the database server \(or to any other instance associated with sg\-4d4d4d4d\)\. | 
 
-**Security Group for Your Database Server \(`sg-4d4d4d4d`\)**  
+**Security group for your database server \(`sg-4d4d4d4d`\)**  
 The following are the security group rules for the VPC security group that's associated with your database server\.
 
 

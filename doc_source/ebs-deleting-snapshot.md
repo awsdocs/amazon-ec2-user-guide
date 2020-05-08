@@ -19,7 +19,7 @@ In the following diagram, Volume 1 is shown at three points in time\. A snapshot
 
 ![\[Snap A contains 6 GiB of referenced data. When Snap A is deleted, that data is merged into Snap B.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/snapshot_1b.png)
 
-Note that you can't delete a snapshot of the root device of an EBS volume used by a registered AMI\. You must first deregister the AMI before you can delete the snapshot\. For more information, see [Deregistering Your Linux AMI](deregister-ami.md)\.
+Note that you can't delete a snapshot of the root device of an EBS volume used by a registered AMI\. You must first deregister the AMI before you can delete the snapshot\. For more information, see [Deregistering your Linux AMI](deregister-ami.md)\.
 
 **To delete a snapshot using the console**
 

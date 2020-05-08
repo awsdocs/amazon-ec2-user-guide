@@ -1,4 +1,4 @@
-# Monitoring the Progress of Volume Modifications<a name="monitoring-volume-modifications"></a>
+# Monitoring the progress of volume modifications<a name="monitoring-volume-modifications"></a>
 
 When you modify an EBS volume, it goes through a sequence of states\. The volume enters the `modifying` state, the `optimizing` state, and finally the `completed` state\. At this point, the volume is ready to be further modified\. 
 
@@ -15,11 +15,11 @@ Volume modification changes take effect as follows:
 Use one of the following methods to monitor the progress of a volume modification\.
 
 **Topics**
-+ [Monitoring the Progress of a Volume Modification \(Console\)](#console_monitoring)
-+ [Monitoring the Progress of a Volume Modification \(AWS CLI\)](#api_cli_monitoring)
-+ [Monitoring the Progress of a Volume Modification \(CloudWatch Events\)](#cwe_monitoring)
++ [Monitoring the progress of a volume modification \(console\)](#console_monitoring)
++ [Monitoring the progress of a volume modification \(AWS CLI\)](#api_cli_monitoring)
++ [Monitoring the progress of a volume modification \(CloudWatch Events\)](#cwe_monitoring)
 
-## Monitoring the Progress of a Volume Modification \(Console\)<a name="console_monitoring"></a>
+## Monitoring the progress of a volume modification \(console\)<a name="console_monitoring"></a>
 
 Use the following procedure to view the progress of one or more volume modifications\.
 
@@ -36,7 +36,7 @@ The **State** column and field also show the volume's availability status, which
 1. Choose the text in the **State** field to display before and after information about the most recent modification action, as shown in this screenshot\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/monitor_modifications.png)
 
-## Monitoring the Progress of a Volume Modification \(AWS CLI\)<a name="api_cli_monitoring"></a>
+## Monitoring the progress of a volume modification \(AWS CLI\)<a name="api_cli_monitoring"></a>
 
 Use the [describe\-volumes\-modifications](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-volumes-modifications.html) command to view the progress of one or more volume modifications\. The following example describes the volume modifications for two volumes\.
 
@@ -97,7 +97,7 @@ The following is example output with information about two volumes:
 ]
 ```
 
-## Monitoring the Progress of a Volume Modification \(CloudWatch Events\)<a name="cwe_monitoring"></a>
+## Monitoring the progress of a volume modification \(CloudWatch Events\)<a name="cwe_monitoring"></a>
 
 With CloudWatch Events, you can create a notification rule for volume modification events\. You can use your rule to generate a notification message using [Amazon SNS](https://docs.aws.amazon.com/sns/latest/dg/) or to invoke a [Lambda function](https://docs.aws.amazon.com/lambda/latest/dg/) in response to matching events\.
 

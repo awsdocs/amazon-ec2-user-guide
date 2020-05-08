@@ -2,7 +2,7 @@
 
 When resources are created, we assign each resource a unique resource ID\. You can use resource IDs to find your resources in the Amazon EC2 console\. If you are using a command line tool or the Amazon EC2 API to work with Amazon EC2, resource IDs are required for certain commands\. For example, if you are using the [stop\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) AWS CLI command to stop an instance, you must specify the instance ID in the command\.
 
-**Resource ID Length**  
+**Resource ID length**  
 A resource ID takes the form of a resource identifier \(such as `snap` for a snapshot\) followed by a hyphen and a unique combination of letters and numbers\. Starting in January 2016, we're gradually introducing longer length IDs for Amazon EC2 and Amazon EBS resource types\. The length of the alphanumeric character combination was in an 8\-character format; the new IDs are in a 17\-character format, for example, `i-1234567890abcdef0` for an instance ID\.
 
 Supported resource types have an opt\-in period, during which you can choose a resource ID format, and a deadline date, after which the resource defaults to the longer ID format\. After the deadline has passed for a specific resource type, you can no longer disable the longer ID format for that resource type\.
@@ -15,7 +15,7 @@ Different resource types have different opt\-in periods and deadline dates\. The
 |  `instance` \| `snapshot` \|`reservation` \| `volume`  |  No longer available  |  December 15, 2016  | 
 |  `bundle` \| `conversion-task` \| `customer-gateway` \| `dhcp-options` \| `elastic-ip-allocation` \|  `elastic-ip-association` \| `export-task` \| `flow-log` \| `image` \| `import-task` \| `internet-gateway` \| `network-acl` \| `network-acl-association` \| `network-interface` \| `network-interface-attachment` \| `prefix-list` \|  `route-table` \| `route-table-association` \| `security-group` \| `subnet` \| `subnet-cidr-block-association` \| `vpc` \| `vpc-cidr-block-association` \| `vpc-endpoint` \|  `vpc-peering-connection` \| `vpn-connection` \| `vpn-gateway`  |  February 09, 2018 \- June 30, 2018  |  June 30, 2018  | 
 
-**During the Opt\-in Period**  
+**During the opt\-in period**  
 You can enable or disable longer IDs for a resource at any time during the opt\-in period\. After you've enabled longer IDs for a resource type, any new resources that you create are created with a longer ID\.
 
 **Note**  
@@ -23,18 +23,18 @@ A resource ID does not change after it's created\. Therefore, enabling or disabl
 
 Depending on when you created your AWS account, supported resource types may default to using longer IDs\. However, you can opt out of using longer IDs until the deadline date for that resource type\. For more information, see [Longer EC2 and EBS Resource IDs](https://aws.amazon.com/ec2/faqs/#longer-ids) in the *Amazon EC2 FAQs*\.
 
-**After the Deadline Date**  
+**After the deadline**  
 You can’t disable longer IDs for a resource type after its deadline date has passed\. Any new resources that you create are created with a longer ID\.
 
-## Working with Longer IDs<a name="resource-ids-working-with"></a>
+## Working with longer IDs<a name="resource-ids-working-with"></a>
 
 You can enable or disable longer IDs per IAM user and IAM role\. By default, an IAM user or role defaults to the same settings as the root user\. 
 
 **Topics**
-+ [Viewing Longer ID Settings](#viewing_longer_id_settings)
-+ [Modifying Longer ID Settings](#modifying_longer_id_settings)
++ [Viewing longer ID settings](#viewing_longer_id_settings)
++ [Modifying longer ID settings](#modifying_longer_id_settings)
 
-### Viewing Longer ID Settings<a name="viewing_longer_id_settings"></a>
+### Viewing longer ID settings<a name="viewing_longer_id_settings"></a>
 
 You can use the console and command line tools to view the resource types that support longer IDs\.
 
@@ -42,7 +42,7 @@ You can use the console and command line tools to view the resource types that s
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation bar at the top of the screen, select the region for which to view your longer ID settings\. 
+1. In the navigation bar at the top of the screen, select the Region for which to view your longer ID settings\. 
 
 1. From the dashboard, under **Account Attributes**, choose **Resource ID length management**\. 
 
@@ -76,8 +76,8 @@ Use one of the following commands and specify the ARN of an IAM user, IAM role, 
   Get-EC2IdentityIdFormat -PrincipalArn arn-of-iam-principal -Region region
   ```
 
-**To view the aggregated longer ID settings for a specific region using the command line**  
-Use the [describe\-aggregate\-id\-format](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-aggregate-id-format.html) AWS CLI command to view the aggregated longer ID setting for the entire region, as well as the aggregated longer ID setting of all ARNs for each resource type\. This command is useful for performing a quick audit to determine whether a specific region is fully opted in for longer IDs\.
+**To view the aggregated longer ID settings for a specific Region using the command line**  
+Use the [describe\-aggregate\-id\-format](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-aggregate-id-format.html) AWS CLI command to view the aggregated longer ID setting for the entire region, as well as the aggregated longer ID setting of all ARNs for each resource type\. This command is useful for performing a quick audit to determine whether a specific Region is fully opted in for longer IDs\.
 
 ```
 aws ec2 describe-aggregate-id-format --region region
@@ -90,18 +90,18 @@ Use the [describe\-principal\-id\-format](https://docs.aws.amazon.com/cli/latest
 aws ec2 describe-principal-id-format --region region
 ```
 
-### Modifying Longer ID Settings<a name="modifying_longer_id_settings"></a>
+### Modifying longer ID settings<a name="modifying_longer_id_settings"></a>
 
 You can use the console and command line tools to modify longer ID settings for resource types that are still within their opt\-in period\.
 
 **Note**  
-The AWS CLI and AWS Tools for Windows PowerShell commands in this section are per\-region only\. They apply to the default region unless otherwise specified\. To modify the settings for other regions, include the `region` parameter in the command\.
+The AWS CLI and AWS Tools for Windows PowerShell commands in this section are per\-region only\. They apply to the default Region unless otherwise specified\. To modify the settings for other regions, include the `region` parameter in the command\.
 
 **To modify longer ID settings using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation bar at the top of the screen, select the region for which to modify the longer ID settings\. 
+1. In the navigation bar at the top of the screen, select the Region for which to modify the longer ID settings\. 
 
 1. From the dashboard, under **Account Attributes**, choose **Resource ID length management**\. 
 
@@ -170,7 +170,7 @@ To disable longer IDs, replace the `use-long-ids` parameter with `no-use-long-id
   Edit-EC2IdentityIdFormat -PrincipalArn arn-of-iam-principal -Resource all-current -UseLongId boolean
   ```
 
-## Controlling Access to Longer ID Settings<a name="resource-ids-access"></a>
+## Controlling access to longer ID settings<a name="resource-ids-access"></a>
 
 By default, IAM users and roles do not have permission to use the following actions unless they're explicitly granted permission through their associated IAM policies:
 + `ec2:DescribeIdFormat`

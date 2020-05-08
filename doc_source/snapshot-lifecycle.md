@@ -38,7 +38,7 @@ Amazon Data Lifecycle Manager uses resource tags to identify the EBS volumes to 
 
 You can't use a '\\' or '=' character in a tag key\.
 
-For more information, see [Tagging Your Amazon EC2 Resources](Using_Tags.md)\.
+For more information, see [Tagging your Amazon EC2 resources](Using_Tags.md)\.
 
 ### Snapshot Tags<a name="dlm-tagging-snapshots"></a>
 
@@ -77,7 +77,8 @@ The following considerations apply to lifecycle policies:
 + If you modify a retention schedule based on time to use a new time interval, the new interval is used only for new snapshots\. The new schedule does not affect the retention schedule of existing snapshots created by this policy\.
 + You cannot change the retention schedule of a policy from the count of snapshots to the age of each snapshot\. To make this change, you must create a new policy\.
 + If you disable a policy with a retention schedule based on the age of each snapshot, the snapshots whose retention periods expire while the policy is disabled are retained indefinitely\. You must delete these snapshots manually\. When you enable the policy again, Amazon Data Lifecycle Manager resumes deleting snapshots as their retention periods expire\.
-+ If you delete the resource to which a policy applies, the policy no longer manages the previously created snapshots\. You must manually delete the snapshots if they are no longer needed\.
++ If you delete the resource to which a policy with count\-based retention applies, the policy no longer manages the previously created snapshots\. You must manually delete the snapshots if they are no longer needed\.
++ If you delete the resource to which a policy with age\-based retention applies, the policy continues to delete snapshots on the defined schedule, up to the last snapshot\. You must manually delete the last snapshot if it is no longer needed\.
 + You can create multiple policies to back up an EBS volume or an EC2 instance\. For example, if an EBS volume has two tags, where tag A is the target for policy A to create a snapshot every 12 hours, and tag B is the target for policy B to create a snapshot every 24 hours, Amazon Data Lifecycle Manager creates snapshots according to the schedules for both policies\.
 
 The following considerations apply to lifecycle policies and [fast snapshot restore](ebs-fast-snapshot-restore.md):
@@ -85,7 +86,7 @@ The following considerations apply to lifecycle policies and [fast snapshot rest
 + If you enable fast snapshot restore and you exceed the maximum number of snapshots that can be enabled for fast snapshot restore, Amazon Data Lifecycle Manager creates snapshots as scheduled but does not enable them for fast snapshot restore\. After a snapshot that is enabled for fast snapshot restore is deleted, the next snapshot Amazon Data Lifecycle Manager creates is enabled for fast snapshot restore\.
 + When you enable fast snapshot restore for a snapshot, it takes 60 minutes per TiB to optimize the snapshot\. We recommend that you create a schedule that ensures that each snapshot is fully optimized before Amazon Data Lifecycle Manager creates the next snapshot\.
 
-The following considerations apply to lifecycle policies and [Multi\-Attach](ebs-volumes-multi.md) enabled volumes:
+The following considerations apply to lifecycle policies and [multi\-attach](ebs-volumes-multi.md) enabled volumes:
 + When creating a lifecycle policy based on instance tags for Multi\-Volume snapshots, Amazon Data Lifecycle Manager initiates a snapshot of the volume for each attached instance\. Use the *timestamp* tag to identify the set of time\-consistent snapshots created from the attached instances\.
 
 ## Prerequisites<a name="dlm-prerequisites"></a>
@@ -95,6 +96,7 @@ The following prerequisites are required by Amazon Data Lifecycle Manager\.
 **Topics**
 + [Permissions for Amazon Data Lifecycle Manager](#dlm-permissions)
 + [Permissions for IAM Users](#dlm-access-control)
++ [Permissions for Encrypted Snapshots](#dlm-access-cmk)
 
 ### Permissions for Amazon Data Lifecycle Manager<a name="dlm-permissions"></a>
 
@@ -186,6 +188,10 @@ An IAM user must have the following permissions to use Amazon Data Lifecycle Man
 
 For more information, see [Changing Permissions for an IAM User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html) in the *IAM User Guide*\.
 
+### Permissions for Encrypted Snapshots<a name="dlm-access-cmk"></a>
+
+To copy an encrypted snapshot between Regions, you must have access to both the source and destination customer master key \(CMK\) from AWS Key Management Service \(AWS KMS\)\. For more information, see [Determining access to an AWS KMS customer master key](https://docs.aws.amazon.com/kms/latest/developerguide/determining-access.html) in the *AWS Key Management Service Developer Guide*\.
+
 ## Manage Backups Using the Console<a name="snapshot-lifecycle-console"></a>
 
 The following examples show how to use Amazon Data Lifecycle Manager to manage the backups of your EBS volumes using the AWS Management Console\.
@@ -215,7 +221,7 @@ Use the following procedure to create a lifecycle policy\.
    + **Run policy every** ***n*** **Hours**–The number of hours between policy runs\. The supported values are 1, 2, 3, 4, 6, 8, 12, and 24\.
    + **Starting at ***hh*:***mm*** **UTC**–The time at which the policy runs are scheduled to start\. The first policy run starts within an hour after the scheduled time\.
    + **Retain**–You can retain snapshots based on either the total count of snapshots or the age of each snapshot\. For retention based on the count, the range is 1 to 1000\. After the maximum count is reached, the oldest snapshot is deleted when a new one is created\. For age\-based retention, the range is 1 day to 100 years\. After the retention period of each snapshot expires, it is deleted\. The retention period should be greater than or equal to the creation interval\.
-   + **Cross Region copy**–You can copy each snapshot to up at three additional Regions\. For each Region, you can choose different retention policies and whether to copy all tags or no tags\. If the source snapshot is encrypted or if encryption by default is enabled, the snapshots copies are encrypted\. If the source snapshot is unencrypted, you can enable encryption\. If you do not specify a CMK, the snapshots are encrypted using the default key for EBS encryption in each destination Region\. You must ensure that you do not exceed the number of concurrent snapshot copies per Region\.
+   + **Cross Region copy**–You can copy each snapshot to up at three additional Regions\. You must ensure that you do not exceed the number of concurrent snapshot copies per Region\. For each Region, you can choose different retention policies and whether to copy all tags or no tags\. If the source snapshot is encrypted or if encryption by default is enabled, the snapshots copies are encrypted\. If the source snapshot is unencrypted, you can enable encryption\. If you do not specify a CMK, the snapshots are encrypted using the default key for EBS encryption in each destination Region\. If you specify a CMK for the destination Region, you must have access to the CMK\.
    + **Tagging information**–Choose whether to copy all user\-defined tags on a source volume to the snapshots created by this policy\. You can also specify additional tags for the snapshots in addition to the tags applied by Amazon Data Lifecycle Manager\. If the resource type is `INSTANCE`, you can choose to automatically tag your snapshots with the following variable tags: `instance-id` and `timestamp`\. The values of the variable tags are determined when the tags are added\.
    + **Fast snapshot restore**–Choose whether to enable fast snapshot restore and in which Availability Zones\. You can also specify the maximum number of snapshots that can be enabled for fast snapshot store\.
    + **IAM role**–An IAM role that has permissions to create, delete, and describe snapshots, and to describe volumes\. AWS provides a default role, **AWSDataLifecycleManagerDefaultRole**, or you can create a custom IAM role\.

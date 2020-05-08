@@ -1,19 +1,20 @@
-# Amazon EBS–Optimized Instances<a name="ebs-optimized"></a>
+# Amazon EBS–optimized instances<a name="ebs-optimized"></a>
 
 An Amazon EBS–optimized instance uses an optimized configuration stack and provides additional, dedicated capacity for Amazon EBS I/O\. This optimization provides the best performance for your EBS volumes by minimizing contention between Amazon EBS I/O and other traffic from your instance\.
 
-EBS–optimized instances deliver dedicated bandwidth to Amazon EBS\. When attached to an EBS–optimized instance, General Purpose SSD \(`gp2`\) volumes are designed to deliver their baseline and burst performance 99% of the time, and Provisioned IOPS SSD \(`io1`\) volumes are designed to deliver their provisioned performance 99\.9% of the time\. Both Throughput Optimized HDD \(`st1`\) and Cold HDD \(`sc1`\) guarantee performance consistency of 90% of burst throughput 99% of the time\. Non\-compliant periods are approximately uniformly distributed, targeting 99% of expected total throughput each hour\. For more information, see [Amazon EBS Volume Types](ebs-volume-types.md)\.
+EBS–optimized instances deliver dedicated bandwidth to Amazon EBS\. When attached to an EBS–optimized instance, General Purpose SSD \(`gp2`\) volumes are designed to deliver their baseline and burst performance 99% of the time, and Provisioned IOPS SSD \(`io1`\) volumes are designed to deliver their provisioned performance 99\.9% of the time\. Both Throughput Optimized HDD \(`st1`\) and Cold HDD \(`sc1`\) guarantee performance consistency of 90% of burst throughput 99% of the time\. Non\-compliant periods are approximately uniformly distributed, targeting 99% of expected total throughput each hour\. For more information, see [Amazon EBS volume types](ebs-volume-types.md)\.
 
 **Topics**
-+ [Supported Instance Types](#ebs-optimization-support)
-+ [Enabling EBS Optimization at Launch](#enable-ebs-optimization)
-+ [Enable EBS Optimization for a Running Instance](#modify-ebs-optimized-attribute)
++ [Supported instance types](#ebs-optimization-support)
++ [Getting maximum performance](#ebs-optimization-performance)
++ [Enabling EBS optimization at launch](#enable-ebs-optimization)
++ [Enable EBS optimization for an existing instance](#modify-ebs-optimized-attribute)
 
-## Supported Instance Types<a name="ebs-optimization-support"></a>
+## Supported instance types<a name="ebs-optimization-support"></a>
 
 The following tables show which instance types support EBS optimization\. They include the dedicated bandwidth to Amazon EBS, the typical maximum aggregate throughput that can be achieved on that connection with a streaming read workload and 128 KiB I/O size, and the maximum IOPS the instance can support if you are using a 16 KiB I/O size\. Choose an EBS–optimized instance that provides more dedicated Amazon EBS throughput than your application needs; otherwise, the connection between Amazon EBS and Amazon EC2 can become a performance bottleneck\.
 
-### EBS Optimized By Default<a name="current"></a>
+### EBS optimized by default<a name="current"></a>
 
 The following table lists the instance types that support EBS optimization and EBS optimization is enabled by default\. There is no need to enable EBS optimization and no effect if you disable EBS optimization\.
 
@@ -250,10 +251,6 @@ The following table lists the instance types that support EBS optimization and E
 | z1d\.12xlarge | 19,000 | 2,375 | 80,000 | 
 | z1d\.metal | 19,000 | 2,375 | 80,000 | 
 
-G4dn, I3en, Inf1, M5a, M5ad, R5a, R5ad, T3, T3a, and Z1d instances that are launched after February 26, 2020 support the maximum performance listed above by default\. To get the maximum performance for instances launched before February 26, 2020, stop and start the instance\.
-
-C5, C5d, C5n, M5, M5d, M5n, M5dn, R5, R5d, R5n, R5dn, P3dn, `u-6tb1.metal`, `u-9tb1.metal`, and `u-12tb1.metal` instances that are launched after December 3, 2019 support the maximum performance listed above by default\. To get the maximum performance for instances launched before December 3, 2019, stop and start the instance\.
-
 \* These instance types can support maximum performance for 30 minutes at least once every 24 hours\. If you have a workload that requires sustained maximum performance for longer than 30 minutes, select an instance type according to baseline performance as shown in the following table\.
 
 
@@ -333,9 +330,7 @@ C5, C5d, C5n, M5, M5d, M5n, M5dn, R5, R5d, R5n, R5dn, P3dn, `u-6tb1.metal`, `u-9
 | z1d\.large | 800 | 100 | 3,333 | 
 | z1d\.xlarge | 1,580 | 197\.5 | 6,667 | 
 
-The `EBSIOBalance%` and `EBSByteBalance%` metrics can help you determine if your instances are sized correctly\. You can view these metrics in the CloudWatch console and set an alarm that is triggered based on a threshold you specify\. These metrics are expressed as a percentage\. Instances with a consistently low balance percentage are candidates for upsizing\. Instances where the balance percentage never drops below 100% are candidates for downsizing\. For more information, see [Monitoring Your Instances Using CloudWatch](using-cloudwatch.md)\.
-
-### EBS Optimization Supported<a name="previous"></a>
+### EBS optimization supported<a name="previous"></a>
 
 The following table lists the instance types that support EBS optimization but EBS optimization is not enabled by default\. You can enable EBS optimization when you launch these instances or after they are running\. Instances must have EBS optimization enabled to achieve the level of performance described\. When you enable EBS optimization for an instance that is not EBS\-optimized by default, you pay an additional low, hourly fee for the dedicated capacity\. For pricing information, see EBS\-optimized Instances on the [Amazon EC2 Pricing page for On\-Demand instances](http://aws.amazon.com/ec2/pricing/on-demand/)\.
 
@@ -362,7 +357,15 @@ The following table lists the instance types that support EBS optimization but E
 
 The `i2.8xlarge`, `c3.8xlarge`, and `r3.8xlarge` instances do not have dedicated EBS bandwidth and therefore do not offer EBS optimization\. On these instances, network traffic and Amazon EBS traffic share the same 10\-gigabit network interface\.
 
-## Enabling EBS Optimization at Launch<a name="enable-ebs-optimization"></a>
+## Getting maximum performance<a name="ebs-optimization-performance"></a>
+
+G4dn, I3en, Inf1, M5a, M5ad, R5a, R5ad, T3, T3a, and Z1d instances that are launched after February 26, 2020 support the maximum performance listed above by default\. To get the maximum performance for instances launched before February 26, 2020, stop and start the instance\.
+
+C5, C5d, C5n, M5, M5d, M5n, M5dn, R5, R5d, R5n, R5dn, P3dn, `u-6tb1.metal`, `u-9tb1.metal`, and `u-12tb1.metal` instances that are launched after December 3, 2019 support the maximum performance listed above by default\. To get the maximum performance for instances launched before December 3, 2019, stop and start the instance\.
+
+You can use the `EBSIOBalance%` and `EBSByteBalance%` metrics to help you determine whether your instances are sized correctly\. You can view these metrics in the CloudWatch console and set an alarm that is triggered based on a threshold you specify\. These metrics are expressed as a percentage\. Instances with a consistently low balance percentage are candidates for upsizing\. Instances where the balance percentage never drops below 100% are candidates for downsizing\. For more information, see [Monitoring Your Instances Using CloudWatch](using-cloudwatch.md)\.
+
+## Enabling EBS optimization at launch<a name="enable-ebs-optimization"></a>
 
 You can enable optimization for an instance by setting its attribute for EBS optimization\.
 
@@ -382,27 +385,28 @@ You can enable optimization for an instance by setting its attribute for EBS opt
 
 **To enable EBS optimization when launching an instance using the command line**
 
-You can use one of the following options with the corresponding command\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ `--ebs-optimized` with [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) \(AWS CLI\)
-+ `-EbsOptimized` with [New\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
+You can use one of the following commands with the corresponding option\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
++ [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) with `--ebs-optimized` \(AWS CLI\)
++ [New\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) with `-EbsOptimized` \(AWS Tools for Windows PowerShell\)
 
-## Enable EBS Optimization for a Running Instance<a name="modify-ebs-optimized-attribute"></a>
+## Enable EBS optimization for an existing instance<a name="modify-ebs-optimized-attribute"></a>
 
-You can enable or disable optimization for a running instance by modifying its Amazon EBS–optimized instance attribute\.
+You can enable or disable optimization for an existing instance by modifying its Amazon EBS–optimized instance attribute\. If the instance is running, you must stop it first\.
 
-**To enable EBS optimization for a running instance using the console**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, click **Instances**, and select the instance\.
-
-1. Click **Actions**, select **Instance State**, and then click **Stop**\.
 **Warning**  
 When you stop an instance, the data on any instance store volumes is erased\. To keep data from instance store volumes, be sure to back it up to persistent storage\.
 
-1. In the confirmation dialog box, click **Yes, Stop**\. It can take a few minutes for the instance to stop\.
+**To enable EBS optimization for an existing instance using the console**
 
-1. With the instance still selected, click **Actions**, select **Instance Settings**, and then click **Change Instance Type**\.
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances**, and select the instance\.
+
+1. To stop the instance, choose **Actions**, **Instance State**, **Stop**\.
+
+1. In the confirmation dialog box, choose **Yes, Stop**\. It can take a few minutes for the instance to stop\.
+
+1. With the instance still selected, choose **Actions**, **Instance Settings**, **Change Instance Type**\.
 
 1. In the **Change Instance Type** dialog box, do one of the following:
    + If the instance type of your instance is Amazon EBS–optimized by default, **EBS\-optimized** is selected and you can't change it\. You can choose **Cancel**, because Amazon EBS optimization is already enabled for the instance\.
@@ -411,8 +415,12 @@ When you stop an instance, the data on any instance store volumes is erased\. To
 
 1. Choose **Actions**, **Instance State**, **Start**\.
 
-**To enable EBS optimization for a running instance using the command line**
+**To enable EBS optimization for an existing instance using the command line**
 
-You can use one of the following options with the corresponding command\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ `--ebs-optimized` with [modify\-instance\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) \(AWS CLI\)
-+ `-EbsOptimized` with [Edit\-EC2InstanceAttribute](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2InstanceAttribute.html) \(AWS Tools for Windows PowerShell\)
+1. If the instance is running, use one of the following commands to stop it:
+   + [stop\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) \(AWS CLI\)
+   + [Stop\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Stop-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
+
+1. To enable EBS optimization, use one of the following commands with the corresponding option:
+   + [modify\-instance\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) with `--ebs-optimized` \(AWS CLI\)
+   + [Edit\-EC2InstanceAttribute](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2InstanceAttribute.html) with `-EbsOptimized` \(AWS Tools for Windows PowerShell\)

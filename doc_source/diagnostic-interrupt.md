@@ -1,4 +1,4 @@
-# Sending a Diagnostic Interrupt \(Advanced Users Only\)<a name="diagnostic-interrupt"></a>
+# Sending a diagnostic interrupt \(for advanced users\)<a name="diagnostic-interrupt"></a>
 
 **Warning**  
 Diagnostic interrupts are intended for use by advanced users\. Incorrect usage could negatively impact your instance\. Sending a diagnostic interrupt to an instance could trigger an instance to crash and reboot, which could lead to the loss of data\.
@@ -12,13 +12,13 @@ The crash dump data is generated locally by the operating system on the instance
 Before sending a diagnostic interrupt to your instance, we recommend that you consult the documentation for your operating system and then make the necessary configuration changes\.
 
 **Topics**
-+ [Supported Instance Types](#diagnostic-interrupt-instances)
++ [Supported instance types](#diagnostic-interrupt-instances)
 + [Prerequisites](#diagnostic-interrupt-prereqs)
-+ [Sending a Diagnostic Interrupt](#diagnostic-interrupt-use)
++ [Sending a diagnostic interrupt](#diagnostic-interrupt-use)
 
-## Supported Instance Types<a name="diagnostic-interrupt-instances"></a>
+## Supported instance types<a name="diagnostic-interrupt-instances"></a>
 
-Diagnostic interrupt is supported on all Nitro\-based instance types, except A1\. For more information, see [Nitro\-based Instances](instance-types.md#ec2-nitro-instances)\.
+Diagnostic interrupt is supported on all Nitro\-based instance types, except A1\. For more information, see [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances)\.
 
 ## Prerequisites<a name="diagnostic-interrupt-prereqs"></a>
 
@@ -148,7 +148,14 @@ See the following websites:
 + [Ubuntu](https://help.ubuntu.com/lts/serverguide/kernel-crash-dump.html.en)
 + [ Red Hat Enterprise Linux \(RHEL\)](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/kernel_administration_guide/kernel_crash_dump_guide)
 
-## Sending a Diagnostic Interrupt<a name="diagnostic-interrupt-use"></a>
+**Note**  
+On instances based on Intel and AMD processors, the `send-diagnostic-interrupt` command sends an *unknown non\-maskable interrupt* \(NMI\) to the instance\. You must configure the kernel to crash when it receives the unknown NMI\. Add the following to your configuration file\.  
+
+```
+kernel.unknown_nmi_panic=1
+```
+
+## Sending a diagnostic interrupt<a name="diagnostic-interrupt-use"></a>
 
 After you have completed the necessary configuration changes, you can send a diagnostic interrupt to your instance using the AWS CLI or Amazon EC2 API\.
 

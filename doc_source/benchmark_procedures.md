@@ -21,13 +21,13 @@ Some of the procedures result in the destruction of existing data on the EBS vol
 
 ## Set Up Your Instance<a name="set_up_instance"></a>
 
-To get optimal performance from EBS volumes, we recommend that you use an EBS\-optimized instance\. EBS\-optimized instances deliver dedicated throughput between Amazon EC2 and Amazon EBS, with instance\. EBS\-optimized instances deliver dedicated bandwidth between Amazon EC2 and Amazon EBS, with specifications depending on the instance type\. For more information, see [Amazon EBS–Optimized Instances](ebs-optimized.md)\.
+To get optimal performance from EBS volumes, we recommend that you use an EBS\-optimized instance\. EBS\-optimized instances deliver dedicated throughput between Amazon EC2 and Amazon EBS, with instance\. EBS\-optimized instances deliver dedicated bandwidth between Amazon EC2 and Amazon EBS, with specifications depending on the instance type\. For more information, see [Amazon EBS–optimized instances](ebs-optimized.md)\.
 
-To create an EBS\-optimized instance, choose **Launch as an EBS\-Optimized instance** when launching the instance using the Amazon EC2 console, or specify \-\-ebs\-optimized when using the command line\. Be sure that you launch a current\-generation instance that supports this option\. For more information, see [Amazon EBS–Optimized Instances](ebs-optimized.md)\.
+To create an EBS\-optimized instance, choose **Launch as an EBS\-Optimized instance** when launching the instance using the Amazon EC2 console, or specify \-\-ebs\-optimized when using the command line\. Be sure that you launch a current\-generation instance that supports this option\. For more information, see [Amazon EBS–optimized instances](ebs-optimized.md)\.
 
 ### Setting up Provisioned IOPS SSD \(`io1`\) volumes<a name="setupPIOPS"></a>
 
-To create an `io1` volume, choose **Provisioned IOPS SSD** when creating the volume using the Amazon EC2 console, or, at the command line, specify \-\-type io1 \-\-iops *n* where *n* is an integer between 100 and 64,000\. For more detailed EBS\-volume specifications, see [Amazon EBS Volume Types](ebs-volume-types.md)\. For information about creating an EBS volume, see [Creating an Amazon EBS Volume](ebs-creating-volume.md)\. For information about attaching a volume to an instance, see [Attaching an Amazon EBS Volume to an Instance](ebs-attaching-volume.md)\.
+To create an `io1` volume, choose **Provisioned IOPS SSD** when creating the volume using the Amazon EC2 console, or, at the command line, specify \-\-type io1 \-\-iops *n* where *n* is an integer between 100 and 64,000\. For more detailed EBS\-volume specifications, see [Amazon EBS volume types](ebs-volume-types.md)\. For information about creating an EBS volume, see [Creating an Amazon EBS volume](ebs-creating-volume.md)\. For information about attaching a volume to an instance, see [Attaching an Amazon EBS volume to an instance](ebs-attaching-volume.md)\.
 
 For the example tests, we recommend that you create a RAID array with 6 volumes, which offers a high level of performance\. Because you are charged by gigabytes provisioned \(and the number of provisioned IOPS for `io1` volumes\), not the number of volumes, there is no additional cost for creating multiple, smaller volumes and using them to create a stripe set\. If you're using Oracle Orion to benchmark your volumes, it can simulate striping the same way that Oracle ASM does, so we recommend that you let Orion do the striping\. If you are using a different benchmarking tool, you need to stripe the volumes yourself\.
 
@@ -53,7 +53,7 @@ Then, use these commands to create, mount, and assign ownership to the XFS file 
 
 ### Setting up Throughput Optimized HDD \(`st1`\) or Cold HDD \(`sc1`\) volumes<a name="set_up_hdd"></a>
 
-To create an `st1` volume, choose **Throughput Optimized HDD** when creating the volume using the Amazon EC2 console, or specify \-\-type `st1` when using the command line\. To create an `sc1` volume, choose Cold HDD when creating the volume using the Amazon EC2 console, or specify \-\-type `sc1` when using the command line\. For information about creating EBS volumes, see [Creating an Amazon EBS Volume](ebs-creating-volume.md)\. For information about attaching these volumes to your instance, see [Attaching an Amazon EBS Volume to an Instance](ebs-attaching-volume.md)\.
+To create an `st1` volume, choose **Throughput Optimized HDD** when creating the volume using the Amazon EC2 console, or specify \-\-type `st1` when using the command line\. To create an `sc1` volume, choose Cold HDD when creating the volume using the Amazon EC2 console, or specify \-\-type `sc1` when using the command line\. For information about creating EBS volumes, see [Creating an Amazon EBS volume](ebs-creating-volume.md)\. For information about attaching these volumes to your instance, see [Attaching an Amazon EBS volume to an instance](ebs-attaching-volume.md)\.
 
 AWS provides a JSON template for use with AWS CloudFormation that simplifies this setup procedure\. Access the [template](https://s3.amazonaws.com/cloudformation-examples/community/st1_cloudformation_template.json) and save it as a JSON file\. AWS CloudFormation allows you to configure your own SSH keys and offers an easier way to set up a performance test environment to evaluate `st1` volumes\. The template creates a current\-generation instance and a 2 TiB `st1` volume, and attaches the volume to the instance at `/dev/xvdf`\. 
 
@@ -127,7 +127,7 @@ The following procedures describe benchmarking commands for various EBS volume t
 
 Run the following commands on an EBS\-optimized instance with attached EBS volumes\. If the EBS volumes were restored from snapshots, be sure to initialize them before benchmarking\. For more information, see [Initializing Amazon EBS Volumes](ebs-initialize.md)\.
 
-When you are finished testing your volumes, see the following topics for help cleaning up: [Deleting an Amazon EBS Volume](ebs-deleting-volume.md) and [Terminate Your Instance](terminating-instances.md)\.
+When you are finished testing your volumes, see the following topics for help cleaning up: [Deleting an Amazon EBS volume](ebs-deleting-volume.md) and [Terminate Your Instance](terminating-instances.md)\.
 
 ### Benchmarking io1 Volumes<a name="piops_benchmarking"></a>
 

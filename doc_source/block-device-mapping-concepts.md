@@ -1,8 +1,8 @@
 # Block Device Mapping<a name="block-device-mapping-concepts"></a>
 
-Each instance that you launch has an associated root device volume, either an Amazon EBS volume or an instance store volume\. You can use block device mapping to specify additional EBS volumes or instance store volumes to attach to an instance when it's launched\. You can also attach additional EBS volumes to a running instance; see [Attaching an Amazon EBS Volume to an Instance](ebs-attaching-volume.md)\. However, the only way to attach instance store volumes to an instance is to use block device mapping to attach them as the instance is launched\.
+Each instance that you launch has an associated root device volume, either an Amazon EBS volume or an instance store volume\. You can use block device mapping to specify additional EBS volumes or instance store volumes to attach to an instance when it's launched\. You can also attach additional EBS volumes to a running instance; see [Attaching an Amazon EBS volume to an instance](ebs-attaching-volume.md)\. However, the only way to attach instance store volumes to an instance is to use block device mapping to attach them as the instance is launched\.
 
-For more information about root device volumes, see [Changing the Root Device Volume to Persist](RootDeviceStorage.md#Using_RootDeviceStorage)\.
+For more information about root device volumes, see [Changing the root volume to persist](RootDeviceStorage.md#Using_RootDeviceStorage)\.
 
 **Topics**
 + [Block Device Mapping Concepts](#block-device-mapping-def)
@@ -57,7 +57,7 @@ Note that this example block device mapping is used in the example commands and 
 
 Device names like `/dev/sdh` and `xvdh` are used by Amazon EC2 to describe block devices\. The block device mapping is used by Amazon EC2 to specify the block devices to attach to an EC2 instance\. After a block device is attached to an instance, it must be mounted by the operating system before you can access the storage device\. When a block device is detached from an instance, it is unmounted by the operating system and you can no longer access the storage device\.
 
-With a Linux instance, the device names specified in the block device mapping are mapped to their corresponding block devices when the instance first boots\. The instance type determines which instance store volumes are formatted and mounted by default\. You can mount additional instance store volumes at launch, as long as you don't exceed the number of instance store volumes available for your instance type\. For more information, see [Amazon EC2 Instance Store](InstanceStorage.md)\. The block device driver for the instance determines which devices are used when the volumes are formatted and mounted\. For more information, see [Attaching an Amazon EBS Volume to an Instance](ebs-attaching-volume.md)\.
+With a Linux instance, the device names specified in the block device mapping are mapped to their corresponding block devices when the instance first boots\. The instance type determines which instance store volumes are formatted and mounted by default\. You can mount additional instance store volumes at launch, as long as you don't exceed the number of instance store volumes available for your instance type\. For more information, see [Amazon EC2 Instance Store](InstanceStorage.md)\. The block device driver for the instance determines which devices are used when the volumes are formatted and mounted\. For more information, see [Attaching an Amazon EBS volume to an instance](ebs-attaching-volume.md)\.
 
 ## AMI Block Device Mapping<a name="ami-block-device-mapping"></a>
 
@@ -312,7 +312,7 @@ Use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/e
 
 When you view the block device mapping for your instance, you can see only the EBS volumes, not the instance store volumes\. You can use instance metadata to query the non\-NVMe instance store volumes in the block device mapping\. NVMe instance store volumes are not included\.
 
-The base URI for all requests for instance metadata is `http://169.254.169.254/latest/`\. For more information, see [Instance Metadata and User Data](ec2-instance-metadata.md)\.
+The base URI for all requests for instance metadata is `http://169.254.169.254/latest/`\. For more information, see [Instance metadata and user data](ec2-instance-metadata.md)\.
 
 First, connect to your running instance\. From the instance, use this query to get its block device mapping\.
 

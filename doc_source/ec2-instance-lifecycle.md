@@ -2,7 +2,7 @@
 
 By working with Amazon EC2 to manage your instances from the moment you launch them through their termination, you ensure that your customers have the best possible experience with the applications or sites that you host on your instances\.
 
-The following illustration represents the transitions between instance states\. Notice that you can't stop and start an instance store\-backed instance\. For more information about instance store\-backed instances, see [Storage for the Root Device](ComponentsAMIs.md#storage-for-the-root-device)\.
+The following illustration represents the transitions between instance states\. Notice that you can't stop and start an instance store\-backed instance\. For more information about instance store\-backed instances, see [Storage for the root device](ComponentsAMIs.md#storage-for-the-root-device)\.
 
 ![\[The instance lifecycle\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/instance_lifecycle.png)
 
@@ -30,7 +30,7 @@ When you launch an instance, it enters the `pending` state\. The instance type t
 
 As soon as your instance transitions to the `running` state, you're billed for each second, with a one\-minute minimum, that you keep the instance running, even if the instance remains idle and you don't connect to it\.
 
-For more information, see [Launch your instance](LaunchingAndUsingInstances.md) and [Connect to Your Linux Instance](AccessingInstances.md)\.
+For more information, see [Launch your instance](LaunchingAndUsingInstances.md) and [Connect to your Linux instance](AccessingInstances.md)\.
 
 ## Instance Stop and Start \(Amazon EBS\-Backed Instances Only\)<a name="instance-stop-start"></a>
 
@@ -56,7 +56,7 @@ When you start your hibernated instance, it enters the `pending` state, and in m
 
 Your instance retains its private IPv4 address, which means that an Elastic IP address associated with the private IPv4 address or network interface is still associated with your instance\. If your instance has an IPv6 address, it retains its IPv6 address\.
 
-For more information, see [Hibernate Your Linux Instance](Hibernate.md)\.
+For more information, see [Hibernate your Linux instance](Hibernate.md)\.
 
 ## Instance Reboot<a name="instance-reboot"></a>
 

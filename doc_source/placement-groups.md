@@ -13,6 +13,7 @@ There is no charge for creating a placement group\.
 + [Spread Placement Groups](#placement-groups-spread)
 + [Placement Group Rules and Limitations](#concepts-placement-groups)
 + [Creating a Placement Group](#create-placement-group)
++ [Tagging a Placement Group](#tag-placement-group)
 + [Launching Instances in a Placement Group](#launch-instance-placement-group)
 + [Describing Instances in a Placement Group](#describe-instance-placement)
 + [Changing the Placement Group for an Instance](#change-instance-placement-group)
@@ -83,11 +84,11 @@ Before you use placement groups, be aware of the following rules:
 
 The following rules apply to cluster placement groups:
 + When you launch an instance into a cluster placement group, you must use one of the following instance types:
-  + General purpose: A1, M4, M5, M5a, M5ad, M5d, M5dn, and M5n
-  + Compute optimized: C3, C4, C5, C5d, C5n, and `cc2.8xlarge`
-  + Memory optimized: `cr1.8xlarge`, R3, R4, R5, R5a, R5ad, R5d, R5dn, R5n, X1, X1e, and z1d
-  + Storage optimized: D2, H1, `hs1.8xlarge`, I2, I3, and I3en
-  + Accelerated computing: F1, G2, G3, G4dn, Inf1, P2, P3, and P3dn
+  + General purpose: A1, M4, M5, M5a, M5ad, M5d, M5dn, M5n
+  + Compute optimized: C3, C4, C5, C5d, C5n, `cc2.8xlarge`
+  + Memory optimized: `cr1.8xlarge`, R3, R4, R5, R5a, R5ad, R5d, R5dn, R5n, X1, X1e, z1d
+  + Storage optimized: D2, H1, `hs1.8xlarge`, I2, I3, I3en
+  + Accelerated computing: F1, G2, G3, G4dn, Inf1, P2, P3, P3dn
 + A cluster placement group can't span multiple Availability Zones\.
 + The maximum network throughput speed of traffic between two instances in a cluster placement group is limited by the slower of the two instances\. For applications with high\-throughput requirements, choose an instance type with network connectivity that meets your requirements\.
 + For instances that are enabled for enhanced networking, the following rules apply:
@@ -113,6 +114,9 @@ The following rules apply to spread placement groups:
 ## Creating a Placement Group<a name="create-placement-group"></a>
 
 You can create a placement group using one of the following methods\.
+
+**Note**  
+You can tag a placement group on creation using the command line tools only\.
 
 ------
 #### [ New console ]
@@ -148,10 +152,10 @@ You can create a placement group using one of the following methods\.
 #### [ AWS CLI ]
 
 **To create a placement group using the AWS CLI**  
-Use the [create\-placement\-group](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-placement-group.html) command\. In this example, the placement group name is `my-cluster` and the placement strategy is `cluster`\.
+Use the [create\-placement\-group](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-placement-group.html) command\. The following example creates a placement group named `my-cluster` that uses the `cluster` placement strategy, and it applies a tag with a key of `purpose` and a value of `production`\.
 
 ```
-aws ec2 create-placement-group --group-name my-cluster --strategy cluster
+aws ec2 create-placement-group --group-name my-cluster --strategy cluster --tag-specifications 'ResourceType=placement-group,Tags={Key=purpose,Value=production}'
 ```
 
 **To create a partition placement group using the AWS CLI**  
@@ -166,6 +170,138 @@ aws ec2 create-placement-group --group-name HDFS-Group-A --strategy partition --
 
 **To create a placement group using the AWS Tools for Windows PowerShell**  
 Use the [New\-EC2PlacementGroup](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2PlacementGroup.html) command\.
+
+------
+
+## Tagging a Placement Group<a name="tag-placement-group"></a>
+
+To help categorize and manage your existing placement groups, you can tag them with custom metadata\. For more information about how tags work, see [Tagging your Amazon EC2 resources](Using_Tags.md)\.
+
+When you tag a placement group, the instances that are launched into the placement group are not automatically tagged\. You need to explicitly tag the instances that are launched into the placement group\. For more information, see [Adding a tag when you launch an instance](Using_Tags.md#instance-details-tags)\.
+
+You can view, add, and delete tags using the *new* console and the command line tools\.
+
+------
+#### [ New console ]
+
+**To view, add, or delete a tag for an existing placement group**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Placement Groups**\.
+
+1. Select a placement group, and then choose **Actions**, **Manage tags**\.
+
+1. The **Manage tags** section displays any tags that are assigned to the placement group\. Do the following to add or remove tags:
+   + To add a tag, choose **Add tag**, and then enter the tag key and value\. You can add up to 50 tags per placement group\. For more information, see [Tag restrictions](Using_Tags.md#tag-restrictions)\.
+   + To delete a tag, choose **Remove** next to the tag that you want to delete\.
+
+1. Choose **Save changes**\.
+
+------
+#### [ AWS CLI ]
+
+**To view placement group tags**  
+Use the [describe\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-tags.html) command to view the tags for the specified resource\. In the following example, you describe the tags for all of your placement groups\.
+
+```
+aws ec2 describe-tags \
+    --filters Name=resource-type,Values=placement-group
+```
+
+```
+{
+    "Tags": [
+        {
+            "Key": "Environment",
+            "ResourceId": "pg-0123456789EXAMPLE",
+            "ResourceType": "placement-group",
+            "Value": "Production"
+        },
+        {
+            "Key": "Environment",
+            "ResourceId": "pg-9876543210EXAMPLE",
+            "ResourceType": "placement-group",
+            "Value": "Production"
+        }
+    ]
+}
+```
+
+You can also use the [describe\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-tags.html) command to view the tags for a placement group by specifying its ID\. In the following example, you describe the tags for `pg-0123456789EXAMPLE`\.
+
+```
+aws ec2 describe-tags \
+    --filters Name=resource-id,Values=pg-0123456789EXAMPLE
+```
+
+```
+{
+    "Tags": [
+        {
+            "Key": "Environment",
+            "ResourceId": "pg-0123456789EXAMPLE",
+            "ResourceType": "placement-group",
+            "Value": "Production"
+        }
+    ]
+}
+```
+
+You can also view the tags of a placement group by describing the placement group\.
+
+Use the [describe\-placement\-groups](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-placement-groups.html) command to view the configuration of the specified placement group, which includes any tags that were specified for the placement group\.
+
+```
+aws ec2 describe-placement-groups \
+    --group-name my-cluster
+```
+
+```
+{
+    "PlacementGroups": [
+        {
+            "GroupName": "my-cluster",
+            "State": "available",
+            "Strategy": "cluster",
+            "GroupId": "pg-0123456789EXAMPLE",
+            "Tags": [
+                {
+                    "Key": "Environment",
+                    "Value": "Production"
+                }
+            ]
+        }
+    ]
+}
+```
+
+**To tag an existing placement group using the AWS CLI**  
+You can use the [create\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-tags.html) command to tag existing resources\. In the following example, the existing placement group is tagged with Key=Cost\-Center and Value=CC\-123\.
+
+```
+aws ec2 create-tags \
+    --resources pg-0123456789EXAMPLE \
+    --tags Key=Cost-Center,Value=CC-123
+```
+
+**To delete a tag from a placement group using the AWS CLI**  
+You can use the [delete\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/delete-tags.html) command to delete tags from existing resources\. For examples, see [Examples](https://docs.aws.amazon.com/cli/latest/reference/ec2/delete-tags.html#examples) in the *AWS CLI Command Reference*\.
+
+------
+#### [ PowerShell ]
+
+**To view placement group tags**  
+Use the [Get\-EC2Tag](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Tag.html) command\.
+
+**To describe the tags for a specific placement group**  
+Use the [Get\-EC2PlacementGroup](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2PlacementGroup.html) command\.
+
+**To tag an existing placement group**  
+Use the [New\-EC2Tag](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Tag.html) command\.
+
+**To delete a tag from a placement group**  
+Use the [Remove\-EC2Tag](https://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2Tag.html) command\.
 
 ------
 

@@ -10,17 +10,17 @@ EFA integrates with Libfabric 1\.9\.0 and it supports Open MPI 4\.0\.2 and Intel
 The OS\-bypass capabilities of EFAs are not supported on Windows instances\. If you attach an EFA to a Windows instance, the instance functions as an Elastic Network Adapter, without the added EFA capabilities\.
 
 **Topics**
-+ [EFA Basics](#efa-basics)
-+ [Supported Interfaces and Libraries](#efa-mpi)
-+ [Supported Instance Types](#efa-instance-types)
++ [EFA basics](#efa-basics)
++ [Supported interfaces and libraries](#efa-mpi)
++ [Supported instance types](#efa-instance-types)
 + [Supported AMIs](#efa-amis)
-+ [EFA Limitations](#efa-limits)
-+ [Getting Started with EFA and MPI](efa-start.md)
-+ [Getting Started with EFA and NCCL](efa-start-nccl.md)
++ [EFA limitations](#efa-limits)
++ [Getting started with EFA and MPI](efa-start.md)
++ [Getting started with EFA and NCCL](efa-start-nccl.md)
 + [Working with EFA](efa-working-with.md)
 + [Monitoring an EFA](efa-working-monitor.md)
 
-## EFA Basics<a name="efa-basics"></a>
+## EFA basics<a name="efa-basics"></a>
 
 An EFA is an Elastic Network Adapter \(ENA\) with added capabilities\. It provides all of the functionality of an ENA, with an additional OS\-bypass functionality\. OS\-bypass is an access model that allows HPC and machine learning applications to communicate directly with the network interface hardware to provide low\-latency, reliable transport functionality\.
 
@@ -37,14 +37,14 @@ Libfabric is a core component of the OpenFabrics Interfaces \(OFI\) framework, w
 
 Elastic Network Adapters \(ENAs\) provide traditional IP networking features that are required to support VPC networking\. EFAs provide all of the same traditional IP networking features as ENAs, and they also support OS\-bypass capabilities\. OS\-bypass enables HPC and machine learning applications to bypass the operating system kernel and to communicate directly with the EFA device\.
 
-## Supported Interfaces and Libraries<a name="efa-mpi"></a>
+## Supported interfaces and libraries<a name="efa-mpi"></a>
 
 EFA supports the following interfaces and libraries:
 + Open MPI 4\.0\.2
 + Intel MPI 2019 Update 6
 + NVIDIA Collective Communications Library \(NCCL\) 2\.4\.2 and later
 
-## Supported Instance Types<a name="efa-instance-types"></a>
+## Supported instance types<a name="efa-instance-types"></a>
 
 The following instance types support EFAs: `c5n.18xlarge`, `c5n.metal`, `i3en.24xlarge`, `i3en.metal`, `inf1.24xlarge`, `m5dn.24xlarge`, `m5n.24xlarge`, `r5dn.24xlarge`, `r5n.24xlarge`, and `p3dn.24xlarge`\.
 
@@ -52,7 +52,7 @@ The following instance types support EFAs: `c5n.18xlarge`, `c5n.metal`, `i3en.24
 
 The following AMIs support EFAs: Amazon Linux, Amazon Linux 2, RHEL 7\.6, RHEL 7\.7, CentOS 7, Ubuntu 16\.04, and Ubuntu 18\.04\.
 
-## EFA Limitations<a name="efa-limits"></a>
+## EFA limitations<a name="efa-limits"></a>
 
 EFA has the following limitations:
 + You can attach only one EFA per instance\.

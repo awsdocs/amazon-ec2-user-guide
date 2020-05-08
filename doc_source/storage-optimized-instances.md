@@ -1,22 +1,22 @@
-# Storage Optimized Instances<a name="storage-optimized-instances"></a>
+# Storage optimized instances<a name="storage-optimized-instances"></a>
 
 Storage optimized instances are designed for workloads that require high, sequential read and write access to very large data sets on local storage\. They are optimized to deliver tens of thousands of low\-latency, random I/O operations per second \(IOPS\) to applications\.<a name="d2-instances"></a>
 
-**D2 Instances**
+**D2 instances**
 
 D2 instances are well suited for the following applications:
 + Massive parallel processing \(MPP\) data warehouse
 + MapReduce and Hadoop distributed computing
 + Log or data processing applications<a name="h1-instances"></a>
 
-**H1 Instances**
+**H1 instances**
 
 H1 instances are well suited for the following applications:
 + Data\-intensive workloads such as MapReduce and distributed file systems
 + Applications requiring sequential access to large amounts of data on direct\-attached instance storage
 + Applications that require high\-throughput access to large quantities of data<a name="i3-instances"></a>
 
-**I3 and I3en Instances**
+**I3 and I3en instances**
 
 These instances are well suited for the following applications:
 + High frequency online transaction processing \(OLTP\) systems
@@ -33,17 +33,17 @@ Bare metal instances provide your applications with direct access to physical re
 For more information, see [Amazon EC2 I3 Instances](https://aws.amazon.com/ec2/instance-types/i3)\.
 
 **Topics**
-+ [Hardware Specifications](#storage-instances-hardware)
-+ [Instance Performance](#storage-performance)
-+ [Network Performance](#storage-network-performance)
-+ [SSD I/O Performance](#i2-instances-diskperf)
-+ [Instance Features](#storage-instances-features)
++ [Hardware specifications](#storage-instances-hardware)
++ [Instance performance](#storage-performance)
++ [Network performance](#storage-network-performance)
++ [SSD I/O performance](#i2-instances-diskperf)
++ [Instance features](#storage-instances-features)
 + [Support for vCPUs](#d2-instances-cpu-support)
-+ [Release Notes](#storage-instance-release-notes)
++ [Release notes](#storage-instance-release-notes)
 
-## Hardware Specifications<a name="storage-instances-hardware"></a>
+## Hardware specifications<a name="storage-instances-hardware"></a>
 
-The primary data storage for D2 instances is HDD instance store volumes\. The primary data storage for I3 instances is non\-volatile memory express \(NVMe\) SSD instance store volumes\.
+The primary data storage for D2 instances is HDD instance store volumes\. The primary data storage for I3 and I3en instances is non\-volatile memory express \(NVMe\) SSD instance store volumes\.
 
 Instance store volumes persist only for the life of the instance\. When you stop or terminate an instance, the applications and data in its instance store volumes are erased\. We recommend that you regularly back up or replicate important data in your instance store volumes\. For more information, see [Amazon EC2 Instance Store](InstanceStorage.md) and [SSD Instance Store Volumes](ssd-instance-store.md)\.
 
@@ -78,9 +78,9 @@ The following is a summary of the hardware specifications for storage optimized 
 
 For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
-For more information about specifying CPU options, see [Optimizing CPU Options](instance-optimize-cpu.md)\.
+For more information about specifying CPU options, see [Optimizing CPU options](instance-optimize-cpu.md)\.
 
-## Instance Performance<a name="storage-performance"></a>
+## Instance performance<a name="storage-performance"></a>
 
 To ensure the best disk throughput performance from your instance on Linux, we recommend that you use the most recent version of Amazon Linux 2 or the Amazon Linux AMI\.
 
@@ -88,53 +88,53 @@ For instances with NVMe instance store volumes, you must use a Linux AMI with ke
 
 D2 instances provide the best disk performance when you use a Linux kernel that supports persistent grants, an extension to the Xen block ring protocol that significantly improves disk throughput and scalability\. For more information about persistent grants, see [this article](https://blog.xenproject.org/2012/11/23/improving-block-protocol-scalability-with-persistent-grants/) in the Xen Project Blog\.
 
-EBS\-optimized instances enable you to get consistently high performance for your EBS volumes by eliminating contention between Amazon EBS I/O and other network traffic from your instance\. Some storage optimized instances are EBS\-optimized by default at no additional cost\. For more information, see [Amazon EBS–Optimized Instances](ebs-optimized.md)\.
+EBS\-optimized instances enable you to get consistently high performance for your EBS volumes by eliminating contention between Amazon EBS I/O and other network traffic from your instance\. Some storage optimized instances are EBS\-optimized by default at no additional cost\. For more information, see [Amazon EBS–optimized instances](ebs-optimized.md)\.
 
-Some storage optimized instance types provide the ability to control processor C\-states and P\-states on Linux\. C\-states control the sleep levels that a core can enter when it is inactive, while P\-states control the desired performance \(in CPU frequency\) from a core\. For more information, see [Processor State Control for Your EC2 Instance](processor_state_control.md)\.
+Some storage optimized instance types provide the ability to control processor C\-states and P\-states on Linux\. C\-states control the sleep levels that a core can enter when it is inactive, while P\-states control the desired performance \(in CPU frequency\) from a core\. For more information, see [Processor state control for your EC2 instance](processor_state_control.md)\.
 
-## Network Performance<a name="storage-network-performance"></a>
+## Network performance<a name="storage-network-performance"></a>
 
-You can enable enhanced networking capabilities on supported instance types\. Enhanced networking provides significantly higher packet\-per\-second \(PPS\) performance, lower network jitter, and lower latencies\. For more information, see [Enhanced Networking on Linux](enhanced-networking.md)\.
-
-Instance types that use the Elastic Network Adapter \(ENA\) for enhanced networking deliver high packet per second performance with consistently low latencies\. Most applications do not consistently need a high level of network performance, but can benefit from having access to increased bandwidth when they send or receive data\. Instance sizes that use the ENA and are documented with network performance of "Up to 10 Gbps" or "Up to 25 Gbps" use a network I/O credit mechanism to allocate network bandwidth to instances based on average bandwidth utilization\. These instances accrue credits when their network bandwidth is below their baseline limits, and can use these credits when they perform network data transfers\.
+You can enable enhanced networking on supported instance types to provide lower latencies, lower network jitter, and higher packet\-per\-second \(PPS\) performance\. Most applications do not consistently need a high level of network performance, but can benefit from access to increased bandwidth when they send or receive data\. For more information, see [Enhanced networking on Linux](enhanced-networking.md)\.
 
 The following is a summary of network performance for storage optimized instances that support enhanced networking\.
 
 
 | Instance type | Network performance | Enhanced networking | 
 | --- | --- | --- | 
-|  `i3.4xlarge` and smaller  |  Up to 10 Gbps, use network I/O credit mechanism  | [ENA](enhanced-networking-ena.md) | 
-|  `i3.8xlarge` \| `h1.8xlarge`  |  10 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  `i3en.3xlarge` and smaller  |  Up to 25 Gbps, use network I/O credit mechanism  | [ENA](enhanced-networking-ena.md) | 
-|  `i3.16xlarge` \| `i3.metal` \| `i3en.6xlarge \| ``h1.16xlarge`  |  25 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  `i3en.12xlarge`  |  50 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  `i3en.24xlarge`  |  100 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  `d2.xlarge`  |  Moderate  | [Intel 82599 VF](sriov-networking.md) | 
-| d2\.2xlarge \| d2\.4xlarge |  High  | [Intel 82599 VF](sriov-networking.md) | 
-| d2\.8xlarge |  10 Gbps  | [Intel 82599 VF](sriov-networking.md) | 
+| i3\.4xlarge and smaller | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
+| i3\.8xlarge \| h1\.8xlarge | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
+| i3en\.3xlarge and smaller | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
+| i3\.16xlarge \| i3\.metal \| i3en\.6xlarge \| h1\.16xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
+| i3en\.12xlarge | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
+| i3en\.24xlarge | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
+| d2\.xlarge | Moderate | [Intel 82599 VF](sriov-networking.md) | 
+| d2\.2xlarge \| d2\.4xlarge | High | [Intel 82599 VF](sriov-networking.md) | 
+| d2\.8xlarge | 10 Gbps | [Intel 82599 VF](sriov-networking.md) | 
 
-## SSD I/O Performance<a name="i2-instances-diskperf"></a>
+† These instances use a network I/O credit mechanism to allocate network bandwidth to instances based on average bandwidth utilization\. They accrue credits when their bandwidth is below their baseline bandwidth, and can use these credits when they perform network data transfers\. For more information, open a support case and ask about baseline bandwidth for the specific instance types that you are interested in\.
+
+## SSD I/O performance<a name="i2-instances-diskperf"></a>
 
 If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-based instance store volumes available to your instance, you get the IOPS \(4,096 byte block size\) performance listed in the following table \(at queue depth saturation\)\. Otherwise, you get lower IOPS performance\.
 
 
 | Instance Size | 100% Random Read IOPS | Write IOPS | 
 | --- | --- | --- | 
-|  `i3.large` \*  |  100,125  |  35,000  | 
-|  `i3.xlarge` \*  |  206,250  |  70,000  | 
-|  `i3.2xlarge`  |  412,500  |  180,000  | 
-|  `i3.4xlarge`  |  825,000  |  360,000  | 
-|  `i3.8xlarge`  |  1\.65 million  |  720,000  | 
-|  `i3.16xlarge`  |  3\.3 million  |  1\.4 million  | 
-|  `i3.metal`  |  3\.3 million  |  1\.4 million  | 
-| `i3en.large` \* | 42,500 | 32,500 | 
-| `i3en.xlarge` \* | 85,000 | 65,000 | 
-| `i3en.2xlarge` \* | 170,000 | 130,000 | 
-| `i3en.3xlarge` | 250,000 | 200,000 | 
-| `i3en.6xlarge` | 500,000 | 400,000 | 
-| `i3en.12xlarge` | 1 million | 800,000 | 
-| `i3en.24xlarge` | 2 million | 1\.6 million | 
-| `i3en.metal` | 2 million | 1\.6 million | 
+| i3\.large \* |  100,125  |  35,000  | 
+| i3\.xlarge \* |  206,250  |  70,000  | 
+| i3\.2xlarge |  412,500  |  180,000  | 
+| i3\.4xlarge |  825,000  |  360,000  | 
+| i3\.8xlarge |  1\.65 million  |  720,000  | 
+| i3\.16xlarge |  3\.3 million  |  1\.4 million  | 
+| i3\.metal |  3\.3 million  |  1\.4 million  | 
+| i3en\.large \* | 42,500 | 32,500 | 
+| i3en\.xlarge \* | 85,000 | 65,000 | 
+| i3en\.2xlarge \* | 170,000 | 130,000 | 
+| i3en\.3xlarge | 250,000 | 200,000 | 
+| i3en\.6xlarge | 500,000 | 400,000 | 
+| i3en\.12xlarge | 1 million | 800,000 | 
+| i3en\.24xlarge | 2 million | 1\.6 million | 
+| i3en\.metal | 2 million | 1\.6 million | 
 
 \* For these instances, you can get up to the specified performance\.
 
@@ -144,7 +144,7 @@ SSD controllers can use several strategies to reduce the impact of write amplifi
 
 For instance store volumes that support TRIM, you can use the TRIM command to notify the SSD controller whenever you no longer need data that you've written\. This provides the controller with more free space, which can reduce write amplification and increase performance\. For more information, see [Instance Store Volume TRIM Support](ssd-instance-store.md#InstanceStoreTrimSupport)\.
 
-## Instance Features<a name="storage-instances-features"></a>
+## Instance features<a name="storage-instances-features"></a>
 
 The following is a summary of features for storage optimized instances:
 
@@ -219,9 +219,9 @@ If you must use a different AMI for your application, and your `d2.8xlarge` inst
 
    1. Start the instance\.
 
-## Release Notes<a name="storage-instance-release-notes"></a>
-+ You must launch storage optimized instances using an HVM AMI\. For more information, see [Linux AMI Virtualization Types](virtualization_types.md)\.
-+ The following are requirements for I3en and `i3.metal` instances:
+## Release notes<a name="storage-instance-release-notes"></a>
++ You must launch storage optimized instances using an HVM AMI\. For more information, see [Linux AMI virtualization types](virtualization_types.md)\.
++ Instances built on the [Nitro System](instance-types.md#ec2-nitro-instances) have the following requirements:
   + [NVMe drivers](nvme-ebs-volumes.md) must be installed
   + [Elastic Network Adapter \(ENA\) drivers](enhanced-networking-ena.md) must be installed
 
@@ -234,7 +234,7 @@ If you must use a different AMI for your application, and your `d2.8xlarge` inst
   + CentOS 7\.4\.1708 or later
   + FreeBSD 11\.1 or later
   + Debian GNU/Linux 9 or later
-+ Launching an `i3.metal` instance boots the underlying server, which includes verifying all hardware and firmware components\. This means that it can take 20 minutes from the time the instance enters the running state until it becomes available over the network\.
++ Launching a bare metal instance boots the underlying server, which includes verifying all hardware and firmware components\. This means that it can take 20 minutes from the time the instance enters the running state until it becomes available over the network\.
 + To attach or detach EBS volumes or secondary network interfaces from a bare metal instance requires PCIe native hotplug support\. Amazon Linux 2 and the latest versions of the Amazon Linux AMI support PCIe native hotplug, but earlier versions do not\. You must enable the following Linux kernel configuration options:
 
   ```
@@ -248,4 +248,4 @@ If you must use a different AMI for your application, and your `d2.8xlarge` inst
   hw.nvme.per_cpu_io_queues="0"
   ```
 + The `d2.8xlarge` instance type has 36 vCPUs, which might cause launch issues in some Linux operating systems that have a vCPU limit of 32\. For more information, see [Support for vCPUs](#d2-instances-cpu-support)\.
-+ There is a limit on the total number of instances that you can launch in a region, and there are additional limits on some instance types\. For more information, see [How many instances can I run in Amazon EC2?](https://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2)\. To request a limit increase, use the [Amazon EC2 Instance Request Form](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-instances)\.
++ There is a limit on the total number of instances that you can launch in a Region, and there are additional limits on some instance types\. For more information, see [How many instances can I run in Amazon EC2?](https://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2) in the Amazon EC2 FAQ\.

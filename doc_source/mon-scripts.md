@@ -42,7 +42,7 @@ Ensure that the scripts have permission to call the following actions by associa
 + cloudwatch:ListMetrics
 + ec2:DescribeTags
 
-For more information, see [Working with IAM Roles](iam-roles-for-amazon-ec2.md#working-with-iam-roles)\.
+For more information, see [Working with IAM roles](iam-roles-for-amazon-ec2.md#working-with-iam-roles)\.
 
 ### Install Required Packages<a name="mon-scripts-perl_prereq"></a>
 
@@ -50,7 +50,7 @@ With some versions of Linux, you must install additional Perl modules before you
 
 **To install the required packages on Amazon Linux 2 and Amazon Linux AMI**
 
-1. Log on to your instance\. For more information, see [Connect to Your Linux Instance](AccessingInstances.md)\.
+1. Log on to your instance\. For more information, see [Connect to your Linux instance](AccessingInstances.md)\.
 
 1. At a command prompt, install packages as follows:
 
@@ -60,7 +60,7 @@ With some versions of Linux, you must install additional Perl modules before you
 
 **To install the required packages on Ubuntu**
 
-1. Log on to your instance\. For more information, see [Connect to Your Linux Instance](AccessingInstances.md)\.
+1. Log on to your instance\. For more information, see [Connect to your Linux instance](AccessingInstances.md)\.
 
 1. At a command prompt, install packages as follows:
 
@@ -72,7 +72,7 @@ With some versions of Linux, you must install additional Perl modules before you
 
 **To install the required packages on Red Hat Enterprise Linux 7**
 
-1. Log on to your instance\. For more information, see [Connect to Your Linux Instance](AccessingInstances.md)\.
+1. Log on to your instance\. For more information, see [Connect to your Linux instance](AccessingInstances.md)\.
 
 1. At a command prompt, install packages as follows:
 
@@ -83,7 +83,7 @@ With some versions of Linux, you must install additional Perl modules before you
 
 **To install the required packages on Red Hat Enterprise Linux 6\.9**
 
-1. Log on to your instance\. For more information, see [Connect to Your Linux Instance](AccessingInstances.md)\.
+1. Log on to your instance\. For more information, see [Connect to your Linux instance](AccessingInstances.md)\.
 
 1. At a command prompt, install packages as follows:
 
@@ -115,7 +115,7 @@ With some versions of Linux, you must install additional Perl modules before you
 
 **To install the required packages on SUSE**
 
-1. Log on to your instance\. For more information, see [Connect to Your Linux Instance](AccessingInstances.md)\.
+1. Log on to your instance\. For more information, see [Connect to your Linux instance](AccessingInstances.md)\.
 
 1. On servers running SUSE Linux Enterprise Server 12, you might need to download the `perl-Switch` package\. You can download and install this package using the following commands:
 
@@ -184,7 +184,7 @@ This script collects memory, swap, and disk space utilization data on the curren
 |   `--aws-access-key-id=VALUE `   |  Specifies the AWS access key ID to use to identify the caller\. Must be used together with the `--aws-secret-key` option\. Do not use this option with the `--aws-credential-file` parameter\.   | 
 |   `--aws-secret-key=VALUE `   |  Specifies the AWS secret access key to use to sign the request to CloudWatch\. Must be used together with the `--aws-access-key-id` option\. Do not use this option with `--aws-credential-file` parameter\.  | 
 |   `--aws-iam-role=VALUE`   |  Specifies the IAM role used to provide AWS credentials\. The value `=VALUE` is required\. If no credentials are specified, the default IAM role associated with the EC2 instance is applied\. Only one IAM role can be used\. If no IAM roles are found, or if more than one IAM role is found, the script will return an error\. Do not use this option with the `--aws-credential-file`, `--aws-access-key-id`, or `--aws-secret-key` parameters\.  | 
-|   `--aggregated[=only]`   |  Adds aggregated metrics for instance type, AMI ID, and overall for the region\. The value `=only` is optional; if specified, the script reports only aggregated metrics\.  | 
+|   `--aggregated[=only]`   |  Adds aggregated metrics for instance type, AMI ID, and overall for the Region\. The value `=only` is optional; if specified, the script reports only aggregated metrics\.  | 
 |   `--auto-scaling[=only]`   |  Adds aggregated metrics for the Auto Scaling group\. The value `=only` is optional; if specified, the script reports only Auto Scaling metrics\. The [IAM policy](https://docs.aws.amazon.com/IAM/latest/UserGuide/ManagingPolicies.html) associated with the IAM account or role using the scripts need to have permissions to call the EC2 action [DescribeTags](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeTags.html)\.  | 
 |   `--verify `   |  Performs a test run of the script that collects the metrics, prepares a complete HTTP request, but does not actually call CloudWatch to report the data\. This option also checks that credentials are provided\. When run in verbose mode, this option outputs the metrics that will be sent to CloudWatch\.   | 
 |   `--from-cron `   |  Use this option when calling the script from cron\. When this option is used, all diagnostic output is suppressed, but error messages are sent to the local system log of the user account\.   | 

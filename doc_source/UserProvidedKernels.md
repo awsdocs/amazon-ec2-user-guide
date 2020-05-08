@@ -1,6 +1,6 @@
-# User Provided Kernels<a name="UserProvidedKernels"></a>
+# User provided kernels<a name="UserProvidedKernels"></a>
 
-If you have a need for a custom kernel on your Amazon EC2 instances, you can start with an AMI that is close to what you want, compile the custom kernel on your instance, and modify the `menu.lst` file to point to the new kernel\. This process varies depending on the virtualization type that your AMI uses\. For more information, see [Linux AMI Virtualization Types](virtualization_types.md)\.
+If you have a need for a custom kernel on your Amazon EC2 instances, you can start with an AMI that is close to what you want, compile the custom kernel on your instance, and modify the `menu.lst` file to point to the new kernel\. This process varies depending on the virtualization type that your AMI uses\. For more information, see [Linux AMI virtualization types](virtualization_types.md)\.
 
 **Topics**
 + [HVM AMIs \(GRUB\)](#HVM_instances)
@@ -14,7 +14,7 @@ HVM instance volumes are treated like actual physical disks\. The boot process i
 
 The following is an example of a `menu.lst` configuration file for an HVM AMI\. In this example, there are two kernel entries to choose from: Amazon Linux 2018\.03 \(the original kernel for this AMI\) and Vanilla Linux 4\.16\.4 \(a newer version of the Vanilla Linux kernel from [https://www\.kernel\.org/](https://www.kernel.org/)\)\. The Vanilla entry was copied from the original entry for this AMI, and the `kernel` and `initrd` paths were updated to the new locations\. The `default 0` parameter points the bootloader to the first entry that it sees \(in this case, the Vanilla entry\), and the `fallback 1` parameter points the bootloader to the next entry if there is a problem booting the first\.
 
-By default, GRUB does not send its output to the instance console because it creates an extra boot delay\. For more information, see [Instance Console Output](instance-console.md#instance-console-console-output)\. If you are installing a custom kernel, you should consider enabling GRUB output by deleting the `hiddenmenu` line and adding `serial` and `terminal` lines to `/boot/grub/menu.lst` as shown in the example below\.
+By default, GRUB does not send its output to the instance console because it creates an extra boot delay\. For more information, see [Instance console output](instance-console.md#instance-console-console-output)\. If you are installing a custom kernel, you should consider enabling GRUB output by deleting the `hiddenmenu` line and adding `serial` and `terminal` lines to `/boot/grub/menu.lst` as shown in the example below\.
 
 **Important**  
 Avoid printing large amounts of debug information during the boot process; the serial console does not support high rate data transfer\.
@@ -54,7 +54,7 @@ Amazon Machine Images that use paravirtual \(PV\) virtualization use a system ca
 
 PV\-GRUB understands standard `grub.conf` or `menu.lst` commands, which allows it to work with all currently supported Linux distributions\. Older distributions such as Ubuntu 10\.04 LTS, Oracle Enterprise Linux or CentOS 5\.x require a special "ec2" or "xen" kernel package, while newer distributions include the required drivers in the default kernel package\.
 
-Most modern paravirtual AMIs use a PV\-GRUB AKI by default \(including all of the paravirtual Linux AMIs available in the Amazon EC2 Launch Wizard Quick Start menu\), so there are no additional steps that you need to take to use a different kernel on your instance, provided that the kernel you want to use is compatible with your distribution\. The best way to run a custom kernel on your instance is to start with an AMI that is close to what you want and then to compile the custom kernel on your instance and modify the `menu.lst` file as shown in [Configuring GRUB for Paravirtual AMIs](#configuringGRUB) to boot with that kernel\.
+Most modern paravirtual AMIs use a PV\-GRUB AKI by default \(including all of the paravirtual Linux AMIs available in the Amazon EC2 Launch Wizard Quick Start menu\), so there are no additional steps that you need to take to use a different kernel on your instance, provided that the kernel you want to use is compatible with your distribution\. The best way to run a custom kernel on your instance is to start with an AMI that is close to what you want and then to compile the custom kernel on your instance and modify the `menu.lst` file as shown in [Configuring GRUB for paravirtual AMIs](#configuringGRUB) to boot with that kernel\.
 
 You can verify that the kernel image for an AMI is a PV\-GRUB AKI by executing the following [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command with the Amazon EC2 command line tools \(substituting the kernel image ID you want to check:
 
@@ -81,7 +81,7 @@ PV\-GRUB has the following limitations:
 + PV\-GRUB versions 1\.03 and earlier don't support GPT partitioning; they support MBR partitioning only\.
 + If you plan to use a logical volume manager \(LVM\) with Amazon EBS volumes, you need a separate boot partition outside of the LVM\. Then you can create logical volumes with the LVM\.
 
-### Configuring GRUB for Paravirtual AMIs<a name="configuringGRUB"></a>
+### Configuring GRUB for paravirtual AMIs<a name="configuringGRUB"></a>
 
 To boot PV\-GRUB, a GRUB `menu.lst` file must exist in the image; the most common location for this file is `/boot/grub/menu.lst`\.
 
@@ -129,9 +129,9 @@ We recommend that you always use the latest version of the PV\-GRUB AKI, as not 
 aws ec2 describe-images --owners amazon --filters Name=name,Values=pv-grub-*.gz
 ```
 
-Note that PV\-GRUB is the only AKI available in the `ap-southeast-2` region\. You should verify that any AMI you want to copy to this region is using a version of PV\-GRUB that is available in this region\.
+Note that PV\-GRUB is the only AKI available in the `ap-southeast-2` Region\. You should verify that any AMI you want to copy to this Region is using a version of PV\-GRUB that is available in this Region\.
 
-The following are the current AKI IDs for each region\. Register new AMIs using an hd0 AKI\.
+The following are the current AKI IDs for each Region\. Register new AMIs using an hd0 AKI\.
 
 **Note**  
 We continue to provide hd00 AKIs for backward compatibility in regions where they were previously available\.
@@ -218,7 +218,7 @@ We continue to provide hd00 AKIs for backward compatibility in regions where the
 
 ### Updating PV\-GRUB<a name="UpdatingPV-GRUB"></a>
 
-We recommend that you always use the latest version of the PV\-GRUB AKI, as not all versions of the PV\-GRUB AKI are compatible with all instance types\. Also, older versions of PV\-GRUB are not available in all regions, so if you copy an AMI that uses an older version to a region that does not support that version, you will be unable to boot instances launched from that AMI until you update the kernel image\. Use the following procedures to check your instance's version of PV\-GRUB and update it if necessary\.
+We recommend that you always use the latest version of the PV\-GRUB AKI, as not all versions of the PV\-GRUB AKI are compatible with all instance types\. Also, older versions of PV\-GRUB are not available in all regions, so if you copy an AMI that uses an older version to a Region that does not support that version, you will be unable to boot instances launched from that AMI until you update the kernel image\. Use the following procedures to check your instance's version of PV\-GRUB and update it if necessary\.
 
 **To check your PV\-GRUB version**
 
@@ -258,7 +258,7 @@ We recommend that you always use the latest version of the PV\-GRUB AKI, as not 
 
 If your instance is using an older version of PV\-GRUB, you should update it to the latest version\.
 
-1. Identify the latest PV\-GRUB AKI for your region and processor architecture from [Amazon PV\-GRUB Kernel Image IDs](#AmazonKernelImageIDs)\.
+1. Identify the latest PV\-GRUB AKI for your Region and processor architecture from [Amazon PV\-GRUB Kernel Image IDs](#AmazonKernelImageIDs)\.
 
 1. Stop your instance\. Your instance must be stopped to modify the kernel image used\.
 

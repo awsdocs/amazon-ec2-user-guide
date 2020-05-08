@@ -1,4 +1,4 @@
-# Attaching a Volume to Multiple Instances with Amazon EBS Multi\-Attach<a name="ebs-volumes-multi"></a>
+# Attaching a volume to multiple instances with Amazon EBS Multi\-Attach<a name="ebs-volumes-multi"></a>
 
 Amazon EBS Multi\-Attach enables you to attach a single Provisioned IOPS SSD \(io1\) volume to up to 16 Nitro\-based instances that are in the same Availability Zone\. You can attach multiple Multi\-Attach enabled volumes to an instance or set of instances\. Each instance to which the volume is attached has full read and write permission to the shared volume\. Multi\-Attach makes it easier for you to achieve higher application availability in clustered Linux applications that manage concurrent write operations\.
 
@@ -6,28 +6,29 @@ Multi\-Attach enabled volumes support many of the features that are supported by
 + [Tagging](Using_Tags.md)
 + [Amazon EBS Snapshots](EBSSnapshots.md)
 + [Automating the Amazon EBS Snapshot Lifecycle](snapshot-lifecycle.md)
-+ [Amazon EBS Encryption](EBSEncryption.md)
++ [Amazon EBS encryption](EBSEncryption.md)
 + [Amazon CloudWatch Metrics for Amazon EBS](using_cloudwatch_ebs.md)
 + [Amazon CloudWatch Events for Amazon EBS](ebs-cloud-watch-events.md)
 
 **Topics**
-+ [Considerations and Limitations](#considerations)
++ [Considerations and limitations](#considerations)
 + [Performance](#perf)
 + [Working with Multi\-Attach](#working)
 + [Monitoring](#monitoring)
 + [Pricing and billing](#pricing)
 
-## Considerations and Limitations<a name="considerations"></a>
+## Considerations and limitations<a name="considerations"></a>
 + Multi\-Attach enabled volumes do not support I/O fencing\. I/O fencing protocols control write access in a shared storage environment to maintain data consistency\. Your applications must provide write ordering for the attached instances to maintain data consistency\.
-+ Multi\-Attach enabled volumes can be attached to up to 16 [Nitro\-based instances](instance-types.md#ec2-nitro-instances) that are in the same Availability Zone\.
++ Multi\-Attach enabled volumes can be attached to up to 16 instances built on the [Nitro System](instance-types.md#ec2-nitro-instances) that are in the same Availability Zone\.
 + Multi\-Attach is supported exclusively on [Provisioned IOPS SSD \(io1\) volumes](ebs-volume-types.md#EBSVolumeTypes_piops)\.
-+ Multi\-Attach is available in the `us-east-1`, `us-east-2`, `us-west-2`, `eu-west-1`, and `ap-northeast-2` Regions\.
++ Multi\-Attach is available in the `us-east-1`, `us-west-2`, `eu-west-1`, and `ap-northeast-2` Regions\.
 + Multi\-Attach enabled volumes can't be created as boot volumes\.
 + Multi\-Attach enabled volumes can be attached to one block device mapping per instance\.
 + You can't enable or disable Multi\-Attach after volume creation\.
 + You can't change the volume type, size, or Provisioned IOPS of a Multi\-Attach enabled volume\.
 + Multi\-Attach can't be enabled during instance launch using either the Amazon EC2 console or RunInstances API\.
 + Multi\-Attach enabled volumes that have an issue at the Amazon EBS infrastructure layer are unavailable to all attached instances\. Issues at the Amazon EC2 or networking layer might only impact some attached instances\.
++ Multi\-Attach does not support standard file systems\. If you enable multiple servers to simultaneously access a standard file system on EBS Multi\-Attach volumes, data can be corrupted or lost\. File systems, such as XFS, EXT3, EXT4, and NTFS are not designed to be simultaneously accessed by multiple servers or EC2 instances\. Therefore, they do not have built\-in mechanisms to manage the coordination and control of writes, reads, locks, caches, mounts, fencing, and more\. 
 
 ## Performance<a name="perf"></a>
 
@@ -43,8 +44,8 @@ Multi\-Attach enabled volumes can be managed in much the same way that you would
 
 **Contents**
 + [Enabling Multi\-Attach](#enable)
-+ [Attaching a Volume to Instances](#attach)
-+ [Deleting on Termination](#delete)
++ [Attaching a volume to instances](#attach)
++ [Deleting on termination](#delete)
 
 ### Enabling Multi\-Attach<a name="enable"></a>
 
@@ -85,11 +86,11 @@ $ aws ec2 create-volume --volume-type io1 --multi-attach-enabled --size 100 --io
 
 ------
 
-### Attaching a Volume to Instances<a name="attach"></a>
+### Attaching a volume to instances<a name="attach"></a>
 
-You attach a Multi\-Attach enabled volume to an instance in the same way that you attach a regular volume\. For more information, see [Attaching an Amazon EBS Volume to an Instance](ebs-attaching-volume.md)\.
+You attach a Multi\-Attach enabled volume to an instance in the same way that you attach a regular volume\. For more information, see [Attaching an Amazon EBS volume to an instance](ebs-attaching-volume.md)\.
 
-### Deleting on Termination<a name="delete"></a>
+### Deleting on termination<a name="delete"></a>
 
 Multi\-Attach enabled volumes are deleted on instance termination if the last attached instance is terminated and if that instance is configured to delete the volume on termination\. If the volume is attached to multiple instances that have different delete on termination settings in their volume block device mappings, the last attached instance's block device mapping setting determines the delete on termination behavior\.
 

@@ -37,7 +37,7 @@ These procedures were written for Amazon Linux 2 and Amazon Linux AMI\. However,
       sudo grub2-mkconfig -o /boot/grub2/grub.cfg
       ```
 
-1. <a name="post-xen-step"></a>If your instance type is listed as supported on [Processor State Control for Your EC2 Instance](processor_state_control.md), prevent the system from using deeper C\-states to ensure low\-latency system performance\. For more information, see [High Performance and Low Latency by Limiting Deeper C\-states](processor_state_control.md#c-states)\.
+1. <a name="post-xen-step"></a>If your instance type is listed as supported on [Processor state control for your EC2 instance](processor_state_control.md), prevent the system from using deeper C\-states to ensure low\-latency system performance\. For more information, see [High performance and low latency by limiting deeper C\-states](processor_state_control.md#c-states)\.
 
    1. Edit the GRUB configuration and add `intel_idle.max_cstate=1` to the kernel boot options\.
       + For Amazon Linux 2, edit the `/etc/default/grub` file and add this option to the `GRUB_CMDLINE_LINUX_DEFAULT` line, as shown below:

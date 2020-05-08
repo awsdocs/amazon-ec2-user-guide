@@ -1,12 +1,12 @@
-# Examples: Unlimited Mode<a name="unlimited-mode-examples"></a>
+# Unlimited mode examples<a name="unlimited-mode-examples"></a>
 
 The following examples explain credit use for instances that are configured as `unlimited`\.
 
 **Topics**
-+ [Example 1: Explaining Credit Use with T3 Unlimited](#t3_unlimited_example)
-+ [Example 2: Explaining Credit Use with T2 Unlimited](#t2_unlimited_example)
++ [Example 1: Explaining credit use with T3 Unlimited](#t3_unlimited_example)
++ [Example 2: Explaining credit use with T2 Unlimited](#t2_unlimited_example)
 
-## Example 1: Explaining Credit Use with T3 Unlimited<a name="t3_unlimited_example"></a>
+## Example 1: Explaining credit use with T3 Unlimited<a name="t3_unlimited_example"></a>
 
 In this example, you see the CPU utilization of a `t3.nano` instance launched as `unlimited`, and how it spends *earned* and *surplus* credits to sustain CPU performance\.
 
@@ -30,7 +30,7 @@ The intent of the example, illustrated by the following graph, is to show how an
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/t3_unlimited_graph.png)
 
-## Example 2: Explaining Credit Use with T2 Unlimited<a name="t2_unlimited_example"></a>
+## Example 2: Explaining credit use with T2 Unlimited<a name="t2_unlimited_example"></a>
 
 In this example, you see the CPU utilization of a `t2.nano` instance launched as `unlimited`, and how it spends *earned* and *surplus* credits to sustain CPU performance\.
 
@@ -50,7 +50,7 @@ The intent of the example, illustrated by the following graph, is to show how an
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/t2_unlimited_graph.png)
 
-**Calculating the Bill**  
+**Calculating the bill**  
 Surplus credits cost $0\.05 per vCPU\-hour\. The instance spent approximately 25 surplus credits between 01:55 and 02:20, which is equivalent to 0\.42 vCPU\-hours\.
 
 Additional charges for this instance are 0\.42 vCPU\-hours x $0\.05/vCPU\-hour = $0\.021, rounded to $0\.02\.
