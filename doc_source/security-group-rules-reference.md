@@ -9,7 +9,6 @@ The following are examples of the kinds of rules that you can add to security gr
 + [Database Server Rules](#sg-rules-db-server)
 + [Rules to Connect to Instances from Your Computer](#sg-rules-local-access)
 + [Rules to Connect to Instances from an Instance with the Same Security Group](#sg-rules-other-instances)
-+ [Rules for Path MTU Discovery](#sg-rules-path-mtu)
 + [Rules for Ping/ICMP](#sg-rules-ping)
 + [DNS Server Rules](#sg-rules-dns)
 + [Amazon EFS Rules](#sg-rules-efs)
@@ -75,21 +74,6 @@ The following table describes the inbound rule for a security group that enables
 | Protocol type | Protocol number | Ports | Source IP | 
 | --- | --- | --- | --- | 
 | \-1 \(All\) | \-1 \(All\) | \-1 \(All\) | The ID of the security group | 
-
-## Rules for Path MTU Discovery<a name="sg-rules-path-mtu"></a>
-
-The path MTU is the maximum packet size that's supported on the path between the originating host and the receiving host\. If a host sends a packet that's larger than the MTU of the receiving host or that's larger than the MTU of a device along the path, the receiving host returns the following ICMP message: 
-
-```
-Destination Unreachable: Fragmentation Needed and Don't Fragment was Set
-```
-
-To ensure that your instance can receive this message and the packet does not get dropped, you must add an ICMP rule to your inbound security group rules\.
-
-
-| Protocol type | Protocol number | ICMP type | ICMP code | Source IP | 
-| --- | --- | --- | --- | --- | 
-| ICMP | 1 | 3 \(Destination Unreachable\) | 4 \(Fragmentation Needed and Don't Fragment was Set\) | The IP addresses of the hosts that communicate with your instance | 
 
 ## Rules for Ping/ICMP<a name="sg-rules-ping"></a>
 

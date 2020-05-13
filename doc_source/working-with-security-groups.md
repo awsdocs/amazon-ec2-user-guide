@@ -160,7 +160,7 @@ You can add rules to a security group using one of the following methods\.
 
 1. In the navigation pane, choose **Security Groups**\.
 
-1. In the list, select the security group and choose **Actions**, **Edit inboud rules**\.
+1. In the list, select the security group and choose **Actions**, **Edit inbound rules**\.
 
 1. Choose **Add rule** and do the following\.
 
@@ -178,7 +178,7 @@ You can add rules to a security group using one of the following methods\.
 
    1. For **Description**, optionally specify a brief description for the rule\.
 
-1. Choose **Preview changes**, **Confirm**\.
+1. Choose **Preview changes**, **Save rules**\.
 
 **To add an outbound rule to a security group**
 
@@ -294,9 +294,11 @@ When you modify the protocol, port range, or source or destination of an existin
 
 1. In the navigation pane, choose **Security Groups**\.
 
-1. Select the security group to update, and choose **Inbound Rules** to update a rule for inbound traffic or **Outbound Rules** to update a rule for outbound traffic\.
+1. Select the security group to update, and choose the **Inbound** tab to update a rule for inbound traffic or the **Outbound** tab to update a rule for outbound traffic\.
 
-1. Choose **Edit**\. Modify the rule entry as required and choose **Save**\.
+1. Choose **Edit**\.
+
+1. Modify the rule entry as required and choose **Save**\.
 
 ------
 #### [ Command line ]

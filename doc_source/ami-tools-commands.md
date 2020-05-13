@@ -375,26 +375,26 @@ Amazon EC2 displays status messages indicating the stages and status of the dele
 This example deletes a bundle from Amazon S3\.
 
 ```
-[ec2-user ~]$ ec2-delete-bundle -b aws-s3-bucket1 -a your_access_key_id -s your_secret_access_key
+[ec2-user ~]$ ec2-delete-bundle -b AWSDOC-EXAMPLE-BUCKET1 -a your_access_key_id -s your_secret_access_key
 Deleting files:
-aws-s3-bucket1/image.manifest.xml
-aws-s3-bucket1/image.part.00
-aws-s3-bucket1/image.part.01
-aws-s3-bucket1/image.part.02
-aws-s3-bucket1/image.part.03
-aws-s3-bucket1/image.part.04
-aws-s3-bucket1/image.part.05
-aws-s3-bucket1/image.part.06
+AWSDOC-EXAMPLE-BUCKET1/image.manifest.xml
+AWSDOC-EXAMPLE-BUCKET1/image.part.00
+AWSDOC-EXAMPLE-BUCKET1/image.part.01
+AWSDOC-EXAMPLE-BUCKET1/image.part.02
+AWSDOC-EXAMPLE-BUCKET1/image.part.03
+AWSDOC-EXAMPLE-BUCKET1/image.part.04
+AWSDOC-EXAMPLE-BUCKET1/image.part.05
+AWSDOC-EXAMPLE-BUCKET1/image.part.06
 Continue? [y/n]
 y
-Deleted aws-s3-bucket1/image.manifest.xml
-Deleted aws-s3-bucket1/image.part.00
-Deleted aws-s3-bucket1/image.part.01
-Deleted aws-s3-bucket1/image.part.02
-Deleted aws-s3-bucket1/image.part.03
-Deleted aws-s3-bucket1/image.part.04
-Deleted aws-s3-bucket1/image.part.05
-Deleted aws-s3-bucket1/image.part.06
+Deleted AWSDOC-EXAMPLE-BUCKET1/image.manifest.xml
+Deleted AWSDOC-EXAMPLE-BUCKET1/image.part.00
+Deleted AWSDOC-EXAMPLE-BUCKET1/image.part.01
+Deleted AWSDOC-EXAMPLE-BUCKET1/image.part.02
+Deleted AWSDOC-EXAMPLE-BUCKET1/image.part.03
+Deleted AWSDOC-EXAMPLE-BUCKET1/image.part.04
+Deleted AWSDOC-EXAMPLE-BUCKET1/image.part.05
+Deleted AWSDOC-EXAMPLE-BUCKET1/image.part.06
 ec2-delete-bundle complete.
 ```
 
@@ -466,26 +466,26 @@ Status messages indicating the various stages of the download process are displa
 
 ### Example<a name="download-bundle-response"></a>
 
-This example creates the `bundled` directory \(using the Linux mkdir command\) and downloads the bundle from the `aws-s3-bucket1` Amazon S3 bucket\.
+This example creates the `bundled` directory \(using the Linux mkdir command\) and downloads the bundle from the `AWSDOC-EXAMPLE-BUCKET1` Amazon S3 bucket\.
 
 ```
 [ec2-user ~]$ mkdir bundled
-[ec2-user ~]$ ec2-download-bundle -b aws-s3-bucket1/bundles/bundle_name -m image.manifest.xml -a your_access_key_id -s your_secret_access_key -k pk-HKZYKTAIG2ECMXYIBH3HXV4ZBEXAMPLE.pem -d mybundle
-Downloading manifest image.manifest.xml from aws-s3-bucket1 to mybundle/image.manifest.xml ...
-Downloading part image.part.00 from aws-s3-bucket1/bundles/bundle_name to mybundle/image.part.00 ...
-Downloaded image.part.00 from aws-s3-bucket1
-Downloading part image.part.01 from aws-s3-bucket1/bundles/bundle_name to mybundle/image.part.01 ...
-Downloaded image.part.01 from aws-s3-bucket1
-Downloading part image.part.02 from aws-s3-bucket1/bundles/bundle_name to mybundle/image.part.02 ...
-Downloaded image.part.02 from aws-s3-bucket1
-Downloading part image.part.03 from aws-s3-bucket1/bundles/bundle_name to mybundle/image.part.03 ...
-Downloaded image.part.03 from aws-s3-bucket1
-Downloading part image.part.04 from aws-s3-bucket1/bundles/bundle_name to mybundle/image.part.04 ...
-Downloaded image.part.04 from aws-s3-bucket1
-Downloading part image.part.05 from aws-s3-bucket1/bundles/bundle_name to mybundle/image.part.05 ...
-Downloaded image.part.05 from aws-s3-bucket1
-Downloading part image.part.06 from aws-s3-bucket1/bundles/bundle_name to mybundle/image.part.06 ...
-Downloaded image.part.06 from aws-s3-bucket1
+[ec2-user ~]$ ec2-download-bundle -b AWSDOC-EXAMPLE-BUCKET1/bundles/bundle_name -m image.manifest.xml -a your_access_key_id -s your_secret_access_key -k pk-HKZYKTAIG2ECMXYIBH3HXV4ZBEXAMPLE.pem -d mybundle
+Downloading manifest image.manifest.xml from AWSDOC-EXAMPLE-BUCKET1 to mybundle/image.manifest.xml ...
+Downloading part image.part.00 from AWSDOC-EXAMPLE-BUCKET1/bundles/bundle_name to mybundle/image.part.00 ...
+Downloaded image.part.00 from AWSDOC-EXAMPLE-BUCKET1
+Downloading part image.part.01 from AWSDOC-EXAMPLE-BUCKET1/bundles/bundle_name to mybundle/image.part.01 ...
+Downloaded image.part.01 from AWSDOC-EXAMPLE-BUCKET1
+Downloading part image.part.02 from AWSDOC-EXAMPLE-BUCKET1/bundles/bundle_name to mybundle/image.part.02 ...
+Downloaded image.part.02 from AWSDOC-EXAMPLE-BUCKET1
+Downloading part image.part.03 from AWSDOC-EXAMPLE-BUCKET1/bundles/bundle_name to mybundle/image.part.03 ...
+Downloaded image.part.03 from AWSDOC-EXAMPLE-BUCKET1
+Downloading part image.part.04 from AWSDOC-EXAMPLE-BUCKET1/bundles/bundle_name to mybundle/image.part.04 ...
+Downloaded image.part.04 from AWSDOC-EXAMPLE-BUCKET1
+Downloading part image.part.05 from AWSDOC-EXAMPLE-BUCKET1/bundles/bundle_name to mybundle/image.part.05 ...
+Downloaded image.part.05 from AWSDOC-EXAMPLE-BUCKET1
+Downloading part image.part.06 from AWSDOC-EXAMPLE-BUCKET1/bundles/bundle_name to mybundle/image.part.06 ...
+Downloaded image.part.06 from AWSDOC-EXAMPLE-BUCKET1
 ```
 
 ## ec2\-migrate\-manifest<a name="ami-migrate-manifest"></a>
@@ -699,9 +699,9 @@ Amazon EC2 displays status messages that indicate the stages and status of the u
 This example uploads the bundle specified by the `image.manifest.xml` manifest\.
 
 ```
-[ec2-user ~]$ ec2-upload-bundle -b aws-s3-bucket1/bundles/bundle_name -m image.manifest.xml -a your_access_key_id -s your_secret_access_key
+[ec2-user ~]$ ec2-upload-bundle -b AWSDOC-EXAMPLE-BUCKET1/bundles/bundle_name -m image.manifest.xml -a your_access_key_id -s your_secret_access_key
 Creating bucket...
-Uploading bundled image parts to the S3 bucket aws-s3-bucket1 ...
+Uploading bundled image parts to the S3 bucket AWSDOC-EXAMPLE-BUCKET1 ...
 Uploaded image.part.00
 Uploaded image.part.01
 Uploaded image.part.02

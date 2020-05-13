@@ -64,7 +64,7 @@ Use the following procedure to create a self\-signed X509 certificate and add it
 
    For RIPE, add the certificate as a new "descr" field for your address range\.
 
-   For APNIC, email the public key to [helpdesk@apnic\.net](mailto:helpdesk@apnic.net) to manually add it to the "remarks" field\. Send the email using the APNIC authorized contact for the IP addresses\.
+   For APNIC, email the public key to [helpdesk@apnic\.net](mailto:helpdesk@apnic.net) to manually add it to the "remarks" field for your address range\. Send the email using the APNIC authorized contact for the IP addresses\.
 
 ### Create a signed authorization message<a name="byoip-signed-authorization-message"></a>
 
@@ -101,6 +101,8 @@ Provisioning an address range is an asynchronous operation, so the call returns 
 ```
 aws ec2 describe-byoip-cidrs --max-results 5
 ```
+
+If there are issues during provisioning and the status goes to `failed-provision`, run the `provision-byoip-cidr` command again after the issues have been resolved\.
 
 To create an Elastic IP address from your address pool, use the [allocate\-address](https://docs.aws.amazon.com/cli/latest/reference/ec2/allocate-address.html) command\. You can use the `--public-ipv4-pool` option to specify the ID of the address pool returned by `describe-byoip-cidrs`\. Or you can use the `--address` option to specify an address from the address range that you provisioned\.
 

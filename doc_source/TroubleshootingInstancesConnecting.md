@@ -10,7 +10,6 @@ The following are possible problems you may have and error messages you may see 
 + [Error: Unprotected private key file](#troubleshoot-unprotected-key)
 + [Error: Private key must begin with "\-\-\-\-\-BEGIN RSA PRIVATE KEY\-\-\-\-\-" and end with "\-\-\-\-\-END RSA PRIVATE KEY\-\-\-\-\-"](#troubleshoot-private-key-file-format)
 + [Error: Server refused our key *or* No supported authentication methods available](#TroubleshootingInstancesConnectingPuTTY)
-+ [Cannot connect using my browser](#troubleshoot-instance-connect-mindterm)
 + [Cannot ping instance](#troubleshoot-instance-ping)
 + [Error: Server unexpectedly closed network connection](#troubleshoot-ssh)
 
@@ -256,19 +255,13 @@ The appropriate user names are as follows:
 
 You should also verify that your private key \(\.pem\) file has been correctly converted to the format recognized by PuTTY \(\.ppk\)\. For more information about converting your private key, see [Connecting to your Linux instance from Windows using PuTTY](putty.md)\.
 
-## Cannot connect using my browser<a name="troubleshoot-instance-connect-mindterm"></a>
-
-The Amazon EC2 console provides an option to connect to your instances directly from your browser using a Java SSH client\. If your browser doesn't support NPAPI, then you get an error message NPAPI deprecation on Chrome when you connect\. The message recommends that you use a different browser\. However, recent versions of these browsers also do not support NPAPI, so you cannot use them to connect to your instance and you must choose a different method to connect to your instance\.
-
-For more information, see the following resources:
-+ General: [NPAPI Wikipedia article](https://en.wikipedia.org/wiki/NPAPI#Support/deprecation)
-+ Chrome: [NPAPI deprecation article](https://www.chromium.org/developers/npapi-deprecation)
-+ Firefox: [NPAPI deprecation article](https://www.java.com/en/download/faq/firefox_java.xml)
-+ Safari: [NPAPI deprecation article](https://java.com/en/download/faq/safari.xml)
-
 ## Cannot ping instance<a name="troubleshoot-instance-ping"></a>
 
-The `ping` command is a type of ICMP traffic — if you are unable to ping your instance, ensure that your inbound security group rules allow ICMP traffic for the `Echo Request` message from all sources, or from the computer or instance from which you are issuing the command\. If you are unable to issue a `ping` command from your instance, ensure that your outbound security group rules allow ICMP traffic for the `Echo Request` message to all destinations, or to the host that you are attempting to ping\.
+The `ping` command is a type of ICMP traffic — if you are unable to ping your instance, ensure that your inbound security group rules allow ICMP traffic for the `Echo Request` message from all sources, or from the computer or instance from which you are issuing the command\.
+
+If you are unable to issue a `ping` command from your instance, ensure that your outbound security group rules allow ICMP traffic for the `Echo Request` message to all destinations, or to the host that you are attempting to ping\.
+
+`Ping` commands can also be blocked by a firewall or time out due to network latency or hardware issues\. You can consult your local network or system administrator for help with further troubleshooting\.
 
 ## Error: Server unexpectedly closed network connection<a name="troubleshoot-ssh"></a>
 

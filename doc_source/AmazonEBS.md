@@ -13,7 +13,7 @@ Amazon EBS is recommended when data must be quickly accessible and requires long
 + [Amazon EBS volumes](ebs-volumes.md)
 + [Amazon EBS Snapshots](EBSSnapshots.md)
 + [Amazon EBS data services](ebs-data-services.md)
-+ [Amazon EBS and NVMe on Linux Instances](nvme-ebs-volumes.md)
++ [Amazon EBS and NVMe on Linux instances](nvme-ebs-volumes.md)
 + [Amazon EBS–optimized instances](ebs-optimized.md)
 + [Amazon EBS Volume Performance on Linux Instances](EBSPerformance.md)
 + [Amazon CloudWatch Metrics for Amazon EBS](using_cloudwatch_ebs.md)

@@ -2,16 +2,6 @@
 
 This topic explains how to verify the instance identity document using the PKCS7 signature and the AWS DSA public certificate\.
 
-**Prerequisites**  
-This procedure requires the `System.Security` Microsoft \.NET Core class\. To add the class to your PowerShell session, run the following command\.
-
-```
-PS C:\> Add-Type -AssemblyName System.Security
-```
-
-**Note**  
-The command adds the class to the current PowerShell session only\. If you start a new session, you must run the command again\.
-
 **To verify the instance identity document using the PKCS7 signature and the AWS DSA public certificate**
 
 1. Connect to the instance\.

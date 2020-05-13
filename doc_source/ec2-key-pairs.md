@@ -374,7 +374,7 @@ $ ssh-keygen -ef path_to_private_key -m PEM | openssl rsa -RSAPublicKey_in -outf
 You can change the key pair that is used to access the default system account of your instance\. For example, if a user in your organization requires access to the system user account using a separate key pair, you can add that key pair to your instance\. Or, if someone has a copy of the `.pem` file and you want to prevent them from connecting to your instance \(for example, if they've left your organization\), you can replace the key pair with a new one\.
 
 **Note**  
-These procedures are for modifying the key pair for the default user account, such as `ec2-user`\. For more information about adding user accounts to your instance, see [Managing User Accounts on Your Linux Instance](managing-users.md)\.
+These procedures are for modifying the key pair for the default user account, such as `ec2-user`\. For more information about adding user accounts to your instance, see [Managing user accounts on your Amazon Linux instance](managing-users.md)\.
 
 **To add or replace a key pair**
 
@@ -441,4 +441,4 @@ Use the [Remove\-EC2KeyPair](https://docs.aws.amazon.com/powershell/latest/refer
 
 ------
 
-If you create a Linux AMI from an instance, and then use the AMI to launch a new instance in a different Region or account, the new instance includes the public key from the original instance\. This enables you to connect to the new instance using the same private key file as your original instance\. You can remove this public key from your instance by removing its entry from the `.ssh/authorized_keys` file using a text editor of your choice\. For more information about managing users on your instance and providing remote access using a specific key pair, see [Managing User Accounts on Your Linux Instance](managing-users.md)\.
+If you create a Linux AMI from an instance, and then use the AMI to launch a new instance in a different Region or account, the new instance includes the public key from the original instance\. This enables you to connect to the new instance using the same private key file as your original instance\. You can remove this public key from your instance by removing its entry from the `.ssh/authorized_keys` file using a text editor of your choice\. For more information about managing users on your instance and providing remote access using a specific key pair, see [Managing user accounts on your Amazon Linux instance](managing-users.md)\.

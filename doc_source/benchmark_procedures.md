@@ -127,7 +127,7 @@ The following procedures describe benchmarking commands for various EBS volume t
 
 Run the following commands on an EBS\-optimized instance with attached EBS volumes\. If the EBS volumes were restored from snapshots, be sure to initialize them before benchmarking\. For more information, see [Initializing Amazon EBS Volumes](ebs-initialize.md)\.
 
-When you are finished testing your volumes, see the following topics for help cleaning up: [Deleting an Amazon EBS volume](ebs-deleting-volume.md) and [Terminate Your Instance](terminating-instances.md)\.
+When you are finished testing your volumes, see the following topics for help cleaning up: [Deleting an Amazon EBS volume](ebs-deleting-volume.md) and [Terminate your instance](terminating-instances.md)\.
 
 ### Benchmarking io1 Volumes<a name="piops_benchmarking"></a>
 

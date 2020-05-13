@@ -5,16 +5,6 @@ This topic explains how to verify the instance identity document using the RSA\-
 **Important**  
 To validate the instance identity document using the RSA\-2048 signature, you must request the AWS RSA\-2048 public certificate from [AWS Support](https://console.aws.amazon.com/support/home#/)\. 
 
-**Prerequisites**  
-This procedure requires the `System.Security` Microsoft \.NET Core class\. To add the class to your PowerShell session, run the following command\.
-
-```
-PS C:\> Add-Type -AssemblyName System.Security
-```
-
-**Note**  
-The command adds the class to the current PowerShell session only\. If you start a new session, you must run the command again\.
-
 **To verify the instance identity document using the RSA\-2048 signature and the AWS RSA\-2048 public certificate**
 
 1. Connect to the instance\.

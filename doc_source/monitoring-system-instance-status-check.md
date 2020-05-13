@@ -6,7 +6,7 @@ Status checks are performed every minute, returning a pass or a fail status\. If
 
 When a status check fails, the corresponding CloudWatch metric for status checks is incremented\. For more information, see [Status Check MetricsAmazon EC2 Usage Metrics](viewing_metrics_with_cloudwatch.md#status-check-metrics)\. You can use these metrics to create CloudWatch alarms that are triggered based on the result of the status checks\. For example, you can create an alarm to warn you if status checks fail on a specific instance\. For more information, see [Creating and Editing Status Check Alarms](#creating_status_check_alarms)\.
 
-You can also create an Amazon CloudWatch alarm that monitors an Amazon EC2 instance and automatically recovers the instance if it becomes impaired due to an underlying issue\. For more information, see [Recover Your Instance](ec2-instance-recover.md)\.
+You can also create an Amazon CloudWatch alarm that monitors an Amazon EC2 instance and automatically recovers the instance if it becomes impaired due to an underlying issue\. For more information, see [Recover your instance](ec2-instance-recover.md)\.
 
 **Topics**
 + [Types of Status Checks](#types-of-instance-status-checks)

@@ -4,21 +4,21 @@ Storage optimized instances are designed for workloads that require high, sequen
 
 **D2 instances**
 
-D2 instances are well suited for the following applications:
+These instances are well suited for the following:
 + Massive parallel processing \(MPP\) data warehouse
 + MapReduce and Hadoop distributed computing
 + Log or data processing applications<a name="h1-instances"></a>
 
 **H1 instances**
 
-H1 instances are well suited for the following applications:
+These instances are well suited for the following:
 + Data\-intensive workloads such as MapReduce and distributed file systems
 + Applications requiring sequential access to large amounts of data on direct\-attached instance storage
 + Applications that require high\-throughput access to large quantities of data<a name="i3-instances"></a>
 
 **I3 and I3en instances**
 
-These instances are well suited for the following applications:
+These instances are well suited for the following:
 + High frequency online transaction processing \(OLTP\) systems
 + Relational databases
 + NoSQL databases
@@ -106,7 +106,7 @@ The following is a summary of network performance for storage optimized instance
 | i3en\.3xlarge and smaller | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
 | i3\.16xlarge \| i3\.metal \| i3en\.6xlarge \| h1\.16xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
 | i3en\.12xlarge | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
-| i3en\.24xlarge | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
+| i3en\.24xlarge \| i3en\.metal | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
 | d2\.xlarge | Moderate | [Intel 82599 VF](sriov-networking.md) | 
 | d2\.2xlarge \| d2\.4xlarge | High | [Intel 82599 VF](sriov-networking.md) | 
 | d2\.8xlarge | 10 Gbps | [Intel 82599 VF](sriov-networking.md) | 
@@ -159,7 +159,7 @@ The following is a summary of features for storage optimized instances:
 **\*** The root device volume must be an Amazon EBS volume\.
 
 For more information, see the following:
-+ [Amazon EBS and NVMe on Linux Instances](nvme-ebs-volumes.md)
++ [Amazon EBS and NVMe on Linux instances](nvme-ebs-volumes.md)
 + [Amazon EC2 Instance Store](InstanceStorage.md)
 + [Placement Groups](placement-groups.md)
 

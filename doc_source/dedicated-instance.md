@@ -60,7 +60,7 @@ You can use Amazon EC2 Auto Scaling to launch Dedicated Instances\. For more inf
 
 ### Automatic Recovery of Dedicated Instances<a name="dedicated-instance-recovery"></a>
 
-You can configure automatic recovery for a Dedicated Instances if it becomes impaired due to an underlying hardware failure or a problem that requires AWS involvement to repair\. For more information, see [Recover Your Instance](ec2-instance-recover.md)\.
+You can configure automatic recovery for a Dedicated Instances if it becomes impaired due to an underlying hardware failure or a problem that requires AWS involvement to repair\. For more information, see [Recover your instance](ec2-instance-recover.md)\.
 
 ### Dedicated Spot Instances<a name="dedicated-instance-spot"></a>
 

@@ -24,14 +24,14 @@ The following table lists the initial CPU credit allocation received at launch o
 
 |  Instance type  |  Launch credits  |  vCPUs  | 
 | --- | --- | --- | 
-|  `t1.micro`  |  15  |  1  | 
-|  `t2.nano`  |  30  |  1  | 
-|  `t2.micro`  |  30  |  1  | 
-|  `t2.small`  |  30  |  1  | 
-|  `t2.medium`  |  60  |  2  | 
-|  `t2.large`  |  60  |  2  | 
-|  `t2.xlarge`  |  120  |  4  | 
-|  `t2.2xlarge`  |  240  |  8  | 
+| t1\.micro |  15  |  1  | 
+| t2\.nano |  30  |  1  | 
+| t2\.micro |  30  |  1  | 
+| t2\.small |  30  |  1  | 
+| t2\.medium |  60  |  2  | 
+| t2\.large |  60  |  2  | 
+| t2\.xlarge |  120  |  4  | 
+| t2\.2xlarge |  240  |  8  | 
 
 ## Launch credit limits<a name="launch-credit-limits"></a>
 

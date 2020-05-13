@@ -1,6 +1,10 @@
 # Compute optimized instances<a name="compute-optimized-instances"></a>
 
-Compute optimized instances are ideal for compute\-bound applications that benefit from high\-performance processors\. They are well suited for the following applications:
+Compute optimized instances are ideal for compute\-bound applications that benefit from high\-performance processors\.
+
+**C5 and C5n instances**
+
+These instances are well suited for the following:
 + Batch processing workloads
 + Media transcoding
 + High\-performance web servers
@@ -9,7 +13,9 @@ Compute optimized instances are ideal for compute\-bound applications that benef
 + Dedicated gaming servers and ad serving engines
 + Machine learning inference and other compute\-intensive applications
 
-For more information, see [Amazon EC2 C5 Instances](https://aws.amazon.com/ec2/instance-types/c5)\.
+Bare metal instances, such as `c5.metal`, provide your applications with direct access to physical resources of the host server, such as processors and memory\.
+
+For more information, see [Amazon EC2 C5 Instances](https://aws.amazon.com/ec2/instance-types/c5) \.
 
 **Topics**
 + [Hardware specifications](#compute-instances-hardware)
@@ -129,7 +135,7 @@ The following is a summary of features for compute optimized instances:
 **\*** The root device volume must be an Amazon EBS volume\.
 
 For more information, see the following:
-+ [Amazon EBS and NVMe on Linux Instances](nvme-ebs-volumes.md)
++ [Amazon EBS and NVMe on Linux instances](nvme-ebs-volumes.md)
 + [Amazon EC2 Instance Store](InstanceStorage.md)
 + [Placement Groups](placement-groups.md)
 

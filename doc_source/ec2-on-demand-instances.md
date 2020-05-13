@@ -23,11 +23,11 @@ You can work with On\-Demand Instances in the following ways:
 + [Connect to your Linux instance](AccessingInstances.md)
 + [Stop and start your instance](Stop_Start.md)
 + [Hibernate your Linux instance](Hibernate.md)
-+ [Reboot Your Instance](ec2-instance-reboot.md)
-+ [Instance Retirement](instance-retirement.md)
-+ [Terminate Your Instance](terminating-instances.md)
-+ [Recover Your Instance](ec2-instance-recover.md)
-+ [Configuring Your Amazon Linux Instance](Configure_Instance.md)
++ [Reboot your instance](ec2-instance-reboot.md)
++ [Instance retirement](instance-retirement.md)
++ [Terminate your instance](terminating-instances.md)
++ [Recover your instance](ec2-instance-recover.md)
++ [Configuring your Amazon Linux instance](Configure_Instance.md)
 + [Identify EC2 Linux Instances](identify_ec2_instances.md)
 
 If you're new to Amazon EC2, see [How to get started with Amazon EC2](concepts.md#how-to-get-started)\.

@@ -238,21 +238,24 @@ To enable topics and install specific versions of their packages to ensure stabi
 ```
 
 To remove a package installed from a topic, use the following command:
+
 ```
 [ec2-user ~]$ sudo yum remove $(yum list installed | grep amzn2extra-topic | awk '{ print $1 }')
 ```
-**Note**
-This command does not remove packages that were installed as dependencies of the extra.
+
+**Note**  
+This command does not remove packages that were installed as dependencies of the extra\.
 
 To disable a topic and make the packages inaccessible to the yum package manager, use the following command:
+
 ```
 [ec2-user ~]$ sudo amazon-linux-extras disable topic
 ```
-**Important** 
-This command is intended for advanced users. Improper usage of this command could cause package compatibility conflicts. 
 
+**Important**  
+This command is intended for advanced users\. Improper usage of this command could cause package compatibility conflicts\.
 
-## Accessing Source Packages for Reference<a name="amazon-linux-source-packages"></a>
+## Accessing source packages for reference<a name="amazon-linux-source-packages"></a>
 
 You can view the source of packages you have installed on your instance for reference purposes by using tools provided in Amazon Linux\. Source packages are available for all of the packages included in Amazon Linux and the online package repository\. Simply determine the package name for the source package you want to install and use the yumdownloader \-\-source command to view source within your running instance\. For example:
 
@@ -356,7 +359,6 @@ Whenever AMIs are released, we send notifications to the subscribers of the corr
 1. In the navigation pane, choose **Subscriptions**, select the subscription, and choose **Actions**, **Delete subscriptions**\.
 
 1. When prompted for confirmation, choose **Delete**\.
-
 
 **Amazon Linux AMI SNS message format**  
 The schema for the SNS message is as follows\. 

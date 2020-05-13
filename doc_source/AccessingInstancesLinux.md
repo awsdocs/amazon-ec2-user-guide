@@ -27,7 +27,7 @@ Use the following procedure to connect to your Linux instance using an SSH clien
 **To connect to your instance using SSH**
 
 1. In a terminal window, use the ssh command to connect to the instance\. You specify the path and file name of the private key \(`.pem`\), the user name for your AMI, and the public DNS name or IPv6 address for your instance\. For more information about how to find the private key, the user name for an AMI, and the DNS name or IPv6 address for an instance, see [Locate the private key](connection-prereqs.md#connection-prereqs-private-key) and [Get information about your instance](connection-prereqs.md#connection-prereqs-get-info-about-instance)\. To connect to your instance, do one of the following:
-   + \(Public DNS\) To connect using your instance's public DNS, enter the following command\.
+   + \(Public DNS name\) To connect using your instance's public DNS name, enter the following command\.
 
      ```
      ssh -i /path/my-key-pair.pem ec2-user@ec2-198-51-100-1.compute-1.amazonaws.com

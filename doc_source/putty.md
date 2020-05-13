@@ -55,7 +55,7 @@ Use the following procedure to connect to your Linux instance using PuTTY\. You 
 1. In the **Category** pane, choose **Session** and complete the following fields:
 
    1. In the **Host Name** box, do one of the following:
-      + \(Public DNS\) To connect using your instance's public DNS, enter *user\_name*@*public\_dns\_name*\.
+      + \(Public DNS name\) To connect using your instance's public DNS name, enter *user\_name*@*public\_dns\_name*\.
       + \(IPv6\) Alternatively, if your instance has an IPv6 address, to connect using your instance's IPv6 address, enter *user\_name*@*ipv6\_address*\.
 
       For information about how to get the public DNS name or IPv6 address of the instance, see [Get information about your instance](connection-prereqs.md#connection-prereqs-get-info-about-instance)\.
@@ -101,7 +101,7 @@ If you receive an error while attempting to connect to your instance, see [Troub
 
 The PuTTY Secure Copy client \(PSCP\) is a command line tool that you can use to transfer files between your Windows computer and your Linux instance\. If you prefer a graphical user interface \(GUI\), you can use an open source GUI tool named WinSCP\. For more information, see [Transferring files to your Linux instance using WinSCP](#Transfer_WinSCP)\.
 
-To use PSCP, you need the private key you generated in [Convert your private key using PuTTYgen](#putty-private-key)\. You also need the public DNS address of your Linux instance\. 
+To use PSCP, you need the private key you generated in [Convert your private key using PuTTYgen](#putty-private-key)\. You also need the public DNS name of your Linux instance\.
 
 The following example transfers the file `Sample_file.txt` from the C:\\ drive on a Windows computer to the `ec2-user` home directory on an Amazon Linux instance:
 
@@ -119,13 +119,13 @@ pscp -i C:\path\my-key-pair.ppk C:\path\Sample_file.txt ec2-user@[ipv6-address]:
 
 WinSCP is a GUI\-based file manager for Windows that allows you to upload and transfer files to a remote computer using the SFTP, SCP, FTP, and FTPS protocols\. WinSCP allows you to drag and drop files from your Windows machine to your Linux instance or synchronize entire directory structures between the two systems\.
 
- To use WinSCP, you need the private key that you generated in [Convert your private key using PuTTYgen](#putty-private-key)\. You also need the public DNS address of your Linux instance\.
+ To use WinSCP, you need the private key that you generated in [Convert your private key using PuTTYgen](#putty-private-key)\. You also need the public DNS name of your Linux instance\.
 
 1. Download and install WinSCP from [http://winscp\.net/eng/download\.php](http://winscp.net/eng/download.php)\. For most users, the default installation options are OK\.
 
 1. Start WinSCP\.
 
-1. At the **WinSCP login** screen, for **Host name**, enter the public DNS hostname or public IPv4 address for your instance\.
+1. At the **WinSCP login** screen, for **Host name**, enter the public DNS name or public IPv4 address for your instance\.
 
    \(IPv6 only\) To log in using your instance's IPv6 address, enter the IPv6 address for your instance\.
 

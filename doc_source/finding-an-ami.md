@@ -68,7 +68,7 @@ Omitting the `--owners` flag from the describe\-images command will return all i
 
 ## Finding the latest Amazon Linux AMI using Systems Manager<a name="finding-an-ami-parameter-store"></a>
 
-Amazon EC2 provides AWS Systems Manager parameters for AWS\-maintained public AMIs that you can use when launching instances\. For example, the EC2\-provided parameter `/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2` is available in all Regions and always points to the latest version of the Amazon Linux 2 AMI in a given Region\. 
+Amazon EC2 provides AWS Systems Manager public parameters for AWS\-maintained public AMIs that you can use when launching instances\. For example, the EC2\-provided parameter `/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2` is available in all Regions and always points to the latest version of the Amazon Linux 2 AMI in a given Region\. 
 
 The Amazon EC2 AMI public parameters are available from the following paths:
 + `/aws/service/ami-amazon-linux-latest`
@@ -80,17 +80,37 @@ You can view a list of all Linux AMIs in the current AWS Region by using the fol
 aws ssm get-parameters-by-path --path /aws/service/ami-amazon-linux-latest --query Parameters[].Name
 ```
 
+**To launch an instance using a public parameter**  
+The following example uses the EC2\-provided public parameter to launch an `m5.xlarge` instance using the latest Amazon Linux 2 AMI\.
+
+To specify the parameter in the command, use the following syntax: `resolve:ssm:public-parameter`, where `resolve:ssm` is the standard prefix and `public-parameter` is the path and name of the public parameter\.
+
+In this example, the `--count` and `--security-group` parameters are not included\. For `--count`, the default is 1\. If you have a default VPC and a default security group, they are used\.
+
+```
+aws ec2 run-instances \
+    --image-id resolve:ssm:/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2 \
+    --instance-type m5.xlarge \
+    --key-name MyKeyPair
+```
+
 For more information, see [Using public parameters](https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-public-parameters.html) in the *AWS Systems Manager User Guide* and [Query for the latest Amazon Linux AMI IDs Using AWS Systems Manager Parameter Store](http://aws.amazon.com/blogs/compute/query-for-the-latest-amazon-linux-ami-ids-using-aws-systems-manager-parameter-store/)\.
 
 ## Using a Systems Manager parameter to find an AMI<a name="using-systems-manager-parameter-to-find-AMI"></a>
 
-When you launch an instance using the EC2 launch wizard in the console, you can either select an AMI from the list, or you can select an AWS Systems Manager parameter that points to an AMI ID\.
+When you launch an instance using the EC2 launch wizard in the console, you can either select an AMI from the list, or you can select an AWS Systems Manager parameter that points to an AMI ID\. If you use automation code to launch your instances, you can specify the Systems Manager parameter instead of the AMI ID\.
 
 A Systems Manager parameter is a customer\-defined key\-value pair that you can create in Systems Manager Parameter Store\. The Parameter Store provides a central store to externalize your application configuration values\. For more information, see [AWS Systems Manager Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html) in the *AWS Systems Manager User Guide*\.
 
 When you create a parameter that points to an AMI ID, make sure that you specify the data type as `aws:ec2:image`\. This data type ensures that when the parameter is created or modified, the parameter value is validated as an AMI ID\. For more information, see [Native parameter support for Amazon Machine Image IDs](https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-ec2-aliases.html) in the *AWS Systems Manager User Guide*\.
 
-### Use cases<a name="systems-parameter-use-case"></a>
+**Topics**
++ [Use cases](#systems-manager-parameter-use-case)
++ [Lauching an instance using a Systems Manager parameter](#systems-manager-parameter-launch-instance)
++ [Permissions](#systems-manager-permissions)
++ [Limitations](#AMI-systems-manager-parameter-limitations)
+
+### Use cases<a name="systems-manager-parameter-use-case"></a>
 
 By using Systems Manager parameters to point to AMI IDs, you can make it easier for your users to select the correct AMI when launching instances, and you can simplify the maintenance of automation code\.
 
@@ -107,7 +127,11 @@ If you use automation code to launch your instances, you can specify the Systems
 **Note**  
 Running instances are not affected when you change the AMI ID to which the Systems Manager parameter points\.
 
-**To find a Linux AMI using a Systems Manager parameter**
+### Lauching an instance using a Systems Manager parameter<a name="systems-manager-parameter-launch-instance"></a>
+
+You can launch an instance using the the console or the AWS CLI\. Instead of specifying an AMI ID, you can specify an AWS Systems Manager parameter that points to an AMI ID\.
+
+**To find a Linux AMI using a Systems Manager parameter \(console\)**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -125,7 +149,35 @@ Running instances are not affected when you change the AMI ID to which the Syste
 
 For more information about launching an instance from an AMI using the launch wizard, see [Step 1: Choose an Amazon Machine Image \(AMI\)](launching-instance.md#step-1-AMI)\.
 
-### Permissions<a name="system-manager-permissions"></a>
+**To launch an instance using an AWS Systems Manager parameter instead of an AMI ID \(AWS CLI\)**  
+The following example uses the Systems Manager parameter `golden-ami` to launch an `m5.xlarge` instance\. The parameter points to an AMI ID\.
+
+To specify the parameter in the command, use the following syntax: `resolve:ssm:parameter-name`, where `resolve:ssm` is the standard prefix and `parameter-name` is the unique parameter name\. Note that the parameter name is case\-sensitive\.
+
+In this example, the `--count` and `--security-group` parameters are not included\. For `--count`, the default is 1\. If you have a default VPC and a default security group, they are used\.
+
+```
+aws ec2 run-instances \
+    --image-id resolve:ssm:golden-ami \
+    --instance-type m5.xlarge \
+    --key-name MyKeyPair
+```
+
+**To launch an instance using a specific version of an AWS Systems Manager parameter \(AWS CLI\)**  
+Systems Manager parameters have version support\. Each iteration of a parameter is assigned a unique version number\. You can reference the version of the parameter as follows `resolve:ssm:parameter-name:version`, where `version` is the unique version number\. By default, the latest version of the parameter is used when no version is specified\.
+
+The following example uses version 2 of the parameter\.
+
+In this example, the `--count` and `--security-group` parameters are not included\. For `--count`, the default is 1\. If you have a default VPC and a default security group, they are used\.
+
+```
+aws ec2 run-instances \
+    --image-id resolve:ssm:golden-ami:2 \
+    --instance-type m5.xlarge \
+    --key-name MyKeyPair
+```
+
+### Permissions<a name="systems-manager-permissions"></a>
 
 If you use Systems Manager parameters that point to AMI IDs in the launch instance wizard, you must add `ssm:DescribeParameters` and `ssm:GetParameters` to your IAM policy\. `ssm:DescribeParameters` grants your IAM users the permission to view and select Systems Manager parameters\. `ssm:GetParameters` grants your IAM users the permission to get the values of the Systems Manager parameters\. You can also restrict access to specific Systems Manager parameters\. For more information, see [Using the EC2 launch wizard](iam-policies-ec2-console.md#ex-launch-wizard)\.
 

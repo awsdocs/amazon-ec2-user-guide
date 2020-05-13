@@ -25,4 +25,4 @@ When you launch your instance, you can launch your instance in a subnet that is 
 
 After you launch your instance, you can connect to it and use it\. To begin, the instance state is `pending`\. When the instance state is `running`, the instance has started booting\. There might be a short time before you can connect to the instance\. The instance receives a public DNS name that you can use to contact the instance from the internet\. The instance also receives a private DNS name that other instances within the same VPC can use to contact the instance\. For more information about connecting to your instance, see [Connect to your Linux instance](AccessingInstances.md)\.
 
-When you are finished with an instance, be sure to terminate it\. For more information, see [Terminate Your Instance](terminating-instances.md)\.
+When you are finished with an instance, be sure to terminate it\. For more information, see [Terminate your instance](terminating-instances.md)\.

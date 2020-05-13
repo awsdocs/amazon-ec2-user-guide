@@ -21,8 +21,8 @@ As soon as you create a Spot Instance request, it goes into the `pending-evaluat
 
 | Status code | Request state | Instance state | 
 | --- | --- | --- | 
-|  `pending-evaluation`  |  `open`  |  n/a  | 
-|  `bad-parameters`  |  `closed`  |  n/a  | 
+| pending\-evaluation | open | n/a | 
+| bad\-parameters | closed | n/a | 
 
 **Holding**  
 If one or more request constraints are valid but can't be met yet, or if there is not enough capacity, the request goes into a holding state waiting for the constraints to be met\. The request options affect the likelihood of the request being fulfilled\. For example, if you specify a maximum price below the current Spot price, your request stays in a holding state until the Spot price goes below your maximum price\. If you specify an Availability Zone group, the request stays in a holding state until the Availability Zone constraint is met\.
@@ -32,13 +32,13 @@ In the event of an outage of one of the Availability Zones, there is a chance th
 
 | Status code | Request state | Instance state | 
 | --- | --- | --- | 
-|  `capacity-not-available`  |  `open`  |  n/a  | 
-|  `price-too-low`  |  `open`  |  n/a  | 
-|  `not-scheduled-yet`  |  `open`  |  n/a  | 
-|  `launch-group-constraint`  |  `open`  |  n/a  | 
-|  `az-group-constraint`  |  `open`  |  n/a  | 
-|  `placement-group-constraint`  |  `open`  |  n/a  | 
-|  `constraint-not-fulfillable`  |  `open`  |  n/a  | 
+| capacity\-not\-available | open |  n/a  | 
+| price\-too\-low | open |  n/a  | 
+| not\-scheduled\-yet | open |  n/a  | 
+| launch\-group\-constraint | open |  n/a  | 
+| az\-group\-constraint | open |  n/a  | 
+|  placement\-group\-constraint  |  open  |  n/a  | 
+|  constraint\-not\-fulfillable  |  open  |  n/a  | 
 
 **Pending evaluation/fulfillment\-terminal**  
 Your Spot Instance request can go to a `terminal` state if you create a request that is valid only during a specific time period and this time period expires before your request reaches the pending fulfillment phase\. It might also happen if you cancel the request, or if a system error occurs\.
@@ -46,10 +46,10 @@ Your Spot Instance request can go to a `terminal` state if you create a request 
 
 | Status code | Request state | Instance state | 
 | --- | --- | --- | 
-|  `schedule-expired`  |  `cancelled`  |  n/a  | 
-|  `canceled-before-fulfillment`\*  |  `cancelled`  |  n/a  | 
-|  `bad-parameters`  |  `failed`  |  n/a  | 
-|  `system-error`  |  `closed`  |  n/a  | 
+|  schedule\-expired  |  cancelled  |  n/a  | 
+|  canceled\-before\-fulfillment\*  |  cancelled  |  n/a  | 
+|  bad\-parameters  |  failed  |  n/a  | 
+|  system\-error  |  closed  |  n/a  | 
 
 \* If you cancel the request\.
 
@@ -61,7 +61,7 @@ At this point, Amazon EC2 is getting ready to provision the instances that you r
 
 | Status code | Request state | Instance state | 
 | --- | --- | --- | 
-|  `pending-fulfillment`  |  `open`  |  n/a  | 
+|  pending\-fulfillment  |  open  |  n/a  | 
 
 **Fulfilled**  
 When all the specifications for your Spot Instances are met, your Spot request is fulfilled\. Amazon EC2 launches the Spot Instances, which can take a few minutes\. If a Spot Instance is hibernated or stopped when interrupted, it remains in this state until the request can be fulfilled again or the request is canceled\.
@@ -69,16 +69,16 @@ When all the specifications for your Spot Instances are met, your Spot request i
 
 | Status code | Request state | Instance state | 
 | --- | --- | --- | 
-|  `fulfilled`  |  `active`  |  `pending` → `running`  | 
-|  `fulfilled`  |  `active`  |  `stopped` → `running`  | 
+|  fulfilled  |  active  |  pending → running  | 
+|  fulfilled  |  active  |  stopped → running  | 
 
 If you stop a Spot Instance, your Spot request goes into the `marked-for-stop` or `instance-stopped-by-user` state until the Spot Instance can be started again or the request is cancelled\. 
 
 
 | Status code | Request state | Instance state | 
 | --- | --- | --- | 
-|  `marked-for-stop`  | active |  `stopping`  | 
-|  `instance-stopped-by-user`\*  |  `disabled` or `cancelled`\*\*  |  `stopped`  | 
+|  marked\-for\-stop  | active |  stopping  | 
+|  instance\-stopped\-by\-user\*  |  disabled or cancelled\*\*  |  stopped  | 
 
 \* A Spot Instance goes into the `instance-stopped-by-user` state if you stop the instance or run the shutdown command from the instance\. After you've stopped the instance, you can start it again\. On restart, the Spot Instance request returns to the `pending-evaluation` state and then Amazon EC2 launches a new Spot Instance when the constraints are met\. 
 
@@ -90,18 +90,18 @@ Your Spot Instances continue to run as long as your maximum price is at or above
 
 | Status code | Request state | Instance state | 
 | --- | --- | --- | 
-|  `request-canceled-and-instance-running`  |  `cancelled`  |  `running`  | 
-|  `marked-for-stop`  |  `active`  |  `running`  | 
-|  `marked-for-termination`  |  `closed`  |  `running`  | 
-|  `instance-stopped-by-price`  |  `disabled`  |  `stopped`  | 
-|  `instance-stopped-by-user`  |  `disabled`  |  `stopped`  | 
-|  `instance-stopped-no-capacity`  |  `disabled`  |  `stopped`  | 
-|  `instance-terminated-by-price`  |  `closed` \(one\-time\), `open` \(persistent\)  |  `terminated`  | 
-|  `instance-terminated-by-schedule`  |  `closed`  |  `terminated`  | 
-|  `instance-terminated-by-service`  |  `cancelled`  |  `terminated`  | 
-|  `instance-terminated-by-user`  |  `closed` or `cancelled` \*  |  `terminated`  | 
-|  `instance-terminated-no-capacity`  |  `closed` \(one\-time\), `open` \(persistent\)  |  `terminated`  | 
-|  `instance-terminated-launch-group-constraint`  |  `closed` \(one\-time\), `open` \(persistent\)  |  `terminated`  | 
+|  request\-canceled\-and\-instance\-running  |  cancelled  |  running  | 
+|  marked\-for\-stop  |  active  |  running  | 
+|  marked\-for\-termination  |  closed  |  running  | 
+|  instance\-stopped\-by\-price  |  disabled  |  stopped  | 
+|  instance\-stopped\-by\-user  |  disabled  |  stopped  | 
+|  instance\-stopped\-no\-capacity  |  disabled  |  stopped  | 
+|  instance\-terminated\-by\-price  |  closed \(one\-time\), open\(persistent\)  |  terminated  | 
+|  instance\-terminated\-by\-schedule  |  closed  |  terminated  | 
+|  instance\-terminated\-by\-service  |  cancelled  |  terminated  | 
+|  instance\-terminated\-by\-user  |  closed or cancelled \*  |  terminated  | 
+|  instance\-terminated\-no\-capacity  |  closed \(one\-time\), open \(persistent\)  |  terminated  | 
+|  instance\-terminated\-launch\-group\-constraint  |  closed \(one\-time\), open \(persistent\)  |  terminated  | 
 
 \* The request state is `closed` if you terminate the instance but do not cancel the request\. The request state is `cancelled` if you terminate the instance and cancel the request\. Even if you terminate a Spot Instance before you cancel its request, there might be a delay before Amazon EC2 detects that your Spot Instance was terminated\. In this case, the request state can either be `closed` or `cancelled`\.
 

@@ -26,7 +26,6 @@ To allow traffic to a Windows instance, see [Amazon EC2 Security Groups for Wind
   + [Database Server Rules](security-group-rules-reference.md#sg-rules-db-server)
   + [Rules to Connect to Instances from Your Computer](security-group-rules-reference.md#sg-rules-local-access)
   + [Rules to Connect to Instances from an Instance with the Same Security Group](security-group-rules-reference.md#sg-rules-other-instances)
-  + [Rules for Path MTU Discovery](security-group-rules-reference.md#sg-rules-path-mtu)
   + [Rules for Ping/ICMP](security-group-rules-reference.md#sg-rules-ping)
   + [DNS Server Rules](security-group-rules-reference.md#sg-rules-dns)
   + [Amazon EFS Rules](security-group-rules-reference.md#sg-rules-efs)
@@ -92,7 +91,7 @@ In the following example, the security group has specific inbound rules for TCP 
 
 TCP traffic on port 22 \(SSH\) to and from the instance is tracked, because the inbound rule allows traffic from `203.0.113.1/32` only, and not all IP addresses \(`0.0.0.0/0`\)\. TCP traffic on port 80 \(HTTP\) to and from the instance is not tracked, because both the inbound and outbound rules allow all traffic \(`0.0.0.0/0`\)\. ICMP traffic is always tracked, regardless of rules\. If you remove the outbound rule from the security group, all traffic to and from the instance is tracked, including traffic on port 80 \(HTTP\)\.
 
-An existing flow of traffic that is tracked may not be interrupted when you remove the security group rule that enables that flow\. Instead, the flow is interrupted when it's stopped by you or the other host for at least a few minutes \(or up to 5 days for established TCP connections\)\. For UDP, this may require terminating actions on the remote side of the flow\. An untracked flow of traffic is immediately interrupted if the rule that enables the flow is removed or modified\. For example, if you remove a rule that allows all inbound SSH traffic to the instance, your existing SSH connections to the instance are immediately dropped\.
+An untracked flow of traffic is immediately interrupted if the rule that enables the flow is removed or modified\. For example, if you have an open \(0\.0\.0\.0/0\) outbound rule, and you remove a rule that allows all \(0\.0\.0\.0/0\) inbound SSH \(TCP port 22\) traffic to the instance \(or modify it such that the connection would no longer be permitted\), your existing SSH connections to the instance are immediately dropped\. The connection was not previously being tracked, so the change will break the connection\. On the other hand, if you have a narrower inbound rule that initially allows the SSH connection \(meaning that the connection was tracked\), but change that rule to no longer allow new connections from the address of the current SSH client, the existing connection will not be broken by changing the rule\.
 
 For protocols other than TCP, UDP, or ICMP, only the IP address and protocol number is tracked\. If your instance sends traffic to another host \(host B\), and host B initiates the same type of traffic to your instance in a separate request within 600 seconds of the original request or response, your instance accepts it regardless of inbound security group rules\. Your instance accepts it because it’s regarded as response traffic\.
 

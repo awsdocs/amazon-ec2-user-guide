@@ -1,14 +1,14 @@
-# Instance Retirement<a name="instance-retirement"></a>
+# Instance retirement<a name="instance-retirement"></a>
 
 An instance is scheduled to be retired when AWS detects irreparable failure of the underlying hardware hosting the instance\. When an instance reaches its scheduled retirement date, it is stopped or terminated by AWS\. If your instance root device is an Amazon EBS volume, the instance is stopped, and you can start it again at any time\. Starting the stopped instance migrates it to new hardware\. If your instance root device is an instance store volume, the instance is terminated, and cannot be used again\.
 
 **Topics**
-+ [Identifying Instances Scheduled for Retirement](#instance-retirement-identify)
-+ [Working with Instances Scheduled for Retirement](#instance-retirement-working)
++ [Identifying instances scheduled for retirement](#instance-retirement-identify)
++ [Working with instances scheduled for retirement](#instance-retirement-working)
 
 For more information about types of instance events, see [Scheduled Events for Your Instances](monitoring-instances-status-check_sched.md)\.
 
-## Identifying Instances Scheduled for Retirement<a name="instance-retirement-identify"></a>
+## Identifying instances scheduled for retirement<a name="instance-retirement-identify"></a>
 
 If your instance is scheduled for retirement, you'll receive an email prior to the event with the instance ID and retirement date\. This email is sent to the address that's associated with your account; the same email address that you use to log in to the AWS Management Console\. If you use an email account that you do not check regularly, then you can use the Amazon EC2 console or the command line to determine if any of your instances are scheduled for retirement\. To update the contact information for your account, go to the [Account Settings](https://console.aws.amazon.com/billing/home?#/account) page\.<a name="identify-retiring-instances"></a>
 
@@ -31,11 +31,11 @@ You can use one of the following commands\. For more information about these com
 + [describe\-instance\-status](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-status.html) \(AWS CLI\)
 + [Get\-EC2InstanceStatus](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2InstanceStatus.html) \(AWS Tools for Windows PowerShell\)
 
-## Working with Instances Scheduled for Retirement<a name="instance-retirement-working"></a>
+## Working with instances scheduled for retirement<a name="instance-retirement-working"></a>
 
 There are a number of actions available to you when your instance is scheduled for retirement\. The action you take depends on whether your instance root device is an Amazon EBS volume, or an instance store volume\. If you do not know what your instance root device type is, you can find out using the Amazon EC2 console or the command line\.
 
-### Determining Your Instance Root Device Type<a name="instance-retirement-root-device"></a>
+### Determining your instance root device type<a name="instance-retirement-root-device"></a>
 
 **To determine your instance root device type using the console**
 
@@ -51,7 +51,7 @@ You can use one of the following commands\. For more information about these com
 + [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) \(AWS CLI\)
 + [Get\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
 
-### Managing Instances Scheduled for Retirement<a name="instance-retirement-actions"></a>
+### Managing instances scheduled for retirement<a name="instance-retirement-actions"></a>
 
 You can perform one of the actions listed below in order to preserve the data on your retiring instance\. It's important that you take this action before the instance retirement date to prevent unforeseen downtime and data loss\. 
 

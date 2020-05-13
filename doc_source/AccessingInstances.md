@@ -18,5 +18,3 @@ The operating system of your local computer determines the options that you have
 + [SSH client](AccessingInstancesLinux.md)
 + [AWS Systems Manager Session Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html)
 + [Windows Subsystem for Linux](WSL.md)
-
-The Amazon EC2 console provides an option to connect to your instances directly from your browser using a Java SSH client\. However, it is no longer supported on many browsers\. For more information, see [Cannot connect using my browser](TroubleshootingInstancesConnecting.md#troubleshoot-instance-connect-mindterm)\.

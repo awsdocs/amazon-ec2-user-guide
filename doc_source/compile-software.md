@@ -1,4 +1,4 @@
-# Preparing to Compile Software<a name="compile-software"></a>
+# Preparing to compile software on an Amazon Linux instance<a name="compile-software"></a>
 
 There is a wealth of open\-source software available on the Internet that has not been pre\-compiled and made available for download from a package repository\. You may eventually discover a software package that you need to compile yourself, from its source code\. For your system to be able to compile software, you need to install several development tools, such as make, gcc, and autoconf\.
 

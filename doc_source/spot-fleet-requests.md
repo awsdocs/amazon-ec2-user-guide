@@ -353,11 +353,22 @@ The following is example output:
 
 To help categorize and manage your Spot Fleet requests, you can tag them with custom metadata\. You can assign a tag to a Spot Fleet request when you create it, or afterward\. You can assign tags using the Amazon EC2 console or a command line tool\.
 
-When you tag a Spot Fleet request, the instances that are launched by the Spot Fleet are not automatically tagged\. You need to explicitly tag the instances launched by the Spot Fleet\. You can choose to assign tags to only the Spot Fleet request, or to only the instances launched by the fleet, or to both\.
+When you tag a Spot Fleet request, the instances and volumes that are launched by the Spot Fleet are not automatically tagged\. You need to explicitly tag the instances and volumes launched by the Spot Fleet\. You can choose to assign tags to only the Spot Fleet request, or to only the instances launched by the fleet, or to only the volumes attached the instances launched by the fleet, or to all three\.
+
+**Note**  
+Volume tags are only supported for volumes that are attached to On\-Demand Instances\. You can't tag volumes that are attached to Spot Instances\.
 
 For more information about how tags work, see [Tagging your Amazon EC2 resources](Using_Tags.md)\.
 
-**Prerequisite**  
+**Topics**
++ [Prerequisite](#tag-spot-fleet-prereqs)
++ [Tagging a new Spot Fleet](#tag-new-spot-fleet)
++ [Tagging a new Spot Fleet and the instances and volumes that it launches](#tag-new-spot-fleet-and-resources)
++ [Tagging an existing Spot Fleet](#tag-existing-spot-fleet)
++ [Viewing Spot Fleet request tags](#view-spot-fleet-tags)
+
+### Prerequisite<a name="tag-spot-fleet-prereqs"></a>
+
 Grant the IAM user the permission to tag resources\. For more information, see [Example: Tagging resources](ExamplePolicies_EC2.md#iam-example-taggingresources)\.
 
 **To grant an IAM user the permission to tag resources**  
@@ -394,6 +405,8 @@ We currently do not support resource\-level permissions for the `spot-fleet-requ
     "Resource": "arn:aws:ec2:us-east-1:111122223333:spot-fleet-request/*"
 }
 ```
+
+### Tagging a new Spot Fleet<a name="tag-new-spot-fleet"></a>
 
 **To tag a new Spot Fleet request using the console**
 
@@ -451,8 +464,10 @@ In the following example, the Spot Fleet request is tagged with two tags: Key=En
 }
 ```
 
-**To tag a new Spot Fleet request and the instances that it launches using the AWS CLI**  
-To tag a Spot Fleet request when you create it, and to tag the instances when they are launched by the fleet, configure the Spot Fleet request configuration as follows:
+### Tagging a new Spot Fleet and the instances and volumes that it launches<a name="tag-new-spot-fleet-and-resources"></a>
+
+**To tag a new Spot Fleet request and the instances and volumes that it launches using the AWS CLI**  
+To tag a Spot Fleet request when you create it, and to tag the instances and volumes when they are launched by the fleet, configure the Spot Fleet request configuration as follows:
 
 **Spot Fleet request tags:**
 + Specify the tags for the Spot Fleet request in `SpotFleetRequestConfig`\.
@@ -465,6 +480,9 @@ To tag a Spot Fleet request when you create it, and to tag the instances when th
 + For `Tags`, specify the key\-value pair\. You can specify more than one key\-value pair\.
 
   Alternatively, you can specify the tags for the instance in the [launch template](ec2-launch-templates.md#create-launch-template) that is referenced in the Spot Fleet request\.
+
+**Volume tags:**
++ Specify the tags for the volumes in the [launch template](ec2-launch-templates.md#create-launch-template) that is referenced in the Spot Fleet request\. Volume tagging in `LaunchSpecifications` is not supported\.
 
 In the following example, the Spot Fleet request is tagged with two tags: Key=Environment and Value=Production, and Key=Cost\-Center and Value=123\. The instances that are launched by the fleet are tagged with one tag \(which is the same as one of the tags for the Spot Fleet request\): Key=Cost\-Center and Value=123\.
 
@@ -559,14 +577,14 @@ In the following example, the instances that are launched by the fleet are tagge
 }
 ```
 
-**To tag an existing Spot Fleet request using the AWS CLI**  
-You can use the [create\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-tags.html) command to tag existing resources\. In the following example, the existing Spot Fleet request is tagged with Key=purpose and Value=test\.
+**To tag volumes attached to On\-Demand Instances launched by a Spot Fleet using the AWS CLI**  
+To tag volumes when they are created by the fleet, you must specify the tags in the [launch template](ec2-launch-templates.md#create-launch-template) that is referenced in the Spot Fleet request\.
 
-```
-aws ec2 create-tags \
-    --resources sfr-11112222-3333-4444-5555-66666EXAMPLE \
-    --tags Key=purpose,Value=test
-```
+**Note**  
+Volume tags are only supported for volumes that are attached to On\-Demand Instances\. You can't tag volumes that are attached to Spot Instances\.  
+Volume tagging in `LaunchSpecifications` is not supported\.
+
+### Tagging an existing Spot Fleet<a name="tag-existing-spot-fleet"></a>
 
 **To tag an existing Spot Fleet request using the console**
 
@@ -577,6 +595,17 @@ After you have created a Spot Fleet request, you can add tags to the fleet reque
 1. Select your Spot Fleet request\.
 
 1. Choose the **Tags** tab and choose **Create Tag**\.
+
+**To tag an existing Spot Fleet request using the AWS CLI**  
+You can use the [create\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-tags.html) command to tag existing resources\. In the following example, the existing Spot Fleet request is tagged with Key=purpose and Value=test\.
+
+```
+aws ec2 create-tags \
+    --resources sfr-11112222-3333-4444-5555-66666EXAMPLE \
+    --tags Key=purpose,Value=test
+```
+
+### Viewing Spot Fleet request tags<a name="view-spot-fleet-tags"></a>
 
 **To view Spot Fleet request tags using the console**
 

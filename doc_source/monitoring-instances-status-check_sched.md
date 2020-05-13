@@ -322,7 +322,7 @@ $ aws ec2 describe-instance-event-notification-attributes
 
 ## Working with Instances Scheduled to Stop or Retire<a name="schedevents_actions_retire"></a>
 
-When AWS detects irreparable failure of the underlying host for your instance, it schedules the instance to stop or terminate, depending on the type of root device for the instance\. If the root device is an EBS volume, the instance is scheduled to stop\. If the root device is an instance store volume, the instance is scheduled to terminate\. For more information, see [Instance Retirement](instance-retirement.md)\.
+When AWS detects irreparable failure of the underlying host for your instance, it schedules the instance to stop or terminate, depending on the type of root device for the instance\. If the root device is an EBS volume, the instance is scheduled to stop\. If the root device is an instance store volume, the instance is scheduled to terminate\. For more information, see [Instance retirement](instance-retirement.md)\.
 
 **Important**  
 Any data stored on instance store volumes is lost when an instance is stopped or terminated\. This includes instance store volumes that are attached to an instance that has an EBS volume as the root device\. Be sure to save data from your instance store volumes that you might need later before the instance is stopped or terminated\.

@@ -9,11 +9,11 @@ When working with instance user data, keep the following in mind:
 
 ## Specify instance user data at launch<a name="specify-user-data-launch"></a>
 
-You can specify user data when you launch an instance\. For more information, see [Launching an instance using the Launch Instance Wizard](launching-instance.md) and [Running Commands on Your Linux Instance at Launch](user-data.md)\.
+You can specify user data when you launch an instance\. For more information, see [Launching an instance using the Launch Instance Wizard](launching-instance.md) and [Running commands on your Linux instance at launch](user-data.md)\.
 
 ## Modify instance user data<a name="modify-user-data-run"></a>
 
-You can modify user data for an instance in the stopped state if the root volume is an EBS volume\. For more information, see [View and Update the Instance User Data](user-data.md#user-data-view-change)\.
+You can modify user data for an instance in the stopped state if the root volume is an EBS volume\. For more information, see [View and update the instance user data](user-data.md#user-data-view-change)\.
 
 ## Retrieve instance user data<a name="instancedata-user-data-retrieval"></a>
 
@@ -73,4 +73,4 @@ chkconfig httpd on
 
 ------
 
-To retrieve user data for an instance from your own computer, see [User Data and the AWS CLI](user-data.md#user-data-api-cli)
+To retrieve user data for an instance from your own computer, see [User data and the AWS CLI](user-data.md#user-data-api-cli)

@@ -1,35 +1,47 @@
 # General purpose instances<a name="general-purpose-instances"></a>
 
-General purpose instances provide a balance of compute, memory, and networking resources, and can be used for a variety of workloads\.
+General purpose instances provide a balance of compute, memory, and networking resources, and can be used for a wide range of workloads\.
 
-These instances provide an ideal cloud infrastructure, offering a balance of compute, memory, and networking resources for a broad range of applications that are deployed in the cloud\. They are well\-suited for the following applications:
-+ Web and application servers
-+ Small and medium databases
-+ Gaming servers
+**A1 instances**
+
+These instances are ideally suited for scale\-out workloads that are supported by the Arm ecosystem\. These instances are well\-suited for the following:
++ Web servers
++ Containerized microservices
+
+Bare metal instances, such as `a1.metal`, provide your applications with direct access to physical resources of the host server, such as processors and memory\.
+
+For more information, see [AWS Graviton Processor](https://aws.amazon.com/ec2/graviton) and [Amazon EC2 A1 Instances](https://aws.amazon.com/ec2/instance-types/a1)\.
+
+**M5 and M5a instances**
+
+These instances provide an ideal cloud infrastructure, offering a balance of compute, memory, and networking resources for a broad range of applications that are deployed in the cloud\. They are well\-suited for the following:
++ Small and midsize databases
++ Data processing tasks that require additional memory
 + Caching fleets
-+ Running backend servers for SAP, Microsoft SharePoint, cluster computing, and other enterprise applications
++ Backend servers for SAP, Microsoft SharePoint, cluster computing, and other enterprise applications
 
-For more information, see [Amazon EC2 M5 Instances](https://aws.amazon.com/ec2/instance-types/m5)\.
+For more information, see [Amazon EC2 M5 and M5a Instances](https://aws.amazon.com/ec2/instance-types/m5)\.
 
 Bare metal instances, such as `m5.metal`, provide your applications with direct access to physical resources of the host server, such as processors and memory\. These instances are well suited for the following:
 + Workloads that require access to low\-level hardware features \(for example, Intel VT\) that are not available or fully supported in virtualized environments
 + Applications that require a non\-virtualized environment for licensing or support
 
-**A1 instances**
+**M6g instances**
 
-These instances are ideally suited for scale\-out workloads that are supported by the Arm ecosystem\. These instances are well\-suited for the following applications:
-+ Web servers
-+ Containerized microservices
+These instances are powered by AWS Graviton2 processors and deliver balanced compute, memory, and networking for a broad range a general purpose workloads\. They are well suited for the following:
++ Application servers
++ Microservices
++ Gaming servers
++ Midsize data stores
 + Caching fleets
-+ Distributed data stores
 
-Bare metal instances, such as `a1.metal`, provide your applications with direct access to physical resources of the host server, such as processors and memory\.
+Bare metal instances, such as `m6g.metal`, provide your applications with direct access to physical resources of the host server, such as processors and memory\.
 
-For more information, see [AWS Graviton Processor](https://aws.amazon.com/ec2/graviton)\.
+For more information, see [Amazon EC2 M6g Instances](https://aws.amazon.com/ec2/instance-types/m6)\.
 
 **T2, T3, and T3a instances**
 
-These instances provide a baseline level of CPU performance with the ability to burst to a higher level when required by your workload\. An Unlimited instance can sustain high CPU performance for any period of time whenever required\. For more information, see [Burstable performance instances](burstable-performance-instances.md)\. These instances are well\-suited for the following applications:
+These instances provide a baseline level of CPU performance with the ability to burst to a higher level when required by your workload\. An Unlimited instance can sustain high CPU performance for any period of time whenever required\. For more information, see [Burstable performance instances](burstable-performance-instances.md)\. These instances are well\-suited for the following:
 + Websites and web applications
 + Code repositories
 + Development, build, test, and staging environments
@@ -115,6 +127,15 @@ The following is a summary of the hardware specifications for general purpose in
 | m5n\.12xlarge | 48 | 192 | 
 | m5n\.16xlarge | 64 | 256 | 
 | m5n\.24xlarge | 96 | 384 | 
+| m6g\.medium | 1 | 4 | 
+| m6g\.large | 2 | 8 | 
+| m6g\.xlarge | 4 | 16 | 
+| m6g\.2xlarge | 8 | 32 | 
+| m6g\.4xlarge | 16 | 64 | 
+| m6g\.8xlarge | 32 | 128 | 
+| m6g\.12xlarge | 48 | 192 | 
+| m6g\.16xlarge | 64 | 256 | 
+| m6g\.metal | 64 | 256 | 
 | t2\.nano | 1 | 0\.5 | 
 | t2\.micro | 1 | 1 | 
 | t2\.small | 1 | 2 | 
@@ -160,13 +181,13 @@ The following is a summary of network performance for general purpose instances 
 | t3\.nano \| t3\.micro \| t3\.small \| t3\.medium \| t3\.large \| t3\.xlarge \| t3\.2xlarge \| t3a\.nano \| t3a\.micro \| t3a\.small \| t3a\.medium \| t3a\.large \| t3a\.xlarge \| t3a\.2xlarge | Up to 5 Gbps † | [ENA](enhanced-networking-ena.md) | 
 | m4\.large | Moderate | [Intel 82599 VF](sriov-networking.md) | 
 |  m4\.xlarge \| m4\.2xlarge \| m4\.4xlarge  | High | [Intel 82599 VF](sriov-networking.md) | 
-|  a1\.4xlarge and smaller \|  a1\.metal \|  m5\.4xlarge and smaller \| m5a\.8xlarge and smaller \| m5ad\.8xlarge and smaller \| m5d\.4xlarge and smaller  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
+|  a1\.4xlarge and smaller \|  a1\.metal \|  m5\.4xlarge and smaller \| m5a\.8xlarge and smaller \| m5ad\.8xlarge and smaller \| m5d\.4xlarge and smaller \| m6g\.4xlarge and smaller  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
 | m4\.10xlarge | 10 Gbps | [Intel 82599 VF](sriov-networking.md) | 
 |  m5\.8xlarge \| m5\.12xlarge \| m5a\.12xlarge \| m5ad\.12xlarge \| m5d\.8xlarge \| m5d\.12xlarge  | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  m5a\.16xlarge \| m5ad\.16xlarge  | 12 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  m5\.16xlarge \| m5a\.24xlarge \| m5ad\.24xlarge \| m5d\.16xlarge  | 20 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  m5a\.16xlarge \| m5ad\.16xlarge  \| m6g\.8xlarge  | 12 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  m5\.16xlarge \| m5a\.24xlarge \| m5ad\.24xlarge \| m5d\.16xlarge  \| m6g\.12xlarge  | 20 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  m5dn\.4xlarge and smaller \| m5n\.4xlarge and smaller  | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
-|  m4\.16xlarge \| m5\.24xlarge \| m5\.metal \| m5d\.24xlarge \| m5d\.metal \| m5dn\.8xlarge \| m5n\.8xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  m4\.16xlarge \| m5\.24xlarge \| m5\.metal \| m5d\.24xlarge \| m5d\.metal \| m5dn\.8xlarge \| m5n\.8xlarge  \| m6g\.16xlarge \| m6g\.metal  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  m5dn\.12xlarge \| m5n\.12xlarge  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  m5dn\.16xlarge \| m5n\.16xlarge  | 75 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  m5dn\.24xlarge \| m5n\.24xlarge  | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
@@ -229,6 +250,7 @@ The following is a summary of features for general purpose instances:
 | M5d | No | Yes | NVMe \* | Yes | 
 | M5dn | No | Yes | NVMe \* | Yes | 
 | M5n | Yes | Yes | No | Yes | 
+| M6g | Yes | Yes | No | Yes | 
 | T2 | Yes | No | No | No | 
 | T3 | Yes | Yes | No | No | 
 | T3a | Yes | Yes | No | No | 
@@ -236,7 +258,7 @@ The following is a summary of features for general purpose instances:
 **\*** The root device volume must be an Amazon EBS volume\.
 
 For more information, see the following:
-+ [Amazon EBS and NVMe on Linux Instances](nvme-ebs-volumes.md)
++ [Amazon EBS and NVMe on Linux instances](nvme-ebs-volumes.md)
 + [Amazon EC2 Instance Store](InstanceStorage.md)
 + [Placement Groups](placement-groups.md)
 
@@ -244,6 +266,7 @@ For more information, see the following:
 + M5, M5d, and T3 instances feature a 3\.1 GHz Intel Xeon Platinum 8000 series processor from either the first generation \(Skylake\-SP\) or second generation \(Cascade Lake\)\.
 + M5a, M5ad, and T3a instances feature a 2\.5 GHz AMD EPYC 7000 series processor\.
 + A1 instances feature a 2\.3 GHz AWS Graviton processor based on 64\-bit Arm architecture\.
++ M6g instances feature an AWS Graviton2 processor based on 64\-bit Arm architecture\.
 + M4, M5, M5a, M5ad, M5d, `t2.large` and larger, and `t3.large` and larger, and `t3a.large` and larger instance types require 64\-bit HVM AMIs\. They have high\-memory, and require a 64\-bit operating system to take advantage of that capacity\. HVM AMIs provide superior performance in comparison to paravirtual \(PV\) AMIs on high\-memory instance types\. In addition, you must use an HVM AMI to take advantage of enhanced networking\.
 + Instances built on the Nitro System have the following requirements:
   + [NVMe drivers](nvme-ebs-volumes.md) must be installed

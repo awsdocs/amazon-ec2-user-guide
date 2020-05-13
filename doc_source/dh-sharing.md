@@ -11,6 +11,7 @@ A Dedicated Host owner can share a Dedicated Host with:
 
 **Topics**
 + [Prerequisites for sharing Dedicated Hosts](#dh-sharing-prereq)
++ [Limitations for sharing Dedicated Hosts](#dh-sharing-limitation)
 + [Related services](#dh-sharing-related)
 + [Sharing across Availability Zones](#dh-sharing-azs)
 + [Sharing a Dedicated Host](#sharing-dh)
@@ -25,6 +26,10 @@ A Dedicated Host owner can share a Dedicated Host with:
 ## Prerequisites for sharing Dedicated Hosts<a name="dh-sharing-prereq"></a>
 + To share a Dedicated Host, you must own it in your AWS account\. You can't share a Dedicated Host that has been shared with you\.
 + To share a Dedicated Host with your AWS organization or an organizational unit in your AWS organization, you must enable sharing with AWS Organizations\. For more information, see [Enable Sharing with AWS Organizations](https://docs.aws.amazon.com/ram/latest/userguide/getting-started-sharing.html) in the *AWS RAM User Guide*\.
+
+## Limitations for sharing Dedicated Hosts<a name="dh-sharing-limitation"></a>
+
+You can't share Dedicated Hosts that have been allocated for the following instance types: `u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, `u-18tb1.metal`, and `u-24tb1.metal`\.
 
 ## Related services<a name="dh-sharing-related"></a>
 
@@ -49,6 +54,9 @@ To identify the location of your Dedicated Hosts relative to your accounts, you 
 ## Sharing a Dedicated Host<a name="sharing-dh"></a>
 
 When an owner shares a Dedicated Host, it enables consumers to launch instances on the host\. Consumers can launch as many instances onto the shared host as its available capacity allows\.
+
+**Important**  
+Note that you are responsible for ensuring that you have appropriate license rights to share any BYOL licenses on your Dedicated Hosts\.
 
 If you share a Dedicated Host with auto\-placement enabled, keep the following in mind as it could lead to unintended Dedicated Host usage:
 + If consumers launch instances with Dedicated Host tenancy and they do not have capacity on a Dedicated Host that they own in their account, the instance is automatically launched onto the shared Dedicated Host\.

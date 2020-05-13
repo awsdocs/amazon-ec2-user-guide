@@ -115,12 +115,12 @@ The following tables provide examples of calculations to determine the price per
 
 | Instance type | Instance weight | Price per instance hour | Price per unit hour | Number of instances launched | 
 | --- | --- | --- | --- | --- | 
-| `r3.xlarge` | 2 | $0\.05 |  \.025 \(\.05 divided by 2\)  |  5 \(10 divided by 2\)  | 
+| r3\.xlarge | 2 | $0\.05 |  \.025 \(\.05 divided by 2\)  |  5 \(10 divided by 2\)  | 
 
 
 | Instance type | Instance weight | Price per instance hour | Price per unit hour | Number of instances launched | 
 | --- | --- | --- | --- | --- | 
-| `r3.8xlarge` | 8 | $0\.10 |  \.0125 \(\.10 divided by 8\)  |  2 \(10 divided by 8, result rounded up\)  | 
+| r3\.8xlarge | 8 | $0\.10 |  \.0125 \(\.10 divided by 8\)  |  2 \(10 divided by 8, result rounded up\)  | 
 
 Use Spot Fleet instance weighting as follows to provision the target capacity that you want in the pools with the lowest price per unit at the time of fulfillment:
 

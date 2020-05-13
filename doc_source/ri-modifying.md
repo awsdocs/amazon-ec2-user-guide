@@ -112,13 +112,13 @@ The `.metal` instance sizes do not have a single normalization factor\. They var
 
 | Bare metal instance size | Normalization factor | 
 | --- | --- | 
-|  `c5.metal`  |  192  | 
-|  `i3.metal`  |  128  | 
-|  `r5.metal`  |  192  | 
-|  `r5d.metal`  |  192  | 
-|  `z1d.metal`  |  96  | 
-|  `m5.metal`  |  192  | 
-|  `m5d.metal`  |  192  | 
+| c5\.metal |  192  | 
+| i3\.metal |  128  | 
+| r5\.metal |  192  | 
+| r5d\.metal |  192  | 
+| z1d\.metal |  96  | 
+| m5\.metal |  192  | 
+| m5d\.metal |  192  | 
 
 For example, an `i3.metal` instance has a normalization factor of 128\. If you purchase an `i3.metal` default tenancy Amazon Linux/Unix Reserved Instance, you can divide the reservation as follows:
 + An `i3.16xlarge` is the same size as an `i3.metal` instance, so its normalization factor is 128 \(128/1\)\. The reservation for one `i3.metal` instance can be modified into one `i3.16xlarge` instance\.

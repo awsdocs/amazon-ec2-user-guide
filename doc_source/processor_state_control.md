@@ -16,6 +16,8 @@ The following instance types provide the ability for an operating system to cont
 + Storage optimized: `i3en.12xlarge` \| `i3en.24xlarge`
 + Accelerated computing: `inf1.24xlarge` \| `p3dn.24xlarge`
 
+AWS Graviton processors have built\-in power saving modes and operate at a fixed frequency\. Therefore, they do not provide the ability for the operating system to control C\-states and P\-states\.
+
 You might want to change the C\-state or P\-state settings to increase processor performance consistency, reduce latency, or tune your instance for a specific workload\. The default C\-state and P\-state settings provide maximum performance, which is optimal for most workloads\. However, if your application would benefit from reduced latency at the cost of higher single\- or dual\-core frequencies, or from consistent performance at lower frequencies as opposed to bursty Turbo Boost frequencies, consider experimenting with the C\-state or P\-state settings that are available to these instances\.
 
 The following sections describe the different processor state configurations and how to monitor the effects of your configuration\. These procedures were written for, and apply to Amazon Linux; however, they may also work for other Linux distributions with a Linux kernel version of 3\.9 or newer\. For more information about other Linux distributions and processor state control, see your system\-specific documentation\.

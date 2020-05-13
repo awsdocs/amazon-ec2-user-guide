@@ -4,7 +4,7 @@ If you're new to Amazon EC2, see the following topics to get started:
 + [What is Amazon EC2?](concepts.md)
 + [Setting up with Amazon EC2](get-set-up-for-amazon-ec2.md)
 + [Getting started with Amazon EC2 Linux instances](EC2_GetStarted.md)
-+ [Instance Lifecycle](ec2-instance-lifecycle.md)
++ [Instance lifecycle](ec2-instance-lifecycle.md)
 
 Before you launch a production environment, you need to answer the following questions\.
 

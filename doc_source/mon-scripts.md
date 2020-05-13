@@ -9,7 +9,7 @@ You can use the CloudWatch agent to collect both system metrics and log files fr
 ## CloudWatch Monitoring Scripts<a name="monitoring-scripts-intro"></a>
 
 **Important**  
-We recommend that you use the CloudWatch agent to collect metrics and logs\. The information about the monitoring scripts is provided for customers who are still using the old monitoring scripts to gather information from their Linux instances\.
+We recommend that you use the CloudWatch agent to collect metrics and logs\. The information about the monitoring scripts is provided for customers who are still using the old monitoring scripts to gather information from their Linux instances\. The old monitoring scripts are no longer supported\. 
 
 The monitoring scripts demonstrate how to produce and consume custom metrics for Amazon CloudWatch\. These sample Perl scripts comprise a fully functional example that reports memory, swap, and disk space utilization metrics for a Linux instance\. 
 

@@ -272,4 +272,4 @@ The migration process involves:
 
 1. If the original instance is a Reserved Instance, change the Availability Zone for your reservation\. \(If you also changed the instance type, you can also change the instance type for your reservation\.\) For more information, see [Submitting modification requests](ri-modifying.md#ri-modification-process)\.
 
-1. \(Optional\) Terminate the original instance\. For more information, see [Terminating an Instance](terminating-instances.md#terminating-instances-console)\.
+1. \(Optional\) Terminate the original instance\. For more information, see [Terminating an instance](terminating-instances.md#terminating-instances-console)\.

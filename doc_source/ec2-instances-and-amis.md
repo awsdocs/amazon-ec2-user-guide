@@ -44,7 +44,7 @@ When an instance is terminated, the instance performs a normal shutdown\. The ro
 
 To prevent accidental termination, you can disable instance termination\. If you do so, ensure that the `disableApiTermination` attribute is set to `true` for the instance\. To control the behavior of an instance shutdown, such as `shutdown -h` in Linux or `shutdown` in Windows, set the `instanceInitiatedShutdownBehavior` instance attribute to `stop` or `terminate` as desired\. Instances with Amazon EBS volumes for the root device default to `stop`, and instances with instance\-store root devices are always terminated as the result of an instance shutdown\.
 
-For more information, see [Instance Lifecycle](ec2-instance-lifecycle.md)\.
+For more information, see [Instance lifecycle](ec2-instance-lifecycle.md)\.
 
 ## AMIs<a name="amis"></a>
 

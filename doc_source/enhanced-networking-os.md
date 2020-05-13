@@ -2,7 +2,7 @@
 
 To achieve the maximum network performance on instances with enhanced networking, you may need to modify the default operating system configuration\. We recommend the following configuration changes for applications that require high network performance\.
 
-In addition to these operating system optimizations, you should also consider the maximum transmission unit \(MTU\) of your network traffic, and adjust according to your workload and network architecture\. For more information, see [Network Maximum Transmission Unit \(MTU\) for Your EC2 Instance](network_mtu.md)\.
+In addition to these operating system optimizations, you should also consider the maximum transmission unit \(MTU\) of your network traffic, and adjust according to your workload and network architecture\. For more information, see [Network maximum transmission unit \(MTU\) for your EC2 instance](network_mtu.md)\.
 
 AWS regularly measures average round trip latencies between instances launched in a cluster placement group of 50us and tail latencies of 200us at the 99\.9 percentile\. If your applications require consistently low latencies, we recommend using the latest version of the ENA drivers on fixed performance Nitro\-based instances\.
 

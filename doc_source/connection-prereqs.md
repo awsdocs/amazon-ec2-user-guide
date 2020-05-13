@@ -32,23 +32,18 @@
   Ensure that the security group associated with your instance allows incoming SSH traffic from your IP address\. The default security group for the VPC does not allow incoming SSH traffic by default\. The security group created by the launch instance wizard enables SSH traffic by default\. For more information, see [Authorizing inbound traffic for your Linux instances](authorizing-access-to-an-instance.md)\.
 
 ## Locate the private key<a name="connection-prereqs-private-key"></a>
-+ **Locate the private key**** and verify permissions**
++ **Locate the private key**
 
   Get the fully\-qualified path to the location on your computer of the `.pem` file for the key pair that you specified when you launched the instance\. For more information about how you created your key pair, see [Creating a Key Pair Using Amazon EC2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#having-ec2-create-your-key-pair)\.
++ **Set the permissions of your private key**
 
-   Verify that the `.pem` file has permissions of 0400, not 0777\. For more information, see [Error: Unprotected private key file](TroubleshootingInstancesConnecting.md#troubleshoot-unprotected-key)\.
+  If you will use an SSH client on a macOS or Linux computer to connect to your Linux instance, use the following command to set the permissions of your private key file so that only you can read it\.
 
-**To set the permissions of your private key**
+  ```
+  chmod 400 my-key-pair.pem
+  ```
 
-1. In a command line shell, change directories to the location of the private key file that you created when you launched the instance\.
-
-1. Use the following command to set the permissions of your private key file so that only you can read it\.
-
-   ```
-   chmod 400 /path/my-key-pair.pem
-   ```
-
-   If you do not set these permissions, then you cannot connect to your instance using this key pair\. For more information, see [Error: Unprotected private key file](TroubleshootingInstancesConnecting.md#troubleshoot-unprotected-key)\.
+  If you do not set these permissions, then you cannot connect to your instance using this key pair\. For more information, see [Error: Unprotected private key file](TroubleshootingInstancesConnecting.md#troubleshoot-unprotected-key)\.
 
 ## \(Optional\) Get the instance fingerprint<a name="connection-prereqs-fingerprint"></a>
 

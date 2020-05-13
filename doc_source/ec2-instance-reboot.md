@@ -1,4 +1,4 @@
-# Reboot Your Instance<a name="ec2-instance-reboot"></a>
+# Reboot your instance<a name="ec2-instance-reboot"></a>
 
 An instance reboot is equivalent to an operating system reboot\. In most cases, it takes only a few minutes to reboot your instance\. When you reboot an instance, it keeps its public DNS name \(IPv4\), private IPv4 address, IPv6 address \(if applicable\), and any data on its instance store volumes\.
 

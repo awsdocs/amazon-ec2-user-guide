@@ -84,7 +84,7 @@ Create a new launch template using parameters that you define, or use an existin
    + **Size**: For Amazon EBS volumes, the storage size\.
    + **Volume type**: For Amazon EBS volumes, the volume type\. For more information, see [Amazon EBS volume types](ebs-volume-types.md)\.
    + **IOPS**: For the Provisioned IOPS SSD volume type, the number of I/O operations per second \(IOPS\) that the volume can support\.
-   + **Delete on termination**: For Amazon EBS volumes, whether to delete the volume when the instance is terminated\. For more information, see [Preserving Amazon EBS Volumes on Instance Termination](terminating-instances.md#preserving-volumes-on-termination)\.
+   + **Delete on termination**: For Amazon EBS volumes, whether to delete the volume when the instance is terminated\. For more information, see [Preserving Amazon EBS volumes on instance termination](terminating-instances.md#preserving-volumes-on-termination)\.
    + **Encrypted**: If the instance type supports EBS encryption, you can enable encryption for the volume\. If you have enabled encryption by default in this Region, encryption is enabled for you\. For more information, see [Amazon EBS encryption](EBSEncryption.md)\.
    + **Key**: The CMK to use for EBS encryption\. You can specify the ARN of any customer master key \(CMK\) that you created using the AWS Key Management Service\. If you specify a CMK, you must also use **Encrypted** to enable encryption\.
 
@@ -106,9 +106,9 @@ Create a new launch template using parameters that you define, or use an existin
 1. For **Advanced details**, expand the section to view the fields and specify any additional parameters for the instance\.
    + **Purchasing option**: The purchasing model\. Choose **Request Spot Instances** to request Spot Instances at the Spot price, capped at the On\-Demand price, and choose **Customize** to change the default Spot Instance settings\. If you do not request a Spot Instance, EC2 launches an On\-Demand Instance by default\. For more information, see [Spot Instances](using-spot-instances.md)\.
    + **IAM instance profile**: An AWS Identity and Access Management \(IAM\) instance profile to associate with the instance\. For more information, see [IAM roles for Amazon EC2](iam-roles-for-amazon-ec2.md)\.
-   + **Shutdown behavior**: Whether the instance should stop or terminate when shut down\. For more information, see [Changing the Instance Initiated Shutdown Behavior](terminating-instances.md#Using_ChangingInstanceInitiatedShutdownBehavior)\.
+   + **Shutdown behavior**: Whether the instance should stop or terminate when shut down\. For more information, see [Changing the instance initiated shutdown behavior](terminating-instances.md#Using_ChangingInstanceInitiatedShutdownBehavior)\.
    + **Stop \- Hibernate behavior**: Whether the instance is enabled for hibernation\. This field is only valid for instances that meet the hibernation prerequisites\. For more information, see [Hibernate your Linux instance](Hibernate.md)\.
-   + **Termination protection**: Whether to prevent accidental termination\. For more information, see [Enabling Termination Protection for an Instance](terminating-instances.md#Using_ChangingDisableAPITermination)\.
+   + **Termination protection**: Whether to prevent accidental termination\. For more information, see [Enabling termination protection](terminating-instances.md#Using_ChangingDisableAPITermination)\.
    + **Detailed CloudWatch monitoring**: Whether to enable detailed monitoring of the instance using Amazon CloudWatch\. Additional charges apply\. For more information, see [Monitoring Your Instances Using CloudWatch](using-cloudwatch.md)\.
    + **Elastic inference**: An elastic inference accelerator to attach to your EC2 CPU instance\. For more information, see [Working with Amazon Elastic Inference](https://docs.aws.amazon.com/elastic-inference/latest/developerguide/working-with-ei.html) in the *Amazon Elastic Inference Developer Guide*\.
    + **T2/T3 Unlimited**: Whether to enable applications to burst beyond the baseline for as long as needed\. This field is only valid for T2, T3, and T3a instances\. Additional charges may apply\. For more information, see [Burstable performance instances](burstable-performance-instances.md)\.
@@ -122,7 +122,7 @@ Create a new launch template using parameters that you define, or use an existin
    + **Metadata accessible**: Whether to enable or disable access to the instance metadata\. For more information, see [Configuring the instance metadata service](configuring-instance-metadata-service.md)\.
    + **Metadata version**: If you enable access to the instance metadata, you can choose to require the use of Instance Metadata Service Version 2 when requesting instance metadata\. For more information, see [Configuring instance metadata options for new instances](configuring-instance-metadata-service.md#configuring-IMDS-new-instances)\.
    + **Metadata token response hop limit**: If you enable instance metadata, you can set the allowable number of network hops for the metadata token\. For more information, see [Configuring the instance metadata service](configuring-instance-metadata-service.md)\.
-   + **User data**: You can specify user data to configure an instance during launch, or to run a configuration script\. For more information, see [Running Commands on Your Linux Instance at Launch](user-data.md)\.
+   + **User data**: You can specify user data to configure an instance during launch, or to run a configuration script\. For more information, see [Running commands on your Linux instance at launch](user-data.md)\.
 
 1. Choose **Create launch template**\.
 
@@ -166,7 +166,7 @@ Create a new launch template using parameters that you define, or use an existin
    + **Size**: For Amazon EBS volumes, the storage size\.
    + **Volume type**: For Amazon EBS volumes, the volume type\. For more information, see [Amazon EBS volume types](ebs-volume-types.md)\.
    + **IOPS**: For the Provisioned IOPS SSD volume type, the number of I/O operations per second \(IOPS\) that the volume can support\.
-   + **Delete on termination**: For Amazon EBS volumes, whether to delete the volume when the instance is terminated\. For more information, see [Preserving Amazon EBS Volumes on Instance Termination](terminating-instances.md#preserving-volumes-on-termination)\.
+   + **Delete on termination**: For Amazon EBS volumes, whether to delete the volume when the instance is terminated\. For more information, see [Preserving Amazon EBS volumes on instance termination](terminating-instances.md#preserving-volumes-on-termination)\.
    + **Encrypted**: If the instance type supports EBS encryption, you can enable encryption for the volume\. If you have enabled encryption by default in this Region, encryption is enabled for you\. For more information, see [Amazon EBS encryption](EBSEncryption.md)\.
    + **Key**: The CMK to use for EBS encryption\. You can specify the ARN of any customer master key \(CMK\) that you created using the AWS Key Management Service\. If you specify a CMK, you must also use **Encrypted** to enable encryption\.
 
@@ -175,9 +175,9 @@ Create a new launch template using parameters that you define, or use an existin
 1. For **Advanced Details**, expand the section to view the fields and specify any additional parameters for the instance\.
    + **Purchasing option**: The purchasing model\. Choose **Request Spot instances** to request Spot Instances at the Spot price, capped at the On\-Demand price, and choose **Customize Spot parameters** to change the default Spot Instance settings\. If you do not request a Spot Instance, EC2 launches an On\-Demand Instance by default\. For more information, see [Spot Instances](using-spot-instances.md)\.
    + **IAM instance profile**: An AWS Identity and Access Management \(IAM\) instance profile to associate with the instance\. For more information, see [IAM roles for Amazon EC2](iam-roles-for-amazon-ec2.md)\.
-   + **Shutdown behavior**: Whether the instance should stop or terminate when shut down\. For more information, see [Changing the Instance Initiated Shutdown Behavior](terminating-instances.md#Using_ChangingInstanceInitiatedShutdownBehavior)\.
+   + **Shutdown behavior**: Whether the instance should stop or terminate when shut down\. For more information, see [Changing the instance initiated shutdown behavior](terminating-instances.md#Using_ChangingInstanceInitiatedShutdownBehavior)\.
    + **Stop \- Hibernate behavior**: Whether the instance is enabled for hibernation\. This field is only valid for instances that meet the hibernation prerequisites\. For more information, see [Hibernate your Linux instance](Hibernate.md)\.
-   + **Termination protection**: Whether to prevent accidental termination\. For more information, see [Enabling Termination Protection for an Instance](terminating-instances.md#Using_ChangingDisableAPITermination)\.
+   + **Termination protection**: Whether to prevent accidental termination\. For more information, see [Enabling termination protection](terminating-instances.md#Using_ChangingDisableAPITermination)\.
    + **Monitoring**: Whether to enable detailed monitoring of the instance using Amazon CloudWatch\. Additional charges apply\. For more information, see [Monitoring Your Instances Using CloudWatch](using-cloudwatch.md)\.
    + **T2/T3 Unlimited**: Whether to enable applications to burst beyond the baseline for as long as needed\. This field is only valid for T2 and T3 instances\. Additional charges may apply\. For more information, see [Burstable performance instances](burstable-performance-instances.md)\.
    + **Placement group name**: Specify a placement group in which to launch the instance\. Not all instance types can be launched in a placement group\. For more information, see [Placement Groups](placement-groups.md)\.
@@ -185,7 +185,7 @@ Create a new launch template using parameters that you define, or use an existin
    + **Tenancy**: Choose whether to run your instance on shared hardware \(**Shared**\), isolated, dedicated hardware \(**Dedicated**\), or on a Dedicated Host \(**Dedicated host**\)\. If you choose to launch the instance onto a Dedicated Host, you can specify whether to launch the instance into a host resource group or you can target a specific Dedicated Host\. Additional charges may apply\. For more information, see [Dedicated Instances](dedicated-instance.md) and [Dedicated Hosts](dedicated-hosts-overview.md)\.
    + **RAM disk ID**: A RAM disk for the instance\. If you have specified a kernel, you may need to specify a specific RAM disk with the drivers to support it\. Only valid for paravirtual \(PV\) AMIs\.
    + **Kernel ID**: A kernel for the instance\. Only valid for paravirtual \(PV\) AMIs\.
-   + **User data**: You can specify user data to configure an instance during launch, or to run a configuration script\. For more information, see [Running Commands on Your Linux Instance at Launch](user-data.md)\.
+   + **User data**: You can specify user data to configure an instance during launch, or to run a configuration script\. For more information, see [Running commands on your Linux instance at launch](user-data.md)\.
 
 1. Choose **Create launch template**\.
 
