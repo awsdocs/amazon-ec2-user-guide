@@ -1,10 +1,10 @@
-# Requester\-Managed Network Interfaces<a name="requester-managed-eni"></a>
+# Requester\-managed network interfaces<a name="requester-managed-eni"></a>
 
 A requester\-managed network interface is a network interface that an AWS service creates in your VPC\. This network interface can represent an instance for another service, such as an Amazon RDS instance, or it can enable you to access another service or resource, such as an AWS PrivateLink service, or an Amazon ECS task\.
 
 You cannot modify or detach a requester\-managed network interface\. If you delete the resource that the network interface represents, the AWS service detaches and deletes the network interface for you\. To change the security groups for a requester\-managed network interface, you might have to use the console or command line tools for that service\. For more information, see the service\-specific documentation\.
 
-You can tag a requester\-managed network interface\. For more information, see [Adding or Editing Tags](using-eni.md#eni_add_edit_tags)\.
+You can tag a requester\-managed network interface\. For more information, see [Adding or editing tags](using-eni.md#eni_add_edit_tags)\.
 
 You can view the requester\-managed network interfaces that are in your account\.
 

@@ -10,7 +10,7 @@ By default, your instance is enabled for basic monitoring\. You can optionally e
 
 ## Enabling Detailed Monitoring<a name="enable-detailed-monitoring"></a>
 
-You can enable detailed monitoring on an instance as you launch it or after the instance is running or stopped\. Enabling detailed monitoring on an instance does not affect the monitoring of the EBS volumes attached to the instance\. For more information, see [Amazon CloudWatch Metrics for Amazon EBS](using_cloudwatch_ebs.md)\.
+You can enable detailed monitoring on an instance as you launch it or after the instance is running or stopped\. Enabling detailed monitoring on an instance does not affect the monitoring of the EBS volumes attached to the instance\. For more information, see [Amazon CloudWatch metrics for Amazon EBS](using_cloudwatch_ebs.md)\.
 
 **To enable detailed monitoring for an existing instance \(console\)**
 

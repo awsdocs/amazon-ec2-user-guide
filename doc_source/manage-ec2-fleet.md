@@ -13,7 +13,7 @@ An EC2 Fleet request remains active until it expires or you delete it\. When you
 + [Generating an EC2 Fleet JSON configuration file](#ec2-fleet-cli-skeleton)
 + [Creating an EC2 Fleet](#create-ec2-fleet)
 + [Tagging an EC2 Fleet](#tag-ec2-fleet)
-+ [Monitoring your EC2 Fleet](#manage-ec2-fleet)
++ [Monitoring your EC2 Fleet](#monitor-ec2-fleet)
 + [Modifying an EC2 Fleet](#modify-ec2-fleet)
 + [Deleting an EC2 Fleet](#delete-fleet)
 + [EC2 Fleet Example Configurations](ec2-fleet-examples.md)
@@ -43,12 +43,13 @@ A launch template includes information about the instances to launch, such as th
 ### Service\-linked role for EC2 Fleet<a name="ec2-fleet-service-linked-role"></a>
 
 The `AWSServiceRoleForEC2Fleet` role grants the EC2 Fleet permission to request, launch, terminate, and tag instances on your behalf\. Amazon EC2 uses this service\-linked role to complete the following actions:
++ `ec2:RunInstances` – Launch instances\.
 + `ec2:RequestSpotInstances` – Request Spot Instances\.
-+ `ec2:TerminateInstances` – Terminate Spot Instances\.
-+ `ec2:DescribeImages` – Describe Amazon Machine Images \(AMI\) for the Spot Instances\.
++ `ec2:TerminateInstances` – Terminate instances\.
++ `ec2:DescribeImages` – Describe Amazon Machine Images \(AMIs\) for the Spot Instances\.
 + `ec2:DescribeInstanceStatus` – Describe the status of the Spot Instances\.
 + `ec2:DescribeSubnets` – Describe the subnets for Spot Instances\.
-+ `ec2:CreateTags` – Add system tags to Spot Instances\.
++ `ec2:CreateTags` – Add tags to the EC2 Fleet, instances, and volumes\.
 
 Ensure that this role exists before you use the AWS CLI or an API to create an EC2 Fleet\.
 
@@ -75,7 +76,7 @@ For more information, see [Using Service\-Linked Roles](https://docs.aws.amazon.
 
 ### Granting access to CMKs for use with encrypted AMIs and EBS snapshots<a name="ec2-fleet-service-linked-roles-access-to-cmks"></a>
 
-If you specify an [encrypted AMI](AMIEncryption.md) or an [encrypted Amazon EBS snapshot](EBSEncryption.md) in your EC2 Fleet and you use a customer managed customer master key \(CMK\) for encryption, you must grant the **AWSServiceRoleForEC2Fleet** role permission to use the CMK so that Amazon EC2 can launch instances on your behalf\. To do this, you must add a grant to the CMK, as shown in the following procedure\.
+If you specify an [encrypted AMI](AMIEncryption.md) or an [encrypted Amazon EBS snapshot](EBSEncryption.md) in your EC2 Fleet and you use a customer\-managed customer master key \(CMK\) for encryption, you must grant the **AWSServiceRoleForEC2Fleet** role permission to use the CMK so that Amazon EC2 can launch instances on your behalf\. To do this, you must add a grant to the CMK, as shown in the following procedure\.
 
 When providing permissions, grants are an alternative to key policies\. For more information, see [Using Grants](https://docs.aws.amazon.com/kms/latest/developerguide/grants.html) and [Using Key Policies in AWS KMS](https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html) in the *AWS Key Management Service Developer Guide*\.
 
@@ -523,26 +524,73 @@ The following is example output for a fleet of type `instant` that launched no i
 
 ## Tagging an EC2 Fleet<a name="tag-ec2-fleet"></a>
 
-To help categorize and manage your EC2 Fleet requests, you can tag them with custom metadata\. For more information, see [Tagging your Amazon EC2 resources](Using_Tags.md)\.
+To help categorize and manage your EC2 Fleet requests, you can tag them with custom metadata\. You can assign a tag to an EC2 Fleet request when you create it, or afterward\.
 
-You can assign a tag to an EC2 Fleet request when you create it, or afterward\. Tags assigned to the fleet request are not assigned to the instances launched by the fleet\.
+When you tag a fleet request, the instances and volumes that are launched by the fleet are not automatically tagged\. You need to explicitly tag the instances and volumes launched by the fleet\. You can choose to assign tags to only the fleet request, or to only the instances launched by the fleet, or to only the volumes attached to the instances launched by the fleet, or to all three\.
+
+**Note**  
+For `instant` fleet types, you can tag volumes that are attached to On\-Demand Instances and Spot Instances\. For `request` or `maintain` fleet types, you can only tag volumes that are attached to On\-Demand Instances\.
+
+For more information about how tags work, see [Tagging your Amazon EC2 resources](Using_Tags.md)\.
+
+**Prerequisite**
+
+Grant the IAM user the permission to tag resources\. For more information, see [Example: Tagging resources](ExamplePolicies_EC2.md#iam-example-taggingresources)\.
+
+**To grant an IAM user the permission to tag resources**  
+Create a IAM policy that includes the following:
++ The `ec2:CreateTags` action\. This grants the IAM user permission to create tags\.
++ The `ec2:CreateFleet` action\. This grants the IAM user permission to create an EC2 Fleet request\.
++ For `Resource`, we recommend that you specify `"*"`\. This allows users to tag all resource types\.
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "TagEC2FleetRequest",
+            "Effect": "Allow",
+            "Action": [
+                "ec2:CreateTags",
+                "ec2:CreateFleet"
+            ],
+            "Resource": "*"
+}
+```
+
+**Important**  
+We currently do not support resource\-level permissions for the `create-fleet` resource\. If you specify `create-fleet` as a resource, you will get an unauthorized exception when you try to tag the fleet\. The following example illustrates how *not* to set the policy\.   
+
+```
+{
+    "Effect": "Allow",
+    "Action": [
+        "ec2:CreateTags",
+        "ec2:CreateFleet"
+    ],
+    "Resource": "arn:aws:ec2:us-east-1:111122223333:create-fleet/*"
+}
+```
 
 **To tag a new EC2 Fleet request**  
 To tag an EC2 Fleet request when you create it, specify the key\-value pair in the [JSON file](#ec2-fleet-cli-skeleton) used to create the fleet\. The value for `ResourceType` must be `fleet`\. If you specify another value, the fleet request fails\.
 
-**To tag instances launched by an EC2 Fleet**  
-To tag instances when they are launched by the fleet, specify the tags in the [launch template](ec2-launch-templates.md#create-launch-template) that is referenced in the EC2 Fleet request\.
+**To tag instances and volumes launched by an EC2 Fleet**  
+To tag instances and volumes when they are launched by the fleet, specify the tags in the [launch template](ec2-launch-templates.md#create-launch-template) that is referenced in the EC2 Fleet request\.
 
-**To tag an existing EC2 Fleet request and instance \(AWS CLI\)**  
+**Note**  
+You can't tag volumes attached to Spot Instances that are launched by a `request` or `maintain` fleet type\.
+
+**To tag an existing EC2 Fleet request, instance, and volume \(AWS CLI\)**  
 Use the [create\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-tags.html) command to tag existing resources\.
 
 ```
 aws ec2 create-tags \
-    --resources fleet-12a34b55-67cd-8ef9-ba9b-9208dEXAMPLE i-1234567890abcdef0 \
+    --resources fleet-12a34b55-67cd-8ef9-ba9b-9208dEXAMPLE i-1234567890abcdef0 vol-1234567890EXAMPLE \
     --tags Key=purpose,Value=test
 ```
 
-## Monitoring your EC2 Fleet<a name="manage-ec2-fleet"></a>
+## Monitoring your EC2 Fleet<a name="monitor-ec2-fleet"></a>
 
 The EC2 Fleet launches On\-Demand Instances when there is available capacity, and launches Spot Instances when your maximum price exceeds the Spot price and capacity is available\. The On\-Demand Instances run until you terminate them, and the Spot Instances run until they are interrupted or you terminate them\.
 

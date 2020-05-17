@@ -22,7 +22,7 @@ Your organization might have multiple AWS accounts\. Amazon EC2 enables you to s
 
 Each AMI has a `LaunchPermission` attribute that controls which AWS accounts can access the AMI\. For more information, see [Making an AMI public](sharingamis-intro.md)\.
 
-Each Amazon EBS snapshot has a `createVolumePermission` attribute that controls which AWS accounts can use the snapshot\. For more information, see [Sharing an Amazon EBS Snapshot](ebs-modifying-snapshot-permissions.md)\.
+Each Amazon EBS snapshot has a `createVolumePermission` attribute that controls which AWS accounts can use the snapshot\. For more information, see [Sharing an Amazon EBS snapshot](ebs-modifying-snapshot-permissions.md)\.
 
 ## IAM and Amazon EC2<a name="intro-to-iam"></a>
 

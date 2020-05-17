@@ -60,7 +60,7 @@ $ aws ec2 create-network-interface --subnet-id subnet-01234567890 --description 
 
 You can attach an EFA to any supported instance that is in the `stopped` state\. You cannot attach an EFA to an instance that is in the `running` state\. For more information about the supported instance types, see [Supported instance types](efa.md#efa-instance-types)\.
 
-You attach an EFA to an instance in the same way that you attach an elastic network interface to an instance\. For more information, see [Attaching a Network Interface to a Stopped or Running Instance](using-eni.md#attach_eni_running_stopped)\.
+You attach an EFA to an instance in the same way that you attach an elastic network interface to an instance\. For more information, see [Attaching a network interface to a stopped or running instance](using-eni.md#attach_eni_running_stopped)\.
 
 ## Attaching an EFA when launching an instance<a name="efa-launch"></a>
 
@@ -91,35 +91,35 @@ For more information about creating launch templates, see [Creating a launch tem
 If you have an Elastic IP \(IPv4\) address, you can associate it with an EFA\. If your EFA is provisioned in a subnet that has an associated IPv6 CIDR block, you can assign one or more IPv6 addresses to the EFA\.
 
 You assign an Elastic IP \(IPv4\) and IPv6 address to an EFA in the same way that you assign an IP address to an elastic network interface\. For more information, see:
-+ [Associating an Elastic IP Address \(IPv4\)](using-eni.md#associate_eip)
-+ [Assigning an IPv6 Address](using-eni.md#eni-assign-ipv6)
++ [Associating an Elastic IP address \(IPv4\)](using-eni.md#associate_eip)
++ [Assigning an IPv6 address](using-eni.md#eni-assign-ipv6)
 
 ## Unassigning an IP address from an EFA<a name="efa-ip-unassign"></a>
 
 You unassign an Elastic IP \(IPv4\) and IPv6 address from an EFA in the same way that you unassign an IP address from an elastic network interface\. For more information, see:
-+ [Disassociating an Elastic IP Address \(IPv4\)](using-eni.md#disassociate_eip)
-+ [Unassigning an IPv6 Address](using-eni.md#eni-unassign-ipv6)
++ [Disassociating an Elastic IP address \(IPv4\)](using-eni.md#disassociate_eip)
++ [Unassigning an IPv6 address](using-eni.md#eni-unassign-ipv6)
 
 ## Changing the security group<a name="efa-security"></a>
 
  You can change the security group that is associated with an EFA\. To enable OS\-bypass functionality, the EFA must be a member of a security group that allows all inbound and outbound traffic to and from the security group itself\.
 
-You change the security group that is associated with an EFA in the same way that you change the security group that is associated with an elastic network interface\. For more information, see [Changing the Security Group](using-eni.md#eni_security_group)\.
+You change the security group that is associated with an EFA in the same way that you change the security group that is associated with an elastic network interface\. For more information, see [Changing the security group](using-eni.md#eni_security_group)\.
 
 ## Detaching an EFA<a name="efa-detach"></a>
 
 To detach an EFA from an instance, you must first stop the instance\. You cannot detach an EFA from an instance that is in the running state\.
 
-You detach an EFA from an instance in the same way that you detach an elastic network interface from an instance\. For more information, see [Detaching a Network Interface from an Instance](using-eni.md#detach_eni)\.
+You detach an EFA from an instance in the same way that you detach an elastic network interface from an instance\. For more information, see [Detaching a network interface from an instance](using-eni.md#detach_eni)\.
 
 ## Viewing EFAs<a name="efa-view"></a>
 
 You can view all of the EFAs in your account\.
 
-You view EFAs in the same way that you view elastic network interfaces\. For more information, see [Viewing Details about a Network Interface](using-eni.md#view_eni_details)\.
+You view EFAs in the same way that you view elastic network interfaces\. For more information, see [Viewing details about a network interface](using-eni.md#view_eni_details)\.
 
 ## Deleting an EFA<a name="efa-delete"></a>
 
 To delete an EFA, you must first detach it from the instance\. You cannot delete an EFA while it is attached to an instance\.
 
-You delete EFAs in the same way that you delete elastic network interfaces\. For more information, see [Deleting a Network Interface](using-eni.md#delete_eni)\.
+You delete EFAs in the same way that you delete elastic network interfaces\. For more information, see [Deleting a network interface](using-eni.md#delete_eni)\.

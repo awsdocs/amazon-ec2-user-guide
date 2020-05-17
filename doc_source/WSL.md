@@ -43,11 +43,17 @@ Use the following procedure to connect to your Linux instance using the Windows 
 
 **To connect to your instance using SSH**
 
-1. In a terminal window, use the ssh command to connect to the instance\. You specify the private key \(`.pem`\) file, the user name for your AMI, and the public DNS name for your instance\. For example, if you used Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\. For more information about finding the user name for an AMI and the DNS name for an instance, see [Get information about your instance](connection-prereqs.md#connection-prereqs-get-info-about-instance)\.
+1. In a terminal window, use the ssh command to connect to the instance\. You specify the path and file name of the private key \(`.pem`\), the user name for your instance, and the public DNS name or IPv6 address for your instance\. For more information about how to find the private key, the user name for your instance, and the DNS name or IPv6 address for an instance, see [Locate the private key](connection-prereqs.md#connection-prereqs-private-key) and [Get information about your instance](connection-prereqs.md#connection-prereqs-get-info-about-instance)\. To connect to your instance, use one of the following commands\.
+   + \(Public DNS\) To connect using your instance's public DNS name, enter the following command\.
 
-   ```
-   sudo ssh -i /path/my-key-pair.pem ec2-user@ec2-198-51-100-1.compute-1.amazonaws.com
-   ```
+     ```
+     sudo ssh -i /path/my-key-pair.pem my-instance-user-name@my-instance-public-dns-name
+     ```
+   + \(IPv6\) Alternatively, if your instance has an IPv6 address, you can connect to the instance using its IPv6 address\. Specify the ssh command with the path to the private key \(\.pem\) file, the appropriate user name, and the IPv6 address\.
+
+     ```
+     sudo ssh -i /path/my-key-pair.pem my-instance-user-name@my-instance-IPv6-address
+     ```
 
    You see a response like the following:
 
@@ -56,12 +62,6 @@ Use the following procedure to connect to your Linux instance using the Windows 
    can't be established.
    RSA key fingerprint is 1f:51:ae:28:bf:89:e9:d8:1f:25:5d:37:2d:7d:b8:ca:9f:f5:f1:6f.
    Are you sure you want to continue connecting (yes/no)?
-   ```
-
-1. \(IPv6 only\) Alternatively, you can connect to the instance using its IPv6 address\. Specify the ssh command with the path to the private key \(\.pem\) file, the appropriate user name, and the IPv6 address\. For example, if you used Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
-
-   ```
-   sudo ssh -i /path/my-key-pair.pem ec2-user@2001:db8:1234:1a00:9691:9503:25ad:1761
    ```
 
 1. \(Optional\) Verify that the fingerprint in the security alert matches the fingerprint that you previously obtained in [\(Optional\) Get the instance fingerprint](connection-prereqs.md#connection-prereqs-fingerprint)\. If these fingerprints don't match, someone might be attempting a "man\-in\-the\-middle" attack\. If they match, continue to the next step\.
@@ -91,11 +91,17 @@ The following procedure steps you through using SCP to transfer a file\. If you'
 
 **To use SCP to transfer a file**
 
-1. Transfer a file to your instance using the instance's public DNS name\. For example, if the name of the private key file is `my-key-pair`, the file to transfer is `SampleFile.txt`, the user name is `ec2-user`, and the public DNS name of the instance is `ec2-198-51-100-1.compute-1.amazonaws.com`, use the following command to copy the file to the `ec2-user` home directory:
+1. Transfer a file to your instance using the instance's public DNS name\. For example, if the name of the private key file is `my-key-pair`, the file to transfer is `SampleFile.txt`, the user name is `my-instance-user-name`, and the public DNS name of the instance is `my-instance-public-dns-name` or the IPv6 address is `my-instance-IPv6-address`, use one the following commands to copy the file to the `my-instance-user-name` home directory\.
+   + \(Public DNS\) To transfer a file using your instance's public DNS name, enter the following command\.
 
-   ```
-   scp -i /path/my-key-pair.pem /path/SampleFile.txt ec2-user@c2-198-51-100-1.compute-1.amazonaws.com:~
-   ```
+     ```
+     scp -i /path/my-key-pair.pem /path/SampleFile.txt my-instance-user-name@my-instance-public-dns-name:~
+     ```
+   + \(IPv6\) Alternatively, if your instance has an IPv6 address, you can transfer a file using the instance's IPv6 address\. The IPv6 address must be enclosed in square brackets \(`[ ]`\), which must be escaped \(`\`\)\.
+
+     ```
+     scp -i /path/my-key-pair.pem /path/SampleFile.txt my-instance-user-name@\[my-instance-IPv6-address\]:~
+     ```
 
    You see a response like the following:
 
@@ -104,12 +110,6 @@ The following procedure steps you through using SCP to transfer a file\. If you'
    can't be established.
    RSA key fingerprint is 1f:51:ae:28:bf:89:e9:d8:1f:25:5d:37:2d:7d:b8:ca:9f:f5:f1:6f.
    Are you sure you want to continue connecting (yes/no)?
-   ```
-
-1. \(IPv6 only\) Alternatively, you can transfer a file using the IPv6 address for the instance\. The IPv6 address must be enclosed in square brackets \(\[\]\), which must be escaped \(\\\)\.
-
-   ```
-   scp -i /path/my-key-pair.pem /path/SampleFile.txt ec2-user@\[2001:db8:1234:1a00:9691:9503:25ad:1761\]:~
    ```
 
 1. \(Optional\) Verify that the fingerprint in the security alert matches the fingerprint that you previously obtained in [\(Optional\) Get the instance fingerprint](connection-prereqs.md#connection-prereqs-fingerprint)\. If these fingerprints don't match, someone might be attempting a "man\-in\-the\-middle" attack\. If they match, continue to the next step\.
@@ -132,17 +132,17 @@ The following procedure steps you through using SCP to transfer a file\. If you'
    [ec2-user ~]$ sudo yum install -y openssh-clients
    ```
 
-1. To transfer files in the other direction \(from your Amazon EC2 instance to your local computer\), reverse the order of the host parameters\. For example, to transfer the `SampleFile.txt` file from your EC2 instance back to the home directory on your local computer as `SampleFile2.txt`, use the following command on your local computer:
+1. To transfer files in the other direction \(from your Amazon EC2 instance to your local computer\), reverse the order of the host parameters\. For example, to transfer the `SampleFile.txt` file from your EC2 instance back to the home directory on your local computer as `SampleFile2.txt`, use one of the following commands on your local computer\.
+   + \(Public DNS\) To transfer a file using your instance's public DNS name, enter the following command\.
 
-   ```
-   scp -i /path/my-key-pair.pem ec2-user@ec2-198-51-100-1.compute-1.amazonaws.com:~/SampleFile.txt ~/SampleFile2.txt
-   ```
+     ```
+     scp -i /path/my-key-pair.pem my-instance-user-name@ec2-198-51-100-1.compute-1.amazonaws.com:~/SampleFile.txt ~/SampleFile2.txt
+     ```
+   + \(IPv6\) Alternatively, if your instance has an IPv6 address, to transfer files in the other direction using the instance's IPv6 address, enter the following command\.
 
-1. \(IPv6 only\) Alternatively, you can transfer files in the other direction using the instance's IPv6 address:
-
-   ```
-   scp -i /path/my-key-pair.pem ec2-user@\[2001:db8:1234:1a00:9691:9503:25ad:1761\]:~/SampleFile.txt ~/SampleFile2.txt
-   ```
+     ```
+     scp -i /path/my-key-pair.pem my-instance-user-name@\[2001:db8:1234:1a00:9691:9503:25ad:1761\]:~/SampleFile.txt ~/SampleFile2.txt
+     ```
 
 ## Uninstalling WSL<a name="uninstall-WSL"></a>
 

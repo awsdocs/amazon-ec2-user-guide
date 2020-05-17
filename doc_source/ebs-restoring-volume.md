@@ -1,65 +1,21 @@
 # Restoring an Amazon EBS volume from a snapshot<a name="ebs-restoring-volume"></a>
 
-You can restore an Amazon EBS volume with data from a snapshot stored in Amazon S3\. You must know the ID of the snapshot and you must have access permissions for the snapshot\. For more information about snapshots, see [Amazon EBS Snapshots](EBSSnapshots.md)\.
+Amazon EBS snapshots are the preferred backup tool on Amazon EC2 due to their speed, convenience, and cost\. When creating a volume from a snapshot, you recreate its state at a specific point in the past with all data intact\. By attaching a volume created from a snapshot to an instance, you can duplicate data across Regions, create test environments, replace a damaged or corrupted production volume in its entirety, or retrieve specific files and directories and transfer them to another attached volume\. For more information, see [Amazon EBS snapshots](EBSSnapshots.md)\.
 
-EBS snapshots are the preferred backup tool on Amazon EC2 due to their speed, convenience, and cost\. When restoring a volume from a snapshot, you recreate its state at a specific point in the past with all data intact\. By attaching a restored volume to an instance, you can duplicate data across regions, create test environments, replace a damaged or corrupted production volume in its entirety, or retrieve specific files and directories and transfer them to another attached volume\. For more information, see [Amazon EBS Snapshots](EBSSnapshots.md)\.
+Use the following procedure to replace an EBS volume with another volume created from an earlier snapshot of the volume\. You must detach the current volume and then attach the new volume\.
 
-New volumes created from existing EBS snapshots load lazily in the background\. This means that after a volume is created from a snapshot, there is no need to wait for all of the data to transfer from Amazon S3 to your EBS volume before your attached instance can start accessing the volume and all its data\. If your instance accesses data that hasn't yet been loaded, the volume immediately downloads the requested data from Amazon S3, and then continues loading the rest of the volume data in the background\. Background load can be a slow process\. For example, a 10TB snapshot can take several days to load from Amazon S3\.
+**To replace a volume**
 
-## EBS performance<a name="new-ebs-volume-performance"></a>
+1. Create a volume from the snapshot and write down the ID of the new volume\. For more information, see [Creating a volume from a snapshot](ebs-creating-volume.md#ebs-create-volume-from-snapshot)\.
 
-New EBS volumes receive their maximum performance the moment that they are available and do not require initialization \(formerly known as pre\-warming\)\.
+1. On the volumes page, select the check box for the volume to replace\. On the **Description** tab, find **Attachment information** and write down the device name of the volume \(for example, `/dev/sda1` or `/dev/xvda` for a root volume, or `/dev/sdb` or `xvdb`\) and the ID of the instance\.
 
-For volumes that were restored from snapshots, the storage blocks must be pulled down from Amazon S3 and written to the volume before you can access them\. This preliminary action takes time and can cause a significant increase in the latency of I/O operations the first time each block is accessed\. Volume performance is achieved after all blocks have been downloaded and written to the volume\.
+1. \(Optional\) Before you can detach the root volume of an instance, you must stop the instance\. If you are not replacing the root volume, you can continue to the next step without stopping the instance\. Otherwise, to stop the instance, from **Attachment information**, hover over the instance ID, right\-click, and open the instance in a new browser tab\. Choose **Actions**, **Instance State**, **Stop**\. Leave the tab with the instances page open and return to the browser tab with the volumes page\.
 
-For most applications, amortizing the initialization cost over the lifetime of the volume is acceptable\. To avoid this initial performance hit in a production environment, you can use one of the following options:
-+ Force the immediate initialization of the entire volume\. For more information, see [Initializing Amazon EBS Volumes](ebs-initialize.md)\.
-+ Enable fast snapshot restore on a snapshot to ensure that the EBS volumes created from it are fully\-initialized at creation and instantly deliver all of their provisioned performance\. For more information, see [Amazon EBS fast snapshot restore](ebs-fast-snapshot-restore.md)\.
+1. With the volume still selected, choose **Actions**, **Detach Volume**\. When prompted for confirmation, choose **Yes, Detach**\. Clear the check box for this volume\.
 
-## EBS encryption<a name="new-volume-ebs-encryption"></a>
+1. Select the check box for the new volume that you created in step 1\. Choose **Actions**, **Attach Volume**\. Enter the instance ID and device name that you wrote down in step 2, and then choose **Attach**\.
 
-New EBS volumes that are restored from encrypted snapshots are automatically encrypted\. You can also encrypt a volume on\-the\-fly while restoring it from an unencrypted snapshot\. Encrypted volumes can only be attached to instance types that support EBS encryption\. For more information, see [Supported instance types](EBSEncryption.md#EBSEncryption_supported_instances)\.
+1. \(Optional\) If you stopped the instance, you must restart it\. Return to the browser tab with the instances page and choose **Actions**, **Instance State**, **Start**\.
 
-## Creating a volume from a snapshot<a name="ebs-create-volume-from-snapshot"></a>
-
-Use the following procedure to create a volume from a snapshot\.
-
-**To create an EBS volume from a snapshot using the console**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. From the navigation bar, select the Region that your snapshot is located in\.
-
-   To restore the snapshot to a volume in a different region, you can copy your snapshot to the new Region and then restore it to a volume in that Region\. For more information, see [Copying an Amazon EBS Snapshot](ebs-copy-snapshot.md)\.
-
-1. In the navigation pane, choose **ELASTIC BLOCK STORE**, **Volumes**\.
-
-1. Choose **Create Volume**\.
-
-1. For **Volume Type**, choose a volume type\. For more information, see [Amazon EBS volume types](ebs-volume-types.md)\.
-
-1. For **Snapshot ID**, start typing the ID or description of the snapshot from which you are restoring the volume, and choose it from the list of suggested options\.
-
-1. \(Optional\) Select **Encrypt this volume** to change the encryption state of your volume\. This is optional if [encryption by default](EBSEncryption.md#encryption-by-default) is enabled\. Select a CMK from **Master Key** to specify a CMK other than the default CMK for EBS encryption\.
-
-1. For **Size \(GiB\)**, type the size of the volume, or verify that the default size of the snapshot is adequate\.
-
-   If you specify both a volume size and a snapshot, the size must be equal to or greater than the snapshot size\. When you select a volume type and a snapshot, the minimum and maximum sizes for the volume are shown next to **Size**\. For more information, see [Constraints on the size and configuration of an EBS volume](volume_constraints.md)\.
-
-1. With a Provisioned IOPS SSD volume, for **IOPS**, type the maximum number of input/output operations per second \(IOPS\) that the volume should support\.
-
-1. For **Availability Zone**, choose the Availability Zone in which to create the volume\. EBS volumes can only be attached to EC2 instances in the same Availability Zone\.
-
-1. \(Optional\) Choose **Create additional tags** to add tags to the volume\. For each tag, provide a tag key and a tag value\.
-
-1. Choose **Create Volume**\.
-
-1. After you've restored a volume from a snapshot, you can attach it to an instance to begin using it\. For more information, see [Attaching an Amazon EBS volume to an instance](ebs-attaching-volume.md)\.
-
-1. If you restored a snapshot to a larger volume than the default for that snapshot, you must extend the file system on the volume to take advantage of the extra space\. For more information, see [Amazon EBS Elastic Volumes](ebs-modify-volume.md)\.
-
-**To create an EBS volume from a snapshot using the command line**
-
-You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [create\-volume](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-volume.html) \(AWS CLI\)
-+ [New\-EC2Volume](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Volume.html) \(AWS Tools for Windows PowerShell\)
+1. Connect to your instance and mount the volume\. For more information, see [Making an Amazon EBS volume available for use on Linux](ebs-using-volumes.md)\.

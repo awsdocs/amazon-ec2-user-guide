@@ -55,20 +55,10 @@ Use the following procedure to connect to your Linux instance using PuTTY\. You 
 1. In the **Category** pane, choose **Session** and complete the following fields:
 
    1. In the **Host Name** box, do one of the following:
-      + \(Public DNS name\) To connect using your instance's public DNS name, enter *user\_name*@*public\_dns\_name*\.
-      + \(IPv6\) Alternatively, if your instance has an IPv6 address, to connect using your instance's IPv6 address, enter *user\_name*@*ipv6\_address*\.
+      + \(Public DNS\) To connect using your instance's public DNS name, enter *my\-instance\-user\-name*@*my\-instance\-public\-dns\-name*\.
+      + \(IPv6\) Alternatively, if your instance has an IPv6 address, to connect using your instance's IPv6 address, enter *my\-instance\-user\-name*@*my\-instance\-IPv6\-address*\.
 
-      For information about how to get the public DNS name or IPv6 address of the instance, see [Get information about your instance](connection-prereqs.md#connection-prereqs-get-info-about-instance)\.
-
-      For *user\_name*, be sure to specify the appropriate user name for your AMI\. For example:
-      + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
-      + For a CentOS AMI, the user name is `centos`\.
-      + For a Debian AMI, the user name is `admin` or `root`\.
-      + For a Fedora AMI, the user name is `ec2-user` or `fedora`\.
-      + For a RHEL AMI, the user name is `ec2-user` or `root`\.
-      + For a SUSE AMI, the user name is `ec2-user` or `root`\.
-      + For an Ubuntu AMI, the user name is `ubuntu`\.
-      + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
+      For information about how to get the user name for your instance, and the public DNS name or IPv6 address of your instance, see [Get information about your instance](connection-prereqs.md#connection-prereqs-get-info-about-instance)\.
 
    1. Ensure that the **Port** value is 22\.
 
@@ -101,33 +91,33 @@ If you receive an error while attempting to connect to your instance, see [Troub
 
 The PuTTY Secure Copy client \(PSCP\) is a command line tool that you can use to transfer files between your Windows computer and your Linux instance\. If you prefer a graphical user interface \(GUI\), you can use an open source GUI tool named WinSCP\. For more information, see [Transferring files to your Linux instance using WinSCP](#Transfer_WinSCP)\.
 
-To use PSCP, you need the private key you generated in [Convert your private key using PuTTYgen](#putty-private-key)\. You also need the public DNS name of your Linux instance\.
+To use PSCP, you need the private key you generated in [Convert your private key using PuTTYgen](#putty-private-key)\. You also need the public DNS name of your Linux instance, or the IPv6 address if your instance has one\.
 
-The following example transfers the file `Sample_file.txt` from the C:\\ drive on a Windows computer to the `ec2-user` home directory on an Amazon Linux instance:
+The following example transfers the file `Sample_file.txt` from the C:\\ drive on a Windows computer to the `my-instance-user-name` home directory on an Amazon Linux instance\. To transfer a file, use one of the following commands\.
++ \(Public DNS\) To transfer a file using your instance's public DNS name, enter the following command\.
 
-```
-pscp -i C:\path\my-key-pair.ppk C:\path\Sample_file.txt ec2-user@public_dns:/home/ec2-user/Sample_file.txt
-```
+  ```
+  pscp -i C:\path\my-key-pair.ppk C:\path\Sample_file.txt my-instance-user-name@my-instance-public-dns-name:/home/my-instance-user-name/Sample_file.txt
+  ```
++ \(IPv6\) Alternatively, if your instance has an IPv6 address, to transfer a file using your instance's IPv6 address, enter the following command\. The IPv6 address must be enclosed in square brackets \(`[ ]`\)\.
 
-\(IPv6 only\) The following example transfers the file `Sample_file.txt` using the instance's IPv6 address\. The IPv6 address must be enclosed in square brackets \(\[\]\)\.
-
-```
-pscp -i C:\path\my-key-pair.ppk C:\path\Sample_file.txt ec2-user@[ipv6-address]:/home/ec2-user/Sample_file.txt
-```
+  ```
+  pscp -i C:\path\my-key-pair.ppk C:\path\Sample_file.txt my-instance-user-name@[my-instance-IPv6-address]:/home/my-instance-user-name/Sample_file.txt
+  ```
 
 ## Transferring files to your Linux instance using WinSCP<a name="Transfer_WinSCP"></a>
 
-WinSCP is a GUI\-based file manager for Windows that allows you to upload and transfer files to a remote computer using the SFTP, SCP, FTP, and FTPS protocols\. WinSCP allows you to drag and drop files from your Windows machine to your Linux instance or synchronize entire directory structures between the two systems\.
+WinSCP is a GUI\-based file manager for Windows that allows you to upload and transfer files to a remote computer using the SFTP, SCP, FTP, and FTPS protocols\. WinSCP allows you to drag and drop files from your Windows computer to your Linux instance or synchronize entire directory structures between the two systems\.
 
- To use WinSCP, you need the private key that you generated in [Convert your private key using PuTTYgen](#putty-private-key)\. You also need the public DNS name of your Linux instance\.
+To use WinSCP, you need the private key that you generated in [Convert your private key using PuTTYgen](#putty-private-key)\. You also need the public DNS name of your Linux instance\.
 
 1. Download and install WinSCP from [http://winscp\.net/eng/download\.php](http://winscp.net/eng/download.php)\. For most users, the default installation options are OK\.
 
 1. Start WinSCP\.
 
-1. At the **WinSCP login** screen, for **Host name**, enter the public DNS name or public IPv4 address for your instance\.
-
-   \(IPv6 only\) To log in using your instance's IPv6 address, enter the IPv6 address for your instance\.
+1. At the **WinSCP login** screen, for **Host name**, enter one of the following:
+   + \(Public DNS or IPv4 address\) To log in using your instance's public DNS name or public IPv4 address, enter the public DNS name or public IPv4 address for your instance\.
+   + \(IPv6\) Alternatively, if your instance has an IPv6 address, to log in using your instance's IPv6 address, enter the IPv6 address for your instance\.
 
 1. For **User name**, enter the default user name for your AMI\.
    + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.

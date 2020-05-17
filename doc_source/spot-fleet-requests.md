@@ -353,7 +353,7 @@ The following is example output:
 
 To help categorize and manage your Spot Fleet requests, you can tag them with custom metadata\. You can assign a tag to a Spot Fleet request when you create it, or afterward\. You can assign tags using the Amazon EC2 console or a command line tool\.
 
-When you tag a Spot Fleet request, the instances and volumes that are launched by the Spot Fleet are not automatically tagged\. You need to explicitly tag the instances and volumes launched by the Spot Fleet\. You can choose to assign tags to only the Spot Fleet request, or to only the instances launched by the fleet, or to only the volumes attached the instances launched by the fleet, or to all three\.
+When you tag a Spot Fleet request, the instances and volumes that are launched by the Spot Fleet are not automatically tagged\. You need to explicitly tag the instances and volumes launched by the Spot Fleet\. You can choose to assign tags to only the Spot Fleet request, or to only the instances launched by the fleet, or to only the volumes attached to the instances launched by the fleet, or to all three\.
 
 **Note**  
 Volume tags are only supported for volumes that are attached to On\-Demand Instances\. You can't tag volumes that are attached to Spot Instances\.

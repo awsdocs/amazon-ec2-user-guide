@@ -1,6 +1,6 @@
 # Migrating from a Linux Instance in EC2\-Classic to a Linux Instance in a VPC<a name="vpc-migrate"></a>
 
-If you created your AWS account before 2013\-12\-04, you might have support for EC2\-Classic in some regions\. Some Amazon EC2 resources and features, such as enhanced networking and newer instance types, require a virtual private cloud \(VPC\)\. Some resources can be shared between EC2\-Classic and a VPC, while some can't\. For more information, see [Sharing and Accessing Resources Between EC2\-Classic and a VPC](ec2-classic-platform.md#vpc-classic-shared-resources)\.
+If you created your AWS account before 2013\-12\-04, you might have support for EC2\-Classic in some regions\. Some Amazon EC2 resources and features, such as enhanced networking and newer instance types, require a virtual private cloud \(VPC\)\. Some resources can be shared between EC2\-Classic and a VPC, while some can't\. For more information, see [Sharing and accessing resources between EC2\-Classic and a VPC](ec2-classic-platform.md#vpc-classic-shared-resources)\.
 
 If your account supports EC2\-Classic, you might have set up resources for use in EC2\-Classic\. If you want to migrate from EC2\-Classic to a VPC, you must recreate those resources in your VPC\.
 
@@ -35,7 +35,7 @@ To start using a VPC, ensure that you have one in your account\. You can create 
 You cannot use the same security groups between EC2\-Classic and a VPC\. However, if you want your instances in your VPC to have the same security group rules as your EC2\-Classic instances, you can use the Amazon EC2 console to copy your existing EC2\-Classic security group rules to a new VPC security group\. 
 
 **Important**  
-You can only copy security group rules to a new security group in the same AWS account in the same Region\. If you've created a new AWS account, you cannot use this method to copy your existing security group rules to your new account\. You'll have to create a new security group, and add the rules yourself\. For more information about creating a new security group, see [Amazon EC2 Security Groups for Linux Instances](ec2-security-groups.md)\.
+You can only copy security group rules to a new security group in the same AWS account in the same Region\. If you've created a new AWS account, you cannot use this method to copy your existing security group rules to your new account\. You'll have to create a new security group, and add the rules yourself\. For more information about creating a new security group, see [Amazon EC2 security groups for Linux instances](ec2-security-groups.md)\.
 
 **To copy your security group rules to a new security group**
 
@@ -47,7 +47,7 @@ You can only copy security group rules to a new security group in the same AWS a
 
 1. In the **Create Security Group** dialog box, specify a name and description for your new security group\. Select your VPC from the **VPC** list\. 
 
-1. The **Inbound** tab is populated with the rules from your EC2\-Classic security group\. You can modify the rules as required\. In the **Outbound** tab, a rule that allows all outbound traffic has automatically been created for you\. For more information about modifying security group rules, see [Amazon EC2 Security Groups for Linux Instances](ec2-security-groups.md)\.
+1. The **Inbound** tab is populated with the rules from your EC2\-Classic security group\. You can modify the rules as required\. In the **Outbound** tab, a rule that allows all outbound traffic has automatically been created for you\. For more information about modifying security group rules, see [Amazon EC2 security groups for Linux instances](ec2-security-groups.md)\.
 **Note**  
 If you've defined a rule in your EC2\-Classic security group that references another security group, you will not be able to use the same rule in your VPC security group\. Modify the rule to reference a security group in the same VPC\.
 
@@ -81,8 +81,8 @@ For more information about Amazon EBS volumes, see the following topics:
 + [Attaching an Amazon EBS volume to an instance](ebs-attaching-volume.md)
 
 To back up the data on your Amazon EBS volume, you can take periodic snapshots of your volume\. If you need to, you can restore an Amazon EBS volume from your snapshot\. For more information about Amazon EBS snapshots, see the following topics:
-+ [Amazon EBS Snapshots](EBSSnapshots.md)
-+ [Creating Amazon EBS Snapshots](ebs-creating-snapshot.md)
++ [Amazon EBS snapshots](EBSSnapshots.md)
++ [Creating Amazon EBS snapshots](ebs-creating-snapshot.md)
 + [Restoring an Amazon EBS volume from a snapshot](ebs-restoring-volume.md)
 
 ### Step 4: Launch an Instance Into Your VPC<a name="vpc-migrate-instance"></a>
@@ -245,8 +245,8 @@ For more information about Amazon EBS volumes, see the following topics:
 + [Attaching an Amazon EBS volume to an instance](ebs-attaching-volume.md)
 
 To back up the data on your Amazon EBS volume, you can take periodic snapshots of your volume\. If you need to, you can restore an Amazon EBS volume from your snapshot\. For more information about Amazon EBS snapshots, see the following topics:
-+ [Amazon EBS Snapshots](EBSSnapshots.md)
-+ [Creating Amazon EBS Snapshots](ebs-creating-snapshot.md)
++ [Amazon EBS snapshots](EBSSnapshots.md)
++ [Creating Amazon EBS snapshots](ebs-creating-snapshot.md)
 + [Restoring an Amazon EBS volume from a snapshot](ebs-restoring-volume.md)
 
 ### Step 5: Launch an Instance Into Your VPC<a name="classiclink-migrate-launch-instance"></a>

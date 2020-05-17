@@ -75,7 +75,7 @@ For our example, in a web browser, enter the URL of the PHP test file the script
 http://my.public.dns.amazonaws.com/phpinfo.php
 ```
 
-You should see the PHP information page\. If you are unable to see the PHP information page, check that the security group you are using contains a rule to allow HTTP \(port 80\) traffic\. For more information, see [Adding Rules to a Security Group](working-with-security-groups.md#adding-security-group-rule)\.
+You should see the PHP information page\. If you are unable to see the PHP information page, check that the security group you are using contains a rule to allow HTTP \(port 80\) traffic\. For more information, see [Adding rules to a security group](working-with-security-groups.md#adding-security-group-rule)\.
 
 \(Optional\) If your script did not accomplish the tasks you were expecting it to, or if you just want to verify that your script completed without errors, examine the cloud\-init output log file at `/var/log/cloud-init-output.log` and look for error messages in the output\. 
 
@@ -153,7 +153,7 @@ Adding these tasks at boot time adds to the amount of time it takes to boot an i
    http://my.public.dns.amazonaws.com/phpinfo.php
    ```
 
-   You should see the PHP information page\. If you are unable to see the PHP information page, check that the security group you are using contains a rule to allow HTTP \(port 80\) traffic\. For more information, see [Adding Rules to a Security Group](working-with-security-groups.md#adding-security-group-rule)\.
+   You should see the PHP information page\. If you are unable to see the PHP information page, check that the security group you are using contains a rule to allow HTTP \(port 80\) traffic\. For more information, see [Adding rules to a security group](working-with-security-groups.md#adding-security-group-rule)\.
 
 1. \(Optional\) If your directives did not accomplish the tasks you were expecting them to, or if you just want to verify that your directives completed without errors, examine the output log file at `/var/log/cloud-init-output.log` and look for error messages in the output\. For additional debugging information, you can add the following line to your directives:
 
@@ -215,6 +215,13 @@ Use the `--attribute` and `--value` parameters to use the encoded text file to s
 
 ```
 aws ec2 modify-instance-attribute --instance-id i-1234567890abcdef0 --attribute userData --value file://my_script_base64.txt
+```
+
+**Example: Clear the user data of a stopped instance**  
+To delete the existing user data, use the [describe\-instance\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-attribute.html) command as follows:
+
+```
+aws ec2 modify-instance-attribute --instance-id i-1234567890abcdef0 --user-data Value=
 ```
 
 **Example: View user data**  

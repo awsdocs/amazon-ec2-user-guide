@@ -80,7 +80,7 @@ When you want to move your application from one instance store\-backed instance 
 
 **To migrate an instance store\-backed instance**
 
-1. Back up any data on your instance store volumes that you need to keep to persistent storage\. To migrate data on your EBS volumes that you need to keep, take a snapshot of the volumes \(see [Creating Amazon EBS Snapshots](ebs-creating-snapshot.md)\) or detach the volume from the instance so that you can attach it to the new instance later \(see [Detaching an Amazon EBS volume from a Linux instance](ebs-detaching-volume.md)\)\.
+1. Back up any data on your instance store volumes that you need to keep to persistent storage\. To migrate data on your EBS volumes that you need to keep, take a snapshot of the volumes \(see [Creating Amazon EBS snapshots](ebs-creating-snapshot.md)\) or detach the volume from the instance so that you can attach it to the new instance later \(see [Detaching an Amazon EBS volume from a Linux instance](ebs-detaching-volume.md)\)\.
 
 1. Create an AMI from your instance store\-backed instance by satisfying the prerequisites and following the procedures in [Creating an instance store\-backed Linux AMI](creating-an-ami-instance-store.md)\. When you are finished creating an AMI from your instance, return to this procedure\.
 
@@ -102,7 +102,7 @@ If you want to move from an instance launched from a PV AMI to an instance type 
 
 **To migrate your application to a compatible instance**
 
-1. Back up any data on your instance store volumes that you need to keep to persistent storage\. To migrate data on your EBS volumes that you need to keep, create a snapshot of the volumes \(see [Creating Amazon EBS Snapshots](ebs-creating-snapshot.md)\) or detach the volume from the instance so that you can attach it to the new instance later \(see [Detaching an Amazon EBS volume from a Linux instance](ebs-detaching-volume.md)\)\.
+1. Back up any data on your instance store volumes that you need to keep to persistent storage\. To migrate data on your EBS volumes that you need to keep, create a snapshot of the volumes \(see [Creating Amazon EBS snapshots](ebs-creating-snapshot.md)\) or detach the volume from the instance so that you can attach it to the new instance later \(see [Detaching an Amazon EBS volume from a Linux instance](ebs-detaching-volume.md)\)\.
 
 1. Launch a new instance, selecting the following:
    + An HVM AMI\.

@@ -4,10 +4,10 @@ Amazon EBS Multi\-Attach enables you to attach a single Provisioned IOPS SSD \(i
 
 Multi\-Attach enabled volumes support many of the features that are supported by regular Amazon EBS volumes, including:
 + [Tagging](Using_Tags.md)
-+ [Amazon EBS Snapshots](EBSSnapshots.md)
-+ [Automating the Amazon EBS Snapshot Lifecycle](snapshot-lifecycle.md)
++ [Amazon EBS snapshots](EBSSnapshots.md)
++ [Automating the Amazon EBS snapshot lifecycle](snapshot-lifecycle.md)
 + [Amazon EBS encryption](EBSEncryption.md)
-+ [Amazon CloudWatch Metrics for Amazon EBS](using_cloudwatch_ebs.md)
++ [Amazon CloudWatch metrics for Amazon EBS](using_cloudwatch_ebs.md)
 + [Amazon CloudWatch Events for Amazon EBS](ebs-cloud-watch-events.md)
 
 **Topics**
@@ -126,7 +126,7 @@ Specify the following in `mapping.json`\.
 
 ## Monitoring<a name="monitoring"></a>
 
-You can monitor a Multi\-Attach enabled volume using the CloudWatch Metrics for Amazon EBS volumes\. For more information, see [Amazon CloudWatch Metrics for Amazon EBS](using_cloudwatch_ebs.md)\.
+You can monitor a Multi\-Attach enabled volume using the CloudWatch Metrics for Amazon EBS volumes\. For more information, see [Amazon CloudWatch metrics for Amazon EBS](using_cloudwatch_ebs.md)\.
 
 Data is aggregated across all of the attached instances\. You can't monitor metrics for individual attached instances\.
 

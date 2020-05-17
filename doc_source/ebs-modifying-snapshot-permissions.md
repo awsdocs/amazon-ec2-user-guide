@@ -1,4 +1,4 @@
-# Sharing an Amazon EBS Snapshot<a name="ebs-modifying-snapshot-permissions"></a>
+# Sharing an Amazon EBS snapshot<a name="ebs-modifying-snapshot-permissions"></a>
 
 By modifying the permissions of a snapshot, you can share it with the AWS accounts that you specify\. Users that you have authorized can use the snapshots you share as the basis for creating their own EBS volumes, while your original snapshot remains unaffected\.
 
@@ -12,12 +12,12 @@ When you share a snapshot, you are giving others access to all of the data on th
 ## Considerations<a name="share-snapshot-considerations"></a>
 
 The following considerations apply to sharing snapshots:
-+ Snapshots are constrained to the Region in which they were created\. To share a snapshot with another Region, copy the snapshot to that Region\. For more information, see [Copying an Amazon EBS Snapshot](ebs-copy-snapshot.md)\.
++ Snapshots are constrained to the Region in which they were created\. To share a snapshot with another Region, copy the snapshot to that Region\. For more information, see [Copying an Amazon EBS snapshot](ebs-copy-snapshot.md)\.
 + If your snapshot uses the longer resource ID format, you can only share it with another account that also supports longer IDs\. For more information, see [Resource IDs](resource-ids.md)\.
 + AWS prevents you from sharing snapshots that were encrypted with your default CMK\. Snapshots that you intend to share must instead be encrypted with a customer managed CMK\. For more information, see [Creating Keys](https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html) in the *AWS Key Management Service Developer Guide*\.
 + Users of your shared CMK who are accessing encrypted snapshots must be granted permissions to perform the following actions on the key: `kms:DescribeKey`, `kms:CreateGrant`, `GenerateDataKey`, and `kms:ReEncrypt`\. For more information, see [Controlling Access to Customer Master Keys](https://docs.aws.amazon.com/kms/latest/developerguide/control-access.html) in the *AWS Key Management Service Developer Guide*\.
 
-## Sharing an Unencrypted Snapshot Using the Console<a name="share-unencrypted-snapshot"></a>
+## Sharing an unencrypted snapshot using the console<a name="share-unencrypted-snapshot"></a>
 
 **To share a snapshot using the console**
 
@@ -45,7 +45,7 @@ The following considerations apply to sharing snapshots:
 
 1. Locate the snapshot by ID or description\. You can use this snapshot as you would any other; for example, you can create a volume from the snapshot or copy the snapshot to a different Region\.
 
-## Sharing an Encrypted Snapshot Using the Console<a name="share-encrypted-snapshot"></a>
+## Sharing an encrypted snapshot using the console<a name="share-encrypted-snapshot"></a>
 
 **To share an encrypted snapshot using the console**
 
@@ -123,7 +123,7 @@ The following considerations apply to sharing snapshots:
 
 1. Choose **Copy**\.
 
-## Sharing a Snapshot Using the Command Line<a name="share-snapshot-cli"></a>
+## Sharing a snapshot using the command line<a name="share-snapshot-cli"></a>
 
 The permissions for a snapshot are specified using the `createVolumePermission` attribute of the snapshot\. To make a snapshot public, set the group to `all`\. To share a snapshot with a specific AWS account, set the user to the ID of the AWS account\.
 

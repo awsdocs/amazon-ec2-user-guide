@@ -17,7 +17,7 @@ Jumbo frames allow more than 1500 bytes of data by increasing the payload size p
 
 Jumbo frames should be used with caution for internet\-bound traffic or any traffic that leaves a VPC\. Packets are fragmented by intermediate systems, which slows down this traffic\. To use jumbo frames inside a VPC and not slow traffic that's bound for outside the VPC, you can configure the MTU size by route, or use multiple elastic network interfaces with different MTU sizes and different routes\.
 
-For instances that are collocated inside a cluster placement group, jumbo frames help to achieve the maximum network throughput possible, and they are recommended in this case\. For more information, see [Placement Groups](placement-groups.md)\.
+For instances that are collocated inside a cluster placement group, jumbo frames help to achieve the maximum network throughput possible, and they are recommended in this case\. For more information, see [Placement groups](placement-groups.md)\.
 
 You can use jumbo frames for traffic between your VPCs and your on\-premises networks over AWS Direct Connect\. For more information, and for how to verify Jumbo Frame capability, see [Setting Network MTU](https://docs.aws.amazon.com/directconnect/latest/UserGuide/set-jumbo-frames-vif.html) in the *AWS Direct Connect User Guide*\.
 

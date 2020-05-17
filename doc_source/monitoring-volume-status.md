@@ -8,7 +8,7 @@ Amazon Web Services \(AWS\) automatically provides data that you can use to moni
 + [Working with an impaired volume](#work_volumes_impaired)
 + [Working with the Auto\-Enabled IO volume attribute](#volumeIO)
 
-For additional monitoring information, see [Amazon CloudWatch Metrics for Amazon EBS](using_cloudwatch_ebs.md) and [Amazon CloudWatch Events for Amazon EBS](ebs-cloud-watch-events.md)\.
+For additional monitoring information, see [Amazon CloudWatch metrics for Amazon EBS](using_cloudwatch_ebs.md) and [Amazon CloudWatch Events for Amazon EBS](ebs-cloud-watch-events.md)\.
 
 ## EBS volume status checks<a name="monitoring-volume-checks"></a>
 
@@ -26,7 +26,7 @@ If the consistency of a particular volume is not a concern, and you'd prefer tha
 The I/O performance status check compares actual volume performance to the expected performance of a volume and alerts you if the volume is performing below expectations\. This status check is only available for `io1` volumes that are attached to an instance and is not valid for General Purpose SSD \(`gp2`\), Throughput Optimized HDD \(`st1`\), Cold HDD \(`sc1`\), or Magnetic \(`standard`\) volumes\. The I/O performance status check is performed once every minute and CloudWatch collects this data every 5 minutes, so it may take up to 5 minutes from the moment you attach a `io1` volume to an instance for this check to report the I/O performance status\.
 
 **Important**  
-While initializing `io1` volumes that were restored from snapshots, the performance of the volume may drop below 50 percent of its expected level, which causes the volume to display a `warning` state in the **I/O Performance** status check\. This is expected, and you can ignore the `warning` state on `io1` volumes while you are initializing them\. For more information, see [Initializing Amazon EBS Volumes](ebs-initialize.md)\.
+While initializing `io1` volumes that were restored from snapshots, the performance of the volume may drop below 50 percent of its expected level, which causes the volume to display a `warning` state in the **I/O Performance** status check\. This is expected, and you can ignore the `warning` state on `io1` volumes while you are initializing them\. For more information, see [Initializing Amazon EBS volumes](ebs-initialize.md)\.
 
 The following table lists statuses for Amazon EBS volumes\.
 

@@ -1,19 +1,52 @@
 # Troubleshooting connecting to your instance<a name="TroubleshootingInstancesConnecting"></a>
 
-The following are possible problems you may have and error messages you may see while trying to connect to your instance\.
+The following information can help you troubleshoot issues with connecting to your instance\. For additional help with Windows instances, see [Troubleshooting Windows Instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/troubleshooting-windows-instances.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
 **Topics**
++ [Common causes for connection issues](#TroubleshootingInstancesCommonCauses)
 + [Error connecting to your instance: Connection timed out](#TroubleshootingInstancesConnectionTimeout)
 + [Error: unable to load key … Expecting: ANY PRIVATE KEY](#troubleshoot-instance-connect-key-file)
 + [Error: User key not recognized by server](#TroubleshootingInstancesServerError)
-+ [Error: Host key not found, Permission denied \(publickey\), *or* Authentication failed, permission denied](#TroubleshootingInstancesConnectingSSH)
++ [Error: Permission denied or connection closed by \[instance\] port 22](#TroubleshootingInstancesConnectingSSH)
 + [Error: Unprotected private key file](#troubleshoot-unprotected-key)
 + [Error: Private key must begin with "\-\-\-\-\-BEGIN RSA PRIVATE KEY\-\-\-\-\-" and end with "\-\-\-\-\-END RSA PRIVATE KEY\-\-\-\-\-"](#troubleshoot-private-key-file-format)
 + [Error: Server refused our key *or* No supported authentication methods available](#TroubleshootingInstancesConnectingPuTTY)
 + [Cannot ping instance](#troubleshoot-instance-ping)
 + [Error: Server unexpectedly closed network connection](#troubleshoot-ssh)
 
-For additional help with Windows instances, see [Troubleshooting Windows Instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/troubleshooting-windows-instances.html) in the *Amazon EC2 User Guide for Windows Instances*\.
+## Common causes for connection issues<a name="TroubleshootingInstancesCommonCauses"></a>
+
+We recommend that you begin troubleshooting by checking some common causes for issues connecting to your instance\.
+
+**Verify the user name for your instance**  
+You can connect to your instance using the user name for your user account or the default user name for the AMI that you used to launch your instance\.  
++ **Get the user name for your user account\.**
+
+  For more information about how to create a user account, see [Managing user accounts on your Amazon Linux instance](managing-users.md)\.
++ **Get the default user name for the AMI that you used to launch your instance:**
+  + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
+  + For a CentOS AMI, the user name is `centos`\.
+  + For a Debian AMI, the user name is `admin` or `root`\.
+  + For a Fedora AMI, the user name is `ec2-user` or `fedora`\.
+  + For a RHEL AMI, the user name is `ec2-user` or `root`\.
+  + For a SUSE AMI, the user name is `ec2-user` or `root`\.
+  + For an Ubuntu AMI, the user name is `ubuntu`\.
+  + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
+
+**Verify that your security group rules allow traffic**  
+Make sure your security group rules allow inbound traffic from your public IPv4 address on the proper port\. For steps to verify, see [Error connecting to your instance: Connection timed out](#TroubleshootingInstancesConnectionTimeout)
+
+**Verify that your instance is ready**  
+After you launch an instance, it can take a few minutes for the instance to be ready so that you can connect to it\. Check your instance to make sure it is running and has passed its status checks\.  
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances**, and then select your instance\.
+
+1. Verify that your **Instance State** is running and your **Status Checks** have passed\. 
+
+**Verify the general prerequisites for connecting to your instance**  
+For more information, see [General prerequisites for connecting to your instance](connection-prereqs.md)\.
 
 ## Error connecting to your instance: Connection timed out<a name="TroubleshootingInstancesConnectionTimeout"></a>
 
@@ -98,7 +131,7 @@ If you try to connect to your instance and get the error message, `unable to loa
 + Use `ssh -vvv` to get triple verbose debugging information while connecting:
 
   ```
-  ssh -vvv -i [your key name].pem ec2-user@[public DNS address of your instance].compute-1.amazonaws.com
+  ssh -vvv -i path/my-key-pair.pem my-instance-user-name@ec2-203-0-113-25.compute-1.amazonaws.com
   ```
 
   The following sample output demonstrates what you might see if you were trying to connect to your instance with a key that was not recognized by the server:
@@ -150,9 +183,9 @@ In PuTTYgen, load your private key file and select **Save Private Key** rather t
   + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
 + Verify that you have an inbound security group rule to allow inbound traffic to the appropriate port\. For more information, see [Authorizing Network Access to Your Instances](authorizing-access-to-an-instance.md)\. 
 
-## Error: Host key not found, Permission denied \(publickey\), *or* Authentication failed, permission denied<a name="TroubleshootingInstancesConnectingSSH"></a>
+## Error: Permission denied or connection closed by \[instance\] port 22<a name="TroubleshootingInstancesConnectingSSH"></a>
 
-If you connect to your instance using SSH and get any of the following errors, `Host key not found in [directory]`, `Permission denied (publickey)`, or `Authentication failed, permission denied`, verify that you are connecting with the appropriate user name for your AMI *and* that you have specified the proper private key \(`.pem)` file for your instance\.
+If you connect to your instance using SSH and get any of the following errors, `Host key not found in [directory]`, `Permission denied (publickey)`, `Authentication failed, permission denied`, or `Connection closed by [instance] port 22`, verify that you are connecting with the appropriate user name for your AMI *and* that you have specified the proper private key \(`.pem)` file for your instance\.
 
 The appropriate user names are as follows:
 + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
@@ -167,7 +200,7 @@ The appropriate user names are as follows:
 For example, to use an SSH client to connect to an Amazon Linux instance, use the following command:
 
 ```
-ssh -i /path/my-key-pair.pem ec2-user@public-dns-hostname
+ssh -i /path/my-key-pair.pem my-instance-user-name@ec2-203-0-113-25.compute-1.amazonaws.com
 ```
 
 Confirm that you are using the private key file that corresponds to the key pair that you selected when you launched the instance\.
@@ -180,7 +213,7 @@ Confirm that you are using the private key file that corresponds to the key pair
 
 If you generated your own key pair, ensure that your key generator is set up to create RSA keys\. DSA keys are not accepted\.
 
-If you get a `Permission denied (publickey)` error and none of the above applies \(for example, you were able to connect previously\), the permissions on the home directory of your instance may have been changed\. Permissions for `/home/ec2-user/.ssh/authorized_keys` must be limited to the owner only\.
+If you get a `Permission denied (publickey)` error and none of the above applies \(for example, you were able to connect previously\), the permissions on the home directory of your instance may have been changed\. Permissions for `/home/my-instance-user-name/.ssh/authorized_keys` must be limited to the owner only\.
 
 **To verify the permissions on your instance**
 
@@ -190,18 +223,18 @@ If you get a `Permission denied (publickey)` error and none of the above applies
 
 1. Connect to the temporary instance, create a mount point, and mount the volume that you attached\. For more information, see [Making an Amazon EBS volume available for use on Linux](ebs-using-volumes.md)\.
 
-1. From the temporary instance, check the permissions of the `/home/ec2-user/` directory of the attached volume\. If necessary, adjust the permissions as follows:
+1. From the temporary instance, check the permissions of the `/home/my-instance-user-name/` directory of the attached volume\. If necessary, adjust the permissions as follows:
 
    ```
-   [ec2-user ~]$ chmod 600 mount_point/home/ec2-user/.ssh/authorized_keys
-   ```
-
-   ```
-   [ec2-user ~]$ chmod 700 mount_point/home/ec2-user/.ssh
+   [ec2-user ~]$ chmod 600 mount_point/home/my-instance-user-name/.ssh/authorized_keys
    ```
 
    ```
-   [ec2-user ~]$ chmod 700 mount_point/home/ec2-user
+   [ec2-user ~]$ chmod 700 mount_point/home/my-instance-user-name/.ssh
+   ```
+
+   ```
+   [ec2-user ~]$ chmod 700 mount_point/home/my-instance-user-name
    ```
 
 1. Unmount the volume, detach it from the temporary instance, and re\-attach it to the original instance\. Ensure that you specify the correct device name for the root volume; for example, `/dev/xvda`\.
@@ -261,10 +294,10 @@ The `ping` command is a type of ICMP traffic — if you are unable to ping your 
 
 If you are unable to issue a `ping` command from your instance, ensure that your outbound security group rules allow ICMP traffic for the `Echo Request` message to all destinations, or to the host that you are attempting to ping\.
 
-`Ping` commands can also be blocked by a firewall or time out due to network latency or hardware issues\. You can consult your local network or system administrator for help with further troubleshooting\.
+`Ping` commands can also be blocked by a firewall or time out due to network latency or hardware issues\. You should consult your local network or system administrator for help with further troubleshooting\.
 
 ## Error: Server unexpectedly closed network connection<a name="troubleshoot-ssh"></a>
 
-If you are connecting to your instance with Putty and you receive the error "Server unexpectedly closed network connection," verify that you have enabled keepalives on the Connection page of the Putty Configuration to avoid being disconnected\. Some servers disconnect clients when they do not receive any data within a specified period of time\. Set the Seconds between keepalives to 59 seconds\. 
+If you are connecting to your instance with PuTTY and you receive the error "Server unexpectedly closed network connection," verify that you have enabled keepalives on the Connection page of the PuTTY Configuration to avoid being disconnected\. Some servers disconnect clients when they do not receive any data within a specified period of time\. Set the Seconds between keepalives to 59 seconds\. 
 
-If you still experience issues after enabling keepalives, try to disable Nagle's algorithm on the Connection page of the Putty Configuration\. 
+If you still experience issues after enabling keepalives, try to disable Nagle's algorithm on the Connection page of the PuTTY Configuration\. 

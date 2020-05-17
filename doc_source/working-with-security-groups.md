@@ -1,4 +1,4 @@
-# Working with Security Groups<a name="working-with-security-groups"></a>
+# Working with security groups<a name="working-with-security-groups"></a>
 
 You can assign a security group to an instance when you launch the instance\. When you add or remove rules, those changes are automatically applied to all instances to which you've assigned the security group\.
 
@@ -7,15 +7,15 @@ After you launch an instance, you can change its security groups\. For more info
 You can create, view, update, and delete security groups and security group rules using the Amazon EC2 console and the command line tools\.
 
 **Topics**
-+ [Creating a Security Group](#creating-security-group)
-+ [Copying a Security Group](#copy-security-group)
-+ [Viewing Your Security Groups](#describing-security-group)
-+ [Adding Rules to a Security Group](#adding-security-group-rule)
++ [Creating a security group](#creating-security-group)
++ [Copying a security group](#copy-security-group)
++ [Viewing your security groups](#describing-security-group)
++ [Adding rules to a security group](#adding-security-group-rule)
 + [Updating Security Group Rules](#updating-security-group-rules)
-+ [Deleting Rules from a Security Group](#deleting-security-group-rule)
-+ [Deleting a Security Group](#deleting-security-group)
++ [Deleting rules from a security group](#deleting-security-group-rule)
++ [Deleting a security group](#deleting-security-group)
 
-## Creating a Security Group<a name="creating-security-group"></a>
+## Creating a security group<a name="creating-security-group"></a>
 
 You can create a custom security group using one of the following methods\. You must specify the VPC for which you're creating the security group\.
 
@@ -36,7 +36,7 @@ You can create a custom security group using one of the following methods\. You 
 
    1. For **VPC**, choose the VPC in which to create the security group\. The security group can only be used in the VPC in which it is created\.
 
-1. You can add security group rules now, or you can add them at any time after you have created the security group\. For more information about adding security group rules, see [Adding Rules to a Security Group](#adding-security-group-rule)\.
+1. You can add security group rules now, or you can add them at any time after you have created the security group\. For more information about adding security group rules, see [Adding rules to a security group](#adding-security-group-rule)\.
 
 1. Choose **Create**\.
 
@@ -55,7 +55,7 @@ You can create a custom security group using one of the following methods\. You 
 
 1. For **VPC**, choose the ID of the VPC\.
 
-1. You can start adding rules, or you can choose **Create** to create the security group now \(you can always add rules later\)\. For more information about adding rules, see [Adding Rules to a Security Group](#adding-security-group-rule)\. 
+1. You can start adding rules, or you can choose **Create** to create the security group now \(you can always add rules later\)\. For more information about adding rules, see [Adding rules to a security group](#adding-security-group-rule)\. 
 
 ------
 #### [ Command line ]
@@ -68,7 +68,7 @@ Use one of the following commands:
 
 ------
 
-## Copying a Security Group<a name="copy-security-group"></a>
+## Copying a security group<a name="copy-security-group"></a>
 
 You can create a new security group by creating a copy of an existing one\. When you copy a security group, the copy is created with the same inbound and outbound rules as the original security group\. If the original security group is in a VPC, the copy is created in the same VPC unless you specify a different one\.
 
@@ -106,7 +106,7 @@ You can create a copy of a security group using one of the following methods\.
 
 ------
 
-## Viewing Your Security Groups<a name="describing-security-group"></a>
+## Viewing your security groups<a name="describing-security-group"></a>
 
 You can view information about your security groups using one of the following methods\.
 
@@ -132,7 +132,7 @@ You can view information about your security groups using one of the following m
 
 1. \(Optional\) Select **VPC ID** from the filter list, then choose the ID of the VPC\.
 
-1. Select a security group\. We display general information in the **Description** tab, inbound rules on the **Inbound** tab, outbound rules on the **Outbound** tab, and tags on the **Tags** tab\.
+1. Select a security group\. General information is displayed on the **Description** tab, inbound rules on the **Inbound** tab, outbound rules on the **Outbound** tab, and tags on the **Tags** tab\.
 
 ------
 #### [ Command line ]
@@ -145,9 +145,9 @@ Use one of the following commands\.
 
 ------
 
-## Adding Rules to a Security Group<a name="adding-security-group-rule"></a>
+## Adding rules to a security group<a name="adding-security-group-rule"></a>
 
-When you add a rule to a security group, the new rule is automatically applied to any instances that are associated with the security group\. There might be a short delay before the rule is applied\. For more information about choosing security group rules for specific types of access, see [Security Group Rules Reference](security-group-rules-reference.md)\.
+When you add a rule to a security group, the new rule is automatically applied to any instances that are associated with the security group\. There might be a short delay before the rule is applied\. For more information about choosing security group rules for specific types of access, see [Security group rules reference](security-group-rules-reference.md)\.
 
 You can add rules to a security group using one of the following methods\.
 
@@ -229,7 +229,7 @@ You can add rules to a security group using one of the following methods\.
      + **My IP**: automatically adds the public IPv4 address of your local computer\.
    + For **Description**, you can optionally specify a description for the rule\.
 
-   For more information about the types of rules that you can add, see [Security Group Rules Reference](security-group-rules-reference.md)\.
+   For more information about the types of rules that you can add, see [Security group rules reference](security-group-rules-reference.md)\.
 
 1. Choose **Save**\.
 
@@ -319,7 +319,7 @@ Use one of the following commands\.
 
 ------
 
-## Deleting Rules from a Security Group<a name="deleting-security-group-rule"></a>
+## Deleting rules from a security group<a name="deleting-security-group-rule"></a>
 
 When you delete a rule from a security group, the change is automatically applied to any instances associated with the security group\.
 
@@ -372,7 +372,7 @@ Use one of the following commands\.
 
 ------
 
-## Deleting a Security Group<a name="deleting-security-group"></a>
+## Deleting a security group<a name="deleting-security-group"></a>
 
 You can't delete a security group that is associated with an instance\. You can't delete the default security group\. You can't delete a security group that is referenced by a rule in another security group in the same VPC\. If your security group is referenced by one of its own rules, you must delete the rule before you can delete the security group\.
 

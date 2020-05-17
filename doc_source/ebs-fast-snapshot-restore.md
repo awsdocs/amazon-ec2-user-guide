@@ -38,7 +38,7 @@ MIN (10, 1024/snapshot_size_gib)
 
 For example, if you enable fast snapshot restore for a snapshot with a size of 100 GiB, the maximum size of its credit bucket is 10 credits and the refill rate is 10 credits per hour\. When the credit bucket is full, you can create 10 initialized volumes from this snapshot simultaneously\.
 
-You can use Cloudwatch metrics to monitor the size of your credit buckets and the number of credits available in each bucket\. For more information, see [Fast Snapshot Restore Metrics](using_cloudwatch_ebs.md#fast-snapshot-restore-metrics)\.
+You can use Cloudwatch metrics to monitor the size of your credit buckets and the number of credits available in each bucket\. For more information, see [Fast snapshot restore metrics](using_cloudwatch_ebs.md#fast-snapshot-restore-metrics)\.
 
 After you create a volume from a snapshot with fast snapshot restore enabled, you can describe the volume using [describe\-volumes](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-volumes.html) and check the `fastRestored` field in the output to determine whether the volume was created as an initialized volume using fast snapshot restore\.
 

@@ -11,11 +11,11 @@ Amazon EBS provides the following volume types: General Purpose SSD \(`gp2`\), P
 + [Amazon EBS volume types](ebs-volume-types.md)
 + [Constraints on the size and configuration of an EBS volume](volume_constraints.md)
 + [Creating an Amazon EBS volume](ebs-creating-volume.md)
-+ [Restoring an Amazon EBS volume from a snapshot](ebs-restoring-volume.md)
 + [Attaching an Amazon EBS volume to an instance](ebs-attaching-volume.md)
 + [Attaching a volume to multiple instances with Amazon EBS Multi\-Attach](ebs-volumes-multi.md)
 + [Making an Amazon EBS volume available for use on Linux](ebs-using-volumes.md)
 + [Viewing information about an Amazon EBS volume](ebs-describing-volumes.md)
++ [Restoring an Amazon EBS volume from a snapshot](ebs-restoring-volume.md)
 + [Monitoring the status of your volumes](monitoring-volume-status.md)
 + [Detaching an Amazon EBS volume from a Linux instance](ebs-detaching-volume.md)
 + [Deleting an Amazon EBS volume](ebs-deleting-volume.md)
@@ -32,7 +32,7 @@ If you attach multiple volumes to a device that you have named, you can stripe d
 
 You can attach an `io1` EBS volume to up to 16 Nitro\-based instances\. For more information, see [Attaching a volume to multiple instances with Amazon EBS Multi\-Attach](ebs-volumes-multi.md)\. Otherwise, you can attach an EBS volume to a single instance\.
 
-You can get monitoring data for your EBS volumes, including root device volumes for EBS\-backed instances, at no additional charge\. For more information about monitoring metrics, see [Amazon CloudWatch Metrics for Amazon EBS](using_cloudwatch_ebs.md)\. For information about tracking the status of your volumes, see [Amazon CloudWatch Events for Amazon EBS](ebs-cloud-watch-events.md)\.
+You can get monitoring data for your EBS volumes, including root device volumes for EBS\-backed instances, at no additional charge\. For more information about monitoring metrics, see [Amazon CloudWatch metrics for Amazon EBS](using_cloudwatch_ebs.md)\. For information about tracking the status of your volumes, see [Amazon CloudWatch Events for Amazon EBS](ebs-cloud-watch-events.md)\.
 
 ### Data persistence<a name="persistence-benefit"></a>
 

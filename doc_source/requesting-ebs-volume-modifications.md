@@ -4,7 +4,7 @@ With Elastic Volumes, you can dynamically modify the size, performance, and volu
 
 Use the following process when modifying a volume:
 
-1. \(Optional\) Before modifying a volume that contains valuable data, it is a best practice to create a snapshot of the volume in case you need to roll back your changes\. For more information, see [Creating Amazon EBS Snapshots](ebs-creating-snapshot.md)\.
+1. \(Optional\) Before modifying a volume that contains valuable data, it is a best practice to create a snapshot of the volume in case you need to roll back your changes\. For more information, see [Creating Amazon EBS snapshots](ebs-creating-snapshot.md)\.
 
 1. Request the volume modification\.
 

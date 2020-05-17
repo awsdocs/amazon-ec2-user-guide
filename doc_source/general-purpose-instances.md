@@ -260,7 +260,7 @@ The following is a summary of features for general purpose instances:
 For more information, see the following:
 + [Amazon EBS and NVMe on Linux instances](nvme-ebs-volumes.md)
 + [Amazon EC2 Instance Store](InstanceStorage.md)
-+ [Placement Groups](placement-groups.md)
++ [Placement groups](placement-groups.md)
 
 ## Release notes<a name="general-purpose-instances-limits"></a>
 + M5, M5d, and T3 instances feature a 3\.1 GHz Intel Xeon Platinum 8000 series processor from either the first generation \(Skylake\-SP\) or second generation \(Cascade Lake\)\.

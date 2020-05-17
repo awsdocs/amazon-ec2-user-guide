@@ -1,8 +1,6 @@
-# Elastic Network Interfaces<a name="using-eni"></a>
+# Elastic network interfaces<a name="using-eni"></a>
 
-An elastic network interface \(referred to as a *network interface* in this documentation\) is a logical networking component in a VPC that represents a virtual network card\.
-
-A network interface can include the following attributes:
+An *elastic network interface* is a logical networking component in a VPC that represents a virtual network card\. It can include the following attributes:
 + A primary private IPv4 address from the IPv4 address range of your VPC
 + One or more secondary private IPv4 addresses from the IPv4 address range of your VPC
 + One Elastic IP address \(IPv4\) per private IPv4 address
@@ -13,52 +11,49 @@ A network interface can include the following attributes:
 + A source/destination check flag
 + A description
 
-You can create and configure network interfaces in your account and attach them to instances in your VPC\. Your account might also have *requester\-managed* network interfaces, which are created and managed by AWS services to enable you to use other resources and services\. You cannot manage these network interfaces yourself\. For more information, see [Requester\-Managed Network Interfaces](requester-managed-eni.md)\.
+You can create and configure network interfaces in your account and attach them to instances in your VPC\. Your account might also have *requester\-managed* network interfaces, which are created and managed by AWS services to enable you to use other resources and services\. You cannot manage these network interfaces yourself\. For more information, see [Requester\-managed network interfaces](requester-managed-eni.md)\.
 
-All network interfaces have a resource identifier that starts with *eni\-*\.
-
-**Important**  
-The term 'elastic network interface' is sometimes shortened to 'ENI'\. This is not the same as the Elastic Network Adapter \(ENA\), which is a custom interface that optimizes network performance on some instance types\. For more information, see [Enhanced networking on Linux](enhanced-networking.md)\.
+This AWS resource is referred to as a *network interface* in the AWS Management Console and the Amazon EC2 API\. Therefore, we use "network interface" in this documentation instead of "elastic network interface"\. The term "network interface" in this documentation always means "elastic network interface"\.
 
 **Topics**
-+ [Network Interface Basics](#eni-basics)
-+ [IP Addresses Per Network Interface Per Instance Type](#AvailableIpPerENI)
-+ [Scenarios for Network Interfaces](#scenarios-enis)
-+ [Best Practices for Configuring Network Interfaces](#best-practices-for-configuring-network-interfaces)
-+ [Working with Network Interfaces](#working-with-enis)
-+ [Requester\-Managed Network Interfaces](requester-managed-eni.md)
++ [Network interface basics](#eni-basics)
++ [IP addresses per network interface per instance type](#AvailableIpPerENI)
++ [Scenarios for network interfaces](#scenarios-enis)
++ [Best practices for configuring network interfaces](#best-practices-for-configuring-network-interfaces)
++ [Working with network interfaces](#working-with-enis)
++ [Requester\-managed network interfaces](requester-managed-eni.md)
 
-## Network Interface Basics<a name="eni-basics"></a>
+## Network interface basics<a name="eni-basics"></a>
 
 You can create a network interface, attach it to an instance, detach it from an instance, and attach it to another instance\. The attributes of a network interface follow it as it's attached or detached from an instance and reattached to another instance\. When you move a network interface from one instance to another, network traffic is redirected to the new instance\.
 
 You can also modify the attributes of your network interface, including changing its security groups and managing its IP addresses\.
 
-Every instance in a VPC has a default network interface, called the *primary network interface* \(eth0\)\. You cannot detach a primary network interface from an instance\. You can create and attach additional network interfaces\. The maximum number of network interfaces that you can use varies by instance type\. For more information, see [IP Addresses Per Network Interface Per Instance Type](#AvailableIpPerENI)\.
+Every instance in a VPC has a default network interface, called the *primary network interface*\. You cannot detach a primary network interface from an instance\. You can create and attach additional network interfaces\. The maximum number of network interfaces that you can use varies by instance type\. For more information, see [IP addresses per network interface per instance type](#AvailableIpPerENI)\.
 
 **Public IPv4 addresses for network interfaces**  
-In a VPC, all subnets have a modifiable attribute that determines whether network interfaces created in that subnet \(and therefore instances launched into that subnet\) are assigned a public IPv4 address\. For more information, see [IP Addressing Behavior for Your Subnet](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html#vpc-ip-addressing-subnet) in the *Amazon VPC User Guide*\. The public IPv4 address is assigned from Amazon's pool of public IPv4 addresses\. When you launch an instance, the IP address is assigned to the primary network interface \(eth0\) that's created\.
+In a VPC, all subnets have a modifiable attribute that determines whether network interfaces created in that subnet \(and therefore instances launched into that subnet\) are assigned a public IPv4 address\. For more information, see [IP Addressing Behavior for Your Subnet](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html#vpc-ip-addressing-subnet) in the *Amazon VPC User Guide*\. The public IPv4 address is assigned from Amazon's pool of public IPv4 addresses\. When you launch an instance, the IP address is assigned to the primary network interface that's created\.
 
-When you create a network interface, it inherits the public IPv4 addressing attribute from the subnet\. If you later modify the public IPv4 addressing attribute of the subnet, the network interface keeps the setting that was in effect when it was created\. If you launch an instance and specify an existing network interface for eth0, the public IPv4 addressing attribute is determined by the network interface\.
+When you create a network interface, it inherits the public IPv4 addressing attribute from the subnet\. If you later modify the public IPv4 addressing attribute of the subnet, the network interface keeps the setting that was in effect when it was created\. If you launch an instance and specify an existing network interface as the primary network interface, the public IPv4 address attribute is determined by this network interface\.
 
-For more information, see [Public IPv4 Addresses and External DNS Hostnames](using-instance-addressing.md#concepts-public-addresses)\.
+For more information, see [Public IPv4 addresses and external DNS hostnames](using-instance-addressing.md#concepts-public-addresses)\.
 
 **IPv6 addresses for network interfaces**  
 You can associate an IPv6 CIDR block with your VPC and subnet, and assign one or more IPv6 addresses from the subnet range to a network interface\.
 
-All subnets have a modifiable attribute that determines whether network interfaces created in that subnet \(and therefore instances launched into that subnet\) are automatically assigned an IPv6 address from the range of the subnet\. For more information, see [IP Addressing Behavior for Your Subnet](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html#vpc-ip-addressing-subnet) in the *Amazon VPC User Guide*\. When you launch an instance, the IPv6 address is assigned to the primary network interface \(eth0\) that's created\.
+All subnets have a modifiable attribute that determines whether network interfaces created in that subnet \(and therefore instances launched into that subnet\) are automatically assigned an IPv6 address from the range of the subnet\. For more information, see [IP Addressing Behavior for Your Subnet](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html#vpc-ip-addressing-subnet) in the *Amazon VPC User Guide*\. When you launch an instance, the IPv6 address is assigned to the primary network interface that's created\.
 
-For more information, see [IPv6 Addresses](using-instance-addressing.md#ipv6-addressing)\.
+For more information, see [IPv6 addresses](using-instance-addressing.md#ipv6-addressing)\.
 
-**Monitoring IP Traffic**  
+**Monitoring IP traffic**  
 You can enable a VPC flow log on your network interface to capture information about the IP traffic going to and from a network interface\. After you've created a flow log, you can view and retrieve its data in Amazon CloudWatch Logs\. For more information, see [VPC Flow Logs](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html) in the *Amazon VPC User Guide*\.
 
-## IP Addresses Per Network Interface Per Instance Type<a name="AvailableIpPerENI"></a>
+## IP addresses per network interface per instance type<a name="AvailableIpPerENI"></a>
 
-The following table lists the maximum number of network interfaces per instance type, and the maximum number of private IPv4 addresses and IPv6 addresses per network interface\. The limit for IPv6 addresses is separate from the limit for private IPv4 addresses per network interface\. Not all instance types support IPv6 addressing\. Network interfaces, multiple private IPv4 addresses, and IPv6 addresses are only available for instances running in a VPC\. IPv6 addresses are public and reachable over the Internet\. For more information, see [Multiple IP Addresses](MultipleIP.md)\. For more information about IPv6 in VPC, see [IP Addressing in Your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html) in the *Amazon VPC User Guide*\.
+The following table lists the maximum number of network interfaces per instance type, and the maximum number of private IPv4 addresses and IPv6 addresses per network interface\. The limit for IPv6 addresses is separate from the limit for private IPv4 addresses per network interface\. Not all instance types support IPv6 addressing\. Network interfaces, multiple private IPv4 addresses, and IPv6 addresses are only available for instances running in a VPC\. IPv6 addresses are public and reachable over the Internet\. For more information, see [Multiple IP addresses](MultipleIP.md)\. For more information about IPv6 in VPC, see [IP Addressing in Your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html) in the *Amazon VPC User Guide*\.
 
 
-| Instance Type | Maximum Network Interfaces | Private IPv4 Addresses per Interface | IPv6 Addresses per Interface | 
+| Instance type | Maximum network interfaces | Private IPv4 addresses per interface | IPv6 addresses per interface | 
 | --- | --- | --- | --- | 
 | a1\.medium | 2 | 4 | 4 | 
 | a1\.large | 3 | 10 | 10 | 
@@ -339,7 +334,7 @@ The following table lists the maximum number of network interfaces per instance 
 | z1d\.12xlarge | 15 | 50 | 50 | 
 | z1d\.metal | 15 | 50 | 50 | 
 
-## Scenarios for Network Interfaces<a name="scenarios-enis"></a>
+## Scenarios for network interfaces<a name="scenarios-enis"></a>
 
 Attaching multiple network interfaces to an instance is useful when you want to:
 + Create a management network\.
@@ -347,7 +342,7 @@ Attaching multiple network interfaces to an instance is useful when you want to:
 + Create dual\-homed instances with workloads/roles on distinct subnets\.
 + Create a low\-budget, high\-availability solution\.
 
-### Creating a Management Network<a name="creating-a-management-network"></a>
+### Creating a management network<a name="creating-a-management-network"></a>
 
 You can create a management network using network interfaces\. In this scenario, the primary network interface \(eth0\) on the instance handles public traffic and the secondary network interface \(eth1\) handles backend management traffic and is connected to a separate subnet in your VPC that has more restrictive access controls\. The public interface, which may or may not be behind a load balancer, has an associated security group that allows access to the server from the internet \(for example, allow TCP port 80 and 443 from `0.0.0.0/0`, or from the load balancer\) while the private facing interface has an associated security group allowing SSH access only from an allowed range of IP addresses either within the VPC or from the internet, a private subnet within the VPC or a virtual private gateway\.
 
@@ -355,29 +350,29 @@ To ensure failover capabilities, consider using a secondary private IPv4 for inc
 
 ![\[Creating a Management Network\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/EC2_ENI_management_network.png)
 
-### Use Network and Security Appliances in Your VPC<a name="use-network-and-security-appliances-in-your-vpc"></a>
+### Use network and security appliances in your VPC<a name="use-network-and-security-appliances-in-your-vpc"></a>
 
 Some network and security appliances, such as load balancers, network address translation \(NAT\) servers, and proxy servers prefer to be configured with multiple network interfaces\. You can create and attach secondary network interfaces to instances in a VPC that are running these types of applications and configure the additional interfaces with their own public and private IP addresses, security groups, and source/destination checking\.
 
-### Creating Dual\-homed Instances with Workloads/Roles on Distinct Subnets<a name="creating-dual-homed-instances-with-workloads-roles-on-distinct-subnets"></a>
+### Creating dual\-homed instances with workloads/roles on distinct subnets<a name="creating-dual-homed-instances-with-workloads-roles-on-distinct-subnets"></a>
 
 You can place a network interface on each of your web servers that connects to a mid\-tier network where an application server resides\. The application server can also be dual\-homed to a backend network \(subnet\) where the database server resides\. Instead of routing network packets through the dual\-homed instances, each dual\-homed instance receives and processes requests on the front end, initiates a connection to the backend, and then sends requests to the servers on the backend network\.
 
-### Create a Low Budget High Availability Solution<a name="create-a-low-budget-high-availability-solution"></a>
+### Create a low budget high availability solution<a name="create-a-low-budget-high-availability-solution"></a>
 
 If one of your instances serving a particular function fails, its network interface can be attached to a replacement or hot standby instance pre\-configured for the same role in order to rapidly recover the service\. For example, you can use a network interface as your primary or secondary network interface to a critical service such as a database instance or a NAT instance\. If the instance fails, you \(or more likely, the code running on your behalf\) can attach the network interface to a hot standby instance\. Because the interface maintains its private IP addresses, Elastic IP addresses, and MAC address, network traffic begins flowing to the standby instance as soon as you attach the network interface to the replacement instance\. Users experience a brief loss of connectivity between the time the instance fails and the time that the network interface is attached to the standby instance, but no changes to the VPC route table or your DNS server are required\.
 
-## Best Practices for Configuring Network Interfaces<a name="best-practices-for-configuring-network-interfaces"></a>
+## Best practices for configuring network interfaces<a name="best-practices-for-configuring-network-interfaces"></a>
 + You can attach a network interface to an instance when it's running \(hot attach\), when it's stopped \(warm attach\), or when the instance is being launched \(cold attach\)\.
-+ You can detach secondary network interfaces when the instance is running or stopped\. However, you can't detach the primary network interface \(eth0\)\.
++ You can detach secondary network interfaces when the instance is running or stopped\. However, you can't detach the primary network interface\.
 + You can move a network interface from one instance to another, if the instances are in the same Availability Zone and VPC but in different subnets\.
-+ When launching an instance using the CLI, API, or an SDK, you can specify the primary network interface \(eth0\) and additional network interfaces\.
++ When launching an instance using the CLI, API, or an SDK, you can specify the primary network interface and additional network interfaces\.
 + Launching an Amazon Linux or Windows Server instance with multiple network interfaces automatically configures interfaces, private IPv4 addresses, and route tables on the operating system of the instance\.
 + A warm or hot attach of an additional network interface may require you to manually bring up the second interface, configure the private IPv4 address, and modify the route table accordingly\. Instances running Amazon Linux or Windows Server automatically recognize the warm or hot attach and configure themselves\.
 + Attaching another network interface to an instance \(for example, a NIC teaming configuration\) cannot be used as a method to increase or double the network bandwidth to or from the dual\-homed instance\.
-+ If you attach two or more network interfaces from the same subnet to an instance, you may encounter networking issues such as asymmetric routing\. If possible, use a secondary private IPv4 address on the primary network interface instead\. For more information, see [Assigning a Secondary Private IPv4 Address](MultipleIP.md#ManageMultipleIP)\. 
++ If you attach two or more network interfaces from the same subnet to an instance, you may encounter networking issues such as asymmetric routing\. If possible, use a secondary private IPv4 address on the primary network interface instead\. For more information, see [Assigning a secondary private IPv4 address](MultipleIP.md#ManageMultipleIP)\. 
 
-### Configuring Your Network Interface Using ec2\-net\-utils<a name="ec2-net-utils"></a>
+### Configuring your network interface using ec2\-net\-utils<a name="ec2-net-utils"></a>
 
 Amazon Linux AMIs may contain additional scripts installed by AWS, known as ec2\-net\-utils\. These scripts optionally automate the configuration of your network interfaces\. These scripts are available for Amazon Linux only\.
 
@@ -426,28 +421,28 @@ To disable the automation completely, you can remove the package using the follo
 $ yum remove ec2-net-utils
 ```
 
-## Working with Network Interfaces<a name="working-with-enis"></a>
+## Working with network interfaces<a name="working-with-enis"></a>
 
 You can work with network interfaces using the Amazon EC2 console or the command line\.
 
 **Topics**
-+ [Creating a Network Interface](#create_eni)
-+ [Deleting a Network Interface](#delete_eni)
-+ [Viewing Details about a Network Interface](#view_eni_details)
-+ [Attaching a Network Interface When Launching an Instance](#attach_eni_launch)
-+ [Attaching a Network Interface to a Stopped or Running Instance](#attach_eni_running_stopped)
-+ [Detaching a Network Interface from an Instance](#detach_eni)
-+ [Changing the Security Group](#eni_security_group)
-+ [Changing the Source or Destination Checking](#change_source_dest_check)
-+ [Associating an Elastic IP Address \(IPv4\)](#associate_eip)
-+ [Disassociating an Elastic IP Address \(IPv4\)](#disassociate_eip)
-+ [Assigning an IPv6 Address](#eni-assign-ipv6)
-+ [Unassigning an IPv6 Address](#eni-unassign-ipv6)
-+ [Changing Termination Behavior](#change_term_behavior)
-+ [Adding or Editing a Description](#add_edit_description)
-+ [Adding or Editing Tags](#eni_add_edit_tags)
++ [Creating a network interface](#create_eni)
++ [Deleting a network interface](#delete_eni)
++ [Viewing details about a network interface](#view_eni_details)
++ [Attaching a network interface when launching an instance](#attach_eni_launch)
++ [Attaching a network interface to a stopped or running instance](#attach_eni_running_stopped)
++ [Detaching a network interface from an instance](#detach_eni)
++ [Changing the security group](#eni_security_group)
++ [Changing the source or destination checking](#change_source_dest_check)
++ [Associating an Elastic IP address \(IPv4\)](#associate_eip)
++ [Disassociating an Elastic IP address \(IPv4\)](#disassociate_eip)
++ [Assigning an IPv6 address](#eni-assign-ipv6)
++ [Unassigning an IPv6 address](#eni-unassign-ipv6)
++ [Changing termination behavior](#change_term_behavior)
++ [Adding or editing a description](#add_edit_description)
++ [Adding or editing tags](#eni_add_edit_tags)
 
-### Creating a Network Interface<a name="create_eni"></a>
+### Creating a network interface<a name="create_eni"></a>
 
 You can create a network interface in a subnet\. You can't move the network interface to another subnet after it's created, and you can only attach the network interface to instances in the same Availability Zone\.
 
@@ -477,7 +472,7 @@ You can use one of the following commands\. For more information about these com
 + [create\-network\-interface](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-network-interface.html) \(AWS CLI\)
 + [New\-EC2NetworkInterface](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2NetworkInterface.html) \(AWS Tools for Windows PowerShell\)
 
-### Deleting a Network Interface<a name="delete_eni"></a>
+### Deleting a network interface<a name="delete_eni"></a>
 
 To delete an instance, you must first detach the network interface\. Deleting a network interface releases all attributes associated with the interface and releases any private IP addresses or Elastic IP addresses to be used by another instance\.
 
@@ -497,7 +492,7 @@ You can use one of the following commands\. For more information about these com
 + [delete\-network\-interface](https://docs.aws.amazon.com/cli/latest/reference/ec2/delete-network-interface.html) \(AWS CLI\)
 + [Remove\-EC2NetworkInterface](https://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2NetworkInterface.html) \(AWS Tools for Windows PowerShell\)
 
-### Viewing Details about a Network Interface<a name="view_eni_details"></a>
+### Viewing details about a network interface<a name="view_eni_details"></a>
 
 You can view all the network interfaces in your account\.
 
@@ -523,7 +518,7 @@ You can use one of the following commands\. For more information about these com
 + [describe\-network\-interface\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-network-interface-attribute.html) \(AWS CLI\)
 + [Get\-EC2NetworkInterfaceAttribute](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2NetworkInterfaceAttribute.html) \(AWS Tools for Windows PowerShell\)
 
-### Attaching a Network Interface When Launching an Instance<a name="attach_eni_launch"></a>
+### Attaching a network interface when launching an instance<a name="attach_eni_launch"></a>
 
 You can specify an existing network interface or attach an additional network interface when you launch an instance\.
 
@@ -542,7 +537,7 @@ If an error occurs when attaching a network interface to your instance, this cau
 
 1. In the **Network Interfaces** section, the console enables you to specify up to two network interfaces \(new, existing, or a combination\) when you launch an instance\. You can also enter a primary IPv4 address and one or more secondary IPv4 addresses for any new interface\. 
 
-   You can add additional network interfaces to the instance after you launch it\. The total number of network interfaces that you can attach varies by instance type\. For more information, see [IP Addresses Per Network Interface Per Instance Type](#AvailableIpPerENI)\.
+   You can add additional network interfaces to the instance after you launch it\. The total number of network interfaces that you can attach varies by instance type\. For more information, see [IP addresses per network interface per instance type](#AvailableIpPerENI)\.
 **Note**  
 If you specify more than one network interface, you cannot auto\-assign a public IPv4 address to your instance\. 
 
@@ -566,12 +561,12 @@ You can use one of the following commands\. For more information about these com
 + [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) \(AWS CLI\)
 + [New\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
 
-### Attaching a Network Interface to a Stopped or Running Instance<a name="attach_eni_running_stopped"></a>
+### Attaching a network interface to a stopped or running instance<a name="attach_eni_running_stopped"></a>
 
 You can attach a network interface to any of your stopped or running instances in your VPC, using either the **Instances** or **Network Interfaces** pages of the Amazon EC2 console\. 
 
 **Note**  
-If the public IPv4 address on your instance is released, it does not receive a new one if there is more than one network interface attached to the instance\. For more information about the behavior of public IPv4 addresses, see [Public IPv4 Addresses and External DNS Hostnames](using-instance-addressing.md#concepts-public-addresses)\.
+If the public IPv4 address on your instance is released, it does not receive a new one if there is more than one network interface attached to the instance\. For more information about the behavior of public IPv4 addresses, see [Public IPv4 addresses and external DNS hostnames](using-instance-addressing.md#concepts-public-addresses)\.
 
 **To attach a network interface to an instance using the Instances page**
 
@@ -599,7 +594,7 @@ You can use one of the following commands\. For more information about these com
 + [attach\-network\-interface](https://docs.aws.amazon.com/cli/latest/reference/ec2/attach-network-interface.html) \(AWS CLI\)
 + [Add\-EC2NetworkInterface](https://docs.aws.amazon.com/powershell/latest/reference/items/Add-EC2NetworkInterface.html) \(AWS Tools for Windows PowerShell\)
 
-### Detaching a Network Interface from an Instance<a name="detach_eni"></a>
+### Detaching a network interface from an instance<a name="detach_eni"></a>
 
 You can detach a secondary network interface that is attached to an EC2 instance at any time, using either the **Instances** or **Network Interfaces** page of the Amazon EC2 console\.
 
@@ -635,7 +630,7 @@ You can use one of the following commands\. For more information about these com
 + [detach\-network\-interface](https://docs.aws.amazon.com/cli/latest/reference/ec2/detach-network-interface.html) \(AWS CLI\)
 + [Dismount\-EC2NetworkInterface](https://docs.aws.amazon.com/powershell/latest/reference/items/Dismount-EC2NetworkInterface.html) \(AWS Tools for Windows PowerShell\)
 
-### Changing the Security Group<a name="eni_security_group"></a>
+### Changing the security group<a name="eni_security_group"></a>
 
 You can change the security groups that are associated with a network interface\. When you create the security group, be sure to specify the same VPC as the subnet for the network interface\.
 
@@ -658,7 +653,7 @@ You can use one of the following commands\. For more information about these com
 + [modify\-network\-interface\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-network-interface-attribute.html) \(AWS CLI\)
 + [Edit\-EC2NetworkInterfaceAttribute](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2NetworkInterfaceAttribute.html) \(AWS Tools for Windows PowerShell\)
 
-### Changing the Source or Destination Checking<a name="change_source_dest_check"></a>
+### Changing the source or destination checking<a name="change_source_dest_check"></a>
 
 The Source/Destination Check attribute controls whether source/destination checking is enabled on the instance\. Disabling this attribute enables an instance to handle network traffic that isn't specifically destined for the instance\. For example, instances running services such as network address translation, routing, or a firewall should set this value to `disabled`\. The default value is `enabled`\.
 
@@ -678,7 +673,7 @@ You can use one of the following commands\. For more information about these com
 + [modify\-network\-interface\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-network-interface-attribute.html) \(AWS CLI\)
 + [Edit\-EC2NetworkInterfaceAttribute](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2NetworkInterfaceAttribute.html) \(AWS Tools for Windows PowerShell\)
 
-### Associating an Elastic IP Address \(IPv4\)<a name="associate_eip"></a>
+### Associating an Elastic IP address \(IPv4\)<a name="associate_eip"></a>
 
 If you have an Elastic IP address \(IPv4\), you can associate it with one of the private IPv4 addresses for the network interface\. You can associate one Elastic IP address with each private IPv4 address\.
 
@@ -704,7 +699,7 @@ You can use one of the following commands\. For more information about these com
 + [associate\-address](https://docs.aws.amazon.com/cli/latest/reference/ec2/associate-address.html) \(AWS CLI\)
 + [Register\-EC2Address](https://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2Address.html) \(AWS Tools for Windows PowerShell\)
 
-### Disassociating an Elastic IP Address \(IPv4\)<a name="disassociate_eip"></a>
+### Disassociating an Elastic IP address \(IPv4\)<a name="disassociate_eip"></a>
 
 If the network interface has an Elastic IP address \(IPv4\) associated with it, you can disassociate the address, and then either associate it with another network interface or release it back to the address pool\. This is the only way to associate an Elastic IP address with an instance in a different subnet or VPC using a network interface, as network interfaces are specific to a particular subnet\.
 
@@ -726,7 +721,7 @@ You can use one of the following commands\. For more information about these com
 + [disassociate\-address](https://docs.aws.amazon.com/cli/latest/reference/ec2/disassociate-address.html) \(AWS CLI\)
 + [Unregister\-EC2Address](https://docs.aws.amazon.com/powershell/latest/reference/items/Unregister-EC2Address.html) \(AWS Tools for Windows PowerShell\)
 
-### Assigning an IPv6 Address<a name="eni-assign-ipv6"></a>
+### Assigning an IPv6 address<a name="eni-assign-ipv6"></a>
 
 You can assign one or more IPv6 addresses to a network interface\. The network interface must be in a subnet that has an associated IPv6 CIDR block\. To assign a specific IPv6 address to the network interface, ensure that the IPv6 address is not already assigned to another network interface\.
 
@@ -745,7 +740,7 @@ You can assign one or more IPv6 addresses to a network interface\. The network i
   + [assign\-ipv6\-addresses](https://docs.aws.amazon.com/cli/latest/reference/ec2/assign-ipv6-addresses.html) \(AWS CLI\)
   + [Register\-EC2Ipv6AddressList](https://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2Ipv6AddressList.html) \(AWS Tools for Windows PowerShell\)
 
-### Unassigning an IPv6 Address<a name="eni-unassign-ipv6"></a>
+### Unassigning an IPv6 address<a name="eni-unassign-ipv6"></a>
 
 You can unassign an IPv6 address from a network interface using the Amazon EC2 console\.
 
@@ -764,7 +759,7 @@ You can unassign an IPv6 address from a network interface using the Amazon EC2 c
   + [unassign\-ipv6\-addresses](https://docs.aws.amazon.com/cli/latest/reference/ec2/unassign-ipv6-addresses.html) \(AWS CLI\)
   + [Unregister\-EC2Ipv6AddressList](https://docs.aws.amazon.com/powershell/latest/reference/items/Unregister-EC2Ipv6AddressList.html) \(AWS Tools for Windows PowerShell\)
 
-### Changing Termination Behavior<a name="change_term_behavior"></a>
+### Changing termination behavior<a name="change_term_behavior"></a>
 
 You can set the termination behavior for a network interface that's attached to an instance\. You can specify whether the network interface should be automatically deleted when you terminate the instance to which it's attached\.
 
@@ -786,7 +781,7 @@ You can use one of the following commands\. For more information about these com
 + [modify\-network\-interface\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-network-interface-attribute.html) \(AWS CLI\)
 + [Edit\-EC2NetworkInterfaceAttribute](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2NetworkInterfaceAttribute.html) \(AWS Tools for Windows PowerShell\)
 
-### Adding or Editing a Description<a name="add_edit_description"></a>
+### Adding or editing a description<a name="add_edit_description"></a>
 
 You can change the description for a network interface using the Amazon EC2 console or the command line\.
 
@@ -806,7 +801,7 @@ You can use one of the following commands\. For more information about these com
 + [modify\-network\-interface\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-network-interface-attribute.html) \(AWS CLI\)
 + [Edit\-EC2NetworkInterfaceAttribute](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2NetworkInterfaceAttribute.html) \(AWS Tools for Windows PowerShell\)
 
-### Adding or Editing Tags<a name="eni_add_edit_tags"></a>
+### Adding or editing tags<a name="eni_add_edit_tags"></a>
 
 Tags are metadata that you can add to a network interface\. Tags are private and are only visible to your account\. Each tag consists of a key and an optional value\. For more information about tags, see [Tagging your Amazon EC2 resources](Using_Tags.md)\.
 

@@ -161,7 +161,7 @@ The following is a summary of features for storage optimized instances:
 For more information, see the following:
 + [Amazon EBS and NVMe on Linux instances](nvme-ebs-volumes.md)
 + [Amazon EC2 Instance Store](InstanceStorage.md)
-+ [Placement Groups](placement-groups.md)
++ [Placement groups](placement-groups.md)
 
 ## Support for vCPUs<a name="d2-instances-cpu-support"></a>
 

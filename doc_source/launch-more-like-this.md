@@ -10,7 +10,7 @@ The following configuration details are copied from the selected instance into t
 + AMI ID
 + Instance type
 + Availability Zone, or the VPC and subnet in which the selected instance is located
-+ Public IPv4 address\. If the selected instance currently has a public IPv4 address, the new instance receives a public IPv4 address \- regardless of the selected instance's default public IPv4 address setting\. For more information about public IPv4 addresses, see [Public IPv4 Addresses and External DNS Hostnames](using-instance-addressing.md#concepts-public-addresses)\.
++ Public IPv4 address\. If the selected instance currently has a public IPv4 address, the new instance receives a public IPv4 address \- regardless of the selected instance's default public IPv4 address setting\. For more information about public IPv4 addresses, see [Public IPv4 addresses and external DNS hostnames](using-instance-addressing.md#concepts-public-addresses)\.
 + Placement group, if applicable
 + IAM role associated with the instance, if applicable
 + Shutdown behavior setting \(stop or terminate\)

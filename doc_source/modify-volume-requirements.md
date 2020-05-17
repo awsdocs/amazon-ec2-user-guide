@@ -5,8 +5,8 @@ The following requirements and limitations apply when you modify an Amazon EBS v
 ## Supported instance types<a name="instance-support"></a>
 
 Elastic Volumes are supported on the following instances:
-+ All [current\-generation instances](instance-types.md#current-gen-instances)
-+ Previous\-generation instance families C1, C3, CC2, CR1, G2, I2, M1, M3, and R3
++ All [current\-generation instances](instance-types.md#AvailableInstanceTypes)
++ The following previous\-generation instances: C1, C3, CC2, CR1, G2, I2, M1, M3, and R3
 
 If your instance type does not support Elastic Volumes, see [Modifying an EBS volume if Elastic Volumes is not supported](requesting-ebs-volume-modifications.md#modify-volume-stop-start)\.
 
@@ -60,6 +60,6 @@ GPT fdisk (gdisk) version 0.8.8
   + Detach and attach the volume\.
   + Restart the instance\.
 + Decreasing the size of an EBS volume is not supported\. However, you can create a smaller volume and then migrate your data to it using an application\-level tool such as rsync\.
-+ Modification time is increased if you modify a volume that has not been fully initialized\. For more information see [Initializing Amazon EBS Volumes](ebs-initialize.md)\.
++ Modification time is increased if you modify a volume that has not been fully initialized\. For more information see [Initializing Amazon EBS volumes](ebs-initialize.md)\.
 + After modifying a volume, wait at least six hours and ensure that the volume is in the `in-use` or `available` state before making additional modifications to the same volume\.
 + While `m3.medium` instances fully support volume modification, `m3.large`, `m3.xlarge`, and `m3.2xlarge` instances might not support all volume modification features\.

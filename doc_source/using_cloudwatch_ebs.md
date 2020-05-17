@@ -1,4 +1,4 @@
-# Amazon CloudWatch Metrics for Amazon EBS<a name="using_cloudwatch_ebs"></a>
+# Amazon CloudWatch metrics for Amazon EBS<a name="using_cloudwatch_ebs"></a>
 
 CloudWatch metrics are statistical data that you can use to view, analyze, and set alarms on the operational behavior of your volumes\. 
 
@@ -14,7 +14,7 @@ When you get data from CloudWatch, you can include a `Period` request parameter 
 
 You can get the data using either the CloudWatch API or the Amazon EC2 console\. The console takes the raw data from the CloudWatch API and displays a series of graphs based on the data\. Depending on your needs, you might prefer to use either the data from the API or the graphs in the console\.
 
-## Amazon EBS Metrics<a name="ebs-metrics"></a>
+## Amazon EBS metrics<a name="ebs-metrics"></a>
 
 Amazon Elastic Block Store \(Amazon EBS\) sends data points to CloudWatch for several metrics\. Amazon EBS General Purpose SSD \(gp2\), Throughput Optimized HDD \(st1\) , Cold HDD \(sc1\), and Magnetic \(standard\) volumes automatically send five\-minute metrics to CloudWatch\. Provisioned IOPS SSD \(io1\) volumes automatically send one\-minute metrics to CloudWatch\. Data is only reported to CloudWatch when the volume is attached to an instance\.
 
@@ -23,10 +23,10 @@ Some of these metrics have differences on Nitro\-based instances\. For a list of
 The `AWS/EBS` namespace includes the following metrics\.
 
 **Topics**
-+ [Volume Metrics](#ebs-volume-metrics)
-+ [Fast Snapshot Restore Metrics](#fast-snapshot-restore-metrics)
++ [Volume metrics](#ebs-volume-metrics)
++ [Fast snapshot restore metrics](#fast-snapshot-restore-metrics)
 
-### Volume Metrics<a name="ebs-volume-metrics"></a>
+### Volume metrics<a name="ebs-volume-metrics"></a>
 
 
 | Metric | Description | 
@@ -43,7 +43,7 @@ The `AWS/EBS` namespace includes the following metrics\.
 | VolumeConsumedReadWriteOps |  Used with Provisioned IOPS SSD volumes only\. The total amount of read and write operations \(normalized to 256K capacity units\) consumed in a specified period of time\. I/O operations that are smaller than 256K each count as 1 consumed IOPS\. I/O operations that are larger than 256K are counted in 256K capacity units\. For example, a 1024K I/O would count as 4 consumed IOPS\. Units: Count  | 
 | BurstBalance |  Used with General Purpose SSD \(`gp2`\), Throughput Optimized HDD \(`st1`\), and Cold HDD \(`sc1`\) volumes only\. Provides information about the percentage of I/O credits \(for `gp2`\) or throughput credits \(for `st1` and `sc1`\) remaining in the burst bucket\. Data is reported to CloudWatch only when the volume is active\. If the volume is not attached, no data is reported\. The `Sum` statistic on this metric is not relevant for volumes attached to Nitro\-based instances\. If the baseline performance of the volume exceeds the maximum burst performance, credits are never spent\. The reported burst balance is either 0% \(Nitro\-based instances\) or 100% \(non\-Nitro\-based instances\)\. For more information, see [I/O Credits and burst performance](ebs-volume-types.md#IOcredit)\. Units: Percent  | 
 
-### Fast Snapshot Restore Metrics<a name="fast-snapshot-restore-metrics"></a>
+### Fast snapshot restore metrics<a name="fast-snapshot-restore-metrics"></a>
 
 
 | Metric | Description | 
@@ -51,7 +51,7 @@ The `AWS/EBS` namespace includes the following metrics\.
 | FastSnapshotRestoreCreditsBucketSize |  The maximum number of volume create credits that can be accumulated\. This metric is reported per snapshot per Availability Zone\. The most meaningful statistic is `Average`\. The results for the `Minimum` and `Maximum` statistics are the same as for `Average` and could be used instead\.  | 
 | FastSnapshotRestoreCreditsBalance |  The number of volume create credits available\. This metric is reported per snapshot per Availability Zone\. The most meaningful statistic is `Average`\. The results for the `Minimum` and `Maximum` statistics are the same as for `Average` and could be used instead\.  | 
 
-## Dimensions for Amazon EBS Metrics<a name="ebs-metric-dimensions"></a>
+## Dimensions for Amazon EBS metrics<a name="ebs-metric-dimensions"></a>
 
 The supported dimension is the volume ID \(`VolumeId`\)\. All available statistics are filtered by volume ID\.
 
@@ -59,7 +59,7 @@ For the [volume metrics](#ebs-volume-metrics), the supported dimension is the vo
 
 For the [fast snapshot restore metrics](#fast-snapshot-restore-metrics), the supported dimensions are the snapshot ID \(`SnapshotId`\) and the Availability Zone \(`AvailabilityZone`\)\.
 
-## Graphs in the Amazon EC2 Console<a name="graphs-in-the-aws-management-console-2"></a>
+## Graphs in the Amazon EC2 console<a name="graphs-in-the-aws-management-console-2"></a>
 
 After you create a volume, you can view the volume's monitoring graphs in the Amazon EC2 console\. Select a volume on the **Volumes** page in the console and choose **Monitoring**\. The following table lists the graphs that are displayed\. The column on the right describes how the raw data metrics from the CloudWatch API are used to produce each graph\. The period for all the graphs is 5 minutes\.
 

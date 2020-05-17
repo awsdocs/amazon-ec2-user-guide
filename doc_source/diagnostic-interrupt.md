@@ -145,7 +145,7 @@ By default, the crash dump file is saved to `/var/crash/`\. To change the locati
 **To configure SUSE Linux Enterprise, Ubuntu, or Red Hat Enterprise Linux**  
 See the following websites:
 + [SUSE Linux Enterprise](https://www.suse.com/support/kb/doc/?id=3374462)
-+ [Ubuntu](https://help.ubuntu.com/lts/serverguide/kernel-crash-dump.html.en)
++ [Ubuntu](https://ubuntu.com/server/docs/kernel-crash-dump)
 + [ Red Hat Enterprise Linux \(RHEL\)](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/kernel_administration_guide/kernel_crash_dump_guide)
 
 **Note**  

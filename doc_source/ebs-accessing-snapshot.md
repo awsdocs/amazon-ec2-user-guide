@@ -17,7 +17,7 @@ The following are the key elements that you should understand before getting sta
 
 ### Snapshots<a name="ebsapi-snapshots"></a>
 
-Snapshots are the primary means to back up data from your EBS volumes\. To save storage costs, successive snapshots are incremental, containing only the volume data that changed since the previous snapshot\. For more information, see [Amazon EBS Snapshots](EBSSnapshots.md)\.
+Snapshots are the primary means to back up data from your EBS volumes\. To save storage costs, successive snapshots are incremental, containing only the volume data that changed since the previous snapshot\. For more information, see [Amazon EBS snapshots](EBSSnapshots.md)\.
 
 **Note**  
 Public snapshots are not supported by the EBS direct APIs\.

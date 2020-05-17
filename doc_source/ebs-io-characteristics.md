@@ -1,4 +1,4 @@
-# I/O Characteristics and Monitoring<a name="ebs-io-characteristics"></a>
+# I/O characteristics and monitoring<a name="ebs-io-characteristics"></a>
 
 On a given volume configuration, certain I/O characteristics drive the performance behavior for your EBS volumes\. SSD\-backed volumes—General Purpose SSD \(`gp2`\) and Provisioned IOPS SSD \(`io1`\)—deliver consistent performance whether an I/O operation is random or sequential\. HDD\-backed volumes—Throughput Optimized HDD \(`st1`\) and Cold HDD \(`sc1`\)—deliver optimal performance only when I/O operations are large and sequential\. To understand how SSD and HDD volumes will perform in your application, it is important to know the connection between demand on the volume, the quantity of IOPS available to it, the time it takes for an I/O operation to complete, and the volume's throughput limits\. 
 
@@ -11,7 +11,7 @@ Similarly, for HDD\-backed volumes, both a single 1,024 KiB I/O operation and 8 
 
 Consequently, when you create an SSD\-backed volume supporting 3,000 IOPS \(either by provisioning an `io1` volume at 3,000 IOPS or by sizing a `gp2` volume at 1000 GiB\), and you attach it to an EBS\-optimized instance that can provide sufficient bandwidth, you can transfer up to 3,000 I/Os of data per second, with throughput determined by I/O size\. 
 
-**Volume Queue Length and Latency**  
+**Volume queue length and latency**  
 The volume queue length is the number of pending I/O requests for a device\. Latency is the true end\-to\-end client time of an I/O operation, in other words, the time elapsed between sending an I/O to EBS and receiving an acknowledgement from EBS that the I/O read or write is complete\. Queue length must be correctly calibrated with I/O size and latency to avoid creating bottlenecks either on the guest operating system or on the network link to EBS\.
 
 Optimal queue length varies for each workload, depending on your particular application's sensitivity to IOPS and latency\. If your workload is not delivering enough I/O requests to fully use the performance available to your EBS volume, then your volume might not deliver the IOPS or throughput that you have provisioned\. 
@@ -29,7 +29,7 @@ If your workload uses sequential I/Os on HDD\-backed `st1` and `sc1` volumes, yo
 
 Whatever your EBS volume type, if you are not experiencing the IOPS or throughput you expect in your configuration, ensure that your EC2 instance bandwidth is not the limiting factor\. You should always use a current\-generation, EBS\-optimized instance \(or one that includes 10 Gb/s network connectivity\) for optimal performance\. For more information, see [Amazon EBS–optimized instances](ebs-optimized.md)\. Another possible cause for not experiencing the expected IOPS is that you are not driving enough I/O to the EBS volumes\.
 
-**Monitor I/O Characteristics with CloudWatch**  
+**Monitor I/O characteristics using CloudWatch**  
 You can monitor these I/O characteristics with each volume's [CloudWatch metrics](monitoring-volume-status.md)\. Important metrics to consider include:
 + `BurstBalance`
 + `VolumeReadBytes`

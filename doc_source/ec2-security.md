@@ -15,6 +15,6 @@ This documentation helps you understand how to apply the shared responsibility m
 + [Data protection in Amazon EC2](data-protection.md)
 + [Identity and access management for Amazon EC2](security-iam.md)
 + [Amazon EC2 key pairs and Linux instances](ec2-key-pairs.md)
-+ [Amazon EC2 Security Groups for Linux Instances](ec2-security-groups.md)
++ [Amazon EC2 security groups for Linux instances](ec2-security-groups.md)
 + [Update management in Amazon EC2](update-management.md)
 + [Compliance validation for Amazon EC2](compliance-validation.md)

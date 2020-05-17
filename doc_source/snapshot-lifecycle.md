@@ -1,4 +1,4 @@
-# Automating the Amazon EBS Snapshot Lifecycle<a name="snapshot-lifecycle"></a>
+# Automating the Amazon EBS snapshot lifecycle<a name="snapshot-lifecycle"></a>
 
 You can use Amazon Data Lifecycle Manager to automate the creation, retention, and deletion of snapshots taken to back up your Amazon EBS volumes\. Automating snapshot management helps you to:
 + Protect valuable data by enforcing a regular backup schedule\.
@@ -8,31 +8,31 @@ You can use Amazon Data Lifecycle Manager to automate the creation, retention, a
 Combined with the monitoring features of Amazon CloudWatch Events and AWS CloudTrail, Amazon Data Lifecycle Manager provides a complete backup solution for EBS volumes at no additional cost\.
 
 **Topics**
-+ [How Amazon Data Lifecycle Manager Works](#dlm-elements)
++ [How Amazon Data Lifecycle Manager works](#dlm-elements)
 + [Considerations for Amazon Data Lifecycle Manager](#dlm-considerations)
 + [Prerequisites](#dlm-prerequisites)
-+ [Manage Backups Using the Console](#snapshot-lifecycle-console)
-+ [Manage Backups Using the AWS CLI](#snaphot-lifecycle-cli)
-+ [Manage Backups Using the API](#snaphot-lifecycle-api)
-+ [Monitor the Snapshot Lifecycle](#dlm-monitor-lifecycle)
++ [Manage backups using the console](#snapshot-lifecycle-console)
++ [Manage backups using the AWS CLI](#snaphot-lifecycle-cli)
++ [Manage backups using the API](#snaphot-lifecycle-api)
++ [Monitor the snapshot lifecycle](#dlm-monitor-lifecycle)
 
-## How Amazon Data Lifecycle Manager Works<a name="dlm-elements"></a>
+## How Amazon Data Lifecycle Manager works<a name="dlm-elements"></a>
 
 The following are the key elements of Amazon Data Lifecycle Manager\.
 
 **Topics**
 + [Snapshots](#dlm-ebs-snapshots)
-+ [Target Resource Tags](#dlm-tagging-volumes)
-+ [Snapshot Tags](#dlm-tagging-snapshots)
-+ [Lifecycle Policies](#dlm-lifecycle-policies)
++ [Target resource tags](#dlm-tagging-volumes)
++ [Snapshot tags](#dlm-tagging-snapshots)
++ [Lifecycle policies](#dlm-lifecycle-policies)
 
 ### Snapshots<a name="dlm-ebs-snapshots"></a>
 
 Snapshots are the primary means to back up data from your EBS volumes\. To save storage costs, successive snapshots are incremental, containing only the volume data that changed since the previous snapshot\. When you delete one snapshot in a series of snapshots for a volume, only the data unique to that snapshot is removed\. The rest of the captured history of the volume is preserved\.
 
-For more information, see [Amazon EBS Snapshots](EBSSnapshots.md)\.
+For more information, see [Amazon EBS snapshots](EBSSnapshots.md)\.
 
-### Target Resource Tags<a name="dlm-tagging-volumes"></a>
+### Target resource tags<a name="dlm-tagging-volumes"></a>
 
 Amazon Data Lifecycle Manager uses resource tags to identify the EBS volumes to back up\. Tags are customizable metadata that you can assign to your AWS resources \(including EBS volumes and snapshots\)\. An Amazon Data Lifecycle Manager policy \(described below\) targets a volume for backup using a single tag\. Multiple tags can be assigned to a volume if you want to run multiple policies on it\.
 
@@ -40,7 +40,7 @@ You can't use a '\\' or '=' character in a tag key\.
 
 For more information, see [Tagging your Amazon EC2 resources](Using_Tags.md)\.
 
-### Snapshot Tags<a name="dlm-tagging-snapshots"></a>
+### Snapshot tags<a name="dlm-tagging-snapshots"></a>
 
 Amazon Data Lifecycle Manager applies the following tags to all snapshots created by a policy, to distinguish them from snapshots created by any other means:
 + `aws:dlm:lifecycle-policy-id`
@@ -52,10 +52,10 @@ You can't use a '\\' or '=' character in a tag key\.
 
 The target tags that Amazon Data Lifecycle Manager uses to associate volumes with a policy can optionally be applied to snapshots created by the policy\.
 
-### Lifecycle Policies<a name="dlm-lifecycle-policies"></a>
+### Lifecycle policies<a name="dlm-lifecycle-policies"></a>
 
 A lifecycle policy consists of these core settings:
-+ Resource type—The type of AWS resource managed by the policy\. Use `VOLUME` to create snapshots of individual volumes or use `INSTANCE` to create multi\-volume snapshots from the volumes for an instance\. For more information, see [Multi\-Volume Snapshots](ebs-creating-snapshot.md#ebs-create-snapshot-multi-volume)\.
++ Resource type—The type of AWS resource managed by the policy\. Use `VOLUME` to create snapshots of individual volumes or use `INSTANCE` to create multi\-volume snapshots from the volumes for an instance\. For more information, see [Multi\-volume snapshots](ebs-creating-snapshot.md#ebs-create-snapshot-multi-volume)\.
 + Target tags—The tags that must be associated with an EBS volume or an EC2 instance for it to be managed by the policy\.
 + Schedule—The start time and interval for creating snapshots\.
 + Retention—You can retain snapshots based on either the total count of snapshots or the age of each snapshot\.
@@ -95,8 +95,8 @@ The following prerequisites are required by Amazon Data Lifecycle Manager\.
 
 **Topics**
 + [Permissions for Amazon Data Lifecycle Manager](#dlm-permissions)
-+ [Permissions for IAM Users](#dlm-access-control)
-+ [Permissions for Encrypted Snapshots](#dlm-access-cmk)
++ [Permissions for IAM users](#dlm-access-control)
++ [Permissions for encrypted snapshots](#dlm-access-cmk)
 
 ### Permissions for Amazon Data Lifecycle Manager<a name="dlm-permissions"></a>
 
@@ -164,7 +164,7 @@ Alternatively, you can create a custom IAM role with the required permissions an
       }
       ```
 
-### Permissions for IAM Users<a name="dlm-access-control"></a>
+### Permissions for IAM users<a name="dlm-access-control"></a>
 
 An IAM user must have the following permissions to use Amazon Data Lifecycle Manager\.
 
@@ -188,21 +188,21 @@ An IAM user must have the following permissions to use Amazon Data Lifecycle Man
 
 For more information, see [Changing Permissions for an IAM User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html) in the *IAM User Guide*\.
 
-### Permissions for Encrypted Snapshots<a name="dlm-access-cmk"></a>
+### Permissions for encrypted snapshots<a name="dlm-access-cmk"></a>
 
 To copy an encrypted snapshot between Regions, you must have access to both the source and destination customer master key \(CMK\) from AWS Key Management Service \(AWS KMS\)\. For more information, see [Determining access to an AWS KMS customer master key](https://docs.aws.amazon.com/kms/latest/developerguide/determining-access.html) in the *AWS Key Management Service Developer Guide*\.
 
-## Manage Backups Using the Console<a name="snapshot-lifecycle-console"></a>
+## Manage backups using the console<a name="snapshot-lifecycle-console"></a>
 
 The following examples show how to use Amazon Data Lifecycle Manager to manage the backups of your EBS volumes using the AWS Management Console\.
 
 **Topics**
-+ [Create a Lifecycle Policy](#console-create-policy)
-+ [View a Lifecycle Policy](#console-view-policy)
-+ [Modify a Lifecycle Policy](#console-modify-policy)
-+ [Delete a Lifecycle Policy](#console-delete-policy)
++ [Create a lifecycle policy](#console-create-policy)
++ [View a lifecycle policy](#console-view-policy)
++ [Modify a lifecycle policy](#console-modify-policy)
++ [Delete a lifecycle policy](#console-delete-policy)
 
-### Create a Lifecycle Policy<a name="console-create-policy"></a>
+### Create a lifecycle policy<a name="console-create-policy"></a>
 
 Use the following procedure to create a lifecycle policy\.
 
@@ -229,7 +229,7 @@ Use the following procedure to create a lifecycle policy\.
 
 1. Choose **Create Policy**\.
 
-### View a Lifecycle Policy<a name="console-view-policy"></a>
+### View a lifecycle policy<a name="console-view-policy"></a>
 
 Use the following procedure to view a lifecycle policy\.
 
@@ -241,7 +241,7 @@ Use the following procedure to view a lifecycle policy\.
 
 1. Select a lifecycle policy from the list\. The **Details** tab displays information about the policy\.
 
-### Modify a Lifecycle Policy<a name="console-modify-policy"></a>
+### Modify a lifecycle policy<a name="console-modify-policy"></a>
 
 Use the following procedure to modify a lifecycle policy\.
 
@@ -259,7 +259,7 @@ Use the following procedure to modify a lifecycle policy\.
 
 1. Choose **Update policy**\.
 
-### Delete a Lifecycle Policy<a name="console-delete-policy"></a>
+### Delete a lifecycle policy<a name="console-delete-policy"></a>
 
 Use the following procedure to delete a lifecycle policy\.
 
@@ -275,17 +275,17 @@ Use the following procedure to delete a lifecycle policy\.
 
 1. When prompted for confirmation, choose **Delete Snapshot Lifecycle Policy**\.
 
-## Manage Backups Using the AWS CLI<a name="snaphot-lifecycle-cli"></a>
+## Manage backups using the AWS CLI<a name="snaphot-lifecycle-cli"></a>
 
 The following examples show how to use Amazon Data Lifecycle Manager to manage the backups of your EBS volumes using the AWS CLI\.
 
 **Topics**
-+ [Create a Lifecycle Policy](#create-policy-cli)
-+ [Display a Lifecycle Policy](#display-policy-cli)
-+ [Modify a Lifecycle Policy](#modify-policy-cli)
-+ [Delete a Lifecycle Policy](#delete-policy-cli)
++ [Create a lifecycle policy](#create-policy-cli)
++ [Display a lifecycle policy](#display-policy-cli)
++ [Modify a lifecycle policy](#modify-policy-cli)
++ [Delete a lifecycle policy](#delete-policy-cli)
 
-### Create a Lifecycle Policy<a name="create-policy-cli"></a>
+### Create a lifecycle policy<a name="create-policy-cli"></a>
 
 Use the [create\-lifecycle\-policy](https://docs.aws.amazon.com/cli/latest/reference/dlm/create-lifecycle-policy.html) command to create a lifecycle policy\. To simplify the syntax, the example uses a JSON file, `policyDetails.json`, that includes the policy details\.
 
@@ -341,7 +341,7 @@ Upon success, the command returns the ID of the newly created policy\. The follo
 }
 ```
 
-### Display a Lifecycle Policy<a name="display-policy-cli"></a>
+### Display a lifecycle policy<a name="display-policy-cli"></a>
 
 Use the [get\-lifecycle\-policy](https://docs.aws.amazon.com/cli/latest/reference/dlm/get-lifecycle-policy.html) command to display information about a lifecycle policy\.
 
@@ -398,7 +398,7 @@ The following is example output\. It includes the information that you specified
 }
 ```
 
-### Modify a Lifecycle Policy<a name="modify-policy-cli"></a>
+### Modify a lifecycle policy<a name="modify-policy-cli"></a>
 
 Use the [update\-lifecycle\-policy](https://docs.aws.amazon.com/cli/latest/reference/dlm/update-lifecycle-policy.html) command to modify the information in a lifecycle policy\. To simplify the syntax, this example references a JSON file, `policyDetailsUpdated.json`, that includes the policy details\.
 
@@ -446,7 +446,7 @@ The following is an example of the `policyDetailsUpdated.json` file\.
 
 To view the updated policy, use the `get-lifecycle-policy` command\. You can see that the state, the value of the tag, the snapshot interval, and the snapshot start time were changed\.
 
-### Delete a Lifecycle Policy<a name="delete-policy-cli"></a>
+### Delete a lifecycle policy<a name="delete-policy-cli"></a>
 
 Use the [delete\-lifecycle\-policy](https://docs.aws.amazon.com/cli/latest/reference/dlm/delete-lifecycle-policy.html) command to delete a lifecycle policy and free up the target tags specified in the policy for reuse\.
 
@@ -454,13 +454,13 @@ Use the [delete\-lifecycle\-policy](https://docs.aws.amazon.com/cli/latest/refer
 aws dlm delete-lifecycle-policy --policy-id policy-0123456789abcdef0
 ```
 
-## Manage Backups Using the API<a name="snaphot-lifecycle-api"></a>
+## Manage backups using the API<a name="snaphot-lifecycle-api"></a>
 
 The [Amazon Data Lifecycle Manager API Reference](https://docs.aws.amazon.com/dlm/latest/APIReference/) provides descriptions and syntax for each of the actions and data types for the Amazon Data Lifecycle Manager Query API\.
 
 Alternatively, you can use one of the AWS SDKs to access the API in a way that's tailored to the programming language or platform that you're using\. For more information, see [AWS SDKs](http://aws.amazon.com/tools/#SDKs)\.
 
-## Monitor the Snapshot Lifecycle<a name="dlm-monitor-lifecycle"></a>
+## Monitor the snapshot lifecycle<a name="dlm-monitor-lifecycle"></a>
 
 You can use the following features to monitor the lifecycle of your snapshots\.
 
@@ -471,7 +471,7 @@ You can use the following features to monitor the lifecycle of your snapshots\.
 
 ### Console and AWS CLI<a name="monitor-console-cli"></a>
 
-You can view your lifecycle policies using the Amazon EC2 console or the AWS CLI\. Each snapshot created by a policy has a timestamp and policy\-related tags\. You can filter snapshots using tags to verify that your backups are being created as you intend\. For information about viewing lifecycle policies using the console, see [View a Lifecycle Policy](#console-view-policy)\. For information about displaying information about lifecycle policies using the CLI, see [Display a Lifecycle Policy](#display-policy-cli)\.
+You can view your lifecycle policies using the Amazon EC2 console or the AWS CLI\. Each snapshot created by a policy has a timestamp and policy\-related tags\. You can filter snapshots using tags to verify that your backups are being created as you intend\. For information about viewing lifecycle policies using the console, see [View a lifecycle policy](#console-view-policy)\. For information about displaying information about lifecycle policies using the CLI, see [Display a lifecycle policy](#display-policy-cli)\.
 
 ### CloudWatch Events<a name="monitor-cloudwatch-events"></a>
 

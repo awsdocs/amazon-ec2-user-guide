@@ -16,7 +16,7 @@ Amazon EC2 powers down the instance before creating the AMI to ensure that every
 
 During the AMI\-creation process, Amazon EC2 creates snapshots of your instance's root volume and any other EBS volumes attached to your instance\. You're charged for the snapshots until you deregister the AMI and delete the snapshots\. For more information, see [Deregistering your Linux AMI](deregister-ami.md)\. If any volumes attached to the instance are encrypted, the new AMI only launches successfully on instances that support Amazon EBS encryption\. For more information, see [Amazon EBS encryption](EBSEncryption.md)\.
 
-Depending on the size of the volumes, it can take several minutes for the AMI\-creation process to complete \(sometimes up to 24 hours\)\. You may find it more efficient to create snapshots of your volumes before creating your AMI\. This way, only small, incremental snapshots need to be created when the AMI is created, and the process completes more quickly \(the total time for snapshot creation remains the same\)\. For more information, see [Creating Amazon EBS Snapshots](ebs-creating-snapshot.md)\.
+Depending on the size of the volumes, it can take several minutes for the AMI\-creation process to complete \(sometimes up to 24 hours\)\. You may find it more efficient to create snapshots of your volumes before creating your AMI\. This way, only small, incremental snapshots need to be created when the AMI is created, and the process completes more quickly \(the total time for snapshot creation remains the same\)\. For more information, see [Creating Amazon EBS snapshots](ebs-creating-snapshot.md)\.
 
 After the process completes, you have a new AMI and snapshot created from the root volume of the instance\. When you launch an instance using the new AMI, we create a new EBS volume for its root volume using the snapshot\.
 
@@ -43,7 +43,7 @@ You can create an AMI using the AWS Management Console or the command line\. The
    + Reduce start time by deleting temporary files, defragmenting your hard drive, and zeroing out free space
    + Attach additional Amazon EBS volumes
 
-1. \(Optional\) Create snapshots of all the volumes attached to your instance\. For more information about creating snapshots, see [Creating Amazon EBS Snapshots](ebs-creating-snapshot.md)\.
+1. \(Optional\) Create snapshots of all the volumes attached to your instance\. For more information about creating snapshots, see [Creating Amazon EBS snapshots](ebs-creating-snapshot.md)\.
 
 1. In the navigation pane, choose **Instances**, select your instance, and then choose **Actions**, **Image**, **Create Image**\.
 **Tip**  

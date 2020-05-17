@@ -106,7 +106,6 @@ The following command line tools for AWS integration and usage are included in t
 + aws\-amitools\-ec2
 + aws\-apitools\-as
 + aws\-apitools\-cfn
-+ aws\-apitools\-ec2
 + aws\-apitools\-elb
 + aws\-apitools\-mon
 + aws\-cfn\-bootstrap

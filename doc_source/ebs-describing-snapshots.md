@@ -1,4 +1,4 @@
-# Viewing Amazon EBS Snapshot Information<a name="ebs-describing-snapshots"></a>
+# Viewing Amazon EBS snapshot information<a name="ebs-describing-snapshots"></a>
 
 You can view detailed information about your snapshots\.
 

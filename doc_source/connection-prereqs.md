@@ -15,16 +15,22 @@
   You can get the public DNS for your instance using the Amazon EC2 console\. Check the **Public DNS \(IPv4\)** column\. If this column is hidden, choose the **Show/Hide** icon and select **Public DNS \(IPv4\)**\. If you prefer, you can use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) \(AWS CLI\) or [Get\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html) \(AWS Tools for Windows PowerShell\) command\.
 + **\(IPv6 only\) Get the IPv6 address of the instance\.**
 
-  If you've assigned an IPv6 address to your instance, you can optionally connect to the instance using its IPv6 address instead of a public IPv4 address or public IPv4 DNS hostname\. Your local computer must have an IPv6 address and must be configured to use IPv6\. You can get the IPv6 address of your instance using the Amazon EC2 console\. Check the **IPv6 IPs** field\. If you prefer, you can use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) \(AWS CLI\) or [Get\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html) \(AWS Tools for Windows PowerShell\) command\. For more information about IPv6, see [IPv6 Addresses](using-instance-addressing.md#ipv6-addressing)\.
-+ **Get the default user name for the AMI that you used to launch your instance:**
-  + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
-  + For a CentOS AMI, the user name is `centos`\.
-  + For a Debian AMI, the user name is `admin` or `root`\.
-  + For a Fedora AMI, the user name is `ec2-user` or `fedora`\.
-  + For a RHEL AMI, the user name is `ec2-user` or `root`\.
-  + For a SUSE AMI, the user name is `ec2-user` or `root`\.
-  + For an Ubuntu AMI, the user name is `ubuntu`\.
-  + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
+  If you've assigned an IPv6 address to your instance, you can optionally connect to the instance using its IPv6 address instead of a public IPv4 address or public IPv4 DNS hostname\. Your local computer must have an IPv6 address and must be configured to use IPv6\. You can get the IPv6 address of your instance using the Amazon EC2 console\. Check the **IPv6 IPs** field\. If you prefer, you can use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) \(AWS CLI\) or [Get\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html) \(AWS Tools for Windows PowerShell\) command\. For more information about IPv6, see [IPv6 addresses](using-instance-addressing.md#ipv6-addressing)\.
++ **Get the user name for your instance\.**
+
+  You can connect to your instance using the user name for your user account or the default user name for the AMI that you used to launch your instance\.
+  + **Get the user name for your user account\.**
+
+    For more information about how to create a user account, see [Managing user accounts on your Amazon Linux instance](managing-users.md)\.
+  + **Get the default user name for the AMI that you used to launch your instance:**
+    + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
+    + For a CentOS AMI, the user name is `centos`\.
+    + For a Debian AMI, the user name is `admin` or `root`\.
+    + For a Fedora AMI, the user name is `ec2-user` or `fedora`\.
+    + For a RHEL AMI, the user name is `ec2-user` or `root`\.
+    + For a SUSE AMI, the user name is `ec2-user` or `root`\.
+    + For an Ubuntu AMI, the user name is `ubuntu`\.
+    + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
 
 ## Enable inbound traffic to your instance<a name="connection-prereqs-enable-inbound-traffic"></a>
 + **Enable inbound SSH traffic from your IP address to your instance\.**

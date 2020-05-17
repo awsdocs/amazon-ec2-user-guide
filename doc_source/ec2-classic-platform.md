@@ -6,13 +6,13 @@ The EC2\-Classic platform was introduced in the original release of Amazon EC2\.
 
 If your account does not support EC2\-Classic, we create a default VPC for you\. By default, when you launch an instance, we launch it into your default VPC\. Alternatively, you can create a nondefault VPC and specify it when you launch an instance\.
 
-## Detecting Supported Platforms<a name="ec2-supported-platforms"></a>
+## Detecting supported platforms<a name="ec2-supported-platforms"></a>
 
 The Amazon EC2 console indicates which platforms you can launch instances into for the selected region, and whether you have a default VPC in that Region\.
 
 Verify that the Region you'll use is selected in the navigation bar\. On the Amazon EC2 console dashboard, look for **Supported Platforms** under **Account Attributes**\.
 
-### Accounts that Support EC2\-Classic<a name="both-platforms"></a>
+### Accounts that support EC2\-Classic<a name="both-platforms"></a>
 
 The dashboard displays the following under **Account Attributes** to indicate that the account supports both the EC2\-Classic platform and VPCs in this region, but the Region does not have a default VPC\.
 
@@ -39,7 +39,7 @@ aws ec2 describe-account-attributes --attribute-names supported-platforms
 }
 ```
 
-### Accounts that Require a VPC<a name="vpc-only"></a>
+### Accounts that require a VPC<a name="vpc-only"></a>
 
 The dashboard displays the following under **Account Attributes** to indicate that the account requires a VPC to launch instances in this region, does not support the EC2\-Classic platform in this region, and the Region has a default VPC with the identifier `vpc-1a2b3c4d`\.
 
@@ -63,7 +63,7 @@ aws ec2 describe-account-attributes --attribute-names supported-platforms
 }
 ```
 
-## Instance Types Available in EC2\-Classic<a name="ec2-classic-instance-types"></a>
+## Instance types available in EC2\-Classic<a name="ec2-classic-instance-types"></a>
 
 Most of the newer instance types require a VPC\. The following are the only instance types supported in EC2\-Classic:
 + General purpose: M1, M3, and T1
@@ -81,7 +81,7 @@ If your account supports EC2\-Classic but you have not created a nondefault VPC,
 
 If you have other resources in EC2\-Classic, you can take steps to migrate them to a VPC\. For more information, see [Migrating from a Linux Instance in EC2\-Classic to a Linux Instance in a VPC](vpc-migrate.md)\.
 
-## Differences Between Instances in EC2\-Classic and a VPC<a name="differences-ec2-classic-vpc"></a>
+## Differences between instances in EC2\-Classic and a VPC<a name="differences-ec2-classic-vpc"></a>
 
 The following table summarizes the differences between instances launched in EC2\-Classic, instances launched in a default VPC, and instances launched in a nondefault VPC\.
 
@@ -103,7 +103,7 @@ The following table summarizes the differences between instances launched in EC2
 | Accessing the Internet | Your instance can access the Internet\. Your instance automatically receives a public IP address, and can access the Internet directly through the AWS network edge\. | By default, your instance can access the Internet\. Your instance receives a public IP address by default\. An Internet gateway is attached to your default VPC, and your default subnet has a route to the Internet gateway\. | By default, your instance cannot access the Internet\. Your instance doesn't receive a public IP address by default\. Your VPC may have an Internet gateway, depending on how it was created\.  | 
 | IPv6 addressing | IPv6 addressing is not supported\. You cannot assign IPv6 addresses to your instances\. | You can optionally associate an IPv6 CIDR block with your VPC, and assign IPv6 addresses to instances in your VPC\. | You can optionally associate an IPv6 CIDR block with your VPC, and assign IPv6 addresses to instances in your VPC\. | 
 
-### Security Groups for EC2\-Classic<a name="ec2-classic-security-groups"></a>
+### Security groups for EC2\-Classic<a name="ec2-classic-security-groups"></a>
 
 If you're using EC2\-Classic, you must use security groups created specifically for EC2\-Classic\. When you launch an instance in EC2\-Classic, you must specify a security group in the same Region as the instance\. You can't specify a security group that you created for a VPC when you launch an instance in EC2\-Classic\.
 
@@ -117,7 +117,7 @@ You can add inbound rules to your default and custom security groups\. You can't
 
 In EC2\-Classic, you can have up to 500 security groups in each Region for each account\. You can add up to 100 rules to a security group\. You can have up to 800 security group rules per instance\. This is calculated as the multiple of rules per security group and security groups per instance\. If you reference other security groups in your security group rules, we recommend that you use security group names that are 22 characters or less in length\.
 
-### IP Addressing and DNS<a name="ip-addressing-differences"></a>
+### IP addressing and DNS<a name="ip-addressing-differences"></a>
 
 Amazon provides a DNS server that resolves Amazon\-provided IPv4 DNS hostnames to IPv4 addresses\. In EC2\-Classic, the Amazon DNS server is located at `172.16.0.23`\.
 
@@ -127,7 +127,7 @@ If you create a custom firewall configuration in EC2\-Classic, you must create a
 grep nameserver /etc/resolv.conf
 ```
 
-### Elastic IP Addresses<a name="VPC_EIP_EC2_Differences"></a>
+### Elastic IP addresses<a name="VPC_EIP_EC2_Differences"></a>
 
 If your account supports EC2\-Classic, there's one pool of Elastic IP addresses for use with the EC2\-Classic platform and another for use with your VPCs\. You can't associate an Elastic IP address that you allocated for use with a VPC with an instance in EC2\-Classic, and vice\- versa\. However, you can migrate an Elastic IP address you've allocated for use in the EC2\-Classic platform for use with a VPC\. You cannot migrate an Elastic IP address to another Region\.
 
@@ -201,7 +201,7 @@ You can use one of the following commands\. For more information about these com
 + [describe\-moving\-addresses](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-moving-addresses.html) \(AWS CLI\)
 + [Get\-EC2Address](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Address.html) \(AWS Tools for Windows PowerShell\)
 
-## Sharing and Accessing Resources Between EC2\-Classic and a VPC<a name="vpc-classic-shared-resources"></a>
+## Sharing and accessing resources between EC2\-Classic and a VPC<a name="vpc-classic-shared-resources"></a>
 
 Some resources and features in your AWS account can be shared or accessed between EC2\-Classic and a VPC, for example, through ClassicLink\. For more information, see [ClassicLink](vpc-classiclink.md)\.
 
@@ -221,7 +221,7 @@ The following resources can be shared or accessed between EC2\-Classic and a VPC
 | Load balancer |  If you're using ClassicLink, you can register a linked EC2\-Classic instance with a load balancer in a VPC, provided that the VPC has a subnet in the same Availability Zone as the instance\. You can't migrate a load balancer from EC2\-Classic to a VPC\. You can't register an instance in a VPC with a load balancer in EC2\-Classic\.  | 
 | Placement group |  | 
 | Reserved Instance |  You can change the network platform for your Reserved Instances from EC2\-Classic to a VPC\. For more information, see [Modifying Reserved Instances](ri-modifying.md)\.  | 
-| Security group |  A linked EC2\-Classic instance can use a VPC security groups through ClassicLink to control traffic to and from the VPC\. VPC instances can't use EC2\-Classic security groups\. You can't migrate a security group from EC2\-Classic to a VPC\. You can copy rules from a security group for EC2\-Classic to a security group for a VPC\. For more information, see [Creating a Security Group](working-with-security-groups.md#creating-security-group)\. | 
+| Security group |  A linked EC2\-Classic instance can use a VPC security groups through ClassicLink to control traffic to and from the VPC\. VPC instances can't use EC2\-Classic security groups\. You can't migrate a security group from EC2\-Classic to a VPC\. You can copy rules from a security group for EC2\-Classic to a security group for a VPC\. For more information, see [Creating a security group](working-with-security-groups.md#creating-security-group)\. | 
 | Snapshot |  | 
 
 The following resources can't be shared or moved between EC2\-Classic and a VPC:

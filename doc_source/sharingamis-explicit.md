@@ -1,6 +1,6 @@
 # Sharing an AMI with specific AWS accounts<a name="sharingamis-explicit"></a>
 
-You can share an AMI with specific AWS accounts without making the AMI public\. All you need is the AWS account IDs\. If you share an AMI with encrypted volumes, you must also share any CMKs used to encrypt them\. For more information, see [Sharing an Amazon EBS Snapshot](ebs-modifying-snapshot-permissions.md)\.
+You can share an AMI with specific AWS accounts without making the AMI public\. All you need is the AWS account IDs\. If you share an AMI with encrypted volumes, you must also share any CMKs used to encrypt them\. For more information, see [Sharing an Amazon EBS snapshot](ebs-modifying-snapshot-permissions.md)\.
 
 AMIs are a regional resource\. Therefore, sharing an AMI makes it available in that region\. To make an AMI available in a different Region, copy the AMI to the Region and then share it\. For more information, see [Copying an AMI](CopyingAMIs.md)\.
 
@@ -22,7 +22,7 @@ There is no limit to the number of AWS accounts with which an AMI can be shared\
 
 1. To allow create volume permissions for snapshots, select ** Add "create volume" permissions to the following associated snapshots when creating permissions\.** 
 **Note**  
-You do not need to share the Amazon EBS snapshots that an AMI references in order to share the AMI\. Only the AMI itself needs to be shared; the system automatically provides the instance access to the referenced Amazon EBS snapshots for the launch\. However, you do need to share any CMKs used to encrypt snapshots that the AMI references\. For more information, see [Sharing an Amazon EBS Snapshot](ebs-modifying-snapshot-permissions.md)\.
+You do not need to share the Amazon EBS snapshots that an AMI references in order to share the AMI\. Only the AMI itself needs to be shared; the system automatically provides the instance access to the referenced Amazon EBS snapshots for the launch\. However, you do need to share any CMKs used to encrypt snapshots that the AMI references\. For more information, see [Sharing an Amazon EBS snapshot](ebs-modifying-snapshot-permissions.md)\.
 
 1. Choose **Save** when you are done\.
 
@@ -52,7 +52,7 @@ aws ec2 modify-snapshot-attribute \
 ```
 
 **Note**  
-You do not need to share the Amazon EBS snapshots that an AMI references in order to share the AMI\. Only the AMI itself needs to be shared; the system automatically provides the instance access to the referenced Amazon EBS snapshots for the launch\. However, you do need to share any CMKs used to encrypt snapshots that the AMI references\. For more information, see [Sharing an Amazon EBS Snapshot](ebs-modifying-snapshot-permissions.md)\.
+You do not need to share the Amazon EBS snapshots that an AMI references in order to share the AMI\. Only the AMI itself needs to be shared; the system automatically provides the instance access to the referenced Amazon EBS snapshots for the launch\. However, you do need to share any CMKs used to encrypt snapshots that the AMI references\. For more information, see [Sharing an Amazon EBS snapshot](ebs-modifying-snapshot-permissions.md)\.
 
 **To remove launch permissions for an account**  
 The following command removes launch permissions for the specified AMI from the specified AWS account:

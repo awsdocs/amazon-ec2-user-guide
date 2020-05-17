@@ -1,4 +1,4 @@
-# Copying an Amazon EBS Snapshot<a name="ebs-copy-snapshot"></a>
+# Copying an Amazon EBS snapshot<a name="ebs-copy-snapshot"></a>
 
 With Amazon EBS, you can create point\-in\-time snapshots of volumes, which we store for you in Amazon S3\. After you create a snapshot and it has finished copying to Amazon S3 \(when the snapshot status is `completed`\), you can copy it from one AWS Region to another, or within the same Region\. Amazon S3 server\-side encryption \(256\-bit AES\) protects a snapshot's data in transit during a copy operation\. The snapshot copy receives an ID that is different from the ID of the original snapshot\.
 
@@ -6,7 +6,7 @@ To copy multi\-volume snapshots to another AWS Region, retrieve the snapshots us
 
 For information about copying an Amazon RDS snapshot, see [Copying a DB Snapshot](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_CopySnapshot.html) in the *Amazon RDS User Guide*\.
 
-If you would like another account to be able to copy your snapshot, you must either modify the snapshot permissions to allow access to that account or make the snapshot public so that all AWS accounts can copy it\. For more information, see [Sharing an Amazon EBS Snapshot](ebs-modifying-snapshot-permissions.md)\.
+If you would like another account to be able to copy your snapshot, you must either modify the snapshot permissions to allow access to that account or make the snapshot public so that all AWS accounts can copy it\. For more information, see [Sharing an Amazon EBS snapshot](ebs-modifying-snapshot-permissions.md)\.
 
 For pricing information about copying snapshots across AWS Regions and accounts, see [Amazon EBS Pricing](http://aws.amazon.com/ebs/pricing/)\. Note that snapshot copy operations within a single account and Region do not copy any actual data and therefore are cost\-free as long as the encryption status of the snapshot copy does not change\.
 
@@ -16,7 +16,7 @@ If you copy a snapshot to a new Region, a complete \(non\-incremental\) copy is 
 **Note**  
 If you copy a snapshot and encrypt it to a new CMK, a complete \(non\-incremental\) copy is always created, resulting in additional delay and storage costs\.
 
-**Use Cases**
+**Use cases**
 + Geographic expansion: Launch your applications in a new AWS Region\.
 + Migration: Move an application to a new Region, to enable better availability and to minimize cost\.
 + Disaster recovery: Back up your data and logs across different geographical locations at regular intervals\. In case of disaster, you can restore your applications using point\-in\-time backups stored in the secondary Region\. This minimizes data loss and recovery time\.
@@ -32,7 +32,7 @@ If you copy a snapshot and encrypt it to a new CMK, a complete \(non\-incrementa
 + User\-defined tags are not copied from the source snapshot to the new snapshot\. You can add user\-defined tags during or after the copy operation\. For more information, see [Tagging your Amazon EC2 resources](Using_Tags.md)\.
 + Snapshots created by the `CopySnapshot` action have an arbitrary volume ID that should not be used for any purpose\.
 
-## Incremental Snapshot Copying<a name="ebs-incremental-copy"></a>
+## Incremental snapshot copying<a name="ebs-incremental-copy"></a>
 
 Whether a snapshot copy is incremental is determined by the most recently completed snapshot copy\. When you copy a snapshot across Regions or accounts, the copy is an incremental copy if the following conditions are met:
 + The snapshot was copied to the destination Region or account previously\.
@@ -45,11 +45,11 @@ We recommend that you tag your snapshots with the volume ID and creation time so
 
 To see whether your snapshot copies are incremental, check the [copySnapshot](ebs-cloud-watch-events.md#copy-snapshot-complete) CloudWatch event\.
 
-## Encryption and Snapshot Copying<a name="creating-encrypted-snapshots"></a>
+## Encryption and snapshot copying<a name="creating-encrypted-snapshots"></a>
 
 When you copy a snapshot, you can encrypt the copy or you can specify a CMK different from the original one, and the resulting copied snapshot uses the new CMK\. However, changing the encryption status of a snapshot during a copy operation results in a full \(not incremental\) copy, which might incur greater data transfer and storage charges\. 
 
-To copy an encrypted snapshot shared from another AWS account, you must have permissions to use the snapshot and the customer master key \(CMK\) that was used to encrypt the snapshot\. When using an encrypted snapshot that was shared with you, we recommend that you re\-encrypt the snapshot by copying it using a CMK that you own\. This protects you if the original CMK is compromised, or if the owner revokes it, which could cause you to lose access to any encrypted volumes that you created using the snapshot\. For more information, see [Sharing an Amazon EBS Snapshot](ebs-modifying-snapshot-permissions.md)\.
+To copy an encrypted snapshot shared from another AWS account, you must have permissions to use the snapshot and the customer master key \(CMK\) that was used to encrypt the snapshot\. When using an encrypted snapshot that was shared with you, we recommend that you re\-encrypt the snapshot by copying it using a CMK that you own\. This protects you if the original CMK is compromised, or if the owner revokes it, which could cause you to lose access to any encrypted volumes that you created using the snapshot\. For more information, see [Sharing an Amazon EBS snapshot](ebs-modifying-snapshot-permissions.md)\.
 
 You apply encryption to EBS snapshot copies by setting the `Encrypted` parameter to `true`\. \(The `Encrypted` parameter is optional if [encryption by default](EBSEncryption.md#encryption-by-default) is enabled\)\.
 
@@ -65,7 +65,7 @@ The following table describes the encryption outcome for each possible combinati
 
 \*\* This is a customer managed CMK specified for the copy action\. This CMK is used instead of the default CMK for the AWS account and Region\.
 
-## Copy a Snapshot<a name="ebs-snapshot-copy"></a>
+## Copy a snapshot<a name="ebs-snapshot-copy"></a>
 
 Use the following procedure to copy a snapshot using the Amazon EC2 console\.
 

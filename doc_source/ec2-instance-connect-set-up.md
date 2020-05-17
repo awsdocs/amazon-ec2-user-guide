@@ -110,10 +110,14 @@ If you previously configured `AuthorizedKeysCommand` and `AuthorizedKeysCommandU
 
 1. \(Optional\) Ensure your instance has the latest Ubuntu AMI\.
 
-   For Ubuntu, use the apt\-get update command to update all the packages on your instance\.
+   For Ubuntu, use the following commands to update all the packages on your instance\.
 
    ```
    ubuntu:~$ sudo apt-get update
+   ```
+
+   ```
+   ubuntu:~$ sudo apt-get upgrade
    ```
 
 1. Install the Instance Connect package on your instance\.
