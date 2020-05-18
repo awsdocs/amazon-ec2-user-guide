@@ -118,6 +118,19 @@ nvme0n1       259:0   0    8G  0 disk
   nvme0n1p128 259:2   0    1M  0 part
 ```
 
+**FreeBSD AMIs**  
+With FreeBSD 12\.2\-RELEASE or later, you can run the ebsnvme\-id command as in Amazon Linux, passing either the name of the NVMe device \(for example, `nvme0`\) or the disk device \(for example, `nvd0` or `nda0`\).
+
+FreeBSD also creates symbolic links:
+
+```
+/dev/aws/disk/ebs/<volume ID>
+/dev/aws/disk/linuxname/<linux device name>
+/dev/aws/disk/ephemeral/<serial number>
+```
+
+which point to the disk device in question.
+
 ## Working with NVMe EBS volumes<a name="using-nvme-ebs-volumes"></a>
 
 To format and mount an NVMe EBS volume, see [Making an Amazon EBS volume available for use on Linux](ebs-using-volumes.md)\.
