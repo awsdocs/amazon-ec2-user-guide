@@ -28,7 +28,7 @@ aws configservice list-discovered-resources --resource-type AWS::EC2::Host
 To obtain the configuration history of a Dedicated Host from AWS Config, run a CLI command such as the following\.
 
 ```
-aws configservice get-resource-config-history --resource type AWS::EC2::Instance --resource-id i-1234567890abcdef0
+aws configservice get-resource-config-history --resource-type AWS::EC2::Instance --resource-id i-1234567890abcdef0
 ```
 
 **To manage AWS Config settings using the console**
