@@ -27,7 +27,7 @@ These drivers contain optimizations for gaming and are updated frequently to pro
 **NVIDIA control panel**  
 The NVIDIA control panel is supported with GRID and Gaming drivers\. It is not supported with Tesla drivers\.
 
-**Supported APIs**
+**Supported APIs for Tesla, GRID, and gaming drivers**
 + OpenCL, OpenGL, and Vulkan
 + NVIDIA CUDA and related libraries \(for example, cuDNN, TensorRT, nvJPEG, and cuBLAS\)
 + NVENC for video encoding and NVDEC for video decoding
@@ -95,6 +95,9 @@ For more information about installing and configuring the driver, see the [NVIDI
 
 These downloads are available to AWS customers only\. By downloading, you agree to use the downloaded software only to develop AMIs for use with the NVIDIA Tesla T4 or NVIDIA Tesla M60 hardware\. Upon installation of the software, you are bound by the terms of the [NVIDIA GRID Cloud End User License Agreement](https://aws-nvidia-license-agreement.s3.amazonaws.com/NvidiaGridAWSUserLicenseAgreement.DOCX)\.
 
+**Prerequisites**  
+Configure default credentials for the AWS CLI on your Linux instance\. For more information, see [ Quickly Configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html#cli-quick-configuration) in the *AWS Command Line Interface User Guide*\.
+
 **To install the NVIDIA GRID driver on your Linux instance**
 
 1. Connect to your Linux instance\. Install gcc and make, if they are not already installed\.
@@ -108,13 +111,13 @@ These downloads are available to AWS customers only\. By downloading, you agree 
    + For Ubuntu and Debian:
 
      ```
-     [ec2-user ~]$ sudo apt-get update -y
+     $ sudo apt-get update -y
      ```
 
 1. \(Ubuntu 16\.04 and later, with the `linux-aws` package\) Upgrade the `linux-aws` package to receive the latest version\.
 
    ```
-   [ec2-user ~]$ sudo apt-get upgrade -y linux-aws
+   $ sudo apt-get upgrade -y linux-aws
    ```
 
 1. Reboot your instance to load the latest kernel version\.
@@ -134,7 +137,7 @@ These downloads are available to AWS customers only\. By downloading, you agree 
    + For Ubuntu and Debian:
 
      ```
-     [ec2-user ~]$ sudo apt-get install -y gcc make linux-headers-$(uname -r)
+     $ sudo apt-get install -y gcc make linux-headers-$(uname -r)
      ```
 
 1. \[CentOS, Red Hat Enterprise Linux, Ubuntu, Debian\] Disable the `nouveau` open source driver for NVIDIA graphics cards\.
@@ -166,7 +169,7 @@ These downloads are available to AWS customers only\. By downloading, you agree 
       + For Ubuntu and Debian:
 
         ```
-        [ec2-user ~]$ sudo update-grub
+        $ sudo update-grub
         ```
 
 1. Download the GRID driver installation utility using the following command:
@@ -221,6 +224,9 @@ These downloads are available to AWS customers only\. By downloading, you agree 
 
 These drivers are available to AWS customers only\. By downloading them, you agree to use the downloaded software only to develop AMIs for use with the NVIDIA Tesla T4 hardware\. Upon installation of the software, you are bound by the terms of the [NVIDIA GRID Cloud End User License Agreement](https://aws-nvidia-license-agreement.s3.amazonaws.com/NvidiaGridAWSUserLicenseAgreement.DOCX)\.
 
+**Prerequisites**  
+Configure default credentials for the AWS CLI on your Linux instance\. For more information, see [ Quickly Configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html#cli-quick-configuration) in the *AWS Command Line Interface User Guide*\.
+
 **To install the NVIDIA gaming driver on your Linux instance**
 
 1. Connect to your Linux instance\. Install gcc and make, if they are not already installed\.
@@ -234,13 +240,13 @@ These drivers are available to AWS customers only\. By downloading them, you agr
    + For Ubuntu and Debian:
 
      ```
-     [ec2-user ~]$ sudo apt-get update -y
+     $ sudo apt-get update -y
      ```
 
 1. \(Ubuntu 16\.04 and later, with the `linux-aws` package\) Upgrade the `linux-aws` package to receive the latest version\.
 
    ```
-   [ec2-user ~]$ sudo apt-get upgrade -y linux-aws
+   $ sudo apt-get upgrade -y linux-aws
    ```
 
 1. Reboot your instance to load the latest kernel version\.
@@ -260,7 +266,7 @@ These drivers are available to AWS customers only\. By downloading them, you agr
    + For Ubuntu and Debian:
 
      ```
-     [ec2-user ~]$ sudo apt-get install -y gcc make linux-headers-$(uname -r)
+     $ sudo apt-get install -y gcc make linux-headers-$(uname -r)
      ```
 
 1. \[CentOS, Red Hat Enterprise Linux, Ubuntu, Debian\] Disable the `nouveau` open source driver for NVIDIA graphics cards\.
@@ -292,7 +298,7 @@ These drivers are available to AWS customers only\. By downloading them, you agr
       + For Ubuntu and Debian:
 
         ```
-        [ec2-user ~]$ sudo update-grub
+        $ sudo update-grub
         ```
 
 1. Download the gaming driver installation utility using the following command:
@@ -347,4 +353,4 @@ These drivers are available to AWS customers only\. By downloading them, you agr
    [ec2-user ~]$ sudo reboot
    ```
 
-1. \(Optional\) To help take advantage of the four displays of up to 4K resolution, set up the high\-performance display protocol [NICE DCV](https://docs.aws.amazon.com/dcv)\.
+1. \(Optional\) To help take advantage of a single display of up to 4K resolution, set up the high\-performance display protocol [NICE DCV](https://docs.aws.amazon.com/dcv)\.

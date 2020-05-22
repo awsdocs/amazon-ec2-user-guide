@@ -1,12 +1,12 @@
-# Monitoring Memory and Disk Metrics for Amazon EC2 Linux Instances<a name="mon-scripts"></a>
+# Monitoring memory and disk metrics for Amazon EC2 Linux instances<a name="mon-scripts"></a>
 
 You can use Amazon CloudWatch to collect metrics and logs from the operating systems for your EC2 instances\.
 
-## CloudWatch Agent<a name="new-cloudwatch-agent"></a>
+## CloudWatch agent<a name="new-cloudwatch-agent"></a>
 
 You can use the CloudWatch agent to collect both system metrics and log files from Amazon EC2 instances and on\-premises servers\. The agent supports both Windows Server and Linux, and enables you to select the metrics to be collected, including sub\-resource metrics such as per\-CPU core\. We recommend that you use the agent to collect metrics and logs instead of using the monitoring scripts\. For more information, see [Collect Metrics from Amazon EC2 Instances and On\-Premises Servers with the CloudWatch Agent](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Install-CloudWatch-Agent.html) in the *Amazon CloudWatch User Guide*\.
 
-## CloudWatch Monitoring Scripts<a name="monitoring-scripts-intro"></a>
+## CloudWatch monitoring scripts<a name="monitoring-scripts-intro"></a>
 
 **Important**  
 We recommend that you use the CloudWatch agent to collect metrics and logs\. The information about the monitoring scripts is provided for customers who are still using the old monitoring scripts to gather information from their Linux instances\. The old monitoring scripts are no longer supported\. 
@@ -16,16 +16,16 @@ The monitoring scripts demonstrate how to produce and consume custom metrics for
 Standard Amazon CloudWatch usage charges for custom metrics apply to your use of these scripts\. For more information, see the [Amazon CloudWatch](https://aws.amazon.com/cloudwatch/pricing) pricing page\.
 
 **Topics**
-+ [Supported Systems](#mon-scripts-systems)
-+ [Required Permissions](#mon-scripts-permissions)
-+ [Install Required Packages](#mon-scripts-perl_prereq)
-+ [Install Monitoring Scripts](#mon-scripts-getstarted)
++ [Supported systems](#mon-scripts-systems)
++ [Required permissions](#mon-scripts-permissions)
++ [Install required packages](#mon-scripts-perl_prereq)
++ [Install monitoring scripts](#mon-scripts-getstarted)
 + [mon\-put\-instance\-data\.pl](#using_put_script)
 + [mon\-get\-instance\-stats\.pl](#using_get_script_powershell)
-+ [Viewing Your Custom Metrics in the Console](#script_viewmetrics)
++ [Viewing your custom metrics in the console](#script_viewmetrics)
 + [Troubleshooting](#mon-script-troubleshooting)
 
-### Supported Systems<a name="mon-scripts-systems"></a>
+### Supported systems<a name="mon-scripts-systems"></a>
 
 The monitoring scripts were tested on instances using the following systems:
 + Amazon Linux 2
@@ -34,7 +34,7 @@ The monitoring scripts were tested on instances using the following systems:
 + SUSE Linux Enterprise Server 12
 + Ubuntu Server 14\.04 and 16\.04
 
-### Required Permissions<a name="mon-scripts-permissions"></a>
+### Required permissions<a name="mon-scripts-permissions"></a>
 
 Ensure that the scripts have permission to call the following actions by associating an IAM role with your instance:
 + cloudwatch:PutMetricData
@@ -44,7 +44,7 @@ Ensure that the scripts have permission to call the following actions by associa
 
 For more information, see [Working with IAM roles](iam-roles-for-amazon-ec2.md#working-with-iam-roles)\.
 
-### Install Required Packages<a name="mon-scripts-perl_prereq"></a>
+### Install required packages<a name="mon-scripts-perl_prereq"></a>
 
 With some versions of Linux, you must install additional Perl modules before you can use the monitoring scripts\.
 
@@ -131,7 +131,7 @@ With some versions of Linux, you must install additional Perl modules before you
    sudo zypper install –y "perl(LWP::Protocol::https)"
    ```
 
-### Install Monitoring Scripts<a name="mon-scripts-getstarted"></a>
+### Install monitoring scripts<a name="mon-scripts-getstarted"></a>
 
 The following steps show you how to download, uncompress, and configure the CloudWatch Monitoring Scripts on an EC2 Linux instance\.
 
@@ -271,7 +271,7 @@ Disk Space Utilization on /dev/xvda1 mounted as /
     Average: 9.69%, Minimum: 9.69%, Maximum: 9.69%
 ```
 
-### Viewing Your Custom Metrics in the Console<a name="script_viewmetrics"></a>
+### Viewing your custom metrics in the console<a name="script_viewmetrics"></a>
 
 After you successfully run the `mon-put-instance-data.pl` script, you can view your custom metrics in the Amazon CloudWatch console\.
 

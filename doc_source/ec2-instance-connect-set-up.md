@@ -1,6 +1,6 @@
 # Set up EC2 Instance Connect<a name="ec2-instance-connect-set-up"></a>
 
-Amazon Linux 2 2\.0\.20190618 or later comes preconfigured with EC2 Instance Connect\. For other supported Linux distributions, you must set up Instance Connect for every instance that will support using Instance Connect\. This is a one\-time requirement for each instance\.
+Amazon Linux 2 2\.0\.20190618 or later and Ubuntu 20\.04 or later comes preconfigured with EC2 Instance Connect\. For other supported Linux distributions, you must set up Instance Connect for every instance that will support using Instance Connect\. This is a one\-time requirement for each instance\.
 
 **Topics**
 + [Step 1: Configure network access to an instance](#ec2-instance-connect-setup-security-group)
@@ -212,6 +212,31 @@ The following instructions explain how to create the policy and attach it using 
            "Resource": "*"
          }
        ]
+   }
+   ```
+
+   The preceding policy allows access to specific instances, identified by their instance ID\. Alternatively, you can use resource tags to control access to an instance\. Attribute\-based access control is an authorization strategy that defines permissions based on tags that can be attached to users and AWS resources\. For example, the following policy allows an IAM user to access an instance only if that instance has a resource tag with key=`tag-key` and value=`tag-value`\. For more information about using tags to control access to your AWS resources, see [Controlling Access to AWS Resources](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html#access_tags_control-resources) in the *IAM User Guide*\.
+
+   ```
+   { 
+      "Version":"2012-10-17",
+      "Statement":[ 
+         { 
+            "Effect":"Allow",
+            "Action":"ec2-instance-connect:SendSSHPublicKey",
+            "Resource": "arn:aws:ec2:region:account-id:instance/*",
+            "Condition":{ 
+               "StringEquals":{ 
+                  "aws:ResourceTag/tag-key":"tag-value"
+               }
+            }
+         },
+         {
+           "Effect": "Allow",
+           "Action": "ec2:DescribeInstances",
+           "Resource": "*"
+         }
+      ]
    }
    ```
 

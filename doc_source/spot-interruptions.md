@@ -78,6 +78,8 @@ The agent prompts the operating system to hibernate when the instance receives a
 
 When the Spot service hibernates a Spot Instance, you receive an interruption notice, but you do not have two minutes before the Spot Instance is interrupted\. Hibernation begins immediately\. While the instance is in the process of hibernating, instance health checks might fail\. When the hibernation process completes, the state of the instance is `stopped`\.
 
+**Resuming a hibernated Spot Instance**
+
 After a Spot Instance is hibernated by the Spot service, it can only be resumed by the Spot service\. The Spot service resumes the instance when capacity becomes available with a Spot price that is less than your specified maximum price\.
 
 For more information, see [Preparing for instance hibernation](#prepare-for-instance-hibernation)\.

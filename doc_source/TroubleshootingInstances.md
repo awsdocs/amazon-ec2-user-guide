@@ -37,7 +37,7 @@ The following information can help you troubleshoot issues if your instance fail
 1. In the details pane, choose **Status Checks** to see the individual results for all **System Status Checks** and **Instance Status Checks**\.
 
 If a system status check has failed, you can try one of the following options:
-+ Create an instance recovery alarm\. For more information, see [Create Alarms That Stop, Terminate, Reboot, or Recover an Instance](UsingAlarmActions.md)\.
++ Create an instance recovery alarm\. For more information, see [Create alarms that stop, terminate, reboot, or recover an instance](UsingAlarmActions.md)\.
 + If you changed the instance type to an instance built on the [Nitro System](instance-types.md#ec2-nitro-instances), status checks fail if you migrated from an instance that does not have the required ENA and NVMe drivers\. For more information, see [Compatibility for resizing instances](ec2-instance-resize.md#resize-limitations)\.
 + For an instance using an Amazon EBS\-backed AMI, stop and restart the instance\.
 + For an instance using an instance\-store backed AMI, terminate the instance and launch a replacement\.

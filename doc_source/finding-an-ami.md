@@ -152,13 +152,13 @@ For more information about launching an instance from an AMI using the launch wi
 **To launch an instance using an AWS Systems Manager parameter instead of an AMI ID \(AWS CLI\)**  
 The following example uses the Systems Manager parameter `golden-ami` to launch an `m5.xlarge` instance\. The parameter points to an AMI ID\.
 
-To specify the parameter in the command, use the following syntax: `resolve:ssm:parameter-name`, where `resolve:ssm` is the standard prefix and `parameter-name` is the unique parameter name\. Note that the parameter name is case\-sensitive\.
+To specify the parameter in the command, use the following syntax: `resolve:ssm:/parameter-name`, where `resolve:ssm` is the standard prefix and `parameter-name` is the unique parameter name\. Note that the parameter name is case\-sensitive\. Backslashes for the parameter name are only necessary when the parameter is part of a hierarchy, for example, `/amis/production/golden-ami`\. You can omit the backslash if the parameter is not part of a hierarchy\.
 
 In this example, the `--count` and `--security-group` parameters are not included\. For `--count`, the default is 1\. If you have a default VPC and a default security group, they are used\.
 
 ```
 aws ec2 run-instances \
-    --image-id resolve:ssm:golden-ami \
+    --image-id resolve:ssm:/golden-ami \
     --instance-type m5.xlarge \
     --key-name MyKeyPair
 ```
@@ -172,7 +172,7 @@ In this example, the `--count` and `--security-group` parameters are not include
 
 ```
 aws ec2 run-instances \
-    --image-id resolve:ssm:golden-ami:2 \
+    --image-id resolve:ssm:/golden-ami:2 \
     --instance-type m5.xlarge \
     --key-name MyKeyPair
 ```

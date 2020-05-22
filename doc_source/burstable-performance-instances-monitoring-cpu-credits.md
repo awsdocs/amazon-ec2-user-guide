@@ -16,7 +16,7 @@ T3, T3a, and T2 instances have these additional CloudWatch metrics, which are up
 
 The last two metrics apply only to instances configured as `unlimited`\.
 
-The following table describes the CloudWatch metrics for burstable performance instances\. For more information, see [List the Available CloudWatch Metrics for Your Instances](viewing_metrics_with_cloudwatch.md)\.
+The following table describes the CloudWatch metrics for burstable performance instances\. For more information, see [List the available CloudWatch metrics for your instances](viewing_metrics_with_cloudwatch.md)\.
 
 
 | Metric | Description | 

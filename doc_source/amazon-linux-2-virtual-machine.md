@@ -1,4 +1,4 @@
-# Running Amazon Linux 2 as a virtual machine on\-premises<a name="amazon-linux-2-virtual-machine"></a>
+# Running Amazon Linux 2 as a virtual machine onpremises<a name="amazon-linux-2-virtual-machine"></a>
 
 Use the Amazon Linux 2 virtual machine \(VM\) images for on\-premises development and testing\. These images are available for use on the following virtualization platforms:
 + VMWare
@@ -114,6 +114,92 @@ We offer a different Amazon Linux 2 VM image for each of the supported virtualiz
 
 To boot and connect to your new VM, you must have the `seed.iso` boot image \(created in Step 1\) and an Amazon Linux 2 VM image \(downloaded in Step 2\)\. The steps vary depending on your chosen VM platform\.
 
-You must connect the `seed.iso` boot image to the VM on first boot\. `seed.iso` is evaluated only during the initial boot\.
+------
+#### [ VMWare vSphere ]
+
+The VM image for VMware is made available in the OVF format\.
+
+**To boot the VM using VMWare vSphere**
+
+1. Create a new datastore for the `seed.iso` file, or add it to an existing datastore\.
+
+1. Deploy the OVF template, but do not start the VM yet\.
+
+1. In the **Navigator** panel, right\-click the new virtual machine and choose **Edit Settings**\.
+
+1. On the **Virtual Hardware** tab, for **New device**, choose **CD/DVD Drive**, and then choose **Add**\.
+
+1. For **New CD/DVD Drive**, choose **Datastore ISO File**\. Select the datastore to which you added the `seed.iso` file, browse to and select the `seed.iso` file, and then choose **OK**\.
+
+1. For **New DC/DVD Drive**, select **Connect**, and then choose **OK**\.
+
+After you have associated the datastore with the VM, you should be able to boot it\.
+
+------
+#### [ KVM ]
+
+**To boot the VM using KVM**
+
+1. Open the **Create new VM** wizard\.
+
+1. For Step 1, choose **Import existing disk image**\.
+
+1. For Step 2, browse to and select the VM image\. For **OS type** and **Version**, choose **Linux** and **Red Hat Enterprise Linux 7\.0** respectively\.
+
+1. For Step 3, specify the amount of RAM and the number of CPUs to use\.
+
+1. For Step 4, enter a name for the new VM and select **Customize configuration before install**, and choose **Finish**\.
+
+1. In the Configuration window for the VM, choose **Add Hardware**\.
+
+1. In the **Add New Virtual Hardware** window, choose **Storage**\.
+
+1. In the Storage configuration, choose **Select or create custom storage**\. For **Device type**, choose **CDROM device**\. Choose **Manage**, **Browse Local**, and then navigate to and select the `seed.iso` file\. Choose **Finish**\.
+
+1. Choose **Begin Installation**\.
+
+------
+#### [ Oracle VirtualBox ]
+
+**To boot the VM using Oracle VirtualBox**
+
+1. Open the **Create Virtual Machine** wizard\.
+
+1. When prompted to select a **Type** and a **Version**, select **Linux** and **RHEL \(32\-bit\)** respectively\.
+
+1. When prompted to configure the hard disk, choose **Use an existing virtual hard disk file**, select the VM image, and then choose **Create**\.
+
+1. Before you start the VM, you must load the `seed.iso` file in the virtual machine's virtual optical drive:
+
+   1. Select the new VM, choose **Settings**, and then choose **Storage**\.
+
+   1. In the **Storage Devices** list, under **Controller: IDE**, choose the *empty* optical drive\.
+
+   1. In the **Attributes** section for the optical drive, choose the browse button, select **Choose Virtual Optical Disk File**, and then select the `seed.iso` file\.
+
+After you have added the `seed.iso` file to the virtual optical drive, you should be able to boot the VM\.
+
+------
+#### [ Microsoft Hyper\-V ]
+
+The VM image for Microsoft Hyper\-V is compressed into a zip file\. You must extract the contents of the zip file\.
+
+**To boot the VM using Microsoft Hyper\-V**
+
+1. Open the new **Virtual Machine Wizard**\.
+
+1. When prompted to select a generation, select **Generation 1**\.
+
+1. When prompted to configure the network adapter, for **Connection** choose **External**\.
+
+1. When prompted to connect a virtual hard disk, choose **Use an existing virtual hard disk**, choose **Browse**, and then navigate to and select the VM image\. Choose **Finish** to create the VM\.
+
+1. Right\-click the new VM and choose **Settings**\. In the **Settings** window, under **IDE Controller 1**, choose **DVD Drive**\.
+
+1. For the DVD drive, choose **Image file** and then browse to and select the `seed.iso` file\.
+
+1. Apply the changes and start the VM\.
+
+------
 
 After the VM has booted, log in using one of the user accounts that is defined in the `user-data` configuration file\. For virtualization platforms other than VMWare, you can disconnect the `seed.iso` boot image from the VM after you have logged in for the first time\.

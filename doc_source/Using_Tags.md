@@ -65,7 +65,7 @@ The following table describes the Amazon EC2 resources that can be tagged, and t
 |  Instance  |  Yes  | Yes | 
 |  Instance store volume  |  N/A  | N/A | 
 |  Internet gateway  |  Yes  | No | 
-|  IP address pool \(BYOIP\)  |  Yes  |  No  | 
+|  IP address pool \(BYOIP\)  |  Yes  |  Yes  | 
 |  Key pair  |  Yes  | Yes | 
 |  Launch template  |  Yes  |  Yes  | 
 |  Launch template version  |  No  |  No  | 
@@ -293,21 +293,24 @@ The way you enter JSON\-formatted parameters on the command line differs dependi
 The following command describes the instances with a Stack tag, regardless of the value of the tag\.
 
 ```
-aws ec2 describe-instances --filters Name=tag-key,Values=Stack
+aws ec2 describe-instances \
+    --filters Name=tag-key,Values=Stack
 ```
 
 **Example 2: Describe instances with the specified tag**  
 The following command describes the instances with the tag Stack=production\.
 
 ```
-aws ec2 describe-instances --filters Name=tag:Stack,Values=production
+aws ec2 describe-instances \
+    --filters Name=tag:Stack,Values=production
 ```
 
 **Example 3: Describe instances with the specified tag value**  
 The following command describes the instances with a tag with the value production, regardless of the tag key\.
 
 ```
-aws ec2 describe-instances --filters Name=tag-value,Values=production
+aws ec2 describe-instances \
+    --filters Name=tag-value,Values=production
 ```
 
 Some resource\-creating actions enable you to specify tags when you create the resource\. The following actions support tagging on creation\.
@@ -324,51 +327,79 @@ The following examples demonstrate how to apply tags when you create resources\.
 The following command launches an instance and applies a tag with a key of `webserver` and value of `production` to the instance\. The command also applies a tag with a key of `cost-center` and a value of `cc123` to any EBS volume that's created \(in this case, the root volume\)\.
 
 ```
-aws ec2 run-instances --image-id ami-abc12345 --count 1 --instance-type t2.micro --key-name MyKeyPair --subnet-id subnet-6e7f829e --tag-specifications 'ResourceType=instance,Tags=[{Key=webserver,Value=production}]' 'ResourceType=volume,Tags=[{Key=cost-center,Value=cc123}]' 
+aws ec2 run-instances \
+    --image-id ami-abc12345 \
+    --count 1 \
+    --instance-type t2.micro \
+    --key-name MyKeyPair \
+    --subnet-id subnet-6e7f829e \
+    --tag-specifications 'ResourceType=instance,Tags=[{Key=webserver,Value=production}]' 'ResourceType=volume,Tags=[{Key=cost-center,Value=cc123}]'
 ```
 
 You can apply the same tag keys and values to both instances and volumes during launch\. The following command launches an instance and applies a tag with a key of `cost-center` and a value of `cc123` to both the instance and any EBS volume that's created\.
 
 ```
-aws ec2 run-instances --image-id ami-abc12345 --count 1 --instance-type t2.micro --key-name MyKeyPair --subnet-id subnet-6e7f829e --tag-specifications 'ResourceType=instance,Tags=[{Key=cost-center,Value=cc123}]' 'ResourceType=volume,Tags=[{Key=cost-center,Value=cc123}]' 
+aws ec2 run-instances \
+    --image-id ami-abc12345 \
+    --count 1 \
+    --instance-type t2.micro \
+    --key-name MyKeyPair \
+    --subnet-id subnet-6e7f829e \
+    --tag-specifications 'ResourceType=instance,Tags=[{Key=cost-center,Value=cc123}]' 'ResourceType=volume,Tags=[{Key=cost-center,Value=cc123}]'
 ```
 
 **Example 5: Create a volume and apply a tag**  
 The following command creates a volume and applies two tags: `purpose` = `production`, and `cost-center` = `cc123`\.
 
 ```
-aws ec2 create-volume --availability-zone us-east-1a --volume-type gp2 --size 80 --tag-specifications 'ResourceType=volume,Tags=[{Key=purpose,Value=production},{Key=cost-center,Value=cc123}]'
+aws ec2 create-volume \
+    --availability-zone us-east-1a \
+    --volume-type gp2 \
+    --size 80 \
+    --tag-specifications 'ResourceType=volume,Tags=[{Key=purpose,Value=production},{Key=cost-center,Value=cc123}]'
 ```
 
 **Example 6: Add a tag to a resource**  
 This example adds the tag `Stack=production` to the specified image, or overwrites an existing tag for the AMI where the tag key is `Stack`\. If the command succeeds, no output is returned\.
 
 ```
-aws ec2 create-tags --resources ami-78a54011 --tags Key=Stack,Value=production
+aws ec2 create-tags \
+    --resources ami-78a54011 \
+    --tags Key=Stack,Value=production
 ```
 
 **Example 7: Add tags to multiple resources**  
 This example adds \(or overwrites\) two tags for an AMI and an instance\. One of the tags contains just a key \(`webserver`\), with no value \(we set the value to an empty string\)\. The other tag consists of a key \(`stack`\) and value \(`Production`\)\. If the command succeeds, no output is returned\.
 
 ```
-aws ec2 create-tags --resources ami-1a2b3c4d i-1234567890abcdef0 --tags Key=webserver,Value=  Key=stack,Value=Production
+aws ec2 create-tags \
+    --resources ami-1a2b3c4d i-1234567890abcdef0 \
+    --tags Key=webserver,Value=  Key=stack,Value=Production
 ```
 
 **Example 8: Add tags with special characters**  
-This example adds the tag `[Group]=test` to an instance\. The square brackets \(`[` and `]`\) are special characters, and must be escaped with a backslash \(`\`\)\. 
+This example adds the tag `[Group]=test` to an instance\. The square brackets \(`[` and `]`\) are special characters, which must be escaped\.
+
+If you are using Linux or OS X, to escape the special characters, enclose the element with the special character with double quotes \(`"`\), and then enclose the entire key and value structure with single quotes \(`'`\)\.
 
 ```
-aws ec2 create-tags --resources i-1234567890abcdef0 --tags Key=\[Group]\,Value=test
+aws ec2 create-tags \
+    --resources i-1234567890abcdef0 \
+    --tags 'Key="[Group]",Value=test'
 ```
 
-If you are using Windows PowerShell, break out the characters with a backslash \(`\`\), surround them with double quotes \(`"`\), and then surround the entire key and value structure with single quotes \(`'`\)\.
+If you are using Windows, to escape the special characters, enclose the element that has special characters with double quotes \("\), and then precede each double quote character with a backslash \(`\`\) as follows:
 
 ```
-aws ec2 create-tags --resources i-1234567890abcdef0 --tags 'Key=\"[Group]\",Value=test'
+aws ec2 create-tags ^
+    --resources i-1234567890abcdef0 ^
+    --tags Key=\"[Group]\",Value=test
 ```
 
-If you are using Linux or OS X, enclose the entire key and value structure with single quotes \(`'`\), and then enclose the element with the special character with double quotes \(`"`\)\.
+If you are using Windows PowerShell, to escape the special characters, enclose the value that has special characters with double quotes \(`"`\), precede each double quote character with a backslash \(`\`\), and then enclose the entire key and value structure with single quotes \(`'`\) as follows:
 
 ```
-aws ec2 create-tags --resources i-1234567890abcdef0 --tags 'Key="[Group]",Value=test'
+aws ec2 create-tags `
+    --resources i-1234567890abcdef0 `
+    --tags 'Key=\"[Group]\",Value=test'
 ```

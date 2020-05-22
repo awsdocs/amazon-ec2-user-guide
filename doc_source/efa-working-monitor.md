@@ -17,4 +17,4 @@ version accountId  eniId        srcAddress        destAddress       sourcePort d
 
 ## Amazon CloudWatch<a name="efa-cloudwatch"></a>
 
-Amazon CloudWatch provides metrics that enable you to monitor your EFAs in real time\. You can collect and track metrics, create customized dashboards, and set alarms that notify you or take actions when a specified metric reaches a threshold that you specify\. For more information, see [Monitoring Your Instances Using CloudWatch](using-cloudwatch.md)\.
+Amazon CloudWatch provides metrics that enable you to monitor your EFAs in real time\. You can collect and track metrics, create customized dashboards, and set alarms that notify you or take actions when a specified metric reaches a threshold that you specify\. For more information, see [Monitoring your instances using CloudWatch](using-cloudwatch.md)\.

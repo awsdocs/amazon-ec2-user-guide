@@ -41,9 +41,8 @@ Use the following procedure to connect to your Linux instance using an SSH clien
    You see a response like the following:
 
    ```
-   The authenticity of host 'ec2-198-51-100-1.compute-1.amazonaws.com (10.254.142.33)'
-   can't be established.
-   RSA key fingerprint is 1f:51:ae:28:bf:89:e9:d8:1f:25:5d:37:2d:7d:b8:ca:9f:f5:f1:6f.
+   The authenticity of host 'ec2-198-51-100-1.compute-1.amazonaws.com (198-51-100-1)' can't be established.
+   ECDSA key fingerprint is l4UB/neBad9tvkgJf1QZWxheQmR59WgrgzEimCG6kZY.
    Are you sure you want to continue connecting (yes/no)?
    ```
 
@@ -54,8 +53,7 @@ Use the following procedure to connect to your Linux instance using an SSH clien
    You see a response like the following:
 
    ```
-   Warning: Permanently added 'ec2-198-51-100-1.compute-1.amazonaws.com' (RSA) 
-   to the list of known hosts.
+   Warning: Permanently added 'ec2-198-51-100-1.compute-1.amazonaws.com' (ECDSA) to the list of known hosts.
    ```
 
 ## Transferring files to Linux instances from Linux using SCP<a name="AccessingInstancesLinuxSCP"></a>

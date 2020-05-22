@@ -57,7 +57,7 @@ The first thing you need to do is get set up to use Amazon EC2\. It can also be 
 + [Getting request status information](spot-bid-status.md#get-spot-instance-bid-status)
 
 **Working with Spot Fleets**
-+ [Spot Fleet prerequisites](spot-fleet-requests.md#spot-fleet-prerequisites)
++ [Spot Fleet permissions](spot-fleet-requests.md#spot-fleet-prerequisites)
 + [Creating a Spot Fleet request](spot-fleet-requests.md#create-spot-fleet)
 
 ## Related services<a name="spot-related-services"></a>
@@ -77,7 +77,7 @@ AWS SDK for Java
 You can use the Java programming language to manage your Spot Instances\. For more information, see [Tutorial: Amazon EC2 Spot Instances](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/tutorial-spot-instances-java.html) and [Tutorial: Advanced Amazon EC2 Spot Request Management](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/tutorial-spot-adv-java.html)\.
 
 AWS SDK for \.NET  
-You can use the \.NET programming environment to manage your Spot Instances\. For more information, see [Tutorial: Amazon EC2 Spot Instances](https://docs.aws.amazon.com/sdk-for-net/latest/developer-guide/tutorial-spot-instances-net.html)\.
+You can use the \.NET programming environment to manage your Spot Instances\. For more information, see [Tutorial: Amazon EC2 Spot Instances](https://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/tutorial-spot-instances-net.html)\.
 
 ## Pricing and savings<a name="spot-pricing"></a>
 

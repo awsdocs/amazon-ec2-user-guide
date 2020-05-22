@@ -12,7 +12,7 @@ Amazon Linux is provided by Amazon Web Services \(AWS\)\. It is designed to prov
 + [Accessing source packages for reference](#amazon-linux-source-packages)
 + [cloud\-init](#amazon-linux-cloud-init)
 + [Subscribing to Amazon Linux notifications](#linux-ami-notifications)
-+ [Running Amazon Linux 2 as a virtual machine on\-premises](amazon-linux-2-virtual-machine.md)
++ [Running Amazon Linux 2 as a virtual machine onpremises](amazon-linux-2-virtual-machine.md)
 + [Kernel Live Patching on Amazon Linux 2](al2-live-patching.md)
 
 ## Amazon Linux availability<a name="amazon-linux-availability"></a>
@@ -25,7 +25,7 @@ For more information, see [Amazon Linux 2](https://aws.amazon.com/amazon-linux-2
 
 ## Connecting to an Amazon Linux instance<a name="connect-to-amazon-linux-limits"></a>
 
-Amazon Linux does not allow remote root SSH by default\. Also, password authentication is disabled to prevent brute\-force password attacks\. To enable SSH logins to an Amazon Linux instance, you must provide your key pair to the instance at launch\. You must also set the security group used to launch your instance to allow SSH access\. By default, the only account that can log in remotely using SSH is ec2\-user; this account also has sudo privileges\. If you enable remote root log in, be aware that it is less secure than relying on key pairs and a secondary user\.
+Amazon Linux does not allow remote root SSH by default\. Also, password authentication is disabled to prevent brute\-force password attacks\. To enable SSH logins to an Amazon Linux instance, you must provide your key pair to the instance at launch\. You must also set the security group used to launch your instance to allow SSH access\. By default, the only account that can log in remotely using SSH is ec2\-user; this account also has sudo privileges\. If you enable remote root login, be aware that it is less secure than relying on key pairs and a secondary user\.
 
 ## Identifying Amazon Linux images<a name="amazon-linux-image-id"></a>
 
@@ -212,7 +212,7 @@ repo_releasever: 2017.09
 
 1. Comment out `releasever=latest`\.
 
-1. To clear the cache, run yum clean all \.
+1. To clear the cache, run yum clean all\.
 
 ## Extras library \(Amazon Linux 2\)<a name="extras-library"></a>
 

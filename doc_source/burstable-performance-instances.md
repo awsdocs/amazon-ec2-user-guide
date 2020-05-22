@@ -26,4 +26,4 @@ The following are the requirements for these instances:
 
 Follow these best practices to get the maximum benefit from burstable performance instances\.
 + **Use a recommended AMI** – Use an AMI that provides the required drivers\. For more information, see [Release notes](general-purpose-instances.md#general-purpose-instances-limits)\.
-+ **Turn on instance recovery** – Create a CloudWatch alarm that monitors an EC2 instance and automatically recovers it if it becomes impaired for any reason\. For more information, see [Adding Recover Actions to Amazon CloudWatch Alarms](UsingAlarmActions.md#AddingRecoverActions)\.
++ **Turn on instance recovery** – Create a CloudWatch alarm that monitors an EC2 instance and automatically recovers it if it becomes impaired for any reason\. For more information, see [Adding recover actions to Amazon CloudWatch alarms](UsingAlarmActions.md#AddingRecoverActions)\.

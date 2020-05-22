@@ -1,4 +1,4 @@
-# Best Practices for Monitoring<a name="monitoring_best_practices"></a>
+# Best practices for monitoring<a name="monitoring_best_practices"></a>
 
 Use the following best practices for monitoring to help you with your Amazon EC2 monitoring tasks\.
 + Make monitoring a priority to head off small problems before they become big ones\.

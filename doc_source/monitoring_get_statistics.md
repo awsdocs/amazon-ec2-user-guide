@@ -1,15 +1,15 @@
-# Get Statistics for Metrics for Your Instances<a name="monitoring_get_statistics"></a>
+# Get statistics for metrics for your instances<a name="monitoring_get_statistics"></a>
 
 You can get statistics for the CloudWatch metrics for your instances\.
 
 **Topics**
-+ [Statistics Overview](#overview-statistics)
-+ [Get Statistics for a Specific Instance](US_SingleMetricPerInstance.md)
-+ [Aggregate Statistics Across Instances](GetSingleMetricAllDimensions.md)
-+ [Aggregate Statistics by Auto Scaling Group](GetMetricAutoScalingGroup.md)
-+ [Aggregate Statistics by AMI](US_SingleMetricPerAMI.md)
++ [Statistics overview](#overview-statistics)
++ [Get statistics for a specific instance](US_SingleMetricPerInstance.md)
++ [Aggregate statistics across instances](GetSingleMetricAllDimensions.md)
++ [Aggregate statistics by Auto Scaling group](GetMetricAutoScalingGroup.md)
++ [Aggregate statistics by AMI](US_SingleMetricPerAMI.md)
 
-## Statistics Overview<a name="overview-statistics"></a>
+## Statistics overview<a name="overview-statistics"></a>
 
 *Statistics* are metric data aggregations over specified periods of time\. CloudWatch provides statistics based on the metric data points provided by your custom data or provided by other services in AWS to CloudWatch\. Aggregations are made using the namespace, metric name, dimensions, and the data point unit of measure, within the time period you specify\. The following table describes the available statistics\.
 

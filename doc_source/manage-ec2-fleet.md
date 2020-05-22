@@ -153,7 +153,7 @@ If your IAM users will create or manage an EC2 Fleet, be sure to grant them the 
 
 ## EC2 Fleet health checks<a name="ec2-fleet-health-checks"></a>
 
-EC2 Fleet checks the health status of the instances in the fleet every two minutes\. The health status of an instance is either `healthy` or `unhealthy`\. The fleet determines the health status of an instance using the status checks provided by Amazon EC2\. If the status of either the instance status check or the system status check is `impaired` for three consecutive health checks, the health status of the instance is `unhealthy`\. Otherwise, the health status is `healthy`\. For more information, see [Status Checks for Your Instances](monitoring-system-instance-status-check.md)\.
+EC2 Fleet checks the health status of the instances in the fleet every two minutes\. The health status of an instance is either `healthy` or `unhealthy`\. The fleet determines the health status of an instance using the status checks provided by Amazon EC2\. If the status of either the instance status check or the system status check is `impaired` for three consecutive health checks, the health status of the instance is `unhealthy`\. Otherwise, the health status is `healthy`\. For more information, see [Status checks for your instances](monitoring-system-instance-status-check.md)\.
 
 You can configure your EC2 Fleet to replace unhealthy instances\. After enabling health check replacement, an instance is replaced after its health status is reported as `unhealthy`\. The fleet could go below its target capacity for up to a few minutes while an unhealthy instance is being replaced\.
 
@@ -255,7 +255,7 @@ To create an EC2 Fleet, you need only specify the launch template, total target 
 Use lowercase for all parameter values; otherwise, you get an error when Amazon EC2 uses the JSON file to launch the EC2 Fleet\.
 
 **AllocationStrategy \(for SpotOptions\)**  
-\(Optional\) Indicates how to allocate the Spot Instance target capacity across the Spot Instance pools specified by the EC2 Fleet\. Valid values are `lowest-price` and `diversified`\. The default is `lowest-price`\. Specify the allocation strategy that meets your needs\. For more information, see [Allocation strategies for Spot Instances](ec2-fleet-configuration-strategies.md#ec2-fleet-allocation-strategy)\.
+\(Optional\) Indicates how to allocate the Spot Instance target capacity across the Spot Instance pools specified by the EC2 Fleet\. Valid values are `lowest-price`, `diversified`, and `capacity-optimized`\. The default is `lowest-price`\. Specify the allocation strategy that meets your needs\. For more information, see [Allocation strategies for Spot Instances](ec2-fleet-configuration-strategies.md#ec2-fleet-allocation-strategy)\.
 
 **InstanceInterruptionBehavior**  
 \(Optional\) The behavior when a Spot Instance is interrupted\. Valid values are `hibernate`, `stop`, and `terminate`\. By default, the Spot service terminates Spot Instances when they are interrupted\. If the fleet type is `maintain`, you can specify that the Spot service hibernates or stops Spot Instances when they are interrupted\.

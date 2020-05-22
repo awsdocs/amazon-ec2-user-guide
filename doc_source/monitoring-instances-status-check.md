@@ -1,4 +1,4 @@
-# Monitoring the Status of Your Instances<a name="monitoring-instances-status-check"></a>
+# Monitoring the status of your instances<a name="monitoring-instances-status-check"></a>
 
 You can monitor the status of your instances by viewing status checks and scheduled events for your instances\.
 
@@ -7,5 +7,5 @@ A status check gives you the information that results from automated checks perf
 You can also see status of specific events that are scheduled for your instances\. The status of events provides information about upcoming activities that are planned for your instances, such as rebooting or retirement\. They also provide the scheduled start and end time of each event\.
 
 **Topics**
-+ [Status Checks for Your Instances](monitoring-system-instance-status-check.md)
-+ [Scheduled Events for Your Instances](monitoring-instances-status-check_sched.md)
++ [Status checks for your instances](monitoring-system-instance-status-check.md)
++ [Scheduled events for your instances](monitoring-instances-status-check_sched.md)

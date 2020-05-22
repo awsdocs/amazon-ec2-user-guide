@@ -102,7 +102,7 @@ If you try to connect to your instance and get an error message `Network error: 
 
   If you have a firewall on your computer, verify that it allows inbound and outbound traffic from your computer on port 22 \(for Linux instances\) or port 3389 \(for Windows instances\)\.
 + Check that your instance has a public IPv4 address\. If not, you can associate an Elastic IP address with your instance\. For more information, see [Elastic IP addresses](elastic-ip-addresses-eip.md)\. 
-+ Check the CPU load on your instance; the server may be overloaded\. AWS automatically provides data such as Amazon CloudWatch metrics and instance status, which you can use to see how much CPU load is on your instance and, if necessary, adjust how your loads are handled\. For more information, see [Monitoring Your Instances Using CloudWatch](using-cloudwatch.md)\. 
++ Check the CPU load on your instance; the server may be overloaded\. AWS automatically provides data such as Amazon CloudWatch metrics and instance status, which you can use to see how much CPU load is on your instance and, if necessary, adjust how your loads are handled\. For more information, see [Monitoring your instances using CloudWatch](using-cloudwatch.md)\. 
   + If your load is variable, you can automatically scale your instances up or down using [Auto Scaling](https://aws.amazon.com/autoscaling/) and [Elastic Load Balancing](https://aws.amazon.com/elasticloadbalancing/)\. 
   + If your load is steadily growing, you can move to a larger instance type\. For more information, see [Changing the instance type](ec2-instance-resize.md)\. 
 

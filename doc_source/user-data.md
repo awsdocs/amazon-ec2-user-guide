@@ -218,7 +218,7 @@ aws ec2 modify-instance-attribute --instance-id i-1234567890abcdef0 --attribute 
 ```
 
 **Example: Clear the user data of a stopped instance**  
-To delete the existing user data, use the [describe\-instance\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-attribute.html) command as follows:
+To delete the existing user data, use the [modify\-instance\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) command as follows:
 
 ```
 aws ec2 modify-instance-attribute --instance-id i-1234567890abcdef0 --user-data Value=

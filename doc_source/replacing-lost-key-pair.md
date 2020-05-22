@@ -145,7 +145,7 @@ The following examples use the Amazon Linux user name `ec2-user`\. You might nee
 
 1. Detach the volume from the temporary instance \(you unmounted it in the previous step\): From the Amazon EC2 console, select the root device volume for the original instance \(you wrote down volume ID in a previous step\), choose **Actions**, **Detach Volume**, and then select **Yes, Detach**\. Wait for the state of the volume to become `available`\. \(You might need to choose the **Refresh** icon\.\)
 
-1. Reattach the volume to the original instance: With the volume still selected, choose **Actions**, **Attach Volume**\. Select the instance ID of the original instance, specify the device name that you noted earlier for the original root device attachment \(`/dev/sda1` or `/dev/xvda`\), and then choose **Attach**\.
+1. Reattach the volume to the original instance: With the volume still selected, choose **Actions**, **Attach Volume**\. Select the instance ID of the original instance, specify the device name that you noted earlier in [Step 2](#step-2-get-info-about-original-instance) for the original root device attachment \(`/dev/sda1` or `/dev/xvda`\), and then choose **Attach**\.
 **Important**  
 If you don't specify the same device name as the original attachment, you cannot start the original instance\. Amazon EC2 expects the root device volume at `sda1` or `/dev/xvda`\.
 

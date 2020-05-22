@@ -74,6 +74,8 @@ You can create a new security group by creating a copy of an existing one\. When
 
 The copy receives a new unique security group ID and you must give it a name\. You can also add a description\.
 
+You can't copy a security group from one Region to another Region\.
+
 You can create a copy of a security group using one of the following methods\.
 
 ------

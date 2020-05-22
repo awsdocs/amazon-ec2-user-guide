@@ -59,22 +59,25 @@ First you get the instance fingerprint\. Then, when you connect to the instance,
 
 **Prerequisites for getting the instance fingerprint:**
 + To get the instance fingerprint, you must use the AWS CLI\. For information about installing the AWS CLI, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html) in the *AWS Command Line Interface User Guide*\.
-+ The instance must be in the `running` state, not the `pending` state\. 
++ The instance must not be in the `pending` state\. The fingerprint is available only after the first boot of the instance is complete\.
 
 **To get the instance fingerprint**
 
-1.  On your local computer \(not on the instance\), use the [get\-console\-output](https://docs.aws.amazon.com/cli/latest/reference/ec2/get-console-output.html) \(AWS CLI\) command to obtain the fingerprint, as follows: 
+1. On your local computer \(not on the instance\), use the [get\-console\-output](https://docs.aws.amazon.com/cli/latest/reference/ec2/get-console-output.html) \(AWS CLI\) command as follows to obtain the fingerprint:
 
    ```
-   $ aws ec2 get-console-output --instance-id instance_id
+   aws ec2 get-console-output --instance-id instance_id --output text
    ```
 
-   Here is an example of what you should look for:
+1. Here is an example of what you should look for in the output\. The exact output can vary by the operating system, AMI version, and whether you had AWS create the key\.
 
    ```
-   -----BEGIN SSH HOST KEY FINGERPRINTS -----
-   ... 1f:51:ae:28:bf:89:e9:d8:1f:25:5d:37:2d:7d:b8:ca:9f:f5:f1:6f ...
-   -----END SSH HOST KEY FINGERPRINTS-----
+   ec2: #############################################################
+   ec2: -----BEGIN SSH HOST KEY FINGERPRINTS-----
+   ec2: 1024 SHA256:7HItIgTONZ/b0CH9c5Dq1ijgqQ6kFn86uQhQ5E/F9pU root@ip-10-0-2-182 (DSA)
+   ec2: 256 SHA256:l4UB/neBad9tvkgJf1QZWxheQmR59WgrgzEimCG6kZY root@ip-10-0-2-182 (ECDSA)
+   ec2: 256 SHA256:kpEa+rw/Uq3zxaYZN8KT501iBtJOIdHG52dFi66EEfQ no comment (ED25519)
+   ec2: 2048 SHA256:L8l6pepcA7iqW/jBecQjVZClUrKY+o2cHLI0iHerbVc root@ip-10-0-2-182 (RSA)
+   ec2: -----END SSH HOST KEY FINGERPRINTS-----
+   ec2: #############################################################
    ```
-
-1. In the output that was generated, locate the `SSH HOST KEY FINGERPRINTS` section and note the RSA fingerprint \(for example, 1f:51:ae:28:bf:89:e9:d8:1f:25:5d:37:2d:7d:b8:ca:9f:f5:f1:6f\)\. The `SSH HOST KEY FINGERPRINTS` section is only available after the first boot of the instance\.

@@ -196,7 +196,7 @@ Example Corp could use a global price per unit hour of $0\.7 and be competitive 
 
 ### Verifying permissions<a name="instance-weighting-walkthrough-permissions"></a>
 
-Before creating a Spot Fleet request, Example Corp verifies that it has an IAM role with the required permissions\. For more information, see [Spot Fleet prerequisites](spot-fleet-requests.md#spot-fleet-prerequisites)\.
+Before creating a Spot Fleet request, Example Corp verifies that it has an IAM role with the required permissions\. For more information, see [Spot Fleet permissions](spot-fleet-requests.md#spot-fleet-prerequisites)\.
 
 ### Creating the request<a name="instance-weighting-walkthrough-request"></a>
 

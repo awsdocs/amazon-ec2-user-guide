@@ -6,7 +6,7 @@ An instance is scheduled to be retired when AWS detects irreparable failure of t
 + [Identifying instances scheduled for retirement](#instance-retirement-identify)
 + [Working with instances scheduled for retirement](#instance-retirement-working)
 
-For more information about types of instance events, see [Scheduled Events for Your Instances](monitoring-instances-status-check_sched.md)\.
+For more information about types of instance events, see [Scheduled events for your instances](monitoring-instances-status-check_sched.md)\.
 
 ## Identifying instances scheduled for retirement<a name="instance-retirement-identify"></a>
 
