@@ -91,6 +91,9 @@ Volume ID: vol-01324f611e2463981
 
 Amazon Linux also creates a symbolic link from the device name in the block device mapping \(for example, `/dev/sdf`\), to the NVMe device name\.
 
+**FreeBSD AMIs**  
+Starting with FreeBSD 12\.2\-RELEASE, you can run the ebsnvme\-id command as shown above. Pass either the name of the NVMe device \(for example, `nvme0`\) or the disk device \(for example, `nvd0` or `nda0`\). FreeBSD also creates symbolic links to the disk devices \(for example, `/dev/aws/disk/ebs/volume_id`\).
+
 **Other Linux AMIs**  
 With a kernel version of 4\.2 or later, you can run the nvme id\-ctrl command as follows to map an NVMe device to a volume ID\. First, install the NVMe command line package, `nvme-cli`, using the package management tools for your Linux distribution\. For download and installation instructions for other distributions, refer to the documentation specific to your distribution\.
 
