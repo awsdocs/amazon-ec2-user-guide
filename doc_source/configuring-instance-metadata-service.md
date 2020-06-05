@@ -114,22 +114,29 @@ If you turn off all access to instance metadata, applications or agents that rel
 You can require the use IMDSv2 on an instance when you launch it\. You can also create an IAM policy that prevents users from launching new instances unless they require IMDSv2 on the new instance\.
 
 **To require the use of IMDSv2 on a new instance**  
-The following [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) example launches a `c3.large` instance with `metadata-options` set to `HttpTokens=required`\. Because the secure token header is set to `required` for metadata retrieval requests, this opts in the instance to require using IMDSv2 when requesting instance metadata\.
-
-**Note**  
-When specifying a value for `HttpTokens`, you must also set `HttpEndpoint` to `enabled`\.
-In the example, the `--count` and `--security-group` parameters are not included\. For `--count`, the default is `1`\. If you have a default VPC and a default security group, they are used\.
+The following [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) example launches a `c3.large` instance with `--metadata-options` set to `HttpTokens=required`\. When you specify a value for `HttpTokens`, you must also set `HttpEndpoint` to `enabled`\. Because the secure token header is set to `required` for metadata retrieval requests, this opts in the instance to require using IMDSv2 when requesting instance metadata\.
 
 ```
-aws ec2 run-instances \
-    --image-id ami-1a2b3c4d \
-    --instance-type c3.large \
-    --key-name MyKeyPair \
+aws ec2 run-instances 
+    --image-id ami-0abcdef1234567890 
+    --instance-type c3.large 
+	...
     --metadata-options "HttpEndpoint=enabled,HttpTokens=required"
 ```
 
 **To enforce the use of IMDSv2 on all new instances**  
 To ensure that IAM users can only launch instances that require the use of IMDSv2 when requesting instance metadata, you can specify that the condition to require IMDSv2 must be met before an instance can be launched\. For the example IAM policy, see [Working with instance metadata](ExamplePolicies_EC2.md#iam-example-instance-metadata)\.
+
+**To turn off access to instance metadata**  
+To ensure that access to your instance metadata is turned off, regardless of which version of the instance metadata service you are using, launch the instance with `--metadata-options` set to `HttpEndpoint=disabled`\. You can turn on access later on using the [modify\-instance\-metadata\-options](https://docs.aws.amazon.com/cli/latest/reference/modify-instance-metadata-options.html) command\.
+
+```
+aws ec2 run-instances 
+    --image-id ami-0abcdef1234567890 
+    --instance-type c3.large 
+    ... 
+    --metadata-options "HttpEndpoint=disabled"
+```
 
 ### Configuring instance metadata options for existing instances<a name="configuring-IMDS-existing-instances"></a>
 

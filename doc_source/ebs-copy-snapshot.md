@@ -20,7 +20,7 @@ If you copy a snapshot and encrypt it to a new CMK, a complete \(non\-incrementa
 + Geographic expansion: Launch your applications in a new AWS Region\.
 + Migration: Move an application to a new Region, to enable better availability and to minimize cost\.
 + Disaster recovery: Back up your data and logs across different geographical locations at regular intervals\. In case of disaster, you can restore your applications using point\-in\-time backups stored in the secondary Region\. This minimizes data loss and recovery time\.
-+ Encryption: Encrypt a previously unencrypted snapshot, change the key with which the snapshot is encrypted, or, for encrypted snapshots that have been shared with you, create a copy that you own in order to restore a volume from it\.
++ Encryption: Encrypt a previously unencrypted snapshot, change the key with which the snapshot is encrypted, or create a copy that you own in order to create a volume from it \(for encrypted snapshots that have been shared with you\)\.
 + Data retention and auditing requirements: Copy your encrypted EBS snapshots from one AWS account to another to preserve data logs or other files for auditing or data retention\. Using a different account helps prevent accidental snapshot deletions, and protects you if your main AWS account is compromised\.
 
 **Prerequisites**

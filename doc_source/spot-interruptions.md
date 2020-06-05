@@ -6,10 +6,11 @@ An On\-Demand Instance specified in an EC2 Fleet or Spot Fleet cannot be interru
 
 **Topics**
 + [Reasons for interruption](#interruption-reasons)
-+ [Interruption behavior](#interruption-behavior)
++ [Interruption behaviors](#interruption-behavior)
 + [Preparing for interruptions](#using-spot-instances-managing-interruptions)
 + [Preparing for instance hibernation](#prepare-for-instance-hibernation)
 + [Spot Instance interruption notices](#spot-instance-termination-notices)
++ [Finding interrupted Spot Instances](#finding-an-interrupted-Spot-Instance)
 + [Billing for interrupted Spot Instances](#billing-for-interrupted-spot-instances)
 
 ## Reasons for interruption<a name="interruption-reasons"></a>
@@ -19,7 +20,7 @@ The following are the possible reasons that Amazon EC2 might interrupt your Spot
 + Capacity – If there are not enough unused EC2 instances to meet the demand for Spot Instances, Amazon EC2 interrupts Spot Instances\. The order in which the instances are interrupted is determined by Amazon EC2\.
 + Constraints – If your request includes a constraint such as a launch group or an Availability Zone group, these Spot Instances are terminated as a group when the constraint can no longer be met\.
 
-## Interruption behavior<a name="interruption-behavior"></a>
+## Interruption behaviors<a name="interruption-behavior"></a>
 
 You can specify whether Amazon EC2 should hibernate, stop, or terminate Spot Instances when they are interrupted\. You can choose the interruption behavior that meets your needs\. The default is to terminate Spot Instances when they are interrupted\. To change the interruption behavior, choose an option from **Interruption behavior** in the console when you are creating a Spot request, or specify `InstanceInterruptionBehavior` in the launch configuration or the launch template\. To change interruption behavior in the console when you are creating a Spot request, choose **Maintain target capacity**\. When you select this option, **Interruption behavior** will appear and you can then specify that the Spot service terminates, stops, or hibernates Spot Instances when they are interrupted\.
 
@@ -136,15 +137,15 @@ The following procedures help you prepare a Linux instance\. For directions to p
 
 ## Spot Instance interruption notices<a name="spot-instance-termination-notices"></a>
 
-The best way to protect against Spot Instance interruption is to architect your application to be fault\-tolerant\. In addition, you can take advantage of *Spot Instance interruption notices*, which provide a two\-minute warning before Amazon EC2 must stop or terminate your Spot Instance\. We recommend that you check for these warnings every 5 seconds\. 
+The best way for you to gracefully handle Spot Instance interruptions is to architect your application to be fault\-tolerant\. To accomplish this, you can take advantage of *Spot Instance interruption notices*\. A Spot Instance interruption notice is a warning that is issued two minutes before Amazon EC2 stops or terminates your Spot Instance\. If you specify hibernation as the interruption behavior, you receive an interruption notice, but you do not receive a two\-minute warning because the hibernation process begins immediately\.
 
-This warning is made available as a CloudWatch event and as an item in the [instance metadata](ec2-instance-metadata.md) on the Spot Instance\.
+We recommend that you check for these interruption notices every 5 seconds\. 
 
-If you specify hibernation as the interruption behavior, you receive an interruption notice, but you do not receive a two\-minute warning because the hibernation process begins immediately\.
+The interruption notice is made available as a CloudWatch event and as an item in the [instance metadata](ec2-instance-metadata.md) on the Spot Instance\.
 
 ### EC2 Spot Instance interruption notice<a name="ec2-spot-instance-interruption-warning-event"></a>
 
-When Amazon EC2 is going to interrupt your Spot Instance, it emits an event two minutes prior to the actual interruption\. This event can be detected by Amazon CloudWatch Events\. For more information, see the [Amazon CloudWatch Events User Guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/)\.
+When Amazon EC2 is going to interrupt your Spot Instance, it emits an event two minutes prior to the actual interruption \(except for hibernation, which gets the interruption notice, but not two minutes in advance, because hibernation begins immediately\)\. This event can be detected by Amazon CloudWatch Events\. For more information about CloudWatch events, see the [Amazon CloudWatch Events User Guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/)\. For a detailed example that walks you through how to create and use event rules, see [Taking Advantage of Amazon EC2 Spot Instance Interruption Notices](http://aws.amazon.com/blogs/compute/taking-advantage-of-amazon-ec2-spot-instance-interruption-notices/)\.
 
 The following is an example of the event for Spot Instance interruption\. The possible values for `instance-action` are `hibernate`, `stop`, and `terminate`\.
 
@@ -200,7 +201,7 @@ The following example indicates the time at which this instance will be terminat
 {"action": "terminate", "time": "2017-09-18T08:22:00Z"}
 ```
 
-If Amazon EC2 is not preparing to stop or terminate the instance, or if you terminated the instance yourself, `instance-action` is not present and you receive an HTTP 404 error\.
+If Amazon EC2 is not preparing to stop or terminate the instance, or if you terminated the instance yourself, `instance-action` is not present and you receive an HTTP 404 error when you try to retrieve it\.
 
 ### termination\-time<a name="termination-time-metadata"></a>
 
@@ -234,6 +235,29 @@ The `termination-time` item specifies the approximate time in UTC when the insta
 If Amazon EC2 is not preparing to terminate the instance, or if you terminated the Spot Instance yourself, the `termination-time` item is either not present \(so you receive an HTTP 404 error\) or contains a value that is not a time value\.
 
 If Amazon EC2 fails to terminate the instance, the request status is set to `fulfilled`\. The `termination-time` value remains in the instance metadata with the original approximate time, which is now in the past\.
+
+## Finding interrupted Spot Instances<a name="finding-an-interrupted-Spot-Instance"></a>
+
+In the console, the **Instances** pane displays all instances, including Spot Instances\. You can identify a Spot Instance from the `spot` value in the **Lifecycle** column\. The **Instance State** column indicates whether the instance is `pending`, `running`, `stopping`, `stopped`, `shutting-down`, or `terminated`\. For a hibernated Spot Instance, the instance state is `stopped`\.
+
+**To find an interrupted Spot Instance \(console\)**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances**\. In the top right corner, choose the **Show/Hide Columns** icon, and under **Instance Attributes**, select **Lifecycle**\. For Spot Instances, **Lifecycle** is `spot`\.
+
+   Alternatively, in the navigation pane, choose **Spot Requests**\. You can see both Spot Instance requests and Spot Fleet requests\. To view the IDs of the instances, select a Spot Instance request or a Spot Fleet request and choose the **Instances** tab\. Choose an instance ID to display the instance in the **Instances** pane\.
+
+1. For each Spot Instance, you can view its state in the **Instance State** column\.
+
+**To find interrupted Spot Instances \(AWS CLI\)**  
+You can list your interrupted Spot Instances using the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command with the `--filters` parameter\. To list only the instance IDs in the output, add the `--query` parameter\.
+
+```
+aws ec2 describe-instances \
+    --filters Name=instance-lifecycle,Values=spot Name=instance-state-name,Values=terminated,stopped \
+    --query Reservations[*].Instances[*].InstanceId
+```
 
 ## Billing for interrupted Spot Instances<a name="billing-for-interrupted-spot-instances"></a>
 

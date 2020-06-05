@@ -190,7 +190,9 @@ For more information, see [Changing Permissions for an IAM User](https://docs.aw
 
 ### Permissions for encrypted snapshots<a name="dlm-access-cmk"></a>
 
-To copy an encrypted snapshot between Regions, you must have access to both the source and destination customer master key \(CMK\) from AWS Key Management Service \(AWS KMS\)\. For more information, see [Determining access to an AWS KMS customer master key](https://docs.aws.amazon.com/kms/latest/developerguide/determining-access.html) in the *AWS Key Management Service Developer Guide*\.
+To copy an encrypted snapshot between Regions, you must have access to both the source and destination customer master key \(CMK\) from AWS Key Management Service \(AWS KMS\)\. 
+
+If the source volume is encrypted, ensure that the **AWSDataLifecycleManagerDefaultRole** role has permission to use the CMK used to encrypt the volume\. If you enable **Cross Region copy** and choose to encrypt the copied snapshot, ensure that the **AWSDataLifecycleManagerDefaultRole** role has permission to use the CMK needed to encrypt the snapshot in the destination Region\. For more information, see [ Managing access to AWS KMS CMKs](https://docs.aws.amazon.com/kms/latest/developerguide/control-access-overview.html#managing-access) in the *AWS Key Management Service Developer Guide*\.
 
 ## Manage backups using the console<a name="snapshot-lifecycle-console"></a>
 
@@ -214,16 +216,16 @@ Use the following procedure to create a lifecycle policy\.
 
 1. Provide the following information for your policy as needed:
    + **Description**–A description of the policy\.
-   + **Resource type**–The type of resource to back up\. Use `VOLUME` to create snapshots of individual volumes or use `INSTANCE` to create multi\-volume snapshots from the volumes for an instance\.
+   + **Resource type**–The type of resource to back up\. Use `Volume` to create snapshots of individual volumes or use `Instance` to create multi\-volume snapshots from the volumes for an instance\.
    + **Target with these tags**–The resource tags that identify the volumes or instances to back up\.
    + **Lifecycle policy tags**–The tags for the lifecycle policy\.
    + **Schedule name**–A name for the schedule\.
-   + **Run policy every** ***n*** **Hours**–The number of hours between policy runs\. The supported values are 1, 2, 3, 4, 6, 8, 12, and 24\.
-   + **Starting at ***hh*:***mm*** **UTC**–The time at which the policy runs are scheduled to start\. The first policy run starts within an hour after the scheduled time\.
-   + **Retain**–You can retain snapshots based on either the total count of snapshots or the age of each snapshot\. For retention based on the count, the range is 1 to 1000\. After the maximum count is reached, the oldest snapshot is deleted when a new one is created\. For age\-based retention, the range is 1 day to 100 years\. After the retention period of each snapshot expires, it is deleted\. The retention period should be greater than or equal to the creation interval\.
-   + **Cross Region copy**–You can copy each snapshot to up at three additional Regions\. You must ensure that you do not exceed the number of concurrent snapshot copies per Region\. For each Region, you can choose different retention policies and whether to copy all tags or no tags\. If the source snapshot is encrypted or if encryption by default is enabled, the snapshots copies are encrypted\. If the source snapshot is unencrypted, you can enable encryption\. If you do not specify a CMK, the snapshots are encrypted using the default key for EBS encryption in each destination Region\. If you specify a CMK for the destination Region, you must have access to the CMK\.
+   + **Frequency**–The interval between policy runs\. You can choose one of the predefined intervals: 1, 2, 3, 4, 6, 8, 12, or 24 hours or choose **Custom cron expression** to specify an interval of up to 1 year\.
+   + **Starting at ***hh*:*mm* **UTC**–The time at which the policy runs are scheduled to start\. The first policy run starts within an hour after the scheduled time\.
+   + **Retention type**–You can retain snapshots based on either the total count of snapshots or the age of each snapshot\. For retention based on the count, the range is 1 to 1000\. After the maximum count is reached, the oldest snapshot is deleted when a new one is created\. For age\-based retention, the range is 1 day to 100 years\. After the retention period of each snapshot expires, it is deleted\. The retention period should be greater than or equal to the creation interval\.
    + **Tagging information**–Choose whether to copy all user\-defined tags on a source volume to the snapshots created by this policy\. You can also specify additional tags for the snapshots in addition to the tags applied by Amazon Data Lifecycle Manager\. If the resource type is `INSTANCE`, you can choose to automatically tag your snapshots with the following variable tags: `instance-id` and `timestamp`\. The values of the variable tags are determined when the tags are added\.
    + **Fast snapshot restore**–Choose whether to enable fast snapshot restore and in which Availability Zones\. You can also specify the maximum number of snapshots that can be enabled for fast snapshot store\.
+   + **Enable cross Region copy**–You can copy each snapshot to up at three additional Regions\. You must ensure that you do not exceed the number of concurrent snapshot copies per Region\. For each Region, you can choose different retention policies and whether to copy all tags or no tags\. If the source snapshot is encrypted or if encryption by default is enabled, the snapshots copies are encrypted\. If the source snapshot is unencrypted, you can enable encryption\. If you do not specify a CMK, the snapshots are encrypted using the default key for EBS encryption in each destination Region\. If you specify a CMK for the destination Region, you must have access to the CMK\.
    + **IAM role**–An IAM role that has permissions to create, delete, and describe snapshots, and to describe volumes\. AWS provides a default role, **AWSDataLifecycleManagerDefaultRole**, or you can create a custom IAM role\.
    + **Policy status after creation**–Choose **Enable policy** to start the policy runs at the next scheduled time or **Disable policy** to prevent the policy from running\.
 

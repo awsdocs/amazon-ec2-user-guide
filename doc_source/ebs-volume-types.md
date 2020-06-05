@@ -46,7 +46,7 @@ The following table describes previous\-generation EBS volume types\. If you nee
 | Max IOPS per volume | 40–200 | 
 | Max throughput per volume | 40–90 MiB/s | 
 | Max IOPS per instance | 80,000 | 
-| Max throughput per instance | 1,750 MiB/s | 
+| Max throughput per instance | 1,750 MB/s | 
 | Dominant performance attribute | IOPS | 
 
 ## General Purpose SSD \(`gp2`\) volumes<a name="EBSVolumeTypes_gp2"></a>

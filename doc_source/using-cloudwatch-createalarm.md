@@ -13,7 +13,7 @@ For examples, see [Creating Amazon CloudWatch Alarms](https://docs.aws.amazon.co
 
 1. Select the instance\.
 
-1. On the **Monitoring** tab, choose **Create Alarm**\.
+1. On the **Monitoring** tab located at the bottom of the page, choose **Create Alarm**\. Or, from the **Actions** dropdown, choose **CloudWatch Monitoring**, **Add/Edit Alarm**\.
 
 1. In the **Create Alarm** dialog box, do the following:
 

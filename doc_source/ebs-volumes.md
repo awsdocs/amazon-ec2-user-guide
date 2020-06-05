@@ -15,7 +15,7 @@ Amazon EBS provides the following volume types: General Purpose SSD \(`gp2`\), P
 + [Attaching a volume to multiple instances with Amazon EBS Multi\-Attach](ebs-volumes-multi.md)
 + [Making an Amazon EBS volume available for use on Linux](ebs-using-volumes.md)
 + [Viewing information about an Amazon EBS volume](ebs-describing-volumes.md)
-+ [Restoring an Amazon EBS volume from a snapshot](ebs-restoring-volume.md)
++ [Replacing an Amazon EBS volume using a previous snapshot](ebs-restoring-volume.md)
 + [Monitoring the status of your volumes](monitoring-volume-status.md)
 + [Detaching an Amazon EBS volume from a Linux instance](ebs-detaching-volume.md)
 + [Deleting an Amazon EBS volume](ebs-deleting-volume.md)
@@ -54,9 +54,9 @@ For simplified data encryption, you can create encrypted EBS volumes with the Am
 
 Amazon EBS provides the ability to create snapshots \(backups\) of any EBS volume and write a copy of the data in the volume to Amazon S3, where it is stored redundantly in multiple Availability Zones\. The volume does not need to be attached to a running instance in order to take a snapshot\. As you continue to write data to a volume, you can periodically create a snapshot of the volume to use as a baseline for new volumes\. These snapshots can be used to create multiple new EBS volumes or move volumes across Availability Zones\. Snapshots of encrypted EBS volumes are automatically encrypted\. 
 
-When you create a new volume from a snapshot, it's an exact copy of the original volume at the time the snapshot was taken\. EBS volumes that are restored from encrypted snapshots are automatically encrypted\. By optionally specifying a different Availability Zone, you can use this functionality to create a duplicate volume in that zone\. The snapshots can be shared with specific AWS accounts or made public\. When you create snapshots, you incur charges in Amazon S3 based on the volume's total size\. For a successive snapshot of the volume, you are only charged for any additional data beyond the volume's original size\. 
+When you create a new volume from a snapshot, it's an exact copy of the original volume at the time the snapshot was taken\. EBS volumes that are created from encrypted snapshots are automatically encrypted\. By optionally specifying a different Availability Zone, you can use this functionality to create a duplicate volume in that zone\. The snapshots can be shared with specific AWS accounts or made public\. When you create snapshots, you incur charges in Amazon S3 based on the volume's total size\. For a successive snapshot of the volume, you are only charged for any additional data beyond the volume's original size\. 
 
-Snapshots are incremental backups, meaning that only the blocks on the volume that have changed after your most recent snapshot are saved\. If you have a volume with 100 GiB of data, but only 5 GiB of data have changed since your last snapshot, only the 5 GiB of modified data is written to Amazon S3\. Even though snapshots are saved incrementally, the snapshot deletion process is designed so that you need to retain only the most recent snapshot in order to restore the volume\.
+Snapshots are incremental backups, meaning that only the blocks on the volume that have changed after your most recent snapshot are saved\. If you have a volume with 100 GiB of data, but only 5 GiB of data have changed since your last snapshot, only the 5 GiB of modified data is written to Amazon S3\. Even though snapshots are saved incrementally, the snapshot deletion process is designed so that you need to retain only the most recent snapshot\.
 
 To help categorize and manage your volumes and snapshots, you can tag them with metadata of your choice\. For more information, see [Tagging your Amazon EC2 resources](Using_Tags.md)\.
 

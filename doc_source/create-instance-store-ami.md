@@ -80,7 +80,7 @@ For the China \(Beijing\) and AWS GovCloud \(US\-West\) Regions, use the `--ec2c
       [root ec2-user]# exit
       ```
 
-1. \(Optional\) To add more instance store volumes, edit the block device mappings in the `image.manifest.xml` file for your AMI\. For more information, see [Block Device Mapping](block-device-mapping-concepts.md)\.
+1. \(Optional\) To add more instance store volumes, edit the block device mappings in the `image.manifest.xml` file for your AMI\. For more information, see [Block device mapping](block-device-mapping-concepts.md)\.
 
    1. Create a backup of your `image.manifest.xml` file\.
 
@@ -294,7 +294,7 @@ For Ubuntu 14\.04 and later HVM instances, add the `--partition mbr` flag to bun
       root@ubuntu:# exit
       ```
 
-1. \(Optional\) To add more instance store volumes, edit the block device mappings in the `image.manifest.xml` file for your AMI\. For more information, see [Block Device Mapping](block-device-mapping-concepts.md)\.
+1. \(Optional\) To add more instance store volumes, edit the block device mappings in the `image.manifest.xml` file for your AMI\. For more information, see [Block device mapping](block-device-mapping-concepts.md)\.
 
    1. Create a backup of your `image.manifest.xml` file\.
 

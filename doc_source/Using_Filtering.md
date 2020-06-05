@@ -89,21 +89,86 @@ You can also use the search field on each page to find resources with specific a
 
 ## Listing and filtering using the CLI and API<a name="Filtering_Resources_CLI"></a>
 
-Each resource type has a corresponding CLI command or API request that you use to list resources of that type\. For example, you can list Amazon Machine Images \(AMIs\) using `ec2-describe-images` or `DescribeImages`\. The response contains information for all your resources\. 
+Each resource type has a corresponding CLI command and API action that you use to list resources of that type\. The resulting lists of resources can be long, so it can be faster and more useful to filter the results to include only the resources that match specific criteria\.
 
-The resulting lists of resources can be long, so you might want to filter the results to include only the resources that match certain criteria\. You can specify multiple filter values, and you can also specify multiple filters\. For example, you can list all the instances whose type is either `m1.small` or `m1.large`, and that have an attached EBS volume that is set to delete when the instance terminates\. The instance must match all your filters to be included in the results\. 
+**Filtering considerations**
++ You can specify multiple filters and multiple filter values in a single request\.
++ You can use wildcards with the filter values\. An asterisk \(\*\) matches zero or more characters, and a question mark \(?\) matches zero or one character\.
++ Filter values are case sensitive\.
++ Your search can include the literal values of the wildcard characters; you just need to escape them with a backslash before the character\. For example, a value of `\*amazon\?\\` searches for the literal string `*amazon?\`\.
 
-You can also use wildcards with the filter values\. An asterisk \(\*\) matches zero or more characters, and a question mark \(?\) matches zero or one character\.
+**Supported filters**
 
-For example, you can use `database` as the filter value to get only the EBS snapshots whose description equals `database`\. If you specify `*database*`, then all snapshots whose description includes `database` are returned\. If you specify `database?`, then only the snapshots whose description matches one of the following patterns are returned: equals `database` or equals `database` followed by one character\.
+To see the supported filters for each Amazon EC2 resource, see the following documentation:
++ AWS CLI: The `describe` commands in the [AWS CLI Command Reference\-Amazon EC2](https://docs.aws.amazon.com/cli/latest/reference/ec2/index.html)\.
++ Tools for Windows PowerShell: The `Get` commands in the [AWS Tools for PowerShell Cmdlet Reference\-Amazon EC2](https://docs.aws.amazon.com/powershell/latest/reference/items/EC2_cmdlets.html)\.
++ Query API: The `Describe` API actions in the [Amazon EC2 API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/)\.
 
-The number of question marks determines the maximum number of characters to include in results\. For example, if you specify `database????`, then only the snapshots whose description equals `database` followed by up to four characters are returned\. Descriptions with five or more characters following `database` are excluded from the search results\.
+**Example Example: Specify a single filter**  
+You can list your Amazon EC2 instances using [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html)\. Without filters, the response contains information for all your resources\. You can use the following command to include only the running instances in your output\.  
 
-Filter values are case sensitive\. We support only exact string matching, or substring matching \(with wildcards\)\. If a resulting list of resources is long, using an exact string filter may return the response faster\. 
+```
+aws ec2 describe-instances --filters Name=instance-state-name,Values=running
+```
+To list only the instance IDs for your running instances, add the `--query` parameter as follows\.  
 
-Your search can include the literal values of the wildcard characters; you just need to escape them with a backslash before the character\. For example, a value of `\*amazon\?\\` searches for the literal string `*amazon?\`\.
+```
+aws ec2 describe-instances --filters Name=instance-state-name,Values=running --query "Reservations[*].Instances[*].InstanceId" --output text
+```
+The following is example output:  
 
-For a list of supported filters per Amazon EC2 resource, see the relevant documentation:
-+ For the AWS CLI, see the relevant `describe` command in the *[AWS CLI Command Reference](https://docs.aws.amazon.com/cli/latest/reference/)*\.
-+ For Windows PowerShell, see the relevant `Get` command in the *[AWS Tools for PowerShell Cmdlet Reference](https://docs.aws.amazon.com/powershell/latest/reference)*\.
-+ For the Query API, see the relevant `Describe` API action in the *[Amazon EC2 API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/)*\.
+```
+i-0ef1f57f78d4775a4
+i-0626d4edd54f1286d
+i-04a636d18e83cfacb
+```
+
+**Example Example: Specify multiple filters or filter values**  
+If you specify multiple filters or multiple filter values, the resource must match all filters to be included in the results\.  
+You can you the following command to list all instances whose type is either `m5.large` or `m5d.large`\.  
+
+```
+aws ec2 describe-instances --filters Name=instance-type,Values=m5.large,m5d.large
+```
+You can use the following command to list all stopped instances whose type is `t2.micro`\.  
+
+```
+aws ec2 describe-instances --filters Name=instance-state-name,Values=stopped Name=instance-type,Values=t2.micro
+```
+
+**Example Example: Use wildcards in a filter value**  
+If you specify database as the filter value for the `description` filter when describing EBS snapshots using [describe\-snapshots](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-snapshots.html), the command returns only the snapshots whose description is "database"\.  
+
+```
+aws ec2 describe-snapshots --filters Name=description,Values=database
+```
+The \* wildcard matches zero or more characters\. If you specify \*database\* as the filter value, the command returns only snapshots whose description includes the word database\.  
+
+```
+aws ec2 describe-snapshots --filters Name=description,Values=*database*
+```
+The ? wildcard matches exactly 1 character\. If you specify database? as the filter value, the command returns only snapshots whose description is "database" or "database" followed by one character\.  
+
+```
+aws ec2 describe-snapshots --filters Name=description,Values=database?
+```
+If you specify `database????`, the command returns only snapshots whose description is "database" followed by up to four characters\. It excludes descriptions with "database" followed by five or more characters\.  
+
+```
+aws ec2 describe-snapshots --filters Name=description,Values=database????
+```
+
+**Example Example: Filter based on date**  
+With the AWS CLI, you can use JMESPath to filter results using expressions\. For example, the following [describe\-snapshots](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-snapshots.html) command displays the IDs of all snapshots created by your AWS account \(represented by *123456789012*\) before the specified date \(represented by *2020\-03\-31*\)\. If you do not specify the owner, the results include all public snapshots\.  
+
+```
+aws ec2 describe-snapshots --filters Name=owner-id,Values=123456789012 --query "Snapshots[?(StartTime<=`2020-03-31`)].[SnapshotId]" --output text
+```
+The following command displays the IDs of all snapshots created in the specified date range\.  
+
+```
+aws ec2 describe-snapshots --filters Name=owner-id,Values=123456789012 --query "Snapshots[?(StartTime>=`2019-01-01`) && (StartTime<=`2019-12-31`)].[SnapshotId]" --output text
+```
+
+**Filter based on tags**  
+For examples of how to filter a list of resources according to their tags, see [Working with tags using the CLI or API](Using_Tags.md#Using_Tags_CLI)\.

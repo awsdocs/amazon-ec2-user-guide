@@ -66,7 +66,7 @@ You can stop an Amazon EBS\-backed instance, but not an Amazon EC2 instance stor
 
 Instances that use an instance store volume for the root device automatically have instance store available \(the root volume contains the root partition and you can store additional data\)\. You can add persistent storage to your instance by attaching one or more Amazon EBS volumes\. Any data on an instance store volume is deleted when the instance fails or terminates\. For more information, see [Instance Store Lifetime](InstanceStorage.md#instance-store-lifetime)\.
 
-Instances that use Amazon EBS for the root device automatically have an Amazon EBS volume attached\. The volume appears in your list of volumes like any other\. With most instance types, Amazon EBS\-backed instances don't have instance store volumes by default\. You can add instance store volumes or additional Amazon EBS volumes using a block device mapping\. For more information, see [Block Device Mapping](block-device-mapping-concepts.md)\.
+Instances that use Amazon EBS for the root device automatically have an Amazon EBS volume attached\. The volume appears in your list of volumes like any other\. With most instance types, Amazon EBS\-backed instances don't have instance store volumes by default\. You can add instance store volumes or additional Amazon EBS volumes using a block device mapping\. For more information, see [Block device mapping](block-device-mapping-concepts.md)\.
 
 ### Boot times<a name="ec2-bootfromebs-boot-times"></a>
 

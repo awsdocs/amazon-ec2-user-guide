@@ -392,6 +392,7 @@ This policy allows users to view all the Reserved Instances, as well as On\-Dema
          "ec2:ModifyReservedInstances",
          "ec2:PurchaseReservedInstancesOffering", 
          "ec2:DescribeInstances",
+         "ec2:DescribeInstanceTypes",
          "ec2:DescribeAvailabilityZones", 
          "ec2:DescribeReservedInstancesOfferings"
       ],

@@ -36,6 +36,7 @@ Amazon EC2 provides the instance types in the following table\. To determine whi
 | A1 | a1\.medium \| a1\.large \| a1\.xlarge \| a1\.2xlarge \| a1\.4xlarge \| a1\.metal | [General purpose](general-purpose-instances.md) | 
 | C4 | c4\.large \| c4\.xlarge \| c4\.2xlarge \| c4\.4xlarge \| c4\.8xlarge | [Compute optimized](compute-optimized-instances.md) | 
 | C5 | c5\.large \| c5\.xlarge \| c5\.2xlarge \| c5\.4xlarge \| c5\.9xlarge \| c5\.12xlarge \| c5\.18xlarge \| c5\.24xlarge \| c5\.metal | [Compute optimized](compute-optimized-instances.md) | 
+| C5a | c5a\.large \| c5a\.xlarge \| c5a\.2xlarge \| c5a\.4xlarge \| c5a\.8xlarge \| c5a\.12xlarge \| c5a\.16xlarge \| c5a\.24xlarge | [Compute optimized](compute-optimized-instances.md) | 
 | C5d | c5d\.large \| c5d\.xlarge \| c5d\.2xlarge \| c5d\.4xlarge \| c5d\.9xlarge \| c5d\.12xlarge \| c5d\.18xlarge \| c5d\.24xlarge \| c5d\.metal  | [Compute optimized](compute-optimized-instances.md) | 
 | C5n | c5n\.large \| c5n\.xlarge \| c5n\.2xlarge \| c5n\.4xlarge \| c5n\.9xlarge \| c5n\.18xlarge \| c5n\.metal | [Compute optimized](compute-optimized-instances.md) | 
 | D2 | d2\.xlarge \| d2\.2xlarge \| d2\.4xlarge \| d2\.8xlarge | [Storage optimized](storage-optimized-instances.md) | 
@@ -47,7 +48,7 @@ Amazon EC2 provides the instance types in the following table\. To determine whi
 | I3en | i3en\.large \| i3en\.xlarge \| i3en\.2xlarge \| i3en\.3xlarge \| i3en\.6xlarge \| i3en\.12xlarge \| i3en\.24xlarge \| i3en\.metal | [Storage optimized](storage-optimized-instances.md) | 
 | Inf1 | inf1\.xlarge \| inf1\.2xlarge \| inf1\.6xlarge \| inf1\.24xlarge | [Accelerated computing](accelerated-computing-instances.md) | 
 | M4 | m4\.large \| m4\.xlarge \| m4\.2xlarge \| m4\.4xlarge \| m4\.10xlarge \| m4\.16xlarge | [General purpose](general-purpose-instances.md) | 
-| M5 | \| m5\.large \| m5\.xlarge \| m5\.2xlarge \| m5\.4xlarge \| m5\.8xlarge \| m5\.12xlarge \| m5\.16xlarge \| m5\.24xlarge \| m5\.metal | [General purpose](general-purpose-instances.md) | 
+| M5 | m5\.large \| m5\.xlarge \| m5\.2xlarge \| m5\.4xlarge \| m5\.8xlarge \| m5\.12xlarge \| m5\.16xlarge \| m5\.24xlarge \| m5\.metal | [General purpose](general-purpose-instances.md) | 
 | M5a | m5a\.large \| m5a\.xlarge \| m5a\.2xlarge \| m5a\.4xlarge \| m5a\.8xlarge \| m5a\.12xlarge \| m5a\.16xlarge \| m5a\.24xlarge | [General purpose](general-purpose-instances.md) | 
 | M5ad | m5ad\.large \| m5ad\.xlarge \| m5ad\.2xlarge \| m5ad\.4xlarge \| m5ad\.8xlarge \| m5ad\.12xlarge \| m5ad\.16xlarge \| m5ad\.24xlarge | [General purpose](general-purpose-instances.md) | 
 | M5d | m5d\.large \| m5d\.xlarge \| m5d\.2xlarge \| m5d\.4xlarge \| m5d\.8xlarge \| m5d\.12xlarge \| m5d\.16xlarge \| m5d\.24xlarge \| m5d\.metal | [General purpose](general-purpose-instances.md) | 
@@ -69,7 +70,7 @@ Amazon EC2 provides the instance types in the following table\. To determine whi
 | T3a | t3a\.nano \| t3a\.micro \| t3a\.small \| t3a\.medium \| t3a\.large \| t3a\.xlarge \| t3a\.2xlarge | [General purpose](general-purpose-instances.md) | 
 | u\-xtb1 | u\-6tb1\.metal \| u\-9tb1\.metal \| u\-12tb1\.metal \| u\-18tb1\.metal \| u\-24tb1\.metal | [Memory optimized](memory-optimized-instances.md) | 
 | X1 | x1\.16xlarge \| x1\.32xlarge | [Memory optimized](memory-optimized-instances.md) | 
-| X1e | \| x1e\.xlarge \| x1e\.2xlarge \| x1e\.4xlarge \| x1e\.8xlarge \| x1e\.16xlarge \| x1e\.32xlarge | [Memory optimized](memory-optimized-instances.md) | 
+| X1e | x1e\.xlarge \| x1e\.2xlarge \| x1e\.4xlarge \| x1e\.8xlarge \| x1e\.16xlarge \| x1e\.32xlarge | [Memory optimized](memory-optimized-instances.md) | 
 | z1d | z1d\.large \| z1d\.xlarge \| z1d\.2xlarge \| z1d\.3xlarge \| z1d\.6xlarge \| z1d\.12xlarge \| z1d\.metal | [Memory optimized](memory-optimized-instances.md) | 
 
 ### Previous generation instances<a name="previous-gen-instances"></a>
@@ -125,7 +126,7 @@ The following components are part of the Nitro System:
 **Instance types**
 
 The following instances are built on the Nitro System:
-+ A1, C5, C5d, C5n, G4, I3en, Inf1, M5, M5a, M5ad, M5d, M5dn, M5n, M6g,  `p3dn.24xlarge`, R5, R5a, R5ad, R5d, R5dn, R5n, T3, T3a, and z1d
++ A1, C5, C5a, C5d, C5n, G4, I3en, Inf1, M5, M5a, M5ad, M5d, M5dn, M5n, M6g,  `p3dn.24xlarge`, R5, R5a, R5ad, R5d, R5dn, R5n, T3, T3a, and z1d
 + Bare metal: `a1.metal`, `c5.metal`, `c5d.metal`, `c5n.metal`, `i3.metal`, `i3en.metal`, `m5.metal`, `m5d.metal`, `m6g.metal`,  `r5.metal`, `r5d.metal`, `u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, `u-18tb1.metal`, `u-24tb1.metal`, and `z1d.metal`
 
 **Learn more**
@@ -163,6 +164,7 @@ The following table summarizes the networking and storage features supported by 
 | A1 | Yes | Yes | No | Yes | ENA | 
 |  C4  |  Yes  | No | No |  Yes  | Intel 82599 VF | 
 |  C5  |  Yes  | Yes | No |  Yes  | ENA | 
+| C5a | Yes | Yes | No | Yes | ENA | 
 |  C5d  | No | Yes | NVMe \* |  Yes  | ENA | 
 |  C5n  |  Yes  | Yes | No |  Yes  | ENA | 
 |  D2  | No | No |  HDD  |  Yes  | Intel 82599 VF | 

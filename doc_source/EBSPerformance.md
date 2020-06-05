@@ -29,13 +29,13 @@ There is a relationship between the maximum performance of your EBS volumes, the
 
 ### Be aware of the performance penalty When initializing volumes from snapshots<a name="initialize"></a>
 
-There is a significant increase in latency when you first access each block of data on a new EBS volume that was restored from a snapshot\. You can avoid this performance hit using one of the following options:
+There is a significant increase in latency when you first access each block of data on a new EBS volume that was created from a snapshot\. You can avoid this performance hit using one of the following options:
 + Access each block prior to putting the volume into production\. This process is called *initialization* \(formerly known as pre\-warming\)\. For more information, see [Initializing Amazon EBS volumes](ebs-initialize.md)\.
 + Enable fast snapshot restore on a snapshot to ensure that the EBS volumes created from it are fully\-initialized at creation and instantly deliver all of their provisioned performance\. For more information, see [Amazon EBS fast snapshot restore](ebs-fast-snapshot-restore.md)\.
 
 ### Factors that can degrade HDD performance<a name="snapshotting_latency"></a>
 
-When you create a snapshot of a Throughput Optimized HDD \(`st1`\) or Cold HDD \(`sc1`\) volume, performance may drop as far as the volume's baseline value while the snapshot is in progress\. This behavior is specific to these volume types\. Other factors that can limit performance include driving more throughput than the instance can support, the performance penalty encountered while initializing volumes restored from a snapshot, and excessive amounts of small, random I/O on the volume\. For more information about calculating throughput for HDD volumes, see [Amazon EBS volume types](ebs-volume-types.md)\.
+When you create a snapshot of a Throughput Optimized HDD \(`st1`\) or Cold HDD \(`sc1`\) volume, performance may drop as far as the volume's baseline value while the snapshot is in progress\. This behavior is specific to these volume types\. Other factors that can limit performance include driving more throughput than the instance can support, the performance penalty encountered while initializing volumes created from a snapshot, and excessive amounts of small, random I/O on the volume\. For more information about calculating throughput for HDD volumes, see [Amazon EBS volume types](ebs-volume-types.md)\.
 
 Your performance can also be impacted if your application isn’t sending enough I/O requests\. This can be monitored by looking at your volume’s queue length and I/O size\. The queue length is the number of pending I/O requests from your application to your volume\. For maximum consistency, HDD\-backed volumes must maintain a queue length \(rounded to the nearest whole number\) of 4 or more when performing 1 MiB sequential I/O\. For more information about ensuring consistent performance of your volumes, see [I/O characteristics and monitoring](ebs-io-characteristics.md)
 

@@ -63,17 +63,13 @@ You can provision Amazon EC2 resources, such as instances and volumes, directly 
 + [AWS Elastic Beanstalk Developer Guide](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/)
 + [AWS OpsWorks User Guide](https://docs.aws.amazon.com/opsworks/latest/userguide/)
 
-To automatically distribute incoming application traffic across multiple instances, use Elastic Load Balancing\. For more information, see [Elastic Load Balancing User Guide](https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/)\.
+To automatically distribute incoming application traffic across multiple instances, use Elastic Load Balancing\. For more information, see the [Elastic Load Balancing User Guide](https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/)\.
 
-To monitor basic statistics for your instances and Amazon EBS volumes, use Amazon CloudWatch\. For more information, see the [Amazon CloudWatch User Guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/)\.
+To get a managed relational database in the cloud, use Amazon Relational Database Service \(Amazon RDS\) to launch a database instance\. Although you can set up a database on an EC2 instance, Amazon RDS offers the advantage of handling your database management tasks, such as patching the software, backing up, and storing the backups\. For more information, see the [Amazon Relational Database Service Developer Guide](https://docs.aws.amazon.com/AmazonRDS/latest/DeveloperGuide/)\.
 
-To automate actions, such as activating a Lambda function whenever a new Amazon EC2 instance starts, use Amazon CloudWatch Events\. For more information, see the [Amazon CloudWatch Events User Guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/)\.
+To make it easier to manage Docker contains on a cluster of EC2 instances, use Amazon Elastic Container Service \(Amazon ECS\)\. For more information, see the [Amazon Elastic Container Service Developer Guide](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/) or the [Amazon Elastic Container Service User Guide for AWS Fargate](https://docs.aws.amazon.com/AmazonECS/latest/userguide/)\.
 
-To monitor the calls made to the Amazon EC2 API for your account, including calls made by the AWS Management Console, command line tools, and other services, use AWS CloudTrail\. For more information, see the [AWS CloudTrail User Guide](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/)\.
-
-To get a managed relational database in the cloud, use Amazon Relational Database Service \(Amazon RDS\) to launch a database instance\. Although you can set up a database on an EC2 instance, Amazon RDS offers the advantage of handling your database management tasks, such as patching the software, backing up, and storing the backups\. For more information, see [Amazon Relational Database Service Developer Guide](https://docs.aws.amazon.com/AmazonRDS/latest/DeveloperGuide/)\.
-
-To import virtual machine \(VM\) images from your local environment into AWS and convert them into ready\-to\-use AMIs or instances, use VM Import/Export\. For more information, see the [ VM Import/Export User Guide](https://docs.aws.amazon.com/vm-import/latest/userguide/)\.
+To monitor basic statistics for your instances and Amazon EBS volumes, use Amazon CloudWatch\. For more information, see the [Amazon CloudWatch User Guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/)\. To detect potentially authorized or malicious use of your EC2 instances, use Amazon GuardDuty\. For more information see the [Amazon GuardDuty User Guide](https://docs.aws.amazon.com/guardduty/latest/ug/)\.
 
 ## Accessing Amazon EC2<a name="access-ec2"></a>
 

@@ -19,7 +19,7 @@ Regardless of whether you're an experienced Spot user or new to Spot Instances, 
 
 ## Prepare individual instances for interruptions<a name="prep-instances-for-interruptions"></a>
 
-The best way for you to gracefully handle Spot Instance interruptions is to architect your application to be fault\-tolerant\. To accomplish this, you can take advantage of Spot Instance interruption notices\. A Spot Instance interruption notice is a warning that is issued two minutes before Amazon EC2 interrupts a Spot Instance\. We recommend that you create a rule in Amazon EventBridge that captures the interruption notification, and then triggers a checkpoint for the progress of your workload or gracefully handles the interruption\. For a detailed example that walks you through how to create and use Event rules, see [Taking Advantage of Amazon EC2 Spot Instance Interruption Notices](http://aws.amazon.com/blogs/compute/taking-advantage-of-amazon-ec2-spot-instance-interruption-notices/)\.
+The best way for you to gracefully handle Spot Instance interruptions is to architect your application to be fault\-tolerant\. To accomplish this, you can take advantage of Spot Instance interruption notices\. A Spot Instance interruption notice is a warning that is issued two minutes before Amazon EC2 interrupts a Spot Instance\. We recommend that you create a rule in [Amazon EventBridge](https://docs.aws.amazon.com/eventbridge/index.html) that captures the interruption notification, and then triggers a checkpoint for the progress of your workload or gracefully handles the interruption\. For a detailed example that walks you through how to create and use event rules, see [Taking Advantage of Amazon EC2 Spot Instance Interruption Notices](http://aws.amazon.com/blogs/compute/taking-advantage-of-amazon-ec2-spot-instance-interruption-notices/)\.
 
 If your workload is "time\-flexible," you can also configure your Spot Instances to be stopped or hibernated when they are interrupted\. Amazon EC2 automatically stops or hibernates your Spot Instances on interruption, and automatically resumes the instances when we have available capacity\.
 
@@ -31,7 +31,7 @@ A Spot Instance pool is a set of unused EC2 instances with the same instance typ
 
 Depending on your specific needs, you can evaluate which instance types you can be flexible across to fulfill your compute requirements\. If a workload can be vertically scaled, you should include larger instance types \(more vCPUs and memory\) in your requests\. If you can only scale horizontally, you should include older generation instance types because they are less in demand from On\-Demand customers\.
 
-A good rule of thumb is to flexible across at least 10 instance types for each workload\. In addition, make sure that all Availability Zones are configured for use in your VPC and selected for your workload\.
+A good rule of thumb is to be flexible across at least 10 instance types for each workload\. In addition, make sure that all Availability Zones are configured for use in your VPC and selected for your workload\.
 
 ## Use EC2 Auto Scaling groups or Spot Fleet to manage your aggregate capacity<a name="use-sf-asg-for-aggregate-capacity"></a>
 

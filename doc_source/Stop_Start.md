@@ -85,7 +85,7 @@ You can change the instance type, user data, and EBS\-optimization attributes of
 + To change the instance type, see [Changing the instance type](ec2-instance-resize.md)\.
 + To change the user data for your instance, see [Working with instance user data](instancedata-add-user-data.md)\.
 + To enable or disable EBS–optimization for your instance, see [Modifying EBS–Optimization](ebs-optimized.md#modify-ebs-optimized-attribute)\.
-+ To change the `DeleteOnTermination` attribute of the root volume for your instance, see [Updating the Block Device Mapping of a Running Instance](block-device-mapping-concepts.md#update-instance-bdm)\.
++ To change the `DeleteOnTermination` attribute of the root volume for your instance, see [Updating the block device mapping of a running instance](block-device-mapping-concepts.md#update-instance-bdm)\. You are not required to stop the instance to change this attribute\. 
 
 **To modify an instance attribute using the command line**
 

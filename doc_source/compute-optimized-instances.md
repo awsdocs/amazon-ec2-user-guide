@@ -15,7 +15,7 @@ These instances are well suited for the following:
 
 Bare metal instances, such as `c5.metal`, provide your applications with direct access to physical resources of the host server, such as processors and memory\.
 
-For more information, see [Amazon EC2 C5 Instances](https://aws.amazon.com/ec2/instance-types/c5) \.
+For more information, see [Amazon EC2 C5 Instances](https://aws.amazon.com/ec2/instance-types/c5)\.
 
 **Topics**
 + [Hardware specifications](#compute-instances-hardware)
@@ -46,6 +46,14 @@ The following is a summary of the hardware specifications for compute optimized 
 | c5\.18xlarge | 72 | 144 | 
 | c5\.24xlarge | 96 | 192 | 
 | c5\.metal | 96 | 192 | 
+| c5a\.large | 2 | 4 | 
+| c5a\.xlarge | 4 | 8 | 
+| c5a\.2xlarge | 8 | 16 | 
+| c5a\.4xlarge | 16 | 32 | 
+| c5a\.8xlarge | 32 | 64 | 
+| c5a\.12xlarge | 48 | 96 | 
+| c5a\.16xlarge | 64 | 128 | 
+| c5a\.24xlarge | 96 | 192 | 
 | c5d\.large | 2 | 4 | 
 | c5d\.xlarge | 4 | 8 | 
 | c5d\.2xlarge | 8 | 16 | 
@@ -129,6 +137,7 @@ The following is a summary of features for compute optimized instances:
 | --- | --- | --- | --- | --- | 
 | C4 | Yes | No | No | Yes | 
 | C5 | Yes | Yes | No | Yes | 
+| C5a | Yes | Yes | No | Yes | 
 | C5d | No | Yes | NVMe \* | Yes | 
 | C5n | Yes | Yes | No | Yes | 
 
@@ -141,6 +150,7 @@ For more information, see the following:
 
 ## Release notes<a name="compute-instance-limits"></a>
 + C5 and C5d instances feature a 3\.1 GHz Intel Xeon Platinum 8000 series processor from either the first generation \(Skylake\-SP\) or second generation \(Cascade Lake\)\.
++ C5a instances feature a second\-generation AMD EPYC processor \(Rome\) running at frequencies as high as 3\.3\. GHz\.
 + C4 instances and instances based on the [Nitro System](instance-types.md#ec2-nitro-instances) require 64\-bit EBS\-backed HVM AMIs\. They have high\-memory and require a 64\-bit operating system to take advantage of that capacity\. HVM AMIs provide superior performance in comparison to paravirtual \(PV\) AMIs on high\-memory instance types\. In addition, you must use an HVM AMI to take advantage of enhanced networking\.
 + Instances built on the Nitro System have the following requirements:
   + [NVMe drivers](nvme-ebs-volumes.md) must be installed

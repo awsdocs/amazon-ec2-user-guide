@@ -118,7 +118,7 @@ You can get request status information using the AWS Management Console or a com
 
 1. In the navigation pane, choose **Spot Requests** and select the Spot request\.
 
-1. To check the status, choose **Description**, **Status**\.
+1. To check the status, on the **Description** tab, check the **Status** field\.
 
 **To get request status information using the command line**
 

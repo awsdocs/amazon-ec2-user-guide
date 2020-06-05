@@ -80,10 +80,7 @@ For more information about Amazon EBS volumes, see the following topics:
 + [Creating an Amazon EBS volume](ebs-creating-volume.md)
 + [Attaching an Amazon EBS volume to an instance](ebs-attaching-volume.md)
 
-To back up the data on your Amazon EBS volume, you can take periodic snapshots of your volume\. If you need to, you can restore an Amazon EBS volume from your snapshot\. For more information about Amazon EBS snapshots, see the following topics:
-+ [Amazon EBS snapshots](EBSSnapshots.md)
-+ [Creating Amazon EBS snapshots](ebs-creating-snapshot.md)
-+ [Restoring an Amazon EBS volume from a snapshot](ebs-restoring-volume.md)
+To back up the data on your Amazon EBS volume, you can take periodic snapshots of your volume\. For more information, see [Creating Amazon EBS snapshots](ebs-creating-snapshot.md)\. If you need to, you can create an Amazon EBS volume from your snapshot\. For more information, see [Creating a volume from a snapshot](ebs-creating-volume.md#ebs-create-volume-from-snapshot)\.
 
 ### Step 4: Launch an Instance Into Your VPC<a name="vpc-migrate-instance"></a>
 
@@ -244,10 +241,7 @@ For more information about Amazon EBS volumes, see the following topics:
 + [Creating an Amazon EBS volume](ebs-creating-volume.md)
 + [Attaching an Amazon EBS volume to an instance](ebs-attaching-volume.md)
 
-To back up the data on your Amazon EBS volume, you can take periodic snapshots of your volume\. If you need to, you can restore an Amazon EBS volume from your snapshot\. For more information about Amazon EBS snapshots, see the following topics:
-+ [Amazon EBS snapshots](EBSSnapshots.md)
-+ [Creating Amazon EBS snapshots](ebs-creating-snapshot.md)
-+ [Restoring an Amazon EBS volume from a snapshot](ebs-restoring-volume.md)
+To back up the data on your Amazon EBS volume, you can take periodic snapshots of your volume\. For more information, see [Creating Amazon EBS snapshots](ebs-creating-snapshot.md)\. If you need to, you can create an Amazon EBS volume from your snapshot\. For more information, see [Creating a volume from a snapshot](ebs-creating-volume.md#ebs-create-volume-from-snapshot)\.
 
 ### Step 5: Launch an Instance Into Your VPC<a name="classiclink-migrate-launch-instance"></a>
 

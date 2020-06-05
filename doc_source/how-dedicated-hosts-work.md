@@ -218,7 +218,12 @@ Use the [New\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/referen
 
 When you launch an instance into a host resource group that has a Dedicated Host with available instance capacity, Amazon EC2 launches the instance onto that host\. If the host resource group does not have a host with available instance capacity, Amazon EC2 automatically allocates a new host in the host resource group, and then launches the instance onto that host\. For more information, see [ Host Resource Groups](https://docs.aws.amazon.com/license-manager/latest/userguide/host-resource-groups.html) in the *AWS License Manager User Guide*\.
 
-You can launch an instance into a host resource group using the following methods\. 
+**Requirements and limits**
++ You must associate a core\- or socket\-based license configuration with the AMI\.
++ You can't use SQL Server, SUSE, or RHEL AMIs provided by Amazon EC2 with Dedicated Hosts\.
++ You can't target a specific host by choosing a host ID, and you can't enable instance affinity when launching an instance into a host resource group\.
+
+You can launch an instance into a host resource group using the following methods\.
 
 ------
 #### [ Console ]
@@ -229,7 +234,7 @@ You can launch an instance into a host resource group using the following method
 
 1. In the navigation pane, choose **Instances**, **Launch Instance**\.
 
-1. Select an AMI from the list\. SQL Server, SUSE, and RHEL AMIs provided by Amazon EC2 can't be used with Dedicated Hosts\.
+1. Select an AMI\.
 
 1. Select the type of instance to launch and choose **Next: Configure Instance Details**\.
 
@@ -240,8 +245,6 @@ You can launch an instance into a host resource group using the following method
    1. For **Host resource group**, choose **Launch instance into a host resource group**\.
 
    1. For **Host resource group name**, choose the host resource group in which to launch the instance\.
-
-   You can't target a specific host by choosing a host ID, and you can't enable instance affinity when launching an instance into a host resource group\.
 
 1. Choose **Review and Launch**\.
 

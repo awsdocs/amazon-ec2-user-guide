@@ -1,6 +1,6 @@
 # Instance lifecycle<a name="ec2-instance-lifecycle"></a>
 
-By working with Amazon EC2 to manage your instances from the moment you launch them through their termination, you ensure that your customers have the best possible experience with the applications or sites that you host on your instances\.
+An Amazon EC2 instance transitions through different states from the moment you launch it through to its termination\.
 
 The following illustration represents the transitions between instance states\. Notice that you can't stop and start an instance store\-backed instance\. For more information about instance store\-backed instances, see [Storage for the root device](ComponentsAMIs.md#storage-for-the-root-device)\.
 

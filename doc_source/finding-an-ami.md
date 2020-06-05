@@ -157,10 +157,10 @@ To specify the parameter in the command, use the following syntax: `resolve:ssm:
 In this example, the `--count` and `--security-group` parameters are not included\. For `--count`, the default is 1\. If you have a default VPC and a default security group, they are used\.
 
 ```
-aws ec2 run-instances \
-    --image-id resolve:ssm:/golden-ami \
-    --instance-type m5.xlarge \
-    --key-name MyKeyPair
+aws ec2 run-instances 
+    --image-id resolve:ssm:/golden-ami 
+    --instance-type m5.xlarge 
+    ...
 ```
 
 **To launch an instance using a specific version of an AWS Systems Manager parameter \(AWS CLI\)**  
@@ -171,10 +171,20 @@ The following example uses version 2 of the parameter\.
 In this example, the `--count` and `--security-group` parameters are not included\. For `--count`, the default is 1\. If you have a default VPC and a default security group, they are used\.
 
 ```
-aws ec2 run-instances \
-    --image-id resolve:ssm:/golden-ami:2 \
-    --instance-type m5.xlarge \
-    --key-name MyKeyPair
+aws ec2 run-instances 
+    --image-id resolve:ssm:/golden-ami:2 
+    --instance-type m5.xlarge 
+    ...
+```
+
+**To launch an instance using a public parameter provided by AWS**  
+Amazon EC2 provides Systems Manager public parameters for public AMIs provided by AWS\. For example, the public parameter /aws/service/ami\-amazon\-linux\-latest/amzn2\-ami\-hvm\-x86\_64\-gp2 is available in all Regions and always points to the latest version of the Amazon Linux 2 AMI in the Region\.
+
+```
+aws ec2 run-instances 
+    --image-id resolve:ssm:/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2 
+    --instance-type m5.xlarge 
+    ...
 ```
 
 ### Permissions<a name="systems-manager-permissions"></a>

@@ -14,7 +14,7 @@ Snapshots that are taken from encrypted volumes are automatically encrypted\. Vo
 
 By default, only you can create volumes from snapshots that you own\. However, you can share your unencrypted snapshots with specific AWS accounts, or you can share them with the entire AWS community by making them public\. For more information, see [Sharing an Amazon EBS snapshot](ebs-modifying-snapshot-permissions.md)\.
 
-You can share an encrypted snapshot only with specific AWS accounts\. For others to use your shared, encrypted snapshot, you must also share the CMK key that was used to encrypt it\. Users with access to your encrypted snapshot must create their own personal copy of it and then use that copy to restore the volume\. Your copy of a shared, encrypted snapshot can also be re\-encrypted with a different key\. For more information, see [Sharing an Amazon EBS snapshot](ebs-modifying-snapshot-permissions.md)\.
+You can share an encrypted snapshot only with specific AWS accounts\. For others to use your shared, encrypted snapshot, you must also share the CMK key that was used to encrypt it\. Users with access to your encrypted snapshot must create their own personal copy of it and then use that copy\. Your copy of a shared, encrypted snapshot can also be re\-encrypted using a different key\. For more information, see [Sharing an Amazon EBS snapshot](ebs-modifying-snapshot-permissions.md)\.
 
 **Note**  
 If you copy a snapshot and encrypt it to a new CMK, a complete \(non\-incremental\) copy is always created, resulting in additional delay and storage costs\.
@@ -23,13 +23,17 @@ If you copy a snapshot and encrypt it to a new CMK, a complete \(non\-incrementa
 
 You can create multi\-volume snapshots, which are point\-in\-time snapshots for all EBS volumes attached to an EC2 instance\. You can also create lifecycle policies to automate the creation and retention of multi\-volume snapshots\. For more information, see [Automating the Amazon EBS snapshot lifecycle](snapshot-lifecycle.md)\.
 
-After the snapshots are created, each snapshot is treated as an individual snapshot\. You can perform all snapshot operations, such as restore, delete, and cross\-region/account copy, just as you would with a single volume snapshot\. You can also tag your multi\-volume snapshots as you would a single volume snapshot\. We recommend you tag your multiple volume snapshots to manage them collectively during restore, copy, or retention\.
+After the snapshots are created, each snapshot is treated as an individual snapshot\. You can perform all snapshot operations, such as restore, delete, and copy across Regions or accounts, just as you would with a single volume snapshot\. You can also tag your multi\-volume snapshots as you would a single volume snapshot\. We recommend you tag your multiple volume snapshots to manage them collectively during restore, copy, or retention\.
 
 Multi\-volume, crash\-consistent snapshots are typically restored as a set\. It is helpful to identify the snapshots that are in a crash\-consistent set by tagging your set with the instance ID, name, or other relevant details\. You can also choose to automatically copy tags from the source volume to the corresponding snapshots\. This helps you to set the snapshot metadata, such as access policies, attachment information, and cost allocation, to match the source volume\. 
 
 After it's created, a multi\-volume snapshot behaves like any other snapshot\. You can perform all operations, such as restore, delete, and copy across Regions and accounts\. You can also tag your snapshots\. We recommend that you tag your multi\-volume snapshots to collectively manage them during restore, copy, or retention\.
 
 After creating your snapshots, they appear in your EC2 console created at the exact point\-in\-time\. The snapshots are collectively managed and, therefore, if any one snapshot for the volume set fails, all of the other snapshots display an error status\.
+
+## Amazon Data Lifecycle Manager<a name="automate-snapshots"></a>
+
+You can create, retain, and delete snapshots manually, or you can use Amazon Data Lifecycle Manager to manage your snapshots for you\. For more information, see [Automating snapshots](snapshot-lifecycle.md)\.
 
 ## Considerations<a name="ebs-create-snapshot-limitations"></a>
 
@@ -100,3 +104,10 @@ Use the following procedure to create a snapshot from the volumes of an instance
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
 + [create\-snapshots](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-snapshots.html) \(AWS CLI\)
 + [New\-EC2SnapshotBatch](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2SnapshotBatch.html) \(AWS Tools for Windows PowerShell\)
+
+## Working with EBS snapshots<a name="using-snapshots"></a>
+
+You can copy snapshots, share snapshots, and create volumes from snapshots\. For more information, see the following:
++ [Copying an Amazon EBS snapshot](ebs-copy-snapshot.md)
++ [Sharing an Amazon EBS snapshot](ebs-modifying-snapshot-permissions.md)
++ [Creating a volume from a snapshot](ebs-creating-volume.md#ebs-create-volume-from-snapshot)

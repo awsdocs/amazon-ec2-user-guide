@@ -122,13 +122,17 @@ You can use one of the following commands\. For more information about these com
 
 ## Preserving Amazon EBS volumes on instance termination<a name="preserving-volumes-on-termination"></a>
 
-When an instance terminates, Amazon EC2 uses the value of the `DeleteOnTermination` attribute for each attached Amazon EBS volume to determine whether to preserve or delete the volume\. The default value for the `DeleteOnTermination` attribute differs depending on whether or not the volume is a root volume of an instance\. 
+When an instance terminates, Amazon EC2 uses the value of the `DeleteOnTermination` attribute for each attached Amazon EBS volume to determine whether to preserve or delete the volume\.
 
-By default, the `DeletionOnTermination` attribute for the root volume of an instance is set to `true`\. Therefore, the default is to delete the root volume of an instance when the instance terminates\. The `DeletionOnTermination` attribute can be set by the creator of an AMI as well as by the person who launches an instance\. When the attribute is changed by the creator of an AMI or by the person who launches an instance, the new setting overrides the original AMI default setting\. We recommend that you verify the default setting for the `DeletionOnTermination` attribute after you launch an instance with an AMI\. 
+The default value for the `DeleteOnTermination` attribute differs depending on whether the volume is the root volume of the instance or a non\-root volume attached to the instance\.
 
-By default, when you attach an EBS volume to an instance, its `DeleteOnTermination` attribute is set to `false`\. Therefore, the default is to preserve these volumes\. After the instance terminates, you can take a snapshot of the preserved volume or attach it to another instance\. You must delete a volume to avoid incurring further charges\. For more information, see [Deleting an Amazon EBS volume](ebs-deleting-volume.md)\.
+Root volume  
+By default, the `DeleteOnTermination` attribute for the root volume of an instance is set to `true`\. Therefore, the default is to delete the root volume of the instance when the instance terminates\. The `DeleteOnTermination` attribute can be set by the creator of an AMI as well as by the person who launches an instance\. When the attribute is changed by the creator of an AMI or by the person who launches an instance, the new setting overrides the original AMI default setting\. We recommend that you verify the default setting for the `DeleteOnTermination` attribute after you launch an instance with an AMI\.
 
-To verify the value of the `DeleteOnTermination` attribute for an EBS volume that is in use, look at the instance's block device mapping\. For more information, see [Viewing the EBS Volumes in an Instance Block Device Mapping](block-device-mapping-concepts.md#view-instance-bdm)\.
+Non\-root volume  
+By default, when you [attach a non\-root EBS volume to an instance](ebs-attaching-volume.md), its `DeleteOnTermination` attribute is set to `false`\. Therefore, the default is to preserve these volumes\. After the instance terminates, you can take a snapshot of the preserved volume or attach it to another instance\. You must delete a volume to avoid incurring further charges\. For more information, see [Deleting an Amazon EBS volume](ebs-deleting-volume.md)\.
+
+To verify the value of the `DeleteOnTermination` attribute for an EBS volume that is in use, look at the instance's block device mapping\. For more information, see [Viewing the EBS volumes in an instance block device mapping](block-device-mapping-concepts.md#view-instance-bdm)\.
 
 You can change the value of the `DeleteOnTermination` attribute for a volume when you launch the instance or while the instance is running\.
 

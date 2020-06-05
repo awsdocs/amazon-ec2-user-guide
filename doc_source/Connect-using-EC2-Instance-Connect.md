@@ -6,8 +6,12 @@ You can use Instance Connect to connect to your Linux instances using a browser\
 
 When you connect to an instance using EC2 Instance Connect, the Instance Connect API pushes a one\-time\-use SSH public key to the [instance metadata](ec2-instance-metadata.md) where it remains for 60 seconds\. An IAM policy attached to your IAM user authorizes your IAM user to push the public key to the instance metadata\. The SSH daemon uses `AuthorizedKeysCommand` and `AuthorizedKeysCommandUser`, which are configured when Instance Connect is installed, to look up the public key from the instance metadata for authentication, and connects you to the instance\.
 
-**Note**  
-If you are connecting to a Linux instance from a local computer running Windows, see the following documentation instead: [Connecting to your Linux instance from Windows using PuTTY](putty.md) and [Connecting to your Linux instance from Windows using Windows Subsystem for Linux](WSL.md)\.
+**Tip**
+
+If you are connecting to a Linux instance from a local computer running Windows, see the following documentation instead:
++ [Connecting to your Linux instance from Windows using PuTTY](putty.md)
++ [Connecting to your Linux instance using SSH](AccessingInstancesLinux.md)
++ [Connecting to your Linux instance from Windows using Windows Subsystem for Linux](WSL.md)
 
 **Topics**
 + [Set up EC2 Instance Connect](ec2-instance-connect-set-up.md)

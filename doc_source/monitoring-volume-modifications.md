@@ -44,7 +44,7 @@ Use the [describe\-volumes\-modifications](https://docs.aws.amazon.com/cli/lates
 aws ec2 describe-volumes-modifications --volume-id vol-11111111111111111 vol-22222222222222222
 ```
 
-In the following example output, the volume modifications are still in the `modifying` state\.
+In the following example output, the volume modifications are still in the `modifying` state\. Progress is reported as a percentage\.
 
 ```
 {

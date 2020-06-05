@@ -82,6 +82,14 @@ The following table lists the maximum number of network interfaces per instance 
 | c5\.18xlarge | 15 | 50 | 50 | 
 | c5\.24xlarge | 15 | 50 | 50 | 
 | c5\.metal | 15 | 50 | 50 | 
+| c5a\.large | 3 | 10 | 10 | 
+| c5a\.xlarge | 4 | 15 | 15 | 
+| c5a\.2xlarge | 4 | 15 | 15 | 
+| c5a\.4xlarge | 8 | 30 | 30 | 
+| c5a\.8xlarge | 8 | 30 | 30 | 
+| c5a\.12xlarge | 8 | 30 | 30 | 
+| c5a\.16xlarge | 15 | 50 | 50 | 
+| c5a\.24xlarge | 15 | 50 | 50 | 
 | c5d\.large | 3 | 10 | 10 | 
 | c5d\.xlarge | 4 | 15 | 15 | 
 | c5d\.2xlarge | 4 | 15 | 15 | 

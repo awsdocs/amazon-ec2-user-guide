@@ -65,7 +65,9 @@ Before you create a Spot Fleet request, review [Spot Best Practices](https://aws
 
 If your IAM users will create or manage a Spot Fleet, you need to grant them the required permissions\.
 
-If you use the Amazon EC2 console to create a Spot Fleet, it creates a service\-linked role named `AWSServiceRoleForEC2SpotFleet` and a role named `aws-ec2-spot-fleet-tagging-role` that grant the Spot Fleet the permissions to request, launch, terminate, and tag resources on your behalf\. If you use the AWS CLI or an API, you must ensure that these roles exist\. Use the following instructions to create the roles\.
+If you use the Amazon EC2 console to create a Spot Fleet, it creates a service\-linked role named `AWSServiceRoleForEC2SpotFleet` and a role named `aws-ec2-spot-fleet-tagging-role` that grant the Spot Fleet the permissions to request, launch, terminate, and tag resources on your behalf\. If you use the AWS CLI or an API, you must ensure that these roles exist\.
+
+Use the following instructions to grant the required permissions and create the roles\.
 
 **Topics**
 + [Granting permission to IAM users for Spot Fleet](#spot-fleet-iam-users)
@@ -132,7 +134,7 @@ If your IAM users will create or manage a Spot Fleet, be sure to grant them the 
    + `iam:ListRoles` – Required to enumerate existing IAM roles
    + `iam:ListInstanceProfiles` – Required to enumerate existing instance profiles
 **Important**  
-You must include `iam:PassRole` in the IAM instance profile that you specify in `LaunchSpecifications` or in the launch template that is specified in the Spot Fleet request\.
+If you specify a role for the IAM instance profile in the launch specification or launch template, you must grant the IAM user the permission to pass the role to the service\. To do this, in the IAM policy include `"arn:aws:iam::*:role/IamInstanceProfile-role"` as a resource for the `iam:PassRole` action\. For more information, see [Granting a User Permissions to Pass a Role to an AWS Service](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html) in the *IAM User Guide*\.
 
    **Spot Fleet APIs**
 

@@ -203,7 +203,7 @@ You can use one of the following commands to view event information for your Ama
 
 If you want to remove the volume from your environment, simply delete it\. For information about deleting a volume, see [Deleting an Amazon EBS volume](ebs-deleting-volume.md)\.
 
-If you have a recent snapshot that backs up the data on the volume, you can create a new volume from the snapshot\. For information about creating a volume from a snapshot, see [Restoring an Amazon EBS volume from a snapshot](ebs-restoring-volume.md)\.
+If you have a recent snapshot that backs up the data on the volume, you can create a new volume from the snapshot\. For more information, see [Creating a volume from a snapshot](ebs-creating-volume.md#ebs-create-volume-from-snapshot)\.
 
 ## Working with the Auto\-Enabled IO volume attribute<a name="volumeIO"></a>
 

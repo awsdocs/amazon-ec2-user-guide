@@ -2,7 +2,7 @@
 
 You specify the EBS volumes and instance store volumes for your instance using a block device mapping\. Each entry in a block device mapping includes a device name and the volume that it maps to\. The default block device mapping is specified by the AMI you use\. Alternatively, you can specify a block device mapping for the instance when you launch it\.
 
-All the NVMe instance store volumes supported by an instance type are automatically enumerated and assigned a device name on instance launch; including them in the block device mapping for the AMI or the instance has no effect\. For more information, see [Block Device Mapping](block-device-mapping-concepts.md)\.
+All the NVMe instance store volumes supported by an instance type are automatically enumerated and assigned a device name on instance launch; including them in the block device mapping for the AMI or the instance has no effect\. For more information, see [Block device mapping](block-device-mapping-concepts.md)\.
 
 A block device mapping always specifies the root volume for the instance\. The root volume is either an Amazon EBS volume or an instance store volume\. For more information, see [Storage for the root device](ComponentsAMIs.md#storage-for-the-root-device)\. The root volume is mounted automatically\. For instances with an instance store volume for the root volume, the size of this volume varies by AMI, but the maximum size is 10 GB\.
 
@@ -39,7 +39,7 @@ You can create an AMI with a block device mapping that includes instance store v
 
 1. In the **Create Image** dialog box, type a meaningful name and description for your image\.
 
-1. For each instance store volume to add, choose **Add New Volume**, from **Volume Type** select an instance store volume, and from **Device** select a device name\. \(For more information, see [Device Naming on Linux Instances](device_naming.md)\.\) The number of available instance store volumes depends on the instance type\. For instances with NVMe instance store volumes, the device mapping of these volumes depends on the order in which the operating system enumerates the volumes\.
+1. For each instance store volume to add, choose **Add New Volume**, from **Volume Type** select an instance store volume, and from **Device** select a device name\. \(For more information, see [Device naming on Linux instances](device_naming.md)\.\) The number of available instance store volumes depends on the instance type\. For instances with NVMe instance store volumes, the device mapping of these volumes depends on the order in which the operating system enumerates the volumes\.
 
 1. Choose **Create Image**\.
 
@@ -85,7 +85,7 @@ After you launch an instance, the instance store volumes are available to the in
 
 Many instance store volumes are pre\-formatted with the ext3 file system\. SSD\-based instance store volumes that support TRIM instruction are not pre\-formatted with any file system\. However, you can format volumes with the file system of your choice after you launch your instance\. For more information, see [Instance Store Volume TRIM Support](ssd-instance-store.md#InstanceStoreTrimSupport)\. For Windows instances, the EC2Config service reformats the instance store volumes with the NTFS file system\.
 
-You can confirm that the instance store devices are available from within the instance itself using instance metadata\. For more information, see [Viewing the Instance Block Device Mapping for Instance Store Volumes](block-device-mapping-concepts.md#bdm-instance-metadata)\.
+You can confirm that the instance store devices are available from within the instance itself using instance metadata\. For more information, see [Viewing the instance block device mapping for instance store volumes](block-device-mapping-concepts.md#bdm-instance-metadata)\.
 
 For Windows instances, you can also view the instance store volumes using Windows Disk Management\. For more information, see [Listing disks using Windows Disk Management](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-windows-volumes.html#windows-disks)\.
 

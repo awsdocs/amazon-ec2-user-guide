@@ -165,7 +165,7 @@ After you have associated the datastore with the VM, you should be able to boot 
 
 1. Open the **Create Virtual Machine** wizard\.
 
-1. When prompted to select a **Type** and a **Version**, select **Linux** and **RHEL \(32\-bit\)** respectively\.
+1. When prompted to select a **Type** and a **Version**, select **Linux** and **RHEL \(64\-bit\)** respectively\.
 
 1. When prompted to configure the hard disk, choose **Use an existing virtual hard disk file**, select the VM image, and then choose **Create**\.
 

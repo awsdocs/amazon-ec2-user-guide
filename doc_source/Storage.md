@@ -29,7 +29,7 @@ Amazon EFS provides scalable file storage for use with Amazon EC2\. You can crea
 Amazon S3 provides access to reliable and inexpensive data storage infrastructure\. It is designed to make web\-scale computing easier by enabling you to store and retrieve any amount of data, at any time, from within Amazon EC2 or anywhere on the web\. For example, you can use Amazon S3 to store backup copies of your data and applications\. Amazon EC2 uses Amazon S3 to store EBS snapshots and instance store\-backed AMIs\. For more information, see [Amazon Simple Storage Service \(Amazon S3\)](AmazonS3.md)\.
 
 **Adding storage**  
-Every time you launch an instance from an AMI, a root storage device is created for that instance\. The root storage device contains all the information necessary to boot the instance\. You can specify storage volumes in addition to the root device volume when you create an AMI or launch an instance using *block device mapping*\. For more information, see [Block Device Mapping](block-device-mapping-concepts.md)\.
+Every time you launch an instance from an AMI, a root storage device is created for that instance\. The root storage device contains all the information necessary to boot the instance\. You can specify storage volumes in addition to the root device volume when you create an AMI or launch an instance using *block device mapping*\. For more information, see [Block device mapping](block-device-mapping-concepts.md)\.
 
 You can also attach EBS volumes to a running instance\. For more information, see [Attaching an Amazon EBS volume to an instance](ebs-attaching-volume.md)\.
 

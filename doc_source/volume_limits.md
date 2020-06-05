@@ -18,7 +18,7 @@ For other instances, the following limits apply:
 + `inf1.6xlarge` instances support a maximum of 23 volumes\.
 + `inf1.24xlarge` instances support a maximum of 11 EBS volumes\.
 + Most bare metal instances support a maximum of 31 EBS volumes\.
-+ `u-6tb1.metal`, `u-9tb1.metal`, and `u-12tb1.metal` instances support a maximum of 13 EBS volumes\.
++ `u-6tb1.metal`, `u-9tb1.metal`, and `u-12tb1.metal` instances support a maximum of 19 EBS volumes if launched after March 12, 2020 and a maximum of 13 EBS volumes otherwise\. To attach more than 13 EBS volumes to an instance launched before March 12, 2020, contact your account team to upgrade the instance at no additional cost\.
 + `u-18tb1.metal` and `u-24tb1.metal` instances support a maximum of 19 EBS volumes\.
 
 ## Linux\-specific volume limits<a name="linux-specific-volume-limits"></a>
