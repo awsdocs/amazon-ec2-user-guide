@@ -300,7 +300,7 @@ You can create a Spot Fleet using the parameters that you define\.
       + For **as specs**, specify the required number of vCPUs and amount of memory\.
       + For **as an instance type**, accept the default instance type, or choose **Change instance type** to choose a different instance type\.
 
-   1. \(Optional\) For **Network**, choose an existing VPC or create a new one\.
+   1. For **Network**, choose an existing VPC or create a new one\.
 
       \[Existing VPC\] Choose the VPC\.
 

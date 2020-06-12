@@ -25,7 +25,7 @@ The following diagram shows a launch template with three versions\. The first ve
 The following rules apply to launch templates and launch template versions:
 + You are limited to creating 5,000 launch templates per Region and 10,000 versions per launch template\.
 + Launch template parameters are optional\. However, you must ensure that your request to launch an instance includes all required parameters\. For example, if your launch template does not include an AMI ID, you must specify both the launch template and an AMI ID when you launch an instance\.
-+ Launch template parameters are not validated when you create the launch template\. If you specify incorrect values for parameters, or if you do not use supported parameter combinations, no instances can launch using this launch template\. Ensure that you specify the correct values for the parameters and that you use supported parameter combinations\. For example, to launch an instance in a placement group, you must specify a supported instance type\.
++ Launch template parameters are not fully validated when you create the launch template\. If you specify incorrect values for parameters, or if you do not use supported parameter combinations, no instances can launch using this launch template\. Ensure that you specify the correct values for the parameters and that you use supported parameter combinations\. For example, to launch an instance in a placement group, you must specify a supported instance type\.
 + You can tag a launch template, but you cannot tag a launch template version\.
 + Launch template versions are numbered in the order in which they are created\. When you create a launch template version, you cannot specify the version number yourself\.
 
@@ -383,6 +383,7 @@ You can create launch template versions for a specific launch template, set the 
 **Topics**
 + [Creating a launch template version](#create-launch-template-version)
 + [Setting the default launch template version](#set-default-launch-template-version)
++ [Describing a launch template version](#describe-launch-template-version)
 + [Deleting a launch template version](#delete-launch-template-version)
 
 ### Creating a launch template version<a name="create-launch-template-version"></a>
@@ -487,6 +488,38 @@ You can set the default version for the launch template\. When you launch an ins
 
 ------
 
+### Describing a launch template version<a name="describe-launch-template-version"></a>
+
+Using the console, you can view all the versions of the selected launch template, or get a list of the launch templates whose latest or default version matches a specific version number\. Using the AWS CLI, you can describe all versions, individual versions, or a range of versions of a specified launch template\.
+
+------
+#### [ New console ]
+
+**To describe a launch template version using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Launch Templates**\.
+
+1. You can view a version of a specific launch template, or get a list of the launch templates whose latest or default version matches a specific version number\.
+   + To view a version of a launch template: Select the launch template\. On the **Versions** tab, from **Version**, select a version to view its details\.
+   + To get a list of all the launch templates whose latest version matches a specific version number: From the search bar, choose **Latest version**, and then choose a version number\.
+   + To get a list of all the launch templates whose default version matches a specific version number: From the search bar, choose **Default version**, and then choose a version number\.
+
+------
+#### [ AWS CLI ]
+
+**To describe a launch template version using the AWS CLI**
++ Use the [describe\-launch\-template\-versions](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-launch-template-versions.html) command and specify the version numbers\. In the following example, versions 1 and 3 are specified\.
+
+  ```
+  aws ec2 describe-launch-template-versions \
+      --launch-template-id lt-0abcd290751193123 \
+      --versions 1 3
+  ```
+
+------
+
 ### Deleting a launch template version<a name="delete-launch-template-version"></a>
 
 If you no longer require a launch template version, you can delete it\. You cannot replace the version number after you delete it\. You cannot delete the default version of the launch template; you must first assign a different version as the default\.
@@ -494,7 +527,7 @@ If you no longer require a launch template version, you can delete it\. You cann
 ------
 #### [ New console ]
 
-**To delete a launch template version using console**
+**To delete a launch template version using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -507,7 +540,7 @@ If you no longer require a launch template version, you can delete it\. You cann
 ------
 #### [ Old console ]
 
-**To delete a launch template version using console**
+**To delete a launch template version using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -540,7 +573,7 @@ Instances that are launched using a launch template are automatically assigned t
 ------
 #### [ New console ]
 
-**To launch an instance from a launch template using console**
+**To launch an instance from a launch template using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -559,7 +592,7 @@ Instances that are launched using a launch template are automatically assigned t
 ------
 #### [ Old console ]
 
-**To launch an instance from a launch template using console**
+**To launch an instance from a launch template using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 

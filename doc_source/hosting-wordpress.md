@@ -130,7 +130,7 @@ The WordPress installation folder contains a sample configuration file called `w
 
    1. Find the section called `Authentication Unique Keys and Salts`\. These `KEY` and `SALT` values provide a layer of encryption to the browser cookies that WordPress users store on their local machines\. Basically, adding long, random values here makes your site more secure\. Visit [https://api\.wordpress\.org/secret\-key/1\.1/salt/](https://api.wordpress.org/secret-key/1.1/salt/) to randomly generate a set of key values that you can copy and paste into your `wp-config.php` file\. To paste text into a PuTTY terminal, place the cursor where you want to paste the text and right\-click your mouse inside the PuTTY terminal\.
 
-      For more information about security keys, go to [http://codex\.wordpress\.org/Editing\_wp\-config\.php\#Security\_Keys](http://codex.wordpress.org/Editing_wp-config.php#Security_Keys)\.
+      For more information about security keys, go to [https://wordpress\.org/support/article/editing\-wp\-config\-php/\#security\-keys](https://wordpress.org/support/article/editing-wp-config-php/#security-keys)\.
 **Note**  
 The values below are for example purposes only; do not use these values for your installation\.
 

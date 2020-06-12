@@ -77,6 +77,7 @@ The following table provides the quantity, size, type, and performance optimizat
 | g4dn\.8xlarge | 1 x 900 GB | NVMe SSD |  | ✔ | 
 | g4dn\.12xlarge | 1 x 900 GB | NVMe SSD |  | ✔ | 
 | g4dn\.16xlarge | 1 x 900 GB | NVMe SSD |  | ✔ | 
+| g4dn\.metal | 2 x 900 GB \(1\.8 TB\) | NVMe SSD |  | ✔ | 
 | h1\.2xlarge | 1 x 2000 GB \(2 TB\) | HDD |  |  | 
 | h1\.4xlarge | 2 x 2000 GB \(4 TB\) | HDD |  |  | 
 | h1\.8xlarge | 4 x 2000 GB \(8 TB\) | HDD |  |  | 

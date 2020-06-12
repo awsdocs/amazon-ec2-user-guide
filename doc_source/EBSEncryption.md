@@ -51,8 +51,8 @@ Encryption is supported by all EBS volume types\. You can expect the same IOPS p
 
 Amazon EBS encryption is available on the instance types listed below\. You can attach both encrypted and unencrypted volumes to these instance types simultaneously\.
 + General purpose: A1, M3, M4, M5, M5a, M5ad, M5d, M5dn, M5n, M6g,  T2, T3, and T3a
-+ Compute optimized: C3, C4, C5, C5a, C5d, C5n
-+ Memory optimized: `cr1.8xlarge`, R3, R4, R5, R5a, R5ad, R5d, R5dn, R5n, `u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, `u-18tb1.metal`, `u-24tb1.metal`, X1, X1e, and z1d
++ Compute optimized: C3, C4, C5, C5a, C5d, C5n, C6g
++ Memory optimized: `cr1.8xlarge`, R3, R4, R5, R5a, R5ad, R5d, R5dn, R5n, R6g,  `u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, `u-18tb1.metal`, `u-24tb1.metal`, X1, X1e, and z1d
 + Storage optimized: D2, `h1.2xlarge`, `h1.4xlarge`, I2, I3, and I3en
 + Accelerated computing: F1, G2, G3, G4, Inf1, P2, and P3
 

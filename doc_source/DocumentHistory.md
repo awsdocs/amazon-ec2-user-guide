@@ -4,6 +4,8 @@ The following table describes important additions to the Amazon EC2 documentatio
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [C6g and R6g instances](#DocumentHistory) | New general purpose instances powered by AWS Graviton2 processors, which are based on 64\-bit Arm Neoverse cores and custom silicon designed by AWS for optimized performance and cost\. | June 10, 2020 | 
+| [Bare metal instances for G4](#DocumentHistory) | New instances that provide your applications with direct access to the physical resources of the host server\. | June 5, 2020 | 
 | [C5a instances](#DocumentHistory) | New compute optimized instances featuring second\-generation AMD EYPC processors\. | June 4, 2020 | 
 | [Bring your own IPv6 addresses](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html) | You can bring part or all of your IPv6 address range from your on\-premises network to your AWS account\. | May 21, 2020 | 
 | [M6g instances](#DocumentHistory) | New general purpose instances powered by AWS Graviton2 processors, which are based on 64\-bit Arm Neoverse cores and custom silicon designed by AWS for optimized performance and cost\. | May 11, 2020 | 

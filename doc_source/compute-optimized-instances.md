@@ -17,6 +17,22 @@ Bare metal instances, such as `c5.metal`, provide your applications with direct 
 
 For more information, see [Amazon EC2 C5 Instances](https://aws.amazon.com/ec2/instance-types/c5)\.
 
+**C6g instances**
+
+These instances are powered by AWS Graviton2 processors and are ideal for running advanced, compute\-intensive workloads, such as the following:
++ High\-performance computing \(HPC\)
++ Batch processing
++ Ad serving
++ Video encoding
++ Gaming servers
++ Scientific modeling
++ Distributed analytics
++ CPU\-based machine learning inference
+
+Bare metal instances, such as `c6g.metal`, provide your applications with direct access to physical resources of the host server, such as processors and memory\.
+
+For more information, see [Amazon EC2 C6g Instances](https://aws.amazon.com/ec2/instance-types/c6)\.
+
 **Topics**
 + [Hardware specifications](#compute-instances-hardware)
 + [Instance performance](#compute-performance)
@@ -70,6 +86,15 @@ The following is a summary of the hardware specifications for compute optimized 
 | c5n\.9xlarge | 36 | 96 | 
 | c5n\.18xlarge | 72 | 192 | 
 | c5n\.metal | 72 | 192 | 
+| c6g\.medium | 1 | 2 | 
+| c6g\.large | 2 | 4 | 
+| c6g\.xlarge | 4 | 8 | 
+| c6g\.2xlarge | 8 | 16 | 
+| c6g\.4xlarge | 16 | 32 | 
+| c6g\.8xlarge | 32 | 64 | 
+| c6g\.12xlarge | 48 | 96 | 
+| c6g\.16xlarge | 64 | 128 | 
+| c6g\.metal | 64 | 128 | 
 
 For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
@@ -90,11 +115,12 @@ The following is a summary of network performance for compute optimized instance
 
 | Instance type | Network performance | Enhanced networking | 
 | --- | --- | --- | 
-| c5\.4xlarge and smaller \| c5d\.4xlarge and smaller  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
+| c5\.4xlarge and smaller \| c5d\.4xlarge and smaller \| c6g\.4xlarge and smaller  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
 | c5\.9xlarge \| c5d\.9xlarge | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
-| c5\.12xlarge \| c5d\.12xlarge  | 12 Gbps | [ENA](enhanced-networking-ena.md) | 
+| c5\.12xlarge \| c5d\.12xlarge  \| c6g\.8xlarge | 12 Gbps | [ENA](enhanced-networking-ena.md) | 
+| c6g\.12xlarge | 20 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5n\.4xlarge and smaller | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
-| c5\.18xlarge \| c5\.24xlarge \| c5\.metal \| c5d\.18xlarge \| c5d\.24xlarge \| c5d\.metal  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
+| c5\.18xlarge \| c5\.24xlarge \| c5\.metal \| c5d\.18xlarge \| c5d\.24xlarge \| c5d\.metal  \| c6g\.16xlarge \| c6g\.metal  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5n\.9xlarge | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5n\.18xlarge \| c5n\.metal | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c4\.large | Moderate | [Intel 82599 VF](sriov-networking.md) | 
@@ -140,6 +166,7 @@ The following is a summary of features for compute optimized instances:
 | C5a | Yes | Yes | No | Yes | 
 | C5d | No | Yes | NVMe \* | Yes | 
 | C5n | Yes | Yes | No | Yes | 
+| C6g | Yes | Yes | No | Yes | 
 
 **\*** The root device volume must be an Amazon EBS volume\.
 
@@ -151,6 +178,7 @@ For more information, see the following:
 ## Release notes<a name="compute-instance-limits"></a>
 + C5 and C5d instances feature a 3\.1 GHz Intel Xeon Platinum 8000 series processor from either the first generation \(Skylake\-SP\) or second generation \(Cascade Lake\)\.
 + C5a instances feature a second\-generation AMD EPYC processor \(Rome\) running at frequencies as high as 3\.3\. GHz\.
++ C6g instances feature an AWS Graviton2 processor based on 64\-bit Arm architecture\.
 + C4 instances and instances based on the [Nitro System](instance-types.md#ec2-nitro-instances) require 64\-bit EBS\-backed HVM AMIs\. They have high\-memory and require a 64\-bit operating system to take advantage of that capacity\. HVM AMIs provide superior performance in comparison to paravirtual \(PV\) AMIs on high\-memory instance types\. In addition, you must use an HVM AMI to take advantage of enhanced networking\.
 + Instances built on the Nitro System have the following requirements:
   + [NVMe drivers](nvme-ebs-volumes.md) must be installed
@@ -165,6 +193,15 @@ For more information, see the following:
   + CentOS 7\.4\.1708 or later
   + FreeBSD 11\.1 or later
   + Debian GNU/Linux 9 or later
++ Instances with an AWS Graviton processors have the following requirements:
+  + Use an AMI for the 64\-bit Arm architecture\.
+  + Support booting through UEFI with ACPI tables and support ACPI hot\-plug of PCI devices\.
+
+  The following AMIs meet these requirements:
+  + Amazon Linux 2 \(64\-bit Arm\)
+  + Ubuntu 16\.04 or later \(64\-bit Arm\)
+  + Red Hat Enterprise Linux 8\.0 or later \(64\-bit Arm\)
+  + SUSE Linux Enterprise Server 15 or later \(64\-bit Arm\)
 + Instances built on the Nitro System instances support a maximum of 28 attachments, including network interfaces, EBS volumes, and NVMe instance store volumes\. For more information, see [Nitro System volume limits](volume_limits.md#instance-type-volume-limits)\.
 + Launching a bare metal instance boots the underlying server, which includes verifying all hardware and firmware components\. This means that it can take 20 minutes from the time the instance enters the running state until it becomes available over the network\.
 + To attach or detach EBS volumes or secondary network interfaces from a bare metal instance requires PCIe native hotplug support\. Amazon Linux 2 and the latest versions of the Amazon Linux AMI support PCIe native hotplug, but earlier versions do not\. You must enable the following Linux kernel configuration options:

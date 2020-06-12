@@ -53,7 +53,7 @@ Amazon's trademarks and trade dress may not be used in
       + [Running Amazon Linux 2 as a virtual machine onpremises](amazon-linux-2-virtual-machine.md)
       + [Kernel Live Patching on Amazon Linux 2](al2-live-patching.md)
    + [User provided kernels](UserProvidedKernels.md)
-   + [Using the MATE desktop environment in the Amazon Linux 2 AMI with .NET Core, Mono, and MATE](amazon-linux-ami-mate.md)
+   + [Using the MATE desktop environment provided with Amazon Linux 2](amazon-linux-ami-mate.md)
 + [Amazon EC2 instances](Instances.md)
    + [Instance types](instance-types.md)
       + [General purpose instances](general-purpose-instances.md)

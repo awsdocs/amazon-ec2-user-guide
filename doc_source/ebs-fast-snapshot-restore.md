@@ -10,6 +10,7 @@ To get started, enable fast snapshot restore for specific snapshots in specific 
 + [Managing fast snapshot restore](#manage-fsr)
 + [View snapshots with fast snapshot restore enabled](#view-fsr-enabled-snapshots)
 + [View volumes restored using fast snapshot restore](#view-fast-restored-volumes)
++ [Pricing and billing](#pricing)
 
 ## Fast snapshot restore states<a name="fsr-states"></a>
 
@@ -147,3 +148,11 @@ The following is example output\.
     ]
 }
 ```
+
+## Pricing and billing<a name="pricing"></a>
+
+You are billed for each minute that fast snapshot restore is enabled for a snapshot in a particular Availability Zone\. Charges are pro\-rated with a minimum of one hour\. 
+
+For example, if you enable fast snapshot restore for one snapshot in `US-East-1a` for one month \(30 days\), you are billed **$540** \(`1` snapshot x `1` AZ x `720` hours x `$0.75` per hour\)\. If you enable fast snapshot restore for two snapshots in `US-East-1a`, `US-East-1b`, and `US-East-1c` for the same period, you are billed **$3240** \(`2` snapshot x `3` AZs x `720` hours x `$0.75` per hour\)\.
+
+For more information, see [Amazon EBS pricing](http://aws.amazon.com/ebs/pricing/)\.

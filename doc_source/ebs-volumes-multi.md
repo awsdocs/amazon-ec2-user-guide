@@ -28,7 +28,6 @@ Multi\-Attach enabled volumes support many of the features that are supported by
 + You can't change the volume type, size, or Provisioned IOPS of a Multi\-Attach enabled volume\.
 + Multi\-Attach can't be enabled during instance launch using either the Amazon EC2 console or RunInstances API\.
 + Multi\-Attach enabled volumes that have an issue at the Amazon EBS infrastructure layer are unavailable to all attached instances\. Issues at the Amazon EC2 or networking layer might only impact some attached instances\.
-+ Multi\-Attach does not support standard file systems\. If you enable multiple servers to simultaneously access a standard file system on EBS Multi\-Attach volumes, data can be corrupted or lost\. File systems, such as XFS, EXT3, EXT4, and NTFS are not designed to be simultaneously accessed by multiple servers or EC2 instances\. Therefore, they do not have built\-in mechanisms to manage the coordination and control of writes, reads, locks, caches, mounts, fencing, and more\. 
 
 ## Performance<a name="perf"></a>
 

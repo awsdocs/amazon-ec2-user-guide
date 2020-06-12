@@ -16,7 +16,7 @@ Amazon EC2 provides enhanced networking capabilities through the Elastic Network
 ## Requirements<a name="ena-requirements"></a>
 
 To prepare for enhanced networking using the ENA, set up your instance as follows:
-+ Select from the following supported instance types: A1, C5, C5a, C5d, C5n, F1, G3, G4, H1, I3, I3en, Inf1, `m4.16xlarge`, M5, M5a, M5ad, M5d, M5dn, M5n, M6g,  P2, P3, R4, R5, R5a, R5ad, R5d, R5dn, R5n, T3, T3a, `u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, `u-18tb1.metal`, `u-24tb1.metal`, X1, X1e, and z1d\.
++ Select from the following supported instance types: A1, C5, C5a, C5d, C5n, C6g,  F1, G3, G4, H1, I3, I3en, Inf1, `m4.16xlarge`, M5, M5a, M5ad, M5d, M5dn, M5n, M6g,  P2, P3, R4, R5, R5a, R5ad, R5d, R5dn, R5n, R6g,  T3, T3a, `u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, `u-18tb1.metal`, `u-24tb1.metal`, X1, X1e, and z1d\.
 + Launch the instance using a supported version of the Linux kernel and a supported distribution, so that ENA enhanced networking is enabled for your instance automatically\. For more information, see [ENA Linux Kernel Driver Release Notes](https://github.com/amzn/amzn-drivers/blob/master/kernel/linux/ena/RELEASENOTES.md)\.
 + Ensure that the instance has internet connectivity\.
 + Install and configure the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html) or the [AWS Tools for Windows PowerShell](https://docs.aws.amazon.com/powershell/latest/userguide/) on any computer you choose, preferably your local desktop or laptop\. For more information, see [Accessing Amazon EC2](concepts.md#access-ec2)\. Enhanced networking cannot be managed from the Amazon EC2 console\.
@@ -260,7 +260,7 @@ The following procedure provides the general steps for enabling enhanced network
 
 1. <a name="other-linux-enhanced-networking-ena-start-step"></a>Connect to your instance\.
 
-1. Clone the source code for the `ena` module on your instance from GitHub at [https://github.com/amzn/amzn-drivers](https://github.com/amzn/amzn-drivers)\. \(SUSE SLES 12 SP2 and later include ENA 2\.02 by default, so you are not required to download and compile the ENA driver\. For SLES 12 SP2 and later, you should file a request to add the driver version you want to the stock kernel\)\. 
+1. Clone the source code for the `ena` module on your instance from GitHub at [https://github.com/amzn/amzn-drivers](https://github.com/amzn/amzn-drivers)\. \(SUSE Linux Enterprise Server 12 SP2 and later include ENA 2\.02 by default, so you are not required to download and compile the ENA driver\. For SUSE Linux Enterprise Server 12 SP2 and later, you should file a request to add the driver version you want to the stock kernel\)\. 
 
    ```
    git clone https://github.com/amzn/amzn-drivers

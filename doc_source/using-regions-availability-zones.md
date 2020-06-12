@@ -217,8 +217,7 @@ We enable all Availability Zones by default and you cannot disable them\.
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. Use the Region selector in the navigation bar, and select your Region\.  
-![\[Use the console Region selector\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/LocalZone.PNG)
+1. Use the Region selector in the navigation bar, and select your Region\.
 
 1. On the navigation pane, choose **EC2 Dashboard**\.
 

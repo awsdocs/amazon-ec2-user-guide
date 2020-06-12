@@ -1,6 +1,6 @@
 # Dedicated Instances<a name="dedicated-instance"></a>
 
-Dedicated Instances are Amazon EC2 instances that run in a virtual private cloud \(VPC\) on hardware that's dedicated to a single customer\. Dedicated Instances that belong to different AWS accounts are physically isolated at the hardware level\. In addition, Dedicated Instances that belong to AWS accounts that are linked to a single payer account are also physically isolated at the hardware level\. However, Dedicated Instances may share hardware with other instances from the same AWS account that are not Dedicated Instances\.
+Dedicated Instances are Amazon EC2 instances that run in a virtual private cloud \(VPC\) on hardware that's dedicated to a single customer\. Dedicated Instances that belong to different AWS accounts are physically isolated at a hardware level, even if those accounts are linked to a single payer account\. However, Dedicated Instances may share hardware with other instances from the same AWS account that are not Dedicated Instances\.
 
 **Note**  
 A *Dedicated Host* is also a physical server that's dedicated for your use\. With a Dedicated Host, you have visibility and control over how instances are placed on the server\. For more information, see [Dedicated Hosts](dedicated-hosts-overview.md)\.
