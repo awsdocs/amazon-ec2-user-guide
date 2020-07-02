@@ -123,7 +123,7 @@ The steps differ depending on whether you intend to use EFA with Open MPI or wit
    ```
 
 1. Install the EFA software\.
-   + If you intend to use EFA with Open MPI, you must install the EFA software with Libfabric and Open MPI, and you must skip **Step 4: Install Intel MPI**\.
+   + If you intend to use EFA with Open MPI, you must install the EFA software with Libfabric and Open MPI, and you must skip **Step 5: Install Intel MPI**\.
 
      To install the EFA software with Libfabric and Open MPI, run the following command\.
 
