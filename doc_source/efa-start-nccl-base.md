@@ -466,7 +466,7 @@ After you have installed the required software components, you create an AMI tha
 
 1. In the navigation pane, choose **Instances**\.
 
-1. Select the instance that you created in **Step 1** and choose **Actions**, **Image**, **Create Image**\.
+1. Select the instance that you created in **Step 2** and choose **Actions**, **Image**, **Create Image**\.
 
 1. In the **Create Image** window, do the following:
 
@@ -482,7 +482,7 @@ After you have installed the required software components, you create an AMI tha
 
 ## Step 11: Terminate the temporary instance<a name="nccl-start-base-terminate"></a>
 
-At this point, you no longer need the temporary instance that you launched in **Step 1**\. You can terminate the instance to stop incurring charges for it\.
+At this point, you no longer need the temporary instance that you launched in **Step 2**\. You can terminate the instance to stop incurring charges for it\.
 
 **To terminate the temporary instance**
 
@@ -490,7 +490,7 @@ At this point, you no longer need the temporary instance that you launched in **
 
 1. In the navigation pane, choose **Instances**\.
 
-1. Select the temporary instance that you created in **Step 1** and then choose **Actions**, **Instance State**, **Terminate**, **Yes, Terminate**\.
+1. Select the temporary instance that you created in **Step 2** and then choose **Actions**, **Instance State**, **Terminate**, **Yes, Terminate**\.
 
 ## Step 12: Launch EFA and NCCL\-enabled instances into a cluster placement group<a name="nccl-start-base-cluster"></a>
 
