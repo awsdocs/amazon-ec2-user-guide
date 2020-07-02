@@ -123,7 +123,7 @@ The steps differ depending on whether you intend to use EFA with Open MPI or wit
    ```
 
 1. Install the EFA software\.
-   + If you intend to use EFA with Open MPI, you must install the EFA software with Libfabric and Open MPI, and you must skip **Step 4: Install Intel MPI**\.
+   + If you intend to use EFA with Open MPI, you must install the EFA software with Libfabric and Open MPI, and you must skip **Step 5: Install Intel MPI**\.
 
      To install the EFA software with Libfabric and Open MPI, run the following command\.
 
@@ -132,7 +132,7 @@ The steps differ depending on whether you intend to use EFA with Open MPI or wit
      ```
 
      Libfabric is installed in the `/opt/amazon/efa` directory, while Open MPI is installed in the `/opt/amazon/openmpi` directory\.
-   + If you intend to use EFA with Intel MPI only, you can install the EFA software without Libfabric and Open MPI\. In this case, Intel MPI uses its embedded Libfabric\. If you choose to do this, you must complete **Step 4: Install Intel MPI**\. 
+   + If you intend to use EFA with Intel MPI only, you can install the EFA software without Libfabric and Open MPI\. In this case, Intel MPI uses its embedded Libfabric\. If you choose to do this, you must complete **Step 5: Install Intel MPI**\. 
 
      To install the EFA software without Libfabric and Open MPI, run the following command\.
 
@@ -269,7 +269,7 @@ After you have installed the required software components, you create an AMI tha
 
 1. In the navigation pane, choose **Instances**\.
 
-1. Select the instance that you created in **Step 1** and choose **Actions**, **Image**, **Create Image**\.
+1. Select the instance that you created in **Step 2** and choose **Actions**, **Image**, **Create Image**\.
 
 1. In the **Create Image** window, do the following:
 
@@ -285,7 +285,7 @@ After you have installed the required software components, you create an AMI tha
 
 ## Step 8: Launch EFA\-enabled instances into a cluster placement group<a name="efa-start-instances"></a>
 
-Launch your EFA\-enabled instances into a cluster placement group using the EFA\-enabled AMI that you created in **Step 6**, and the EFA\-enabled security group that you created in **Step 1**\.
+Launch your EFA\-enabled instances into a cluster placement group using the EFA\-enabled AMI that you created in **Step 7**, and the EFA\-enabled security group that you created in **Step 1**\.
 
 **Note**  
 It is not an absolute requirement to launch your EFA\-enabled instances into a cluster placement group\. However, we do recommend running your EFA\-enabled instances in a cluster placement group as it launches the instances into a low\-latency group in a single Availability Zone\.
@@ -296,7 +296,7 @@ It is not an absolute requirement to launch your EFA\-enabled instances into a c
 
 1. Choose **Launch Instance**\.
 
-1. On the **Choose an AMI** page, choose **My AMIs**, find the AMI that you created in **Step 6**, and then choose **Select**\.
+1. On the **Choose an AMI** page, choose **My AMIs**, find the AMI that you created in **Step 7**, and then choose **Select**\.
 
 1. On the **Choose an Instance Type** page, select one of the following supported instance types and then choose **Next: Configure Instance Details**: `c5n.18xlarge`, `c5n.metal`, `i3en.24xlarge`, `i3en.metal`, `inf1.24xlarge`, `m5dn.24xlarge`, `m5n.24xlarge`, `r5dn.24xlarge`, `r5n.24xlarge`, and `p3dn.24xlarge`\.
 
@@ -328,7 +328,7 @@ It is not an absolute requirement to launch your EFA\-enabled instances into a c
 
 ## Step 9: Terminate the temporary instance<a name="efa-start-terminate"></a>
 
-At this point, you no longer need the temporary instance that you launched in **Step 1**\. You can terminate the instance to stop incurring charges for it\.
+At this point, you no longer need the temporary instance that you launched in **Step 2**\. You can terminate the instance to stop incurring charges for it\.
 
 **To terminate the temporary instance**
 
@@ -336,7 +336,7 @@ At this point, you no longer need the temporary instance that you launched in **
 
 1. In the navigation pane, choose **Instances**\.
 
-1. Select the temporary instance that you created in **Step 1** and then choose **Actions**, **Instance State**, **Terminate**, **Yes, Terminate**\.
+1. Select the temporary instance that you created in **Step 2** and then choose **Actions**, **Instance State**, **Terminate**, **Yes, Terminate**\.
 
 ## Step 10: Enable passwordless SSH<a name="efa-start-passwordless"></a>
 
