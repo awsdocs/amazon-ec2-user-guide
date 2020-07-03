@@ -123,7 +123,7 @@ The steps differ depending on whether you intend to use EFA with Open MPI or wit
    ```
 
 1. Install the EFA software\.
-   + If you intend to use EFA with Open MPI, you must install the EFA software with Libfabric and Open MPI, and you must skip **Step 4: Install Intel MPI**\.
+   + If you intend to use EFA with Open MPI, you must install the EFA software with Libfabric and Open MPI, and you must skip **Step 5: Install Intel MPI**\.
 
      To install the EFA software with Libfabric and Open MPI, run the following command\.
 
@@ -132,7 +132,7 @@ The steps differ depending on whether you intend to use EFA with Open MPI or wit
      ```
 
      Libfabric is installed in the `/opt/amazon/efa` directory, while Open MPI is installed in the `/opt/amazon/openmpi` directory\.
-   + If you intend to use EFA with Intel MPI only, you can install the EFA software without Libfabric and Open MPI\. In this case, Intel MPI uses its embedded Libfabric\. If you choose to do this, you must complete **Step 4: Install Intel MPI**\. 
+   + If you intend to use EFA with Intel MPI only, you can install the EFA software without Libfabric and Open MPI\. In this case, Intel MPI uses its embedded Libfabric\. If you choose to do this, you must complete **Step 5: Install Intel MPI**\. 
 
      To install the EFA software without Libfabric and Open MPI, run the following command\.
 
