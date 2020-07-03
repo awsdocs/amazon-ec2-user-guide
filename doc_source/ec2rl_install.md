@@ -6,7 +6,7 @@ The EC2Rescue for Linux tool can be installed on an Amazon EC2 Linux instance th
 + Supported operating systems:
   + Amazon Linux 2
   + Amazon Linux 2016\.09\+
-  + SLES 12\+
+  + SUSE Linux Enterprise Server 12\+
   + RHEL 7\+
   + Ubuntu 16\.04\+
 + Software requirements:

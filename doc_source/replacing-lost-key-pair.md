@@ -87,7 +87,7 @@ The device name might appear differently on your instance\. For example, devices
         ```
         [ec2-user ~]$ sudo mount /dev/xvdf1 /mnt/tempvol
         ```
-      + Amazon Linux 2, CentOS, SLES 12, and RHEL 7\.x
+      + Amazon Linux 2, CentOS, SUSE Linux 12, and RHEL 7\.x
 
         ```
         [ec2-user ~]$ sudo mount -o nouuid /dev/xvdf1 /mnt/tempvol

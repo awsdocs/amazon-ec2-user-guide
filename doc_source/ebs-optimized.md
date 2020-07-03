@@ -65,6 +65,15 @@ The following table lists the instance types that support EBS optimization and E
 | c5n\.9xlarge | 9,500 | 1,187\.5 | 40,000 | 
 | c5n\.18xlarge | 19,000 | 2,375 | 80,000 | 
 | c5n\.metal | 19,000 | 2,375 | 80,000 | 
+| c6g\.medium \* | 4,750 | 593\.75 | 20,000 | 
+| c6g\.large \* | 4,750 | 593\.75 | 20,000 | 
+| c6g\.xlarge \* | 4,750 | 593\.75 | 20,000 | 
+| c6g\.2xlarge \* | 4,750 | 593\.75 | 20,000 | 
+| c6g\.4xlarge | 4,750 | 593\.75 | 20,000 | 
+| c6g\.8xlarge | 9,500 | 1,187\.5 | 40,000 | 
+| c6g\.12xlarge | 14,250 | 1,781\.25 | 50,000 | 
+| c6g\.16xlarge | 19,000 | 2,375 | 80,000 | 
+| c6g\.metal | 19,000 | 2,375 | 80,000 | 
 | d2\.xlarge | 750 | 93\.75 | 6,000 | 
 | d2\.2xlarge | 1,000 | 125 | 8,000 | 
 | d2\.4xlarge | 2,000 | 250 | 16,000 | 
@@ -82,6 +91,7 @@ The following table lists the instance types that support EBS optimization and E
 | g4dn\.8xlarge | 9,500 | 1,187\.5 | 40,000 | 
 | g4dn\.12xlarge | 9,500 | 1,187\.5 | 40,000 | 
 | g4dn\.16xlarge | 9,500 | 1,187\.5 | 40,000 | 
+| g4dn\.metal | 19,000 | 2,375 | 80,000 | 
 | h1\.2xlarge | 1,750 | 218\.75 | 12,000 | 
 | h1\.4xlarge | 3,500 | 437\.5 | 20,000 | 
 | h1\.8xlarge | 7,000 | 875 | 40,000 | 
@@ -233,6 +243,15 @@ The following table lists the instance types that support EBS optimization and E
 | r5n\.12xlarge | 9,500 | 1,187\.5 | 40,000 | 
 | r5n\.16xlarge | 13,600 | 1,700 | 60,000 | 
 | r5n\.24xlarge | 19,000 | 2,375 | 80,000 | 
+| r6g\.medium \* | 4,750 | 593\.75 | 20,000 | 
+| r6g\.large \* | 4,750 | 593\.75 | 20,000 | 
+| r6g\.xlarge \* | 4,750 | 593\.75 | 20,000 | 
+| r6g\.2xlarge \* | 4,750 | 593\.75 | 20,000 | 
+| r6g\.4xlarge | 4,750 | 593\.75 | 20,000 | 
+| r6g\.8xlarge | 9,500 | 1,187\.5 | 40,000 | 
+| r6g\.12xlarge | 14,250 | 1,781\.25 | 50,000 | 
+| r6g\.16xlarge | 19,000 | 2,375 | 80,000 | 
+| r6g\.metal | 19,000 | 2,375 | 80,000 | 
 | t3\.nano \* | 2,085 | 260\.57 | 11,800 | 
 | t3\.micro \* | 2,085 | 260\.57 | 11,800 | 
 | t3\.small \* | 2,085 | 260\.57 | 11,800 | 
@@ -290,6 +309,10 @@ The following table lists the instance types that support EBS optimization and E
 | c5n\.large | 650 | 81\.25 | 4,000 | 
 | c5n\.xlarge | 1,150 | 143\.75 | 6,000 | 
 | c5n\.2xlarge | 2,300 | 287\.5 | 10,000 | 
+| c6g\.medium | 315 | 39\.375 | 2,500 | 
+| c6g\.large | 630 | 78\.75 | 3,600 | 
+| c6g\.xlarge | 1,188 | 148\.5 | 6,000 | 
+| c6g\.2xlarge | 2,375 | 296\.875 | 12,000 | 
 | g4dn\.xlarge | 950 | 118\.75 | 3,000 | 
 | g4dn\.2xlarge | 1,150 | 143\.75 | 6,000 | 
 | i3en\.large | 577 | 72\.1 | 3,000 | 
@@ -338,6 +361,10 @@ The following table lists the instance types that support EBS optimization and E
 | r5n\.large | 650 | 81\.25 | 3,600 | 
 | r5n\.xlarge | 1,150 | 143\.75 | 6,000 | 
 | r5n\.2xlarge | 2,300 | 287\.5 | 12,000 | 
+| r6g\.medium | 315 | 39\.375 | 2,500 | 
+| r6g\.large | 630 | 78\.75 | 3,600 | 
+| r6g\.xlarge | 1,188 | 148\.5 | 6,000 | 
+| r6g\.2xlarge | 2,375 | 296\.875 | 12,000 | 
 | t3\.nano | 43 | 5\.43 | 250 | 
 | t3\.micro | 87 | 10\.86 | 500 | 
 | t3\.small | 174 | 21\.71 | 1,000 | 

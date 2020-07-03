@@ -109,6 +109,7 @@ The following is a summary of the hardware specifications for accelerated comput
 | g4dn\.8xlarge | 32 | 128 | 1 | 
 | g4dn\.12xlarge | 48 | 192 | 4 | 
 | g4dn\.16xlarge | 64 | 256 | 1 | 
+| g4dn\.metal | 96 | 384 | 8 | 
 | f1\.2xlarge | 8 | 122 | 1 | 
 | f1\.4xlarge | 16 | 244 | 2 | 
 | f1\.16xlarge | 64 | 976 | 8 | 
@@ -143,7 +144,7 @@ The following is a summary of network performance for accelerated computing inst
 |  g4dn\.xlarge \| g4dn\.2xlarge \| g4dn\.4xlarge \| inf1\.xlarge \| inf1\.2xlarge  | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
 |  f1\.16xlarge \| g3\.16xlarge \| inf1\.6xlarge \| p2\.16xlarge \| p3\.16xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  g4dn\.8xlarge \| g4dn\.12xlarge \| g4dn\.16xlarge  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
-| inf1\.24xlarge \| p3dn\.24xlarge | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
+| g4dn\.metal \| inf1\.24xlarge \| p3dn\.24xlarge | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
 
 † These instances use a network I/O credit mechanism to allocate network bandwidth to instances based on average bandwidth utilization\. They accrue credits when their bandwidth is below their baseline bandwidth, and can use these credits when they perform network data transfers\. For more information, open a support case and ask about baseline bandwidth for the specific instance types that you are interested in\.
 
@@ -185,5 +186,13 @@ For more information, see the following:
   + FreeBSD 11\.1 or later
   + Debian GNU/Linux 9 or later
 + GPU\-based instances can't access the GPU unless the NVIDIA drivers are installed\. For more information, see [Installing NVIDIA drivers on Linux instances](install-nvidia-driver.md)\.
++ Launching a bare metal instance boots the underlying server, which includes verifying all hardware and firmware components\. This means that it can take 20 minutes from the time the instance enters the running state until it becomes available over the network\.
++ To attach or detach EBS volumes or secondary network interfaces from a bare metal instance requires PCIe native hotplug support\. Amazon Linux 2 and the latest versions of the Amazon Linux AMI support PCIe native hotplug, but earlier versions do not\. You must enable the following Linux kernel configuration options:
+
+  ```
+  CONFIG_HOTPLUG_PCI_PCIE=y
+  CONFIG_PCIEASPM=y
+  ```
++ Bare metal instances use a PCI\-based serial device rather than an I/O port\-based serial device\. The upstream Linux kernel and the latest Amazon Linux AMIs support this device\. Bare metal instances also provide an ACPI SPCR table to enable the system to automatically use the PCI\-based serial device\. The latest Windows AMIs automatically use the PCI\-based serial device\.
 + There is a limit of 100 AFIs per Region\.
 + There is a limit on the total number of instances that you can launch in a Region, and there are additional limits on some instance types\. For more information, see [How many instances can I run in Amazon EC2?](https://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2) in the Amazon EC2 FAQ\.

@@ -7,7 +7,7 @@ The following instance types provide the ability for an operating system to cont
 + Compute optimized: `c4.8xlarge` \| `c5.metal` \| `c5n.metal`
 + Memory optimized: `r4.8xlarge` \| `r4.16xlarge` \| `r5.metal` \| `r5d.metal` \| `u-6tb1.metal` \| `u-9tb1.metal` \| `u-12tb1.metal` \| `x1.16xlarge` \| `x1.32xlarge` \| `x1e.8xlarge` \| `x1e.16xlarge` \| `x1e.32xlarge` \| `z1d.metal`
 + Storage optimized: `d2.8xlarge` \| `i3.8xlarge` \| `i3.16xlarge` \| `i3.metal` \| `i3en.metal` \| `h1.8xlarge` \| `h1.16xlarge`
-+ Accelerated computing: `f1.16xlarge` \| `g3.16xlarge` \| `p2.16xlarge` \| `p3.16xlarge`
++ Accelerated computing: `f1.16xlarge` \| `g3.16xlarge` \| `g4dn.metal` \| `p2.16xlarge` \| `p3.16xlarge`
 
 The following instance types provide the ability for an operating system to control processor C\-states:
 + General purpose: `m5.12xlarge` \| `m5.24xlarge` \| `m5d.12xlarge` \| `m5d.24xlarge` \| `m5n.12xlarge` \| `m5n.24xlarge` \| `m5dn.12xlarge` \| `m5dn.24xlarge`

@@ -62,7 +62,7 @@ For instance families that are not powered by the AWS Nitro System, you can conf
 ## Dedicated Hosts restrictions<a name="dedicated-hosts-limitations"></a>
 
 Before you allocate Dedicated Hosts, take note of the following limitations and restrictions:
-+ RHEL, SUSE Linux, and SQL Server AMIs \(whether offered by AWS or on the AWS Marketplace\) can't be used with Dedicated Hosts\.
++ To run RHEL, SUSE Linux, and SQL Server on Dedicated Hosts, you must bring your own AMIs\. RHEL, SUSE Linux, and SQL Server AMIs that are offered by AWS or that are available on AWS Marketplace can't be used with Dedicated Hosts\. For more information on how to create your own AMI, see [Bring your own license](#dedicated-hosts-BYOL)\.
 + Up to two On\-Demand Dedicated Hosts per instance family, per Region can be allocated\. It is possible to request a limit increase: [Request to Raise Allocation Limit on Amazon EC2 Dedicated Hosts](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=)\.
 + The instances that run on a Dedicated Host can only be launched in a VPC\.
 + Auto Scaling groups are supported when using a launch template that specifies a host resource group\. For more information, see [ Creating a Launch Template for an Auto Scaling Group](https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-launch-template.html) in the *Amazon EC2 Auto Scaling User Guide*\.

@@ -50,7 +50,7 @@ If you are using AWS License Manager to track your licenses, AWS License Manager
 
 ## Supported instance types<a name="dedicated-hosts-recovery-instances"></a>
 
-Host recovery is supported for the following instance families: A1, C3, C4, C5, C5n, Inf1, M3, M4, M5, M5n, M6g, P3, R3, R4, R5, R5n, X1, X1e, u\-6tb1, u\-9tb1, u\-12tb1, u\-18tb1, and u\-24tb1\.
+Host recovery is supported for the following instance families: A1, C3, C4, C5, C5n, C6g, Inf1, M3, M4, M5, M5n, M6g, P3, R3, R4, R5, R5n, R6g, X1, X1e, u\-6tb1, u\-9tb1, u\-12tb1, u\-18tb1, and u\-24tb1\.
 
 To recover instances that are not supported, see [Manually recovering unsupported instances](#dedicated-hosts-recovery-unsupported)\.
 

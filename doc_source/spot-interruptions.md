@@ -7,10 +7,12 @@ An On\-Demand Instance specified in an EC2 Fleet or Spot Fleet cannot be interru
 **Topics**
 + [Reasons for interruption](#interruption-reasons)
 + [Interruption behaviors](#interruption-behavior)
++ [Specifying the interruption behavior](#specifying-spot-interruption-behavior)
 + [Preparing for interruptions](#using-spot-instances-managing-interruptions)
 + [Preparing for instance hibernation](#prepare-for-instance-hibernation)
 + [Spot Instance interruption notices](#spot-instance-termination-notices)
 + [Finding interrupted Spot Instances](#finding-an-interrupted-Spot-Instance)
++ [Determining whether Amazon EC2 interrupted a Spot Instance](#BidEvictedEvent)
 + [Billing for interrupted Spot Instances](#billing-for-interrupted-spot-instances)
 
 ## Reasons for interruption<a name="interruption-reasons"></a>
@@ -22,11 +24,16 @@ The following are the possible reasons that Amazon EC2 might interrupt your Spot
 
 ## Interruption behaviors<a name="interruption-behavior"></a>
 
-You can specify whether Amazon EC2 should hibernate, stop, or terminate Spot Instances when they are interrupted\. You can choose the interruption behavior that meets your needs\. The default is to terminate Spot Instances when they are interrupted\. To change the interruption behavior, choose an option from **Interruption behavior** in the console when you are creating a Spot request, or specify `InstanceInterruptionBehavior` in the launch configuration or the launch template\. To change interruption behavior in the console when you are creating a Spot request, choose **Maintain target capacity**\. When you select this option, **Interruption behavior** will appear and you can then specify that the Spot service terminates, stops, or hibernates Spot Instances when they are interrupted\.
+You can specify that Amazon EC2 should do one of the following when it interrupts a Spot Instance:
++ Stop the Spot Instance
++ Hibernate the Spot Instance
++ Terminate the Spot Instance
+
+The default is to terminate Spot Instances when they are interrupted\. To change the interruption behavior, see [Specifying the interruption behavior](#specifying-spot-interruption-behavior)\.
 
 ### Stopping interrupted Spot Instances<a name="stop-spot-instances"></a>
 
-You can change the behavior so that Amazon EC2 stops Spot Instances when they are interrupted if the following requirements are met\.
+You can specify the interruption behavior so that Amazon EC2 stops Spot Instances when they are interrupted if the following requirements are met\.
 
 **Requirements**
 + For a Spot Instance request, the type must be `persistent`\. You cannot specify a launch group in the Spot Instance request\.
@@ -49,7 +56,7 @@ While a Spot Instance is stopped, you are charged only for the EBS volumes, whic
 
 ### Hibernating interrupted Spot Instances<a name="hibernate-spot-instances"></a>
 
-You can change the behavior so that Amazon EC2 hibernates Spot Instances when they are interrupted if the following requirements are met\.
+You can specify the interruption behavior so that Amazon EC2 hibernates Spot Instances when they are interrupted if the following requirements are met\.
 
 **Requirements**
 + For a Spot Instance request, the type must be `persistent`\. You cannot specify a launch group in the Spot Instance request\.
@@ -87,6 +94,20 @@ For more information, see [Preparing for instance hibernation](#prepare-for-inst
 
 For information about hibernating On\-Demand Instances, see [Hibernate your Linux instance](Hibernate.md)\.
 
+## Specifying the interruption behavior<a name="specifying-spot-interruption-behavior"></a>
+
+If you do not specify an interruption behavior, the default is to terminate Spot Instances when they are interrupted\. You can specify the interruption behavior when you create a Spot request\. The way in which you specify the interruption behavior is different depending on how you request Spot Instances\.
+
+If you request Spot Instances using the [launch instance wizard](launching-instance.md), you can specify the interruption behavior as follows: Select the **Persistent request** check box and then, from **Interruption behavior**, choose an interruption behavior\.
+
+If you request Spot Instances using the [Spot console](spot-fleet-requests.md#create-spot-fleet), you can specify the interruption behavior as follows: Select the **Maintain target capacity** check box and then, from **Interruption behavior**, choose an interruption behavior\.
+
+If you configure Spot Instances in a [launch template](ec2-launch-templates.md#create-launch-template), you can specify the interruption behavior as follows: In the launch template, expand **Advanced details** and select the **Request Spot Instances** checkbox\. Choose **Customize** and then, from **Interruption behavior**, choose an interruption behavior\.
+
+If you configure Spot Instances in a launch configuration when using the [request\-spot\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-fleet.html) CLI, you can specify the interruption behavior as follows: For `InstanceInterruptionBehavior`, specify an interruption behavior\.
+
+If you configure Spot Instances using the [request\-spot\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-instances.html) CLI, you can specify the interruption behavior as follows: For `--instance-interruption-behavior`, specify an interruption behavior\.
+
 ## Preparing for interruptions<a name="using-spot-instances-managing-interruptions"></a>
 
 Here are some best practices to follow when you use Spot Instances:
@@ -101,7 +122,7 @@ Here are some best practices to follow when you use Spot Instances:
 
 You must install a hibernation agent on your instance, unless you used an AMI that already includes the agent\. You must run the agent on instance startup, whether the agent was included in your AMI or you installed it yourself\.
 
-The following procedures help you prepare a Linux instance\. For directions to prepare a Windows instance, see [Preparing for Instance Hibernation](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/spot-interruptions.html#prepare-for-instance-hibernation) in the *Amazon EC2 User Guide for Windows Instances*\.
+The following procedures help you prepare a Linux instance\. For directions to prepare a Windows instance, see [Preparing for instance hibernation](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/spot-interruptions.html#prepare-for-instance-hibernation) in the *Amazon EC2 User Guide for Windows Instances*\.
 
 **To prepare an Amazon Linux instance**
 
@@ -258,6 +279,10 @@ aws ec2 describe-instances \
     --filters Name=instance-lifecycle,Values=spot Name=instance-state-name,Values=terminated,stopped \
     --query Reservations[*].Instances[*].InstanceId
 ```
+
+## Determining whether Amazon EC2 interrupted a Spot Instance<a name="BidEvictedEvent"></a>
+
+If a Spot Instance is stopped, hibernated, or terminated, you can use CloudTrail to see whether Amazon EC2 interrupted the Spot Instance\. In CloudTrail, the event name `BidEvictedEvent` indicates that Amazon EC2 interrupted the Spot Instance\. For more information about using CloudTrail, see [Logging Amazon EC2 and Amazon EBS API calls with AWS CloudTrail](monitor-with-cloudtrail.md)\.
 
 ## Billing for interrupted Spot Instances<a name="billing-for-interrupted-spot-instances"></a>
 

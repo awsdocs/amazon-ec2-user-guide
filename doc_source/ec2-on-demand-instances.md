@@ -1,6 +1,6 @@
 # On\-Demand Instances<a name="ec2-on-demand-instances"></a>
 
-An On\-Demand Instance is an instance that you use *on demand*\. You have full control over its lifecycle—you decide when to launch, stop, hibernate, start, reboot, or terminate it\.
+With On\-Demand Instances, you pay for compute capacity by the second with no long\-term commitments\. You have full control over its lifecycle—you decide when to launch, stop, hibernate, start, reboot, or terminate it\.
 
 There is no long\-term commitment required when you purchase On\-Demand Instances\. You pay only for the seconds that your On\-Demand Instances are in the `running` state\. The price per second for a running On\-Demand Instance is fixed, and is listed on the [On\-Demand Pricing](https://aws.amazon.com/ec2/pricing/on-demand) page\.
 

@@ -23,6 +23,8 @@ You can use jumbo frames for traffic between your VPCs and your on\-premises net
 
 All [current generation instances](instance-types.md#instance-type-summary-table) support jumbo frames\. The following previous generation instances support jumbo frames: C3, G2, I2, M3, and R3\.
 
+For more information about supported MTU sizes for transit gateways, see [MTU](https://docs.aws.amazon.com/vpc/latest/tgw/transit-gateway-quotas.html#mtu-quota) in *Amazon VPC Transit Gateways*\.
+
 ## Path MTU Discovery (PMTUD)<a name="path_mtu_discovery"></a>
 
 The Path Maximum Transmission Unit Discovery (PMTUD) is used to determine the path MTU between two devices\. The path MTU is the maximum packet size that's supported on the path between the originating host and the receiving host\. If a host sends a packet that's larger than the MTU of the receiving host or that's larger than the MTU of a device along the path, the receiving host or device returns the following ICMP message: `Destination Unreachable: Fragmentation Needed and Don't Fragment was Set` \(Type 3, Code 4\)\. This instructs the original host to adjust the MTU until the packet can be transmitted\. 

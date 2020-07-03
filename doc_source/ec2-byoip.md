@@ -22,7 +22,7 @@ BYOIP is not available in all Regions\. For a list of supported Regions, see the
 + The addresses in the IP address range must have a clean history\. We might investigate the reputation of the IP address range and reserve the right to reject an IP address range if it contains an IP address that has a poor reputation or is associated with malicious behavior\.
 + You must own the IP address that you use\. This means that only the following are supported:
   + ARIN \- "Direct Allocation" and "Direct Assignment" network types
-  + RIPE \- "ALLOCATED PA", "LEGACY", and "ASSIGNED PI" allocation statuses
+  + RIPE \- "ALLOCATED PA", "LEGACY", "ASSIGNED PI", and "ALLOCATED\-BY\-RIR" allocation statuses
   + APNIC – "ALLOCATED PORTABLE" and "ASSIGNED PORTABLE" allocation statuses
 
 ## Prepare to bring your address range to your AWS account<a name="prepare-for-byoip"></a>
@@ -49,6 +49,8 @@ Create a ROA object to authorize Amazon ASNs 16509 and 14618 to advertise your a
 
 Use the following procedure to create a self\-signed X509 certificate and add it to the RDAP record for your RIR\. The openssl commands require OpenSSL version 1\.0\.2 or later\.
 
+Copy the commands below and replace only the placeholder values \(in colored italic text\)\. 
+
 **To create a self\-signed X509 certificate and add it to the RDAP record**
 
 1. Generate an RSA 2048\-bit key pair as shown in the following\.
@@ -69,9 +71,9 @@ Use the following procedure to create a self\-signed X509 certificate and add it
    cat publickey.cer
    ```
 
-   For ARIN, add the certificate in the "Public Comments" section for your address range\.
+   For ARIN, add the certificate in the "Public Comments" section for your address range\. Do not add it to the comments section for your organization\.
 
-   For RIPE, add the certificate as a new "descr" field for your address range\.
+   For RIPE, add the certificate as a new "descr" field for your address range\. Do not add it to the comments section for your organization\.
 
    For APNIC, email the public key to [helpdesk@apnic\.net](mailto:helpdesk@apnic.net) to manually add it to the "remarks" field for your address range\. Send the email using the APNIC authorized contact for the IP addresses\.
 
@@ -83,17 +85,21 @@ The format of the signed authorization message is as follows, where the date is 
 1|aws|account|cidr|YYYYMMDD|SHA256|RSAPSS
 ```
 
-First, create a plaintext authorization message and store it in a variable named `text_message` as shown in the following example\. Replace the example account number, address range, and expiry date with your own values\.
+**To create a signed authorization message**
 
-```
-text_message="1|aws|123456789012|198.51.100.0/24|20191201|SHA256|RSAPSS"
-```
+1. Create a plaintext authorization message and store it in a variable named `text_message` as shown in the following example\. Copy the following example and replace only the example account number, address range, and expiry date with your own values\.
 
-Next, sign the authorization message in `text_message` using the key pair that you created, and store it in a variable named `signed_message`, as follows\.
+   ```
+   text_message="1|aws|123456789012|198.51.100.0/24|20191201|SHA256|RSAPSS"
+   ```
 
-```
-signed_message=$(echo $text_message | tr -d "\n" | openssl dgst -sha256 -sigopt rsa_padding_mode:pss -sigopt rsa_pss_saltlen:-1 -sign private.key -keyform PEM | openssl base64 | tr -- '+=/' '-_~' | tr -d "\n")
-```
+1. Sign the authorization message in `text_message` using the key pair that you created, and store it in a variable named `signed_message`\.
+
+   ```
+   signed_message=$(echo $text_message | tr -d "\n" | openssl dgst -sha256 -sigopt rsa_padding_mode:pss -sigopt rsa_pss_saltlen:-1 -sign private.key -keyform PEM | openssl base64 | tr -- '+=/' '-_~' | tr -d "\n")
+   ```
+**Important**  
+We recommend that you copy and paste this command\. Do not modify or replace any of the values\.
 
 ## Provision the address range for use with AWS<a name="byoip-provision"></a>
 
@@ -111,7 +117,7 @@ Provisioning an address range is an asynchronous operation, so the call returns 
 aws ec2 describe-byoip-cidrs --max-results 5
 ```
 
-If there are issues during provisioning and the status goes to `failed-provision`, run the `provision-byoip-cidr` command again after the issues have been resolved\.
+If there are issues during provisioning and the status goes to `failed-provision`, you must run the `provision-byoip-cidr` command again after the issues have been resolved\.
 
 ### Provision an IPv6 address range that's not publicly advertised<a name="byoip-provision-non-public"></a>
 

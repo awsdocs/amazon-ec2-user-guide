@@ -47,7 +47,7 @@ You can use AWS CLI commands for Amazon EC2 to find an instance type that meet y
 1. Use the [describe\-instance\-type\-offerings](https://docs.aws.amazon.com/goto/aws-cli/ec2-2016-11-15/DescribeInstanceTypeOfferings) command to filter instance types offered by location \(Region or Availability Zone\)\. For example, you can use the following command to display the instance types offered in the specified Availability Zone\. 
 
    ```
-   aws ec2 describe-instance-type-offerings --location-type "availability-zone" --filters Name=location,Values=us-east-2 --region us-east-2
+   aws ec2 describe-instance-type-offerings --location-type "availability-zone" --filters Name=location,Values=us-east-2a --region us-east-2
    ```
 
 1. After locating instance types that meet your needs, make note of them so that you can use these instance types when you launch instances\. For more information, see [Launching an Instance Using the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-ec2-launch.html#launching-instances) in the *AWS Command Line Interface User Guide*\.

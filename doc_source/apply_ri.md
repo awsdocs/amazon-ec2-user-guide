@@ -19,7 +19,7 @@ Regional Reserved Instances also provide instance size flexibility where the Res
 Instance size flexibility does not apply to the following Reserved Instances:
 + Reserved Instances that are purchased for a specific Availability Zone \(zonal Reserved Instances\)
 + Reserved Instances with dedicated tenancy
-+ Reserved Instances for Windows Server, Windows Server with SQL Standard, Windows Server with SQL Server Enterprise, Windows Server with SQL Server Web, RHEL, and SLES
++ Reserved Instances for Windows Server, Windows Server with SQL Standard, Windows Server with SQL Server Enterprise, Windows Server with SQL Server Web, RHEL, and SUSE Linux Enterprise Server
 + Reserved Instances for G4 instances
 
 ### Instance size flexibility determined by normalization factor<a name="ri-normalization-factor"></a>
@@ -78,6 +78,8 @@ The `.metal` instance sizes do not have a single normalization factor\. They var
 | c5\.metal | 192 | 
 | c5d\.metal | 192 | 
 | c5n\.metal | 144 | 
+| c6g\.metal | 128 | 
+| g4dn\.metal | 128 | 
 | i3\.metal | 128 | 
 | i3en\.metal | 192 | 
 | m5\.metal | 192 | 
@@ -85,6 +87,7 @@ The `.metal` instance sizes do not have a single normalization factor\. They var
 | m6g\.metal | 128 | 
 | r5\.metal | 192 | 
 | r5d\.metal | 192 | 
+| r6g\.metal | 128 | 
 | z1d\.metal | 96 | 
 
 For example, an `i3.metal` instance has a normalization factor of 128\. If you purchase an `i3.metal` default tenancy Amazon Linux/Unix Reserved Instance in the US East \(N\. Virginia\), the billing benefit can apply as follows:

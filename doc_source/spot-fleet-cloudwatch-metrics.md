@@ -11,8 +11,6 @@ For more information about CloudWatch metrics provided by Amazon EC2, see [Monit
 
 The `AWS/EC2Spot` namespace includes the following metrics, plus the CloudWatch metrics for the Spot Instances in your fleet\. For more information, see [Instance metrics](viewing_metrics_with_cloudwatch.md#ec2-cloudwatch-metrics)\.
 
-The `AWS/EC2Spot` namespace includes the following metrics\.
-
 
 | Metric | Description | 
 | --- | --- | 
@@ -49,13 +47,17 @@ Metrics are grouped first by namespace, and then by the various combinations of 
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. In the navigation pane, under **Metrics**, choose the **EC2 Spot** namespace\.
+1. In the navigation pane, choose **Metrics**\.
+
+1. Choose the **EC2 Spot** namespace\.
+**Note**  
+If the **EC2 Spot** namespace is not displayed, there are two reasons for this\. Either you've not yet used Spot Fleet—only the AWS services that you're using send metrics to Amazon CloudWatch\. Or, if you’ve not used Spot Fleet for the past two weeks, the namespace does not appear\.
 
 1. \(Optional\) To filter the metrics by dimension, select one of the following:
-   + **Fleet Request Metrics** — Group by Spot Fleet request
-   + **By Availability Zone** — Group by Spot Fleet request and Availability Zone
-   + **By Instance Type** — Group by Spot Fleet request and instance type
-   + **By Availability Zone/Instance Type** — Group by Spot Fleet request, Availability Zone, and instance type
+   + **Fleet Request Metrics** – Group by Spot Fleet request
+   + **By Availability Zone** – Group by Spot Fleet request and Availability Zone
+   + **By Instance Type** – Group by Spot Fleet request and instance type
+   + **By Availability Zone/Instance Type** – Group by Spot Fleet request, Availability Zone, and instance type
 
 1. To view the data for a metric, select the check box next to the metric\.  
 ![\[CloudWatch metrics for Spot Fleet\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/metric_spot_fleet.png)

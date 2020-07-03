@@ -17,6 +17,16 @@ Bare metal instances, such as `r5.metal`, provide your applications with direct 
 
 For more information, see [Amazon EC2 R5 Instances](https://aws.amazon.com/ec2/instance-types/r5)\.
 
+**R6g instances**
+
+These instances are powered by AWS Graviton2 processors and are ideal for running memory\-intensive workloads, such as the following:
++ Open\-source databases \(for example, MySQL, MariaDB, and PostgreSQL\)
++ In\-memory caches \(for example, Memcached, Redis, and KeyDB\)
+
+Bare metal instances, such as `r6g.metal`, provide your applications with direct access to physical resources of the host server, such as processors and memory\.
+
+For more information, see [Amazon EC2 R6g Instances](https://aws.amazon.com/ec2/instance-types/r6)\.
+
 **High memory instances**  
 High memory instances \(`u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, `u-18tb1.metal`, and `u-24tb1.metal`\) offer 6 TiB, 9 TiB, 12 TiB, 18 TiB, and 24 TiB of memory per instance\. These instances are designed to run large in\-memory databases, including production deployments of the SAP HANA in\-memory database, in the cloud\. They offer bare metal performance with direct access to host hardware\. For more information, see [Amazon EC2 High Memory Instances](http://aws.amazon.com/ec2/instance-types/high-memory/) and [Storage Configuration for SAP HANA](https://docs.aws.amazon.com/quickstart/latest/sap-hana/storage.html)\.
 
@@ -121,6 +131,14 @@ The following is a summary of the hardware specifications for memory optimized i
 | r5n\.12xlarge | 48 | 384 | 
 | r5n\.16xlarge | 64 | 512 | 
 | r5n\.24xlarge | 96 | 768 | 
+| r6g\.medium | 1 | 8 | 
+| r6g\.large | 2 | 16 | 
+| r6g\.xlarge | 4 | 32 | 
+| r6g\.2xlarge | 8 | 64 | 
+| r6g\.4xlarge | 16 | 128 | 
+| r6g\.8xlarge | 32 | 256 | 
+| r6g\.12xlarge | 48 | 384 | 
+| r6g\.16xlarge | 64 | 512 | 
 | u\-6tb1\.metal | 448 \* | 6,144 | 
 | u\-9tb1\.metal | 448 \* | 9,216 | 
 | u\-12tb1\.metal | 448 \* | 12,288 | 
@@ -179,17 +197,17 @@ The following is a summary of network performance for memory optimized instances
 
 | Instance type | Network performance | Enhanced networking | 
 | --- | --- | --- | 
-|  r4\.4xlarge and smaller \| r5\.4xlarge and smaller \| r5a\.8xlarge and smaller \| r5ad\.4xlarge and smaller \|  r5d\.4xlarge and smaller \| x1e\.8large and smaller \| z1d\.3xlarge and smaller  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
+|  r4\.4xlarge and smaller \| r5\.4xlarge and smaller \| r5a\.8xlarge and smaller \| r5ad\.4xlarge and smaller \|  r5d\.4xlarge and smaller \| r6g\.4xlarge and smaller \|  x1e\.8large and smaller \| z1d\.3xlarge and smaller  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
 |  r4\.8xlarge \| r5\.8xlarge \| r5\.12xlarge \| r5a\.12xlarge \| r5ad\.12xlarge \| r5d\.8xlarge \| r5d\.12xlarge \| x1\.16xlarge \| x1e\.16xlarge \| z1d\.6xlarge  | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  r5a\.16xlarge \| r5ad\.16xlarge  | 12 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  r5\.16xlarge \| r5a\.24xlarge \| r5ad\.24xlarge \| r5d\.16xlarge  | 20 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  r5a\.16xlarge \| r5ad\.16xlarge  \| r6g\.8xlarge  | 12 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  r5\.16xlarge \| r5a\.24xlarge \| r5ad\.24xlarge \| r5d\.16xlarge  \| r6g\.12xlarge  | 20 Gbps | [ENA](enhanced-networking-ena.md) | 
 | r5dn\.4xlarge and smaller \| r5n\.4xlarge and smaller | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
-|  r4\.16xlarge \| r5\.24xlarge \| r5\.metal \| r5d\.24xlarge \| r5d\.metal \| r5dn\.8xlarge \| r5n\.8xlarge \| x1\.32xlarge \| x1e\.32xlarge \| z1d\.12xlarge \| z1d\.metal  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  r4\.16xlarge \| r5\.24xlarge \| r5\.metal \| r5d\.24xlarge \| r5d\.metal \| r5dn\.8xlarge \| r5n\.8xlarge \| r6g\.16xlarge \| r6g\.metal \| x1\.32xlarge \| x1e\.32xlarge \| z1d\.12xlarge \| z1d\.metal  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
 | r5dn\.12xlarge \| r5n\.12xlarge | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
 | r5dn\.16xlarge \| r5n\.16xlarge | 75 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  r5dn\.24xlarge \| r5n\.24xlarge \| u\-6tb1\.metal † \| u\-9tb1\.metal † \| u\-12tb1\.metal † \| u\-18tb1\.metal \| u\-24tb1\.metal  | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  r5dn\.24xlarge \| r5n\.24xlarge \| u\-6tb1\.metal \* \| u\-9tb1\.metal \* \| u\-12tb1\.metal \* \| u\-18tb1\.metal \| u\-24tb1\.metal  | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
 
-† Instances of this type launched after March 12, 2020 provide network performance of 100 Gbps\. Instances of this type launched before March 12, 2020 might only provide network performance of 25 Gbps\. To ensure that instances launched before March 12, 2020 have a network performance of 100 Gbps, contact your account team to upgrade your instance at no additional cost\.
+\* Instances of this type launched after March 12, 2020 provide network performance of 100 Gbps\. Instances of this type launched before March 12, 2020 might only provide network performance of 25 Gbps\. To ensure that instances launched before March 12, 2020 have a network performance of 100 Gbps, contact your account team to upgrade your instance at no additional cost\.
 
 † These instances use a network I/O credit mechanism to allocate network bandwidth to instances based on average bandwidth utilization\. They accrue credits when their bandwidth is below their baseline bandwidth, and can use these credits when they perform network data transfers\. For more information, open a support case and ask about baseline bandwidth for the specific instance types that you are interested in\.
 
@@ -253,6 +271,7 @@ The following is a summary of features for memory optimized instances\.
 | R5d | No | Yes | NVME \* | Yes | 
 | R5dn | No | Yes | NVME \* | Yes | 
 | R5n | Yes | Yes | No | Yes | 
+| R6g | Yes | Yes | No | Yes | 
 | u\-6tb1\.metal | Yes | Yes | No | No | 
 | u\-9tb1\.metal | Yes | Yes | No | No | 
 | u\-12tb1\.metal | Yes | Yes | No | No | 
@@ -289,6 +308,7 @@ The following AMIs support launching memory optimized instances:
 ## Release notes<a name="memory-instance-limits"></a>
 + R5 and R5d instances feature a 3\.1 GHz Intel Xeon Platinum 8000 series processor from either the first generation \(Skylake\-SP\) or second generation \(Cascade Lake\)\.
 + R5a and R5ad instances feature a 2\.5 GHz AMD EPYC 7000 series processor\.
++ R6g instances feature an AWS Graviton2 processor based on 64\-bit Arm architecture\.
 + Instances built on the Nitro System have the following requirements:
   + [NVMe drivers](nvme-ebs-volumes.md) must be installed
   + [Elastic Network Adapter \(ENA\) drivers](enhanced-networking-ena.md) must be installed
@@ -302,6 +322,15 @@ The following AMIs support launching memory optimized instances:
   + CentOS 7\.4\.1708 or later
   + FreeBSD 11\.1 or later
   + Debian GNU/Linux 9 or later
++ Instances with an AWS Graviton processors have the following requirements:
+  + Use an AMI for the 64\-bit Arm architecture\.
+  + Support booting through UEFI with ACPI tables and support ACPI hot\-plug of PCI devices\.
+
+  The following AMIs meet these requirements:
+  + Amazon Linux 2 \(64\-bit Arm\)
+  + Ubuntu 16\.04 or later \(64\-bit Arm\)
+  + Red Hat Enterprise Linux 8\.0 or later \(64\-bit Arm\)
+  + SUSE Linux Enterprise Server 15 or later \(64\-bit Arm\)
 + Instances built on the Nitro System instances support a maximum of 28 attachments, including network interfaces, EBS volumes, and NVMe instance store volumes\. For more information, see [Nitro System volume limits](volume_limits.md#instance-type-volume-limits)\.
 + Launching a bare metal instance boots the underlying server, which includes verifying all hardware and firmware components\. This means that it can take 20 minutes from the time the instance enters the running state until it becomes available over the network\.
 + To attach or detach EBS volumes or secondary network interfaces from a bare metal instance requires PCIe native hotplug support\. Amazon Linux 2 and the latest versions of the Amazon Linux AMI support PCIe native hotplug, but earlier versions do not\. You must enable the following Linux kernel configuration options:
