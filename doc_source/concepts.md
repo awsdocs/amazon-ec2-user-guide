@@ -1,4 +1,4 @@
-# What Is Amazon EC2?<a name="concepts"></a>
+# What is Amazon EC2?<a name="concepts"></a>
 
 Amazon Elastic Compute Cloud \(Amazon EC2\) provides scalable computing capacity in the Amazon Web Services \(AWS\) cloud\. Using Amazon EC2 eliminates your need to invest in hardware up front, so you can develop and deploy applications faster\. You can use Amazon EC2 to launch as many or as few virtual servers as you need, configure security and networking, and manage storage\. Amazon EC2 enables you to scale up or down to handle changes in requirements or spikes in popularity, reducing your need to forecast traffic\.
 
@@ -23,31 +23,31 @@ For more information about the features of Amazon EC2, see the [Amazon EC2 produ
 
 For more information about running your website on AWS, see [Web Hosting](https://aws.amazon.com/websites/)\.
 
-## How to Get Started with Amazon EC2<a name="how-to-get-started"></a>
+## How to get started with Amazon EC2<a name="how-to-get-started"></a>
 
 First, you need to get set up to use Amazon EC2\. After you are set up, you are ready to complete the Getting Started tutorial for Amazon EC2\. Whenever you need more information about an Amazon EC2 feature, you can read the technical documentation\.
 
-**Get Up and Running**
-+ [Setting Up with Amazon EC2](get-set-up-for-amazon-ec2.md)
-+ [Getting Started with Amazon EC2 Linux Instances](EC2_GetStarted.md)
+**Get up and running**
++ [Setting up with Amazon EC2](get-set-up-for-amazon-ec2.md)
++ [Getting started with Amazon EC2 Linux instances](EC2_GetStarted.md)
 
 **Basics**
 + [Instances and AMIs](ec2-instances-and-amis.md)
 + [Regions and Availability Zones](using-regions-availability-zones.md)
-+ [Instance Types](instance-types.md)
++ [Instance types](instance-types.md)
 + [Tags](Using_Tags.md)
 
-**Networking and Security**
-+ [Amazon EC2 key pairs](ec2-key-pairs.md)
+**Networking and security**
++ [Amazon EC2 key pairs and Linux instances](ec2-key-pairs.md)
 + [Security Groups](ec2-security-groups.md)
-+ [Elastic IP Addresses](elastic-ip-addresses-eip.md)
++ [Elastic IP addresses](elastic-ip-addresses-eip.md)
 + [Amazon EC2 and Amazon VPC](using-vpc.md)
 
 **Storage**
 + [Amazon EBS](AmazonEBS.md)
 + [Instance Store](InstanceStorage.md)
 
-**Working with Linux Instances**
+**Working with Linux instances**
 + [AWS Systems Manager Run Command](https://docs.aws.amazon.com/systems-manager/latest/userguide/execute-remote-commands.html) in the *AWS Systems Manager User Guide*
 + [Tutorial: Install a LAMP Web Server on Amazon Linux 2](ec2-lamp-amazon-linux-2.md)
 + [Tutorial: Configure SSL/TLS on Amazon Linux 2](SSL-on-amazon-linux-2.md)
@@ -55,7 +55,7 @@ First, you need to get set up to use Amazon EC2\. After you are set up, you are 
 
 If you have questions about whether AWS is right for you, [contact AWS Sales](https://aws.amazon.com/contact-us/)\. If you have technical questions about Amazon EC2, use the [Amazon EC2 forum](https://forums.aws.amazon.com/forum.jspa?forumID=30)\. 
 
-## Related Services<a name="related-services"></a>
+## Related services<a name="related-services"></a>
 
 You can provision Amazon EC2 resources, such as instances and volumes, directly using Amazon EC2\. You can also provision Amazon EC2 resources using other services in AWS\. For more information, see the following documentation:
 + [Amazon EC2 Auto Scaling User Guide](https://docs.aws.amazon.com/autoscaling/ec2/userguide/)
@@ -63,17 +63,13 @@ You can provision Amazon EC2 resources, such as instances and volumes, directly 
 + [AWS Elastic Beanstalk Developer Guide](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/)
 + [AWS OpsWorks User Guide](https://docs.aws.amazon.com/opsworks/latest/userguide/)
 
-To automatically distribute incoming application traffic across multiple instances, use Elastic Load Balancing\. For more information, see [Elastic Load Balancing User Guide](https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/)\.
+To automatically distribute incoming application traffic across multiple instances, use Elastic Load Balancing\. For more information, see the [Elastic Load Balancing User Guide](https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/)\.
 
-To monitor basic statistics for your instances and Amazon EBS volumes, use Amazon CloudWatch\. For more information, see the [Amazon CloudWatch User Guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/)\.
+To get a managed relational database in the cloud, use Amazon Relational Database Service \(Amazon RDS\) to launch a database instance\. Although you can set up a database on an EC2 instance, Amazon RDS offers the advantage of handling your database management tasks, such as patching the software, backing up, and storing the backups\. For more information, see the [Amazon Relational Database Service Developer Guide](https://docs.aws.amazon.com/AmazonRDS/latest/DeveloperGuide/)\.
 
-To automate actions, such as activating a Lambda function whenever a new Amazon EC2 instance starts, use Amazon CloudWatch Events\. For more information, see the [Amazon CloudWatch Events User Guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/)\.
+To make it easier to manage Docker contains on a cluster of EC2 instances, use Amazon Elastic Container Service \(Amazon ECS\)\. For more information, see the [Amazon Elastic Container Service Developer Guide](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/) or the [Amazon Elastic Container Service User Guide for AWS Fargate](https://docs.aws.amazon.com/AmazonECS/latest/userguide/)\.
 
-To monitor the calls made to the Amazon EC2 API for your account, including calls made by the AWS Management Console, command line tools, and other services, use AWS CloudTrail\. For more information, see the [AWS CloudTrail User Guide](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/)\.
-
-To get a managed relational database in the cloud, use Amazon Relational Database Service \(Amazon RDS\) to launch a database instance\. Although you can set up a database on an EC2 instance, Amazon RDS offers the advantage of handling your database management tasks, such as patching the software, backing up, and storing the backups\. For more information, see [Amazon Relational Database Service Developer Guide](https://docs.aws.amazon.com/AmazonRDS/latest/DeveloperGuide/)\.
-
-To import virtual machine \(VM\) images from your local environment into AWS and convert them into ready\-to\-use AMIs or instances, use VM Import/Export\. For more information, see the [ VM Import/Export User Guide](https://docs.aws.amazon.com/vm-import/latest/userguide/)\.
+To monitor basic statistics for your instances and Amazon EBS volumes, use Amazon CloudWatch\. For more information, see the [Amazon CloudWatch User Guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/)\. To detect potentially authorized or malicious use of your EC2 instances, use Amazon GuardDuty\. For more information see the [Amazon GuardDuty User Guide](https://docs.aws.amazon.com/guardduty/latest/ug/)\.
 
 ## Accessing Amazon EC2<a name="access-ec2"></a>
 
@@ -119,6 +115,6 @@ If you have questions concerning AWS billing, accounts, and events, [contact AWS
 
 For an overview of Trusted Advisor, a service that helps you optimize the costs, security, and performance of your AWS environment, see [AWS Trusted Advisor](https://aws.amazon.com/premiumsupport/trustedadvisor/)\.
 
-## PCI DSS Compliance<a name="pci-compliance"></a>
+## PCI DSS compliance<a name="pci-compliance"></a>
 
 Amazon EC2 supports the processing, storage, and transmission of credit card data by a merchant or service provider, and has been validated as being compliant with Payment Card Industry \(PCI\) Data Security Standard \(DSS\)\. For more information about PCI DSS, including how to request a copy of the AWS PCI Compliance Package, see [PCI DSS Level 1](https://aws.amazon.com/compliance/pci-dss-level-1-faqs/)\. 

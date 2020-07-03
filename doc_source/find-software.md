@@ -1,4 +1,4 @@
-# Finding Software Packages on Amazon Linux<a name="find-software"></a>
+# Finding software packages on an Amazon Linux instance<a name="find-software"></a>
 
 You can use the yum search command to search the descriptions of packages that are available in your configured repositories\. This is especially helpful if you don't know the exact name of the package you want to install\. Simply append the keyword search to the command; for multiple word searches, wrap the search query with quotation marks\.
 
@@ -48,5 +48,5 @@ mlocate.x86_64 : An utility for finding files by name
 Multiple word search queries in quotation marks only return results that match the exact query\. If you don't see the expected package, simplify your search to one keyword and then scan the results\. You can also try keyword synonyms to broaden your search\.
 
 For more information about packages for Amazon Linux 2 and Amazon Linux, see the following:
-+ [Package Repository](amazon-linux-ami-basics.md#package-repository)
-+ [Extras Library \(Amazon Linux 2\)](amazon-linux-ami-basics.md#extras-library)
++ [Package repository](amazon-linux-ami-basics.md#package-repository)
++ [Extras library \(Amazon Linux 2\)](amazon-linux-ami-basics.md#extras-library)

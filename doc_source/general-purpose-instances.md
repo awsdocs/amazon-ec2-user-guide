@@ -1,38 +1,47 @@
-# General Purpose Instances<a name="general-purpose-instances"></a>
+# General purpose instances<a name="general-purpose-instances"></a>
 
-General purpose instances provide a balance of compute, memory, and networking resources, and can be used for a variety of workloads\.
+General purpose instances provide a balance of compute, memory, and networking resources, and can be used for a wide range of workloads\.
 
-**A1 Instances**
+**A1 instances**
 
-A1 instances are ideally suited for scale\-out workloads that are supported by the Arm ecosystem\. These instances are well\-suited for the following applications:
+These instances are ideally suited for scale\-out workloads that are supported by the Arm ecosystem\. These instances are well\-suited for the following:
 + Web servers
 + Containerized microservices
+
+Bare metal instances, such as `a1.metal`, provide your applications with direct access to physical resources of the host server, such as processors and memory\.
+
+For more information, see [AWS Graviton Processor](https://aws.amazon.com/ec2/graviton) and [Amazon EC2 A1 Instances](https://aws.amazon.com/ec2/instance-types/a1)\.
+
+**M5 and M5a instances**
+
+These instances provide an ideal cloud infrastructure, offering a balance of compute, memory, and networking resources for a broad range of applications that are deployed in the cloud\. They are well\-suited for the following:
++ Small and midsize databases
++ Data processing tasks that require additional memory
 + Caching fleets
-+ Distributed data stores
-+ Applications that require the Arm instruction set
++ Backend servers for SAP, Microsoft SharePoint, cluster computing, and other enterprise applications
 
-`a1.metal` instances provide your applications with direct access to physical resources of the host server, such as processors and memory\.
+For more information, see [Amazon EC2 M5 and M5a Instances](https://aws.amazon.com/ec2/instance-types/m5)\.
 
-For more information, see [Amazon EC2 A1 Instances](https://aws.amazon.com/ec2/instance-types/a1)\.
-
-**M5, M5a, M5ad, M5d, M5dn, and M5n Instances**
-
-These instances provide an ideal cloud infrastructure, offering a balance of compute, memory, and networking resources for a broad range of applications that are deployed in the cloud\. M5 instances are well\-suited for the following applications:
-+ Web and application servers
-+ Small and medium databases
-+ Gaming servers
-+ Caching fleets
-+ Running backend servers for SAP, Microsoft SharePoint, cluster computing, and other enterprise applications
-
-`m5.metal` and `m5d.metal` instances provide your applications with direct access to physical resources of the host server, such as processors and memory\. These instances are well suited for the following:
+Bare metal instances, such as `m5.metal`, provide your applications with direct access to physical resources of the host server, such as processors and memory\. These instances are well suited for the following:
 + Workloads that require access to low\-level hardware features \(for example, Intel VT\) that are not available or fully supported in virtualized environments
 + Applications that require a non\-virtualized environment for licensing or support
 
-For more information, see [Amazon EC2 M5 Instances](https://aws.amazon.com/ec2/instance-types/m5)\.
+**M6g instances**
 
-**T2, T3, and T3a Instances**
+These instances are powered by AWS Graviton2 processors and deliver balanced compute, memory, and networking for a broad range a general purpose workloads\. They are well suited for the following:
++ Application servers
++ Microservices
++ Gaming servers
++ Midsize data stores
++ Caching fleets
 
-These instances provide a baseline level of CPU performance with the ability to burst to a higher level when required by your workload\. An Unlimited instance can sustain high CPU performance for any period of time whenever required\. For more information, see [Burstable Performance Instances](burstable-performance-instances.md)\. These instances are well\-suited for the following applications:
+Bare metal instances, such as `m6g.metal`, provide your applications with direct access to physical resources of the host server, such as processors and memory\.
+
+For more information, see [Amazon EC2 M6g Instances](https://aws.amazon.com/ec2/instance-types/m6)\.
+
+**T2, T3, and T3a instances**
+
+These instances provide a baseline level of CPU performance with the ability to burst to a higher level when required by your workload\. An Unlimited instance can sustain high CPU performance for any period of time whenever required\. For more information, see [Burstable performance instances](burstable-performance-instances.md)\. These instances are well\-suited for the following:
 + Websites and web applications
 + Code repositories
 + Development, build, test, and staging environments
@@ -41,15 +50,15 @@ These instances provide a baseline level of CPU performance with the ability to 
 For more information, see [Amazon EC2 T2 Instances](https://aws.amazon.com/ec2/instance-types/t2) and [Amazon EC2 T3 Instances](https://aws.amazon.com/ec2/instance-types/t3)\.
 
 **Topics**
-+ [Hardware Specifications](#general-purpose-hardware)
-+ [Instance Performance](#general-purpose-performance)
-+ [Network Performance](#general-purpose-network-performance)
-+ [SSD I/O Performance](#general-purpose-ssd-perf)
-+ [Instance Features](#general-purpose-features)
-+ [Release Notes](#general-purpose-instances-limits)
-+ [Burstable Performance Instances](burstable-performance-instances.md)
++ [Hardware specifications](#general-purpose-hardware)
++ [Instance performance](#general-purpose-performance)
++ [Network performance](#general-purpose-network-performance)
++ [SSD I/O performance](#general-purpose-ssd-perf)
++ [Instance features](#general-purpose-features)
++ [Release notes](#general-purpose-instances-limits)
++ [Burstable performance instances](burstable-performance-instances.md)
 
-## Hardware Specifications<a name="general-purpose-hardware"></a>
+## Hardware specifications<a name="general-purpose-hardware"></a>
 
 The following is a summary of the hardware specifications for general purpose instances\.
 
@@ -118,6 +127,15 @@ The following is a summary of the hardware specifications for general purpose in
 | m5n\.12xlarge | 48 | 192 | 
 | m5n\.16xlarge | 64 | 256 | 
 | m5n\.24xlarge | 96 | 384 | 
+| m6g\.medium | 1 | 4 | 
+| m6g\.large | 2 | 8 | 
+| m6g\.xlarge | 4 | 16 | 
+| m6g\.2xlarge | 8 | 32 | 
+| m6g\.4xlarge | 16 | 64 | 
+| m6g\.8xlarge | 32 | 128 | 
+| m6g\.12xlarge | 48 | 192 | 
+| m6g\.16xlarge | 64 | 256 | 
+| m6g\.metal | 64 | 256 | 
 | t2\.nano | 1 | 0\.5 | 
 | t2\.micro | 1 | 1 | 
 | t2\.small | 1 | 2 | 
@@ -142,72 +160,72 @@ The following is a summary of the hardware specifications for general purpose in
 
 For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
-For more information about specifying CPU options, see [Optimizing CPU Options](instance-optimize-cpu.md)\.
+For more information about specifying CPU options, see [Optimizing CPU options](instance-optimize-cpu.md)\.
 
-## Instance Performance<a name="general-purpose-performance"></a>
+## Instance performance<a name="general-purpose-performance"></a>
 
-EBS\-optimized instances enable you to get consistently high performance for your EBS volumes by eliminating contention between Amazon EBS I/O and other network traffic from your instance\. Some general purpose instances are EBS\-optimized by default at no additional cost\. For more information, see [Amazon EBS–Optimized Instances](ebs-optimized.md)\.
+EBS\-optimized instances enable you to get consistently high performance for your EBS volumes by eliminating contention between Amazon EBS I/O and other network traffic from your instance\. Some general purpose instances are EBS\-optimized by default at no additional cost\. For more information, see [Amazon EBS–optimized instances](ebs-optimized.md)\.
 
-Some general purpose instance types provide the ability to control processor C\-states and P\-states on Linux\. C\-states control the sleep levels that a core can enter when it is inactive, while P\-states control the desired performance \(in CPU frequency\) from a core\. For more information, see [Processor State Control for Your EC2 Instance](processor_state_control.md)\.
+Some general purpose instance types provide the ability to control processor C\-states and P\-states on Linux\. C\-states control the sleep levels that a core can enter when it is inactive, while P\-states control the desired performance \(in CPU frequency\) from a core\. For more information, see [Processor state control for your EC2 instance](processor_state_control.md)\.
 
-## Network Performance<a name="general-purpose-network-performance"></a>
+## Network performance<a name="general-purpose-network-performance"></a>
 
-You can enable enhanced networking capabilities on supported instance types\. Enhanced networking provides significantly higher packet\-per\-second \(PPS\) performance, lower network jitter, and lower latencies\. For more information, see [Enhanced Networking on Linux](enhanced-networking.md)\.
-
-Instance types that use the Elastic Network Adapter \(ENA\) for enhanced networking deliver high packet per second performance with consistently low latencies\. Most applications do not consistently need a high level of network performance, but can benefit from having access to increased bandwidth when they send or receive data\. Instance sizes that use the ENA and are documented with network performance of "Up to 10 Gbps" or "Up to 25 Gbps" use a network I/O credit mechanism to allocate network bandwidth to instances based on average bandwidth utilization\. These instances accrue credits when their network bandwidth is below their baseline limits, and can use these credits when they perform network data transfers\.
+You can enable enhanced networking on supported instance types to provide lower latencies, lower network jitter, and higher packet\-per\-second \(PPS\) performance\. Most applications do not consistently need a high level of network performance, but can benefit from access to increased bandwidth when they send or receive data\. For more information, see [Enhanced networking on Linux](enhanced-networking.md)\.
 
 The following is a summary of network performance for general purpose instances that support enhanced networking\.
 
 
 | Instance type | Network performance | Enhanced networking | 
 | --- | --- | --- | 
-| t2\.nano \| t2\.micro \| t2\.small \| t2\.medium \| t2\.large \| t2\.xlarge \| t2\.2xlarge | Up to 1 Gbps |  | 
-| t3\.nano \| t3\.micro \| t3\.small \| t3\.medium \| t3\.large \| t3\.xlarge \| t3\.2xlarge \| t3a\.nano \| t3a\.micro \| t3a\.small \| t3a\.medium \| t3a\.large \| t3a\.xlarge \| t3a\.2xlarge | Up to 5 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  `m4.large`  |  Moderate  |  [Intel 82599 VF](sriov-networking.md)  | 
-|  `m4.xlarge` \| `m4.2xlarge` \| `m4.4xlarge`  |  High  |  [Intel 82599 VF](sriov-networking.md)  | 
-|  `a1.medium` \| `a1.large` \| `a1.xlarge` \| `a1.2xlarge` \| `a1.4xlarge` \| `a1.metal` \| `m5.large` \| `m5.xlarge` \| `m5.2xlarge` \| `m5.4xlarge` \| `m5a.large` \| `m5a.xlarge` \| `m5a.2xlarge` \| `m5a.4xlarge` \| `m5a.8xlarge` \| `m5ad.large` \| `m5ad.xlarge` \| `m5ad.2xlarge` \| `m5ad.4xlarge` \| `m5ad.8xlarge` \| `m5d.large` \| `m5d.xlarge` \| `m5d.2xlarge` \| `m5d.4xlarge`   |  Up to 10 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  `m4.10xlarge`  |  10 Gbps  |  [Intel 82599 VF](sriov-networking.md)  | 
-|  `m5.8xlarge` \| `m5.12xlarge` \| `m5a.12xlarge` \| `m5ad.12xlarge` \| `m5d.8xlarge` \| `m5d.12xlarge`  |  10 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  `m5a.16xlarge` \| `m5ad.16xlarge`  |  12 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  `m5.16xlarge` \| `m5a.24xlarge` \| `m5ad.24xlarge` \| `m5d.16xlarge`  |  20 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  `m5dn.4xlarge` and smaller \| `m5n.4xlarge` and smaller   |  Up to 25 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  `m4.16xlarge` \| `m5.24xlarge` \| `m5.metal` \| `m5d.24xlarge` \| `m5d.metal` \| `m5dn.8xlarge` \| `m5n.8xlarge`  |  25 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  m5dn\.12xlarge \| m5n\.12xlarge  |  50 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  m5dn\.16xlarge \| m5n\.16xlarge  |  75 Gbps  | [ENA](enhanced-networking-ena.md) | 
-|  m5dn\.24xlarge \| m5n\.24xlarge  |  100 Gbps  | [ENA](enhanced-networking-ena.md) | 
+| t2\.nano \| t2\.micro \| t2\.small \| t2\.medium \| t2\.large \| t2\.xlarge \| t2\.2xlarge | Up to 1 Gbps | Not supported | 
+| t3\.nano \| t3\.micro \| t3\.small \| t3\.medium \| t3\.large \| t3\.xlarge \| t3\.2xlarge \| t3a\.nano \| t3a\.micro \| t3a\.small \| t3a\.medium \| t3a\.large \| t3a\.xlarge \| t3a\.2xlarge | Up to 5 Gbps † | [ENA](enhanced-networking-ena.md) | 
+| m4\.large | Moderate | [Intel 82599 VF](sriov-networking.md) | 
+|  m4\.xlarge \| m4\.2xlarge \| m4\.4xlarge  | High | [Intel 82599 VF](sriov-networking.md) | 
+|  a1\.4xlarge and smaller \|  a1\.metal \|  m5\.4xlarge and smaller \| m5a\.8xlarge and smaller \| m5ad\.8xlarge and smaller \| m5d\.4xlarge and smaller \| m6g\.4xlarge and smaller  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
+| m4\.10xlarge | 10 Gbps | [Intel 82599 VF](sriov-networking.md) | 
+|  m5\.8xlarge \| m5\.12xlarge \| m5a\.12xlarge \| m5ad\.12xlarge \| m5d\.8xlarge \| m5d\.12xlarge  | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  m5a\.16xlarge \| m5ad\.16xlarge  \| m6g\.8xlarge  | 12 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  m5\.16xlarge \| m5a\.24xlarge \| m5ad\.24xlarge \| m5d\.16xlarge  \| m6g\.12xlarge  | 20 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  m5dn\.4xlarge and smaller \| m5n\.4xlarge and smaller  | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
+|  m4\.16xlarge \| m5\.24xlarge \| m5\.metal \| m5d\.24xlarge \| m5d\.metal \| m5dn\.8xlarge \| m5n\.8xlarge  \| m6g\.16xlarge \| m6g\.metal  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  m5dn\.12xlarge \| m5n\.12xlarge  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  m5dn\.16xlarge \| m5n\.16xlarge  | 75 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  m5dn\.24xlarge \| m5n\.24xlarge  | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
 
-## SSD I/O Performance<a name="general-purpose-ssd-perf"></a>
+† These instances use a network I/O credit mechanism to allocate network bandwidth to instances based on average bandwidth utilization\. They accrue credits when their bandwidth is below their baseline bandwidth, and can use these credits when they perform network data transfers\. For more information, open a support case and ask about baseline bandwidth for the specific instance types that you are interested in\.
+
+## SSD I/O performance<a name="general-purpose-ssd-perf"></a>
 
 If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-based instance store volumes available to your instance, you get the IOPS \(4,096 byte block size\) performance listed in the following table \(at queue depth saturation\)\. Otherwise, you get lower IOPS performance\.
 
 
 | Instance Size | 100% Random Read IOPS | Write IOPS | 
 | --- | --- | --- | 
-|  `m5ad.large` \*  |  30,000  |  15,000  | 
-|  `m5ad.xlarge` \*  |  59,000  |  29,000  | 
-|  `m5ad.2xlarge` \*  |  117,000  |  57,000  | 
-|  `m5ad.4xlarge` \*  |  234,000  |  114,000  | 
-|  `m5ad.8xlarge`  |  466,666  |  233,333  | 
-|  `m5ad.12xlarge`  |  700,000  |  340,000  | 
-|  `m5ad.16xlarge`  |  933,333  |  466,666  | 
-|  `m5ad.24xlarge`  |  1,400,000  |  680,000  | 
-|  `m5d.large` \*  |  30,000  |  15,000  | 
-|  `m5d.xlarge` \*  |  59,000  |  29,000  | 
-|  `m5d.2xlarge` \*  |  117,000  |  57,000  | 
-|  `m5d.4xlarge` \*  |  234,000  |  114,000  | 
-|  `m5d.8xlarge`  |  466,666  |  233,333  | 
-|  `m5d.12xlarge`  |  700,000  |  340,000  | 
-|  `m5d.16xlarge`  |  933,333  |  466,666  | 
-|  `m5d.24xlarge`  |  1,400,000  |  680,000  | 
-|  `m5d.metal`  |  1,400,000  |  680,000  | 
-|  `m5dn.large` \*  |  30,000  |  15,000  | 
-|  `m5dn.xlarge` \*  |  59,000  |  29,000  | 
-|  `m5dn.2xlarge` \*  |  117,000  |  57,000  | 
-|  `m5dn.4xlarge` \*  |  234,000  |  114,000  | 
-|  `m5dn.8xlarge`  |  466,666  |  233,333  | 
-|  `m5dn.12xlarge`  |  700,000  |  340,000  | 
-|  `m5dn.16xlarge`  |  933,333  |  466,666  | 
-|  `m5dn.24xlarge`  |  1,400,000  |  680,000  | 
+| m5ad\.large \* | 30,000 | 15,000 | 
+| m5ad\.xlarge \* |  59,000  |  29,000  | 
+| m5ad\.2xlarge \* |  117,000  |  57,000  | 
+| m5ad\.4xlarge \* |  234,000  |  114,000  | 
+| m5ad\.8xlarge |  466,666  |  233,333  | 
+| m5ad\.12xlarge |  700,000  |  340,000  | 
+| m5ad\.16xlarge  |  933,333  |  466,666  | 
+| m5ad\.24xlarge |  1,400,000  |  680,000  | 
+| m5d\.large \* |  30,000  |  15,000  | 
+| m5d\.xlarge \* |  59,000  |  29,000  | 
+| m5d\.2xlarge \* |  117,000  |  57,000  | 
+| m5d\.4xlarge \* |  234,000  |  114,000  | 
+| m5d\.8xlarge |  466,666  |  233,333  | 
+| m5d\.12xlarge  |  700,000  |  340,000  | 
+| m5d\.16xlarge |  933,333  |  466,666  | 
+| m5d\.24xlarge |  1,400,000  |  680,000  | 
+| m5d\.metal |  1,400,000  |  680,000  | 
+| m5dn\.large \* |  30,000  |  15,000  | 
+| m5dn\.xlarge \* |  59,000  |  29,000  | 
+| m5dn\.2xlarge \*  |  117,000  |  57,000  | 
+| m5dn\.4xlarge \* |  234,000  |  114,000  | 
+| m5dn\.8xlarge |  466,666  |  233,333  | 
+| m5dn\.12xlarge |  700,000  |  340,000  | 
+| m5dn\.16xlarge | 933,333 |  466,666  | 
+| m5dn\.24xlarge  |  1,400,000  |  680,000  | 
 
 \* For these instances, you can get up to the specified performance\.
 
@@ -217,7 +235,7 @@ SSD controllers can use several strategies to reduce the impact of write amplifi
 
 For instance store volumes that support TRIM, you can use the TRIM command to notify the SSD controller whenever you no longer need data that you've written\. This provides the controller with more free space, which can reduce write amplification and increase performance\. For more information, see [Instance Store Volume TRIM Support](ssd-instance-store.md#InstanceStoreTrimSupport)\.
 
-## Instance Features<a name="general-purpose-features"></a>
+## Instance features<a name="general-purpose-features"></a>
 
 The following is a summary of features for general purpose instances:
 
@@ -232,6 +250,7 @@ The following is a summary of features for general purpose instances:
 | M5d | No | Yes | NVMe \* | Yes | 
 | M5dn | No | Yes | NVMe \* | Yes | 
 | M5n | Yes | Yes | No | Yes | 
+| M6g | Yes | Yes | No | Yes | 
 | T2 | Yes | No | No | No | 
 | T3 | Yes | Yes | No | No | 
 | T3a | Yes | Yes | No | No | 
@@ -239,27 +258,17 @@ The following is a summary of features for general purpose instances:
 **\*** The root device volume must be an Amazon EBS volume\.
 
 For more information, see the following:
-+ [Amazon EBS and NVMe on Linux Instances](nvme-ebs-volumes.md)
++ [Amazon EBS and NVMe on Linux instances](nvme-ebs-volumes.md)
 + [Amazon EC2 Instance Store](InstanceStorage.md)
-+ [Placement Groups](placement-groups.md)
++ [Placement groups](placement-groups.md)
 
-## Release Notes<a name="general-purpose-instances-limits"></a>
+## Release notes<a name="general-purpose-instances-limits"></a>
 + M5, M5d, and T3 instances feature a 3\.1 GHz Intel Xeon Platinum 8000 series processor from either the first generation \(Skylake\-SP\) or second generation \(Cascade Lake\)\.
 + M5a, M5ad, and T3a instances feature a 2\.5 GHz AMD EPYC 7000 series processor\.
 + A1 instances feature a 2\.3 GHz AWS Graviton processor based on 64\-bit Arm architecture\.
++ M6g instances feature an AWS Graviton2 processor based on 64\-bit Arm architecture\.
 + M4, M5, M5a, M5ad, M5d, `t2.large` and larger, and `t3.large` and larger, and `t3a.large` and larger instance types require 64\-bit HVM AMIs\. They have high\-memory, and require a 64\-bit operating system to take advantage of that capacity\. HVM AMIs provide superior performance in comparison to paravirtual \(PV\) AMIs on high\-memory instance types\. In addition, you must use an HVM AMI to take advantage of enhanced networking\.
-+ A1 instances have the following requirements:
-  + Use an AMI for the 64\-bit Arm architecture\.
-  + [NVMe drivers](nvme-ebs-volumes.md) must be installed
-  + [Elastic Network Adapter \(ENA\) drivers](enhanced-networking-ena.md) must be installed
-  + Support booting through UEFI with ACPI tables and support ACPI hot\-plug of PCI devices\.
-
-  The following AMIs meet these requirements:
-  + Amazon Linux 2 \(64\-bit Arm\)
-  + Ubuntu 16\.04 or later \(64\-bit Arm\)
-  + Red Hat Enterprise Linux 7\.6 or later \(64\-bit Arm\)
-  + SUSE Linux Enterprise Server 15 or later \(64\-bit Arm\)
-+ M5, M5a, M5ad, M5d, M5dn, M5n, T3, and T3a instances have the following requirements:
++ Instances built on the Nitro System have the following requirements:
   + [NVMe drivers](nvme-ebs-volumes.md) must be installed
   + [Elastic Network Adapter \(ENA\) drivers](enhanced-networking-ena.md) must be installed
 
@@ -272,7 +281,16 @@ For more information, see the following:
   + CentOS 7\.4\.1708 or later
   + FreeBSD 11\.1 or later
   + Debian GNU/Linux 9 or later
-+ A1, M5, M5a, M5ad, M5d, M5dn, M5n, T3, and T3a instances support a maximum of 28 attachments, including network interfaces, EBS volumes, and NVMe instance store volumes\. Every instance has at least one network interface attachment\. For example, if you have no additional network interface attachments on an EBS\-only instance, you could attach 27 EBS volumes to that instance\.
++ Instances with an AWS Graviton processors have the following requirements:
+  + Use an AMI for the 64\-bit Arm architecture\.
+  + Support booting through UEFI with ACPI tables and support ACPI hot\-plug of PCI devices\.
+
+  The following Linux AMIs meet these requirements:
+  + Amazon Linux 2 \(64\-bit Arm\)
+  + Ubuntu 16\.04 or later \(64\-bit Arm\)
+  + Red Hat Enterprise Linux 8\.0 or later \(64\-bit Arm\)
+  + SUSE Linux Enterprise Server 15 or later \(64\-bit Arm\)
++ Instances built on the Nitro System instances support a maximum of 28 attachments, including network interfaces, EBS volumes, and NVMe instance store volumes\. For more information, see [Nitro System volume limits](volume_limits.md#instance-type-volume-limits)\.
 + Launching a bare metal instance boots the underlying server, which includes verifying all hardware and firmware components\. This means that it can take 20 minutes from the time the instance enters the running state until it becomes available over the network\.
 + To attach or detach EBS volumes or secondary network interfaces from a bare metal instance requires PCIe native hotplug support\. Amazon Linux 2 and the latest versions of the Amazon Linux AMI support PCIe native hotplug, but earlier versions do not\. You must enable the following Linux kernel configuration options:
 
@@ -281,5 +299,5 @@ For more information, see the following:
   CONFIG_PCIEASPM=y
   ```
 + Bare metal instances use a PCI\-based serial device rather than an I/O port\-based serial device\. The upstream Linux kernel and the latest Amazon Linux AMIs support this device\. Bare metal instances also provide an ACPI SPCR table to enable the system to automatically use the PCI\-based serial device\. The latest Windows AMIs automatically use the PCI\-based serial device\.
-+ A1, M5, M5a, M5ad, M5d, M5dn, M5n, T3, and T3a instances should have system\-logind or acpid installed to support clean shutdown through API requests\.
-+ There is a limit on the total number of instances that you can launch in a region, and there are additional limits on some instance types\. For more information, see [How many instances can I run in Amazon EC2?](https://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2)\. To request a limit increase, use the [Amazon EC2 Instance Request Form](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-instances)\.
++ Instances built on the Nitro System should have system\-logind or acpid installed to support clean shutdown through API requests\.
++ There is a limit on the total number of instances that you can launch in a Region, and there are additional limits on some instance types\. For more information, see [How many instances can I run in Amazon EC2?](https://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2) in the Amazon EC2 FAQ\.

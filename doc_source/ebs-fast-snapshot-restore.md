@@ -1,17 +1,18 @@
-# Amazon EBS Fast Snapshot Restore<a name="ebs-fast-snapshot-restore"></a>
+# Amazon EBS fast snapshot restore<a name="ebs-fast-snapshot-restore"></a>
 
 Amazon EBS fast snapshot restore enables you to create a volume from a snapshot that is fully\-initialized at creation\. This eliminates the latency of I/O operations on a block when it is accessed for the first time\. Volumes created using fast snapshot restore instantly deliver all of their provisioned performance\.
 
 To get started, enable fast snapshot restore for specific snapshots in specific Availability Zones\. Each snapshot and Availability Zone pair refers to one fast snapshot restore\. You can enable up to 50 fast snapshot restores per Region\. When you create a volume from one of these snapshots in one of its enabled Availability Zones, the volume is restored using fast snapshot restore\.
 
 **Topics**
-+ [Fast Snapshot Restore States](#fsr-states)
-+ [Volume Creation Credits](#volume-creation-credits)
-+ [Managing Fast Snapshot Restore](#manage-fsr)
-+ [View Snapshots with Fast Snapshot Restore Enabled](#view-fsr-enabled-snapshots)
-+ [View Volumes Restored Using Fast Snapshot Restore](#view-fast-restored-volumes)
++ [Fast snapshot restore states](#fsr-states)
++ [Volume creation credits](#volume-creation-credits)
++ [Managing fast snapshot restore](#manage-fsr)
++ [View snapshots with fast snapshot restore enabled](#view-fsr-enabled-snapshots)
++ [View volumes restored using fast snapshot restore](#view-fast-restored-volumes)
++ [Pricing and billing](#pricing)
 
-## Fast Snapshot Restore States<a name="fsr-states"></a>
+## Fast snapshot restore states<a name="fsr-states"></a>
 
 After you enable fast snapshot restore for a snapshot, it can be in one of the following states\.
 + `enabling` — A request was made to enable fast snapshot restore\.
@@ -20,7 +21,7 @@ After you enable fast snapshot restore for a snapshot, it can be in one of the f
 + `disabling` — A request was made to disable fast snapshot restore or a request to enable fast snapshot restore failed\.
 + `disabled` — Fast snapshot restore is disabled\. You can enable fast snapshot restore again as needed\.
 
-## Volume Creation Credits<a name="volume-creation-credits"></a>
+## Volume creation credits<a name="volume-creation-credits"></a>
 
 The number of volumes that receive the full performance benefit of fast snapshot restore is determined by the volume creation credits for the snapshot\. There is one credit bucket per snapshot per Availability Zone\. Each volume that you create from a snapshot with fast snapshot restore enabled consumes one credit from the credit bucket\.
 
@@ -38,11 +39,11 @@ MIN (10, 1024/snapshot_size_gib)
 
 For example, if you enable fast snapshot restore for a snapshot with a size of 100 GiB, the maximum size of its credit bucket is 10 credits and the refill rate is 10 credits per hour\. When the credit bucket is full, you can create 10 initialized volumes from this snapshot simultaneously\.
 
-You can use Cloudwatch metrics to monitor the size of your credit buckets and the number of credits available in each bucket\. For more information, see [Fast Snapshot Restore Metrics](using_cloudwatch_ebs.md#fast-snapshot-restore-metrics)\.
+You can use Cloudwatch metrics to monitor the size of your credit buckets and the number of credits available in each bucket\. For more information, see [Fast snapshot restore metrics](using_cloudwatch_ebs.md#fast-snapshot-restore-metrics)\.
 
 After you create a volume from a snapshot with fast snapshot restore enabled, you can describe the volume using [describe\-volumes](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-volumes.html) and check the `fastRestored` field in the output to determine whether the volume was created as an initialized volume using fast snapshot restore\.
 
-## Managing Fast Snapshot Restore<a name="manage-fsr"></a>
+## Managing fast snapshot restore<a name="manage-fsr"></a>
 
 Use the following procedure to enable fast snapshot restore for a snapshot\. You must own the snapshot\. You cannot enable fast snapshot restore on a snapshot that was shared with you\.
 
@@ -65,7 +66,7 @@ Use the following procedure to enable fast snapshot restore for a snapshot\. You
 + [disable\-fast\-snapshot\-restores](https://docs.aws.amazon.com/cli/latest/reference/ec2/disable-fast-snapshot-restores.html)
 + [describe\-fast\-snapshot\-restores](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-fast-snapshot-restores.html)
 
-## View Snapshots with Fast Snapshot Restore Enabled<a name="view-fsr-enabled-snapshots"></a>
+## View snapshots with fast snapshot restore enabled<a name="view-fsr-enabled-snapshots"></a>
 
 Use the following procedure to view the state of fast snapshot restore for a snapshot\.
 
@@ -115,7 +116,7 @@ The following is example output\.
 }
 ```
 
-## View Volumes Restored Using Fast Snapshot Restore<a name="view-fast-restored-volumes"></a>
+## View volumes restored using fast snapshot restore<a name="view-fast-restored-volumes"></a>
 
 When you create a volume from a snapshot that is enabled for fast snapshot restore in the Availability Zone for the volume, it is restored using fast snapshot restore\.
 
@@ -147,3 +148,11 @@ The following is example output\.
     ]
 }
 ```
+
+## Pricing and billing<a name="pricing"></a>
+
+You are billed for each minute that fast snapshot restore is enabled for a snapshot in a particular Availability Zone\. Charges are pro\-rated with a minimum of one hour\. 
+
+For example, if you enable fast snapshot restore for one snapshot in `US-East-1a` for one month \(30 days\), you are billed **$540** \(`1` snapshot x `1` AZ x `720` hours x `$0.75` per hour\)\. If you enable fast snapshot restore for two snapshots in `US-East-1a`, `US-East-1b`, and `US-East-1c` for the same period, you are billed **$3240** \(`2` snapshot x `3` AZs x `720` hours x `$0.75` per hour\)\.
+
+For more information, see [Amazon EBS pricing](http://aws.amazon.com/ebs/pricing/)\.

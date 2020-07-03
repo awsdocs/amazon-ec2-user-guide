@@ -1,20 +1,52 @@
-# Troubleshooting Connecting to Your Instance<a name="TroubleshootingInstancesConnecting"></a>
+# Troubleshooting connecting to your instance<a name="TroubleshootingInstancesConnecting"></a>
 
-The following are possible problems you may have and error messages you may see while trying to connect to your instance\.
+The following information can help you troubleshoot issues with connecting to your instance\. For additional help with Windows instances, see [Troubleshooting Windows Instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/troubleshooting-windows-instances.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
 **Topics**
++ [Common causes for connection issues](#TroubleshootingInstancesCommonCauses)
 + [Error connecting to your instance: Connection timed out](#TroubleshootingInstancesConnectionTimeout)
 + [Error: unable to load key … Expecting: ANY PRIVATE KEY](#troubleshoot-instance-connect-key-file)
 + [Error: User key not recognized by server](#TroubleshootingInstancesServerError)
-+ [Error: Host key not found, Permission denied \(publickey\), *or* Authentication failed, permission denied](#TroubleshootingInstancesConnectingSSH)
-+ [Error: Unprotected Private Key File](#troubleshoot-unprotected-key)
++ [Error: Permission denied or connection closed by \[instance\] port 22](#TroubleshootingInstancesConnectingSSH)
++ [Error: Unprotected private key file](#troubleshoot-unprotected-key)
 + [Error: Private key must begin with "\-\-\-\-\-BEGIN RSA PRIVATE KEY\-\-\-\-\-" and end with "\-\-\-\-\-END RSA PRIVATE KEY\-\-\-\-\-"](#troubleshoot-private-key-file-format)
 + [Error: Server refused our key *or* No supported authentication methods available](#TroubleshootingInstancesConnectingPuTTY)
-+ [Cannot Connect Using My Browser](#troubleshoot-instance-connect-mindterm)
-+ [Cannot Ping Instance](#troubleshoot-instance-ping)
++ [Cannot ping instance](#troubleshoot-instance-ping)
 + [Error: Server unexpectedly closed network connection](#troubleshoot-ssh)
 
-For additional help with Windows instances, see [Troubleshooting Windows Instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/troubleshooting-windows-instances.html) in the *Amazon EC2 User Guide for Windows Instances*\.
+## Common causes for connection issues<a name="TroubleshootingInstancesCommonCauses"></a>
+
+We recommend that you begin troubleshooting by checking some common causes for issues connecting to your instance\.
+
+**Verify the user name for your instance**  
+You can connect to your instance using the user name for your user account or the default user name for the AMI that you used to launch your instance\.  
++ **Get the user name for your user account\.**
+
+  For more information about how to create a user account, see [Managing user accounts on your Amazon Linux instance](managing-users.md)\.
++ **Get the default user name for the AMI that you used to launch your instance:**
+  + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
+  + For a CentOS AMI, the user name is `centos`\.
+  + For a Debian AMI, the user name is `admin` or `root`\.
+  + For a Fedora AMI, the user name is `ec2-user` or `fedora`\.
+  + For a RHEL AMI, the user name is `ec2-user` or `root`\.
+  + For a SUSE AMI, the user name is `ec2-user` or `root`\.
+  + For an Ubuntu AMI, the user name is `ubuntu`\.
+  + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
+
+**Verify that your security group rules allow traffic**  
+Make sure your security group rules allow inbound traffic from your public IPv4 address on the proper port\. For steps to verify, see [Error connecting to your instance: Connection timed out](#TroubleshootingInstancesConnectionTimeout)
+
+**Verify that your instance is ready**  
+After you launch an instance, it can take a few minutes for the instance to be ready so that you can connect to it\. Check your instance to make sure it is running and has passed its status checks\.  
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances**, and then select your instance\.
+
+1. Verify that your **Instance State** is running and your **Status Checks** have passed\. 
+
+**Verify the general prerequisites for connecting to your instance**  
+For more information, see [General prerequisites for connecting to your instance](connection-prereqs.md)\.
 
 ## Error connecting to your instance: Connection timed out<a name="TroubleshootingInstancesConnectionTimeout"></a>
 
@@ -69,10 +101,10 @@ If you try to connect to your instance and get an error message `Network error: 
 + If your computer is on a corporate network, ask your network administrator whether the internal firewall allows inbound and outbound traffic from your computer on port 22 \(for Linux instances\) or port 3389 \(for Windows instances\)\.
 
   If you have a firewall on your computer, verify that it allows inbound and outbound traffic from your computer on port 22 \(for Linux instances\) or port 3389 \(for Windows instances\)\.
-+ Check that your instance has a public IPv4 address\. If not, you can associate an Elastic IP address with your instance\. For more information, see [Elastic IP Addresses](elastic-ip-addresses-eip.md)\. 
-+ Check the CPU load on your instance; the server may be overloaded\. AWS automatically provides data such as Amazon CloudWatch metrics and instance status, which you can use to see how much CPU load is on your instance and, if necessary, adjust how your loads are handled\. For more information, see [Monitoring Your Instances Using CloudWatch](using-cloudwatch.md)\. 
++ Check that your instance has a public IPv4 address\. If not, you can associate an Elastic IP address with your instance\. For more information, see [Elastic IP addresses](elastic-ip-addresses-eip.md)\. 
++ Check the CPU load on your instance; the server may be overloaded\. AWS automatically provides data such as Amazon CloudWatch metrics and instance status, which you can use to see how much CPU load is on your instance and, if necessary, adjust how your loads are handled\. For more information, see [Monitoring your instances using CloudWatch](using-cloudwatch.md)\. 
   + If your load is variable, you can automatically scale your instances up or down using [Auto Scaling](https://aws.amazon.com/autoscaling/) and [Elastic Load Balancing](https://aws.amazon.com/elasticloadbalancing/)\. 
-  + If your load is steadily growing, you can move to a larger instance type\. For more information, see [Changing the Instance Type](ec2-instance-resize.md)\. 
+  + If your load is steadily growing, you can move to a larger instance type\. For more information, see [Changing the instance type](ec2-instance-resize.md)\. 
 
 To connect to your instance using an IPv6 address, check the following: 
 + Your subnet must be associated with a route table that has a route for IPv6 traffic \(`::/0`\) to an internet gateway\. 
@@ -87,9 +119,9 @@ If you try to connect to your instance and get the error message, `unable to loa
 
 **If the private key file is incorrectly configured, follow these steps to resolve the error**
 
-1. Create a new key pair\. For more information, see [Creating a key pair using Amazon EC2](ec2-key-pairs.md#having-ec2-create-your-key-pair)\.
+1. Create a new key pair\. For more information, see [Option 1: Create a key pair using Amazon EC2](ec2-key-pairs.md#having-ec2-create-your-key-pair)\.
 
-1. Add the new key pair to your instance\. For more information, see [Connecting to your Linux instance if you lose your private key](ec2-key-pairs.md#replacing-lost-key-pair)\.
+1. Add the new key pair to your instance\. For more information, see [Connecting to your Linux instance if you lose your private key](replacing-lost-key-pair.md)\.
 
 1. Connect to your instance using the new key pair\.
 
@@ -99,7 +131,7 @@ If you try to connect to your instance and get the error message, `unable to loa
 + Use `ssh -vvv` to get triple verbose debugging information while connecting:
 
   ```
-  ssh -vvv -i [your key name].pem ec2-user@[public DNS address of your instance].compute-1.amazonaws.com
+  ssh -vvv -i path/my-key-pair.pem my-instance-user-name@ec2-203-0-113-25.compute-1.amazonaws.com
   ```
 
   The following sample output demonstrates what you might see if you were trying to connect to your instance with a key that was not recognized by the server:
@@ -137,7 +169,7 @@ If you try to connect to your instance and get the error message, `unable to loa
   ```
 
 **If you use PuTTY to connect to your instance**
-+ Verify that your private key \(\.pem\) file has been converted to the format recognized by PuTTY \(\.ppk\)\. For more information about converting your private key, see [Connecting to Your Linux Instance from Windows Using PuTTY](putty.md)\.
++ Verify that your private key \(\.pem\) file has been converted to the format recognized by PuTTY \(\.ppk\)\. For more information about converting your private key, see [Connecting to your Linux instance from Windows using PuTTY](putty.md)\.
 **Note**  
 In PuTTYgen, load your private key file and select **Save Private Key** rather than **Generate**\. 
 + Verify that you are connecting with the appropriate user name for your AMI\. Enter the user name in the **Host name** box in the **PuTTY Configuration** window\.
@@ -151,9 +183,9 @@ In PuTTYgen, load your private key file and select **Save Private Key** rather t
   + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
 + Verify that you have an inbound security group rule to allow inbound traffic to the appropriate port\. For more information, see [Authorizing Network Access to Your Instances](authorizing-access-to-an-instance.md)\. 
 
-## Error: Host key not found, Permission denied \(publickey\), *or* Authentication failed, permission denied<a name="TroubleshootingInstancesConnectingSSH"></a>
+## Error: Permission denied or connection closed by \[instance\] port 22<a name="TroubleshootingInstancesConnectingSSH"></a>
 
-If you connect to your instance using SSH and get any of the following errors, `Host key not found in [directory]`, `Permission denied (publickey)`, or `Authentication failed, permission denied`, verify that you are connecting with the appropriate user name for your AMI *and* that you have specified the proper private key \(`.pem)` file for your instance\.
+If you connect to your instance using SSH and get any of the following errors, `Host key not found in [directory]`, `Permission denied (publickey)`, `Authentication failed, permission denied`, or `Connection closed by [instance] port 22`, verify that you are connecting with the appropriate user name for your AMI *and* that you have specified the proper private key \(`.pem)` file for your instance\.
 
 The appropriate user names are as follows:
 + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
@@ -168,7 +200,7 @@ The appropriate user names are as follows:
 For example, to use an SSH client to connect to an Amazon Linux instance, use the following command:
 
 ```
-ssh -i /path/my-key-pair.pem ec2-user@public-dns-hostname
+ssh -i /path/my-key-pair.pem my-instance-user-name@ec2-203-0-113-25.compute-1.amazonaws.com
 ```
 
 Confirm that you are using the private key file that corresponds to the key pair that you selected when you launched the instance\.
@@ -177,39 +209,39 @@ Confirm that you are using the private key file that corresponds to the key pair
 
 1. Select your instance\. In the **Description** tab, verify the value of **Key pair name**\.
 
-1. If you did not specify a key pair when you launched the instance, you can terminate the instance and launch a new instance, ensuring that you specify a key pair\. If this is an instance that you have been using but you no longer have the `.pem` file for your key pair, you can replace the key pair with a new one\. For more information, see [Connecting to your Linux instance if you lose your private key](ec2-key-pairs.md#replacing-lost-key-pair)\.
+1. If you did not specify a key pair when you launched the instance, you can terminate the instance and launch a new instance, ensuring that you specify a key pair\. If this is an instance that you have been using but you no longer have the `.pem` file for your key pair, you can replace the key pair with a new one\. For more information, see [Connecting to your Linux instance if you lose your private key](replacing-lost-key-pair.md)\.
 
 If you generated your own key pair, ensure that your key generator is set up to create RSA keys\. DSA keys are not accepted\.
 
-If you get a `Permission denied (publickey)` error and none of the above applies \(for example, you were able to connect previously\), the permissions on the home directory of your instance may have been changed\. Permissions for `/home/ec2-user/.ssh/authorized_keys` must be limited to the owner only\.
+If you get a `Permission denied (publickey)` error and none of the above applies \(for example, you were able to connect previously\), the permissions on the home directory of your instance may have been changed\. Permissions for `/home/my-instance-user-name/.ssh/authorized_keys` must be limited to the owner only\.
 
 **To verify the permissions on your instance**
 
-1. Stop your instance and detach the root volume\. For more information, see [Stop and start your instance](Stop_Start.md) and [Detaching an Amazon EBS Volume from an Instance](ebs-detaching-volume.md)\.
+1. Stop your instance and detach the root volume\. For more information, see [Stop and start your instance](Stop_Start.md) and [Detaching an Amazon EBS volume from a Linux instance](ebs-detaching-volume.md)\.
 
-1. Launch a temporary instance in the same Availability Zone as your current instance \(use a similar or the same AMI as you used for your current instance\), and attach the root volume to the temporary instance\. For more information, see [Attaching an Amazon EBS Volume to an Instance](ebs-attaching-volume.md)\.
+1. Launch a temporary instance in the same Availability Zone as your current instance \(use a similar or the same AMI as you used for your current instance\), and attach the root volume to the temporary instance\. For more information, see [Attaching an Amazon EBS volume to an instance](ebs-attaching-volume.md)\.
 
-1. Connect to the temporary instance, create a mount point, and mount the volume that you attached\. For more information, see [Making an Amazon EBS Volume Available for Use on Linux](ebs-using-volumes.md)\.
+1. Connect to the temporary instance, create a mount point, and mount the volume that you attached\. For more information, see [Making an Amazon EBS volume available for use on Linux](ebs-using-volumes.md)\.
 
-1. From the temporary instance, check the permissions of the `/home/ec2-user/` directory of the attached volume\. If necessary, adjust the permissions as follows:
-
-   ```
-   [ec2-user ~]$ chmod 600 mount_point/home/ec2-user/.ssh/authorized_keys
-   ```
+1. From the temporary instance, check the permissions of the `/home/my-instance-user-name/` directory of the attached volume\. If necessary, adjust the permissions as follows:
 
    ```
-   [ec2-user ~]$ chmod 700 mount_point/home/ec2-user/.ssh
+   [ec2-user ~]$ chmod 600 mount_point/home/my-instance-user-name/.ssh/authorized_keys
    ```
 
    ```
-   [ec2-user ~]$ chmod 700 mount_point/home/ec2-user
+   [ec2-user ~]$ chmod 700 mount_point/home/my-instance-user-name/.ssh
+   ```
+
+   ```
+   [ec2-user ~]$ chmod 700 mount_point/home/my-instance-user-name
    ```
 
 1. Unmount the volume, detach it from the temporary instance, and re\-attach it to the original instance\. Ensure that you specify the correct device name for the root volume; for example, `/dev/xvda`\.
 
 1. Start your instance\. If you no longer require the temporary instance, you can terminate it\.
 
-## Error: Unprotected Private Key File<a name="troubleshoot-unprotected-key"></a>
+## Error: Unprotected private key file<a name="troubleshoot-unprotected-key"></a>
 
 Your private key file must be protected from read and write operations from any other users\. If your private key can be read or written to by anyone but you, then SSH ignores your key and you see the following warning message below\.
 
@@ -254,24 +286,18 @@ The appropriate user names are as follows:
 + For an Ubuntu AMI, the user name is `ubuntu`\.
 + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
 
-You should also verify that your private key \(\.pem\) file has been correctly converted to the format recognized by PuTTY \(\.ppk\)\. For more information about converting your private key, see [Connecting to Your Linux Instance from Windows Using PuTTY](putty.md)\.
+You should also verify that your private key \(\.pem\) file has been correctly converted to the format recognized by PuTTY \(\.ppk\)\. For more information about converting your private key, see [Connecting to your Linux instance from Windows using PuTTY](putty.md)\.
 
-## Cannot Connect Using My Browser<a name="troubleshoot-instance-connect-mindterm"></a>
+## Cannot ping instance<a name="troubleshoot-instance-ping"></a>
 
-The Amazon EC2 console provides an option to connect to your instances directly from your browser using a Java SSH client\. If your browser doesn't support NPAPI, then you get an error message NPAPI deprecation on Chrome when you connect\. The message recommends that you use a different browser\. However, recent versions of these browsers also do not support NPAPI, so you cannot use them to connect to your instance and you must choose a different method to connect to your instance\.
+The `ping` command is a type of ICMP traffic — if you are unable to ping your instance, ensure that your inbound security group rules allow ICMP traffic for the `Echo Request` message from all sources, or from the computer or instance from which you are issuing the command\.
 
-For more information, see the following resources:
-+ General: [NPAPI Wikipedia article](https://en.wikipedia.org/wiki/NPAPI#Support/deprecation)
-+ Chrome: [NPAPI deprecation article](https://www.chromium.org/developers/npapi-deprecation)
-+ Firefox: [NPAPI deprecation article](https://www.java.com/en/download/faq/firefox_java.xml)
-+ Safari: [NPAPI deprecation article](https://java.com/en/download/faq/safari.xml)
+If you are unable to issue a `ping` command from your instance, ensure that your outbound security group rules allow ICMP traffic for the `Echo Request` message to all destinations, or to the host that you are attempting to ping\.
 
-## Cannot Ping Instance<a name="troubleshoot-instance-ping"></a>
-
-The `ping` command is a type of ICMP traffic — if you are unable to ping your instance, ensure that your inbound security group rules allow ICMP traffic for the `Echo Request` message from all sources, or from the computer or instance from which you are issuing the command\. If you are unable to issue a `ping` command from your instance, ensure that your outbound security group rules allow ICMP traffic for the `Echo Request` message to all destinations, or to the host that you are attempting to ping\.
+`Ping` commands can also be blocked by a firewall or time out due to network latency or hardware issues\. You should consult your local network or system administrator for help with further troubleshooting\.
 
 ## Error: Server unexpectedly closed network connection<a name="troubleshoot-ssh"></a>
 
-If you are connecting to your instance with Putty and you receive the error "Server unexpectedly closed network connection," verify that you have enabled keepalives on the Connection page of the Putty Configuration to avoid being disconnected\. Some servers disconnect clients when they do not receive any data within a specified period of time\. Set the Seconds between keepalives to 59 seconds\. 
+If you are connecting to your instance with PuTTY and you receive the error "Server unexpectedly closed network connection," verify that you have enabled keepalives on the Connection page of the PuTTY Configuration to avoid being disconnected\. Some servers disconnect clients when they do not receive any data within a specified period of time\. Set the Seconds between keepalives to 59 seconds\. 
 
-If you still experience issues after enabling keepalives, try to disable Nagle's algorithm on the Connection page of the Putty Configuration\. 
+If you still experience issues after enabling keepalives, try to disable Nagle's algorithm on the Connection page of the PuTTY Configuration\. 

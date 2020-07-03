@@ -1,12 +1,12 @@
-# Monitoring Your CPU Credits<a name="burstable-performance-instances-monitoring-cpu-credits"></a>
+# Monitoring your CPU credits<a name="burstable-performance-instances-monitoring-cpu-credits"></a>
 
 You can see the credit balance for each instance in the Amazon EC2 per\-instance metrics of the CloudWatch console\.
 
 **Topics**
-+ [Additional CloudWatch Metrics for Burstable Performance Instances](#burstable-performance-instances-cw-metrics)
-+ [Calculating CPU Credit Usage](#burstable-performance-instances-calculating-credit-use)
++ [Additional CloudWatch metrics for burstable performance instances](#burstable-performance-instances-cw-metrics)
++ [Calculating CPU credit usage](#burstable-performance-instances-calculating-credit-use)
 
-## Additional CloudWatch Metrics for Burstable Performance Instances<a name="burstable-performance-instances-cw-metrics"></a>
+## Additional CloudWatch metrics for burstable performance instances<a name="burstable-performance-instances-cw-metrics"></a>
 
 T3, T3a, and T2 instances have these additional CloudWatch metrics, which are updated every five minutes:
 + `CPUCreditUsage` – The number of CPU credits spent during the measurement period\.
@@ -16,7 +16,7 @@ T3, T3a, and T2 instances have these additional CloudWatch metrics, which are up
 
 The last two metrics apply only to instances configured as `unlimited`\.
 
-The following table describes the CloudWatch metrics for burstable performance instances\. For more information, see [List the Available CloudWatch Metrics for Your Instances](viewing_metrics_with_cloudwatch.md)\.
+The following table describes the CloudWatch metrics for burstable performance instances\. For more information, see [List the available CloudWatch metrics for your instances](viewing_metrics_with_cloudwatch.md)\.
 
 
 | Metric | Description | 
@@ -26,13 +26,13 @@ The following table describes the CloudWatch metrics for burstable performance i
 | CPUSurplusCreditBalance  |  The number of surplus credits that have been spent by an `unlimited` instance when its `CPUCreditBalance` value is zero\. The `CPUSurplusCreditBalance` value is paid down by earned CPU credits\. If the number of surplus credits exceeds the maximum number of credits that the instance can earn in a 24\-hour period, the spent surplus credits above the maximum incur an additional charge\. Units: Credits \(vCPU\-minutes\)   | 
 | CPUSurplusCreditsCharged |  The number of spent surplus credits that are not paid down by earned CPU credits, and which thus incur an additional charge\. Spent surplus credits are charged when any of the following occurs:  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances-monitoring-cpu-credits.html) Units: Credits \(vCPU\-minutes\)   | 
 
-## Calculating CPU Credit Usage<a name="burstable-performance-instances-calculating-credit-use"></a>
+## Calculating CPU credit usage<a name="burstable-performance-instances-calculating-credit-use"></a>
 
 The CPU credit usage of instances is calculated using the instance CloudWatch metrics described in the preceding table\.
 
 Amazon EC2 sends the metrics to CloudWatch every five minutes\. A reference to the *prior* value of a metric at any point in time implies the previous value of the metric, sent *five minutes ago*\.
 
-### Calculating CPU Credit Usage for Standard Instances<a name="burstable-performance-instances-standard-calculation"></a>
+### Calculating CPU credit usage for Standard instances<a name="burstable-performance-instances-standard-calculation"></a>
 + The CPU credit balance increases if CPU utilization is below the baseline, when the credits spent are less than the credits earned in the prior five\-minute interval\. 
 + The CPU credit balance decreases if CPU utilization is above the baseline, when the credits spent are more than the credits earned in the prior five\-minute interval\. 
 
@@ -62,7 +62,7 @@ Using these values, you can calculate the `CPUCreditBalance` value:
 CPUCreditBalance = 2 + [0.5 - 1] = 1.5
 ```
 
-### Calculating CPU Credit Usage for Unlimited Instances<a name="burstable-performance-instances-unlimited-calculation"></a>
+### Calculating CPU credit usage for Unlimited instances<a name="burstable-performance-instances-unlimited-calculation"></a>
 
 When a T3, T3a, or T2 instance needs to burst above the baseline, it always spends accrued credits before spending surplus credits\. When it depletes its accrued CPU credit balance, it can spend surplus credits to burst for as long as it needs\. When CPU utilization falls below the baseline, surplus credits are always paid down before the instance accrues earned credits\.
 

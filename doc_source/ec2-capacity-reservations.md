@@ -45,8 +45,9 @@ The number of instances for which you are allowed to reserve capacity is based o
 
 Before you create Capacity Reservations, take note of the following limitations and restrictions\.
 + Active and unused Capacity Reservations count toward your On\-Demand Instance limits
-+ Capacity Reservations are not transferable from one AWS account to another
++ Capacity Reservations are not transferable from one AWS account to another\. However, you can share Capacity Reservations with other AWS accounts\. For more information, see [Working with Shared Capacity Reservations](capacity-reservation-sharing.md)\.
 + Zonal Reserved Instance billing discounts do not apply to Capacity Reservations
 + Capacity Reservations can't be created in placement groups
 + Capacity Reservations can't be used with Dedicated Hosts
 + Capacity Reservations can't be used with Bring Your Own License \(BYOL\)
++ Capacity Reservations can't be used with Local Zones

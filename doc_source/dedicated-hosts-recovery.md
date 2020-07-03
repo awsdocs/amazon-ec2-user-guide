@@ -1,4 +1,4 @@
-# Host Recovery<a name="dedicated-hosts-recovery"></a>
+# Host recovery<a name="dedicated-hosts-recovery"></a>
 
 Host recovery automatically restarts your instances on to a new replacement host if failures are detected on your Dedicated Host\. Host recovery reduces the need for manual intervention and lowers the operational burden if there is an unexpected Dedicated Host failure\.
 
@@ -8,15 +8,15 @@ Additionally, built\-in integration with AWS License Manager automates the track
 AWS License Manager integration is supported only in Regions in which AWS License Manager is available\. 
 
 **Topics**
-+ [Host Recovery Basics](#dedicated-hosts-recovery-basics)
-+ [Configuring Host Recovery](#dedicated-hosts-recovery-working)
-+ [Host Recovery States](#dedicated-hosts-recovery-states)
-+ [Supported Instance Types](#dedicated-hosts-recovery-instances)
-+ [Manually Recovering Unsupported Instances](#dedicated-hosts-recovery-unsupported)
-+ [Related Services](#dedicated-hosts-recovery-related)
++ [Host recovery basics](#dedicated-hosts-recovery-basics)
++ [Supported instance types](#dedicated-hosts-recovery-instances)
++ [Configuring host recovery](#dedicated-hosts-recovery-working)
++ [Host recovery states](#dedicated-hosts-recovery-states)
++ [Manually recovering unsupported instances](#dedicated-hosts-recovery-unsupported)
++ [Related services](#dedicated-hosts-recovery-related)
 + [Pricing](#dedicated-hosts-recovery-pricing)
 
-## Host Recovery Basics<a name="dedicated-hosts-recovery-basics"></a>
+## Host recovery basics<a name="dedicated-hosts-recovery-basics"></a>
 
 Host recovery uses host\-level health checks to assess Dedicated Host availability and to detect underlying system failures\. Examples of problems that can cause host\-level health checks to fail include:
 + Loss of network connectivity
@@ -48,22 +48,28 @@ When host recovery is initiated, the AWS account owner is notified by email and 
 
 If you are using AWS License Manager to track your licenses, AWS License Manager allocates new licenses for the replacement Dedicated Host based on the license configuration limits\. If the license configuration has hard limits that will be breached as a result of the host recovery, the recovery process is not allowed and you are notified of the host recovery failure through an Amazon SNS notification\. If the license configuration has soft limits that will be breached as a result of the host recovery, the recovery is allowed to continue and you are notified of the limit breach through an Amazon SNS notification\. For more information, see [Using License Configurations](https://docs.aws.amazon.com/license-manager/latest/userguide/license-configurations.html) in the *AWS License Manager User Guide*\.
 
-## Configuring Host Recovery<a name="dedicated-hosts-recovery-working"></a>
+## Supported instance types<a name="dedicated-hosts-recovery-instances"></a>
+
+Host recovery is supported for the following instance families: A1, C3, C4, C5, C5n, C6g, Inf1, M3, M4, M5, M5n, M6g, P3, R3, R4, R5, R5n, R6g, X1, X1e, u\-6tb1, u\-9tb1, u\-12tb1, u\-18tb1, and u\-24tb1\.
+
+To recover instances that are not supported, see [Manually recovering unsupported instances](#dedicated-hosts-recovery-unsupported)\.
+
+## Configuring host recovery<a name="dedicated-hosts-recovery-working"></a>
 
 You can configure host recovery at the time of Dedicated Host allocation, or after allocation using the Amazon EC2 console or AWS Command Line Interface \(CLI\)\.
 
 **Topics**
-+ [Enabling Host Recovery](#dedicated-hosts-recovery-enable)
-+ [Disabling Host Recovery](#dedicated-hosts-recovery-disable)
-+ [Viewing Host Recovery Configuration](#dedicated-hosts-recovery-view)
++ [Enabling host recovery](#dedicated-hosts-recovery-enable)
++ [Disabling host recovery](#dedicated-hosts-recovery-disable)
++ [Viewing the host recovery configuration](#dedicated-hosts-recovery-view)
 
-### Enabling Host Recovery<a name="dedicated-hosts-recovery-enable"></a>
+### Enabling host recovery<a name="dedicated-hosts-recovery-enable"></a>
 
 You can enable host recovery at the time of Dedicated Host allocation or after allocation\.
 
 For more information about enabling host recovery at the time of Dedicated Host allocation, see [Allocating Dedicated Hosts](how-dedicated-hosts-work.md#dedicated-hosts-allocating)\.
 
-**To enable host recovery after allocation \(Console\)**
+**To enable host recovery after allocation using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -73,18 +79,18 @@ For more information about enabling host recovery at the time of Dedicated Host 
 
 1. For **Host recovery**, choose **Enable**, and then choose **Save**\.
 
-**To enable host recovery after allocation \(AWS CLI\)**  
+**To enable host recovery after allocation using the AWS CLI**  
 Use the [modify\-hosts](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-hosts.html) command and specify the `host-recovery` parameter\.
 
 ```
 $ aws ec2 modify-hosts --host-recovery on --host-ids h-012a3456b7890cdef
 ```
 
-### Disabling Host Recovery<a name="dedicated-hosts-recovery-disable"></a>
+### Disabling host recovery<a name="dedicated-hosts-recovery-disable"></a>
 
 You can disable host recovery at any time after the Dedicated Host has been allocated\.
 
-**To disable host recovery after allocation \(Console\)**
+**To disable host recovery after allocation using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -94,18 +100,18 @@ You can disable host recovery at any time after the Dedicated Host has been allo
 
 1. For **Host recovery**, choose **Disable**, and then choose **Save**\.
 
-**To disable host recovery after allocation \(AWS CLI\)**  
+**To disable host recovery after allocation using the AWS CLI**  
 Use the [modify\-hosts](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-hosts.html) command and specify the `host-recovery` parameter\.
 
 ```
 $ aws ec2 modify-hosts --host-recovery off --host-ids h-012a3456b7890cdef
 ```
 
-### Viewing Host Recovery Configuration<a name="dedicated-hosts-recovery-view"></a>
+### Viewing the host recovery configuration<a name="dedicated-hosts-recovery-view"></a>
 
 You can view the host recovery configuration for a Dedicated Host at any time\.
 
-**To view the host recovery configuration for a Dedicated Host \(Console\)**
+**To view the host recovery configuration for a Dedicated Host using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -113,7 +119,7 @@ You can view the host recovery configuration for a Dedicated Host at any time\.
 
 1. Select the Dedicated Host, and in the **Description** tab, review the **Host Recovery** field\.
 
-**To view the host recovery configuration for a Dedicated Host \(AWS CLI\)**  
+**To view the host recovery configuration for a Dedicated Host using the AWS CLI**  
 Use the [describe\-hosts](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-hosts.html) command\.
 
 ```
@@ -122,7 +128,7 @@ $ aws ec2 describe-hosts --host-ids h-012a3456b7890cdef
 
 The `HostRecovery` response element indicates whether host recovery is enabled or disabled\.
 
-## Host Recovery States<a name="dedicated-hosts-recovery-states"></a>
+## Host recovery states<a name="dedicated-hosts-recovery-states"></a>
 
 When a Dedicated Host failure is detected, the impaired Dedicated Host enters the `under-assessment` state, and all of the instances enter the `impaired` state\. You can't launch instances on to the impaired Dedicated Host while it is in the `under-assessment` state\.
 
@@ -132,24 +138,18 @@ After the host recovery is complete, the replacement Dedicated Host enters the `
 
 If the impaired Dedicated Host has instances that do not support host recovery, such as instances with instance store\-backed volumes, the Dedicated Host is not released\. Instead, it is marked for retirement and enters the `permanent-failure` state\.
 
-## Supported Instance Types<a name="dedicated-hosts-recovery-instances"></a>
-
-Host recovery is supported for the following instance families: A1, C3, C4, C5, C5n, Inf1, M3, M4, M5, M5n, P3, R3, R4, R5, R5n, X1, X1e, u\-6tb1, u\-9tb1, u\-12tb1, u\-18tb1, and u\-24tb1\.
-
-To recover instances that are not supported, see [Manually Recovering Unsupported Instances](#dedicated-hosts-recovery-unsupported)\.
-
-## Manually Recovering Unsupported Instances<a name="dedicated-hosts-recovery-unsupported"></a>
+## Manually recovering unsupported instances<a name="dedicated-hosts-recovery-unsupported"></a>
 
 Host recovery does not support recovering instances that use instance store volumes\. Follow the instructions below to manually recover any of your instances that could not be automatically recovered\.
 
 **Warning**  
 Data on instance store volumes is lost when an instance is stopped or terminated\. This includes instance store volumes that are attached to an instance that has an EBS volume as the root device\. To protect data from instance store volumes, back it up to persistent storage before the instance is stopped or terminated\.
 
-### Manually Recovering EBS\-Backed Instances<a name="dedicated-hosts-recovery-ebs"></a>
+### Manually recovering EBS\-backed instances<a name="dedicated-hosts-recovery-ebs"></a>
 
 For EBS\-backed instances that could not be automatically recovered, we recommend that you manually stop and start the instances to recover them onto a new Dedicated Host\. For more information about stopping your instance, and about the changes that occur in your instance configuration when it's stopped, see [Stop and start your instance](Stop_Start.md)\.
 
-### Manually Recovering Instance Store\-Backed Instances<a name="dedicated-hosts-recovery-instancestore"></a>
+### Manually recovering instance store\-backed instances<a name="dedicated-hosts-recovery-instancestore"></a>
 
 For instance store\-backed instances that could not be automatically recovered, we recommend that you do the following:
 
@@ -159,7 +159,7 @@ For instance store\-backed instances that could not be automatically recovered, 
 
 1. Terminate the original instance on the impaired Dedicated Host\.
 
-## Related Services<a name="dedicated-hosts-recovery-related"></a>
+## Related services<a name="dedicated-hosts-recovery-related"></a>
 
 Dedicated Host integrates with the following AWS services:
 + **AWS License Manager**—Tracks licenses across your Amazon EC2 Dedicated Hosts \(supported only in Regions in which AWS License Manager is available\)\. For more information, see the [ AWS License Manager User Guide](https://docs.aws.amazon.com/license-manager/latest/userguide/license-manager.html)\.

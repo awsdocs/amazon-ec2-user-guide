@@ -1,6 +1,6 @@
-# Spot Fleet Requests<a name="spot-fleet-requests"></a>
+# Spot Fleet requests<a name="spot-fleet-requests"></a>
 
-To use a Spot Fleet, you create a Spot Fleet request that includes the target capacity, an optional On\-Demand portion, one or more launch specifications for the instances, and the maximum price that you are willing to pay\. Amazon EC2 attempts to maintain your Spot Fleet's target capacity as Spot prices change\. For more information, see [How Spot Fleet Works](spot-fleet.md)\.
+To use a Spot Fleet, you create a Spot Fleet request that includes the target capacity, an optional On\-Demand portion, one or more launch specifications for the instances, and the maximum price that you are willing to pay\. Amazon EC2 attempts to maintain your Spot Fleet's target capacity as Spot prices change\. For more information, see [How Spot Fleet works](spot-fleet.md)\.
 
 There are two types of Spot Fleet requests: `request` and `maintain`\. You can create a Spot Fleet to submit a one\-time request for your desired capacity, or require it to maintain a target capacity over time\. Both types of requests benefit from Spot Fleet's allocation strategy\.
 
@@ -15,20 +15,18 @@ A Spot Fleet request remains active until it expires or you cancel it\. When you
 Each launch specification includes the information that Amazon EC2 needs to launch an instance, such as an AMI, instance type, subnet or Availability Zone, and one or more security groups\.
 
 **Topics**
-+ [Spot Fleet Request States](#spot-fleet-states)
-+ [Spot Fleet Prerequisites](#spot-fleet-prerequisites)
-+ [Spot Fleet and IAM Users](#spot-fleet-iam-users)
-+ [Spot Fleet Health Checks](#spot-fleet-health-checks)
-+ [Planning a Spot Fleet Request](#plan-spot-fleet)
-+ [Service\-Linked Role for Spot Fleet Requests](#service-linked-roles-spot-fleet-requests)
-+ [Creating a Spot Fleet Request](#create-spot-fleet)
++ [Spot Fleet request states](#spot-fleet-states)
++ [Spot Fleet health checks](#spot-fleet-health-checks)
++ [Planning a Spot Fleet request](#plan-spot-fleet)
++ [Spot Fleet permissions](#spot-fleet-prerequisites)
++ [Creating a Spot Fleet request](#create-spot-fleet)
 + [Tagging a Spot Fleet](#tag-spot-fleet)
-+ [Monitoring Your Spot Fleet](#manage-spot-fleet)
-+ [Modifying a Spot Fleet Request](#modify-spot-fleet)
-+ [Canceling a Spot Fleet Request](#cancel-spot-fleet)
-+ [Spot Fleet Example Configurations](spot-fleet-examples.md)
++ [Monitoring your Spot Fleet](#manage-spot-fleet)
++ [Modifying a Spot Fleet request](#modify-spot-fleet)
++ [Canceling a Spot Fleet request](#cancel-spot-fleet)
++ [Spot Fleet example configurations](spot-fleet-examples.md)
 
-## Spot Fleet Request States<a name="spot-fleet-states"></a>
+## Spot Fleet request states<a name="spot-fleet-states"></a>
 
 A Spot Fleet request can be in one of the following states:
 + `submitted` – The Spot Fleet request is being evaluated and Amazon EC2 is preparing to launch the target number of instances\.
@@ -42,26 +40,41 @@ The following illustration represents the transitions between the request states
 
 ![\[Spot Fleet request states\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/Spot_fleet_states.png)
 
-## Spot Fleet Prerequisites<a name="spot-fleet-prerequisites"></a>
+## Spot Fleet health checks<a name="spot-fleet-health-checks"></a>
 
-If you use the Amazon EC2 console to create a Spot Fleet, it creates a role named `aws-ec2-spot-fleet-tagging-role` that grants the Spot Fleet permission to request, launch, terminate, and tag instances on your behalf\. This role is selected when you create your Spot Fleet request\. If you use the AWS CLI or an API instead, you must ensure that this role exists\. You can either use the Request Spot Instances wizard \(the role is created when you advance to the second page of the wizard\) or use the IAM console as follows\.
+Spot Fleet checks the health status of the Spot Instances in the fleet every two minutes\. The health status of an instance is either `healthy` or `unhealthy`\. Spot Fleet determines the health status of an instance using the status checks provided by Amazon EC2\. If the status of either the instance status check or the system status check is `impaired` for three consecutive health checks, the health status of the instance is `unhealthy`\. Otherwise, the health status is `healthy`\. For more information, see [Status checks for your instances](monitoring-system-instance-status-check.md)\.
 
-**Important**  
-If you choose to tag instances in the fleet and you choose to maintain target capacity \(the Spot Fleet request is of type `maintain`\), the differences in permissions of the IAM user and the `IamFleetRole` might lead to inconsistent tagging behavior of instances in the fleet\. If the `IamFleetRole` does not include the `CreateTags` permission, some of the instances launched by the fleet might not be tagged\. While we are working to fix this inconsistency, to ensure that all instances launched by the fleet are tagged, we recommend that you use the `aws-ec2-spot-fleet-tagging-role` role for the `IamFleetRole`\. Alternatively, to use an existing role, attach the `AmazonEC2SpotFleetTaggingRole` AWS Managed Policy to the existing role\. Otherwise, you need to manually add the `CreateTags` permission to your existing policy\.
+You can configure your Spot Fleet to replace unhealthy instances\. After enabling health check replacement, an instance is replaced after its health status is reported as `unhealthy`\. The Spot Fleet could go below its target capacity for up to a few minutes while an unhealthy instance is being replaced\.
 
-**To create the IAM role for Spot Fleet**
+**Requirements**
++ Health check replacement is supported only with Spot Fleets that maintain a target capacity, not with one\-time Spot Fleets\.
++ You can configure your Spot Fleet to replace unhealthy instances only when you create it\.
++ IAM users can use health check replacement only if they have permission to call the `ec2:DescribeInstanceStatus` action\.
 
-1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
+## Planning a Spot Fleet request<a name="plan-spot-fleet"></a>
 
-1. In the navigation pane, choose **Roles**\.
+Before you create a Spot Fleet request, review [Spot Best Practices](https://aws.amazon.com/ec2/spot/getting-started/#bestpractices)\. Use these best practices when you plan your Spot Fleet request so that you can provision the type of instances you want at the lowest possible price\. We also recommend that you do the following:
++ Determine whether you want to create a Spot Fleet that submits a one\-time request for the desired target capacity, or one that maintains a target capacity over time\.
++ Determine the instance types that meet your application requirements\.
++ Determine the target capacity for your Spot Fleet request\. You can set the target capacity in instances or in custom units\. For more information, see [Spot Fleet instance weighting](spot-fleet.md#spot-instance-weighting)\.
++ Determine what portion of the Spot Fleet target capacity must be On\-Demand capacity\. You can specify 0 for On\-Demand capacity\.
++ Determine your price per unit, if you are using instance weighting\. To calculate the price per unit, divide the price per instance hour by the number of units \(or weight\) that this instance represents\. If you are not using instance weighting, the default price per unit is the price per instance hour\.
++ Review the possible options for your Spot Fleet request\. For more information, see the [request\-spot\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-fleet.html) command in the *AWS CLI Command Reference*\. For additional examples, see [Spot Fleet example configurations](spot-fleet-examples.md)\.
 
-1. On the **Select type of trusted entity** page, choose **AWS service**, **EC2**, **EC2 \- Spot Fleet Tagging**, **Next: Permissions**\.
+## Spot Fleet permissions<a name="spot-fleet-prerequisites"></a>
 
-1. On the **Attached permissions policy** page, choose **Next:Review**\.
+If your IAM users will create or manage a Spot Fleet, you need to grant them the required permissions\.
 
-1. On the **Review** page, type a name for the role \(for example, **aws\-ec2\-spot\-fleet\-tagging\-role**\) and choose **Create role**\.
+If you use the Amazon EC2 console to create a Spot Fleet, it creates a service\-linked role named `AWSServiceRoleForEC2SpotFleet` and a role named `aws-ec2-spot-fleet-tagging-role` that grant the Spot Fleet the permissions to request, launch, terminate, and tag resources on your behalf\. If you use the AWS CLI or an API, you must ensure that these roles exist\.
 
-## Spot Fleet and IAM Users<a name="spot-fleet-iam-users"></a>
+Use the following instructions to grant the required permissions and create the roles\.
+
+**Topics**
++ [Granting permission to IAM users for Spot Fleet](#spot-fleet-iam-users)
++ [Service\-linked role for Spot Fleet](#service-linked-roles-spot-fleet-requests)
++ [IAM role for Spot Fleet](#spot-fleet-service-linked-role)
+
+### Granting permission to IAM users for Spot Fleet<a name="spot-fleet-iam-users"></a>
 
 If your IAM users will create or manage a Spot Fleet, be sure to grant them the required permissions as follows\.
 
@@ -71,7 +84,7 @@ If your IAM users will create or manage a Spot Fleet, be sure to grant them the 
 
 1. In the navigation pane, choose **Policies**, **Create policy**\.
 
-1. On the **Create policy** page, choose **JSON**, replace the text with the following, and choose **Review policy**\.
+1. On the **Create policy** page, choose **JSON**, and replace the text with the following\.
 
    ```
    {
@@ -80,16 +93,28 @@ If your IAM users will create or manage a Spot Fleet, be sure to grant them the 
            {
                "Effect": "Allow",
                "Action": [
-                   "ec2:*"
+                   "ec2:RunInstances",
+                   "ec2:CreateTags",
+                   "ec2:RequestSpotFleet",
+                   "ec2:ModifySpotFleetRequest",
+                   "ec2:CancelSpotFleetRequests",
+                   "ec2:DescribeSpotFleetRequests",
+                   "ec2:DescribeSpotFleetInstances",
+                   "ec2:DescribeSpotFleetRequestHistory"
                ],
                "Resource": "*"
            },
            {
                "Effect": "Allow",
+               "Action": "iam:PassRole",
+               "Resource": "arn:aws:iam::*:role/aws-ec2-spot-fleet-tagging-role"
+           },
+           {
+               "Effect": "Allow",
                "Action": [
-                 "iam:ListRoles",
-                 "iam:PassRole",
-                 "iam:ListInstanceProfiles"
+                   "iam:CreateServiceLinkedRole",
+                   "iam:ListRoles",
+                   "iam:ListInstanceProfiles"
                ],
                "Resource": "*"
            }
@@ -97,11 +122,33 @@ If your IAM users will create or manage a Spot Fleet, be sure to grant them the 
    }
    ```
 
-   The `ec2:*` grants an IAM user permission to call all Amazon EC2 API actions\. To limit the user to specific Amazon EC2 API actions, specify those actions instead\.
+   The preceding example policy grants an IAM user the permissions required for most Spot Fleet use cases\. To limit the user to specific API actions, specify only those API actions instead\.
 
-   An IAM user must have permission to call the `iam:ListRoles` action to enumerate existing IAM roles, the `iam:PassRole` action to specify the Spot Fleet role, and the `iam:ListInstanceProfiles` action to enumerate existing instance profiles\.
+   **Required EC2 and IAM APIs**
 
-   \(Optional\) To enable an IAM user to create roles or instance profiles using the IAM console, you must also add the following actions to the policy:
+   The following APIs must be included in the policy:
+   + `ec2:RunInstances` – Required to launch instances in a Spot Fleet
+   + `ec2:CreateTags` – Required to tag the Spot Fleet request, instances, or volumes
+   + `iam:PassRole` – Required to specify the Spot Fleet role
+   + `iam:CreateServiceLinkedRole` – Required to create the service\-linked role
+   + `iam:ListRoles` – Required to enumerate existing IAM roles
+   + `iam:ListInstanceProfiles` – Required to enumerate existing instance profiles
+**Important**  
+If you specify a role for the IAM instance profile in the launch specification or launch template, you must grant the IAM user the permission to pass the role to the service\. To do this, in the IAM policy include `"arn:aws:iam::*:role/IamInstanceProfile-role"` as a resource for the `iam:PassRole` action\. For more information, see [Granting a User Permissions to Pass a Role to an AWS Service](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html) in the *IAM User Guide*\.
+
+   **Spot Fleet APIs**
+
+   Add the following Spot Fleet API actions to your policy, as needed:
+   + `ec2:RequestSpotFleet`
+   + `ec2:ModifySpotFleetRequest`
+   + `ec2:CancelSpotFleetRequests`
+   + `ec2:DescribeSpotFleetRequests`
+   + `ec2:DescribeSpotFleetInstances`
+   + `ec2:DescribeSpotFleetRequestHistory`
+
+   **Optional IAM APIs**
+
+   \(Optional\) To enable an IAM user to create roles or instance profiles using the IAM console, you must add the following actions to the policy:
    + `iam:AddRoleToInstanceProfile`
    + `iam:AttachRolePolicy`
    + `iam:CreateInstanceProfile`
@@ -109,7 +156,9 @@ If your IAM users will create or manage a Spot Fleet, be sure to grant them the 
    + `iam:GetRole`
    + `iam:ListPolicies`
 
-1. On the **Review policy** page, type a policy name and description and choose **Create policy**\.
+1. Choose **Review policy**\.
+
+1. On the **Review policy** page, enter a policy name and description, and choose **Create policy**\.
 
 1. In the navigation pane, choose **Users** and select the user\.
 
@@ -119,48 +168,35 @@ If your IAM users will create or manage a Spot Fleet, be sure to grant them the 
 
 1. Choose **Add permissions**\.
 
-## Spot Fleet Health Checks<a name="spot-fleet-health-checks"></a>
-
-Spot Fleet checks the health status of the Spot Instances in the fleet every two minutes\. The health status of an instance is either `healthy` or `unhealthy`\. Spot Fleet determines the health status of an instance using the status checks provided by Amazon EC2\. If the status of either the instance status check or the system status check is `impaired` for three consecutive health checks, the health status of the instance is `unhealthy`\. Otherwise, the health status is `healthy`\. For more information, see [Status Checks for Your Instances](monitoring-system-instance-status-check.md)\.
-
-You can configure your Spot Fleet to replace unhealthy instances\. After enabling health check replacement, an instance is replaced after its health status is reported as `unhealthy`\. The Spot Fleet could go below its target capacity for up to a few minutes while an unhealthy instance is being replaced\.
-
-**Requirements**
-+ Health check replacement is supported only with Spot Fleets that maintain a target capacity, not with one\-time Spot Fleets\.
-+ You can configure your Spot Fleet to replace unhealthy instances only when you create it\.
-+ IAM users can use health check replacement only if they have permission to call the `ec2:DescribeInstanceStatus` action\.
-
-## Planning a Spot Fleet Request<a name="plan-spot-fleet"></a>
-
-Before you create a Spot Fleet request, review [Spot Best Practices](https://aws.amazon.com/ec2/spot/getting-started/#bestpractices)\. Use these best practices when you plan your Spot Fleet request so that you can provision the type of instances you want at the lowest possible price\. We also recommend that you do the following:
-+ Determine whether you want to create a Spot Fleet that submits a one\-time request for the desired target capacity, or one that maintains a target capacity over time\.
-+ Determine the instance types that meet your application requirements\.
-+ Determine the target capacity for your Spot Fleet request\. You can set the target capacity in instances or in custom units\. For more information, see [Spot Fleet Instance Weighting](spot-fleet.md#spot-instance-weighting)\.
-+ Determine what portion of the Spot Fleet target capacity must be On\-Demand capacity\. You can specify 0 for On\-Demand capacity\.
-+ Determine your price per unit, if you are using instance weighting\. To calculate the price per unit, divide the price per instance hour by the number of units \(or weight\) that this instance represents\. If you are not using instance weighting, the default price per unit is the price per instance hour\.
-+ Review the possible options for your Spot Fleet request\. For more information, see the [request\-spot\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-fleet.html) command in the *AWS CLI Command Reference*\. For additional examples, see [Spot Fleet Example Configurations](spot-fleet-examples.md)\.
-
-## Service\-Linked Role for Spot Fleet Requests<a name="service-linked-roles-spot-fleet-requests"></a>
+### Service\-linked role for Spot Fleet<a name="service-linked-roles-spot-fleet-requests"></a>
 
 Amazon EC2 uses service\-linked roles for the permissions that it requires to call other AWS services on your behalf\. A service\-linked role is a unique type of IAM role that is linked directly to an AWS service\. Service\-linked roles provide a secure way to delegate permissions to AWS services because only the linked service can assume a service\-linked role\. For more information, see [Using Service\-Linked Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html) in the *IAM User Guide*\.
 
-Amazon EC2 uses the service\-linked role named **AWSServiceRoleForEC2SpotFleet** to launch and manage Spot Instances on your behalf\.
+Amazon EC2 uses the service\-linked role named **AWSServiceRoleForEC2SpotFleet** to launch and manage instances on your behalf\.
 
-### Permissions Granted by AWSServiceRoleForEC2SpotFleet<a name="service-linked-role-permissions-granted-by-AWSServiceRoleForEC2SpotFleet"></a>
+**Important**  
+If you specify an [encrypted AMI](AMIEncryption.md) or an [encrypted Amazon EBS snapshot](EBSEncryption.md) in your Spot Fleet, you must grant the **AWSServiceRoleForEC2SpotFleet** role permission to use the CMK so that Amazon EC2 can launch instances on your behalf\. For more information, see [Granting access to CMKs for use with encrypted AMIs and EBS snapshots](#spot-fleet-service-linked-roles-access-to-cmks)\.
+
+#### Permissions granted by AWSServiceRoleForEC2SpotFleet<a name="service-linked-role-permissions-granted-by-AWSServiceRoleForEC2SpotFleet"></a>
 
 Amazon EC2 uses **AWSServiceRoleForEC2SpotFleet** to complete the following actions:
 + `ec2:RequestSpotInstances` \- Request Spot Instances
-+ `ec2:TerminateInstances` \- Terminate Spot Instances
-+ `ec2:DescribeImages` \- Describe Amazon Machine Images \(AMI\) for the Spot Instances
-+ `ec2:DescribeInstanceStatus` \- Describe the status of the Spot Instances
-+ `ec2:DescribeSubnets` \- Describe the subnets for Spot Instances
-+ `ec2:CreateTags` \- Add system tags to Spot Instances
++ `ec2:RunInstances` \- Launch instances
++ `ec2:TerminateInstances` \- Terminate instances
++ `ec2:DescribeImages` \- Describe Amazon Machine Images \(AMIs\) for the instances
++ `ec2:DescribeInstanceStatus` \- Describe the status of the instances
++ `ec2:DescribeSubnets` \- Describe the subnets for the instances
++ `ec2:CreateTags` \- Add tags to the Spot Fleet request, instances, and volumes
++ `elasticloadbalancing:RegisterInstancesWithLoadBalancer` \- Add the specified instances to the specified load balancer
++ `elasticloadbalancing:RegisterTargets` \- Register the specified targets with the specified target group
 
-### Create the Service\-Linked Role<a name="service-linked-role-creating-for-spot-fleet"></a>
+#### Creating the service\-linked role<a name="service-linked-role-creating-for-spot-fleet"></a>
 
-Under most circumstances, you don't need to manually create a service\-linked role\. Amazon EC2 creates the **AWSServiceRoleForEC2SpotFleet** service\-linked role the first time you create a Spot Fleet using the console\.
+Under most circumstances, you don't need to manually create a service\-linked role\. Amazon EC2 creates the **AWSServiceRoleForEC2SpotFleet** service\-linked role the first time you create a Spot Fleet using the console\. 
 
-If you had an active Spot Fleet request before October 2017, when Amazon EC2 began supporting this service\-linked role, Amazon EC2 created the **AWSServiceRoleForEC2SpotFleet** role in your AWS account\. For more information, see [A New Role Appeared in My Account](https://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_roles.html#troubleshoot_roles_new-role-appeared) in the *IAM User Guide*\.
+If you use the AWS CLI or an API, you must ensure that this role exists\.
+
+If you had an active Spot Fleet request before October 2017, when Amazon EC2 began supporting this service\-linked role, Amazon EC2 created the **AWSServiceRoleForEC2SpotFleet** role in your AWS account\. For more information, see [A New Role Appeared in My AWS Account](https://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_roles.html#troubleshoot_roles_new-role-appeared) in the *IAM User Guide*\.
 
 Ensure that this role exists before you use the AWS CLI or an API to create a Spot Fleet\. To create the role, use the IAM console as follows\.
 
@@ -178,18 +214,16 @@ Ensure that this role exists before you use the AWS CLI or an API to create a Sp
 
 1. On the **Review** page, choose **Create role**\.
 
-If you no longer need to use Spot Fleet, we recommend that you delete the **AWSServiceRoleForEC2SpotFleet** role\. After this role is deleted from your account, Amazon EC2 will create the role again if you request a Spot Fleet\.
+If you no longer need to use Spot Fleet, we recommend that you delete the **AWSServiceRoleForEC2SpotFleet** role\. After this role is deleted from your account, Amazon EC2 will create the role again if you request a Spot Fleet using the console\. For more information, see [Deleting a Service\-Linked Role](https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html#delete-service-linked-role) in the *IAM User Guide*\.
 
-### Granting Access to CMKs for Use with Encrypted AMIs and EBS Snapshots<a name="spot-fleet-service-linked-roles-access-to-cmks"></a>
+#### Granting access to CMKs for use with encrypted AMIs and EBS snapshots<a name="spot-fleet-service-linked-roles-access-to-cmks"></a>
 
-If you specify an [encrypted AMI](AMIEncryption.md) or an [encrypted Amazon EBS snapshot](EBSEncryption.md) in your Spot Fleet request and you use a customer managed customer master key \(CMK\) for encryption, you must grant the **AWSServiceRoleForEC2SpotFleet** role permission to use the CMK so that Amazon EC2 can launch Spot Instances on your behalf\. To do this, you must add a grant to the CMK, as shown in the following procedure\.
+If you specify an [encrypted AMI](AMIEncryption.md) or an [encrypted Amazon EBS snapshot](EBSEncryption.md) in your Spot Fleet request and you use a customer managed customer master key \(CMK\) for encryption, you must grant the **AWSServiceRoleForEC2SpotFleet** role permission to use the CMK so that Amazon EC2 can launch instances on your behalf\. To do this, you must add a grant to the CMK, as shown in the following procedure\.
 
 When providing permissions, grants are an alternative to key policies\. For more information, see [Using Grants](https://docs.aws.amazon.com/kms/latest/developerguide/grants.html) and [Using Key Policies in AWS KMS](https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html) in the *AWS Key Management Service Developer Guide*\.
 
 **To grant the AWSServiceRoleForEC2SpotFleet role permissions to use the CMK**
 + Use the [create\-grant](https://docs.aws.amazon.com/cli/latest/reference/kms/create-grant.html) command to add a grant to the CMK and to specify the principal \(the **AWSServiceRoleForEC2SpotFleet** service\-linked role\) that is given permission to perform the operations that the grant permits\. The CMK is specified by the `key-id` parameter and the ARN of the CMK\. The principal is specified by the `grantee-principal` parameter and the ARN of the **AWSServiceRoleForEC2SpotFleet** service\-linked role\.
-
-  The following example is formatted for legibility\. 
 
   ```
   aws kms create-grant \
@@ -199,11 +233,30 @@ When providing permissions, grants are an alternative to key policies\. For more
       --operations "Decrypt" "Encrypt" "GenerateDataKey" "GenerateDataKeyWithoutPlaintext" "CreateGrant" "DescribeKey" "ReEncryptFrom" "ReEncryptTo"
   ```
 
-## Creating a Spot Fleet Request<a name="create-spot-fleet"></a>
+### IAM role for Spot Fleet<a name="spot-fleet-service-linked-role"></a>
 
-Using the AWS Management Console, quickly create a Spot Fleet request by choosing only your application or task need and minimum compute specs\. Amazon EC2 configures a fleet that best meets your needs and follows Spot best practice\. For more information, see [Quickly Create a Spot Fleet Request \(Console\)](#create-spot-fleet-quick)\. Otherwise, you can modify any of the default settings\. For more information, see [Create a Spot Fleet Request Using Defined Parameters \(Console\)](#create-spot-fleet-advanced)\.
+The `aws-ec2-spot-fleet-tagging-role` IAM role grants the Spot Fleet permission to tag the Spot Fleet request, instances, and volumes\. For more information, see [Tagging a Spot Fleet](#tag-spot-fleet)\.
 
-### Quickly Create a Spot Fleet Request \(Console\)<a name="create-spot-fleet-quick"></a>
+**Important**  
+If you choose to tag instances in the fleet and you choose to maintain target capacity \(the Spot Fleet request is of type `maintain`\), the differences in permissions of the IAM user and the `IamFleetRole` might lead to inconsistent tagging behavior of instances in the fleet\. If the `IamFleetRole` does not include the `CreateTags` permission, some of the instances launched by the fleet might not be tagged\. While we are working to fix this inconsistency, to ensure that all instances launched by the fleet are tagged, we recommend that you use the `aws-ec2-spot-fleet-tagging-role` role for the `IamFleetRole`\. Alternatively, to use an existing role, attach the `AmazonEC2SpotFleetTaggingRole` AWS Managed Policy to the existing role\. Otherwise, you need to manually add the `CreateTags` permission to your existing policy\.
+
+**To create the IAM role for tagging a Spot Fleet**
+
+1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
+
+1. In the navigation pane, choose **Roles**\.
+
+1. On the **Select type of trusted entity** page, choose **AWS service**, **EC2**, **EC2 \- Spot Fleet Tagging**, **Next: Permissions**\.
+
+1. On the **Attached permissions policy** page, choose **Next:Review**\.
+
+1. On the **Review** page, type a name for the role \(for example, **aws\-ec2\-spot\-fleet\-tagging\-role**\) and choose **Create role**\.
+
+## Creating a Spot Fleet request<a name="create-spot-fleet"></a>
+
+Using the AWS Management Console, quickly create a Spot Fleet request by choosing only your application or task need and minimum compute specs\. Amazon EC2 configures a fleet that best meets your needs and follows Spot best practice\. For more information, see [Quickly create a Spot Fleet request \(console\)](#create-spot-fleet-quick)\. Otherwise, you can modify any of the default settings\. For more information, see [Create a Spot Fleet request using defined parameters \(console\)](#create-spot-fleet-advanced)\.
+
+### Quickly create a Spot Fleet request \(console\)<a name="create-spot-fleet-quick"></a>
 
 Follow these steps to quickly create a Spot Fleet request\.
 
@@ -223,7 +276,7 @@ Follow these steps to quickly create a Spot Fleet request\.
 
 1. Review the recommended **Fleet request settings** based on your application or task selection, and choose **Launch**\.
 
-### Create a Spot Fleet Request Using Defined Parameters \(Console\)<a name="create-spot-fleet-advanced"></a>
+### Create a Spot Fleet request using defined parameters \(console\)<a name="create-spot-fleet-advanced"></a>
 
 You can create a Spot Fleet using the parameters that you define\.
 
@@ -247,7 +300,7 @@ You can create a Spot Fleet using the parameters that you define\.
       + For **as specs**, specify the required number of vCPUs and amount of memory\.
       + For **as an instance type**, accept the default instance type, or choose **Change instance type** to choose a different instance type\.
 
-   1. \(Optional\) For **Network**, choose an existing VPC or create a new one\.
+   1. For **Network**, choose an existing VPC or create a new one\.
 
       \[Existing VPC\] Choose the VPC\.
 
@@ -309,7 +362,7 @@ You can create a Spot Fleet using the parameters that you define\.
 
    1. \(Optional\) To remove instance types, for **Fleet request**, choose **Remove**\. To add instance types, choose **Select instance types**\.
 
-   1. \(Optional\) For **Fleet allocation strategy**, choose the strategy that meets your needs\. For more information, see [Allocation Strategy for Spot Instances](spot-fleet.md#spot-fleet-allocation-strategy)\.
+   1. \(Optional\) For **Fleet allocation strategy**, choose the strategy that meets your needs\. For more information, see [Allocation strategy for Spot Instances](spot-fleet.md#spot-fleet-allocation-strategy)\.
 
 1. For **Additional request details**, do the following:
 
@@ -332,13 +385,13 @@ You can create a Spot Fleet using the parameters that you define\.
    The Spot Fleet request type is `fleet`\. When the request is fulfilled, requests of type `instance` are added, where the state is `active` and the status is `fulfilled`\.
 
 **To create a Spot Fleet request using the AWS CLI**
-+ Use the following [request\-spot\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-fleet.html) command to create a Spot Fleet request:
++ Use the [request\-spot\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-fleet.html) command to create a Spot Fleet request\.
 
 ```
 aws ec2 request-spot-fleet --spot-fleet-request-config file://config.json
 ```
 
-For example configuration files, see [Spot Fleet Example Configurations](spot-fleet-examples.md)\.
+For example configuration files, see [Spot Fleet example configurations](spot-fleet-examples.md)\.
 
 The following is example output:
 
@@ -352,12 +405,23 @@ The following is example output:
 
 To help categorize and manage your Spot Fleet requests, you can tag them with custom metadata\. You can assign a tag to a Spot Fleet request when you create it, or afterward\. You can assign tags using the Amazon EC2 console or a command line tool\.
 
-When you tag a Spot Fleet request, the instances that are launched by the Spot Fleet are not automatically tagged\. You need to explicitly tag the instances launched by the Spot Fleet\. You can choose to assign tags to only the Spot Fleet request, or to only the instances launched by the fleet, or to both\.
+When you tag a Spot Fleet request, the instances and volumes that are launched by the Spot Fleet are not automatically tagged\. You need to explicitly tag the instances and volumes launched by the Spot Fleet\. You can choose to assign tags to only the Spot Fleet request, or to only the instances launched by the fleet, or to only the volumes attached to the instances launched by the fleet, or to all three\.
 
-For more information about how tags work, see [Tagging Your Amazon EC2 Resources](Using_Tags.md)\.
+**Note**  
+Volume tags are only supported for volumes that are attached to On\-Demand Instances\. You can't tag volumes that are attached to Spot Instances\.
 
-**Prerequisite**  
-Grant the IAM user the permission to tag resources\. For more information, see [Example: Tagging Resources](ExamplePolicies_EC2.md#iam-example-taggingresources)\.
+For more information about how tags work, see [Tagging your Amazon EC2 resources](Using_Tags.md)\.
+
+**Topics**
++ [Prerequisite](#tag-spot-fleet-prereqs)
++ [Tagging a new Spot Fleet](#tag-new-spot-fleet)
++ [Tagging a new Spot Fleet and the instances and volumes that it launches](#tag-new-spot-fleet-and-resources)
++ [Tagging an existing Spot Fleet](#tag-existing-spot-fleet)
++ [Viewing Spot Fleet request tags](#view-spot-fleet-tags)
+
+### Prerequisite<a name="tag-spot-fleet-prereqs"></a>
+
+Grant the IAM user the permission to tag resources\. For more information, see [Example: Tagging resources](ExamplePolicies_EC2.md#iam-example-taggingresources)\.
 
 **To grant an IAM user the permission to tag resources**  
 Create a IAM policy that includes the following:
@@ -394,15 +458,17 @@ We currently do not support resource\-level permissions for the `spot-fleet-requ
 }
 ```
 
+### Tagging a new Spot Fleet<a name="tag-new-spot-fleet"></a>
+
 **To tag a new Spot Fleet request using the console**
 
-1. Follow the [Create a Spot Fleet Request Using Defined Parameters \(Console\)](#create-spot-fleet-advanced) procedure\.
+1. Follow the [Create a Spot Fleet request using defined parameters \(console\)](#create-spot-fleet-advanced) procedure\.
 
 1. To add a tag, expand **Additional configurations**, choose **Add new tag**, and enter the key and value for the tag\. Repeat for each tag\.
 
    For each tag, you can tag the Spot Fleet request and the instances with the same tag\. To tag both, ensure that both **Instance tags** and **Fleet tags** are selected\. To tag only the Spot Fleet request, clear **Instance tags**\. To tag only the instances launched by the fleet, clear **Fleet tags**\.
 
-1. Complete the required fields to create a Spot Fleet request, and then choose **Launch**\. For more information, see [Create a Spot Fleet Request Using Defined Parameters \(Console\)](#create-spot-fleet-advanced)\.
+1. Complete the required fields to create a Spot Fleet request, and then choose **Launch**\. For more information, see [Create a Spot Fleet request using defined parameters \(console\)](#create-spot-fleet-advanced)\.
 
 **To tag a new Spot Fleet request using the AWS CLI**  
 To tag a Spot Fleet request when you create it, configure the Spot Fleet request configuration as follows:
@@ -450,8 +516,10 @@ In the following example, the Spot Fleet request is tagged with two tags: Key=En
 }
 ```
 
-**To tag a new Spot Fleet request and the instances that it launches using the AWS CLI**  
-To tag a Spot Fleet request when you create it, and to tag the instances when they are launched by the fleet, configure the Spot Fleet request configuration as follows:
+### Tagging a new Spot Fleet and the instances and volumes that it launches<a name="tag-new-spot-fleet-and-resources"></a>
+
+**To tag a new Spot Fleet request and the instances and volumes that it launches using the AWS CLI**  
+To tag a Spot Fleet request when you create it, and to tag the instances and volumes when they are launched by the fleet, configure the Spot Fleet request configuration as follows:
 
 **Spot Fleet request tags:**
 + Specify the tags for the Spot Fleet request in `SpotFleetRequestConfig`\.
@@ -464,6 +532,9 @@ To tag a Spot Fleet request when you create it, and to tag the instances when th
 + For `Tags`, specify the key\-value pair\. You can specify more than one key\-value pair\.
 
   Alternatively, you can specify the tags for the instance in the [launch template](ec2-launch-templates.md#create-launch-template) that is referenced in the Spot Fleet request\.
+
+**Volume tags:**
++ Specify the tags for the volumes in the [launch template](ec2-launch-templates.md#create-launch-template) that is referenced in the Spot Fleet request\. Volume tagging in `LaunchSpecifications` is not supported\.
 
 In the following example, the Spot Fleet request is tagged with two tags: Key=Environment and Value=Production, and Key=Cost\-Center and Value=123\. The instances that are launched by the fleet are tagged with one tag \(which is the same as one of the tags for the Spot Fleet request\): Key=Cost\-Center and Value=123\.
 
@@ -558,14 +629,14 @@ In the following example, the instances that are launched by the fleet are tagge
 }
 ```
 
-**To tag an existing Spot Fleet request using the AWS CLI**  
-You can use the [create\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-tags.html) command to tag existing resources\. In the following example, the existing Spot Fleet request is tagged with Key=purpose and Value=test\.
+**To tag volumes attached to On\-Demand Instances launched by a Spot Fleet using the AWS CLI**  
+To tag volumes when they are created by the fleet, you must specify the tags in the [launch template](ec2-launch-templates.md#create-launch-template) that is referenced in the Spot Fleet request\.
 
-```
-aws ec2 create-tags \
-    --resources sfr-11112222-3333-4444-5555-66666EXAMPLE \
-    --tags Key=purpose,Value=test
-```
+**Note**  
+Volume tags are only supported for volumes that are attached to On\-Demand Instances\. You can't tag volumes that are attached to Spot Instances\.  
+Volume tagging in `LaunchSpecifications` is not supported\.
+
+### Tagging an existing Spot Fleet<a name="tag-existing-spot-fleet"></a>
 
 **To tag an existing Spot Fleet request using the console**
 
@@ -576,6 +647,17 @@ After you have created a Spot Fleet request, you can add tags to the fleet reque
 1. Select your Spot Fleet request\.
 
 1. Choose the **Tags** tab and choose **Create Tag**\.
+
+**To tag an existing Spot Fleet request using the AWS CLI**  
+You can use the [create\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-tags.html) command to tag existing resources\. In the following example, the existing Spot Fleet request is tagged with Key=purpose and Value=test\.
+
+```
+aws ec2 create-tags \
+    --resources sfr-11112222-3333-4444-5555-66666EXAMPLE \
+    --tags Key=purpose,Value=test
+```
+
+### Viewing Spot Fleet request tags<a name="view-spot-fleet-tags"></a>
 
 **To view Spot Fleet request tags using the console**
 
@@ -661,7 +743,7 @@ aws ec2 describe-spot-fleet-requests \
 }
 ```
 
-## Monitoring Your Spot Fleet<a name="manage-spot-fleet"></a>
+## Monitoring your Spot Fleet<a name="manage-spot-fleet"></a>
 
 The Spot Fleet launches Spot Instances when your maximum price exceeds the Spot price and capacity is available\. The Spot Instances run until they are interrupted or you terminate them\.
 
@@ -678,25 +760,28 @@ The Spot Fleet launches Spot Instances when your maximum price exceeds the Spot 
 1. To view the history for the Spot Fleet, choose **History**\.
 
 **To monitor your Spot Fleet \(AWS CLI\)**  
-Use the following [describe\-spot\-fleet\-requests](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-spot-fleet-requests.html) command to describe your Spot Fleet requests:
+Use the [describe\-spot\-fleet\-requests](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-spot-fleet-requests.html) command to describe your Spot Fleet requests\.
 
 ```
 aws ec2 describe-spot-fleet-requests
 ```
 
-Use the following [describe\-spot\-fleet\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-spot-fleet-instances.html) command to describe the Spot Instances for the specified Spot Fleet:
+Use the [describe\-spot\-fleet\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-spot-fleet-instances.html) command to describe the Spot Instances for the specified Spot Fleet\.
 
 ```
-aws ec2 describe-spot-fleet-instances --spot-fleet-request-id sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE
+aws ec2 describe-spot-fleet-instances \
+    --spot-fleet-request-id sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE
 ```
 
-Use the following [describe\-spot\-fleet\-request\-history](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-spot-fleet-request-history.html) command to describe the history for the specified Spot Fleet request:
+Use the [describe\-spot\-fleet\-request\-history](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-spot-fleet-request-history.html) command to describe the history for the specified Spot Fleet request\.
 
 ```
-aws ec2 describe-spot-fleet-request-history --spot-fleet-request-id sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE --start-time 2015-05-18T00:00:00Z
+aws ec2 describe-spot-fleet-request-history \
+    --spot-fleet-request-id sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE \
+    --start-time 2015-05-18T00:00:00Z
 ```
 
-## Modifying a Spot Fleet Request<a name="modify-spot-fleet"></a>
+## Modifying a Spot Fleet request<a name="modify-spot-fleet"></a>
 
 You can modify an active Spot Fleet request to complete the following tasks:
 + Increase the target capacity and On\-Demand portion
@@ -730,19 +815,24 @@ When a Spot Fleet terminates an instance because the target capacity was decreas
    1. Choose **Submit**\.
 
 **To modify a Spot Fleet request using the AWS CLI**  
-Use the following [modify\-spot\-fleet\-request](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-spot-fleet-request.html) command to update the target capacity of the specified Spot Fleet request:
+Use the [modify\-spot\-fleet\-request](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-spot-fleet-request.html) command to update the target capacity of the specified Spot Fleet request\.
 
 ```
-aws ec2 modify-spot-fleet-request --spot-fleet-request-id sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE --target-capacity 20
+aws ec2 modify-spot-fleet-request \
+    --spot-fleet-request-id sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE \
+    --target-capacity 20
 ```
 
-You can modify the previous command as follows to decrease the target capacity of the specified Spot Fleet without terminating any Spot Instances as a result:
+You can modify the previous command as follows to decrease the target capacity of the specified Spot Fleet without terminating any Spot Instances as a result\.
 
 ```
-aws ec2 modify-spot-fleet-request --spot-fleet-request-id sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE --target-capacity 10 --excess-capacity-termination-policy NoTermination
+aws ec2 modify-spot-fleet-request \
+    --spot-fleet-request-id sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE \
+    --target-capacity 10 \
+    --excess-capacity-termination-policy NoTermination
 ```
 
-## Canceling a Spot Fleet Request<a name="cancel-spot-fleet"></a>
+## Canceling a Spot Fleet request<a name="cancel-spot-fleet"></a>
 
 When you are finished using your Spot Fleet, you can cancel the Spot Fleet request\. This cancels all Spot requests associated with the Spot Fleet, so that no new Spot Instances are launched for your Spot Fleet\. You must specify whether the Spot Fleet should terminate its Spot Instances\. If you terminate the instances, the Spot Fleet request enters the `cancelled_terminating` state\. Otherwise, the Spot Fleet request enters the `cancelled_running` state and the instances continue to run until they are interrupted or you terminate them manually\.
 
@@ -757,10 +847,12 @@ When you are finished using your Spot Fleet, you can cancel the Spot Fleet reque
 1. In **Cancel spot request**, verify that you want to cancel the Spot Fleet\. To keep the fleet at its current size, clear **Terminate instances**\. When you are ready, choose **Confirm**\.
 
 **To cancel a Spot Fleet request using the AWS CLI**  
-Use the following [cancel\-spot\-fleet\-requests](https://docs.aws.amazon.com/cli/latest/reference/ec2/cancel-spot-fleet-requests.html) command to cancel the specified Spot Fleet request and terminate the instances:
+Use the [cancel\-spot\-fleet\-requests](https://docs.aws.amazon.com/cli/latest/reference/ec2/cancel-spot-fleet-requests.html) command to cancel the specified Spot Fleet request and terminate the instances\.
 
 ```
-aws ec2 cancel-spot-fleet-requests --spot-fleet-request-ids sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE --terminate-instances
+aws ec2 cancel-spot-fleet-requests \
+    --spot-fleet-request-ids sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE \
+    --terminate-instances
 ```
 
 The following is example output:
@@ -778,10 +870,12 @@ The following is example output:
 }
 ```
 
-You can modify the previous command as follows to cancel the specified Spot Fleet request without terminating the instances:
+You can modify the previous command as follows to cancel the specified Spot Fleet request without terminating the instances\.
 
 ```
-aws ec2 cancel-spot-fleet-requests --spot-fleet-request-ids sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE --no-terminate-instances
+aws ec2 cancel-spot-fleet-requests \
+    --spot-fleet-request-ids sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE \
+    --no-terminate-instances
 ```
 
 The following is example output:

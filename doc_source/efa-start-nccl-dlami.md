@@ -9,16 +9,16 @@ The following steps help you to get started with one of the following AWS Deep L
 For more information, see the [ *AWS Deep Learning AMI User Guide*](https://docs.aws.amazon.com/dlami/latest/devguide/what-is-dlami.html)\.
 
 **Topics**
-+ [Step 1: Prepare an EFA\-Enabled Security Group](#nccl-start-dlami-sg)
-+ [Step 2: Launch a Temporary Instance](#nccl-start-dlami-temp)
-+ [Step 3: Test Your EFA and NCCL Configuration](#nccl-start-dlami-test)
-+ [Step 4: Install Your Machine Learning Applications](#nccl-start-dlami-app)
-+ [Step 5: Create an EFA and NCCL\-Enabled AMI](#nccl-start-dlami-ami)
-+ [Step 6: Terminate the Temporary Instance](#nccl-start-dlami-terminate)
-+ [Step 7: Launch EFA and NCCL\-Enabled Instances into a Cluster Placement Group](#nccl-start-dlami-cluster)
-+ [Step 8: Enable Passwordless SSH](#nccl-start-dlami-passwordless)
++ [Step 1: Prepare an EFA\-enabled security group](#nccl-start-dlami-sg)
++ [Step 2: Launch a temporary instance](#nccl-start-dlami-temp)
++ [Step 3: Test your EFA and NCCL configuration](#nccl-start-dlami-test)
++ [Step 4: Install your machine learning applications](#nccl-start-dlami-app)
++ [Step 5: Create an EFA and NCCL\-enabled AMI](#nccl-start-dlami-ami)
++ [Step 6: Terminate the temporary instance](#nccl-start-dlami-terminate)
++ [Step 7: Launch EFA and NCCL\-enabled instances into a cluster placement group](#nccl-start-dlami-cluster)
++ [Step 8: Enable passwordless SSH](#nccl-start-dlami-passwordless)
 
-## Step 1: Prepare an EFA\-Enabled Security Group<a name="nccl-start-dlami-sg"></a>
+## Step 1: Prepare an EFA\-enabled security group<a name="nccl-start-dlami-sg"></a>
 
 An EFA requires a security group that allows all inbound and outbound traffic to and from the security group itself\.
 
@@ -52,7 +52,7 @@ An EFA requires a security group that allows all inbound and outbound traffic to
 
    1. Choose **Save**\.
 
-## Step 2: Launch a Temporary Instance<a name="nccl-start-dlami-temp"></a>
+## Step 2: Launch a temporary instance<a name="nccl-start-dlami-temp"></a>
 
 Launch a temporary instance that you can use to install and configure the EFA software components\. You use this instance to create an EFA\-enabled AMI from which you can launch your EFA\-enabled instances\.
 
@@ -82,7 +82,7 @@ Launch a temporary instance that you can use to install and configure the EFA so
 
 1. On the **Review Instance Launch** page, review the settings, and then choose **Launch** to choose a key pair and to launch your instance\.
 
-## Step 3: Test Your EFA and NCCL Configuration<a name="nccl-start-dlami-test"></a>
+## Step 3: Test your EFA and NCCL configuration<a name="nccl-start-dlami-test"></a>
 
 Run a test to ensure that your temporary instance is properly configured for EFA and NCCL\. 
 
@@ -126,14 +126,14 @@ Run a test to ensure that your temporary instance is properly configured for EFA
    	$HOME/src/bin/efa-tests/efa-cuda-10.0/all_reduce_perf -b 8 -e 1G -f 2 -g 1 -c 1 -n 100
    ```
 
-## Step 4: Install Your Machine Learning Applications<a name="nccl-start-dlami-app"></a>
+## Step 4: Install your machine learning applications<a name="nccl-start-dlami-app"></a>
 
 Install the machine learning applications on the temporary instance\. The installation procedure varies depending on the specific machine learning application\. For more information about installing software on your Linux instance, see [Managing Software on Your Linux Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/managing-software.html)\.
 
 **Note**  
 You might need to refer to your machine learning application’s documentation for installation instructions\.
 
-## Step 5: Create an EFA and NCCL\-Enabled AMI<a name="nccl-start-dlami-ami"></a>
+## Step 5: Create an EFA and NCCL\-enabled AMI<a name="nccl-start-dlami-ami"></a>
 
 After you have installed the required software components, you create an AMI that you can reuse to launch your EFA\-enabled instances\.
 
@@ -157,7 +157,7 @@ After you have installed the required software components, you create an AMI tha
 
 1. Locate the AMI you created in the list\. Wait for the Status to transition from `pending` to `available` before continuing to the next step\.
 
-## Step 6: Terminate the Temporary Instance<a name="nccl-start-dlami-terminate"></a>
+## Step 6: Terminate the temporary instance<a name="nccl-start-dlami-terminate"></a>
 
 At this point, you no longer need the temporary instance that you launched in **Step 1**\. You can terminate the instance to stop incurring charges for it\.
 
@@ -169,7 +169,7 @@ At this point, you no longer need the temporary instance that you launched in **
 
 1. Select the temporary instance that you created in **Step 1** and then choose **Actions**, **Instance State**, **Terminate**, **Yes, Terminate**\.
 
-## Step 7: Launch EFA and NCCL\-Enabled Instances into a Cluster Placement Group<a name="nccl-start-dlami-cluster"></a>
+## Step 7: Launch EFA and NCCL\-enabled instances into a cluster placement group<a name="nccl-start-dlami-cluster"></a>
 
 Launch your EFA and NCCL\-enabled instances into a cluster placement group using the EFA\-enabled AMI and the EFA\-enabled security group that you created earlier\.
 
@@ -209,7 +209,7 @@ Launch your EFA and NCCL\-enabled instances into a cluster placement group using
 
 1. On the **Review Instance Launch** page, review the settings, and then choose **Launch** to choose a key pair and to launch your instances\.
 
-## Step 8: Enable Passwordless SSH<a name="nccl-start-dlami-passwordless"></a>
+## Step 8: Enable passwordless SSH<a name="nccl-start-dlami-passwordless"></a>
 
 To enable your applications to run across all of the instances in your cluster, you must enable passwordless SSH access from the leader node to the member nodes\. The leader node is the instance from which you run your applications\. The remaining instances in the cluster are the member nodes\.
 

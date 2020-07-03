@@ -1,4 +1,4 @@
-# Infrastructure Security in Amazon EC2<a name="infrastructure-security"></a>
+# Infrastructure security in Amazon EC2<a name="infrastructure-security"></a>
 
 As a managed service, Amazon EC2 is protected by the AWS global network security procedures that are described in the [Amazon Web Services: Overview of Security Processes](https://d0.awsstatic.com/whitepapers/Security/AWS_Security_Whitepaper.pdf) whitepaper\.
 
@@ -6,7 +6,7 @@ You use AWS published API calls to access Amazon EC2 through the network\. Clien
 
 Additionally, requests must be signed using an access key ID and a secret access key that is associated with an IAM principal\. Or you can use the [AWS Security Token Service](https://docs.aws.amazon.com/STS/latest/APIReference/Welcome.html) \(AWS STS\) to generate temporary security credentials to sign requests\.
 
-## Network Isolation<a name="network-isolation"></a>
+## Network isolation<a name="network-isolation"></a>
 
 A virtual private cloud \(VPC\) is a virtual network in your own logically isolated area in the AWS Cloud\. Use separate VPCs to isolate infrastructure by workload or organizational entity\.
 
@@ -14,7 +14,7 @@ A subnet is a range of IP addresses in a VPC\. When you launch an instance, you 
 
 To call the Amazon EC2 API from your VPC without sending traffic over the public internet, use AWS PrivateLink\.
 
-## Isolation on Physical Hosts<a name="physical-isolation"></a>
+## Isolation on physical hosts<a name="physical-isolation"></a>
 
 Different EC2 instances on the same physical host are isolated from each other as though they are on separate physical hosts\. The hypervisor isolates CPU and memory, and the instances are provided virtualized disks instead of access to the raw disk devices\.
 
@@ -24,7 +24,7 @@ Network MAC addresses are dynamically assigned to instances by the AWS network i
 
 By default, an instance cannot receive traffic that is not specifically addressed to it\. If you need to run network address translation \(NAT\), routing, or firewall services on your instance, you can disable source/destination checking for the network interface\.
 
-## Controlling Network Traffic<a name="control-network-traffic"></a>
+## Controlling network traffic<a name="control-network-traffic"></a>
 
 Consider the following options for controlling network traffic to your EC2 instances:
 + Restrict access to your instances using [security groups](ec2-security-groups.md)\. For example, you can allow traffic only from the address ranges for your corporate network\.

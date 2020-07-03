@@ -1,4 +1,4 @@
-# Optimizing CPU Options<a name="instance-optimize-cpu"></a>
+# Optimizing CPU options<a name="instance-optimize-cpu"></a>
 
 Amazon EC2 instances support multithreading, which enables multiple threads to run concurrently on a single CPU core\. Each thread is represented as a virtual CPU \(vCPU\) on the instance\. An instance has a default number of CPU cores, which varies according to instance type\. For example, an `m5.xlarge` instance type has two CPU cores and two threads per core by default—four vCPUs in total\.
 
@@ -12,27 +12,27 @@ In most cases, there is an Amazon EC2 instance type that has a combination of me
 You can specify these CPU options during instance launch\. There is no additional or reduced charge for specifying CPU options\. You're charged the same as instances that are launched with default CPU options\.
 
 **Topics**
-+ [Rules for Specifying CPU Options](#instance-cpu-options-rules)
-+ [CPU Cores and Threads Per CPU Core Per Instance Type](#cpu-options-supported-instances-values)
-+ [Specifying CPU Options for Your Instance](#instance-specify-cpu-options)
-+ [Viewing the CPU Options for Your Instance](#view-cpu-options)
++ [Rules for specifying CPU options](#instance-cpu-options-rules)
++ [CPU cores and threads per CPU core per instance type](#cpu-options-supported-instances-values)
++ [Specifying CPU options for your instance](#instance-specify-cpu-options)
++ [Viewing the CPU options for your instance](#view-cpu-options)
 
-## Rules for Specifying CPU Options<a name="instance-cpu-options-rules"></a>
+## Rules for specifying CPU options<a name="instance-cpu-options-rules"></a>
 
 To specify the CPU options for your instance, be aware of the following rules:
 + CPU options can only be specified during instance launch and cannot be modified after launch\.
-+ When you launch an instance, you must specify both the number of CPU cores and threads per core in the request\. For example requests, see [Specifying CPU Options for Your Instance](#instance-specify-cpu-options)\.
-+ The number of vCPUs for the instance is the number of CPU cores multiplied by the threads per core\. To specify a custom number of vCPUs, you must specify a valid number of CPU cores and threads per core for the instance type\. You cannot exceed the default number of vCPUs for the instance\. For more information, see [CPU Cores and Threads Per CPU Core Per Instance Type](#cpu-options-supported-instances-values)\.
++ When you launch an instance, you must specify both the number of CPU cores and threads per core in the request\. For example requests, see [Specifying CPU options for your instance](#instance-specify-cpu-options)\.
++ The number of vCPUs for the instance is the number of CPU cores multiplied by the threads per core\. To specify a custom number of vCPUs, you must specify a valid number of CPU cores and threads per core for the instance type\. You cannot exceed the default number of vCPUs for the instance\. For more information, see [CPU cores and threads per CPU core per instance type](#cpu-options-supported-instances-values)\.
 + To disable multithreading, specify one thread per core\.
 + When you [change the instance type](ec2-instance-resize.md) of an existing instance, the CPU options automatically change to the default CPU options for the new instance type\.
 + The specified CPU options persist after you stop, start, or reboot an instance\.
 
-## CPU Cores and Threads Per CPU Core Per Instance Type<a name="cpu-options-supported-instances-values"></a>
+## CPU cores and threads per CPU core per instance type<a name="cpu-options-supported-instances-values"></a>
 
 The following tables list the instance types that support specifying CPU options\. For each type, the table shows the default and supported number of CPU cores and threads per core\.
 
 
-**Accelerated Computing Instances**  
+**Accelerated computing instances**  
 
 | Instance type | Default vCPUs | Default CPU cores | Default threads per core | Valid number of CPU cores | Valid number of threads per core | 
 | --- | --- | --- | --- | --- | --- | 
@@ -62,7 +62,7 @@ The following tables list the instance types that support specifying CPU options
 | p3dn\.24xlarge | 96 | 48 | 2 | 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48 | 1, 2 | 
 
 
-**Compute Optimized Instances**  
+**Compute optimized instances**  
 
 | Instance type | Default vCPUs | Default CPU cores | Default threads per core | Valid number of CPU cores | Valid number of threads per core | 
 | --- | --- | --- | --- | --- | --- | 
@@ -79,6 +79,14 @@ The following tables list the instance types that support specifying CPU options
 | c5\.12xlarge | 48 | 24 | 2 | 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24 | 1, 2 | 
 | c5\.18xlarge | 72 | 36 | 2 | 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36 | 1, 2 | 
 | c5\.24xlarge | 96 | 48 | 2 | 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48 | 1, 2 | 
+| c5a\.large | 2 | 1 | 2 | 1 | 1, 2 | 
+| c5a\.xlarge | 4 | 2 | 2 | 1, 2 | 1, 2 | 
+| c5a\.2xlarge | 8 | 4 | 2 | 1, 2, 3, 4 | 1, 2 | 
+| c5a\.4xlarge | 16 | 8 | 2 | 1, 2, 3, 4, 8 | 1, 2 | 
+| c5a\.8xlarge | 32 | 16 | 2 | 1, 2, 3, 4, 8, 12, 16 | 1, 2 | 
+| c5a\.12xlarge | 48 | 24 | 2 | 1, 2, 3, 4, 8, 12, 16, 20, 24 | 1, 2 | 
+| c5a\.16xlarge | 64 | 32 | 2 | 1, 2, 3, 4, 8, 12, 16, 20, 24, 28, 32 | 1, 2 | 
+| c5a\.24xlarge | 96 | 48 | 2 | 1, 2, 3, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48 | 1, 2 | 
 | c5d\.large | 2 | 1 | 2 | 1 | 1, 2 | 
 | c5d\.xlarge | 4 | 2 | 2 | 2 | 1, 2 | 
 | c5d\.2xlarge | 8 | 4 | 2 | 2, 4 | 1, 2 | 
@@ -95,7 +103,7 @@ The following tables list the instance types that support specifying CPU options
 | c5n\.18xlarge | 72 | 36 | 2 | 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36 | 1, 2 | 
 
 
-**General Purpose Instances**  
+**General purpose instances**  
 
 | Instance type | Default vCPUs | Default CPU cores | Default threads per core | Valid number of CPU cores | Valid number of threads per core | 
 | --- | --- | --- | --- | --- | --- | 
@@ -163,7 +171,7 @@ The following tables list the instance types that support specifying CPU options
 | t3a\.2xlarge | 8 | 4 | 2 | 2, 4 | 1, 2 | 
 
 
-**Memory Optimized Instances**  
+**Memory optimized instances**  
 
 | Instance type | Default vCPUs | Default CPU cores | Default threads per core | Valid number of CPU cores | Valid number of threads per core | 
 | --- | --- | --- | --- | --- | --- | 
@@ -237,7 +245,7 @@ The following tables list the instance types that support specifying CPU options
 | z1d\.12xlarge | 48 | 24 | 2 | 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24 | 1, 2 | 
 
 
-**Storage Optimized Instances**  
+**Storage optimized instances**  
 
 | Instance type | Default vCPUs | Default CPU cores | Default threads per core | Valid number of CPU cores | Valid number of threads per core | 
 | --- | --- | --- | --- | --- | --- | 
@@ -263,7 +271,7 @@ The following tables list the instance types that support specifying CPU options
 | i3en\.12xlarge | 48 | 24 | 2 | 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24 | 1, 2 | 
 | i3en\.24xlarge | 96 | 48 | 2 | 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48 | 1, 2 | 
 
-## Specifying CPU Options for Your Instance<a name="instance-specify-cpu-options"></a>
+## Specifying CPU options for your instance<a name="instance-specify-cpu-options"></a>
 
 You can specify CPU options during instance launch\. The following examples are for an `r4.4xlarge` instance type, which has the following [default values](#cpu-options-mem-optimized):
 + Default CPU cores: 8
@@ -272,7 +280,7 @@ You can specify CPU options during instance launch\. The following examples are 
 + Valid number of CPU cores: 1, 2, 3, 4, 5, 6, 7, 8
 + Valid number of threads per core: 1, 2
 
-### Disabling Multithreading<a name="cpu-options-disable-intel-hyper-threading-technology"></a>
+### Disabling multithreading<a name="cpu-options-disable-intel-hyper-threading-technology"></a>
 
 To disable multithreading, specify one thread per core\.
 
@@ -295,7 +303,7 @@ Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/ru
 aws ec2 run-instances --image-id ami-1a2b3c4d --instance-type r4.4xlarge --cpu-options "CoreCount=8,ThreadsPerCore=1" --key-name MyKeyPair
 ```
 
-### Specifying a Custom Number of vCPUs<a name="cpu-options-customer-number-of-vCPUs"></a>
+### Specifying a custom number of vCPUs<a name="cpu-options-customer-number-of-vCPUs"></a>
 
 You can customize the number of CPU cores and threads per core for the instance\.
 
@@ -328,7 +336,7 @@ Alternatively, specify six CPU cores and one thread per core \(disable multithre
 aws ec2 run-instances --image-id ami-1a2b3c4d --instance-type r4.4xlarge --cpu-options "CoreCount=6,ThreadsPerCore=1" --key-name MyKeyPair
 ```
 
-## Viewing the CPU Options for Your Instance<a name="view-cpu-options"></a>
+## Viewing the CPU options for your instance<a name="view-cpu-options"></a>
 
 You can view the CPU options for an existing instance in the Amazon EC2 console or by describing the instance using the AWS CLI\.
 

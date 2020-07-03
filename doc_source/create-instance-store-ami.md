@@ -1,14 +1,14 @@
-# Creating an AMI from an Instance Store\-Backed Instance<a name="create-instance-store-ami"></a>
+# Creating an AMI from an instance store\-backed instance<a name="create-instance-store-ami"></a>
 
 The following procedures are for creating an instance store\-backed AMI from an instance store\-backed instance\. Before you begin, ensure that you've read the [Prerequisites](creating-an-ami-instance-store.md#bundle-ami-prerequisites)\.
 
 **Topics**
-+ [Creating an AMI from an Instance Store\-Backed Amazon Linux Instance](#amazon_linux_instructions)
-+ [Creating an AMI from an Instance Store\-Backed Ubuntu Instance](#ubuntu_instructions)
++ [Creating an AMI from an instance store\-backed Amazon Linux instance](#amazon_linux_instructions)
++ [Creating an AMI from an instance store\-backed Ubuntu instance](#ubuntu_instructions)
 
-## Creating an AMI from an Instance Store\-Backed Amazon Linux Instance<a name="amazon_linux_instructions"></a>
+## Creating an AMI from an instance store\-backed Amazon Linux instance<a name="amazon_linux_instructions"></a>
 
-This section describes the creation of an AMI from an Amazon Linux instance\. The following procedures may not work for instances running other Linux distributions\. For Ubuntu\-specific procedures, see [Creating an AMI from an Instance Store\-Backed Ubuntu Instance](#ubuntu_instructions)\.
+This section describes the creation of an AMI from an Amazon Linux instance\. The following procedures may not work for instances running other Linux distributions\. For Ubuntu\-specific procedures, see [Creating an AMI from an instance store\-backed Ubuntu instance](#ubuntu_instructions)\.
 
 **To prepare to use the AMI tools \(HVM instances only\)**
 
@@ -80,7 +80,7 @@ For the China \(Beijing\) and AWS GovCloud \(US\-West\) Regions, use the `--ec2c
       [root ec2-user]# exit
       ```
 
-1. \(Optional\) To add more instance store volumes, edit the block device mappings in the `image.manifest.xml` file for your AMI\. For more information, see [Block Device Mapping](block-device-mapping-concepts.md)\.
+1. \(Optional\) To add more instance store volumes, edit the block device mappings in the `image.manifest.xml` file for your AMI\. For more information, see [Block device mapping](block-device-mapping-concepts.md)\.
 
    1. Create a backup of your `image.manifest.xml` file\.
 
@@ -145,11 +145,11 @@ If you specified a path with the `-d /path/to/bundle/storage` option in [Step 2]
 **Important**  
 If you previously specified a Region for the [ec2\-upload\-bundle](ami-tools-commands.md#ami-upload-bundle) command, specify that Region again for this command\.
 
-## Creating an AMI from an Instance Store\-Backed Ubuntu Instance<a name="ubuntu_instructions"></a>
+## Creating an AMI from an instance store\-backed Ubuntu instance<a name="ubuntu_instructions"></a>
 
-This section describes the creation of an AMI from an Ubuntu Linux instance with an instance store volume as the root volume\. The following procedures may not work for instances running other Linux distributions\. For procedures specific to Amazon Linux, see [Creating an AMI from an Instance Store\-Backed Amazon Linux Instance](#amazon_linux_instructions)\.
+This section describes the creation of an AMI from an Ubuntu Linux instance with an instance store volume as the root volume\. The following procedures may not work for instances running other Linux distributions\. For procedures specific to Amazon Linux, see [Creating an AMI from an instance store\-backed Amazon Linux instance](#amazon_linux_instructions)\.
 
-**To prepare to use the AMI Tools \(HVM instances only\)**
+**To prepare to use the AMI tools \(HVM instances only\)**
 
 The AMI tools require GRUB Legacy to boot properly\. However, Ubuntu is configured to use GRUB 2\. You must check to see that your instance uses GRUB Legacy, and if not, you need to install and configure it\.
 
@@ -294,7 +294,7 @@ For Ubuntu 14\.04 and later HVM instances, add the `--partition mbr` flag to bun
       root@ubuntu:# exit
       ```
 
-1. \(Optional\) To add more instance store volumes, edit the block device mappings in the `image.manifest.xml` file for your AMI\. For more information, see [Block Device Mapping](block-device-mapping-concepts.md)\.
+1. \(Optional\) To add more instance store volumes, edit the block device mappings in the `image.manifest.xml` file for your AMI\. For more information, see [Block device mapping](block-device-mapping-concepts.md)\.
 
    1. Create a backup of your `image.manifest.xml` file\.
 

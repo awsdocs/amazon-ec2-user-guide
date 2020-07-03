@@ -1,11 +1,11 @@
-# Connect Using EC2 Instance Connect<a name="ec2-instance-connect-methods"></a>
+# Connect using EC2 Instance Connect<a name="ec2-instance-connect-methods"></a>
 
 The following instructions explain how to connect to your Linux instance using EC2 Instance Connect\.
 
 **Topics**
-+ [Connect Using the Browser\-based Client](#ec2-instance-connect-connecting-console)
-+ [Connect Using the EC2 Instance Connect CLI](#ec2-instance-connect-connecting-ec2-cli)
-+ [Connect Using Your Own Key and SSH Client](#ec2-instance-connect-connecting-aws-cli)
++ [Connect using the browser\-based client](#ec2-instance-connect-connecting-console)
++ [Connect using the EC2 Instance Connect CLI](#ec2-instance-connect-connecting-ec2-cli)
++ [Connect using your own key and SSH client](#ec2-instance-connect-connecting-aws-cli)
 
 **Limitations**
 + The following Linux distributions are supported:
@@ -19,7 +19,7 @@ The following instructions explain how to connect to your Linux instance using E
 **Prerequisites**
 + **Install Instance Connect on your instance\.**
 
-  For more information, see [Set Up EC2 Instance Connect](ec2-instance-connect-set-up.md)\.
+  For more information, see [Set up EC2 Instance Connect](ec2-instance-connect-set-up.md)\.
 + **\(Optional\) Install an SSH client on your local computer\.**
 
   There is no need to install an SSH client if users only use the console or the EC2 Instance Connect CLI to connect to an instance\. Your local computer most likely has an SSH client installed by default\. You can check for an SSH client by typing ssh at the command line\. If your local computer doesn't recognize the command, you can install an SSH client\. For information about installing an SSH client on Linux or macOS X, see [http://www\.openssh\.com](http://www.openssh.com/)\. For information about installing an SSH client on Windows 10, see [OpenSSH in Windows](https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_overview)\.
@@ -27,7 +27,7 @@ The following instructions explain how to connect to your Linux instance using E
 
   There is no need to install the EC2 Instance Connect CLI if users only use the console or an SSH client to connect to an instance\. For more information, see [Step 3: \(Optional\) Install the EC2 Instance Connect CLI](ec2-instance-connect-set-up.md#ec2-instance-connect-install-eic-CLI)\.
 
-## Connect Using the Browser\-based Client<a name="ec2-instance-connect-connecting-console"></a>
+## Connect using the browser\-based client<a name="ec2-instance-connect-connecting-console"></a>
 
 You can connect to an instance using the browser\-based client by selecting the instance from the Amazon EC2 console and choosing to connect using EC2 Instance Connect\. Instance Connect handles the permissions and provides a successful connection\.
 
@@ -43,7 +43,7 @@ You can connect to an instance using the browser\-based client by selecting the 
 
 A window opens, and you are connected to your instance\.
 
-## Connect Using the EC2 Instance Connect CLI<a name="ec2-instance-connect-connecting-ec2-cli"></a>
+## Connect using the EC2 Instance Connect CLI<a name="ec2-instance-connect-connecting-ec2-cli"></a>
 
 You can connect to an instance using the EC2 Instance Connect CLI by providing only the instance ID, while the Instance Connect CLI performs the following three actions in one call: it generates a one\-time\-use SSH public key, pushes the key to the instance where it remains for 60 seconds, and connects the user to the instance\. You can use basic SSH/SFTP commands with the Instance Connect CLI\.
 
@@ -69,12 +69,12 @@ $ mssh ubuntu@i-001234a4bf70dec41EXAMPLE
 
 ------
 
-## Connect Using Your Own Key and SSH Client<a name="ec2-instance-connect-connecting-aws-cli"></a>
+## Connect using your own key and SSH client<a name="ec2-instance-connect-connecting-aws-cli"></a>
 
 You can use your own SSH key and connect to your instance from the SSH client of your choice while using the EC2 Instance Connect API\. This enables you to benefit from the Instance Connect capability to push a public key to the instance\.
 
 **Requirement**  
-The supported RSA key types are OpenSSH and SSH2\. The supported lengths are 2048 and 4096\. For more information, see [Importing your own public key to Amazon EC2](ec2-key-pairs.md#how-to-generate-your-own-key-and-import-it-to-aws)\.
+The supported RSA key types are OpenSSH and SSH2\. The supported lengths are 2048 and 4096\. For more information, see [Option 2: Import your own public key to Amazon EC2](ec2-key-pairs.md#how-to-generate-your-own-key-and-import-it-to-aws)\.
 
 **To connect to your instance using your own key and any SSH client**
 
@@ -93,7 +93,11 @@ The supported RSA key types are OpenSSH and SSH2\. The supported lengths are 204
    The following example pushes the public key to the specified instance in the specified Availability Zone, to authenticate `ec2-user`:
 
    ```
-   $ aws ec2-instance-connect send-ssh-public-key --instance-id i-001234a4bf70dec41EXAMPLE --availability-zone us-west-2b --instance-os-user ec2-user --ssh-public-key file://my_rsa_key.pub
+   $ aws ec2-instance-connect send-ssh-public-key \
+       --instance-id i-001234a4bf70dec41EXAMPLE \
+       --availability-zone us-west-2b \
+       --instance-os-user ec2-user \
+       --ssh-public-key file://my_rsa_key.pub
    ```
 
 1. Connect to the instance using your private key\.

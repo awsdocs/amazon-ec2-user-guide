@@ -1,4 +1,4 @@
-# Data Protection in Amazon EC2<a name="data-protection"></a>
+# Data protection in Amazon EC2<a name="data-protection"></a>
 
 Amazon Elastic Compute Cloud \(Amazon EC2\) conforms to the AWS [shared responsibility model](http://aws.amazon.com/compliance/shared-responsibility-model/), which includes regulations and guidelines for data protection\. AWS is responsible for protecting the global infrastructure that runs all AWS services\. AWS maintains control over data hosted on this infrastructure, including the security configuration controls for handling customer content and personal data\. AWS customers and APN Partners, acting either as data controllers or data processors, are responsible for any personal data that they put in the AWS Cloud\.
 
@@ -13,15 +13,15 @@ We strongly recommend that you never put sensitive identifying information, such
 
 For more information about data protection, see the [AWS Shared Responsibility Model and GDPR](http://aws.amazon.com/blogs/security/the-aws-shared-responsibility-model-and-gdpr/) blog post on the *AWS Security Blog*\.
 
-## Encryption at Rest<a name="encryption-rest"></a>
+## Encryption at rest<a name="encryption-rest"></a>
 
-Amazon EBS encryption is an encryption solution for your EBS volumes and snapshots\. It uses AWS Key Management Service \(AWS KMS\) customer master keys \(CMK\)\. For more information, see [Amazon EBS Encryption](EBSEncryption.md)\.
+Amazon EBS encryption is an encryption solution for your EBS volumes and snapshots\. It uses AWS Key Management Service \(AWS KMS\) customer master keys \(CMK\)\. For more information, see [Amazon EBS encryption](EBSEncryption.md)\.
 
 The data on NVMe instance store volumes is encrypted using an XTS\-AES\-256 cipher implemented on a hardware module on the instance\. The encryption keys are generated using the hardware module and are unique to each NVMe instance storage device\. All encryption keys are destroyed when the instance is stopped or terminated and cannot be recovered\. You cannot disable this encryption and you cannot provide your own encryption key\.
 
-## Encryption in Transit<a name="encryption-transit"></a>
+## Encryption in transit<a name="encryption-transit"></a>
 
-AWS provides secure and private connectivity between EC2 instances of all types\. In addition, we automatically encrypt in\-transit traffic between supported instances in the same VPC or in peered VPCs, using AEAD algorithms with 256\-bit encryption\. This encryption feature uses the offload capabilities of the underlying hardware, and there is no impact on network performance\. The following instances support the additional in\-transit traffic encryption: C5n, G4, I3en, M5dn, M5n, P3dn, R5dn, and R5n\.
+AWS provides secure and private connectivity between EC2 instances of all types\. In addition, we automatically encrypt in\-transit traffic between supported instances in the same VPC or in peered VPCs, using AEAD algorithms with 256\-bit encryption\. This encryption feature uses the offload capabilities of the underlying hardware, and there is no impact on network performance\. The following instances support the additional in\-transit traffic encryption: C5n, C5a, G4, I3en, M5dn, M5n, P3dn, R5dn, and R5n\.
 
 SSH provides a secure communications channel for remote access to your Linux instances\. Remote access to your instances using AWS Systems Manager Session Manager and Run Command is encrypted using TLS 1\.2, and requests to create a connection are signed using SigV4\.
 

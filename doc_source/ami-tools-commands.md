@@ -1,6 +1,6 @@
-# AMI Tools Reference<a name="ami-tools-commands"></a>
+# AMI tools reference<a name="ami-tools-commands"></a>
 
-You can use the AMI tools commands to create and manage instance store\-backed Linux AMIs\. To set up the tools, see [Setting Up the AMI Tools](set-up-ami-tools.md)\.
+You can use the AMI tools commands to create and manage instance store\-backed Linux AMIs\. To set up the tools, see [Setting up the AMI tools](set-up-ami-tools.md)\.
 
 For information about your access keys, see [Best Practices for Managing AWS Access Keys](https://docs.aws.amazon.com/general/latest/gr/aws-access-keys-best-practices.html)\.
 
@@ -13,7 +13,7 @@ For information about your access keys, see [Best Practices for Managing AWS Acc
 + [ec2\-migrate\-manifest](#ami-migrate-manifest)
 + [ec2\-unbundle](#ami-unbundle)
 + [ec2\-upload\-bundle](#ami-upload-bundle)
-+ [Common Options for AMI Tools](#common-args-ami)
++ [Common options for AMI tools](#common-args-ami)
 
 ## ec2\-ami\-tools\-version<a name="ami-tools-version"></a>
 
@@ -73,7 +73,7 @@ Required: No
 
 `--ec2cert` *path*  
 The path to the Amazon EC2 X\.509 public key certificate used to encrypt the image manifest\.  
-The `us-gov-west-1` and `cn-north-1` Regions use a non\-default public key certificate and the path to that certificate must be specified with this option\. The path to the certificate varies based on the installation method of the AMI tools\. For Amazon Linux, the certificates are located at `/opt/aws/amitools/ec2/etc/ec2/amitools/`\. If you installed the AMI tools from the RPM or ZIP file in [Setting Up the AMI Tools](set-up-ami-tools.md), the certificates are located at `$EC2_AMITOOL_HOME/etc/ec2/amitools/`\.  
+The `us-gov-west-1` and `cn-north-1` Regions use a non\-default public key certificate and the path to that certificate must be specified with this option\. The path to the certificate varies based on the installation method of the AMI tools\. For Amazon Linux, the certificates are located at `/opt/aws/amitools/ec2/etc/ec2/amitools/`\. If you installed the AMI tools from the RPM or ZIP file in [Setting up the AMI tools](set-up-ami-tools.md), the certificates are located at `$EC2_AMITOOL_HOME/etc/ec2/amitools/`\.  
 Required: Only for the `us-gov-west-1` and `cn-north-1` Regions\.
 
 `-r, --arch` *architecture*  
@@ -151,7 +151,7 @@ Amazon EC2 attempts to inherit product codes, kernel settings, RAM disk settings
 
 By default, the bundle process excludes files that might contain sensitive information\. These files include `*.sw`, `*.swo`, `*.swp`, `*.pem`, `*.priv`, `*id_rsa*`, `*id_dsa*` `*.gpg`, `*.jks`, `*/.ssh/authorized_keys`, and `*/.bash_history`\. To include all of these files, use the `--no-filter` option\. To include some of these files, use the `--include` option\.
 
-For more information, see [Creating an Instance Store\-Backed Linux AMI](creating-an-ami-instance-store.md)\.
+For more information, see [Creating an instance store\-backed Linux AMI](creating-an-ami-instance-store.md)\.
 
 ### Syntax<a name="bundle-vol-request"></a>
 
@@ -178,7 +178,7 @@ Required: No
 
 `--ec2cert` *path*  
 The path to the Amazon EC2 X\.509 public key certificate used to encrypt the image manifest\.  
-The `us-gov-west-1` and `cn-north-1` Regions use a non\-default public key certificate and the path to that certificate must be specified with this option\. The path to the certificate varies based on the installation method of the AMI tools\. For Amazon Linux, the certificates are located at `/opt/aws/amitools/ec2/etc/ec2/amitools/`\. If you installed the AMI tools from the RPM or ZIP file in [Setting Up the AMI Tools](set-up-ami-tools.md), the certificates are located at `$EC2_AMITOOL_HOME/etc/ec2/amitools/`\.  
+The `us-gov-west-1` and `cn-north-1` Regions use a non\-default public key certificate and the path to that certificate must be specified with this option\. The path to the certificate varies based on the installation method of the AMI tools\. For Amazon Linux, the certificates are located at `/opt/aws/amitools/ec2/etc/ec2/amitools/`\. If you installed the AMI tools from the RPM or ZIP file in [Setting up the AMI tools](set-up-ami-tools.md), the certificates are located at `$EC2_AMITOOL_HOME/etc/ec2/amitools/`\.  
 Required: Only for the `us-gov-west-1` and `cn-north-1` Regions\.
 
 `-r, --arch ` *architecture*  
@@ -375,26 +375,26 @@ Amazon EC2 displays status messages indicating the stages and status of the dele
 This example deletes a bundle from Amazon S3\.
 
 ```
-[ec2-user ~]$ ec2-delete-bundle -b aws-s3-bucket1 -a your_access_key_id -s your_secret_access_key
+[ec2-user ~]$ ec2-delete-bundle -b AWSDOC-EXAMPLE-BUCKET1 -a your_access_key_id -s your_secret_access_key
 Deleting files:
-aws-s3-bucket1/image.manifest.xml
-aws-s3-bucket1/image.part.00
-aws-s3-bucket1/image.part.01
-aws-s3-bucket1/image.part.02
-aws-s3-bucket1/image.part.03
-aws-s3-bucket1/image.part.04
-aws-s3-bucket1/image.part.05
-aws-s3-bucket1/image.part.06
+AWSDOC-EXAMPLE-BUCKET1/image.manifest.xml
+AWSDOC-EXAMPLE-BUCKET1/image.part.00
+AWSDOC-EXAMPLE-BUCKET1/image.part.01
+AWSDOC-EXAMPLE-BUCKET1/image.part.02
+AWSDOC-EXAMPLE-BUCKET1/image.part.03
+AWSDOC-EXAMPLE-BUCKET1/image.part.04
+AWSDOC-EXAMPLE-BUCKET1/image.part.05
+AWSDOC-EXAMPLE-BUCKET1/image.part.06
 Continue? [y/n]
 y
-Deleted aws-s3-bucket1/image.manifest.xml
-Deleted aws-s3-bucket1/image.part.00
-Deleted aws-s3-bucket1/image.part.01
-Deleted aws-s3-bucket1/image.part.02
-Deleted aws-s3-bucket1/image.part.03
-Deleted aws-s3-bucket1/image.part.04
-Deleted aws-s3-bucket1/image.part.05
-Deleted aws-s3-bucket1/image.part.06
+Deleted AWSDOC-EXAMPLE-BUCKET1/image.manifest.xml
+Deleted AWSDOC-EXAMPLE-BUCKET1/image.part.00
+Deleted AWSDOC-EXAMPLE-BUCKET1/image.part.01
+Deleted AWSDOC-EXAMPLE-BUCKET1/image.part.02
+Deleted AWSDOC-EXAMPLE-BUCKET1/image.part.03
+Deleted AWSDOC-EXAMPLE-BUCKET1/image.part.04
+Deleted AWSDOC-EXAMPLE-BUCKET1/image.part.05
+Deleted AWSDOC-EXAMPLE-BUCKET1/image.part.06
 ec2-delete-bundle complete.
 ```
 
@@ -466,26 +466,26 @@ Status messages indicating the various stages of the download process are displa
 
 ### Example<a name="download-bundle-response"></a>
 
-This example creates the `bundled` directory \(using the Linux mkdir command\) and downloads the bundle from the `aws-s3-bucket1` Amazon S3 bucket\.
+This example creates the `bundled` directory \(using the Linux mkdir command\) and downloads the bundle from the `AWSDOC-EXAMPLE-BUCKET1` Amazon S3 bucket\.
 
 ```
 [ec2-user ~]$ mkdir bundled
-[ec2-user ~]$ ec2-download-bundle -b aws-s3-bucket1/bundles/bundle_name -m image.manifest.xml -a your_access_key_id -s your_secret_access_key -k pk-HKZYKTAIG2ECMXYIBH3HXV4ZBEXAMPLE.pem -d mybundle
-Downloading manifest image.manifest.xml from aws-s3-bucket1 to mybundle/image.manifest.xml ...
-Downloading part image.part.00 from aws-s3-bucket1/bundles/bundle_name to mybundle/image.part.00 ...
-Downloaded image.part.00 from aws-s3-bucket1
-Downloading part image.part.01 from aws-s3-bucket1/bundles/bundle_name to mybundle/image.part.01 ...
-Downloaded image.part.01 from aws-s3-bucket1
-Downloading part image.part.02 from aws-s3-bucket1/bundles/bundle_name to mybundle/image.part.02 ...
-Downloaded image.part.02 from aws-s3-bucket1
-Downloading part image.part.03 from aws-s3-bucket1/bundles/bundle_name to mybundle/image.part.03 ...
-Downloaded image.part.03 from aws-s3-bucket1
-Downloading part image.part.04 from aws-s3-bucket1/bundles/bundle_name to mybundle/image.part.04 ...
-Downloaded image.part.04 from aws-s3-bucket1
-Downloading part image.part.05 from aws-s3-bucket1/bundles/bundle_name to mybundle/image.part.05 ...
-Downloaded image.part.05 from aws-s3-bucket1
-Downloading part image.part.06 from aws-s3-bucket1/bundles/bundle_name to mybundle/image.part.06 ...
-Downloaded image.part.06 from aws-s3-bucket1
+[ec2-user ~]$ ec2-download-bundle -b AWSDOC-EXAMPLE-BUCKET1/bundles/bundle_name -m image.manifest.xml -a your_access_key_id -s your_secret_access_key -k pk-HKZYKTAIG2ECMXYIBH3HXV4ZBEXAMPLE.pem -d mybundle
+Downloading manifest image.manifest.xml from AWSDOC-EXAMPLE-BUCKET1 to mybundle/image.manifest.xml ...
+Downloading part image.part.00 from AWSDOC-EXAMPLE-BUCKET1/bundles/bundle_name to mybundle/image.part.00 ...
+Downloaded image.part.00 from AWSDOC-EXAMPLE-BUCKET1
+Downloading part image.part.01 from AWSDOC-EXAMPLE-BUCKET1/bundles/bundle_name to mybundle/image.part.01 ...
+Downloaded image.part.01 from AWSDOC-EXAMPLE-BUCKET1
+Downloading part image.part.02 from AWSDOC-EXAMPLE-BUCKET1/bundles/bundle_name to mybundle/image.part.02 ...
+Downloaded image.part.02 from AWSDOC-EXAMPLE-BUCKET1
+Downloading part image.part.03 from AWSDOC-EXAMPLE-BUCKET1/bundles/bundle_name to mybundle/image.part.03 ...
+Downloaded image.part.03 from AWSDOC-EXAMPLE-BUCKET1
+Downloading part image.part.04 from AWSDOC-EXAMPLE-BUCKET1/bundles/bundle_name to mybundle/image.part.04 ...
+Downloaded image.part.04 from AWSDOC-EXAMPLE-BUCKET1
+Downloading part image.part.05 from AWSDOC-EXAMPLE-BUCKET1/bundles/bundle_name to mybundle/image.part.05 ...
+Downloaded image.part.05 from AWSDOC-EXAMPLE-BUCKET1
+Downloading part image.part.06 from AWSDOC-EXAMPLE-BUCKET1/bundles/bundle_name to mybundle/image.part.06 ...
+Downloaded image.part.06 from AWSDOC-EXAMPLE-BUCKET1
 ```
 
 ## ec2\-migrate\-manifest<a name="ami-migrate-manifest"></a>
@@ -531,17 +531,17 @@ Required: Required if you're not providing the `-a`, `-s`, and `--region` option
 
 `--ec2cert` *path*  
 The path to the Amazon EC2 X\.509 public key certificate used to encrypt the image manifest\.  
-The `us-gov-west-1` and `cn-north-1` Regions use a non\-default public key certificate and the path to that certificate must be specified with this option\. The path to the certificate varies based on the installation method of the AMI tools\. For Amazon Linux, the certificates are located at `/opt/aws/amitools/ec2/etc/ec2/amitools/`\. If you installed the AMI tools from the ZIP file in [Setting Up the AMI Tools](set-up-ami-tools.md), the certificates are located at `$EC2_AMITOOL_HOME/etc/ec2/amitools/`\.  
+The `us-gov-west-1` and `cn-north-1` Regions use a non\-default public key certificate and the path to that certificate must be specified with this option\. The path to the certificate varies based on the installation method of the AMI tools\. For Amazon Linux, the certificates are located at `/opt/aws/amitools/ec2/etc/ec2/amitools/`\. If you installed the AMI tools from the ZIP file in [Setting up the AMI tools](set-up-ami-tools.md), the certificates are located at `$EC2_AMITOOL_HOME/etc/ec2/amitools/`\.  
 Required: Only for the `us-gov-west-1` and `cn-north-1` Regions\.
 
 `--kernel` *kernel\_id*  
 The ID of the kernel to select\.  
-We recommend that you use PV\-GRUB instead of kernels and RAM disks\. For more information, see [User Provided Kernels](UserProvidedKernels.md)\.
+We recommend that you use PV\-GRUB instead of kernels and RAM disks\. For more information, see [User provided kernels](UserProvidedKernels.md)\.
 Required: No
 
 `--ramdisk` *ramdisk\_id*  
 The ID of the RAM disk to select\.  
-We recommend that you use PV\-GRUB instead of kernels and RAM disks\. For more information, see [User Provided Kernels](UserProvidedKernels.md)\.
+We recommend that you use PV\-GRUB instead of kernels and RAM disks\. For more information, see [User provided kernels](UserProvidedKernels.md)\.
 Required: No
 
 ### Output<a name="migrate-manifest-output"></a>
@@ -609,7 +609,7 @@ Status messages indicating the various stages of the unbundling process are disp
 
 ### Description<a name="upload-bundle-description"></a>
 
-Uploads the bundle for an instance store\-backed Linux AMI to Amazon S3 and sets the appropriate ACLs on the uploaded objects\. For more information, see [Creating an Instance Store\-Backed Linux AMI](creating-an-ami-instance-store.md)\.
+Uploads the bundle for an instance store\-backed Linux AMI to Amazon S3 and sets the appropriate ACLs on the uploaded objects\. For more information, see [Creating an instance store\-backed Linux AMI](creating-an-ami-instance-store.md)\.
 
 ### Syntax<a name="upload-bundle-request"></a>
 
@@ -699,9 +699,9 @@ Amazon EC2 displays status messages that indicate the stages and status of the u
 This example uploads the bundle specified by the `image.manifest.xml` manifest\.
 
 ```
-[ec2-user ~]$ ec2-upload-bundle -b aws-s3-bucket1/bundles/bundle_name -m image.manifest.xml -a your_access_key_id -s your_secret_access_key
+[ec2-user ~]$ ec2-upload-bundle -b AWSDOC-EXAMPLE-BUCKET1/bundles/bundle_name -m image.manifest.xml -a your_access_key_id -s your_secret_access_key
 Creating bucket...
-Uploading bundled image parts to the S3 bucket aws-s3-bucket1 ...
+Uploading bundled image parts to the S3 bucket AWSDOC-EXAMPLE-BUCKET1 ...
 Uploaded image.part.00
 Uploaded image.part.01
 Uploaded image.part.02
@@ -722,7 +722,7 @@ Uploaded manifest.
 Bundle upload completed.
 ```
 
-## Common Options for AMI Tools<a name="common-args-ami"></a>
+## Common options for AMI tools<a name="common-args-ami"></a>
 
 Most of the AMI tools accept the following optional parameters\.
 

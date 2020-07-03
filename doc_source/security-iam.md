@@ -1,28 +1,28 @@
-# Identity and Access Management for Amazon EC2<a name="security-iam"></a>
+# Identity and access management for Amazon EC2<a name="security-iam"></a>
 
 Your security credentials identify you to services in AWS and grant you unlimited use of your AWS resources, such as your Amazon EC2 resources\. You can use features of Amazon EC2 and AWS Identity and Access Management \(IAM\) to allow other users, services, and applications to use your Amazon EC2 resources without sharing your security credentials\. You can use IAM to control how other users use resources in your AWS account, and you can use security groups to control access to your Amazon EC2 instances\. You can choose to allow full use or limited use of your Amazon EC2 resources\.
 
 **Topics**
-+ [Network Access to Your Instance](#intro-to-security-groups)
-+ [Amazon EC2 Permission Attributes](#AmazonEC2Permissions)
++ [Network access to your instance](#intro-to-security-groups)
++ [Amazon EC2 permission attributes](#AmazonEC2Permissions)
 + [IAM and Amazon EC2](#intro-to-iam)
-+ [IAM Policies for Amazon EC2](iam-policies-for-amazon-ec2.md)
-+ [IAM Roles for Amazon EC2](iam-roles-for-amazon-ec2.md)
-+ [Authorizing Inbound Traffic for Your Linux Instances](authorizing-access-to-an-instance.md)
++ [IAM policies for Amazon EC2](iam-policies-for-amazon-ec2.md)
++ [IAM roles for Amazon EC2](iam-roles-for-amazon-ec2.md)
++ [Authorizing inbound traffic for your Linux instances](authorizing-access-to-an-instance.md)
 
-## Network Access to Your Instance<a name="intro-to-security-groups"></a>
+## Network access to your instance<a name="intro-to-security-groups"></a>
 
 A security group acts as a firewall that controls the traffic allowed to reach one or more instances\. When you launch an instance, you assign it one or more security groups\. You add rules to each security group that control traffic for the instance\. You can modify the rules for a security group at any time; the new rules are automatically applied to all instances to which the security group is assigned\. 
 
-For more information, see [Authorizing Inbound Traffic for Your Linux Instances](authorizing-access-to-an-instance.md)\.
+For more information, see [Authorizing inbound traffic for your Linux instances](authorizing-access-to-an-instance.md)\.
 
-## Amazon EC2 Permission Attributes<a name="AmazonEC2Permissions"></a>
+## Amazon EC2 permission attributes<a name="AmazonEC2Permissions"></a>
 
 Your organization might have multiple AWS accounts\. Amazon EC2 enables you to specify additional AWS accounts that can use your Amazon Machine Images \(AMIs\) and Amazon EBS snapshots\. These permissions work at the AWS account level only; you can't restrict permissions for specific users within the specified AWS account\. All users in the AWS account that you've specified can use the AMI or snapshot\.
 
-Each AMI has a `LaunchPermission` attribute that controls which AWS accounts can access the AMI\. For more information, see [Making an AMI Public](sharingamis-intro.md)\.
+Each AMI has a `LaunchPermission` attribute that controls which AWS accounts can access the AMI\. For more information, see [Making an AMI public](sharingamis-intro.md)\.
 
-Each Amazon EBS snapshot has a `createVolumePermission` attribute that controls which AWS accounts can use the snapshot\. For more information, see [Sharing an Amazon EBS Snapshot](ebs-modifying-snapshot-permissions.md)\.
+Each Amazon EBS snapshot has a `createVolumePermission` attribute that controls which AWS accounts can use the snapshot\. For more information, see [Sharing an Amazon EBS snapshot](ebs-modifying-snapshot-permissions.md)\.
 
 ## IAM and Amazon EC2<a name="intro-to-iam"></a>
 
@@ -43,7 +43,7 @@ This topic helps you answer the following questions:
 + How do I grant permissions to perform actions in Amazon EC2?
 + How do I grant permissions to perform actions on specific resources in Amazon EC2?
 
-### Creating an IAM Group and Users<a name="creating-an-iam-group"></a>
+### Creating an IAM group and users<a name="creating-an-iam-group"></a>
 
 **To create an IAM group**
 
@@ -89,10 +89,10 @@ You cannot retrieve the secret access key after you complete this step; if you m
 
 1. Give each user his or her credentials \(access keys and password\); this enables them to use services based on the permissions you specified for the IAM group\. 
 
-### Related Topics<a name="iam-related-topics"></a>
+### Related topics<a name="iam-related-topics"></a>
 
 For more information about IAM, see the following:
-+ [IAM Policies for Amazon EC2](iam-policies-for-amazon-ec2.md)
-+ [IAM Roles for Amazon EC2](iam-roles-for-amazon-ec2.md)
++ [IAM policies for Amazon EC2](iam-policies-for-amazon-ec2.md)
++ [IAM roles for Amazon EC2](iam-roles-for-amazon-ec2.md)
 + [AWS Identity and Access Management \(IAM\)](https://aws.amazon.com/iam)
 + [IAM User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/)

@@ -1,4 +1,4 @@
-# Compliance Validation for Amazon EC2<a name="compliance-validation"></a>
+# Compliance validation for Amazon EC2<a name="compliance-validation"></a>
 
 Third\-party auditors assess the security and compliance of Amazon EC2 as part of multiple AWS compliance programs\. These include SOC, PCI, FedRAMP, HIPAA, and others\.
 

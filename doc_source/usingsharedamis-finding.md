@@ -1,11 +1,10 @@
-# Finding Shared AMIs<a name="usingsharedamis-finding"></a>
+# Finding shared AMIs<a name="usingsharedamis-finding"></a>
 
 You can use the Amazon EC2 console or the command line to find shared AMIs\. 
 
-**Note**  
-AMIs are a regional resource\. Therefore, when searching for a shared AMI \(public or private\), you must search for it from within the region from which it is being shared\. To make an AMI available in a different region, copy the AMI to the region and then share it\. For more information, see [Copying an AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/CopyingAMIs.html)\.
+AMIs are a regional resource\. Therefore, when searching for a shared AMI \(public or private\), you must search for it from within the Region from which it is being shared\. To make an AMI available in a different Region, copy the AMI to the Region and then share it\. For more information, see [Copying an AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/CopyingAMIs.html)\.
 
-## Finding a Shared AMI \(Console\)<a name="usingsharedamis-finding-console"></a>
+## Finding a shared AMI \(console\)<a name="usingsharedamis-finding-console"></a>
 
 **To find a shared private AMI using the console**
 
@@ -25,7 +24,7 @@ AMIs are a regional resource\. Therefore, when searching for a shared AMI \(publ
 
 1. Use filters to list only the types of AMIs that interest you\. For example, choose **Owner :** and then choose **Amazon images** to display only Amazon's public images\.
 
-## Finding a Shared AMI \(AWS CLI\)<a name="usingsharedamis-finding-cli"></a>
+## Finding a shared AMI \(AWS CLI\)<a name="usingsharedamis-finding-cli"></a>
 
 Use the [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command \(AWS CLI\) to list AMIs\. You can scope the list to the types of AMIs that interest you, as shown in the following examples\.
 
@@ -64,7 +63,7 @@ To reduce the number of displayed AMIs, use a filter to list only the types of A
 --filters "Name=root-device-type,Values=ebs"
 ```
 
-## Using Shared AMIs<a name="usingsharedamis-confirm"></a>
+## Using shared AMIs<a name="usingsharedamis-confirm"></a>
 
 Before you use a shared AMI, take the following steps to confirm that there are no pre\-installed credentials that would allow unwanted access to your instance by a third party and no pre\-configured remote logging that could transmit sensitive data to a third party\. Check the documentation for the Linux distribution used by the AMI for information about improving the security of the system\.
 

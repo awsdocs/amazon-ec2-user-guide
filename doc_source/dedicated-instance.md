@@ -1,6 +1,6 @@
 # Dedicated Instances<a name="dedicated-instance"></a>
 
-Dedicated Instances are Amazon EC2 instances that run in a virtual private cloud \(VPC\) on hardware that's dedicated to a single customer\. Dedicated Instances that belong to different AWS accounts are physically isolated at the hardware level\. In addition, Dedicated Instances that belong to AWS accounts that are linked to a single payer account are also physically isolated at the hardware level\. However, Dedicated Instances may share hardware with other instances from the same AWS account that are not Dedicated Instances\.
+Dedicated Instances are Amazon EC2 instances that run in a virtual private cloud \(VPC\) on hardware that's dedicated to a single customer\. Dedicated Instances that belong to different AWS accounts are physically isolated at a hardware level, even if those accounts are linked to a single payer account\. However, Dedicated Instances may share hardware with other instances from the same AWS account that are not Dedicated Instances\.
 
 **Note**  
 A *Dedicated Host* is also a physical server that's dedicated for your use\. With a Dedicated Host, you have visibility and control over how instances are placed on the server\. For more information, see [Dedicated Hosts](dedicated-hosts-overview.md)\.
@@ -60,11 +60,11 @@ You can use Amazon EC2 Auto Scaling to launch Dedicated Instances\. For more inf
 
 ### Automatic Recovery of Dedicated Instances<a name="dedicated-instance-recovery"></a>
 
-You can configure automatic recovery for a Dedicated Instances if it becomes impaired due to an underlying hardware failure or a problem that requires AWS involvement to repair\. For more information, see [Recover Your Instance](ec2-instance-recover.md)\.
+You can configure automatic recovery for a Dedicated Instances if it becomes impaired due to an underlying hardware failure or a problem that requires AWS involvement to repair\. For more information, see [Recover your instance](ec2-instance-recover.md)\.
 
 ### Dedicated Spot Instances<a name="dedicated-instance-spot"></a>
 
-You can run a Dedicated Spot Instance by specifying a tenancy of `dedicated` when you create a Spot Instance request\. For more information, see [Specifying a Tenancy for Your Spot Instances](spot-requests.md#spot-instance-tenancy)\.
+You can run a Dedicated Spot Instance by specifying a tenancy of `dedicated` when you create a Spot Instance request\. For more information, see [Specifying a tenancy for your Spot Instances](spot-requests.md#spot-instance-tenancy)\.
 
 ### Pricing for Dedicated Instances<a name="dedicated-instance-pricing"></a>
 
@@ -72,7 +72,7 @@ Pricing for Dedicated Instances is different to pricing for On\-Demand Instances
 
 ### Burstable Performance Instances with Dedicated Instances<a name="dedicated-instance-burstable"></a>
 
-You can leverage the benefits of running on dedicated tenancy hardware with [Burstable Performance Instances](burstable-performance-instances.md)\. T3 Dedicated Instances launch in unlimited mode by default, and they provide a baseline level of CPU performance with the ability to burst to a higher CPU level when required by your workload\. The T3 baseline performance and ability to burst are governed by CPU credits\. Because of the burstable nature of the T3 instance types, we recommend that you monitor how your T3 instances use the CPU resources of the dedicated hardware for the best performance\. T3 Dedicated Instances are intended for customers with diverse workloads that display random CPU behavior, but that ideally have average CPU usage at or below the baseline usages\. For more information, see [CPU Credits and Baseline Performance for Burstable Performance Instances](burstable-credits-baseline-concepts.md)\.
+You can leverage the benefits of running on dedicated tenancy hardware with [Burstable performance instances](burstable-performance-instances.md)\. T3 Dedicated Instances launch in unlimited mode by default, and they provide a baseline level of CPU performance with the ability to burst to a higher CPU level when required by your workload\. The T3 baseline performance and ability to burst are governed by CPU credits\. Because of the burstable nature of the T3 instance types, we recommend that you monitor how your T3 instances use the CPU resources of the dedicated hardware for the best performance\. T3 Dedicated Instances are intended for customers with diverse workloads that display random CPU behavior, but that ideally have average CPU usage at or below the baseline usages\. For more information, see [CPU credits and baseline performance for burstable performance instances](burstable-credits-baseline-concepts.md)\.
 
 Amazon EC2 has systems in place to identify and correct variability in performance\. However, it is still possible to experience short term variability if you launch multiple T3 Dedicated Instances that have correlated CPU usage patterns\. For these more demanding or correlated workloads, we recommend using M5 or M5a Dedicated Instances rather than T3 Dedicated Instances\.
 
@@ -137,7 +137,7 @@ Ensure that you choose an instance type that's supported as a Dedicated Instance
 
 1. Continue as prompted by the wizard\. When you've finished reviewing your options on the **Review Instance Launch** page, choose **Launch** to choose a key pair and launch the Dedicated Instance\.
 
-For more information about launching an instance with a tenancy of `host`, see [Launching Instances onto a Dedicated Host](how-dedicated-hosts-work.md#launching-dedicated-hosts-instances)\.
+For more information about launching an instance with a tenancy of `host`, see [Launching instances onto a Dedicated Host](how-dedicated-hosts-work.md#launching-dedicated-hosts-instances)\.
 
 **To set the tenancy option for an instance during launch using the command line**
 + [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) \(AWS CLI\)

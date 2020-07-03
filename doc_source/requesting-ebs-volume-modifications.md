@@ -1,24 +1,24 @@
-# Requesting Modifications to Your EBS Volumes<a name="requesting-ebs-volume-modifications"></a>
+# Requesting modifications to your EBS Volumes<a name="requesting-ebs-volume-modifications"></a>
 
 With Elastic Volumes, you can dynamically modify the size, performance, and volume type of your Amazon EBS volumes without detaching them\.
 
 Use the following process when modifying a volume:
 
-1. \(Optional\) Before modifying a volume that contains valuable data, it is a best practice to create a snapshot of the volume in case you need to roll back your changes\. For more information, see [Creating Amazon EBS Snapshots](ebs-creating-snapshot.md)\.
+1. \(Optional\) Before modifying a volume that contains valuable data, it is a best practice to create a snapshot of the volume in case you need to roll back your changes\. For more information, see [Creating Amazon EBS snapshots](ebs-creating-snapshot.md)\.
 
 1. Request the volume modification\.
 
-1. Monitor the progress of the volume modification\. For more information, see [Monitoring the Progress of Volume Modifications](monitoring-volume-modifications.md)\.
+1. Monitor the progress of the volume modification\. For more information, see [Monitoring the progress of volume modifications](monitoring-volume-modifications.md)\.
 
-1. If the size of the volume was modified, extend the volume's file system to take advantage of the increased storage capacity\. For more information, see [Extending a Linux File System After Resizing a Volume](recognize-expanded-volume-linux.md)\.
+1. If the size of the volume was modified, extend the volume's file system to take advantage of the increased storage capacity\. For more information, see [Extending a Linux file system after resizing a volume](recognize-expanded-volume-linux.md)\.
 
 **Topics**
-+ [Modifying an EBS Volume Using Elastic Volumes \(Console\)](#modify-ebs-volume)
-+ [Modifying an EBS Volume Using Elastic Volumes \(AWS CLI\)](#modify-ebs-volume-cli)
-+ [Initializing Elastic Volumes Support \(If Needed\)](#initialize-modification-support)
-+ [Modifying an EBS Volume If Elastic Volumes Is Unsupported](#modify-volume-stop-start)
++ [Modifying an EBS volume using Elastic Volumes \(console\)](#modify-ebs-volume)
++ [Modifying an EBS volume using Elastic Volumes \(AWS CLI\)](#modify-ebs-volume-cli)
++ [Initializing Elastic Volumes support \(if needed\)](#initialize-modification-support)
++ [Modifying an EBS volume if Elastic Volumes is not supported](#modify-volume-stop-start)
 
-## Modifying an EBS Volume Using Elastic Volumes \(Console\)<a name="modify-ebs-volume"></a>
+## Modifying an EBS volume using Elastic Volumes \(console\)<a name="modify-ebs-volume"></a>
 
 Use the following procedure to modify an EBS volume\.<a name="console-modify-size"></a>
 
@@ -35,9 +35,9 @@ Use the following procedure to modify an EBS volume\.<a name="console-modify-siz
 
 1. After you have finished changing the volume settings, choose **Modify**\. When prompted for confirmation, choose **Yes**\.
 
-1. Modifying volume size has no practical effect until you also extend the volume's file system to make use of the new storage capacity\. For more information, see [Extending a Linux File System After Resizing a Volume](recognize-expanded-volume-linux.md)\.
+1. Modifying volume size has no practical effect until you also extend the volume's file system to make use of the new storage capacity\. For more information, see [Extending a Linux file system after resizing a volume](recognize-expanded-volume-linux.md)\.
 
-## Modifying an EBS Volume Using Elastic Volumes \(AWS CLI\)<a name="modify-ebs-volume-cli"></a>
+## Modifying an EBS volume using Elastic Volumes \(AWS CLI\)<a name="modify-ebs-volume-cli"></a>
 
 Use the [modify\-volume](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-volume.html) command to modify one or more configuration settings for a volume\. For example, if you have a volume of type `gp2` with a size of 100 GiB, the following command changes its configuration to a volume of type `io1` with 10,000 IOPS and a size of 200 GiB\.
 
@@ -64,9 +64,9 @@ The following is example output:
 }
 ```
 
-Modifying volume size has no practical effect until you also extend the volume's file system to make use of the new storage capacity\. For more information, see [Extending a Linux File System After Resizing a Volume](recognize-expanded-volume-linux.md)\.
+Modifying volume size has no practical effect until you also extend the volume's file system to make use of the new storage capacity\. For more information, see [Extending a Linux file system after resizing a volume](recognize-expanded-volume-linux.md)\.
 
-## Initializing Elastic Volumes Support \(If Needed\)<a name="initialize-modification-support"></a>
+## Initializing Elastic Volumes support \(if needed\)<a name="initialize-modification-support"></a>
 
 Before you can modify a volume that was attached to an instance before November 3, 2016 23:40 UTC, you must initialize volume modification support using one of the following actions:
 + Detach and attach the volume
@@ -106,7 +106,7 @@ i-e3d172ed              False
 True
 ```
 
-## Modifying an EBS Volume If Elastic Volumes Is Unsupported<a name="modify-volume-stop-start"></a>
+## Modifying an EBS volume if Elastic Volumes is not supported<a name="modify-volume-stop-start"></a>
 
 If you are using a supported instance type, you can use Elastic Volumes to dynamically modify the size, performance, and volume type of your Amazon EBS volumes without detaching them\.
 
@@ -121,4 +121,4 @@ Filesystem            Size  Used Avail Use% Mounted on
 tmpfs                 1.9G     0  1.9G   0% /dev/shm
 ```
 
-If the size does not reflect your newly expanded volume, you must extend the file system of your device so that your instance can use the new space\. For more information, see [Extending a Linux File System After Resizing a Volume](recognize-expanded-volume-linux.md)\.
+If the size does not reflect your newly expanded volume, you must extend the file system of your device so that your instance can use the new space\. For more information, see [Extending a Linux file system after resizing a volume](recognize-expanded-volume-linux.md)\.

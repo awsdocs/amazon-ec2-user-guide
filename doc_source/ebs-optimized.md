@@ -1,19 +1,20 @@
-# Amazon EBS–Optimized Instances<a name="ebs-optimized"></a>
+# Amazon EBS–optimized instances<a name="ebs-optimized"></a>
 
 An Amazon EBS–optimized instance uses an optimized configuration stack and provides additional, dedicated capacity for Amazon EBS I/O\. This optimization provides the best performance for your EBS volumes by minimizing contention between Amazon EBS I/O and other traffic from your instance\.
 
-EBS–optimized instances deliver dedicated bandwidth to Amazon EBS\. When attached to an EBS–optimized instance, General Purpose SSD \(`gp2`\) volumes are designed to deliver their baseline and burst performance 99% of the time, and Provisioned IOPS SSD \(`io1`\) volumes are designed to deliver their provisioned performance 99\.9% of the time\. Both Throughput Optimized HDD \(`st1`\) and Cold HDD \(`sc1`\) guarantee performance consistency of 90% of burst throughput 99% of the time\. Non\-compliant periods are approximately uniformly distributed, targeting 99% of expected total throughput each hour\. For more information, see [Amazon EBS Volume Types](ebs-volume-types.md)\.
+EBS–optimized instances deliver dedicated bandwidth to Amazon EBS\. When attached to an EBS–optimized instance, General Purpose SSD \(`gp2`\) volumes are designed to deliver their baseline and burst performance 99% of the time, and Provisioned IOPS SSD \(`io1`\) volumes are designed to deliver their provisioned performance 99\.9% of the time\. Both Throughput Optimized HDD \(`st1`\) and Cold HDD \(`sc1`\) guarantee performance consistency of 90% of burst throughput 99% of the time\. Non\-compliant periods are approximately uniformly distributed, targeting 99% of expected total throughput each hour\. For more information, see [Amazon EBS volume types](ebs-volume-types.md)\.
 
 **Topics**
-+ [Supported Instance Types](#ebs-optimization-support)
-+ [Enabling EBS Optimization at Launch](#enable-ebs-optimization)
-+ [Enable EBS Optimization for a Running Instance](#modify-ebs-optimized-attribute)
++ [Supported instance types](#ebs-optimization-support)
++ [Getting maximum performance](#ebs-optimization-performance)
++ [Enabling EBS optimization at launch](#enable-ebs-optimization)
++ [Enable EBS optimization for an existing instance](#modify-ebs-optimized-attribute)
 
-## Supported Instance Types<a name="ebs-optimization-support"></a>
+## Supported instance types<a name="ebs-optimization-support"></a>
 
 The following tables show which instance types support EBS optimization\. They include the dedicated bandwidth to Amazon EBS, the typical maximum aggregate throughput that can be achieved on that connection with a streaming read workload and 128 KiB I/O size, and the maximum IOPS the instance can support if you are using a 16 KiB I/O size\. Choose an EBS–optimized instance that provides more dedicated Amazon EBS throughput than your application needs; otherwise, the connection between Amazon EBS and Amazon EC2 can become a performance bottleneck\.
 
-### EBS Optimized By Default<a name="current"></a>
+### EBS optimized by default<a name="current"></a>
 
 The following table lists the instance types that support EBS optimization and EBS optimization is enabled by default\. There is no need to enable EBS optimization and no effect if you disable EBS optimization\.
 
@@ -40,6 +41,14 @@ The following table lists the instance types that support EBS optimization and E
 | c5\.18xlarge | 19,000 | 2,375 | 80,000 | 
 | c5\.24xlarge | 19,000 | 2,375 | 80,000 | 
 | c5\.metal | 19,000 | 2,375 | 80,000 | 
+| c5a\.large \* | 3,170 | 396 | 13,300 | 
+| c5a\.xlarge \* | 3,170 | 396 | 13,300 | 
+| c5a\.2xlarge \* | 3,170 | 396 | 13,300 | 
+| c5a\.4xlarge \* | 3,170 | 396 | 13,300 | 
+| c5a\.8xlarge | 3,170 | 396 | 13,300 | 
+| c5a\.12xlarge | 4,750 | 594 | 20,000 | 
+| c5a\.16xlarge | 6,300 | 788 | 26,700 | 
+| c5a\.24xlarge | 9,500 | 1,188 | 40,000 | 
 | c5d\.large \* | 4,750 | 593\.75 | 20,000 | 
 | c5d\.xlarge \* | 4,750 | 593\.75 | 20,000 | 
 | c5d\.2xlarge \* | 4,750 | 593\.75 | 20,000 | 
@@ -56,6 +65,15 @@ The following table lists the instance types that support EBS optimization and E
 | c5n\.9xlarge | 9,500 | 1,187\.5 | 40,000 | 
 | c5n\.18xlarge | 19,000 | 2,375 | 80,000 | 
 | c5n\.metal | 19,000 | 2,375 | 80,000 | 
+| c6g\.medium \* | 4,750 | 593\.75 | 20,000 | 
+| c6g\.large \* | 4,750 | 593\.75 | 20,000 | 
+| c6g\.xlarge \* | 4,750 | 593\.75 | 20,000 | 
+| c6g\.2xlarge \* | 4,750 | 593\.75 | 20,000 | 
+| c6g\.4xlarge | 4,750 | 593\.75 | 20,000 | 
+| c6g\.8xlarge | 9,500 | 1,187\.5 | 40,000 | 
+| c6g\.12xlarge | 14,250 | 1,781\.25 | 50,000 | 
+| c6g\.16xlarge | 19,000 | 2,375 | 80,000 | 
+| c6g\.metal | 19,000 | 2,375 | 80,000 | 
 | d2\.xlarge | 750 | 93\.75 | 6,000 | 
 | d2\.2xlarge | 1,000 | 125 | 8,000 | 
 | d2\.4xlarge | 2,000 | 250 | 16,000 | 
@@ -73,6 +91,7 @@ The following table lists the instance types that support EBS optimization and E
 | g4dn\.8xlarge | 9,500 | 1,187\.5 | 40,000 | 
 | g4dn\.12xlarge | 9,500 | 1,187\.5 | 40,000 | 
 | g4dn\.16xlarge | 9,500 | 1,187\.5 | 40,000 | 
+| g4dn\.metal | 19,000 | 2,375 | 80,000 | 
 | h1\.2xlarge | 1,750 | 218\.75 | 12,000 | 
 | h1\.4xlarge | 3,500 | 437\.5 | 20,000 | 
 | h1\.8xlarge | 7,000 | 875 | 40,000 | 
@@ -152,6 +171,15 @@ The following table lists the instance types that support EBS optimization and E
 | m5n\.12xlarge | 9,500 | 1,187\.5 | 40,000 | 
 | m5n\.16xlarge | 13,600 | 1,700 | 60,000 | 
 | m5n\.24xlarge | 19,000 | 2,375 | 80,000 | 
+| m6g\.medium \* | 4,750 | 593\.75 | 20,000 | 
+| m6g\.large \* | 4,750 | 593\.75 | 20,000 | 
+| m6g\.xlarge \* | 4,750 | 593\.75 | 20,000 | 
+| m6g\.2xlarge \* | 4,750 | 593\.75 | 20,000 | 
+| m6g\.4xlarge | 4,750 | 593\.75 | 20,000 | 
+| m6g\.8xlarge | 9,500 | 1,187\.5 | 40,000 | 
+| m6g\.12xlarge | 14,250 | 1,781\.25 | 50,000 | 
+| m6g\.16xlarge | 19,000 | 2,375 | 80,000 | 
+| m6g\.metal | 19,000 | 2,375 | 80,000 | 
 | p2\.xlarge | 750 | 93\.75 | 6,000 | 
 | p2\.8xlarge | 5,000 | 625 | 32,500 | 
 | p2\.16xlarge | 10,000 | 1,250 | 65,000 | 
@@ -215,6 +243,15 @@ The following table lists the instance types that support EBS optimization and E
 | r5n\.12xlarge | 9,500 | 1,187\.5 | 40,000 | 
 | r5n\.16xlarge | 13,600 | 1,700 | 60,000 | 
 | r5n\.24xlarge | 19,000 | 2,375 | 80,000 | 
+| r6g\.medium \* | 4,750 | 593\.75 | 20,000 | 
+| r6g\.large \* | 4,750 | 593\.75 | 20,000 | 
+| r6g\.xlarge \* | 4,750 | 593\.75 | 20,000 | 
+| r6g\.2xlarge \* | 4,750 | 593\.75 | 20,000 | 
+| r6g\.4xlarge | 4,750 | 593\.75 | 20,000 | 
+| r6g\.8xlarge | 9,500 | 1,187\.5 | 40,000 | 
+| r6g\.12xlarge | 14,250 | 1,781\.25 | 50,000 | 
+| r6g\.16xlarge | 19,000 | 2,375 | 80,000 | 
+| r6g\.metal | 19,000 | 2,375 | 80,000 | 
 | t3\.nano \* | 2,085 | 260\.57 | 11,800 | 
 | t3\.micro \* | 2,085 | 260\.57 | 11,800 | 
 | t3\.small \* | 2,085 | 260\.57 | 11,800 | 
@@ -229,11 +266,11 @@ The following table lists the instance types that support EBS optimization and E
 | t3a\.large \* | 2,780 | 347\.5 | 15,700 | 
 | t3a\.xlarge \* | 2,780 | 347\.5 | 15,700 | 
 | t3a\.2xlarge \* | 2,780 | 347\.5 | 15,700 | 
-| u\-6tb1\.metal | 19,000 | 2,375 | 80,000 | 
-| u\-9tb1\.metal | 19,000 | 2,375 | 80,000 | 
-| u\-12tb1\.metal | 19,000 | 2,375 | 80,000 | 
-| u\-18tb1\.metal | 28,000 | 3,500 | 160,000 | 
-| u\-24tb1\.metal | 28,000 | 3,500 | 160,000 | 
+| u\-6tb1\.metal | 38,000 | 4,750 | 160,000 | 
+| u\-9tb1\.metal | 38,000 | 4,750 | 160,000 | 
+| u\-12tb1\.metal | 38,000 | 4,750 | 160,000 | 
+| u\-18tb1\.metal | 38,000 | 4,750 | 160,000 | 
+| u\-24tb1\.metal | 38,000 | 4,750 | 160,000 | 
 | x1\.16xlarge | 7,000 | 875 | 40,000 | 
 | x1\.32xlarge | 14,000 | 1,750 | 80,000 | 
 | x1e\.xlarge | 500 | 62\.5 | 3,700 | 
@@ -250,10 +287,6 @@ The following table lists the instance types that support EBS optimization and E
 | z1d\.12xlarge | 19,000 | 2,375 | 80,000 | 
 | z1d\.metal | 19,000 | 2,375 | 80,000 | 
 
-G4dn, I3en, Inf1, M5a, M5ad, R5a, R5ad, T3, T3a, and Z1d instances that are launched after February 26, 2020 support the maximum performance listed above by default\. To get the maximum performance for instances launched before February 26, 2020, stop and start the instance\.
-
-C5, C5d, C5n, M5, M5d, M5n, M5dn, R5, R5d, R5n, R5dn, P3dn, `u-6tb1.metal`, `u-9tb1.metal`, and `u-12tb1.metal` instances that are launched after December 3, 2019 support the maximum performance listed above by default\. To get the maximum performance for instances launched before December 3, 2019, stop and start the instance\.
-
 \* These instance types can support maximum performance for 30 minutes at least once every 24 hours\. If you have a workload that requires sustained maximum performance for longer than 30 minutes, select an instance type according to baseline performance as shown in the following table\.
 
 
@@ -266,12 +299,20 @@ C5, C5d, C5n, M5, M5d, M5n, M5dn, R5, R5d, R5n, R5dn, P3dn, `u-6tb1.metal`, `u-9
 | c5\.large | 650 | 81\.25 | 4,000 | 
 | c5\.xlarge | 1,150 | 143\.75 | 6,000 | 
 | c5\.2xlarge | 2,300 | 287\.5 | 10,000 | 
+| c5a\.large | 200 | 25 | 800 | 
+| c5a\.xlarge | 400 | 50 | 1,600 | 
+| c5a\.2xlarge | 800 | 100 | 3,200 | 
+| c5a\.4xlarge | 1,580 | 198 | 6,600 | 
 | c5d\.large | 650 | 81\.25 | 4,000 | 
 | c5d\.xlarge | 1,150 | 143\.75 | 6,000 | 
 | c5d\.2xlarge | 2,300 | 287\.5 | 10,000 | 
 | c5n\.large | 650 | 81\.25 | 4,000 | 
 | c5n\.xlarge | 1,150 | 143\.75 | 6,000 | 
 | c5n\.2xlarge | 2,300 | 287\.5 | 10,000 | 
+| c6g\.medium | 315 | 39\.375 | 2,500 | 
+| c6g\.large | 630 | 78\.75 | 3,600 | 
+| c6g\.xlarge | 1,188 | 148\.5 | 6,000 | 
+| c6g\.2xlarge | 2,375 | 296\.875 | 12,000 | 
 | g4dn\.xlarge | 950 | 118\.75 | 3,000 | 
 | g4dn\.2xlarge | 1,150 | 143\.75 | 6,000 | 
 | i3en\.large | 577 | 72\.1 | 3,000 | 
@@ -298,6 +339,10 @@ C5, C5d, C5n, M5, M5d, M5n, M5dn, R5, R5d, R5n, R5dn, P3dn, `u-6tb1.metal`, `u-9
 | m5n\.large | 650 | 81\.25 | 3,600 | 
 | m5n\.xlarge | 1,150 | 143\.75 | 6,000 | 
 | m5n\.2xlarge | 2,300 | 287\.5 | 12,000 | 
+| m6g\.medium | 315 | 39\.375 | 2,500 | 
+| m6g\.large | 630 | 78\.75 | 3,600 | 
+| m6g\.xlarge | 1,188 | 148\.5 | 6,000 | 
+| m6g\.2xlarge | 2,375 | 296\.875 | 12,000 | 
 | r5\.large | 650 | 81\.25 | 3,600 | 
 | r5\.xlarge | 1,150 | 143\.75 | 6,000 | 
 | r5\.2xlarge | 2,300 | 287\.5 | 12,000 | 
@@ -316,6 +361,10 @@ C5, C5d, C5n, M5, M5d, M5n, M5dn, R5, R5d, R5n, R5dn, P3dn, `u-6tb1.metal`, `u-9
 | r5n\.large | 650 | 81\.25 | 3,600 | 
 | r5n\.xlarge | 1,150 | 143\.75 | 6,000 | 
 | r5n\.2xlarge | 2,300 | 287\.5 | 12,000 | 
+| r6g\.medium | 315 | 39\.375 | 2,500 | 
+| r6g\.large | 630 | 78\.75 | 3,600 | 
+| r6g\.xlarge | 1,188 | 148\.5 | 6,000 | 
+| r6g\.2xlarge | 2,375 | 296\.875 | 12,000 | 
 | t3\.nano | 43 | 5\.43 | 250 | 
 | t3\.micro | 87 | 10\.86 | 500 | 
 | t3\.small | 174 | 21\.71 | 1,000 | 
@@ -333,9 +382,7 @@ C5, C5d, C5n, M5, M5d, M5n, M5dn, R5, R5d, R5n, R5dn, P3dn, `u-6tb1.metal`, `u-9
 | z1d\.large | 800 | 100 | 3,333 | 
 | z1d\.xlarge | 1,580 | 197\.5 | 6,667 | 
 
-The `EBSIOBalance%` and `EBSByteBalance%` metrics can help you determine if your instances are sized correctly\. You can view these metrics in the CloudWatch console and set an alarm that is triggered based on a threshold you specify\. These metrics are expressed as a percentage\. Instances with a consistently low balance percentage are candidates for upsizing\. Instances where the balance percentage never drops below 100% are candidates for downsizing\. For more information, see [Monitoring Your Instances Using CloudWatch](using-cloudwatch.md)\.
-
-### EBS Optimization Supported<a name="previous"></a>
+### EBS optimization supported<a name="previous"></a>
 
 The following table lists the instance types that support EBS optimization but EBS optimization is not enabled by default\. You can enable EBS optimization when you launch these instances or after they are running\. Instances must have EBS optimization enabled to achieve the level of performance described\. When you enable EBS optimization for an instance that is not EBS\-optimized by default, you pay an additional low, hourly fee for the dedicated capacity\. For pricing information, see EBS\-optimized Instances on the [Amazon EC2 Pricing page for On\-Demand instances](http://aws.amazon.com/ec2/pricing/on-demand/)\.
 
@@ -362,7 +409,18 @@ The following table lists the instance types that support EBS optimization but E
 
 The `i2.8xlarge`, `c3.8xlarge`, and `r3.8xlarge` instances do not have dedicated EBS bandwidth and therefore do not offer EBS optimization\. On these instances, network traffic and Amazon EBS traffic share the same 10\-gigabit network interface\.
 
-## Enabling EBS Optimization at Launch<a name="enable-ebs-optimization"></a>
+## Getting maximum performance<a name="ebs-optimization-performance"></a>
+
+You can use the `EBSIOBalance%` and `EBSByteBalance%` metrics to help you determine whether your instances are sized correctly\. You can view these metrics in the CloudWatch console and set an alarm that is triggered based on a threshold you specify\. These metrics are expressed as a percentage\. Instances with a consistently low balance percentage are candidates to size up\. Instances where the balance percentage never drops below 100% are candidates for downsizing\. For more information, see [Monitoring your instances using CloudWatch](using-cloudwatch.md)\.
+
+The high memory instances are designed to run large in\-memory databases, including production deployments of the SAP HANA in\-memory database, in the cloud\. To maximize EBS performance, use high memory instances with an even number of `io1` volumes with identical provisioned performance\. For example, for IOPS heavy workloads, use four `io1` volumes with 40,000 provisioned IOPS to get the maximum 160,000 instance IOPS\. Similarly, for throughput heavy workloads, use six `io1` volumes with 48,000 provisioned IOPS to get the maximum 4,750 MB/s throughput\. For additional recommendations, see [Storage Configuration for SAP HANA](https://docs.aws.amazon.com/quickstart/latest/sap-hana/storage.html)\.
+
+**Considerations**
++ G4, I3en, Inf1, M5a, M5ad, R5a, R5ad, T3, T3a, and Z1d instances launched after February 26, 2020 provide the maximum performance listed in the table above\. To get the maximum performance from an instance launched before February 26, 2020, stop and start it\.
++ C5, C5d, C5n, M5, M5d, M5n, M5dn, R5, R5d, R5n, R5dn, and P3dn instances launched after December 3, 2019 provide the maximum performance listed in the table above\. To get the maximum performance from an instance launched before December 3, 2019, stop and start it\.
++ `u-6tb1.metal`, `u-9tb1.metal`, and `u-12tb1.metal` instances launched after March 12, 2020 provide the performance in the table above\. Instances of these types launched before March 12, 2020 might provide lower performance\. To get the maximum performance from an instance launched before March 12, 2020, contact your account team to upgrade the instance at no additional cost\.
+
+## Enabling EBS optimization at launch<a name="enable-ebs-optimization"></a>
 
 You can enable optimization for an instance by setting its attribute for EBS optimization\.
 
@@ -382,27 +440,28 @@ You can enable optimization for an instance by setting its attribute for EBS opt
 
 **To enable EBS optimization when launching an instance using the command line**
 
-You can use one of the following options with the corresponding command\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ `--ebs-optimized` with [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) \(AWS CLI\)
-+ `-EbsOptimized` with [New\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
+You can use one of the following commands with the corresponding option\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
++ [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) with `--ebs-optimized` \(AWS CLI\)
++ [New\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) with `-EbsOptimized` \(AWS Tools for Windows PowerShell\)
 
-## Enable EBS Optimization for a Running Instance<a name="modify-ebs-optimized-attribute"></a>
+## Enable EBS optimization for an existing instance<a name="modify-ebs-optimized-attribute"></a>
 
-You can enable or disable optimization for a running instance by modifying its Amazon EBS–optimized instance attribute\.
+You can enable or disable optimization for an existing instance by modifying its Amazon EBS–optimized instance attribute\. If the instance is running, you must stop it first\.
 
-**To enable EBS optimization for a running instance using the console**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, click **Instances**, and select the instance\.
-
-1. Click **Actions**, select **Instance State**, and then click **Stop**\.
 **Warning**  
 When you stop an instance, the data on any instance store volumes is erased\. To keep data from instance store volumes, be sure to back it up to persistent storage\.
 
-1. In the confirmation dialog box, click **Yes, Stop**\. It can take a few minutes for the instance to stop\.
+**To enable EBS optimization for an existing instance using the console**
 
-1. With the instance still selected, click **Actions**, select **Instance Settings**, and then click **Change Instance Type**\.
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances**, and select the instance\.
+
+1. To stop the instance, choose **Actions**, **Instance State**, **Stop**\.
+
+1. In the confirmation dialog box, choose **Yes, Stop**\. It can take a few minutes for the instance to stop\.
+
+1. With the instance still selected, choose **Actions**, **Instance Settings**, **Change Instance Type**\.
 
 1. In the **Change Instance Type** dialog box, do one of the following:
    + If the instance type of your instance is Amazon EBS–optimized by default, **EBS\-optimized** is selected and you can't change it\. You can choose **Cancel**, because Amazon EBS optimization is already enabled for the instance\.
@@ -411,8 +470,12 @@ When you stop an instance, the data on any instance store volumes is erased\. To
 
 1. Choose **Actions**, **Instance State**, **Start**\.
 
-**To enable EBS optimization for a running instance using the command line**
+**To enable EBS optimization for an existing instance using the command line**
 
-You can use one of the following options with the corresponding command\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ `--ebs-optimized` with [modify\-instance\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) \(AWS CLI\)
-+ `-EbsOptimized` with [Edit\-EC2InstanceAttribute](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2InstanceAttribute.html) \(AWS Tools for Windows PowerShell\)
+1. If the instance is running, use one of the following commands to stop it:
+   + [stop\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) \(AWS CLI\)
+   + [Stop\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Stop-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
+
+1. To enable EBS optimization, use one of the following commands with the corresponding option:
+   + [modify\-instance\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) with `--ebs-optimized` \(AWS CLI\)
+   + [Edit\-EC2InstanceAttribute](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2InstanceAttribute.html) with `-EbsOptimized` \(AWS Tools for Windows PowerShell\)

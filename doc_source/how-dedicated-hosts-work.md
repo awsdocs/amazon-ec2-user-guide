@@ -8,18 +8,18 @@ Dedicated Hosts are also integrated with AWS License Manager\. With License Mana
 
 **Topics**
 + [Allocating Dedicated Hosts](#dedicated-hosts-allocating)
-+ [Launching Instances onto a Dedicated Host](#launching-dedicated-hosts-instances)
-+ [Launching Instances into a Host Resource Group](#launching-hrg-instances)
-+ [Understanding Auto\-Placement and Affinity](#dedicated-hosts-understanding)
-+ [Modifying Dedicated Host Auto\-Placement](#modify-host-auto-placement)
-+ [Modifying the Supported Instance Types](#modify-host-support)
-+ [Modifying Instance Tenancy and Affinity](#moving-instances-dedicated-hosts)
++ [Launching instances onto a Dedicated Host](#launching-dedicated-hosts-instances)
++ [Launching instances into a host resource group](#launching-hrg-instances)
++ [Understanding auto\-placement and affinity](#dedicated-hosts-understanding)
++ [Modifying Dedicated Host auto\-placement](#modify-host-auto-placement)
++ [Modifying the supported instance types](#modify-host-support)
++ [Modifying instance tenancy and affinity](#moving-instances-dedicated-hosts)
 + [Viewing Dedicated Hosts](#dedicated-hosts-managing)
 + [Tagging Dedicated Hosts](#dedicated-hosts-tagging)
 + [Monitoring Dedicated Hosts](#dedicated-hosts-monitoring)
 + [Releasing Dedicated Hosts](#dedicated-hosts-releasing)
 + [Purchasing Dedicated Host Reservations](#purchasing-dedicated-host-reservations)
-+ [Viewing Dedicated Host Reservations](#viewing-host-reservations)
++ [Viewing Dedicated Host reservations](#viewing-host-reservations)
 + [Tagging Dedicated Host Reservations](#tagging-host-reservations)
 
 ## Allocating Dedicated Hosts<a name="dedicated-hosts-allocating"></a>
@@ -42,14 +42,14 @@ You can allocate a Dedicated Host using the following methods\.
 1. For **Instance family**, choose the instance family for the Dedicated Host\.
 
 1. Specify whether the Dedicated Host supports multiple instance types within the selected instance family, or a specific instance type only\. Do one of the following\.
-   + To configure the Dedicated Host to support multiple instance types in the selected instance family, for **Support multiple instance types**, choose **Enable**\. Enabling this allows you to launch different instance types from the same instance family onto the Dedicated Host\. For example, if you choose the `m5` instance family and choose this option, you can launch `m5.xlarge` and `m5.4xlarge` instances onto the Dedicated Host\. The following instance families can be configured to support multiple instance types: A1, C5, C5n, M5, M5n, R5, and R5n\.
-   + To configure the Dedicated Host to support a specific instance type within the selected instance family, clear **Support multiple instance types**, and then for **Instance type**, choose the instance type to support\. This allows you to launch a single instance type on the Dedicated Host\. For example, if you choose this option and specify `m5.4xlarge` as the supported instance type, you can launch only `m5.4xlarge` instances onto the Dedicated Host\.
+   + To configure the Dedicated Host to support multiple instance types in the selected instance family, for **Support multiple instance types**, choose **Enable**\. Enabling this allows you to launch different instance types from the same instance family onto the Dedicated Host\. For example, if you choose the `m5` instance family and choose this option, you can launch `m5.xlarge` and `m5.4xlarge` instances onto the Dedicated Host\. The instance family must be powered by the Nitro System\.
+   + To configure the Dedicated Host to support a single instance type within the selected instance family, clear **Support multiple instance types**, and then for **Instance type**, choose the instance type to support\. This allows you to launch a single instance type on the Dedicated Host\. For example, if you choose this option and specify `m5.4xlarge` as the supported instance type, you can launch only `m5.4xlarge` instances onto the Dedicated Host\.
 
 1. For **Availability Zone**, choose the Availability Zone in which to allocate the Dedicated Host\.
 
-1. To allow the Dedicated Host to accept untargeted instance launches that match its instance type, for **Instance auto\-placement**, choose **Enable**\. For more information about auto\-placement, see [Understanding Auto\-Placement and Affinity](#dedicated-hosts-understanding)\.
+1. To allow the Dedicated Host to accept untargeted instance launches that match its instance type, for **Instance auto\-placement**, choose **Enable**\. For more information about auto\-placement, see [Understanding auto\-placement and affinity](#dedicated-hosts-understanding)\.
 
-1. To enable host recovery for the Dedicated Host, for **Host recovery**, choose **Enable**\. For more information, see [Host Recovery](dedicated-hosts-recovery.md)\.
+1. To enable host recovery for the Dedicated Host, for **Host recovery**, choose **Enable**\. For more information, see [Host recovery](dedicated-hosts-recovery.md)\.
 
 1. For **Quantity**, enter the number of Dedicated Hosts to allocate\.
 
@@ -69,14 +69,14 @@ You can allocate a Dedicated Host using the following methods\.
 1. For **Instance family**, choose the instance family for the Dedicated Host\.
 
 1. Specify whether the Dedicated Host supports multiple instance types within the selected instance family, or a specific instance type only\. Do one of the following\.
-   + To configure the Dedicated Host to support multiple instance types in the selected instance family, select **Support multiple instance types**\. Enabling this allows you to launch different instance types from the same instance family onto the Dedicated Host\. For example, if you choose the `m5` instance family and choose this option, you can launch `m5.xlarge` and `m5.4xlarge` instances onto the Dedicated Host\. The following instance families can be configured to support multiple instance types: A1, C5, C5n, M5, M5n, R5, and R5n\.
-   + To configure the Dedicated Host to support a specific instance type within the selected instance family, clear **Support multiple instance types**, and then for **Instance type**, choose the instance type to support\. Enabling this allows you to launch a single instance type on the Dedicated Host\. For example, if you choose this option and specify `m5.4xlarge` as the supported instance type, you can launch only `m5.4xlarge` instances onto the Dedicated Host\.
+   + To configure the Dedicated Host to support multiple instance types in the selected instance family, select **Support multiple instance types**\. Enabling this allows you to launch different instance types from the same instance family onto the Dedicated Host\. For example, if you choose the `m5` instance family and choose this option, you can launch `m5.xlarge` and `m5.4xlarge` instances onto the Dedicated Host\. The instance family must be powered by the Nitro System\.
+   + To configure the Dedicated Host to support a single instance type within the selected instance family, clear **Support multiple instance types**, and then for **Instance type**, choose the instance type to support\. This allows you to launch a single instance type on the Dedicated Host\. For example, if you choose this option and specify `m5.4xlarge` as the supported instance type, you can launch only `m5.4xlarge` instances onto the Dedicated Host\.
 
 1. For **Availability Zone**, choose the Availability Zone in which to allocate the Dedicated Host\.
 
-1. To allow the Dedicated Host to accept untargeted instance launches that match its instance type, for **Instance auto\-placement**, choose **Enable**\. For more information about auto\-placement, see [Understanding Auto\-Placement and Affinity](#dedicated-hosts-understanding)\.
+1. To allow the Dedicated Host to accept untargeted instance launches that match its instance type, for **Instance auto\-placement**, choose **Enable**\. For more information about auto\-placement, see [Understanding auto\-placement and affinity](#dedicated-hosts-understanding)\.
 
-1. To enable host recovery for the Dedicated Host, for **Host recovery** choose **Enable**\. For more information, see [Host Recovery](dedicated-hosts-recovery.md)\.
+1. To enable host recovery for the Dedicated Host, for **Host recovery** choose **Enable**\. For more information, see [Host recovery](dedicated-hosts-recovery.md)\.
 
 1. For **Quantity**, enter the number of Dedicated Hosts to allocate\.
 
@@ -129,14 +129,14 @@ PS C:\> New-EC2Host -InstanceType m4.large -AvailabilityZone eu-west-1a -AutoPla
 
 ------
 
-## Launching Instances onto a Dedicated Host<a name="launching-dedicated-hosts-instances"></a>
+## Launching instances onto a Dedicated Host<a name="launching-dedicated-hosts-instances"></a>
 
 After you have allocated a Dedicated Host, you can launch instances onto it\. You can't launch instances with `host` tenancy if you do not have active Dedicated Hosts with enough available capacity for the instance type that you are launching\.
 
 **Note**  
 The instances launched onto Dedicated Hosts can only be launched in a VPC\. For more information, see [Introduction to VPC](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Introduction.html)\.
 
-Before you launch your instances, take note of the limitations\. For more information, see [Dedicated Hosts Restrictions](dedicated-hosts-overview.md#dedicated-hosts-limitations)\.
+Before you launch your instances, take note of the limitations\. For more information, see [Dedicated Hosts restrictions](dedicated-hosts-overview.md#dedicated-hosts-limitations)\.
 
 You can launch an instance onto a Dedicated Host using the following methods\.
 
@@ -151,7 +151,7 @@ You can launch an instance onto a Dedicated Host using the following methods\.
 
 1. On the **Dedicated Hosts** page, select a host and choose **Actions**, **Launch Instance\(s\) onto Host**\.
 
-1. Select an AMI from the list\. Windows, SUSE, and RHEL AMIs provided by Amazon EC2 can't be used with Dedicated Hosts\.
+1. Select an AMI from the list\. SQL Server, SUSE, and RHEL AMIs provided by Amazon EC2 can't be used with Dedicated Hosts\.
 
 1. On the **Choose an Instance Type** page, select the instance type to launch and then choose **Next: Configure Instance Details**\. 
 
@@ -163,7 +163,7 @@ You can launch an instance onto a Dedicated Host using the following methods\.
    + **Off**—The instance launches onto the specified host, but it is not guaranteed to restart on the same Dedicated Host if stopped\.
    + **Host**—If stopped, the instance always restarts on this specific host\.
 
-   For more information about Affinity, see [Understanding Auto\-Placement and Affinity](#dedicated-hosts-understanding)\.
+   For more information about Affinity, see [Understanding auto\-placement and affinity](#dedicated-hosts-understanding)\.
 
    The **Tenancy** and **Host** options are pre\-configured based on the host that you selected\.
 
@@ -179,7 +179,7 @@ You can launch an instance onto a Dedicated Host using the following methods\.
 
 1. In the navigation pane, choose **Instances**, **Launch Instance**\.
 
-1. Select an AMI from the list\. Windows, SUSE, and RHEL AMIs provided by Amazon EC2 can't be used with Dedicated Hosts\.
+1. Select an AMI from the list\. SQL Server, SUSE, and RHEL AMIs provided by Amazon EC2 can't be used with Dedicated Hosts\.
 
 1. Select the type of instance to launch and choose **Next: Configure Instance Details**\.
 
@@ -190,7 +190,7 @@ You can launch an instance onto a Dedicated Host using the following methods\.
      + **Off**—The instance launches onto the specified host, but it is not guaranteed to restart on it if stopped\.
      + **Host**—If stopped, the instance always restarts on the specified host\.
 
-   For more information, see [Understanding Auto\-Placement and Affinity](#dedicated-hosts-understanding)\.
+   For more information, see [Understanding auto\-placement and affinity](#dedicated-hosts-understanding)\.
 
    If you are unable to see these settings, check that you have selected a VPC in the **Network** menu\.
 
@@ -214,11 +214,16 @@ Use the [New\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/referen
 
 ------
 
-## Launching Instances into a Host Resource Group<a name="launching-hrg-instances"></a>
+## Launching instances into a host resource group<a name="launching-hrg-instances"></a>
 
 When you launch an instance into a host resource group that has a Dedicated Host with available instance capacity, Amazon EC2 launches the instance onto that host\. If the host resource group does not have a host with available instance capacity, Amazon EC2 automatically allocates a new host in the host resource group, and then launches the instance onto that host\. For more information, see [ Host Resource Groups](https://docs.aws.amazon.com/license-manager/latest/userguide/host-resource-groups.html) in the *AWS License Manager User Guide*\.
 
-You can launch an instance into a host resource group using the following methods\. 
+**Requirements and limits**
++ You must associate a core\- or socket\-based license configuration with the AMI\.
++ You can't use SQL Server, SUSE, or RHEL AMIs provided by Amazon EC2 with Dedicated Hosts\.
++ You can't target a specific host by choosing a host ID, and you can't enable instance affinity when launching an instance into a host resource group\.
+
+You can launch an instance into a host resource group using the following methods\.
 
 ------
 #### [ Console ]
@@ -229,7 +234,7 @@ You can launch an instance into a host resource group using the following method
 
 1. In the navigation pane, choose **Instances**, **Launch Instance**\.
 
-1. Select an AMI from the list\. Windows, SUSE, and RHEL AMIs provided by Amazon EC2 can't be used with Dedicated Hosts\.
+1. Select an AMI\.
 
 1. Select the type of instance to launch and choose **Next: Configure Instance Details**\.
 
@@ -240,8 +245,6 @@ You can launch an instance into a host resource group using the following method
    1. For **Host resource group**, choose **Launch instance into a host resource group**\.
 
    1. For **Host resource group name**, choose the host resource group in which to launch the instance\.
-
-   You can't target a specific host by choosing a host ID, and you can't enable instance affinity when launching an instance into a host resource group\.
 
 1. Choose **Review and Launch**\.
 
@@ -263,11 +266,11 @@ Use the [New\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/referen
 
 ------
 
-## Understanding Auto\-Placement and Affinity<a name="dedicated-hosts-understanding"></a>
+## Understanding auto\-placement and affinity<a name="dedicated-hosts-understanding"></a>
 
 Placement control for Dedicated Hosts happens on both the instance level and host level\.
 
-### Auto\-Placement<a name="dedicated-hosts-auto-placement"></a>
+### Auto\-placement<a name="dedicated-hosts-auto-placement"></a>
 
 Auto\-placement is configured at the host level\. It allows you to manage whether instances that you launch are launched onto a specific host, or onto any available host that has matching configurations\.
 
@@ -277,15 +280,15 @@ When the auto\-placement of a Dedicated Host is *enabled*, it accepts any untarg
 
 When launching an instance, you need to configure its tenancy\. Launching an instance onto a Dedicated Host without providing a specific `HostId` enables it to launch on any Dedicated Host that has auto\-placement *enabled* and that matches its instance type\.
 
-### Host Affinity<a name="dedicated-hosts-affinity"></a>
+### Host affinity<a name="dedicated-hosts-affinity"></a>
 
-Host Affinity is configured at the instance level\. It establishes a launch relationship between an instance and a Dedicated Host\.
+Host affinity is configured at the instance level\. It establishes a launch relationship between an instance and a Dedicated Host\.
 
 When affinity is set to `Host`, an instance launched onto a specific host always restarts on the same host if stopped\. This applies to both targeted and untargeted launches\.
 
 When affinity is set to `Off`, and you stop and restart the instance, it can be restarted on any available host\. However, it tries to launch back onto the last Dedicated Host on which it ran \(on a best\-effort basis\)\.
 
-## Modifying Dedicated Host Auto\-Placement<a name="modify-host-auto-placement"></a>
+## Modifying Dedicated Host auto\-placement<a name="modify-host-auto-placement"></a>
 
 You can modify the auto\-placement settings of a Dedicated Host after you have allocated it to your AWS account, using one of the following methods\.
 
@@ -300,7 +303,7 @@ You can modify the auto\-placement settings of a Dedicated Host after you have a
 
 1. Select a host and choose **Actions**, **Modify host**\.
 
-1. For **Instance auto\-placement**, choose **Enable** to enable auto\-placement, or clear **Enable** to disable auto\-placement\. For more information, see [Understanding Auto\-Placement and Affinity](#dedicated-hosts-understanding)\.
+1. For **Instance auto\-placement**, choose **Enable** to enable auto\-placement, or clear **Enable** to disable auto\-placement\. For more information, see [Understanding auto\-placement and affinity](#dedicated-hosts-understanding)\.
 
 1. Choose **Save**\.
 
@@ -315,7 +318,7 @@ You can modify the auto\-placement settings of a Dedicated Host after you have a
 
 1. On the **Dedicated Hosts** page, select a host and choose **Actions**, **Modify Auto\-Placement**\.
 
-1. On the Modify Auto\-placement window, for **Allow instance auto\-placement**, choose **Yes** to enable auto\-placement, or choose **No** to disable auto\-placement\. For more information, see [Understanding Auto\-Placement and Affinity](#dedicated-hosts-understanding)\.
+1. On the Modify Auto\-placement window, for **Allow instance auto\-placement**, choose **Yes** to enable auto\-placement, or choose **No** to disable auto\-placement\. For more information, see [Understanding auto\-placement and affinity](#dedicated-hosts-understanding)\.
 
 1. Choose **Save**\.
 
@@ -341,13 +344,15 @@ PS C:\> Edit-EC2Host --AutoPlacement 1 --HostId h-012a3456b7890cdef
 
 ------
 
-## Modifying the Supported Instance Types<a name="modify-host-support"></a>
+## Modifying the supported instance types<a name="modify-host-support"></a>
+
+Dedicated Hosts powered by the AWS Nitro System can support multiple instance types within the same instance family on a host\.
 
 You can modify a Dedicated Host to change the instance types that it supports\. If it currently supports a single instance type, you can modify it to support multiple instance types within that instance family\. Similarly, if it currently supports multiple instance types, you can modify it to support a specific instance type only\.
 
-To modify a Dedicated Host to support multiple instance types, you must first stop all running instances on the host\. The modification takes approximately 10 minutes to complete\. The Dedicated Host transitions to the `pending` state while the modification is in progress\. You can't start stopped instances or launch new instances on the Dedicated Host while it is in the `pending` state\. The following instance families can be modified to support multiple instance types: A1, C5, C5n, M5, M5n, R5, and R5n\.
+To modify a Dedicated Host to support multiple instance types, you must first stop all running instances on the host\. The modification takes approximately 10 minutes to complete\. The Dedicated Host transitions to the `pending` state while the modification is in progress\. You can't start stopped instances or launch new instances on the Dedicated Host while it is in the `pending` state\.
 
-To modify a Dedicated Host that supports multiple instance types to support only a specific instance type, the host must either have no running instances, or the running instances must be of the instance type that you want the host to support\. For example, to modify a host that supports multiple instance types in the `m5` instance family to support only `m5.large` instances, the Dedicated Host must either have no running instances, or it must have only `m5.large` instances running on it\.
+To modify a Dedicated Host that supports multiple instance types to support only a single instance type, the host must either have no running instances, or the running instances must be of the instance type that you want the host to support\. For example, to modify a host that supports multiple instance types in the `m5` instance family to support only `m5.large` instances, the Dedicated Host must either have no running instances, or it must have only `m5.large` instances running on it\.
 
 You can modify the supported instance types using one of the following methods\.
 
@@ -431,7 +436,7 @@ PS C:\> Edit-EC2Host --InstanceType m5.xlarge --HostId h-012a3456b7890cdef
 
 ------
 
-## Modifying Instance Tenancy and Affinity<a name="moving-instances-dedicated-hosts"></a>
+## Modifying instance tenancy and affinity<a name="moving-instances-dedicated-hosts"></a>
 
 You can change the tenancy of an instance from `dedicated` to `host`, or from `host` to `dedicated`, after you have launched it\. You can also modify the affinity between the instance and the host\. To modify either instance tenancy or affinity, the instance must be in the `stopped` state\.
 
@@ -459,7 +464,7 @@ You can modify an instance's tenancy and affinity using the following methods\.
      + This instance can only run on the selected host—The instance is only able to run on the Dedicated Host selected for **Target Host**\.
    + **Target Host**—Select the Dedicated Host that the instance must run on\. If no target host is listed, you might not have available, compatible Dedicated Hosts in your account\.
 
-   For more information, see [Understanding Auto\-Placement and Affinity](#dedicated-hosts-understanding)\.
+   For more information, see [Understanding auto\-placement and affinity](#dedicated-hosts-understanding)\.
 
 1. Choose **Save**\.
 
@@ -822,7 +827,7 @@ The term is specified in seconds\. A one\-year term includes 31,536,000 seconds,
 
 ------
 
-## Viewing Dedicated Host Reservations<a name="viewing-host-reservations"></a>
+## Viewing Dedicated Host reservations<a name="viewing-host-reservations"></a>
 
 You can view information about the Dedicated Hosts that are associated with your reservation, including:
 + The term of the reservation

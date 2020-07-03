@@ -12,9 +12,9 @@ To complete this tutorial using AWS Systems Manager Automation instead of the fo
 
 ## Prerequisites<a name="hosting-wordpress-prereqs"></a>
 
-This tutorial assumes that you have launched an Amazon Linux instance with a functional web server with PHP and database \(either MySQL or MariaDB\) support by following all of the steps in [Tutorial: Install a LAMP Web Server with the Amazon Linux AMI](install-LAMP.md) for Amazon Linux AMI or [Tutorial: Install a LAMP Web Server on Amazon Linux 2](ec2-lamp-amazon-linux-2.md) for Amazon Linux 2\. This tutorial also has steps for configuring a security group to allow `HTTP` and `HTTPS` traffic, as well as several steps to ensure that file permissions are set properly for your web server\. For information about adding rules to your security group, see [Adding Rules to a Security Group](ec2-security-groups.md#adding-security-group-rule)\.
+This tutorial assumes that you have launched an Amazon Linux instance with a functional web server with PHP and database \(either MySQL or MariaDB\) support by following all of the steps in [Tutorial: Install a LAMP Web Server with the Amazon Linux AMI](install-LAMP.md) for Amazon Linux AMI or [Tutorial: Install a LAMP Web Server on Amazon Linux 2](ec2-lamp-amazon-linux-2.md) for Amazon Linux 2\. This tutorial also has steps for configuring a security group to allow `HTTP` and `HTTPS` traffic, as well as several steps to ensure that file permissions are set properly for your web server\. For information about adding rules to your security group, see [Adding rules to a security group](working-with-security-groups.md#adding-security-group-rule)\.
 
-We strongly recommend that you associate an Elastic IP address \(EIP\) to the instance you are using to host a WordPress blog\. This prevents the public DNS address for your instance from changing and breaking your installation\. If you own a domain name and you want to use it for your blog, you can update the DNS record for the domain name to point to your EIP address \(for help with this, contact your domain name registrar\)\. You can have one EIP address associated with a running instance at no charge\. For more information, see [Elastic IP Addresses](elastic-ip-addresses-eip.md)\.
+We strongly recommend that you associate an Elastic IP address \(EIP\) to the instance you are using to host a WordPress blog\. This prevents the public DNS address for your instance from changing and breaking your installation\. If you own a domain name and you want to use it for your blog, you can update the DNS record for the domain name to point to your EIP address \(for help with this, contact your domain name registrar\)\. You can have one EIP address associated with a running instance at no charge\. For more information, see [Elastic IP addresses](elastic-ip-addresses-eip.md)\.
 
 If you don't already have a domain name for your blog, you can register a domain name with Route 53 and associate your instance's EIP address with your domain name\. For more information, see [Registering Domain Names Using Amazon Route 53](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/registrar.html) in the *Amazon Route 53 Developer Guide*\.
 
@@ -130,7 +130,7 @@ The WordPress installation folder contains a sample configuration file called `w
 
    1. Find the section called `Authentication Unique Keys and Salts`\. These `KEY` and `SALT` values provide a layer of encryption to the browser cookies that WordPress users store on their local machines\. Basically, adding long, random values here makes your site more secure\. Visit [https://api\.wordpress\.org/secret\-key/1\.1/salt/](https://api.wordpress.org/secret-key/1.1/salt/) to randomly generate a set of key values that you can copy and paste into your `wp-config.php` file\. To paste text into a PuTTY terminal, place the cursor where you want to paste the text and right\-click your mouse inside the PuTTY terminal\.
 
-      For more information about security keys, go to [http://codex\.wordpress\.org/Editing\_wp\-config\.php\#Security\_Keys](http://codex.wordpress.org/Editing_wp-config.php#Security_Keys)\.
+      For more information about security keys, go to [https://wordpress\.org/support/article/editing\-wp\-config\-php/\#security\-keys](https://wordpress.org/support/article/editing-wp-config-php/#security-keys)\.
 **Note**  
 The values below are for example purposes only; do not use these values for your installation\.
 
@@ -342,13 +342,13 @@ After you have tested your WordPress blog, consider updating its configuration\.
 If you have a domain name associated with your EC2 instance's EIP address, you can configure your blog to use that name instead of the EC2 public DNS address\. For more information, see [http://codex\.wordpress\.org/Changing\_The\_Site\_URL](http://codex.wordpress.org/Changing_The_Site_URL)\.
 
 **Configure Your Blog**  
-You can configure your blog to use different [themes](https://wordpress.org/themes/) and [plugins](https://wordpress.org/plugins/) to offer a more personalized experience for your readers\. However, sometimes the installation process can backfire, causing you to lose your entire blog\. We strongly recommend that you create a backup Amazon Machine Image \(AMI\) of your instance before attempting to install any themes or plugins so you can restore your blog if anything goes wrong during installation\. For more information, see [Creating Your Own AMI](AMIs.md#creating-an-ami)\.
+You can configure your blog to use different [themes](https://wordpress.org/themes/) and [plugins](https://wordpress.org/plugins/) to offer a more personalized experience for your readers\. However, sometimes the installation process can backfire, causing you to lose your entire blog\. We strongly recommend that you create a backup Amazon Machine Image \(AMI\) of your instance before attempting to install any themes or plugins so you can restore your blog if anything goes wrong during installation\. For more information, see [Creating your own AMI](AMIs.md#creating-an-ami)\.
 
 **Increase Capacity**  
 If your WordPress blog becomes popular and you need more compute power or storage, consider the following steps:
 + Expand the storage space on your instance\. For more information, see [Amazon EBS Elastic Volumes](ebs-modify-volume.md)\.
 + Move your MySQL database to [Amazon RDS](https://aws.amazon.com/rds) to take advantage of the service's ability to scale easily\.
-+ Migrate to a larger instance type\. For more information, see [Changing the Instance Type](ec2-instance-resize.md)\.
++ Migrate to a larger instance type\. For more information, see [Changing the instance type](ec2-instance-resize.md)\.
 + Add additional instances\. For more information, see [Tutorial: Increase the Availability of Your Application on Amazon EC2](ec2-increase-availability.md)\.
 
 **Learn More about WordPress**  

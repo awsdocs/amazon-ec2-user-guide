@@ -1,4 +1,4 @@
-# Connecting to Your Linux Instance from Windows Using PuTTY<a name="putty"></a>
+# Connecting to your Linux instance from Windows using PuTTY<a name="putty"></a>
 
 After you launch your instance, you can connect to it and use it the way that you'd use a computer sitting in front of you\.
 
@@ -12,7 +12,7 @@ Before you connect to your Linux instance using PuTTY, complete the following pr
 After you launch an instance, it can take a few minutes for the instance to be ready so that you can connect to it\. Check that your instance has passed its status checks\. You can view this information in the **Status Checks** column on the **Instances** page\.
 
 **Verify the general prerequisites for connecting to your instance**  
-For more information, see [General Prerequisites for Connecting to Your Instance](connection-prereqs.md)\.
+For more information, see [General prerequisites for connecting to your instance](connection-prereqs.md)\.
 
 **Install PuTTY on your local computer**  
 Download and install PuTTY from the [PuTTY download page](http://www.chiark.greenend.org.uk/~sgtatham/putty/)\. If you already have an older version of PuTTY installed, we recommend that you download the latest version\. Be sure to install the entire suite\.
@@ -20,7 +20,7 @@ Download and install PuTTY from the [PuTTY download page](http://www.chiark.gree
 **Convert your private key using PuTTYgen**  
 Locate the private key \(\.pem file\) for the key pair that you specified when you launched the instance\. Convert the \.pem file to a \.ppk file for use with PuTTY\. For more information, follow the steps in the next section\.
 
-### Convert Your Private Key Using PuTTYgen<a name="putty-private-key"></a>
+### Convert your private key using PuTTYgen<a name="putty-private-key"></a>
 
 PuTTY does not natively support the private key format for SSH keys\. PuTTY provides a tool named PuTTYgen, which converts keys to the required format for PuTTY\. You must convert your private key \(\.pem file\) into this format \(\.ppk file\) as follows in order to connect to your instance using PuTTY\.
 
@@ -44,9 +44,9 @@ A passphrase on a private key is an extra layer of protection\. Even if your pri
 
 Your private key is now in the correct format for use with PuTTY\. You can now connect to your instance using PuTTY's SSH client\.
 
-## Connecting to Your Linux Instance<a name="putty-ssh"></a>
+## Connecting to your Linux instance<a name="putty-ssh"></a>
 
-Use the following procedure to connect to your Linux instance using PuTTY\. You need the `.ppk` file that you created for your private key\. For more information, see [Convert Your Private Key Using PuTTYgen](#putty-private-key) in the preceding section\. If you receive an error while attempting to connect to your instance, see [Troubleshooting Connecting to Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html)\.
+Use the following procedure to connect to your Linux instance using PuTTY\. You need the `.ppk` file that you created for your private key\. For more information, see [Convert your private key using PuTTYgen](#putty-private-key) in the preceding section\. If you receive an error while attempting to connect to your instance, see [Troubleshooting Connecting to Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html)\.
 
 **To connect to your instance using PuTTY**
 
@@ -55,20 +55,10 @@ Use the following procedure to connect to your Linux instance using PuTTY\. You 
 1. In the **Category** pane, choose **Session** and complete the following fields:
 
    1. In the **Host Name** box, do one of the following:
-      + \(Public DNS\) To connect using your instance's public DNS, enter *user\_name*@*public\_dns\_name*\.
-      + \(IPv6\) Alternatively, if your instance has an IPv6 address, to connect using your instance's IPv6 address, enter *user\_name*@*ipv6\_address*\.
+      + \(Public DNS\) To connect using your instance's public DNS name, enter *my\-instance\-user\-name*@*my\-instance\-public\-dns\-name*\.
+      + \(IPv6\) Alternatively, if your instance has an IPv6 address, to connect using your instance's IPv6 address, enter *my\-instance\-user\-name*@*my\-instance\-IPv6\-address*\.
 
-      For information about how to get the public DNS name or IPv6 address of the instance, see [Get Information About Your Instance](connection-prereqs.md#connection-prereqs-get-info-about-instance)\.
-
-      For *user\_name*, be sure to specify the appropriate user name for your AMI\. For example:
-      + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
-      + For a CentOS AMI, the user name is `centos`\.
-      + For a Debian AMI, the user name is `admin` or `root`\.
-      + For a Fedora AMI, the user name is `ec2-user` or `fedora`\.
-      + For a RHEL AMI, the user name is `ec2-user` or `root`\.
-      + For a SUSE AMI, the user name is `ec2-user` or `root`\.
-      + For an Ubuntu AMI, the user name is `ubuntu`\.
-      + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
+      For information about how to get the user name for your instance, and the public DNS name or IPv6 address of your instance, see [Get information about your instance](connection-prereqs.md#connection-prereqs-get-info-about-instance)\.
 
    1. Ensure that the **Port** value is 22\.
 
@@ -89,7 +79,7 @@ Use the following procedure to connect to your Linux instance using PuTTY\. You 
 
 1. If this is the first time you have connected to this instance, PuTTY displays a security alert dialog box that asks whether you trust the host to which you are connecting\.
 
-   1. \(Optional\) Verify that the fingerprint in the security alert dialog box matches the fingerprint that you previously obtained in [\(Optional\) Get the Instance Fingerprint](connection-prereqs.md#connection-prereqs-fingerprint)\. If these fingerprints don't match, someone might be attempting a "man\-in\-the\-middle" attack\. If they match, continue to the next step\.
+   1. \(Optional\) Verify that the fingerprint in the security alert dialog box matches the fingerprint that you previously obtained in [\(Optional\) Get the instance fingerprint](connection-prereqs.md#connection-prereqs-fingerprint)\. If these fingerprints don't match, someone might be attempting a "man\-in\-the\-middle" attack\. If they match, continue to the next step\.
 
    1. Choose **Yes**\. A window opens and you are connected to your instance\.
 **Note**  
@@ -97,37 +87,37 @@ If you specified a passphrase when you converted your private key to PuTTY's for
 
 If you receive an error while attempting to connect to your instance, see [Troubleshooting Connecting to Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html)\.
 
-## Transferring Files to Your Linux Instance Using the PuTTY Secure Copy Client<a name="putty-scp"></a>
+## Transferring files to your Linux instance using the PuTTY Secure Copy client<a name="putty-scp"></a>
 
-The PuTTY Secure Copy client \(PSCP\) is a command line tool that you can use to transfer files between your Windows computer and your Linux instance\. If you prefer a graphical user interface \(GUI\), you can use an open source GUI tool named WinSCP\. For more information, see [Transferring Files to Your Linux Instance Using WinSCP](#Transfer_WinSCP)\.
+The PuTTY Secure Copy client \(PSCP\) is a command line tool that you can use to transfer files between your Windows computer and your Linux instance\. If you prefer a graphical user interface \(GUI\), you can use an open source GUI tool named WinSCP\. For more information, see [Transferring files to your Linux instance using WinSCP](#Transfer_WinSCP)\.
 
-To use PSCP, you need the private key you generated in [Convert Your Private Key Using PuTTYgen](#putty-private-key)\. You also need the public DNS address of your Linux instance\. 
+To use PSCP, you need the private key you generated in [Convert your private key using PuTTYgen](#putty-private-key)\. You also need the public DNS name of your Linux instance, or the IPv6 address if your instance has one\.
 
-The following example transfers the file `Sample_file.txt` from the C:\\ drive on a Windows computer to the `ec2-user` home directory on an Amazon Linux instance:
+The following example transfers the file `Sample_file.txt` from the C:\\ drive on a Windows computer to the `my-instance-user-name` home directory on an Amazon Linux instance\. To transfer a file, use one of the following commands\.
++ \(Public DNS\) To transfer a file using your instance's public DNS name, enter the following command\.
 
-```
-pscp -i C:\path\my-key-pair.ppk C:\path\Sample_file.txt ec2-user@public_dns:/home/ec2-user/Sample_file.txt
-```
+  ```
+  pscp -i C:\path\my-key-pair.ppk C:\path\Sample_file.txt my-instance-user-name@my-instance-public-dns-name:/home/my-instance-user-name/Sample_file.txt
+  ```
++ \(IPv6\) Alternatively, if your instance has an IPv6 address, to transfer a file using your instance's IPv6 address, enter the following command\. The IPv6 address must be enclosed in square brackets \(`[ ]`\)\.
 
-\(IPv6 only\) The following example transfers the file `Sample_file.txt` using the instance's IPv6 address\. The IPv6 address must be enclosed in square brackets \(\[\]\)\.
+  ```
+  pscp -i C:\path\my-key-pair.ppk C:\path\Sample_file.txt my-instance-user-name@[my-instance-IPv6-address]:/home/my-instance-user-name/Sample_file.txt
+  ```
 
-```
-pscp -i C:\path\my-key-pair.ppk C:\path\Sample_file.txt ec2-user@[ipv6-address]:/home/ec2-user/Sample_file.txt
-```
+## Transferring files to your Linux instance using WinSCP<a name="Transfer_WinSCP"></a>
 
-## Transferring Files to Your Linux Instance Using WinSCP<a name="Transfer_WinSCP"></a>
+WinSCP is a GUI\-based file manager for Windows that allows you to upload and transfer files to a remote computer using the SFTP, SCP, FTP, and FTPS protocols\. WinSCP allows you to drag and drop files from your Windows computer to your Linux instance or synchronize entire directory structures between the two systems\.
 
-WinSCP is a GUI\-based file manager for Windows that allows you to upload and transfer files to a remote computer using the SFTP, SCP, FTP, and FTPS protocols\. WinSCP allows you to drag and drop files from your Windows machine to your Linux instance or synchronize entire directory structures between the two systems\.
-
- To use WinSCP, you need the private key that you generated in [Convert Your Private Key Using PuTTYgen](#putty-private-key)\. You also need the public DNS address of your Linux instance\.
+To use WinSCP, you need the private key that you generated in [Convert your private key using PuTTYgen](#putty-private-key)\. You also need the public DNS name of your Linux instance\.
 
 1. Download and install WinSCP from [http://winscp\.net/eng/download\.php](http://winscp.net/eng/download.php)\. For most users, the default installation options are OK\.
 
 1. Start WinSCP\.
 
-1. At the **WinSCP login** screen, for **Host name**, enter the public DNS hostname or public IPv4 address for your instance\.
-
-   \(IPv6 only\) To log in using your instance's IPv6 address, enter the IPv6 address for your instance\.
+1. At the **WinSCP login** screen, for **Host name**, enter one of the following:
+   + \(Public DNS or IPv4 address\) To log in using your instance's public DNS name or public IPv4 address, enter the public DNS name or public IPv4 address for your instance\.
+   + \(IPv6\) Alternatively, if your instance has an IPv6 address, to log in using your instance's IPv6 address, enter the IPv6 address for your instance\.
 
 1. For **User name**, enter the default user name for your AMI\.
    + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
@@ -144,7 +134,7 @@ WinSCP is a GUI\-based file manager for Windows that allows you to upload and tr
    Here is a screenshot from WinSCP version 5\.9\.4:  
 ![\[WinSCP Advanced screen\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/WinSCP-keypair.png)
 
-   WinSCP requires a PuTTY private key file \(`.ppk`\)\. You can convert a `.pem` security key file to the `.ppk` format using PuTTYgen\. For more information, see [Convert Your Private Key Using PuTTYgen](#putty-private-key)\.
+   WinSCP requires a PuTTY private key file \(`.ppk`\)\. You can convert a `.pem` security key file to the `.ppk` format using PuTTYgen\. For more information, see [Convert your private key using PuTTYgen](#putty-private-key)\.
 
 1. \(Optional\) In the left panel, choose **Directories**\. For **Remote directory**, enter the path for the directory to which to add files\. To open the advanced site settings for newer versions of WinSCP, choose **Advanced**\. To find the **Remote directory** setting, under **Environment**, choose **Directories**\.
 

@@ -1,32 +1,32 @@
 # Amazon CloudWatch Events for Amazon EBS<a name="ebs-cloud-watch-events"></a>
 
-Amazon EBS emits notifications based on Amazon CloudWatch Events for a variety of volume, snapshot, and encryption status changes\. With CloudWatch Events, you can establish rules that trigger programmatic actions in response to a change in volume, snapshot, or encryption key state\. For example, when a snapshot is created, you can trigger an AWS Lambda function to share the completed snapshot with another account or copy it to another region for disaster\-recovery purposes\.
+Amazon EBS emits notifications based on Amazon CloudWatch Events for a variety of volume, snapshot, and encryption status changes\. With CloudWatch Events, you can establish rules that trigger programmatic actions in response to a change in volume, snapshot, or encryption key state\. For example, when a snapshot is created, you can trigger an AWS Lambda function to share the completed snapshot with another account or copy it to another Region for disaster\-recovery purposes\.
 
 Events in CloudWatch are represented as JSON objects\. The fields that are unique to the event are contained in the "detail" section of the JSON object\. The "event" field contains the event name\. The "result" field contains the completed status of the action that triggered the event\. For more information, see [Event Patterns in CloudWatch Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CloudWatchEventsandEventPatterns.html) in the *Amazon CloudWatch Events User Guide*\.
 
 For more information, see [Using Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/WhatIsCloudWatchEvents.html) in the *Amazon CloudWatch User Guide*\.
 
 **Topics**
-+ [EBS Volume Events](#volume-events)
-+ [EBS Snapshot Events](#snapshot-events)
-+ [EBS Volume Modification Events](#volume-modification-events)
-+ [EBS Fast Snapshot Restore Events](#fast-snapshot-restore-events)
-+ [Using Amazon Lambda To Handle CloudWatch Events](#using_lambda)
++ [EBS volume events](#volume-events)
++ [EBS snapshot events](#snapshot-events)
++ [EBS volume modification events](#volume-modification-events)
++ [EBS fast snapshot restore events](#fast-snapshot-restore-events)
++ [Using AWS Lambda to handle CloudWatch events](#using_lambda)
 
-## EBS Volume Events<a name="volume-events"></a>
+## EBS volume events<a name="volume-events"></a>
 
 Amazon EBS sends events to CloudWatch Events when the following volume events occur\.
 
 **Topics**
-+ [`createVolume`](#create-volume)
-+ [`deleteVolume`](#delete-volume)
-+ [`attachVolume`](#attach-fail-key)
++ [createVolume](#create-volume)
++ [deleteVolume](#delete-volume)
++ [attachVolume](#attach-fail-key)
 
-### Create Volume \(`createVolume`\)<a name="create-volume"></a>
+### Create volume \(createVolume\)<a name="create-volume"></a>
 
 The `createVolume` event is sent to your AWS account when an action to create a volume completes\. However it is not saved, logged, or archived\. This event can have a result of either `available` or `failed`\. Creation will fail if an invalid KMS key was provided, as shown in the examples below\.
 
-**Event Data**  
+**Event data**  
 The listing below is an example of a JSON object emitted by EBS for a successful `createVolume` event\. 
 
 ```
@@ -96,11 +96,11 @@ The following is an example of a JSON object that is emitted by EBS after a fail
 }
 ```
 
-### Delete Volume \(`deleteVolume`\)<a name="delete-volume"></a>
+### Delete volume \(deleteVolume\)<a name="delete-volume"></a>
 
 The `deleteVolume` event is sent to your AWS account when an action to delete a volume completes\. However it is not saved, logged, or archived\. This event has the result `deleted`\. If the deletion does not complete, the event is never sent\.
 
-**Event Data**  
+**Event data**  
 The listing below is an example of a JSON object emitted by EBS for a successful `deleteVolume` event\. 
 
 ```
@@ -124,11 +124,11 @@ The listing below is an example of a JSON object emitted by EBS for a successful
 }
 ```
 
-### Volume Attach or Reattach \(`attachVolume`, `reattachVolume`\)<a name="attach-fail-key"></a>
+### Volume attach or reattach \(attachVolume, reattachVolume\)<a name="attach-fail-key"></a>
 
 The `attachVolume` or `reattachVolume` event is sent to your AWS account if a volume fails to attach or reattach to an instance\. However it is not saved, logged, or archived\. If you use a KMS key to encrypt an EBS volume and the key becomes invalid, EBS will emit an event if that key is later used to attach or reattach to an instance, as shown in the examples below\.
 
-**Event Data**  
+**Event data**  
 The listing below is an example of a JSON object emitted by EBS after a failed `attachVolume` event\. The cause for the failure was a KMS key pending deletion\.
 
 **Note**  
@@ -180,21 +180,21 @@ The listing below is an example of a JSON object emitted by EBS after a failed `
 }
 ```
 
-## EBS Snapshot Events<a name="snapshot-events"></a>
+## EBS snapshot events<a name="snapshot-events"></a>
 
 Amazon EBS sends events to CloudWatch Events when the following volume events occur\.
 
 **Topics**
-+ [`createSnapshot`](#create-snapshot-complete)
-+ [`createSnapshots`](#create-snapshots-complete)
-+ [`copySnapshot`](#copy-snapshot-complete)
-+ [`shareSnapshot`](#snapshot-shared)
++ [createSnapshot](#create-snapshot-complete)
++ [createSnapshots](#create-snapshots-complete)
++ [copySnapshot](#copy-snapshot-complete)
++ [shareSnapshot](#snapshot-shared)
 
-### Create Snapshot \(`createSnapshot`\)<a name="create-snapshot-complete"></a>
+### Create snapshot \(createSnapshot\)<a name="create-snapshot-complete"></a>
 
 The `createSnapshot` event is sent to your AWS account when an action to create a snapshot completes\. However it is not saved, logged, or archived\. This event can have a result of either `succeeded` or `failed`\.
 
-**Event Data**  
+**Event data**  
 The listing below is an example of a JSON object emitted by EBS for a successful `createSnapshot` event\. In the `detail` section, the `source` field contains the ARN of the source volume\. The `StartTime` and `EndTime` fields indicate when creation of the snapshot started and completed\.
 
 ```
@@ -221,11 +221,11 @@ The listing below is an example of a JSON object emitted by EBS for a successful
 }
 ```
 
-### Create Snapshots \(`createSnapshots`\)<a name="create-snapshots-complete"></a>
+### Create snapshots \(createSnapshots\)<a name="create-snapshots-complete"></a>
 
 The `createSnapshots` event is sent to your AWS account when an action to create a multi\-volume snapshot completes\. This event can have a result of either `succeeded` or `failed`\.
 
-**Event Data**  
+**Event data**  
 The listing below is an example of a JSON object emitted by EBS for a successful `createSnapshots` event\. In the `detail` section, the `source` field contains the ARNs of the source volumes of the multi\-volume snapshot set\. The `StartTime` and `EndTime` fields indicate when creation of the snapshot started and completed\.
 
 ```
@@ -302,11 +302,11 @@ The listing below is an example of a JSON object emitted by EBS after a failed `
 }
 ```
 
-### Copy Snapshot \(`copySnapshot`\)<a name="copy-snapshot-complete"></a>
+### Copy snapshot \(copySnapshot\)<a name="copy-snapshot-complete"></a>
 
 The `copySnapshot` event is sent to your AWS account when an action to copy a snapshot completes\. However it is not saved, logged, or archived\. This event can have a result of either `succeeded` or `failed`\.
 
-**Event Data**  
+**Event data**  
 The listing below is an example of a JSON object emitted by EBS after a successful `copySnapshot` event\. The value of `snapshot_id` is the ARN of the newly created snapshot\. In the `detail` section, the value of `source` is the ARN of the source snapshot\. `StartTime` and `EndTime` represent when the copy\-snapshot action started and ended\.
 
 ```
@@ -362,11 +362,11 @@ The listing below is an example of a JSON object emitted by EBS after a failed `
 }
 ```
 
-### Share Snapshot \(`shareSnapshot`\)<a name="snapshot-shared"></a>
+### Share snapshot \(shareSnapshot\)<a name="snapshot-shared"></a>
 
 The `shareSnapshot` event is sent to your AWS account when another account shares a snapshot with it\. However it is not saved, logged, or archived\. The result is always `succeeded`\.
 
-**Event Data**  
+**Event data**  
 The following is an example of a JSON object emitted by EBS after a completed `shareSnapshot` event\. In the `detail` section, the value of `source` is the AWS account number of the user that shared the snapshot with you\. `StartTime` and `EndTime` represent when the share\-snapshot action started and ended\. The `shareSnapshot` event is emitted only when a private snapshot is shared with another user\. Sharing a public snapshot does not trigger the event\.
 
 ```
@@ -394,7 +394,7 @@ The following is an example of a JSON object emitted by EBS after a completed `s
 }
 ```
 
-## EBS Volume Modification Events<a name="volume-modification-events"></a>
+## EBS volume modification events<a name="volume-modification-events"></a>
 
 Amazon EBS sends `modifyVolume` events to CloudWatch Events when a volume is modified\. However it is not saved, logged, or archived\.
 
@@ -419,7 +419,7 @@ Amazon EBS sends `modifyVolume` events to CloudWatch Events when a volume is mod
 }
 ```
 
-## EBS Fast Snapshot Restore Events<a name="fast-snapshot-restore-events"></a>
+## EBS fast snapshot restore events<a name="fast-snapshot-restore-events"></a>
 
 Amazon EBS sends events to CloudWatch Events when the state of fast snapshot restore for a snapshot changes\.
 
@@ -465,13 +465,13 @@ A request to enable fast snapshot restore failed due to insufficient capacity, a
 `Server.InternalError - An internal error caused the operation to fail`  
 A request to enable fast snapshot restore failed due to an internal error, and the state transitioned to `disabling` or `disabled`\. Wait and then try again\.
 
-## Using Amazon Lambda To Handle CloudWatch Events<a name="using_lambda"></a>
+## Using AWS Lambda to handle CloudWatch events<a name="using_lambda"></a>
 
 You can use Amazon EBS and CloudWatch Events to automate your data\-backup workflow\. This requires you to create an IAM policy, a AWS Lambda function to handle the event, and an Amazon CloudWatch Events rule that matches incoming events and routes them to the Lambda function\.
 
-The following procedure uses the `createSnapshot` event to automatically copy a completed snapshot to another region for disaster recovery\. 
+The following procedure uses the `createSnapshot` event to automatically copy a completed snapshot to another Region for disaster recovery\. 
 
-**To copy a completed snapshot to another region**
+**To copy a completed snapshot to another Region**
 
 1. Create an IAM policy, such as the one shown in the following example, to provide permissions to execute a `CopySnapshot` action and write to the CloudWatch Events log\. Assign the policy to the IAM user that will handle the CloudWatch event\.
 
@@ -521,7 +521,7 @@ The following procedure uses the `createSnapshot` event to automatically copy a 
        const description = `Snapshot copy from ${snapshotId} in ${sourceRegion}.`;
        console.log ("snapshotId:", snapshotId);
    
-       // Load EC2 class and update the configuration to use destination region to initiate the snapshot.
+       // Load EC2 class and update the configuration to use destination Region to initiate the snapshot.
        AWS.config.update({region: destinationRegion});
        var ec2 = new AWS.EC2();
    
@@ -536,12 +536,12 @@ The following procedure uses the `createSnapshot` event to automatically copy a 
        // Execute the copy snapshot and log any errors
        ec2.copySnapshot(copySnapshotParams, (err, data) => {
            if (err) {
-               const errorMessage = `Error copying snapshot ${snapshotId} to region ${destinationRegion}.`;
+               const errorMessage = `Error copying snapshot ${snapshotId} to Region ${destinationRegion}.`;
                console.log(errorMessage);
                console.log(err);
                callback(errorMessage);
            } else {
-               const successMessage = `Successfully started copy of snapshot ${snapshotId} to region ${destinationRegion}.`;
+               const successMessage = `Successfully started copy of snapshot ${snapshotId} to Region ${destinationRegion}.`;
                console.log(successMessage);
                console.log(data);
                callback(null, successMessage);
@@ -550,7 +550,7 @@ The following procedure uses the `createSnapshot` event to automatically copy a 
    };
    ```
 
-   To ensure that your Lambda function is available from the CloudWatch console, create it in the region where the CloudWatch event will occur\. For more information, see the [AWS Lambda Developer Guide](https://docs.aws.amazon.com/lambda/latest/dg/)\.
+   To ensure that your Lambda function is available from the CloudWatch console, create it in the Region where the CloudWatch event will occur\. For more information, see the [AWS Lambda Developer Guide](https://docs.aws.amazon.com/lambda/latest/dg/)\.
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 

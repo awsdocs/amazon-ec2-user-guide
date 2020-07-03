@@ -1,33 +1,33 @@
-# Terminate Your Instance<a name="terminating-instances"></a>
+# Terminate your instance<a name="terminating-instances"></a>
 
 You can delete your instance when you no longer need it\. This is referred to as *terminating* your instance\. As soon as the state of an instance changes to `shutting-down` or `terminated`, you stop incurring charges for that instance\.
 
-You can't connect to or start an instance after you've terminated it\. However, you can launch additional instances using the same AMI\. If you'd rather stop and start your instance, or hibernate it, see [Stop and start your instance](Stop_Start.md) or [Hibernate Your Linux Instance](Hibernate.md)\. For more information, see [Differences Between Reboot, Stop, Hibernate, and Terminate](ec2-instance-lifecycle.md#lifecycle-differences)\.
+You can't connect to or start an instance after you've terminated it\. However, you can launch additional instances using the same AMI\. If you'd rather stop and start your instance, or hibernate it, see [Stop and start your instance](Stop_Start.md) or [Hibernate your Linux instance](Hibernate.md)\. For more information, see [Differences between reboot, stop, hibernate, and terminate](ec2-instance-lifecycle.md#lifecycle-differences)\.
 
 **Topics**
-+ [Instance Termination](#termination-overview)
-+ [What Happens When You Terminate an Instance \(API\)](#what-happens-terminate)
-+ [Terminating an Instance](#terminating-instances-console)
-+ [Enabling Termination Protection for an Instance](#Using_ChangingDisableAPITermination)
-+ [Changing the Instance Initiated Shutdown Behavior](#Using_ChangingInstanceInitiatedShutdownBehavior)
-+ [Preserving Amazon EBS Volumes on Instance Termination](#preserving-volumes-on-termination)
++ [Instance termination](#termination-overview)
++ [What happens when you terminate an instance](#what-happens-terminate)
++ [Terminating an instance](#terminating-instances-console)
++ [Enabling termination protection](#Using_ChangingDisableAPITermination)
++ [Changing the instance initiated shutdown behavior](#Using_ChangingInstanceInitiatedShutdownBehavior)
++ [Preserving Amazon EBS volumes on instance termination](#preserving-volumes-on-termination)
 + [Troubleshooting](#troubleshoot-instance-terminate)
 
-## Instance Termination<a name="termination-overview"></a>
+## Instance termination<a name="termination-overview"></a>
 
 After you terminate an instance, it remains visible in the console for a short while, and then the entry is automatically deleted\. You cannot delete the terminated instance entry yourself\. After an instance is terminated, resources such as tags and volumes are gradually disassociated from the instance and may no longer be visible on the terminated instance after a short while\.
 
 When an instance terminates, the data on any instance store volumes associated with that instance is deleted\. 
 
-By default, Amazon EBS root device volumes are automatically deleted when the instance terminates\. However, by default, any additional EBS volumes that you attach at launch, or any EBS volumes that you attach to an existing instance persist even after the instance terminates\. This behavior is controlled by the volume's `DeleteOnTermination` attribute, which you can modify\. For more information, see [Preserving Amazon EBS Volumes on Instance Termination](#preserving-volumes-on-termination)\.
+By default, Amazon EBS root device volumes are automatically deleted when the instance terminates\. However, by default, any additional EBS volumes that you attach at launch, or any EBS volumes that you attach to an existing instance persist even after the instance terminates\. This behavior is controlled by the volume's `DeleteOnTermination` attribute, which you can modify\. For more information, see [Preserving Amazon EBS volumes on instance termination](#preserving-volumes-on-termination)\.
 
-You can prevent an instance from being terminated accidentally by someone using the AWS Management Console, the CLI, and the API\. This feature is available for both Amazon EC2 instance store\-backed and Amazon EBS\-backed instances\. Each instance has a `DisableApiTermination` attribute with the default value of `false` \(the instance can be terminated through Amazon EC2\)\. You can modify this instance attribute while the instance is running or stopped \(in the case of Amazon EBS\-backed instances\)\. For more information, see [Enabling Termination Protection for an Instance](#Using_ChangingDisableAPITermination)\.
+You can prevent an instance from being terminated accidentally by someone using the AWS Management Console, the CLI, and the API\. This feature is available for both Amazon EC2 instance store\-backed and Amazon EBS\-backed instances\. Each instance has a `DisableApiTermination` attribute with the default value of `false` \(the instance can be terminated through Amazon EC2\)\. You can modify this instance attribute while the instance is running or stopped \(in the case of Amazon EBS\-backed instances\)\. For more information, see [Enabling termination protection](#Using_ChangingDisableAPITermination)\.
 
-You can control whether an instance should stop or terminate when shutdown is initiated from the instance using an operating system command for system shutdown\. For more information, see [Changing the Instance Initiated Shutdown Behavior](#Using_ChangingInstanceInitiatedShutdownBehavior)\.
+You can control whether an instance should stop or terminate when shutdown is initiated from the instance using an operating system command for system shutdown\. For more information, see [Changing the instance initiated shutdown behavior](#Using_ChangingInstanceInitiatedShutdownBehavior)\.
 
 If you run a script on instance termination, your instance might have an abnormal termination, because we have no way to ensure that shutdown scripts run\. Amazon EC2 attempts to shut an instance down cleanly and run any system shutdown scripts; however, certain events \(such as hardware failure\) may prevent these system shutdown scripts from running\.
 
-## What Happens When You Terminate an Instance \(API\)<a name="what-happens-terminate"></a>
+## What happens when you terminate an instance<a name="what-happens-terminate"></a>
 
 When an EC2 instance is terminated using the `terminate-instances` command, the following is registered at the OS level:
 + The API request will send a button press event to the guest\.
@@ -35,7 +35,7 @@ When an EC2 instance is terminated using the `terminate-instances` command, the 
 + ACPI shutdown will be initiated\.
 + The instance will shut down when the graceful shutdown process exits\. There is no configurable OS shutdown time\. 
 
-## Terminating an Instance<a name="terminating-instances-console"></a>
+## Terminating an instance<a name="terminating-instances-console"></a>
 
 You can terminate an instance using the AWS Management Console or the command line\.
 
@@ -57,14 +57,14 @@ You can use one of the following commands\. For more information about these com
 + [terminate\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/terminate-instances.html) \(AWS CLI\)
 + [Stop\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Stop-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
 
-## Enabling Termination Protection for an Instance<a name="Using_ChangingDisableAPITermination"></a>
+## Enabling termination protection<a name="Using_ChangingDisableAPITermination"></a>
 
 By default, you can terminate your instance using the Amazon EC2 console, command line interface, or API\. To prevent your instance from being accidentally terminated using Amazon EC2, you can enable *termination protection* for the instance\. The `DisableApiTermination` attribute controls whether the instance can be terminated using the console, CLI, or API\. By default, termination protection is disabled for your instance\. You can set the value of this attribute when you launch the instance, while the instance is running, or while the instance is stopped \(for Amazon EBS\-backed instances\)\. 
 
-The `DisableApiTermination` attribute does not prevent you from terminating an instance by initiating shutdown from the instance \(using an operating system command for system shutdown\) when the `InstanceInitiatedShutdownBehavior` attribute is set\. For more information, see [Changing the Instance Initiated Shutdown Behavior](#Using_ChangingInstanceInitiatedShutdownBehavior)\.
+The `DisableApiTermination` attribute does not prevent you from terminating an instance by initiating shutdown from the instance \(using an operating system command for system shutdown\) when the `InstanceInitiatedShutdownBehavior` attribute is set\. For more information, see [Changing the instance initiated shutdown behavior](#Using_ChangingInstanceInitiatedShutdownBehavior)\.
 
 **Limitations**  
-You can't enable termination protection for Spot Instances—a Spot Instance is terminated when the Spot price exceeds the amount you're willing to pay for Spot Instances\. However, you can prepare your application to handle Spot Instance interruptions\. For more information, see [Spot Instance Interruptions](spot-interruptions.md)\.
+You can't enable termination protection for Spot Instances—a Spot Instance is terminated when the Spot price exceeds the amount you're willing to pay for Spot Instances\. However, you can prepare your application to handle Spot Instance interruptions\. For more information, see [Spot Instance interruptions](spot-interruptions.md)\.
 
 The `DisableApiTermination` attribute does not prevent Amazon EC2 Auto Scaling from terminating an instance\. For instances in an Auto Scaling group, use the following Amazon EC2 Auto Scaling features instead of Amazon EC2 termination protection:
 + To prevent instances that are part of an Auto Scaling group from terminating on scale in, use instance protection\. For more information, see [Instance Protection](https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-instance-termination.html#instance-protection) in the *Amazon EC2 Auto Scaling User Guide*\.
@@ -97,7 +97,7 @@ You can use one of the following commands\. For more information about these com
 + [modify\-instance\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) \(AWS CLI\)
 + [Edit\-EC2InstanceAttribute](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2InstanceAttribute.html) \(AWS Tools for Windows PowerShell\)
 
-## Changing the Instance Initiated Shutdown Behavior<a name="Using_ChangingInstanceInitiatedShutdownBehavior"></a>
+## Changing the instance initiated shutdown behavior<a name="Using_ChangingInstanceInitiatedShutdownBehavior"></a>
 
 By default, when you initiate a shutdown from an Amazon EBS\-backed instance \(using a command such as shutdown or poweroff\), the instance stops \(Note that halt does not issue a poweroff command and, if used, the instance will not terminate; instead, it will place the CPU into HLT and the instance will remain running\)\. You can change this behavior using the `InstanceInitiatedShutdownBehavior` attribute for the instance so that it terminates instead\. You can update this attribute while the instance is running or stopped\. 
 
@@ -120,24 +120,28 @@ You can use one of the following commands\. For more information about these com
 + [modify\-instance\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) \(AWS CLI\)
 + [Edit\-EC2InstanceAttribute](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2InstanceAttribute.html) \(AWS Tools for Windows PowerShell\)
 
-## Preserving Amazon EBS Volumes on Instance Termination<a name="preserving-volumes-on-termination"></a>
+## Preserving Amazon EBS volumes on instance termination<a name="preserving-volumes-on-termination"></a>
 
-When an instance terminates, Amazon EC2 uses the value of the `DeleteOnTermination` attribute for each attached Amazon EBS volume to determine whether to preserve or delete the volume\. The default value for the `DeleteOnTermination` attribute differs depending on whether or not the volume is a root volume of an instance\. 
+When an instance terminates, Amazon EC2 uses the value of the `DeleteOnTermination` attribute for each attached Amazon EBS volume to determine whether to preserve or delete the volume\.
 
-By default, the `DeletionOnTermination` attribute for the root volume of an instance is set to `true`\. Therefore, the default is to delete the root volume of an instance when the instance terminates\. The `DeletionOnTermination` attribute can be set by the creator of an AMI as well as by the person who launches an instance\. When the attribute is changed by the creator of an AMI or by the person who launches an instance, the new setting overrides the original AMI default setting\. We recommend that you verify the default setting for the `DeletionOnTermination` attribute after you launch an instance with an AMI\. 
+The default value for the `DeleteOnTermination` attribute differs depending on whether the volume is the root volume of the instance or a non\-root volume attached to the instance\.
 
-By default, when you attach an EBS volume to an instance, its `DeleteOnTermination` attribute is set to `false`\. Therefore, the default is to preserve these volumes\. After the instance terminates, you can take a snapshot of the preserved volume or attach it to another instance\. You must delete a volume to avoid incurring further charges\. For more information, see [Deleting an Amazon EBS Volume](ebs-deleting-volume.md)\.
+Root volume  
+By default, the `DeleteOnTermination` attribute for the root volume of an instance is set to `true`\. Therefore, the default is to delete the root volume of the instance when the instance terminates\. The `DeleteOnTermination` attribute can be set by the creator of an AMI as well as by the person who launches an instance\. When the attribute is changed by the creator of an AMI or by the person who launches an instance, the new setting overrides the original AMI default setting\. We recommend that you verify the default setting for the `DeleteOnTermination` attribute after you launch an instance with an AMI\.
 
-To verify the value of the `DeleteOnTermination` attribute for an EBS volume that is in use, look at the instance's block device mapping\. For more information, see [Viewing the EBS Volumes in an Instance Block Device Mapping](block-device-mapping-concepts.md#view-instance-bdm)\.
+Non\-root volume  
+By default, when you [attach a non\-root EBS volume to an instance](ebs-attaching-volume.md), its `DeleteOnTermination` attribute is set to `false`\. Therefore, the default is to preserve these volumes\. After the instance terminates, you can take a snapshot of the preserved volume or attach it to another instance\. You must delete a volume to avoid incurring further charges\. For more information, see [Deleting an Amazon EBS volume](ebs-deleting-volume.md)\.
+
+To verify the value of the `DeleteOnTermination` attribute for an EBS volume that is in use, look at the instance's block device mapping\. For more information, see [Viewing the EBS volumes in an instance block device mapping](block-device-mapping-concepts.md#view-instance-bdm)\.
 
 You can change the value of the `DeleteOnTermination` attribute for a volume when you launch the instance or while the instance is running\.
 
 **Topics**
-+ [Changing the Root Volume to Persist at Launch Using the Console](#delete-on-termination-console)
-+ [Changing the Root Volume to Persist at Launch Using the Command Line](#delete-on-termination-cli)
-+ [Changing the Root Volume of a Running Instance to Persist Using the Command Line](#delete-on-termination-running-instance)
++ [Changing the root volume to persist at launch using the console](#delete-on-termination-console)
++ [Changing the root volume to persist at launch using the command line](#delete-on-termination-cli)
++ [Changing the root volume of a running instance to persist using the command line](#delete-on-termination-running-instance)
 
-### Changing the Root Volume to Persist at Launch Using the Console<a name="delete-on-termination-console"></a>
+### Changing the root volume to persist at launch using the console<a name="delete-on-termination-console"></a>
 
 Using the console, you can change the `DeleteOnTermination` attribute when you launch an instance\. To change this attribute for a running instance, you must use the command line\.
 
@@ -157,7 +161,7 @@ Using the console, you can change the `DeleteOnTermination` attribute when you l
 
 You can verify the setting by viewing details for the root device volume on the instance's details pane\. Next to **Block devices**, choose the entry for the root device volume\. By default, **Delete on termination** is `True`\. If you change the default behavior, **Delete on termination** is `False`\.
 
-### Changing the Root Volume to Persist at Launch Using the Command Line<a name="delete-on-termination-cli"></a>
+### Changing the root volume to persist at launch using the command line<a name="delete-on-termination-cli"></a>
 
 When you launch an EBS\-backed instance, you can use one of the following commands to change the root device volume to persist\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
 + [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) \(AWS CLI\)
@@ -184,7 +188,7 @@ Specify the following in `mapping.json`:
 ]
 ```
 
-### Changing the Root Volume of a Running Instance to Persist Using the Command Line<a name="delete-on-termination-running-instance"></a>
+### Changing the root volume of a running instance to persist using the command line<a name="delete-on-termination-running-instance"></a>
 
 You can use one of the following commands to change the root device volume of a running EBS\-backed instance to persist\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
 + [modify\-instance\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) \(AWS CLI\)
@@ -211,4 +215,4 @@ Specify the following in `mapping.json`:
 
 ## Troubleshooting<a name="troubleshoot-instance-terminate"></a>
 
-If your instance is in the `shutting-down` state for longer than usual, it will eventually be cleaned up \(terminated\) by automated processes within the Amazon EC2 service\. For more information, see [Troubleshooting Terminating \(Shutting Down\) Your Instance](TroubleshootingInstancesShuttingDown.md)\. 
+If your instance is in the `shutting-down` state for longer than usual, it will eventually be cleaned up \(terminated\) by automated processes within the Amazon EC2 service\. For more information, see [Troubleshooting terminating \(shutting down\) your instance](TroubleshootingInstancesShuttingDown.md)\. 

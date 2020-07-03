@@ -9,8 +9,8 @@ Amazon's public images have an aliased owner, which appears as `amazon` in the a
  For information about creating an AMI, see [Creating an Instance Store\-Backed Linux AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-instance-store.html) or [Creating an Amazon EBS\-Backed Linux AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html) \. For more information about building, delivering, and maintaining your applications on the AWS Marketplace, see the [AWS Marketplace Documentation](https://docs.aws.amazon.com/marketplace/)\.
 
 **Topics**
-+ [Finding Shared AMIs](usingsharedamis-finding.md)
-+ [Making an AMI Public](sharingamis-intro.md)
-+ [Sharing an AMI with Specific AWS Accounts](sharingamis-explicit.md)
-+ [Using Bookmarks](using-bookmarks.md)
-+ [Guidelines for Shared Linux AMIs](building-shared-amis.md)
++ [Finding shared AMIs](usingsharedamis-finding.md)
++ [Making an AMI public](sharingamis-intro.md)
++ [Sharing an AMI with specific AWS accounts](sharingamis-explicit.md)
++ [Using bookmarks](using-bookmarks.md)
++ [Guidelines for shared Linux AMIs](building-shared-amis.md)

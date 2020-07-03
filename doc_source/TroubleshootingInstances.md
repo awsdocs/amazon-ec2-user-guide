@@ -1,21 +1,21 @@
-# Troubleshooting Instances with Failed Status Checks<a name="TroubleshootingInstances"></a>
+# Troubleshooting instances with failed status checks<a name="TroubleshootingInstances"></a>
 
 The following information can help you troubleshoot issues if your instance fails a status check\. First determine whether your applications are exhibiting any problems\. If you verify that the instance is not running your applications as expected, review the status check information and the system logs\.
 
 **Topics**
-+ [Review Status Check Information](#InitialSteps)
-+ [Retrieve the System Logs](#troubleshooting-retrieve-system-logs)
-+ [Troubleshooting System Log Errors for Linux\-Based Instances](#system-log-errors-linux)
++ [Review status check information](#InitialSteps)
++ [Retrieve the system logs](#troubleshooting-retrieve-system-logs)
++ [Troubleshooting system log errors for Linux\-based instances](#system-log-errors-linux)
 + [Out of memory: kill process](#MemoryOOM)
 + [ERROR: mmu\_update failed \(Memory management update failed\)](#MemoryMMU)
-+ [I/O Error \(Block Device Failure\)](#DeviceBlock)
++ [I/O error \(block device failure\)](#DeviceBlock)
 + [I/O ERROR: neither local nor remote disk \(Broken distributed block device\)](#DeviceDistributed)
 + [request\_module: runaway loop modprobe \(Looping legacy kernel modprobe on older Linux versions\)](#KernelLoop)
 + ["FATAL: kernel too old" and "fsck: No such file or directory while trying to open /dev" \(Kernel and AMI mismatch\)](#KernelOld)
 + ["FATAL: Could not load /lib/modules" or "BusyBox" \(Missing kernel modules\)](#KernelMissing)
 + [ERROR Invalid kernel \(EC2 incompatible kernel\)](#KernelInvalid)
 + [fsck: No such file or directory while trying to open\.\.\. \(File system not found\)](#FilesystemFschk)
-+ [General error mounting filesystems \(Failed mount\)](#FilesystemGeneral)
++ [General error mounting filesystems \(failed mount\)](#FilesystemGeneral)
 + [VFS: Unable to mount root fs on unknown\-block \(Root filesystem mismatch\)](#FilesystemKernel)
 + [Error: Unable to determine major/minor number of root device\.\.\. \(Root file system/device mismatch\)](#FilesystemError)
 + [XENBUS: Device with no driver\.\.\.](#FilesystemXenbus)
@@ -26,7 +26,7 @@ The following information can help you troubleshoot issues if your instance fail
 + [Unable to load SELinux Policy\. Machine is in enforcing mode\. Halting now\. \(SELinux misconfiguration\)](#OpSystemUnable)
 + [XENBUS: Timeout connecting to devices \(Xenbus timeout\)](#OpSystemXenbus)
 
-## Review Status Check Information<a name="InitialSteps"></a>
+## Review status check information<a name="InitialSteps"></a>
 
 **To investigate impaired instances using the Amazon EC2 console**
 
@@ -37,8 +37,8 @@ The following information can help you troubleshoot issues if your instance fail
 1. In the details pane, choose **Status Checks** to see the individual results for all **System Status Checks** and **Instance Status Checks**\.
 
 If a system status check has failed, you can try one of the following options:
-+ Create an instance recovery alarm\. For more information, see [Create Alarms That Stop, Terminate, Reboot, or Recover an Instance](UsingAlarmActions.md)\.
-+ If you changed the instance type to a [Nitro\-based instance](instance-types.md#ec2-nitro-instances), status checks fail if you migrated from an instance that does not have the required ENA and NVMe drivers\. For more information, see [Compatibility for Resizing Instances](ec2-instance-resize.md#resize-limitations)\.
++ Create an instance recovery alarm\. For more information, see [Create alarms that stop, terminate, reboot, or recover an instance](UsingAlarmActions.md)\.
++ If you changed the instance type to an instance built on the [Nitro System](instance-types.md#ec2-nitro-instances), status checks fail if you migrated from an instance that does not have the required ENA and NVMe drivers\. For more information, see [Compatibility for resizing instances](ec2-instance-resize.md#resize-limitations)\.
 + For an instance using an Amazon EBS\-backed AMI, stop and restart the instance\.
 + For an instance using an instance\-store backed AMI, terminate the instance and launch a replacement\.
 + Wait for Amazon EC2 to resolve the issue\.
@@ -46,7 +46,7 @@ If a system status check has failed, you can try one of the following options:
 + If your instance is in an Auto Scaling group, the Amazon EC2 Auto Scaling service automatically launches a replacement instance\. For more information, see [Health Checks for Auto Scaling Instances](https://docs.aws.amazon.com/autoscaling/ec2/userguide/healthcheck.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 + Retrieve the system log and look for errors\.
 
-## Retrieve the System Logs<a name="troubleshooting-retrieve-system-logs"></a>
+## Retrieve the system logs<a name="troubleshooting-retrieve-system-logs"></a>
 
 If an instance status check fails, you can reboot the instance and retrieve the system logs\. The logs may reveal an error that can help you troubleshoot the issue\. Rebooting clears unnecessary information from the logs\.
 
@@ -68,7 +68,7 @@ If an instance status check fails, you can reboot the instance and retrieve the 
 
 1. If your issue is not resolved, you can post your issue to the [Amazon EC2 forum](https://forums.aws.amazon.com/forum.jspa?forumID=30)\.
 
-## Troubleshooting System Log Errors for Linux\-Based Instances<a name="system-log-errors-linux"></a>
+## Troubleshooting system log errors for Linux\-based instances<a name="system-log-errors-linux"></a>
 
 For Linux\-based instances that have failed an instance status check, such as the instance reachability check, verify that you followed the steps above to retrieve the system log\. The following list contains some common system log errors and suggested actions you can take to resolve the issue for each error\.
 
@@ -77,7 +77,7 @@ For Linux\-based instances that have failed an instance status check, such as th
 + [ERROR: mmu\_update failed \(Memory management update failed\)](#MemoryMMU)
 
 **Device Errors**
-+ [I/O Error \(Block Device Failure\)](#DeviceBlock)
++ [I/O error \(block device failure\)](#DeviceBlock)
 + [I/O ERROR: neither local nor remote disk \(Broken distributed block device\)](#DeviceDistributed)
 
 **Kernel Errors**
@@ -88,7 +88,7 @@ For Linux\-based instances that have failed an instance status check, such as th
 
 **File System Errors**
 + [fsck: No such file or directory while trying to open\.\.\. \(File system not found\)](#FilesystemFschk)
-+ [General error mounting filesystems \(Failed mount\)](#FilesystemGeneral)
++ [General error mounting filesystems \(failed mount\)](#FilesystemGeneral)
 + [VFS: Unable to mount root fs on unknown\-block \(Root filesystem mismatch\)](#FilesystemKernel)
 + [Error: Unable to determine major/minor number of root device\.\.\. \(Root file system/device mismatch\)](#FilesystemError)
 + [XENBUS: Device with no driver\.\.\.](#FilesystemXenbus)
@@ -112,11 +112,11 @@ or a child
 rss:101196kB, file-rss:204kB
 ```
 
-### Potential Cause<a name="MemoryOOM-potential-cause"></a>
+### Potential cause<a name="MemoryOOM-potential-cause"></a>
 
 Exhausted memory
 
-### Suggested Actions<a name="MemoryOOM-suggested-actions"></a>
+### Suggested actions<a name="MemoryOOM-suggested-actions"></a>
 
 
 | For this instance type  | Do this | 
@@ -146,15 +146,15 @@ initrd /boot/initramfs-2.6.35.14-95.38.amzn1.i686.img
 ERROR: mmu_update failed with rc=-22
 ```
 
-### Potential Cause<a name="MemoryMMU-potential-cause"></a>
+### Potential cause<a name="MemoryMMU-potential-cause"></a>
 
 Issue with Amazon Linux
 
-### Suggested Action<a name="MemoryMMU-suggested-actions"></a>
+### Suggested action<a name="MemoryMMU-suggested-actions"></a>
 
 Post your issue to the [Developer Forums](https://forums.aws.amazon.com/) or contact [AWS Support](https://aws.amazon.com/premiumsupport/)\.
 
-## I/O Error \(Block Device Failure\)<a name="DeviceBlock"></a>
+## I/O error \(block device failure\)<a name="DeviceBlock"></a>
 
 An input/output error is indicated by a system log entry similar to the following example:
 
@@ -181,7 +181,7 @@ An input/output error is indicated by a system log entry similar to the followin
 ...
 ```
 
-### Potential Causes<a name="DeviceBlock-potential-cause"></a>
+### Potential causes<a name="DeviceBlock-potential-cause"></a>
 
 
 | Instance type  | Potential cause | 
@@ -189,7 +189,7 @@ An input/output error is indicated by a system log entry similar to the followin
 |  Amazon EBS\-backed  |  A failed Amazon EBS volume   | 
 |  Instance store\-backed  |  A failed physical drive   | 
 
-### Suggested Actions<a name="DeviceBlock-suggested-actions"></a>
+### Suggested actions<a name="DeviceBlock-suggested-actions"></a>
 
 
 | For this instance type  | Do this | 
@@ -216,7 +216,7 @@ lost page write due to I/O error on drbd1
 JBD2: I/O error detected when updating journal superblock for drbd1-8.
 ```
 
-### Potential Causes<a name="DeviceDistributed-potential-cause"></a>
+### Potential causes<a name="DeviceDistributed-potential-cause"></a>
 
 
 | Instance type  | Potential cause | 
@@ -224,7 +224,7 @@ JBD2: I/O error detected when updating journal superblock for drbd1-8.
 |  Amazon EBS\-backed  |  A failed Amazon EBS volume   | 
 |  Instance store\-backed  |  A failed physical drive   | 
 
-### Suggested Action<a name="DeviceDistributed-suggested-actions"></a>
+### Suggested action<a name="DeviceDistributed-suggested-actions"></a>
 
 Terminate the instance and launch a new instance\. 
 
@@ -256,7 +256,7 @@ request_module: runaway loop modprobe binfmt-464c
 request_module: runaway loop modprobe binfmt-464c
 ```
 
-### Suggested Actions<a name="KernelLoop-suggested-actions"></a>
+### Suggested actions<a name="KernelLoop-suggested-actions"></a>
 
 
 | For this instance type  | Do this | 
@@ -276,11 +276,11 @@ FATAL: kernel too old
 Kernel panic - not syncing: Attempted to kill init!
 ```
 
-### Potential Causes<a name="KernelOld-potential-cause"></a>
+### Potential causes<a name="KernelOld-potential-cause"></a>
 
 Incompatible kernel and userland
 
-### Suggested Actions<a name="KernelOld-suggested-actions"></a>
+### Suggested actions<a name="KernelOld-suggested-actions"></a>
 
 
 | For this instance type  | Do this | 
@@ -326,14 +326,14 @@ Enter 'help' for a list of built-in commands.
 (initramfs)
 ```
 
-### Potential Causes<a name="KernelMissing-potential-cause"></a>
+### Potential causes<a name="KernelMissing-potential-cause"></a>
 
 One or more of the following conditions can cause this problem:
 + Missing ramdisk 
 + Missing correct modules from ramdisk
 + Amazon EBS root volume not correctly attached as `/dev/sda1`
 
-### Suggested Actions<a name="KernelMissing-suggested-actions"></a>
+### Suggested actions<a name="KernelMissing-suggested-actions"></a>
 
 
 | For this instance type  | Do this | 
@@ -372,13 +372,13 @@ kernel /vmlinuz.old root=/dev/sda1 ro
 Error 15: File not found
 ```
 
-### Potential Causes<a name="KernelInvalid-potential-cause"></a>
+### Potential causes<a name="KernelInvalid-potential-cause"></a>
 
 One or both of the following conditions can cause this problem:
 + Supplied kernel is not supported by GRUB 
 + Fallback kernel does not exist 
 
-### Suggested Actions<a name="KernelInvalid-suggested-actions"></a>
+### Suggested actions<a name="KernelInvalid-suggested-actions"></a>
 
 
 | For this instance type  | Do this | 
@@ -428,12 +428,12 @@ Give root password for maintenance
 (or type Control-D to continue):
 ```
 
-### Potential Causes<a name="FilesystemFschk-potential-cause"></a>
+### Potential causes<a name="FilesystemFschk-potential-cause"></a>
 + A bug exists in ramdisk filesystem definitions /etc/fstab
 + Misconfigured filesystem definitions in /etc/fstab
 + Missing/failed drive
 
-### Suggested Actions<a name="FilesystemFschk-suggested-actions"></a>
+### Suggested actions<a name="FilesystemFschk-suggested-actions"></a>
 
 
 | For this instance type  | Do this | 
@@ -441,7 +441,7 @@ Give root password for maintenance
 |  Amazon EBS\-backed  |  Use the following procedure: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstances.html) The sixth field in the fstab defines availability requirements of the mount – a nonzero value implies that an fsck will be done on that volume and *must* succeed\. Using this field can be problematic in Amazon EC2 because a failure typically results in an interactive console prompt that is not currently available in Amazon EC2\. Use care with this feature and read the Linux man page for fstab\.  | 
 |  Instance store\-backed  |  Use the following procedure: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstances.html)  | 
 
-## General error mounting filesystems \(Failed mount\)<a name="FilesystemGeneral"></a>
+## General error mounting filesystems \(failed mount\)<a name="FilesystemGeneral"></a>
 
 This condition is indicated by a system log similar to the one shown below\.
 
@@ -482,7 +482,7 @@ Press enter for maintenance
 (or type Control-D to continue):
 ```
 
-### Potential Causes<a name="FilesystemGeneral-potential-cause"></a>
+### Potential causes<a name="FilesystemGeneral-potential-cause"></a>
 
 
 | Instance type  | Potential cause | 
@@ -490,7 +490,7 @@ Press enter for maintenance
 |  Amazon EBS\-backed  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstances.html)  | 
 |  Instance store\-backed  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstances.html)  | 
 
-### Suggested Actions<a name="FilesystemGeneral-suggested-actions"></a>
+### Suggested actions<a name="FilesystemGeneral-suggested-actions"></a>
 
 
 | For this instance type  | Do this | 
@@ -513,7 +513,7 @@ Registering block device major 8
 Kernel panic - not syncing: VFS: Unable to mount root fs on unknown-block(8,1)
 ```
 
-### Potential Causes<a name="FilesystemKernel-potential-cause"></a>
+### Potential causes<a name="FilesystemKernel-potential-cause"></a>
 
 
 | Instance type  | Potential cause | 
@@ -521,7 +521,7 @@ Kernel panic - not syncing: VFS: Unable to mount root fs on unknown-block(8,1)
 |  Amazon EBS\-backed  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstances.html)  | 
 |  Instance store\-backed  |  Hardware device failure\.  | 
 
-### Suggested Actions<a name="FilesystemKernel-suggested-actions"></a>
+### Suggested actions<a name="FilesystemKernel-suggested-actions"></a>
 
 
 | For this instance type  | Do this | 
@@ -554,12 +554,12 @@ sh: can't access tty; job control turned off
 [ramfs /]#
 ```
 
-### Potential Causes<a name="FilesystemError-potential-cause"></a>
+### Potential causes<a name="FilesystemError-potential-cause"></a>
 + Missing or incorrectly configured virtual block device driver
 + Device enumeration clash \(sda versus xvda or sda instead of sda1\)
 + Incorrect choice of instance kernel
 
-### Suggested Actions<a name="FilesystemError-suggested-actions"></a>
+### Suggested actions<a name="FilesystemError-suggested-actions"></a>
 
 
 | For this instance type  | Do this | 
@@ -590,12 +590,12 @@ sh: can't access tty; job control turned off
 [ramfs /]#
 ```
 
-### Potential Causes<a name="FilesystemXenbus-potential-cause"></a>
+### Potential causes<a name="FilesystemXenbus-potential-cause"></a>
 + Missing or incorrectly configured virtual block device driver
 + Device enumeration clash \(sda versus xvda\)
 + Incorrect choice of instance kernel
 
-### Suggested Actions<a name="FilesystemXenbus-suggested-actions"></a>
+### Suggested actions<a name="FilesystemXenbus-suggested-actions"></a>
 
 
 | For this instance type  | Do this | 
@@ -615,11 +615,11 @@ Checking all file systems.
 /dev/sda1 has gone 361 days without being checked, check forced
 ```
 
-### Potential Causes<a name="FilesystemCheck-potential-cause"></a>
+### Potential causes<a name="FilesystemCheck-potential-cause"></a>
 
 Filesystem check time passed; a filesystem check is being forced\.
 
-### Suggested Actions<a name="FilesystemCheck-suggested-actions"></a>
+### Suggested actions<a name="FilesystemCheck-suggested-actions"></a>
 + Wait until the filesystem check completes\. A filesystem check can take a long time depending on the size of the root filesystem\. 
 +  Modify your filesystems to remove the filesystem check \(fsck\) enforcement using tune2fs or tools appropriate for your filesystem\. 
 
@@ -638,12 +638,12 @@ fsck died with exit status 8
 [31mfailed (code 8).[39;49m
 ```
 
-### Potential Causes<a name="FilesystemFschkDied-potential-cause"></a>
+### Potential causes<a name="FilesystemFschkDied-potential-cause"></a>
 + Ramdisk looking for missing drive
 + Filesystem consistency check forced
 + Drive failed or detached
 
-### Suggested Actions<a name="FilesystemFschkDied-suggested-actions"></a>
+### Suggested actions<a name="FilesystemFschkDied-suggested-actions"></a>
 
 
 | For this instance type  | Do this | 
@@ -669,7 +669,7 @@ This condition is indicated by a system log similar to the one shown below\.
 grubdom>
 ```
 
-### Potential Causes<a name="OpSystem-potential-cause"></a>
+### Potential causes<a name="OpSystem-potential-cause"></a>
 
 
 | Instance type  | Potential causes | 
@@ -677,7 +677,7 @@ grubdom>
 |  Amazon EBS\-backed  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstances.html)  | 
 |  Instance store\-backed  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstances.html)  | 
 
-### Suggested Actions<a name="OpSystem-suggested-actions"></a>
+### Suggested actions<a name="OpSystem-suggested-actions"></a>
 
 
 | For this instance type  | Do this | 
@@ -699,11 +699,11 @@ Bringing up interface eth0:  Device eth0 has different MAC address than expected
 Starting auditd: [  OK  ]
 ```
 
-### Potential Causes<a name="OpSystemBringing-potential-cause"></a>
+### Potential causes<a name="OpSystemBringing-potential-cause"></a>
 
 There is a hardcoded interface MAC in the AMI configuration
 
-### Suggested Actions<a name="OpSystemBringing-suggested-actions"></a>
+### Suggested actions<a name="OpSystemBringing-suggested-actions"></a>
 
 
 | For this instance type  | Do this | 
@@ -721,13 +721,13 @@ Unable to load SELinux Policy. Machine is in enforcing mode. Halting now.
 Kernel panic - not syncing: Attempted to kill init!
 ```
 
-### Potential Causes<a name="OpSystemUnable-potential-cause"></a>
+### Potential causes<a name="OpSystemUnable-potential-cause"></a>
 
 SELinux has been enabled in error:
 + Supplied kernel is not supported by GRUB
 + Fallback kernel does not exist
 
-### Suggested Actions<a name="OpSystemUnable-suggested-actions"></a>
+### Suggested actions<a name="OpSystemUnable-suggested-actions"></a>
 
 
 | For this instance type  | Do this | 
@@ -748,11 +748,11 @@ XENBUS: Timeout connecting to devices!
 Kernel panic - not syncing: No init found.  Try passing init= option to kernel.
 ```
 
-### Potential Causes<a name="OpSystemXenbus-potential-cause"></a>
+### Potential causes<a name="OpSystemXenbus-potential-cause"></a>
 + The block device is not connected to the instance
 + This instance is using an old instance kernel
 
-### Suggested Actions<a name="OpSystemXenbus-suggested-actions"></a>
+### Suggested actions<a name="OpSystemXenbus-suggested-actions"></a>
 
 
 | For this instance type  | Do this | 

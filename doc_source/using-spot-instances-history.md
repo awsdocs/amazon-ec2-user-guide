@@ -1,6 +1,8 @@
-# Spot Instance Pricing History<a name="using-spot-instances-history"></a>
+# Spot Instance pricing history<a name="using-spot-instances-history"></a>
 
 When you request Spot Instances, we recommend that you use the default maximum price \(the On\-Demand price\)\. If you want to specify a maximum price, we recommend that you review the Spot price history before you do so\. You can view the Spot price history for the last 90 days, filtering by instance type, operating system, and Availability Zone\.
+
+Spot Instance prices are set by Amazon EC2 and adjust gradually based on long\-term trends in supply and demand for Spot Instance capacity\. For the *current* Spot Instance prices see [Amazon EC2 Spot Instances Pricing](http://aws.amazon.com/ec2/spot/pricing/)\.
 
 **To view the Spot price history \(console\)**
 

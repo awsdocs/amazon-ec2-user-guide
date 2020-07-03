@@ -1,6 +1,6 @@
-# Spot Fleet Example Configurations<a name="spot-fleet-examples"></a>
+# Spot Fleet example configurations<a name="spot-fleet-examples"></a>
 
-The following examples show launch configurations that you can use with the [request\-spot\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-fleet.html) command to create a Spot Fleet request\. For more information, see [Creating a Spot Fleet Request](spot-fleet-requests.md#create-spot-fleet)\.
+The following examples show launch configurations that you can use with the [request\-spot\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-fleet.html) command to create a Spot Fleet request\. For more information, see [Creating a Spot Fleet request](spot-fleet-requests.md#create-spot-fleet)\.
 
 **Note**  
 For Spot Fleet, you can't specify an network interface ID in a launch specification\. Make sure you omit the `NetworkInterfaceID` parameter in your launch specification\.
@@ -19,7 +19,7 @@ For Spot Fleet, you can't specify an network interface ID in a launch specificat
 
 1. [Launch a Spot Fleet with On\-Demand capacity](#fleet-config7)
 
-## Example 1: Launch Spot Instances Using the Lowest\-Priced Availability Zone or Subnet in the Region<a name="fleet-config1"></a>
+## Example 1: Launch Spot Instances using the lowest\-priced Availability Zone or subnet in the Region<a name="fleet-config1"></a>
 
 The following example specifies a single launch specification without an Availability Zone or subnet\. The Spot Fleet launches the instances in the lowest\-priced Availability Zone that has a default subnet\. The price you pay does not exceed the On\-Demand price\.
 
@@ -45,7 +45,7 @@ The following example specifies a single launch specification without an Availab
 }
 ```
 
-## Example 2: Launch Spot Instances Using the Lowest\-Priced Availability Zone or Subnet in a Specified List<a name="fleet-config2"></a>
+## Example 2: Launch Spot Instances using the lowest\-priced Availability Zone or subnet in a specified list<a name="fleet-config2"></a>
 
 The following examples specify two launch specifications with different Availability Zones or subnets, but the same instance type and AMI\.
 
@@ -130,7 +130,7 @@ If the instances are launched in a default VPC, they receive a public IPv4 addre
   ...
 ```
 
-## Example 3: Launch Spot Instances Using the Lowest\-Priced Instance Type in a Specified List<a name="fleet-config3"></a>
+## Example 3: Launch Spot Instances using the lowest\-priced instance type in a specified list<a name="fleet-config3"></a>
 
 The following examples specify two launch configurations with different instance types, but the same AMI and Availability Zone or subnet\. The Spot Fleet launches the instances using the specified instance type with the lowest price\.
 
@@ -200,7 +200,7 @@ The following examples specify two launch configurations with different instance
 }
 ```
 
-## Example 4\. Override the Price for the Request<a name="fleet-config4"></a>
+## Example 4\. Override the price for the request<a name="fleet-config4"></a>
 
 We recommended that you use the default maximum price, which is the On\-Demand price\. If you prefer, you can specify a maximum price for the fleet request and maximum prices for individual launch specifications\.
 
@@ -270,9 +270,9 @@ The following examples specify a maximum price for the fleet request and maximum
 }
 ```
 
-## Example 5: Launch a Spot Fleet Using the Diversified Allocation Strategy<a name="fleet-config5"></a>
+## Example 5: Launch a Spot Fleet using the diversified allocation strategy<a name="fleet-config5"></a>
 
-The following example uses the `diversified` allocation strategy\. The launch specifications have different instance types but the same AMI and Availability Zone or subnet\. The Spot Fleet distributes the 30 instances across the three launch specifications, such that there are 10 instances of each type\. For more information, see [Allocation Strategy for Spot Instances](spot-fleet.md#spot-fleet-allocation-strategy)\.
+The following example uses the `diversified` allocation strategy\. The launch specifications have different instance types but the same AMI and Availability Zone or subnet\. The Spot Fleet distributes the 30 instances across the three launch specifications, such that there are 10 instances of each type\. For more information, see [Allocation strategy for Spot Instances](spot-fleet.md#spot-fleet-allocation-strategy)\.
 
 **Availability Zone**
 
@@ -400,7 +400,7 @@ A best practice to increase the chance that a spot request can be fulfilled by E
 }
 ```
 
-## Example 6: Launch a Spot Fleet Using Instance Weighting<a name="fleet-config6"></a>
+## Example 6: Launch a Spot Fleet using instance weighting<a name="fleet-config6"></a>
 
 The following examples use instance weighting, which means that the price is per unit hour instead of per instance hour\. Each launch configuration lists a different instance type and a different weight\. The Spot Fleet selects the instance type with the lowest price per unit hour\. The Spot Fleet calculates the number of Spot Instances to launch by dividing the target capacity by the instance weight\. If the result isn't an integer, the Spot Fleet rounds it up to the next integer, so that the size of your fleet is not below its target capacity\.
 
@@ -408,7 +408,7 @@ If the `r3.2xlarge` request is successful, Spot provisions 4 of these instances\
 
 If the `c3.xlarge` request is successful, Spot provisions 7 of these instances\. Divide 20 by 3 for a total of 6\.66 instances, then round up to 7 instances\.
 
-For more information, see [Spot Fleet Instance Weighting](spot-fleet.md#spot-instance-weighting)\.
+For more information, see [Spot Fleet instance weighting](spot-fleet.md#spot-instance-weighting)\.
 
 **Availability Zone**
 
@@ -462,7 +462,7 @@ For more information, see [Spot Fleet Instance Weighting](spot-fleet.md#spot-ins
 }
 ```
 
-## Example 7: Launch a Spot Fleet with On\-Demand Capacity<a name="fleet-config7"></a>
+## Example 7: Launch a Spot Fleet with On\-Demand capacity<a name="fleet-config7"></a>
 
 To ensure that you always have instance capacity, you can include a request for On\-Demand capacity in your Spot Fleet request\. If there is capacity, the On\-Demand request is always fulfilled\. The balance of the target capacity is fulfilled as Spot if there is capacity and availability\.
 

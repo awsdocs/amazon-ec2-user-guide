@@ -1,22 +1,22 @@
-# Making an Amazon EBS Volume Available for Use on Linux<a name="ebs-using-volumes"></a>
+# Making an Amazon EBS volume available for use on Linux<a name="ebs-using-volumes"></a>
 
 After you attach an Amazon EBS volume to your instance, it is exposed as a block device\. You can format the volume with any file system and then mount it\. After you make the EBS volume available for use, you can access it in the same ways that you access any other volume\. Any data written to this file system is written to the EBS volume and is transparent to applications using the device\.
 
-You can take snapshots of your EBS volume for backup purposes or to use as a baseline when you create another volume\. For more information, see [Amazon EBS Snapshots](EBSSnapshots.md)\.
+You can take snapshots of your EBS volume for backup purposes or to use as a baseline when you create another volume\. For more information, see [Amazon EBS snapshots](EBSSnapshots.md)\.
 
 You can get directions for volumes on a Windows instance from [Making a Volume Available for Use on Windows](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ebs-using-volumes.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
-## Format and Mount an Attached Volume<a name="ebs-format-mount-volume"></a>
+## Format and mount an attached volume<a name="ebs-format-mount-volume"></a>
 
 Suppose that you have an EC2 instance with an EBS volume for the root device, `/dev/xvda`, and that you have just attached an empty EBS volume to the instance using `/dev/sdf`\. Use the following procedure to make the newly attached volume available for use\.
 
 **To format and mount an EBS volume on Linux**
 
-1. Connect to your instance using SSH\. For more information, see [Connect to Your Linux Instance](AccessingInstances.md)\.
+1. Connect to your instance using SSH\. For more information, see [Connect to your Linux instance](AccessingInstances.md)\.
 
-1. The device could be attached to the instance with a different device name than you specified in the block device mapping\. For more information, see [Device Naming on Linux Instances](device_naming.md)\. Use the lsblk command to view your available disk devices and their mount points \(if applicable\) to help you determine the correct device name to use\. The output of lsblk removes the `/dev/` prefix from full device paths\.
+1. The device could be attached to the instance with a different device name than you specified in the block device mapping\. For more information, see [Device naming on Linux instances](device_naming.md)\. Use the lsblk command to view your available disk devices and their mount points \(if applicable\) to help you determine the correct device name to use\. The output of lsblk removes the `/dev/` prefix from full device paths\.
 
-   The following is example output for a [Nitro\-based instance](instance-types.md#ec2-nitro-instances), which exposes EBS volumes as NVMe block devices\. The root device is `/dev/nvme0n1`\. The attached volume is `/dev/nvme1n1`, which is not yet mounted\.
+   The following is example output for an instance built on the [Nitro System](instance-types.md#ec2-nitro-instances), which exposes EBS volumes as NVMe block devices\. The root device is `/dev/nvme0n1`\. The attached volume is `/dev/nvme1n1`, which is not yet mounted\.
 
    ```
    [ec2-user ~]$ lsblk
@@ -37,7 +37,7 @@ Suppose that you have an EC2 instance with an EBS volume for the root device, `/
    xvdf    202:80   0   10G  0 disk
    ```
 
-1. Determine whether there is a file system on the volume\. New volumes are raw block devices, and you must create a file system on them before you can mount and use them\. Volumes that have been restored from snapshots likely have a file system on them already; if you create a new file system on top of an existing file system, the operation overwrites your data\.
+1. Determine whether there is a file system on the volume\. New volumes are raw block devices, and you must create a file system on them before you can mount and use them\. Volumes that were created from snapshots likely have a file system on them already; if you create a new file system on top of an existing file system, the operation overwrites your data\.
 
    Use the file \-s command to get information about a device, such as its file system type\. If the output shows simply `data`, as in the following example output, there is no file system on the device and you must create one\.
 
@@ -55,7 +55,7 @@ Suppose that you have an EC2 instance with an EBS volume for the root device, `/
 
 1. <a name="create_file_system_step"></a>\(Conditional\) If you discovered that there is a file system on the device in the previous step, skip this step\. If you have an empty volume, use the mkfs \-t command to create a file system on the volume\.
 **Warning**  
-Do not use this command if you're mounting a volume that already has data on it \(for example, a volume that was restored from a snapshot\)\. Otherwise, you'll format the volume and delete the existing data\.
+Do not use this command if you're mounting a volume that already has data on it \(for example, a volume that was created from a snapshot\)\. Otherwise, you'll format the volume and delete the existing data\.
 
    ```
    [ec2-user ~]$ sudo mkfs -t xfs /dev/xvdf
@@ -81,13 +81,13 @@ Do not use this command if you're mounting a volume that already has data on it 
 
 1. Review the file permissions of your new volume mount to make sure that your users and applications can write to the volume\. For more information about file permissions, see [File security](http://tldp.org/LDP/intro-linux/html/sect_03_04.html) at *The Linux Documentation Project*\.
 
-1. The mount point is not automatically preserved after rebooting your instance\. To automatically mount this EBS volume after reboot, see [Automatically Mount an Attached Volume After Reboot](#ebs-mount-after-reboot)\.
+1. The mount point is not automatically preserved after rebooting your instance\. To automatically mount this EBS volume after reboot, see [Automatically mount an attached volume after reboot](#ebs-mount-after-reboot)\.
 
-## Automatically Mount an Attached Volume After Reboot<a name="ebs-mount-after-reboot"></a>
+## Automatically mount an attached volume after reboot<a name="ebs-mount-after-reboot"></a>
 
 To mount an attached EBS volume on every system reboot, add an entry for the device to the `/etc/fstab` file\.
 
-You can use the device name, such as `/dev/xvdf`, in `/etc/fstab`, but we recommend using the device's 128\-bit universally unique identifier \(UUID\) instead\. Device names can change, but the UUID persists throughout the life of the partition\. By using the UUID, you reduce the chances that the system becomes unbootable after a hardware reconfiguration\. For more information, see [Identifying the EBS Device](nvme-ebs-volumes.md#identify-nvme-ebs-device)\.
+You can use the device name, such as `/dev/xvdf`, in `/etc/fstab`, but we recommend using the device's 128\-bit universally unique identifier \(UUID\) instead\. Device names can change, but the UUID persists throughout the life of the partition\. By using the UUID, you reduce the chances that the system becomes unbootable after a hardware reconfiguration\. For more information, see [Identifying the EBS device](nvme-ebs-volumes.md#identify-nvme-ebs-device)\.
 
 **To mount an attached volume automatically after reboot**
 

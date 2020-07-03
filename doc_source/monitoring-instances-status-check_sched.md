@@ -1,18 +1,19 @@
-# Scheduled Events for Your Instances<a name="monitoring-instances-status-check_sched"></a>
+# Scheduled events for your instances<a name="monitoring-instances-status-check_sched"></a>
 
 AWS can schedule events for your instances, such as a reboot, stop/start, or retirement\. These events do not occur frequently\. If one of your instances will be affected by a scheduled event, AWS sends an email to the email address that's associated with your AWS account prior to the scheduled event\. The email provides details about the event, including the start and end date\. Depending on the event, you might be able to take action to control the timing of the event\.
 
 To update the contact information for your account so that you can be sure to be notified about scheduled events, go to the [Account Settings](https://console.aws.amazon.com/billing/home?#/account) page\.
 
 **Topics**
-+ [Types of Scheduled Events](#types-of-scheduled-events)
-+ [Viewing Scheduled Events](#viewing_scheduled_events)
-+ [Working with Instances Scheduled to Stop or Retire](#schedevents_actions_retire)
-+ [Working with Instances Scheduled for Reboot](#schedevents_actions_reboot)
-+ [Working with Instances Scheduled for Maintenance](#schedevents_actions_maintenance)
-+ [Rescheduling a Scheduled Event](#reschedule-event)
++ [Types of scheduled events](#types-of-scheduled-events)
++ [Viewing scheduled events](#viewing_scheduled_events)
++ [Customizing scheduled event notifications](#customizing_scheduled_event_notifications)
++ [Working with instances scheduled to stop or retire](#schedevents_actions_retire)
++ [Working with instances scheduled for reboot](#schedevents_actions_reboot)
++ [Working with instances scheduled for maintenance](#schedevents_actions_maintenance)
++ [Rescheduling a scheduled event](#reschedule-event)
 
-## Types of Scheduled Events<a name="types-of-scheduled-events"></a>
+## Types of scheduled events<a name="types-of-scheduled-events"></a>
 
 Amazon EC2 supports the following types of events for your instances, where the event occurs at a scheduled time:
 + **Instance stop**: At the scheduled time, the instance is stopped\. When you start it again, it's migrated to a new host\. Applies only to instances backed by Amazon EBS\.
@@ -21,7 +22,7 @@ Amazon EC2 supports the following types of events for your instances, where the 
 + **System reboot**: At the scheduled time, the host for the instance is rebooted\.
 + **System maintenance**: At the scheduled time, the instance might be temporarily affected by network maintenance or power maintenance\.
 
-## Viewing Scheduled Events<a name="viewing_scheduled_events"></a>
+## Viewing scheduled events<a name="viewing_scheduled_events"></a>
 
 In addition to receiving notification of scheduled events in email, you can check for scheduled events using one of the following methods\.
 
@@ -62,7 +63,9 @@ In addition to receiving notification of scheduled events in email, you can chec
 Use the [describe\-instance\-status](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-status.html) command\.
 
 ```
-aws ec2 describe-instance-status --instance-id i-1234567890abcdef0 --query "InstanceStatuses[].Events"
+aws ec2 describe-instance-status \
+    --instance-id i-1234567890abcdef0 \
+    --query "InstanceStatuses[].Events"
 ```
 
 The following example output shows a reboot event\.
@@ -191,9 +194,137 @@ The following is example output with information about a system reboot event tha
 
 ------
 
-## Working with Instances Scheduled to Stop or Retire<a name="schedevents_actions_retire"></a>
+## Customizing scheduled event notifications<a name="customizing_scheduled_event_notifications"></a>
 
-When AWS detects irreparable failure of the underlying host for your instance, it schedules the instance to stop or terminate, depending on the type of root device for the instance\. If the root device is an EBS volume, the instance is scheduled to stop\. If the root device is an instance store volume, the instance is scheduled to terminate\. For more information, see [Instance Retirement](instance-retirement.md)\.
+You can customize scheduled event notifications to include tags in the email notification\. This makes it easier to identify the affected resource \(instances or Dedicated Hosts\) and to prioritize actions for the upcoming event\.
+
+When you customize event notifications to include tags, you can choose to include:
++ All of the tags that are associated with the affected resource
++ Only specific tags that are associated with the affected resource
+
+For example, suppose that you assign `application`, `costcenter`, `project`, and `owner` tags to all of your instances\. You can choose to include all of the tags in event notifications\. Alternatively, if you'd like to see only the `owner` and `project` tags in event notifications, then you can choose to include only those tags\.
+
+After you select the tags to include, the event notifications will include the resource ID \(instance ID or Dedicated Host ID\) and the tag key and value pairs that are associated with the affected resource\.
+
+**Topics**
++ [Including tags in event notifications](#register-tags)
++ [Removing tags from event notifications](#deregister-tags)
++ [Viewing the tags to be included in event notifications](#view-tags)
+
+### Including tags in event notifications<a name="register-tags"></a>
+
+The tags that you choose to include apply to all resources \(instances and Dedicated Hosts\) in the selected Region\. To customize event notifications in other Regions, first select the required Region and then perform the following steps\.
+
+You can include tags in event notifications using one of the following methods\.
+
+------
+#### [ New console ]
+
+**To include tags in event notifications**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Events**\.
+
+1. Choose **Actions**, **Manage event notifications**\.
+
+1. Select **Include resource tags in event notifications**\.
+
+1. Do one of the following, depending on the tags that you want to include in event notifications:
+   + To include all of the tags associated with the affected instance or Dedicated Host, select **Include all resource tags**\.
+   + To manually select the tags to include, select **Choose the tags to include**, and then for **Choose the tags to include**, enter the tag key and press **Enter**\.
+
+1. Choose **Save**\.
+
+------
+#### [ AWS CLI ]
+
+**To include all tags in event notifications**  
+Use the [ register\-instance\-event\-notification\-attributes](https://docs.aws.amazon.com/cli/latest/reference/ec2/register-instance-event-notification-attributes.html) AWS CLI command and set the `IncludeAllTagsOfInstance` parameter to `true`\.
+
+```
+$ aws ec2 register-instance-event-notification-attributes --instance-tag-attribute 'IncludeAllTagsOfInstance=true'
+```
+
+**To include specific tags in event notifications**  
+Use the [ register\-instance\-event\-notification\-attributes](https://docs.aws.amazon.com/cli/latest/reference/ec2/register-instance-event-notification-attributes.html) AWS CLI command and specify the tags to include using the `InstanceTagKeys` parameter\.
+
+```
+$ aws ec2 register-instance-event-notification-attributes --instance-tag-attribute 'InstanceTagKeys=["tag_key_1", "tag_key_2", "tag_key_3"]'
+```
+
+------
+
+### Removing tags from event notifications<a name="deregister-tags"></a>
+
+You can remove tags from event notifications using one of the following methods\.
+
+------
+#### [ New console ]
+
+**To remove tags from event notifications**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Events**\.
+
+1. Choose **Actions**, **Manage event notifications**\.
+
+1. Do one of the following, depending on the tag that you want to remove from event notifications\.
+   + To remove all tags from event notifications, clear **Include resource tags in event notifications**\.
+   + To remove specific tags from event notifications, choose **Remove** \(**X**\) for the tags listed below the **Choose the tags to include** field\.
+
+1. Choose **Save**\.
+
+------
+#### [ AWS CLI ]
+
+**To remove all tags from event notifications**  
+Use the [ deregister\-instance\-event\-notification\-attributes](https://docs.aws.amazon.com/cli/latest/reference/ec2/deregister-instance-event-notification-attributes.html) AWS CLI command and set the `IncludeAllTagsOfInstance` parameter to `false`\.
+
+```
+$ aws ec2 deregister-instance-event-notification-attributes --instance-tag-attribute 'IncludeAllTagsOfInstance=false'
+```
+
+**To remove specific tags from event notifications**  
+Use the [ deregister\-instance\-event\-notification\-attributes](https://docs.aws.amazon.com/cli/latest/reference/ec2/deregister-instance-event-notification-attributes.html) AWS CLI command and specify the tags to remove using the `InstanceTagKeys` parameter\.
+
+```
+$ aws ec2 deregister-instance-event-notification-attributes --instance-tag-attribute 'InstanceTagKeys=["tag_key_1", "tag_key_2", "tag_key_3"]'
+```
+
+------
+
+### Viewing the tags to be included in event notifications<a name="view-tags"></a>
+
+You can view the tags that are to be included in event notifications using one of the following methods\.
+
+------
+#### [ New console ]
+
+**To view the tags that are to be included in event notifications**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Events**\.
+
+1. Choose **Actions**, **Manage event notifications**\.
+
+------
+#### [ AWS CLI ]
+
+**To view the tags that are to be included in event notifications**  
+Use the [ describe\-instance\-event\-notification\-attributes](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-event-notification-attributes.html) AWS CLI command\.
+
+```
+$ aws ec2 describe-instance-event-notification-attributes
+```
+
+------
+
+## Working with instances scheduled to stop or retire<a name="schedevents_actions_retire"></a>
+
+When AWS detects irreparable failure of the underlying host for your instance, it schedules the instance to stop or terminate, depending on the type of root device for the instance\. If the root device is an EBS volume, the instance is scheduled to stop\. If the root device is an instance store volume, the instance is scheduled to terminate\. For more information, see [Instance retirement](instance-retirement.md)\.
 
 **Important**  
 Any data stored on instance store volumes is lost when an instance is stopped or terminated\. This includes instance store volumes that are attached to an instance that has an EBS volume as the root device\. Be sure to save data from your instance store volumes that you might need later before the instance is stopped or terminated\.
@@ -206,13 +337,13 @@ You can automate an immediate stop and start in response to a scheduled instance
 **Actions for Instances Backed by Instance Store**  
 We recommend that you launch a replacement instance from your most recent AMI and migrate all necessary data to the replacement instance before the instance is scheduled to terminate\. Then, you can terminate the original instance, or wait for it to terminate as scheduled\.
 
-## Working with Instances Scheduled for Reboot<a name="schedevents_actions_reboot"></a>
+## Working with instances scheduled for reboot<a name="schedevents_actions_reboot"></a>
 
 When AWS must perform tasks such as installing updates or maintaining the underlying host, it can schedule the instance or the underlying host for a reboot\. You can [reschedule most reboot events](#reschedule-event) so that your instance is rebooted at a specific date and time that suits you\.
 
 If you stop your linked [EC2\-Classic instance](vpc-classiclink.md#classiclink-limitations), it is automatically unlinked from the VPC and the VPC security groups are no longer associated with the instance\. You can link your instance to the VPC again after you've restarted it\.
 
-### Viewing the Reboot Event Type<a name="view-type-of-scheduled-reboot"></a>
+### Viewing the reboot event type<a name="view-type-of-scheduled-reboot"></a>
 
 You can view whether a reboot event is an instance reboot or a system reboot using one of the following methods\.
 
@@ -271,17 +402,17 @@ For scheduled reboot events, the value for `Code` is either `system-reboot` or `
 
 ------
 <a name="schedevents_actions_instancereboot"></a>
-**Actions for Instance Reboot**  
+**Actions for instance reboot**  
 You can wait for the instance reboot to occur within its scheduled maintenance window, [reschedule](#reschedule-event) the instance reboot to a date and time that suits you, or [reboot](ec2-instance-reboot.md) the instance yourself at a time that is convenient for you\.
 
 After your instance is rebooted, the scheduled event is cleared and the event's description is updated\. The pending maintenance to the underlying host is completed, and you can begin using your instance again after it has fully booted\.
 <a name="schedevents_actions_systemreboot"></a>
-**Actions for System Reboot**  
+**Actions for system reboot**  
 It is not possible for you to reboot the system yourself\. You can wait for the system reboot to occur during its scheduled maintenance window, or you can [reschedule](#reschedule-event) the system reboot to a date and time that suits you\. A system reboot typically completes in a matter of minutes\. After the system reboot has occurred, the instance retains its IP address and DNS name, and any data on local instance store volumes is preserved\. After the system reboot is complete, the scheduled event for the instance is cleared, and you can verify that the software on your instance is operating as expected\.
 
 Alternatively, if it is necessary to maintain the instance at a different time and you can't reschedule the system reboot, then you can stop and start an Amazon EBS\-backed instance, which migrates it to a new host\. However, the data on the local instance store volumes is not preserved\. You can also automate an immediate instance stop and start in response to a scheduled system reboot event\. For more information, see [Automating Actions for EC2 Instances](https://docs.aws.amazon.com/health/latest/ug/cloudwatch-events-health.html#automating-instance-actions) in the *AWS Health User Guide*\. For an instance store\-backed instance, if you can't reschedule the system reboot, then you can launch a replacement instance from your most recent AMI, migrate all necessary data to the replacement instance before the scheduled maintenance window, and then terminate the original instance\.
 
-## Working with Instances Scheduled for Maintenance<a name="schedevents_actions_maintenance"></a>
+## Working with instances scheduled for maintenance<a name="schedevents_actions_maintenance"></a>
 
 When AWS must maintain the underlying host for an instance, it schedules the instance for maintenance\. There are two types of maintenance events: network maintenance and power maintenance\.
 
@@ -296,10 +427,10 @@ You can wait for the maintenance to occur as scheduled\. Alternatively, you can 
 
 You can automate an immediate stop and start in response to a scheduled maintenance event\. For more information, see [Automating Actions for EC2 Instances](https://docs.aws.amazon.com/health/latest/ug/cloudwatch-events-health.html#automating-instance-actions) in the *AWS Health User Guide*\.
 
-**Actions for Instances Backed by Instance Store**  
+**Actions for instances backed by instance store**  
 You can wait for the maintenance to occur as scheduled\. Alternatively, if you want to maintain normal operation during a scheduled maintenance window, you can launch a replacement instance from your most recent AMI, migrate all necessary data to the replacement instance before the scheduled maintenance window, and then terminate the original instance\.
 
-## Rescheduling a Scheduled Event<a name="reschedule-event"></a>
+## Rescheduling a scheduled event<a name="reschedule-event"></a>
 
 You can reschedule an event so that it occurs at a specific date and time that suits you\. Only events that have a deadline date can be rescheduled\. There are other [limitations for rescheduling an event](#limitations-for-rescheduling)\.
 

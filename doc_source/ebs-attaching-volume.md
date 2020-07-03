@@ -1,10 +1,10 @@
-# Attaching an Amazon EBS Volume to an Instance<a name="ebs-attaching-volume"></a>
+# Attaching an Amazon EBS volume to an instance<a name="ebs-attaching-volume"></a>
 
 You can attach an available EBS volume to one or more of your instances that is in the same Availability Zone as the volume\.
 
 **Prerequisites**
-+ Determine how many volumes you can attach to your instance\. For more information, see [Instance Volume Limits](volume_limits.md)\.
-+ If a volume is encrypted, it can only be attached to an instance that supports Amazon EBS encryption\. For more information, see [Supported Instance Types](EBSEncryption.md#EBSEncryption_supported_instances)\.
++ Determine how many volumes you can attach to your instance\. For more information, see [Instance volume limits](volume_limits.md)\.
++ If a volume is encrypted, it can only be attached to an instance that supports Amazon EBS encryption\. For more information, see [Supported instance types](EBSEncryption.md#EBSEncryption_supported_instances)\.
 + If a volume has an AWS Marketplace product code:
   + The volume can only be attached to a stopped instance\.
   + You must be subscribed to the AWS Marketplace code that is on the volume\.
@@ -21,11 +21,11 @@ You can attach an available EBS volume to one or more of your instances that is 
 
 1. For **Instance**, start typing the name or ID of the instance\. Select the instance from the list of options \(only instances that are in the same Availability Zone as the volume are displayed\)\.
 
-1. For **Device**, you can keep the suggested device name, or type a different supported device name\. For more information, see [Device Naming on Linux Instances](device_naming.md)\.
+1. For **Device**, you can keep the suggested device name, or type a different supported device name\. For more information, see [Device naming on Linux instances](device_naming.md)\.
 
 1. Choose **Attach**\.
 
-1. Connect to your instance and mount the volume\. For more information, see [Making an Amazon EBS Volume Available for Use on Linux](ebs-using-volumes.md)\.
+1. Connect to your instance and mount the volume\. For more information, see [Making an Amazon EBS volume available for use on Linux](ebs-using-volumes.md)\.
 
 **To attach an EBS volume to an instance using the command line**
 

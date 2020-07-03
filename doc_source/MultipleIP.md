@@ -1,6 +1,6 @@
-# Multiple IP Addresses<a name="MultipleIP"></a>
+# Multiple IP addresses<a name="MultipleIP"></a>
 
-You can specify multiple private IPv4 and IPv6 addresses for your instances\. The number of network interfaces and private IPv4 and IPv6 addresses that you can specify for an instance depends on the instance type\. For more information, see [IP Addresses Per Network Interface Per Instance Type](using-eni.md#AvailableIpPerENI)\.
+You can specify multiple private IPv4 and IPv6 addresses for your instances\. The number of network interfaces and private IPv4 and IPv6 addresses that you can specify for an instance depends on the instance type\. For more information, see [IP addresses per network interface per instance type](using-eni.md#AvailableIpPerENI)\.
 
 It can be useful to assign multiple IP addresses to an instance in your VPC to do the following:
 + Host multiple websites on a single server by using multiple SSL certificates on a single server and associating each certificate with a specific IP address\.
@@ -8,11 +8,11 @@ It can be useful to assign multiple IP addresses to an instance in your VPC to d
 + Redirect internal traffic to a standby instance in case your instance fails, by reassigning the secondary IP address to the standby instance\. 
 
 **Topics**
-+ [How Multiple IP Addresses Work](#MultipleIPReqs)
-+ [Working with Multiple IPv4 Addresses](#working-with-multiple-ipv4)
-+ [Working with Multiple IPv6 Addresses](#working-with-multiple-ipv6)
++ [How multiple IP addresses work](#MultipleIPReqs)
++ [Working with multiple IPv4 addresses](#working-with-multiple-ipv4)
++ [Working with multiple IPv6 addresses](#working-with-multiple-ipv6)
 
-## How Multiple IP Addresses Work<a name="MultipleIPReqs"></a>
+## How multiple IP addresses work<a name="MultipleIPReqs"></a>
 
 The following list explains how multiple IP addresses work with network interfaces:
 + You can assign a secondary private IPv4 address to any network interface\. The network interface need not be attached to the instance\.
@@ -32,18 +32,18 @@ The following list explains how multiple IP addresses work with Elastic IP addre
 + When a secondary private IPv4 address is reassigned to another interface, the secondary private IPv4 address retains its association with an Elastic IP address\.
 + When a secondary private IPv4 address is unassigned from an interface, an associated Elastic IP address is automatically disassociated from the secondary private IPv4 address\.
 
-## Working with Multiple IPv4 Addresses<a name="working-with-multiple-ipv4"></a>
+## Working with multiple IPv4 addresses<a name="working-with-multiple-ipv4"></a>
 
 You can assign a secondary private IPv4 address to an instance, associate an Elastic IPv4 address with a secondary private IPv4 address, and unassign a secondary private IPv4 address\.
 
 **Topics**
-+ [Assigning a Secondary Private IPv4 Address](#ManageMultipleIP)
-+ [Configuring the Operating System on Your Instance to Recognize the Secondary Private IPv4 Address](#StepTwoConfigOS)
-+ [Associating an Elastic IP Address with the Secondary Private IPv4 Address](#StepThreeEIP)
-+ [Viewing Your Secondary Private IPv4 Addresses](#view-privateIPs)
-+ [Unassigning a Secondary Private IPv4 Address](#UnassignSPIP)
++ [Assigning a secondary private IPv4 address](#ManageMultipleIP)
++ [Configuring the operating system on your instance to recognize secondary private IPv4 addresses](#StepTwoConfigOS)
++ [Associating an Elastic IP address with the secondary private IPv4 address](#StepThreeEIP)
++ [Viewing your secondary private IPv4 addresses](#view-privateIPs)
++ [Unassigning a secondary private IPv4 address](#UnassignSPIP)
 
-### Assigning a Secondary Private IPv4 Address<a name="ManageMultipleIP"></a>
+### Assigning a secondary private IPv4 address<a name="ManageMultipleIP"></a>
 
 You can assign the secondary private IPv4 address to the network interface for an instance as you launch the instance, or after the instance is running\. This section includes the following procedures\.
 + [To assign a secondary private IPv4 address when launching an instance](#assignIP-launch)
@@ -62,9 +62,9 @@ You can assign the secondary private IPv4 address to the network interface for a
 1. On the **Configure Instance Details** page, for **Network**, select a VPC and for **Subnet**, select a subnet\.
 
 1. In the **Network Interfaces** section, do the following, and then choose **Next: Add Storage**:
-   + To add another network interface, choose **Add Device**\. The console enables you to specify up to two network interfaces when you launch an instance\. After you launch the instance, choose **Network Interfaces** in the navigation pane to add additional network interfaces\. The total number of network interfaces that you can attach varies by instance type\. For more information, see [IP Addresses Per Network Interface Per Instance Type](using-eni.md#AvailableIpPerENI)\. 
+   + To add another network interface, choose **Add Device**\. The console enables you to specify up to two network interfaces when you launch an instance\. After you launch the instance, choose **Network Interfaces** in the navigation pane to add additional network interfaces\. The total number of network interfaces that you can attach varies by instance type\. For more information, see [IP addresses per network interface per instance type](using-eni.md#AvailableIpPerENI)\. 
 **Important**  
-When you add a second network interface, the system can no longer auto\-assign a public IPv4 address\. You will not be able to connect to the instance over IPv4 unless you assign an Elastic IP address to the primary network interface \(eth0\)\. You can assign the Elastic IP address after you complete the Launch wizard\. For more information, see [Working with Elastic IP Addresses](elastic-ip-addresses-eip.md#working-with-eips)\.
+When you add a second network interface, the system can no longer auto\-assign a public IPv4 address\. You will not be able to connect to the instance over IPv4 unless you assign an Elastic IP address to the primary network interface \(eth0\)\. You can assign the Elastic IP address after you complete the Launch wizard\. For more information, see [Working with Elastic IP addresses](elastic-ip-addresses-eip.md#working-with-eips)\.
    + For each network interface, under **Secondary IP addresses**, choose **Add IP**, and then enter a private IP address from the subnet range, or accept the default `Auto-assign` value to let Amazon select an address\.
 
 1. On the next **Add Storage** page, you can specify volumes to attach to the instance besides the volumes specified by the AMI \(such as the root device volume\), and then choose **Next: Add Tags**\.
@@ -76,7 +76,7 @@ When you add a second network interface, the system can no longer auto\-assign a
 1. On the **Review Instance Launch** page, review your settings, and then choose **Launch** to choose a key pair and launch your instance\. If you're new to Amazon EC2 and haven't created any key pairs, the wizard prompts you to create one\.
 
 **Important**  
-After you have added a secondary private IP address to a network interface, you must connect to the instance and configure the secondary private IP address on the instance itself\. For more information, see [Configuring the Operating System on Your Instance to Recognize the Secondary Private IPv4 Address ](#StepTwoConfigOS)\.<a name="assignIP-launch-cmd"></a>
+After you have added a secondary private IP address to a network interface, you must connect to the instance and configure the secondary private IP address on the instance itself\. For more information, see [Configuring the operating system on your instance to recognize secondary private IPv4 addresses](#StepTwoConfigOS)\.<a name="assignIP-launch-cmd"></a>
 
 **To assign a secondary IPv4 address during launch using the command line**
 + You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
@@ -106,15 +106,15 @@ Alternatively, you can assign a secondary private IPv4 address to an instance\. 
   + [assign\-private\-ip\-addresses](https://docs.aws.amazon.com/cli/latest/reference/ec2/assign-private-ip-addresses.html) \(AWS CLI\)
   + [Register\-EC2PrivateIpAddress](https://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2PrivateIpAddress.html) \(AWS Tools for Windows PowerShell\)
 
-### Configuring the Operating System on Your Instance to Recognize the Secondary Private IPv4 Address<a name="StepTwoConfigOS"></a>
+### Configuring the operating system on your instance to recognize secondary private IPv4 addresses<a name="StepTwoConfigOS"></a>
 
 After you assign a secondary private IPv4 address to your instance, you need to configure the operating system on your instance to recognize the secondary private IP address\.
-+ If you are using Amazon Linux, the ec2\-net\-utils package can take care of this step for you\. It configures additional network interfaces that you attach while the instance is running, refreshes secondary IPv4 addresses during DHCP lease renewal, and updates the related routing rules\. You can immediately refresh the list of interfaces by using the command `sudo service network restart` and then view the up\-to\-date list using `ip addr li`\. If you require manual control over your network configuration, you can remove the ec2\-net\-utils package\. For more information, see [Configuring Your Network Interface Using ec2\-net\-utils](using-eni.md#ec2-net-utils)\.
++ If you are using Amazon Linux, the ec2\-net\-utils package can take care of this step for you\. It configures additional network interfaces that you attach while the instance is running, refreshes secondary IPv4 addresses during DHCP lease renewal, and updates the related routing rules\. You can immediately refresh the list of interfaces by using the command `sudo service network restart` and then view the up\-to\-date list using `ip addr li`\. If you require manual control over your network configuration, you can remove the ec2\-net\-utils package\. For more information, see [Configuring your network interface using ec2\-net\-utils](using-eni.md#ec2-net-utils)\.
 + If you are using another Linux distribution, see the documentation for your Linux distribution\. Search for information about configuring additional network interfaces and secondary IPv4 addresses\. If the instance has two or more interfaces on the same subnet, search for information about using routing rules to work around asymmetric routing\.
 
-For information about configuring a Windows instance, see [Configuring a Secondary Private IP Address for Your Windows Instance in a VPC](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/config-windows-multiple-ip.html) in the *Amazon EC2 User Guide for Windows Instances*\.
+For information about configuring a Windows instance, see [Configuring a secondary private IP address for your Windows instance in a VPC](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/config-windows-multiple-ip.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
-### Associating an Elastic IP Address with the Secondary Private IPv4 Address<a name="StepThreeEIP"></a>
+### Associating an Elastic IP address with the secondary private IPv4 address<a name="StepThreeEIP"></a>
 
 **To associate an Elastic IP address with a secondary private IPv4 address**
 
@@ -133,7 +133,7 @@ For information about configuring a Windows instance, see [Configuring a Seconda
   + [associate\-address](https://docs.aws.amazon.com/cli/latest/reference/ec2/associate-address.html) \(AWS CLI\)
   + [Register\-EC2Address](https://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2Address.html) \(AWS Tools for Windows PowerShell\)
 
-### Viewing Your Secondary Private IPv4 Addresses<a name="view-privateIPs"></a>
+### Viewing your secondary private IPv4 addresses<a name="view-privateIPs"></a>
 
 **To view the private IPv4 addresses assigned to a network interface**
 
@@ -155,7 +155,7 @@ For information about configuring a Windows instance, see [Configuring a Seconda
 
 1. On the **Description** tab in the details pane, check the **Private IPs** and **Secondary private IPs** fields for the primary private IPv4 address and any secondary private IPv4 addresses assigned to the instance through its network interface\.
 
-### Unassigning a Secondary Private IPv4 Address<a name="UnassignSPIP"></a>
+### Unassigning a secondary private IPv4 address<a name="UnassignSPIP"></a>
 
 If you no longer require a secondary private IPv4 address, you can unassign it from the instance or the network interface\. When a secondary private IPv4 address is unassigned from a network interface, the Elastic IP address \(if it exists\) is also disassociated\.
 
@@ -188,16 +188,16 @@ If you no longer require a secondary private IPv4 address, you can unassign it f
   + [unassign\-private\-ip\-addresses](https://docs.aws.amazon.com/cli/latest/reference/ec2/unassign-private-ip-addresses.html) \(AWS CLI\)
   + [Unregister\-EC2PrivateIpAddress](https://docs.aws.amazon.com/powershell/latest/reference/items/Unregister-EC2PrivateIpAddress.html) \(AWS Tools for Windows PowerShell\)
 
-## Working with Multiple IPv6 Addresses<a name="working-with-multiple-ipv6"></a>
+## Working with multiple IPv6 addresses<a name="working-with-multiple-ipv6"></a>
 
 You can assign multiple IPv6 addresses to your instance, view the IPv6 addresses assigned to your instance, and unassign IPv6 addresses from your instance\.
 
 **Topics**
-+ [Assigning Multiple IPv6 Addresses](#assign-multiple-ipv6)
-+ [Viewing Your IPv6 Addresses](#view-secondary-ipv6)
-+ [Unassigning an IPv6 Address](#unassign-secondary-ipv6)
++ [Assigning multiple IPv6 addresses](#assign-multiple-ipv6)
++ [Viewing your IPv6 addresses](#view-secondary-ipv6)
++ [Unassigning an IPv6 address](#unassign-secondary-ipv6)
 
-### Assigning Multiple IPv6 Addresses<a name="assign-multiple-ipv6"></a>
+### Assigning multiple IPv6 addresses<a name="assign-multiple-ipv6"></a>
 
 You can assign one or more IPv6 addresses to your instance during launch or after launch\. To assign an IPv6 address to an instance, the VPC and subnet in which you launch the instance must have an associated IPv6 CIDR block\. For more information, see [VPCs and Subnets](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html) in the *Amazon VPC User Guide*\.
 
@@ -207,17 +207,17 @@ You can assign one or more IPv6 addresses to your instance during launch or afte
 
 1. From the dashboard, choose **Launch Instance**\.
 
-1. Select an AMI, choose an instance type, and choose **Next: Configure Instance Details**\. Ensure that you choose an instance type that support IPv6\. For more information, see [Instance Types](instance-types.md)\.
+1. Select an AMI, choose an instance type, and choose **Next: Configure Instance Details**\. Ensure that you choose an instance type that support IPv6\. For more information, see [Instance types](instance-types.md)\.
 
 1. On the **Configure Instance Details** page, select a VPC from the **Network** list, and a subnet from the **Subnet** list\. 
 
 1. In the **Network Interfaces** section, do the following, and then choose **Next: Add Storage**:
    + To assign a single IPv6 address to the primary network interface \(eth0\), under **IPv6 IPs**, choose **Add IP**\. To add a secondary IPv6 address, choose **Add IP** again\. You can enter an IPv6 address from the range of the subnet, or leave the default **Auto\-assign** value to let Amazon choose an IPv6 address from the subnet for you\.
-   + Choose **Add Device** to add another network interface and repeat the steps above to add one or more IPv6 addresses to the network interface\. The console enables you to specify up to two network interfaces when you launch an instance\. After you launch the instance, choose **Network Interfaces** in the navigation pane to add additional network interfaces\. The total number of network interfaces that you can attach varies by instance type\. For more information, see [IP Addresses Per Network Interface Per Instance Type](using-eni.md#AvailableIpPerENI)\. 
+   + Choose **Add Device** to add another network interface and repeat the steps above to add one or more IPv6 addresses to the network interface\. The console enables you to specify up to two network interfaces when you launch an instance\. After you launch the instance, choose **Network Interfaces** in the navigation pane to add additional network interfaces\. The total number of network interfaces that you can attach varies by instance type\. For more information, see [IP addresses per network interface per instance type](using-eni.md#AvailableIpPerENI)\. 
 
 1. Follow the next steps in the wizard to attach volumes and tag your instance\.
 
-1. On the **Configure Security Group** page, select an existing security group or create a new one\. If you want your instance to be reachable over IPv6, ensure that your security group has rules that allow access from IPv6 addresses\. For more information, see [Security Group Rules Reference](security-group-rules-reference.md)\. Choose **Review and Launch**\. 
+1. On the **Configure Security Group** page, select an existing security group or create a new one\. If you want your instance to be reachable over IPv6, ensure that your security group has rules that allow access from IPv6 addresses\. For more information, see [Security group rules reference](security-group-rules-reference.md)\. Choose **Review and Launch**\. 
 
 1. On the **Review Instance Launch** page, review your settings, and then choose **Launch** to choose a key pair and launch your instance\. If you're new to Amazon EC2 and haven't created any key pairs, the wizard prompts you to create one\.
 
@@ -249,7 +249,7 @@ Alternatively, you can assign multiple IPv6 addresses to an existing network int
 
 1. Choose **Yes, Update**\.
 
-**CLI Overview**
+**CLI overview**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
 + **Assign an IPv6 address during launch**:
@@ -259,7 +259,7 @@ You can use one of the following commands\. For more information about these com
   + [assign\-ipv6\-addresses](https://docs.aws.amazon.com/cli/latest/reference/ec2/assign-ipv6-addresses.html) \(AWS CLI\)
   + [Register\-EC2Ipv6AddressList](https://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2Ipv6AddressList.html) \(AWS Tools for Windows PowerShell\)
 
-### Viewing Your IPv6 Addresses<a name="view-secondary-ipv6"></a>
+### Viewing your IPv6 addresses<a name="view-secondary-ipv6"></a>
 
 You can view the IPv6 addresses for an instance or for a network interface\.
 
@@ -279,7 +279,7 @@ You can view the IPv6 addresses for an instance or for a network interface\.
 
 1. Select your network interface\. In the details pane, review the **IPv6 IPs** field\.
 
-**CLI Overview**
+**CLI overview**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
 + **View the IPv6 addresses for an instance**:
@@ -289,7 +289,7 @@ You can use one of the following commands\. For more information about these com
   + [describe\-network\-interfaces](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-network-interfaces.html) \(AWS CLI\)
   + [Get\-EC2NetworkInterface](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2NetworkInterface.html) \(AWS Tools for Windows PowerShell\)
 
-### Unassigning an IPv6 Address<a name="unassign-secondary-ipv6"></a>
+### Unassigning an IPv6 address<a name="unassign-secondary-ipv6"></a>
 
 You can unassign an IPv6 address from the primary network interface of an instance, or you can unassign an IPv6 address from a network interface\.
 
@@ -317,7 +317,7 @@ You can unassign an IPv6 address from the primary network interface of an instan
 
 1. Choose **Save**\.
 
-**CLI Overview**
+**CLI overview**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
 + [unassign\-ipv6\-addresses](https://docs.aws.amazon.com/cli/latest/reference/ec2/unassign-ipv6-addresses.html) \(AWS CLI\)

@@ -1,6 +1,6 @@
 # On\-Demand Instances<a name="ec2-on-demand-instances"></a>
 
-An On\-Demand Instance is an instance that you use *on demand*\. You have full control over its lifecycle—you decide when to launch, stop, hibernate, start, reboot, or terminate it\.
+With On\-Demand Instances, you pay for compute capacity by the second with no long\-term commitments\. You have full control over its lifecycle—you decide when to launch, stop, hibernate, start, reboot, or terminate it\.
 
 There is no long\-term commitment required when you purchase On\-Demand Instances\. You pay only for the seconds that your On\-Demand Instances are in the `running` state\. The price per second for a running On\-Demand Instance is fixed, and is listed on the [On\-Demand Pricing](https://aws.amazon.com/ec2/pricing/on-demand) page\.
 
@@ -20,17 +20,17 @@ For significant savings over On\-Demand Instances, use [AWS Savings Plans](http:
 
 You can work with On\-Demand Instances in the following ways:
 + [Launch your instance](LaunchingAndUsingInstances.md)
-+ [Connect to Your Linux Instance](AccessingInstances.md)
++ [Connect to your Linux instance](AccessingInstances.md)
 + [Stop and start your instance](Stop_Start.md)
-+ [Hibernate Your Linux Instance](Hibernate.md)
-+ [Reboot Your Instance](ec2-instance-reboot.md)
-+ [Instance Retirement](instance-retirement.md)
-+ [Terminate Your Instance](terminating-instances.md)
-+ [Recover Your Instance](ec2-instance-recover.md)
-+ [Configuring Your Amazon Linux Instance](Configure_Instance.md)
++ [Hibernate your Linux instance](Hibernate.md)
++ [Reboot your instance](ec2-instance-reboot.md)
++ [Instance retirement](instance-retirement.md)
++ [Terminate your instance](terminating-instances.md)
++ [Recover your instance](ec2-instance-recover.md)
++ [Configuring your Amazon Linux instance](Configure_Instance.md)
 + [Identify EC2 Linux Instances](identify_ec2_instances.md)
 
-If you're new to Amazon EC2, see [How to Get Started with Amazon EC2](concepts.md#how-to-get-started)\.
+If you're new to Amazon EC2, see [How to get started with Amazon EC2](concepts.md#how-to-get-started)\.
 
 ## On\-Demand Instance Limits<a name="ec2-on-demand-instances-limits"></a>
 
@@ -96,11 +96,11 @@ You can view and use the following controls and information:
 
 ### Requesting a Limit Increase<a name="vcpu-limits-request-increase"></a>
 
-You can request a limit increase for each On\-Demand Instance limit type from the [Limits page](https://console.aws.amazon.com/ec2/#Limits) or the vCPU limits calculator in the Amazon EC2 console\. Complete the required fields on the AWS Support Center [limit increase form](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-instances) with your use case\. For **Primary Instance Type**, select the limit type that corresponds to the **Instance limit name** in the vCPU limits calculator\. For the new limit value, use the value that appears in the **New limit** column in the vCPU limits calculator\. For more information about requesting a limit increase, see [Amazon EC2 Service Limits](ec2-resource-limits.md)\.
+You can request a limit increase for each On\-Demand Instance limit type from the [Limits page](https://console.aws.amazon.com/ec2/#Limits) or the vCPU limits calculator in the Amazon EC2 console\. Complete the required fields on the AWS Support Center [limit increase form](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-instances) with your use case\. For **Primary Instance Type**, select the limit type that corresponds to the **Instance limit name** in the vCPU limits calculator\. For the new limit value, use the value that appears in the **New limit** column in the vCPU limits calculator\. For more information about requesting a limit increase, see [Amazon EC2 Service Quotas](ec2-resource-limits.md)\.
 
 ### Monitoring On\-Demand Instance Limits and Usage<a name="monitoring-on-demand-limits"></a>
 
-You can view and manage your On\-Demand Instance limits from the [Limits page](https://console.aws.amazon.com/ec2/#Limits) in the Amazon EC2 console, from the Amazon EC2 [Services quotas page](https://console.aws.amazon.com/servicequotas/#!/services/ec2/quotas) in the Service Quotas console, and from the [Service Limits page](https://console.aws.amazon.com/trustedadvisor/home?#/category/service-limits) in the AWS Trusted Advisor console\. For more information, see [Amazon EC2 Service Limits](ec2-resource-limits.md) in the *Amazon EC2 User Guide for Linux Instances*, [Viewing a Service Quota](https://docs.aws.amazon.com/servicequotas/latest/userguide/gs-request-quota.html) in the *Service Quotas User Guide*, and [AWS Trusted Advisor](http://aws.amazon.com/premiumsupport/technology/trusted-advisor/)\.
+You can view and manage your On\-Demand Instance limits from the [Limits page](https://console.aws.amazon.com/ec2/#Limits) in the Amazon EC2 console, from the Amazon EC2 [Services quotas page](https://console.aws.amazon.com/servicequotas/#!/services/ec2/quotas) in the Service Quotas console, and from the [Service Limits page](https://console.aws.amazon.com/trustedadvisor/home?#/category/service-limits) in the AWS Trusted Advisor console\. For more information, see [Amazon EC2 Service Quotas](ec2-resource-limits.md) in the *Amazon EC2 User Guide for Linux Instances*, [Viewing a Service Quota](https://docs.aws.amazon.com/servicequotas/latest/userguide/gs-request-quota.html) in the *Service Quotas User Guide*, and [AWS Trusted Advisor](http://aws.amazon.com/premiumsupport/technology/trusted-advisor/)\.
 
 With Amazon CloudWatch metrics integration, you can monitor EC2 usage against limits\. You can also configure alarms to warn about approaching limits\. For more information, see [Using Amazon CloudWatch Alarms](https://docs.aws.amazon.com/servicequotas/latest/userguide/configure-cloudwatch.html) in the *Service Quotas User Guide*\.
 

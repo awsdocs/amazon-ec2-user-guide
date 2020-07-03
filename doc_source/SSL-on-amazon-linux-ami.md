@@ -20,13 +20,13 @@ These procedures are intended for use with the Amazon Linux AMI\. If you are try
 ## Prerequisites<a name="ssl-prereq-alami"></a>
 
 Before you begin this tutorial, complete the following steps:
-+ Launch an EBS\-backed instance using the Amazon Linux AMI\. For more information, see [Step 1: Launch an Instance](EC2_GetStarted.md#ec2-launch-instance)\. 
++ Launch an EBS\-backed instance using the Amazon Linux AMI\. For more information, see [Step 1: Launch an instance](EC2_GetStarted.md#ec2-launch-instance)\. 
 + Configure your security group to allow your instance to accept connections on the following TCP ports: 
   + SSH \(port 22\)
   + HTTP \(port 80\)
   + HTTPS \(port 443\)
 
-  For more information, see [Authorizing Inbound Traffic for Your Linux Instances](authorizing-access-to-an-instance.md)\.
+  For more information, see [Authorizing inbound traffic for your Linux instances](authorizing-access-to-an-instance.md)\.
 + Install Apache web server\. For step\-by\-step instructions, see [Tutorial: Installing a LAMP Web Server on Amazon Linux](install-LAMP.md)\. Only the http24 package and its dependencies are needed; you can ignore the instructions involving PHP and MySQL\.
 + To identify and authenticate web sites, the TLS public key infrastructure \(PKI\) relies on the Domain Name System \(DNS\)\. To use your EC2 instance to host a public web site, you need to register a domain name for your web server or transfer an existing domain name to your Amazon EC2 host\. Numerous third\-party domain registration and DNS hosting services are available for this, or you can use [Amazon Route 53](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/Welcome.html)\. 
 
@@ -390,7 +390,7 @@ Finally, each update to OpenSSL introduces new ciphers and deprecates old ones\.
 The [Let's Encrypt](https://letsencrypt.org/) certificate authority is the centerpiece of the Electronic Frontier Foundation \(EFF\) effort to encrypt the entire internet\. In line with that goal, Let's Encrypt host certificates are designed to be created, validated, installed, and maintained with minimal human intervention\. The automated aspects of certificate management are carried out by an agent running on the web server\. After you install and configure the agent, it communicates securely with Let's Encrypt and performs administrative tasks on Apache and the key management system\. This tutorial uses the free [Certbot](https://certbot.eff.org) agent because it allows you either to supply a customized encryption key as the basis for your certificates, or to allow the agent itself to create a key based on its defaults\. You can also configure Certbot to renew your certificates on a regular basis without human interaction, as described in [To automate Certbot](SSL-on-amazon-linux-2.md#automate_certbot)\. For more information, consult the Certbot [User Guide](https://certbot.eff.org/docs/using.html) or [man page](http://manpages.ubuntu.com/manpages/bionic/en/man1/certbot.1.html)\.
 
 Certbot is not officially supported on Amazon Linux AMI, but is available for download and functions correctly when installed\. We recommend that you make the following backups to protect your data and avoid inconvenience:
-+ Before you begin, take a snapshot of your Amazon EBS root volume\. This allows you to restore the original state of your EC2 instance\. For information about creating EBS snapshots, see [Creating Amazon EBS Snapshots](ebs-creating-snapshot.md)\.
++ Before you begin, take a snapshot of your Amazon EBS root volume\. This allows you to restore the original state of your EC2 instance\. For information about creating EBS snapshots, see [Creating Amazon EBS snapshots](ebs-creating-snapshot.md)\.
 + The procedure below requires you to edit your `httpd.conf` file, which controls Apache's operation\. Certbot makes its own automated changes to this and other configuration files\. Make a backup copy of your entire `/etc/httpd` directory in case you need to restore it\.
 
 **To install and run Certbot**

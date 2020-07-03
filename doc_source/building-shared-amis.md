@@ -1,19 +1,19 @@
-# Guidelines for Shared Linux AMIs<a name="building-shared-amis"></a>
+# Guidelines for shared Linux AMIs<a name="building-shared-amis"></a>
 
 Use the following guidelines to reduce the attack surface and improve the reliability of the AMIs you create\.
 
-**Note**  
-No list of security guidelines can be exhaustive\. Build your shared AMIs carefully and take time to consider where you might expose sensitive data\. 
+**Important**  
+No list of security guidelines can be exhaustive\. Build your shared AMIs carefully and take time to consider where you might expose sensitive data\.
 
 **Topics**
-+ [Update the AMI Tools Before Using Them](#public-amis-update-ami-tools)
-+ [Disable Password\-Based Remote Logins for Root](#public-amis-disable-password-logins-for-root)
-+ [Disable Local Root Access](#restrict-root-access)
-+ [Remove SSH Host Key Pairs](#remove-ssh-host-key-pairs)
-+ [Install Public Key Credentials](#public-amis-install-credentials)
-+ [Disabling sshd DNS Checks \(Optional\)](#public-amis-disable-ssh-dns-lookups)
-+ [Identify Yourself](#public-amis-identity)
-+ [Protect Yourself](#public-amis-protect-yourself)
++ [Update the AMI tools before using them](#public-amis-update-ami-tools)
++ [Disable password\-based remote logins for root](#public-amis-disable-password-logins-for-root)
++ [Disable local root access](#restrict-root-access)
++ [Remove SSH host key pairs](#remove-ssh-host-key-pairs)
++ [Install public key credentials](#public-amis-install-credentials)
++ [Disabling sshd DNS checks \(optional\)](#public-amis-disable-ssh-dns-lookups)
++ [Identify yourself](#public-amis-identity)
++ [Protect yourself](#public-amis-protect-yourself)
 
 If you are building AMIs for AWS Marketplace, see [Building AMIs for AWS Marketplace](https://aws.amazon.com/marketplace/help/201231340/ref=help_ln_sibling) for guidelines, policies and best practices\.
 
@@ -21,7 +21,7 @@ For additional information about sharing AMIs safely, see the following articles
 +  [How To Share and Use Public AMIs in A Secure Manner](https://aws.amazon.com/articles/0155828273219400) 
 +  [Public AMI Publishing: Hardening and Clean\-up Requirements](https://aws.amazon.com/articles/9001172542712674) 
 
-## Update the AMI Tools Before Using Them<a name="public-amis-update-ami-tools"></a>
+## Update the AMI tools before using them<a name="public-amis-update-ami-tools"></a>
 
 For AMIs backed by instance store, we recommend that your AMIs download and upgrade the Amazon EC2 AMI creation tools before you use them\. This ensures that new AMIs based on your shared AMIs have the latest AMI tools\. 
 
@@ -39,7 +39,7 @@ Upgrade the AMI tools with the following command:
 
 For other distributions, make sure you have the latest AMI tools\.
 
-## Disable Password\-Based Remote Logins for Root<a name="public-amis-disable-password-logins-for-root"></a>
+## Disable password\-based remote logins for root<a name="public-amis-disable-password-logins-for-root"></a>
 
 Using a fixed root password for a public AMI is a security risk that can quickly become known\. Even relying on users to change the password after the first login opens a small window of opportunity for potential abuse\. 
 
@@ -61,7 +61,7 @@ To solve this problem, disable password\-based remote logins for the root user\.
 
    The location of this configuration file might differ for your distribution, or if you are not running OpenSSH\. If this is the case, consult the relevant documentation\. 
 
-## Disable Local Root Access<a name="restrict-root-access"></a>
+## Disable local root access<a name="restrict-root-access"></a>
 
 When you work with shared AMIs, a best practice is to disable direct root logins\. To do this, log into your running instance and issue the following command:
 
@@ -72,7 +72,7 @@ When you work with shared AMIs, a best practice is to disable direct root logins
 **Note**  
 This command does not impact the use of `sudo`\.
 
-## Remove SSH Host Key Pairs<a name="remove-ssh-host-key-pairs"></a>
+## Remove SSH host key pairs<a name="remove-ssh-host-key-pairs"></a>
 
  If you plan to share an AMI derived from a public AMI, remove the existing SSH host key pairs located in `/etc/ssh`\. This forces SSH to generate new unique SSH key pairs when someone launches an instance using your AMI, improving security and reducing the likelihood of "man\-in\-the\-middle" attacks\. 
 
@@ -100,7 +100,7 @@ Secure deletion utilities such as **shred** may not remove all copies of a file 
 **Important**  
 If you forget to remove the existing SSH host key pairs from your public AMI, our routine auditing process notifies you and all customers running instances of your AMI of the potential security risk\. After a short grace period, we mark the AMI private\. 
 
-## Install Public Key Credentials<a name="public-amis-install-credentials"></a>
+## Install public key credentials<a name="public-amis-install-credentials"></a>
 
 After configuring the AMI to prevent logging in using a password, you must make sure users can log in using another mechanism\. 
 
@@ -152,7 +152,7 @@ fi
 **Note**  
 Rebundling an instance based on this AMI includes the key with which it was launched\. To prevent the key's inclusion, you must clear out \(or delete\) the `authorized_keys` file or exclude this file from rebundling\. 
 
-## Disabling sshd DNS Checks \(Optional\)<a name="public-amis-disable-ssh-dns-lookups"></a>
+## Disabling sshd DNS checks \(optional\)<a name="public-amis-disable-ssh-dns-lookups"></a>
 
 Disabling sshd DNS checks slightly weakens your sshd security\. However, if DNS resolution fails, SSH logins still work\. If you do not disable sshd checks, DNS resolution failures prevent all logins\. 
 
@@ -173,13 +173,13 @@ Disabling sshd DNS checks slightly weakens your sshd security\. However, if DNS 
 **Note**  
 The location of this configuration file can differ for your distribution or if you are not running OpenSSH\. If this is the case, consult the relevant documentation\. 
 
-## Identify Yourself<a name="public-amis-identity"></a>
+## Identify yourself<a name="public-amis-identity"></a>
 
 Currently, there is no easy way to know who provided a shared AMI, because each AMI is represented by an account ID\. 
 
 We recommend that you post a description of your AMI, and the AMI ID, in the [Amazon EC2 forum](https://forums.aws.amazon.com/forum.jspa?forumID=30)\. This provides a convenient central location for users who are interested in trying new shared AMIs\.
 
-## Protect Yourself<a name="public-amis-protect-yourself"></a>
+## Protect yourself<a name="public-amis-protect-yourself"></a>
 
 We recommend against storing sensitive data or software on any AMI that you share\. Users who launch a shared AMI might be able to rebundle it and register it as their own\. Follow these guidelines to help you to avoid some easily overlooked security risks: 
 + We recommend using the `--exclude directory` option on `ec2-bundle-vol` to skip any directories and subdirectories that contain secret information that you would not like to include in your bundle\. In particular, exclude all user\-owned SSH public/private key pairs and SSH `authorized_keys` files when bundling the image\. The Amazon public AMIs store these in `/root/.ssh` for the root account, and `/home/user_name/.ssh/` for regular user accounts\. For more information, see [ec2\-bundle\-vol](ami-tools-commands.md#ami-bundle-vol)\.

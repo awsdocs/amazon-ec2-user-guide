@@ -25,7 +25,7 @@ This tutorial assumes that you have already done the following:
 
 1. Tested your application on your instance to ensure that your instance is configured correctly\.
 
-1. Created a custom Amazon Machine Image \(AMI\) from your instance\. For more information, see [Creating an Amazon EBS\-Backed Linux AMI](creating-an-ami-ebs.md) or [Creating an Instance Store\-Backed Linux AMI](creating-an-ami-instance-store.md)\.
+1. Created a custom Amazon Machine Image \(AMI\) from your instance\. For more information, see [Creating an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md) or [Creating an instance store\-backed Linux AMI](creating-an-ami-instance-store.md)\.
 
 1. \(Optional\) Terminated the instance if you no longer need it\.
 

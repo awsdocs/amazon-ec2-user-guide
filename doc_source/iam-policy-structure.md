@@ -1,16 +1,16 @@
-# Policy Structure<a name="iam-policy-structure"></a>
+# Policy structure<a name="iam-policy-structure"></a>
 
 The following topics explain the structure of an IAM policy\.
 
 **Topics**
-+ [Policy Syntax](#policy-syntax)
++ [Policy syntax](#policy-syntax)
 + [Actions for Amazon EC2](#UsingWithEC2_Actions)
-+ [Supported Resource\-Level Permissions for Amazon EC2 API Actions](#ec2-supported-iam-actions-resources)
++ [Supported resource\-level permissions for Amazon EC2 API actions](#ec2-supported-iam-actions-resources)
 + [Amazon Resource Names \(ARNs\) for Amazon EC2](#EC2_ARN_Format)
-+ [Condition Keys for Amazon EC2](#amazon-ec2-keys)
-+ [Checking That Users Have the Required Permissions](#check-required-permissions)
++ [Condition keys for Amazon EC2](#amazon-ec2-keys)
++ [Checking that users have the required permissions](#check-required-permissions)
 
-## Policy Syntax<a name="policy-syntax"></a>
+## Policy syntax<a name="policy-syntax"></a>
 
 An IAM policy is a JSON document that consists of one or more statements\. Each statement is structured as follows\.
 
@@ -33,10 +33,10 @@ An IAM policy is a JSON document that consists of one or more statements\. Each 
 There are various elements that make up a statement:
 + **Effect:** The *effect* can be `Allow` or `Deny`\. By default, IAM users don't have permission to use resources and API actions, so all requests are denied\. An explicit allow overrides the default\. An explicit deny overrides any allows\.
 + **Action**: The *action* is the specific API action for which you are granting or denying permission\. To learn about specifying *action*, see [Actions for Amazon EC2](#UsingWithEC2_Actions)\. 
-+ **Resource**: The resource that's affected by the action\. Some Amazon EC2 API actions allow you to include specific resources in your policy that can be created or modified by the action\. You specify a resource using an Amazon Resource Name \(ARN\) or using the wildcard \(\*\) to indicate that the statement applies to all resources\. For more information, see [Supported Resource\-Level Permissions for Amazon EC2 API Actions](#ec2-supported-iam-actions-resources)\. 
-+ **Condition**: Conditions are optional\. They can be used to control when your policy is in effect\. For more information about specifying conditions for Amazon EC2, see [Condition Keys for Amazon EC2](#amazon-ec2-keys)\.
++ **Resource**: The resource that's affected by the action\. Some Amazon EC2 API actions allow you to include specific resources in your policy that can be created or modified by the action\. You specify a resource using an Amazon Resource Name \(ARN\) or using the wildcard \(\*\) to indicate that the statement applies to all resources\. For more information, see [Supported resource\-level permissions for Amazon EC2 API actions](#ec2-supported-iam-actions-resources)\. 
++ **Condition**: Conditions are optional\. They can be used to control when your policy is in effect\. For more information about specifying conditions for Amazon EC2, see [Condition keys for Amazon EC2](#amazon-ec2-keys)\.
 
-For more information about example IAM policy statements for Amazon EC2, see [Example Policies for Working with the AWS CLI or an AWS SDK](ExamplePolicies_EC2.md)\. 
+For more information about example IAM policy statements for Amazon EC2, see [Example policies for working with the AWS CLI or an AWS SDK](ExamplePolicies_EC2.md)\. 
 
 ## Actions for Amazon EC2<a name="UsingWithEC2_Actions"></a>
 
@@ -62,7 +62,7 @@ To specify all Amazon EC2 API actions, use the \* wildcard as follows:
 
 For a list of Amazon EC2 actions, see [Actions](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/query-apis.html) in the *Amazon EC2 API Reference*\.
 
-## Supported Resource\-Level Permissions for Amazon EC2 API Actions<a name="ec2-supported-iam-actions-resources"></a>
+## Supported resource\-level permissions for Amazon EC2 API actions<a name="ec2-supported-iam-actions-resources"></a>
 
 *Resource\-level permissions* refers to the ability to specify which resources users are allowed to perform actions on\. Amazon EC2 has partial support for resource\-level permissions\. This means that for certain Amazon EC2 actions, you can control when users are allowed to use those actions based on conditions that have to be fulfilled, or specific resources that users are allowed to use\. For example, you can grant users permissions to launch instances, but only of a specific type, and only using a specific AMI\.
 
@@ -70,7 +70,7 @@ To specify a resource in an IAM policy statement, use its Amazon Resource Name \
 
 To see tables that identify which Amazon EC2 API actions support resource\-level permissions, and the ARNs and condition keys that you can use in a policy, see [Actions, Resources, and Condition Keys for Amazon EC2](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonec2.html) in the *IAM User Guide*\. Condition keys for Amazon EC2 are also further explained in a later section\.
 
-Keep in mind that you can apply tag\-based resource\-level permissions in the IAM policies you use for Amazon EC2 API actions\. This gives you better control over which resources a user can create, modify, or use\. For more information, see [Granting Permission to Tag Resources During Creation](supported-iam-actions-tagging.md)\. 
+Keep in mind that you can apply tag\-based resource\-level permissions in the IAM policies you use for Amazon EC2 API actions\. This gives you better control over which resources a user can create, modify, or use\. For more information, see [Granting permission to tag resources during creation](supported-iam-actions-tagging.md)\. 
 
 ## Amazon Resource Names \(ARNs\) for Amazon EC2<a name="EC2_ARN_Format"></a>
 
@@ -129,7 +129,7 @@ Many Amazon EC2 API actions involve multiple resources\. For example, `AttachVol
 
 For a list of ARNs for Amazon EC2 resources, see [Resource Types Defined by Amazon EC2](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonec2.html#amazonec2-resources-for-iam-policies) in the *IAM User Guide*\.
 
-## Condition Keys for Amazon EC2<a name="amazon-ec2-keys"></a>
+## Condition keys for Amazon EC2<a name="amazon-ec2-keys"></a>
 
 In a policy statement, you can optionally specify conditions that control when it is in effect\. Each condition contains one or more key\-value pairs\. Condition keys are not case\-sensitive\. We've defined AWS\-wide condition keys, plus additional service\-specific condition keys\.
 
@@ -165,13 +165,13 @@ You can also use placeholders when you specify conditions\. For example, you can
 **Important**  
 Many condition keys are specific to a resource, and some API actions use multiple resources\. If you write a policy with a condition key, use the `Resource` element of the statement to specify the resource to which the condition key applies\. If not, the policy may prevent users from performing the action at all, because the condition check fails for the resources to which the condition key does not apply\. If you do not want to specify a resource, or if you've written the `Action` element of your policy to include multiple API actions, then you must use the `...IfExists` condition type to ensure that the condition key is ignored for resources that do not use it\. For more information, see [\.\.\.IfExists Conditions](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements.html#Conditions_IfExists) in the *IAM User Guide*\.
 
-All Amazon EC2 actions support the `aws:RequestedRegion` and `ec2:Region` condition keys\. For more information, see [Example: Restricting Access to a Specific Region](ExamplePolicies_EC2.md#iam-example-region)\.
+All Amazon EC2 actions support the `aws:RequestedRegion` and `ec2:Region` condition keys\. For more information, see [Example: Restricting access to a specific Region](ExamplePolicies_EC2.md#iam-example-region)\.
 
-The `ec2:SourceInstanceARN` key can be used for conditions that specify the ARN of the instance from which a request is made\. This condition key is available AWS\-wide and is not service\-specific\. For policy examples, see [Allows an EC2 Instance to Attach or Detach Volumes](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_examples_ec2_volumes-instance.html) and [Example: Allowing a Specific Instance to View Resources in Other AWS Services](ExamplePolicies_EC2.md#iam-example-source-instance)\. The `ec2:SourceInstanceARN` key cannot be used as a variable to populate the ARN for the `Resource` element in a statement\.
+The `ec2:SourceInstanceARN` key can be used for conditions that specify the ARN of the instance from which a request is made\. This condition key is available AWS\-wide and is not service\-specific\. For policy examples, see [Allows an EC2 Instance to Attach or Detach Volumes](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_examples_ec2_volumes-instance.html) and [Example: Allowing a specific instance to view resources in other AWS services](ExamplePolicies_EC2.md#iam-example-source-instance)\. The `ec2:SourceInstanceARN` key cannot be used as a variable to populate the ARN for the `Resource` element in a statement\.
 
-For example policy statements for Amazon EC2, see [Example Policies for Working with the AWS CLI or an AWS SDK](ExamplePolicies_EC2.md)\.
+For example policy statements for Amazon EC2, see [Example policies for working with the AWS CLI or an AWS SDK](ExamplePolicies_EC2.md)\.
 
-## Checking That Users Have the Required Permissions<a name="check-required-permissions"></a>
+## Checking that users have the required permissions<a name="check-required-permissions"></a>
 
 After you've created an IAM policy, we recommend that you check whether it grants users the permissions to use the particular API actions and resources they need before you put the policy into production\.
 

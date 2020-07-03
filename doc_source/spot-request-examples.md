@@ -1,6 +1,6 @@
-# Spot Request Example Launch Specifications<a name="spot-request-examples"></a>
+# Spot Instance request example launch specifications<a name="spot-request-examples"></a>
 
-The following examples show launch configurations that you can use with the [request\-spot\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-instances.html) command to create a Spot Instance request\. For more information, see [Creating a Spot Instance Request](spot-requests.md#using-spot-instances-request)\.
+The following examples show launch configurations that you can use with the [request\-spot\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-instances.html) command to create a Spot Instance request\. For more information, see [Creating a Spot Instance request](spot-requests.md#using-spot-instances-request)\.
 
 1. [Launch Spot Instances](#spot-launch-specification1)
 
@@ -26,7 +26,7 @@ The following example does not include an Availability Zone or subnet\. Amazon E
 }
 ```
 
-## Example 2: Launch Spot Instances in the Specified Availability Zone<a name="spot-launch-specification2"></a>
+## Example 2: Launch Spot Instances in the specified Availability Zone<a name="spot-launch-specification2"></a>
 
 The following example includes an Availability Zone\. Amazon EC2 launches the instances in the default subnet of the specified Availability Zone\.
 
@@ -45,7 +45,7 @@ The following example includes an Availability Zone\. Amazon EC2 launches the in
 }
 ```
 
-## Example 3: Launch Spot Instances in the Specified Subnet<a name="spot-launch-specification3"></a>
+## Example 3: Launch Spot Instances in the specified subnet<a name="spot-launch-specification3"></a>
 
 The following example includes a subnet\. Amazon EC2 launches the instances in the specified subnet\. If the VPC is a nondefault VPC, the instance does not receive a public IPv4 address by default\.
 

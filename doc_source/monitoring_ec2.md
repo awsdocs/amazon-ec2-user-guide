@@ -13,7 +13,7 @@ After you have defined your monitoring goals and have created your monitoring pl
 To establish a baseline you should, at a minimum, monitor the following items:
 
 
-| Item to Monitor | Amazon EC2 Metric | Monitoring Agent/CloudWatch Logs | 
+| Item to monitor | Amazon EC2 metric | Monitoring agent/CloudWatch Logs | 
 | --- | --- | --- | 
 |  CPU utilization  |  [CPUUtilization](viewing_metrics_with_cloudwatch.md)  |  | 
 |  Network utilization  |  [NetworkIn](viewing_metrics_with_cloudwatch.md) [NetworkOut](viewing_metrics_with_cloudwatch.md)  |  | 

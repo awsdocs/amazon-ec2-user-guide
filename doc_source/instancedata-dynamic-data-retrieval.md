@@ -1,4 +1,4 @@
-# Retrieving Dynamic Data<a name="instancedata-dynamic-data-retrieval"></a>
+# Retrieving dynamic data<a name="instancedata-dynamic-data-retrieval"></a>
 
 To retrieve dynamic data from within a running instance, use the following URI\. 
 
