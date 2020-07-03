@@ -98,7 +98,7 @@ The supported RSA key types are OpenSSH and SSH2\. The supported lengths are 204
 
 1. Connect to the instance using your private key\.
 
-   Use the ssh command to connect to the instance using the private key before the public key is removed from the instance metadata \(you have 60 seconds before it is removed\)\. Specify the private key that corresponds to the public key, the default user name for the AMI that you used to launch your instance, and the instance's public DNS\.  The `IdentitiesOnly=yes` option to ssh ensures that only the key `my_rsa_key` specified will be used for the connection\.
+   Use the ssh command to connect to the instance using the private key before the public key is removed from the instance metadata \(you have 60 seconds before it is removed\)\. Specify the private key that corresponds to the public key, the default user name for the AMI that you used to launch your instance, and the instance's public DNS name\. Add the `IdentitiesOnly=yes` option to ensure that only the files in the ssh config and the specified key are used for the connection\.
 
    ```
    $ ssh -o "IdentitiesOnly=yes" -i my_rsa_key ec2-user@ec2-198-51-100-1.compute-1.amazonaws.com
