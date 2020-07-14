@@ -7,7 +7,7 @@ An instance with an attached GPU, such as a P3 or G4 instance, must have the app
 + [Available drivers by instance type](#nvidia-driver-instance-type)
 + [Installation options](#nvidia-installation-options)
   + [Option 1: AMIs with the NVIDIA drivers installed](#preinstalled-nvidia-driver)
-  + [Option 2: Public NVIDIA Tesla drivers](#public-nvidia-driver)
+  + [Option 2: Public NVIDIA drivers](#public-nvidia-driver)
   + [Option 3: GRID drivers \(G3 and G4 instances\)](#nvidia-GRID-driver)
   + [Option 4: NVIDIA gaming drivers \(G4 instances\)](#nvidia-gaming-driver)
 
@@ -39,7 +39,7 @@ The following table summarizes the supported NVIDIA drivers for each GPU instanc
 
 | Instance type | Tesla driver | GRID driver | Gaming driver | 
 | --- | --- | --- | --- | 
-| G2 | Yes | No | No | 
+| G2 | No | Yes | No | 
 | G3 | Yes | Yes | No | 
 | G4 | Yes | Yes | Yes | 
 | P2 | Yes | No | No | 
@@ -53,7 +53,7 @@ Use one of the following options to get the NVIDIA drivers required for your GPU
 
 **Topics**
 + [Option 1: AMIs with the NVIDIA drivers installed](#preinstalled-nvidia-driver)
-+ [Option 2: Public NVIDIA Tesla drivers](#public-nvidia-driver)
++ [Option 2: Public NVIDIA drivers](#public-nvidia-driver)
 + [Option 3: GRID drivers \(G3 and G4 instances\)](#nvidia-GRID-driver)
 + [Option 4: NVIDIA gaming drivers \(G4 instances\)](#nvidia-gaming-driver)
 
@@ -72,19 +72,23 @@ To update the driver version installed using one of these AMIs, you must uninsta
 
 The CUDA toolkit package has dependencies on the NVIDIA drivers\. Uninstalling the NVIDIA packages erases the CUDA toolkit\. You must reinstall the CUDA toolkit after installing the NVIDIA driver\.
 
-### Option 2: Public NVIDIA Tesla drivers<a name="public-nvidia-driver"></a>
+### Option 2: Public NVIDIA drivers<a name="public-nvidia-driver"></a>
 
-**To download the NVIDIA driver**  
-Log on to your Linux instance and download the 64\-bit NVIDIA driver appropriate for the instance type from [http://www\.nvidia\.com/Download/Find\.aspx](http://www.nvidia.com/Download/Find.aspx)\.
+The options offered by AWS come with the necessary license for the driver\. Alternatively, you can install the public drivers and bring your own license\. To install a public driver, download it from the NVIDIA site as described here\.
+
+Alternatively, you can use the options offered by AWS instead of the public drivers\. To use a GRID driver on a P3 instance, use the AWS Marketplace AMIs as described in [Option 1](#preinstalled-nvidia-driver)\. To use a GRID driver on a G3 or G4 instance, use the AWS Marketplace AMIs, as described in Option 1 or install the NVIDIA drivers provided by AWS as described in [Option 3](#nvidia-GRID-driver)\.
+
+**To download a public NVIDIA driver**  
+Log on to your Linux instance and download the 64\-bit NVIDIA driver appropriate for the instance type from [http://www\.nvidia\.com/Download/Find\.aspx](http://www.nvidia.com/Download/Find.aspx)\. For **Product Type**, **Product Series**, and **Product**, use the options in the following table\.
 
 
-| Instance | Product Series | Product | 
-| --- | --- | --- | 
-| G2 | K\-Series | K520 | 
-| G3 | M\-Class | M60 | 
-| G4 † | T\-Series | T4 | 
-| P2 | K\-Series | K80 | 
-| P3 | V\-Series | V100 | 
+| Instance | Product Type | Product Series | Product | 
+| --- | --- | --- | --- | 
+| G2 | GRID | GRID Series | GRID K520 | 
+| G3 | Tesla | M\-Class | M60 | 
+| G4 † | Tesla | T\-Series | T4 | 
+| P2 | Tesla | K\-Series | K80 | 
+| P3 | Tesla | V\-Series | V100 | 
 
 † G4 instances require driver version 418\.87 or later\.
 
@@ -95,8 +99,9 @@ For more information about installing and configuring the driver, see the [NVIDI
 
 These downloads are available to AWS customers only\. By downloading, you agree to use the downloaded software only to develop AMIs for use with the NVIDIA Tesla T4 or NVIDIA Tesla M60 hardware\. Upon installation of the software, you are bound by the terms of the [NVIDIA GRID Cloud End User License Agreement](https://aws-nvidia-license-agreement.s3.amazonaws.com/NvidiaGridAWSUserLicenseAgreement.DOCX)\.
 
-**Prerequisites**  
-Configure default credentials for the AWS CLI on your Linux instance\. For more information, see [ Quickly Configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html#cli-quick-configuration) in the *AWS Command Line Interface User Guide*\.
+**Prerequisites**
++ Configure default credentials for the AWS CLI on your Linux instance\. For more information, see [ Quickly Configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html#cli-quick-configuration) in the *AWS Command Line Interface User Guide*\.
++ IAM users must have the permissions granted by the **AmazonS3ReadOnlyAccess** policy\.
 
 **To install the NVIDIA GRID driver on your Linux instance**
 
@@ -224,8 +229,9 @@ Configure default credentials for the AWS CLI on your Linux instance\. For more 
 
 These drivers are available to AWS customers only\. By downloading them, you agree to use the downloaded software only to develop AMIs for use with the NVIDIA Tesla T4 hardware\. Upon installation of the software, you are bound by the terms of the [NVIDIA GRID Cloud End User License Agreement](https://aws-nvidia-license-agreement.s3.amazonaws.com/NvidiaGridAWSUserLicenseAgreement.DOCX)\.
 
-**Prerequisites**  
-Configure default credentials for the AWS CLI on your Linux instance\. For more information, see [ Quickly Configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html#cli-quick-configuration) in the *AWS Command Line Interface User Guide*\.
+**Prerequisites**
++ Configure default credentials for the AWS CLI on your Linux instance\. For more information, see [ Quickly Configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html#cli-quick-configuration) in the *AWS Command Line Interface User Guide*\.
++ IAM users must have the permissions granted by the **AmazonS3ReadOnlyAccess** policy\.
 
 **To install the NVIDIA gaming driver on your Linux instance**
 

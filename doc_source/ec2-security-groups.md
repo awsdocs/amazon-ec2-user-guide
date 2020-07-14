@@ -1,6 +1,6 @@
 # Amazon EC2 security groups for Linux instances<a name="ec2-security-groups"></a>
 
-A *security group* acts as a virtual firewall for your instance to control incoming and outgoing traffic\. Inbound rules control the incoming traffic to your instance, and outbound rules control the outgoing traffic from your instance\. When you launch an instance, you can specify one or more security groups; otherwise, Amazon EC2 uses the default security group\. You can add rules to each security group that allow traffic to or from its associated instances\. You can modify the rules for a security group at any time\. New and modified rules are automatically applied to all instances that are associated with the security group\. When Amazon EC2 decides whether to allow traffic to reach an instance, it evaluates all of the rules from all of the security groups that are associated with the instance\.
+A *security group* acts as a virtual firewall for your EC2 instances to control incoming and outgoing traffic\. Inbound rules control the incoming traffic to your instance, and outbound rules control the outgoing traffic from your instance\. When you launch an instance, you can specify one or more security groups\. If you don't specify a security group, Amazon EC2 uses the default security group\. You can add rules to each security group that allow traffic to or from its associated instances\. You can modify the rules for a security group at any time\. New and modified rules are automatically applied to all instances that are associated with the security group\. When Amazon EC2 decides whether to allow traffic to reach an instance, it evaluates all of the rules from all of the security groups that are associated with the instance\.
 
 When you launch an instance in a VPC, you must specify a security group that's created for that VPC\. After you launch an instance, you can change its security groups\. Security groups are associated with network interfaces\. Changing an instance's security groups changes the security groups associated with the primary network interface \(eth0\)\. For more information, see [Changing an instance's security groups](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html#SG_Changing_Group_Membership) in the *Amazon VPC User Guide*\. You can also change the security groups associated with any other network interface\. For more information, see [Changing the security group](using-eni.md#eni_security_group)\.
 
@@ -56,7 +56,7 @@ For each rule, you specify the following:
   + An individual IPv6 address\. You must use the `/128` prefix length; for example, `2001:db8:1234:1a00::123/128`\.
   + A range of IPv4 addresses, in CIDR block notation; for example, `203.0.113.0/24`\.
   + A range of IPv6 addresses, in CIDR block notation; for example, `2001:db8:1234:1a00::/64`\.
-  + The prefix list ID for the AWS service; for example, `pl-1a2b3c4d`\. For more information, see [Gateway VPC Endpoints](https://docs.aws.amazon.com/vpc/latest/userguide/vpce-gateway.html) in the *Amazon VPC User Guide*\.
+  + A prefix list ID, for example, `pl-1234abc1234abc123`\. For more information, see [Managed prefix lists](https://docs.aws.amazon.com/vpc/latest/userguide/managed-prefix-lists.html) in the *Amazon VPC User Guide*\.
   + Another security group\. This allows instances that are associated with the specified security group to access instances associated with this security group\. Choosing this option does not add rules from the source security group to this security group\. You can specify one of the following security groups:
     + The current security group
     + A different security group for the same VPC
@@ -78,14 +78,16 @@ In the following example, the security group has specific inbound rules for TCP 
 
 ****  
 
-|  | 
+| 
+| 
+| **Inbound rules** | 
 | --- |
-| Inbound rules | 
 | Protocol type | Port number | Source IP | 
 | TCP  | 22 \(SSH\) | 203\.0\.113\.1/32 | 
 | TCP  | 80 \(HTTP\) | 0\.0\.0\.0/0 | 
 | ICMP | All | 0\.0\.0\.0/0 | 
-| Outbound rules | 
+| **Outbound rules** | 
+| --- |
 | Protocol type | Port number | Destination IP | 
 | All | All | 0\.0\.0\.0/0 | 
 

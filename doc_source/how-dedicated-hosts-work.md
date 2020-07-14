@@ -24,9 +24,9 @@ Dedicated Hosts are also integrated with AWS License Manager\. With License Mana
 
 ## Allocating Dedicated Hosts<a name="dedicated-hosts-allocating"></a>
 
-To begin using Dedicated Hosts, you must allocate Dedicated Hosts in your account using the Amazon EC2 console or the command line tools\.
+To begin using Dedicated Hosts, you must allocate Dedicated Hosts in your account using the Amazon EC2 console or the command line tools\. After you allocate the Dedicated Host, the Dedicated Host capacity is made available in your account immediately and you can start launching instances onto the Dedicated Host\.
 
-After you allocate the Dedicated Host, the Dedicated Host capacity is made available in your account immediately and you can start launching instances onto the Dedicated Host\.
+Support for multiple instance types on the same Dedicated Host is available for the following instance families: `c5`, `m5`, `r5`, `c5n`, `r5n`, and `m5n`\. Other instance families support only a single instance type on the same Dedicated Host\.
 
 You can allocate a Dedicated Host using the following methods\.
 
@@ -42,7 +42,7 @@ You can allocate a Dedicated Host using the following methods\.
 1. For **Instance family**, choose the instance family for the Dedicated Host\.
 
 1. Specify whether the Dedicated Host supports multiple instance types within the selected instance family, or a specific instance type only\. Do one of the following\.
-   + To configure the Dedicated Host to support multiple instance types in the selected instance family, for **Support multiple instance types**, choose **Enable**\. Enabling this allows you to launch different instance types from the same instance family onto the Dedicated Host\. For example, if you choose the `m5` instance family and choose this option, you can launch `m5.xlarge` and `m5.4xlarge` instances onto the Dedicated Host\. The instance family must be powered by the Nitro System\.
+   + To configure the Dedicated Host to support multiple instance types in the selected instance family, for **Support multiple instance types**, choose **Enable**\. Enabling this allows you to launch different instance types from the same instance family onto the Dedicated Host\. For example, if you choose the `m5` instance family and choose this option, you can launch `m5.xlarge` and `m5.4xlarge` instances onto the Dedicated Host\.
    + To configure the Dedicated Host to support a single instance type within the selected instance family, clear **Support multiple instance types**, and then for **Instance type**, choose the instance type to support\. This allows you to launch a single instance type on the Dedicated Host\. For example, if you choose this option and specify `m5.4xlarge` as the supported instance type, you can launch only `m5.4xlarge` instances onto the Dedicated Host\.
 
 1. For **Availability Zone**, choose the Availability Zone in which to allocate the Dedicated Host\.
@@ -346,7 +346,9 @@ PS C:\> Edit-EC2Host --AutoPlacement 1 --HostId h-012a3456b7890cdef
 
 ## Modifying the supported instance types<a name="modify-host-support"></a>
 
-Dedicated Hosts powered by the AWS Nitro System can support multiple instance types within the same instance family on a host\.
+Support for multiple instance types on the same Dedicated Host is available for the following instance families: `c5`, `m5`, `r5`, `c5n`, `r5n`, and `m5n`\. Other instance families support only a single instance type on the same Dedicated Host\.
+
+You can allocate a Dedicated Host using the following methods\.
 
 You can modify a Dedicated Host to change the instance types that it supports\. If it currently supports a single instance type, you can modify it to support multiple instance types within that instance family\. Similarly, if it currently supports multiple instance types, you can modify it to support a specific instance type only\.
 
@@ -794,10 +796,10 @@ The term is specified in seconds\. A one\-year term includes 31,536,000 seconds,
 
    The command returns a list of offerings that match your criteria\. Note the `offeringId` of the offering to purchase\. 
 
-1. Use the [purchase\-host\-reservation](https://docs.aws.amazon.com/cli/latest/reference/ec2/purchase-host-reservation.html) AWS CLI command to purchase the offering and provide the `offeringId` noted in the previous step\. The following example purchases the specified reservation and associates it with a specific Dedicated Host that is already allocated in the AWS account\.
+1. Use the [purchase\-host\-reservation](https://docs.aws.amazon.com/cli/latest/reference/ec2/purchase-host-reservation.html) AWS CLI command to purchase the offering and provide the `offeringId` noted in the previous step\. The following example purchases the specified reservation and associates it with a specific Dedicated Host that is already allocated in the AWS account, and it applies a tag with a key of `purpose` and a value of `production`\.
 
    ```
-   aws ec2 purchase-host-reservation --offering-id hro-03f707bf363b6b324 --host-id-set h-013abcd2a00cbd123
+   aws ec2 purchase-host-reservation --offering-id hro-03f707bf363b6b324 --host-id-set h-013abcd2a00cbd123 --tag-specifications 'ResourceType=host-reservation,Tags={Key=purpose,Value=production}'
    ```
 
 ------

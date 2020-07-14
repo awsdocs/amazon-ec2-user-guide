@@ -542,13 +542,15 @@ Certbot is designed to become an invisible, error\-resistant part of your server
 
 **To configure automated certificate renewal**
 
-1. After you have successfully run Certbot for the first time, open `/etc/crontab` in a text editor and add a line similar to the following:
+1. Open the `/etc/crontab` file in a text editor, such as vim or nano, using sudo\. Alternatively, use sudo crontab \-e\.
+
+1. Add a line similar to the following and save the file\.
 
    ```
    39      1,13    *       *       *       root    certbot renew --no-self-upgrade
    ```
 
-   Save the file when done\. Here is an explanation of each component:  
+   Here is an explanation of each component:  
 `39 1,13 * * *`  
 Schedules a command to be run at 01:39 and 13:39 every day\. The selected values are arbitrary, but the Certbot developers suggest running the command at least twice daily\. This guarantees that any certificate found to be compromised is promptly revoked and replaced\.  
 `root`  

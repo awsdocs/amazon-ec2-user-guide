@@ -126,12 +126,14 @@ To mount an Amazon EFS file system on your Amazon EC2 instance, you must connect
 If you're using a load balancer, the security group associated with your load balancer must have rules that allow communication with your instances or targets\.
 
 
-|  | 
+| 
+| 
+| **Inbound** | 
 | --- |
-| Inbound | 
 | Protocol type | Protocol number | Port | Source IP | Notes | 
 | TCP | 6 | The listener port |  For an Internet\-facing load\-balancer: 0\.0\.0\.0/0 \(all IPv4 addresses\) For an internal load\-balancer: the IPv4 CIDR block of the VPC  | Allow inbound traffic on the load balancer listener port\. | 
-| Outbound | 
+| **Outbound** | 
+| --- |
 | Protocol type | Protocol number | Port | Destination IP | Notes | 
 | TCP | 6 | The instance listener port | The ID of the instance security group | Allow outbound traffic to instances on the instance listener port\. | 
 | TCP | 6 | The health check port | The ID of the instance security group | Allow outbound traffic to instances on the health check port\. | 
@@ -139,9 +141,10 @@ If you're using a load balancer, the security group associated with your load ba
 The security group rules for your instances must allow the load balancer to communicate with your instances on both the listener port and the health check port\.
 
 
-|  | 
+| 
+| 
+| **Inbound** | 
 | --- |
-| Inbound | 
 | Protocol type | Protocol number | Port | Source IP | Notes | 
 | TCP | 6 | The instance listener port |  The ID of the load balancer security group  | Allow traffic from the load balancer on the instance listener port\. | 
 | TCP | 6 | The health check port | The ID of the load balancer security group | Allow traffic from the load balancer on the health check port\. | 

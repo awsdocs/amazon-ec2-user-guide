@@ -131,7 +131,7 @@ The VM image for VMware is made available in the OVF format\.
 
 1. For **New CD/DVD Drive**, choose **Datastore ISO File**\. Select the datastore to which you added the `seed.iso` file, browse to and select the `seed.iso` file, and then choose **OK**\.
 
-1. For **New DC/DVD Drive**, select **Connect**, and then choose **OK**\.
+1. For **New CD/DVD Drive**, select **Connect**, and then choose **OK**\.
 
 After you have associated the datastore with the VM, you should be able to boot it\.
 

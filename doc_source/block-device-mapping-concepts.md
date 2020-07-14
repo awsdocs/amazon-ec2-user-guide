@@ -207,15 +207,8 @@ You can add EBS volumes and instance store volumes to an instance when you launc
 
 1. Complete the remaining wizard pages, and choose **Launch**\.
 
-**To add volumes to an instance using the command line**
-
-Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) AWS CLI command to specify a block device mapping for an instance\.
-
-Specify the block device mapping using the following parameter\.
-
-```
---block-device-mappings [mapping, ...]
-```
+**To add volumes to an instance using the AWS CLI**  
+Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) AWS CLI command with the `--block-device-mappings` option to specify a block device mapping for an instance at launch\.
 
 For example, suppose that an EBS\-backed AMI specifies the following block device mapping:
 + /dev/sdb=ephemeral0
@@ -242,7 +235,18 @@ To increase the size of `/dev/sdh` to 300 GiB, specify the following mapping\. N
 }
 ```
 
-To attach an additional instance store volume, `/dev/sdc`, specify the following mapping\. If the instance type doesn't support multiple instance store volumes, this mapping has no effect\.
+To increase the size of the root volume at instance launch, first call [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) with the ID of the AMI to verify the device name of the root volume\. For example, `"RootDeviceName": "/dev/xvda"`\. To override the size of the root volume, specify the device name of the root device used by the AMI and the new volume size\.
+
+```
+{
+    "DeviceName": "/dev/xvda",
+    "Ebs": {
+      "VolumeSize": 100
+    }
+}
+```
+
+To attach an additional instance store volume, `/dev/sdc`, specify the following mapping\. If the instance type doesn't support multiple instance store volumes, this mapping has no effect\. If the instance supports NVMe instance store volumes, they are automatically enumerated and assigned an NVMe device name\.
 
 ```
 {
@@ -251,7 +255,8 @@ To attach an additional instance store volume, `/dev/sdc`, specify the following
 }
 ```
 
-Alternatively, you can use the `-BlockDeviceMapping` parameter with the [New\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) command \(AWS Tools for Windows PowerShell\)\.
+**To add volumes to an instance using the AWS Tools for Windows PowerShell**  
+Use the `-BlockDeviceMapping` parameter with the [New\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) command \(AWS Tools for Windows PowerShell\)\.
 
 ### Updating the block device mapping of a running instance<a name="update-instance-bdm"></a>
 

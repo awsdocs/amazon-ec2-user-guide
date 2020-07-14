@@ -1,6 +1,6 @@
-# Controlling access using EC2 resource tags<a name="control-access-with-tags"></a>
+# Controlling access to EC2 resources using resource tags<a name="control-access-with-tags"></a>
 
-You can also provide tag information in the `Condition` element of a policy to control access based on tags\. This gives you better control over which EC2 resources a user can modify, use, or delete\.
+When you create an IAM policy that grants IAM users permission to use EC2 resources, you can include tag information in the `Condition` element of the policy to control access based on tags\. This gives you better control over which EC2 resources a user can modify, use, or delete\.
 
 For example, you can create a policy that allows users to terminate an instance but denies the action if the instance has the tag `environment=production`\. To do this, you use the `ec2:ResourceTag` condition key to allow or deny access to the resource based on the tags that are attached to the resource\. 
 

@@ -2,6 +2,8 @@
 
 Amazon EBS Multi\-Attach enables you to attach a single Provisioned IOPS SSD \(io1\) volume to up to 16 Nitro\-based instances that are in the same Availability Zone\. You can attach multiple Multi\-Attach enabled volumes to an instance or set of instances\. Each instance to which the volume is attached has full read and write permission to the shared volume\. Multi\-Attach makes it easier for you to achieve higher application availability in clustered Linux applications that manage concurrent write operations\.
 
+**Features**
+
 Multi\-Attach enabled volumes support many of the features that are supported by regular Amazon EBS volumes, including:
 + [Tagging](Using_Tags.md)
 + [Amazon EBS snapshots](EBSSnapshots.md)

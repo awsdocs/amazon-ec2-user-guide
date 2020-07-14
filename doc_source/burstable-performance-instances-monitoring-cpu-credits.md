@@ -11,7 +11,7 @@ You can see the credit balance for each instance in the Amazon EC2 per\-instance
 T3, T3a, and T2 instances have these additional CloudWatch metrics, which are updated every five minutes:
 + `CPUCreditUsage` – The number of CPU credits spent during the measurement period\.
 + `CPUCreditBalance` – The number of CPU credits that an instance has accrued\. This balance is depleted when the CPU bursts and CPU credits are spent more quickly than they are earned\.
-+ `CPUSurplusCreditBalance` – The number of surplus CPU credits spent to sustain CPU performance when the `CPUCreditBalance` value is zero\.
++ `CPUSurplusCreditBalance` – The number of surplus CPU credits spent to sustain CPU utilization when the `CPUCreditBalance` value is zero\.
 + `CPUSurplusCreditsCharged` – The number of surplus CPU credits exceeding the [maximum number of CPU credits](burstable-credits-baseline-concepts.md#burstable-performance-instances-credit-table) that can be earned in a 24\-hour period, and thus attracting an additional charge\.
 
 The last two metrics apply only to instances configured as `unlimited`\.
@@ -64,7 +64,7 @@ CPUCreditBalance = 2 + [0.5 - 1] = 1.5
 
 ### Calculating CPU credit usage for Unlimited instances<a name="burstable-performance-instances-unlimited-calculation"></a>
 
-When a T3, T3a, or T2 instance needs to burst above the baseline, it always spends accrued credits before spending surplus credits\. When it depletes its accrued CPU credit balance, it can spend surplus credits to burst for as long as it needs\. When CPU utilization falls below the baseline, surplus credits are always paid down before the instance accrues earned credits\.
+When a T3, T3a, or T2 instance needs to burst above the baseline, it always spends accrued credits before spending surplus credits\. When it depletes its accrued CPU credit balance, it can spend surplus credits to burst CPU for as long as it needs\. When CPU utilization falls below the baseline, surplus credits are always paid down before the instance accrues earned credits\.
 
 We use the term `Adjusted balance` in the following equations to reflect the activity that occurs in this five\-minute interval\. We use this value to arrive at the values for the `CPUCreditBalance` and `CPUSurplusCreditBalance` CloudWatch metrics\. 
 

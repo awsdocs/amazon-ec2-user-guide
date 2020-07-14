@@ -15,6 +15,8 @@ For most applications, amortizing the initialization cost over the lifetime of t
 
 Empty EBS volumes receive their maximum performance the moment that they are available and do not require initialization \(formerly known as pre\-warming\)\. For volumes that have been created from snapshots, use the dd or fio utilities to read from all of the blocks on a volume\. All existing data on the volume will be preserved\.
 
+For information about initializing Amazon EBS volumes on Windows, see [Initializing Amazon EBS volumes on Windows](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ebs-initialize.html#ebs-initialize-windows)\.
+
 **To initialize a volume created from a snapshot on Linux**
 
 1. Attach the newly\-restored volume to your Linux instance\.

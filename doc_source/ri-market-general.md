@@ -34,13 +34,15 @@ You own your Reserved Instance until it's sold\. After the sale, you've given up
 Before you can sell your unused reservations, you must register as a seller in the Reserved Instance Marketplace\. For information, see [Registering as a seller](#ri-market-seller-profile)\.
 
 The following limitations and restrictions apply when selling Reserved Instances:
-+ Only Amazon EC2 Standard Reserved Instances can be sold in the Reserved Instance Marketplace\. Amazon EC2 Convertible Reserved Instances cannot be sold\. Reserved Instances for other AWS, such as Amazon RDS and Amazon ElastiCache, cannot be sold\.
++ Only Amazon EC2 Standard Reserved Instances can be sold in the Reserved Instance Marketplace\. Amazon EC2 Convertible Reserved Instances cannot be sold\. Reserved Instances for other AWS services, such as Amazon RDS and Amazon ElastiCache, cannot be sold\.
 + There must be at least one month remaining in the term of the Standard Reserved Instance\.
 + You cannot sell a Standard Reserved Instance in a Region that is [disabled by default](using-regions-availability-zones.md#concepts-available-regions)\.
 + The minimum price allowed in the Reserved Instance Marketplace is $0\.00\.
 + You can sell No Upfront, Partial Upfront, or All Upfront Reserved Instances in the Reserved Instance Marketplace\. If there is an upfront payment on a Reserved Instance, it can be sold only after AWS has received the upfront payment and the reservation has been active \(you've owned it\) for at least 30 days\.
 + You cannot modify your listing in the Reserved Instance Marketplace directly\. However, you can change your listing by first canceling it and then creating another listing with new parameters\. For information, see [Pricing your Reserved Instances](#ri-market-concepts-pricing)\. You can also modify your Reserved Instances before listing them\. For information, see [Modifying Reserved Instances](ri-modifying.md)\.
 + AWS charges a service fee of 12 percent of the total upfront price of each Standard Reserved Instance you sell in the Reserved Instance Marketplace\. The upfront price is the price the seller is charging for the Standard Reserved Instance\.
++ When you register as a seller, the bank you specify must have a US address\. For more information, see [Additional seller requirements for paid products](https://docs.aws.amazon.com/marketplace/latest/userguide/user-guide-for-sellers.html#additional-seller-requirements-for-paid-products) in the *AWS Marketplace Seller Guide*\.
++ Amazon Internet Services Private Limited \(AISPL\) customers can't sell Reserved Instances in the Reserved Instance Marketplace even if they have a US bank account\. For more information, see [What are the differences between AWS accounts and AISPL accounts?](http://aws.amazon.com/premiumsupport/knowledge-center/aws-aispl-differences/)
 
 ### Registering as a seller<a name="ri-market-seller-profile"></a>
 
@@ -55,7 +57,7 @@ After AWS receives your completed seller registration, you receive an email conf
 
 ### Bank account for disbursement<a name="ri-market-concepts-bank"></a>
 
-AWS must have your bank information in order to disburse funds collected when you sell your Reserved Instance\. The bank you specify must have a US address\.
+AWS must have your bank information in order to disburse funds collected when you sell your Reserved Instance\. The bank you specify must have a US address\. For more information, see [Additional seller requirements for paid products](https://docs.aws.amazon.com/marketplace/latest/userguide/user-guide-for-sellers.html#additional-seller-requirements-for-paid-products) in the *AWS Marketplace Seller Guide*\.
 
 **To register a default bank account for disbursements**
 
@@ -102,7 +104,7 @@ The following are important limits to note:
 
 You cannot modify your listing directly\. However, you can change your listing by first canceling it and then creating another listing with new parameters\.
 
-You can cancel your listing at any time, as long as it's in the `active`state\. You cannot cancel the listing if it's already matched or being processed for a sale\. If some of the instances in your listing are matched and you cancel the listing, only the remaining unmatched instances are removed from the listing\.
+You can cancel your listing at any time, as long as it's in the `active` state\. You cannot cancel the listing if it's already matched or being processed for a sale\. If some of the instances in your listing are matched and you cancel the listing, only the remaining unmatched instances are removed from the listing\.
 
 Because the value of Reserved Instances decreases over time, by default, AWS can set prices to decrease in equal increments month over month\. However, you can set different upfront prices based on when your reservation sells\.
 

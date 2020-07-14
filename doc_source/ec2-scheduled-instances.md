@@ -7,13 +7,13 @@ Scheduled Instances are a good choice for workloads that do not run continuously
 If you require a capacity reservation on a continuous basis, Reserved Instances might meet your needs and decrease costs\. For more information, see [Reserved Instances](ec2-reserved-instances.md)\. If you are flexible about when your instances run, Spot Instances might meet your needs and decrease costs\. For more information, see [Spot Instances](using-spot-instances.md)\.
 
 **Topics**
-+ [How Scheduled Instances Work](#how-scheduled-instances-work)
-+ [Service\-Linked Roles for Scheduled Instances](#service-linked-roles-scheduled-instances)
++ [How Scheduled Instances work](#how-scheduled-instances-work)
++ [Service\-linked roles for Scheduled Instances](#service-linked-roles-scheduled-instances)
 + [Purchasing a Scheduled Instance](#purchasing-scheduled-instances)
 + [Launching a Scheduled Instance](#launching-scheduled-instances)
-+ [Scheduled Instance Limits](#scheduled-instances-limits)
++ [Scheduled Instance limits](#scheduled-instances-limits)
 
-## How Scheduled Instances Work<a name="how-scheduled-instances-work"></a>
+## How Scheduled Instances work<a name="how-scheduled-instances-work"></a>
 
 Amazon EC2 sets aside pools of EC2 instances in each Availability Zone for use as Scheduled Instances\. Each pool supports a specific combination of instance type, operating system, and network\.
 
@@ -27,7 +27,7 @@ The following diagram illustrates the lifecycle of a Scheduled Instance\.
 
 ![\[The Scheduled Instance lifecycle\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/Scheduled_instances_lifecycle.png)
 
-## Service\-Linked Roles for Scheduled Instances<a name="service-linked-roles-scheduled-instances"></a>
+## Service\-linked roles for Scheduled Instances<a name="service-linked-roles-scheduled-instances"></a>
 
 Amazon EC2 creates a service\-linked role when you purchase a Scheduled Instance\. A service\-linked role includes all the permissions that Amazon EC2 requires to call other AWS services on your behalf\. For more information, see [Using Service\-Linked Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html) in the *IAM User Guide*\.
 
@@ -94,7 +94,7 @@ The launch specification must match the instance type, Availability Zone, networ
 **To launch a Scheduled Instance \(AWS CLI\)**  
 Use the [describe\-scheduled\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-scheduled-instances.html) command to list your Scheduled Instances, and then use the [run\-scheduled\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-scheduled-instances.html) command to launch each Scheduled Instance during its scheduled time periods\.
 
-## Scheduled Instance Limits<a name="scheduled-instances-limits"></a>
+## Scheduled Instance limits<a name="scheduled-instances-limits"></a>
 
 Scheduled Instances are subject to the following limits:
 + The following are the only supported instance types: C3, C4, M4, and R3\.

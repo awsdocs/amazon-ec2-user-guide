@@ -1,6 +1,6 @@
 # Using a base AMI<a name="efa-start-nccl-base"></a>
 
-The following steps help you to get started with one of the following base AMIs: Amazon Linux, Amazon Linux 2, RHEL 7\.6, RHEL 7\.7, CentOS 7, Ubuntu 16\.04, and Ubuntu 18\.04\.
+The following steps help you to get started with one of the following base AMIs: Amazon Linux, Amazon Linux 2, RHEL 7\.6, RHEL 7\.7, RHEL 7\.8, CentOS 7, Ubuntu 16\.04, and Ubuntu 18\.04\.
 
 **Topics**
 + [Step 1: Prepare an EFA\-enabled security group](#nccl-start-base-setup)
@@ -61,7 +61,7 @@ Launch a temporary instance that you can use to install and configure the EFA so
 
 1. Choose **Launch Instance**\.
 
-1. On the **Choose an AMI** page, choose one of the following AMIs: Amazon Linux, Amazon Linux 2, RHEL 7\.6, RHEL 7\.7, CentOS 7, Ubuntu 16\.04, and Ubuntu 18\.04\.
+1. On the **Choose an AMI** page, choose one of the following AMIs: Amazon Linux, Amazon Linux 2, RHEL 7\.6, RHEL 7\.7, RHEL 7\.8, CentOS 7, Ubuntu 16\.04, and Ubuntu 18\.04\.
 
 1. On the **Choose an Instance Type** page, select `p3dn.24xlarge` and then choose **Next: Configure Instance Details**\.
 
@@ -87,10 +87,10 @@ Install the EFA\-enabled kernel, EFA drivers, Libfabric, and Open MPI stack that
 
 **To install the EFA software**
 
-1. Connect to the instance you launched in **Step 2**\. For more information, see [Connect to your Linux instance](AccessingInstances.md)\.
+1. Connect to the instance you launched\. For more information, see [Connect to your Linux instance](AccessingInstances.md)\.
 
 1. To ensure that all of your software packages are up to date, perform a quick software update on your instance\. This process may take a few minutes\.
-   + Amazon Linux, Amazon Linux 2, RHEL 7\.6/7\.7, CentOS 7
+   + Amazon Linux, Amazon Linux 2, RHEL 7\.6/7\.7/7\.8, CentOS 7
 
      ```
      $ sudo yum update -y
@@ -108,7 +108,7 @@ Install the EFA\-enabled kernel, EFA drivers, Libfabric, and Open MPI stack that
 1. Download the EFA software installation files\. To download the latest *stable* version, use the following command\.
 
    ```
-   $ curl -O https://s3.us-west-2.amazonaws.com/aws-efa-installer/aws-efa-installer-1.8.4.tar.gz
+   $ curl -O https://efa-installer.amazonaws.com/aws-efa-installer-1.9.3.tar.gz
    ```
 
    You can also get the latest version by replacing the version number with `latest` in the preceding command\.
@@ -116,7 +116,7 @@ Install the EFA\-enabled kernel, EFA drivers, Libfabric, and Open MPI stack that
 1. The software installation files are packaged into a compressed `.tar.gz` file\. Extract the files from the compressed `.tar.gz` file and navigate into the extracted directory\.
 
    ```
-   $ tar -xf aws-efa-installer-1.8.4.tar.gz
+   $ tar -xf aws-efa-installer-1.9.3.tar.gz
    ```
 
    ```
@@ -167,7 +167,7 @@ Install the EFA\-enabled kernel, EFA drivers, Libfabric, and Open MPI stack that
 **To install the Nvidia GPU Drivers and the Nvidia CUDA toolkit**
 
 1. Install the utilities that are needed to install the Nvidia GPU drivers and the Nvidia CUDA toolkit\.
-   + Amazon Linux, Amazon Linux 2, RHEL 7\.6/7\.7, CentOS 7
+   + Amazon Linux, Amazon Linux 2, RHEL 7\.6/7\.7/7\.8, CentOS 7
 
      ```
      $ sudo yum groupinstall 'Development Tools' -y
@@ -181,7 +181,7 @@ Install the EFA\-enabled kernel, EFA drivers, Libfabric, and Open MPI stack that
 1. To use the Nvidia GPU driver, you must first disable the `nouveau` open source drivers\.
 
    1. Install the **gcc** compiler and the kernel headers package for the version of the kernel that you are currently running\.
-      + Amazon Linux, Amazon Linux 2, RHEL 7\.6/7\.7, CentOS 7
+      + Amazon Linux, Amazon Linux 2, RHEL 7\.6/7\.7/7\.8, CentOS 7
 
         ```
         $ sudo yum install -y gcc kernel-devel-$(uname -r)
@@ -211,7 +211,7 @@ Install the EFA\-enabled kernel, EFA drivers, Libfabric, and Open MPI stack that
       ```
 
    1. Rebuild the Grub configuration\.
-      + Amazon Linux, Amazon Linux 2, RHEL 7\.6/7\.7, CentOS 7
+      + Amazon Linux, Amazon Linux 2, RHEL 7\.6/7\.7/7\.8, CentOS 7
 
         ```
         $ sudo grub2-mkconfig -o /boot/grub2/grub.cfg
@@ -300,17 +300,11 @@ The aws\-ofi\-nccl plugin maps NCCL's connection\-oriented transport APIs to Lib
    $ cd $HOME
    ```
 
-1. Install the utilities that are required to install the **aws\-ofi\-nccl** plugin\. To install the required utilities, run the following command\.
-   + Amazon Linux, Amazon Linux 2, RHEL 7\.6/7\.7, CentOS 7
+1. \(Ubuntu 16\.04 and Ubuntu 18\.04\) Install the utilities that are required to install the **aws\-ofi\-nccl** plugin\. To install the required utilities, run the following command\.
 
-     ```
-     $ sudo yum install libudev-devel -y
-     ```
-   + Ubuntu 16\.04 and Ubuntu 18\.04
-
-     ```
-     $ sudo apt-get install libudev-dev libtool autoconf -y
-     ```
+   ```
+   $ sudo apt-get install libtool autoconf -y
+   ```
 
 1. Clone the `aws` branch of the official AWS aws\-ofi\-nccl repository to the instance and navigate into the local cloned repository\.
 
@@ -332,6 +326,12 @@ The aws\-ofi\-nccl plugin maps NCCL's connection\-oriented transport APIs to Lib
 
    ```
    $ ./configure --with-mpi=/opt/amazon/openmpi --with-libfabric=/opt/amazon/efa --with-nccl=$HOME/nccl/build --with-cuda=/usr/local/cuda-10.1
+   ```
+
+1. Add the Open MPI directory to the `PATH` variable\.
+
+   ```
+   $ export PATH=/opt/amazon/openmpi/bin/:$PATH
    ```
 
 1. Install the aws\-ofi\-nccl plugin\.
@@ -367,7 +367,7 @@ Install the NCCL tests\. The NCCL tests enable you to confirm that NCCL is prope
    ```
 
 1. Add the Libfabric directory to the `LD_LIBRARY_PATH` variable\. 
-   + Amazon Linux, Amazon Linux 2, RHEL 7\.6/7\.7, CentOS 7
+   + Amazon Linux, Amazon Linux 2, RHEL 7\.6/7\.7/7\.8, CentOS 7
 
      ```
      $ export LD_LIBRARY_PATH=/opt/amazon/efa/lib64:$LD_LIBRARY_PATH
@@ -378,7 +378,7 @@ Install the NCCL tests\. The NCCL tests enable you to confirm that NCCL is prope
      $ export LD_LIBRARY_PATH=/opt/amazon/efa/lib:$LD_LIBRARY_PATH
      ```
 
-1. \(Amazon Linux, Amazon Linux 2, RHEL 7\.6/7\.7, CentOS 7 only\) By default, the make file looks for the required libraries in the `mpi_home/lib` directory\. However, with the Open MPI installed with EFA, the libraries are located in `mpi_home/lib64`\. To update the path in the make file, run the following command\.
+1. \(Amazon Linux, Amazon Linux 2, RHEL 7\.6/7\.7/7\.8, CentOS 7 only\) By default, the make file looks for the required libraries in the `mpi_home/lib` directory\. However, with the Open MPI installed with EFA, the libraries are located in `mpi_home/lib64`\. To update the path in the make file, run the following command\.
 
    ```
    $ sed -i s/'NVLDFLAGS += -L$(MPI_HOME)\/lib -lmpi'/'NVLDFLAGS += -L$(MPI_HOME)\/lib64 -lmpi'/ src/Makefile
@@ -422,7 +422,7 @@ Run a test to ensure that your temporary instance is properly configured for EFA
    + `NCCL_TREE_THRESHOLD=0`—disables tree algorithms for the test\.
 
    For more information about the NCCL test arguments, see the [NCCL Tests README](https://github.com/NVIDIA/nccl-tests/blob/master/README.md) in the official nccl\-tests repository\.
-   + Amazon Linux, Amazon Linux 2, RHEL 7\.6/7\.7, CentOS 7
+   + Amazon Linux, Amazon Linux 2, RHEL 7\.6/7\.7/7\.8, CentOS 7
 
      ```
      $ /opt/amazon/openmpi/bin/mpirun \
@@ -466,7 +466,7 @@ After you have installed the required software components, you create an AMI tha
 
 1. In the navigation pane, choose **Instances**\.
 
-1. Select the instance that you created in **Step 2** and choose **Actions**, **Image**, **Create Image**\.
+1. Select the temporary instance that you created and choose **Actions**, **Image**, **Create Image**\.
 
 1. In the **Create Image** window, do the following:
 
@@ -482,7 +482,7 @@ After you have installed the required software components, you create an AMI tha
 
 ## Step 11: Terminate the temporary instance<a name="nccl-start-base-terminate"></a>
 
-At this point, you no longer need the temporary instance that you launched in **Step 2**\. You can terminate the instance to stop incurring charges for it\.
+At this point, you no longer need the temporary instance that you launched\. You can terminate the instance to stop incurring charges for it\.
 
 **To terminate the temporary instance**
 
@@ -490,7 +490,7 @@ At this point, you no longer need the temporary instance that you launched in **
 
 1. In the navigation pane, choose **Instances**\.
 
-1. Select the temporary instance that you created in **Step 2** and then choose **Actions**, **Instance State**, **Terminate**, **Yes, Terminate**\.
+1. Select the temporary instance that you created and then choose **Actions**, **Instance State**, **Terminate**, **Yes, Terminate**\.
 
 ## Step 12: Launch EFA and NCCL\-enabled instances into a cluster placement group<a name="nccl-start-base-cluster"></a>
 

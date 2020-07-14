@@ -55,20 +55,28 @@ Amazon EC2 processes your modification request if there is sufficient capacity f
 
 ## Support for modifying instance sizes<a name="ri-modification-instancemove"></a>
 
-You can modify the instance size of a Reserved Instance if the platform is Linux/UNIX and the instance family has multiple sizes\.
+You can modify the instance size of a Reserved Instance if the following requirements are met\.
 
-**Note**  
-Instances are grouped by family \(based on storage, or CPU capacity\); type \(designed for specific use cases\); and size\. For example, the `c4` instance family is in the Compute optimized family and is available in multiple sizes\. While `c3` instances are in the same family, you can't modify `c4` instances into `c3` instances because they have different hardware specifications\. For more information about instance types, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
+**Requirements**
++ The platform is Linux/UNIX\.
++ You must select another instance size in the same instance family\. For example, you cannot modify an Reserved Instance from `t2` to `t3`, whether you use the same size or a different size\.
 
-You cannot modify the instance size of the Reserved Instances for the following instance types, because only one size is available for each of the instance families\.
-+ `cc2.8xlarge`
-+ `cr1.8xlarge`
-+ `hs1.8xlarge`
-+ `t1.micro`
+  You cannot modify the instance size of Reserved Instances for the following instances, because each of these instance families has only one size:
+  + `cc2.8xlarge`
+  + `cr1.8xlarge`
+  + `hs1.8xlarge`
+  + `t1.micro`
++ The original and modified Reserved Instance must have the same instance size footprint\.
 
-Each Reserved Instance has an *instance size footprint*, which is determined by the normalization factor of the instance type and the number of instances in the reservation\. When you modify a Reserved Instance, the footprint of the target configuration must match that of the original configuration, otherwise the modification request is not processed\.
+**Topics**
++ [Instance size footprint](#ri-modification-instance-size-footprint)
++ [Normalization factors for bare metal instances](#ri-normalization-factor-bare-metal-2)
 
-The normalization factor is based on instance size within the instance family \(for example, `m1.xlarge` instances within the `m1` instance family\)\. This is only meaningful within the same instance family\. Instance types cannot be modified from one family to another\. In the Amazon EC2 console, the normalization factor is measured in units\. The following table illustrates the normalization factor that applies within an instance family\.
+### Instance size footprint<a name="ri-modification-instance-size-footprint"></a>
+
+Each Reserved Instance has an *instance size footprint*, which is determined by the normalization factor of the instance size and the number of instances in the reservation\. When you modify the instance sizes in an Reserved Instance, the footprint of the target configuration must match that of the original configuration, otherwise the modification request is not processed\.
+
+To calculate the instance size footprint of a Reserved Instance, multiply the number of instances by the normalization factor\. In the Amazon EC2 console, the normalization factor is measured in units\. The following table describes the normalization factor for the instance sizes in an instance family\. For example, `t2.medium` has a normalization factor of 2, so a reservation for four `t2.medium` instances has a footprint of 8 units\.
 
 
 | Instance size | Normalization factor | 
@@ -90,35 +98,32 @@ The normalization factor is based on instance size within the instance family \(
 |  24xlarge  |  192  | 
 |  32xlarge  |  256  | 
 
-To calculate the instance size footprint of a Reserved Instance, multiply the number of instances by the normalization factor\. For example, a `t2.medium` has a normalization factor of 2 so a reservation for four `t2.medium` instances has a footprint of 8 units\.
+You can allocate your reservations into different instance sizes across the same instance family as long as the instance size footprint of your reservation remains the same\. For example, you can divide a reservation for one `t2.large` \(1 @ 4 units\) instance into four `t2.small` \(4 @ 1 unit\) instances\. Similarly, you can combine a reservation for four `t2.small` instances into one `t2.large` instance\. However, you cannot change your reservation for two `t2.small` instances into one `t2.large` instance because the footprint of the modified reservation \(4 units\) is larger than the footprint of the existing reservation \(2 units\)\.
 
-You can allocate your reservations into different instance sizes across the same instance family, for example, across the T2 instance family, as long as the instance size footprint of your reservation remains the same\. For example, you can divide a reservation for one `t2.large` \(1 x 4\) instance into four `t2.small` \(4 x 1\) instances, or you can combine a reservation for four `t2.small` instances into one `t2.large` instance\. However, you cannot change your reservation for two `t2.small` \(2 x 1\) instances into one `t2.large` \(1 x 4\) instance\. This is because the existing instance size footprint of your current reservation is smaller than the proposed reservation\. 
-
-In the following example, you have a reservation with two `t2.micro` instances \(giving you a footprint of 1\) and a reservation with one `t2.small` instance \(giving you a footprint of 1\)\. You merge both reservations to a single reservation with one `t2.medium` instance—the combined instance size footprint of the two original reservations equals the footprint of the modified reservation\.
+In the following example, you have a reservation with two `t2.micro` instances \(1 unit\) and a reservation with one `t2.small` instance \(1 unit\)\. If you merge both of these reservations to a single reservation with one `t2.medium` instance \(2 units\), the footprint of the modified reservation equals the footprint of the combined reservations\.
 
 ![\[Modifying Reserved Instances\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ri-modify-merge.png)
 
-You can also modify a reservation to divide it into two or more reservations\. In the following example, you have a reservation with a `t2.medium` instance\. You divide the reservation into a reservation with two `t2.nano` instances and a reservation with three `t2.micro` instances\.
+You can also modify a reservation to divide it into two or more reservations\. In the following example, you have a reservation with a `t2.medium` instance \(2 units\)\. You can divide the reservation into two reservations, one with two `t2.nano` instances \(\.5 units\) and the other with three `t2.micro` instances \(1\.5 units\)\.
 
 ![\[Modifying Reserved Instances\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ri-modify-divide.png)
 
-### Normalization factor for bare metal instances<a name="ri-normalization-factor-bare-metal-2"></a>
+### Normalization factors for bare metal instances<a name="ri-normalization-factor-bare-metal-2"></a>
 
-You can modify `.metal` Reserved Instances into other sizes within the same family, and, similarly, you can modify other sized Reserved Instances in the same family into `.metal` Reserved Instances\. A bare metal instance is the same size as the largest instance within the same instance family\. For example, an `i3.metal` is the same size as an `i3.16xlarge`, so they have the same normalization factor\.
+You can modify a reservation with `metal` instances using other sizes within the same instance family\. Similarly, you can modify a reservation with instances other than bare metal instances using the `metal` size within the same instance family\. Generally, a bare metal instance is the same size as the largest available instance size within the same instance family\. For example, an `i3.metal` instance is the same size as an `i3.16xlarge` instance, so they have the same normalization factor\.
 
-**Note**  
-The `.metal` instance sizes do not have a single normalization factor\. They vary based on the specific instance family\.
+The following table describes the normalization factor for the bare metal instance sizes in the instance families that have bare metal instances\. The normalization factor for `metal` instances depends on the instance family, unlike the other instance sizes\.
 
 
 | Bare metal instance size | Normalization factor | 
 | --- | --- | 
-| c5\.metal |  192  | 
-| i3\.metal |  128  | 
-| r5\.metal |  192  | 
-| r5d\.metal |  192  | 
-| z1d\.metal |  96  | 
-| m5\.metal |  192  | 
-| m5d\.metal |  192  | 
+| c5\.metal | 192 | 
+| i3\.metal | 128 | 
+| r5\.metal | 192 | 
+| r5d\.metal | 192 | 
+| z1d\.metal | 96 | 
+| m5\.metal | 192 | 
+| m5d\.metal | 192 | 
 
 For example, an `i3.metal` instance has a normalization factor of 128\. If you purchase an `i3.metal` default tenancy Amazon Linux/Unix Reserved Instance, you can divide the reservation as follows:
 + An `i3.16xlarge` is the same size as an `i3.metal` instance, so its normalization factor is 128 \(128/1\)\. The reservation for one `i3.metal` instance can be modified into one `i3.16xlarge` instance\.

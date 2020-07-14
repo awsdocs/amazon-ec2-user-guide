@@ -1,6 +1,6 @@
 # Managing user accounts on your Amazon Linux instance<a name="managing-users"></a>
 
-Each Linux instance launches with a default Linux system user account\. The default user name is determined by the AMI that was specified when you launched the instance\. For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\. For CentOS, the user name is `centos`\. For Debian, the user name is `admin` or `root`\. For Fedora, the user name is `ec2-user` or `fedora`\. For RHEL, the user name is `ec2-user` or `root`\. For SUSE, the user name is `ec2-user` or `root`\. For Ubuntu, the user name is `ubuntu`\. Otherwise, if `ec2-user` and `root` don't work, check with your AMI provider\.
+Each Linux instance launches with a default Linux system user account\. The default user name is determined by the AMI that was specified when you launched the instance\. For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\. For CentOS, the user name is `centos`\. For Debian, the user name is `admin`\. For Fedora, the user name is `ec2-user` or `fedora`\. For RHEL, the user name is `ec2-user` or `root`\. For SUSE, the user name is `ec2-user` or `root`\. For Ubuntu, the user name is `ubuntu`\. Otherwise, if `ec2-user` and `root` don't work, check with your AMI provider\.
 
 **Note**  
 Linux system users should not be confused with AWS Identity and Access Management \(IAM\) users\. For more information, see [IAM Users and Groups](https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_WorkingWithGroupsAndUsers.html) in the *IAM User Guide*\.

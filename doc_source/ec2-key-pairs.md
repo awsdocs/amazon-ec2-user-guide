@@ -1,15 +1,15 @@
 # Amazon EC2 key pairs and Linux instances<a name="ec2-key-pairs"></a>
 
-Amazon EC2 uses public key cryptography to encrypt and decrypt login information\. Public key cryptography uses a public key to encrypt a piece of data, and then the recipient uses the private key to decrypt the data\. The public and private keys are known as a *key pair*\. Public key cryptography enables you to securely access your instances using a private key instead of a password\.
+A key pair, consisting of a private key and a public key, is a set of security credentials that you use to prove your identity when connecting to an instance\. Amazon EC2 stores the public key, and you store the private key\. You use the private key, instead of a password, to securely access your instances\. Anyone who possesses your private keys can connect to your instances, so it's important that you store your private keys in a secure place\.
 
-The keys that Amazon EC2 uses are 2048\-bit SSH\-2 RSA keys\. You can have up to 5,000 key pairs per Region\. Amazon EC2 stores the public key only, and you store the private key\. Anyone who possesses your private key can decrypt your login information, so it's important that you store your private keys in a secure place\.
+When you launch an instance, you are [prompted for a key pair](launching-instance.md#step-7-review-instance-launch)\. If you plan to connect to the instance using SSH, you must specify a key pair\. You can choose an existing key pair or create a new one\. When your instance boots for the first time, the content of the public key that you specified at launch is placed on your Linux instance in an entry within `~/.ssh/authorized_keys`\. When you connect to your Linux instance using SSH, to log in you must specify the private key that corresponds to the public key content\. For more information about connecting to your instance, see [Connect to your Linux instance](AccessingInstances.md)\. For more information about key pairs and Windows instances, see [Amazon EC2 key pairs and Windows instances](AWSEC2/latest/UserGuide/ec2-key-pairs.html) in the *Amazon EC2 User Guide for Windows Instances*
 
-Because Amazon EC2 doesn't keep a copy of your private key, there is no way to recover a private key if you lose it\. However, there can still be a way to connect to instances that use a lost key pair\. For more information, see [Connecting to your Linux instance if you lose your private key](replacing-lost-key-pair.md)\.
+Because Amazon EC2 doesn't keep a copy of your private key, there is no way to recover a private key if you lose it\. However, there can still be a way to connect to instances for which you've lost the private key\. For more information, see [Connecting to your Linux instance if you lose your private key](replacing-lost-key-pair.md)\.
 
-When you launch an instance, you are prompted for the name of a key pair\. If you plan to connect to the instance using SSH, you must specify a key pair\. At boot time, the public key content is placed on your Linux instance in an entry within `~/.ssh/authorized_keys`\. When you connect to your Linux instance using SSH, you must specify the private key that corresponds to the public key content to log in\. For more information, see [Connect to your Linux instance](AccessingInstances.md)\. \.
+The keys that Amazon EC2 uses are 2048\-bit SSH\-2 RSA keys\. You can have up to 5,000 key pairs per Region\.
 
 **Topics**
-+ [Preparing a key pair](#prepare-key-pair)
++ [Creating or importing a key pair](#prepare-key-pair)
 + [Tagging a key pair](#tag-key-pair)
 + [Retrieving the public key for your key pair](#retrieving-the-public-key)
 + [Retrieving the public key for your key pair through instance metadata](#retrieving-the-public-key-instance)
@@ -18,9 +18,9 @@ When you launch an instance, you are prompted for the name of a key pair\. If yo
 + [Connecting to your Linux instance if you lose your private key](replacing-lost-key-pair.md)
 + [Deleting your key pair](#delete-key-pair)
 
-## Preparing a key pair<a name="prepare-key-pair"></a>
+## Creating or importing a key pair<a name="prepare-key-pair"></a>
 
-You can use Amazon EC2 to create a new key pair or import an existing key pair\.
+You can use Amazon EC2 to create a new key pair, or you can import an existing key pair\.
 
 **Topics**
 + [Option 1: Create a key pair using Amazon EC2](#having-ec2-create-your-key-pair)
@@ -87,14 +87,31 @@ This is the only chance for you to save the private key file\.
 ------
 #### [ AWS CLI ]
 
-**To create your key pair**  
-Use the [create\-key\-pair](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-key-pair.html) AWS CLI command\.
+**To create your key pair**
+
+1. Use the [create\-key\-pair](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-key-pair.html) AWS CLI command as follows to generate the key and save it to a `.pem` file\.
+
+   ```
+   aws ec2 create-key-pair --key-name my-key-pair --query 'KeyMaterial' --output text > my-key-pair.pem
+   ```
+
+1. If you will use an SSH client on a macOS or Linux computer to connect to your Linux instance, use the following command to set the permissions of your private key file so that only you can read it\.
+
+   ```
+   chmod 400 my-key-pair.pem
+   ```
+
+   If you do not set these permissions, then you cannot connect to your instance using this key pair\. For more information, see [Error: Unprotected private key file](TroubleshootingInstancesConnecting.md#troubleshoot-unprotected-key)\.
 
 ------
 #### [ PowerShell ]
 
 **To create your key pair**  
-Use the [New\-EC2KeyPair](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2KeyPair.html) AWS Tools for Windows PowerShell command\.
+Use the [New\-EC2KeyPair](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2KeyPair.html) AWS Tools for Windows PowerShell command as follows to generate the key and save it to a `.pem` file\.
+
+```
+PS C:\> (New-EC2KeyPair -KeyName "my-key-pair").KeyMaterial | Out-File -Encoding ascii -FilePath C:\path\my-key-pair.pem
+```
 
 ------
 
@@ -382,6 +399,8 @@ $ ssh-keygen -ef path_to_private_key -m PEM | openssl rsa -RSAPublicKey_in -outf
 ## Adding or replacing a key pair for your instance<a name="replacing-key-pair"></a>
 
 You can change the key pair that is used to access the default system account of your instance\. For example, if a user in your organization requires access to the system user account using a separate key pair, you can add that key pair to your instance\. Or, if someone has a copy of the `.pem` file and you want to prevent them from connecting to your instance \(for example, if they've left your organization\), you can replace the key pair with a new one\.
+
+To add or replace a key pair, you must be able to connect to your instance\. If you've lost your existing private key or you launched your instance without a key pair, you won't be able connect to your instance and therefore won't be able to add or replace a key pair\. If you've lost your existing private key, you might be able to retrieve it\. For more information, see [Connecting to your Linux instance if you lose your private key](replacing-lost-key-pair.md)\. If you launched your instance without a key pair, you won't be able to connect to the instance unless you chose an AMI that is configured to allow users another way to log in\.
 
 **Note**  
 These procedures are for modifying the key pair for the default user account, such as `ec2-user`\. For more information about adding user accounts to your instance, see [Managing user accounts on your Amazon Linux instance](managing-users.md)\.

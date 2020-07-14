@@ -7,13 +7,13 @@ T3 and T3a instances are launched as `unlimited` by default\. T2 instances are l
 
 ## How Unlimited burstable performance instances work<a name="how-burstable-performance-instances-unlimited-works"></a>
 
-If a burstable performance instance configured as `unlimited` depletes its CPU credit balance, it can spend *surplus* credits to burst beyond the baseline\. When its CPU utilization falls below the baseline, it uses the CPU credits that it earns to pay down the surplus credits that it spent earlier\. The ability to earn CPU credits to pay down surplus credits enables Amazon EC2 to average the CPU utilization of an instance over a 24\-hour period\. If the average CPU usage over a 24\-hour period exceeds the baseline, the instance is billed for the additional usage at a [flat additional rate](https://aws.amazon.com/ec2/pricing/on-demand/#T2/T3_Unlimited_Mode_Pricing) per vCPU\-hour\.
+If a burstable performance instance configured as `unlimited` depletes its CPU credit balance, it can spend *surplus* credits to burst beyond the [baseline](burstable-credits-baseline-concepts.md#baseline_performance)\. When its CPU utilization falls below the baseline, it uses the CPU credits that it earns to pay down the surplus credits that it spent earlier\. The ability to earn CPU credits to pay down surplus credits enables Amazon EC2 to average the CPU utilization of an instance over a 24\-hour period\. If the average CPU usage over a 24\-hour period exceeds the baseline, the instance is billed for the additional usage at a flat additional rate per vCPU\-hour\.
 
-The following graph shows the CPU usage of a `t3.large`\. The baseline CPU utilization for a `t3.large` is 30%\. If the instance runs at 30% CPU utilization or less on average over a 24\-hour period, there is no additional charge because the cost is already covered by the instance hourly price\. However, if the instance runs at 40% CPU utilization on average over a 24\-hour period, as shown in the graph, the instance is billed for the additional 10% CPU usage at a [flat additional rate](https://aws.amazon.com/ec2/pricing/on-demand/#T2/T3_Unlimited_Mode_Pricing) per vCPU\-hour\.
+The following graph shows the CPU usage of a `t3.large`\. The baseline CPU utilization for a `t3.large` is 30%\. If the instance runs at 30% CPU utilization or less on average over a 24\-hour period, there is no additional charge because the cost is already covered by the instance hourly price\. However, if the instance runs at 40% CPU utilization on average over a 24\-hour period, as shown in the graph, the instance is billed for the additional 10% CPU usage at a flat additional rate per vCPU\-hour\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/t3-cpu-usage.png)
 
-For more information about the baseline performance per vCPU for each instance type and how many credits each instance type earns, see the [credit table](burstable-credits-baseline-concepts.md#burstable-performance-instances-credit-table)\.
+For more information about the baseline utilization per vCPU for each instance type and how many credits each instance type earns, see the [credit table](burstable-credits-baseline-concepts.md#burstable-performance-instances-credit-table)\.
 
 ## When to use unlimited mode versus fixed CPU<a name="when-to-use-unlimited-mode"></a>
 
@@ -28,7 +28,7 @@ The following graph shows the breakeven CPU usage point where a `t3.large` costs
 The following table shows how to calculate the breakeven CPU usage threshold so that you can determine when it's less expensive to use a burstable performance instance in `unlimited` mode or a fixed performance instance\. The columns in the table are labeled A through K\.
 
 
-|  Instance type  |  vCPUs  |  T3 price\*/hour  |  M5 price\*/hour  |  Price difference  |  T3 baseline performance per vCPU \(%\)  |  Charge per vCPU hour for surplus credits  |  Charge per vCPU minute  |  Additional burst minutes available per vCPU  |  Additional CPU % available  |  Breakeven CPU %  | 
+|  Instance type  |  vCPUs  |  T3 price\*/hour  |  M5 price\*/hour  |  Price difference  |  T3 baseline utilization per vCPU \(%\)  |  Charge per vCPU hour for surplus credits  |  Charge per vCPU minute  |  Additional burst minutes available per vCPU  |  Additional CPU % available  |  Breakeven CPU %  | 
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | 
 |  A  |  B  |  C  |  D   |  E = D \- C  |  F  |  G  |  H = G / 60  |  I = E / H  |  J = \(I / 60\) / B  |  K = F \+ J  | 
 |  t3\.large  |  2  |  $0\.0835  |  $0\.096  |  $0\.0125  |  30%  |  $0\.05  |  $0\.000833   |  15  |  12\.5%  |  42\.5%  | 
@@ -44,7 +44,7 @@ The table provides the following information:
 + Column C shows the price of a `t3.large` per hour\.
 + Column D shows the price of an `m5.large` per hour\.
 + Column E shows the price difference between the `t3.large` and the `m5.large`\. 
-+ Column F shows the baseline performance per vCPU of the `t3.large`, which is 30%\. At the baseline, the hourly cost of the instance covers the cost of the CPU usage\.
++ Column F shows the baseline utilization per vCPU of the `t3.large`, which is 30%\. At the baseline, the hourly cost of the instance covers the cost of the CPU usage\.
 + Column G shows the flat additional rate per vCPU\-hour that an instance is charged if it bursts at 100% CPU after it has depleted its earned credits\.
 + Column H shows the flat additional rate per vCPU\-minute that an instance is charged if it bursts at 100% CPU after it has depleted its earned credits\.
 + Column I shows the number of additional minutes that the `t3.large` can burst per hour at 100% CPU while paying the same price per hour as an `m5.large`\.

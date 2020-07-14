@@ -51,6 +51,18 @@ You can create a key pair using one of the following methods\.
 
 1. Choose **Create key pair**\.
 
+1. The private key file is automatically downloaded by your browser\. The base file name is the name you specified as the name of your key pair, and the file name extension is determined by the file format you chose\. Save the private key file in a safe place\.
+**Important**  
+This is the only chance for you to save the private key file\.
+
+1. If you will use an SSH client on a macOS or Linux computer to connect to your Linux instance, use the following command to set the permissions of your private key file so that only you can read it\.
+
+   ```
+   chmod 400 my-key-pair.pem
+   ```
+
+   If you do not set these permissions, then you cannot connect to your instance using this key pair\. For more information, see [Error: Unprotected private key file](TroubleshootingInstancesConnecting.md#troubleshoot-unprotected-key)\.
+
 ------
 #### [ Old console ]
 
@@ -68,7 +80,7 @@ The navigation pane is on the left side of the Amazon EC2 console\. If you do no
 
 1. The private key file is automatically downloaded by your browser\. The base file name is the name you specified as the name of your key pair, and the file name extension is `.pem`\. Save the private key file in a safe place\.
 **Important**  
-This is the only chance for you to save the private key file\. You'll need to provide the name of your key pair when you launch an instance and the corresponding private key each time you connect to the instance\.
+This is the only chance for you to save the private key file\.
 
 1. If you will use an SSH client on a macOS or Linux computer to connect to your Linux instance, use the following command to set the permissions of your private key file so that only you can read it\.
 
@@ -77,18 +89,6 @@ This is the only chance for you to save the private key file\. You'll need to pr
    ```
 
    If you do not set these permissions, then you cannot connect to your instance using this key pair\. For more information, see [Error: Unprotected private key file](TroubleshootingInstancesConnecting.md#troubleshoot-unprotected-key)\.
-
-------
-#### [ AWS CLI ]
-
-**To create your key pair**  
-Use the [create\-key\-pair](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-key-pair.html) AWS CLI command\.
-
-------
-#### [ PowerShell ]
-
-**To create your key pair**  
-Use the [New\-EC2KeyPair](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2KeyPair.html) AWS Tools for Windows PowerShell command\.
 
 ------
 

@@ -1,6 +1,6 @@
 # Standard mode for burstable performance instances<a name="burstable-performance-instances-standard-mode"></a>
 
-A burstable performance instance configured as `standard` is suited to workloads with an average CPU utilization that is consistently below the baseline performance of the instance\. To burst above the baseline, the instance spends credits that it has accrued in its CPU credit balance\. If the instance is running low on accrued credits, performance is gradually lowered to the baseline performance level, so that the instance does not experience a sharp performance drop\-off when its accrued CPU credit balance is depleted\. For more information, see [CPU credits and baseline performance for burstable performance instances](burstable-credits-baseline-concepts.md)\.
+A burstable performance instance configured as `standard` is suited to workloads with an average CPU utilization that is consistently below the baseline CPU utilization of the instance\. To burst above the baseline, the instance spends credits that it has accrued in its CPU credit balance\. If the instance is running low on accrued credits, CPU utilization is gradually lowered to the baseline level, so that the instance does not experience a sharp performance drop\-off when its accrued CPU credit balance is depleted\. For more information, see [CPU credits and baseline utilization for burstable performance instances](burstable-credits-baseline-concepts.md)\.
 
 **Contents**
 + [Standard mode concepts](burstable-performance-instances-standard-mode-concepts.md)

@@ -2,7 +2,9 @@
 
 Each instance that you launch has an instance identity document that provides information about the instance itself\. You can use the instance identity document to validate the attributes of the instance\.
 
-The instance identity document is generated when the instance is launched and it is exposed \(in plaintext JSON format\) through the Instance Metadata Service\. You can retrieve the instance identity document from a running instance at any time\. The instance identity document includes the following information:
+The instance identity document is generated when the instance is launched and it is exposed \(in plaintext JSON format\) through the Instance Metadata Service\. The IP address `169.254.169.254` is a link\-local address and is valid only from the instance\. For more information, see [Link\-local address](https://en.wikipedia.org/wiki/Link-local_address) on Wikipedia\.
+
+You can retrieve the instance identity document from a running instance at any time\. The instance identity document includes the following information:
 
 
 | Data | Description | 

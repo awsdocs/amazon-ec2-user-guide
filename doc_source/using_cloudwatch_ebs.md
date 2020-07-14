@@ -28,6 +28,8 @@ The `AWS/EBS` namespace includes the following metrics\.
 
 ### Volume metrics<a name="ebs-volume-metrics"></a>
 
+The `AWS/EBS` namespace includes the following metrics for EBS volumes\. To get information about the available disk space from the operating system on an instance, see [Viewing free disk space](ebs-describing-volumes.md#ebs-view-free-disk-space)\.
+
 
 | Metric | Description | 
 | --- | --- | 
@@ -44,6 +46,8 @@ The `AWS/EBS` namespace includes the following metrics\.
 | BurstBalance |  Used with General Purpose SSD \(`gp2`\), Throughput Optimized HDD \(`st1`\), and Cold HDD \(`sc1`\) volumes only\. Provides information about the percentage of I/O credits \(for `gp2`\) or throughput credits \(for `st1` and `sc1`\) remaining in the burst bucket\. Data is reported to CloudWatch only when the volume is active\. If the volume is not attached, no data is reported\. The `Sum` statistic on this metric is not relevant for volumes attached to Nitro\-based instances\. If the baseline performance of the volume exceeds the maximum burst performance, credits are never spent\. The reported burst balance is either 0% \(Nitro\-based instances\) or 100% \(non\-Nitro\-based instances\)\. For more information, see [I/O Credits and burst performance](ebs-volume-types.md#IOcredit)\. Units: Percent  | 
 
 ### Fast snapshot restore metrics<a name="fast-snapshot-restore-metrics"></a>
+
+`AWS/EBS` namespace includes the following metrics for [fast snapshot restore](ebs-fast-snapshot-restore.md)\.
 
 
 | Metric | Description | 

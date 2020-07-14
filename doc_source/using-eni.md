@@ -489,7 +489,11 @@ You can create a network interface in a subnet\. You can't move the network inte
 
 1. \(IPv6 only\) If you selected a subnet that has an associated IPv6 CIDR block, you can optionally specify an IPv6 address in the **IPv6 IP** field\. 
 
+1. To create an Elastic Fabric Adapter, select **Elastic Fabric Adapter**\.
+
 1. For **Security groups**, select one or more security groups\.
+
+1. \(Optional\) **Choose Add Tag** and enter a tag key and a tag value\.
 
 1. Choose **Yes, Create**\.
 

@@ -4,12 +4,12 @@ Burstable performance instances, which are T3, T3a, and T2 instances, are design
 
 Burstable performance instances are the only instance types that use credits for CPU usage\. For more information about instance pricing and additional hardware details, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/) and [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
-If your account is less than 12 months old, you can use a `t2.micro` instance for free within certain usage limits\. For more information, see [AWS Free Tier](https://aws.amazon.com/free/)\.
+If your account is less than 12 months old, you can use a `t2.micro` instance for free \(or a `t3.micro` instance in Regions where `t2.micro` is unavailable\) within certain usage limits\. For more information, see [AWS Free Tier](https://aws.amazon.com/free/)\.
 
 **Topics**
 + [Burstable performance instance requirements](#burstable-performance-instances-limits)
 + [Best practices](#burstable-performance-instances-best-practices)
-+ [CPU credits and baseline performance for burstable performance instances](burstable-credits-baseline-concepts.md)
++ [CPU credits and baseline utilization for burstable performance instances](burstable-credits-baseline-concepts.md)
 + [Unlimited mode for burstable performance instances](burstable-performance-instances-unlimited-mode.md)
 + [Standard mode for burstable performance instances](burstable-performance-instances-standard-mode.md)
 + [Working with burstable performance instances](burstable-performance-instances-how-to.md)

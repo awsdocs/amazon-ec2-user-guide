@@ -1,6 +1,8 @@
-# Getting started with Amazon EC2 Linux instances<a name="EC2_GetStarted"></a>
+# Tutorial: Getting started with Amazon EC2 Linux instances<a name="EC2_GetStarted"></a>
 
-Let's get started with Amazon Elastic Compute Cloud \(Amazon EC2\) by launching, connecting to, and using a Linux instance\. To get started with a Windows instance, see [Getting started with Amazon EC2 Windows instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/EC2_GetStarted.html)\. An *instance* is a virtual server in the AWS cloud\. With Amazon EC2, you can set up and configure the operating system and applications that run on your instance\.
+Use this tutorial to get started with Amazon Elastic Compute Cloud \(Amazon EC2\)\. You'll learn how to launch, connect to, and use a Linux instance\. An *instance* is a virtual server in the AWS cloud\. With Amazon EC2, you can set up and configure the operating system and applications that run on your instance\.
+
+To get started with a Windows instance, see [Getting started with Amazon EC2 Windows instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/EC2_GetStarted.html)\.
 
 When you sign up for AWS, you can get started with Amazon EC2 using the [AWS Free Tier](https://aws.amazon.com/free/)\. If you created your AWS account less than 12 months ago, and have not already exceeded the free tier benefits for Amazon EC2, it will not cost you anything to complete this tutorial, because we help you select options that are within the free tier benefits\. Otherwise, you'll incur the standard Amazon EC2 usage fees from the time that you launch the instance until you terminate the instance \(which is the final task of this tutorial\), even if it remains idle\.
 
@@ -48,7 +50,7 @@ You can launch a Linux instance using the AWS Management Console as described in
 
 1. The **Choose an Amazon Machine Image \(AMI\)** page displays a list of basic configurations, called *Amazon Machine Images \(AMIs\)*, that serve as templates for your instance\. Select an HVM version of Amazon Linux 2\. Notice that these AMIs are marked "Free tier eligible\."
 
-1. On the **Choose an Instance Type** page, you can select the hardware configuration of your instance\. Select the `t2.micro` type, which is selected by default\. Notice that this instance type is eligible for the free tier\.
+1. On the **Choose an Instance Type** page, you can select the hardware configuration of your instance\. Select the `t2.micro` instance type, which is selected by default\. The `t2.micro` instance type is eligible for the free tier\. In Regions where `t2.micro` is unavailable, you can use a `t3.micro` instance under the free tier\. For more information, see [AWS Free Tier](https://aws.amazon.com/free/)\.
 
 1. Choose **Review and Launch** to let the wizard complete the other configuration settings for you\.
 
@@ -63,12 +65,10 @@ You can launch a Linux instance using the AWS Management Console as described in
 1. On the **Review Instance Launch** page, choose **Launch**\.
 
 1. When prompted for a key pair, select **Choose an existing key pair**, then select the key pair that you created when getting set up\.
-
-   Alternatively, you can create a new key pair\. Select **Create a new key pair**, enter a name for the key pair, and then choose **Download Key Pair**\. This is the only chance for you to save the private key file, so be sure to download it\. Save the private key file in a safe place\. You'll need to provide the name of your key pair when you launch an instance and the corresponding private key each time you connect to the instance\.
 **Warning**  
-Don't select the **Proceed without a key pair** option\. If you launch your instance without a key pair, then you can't connect to it\.
+Don't select **Proceed without a key pair**\. If you launch your instance without a key pair, then you can't connect to it\.
 
-   When you are ready, select the acknowledgement check box, and then choose **Launch Instances**\. 
+   When you are ready, select the acknowledgement check box, and then choose **Launch Instances**\.
 
 1. A confirmation page lets you know that your instance is launching\. Choose **View Instances** to close the confirmation page and return to the console\.
 

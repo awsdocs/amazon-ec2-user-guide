@@ -174,6 +174,18 @@ repo_upgrade: security
 
 The possible values for `repo_upgrade` are as follows:
 
+`critical`  
+Apply outstanding critical security updates\.
+
+`important`  
+Apply outstanding critical and important security updates\.
+
+`medium`  
+Apply outstanding critical, important, and medium security updates\.
+
+`low`  
+Apply all outstanding security updates, including low\-severity security updates\.
+
 `security`  
 Apply outstanding critical or important updates that Amazon marks as security updates\.
 

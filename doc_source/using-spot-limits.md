@@ -3,16 +3,16 @@
 Spot Instance requests are subject to the following limits:
 
 **Topics**
-+ [Spot request limits](#spot-limits-general)
++ [Spot Instance request limits](#spot-limits-general)
 + [Spot Fleet limits](#spot-fleet-limitations)
 + [T3 Spot Instances](#t3-spot-instances)
 + [T2 Spot Instances](#t2-spot-instances)
 
-## Spot request limits<a name="spot-limits-general"></a>
+## Spot Instance request limits<a name="spot-limits-general"></a>
 
-By default, there is an account limit of 20 Spot Instances per Region\. If you terminate your Spot Instance but do not cancel the request, the request counts against this limit until Amazon EC2 detects the termination and closes the request\.
+Limits on Spot Instance requests are dynamic\. When your account is new, there is an initial default limit on Spot Instance requests per Region\. This limit can increase over time\. If you submit a Spot Instance request and you receive the error `Max spot instance count exceeded`, you can request a limit increase for Spot Instance requests\. For more information about viewing your current limits and requesting limit increases, see [Amazon EC2 Service Quotas](ec2-resource-limits.md)\.
 
-Spot Instance limits are dynamic\. When your account is new, your limit might be lower than 20 to start, but can increase over time\. In addition, your account might have limits on specific Spot Instance types\. If you submit a Spot Instance request and you receive the error `Max spot instance count exceeded`, you can complete the AWS Support Center [Create case](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-spot-instances) form to request a Spot Instance limit increase\. For **Limit type**, choose **EC2 Spot Instances**\. For more information, see [Amazon EC2 Service Quotas](ec2-resource-limits.md)\.
+If you terminate Spot Instances but do not cancel the Spot Instance requests, the requests count against your dynamic Spot Instance request limit until Amazon EC2 detects the Spot Instance terminations and closes the requests\.
 
 ## Spot Fleet limits<a name="spot-fleet-limitations"></a>
 

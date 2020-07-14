@@ -25,7 +25,7 @@
   + **Get the default user name for the AMI that you used to launch your instance:**
     + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
     + For a CentOS AMI, the user name is `centos`\.
-    + For a Debian AMI, the user name is `admin` or `root`\.
+    + For a Debian AMI, the user name is `admin`\.
     + For a Fedora AMI, the user name is `ec2-user` or `fedora`\.
     + For a RHEL AMI, the user name is `ec2-user` or `root`\.
     + For a SUSE AMI, the user name is `ec2-user` or `root`\.

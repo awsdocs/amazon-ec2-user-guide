@@ -41,6 +41,8 @@ Note that there is a charge for data transfer between Regions\. For more informa
 
 ### Availability Zones<a name="concepts-availability-zones"></a>
 
+An Availability Zone \(AZ\) is one or more discrete data centers with redundant power, networking, and connectivity in an AWS Region\. Availability Zones allow you to operate production applications and databases that are more highly available, fault tolerant, and scalable than would be possible from a single data center\. All Availability Zones in an AWS Region are interconnected with high\-bandwidth, low\-latency networking, over fully redundant, dedicated metro fiber providing high\-throughput, low\-latency networking between Availability Zones\. All traffic between Availability Zones is encrypted\. The network performance is sufficient to accomplish synchronous replication between Availability Zones\. Availability Zones make it easier to partition applications for high availability\. If an application is partitioned across Availability Zones, the application is better isolated and protected from issues such as power outages, lightning strikes, tornadoes, earthquakes, and more\. Availability Zones are physically separated by a meaningful distance from any other Availability Zone, although all are within 100 km \(60 miles\) of each other\.
+
 When you launch an instance, you can select an Availability Zone or let us choose one for you\. If you distribute your instances across multiple Availability Zones and one instance fails, you can design your application so that an instance in another Availability Zone can handle requests\.
 
 You can also use Elastic IP addresses to mask the failure of an instance in one Availability Zone by rapidly remapping the address to an instance in another Availability Zone\. For more information, see [Elastic IP addresses](elastic-ip-addresses-eip.md)\. 
@@ -221,7 +223,7 @@ We enable all Availability Zones by default and you cannot disable them\.
 
 1. On the navigation pane, choose **EC2 Dashboard**\.
 
-1. Under **Availability Zone status**, choose **Enable additional Local Zones**\.
+1. Under **Account Attributes** \(in the upper right\-hand corner of the page\), **Settings**, choose **Zones**\.
 **Note**  
 This option is only available if **New EC2 Experience** is enabled in the console\.
 

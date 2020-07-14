@@ -10,7 +10,7 @@ To get started, enable fast snapshot restore for specific snapshots in specific 
 + [Managing fast snapshot restore](#manage-fsr)
 + [View snapshots with fast snapshot restore enabled](#view-fsr-enabled-snapshots)
 + [View volumes restored using fast snapshot restore](#view-fast-restored-volumes)
-+ [Pricing and billing](#pricing)
++ [Pricing and billing](#fsr-pricing)
 
 ## Fast snapshot restore states<a name="fsr-states"></a>
 
@@ -149,7 +149,7 @@ The following is example output\.
 }
 ```
 
-## Pricing and billing<a name="pricing"></a>
+## Pricing and billing<a name="fsr-pricing"></a>
 
 You are billed for each minute that fast snapshot restore is enabled for a snapshot in a particular Availability Zone\. Charges are pro\-rated with a minimum of one hour\. 
 

@@ -69,7 +69,7 @@ The following rules apply:
 
 ### Calculating Reserved Instance pricing discounts<a name="pricing-discounts"></a>
 
-You can determine the pricing tier for your account by calculating the list value for all of your Reserved Instances in a Region\. Multiply the hourly recurring price for each reservation by the total number of hours for the term and add the undiscounted upfront price \(also known as the fixed price\) listed on the [Reserved Instances pricing page](https://aws.amazon.com/ec2/pricing/reserved-instances/pricing/) at the time of purchase\. Because the list value is based on undiscounted \(public\) pricing, it is not affected if you qualify for a volume discount or if the price drops after you buy your Reserved Instances\.
+You can determine the pricing tier for your account by calculating the list value for all of your Reserved Instances in a Region\. Multiply the hourly recurring price for each reservation by the total number of hours for the term and add the undiscounted upfront price \(also known as the fixed price\) at the time of purchase\. Because the list value is based on undiscounted \(public\) pricing, it is not affected if you qualify for a volume discount or if the price drops after you buy your Reserved Instances\.
 
 ```
 List value = fixed price + (undiscounted recurring hourly price * hours in term)

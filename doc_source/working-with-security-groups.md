@@ -172,7 +172,7 @@ You can add rules to a security group using one of the following methods\.
       + If you choose any other type, the protocol and port range are configured automatically\. 
 
    1. For **Source**, do one of the following\.
-      + Choose **Custom** and then enter an IP address in CIDR notation, a CIDR block, or another security group from which to allow inbound traffic\.
+      + Choose **Custom** and then enter an IP address in CIDR notation, a CIDR block, another security group, or a prefix list from which to allow inbound traffic\.
       + Choose **Anywhere** to allow all inbound traffic of the specified protocol to reach your instance\. This option automatically adds the `0.0.0.0/0` IPv4 CIDR block as an allowed source\. This is acceptable for a short time in a test environment, but it's unsafe for production environments\. In production, authorize only a specific IP address or range of addresses to access your instance\.
 
         If your security group is in a VPC that's enabled for IPv6, this option automatically adds a second rule for IPv6 traffic \(`::/0`\)\.
@@ -198,7 +198,7 @@ You can add rules to a security group using one of the following methods\.
       + If you choose any other type, the protocol and port range are configured automatically\. 
 
    1. For **Destination**, do one of the following\.
-      + Choose **Custom** and then enter an IP address in CIDR notation, a CIDR block, or another security group for which to allow outbound traffic\.
+      + Choose **Custom** and then enter an IP address in CIDR notation, a CIDR block, another security group, or a prefix list for which to allow outbound traffic\.
       + Choose **Anywhere** to allow outbound traffic to all IP addresses\. This option automatically adds the `0.0.0.0/0` IPv4 CIDR block as an allowed source\. 
 
         If your security group is in a VPC that's enabled for IPv6, this option automatically adds a second rule for IPv6 traffic \(`::/0`\)\.

@@ -29,7 +29,7 @@ First, you need to get set up to use Amazon EC2\. After you are set up, you are 
 
 **Get up and running**
 + [Setting up with Amazon EC2](get-set-up-for-amazon-ec2.md)
-+ [Getting started with Amazon EC2 Linux instances](EC2_GetStarted.md)
++ [Tutorial: Getting started with Amazon EC2 Linux instances](EC2_GetStarted.md)
 
 **Basics**
 + [Instances and AMIs](ec2-instances-and-amis.md)
@@ -67,7 +67,7 @@ To automatically distribute incoming application traffic across multiple instanc
 
 To get a managed relational database in the cloud, use Amazon Relational Database Service \(Amazon RDS\) to launch a database instance\. Although you can set up a database on an EC2 instance, Amazon RDS offers the advantage of handling your database management tasks, such as patching the software, backing up, and storing the backups\. For more information, see the [Amazon Relational Database Service Developer Guide](https://docs.aws.amazon.com/AmazonRDS/latest/DeveloperGuide/)\.
 
-To make it easier to manage Docker contains on a cluster of EC2 instances, use Amazon Elastic Container Service \(Amazon ECS\)\. For more information, see the [Amazon Elastic Container Service Developer Guide](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/) or the [Amazon Elastic Container Service User Guide for AWS Fargate](https://docs.aws.amazon.com/AmazonECS/latest/userguide/)\.
+To make it easier to manage Docker containers on a cluster of EC2 instances, use Amazon Elastic Container Service \(Amazon ECS\)\. For more information, see the [Amazon Elastic Container Service Developer Guide](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/) or the [Amazon Elastic Container Service User Guide for AWS Fargate](https://docs.aws.amazon.com/AmazonECS/latest/userguide/)\.
 
 To monitor basic statistics for your instances and Amazon EBS volumes, use Amazon CloudWatch\. For more information, see the [Amazon CloudWatch User Guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/)\. To detect potentially authorized or malicious use of your EC2 instances, use Amazon GuardDuty\. For more information see the [Amazon GuardDuty User Guide](https://docs.aws.amazon.com/guardduty/latest/ug/)\.
 

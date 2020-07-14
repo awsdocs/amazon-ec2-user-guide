@@ -7,7 +7,7 @@ For historical reasons, web encryption is often referred to simply as SSL\. Whil
 This tutorial refers to modern web encryption simply as TLS\.
 
 **Important**  
-These procedures are intended for use with Amazon Linux 2\. We also assume that you are starting with a fresh Amazon EC2 instance\. If you are trying to set up a LAMP web server on an instance with a different distribution, or if you are resuing an older, existing instance, some procedures in this tutorial might not work for you\. For information about LAMP web servers on Ubuntu, see the Ubuntu community documentation [ApacheMySQLPHP](https://help.ubuntu.com/community/ApacheMySQLPHP)\. For information about Red Hat Enterprise Linux, see the Customer Portal topic [Web Servers](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/System_Administrators_Guide/ch-Web_Servers.html)\.
+These procedures are intended for use with Amazon Linux 2\. We also assume that you are starting with a fresh Amazon EC2 instance\. If you are trying to set up a LAMP web server on an instance with a different distribution, or if you are reusing an older, existing instance, some procedures in this tutorial might not work for you\. For information about LAMP web servers on Ubuntu, see the Ubuntu community documentation [ApacheMySQLPHP](https://help.ubuntu.com/community/ApacheMySQLPHP)\. For information about Red Hat Enterprise Linux, see the Customer Portal topic [Web Servers](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/System_Administrators_Guide/ch-Web_Servers.html)\.
 
 **Topics**
 + [Prerequisites](#ssl_prereq)
@@ -617,13 +617,15 @@ Certbot is designed to become an invisible, error\-resistant part of your server
 
 **To automate Certbot**
 
-1. Open `/etc/crontab` in a text editor and add a line similar to the following\.
+1. Open the `/etc/crontab` file in a text editor, such as vim or nano, using sudo\. Alternatively, use sudo crontab \-e\.
+
+1. Add a line similar to the following and save the file\.
 
    ```
    39      1,13    *       *       *       root    certbot renew --no-self-upgrade
    ```
 
-   Save the file when done\. Here is an explanation of each component of the command\.  
+   Here is an explanation of each component:  
 `39 1,13 * * *`  
 Schedules a command to be run at 01:39 and 13:39 every day\. The selected values are arbitrary, but the Certbot developers suggest running the command at least twice daily\. This guarantees that any certificate found to be compromised is promptly revoked and replaced\.  
 `root`  

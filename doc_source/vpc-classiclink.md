@@ -420,18 +420,20 @@ You have one security group in EC2\-Classic, and the other in your VPC\. You ass
 The following are the security group rules for the EC2\-Classic security group \(`sg-1a1a1a1a`\)\.
 
 
-|  | 
-| --- |
+| 
+| 
 | Inbound | 
+| --- |
 |  Source  |  Type  |  Port Range  |  Comments  | 
 |  0\.0\.0\.0/0  |  HTTPS  |  443  |  Allows Internet traffic to reach your web server\.  | 
 
 The following are the security group rules for the VPC security group \(`sg-2b2b2b2b`\)\.
 
 
-|  | 
-| --- |
+| 
+| 
 | Outbound | 
+| --- |
 |  Destination  |  Type  |  Port Range  |  Comments  | 
 |  sg\-3c3c3c3c  |  TCP  |  6001  |  Allows outbound traffic from your web server to your application server in your VPC \(or to any other instance associated with `sg-3c3c3c3c`\)\.  | 
 
@@ -439,12 +441,14 @@ The following are the security group rules for the VPC security group \(`sg-2b2b
 The following are the security group rules for the VPC security group that's associated with your application server\.
 
 
-|  | 
-| --- |
+| 
+| 
 | Inbound | 
+| --- |
 |  Source  |  Type  |  Port Range  |  Comments  | 
 |  sg\-2b2b2b2b  |  TCP  |  6001  |  Allows the specified type of traffic from your web server \(or any other instance associated with `sg-2b2b2b2b`\) to reach your application server\.  | 
 | Outbound | 
+| --- |
 |  Destination  |  Type  |  Port Range  |  Comments  | 
 | sg\-4d4d4d4d | TCP | 6004 | Allows outbound traffic from the application server to the database server \(or to any other instance associated with sg\-4d4d4d4d\)\. | 
 
@@ -452,8 +456,9 @@ The following are the security group rules for the VPC security group that's ass
 The following are the security group rules for the VPC security group that's associated with your database server\.
 
 
-|  | 
-| --- |
+| 
+| 
 | Inbound | 
+| --- |
 |  Source  |  Type  |  Port Range  |  Comments  | 
 |  sg\-3c3c3c3c  |  TCP  |  6004  |  Allows the specified type of traffic from your application server \(or any other instance associated with `sg-3c3c3c3c`\) to reach your database server\.  | 

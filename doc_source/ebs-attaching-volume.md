@@ -4,6 +4,7 @@ You can attach an available EBS volume to one or more of your instances that is 
 
 **Prerequisites**
 + Determine how many volumes you can attach to your instance\. For more information, see [Instance volume limits](volume_limits.md)\.
++ Determine whether you can attach your volume to multiple instances and enable Multi\-Attach\. For more information, see [Attaching a volume to multiple instances with Amazon EBS Multi\-Attach](ebs-volumes-multi.md)\.
 + If a volume is encrypted, it can only be attached to an instance that supports Amazon EBS encryption\. For more information, see [Supported instance types](EBSEncryption.md#EBSEncryption_supported_instances)\.
 + If a volume has an AWS Marketplace product code:
   + The volume can only be attached to a stopped instance\.

@@ -216,8 +216,49 @@ There are multiple `AllowOverride` lines in this file; be sure you change the li
 
 1. Save the file and exit your text editor\.
 
-**To install the PHP graphics drawing library**  
-The GD library for PHP enables you to modify images\. Install this library as follows if you need to crop the header image for your blog\.
+**To install the PHP graphics drawing library on Amazon Linux 2**  
+The GD library for PHP enables you to modify images\. Install this library if you need to crop the header image for your blog\. The version of phpMyAdmin that you install might require a specific minimum version of this library \(for example, version 7\.2\)\.
+
+Use the following command to install the PHP graphics drawing library on Amazon Linux 2\. For example, if you installed php7\.2 from amazon\-linux\-extras as part of installing the LAMP stack, this command installs version 7\.2 of the PHP graphics drawing library\.
+
+```
+[ec2-user ~]$ sudo yum install php-gd
+```
+
+To verify the installed version, use the following command:
+
+```
+[ec2-user ~]$ sudo yum list installed | grep php
+```
+
+The following is example output:
+
+```
+php-cli.x86_64                    7.2.30-1.amzn2             @amzn2extra-php7.2
+php-common.x86_64                 7.2.30-1.amzn2             @amzn2extra-php7.2
+php-fpm.x86_64                    7.2.30-1.amzn2             @amzn2extra-php7.2
+php-gd.x86_64                     7.2.30-1.amzn2             @amzn2extra-php7.2
+php-json.x86_64                   7.2.30-1.amzn2             @amzn2extra-php7.2
+php-mysqlnd.x86_64                7.2.30-1.amzn2             @amzn2extra-php7.2
+php-pdo.x86_64                    7.2.30-1.amzn2             @amzn2extra-php7.2
+```
+
+**To install the PHP graphics drawing library on the Amazon Linux AMI**  
+The GD library for PHP enables you to modify images\. Install this library if you need to crop the header image for your blog\. The version of phpMyAdmin that you install might require a specific minimum version of this library \(for example, version 7\.2\)\.
+
+To verify which versions are available, use the following command:
+
+```
+[ec2-user ~]$ yum list | grep php
+```
+
+The following is an example line from the output for the PHP graphics drawing library \(version 7\.2\):
+
+```
+php72-gd.x86_64                   7.2.30-1.22.amzn1         amzn-updates
+```
+
+Use the following command to install a specific version of the PHP graphics drawing library \(for example, version 7\.2\) on the Amazon Linux AMI:
 
 ```
 [ec2-user ~]$ sudo yum install php72-gd

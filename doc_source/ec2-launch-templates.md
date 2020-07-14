@@ -75,7 +75,7 @@ Create a new launch template using parameters that you define, or use an existin
    + **Instance type**: Ensure that the instance type is compatible with the AMI that you've specified\. For more information, see [Instance types](instance-types.md)\. 
    + **Key pair name**: The key pair for the instance\. For more information, see [Amazon EC2 key pairs and Linux instances](ec2-key-pairs.md)\.
    + **Network platform**: If applicable, whether to launch the instance into a VPC or EC2\-Classic\. If you choose **VPC**, specify the subnet in the **Network interfaces** section\. If you choose **Classic**, ensure that the specified instance type is supported in EC2\-Classic and specify the Availability Zone for the instance\.
-   + **Security groups**: One or more security groups to associate with the instance\. For more information, see [Amazon EC2 security groups for Linux instances](ec2-security-groups.md)\.
+   + **Security groups**: One or more security groups to associate with the instance\. If you add a network interface to the launch template, omit this setting and specify the security groups as part of the network interface specification\. You cannot launch an instance from a launch template that specifies security groups and a network interface\. For more information, see [Amazon EC2 security groups for Linux instances](ec2-security-groups.md)\.
 
 1. For **Storage \(volumes\)**, specify volumes to attach to the instance besides the volumes specified by the AMI \(**Volume 1 \(AMI Root\)**\)\. To add a new volume, choose **Add new volume**\.
    + **Volume type**: The instance store or Amazon EBS volumes with which to associate your instance\. The type of volume depends on the instance type that you've chosen\. For more information, see [Amazon EC2 Instance Store](InstanceStorage.md) and [Amazon EBS volumes](ebs-volumes.md)\.
@@ -378,7 +378,7 @@ When you create a launch template from an instance, the instance's network inter
 
 ## Managing launch template versions<a name="manage-launch-template-versions"></a>
 
-You can create launch template versions for a specific launch template, set the default version, and delete versions that you no longer require\.
+You can create launch template versions for a specific launch template, set the default version, describe a launch template version, and delete versions that you no longer require\.
 
 **Topics**
 + [Creating a launch template version](#create-launch-template-version)
@@ -490,7 +490,7 @@ You can set the default version for the launch template\. When you launch an ins
 
 ### Describing a launch template version<a name="describe-launch-template-version"></a>
 
-Using the console, you can view all the versions of the selected launch template, or get a list of the launch templates whose latest or default version matches a specific version number\. Using the AWS CLI, you can describe all versions, individual versions, or a range of versions of a specified launch template\.
+Using the console, you can view all the versions of the selected launch template, or get a list of the launch templates whose latest or default version matches a specific version number\. Using the AWS CLI, you can describe all versions, individual versions, or a range of versions of a specified launch template\. You can also describe all the latest versions or all the default versions of all the launch templates in your account\.
 
 ------
 #### [ New console ]
@@ -516,6 +516,14 @@ Using the console, you can view all the versions of the selected launch template
   aws ec2 describe-launch-template-versions \
       --launch-template-id lt-0abcd290751193123 \
       --versions 1 3
+  ```
+
+**To describe all the latest and default launch template versions in your account using the AWS CLI**
++ Use the [describe\-launch\-template\-versions](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-launch-template-versions.html) command and specify `$Latest`, `$Default`, or both\. You must omit the launch template ID and name in the call\. You cannot specify version numbers\.
+
+  ```
+  aws ec2 describe-launch-template-versions \
+      --versions "$Latest,$Default"
   ```
 
 ------

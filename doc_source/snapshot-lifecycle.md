@@ -60,7 +60,7 @@ A lifecycle policy consists of these core settings:
 + Schedule—The start time and interval for creating snapshots\.
 + Retention—You can retain snapshots based on either the total count of snapshots or the age of each snapshot\.
 
-For example, you could create a policy that manages all EBS volumes with the tag `account=Finance`, creates snapshots every 24 hours at 0900, and retains the five most recent snapshots\. Snapshot creation could start as late as 0959\.
+For example, you could create a policy that manages all EBS volumes with the tag `account=Finance`, creates snapshots every 24 hours at 0900, and retains the five most recent snapshots\. Snapshot creation would start by 0959 each day\.
 
 ## Considerations for Amazon Data Lifecycle Manager<a name="dlm-considerations"></a>
 
@@ -71,7 +71,7 @@ Your AWS account has the following quotas related to Amazon Data Lifecycle Manag
 
 The following considerations apply to lifecycle policies:
 + A policy does not begin creating snapshots until you set its activation status to *enabled*\. You can configure a policy to be enabled upon creation\.
-+ The first snapshot is created by a policy within one hour after the specified start time\.
++ The first snapshot is created by a policy within one hour after the specified start time\. Subsequent snapshots are created within one hour of their scheduled time\.
 + If you modify a policy by removing or changing its target tag, the EBS volumes with that tag are no longer affected by the policy\.
 + If you modify the schedule name for a policy, the snapshots created under the old schedule name are no longer affected by the policy\.
 + If you modify a retention schedule based on time to use a new time interval, the new interval is used only for new snapshots\. The new schedule does not affect the retention schedule of existing snapshots created by this policy\.
@@ -85,6 +85,9 @@ The following considerations apply to lifecycle policies and [fast snapshot rest
 + A snapshot that is enabled for fast snapshot restore remains enabled even if you delete or disable the lifecycle policy, disable fast snapshot restore for the lifecycle policy, or disable fast snapshot restore for the Availability Zone\. You can disable fast snapshot restore for these snapshots manually\.
 + If you enable fast snapshot restore and you exceed the maximum number of snapshots that can be enabled for fast snapshot restore, Amazon Data Lifecycle Manager creates snapshots as scheduled but does not enable them for fast snapshot restore\. After a snapshot that is enabled for fast snapshot restore is deleted, the next snapshot Amazon Data Lifecycle Manager creates is enabled for fast snapshot restore\.
 + When you enable fast snapshot restore for a snapshot, it takes 60 minutes per TiB to optimize the snapshot\. We recommend that you create a schedule that ensures that each snapshot is fully optimized before Amazon Data Lifecycle Manager creates the next snapshot\.
++ You are billed for each minute that fast snapshot restore is enabled for a snapshot in a particular Availability Zone\. Charges are pro\-rated with a minimum of one hour\. For more information, see [Pricing and billing](ebs-fast-snapshot-restore.md#fsr-pricing)\.
+**Note**  
+Depending on the configuration of your lifecycle policies, you could have multiple snapshots enabled for fast snapshot restore simultaneously\.
 
 The following considerations apply to lifecycle policies and [multi\-attach](ebs-volumes-multi.md) enabled volumes:
 + When creating a lifecycle policy based on instance tags for Multi\-Volume snapshots, Amazon Data Lifecycle Manager initiates a snapshot of the volume for each attached instance\. Use the *timestamp* tag to identify the set of time\-consistent snapshots created from the attached instances\.
@@ -220,11 +223,11 @@ Use the following procedure to create a lifecycle policy\.
    + **Target with these tags**–The resource tags that identify the volumes or instances to back up\.
    + **Lifecycle policy tags**–The tags for the lifecycle policy\.
    + **Schedule name**–A name for the schedule\.
-   + **Frequency**–The interval between policy runs\. You can choose one of the predefined intervals: 1, 2, 3, 4, 6, 8, 12, or 24 hours or choose **Custom cron expression** to specify an interval of up to 1 year\.
+   + **Frequency**–The interval between policy runs\. You can configure policy runs on a daily, weekly, monthly, or yearly schedule\. Alternatively, choose **Custom cron expression** to specify an interval of up to 1 year\. For more information, see [Cron expressions](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions) in the *Amazon CloudWatch Events User Guide*\.
    + **Starting at ***hh*:*mm* **UTC**–The time at which the policy runs are scheduled to start\. The first policy run starts within an hour after the scheduled time\.
    + **Retention type**–You can retain snapshots based on either the total count of snapshots or the age of each snapshot\. For retention based on the count, the range is 1 to 1000\. After the maximum count is reached, the oldest snapshot is deleted when a new one is created\. For age\-based retention, the range is 1 day to 100 years\. After the retention period of each snapshot expires, it is deleted\. The retention period should be greater than or equal to the creation interval\.
    + **Tagging information**–Choose whether to copy all user\-defined tags on a source volume to the snapshots created by this policy\. You can also specify additional tags for the snapshots in addition to the tags applied by Amazon Data Lifecycle Manager\. If the resource type is `INSTANCE`, you can choose to automatically tag your snapshots with the following variable tags: `instance-id` and `timestamp`\. The values of the variable tags are determined when the tags are added\.
-   + **Fast snapshot restore**–Choose whether to enable fast snapshot restore and in which Availability Zones\. You can also specify the maximum number of snapshots that can be enabled for fast snapshot store\.
+   + **Fast snapshot restore**–Choose whether to enable fast snapshot restore for all snapshots created by this policy\. If you enable fast snapshot restore, you must choose the Availability Zones in which to enable it\. You are billed for each minute that fast snapshot restore is enabled for a snapshot in a particular Availability Zone\. Charges are pro\-rated with a minimum of one hour\. You can also specify the maximum number of snapshots that can be enabled for fast snapshot restore\.
    + **Enable cross Region copy**–You can copy each snapshot to up at three additional Regions\. You must ensure that you do not exceed the number of concurrent snapshot copies per Region\. For each Region, you can choose different retention policies and whether to copy all tags or no tags\. If the source snapshot is encrypted or if encryption by default is enabled, the snapshots copies are encrypted\. If the source snapshot is unencrypted, you can enable encryption\. If you do not specify a CMK, the snapshots are encrypted using the default key for EBS encryption in each destination Region\. If you specify a CMK for the destination Region, you must have access to the CMK\.
    + **IAM role**–An IAM role that has permissions to create, delete, and describe snapshots, and to describe volumes\. AWS provides a default role, **AWSDataLifecycleManagerDefaultRole**, or you can create a custom IAM role\.
    + **Policy status after creation**–Choose **Enable policy** to start the policy runs at the next scheduled time or **Disable policy** to prevent the policy from running\.

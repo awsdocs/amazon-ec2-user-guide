@@ -1,26 +1,26 @@
-# CPU credits and baseline performance for burstable performance instances<a name="burstable-credits-baseline-concepts"></a>
+# CPU credits and baseline utilization for burstable performance instances<a name="burstable-credits-baseline-concepts"></a>
 
-Traditional Amazon EC2 instance types provide fixed performance, while burstable performance instances provide a baseline level of CPU performance with the ability to burst above that baseline level\. The baseline performance and ability to burst are governed by CPU credits\.
+Traditional Amazon EC2 instance types provide fixed CPU utilization, while burstable performance instances provide a baseline level of CPU utilization with the ability to burst CPU utilization above the baseline level\. The baseline utilization and ability to burst are governed by CPU credits\.
 
-A CPU credit provides the performance of a full CPU core running at 100% utilization for one minute\. Other combinations of number of vCPUs, utilization, and time can also equate to one CPU credit\. For example, one CPU credit is equal to one vCPU running at 50% utilization for two minutes, or two vCPUs running at 25% utilization for two minutes\.
+A CPU credit provides for 100% utilization of a full CPU core for one minute\. Other combinations of number of vCPUs, utilization, and time can also equate to one CPU credit\. For example, one CPU credit is equal to one vCPU running at 50% utilization for two minutes, or two vCPUs running at 25% utilization for two minutes\.
 
 **Contents**
 + [Earning CPU credits](#earning-CPU-credits)
 + [CPU credit earn rate](#CPU-credit-earn-rate)
 + [CPU credit accrual limit](#CPU-credit-accrual-limit)
 + [Accrued CPU credits life span](#accrued-CPU-credits-life-span)
-+ [Baseline performance](#baseline_performance)
++ [Baseline utilization](#baseline_performance)
 
 ## Earning CPU credits<a name="earning-CPU-credits"></a>
 
 Each burstable performance instance continuously earns \(at a millisecond\-level resolution\) a set rate of CPU credits per hour, depending on the instance size\. The accounting process for whether credits are accrued or spent also happens at a millisecond\-level resolution, so you don't have to worry about overspending CPU credits; a short burst of CPU uses a small fraction of a CPU credit\.
 
-If a burstable performance instance uses fewer CPU resources than is required for baseline performance \(such as when it is idle\), the unspent CPU credits are accrued in the CPU credit balance\. If a burstable performance instance needs to burst above the baseline performance level, it spends the accrued credits\. The more credits that a burstable performance instance has accrued, the more time it can burst beyond its baseline when more performance is needed\.
+If a burstable performance instance uses fewer CPU resources than is required for baseline utilization \(such as when it is idle\), the unspent CPU credits are accrued in the CPU credit balance\. If a burstable performance instance needs to burst above the baseline utilization level, it spends the accrued credits\. The more credits that a burstable performance instance has accrued, the more time it can burst beyond its baseline when more CPU utilization is needed\.
 
-The following table lists the burstable performance instance types, the rate at which CPU credits are earned per hour, the maximum number of earned CPU credits that an instance can accrue, the number of vCPUs per instance, and the baseline performance level as a percentage of a full core performance \(using a single vCPU\)\.
+The following table lists the burstable performance instance types, the rate at which CPU credits are earned per hour, the maximum number of earned CPU credits that an instance can accrue, the number of vCPUs per instance, and the baseline utilization as a percentage of a full core \(using a single vCPU\)\.
 
 
-|  Instance type  |  CPU credits earned per hour  |  Maximum earned credits that can be accrued\*  |  vCPUs  |  Baseline performance per vCPU  | 
+|  Instance type  |  CPU credits earned per hour  |  Maximum earned credits that can be accrued\*  |  vCPUs  |  Baseline utilization per vCPU  | 
 | --- | --- | --- | --- | --- | 
 |  **T2**  |   |   |   |   | 
 | t2\.nano |  3  |  72  |  1  |  5%  | 
@@ -51,7 +51,7 @@ The following table lists the burstable performance instance types, the rate at 
 |  | 
 | --- |
 |  \* The number of credits that can be accrued is equivalent to the number of credits that can be earned in a 24\-hour period\.  | 
-|  \*\* The baseline performance in the table is per vCPU\. For instance sizes that have more than one vCPU, to calculate the baseline CPU utilization for the instance, multiply the vCPU percentage by the number of vCPUs\. For example, a `t3.large` instance has two vCPUs, which provide a baseline CPU utilization for the instance of 60% \(2 vCPUs x 30% baseline performance of one vCPU\)\. In CloudWatch, CPU utilization is shown per vCPU\. Therefore, the CPU utilization for a `t3.large` instance operating at the baseline performance is shown as 30% in CloudWatch CPU metrics\.  | 
+|  \*\* The percentage baseline utilization in the table is per vCPU\. In CloudWatch, CPU utilization is shown per vCPU\. For example, the CPU utilization for a `t3.large` instance operating at the baseline level is shown as 30% in CloudWatch CPU metrics\. For information about how to calculate the baseline utilization, see [Baseline utilization](#baseline_performance)\.  | 
 
 ## CPU credit earn rate<a name="CPU-credit-earn-rate"></a>
 
@@ -79,6 +79,16 @@ For T2, the CPU credit balance does not persist between instance stops and start
 
 For more information, see `CPUCreditBalance` in the [CloudWatch metrics table](burstable-performance-instances-monitoring-cpu-credits.md#burstable-performance-instances-CW-metrics-table)\.
 
-## Baseline performance<a name="baseline_performance"></a>
+## Baseline utilization<a name="baseline_performance"></a>
 
-The number of credits that an instance earns per hour can be expressed as a percentage of CPU utilization\. It is known as the *baseline performance*, and sometimes just as *the baseline*\. For example, a `t3.nano` instance, with two vCPUs, earns six credits per hour, resulting in a baseline performance of 5% \(3/60 minutes\) per vCPU\. A `t3.xlarge` instance, with four vCPUs, earns 96 credits per hour, resulting in a baseline performance of 40% \(24/60 minutes\) per vCPU\.
+The *baseline utilization* is the level at which the CPU can be utilized for a net credit balance of zero, when the number CPU credits being earned matches the number of CPU credits being used\. Baseline utilization is also known as *the baseline*\.
+
+Baseline utilization is expressed as a percentage of vCPU utilization, which is calculated as follows:
+
+`(number of credits earned/number of vCPUs)/60 minutes = % baseline utilization`
+
+For example, a `t3.nano` instance, with 2 vCPUs, earns 6 credits per hour, resulting in a baseline utilization of 5% , which is calculated as follows:
+
+`(6 credits earned/2 vCPUs)/60 minutes = 5% baseline utilization`
+
+A `t3.xlarge` instance, with 4 vCPUs, earns 96 credits per hour, resulting in a baseline utilization of 40% \(`(96/4)/60`\)\.

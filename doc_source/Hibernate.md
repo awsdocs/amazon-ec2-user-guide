@@ -72,9 +72,10 @@ To hibernate an instance, the following prerequisites must be in place:
 
   For information about the supported AMIs for Windows, see [Hibernation prerequisites](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/Hibernate.html#hibernating-prerequisites) in the *Amazon EC2 User Guide for Windows Instances*\.
 + **Root volume type** \- must be an Amazon EBS volume, not an instance store volume\.
++ **Supported Amazon EBS volume types** \- General Purpose SSD \(`gp2`\) or Provisioned IOPS SSD \(`io1`\)\. If you choose a Provisioned IOPS SSD \(`io1`\) volume type, to achieve optimum performance for hibernation, you must provision the EBS volume with the appropriate IOPS\. For more information, see [Amazon EBS volume types](ebs-volume-types.md)\.
 + **Amazon EBS root volume size** \- must be large enough to store the RAM contents and accommodate your expected usage, for example, OS or applications\. If you enable hibernation, space is allocated on the root volume at launch to store the RAM\.
 + **Amazon EBS root volume encryption** \- To use hibernation, the root volume must be encrypted to ensure the protection of sensitive content that is in memory at the time of hibernation\. When RAM data is moved to the Amazon EBS root volume, it is always encrypted\. Encryption of the root volume is enforced at instance launch\. Use one of the following three options to ensure that the root volume is an encrypted Amazon EBS volume:
-  + EBS “single\-step” encryption: In a single run\-instances API call, you can launch encrypted EBS\-backed EC2 instances from an unencrypted AMI and also enable hibernation at the same time\. For more information, see [Using encryption with EBS\-backed AMIs](AMIEncryption.md)\.
+  + EBS “single\-step” encryption: You can launch encrypted EBS\-backed EC2 instances from an unencrypted AMI and also enable hibernation at the same time\. For more information, see [Using encryption with EBS\-backed AMIs](AMIEncryption.md)\.
   + EBS encryption by default: You can enable EBS encryption by default to ensure all new EBS volumes created in your AWS account are encrypted\. This way, you can enable hibernation for your instances without specifying encryption intent at instance launch\. For more information, see [Encryption by default](EBSEncryption.md#encryption-by-default)\.
   + Encrypted AMI: You can enable EBS encryption by using an encrypted AMI to launch your instance\. If your AMI does not have an encrypted root snapshot, you can copy it to a new AMI and request encryption\. For more information, see [Encrypt an unencrypted image during copy](AMIEncryption.md#copy-unencrypted-to-encrypted) and [Copying an AMI](CopyingAMIs.md#ami-copy-steps)\.
 + **Enable hibernation at launch** \- You cannot enable hibernation on an existing instance \(running or stopped\)\. For more information, see [Enabling hibernation for an instance](#enabling-hibernation)\.
@@ -245,27 +246,85 @@ You can't enable or disable hibernation for an instance after you launch it\.
 
 1. On the **Configure Instance Details** page, for **Stop \- Hibernate Behavior**, select the **Enable hibernation as an additional stop behavior** check box\.
 
+1. On the **Add Storage** page, for the root volume, specify the following information: 
+   + For **Size \(GiB\)**, enter the Amazon EBS root volume size\. The volume must be large enough to store the RAM contents and accommodate your expected usage\.
+   + For **Volume Type**, select a supported Amazon EBS volume type \(General Purpose SSD \(`gp2`\) or Provisioned IOPS SSD \(`io1`\)\)\.
+   + For **Encryption**, select the encryption key for the volume\. If you enabled encryption by default in this AWS Region, the default encryption key is selected\.
+
+   For more information about the prerequisites for the root volume, see [Hibernation prerequisites](#hibernating-prerequisites)\.
+
 1. Continue as prompted by the wizard\. When you've finished reviewing your options on the **Review Instance Launch** page, choose **Launch**\. For more information, see [Launching an instance using the Launch Instance Wizard](launching-instance.md)\.
 
 ------
 #### [ AWS CLI ]
 
 **To enable hibernation using the AWS CLI**  
-Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command to launch an instance\. Enable hibernation using the `--hibernation-options Configured=true` parameter\.
+Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command to launch an instance\. Specify the EBS root volume parameters using the `--block-device-mappings file://mapping.json` parameter, and enable hibernation using the `--hibernation-options Configured=true` parameter\.
 
 ```
-aws ec2 run-instances --image-id ami-0abcdef1234567890 --instance-type m5.large --hibernation-options Configured=true --count 1 --key-name MyKeyPair
+aws ec2 run-instances \
+    --image-id ami-0abcdef1234567890 \
+    --instance-type m5.large \
+    --block-device-mappings file://mapping.json \
+    --hibernation-options Configured=true \
+    --count 1 \
+    --key-name MyKeyPair
 ```
+
+Specify the following in `mapping.json`:
+
+```
+[
+    {
+        "DeviceName": "/dev/xvda",
+        "Ebs": {
+            "VolumeSize": 30,
+            "VolumeType": "gp2",
+            "Encrypted": true
+        }
+    }
+]
+```
+
+**Note**  
+The value for `DeviceName` must match the root device name associated with the AMI\. To find the root device name, use the [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command, as follows:  
+
+```
+aws ec2 describe-images --image-id ami-0abcdef1234567890
+```
+If you enabled encryption by default in this AWS Region, you can omit `"Encrypted": true`\.
 
 ------
 #### [ AWS Tools for Windows PowerShell ]
 
 **To enable hibernation using the AWS Tools for Windows PowerShell**  
-Use the [New\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) command to launch an instance\. Enable hibernation using the `-HibernationOptions_Configured $true` parameter\.
+Use the [New\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) command to launch an instance\. Specify the EBS root volume by first defining the block device mapping, and then adding it to the command using the `-BlockDeviceMappings` parameter\. Enable hibernation using the `-HibernationOptions_Configured $true` parameter\.
 
 ```
-New-EC2Instance -ImageId ami-0abcdef1234567890 -InstanceType m5.large -HibernationOptions_Configured $true -MinCount 1 -MaxCount 1 -KeyName MyKeyPair
+PS C:\> $ebs_encrypt = New-Object Amazon.EC2.Model.BlockDeviceMapping
+PS C:\> $ebs_encrypt.DeviceName = "/dev/xvda"
+PS C:\> $ebs_encrypt.Ebs = New-Object Amazon.EC2.Model.EbsBlockDevice
+PS C:\> $ebs_encrypt.Ebs.VolumeSize = 30
+PS C:\> $ebs_encrypt.Ebs.VolumeType = "gp2"
+PS C:\> $ebs_encrypt.Ebs.Encrypted = $true
+
+PS C:\> New-EC2Instance `
+             -ImageId ami-0abcdef1234567890 `
+             -InstanceType m5.large `
+             -BlockDeviceMappings $ebs_encrypt `
+             -HibernationOptions_Configured $true `
+             -MinCount 1 `
+             -MaxCount 1 `
+             -KeyName MyKeyPair
 ```
+
+**Note**  
+The value for `DeviceName` must match the root device name associated with the AMI\. To find the root device name, use the [Get\-EC2Image](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Image.html) command, as follows:  
+
+```
+Get-EC2Image -ImageId ami-0abcdef1234567890
+```
+If you enabled encryption by default in this AWS Region, you can omit `Encrypted = $true` from the block device mapping\.
 
 ------
 
@@ -289,7 +348,8 @@ New-EC2Instance -ImageId ami-0abcdef1234567890 -InstanceType m5.large -Hibernati
 Use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command and specify the `--filters "Name=hibernation-options.configured,Values=true"` parameter to filter instances that are enabled for hibernation\.
 
 ```
-aws ec2 describe-instances --filters "Name=hibernation-options.configured,Values=true"
+aws ec2 describe-instances \
+    --filters "Name=hibernation-options.configured,Values=true"
 ```
 
 The following field in the output indicates that the instance is enabled for hibernation\.
@@ -307,7 +367,8 @@ The following field in the output indicates that the instance is enabled for hib
 Use the [Get\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html) command and specify the `-Filter @{ Name="hibernation-options.configured"; Value="true"}` parameter to filter instances that are enabled for hibernation\.
 
 ```
-Get-EC2Instance -Filter @{ Name="hibernation-options.configured"; Value="true"}
+Get-EC2Instance `
+    -Filter @{ Name="hibernation-options.configured"; Value="true"}
 ```
 
 The output lists the EC2 instances that are enabled for hibernation\. 
@@ -376,7 +437,9 @@ You can hibernate an instance if the instance is [enabled for hibernation](#enab
 Use the [stop\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) command and specify the `--hibernate` parameter\.
 
 ```
-aws ec2 stop-instances --instance-ids i-1234567890abcdef0 --hibernate
+aws ec2 stop-instances \
+    --instance-ids i-1234567890abcdef0 \
+    --hibernate
 ```
 
 ------
@@ -386,7 +449,9 @@ aws ec2 stop-instances --instance-ids i-1234567890abcdef0 --hibernate
 Use the [Stop\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Stop-EC2Instance.html) command and specify the `-Hibernate $true` parameter\.
 
 ```
-Stop-EC2Instance -InstanceId i-1234567890abcdef0 -Hibernate $true
+Stop-EC2Instance `
+    -InstanceId i-1234567890abcdef0 `
+    -Hibernate $true
 ```
 
 ------
@@ -411,7 +476,8 @@ Stop-EC2Instance -InstanceId i-1234567890abcdef0 -Hibernate $true
 Use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command and specify the `state-reason-code` filter to see the instances on which hibernation was initiated\.
 
 ```
-aws ec2 describe-instances --filters "Name=state-reason-code,Values=Client.UserInitiatedHibernate"
+aws ec2 describe-instances \
+    --filters "Name=state-reason-code,Values=Client.UserInitiatedHibernate"
 ```
 
 The following field in the output indicates that hibernation was initiated on the instance\.
@@ -429,7 +495,8 @@ The following field in the output indicates that hibernation was initiated on th
 Use the [Get\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html) command and specify the `state-reason-code` filter to see the instances on which hibernation was initiated\.
 
 ```
-Get-EC2Instance -Filter @{Name="state-reason-code";Value="Client.UserInitiatedHibernate"}
+Get-EC2Instance `
+    -Filter @{Name="state-reason-code";Value="Client.UserInitiatedHibernate"}
 ```
 
 The output lists the EC2 instances on which hibernation was initiated\. 
@@ -458,7 +525,8 @@ Start a hibernated instance by starting it in the same way that you would start 
 Use the [start\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/start-instances.html) command\.
 
 ```
-aws ec2 start-instances --instance-ids i-1234567890abcdef0
+aws ec2 start-instances \
+    --instance-ids i-1234567890abcdef0
 ```
 
 ------
@@ -468,7 +536,8 @@ aws ec2 start-instances --instance-ids i-1234567890abcdef0
 Use the [Start\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Start-EC2Instance.html) command\.
 
 ```
-Start-EC2Instance -InstanceId i-1234567890abcdef0
+Start-EC2Instance `
+    -InstanceId i-1234567890abcdef0
 ```
 
 ------

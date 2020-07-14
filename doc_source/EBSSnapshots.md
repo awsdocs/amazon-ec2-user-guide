@@ -35,7 +35,7 @@ In the diagram below, Volume 1 is shown at three points in time\. A snapshot is 
 + In State 3, 2 GiB of data have been added to the volume, for a total of 12 GiB\. Snap C needs to copy the 2 GiB that were added after Snap B was taken\. As shown by the dashed arrows, Snap C also references 4 GiB of data stored in Snap B, and 6 GiB of data stored in Snap A\. 
 + The total storage required for the three snapshots is 16 GiB\.
 
- **Relations among Multiple Snapshots of a Volume** 
+ **Relations among multiple snapshots of a volume** 
 
 ![\[Snapshots capturing an initial volume state and two subsequent states after data has been changed.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/snapshot_1a.png)
 

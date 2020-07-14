@@ -40,6 +40,10 @@ You can use one of the following commands to view volume attributes\. For more i
 + [describe\-volumes](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-volumes.html) \(AWS CLI\)
 + [Get\-EC2Volume](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Volume.html) \(AWS Tools for Windows PowerShell\)
 
+## View volume metrics<a name="ebs-view-volume-metrics"></a>
+
+You can get additional information about your EBS volumes from Amazon CloudWatch\. For more information, see [Amazon CloudWatch metrics for Amazon EBS](using_cloudwatch_ebs.md)\.
+
 ## Viewing free disk space<a name="ebs-view-free-disk-space"></a>
 
 You can get additional information about your EBS volumes, such as how much disk space is available, from the Linux operating system on the instance\. For example, use the following command:

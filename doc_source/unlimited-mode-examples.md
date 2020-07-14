@@ -8,7 +8,7 @@ The following examples explain credit use for instances that are configured as `
 
 ## Example 1: Explaining credit use with T3 Unlimited<a name="t3_unlimited_example"></a>
 
-In this example, you see the CPU utilization of a `t3.nano` instance launched as `unlimited`, and how it spends *earned* and *surplus* credits to sustain CPU performance\.
+In this example, you see the CPU utilization of a `t3.nano` instance launched as `unlimited`, and how it spends *earned* and *surplus* credits to sustain CPU utilization\.
 
 A `t3.nano` instance earns 144 CPU credits over a rolling 24\-hour period, which it can redeem for 144 minutes of vCPU use\. When it depletes its CPU credit balance \(represented by the CloudWatch metric `CPUCreditBalance`\), it can spend *surplus* CPU credits—that it has *not yet earned*—to burst for as long as it needs\. Because a `t3.nano` instance earns a maximum of 144 credits in a 24\-hour period, it can spend surplus credits up to that maximum without being charged immediately\. If it spends more than 144 CPU credits, it is charged for the difference at the end of the hour\.
 
@@ -22,7 +22,7 @@ The intent of the example, illustrated by the following graph, is to show how an
 
 **P4** – For the next 12 hours, CPU utilization decreases to 2\.5% \(below the baseline\), which requires a spend of 36 credits\. In the same time, the instance earns 72 credits\. The instance earns more credits than it spends, and the `CPUCreditBalance` value increases to 122 credits\.
 
-**P5** – For the next 5 hours, the instance bursts at 100% CPU utilization, and spends a total of 570 credits to sustain the burst\. About an hour into this period, the instance depletes its entire `CPUCreditBalance` of 122 credits, and starts to spend surplus credits to sustain the high CPU performance, totaling 448 surplus credits in this period \(570\-122=448\)\. When the `CPUSurplusCreditBalance` value reaches 144 CPU credits \(the maximum a `t3.nano` instance can earn in a 24\-hour period\), any surplus credits spent thereafter cannot be offset by earned credits\. The surplus credits spent thereafter amounts to 304 credits \(448\-144=304\), which results in a small additional charge at the end of the hour for 304 credits\.
+**P5** – For the next 5 hours, the instance bursts at 100% CPU utilization, and spends a total of 570 credits to sustain the burst\. About an hour into this period, the instance depletes its entire `CPUCreditBalance` of 122 credits, and starts to spend surplus credits to sustain the high CPU utilization, totaling 448 surplus credits in this period \(570\-122=448\)\. When the `CPUSurplusCreditBalance` value reaches 144 CPU credits \(the maximum a `t3.nano` instance can earn in a 24\-hour period\), any surplus credits spent thereafter cannot be offset by earned credits\. The surplus credits spent thereafter amounts to 304 credits \(448\-144=304\), which results in a small additional charge at the end of the hour for 304 credits\.
 
 **P6** – For the next 13 hours, CPU utilization is at 5% \(the baseline\)\. The instance earns as many credits as it spends, with no excess to pay down the `CPUSurplusCreditBalance`\. The `CPUSurplusCreditBalance` value remains at 144 credits\.
 
@@ -32,7 +32,7 @@ The intent of the example, illustrated by the following graph, is to show how an
 
 ## Example 2: Explaining credit use with T2 Unlimited<a name="t2_unlimited_example"></a>
 
-In this example, you see the CPU utilization of a `t2.nano` instance launched as `unlimited`, and how it spends *earned* and *surplus* credits to sustain CPU performance\.
+In this example, you see the CPU utilization of a `t2.nano` instance launched as `unlimited`, and how it spends *earned* and *surplus* credits to sustain CPU utilization\.
 
 A `t2.nano` instance earns 72 CPU credits over a rolling 24\-hour period, which it can redeem for 72 minutes of vCPU use\. When it depletes its CPU credit balance \(represented by the CloudWatch metric `CPUCreditBalance`\), it can spend *surplus* CPU credits—that it has *not yet earned*—to burst for as long as it needs\. Because a `t2.nano` instance earns a maximum of 72 credits in a 24\-hour period, it can spend surplus credits up to that maximum without being charged immediately\. If it spends more than 72 CPU credits, it is charged for the difference at the end of the hour\.
 
@@ -42,7 +42,7 @@ The intent of the example, illustrated by the following graph, is to show how an
 
 **2** – At 23:40, as CPU utilization increases, the instance spends CPU credits and the `CPUCreditBalance` value decreases\.
 
-**3** – At around 00:47, the instance depletes its entire `CPUCreditBalance`, and starts to spend surplus credits to sustain high CPU performance\.
+**3** – At around 00:47, the instance depletes its entire `CPUCreditBalance`, and starts to spend surplus credits to sustain high CPU utilization\.
 
 **4** – Surplus credits are spent until 01:55, when the `CPUSurplusCreditBalance` value reaches 72 CPU credits\. This is equal to the maximum a `t2.nano` instance can earn in a 24\-hour period\. Any surplus credits spent thereafter cannot be offset by earned credits within the 24\-hour period, which results in a small additional charge at the end of the hour\.
 

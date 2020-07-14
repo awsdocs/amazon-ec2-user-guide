@@ -15,7 +15,7 @@ Spot Instances are a cost\-effective choice if you can be flexible about when yo
 Before you get started with Spot Instances, you should be familiar with the following concepts:
 + *Spot Instance pool* – A set of unused EC2 instances with the same instance type \(for example, `m5.large`\), operating system, Availability Zone, and network platform\.
 + *Spot price* – The current price of a Spot Instance per hour\.
-+ *Spot Instance request* – Provides the maximum price per hour that you are willing to pay for a Spot Instance\. If you don't specify a maximum price, the default maximum price is the On\-Demand price\. When the maximum price per hour for your request exceeds the Spot price, Amazon EC2 fulfills your request if capacity is available\. A Spot Instance request is either *one\-time* or *persistent*\. Amazon EC2 automatically resubmits a persistent Spot request after the Spot Instance associated with the request is terminated\. Your Spot Instance request can optionally specify a duration for the Spot Instances\.
++ *Spot Instance request* – Requests a Spot Instance\. The request provides the maximum price per hour that you are willing to pay for a Spot Instance\. If you don't specify a maximum price, the default maximum price is the On\-Demand price\. When the maximum price per hour for your request exceeds the Spot price, Amazon EC2 fulfills your request if capacity is available\. A Spot Instance request is either *one\-time* or *persistent*\. Amazon EC2 automatically resubmits a persistent Spot Instance request after the Spot Instance associated with the request is terminated\. Your Spot Instance request can optionally specify a duration for the Spot Instances\.
 + *Spot Fleet* – A set of Spot Instances that is launched based on criteria that you specify\. The Spot Fleet selects the Spot Instance pools that meet your needs and launches Spot Instances to meet the target capacity for the fleet\. By default, Spot Fleets are set to *maintain* target capacity by launching replacement instances after Spot Instances in the fleet are terminated\. You can submit a Spot Fleet as a one\-time *request*, which does not persist after the instances have been terminated\. You can include On\-Demand Instance requests in a Spot Fleet request\.
 + *Spot Instance interruption* – Amazon EC2 terminates, stops, or hibernates your Spot Instance when the Spot price exceeds the maximum price for your request or capacity is no longer available\. Amazon EC2 provides a Spot Instance interruption notice, which gives the instance a two\-minute warning before it is interrupted\.
 
@@ -33,7 +33,7 @@ The following table lists the key differences between Spot Instances and On\-Dem
 
 ### Strategies for using Spot Instances<a name="spot-strategy"></a>
 
-One strategy to maintain a minimum level of guaranteed compute resources for your applications is to launch a core group of On\-Demand Instances, and supplement them with Spot Instances when the opportunity arises\.
+One strategy is to maintain a minimum level of guaranteed compute resources for your applications by launching a core group of On\-Demand Instances, and supplementing them with Spot Instances when the opportunity arises\.
 
 ![\[Compare On-Demand and Spot Instances\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/spot_introduction.png)
 
@@ -45,7 +45,7 @@ The first thing you need to do is get set up to use Amazon EC2\. It can also be 
 
 **Get up and running**
 + [Setting up with Amazon EC2](get-set-up-for-amazon-ec2.md)
-+ [Getting started with Amazon EC2 Linux instances](EC2_GetStarted.md)
++ [Tutorial: Getting started with Amazon EC2 Linux instances](EC2_GetStarted.md)
 
 **Spot basics**
 + [How Spot Instances work](how-spot-instances-work.md) 

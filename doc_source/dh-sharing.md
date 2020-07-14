@@ -68,13 +68,36 @@ If you are part of an organization in AWS Organizations and sharing within your 
 **Note**  
 After you share a Dedicated Host, it could take a few minutes for consumers to have access to it\.
 
-You can share a Dedicated Host that you own by using the AWS RAM console or the AWS CLI\.
+You can share a Dedicated Host that you own by using one of the following methods\.
+
+------
+#### [ Amazon EC2 console ]
+
+**To share a Dedicated Host that you own using the Amazon EC2 console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Dedicated Hosts**\.
+
+1. Choose the Dedicated Host to share and choose **Actions**, **Share host**\.
+
+1. Select the resource share to which to add the Dedicated Host and choose **Share host**\.
+
+   It could take a few minutes for consumers to get access to the shared host\.
+
+------
+#### [ AWS RAM console ]
 
 **To share a Dedicated Host that you own using the AWS RAM console**  
 See [Creating a Resource Share](https://docs.aws.amazon.com/ram/latest/userguide/working-with-sharing.html#working-with-sharing-create) in the *AWS RAM User Guide*\.
 
+------
+#### [ AWS CLI ]
+
 **To share a Dedicated Host that you own using the AWS CLI**  
 Use the [create\-resource\-share](https://docs.aws.amazon.com/cli/latest/reference/ram/create-resource-share.html) command\.
+
+------
 
 ## Unsharing a shared Dedicated Host<a name="unsharing-dh"></a>
 
@@ -82,17 +105,41 @@ The Dedicated Host owner can unshare a shared Dedicated Host at any time\. When 
 + Consumers with whom the Dedicated Host was shared can no longer launch new instances onto it\.
 + Instances owned by consumers that were running on the Dedicated Host at the time of unsharing continue to run but are scheduled for [ retirement](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-instances-status-check_sched.html#schedevents_actions_retire)\. Consumers receive retirement notifications for the instances and they have two weeks to take action on the notifications\. However, if the Dedicated Host is reshared with the consumer within the retirement notice period, the instance retirements are cancelled\.
 
-To unshare a shared Dedicated Host that you own, you must remove it from the resource share\. You can do this by using the AWS RAM console or the AWS CLI\.
+To unshare a shared Dedicated Host that you own, you must remove it from the resource share\. You can do this by using one of the following methods\.
+
+------
+#### [ Amazon EC2 console ]
+
+**To unshare a shared Dedicated Host that you own using the Amazon EC2 console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Dedicated Hosts**\.
+
+1. Choose the Dedicated Host to unshare and choose the **Sharing** tab\.
+
+1. The **Sharing** tab lists the resource shares to which the Dedicated Host has been added\. Select the resource share from which to remove the Dedicated Host and choose **Remove host from resource share**\.
+
+------
+#### [ AWS RAM console ]
 
 **To unshare a shared Dedicated Host that you own using the AWS RAM console**  
 See [Updating a Resource Share](https://docs.aws.amazon.com/ram/latest/userguide/working-with-sharing.html#working-with-sharing-update) in the *AWS RAM User Guide*\.
 
+------
+#### [ Command line ]
+
 **To unshare a shared Dedicated Host that you own using the AWS CLI**  
 Use the [ disassociate\-resource\-share](https://docs.aws.amazon.com/cli/latest/reference/ram/disassociate-resource-share.html) command\.
 
+------
+
 ## Identifying a shared Dedicated Host<a name="identifying-shared-dh"></a>
 
-Owners and consumers can identify shared Dedicated Hosts using the Amazon EC2 console and AWS CLI\.
+Owners and consumers can identify shared Dedicated Hosts using one of the following methods\.
+
+------
+#### [ Amazon EC2 console ]
 
 **To identify a shared Dedicated Host using the Amazon EC2 console**
 
@@ -100,12 +147,20 @@ Owners and consumers can identify shared Dedicated Hosts using the Amazon EC2 co
 
 1. In the navigation pane, choose **Dedicated Hosts**\. The screen lists Dedicated Hosts that you own and Dedicated Hosts that are shared with you\. The **Owner** column shows the AWS account ID of the Dedicated Host owner\. 
 
+------
+#### [ Command line ]
+
 **To identify a shared Dedicated Host using the AWS CLI**  
 Use the [ describe\-hosts](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-hosts.html) command\. The command returns the Dedicated Hosts that you own and Dedicated Hosts that are shared with you\.
 
+------
+
 ## Viewing instances running on a shared Dedicated Host<a name="shared-dh-usage"></a>
 
-Owners and consumers can view the instances running on a shared Dedicated Host at any time using the Amazon EC2 console and the AWS CLI\.
+Owners and consumers can view the instances running on a shared Dedicated Host at any time using one of the following methods\.
+
+------
+#### [ Amazon EC2 console ]
 
 **To view the instances running on a shared Dedicated Host using the Amazon EC2 console**
 
@@ -115,8 +170,13 @@ Owners and consumers can view the instances running on a shared Dedicated Host a
 
 1. Select the Dedicated Host for which to view the instances and choose **Instances**\. The tab lists the instances that are running on the host\. Owners see all of the instances running on the host, including instances launched by consumers\. Consumers only see running instances that they launched onto the host\. The **Owner** column shows the AWS account ID of the account that launched the instance\.
 
+------
+#### [ Command line ]
+
 **To view the instances running on a shared Dedicated Host using the AWS CLI**  
 Use the [describe\-hosts](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-hosts.html) command\. The command returns the instances running on each Dedicated Host\. Owners see all of the instances running on the host\. Consumers only see running instances that they launched on the shared hosts\. `InstanceOwnerId` shows the AWS account ID of the instance owner\.
+
+------
 
 ## Shared Dedicated Host permissions<a name="shared-dh-perms"></a>
 

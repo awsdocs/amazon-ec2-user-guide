@@ -65,7 +65,7 @@ The AMIs that AWS community members have made available for others to use\. To f
 
 On the **Choose an Instance Type** page, select the hardware configuration and size of the instance to launch\. Larger instance types have more CPU and memory\. For more information, see [Instance types](instance-types.md)\.
 
-To remain eligible for the free tier, choose the **t2\.micro** instance type\. For more information, see [Burstable performance instances](burstable-performance-instances.md)\.
+To remain eligible for the free tier, choose the **t2\.micro** instance type \(or the **t3\.micro** instance type in Regions where **t2\.micro** is unavailable\)\. For more information, see [Burstable performance instances](burstable-performance-instances.md)\.
 
 By default, the wizard displays current generation instance types, and selects the first available instance type based on the AMI that you selected\. To view previous generation instance types, choose **All generations** from the filter list\.
 
@@ -131,7 +131,7 @@ The AMI you selected includes one or more volumes of storage, including the root
 
 ## Step 5: Add Tags<a name="step-5-add-tags"></a>
 
-On the **Add Tags** page, specify [tags](Using_Tags.md) by providing key and value combinations\. You can tag the instance, the volumes, or both\. For Spot Instances, you can tag the Spot Instance request only\. Choose **Add another tag** to add more than one tag to your resources\. Choose **Next: Configure Security Group** when you are done\. 
+On the **Add Tags** page, specify [tags](Using_Tags.md) by providing key and value combinations\. You can tag the instance, the volumes, or both\. For Spot Instances, you can tag the Spot Instance request only\. Choose **Add another tag** to add more than one tag to your resources\. Choose **Next: Configure Security Group** when you are done\.
 
 ## Step 6: Configure Security Group<a name="step-6-configure-security-group"></a>
 
@@ -152,10 +152,10 @@ When you are ready, choose **Launch**\.
 
 In the **Select an existing key pair or create a new key pair** dialog box, you can choose an existing key pair, or create a new one\. For example, choose **Choose an existing key pair**, then select the key pair you created when getting set up\. For more information, see [Amazon EC2 key pairs and Linux instances](ec2-key-pairs.md)\.
 
-To launch your instance, select the acknowledgment check box, then choose **Launch Instances**\.
-
 **Important**  
 If you choose the **Proceed without key pair** option, you won't be able to connect to the instance unless you choose an AMI that is configured to allow users another way to log in\.
+
+To launch your instance, select the acknowledgment check box, then choose **Launch Instances**\.
 
 \(Optional\) You can create a status check alarm for the instance \(additional fees may apply\)\. \(If you're not sure, you can always add one later\.\) On the confirmation screen, choose **Create status check alarms** and follow the directions\. For more information, see [Creating and editing status check alarms](monitoring-system-instance-status-check.md#creating_status_check_alarms)\.
 

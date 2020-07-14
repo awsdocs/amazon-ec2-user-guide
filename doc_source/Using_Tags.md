@@ -1,6 +1,6 @@
 # Tagging your Amazon EC2 resources<a name="Using_Tags"></a>
 
-To help you manage your instances, images, and other Amazon EC2 resources, you can optionally assign your own metadata to each resource in the form of *tags*\. This topic describes tags and shows you how to create them\.
+To help you manage your instances, images, and other Amazon EC2 resources, you can assign your own metadata to each resource in the form of *tags*\. Tags enable you to categorize your AWS resources in different ways, for example, by purpose, owner, or environment\. This is useful when you have many resources of the same type—you can quickly identify a specific resource based on the tags that you've assigned to it\. This topic describes tags and shows you how to create them\.
 
 **Warning**  
 Tag keys and their values are returned by many different API calls\. Denying access to `DescribeTags` doesn’t automatically deny access to tags returned by other APIs\. As a best practice, we recommend that you do not include sensitive data in your tags\.
@@ -17,7 +17,7 @@ Tag keys and their values are returned by many different API calls\. Denying acc
 
 A tag is a label that you assign to an AWS resource\. Each tag consists of a *key* and an optional *value*, both of which you define\.
 
-Tags enable you to categorize your AWS resources in different ways, for example, by purpose, owner, or environment\. This is useful when you have many resources of the same type—you can quickly identify a specific resource based on the tags you've assigned to it\. For example, you could define a set of tags for your account's Amazon EC2 instances that helps you track each instance's owner and stack level\.
+Tags enable you to categorize your AWS resources in different ways, for example, by purpose, owner, or environment\. For example, you could define a set of tags for your account's Amazon EC2 instances that helps you track each instance's owner and stack level\.
 
 The following diagram illustrates how tagging works\. In this example, you've assigned two tags to each of your instances—one tag with the key `Owner` and another with the key `Stack`\. Each tag also has an associated value\.
 
@@ -54,38 +54,39 @@ The following table describes the Amazon EC2 resources that can be tagged, and t
 |  Client VPN route  |  No  |  No  | 
 |  Customer gateway  |  Yes  | No | 
 |  Dedicated Host  |  Yes  |  Yes  | 
-|  Dedicated Host Reservation  |  Yes  | No | 
-|  DHCP option  |  Yes  | No | 
+|  Dedicated Host Reservation  |  Yes  | Yes | 
+|  DHCP option  |  Yes  | Yes | 
 |  EBS snapshot  |  Yes  | Yes | 
 |  EBS volume  |  Yes  | Yes | 
 |  EC2 Fleet  |  Yes  |  Yes  | 
-|  Egress\-only internet gateway  |  Yes  | No | 
+|  Egress\-only internet gateway  |  Yes  | Yes | 
 |  Elastic IP address  |  Yes  | No | 
 |  Elastic Graphics accelerator  |  Yes  | No | 
 |  Instance  |  Yes  | Yes | 
 |  Instance store volume  |  N/A  | N/A | 
-|  Internet gateway  |  Yes  | No | 
+|  Internet gateway  |  Yes  | Yes | 
 |  IP address pool \(BYOIP\)  |  Yes  |  Yes  | 
 |  Key pair  |  Yes  | Yes | 
 |  Launch template  |  Yes  |  Yes  | 
 |  Launch template version  |  No  |  No  | 
-|   Local gateway  |  Yes  |  No  | 
+|  Local gateway  |  Yes  |  No  | 
 |  Local gateway route table  |  Yes  |  No  | 
 |  Local gateway virtual interface  |  Yes  |  No  | 
 |  Local gateway virtual interface group  |  Yes  |  No  | 
 |  Local gateway route table VPC association  |  Yes  |  No  | 
 |  Local gateway route table virtual interface group association  |  Yes  |  No  | 
 |  NAT gateway  |  Yes  | Yes | 
-|  Network ACL  |  Yes  | No | 
-|  Network interface  |  Yes  | No | 
+|  Network ACL  |  Yes  | Yes | 
+|  Network interface  |  Yes  | Yes | 
 |  Placement group  |  Yes  | Yes | 
+|  Prefix list  |  Yes  |  Yes  | 
 |  Reserved Instance  |  Yes  | No | 
 |  Reserved Instance listing  |  No  | No | 
 | Route table |  Yes  | No | 
 |  Spot Fleet request  |  Yes  | Yes | 
-|  Spot Instance request  |  Yes  | No | 
-|  Security group  |  Yes  | No | 
-|  Subnet  |  Yes  | No | 
+|  Spot Instance request  |  Yes  | Yes | 
+|  Security group  |  Yes  | Yes | 
+|  Subnet  |  Yes  | Yes | 
 | Traffic Mirror filter | Yes | Yes | 
 | Traffic Mirror session | Yes | Yes | 
 | Traffic Mirror target | Yes | Yes | 
@@ -93,7 +94,7 @@ The following table describes the Amazon EC2 resources that can be tagged, and t
 | Transit gateway route table | Yes | Yes | 
 | Transit gateway VPC attachment | Yes | Yes | 
 | Virtual private gateway | Yes | No | 
-| VPC | Yes | No | 
+| VPC | Yes | Yes | 
 | VPC endpoint | Yes | Yes | 
 | VPC endpoint service | Yes | Yes | 
 | VPC endpoint service configuration | Yes | Yes | 

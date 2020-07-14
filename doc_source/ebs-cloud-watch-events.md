@@ -195,7 +195,7 @@ Amazon EBS sends events to CloudWatch Events when the following volume events oc
 The `createSnapshot` event is sent to your AWS account when an action to create a snapshot completes\. However it is not saved, logged, or archived\. This event can have a result of either `succeeded` or `failed`\.
 
 **Event data**  
-The listing below is an example of a JSON object emitted by EBS for a successful `createSnapshot` event\. In the `detail` section, the `source` field contains the ARN of the source volume\. The `StartTime` and `EndTime` fields indicate when creation of the snapshot started and completed\.
+The listing below is an example of a JSON object emitted by EBS for a successful `createSnapshot` event\. In the `detail` section, the `source` field contains the ARN of the source volume\. The `startTime` and `endTime` fields indicate when creation of the snapshot started and completed\.
 
 ```
 {
@@ -216,8 +216,8 @@ The listing below is an example of a JSON object emitted by EBS for a successful
     "request-id": "",
     "snapshot_id": "arn:aws:ec2:us-west-2::snapshot/snap-01234567",
     "source": "arn:aws:ec2:us-west-2::volume/vol-01234567",
-    "StartTime": "yyyy-mm-ddThh:mm:ssZ",
-    "EndTime": "yyyy-mm-ddThh:mm:ssZ"  }
+    "startTime": "yyyy-mm-ddThh:mm:ssZ",
+    "endTime": "yyyy-mm-ddThh:mm:ssZ"  }
 }
 ```
 
@@ -226,7 +226,7 @@ The listing below is an example of a JSON object emitted by EBS for a successful
 The `createSnapshots` event is sent to your AWS account when an action to create a multi\-volume snapshot completes\. This event can have a result of either `succeeded` or `failed`\.
 
 **Event data**  
-The listing below is an example of a JSON object emitted by EBS for a successful `createSnapshots` event\. In the `detail` section, the `source` field contains the ARNs of the source volumes of the multi\-volume snapshot set\. The `StartTime` and `EndTime` fields indicate when creation of the snapshot started and completed\.
+The listing below is an example of a JSON object emitted by EBS for a successful `createSnapshots` event\. In the `detail` section, the `source` field contains the ARNs of the source volumes of the multi\-volume snapshot set\. The `startTime` and `endTime` fields indicate when creation of the snapshot started and completed\.
 
 ```
 {
@@ -264,14 +264,14 @@ The listing below is an example of a JSON object emitted by EBS for a successful
 }
 ```
 
-The listing below is an example of a JSON object emitted by EBS after a failed `createSnapshots` event\. The cause for the failure was one or more snapshots failed to complete\. The values of `snapshot_id` are the ARNs of the failed snapshots\. `StartTime` and `EndTime` represent when the create\-snapshots action started and ended\. 
+The listing below is an example of a JSON object emitted by EBS after a failed `createSnapshots` event\. The cause for the failure was one or more snapshots failed to complete\. The values of `snapshot_id` are the ARNs of the failed snapshots\. `startTime` and `endTime` represent when the create\-snapshots action started and ended\. 
 
 ```
 {
   "version": "0",
   "id": "01234567-0123-0123-0123-012345678901",
   "detail-type": "EBS Multi-Volume Snapshots Completion Status",
- "source": "aws.ec2",
+  "source": "aws.ec2",
   "account": "012345678901",
   "time": "yyyy-mm-ddThh:mm:ssZ",
   "region": "us-east-1",
@@ -307,7 +307,7 @@ The listing below is an example of a JSON object emitted by EBS after a failed `
 The `copySnapshot` event is sent to your AWS account when an action to copy a snapshot completes\. However it is not saved, logged, or archived\. This event can have a result of either `succeeded` or `failed`\.
 
 **Event data**  
-The listing below is an example of a JSON object emitted by EBS after a successful `copySnapshot` event\. The value of `snapshot_id` is the ARN of the newly created snapshot\. In the `detail` section, the value of `source` is the ARN of the source snapshot\. `StartTime` and `EndTime` represent when the copy\-snapshot action started and ended\.
+The listing below is an example of a JSON object emitted by EBS after a successful `copySnapshot` event\. The value of `snapshot_id` is the ARN of the newly created snapshot\. In the `detail` section, the value of `source` is the ARN of the source snapshot\. `startTime` and `endTime` represent when the copy\-snapshot action started and ended\.
 
 ```
 {
@@ -328,14 +328,14 @@ The listing below is an example of a JSON object emitted by EBS after a successf
     "request-id": "",
     "snapshot_id": "arn:aws:ec2:us-west-2::snapshot/snap-01234567",
     "source": "arn:aws:ec2:eu-west-1::snapshot/snap-76543210",
-    "StartTime": "yyyy-mm-ddThh:mm:ssZ",
-    "EndTime": "yyyy-mm-ddThh:mm:ssZ",
+    "startTime": "yyyy-mm-ddThh:mm:ssZ",
+    "endTime": "yyyy-mm-ddThh:mm:ssZ",
     "Incremental": "True"
   }
 }
 ```
 
-The listing below is an example of a JSON object emitted by EBS after a failed `copySnapshot` event\. The cause for the failure was an invalid source snapshot ID\. The value of `snapshot_id` is the ARN of the failed snapshot\. In the `detail` section, the value of `source` is the ARN of the source snapshot\. `StartTime` and `EndTime` represent when the copy\-snapshot action started and ended\. 
+The listing below is an example of a JSON object emitted by EBS after a failed `copySnapshot` event\. The cause for the failure was an invalid source snapshot ID\. The value of `snapshot_id` is the ARN of the failed snapshot\. In the `detail` section, the value of `source` is the ARN of the source snapshot\. `startTime` and `endTime` represent when the copy\-snapshot action started and ended\. 
 
 ```
 {
@@ -356,8 +356,8 @@ The listing below is an example of a JSON object emitted by EBS after a failed `
     "request-id": "",
     "snapshot_id": "arn:aws:ec2:us-west-2::snapshot/snap-01234567",
     "source": "arn:aws:ec2:eu-west-1::snapshot/snap-76543210",
-    "StartTime": "yyyy-mm-ddThh:mm:ssZ",
-    "EndTime": "yyyy-mm-ddThh:mm:ssZ"
+    "startTime": "yyyy-mm-ddThh:mm:ssZ",
+    "endTime": "yyyy-mm-ddThh:mm:ssZ"
   }
 }
 ```
@@ -367,7 +367,7 @@ The listing below is an example of a JSON object emitted by EBS after a failed `
 The `shareSnapshot` event is sent to your AWS account when another account shares a snapshot with it\. However it is not saved, logged, or archived\. The result is always `succeeded`\.
 
 **Event data**  
-The following is an example of a JSON object emitted by EBS after a completed `shareSnapshot` event\. In the `detail` section, the value of `source` is the AWS account number of the user that shared the snapshot with you\. `StartTime` and `EndTime` represent when the share\-snapshot action started and ended\. The `shareSnapshot` event is emitted only when a private snapshot is shared with another user\. Sharing a public snapshot does not trigger the event\.
+The following is an example of a JSON object emitted by EBS after a completed `shareSnapshot` event\. In the `detail` section, the value of `source` is the AWS account number of the user that shared the snapshot with you\. `startTime` and `endTime` represent when the share\-snapshot action started and ended\. The `shareSnapshot` event is emitted only when a private snapshot is shared with another user\. Sharing a public snapshot does not trigger the event\.
 
 ```
 {
@@ -388,8 +388,8 @@ The following is an example of a JSON object emitted by EBS after a completed `s
     "request-id": "",
     "snapshot_id": "arn:aws:ec2:us-west-2::snapshot/snap-01234567",
     "source": 012345678901,
-    "StartTime": "yyyy-mm-ddThh:mm:ssZ",
-    "EndTime": "yyyy-mm-ddThh:mm:ssZ"
+    "startTime": "yyyy-mm-ddThh:mm:ssZ",
+    "endTime": "yyyy-mm-ddThh:mm:ssZ"
   }
 }
 ```

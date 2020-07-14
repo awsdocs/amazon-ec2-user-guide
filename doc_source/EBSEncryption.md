@@ -1,6 +1,6 @@
 # Amazon EBS encryption<a name="EBSEncryption"></a>
 
-Amazon EBS encryption offers a straight\-forward encryption solution for your EBS resources that doesn't require you to build, maintain, and secure your own key management infrastructure\. It uses AWS Key Management Service \(AWS KMS\) customer master keys \(CMK\) when creating encrypted volumes and snapshots\.
+Use Amazon EBS encryption as a straight\-forward encryption solution for your EBS resources associated with your EC2 instances\. With Amazon EBS encryption, you aren't required to build, maintain, and secure your own key management infrastructure\. Amazon EBS encryption uses AWS Key Management Service \(AWS KMS\) customer master keys \(CMK\) when creating encrypted volumes and snapshots\.
 
 Encryption operations occur on the servers that host EC2 instances, ensuring the security of both data\-at\-rest and data\-in\-transit between an instance and its attached EBS storage\.
 
@@ -21,15 +21,15 @@ You can encrypt both the boot and data volumes of an EC2 instance\. When you cre
 + All snapshots created from the volume
 + All volumes created from those snapshots
 
-EBS encrypts your volume with a data key using the industry\-standard AES\-256 algorithm\. Your data key is stored on\-disk with your encrypted data, but not before EBS encrypts it with your CMK\. Your data key never appears on disk in plaintext\. The same data key is shared by snapshots of the volume and any subsequent volumes created from those snapshots\. For more information, see [Data Keys](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#data-keys) in the *AWS Key Management Service Developer Guide*\.
+EBS encrypts your volume with a data key using the industry\-standard AES\-256 algorithm\. Your data key is stored on\-disk with your encrypted data, but not before EBS encrypts it with your CMK\. Your data key never appears on disk in plaintext\. The same data key is shared by snapshots of the volume and any subsequent volumes created from those snapshots\. For more information, see [Data keys](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#data-keys) in the *AWS Key Management Service Developer Guide*\.
 
 Amazon EBS works with AWS KMS to encrypt and decrypt your EBS volumes as follows:
 
 1. Amazon EBS sends a [CreateGrant](https://docs.aws.amazon.com/kms/latest/APIReference/API_CreateGrant.html) request to AWS KMS, so that it can decrypt the data key\.
 
-1. Amazon EBS sends a [GenerateDataKeyWithoutPlaintext](https://docs.aws.amazon.com/kms/latest/APIReference/API_GenerateDataKeyWithoutPlaintext.html) request to AWS KMS, specifying the CMK to use to encrypt the volume\.
+1. Amazon EBS sends a [GenerateDataKeyWithoutPlaintext](https://docs.aws.amazon.com/kms/latest/APIReference/API_GenerateDataKeyWithoutPlaintext.html) request to AWS KMS, specifying the CMK that you chose for volume encryption\.
 
-1. AWS KMS generates a new data key, encrypts it under the specified CMK, and sends the encrypted data key to Amazon EBS to be stored with the volume metadata\.
+1. AWS KMS generates a new data key, encrypts it under the CMK that you chose for volume encryption, and sends the encrypted data key to Amazon EBS to be stored with the volume metadata\.
 
 1. When you attach an encrypted volume to an instance, Amazon EC2 sends a [Decrypt](https://docs.aws.amazon.com/kms/latest/APIReference/API_Decrypt.html) request to AWS KMS, specifying the encrypted data key\.
 
@@ -37,7 +37,7 @@ Amazon EBS works with AWS KMS to encrypt and decrypt your EBS volumes as follows
 
 1. Amazon EC2 uses the plaintext data key in hypervisor memory to encrypt disk I/O to the volume\. The plaintext data key persists in memory as long as the volume is attached to the instance\.
 
-For more information, see [How Amazon Elastic Block Store \(Amazon EBS\) Uses AWS KMS](https://docs.aws.amazon.com/kms/latest/developerguide/services-ebs.html) and [AWS KMS Log File Entries](https://docs.aws.amazon.com/kms/latest/developerguide/ct-ec2two.html) in the *AWS Key Management Service Developer Guide*\.
+For more information, see [How Amazon Elastic Block Store \(Amazon EBS\) uses AWS KMS](https://docs.aws.amazon.com/kms/latest/developerguide/services-ebs.html) and [Amazon EC2 example two](https://docs.aws.amazon.com/kms/latest/developerguide/ct-ec2two.html) in the *AWS Key Management Service Developer Guide*\.
 
 ## Requirements<a name="ebs-encryption-requirements"></a>
 
@@ -87,14 +87,14 @@ To follow the principal of least privilege, do not allow full access to `kms:Cre
 }
 ```
 
-For more information, see [Default Key Policy](https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam) in the *AWS Key Management Service Developer Guide*\.
+For more information, see [Allows access to the AWS account and enables IAM policies](https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam) in the **Default key policy** section in the *AWS Key Management Service Developer Guide*\.
 
 ## Default key for EBS encryption<a name="EBSEncryption_key_mgmt"></a>
 
 Amazon EBS automatically creates a unique AWS managed CMK in each Region where you store AWS resources\. This key has the alias `alias/aws/ebs`\. By default, Amazon EBS uses this key for encryption\. Alternatively, you can specify a symmetric customer managed CMK that you created as the default key for EBS encryption\. Using your own CMK gives you more flexibility, including the ability to create, rotate, and disable keys\. 
 
 **Important**  
-Amazon EBS does not support asymmetric CMKs\. For more information, see [Using Symmetric and Asymmetric Keys](https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html) in the *AWS Key Management Service Developer Guide*\.
+Amazon EBS does not support asymmetric CMKs\. For more information, see [Using symmetric and asymmetric keys](https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html) in the *AWS Key Management Service Developer Guide*\.
 
 **To configure the default key for EBS encryption for a Region**
 
