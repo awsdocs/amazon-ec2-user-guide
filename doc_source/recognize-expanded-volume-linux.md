@@ -16,27 +16,28 @@ For the following tasks, suppose that you have resized the boot volume of an ins
 
 ## Identifying the file system for a volume<a name="identify-linux-file-system"></a>
 
-To verify the file system in use for each volume on your instance, [connect to your instance](AccessingInstances.md) and run the file \-s command\.
+To verify the file system in use for each volume on your instance, [connect to your instance](AccessingInstances.md) and run the df \-hT command\.
 
 **Example: File systems on an instance built on the Nitro System**  
 The following example shows an instance built on the [Nitro System](instance-types.md#ec2-nitro-instances) that has a boot volume with an XFS file system and an additional volume with an XFS file system\.
 
 ```
-[ec2-user ~]$ sudo file -s /dev/nvme?n*
-/dev/nvme0n1:     x86 boot sector ...
-/dev/nvme0n1p1:   SGI XFS filesystem data ...
-/dev/nvme0n1p128: data
-/dev/nvme1n1:     SGI XFS filesystem data ...
+[ec2-user ~]$ df -hT
+Filesystem     Type      Size  Used Avail Use% Mounted on
+/dev/nvme0n1p1 xfs       8.0G  1.6G  6.5G  20% /
+/dev/nvme1n1   xfs       8.0G   33M  8.0G   1% /data
+...
 ```
 
 **Example: File systems on a T2 instance**  
 The following example shows a T2 instance that has a boot volume with an ext4 file system and an additional volume with an XFS file system\.
 
 ```
-[ec2-user ~]$ sudo file -s /dev/xvd*
-/dev/xvda:  DOS/MBR boot sector ..
-/dev/xvda1: Linux rev 1.0 ext4 filesystem data ...
-/dev/xvdf:  SGI XFS filesystem data ...
+[ec2-user ~]$ df -hT
+Filesystem     Type      Size  Used Avail Use% Mounted on
+/dev/xvda1     ext4      8.0G  1.9G  6.2G  24% /
+/dev/xvdf1     xfs       8.0G   45M  8.0G   1% /data
+...
 ```
 
 ## Extending a partition \(if needed\)<a name="extend-linux-volume-partition"></a>
