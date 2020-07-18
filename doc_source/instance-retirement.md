@@ -10,6 +10,11 @@ For more information about types of instance events, see [Scheduled events for y
 
 ## Identifying instances scheduled for retirement<a name="instance-retirement-identify"></a>
 
+**WARNING**
+The instance retirement email contains a very important sentence: 
+"Due to this degradation your instance could already be unreachable."
+Please make sure you check to see if your instance is still reachable and perform a stop/start if it is not reachable. If it is reachable, you may be fine to continue using your instance until the scheduled retirement date, but you should try to remediate at the earliest time you can without impacting your business as it will cut down on the chances of having prolonged/increased impact.
+
 If your instance is scheduled for retirement, you'll receive an email prior to the event with the instance ID and retirement date\. This email is sent to the address that's associated with your account; the same email address that you use to log in to the AWS Management Console\. If you use an email account that you do not check regularly, then you can use the Amazon EC2 console or the command line to determine if any of your instances are scheduled for retirement\. To update the contact information for your account, go to the [Account Settings](https://console.aws.amazon.com/billing/home?#/account) page\.<a name="identify-retiring-instances"></a>
 
 **To identify instances scheduled for retirement using the console**
