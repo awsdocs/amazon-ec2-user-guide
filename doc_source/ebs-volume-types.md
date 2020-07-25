@@ -22,8 +22,8 @@ The following table describes the use cases and performance characteristics for 
 | Volume size | 1 GiB \- 16 TiB  | 4 GiB \- 16 TiB  | 500 GiB \- 16 TiB | 500 GiB \- 16 TiB  | 
 | Max IOPS per volume | 16,000 \(16 KiB I/O\) \* | 64,000 \(16 KiB I/O\) † | 500 \(1 MiB I/O\) | 250 \(1 MiB I/O\) | 
 | Max throughput per volume | 250 MiB/s \* | 1,000 MiB/s † | 500 MiB/s | 250 MiB/s | 
-| Max IOPS per instance †† | 80,000 | 80,000 | 80,000 | 80,000 | 
-| Max throughput per instance †† | 2,375 MB/s | 2,375 MB/s | 2,375 MB/s | 2,375 MB/s | 
+| Max IOPS per instance †† | 160,000 | 160,000 | 160,000 | 160,000 | 
+| Max throughput per instance †† | 4,750 MB/s | 4,750 MB/s | 4,750 MB/s | 4,750 MB/s | 
 | Dominant performance attribute | IOPS | IOPS | MiB/s | MiB/s | 
 
 \* The throughput limit is between 128 MiB/s and 250 MiB/s, depending on the volume size\. Volumes smaller than 170 GiB deliver a maximum throughput of 128 MiB/s\. Volumes larger than 170 GiB but smaller than 334 GiB deliver a maximum throughput of 250 MiB/s if burst credits are available\. Volumes larger than or equal to 334 GiB deliver 250 MiB/s regardless of burst credits\. Older `gp2` volumes might not reach full performance unless you modify the volume\. For more information, see [Amazon EBS Elastic Volumes](ebs-modify-volume.md)\.
