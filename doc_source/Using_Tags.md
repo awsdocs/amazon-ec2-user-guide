@@ -52,7 +52,7 @@ The following table describes the Amazon EC2 resources that can be tagged, and t
 |  Capacity Reservation  |  Yes  |  Yes  | 
 |  Client VPN endpoint  |  Yes  |  Yes  | 
 |  Client VPN route  |  No  |  No  | 
-|  Customer gateway  |  Yes  | No | 
+|  Customer gateway  |  Yes  | Yes | 
 |  Dedicated Host  |  Yes  |  Yes  | 
 |  Dedicated Host Reservation  |  Yes  | Yes | 
 |  DHCP option  |  Yes  | Yes | 
@@ -82,7 +82,7 @@ The following table describes the Amazon EC2 resources that can be tagged, and t
 |  Prefix list  |  Yes  |  Yes  | 
 |  Reserved Instance  |  Yes  | No | 
 |  Reserved Instance listing  |  No  | No | 
-| Route table |  Yes  | No | 
+| Route table |  Yes  | Yes | 
 |  Spot Fleet request  |  Yes  | Yes | 
 |  Spot Instance request  |  Yes  | Yes | 
 |  Security group  |  Yes  | Yes | 
@@ -93,14 +93,14 @@ The following table describes the Amazon EC2 resources that can be tagged, and t
 | Transit gateway | Yes | Yes | 
 | Transit gateway route table | Yes | Yes | 
 | Transit gateway VPC attachment | Yes | Yes | 
-| Virtual private gateway | Yes | No | 
+| Virtual private gateway | Yes | Yes | 
 | VPC | Yes | Yes | 
 | VPC endpoint | Yes | Yes | 
 | VPC endpoint service | Yes | Yes | 
 | VPC endpoint service configuration | Yes | Yes | 
 | VPC flow log | Yes | Yes | 
-| VPC peering connection | Yes | No | 
-| VPN connection | Yes | No | 
+| VPC peering connection | Yes | Yes | 
+| VPN connection | Yes | Yes | 
 
 You can tag instances and volumes on creation using the Amazon EC2 Launch Instances wizard in the Amazon EC2 console\. You can tag your EBS volumes on creation using the Volumes screen, or EBS snapshots using the Snapshots screen\. Alternatively, use the resource\-creating Amazon EC2 APIs \(for example, [RunInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html)\) to apply tags when creating your resource\.
 

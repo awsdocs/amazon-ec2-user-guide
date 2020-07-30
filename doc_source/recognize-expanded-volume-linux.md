@@ -23,9 +23,9 @@ The following example shows an instance built on the [Nitro System](instance-typ
 
 ```
 [ec2-user ~]$ df -hT
-Filesystem     Type      Size  Used Avail Use% Mounted on
-/dev/nvme0n1p1 xfs       8.0G  1.6G  6.5G  20% /
-/dev/nvme1n1   xfs       8.0G   33M  8.0G   1% /data
+Filesystem      Type  Size  Used Avail Use% Mounted on
+/dev/nvme0n1p1  xfs   8.0G  1.6G  6.5G  20% /
+/dev/nvme1n1    xfs   8.0G   33M  8.0G   1% /data
 ...
 ```
 
@@ -34,9 +34,9 @@ The following example shows a T2 instance that has a boot volume with an ext4 fi
 
 ```
 [ec2-user ~]$ df -hT
-Filesystem     Type      Size  Used Avail Use% Mounted on
-/dev/xvda1     ext4      8.0G  1.9G  6.2G  24% /
-/dev/xvdf1     xfs       8.0G   45M  8.0G   1% /data
+Filesystem      Type  Size  Used Avail Use% Mounted on
+/dev/xvda1      ext4  8.0G  1.9G  6.2G  24% /
+/dev/xvdf1      xfs   8.0G   45M  8.0G   1% /data
 ...
 ```
 

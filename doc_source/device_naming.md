@@ -26,7 +26,7 @@ The following table lists the available device names that you can specify in a b
 
 \*\* NVMe instance store volumes are automatically enumerated and assigned an NVMe device name\.
 
-For more information about instance store volumes, see [Amazon EC2 Instance Store](InstanceStorage.md)\. For more information about NVMe EBS volumes \(Nitro\-based instances\), including how to identify the EBS device, see [Amazon EBS and NVMe on Linux instances](nvme-ebs-volumes.md)\.
+For more information about instance store volumes, see [Amazon EC2 instance store](InstanceStorage.md)\. For more information about NVMe EBS volumes \(Nitro\-based instances\), including how to identify the EBS device, see [Amazon EBS and NVMe on Linux instances](nvme-ebs-volumes.md)\.
 
 ## Device name considerations<a name="device-name-limits"></a>
 

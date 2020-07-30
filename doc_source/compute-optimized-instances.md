@@ -17,7 +17,7 @@ Bare metal instances, such as `c5.metal`, provide your applications with direct 
 
 For more information, see [Amazon EC2 C5 Instances](https://aws.amazon.com/ec2/instance-types/c5)\.
 
-**C6g instances**
+**C6g and C6gd instances**
 
 These instances are powered by AWS Graviton2 processors and are ideal for running advanced, compute\-intensive workloads, such as the following:
 + High\-performance computing \(HPC\)
@@ -95,6 +95,15 @@ The following is a summary of the hardware specifications for compute optimized 
 | c6g\.12xlarge | 48 | 96 | 
 | c6g\.16xlarge | 64 | 128 | 
 | c6g\.metal | 64 | 128 | 
+| c6gd\.medium | 1 | 2 | 
+| c6gd\.large | 2 | 4 | 
+| c6gd\.xlarge | 4 | 8 | 
+| c6gd\.2xlarge | 8 | 16 | 
+| c6gd\.4xlarge | 16 | 32 | 
+| c6gd\.8xlarge | 32 | 64 | 
+| c6gd\.12xlarge | 48 | 96 | 
+| c6gd\.16xlarge | 64 | 128 | 
+| c6gd\.metal | 64 | 128 | 
 
 For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
@@ -115,12 +124,12 @@ The following is a summary of network performance for compute optimized instance
 
 | Instance type | Network performance | Enhanced networking | 
 | --- | --- | --- | 
-| c5\.4xlarge and smaller \| c5d\.4xlarge and smaller \| c6g\.4xlarge and smaller  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
+| c5\.4xlarge and smaller \| c5d\.4xlarge and smaller \| c6g\.4xlarge and smaller \| c6gd\.4xlarge and smaller  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
 | c5\.9xlarge \| c5d\.9xlarge | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
-| c5\.12xlarge \| c5d\.12xlarge  \| c6g\.8xlarge | 12 Gbps | [ENA](enhanced-networking-ena.md) | 
-| c6g\.12xlarge | 20 Gbps | [ENA](enhanced-networking-ena.md) | 
+| c5\.12xlarge \| c5d\.12xlarge  \| c6g\.8xlarge \| c6gd\.8xlarge | 12 Gbps | [ENA](enhanced-networking-ena.md) | 
+| c6g\.12xlarge \| c6gd\.12xlarge | 20 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5n\.4xlarge and smaller | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
-| c5\.18xlarge \| c5\.24xlarge \| c5\.metal \| c5d\.18xlarge \| c5d\.24xlarge \| c5d\.metal  \| c6g\.16xlarge \| c6g\.metal  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
+| c5\.18xlarge \| c5\.24xlarge \| c5\.metal \| c5d\.18xlarge \| c5d\.24xlarge \| c5d\.metal  \| c6g\.16xlarge \| c6g\.metal  \| c6gd\.16xlarge \| c6gd\.metal  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5n\.9xlarge | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5n\.18xlarge \| c5n\.metal | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c4\.large | Moderate | [Intel 82599 VF](sriov-networking.md) | 
@@ -145,6 +154,15 @@ If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-ba
 | c5d\.18xlarge |  700,000  |  340,000  | 
 | c5d\.24xlarge |  1,400,000  |  680,000  | 
 | c5d\.metal |  1,400,000  |  680,000  | 
+| c6gd\.medium | 13,438 | 5,625 | 
+| c6gd\.large | 26,875 | 11,250 | 
+| c6gd\.xlarge | 53,750 | 22,500 | 
+| c6gd\.2xlarge | 107,500 | 45,000 | 
+| c6gd\.4xlarge | 215,000 | 90,000 | 
+| c6gd\.8xlarge | 430,000 | 180,000 | 
+| c6gd\.12xlarge | 645,000 | 270,000 | 
+| c6gd\.16xlarge | 860,000 | 360,000 | 
+| c6gd\.metal | 860,000 | 360,000 | 
 
 \* For these instances, you can get up to the specified performance\.
 
@@ -152,7 +170,7 @@ As you fill the SSD\-based instance store volumes for your instance, the number 
 
 SSD controllers can use several strategies to reduce the impact of write amplification\. One such strategy is to reserve space in the SSD instance storage so that the controller can more efficiently manage the space available for write operations\. This is called *over\-provisioning*\. The SSD\-based instance store volumes provided to an instance don't have any space reserved for over\-provisioning\. To reduce write amplification, we recommend that you leave 10% of the volume unpartitioned so that the SSD controller can use it for over\-provisioning\. This decreases the storage that you can use, but increases performance even if the disk is close to full capacity\.
 
-For instance store volumes that support TRIM, you can use the TRIM command to notify the SSD controller whenever you no longer need data that you've written\. This provides the controller with more free space, which can reduce write amplification and increase performance\. For more information, see [Instance Store Volume TRIM Support](ssd-instance-store.md#InstanceStoreTrimSupport)\.
+For instance store volumes that support TRIM, you can use the TRIM command to notify the SSD controller whenever you no longer need data that you've written\. This provides the controller with more free space, which can reduce write amplification and increase performance\. For more information, see [Instance store volume TRIM support](ssd-instance-store.md#InstanceStoreTrimSupport)\.
 
 ## Instance features<a name="compute-instances-features"></a>
 
@@ -167,18 +185,19 @@ The following is a summary of features for compute optimized instances:
 | C5d | No | Yes | NVMe \* | Yes | 
 | C5n | Yes | Yes | No | Yes | 
 | C6g | Yes | Yes | No | Yes | 
+| C6gd | No | Yes | NVMe \* | Yes | 
 
 **\*** The root device volume must be an Amazon EBS volume\.
 
 For more information, see the following:
 + [Amazon EBS and NVMe on Linux instances](nvme-ebs-volumes.md)
-+ [Amazon EC2 Instance Store](InstanceStorage.md)
++ [Amazon EC2 instance store](InstanceStorage.md)
 + [Placement groups](placement-groups.md)
 
 ## Release notes<a name="compute-instance-limits"></a>
 + C5 and C5d instances feature a 3\.1 GHz Intel Xeon Platinum 8000 series processor from either the first generation \(Skylake\-SP\) or second generation \(Cascade Lake\)\.
 + C5a instances feature a second\-generation AMD EPYC processor \(Rome\) running at frequencies as high as 3\.3\. GHz\.
-+ C6g instances feature an AWS Graviton2 processor based on 64\-bit Arm architecture\.
++ C6g and C6gd instances feature an AWS Graviton2 processor based on 64\-bit Arm architecture\.
 + C4 instances and instances based on the [Nitro System](instance-types.md#ec2-nitro-instances) require 64\-bit EBS\-backed HVM AMIs\. They have high\-memory and require a 64\-bit operating system to take advantage of that capacity\. HVM AMIs provide superior performance in comparison to paravirtual \(PV\) AMIs on high\-memory instance types\. In addition, you must use an HVM AMI to take advantage of enhanced networking\.
 + Instances built on the Nitro System have the following requirements:
   + [NVMe drivers](nvme-ebs-volumes.md) must be installed

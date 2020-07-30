@@ -167,7 +167,7 @@ The following is a summary of features for accelerated computing instances\.
 
 For more information, see the following:
 + [Amazon EBS and NVMe on Linux instances](nvme-ebs-volumes.md)
-+ [Amazon EC2 Instance Store](InstanceStorage.md)
++ [Amazon EC2 instance store](InstanceStorage.md)
 + [Placement groups](placement-groups.md)
 
 ## Release notes<a name="gpu-instance-current-limitations"></a>

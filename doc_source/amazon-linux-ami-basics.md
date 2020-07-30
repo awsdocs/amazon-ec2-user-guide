@@ -305,7 +305,7 @@ The cloud\-init package performs these \(and other\) common configuration tasks 
     ```
 
     For more control over mounts, see [Mounts](http://cloudinit.readthedocs.io/en/latest/topics/modules.html#mounts) in the cloud\-init documentation\.
-  + Instance store volumes that support TRIM are not formatted when an instance launches, so you must partition and format them before you can mount them\. For more information, see [Instance Store Volume TRIM Support](ssd-instance-store.md#InstanceStoreTrimSupport)\. You can use the `disk_setup` module to partition and format your instance store volumes at boot\. For more information, see [Disk Setup](http://cloudinit.readthedocs.io/en/latest/topics/modules.html#disk-setup) in the cloud\-init documentation\.
+  + Instance store volumes that support TRIM are not formatted when an instance launches, so you must partition and format them before you can mount them\. For more information, see [Instance store volume TRIM support](ssd-instance-store.md#InstanceStoreTrimSupport)\. You can use the `disk_setup` module to partition and format your instance store volumes at boot\. For more information, see [Disk Setup](http://cloudinit.readthedocs.io/en/latest/topics/modules.html#disk-setup) in the cloud\-init documentation\.
 
 ### Supported user\-data formats<a name="supported-user-data-formats"></a>
 

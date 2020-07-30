@@ -65,7 +65,7 @@ For information about the metrics provided for your EBS volumes, see [Amazon EBS
 
 ## Status check metrics<a name="status-check-metrics"></a>
 
-The `AWS/EC2` namespace includes the following status check metrics\. By default, status check metrics are available at a 1\-minute frequency at no charge\. For a newly\-launched instance, status check metric data is only available after the instance has completed the initialization state \(within a few minutes of the instance entering the running state\)\. For more information about EC2 status checks, see [Status Checks For Your Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-system-instance-status-check.html)\.
+The `AWS/EC2` namespace includes the following status check metrics\. By default, status check metrics are available at a 1\-minute frequency at no charge\. For a newly\-launched instance, status check metric data is only available after the instance has completed the initialization state \(within a few minutes of the instance entering the running state\)\. For more information about EC2 status checks, see [Status checks for your instances](monitoring-system-instance-status-check.md)\.
 
 
 | Metric | Description | 

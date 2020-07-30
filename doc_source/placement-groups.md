@@ -84,9 +84,9 @@ Before you use placement groups, be aware of the following rules:
 
 The following rules apply to cluster placement groups:
 + When you launch an instance into a cluster placement group, you must use one of the following instance types:
-  + General purpose: A1, M4, M5, M5a, M5ad, M5d, M5dn, M5n, M6g
-  + Compute optimized: C3, C4, C5, C5a, C5d, C5n, C6g,  `cc2.8xlarge`
-  + Memory optimized: `cr1.8xlarge`, R3, R4, R5, R5a, R5ad, R5d, R5dn, R5n, R6g,  X1, X1e, z1d
+  + General purpose: A1, M4, M5, M5a, M5ad, M5d, M5dn, M5n, M6g, M6gd
+  + Compute optimized: C3, C4, C5, C5a, C5d, C5n, C6g, C6gd,  `cc2.8xlarge`
+  + Memory optimized: `cr1.8xlarge`, R3, R4, R5, R5a, R5ad, R5d, R5dn, R5n, R6g, R6gd,  X1, X1e, z1d
   + Storage optimized: D2, H1, `hs1.8xlarge`, I2, I3, I3en
   + Accelerated computing: F1, G2, G3, G4dn, Inf1, P2, P3, P3dn
 + A cluster placement group can't span multiple Availability Zones\.

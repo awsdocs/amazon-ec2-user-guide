@@ -1,4 +1,4 @@
-# Instance Store Swap Volumes<a name="instance-store-swap-volumes"></a>
+# Instance store swap volumes<a name="instance-store-swap-volumes"></a>
 
 Swap space in Linux can be used when a system requires more memory than it has been physically allocated\. When swap space is enabled, Linux systems can swap infrequently used memory pages from physical memory to swap space \(either a dedicated partition or a swap file in an existing file system\) and free up that space for memory pages that require high\-speed access\.
 
@@ -61,7 +61,7 @@ Append the following line to your `/etc/fstab` file \(using the swap device name
 
 Any instance store volume can be used as swap space\. For example, the `m3.medium` instance type includes a 4 GB SSD instance store volume that is appropriate for swap space\. If your instance store volume is much larger \(for example, 350 GB\), you may consider partitioning the volume with a smaller swap partition of 4\-8 GB and the rest for a data volume\.
 **Note**  
-This procedure applies only to instance types that support instance storage\. For a list of supported instance types, see [Instance Store Volumes](InstanceStorage.md#instance-store-volumes)\.
+This procedure applies only to instance types that support instance storage\. For a list of supported instance types, see [Instance store volumes](InstanceStorage.md#instance-store-volumes)\.
 
 1. <a name="step_swap_start"></a>List the block devices attached to your instance to get the device name for your instance store volume\.
 

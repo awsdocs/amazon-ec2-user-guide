@@ -18,8 +18,7 @@ If you terminate Spot Instances but do not cancel the Spot Instance requests, th
 
 The usual Amazon EC2 limits apply to instances launched by a Spot Fleet or an EC2 Fleet, such as Spot request price limits, instance limits, and volume limits\. In addition, the following limits apply:
 + The number of active Spot Fleets and EC2 Fleets per Region: 1,000\*
-+ The number of launch specifications per fleet: 300\*
-+ The launch template plus number of overrides per fleet: 300\*
++ The number of Spot Instance pools \(unique combination of instance type and subnet\): 300\*
 + The size of the user data in a launch specification: 16 KB\*
 + The target capacity per Spot Fleet or EC2 Fleet: 10,000
 + The target capacity across all Spot Fleets and EC2 Fleets in a Region: 100,000

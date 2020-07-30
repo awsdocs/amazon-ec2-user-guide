@@ -104,7 +104,7 @@ The following steps describe how to use the EBS direct APIs to write incremental
 
 Repeat these steps to create a new, incremental snapshot using the previously created snapshot as the parent\.
 
-For example, in the following diagram, snapshot A is the first new snapshot started\. Snapshot A is used as the parent snapshot to start snapshot B\. Snapshot B is used as the parent snapshot to start and create snapshot C\. Snapshots A, B, and C are incremental snapshots\. Snapshot A is used to create EBS volume 1\. Snapshot D is created from EBS volume 1\. Snapshot D is not an incremental snapshot of A, B or C\.
+For example, in the following diagram, snapshot A is the first new snapshot started\. Snapshot A is used as the parent snapshot to start snapshot B\. Snapshot B is used as the parent snapshot to start and create snapshot C\. Snapshots A, B, and C are incremental snapshots\. Snapshot A is used to create EBS volume 1\. Snapshot D is created from EBS volume 1\. Snapshot D is an incremental snapshot of A; it is not an incremental snapshot of B or C\.
 
 ![\[EBS direct APIs used to create incremental snapshots.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ebs-apis-write.png)
 
@@ -375,20 +375,9 @@ You might need additional IAM permissions to use the EBS direct APIs with encryp
 
 Signature Version 4 is the process to add authentication information to AWS requests sent by HTTP\. For security, most requests to AWS must be signed with an access key, which consists of an access key ID and secret access key\. These two keys are commonly referred to as your security credentials\. For information about how to obtain credentials for your account, see [Understanding and getting your credentials](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html)\.
 
-**Note**  
 If you intend to manually create HTTP requests, you must learn how to sign them\. When you use the AWS Command Line Interface \(AWS CLI\) or one of the AWS SDKs to make requests to AWS, these tools automatically sign the requests for you with the access key that you specify when you configure the tools\. When you use these tools, you don't need to learn how to sign requests yourself\.
 
-The process for calculating a signature can be broken into the following tasks, which are documented in the AWS General Reference:
-
-1. [Task 1: Create a Canonical Request](https://docs.aws.amazon.com/general/latest/gr/sigv4-create-canonical-request.html)
-
-1. [Task 2: Create a String to Sign](https://docs.aws.amazon.com/general/latest/gr/sigv4-create-string-to-sign.html)
-
-1. [Task 3: Create a Signature](https://docs.aws.amazon.com/general/latest/gr/sigv4-calculate-signature.html)
-
-1. [Task 4: Add the signature to the HTTP request](https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html)
-
-For more information, see [Signature Version 4 signing process](https://docs.aws.amazon.com/general/latest/gr/sigv4-add-signature-to-request.html) in the *AWS General Reference*\.
+For more information, see [Signing AWS requests with Signature Version 4](https://docs.aws.amazon.com/general/latest/gr/sigv4_signing.html) in the *AWS General Reference*\.
 
 ## Using checksums<a name="ebsapis-using-checksums"></a>
 

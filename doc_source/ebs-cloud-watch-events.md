@@ -465,6 +465,9 @@ A request to enable fast snapshot restore failed due to insufficient capacity, a
 `Server.InternalError - An internal error caused the operation to fail`  
 A request to enable fast snapshot restore failed due to an internal error, and the state transitioned to `disabling` or `disabled`\. Wait and then try again\.
 
+`Client.InvalidSnapshot.InvalidState - The requested snapshot was deleted or access permissions were revoked`  
+The fast snapshot restore state for the snapshot has transitioned to `disabling` or `disabled` because the snapshot was deleted or unshared by the snapshot owner\. Fast snapshot restore cannot be enabled for a snapshot that has been deleted or is no longer shared with you\.
+
 ## Using AWS Lambda to handle CloudWatch events<a name="using_lambda"></a>
 
 You can use Amazon EBS and CloudWatch Events to automate your data\-backup workflow\. This requires you to create an IAM policy, a AWS Lambda function to handle the event, and an Amazon CloudWatch Events rule that matches incoming events and routes them to the Lambda function\.

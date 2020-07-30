@@ -74,6 +74,15 @@ The following table lists the instance types that support EBS optimization and E
 | c6g\.12xlarge | 14,250 | 1,781\.25 | 50,000 | 
 | c6g\.16xlarge | 19,000 | 2,375 | 80,000 | 
 | c6g\.metal | 19,000 | 2,375 | 80,000 | 
+| c6gd\.medium \* | 4,750 | 593\.75 | 20,000 | 
+| c6gd\.large \* | 4,750 | 593\.75 | 20,000 | 
+| c6gd\.xlarge \* | 4,750 | 593\.75 | 20,000 | 
+| c6gd\.2xlarge \* | 4,750 | 593\.75 | 20,000 | 
+| c6gd\.4xlarge | 4,750 | 593\.75 | 20,000 | 
+| c6gd\.8xlarge | 9,500 | 1,187\.5 | 40,000 | 
+| c6gd\.12xlarge | 14,250 | 1,781\.25 | 50,000 | 
+| c6gd\.16xlarge | 19,000 | 2,375 | 80,000 | 
+| c6gd\.metal | 19,000 | 2,375 | 80,000 | 
 | d2\.xlarge | 750 | 93\.75 | 6,000 | 
 | d2\.2xlarge | 1,000 | 125 | 8,000 | 
 | d2\.4xlarge | 2,000 | 250 | 16,000 | 
@@ -180,6 +189,15 @@ The following table lists the instance types that support EBS optimization and E
 | m6g\.12xlarge | 14,250 | 1,781\.25 | 50,000 | 
 | m6g\.16xlarge | 19,000 | 2,375 | 80,000 | 
 | m6g\.metal | 19,000 | 2,375 | 80,000 | 
+| m6gd\.medium \* | 4,750 | 593\.75 | 20,000 | 
+| m6gd\.large \* | 4,750 | 593\.75 | 20,000 | 
+| m6gd\.xlarge \* | 4,750 | 593\.75 | 20,000 | 
+| m6gd\.2xlarge \* | 4,750 | 593\.75 | 20,000 | 
+| m6gd\.4xlarge | 4,750 | 593\.75 | 20,000 | 
+| m6gd\.8xlarge | 9,500 | 1,187\.5 | 40,000 | 
+| m6gd\.12xlarge | 14,250 | 1,781\.25 | 50,000 | 
+| m6gd\.16xlarge | 19,000 | 2,375 | 80,000 | 
+| m6gd\.metal | 19,000 | 2,375 | 80,000 | 
 | p2\.xlarge | 750 | 93\.75 | 6,000 | 
 | p2\.8xlarge | 5,000 | 625 | 32,500 | 
 | p2\.16xlarge | 10,000 | 1,250 | 65,000 | 
@@ -252,6 +270,15 @@ The following table lists the instance types that support EBS optimization and E
 | r6g\.12xlarge | 14,250 | 1,781\.25 | 50,000 | 
 | r6g\.16xlarge | 19,000 | 2,375 | 80,000 | 
 | r6g\.metal | 19,000 | 2,375 | 80,000 | 
+| r6gd\.medium \* | 4,750 | 593\.75 | 20,000 | 
+| r6gd\.large \* | 4,750 | 593\.75 | 20,000 | 
+| r6gd\.xlarge \* | 4,750 | 593\.75 | 20,000 | 
+| r6gd\.2xlarge \* | 4,750 | 593\.75 | 20,000 | 
+| r6gd\.4xlarge | 4,750 | 593\.75 | 20,000 | 
+| r6gd\.8xlarge | 9,500 | 1,187\.5 | 40,000 | 
+| r6gd\.12xlarge | 14,250 | 1,781\.25 | 50,000 | 
+| r6gd\.16xlarge | 19,000 | 2,375 | 80,000 | 
+| r6gd\.metal | 19,000 | 2,375 | 80,000 | 
 | t3\.nano \* | 2,085 | 260\.57 | 11,800 | 
 | t3\.micro \* | 2,085 | 260\.57 | 11,800 | 
 | t3\.small \* | 2,085 | 260\.57 | 11,800 | 
@@ -313,10 +340,14 @@ The following table lists the instance types that support EBS optimization and E
 | c6g\.large | 630 | 78\.75 | 3,600 | 
 | c6g\.xlarge | 1,188 | 148\.5 | 6,000 | 
 | c6g\.2xlarge | 2,375 | 296\.875 | 12,000 | 
+| c6gd\.medium | 315 | 39\.375 | 2,500 | 
+| c6gd\.large | 630 | 78\.75 | 3,600 | 
+| c6gd\.xlarge | 1,188 | 148\.5 | 6,000 | 
+| c6gd\.2xlarge | 2,375 | 296\.875 | 12,000 | 
 | g4dn\.xlarge | 950 | 118\.75 | 3,000 | 
 | g4dn\.2xlarge | 1,150 | 143\.75 | 6,000 | 
 | i3en\.large | 577 | 72\.1 | 3,000 | 
-| i3en\.xlarge | 1,154 | 144,2 | 6,000 | 
+| i3en\.xlarge | 1,154 | 144\.2 | 6,000 | 
 | i3en\.2xlarge | 2,307 | 288\.39 | 12,000 | 
 | i3en\.3xlarge | 3,800 | 475 | 15,000 | 
 | inf1\.xlarge | 1,190 | 148\.75 | 4,000 | 
@@ -343,6 +374,10 @@ The following table lists the instance types that support EBS optimization and E
 | m6g\.large | 630 | 78\.75 | 3,600 | 
 | m6g\.xlarge | 1,188 | 148\.5 | 6,000 | 
 | m6g\.2xlarge | 2,375 | 296\.875 | 12,000 | 
+| m6gd\.medium | 315 | 39\.375 | 2,500 | 
+| m6gd\.large | 630 | 78\.75 | 3,600 | 
+| m6gd\.xlarge | 1,188 | 148\.5 | 6,000 | 
+| m6gd\.2xlarge | 2,375 | 296\.875 | 12,000 | 
 | r5\.large | 650 | 81\.25 | 3,600 | 
 | r5\.xlarge | 1,150 | 143\.75 | 6,000 | 
 | r5\.2xlarge | 2,300 | 287\.5 | 12,000 | 
@@ -365,6 +400,10 @@ The following table lists the instance types that support EBS optimization and E
 | r6g\.large | 630 | 78\.75 | 3,600 | 
 | r6g\.xlarge | 1,188 | 148\.5 | 6,000 | 
 | r6g\.2xlarge | 2,375 | 296\.875 | 12,000 | 
+| r6gd\.medium \* | 315 | 39\.375 | 2,500 | 
+| r6gd\.large \* | 630 | 78\.75 | 3,600 | 
+| r6gd\.xlarge \* | 1,188 | 148\.5 | 6,000 | 
+| r6gd\.2xlarge \* | 2,375 | 296\.875 | 12,000 | 
 | t3\.nano | 43 | 5\.43 | 250 | 
 | t3\.micro | 87 | 10\.86 | 500 | 
 | t3\.small | 174 | 21\.71 | 1,000 | 

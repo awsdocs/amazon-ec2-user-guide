@@ -330,7 +330,7 @@ Use the [Unregister\-EC2Address](https://docs.aws.amazon.com/powershell/latest/r
 
 ### Releasing an Elastic IP address<a name="using-instance-addressing-eips-releasing"></a>
 
-If you no longer need an Elastic IP address, we recommend that you release it using one of the following methods\. The address that you release must not be associated with an instance\.
+If you no longer need an Elastic IP address, we recommend that you release it using one of the following methods\. The address to release must not be currently associated with an AWS resource, such as an EC2 instance, NAT gateway, or Network Load Balancer\.
 
 ------
 #### [ New console ]

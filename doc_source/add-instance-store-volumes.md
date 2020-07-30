@@ -1,4 +1,4 @@
-# Add Instance Store Volumes to Your EC2 Instance<a name="add-instance-store-volumes"></a>
+# Add instance store volumes to your EC2 instance<a name="add-instance-store-volumes"></a>
 
 You specify the EBS volumes and instance store volumes for your instance using a block device mapping\. Each entry in a block device mapping includes a device name and the volume that it maps to\. The default block device mapping is specified by the AMI you use\. Alternatively, you can specify a block device mapping for the instance when you launch it\.
 
@@ -12,16 +12,16 @@ You can specify the instance store volumes for your instance only when you launc
 
 If you change the instance type, an instance store will not be attached to the new instance type\. For more information, see [Changing the instance type](ec2-instance-resize.md)\.
 
-The number and size of available instance store volumes for your instance varies by instance type\. Some instance types do not support instance store volumes\. If the number of instance store volumes in a block device mapping exceeds the number of instance store volumes available to an instance, the additional volumes are ignored\. For more information about the instance store volumes support by each instance type, see [Instance Store Volumes](InstanceStorage.md#instance-store-volumes)\.
+The number and size of available instance store volumes for your instance varies by instance type\. Some instance types do not support instance store volumes\. If the number of instance store volumes in a block device mapping exceeds the number of instance store volumes available to an instance, the additional volumes are ignored\. For more information about the instance store volumes support by each instance type, see [Instance store volumes](InstanceStorage.md#instance-store-volumes)\.
 
 If the instance type you choose for your instance supports non\-NVMe instance store volumes, you must add them to the block device mapping for the instance when you launch it\. NVMe instance store volumes are available by default\. After you launch an instance, you must ensure that the instance store volumes for your instance are formatted and mounted before you can use them\. The root volume of an instance store\-backed instance is mounted automatically\.
 
 **Topics**
-+ [Adding Instance Store Volumes to an AMI](#adding-instance-storage-ami)
-+ [Adding Instance Store Volumes to an Instance](#adding-instance-storage-instance)
-+ [Making Instance Store Volumes Available on Your Instance](#making-instance-stores-available-on-your-instances)
++ [Adding instance store volumes to an AMI](#adding-instance-storage-ami)
++ [Adding instance store volumes to an instance](#adding-instance-storage-instance)
++ [Making instance store volumes available on your instance](#making-instance-stores-available-on-your-instances)
 
-## Adding Instance Store Volumes to an AMI<a name="adding-instance-storage-ami"></a>
+## Adding instance store volumes to an AMI<a name="adding-instance-storage-ami"></a>
 
 You can create an AMI with a block device mapping that includes instance store volumes\. If you launch an instance with an instance type that supports instance store volumes and an AMI that specifies instance store volumes in its block device mapping, the instance includes these instance store volumes\. If the number of instance store volumes in the block device mapping exceeds the number of instance store volumes available to the instance, the additional instance store volumes are ignored\.
 
@@ -49,7 +49,7 @@ You can use one of the following commands\. For more information about these com
 + [create\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-image.html) or [register\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) \(AWS CLI\)
 + [New\-EC2Image](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Image.html) and [Register\-EC2Image](https://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2Image.html) \(AWS Tools for Windows PowerShell\)
 
-## Adding Instance Store Volumes to an Instance<a name="adding-instance-storage-instance"></a>
+## Adding instance store volumes to an instance<a name="adding-instance-storage-instance"></a>
 
 When you launch an instance, the default block device mapping is provided by the specified AMI\. If you need additional instance store volumes, you must add them to the instance as you launch it\. You can also omit devices specified in the AMI block device mapping\.
 
@@ -61,7 +61,7 @@ When you launch an instance, the default block device mapping is provided by the
 
 1. Open the Amazon EC2 console\.
 
-1. From the dashboard, choose **Launch Instance**\.
+1. From the dashboard, choose **Launch instance**\.
 
 1. In **Step 1: Choose an Amazon Machine Image \(AMI\)**, select the AMI to use and choose **Select**\.
 
@@ -79,11 +79,11 @@ You can use one of the following options commands with the corresponding command
 + `--block-device-mappings` with [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) \(AWS CLI\)
 + `-BlockDeviceMapping` with [New\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
 
-## Making Instance Store Volumes Available on Your Instance<a name="making-instance-stores-available-on-your-instances"></a>
+## Making instance store volumes available on your instance<a name="making-instance-stores-available-on-your-instances"></a>
 
 After you launch an instance, the instance store volumes are available to the instance, but you can't access them until they are mounted\. For Linux instances, the instance type determines which instance store volumes are mounted for you and which are available for you to mount yourself\. For Windows instances, the EC2Config service mounts the instance store volumes for an instance\. The block device driver for the instance assigns the actual volume name when mounting the volume, and the name assigned can be different than the name that Amazon EC2 recommends\.
 
-Many instance store volumes are pre\-formatted with the ext3 file system\. SSD\-based instance store volumes that support TRIM instruction are not pre\-formatted with any file system\. However, you can format volumes with the file system of your choice after you launch your instance\. For more information, see [Instance Store Volume TRIM Support](ssd-instance-store.md#InstanceStoreTrimSupport)\. For Windows instances, the EC2Config service reformats the instance store volumes with the NTFS file system\.
+Many instance store volumes are pre\-formatted with the ext3 file system\. SSD\-based instance store volumes that support TRIM instruction are not pre\-formatted with any file system\. However, you can format volumes with the file system of your choice after you launch your instance\. For more information, see [Instance store volume TRIM support](ssd-instance-store.md#InstanceStoreTrimSupport)\. For Windows instances, the EC2Config service reformats the instance store volumes with the NTFS file system\.
 
 You can confirm that the instance store devices are available from within the instance itself using instance metadata\. For more information, see [Viewing the instance block device mapping for instance store volumes](block-device-mapping-concepts.md#bdm-instance-metadata)\.
 

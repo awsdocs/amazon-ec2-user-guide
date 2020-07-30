@@ -47,7 +47,7 @@ When an EC2 instance is stopped using the `stop-instances` command, the followin
 + Various system services will be stopped as a result of the button press event\. **systemd** handles a graceful shutdown of the system\. Graceful shutdown is triggered by the ACPI shutdown button press event from the hypervisor\.
 + ACPI shutdown will be initiated\.
 + The instance will shut down when the graceful shutdown process exits\. There is no configurable OS shutdown time\.
-+ If the instance OS does not shut down cleanly within four minutes, a hard reboot is performed\.
++ If the instance OS does not shut down cleanly within four minutes, a hard shutdown is performed\.
 
 ## Stopping and starting your instances<a name="starting-stopping-instances"></a>
 

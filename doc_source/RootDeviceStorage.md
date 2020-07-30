@@ -25,7 +25,7 @@ Any data on the instance store volumes persists as long as the instance is runni
 
 After an instance store\-backed instance fails or terminates, it cannot be restored\. If you plan to use Amazon EC2 instance store\-backed instances, we highly recommend that you distribute the data on your instance stores across multiple Availability Zones\. You should also back up critical data from your instance store volumes to persistent storage on a regular basis\.
 
-For more information, see [Amazon EC2 Instance Store](InstanceStorage.md)\.
+For more information, see [Amazon EC2 instance store](InstanceStorage.md)\.
 
 **Amazon EBS\-backed instances**  
 Instances that use Amazon EBS for the root device automatically have an Amazon EBS volume attached\. When you launch an Amazon EBS\-backed instance, we create an Amazon EBS volume for each Amazon EBS snapshot referenced by the AMI you use\. You can optionally use other Amazon EBS volumes or instance store volumes, depending on the instance type\.

@@ -26,7 +26,7 @@ Bare metal instances, such as `m5.metal`, provide your applications with direct 
 + Workloads that require access to low\-level hardware features \(for example, Intel VT\) that are not available or fully supported in virtualized environments
 + Applications that require a non\-virtualized environment for licensing or support
 
-**M6g instances**
+**M6g and M6gd instances**
 
 These instances are powered by AWS Graviton2 processors and deliver balanced compute, memory, and networking for a broad range a general purpose workloads\. They are well suited for the following:
 + Application servers
@@ -136,6 +136,15 @@ The following is a summary of the hardware specifications for general purpose in
 | m6g\.12xlarge | 48 | 192 | 
 | m6g\.16xlarge | 64 | 256 | 
 | m6g\.metal | 64 | 256 | 
+| m6gd\.medium | 1 | 4 | 
+| m6gd\.large | 2 | 8 | 
+| m6gd\.xlarge | 4 | 16 | 
+| m6gd\.2xlarge | 8 | 32 | 
+| m6gd\.4xlarge | 16 | 64 | 
+| m6gd\.8xlarge | 32 | 128 | 
+| m6gd\.12xlarge | 48 | 192 | 
+| m6gd\.16xlarge | 64 | 256 | 
+| m6gd\.metal | 64 | 256 | 
 | t2\.nano | 1 | 0\.5 | 
 | t2\.micro | 1 | 1 | 
 | t2\.small | 1 | 2 | 
@@ -181,13 +190,13 @@ The following is a summary of network performance for general purpose instances 
 | t3\.nano \| t3\.micro \| t3\.small \| t3\.medium \| t3\.large \| t3\.xlarge \| t3\.2xlarge \| t3a\.nano \| t3a\.micro \| t3a\.small \| t3a\.medium \| t3a\.large \| t3a\.xlarge \| t3a\.2xlarge | Up to 5 Gbps † | [ENA](enhanced-networking-ena.md) | 
 | m4\.large | Moderate | [Intel 82599 VF](sriov-networking.md) | 
 |  m4\.xlarge \| m4\.2xlarge \| m4\.4xlarge  | High | [Intel 82599 VF](sriov-networking.md) | 
-|  a1\.4xlarge and smaller \|  a1\.metal \|  m5\.4xlarge and smaller \| m5a\.8xlarge and smaller \| m5ad\.8xlarge and smaller \| m5d\.4xlarge and smaller \| m6g\.4xlarge and smaller  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
+|  a1\.4xlarge and smaller \|  a1\.metal \|  m5\.4xlarge and smaller \| m5a\.8xlarge and smaller \| m5ad\.8xlarge and smaller \| m5d\.4xlarge and smaller \| m6g\.4xlarge and smaller \| m6gd\.4xlarge and smaller  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
 | m4\.10xlarge | 10 Gbps | [Intel 82599 VF](sriov-networking.md) | 
 |  m5\.8xlarge \| m5a\.12xlarge \| m5ad\.12xlarge \| m5d\.8xlarge  | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  m5\.12xlarge \| m5a\.16xlarge \| m5ad\.16xlarge \| m5d\.12xlarge  \| m6g\.8xlarge  | 12 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  m5\.16xlarge \| m5a\.24xlarge \| m5ad\.24xlarge \| m5d\.16xlarge  \| m6g\.12xlarge  | 20 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  m5\.12xlarge \| m5a\.16xlarge \| m5ad\.16xlarge \| m5d\.12xlarge  \| m6g\.8xlarge \| m6gd\.8xlarge  | 12 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  m5\.16xlarge \| m5a\.24xlarge \| m5ad\.24xlarge \| m5d\.16xlarge  \| m6g\.12xlarge \| m6gd\.12xlarge  | 20 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  m5dn\.4xlarge and smaller \| m5n\.4xlarge and smaller  | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
-|  m4\.16xlarge \| m5\.24xlarge \| m5\.metal \| m5d\.24xlarge \| m5d\.metal \| m5dn\.8xlarge \| m5n\.8xlarge  \| m6g\.16xlarge \| m6g\.metal  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  m4\.16xlarge \| m5\.24xlarge \| m5\.metal \| m5d\.24xlarge \| m5d\.metal \| m5dn\.8xlarge \| m5n\.8xlarge  \| m6g\.16xlarge \| m6g\.metal \| m6gd\.16xlarge \| m6gd\.metal  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  m5dn\.12xlarge \| m5n\.12xlarge  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  m5dn\.16xlarge \| m5n\.16xlarge  | 75 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  m5dn\.24xlarge \| m5n\.24xlarge  | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
@@ -226,6 +235,15 @@ If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-ba
 | m5dn\.12xlarge |  700,000  |  340,000  | 
 | m5dn\.16xlarge | 933,333 |  466,666  | 
 | m5dn\.24xlarge  |  1,400,000  |  680,000  | 
+| m6gd\.medium | 13,438 | 5,625 | 
+| m6gd\.large | 26,875 | 11,250 | 
+| m6gd\.xlarge | 53,750 | 22,500 | 
+| m6gd\.2xlarge | 107,500 | 45,000 | 
+| m6gd\.4xlarge | 215,000 | 90,000 | 
+| m6gd\.8xlarge | 430,000 | 180,000 | 
+| m6gd\.12xlarge | 645,000 | 270,000 | 
+| m6gd\.16xlarge | 860,000 | 360,000 | 
+| m6gd\.metal | 860,000 | 360,000 | 
 
 \* For these instances, you can get up to the specified performance\.
 
@@ -233,7 +251,7 @@ As you fill the SSD\-based instance store volumes for your instance, the number 
 
 SSD controllers can use several strategies to reduce the impact of write amplification\. One such strategy is to reserve space in the SSD instance storage so that the controller can more efficiently manage the space available for write operations\. This is called *over\-provisioning*\. The SSD\-based instance store volumes provided to an instance don't have any space reserved for over\-provisioning\. To reduce write amplification, we recommend that you leave 10% of the volume unpartitioned so that the SSD controller can use it for over\-provisioning\. This decreases the storage that you can use, but increases performance even if the disk is close to full capacity\.
 
-For instance store volumes that support TRIM, you can use the TRIM command to notify the SSD controller whenever you no longer need data that you've written\. This provides the controller with more free space, which can reduce write amplification and increase performance\. For more information, see [Instance Store Volume TRIM Support](ssd-instance-store.md#InstanceStoreTrimSupport)\.
+For instance store volumes that support TRIM, you can use the TRIM command to notify the SSD controller whenever you no longer need data that you've written\. This provides the controller with more free space, which can reduce write amplification and increase performance\. For more information, see [Instance store volume TRIM support](ssd-instance-store.md#InstanceStoreTrimSupport)\.
 
 ## Instance features<a name="general-purpose-features"></a>
 
@@ -251,6 +269,7 @@ The following is a summary of features for general purpose instances:
 | M5dn | No | Yes | NVMe \* | Yes | 
 | M5n | Yes | Yes | No | Yes | 
 | M6g | Yes | Yes | No | Yes | 
+| M6gd | No | Yes | NVMe \* | Yes | 
 | T2 | Yes | No | No | No | 
 | T3 | Yes | Yes | No | No | 
 | T3a | Yes | Yes | No | No | 
@@ -259,14 +278,14 @@ The following is a summary of features for general purpose instances:
 
 For more information, see the following:
 + [Amazon EBS and NVMe on Linux instances](nvme-ebs-volumes.md)
-+ [Amazon EC2 Instance Store](InstanceStorage.md)
++ [Amazon EC2 instance store](InstanceStorage.md)
 + [Placement groups](placement-groups.md)
 
 ## Release notes<a name="general-purpose-instances-limits"></a>
 + M5, M5d, and T3 instances feature a 3\.1 GHz Intel Xeon Platinum 8000 series processor from either the first generation \(Skylake\-SP\) or second generation \(Cascade Lake\)\.
 + M5a, M5ad, and T3a instances feature a 2\.5 GHz AMD EPYC 7000 series processor\.
 + A1 instances feature a 2\.3 GHz AWS Graviton processor based on 64\-bit Arm architecture\.
-+ M6g instances feature an AWS Graviton2 processor based on 64\-bit Arm architecture\.
++ M6g and M6gd instances feature an AWS Graviton2 processor based on 64\-bit Arm architecture\.
 + M4, M5, M5a, M5ad, M5d, `t2.large` and larger, and `t3.large` and larger, and `t3a.large` and larger instance types require 64\-bit HVM AMIs\. They have high\-memory, and require a 64\-bit operating system to take advantage of that capacity\. HVM AMIs provide superior performance in comparison to paravirtual \(PV\) AMIs on high\-memory instance types\. In addition, you must use an HVM AMI to take advantage of enhanced networking\.
 + Instances built on the Nitro System have the following requirements:
   + [NVMe drivers](nvme-ebs-volumes.md) must be installed

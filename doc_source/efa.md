@@ -51,7 +51,7 @@ The following instance types support EFAs: `c5n.18xlarge`, `c5n.metal`, `g4dn.me
 The available instance types vary by Region\. To see the available instance types that support EFA in a Region, use the following command and, for `--region`, specify a Region\.
 
 ```
-$ aws --output table --region us-east-1 ec2 describe-instance-types --query InstanceTypes[*].[InstanceType,NetworkInfo.EfaSupported] | grep True
+aws --output table --region us-east-1 ec2 describe-instance-types --query InstanceTypes[*].[InstanceType,NetworkInfo.EfaSupported] | grep True
 ```
 
 The following is example output\.

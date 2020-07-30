@@ -36,7 +36,7 @@ In addition to receiving notification of scheduled events in email, you can chec
 1. You can view scheduled events in the following screens:
    + In the navigation pane, choose **Events**\. Any resources with an associated event are displayed\. You can filter by **Resource ID**, **Resource type**, **Availability zone**, **Event status**, or **Event type**\.  
 ![\[Viewing events using the Events page.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/events-instance-scheduled-stop.png)
-   + Alternatively, in the navigation pane, choose **EC2 Dashboard**\. Any resources with an associated event are displayed under **Scheduled Events**\.  
+   + Alternatively, in the navigation pane, choose **EC2 Dashboard**\. Any resources with an associated event are displayed under **Scheduled events**\.  
 ![\[Viewing events using the dashboard.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/dashboard-scheduled-events.png)
    + Some events are also shown for affected resources\. For example, in the navigation pane, choose **Instances** and select an instance\. If the instance has an associated instance stop or instance retirement event, it is displayed in the lower pane\.  
 ![\[Viewing events in the instance details.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/event-instance-retirement.png)

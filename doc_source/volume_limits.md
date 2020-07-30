@@ -9,7 +9,7 @@ The maximum number of volumes that your instance can have depends on the operati
 
 ## Nitro System volume limits<a name="instance-type-volume-limits"></a>
 
-Instances built on the [Nitro System](instance-types.md#ec2-nitro-instances) support a maximum number of attachments, which are shared between network interfaces, EBS volumes, and NVMe instance store volumes\. Every instance has at least one network interface attachment\. NVMe instance store volumes are automatically attached\. For more information, see [Elastic network interfaces](using-eni.md) and [Instance Store Volumes](InstanceStorage.md#instance-store-volumes)\.
+Instances built on the [Nitro System](instance-types.md#ec2-nitro-instances) support a maximum number of attachments, which are shared between network interfaces, EBS volumes, and NVMe instance store volumes\. Every instance has at least one network interface attachment\. NVMe instance store volumes are automatically attached\. For more information, see [Elastic network interfaces](using-eni.md) and [Instance store volumes](InstanceStorage.md#instance-store-volumes)\.
 
 Most of these instances support a maximum of 28 attachments\. For example, if you have no additional network interface attachments on an EBS\-only instance, you can attach up to 27 EBS volumes to it\. If you have one additional network interface on an instance with 2 NVMe instance store volumes, you can attach 24 EBS volumes to it\.
 

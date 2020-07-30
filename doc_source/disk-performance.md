@@ -1,9 +1,9 @@
-# Optimizing Disk Performance for Instance Store Volumes<a name="disk-performance"></a>
+# Optimizing disk performance for instance store volumes<a name="disk-performance"></a>
 
 Because of the way that Amazon EC2 virtualizes disks, the first write to any location on some instance store volumes performs more slowly than subsequent writes\. For most applications, amortizing this cost over the lifetime of the instance is acceptable\. However, if you require high disk performance, we recommend that you initialize your drives by writing once to every drive location before production use\.
 
 **Note**  
-Some instance types with direct\-attached solid state drives \(SSD\) and TRIM support provide maximum performance at launch time, without initialization\. For information about the instance store for each instance type, see [Instance Store Volumes](InstanceStorage.md#instance-store-volumes)\.
+Some instance types with direct\-attached solid state drives \(SSD\) and TRIM support provide maximum performance at launch time, without initialization\. For information about the instance store for each instance type, see [Instance store volumes](InstanceStorage.md#instance-store-volumes)\.
 
 If you require greater flexibility in latency or throughput, we recommend using Amazon EBS\.
 

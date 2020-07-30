@@ -48,6 +48,13 @@ For more information about enabling and using Kernel Live Patching on a group of
 
 Kernel Live Patching is disabled by default on Amazon Linux 2\. To use live patching, you must install the **yum** plugin for Kernel Live Patching and enable the live patching functionality\.
 
+**Prerequisites**  
+Kernel Live Patching requires `binutils`\. If you do not have `binutils` installed, install it using the following command:
+
+```
+$ sudo yum install binutils
+```
+
 **To enable Kernel Live Patching**
 
 1. Kernel live patches are available for Amazon Linux 2 with kernel version `4.14.165-131.185` or later\. To check your kernel version, run the following command\.

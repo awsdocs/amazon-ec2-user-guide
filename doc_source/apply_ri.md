@@ -79,15 +79,18 @@ The `.metal` instance sizes do not have a single normalization factor\. They var
 | c5d\.metal | 192 | 
 | c5n\.metal | 144 | 
 | c6g\.metal | 128 | 
+| c6gd\.metal | 128 | 
 | g4dn\.metal | 128 | 
 | i3\.metal | 128 | 
 | i3en\.metal | 192 | 
 | m5\.metal | 192 | 
 | m5d\.metal | 192 | 
 | m6g\.metal | 128 | 
+| m6gd\.metal | 128 | 
 | r5\.metal | 192 | 
 | r5d\.metal | 192 | 
 | r6g\.metal | 128 | 
+| r6gd\.metal | 128 | 
 | z1d\.metal | 96 | 
 
 For example, an `i3.metal` instance has a normalization factor of 128\. If you purchase an `i3.metal` default tenancy Amazon Linux/Unix Reserved Instance in the US East \(N\. Virginia\), the billing benefit can apply as follows:

@@ -17,7 +17,7 @@ Amazon EFS is not supported on Windows instances\.
 ## Prerequisites<a name="efs-prerequisites"></a>
 + Create a security group \(for example, efs\-sg\) to associate with the EC2 instances and EFS mount target, and add the following rules:
   + Allow inbound SSH connections to the EC2 instances from your computer \(the source is the CIDR block for your network\)\.
-  + Allow inbound NFS connections to the file system via the EFS mount target from the EC2 instances that are associated with this security group \(the source is the security group itself\)\. For more information, see [Amazon EFS rules](security-group-rules-reference.md#sg-rules-efs), and [Security Groups for Amazon EC2 Instances and Mount Targets](https://docs.aws.amazon.com/efs/latest/ug/security-considerations.html#network-access) in the *Amazon Elastic File System User Guide*\.
+  + Allow inbound NFS connections to the file system via the EFS mount target from the EC2 instances that are associated with this security group \(the source is the security group itself\)\. For more information, see [Amazon EFS rules](security-group-rules-reference.md#sg-rules-efs), and [Creating security Groups](https://docs.aws.amazon.com/efs/latest/ug/accessing-fs-create-security-groups.html) in the *Amazon Elastic File System User Guide*\.
 + Create a key pair\. You must specify a key pair when you configure your instances or you can't connect to them\. For more information, see [Create a key pair](get-set-up-for-amazon-ec2.md#create-a-key-pair)\.
 
 ## Step 1: Create an EFS File System<a name="efs-create-file-system"></a>
@@ -30,31 +30,15 @@ Amazon EFS enables you to create a file system that multiple instances can mount
 
 1. Choose **Create file system**\.
 
-1. On the **Configure network access** page, do the following:
+1. \(Optional\) For **Name**, type a name for the file system\. This creates a tag with **Name** as the key and the name of the file system as the value\.
 
-   1. For **VPC**, select the VPC to use for your instances\.
+1. For **Virtual Private Cloud**, select the VPC to use for your instances\.
 
-   1. For **Create mount targets**, select all the Availability Zones\.
-
-   1. For each Availability Zone, ensure that the value for **Security group** is the security group that you created in [Prerequisites](#efs-prerequisites)\.
-
-   1. Choose **Next Step**\.
-
-1. On the **Configure file system settings** page, do the following:
-
-   1. For the tag with Key=Name, type a name for the file system in **Value**\.
-
-   1. For **Choose throughput mode**, keep the default option, **Bursting**\.
-
-   1. For **Choose performance mode**, keep the default option, **General Purpose**\.
-
-   1. Choose **Next Step**\.
-
-1. On the **Configure client access** page, keep the default settings and choose **Next Step**\.
-
-1. On the **Review and create** page, choose **Create File System**\.
+1. Choose **Create**\.
 
 1. After the file system is created, note the file system ID, as you'll use it later in this tutorial\.
+
+1. From the file systems page, choose **Network**, **Create mount target**\. For each Availability Zone for your instances, choose **Add mount target** and provide the requested information\. Ensure that the value for **Security group** is the security group that you created in [Prerequisites](#efs-prerequisites)\.
 
 ## Step 2: Mount the File System<a name="efs-mount-file-system"></a>
 

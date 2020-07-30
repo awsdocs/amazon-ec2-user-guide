@@ -53,7 +53,7 @@ You can create an EFA in a subnet in a VPC\. You can't move the EFA to another s
 Use the [create\-network\-interface](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-network-interface.html) command and for `interface-type`, specify `efa`, as shown in the following example\.
 
 ```
-$ aws ec2 create-network-interface --subnet-id subnet-01234567890 --description example_efa --interface-type efa
+aws ec2 create-network-interface --subnet-id subnet-01234567890 --description example_efa --interface-type efa
 ```
 
 ## Attaching an EFA to a stopped instance<a name="efa-attach"></a>
@@ -68,14 +68,14 @@ You attach an EFA to an instance in the same way that you attach an elastic netw
 Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command and for **NetworkInterfaceId**, specify the ID of the EFA, as shown in the following example\.
 
 ```
-$ aws ec2 run-instances --image-id ami_id --count 1 --instance-type c5n.18xlarge --key-name my_key_pair --network-interfaces DeviceIndex=0,NetworkInterfaceId=efa_id,Groups=sg_id,SubnetId=subnet_id
+aws ec2 run-instances --image-id ami_id --count 1 --instance-type c5n.18xlarge --key-name my_key_pair --network-interfaces DeviceIndex=0,NetworkInterfaceId=efa_id,Groups=sg_id,SubnetId=subnet_id
 ```
 
 **To attach a new EFA when launching an instance \(AWS CLI\)**  
 Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command and for **InterfaceType**, specify `efa`, as shown in the following example\.
 
 ```
-$ aws ec2 run-instances --image-id ami_id --count 1 --instance-type c5n.18xlarge --key-name my_key_pair --network-interfaces DeviceIndex=0,InterfaceType=efa,Groups=sg_id,SubnetId=subnet_id
+aws ec2 run-instances --image-id ami_id --count 1 --instance-type c5n.18xlarge --key-name my_key_pair --network-interfaces DeviceIndex=0,InterfaceType=efa,Groups=sg_id,SubnetId=subnet_id
 ```
 
 ## Adding an EFA to a launch template<a name="efa-launch-template"></a>

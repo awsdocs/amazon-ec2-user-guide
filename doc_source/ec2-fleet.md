@@ -36,16 +36,20 @@ The following limitations apply to EC2 Fleet:
 
 The usual Amazon EC2 limits apply to instances launched by an EC2 Fleet, such as Spot request price limits, instance limits, and volume limits\. In addition, the following limits apply:
 + The number of active EC2 Fleets per AWS Region: 1,000 \* †
-+ The number of launch specifications per fleet: 50 †
++ The number of Spot Instance pools \(unique combination of instance type and subnet\): 300\* ‡
 + The size of the user data in a launch specification: 16 KB †
 + The target capacity per EC2 Fleet: 10,000
 + The target capacity across all EC2 Fleets in a Region: 100,000 \*
++ An EC2 Fleet request can't span Regions\.
++ AnEC2 Fleet request can't span different subnets from the same Availability Zone\.
 
 If you need more than the default limits for target capacity, complete the AWS Support Center [Create case](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-fleet) form to request a limit increase\. For **Limit type**, choose **EC2 Fleet**, choose a Region, and then choose **Target Fleet Capacity per Fleet \(in units\)** or **Target Fleet Capacity per Region \(in units\)**, or both\.
 
 \* These limits apply to both your EC2 Fleets and your Spot Fleets\.
 
 † These are hard limits\. You cannot request a limit increase for these limits\.
+
+‡ This limit only applies to fleets of type `request` or `maintain`\. This limit does not apply to `instant` fleets\.
 
 ### T3 Spot Instances<a name="ec2-fleet-t3-spot-instances"></a>
 

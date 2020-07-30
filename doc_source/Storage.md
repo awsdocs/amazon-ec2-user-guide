@@ -4,7 +4,7 @@ Amazon EC2 provides you with flexible, cost effective, and easy\-to\-use data st
 
 After reading this section, you should have a good understanding about how you can use the data storage options supported by Amazon EC2 to meet your specific requirements\. These storage options include the following:
 + [Amazon Elastic Block Store \(Amazon EBS\)](AmazonEBS.md)
-+ [Amazon EC2 Instance Store](InstanceStorage.md)
++ [Amazon EC2 instance store](InstanceStorage.md)
 + [Amazon Elastic File System \(Amazon EFS\)](AmazonEFS.md)
 + [Amazon Simple Storage Service \(Amazon S3\)](AmazonS3.md)
 
@@ -20,7 +20,7 @@ An EBS volume behaves like a raw, unformatted, external block device that you ca
 To keep a backup copy of your data, you can create a *snapshot* of an EBS volume, which is stored in Amazon S3\. You can create an EBS volume from a snapshot, and attach it to another instance\. For more information, see [Amazon Elastic Block Store \(Amazon EBS\)](AmazonEBS.md)\.
 
 **Amazon EC2 instance store**  
-Many instances can access storage from disks that are physically attached to the host computer\. This disk storage is referred to as *instance store*\. Instance store provides temporary block\-level storage for instances\. The data on an instance store volume persists only during the life of the associated instance; if you stop or terminate an instance, any data on instance store volumes is lost\. For more information, see [Amazon EC2 Instance Store](InstanceStorage.md)\.
+Many instances can access storage from disks that are physically attached to the host computer\. This disk storage is referred to as *instance store*\. Instance store provides temporary block\-level storage for instances\. The data on an instance store volume persists only during the life of the associated instance; if you stop or terminate an instance, any data on instance store volumes is lost\. For more information, see [Amazon EC2 instance store](InstanceStorage.md)\.
 
 **Amazon EFS file system**  
 Amazon EFS provides scalable file storage for use with Amazon EC2\. You can create an EFS file system and configure your instances to mount the file system\. You can use an EFS file system as a common data source for workloads and applications running on multiple instances\. For more information, see [Amazon Elastic File System \(Amazon EFS\)](AmazonEFS.md)\.

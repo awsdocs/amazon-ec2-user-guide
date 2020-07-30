@@ -88,9 +88,9 @@ To specify the parameter in the command, use the following syntax: `resolve:ssm:
 In this example, the `--count` and `--security-group` parameters are not included\. For `--count`, the default is 1\. If you have a default VPC and a default security group, they are used\.
 
 ```
-aws ec2 run-instances \
-    --image-id resolve:ssm:/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2 \
-    --instance-type m5.xlarge \
+aws ec2 run-instances 
+    --image-id resolve:ssm:/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2 
+    --instance-type m5.xlarge 
     --key-name MyKeyPair
 ```
 
@@ -106,7 +106,7 @@ When you create a parameter that points to an AMI ID, make sure that you specify
 
 **Topics**
 + [Use cases](#systems-manager-parameter-use-case)
-+ [Lauching an instance using a Systems Manager parameter](#systems-manager-parameter-launch-instance)
++ [Launching an instance using a Systems Manager parameter](#systems-manager-parameter-launch-instance)
 + [Permissions](#systems-manager-permissions)
 + [Limitations](#AMI-systems-manager-parameter-limitations)
 
@@ -127,7 +127,7 @@ If you use automation code to launch your instances, you can specify the Systems
 **Note**  
 Running instances are not affected when you change the AMI ID to which the Systems Manager parameter points\.
 
-### Lauching an instance using a Systems Manager parameter<a name="systems-manager-parameter-launch-instance"></a>
+### Launching an instance using a Systems Manager parameter<a name="systems-manager-parameter-launch-instance"></a>
 
 You can launch an instance using the the console or the AWS CLI\. Instead of specifying an AMI ID, you can specify an AWS Systems Manager parameter that points to an AMI ID\.
 

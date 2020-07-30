@@ -17,7 +17,7 @@ Bare metal instances, such as `r5.metal`, provide your applications with direct 
 
 For more information, see [Amazon EC2 R5 Instances](https://aws.amazon.com/ec2/instance-types/r5)\.
 
-**R6g instances**
+**R6g and R6gd instances**
 
 These instances are powered by AWS Graviton2 processors and are ideal for running memory\-intensive workloads, such as the following:
 + Open\-source databases \(for example, MySQL, MariaDB, and PostgreSQL\)
@@ -139,6 +139,14 @@ The following is a summary of the hardware specifications for memory optimized i
 | r6g\.8xlarge | 32 | 256 | 
 | r6g\.12xlarge | 48 | 384 | 
 | r6g\.16xlarge | 64 | 512 | 
+| r6gd\.medium | 1 | 8 | 
+| r6gd\.large | 2 | 16 | 
+| r6gd\.xlarge | 4 | 32 | 
+| r6gd\.2xlarge | 8 | 64 | 
+| r6gd\.4xlarge | 16 | 128 | 
+| r6gd\.8xlarge | 32 | 256 | 
+| r6gd\.12xlarge | 48 | 384 | 
+| r6gd\.16xlarge | 64 | 512 | 
 | u\-6tb1\.metal | 448 \* | 6,144 | 
 | u\-9tb1\.metal | 448 \* | 9,216 | 
 | u\-12tb1\.metal | 448 \* | 12,288 | 
@@ -197,12 +205,12 @@ The following is a summary of network performance for memory optimized instances
 
 | Instance type | Network performance | Enhanced networking | 
 | --- | --- | --- | 
-|  r4\.4xlarge and smaller \| r5\.4xlarge and smaller \| r5a\.8xlarge and smaller \| r5ad\.4xlarge and smaller \|  r5d\.4xlarge and smaller \| r6g\.4xlarge and smaller \|  x1e\.8large and smaller \| z1d\.3xlarge and smaller  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
+|  r4\.4xlarge and smaller \| r5\.4xlarge and smaller \| r5a\.8xlarge and smaller \| r5ad\.4xlarge and smaller \|  r5d\.4xlarge and smaller \| r6g\.4xlarge and smaller \|  r6gd\.4xlarge and smaller \|  x1e\.8large and smaller \| z1d\.3xlarge and smaller  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
 |  r4\.8xlarge \| r5\.8xlarge \| r5\.12xlarge \| r5a\.12xlarge \| r5ad\.12xlarge \| r5d\.8xlarge \| r5d\.12xlarge \| x1\.16xlarge \| x1e\.16xlarge \| z1d\.6xlarge  | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  r5a\.16xlarge \| r5ad\.16xlarge  \| r6g\.8xlarge  | 12 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  r5\.16xlarge \| r5a\.24xlarge \| r5ad\.24xlarge \| r5d\.16xlarge  \| r6g\.12xlarge  | 20 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  r5a\.16xlarge \| r5ad\.16xlarge  \| r6g\.8xlarge \| r6gd\.8xlarge  | 12 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  r5\.16xlarge \| r5a\.24xlarge \| r5ad\.24xlarge \| r5d\.16xlarge  \| r6g\.12xlarge \| r6gd\.12xlarge  | 20 Gbps | [ENA](enhanced-networking-ena.md) | 
 | r5dn\.4xlarge and smaller \| r5n\.4xlarge and smaller | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
-|  r4\.16xlarge \| r5\.24xlarge \| r5\.metal \| r5d\.24xlarge \| r5d\.metal \| r5dn\.8xlarge \| r5n\.8xlarge \| r6g\.16xlarge \| r6g\.metal \| x1\.32xlarge \| x1e\.32xlarge \| z1d\.12xlarge \| z1d\.metal  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  r4\.16xlarge \| r5\.24xlarge \| r5\.metal \| r5d\.24xlarge \| r5d\.metal \| r5dn\.8xlarge \| r5n\.8xlarge \| r6g\.16xlarge \| r6g\.metal \| r6gd\.16xlarge \| r6gd\.metal \|  x1\.32xlarge \| x1e\.32xlarge \| z1d\.12xlarge \| z1d\.metal  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
 | r5dn\.12xlarge \| r5n\.12xlarge | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
 | r5dn\.16xlarge \| r5n\.16xlarge | 75 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  r5dn\.24xlarge \| r5n\.24xlarge \| u\-6tb1\.metal \* \| u\-9tb1\.metal \* \| u\-12tb1\.metal \* \| u\-18tb1\.metal \| u\-24tb1\.metal  | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
@@ -241,6 +249,15 @@ If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-ba
 | r5dn\.12xlarge | 700,000 | 340,000 | 
 | r5dn\.16xlarge | 933,333 | 466,666 | 
 | r5dn\.24xlarge | 1,400,000 | 680,000 | 
+| r6gd\.medium | 13,438 | 5,625 | 
+| r6gd\.large | 26,875 | 11,250 | 
+| r6gd\.xlarge | 53,750 | 22,500 | 
+| r6gd\.2xlarge | 107,500 | 45,000 | 
+| r6gd\.4xlarge | 215,000 | 90,000 | 
+| r6gd\.8xlarge | 430,000 | 180,000 | 
+| r6gd\.12xlarge | 645,000 | 270,000 | 
+| r6gd\.16xlarge | 860,000 | 360,000 | 
+| r6gd\.metal | 860,000 | 360,000 | 
 | z1d\.large \* | 30,000 | 15,000 | 
 | z1d\.xlarge \* | 59,000 | 29,000 | 
 | z1d\.2xlarge \* | 117,000 | 57,000 | 
@@ -255,7 +272,7 @@ As you fill the SSD\-based instance store volumes for your instance, the number 
 
 SSD controllers can use several strategies to reduce the impact of write amplification\. One such strategy is to reserve space in the SSD instance storage so that the controller can more efficiently manage the space available for write operations\. This is called *over\-provisioning*\. The SSD\-based instance store volumes provided to an instance don't have any space reserved for over\-provisioning\. To reduce write amplification, we recommend that you leave 10% of the volume unpartitioned so that the SSD controller can use it for over\-provisioning\. This decreases the storage that you can use, but increases performance even if the disk is close to full capacity\.
 
-For instance store volumes that support TRIM, you can use the TRIM command to notify the SSD controller whenever you no longer need data that you've written\. This provides the controller with more free space, which can reduce write amplification and increase performance\. For more information, see [Instance Store Volume TRIM Support](ssd-instance-store.md#InstanceStoreTrimSupport)\.
+For instance store volumes that support TRIM, you can use the TRIM command to notify the SSD controller whenever you no longer need data that you've written\. This provides the controller with more free space, which can reduce write amplification and increase performance\. For more information, see [Instance store volume TRIM support](ssd-instance-store.md#InstanceStoreTrimSupport)\.
 
 ## Instance features<a name="memory-instances-features"></a>
 
@@ -272,6 +289,7 @@ The following is a summary of features for memory optimized instances\.
 | R5dn | No | Yes | NVME \* | Yes | 
 | R5n | Yes | Yes | No | Yes | 
 | R6g | Yes | Yes | No | Yes | 
+| R6gd | No | Yes | NVMe \* | Yes | 
 | u\-6tb1\.metal | Yes | Yes | No | No | 
 | u\-9tb1\.metal | Yes | Yes | No | No | 
 | u\-12tb1\.metal | Yes | Yes | No | No | 
@@ -285,7 +303,7 @@ The following is a summary of features for memory optimized instances\.
 
 For more information, see the following:
 + [Amazon EBS and NVMe on Linux instances](nvme-ebs-volumes.md)
-+ [Amazon EC2 Instance Store](InstanceStorage.md)
++ [Amazon EC2 instance store](InstanceStorage.md)
 + [Placement groups](placement-groups.md)
 
 ## Support for vCPUs<a name="high-cpu-support"></a>
@@ -308,7 +326,7 @@ The following AMIs support launching memory optimized instances:
 ## Release notes<a name="memory-instance-limits"></a>
 + R5 and R5d instances feature a 3\.1 GHz Intel Xeon Platinum 8000 series processor from either the first generation \(Skylake\-SP\) or second generation \(Cascade Lake\)\.
 + R5a and R5ad instances feature a 2\.5 GHz AMD EPYC 7000 series processor\.
-+ R6g instances feature an AWS Graviton2 processor based on 64\-bit Arm architecture\.
++ R6g and R6gd instances feature an AWS Graviton2 processor based on 64\-bit Arm architecture\.
 + Instances built on the Nitro System have the following requirements:
   + [NVMe drivers](nvme-ebs-volumes.md) must be installed
   + [Elastic Network Adapter \(ENA\) drivers](enhanced-networking-ena.md) must be installed

@@ -50,7 +50,7 @@ For more information about common system log errors, see [Troubleshooting system
 
 ## Capture a screenshot of an unreachable instance<a name="instance-console-screenshot"></a>
 
-If you are unable to reach your instance via SSH or RDP, you can capture a screenshot of your instance and view it as an image\. The image can provide visibility as to the status of the instance, and allows for quicker troubleshooting\. You can generate screenshots while the instance is running or after it has crashed\. There is no data transfer cost for this screenshot\. The image is generated in JPG format and is no larger than 100 kb\. This feature is not supported when the instance is using an NVIDIA GRID driver or on bare metal instances \(instances of type `*.metal`\)\. This feature is available in the following Regions: 
+If you are unable to reach your instance via SSH or RDP, you can capture a screenshot of your instance and view it as an image\. The image can provide visibility as to the status of the instance, and allows for quicker troubleshooting\. You can generate screenshots while the instance is running or after it has crashed\. There is no data transfer cost for this screenshot\. The image is generated in JPG format and is no larger than 100 kb\. This feature is not supported when the instance is using an NVIDIA GRID driver, is on bare metal instances \(instances of type `*.metal`\), or is powered by Arm\-based Graviton or Graviton 2 processors\. This feature is available in the following Regions: 
 + US East \(N\. Virginia\) Region
 + US East \(Ohio\) Region
 + US West \(Oregon\) Region

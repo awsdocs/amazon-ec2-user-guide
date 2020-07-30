@@ -4,7 +4,7 @@ With instance status monitoring, you can quickly determine whether Amazon EC2 ha
 
 Status checks are performed every minute, returning a pass or a fail status\. If all checks pass, the overall status of the instance is **OK**\. If one or more checks fail, the overall status is **impaired**\. Status checks are built into Amazon EC2, so they cannot be disabled or deleted\.
 
-When a status check fails, the corresponding CloudWatch metric for status checks is incremented\. For more information, see [Status check metricsAmazon EC2 usage metrics](viewing_metrics_with_cloudwatch.md#status-check-metrics)\. You can use these metrics to create CloudWatch alarms that are triggered based on the result of the status checks\. For example, you can create an alarm to warn you if status checks fail on a specific instance\. For more information, see [Creating and editing status check alarms](#creating_status_check_alarms)\.
+When a status check fails, the corresponding CloudWatch metric for status checks is incremented\. For more information, see [Status check metrics](viewing_metrics_with_cloudwatch.md#status-check-metrics)\. You can use these metrics to create CloudWatch alarms that are triggered based on the result of the status checks\. For example, you can create an alarm to warn you if status checks fail on a specific instance\. For more information, see [Creating and editing status check alarms](#creating_status_check_alarms)\.
 
 You can also create an Amazon CloudWatch alarm that monitors an Amazon EC2 instance and automatically recovers the instance if it becomes impaired due to an underlying issue\. For more information, see [Recover your instance](ec2-instance-recover.md)\.
 
@@ -18,8 +18,9 @@ You can also create an Amazon CloudWatch alarm that monitors an Amazon EC2 insta
 
 There are two types of status checks: system status checks and instance status checks\.
 
-**System status checks**  
-Monitor the AWS systems on which your instance runs\. These checks detect underlying problems with your instance that require AWS involvement to repair\. When a system status check fails, you can choose to wait for AWS to fix the issue, or you can resolve it yourself\. For instances backed by Amazon EBS, you can stop and start the instance yourself, which in most cases results in the instance being migrated to a new host\. For instances backed by instance store, you can terminate and replace the instance\.
+### System status checks<a name="system-status-checks"></a>
+
+System status checks monitor the AWS systems on which your instance runs\. These checks detect underlying problems with your instance that require AWS involvement to repair\. When a system status check fails, you can choose to wait for AWS to fix the issue, or you can resolve it yourself\. For instances backed by Amazon EBS, you can stop and start the instance yourself, which in most cases results in the instance being migrated to a new host\. For instances backed by instance store, you can terminate and replace the instance\.
 
 The following are examples of problems that can cause system status checks to fail:
 + Loss of network connectivity
@@ -27,8 +28,9 @@ The following are examples of problems that can cause system status checks to fa
 + Software issues on the physical host
 + Hardware issues on the physical host that impact network reachability
 
-**Instance status checks**  
-Monitor the software and network configuration of your individual instance\. Amazon EC2 checks the health of the instance by sending an address resolution protocol \(ARP\) request to the network interface \(NIC\)\. These checks detect problems that require your involvement to repair\. When an instance status check fails, you typically must address the problem yourself \(for example, by rebooting the instance or by making instance configuration changes\)\.
+### Instance status checks<a name="instance-status-checks"></a>
+
+Instance status checks monitor the software and network configuration of your individual instance\. Amazon EC2 checks the health of the instance by sending an address resolution protocol \(ARP\) request to the network interface \(NIC\)\. These checks detect problems that require your involvement to repair\. When an instance status check fails, you typically must address the problem yourself \(for example, by rebooting the instance or by making instance configuration changes\)\.
 
 The following are examples of problems that can cause instance status checks to fail:
 + Failed system status checks
