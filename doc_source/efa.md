@@ -19,6 +19,7 @@ The OS\-bypass capabilities of EFAs are not supported on Windows instances\. If 
 + [Getting started with EFA and NCCL](efa-start-nccl.md)
 + [Working with EFA](efa-working-with.md)
 + [Monitoring an EFA](efa-working-monitor.md)
++ [Verifying the EFA installer using a checksum](efa-verify.md)
 
 ## EFA basics<a name="efa-basics"></a>
 

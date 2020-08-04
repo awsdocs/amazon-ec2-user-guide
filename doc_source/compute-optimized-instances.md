@@ -181,7 +181,6 @@ The following is a summary of features for compute optimized instances:
 | --- | --- | --- | --- | --- | 
 | C4 | Yes | No | No | Yes | 
 | C5 | Yes | Yes | No | Yes | 
-| C5a | Yes | Yes | No | Yes | 
 | C5d | No | Yes | NVMe \* | Yes | 
 | C5n | Yes | Yes | No | Yes | 
 | C6g | Yes | Yes | No | Yes | 
@@ -196,7 +195,6 @@ For more information, see the following:
 
 ## Release notes<a name="compute-instance-limits"></a>
 + C5 and C5d instances feature a 3\.1 GHz Intel Xeon Platinum 8000 series processor from either the first generation \(Skylake\-SP\) or second generation \(Cascade Lake\)\.
-+ C5a instances feature a second\-generation AMD EPYC processor \(Rome\) running at frequencies as high as 3\.3\. GHz\.
 + C6g and C6gd instances feature an AWS Graviton2 processor based on 64\-bit Arm architecture\.
 + C4 instances and instances based on the [Nitro System](instance-types.md#ec2-nitro-instances) require 64\-bit EBS\-backed HVM AMIs\. They have high\-memory and require a 64\-bit operating system to take advantage of that capacity\. HVM AMIs provide superior performance in comparison to paravirtual \(PV\) AMIs on high\-memory instance types\. In addition, you must use an HVM AMI to take advantage of enhanced networking\.
 + Instances built on the Nitro System have the following requirements:

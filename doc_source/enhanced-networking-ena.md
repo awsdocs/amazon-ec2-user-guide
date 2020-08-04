@@ -344,7 +344,7 @@ Follow the previous procedure until the step where you stop the instance\. Creat
 This method is for testing and feedback purposes only\. It is not intended for use with production deployments\. For production deployments, see [Enabling enhanced networking on Ubuntu](#enhanced-networking-ena-ubuntu)\.
 
 **Important**  
-Using DKMS voids the support agreement for your subscription\. Using kmod configurations is an acceptable alternative for running the latest available kernel modules\.
+Using DKMS voids the support agreement for your subscription\. It should not be used for production deployments\.
 
 **To enable enhanced networking with ENA on Ubuntu \(EBS\-backed instances\)**
 

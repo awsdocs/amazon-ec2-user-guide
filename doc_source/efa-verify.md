@@ -1,0 +1,43 @@
+# Verifying the EFA installer using a checksum<a name="efa-verify"></a>
+
+You can optionally verify the EFA tarball \(\.tar\.gz file\) using an MD5 or SHA256 checksum\. We recommend that you do this to verify the identity of the software publisher and to check that the application has not been altered or corrupted since it was published\.
+
+**To verify the tarball**  
+Use the **md5sum** utility for the MD5 checksum, or the **sha256sum** utility for the SHA256 checksum, and specify the tarball filename\. You must run the command from the directory in which you saved the tarball file\.
++ MD5
+
+  ```
+  $  md5sum tarball_filename.tar.gz
+  ```
++ SHA256
+
+  ```
+  $  sha256sum tarball_filename.tar.gz
+  ```
+
+The commands should return a checksum value in the following format\.
+
+```
+checksum_value tarball_filename.tar.gz
+```
+
+Compare the checksum value returned by the command with the checksum value provided in the table below\. If the checksums match, then it is safe to run the installation script\. If the checksums do not match, do not run the installation script, and contact AWS Support\.
+
+For example, the following command verifies the EFA 1\.9\.4 tarball using the SHA256 checksum\.
+
+```
+$  sha256sum aws-efa-installer-1.9.4.tar.gz
+```
+
+```
+1009b5182693490d908ef0ed2c1dd4f813cc310a5d2062ce9619c4c12b5a7f14  aws-efa-installer-1.9.4.tar.gz
+```
+
+The following table lists the checksums for recent versions of EFA\.
+
+
+| Version | Download URL | Checksums | 
+| --- | --- | --- | 
+| EFA 1\.9\.4 | https://efa\-installer\.amazonaws\.com/aws\-efa\-installer\-1\.9\.4\.tar\.gz |  **MD5: **`f26dd5c350422c1a985e35947fa5aa28` **SHA256: **`1009b5182693490d908ef0ed2c1dd4f813cc310a5d2062ce9619c4c12b5a7f14`  | 
+| EFA 1\.9\.3 | https://efa\-installer\.amazonaws\.com/aws\-efa\-installer\-1\.9\.3\.tar\.gz |  **MD5: **`95755765a097802d3e6d5018d1a5d3d6` **SHA256: **`46ce732d6f3fcc9edf6a6e9f9df0ad136054328e24675567f7029edab90c68f1`  | 
+| EFA 1\.8\.4 | https://efa\-installer\.amazonaws\.com/aws\-efa\-installer\-1\.8\.4\.tar\.gz |  **MD5: **`85d594c41e831afc6c9305263140457e` **SHA256: **`0d974655a09b213d7859e658965e56dc4f23a0eee2dc44bb41b6d039cc5bab45`  | 

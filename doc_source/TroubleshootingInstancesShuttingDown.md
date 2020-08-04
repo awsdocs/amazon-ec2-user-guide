@@ -14,8 +14,11 @@ If it appears that your instance is stuck terminating and it has been longer tha
 
 After you terminate an instance, it remains visible for a short while before being deleted\. The state shows as `terminated`\. If the entry is not deleted after several hours, contact Support\.
 
-## Automatically launch or terminate instances<a name="automatic-instance-create-or-delete"></a>
+## Instances automatically launched or terminated<a name="automatic-instance-create-or-delete"></a>
 
-If you terminate all your instances, you may see that we launch a new instance for you\. If you launch an instance, you may see that we terminate one of your instances\. If you stop an instance, you may see that we terminate the instance and launch a new instance\. Generally, these behaviors mean that you've used Amazon EC2 Auto Scaling or Elastic Beanstalk to scale your computing resources automatically based on criteria that you've defined\.
+Generally, the following behaviors mean that you've used Amazon EC2 Auto Scaling or EC2 Fleet to scale your computing resources automatically based on criteria that you've defined:
++ You terminate an instance and a new instance launches automatically\.
++ You launch an instance and one of your instances terminates automatically\.
++ You stop an instance and it terminates and a new instance launches automatically\.
 
-For more information, see the [Amazon EC2 Auto Scaling User Guide](https://docs.aws.amazon.com/autoscaling/latest/userguide/) or the [AWS Elastic Beanstalk Developer Guide](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/)\.
+To stop automatic scaling, see the [Amazon EC2 Auto Scaling User Guide](https://docs.aws.amazon.com/autoscaling/latest/userguide/) or [Launching an EC2 Fleet](ec2-fleet.md)\.

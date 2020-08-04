@@ -17,7 +17,7 @@ You can specify how the reservation ends\. You can choose to manually cancel the
 
 ## Creating a Capacity Reservation<a name="capacity-reservations-create"></a>
 
-After you create the Capacity Reservation, the capacity is available immediately\. The capacity remains reserved for your use as long as the Capacity Reservation is active, and you can launch instances into it at any time\. If the Capacity Reservation is open, new instances and existing instances that have matching attributes automatically run in the Capacity Reservation's capacity\. If the Capacity Reservation is `targeted`, instances must specifically target it to run in the reserved capacity\.
+After you create the Capacity Reservation, the capacity is available immediately\. The capacity remains reserved for your use as long as the Capacity Reservation is active, and you can launch instances into it at any time\. If the Capacity Reservation is open, new instances and existing instances that have matching attributes automatically run in the capacity of the Capacity Reservation\. If the Capacity Reservation is `targeted`, instances must specifically target it to run in the reserved capacity\.
 
 Your request to create a Capacity Reservation could fail if one of the following is true:
 + Amazon EC2 does not have sufficient capacity to fulfill the request\. Either try again at a later time, try a different Availability Zone, or try a smaller capacity\. If your application is flexible across instance types and sizes, try different instance attributes\.
@@ -37,7 +37,7 @@ Your request to create a Capacity Reservation could fail if one of the following
 
    1. **Attach instance store at launch**—Specify whether instances launched into the Capacity Reservation use temporary block\-level storage\. The data on an instance store volume persists only during the life of the associated instance\.
 
-   1. **Platform**—The operating system for your instances\.
+   1. **Platform**—The operating system for your instances\. If you intend to use the Capacity Reservation for instances running a Red Hat Enterprise Linux or SUSE Linux BYOL AMI, ensure that you select **Linux/UNIX**\. For more information, see [Supported platforms](ec2-capacity-reservations.md#capacity-reservations-platforms)\. For more information about the supported Windows platforms, see [ Supported platforms](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-capacity-reservations.html#capacity-reservations-platforms) in the *Amazon EC2 User Guide for Windows Instances*\.
 
    1. **Availability Zone**—The Availability Zone in which to reserve the capacity\.
 
@@ -58,10 +58,12 @@ Your request to create a Capacity Reservation could fail if one of the following
 1. Choose **Request reservation**\.
 
 **To create a Capacity Reservation using the AWS CLI**  
-Use the [create\-capacity\-reservation](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-capacity-reservation.html) command:
+Use the [create\-capacity\-reservation](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-capacity-reservation.html) command\.  If you intend to use the Capacity Reservation for instances running a Red Hat Enterprise Linux or SUSE Linux BYOL AMI, ensure that you specify `Linux/UNIX` for `--instance-platform`\. For more information, see [Supported platforms](ec2-capacity-reservations.md#capacity-reservations-platforms)\. For more information about the supported Windows platforms, see [ Supported platforms](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-capacity-reservations.html#capacity-reservations-platforms) in the *Amazon EC2 User Guide for Windows Instances*\.
+
+For example, the following command creates a Capacity Reservation that reserves capacity for three `m5.2xlarge` instances running Red Hat Enterprise Linux or SUSE Linux BYOL AMIs in the `us-east-1a` Availability Zone\.
 
 ```
-aws ec2 create-capacity-reservation --instance-type instance_type --instance-platform platform_type --availability-zone az --instance-count quantity
+aws ec2 create-capacity-reservation --instance-type m5.2xlarge --instance-platform Linux/UNIX --availability-zone us-east-1a --instance-count 3
 ```
 
 ## Working with Capacity Reservation Groups<a name="create-cr-group"></a>
@@ -238,7 +240,7 @@ The following shows example output\.
 
 When you launch an instance, you can specify whether to launch the instance into any `open` Capacity Reservation, into a specific Capacity Reservation, or into a group of Capacity Reservations\. You can only launch an instance into a Capacity Reservation that has matching attributes \(instance type, platform, and Availability Zone\) and sufficient capacity\. Alternatively, you can configure the instance to avoid running in a Capacity Reservation, even if you have an `open` Capacity Reservation that has matching attributes and available capacity\. 
 
-Launching instances into a Capacity Reservation reduces its available capacity by the number of instances launched\. For example, if you launch three instances, the Capacity Reservation's available capacity is reduced by three\.
+Launching an instance into a Capacity Reservation reduces its available capacity by the number of instances launched\. For example, if you launch three instances, the available capacity of the Capacity Reservation is reduced by three\.
 
 **To launch instances into an existing Capacity Reservation using the console**
 
@@ -277,9 +279,9 @@ aws ec2 run-instances --image-id ami-abc12345 --count 1 --instance-type t2.micro
 
 ## Modifying a Capacity Reservation<a name="capacity-reservations-modify"></a>
 
-You can change an active Capacity Reservation's attributes after you have created it\. You cannot modify a Capacity Reservation after it has expired or after you have explicitly canceled it\.
+You can change the attributes of an active Capacity Reservation after you have created it\. You cannot modify a Capacity Reservation after it has expired or after you have explicitly canceled it\.
 
-When modifying a Capacity Reservation, you can only increase or decrease the quantity and change the way in which it is released\. You cannot change a Capacity Reservation's instance type, EBS optimization, instance store settings, platform, Availability Zone, or instance eligibility\. If you need to modify any of these attributes, we recommend that you cancel the reservation, and then create a new one with the required attributes\.
+When modifying a Capacity Reservation, you can only increase or decrease the quantity and change the way in which it is released\. You cannot change the instance type, EBS optimization, instance store settings, platform, Availability Zone, or instance eligibility of a Capacity Reservation\. If you need to modify any of these attributes, we recommend that you cancel the reservation, and then create a new one with the required attributes\.
 
 If you specify a new quantity that exceeds your remaining On\-Demand Instance limit for the selected instance type, the update fails\.
 
@@ -294,8 +296,10 @@ If you specify a new quantity that exceeds your remaining On\-Demand Instance li
 **To modify a Capacity Reservation using the AWS CLI**  
 Use the [modify\-capacity\-reservations](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-capacity-reservations.html) command:
 
+For example, the following command modifies a Capacity Reservation to reserve capacity for eight instances\.
+
 ```
-aws ec2 modify-capacity-reservation --capacity-reservation-id reservation_id --instance-count quantity --end-date-type limited|unlimited --end-date expiration_date
+aws ec2 modify-capacity-reservation --capacity-reservation-id cr-1234567890abcdef0 --instance-count 8
 ```
 
 ## Modifying an Instance's Capacity Reservation Settings<a name="capacity-reservations-modify-instance"></a>
@@ -361,6 +365,8 @@ Capacity Reservations have the following possible states:
 **To view your Capacity Reservations using the AWS CLI**  
 Use the [describe\-capacity\-reservations](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-capacity-reservations.html) command:
 
+For example, the following command describes all Capacity Reservations\.
+
 ```
 aws ec2 describe-capacity-reservations
 ```
@@ -384,6 +390,8 @@ After you cancel a Capacity Reservation, instances that target it can no longer 
 **To cancel a Capacity Reservation using the AWS CLI**  
 Use the [cancel\-capacity\-reservation](https://docs.aws.amazon.com/cli/latest/reference/ec2/cancel-capacity-reservation.html) command:
 
+For example, the following command cancels a Capacity Reservation with an ID of `cr-1234567890abcdef0`\.
+
 ```
-aws ec2 cancel-capacity-reservation --capacity-reservation-id reservation_id
+aws ec2 cancel-capacity-reservation --capacity-reservation-id cr-1234567890abcdef0
 ```

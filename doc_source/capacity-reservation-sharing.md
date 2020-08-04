@@ -48,7 +48,7 @@ To identify the location of your Capacity Reservations relative to your accounts
 ## Sharing a Capacity Reservation<a name="sharing-cr"></a>
 
 When you share a Capacity Reservation that you own with other AWS accounts, you enable them to launch instances into your reserved capacity\. If you share an open Capacity Reservation, keep the following in mind as it could lead to unintended Capacity Reservation usage:
-+ If consumers have running instances that match the Capacity Reservation's attributes, have the `CapacityReservationPreference` parameter set to `open`, and are not yet running in reserved capacity, they automatically use the shared Capacity Reservation\.
++ If consumers have running instances that match the attributes of the Capacity Reservation, have the `CapacityReservationPreference` parameter set to `open`, and are not yet running in reserved capacity, they automatically use the shared Capacity Reservation\.
 + If consumers launch instances that have matching attributes \(instance type, platform, and Availability Zone\) and have the `CapacityReservationPreference` parameter set to `open`, they automatically launch into the shared Capacity Reservation\.
 
 To share a Capacity Reservation, you must add it to a resource share\. A resource share is an AWS RAM resource that lets you share your resources across AWS accounts\. A resource share specifies the resources to share, and the consumers with whom they are shared\. When you share a Capacity Reservation using the Amazon EC2 console, you add it to an existing resource share\. To add the Capacity Reservation to a new resource share, you must create the resource share using the [AWS RAM console](https://console.aws.amazon.com/ram)\.

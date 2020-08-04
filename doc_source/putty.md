@@ -12,7 +12,7 @@ Before you connect to your Linux instance using PuTTY, complete the following pr
 After you launch an instance, it can take a few minutes for the instance to be ready so that you can connect to it\. Check that your instance has passed its status checks\. You can view this information in the **Status Checks** column on the **Instances** page\.
 
 **Verify the general prerequisites for connecting to your instance**  
-For more information, see [General prerequisites for connecting to your instance](connection-prereqs.md)\.
+To find the public DNS name or IP address of your instance and the user name that you should use to connect to your instance, see [General prerequisites for connecting to your instance](connection-prereqs.md)\.
 
 **Install PuTTY on your local computer**  
 Download and install PuTTY from the [PuTTY download page](http://www.chiark.greenend.org.uk/~sgtatham/putty/)\. If you already have an older version of PuTTY installed, we recommend that you download the latest version\. Be sure to install the entire suite\.

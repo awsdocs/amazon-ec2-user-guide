@@ -105,7 +105,7 @@ Install the EFA\-enabled kernel, EFA drivers, Libfabric, and Open MPI stack that
      $ sudo apt-get upgrade -y
      ```
 
-1. Download the EFA software installation files\. To download the latest *stable* version, use the following command\.
+1. Download the EFA software installation files\. The software installation files are packaged into a compressed tarball \(`.tar.gz`\) file\. To download the latest *stable* version, use the following command\.
 
    ```
    $ curl -O https://efa-installer.amazonaws.com/aws-efa-installer-1.9.4.tar.gz
@@ -113,7 +113,53 @@ Install the EFA\-enabled kernel, EFA drivers, Libfabric, and Open MPI stack that
 
    You can also get the latest version by replacing the version number with `latest` in the preceding command\.
 
-1. The software installation files are packaged into a compressed `.tar.gz` file\. Extract the files from the compressed `.tar.gz` file and navigate into the extracted directory\.
+1. \(Optional\) Verify the authenticity and integrity of the EFA tarball \(`.tar.gz`\) file\. We recommend that you do this to verify the identity of the software publisher and to check that the file has not been altered or corrupted since it was published\. If you do not want to verify the tarball file, skip this step\.
+**Note**  
+Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA256 checksum instead, see [Verifying the EFA installer using a checksum](efa-verify.md)\.
+
+   1. Download the public GPG key and import it into your keyring\.
+
+      ```
+      $ wget https://efa-installer.amazonaws.com/aws-efa-installer.key
+      ```
+
+      ```
+      $ gpg --import aws-efa-installer.key
+      ```
+
+      The command should return a key value\. Make a note of the key value, because you need it in the next step\.
+
+   1. Verify the GPG key's fingerprint\. Run the following command and specify the key value from the previous step\.
+
+      ```
+      $ gpg --fingerprint key_value
+      ```
+
+      The command should return a fingerprint that is identical to `4E90 91BC BB97 A96B 26B1 5E59 A054 80B1 DD2D 3CCC`\. If the fingerprint does not match, don't run the EFA installation script, and contact AWS Support\.
+
+   1. Download the signature file and verify the signature of the EFA tarball file\.
+
+      ```
+      $ wget https://efa-installer.amazonaws.com/aws-efa-installer-1.9.4.tar.gz.sig
+      ```
+
+      ```
+      $ gpg --verify ./aws-efa-installer-1.9.4.tar.gz.sig
+      ```
+
+      The following shows example output\.
+
+      ```
+      gpg: Signature made Wed 29 Jul 2020 12:50:13 AM UTC using RSA key ID DD2D3CCC
+      gpg: Good signature from "Amazon EC2 EFA <ec2-efa-maintainers@amazon.com>"
+      gpg: WARNING: This key is not certified with a trusted signature!
+      gpg:          There is no indication that the signature belongs to the owner.
+      Primary key fingerprint: 4E90 91BC BB97 A96B 26B1  5E59 A054 80B1 DD2D 3CCC
+      ```
+
+      If the result includes `Good signature`, and the fingerprint matches the fingerprint returned in the previous step, proceed to the next step\. If not, don't run the EFA installation script, and contact AWS Support\.
+
+1. Extract the files from the compressed `.tar.gz` file and navigate into the extracted directory\.
 
    ```
    $ tar -xf aws-efa-installer-1.9.4.tar.gz

@@ -25,13 +25,13 @@ Before you connect to your Linux instance, complete the following prerequisites\
 After you launch an instance, it can take a few minutes for the instance to be ready so that you can connect to it\. Check that your instance has passed its status checks\. You can view this information in the **Status Checks** column on the **Instances** page\.
 
 **Verify the general prerequisites for connecting to your instance**  
-For more information, see [General prerequisites for connecting to your instance](connection-prereqs.md)\.
+To find the public DNS name or IP address of your instance and the user name that you should use to connect to your instance, see [General prerequisites for connecting to your instance](connection-prereqs.md)\.
 
 **Install the Windows Subsystem for Linux \(WSL\) and a Linux distribution on your local computer**  
 Install the WSL and a Linux distribution using the instructions in the [Windows 10 Installation Guide](https://docs.microsoft.com/en-us/windows/wsl/install-win10)\. The example in the instructions installs the Ubuntu distribution of Linux, but you can install any distribution\. You are prompted to restart your computer for the changes to take effect\.
 
 **Copy the private key from Windows to WSL**  
-In a WSL terminal window, copy the `.pem` file \(for the key pair that you specified when you launched the instance\) from Windows to WSL\. Note the fully\-qualified path to the `.pem` file on WSL to use when connecting to your instance\. For information about how to specify the path to your Windows hard drive, see [How do I access my C drive?](https://docs.microsoft.com/en-us/windows/wsl/faq#how-do-i-access-my-c-drive) For more information about key pairs and Windows instances, see [Amazon EC2 key pairs and Windows instances](https://docs.aws.amazon.com/c2-key-pairs)\.  
+In a WSL terminal window, copy the `.pem` file \(for the key pair that you specified when you launched the instance\) from Windows to WSL\. Note the fully\-qualified path to the `.pem` file on WSL to use when connecting to your instance\. For information about how to specify the path to your Windows hard drive, see [How do I access my C drive?](https://docs.microsoft.com/en-us/windows/wsl/faq#how-do-i-access-my-c-drive)\. For more information about key pairs and Windows instances, see [Amazon EC2 key pairs and Windows instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-key-pairs.html)\.  
 
 ```
 cp /mnt/<Windows drive letter>/path/my-key-pair.pem ~/WSL-path/my-key-pair.pem

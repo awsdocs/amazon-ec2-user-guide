@@ -14,6 +14,7 @@ The keys that Amazon EC2 uses are 2048\-bit SSH\-2 RSA keys\. You can have up to
 + [Retrieving the public key for your key pair](#retrieving-the-public-key)
 + [Retrieving the public key for your key pair through instance metadata](#retrieving-the-public-key-instance)
 + [Locating the public key on an instance](#locate-public-key-on-instance)
++ [Identifying the key pair that was specified at launch](#identify-key-pair-specified-at-launch)
 + [\(Optional\) Verifying your key pair's fingerprint](#verify-key-pair-fingerprints)
 + [Adding or replacing a key pair for your instance](#replacing-key-pair)
 + [Connecting to your Linux instance if you lose your private key](replacing-lost-key-pair.md)
@@ -392,6 +393,18 @@ When you launch an instance, you are [prompted for a key pair](launching-instanc
    ```
    ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQClKsfkNkuSevGj3eYhCe53pcjqP3maAhDFcvBS7O6Vhz2ItxCih+PnDSUaw+WNQn/mZphTk/a/gU8jEzoOWbkM4yxyb/wB96xbiFveSFJuOp/d6RJhJOI0iBXrlsLnBItntckiJ7FbtxJMXLvvwJryDUilBMTjYtwB+QhYXUMOzce5Pjz5/i8SeJtjnV3iAoG/cQk+0FzZqaeJAAHco+CY/5WrUBkrHmFJr6HcXkvJdWPkYQS3xqC0+FmUZofz221CBt5IMucxXPkX4rWi+z7wB3RbBQoQzd8v7yeb7OzlPnWOyN0qFU0XA246RA8QFYiCNYwI3f05p6KLxEXAMPLE
    ```
+
+## Identifying the key pair that was specified at launch<a name="identify-key-pair-specified-at-launch"></a>
+
+When you launch an instance, you are [prompted for a key pair](launching-instance.md#step-7-review-instance-launch)\. If you plan to connect to the instance using SSH, you must specify a key pair\.
+
+**To identify the key pair that was specified at launch**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances**, and then select your instance\.
+
+1. On the **Description** tab, the **Key pair name** field displays the name of the key pair that you specified when you launched the instance\. The value of the **Key pair name** does not change even if you change the public key on the instance, or add key pairs\.
 
 ## \(Optional\) Verifying your key pair's fingerprint<a name="verify-key-pair-fingerprints"></a>
 

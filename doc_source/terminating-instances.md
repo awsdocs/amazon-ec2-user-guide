@@ -215,4 +215,6 @@ Specify the following in `mapping.json`:
 
 ## Troubleshooting<a name="troubleshoot-instance-terminate"></a>
 
-If your instance is in the `shutting-down` state for longer than usual, it will eventually be cleaned up \(terminated\) by automated processes within the Amazon EC2 service\. For more information, see [Troubleshooting terminating \(shutting down\) your instance](TroubleshootingInstancesShuttingDown.md)\. 
+If you terminate your instance and another instance starts, most likely you have configured automatic scaling through a feature like EC2 Fleet or Amazon EC2 Auto Scaling\.
+
+If your instance is in the `shutting-down` state for longer than usual, it should be cleaned up \(terminated\) by automated processes within the Amazon EC2 service\. For more information, see [Delayed instance termination](TroubleshootingInstancesShuttingDown.md#instance-stuck-terminating)\. 
