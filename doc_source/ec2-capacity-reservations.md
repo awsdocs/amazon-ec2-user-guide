@@ -40,15 +40,12 @@ For more information, see the following:
 ## Supported platforms<a name="capacity-reservations-platforms"></a>
 
 You must create the Capacity Reservation with the correct platform to ensure that it properly matches with your instances\. Capacity Reservations support the following platforms:
-+ Linux/UNIX—For Linux/UNIX, Red Hat Enterprise Linux BYOL, and SUSE Linux BYOL AMIs
++ Linux/UNIX
 + Linux with SQL Server Standard
 + Linux with SQL Server Web
 + Linux with SQL Server Enterprise
-+ Red Hat Enterprise Linux—For Red Hat Enterprise Linux license\-included AMIs
-+ SUSE Linux—For SUSE Linux license\-included AMIs
-
-**Bring your own license \(BYOL\)**  
- Capacity Reservations support Red Hat Enterprise Linux and SUSE Linux BYOL AMIs\. If you intend to use a Capacity Reservation for instances running a Red Hat Enterprise Linux or SUSE Linux BYOL AMI, then you must create the Capacity Reservation using the `Linux/UNIX` platform\. 
++ Red Hat Enterprise Linux
++ SUSE Linux
 
  For more information about the supported Windows platforms, see [ Supported platforms](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-capacity-reservations.html#capacity-reservations-platforms) in the *Amazon EC2 User Guide for Windows Instances*\. 
 

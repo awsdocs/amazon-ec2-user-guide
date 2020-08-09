@@ -1,6 +1,6 @@
 # Logging API Calls for the EBS direct APIs with AWS CloudTrail<a name="logging-ebs-apis-using-cloudtrail"></a>
 
-The EBS direct APIs service is integrated with AWS CloudTrail, a service that provides a record of actions taken by a user, role, or an AWS service in the EBS direct APIs\. CloudTrail captures all API calls for the EBS direct APIs as events\. The calls captured include calls to API operations of the EBS direct APIs\. If you create a trail, you can enable continuous delivery of CloudTrail events to an Amazon Simple Storage Service \(Amazon S3\) bucket, including events for the EBS direct APIs\. If you don't configure a trail, you can still view the most recent events in the CloudTrail console in **Event history**\. You can use the information collected by CloudTrail to determine the request that was made to the EBS direct APIs, the IP address from which the request was made, who made the request, when it was made, and additional details\. 
+The EBS direct APIs service is integrated with AWS CloudTrail\. CloudTrail is a service that provides a record of actions taken by a user, role, or an AWS service in the EBS direct APIs\. CloudTrail captures [StartSnapshot](https://docs.aws.amazon.com/ebs/latest/APIReference/API_StartSnapshot.html) and [ CompleteSnapshot](https://docs.aws.amazon.com/ebs/latest/APIReference/API_CompleteSnapshot.html) API calls for the EBS direct APIs as events\. If you create a trail, you can enable continuous delivery of CloudTrail events to an Amazon Simple Storage Service \(Amazon S3\) bucket, including events for the EBS direct APIs\. If you don't configure a trail, you can still view the most recent events in the CloudTrail console in **Event history**\. You can use the information collected by CloudTrail to determine the request that was made to the EBS direct APIs, the IP address from which the request was made, who made the request, when it was made, and additional details\. 
 
 For more information about CloudTrail, see the [AWS CloudTrail User Guide](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/)\.
 
@@ -14,16 +14,20 @@ For an ongoing record of events in your AWS account, including events for the EB
 + [Configuring Amazon SNS Notifications for CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/getting_notifications_top_level.html)
 + [Receiving CloudTrail Log Files from Multiple Regions](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/receive-cloudtrail-log-files-from-multiple-regions.html) and [Receiving CloudTrail Log Files from Multiple Accounts](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-receive-logs-from-multiple-accounts.html)
 
-The EBS direct APIs supports logging the following actions as events in CloudTrail log files:
+### Supported API actions<a name="supported-actions"></a>
+
+The following API actions support logging as events in CloudTrail log files:
 + [StartSnapshot](https://docs.aws.amazon.com/ebs/latest/APIReference/API_StartSnapshot.html)
 + [CompleteSnapshot](https://docs.aws.amazon.com/ebs/latest/APIReference/API_CompleteSnapshot.html)
+
+### Identity information<a name="supported-actions"></a>
 
 Every event or log entry contains information about who generated the request\. The identity information helps you determine the following: 
 + Whether the request was made with root or AWS Identity and Access Management \(IAM\) user credentials\.
 + Whether the request was made with temporary security credentials for a role or federated user\.
 + Whether the request was made by another AWS service\.
 
-For more information, see the [CloudTrail userIdentity Element](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-user-identity.html)\.
+For more information, see the [ CloudTrail userIdentityElement](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-user-identity.html)\.
 
 ## Understanding EBS direct APIs Log File Entries<a name="understanding-service-name-entries"></a>
 

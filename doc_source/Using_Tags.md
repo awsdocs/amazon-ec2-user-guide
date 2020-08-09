@@ -50,6 +50,7 @@ The following table describes the Amazon EC2 resources that can be tagged, and t
 |  AMI  |  Yes  | No | 
 |  Bundle task  |  No  | No | 
 |  Capacity Reservation  |  Yes  |  Yes  | 
+| Carrier gateway | Yes | Yes | 
 |  Client VPN endpoint  |  Yes  |  Yes  | 
 |  Client VPN route  |  No  |  No  | 
 |  Customer gateway  |  Yes  | Yes | 

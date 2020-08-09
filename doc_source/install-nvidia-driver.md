@@ -178,22 +178,18 @@ These downloads are available to AWS customers only\. By downloading, you agree 
         ```
 
 1. Download the GRID driver installation utility using the following command:
-   + For G3 instances:
 
-     ```
-     [ec2-user ~]$ aws s3 cp --recursive s3://ec2-linux-nvidia-drivers/latest/ .
-     ```
-   + For G4 instances:
-
-     ```
-     [ec2-user ~]$ aws s3 cp --recursive s3://ec2-linux-nvidia-drivers/g4/latest/ .
-     ```
+   ```
+   [ec2-user ~]$ aws s3 cp --recursive s3://ec2-linux-nvidia-drivers/latest/ .
+   ```
 
    Multiple versions of the GRID driver are stored in this bucket\. You can see all of the available versions using the following command\.
 
    ```
    [ec2-user ~]$ aws s3 ls --recursive s3://ec2-linux-nvidia-drivers/
    ```
+
+   Starting with GRID version 11\.0, you can use the driver packages under `latest` for both G3 and G4 instances\. The earlier packages that are specific to G4 remain under `g4/latest`, but we will not add the driver packages for version 11\.0 or later under `g4/latest`\.
 
 1. Add permissions to run the driver installation utility using the following command\.
 
@@ -221,9 +217,11 @@ These downloads are available to AWS customers only\. By downloading, you agree 
    [ec2-user ~]$ nvidia-smi -q | head
    ```
 
-1. \(Optional\) To help take advantage of the four displays of up to 4K resolution, set up the high\-performance display protocol [NICE DCV](https://docs.aws.amazon.com/dcv)\.
+1. \(Optional\) Depending on your use case, you might complete the following optional steps\. If you do not require this functionality, do not complete these steps\.
 
-1. \(Optional\) NVIDIA Quadro Virtual Workstation mode is enabled by default\. To activate GRID Virtual Applications for RDSH Application hosting capabilities, complete the GRID Virtual Application activation steps in [Activate NVIDIA GRID Virtual Applications](activate_grid.md)\.
+   1. To help take advantage of the four displays of up to 4K resolution, set up the high\-performance display protocol [NICE DCV](https://docs.aws.amazon.com/dcv)\.
+
+   1. NVIDIA Quadro Virtual Workstation mode is enabled by default\. To activate GRID Virtual Applications for RDSH Application hosting capabilities, complete the GRID Virtual Application activation steps in [Activate NVIDIA GRID Virtual Applications](activate_grid.md)\.
 
 ### Option 4: NVIDIA gaming drivers \(G4 instances\)<a name="nvidia-gaming-driver"></a>
 
@@ -359,4 +357,4 @@ These drivers are available to AWS customers only\. By downloading them, you agr
    [ec2-user ~]$ sudo reboot
    ```
 
-1. \(Optional\) To help take advantage of a single display of up to 4K resolution, set up the high\-performance display protocol [NICE DCV](https://docs.aws.amazon.com/dcv)\.
+1. \(Optional\) To help take advantage of a single display of up to 4K resolution, set up the high\-performance display protocol [NICE DCV](https://docs.aws.amazon.com/dcv)\. If you do not require this functionality, do not complete this step\.

@@ -20,7 +20,8 @@ You can launch an instance using the following methods\.
 
 When you launch your instance, you can launch your instance in a subnet that is associated with one of the following resources:
 + An Availability Zone \- This option is the default\.
-+ A Local Zone \- To launch an instance in a Local Zone, you must opt in to the feature\. For more information, see [Opting in to a Local Zone](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#using-regions-availability-zones-opt-in-local)\.
++ A Local Zone \- To launch an instance in a Local Zone, you must opt in to the Local Zone, and then create a subnet in the zone\. For more information, see [Local Zones](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-local-zones)
++ A Wavelength Zone \- To launch an instance in a Wavelength Zone, you must opt in to the Wavelength Zone, and then create a subnet in the zone\. For information about how to launch an instance in a Wavelength Zone, see [Get started with AWS Wavelength](https://docs.aws.amazon.com/wavelength/latest/developerguide/get-started-wavelength.html) in the *AWS Wavelength Developer Guide*\.
 + An Outpost \- To launch an instance in an Outpost, you must create an Outpost\. For information about how to create an Outpost, see [Get Started with AWS Outposts](https://docs.aws.amazon.com/outposts/latest/userguide/get-started-outposts.html) in the *AWS Outposts User Guide*\.
 
 After you launch your instance, you can connect to it and use it\. To begin, the instance state is `pending`\. When the instance state is `running`, the instance has started booting\. There might be a short time before you can connect to the instance\. Note that bare metal instance types might take longer to launch\. For more information about bare metal instances, see [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances)\.

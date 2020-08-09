@@ -135,7 +135,7 @@ When you detach an NVMe EBS volume, the instance does not have an opportunity to
 
 ## I/O operation timeout<a name="timeout-nvme-ebs-volumes"></a>
 
-EBS volumes attached to Nitro\-based instances use the default NVMe driver provided by the operating system\. Most operating systems specify a timeout for I/O operations submitted to NVMe devices\. The default timeout is 30 seconds and can be changed using the `nvme_core.io_timeout` boot parameter\. With Linux kernels earlier than version 4\.6, this parameter is `nvme.io_timeout`\.
+EBS volumes attached to Nitro\-based instances use the default NVMe driver provided by the operating system\. Most operating systems specify a timeout for I/O operations submitted to NVMe devices\. The default timeout is 30 seconds and can be changed using the `nvme_core.io_timeout` boot parameter\. For most Linux kernels earlier than version 4\.6, this parameter is `nvme.io_timeout`\.
 
 If I/O latency exceeds the value of this timeout parameter, the Linux NVMe driver fails the I/O and returns an error to the filesystem or application\. Depending on the I/O operation, your filesystem or application can retry the error\. In some cases, your filesystem might be remounted as read\-only\.
 

@@ -131,7 +131,7 @@ The following components are part of the Nitro System:
 **Instance types**
 
 The following instances are built on the Nitro System:
-+ A1, C5, C5a, C5d, C5n, C6g, C6gd,  G4, I3en, Inf1, M5, M5a, M5ad, M5d, M5dn, M5n, M6g, M6gd,  `p3dn.24xlarge`, R5, R5a, R5ad, R5d, R5dn, R5n, R6g, R6gd,  T3, T3a, and z1d
++ Virtualized: A1, C5, C5a, C5d, C5n, C6g, C6gd,  G4, I3en, Inf1, M5, M5a, M5ad, M5d, M5dn, M5n, M6g, M6gd,  `p3dn.24xlarge`, R5, R5a, R5ad, R5d, R5dn, R5n, R6g, R6gd,  T3, T3a, and z1d
 + Bare metal: `a1.metal`, `c5.metal`, `c5d.metal`, `c5n.metal`, `c6g.metal`, `c6gd.metal`,  `i3.metal`, `i3en.metal`, `m5.metal`, `m5d.metal`, `m6g.metal`, `m6gd.metal`,  `r5.metal`, `r5d.metal`, `r6g.metal`, `r6gd.metal`,  `u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, `u-18tb1.metal`, `u-24tb1.metal`, and `z1d.metal`
 
 **Learn more**

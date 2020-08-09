@@ -4,6 +4,7 @@ The following table describes important additions to the Amazon EC2 documentatio
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Wavelength Zones](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-wavelength-zones) | A Wavelength Zone is an isolated zone in the carrier location where the Wavelength infrastructure is deployed\. | August 6, 2020 | 
 | [Capacity Reservation groups](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/capacity-reservations-using.html#create-cr-group) | You can use AWS Resource Groups to create logical collections of Capacity Reservations, and then target instance launches into those groups\. | July 29, 2020 | 
 | [C6gd, M6gd, and R6gd instances](#DocumentHistory) | New general purpose instances powered by AWS Graviton2 processors, which are based on 64\-bit Arm Neoverse cores and custom silicon designed by AWS for optimized performance and cost\. | July 27, 2020 | 
 | [Fast snapshot restore](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-fast-snapshot-restore.html) | You can enable fast snapshot restore for snaphots that are shared with you\. | July 21, 2020 | 

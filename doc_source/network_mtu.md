@@ -4,6 +4,8 @@ The maximum transmission unit \(MTU\) of a network connection is the size, in by
 
 Ethernet frames can come in different formats, and the most common format is the standard Ethernet v2 frame format\. It supports 1500 MTU, which is the largest Ethernet packet size supported over most of the internet\. The maximum supported MTU for an instance depends on its instance type\. All Amazon EC2 instance types support 1500 MTU, and many current instance sizes support 9001 MTU, or jumbo frames\.
 
+If your instance runs in a Wavelength Zone, the maximum MTU value is 1300\.
+
 **Topics**
 + [Jumbo frames \(9001 MTU\)](#jumbo_frame_instances)
 + [Path MTU Discovery](#path_mtu_discovery)

@@ -16,7 +16,7 @@ Amazon's trademarks and trade dress may not be used in
 ## Contents
 + [What is Amazon EC2?](concepts.md)
    + [Instances and AMIs](ec2-instances-and-amis.md)
-   + [Regions, Availability Zones, and Local Zones](using-regions-availability-zones.md)
+   + [Regions and Zones](using-regions-availability-zones.md)
    + [Amazon EC2 root device volume](RootDeviceStorage.md)
 + [Setting up with Amazon EC2](get-set-up-for-amazon-ec2.md)
 + [Tutorial: Getting started with Amazon EC2 Linux instances](EC2_GetStarted.md)

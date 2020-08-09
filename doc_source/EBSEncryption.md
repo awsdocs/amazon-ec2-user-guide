@@ -25,13 +25,13 @@ EBS encrypts your volume with a data key using the industry\-standard AES\-256 a
 
 Amazon EBS works with AWS KMS to encrypt and decrypt your EBS volumes as follows:
 
-1. Amazon EBS sends a [CreateGrant](https://docs.aws.amazon.com/kms/latest/APIReference/API_CreateGrant.html) request to AWS KMS, so that it can decrypt the data key\.
-
 1. Amazon EBS sends a [GenerateDataKeyWithoutPlaintext](https://docs.aws.amazon.com/kms/latest/APIReference/API_GenerateDataKeyWithoutPlaintext.html) request to AWS KMS, specifying the CMK that you chose for volume encryption\.
 
 1. AWS KMS generates a new data key, encrypts it under the CMK that you chose for volume encryption, and sends the encrypted data key to Amazon EBS to be stored with the volume metadata\.
 
 1. When you attach an encrypted volume to an instance, Amazon EC2 sends a [Decrypt](https://docs.aws.amazon.com/kms/latest/APIReference/API_Decrypt.html) request to AWS KMS, specifying the encrypted data key\.
+
+1. Amazon EBS sends a [CreateGrant](https://docs.aws.amazon.com/kms/latest/APIReference/API_CreateGrant.html) request to AWS KMS, so that it can decrypt the data key\.
 
 1. AWS KMS decrypts the encrypted data key and sends the decrypted data key to Amazon EC2\.
 
@@ -96,17 +96,43 @@ Amazon EBS automatically creates a unique AWS managed CMK in each Region where y
 **Important**  
 Amazon EBS does not support asymmetric CMKs\. For more information, see [Using symmetric and asymmetric keys](https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html) in the *AWS Key Management Service Developer Guide*\.
 
+------
+#### [ New console ]
+
+**To enable encryption by default for a Region**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. From the navigation bar, select the Region\.
+
+1. From the navigation pane, select **EC2 Dashboard**\.
+
+1. In the upper\-right corner of the page, choose **Account Attributes**, **EBS encryption**\.
+
+1. Choose **Manage**\.
+
+1. For **Default encryption key**, choose a symmetric customer managed CMK\.
+
+1. Choose **Update EBS encryption**\.
+
+------
+#### [ Old console ]
+
 **To configure the default key for EBS encryption for a Region**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
 1. From the navigation bar, select the Region\.
 
-1. Choose **Account Attributes**, **Settings**\.
+1. From the navigation pane, select **EC2 Dashboard**\.
+
+1. In the upper\-right corner of the page, choose **Account Attributes**, **Settings**\.
 
 1. Choose **Change the default key** and then choose an available key\.
 
-1. Choose **Update**\.
+1. Choose **Save settings**\.
+
+------
 
 ## Encryption by default<a name="encryption-by-default"></a>
 
@@ -118,6 +144,28 @@ Encryption by default has no effect on existing EBS volumes or snapshots\.
 + Encryption by default is a Region\-specific setting\. If you enable it for a Region, you cannot disable it for individual volumes or snapshots in that Region\.
 + When you enable encryption by default, you can launch an instance only if the instance type supports EBS encryption\. For more information, see [Supported instance types](#EBSEncryption_supported_instances)\.
 + When migrating servers using AWS Server Migration Service \(SMS\), do not turn on encryption by default\. If encryption by default is already on and you are experiencing delta replication failures, turn off encryption by default\. Instead, enable AMI encryption when you create the replication job\.
+
+------
+#### [ New console ]
+
+**To enable encryption by default for a Region**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. From the navigation bar, select the Region\.
+
+1. From the navigation pane, select **EC2 Dashboard**\.
+
+1. In the upper\-right corner of the page, choose **Account Attributes**, **EBS encryption**\.
+
+1. Choose **Manage**\.
+
+1. Select **Enable**\. You keep the AWS managed CMK with the alias `alias/aws/ebs` created on your behalf as the default encryption key, or choose a symmetric customer managed CMK\.
+
+1. Choose **Update EBS encryption**\.
+
+------
+#### [ Old console ]
 
 **To enable encryption by default for a Region**
 
@@ -131,7 +179,9 @@ Encryption by default has no effect on existing EBS volumes or snapshots\.
 
 1. Under **EBS Storage**, select **Always encrypt new EBS volumes**\.
 
-1. Choose **Update**\.
+1. Choose **Save settings**\.
+
+------
 
 You cannot change the CMK that is associated with an existing snapshot or encrypted volume\. However, you can associate a different CMK during a snapshot copy operation so that the resulting copied snapshot is encrypted by the new CMK\.
 

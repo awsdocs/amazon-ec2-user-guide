@@ -2,7 +2,7 @@
 
 This example demonstrates how you can use both user data and instance metadata to configure your instances\. 
 
-Alice wants to launch four instances of her favorite database AMI, with the first acting as master and the remaining three acting as replicas\. When she launches them, she wants to add user data about the replication strategy for each replicant\. She is aware that this data will be available to all four instances, so she needs to structure the user data in a way that allows each instance to recognize which parts are applicable to it\. She can do this using the `ami-launch-index` instance metadata value, which will be unique for each instance\.
+Alice wants to launch four instances of her favorite database AMI, with the first acting as the original instance and the remaining three acting as replicas\. When she launches them, she wants to add user data about the replication strategy for each replica\. She is aware that this data will be available to all four instances, so she needs to structure the user data in a way that allows each instance to recognize which parts are applicable to it\. She can do this using the `ami-launch-index` instance metadata value, which will be unique for each instance\.
 
 Here is the user data that Alice has constructed\.
 
@@ -10,12 +10,16 @@ Here is the user data that Alice has constructed\.
 replicate-every=1min | replicate-every=5min | replicate-every=10min
 ```
 
-The `replicate-every=1min` data defines the first replicant's configuration, `replicate-every=5min` defines the second replicant's configuration, and so on\. Alice decides to provide this data as an ASCII string with a pipe symbol \(`|`\) delimiting the data for the separate instances\.
+The `replicate-every=1min` data defines the first replica's configuration, `replicate-every=5min` defines the second replica's configuration, and so on\. Alice decides to provide this data as an ASCII string with a pipe symbol \(`|`\) delimiting the data for the separate instances\.
 
 Alice launches four instances using the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command, specifying the user data\. 
 
 ```
-aws ec2 run-instances --image-id ami-0abcdef1234567890 --count 4 --instance-type t2.micro --user-data "replicate-every=1min | replicate-every=5min | replicate-every=10min"
+aws ec2 run-instances \
+    --image-id ami-0abcdef1234567890 \
+    --count 4 \
+    --instance-type t2.micro \
+    --user-data "replicate-every=1min | replicate-every=5min | replicate-every=10min"
 ```
 
 After they're launched, all instances have a copy of the user data and the common metadata shown here:
@@ -77,7 +81,7 @@ However, each instance has certain unique metadata\.
 
 Alice can use the `ami-launch-index` value to determine which portion of the user data is applicable to a particular instance\.
 
-1. She connects to one of the instances, and retrieves the `ami-launch-index` for that instance to ensure it is one of the replicants:
+1. She connects to one of the instances, and retrieves the `ami-launch-index` for that instance to ensure it is one of the replicas:
 
 ------
 #### [ IMDSv2 ]

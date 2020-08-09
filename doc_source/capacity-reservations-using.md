@@ -37,7 +37,7 @@ Your request to create a Capacity Reservation could fail if one of the following
 
    1. **Attach instance store at launch**—Specify whether instances launched into the Capacity Reservation use temporary block\-level storage\. The data on an instance store volume persists only during the life of the associated instance\.
 
-   1. **Platform**—The operating system for your instances\. If you intend to use the Capacity Reservation for instances running a Red Hat Enterprise Linux or SUSE Linux BYOL AMI, ensure that you select **Linux/UNIX**\. For more information, see [Supported platforms](ec2-capacity-reservations.md#capacity-reservations-platforms)\. For more information about the supported Windows platforms, see [ Supported platforms](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-capacity-reservations.html#capacity-reservations-platforms) in the *Amazon EC2 User Guide for Windows Instances*\.
+   1. **Platform**—The operating system for your instances\.  For more information, see [Supported platforms](ec2-capacity-reservations.md#capacity-reservations-platforms)\. For more information about the supported Windows platforms, see [ Supported platforms](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-capacity-reservations.html#capacity-reservations-platforms) in the *Amazon EC2 User Guide for Windows Instances*\.
 
    1. **Availability Zone**—The Availability Zone in which to reserve the capacity\.
 
@@ -58,12 +58,12 @@ Your request to create a Capacity Reservation could fail if one of the following
 1. Choose **Request reservation**\.
 
 **To create a Capacity Reservation using the AWS CLI**  
-Use the [create\-capacity\-reservation](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-capacity-reservation.html) command\.  If you intend to use the Capacity Reservation for instances running a Red Hat Enterprise Linux or SUSE Linux BYOL AMI, ensure that you specify `Linux/UNIX` for `--instance-platform`\. For more information, see [Supported platforms](ec2-capacity-reservations.md#capacity-reservations-platforms)\. For more information about the supported Windows platforms, see [ Supported platforms](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-capacity-reservations.html#capacity-reservations-platforms) in the *Amazon EC2 User Guide for Windows Instances*\.
+Use the [create\-capacity\-reservation](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-capacity-reservation.html) command\. For more information, see [Supported platforms](ec2-capacity-reservations.md#capacity-reservations-platforms)\. For more information about the supported Windows platforms, see [ Supported platforms](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-capacity-reservations.html#capacity-reservations-platforms) in the *Amazon EC2 User Guide for Windows Instances*\.
 
-For example, the following command creates a Capacity Reservation that reserves capacity for three `m5.2xlarge` instances running Red Hat Enterprise Linux or SUSE Linux BYOL AMIs in the `us-east-1a` Availability Zone\.
+For example, the following command creates a Capacity Reservation that reserves capacity for three `m5.2xlarge` instances running Red Hat Enterprise Linux AMIs in the `us-east-1a` Availability Zone\.
 
 ```
-aws ec2 create-capacity-reservation --instance-type m5.2xlarge --instance-platform Linux/UNIX --availability-zone us-east-1a --instance-count 3
+aws ec2 create-capacity-reservation --instance-type m5.2xlarge --instance-platform Red Hat Enterprise Linux --availability-zone us-east-1a --instance-count 3
 ```
 
 ## Working with Capacity Reservation Groups<a name="create-cr-group"></a>

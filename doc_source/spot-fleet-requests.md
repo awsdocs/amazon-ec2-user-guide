@@ -208,7 +208,13 @@ Ensure that this role exists before you use the AWS CLI or an API to create a Sp
 
 1. Choose **Create role**\.
 
-1. On the **Select type of trusted entity** page, choose **EC2**, **EC2 \- Spot Fleet**, **Next: Permissions**\.
+1. For **Select type of trusted entity**, choose **AWS service**\.
+
+1.  In the list of services, choose **EC2**\.
+
+1. In the **Select your use case** section, choose **EC2 \- Spot Fleet**
+
+1. Choose **Next: Permissions**\.
 
 1. On the next page, choose **Next:Review**\.
 

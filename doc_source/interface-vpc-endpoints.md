@@ -36,7 +36,8 @@ The following example shows a VPC endpoint policy that denies permission to crea
     {
         "Action": "ec2:*",
         "Effect": "Allow",
-        "Resource": "*"
+        "Resource": "*",
+        "Principal": "*"
     },
     {
         "Action": [
@@ -44,6 +45,7 @@ The following example shows a VPC endpoint policy that denies permission to crea
         ],
         "Effect": "Deny",
         "Resource": "*",
+        "Principal": "*",
         "Condition": {
             "Bool": {
                 "ec2:Encrypted": "false"
@@ -56,6 +58,7 @@ The following example shows a VPC endpoint policy that denies permission to crea
         ],
         "Effect": "Deny",
         "Resource": "*",
+        "Principal": "*",
         "Condition": {
             "Bool": {
                 "ec2:Encrypted": "false"
