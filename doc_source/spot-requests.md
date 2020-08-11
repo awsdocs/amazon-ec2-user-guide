@@ -38,7 +38,7 @@ A one\-time Spot Instance request remains active until Amazon EC2 launches the S
 
 A persistent Spot Instance request remains active until it expires or you cancel it, even if the request is fulfilled\. If the Spot price exceeds your maximum price or capacity is not available, your Spot Instance is interrupted\. After your instance is interrupted, when your maximum price exceeds the Spot price or capacity becomes available again, the Spot Instance is started if stopped or resumed if hibernated\. You can stop a Spot Instance and start it again if capacity is available and your maximum price exceeds the current Spot price\. If the Spot Instance is terminated \(irrespective of whether the Spot Instance is in a stopped or running state\), the Spot Instance request is opened again and Amazon EC2 launches a new Spot Instance\. For more information, see [Stopping a Spot Instance](#stopping-a-spot-instance), [Starting a Spot Instance](#starting-a-spot-instance), and [Terminating a Spot Instance](#terminating-a-spot-instance)\.
 
-You can track the status of your Spot Instance requests, as well as the status of the Spot Instances launched, through the status\. For more information, see [Spot request status](spot-bid-status.md)\.
+You can track the status of your Spot Instance requests, as well as the status of the Spot Instances launched, through the status\. For more information, see [Spot request status](spot-request-status.md)\.
 
 ## Defining a duration for your Spot Instances<a name="fixed-duration-spot-instances"></a>
 
@@ -157,7 +157,7 @@ The procedure for requesting a Spot Instance is similar to the procedure for lau
 
 After you've submitted your Spot Instance request, you can't change the parameters of the request\. This means that you can't make changes to the maximum price that you're willing to pay\.
 
-If you request multiple Spot Instances at one time, Amazon EC2 creates separate Spot Instance requests so that you can track the status of each request separately\. For more information about tracking Spot Instance requests, see [Spot request status](spot-bid-status.md)\.
+If you request multiple Spot Instances at one time, Amazon EC2 creates separate Spot Instance requests so that you can track the status of each request separately\. For more information about tracking Spot Instance requests, see [Spot request status](spot-request-status.md)\.
 
 To launch a fleet that includes Spot Instances and On\-Demand Instances, see [Creating a Spot Fleet request](spot-fleet-requests.md#create-spot-fleet)\.
 

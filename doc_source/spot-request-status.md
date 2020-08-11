@@ -1,15 +1,15 @@
-# Spot request status<a name="spot-bid-status"></a>
+# Spot request status<a name="spot-request-status"></a>
 
 To help you track your Spot Instance requests and plan your use of Spot Instances, use the request status provided by Amazon EC2\. For example, the request status can provide the reason why your Spot request isn't fulfilled yet, or list the constraints that are preventing the fulfillment of your Spot request\.
 
 At each step of the process—also called the Spot request *lifecycle*—specific events determine successive request states\.
 
 **Topics**
-+ [Lifecycle of a Spot request](#spot-instances-bid-status-lifecycle)
-+ [Getting request status information](#get-spot-instance-bid-status)
-+ [Spot request status codes](#spot-instance-bid-status-understand)
++ [Lifecycle of a Spot request](#spot-instances-request-status-lifecycle)
++ [Getting request status information](#get-spot-instance-request-status)
++ [Spot request status codes](#spot-instance-request-status-understand)
 
-## Lifecycle of a Spot request<a name="spot-instances-bid-status-lifecycle"></a>
+## Lifecycle of a Spot request<a name="spot-instances-request-status-lifecycle"></a>
 
 The following diagram shows you the paths that your Spot request can follow throughout its lifecycle, from submission to termination\. Each step is depicted as a node, and the status code for each node describes the status of the Spot request and Spot Instance\.
 
@@ -108,7 +108,7 @@ Your Spot Instances continue to run as long as your maximum price is at or above
 **Persistent requests**  
 When your Spot Instances are terminated \(either by you or Amazon EC2\), if the Spot request is a persistent request, it returns to the `pending-evaluation` state and then Amazon EC2 can launch a new Spot Instance when the constraints are met\.
 
-## Getting request status information<a name="get-spot-instance-bid-status"></a>
+## Getting request status information<a name="get-spot-instance-request-status"></a>
 
 You can get request status information using the AWS Management Console or a command line tool\.
 
@@ -126,7 +126,7 @@ You can use one of the following commands\. For more information about these com
 + [describe\-spot\-instance\-requests](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-spot-instance-requests.html) \(AWS CLI\)
 + [Get\-EC2SpotInstanceRequest](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2SpotInstanceRequest.html) \(AWS Tools for Windows PowerShell\)
 
-## Spot request status codes<a name="spot-instance-bid-status-understand"></a>
+## Spot request status codes<a name="spot-instance-request-status-understand"></a>
 
 Spot request status information is composed of a status code, the update time, and a status message\. Together, these help you determine the disposition of your Spot request\.
 

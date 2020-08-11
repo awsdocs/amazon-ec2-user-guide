@@ -106,7 +106,7 @@ Amazon's trademarks and trade dress may not be used in
             + [Scale Spot Fleet using a target tracking policy](spot-fleet-target-tracking.md)
             + [Scale Spot Fleet using step scaling policies](spot-fleet-step-scaling.md)
             + [Scale Spot Fleet using scheduled scaling](spot-fleet-scheduled-scaling.md)
-         + [Spot request status](spot-bid-status.md)
+         + [Spot request status](spot-request-status.md)
          + [Spot Instance interruptions](spot-interruptions.md)
          + [Spot Instance data feed](spot-data-feeds.md)
          + [Spot Instance limits](using-spot-limits.md)

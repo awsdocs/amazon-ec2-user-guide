@@ -54,7 +54,7 @@ The first thing you need to do is get set up to use Amazon EC2\. It can also be 
 **Working with Spot Instances**
 + [Preparing for interruptions](spot-interruptions.md#using-spot-instances-managing-interruptions)
 + [Creating a Spot Instance request](spot-requests.md#using-spot-instances-request)
-+ [Getting request status information](spot-bid-status.md#get-spot-instance-bid-status)
++ [Getting request status information](spot-request-status.md#get-spot-instance-request-status)
 
 **Working with Spot Fleets**
 + [Spot Fleet permissions](spot-fleet-requests.md#spot-fleet-prerequisites)

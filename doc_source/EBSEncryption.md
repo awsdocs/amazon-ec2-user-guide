@@ -99,7 +99,7 @@ Amazon EBS does not support asymmetric CMKs\. For more information, see [Using s
 ------
 #### [ New console ]
 
-**To enable encryption by default for a Region**
+**To configure the default key for EBS encryption for a Region**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 

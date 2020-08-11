@@ -189,7 +189,7 @@ These downloads are available to AWS customers only\. By downloading, you agree 
    [ec2-user ~]$ aws s3 ls --recursive s3://ec2-linux-nvidia-drivers/
    ```
 
-   Starting with GRID version 11\.0, you can use the driver packages under `latest` for both G3 and G4 instances\. The earlier packages that are specific to G4 remain under `g4/latest`, but we will not add the driver packages for version 11\.0 or later under `g4/latest`\.
+   Starting with GRID version 11\.0, you can use the driver packages under `latest` for both G3 and G4 instances\. We will not add versions later than 11\.0 to `g4/latest`, but will keep version 11\.0 and the earlier versions specific to G4 under `g4/latest`\.
 
 1. Add permissions to run the driver installation utility using the following command\.
 
