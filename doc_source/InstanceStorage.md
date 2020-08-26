@@ -51,6 +51,14 @@ The following table provides the quantity, size, type, and performance optimizat
 | c3\.2xlarge |  2 x 80 GB \(160 GB\)  | SSD | ✔ |  | 
 | c3\.4xlarge |  2 x 160 GB \(320 GB\)  | SSD | ✔ |  | 
 | c3\.8xlarge |  2 x 320 GB \(640 GB\)  | SSD | ✔ |  | 
+| c5ad\.large | 1 x 75 GB | NVMe SSD |  | ✔ | 
+| c5ad\.xlarge | 1 x 150 GB | NVMe SSD |  | ✔ | 
+| c5ad\.2xlarge | 1 x 300 GB | NVMe SSD |  | ✔ | 
+| c5ad\.4xlarge | 2 x 300 GB \(600 GB\) | NVMe SSD |  | ✔ | 
+| c5ad\.8xlarge | 2 x 600 GB \(1\.2 TB\) | NVMe SSD |  | ✔ | 
+| c5ad\.12xlarge | 2 x 900 GB \(1\.8 TB\) | NVMe SSD |  | ✔ | 
+| c5ad\.16xlarge | 2 x 1\.2 TB \(2\.4 TB\) | NVMe SSD |  | ✔ | 
+| c5ad\.24xlarge | 2 x 1\.9 TB \(3\.8 TB\) | NVMe SSD |  | ✔ | 
 | c5d\.large | 1 x 50 GB  | NVMe SSD |  | ✔ | 
 | c5d\.xlarge | 1 x 100 GB | NVMe SSD |  | ✔ | 
 | c5d\.2xlarge | 1 x 200 GB | NVMe SSD |  | ✔ | 

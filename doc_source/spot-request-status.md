@@ -92,7 +92,7 @@ Your Spot Instances continue to run as long as your maximum price is at or above
 | --- | --- | --- | 
 |  request\-canceled\-and\-instance\-running  |  cancelled  |  running  | 
 |  marked\-for\-stop  |  active  |  running  | 
-|  marked\-for\-termination  |  closed  |  running  | 
+|  marked\-for\-termination  |  active  |  running  | 
 |  instance\-stopped\-by\-price  |  disabled  |  stopped  | 
 |  instance\-stopped\-by\-user  |  disabled  |  stopped  | 
 |  instance\-stopped\-no\-capacity  |  disabled  |  stopped  | 

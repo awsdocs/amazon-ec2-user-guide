@@ -4,6 +4,9 @@ When you launch an instance, the *root device volume* contains the image used to
 
 You can choose between AMIs backed by Amazon EC2 instance store and AMIs backed by Amazon EBS\. We recommend that you use AMIs backed by Amazon EBS, because they launch faster and use persistent storage\.
 
+**Important**  
+Only the following instance types support an instance store volume as the root device: C3, D2, G2, I2, M3, and R3\.
+
 For more information about the device names Amazon EC2 uses for your root volumes, see [Device naming on Linux instances](device_naming.md)\.
 
 **Topics**

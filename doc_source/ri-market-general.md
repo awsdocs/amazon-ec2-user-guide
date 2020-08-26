@@ -90,7 +90,7 @@ The tax information you enter as part of the tax interview might differ dependin
 + To fulfill the IRS reporting requirements as efficiently as possible, answer all questions and enter all information requested during the interview\.
 + Check your answers\. Avoid misspellings or entering incorrect tax identification numbers\. They can result in an invalidated tax form\. 
 
-Based on your tax interview responses and IRS reporting thresholds, Amazon may file Form 1099\-K\. Amazon mails a copy of your Form 1099\-K on or before January 31 in the year following the year that your tax account reaches the threshold levels\. For example, if your account reaches the threshold in 2018, your Form 1099\-K is mailed on or before January 31, 2019\.
+Based on your tax interview responses and IRS reporting thresholds, Amazon might file Form 1099\-K\. Amazon mails a copy of your Form 1099\-K on or before January 31 in the year following the year that your tax account reaches the threshold levels\. For example, if your account reaches the threshold in 2018, your Form 1099\-K is mailed on or before January 31, 2019\.
 
 For more information about IRS requirements and Form 1099\-K, see the [IRS](http://www.irs.gov/uac/FAQs-on-New-Payment-Card-Reporting-Requirements) website\.
 
@@ -99,7 +99,8 @@ For more information about IRS requirements and Form 1099\-K, see the [IRS](http
 The upfront fee is the only fee that you can specify for the Reserved Instance that you're selling\. The upfront fee is the one\-time fee that the buyer pays when they purchase a Reserved Instance\.
 
 The following are important limits to note:
-+ **You can sell up to $50,000 in Reserved Instances per year**\. To sell more, complete the [Request to Raise Sales Limit on Amazon EC2 Reserved Instances](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-reserved-instance-sales) form\.
++ **You can sell up to $50,000 in Reserved Instances**\. To increase this limit, complete the [EC2 Reserved Instance Sales](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-reserved-instance-sales) form\.
++ **You can sell up to 5,000 Reserved Instances**\. To increase this limit, complete the [EC2 Reserved Instance Sales](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-reserved-instance-sales) form\.
 + **The minimum price is $0**\. The minimum allowed price in the Reserved Instance Marketplace is $0\.00\.
 
 You cannot modify your listing directly\. However, you can change your listing by first canceling it and then creating another listing with new parameters\.

@@ -7,7 +7,7 @@ After you have successfully launched and logged into your Amazon Linux instance,
 + [Managing software on your Amazon Linux instance](managing-software.md)
 + [Managing user accounts on your Amazon Linux instance](managing-users.md)
 + [Processor state control for your EC2 instance](processor_state_control.md)
-+ [Setting the Time for Your Linux Instance](set-time.md)
++ [Setting the time for your Linux instance](set-time.md)
 + [Optimizing CPU options](instance-optimize-cpu.md)
 + [Changing the hostname of your Amazon Linux instance](set-hostname.md)
 + [Setting up dynamic DNS on Your Amazon Linux instance](dynamic-dns.md)
@@ -20,7 +20,7 @@ The base distribution of Amazon Linux contains many software packages and utilit
 
 Amazon Linux instances come pre\-configured with an `ec2-user` account, but you may want to add other user accounts that do not have super\-user privileges\. For more information on adding and removing user accounts, see [Managing user accounts on your Amazon Linux instance](managing-users.md)\.
 
-The default time configuration for Amazon Linux instances uses Amazon Time Sync Service to set the system time on an instance\. The default time zone is UTC\. For more information on setting the time zone for an instance or using your own time server, see [Setting the Time for Your Linux Instance](set-time.md)\.
+The default time configuration for Amazon Linux instances uses Amazon Time Sync Service to set the system time on an instance\. The default time zone is UTC\. For more information on setting the time zone for an instance or using your own time server, see [Setting the time for your Linux instance](set-time.md)\.
 
 If you have your own network with a domain name registered to it, you can change the hostname of an instance to identify itself as part of that domain\. You can also change the system prompt to show a more meaningful name without changing the hostname settings\. For more information, see [Changing the hostname of your Amazon Linux instance](set-hostname.md)\. You can configure an instance to use a dynamic DNS service provider\. For more information, see [Setting up dynamic DNS on Your Amazon Linux instance](dynamic-dns.md)\.
 

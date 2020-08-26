@@ -56,7 +56,7 @@ GPT fdisk (gdisk) version 0.8.8
 + In some cases, you must detach the volume or stop the instance for modification to proceed\. If you encounter an error message while attempting to modify an EBS volume, or if you are modifying an EBS volume attached to a previous\-generation instance type, take one of the following steps:
   + For a non\-root volume, detach the volume from the instance, apply the modifications, and then re\-attach the volume\.
   + For a root \(boot\) volume, stop the instance, apply the modifications, and then restart the instance\.
-+ After provisioning over 32,000 IOPS on an existing `io1` volume, you may need to do one of the following to see the full performance improvements:
++ After provisioning over 32,000 IOPS on an existing `io1` or `io2` volume, you may need to do one of the following to see the full performance improvements:
   + Detach and attach the volume\.
   + Restart the instance\.
 + Decreasing the size of an EBS volume is not supported\. However, you can create a smaller volume and then migrate your data to it using an application\-level tool such as rsync\.

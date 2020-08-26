@@ -1,4 +1,4 @@
-# Setting the Time for Your Linux Instance<a name="set-time"></a>
+# Setting the time for your Linux instance<a name="set-time"></a>
 
 A consistent and accurate time reference is crucial for many server tasks and processes\. Most system logs include a time stamp that you can use to determine when problems occur and in what order the events take place\. If you use the AWS CLI or an AWS SDK to make requests from your instance, these tools sign requests on your behalf\. If your instance's date and time are not set correctly, the date in the signature may not match the date of the request, and AWS rejects the request\. 
 
@@ -201,9 +201,9 @@ server 169.254.169.123 prefer iburst minpoll 4 maxpoll 4
 
 If this line is not present, add it\. Comment out any other server or pool lines\. Open yast and enable the chrony service\.
 
-## Changing the Time Zone on Amazon Linux<a name="change_time_zone"></a>
+## Changing the time zone on Amazon Linux<a name="change_time_zone"></a>
 
-Amazon Linux instances are set to the UTC \(Coordinated Universal Time\) time zone by default, but you may wish to change the time on an instance to the local time or to another time zone in your network\.
+Amazon Linux instances are set to the UTC \(Coordinated Universal Time\) time zone by default\. You can change the time on an instance to the local time or to another time zone in your network\.
 
 **Important**  
 This information applies to Amazon Linux\. For information about other distributions, see their specific documentation\.
@@ -221,11 +221,15 @@ This information applies to Amazon Linux\. For information about other distribut
    ...
    ```
 
-   Some of the entries at this location are directories \(such as `America`\), and these directories contain time zone files for specific cities\. Find your city \(or a city in your time zone\) to use for the instance\. In this example, you can use the time zone file for Los Angeles, `/usr/share/zoneinfo/America/Los_Angeles`\.
+   Some of the entries at this location are directories \(such as `America`\), and these directories contain time zone files for specific cities\. Find your city \(or a city in your time zone\) to use for the instance\.
 
-1. Update the `/etc/sysconfig/clock` file with the new time zone\.
+1. Update the `/etc/sysconfig/clock` file with the new time zone\. In this example, we use the time zone data file for Los Angeles, `/usr/share/zoneinfo/America/Los_Angeles`\.
 
    1. Open the `/etc/sysconfig/clock` file with your favorite text editor \(such as vim or nano\)\. You need to use sudo with your editor command because `/etc/sysconfig/clock` is owned by `root`\.
+
+      ```
+      [ec2-user ~]$ sudo nano /etc/sysconfig/clock
+      ```
 
    1. Locate the `ZONE` entry, and change it to the time zone file \(omitting the `/usr/share/zoneinfo` section of the path\)\. For example, to change to the Los Angeles time zone, change the `ZONE` entry to the following:
 
@@ -237,7 +241,7 @@ Do not change the `UTC=true` entry to another value\. This entry is for the hard
 
    1. Save the file and exit the text editor\.
 
-1. Create a symbolic link between `/etc/localtime` and your time zone file so that the instance finds the time zone file when it references local time information\.
+1. Create a symbolic link between `/etc/localtime` and the time zone file so that the instance finds the time zone file when it references local time information\.
 
    ```
    [ec2-user ~]$ sudo ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
@@ -247,4 +251,11 @@ Do not change the `UTC=true` entry to another value\. This entry is for the hard
 
    ```
    [ec2-user ~]$ sudo reboot
+   ```
+
+1. \(Optional\) Confirm that the current time zone is updated to the new time zone by using the date command\. The current time zone appears in the output\. In the following example, the current time zone is PDT, which refers to the Los Angeles time zone\.
+
+   ```
+   [ec2-user ~]$ date
+   Sun Aug 16 05:45:16 PDT 2020
    ```

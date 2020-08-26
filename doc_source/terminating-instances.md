@@ -37,6 +37,9 @@ When an EC2 instance is terminated using the `terminate-instances` command, the 
 
 ## Terminating an instance<a name="terminating-instances-console"></a>
 
+**Important**  
+By default, when you initiate a shutdown from an Amazon EBS\-backed instance \(using the **shutdown** or **poweroff** commands\), the instance stops\. The **halt** command does not initiate a shutdown\. If used, the instance will not terminate; instead, it places the CPU into `HLT` and the instance will remain running\.
+
 You can terminate an instance using the AWS Management Console or the command line\.
 
 **To terminate an instance using the console**

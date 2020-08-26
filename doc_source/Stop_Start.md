@@ -47,13 +47,16 @@ When an EC2 instance is stopped using the `stop-instances` command, the followin
 + Various system services will be stopped as a result of the button press event\. **systemd** handles a graceful shutdown of the system\. Graceful shutdown is triggered by the ACPI shutdown button press event from the hypervisor\.
 + ACPI shutdown will be initiated\.
 + The instance will shut down when the graceful shutdown process exits\. There is no configurable OS shutdown time\.
-+ If the instance OS does not shut down cleanly within four minutes, a hard shutdown is performed\.
++ If the instance OS does not shut down cleanly within a few minutes, a hard shutdown is performed\.
 
 ## Stopping and starting your instances<a name="starting-stopping-instances"></a>
 
 You can stop and start your Amazon EBS\-backed instance using the console or the command line\.
 
 By default, when you initiate a shutdown from an Amazon EBS\-backed instance \(using the shutdown or poweroff command\), the instance stops\. You can change this behavior so that it terminates instead\. For more information, see [Changing the instance initiated shutdown behavior](terminating-instances.md#Using_ChangingInstanceInitiatedShutdownBehavior)\.
+
+**Important**  
+Using the **halt** command from an instance does not initiate a shutdown\. If used, the instance will not terminate; instead, it will place the CPU into `HLT` and the instance will remain running\.
 
 **To stop and start an Amazon EBS\-backed instance using the console**
 

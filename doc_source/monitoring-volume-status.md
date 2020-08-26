@@ -19,14 +19,14 @@ Volume status checks are automated tests that run every 5 minutes and return a p
 When Amazon EBS determines that a volume's data is potentially inconsistent, the default is that it disables I/O to the volume from any attached EC2 instances, which helps to prevent data corruption\. After I/O is disabled, the next volume status check fails, and the volume status is `impaired`\. In addition, you'll see an event that lets you know that I/O is disabled, and that you can resolve the impaired status of the volume by enabling I/O to the volume\. We wait until you enable I/O to give you the opportunity to decide whether to continue to let your instances use the volume, or to run a consistency check using a command, such as fsck, before doing so\.
 
 **Note**  
-Volume status is based on the volume status checks, and does not reflect the volume state\. Therefore, volume status does not indicate volumes in the `error` state \(for example, when a volume is incapable of accepting I/O\.\)
+Volume status is based on the volume status checks, and does not reflect the volume state\. Therefore, volume status does not indicate volumes in the `error` state \(for example, when a volume is incapable of accepting I/O\.\) For information about volume states, see [Volume state](ebs-describing-volumes.md#volume-state)\.
 
 If the consistency of a particular volume is not a concern, and you'd prefer that the volume be made available immediately if it's impaired, you can override the default behavior by configuring the volume to automatically enable I/O\. If you enable the **Auto\-Enable IO** volume attribute \(`autoEnableIO` in the API\), the volume status check continues to pass\. In addition, you'll see an event that lets you know that the volume was determined to be potentially inconsistent, but that its I/O was automatically enabled\. This enables you to check the volume's consistency or replace it at a later time\.
 
-The I/O performance status check compares actual volume performance to the expected performance of a volume and alerts you if the volume is performing below expectations\. This status check is only available for `io1` volumes that are attached to an instance and is not valid for General Purpose SSD \(`gp2`\), Throughput Optimized HDD \(`st1`\), Cold HDD \(`sc1`\), or Magnetic \(`standard`\) volumes\. The I/O performance status check is performed once every minute and CloudWatch collects this data every 5 minutes, so it may take up to 5 minutes from the moment you attach a `io1` volume to an instance for this check to report the I/O performance status\.
+The I/O performance status check compares actual volume performance to the expected performance of a volume and alerts you if the volume is performing below expectations\. This status check is only available for Provisioned IOPS SSD \(`io1` and `io2`\) volumes that are attached to an instance\. It is not valid for General Purpose SSD \(`gp2`\), Throughput Optimized HDD \(`st1`\), Cold HDD \(`sc1`\), or Magnetic \(`standard`\) volumes\. The I/O performance status check is performed once every minute and CloudWatch collects this data every 5 minutes, so it may take up to 5 minutes from the moment you attach an `io1` or `io2` volume to an instance for this check to report the I/O performance status\.
 
 **Important**  
-While initializing `io1` volumes that were restored from snapshots, the performance of the volume may drop below 50 percent of its expected level, which causes the volume to display a `warning` state in the **I/O Performance** status check\. This is expected, and you can ignore the `warning` state on `io1` volumes while you are initializing them\. For more information, see [Initializing Amazon EBS volumes](ebs-initialize.md)\.
+While initializing `io1` and `io2` volumes that were restored from snapshots, the performance of the volume may drop below 50 percent of its expected level, which causes the volume to display a `warning` state in the **I/O Performance** status check\. This is expected, and you can ignore the `warning` state on `io1` and `io2` volumes while you are initializing them\. For more information, see [Initializing Amazon EBS volumes](ebs-initialize.md)\.
 
 The following table lists statuses for Amazon EBS volumes\.
 
@@ -79,16 +79,16 @@ IO Auto\-Enabled
 I/O operations were automatically enabled on this volume after an event occurred\. We recommend that you check for data inconsistencies before continuing to use the data\.
 
 Normal  
-For `io1` volumes only\. Volume performance is as expected\.
+For `io1` and `io2` volumes only\. Volume performance is as expected\.
 
 Degraded  
-For `io1` volumes only\. Volume performance is below expectations\.
+For `io1` and `io2` volumes only\. Volume performance is below expectations\.
 
 Severely Degraded  
-For `io1` volumes only\. Volume performance is well below expectations\.
+For `io1` and `io2` volumes only\. Volume performance is well below expectations\.
 
 Stalled  
-For `io1` volumes only\. Volume performance is severely impacted\.
+For `io1` and `io2` volumes only\. Volume performance is severely impacted\.
 
 You can view events for your volumes using the Amazon EC2 console, the API, or the command line interface\. 
 

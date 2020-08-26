@@ -18,13 +18,13 @@ The following are the basic characteristics of an Elastic IP address:
 + To use an Elastic IP address, you first allocate one to your account, and then associate it with your instance or a network interface\.
 + When you associate an Elastic IP address with an instance, it is also associated with the instance's primary network interface\. When you associate an Elastic IP address with a network interface that is attached to an instance, it is also associated with the instance\.
 + When you associate an Elastic IP address with an instance or its primary network interface, the instance's public IPv4 address \(if it had one\) is released back into Amazon's pool of public IPv4 addresses\. You cannot reuse a public IPv4 address, and you cannot convert a public IPv4 address to an Elastic IP address\. For more information, see [Public IPv4 addresses and external DNS hostnames](using-instance-addressing.md#concepts-public-addresses)\.
-+ You can disassociate an Elastic IP address from a resource, and reassociate it with a different resource\. Any open connections to an instance continue to work for a time even after you disassociate its Elastic IP address and reassociate it with another instance\. We recommend that you reopen these connections using the reassociated Elastic IP address\.
++ You can disassociate an Elastic IP address from a resource, and then associate it with a different resource\. To avoid unexpected behavior, ensure that all active connections to the resource named in the existing association are closed before you make the change\. After you have associated your Elastic IP address to a different resource, you can reopen your connections to the newly associated resource\.
 + A disassociated Elastic IP address remains allocated to your account until you explicitly release it\.
 + To ensure efficient use of Elastic IP addresses, we impose a small hourly charge if an Elastic IP address is not associated with a running instance, or if it is associated with a stopped instance or an unattached network interface\. While your instance is running, you are not charged for one Elastic IP address associated with the instance, but you are charged for any additional Elastic IP addresses associated with the instance\. For more information, see the section for Elastic IP Addresses on the [Amazon EC2 Pricing, On\-Demand Pricing page](http://aws.amazon.com/ec2/pricing/on-demand/)\.
 + An Elastic IP address is for use in a specific network border group only\. 
 + When you associate an Elastic IP address with an instance that previously had a public IPv4 address, the public DNS host name of the instance changes to match the Elastic IP address\. 
 + We resolve a public DNS host name to the public IPv4 address or the Elastic IP address of the instance outside the network of the instance, and to the private IPv4 address of the instance from within the network of the instance\. 
-+ When you allocate an Elastic IP address from an IP address pool that you have brought to your AWS account, it does not count toward your Elastic IP address limits\.
++ When you allocate an Elastic IP address from an IP address pool that you have brought to your AWS account, it does not count toward your Elastic IP address limits\. For more information, see [Elastic IP address limit](#using-instance-addressing-limit)\.
 + When you allocate the Elastic IP addresses, you can associate the Elastic IP addresses with a network border group\. This is the location from which we advertise the CIDR block\. Setting the network border group limits the CIDR block to this group\. If you do not specify the network border group, we set the border group containing all of the Availability Zones in the Region \(for example, `us-west-2`\)\.
 
 ## Working with Elastic IP addresses<a name="working-with-eips"></a>
@@ -413,12 +413,18 @@ To remove email sending limits, or to provide us with your Elastic IP addresses 
 
 By default, all AWS accounts are limited to five \(5\) Elastic IP addresses per Region, because public \(IPv4\) internet addresses are a scarce public resource\. We strongly encourage you to use an Elastic IP address primarily for the ability to remap the address to another instance in the case of instance failure, and to use DNS hostnames for all other inter\-node communication\.
 
-To verify how many Elastic IP addresses are in use, open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/) and choose **Elastic IPs** from the navigation pane\.
+**To verify how many Elastic IP addresses are in use**  
+Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/) and choose **Elastic IPs** from the navigation pane\.
 
-To verify your current account limit for Elastic IP addresses, do one of the following:
-+ Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/), choose **Limits** from the navigation pane, and enter **IP** in the search field\.
-+ Open the Service Quotas console at [https://console\.aws\.amazon\.com/servicequotas/](https://console.aws.amazon.com/servicequotas/)\. On the Dashboard, choose **Amazon Elastic Compute Cloud \(Amazon EC2\)**\. If Amazon Elastic Compute Cloud \(Amazon EC2\) is not listed on the Dashboard, choose **AWS services**, enter **EC2** in the search field, and then choose **Amazon Elastic Compute Cloud \(Amazon EC2\)**\.
+**To verify your current account limit for Elastic IP addresses**  
+You can verify your limit in either the Amazon EC2 console or the Service Quotas console\. Do one of the following:
++ Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-  On the Amazon EC2 service quotas screen, enter **Elastic IP** in the search field and then choose **Elastic IP addresses for EC2**\.
+  Choose **Limits** from the navigation pane, and then enter **IP** in the search field\. The limit is **EC2\-VPC Elastic IPs**\. If you have access to EC2\-Classic, there is an additional limit, **EC2\-Classic Elastic IPs**\.
++ Open the Service Quotas console at [https://console\.aws\.amazon\.com/servicequotas/](https://console.aws.amazon.com/servicequotas/)\.
 
-If you feel your architecture warrants additional Elastic IP addresses, you can request a quota increase directly from the Service Quotas console\.
+  On the Dashboard, choose **Amazon Elastic Compute Cloud \(Amazon EC2\)**\. If Amazon Elastic Compute Cloud \(Amazon EC2\) is not listed on the Dashboard, choose **AWS services**, enter **EC2** in the search field, and then choose **Amazon Elastic Compute Cloud \(Amazon EC2\)**\.
+
+  On the Amazon EC2 service quotas page, enter **IP** in the search field\. The limit is **EC2\-VPC Elastic IPs**\. If you have access to EC2\-Classic, there is an additional limit, **EC2\-Classic Elastic IPs**\. For more information, choose the limit\.
+
+If you think your architecture warrants additional Elastic IP addresses, you can request a quota increase directly from the Service Quotas console\.

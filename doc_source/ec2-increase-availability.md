@@ -1,4 +1,4 @@
-# Tutorial: Increase the Availability of Your Application on Amazon EC2<a name="ec2-increase-availability"></a>
+# Tutorial: Increase the availability of your application on Amazon EC2<a name="ec2-increase-availability"></a>
 
 Suppose that you start out running your app or website on a single EC2 instance, and over time, traffic increases to the point that you require more than one instance to meet the demand\. You can launch multiple EC2 instances from your AMI and then use Elastic Load Balancing to distribute incoming traffic for your application across these EC2 instances\. This increases the availability of your application\. Placing your instances in multiple Availability Zones also improves the fault tolerance in your application\. If one Availability Zone experiences an outage, traffic is routed to the other Availability Zone\.
 
@@ -10,8 +10,8 @@ In this tutorial, we use Amazon EC2 Auto Scaling with Elastic Load Balancing to 
 
 **Topics**
 + [Prerequisites](#scale-and-load-balance-prerequisites)
-+ [Scale and Load Balance Your Application](#scale-and-load-balance)
-+ [Test Your Load Balancer](#test-load-balancer)
++ [Scale and load balance your application](#scale-and-load-balance)
++ [Test your load balancer](#test-load-balancer)
 
 ## Prerequisites<a name="scale-and-load-balance-prerequisites"></a>
 
@@ -21,7 +21,7 @@ This tutorial assumes that you have already done the following:
 
 1. Launched an instance in the VPC\.
 
-1. Connected to the instance and customized it\. For example, installing software and applications, copying data, and attaching additional EBS volumes\. For information about setting up a web server on your instance, see [Tutorial: Install a LAMP Web Server with the Amazon Linux AMI](install-LAMP.md)\.
+1. Connected to the instance and customized it\. For example, installing software and applications, copying data, and attaching additional EBS volumes\. For information about setting up a web server on your instance, see [Tutorial: Install a LAMP web server with the Amazon Linux AMI](install-LAMP.md)\.
 
 1. Tested your application on your instance to ensure that your instance is configured correctly\.
 
@@ -31,7 +31,7 @@ This tutorial assumes that you have already done the following:
 
 1. Created an IAM role that grants your application the access to AWS it needs\. For more information, see [To create an IAM role using the IAM console](iam-roles-for-amazon-ec2.md#create-iam-role-console)\.
 
-## Scale and Load Balance Your Application<a name="scale-and-load-balance"></a>
+## Scale and load balance your application<a name="scale-and-load-balance"></a>
 
 Use the following procedure to create a load balancer, create a launch configuration for your instances, create an Auto Scaling group with two or more instances, and associate the load balancer with the Auto Scaling group\.
 
@@ -129,7 +129,7 @@ Use the following procedure to create a load balancer, create a launch configura
 
 1. After the group is created, choose **Close**\.
 
-## Test Your Load Balancer<a name="test-load-balancer"></a>
+## Test your load balancer<a name="test-load-balancer"></a>
 
 When a client sends a request to your load balancer, the load balancer routes the request to one of its registered instances\.
 

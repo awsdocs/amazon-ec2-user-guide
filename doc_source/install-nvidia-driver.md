@@ -10,6 +10,7 @@ An instance with an attached GPU, such as a P3 or G4 instance, must have the app
   + [Option 2: Public NVIDIA drivers](#public-nvidia-driver)
   + [Option 3: GRID drivers \(G3 and G4 instances\)](#nvidia-GRID-driver)
   + [Option 4: NVIDIA gaming drivers \(G4 instances\)](#nvidia-gaming-driver)
++ [Installing an additional version of CUDA](#gpu-instance-install-cuda)
 
 ## Types of NVIDIA drivers<a name="nvidia-driver-types"></a>
 
@@ -358,3 +359,35 @@ These drivers are available to AWS customers only\. By downloading them, you agr
    ```
 
 1. \(Optional\) To help take advantage of a single display of up to 4K resolution, set up the high\-performance display protocol [NICE DCV](https://docs.aws.amazon.com/dcv)\. If you do not require this functionality, do not complete this step\.
+
+## Installing an additional version of CUDA<a name="gpu-instance-install-cuda"></a>
+
+After you install an NVIDIA graphics driver on your instance, you can install a version of CUDA other than the version that is bundled with the graphics driver\. The following procedure demonstrates how to configure multiple versions of CUDA on the instance\.
+
+**To install the CUDA toolkit**
+
+1. Connect to your Linux instance\.
+
+1. Open the [NVIDIA website](https://developer.nvidia.com/cuda-downloads?target_os=Linux) and select the version of CUDA that you need\.
+
+1. Select the architecture, distribution, and version for the operating system on your instance\. For **Installer Type**, select **runfile \(local\)**\.
+
+1. Follow the instructions to download the install script\.
+
+1. Add run permissions to the install script that you downloaded using the following command\.
+
+   ```
+   [ec2-user ~]$ chmod +x downloaded_installer_file
+   ```
+
+1. Run the install script as follows to install the CUDA toolkit and add the CUDA version number to the toolkit path\.
+
+   ```
+   [ec2-user ~]$ sudo downloaded_installer_file --silent --override --toolkit --samples --toolkitpath=/usr/local/cuda-version --samplespath=/usr/local/cuda --no-opengl-lib
+   ```
+
+1. \(Optional\) Set the default CUDA version as follows\.
+
+   ```
+   [ec2-user ~]$ ln -s /usr/local/cuda-version /usr/local/cuda
+   ```

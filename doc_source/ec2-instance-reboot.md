@@ -6,7 +6,7 @@ Rebooting an instance doesn't start a new instance billing period \(with a minim
 
 We might schedule your instance for a reboot for necessary maintenance, such as to apply updates that require a reboot\. No action is required on your part; we recommend that you wait for the reboot to occur within its scheduled window\. For more information, see [Scheduled events for your instances](monitoring-instances-status-check_sched.md)\.
 
-We recommend that you use the Amazon EC2 console, a command line tool, or the Amazon EC2 API to reboot your instance instead of running the operating system reboot command from your instance\. If you use the Amazon EC2 console, a command line tool, or the Amazon EC2 API to reboot your instance, we perform a hard reboot if the instance does not cleanly shut down within four minutes\. If you use AWS CloudTrail, then using Amazon EC2 to reboot your instance also creates an API record of when your instance was rebooted\.
+We recommend that you use the Amazon EC2 console, a command line tool, or the Amazon EC2 API to reboot your instance instead of running the operating system reboot command from your instance\. If you use the Amazon EC2 console, a command line tool, or the Amazon EC2 API to reboot your instance, we perform a hard reboot if the instance does not cleanly shut down within a few minutes\. If you use AWS CloudTrail, then using Amazon EC2 to reboot your instance also creates an API record of when your instance was rebooted\.
 
 **To reboot an instance using the console**
 

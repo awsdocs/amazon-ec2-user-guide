@@ -1,6 +1,11 @@
 # Creating an instance store\-backed Linux AMI<a name="creating-an-ami-instance-store"></a>
 
+The AMI that you specify when you launch your instance determines the type of root device volume
+
 To create an instance store\-backed Linux AMI, start from an instance that you've launched from an existing instance store\-backed Linux AMI\. After you've customized the instance to suit your needs, bundle the volume and register a new AMI, which you can use to launch new instances with these customizations\.
+
+**Important**  
+Only the following instance types support an instance store volume as the root device: C3, D2, G2, I2, M3, and R3\.
 
 The AMI creation process is different for Amazon EBS\-backed AMIs\. For more information about the differences between Amazon EBS\-backed and instance store\-backed instances, and how to determine the root device type for your instance, see [Storage for the root device](ComponentsAMIs.md#storage-for-the-root-device)\. If you need to create an Amazon EBS\-backed Linux AMI, see [Creating an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md)\.
 

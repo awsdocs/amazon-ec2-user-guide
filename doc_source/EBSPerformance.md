@@ -92,7 +92,7 @@ For more information about EBS I/O characteristics, see the [Amazon EBS: Designi
 
 ### Use RAID 0 to maximize utilization of instance resources<a name="RAID"></a>
 
-Some instance types can drive more I/O throughput than what you can provision for a single EBS volume\. You can join multiple `gp2`, `io1`, `st1`, or `sc1` volumes together in a RAID 0 configuration to use the available bandwidth for these instances\. For more information, see [RAID Configuration on Linux](raid-config.md)\.
+Some instance types can drive more I/O throughput than what you can provision for a single EBS volume\. You can join multiple `gp2`, `io1`, `io2`, `st1`, or `sc1` volumes together in a RAID 0 configuration to use the available bandwidth for these instances\. For more information, see [RAID Configuration on Linux](raid-config.md)\.
 
 ### Track performance using Amazon CloudWatch<a name="cloudwatch"></a>
 

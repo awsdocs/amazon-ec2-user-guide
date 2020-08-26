@@ -171,4 +171,4 @@ aws ec2 describe-snapshots --filters Name=owner-id,Values=123456789012 --query "
 ```
 
 **Filter based on tags**  
-For examples of how to filter a list of resources according to their tags, see [Working with tags using the CLI or API](Using_Tags.md#Using_Tags_CLI)\.
+For examples of how to filter a list of resources according to their tags, see [Working with tags using the command line](Using_Tags.md#Using_Tags_CLI)\.

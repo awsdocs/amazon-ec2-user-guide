@@ -8,15 +8,15 @@ Some of the category names in the following table are placeholders for data that
 
 | Data | Description | Release date | 
 | --- | --- | --- | 
-|  ami\-id  | The AMI ID used to launch the instance\. | Version 1\.0 | 
-|  ami\-launch\-index  | If you started more than one instance at the same time, this value indicates the order in which the instance was launched\. The value of the first instance launched is 0\. | Version 1\.0 | 
-|  ami\-manifest\-path  | The path to the AMI manifest file in Amazon S3\. If you used an Amazon EBS\-backed AMI to launch the instance, the returned result is unknown\. | Version 1\.0 | 
-|  ancestor\-ami\-ids  | The AMI IDs of any instances that were rebundled to create this AMI\. This value will only exist if the AMI manifest file contained an ancestor\-amis key\. | 2007\-10\-10 | 
+| ami\-id  | The AMI ID used to launch the instance\. | Version 1\.0 | 
+| ami\-launch\-index  | If you started more than one instance at the same time, this value indicates the order in which the instance was launched\. The value of the first instance launched is 0\. | Version 1\.0 | 
+| ami\-manifest\-path  | The path to the AMI manifest file in Amazon S3\. If you used an Amazon EBS\-backed AMI to launch the instance, the returned result is unknown\. | Version 1\.0 | 
+| ancestor\-ami\-ids  | The AMI IDs of any instances that were rebundled to create this AMI\. This value will only exist if the AMI manifest file contained an ancestor\-amis key\. | 2007\-10\-10 | 
 | block\-device\-mapping/ami  | The virtual device that contains the root/boot file system\. | 2007\-12\-15 | 
-|  block\-device\-mapping/ebsN  | The virtual devices associated with any Amazon EBS volumes\. Amazon EBS volumes are only available in metadata if they were present at launch time or when the instance was last started\. The N indicates the index of the Amazon EBS volume \(such as ebs1 or ebs2\)\. | 2007\-12\-15 | 
-|  block\-device\-mapping/ephemeralN  | The virtual devices for any non\-NVMe instance store volumes\. The N indicates the index of each volume\. The number of instance store volumes in the block device mapping might not match the actual number of instance store volumes for the instance\. The instance type determines the number of instance store volumes that are available to an instance\. If the number of instance store volumes in a block device mapping exceeds the number available to an instance, the additional instance store volumes are ignored\. | 2007\-12\-15 | 
-|  block\-device\-mapping/root  | The virtual devices or partitions associated with the root devices or partitions on the virtual device, where the root \(/ or C:\) file system is associated with the given instance\. | 2007\-12\-15 | 
-|  block\-device\-mapping/swap  | The virtual devices associated with swap\. Not always present\. | 2007\-12\-15 | 
+| block\-device\-mapping/ebsN  | The virtual devices associated with any Amazon EBS volumes\. Amazon EBS volumes are only available in metadata if they were present at launch time or when the instance was last started\. The N indicates the index of the Amazon EBS volume \(such as ebs1 or ebs2\)\. | 2007\-12\-15 | 
+| block\-device\-mapping/ephemeralN  | The virtual devices for any non\-NVMe instance store volumes\. The N indicates the index of each volume\. The number of instance store volumes in the block device mapping might not match the actual number of instance store volumes for the instance\. The instance type determines the number of instance store volumes that are available to an instance\. If the number of instance store volumes in a block device mapping exceeds the number available to an instance, the additional instance store volumes are ignored\. | 2007\-12\-15 | 
+| block\-device\-mapping/root  | The virtual devices or partitions associated with the root devices or partitions on the virtual device, where the root \(/ or C:\) file system is associated with the given instance\. | 2007\-12\-15 | 
+| block\-device\-mapping/swap  | The virtual devices associated with swap\. Not always present\. | 2007\-12\-15 | 
 | elastic\-gpus/associations/elastic\-gpu\-id | If there is an Elastic GPU attached to the instance, contains a JSON string with information about the Elastic GPU, including its ID and connection information\. | 2016\-11\-30 | 
 | elastic\-inference/associations/eia\-id | If there is an Elastic Inference accelerator attached to the instance, contains a JSON string with information about the Elastic Inference accelerator, including its ID and type\. | 2018\-11\-29 | 
 | events/maintenance/history | If there are completed or canceled maintenance events for the instance, contains a JSON string with information about the events\. For more information, see [To view event history about completed or canceled events](monitoring-instances-status-check_sched.md#viewing-event-history)\. | 2018\-08\-17 | 
@@ -26,9 +26,10 @@ Some of the category names in the following table are placeholders for data that
 |  iam/security\-credentials/role\-name  | If there is an IAM role associated with the instance, role\-name is the name of the role, and role\-name contains the temporary security credentials associated with the role \(for more information, see [Retrieving security credentials from instance metadata](iam-roles-for-amazon-ec2.md#instance-metadata-security-credentials)\)\. Otherwise, not present\. | 2012\-01\-12 | 
 | identity\-credentials/ec2/info | \[Reserved for internal use only\] Information about the credentials that AWS uses to identify an instance to the rest of the Amazon EC2 infrastructure\. | 2018\-05\-23 | 
 | identity\-credentials/ec2/security\-credentials/ec2\-instance | \[Reserved for internal use only\] The credentials that AWS uses to identify an instance to the rest of the Amazon EC2 infrastructure\. | 2018\-05\-23 | 
-|  instance\-action  | Notifies the instance that it should reboot in preparation for bundling\. Valid values: none \| shutdown \| bundle\-pending\. | 2008\-09\-01 | 
-|  instance\-id  | The ID of this instance\. | Version 1\.0 | 
-|  instance\-type  | The type of instance\. For more information, see [Instance types](instance-types.md)\. | 2007\-08\-29 | 
+| instance\-action | Notifies the instance that it should reboot in preparation for bundling\. Valid values: none \| shutdown \| bundle\-pending\. | 2008\-09\-01 | 
+| instance\-id | The ID of this instance\. | Version 1\.0 | 
+| instance\-life\-cycle | The purchasing option of this instance\. For more information, see [Instance purchasing options](instance-purchasing-options.md)\. | Version 1\.0 | 
+| instance\-type  | The type of instance\. For more information, see [Instance types](instance-types.md)\. | 2007\-08\-29 | 
 |  kernel\-id  | The ID of the kernel launched with this instance, if applicable\. | 2008\-02\-01 | 
 |  local\-hostname  | The private IPv4 DNS hostname of the instance\. In cases where multiple network interfaces are present, this refers to the eth0 device \(the device for which the device number is 0\)\. | 2007\-01\-19 | 
 |  local\-ipv4  | The private IPv4 address of the instance\. In cases where multiple network interfaces are present, this refers to the eth0 device \(the device for which the device number is 0\)\. | Version 1\.0 | 
@@ -54,6 +55,11 @@ Some of the category names in the following table are placeholders for data that
 | network/interfaces/macs/mac/vpc\-ipv4\-cidr\-blocks  | The IPv4 CIDR blocks for the VPC\. | 2016\-06\-30  | 
 | network/interfaces/macs/mac/vpc\-ipv6\-cidr\-blocks  | The IPv6 CIDR block of the VPC in which the interface resides\. | 2016\-06\-30  | 
 |  placement/availability\-zone  | The Availability Zone in which the instance launched\. | 2008\-02\-01 | 
+|  placement/availability\-zone\-id  | The static Availability Zone ID in which the instance is launched\. The Availability Zone ID is consistent across accounts\. However, it might be different from the Availability Zone, which can vary by account\. | 2020\-08\-24 | 
+|  placement/group\-name  | The name of the placement group in which the instance is launched\. | 2020\-08\-24 | 
+|  placement/host\-id  | The ID of the host on which the instance is launched\. | 2020\-08\-24 | 
+|  placement/partition\-number  | The number of the partition in which the instance is launched\. | 2020\-08\-24 | 
+|  placement/region  | The AWS Region in which the instance is launched\. | 2020\-08\-24 | 
 |  product\-codes  | AWS Marketplace product codes associated with the instance, if any\.  | 2007\-03\-01 | 
 |  public\-hostname  | The instance's public DNS\. This category is only returned if the enableDnsHostnames attribute is set to true\. For more information, see [Using DNS with Your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html) in the Amazon VPC User Guide\. | 2007\-01\-19 | 
 |  public\-ipv4  | The public IPv4 address\. If an Elastic IP address is associated with the instance, the value returned is the Elastic IP address\. | 2007\-01\-19 | 

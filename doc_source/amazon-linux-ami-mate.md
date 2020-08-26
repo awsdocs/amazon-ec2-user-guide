@@ -6,10 +6,10 @@ Complete the following procedure to use the MATE desktop environment\.
 
 **To configure Remote Desktop Protocol \(RDP\) connections and set up a password**
 
-1. Use the following [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command to get the ID of the AMI for Amazon Linux 2 that includes MATE in the AMI name\.
+1. Use the following [describe\-images](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/ec2/describe-images.html) command to get the ID of the AMI for Amazon Linux 2 that includes MATE in the AMI name\.
 
    ```
-   aws ec2 describe-images --filters Name=name,Values=amzn2*MATE* --query Images[*].ImageId --output text
+   aws ec2 describe-images --filters "Name=name,Values=amzn2*MATE*" --query 'Images[*].ImageId' --output text
    ```
 
    The following is example output:

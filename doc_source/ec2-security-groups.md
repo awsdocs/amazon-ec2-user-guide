@@ -59,7 +59,7 @@ For each rule, you specify the following:
   + An individual IPv6 address\. You must use the `/128` prefix length; for example, `2001:db8:1234:1a00::123/128`\.
   + A range of IPv4 addresses, in CIDR block notation; for example, `203.0.113.0/24`\.
   + A range of IPv6 addresses, in CIDR block notation; for example, `2001:db8:1234:1a00::/64`\.
-  + A prefix list ID, for example, `pl-1234abc1234abc123`\. For more information, see [Managed prefix lists](https://docs.aws.amazon.com/vpc/latest/userguide/managed-prefix-lists.html) in the *Amazon VPC User Guide*\.
+  + A prefix list ID, for example, `pl-1234abc1234abc123`\. For more information, see [Prefix lists](https://docs.aws.amazon.com/vpc/latest/userguide/managed-prefix-lists.html) in the *Amazon VPC User Guide*\.
   + Another security group\. This allows instances that are associated with the specified security group to access instances associated with this security group\. Choosing this option does not add rules from the source security group to this security group\. You can specify one of the following security groups:
     + The current security group
     + A different security group for the same VPC

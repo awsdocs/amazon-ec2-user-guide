@@ -143,6 +143,8 @@ For more information about these command line interfaces, see [Accessing Amazon 
 
 ## Determining the use of shared snapshots<a name="shared-snapshot-cloudtrail-logging"></a>
 
-You can monitor whether a snapshot that you have shared with others is copied or used to create volume using AWS CloudTrail\. The following events are logged in CloudTrail:
+You can use AWS CloudTrail to monitor whether a snapshot that you have shared with others is copied or used to create a volume\. The following events are logged in CloudTrail:
 + **SharedSnapshotCopyInitiated** — A shared snapshot is being copied\.
 + **SharedSnapshotVolumeCreated** — A shared snapshot is being used to create a volume\.
+
+For more information about using CloudTrail, see [Logging Amazon EC2 and Amazon EBS API calls with AWS CloudTrail](monitor-with-cloudtrail.md)\.

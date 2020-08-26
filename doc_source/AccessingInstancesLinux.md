@@ -114,7 +114,7 @@ The following procedure steps you through using SCP to transfer a file\. If you'
    ```
 
 1. To transfer files in the other direction \(from your Amazon EC2 instance to your local computer\), reverse the order of the host parameters\. For example, to transfer the `SampleFile.txt` file from your EC2 instance back to the home directory on your local computer as `SampleFile2.txt`, use of the following commands on your local computer\.
-   + \(Public DNS\) To transfer a file to your instance using your instance's public DNS name, enter the following command\. 
+   + \(Public DNS\) To transfer a file from your instance using your instance's public DNS name, enter the following command\. 
 
      ```
      scp -i /path/my-key-pair.pem my-instance-user-name@my-instance-public-dns-name:~/SampleFile.txt ~/SampleFile2.txt

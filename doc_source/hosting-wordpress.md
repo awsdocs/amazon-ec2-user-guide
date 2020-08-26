@@ -1,8 +1,8 @@
-# Tutorial: Hosting a WordPress Blog with Amazon Linux<a name="hosting-wordpress"></a>
+# Tutorial: Hosting a WordPress blog with Amazon Linux<a name="hosting-wordpress"></a>
 
 The following procedures will help you install, configure, and secure a WordPress blog on your Amazon Linux instance\. This tutorial is a good introduction to using Amazon EC2 in that you have full control over a web server that hosts your WordPress blog, which is not typical with a traditional hosting service\.
 
-You are responsible for updating the software packages and maintaining security patches for your server\. For a more automated WordPress installation that does not require direct interaction with the web server configuration, the AWS CloudFormation service provides a WordPress template that can also get you started quickly\. For more information, see [Getting Started](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/GettingStarted.Walkthrough.html) in the *AWS CloudFormation User Guide*\. If you'd prefer to host your WordPress blog on a Windows instance, see [Deploying a WordPress Blog on Your Amazon EC2 Windows Instance](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/EC2Win_CreateWordPressBlog.html) in the *Amazon EC2 User Guide for Windows Instances*\. If you need a high\-availability solution with a decoupled database, see [Deploying a High\-Availability WordPress Website](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/php-hawordpress-tutorial.html) in the *AWS Elastic Beanstalk Developer Guide*\.
+You are responsible for updating the software packages and maintaining security patches for your server\. For a more automated WordPress installation that does not require direct interaction with the web server configuration, the AWS CloudFormation service provides a WordPress template that can also get you started quickly\. For more information, see [Get started](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/GettingStarted.Walkthrough.html) in the *AWS CloudFormation User Guide*\. If you'd prefer to host your WordPress blog on a Windows instance, see [Deploying a WordPress blog on your Amazon EC2 Windows instance](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/EC2Win_CreateWordPressBlog.html) in the *Amazon EC2 User Guide for Windows Instances*\. If you need a high\-availability solution with a decoupled database, see [Deploying a high\-availability WordPress website](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/php-hawordpress-tutorial.html) in the *AWS Elastic Beanstalk Developer Guide*\.
 
 **Important**  
 These procedures are intended for use with Amazon Linux\. For more information about other distributions, see their specific documentation\. Many steps in this tutorial do not work on Ubuntu instances\. For help installing WordPress on an Ubuntu instance, see [WordPress](https://help.ubuntu.com/community/WordPress) in the Ubuntu documentation\.
@@ -12,11 +12,11 @@ To complete this tutorial using AWS Systems Manager Automation instead of the fo
 
 ## Prerequisites<a name="hosting-wordpress-prereqs"></a>
 
-This tutorial assumes that you have launched an Amazon Linux instance with a functional web server with PHP and database \(either MySQL or MariaDB\) support by following all of the steps in [Tutorial: Install a LAMP Web Server with the Amazon Linux AMI](install-LAMP.md) for Amazon Linux AMI or [Tutorial: Install a LAMP Web Server on Amazon Linux 2](ec2-lamp-amazon-linux-2.md) for Amazon Linux 2\. This tutorial also has steps for configuring a security group to allow `HTTP` and `HTTPS` traffic, as well as several steps to ensure that file permissions are set properly for your web server\. For information about adding rules to your security group, see [Adding rules to a security group](working-with-security-groups.md#adding-security-group-rule)\.
+This tutorial assumes that you have launched an Amazon Linux instance with a functional web server with PHP and database \(either MySQL or MariaDB\) support by following all of the steps in [Tutorial: Install a LAMP web server with the Amazon Linux AMI](install-LAMP.md) for Amazon Linux AMI or [Tutorial: Install a LAMP web server on Amazon Linux 2](ec2-lamp-amazon-linux-2.md) for Amazon Linux 2\. This tutorial also has steps for configuring a security group to allow `HTTP` and `HTTPS` traffic, as well as several steps to ensure that file permissions are set properly for your web server\. For information about adding rules to your security group, see [Adding rules to a security group](working-with-security-groups.md#adding-security-group-rule)\.
 
 We strongly recommend that you associate an Elastic IP address \(EIP\) to the instance you are using to host a WordPress blog\. This prevents the public DNS address for your instance from changing and breaking your installation\. If you own a domain name and you want to use it for your blog, you can update the DNS record for the domain name to point to your EIP address \(for help with this, contact your domain name registrar\)\. You can have one EIP address associated with a running instance at no charge\. For more information, see [Elastic IP addresses](elastic-ip-addresses-eip.md)\.
 
-If you don't already have a domain name for your blog, you can register a domain name with Route 53 and associate your instance's EIP address with your domain name\. For more information, see [Registering Domain Names Using Amazon Route 53](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/registrar.html) in the *Amazon Route 53 Developer Guide*\.
+If you don't already have a domain name for your blog, you can register a domain name with Route 53 and associate your instance's EIP address with your domain name\. For more information, see [Registering domain names using Amazon Route 53](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/registrar.html) in the *Amazon Route 53 Developer Guide*\.
 
 ## Install WordPress<a name="install-wordpress"></a>
 
@@ -339,7 +339,7 @@ You are ready to install WordPress\. The commands that you use depend on the ope
    [ec2-user ~]$ sudo systemctl start httpd
    ```
 
-1. In a web browser, type the URL of your WordPress blog \(either the public DNS address for your instance, or that address followed by the `blog` folder\)\. You should see the WordPress installation script\. Provide the information required by the WordPress installation\. Choose **Install WordPress** to complete the installation\. For more information, see [Run the Install Script](https://codex.wordpress.org/Installing_WordPress#Step_5:_Run_the_Install_Script) on the WordPress website\.
+1. In a web browser, type the URL of your WordPress blog \(either the public DNS address for your instance, or that address followed by the `blog` folder\)\. You should see the WordPress installation script\. Provide the information required by the WordPress installation\. Choose **Install WordPress** to complete the installation\. For more information, see [Step 5: Run the Install Script](https://wordpress.org/support/article/how-to-install-wordpress/#step-5-run-the-install-script) on the WordPress website\.
 
 **To run the WordPress installation script with Amazon Linux AMI**
 
@@ -373,31 +373,31 @@ You are ready to install WordPress\. The commands that you use depend on the ope
    [ec2-user ~]$ sudo service httpd start
    ```
 
-1. In a web browser, type the URL of your WordPress blog \(either the public DNS address for your instance, or that address followed by the `blog` folder\)\. You should see the WordPress installation script\. Provide the information required by the WordPress installation\. Choose **Install WordPress** to complete the installation\. For more information, see [Run the Install Script](https://codex.wordpress.org/Installing_WordPress#Step_5:_Run_the_Install_Script) on the WordPress website\.
+1. In a web browser, type the URL of your WordPress blog \(either the public DNS address for your instance, or that address followed by the `blog` folder\)\. You should see the WordPress installation script\. Provide the information required by the WordPress installation\. Choose **Install WordPress** to complete the installation\. For more information, see [Step 5: Run the Install Script](https://wordpress.org/support/article/how-to-install-wordpress/#step-5-run-the-install-script) on the WordPress website\.
 
-## Next Steps<a name="wordpress-next-steps"></a>
+## Next steps<a name="wordpress-next-steps"></a>
 
 After you have tested your WordPress blog, consider updating its configuration\.
 
-**Use a Custom Domain Name**  
-If you have a domain name associated with your EC2 instance's EIP address, you can configure your blog to use that name instead of the EC2 public DNS address\. For more information, see [http://codex\.wordpress\.org/Changing\_The\_Site\_URL](http://codex.wordpress.org/Changing_The_Site_URL)\.
+**Use a custom domain name**  
+If you have a domain name associated with your EC2 instance's EIP address, you can configure your blog to use that name instead of the EC2 public DNS address\. For more information, see [Changing The Site URL](https://wordpress.org/support/article/changing-the-site-url/) on the WordPress website\.
 
-**Configure Your Blog**  
+**Configure your blog**  
 You can configure your blog to use different [themes](https://wordpress.org/themes/) and [plugins](https://wordpress.org/plugins/) to offer a more personalized experience for your readers\. However, sometimes the installation process can backfire, causing you to lose your entire blog\. We strongly recommend that you create a backup Amazon Machine Image \(AMI\) of your instance before attempting to install any themes or plugins so you can restore your blog if anything goes wrong during installation\. For more information, see [Creating your own AMI](AMIs.md#creating-an-ami)\.
 
-**Increase Capacity**  
+**Increase capacity**  
 If your WordPress blog becomes popular and you need more compute power or storage, consider the following steps:
 + Expand the storage space on your instance\. For more information, see [Amazon EBS Elastic Volumes](ebs-modify-volume.md)\.
 + Move your MySQL database to [Amazon RDS](https://aws.amazon.com/rds) to take advantage of the service's ability to scale easily\.
 + Migrate to a larger instance type\. For more information, see [Changing the instance type](ec2-instance-resize.md)\.
-+ Add additional instances\. For more information, see [Tutorial: Increase the Availability of Your Application on Amazon EC2](ec2-increase-availability.md)\.
++ Add additional instances\. For more information, see [Tutorial: Increase the availability of your application on Amazon EC2](ec2-increase-availability.md)\.
 
-**Learn More about WordPress**  
-For information about WordPress, see the WordPress Codex help documentation at [http://codex\.wordpress\.org/](http://codex.wordpress.org/)\. For more information about troubleshooting your installation, go to [http://codex\.wordpress\.org/Installing\_WordPress\#Common\_Installation\_Problems](http://codex.wordpress.org/Installing_WordPress#Common_Installation_Problems)\. For information about making your WordPress blog more secure, go to [http://codex\.wordpress\.org/Hardening\_WordPress](http://codex.wordpress.org/Hardening_WordPress)\. For information about keeping your WordPress blog up\-to\-date, go to [http://codex\.wordpress\.org/Updating\_WordPress](http://codex.wordpress.org/Updating_WordPress)\.
+**Learn more about WordPress**  
+For information about WordPress, see the WordPress Codex help documentation at [http://codex\.wordpress\.org/](http://codex.wordpress.org/)\. For more information about troubleshooting your installation, go to [https://wordpress\.org/support/article/how\-to\-install\-wordpress/\#common\-installation\-problems](https://wordpress.org/support/article/how-to-install-wordpress/#common-installation-problems)\. For information about making your WordPress blog more secure, go to [https://wordpress\.org/support/article/hardening\-wordpress/](https://wordpress.org/support/article/hardening-wordpress/)\. For information about keeping your WordPress blog up\-to\-date, go to [https://wordpress\.org/support/article/updating\-wordpress/](https://wordpress.org/support/article/updating-wordpress/)\.
 
-## Help\! My Public DNS Name Changed and now my Blog is Broken<a name="wordpress-troubleshooting"></a>
+## Help\! My public DNS name changed and now my blog is broken<a name="wordpress-troubleshooting"></a>
 
-Your WordPress installation is automatically configured using the public DNS address for your EC2 instance\. If you stop and restart the instance, the public DNS address changes \(unless it is associated with an Elastic IP address\) and your blog will not work anymore because it references resources at an address that no longer exists \(or is assigned to another EC2 instance\)\. A more detailed description of the problem and several possible solutions are outlined in [http://codex\.wordpress\.org/Changing\_The\_Site\_URL](http://codex.wordpress.org/Changing_The_Site_URL)\.
+Your WordPress installation is automatically configured using the public DNS address for your EC2 instance\. If you stop and restart the instance, the public DNS address changes \(unless it is associated with an Elastic IP address\) and your blog will not work anymore because it references resources at an address that no longer exists \(or is assigned to another EC2 instance\)\. A more detailed description of the problem and several possible solutions are outlined in [https://wordpress\.org/support/article/changing\-the\-site\-url/](https://wordpress.org/support/article/changing-the-site-url/)\.
 
 If this has happened to your WordPress installation, you may be able to recover your blog with the procedure below, which uses the wp\-cli command line interface for WordPress\.
 
@@ -429,4 +429,4 @@ If this has happened to your WordPress installation, you may be able to recover 
    [ec2-user ~]$ php wp-cli.phar search-replace 'old_site_url' 'new_site_url' --path=/path/to/wordpress/installation --skip-columns=guid
    ```
 
-1. In a web browser, enter the new site URL of your WordPress blog to verify that the site is working properly again\. If it is not, see [http://codex\.wordpress\.org/Changing\_The\_Site\_URL](http://codex.wordpress.org/Changing_The_Site_URL) and [http://codex\.wordpress\.org/Installing\_WordPress\#Common\_Installation\_Problems](http://codex.wordpress.org/Installing_WordPress#Common_Installation_Problems) for more information\.
+1. In a web browser, enter the new site URL of your WordPress blog to verify that the site is working properly again\. If it is not, see [https://wordpress\.org/support/article/changing\-the\-site\-url/](https://wordpress.org/support/article/changing-the-site-url/) and [https://wordpress\.org/support/article/how\-to\-install\-wordpress/\#common\-installation\-problems](https://wordpress.org/support/article/how-to-install-wordpress/#common-installation-problems) for more information\.

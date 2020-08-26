@@ -70,6 +70,14 @@ The following is a summary of the hardware specifications for compute optimized 
 | c5a\.12xlarge | 48 | 96 | 
 | c5a\.16xlarge | 64 | 128 | 
 | c5a\.24xlarge | 96 | 192 | 
+| c5ad\.large | 2 | 4 | 
+| c5ad\.xlarge | 4 | 8 | 
+| c5ad\.2xlarge | 8 | 16 | 
+| c5ad\.4xlarge | 16 | 32 | 
+| c5ad\.8xlarge | 32 | 64 | 
+| c5ad\.12xlarge | 48 | 96 | 
+| c5ad\.16xlarge | 64 | 128 | 
+| c5ad\.24xlarge | 96 | 192 | 
 | c5d\.large | 2 | 4 | 
 | c5d\.xlarge | 4 | 8 | 
 | c5d\.2xlarge | 8 | 16 | 
@@ -145,15 +153,23 @@ If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-ba
 
 | Instance Size | 100% Random Read IOPS | Write IOPS | 
 | --- | --- | --- | 
-| c5d\.large \* |  20,000  |  9,000  | 
-| c5d\.xlarge \* |  40,000  |  18,000  | 
-| c5d\.2xlarge \* |  80,000  |  37,000  | 
-| c5d\.4xlarge \* |  175,000  |  75,000  | 
-| c5d\.9xlarge |  350,000  |  170,000  | 
-| c5d\.12xlarge |  700,000  |  340,000  | 
-| c5d\.18xlarge |  700,000  |  340,000  | 
-| c5d\.24xlarge |  1,400,000  |  680,000  | 
-| c5d\.metal |  1,400,000  |  680,000  | 
+| c5ad\.large | 16,283 | 7,105 | 
+| c5ad\.xlarge | 32,566 | 14,211 | 
+| c5ad\.2xlarge | 65,132 | 28,421 | 
+| c5ad\.4xlarge | 130,263 | 56,842 | 
+| c5ad\.8xlarge | 260,526 | 113,684 | 
+| c5ad\.12xlarge | 412,500 | 180,000 | 
+| c5ad\.16xlarge | 521,053 | 227,368 | 
+| c5ad\.24xlarge | 825,000 | 360,000 | 
+| c5d\.large \* | 20,000 | 9,000 | 
+| c5d\.xlarge \* | 40,000 | 18,000 | 
+| c5d\.2xlarge \* | 80,000 | 37,000 | 
+| c5d\.4xlarge \* | 175,000 | 75,000 | 
+| c5d\.9xlarge | 350,000 | 170,000 | 
+| c5d\.12xlarge | 700,000 | 340,000 | 
+| c5d\.18xlarge | 700,000 | 340,000 | 
+| c5d\.24xlarge | 1,400,000 | 680,000 | 
+| c5d\.metal | 1,400,000 | 680,000 | 
 | c6gd\.medium | 13,438 | 5,625 | 
 | c6gd\.large | 26,875 | 11,250 | 
 | c6gd\.xlarge | 53,750 | 22,500 | 
@@ -182,6 +198,7 @@ The following is a summary of features for compute optimized instances:
 | C4 | Yes | No | No | Yes | 
 | C5 | Yes | Yes | No | Yes | 
 | C5a | Yes | Yes | No | Yes | 
+| C5ad | No | Yes | NVMe \* | Yes | 
 | C5d | No | Yes | NVMe \* | Yes | 
 | C5n | Yes | Yes | No | Yes | 
 | C6g | Yes | Yes | No | Yes | 
@@ -196,7 +213,7 @@ For more information, see the following:
 
 ## Release notes<a name="compute-instance-limits"></a>
 + C5 and C5d instances feature a 3\.1 GHz Intel Xeon Platinum 8000 series processor from either the first generation \(Skylake\-SP\) or second generation \(Cascade Lake\)\.
-+ C5a instances feature a second\-generation AMD EPYC processor \(Rome\) running at frequencies as high as 3\.3\. GHz\.
++ C5a and C5ad instances feature a second\-generation AMD EPYC processor \(Rome\) running at frequencies as high as 3\.3\. GHz\.
 + C6g and C6gd instances feature an AWS Graviton2 processor based on 64\-bit Arm architecture\.
 + C4 instances and instances based on the [Nitro System](instance-types.md#ec2-nitro-instances) require 64\-bit EBS\-backed HVM AMIs\. They have high\-memory and require a 64\-bit operating system to take advantage of that capacity\. HVM AMIs provide superior performance in comparison to paravirtual \(PV\) AMIs on high\-memory instance types\. In addition, you must use an HVM AMI to take advantage of enhanced networking\.
 + Instances built on the Nitro System have the following requirements:

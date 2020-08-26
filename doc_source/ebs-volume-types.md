@@ -12,19 +12,7 @@ For more information about pricing, see [Amazon EBS Pricing](http://aws.amazon.c
 
 The following table describes the use cases and performance characteristics for each volume type\. The default volume type is General Purpose SSD \(`gp2`\)\.
 
-
-|  | Solid\-state drives \(SSD\) | Hard disk drives \(HDD\) | 
-| --- | --- | --- | 
-| Volume type | General Purpose SSD \(gp2\) | Provisioned IOPS SSD \(io1\) | Throughput Optimized HDD \(st1\) | Cold HDD \(sc1\) | 
-| Description | General purpose SSD volume that balances price and performance for a wide variety of workloads | Highest\-performance SSD volume for mission\-critical low\-latency or high\-throughput workloads  | Low\-cost HDD volume designed for frequently accessed, throughput\-intensive workloads | Lowest cost HDD volume designed for less frequently accessed workloads | 
-| Use cases |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html)  | 
-| API name | gp2 | io1 | st1 | sc1 | 
-| Volume size | 1 GiB \- 16 TiB  | 4 GiB \- 16 TiB  | 500 GiB \- 16 TiB | 500 GiB \- 16 TiB  | 
-| Max IOPS per volume | 16,000 \(16 KiB I/O\) \* | 64,000 \(16 KiB I/O\) † | 500 \(1 MiB I/O\) | 250 \(1 MiB I/O\) | 
-| Max throughput per volume | 250 MiB/s \* | 1,000 MiB/s † | 500 MiB/s | 250 MiB/s | 
-| Max IOPS per instance †† | 160,000 | 160,000 | 160,000 | 160,000 | 
-| Max throughput per instance †† | 4,750 MB/s | 4,750 MB/s | 4,750 MB/s | 4,750 MB/s | 
-| Dominant performance attribute | IOPS | IOPS | MiB/s | MiB/s | 
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html)
 
 \* The throughput limit is between 128 MiB/s and 250 MiB/s, depending on the volume size\. Volumes smaller than or equal to 170 GiB deliver a maximum throughput of 128 MiB/s\. Volumes larger than 170 GiB but smaller than 334 GiB deliver a maximum throughput of 250 MiB/s if burst credits are available\. Volumes larger than or equal to 334 GiB deliver 250 MiB/s regardless of burst credits\. Older `gp2` volumes might not reach full performance unless you modify the volume\. For more information, see [Amazon EBS Elastic Volumes](ebs-modify-volume.md)\.
 
@@ -80,10 +68,10 @@ The following table lists several volume sizes and the associated baseline perfo
 
 |  Volume size \(GiB\)  |  Baseline performance \(IOPS\)  |  Burst duration when driving sustained 3,000 IOPS \(second\)  |  Seconds to fill empty credit balance when driving no IO  | 
 | --- | --- | --- | --- | 
-|  1  |  100  |  1802  | 54,000 | 
+|  1  |  100  |  1,802  | 54,000 | 
 |  100  |  300  |  2,000  | 18,000 | 
 |  250  |  750  | 2,400 | 7,200 | 
-|  334 \(Min\. size for max throughput\)  | 1002 |  2703  |  5389  | 
+|  334 \(Min\. size for max throughput\)  | 1,002 |  2,703  |  5,389  | 
 |  500  |  1,500  |  3,600  | 3,600 | 
 |  750  |  2,250  |  7,200  | 2,400 | 
 |  1,000  |  3,000  |  N/A\*  |  N/A\*  | 
@@ -95,7 +83,7 @@ The following table lists several volume sizes and the associated baseline perfo
 **What happens if I empty my I/O credit balance?**  
 If your `gp2` volume uses all of its I/O credit balance, the maximum IOPS performance of the volume remains at the baseline IOPS performance level \(the rate at which your volume earns credits\) and the volume's maximum throughput is reduced to the baseline IOPS multiplied by the maximum I/O size\. Throughput can never exceed 250 MiB/s\. When I/O demand drops below the baseline level and unused credits are added to the I/O credit balance, the maximum IOPS performance of the volume again exceeds the baseline\. For example, a 100 GiB `gp2` volume with an empty credit balance has a baseline performance of 300 IOPS and a throughput limit of 75 MiB/s \(300 I/O operations per second \* 256 KiB per I/O operation = 75 MiB/s\)\. The larger a volume is, the greater the baseline performance is and the faster it replenishes the credit balance\. For more information about how IOPS are measured, see [I/O characteristics and monitoring](ebs-io-characteristics.md)\.
 
-If you notice that your volume performance is frequently limited to the baseline level \(due to an empty I/O credit balance\), you should consider using a larger `gp2` volume \(with a higher baseline performance level\) or switching to an `io1` volume for workloads that require sustained IOPS performance greater than 16,000 IOPS\.
+If you notice that your volume performance is frequently limited to the baseline level \(due to an empty I/O credit balance\), you should consider using a larger `gp2` volume \(with a higher baseline performance level\) or switching to an `io1` or `io2` volume for workloads that require sustained IOPS performance greater than 16,000 IOPS\.
 
 For information about using CloudWatch metrics and alarms to monitor your burst bucket balance, see [Monitoring the burst bucket balance for `gp2`, `st1`, and `sc1` volumes](#monitoring_burstbucket)\.
 
@@ -139,17 +127,21 @@ V  =  -----
    =  333⅓ GiB (334 GiB in practice because volumes are provisioned in whole gibibytes)
 ```
 
-## Provisioned IOPS SSD \(`io1`\) volumes<a name="EBSVolumeTypes_piops"></a>
+## Provisioned IOPS SSD \(`io1` and `io2`\) volumes<a name="EBSVolumeTypes_piops"></a>
 
-Provisioned IOPS SSD \(`io1`\) volumes are designed to meet the needs of I/O\-intensive workloads, particularly database workloads, that are sensitive to storage performance and consistency\. Unlike `gp2`, which uses a bucket and credit model to calculate performance, an `io1` volume allows you to specify a consistent IOPS rate when you create the volume, and Amazon EBS delivers the provisioned performance 99\.9 percent of the time\.
+Provisioned IOPS SSD \(`io1` and `io2`\) volumes are designed to meet the needs of I/O\-intensive workloads, particularly database workloads, that are sensitive to storage performance and consistency\. Unlike `gp2`, which uses a bucket and credit model to calculate performance, `io1` and `io2` volumes allow you to specify a consistent IOPS rate when you create volumes, and Amazon EBS delivers the provisioned performance 99\.9 percent of the time\.
 
-An `io1` volume can range in size from 4 GiB to 16 TiB\. You can provision from 100 IOPS up to 64,000 IOPS per volume on [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances) and up to 32,000 on other instances\. The maximum ratio of provisioned IOPS to requested volume size \(in GiB\) is 50:1\. For example, a 100 GiB volume can be provisioned with up to 5,000 IOPS\. On a supported instance type, any volume 1,280 GiB in size or greater allows provisioning up to the 64,000 IOPS maximum \(50 × 1,280 GiB = 64,000\)\.
+`io1` volumes are designed to provide 99\.8 to 99\.9 percent volume durability with an annual failure rate \(AFR\) no higher than 0\.2 percent, which translates to a maximum of two volume failures per 1,000 running volumes over a one\-year period\. `io2` volumes are designed to provide 99\.999 percent volume durability with an AFR no higher than 0\.001 percent, which translates to a single volume failure per 100,000 running volumes over a one\-year period\.
 
-An `io1` volume provisioned with up to 32,000 IOPS supports a maximum I/O size of 256 KiB and yields as much as 500 MiB/s of throughput\. With the I/O size at the maximum, peak throughput is reached at 2,000 IOPS\. A volume provisioned with more than 32,000 IOPS \(up to the cap of 64,000 IOPS\) supports a maximum I/O size of 16 KiB and yields as much as 1,000 MiB/s of throughput\. The following graph illustrates these performance characteristics:
+`io1` and `io2` volumes can range in size from 4 GiB to 16 TiB\. You can provision from 100 IOPS up to 64,000 IOPS per volume on [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances) and up to 32,000 on other instances\. The maximum ratio of provisioned IOPS to requested volume size \(in GiB\) is 50:1 for `io1` volumes, and 500:1 for `io2` volumes\. For example, a 100 GiB `io1` volume can be provisioned with up to 5,000 IOPS, while a 100 GiB `io2` volume can be provisioned with up to 50,000 IOPS\. On a supported instance type, the following volume sizes allow provisioning up to the 64,000 IOPS maximum:
++ `io1` volume 1,280 GiB in size or greater \(50 × 1,280 GiB = 64,000 IOPS\)
++ `io2` volume 128 GiB in size or greater \(500 × 128 GiB = 64,000 IOPS\)
+
+`io1` and `io2` volumes provisioned with up to 32,000 IOPS support a maximum I/O size of 256 KiB and yield as much as 500 MiB/s of throughput\. With the I/O size at the maximum, peak throughput is reached at 2,000 IOPS\. A volume provisioned with more than 32,000 IOPS \(up to the cap of 64,000 IOPS\) supports a maximum I/O size of 16 KiB and yields as much as 1,000 MiB/s of throughput\. The following graph illustrates these performance characteristics:
 
 ![\[Throughput limits for io1 volumes\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/io1_throughput.png)
 
-Your per\-I/O latency experience depends on the IOPS provisioned and your workload profile\. For the best I/O latency experience, ensure that you provision IOPS to meet the I/O profile of your workload\.
+Your per\-I/O latency experience depends on the provisioned IOPS and on your workload profile\. For the best I/O latency experience, ensure that you provision IOPS to meet the I/O profile of your workload\.
 
 **Note**  
 Some AWS accounts created before 2012 might have access to Availability Zones in us\-west\-1 or ap\-northeast\-1 that do not support Provisioned IOPS SSD \(`io1`\) volumes\. If you are unable to create an `io1` volume \(or launch an instance with an `io1` volume in its block device mapping\) in one of these Regions, try a different Availability Zone in the Region\. You can verify that an Availability Zone supports `io1` volumes by creating a 4 GiB `io1` volume in that zone\.

@@ -15,11 +15,11 @@ Depending on your instance type, enhanced networking can be enabled using one of
 
 **Elastic Network Adapter \(ENA\)**  
 The Elastic Network Adapter \(ENA\) supports network speeds of up to 100 Gbps for supported instance types\.  
-A1, C5, C5a, C5d, C5n, C6g, C6gd,  F1, G3, G4, H1, I3, I3en, Inf1, `m4.16xlarge`, M5, M5a, M5ad, M5d, M5dn, M5n, M6g, M6gd,  P2, P3, R4, R5, R5a, R5ad, R5d, R5dn, R5n, R6g, R6gd,  T3, T3a, `u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, `u-18tb1.metal`, `u-24tb1.metal`, X1, X1e, and z1d instances use the Elastic Network Adapter for enhanced networking\.
+The following instance types support use ENA for enhanced networking: F1, G3, H1, HS1, I3, m4\.16xlarge, P2, P3, P3dn, R4, X1, X1e, and instances based on the [Nitro System](instance-types.md#ec2-nitro-instances), [AWS Graviton](http://aws.amazon.com/ec2/graviton), and [AWS Inferentia](http://aws.amazon.com/machine-learning/inferentia)\.
 
 **Intel 82599 Virtual Function \(VF\) interface**  
 The Intel 82599 Virtual Function interface supports network speeds of up to 10 Gbps for supported instance types\.  
-C3, C4, D2, I2, M4 \(excluding `m4.16xlarge`\), and R3 instances use the Intel 82599 VF interface for enhanced networking\.
+The following instance types use the Intel 82599 VF interface for enhanced networking: C3, C4, D2, I2, M4 \(excluding m4\.16xlarge\), and R3\.
 
 For information about the supported network speed for each instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types)\.
 

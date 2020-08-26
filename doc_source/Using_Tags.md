@@ -11,7 +11,7 @@ Tag keys and their values are returned by many different API calls\. Denying acc
 + [Tag restrictions](#tag-restrictions)
 + [Tagging your resources for billing](#tag-resources-for-billing)
 + [Working with tags using the console](#Using_Tags_Console)
-+ [Working with tags using the CLI or API](#Using_Tags_CLI)
++ [Working with tags using the command line](#Using_Tags_CLI)
 
 ## Tag basics<a name="tag-basics"></a>
 
@@ -275,58 +275,30 @@ You can filter your list of resources based on one or more tag keys and tag valu
 **Note**  
 For more information about filters, see [Listing and filtering your resources](Using_Filtering.md)\.
 
-## Working with tags using the CLI or API<a name="Using_Tags_CLI"></a>
+## Working with tags using the command line<a name="Using_Tags_CLI"></a>
 
-Use the following to add, update, list, and delete the tags for your resources\. The corresponding documentation provides examples\.
-
-
-| Task | AWS CLI | AWS Tools for Windows PowerShell | API Action | 
-| --- | --- | --- | --- | 
-|  Add or overwrite one or more tags\.  |  [create\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-tags.html)  |  [New\-EC2Tag](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Tag.html)  |  [CreateTags](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-CreateTags.html)  | 
-|  Delete one or more tags\.  |  [delete\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/delete-tags.html)  |  [Remove\-EC2Tag](https://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2Tag.html)  |  [DeleteTags](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DeleteTags.html)  | 
-|  Describe one or more tags\.  |  [describe\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-tags.html)  |  [Get\-EC2Tag](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Tag.html)  |  [DescribeTags](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeTags.html)  | 
-
-You can also filter a list of resources according to their tags\. The following examples demonstrate how to filter your instances using tags with the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command\.
-
-**Note**  
-The way you enter JSON\-formatted parameters on the command line differs depending on your operating system\. Linux, macOS, or Unix and Windows PowerShell use the single quote \('\) to enclose the JSON data structure\. Omit the single quotes when using the commands with the Windows command line\. For more information, see [Specifying Parameter Values for the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-using-param.html)\.
-
-**Example 1: Describe instances with the specified tag key**  
-The following command describes the instances with a Stack tag, regardless of the value of the tag\.
-
-```
-aws ec2 describe-instances \
-    --filters Name=tag-key,Values=Stack
-```
-
-**Example 2: Describe instances with the specified tag**  
-The following command describes the instances with the tag Stack=production\.
-
-```
-aws ec2 describe-instances \
-    --filters Name=tag:Stack,Values=production
-```
-
-**Example 3: Describe instances with the specified tag value**  
-The following command describes the instances with a tag with the value production, regardless of the tag key\.
-
-```
-aws ec2 describe-instances \
-    --filters Name=tag-value,Values=production
-```
-
-Some resource\-creating actions enable you to specify tags when you create the resource\. The following actions support tagging on creation\.
+You can add tags to many EC2 resource when you create them, using the tag specifications parameter for the create command\. You can view the tags for a resource using the describe command for the resource\. You can also add, update, or delete tags for your existing resources using the following commands\.
 
 
-| Task | AWS CLI | AWS Tools for Windows PowerShell | API Action | 
-| --- | --- | --- | --- | 
-|  Launch one or more instances\.   |  [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html)  |  [New\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html)  |  [RunInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html)  | 
-|  Create an EBS volume\.  |  [create\-volume](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-volume.html)  |  [New\-EC2Volume](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Volume.html)  |  [CreateVolume](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateVolume.html)  | 
+| Task | AWS CLI | AWS Tools for Windows PowerShell | 
+| --- | --- | --- | 
+|  Add or overwrite one or more tags  |  [create\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-tags.html)  |  [New\-EC2Tag](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Tag.html)  | 
+|  Delete one or more tags  |  [delete\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/delete-tags.html)  |  [Remove\-EC2Tag](https://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2Tag.html)  | 
+|  Describe one or more tags  |  [describe\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-tags.html)  |  [Get\-EC2Tag](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Tag.html)  | 
+
+**Topics**
++ [Adding tags on resource creation](#tag-on-create-examples)
++ [Adding tags to an existing resource](#create-tag-examples)
++ [Describing tagged resources](#describe-tag-examples)
+
+### Adding tags on resource creation<a name="tag-on-create-examples"></a>
 
 The following examples demonstrate how to apply tags when you create resources\.
 
-**Example 4: Launch an instance and apply tags to the instance and volume**  
-The following command launches an instance and applies a tag with a key of `webserver` and value of `production` to the instance\. The command also applies a tag with a key of `cost-center` and a value of `cc123` to any EBS volume that's created \(in this case, the root volume\)\.
+The way you enter JSON\-formatted parameters on the command line differs depending on your operating system\. Linux, macOS, or Unix and Windows PowerShell use single quotes \('\) to enclose the JSON data structure\. Omit the single quotes when using the commands with the Windows command line\. For more information, see [Specifying Parameter Values for the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-using-param.html)\.
+
+**Example Example: Launch an instance and apply tags to the instance and volume**  
+The following [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command launches an instance and applies a tag with the key **webserver** and the value **production** to the instance\. The command also applies a tag with the key **cost\-center** and the value **cc123** to any EBS volume that's created \(in this case, the root volume\)\.  
 
 ```
 aws ec2 run-instances \
@@ -337,8 +309,7 @@ aws ec2 run-instances \
     --subnet-id subnet-6e7f829e \
     --tag-specifications 'ResourceType=instance,Tags=[{Key=webserver,Value=production}]' 'ResourceType=volume,Tags=[{Key=cost-center,Value=cc123}]'
 ```
-
-You can apply the same tag keys and values to both instances and volumes during launch\. The following command launches an instance and applies a tag with a key of `cost-center` and a value of `cc123` to both the instance and any EBS volume that's created\.
+You can apply the same tag keys and values to both instances and volumes during launch\. The following command launches an instance and applies a tag with a key of **cost\-center** and a value of **cc123** to both the instance and any EBS volume that's created\.  
 
 ```
 aws ec2 run-instances \
@@ -350,8 +321,8 @@ aws ec2 run-instances \
     --tag-specifications 'ResourceType=instance,Tags=[{Key=cost-center,Value=cc123}]' 'ResourceType=volume,Tags=[{Key=cost-center,Value=cc123}]'
 ```
 
-**Example 5: Create a volume and apply a tag**  
-The following command creates a volume and applies two tags: `purpose` = `production`, and `cost-center` = `cc123`\.
+**Example Example: Create a volume and apply a tag**  
+The following [create\-volume](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-volume.html) command creates a volume and applies two tags: **purpose=production** and **cost\-center=cc123**\.  
 
 ```
 aws ec2 create-volume \
@@ -361,8 +332,12 @@ aws ec2 create-volume \
     --tag-specifications 'ResourceType=volume,Tags=[{Key=purpose,Value=production},{Key=cost-center,Value=cc123}]'
 ```
 
-**Example 6: Add a tag to a resource**  
-This example adds the tag `Stack=production` to the specified image, or overwrites an existing tag for the AMI where the tag key is `Stack`\. If the command succeeds, no output is returned\.
+### Adding tags to an existing resource<a name="create-tag-examples"></a>
+
+The following examples demonstrate how to add tags to an existing resource using the [create\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-tags.html) command\.
+
+**Example Example: Add a tag to a resource**  
+The following command adds the tag **Stack=production** to the specified image, or overwrites an existing tag for the AMI where the tag key is **Stack**\. If the command succeeds, no output is returned\.  
 
 ```
 aws ec2 create-tags \
@@ -370,8 +345,8 @@ aws ec2 create-tags \
     --tags Key=Stack,Value=production
 ```
 
-**Example 7: Add tags to multiple resources**  
-This example adds \(or overwrites\) two tags for an AMI and an instance\. One of the tags contains just a key \(`webserver`\), with no value \(we set the value to an empty string\)\. The other tag consists of a key \(`stack`\) and value \(`Production`\)\. If the command succeeds, no output is returned\.
+**Example Example: Add tags to multiple resources**  
+This example adds \(or overwrites\) two tags for an AMI and an instance\. One of the tags contains just a key \(**webserver**\), with no value \(we set the value to an empty string\)\. The other tag consists of a key \(**stack**\) and value \(**Production**\)\. If the command succeeds, no output is returned\.  
 
 ```
 aws ec2 create-tags \
@@ -379,29 +354,62 @@ aws ec2 create-tags \
     --tags Key=webserver,Value=  Key=stack,Value=Production
 ```
 
-**Example 8: Add tags with special characters**  
-This example adds the tag `[Group]=test` to an instance\. The square brackets \(`[` and `]`\) are special characters, which must be escaped\.
-
-If you are using Linux or OS X, to escape the special characters, enclose the element with the special character with double quotes \(`"`\), and then enclose the entire key and value structure with single quotes \(`'`\)\.
+**Example Example: Add tags with special characters**  
+This example adds the tag **\[Group\]=test** to an instance\. The square brackets \(**\[** and **\]**\) are special characters, which must be escaped\.  
+If you are using Linux or OS X, to escape the special characters, enclose the element with the special character with double quotes \(**"**\), and then enclose the entire key and value structure with single quotes \(**'**\)\.  
 
 ```
 aws ec2 create-tags \
     --resources i-1234567890abcdef0 \
     --tags 'Key="[Group]",Value=test'
 ```
-
-If you are using Windows, to escape the special characters, enclose the element that has special characters with double quotes \("\), and then precede each double quote character with a backslash \(`\`\) as follows:
+If you are using Windows, to escape the special characters, enclose the element that has special characters with double quotes \("\), and then precede each double quote character with a backslash \(**\\**\) as follows:  
 
 ```
 aws ec2 create-tags ^
     --resources i-1234567890abcdef0 ^
     --tags Key=\"[Group]\",Value=test
 ```
-
-If you are using Windows PowerShell, to escape the special characters, enclose the value that has special characters with double quotes \(`"`\), precede each double quote character with a backslash \(`\`\), and then enclose the entire key and value structure with single quotes \(`'`\) as follows:
+If you are using Windows PowerShell, to escape the special characters, enclose the value that has special characters with double quotes \(**"**\), precede each double quote character with a backslash \(**\\**\), and then enclose the entire key and value structure with single quotes \(**'**\) as follows:  
 
 ```
 aws ec2 create-tags `
     --resources i-1234567890abcdef0 `
     --tags 'Key=\"[Group]\",Value=test'
+```
+
+### Describing tagged resources<a name="describe-tag-examples"></a>
+
+The following examples show you how to use filters with the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) to view instances with specific tags\. All EC2 describe commands use this syntax to filter by tag across a single resource type\. Alternatively, you can use the [describe\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-tags.html) command to filter by tag across EC2 resource types\.
+
+**Example Example: Describe instances with the specified tag key**  
+The following command describes the instances with a **Stack** tag, regardless of the value of the tag\.  
+
+```
+aws ec2 describe-instances \
+    --filters Name=tag-key,Values=Stack
+```
+
+**Example Example: Describe instances with the specified tag**  
+The following command describes the instances with the tag **Stack=production**\.  
+
+```
+aws ec2 describe-instances \
+    --filters Name=tag:Stack,Values=production
+```
+
+**Example Example: Describe instances with the specified tag value**  
+The following command describes the instances with a tag with the value **production**, regardless of the tag key\.  
+
+```
+aws ec2 describe-instances \
+    --filters Name=tag-value,Values=production
+```
+
+**Example Example: Describe all EC2 resources with the specified tag**  
+The following command describes all EC2 resources with the tag **Stack=Test**\.  
+
+```
+aws ec2 describe-tags \
+    --filters Name=key,Values=Stack Name=value,Values=Test
 ```

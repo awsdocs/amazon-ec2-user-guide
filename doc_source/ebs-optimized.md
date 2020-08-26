@@ -2,7 +2,7 @@
 
 An Amazon EBS–optimized instance uses an optimized configuration stack and provides additional, dedicated capacity for Amazon EBS I/O\. This optimization provides the best performance for your EBS volumes by minimizing contention between Amazon EBS I/O and other traffic from your instance\.
 
-EBS–optimized instances deliver dedicated bandwidth to Amazon EBS\. When attached to an EBS–optimized instance, General Purpose SSD \(`gp2`\) volumes are designed to deliver their baseline and burst performance 99% of the time, and Provisioned IOPS SSD \(`io1`\) volumes are designed to deliver their provisioned performance 99\.9% of the time\. Both Throughput Optimized HDD \(`st1`\) and Cold HDD \(`sc1`\) guarantee performance consistency of 90% of burst throughput 99% of the time\. Non\-compliant periods are approximately uniformly distributed, targeting 99% of expected total throughput each hour\. For more information, see [Amazon EBS volume types](ebs-volume-types.md)\.
+EBS–optimized instances deliver dedicated bandwidth to Amazon EBS\. When attached to an EBS–optimized instance, General Purpose SSD \(`gp2`\) volumes are designed to deliver their baseline and burst performance 99% of the time, and Provisioned IOPS SSD \(`io1` and `io2`\) volumes are designed to deliver their provisioned performance 99\.9% of the time\. Both Throughput Optimized HDD \(`st1`\) and Cold HDD \(`sc1`\) guarantee performance consistency of 90% of burst throughput 99% of the time\. Non\-compliant periods are approximately uniformly distributed, targeting 99% of expected total throughput each hour\. For more information, see [Amazon EBS volume types](ebs-volume-types.md)\.
 
 **Topics**
 + [Supported instance types](#ebs-optimization-support)
@@ -49,6 +49,14 @@ The following table lists the instance types that support EBS optimization and E
 | c5a\.12xlarge | 4,750 | 594 | 20,000 | 
 | c5a\.16xlarge | 6,300 | 788 | 26,700 | 
 | c5a\.24xlarge | 9,500 | 1,188 | 40,000 | 
+| c5ad\.large \* | 3,170 | 396 | 13,300 | 
+| c5ad\.xlarge \* | 3,170 | 396 | 13,300 | 
+| c5ad\.2xlarge \* | 3,170 | 396 | 13,300 | 
+| c5ad\.4xlarge \* | 3,170 | 396 | 13,300 | 
+| c5ad\.8xlarge | 3,170 | 396 | 13,300 | 
+| c5ad\.12xlarge | 4,750 | 594 | 20,000 | 
+| c5ad\.16xlarge | 6,300 | 788 | 26,700 | 
+| c5ad\.24xlarge | 9,500 | 1,188 | 40,000 | 
 | c5d\.large \* | 4,750 | 593\.75 | 20,000 | 
 | c5d\.xlarge \* | 4,750 | 593\.75 | 20,000 | 
 | c5d\.2xlarge \* | 4,750 | 593\.75 | 20,000 | 
@@ -330,6 +338,10 @@ The following table lists the instance types that support EBS optimization and E
 | c5a\.xlarge | 400 | 50 | 1,600 | 
 | c5a\.2xlarge | 800 | 100 | 3,200 | 
 | c5a\.4xlarge | 1,580 | 198 | 6,600 | 
+| c5ad\.large | 200 | 25 | 800 | 
+| c5ad\.xlarge | 400 | 50 | 1,600 | 
+| c5ad\.2xlarge | 800 | 100 | 3,200 | 
+| c5ad\.4xlarge | 1,580 | 198 | 6,600 | 
 | c5d\.large | 650 | 81\.25 | 4,000 | 
 | c5d\.xlarge | 1,150 | 143\.75 | 6,000 | 
 | c5d\.2xlarge | 2,300 | 287\.5 | 10,000 | 
@@ -452,7 +464,7 @@ The `i2.8xlarge`, `c3.8xlarge`, and `r3.8xlarge` instances do not have dedicated
 
 You can use the `EBSIOBalance%` and `EBSByteBalance%` metrics to help you determine whether your instances are sized correctly\. You can view these metrics in the CloudWatch console and set an alarm that is triggered based on a threshold you specify\. These metrics are expressed as a percentage\. Instances with a consistently low balance percentage are candidates to size up\. Instances where the balance percentage never drops below 100% are candidates for downsizing\. For more information, see [Monitoring your instances using CloudWatch](using-cloudwatch.md)\.
 
-The high memory instances are designed to run large in\-memory databases, including production deployments of the SAP HANA in\-memory database, in the cloud\. To maximize EBS performance, use high memory instances with an even number of `io1` volumes with identical provisioned performance\. For example, for IOPS heavy workloads, use four `io1` volumes with 40,000 provisioned IOPS to get the maximum 160,000 instance IOPS\. Similarly, for throughput heavy workloads, use six `io1` volumes with 48,000 provisioned IOPS to get the maximum 4,750 MB/s throughput\. For additional recommendations, see [Storage Configuration for SAP HANA](https://docs.aws.amazon.com/quickstart/latest/sap-hana/storage.html)\.
+The high memory instances are designed to run large in\-memory databases, including production deployments of the SAP HANA in\-memory database, in the cloud\. To maximize EBS performance, use high memory instances with an even number of `io1` or `io2` volumes with identical provisioned performance\. For example, for IOPS heavy workloads, use four `io1` or `io2` volumes with 40,000 provisioned IOPS to get the maximum 160,000 instance IOPS\. Similarly, for throughput heavy workloads, use six `io1` or `io2` volumes with 48,000 provisioned IOPS to get the maximum 4,750 MB/s throughput\. For additional recommendations, see [Storage Configuration for SAP HANA](https://docs.aws.amazon.com/quickstart/latest/sap-hana/storage.html)\.
 
 **Considerations**
 + G4, I3en, Inf1, M5a, M5ad, R5a, R5ad, T3, T3a, and Z1d instances launched after February 26, 2020 provide the maximum performance listed in the table above\. To get the maximum performance from an instance launched before February 26, 2020, stop and start it\.

@@ -1,23 +1,23 @@
-# Tutorial: Install a LAMP Web Server with the Amazon Linux AMI<a name="install-LAMP"></a>
+# Tutorial: Install a LAMP web server with the Amazon Linux AMI<a name="install-LAMP"></a>
 
 The following procedures help you install an Apache web server with PHP and MySQL support on your Amazon Linux instance \(sometimes called a LAMP web server or LAMP stack\)\. You can use this server to host a static website or deploy a dynamic PHP application that reads and writes information to a database\.
 
 **Important**  
-To set up a LAMP web server on Amazon Linux 2, see [Tutorial: Install a LAMP Web Server on Amazon Linux 2](ec2-lamp-amazon-linux-2.md)\.  
+To set up a LAMP web server on Amazon Linux 2, see [Tutorial: Install a LAMP web server on Amazon Linux 2](ec2-lamp-amazon-linux-2.md)\.  
 If you are trying to set up a LAMP web server on an Ubuntu or Red Hat Enterprise Linux instance, this tutorial will not work for you\. For more information about other distributions, see their specific documentation\. For information about LAMP web servers on Ubuntu, see the Ubuntu community documentation [ApacheMySQLPHP](https://help.ubuntu.com/community/ApacheMySQLPHP) topic\. 
 
 **Option: Complete this tutorial using automation**  
 To complete this tutorial using AWS Systems Manager Automation instead of the following tasks, run the [AWSDocs\-InstallALAMPServer\-AL](https://console.aws.amazon.com/systems-manager/automation/execute/AWSDocs-InstallALAMPServer-AL) Automation document\.
 
 **Topics**
-+ [Step 1: Prepare the LAMP Server](#prepare-lamp-server-alami)
-+ [Step 2: Test Your Lamp Server](#test-lamp-server-alami)
-+ [Step 3: Secure the Database Server](#secure-mysql-lamp-server)
++ [Step 1: Prepare the LAMP server](#prepare-lamp-server-alami)
++ [Step 2: Test your Lamp server](#test-lamp-server-alami)
++ [Step 3: Secure the database server](#secure-mysql-lamp-server)
 + [Step 4: \(Optional\) Install phpMyAdmin](#install-phpmyadmin-lamp-server-alami)
 + [Troubleshooting](#lamp-troubleshooting-alami)
-+ [Related Topics](#lamp-more-info-alami)
++ [Related topics](#lamp-more-info-alami)
 
-## Step 1: Prepare the LAMP Server<a name="prepare-lamp-server-alami"></a>
+## Step 1: Prepare the LAMP server<a name="prepare-lamp-server-alami"></a>
 
 **Prerequisites**  
 This tutorial assumes that you have already launched a new instance using the Amazon Linux AMI, with a public DNS name that is reachable from the internet\. For more information, see [Step 1: Launch an instance](EC2_GetStarted.md#ec2-launch-instance)\. You must also have configured your security group to allow SSH \(port 22\), HTTP \(port 80\), and HTTPS \(port 443\) connections\. For more information about these prerequisites, see [Authorizing inbound traffic for your Linux instances](authorizing-access-to-an-instance.md)\.
@@ -168,7 +168,7 @@ A web server running the HTTP protocol provides no transport security for the da
 
 For information about enabling HTTPS on your server, see [Tutorial: Configure SSL/TLS on Amazon Linux](SSL-on-amazon-linux-ami.md)\.
 
-## Step 2: Test Your Lamp Server<a name="test-lamp-server-alami"></a>
+## Step 2: Test your Lamp server<a name="test-lamp-server-alami"></a>
 
 If your server is installed and running, and your file permissions are set correctly, your `ec2-user` account should be able to create a PHP file in the `/var/www/html` directory that is available from the internet\.
 
@@ -180,7 +180,7 @@ If your server is installed and running, and your file permissions are set corre
    [ec2-user ~]$ echo "<?php phpinfo(); ?>" > /var/www/html/phpinfo.php
    ```
 
-   If you get a "Permission denied" error when trying to run this command, try logging out and logging back in again to pick up the proper group permissions that you configured in [Step 1: Prepare the LAMP Server](#prepare-lamp-server-alami)\.
+   If you get a "Permission denied" error when trying to run this command, try logging out and logging back in again to pick up the proper group permissions that you configured in [Step 1: Prepare the LAMP server](#prepare-lamp-server-alami)\.
 
 1. In a web browser, type the URL of the file that you just created\. This URL is the public DNS address of your instance followed by a forward slash and the file name\. For example:
 
@@ -211,7 +211,7 @@ If your server is installed and running, and your file permissions are set corre
    [ec2-user ~]$ rm /var/www/html/phpinfo.php
    ```
 
-## Step 3: Secure the Database Server<a name="secure-mysql-lamp-server"></a>
+## Step 3: Secure the database server<a name="secure-mysql-lamp-server"></a>
 
 The default installation of the MySQL server has several features that are great for testing and development, but they should be disabled or removed for production servers\. The mysql\_secure\_installation command walks you through the process of setting a root password and removing the insecure features from your installation\. Even if you are not planning on using the MySQL server, we recommend performing this procedure\.<a name="SecuringMySQLProcedure"></a>
 
@@ -358,7 +358,7 @@ Perform the following checks to see if your Apache web server is running and acc
 
   Here, httpd is `on` in runlevels 2, 3, 4, and 5 \(which is what you want to see\)\.
 
-  If the httpd process is not running, repeat the steps described in [Step 1: Prepare the LAMP Server](#prepare-lamp-server-alami)\.
+  If the httpd process is not running, repeat the steps described in [Step 1: Prepare the LAMP server](#prepare-lamp-server-alami)\.
 + **Is the firewall correctly configured?**
 
   If you are unable to see the Apache test page, check that the security group you are using contains a rule to allow HTTP \(port 80\) traffic\. For information about adding an HTTP rule to your security group, see [Adding rules to a security group](working-with-security-groups.md#adding-security-group-rule)\.
@@ -394,12 +394,12 @@ If you decide later to upgrade to the recommended environment, you must first re
 
 Now you can install the latest packages, as described earlier\.
 
-## Related Topics<a name="lamp-more-info-alami"></a>
+## Related topics<a name="lamp-more-info-alami"></a>
 
 For more information about transferring files to your instance or installing a WordPress blog on your web server, see the following documentation:
 + [Transferring files to your Linux instance using WinSCP](putty.md#Transfer_WinSCP)
 + [Transferring files to Linux instances from Linux using SCP](AccessingInstancesLinux.md#AccessingInstancesLinuxSCP)
-+ [Tutorial: Hosting a WordPress Blog with Amazon Linux](hosting-wordpress.md)
++ [Tutorial: Hosting a WordPress blog with Amazon Linux](hosting-wordpress.md)
 
 For more information about the commands and software used in this tutorial, see the following webpages:
 + Apache web server: [http://httpd\.apache\.org/](http://httpd.apache.org/)

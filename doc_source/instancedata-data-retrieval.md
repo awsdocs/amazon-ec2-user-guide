@@ -138,6 +138,7 @@ hostname
 iam/
 instance-action
 instance-id
+instance-life-cycle
 instance-type
 local-hostname
 local-ipv4

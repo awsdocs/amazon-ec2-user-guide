@@ -100,7 +100,13 @@ You can request a limit increase for each On\-Demand Instance limit type from th
 
 ### Monitoring On\-Demand Instance limits and usage<a name="monitoring-on-demand-limits"></a>
 
-You can view and manage your On\-Demand Instance limits from the [Limits page](https://console.aws.amazon.com/ec2/#Limits) in the Amazon EC2 console, from the Amazon EC2 [Services quotas page](https://console.aws.amazon.com/servicequotas/#!/services/ec2/quotas) in the Service Quotas console, and from the [Service Limits page](https://console.aws.amazon.com/trustedadvisor/home?#/category/service-limits) in the AWS Trusted Advisor console\. For more information, see [Amazon EC2 Service Quotas](ec2-resource-limits.md) in the *Amazon EC2 User Guide for Linux Instances*, [Viewing a Service Quota](https://docs.aws.amazon.com/servicequotas/latest/userguide/gs-request-quota.html) in the *Service Quotas User Guide*, and [AWS Trusted Advisor](http://aws.amazon.com/premiumsupport/technology/trusted-advisor/)\.
+You can view and manage your On\-Demand Instance limits using the following:
++ The [Limits page](https://console.aws.amazon.com/ec2/#Limits) in the Amazon EC2 console
++ The Amazon EC2 [Services quotas page](https://console.aws.amazon.com/servicequotas/#!/services/ec2/quotas) in the Service Quotas console
++ The [get\-service\-quota](https://docs.aws.amazon.com/cli/latest/reference/service-quotas/get-service-quota.html) AWS CLI
++ The [Service Limits page](https://console.aws.amazon.com/trustedadvisor/home?#/category/service-limits) in the AWS Trusted Advisor console
+
+For more information, see [Amazon EC2 Service Quotas](ec2-resource-limits.md) in the *Amazon EC2 User Guide for Linux Instances*, [Viewing a Service Quota](https://docs.aws.amazon.com/servicequotas/latest/userguide/gs-request-quota.html) in the *Service Quotas User Guide*, and [AWS Trusted Advisor](http://aws.amazon.com/premiumsupport/technology/trusted-advisor/)\.
 
 With Amazon CloudWatch metrics integration, you can monitor EC2 usage against limits\. You can also configure alarms to warn about approaching limits\. For more information, see [Using Amazon CloudWatch Alarms](https://docs.aws.amazon.com/servicequotas/latest/userguide/configure-cloudwatch.html) in the *Service Quotas User Guide*\.
 

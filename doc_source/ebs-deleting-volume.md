@@ -14,7 +14,7 @@ If a volume is detached from an instance, it’s in the `available` state\. You 
 
 1. In the navigation pane, choose **Volumes**\. 
 
-1. Select a volume and choose **Actions**, **Delete Volume**\. If **Delete Volume** is greyed out, the volume is attached to the instance\.
+1. Select a volume and choose **Actions**, **Delete Volume**\. If **Delete Volume** is greyed out, the volume is attached to an instance\.
 
 1. In the confirmation dialog box, choose **Yes, Delete**\. 
 

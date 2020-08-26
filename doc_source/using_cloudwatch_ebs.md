@@ -8,7 +8,7 @@ The following table describes the types of monitoring data available for your Am
 | Type | Description | 
 | --- | --- | 
 |  Basic  |  Data is available automatically in 5\-minute periods at no charge\. This includes data for the root device volumes for EBS\-backed instances\.  | 
-|  Detailed  |  Provisioned IOPS SSD \(`io1`\) volumes automatically send one\-minute metrics to CloudWatch\.  | 
+|  Detailed  |  Provisioned IOPS SSD \(`io1` and `io2`\) volumes automatically send one\-minute metrics to CloudWatch\.  | 
 
 When you get data from CloudWatch, you can include a `Period` request parameter to specify the granularity of the returned data\. This is different than the period that we use when we collect the data \(5\-minute periods\)\. We recommend that you specify a period in your request that is equal to or larger than the collection period to ensure that the returned data is valid\.
 
@@ -16,7 +16,7 @@ You can get the data using either the CloudWatch API or the Amazon EC2 console\.
 
 ## Amazon EBS metrics<a name="ebs-metrics"></a>
 
-Amazon Elastic Block Store \(Amazon EBS\) sends data points to CloudWatch for several metrics\. Amazon EBS General Purpose SSD \(gp2\), Throughput Optimized HDD \(st1\) , Cold HDD \(sc1\), and Magnetic \(standard\) volumes automatically send five\-minute metrics to CloudWatch\. Provisioned IOPS SSD \(io1\) volumes automatically send one\-minute metrics to CloudWatch\. Data is only reported to CloudWatch when the volume is attached to an instance\.
+Amazon Elastic Block Store \(Amazon EBS\) sends data points to CloudWatch for several metrics\. Amazon EBS General Purpose SSD \(gp2\), Throughput Optimized HDD \(st1\) , Cold HDD \(sc1\), and Magnetic \(standard\) volumes automatically send five\-minute metrics to CloudWatch\. Provisioned IOPS SSD \(`io1` and `io2`\) volumes automatically send one\-minute metrics to CloudWatch\. Data is only reported to CloudWatch when the volume is attached to an instance\.
 
 Some of these metrics have differences on Nitro\-based instances\. For a list of instance types based on the Nitro system, see [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances)\.
 
