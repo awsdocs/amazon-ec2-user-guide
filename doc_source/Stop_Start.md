@@ -23,7 +23,7 @@ When you stop a running instance, the following happens:
 + The instance performs a normal shutdown and stops running; its status changes to `stopping` and then `stopped`\.
 + Any Amazon EBS volumes remain attached to the instance, and their data persists\.
 + Any data stored in the RAM of the host computer or the instance store volumes of the host computer is gone\.
-+ In most cases, the instance is migrated to a new underlying host computer when it's started\. Note: Your instance might stay on the same host computer if there are no problems with the host computer.
++ In most cases, the instance is migrated to a new underlying host computer when it's started (though in some cases, it remains on the current host)\. 
 + The instance retains its private IPv4 addresses and any IPv6 addresses when stopped and started\. We release the public IPv4 address and assign a new one when you start it\.
 + The instance retains its associated Elastic IP addresses\. You're charged for any Elastic IP addresses associated with a stopped instance\. With EC2\-Classic, an Elastic IP address is dissociated from your instance when you stop it\. For more information, see [EC2\-Classic](ec2-classic-platform.md)\.
 + When you stop and start a Windows instance, the EC2Config service performs tasks on the instance, such as changing the drive letters for any attached Amazon EBS volumes\. For more information about these defaults and how you can change them, see [Configuring a Windows instance using the EC2Config service](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2config-service.html) in the *Amazon EC2 User Guide for Windows Instances*\.
