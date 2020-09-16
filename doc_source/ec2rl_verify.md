@@ -1,4 +1,4 @@
-# \(Optional\) Verify the Signature of EC2Rescue for Linux<a name="ec2rl_verify"></a>
+# \(Optional\) Verify the signature of EC2Rescue for Linux<a name="ec2rl_verify"></a>
 
 The following is the recommended process of verifying the validity of the EC2Rescue for Linux package for Linux\-based operating systems\.
 
@@ -11,11 +11,11 @@ EC2Rescue for Linux files for Linux\-based operating systems are signed using Gn
 The first step is to establish trust with the software publisher\. Download the public key of the software publisher, check that the owner of the public key is who they claim to be, and then add the public key to your keyring\. Your keyring is a collection of known public keys\. After you establish the authenticity of the public key, you can use it to verify the signature of the application\.
 
 **Topics**
-+ [Install the GPG Tools](#ec2rl_install_gpg)
-+ [Authenticate and Import the Public Key](#ec2rl_authenticate)
-+ [Verify the Signature of the Package](#ec2rl_verify_signature)
++ [Install the GPG tools](#ec2rl_install_gpg)
++ [Authenticate and import the public key](#ec2rl_authenticate)
++ [Verify the signature of the package](#ec2rl_verify_signature)
 
-## Install the GPG Tools<a name="ec2rl_install_gpg"></a>
+## Install the GPG tools<a name="ec2rl_install_gpg"></a>
 
 If your operating system is Linux or Unix, the GPG tools may already be installed\. To test whether the tools are installed on your system, enter gpg2 at a command prompt\. If the GPG tools are installed, you see a GPG command prompt\. If the GPG tools are not installed, you see an error stating that the command cannot be found\. You can install the GnuPG package from a repository\.
 
@@ -33,7 +33,7 @@ If your operating system is Linux or Unix, the GPG tools may already be installe
   yum install gnupg2
   ```
 
-## Authenticate and Import the Public Key<a name="ec2rl_authenticate"></a>
+## Authenticate and import the public key<a name="ec2rl_authenticate"></a>
 
 The next step in the process is to authenticate the EC2Rescue for Linux public key and add it as a trusted key in your GPG keyring\.
 
@@ -60,7 +60,7 @@ The next step in the process is to authenticate the EC2Rescue for Linux public k
    gpg:               imported: 1  (RSA: 1)
    ```
 
-## Verify the Signature of the Package<a name="ec2rl_verify_signature"></a>
+## Verify the signature of the package<a name="ec2rl_verify_signature"></a>
 
 After you've installed the GPG tools, authenticated and imported the EC2Rescue for Linux public key, and verified that the EC2Rescue for Linux public key is trusted, you are ready to verify the signature of the EC2Rescue for Linux installation script\.
 

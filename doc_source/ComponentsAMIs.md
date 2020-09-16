@@ -12,7 +12,7 @@ You can select an AMI to use based on the following characteristics:
 The owner of an AMI determines its availability by specifying launch permissions\. Launch permissions fall into the following categories\.
 
 
-| Launch Permission | Description | 
+| Launch permission | Description | 
 | --- | --- | 
 | public | The owner grants launch permissions to all AWS accounts\. | 
 | explicit | The owner grants launch permissions to specific AWS accounts\. | 
@@ -36,7 +36,7 @@ The following table summarizes the important differences when using the two type
 |  Modifications  |  The instance type, kernel, RAM disk, and user data can be changed while the instance is stopped\.  |  Instance attributes are fixed for the life of an instance\.  | 
 |  Charges  |  You're charged for instance usage, Amazon EBS volume usage, and storing your AMI as an Amazon EBS snapshot\.  |  You're charged for instance usage and storing your AMI in Amazon S3\.  | 
 |  AMI creation/bundling  |  Uses a single command/call  |  Requires installation and use of AMI tools  | 
-|  Stopped state  |  Can be placed in stopped state where instance is not running, but the root volume is persisted in Amazon EBS  |  Cannot be in stopped state; instances are running or terminated  | 
+|  Stopped state  |  Can be in a stopped state\. Even when the instance is stopped and not running, the root volume is persisted in Amazon EBS  |  Cannot be in stopped state; instances are running or terminated  | 
 
 \* By default, Amazon EBS\-backed instance root volumes have the `DeleteOnTermination` flag set to `true`\. For information about how to change this flag so that the volume persists after termination, see [Changing the root volume to persist](RootDeviceStorage.md#Using_RootDeviceStorage)\.
 

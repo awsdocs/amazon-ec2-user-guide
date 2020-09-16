@@ -38,6 +38,8 @@ User data shell scripts must start with the `#!` characters and the path to the 
 
 Scripts entered as user data are executed as the `root` user, so do not use the sudo command in the script\. Remember that any files you create will be owned by `root`; if you need non\-root users to have file access, you should modify the permissions accordingly in the script\. Also, because the script is not run interactively, you cannot include commands that require user feedback \(such as yum update without the `-y` flag\)\.
 
+If you use an AWS API, including the AWS CLI, in a user data script, you must use an instance profile when launching the instance\. An instance profile provides the appropriate AWS credentials required by the user data script to execute the API call\. For more information, see [Using instance profiles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html) in the IAM User Guide\. The permissions you assign to the IAM role depend on which services you are calling with the API\. For more information, see [IAM roles for Amazon EC2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html)\.
+
 The cloud\-init output log file \(`/var/log/cloud-init-output.log`\) captures console output so it is easy to debug your scripts following a launch if the instance does not behave the way you intended\.
 
 When a user data script is processed, it is copied to and executed from `/var/lib/cloud/instances/instance-id/`\. The script is not deleted after it is run\. Be sure to delete the user data scripts from `/var/lib/cloud/instances/instance-id/` before you create an AMI from the instance\. Otherwise, the script will exist in this directory on any instance launched from the AMI\.

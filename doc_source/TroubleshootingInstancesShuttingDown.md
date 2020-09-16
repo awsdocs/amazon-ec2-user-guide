@@ -21,4 +21,4 @@ Generally, the following behaviors mean that you've used Amazon EC2 Auto Scaling
 + You launch an instance and one of your instances terminates automatically\.
 + You stop an instance and it terminates and a new instance launches automatically\.
 
-To stop automatic scaling, see the [Amazon EC2 Auto Scaling User Guide](https://docs.aws.amazon.com/autoscaling/latest/userguide/) or [Launching an EC2 Fleet](ec2-fleet.md)\.
+To stop automatic scaling, see the [Amazon EC2 Auto Scaling User Guide](https://docs.aws.amazon.com/autoscaling/latest/userguide/) or [Launching instances using an EC2 Fleet](ec2-fleet.md)\.

@@ -18,14 +18,16 @@ If you don't have a Spot Instance running during a certain hour, you don't recei
 The Spot Instance data feed file name uses the following format \(with the date and hour in UTC\): 
 
 ```
-bucket-name.s3.amazonaws.com/{optional prefix}/aws-account-id.YYYY-MM-DD-HH.n.unique-id.gz
+bucket-name.s3.amazonaws.com/optional-prefix/aws-account-id.YYYY-MM-DD-HH.n.unique-id.gz
 ```
 
-For example, if your bucket name is `AWSDOC-EXAMPLE-BUCKET1` and your prefix is `myprefix`, your file names are similar to the following:
+For example, if your bucket name is **my\-bucket\-name** and your prefix is **my\-prefix**, your file names are similar to the following:
 
 ```
-AWSDOC-EXAMPLE-BUCKET1.s3.amazonaws.com/myprefix/111122223333.2014-03-17-20.001.pwBdGTJG.gz
+my-bucket-name.s3.amazonaws.com/my-prefix/111122223333.2019-03-17-20.001.pwBdGTJG.gz
 ```
+
+For more information about bucket names, see [Rules for bucket naming](https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html#bucketnamingrules) in the *Amazon Simple Storage Service Developer Guide*\.
 
 The Spot Instance data feed files are tab\-delimited\. Each line in the data file corresponds to one instance hour and contains the fields listed in the following table\.
 
@@ -60,8 +62,8 @@ To subscribe to your data feed, use the [create\-spot\-datafeed\-subscription](h
 
 ```
 aws ec2 create-spot-datafeed-subscription \
-    --bucket AWSDOC-EXAMPLE-BUCKET1 \
-    [--prefix myprefix]
+    --bucket my-bucket-name \
+    [--prefix my-prefix]
 ```
 
 The following is example output:
@@ -70,8 +72,8 @@ The following is example output:
 {
     "SpotDatafeedSubscription": {
         "OwnerId": "111122223333",
-        "Prefix": "myprefix",
-        "Bucket": "AWSDOC-EXAMPLE-BUCKET1",
+        "Bucket": "my-bucket-name",
+        "Prefix": "my-prefix",
         "State": "Active"
     }
 }

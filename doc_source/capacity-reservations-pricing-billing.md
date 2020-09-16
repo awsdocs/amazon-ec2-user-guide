@@ -1,4 +1,4 @@
-# Capacity Reservation Pricing and Billing<a name="capacity-reservations-pricing-billing"></a>
+# Capacity Reservation pricing and billing<a name="capacity-reservations-pricing-billing"></a>
 
 The price for a Capacity Reservation varies by payment option\.
 
@@ -8,7 +8,7 @@ When the Capacity Reservation is active, you are charged the equivalent On\-Dema
 
 For example, if you create a Capacity Reservation for 20 `m4.large` Linux instances and run 15 `m4.large` Linux instances in the same Availability Zone, you will be charged for 15 active instances and for 5 unused instances in the reservation\.
 
-Billing discounts for Savings Plans and regional Reserved Instances apply to Capacity Reservations\. For more information, see [Billing Discounts](#capacity-reservations-discounts)\.
+Billing discounts for Savings Plans and regional Reserved Instances apply to Capacity Reservations\. For more information, see [Billing discounts](#capacity-reservations-discounts)\.
 
 For more information, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/)\.
 
@@ -20,7 +20,7 @@ The following example shows how a Capacity Reservation is billed\. The Capacity 
 
 ![\[Capacity Reservation billing example\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/cr-billing-example.png)
 
-## Billing Discounts<a name="capacity-reservations-discounts"></a>
+## Billing discounts<a name="capacity-reservations-discounts"></a>
 
 Billing discounts for Savings Plans and regional Reserved Instances apply to Capacity Reservations\. AWS automatically applies these discounts to Capacity Reservations that have matching attributes\. When a Capacity Reservation is used by an instance, the discount is applied to the instance\. Discounts are preferentially applied to instance usage before covering unused Capacity Reservations\.
 
@@ -28,9 +28,9 @@ Billing discounts for zonal Reserved Instances do not apply to Capacity Reservat
 
 For more information, see the following:
 + [Reserved Instances](ec2-reserved-instances.md)
-+ [AWS Savings Plans User Guide](https://docs.aws.amazon.com/savingsplans/latest/userguide/)
++ [Savings Plans User Guide](https://docs.aws.amazon.com/savingsplans/latest/userguide/)
 
-## Viewing Your Bill<a name="capacity-reservations-viewing-bill"></a>
+## Viewing your bill<a name="capacity-reservations-viewing-bill"></a>
 
 You can review the charges and fees to your account on the AWS Billing and Cost Management console\.
 + The **Dashboard** displays a spend summary for your account\.

@@ -81,7 +81,7 @@ For example, you have the following Convertible Reserved Instances in your accou
 
 You can use the modification process to split your Convertible Reserved Instance into smaller reservations, and then exchange one or more of the new reservations for a new Convertible Reserved Instance\. The following examples demonstrate how you can do this\.
 
-**Example Example: Convertible Reserved Instance with multiple instances**  
+**Example: Convertible Reserved Instance with multiple instances**  
 In this example, you have a `t2.micro` Convertible Reserved Instance with four instances in the reservation\. To exchange two `t2.micro` instances for an `m4.xlarge` instance:  
 
 1. Modify the `t2.micro` Convertible Reserved Instance by splitting it into two `t2.micro` Convertible Reserved Instances with two instances each\.
@@ -90,7 +90,7 @@ In this example, you have a `t2.micro` Convertible Reserved Instance with four i
 
 ![\[Modifying and exchange Reserved Instances\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ri-split-cri-multiple.png)
 
-**Example Example: Convertible Reserved Instance with a single instance**  
+**Example: Convertible Reserved Instance with a single instance**  
 In this example, you have a `t2.large` Convertible Reserved Instance\. To change it to a smaller `t2.medium` instance and a `m3.medium` instance:  
 
 1. Modify the `t2.large` Convertible Reserved Instance by splitting it into two `t2.medium` Convertible Reserved Instances\. A single `t2.large` instance has the same instance size footprint as two `t2.medium` instances\.

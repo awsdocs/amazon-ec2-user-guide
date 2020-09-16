@@ -10,7 +10,7 @@ While the volume is in the `optimizing` state, your volume performance is in bet
 Volume modification changes take effect as follows:
 + Size changes usually take a few seconds to complete and take effect after a volume is in the `Optimizing` state\.
 + Performance \(IOPS\) changes can take from a few minutes to a few hours to complete and are dependent on the configuration change being made\.
-+ It may take up to 24 hours for a new configuration to take effect, and in some cases more, such as when the volume has not been fully initialized\. Typically, a fully used 1\-TiB volume takes about 6 hours to migrate to a new performance configuration\. 
++ It might take up to 24 hours for a new configuration to take effect, and in some cases more, such as when the volume has not been fully initialized\. Typically, a fully used 1\-TiB volume takes about 6 hours to migrate to a new performance configuration\. 
 
 Use one of the following methods to monitor the progress of a volume modification\.
 
@@ -29,12 +29,14 @@ Use the following procedure to view the progress of one or more volume modificat
 
 1. In the navigation pane, choose **Volumes**\.
 
-1. Select the volume\. The volume modification state is displayed in the **State** column and in the **State** field in the details pane\. In the following screenshot, the selected volume's modification state is **optimizing**\. The next volume in the list has a state of **modifying**\.
-**Note**  
-The **State** column and field also show the volume's availability status, which can be **creating**, **available**, **in\-use**, **deleting**, **deleted**, or **error**\.
+1. Select the volume\.
 
-1. Choose the text in the **State** field to display before and after information about the most recent modification action, as shown in this screenshot\.  
+1. The **State** column and the **State** field in the details pane contain information in the following format: *volume\-state* \- *modification\-state* \(*progress*%\)\. The possible volume states are **creating**, **available**, **in\-use**, **deleting**, **deleted**, and **error**\. The possible modification states are **modifying**, **optimizing**, and **completed**\. Shortly after the volume modification is completed, we remove the modification state and progress, leaving only the volume state\.
+
+   In this example, the modification state of the selected volume is **optimizing**\. The modification state of the next volume is **modifying**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/monitor_modifications.png)
+
+1. Choose the text in the **State** field in the details pane to display information about the most recent modification action, as shown in the previous step\.
 
 ## Monitoring the progress of a volume modification \(AWS CLI\)<a name="api_cli_monitoring"></a>
 

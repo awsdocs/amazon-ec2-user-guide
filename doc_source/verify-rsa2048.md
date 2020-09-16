@@ -1,4 +1,4 @@
-# Using the RSA\-2048 Signature to Verify the Instance Identity Document<a name="verify-rsa2048"></a>
+# Using the RSA\-2048 signature to verify the instance identity document<a name="verify-rsa2048"></a>
 
 This topic explains how to verify the instance identity document using the RSA\-2048 signature and the AWS RSA\-2048 public certificate\.
 

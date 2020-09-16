@@ -12,6 +12,7 @@ Tag keys and their values are returned by many different API calls\. Denying acc
 + [Tagging your resources for billing](#tag-resources-for-billing)
 + [Working with tags using the console](#Using_Tags_Console)
 + [Working with tags using the command line](#Using_Tags_CLI)
++ [Adding tags to a resource using CloudFormation](#cloudformation-add-tag-specifications)
 
 ## Tag basics<a name="tag-basics"></a>
 
@@ -297,7 +298,7 @@ The following examples demonstrate how to apply tags when you create resources\.
 
 The way you enter JSON\-formatted parameters on the command line differs depending on your operating system\. Linux, macOS, or Unix and Windows PowerShell use single quotes \('\) to enclose the JSON data structure\. Omit the single quotes when using the commands with the Windows command line\. For more information, see [Specifying Parameter Values for the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-using-param.html)\.
 
-**Example Example: Launch an instance and apply tags to the instance and volume**  
+**Example: Launch an instance and apply tags to the instance and volume**  
 The following [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command launches an instance and applies a tag with the key **webserver** and the value **production** to the instance\. The command also applies a tag with the key **cost\-center** and the value **cc123** to any EBS volume that's created \(in this case, the root volume\)\.  
 
 ```
@@ -321,7 +322,7 @@ aws ec2 run-instances \
     --tag-specifications 'ResourceType=instance,Tags=[{Key=cost-center,Value=cc123}]' 'ResourceType=volume,Tags=[{Key=cost-center,Value=cc123}]'
 ```
 
-**Example Example: Create a volume and apply a tag**  
+**Example: Create a volume and apply a tag**  
 The following [create\-volume](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-volume.html) command creates a volume and applies two tags: **purpose=production** and **cost\-center=cc123**\.  
 
 ```
@@ -336,7 +337,7 @@ aws ec2 create-volume \
 
 The following examples demonstrate how to add tags to an existing resource using the [create\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-tags.html) command\.
 
-**Example Example: Add a tag to a resource**  
+**Example: Add a tag to a resource**  
 The following command adds the tag **Stack=production** to the specified image, or overwrites an existing tag for the AMI where the tag key is **Stack**\. If the command succeeds, no output is returned\.  
 
 ```
@@ -345,7 +346,7 @@ aws ec2 create-tags \
     --tags Key=Stack,Value=production
 ```
 
-**Example Example: Add tags to multiple resources**  
+**Example: Add tags to multiple resources**  
 This example adds \(or overwrites\) two tags for an AMI and an instance\. One of the tags contains just a key \(**webserver**\), with no value \(we set the value to an empty string\)\. The other tag consists of a key \(**stack**\) and value \(**Production**\)\. If the command succeeds, no output is returned\.  
 
 ```
@@ -354,7 +355,7 @@ aws ec2 create-tags \
     --tags Key=webserver,Value=  Key=stack,Value=Production
 ```
 
-**Example Example: Add tags with special characters**  
+**Example: Add tags with special characters**  
 This example adds the tag **\[Group\]=test** to an instance\. The square brackets \(**\[** and **\]**\) are special characters, which must be escaped\.  
 If you are using Linux or OS X, to escape the special characters, enclose the element with the special character with double quotes \(**"**\), and then enclose the entire key and value structure with single quotes \(**'**\)\.  
 
@@ -382,7 +383,7 @@ aws ec2 create-tags `
 
 The following examples show you how to use filters with the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) to view instances with specific tags\. All EC2 describe commands use this syntax to filter by tag across a single resource type\. Alternatively, you can use the [describe\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-tags.html) command to filter by tag across EC2 resource types\.
 
-**Example Example: Describe instances with the specified tag key**  
+**Example: Describe instances with the specified tag key**  
 The following command describes the instances with a **Stack** tag, regardless of the value of the tag\.  
 
 ```
@@ -390,7 +391,7 @@ aws ec2 describe-instances \
     --filters Name=tag-key,Values=Stack
 ```
 
-**Example Example: Describe instances with the specified tag**  
+**Example: Describe instances with the specified tag**  
 The following command describes the instances with the tag **Stack=production**\.  
 
 ```
@@ -398,7 +399,7 @@ aws ec2 describe-instances \
     --filters Name=tag:Stack,Values=production
 ```
 
-**Example Example: Describe instances with the specified tag value**  
+**Example: Describe instances with the specified tag value**  
 The following command describes the instances with a tag with the value **production**, regardless of the tag key\.  
 
 ```
@@ -406,10 +407,40 @@ aws ec2 describe-instances \
     --filters Name=tag-value,Values=production
 ```
 
-**Example Example: Describe all EC2 resources with the specified tag**  
+**Example: Describe all EC2 resources with the specified tag**  
 The following command describes all EC2 resources with the tag **Stack=Test**\.  
 
 ```
 aws ec2 describe-tags \
     --filters Name=key,Values=Stack Name=value,Values=Test
+```
+
+## Adding tags to a resource using CloudFormation<a name="cloudformation-add-tag-specifications"></a>
+
+The following examples add the tag **Stack=Production** to the [AWS::EC2::Instance](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html) resource\.
+
+**Example: YAML**  
+
+```
+TagSpecifications:
+  - ResourceType: "instance"
+    Tags:
+    - Key: "Stack"
+      Value: "Production"
+```
+
+**Example: JSON**  
+
+```
+"TagSpecifications": [
+    {
+        "ResourceType": "instance",
+        "Tags": [
+            {
+                "Key": "Stack",
+                "Value": "Production"
+            }
+        ]
+    }
+]
 ```

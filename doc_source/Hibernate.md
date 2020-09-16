@@ -56,7 +56,7 @@ For information about how hibernation differs from reboot, stop, and terminate, 
 ## Hibernation prerequisites<a name="hibernating-prerequisites"></a>
 
 To hibernate an instance, the following prerequisites must be in place:
-+ **Supported instance families** \- C3, C4, C5, M3, M4, M5, R3, R4, R5, and T2\.
++ **Supported instance families** \- C3, C4, C5, M3, M4, M5, M5a, R3, R4, R5, R5a, and T2\.
 + **Instance RAM size** \- must be less than 150 GB\.
 + **Instance size** \- not supported for bare metal instances\.
 + **Supported AMIs** \(must be an HVM AMI that supports hibernation\):

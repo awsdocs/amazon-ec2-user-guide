@@ -16,7 +16,7 @@ An EC2 Fleet request remains active until it expires or you delete it\. When you
 + [Monitoring your EC2 Fleet](#monitor-ec2-fleet)
 + [Modifying an EC2 Fleet](#modify-ec2-fleet)
 + [Deleting an EC2 Fleet](#delete-fleet)
-+ [EC2 Fleet Example Configurations](ec2-fleet-examples.md)
++ [EC2 Fleet example configurations](ec2-fleet-examples.md)
 
 ## EC2 Fleet request states<a name="EC2-fleet-states"></a>
 
@@ -370,7 +370,7 @@ aws ec2 create-fleet \
     --cli-input-json file://file_name.json
 ```
 
-For example configuration files, see [EC2 Fleet Example Configurations](ec2-fleet-examples.md)\.
+For example configuration files, see [EC2 Fleet example configurations](ec2-fleet-examples.md)\.
 
 The following is example output for a fleet of type `request` or `maintain`\.
 

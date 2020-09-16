@@ -201,7 +201,7 @@ When you launch an instance using the Amazon EC2 console, the **Choose an Amazon
 
 To locate the current version of a Quick Start AMI, you can enumerate all AMIs with its AMI name, and then find the one with the most recent creation date\.
 
-**Example Example: Find the current Amazon Linux 2 AMI**  
+**Example: Find the current Amazon Linux 2 AMI**  
 
 ```
 aws ec2 describe-images \
@@ -211,7 +211,7 @@ aws ec2 describe-images \
     --output text
 ```
 
-**Example Example: Find the current Amazon Linux AMI**  
+**Example: Find the current Amazon Linux AMI**  
 
 ```
 aws ec2 describe-images \
@@ -221,7 +221,7 @@ aws ec2 describe-images \
     --output text
 ```
 
-**Example Example: Find the current Ubuntu Server 16\.04 LTS AMI**  
+**Example: Find the current Ubuntu Server 16\.04 LTS AMI**  
 
 ```
 aws ec2 describe-images \
@@ -231,7 +231,7 @@ aws ec2 describe-images \
     --output text
 ```
 
-**Example Example: Find the current Red Hat Enterprise Linux 7\.5 AMI**  
+**Example: Find the current Red Hat Enterprise Linux 7\.5 AMI**  
 
 ```
 aws ec2 describe-images \
@@ -241,7 +241,7 @@ aws ec2 describe-images \
     --output text
 ```
 
-**Example Example: Find the current SUSE Linux Enterprise Server 15 AMI**  
+**Example: Find the current SUSE Linux Enterprise Server 15 AMI**  
 
 ```
 aws ec2 describe-images \

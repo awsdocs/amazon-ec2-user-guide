@@ -26,9 +26,11 @@ Each instance type provides higher or lower minimum performance from a shared re
 
 ## Available instance types<a name="AvailableInstanceTypes"></a>
 
-Amazon EC2 provides a wide selection of instance types optimized for different use cases\. For the best performance, we recommend that you use the following current generation instance types when you launch new instances\. For more information about the current generation instance types, see [Amazon EC2 Instance Types](http://aws.amazon.com/ec2/instance-types/)\.
+Amazon EC2 provides a wide selection of instance types optimized for different use cases\. To determine which instance types meet your requirements, such as supported Regions, compute resources, or storage resources, see [Finding an Amazon EC2 instance type](instance-discovery.md)\.
 
-Amazon EC2 provides the instance types in the following table\. To determine which instance types meet your requirements, such as supported Regions, compute resources, or storage resources, see [Finding an Amazon EC2 instance type](instance-discovery.md)\.
+### Current generation instances<a name="current-gen-instances"></a>
+
+For the best performance, we recommend that you use the following instance types when you launch new instances\. For more information, see [Amazon EC2 Instance Types](http://aws.amazon.com/ec2/instance-types/)\.
 
 
 | Type | Sizes | Use case | 
@@ -74,6 +76,7 @@ Amazon EC2 provides the instance types in the following table\. To determine whi
 | T2 | t2\.nano \| t2\.micro \| t2\.small \| t2\.medium \| t2\.large \| t2\.xlarge \| t2\.2xlarge | [General purpose](general-purpose-instances.md) | 
 | T3 | t3\.nano \| t3\.micro \| t3\.small \| t3\.medium \| t3\.large \| t3\.xlarge \| t3\.2xlarge | [General purpose](general-purpose-instances.md) | 
 | T3a | t3a\.nano \| t3a\.micro \| t3a\.small \| t3a\.medium \| t3a\.large \| t3a\.xlarge \| t3a\.2xlarge | [General purpose](general-purpose-instances.md) | 
+| T4g | t4g\.nano \| t4g\.micro \| t4g\.small \| t4g\.medium \| t4g\.large \| t4g\.xlarge \| t4g\.2xlarge | [General purpose](general-purpose-instances.md) | 
 | u\-xtb1 | u\-6tb1\.metal \| u\-9tb1\.metal \| u\-12tb1\.metal \| u\-18tb1\.metal \| u\-24tb1\.metal | [Memory optimized](memory-optimized-instances.md) | 
 | X1 | x1\.16xlarge \| x1\.32xlarge | [Memory optimized](memory-optimized-instances.md) | 
 | X1e | x1e\.xlarge \| x1e\.2xlarge \| x1e\.4xlarge \| x1e\.8xlarge \| x1e\.16xlarge \| x1e\.32xlarge | [Memory optimized](memory-optimized-instances.md) | 
@@ -81,7 +84,7 @@ Amazon EC2 provides the instance types in the following table\. To determine whi
 
 ### Previous generation instances<a name="previous-gen-instances"></a>
 
-Amazon Web Services offers previous generation instances for users who have optimized their applications around these instances and have yet to upgrade\. We encourage you to use the latest generation of instances to get the best performance, but we continue to support these previous generation instances\. If you are currently using a previous generation instance, you can see which current generation instance would be a suitable upgrade\. For more information, see [Previous Generation Instances](https://aws.amazon.com/ec2/previous-generation/)\.
+Amazon Web Services offers previous generation instance types for users who have optimized their applications around them and have yet to upgrade\. We encourage you to use current generation instance types to get the best performance, but we continue to support the following previous generation instance types\. For more information about which current generation instance type would be a suitable upgrade, see [Previous Generation Instances](https://aws.amazon.com/ec2/previous-generation/)\.
 
 
 | Type | Sizes | 
@@ -132,7 +135,7 @@ The following components are part of the Nitro System:
 **Instance types**
 
 The following instances are built on the Nitro System:
-+ Virtualized: A1, C5, C5a, C5ad, C5d, C5n, C6g, C6gd,  G4, I3en, Inf1, M5, M5a, M5ad, M5d, M5dn, M5n, M6g, M6gd,  `p3dn.24xlarge`, R5, R5a, R5ad, R5d, R5dn, R5n, R6g, R6gd,  T3, T3a, and z1d
++ Virtualized: A1, C5, C5a, C5ad, C5d, C5n, C6g, C6gd,  G4, I3en, Inf1, M5, M5a, M5ad, M5d, M5dn, M5n, M6g, M6gd,  `p3dn.24xlarge`, R5, R5a, R5ad, R5d, R5dn, R5n, R6g, R6gd,  T3, T3a, T4g, and z1d
 + Bare metal: `a1.metal`, `c5.metal`, `c5d.metal`, `c5n.metal`, `c6g.metal`, `c6gd.metal`,  `i3.metal`, `i3en.metal`, `m5.metal`, `m5d.metal`, `m6g.metal`, `m6gd.metal`,  `r5.metal`, `r5d.metal`, `r6g.metal`, `r6gd.metal`,  `u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, `u-18tb1.metal`, `u-24tb1.metal`, and `z1d.metal`
 
 **Learn more**
@@ -209,6 +212,7 @@ The following table summarizes the networking and storage features supported by 
 | T2 | Yes | No | No | No | No | 
 | T3 | Yes | Yes | No | No | ENA | 
 | T3a | Yes | Yes | No | No | ENA | 
+| T4g | Yes | Yes | No | No | ENA | 
 | u\-xtb1\.metal | Yes | Yes | No | No | ENA | 
 |  X1  | No | No |  SSD \*  |  Yes  | ENA | 
 | X1e | No | No | SSD \* | Yes | ENA | 
@@ -233,4 +237,4 @@ There is a limit on the total number of instances that you can launch in a regio
 
 For more information about the default limits, see [How many instances can I run in Amazon EC2?](https://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2)
 
-For more information about viewing your current limits or requesting an increase in your current limits, see [Amazon EC2 Service Quotas](ec2-resource-limits.md)\.
+For more information about viewing your current limits or requesting an increase in your current limits, see [Amazon EC2 service quotas](ec2-resource-limits.md)\.

@@ -8,7 +8,9 @@ You can attach multiple EBS volumes to a single instance\. The volume and instan
 
 Amazon EBS provides the following volume types: General Purpose SSD \(`gp2`\), Provisioned IOPS SSD \(`io1` and `io2`\), Throughput Optimized HDD \(`st1`\), Cold HDD \(`sc1`\), and Magnetic \(`standard`, a previous\-generation type\)\. They differ in performance characteristics and price, allowing you to tailor your storage performance and cost to the needs of your applications\. For more information, see [Amazon EBS volume types](ebs-volume-types.md)\.
 
-Your account has a limit on the number of EBS volumes that you can use, and the total storage available to you\. For more information about these limits, and how to request an increase in your limits, see [Amazon EC2 Service Quotas](ec2-resource-limits.md)\.
+Your account has a limit on the number of EBS volumes that you can use, and the total storage available to you\. For more information about these limits, and how to request an increase in your limits, see [Amazon EC2 service quotas](ec2-resource-limits.md)\.
+
+For more information about pricing, see [Amazon EBS Pricing](http://aws.amazon.com/ebs/pricing/)\.
 
 **Topics**
 + [Benefits of using EBS volumes](#EBSFeatures)

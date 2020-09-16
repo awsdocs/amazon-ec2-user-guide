@@ -1,4 +1,4 @@
-# Operating System Optimizations<a name="enhanced-networking-os"></a>
+# Operating system optimizations<a name="enhanced-networking-os"></a>
 
 To achieve the maximum network performance on instances with enhanced networking, you may need to modify the default operating system configuration\. We recommend the following configuration changes for applications that require high network performance\.
 

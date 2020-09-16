@@ -21,7 +21,7 @@ You can cluster accelerated computing instances into a cluster placement group\.
 + [Installing NVIDIA drivers on Linux instances](install-nvidia-driver.md)
 + [Activate NVIDIA GRID Virtual Applications](activate_grid.md)
 + [Optimizing GPU settings](optimize_gpu.md)
-+ [Getting started with FPGA development](fpga-getting-started.md)
++ [FPGA development](fpga-getting-started.md)
 + [Getting started with AWS Inferentia development](inf-getting-started.md)
 
 For information about Windows accelerated computing instances, see [Windows Accelerated Computing Instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/accelerated-computing-instances.html) in the *Amazon EC2 User Guide for Windows Instances*\.

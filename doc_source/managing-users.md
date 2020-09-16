@@ -1,6 +1,6 @@
 # Managing user accounts on your Amazon Linux instance<a name="managing-users"></a>
 
-Each Linux instance launches with a default Linux system user account\. The default user name is determined by the AMI that was specified when you launched the instance\. 
+Each Linux instance launches with a default Linux system user account\. The default user name is determined by the AMI that was specified when you launched the instance\.
 + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
 + For a CentOS AMI, the user name is `centos`\.
 + For a Debian AMI, the user name is `admin`\.

@@ -12,7 +12,7 @@ The following instructions explain how to connect to your Linux instance using E
   + Amazon Linux 2 \(any version\)
   + Ubuntu 16\.04 or later
 + To connect using the browser\-based client, the instance must have a public IPv4 address\.
-+ To connect using the EC2 Instance Connect CLI, your instance does not need to have a public IPv4 address because the private IP address can be used\. If your instance has both a public and private IP address, the API first tries to connect using the public IP address\.
++ If the instance does not have a public IP address, then you can only connect to the instance using the EC2 Instance Connect CLI, and only from a machine within the same VPC\.
 + EC2 Instance Connect does not support connecting using an IPv6 address\.
 + The Safari browser is currently not supported\.
 
@@ -25,7 +25,7 @@ The following instructions explain how to connect to your Linux instance using E
   There is no need to install an SSH client if users only use the console or the EC2 Instance Connect CLI to connect to an instance\. Your local computer most likely has an SSH client installed by default\. You can check for an SSH client by typing ssh at the command line\. If your local computer doesn't recognize the command, you can install an SSH client\. For information about installing an SSH client on Linux or macOS X, see [http://www\.openssh\.com](http://www.openssh.com/)\. For information about installing an SSH client on Windows 10, see [OpenSSH in Windows](https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_overview)\.
 + **\(Optional\) Install the EC2 Instance Connect CLI on your local computer\.**
 
-  There is no need to install the EC2 Instance Connect CLI if users only use the console or an SSH client to connect to an instance\. For more information, see [Step 3: \(Optional\) Install the EC2 Instance Connect CLI](ec2-instance-connect-set-up.md#ec2-instance-connect-install-eic-CLI)\.
+  There is no need to install the EC2 Instance Connect CLI if users only use the console or an SSH client to connect to an instance\. For more information, see [Task 3: \(Optional\) Install the EC2 Instance Connect CLI](ec2-instance-connect-set-up.md#ec2-instance-connect-install-eic-CLI)\.
 
 ## Connect using the browser\-based client<a name="ec2-instance-connect-connecting-console"></a>
 

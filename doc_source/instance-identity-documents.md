@@ -1,4 +1,4 @@
-# Instance Identity Documents<a name="instance-identity-documents"></a>
+# Instance identity documents<a name="instance-identity-documents"></a>
 
 Each instance that you launch has an instance identity document that provides information about the instance itself\. You can use the instance identity document to validate the attributes of the instance\.
 
@@ -25,7 +25,7 @@ You can retrieve the instance identity document from a running instance at any t
 | ramdiskId | The ID of the RAM disk associated with the instance, if applicable\. | 
 | region | The Region in which the instance is running\. | 
 
-## Retrieve the Plaintext instance identity document<a name="retrieve-iid"></a>
+## Retrieve the plaintext instance identity document<a name="retrieve-iid"></a>
 
 **To retrieve the plaintext instance identity document**  
 Connect to the instance and run one of the following commands depending on the Instance Metadata Service \(IMDS\) version used by the instance\.
@@ -69,7 +69,7 @@ The following is example output\.
 }
 ```
 
-## Verifying the Instance Identity Document<a name="verify-iid"></a>
+## Verifying the instance identity document<a name="verify-iid"></a>
 
 If you intend to use the contents of the instance identity document for an important purpose, you should verify its contents and authenticity before using it\.
 
@@ -84,6 +84,6 @@ Each signature is available at a different endpoint in the instance metadata\. Y
 To validate the instance identity document using the base64\-encoded signature or RSA2048 signature, you must request the corresponding AWS public certificate from [ AWS Support](https://console.aws.amazon.com/support/home#/)\. 
 
 The following topics provide detailed steps for validating the instance identity document using each signature\.
-+ [Using the PKCS7 Signature to Verify the Instance Identity Document](verify-pkcs7.md)
-+ [Using the Base64\-Encoded Signature to Verify the Instance Identity Document](verify-signature.md)
-+ [Using the RSA\-2048 Signature to Verify the Instance Identity Document](verify-rsa2048.md)
++ [Using the PKCS7 signature to verify the instance identity document](verify-pkcs7.md)
++ [Using the base64\-encoded signature to verify the instance identity document](verify-signature.md)
++ [Using the RSA\-2048 signature to verify the instance identity document](verify-rsa2048.md)

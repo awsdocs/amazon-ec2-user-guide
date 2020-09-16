@@ -301,6 +301,13 @@ The following table lists the instance types that support EBS optimization and E
 | t3a\.large \* | 2,780 | 347\.5 | 15,700 | 
 | t3a\.xlarge \* | 2,780 | 347\.5 | 15,700 | 
 | t3a\.2xlarge \* | 2,780 | 347\.5 | 15,700 | 
+| t4g\.nano \* | 2,606 | 325\.75 | 11,800 | 
+| t4g\.micro \* | 2,606 | 325\.75 | 11,800 | 
+| t4g\.small \* | 2,606 | 325\.75 | 11,800 | 
+| t4g\.medium \* | 2,606 | 325\.75 | 11,800 | 
+| t4g\.large \* | 3,475 | 434\.37 | 15,700 | 
+| t4g\.xlarge \* | 3,475 | 434\.37 | 15,700 | 
+| t4g\.2xlarge \* | 3,475 | 434\.37 | 15,700 | 
 | u\-6tb1\.metal | 38,000 | 4,750 | 160,000 | 
 | u\-9tb1\.metal | 38,000 | 4,750 | 160,000 | 
 | u\-12tb1\.metal | 38,000 | 4,750 | 160,000 | 
@@ -430,6 +437,13 @@ The following table lists the instance types that support EBS optimization and E
 | t3a\.large | 695 | 86\.86 | 4,000 | 
 | t3a\.xlarge | 695 | 86\.86 | 4,000 | 
 | t3a\.2xlarge | 695 | 86\.86 | 4,000 | 
+| t4g\.nano | 32 | 4 | 250 | 
+| t4g\.micro | 64 | 8 | 500 | 
+| t4g\.small | 128 | 16 | 1,000 | 
+| t4g\.medium | 256 | 32 | 2,000 | 
+| t4g\.large | 512 | 64 | 4,000 | 
+| t4g\.xlarge | 1,024 | 128 | 4,000 | 
+| t4g\.2xlarge | 2,048 | 256 | 4,000 | 
 | z1d\.large | 800 | 100 | 3,333 | 
 | z1d\.xlarge | 1,580 | 197\.5 | 6,667 | 
 

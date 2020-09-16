@@ -2,14 +2,17 @@
 
 You can use Amazon CloudWatch to collect metrics and logs from the operating systems for your EC2 instances\.
 
-## CloudWatch agent<a name="new-cloudwatch-agent"></a>
+**Important**  
+The monitoring scripts are deprecated\. We recommend that you use the CloudWatch agent to collect metrics and logs\. We provide this information about the monitoring scripts for customers who are still migrating from the deprecated monitoring scripts to the CloudWatch agent\.
+
+## Collecting metrics using the CloudWatch agent<a name="new-cloudwatch-agent"></a>
 
 You can use the CloudWatch agent to collect both system metrics and log files from Amazon EC2 instances and on\-premises servers\. The agent supports both Windows Server and Linux, and enables you to select the metrics to be collected, including sub\-resource metrics such as per\-CPU core\. We recommend that you use the agent to collect metrics and logs instead of using the monitoring scripts\. For more information, see [Collect Metrics from Amazon EC2 Instances and On\-Premises Servers with the CloudWatch Agent](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Install-CloudWatch-Agent.html) in the *Amazon CloudWatch User Guide*\.
 
-## CloudWatch monitoring scripts<a name="monitoring-scripts-intro"></a>
+## Deprecated: Collecting metrics using the CloudWatch monitoring scripts<a name="monitoring-scripts-intro"></a>
 
 **Important**  
-We recommend that you use the CloudWatch agent to collect metrics and logs\. The information about the monitoring scripts is provided for customers who are still using the old monitoring scripts to gather information from their Linux instances\. The old monitoring scripts are no longer supported\. 
+We provide information about the monitoring scripts for customers who have not yet migrated from the deprecated monitoring scripts to the CloudWatch agent\.
 
 The monitoring scripts demonstrate how to produce and consume custom metrics for Amazon CloudWatch\. These sample Perl scripts comprise a fully functional example that reports memory, swap, and disk space utilization metrics for a Linux instance\. 
 
@@ -27,7 +30,7 @@ Standard Amazon CloudWatch usage charges for custom metrics apply to your use of
 
 ### Supported systems<a name="mon-scripts-systems"></a>
 
-The monitoring scripts were tested on instances using the following systems:
+The monitoring scripts were tested on instances using the following systems\. Using the monitoring scripts on any other operating system is unsupported\.
 + Amazon Linux 2
 + Amazon Linux AMI 2014\.09\.2 and later
 + Red Hat Enterprise Linux 6\.9 and 7\.4

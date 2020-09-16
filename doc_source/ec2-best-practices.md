@@ -15,7 +15,7 @@ This list of practices will help you get the maximum benefit from Amazon EC2\.
 
 **Resource management**
 + Use instance metadata and custom resource tags to track and identify your AWS resources\. For more information, see [Instance metadata and user data](ec2-instance-metadata.md) and [Tagging your Amazon EC2 resources](Using_Tags.md)\.
-+ View your current limits for Amazon EC2\. Plan to request any limit increases in advance of the time that you'll need them\. For more information, see [Amazon EC2 Service Quotas](ec2-resource-limits.md)\.
++ View your current limits for Amazon EC2\. Plan to request any limit increases in advance of the time that you'll need them\. For more information, see [Amazon EC2 service quotas](ec2-resource-limits.md)\.
 
 **Backup and recovery**
 + Regularly back up your EBS volumes using [Amazon EBS snapshots](EBSSnapshots.md), and create an [Amazon Machine Image \(AMI\)](AMIs.md) from your instance to save the configuration as a template for launching future instances\.
@@ -24,3 +24,6 @@ This list of practices will help you get the maximum benefit from Amazon EC2\.
 + Monitor and respond to events\. For more information, see [Monitoring Amazon EC2](monitoring_ec2.md)\.
 + Ensure that you are prepared to handle failover\. For a basic solution, you can manually attach a network interface or Elastic IP address to a replacement instance\. For more information, see [Elastic network interfaces](using-eni.md)\. For an automated solution, you can use Amazon EC2 Auto Scaling\. For more information, see the [Amazon EC2 Auto Scaling User Guide](https://docs.aws.amazon.com/autoscaling/latest/userguide/)\.
 + Regularly test the process of recovering your instances and Amazon EBS volumes if they fail\.
+
+**Networking**
++ Set the time\-to\-live \(TTL\) value for your applications to 255, for IPv4 and IPv6\. If you use a smaller value, there is a risk that the TTL will expire while application traffic is in transit, causing reachability issues for your instances\.

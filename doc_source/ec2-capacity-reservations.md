@@ -9,24 +9,24 @@ When you create a Capacity Reservation, you specify:
 
 Capacity Reservations can only be used by instances that match their attributes\. By default, they are automatically used by running instances that match the attributes\. If you don't have any running instances that match the attributes of the Capacity Reservation, it remains unused until you launch an instance with matching attributes\.
 
-In addition, you can use Savings Plans and regional Reserved Instances with your Capacity Reservations to benefit from billing discounts\. AWS automatically applies your discount when the attributes of a Capacity Reservation match the attributes of a Savings Plan or  regional Reserved Instance\. For more information, see [Billing Discounts](capacity-reservations-pricing-billing.md#capacity-reservations-discounts)\.
+In addition, you can use Savings Plans and regional Reserved Instances with your Capacity Reservations to benefit from billing discounts\. AWS automatically applies your discount when the attributes of a Capacity Reservation match the attributes of a Savings Plan or  regional Reserved Instance\. For more information, see [Billing discounts](capacity-reservations-pricing-billing.md#capacity-reservations-discounts)\.
 
 **Topics**
-+ [Differences Between Capacity Reservations, Reserved Instances, and Savings Plans](#capacity-reservations-differences)
++ [Differences between Capacity Reservations, Reserved Instances, and Savings Plans](#capacity-reservations-differences)
 + [Supported platforms](#capacity-reservations-platforms)
-+ [Capacity Reservation Limits](#capacity-reservations-limits)
-+ [Capacity Reservation Limitations and Restrictions](#capacity-reservations-limitations)
-+ [Capacity Reservation Pricing and Billing](capacity-reservations-pricing-billing.md)
++ [Capacity Reservation limits](#capacity-reservations-limits)
++ [Capacity Reservation limitations and restrictions](#capacity-reservations-limitations)
++ [Capacity Reservation pricing and billing](capacity-reservations-pricing-billing.md)
 + [Working with Capacity Reservations](capacity-reservations-using.md)
-+ [Working with Shared Capacity Reservations](capacity-reservation-sharing.md)
++ [Working with shared Capacity Reservations](capacity-reservation-sharing.md)
 + [CloudWatch metrics for On\-Demand Capacity Reservations](capacity-reservation-cw-metrics.md)
 
-## Differences Between Capacity Reservations, Reserved Instances, and Savings Plans<a name="capacity-reservations-differences"></a>
+## Differences between Capacity Reservations, Reserved Instances, and Savings Plans<a name="capacity-reservations-differences"></a>
 
 The following table highlights key differences between Capacity Reservations, Reserved Instances, and Savings Plans:
 
 
-|  | Capacity Reservations | Zonal Reserved Instances | Regional Reserved Instances | Savings Plans | 
+|  | Capacity Reservations | Zonal Reserved Instances | Regional Reserved Instances | Savings Plans | 
 | --- | --- | --- | --- | --- | 
 | Term | No commitment required\. Can be created and canceled as needed\. | Require fixed one\-year or three\-year commitment | 
 | Capacity benefit | Capacity reserved in a specific Availability Zone\. | Do not reserve capacity in an Availability Zone\. | 
@@ -35,7 +35,7 @@ The following table highlights key differences between Capacity Reservations, Re
 
 For more information, see the following:
 + [Reserved Instances](ec2-reserved-instances.md)
-+ [AWS Savings Plans User Guide](https://docs.aws.amazon.com/savingsplans/latest/userguide/)
++ [Savings Plans User Guide](https://docs.aws.amazon.com/savingsplans/latest/userguide/)
 
 ## Supported platforms<a name="capacity-reservations-platforms"></a>
 
@@ -49,15 +49,15 @@ You must create the Capacity Reservation with the correct platform to ensure tha
 
  For more information about the supported Windows platforms, see [ Supported platforms](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-capacity-reservations.html#capacity-reservations-platforms) in the *Amazon EC2 User Guide for Windows Instances*\. 
 
-## Capacity Reservation Limits<a name="capacity-reservations-limits"></a>
+## Capacity Reservation limits<a name="capacity-reservations-limits"></a>
 
 The number of instances for which you are allowed to reserve capacity is based on your account's On\-Demand Instance limit\. You can reserve capacity for as many instances as that limit allows, minus the number of instances that are already running\.
 
-## Capacity Reservation Limitations and Restrictions<a name="capacity-reservations-limitations"></a>
+## Capacity Reservation limitations and restrictions<a name="capacity-reservations-limitations"></a>
 
 Before you create Capacity Reservations, take note of the following limitations and restrictions\.
 + Active and unused Capacity Reservations count toward your On\-Demand Instance limits
-+ Capacity Reservations are not transferable from one AWS account to another\. However, you can share Capacity Reservations with other AWS accounts\. For more information, see [Working with Shared Capacity Reservations](capacity-reservation-sharing.md)\.
++ Capacity Reservations are not transferable from one AWS account to another\. However, you can share Capacity Reservations with other AWS accounts\. For more information, see [Working with shared Capacity Reservations](capacity-reservation-sharing.md)\.
 + Zonal Reserved Instance billing discounts do not apply to Capacity Reservations
 + Capacity Reservations can't be created in placement groups
 + Capacity Reservations can't be used with Dedicated Hosts

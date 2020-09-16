@@ -24,14 +24,14 @@ The instance is an Amazon EBS\-backed instance \(meaning that the root volume is
 
 To complete this tutorial, perform the following tasks:
 
-1. [Launch an Instance](#ec2-launch-instance)
+1. [Launch an instance](#ec2-launch-instance)
 
 1. [Connect to Your Instance](#ec2-connect-to-instance-linux)
 
-1. [Clean Up Your Instance](#ec2-clean-up-your-instance)
+1. [Clean up your instance](#ec2-clean-up-your-instance)
 
 **Related tutorials**
-+ If you'd prefer to launch a Windows instance, see this tutorial in the *Amazon EC2 User Guide for Windows Instances*: [Getting Started with Amazon EC2 Windows Instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/EC2_GetStarted.html)\.
++ If you'd prefer to launch a Windows instance, see this tutorial in the *Amazon EC2 User Guide for Windows Instances*: [Getting started with Amazon EC2 Windows instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/EC2_GetStarted.html)\.
 + If you'd prefer to use the command line, see this tutorial in the *AWS Command Line Interface User Guide*: [Using Amazon EC2 through the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-using-ec2.html)\.
 
 ## Prerequisites<a name="ec2-getstarted-prereqs"></a>
@@ -40,7 +40,7 @@ Before you begin, be sure that you've completed the steps in [Setting up with Am
 
 ## Step 1: Launch an instance<a name="ec2-launch-instance"></a>
 
-You can launch a Linux instance using the AWS Management Console as described in the following procedure\. This tutorial is intended to help you launch your first instance quickly, so it doesn't cover all possible options\. For more information about the advanced options, see [Launching an Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/launching-instance.html)\.
+You can launch a Linux instance using the AWS Management Console as described in the following procedure\. This tutorial is intended to help you launch your first instance quickly, so it doesn't cover all possible options\. For more information about the advanced options, see [Launching an instance using the Launch Instance Wizard](launching-instance.md)\.
 
 **To launch an instance**
 

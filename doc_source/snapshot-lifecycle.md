@@ -57,7 +57,7 @@ The target tags that Amazon Data Lifecycle Manager uses to associate volumes wit
 A lifecycle policy consists of these core settings:
 + Resource type—The type of AWS resource managed by the policy\. Use `VOLUME` to create snapshots of individual volumes or use `INSTANCE` to create multi\-volume snapshots from the volumes for an instance\. For more information, see [Multi\-volume snapshots](ebs-creating-snapshot.md#ebs-create-snapshot-multi-volume)\.
 + Target tags—The tags that must be associated with an EBS volume or an EC2 instance for it to be managed by the policy\.
-+ Schedule—The start time and interval for creating snapshots\.
++ Schedule—The start time and interval for creating snapshots\. The first snapshot is created by a policy within one hour after the specified start time\. Subsequent snapshots are created within one hour of their scheduled time\.
 + Retention—You can retain snapshots based on either the total count of snapshots or the age of each snapshot\.
 
 For example, you could create a policy that manages all EBS volumes with the tag `account=Finance`, creates snapshots every 24 hours at 0900, and retains the five most recent snapshots\. Snapshot creation would start by 0959 each day\.
@@ -85,7 +85,7 @@ The following considerations apply to lifecycle policies and [fast snapshot rest
 + A snapshot that is enabled for fast snapshot restore remains enabled even if you delete or disable the lifecycle policy, disable fast snapshot restore for the lifecycle policy, or disable fast snapshot restore for the Availability Zone\. You can disable fast snapshot restore for these snapshots manually\.
 + If you enable fast snapshot restore and you exceed the maximum number of snapshots that can be enabled for fast snapshot restore, Amazon Data Lifecycle Manager creates snapshots as scheduled but does not enable them for fast snapshot restore\. After a snapshot that is enabled for fast snapshot restore is deleted, the next snapshot Amazon Data Lifecycle Manager creates is enabled for fast snapshot restore\.
 + When you enable fast snapshot restore for a snapshot, it takes 60 minutes per TiB to optimize the snapshot\. We recommend that you create a schedule that ensures that each snapshot is fully optimized before Amazon Data Lifecycle Manager creates the next snapshot\.
-+ You are billed for each minute that fast snapshot restore is enabled for a snapshot in a particular Availability Zone\. Charges are pro\-rated with a minimum of one hour\. For more information, see [](ebs-fast-snapshot-restore.md#fsr-pricing)\.
++ You are billed for each minute that fast snapshot restore is enabled for a snapshot in a particular Availability Zone\. Charges are pro\-rated with a minimum of one hour\. For more information, see [Pricing and Billing](ebs-fast-snapshot-restore.md#fsr-pricing)\.
 **Note**  
 Depending on the configuration of your lifecycle policies, you could have multiple snapshots enabled for fast snapshot restore simultaneously\.
 

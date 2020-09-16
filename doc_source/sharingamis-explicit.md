@@ -2,9 +2,9 @@
 
 You can share an AMI with specific AWS accounts without making the AMI public\. All you need is the AWS account IDs\. You can only share AMIs that have unencrypted volumes and volumes that are encrypted with a customer managed CMK\. If you share an AMI with encrypted volumes, you must also share any CMKs used to encrypt them\. For more information, see [Sharing an Amazon EBS snapshot](ebs-modifying-snapshot-permissions.md)\. You cannot share an AMI that has volumes that are encrypted with a AWS managed CMK\.
 
-AMIs are a regional resource\. Therefore, sharing an AMI makes it available in that region\. To make an AMI available in a different Region, copy the AMI to the Region and then share it\. For more information, see [Copying an AMI](CopyingAMIs.md)\.
+AMIs are a regional resource\. Therefore, sharing an AMI makes it available in that Region\. To make an AMI available in a different Region, copy the AMI to the Region and then share it\. For more information, see [Copying an AMI](CopyingAMIs.md)\.
 
-There is no limit to the number of AWS accounts with which an AMI can be shared\.
+There is no limit to the number of AWS accounts with which an AMI can be shared\. User\-defined tags that you attach to a shared AMI are available only to your AWS account and not to the other accounts that the AMI is shared with\.
 
 ## Sharing an AMI \(console\)<a name="sharingamis-console"></a>
 

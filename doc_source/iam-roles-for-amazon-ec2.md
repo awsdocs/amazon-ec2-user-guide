@@ -80,7 +80,7 @@ The following is example output\.
 
 For applications, AWS CLI, and Tools for Windows PowerShell commands that run on the instance, you do not have to explicitly get the temporary security credentials—the AWS SDKs, AWS CLI, and Tools for Windows PowerShell automatically get the credentials from the EC2 instance metadata service and use them\. To make a call outside of the instance using temporary security credentials \(for example, to test IAM policies\), you must provide the access key, secret key, and the session token\. For more information, see [Using Temporary Security Credentials to Request Access to AWS Resources](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html) in the *IAM User Guide*\.
 
-For more information about instance metadata, see [Instance metadata and user data](ec2-instance-metadata.md)\. 
+For more information about instance metadata, see [Instance metadata and user data](ec2-instance-metadata.md)\. For information about the instance metadata IP address, see [Retrieving instance metadata](instancedata-data-retrieval.md)\.
 
 ## Granting an IAM user permission to pass an IAM role to an instance<a name="permission-to-pass-iam-roles"></a>
 

@@ -15,7 +15,7 @@ Depending on your instance type, enhanced networking can be enabled using one of
 
 **Elastic Network Adapter \(ENA\)**  
 The Elastic Network Adapter \(ENA\) supports network speeds of up to 100 Gbps for supported instance types\.  
-The following instance types support use ENA for enhanced networking: F1, G3, H1, HS1, I3, m4\.16xlarge, P2, P3, P3dn, R4, X1, X1e, and instances based on the [Nitro System](instance-types.md#ec2-nitro-instances), [AWS Graviton](http://aws.amazon.com/ec2/graviton), and [AWS Inferentia](http://aws.amazon.com/machine-learning/inferentia)\.
+The [current generation](instance-types.md#current-gen-instances) instances support ENA for enhanced networking, except for M4 instances smaller than `m4.16xlarge`\.
 
 **Intel 82599 Virtual Function \(VF\) interface**  
 The Intel 82599 Virtual Function interface supports network speeds of up to 10 Gbps for supported instance types\.  

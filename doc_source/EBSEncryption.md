@@ -4,6 +4,8 @@ Use Amazon EBS encryption as a straight\-forward encryption solution for your EB
 
 Encryption operations occur on the servers that host EC2 instances, ensuring the security of both data\-at\-rest and data\-in\-transit between an instance and its attached EBS storage\.
 
+You can attach both encrypted and unencrypted volumes to an instance simultaneously
+
 **Topics**
 + [How EBS encryption works](#how-ebs-encryption-works)
 + [Requirements](#ebs-encryption-requirements)
@@ -49,12 +51,7 @@ Encryption is supported by all EBS volume types\. You can expect the same IOPS p
 
 ### Supported instance types<a name="EBSEncryption_supported_instances"></a>
 
-Amazon EBS encryption is available on the instance types listed below\. You can attach both encrypted and unencrypted volumes to these instance types simultaneously\.
-+ General purpose: A1, M3, M4, M5, M5a, M5ad, M5d, M5dn, M5n, M6g, M6gd,  T2, T3, T3a
-+ Compute optimized: C3, C4, C5, C5a, C5ad, C5d, C5n, C6g, C6gd
-+ Memory optimized: `cr1.8xlarge`, R3, R4, R5, R5a, R5ad, R5d, R5dn, R5n, R6g, R6gd,  `u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, `u-18tb1.metal`, `u-24tb1.metal`, X1, X1e, and z1d
-+ Storage optimized: D2, `h1.2xlarge`, `h1.4xlarge`, I2, I3, and I3en
-+ Accelerated computing: F1, G2, G3, G4, Inf1, P2, and P3
+Amazon EBS encryption is available on all [current generation](instance-types.md#current-gen-instances) instance types and the following [previous generation](instance-types.md#previous-gen-instances) instance types: C3, `cr1.8xlarge`, G2, I2, M3, and R3\.
 
 ### Permissions for IAM users<a name="ebs-encryption-permissions"></a>
 

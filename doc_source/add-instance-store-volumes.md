@@ -93,14 +93,47 @@ For Linux instances, you can view and mount the instance store volumes as descri
 
 **To make an instance store volume available on Linux**
 
-1. Connect to the instance using an SSH client\.
+1. Connect to the instance using an SSH client\. For more information, see [Connect to your Linux instance](AccessingInstances.md)\.
 
-1. Use the `df -h` command to view the volumes that are formatted and mounted\. Use the `lsblk` to view any volumes that were mapped at launch but not formatted and mounted\.
+1. Use the `df -h` command to view the volumes that are formatted and mounted\.
+
+   ```
+   [ec2-user ~]$ df -h
+   Filesystem      Size  Used Avail Use% Mounted on
+   devtmpfs        3.8G   72K  3.8G   1% /dev
+   tmpfs           3.8G     0  3.8G   0% /dev/shm
+   /dev/nvme0n1p1  7.9G  1.2G  6.6G  15% /
+   ```
+
+1. Use the `lsblk` to view any volumes that were mapped at launch but not formatted and mounted\.
+
+   ```
+   [ec2-user ~]$ lsblk
+   NAME          MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+   nvme0n1       259:1    0    8G  0 disk
+   ├─nvme0n1p1   259:2    0    8G  0 part /
+   └─nvme0n1p128 259:3    0    1M  0 part
+   nvme1n1       259:0    0 69.9G  0 disk
+   ```
 
 1. To format and mount an instance store volume that was mapped only, do the following:
 
    1. Create a file system on the device using the `mkfs` command\.
 
+      ```
+      [ec2-user ~]$ sudo mkfs -t xfs /dev/nvme1n1
+      ```
+
    1. Create a directory on which to mount the device using the `mkdir` command\.
 
+      ```
+      [ec2-user ~]$ sudo mkdir /data
+      ```
+
    1. Mount the device on the newly created directory using the `mount` command\.
+
+      ```
+      [ec2-user ~]$ sudo mount /dev/nvme1n1 /data
+      ```
+
+For instructions on how to mount an attached volume automatically after reboot, see [Automatically mount an attached volume after reboot](ebs-using-volumes.md#ebs-mount-after-reboot)\.

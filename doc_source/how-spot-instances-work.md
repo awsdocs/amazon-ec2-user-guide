@@ -1,10 +1,21 @@
 # How Spot Instances work<a name="how-spot-instances-work"></a>
 
-To use Spot Instances, create a *Spot Instance request* or a *Spot Fleet request*\. The request can include the maximum price that you are willing to pay per hour per instance \(the default is the On\-Demand price\), and other constraints such as the instance type and Availability Zone\. If your maximum price exceeds the current Spot price for the specified instance, and capacity is available, your request is fulfilled immediately\. Otherwise, the request is fulfilled whenever the maximum price exceeds the Spot price and the capacity is available\. Spot Instances run until you stop or terminate them, or until Amazon EC2 must interrupt them \(known as a *Spot Instance interruption*\)\.
+To launch a Spot Instance, either you create a *Spot Instance request*, or Amazon EC2 creates a Spot Instance request on your behalf\. The Spot Instance launches when the Spot Instance request is fulfilled\.
+
+You can launch a Spot Instance in the following ways:
++ You can create a Spot Instance request\. For more information, see [Creating a Spot Instance request](spot-requests.md#using-spot-instances-request)\.
++ You can create a Spot Fleet request, in which you specify the desired number of Spot Instances\. Amazon EC2 creates a Spot Instance request on your behalf for every Spot Instance that is specified in the Spot Fleet request\. For more information, see [Creating a Spot Fleet request](spot-fleet-requests.md#create-spot-fleet)\.
++ You can create an EC2 Fleet, in which you specify the desired number of Spot Instances\. Amazon EC2 creates a Spot Instance request on your behalf for every Spot Instance that is specified in the EC2 Fleet\. For more information, see [Creating an EC2 Fleet](manage-ec2-fleet.md#create-ec2-fleet)\.
+
+The Spot Instance request must include the maximum price that you're willing to pay per hour per instance\. If you don't specify a price, the price defaults to the On\-Demand price\. The request can include other constraints such as the instance type and Availability Zone\.
+
+Your Spot Instance launches if the maximum price that you're willing to pay exceeds the Spot price, and if there is available capacity\. If the maximum price you're willing to pay is lower than the Spot price, then your instance does not launch\. However, because Amazon EC2 gradually adjusts the Spot price based on the long\-term supply of and demand for Spot Instances, the maximum price you're willing to pay might eventually exceed the Spot price, in which case your instance will launch\.
+
+Your Spot Instance runs until you stop or terminate it, or until Amazon EC2 interrupts it \(known as a *Spot Instance interruption*\)\.
 
 When you use Spot Instances, you must be prepared for interruptions\. Amazon EC2 can interrupt your Spot Instance when the Spot price exceeds your maximum price, when the demand for Spot Instances rises, or when the supply of Spot Instances decreases\. When Amazon EC2 interrupts a Spot Instance, it provides a Spot Instance interruption notice, which gives the instance a two\-minute warning before Amazon EC2 interrupts it\. You can't enable termination protection for Spot Instances\. For more information, see [Spot Instance interruptions](spot-interruptions.md)\.
 
-You can stop, start, reboot, or terminate an Amazon EBS\-backed instance\. The Spot service can stop, terminate, or hibernate a Spot Instance when it interrupts it\.
+You can stop, start, reboot, or terminate an Amazon EBS\-backed Spot Instance\. The Spot service can stop, terminate, or hibernate a Spot Instance when it interrupts it\.
 
 **Topics**
 + [Launching Spot Instances in a launch group](#spot-launch-group)

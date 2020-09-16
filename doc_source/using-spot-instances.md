@@ -1,8 +1,8 @@
 # Spot Instances<a name="using-spot-instances"></a>
 
-A Spot Instance is an unused EC2 instance that is available for less than the On\-Demand price\. Because Spot Instances enable you to request unused EC2 instances at steep discounts, you can lower your Amazon EC2 costs significantly\. The hourly price for a Spot Instance is called a Spot price\. The Spot price of each instance type in each Availability Zone is set by Amazon EC2, and adjusted gradually based on the long\-term supply of and demand for Spot Instances\. Your Spot Instance runs whenever capacity is available and the maximum price per hour for your request exceeds the Spot price\.
+A Spot Instance is an unused EC2 instance that is available for less than the On\-Demand price\. Because Spot Instances enable you to request unused EC2 instances at steep discounts, you can lower your Amazon EC2 costs significantly\. The hourly price for a Spot Instance is called a Spot price\. The Spot price of each instance type in each Availability Zone is set by Amazon EC2, and is adjusted gradually based on the long\-term supply of and demand for Spot Instances\. Your Spot Instance runs whenever capacity is available and the maximum price per hour for your request exceeds the Spot price\.
 
-Spot Instances are a cost\-effective choice if you can be flexible about when your applications run and if your applications can be interrupted\. For example, Spot Instances are well\-suited for data analysis, batch jobs, background processing, and optional tasks\. For more information, see [Amazon EC2 Spot Instances](https://aws.amazon.com/ec2/purchasing-options/spot-instances/)\.
+Spot Instances are a cost\-effective choice if you can be flexible about when your applications run and if your applications can be interrupted\. For example, Spot Instances are well\-suited for data analysis, batch jobs, background processing, and optional tasks\. For more information, see [Amazon EC2 Spot Instances](https://aws.amazon.com/ec2/spot-instances/)\.
 
 **Topics**
 + [Concepts](#spot-features)

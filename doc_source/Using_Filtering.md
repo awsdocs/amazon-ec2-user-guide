@@ -104,7 +104,7 @@ To see the supported filters for each Amazon EC2 resource, see the following doc
 + Tools for Windows PowerShell: The `Get` commands in the [AWS Tools for PowerShell Cmdlet Reference\-Amazon EC2](https://docs.aws.amazon.com/powershell/latest/reference/items/EC2_cmdlets.html)\.
 + Query API: The `Describe` API actions in the [Amazon EC2 API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/)\.
 
-**Example Example: Specify a single filter**  
+**Example: Specify a single filter**  
 You can list your Amazon EC2 instances using [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html)\. Without filters, the response contains information for all your resources\. You can use the following command to include only the running instances in your output\.  
 
 ```
@@ -123,7 +123,7 @@ i-0626d4edd54f1286d
 i-04a636d18e83cfacb
 ```
 
-**Example Example: Specify multiple filters or filter values**  
+**Example: Specify multiple filters or filter values**  
 If you specify multiple filters or multiple filter values, the resource must match all filters to be included in the results\.  
 You can you the following command to list all instances whose type is either `m5.large` or `m5d.large`\.  
 
@@ -136,7 +136,7 @@ You can use the following command to list all stopped instances whose type is `t
 aws ec2 describe-instances --filters Name=instance-state-name,Values=stopped Name=instance-type,Values=t2.micro
 ```
 
-**Example Example: Use wildcards in a filter value**  
+**Example: Use wildcards in a filter value**  
 If you specify database as the filter value for the `description` filter when describing EBS snapshots using [describe\-snapshots](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-snapshots.html), the command returns only the snapshots whose description is "database"\.  
 
 ```
@@ -158,7 +158,7 @@ If you specify `database????`, the command returns only snapshots whose descript
 aws ec2 describe-snapshots --filters Name=description,Values=database????
 ```
 
-**Example Example: Filter based on date**  
+**Example: Filter based on date**  
 With the AWS CLI, you can use JMESPath to filter results using expressions\. For example, the following [describe\-snapshots](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-snapshots.html) command displays the IDs of all snapshots created by your AWS account \(represented by *123456789012*\) before the specified date \(represented by *2020\-03\-31*\)\. If you do not specify the owner, the results include all public snapshots\.  
 
 ```

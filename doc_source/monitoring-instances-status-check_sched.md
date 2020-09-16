@@ -2,6 +2,8 @@
 
 AWS can schedule events for your instances, such as a reboot, stop/start, or retirement\. These events do not occur frequently\. If one of your instances will be affected by a scheduled event, AWS sends an email to the email address that's associated with your AWS account prior to the scheduled event\. The email provides details about the event, including the start and end date\. Depending on the event, you might be able to take action to control the timing of the event\.
 
+Scheduled events are managed by AWS; you cannot schedule events for your instances\. You can view the events scheduled by AWS, customize scheduled event notifications to include or remove tags from the email notification, perform actions when an instance is scheduled to reboot, retire, or stop\.
+
 To update the contact information for your account so that you can be sure to be notified about scheduled events, go to the [Account Settings](https://console.aws.amazon.com/billing/home?#/account) page\.
 
 **Topics**
@@ -15,7 +17,7 @@ To update the contact information for your account so that you can be sure to be
 
 ## Types of scheduled events<a name="types-of-scheduled-events"></a>
 
-Amazon EC2 supports the following types of events for your instances, where the event occurs at a scheduled time:
+Amazon EC2 can create the following types of events for your instances, where the event occurs at a scheduled time:
 + **Instance stop**: At the scheduled time, the instance is stopped\. When you start it again, it's migrated to a new host\. Applies only to instances backed by Amazon EBS\.
 + **Instance retirement**: At the scheduled time, the instance is stopped if it is backed by Amazon EBS, or terminated if it is backed by instance store\.
 + **Instance reboot**: At the scheduled time, the instance is rebooted\.
@@ -243,14 +245,14 @@ You can include tags in event notifications using one of the following methods\.
 Use the [ register\-instance\-event\-notification\-attributes](https://docs.aws.amazon.com/cli/latest/reference/ec2/register-instance-event-notification-attributes.html) AWS CLI command and set the `IncludeAllTagsOfInstance` parameter to `true`\.
 
 ```
-$ aws ec2 register-instance-event-notification-attributes --instance-tag-attribute 'IncludeAllTagsOfInstance=true'
+aws ec2 register-instance-event-notification-attributes --instance-tag-attribute "IncludeAllTagsOfInstance=true"
 ```
 
 **To include specific tags in event notifications**  
 Use the [ register\-instance\-event\-notification\-attributes](https://docs.aws.amazon.com/cli/latest/reference/ec2/register-instance-event-notification-attributes.html) AWS CLI command and specify the tags to include using the `InstanceTagKeys` parameter\.
 
 ```
-$ aws ec2 register-instance-event-notification-attributes --instance-tag-attribute 'InstanceTagKeys=["tag_key_1", "tag_key_2", "tag_key_3"]'
+aws ec2 register-instance-event-notification-attributes --instance-tag-attribute 'InstanceTagKeys=["tag_key_1", "tag_key_2", "tag_key_3"]'
 ```
 
 ------
@@ -283,14 +285,14 @@ You can remove tags from event notifications using one of the following methods\
 Use the [ deregister\-instance\-event\-notification\-attributes](https://docs.aws.amazon.com/cli/latest/reference/ec2/deregister-instance-event-notification-attributes.html) AWS CLI command and set the `IncludeAllTagsOfInstance` parameter to `false`\.
 
 ```
-$ aws ec2 deregister-instance-event-notification-attributes --instance-tag-attribute 'IncludeAllTagsOfInstance=false'
+aws ec2 deregister-instance-event-notification-attributes --instance-tag-attribute "IncludeAllTagsOfInstance=false"
 ```
 
 **To remove specific tags from event notifications**  
 Use the [ deregister\-instance\-event\-notification\-attributes](https://docs.aws.amazon.com/cli/latest/reference/ec2/deregister-instance-event-notification-attributes.html) AWS CLI command and specify the tags to remove using the `InstanceTagKeys` parameter\.
 
 ```
-$ aws ec2 deregister-instance-event-notification-attributes --instance-tag-attribute 'InstanceTagKeys=["tag_key_1", "tag_key_2", "tag_key_3"]'
+aws ec2 deregister-instance-event-notification-attributes --instance-tag-attribute 'InstanceTagKeys=["tag_key_1", "tag_key_2", "tag_key_3"]'
 ```
 
 ------
@@ -317,7 +319,7 @@ You can view the tags that are to be included in event notifications using one o
 Use the [ describe\-instance\-event\-notification\-attributes](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-event-notification-attributes.html) AWS CLI command\.
 
 ```
-$ aws ec2 describe-instance-event-notification-attributes
+aws ec2 describe-instance-event-notification-attributes
 ```
 
 ------

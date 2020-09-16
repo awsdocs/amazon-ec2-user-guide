@@ -21,7 +21,7 @@ There is no charge for creating a placement group\.
 
 ## Cluster placement groups<a name="placement-groups-cluster"></a>
 
-A cluster placement group is a logical grouping of instances within a single Availability Zone\. A cluster placement group can span peered VPCs in the same Region\. Instances in the same cluster placement group enjoy a higher per\-flow throughput limit of up to 10 Gbps for TCP/IP traffic and are placed in the same high\-bisection bandwidth segment of the network\.
+A cluster placement group is a logical grouping of instances within a single Availability Zone\. A cluster placement group can span peered VPCs in the same Region\. Instances in the same cluster placement group enjoy a higher per\-flow throughput limit for TCP/IP traffic and are placed in the same high\-bisection bandwidth segment of the network\.
 
 The following image shows instances that are placed into a cluster placement group\.
 
@@ -78,17 +78,14 @@ Before you use placement groups, be aware of the following rules:
 + You can't merge placement groups\.
 + An instance can be launched in one placement group at a time; it cannot span multiple placement groups\.
 + [On\-Demand Capacity Reservation](ec2-capacity-reservations.md#capacity-reservations-limits) and [zonal Reserved Instances](reserved-instances-scope.md) provide a capacity reservation for EC2 instances in a specific Availability Zone\. The capacity reservation can be used by instances in a placement group\. However, it is not possible to explicitly reserve capacity for a placement group\.
-+ Instances with a tenancy of `host` cannot be launched in placement groups\.
++ You cannot launch Dedicated Hosts in placement groups\.
 
 ### Cluster placement group rules and limitations<a name="placement-groups-limitations-cluster"></a>
 
 The following rules apply to cluster placement groups:
-+ When you launch an instance into a cluster placement group, you must use one of the following instance types:
-  + General purpose: A1, M4, M5, M5a, M5ad, M5d, M5dn, M5n, M6g, M6gd
-  + Compute optimized: C3, C4, C5, C5a, C5ad, C5d, C5n, C6g, C6gd,  `cc2.8xlarge`
-  + Memory optimized: `cr1.8xlarge`, R3, R4, R5, R5a, R5ad, R5d, R5dn, R5n, R6g, R6gd,  X1, X1e, z1d
-  + Storage optimized: D2, H1, `hs1.8xlarge`, I2, I3, I3en
-  + Accelerated computing: F1, G2, G3, G4dn, Inf1, P2, P3, P3dn
++ Instances in a cluster placement group you must use the following supported instance types:
+  + A [current generation](instance-types.md#current-gen-instances) instance type, except for the [burstable performance](burstable-performance-instances.md) instances \(for example, T2\)\.
+  + The following [previous generation](instance-types.md#previous-gen-instances) instances: C3, `cc2.8xlarge`, `cr1.8xlarge`, G2, `hs1.8xlarge`, I2, and R3\.
 + A cluster placement group can't span multiple Availability Zones\.
 + The maximum network throughput speed of traffic between two instances in a cluster placement group is limited by the slower of the two instances\. For applications with high\-throughput requirements, choose an instance type with network connectivity that meets your requirements\.
 + For instances that are enabled for enhanced networking, the following rules apply:
@@ -103,13 +100,12 @@ The following rules apply to partition placement groups:
 + A partition placement group supports a maximum of seven partitions per Availability Zone\. The number of instances that you can launch in a partition placement group is limited only by your account limits\.
 + When instances are launched into a partition placement group, Amazon EC2 tries to evenly distribute the instances across all partitions\. Amazon EC2 doesn’t guarantee an even distribution of instances across all partitions\.
 + A partition placement group with Dedicated Instances can have a maximum of two partitions\.
-+ Partition placement groups are not supported for Dedicated Hosts\.
 
 ### Spread placement group rules and limitations<a name="placement-groups-limitations-spread"></a>
 
 The following rules apply to spread placement groups:
 + A spread placement group supports a maximum of seven running instances per Availability Zone\. For example, in a Region with three Availability Zones, you can run a total of 21 instances in the group \(seven per zone\)\. If you try to start an eighth instance in the same Availability Zone and in the same spread placement group, the instance will not launch\. If you need to have more than seven instances in an Availability Zone, then the recommendation is to use multiple spread placement groups\. Using multiple spread placement groups does not provide guarantees about the spread of instances between groups, but it does ensure the spread for each group, thus limiting impact from certain classes of failures\. 
-+ Spread placement groups are not supported for Dedicated Instances or Dedicated Hosts\.
++ Spread placement groups are not supported for Dedicated Instances\.
 
 ## Creating a placement group<a name="create-placement-group"></a>
 

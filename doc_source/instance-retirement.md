@@ -8,7 +8,8 @@ For more information about the types of instance events, see [Scheduled events f
 
 **Topics**
 + [Identifying instances scheduled for retirement](#instance-retirement-identify)
-+ [Actions for instances scheduled for retirement](#instance-retirement-working)
++ [Actions to take for EBS\-backed instances scheduled for retirement](#instance-retirement-actions-EBS)
++ [Actions to take for instance\-store backed instances scheduled for retirement](#instance-retirement-actions-instance-store)
 
 ## Identifying instances scheduled for retirement<a name="instance-retirement-identify"></a>
 
@@ -50,36 +51,11 @@ You can use one of the following commands\. For more information about these com
 + [describe\-instance\-status](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-status.html) \(AWS CLI\)
 + [Get\-EC2InstanceStatus](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2InstanceStatus.html) \(AWS Tools for Windows PowerShell\)
 
-## Actions for instances scheduled for retirement<a name="instance-retirement-working"></a>
-
-There are a number of actions available to you when your instance is scheduled for retirement\. The action you take depends on whether your instance root device is an Amazon EBS volume or an instance store volume\.
-
-**Topics**
-+ [Determining your instance root device type](#instance-retirement-root-device)
-+ [Actions to take on EBS\-backed instances scheduled for retirement](#instance-retirement-actions-EBS)
-+ [Actions to take on instance\-store backed instances scheduled for retirement](#instance-retirement-actions-instance-store)
-
-### Determining your instance root device type<a name="instance-retirement-root-device"></a>
-
-If you do not know what your instance root device type is, you can find out using the Amazon EC2 console or the command line\.
-
-**To determine your instance root device type using the console**
-
-1. In the navigation pane, choose **Events**\. Use the filter lists to identify retiring instances, as demonstrated in the preceding procedure, [Identifying instances scheduled for retirement](#identify-retiring-instances)\.
-
-1. In the **Resource ID** column, select the instance ID to go to the **Instances** page\. 
-
-1. Select the instance and locate the **Root device type** field in the **Description** tab\. If the value is `ebs`, then your instance is EBS\-backed\. If the value is `instance-store`, then your instance is instance store\-backed\.
-
-**To determine your instance root device type using the command line**
-
-You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) \(AWS CLI\)
-+ [Get\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
-
-### Actions to take on EBS\-backed instances scheduled for retirement<a name="instance-retirement-actions-EBS"></a>
+## Actions to take for EBS\-backed instances scheduled for retirement<a name="instance-retirement-actions-EBS"></a>
 
 To preserve the data on your retiring instance, you can perform one of the following actions\. It's important that you take this action before the instance retirement date to prevent unforeseen downtime and data loss\.
+
+If you are not sure whether your instance is backed by EBS or instance store, see [Determining the root device type of your instance](RootDeviceStorage.md#display-instance-root-device-type)\.
 
 **Check if your instance is reachable**
 
@@ -89,15 +65,13 @@ When you are notified that your instance is scheduled for retirement, we recomme
 + If your instance is unreachable, you should take immediate action and perform a [stop/start](Stop_Start.md) to recover your instance\.
 + Alternatively, if you want to [terminate](terminating-instances.md) your instance, plan to do so as soon as possible so that you stop incurring charges for the instance\.
 
-**Create a backup of your instance**
-
+**Create a backup of your instance**  
 Create an EBS\-backed AMI from your instance so that you have a backup\. To ensure data integrity, stop the instance before you create the AMI\. You can wait for the scheduled retirement date when the instance is stopped, or stop the instance yourself before the retirement date\. You can start the instance again at any time\. For more information, see [Creating an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md)\.
 
-**Launch a replacement instance**
+**Launch a replacement instance**  
+After you create an AMI from your instance, you can use the AMI to launch a replacement instance\. From the Amazon EC2 console, select your new AMI and then choose **Actions**, **Launch**\. Follow the wizard to launch your instance\. For more information about each step in the wizard, see [Launching an instance using the Launch Instance Wizard](launching-instance.md)\.
 
-Create an EBS\-backed AMI from your instance, and launch a replacement instance\. For more information, see [Launching a Linux instance from a backup](instance-launch-snapshot.md)\.
-
-### Actions to take on instance\-store backed instances scheduled for retirement<a name="instance-retirement-actions-instance-store"></a>
+## Actions to take for instance\-store backed instances scheduled for retirement<a name="instance-retirement-actions-instance-store"></a>
 
 To preserve the data on your retiring instance, you can perform one of the following actions\. It's important that you take this action before the instance retirement date to prevent unforeseen downtime and data loss\.
 
@@ -110,10 +84,8 @@ When you are notified that your instance is scheduled for retirement, we recomme
 + Check if your instance is reachable by either [connecting](AccessingInstances.md) to or pinging your instance\.
 + If your instance is unreachable, there is likely very little that can be done to recover your instance\. For more information, see [Troubleshooting an unreachable instance](instance-console.md)\. AWS will terminate your instance on the scheduled retirement date, so, for an unreachable instance, you can immediately [terminate](terminating-instances.md) the instance yourself\.
 
-**Launch a replacement instance**
+**Launch a replacement instance**  
+Create an instance store\-backed AMI from your instance using the AMI tools, as described in [Creating an instance store\-backed Linux AMI](creating-an-ami-instance-store.md)\. From the Amazon EC2 console, select your new AMI and then choose **Actions**, **Launch**\. Follow the wizard to launch your instance\. For more information about each step in the wizard, see [Launching an instance using the Launch Instance Wizard](launching-instance.md)\.
 
-Create an instance store\-backed AMI from your instance using the AMI tools, and launch a replacement instance\. For more information, see [Creating an instance store\-backed Linux AMI](creating-an-ami-instance-store.md)\.
-
-**Convert your instance to an EBS\-backed instance**
-
-Convert your instance to an EBS\-backed instance by doing the following: transfer your data to an EBS volume, take a snapshot of the volume, and then create an AMI from the snapshot\. You can launch a replacement instance from your new AMI\. For more information, see [Converting your instance store\-backed AMI to an Amazon EBS\-backed AMI](Using_ConvertingS3toEBS.md)\.
+**Convert your instance to an EBS\-backed instance**  
+Transfer your data to an EBS volume, take a snapshot of the volume, and then create AMI from the snapshot\. You can launch a replacement instance from your new AMI\. For more information, see [Converting your instance store\-backed AMI to an Amazon EBS\-backed AMI](Using_ConvertingS3toEBS.md)\.

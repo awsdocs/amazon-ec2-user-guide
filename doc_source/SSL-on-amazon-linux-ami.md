@@ -11,11 +11,11 @@ These procedures are intended for use with the Amazon Linux AMI\. If you are try
 
 **Topics**
 + [Prerequisites](#ssl-prereq-alami)
-+ [Step 1: Enable TLS on the Server](#ssl-enable-alami)
-+ [Step 2: Obtain a CA\-signed Certificate](#ssl-certificate-alami)
-+ [Step 3: Test and Harden the Security Configuration](#ssl-test-alami)
++ [Step 1: Enable TLS on the server](#ssl-enable-alami)
++ [Step 2: Obtain a CA\-signed certificate](#ssl-certificate-alami)
++ [Step 3: Test and harden the security configuration](#ssl-test-alami)
 + [Troubleshooting](#troubleshooting-alami)
-+ [Certificate Automation: Let's Encrypt with Certbot on Amazon Linux](#lets-encrypt-alami)
++ [Certificate automation: Let's Encrypt with Certbot on Amazon Linux](#lets-encrypt-alami)
 
 ## Prerequisites<a name="ssl-prereq-alami"></a>
 
@@ -30,7 +30,7 @@ Before you begin this tutorial, complete the following steps:
 + Install Apache web server\. For step\-by\-step instructions, see [Tutorial: Installing a LAMP Web Server on Amazon Linux](install-LAMP.md)\. Only the http24 package and its dependencies are needed; you can ignore the instructions involving PHP and MySQL\.
 + To identify and authenticate web sites, the TLS public key infrastructure \(PKI\) relies on the Domain Name System \(DNS\)\. To use your EC2 instance to host a public web site, you need to register a domain name for your web server or transfer an existing domain name to your Amazon EC2 host\. Numerous third\-party domain registration and DNS hosting services are available for this, or you can use [Amazon Route 53](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/Welcome.html)\. 
 
-## Step 1: Enable TLS on the Server<a name="ssl-enable-alami"></a>
+## Step 1: Enable TLS on the server<a name="ssl-enable-alami"></a>
 
 This procedure takes you through the process of setting up TLS on Amazon Linux with a self\-signed digital certificate\.
 
@@ -104,7 +104,7 @@ When you replace the default TLS files with your own customized files, be sure t
 
    To prevent site visitors from encountering warning screens, you need to obtain a certificate that not only encrypts, but also publicly authenticates you as the owner of the site\.
 
-## Step 2: Obtain a CA\-signed Certificate<a name="ssl-certificate-alami"></a>
+## Step 2: Obtain a CA\-signed certificate<a name="ssl-certificate-alami"></a>
 
 You can use the following process to obtain a CA\-signed certificate:
 + Generate a certificate signing request \(CSR\) from a private key
@@ -114,7 +114,7 @@ You can use the following process to obtain a CA\-signed certificate:
 
 A self\-signed TLS X\.509 host certificate is cryptologically identical to a CA\-signed certificate\. The difference is social, not mathematical; a CA promises to validate, at a minimum, a domain's ownership before issuing a certificate to an applicant\. Each web browser contains a list of CAs trusted by the browser vendor to do this\. An X\.509 certificate consists primarily of a public key that corresponds to your private server key, and a signature by the CA that is cryptographically tied to the public key\. When a browser connects to a web server over HTTPS, the server presents a certificate for the browser to check against its list of trusted CAs\. If the signer is on the list, or accessible through a chain of trust consisting of other trusted signers, the browser negotiates a fast encrypted data channel with the server and loads the page\. 
 
-Certificates generally cost money because of the labor involved in validating the requests, so it pays to shop around\. A list of well\-known CAs can be found at [dmoztools\.net](http://dmoztools.net/Computers/Security/Public_Key_Infrastructure/PKIX/Tools_and_Services/Third_Party_Certificate_Authorities/)\. A few CAs offer basic\-level certificates free of charge\. The most notable of these is the [Let's Encrypt](https://letsencrypt.org/) project, which also supports automation of the certificate creation and renewal process\. For more information about using Let's Encrypt as your CA, see [Certificate Automation: Let's Encrypt with Certbot on Amazon Linux](#lets-encrypt-alami)\. 
+Certificates generally cost money because of the labor involved in validating the requests, so it pays to shop around\. A list of well\-known CAs can be found at [dmoztools\.net](http://dmoztools.net/Computers/Security/Public_Key_Infrastructure/PKIX/Tools_and_Services/Third_Party_Certificate_Authorities/)\. A few CAs offer basic\-level certificates free of charge\. The most notable of these is the [Let's Encrypt](https://letsencrypt.org/) project, which also supports automation of the certificate creation and renewal process\. For more information about using Let's Encrypt as your CA, see [Certificate automation: Let's Encrypt with Certbot on Amazon Linux](#lets-encrypt-alami)\. 
 
 Underlying the host certificate is the key\. As of 2017, [government](http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57pt1r4.pdf) and [industry](https://cabforum.org/wp-content/uploads/CA-Browser-Forum-BR-1.4.2.pdf) groups recommend using a minimum key \(modulus\) size of 2048 bits for RSA keys intended to protect documents through 2030\. The default modulus size generated by OpenSSL in Amazon Linux is 2048 bits, which means that the existing auto\-generated key is suitable for use in a CA\-signed certificate\. An alternative procedure is described below for those who desire a customized key, for instance, one with a larger modulus or using a different encryption algorithm\. 
 
@@ -174,8 +174,7 @@ Not all CAs provide the same level of support for elliptic\-curve\-based keys as
    [ec2-user ~]$ sudo openssl req -new -key custom.key -out csr.pem
    ```
 
-   OpenSSL opens a dialog and prompts you for the information shown in the following table\. All of the fields except **Common Name** are optional for a basic, domain\-validated host certificate\.  
-****    
+   OpenSSL opens a dialog and prompts you for the information shown in the following table\. All of the fields except **Common Name** are optional for a basic, domain\-validated host certificate\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/SSL-on-amazon-linux-ami.html)
 
    Finally, OpenSSL prompts you for an optional challenge password\. This password applies only to the CSR and to transactions between you and your CA, so follow the CA's recommendations about this and the other optional field, optional company name\. The CSR challenge password has no effect on server operation\.
@@ -283,7 +282,7 @@ Some CAs combine the host certificate and the intermediate certificates in a sin
 
 1. Test your server by entering your domain name into a browser URL bar with the prefix `https://`\. Your browser should load the test page over HTTPS without generating errors\.
 
-## Step 3: Test and Harden the Security Configuration<a name="ssl-test-alami"></a>
+## Step 3: Test and harden the security configuration<a name="ssl-test-alami"></a>
 
 After your TLS is operational and exposed to the public, you should test how secure it really is\. This is easy to do using online services such as [Qualys SSL Labs](https://www.ssllabs.com/ssltest/analyze.html), which performs a free and thorough analysis of your security setup\. Based on the results, you may decide to harden the default security configuration by controlling which protocols you accept, which ciphers you prefer, and which you exclude\. For more information, see [how Qualys formulates its scores](https://github.com/ssllabs/research/wiki/SSL-Server-Rating-Guide)\.
 
@@ -385,7 +384,7 @@ Finally, each update to OpenSSL introduces new ciphers and deprecates old ones\.
 
   Apache should now start without prompting you for a password\.
 
-## Certificate Automation: Let's Encrypt with Certbot on Amazon Linux<a name="lets-encrypt-alami"></a>
+## Certificate automation: Let's Encrypt with Certbot on Amazon Linux<a name="lets-encrypt-alami"></a>
 
 The [Let's Encrypt](https://letsencrypt.org/) certificate authority is the centerpiece of the Electronic Frontier Foundation \(EFF\) effort to encrypt the entire internet\. In line with that goal, Let's Encrypt host certificates are designed to be created, validated, installed, and maintained with minimal human intervention\. The automated aspects of certificate management are carried out by an agent running on the web server\. After you install and configure the agent, it communicates securely with Let's Encrypt and performs administrative tasks on Apache and the key management system\. This tutorial uses the free [Certbot](https://certbot.eff.org) agent because it allows you either to supply a customized encryption key as the basis for your certificates, or to allow the agent itself to create a key based on its defaults\. You can also configure Certbot to renew your certificates on a regular basis without human interaction, as described in [To automate Certbot](SSL-on-amazon-linux-2.md#automate_certbot)\. For more information, consult the Certbot [User Guide](https://certbot.eff.org/docs/using.html) or [man page](http://manpages.ubuntu.com/manpages/bionic/en/man1/certbot.1.html)\.
 
@@ -536,7 +535,7 @@ Certbot is not officially supported on Amazon Linux AMI, but is available for do
    ....
    ```
 
-1. After you complete the installation, test and optimize the security of your server as described in [Step 3: Test and Harden the Security Configuration](SSL-on-amazon-linux-2.md#ssl_test)\. 
+1. After you complete the installation, test and optimize the security of your server as described in [Step 3: Test and harden the security configuration](SSL-on-amazon-linux-2.md#ssl_test)\. 
 
 Certbot is designed to become an invisible, error\-resistant part of your server system\. By default, it generates host certificates with a short, 90\-day expiration time\. If you have not previously configured your system to call the command automatically, you must re\-run the certbot command manually\. This procedure shows how to automate Certbot by setting up a cron job\.<a name="automate-certbot-alami"></a>
 

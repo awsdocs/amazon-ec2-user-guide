@@ -99,3 +99,19 @@ If you have a snapshot of the root device volume of an instance, you can create 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
 + [register\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) \(AWS CLI\)
 + [Register\-EC2Image](https://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2Image.html) \(AWS Tools for Windows PowerShell\)
+
+## Launching an instance from an AMI you created<a name="launching-instance-from-images-page"></a>
+
+You can launch an instance from an AMI that you created from an instance or snapshot\.
+
+**To launch an instance from your AMI**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, under **Images**, choose **AMIs**\.
+
+1. Set the filter to **Owned by me** and select your AMI\.
+
+1. Choose **Actions**, **Launch**\.
+
+1. Follow the wizard to launch your instance\. For more information about each step in the wizard, see [Launching an instance using the Launch Instance Wizard](launching-instance.md)\.

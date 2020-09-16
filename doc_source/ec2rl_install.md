@@ -22,7 +22,7 @@ If your system has the required Python version, you can install the standard bui
    curl -O https://s3.amazonaws.com/ec2rescuelinux/ec2rl.tgz
    ```
 
-1. \(Optional\) Before proceeding, you can optionally verify the signature of the EC2Rescue for Linux installation file\. For more information, see [\(Optional\) Verify the Signature of EC2Rescue for Linux](ec2rl_verify.md)\.
+1. \(Optional\) Before proceeding, you can optionally verify the signature of the EC2Rescue for Linux installation file\. For more information, see [\(Optional\) Verify the signature of EC2Rescue for Linux](ec2rl_verify.md)\.
 
 1. Download the sha256 hash file:
 

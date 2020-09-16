@@ -122,7 +122,7 @@ The following example output shows the `PlatformDetails` and `UsageOperation` fi
 
 **To view the platform details and usage operation associated with an AMI \(console\)**
 
-After you have launched an instance, you can find the billing information by inspecting the `billingProducts` field in the instance metadata\. For more information, see [Instance Identity Documents](instance-identity-documents.md)\. Alternatively, you can use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command to obtain the AMI ID for the instance, and then use the [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command, as described in the preceding procedure, to obtain the billing information from the `PlatformDetails` and `UsageOperation` fields in the response\.
+After you have launched an instance, you can find the billing information by inspecting the `billingProducts` field in the instance metadata\. For more information, see [Instance identity documents](instance-identity-documents.md)\. Alternatively, you can use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command to obtain the AMI ID for the instance, and then use the [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command, as described in the preceding procedure, to obtain the billing information from the `PlatformDetails` and `UsageOperation` fields in the response\.
 
 ## Confirm billing information on your bill<a name="compare-billing-info-on-bill"></a>
 

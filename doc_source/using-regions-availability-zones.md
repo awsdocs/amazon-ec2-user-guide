@@ -55,7 +55,7 @@ For information about available Wavelength Zones, see [Available Wavelength Zone
 | us\-east\-2 | US East \(Ohio\) | Not required | Not available | 
 | us\-east\-1 | US East \(N\. Virginia\) | Not required | Not available | 
 | us\-west\-1 | US West \(N\. California\) | Not required | Not available | 
-| us\-west\-2 | US West \(Oregon\) | Not required | us\-west\-2\-lax\-1a | 
+| us\-west\-2 | US West \(Oregon\) | Not required | us\-west\-2\-lax\-1a`us-west-2-lax-1b` | 
 | af\-south\-1 | Africa \(Cape Town\) | Required | Not available | 
 | ap\-east\-1 | Asia Pacific \(Hong Kong\) | Required | Not available | 
 | ap\-south\-1 | Asia Pacific \(Mumbai\) | Not required | Not available | 
@@ -125,13 +125,13 @@ You can use the Amazon Lightsail API to view the name of a Region\.
 + Use the [get\-regions](https://docs.aws.amazon.com/cli/latest/reference/lightsail/get-regions.html) command as follows to describe the name of the specified Region\.
 
   ```
-  aws lightsail get-regions --query "regions[?name==`region-name`].displayName" --output text
+  aws lightsail get-regions --query "regions[?name=='region-name'].displayName" --output text
   ```
 
   The following example returns the name of the `us-east-2` Region\.
 
   ```
-  aws lightsail get-regions --query "regions[?name==`us-east-2`].displayName" --output text
+  aws lightsail get-regions --query "regions[?name=='us-east-2'].displayName" --output text
   ```
 
   The following is the output:
@@ -470,3 +470,5 @@ The following [create\-volume](https://docs.aws.amazon.com/cli/latest/reference/
 ```
 aws ec2 create-volume --availability-zone us-east-2a --outpost-arn arn:aws:outposts:us-east-2:123456789012:outpost/op-03e6fecad652a6138 --size 50
 ```
+
+You must detach an Outpost volume before you can modify it\. For more information about detaching volumes, see [Detaching an Amazon EBS volume from a Linux instance](ebs-detaching-volume.md)\.

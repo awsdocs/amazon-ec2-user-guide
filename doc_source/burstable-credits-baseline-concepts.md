@@ -46,6 +46,14 @@ The following table lists the burstable performance instance types, the rate at 
 | t3a\.large |  36  |  864  |  2  |  30%\*\*  | 
 | t3a\.xlarge |  96  |  2304  |  4  |  40%\*\*  | 
 | t3a\.2xlarge |  192  |  4608  |  8  |  40%\*\*  | 
+| **T4g** |  |  |  |  | 
+| t4g\.nano | 6 | 144 | 2 | 5%\*\* | 
+| t4g\.micro | 12 | 288 | 2 | 10%\*\* | 
+| t4g\.small | 24 | 576 | 2 | 20%\*\* | 
+| t4g\.medium | 24 | 576 | 2 | 20%\*\* | 
+| t4g\.large | 36 | 864 | 2 | 30%\*\* | 
+| t4g\.xlarge | 96 | 2304 | 4 | 40%\*\* | 
+| t4g\.2xlarge | 192 | 4608 | 8 | 40%\*\* | 
 
 
 |  | 
@@ -65,17 +73,17 @@ While earned credits never expire on a running instance, there is a limit to the
 
 The CPU credit balance limit differs for each instance size\. For example, a `t3.micro` instance can accrue a maximum of 288 earned CPU credits in the CPU credit balance\. The preceding table lists the maximum number of earned credits that each instance can accrue\.
 
-**Note**  
-T2 Standard instances also earn launch credits\. Launch credits do not count towards the CPU credit balance limit\. If a T2 instance has not spent its launch credits, and remains idle over a 24\-hour period while accruing earned credits, its CPU credit balance appears as over the limit\. For more information, see [Launch credits](burstable-performance-instances-standard-mode-concepts.md#launch-credits)\.   
-T3 and T3a instances do not earn launch credits\. These instances launch as `unlimited` by default, and therefore can burst immediately upon start without any launch credits\.
+T2 Standard instances also earn launch credits\. Launch credits do not count towards the CPU credit balance limit\. If a T2 instance has not spent its launch credits, and remains idle over a 24\-hour period while accruing earned credits, its CPU credit balance appears as over the limit\. For more information, see [Launch credits](burstable-performance-instances-standard-mode-concepts.md#launch-credits)\. 
+
+T3 and T4g instances do not earn launch credits\. These instances launch as `unlimited` by default, and therefore can burst immediately upon start without any launch credits\.
 
 ## Accrued CPU credits life span<a name="accrued-CPU-credits-life-span"></a>
 
 CPU credits on a running instance do not expire\.
 
-For T3 and T3a, the CPU credit balance persists for seven days after an instance stops and the credits are lost thereafter\. If you start the instance within seven days, no credits are lost\.
-
 For T2, the CPU credit balance does not persist between instance stops and starts\. If you stop a T2 instance, the instance loses all its accrued credits\.
+
+For T3 and T4g, the CPU credit balance persists for seven days after an instance stops and the credits are lost thereafter\. If you start the instance within seven days, no credits are lost\.
 
 For more information, see `CPUCreditBalance` in the [CloudWatch metrics table](burstable-performance-instances-monitoring-cpu-credits.md#burstable-performance-instances-CW-metrics-table)\.
 

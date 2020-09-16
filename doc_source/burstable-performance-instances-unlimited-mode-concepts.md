@@ -2,9 +2,6 @@
 
 The `unlimited` mode is a credit configuration option for burstable performance instances\. It can be enabled or disabled at any time for a running or stopped instance\. You can set `unlimited` as the default credit option at the account level per AWS Region, per burstable performance instance family, so that all new burstable performance instances in the account launch using the default credit option\.
 
-**Note**  
-T3 and T3a instances are launched as `unlimited` by default\. T2 instances are launched as `standard` by default\. You can change the default at the account level per AWS Region\. For more information, see [Setting the default credit specification for the account](burstable-performance-instances-how-to.md#burstable-performance-instance-set-default-credit-specification-for-account)\.
-
 ## How Unlimited burstable performance instances work<a name="how-burstable-performance-instances-unlimited-works"></a>
 
 If a burstable performance instance configured as `unlimited` depletes its CPU credit balance, it can spend *surplus* credits to burst beyond the [baseline](burstable-credits-baseline-concepts.md#baseline_performance)\. When its CPU utilization falls below the baseline, it uses the CPU credits that it earns to pay down the surplus credits that it spent earlier\. The ability to earn CPU credits to pay down surplus credits enables Amazon EC2 to average the CPU utilization of an instance over a 24\-hour period\. If the average CPU usage over a 24\-hour period exceeds the baseline, the instance is billed for the additional usage at a flat additional rate per vCPU\-hour\.
@@ -17,7 +14,7 @@ For more information about the baseline utilization per vCPU for each instance t
 
 ## When to use unlimited mode versus fixed CPU<a name="when-to-use-unlimited-mode"></a>
 
-When determining whether you should use a burstable performance instance in `unlimited` mode, such as a T3, or a fixed performance instance, such as an M5, you need to determine the breakeven CPU usage\. The breakeven CPU usage for a burstable performance instance is the point at which a burstable performance instance costs the same as a fixed performance instance\. The breakeven CPU usage helps you determine the following:
+When determining whether you should use a burstable performance instance in `unlimited` mode, such as T3, or a fixed performance instance, such as M5, you need to determine the breakeven CPU usage\. The breakeven CPU usage for a burstable performance instance is the point at which a burstable performance instance costs the same as a fixed performance instance\. The breakeven CPU usage helps you determine the following:
 + If the average CPU usage over a 24\-hour period is at or below the breakeven CPU usage, use a burstable performance instance in `unlimited` mode so that you can benefit from the lower price of a burstable performance instance while getting the same performance as a fixed performance instance\.
 + If the average CPU usage over a 24\-hour period is above the breakeven CPU usage, the burstable performance instance will cost more than the equivalently\-sized fixed performance instance\. If a T3 instance continuously bursts at 100% CPU, you end up paying approximately 1\.5 times the price of an equivalently\-sized M5 instance\.
 
@@ -79,12 +76,9 @@ T2 Standard instances receive [launch credits](burstable-performance-instances-s
 
 If a T2 instance is switched from `standard` to `unlimited`, any accrued launch credits are removed from the `CPUCreditBalance` before the remaining `CPUCreditBalance` is carried over\.
 
-**Note**  
-T3 and T3a instances never receive launch credits\.
+T3 and T4g instances never receive launch credits\.
 
 ## Enabling unlimited mode<a name="unlimited-mode-enabling"></a>
-
-T3 and T3a instances launch as `unlimited` by default\. T2 instances launch as `standard` by default, but you can enable `unlimited` at launch\.
 
 You can switch from `unlimited` to `standard`, and from `standard` to `unlimited`, at any time on a running or stopped instance\. For more information, see [Launching a burstable performance instance as Unlimited or Standard](burstable-performance-instances-how-to.md#launch-burstable-performance-instances) and [Modifying the credit specification of a burstable performance instance](burstable-performance-instances-how-to.md#modify-burstable-performance-instances)\.
 

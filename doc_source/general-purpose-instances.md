@@ -39,7 +39,7 @@ Bare metal instances, such as `m6g.metal`, provide your applications with direct
 
 For more information, see [Amazon EC2 M6g Instances](https://aws.amazon.com/ec2/instance-types/m6)\.
 
-**T2, T3, and T3a instances**
+**T2, T3, T3a, and T4g instances**
 
 These instances provide a baseline level of CPU performance with the ability to burst to a higher level when required by your workload\. An Unlimited instance can sustain high CPU performance for any period of time whenever required\. For more information, see [Burstable performance instances](burstable-performance-instances.md)\. These instances are well\-suited for the following:
 + Websites and web applications
@@ -47,7 +47,7 @@ These instances provide a baseline level of CPU performance with the ability to 
 + Development, build, test, and staging environments
 + Microservices
 
-For more information, see [Amazon EC2 T2 Instances](https://aws.amazon.com/ec2/instance-types/t2) and [Amazon EC2 T3 Instances](https://aws.amazon.com/ec2/instance-types/t3)\.
+For more information, see [Amazon EC2 T2 Instances](http://aws.amazon.com/ec2/instance-types/t2/), [Amazon EC2 T3 Instances](http://aws.amazon.com/ec2/instance-types/t3/), and [Amazon EC2 T4g Instances](http://aws.amazon.com/ec2/instance-types/t4/)\.
 
 **Topics**
 + [Hardware specifications](#general-purpose-hardware)
@@ -166,6 +166,13 @@ The following is a summary of the hardware specifications for general purpose in
 | t3a\.large | 2 | 8 | 
 | t3a\.xlarge | 4 | 16 | 
 | t3a\.2xlarge | 8 | 32 | 
+| t4g\.nano | 2 | 0\.5 | 
+| t4g\.micro | 2 | 1 | 
+| t4g\.small | 2 | 2 | 
+| t4g\.medium | 2 | 4 | 
+| t4g\.large | 2 | 8 | 
+| t4g\.xlarge | 4 | 16 | 
+| t4g\.2xlarge | 8 | 32 | 
 
 For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
@@ -187,7 +194,7 @@ The following is a summary of network performance for general purpose instances 
 | Instance type | Network performance | Enhanced networking | 
 | --- | --- | --- | 
 | t2\.nano \| t2\.micro \| t2\.small \| t2\.medium \| t2\.large \| t2\.xlarge \| t2\.2xlarge | Up to 1 Gbps | Not supported | 
-| t3\.nano \| t3\.micro \| t3\.small \| t3\.medium \| t3\.large \| t3\.xlarge \| t3\.2xlarge \| t3a\.nano \| t3a\.micro \| t3a\.small \| t3a\.medium \| t3a\.large \| t3a\.xlarge \| t3a\.2xlarge | Up to 5 Gbps † | [ENA](enhanced-networking-ena.md) | 
+| t3\.nano \| t3\.micro \| t3\.small \| t3\.medium \| t3\.large \| t3\.xlarge \| t3\.2xlarge \| t3a\.nano \| t3a\.micro \| t3a\.small \| t3a\.medium \| t3a\.large \| t3a\.xlarge \| t3a\.2xlarge \| t4g\.nano \| t4g\.micro \| t4g\.small \| t4g\.medium \| t4g\.large \| t4g\.xlarge \| t4g\.2xlarge | Up to 5 Gbps † | [ENA](enhanced-networking-ena.md) | 
 | m4\.large | Moderate | [Intel 82599 VF](sriov-networking.md) | 
 |  m4\.xlarge \| m4\.2xlarge \| m4\.4xlarge  | High | [Intel 82599 VF](sriov-networking.md) | 
 |  a1\.4xlarge and smaller \| a1\.metal \|  m5\.4xlarge and smaller \| m5a\.8xlarge and smaller \| m5ad\.8xlarge and smaller \| m5d\.4xlarge and smaller \| m6g\.4xlarge and smaller \| m6gd\.4xlarge and smaller  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
@@ -273,6 +280,7 @@ The following is a summary of features for general purpose instances:
 | T2 | Yes | No | No | No | 
 | T3 | Yes | Yes | No | No | 
 | T3a | Yes | Yes | No | No | 
+| T4g | Yes | Yes | No | No | 
 
 **\*** The root device volume must be an Amazon EBS volume\.
 
@@ -286,8 +294,9 @@ For more information, see the following:
 + M5a, M5ad, and T3a instances feature a 2\.5 GHz AMD EPYC 7000 series processor\.
 + A1 instances feature a 2\.3 GHz AWS Graviton processor based on 64\-bit Arm architecture\.
 + M6g and M6gd instances feature an AWS Graviton2 processor based on 64\-bit Arm architecture\.
++ T4g instances feature an AWS Graviton2 processor based on 64\-bit Arm architecture\.
 + M4, M5, M5a, M5ad, M5d, `t2.large` and larger, and `t3.large` and larger, and `t3a.large` and larger instance types require 64\-bit HVM AMIs\. They have high\-memory, and require a 64\-bit operating system to take advantage of that capacity\. HVM AMIs provide superior performance in comparison to paravirtual \(PV\) AMIs on high\-memory instance types\. In addition, you must use an HVM AMI to take advantage of enhanced networking\.
-+ Instances built on the Nitro System have the following requirements:
++ Instances built on the [Nitro System](instance-types.md#ec2-nitro-instances) have the following requirements:
   + [NVMe drivers](nvme-ebs-volumes.md) must be installed
   + [Elastic Network Adapter \(ENA\) drivers](enhanced-networking-ena.md) must be installed
 
@@ -300,7 +309,7 @@ For more information, see the following:
   + CentOS 7\.4\.1708 or later
   + FreeBSD 11\.1 or later
   + Debian GNU/Linux 9 or later
-+ Instances with an AWS Graviton processors have the following requirements:
++ Instances with an [AWS Graviton Processor](https://aws.amazon.com/ec2/graviton) have the following requirements:
   + Use an AMI for the 64\-bit Arm architecture\.
   + Support booting through UEFI with ACPI tables and support ACPI hot\-plug of PCI devices\.
 
@@ -309,7 +318,7 @@ For more information, see the following:
   + Ubuntu 16\.04 or later \(64\-bit Arm\)
   + Red Hat Enterprise Linux 8\.0 or later \(64\-bit Arm\)
   + SUSE Linux Enterprise Server 15 or later \(64\-bit Arm\)
-+ Instances built on the Nitro System instances support a maximum of 28 attachments, including network interfaces, EBS volumes, and NVMe instance store volumes\. For more information, see [Nitro System volume limits](volume_limits.md#instance-type-volume-limits)\.
++ Instances built on the Nitro System support a maximum of 28 attachments, including network interfaces, EBS volumes, and NVMe instance store volumes\. For more information, see [Nitro System volume limits](volume_limits.md#instance-type-volume-limits)\.
 + Launching a bare metal instance boots the underlying server, which includes verifying all hardware and firmware components\. This means that it can take 20 minutes from the time the instance enters the running state until it becomes available over the network\.
 + To attach or detach EBS volumes or secondary network interfaces from a bare metal instance requires PCIe native hotplug support\. Amazon Linux 2 and the latest versions of the Amazon Linux AMI support PCIe native hotplug, but earlier versions do not\. You must enable the following Linux kernel configuration options:
 

@@ -16,4 +16,4 @@ Although you can only access instance metadata and user data from within the ins
 + [Retrieving dynamic data](instancedata-dynamic-data-retrieval.md)
 + [Example: AMI launch index value](AMI-launch-index-examples.md)
 + [Instance metadata categories](instancedata-data-categories.md)
-+ [Instance Identity Documents](instance-identity-documents.md)
++ [Instance identity documents](instance-identity-documents.md)

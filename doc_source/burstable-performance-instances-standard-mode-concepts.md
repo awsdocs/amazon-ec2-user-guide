@@ -2,16 +2,13 @@
 
 The `standard` mode is a configuration option for burstable performance instances\. It can be enabled or disabled at any time for a running or stopped instance\. You can set `standard` as the default credit option at the account level per AWS Region, per burstable performance instance family, so that all new burstable performance instances in the account launch using the default credit option\.
 
-**Note**  
-T3 and T3a instances are launched as `unlimited` by default\. T2 instances are launched as `standard` by default\. You can change the default at the account level per AWS Region\. For more information, see [Setting the default credit specification for the account](burstable-performance-instances-how-to.md#burstable-performance-instance-set-default-credit-specification-for-account)\.
-
 ## How standard burstable performance instances work<a name="how-burstable-performance-instances-standard-works"></a>
 
-When a burstable performance instance configured as `standard` is in a running state, it continuously earns \(at a millisecond\-level resolution\) a set rate of earned credits per hour\. For T2 Standard, when the instance is stopped, it loses all its accrued credits, and its credit balance is reset to zero\. When it is restarted, it receives a new set of launch credits, and begins to accrue earned credits\. For T3 and T3a Standard, the CPU credit balance persists for seven days after the instance stops and the credits are lost thereafter\. If you start the instance within seven days, no credits are lost\.
+When a burstable performance instance configured as `standard` is in a running state, it continuously earns \(at a millisecond\-level resolution\) a set rate of earned credits per hour\. For T2 Standard, when the instance is stopped, it loses all its accrued credits, and its credit balance is reset to zero\. When it is restarted, it receives a new set of launch credits, and begins to accrue earned credits\. For T3 and T4g Standard instances, the CPU credit balance persists for seven days after the instance stops and the credits are lost thereafter\. If you start the instance within seven days, no credits are lost\.
 
-A T2 Standard instance receives two types of CPU credits: *earned credits* and *launch credits*\. When a T2 Standard instance is in a running state, it continuously earns \(at a millisecond\-level resolution\) a set rate of earned credits per hour\. At start, it has not yet earned credits for a good startup experience; therefore, to provide a good startup experience, it receives launch credits at start, which it spends first while it accrues earned credits\.
+T2 Standard instances receive two types of CPU credits: *earned credits* and *launch credits*\. When a T2 Standard instance is in a running state, it continuously earns \(at a millisecond\-level resolution\) a set rate of earned credits per hour\. At start, it has not yet earned credits for a good startup experience; therefore, to provide a good startup experience, it receives launch credits at start, which it spends first while it accrues earned credits\.
 
-T3 and T3a Standard instances do not receive launch credits\.
+T3 and T4g Standard instances do not receive launch credits\.
 
 ## Launch credits<a name="launch-credits"></a>
 

@@ -10,9 +10,6 @@ The following examples explain credit use when instances are configured as `stan
 
 In this example, you see how a `t3.nano` instance launched as `standard` earns, accrues, and spends *earned* credits\. You see how the credit balance reflects the accrued *earned* credits\.
 
-**Note**  
-T3 and T3a instances configured as `standard` do not receive launch credits\.
-
 A running `t3.nano` instance earns 144 credits every 24 hours\. Its credit balance limit is 144 earned credits\. After the limit is reached, new credits that are earned are discarded\. For more information about the number of credits that can be earned and accrued, see the [credit table](burstable-credits-baseline-concepts.md#burstable-performance-instances-credit-table)\.
 
 You might launch a T3 Standard instance and use it immediately\. Or, you might launch a T3 Standard instance and leave it idle for a few days before running applications on it\. Whether an instance is used or remains idle determines if credits are spent or accrued\. If an instance remains idle for 24 hours from the time it is launched, the credit balance reaches it limit, which is the maximum number of earned credits that can be accrued\. 

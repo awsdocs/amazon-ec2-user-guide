@@ -8,7 +8,7 @@ You can also set a maximum amount per hour that you’re willing to pay for your
 
 A *Spot Instance pool* is a set of unused EC2 instances with the same instance type, operating system, Availability Zone, and network platform\. When you create an EC2 Fleet, you can include multiple launch specifications, which vary by instance type, Availability Zone, subnet, and maximum price\. The fleet selects the Spot Instance pools that are used to fulfill the request, based on the launch specifications included in your request, and the configuration of the request\. The Spot Instances come from the selected pools\.
 
-An EC2 Fleet enables you to provision large amounts of EC2 capacity that makes sense for your application based on number of cores or instances, or amount of memory\. For example, you can specify an EC2 Fleet to launch a target capacity of 200 instances, of which 130 are On\-Demand Instances and the rest are Spot Instances\. Or you can request 1000 cores with a minimum of 2 GB of RAM per core\. The fleet determines the combination of Amazon EC2 options to launch that capacity at the absolute lowest cost\.
+An EC2 Fleet enables you to provision large amounts of EC2 capacity that makes sense for your application based on number of cores or instances, or amount of memory\. For example, you can specify an EC2 Fleet to launch a target capacity of 200 instances, of which 130 are On\-Demand Instances and the rest are Spot Instances\.
 
 Use the appropriate configuration strategies to create an EC2 Fleet that meets your needs\.
 
@@ -33,7 +33,7 @@ When planning your EC2 Fleet, we recommend that you do the following:
 + Determine what portion of the EC2 Fleet target capacity must be On\-Demand capacity and Spot capacity\. You can specify 0 for On\-Demand capacity or Spot capacity, or both\.
 + Determine your price per unit, if you are using instance weighting\. To calculate the price per unit, divide the price per instance hour by the number of units \(or weight\) that this instance represents\. If you are not using instance weighting, the default price per unit is the price per instance hour\.
 + Determine the maximum amount per hour that you’re willing to pay for your fleet\. For more information, see [Control spending](#ec2-fleet-control-spending)\.
-+ Review the possible options for your EC2 Fleet\. For more information, see the [EC2 Fleet JSON configuration file reference](manage-ec2-fleet.md#ec2-fleet-json-reference)\. For EC2 Fleet configuration examples, see [EC2 Fleet Example Configurations](ec2-fleet-examples.md)\.
++ Review the possible options for your EC2 Fleet\. For more information, see the [EC2 Fleet JSON configuration file reference](manage-ec2-fleet.md#ec2-fleet-json-reference)\. For EC2 Fleet configuration examples, see [EC2 Fleet example configurations](ec2-fleet-examples.md)\.
 
 ## EC2 Fleet request types<a name="ec2-fleet-request-type"></a>
 
@@ -119,7 +119,7 @@ When unused Capacity Reservations are used to fulfil On\-Demand capacity:
 
 You can only use unused On\-Demand Capacity Reservations for fleets of type `instant`\.
 
-For examples of how to configure a fleet to use Capacity Reservations to fulfil On\-Demand capacity, see [EC2 Fleet Example Configurations](ec2-fleet-examples.md)\. For more information, see [On\-Demand Capacity Reservations](ec2-capacity-reservations.md) and the [On\-Demand Capacity Reservation FAQs](http://aws.amazon.com/ec2/faqs/#On-Demand_Capacity_Reservation)\.
+For examples of how to configure a fleet to use Capacity Reservations to fulfil On\-Demand capacity, see [EC2 Fleet example configurations](ec2-fleet-examples.md)\. For more information, see [On\-Demand Capacity Reservations](ec2-capacity-reservations.md) and the [On\-Demand Capacity Reservation FAQs](http://aws.amazon.com/ec2/faqs/#On-Demand_Capacity_Reservation)\.
 
 ## Maximum price overrides<a name="ec2-fleet-price-overrides"></a>
 
@@ -159,8 +159,6 @@ By default, the price that you specify is *per instance hour*\. When you use the
 
 The following table includes examples of calculations to determine the price per unit for an EC2 Fleet with a target capacity of 10\.
 
-
-****  
 
 | Instance type | Instance weight | Target capacity | Number of instances launched | Price per instance hour | Price per unit hour | 
 | --- | --- | --- | --- | --- | --- | 
@@ -206,7 +204,7 @@ Example Corp, a pharmaceutical company, wants to use the computational power of 
 
 Example Corp first reviews [Spot Best Practices](https://aws.amazon.com/ec2/spot/getting-started/#bestpractices)\. Next, Example Corp determines the requirements for their EC2 Fleet\.
 
-**Instance Types**  
+**Instance types**  
 Example Corp has a compute\- and memory\-intensive application that performs best with at least 60 GB of memory and eight virtual CPUs \(vCPUs\)\. They want to maximize these resources for the application at the lowest possible price\. Example Corp decides that any of the following EC2 instance types would meet their needs:
 
 
@@ -219,7 +217,7 @@ Example Corp has a compute\- and memory\-intensive application that performs bes
 **Target capacity in units**  
 With instance weighting, target capacity can equal a number of instances \(the default\) or a combination of factors such as cores \(vCPUs\), memory \(GiBs\), and storage \(GBs\)\. By considering the base for their application \(60 GB of RAM and eight vCPUs\) as one unit, Example Corp decides that 20 times this amount would meet their needs\. So the company sets the target capacity of their EC2 Fleet request to 20\.
 
-**Instance Weights**  
+**Instance weights**  
 After determining the target capacity, Example Corp calculates instance weights\. To calculate the instance weight for each instance type, they determine the units of each instance type that are required to reach the target capacity as follows:
 + r3\.2xlarge \(61\.0 GB, 8 vCPUs\) = 1 unit of 20
 + r3\.4xlarge \(122\.0 GB, 16 vCPUs\) = 2 units of 20

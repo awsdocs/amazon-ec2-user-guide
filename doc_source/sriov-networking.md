@@ -13,7 +13,7 @@ Amazon EC2 provides enhanced networking capabilities through the Intel 82599 VF 
 ## Requirements<a name="ixgbevf-requirements"></a>
 
 To prepare for enhanced networking using the Intel 82599 VF interface, set up your instance as follows:
-+ Select from the following supported instance types: C3, C4, D2, I2, M4 \(excluding m4\.16xlarge\), and R3\.
++ Select from the following supported instance types: C3, C4, D2, I2, M4 \(excluding `m4.16xlarge`\), and R3\.
 + Launch the instance from an HVM AMI using Linux kernel version of 2\.6\.32 or later\. The latest Amazon Linux HVM AMIs have the modules required for enhanced networking installed and have the required attributes set\. Therefore, if you launch an Amazon EBS–backed, enhanced networking–supported instance using a current Amazon Linux HVM AMI, enhanced networking is already enabled for your instance\.
 **Warning**  
 Enhanced networking is supported only for HVM instances\. Enabling enhanced networking with a PV instance can make it unreachable\. Setting this attribute without the proper module or module version can also make your instance unreachable\.

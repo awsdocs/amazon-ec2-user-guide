@@ -47,7 +47,7 @@ EFA supports the following interfaces and libraries:
 
 ## Supported instance types<a name="efa-instance-types"></a>
 
-The following instance types support EFAs: `c5n.18xlarge`, `c5n.metal`, `g4dn.metal`, `i3en.24xlarge`, `i3en.metal`, `inf1.24xlarge`, `m5dn.24xlarge`, `m5n.24xlarge`, `r5dn.24xlarge`, `r5n.24xlarge`, and `p3dn.24xlarge`\.
+The following instance types support EFAs: `c5n.18xlarge`, `c5n.metal`, `g4dn.metal`, `i3en.24xlarge`, `i3en.metal`, `inf1.24xlarge`, `m5dn.24xlarge`, `m5n.24xlarge`, `p3dn.24xlarge`, `r5dn.24xlarge`, and `r5n.24xlarge`\.
 
 The available instance types vary by Region\. To see the available instance types that support EFA in a Region, use the following command and, for `--region`, specify a Region\.
 

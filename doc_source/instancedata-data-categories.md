@@ -2,6 +2,9 @@
 
 The following table lists the categories of instance metadata\.
 
+**Note**  
+When Amazon EC2 releases a new instance metadata category, the instance metadata for the new category might not be available for existing instances\. To ensure that the instance metadata is available for an existing instance, you need to [stop and then start](Stop_Start.md) the instance\.
+
 **Important**  
 Some of the category names in the following table are placeholders for data that is unique to your instance\. For example, *mac* represents the MAC address for the network interface\. You must replace the placeholders with the actual values\.
 
@@ -28,7 +31,7 @@ Some of the category names in the following table are placeholders for data that
 | identity\-credentials/ec2/security\-credentials/ec2\-instance | \[Reserved for internal use only\] The credentials that AWS uses to identify an instance to the rest of the Amazon EC2 infrastructure\. | 2018\-05\-23 | 
 | instance\-action | Notifies the instance that it should reboot in preparation for bundling\. Valid values: none \| shutdown \| bundle\-pending\. | 2008\-09\-01 | 
 | instance\-id | The ID of this instance\. | Version 1\.0 | 
-| instance\-life\-cycle | The purchasing option of this instance\. For more information, see [Instance purchasing options](instance-purchasing-options.md)\. | Version 1\.0 | 
+| instance\-life\-cycle | The purchasing option of this instance\. For more information, see [Instance purchasing options](instance-purchasing-options.md)\. | 2019\-10\-01 | 
 | instance\-type  | The type of instance\. For more information, see [Instance types](instance-types.md)\. | 2007\-08\-29 | 
 |  kernel\-id  | The ID of the kernel launched with this instance, if applicable\. | 2008\-02\-01 | 
 |  local\-hostname  | The private IPv4 DNS hostname of the instance\. In cases where multiple network interfaces are present, this refers to the eth0 device \(the device for which the device number is 0\)\. | 2007\-01\-19 | 
@@ -57,7 +60,7 @@ Some of the category names in the following table are placeholders for data that
 |  placement/availability\-zone  | The Availability Zone in which the instance launched\. | 2008\-02\-01 | 
 |  placement/availability\-zone\-id  | The static Availability Zone ID in which the instance is launched\. The Availability Zone ID is consistent across accounts\. However, it might be different from the Availability Zone, which can vary by account\. | 2020\-08\-24 | 
 |  placement/group\-name  | The name of the placement group in which the instance is launched\. | 2020\-08\-24 | 
-|  placement/host\-id  | The ID of the host on which the instance is launched\. | 2020\-08\-24 | 
+|  placement/host\-id  | The ID of the host on which the instance is launched\. Applicable only to Dedicated Hosts\. | 2020\-08\-24 | 
 |  placement/partition\-number  | The number of the partition in which the instance is launched\. | 2020\-08\-24 | 
 |  placement/region  | The AWS Region in which the instance is launched\. | 2020\-08\-24 | 
 |  product\-codes  | AWS Marketplace product codes associated with the instance, if any\.  | 2007\-03\-01 | 
@@ -80,6 +83,6 @@ The following table lists the categories of dynamic data\.
 | Data | Description | Release date | 
 | --- | --- | --- | 
 |  fws/instance\-monitoring  | Value showing whether the customer has enabled detailed one\-minute monitoring in CloudWatch\. Valid values: enabled \| disabled | 2009\-04\-04 | 
-| instance\-identity/document  | JSON containing instance attributes, such as instance\-id, private IP address, etc\. See [Instance Identity Documents](instance-identity-documents.md)\.  | 2009\-04\-04 | 
-| instance\-identity/pkcs7  | Used to verify the document's authenticity and content against the signature\. See [Instance Identity Documents](instance-identity-documents.md)\.  | 2009\-04\-04 | 
-| instance\-identity/signature  | Data that can be used by other parties to verify its origin and authenticity\. See [Instance Identity Documents](instance-identity-documents.md)\.  | 2009\-04\-04 | 
+| instance\-identity/document  | JSON containing instance attributes, such as instance\-id, private IP address, etc\. See [Instance identity documents](instance-identity-documents.md)\.  | 2009\-04\-04 | 
+| instance\-identity/pkcs7  | Used to verify the document's authenticity and content against the signature\. See [Instance identity documents](instance-identity-documents.md)\.  | 2009\-04\-04 | 
+| instance\-identity/signature  | Data that can be used by other parties to verify its origin and authenticity\. See [Instance identity documents](instance-identity-documents.md)\.  | 2009\-04\-04 | 

@@ -3,7 +3,7 @@
 Amazon EC2 instances support multithreading, which enables multiple threads to run concurrently on a single CPU core\. Each thread is represented as a virtual CPU \(vCPU\) on the instance\. An instance has a default number of CPU cores, which varies according to instance type\. For example, an `m5.xlarge` instance type has two CPU cores and two threads per core by default—four vCPUs in total\.
 
 **Note**  
-Each vCPU is a thread of a CPU core, except for T2 instances\.
+Each vCPU is a thread of a CPU core, except for T2 instances and instances powered by AWS Graviton2 processors\.
 
 In most cases, there is an Amazon EC2 instance type that has a combination of memory and number of vCPUs to suit your workloads\. However, you can specify the following CPU options to optimize your instance for specific workloads or business needs:
 + **Number of CPU cores**: You can customize the number of CPU cores for the instance\. You might do this to potentially optimize the licensing costs of your software with an instance that has sufficient amounts of RAM for memory\-intensive workloads but fewer CPU cores\.

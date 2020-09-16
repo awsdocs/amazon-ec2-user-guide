@@ -18,21 +18,21 @@ You can use one of the following commands\. For more information about these com
 + [describe\-snapshots](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-snapshots.html) \(AWS CLI\)
 + [Get\-EC2Snapshot](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Snapshot.html) \(AWS Tools for Windows PowerShell\)
 
-**Example Example: Filter based on tags**  
+**Example: Filter based on tags**  
 The following command describes the snapshots with the tag Stack=production\.  
 
 ```
 aws ec2 describe-snapshots --filters Name=tag:Stack,Values=production
 ```
 
-**Example Example: Filter based on volume**  
+**Example: Filter based on volume**  
 The following command describes the snapshots created from the specified volume\.  
 
 ```
 aws ec2 describe-snapshots --filters Name=volume-id,Values=vol-049df61146c4d7901
 ```
 
-**Example Example: Filter based on snapshot age**  
+**Example: Filter based on snapshot age**  
 With the AWS CLI, you can use JMESPath to filter results using expressions\. For example, the following command displays the IDs of all snapshots created by your AWS account \(represented by *123456789012*\) before the specified date \(represented by *2020\-03\-31*\)\. If you do not specify the owner, the results include all public snapshots\.  
 
 ```

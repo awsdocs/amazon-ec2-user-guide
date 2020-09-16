@@ -21,6 +21,26 @@ Create a new key pair using either the Amazon EC2 console or a third\-party tool
 
 ## Step 2: Get information about the original instance and its root volume<a name="step-2-get-info-about-original-instance"></a>
 
+------
+#### [ New console ]
+
+**To get information about your original instance**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. Choose **Instances** in the navigation pane, and then select the instance that you'd like to connect to\. \(We'll refer to this as the *original* instance\.\)
+
+1. On the **Details** tab, write down the instance ID and AMI ID\.
+
+1. On the **Networking** tab, write down the Availability Zone\.
+
+1. On the **Storage** tab, note the device name for the root volume in **Root device name** \(for example, `/dev/xvda`\)\. Find this device name under **Block devices** and write down the volume ID \(for example, vol\-0a1234b5678c910de\)\.
+
+------
+#### [ Old console ]
+
+**To get information about your original instance**
+
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
 1. Choose **Instances** in the navigation pane, and then select the instance that you'd like to connect to\. \(We'll refer to this as the *original* instance\.\)
@@ -28,6 +48,8 @@ Create a new key pair using either the Amazon EC2 console or a third\-party tool
 1. From the **Description** tab, save the following information that you need to complete this procedure\.
    + Write down the instance ID, AMI ID, and Availability Zone of the original instance\.
    + In the **Root device** field, take note of the device name for the root volume \(for example, `/dev/sda1` or `/dev/xvda`\)\. Choose the link and write down the volume ID in the **EBS ID** field \(vol\-*xxxxxxxxxxxxxxxxx*\)\.
+
+------
 
 ## Step 3: Stop the original instance<a name="step-3-stop-original-instance"></a>
 

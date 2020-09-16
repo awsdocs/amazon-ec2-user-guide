@@ -11,11 +11,11 @@ These procedures are intended for use with Amazon Linux 2\. We also assume that 
 
 **Topics**
 + [Prerequisites](#ssl_prereq)
-+ [Step 1: Enable TLS on the Server](#ssl_enable)
-+ [Step 2: Obtain a CA\-signed Certificate](#ssl_certificate)
-+ [Step 3: Test and Harden the Security Configuration](#ssl_test)
++ [Step 1: Enable TLS on the server](#ssl_enable)
++ [Step 2: Obtain a CA\-signed certificate](#ssl_certificate)
++ [Step 3: Test and harden the security configuration](#ssl_test)
 + [Troubleshooting](#troubleshooting)
-+ [Certificate Automation: Let's Encrypt with Certbot on Amazon Linux 2](#letsencrypt)
++ [Certificate automation: Let's Encrypt with Certbot on Amazon Linux 2](#letsencrypt)
 
 ## Prerequisites<a name="ssl_prereq"></a>
 
@@ -30,7 +30,7 @@ Before you begin this tutorial, complete the following steps:
 + Install the Apache web server\. For step\-by\-step instructions, see [Tutorial: Install a LAMP Web Server on Amazon Linux 2](ec2-lamp-amazon-linux-2.md)\. Only the httpd package and its dependencies are needed, so you can ignore the instructions involving PHP and MariaDB\.
 + To identify and authenticate websites, the TLS public key infrastructure \(PKI\) relies on the Domain Name System \(DNS\)\. To use your EC2 instance to host a public website, you need to register a domain name for your web server or transfer an existing domain name to your Amazon EC2 host\. Numerous third\-party domain registration and DNS hosting services are available for this, or you can use [Amazon Route 53](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/Welcome.html)\. 
 
-## Step 1: Enable TLS on the Server<a name="ssl_enable"></a>
+## Step 1: Enable TLS on the server<a name="ssl_enable"></a>
 
 This procedure takes you through the process of setting up TLS on Amazon Linux 2 with a self\-signed digital certificate\.
 
@@ -136,7 +136,7 @@ Make sure that TCP port 443 is accessible on your EC2 instance, as previously de
 **Note**  
 To prevent site visitors from encountering warning screens, you must obtain a trusted, CA\-signed certificate that not only encrypts, but also publicly authenticates you as the owner of the site\. 
 
-## Step 2: Obtain a CA\-signed Certificate<a name="ssl_certificate"></a>
+## Step 2: Obtain a CA\-signed certificate<a name="ssl_certificate"></a>
 
 You can use the following process to obtain a CA\-signed certificate:
 + Generate a certificate signing request \(CSR\) from a private key
@@ -147,7 +147,7 @@ You can use the following process to obtain a CA\-signed certificate:
 A self\-signed TLS X\.509 host certificate is cryptologically identical to a CA\-signed certificate\. The difference is social, not mathematical\. A CA promises, at a minimum, to validate a domain's ownership before issuing a certificate to an applicant\. Each web browser contains a list of CAs trusted by the browser vendor to do this\. An X\.509 certificate consists primarily of a public key that corresponds to your private server key, and a signature by the CA that is cryptographically tied to the public key\. When a browser connects to a web server over HTTPS, the server presents a certificate for the browser to check against its list of trusted CAs\. If the signer is on the list, or accessible through a *chain of trust* consisting of other trusted signers, the browser negotiates a fast encrypted data channel with the server and loads the page\. 
 
 **Important**  
-Certificates generally cost money because of the labor involved in validating the requests, so it pays to shop around\. A list of well\-known CAs can be found at [dmoztools\.net](http://dmoztools.net/Computers/Security/Public_Key_Infrastructure/PKIX/Tools_and_Services/Third_Party_Certificate_Authorities/)\. A few CAs offer basic\-level certificates free of charge\. The most notable of these CAs is the [Let's Encrypt](https://letsencrypt.org/) project, which also supports the automation of the certificate creation and renewal process\. For more information about using Let's Encrypt as your CA, see [Certificate Automation: Let's Encrypt with Certbot on Amazon Linux 2](#letsencrypt)\.
+Certificates generally cost money because of the labor involved in validating the requests, so it pays to shop around\. A list of well\-known CAs can be found at [dmoztools\.net](http://dmoztools.net/Computers/Security/Public_Key_Infrastructure/PKIX/Tools_and_Services/Third_Party_Certificate_Authorities/)\. A few CAs offer basic\-level certificates free of charge\. The most notable of these CAs is the [Let's Encrypt](https://letsencrypt.org/) project, which also supports the automation of the certificate creation and renewal process\. For more information about using Let's Encrypt as your CA, see [Certificate automation: Let's Encrypt with Certbot on Amazon Linux 2](#letsencrypt)\.
 
 Underlying the host certificate is the key\. As of 2019, [government](http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57pt1r4.pdf) and [industry](https://cabforum.org/wp-content/uploads/CA-Browser-Forum-BR-1.6.5.pdf) groups recommend using a minimum key \(modulus\) size of 2048 bits for RSA keys intended to protect documents, through 2030\. The default modulus size generated by OpenSSL in Amazon Linux 2 is 2048 bits, which is suitable for use in a CA\-signed certificate\. In the following procedure, an optional step provided for those who want a customized key, for example, one with a larger modulus or using a different encryption algorithm\.
 
@@ -207,8 +207,7 @@ Not all CAs provide the same level of support for elliptic\-curve\-based keys as
    [ec2-user ~]$ sudo openssl req -new -key custom.key -out csr.pem
    ```
 
-   OpenSSL opens a dialog and prompts you for the information shown in the following table\. All of the fields except **Common Name** are optional for a basic, domain\-validated host certificate\.  
-****    
+   OpenSSL opens a dialog and prompts you for the information shown in the following table\. All of the fields except **Common Name** are optional for a basic, domain\-validated host certificate\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/SSL-on-amazon-linux-2.html)
 
    Finally, OpenSSL prompts you for an optional challenge password\. This password applies only to the CSR and to transactions between you and your CA, so follow the CA's recommendations about this and the other optional field, optional company name\. The CSR challenge password has no effect on server operation\.
@@ -316,7 +315,7 @@ Some CAs combine the host certificate and the intermediate certificates in a sin
 
 1. Test your server by entering your domain name into a browser URL bar with the prefix `https://`\. Your browser should load the test page over HTTPS without generating errors\.
 
-## Step 3: Test and Harden the Security Configuration<a name="ssl_test"></a>
+## Step 3: Test and harden the security configuration<a name="ssl_test"></a>
 
 After your TLS is operational and exposed to the public, you should test how secure it really is\. This is easy to do using online services such as [Qualys SSL Labs](https://www.ssllabs.com/ssltest/analyze.html), which performs a free and thorough analysis of your security setup\. Based on the results, you may decide to harden the default security configuration by controlling which protocols you accept, which ciphers you prefer, and which you exclude\. For more information, see [how Qualys formulates its scores](https://github.com/ssllabs/research/wiki/SSL-Server-Rating-Guide)\.
 
@@ -406,8 +405,6 @@ After completing both of these procedures, save the changes to `/etc/httpd/conf.
 If you test the domain again on [Qualys SSL Labs](https://www.ssllabs.com/ssltest/analyze.html), you should see that the RC4 vulnerability and other warnings are gone and the summary looks something like the following\.
 
 
-****  
-
 |  |  | 
 | --- |--- |
 | Overall rating | A | 
@@ -448,7 +445,7 @@ Each update to OpenSSL introduces new ciphers and removes support for old ones\.
 
   This typically means that your EC2 instance is not running Amazon Linux 2\. This tutorial only supports instances freshly created from an official Amazon Linux 2 AMI\.
 
-## Certificate Automation: Let's Encrypt with Certbot on Amazon Linux 2<a name="letsencrypt"></a>
+## Certificate automation: Let's Encrypt with Certbot on Amazon Linux 2<a name="letsencrypt"></a>
 
 The [Let's Encrypt](https://letsencrypt.org/) certificate authority is the centerpiece of an effort by the Electronic Frontier Foundation \(EFF\) to encrypt the entire internet\. In line with that goal, Let's Encrypt host certificates are designed to be created, validated, installed, and maintained with minimal human intervention\. The automated aspects of certificate management are carried out by a software agent running on your web server\. After you install and configure the agent, it communicates securely with Let's Encrypt and performs administrative tasks on Apache and the key management system\. This tutorial uses the free [Certbot](https://certbot.eff.org) agent because it allows you either to supply a customized encryption key as the basis for your certificates, or to allow the agent itself to create a key based on its defaults\. You can also configure Certbot to renew your certificates on a regular basis without human interaction, as described in [To automate Certbot](#automate_certbot)\. For more information, consult the Certbot [User Guide](https://certbot.eff.org/docs/using.html) and [man page](http://manpages.ubuntu.com/manpages/bionic/en/man1/certbot.1.html)\. 
 
@@ -456,7 +453,7 @@ Certbot is not officially supported on Amazon Linux 2, but is available for down
 + Before you begin, take a snapshot of your Amazon EBS root volume\. This allows you to restore the original state of your EC2 instance\. For information about creating EBS snapshots, see [Creating Amazon EBS snapshots](ebs-creating-snapshot.md)\.
 + The procedure below requires you to edit your `httpd.conf` file, which controls Apache's operation\. Certbot makes its own automated changes to this and other configuration files\. Make a backup copy of your entire `/etc/httpd` directory in case you need to restore it\.
 
-### Prepare to Install<a name="prepare"></a>
+### Prepare to install<a name="prepare"></a>
 
 Complete the following procedures before you install Certbot\.
 
@@ -511,7 +508,7 @@ Complete the following procedures before you install Certbot\.
    [ec2-user ~]$ sudo systemctl restart httpd
    ```
 
-### Install and Run Certbot<a name="install"></a>
+### Install and run Certbot<a name="install"></a>
 
 This procedure is based on the EFF documentation for installing Certbot on [ Fedora](https://certbot.eff.org/docs/install.html#alternate-installation-methods) and on [RHEL 7](https://certbot.eff.org/#centosrhel7-apache)\. It describes the default use of Certbot, resulting in a certificate based on a 2048\-bit RSA key\.
 
@@ -610,9 +607,9 @@ This procedure is based on the EFF documentation for installing Certbot on [ Fed
       making regular backups of this folder is ideal.
    ```
 
-1. After you complete the installation, test and optimize the security of your server as described in [Step 3: Test and Harden the Security Configuration](#ssl_test)\. 
+1. After you complete the installation, test and optimize the security of your server as described in [Step 3: Test and harden the security configuration](#ssl_test)\. 
 
-### Configure Automated Certificate Renewal<a name="automate"></a>
+### Configure automated certificate renewal<a name="automate"></a>
 
 Certbot is designed to become an invisible, error\-resistant part of your server system\. By default, it generates host certificates with a short, 90\-day expiration time\. If you have not configured your system to call the command automatically, you must re\-run the certbot command manually before expiration\. This procedure shows how to automate Certbot by setting up a cron job\.<a name="automate_certbot"></a>
 

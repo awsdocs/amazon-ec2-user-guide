@@ -4,6 +4,19 @@ Reserved Instances provide you with significant savings on your Amazon EC2 costs
 
 Savings Plans also offer significant savings on your Amazon EC2 costs compared to On\-Demand Instance pricing\. With Savings Plans, you make a commitment to a consistent usage amount, measured in USD per hour\. This provides you with the flexibility to use the instance configurations that best meet your needs and continue to save money, instead of making a commitment to a specific instance configuration\. For more information, see the [AWS Savings Plans User Guide](https://docs.aws.amazon.com/savingsplans/latest/userguide/)\.
 
+**Topics**
++ [Reserved Instance overview](#ri-overview)
++ [Key variables that determine Reserved Instance pricing](#ri-key-pricing-variables)
++ [Reserved Instance limits](#ri-limits)
++ [Regional and zonal Reserved Instances \(scope\)](reserved-instances-scope.md)
++ [Types of Reserved Instances \(offering classes\)](reserved-instances-types.md)
++ [How Reserved Instances are applied](apply_ri.md)
++ [How you are billed](concepts-reserved-instances-application.md)
++ [Buying Reserved Instances](ri-market-concepts-buying.md)
++ [Reserved Instance Marketplace](ri-market-general.md)
++ [Modifying Reserved Instances](ri-modifying.md)
++ [Exchanging Convertible Reserved Instances](ri-convertible-exchange.md)
+
 ## Reserved Instance overview<a name="ri-overview"></a>
 
 The following diagram shows a basic overview of purchasing and using Reserved Instances\.

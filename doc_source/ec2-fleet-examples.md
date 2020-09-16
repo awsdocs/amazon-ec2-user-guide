@@ -1,4 +1,4 @@
-# EC2 Fleet Example Configurations<a name="ec2-fleet-examples"></a>
+# EC2 Fleet example configurations<a name="ec2-fleet-examples"></a>
 
 The following examples show launch configurations that you can use with the [create\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-fleet.html) command to create an EC2 Fleet\. For more information about the [create\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-fleet.html) parameters, see the [EC2 Fleet JSON configuration file reference](manage-ec2-fleet.md#ec2-fleet-json-reference)\.
 

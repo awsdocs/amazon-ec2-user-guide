@@ -12,7 +12,7 @@ Amazon Linux is provided by Amazon Web Services \(AWS\)\. It is designed to prov
 + [Accessing source packages for reference](#amazon-linux-source-packages)
 + [cloud\-init](#amazon-linux-cloud-init)
 + [Subscribing to Amazon Linux notifications](#linux-ami-notifications)
-+ [Running Amazon Linux 2 as a virtual machine onpremises](amazon-linux-2-virtual-machine.md)
++ [Running Amazon Linux 2 as a virtual machine on premises](amazon-linux-2-virtual-machine.md)
 + [Kernel Live Patching on Amazon Linux 2](al2-live-patching.md)
 
 ## Amazon Linux availability<a name="amazon-linux-availability"></a>

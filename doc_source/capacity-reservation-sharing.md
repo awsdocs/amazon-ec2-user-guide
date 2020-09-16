@@ -1,4 +1,4 @@
-# Working with Shared Capacity Reservations<a name="capacity-reservation-sharing"></a>
+# Working with shared Capacity Reservations<a name="capacity-reservation-sharing"></a>
 
 Capacity Reservation sharing enables Capacity Reservation owners to share their reserved capacity with other AWS accounts or within an AWS organization\. This enables you to create and manage Capacity Reservations centrally, and share the reserved capacity across multiple AWS accounts or within your AWS organization\.
 
@@ -10,30 +10,30 @@ A Capacity Reservation owner can share a Capacity Reservation with:
 + Its entire AWS organization
 
 **Topics**
-+ [Prerequisites for Sharing Capacity Reservations](#sharing-cr-prereq)
-+ [Related Services](#cr-sharing-related)
-+ [Sharing Across Availability Zones](#cr-sharing-azs)
++ [Prerequisites for sharing Capacity Reservations](#sharing-cr-prereq)
++ [Related services](#cr-sharing-related)
++ [Sharing across Availability Zones](#cr-sharing-azs)
 + [Sharing a Capacity Reservation](#sharing-cr)
-+ [Unsharing a Shared Capacity Reservation](#unsharing-cr)
-+ [Identifying a Shared Capacity Reservation](#identifying-shared-cr)
-+ [Viewing Shared Capacity Reservation Usage](#shared-cr-usage)
-+ [Shared Capacity Reservation Permissions](#shared-cr-perms)
-+ [Billing and Metering](#shared-cr-billing)
-+ [Instance Limits](#shared-cr-limits)
++ [Stop sharing a Capacity Reservation](#unsharing-cr)
++ [Identifying a shared Capacity Reservation](#identifying-shared-cr)
++ [Viewing shared Capacity Reservation usage](#shared-cr-usage)
++ [Shared Capacity Reservation permissions](#shared-cr-perms)
++ [Billing and metering](#shared-cr-billing)
++ [Instance limits](#shared-cr-limits)
 
-## Prerequisites for Sharing Capacity Reservations<a name="sharing-cr-prereq"></a>
+## Prerequisites for sharing Capacity Reservations<a name="sharing-cr-prereq"></a>
 + To share a Capacity Reservation, you must own it in your AWS account\. You cannot share a Capacity Reservation that has been shared with you\.
 + You can only share Capacity Reservations for shared tenancy instances\. You cannot share Capacity Reservations for dedicated tenancy instances\.
 + Capacity Reservation sharing is not available to new AWS accounts or AWS accounts that have a limited billing history\. New accounts that are linked to a qualified master \(payer\) account or are linked through an AWS organization are exempt from this restriction\.
 + To share a Capacity Reservation with your AWS organization or an organizational unit in your AWS organization, you must enable sharing with AWS Organizations\. For more information, see [Enable Sharing with AWS Organizations](https://docs.aws.amazon.com/ram/latest/userguide/getting-started-sharing.html) in the *AWS RAM User Guide*\.
 
-## Related Services<a name="cr-sharing-related"></a>
+## Related services<a name="cr-sharing-related"></a>
 
 Capacity Reservation sharing integrates with AWS Resource Access Manager \(AWS RAM\)\. AWS RAM is a service that enables you to share your AWS resources with any AWS account or through AWS Organizations\. With AWS RAM, you share resources that you own by creating a *resource share*\. A resource share specifies the resources to share, and the consumers with whom to share them\. Consumers can be individual AWS accounts, or organizational units or an entire organization from AWS Organizations\.
 
 For more information about AWS RAM, see the *[AWS RAM User Guide](https://docs.aws.amazon.com/ram/latest/userguide/)*\.
 
-## Sharing Across Availability Zones<a name="cr-sharing-azs"></a>
+## Sharing across Availability Zones<a name="cr-sharing-azs"></a>
 
 To ensure that resources are distributed across the Availability Zones for a Region, we independently map Availability Zones to names for each account\. This could lead to Availability Zone naming differences across accounts\. For example, the Availability Zone `us-east-1a` for your AWS account might not have the same location as `us-east-1a` for another AWS account\.
 
@@ -75,31 +75,31 @@ See [Creating a Resource Share](https://docs.aws.amazon.com/ram/latest/userguide
 **To share a Capacity Reservation that you own using the AWS CLI**  
 Use the [create\-resource\-share](https://docs.aws.amazon.com/cli/latest/reference/ram/create-resource-share.html) command\.
 
-## Unsharing a Shared Capacity Reservation<a name="unsharing-cr"></a>
+## Stop sharing a Capacity Reservation<a name="unsharing-cr"></a>
 
-The Capacity Reservation owner can unshare a shared Capacity Reservation at any time\. When you unshare a shared Capacity Reservation, the following rules apply:
-+ Instances owned by consumers that were running in the shared capacity at the time of unsharing continue to run normally outside of the reserved capacity, and the capacity is restored to the Capacity Reservation subject to Amazon EC2 capacity availability\.
+The Capacity Reservation owner can stop sharing a Capacity Reservation at any time\. The following rules apply:
++ Instances owned by consumers that were running in the shared capacity at the time sharing stops continue to run normally outside of the reserved capacity, and the capacity is restored to the Capacity Reservation subject to Amazon EC2 capacity availability\.
 + Consumers with whom the Capacity Reservation was shared can no longer launch new instances into the reserved capacity\.
 
-To unshare a shared Capacity Reservation that you own, you must remove it from the resource share\. You can do this using the Amazon EC2 console, AWS RAM console, or the AWS CLI\.
+To stop sharing a Capacity Reservation that you own, you must remove it from the resource share\. You can do this using the Amazon EC2 console, AWS RAM console, or the AWS CLI\.
 
-**To unshare a shared Capacity Reservation that you own using the Amazon EC2 console**
+**To stop sharing a Capacity Reservation that you own using the Amazon EC2 console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
 1. In the navigation pane, choose **Capacity Reservations**\.
 
-1. Choose the Capacity Reservation to unshare and choose the **Sharing** tab\.
+1. Select the Capacity Reservation and choose the **Sharing** tab\.
 
 1. The **Sharing** tab lists the resource shares to which the Capacity Reservation has been added\. Select the resource share from which to remove the Capacity Reservation and choose **Remove from resource share**\.
 
-**To unshare a shared Capacity Reservation that you own using the AWS RAM console**  
+**To stop sharing a Capacity Reservation that you own using the AWS RAM console**  
 See [Updating a Resource Share](https://docs.aws.amazon.com/ram/latest/userguide/working-with-sharing.html#working-with-sharing-update) in the *AWS RAM User Guide*\.
 
-**To unshare a shared Capacity Reservation that you own using the AWS CLI**  
+**To stop sharing a Capacity Reservation that you own using the AWS CLI**  
 Use the [disassociate\-resource\-share](https://docs.aws.amazon.com/cli/latest/reference/ram/disassociate-resource-share.html) command\.
 
-## Identifying a Shared Capacity Reservation<a name="identifying-shared-cr"></a>
+## Identifying a shared Capacity Reservation<a name="identifying-shared-cr"></a>
 
 Owners and consumers can identify shared Capacity Reservations using the Amazon EC2 console and AWS CLI
 
@@ -112,7 +112,7 @@ Owners and consumers can identify shared Capacity Reservations using the Amazon 
 **To identify a shared Capacity Reservation using the AWS CLI**  
 Use the [describe\-capacity\-reservations](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-capacity-reservations.html) command\. The command returns the Capacity Reservations that you own and Capacity Reservations that are shared with you\. `OwnerId` shows the AWS account ID of the Capacity Reservation owner\.
 
-## Viewing Shared Capacity Reservation Usage<a name="shared-cr-usage"></a>
+## Viewing shared Capacity Reservation usage<a name="shared-cr-usage"></a>
 
 The owner of a shared Capacity Reservation can view its usage at any time using the Amazon EC2 console and the AWS CLI\.
 
@@ -129,23 +129,23 @@ The owner of a shared Capacity Reservation can view its usage at any time using 
 **To view Capacity Reservation usage using the AWS CLI**  
 Use the [get\-capacity\-reservation\-usage](https://docs.aws.amazon.com/cli/latest/reference/ec2/get-capacity-reservation-usage.html) command\. `AccountId` shows the account ID of the account using the Capacity Reservation\. `UsedInstanceCount` shows the number of instances the consumer currently has running in the reserved capacity\.
 
-## Shared Capacity Reservation Permissions<a name="shared-cr-perms"></a>
+## Shared Capacity Reservation permissions<a name="shared-cr-perms"></a>
 
-### Permissions for Owners<a name="shared-cr-perms-owner"></a>
+### Permissions for owners<a name="shared-cr-perms-owner"></a>
 
 Owners are responsible for managing and canceling their shared Capacity Reservations\. Owners cannot modify instances running in the shared Capacity Reservation that are owned by other accounts\. Owners remain responsible for managing instances that they launch into the shared Capacity Reservation\.
 
-### Permissions for Consumers<a name="shared-cr-perms-consumer"></a>
+### Permissions for consumers<a name="shared-cr-perms-consumer"></a>
 
 Consumers are responsible for managing their instances that are running the shared Capacity Reservation\. Consumers cannot modify the shared Capacity Reservation in any way, and they cannot view or modify instances that are owned by other consumers or the Capacity Reservation owner\.
 
-## Billing and Metering<a name="shared-cr-billing"></a>
+## Billing and metering<a name="shared-cr-billing"></a>
 
 There are no additional charges for sharing Capacity Reservations\.
 
 The Capacity Reservation owner is billed for instances that they run inside the Capacity Reservation and for unused reserved capacity\. Consumers are billed for the instances that they run inside the shared Capacity Reservation\.
 
-## Instance Limits<a name="shared-cr-limits"></a>
+## Instance limits<a name="shared-cr-limits"></a>
 
 All Capacity Reservation usage counts toward the Capacity Reservation owner's On\-Demand Instance limits\. This includes:
 + Unused reserved capacity

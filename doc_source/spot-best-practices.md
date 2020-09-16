@@ -43,4 +43,4 @@ Allocation strategies in Auto Scaling groups help you to provision your target c
 
 ## Use integrated AWS services to manage your Spot Instances<a name="use-integrated-aws-services"></a>
 
-Other AWS services integrate with Spot to reduce overall compute costs without the need to manage the individual instances or fleets\. We recommend that you consider the following solutions for your applicable workloads: Amazon EMR, Amazon ECS, AWS Batch, Amazon EKS, Amazon SageMaker, AWS Elastic Beanstalk, and Amazon GameLift\. To learn more about Spot best practices with these services, see the [Amazon EC2 Spot Instances Workshops Website](https://ec2spotworkshops.com/)\.
+Other AWS services integrate with Spot to reduce overall compute costs without the need to manage the individual instances or fleets\. We recommend that you consider the following solutions for your applicable workloads: Amazon EMR, Amazon ECS, AWS Batch, Amazon EKS, SageMaker, AWS Elastic Beanstalk, and Amazon GameLift\. To learn more about Spot best practices with these services, see the [Amazon EC2 Spot Instances Workshops Website](https://ec2spotworkshops.com/)\.
