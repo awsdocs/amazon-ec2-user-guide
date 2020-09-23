@@ -332,7 +332,7 @@ ABC Online creates a file, `config.json`, with the following configuration for i
     ],
     "TargetCapacitySpecification": {
         "TotalTargetCapacity": 20,
-	    "OnDemandTargetCapacity":15,
+	"OnDemandTargetCapacity":15,
         "DefaultTargetCapacityType": "spot"
     }
 }
