@@ -129,7 +129,7 @@ Running instances are not affected when you change the AMI ID to which the Syste
 
 ### Launching an instance using a Systems Manager parameter<a name="systems-manager-parameter-launch-instance"></a>
 
-You can launch an instance using the the console or the AWS CLI\. Instead of specifying an AMI ID, you can specify an AWS Systems Manager parameter that points to an AMI ID\.
+You can launch an instance using the console or the AWS CLI\. Instead of specifying an AMI ID, you can specify an AWS Systems Manager parameter that points to an AMI ID\.
 
 **To find a Linux AMI using a Systems Manager parameter \(console\)**
 

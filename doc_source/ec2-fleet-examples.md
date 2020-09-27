@@ -73,7 +73,7 @@ The following example specifies the total target capacity of 2 instances for the
     ],
     "TargetCapacitySpecification": {
         "TotalTargetCapacity": 2,
-	"OnDemandTargetCapacity":1,
+        "OnDemandTargetCapacity": 1,
         "DefaultTargetCapacityType": "spot"
     }
 }

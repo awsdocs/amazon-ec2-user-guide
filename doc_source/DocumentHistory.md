@@ -4,6 +4,7 @@ The following table describes important additions to the Amazon EC2 documentatio
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Amazon Data Lifecycle Manager](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snapshot-lifecycle.html) | Amazon Data Lifecycle Manager policies can be configured with up to four schedules\. | September 17, 2020 | 
 | [T4g instances](#DocumentHistory) | New general purpose instances powered by AWS Graviton2 processors, which are based on 64\-bit Arm Neoverse cores and custom silicon designed by AWS for optimized performance and cost\. | September 14, 2020 | 
 | [Hibernation support for M5a and R5a](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html#hibernating-prerequisites) | You can now hibernate your newly\-launched instances running on M5a and R5a instance types\. | August 28, 2020 | 
 | [Provisioned IOPS SSD \(io2\) volumes for Amazon EBS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html#EBSVolumeTypes_piops) | Provisioned IOPS SSD \(`io2`\) volumes are designed to provide 99\.999 percent volume durability with an AFR no higher than 0\.001 percent\. | August 24, 2020 | 
@@ -133,7 +134,7 @@ The following table describes important additions to the Amazon EC2 documentatio
 |  P2 instances  | 2016\-09\-15 |  P2 instances use NVIDIA Tesla K80 GPUs and are designed for general purpose GPU computing using the CUDA or OpenCL programming models\. For more information, see [Linux accelerated computing instances](accelerated-computing-instances.md)\.  | 29 September 2016 | 
 | m4\.16xlarge instances |  2016\-04\-01  |  Expands the range of the general\-purpose M4 family with the introduction of `m4.16xlarge` instances, with 64 vCPUs and 256 GiB of RAM\.  | 6 September 2016 | 
 |  Automatic scaling for Spot Fleet  |  |  You can now set up scaling policies for your Spot Fleet\. For more information, see [Automatic scaling for Spot Fleet](spot-fleet-automatic-scaling.md)\.  | 1 September 2016 | 
-|  Elastic Network Adapter \(ENA\)  | 2016\-04\-01 |  You can now use ENA for enhanced networking\. For more information, see [Enhanced networking types](enhanced-networking.md#supported_instances)\.  | 28 June 2016 | 
+|  Elastic Network Adapter \(ENA\)  | 2016\-04\-01 |  You can now use ENA for enhanced networking\. For more information, see [Enhanced networking support](enhanced-networking.md#supported_instances)\.  | 28 June 2016 | 
 |  Enhanced support for viewing and modifying longer IDs  | 2016\-04\-01 |  You can now view and modify longer ID settings for other IAM users, IAM roles, or the root user\. For more information, see [Resource IDs](resource-ids.md)\.  | 23 June 2016 | 
 |  Copy encrypted Amazon EBS snapshots between AWS accounts  | 2016\-04\-01 |  You can now copy encrypted EBS snapshots between AWS accounts\. For more information, see [Copying an Amazon EBS snapshot](ebs-copy-snapshot.md)\.  | 21 June 2016 | 
 |  Capture a screenshot of an instance console  | 2015\-10\-01 |  You can now obtain additional information when debugging instances that are unreachable\. For more information, see [Capture a screenshot of an unreachable instance](instance-console.md#instance-console-screenshot)\.  | 24 May 2016 | 

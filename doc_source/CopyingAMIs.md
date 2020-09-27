@@ -10,6 +10,14 @@ AWS does not copy launch permissions, user\-defined tags, or Amazon S3 bucket pe
 
 You can't copy an AMI that was obtained from the AWS Marketplace, regardless of whether you obtained it directly or it was shared with you\. Instead, launch an EC2 instance using the AWS Marketplace AMI and then create an AMI from the instance\. For more information, see [Creating an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md)\.
 
+**Topics**
++ [Permissions for copying an instance store\-backed AMI](#copy-ami-permissions)
++ [Cross\-Region copying](#copy-amis-across-regions)
++ [Cross\-account copying](#copy-ami-across-accounts)
++ [Encryption and copying](#ami-copy-encryption)
++ [Copying an AMI](#ami-copy-steps)
++ [Stopping a pending AMI copy operation](#ami-copy-stop)
+
 ## Permissions for copying an instance store\-backed AMI<a name="copy-ami-permissions"></a>
 
 If you use an IAM user to copy an instance store\-backed AMI, the user must have the following Amazon S3 permissions: `s3:CreateBucket`, `s3:GetBucketAcl`, `s3:ListAllMyBuckets`, `s3:GetObject`, `s3:PutObject`, and `s3:PutObjectAcl`\.
@@ -119,7 +127,7 @@ For more information about copying AMIs with encrypted snapshots, see [Using enc
 You can copy an AMI as follows\.
 
 **Prerequisite**  
-Create or obtain an AMI backed by an Amazon EBS snapshot\. Note that you can use the Amazon EC2 console to search a wide variety of AMIs provided by AWS\. For more information, see [Creating an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md) and [Finding a Linux AMI](finding-an-ami.md)\.
+Create or obtain an AMI backed by an Amazon EBS snapshot\. Note that you can use the Amazon EC2 console to search a wide variety of AMIs provided by AWS\. For more information, see [Creating an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md) and [Finding an AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html)\.
 
 **To copy an AMI using the console**
 

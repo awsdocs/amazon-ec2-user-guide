@@ -40,15 +40,23 @@ An EFA requires a security group that allows all inbound and outbound traffic to
 
 1. Select the security group that you created, and on the **Description** tab, copy the **Group ID**\.
 
-1. On the **Inbound** and **Outbound** tabs, do the following:
+1. On the **Inbound** tab, do the following:
 
    1. Choose **Edit**\.
 
    1. For **Type**, choose **All traffic**\.
 
-   1. For **Source**, choose **Custom**\.
+   1. For **Source**, choose **Custom** and paste the security group ID that you copied into the field\.
 
-   1. Paste the security group ID that you copied into the field\.
+   1. Choose **Save**\.
+
+1. On the **Outbound** tab, do the following:
+
+   1. Choose **Edit**\.
+
+   1. For **Type**, choose **All traffic**\.
+
+   1. For **Destination**, choose **Custom** and paste the security group ID that you copied into the field\.
 
    1. Choose **Save**\.
 
@@ -67,6 +75,8 @@ Launch a temporary instance that you can use to install and configure the EFA so
 1. On the **Choose an Instance Type** page, select `p3dn.24xlarge` and then choose **Next: Configure Instance Details**\.
 
 1. On the **Configure Instance Details** page, do the following:
+
+   1. For **Subnet**, choose the subnet in which to launch the instance\.
 
    1. For **Elastic Fabric Adapter**, choose **Enable**\.
 
@@ -229,7 +239,7 @@ To enable your applications to run across all of the instances in your cluster, 
 1. Generate an RSA key pair\.
 
    ```
-   $ ssh-keygen -t rsa -N "" -f /home/ubuntu/.ssh/id_rsa
+   $ ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
    ```
 
    The key pair is created in the `$HOME/.ssh/` directory\.
@@ -238,6 +248,7 @@ To enable your applications to run across all of the instances in your cluster, 
 
    ```
    $ chmod 600 ~/.ssh/id_rsa
+   chmod 600 ~/.ssh/config
    ```
 
 1. Open `~/.ssh/id_rsa.pub` using your preferred text editor and copy the key\.

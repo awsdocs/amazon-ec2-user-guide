@@ -7,15 +7,16 @@ The following steps help you to get started with one of the following base AMIs:
 + [Step 2: Launch a temporary instance](#nccl-start-base-temp)
 + [Step 3: Install the EFA software](#nccl-start-base-enable)
 + [Step 4: Install Nvidia GPU drivers and the Nvidia CUDA toolkit](#nccl-start-base-drivers)
-+ [Step 5: Install NCCL](#nccl-start-base-nccl)
-+ [Step 6: Install the aws\-ofi\-nccl plugin](#nccl-start-base-plugin)
-+ [Step 7: Install the NCCL tests](#nccl-start-base-tests)
-+ [Step 8: Test your EFA and NCCL configuration](#nccl-start-base-test)
-+ [Step 9: Install your machine learning applications](#nccl-start-base-app)
-+ [Step 10: Create an EFA and NCCL\-enabled AMI](#nccl-start-base-ami)
-+ [Step 11: Terminate the temporary instance](#nccl-start-base-terminate)
-+ [Step 12: Launch EFA and NCCL\-enabled instances into a cluster placement group](#nccl-start-base-cluster)
-+ [Step 13: Enable passwordless SSH](#nccl-start-base-passwordless)
++ [Step 5: Install cuDNN](#nccl-start-base-cuDNN)
++ [Step 6: Install NCCL](#nccl-start-base-nccl)
++ [Step 7: Install the aws\-ofi\-nccl plugin](#nccl-start-base-plugin)
++ [Step 8: Install the NCCL tests](#nccl-start-base-tests)
++ [Step 9: Test your EFA and NCCL configuration](#nccl-start-base-test)
++ [Step 10: Install your machine learning applications](#nccl-start-base-app)
++ [Step 11: Create an EFA and NCCL\-enabled AMI](#nccl-start-base-ami)
++ [Step 12: Terminate the temporary instance](#nccl-start-base-terminate)
++ [Step 13: Launch EFA and NCCL\-enabled instances into a cluster placement group](#nccl-start-base-cluster)
++ [Step 14: Enable passwordless SSH](#nccl-start-base-passwordless)
 
 ## Step 1: Prepare an EFA\-enabled security group<a name="nccl-start-base-setup"></a>
 
@@ -39,15 +40,23 @@ An EFA requires a security group that allows all inbound and outbound traffic to
 
 1. Select the security group that you created, and on the **Description** tab, copy the **Group ID**\.
 
-1. On the **Inbound** and **Outbound** tabs, do the following:
+1. On the **Inbound** tab, do the following:
 
    1. Choose **Edit**\.
 
    1. For **Type**, choose **All traffic**\.
 
-   1. For **Source**, choose **Custom**\.
+   1. For **Source**, choose **Custom** and paste the security group ID that you copied into the field\.
 
-   1. Paste the security group ID that you copied into the field\.
+   1. Choose **Save**\.
+
+1. On the **Outbound** tab, do the following:
+
+   1. Choose **Edit**\.
+
+   1. For **Type**, choose **All traffic**\.
+
+   1. For **Destination**, choose **Custom** and paste the security group ID that you copied into the field\.
 
    1. Choose **Save**\.
 
@@ -66,6 +75,8 @@ Launch a temporary instance that you can use to install and configure the EFA so
 1. On the **Choose an Instance Type** page, select `p3dn.24xlarge` and then choose **Next: Configure Instance Details**\.
 
 1. On the **Configure Instance Details** page, do the following:
+
+   1. For **Subnet**, choose the subnet in which to launch the instance\.
 
    1. For **Elastic Fabric Adapter**, choose **Enable**\.
 
@@ -238,7 +249,7 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
         $ sudo apt-get install -y gcc make linux-headers-$(uname -r)
         ```
 
-   1. Add `nouveau` to the `/etc/modprobe.d/blacklist.conf `blacklist file\.
+   1. Add `nouveau` to the `/etc/modprobe.d/blacklist.conf `deny list file\.
 
       ```
       $ cat << EOF | sudo tee --append /etc/modprobe.d/blacklist.conf
@@ -253,7 +264,7 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
    1. Open `/etc/default/grub` using your preferred text editor and add the following\.
 
       ```
-      $ GRUB_CMDLINE_LINUX="rdblacklist=nouveau"
+      GRUB_CMDLINE_LINUX="rdblacklist=nouveau"
       ```
 
    1. Rebuild the Grub configuration\.
@@ -273,13 +284,13 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
 1. Download the Nvidia CUDA Toolkit installer\.
 
    ```
-   $ wget http://developer.download.nvidia.com/compute/cuda/10.1/Prod/local_installers/cuda_10.1.243_418.87.00_linux.run
+   $ wget https://developer.download.nvidia.com/compute/cuda/11.0.3/local_installers/cuda_11.0.3_450.51.06_linux.run
    ```
 
 1. Run the Nvidia CUDA Toolkit installer\.
 
    ```
-   $ sudo sh cuda_10.1.243_418.87.00_linux.run
+   $ sudo sh cuda_11.0.3_450.51.06_linux.run
    ```
 
    When prompted to accept the license agreement, enter `accept` and press **Enter**\.
@@ -289,8 +300,8 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
 1. Add the following statements to the shell startup scripts to ensure that the CUDA paths are set each time that the instance starts\.
 
    ```
-   export PATH=/usr/local/cuda-10.1/bin:/usr/local/cuda-10.1/NsightCompute-2019.1${PATH:+:${PATH}}
-   export LD_LIBRARY_PATH=/usr/local/cuda-10.1/lib64\${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+   export PATH=/usr/local/cuda/bin:/usr/local/cuda/NsightCompute-2019.1${PATH:+:${PATH}}
+   export LD_LIBRARY_PATH=/usr/local/cuda/lib64\${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
    ```
    + For *bash* shells, add the statements to `/home/username/.bashrc` and `/home/username/.bash_profile`\.
    + For *tcsh* shells, add the statements to `/home/username/.cshrc`\.
@@ -303,14 +314,11 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
 
    The command should return information about the Nvidia GPUs, Nvidia GPU drivers, and Nvidia CUDA toolkit\.
 
-## Step 5: Install NCCL<a name="nccl-start-base-nccl"></a>
+## Step 5: Install cuDNN<a name="nccl-start-base-cuDNN"></a>
 
-Install NCCL\. For more information about NCCL, see the [NCCL repository](https://github.com/NVIDIA/nccl)\.
+Install the cuDNN library\. The cuDNN library comes in two packages, a developer and runtime library\. Depending on your use case, you might need to install only one, or both libraries\.
 
-### Prerequisites<a name="install-nccl-prereq"></a>
-+ NCCL requires Nvidia CUDA 7\.0 or later\. For more information about installing the latest version, see [ CUDA Toolkit 10\.1 Update 2 Download](https://developer.nvidia.com/cuda-downloads) on the Nvidia website\.
-
-**To install NCCL**
+**To install cuDNN**
 
 1. Navigate to your home directory\.
 
@@ -318,23 +326,67 @@ Install NCCL\. For more information about NCCL, see the [NCCL repository](https:
    $ cd $HOME
    ```
 
+1. Install the Nvidia machine learning repositories\.
+   + Amazon Linux, Amazon Linux 2, RHEL 7\.6/7\.7/7\.8, CentOS 7
+
+     ```
+     $ sudo yum install -y https://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
+     ```
+   + Ubuntu 16\.04 and Ubuntu 18\.04
+
+     ```
+     $ wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/nvidia-machine-learning-repo-ubuntu1804_1.0.0-1_amd64.deb
+     ```
+
+     ```
+     $ sudo apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/7fa2af80.pub
+     ```
+
+     ```
+     $ sudo apt install ./nvidia-machine-learning-repo-ubuntu1804_1.0.0-1_amd64.deb
+     ```
+
+1. Install the libraries\.
+   + Amazon Linux, Amazon Linux 2, RHEL 7\.6/7\.7/7\.8, CentOS 7
+
+     ```
+     $ sudo yum install -y libcudnn8 libcudnn8-devel
+     ```
+   + Ubuntu 16\.04 and Ubuntu 18\.04
+
+     ```
+     $ sudo apt update && sudo apt install libcudnn8 libcudnn8-dev -y
+     ```
+
+## Step 6: Install NCCL<a name="nccl-start-base-nccl"></a>
+
+Install NCCL\. For more information about NCCL, see the [NCCL repository](https://github.com/NVIDIA/nccl)\.
+
+**To install NCCL**
+
+1. Navigate to the `/opt` directory\.
+
+   ```
+   $ cd /opt
+   ```
+
 1. Clone the official NCCL repository to the instance and navigate into the local cloned repository\.
 
    ```
-   $ git clone https://github.com/NVIDIA/nccl.git
+   $ sudo git clone https://github.com/NVIDIA/nccl.git
    ```
 
    ```
    $ cd nccl
    ```
 
-1. Build and install NCCL and specify the CUDA installation directory\. The following command assumes that CUDA is installed in the default directory\.
+1. Build and install NCCL and specify the CUDA installation directory\.
 
    ```
-   $ make -j src.build
+   $ sudo make -j src.build CUDA_HOME=/usr/local/cuda
    ```
 
-## Step 6: Install the aws\-ofi\-nccl plugin<a name="nccl-start-base-plugin"></a>
+## Step 7: Install the aws\-ofi\-nccl plugin<a name="nccl-start-base-plugin"></a>
 
 The aws\-ofi\-nccl plugin maps NCCL's connection\-oriented transport APIs to Libfabric's connection\-less reliable interface\. This enables you to use Libfabric as a network provider while running NCCL\-based applications\. For more information about the aws\-ofi\-nccl plugin, see the [aws\-ofi\-nccl repository](https://github.com/aws/aws-ofi-nccl)\.
 
@@ -371,7 +423,9 @@ The aws\-ofi\-nccl plugin maps NCCL's connection\-oriented transport APIs to Lib
 1. To generate the *make* files, run the `configure` script and specify the MPI, Libfabric, NCCL, and CUDA installation directories\. 
 
    ```
-   $ ./configure --with-mpi=/opt/amazon/openmpi --with-libfabric=/opt/amazon/efa --with-nccl=$HOME/nccl/build --with-cuda=/usr/local/cuda-10.1
+   $ ./configure --prefix=/opt/aws-ofi-nccl --with-mpi=/opt/amazon/openmpi \
+   --with-libfabric=/opt/amazon/efa --with-nccl=/opt/nccl/build \
+   --with-cuda=/usr/local/cuda
    ```
 
 1. Add the Open MPI directory to the `PATH` variable\.
@@ -383,14 +437,14 @@ The aws\-ofi\-nccl plugin maps NCCL's connection\-oriented transport APIs to Lib
 1. Install the aws\-ofi\-nccl plugin\.
 
    ```
-   $ sudo make 
+   $ make 
    ```
 
    ```
    $ sudo make install
    ```
 
-## Step 7: Install the NCCL tests<a name="nccl-start-base-tests"></a>
+## Step 8: Install the NCCL tests<a name="nccl-start-base-tests"></a>
 
 Install the NCCL tests\. The NCCL tests enable you to confirm that NCCL is properly installed and that it is operating as expected\. For more information about the NCCL tests, see the [nccl\-tests repository](https://github.com/NVIDIA/nccl-tests)\.
 
@@ -424,19 +478,13 @@ Install the NCCL tests\. The NCCL tests enable you to confirm that NCCL is prope
      $ export LD_LIBRARY_PATH=/opt/amazon/efa/lib:$LD_LIBRARY_PATH
      ```
 
-1. \(Amazon Linux, Amazon Linux 2, RHEL 7\.6/7\.7/7\.8, CentOS 7 only\) By default, the make file looks for the required libraries in the `mpi_home/lib` directory\. However, with the Open MPI installed with EFA, the libraries are located in `mpi_home/lib64`\. To update the path in the make file, run the following command\.
-
-   ```
-   $ sed -i s/'NVLDFLAGS += -L$(MPI_HOME)\/lib -lmpi'/'NVLDFLAGS += -L$(MPI_HOME)\/lib64 -lmpi'/ src/Makefile
-   ```
-
 1. Install the NCCL tests and specify the MPI, NCCL, and CUDA installation directories\.
 
    ```
-   $ make MPI=1 MPI_HOME=/opt/amazon/openmpi NCCL_HOME=$HOME/nccl/build CUDA_HOME=/usr/local/cuda-10.1
+   $ make MPI=1 MPI_HOME=/opt/amazon/openmpi NCCL_HOME=/opt/nccl/build CUDA_HOME=/usr/local/cuda
    ```
 
-## Step 8: Test your EFA and NCCL configuration<a name="nccl-start-base-test"></a>
+## Step 9: Test your EFA and NCCL configuration<a name="nccl-start-base-test"></a>
 
 Run a test to ensure that your temporary instance is properly configured for EFA and NCCL\. 
 
@@ -464,45 +512,57 @@ Run a test to ensure that your temporary instance is properly configured for EFA
 1. Run the test and specify the host file \(`--hostfile`\) and the number of GPUs to use \(`-n`\)\. The following command runs the `all_reduce_perf` test on 8 GPUs on the instance itself, and specifies the following environment variables\.
    + `FI_PROVIDER="efa"`—specifies the fabric interface provider\. This must be set to `"efa"`\.
    + `FI_EFA_TX_MIN_CREDITS=64`—specifies the minimum number of send credits that the sender requests from the receiver\. `64` is the recommended value for NCCL jobs using EFA\. The value should only be increased for message transfers that are larger than 256 MB\.
+   + `FI_EFA_ENABLE_SHM_TRANSFER=0`—enables the SHM provider to provide the communication across all intra\-node processes\.
    + `NCCL_DEBUG=INFO`—enables detailed debugging output\. You can also specify `VERSION` to print only the NCCL version at the start of the test, or `WARN` to receive only error messages\.
-   + `NCCL_TREE_THRESHOLD=0`—disables tree algorithms for the test\.
+   + `NCCL_ALGO=ring`—uses ring algorithm for collective operations\.
 
    For more information about the NCCL test arguments, see the [NCCL Tests README](https://github.com/NVIDIA/nccl-tests/blob/master/README.md) in the official nccl\-tests repository\.
    + Amazon Linux, Amazon Linux 2, RHEL 7\.6/7\.7/7\.8, CentOS 7
 
      ```
      $ /opt/amazon/openmpi/bin/mpirun \
-     	-x FI_PROVIDER="efa" \
-     	-x FI_EFA_TX_MIN_CREDITS=64 \
-     	-x LD_LIBRARY_PATH=$HOME/nccl/build/lib:/usr/local/cuda-10.1/lib64:/opt/amazon/efa/lib64:/opt/amazon/openmpi/lib64:$LD_LIBRARY_PATH \
-     	-x NCCL_DEBUG=INFO \
-     	-x NCCL_TREE_THRESHOLD=0 \
-     	--hostfile my-hosts -n 8 -N 8 \
-     	--mca btl tcp,self --mca btl_tcp_if_exclude lo,docker0 --bind-to none \
-     	$HOME/nccl-tests/build/all_reduce_perf -b 8 -e 1G -f 2 -g 1 -c 1 -n 100
+         -x FI_PROVIDER="efa" \
+         -x FI_EFA_TX_MIN_CREDITS=64 \
+         -x FI_EFA_ENABLE_SHM_TRANSFER=0 \
+         -x LD_LIBRARY_PATH=/opt/nccl/build/lib:/usr/local/cuda/lib64:/opt/amazon/efa/lib64:/opt/amazon/openmpi/lib64:/opt/aws-ofi-nccl/lib:$LD_LIBRARY_PATH \
+         -x NCCL_DEBUG=INFO \
+         -x NCCL_ALGO=ring \
+         -x RDMAV_FORK_SAFE=1 \
+         --hostfile my-hosts -n 8 -N 8 \
+         --mca btl tcp,self --mca btl_tcp_if_exclude lo,docker0 --bind-to none \
+         $HOME/nccl-tests/build/all_reduce_perf -b 8 -e 1G -f 2 -g 1 -c 1 -n 100
      ```
    + Ubuntu 16\.04 and Ubuntu 18\.04
 
      ```
      $ /opt/amazon/openmpi/bin/mpirun \
-     	-x FI_PROVIDER="efa" \
-     	-x FI_EFA_TX_MIN_CREDITS=64 \
-     	-x LD_LIBRARY_PATH=$HOME/nccl/build/lib:/usr/local/cuda-10.1/lib64:/opt/amazon/efa/lib:/opt/amazon/openmpi/lib:$LD_LIBRARY_PATH \
-     	-x NCCL_DEBUG=INFO \
-     	-x NCCL_TREE_THRESHOLD=0 \
-     	--hostfile my-hosts -n 8 -N 8 \
-     	--mca btl tcp,self --mca btl_tcp_if_exclude lo,docker0 --bind-to none \
-     	$HOME/nccl-tests/build/all_reduce_perf -b 8 -e 1G -f 2 -g 1 -c 1 -n 100
+         -x FI_PROVIDER="efa" \
+         -x FI_EFA_TX_MIN_CREDITS=64 \
+         -x FI_EFA_ENABLE_SHM_TRANSFER=0 \
+         -x LD_LIBRARY_PATH=/opt/nccl/build/lib:/usr/local/cuda/lib64:/opt/amazon/efa/lib64:/opt/amazon/openmpi/lib64:/opt/aws-ofi-nccl/lib:$LD_LIBRARY_PATH \
+         -x NCCL_DEBUG=INFO \
+         -x NCCL_ALGO=ring \
+         -x RDMAV_FORK_SAFE=1 \
+         --hostfile my-hosts -n 8 -N 8 \
+         --mca btl tcp,self --mca btl_tcp_if_exclude lo,docker0 --bind-to none \
+         $HOME/nccl-tests/build/all_reduce_perf -b 8 -e 1G -f 2 -g 1 -c 1 -n 100
      ```
 
-## Step 9: Install your machine learning applications<a name="nccl-start-base-app"></a>
+1. You can confirm that EFA is active as the underlying provider for NCCL when the `NCCL_DEBUG` log is printed\.
+
+   ```
+   $ ip-192-168-2-54:14:14 [0] NCCL INFO NET/OFI Forcing AWS OFI ndev 4
+   *ip-192-168-2-54:14:14 [0] NCCL INFO NET/OFI Selected Provider is efa*
+   ```
+
+## Step 10: Install your machine learning applications<a name="nccl-start-base-app"></a>
 
 Install the machine learning applications on the temporary instance\. The installation procedure varies depending on the specific machine learning application\. For more information about installing software on your Linux instance, see [Managing Software on Your Linux Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/managing-software.html)\.
 
 **Note**  
 You might need to refer to your machine learning application’s documentation for installation instructions\.
 
-## Step 10: Create an EFA and NCCL\-enabled AMI<a name="nccl-start-base-ami"></a>
+## Step 11: Create an EFA and NCCL\-enabled AMI<a name="nccl-start-base-ami"></a>
 
 After you have installed the required software components, you create an AMI that you can reuse to launch your EFA\-enabled instances\.
 
@@ -526,7 +586,7 @@ After you have installed the required software components, you create an AMI tha
 
 1. Locate the AMI you created in the list\. Wait for the Status to transition from `pending` to `available` before continuing to the next step\.
 
-## Step 11: Terminate the temporary instance<a name="nccl-start-base-terminate"></a>
+## Step 12: Terminate the temporary instance<a name="nccl-start-base-terminate"></a>
 
 At this point, you no longer need the temporary instance that you launched\. You can terminate the instance to stop incurring charges for it\.
 
@@ -538,7 +598,7 @@ At this point, you no longer need the temporary instance that you launched\. You
 
 1. Select the temporary instance that you created and then choose **Actions**, **Instance State**, **Terminate**, **Yes, Terminate**\.
 
-## Step 12: Launch EFA and NCCL\-enabled instances into a cluster placement group<a name="nccl-start-base-cluster"></a>
+## Step 13: Launch EFA and NCCL\-enabled instances into a cluster placement group<a name="nccl-start-base-cluster"></a>
 
 Launch your EFA and NCCL\-enabled instances into a cluster placement group using the EFA\-enabled AMI and the EFA\-enabled security group that you created earlier\.
 
@@ -578,7 +638,7 @@ Launch your EFA and NCCL\-enabled instances into a cluster placement group using
 
 1. On the **Review Instance Launch** page, review the settings, and then choose **Launch** to choose a key pair and to launch your instances\.
 
-## Step 13: Enable passwordless SSH<a name="nccl-start-base-passwordless"></a>
+## Step 14: Enable passwordless SSH<a name="nccl-start-base-passwordless"></a>
 
 To enable your applications to run across all of the instances in your cluster, you must enable passwordless SSH access from the leader node to the member nodes\. The leader node is the instance from which you run your applications\. The remaining instances in the cluster are the member nodes\.
 
@@ -598,7 +658,7 @@ To enable your applications to run across all of the instances in your cluster, 
 1. Generate an RSA key pair\.
 
    ```
-   $ ssh-keygen -t rsa -N "" -f /home/ubuntu/.ssh/id_rsa
+   $ ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
    ```
 
    The key pair is created in the `$HOME/.ssh/` directory\.
@@ -607,6 +667,7 @@ To enable your applications to run across all of the instances in your cluster, 
 
    ```
    $ chmod 600 ~/.ssh/id_rsa
+   chmod 600 ~/.ssh/config
    ```
 
 1. Open `~/.ssh/id_rsa.pub` using your preferred text editor and copy the key\.

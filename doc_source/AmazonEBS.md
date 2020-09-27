@@ -16,6 +16,7 @@ With Amazon EBS, you pay only for what you use\. For more information about Amaz
 + [Amazon EBS volume performance on Linux instances](EBSPerformance.md)
 + [Amazon CloudWatch metrics for Amazon EBS](using_cloudwatch_ebs.md)
 + [Amazon CloudWatch Events for Amazon EBS](ebs-cloud-watch-events.md)
++ [Amazon EBS quotas](ebs-resource-quotas.md)
 
 ## Features of Amazon EBS<a name="ebs-features"></a>
 + EBS volumes are created in a specific Availability Zone, and can then be attached to any instances in that same Availability Zone\. To make a volume available outside of the Availability Zone, you can create a snapshot and restore that snapshot to a new volume anywhere in that Region\. You can copy snapshots to other Regions and then restore them to new volumes there, making it easier to leverage multiple AWS Regions for geographical expansion, data center migration, and disaster recovery\.

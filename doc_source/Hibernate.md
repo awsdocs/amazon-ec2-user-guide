@@ -1,7 +1,7 @@
 # Hibernate your Linux instance<a name="Hibernate"></a>
 
-When you hibernate an instance, Amazon EC2 signals the operating system to perform hibernation \(suspend\-to\-disk\)\. Hibernation saves the contents from the instance memory \(RAM\) to your Amazon EBS root volume\. Amazon EC2 persists the instance's Amazon EBS root volume and any attached Amazon EBS data volumes\. When you start your instance:
-+ The Amazon EBS root volume is restored to its previous state
+When you hibernate an instance, Amazon EC2 signals the operating system to perform hibernation \(suspend\-to\-disk\)\. Hibernation saves the contents from the instance memory \(RAM\) to your Amazon Elastic Block Store \(Amazon EBS\) root volume\. Amazon EC2 persists the instance's EBS root volume and any attached EBS data volumes\. When you start your instance:
++ The EBS root volume is restored to its previous state
 + The RAM contents are reloaded
 + The processes that were previously running on the instance are resumed
 + Previously attached data volumes are reattached and the instance retains its instance ID
@@ -16,7 +16,7 @@ If an instance or application takes a long time to bootstrap and build a memory 
 
 1. Hibernate it, ready to be resumed to the same state as needed\.
 
-You're not charged for instance usage for a hibernated instance when it is in the `stopped` state\. You are charged for instance usage while the instance is in the `stopping` state, when the contents of the RAM are transferred to the Amazon EBS root volume\. \(This is different from when you [stop an instance](Stop_Start.md) without hibernating it\.\) You're not charged for data transfer\. However, you are charged for storage of any Amazon EBS volumes, including storage for the RAM contents\.
+You're not charged for instance usage for a hibernated instance when it is in the `stopped` state\. You are charged for instance usage while the instance is in the `stopping` state, when the contents of the RAM are transferred to the EBS root volume\. \(This is different from when you [stop an instance](Stop_Start.md) without hibernating it\.\) You're not charged for data transfer\. However, you are charged for storage of any EBS volumes, including storage for the RAM contents\.
 
 If you no longer need an instance, you can terminate it at any time, including when it is in a `stopped` \(hibernated\) state\. For more information, see [Terminate your instance](terminating-instances.md)\.
 
@@ -41,11 +41,11 @@ The following diagram shows a basic overview of the hibernation process\.
 ![\[Overview of the hibernation flow\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/hibernation-flow.png)
 
 When you hibernate a running instance, the following happens:
-+ When you initiate hibernation, the instance moves to the `stopping` state\. Amazon EC2 signals the operating system to perform hibernation \(suspend\-to\-disk\)\. The hibernation freezes all of the processes, saves the contents of the RAM to the Amazon EBS root volume, and then performs a regular shutdown\.
++ When you initiate hibernation, the instance moves to the `stopping` state\. Amazon EC2 signals the operating system to perform hibernation \(suspend\-to\-disk\)\. The hibernation freezes all of the processes, saves the contents of the RAM to the EBS root volume, and then performs a regular shutdown\.
 + After the shutdown is complete, the instance moves to the `stopped` state\.
-+ Any Amazon EBS volumes remain attached to the instance, and their data persists, including the saved contents of the RAM\.
++ Any EBS volumes remain attached to the instance, and their data persists, including the saved contents of the RAM\.
 + In most cases, the instance is migrated to a new underlying host computer when it's started\. This is also what happens when you stop and start an instance\.
-+ When you start the instance, the instance boots up and the operating system reads in the contents of the RAM from the Amazon EBS root volume, before unfreezing processes to resume its state\.
++ When you start the instance, the instance boots up and the operating system reads in the contents of the RAM from the EBS root volume, before unfreezing processes to resume its state\.
 + The instance retains its private IPv4 addresses and any IPv6 addresses\. When you start the instance, the instance continues to retain its private IPv4 addresses and any IPv6 addresses\.
 + Amazon EC2 releases the public IPv4 address\. When you start the instance, Amazon EC2 assigns a new public IPv4 address to the instance\.
 + The instance retains its associated Elastic IP addresses\. You're charged for any Elastic IP addresses associated with a hibernated instance\. With EC2\-Classic, an Elastic IP address is disassociated from your instance when you hibernate it\. For more information, see [EC2\-Classic](ec2-classic-platform.md)\.
@@ -72,10 +72,10 @@ To hibernate an instance, the following prerequisites must be in place:
   Support for other versions of Ubuntu and other operating systems is coming soon\.
 
   For information about the supported AMIs for Windows, see [Hibernation prerequisites](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/Hibernate.html#hibernating-prerequisites) in the *Amazon EC2 User Guide for Windows Instances*\.
-+ **Root volume type** \- must be an Amazon EBS volume, not an instance store volume\.
-+ **Supported Amazon EBS volume types** \- General Purpose SSD \(`gp2`\) or Provisioned IOPS SSD \(`io1` or `io2`\)\. If you choose a Provisioned IOPS SSD \(`io1` or `io2`\) volume type, to achieve optimum performance for hibernation, you must provision the EBS volume with the appropriate IOPS\. For more information, see [Amazon EBS volume types](ebs-volume-types.md)\.
-+ **Amazon EBS root volume size** \- must be large enough to store the RAM contents and accommodate your expected usage, for example, OS or applications\. If you enable hibernation, space is allocated on the root volume at launch to store the RAM\.
-+ **Amazon EBS root volume encryption** \- To use hibernation, the root volume must be encrypted to ensure the protection of sensitive content that is in memory at the time of hibernation\. When RAM data is moved to the Amazon EBS root volume, it is always encrypted\. Encryption of the root volume is enforced at instance launch\. Use one of the following three options to ensure that the root volume is an encrypted Amazon EBS volume:
++ **Root volume type** \- must be an EBS volume, not an instance store volume\.
++ **Supported EBS volume types** \- General Purpose SSD \(`gp2`\) or Provisioned IOPS SSD \(`io1` or `io2`\)\. If you choose a Provisioned IOPS SSD \(`io1` or `io2`\) volume type, to achieve optimum performance for hibernation, you must provision the EBS volume with the appropriate IOPS\. For more information, see [Amazon EBS volume types](ebs-volume-types.md)\.
++ **EBS root volume size** \- must be large enough to store the RAM contents and accommodate your expected usage, for example, OS or applications\. If you enable hibernation, space is allocated on the root volume at launch to store the RAM\.
++ **EBS root volume encryption** \- To use hibernation, the root volume must be encrypted to ensure the protection of sensitive content that is in memory at the time of hibernation\. When RAM data is moved to the EBS root volume, it is always encrypted\. Encryption of the root volume is enforced at instance launch\. Use one of the following three options to ensure that the root volume is an encrypted EBS volume:
   + EBS “single\-step” encryption: You can launch encrypted EBS\-backed EC2 instances from an unencrypted AMI and also enable hibernation at the same time\. For more information, see [Using encryption with EBS\-backed AMIs](AMIEncryption.md)\.
   + EBS encryption by default: You can enable EBS encryption by default to ensure all new EBS volumes created in your AWS account are encrypted\. This way, you can enable hibernation for your instances without specifying encryption intent at instance launch\. For more information, see [Encryption by default](EBSEncryption.md#encryption-by-default)\.
   + Encrypted AMI: You can enable EBS encryption by using an encrypted AMI to launch your instance\. If your AMI does not have an encrypted root snapshot, you can copy it to a new AMI and request encryption\. For more information, see [Encrypt an unencrypted image during copy](AMIEncryption.md#copy-unencrypted-to-encrypted) and [Copying an AMI](CopyingAMIs.md#ami-copy-steps)\.
@@ -248,8 +248,8 @@ You can't enable or disable hibernation for an instance after you launch it\.
 1. On the **Configure Instance Details** page, for **Stop \- Hibernate Behavior**, select the **Enable hibernation as an additional stop behavior** check box\.
 
 1. On the **Add Storage** page, for the root volume, specify the following information: 
-   + For **Size \(GiB\)**, enter the Amazon EBS root volume size\. The volume must be large enough to store the RAM contents and accommodate your expected usage\.
-   + For **Volume Type**, select a supported Amazon EBS volume type \(General Purpose SSD \(`gp2`\) or Provisioned IOPS SSD \(`io1` or `io2`\)\.
+   + For **Size \(GiB\)**, enter the EBS root volume size\. The volume must be large enough to store the RAM contents and accommodate your expected usage\.
+   + For **Volume Type**, select a supported EBS volume type \(General Purpose SSD \(`gp2`\) or Provisioned IOPS SSD \(`io1` or `io2`\)\.
    + For **Encryption**, select the encryption key for the volume\. If you enabled encryption by default in this AWS Region, the default encryption key is selected\.
 
    For more information about the prerequisites for the root volume, see [Hibernation prerequisites](#hibernating-prerequisites)\.

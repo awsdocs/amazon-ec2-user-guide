@@ -244,7 +244,7 @@ If you add a new tag with the same tag key as an existing tag, the new tag overw
 
 1. Choose **Launch Instance**\.
 
-1. The **Choose an Amazon Machine Image \(AMI\)** page displays a list of basic configurations called Amazon Machine Images \(AMIs\)\. Select the AMI to use and choose **Select**\. For more information about selecting an AMI, see [Finding a Linux AMI](finding-an-ami.md)\.
+1. The **Choose an Amazon Machine Image \(AMI\)** page displays a list of basic configurations called Amazon Machine Images \(AMIs\)\. Select the AMI to use and choose **Select**\. For more information about selecting an AMI, see [Finding an AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html)\.
 
 1. On the **Configure Instance Details** page, configure the instance settings as necessary, and then choose **Next: Add Storage**\.
 
@@ -417,9 +417,32 @@ aws ec2 describe-tags \
 
 ## Adding tags to a resource using CloudFormation<a name="cloudformation-add-tag-specifications"></a>
 
-The following examples add the tag **Stack=Production** to the [AWS::EC2::Instance](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html) resource\.
+With Amazon EC2 resource types, you specify tags using either a `Tags` or `TagSpecifications` property\.
 
-**Example: YAML**  
+The following examples add the tag **Stack=Production** to [AWS::EC2::Instance](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html) using its `Tags` property\.
+
+**Example: Tags in YAML**  
+
+```
+Tags:
+  - Key: "Stack"
+    Value: "Production"
+```
+
+**Example: Tags in JSON**  
+
+```
+"Tags": [
+    {
+        "Key": "Stack",
+        "Value": "Production"
+    }
+]
+```
+
+The following examples add the tag **Stack=Production** to [AWS::EC2::LaunchTemplate LaunchTemplateData](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-launchtemplate-launchtemplatedata.html) using its `TagSpecifications` property\.
+
+**Example: TagSpecifications in YAML**  
 
 ```
 TagSpecifications:
@@ -429,7 +452,7 @@ TagSpecifications:
       Value: "Production"
 ```
 
-**Example: JSON**  
+**Example: TagSpecifications in JSON**  
 
 ```
 "TagSpecifications": [

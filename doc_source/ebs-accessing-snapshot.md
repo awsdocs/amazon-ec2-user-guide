@@ -1,4 +1,4 @@
-# Accessing the contents of an EBS snapshot<a name="ebs-accessing-snapshot"></a>
+# Using EBS direct APIs to access the contents of an EBS snapshot<a name="ebs-accessing-snapshot"></a>
 
 You can use the Amazon Elastic Block Store \(Amazon EBS\) direct APIs to create EBS snapshots, write data directly to your snapshots, read data on your snapshots, and identify the differences or changes between two snapshots\. If you’re an independent software vendor \(ISV\) who offers backup services for Amazon EBS, the EBS direct APIs make it more efficient and cost\-effective to track incremental changes on your EBS volumes through snapshots\. This can be done without having to create new volumes from snapshots, and then use Amazon Elastic Compute Cloud \(Amazon EC2\) instances to compare the differences\.
 
@@ -17,6 +17,7 @@ This user guide provides an overview of the elements that make up the EBS direct
 + [Optimizing performance](#ebsapi-performance)
 + [Frequently asked questions](#ebsapi-faq)
 + [Logging API Calls for the EBS direct APIs with AWS CloudTrail](logging-ebs-apis-using-cloudtrail.md)
++ [EBS direct APIs and interface VPC endpoints](ebs-apis-vpc-endpoints.md)
 + [Idempotency for StartSnapshot API](ebs-direct-api-idempotency.md)
 
 ## Understanding the EBS direct APIs<a name="ebsapi-elements"></a>

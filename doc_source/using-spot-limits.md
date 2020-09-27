@@ -13,6 +13,8 @@ Limits on Spot Instance requests are dynamic\. When your account is new, there i
 
 If you terminate Spot Instances but do not cancel the Spot Instance requests, the requests count against your dynamic Spot Instance request limit until Amazon EC2 detects the Spot Instance terminations and closes the requests\.
 
+New accounts are not eligible for Spot Instances with a defined duration \(also known as Spot blocks\)\.
+
 ## Spot Fleet limits<a name="spot-fleet-limitations"></a>
 
 The usual Amazon EC2 limits apply to instances launched by a Spot Fleet or an EC2 Fleet, such as Spot request price limits, instance limits, and volume limits\. In addition, the following limits apply:

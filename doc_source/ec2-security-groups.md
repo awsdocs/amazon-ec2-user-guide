@@ -4,7 +4,7 @@ A *security group* acts as a virtual firewall for your EC2 instances to control 
 
 When you launch an instance in a VPC, you must specify a security group that's created for that VPC\. After you launch an instance, you can change its security groups\. Security groups are associated with network interfaces\. Changing an instance's security groups changes the security groups associated with the primary network interface \(eth0\)\. For more information, see [Changing an instance's security groups](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html#SG_Changing_Group_Membership) in the *Amazon VPC User Guide*\. You can also change the security groups associated with any other network interface\. For more information, see [Changing the security group](using-eni.md#eni_security_group)\.
 
-If you have requirements that aren't fully met by security groups, you can maintain your own firewall on any of your instances in addition to using security groups\.
+Security is a shared responsibility between AWS and you\. For more information, see [Security in Amazon EC2](ec2-security.md)\. AWS provides security groups as one of the tools for securing your instances, and you need to configure them to meet your security needs\. If you have requirements that aren't fully met by security groups, you can maintain your own firewall on any of your instances in addition to using security groups\.
 
 To allow traffic to a Windows instance, see [Amazon EC2 security groups for Windows instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/using-network-security.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
@@ -39,7 +39,7 @@ The rules of a security group control the inbound traffic that's allowed to reac
 The following are the characteristics of security group rules:
 + By default, security groups allow all outbound traffic\.
 + Security group rules are always permissive; you can't create rules that deny access\.
-+ Security groups are stateful — if you send a request from your instance, the response traffic for that request is allowed to flow in regardless of inbound security group rules\. For VPC security groups, this also means that responses to allowed inbound traffic are allowed to flow out, regardless of outbound rules\. For more information, see [Connection tracking](#security-group-connection-tracking)\.
++ Security groups are stateful—if you send a request from your instance, the response traffic for that request is allowed to flow in regardless of inbound security group rules\. For VPC security groups, this also means that responses to allowed inbound traffic are allowed to flow out, regardless of outbound rules\. For more information, see [Connection tracking](#security-group-connection-tracking)\.
 + You can add and remove rules at any time\. Your changes are automatically applied to the instances that are associated with the security group\.
 
   The effect of some rule changes can depend on how the traffic is tracked\. For more information, see [Connection tracking](#security-group-connection-tracking)\.

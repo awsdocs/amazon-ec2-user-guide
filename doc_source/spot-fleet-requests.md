@@ -360,7 +360,9 @@ You can create a Spot Fleet using the parameters that you define\.
 **Important**  
  To specify an optional On\-Demand portion, you must first choose a launch template\.
 
-   1. \(Optional\) By default, the Spot service terminates Spot Instances when they are interrupted\. To maintain the target capacity, choose **Maintain target capacity**\. You can then specify that the Spot service terminates, stops, or hibernates Spot Instances when they are interrupted\. To do so, choose the corresponding option from **Interruption behavior**\.
+   1. \(Optional\) By default, the Spot service terminates Spot Instances when they are interrupted\. To maintain the target capacity, select **Maintain target capacity**\. You can then specify that the Spot service terminates, stops, or hibernates Spot Instances when they are interrupted\. To do so, choose the corresponding option from **Interruption behavior**\.
+
+   1. \(Optional\) To control the amount you pay per hour for the total Spot Instances in your fleet, select **Maintain target cost for Spot \(advanced \- optional\)** and then enter the maximum total amount you're willing to pay per hour\. When the maximum total amount is reached, Spot Fleet stops launching Spot Instances even if it hasn’t met the target capacity\. For more information, see [Control spending](spot-fleet.md#spot-fleet-control-spending)\.
 
 1. For **Fleet request settings**, do the following:
 

@@ -1,6 +1,6 @@
 # Elastic IP addresses<a name="elastic-ip-addresses-eip"></a>
 
-An *Elastic IP address* is a static IPv4 address designed for dynamic cloud computing\. An Elastic IP address is associated with your AWS account\. With an Elastic IP address, you can mask the failure of an instance or software by rapidly remapping the address to another instance in your account\. 
+An *Elastic IP address* is a static IPv4 address designed for dynamic cloud computing\. By using an Elastic IP address, you can mask the failure of an instance or software by rapidly remapping the address to another instance in your account\. An Elastic IP address is allocated to your AWS account, and is yours until you release it\.
 
 An Elastic IP address is a public IPv4 address, which is reachable from the internet\. If your instance does not have a public IPv4 address, you can associate an Elastic IP address with your instance to enable communication with the internet\. For example, this allows you to connect to your instance from your local computer\.
 
@@ -15,18 +15,20 @@ We currently do not support Elastic IP addresses for IPv6\.
 ## Elastic IP address basics<a name="eip-basics"></a>
 
 The following are the basic characteristics of an Elastic IP address:
++ An Elastic IP address is static; it does not change over time\.
 + To use an Elastic IP address, you first allocate one to your account, and then associate it with your instance or a network interface\.
-+ An Elastic IP address (from Amazon's pool of IPv4 addresses, or from a custom IP address pool that you have brought to your AWS account) is for use in a specific Region only. It cannot be moved to a different Region from where it was originally allocated.
 + When you associate an Elastic IP address with an instance, it is also associated with the instance's primary network interface\. When you associate an Elastic IP address with a network interface that is attached to an instance, it is also associated with the instance\.
 + When you associate an Elastic IP address with an instance or its primary network interface, the instance's public IPv4 address \(if it had one\) is released back into Amazon's pool of public IPv4 addresses\. You cannot reuse a public IPv4 address, and you cannot convert a public IPv4 address to an Elastic IP address\. For more information, see [Public IPv4 addresses and external DNS hostnames](using-instance-addressing.md#concepts-public-addresses)\.
 + You can disassociate an Elastic IP address from a resource, and then associate it with a different resource\. To avoid unexpected behavior, ensure that all active connections to the resource named in the existing association are closed before you make the change\. After you have associated your Elastic IP address to a different resource, you can reopen your connections to the newly associated resource\.
 + A disassociated Elastic IP address remains allocated to your account until you explicitly release it\.
 + To ensure efficient use of Elastic IP addresses, we impose a small hourly charge if an Elastic IP address is not associated with a running instance, or if it is associated with a stopped instance or an unattached network interface\. While your instance is running, you are not charged for one Elastic IP address associated with the instance, but you are charged for any additional Elastic IP addresses associated with the instance\. For more information, see the section for Elastic IP Addresses on the [Amazon EC2 Pricing, On\-Demand Pricing page](http://aws.amazon.com/ec2/pricing/on-demand/)\.
-+ An Elastic IP address is for use in a specific network border group only\. 
 + When you associate an Elastic IP address with an instance that previously had a public IPv4 address, the public DNS host name of the instance changes to match the Elastic IP address\. 
-+ We resolve a public DNS host name to the public IPv4 address or the Elastic IP address of the instance outside the network of the instance, and to the private IPv4 address of the instance from within the network of the instance\. 
++ We resolve a public DNS host name to the public IPv4 address or the Elastic IP address of the instance outside the network of the instance, and to the private IPv4 address of the instance from within the network of the instance\.
++ An Elastic IP address comes from Amazon's pool of IPv4 addresses, or from a custom IP address pool that you have brought to your AWS account\.
 + When you allocate an Elastic IP address from an IP address pool that you have brought to your AWS account, it does not count toward your Elastic IP address limits\. For more information, see [Elastic IP address limit](#using-instance-addressing-limit)\.
 + When you allocate the Elastic IP addresses, you can associate the Elastic IP addresses with a network border group\. This is the location from which we advertise the CIDR block\. Setting the network border group limits the CIDR block to this group\. If you do not specify the network border group, we set the border group containing all of the Availability Zones in the Region \(for example, `us-west-2`\)\.
++ An Elastic IP address is for use in a specific network border group only\.
++ An Elastic IP address is for use in a specific Region only, and cannot be moved to a different Region\.
 
 ## Working with Elastic IP addresses<a name="working-with-eips"></a>
 

@@ -1,6 +1,6 @@
 # User provided kernels<a name="UserProvidedKernels"></a>
 
-If you have a need for a custom kernel on your Amazon EC2 instances, you can start with an AMI that is close to what you want, compile the custom kernel on your instance, and modify the `menu.lst` file to point to the new kernel\. This process varies depending on the virtualization type that your AMI uses\. For more information, see [Linux AMI virtualization types](virtualization_types.md)\.
+If you need a custom kernel on your Amazon EC2 instances, you can start with an AMI that is close to what you want, compile the custom kernel on your instance, and update the bootloader to point to the new kernel\. This process varies depending on the virtualization type that your AMI uses\. For more information, see [Linux AMI virtualization types](virtualization_types.md)\.
 
 **Topics**
 + [HVM AMIs \(GRUB\)](#HVM_instances)
@@ -8,45 +8,13 @@ If you have a need for a custom kernel on your Amazon EC2 instances, you can sta
 
 ## HVM AMIs \(GRUB\)<a name="HVM_instances"></a>
 
-HVM instance volumes are treated like actual physical disks\. The boot process is similar to that of a bare metal operating system with a partitioned disk and bootloader, which allows it to work with all currently supported Linux distributions\. The most common bootloader is GRUB, and the following section describes configuring GRUB to use a custom kernel\.
+HVM instance volumes are treated like actual physical disks\. The boot process is similar to that of a bare metal operating system with a partitioned disk and bootloader, which enables it to work with all currently supported Linux distributions\. The most common bootloader is GRUB or GRUB2\.
 
-### Configuring GRUB for HVM AMIs<a name="configuringGRUB-HVM"></a>
+By default, GRUB does not send its output to the instance console because it creates an extra boot delay\. For more information, see [Instance console output](instance-console.md#instance-console-console-output)\. If you are installing a custom kernel, you should consider enabling GRUB output\.
 
-The following is an example of a `menu.lst` configuration file for an HVM AMI\. In this example, there are two kernel entries to choose from: Amazon Linux 2018\.03 \(the original kernel for this AMI\) and Vanilla Linux 4\.16\.4 \(a newer version of the Vanilla Linux kernel from [https://www\.kernel\.org/](https://www.kernel.org/)\)\. The Vanilla entry was copied from the original entry for this AMI, and the `kernel` and `initrd` paths were updated to the new locations\. The `default 0` parameter points the bootloader to the first entry that it sees \(in this case, the Vanilla entry\), and the `fallback 1` parameter points the bootloader to the next entry if there is a problem booting the first\.
+You don't need to specify a fallback kernel, but we recommend that you have a fallback when you test a new kernel\. GRUB can fall back to another kernel in the event that the new kernel fails\. Having a fallback kernel enables the instance to boot even if the new kernel isn't found\.
 
-By default, GRUB does not send its output to the instance console because it creates an extra boot delay\. For more information, see [Instance console output](instance-console.md#instance-console-console-output)\. If you are installing a custom kernel, you should consider enabling GRUB output by deleting the `hiddenmenu` line and adding `serial` and `terminal` lines to `/boot/grub/menu.lst` as shown in the example below\.
-
-**Important**  
-Avoid printing large amounts of debug information during the boot process; the serial console does not support high rate data transfer\.
-
-```
-default=0
-fallback=1
-timeout=5
-serial --unit=0 --speed=9600
-terminal --dumb --timeout=5 serial console
-
-title Vanilla Linux 4.16.4
-root (hd0)
-kernel /boot/vmlinuz-4.16.4 root=LABEL=/ console=tty1 console=ttyS0
-initrd /boot/initrd.img-4.16.4
-
-title Amazon Linux 2018.03 (4.14.26-46.32.amzn1.x86_64)
-root (hd0,0)
-kernel /boot/vmlinuz-4.14.26-46.32.amzn1.x86_64 root=LABEL=/ console=tty1 console=ttyS0
-initrd /boot/initramfs-4.14.26-46.32.amzn1.x86_64.img
-```
-
-You don't need to specify a fallback kernel in your `menu.lst` file, but we recommend that you have a fallback when you test a new kernel\. GRUB can fall back to another kernel in the event that the new kernel fails\. Having a fallback kernel allows the instance to boot even if the new kernel isn't found\.
-
-If your new Vanilla Linux kernel fails, the output will be similar to the example below\.
-
-```
-^M Entry 0 will be booted automatically in 3 seconds. ^M Entry 0 will be booted automatically in 2 seconds. ^M Entry 0 will be booted automatically in 1 seconds.
-
-Error 13: Invalid or unsupported executable format
-[ 0.000000] Initializing cgroup subsys cpuset
-```
+The legacy GRUB for Amazon Linux uses `/boot/grub/menu.lst`\. GRUB2 for Amazon Linux 2 uses `/etc/default/grub`\. For more information about updating the default kernel in the bootloader, see the documentation for your Linux distribution\.
 
 ## Paravirtual AMIs \(PV\-GRUB\)<a name="Paravirtual_instances"></a>
 
@@ -54,15 +22,13 @@ Amazon Machine Images that use paravirtual \(PV\) virtualization use a system ca
 
 PV\-GRUB understands standard `grub.conf` or `menu.lst` commands, which allows it to work with all currently supported Linux distributions\. Older distributions such as Ubuntu 10\.04 LTS, Oracle Enterprise Linux or CentOS 5\.x require a special "ec2" or "xen" kernel package, while newer distributions include the required drivers in the default kernel package\.
 
-Most modern paravirtual AMIs use a PV\-GRUB AKI by default \(including all of the paravirtual Linux AMIs available in the Amazon EC2 Launch Wizard Quick Start menu\), so there are no additional steps that you need to take to use a different kernel on your instance, provided that the kernel you want to use is compatible with your distribution\. The best way to run a custom kernel on your instance is to start with an AMI that is close to what you want and then to compile the custom kernel on your instance and modify the `menu.lst` file as shown in [Configuring GRUB for paravirtual AMIs](#configuringGRUB) to boot with that kernel\.
+Most modern paravirtual AMIs use a PV\-GRUB AKI by default \(including all of the paravirtual Linux AMIs available in the Amazon EC2 Launch Wizard Quick Start menu\), so there are no additional steps that you need to take to use a different kernel on your instance, provided that the kernel you want to use is compatible with your distribution\. The best way to run a custom kernel on your instance is to start with an AMI that is close to what you want and then to compile the custom kernel on your instance and modify the `menu.lst` file to boot with that kernel\.
 
-You can verify that the kernel image for an AMI is a PV\-GRUB AKI by executing the following [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command with the Amazon EC2 command line tools \(substituting the kernel image ID you want to check:
+You can verify that the kernel image for an AMI is a PV\-GRUB AKI\. Run the following [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command \(substituting your kernel image ID\) check whether the `Name` field starts with `pv-grub`:
 
 ```
 aws ec2 describe-images --filters Name=image-id,Values=aki-880531cd
 ```
-
-Check whether the `Name` field starts with `pv-grub`\.
 
 **Topics**
 + [Limitations of PV\-GRUB](#pv-grub-limitations)
@@ -129,12 +95,12 @@ We recommend that you always use the latest version of the PV\-GRUB AKI, as not 
 aws ec2 describe-images --owners amazon --filters Name=name,Values=pv-grub-*.gz
 ```
 
-Note that PV\-GRUB is the only AKI available in the `ap-southeast-2` Region\. You should verify that any AMI you want to copy to this Region is using a version of PV\-GRUB that is available in this Region\.
+PV\-GRUB is the only AKI available in the `ap-southeast-2` Region\. You should verify that any AMI you want to copy to this Region is using a version of PV\-GRUB that is available in this Region\.
 
 The following are the current AKI IDs for each Region\. Register new AMIs using an hd0 AKI\.
 
 **Note**  
-We continue to provide hd00 AKIs for backward compatibility in regions where they were previously available\.
+We continue to provide hd00 AKIs for backward compatibility in Regions where they were previously available\.
 
 
 **ap\-northeast\-1, Asia Pacific \(Tokyo\)**  

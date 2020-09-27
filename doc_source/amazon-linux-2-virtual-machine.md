@@ -163,21 +163,23 @@ After you have associated the datastore with the VM, you should be able to boot 
 
 **To boot the VM using Oracle VirtualBox**
 
-1. Open the **Create Virtual Machine** wizard\.
+1. Open Oracle VirtualBox and choose **New**\.
 
-1. When prompted to select a **Type** and a **Version**, select **Linux** and **RHEL \(64\-bit\)** respectively\.
+1. For **Name**, enter a descriptive name for the virtual machine, and for **Type** and **Version**, select **Linux** and **Red Hat \(64\-bit\)** respectively\. Choose **Continue**\.
 
-1. When prompted to configure the hard disk, choose **Use an existing virtual hard disk file**, select the VM image, and then choose **Create**\.
+1. For **Memory size**, specify the amount of memory to allocate to the virtual machine, and then choose **Continue**\.
+
+1. For **Hard disk**, choose **Use an existing virtual hard disk file**, browse to and open the VM image, and then choose **Create**\.
 
 1. Before you start the VM, you must load the `seed.iso` file in the virtual machine's virtual optical drive:
 
    1. Select the new VM, choose **Settings**, and then choose **Storage**\.
 
-   1. In the **Storage Devices** list, under **Controller: IDE**, choose the *empty* optical drive\.
+   1. In the **Storage Devices** list, under **Controller: IDE**, choose the *Empty* optical drive\.
 
-   1. In the **Attributes** section for the optical drive, choose the browse button, select **Choose Virtual Optical Disk File**, and then select the `seed.iso` file\.
+   1. In the **Attributes** section for the optical drive, choose the browse button, select **Choose Virtual Optical Disk File**, and then select the `seed.iso` file\. Choose **OK** to apply the changes and close the Settings\.
 
-After you have added the `seed.iso` file to the virtual optical drive, you should be able to boot the VM\.
+After you have added the `seed.iso` file to the virtual optical drive, you should be able to start the VM\.
 
 ------
 #### [ Microsoft Hyper\-V ]
@@ -186,7 +188,7 @@ The VM image for Microsoft Hyper\-V is compressed into a zip file\. You must ext
 
 **To boot the VM using Microsoft Hyper\-V**
 
-1. Open the new **Virtual Machine Wizard**\.
+1. Open the **New Virtual Machine Wizard**\.
 
 1. When prompted to select a generation, select **Generation 1**\.
 

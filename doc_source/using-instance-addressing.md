@@ -55,7 +55,7 @@ Instances that access other instances through their public NAT IP address are ch
 
 ## Elastic IP addresses \(IPv4\)<a name="ip-addressing-eips"></a>
 
-An Elastic IP address is a public IPv4 address that you can allocate to your account\. You can associate it to and from instances as you require, and it's allocated to your account until you choose to release it\. For more information about Elastic IP addresses and how to use them, see [Elastic IP addresses](elastic-ip-addresses-eip.md)\.
+An Elastic IP address is a public IPv4 address that you can allocate to your account\. You can associate it to and disassociate it from instances as you require\. It's allocated to your account until you choose to release it\. For more information about Elastic IP addresses and how to use them, see [Elastic IP addresses](elastic-ip-addresses-eip.md)\.
 
 We do not support Elastic IP addresses for IPv6\.
 

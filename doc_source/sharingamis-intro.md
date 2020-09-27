@@ -10,6 +10,10 @@ To avoid exposing sensitive data when you share an AMI, read the security consid
 
 If an AMI has a product code, or contains a snapshot of an encrypted volume, you can't make it public\. You can share the AMI only with specific AWS accounts\.
 
+**Topics**
++ [Sharing an AMI with all AWS accounts \(console\)](#sharingamis-intro-console)
++ [Sharing an AMI with all AWS accounts \(AWS CLI\)](#sharingamis-cli)
+
 ## Sharing an AMI with all AWS accounts \(console\)<a name="sharingamis-intro-console"></a>
 
 After you make an AMI public, it is available in **Community AMIs** when you launch an instance in the same Region using the console\. Note that it can take a short while for an AMI to appear in **Community AMIs** after you make it public\. It can also take a short while for an AMI to be removed from **Community AMIs** after you make it private again\.

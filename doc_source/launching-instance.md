@@ -23,13 +23,13 @@ When you launch an instance that's not within the [AWS Free Tier](https://aws.am
 
 1. In the navigation bar at the top of the screen, the current Region is displayed \(for example, US East \(Ohio\)\)\. Select a Region for the instance that meets your needs\. This choice is important because some Amazon EC2 resources can be shared between Regions, while others can't\. For more information, see [Resource locations](resources.md)\.
 
-1. From the Amazon EC2 console dashboard, choose **Launch Instance**\.
+1. From the Amazon EC2 console dashboard, choose **Launch instance**\.
 
 ## Step 1: Choose an Amazon Machine Image \(AMI\)<a name="step-1-AMI"></a>
 
 When you launch an instance, you must select a configuration, known as an Amazon Machine Image \(AMI\)\. An AMI contains the information required to create a new instance\. For example, an AMI might contain the software required to act as a web server, such as Linux, Apache, and your website\.
 
-When you launch an instance, you can either select an AMI from the list, or you can select a Systems Manager parameter that points to an AMI ID\. For more information, see [Using a Systems Manager parameter to find an AMI](finding-an-ami.md#using-systems-manager-parameter-to-find-AMI)\.
+When you launch an instance, you can either select an AMI from the list, or you can select a Systems Manager parameter that points to an AMI ID\. For more information, see [Using a Systems Manager parameter to find an AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html#using-systems-manager-parameter-to-find-AMI)\.
 
 On the **Choose an Amazon Machine Image \(AMI\)** page, use one of two options to choose an AMI\. Either [search the list of AMIs](#procedure-search-list-of-AMIs), or [search by Systems Manager parameter](#procedure-by-systems-manager-parameter)\.<a name="procedure-search-list-of-AMIs"></a>
 

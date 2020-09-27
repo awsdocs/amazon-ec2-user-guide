@@ -1,52 +1,18 @@
 # Listing and filtering your resources<a name="Using_Filtering"></a>
 
-You can get a list of some types of resource using the Amazon EC2 console\. You can get a list of each type of resource using its corresponding command or API action\. If you have many resources, you can filter the results to include only the resources that match certain criteria\.
+You can get a list of some types of resources using the Amazon EC2 console\. You can get a list of each type of resource using its corresponding command or API action\. If you have many resources, you can filter the results to include only the resources that match certain criteria\.
 
 **Topics**
-+ [Advanced search](#advancedsearch)
-+ [Listing resources using the console](#listing-resources)
-+ [Filtering resources using the console](#filtering-resources)
++ [Listing and filtering resources using the console](#advancedsearch)
 + [Listing and filtering using the CLI and API](#Filtering_Resources_CLI)
 
-## Advanced search<a name="advancedsearch"></a>
+## Listing and filtering resources using the console<a name="advancedsearch"></a>
 
-Advanced search allows you to search using a combination of filters to achieve precise results\. You can filter by keywords, user\-defined tag keys, and predefined resource attributes\.
+**Contents**
++ [Listing resources using the console](#listing-resources)
++ [Filtering resources using the console](#console-filter)
 
-The specific search types available are:
-+ **Search by keyword**
-
-  To search by keyword, type or paste what you’re looking for in the search box, and then choose Enter\. For example, to search for a specific instance, you can type the instance ID\.
-+ **Search by fields**
-
-  You can also search by fields, tags, and attributes associated with a resource\. For example, to find all instances in the stopped state:
-
-  1. In the search box, start typing **Instance State**\. As you type, you'll see a list of suggested fields\.
-
-  1. Select **Instance State **from the list\.
-
-  1. Select **Stopped** from the list of suggested values\.
-
-  1. To further refine your list, select the search box for more search options\.
-+ **Advanced search**
-
-  You can create advanced queries by adding multiple filters\. For example, you can search by tags and see instances for the Flying Mountain project running in the Production stack, and then search by attributes to see all t2\.micro instances, or all instances in us\-west\-2a, or both\. 
-+ **Inverse search**
-
-  You can search for resources that do not match a specified value\. For example, to list all instances that are not terminated, search by the **Instance State** field, and prefix the Terminated value with an exclamation mark \(\!\)\.
-+ **Partial search**
-
-  When searching by field, you can also enter a partial string to find all resources that contain the string in that field\. For example, search by **Instance Type**, and then type **t2** to find all t2\.micro, t2\.small or t2\.medium instances\.
-+ **Regular expression**
-
-  Regular expressions are useful when you need to match the values in a field with a specific pattern\. For example, search by the Name tag, and then type **^s\.\*** to see all instances with a Name tag that starts with an 's'\. Regular expression search is not case\-sensitive\.
-
-After you have the precise results of your search, you can bookmark the URL for easy reference\. In situations where you have thousands of instances, filters and bookmarks can save you a great deal of time; you don’t have to run searches repeatedly\.
-
-**Combining search filters**
-
-In general, multiple filters with the same key field \(for example, tag:Name, search, Instance State\) are automatically joined with OR\. This is intentional, as the vast majority of filters would not be logical if they were joined with AND\. For example, you would get zero results for a search on Instance State=running AND Instance State=stopped\. In many cases, you can granulate the results by using complementary search terms on different key fields, where the AND rule is automatically applied instead\. If you search for tag: Name:=All values and tag:Instance State=running, you get search results that contain both those criteria\. To fine\-tune your results, simply remove one filter in the string until the results fit your requirements\.
-
-## Listing resources using the console<a name="listing-resources"></a>
+### Listing resources using the console<a name="listing-resources"></a>
 
 You can view the most common Amazon EC2 resource types using the console\. To view additional resources, use the command line interface or the API actions\.
 
@@ -54,38 +20,93 @@ You can view the most common Amazon EC2 resource types using the console\. To vi
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation pane, choose the option that corresponds to the resource, such as **AMIs** or **Instances**\.  
-![\[Amazon EC2 console navigation pane\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/EC2_navigation.png)
+1. In the navigation pane, choose the option that corresponds to the resource\. For example, to list your instances, choose **Instances**\.
 
 1. The page displays all the available resources\.
 
-## Filtering resources using the console<a name="filtering-resources"></a>
+### Filtering resources using the console<a name="console-filter"></a>
 
-You can perform filtering and sorting of the most common resource types using the Amazon EC2 console\. For example, you can use the search bar on the instances page to sort instances by tags, attributes, or keywords\. 
+Search functionality differs slightly between the *old* and *new* Amazon EC2 console\.
 
-You can also use the search field on each page to find resources with specific attributes or values\. You can use regular expressions to search on partial or multiple strings\. For example, to find all instances that are using the MySG security group, enter `MySG` in the search field\. The results will include any values that contain `MySG` as a part of the string, such as `MySG2` and` MySG3`\. To limit your results to MySG only, enter `\bMySG\b` in the search field\. To list all the instances whose type is either `m1.small` or `m1.large`, enter `m1.small|m1.large` in the search field\. 
+------
+#### [ New console ]
 
-**To list volumes in the `us-east-1b` Availability Zone with a status of `available`**
+The new console supports two types of filtering\.
++ *API filtering* happens on the server side\. The filtering is applied on the API call and it reduces the number of resources returned by the server\. It allows for quick filtering across large sets of resources, and it can reduce data transfer time and cost between the server and the browser\.
++ *Client filtering* happens on the client side\. It enables you to filter down on data that is already available in the browser \(in other words, data that has already been returned by the API\)\. Client filtering works well in conjunction with an API filter to filter down to smaller data sets in the browser\.
 
-1. In the navigation pane, choose **Volumes**\.
+The new Amazon EC2 console supports two types of searches:
 
-1. Click on the search box, select **Attachment Status** from the menu, and then select **Detached**\. \(A detached volume is available to be attached to an instance in the same Availability Zone\.\)
+**Search by keyword**  
+Searching by keyword is a free text search that lets you search for a value across all of your resources' attributes, without specifying an attribute to search\.   
+All keyword searches use *client filtering*\. 
+To search by keyword, enter or paste what you’re looking for in the search field, and then choose **Enter**\. For example, searching for `123` matches all instances that have *123* in any of their attributes, such as an IP address, instance ID, VPC ID, or AMI ID\. If your free text search returns unexpected matches, apply additional filters\.
 
-1. Click on the search box again, select **State**, and then select **Available**\. 
+**Search by attributes**  
+Searching by an attribute lets you search a specific attribute across all of your resources\.   
+Attribute searches use either *API filtering* or *client filtering*, depending on the selected attribute\. When performing an attribute search, the attributes are grouped accordingly\.
+For example, you can search the **Instance State** attribute for all of your instances to return only instances that are in the `stopped` state\. To do this:  
 
-1. Click on the search box again, select **Availability Zone**, and then select `us-east-1b`\.
+1. In the search field on the Instances screen, start entering `Instance State`\. As you enter characters, a list of matching attributes appears\.
 
-1. Any volumes that meet this criteria are displayed\.
+1. Select **Instance State **from the list\. A list of possible values for the selected attribute appears\.
 
-**To list public 64\-bit Linux AMIs backed by Amazon EBS**
+1. Select **Stopped** from the list\.
 
-1. In the navigation pane, choose **AMIs**\.
+You can use the following techniques to enhance or refine your searches\.
 
-1. In the **Filter** pane, select **Public images**, **EBS images**, and then your Linux distribution from the **Filter** lists\.
+Inverse search  
+Inverse searches let you search for resources that do **not** match a specified value\. Inverse searches are performed by prefixing the search keyword with the exclamation mark \(\!\) character\. For example, to list all instances that are **not** assigned the security group named `launch-wizard-1`, search by the **Security group name** attribute, and for the keyword, enter `!launch-wizard-1`\.  
+Inverse search is supported with keyword searches and attribute searches on client filters only\. It is not supported with attribute searches on API filters\.
 
-1. Type `x86_64` in the search field\.
+Partial search  
+With partial searches, you can search for partial string values\. To perform a partial search, enter only a part of the keyword that you want to search for\. For example, to search for all `t2.micro`, `t2.small`, and `t2.medium` instances, search by the **Instance Type** attribute, and for the keyword, enter `t2`\.  
+Partial search is supported with keyword searches and attribute searches on client filters only\. It is not supported with attribute searches on API filters\.
 
-1. Any AMIs that meet this criteria are displayed\.
+Regular expression search  
+To use regular expression searches, you must enable **Use regular expression matching** in the Preferences\.  
+Regular expressions are useful when you need to match the values in a field with a specific pattern\. For example, to search for a value that starts with `s`, search for `^s`\. To search for a value that ends with `xyz`, search for `xyz$`\. Or to search for a value that starts with a number that is followed by one or more characters, search for `[0-9]+.*`\. Regular expression searches are not case\-sensitive\.   
+Regular expression search is supported with keyword searches and attribute searches on client filters only\. It is not supported with attribute searches on API filters\.
+
+Wildcard search  
+Use the `*` wildcard to match zero or more characters\. Use the `?` wildcard to match zero or one character\. For example, if you have a data set with the following values: prod, prods, and production; "`prod*`" matches all values, whereas "`prod?`" matches only `prod` and `prods`\. To use the literals values, escape them with a backslash \(\\\)\. For example, "`prod\*`" would match prod\*\.  
+Wildcard search is supported with attribute searches on API filters only\. It is not supported with keyword searches and attribute searches on client filters only\. 
+
+Combining searches  
+In general, multiple filters with the same attribute are automatically joined with `OR`\. For example, searching for `Instance State : Running` and `Instance State : Stopped` returns all instances that are either running OR stopped\. To join search with `AND`, search across different attributes\. For example, searching for `Instance State : Running` and `Instance Type : c4.large` returns only instances that are of type `c4.large` AND that are in the stopped state\.
+
+------
+#### [ Old console ]
+
+The old Amazon EC2 console supports two types of searches:
+
+**Search by keyword**  <a name="old-keyword"></a>
+Searching by keyword is a free text search that lets you search for a value across all of your resources' attributes\. To search by keyword, enter or paste what you’re looking for in the search field, and then choose **Enter**\. For example, searching for `123` matches all instances that have *123* in any of their attributes, such as an IP address, instance ID, VPC ID, or AMI ID\. If your free text search returns unexpected matches, apply additional filters\.
+
+**Search by attributes**  <a name="old-attribute"></a>
+Searching by an attribute lets you search a specific attribute across all of your resources\. For example, you can search the **State** attribute for all of your instances to return only instances that are in the `stopped` state\. To do this:  
+
+1. In the search field on the Instances screen, start entering `Instance State`\. As you enter characters, a list of matching attributes appears\.
+
+1. Select **Instance State **from the list\. A list of possible values for the selected attribute appears\.
+
+1. Select **Stopped** from the list\.
+
+You can use the following techniques to enhance or refine your searches\.
+
+Inverse search  <a name="inverse"></a>
+Inverse searches let you search for resources that do **not** match a specified value\. Inverse searches are performed by prefixing the search keyword with the exclamation mark \(\!\) character\. For example, to list all instances that are **not** terminated, search by the **Instance State** attribute, and for the keyword, enter `!Terminated`\.
+
+Partial search  <a name="partial"></a>
+With partial searches, you can search for partial string values\. To perform a partial search, enter only a part of the keyword you want to search for\. For example, to search for all `t2.micro`, `t2.small`, and `t2.medium` instances, search by the **Instance Type** attribute, and for the keyword, enter `t2`\.
+
+Regular expression search  <a name="regular"></a>
+Regular expressions are useful when you need to match the values in a field with a specific pattern\. For example, to search for all instances that have an attribute value that starts with `s`, search for `^s`\. Or to search for all instances that have an attribute value that ends with `xyz`, search for `xyz$`\. Regular expression searches are not case\-sensitive\.
+
+Combining searches  <a name="combined"></a>
+In general, multiple filters with the same attribute are automatically joined with `OR`\. For example, searching for `Instance State : Running` and `Instance State : Stopped` returns all instances that are either running OR stopped\. To join search with `AND`, search across different attributes\. For example, searching for `Instance State : Running` and `Instance Type : c4.large` returns only instances that are of type `c4.large` AND that are in the stopped state\.
+
+------
 
 ## Listing and filtering using the CLI and API<a name="Filtering_Resources_CLI"></a>
 
@@ -105,7 +126,7 @@ To see the supported filters for each Amazon EC2 resource, see the following doc
 + Query API: The `Describe` API actions in the [Amazon EC2 API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/)\.
 
 **Example: Specify a single filter**  
-You can list your Amazon EC2 instances using [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html)\. Without filters, the response contains information for all your resources\. You can use the following command to include only the running instances in your output\.  
+You can list your Amazon EC2 instances using [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html)\. Without filters, the response contains information for all of your resources\. You can use the following command to include only the running instances in your output\.  
 
 ```
 aws ec2 describe-instances --filters Name=instance-state-name,Values=running
@@ -115,7 +136,7 @@ To list only the instance IDs for your running instances, add the `--query` para
 ```
 aws ec2 describe-instances --filters Name=instance-state-name,Values=running --query "Reservations[*].Instances[*].InstanceId" --output text
 ```
-The following is example output:  
+The following is example output\.  
 
 ```
 i-0ef1f57f78d4775a4
@@ -125,7 +146,7 @@ i-04a636d18e83cfacb
 
 **Example: Specify multiple filters or filter values**  
 If you specify multiple filters or multiple filter values, the resource must match all filters to be included in the results\.  
-You can you the following command to list all instances whose type is either `m5.large` or `m5d.large`\.  
+You can use the following command to list all instances whose type is either `m5.large` or `m5d.large`\.  
 
 ```
 aws ec2 describe-instances --filters Name=instance-type,Values=m5.large,m5d.large
@@ -137,17 +158,17 @@ aws ec2 describe-instances --filters Name=instance-state-name,Values=stopped Nam
 ```
 
 **Example: Use wildcards in a filter value**  
-If you specify database as the filter value for the `description` filter when describing EBS snapshots using [describe\-snapshots](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-snapshots.html), the command returns only the snapshots whose description is "database"\.  
+If you specify `database` as the filter value for the `description` filter when describing EBS snapshots using [describe\-snapshots](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-snapshots.html), the command returns only the snapshots whose description is "database"\.  
 
 ```
 aws ec2 describe-snapshots --filters Name=description,Values=database
 ```
-The \* wildcard matches zero or more characters\. If you specify \*database\* as the filter value, the command returns only snapshots whose description includes the word database\.  
+The \* wildcard matches zero or more characters\. If you specify `*database*` as the filter value, the command returns only snapshots whose description includes the word database\.  
 
 ```
 aws ec2 describe-snapshots --filters Name=description,Values=*database*
 ```
-The ? wildcard matches exactly 1 character\. If you specify database? as the filter value, the command returns only snapshots whose description is "database" or "database" followed by one character\.  
+The ? wildcard matches exactly 1 character\. If you specify `database?` as the filter value, the command returns only snapshots whose description is "database" or "database" followed by one character\.  
 
 ```
 aws ec2 describe-snapshots --filters Name=description,Values=database?

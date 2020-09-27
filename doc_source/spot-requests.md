@@ -48,6 +48,8 @@ You can use a duration of 1, 2, 3, 4, 5, or 6 hours\. The price that you pay dep
 
 When you define a duration in your Spot request, the duration period for each Spot Instance starts as soon as the instance receives its instance ID\. The Spot Instance runs until you terminate it or the duration period ends\. At the end of the duration period, Amazon EC2 marks the Spot Instance for termination and provides a Spot Instance termination notice, which gives the instance a two\-minute warning before it terminates\. In rare situations, Spot blocks may be interrupted due to Amazon EC2 capacity needs\. In these cases, we provide a two\-minute warning before we terminate an instance, and you are not charged for the terminated instances even if you used them\.
 
+New accounts are not eligible for Spot Instances with a defined duration\.
+
 **To launch Spot Instances with a defined duration \(console\)**  
 Follow the [Creating a Spot Fleet request](spot-fleet-requests.md#create-spot-fleet) procedure\. To launch Spot Instances with a defined duration, for **Tell us your application or task need**, choose **Defined duration workloads**\.
 

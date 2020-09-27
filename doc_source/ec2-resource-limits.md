@@ -1,10 +1,10 @@
 # Amazon EC2 service quotas<a name="ec2-resource-limits"></a>
 
-Amazon EC2 provides different *resources* that you can use\. These resources include images, instances, volumes, and snapshots\. When you create your AWS account, we set default quotas \(also referred to as limits\) on these resources on a per\-Region basis\. For example, there is a maximum number of instances that you can launch in a Region\. Therefore, when you launch an instance in the US West \(Oregon\) Region, the request must not cause your usage to exceed your the maximum number of instances in that Region\.
+Amazon EC2 provides different *resources* that you can use\. These resources include images, instances, volumes, and snapshots\. When you create your AWS account, we set default quotas \(also referred to as limits\) on these resources on a per\-Region basis\. For example, there is a maximum number of instances that you can launch in a Region\. So if you were to launch an instance in the US West \(Oregon\) Region, for example, the request must not cause your usage to exceed your maximum number of instances in that Region\.
 
 The Amazon EC2 console provides limit information for the resources managed by the Amazon EC2 and Amazon VPC consoles\. You can request an increase for many of these limits\. Use the limit information that we provide to manage your AWS infrastructure\. Plan to request any limit increases in advance of the time that you'll need them\.
 
-For more information, see [Amazon EC2 endpoints and quotas](https://docs.aws.amazon.com/general/latest/gr/ec2-service.html) in the *Amazon Web Services General Reference*\.
+For more information, see [Amazon EC2 endpoints and quotas](https://docs.aws.amazon.com/general/latest/gr/ec2-service.html) in the *Amazon Web Services General Reference*\. For information about Amazon EBS quotas, see [Amazon EBS quotas](ebs-resource-quotas.md)\.
 
 ## Viewing your current limits<a name="view-limits"></a>
 

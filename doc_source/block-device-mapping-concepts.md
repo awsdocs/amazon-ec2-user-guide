@@ -29,13 +29,19 @@ A *block device mapping* defines the block devices \(instance store volumes and 
 
 When you create a block device mapping, you specify the following information for each block device that you need to attach to the instance:
 + The device name used within Amazon EC2\. The block device driver for the instance assigns the actual volume name when mounting the volume\. The name assigned can be different from the name that Amazon EC2 recommends\. For more information, see [Device naming on Linux instances](device_naming.md)\.
-+ \[Instance store volumes\] The virtual device: `ephemeral[0-23]`\. Note that the number and size of available instance store volumes for your instance varies by instance type\.
-+ \[NVMe instance store volumes\] These volumes are automatically enumerated and assigned a device name; including them in your block device mapping has no effect\.
-+ \[EBS volumes\] The ID of the snapshot to use to create the block device \(snap\-*xxxxxxxx*\)\. This value is optional as long as you specify a volume size\.
-+ \[EBS volumes\] The size of the volume, in GiB\. The specified size must be greater than or equal to the size of the specified snapshot\.
-+ \[EBS volumes\] Whether to delete the volume on instance termination \(`true` or `false`\)\. The default value is `true` for the root device volume and `false` for attached volumes\. When you create an AMI, its block device mapping inherits this setting from the instance\. When you launch an instance, it inherits this setting from the AMI\.
-+ \[EBS volumes\] The volume type, which can be `gp2` for General Purpose SSD, `io1` or `io2` for Provisioned IOPS SSD, `st1` for Throughput Optimized HDD, `sc1` for Cold HDD, or `standard` for Magnetic\. The default value is `gp2`\.
-+ \[EBS volumes\] The number of input/output operations per second \(IOPS\) that the volume supports\. \(Not used with `gp2`, `st1`, `sc1`, or `standard` volumes\.\)
+
+For Instance store volumes, you also specify the following information:
++ The virtual device: `ephemeral[0-23]`\. Note that the number and size of available instance store volumes for your instance varies by instance type\.
+
+For NVMe instance store volumes, the following information also applies:
++ These volumes are automatically enumerated and assigned a device name; including them in your block device mapping has no effect\.
+
+For EBS volumes, you also specify the following information:
++ The ID of the snapshot to use to create the block device \(snap\-*xxxxxxxx*\)\. This value is optional as long as you specify a volume size\.
++ The size of the volume, in GiB\. The specified size must be greater than or equal to the size of the specified snapshot\.
++ Whether to delete the volume on instance termination \(`true` or `false`\)\. The default value is `true` for the root device volume and `false` for attached volumes\. When you create an AMI, its block device mapping inherits this setting from the instance\. When you launch an instance, it inherits this setting from the AMI\.
++ The volume type, which can be `gp2` for General Purpose SSD, `io1` or `io2` for Provisioned IOPS SSD, `st1` for Throughput Optimized HDD, `sc1` for Cold HDD, or `standard` for Magnetic\. The default value is `gp2`\.
++ The number of input/output operations per second \(IOPS\) that the volume supports\. \(Not used with `gp2`, `st1`, `sc1`, or `standard` volumes\.\)
 
 ### Block device mapping instance store caveats<a name="instance_store_caveats"></a>
 

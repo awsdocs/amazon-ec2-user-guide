@@ -6,7 +6,7 @@ AMIs are a regional resource\. Therefore, sharing an AMI makes it available in t
 
 There is no limit to the number of AWS accounts with which an AMI can be shared\. User\-defined tags that you attach to a shared AMI are available only to your AWS account and not to the other accounts that the AMI is shared with\.
 
-## Sharing an AMI \(console\)<a name="sharingamis-console"></a>
+## an AMI \(console\)<a name="sharingamis-console"></a>
 
 **To grant explicit launch permissions using the console**
 
@@ -28,7 +28,7 @@ You do not need to share the Amazon EBS snapshots that an AMI references in orde
 
 1. \(Optional\) To view the AWS account IDs with which you have shared the AMI, select the AMI in the list, and choose the **Permissions** tab\. To find AMIs that are shared with you, see [Finding shared AMIs](usingsharedamis-finding.md)\.
 
-## Sharing an AMI \(AWS CLI\)<a name="sharingamis-aws-cli"></a>
+## an AMI \(AWS CLI\)<a name="sharingamis-aws-cli"></a>
 
 Use the [modify\-image\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-image-attribute.html) command \(AWS CLI\) to share an AMI as shown in the following examples\.
 
