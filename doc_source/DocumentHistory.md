@@ -4,6 +4,8 @@ The following table describes important additions to the Amazon EC2 documentatio
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Spot Instance vCPU limits](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-limits.html) | Spot Instance limits are now managed in terms of the number of vCPUs that your running Spot Instances are either using or will use pending the fulfillment of open requests\. | October 1, 2020 | 
+| [Capacity Reservations in Local Zones](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/capacity-reservations-localzones.html) | Capacity Reservations can now be created and used in Local Zones\. | September 30, 2020 | 
 | [Amazon Data Lifecycle Manager](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snapshot-lifecycle.html) | Amazon Data Lifecycle Manager policies can be configured with up to four schedules\. | September 17, 2020 | 
 | [T4g instances](#DocumentHistory) | New general purpose instances powered by AWS Graviton2 processors, which are based on 64\-bit Arm Neoverse cores and custom silicon designed by AWS for optimized performance and cost\. | September 14, 2020 | 
 | [Hibernation support for M5a and R5a](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html#hibernating-prerequisites) | You can now hibernate your newly\-launched instances running on M5a and R5a instance types\. | August 28, 2020 | 

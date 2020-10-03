@@ -36,20 +36,20 @@ If you're new to Amazon EC2, see [How to get started with Amazon EC2](concepts.m
 
 There is a limit on the number of running On\-Demand Instances per AWS account per Region\. On\-Demand Instance limits are managed in terms of the *number of virtual central processing units \(vCPUs\)* that your running On\-Demand Instances are using, regardless of the instance type\.
 
-There are five On\-Demand Instance limits, listed in the following table\. Each limit specifies the vCPU limit for one or more instance families\. For information about the different instance families, generations, and sizes, see [Amazon EC2 Instance Types](http://aws.amazon.com/ec2/instance-types/)\.
+There are six On\-Demand Instance limits, listed in the following table\. Each limit specifies the vCPU limit for one or more instance families\. For information about the different instance families, generations, and sizes, see [Amazon EC2 Instance Types](http://aws.amazon.com/ec2/instance-types/)\.
 
 
 | On\-Demand Instance limit name | Default vCPU limit | 
 | --- | --- | 
-|  Running On\-Demand Standard \(A, C, D, H, I, M, R, T, and Z\) instances  |  1152 vCPUs  | 
-|  Running On\-Demand F instances  |  128 vCPUs  | 
-|  Running On\-Demand G instances  |  128 vCPUs  | 
-|  Running On\-Demand Inf instances  | 128 vCPUs | 
-|  Running On\-Demand P instances  |  128 vCPUs  | 
-|  Running On\-Demand X instances  |  128 vCPUs  | 
+|  Running On\-Demand All Standard \(A, C, D, H, I, M, R, T, Z\) instances  |  1152 vCPUs  | 
+|  Running On\-Demand All F instances  |  128 vCPUs  | 
+|  Running On\-Demand All G instances  |  128 vCPUs  | 
+|  Running On\-Demand All Inf instances  | 128 vCPUs | 
+|  Running On\-Demand All P instances  |  128 vCPUs  | 
+|  Running On\-Demand All X instances  |  128 vCPUs  | 
 
 **Note**  
-New AWS accounts may start with limits that are lower than the limits described here\.
+New AWS accounts might start with limits that are lower than the limits described here\.
 
 With vCPU limits, you can use your limit in terms of the number of vCPUs required to launch any combination of instance types that meet your changing application needs\. For example, with a Standard instance limit of 256 vCPUs, you could launch 32 `m5.2xlarge` instances \(32 x 8 vCPUs\) or 16 `c5.4xlarge` instances \(16 x 16 vCPUs\), or a combination of any Standard instance types and sizes that total 256 vCPUs\. For more information, see [EC2 On\-Demand Instance limits](http://aws.amazon.com/ec2/faqs/#EC2_On-Demand_Instance_limits)\.
 

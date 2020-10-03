@@ -22,6 +22,7 @@ There is no additional charge for using EC2 Fleet\. You pay only for the EC2 ins
 **Topics**
 + [EC2 Fleet limitations](#EC2-fleet-limitations)
 + [EC2 Fleet limits](#ec2-fleet-limits)
++ [Burstable performance instances](#ec2-fleet-burstable-spot-instances)
 + [EC2 Fleet configuration strategies](ec2-fleet-configuration-strategies.md)
 + [Managing an EC2 Fleet](manage-ec2-fleet.md)
 
@@ -51,14 +52,10 @@ If you need more than the default limits for target capacity, complete the AWS S
 
 ‡ This limit only applies to fleets of type `request` or `maintain`\. This limit does not apply to `instant` fleets\.
 
-### T3 Spot Instances<a name="ec2-fleet-t3-spot-instances"></a>
+## Burstable performance instances<a name="ec2-fleet-burstable-spot-instances"></a>
 
-If you plan to use your T3 Spot Instances immediately and for a short duration, with no idle time for accruing CPU credits, we recommend that you launch your T3 Spot Instances in [`standard`](burstable-performance-instances-standard-mode.md) mode to avoid paying higher costs\.
+If you launch your Spot Instances using a [burstable performance instance type](burstable-performance-instances.md), and if you plan to use your burstable performance Spot Instances immediately and for a short duration, with no idle time for accruing CPU credits, we recommend that you launch them in [Standard mode](burstable-performance-instances-standard-mode.md) to avoid paying higher costs\. If you launch burstable performance Spot Instances in [Unlimited mode](burstable-performance-instances-unlimited-mode.md) and burst CPU immediately, you'll spend surplus credits for bursting\. If you use the instance for a short duration, the instance doesn't have time to accrue CPU credits to pay down the surplus credits, and you are charged for the surplus credits when you terminate the instance\.
 
-If you launch your T3 Spot Instances in [`unlimited`](burstable-performance-instances-unlimited-mode.md) mode and burst CPU immediately, you'll spend surplus credits for bursting\. If you use the instance for a short duration, your instance doesn't have time to accrue CPU credits to pay down the surplus credits, and you are charged for the surplus credits when you terminate your instance\.
+Unlimited mode is suitable for burstable performance Spot Instances only if the instance runs long enough to accrue CPU credits for bursting\. Otherwise, paying for surplus credits makes burstable performance Spot Instances more expensive than using other instances\. For more information, see [When to use unlimited mode versus fixed CPU](burstable-performance-instances-unlimited-mode-concepts.md#when-to-use-unlimited-mode)\.
 
-`Unlimited` mode for T3 Spot Instances is suitable only if the instance runs for long enough to accrue CPU credits for bursting\. Otherwise, paying for surplus credits makes T3 Spot Instances more expensive than M5 or C5 instances\. For more information, see [When to use unlimited mode versus fixed CPU](burstable-performance-instances-unlimited-mode-concepts.md#when-to-use-unlimited-mode)\.
-
-### T2 Spot Instances<a name="ec2-fleet-t2-spot-instances"></a>
-
-Launch credits are meant to provide a productive initial launch experience for T2 instances by providing sufficient compute resources to configure the instance\. Repeated launches of T2 instances to access new launch credits is not permitted\. If you require sustained CPU, you can earn credits \(by idling over some period\), use [T2 Unlimited](burstable-performance-instances-unlimited-mode.md), or use an instance type with dedicated CPU \(for example, `c4.large`\)\.
+Launch credits are meant to provide a productive initial launch experience for T2 instances by providing sufficient compute resources to configure the instance\. Repeated launches of T2 instances to access new launch credits is not permitted\. If you require sustained CPU, you can earn credits \(by idling over some period\), use [Unlimited mode](burstable-performance-instances-unlimited-mode.md) for T2 Spot Instances, or use an instance type with dedicated CPU\.

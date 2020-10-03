@@ -10,6 +10,12 @@ These procedures are intended for use with Amazon Linux\. For more information a
 **Option: Complete this tutorial using automation**  
 To complete this tutorial using AWS Systems Manager Automation instead of the following tasks, run one of the following Automation documents: [AWSDocs\-HostingAWordPressBlog\-AL](https://console.aws.amazon.com/systems-manager/automation/execute/AWSDocs-HostingAWordPressBlog-AL) \(Amazon Linux\) or [AWSDocs\-HostingAWordPressBlog\-AL2](https://console.aws.amazon.com/systems-manager/automation/execute/AWSDocs-HostingAWordPressBlog-AL2) \(Amazon Linux 2\)\.
 
+**Topics**
++ [Prerequisites](#hosting-wordpress-prereqs)
++ [Install WordPress](#install-wordpress)
++ [Next steps](#wordpress-next-steps)
++ [Help\! My public DNS name changed and now my blog is broken](#wordpress-troubleshooting)
+
 ## Prerequisites<a name="hosting-wordpress-prereqs"></a>
 
 This tutorial assumes that you have launched an Amazon Linux instance with a functional web server with PHP and database \(either MySQL or MariaDB\) support by following all of the steps in [Tutorial: Install a LAMP web server with the Amazon Linux AMI](install-LAMP.md) for Amazon Linux AMI or [Tutorial: Install a LAMP web server on Amazon Linux 2](ec2-lamp-amazon-linux-2.md) for Amazon Linux 2\. This tutorial also has steps for configuring a security group to allow `HTTP` and `HTTPS` traffic, as well as several steps to ensure that file permissions are set properly for your web server\. For information about adding rules to your security group, see [Adding rules to a security group](working-with-security-groups.md#adding-security-group-rule)\.

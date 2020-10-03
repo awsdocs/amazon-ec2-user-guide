@@ -27,8 +27,6 @@ After the snapshots are created, each snapshot is treated as an individual snaps
 
 Multi\-volume, crash\-consistent snapshots are typically restored as a set\. It is helpful to identify the snapshots that are in a crash\-consistent set by tagging your set with the instance ID, name, or other relevant details\. You can also choose to automatically copy tags from the source volume to the corresponding snapshots\. This helps you to set the snapshot metadata, such as access policies, attachment information, and cost allocation, to match the source volume\. 
 
-After it's created, a multi\-volume snapshot behaves like any other snapshot\. You can perform all operations, such as restore, delete, and copy across Regions and accounts\. You can also tag your snapshots\. We recommend that you tag your multi\-volume snapshots to collectively manage them during restore, copy, or retention\.
-
 After creating your snapshots, they appear in your EC2 console created at the exact point\-in\-time\. The snapshots are collectively managed and, therefore, if any one snapshot for the volume set fails, all of the other snapshots display an error status\.
 
 ## Amazon Data Lifecycle Manager<a name="automate-snapshots"></a>

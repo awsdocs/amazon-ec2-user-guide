@@ -8,6 +8,12 @@ The Amazon Time Sync Service is available through NTP at the `169.254.169.123` I
 
 Use the following procedures to configure the Amazon Time Sync Service on your instance using the `chrony` client\. Alternatively, you can use external NTP sources\. For more information about NTP and public time sources, see [http://www\.ntp\.org/](http://www.ntp.org/)\. An instance needs access to the internet for the external NTP time sources to work\. 
 
+**Topics**
++ [Configuring the Amazon Time Sync Service on Amazon Linux AMI](#configure-amazon-time-service-amazon-linux)
++ [Configuring the Amazon Time Sync Service on Ubuntu](#configure-amazon-time-service-ubuntu)
++ [Configuring the Amazon Time Sync Service on SUSE Linux](#configure-amazon-time-service-suse)
++ [Changing the time zone on Amazon Linux](#change_time_zone)
+
 ## Configuring the Amazon Time Sync Service on Amazon Linux AMI<a name="configure-amazon-time-service-amazon-linux"></a>
 
 **Note**  
