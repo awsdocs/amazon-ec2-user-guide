@@ -15,6 +15,8 @@ For more information about setting up EC2 Instance Connect, see [Securing your b
   + Amazon Linux 2 \(any version\)
   + Ubuntu 16\.04 or later
 + If you configured the `AuthorizedKeysCommand` and `AuthorizedKeysCommandUser` settings for SSH authentication, the EC2 Instance Connect installation will not update them\. As a result, you cannot use Instance Connect\.
++ To connect using the browser\-based client, the instance must have a public IPv4 address\.
++ If the instance does not have a public IP address, then you can only connect to the instance using the EC2 Instance Connect CLI, and only from a machine with a route to the target\.
 
 **Prerequisites**
 + **Verify the general prerequisites for connecting to your instance using SSH\.**
