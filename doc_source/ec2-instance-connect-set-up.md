@@ -1,6 +1,6 @@
 # Set up EC2 Instance Connect<a name="ec2-instance-connect-set-up"></a>
 
-To use EC2 Instance Connect to connect to an instance, you need to configure every instance that will support using Instance Connect \(this is a one\-time requirement for each instance\), and you need to grant permission to every IAM user that will use Instance Connect\.
+To use EC2 Instance Connect to connect to an instance, you need to configure every instance that will support using Instance Connect \(this is a one\-time requirement for each instance\), and you need to grant permission to every IAM user/role that will use Instance Connect\.
 
 **Topics**
 + [Task 1: Configure network access to an instance](#ec2-instance-connect-setup-security-group)
@@ -180,7 +180,7 @@ $ pip install ec2instanceconnectcli
 
 ## Task 4: Configure IAM permissions for EC2 Instance Connect<a name="ec2-instance-connect-configure-IAM-role"></a>
 
-For your IAM users to connect to an instance using EC2 Instance Connect, you must grant them permission to push the public key to the instance\. You grant them the permission by creating an IAM policy and attaching the policy to the IAM users that require the permission\. For more information, see [Actions, Resources, and Condition Keys for Amazon EC2 Instance Connect](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonec2instanceconnect.html) in the *IAM User Guide*\.
+For an IAM users or IAM role to connect to an instance using EC2 Instance Connect, you must grant the IAM user or IAM role permission to push the public key to the instance\. You grant the permission by creating an IAM policy and attaching the policy to the IAM users or IAM roles that require the permission\. For more information, see [Actions, Resources, and Condition Keys for Amazon EC2 Instance Connect](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonec2instanceconnect.html) in the *IAM User Guide*\.
 
 The following instructions explain how to create the policy and attach it using the AWS CLI\. For instructions that use the AWS Management Console, see [Creating IAM Policies \(Console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html#access_policies_create-start) and [Adding Permissions by Attaching Policies Directly to the User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html#users_change_permissions-add-directly-console) in the *IAM User Guide*\.
 
@@ -254,4 +254,44 @@ The following instructions explain how to create the policy and attach it using 
 
    ```
    $ aws iam attach-user-policy --policy-arn arn:aws:iam::account-id:policy/my-policy --user-name IAM-friendly-name
+   ```
+
+**To grant an IAM role permission for EC2 Instance Connect \(AWS CLI\)**   
+
+1. Create a JSON policy document that includes the following:
+   + The `ec2-instance-connect:SendSSHPublicKey` action\. This grants an IAM role permission to push the public key to an instance\. With `ec2-instance-connect:SendSSHPublicKey`, consider restricting access to specific EC2 instances\. Otherwise, all IAM roles with this permission can connect to all EC2 instances\.
+   + The `ec2:DescribeInstances` action\. This is required when using the EC2 Instance Connect CLI because the wrapper calls this action\. IAM roles might already have permission to call this action from another policy\.
+
+   The following is an example policy document\. You can omit the statement for the `ec2:DescribeInstances` action if your roles will only use an SSH client to connect to your instances\. You can replace the specified instances in `Resource` with the wildcard `*` to grant users access to all EC2 instances using EC2 Instance Connect\.
+
+   ```
+   {
+       "Version": "2012-10-17",
+       "Statement": [
+         {
+           "Effect": "Allow",
+           "Action": "ec2-instance-connect:SendSSHPublicKey",
+           "Resource": [
+               "arn:aws:ec2:region:account-id:instance/i-1234567890abcdef0",
+               "arn:aws:ec2:region:account-id:instance/i-0598c7d356eba48d7"
+           ]
+         },
+         {
+           "Effect": "Allow",
+           "Action": "ec2:DescribeInstances",
+           "Resource": "*"
+         }
+       ]
+   }
+   ```
+1. Use the [create\-policy](https://docs.aws.amazon.com/cli/latest/reference/iam/create-policy.html) command to create a new managed policy, and specify the JSON document that you created to use as the content for the new policy\.
+
+   ```
+   $ aws iam create-policy --policy-name my-policy --policy-document file://JSON-file-name
+   ```
+
+1. Use the [attach\-role\-policy](https://docs.aws.amazon.com/cli/latest/reference/iam/attach-role-policy.html) command to attach the managed policy to the specified IAM role\. For the `--role-name` parameter, specify the friendly name \(not the ARN\) of the IAM role\.
+
+   ```
+   $ aws iam attach-role-policy --policy-arn arn:aws:iam::account-id:policy/my-policy --role-name IAM-friendly-name
    ```
