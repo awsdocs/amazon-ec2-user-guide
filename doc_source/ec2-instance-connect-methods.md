@@ -3,16 +3,19 @@
 The following instructions explain how to connect to your Linux instance using EC2 Instance Connect\.
 
 **Topics**
-+ [Connect using the browser\-based client](#ec2-instance-connect-connecting-console)
-+ [Connect using the EC2 Instance Connect CLI](#ec2-instance-connect-connecting-ec2-cli)
-+ [Connect using your own key and SSH client](#ec2-instance-connect-connecting-aws-cli)
+- [Connect using EC2 Instance Connect<a name="ec2-instance-connect-methods"></a>](#connect-using-ec2-instance-connect)
+  - [Connect using the browser\-based client<a name="ec2-instance-connect-connecting-console"></a>](#connect-using-the-browser-based-client)
+  - [Connect using the EC2 Instance Connect CLI<a name="ec2-instance-connect-connecting-ec2-cli"></a>](#connect-using-the-ec2-instance-connect-cli)
+      - [[ Amazon Linux 2 ]](#-amazon-linux-2-)
+      - [[ Ubuntu ]](#-ubuntu-)
+  - [Connect using your own key and SSH client<a name="ec2-instance-connect-connecting-aws-cli"></a>](#connect-using-your-own-key-and-ssh-client)
 
 **Limitations**
 + The following Linux distributions are supported:
   + Amazon Linux 2 \(any version\)
   + Ubuntu 16\.04 or later
 + To connect using the browser\-based client, the instance must have a public IPv4 address\.
-+ If the instance does not have a public IP address, then you can only connect to the instance using the EC2 Instance Connect CLI, and only from a machine within the same VPC\.
++ If the instance does not have a public IP address, then you can only connect to the instance using the EC2 Instance Connect CLI, and only from a machine that has a network route to the target machine.\.
 + EC2 Instance Connect does not support connecting using an IPv6 address\.
 + The Safari browser is currently not supported\.
 
