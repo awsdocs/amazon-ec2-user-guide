@@ -234,19 +234,13 @@ Use the following command to install the PHP graphics drawing library on Amazon 
 To verify the installed version, use the following command:
 
 ```
-[ec2-user ~]$ sudo yum list installed | grep php
+[ec2-user ~]$ sudo yum list installed | grep php-gd
 ```
 
 The following is example output:
 
 ```
-php-cli.x86_64                    7.2.30-1.amzn2             @amzn2extra-php7.2
-php-common.x86_64                 7.2.30-1.amzn2             @amzn2extra-php7.2
-php-fpm.x86_64                    7.2.30-1.amzn2             @amzn2extra-php7.2
 php-gd.x86_64                     7.2.30-1.amzn2             @amzn2extra-php7.2
-php-json.x86_64                   7.2.30-1.amzn2             @amzn2extra-php7.2
-php-mysqlnd.x86_64                7.2.30-1.amzn2             @amzn2extra-php7.2
-php-pdo.x86_64                    7.2.30-1.amzn2             @amzn2extra-php7.2
 ```
 
 **To install the PHP graphics drawing library on the Amazon Linux AMI**  
@@ -255,7 +249,7 @@ The GD library for PHP enables you to modify images\. Install this library if yo
 To verify which versions are available, use the following command:
 
 ```
-[ec2-user ~]$ yum list | grep php
+[ec2-user ~]$ yum list | grep php-gd
 ```
 
 The following is an example line from the output for the PHP graphics drawing library \(version 7\.2\):

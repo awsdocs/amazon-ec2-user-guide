@@ -75,7 +75,7 @@ The following table describes the Amazon EC2 resources that can be tagged, and t
 |  Local gateway route table  |  Yes  |  No  | 
 |  Local gateway virtual interface  |  Yes  |  No  | 
 |  Local gateway virtual interface group  |  Yes  |  No  | 
-|  Local gateway route table VPC association  |  Yes  |  No  | 
+|  Local gateway route table VPC association  |  Yes  |  Yes  | 
 |  Local gateway route table virtual interface group association  |  Yes  |  No  | 
 |  NAT gateway  |  Yes  | Yes | 
 |  Network ACL  |  Yes  | Yes | 
@@ -161,9 +161,9 @@ For ease of use and best results, use Tag Editor in the AWS Management Console, 
 You can display tags in two different ways in the Amazon EC2 console\. You can display the tags for an individual resource or for all resources\.
 
 **Displaying tags for individual resources**  
-When you select a resource\-specific page in the Amazon EC2 console, it displays a list of those resources\. For example, if you select **Instances** from the navigation pane, the console displays a list of Amazon EC2 instances\. When you select a resource from one of these lists \(for example, an instance\), if the resource supports tags, you can view and manage its tags\. On most resource pages, you can view the tags in the **Tags** tab on the details pane\.
+When you select a resource\-specific page in the Amazon EC2 console, it displays a list of those resources\. For example, if you select **Instances** from the navigation pane, the console displays your Amazon EC2 instances\. When you select a resource from one of these lists \(for example, an instance\), if the resource supports tags, you can view and manage its tags\. On most resource pages, you can view the tags by selecting the **Tags** tab\.
 
-You can add a column to the resource list that displays all values for tags with the same key\. This column enables you to sort and filter the resource list by the tag\. There are two ways to add a new column to the resource list to display your tags\.
+You can add a column to the resource list that displays all values for tags with the same key\. This column enables you to sort and filter the resource list by the tag\. There are two ways to add a new column to the resource list to display your tags:
 + On the **Tags** tab, select **Show Column**\. A new column is added to the console\.
 + Choose the **Show/Hide Columns** gear\-shaped icon, and in the **Show/Hide Columns** dialog box, select the tag key under **Your Tag Keys**\.
 
@@ -184,9 +184,9 @@ You can manage tags for an individual resource directly from the resource's page
 
 1. In the navigation pane, select a resource type \(for example, **Instances**\)\.
 
-1. Select the resource from the resource list and choose **Tags**, **Add/Edit Tags**\.
+1. Select the resource from the resource list and choose the **Tags** tab\.
 
-1. In the **Add/Edit Tags** dialog box, specify the key and value for each tag, and then choose **Save**\.
+1. Choose **Manage tags**, **Add tag**\. Enter the key and value for the tag\. When you are finished adding tags, choose **Save**\.
 
 **To delete a tag from an individual resource**
 
@@ -196,9 +196,9 @@ You can manage tags for an individual resource directly from the resource's page
 
 1. In the navigation pane, choose a resource type \(for example, **Instances**\)\.
 
-1. Select the resource from the resource list and choose **Tags**\.
+1. Select the resource from the resource list and choose the **Tags** tab\.
 
-1. Choose **Add/Edit Tags**, select the **Delete** icon for the tag, and choose **Save**\.
+1. Choose **Manage tags**\. For each tag, choose **Remove**\. When you are finished removing tags, choose **Save**\.
 
 ### Adding and deleting tags to a group of resources<a name="adding-or-deleting-tags-group"></a>
 
@@ -212,11 +212,11 @@ You can manage tags for an individual resource directly from the resource's page
 
 1. At the top of the content pane, choose **Manage Tags**\.
 
-1. For **Filter**, select the type of resource \(for example, instances\) to which to add tags\.
+1. For **Filter**, select the type of resource \(for example, instances\)\.
 
-1. In the resources list, select the check box next to each resource to which to add tags\.
+1. In the resources list, select the check box next to each resource\.
 
-1. Under **Add Tag**, for **Key** and **Value**, type the tag key and values, and then choose **Add Tag**\.
+1. Under **Add Tag**, enter the tag key and value and choose **Add Tag**\.
 **Note**  
 If you add a new tag with the same tag key as an existing tag, the new tag overwrites the existing tag\.
 
@@ -230,11 +230,11 @@ If you add a new tag with the same tag key as an existing tag, the new tag overw
 
 1. To view the tags in use, select the **Show/Hide Columns** gear\-shaped icon, and in the **Show/Hide Columns** dialog box, select the tag keys to view and choose **Close**\.
 
-1. For **Filter**, select the type of resource \(for example, instances\) from which to remove tags\.
+1. For **Filter**, select the type of resource \(for example, instances\)\.
 
-1. In the resource list, select the check box next to each resource from which to remove tags\.
+1. In the resource list, select the check box next to each resource\.
 
-1. Under **Remove Tag**, for **Key**, type the tag's name and choose **Remove Tag**\.
+1. Under **Remove Tag**, enter the tag key and choose **Remove Tag**\.
 
 ### Adding a tag when you launch an instance<a name="instance-details-tags"></a>
 
@@ -262,18 +262,16 @@ You can filter your list of resources based on one or more tag keys and tag valu
 
 **To filter a list of resources by tag**
 
-1. Display a column for the tag as follows:
+1. In the navigation pane, select a resource type \(for example, **Instances**\)\.
 
-   1. Select a resource\.
+1. Choose the search field\.
 
-   1. In the details pane, choose **Tags**\.
+1. Choose the tag key from in the list\.
 
-   1. Locate the tag in the list and choose **Show Column**\.
+1. Choose the corresponding tag value from the list\.
 
-1. Choose the filter icon in the top right corner of the column for the tag to display the filter list\. 
+1. When you are finished, remove the filter\.
 
-1. Select the tag values, and then choose **Apply Filter** to filter the results list\.
-**Note**  
 For more information about filters, see [Listing and filtering your resources](Using_Filtering.md)\.
 
 ## Working with tags using the command line<a name="Using_Tags_CLI"></a>

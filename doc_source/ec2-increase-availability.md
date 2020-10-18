@@ -17,19 +17,19 @@ In this tutorial, we use Amazon EC2 Auto Scaling with Elastic Load Balancing to 
 
 This tutorial assumes that you have already done the following:
 
-1. Created a virtual private cloud \(VPC\) with one public subnet in two or more Availability Zones\.
+1. Create a virtual private cloud \(VPC\) with one public subnet in two or more Availability Zones\.
 
-1. Launched an instance in the VPC\.
+1. Launch an instance in the VPC\.
 
-1. Connected to the instance and customized it\. For example, installing software and applications, copying data, and attaching additional EBS volumes\. For information about setting up a web server on your instance, see [Tutorial: Install a LAMP web server with the Amazon Linux AMI](install-LAMP.md)\.
+1. Connect to the instance and customized it\. For example, installing software and applications, copying data, and attaching additional EBS volumes\. For information about setting up a web server on your instance, see [Tutorial: Install a LAMP web server with the Amazon Linux AMI](install-LAMP.md)\.
 
-1. Tested your application on your instance to ensure that your instance is configured correctly\.
+1. Test your application on your instance to ensure that your instance is configured correctly\.
 
-1. Created a custom Amazon Machine Image \(AMI\) from your instance\. For more information, see [Creating an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md) or [Creating an instance store\-backed Linux AMI](creating-an-ami-instance-store.md)\.
+1. Create a custom Amazon Machine Image \(AMI\) from your instance\. For more information, see [Creating an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md) or [Creating an instance store\-backed Linux AMI](creating-an-ami-instance-store.md)\.
 
-1. \(Optional\) Terminated the instance if you no longer need it\.
+1. \(Optional\) Terminate the instance if you no longer need it\.
 
-1. Created an IAM role that grants your application the access to AWS it needs\. For more information, see [To create an IAM role using the IAM console](iam-roles-for-amazon-ec2.md#create-iam-role-console)\.
+1. Create an IAM role that grants your application the access to AWS it needs\. For more information, see [To create an IAM role using the IAM console](iam-roles-for-amazon-ec2.md#create-iam-role-console)\.
 
 ## Scale and load balance your application<a name="scale-and-load-balance"></a>
 
@@ -47,7 +47,7 @@ Use the following procedure to create a load balancer, create a launch configura
 
 1. On the **Configure Load Balancer** page, do the following:
 
-   1. For **Name**, type a name for your load balancer\. For example, **my\-lb**\.
+   1. For **Name**, enter a name for your load balancer\. For example, **my\-lb**\.
 
    1. For **Scheme**, keep the default value, **internet\-facing**\.
 
@@ -71,7 +71,7 @@ Use the following procedure to create a load balancer, create a launch configura
 
    1. For **Target group**, keep the default, **New target group**\.
 
-   1. For **Name**, type a name for the target group\.
+   1. For **Name**, enter a name for the target group\.
 
    1. Keep **Protocol** as HTTP, **Port** as 80, and **Target type** as instance\.
 
@@ -87,47 +87,53 @@ Use the following procedure to create a load balancer, create a launch configura
    + If you are new to Amazon EC2 Auto Scaling, you see a welcome page\. Choose **Create Auto Scaling group** to start the Create Auto Scaling Group wizard, and then choose **Create launch configuration**\.
    + Otherwise, choose **Create launch configuration**\.
 
-1. On the **Choose AMI** page, select the **My AMIs** tab, and then select the AMI that you created in [Prerequisites](#scale-and-load-balance-prerequisites)\.
+1. For **Launch configuration name**, enter a name for your launch configuration \(for example, **my\-launch\-config**\)\.
 
-1. On the **Choose Instance Type** page, select an instance type, and then choose **Next: Configure details**\.
+1. For **Amazon machine image \(AMI\)**, under **My AMIs**, choose the AMI that you created in [Prerequisites](#scale-and-load-balance-prerequisites)\.
 
-1. On the **Configure details** page, do the following:
+1. For **Instance type**, use **Choose instance type** to select an instance type\.
 
-   1. For **Name**, type a name for your launch configuration \(for example, **my\-launch\-config**\)\.
+1. \(Optional\) For **Additional configuration**, do the following as needed:
 
-   1. For **IAM role**, select the IAM role that you created in [Prerequisites](#scale-and-load-balance-prerequisites)\.
+   1. Choose **Request Spot Instances**\. Otherwise, the instances are On\-Demand instances\.
 
-   1. \(Optional\) If you need to run a startup script, expand **Advanced Details** and type the script in **User data**\.
+   1. For **IAM instance profile**, select the IAM role that you created in [Prerequisites](#scale-and-load-balance-prerequisites)\.
 
-   1. Choose **Skip to review**\.
+   1. Choose **Enable EC2 instance detailed monitoring within CloudWatch**\. Otherwise, basic monitoring is enabled\.
 
-1. On the **Review** page, choose **Edit security groups**\. You can select an existing security group or create a new one\. This security group must allow HTTP traffic and health checks from the load balancer\. If your instances will have public IP addresses, you can optionally allow SSH traffic if you need to connect to the instances\. When you are finished, choose **Review**\.
+   1. To configure instance metadata, expand **Advanced details**, enable or disable instance metadata, and configure the version and hop limit as needed\.
 
-1. On the **Review** page, choose **Create launch configuration**\.
+   1. To run a startup script, expand **Advanced details** and enter the script in **User data**\.
 
-1. When prompted, select an existing key pair, create a new key pair, or proceed without a key pair\. Select the acknowledgment check box, and then choose **Create launch configuration**\.
+   1. To assign public IP addresses to your instances, expand **Advanced details** and set **IP address type** as needed\.
+
+1. For **Storage \(volumes\)**, you add volumes as needed\. You can create empty EBS volumes or create EBS volumes from EBS snapshots\.
+
+1. For **Security groups**, you can select an existing security group or create a new one\. This security group must allow HTTP traffic and health checks from the load balancer\. If you assigned public IP addresses to your instances, you can optionally allow SSH traffic so you can connect to them\.
+
+1. For **Key pair \(login\)**, choose an existing key pair, create a new key pair, or proceed without a key pair\. Select the acknowledgment check box\.
+
+1. Choose **Create launch configuration**\.
 
 1. After the launch configuration is created, you must create an Auto Scaling group\.
    + If you are new to Amazon EC2 Auto Scaling and you are using the Create Auto Scaling group wizard, you are taken to the next step automatically\.
-   + Otherwise, choose **Create an Auto Scaling group using this launch configuration**\.
+   + Otherwise, select the Auto Scaling group and choose **Actions**, **Create an Auto Scaling group**\.
 
-1. On the **Configure Auto Scaling group details** page, do the following:
+1. On the **Choose launch template or configuration** page, enter a name for the Auto Scaling group\. For example, **my\-asg**\. Choose **Next**\.
 
-   1. For **Group name**, type a name for the Auto Scaling group\. For example, **my\-asg**\.
+1. On the **Configure settings** page, choose your VPC and your two public subnets\. Choose **Next**\.
 
-   1. For **Group size**, type the number of instances \(for example, **2**\)\. Note that we recommend that you maintain approximately the same number of instances in each Availability Zone\.
+1. On the **Configure advanced options** page, select **Enable load balancing** and choose your target group\. Select the **ELB** health check type and choose **Next**\.
 
-   1. Select your VPC from **Network** and your two public subnets from **Subnet**\.
+1. For **Group size**, type the number of instances \(for example, **2**\)\. Note that we recommend that you maintain approximately the same number of instances in each Availability Zone\.
 
-   1. Under **Advanced Details**, select **Receive traffic from one or more load balancers**\. Select your target group from **Target Groups**\.
+1. On the **Configure group size and scaling policies** page, you can configure the size of the group or configure the group to scale dynamically based on demand\. Choose **Next**\.
 
-   1. Choose **Next: Configure scaling policies**\.
+1. \(Optional\) Choose **Add notifications ** to configure SNS notifications for scaling activities\. Choose **Next**\.
 
-1. On the **Configure scaling policies** page, choose **Review**, as we will let Amazon EC2 Auto Scaling maintain the group at the specified size\. Note that later on, you can manually scale this Auto Scaling group, configure the group to scale on a schedule, or configure the group to scale based on demand\.
+1. \(Optional\) Choose **Add tag ** to add tags\. Choose **Next**\.
 
-1. On the **Review** page, choose **Create Auto Scaling group**\.
-
-1. After the group is created, choose **Close**\.
+1. On the **Review** page, edit the details as needed, and then choose **Create Auto Scaling group**\.
 
 ## Test your load balancer<a name="test-load-balancer"></a>
 
@@ -135,9 +141,9 @@ When a client sends a request to your load balancer, the load balancer routes th
 
 **To test your load balancer**
 
-1. Verify that your instances are ready\. From the **Auto Scaling Groups** page, select your Auto Scaling group, and then choose the **Instances** tab\. Initially, your instances are in the `Pending` state\. When their states are `InService`, they are ready for use\.
+1. Verify that your instances are ready\. From the **Auto Scaling Groups** page, select your Auto Scaling group, and then choose the **Instance management** tab\. Initially, your instances are in the `Pending` state\. When **Lifecycle** is `InService`, your instances are ready for use\.
 
-1. Verify that your instances are registered with the load balancer\. From the **Target Groups** page, select your target group, and then choose the **Targets** tab\. If the state of your instances is `initial`, it's possible that they are still registering\. When the state of your instances is `healthy`, they are ready for use\. After your instances are ready, you can test your load balancer as follows\.
+1. Verify that your instances are registered with the load balancer\. From the **Target Groups** page, choose the name of the target group to open its details page, and then choose **Targets**\. If the state of your instances is `initial`, it's possible that they are still registering\. When the state of your instances is `healthy`, they are ready for use\. After your instances are ready, you can go to the next step\.
 
 1. From the **Load Balancers** page, select your load balancer\.
 

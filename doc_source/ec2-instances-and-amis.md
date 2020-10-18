@@ -14,7 +14,7 @@ You can launch different types of instances from a single AMI\. An *instance typ
 
 After you launch an instance, it looks like a traditional host, and you can interact with it as you would any computer\. You have complete control of your instances; you can use sudo to run commands that require root privileges\.
 
-Your AWS account has a limit on the number of instances that you can have running\. For more information about this limit, and how to request an increase, see [How many instances can I run in Amazon EC2](https://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2) in the Amazon EC2 General FAQ\. 
+Your AWS account has a limit on the number of instances that you can have running\. For more information about this limit, and how to request an increase, see [How many instances can I run in Amazon EC2](http://aws.amazon.com/ec2/faqs/#how-many-instances-ec2) in the Amazon EC2 General FAQ\. 
 
 ### Storage for your instance<a name="storage-options"></a>
 

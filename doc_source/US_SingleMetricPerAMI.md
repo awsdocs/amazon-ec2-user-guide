@@ -2,7 +2,7 @@
 
 You can aggregate statistics for your instances that have detailed monitoring enabled\. Instances that use basic monitoring are not included\. Note that Amazon CloudWatch cannot aggregate data across regions\. Metrics are completely separate between regions\.
 
-Before you can get statistics aggregated across instances, you must enable detailed monitoring \(at an additional charge\), which provides data in 1\-minute periods\. For more information, see [Enable or disable detailed monitoring for your instances](using-cloudwatch-new.md)\.
+Before you can get statistics aggregated across instances, you must enable detailed monitoring \(at an additional charge\), which provides data in 1\-minute periods\. For more information, see [Enable or turn off detailed monitoring for your instances](using-cloudwatch-new.md)\.
 
 This example shows you how to determine average CPU utilization for all instances that use a specific Amazon Machine Image \(AMI\)\. The average is over 60\-second time intervals for a one\-day period\.
 

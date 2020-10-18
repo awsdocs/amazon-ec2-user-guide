@@ -30,7 +30,7 @@ Each VPC has a related instance tenancy attribute\. This attribute has the follo
 |  `default`  |  An instance launched into the VPC runs on shared hardware by default, unless you explicitly specify a different tenancy during instance launch\.  | 
 |  `dedicated`  |  An instance launched into the VPC is a Dedicated Instance by default, unless you explicitly specify a tenancy of `host` during instance launch\. You cannot specify a tenancy of `default` during instance launch\.  | 
 
-You can change the instance tenancy of a VPC from `dedicated` to `default` after you create it\. You cannot change the instance tenancy of a VPC to `dedicated`\.
+You can change the instance tenancy of a VPC from `dedicated` to `default` after you create it\. You cannot change the instance tenancy of a VPC from `default` to `dedicated` after it is created\.
 
 To create Dedicated Instances, you can do the following:
 + Create the VPC with the instance tenancy set to `dedicated` \(all instances launched into this VPC are Dedicated Instances\)\.
@@ -207,7 +207,7 @@ Depending on your instance type and platform, you can change the tenancy of a st
 
 You can change the instance tenancy attribute of a VPC from `dedicated` to `default`\. Modifying the instance tenancy of the VPC does not affect the tenancy of any existing instances in the VPC\. The next time you launch an instance in the VPC, it has a tenancy of `default`, unless you specify otherwise during launch\.
 
-You cannot change the instance tenancy attribute of a VPC to `dedicated`\.
+You cannot change the tenancy attribute of a VPC from `default` to `dedicated` after it is created\.
 
 You can modify the instance tenancy attribute of a VPC using the AWS CLI, an AWS SDK, or the Amazon EC2 API only\.
 

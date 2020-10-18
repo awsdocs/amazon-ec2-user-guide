@@ -123,9 +123,13 @@ An AMI is a template for launching your Amazon EC2 instance\. You can create you
 
 #### Identify EC2\-Classic instances<a name="vpc-migrate-id-instances"></a>
 
-If you have instances running in both EC2\-Classic and a VPC, you can identify your EC2\-Classic instances\. In the Amazon EC2 console, choose **Instances** in the navigation pane\. In the **VPC ID** column, the value for each EC2\-Classic instance is blank or a `-` symbol\.
+If you have instances running in both EC2\-Classic and a VPC, you can identify your EC2\-Classic instances\.
 
-Alternatively, use the following `describe-instances` AWS CLI command, and use the `--query` parameter to display only instances where the value for `VpcId` is `null`\.
+**Amazon EC2 console**  
+Choose **Instances** in the navigation pane\. In the **VPC ID** column, the value for each EC2\-Classic instance is blank or a `-` symbol\. If the **VPC ID** column is not present, choose the gear icon and make the column visible\.
+
+**AWS CLI**  
+Use the following [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) AWS CLI command\. The `--query` parameter displays only instances where the value for `VpcId` is `null`\.
 
 ```
 aws ec2 describe-instances --query 'Reservations[*].Instances[?VpcId==`null`]'
@@ -231,27 +235,31 @@ After you've configured your new VPC instances and made the functionality of you
 
 1. In the navigation pane, choose **Your VPCs**\.
 
-1. Select your VPC, and then choose **Actions**, **Enable ClassicLink**\.
+1. Select a VPC\.
 
-1. Choose **Yes, Enable**\.
+1. Choose **Actions**, **Enable ClassicLink**\.
+
+1. When prompted for confirmation, choose **Enable ClassicLink**\.
 
 ### Step 3: Link your EC2\-Classic instances to your VPC<a name="classiclink-migrate-attach-instance"></a>
 
-After you've enabled ClassicLink in your VPC, you can link your EC2\-Classic instances to the VPC\.
+After you've enabled ClassicLink in your VPC, you can link your EC2\-Classic instances to the VPC\. The instance must be in the `running` state\.
 
 **To link an instance to a VPC**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation pane, choose **Instances**\. 
+1. In the navigation pane, choose **Instances**\.
 
-1. Select your EC2\-Classic instance, then choose **Actions**, **ClassicLink**, **Link to VPC**\.
-**Note**  
-Verify that your instance is in the `running` state\.
+1. Select one or more running EC2\-Classic instances\.
 
-1. Select your ClassicLink\-enabled VPC \(only VPCs that are enabled for ClassicLink are displayed\)\.
+1. Choose **Actions**, **ClassicLink**, **Link to VPC**\.
 
-1. Select one or more of the VPC security groups to associate with your instance\. When you are done, choose **Link to VPC**\.
+1. Choose a VPC\. The console displays only VPCs that are enabled for ClassicLink\.
+
+1. Select one or more security groups to associate with your instances\. The console displays security groups only for VPCs enabled for ClassicLink\.
+
+1. Choose **Link**\.
 
 ### Step 4: Complete the VPC migration<a name="classiclink-migrate-terminate-instances"></a>
 

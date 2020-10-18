@@ -8,7 +8,8 @@ Amazon EC2 and Amazon VPC support both the IPv4 and IPv6 addressing protocols\. 
 + [Elastic IP addresses \(IPv4\)](#ip-addressing-eips)
 + [Amazon DNS server](#amazon-dns-server)
 + [IPv6 addresses](#ipv6-addressing)
-+ [Working with IP addresses for your instance](#working-with-ip-addresses)
++ [Working with the IPv4 addresses for your instances](#working-with-ip-addresses)
++ [Working with the IPv6 addresses for your instances](#working-with-ipv6-addresses)
 + [Multiple IP addresses](MultipleIP.md)
 
 ## Private IPv4 addresses and internal DNS hostnames<a name="concepts-private-addresses"></a>
@@ -82,54 +83,77 @@ An IPv6 address persists when you stop and start, or hibernate and start, your i
 
 You can assign additional IPv6 addresses to your instance by assigning them to a network interface attached to your instance\. The number of IPv6 addresses you can assign to a network interface and the number of network interfaces you can attach to an instance varies per instance type\. For more information, see [IP addresses per network interface per instance type](using-eni.md#AvailableIpPerENI)\.
 
-## Working with IP addresses for your instance<a name="working-with-ip-addresses"></a>
+## Working with the IPv4 addresses for your instances<a name="working-with-ip-addresses"></a>
 
-You can view the IP addresses assigned to your instance, assign a public IPv4 address to your instance during launch, or assign an IPv6 address to your instance during launch\.
+You can assign a public IPv4 address to your instance when you launch it\. You can view the IPv4 addresses for your in the console through either the **Instances** page or the **Network Interfaces** page\.
 
 **Topics**
-+ [Determining your public, private, and Elastic IP addresses](#using-instance-addressing-common)
-+ [Determining your IPv6 addresses](#view-ipv6-addresses)
++ [Viewing the IPv4 addresses](#using-instance-addressing-common)
 + [Assigning a public IPv4 address during instance launch](#public-ip-addresses)
-+ [Assigning an IPv6 address to an instance](#assign-ipv6-address)
-+ [Unassigning an IPv6 address from an instance](#unassign-ipv6-address)
 
-### Determining your public, private, and Elastic IP addresses<a name="using-instance-addressing-common"></a>
+### Viewing the IPv4 addresses<a name="using-instance-addressing-common"></a>
 
-You can use the Amazon EC2 console to determine the private IPv4 addresses, public IPv4 addresses, and Elastic IP addresses of your instances\. You can also determine the public IPv4 and private IPv4 addresses of your instance from within your instance by using instance metadata\. For more information, see [Instance metadata and user data](ec2-instance-metadata.md)\.
+You can use the Amazon EC2 console to view the private IPv4 addresses, public IPv4 addresses, and Elastic IP addresses of your instances\. You can also determine the public IPv4 and private IPv4 addresses of your instance from within your instance by using instance metadata\. For more information, see [Instance metadata and user data](ec2-instance-metadata.md)\.
 
-**To determine your instance's private IPv4 addresses using the console**
+The public IPv4 address is displayed as a property of the network interface in the console, but it's mapped to the primary private IPv4 address through NAT\. Therefore, if you inspect the properties of your network interface on your instance, for example, through `ifconfig` \(Linux\) or `ipconfig` \(Windows\), the public IPv4 address is not displayed\. To determine your instance's public IPv4 address from an instance, use instance metadata\.
 
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+------
+#### [ New console ]
 
-1. In the navigation pane, choose **Instances**\.
-
-1. Select your instance\. In the details pane, get the private IPv4 address from the **Private IPs** field, and get the internal DNS hostname from the **Private DNS** field\.
-
-1. If you have one or more secondary private IPv4 addresses assigned to network interfaces that are attached to your instance, get those IP addresses from the **Secondary private IPs** field\. 
-
-1. Alternatively, in the navigation pane, choose **Network Interfaces**, and then select the network interface that's associated with your instance\. 
-
-1. Get the primary private IP address from the **Primary private IPv4 IP** field, and the internal DNS hostname from the **Private DNS \(IPv4\)** field\. 
-
-1. If you've assigned secondary private IP addresses to the network interface, get those IP addresses from the **Secondary private IPv4 IPs** field\.
-
-**To determine your instance's public IPv4 addresses using the console**
+**To view the IPv4 addresses for an instance using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation pane, choose **Instances**\. 
+1. In the navigation pane, choose **Instances** and select your instance\.
 
-1. Select your instance\. In the details pane, get the public IP address from the **IPv4 Public IP** field, and get the external DNS hostname from the **Public DNS \(IPv4\)** field\.
+1. The following information is available on the **Networking** tab:
+   + **Public IPv4 address** — The public IPv4 address\. If you associated an Elastic IP address with the instance or the primary network interface, this is the Elastic IP address\.
+   + **Public IPv4 DNS** — The external DNS hostname\.
+   + **Private IPv4 addresses** — The private IPv4 address\.
+   + **Private IPv4 DNS** — The internal DNS hostname\.
+   + **Secondary private IPv4 addresses** — Any secondary private IPv4 addresses\.
+   + **Elastic IP addresses** — Any associated Elastic IP addresses\.
 
-1. If one or more Elastic IP addresses have been associated with the instance, get the Elastic IP addresses from the **Elastic IPs** field\. 
-**Note**  
-If your instance does not have a public IPv4 address, but you've associated an Elastic IP address with a network interface for the instance, the **IPv4 Public IP** field displays the Elastic IP address\.
+1. Alternatively, under **Network interfaces** on the **Networking** tab, choose the interface ID for the primary network interface \(for example, eni\-123abc456def78901\)\. The following information is available:
+   + **Private DNS \(IPv4\)** — The internal DNS hostname\.
+   + **Primary private IPv4 IP** — The primary private IPv4 address\.
+   + **Secondary private IPv4 IPs** — Any secondary private IPv4 addresses\.
+   + **Public DNS** — The external DNS hostname\.
+   + **IPv4 Public IP** — The public IPv4 address\. If you associated an Elastic IP address with the instance or the primary network interface, this is the Elastic IP address\.
+   + **Elastic IPs** — Any associated Elastic IP addresses\.
 
-1. Alternatively, in the navigation pane, choose **Network Interfaces**, and then select a network interface that's associated with your instance\. 
+------
+#### [ Old console ]
 
-1. Get the public IP address from the **IPv4 Public IP** field\. An asterisk \(\*\) indicates the public IPv4 address or Elastic IP address that's mapped to the primary private IPv4 address\. 
-**Note**  
-The public IPv4 address is displayed as a property of the network interface in the console, but it's mapped to the primary private IPv4 address through NAT\. Therefore, if you inspect the properties of your network interface on your instance, for example, through `ifconfig` \(Linux\) or `ipconfig` \(Windows\), the public IPv4 address is not displayed\. To determine your instance's public IPv4 address from within the instance, you can use instance metadata\. 
+**To view the IPv4 addresses for an instance using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances** and select your instance\.
+
+1. The following information is available on the **Description** tab:
+   + **Private DNS** — The internal DNS hostname\.
+   + **Private IPs** — The private IPv4 address\.
+   + **Secondary private IPs** — Any secondary private IPv4 addresses\.
+   + **Public DNS** — The external DNS hostname\.
+   + **IPv4 Public IP** — The public IPv4 address\. If you associated an Elastic IP address with the instance or the primary network interface, this is the Elastic IP address\.
+   + **Elastic IPs** — Any associated Elastic IP addresses\.
+
+1. Alternatively, you can view the IPv4 addresses for the instance using the primary network interface\. Under **Network interfaces** on the **Description** tab, choose **eth0**, and then choose the interface ID \(for example, eni\-123abc456def78901\)\. The following information is available:
+   + **Private DNS \(IPv4\)** — The internal DNS hostname\.
+   + **Primary private IPv4 IP** — The primary private IPv4 address\.
+   + **Secondary private IPv4 IPs** — Any secondary private IPv4 addresses\.
+   + **Public DNS** — The external DNS hostname\.
+   + **IPv4 Public IP** — The public IPv4 address\. If you associated an Elastic IP address with the instance or the primary network interface, this is the Elastic IP address\.
+   + **Elastic IPs** — Any associated Elastic IP addresses\.
+
+------
+
+**To view the IPv4 addresses for an instance using the command line**
+
+You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
++ [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) \(AWS CLI\)
++ [Get\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html) \(AWS Tools for Windows PowerShell\)\.
 
 **To determine your instance's IPv4 addresses using instance metadata**
 
@@ -173,21 +197,89 @@ The public IPv4 address is displayed as a property of the network interface in t
 
 ------
 
-   Note that if an Elastic IP address is associated with the instance, the value returned is that of the Elastic IP address\.
+   If an Elastic IP address is associated with the instance, the value returned is that of the Elastic IP address\.
 
-### Determining your IPv6 addresses<a name="view-ipv6-addresses"></a>
+### Assigning a public IPv4 address during instance launch<a name="public-ip-addresses"></a>
 
-You can use the Amazon EC2 console to determine the IPv6 addresses of your instances\.
+Each subnet has an attribute that determines whether instances launched into that subnet are assigned a public IP address\. By default, nondefault subnets have this attribute set to false, and default subnets have this attribute set to true\. When you launch an instance, a public IPv4 addressing feature is also available for you to control whether your instance is assigned a public IPv4 address; you can override the default behavior of the subnet's IP addressing attribute\. The public IPv4 address is assigned from Amazon's pool of public IPv4 addresses, and is assigned to the network interface with the device index of eth0\. This feature depends on certain conditions at the time you launch your instance\. 
 
-**To determine your instance's IPv6 addresses using the console**
+**Considerations**
++ You can't manually disassociate the public IP address from your instance after launch\. Instead, it's automatically released in certain cases, after which you cannot reuse it\. For more information, see [Public IPv4 addresses and external DNS hostnames](#concepts-public-addresses)\. If you require a persistent public IP address that you can associate or disassociate at will, assign an Elastic IP address to the instance after launch instead\. For more information, see [Elastic IP addresses](elastic-ip-addresses-eip.md)\.
++ You cannot auto\-assign a public IP address if you specify more than one network interface\. Additionally, you cannot override the subnet setting using the auto\-assign public IP feature if you specify an existing network interface for eth0\. 
++ The public IP addressing feature is only available during launch\. However, whether you assign a public IP address to your instance during launch or not, you can associate an Elastic IP address with your instance after it's launched\. For more information, see [Elastic IP addresses](elastic-ip-addresses-eip.md)\. You can also modify your subnet's public IPv4 addressing behavior\. For more information, see [Modifying the public IPv4 addressing attribute for your subnet](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html#subnet-public-ip)\.
+
+**To enable or disable the public IP addressing feature using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. Choose **Launch Instance**\.
+
+1. Select an AMI and an instance type, and then choose **Next: Configure Instance Details**\.
+
+1. On the **Configure Instance Details** page, for **Network**, select a VPC\. The **Auto\-assign Public IP** list is displayed\. Choose **Enable** or **Disable** to override the default setting for the subnet\. 
+
+1. Follow the steps on the next pages of the wizard to complete your instance's setup\. For more information about the wizard configuration options, see [Launching an instance using the Launch Instance Wizard](launching-instance.md)\. On the final **Review Instance Launch** page, review your settings, and then choose **Launch** to choose a key pair and launch your instance\.
+
+1. On the **Instances** page, select your new instance and view its public IP address in **IPv4 Public IP** field in the details pane\.<a name="publicip-cli"></a>
+
+**To enable or disable the public IP addressing feature using the command line**
+
+You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
++ Use the `--associate-public-ip-address` or the `--no-associate-public-ip-address` option with the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command \(AWS CLI\)
++ Use the `-AssociatePublicIp` parameter with the [New\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) command \(AWS Tools for Windows PowerShell\)
+
+## Working with the IPv6 addresses for your instances<a name="working-with-ipv6-addresses"></a>
+
+You can view the IPv6 addresses assigned to your instance, assign a public IPv6 address to your instance, or unassign an IPv6 address from your instance\. You can view these addresses in the console through either the **Instances** page or the **Network Interfaces** page\.
+
+**Topics**
++ [Viewing the IPv6 addresses](#view-ipv6-addresses)
++ [Assigning an IPv6 address to an instance](#assign-ipv6-address)
++ [Unassigning an IPv6 address from an instance](#unassign-ipv6-address)
+
+### Viewing the IPv6 addresses<a name="view-ipv6-addresses"></a>
+
+You can use the Amazon EC2 console, AWS CLI, and instance metadata to view the IPv6 addresses for your instances\.
+
+------
+#### [ New console ]
+
+**To view the IPv4 addresses for an instance using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
 1. In the navigation pane, choose **Instances**\.
 
-1. Select your instance\. In the details pane, get the IPv6 addresses from **IPv6 IPs**\.
+1. Select the instance\.
 
-**To determine your instance's IPv6 addresses using instance metadata**
+1. On the **Networking** tab, locate **IPv6 addresses**\.
+
+1. Alternatively, under **Network interfaces** on the **Networking** tab, choose the interface ID for the network interface \(for example, eni\-123abc456def78901\)\. Locate **IPv6 IPs**\.
+
+------
+#### [ Old console ]
+
+**To view the IPv4 addresses for an instance using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances**\.
+
+1. Select the instance\.
+
+1. On the **Networking** tab, locate **IPv6 IPs**\.
+
+1. Alternatively, under **Network interfaces** on the **Description** tab, choose **eth0**, and then choose the interface ID \(for example, eni\-123abc456def78901\)\. Locate **IPv6 IPs**\.
+
+------
+
+**To view the IPv6 addresses for an instance using the command line**
+
+You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
++ [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) \(AWS CLI\)
++ [Get\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html) \(AWS Tools for Windows PowerShell\)\.
+
+**To view the IPv6 addresses for an instance using instance metadata**
 
 1. Connect to your instance\. For more information, see [Connect to your Linux instance](AccessingInstances.md)\.
 
@@ -210,42 +302,9 @@ You can use the Amazon EC2 console to determine the IPv6 addresses of your insta
 
 ------
 
-### Assigning a public IPv4 address during instance launch<a name="public-ip-addresses"></a>
-
-Each subnet has an attribute that determines whether instances launched into that subnet are assigned a public IP address\. By default, nondefault subnets have this attribute set to false, and default subnets have this attribute set to true\. When you launch an instance, a public IPv4 addressing feature is also available for you to control whether your instance is assigned a public IPv4 address; you can override the default behavior of the subnet's IP addressing attribute\. The public IPv4 address is assigned from Amazon's pool of public IPv4 addresses, and is assigned to the network interface with the device index of eth0\. This feature depends on certain conditions at the time you launch your instance\. 
-
-**Important**  
-You can't manually disassociate the public IP address from your instance after launch\. Instead, it's automatically released in certain cases, after which you cannot reuse it\. For more information, see [Public IPv4 addresses and external DNS hostnames](#concepts-public-addresses)\. If you require a persistent public IP address that you can associate or disassociate at will, assign an Elastic IP address to the instance after launch instead\. For more information, see [Elastic IP addresses](elastic-ip-addresses-eip.md)\.
-
-**To access the public IP addressing feature when launching an instance**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. Choose **Launch Instance**\.
-
-1. Select an AMI and an instance type, and then choose **Next: Configure Instance Details**\.
-
-1. On the **Configure Instance Details** page, for **Network**, select a VPC\. The **Auto\-assign Public IP** list is displayed\. Choose **Enable** or **Disable** to override the default setting for the subnet\. 
-**Important**  
-You cannot auto\-assign a public IP address if you specify more than one network interface\. Additionally, you cannot override the subnet setting using the auto\-assign public IP feature if you specify an existing network interface for eth0\. 
-
-1. Follow the steps on the next pages of the wizard to complete your instance's setup\. For more information about the wizard configuration options, see [Launching an instance using the Launch Instance Wizard](launching-instance.md)\. On the final **Review Instance Launch** page, review your settings, and then choose **Launch** to choose a key pair and launch your instance\.
-
-1. On the **Instances** page, select your new instance and view its public IP address in **IPv4 Public IP** field in the details pane\.
-
-The public IP addressing feature is only available during launch\. However, whether you assign a public IP address to your instance during launch or not, you can associate an Elastic IP address with your instance after it's launched\. For more information, see [Elastic IP addresses](elastic-ip-addresses-eip.md)\. You can also modify your subnet's public IPv4 addressing behavior\. For more information, see [Modifying the public IPv4 addressing attribute for your subnet](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html#subnet-public-ip)\.<a name="publicip-cli"></a>
-
-**To enable or disable the public IP addressing feature using the command line**
-
-You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
-+ Use the `--associate-public-ip-address` or the `--no-associate-public-ip-address` option with the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command \(AWS CLI\)
-+ Use the `-AssociatePublicIp` parameter with the [New\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) command \(AWS Tools for Windows PowerShell\)
-
 ### Assigning an IPv6 address to an instance<a name="assign-ipv6-address"></a>
 
-If your VPC and subnet have IPv6 CIDR blocks associated with them, you can assign an IPv6 address to your instance during or after launch\. The IPv6 address is assigned from the IPv6 address range of the subnet, and is assigned to the network interface with the device index of eth0\. 
-
-IPv6 is supported on all current generation instance types and the C3, R3, and I2 previous generation instance types\.
+If your VPC and subnet have IPv6 CIDR blocks associated with them, you can assign an IPv6 address to your instance during or after launch\. The IPv6 address is assigned from the IPv6 address range of the subnet, and is assigned to the network interface with the device index of eth0\.
 
 **To assign an IPv6 address to an instance during launch**
 
@@ -257,22 +316,17 @@ IPv6 is supported on all current generation instance types and the C3, R3, and I
 
 1. Follow the remaining steps in the wizard to launch your instance\.
 
-Alternatively, you can assign an IPv6 address to your instance after launch\.
-
-**To assign an IPv6 address to your instance after launch**
+**To assign an IPv6 address to an instance after launch**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
 1. In the navigation pane, choose **Instances**\.
 
-1. Select your instance, choose **Actions**, **Networking**, **Manage IP Addresses**\.
+1. Select your instance, and choose **Actions**, **Networking**, **Manage IP addresses**\.
 
-1. Under **IPv6 Addresses**, choose **Assign new IP**\. You can specify an IPv6 address from the range of the subnet, or leave the **Auto\-assign** value to let Amazon choose an IPv6 address for you\.
+1. Expand the network interface\. Under **IPv6 addresses**, choose **Assign new IP address**\. Enter an IPv6 address from the range of the subnet or leave the field blank to let Amazon choose an IPv6 address for you\.
 
-1. Choose **Save**\.
-
-**Note**  
-If you launched your instance using Amazon Linux 2016\.09\.0 or later, or Windows Server 2008 R2 or later, your instance is configured for IPv6, and no additional steps are needed to ensure that the IPv6 address is recognized on the instance\. If you launched your instance from an older AMI, you may have to configure your instance manually\. For more information, see [Configure IPv6 on your instances](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-migrate-ipv6.html#vpc-migrate-ipv6-dhcpv6) in the *Amazon VPC User Guide*\.<a name="assign-ipv6-cli"></a>
+1. Choose **Save**\.<a name="assign-ipv6-cli"></a>
 
 **To assign an IPv6 address using the command line**
 
@@ -284,21 +338,21 @@ You can use one of the following commands\. For more information about these com
 
 ### Unassigning an IPv6 address from an instance<a name="unassign-ipv6-address"></a>
 
-You can unassign an IPv6 address from an instance using the Amazon EC2 console\.
+You can unassign an IPv6 address from an instance at any time\.
 
-**To unassign an IPv6 address from an instance**
+**To unassign an IPv6 address from an instance using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
 1. In the navigation pane, choose **Instances**\.
 
-1. Select your instance, choose **Actions**, **Networking**, **Manage IP Addresses**\.
+1. Select your instance, and choose **Actions**, **Networking**, **Manage IP addresses**\.
 
-1. Under **IPv6 Addresses**, choose **Unassign** for the IPv6 address to unassign\.
+1. Expand the network interface\. Under **IPv6 addresses**, choose **Unassign** next to the IPv6 address\.
 
-1. Choose **Yes, Update**\.
+1. Choose **Save**\.
 
-**To unassign an IPv6 address using the command line**
+**To unassign an IPv6 address from an instance using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
 + [unassign\-ipv6\-addresses](https://docs.aws.amazon.com/cli/latest/reference/ec2/unassign-ipv6-addresses.html) \(AWS CLI\)

@@ -1,6 +1,6 @@
 # Launching an AWS Marketplace instance<a name="launch-marketplace-console"></a>
 
-You can subscribe to an AWS Marketplace product and launch an instance from the product's AMI using the Amazon EC2 launch wizard\. For more information about paid AMIs, see [Paid AMIs](paid-amis.md)\. To cancel your subscription after launch, you first have to terminate all instances running from it\. For more information, see [ your AWS Marketplace subscriptions](paid-amis.md#marketplace-manage-subscriptions)\. 
+You can subscribe to an AWS Marketplace product and launch an instance from the product's AMI using the Amazon EC2 launch wizard\. For more information about paid AMIs, see [Paid AMIs](paid-amis.md)\. To cancel your subscription after launch, you first have to terminate all instances running from it\. For more information, see [Managing your AWS Marketplace subscriptions](paid-amis.md#marketplace-manage-subscriptions)\. 
 
 **To launch an instance from the AWS Marketplace using the launch wizard**
 
@@ -30,7 +30,7 @@ You are charged the subscription price as long as your instance is running, even
 
 1. When your instance is in the `running` state, you can connect to it\. To do this, select your instance in the list and choose **Connect**\. Follow the instructions in the dialog\. For more information about connecting to your instance, see [Connect to your Linux instance](AccessingInstances.md)\.
 **Important**  
-Check the vendor's usage instructions carefully, as you may need to use a specific user name to log in to the instance\. For more information about accessing your subscription details, see [ your AWS Marketplace subscriptions](paid-amis.md#marketplace-manage-subscriptions)\.
+Check the vendor's usage instructions carefully, as you may need to use a specific user name to log in to the instance\. For more information about accessing your subscription details, see [Managing your AWS Marketplace subscriptions](paid-amis.md#marketplace-manage-subscriptions)\.
 
 1. If the instance fails to launch or the state immediately goes to `terminated` instead of `running`, see [Troubleshooting instance launch issues](troubleshooting-launch.md)\.
 

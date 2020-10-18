@@ -1,5 +1,7 @@
 # Spot Instance interruptions<a name="spot-interruptions"></a>
 
+You can launch Spot Instances on spare EC2 capacity for steep discounts in exchange for returning them when Amazon EC2 needs the capacity back\. When Amazon EC2 reclaims a Spot Instances, we call this event a *Spot Instance interruption*\. 
+
 Demand for Spot Instances can vary significantly from moment to moment, and the availability of Spot Instances can also vary significantly depending on how many unused EC2 instances are available\. It is always possible that your Spot Instance might be interrupted\. Therefore, you must ensure that your application is prepared for a Spot Instance interruption\.
 
 An On\-Demand Instance specified in an EC2 Fleet or Spot Fleet cannot be interrupted\.
@@ -259,13 +261,13 @@ If Amazon EC2 fails to terminate the instance, the request status is set to `ful
 
 ## Finding interrupted Spot Instances<a name="finding-an-interrupted-Spot-Instance"></a>
 
-In the console, the **Instances** pane displays all instances, including Spot Instances\. You can identify a Spot Instance from the `spot` value in the **Lifecycle** column\. The **Instance State** column indicates whether the instance is `pending`, `running`, `stopping`, `stopped`, `shutting-down`, or `terminated`\. For a hibernated Spot Instance, the instance state is `stopped`\.
+In the console, the **Instances** pane displays all instances, including Spot Instances\. You can identify a Spot Instance from the `spot` value in the **Instance lifecycle** column\. The **Instance state** column indicates whether the instance is `pending`, `running`, `stopping`, `stopped`, `shutting-down`, or `terminated`\. For a hibernated Spot Instance, the instance state is `stopped`\.
 
 **To find an interrupted Spot Instance \(console\)**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation pane, choose **Instances**\. In the top right corner, choose the **Show/Hide Columns** icon, and under **Instance Attributes**, select **Lifecycle**\. For Spot Instances, **Lifecycle** is `spot`\.
+1. In the navigation pane, choose **Instances**\. In the top right corner, choose the settings icon \( ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/settings-icon.png) \), and under **Attribute columns**, select **Instance lifecycle**\. For Spot Instances, **Instance lifecycle** is `spot`\.
 
    Alternatively, in the navigation pane, choose **Spot Requests**\. You can see both Spot Instance requests and Spot Fleet requests\. To view the IDs of the instances, select a Spot Instance request or a Spot Fleet request and choose the **Instances** tab\. Choose an instance ID to display the instance in the **Instances** pane\.
 

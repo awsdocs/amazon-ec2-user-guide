@@ -110,6 +110,9 @@ To log in through SSH, your AMI must retrieve the key value at boot and append i
 
 Many distributions, including Amazon Linux and Ubuntu, use the `cloud-init` package to inject public key credentials for a configured user\. If your distribution does not support `cloud-init`, you can add the following code to a system start\-up script \(such as `/etc/rc.local`\) to pull in the public key you specified at launch for the root user\.
 
+**Note**  
+In the following example, the IP address http://169\.254\.169\.254/ is a link\-local address and is valid only from the instance\.
+
 ------
 #### [ IMDSv2 ]
 
@@ -147,7 +150,7 @@ fi
 
 ------
 
- This can be applied to any user account; you do not need to restrict it to `root`\. 
+ This can be applied to any user account; you do not need to restrict it to `root`\.
 
 **Note**  
 Rebundling an instance based on this AMI includes the key with which it was launched\. To prevent the key's inclusion, you must clear out \(or delete\) the `authorized_keys` file or exclude this file from rebundling\. 

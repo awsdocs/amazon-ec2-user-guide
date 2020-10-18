@@ -30,21 +30,21 @@ You can view the requester\-managed network interfaces that are in your account\
 
    ```
    {
-               "Status": "in-use",
-              ...
-               "Description": "VPC Endpoint Interface vpce-089f2123488812123", 
-               "NetworkInterfaceId": "eni-c8fbc27e", 
-               "VpcId": "vpc-1a2b3c4d", 
-               "PrivateIpAddresses": [
-                   {
-                       "PrivateDnsName": "ip-10-0-2-227.ec2.internal", 
-                       "Primary": true, 
-                       "PrivateIpAddress": "10.0.2.227"
-                   }
-               ], 
-               "RequesterManaged": true, 
-              ...
+       "Status": "in-use",
+        ...
+       "Description": "VPC Endpoint Interface vpce-089f2123488812123", 
+       "NetworkInterfaceId": "eni-c8fbc27e", 
+       "VpcId": "vpc-1a2b3c4d", 
+       "PrivateIpAddresses": [
+           {
+               "PrivateDnsName": "ip-10-0-2-227.ec2.internal", 
+               "Primary": true, 
+               "PrivateIpAddress": "10.0.2.227"
            }
+       ], 
+       "RequesterManaged": true, 
+        ...
+   }
    ```
 
    Alternatively, use the [Get\-EC2NetworkInterface](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2NetworkInterface.html) Tools for Windows PowerShell command\.

@@ -188,6 +188,9 @@ You encrypt EBS volumes by enabling encryption, either using [encryption by defa
 
 When you encrypt a volume, you can specify the symmetric CMK to use to encrypt the volume\. If you do not specify a CMK, the key that is used for encryption depends on the encryption state of the source snapshot and its ownership\. For more information, see the [encryption outcomes table](#ebs-volume-encryption-outcomes)\.
 
+**Note**  
+If you are using the API or AWS CLI to specify a CMK, be aware that AWS authenticates the CMK asynchronously\. If you specify a key ID, an alias, or an ARN that is not valid, the action can appear to complete, but it eventually fails\.
+
 You cannot change the CMK that is associated with an existing snapshot or volume\. However, you can associate a different CMK during a snapshot copy operation so that the resulting copied snapshot is encrypted by the new CMK\.
 
 ### Encrypting an empty volume on creation<a name="new-encrypted-volumes"></a>

@@ -12,7 +12,7 @@ You can specify the instance store volumes for your instance only when you launc
 
 If you change the instance type, an instance store will not be attached to the new instance type\. For more information, see [Changing the instance type](ec2-instance-resize.md)\.
 
-The number and size of available instance store volumes for your instance varies by instance type\. Some instance types do not support instance store volumes\. If the number of instance store volumes in a block device mapping exceeds the number of instance store volumes available to an instance, the additional volumes are ignored\. For more information about the instance store volumes support by each instance type, see [Instance store volumes](InstanceStorage.md#instance-store-volumes)\.
+The number and size of available instance store volumes for your instance varies by instance type\. Some instance types do not support instance store volumes\. If the number of instance store volumes in a block device mapping exceeds the number of instance store volumes available to an instance, the additional volumes are ignored\. For more information about the instance store volumes supported by each instance type, see [Instance store volumes](InstanceStorage.md#instance-store-volumes)\.
 
 If the instance type you choose for your instance supports non\-NVMe instance store volumes, you must add them to the block device mapping for the instance when you launch it\. NVMe instance store volumes are available by default\. After you launch an instance, you must ensure that the instance store volumes for your instance are formatted and mounted before you can use them\. The root volume of an instance store\-backed instance is mounted automatically\.
 

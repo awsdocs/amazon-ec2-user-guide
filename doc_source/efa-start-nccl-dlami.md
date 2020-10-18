@@ -153,19 +153,19 @@ After you have installed the required software components, you create an AMI tha
 
 1. In the navigation pane, choose **Instances**\.
 
-1. Select the temporary instance that you created and choose **Actions**, **Image**, **Create Image**\.
+1. Select the temporary instance that you created and choose **Actions**, **Image**, **Create image**\.
 
-1. In the **Create Image** window, do the following:
+1. For **Create image**, do the following:
 
    1. For **Image name**, enter a descriptive name for the AMI\.
 
-   1. \(Optional\) For **Image description**, enter a brief description of the AMI\.
+   1. \(Optional\) For **Image description**, enter a brief description of the purpose of the AMI\.
 
-   1. Choose **Create Image** and then choose **Close**\.
+   1. Choose **Create image**\.
 
 1. In the navigation pane, choose **AMIs**\.
 
-1. Locate the AMI you created in the list\. Wait for the Status to transition from `pending` to `available` before continuing to the next step\.
+1. Locate the AMI tht you created in the list\. Wait for the status to change from `pending` to `available` before continuing to the next step\.
 
 ## Step 6: Terminate the temporary instance<a name="nccl-start-dlami-terminate"></a>
 
@@ -177,7 +177,9 @@ At this point, you no longer need the temporary instance that you launched\. You
 
 1. In the navigation pane, choose **Instances**\.
 
-1. Select the temporary instance that you created and then choose **Actions**, **Instance State**, **Terminate**, **Yes, Terminate**\.
+1. Select the temporary instance that you created and then choose **Actions**, **Instance state**, **Terminate instance**\.
+
+1. When prompted for confirmation, choose **Terminate**\.
 
 ## Step 7: Launch EFA and NCCL\-enabled instances into a cluster placement group<a name="nccl-start-dlami-cluster"></a>
 

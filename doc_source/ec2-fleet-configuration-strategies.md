@@ -241,9 +241,13 @@ Example Corp could use a global price per unit hour of $0\.7 and be competitive 
 
 Before creating an EC2 Fleet, Example Corp verifies that it has an IAM role with the required permissions\. For more information, see [EC2 Fleet prerequisites](manage-ec2-fleet.md#ec2-fleet-prerequisites)\.
 
+### Creating a launch template<a name="ec2-fleet-instance-weighting-create-launch-template"></a>
+
+Next, Example Corp creates a launch template\. The launch template ID is used in the following step\. For more information, see [Creating a launch template](ec2-launch-templates.md#create-launch-template)\.
+
 ### Creating the EC2 Fleet<a name="ec2-fleet-instance-weighting-walkthrough-request"></a>
 
-Example Corp creates a file, `config.json`, with the following configuration for its EC2 Fleet\.
+Example Corp creates a file, `config.json`, with the following configuration for its EC2 Fleet\. In the following example, replace the resource identifiers with your own resource identifiers\.
 
 ```
 { 
@@ -315,9 +319,13 @@ ABC Online requires a fixed capacity to operate during peak periods, but would l
 
 Before creating an EC2 Fleet, ABC Online verifies that it has an IAM role with the required permissions\. For more information, see [EC2 Fleet prerequisites](manage-ec2-fleet.md#ec2-fleet-prerequisites)\.
 
+### Creating a launch template<a name="ec2-fleet-on-demand-walkthrough-create-launch-template"></a>
+
+Next, ABC Online creates a launch template\. The launch template ID is used in the following step\. For more information, see [Creating a launch template](ec2-launch-templates.md#create-launch-template)\.
+
 ### Creating the EC2 Fleet<a name="ec2-fleet-on-demand-walkthrough-request"></a>
 
-ABC Online creates a file, `config.json`, with the following configuration for its EC2 Fleet\.
+ABC Online creates a file, `config.json`, with the following configuration for its EC2 Fleet\. In the following example, replace the resource identifiers with your own resource identifiers\.
 
 ```
 {

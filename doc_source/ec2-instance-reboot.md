@@ -8,6 +8,22 @@ We might schedule your instance for a reboot for necessary maintenance, such as 
 
 We recommend that you use the Amazon EC2 console, a command line tool, or the Amazon EC2 API to reboot your instance instead of running the operating system reboot command from your instance\. If you use the Amazon EC2 console, a command line tool, or the Amazon EC2 API to reboot your instance, we perform a hard reboot if the instance does not cleanly shut down within a few minutes\. If you use AWS CloudTrail, then using Amazon EC2 to reboot your instance also creates an API record of when your instance was rebooted\.
 
+------
+#### [ New console ]
+
+**To reboot an instance using the console**
+
+1. Open the Amazon EC2 console\.
+
+1. In the navigation pane, choose **Instances**\.
+
+1. Select the instance and choose **Actions**, **Instance state**, **Reboot instance**\.
+
+1. Choose **Reboot** when prompted for confirmation\. The instance remains in the running state\. 
+
+------
+#### [ Old console ]
+
 **To reboot an instance using the console**
 
 1. Open the Amazon EC2 console\.
@@ -16,7 +32,9 @@ We recommend that you use the Amazon EC2 console, a command line tool, or the Am
 
 1. Select the instance and choose **Actions**, **Instance State**, **Reboot**\.
 
-1. Choose **Yes, Reboot** when prompted for confirmation\. The instance will remain in a "running" state\. 
+1. Choose **Yes, Reboot** when prompted for confirmation\. The instance remains in the running state\.
+
+------
 
 **To reboot an instance using the command line**
 

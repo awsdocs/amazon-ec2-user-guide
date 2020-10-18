@@ -348,15 +348,33 @@ aws ec2 run-instances --image-id ami-1a2b3c4d --instance-type r4.4xlarge --cpu-o
 
 You can view the CPU options for an existing instance in the Amazon EC2 console or by describing the instance using the AWS CLI\.
 
-**To view the CPU options for an instance \(console\)**
+------
+#### [ New console ]
+
+**To view the CPU options for an instance using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the left navigation pane, choose **Instances**, and select the instance\.
+1. In the left navigation pane, choose **Instances** and select the instance\.
 
-1. Choose **Description** and view the **Number of vCPUs** field\.
+1. On the **Details** tab, under **Host and placement group**, find **Number of vCPUs**\.
 
-1. To view the core count and threads per core, choose the **Number of vCPUs** field value\.
+1. To view core count and threads per core, choose the value for **Number of vCPUs**\.
+
+------
+#### [ Old console ]
+
+**To view the CPU options for an instance using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the left navigation pane, choose **Instances** and select the instance\.
+
+1. Choose **Description** and find **Number of vCPUs**\.
+
+1. To view core count and threads per core, choose the value for **Number of vCPUs**\.
+
+------
 
 **To view the CPU options for an instance \(AWS CLI\)**  
 Use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command\.

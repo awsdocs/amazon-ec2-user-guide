@@ -10,15 +10,15 @@ You can get additional information about your EBS volumes, such as how much disk
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation pane, choose **Volumes**\. 
+1. In the navigation pane, choose **Volumes**\.
 
-1. \(Optional\) Use the **Filter** options in the Search bar to display only the volumes that interest you\. For example, if you know the instance ID you want to see volumes for, go to the Search bar and choose **Instance ID** from the filter menu, then choose the instance ID you want from the list provided\. To remove a filter, choose it again\.
+1. \(Optional\) Use the filter options in the search field to display only the volumes that interest you\. For example, if you know the instance ID, **Instance ID** from the search field menu, and then choose the instance ID from the list provided\. To remove a filter, choose it again\.
 
-1. To view more information about a volume, select it\.
+1. Select the volume\.
 
 1. In the details pane, you can inspect the information provided about the volume\. **Attachment information** shows the instance ID this volume is attached to and the device name under which it is attached\.
 
-1. \(Optional\) Choose the **Attachment information** link to view instance details\.
+1. \(Optional\) Choose the **Attachment information** link to view additional details about the instance\.
 
 **To view the EBS volumes that are attached to an instance using the console**
 
@@ -26,11 +26,11 @@ You can get additional information about your EBS volumes, such as how much disk
 
 1. In the navigation pane, choose **Instances**\.
 
-1. To view more information about an instance, select it\.
+1. Select the instance\.
 
-1. In the details pane, you can inspect the information provided about root and block devices\. Choose the device name link to show information on the volume attached under that device name\.
+1. In the **Storage** tab, view the information provided about root and block devices\.
 
-1. \(Optional\) Choose the **EBS ID** link to view details for the volume attached to this instance under the device name chosen in the prior step\.
+1. \(Optional\) Choose a link in the **Volume ID** column to view additional details for the volume\.
 
 **To view information about an EBS volume using the command line**  
 You can use one of the following commands to view volume attributes\. For more information, see [Accessing Amazon EC2](concepts.md#access-ec2)\.

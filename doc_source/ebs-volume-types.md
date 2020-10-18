@@ -47,7 +47,7 @@ The performance of `gp2` volumes is tied to volume size, which determines the ba
 
 ![\[gp2 burst bucket\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/gp2-burst-bucket.png)
 
-Each volume receives an initial I/O credit balance of 5\.4 million I/O credits, which is enough to sustain the maximum burst performance of 3,000 IOPS for 30 minutes\. This initial credit balance is designed to provide a fast initial boot cycle for boot volumes and to provide a good bootstrapping experience for other applications\. Volumes earn I/O credits at the baseline performance rate of 3 IOPS per GiB of volume size\. For example, a 100 GiB `gp2` volume has a baseline performance of 300 IOPS\.
+Each volume receives an initial I/O credit balance of 5\.4 million I/O credits, which is enough to sustain the maximum burst performance of 3,000 IOPS for at least 30 minutes\. This initial credit balance is designed to provide a fast initial boot cycle for boot volumes and to provide a good bootstrapping experience for other applications\. Volumes earn I/O credits at the baseline performance rate of 3 IOPS per GiB of volume size\. For example, a 100 GiB `gp2` volume has a baseline performance of 300 IOPS\.
 
 ![\[Comparing baseline performance and burst IOPS\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/gp2_iops_1.png)
 

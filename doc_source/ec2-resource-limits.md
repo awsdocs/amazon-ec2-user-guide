@@ -37,7 +37,7 @@ Alternatively, request an increase using Service Quotas\. For more information, 
 
 1. Select the resource in the list, and choose **Request limit increase**\.
 
-1. Complete the required fields on the limit increase form\. We'll respond to you using the contact method that you specified\.
+1. Complete the required fields on the limit increase form and choose **Submit**\. We'll respond to you using the contact method that you specified\.
 
 ## Limits on email sent using port 25<a name="port-25-throttle"></a>
 

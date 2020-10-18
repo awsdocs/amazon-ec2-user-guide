@@ -48,7 +48,7 @@ You can use a duration of 1, 2, 3, 4, 5, or 6 hours\. The price that you pay dep
 
 When you define a duration in your Spot request, the duration period for each Spot Instance starts as soon as the instance receives its instance ID\. The Spot Instance runs until you terminate it or the duration period ends\. At the end of the duration period, Amazon EC2 marks the Spot Instance for termination and provides a Spot Instance termination notice, which gives the instance a two\-minute warning before it terminates\. In rare situations, Spot blocks may be interrupted due to Amazon EC2 capacity needs\. In these cases, we provide a two\-minute warning before we terminate an instance, and you are not charged for the terminated instances even if you used them\.
 
-New accounts are not eligible for Spot Instances with a defined duration\.
+New accounts or accounts with no previous billing history with AWS are not eligible for Spot Instances with a defined duration \(also known as Spot blocks\)\.
 
 **To launch Spot Instances with a defined duration \(console\)**  
 Follow the [Creating a Spot Fleet request](spot-fleet-requests.md#create-spot-fleet) procedure\. To launch Spot Instances with a defined duration, for **Tell us your application or task need**, choose **Defined duration workloads**\.
@@ -242,7 +242,7 @@ Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/re
 aws ec2 run-instances \
     --image-id ami-0abcdef1234567890 \
     --instance-type t2.micro \
-    --instance-count 5 \
+    --count 5 \
     --subnet-id subnet-08fc749671b2d077c \
     --key-name MyKeyPair \
     --security-group-ids sg-0b0384b66d7d692f9 \
@@ -273,7 +273,7 @@ Amazon EC2 launches a Spot Instance when the maximum price exceeds the Spot pric
 **Note**  
 For Spot Instance requests that are created by a Spot Fleet, the requests are not tagged instantly with the system tag that indicates the Spot Fleet to which they belong, and for a period of time may appear separate from Spot Fleet request\.
 
-   Alternatively, in the navigation pane, choose **Instances**\. In the top right corner, choose the **Show/Hide** icon, and then under **Instance Attributes**, select **Lifecycle**\. For each instance, **Lifecycle** is either `normal`, `spot`, or `scheduled`\.
+   Alternatively, in the navigation pane, choose **Instances**\. In the top right corner, choose the settings icon \( ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/settings-icon.png) \), and then under **Attribute columns**, select **Instance lifecycle**\. For each instance, **Instance lifecycle** is either `normal`, `spot`, or `scheduled`\.
 
 **To find running Spot Instances \(AWS CLI\)**  
 To enumerate your Spot Instances, use the [describe\-spot\-instance\-requests](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-spot-instance-requests.html) command with the `--query` option\.
@@ -603,6 +603,22 @@ We don't charge usage for a stopped Spot Instance, or data transfer fees, but we
 **Limitations**
 + You can't stop a Spot Instance if it is part of a fleet or launch group, Availability Zone group, or Spot block\.
 
+------
+#### [ New console ]
+
+**To stop a Spot Instance \(console\)**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances** and select the Spot Instance\.
+
+1. Choose **Actions**, **Instance state**, **Stop instance**\.
+
+1. In the confirmation window, choose **Stop**\.
+
+------
+#### [ Old console ]
+
 **To stop a Spot Instance \(console\)**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
@@ -611,12 +627,17 @@ We don't charge usage for a stopped Spot Instance, or data transfer fees, but we
 
 1. Choose **Actions**, **Instance State**, **Stop**\.
 
+------
+#### [ AWS CLI ]
+
 **To stop a Spot Instance \(AWS CLI\)**
 + Use the [stop\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) command to manually stop one or more Spot Instances\.
 
   ```
   aws ec2 stop-instances --instance-ids i-1234567890abcdef0
   ```
+
+------
 
 ## Starting a Spot Instance<a name="starting-a-spot-instance"></a>
 
@@ -633,6 +654,20 @@ You can only start a Spot Instance if:
 **Limitations**
 + You can't start a Spot Instance if it is part of fleet or launch group, Availability Zone group, or Spot block\.
 
+------
+#### [ New console ]
+
+**To start a Spot Instance \(console\)**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances** and select the Spot Instance\.
+
+1. Choose **Actions**, **Instance state**, **Start instance**\.
+
+------
+#### [ Old console ]
+
 **To start a Spot Instance \(console\)**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
@@ -641,6 +676,9 @@ You can only start a Spot Instance if:
 
 1. Choose **Actions**, **Instance State**, **Start**\.
 
+------
+#### [ AWS CLI ]
+
 **To start a Spot Instance \(AWS CLI\)**
 + Use the [start\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/start-instances.html) command to manually start one or more Spot Instances\.
 
@@ -648,13 +686,56 @@ You can only start a Spot Instance if:
   aws ec2 start-instances --instance-ids i-1234567890abcdef0
   ```
 
+------
+
 ## Terminating a Spot Instance<a name="terminating-a-spot-instance"></a>
 
-If your Spot Instance request is `active` and has an associated running Spot Instance, or your Spot Instance request is `disabled` and has an associated stopped Spot Instance, canceling the request does not terminate the instance; you must terminate the running Spot Instance manually\. If you terminate a running or stopped Spot Instance that was launched by a persistent Spot request, the Spot request returns to the `open` state so that a new Spot Instance can be launched\. To cancel a persistent Spot request and terminate its Spot Instances, you must cancel the Spot request first and then terminate the Spot Instances\. Otherwise, the persistent Spot request can launch a new instance\. For more information about canceling a Spot Instance request, see [Canceling a Spot Instance request](#using-spot-instances-cancel)\.
+If your Spot Instance request is `active` and has an associated running Spot Instance, or your Spot Instance request is `disabled` and has an associated stopped Spot Instance, canceling the request does not terminate the instance; you must terminate the running Spot Instance manually\.
 
-**To manually terminate a Spot Instance \(AWS CLI\)**
+If you terminate a running or stopped Spot Instance that was launched by a persistent Spot request, the Spot request returns to the `open` state so that a new Spot Instance can be launched\. To cancel a persistent Spot request and terminate its Spot Instances, you must cancel the Spot request first and then terminate the Spot Instances\. Otherwise, the persistent Spot request can launch a new instance\. For more information about canceling a Spot Instance request, see [Canceling a Spot Instance request](#using-spot-instances-cancel)\.
+
+------
+#### [ New console ]
+
+**To manually terminate a Spot Instance using the console**
+
+1. Before you terminate an instance, verify that you won't lose any data by checking that your Amazon EBS volumes won't be deleted on termination and that you've copied any data that you need from your instance store volumes to persistent storage, such as Amazon EBS or Amazon S3\.
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances**\.
+
+1. To confirm that the instance is a Spot Instance, check that **spot** appears in the **Instance lifecycle** column\.
+
+1. Select the instance, and choose **Actions**, **Instance state**, **Terminate instance**\.
+
+1. Choose **Terminate** when prompted for confirmation\.
+
+------
+#### [ Old console ]
+
+**To manually terminate a Spot Instance using the console**
+
+1. Before you terminate an instance, verify that you won't lose any data by checking that your Amazon EBS volumes won't be deleted on termination and that you've copied any data that you need from your instance store volumes to persistent storage, such as Amazon EBS or Amazon S3\.
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances**\.
+
+1. To confirm that the instance is a Spot Instance, check that **spot** appears in the **Lifecycle** column\.
+
+1. Select the instance, and choose **Actions**, **Instance State**, **Terminate**\.
+
+1. Choose **Yes, Terminate** when prompted for confirmation\.
+
+------
+#### [ AWS CLI ]
+
+**To manually terminate a Spot Instance using the AWS CLI**
 + Use the [terminate\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/terminate-instances.html) command to manually terminate Spot Instances\.
 
   ```
   aws ec2 terminate-instances --instance-ids i-1234567890abcdef0 i-0598c7d356eba48d7
   ```
+
+------

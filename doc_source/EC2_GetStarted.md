@@ -96,11 +96,11 @@ If you launched an instance that is not within the [AWS Free Tier](https://aws.a
 
 1. In the navigation pane, choose **Instances**\. In the list of instances, select the instance\.
 
-1. Choose **Actions**, **Instance State**, **Terminate**\.
+1. Choose **Actions**, **Instance state**, **Terminate instance**\.
 
-1. Choose **Yes, Terminate** when prompted for confirmation\.
+1. Choose **Terminate** when prompted for confirmation\.
 
-   Amazon EC2 shuts down and terminates your instance\. After your instance is terminated, it remains visible on the console for a short while, and then the entry is deleted\.
+   Amazon EC2 shuts down and terminates your instance\. After your instance is terminated, it remains visible on the console for a short while, and then the entry is automatically deleted\. You cannot remove the terminated instance from the console display yourself\.
 
 ## Next steps<a name="ec2-next-steps"></a>
 

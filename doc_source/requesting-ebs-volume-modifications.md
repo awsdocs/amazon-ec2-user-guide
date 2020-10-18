@@ -74,6 +74,22 @@ Before you can modify a volume that was attached to an instance before November 
 
 Use one of the following procedures to determine whether your instances are ready for volume modification\.
 
+------
+#### [ New console ]
+
+**To determine whether your instances are ready using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. On the navigation pane, choose **Instances**\.
+
+1. Choose the **Show/Hide Columns** icon \(the gear\)\. Select the **Launch time** attribute column and then choose **Confirm**\.
+
+1. Sort the list of instances by the **Launch Time** column\. For each instance that was started before the cutoff date, choose the **Storage** tab and check the **Attachment time** column to see when its volumes were attached\.
+
+------
+#### [ Old console ]
+
 **To determine whether your instances are ready using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
@@ -84,6 +100,8 @@ Use one of the following procedures to determine whether your instances are read
 
 1. Sort the list of instances by the **Launch Time** column\. For instances that were started before the cutoff date, check when the devices were attached\. In the following example, you must initialize volume modification for the first instance because it was started before the cutoff date and its root volume was attached before the cutoff date\. The other instances are ready because they were started after the cutoff date\.  
 ![\[Check the Launch Time and Block Devices columns.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/check-volume-modification-support.png)
+
+------
 
 **To determine whether your instances are ready using the CLI**  
 Use the following [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command to determine whether the volume was attached before November 3, 2016 23:40 UTC\.

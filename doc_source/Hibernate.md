@@ -296,7 +296,7 @@ aws ec2 describe-images --image-id ami-0abcdef1234567890
 If you enabled encryption by default in this AWS Region, you can omit `"Encrypted": true`\.
 
 ------
-#### [ AWS Tools for Windows PowerShell ]
+#### [ PowerShell ]
 
 **To enable hibernation using the AWS Tools for Windows PowerShell**  
 Use the [New\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) command to launch an instance\. Specify the EBS root volume by first defining the block device mapping, and then adding it to the command using the `-BlockDeviceMappings` parameter\. Enable hibernation using the `-HibernationOptions_Configured $true` parameter\.
@@ -332,7 +332,18 @@ If you enabled encryption by default in this AWS Region, you can omit `Encrypted
  
 
 ------
-#### [ Console ]
+#### [ New console ]
+
+**To view if an instance is enabled for hibernation using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances**\.
+
+1. Select the instance and, on the **Details** tab, in the **Instance details** section, inspect **Stop\-hibernate behavior**\. **Enabled** indicates that the instance is enabled for hibernation\.
+
+------
+#### [ Old console ]
 
 **To view if an instance is enabled for hibernation using the console**
 
@@ -362,7 +373,7 @@ The following field in the output indicates that the instance is enabled for hib
 ```
 
 ------
-#### [ AWS Tools for Windows PowerShell ]
+#### [ PowerShell ]
 
 **To view if an instance is enabled for hibernation using the AWS Tools for Windows PowerShell**  
 Use the [Get\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html) command and specify the `-Filter @{ Name="hibernation-options.configured"; Value="true"}` parameter to filter instances that are enabled for hibernation\.
@@ -419,7 +430,20 @@ To learn more about KASLR, see [Ubuntu Features](https://wiki.ubuntu.com/Securit
 You can hibernate an instance if the instance is [enabled for hibernation](#enabling-hibernation) and meets the [hibernation prerequisites](#hibernating-prerequisites)\. If an instance cannot hibernate successfully, a normal shutdown occurs\.
 
 ------
-#### [ Console ]
+#### [ New console ]
+
+**To hibernate an Amazon EBS\-backed instance using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances**\.
+
+1. Select an instance, and choose **Actions**, **Instance state**, **Hibernate instance**\. If **Hibernate instance** is disabled, the instance is already hibernated or stopped, or it can't be hibernated\. For more information, see [Hibernation prerequisites](#hibernating-prerequisites)\.
+
+1. In the confirmation dialog box, choose **Hibernate**\. It can take a few minutes for the instance to hibernate\. The **Instance state** changes to **Stopping** while the instance is hibernating, and then **Stopped** when the instance has hibernated\.
+
+------
+#### [ Old console ]
 
 **To hibernate an Amazon EBS\-backed instance using the console**
 
@@ -444,7 +468,7 @@ aws ec2 stop-instances \
 ```
 
 ------
-#### [ AWS Tools for Windows PowerShell ]
+#### [ PowerShell ]
 
 **To hibernate an Amazon EBS\-backed instance using the AWS Tools for Windows PowerShell**  
 Use the [Stop\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Stop-EC2Instance.html) command and specify the `-Hibernate $true` parameter\.
@@ -460,7 +484,18 @@ Stop-EC2Instance `
  
 
 ------
-#### [ Console ]
+#### [ New console ]
+
+**To view if hibernation was initiated on an instance using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances**\.
+
+1. Select the instance and, on the **Details** tab, in the **Instance details** section, inspect **State transition message**\. The message **Client\.UserInitiatedHibernate: User initiated hibernate** indicates that hibernation was initiated on the instance\.
+
+------
+#### [ Old console ]
 
 **To view if hibernation was initiated on an instance using the console**
 
@@ -490,7 +525,7 @@ The following field in the output indicates that hibernation was initiated on th
 ```
 
 ------
-#### [ AWS Tools for Windows PowerShell ]
+#### [ PowerShell ]
 
 **To view if hibernation was initiated on an instance using the AWS Tools for Windows PowerShell**  
 Use the [Get\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html) command and specify the `state-reason-code` filter to see the instances on which hibernation was initiated\.
@@ -509,7 +544,18 @@ The output lists the EC2 instances on which hibernation was initiated\.
 Start a hibernated instance by starting it in the same way that you would start a stopped instance\.
 
 ------
-#### [ Console ]
+#### [ New console ]
+
+**To start a hibernated instance using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances**\.
+
+1. Select a hibernated instance, and choose **Actions**, **Instance state**, **Start instance**\. It can take a few minutes for the instance to enter the `running` state\. During this time, the instance [status checks](monitoring-system-instance-status-check.md#types-of-instance-status-checks) show the instance in a failed state until the instance has started\.
+
+------
+#### [ Old console ]
 
 **To start a hibernated instance using the console**
 
@@ -531,7 +577,7 @@ aws ec2 start-instances \
 ```
 
 ------
-#### [ AWS Tools for Windows PowerShell ]
+#### [ PowerShell ]
 
 **To start a hibernated instance using the AWS Tools for Windows PowerShell**  
 Use the [Start\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Start-EC2Instance.html) command\.

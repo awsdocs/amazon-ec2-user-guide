@@ -2048,9 +2048,6 @@ The following policy specifies that you can’t call the RunInstances API unless
 
 The following policy specifies that you can’t call the RunInstances API unless you also specify a hop limit, and the hop limit can’t be more than 3\. If you fail to do that, you get an `UnauthorizedOperation` error when you call the RunInstances API\.
 
-**Note**  
-When the following policy and the preceding one are applied to an account via an SCP, you can’t use the EC2 console to launch instances because the console doesn’t yet support the `MetadataHttpTokens` and `MetadataHttpPutResponseHopLimit` parameters\.
-
 ```
 {
     "Version": "2012-10-17",

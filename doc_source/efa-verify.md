@@ -30,7 +30,7 @@ $  sha256sum aws-efa-installer-1.9.4.tar.gz
 ```
 
 ```
-1009b5182693490d908ef0ed2c1dd4f813cc310a5d2062ce9619c4c12b5a7f14  aws-efa-installer-1.9.4.tar.gz
+1009b5182693490d908ef0ed2c1dd4f813cc310a5d2062ce9619c4c12b5a7f14 aws-efa-installer-1.9.4.tar.gz
 ```
 
 The following table lists the checksums for recent versions of EFA\.
@@ -38,6 +38,7 @@ The following table lists the checksums for recent versions of EFA\.
 
 | Version | Download URL | Checksums | 
 | --- | --- | --- | 
+| EFA 1\.10\.0 |  https://efa\-installer\.amazonaws\.com/aws\-efa\-installer\-1\.10\.0\.tar\.gz  |  **MD5: **`46f73f5a7afe41b4bb918c81888fefa9` **SHA256: **`136612f96f2a085a7d98296da0afb6fa807b38142e2fc0c548fa986c41186282`  | 
 | EFA 1\.9\.5 |  https://efa\-installer\.amazonaws\.com/aws\-efa\-installer\-1\.9\.5\.tar\.gz  |  **MD5: **`95edb8a209c18ba8d250409846eb6ef4` **SHA256: **`a4343308d7ea4dc943ccc21bcebed913e8868e59bfb2ac93599c61a7c87d7d25`  | 
 | EFA 1\.9\.4 |  https://efa\-installer\.amazonaws\.com/aws\-efa\-installer\-1\.9\.4\.tar\.gz  |  **MD5: **`f26dd5c350422c1a985e35947fa5aa28` **SHA256: **`1009b5182693490d908ef0ed2c1dd4f813cc310a5d2062ce9619c4c12b5a7f14`  | 
 | EFA 1\.9\.3 |  https://efa\-installer\.amazonaws\.com/aws\-efa\-installer\-1\.9\.3\.tar\.gz  |  **MD5: **`95755765a097802d3e6d5018d1a5d3d6` **SHA256: **`46ce732d6f3fcc9edf6a6e9f9df0ad136054328e24675567f7029edab90c68f1`  | 

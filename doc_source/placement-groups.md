@@ -84,7 +84,7 @@ Before you use placement groups, be aware of the following rules:
 
 The following rules apply to cluster placement groups:
 + Instances in a cluster placement group you must use the following supported instance types:
-  + A [current generation](instance-types.md#current-gen-instances) instance type, except for the [burstable performance](burstable-performance-instances.md) instances \(for example, T2\)\.
+  + [Current generation](instance-types.md#current-gen-instances) instances, except for the [burstable performance](burstable-performance-instances.md) instances \(for example, T2\)\.
   + The following [previous generation](instance-types.md#previous-gen-instances) instances: C3, `cc2.8xlarge`, `cr1.8xlarge`, G2, `hs1.8xlarge`, I2, and R3\.
 + A cluster placement group can't span multiple Availability Zones\.
 + The maximum network throughput speed of traffic between two instances in a cluster placement group is limited by the slower of the two instances\. For applications with high\-throughput requirements, choose an instance type with network connectivity that meets your requirements\.
@@ -352,7 +352,7 @@ Use the [New\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/referen
 You can view the placement information of your instances using one of the following methods\. You can also filter partition placement groups by the partition number using the AWS CLI\.
 
 ------
-#### [ Console ]
+#### [ New console ]
 
 **To view the placement group and partition number of an instance using the console**
 
@@ -360,7 +360,22 @@ You can view the placement information of your instances using one of the follow
 
 1. In the navigation pane, choose **Instances**\. 
 
-1. Select the instance and, in the details pane, inspect **Placement group**\. If the instance is not in a placement group, the field is empty\. Otherwise, the placement group name is displayed\. If the placement group is a partition placement group, inspect **Partition number** for the partition number for the instance\.
+1. Select the instance\.
+
+1. In the **Description** tab, under **Host and placement group**, find **Placement group**\. If the instance is not in a placement group, the field is empty\. Otherwise, it contains the name of the placement group name\. If the placement group is a partition placement group, **Partition number** contains the partition number for the instance\.
+
+------
+#### [ Old console ]
+
+**To view the placement group and partition number of an instance using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances**\.
+
+1. Select the instance\.
+
+1. In the **Description** tab, find **Placement group**\. If the instance is not in a placement group, the field is empty\. Otherwise, it contains the name of the placement group name\. If the placement group is a partition placement group, **Partition number** contains the partition number for the instance\.
 
 ------
 #### [ AWS CLI ]
@@ -493,8 +508,8 @@ Before you move or remove the instance, the instance must be in the `stopped` st
 
 If you need to replace a placement group or no longer need one, you can delete it\. You can delete a placement group using one of the following methods\.
 
-**Important**  
-Before you can delete a placement group, it must contain no instances\. You can [terminate](terminating-instances.md#terminating-instances-console) all instances that you launched into the placement group, [move](#move-instance-to-placement-group) them to another placement group, or [remove](#remove-instance-from-placement-group) them from the placement group\. You can verify that an instance is in a placement group before you terminate or move it by selecting the instance in the **Instances** screen and checking the value of **Placement group** in the details pane\.
+**Requirement**  
+Before you can delete a placement group, it must contain no instances\. You can [terminate](terminating-instances.md#terminating-instances-console) all instances that you launched into the placement group, [move](#move-instance-to-placement-group) them to another placement group, or [remove](#remove-instance-from-placement-group) them from the placement group\.
 
 ------
 #### [ New console ]
@@ -505,7 +520,7 @@ Before you can delete a placement group, it must contain no instances\. You can 
 
 1. In the navigation pane, choose **Placement Groups**\.
 
-1. Select the placement group and choose **Delete**\.
+1. Select the placement group and choose **Actions**, **Delete**\.
 
 1. When prompted for confirmation, enter **Delete** and then choose **Delete**\.
 
@@ -518,7 +533,7 @@ Before you can delete a placement group, it must contain no instances\. You can 
 
 1. In the navigation pane, choose **Placement Groups**\.
 
-1. Select the placement group and choose **Delete Placement Group**\.
+1. Select the placement group and choose **Actions**, **Delete Placement Group**\.
 
 1. When prompted for confirmation, choose **Delete**\.
 

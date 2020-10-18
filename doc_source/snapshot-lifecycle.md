@@ -289,6 +289,9 @@ Use the following procedure to modify a lifecycle policy\.
 
 Use the following procedure to delete a lifecycle policy\.
 
+**Note**  
+You can delete snapshots created only by Amazon Data Lifecycle Manager\.
+
 **To delete a lifecycle policy**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
@@ -483,7 +486,10 @@ To view the updated policy, use the `get-lifecycle-policy` command\. You can see
 
 ### Delete a lifecycle policy<a name="delete-policy-cli"></a>
 
-Use the [delete\-lifecycle\-policy](https://docs.aws.amazon.com/cli/latest/reference/dlm/delete-lifecycle-policy.html) command to delete a lifecycle policy and free up the target tags specified in the policy for reuse\.
+Use the [delete\-lifecycle\-policy](https://docs.aws.amazon.com/cli/latest/reference/dlm/delete-lifecycle-policy.html) command to delete a lifecycle policy and free up the target tags specified in the policy for reuse\. 
+
+**Note**  
+You can delete snapshots created only by Amazon Data Lifecycle Manager\.
 
 ```
 aws dlm delete-lifecycle-policy --policy-id policy-0123456789abcdef0

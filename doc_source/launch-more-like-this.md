@@ -1,9 +1,9 @@
 # Launching an instance using parameters from an existing instance<a name="launch-more-like-this"></a>
 
-The Amazon EC2 console provides a **Launch More Like This** wizard option that enables you to use a current instance as a base for launching other instances\. This option automatically populates the Amazon EC2 launch wizard with certain configuration details from the selected instance\. 
+The Amazon EC2 console provides a **Launch more like this** wizard option that enables you to use a current instance as a base for launching other instances\. This option automatically populates the Amazon EC2 launch wizard with certain configuration details from the selected instance\. 
 
 **Note**  
-The **Launch More Like This** wizard option does not clone your selected instance; it only replicates some configuration details\. To create a copy of your instance, first create an AMI from it, then launch more instances from the AMI\.  
+The **Launch more like this** wizard option does not clone your selected instance; it only replicates some configuration details\. To create a copy of your instance, first create an AMI from it, then launch more instances from the AMI\.  
 Alternatively, create a [launch template](ec2-launch-templates.md) to store the launch parameters for your instances\.
 
 The following configuration details are copied from the selected instance into the launch wizard:
@@ -23,15 +23,17 @@ The following configuration details are copied from the selected instance into t
 + Tags associated with the instance, if applicable 
 + Security groups associated with the instance
 
-The following configuration details are not copied from your selected instance; instead, the wizard applies their default settings or behavior:
+The following configuration details are not copied from your selected instance\. Instead, the wizard applies their default settings or behavior:
 + Number of network interfaces: The default is one network interface, which is the primary network interface \(eth0\)\.
 + Storage: The default storage configuration is determined by the AMI and the instance type\.
 
 **To use your current instance as a template**
 
-1. On the Instances page, select the instance you want to use\.
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. Choose **Actions**, and then **Launch More Like This**\.
+1. In the navigation pane, choose **Instances**\.
+
+1. Select the instance you want to use, and then choose **Actions**, **Launch more like this**\.
 
 1. The launch wizard opens on the **Review Instance Launch** page\. You can check the details of your instance, and make any necessary changes by clicking the appropriate **Edit** link\. 
 

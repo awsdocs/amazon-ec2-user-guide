@@ -17,7 +17,6 @@ There is no additional charge for using ClassicLink\. Standard charges for data 
 
 There are two steps to linking an EC2\-Classic instance to a VPC using ClassicLink\. First, you must enable the VPC for ClassicLink\. By default, all VPCs in your account are not enabled for ClassicLink, to maintain their isolation\. After you've enabled the VPC for ClassicLink, you can then link any running EC2\-Classic instance in the same Region in your account to that VPC\. Linking your instance includes selecting security groups from the VPC to associate with your EC2\-Classic instance\. After you've linked the instance, it can communicate with instances in your VPC using their private IP addresses, provided the VPC security groups allow it\. Your EC2\-Classic instance does not lose its private IP address when linked to the VPC\.
 
-**Note**  
 Linking your instance to a VPC is sometimes referred to as *attaching* your instance\.
 
 A linked EC2\-Classic instance can communicate with instances in a VPC, but it does not form part of the VPC\. If you list your instances and filter by VPC, for example, through the `DescribeInstances` API request, or by using the **Instances** screen in the Amazon EC2 console, the results do not return any EC2\-Classic instances that are linked to the VPC\. For more information about viewing your linked EC2\-Classic instances, see [Viewing your ClassicLink\-enabled VPCs and linked instances](#classiclink-describe-vpcs-instances)\.
@@ -104,7 +103,7 @@ EC2\-Classic instances are run on shared hardware\. If you've set the tenancy of
 You can use the Amazon EC2 and Amazon VPC consoles to work with the ClassicLink feature\. You can enable or disable a VPC for ClassicLink, and link and unlink EC2\-Classic instances to a VPC\.
 
 **Note**  
-The ClassicLink features are only visible in the consoles for accounts and regions that support EC2\-Classic\. 
+The ClassicLink features are only visible in the consoles for accounts and Regions that support EC2\-Classic\. 
 
 **Topics**
 + [Enabling a VPC for ClassicLink](#classiclink-enable-vpc)
@@ -127,9 +126,11 @@ To link an EC2\-Classic instance to a VPC, you must first enable the VPC for Cla
 
 1. In the navigation pane, choose **Your VPCs**\.
 
-1. Choose a VPC, and then choose **Actions**, **Enable ClassicLink**\.
+1. Select the VPC\.
 
-1. In the confirmation dialog box, choose **Yes, Enable**\.
+1. Choose **Actions**, **Enable ClassicLink**\.
+
+1. When prompted for confirmation, choose **Enable ClassicLink**\.
 
 1. \(Optional\) If you want the public DNS hostname to resolve to the private IP address, enable ClassicLink DNS support for the VPC before you link any instances\. For more information, see [Enabling ClassicLink DNS support](#classiclink-enable-dns-support)\.
 
@@ -141,7 +142,7 @@ You can create a new VPC and immediately enable it for ClassicLink by using the 
 
 1. Open the Amazon VPC console at [https://console\.aws\.amazon\.com/vpc/](https://console.aws.amazon.com/vpc/)\.
 
-1. From the Amazon VPC dashboard, choose **Start VPC Wizard**\.
+1. From the Amazon VPC dashboard, choose **Launch VPC Wizard**\.
 
 1. Select one of the VPC configuration options and choose **Select**\. 
 
@@ -151,10 +152,7 @@ You can create a new VPC and immediately enable it for ClassicLink by using the 
 
 ### Linking an instance to a VPC<a name="classiclink-link-instance"></a>
 
-After you've enabled a VPC for ClassicLink, you can link an EC2\-Classic instance to it\.
-
-**Note**  
-You can only link a running EC2\-Classic instance to a VPC\. You cannot link an instance that's in the `stopped` state\.
+After you've enabled a VPC for ClassicLink, you can link an EC2\-Classic instance to it\. The instance must be in the `running` state\.
 
 If you want the public DNS hostname to resolve to the private IP address, enable ClassicLink DNS support for the VPC before you link the instance\. For more information, see [Enabling ClassicLink DNS support](#classiclink-enable-dns-support)\.
 
@@ -162,13 +160,17 @@ If you want the public DNS hostname to resolve to the private IP address, enable
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation pane, choose **Instances**\. 
+1. In the navigation pane, choose **Instances**\.
 
-1. Select the running EC2\-Classic instance, choose **Actions**, **ClassicLink**, **Link to VPC**\. You can select more than one instance to link to the same VPC\.
+1. Select one or more running EC2\-Classic instances\.
 
-1. In the dialog box that displays, select a VPC from the list\. Only VPCs that have been enabled for ClassicLink are displayed\.
+1. Choose **Actions**, **ClassicLink**, **Link to VPC**\.
 
-1. Select one or more of the VPC security groups to associate with your instance\. When you are done, choose **Link to VPC**\.
+1. Choose the VPC\. The console displays only VPCs that are enabled for ClassicLink\.
+
+1. Select one or more security groups to associate with your instances\. The console displays security groups only for VPCs enabled for ClassicLink\.
+
+1. Choose **Link**\.
 
 ### Linking an instance to a VPC at launch<a name="classiclink-launch-wizard"></a>
 
@@ -180,11 +182,15 @@ You can use the launch wizard in the Amazon EC2 console to launch an EC2\-Classi
 
 1. From the Amazon EC2 dashboard, choose **Launch Instance**\.
 
-1. Select an AMI, and then choose an instance type\. On the **Configure Instance Details** page, ensure that you select **Launch into EC2\-Classic** from the **Network** list\.
-**Note**  
-Some instance types, such as T2 instance types, can only be launched into a VPC\. Ensure that you select an instance type that can be launched into EC2\-Classic\.
+1. Select an AMI, and then choose an instance type that is supported on EC2\-Classic\. For more information, see [Instance types available in EC2\-Classic](ec2-classic-platform.md#ec2-classic-instance-types)\.
 
-1. In the **Link to VPC \(ClassicLink\)** section, select a VPC from **Link to VPC**\. Only ClassicLink\-enabled VPCs are displayed\. Select the security groups from the VPC to associate with the instance\. Complete the other configuration options on the page, and then complete the rest of the steps in the wizard to launch your instance\. For more information about using the launch wizard, see [Launching an instance using the Launch Instance Wizard](launching-instance.md)\.
+1. On the **Configure Instance Details** page, do the following:
+
+   1. For **Network**, choose **Launch into EC2\-Classic**\. If this option is disabled, then the instance type is not supported on EC2\-Classic\.
+
+   1. Expand **Link to VPC \(ClassicLink\)** and choose a VPC from **Link to VPC**\. The console displays only VPCs with ClassicLink enabled\.
+
+1. Complete the rest of the steps in the wizard to launch your instance\. For more information, see [Launching an instance using the Launch Instance Wizard](launching-instance.md)\.
 
 ### Viewing your ClassicLink\-enabled VPCs and linked instances<a name="classiclink-describe-vpcs-instances"></a>
 
@@ -196,19 +202,9 @@ You can view all of your ClassicLink\-enabled VPCs in the Amazon VPC console, an
 
 1. In the navigation pane, choose **Your VPCs**\.
 
-1. Select a VPC, and in the **Summary** tab, look for the **ClassicLink** field\. A value of **Enabled** indicates that the VPC is enabled for ClassicLink\.
+1. Select the VPC\.
 
-1. Alternatively, look for the **ClassicLink** column, and view the value that's displayed for each VPC \(**Enabled** or **Disabled**\)\. If the column is not visible, choose **Edit Table Columns** \(the gear\-shaped icon\), select the **ClassicLink** attribute, and then choose **Close**\. 
-
-**To view your linked EC2\-Classic instances**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Instances**\.
-
-1. Select an EC2\-Classic instance, and in the **Description** tab, look for the **ClassicLink** field\. If the instance is linked to a VPC, the field displays the ID of the VPC to which the instance is linked\. If the instance is not linked to any VPC, the field displays **Unlinked**\.
-
-1. Alternatively, you can filter your instances to display only linked EC2\-Classic instances for a specific VPC or security group\. In the search bar, start typing `ClassicLink`, select the relevant ClassicLink resource attribute, and then select the security group ID or the VPC ID\.
+1. If the value of **ClassicLink** is **Enabled**, then the VPC is enabled for ClassicLink\.
 
 ### Enabling ClassicLink DNS support<a name="classiclink-enable-dns-support"></a>
 
@@ -223,9 +219,13 @@ If you enable ClassicLink DNS support for your VPC, your linked EC2\-Classic ins
 
 1. In the navigation pane, choose **Your VPCs**\.
 
-1. Select your VPC, and choose **Actions**, **Edit ClassicLink DNS Support**\.
+1. Select the VPC\.
 
-1. For **ClassicLink DNS Support**, choose **Enable**, and then choose **Save**\.
+1. Choose **Actions**, **Edit ClassicLink DNS Support**\.
+
+1. For **ClassicLink DNS support**, select **Enable**\.
+
+1. Choose **Save changes**\.
 
 ### Disabling ClassicLink DNS support<a name="classiclink-disable-dns-support"></a>
 
@@ -237,26 +237,31 @@ You can disable ClassicLink DNS support for your VPC so that DNS hostnames that 
 
 1. In the navigation pane, choose **Your VPCs**\.
 
-1. Select your VPC, and choose **Actions**, **Edit ClassicLink DNS Support**\.
+1. Select the VPC\.
 
-1. For **ClassicLink DNS Support**, clear the **Enable** check box, and then choose **Save**\.
+1. Choose **Actions**, **Edit ClassicLink DNS Support**\.
+
+1. For **ClassicLink DNS Support**, clear **Enable**\.
+
+1. Choose **Save changes**\.
 
 ### Unlinking an instance from a VPC<a name="classiclink-unlink-instance"></a>
 
 If you no longer require a ClassicLink connection between your EC2\-Classic instance and your VPC, you can unlink the instance from the VPC\. Unlinking the instance disassociates the VPC security groups from the instance\.
 
-**Note**  
 A stopped instance is automatically unlinked from a VPC\.
 
 **To unlink an instance from a VPC**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation pane, choose **Instances**, and select your instance\.
+1. In the navigation pane, choose **Instances**\.
 
-1. In the **Actions** list, select **ClassicLink**, **Unlink Instance**\. You can select more than one instance to unlink from the same VPC\. 
+1. Select one or more of your instances\.
 
-1. Choose **Yes** in the confirmation dialog box\.
+1. Choose **Actions**, **ClassicLink**, **Unlink from VPC**\.
+
+1. When prompted for confirmation, choose **Unlink**\.
 
 ### Disabling ClassicLink for a VPC<a name="classiclink-disable-vpc"></a>
 
@@ -268,9 +273,11 @@ If you no longer require a connection between EC2\-Classic instances and your VP
 
 1. In the navigation pane, choose **Your VPCs**\.
 
-1. Select your VPC, then choose **Actions**, **Disable ClassicLink**\.
+1. Select your VPC\.
 
-1. In the confirmation dialog box, choose **Yes, Disable**\.
+1. Choose **Actions**, **Disable ClassicLink**\.
+
+1. When prompted for confirmation, choose **Disable ClassicLink**\.
 
 ## Example IAM policies for ClassicLink<a name="iam-example-classiclink"></a>
 

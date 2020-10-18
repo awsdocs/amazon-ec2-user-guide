@@ -60,13 +60,16 @@ The following example policy allows the user to copy the AMI source in the speci
 
 To find the Amazon Resource Name \(ARN\) of the AMI source bucket, open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/), in the navigation pane choose **AMIs**, and locate the bucket name in the **Source** column\.
 
+**Note**  
+The `s3:CreateBucket` permission is only needed the first time that the IAM user copies an instance store\-backed AMI to an individual Region\. After that, the Amazon S3 bucket that is already created in the Region is used to store all future AMIs that you copy to that Region\.
+
 ## Cross\-Region copying<a name="copy-amis-across-regions"></a>
 
 Copying an AMI across geographically diverse Regions provides the following benefits:
 + Consistent global deployment: Copying an AMI from one Region to another enables you to launch consistent instances in different Regions based on the same AMI\.
 + Scalability: You can more easily design and build global applications that meet the needs of your users, regardless of their location\.
 + Performance: You can increase performance by distributing your application, as well as locating critical components of your application in closer proximity to your users\. You can also take advantage of Region\-specific features, such as instance types or other AWS services\.
-+ High availability: You can design and deploy applications across AWS regions, to increase availability\.
++ High availability: You can design and deploy applications across AWS Regions, to increase availability\.
 
 The following diagram shows the relations among a source AMI and two copied AMIs in different Regions, as well as the EC2 instances launched from each\. When you launch an instance from an AMI, it resides in the same Region where the AMI resides\. If you make changes to the source AMI and want those changes to be reflected in the AMIs in the target Regions, you must recopy the source AMI to the target Regions\.
 
@@ -146,7 +149,7 @@ Create or obtain an AMI backed by an Amazon EBS snapshot\. Note that you can use
 
 1. We display a confirmation page to let you know that the copy operation has been initiated and to provide you with the ID of the new AMI\.
 
-   To check on the progress of the copy operation immediately, follow the provided link\. To check on the progress later, choose **Done**, and then when you are ready, use the navigation bar to switch to the target region \(if applicable\) and locate your AMI in the list of AMIs\.
+   To check on the progress of the copy operation immediately, follow the provided link\. To check on the progress later, choose **Done**, and then when you are ready, use the navigation bar to switch to the target Region \(if applicable\) and locate your AMI in the list of AMIs\.
 
    The initial status of the target AMI is `pending` and the operation is complete when the status is `available`\.
 

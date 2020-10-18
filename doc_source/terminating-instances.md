@@ -37,14 +37,31 @@ When an EC2 instance is terminated using the `terminate-instances` command, the 
 
 ## Terminating an instance<a name="terminating-instances-console"></a>
 
-**Important**  
-By default, when you initiate a shutdown from an Amazon EBS\-backed instance \(using the **shutdown** or **poweroff** commands\), the instance stops\. The **halt** command does not initiate a shutdown\. If used, the instance will not terminate; instead, it places the CPU into `HLT` and the instance will remain running\.
-
 You can terminate an instance using the AWS Management Console or the command line\.
+
+By default, when you initiate a shutdown from an Amazon EBS\-backed instance \(using the shutdown or poweroff commands\), the instance stops\. The halt command does not initiate a shutdown\. If used, the instance does not terminate; instead, it places the CPU into `HLT` and the instance remains running\.
+
+------
+#### [ New console ]
 
 **To terminate an instance using the console**
 
-1. Before you terminate the instance, verify that you won't lose any data by checking that your Amazon EBS volumes won't be deleted on termination and that you've copied any data that you need from your instance store volumes to Amazon EBS or Amazon S3\.
+1. Before you terminate an instance, verify that you won't lose any data by checking that your Amazon EBS volumes won't be deleted on termination and that you've copied any data that you need from your instance store volumes to persistent storage, such as Amazon EBS or Amazon S3\.
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances**\.
+
+1. Select the instance, and choose **Actions**, **Instance state**, **Terminate instance**\.
+
+1. Choose **Terminate** when prompted for confirmation\.
+
+------
+#### [ Old console ]
+
+**To terminate an instance using the console**
+
+1. Before you terminate an instance, verify that you won't lose any data by checking that your Amazon EBS volumes won't be deleted on termination and that you've copied any data that you need from your instance store volumes to persistent storage, such as Amazon EBS or Amazon S3\.
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -53,6 +70,8 @@ You can terminate an instance using the AWS Management Console or the command li
 1. Select the instance, and choose **Actions**, **Instance State**, **Terminate**\.
 
 1. Choose **Yes, Terminate** when prompted for confirmation\.
+
+------
 
 **To terminate an instance using the command line**
 
@@ -112,10 +131,11 @@ You can update the `InstanceInitiatedShutdownBehavior` attribute using the Amazo
 
 1. In the navigation pane, choose **Instances**\.
 
-1. Select the instance, and choose **Actions**, **Instance Settings**, **Change Shutdown Behavior**\. The current behavior is already selected\.
+1. Select the instance\.
 
-1. To change the behavior, select an option from the **Shutdown behavior** list, and then choose **Apply**\.  
-![\[The Change Shutdown Behavior dialog box\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/shutdown_behavior_dialog.png)
+1. Choose **Actions**, **Instance settings**, **Change shutdown behavior**\. The current behavior is selected\.
+
+1. To change the behavior, select **Stop** or **Terminate** from **Shutdown behavior** and then choose **Apply**\.
 
 **To change the shutdown behavior of an instance using the command line**
 

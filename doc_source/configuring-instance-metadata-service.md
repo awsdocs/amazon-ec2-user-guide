@@ -8,6 +8,8 @@ By default, you can use either IMDSv1 or IMDSv2, or both\. The instance metadata
 
 You can configure the instance metadata service on each instance such that local code or users must use IMDSv2\. When you specify that IMDSv2 must be used, IMDSv1 no longer works\. For more information, see [Configuring the instance metadata options](#configuring-instance-metadata-options)\.
 
+To retrieve instance metadata, see [Retrieving instance metadata](instancedata-data-retrieval.md)\.
+
 ## How Instance Metadata Service Version 2 works<a name="instance-metadata-v2-how-it-works"></a>
 
 IMDSv2 uses session\-oriented requests\. With session\-oriented requests, you create a session token that defines the session duration, which can be a minimum of one second and a maximum of six hours\. During the specified duration, you can use the same session token for subsequent requests\. After the specified duration expires, you must create a new session token to use for future requests\.
@@ -82,9 +84,11 @@ Track your transition progress by using the CloudWatch metric `MetadataNoToken`\
 
 Everything is ready on all instances when the CloudWatch metric `MetadataNoToken` records zero IMDSv1 usage\. At this stage, you can do the following:
 + For existing instances: You can require IMDSv2 use through the [modify\-instance\-metadata\-options](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-metadata-options.html) command\. You can make these changes on running instances; you do not need to restart your instances\. 
-+ For new instances: When launching a new instance, you can use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command to specify that only IMDSv2 is to be used\.
++ For new instances: When launching a new instance, you can do one of the following:
+  + In the Amazon EC2 console launch instance wizard, set **Metadata accessible** to **Enabled** and **Metadata version** to **V2**\. For more information, see [Step 3: Configure Instance Details](launching-instance.md#configure_instance_details_step)\.
+  + Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command to specify that only IMDSv2 is to be used\.
 
-Specifying instance metadata options is available only through the API or AWS CLI; it is currently not available via the AWS Management Console\. For more information, see [Configuring the instance metadata options](#configuring-instance-metadata-options)\.
+Updating instance metadata options for existing instances is available only through the API or AWS CLI\. It is currently not available in the Amazon EC2 console\. For more information, see [Configuring the instance metadata options](#configuring-instance-metadata-options)\.
 
 ### Step 4: When all of your instances are transitioned to IMDSv2<a name="path-step-4"></a>
 
@@ -102,7 +106,9 @@ You can also use IAM condition keys in an IAM policy or SCP to do the following:
 + Restrict the number of allowed hops
 + Turn off access to instance metadata
 
-To configure the instance metadata options on new or existing instances, you use the AWS SDK or CLI\. For more information, see [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) and [modify\-instance\-metadata\-options](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-metadata-options.html) in the *AWS CLI Command Reference*\.
+You can configure instance metadata options when launching new instances from the Amazon EC2 console\. For more information, see [Step 3: Configure Instance Details](launching-instance.md#configure_instance_details_step)\.
+
+To configure the instance metadata options on new or existing instances, you can use the AWS SDK or AWS CLI\. For more information, see [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) and [modify\-instance\-metadata\-options](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-metadata-options.html) in the *AWS CLI Command Reference*\.
 
 **Note**  
 You should proceed cautiously and conduct careful testing before making any changes\. Take note of the following:  
@@ -115,7 +121,20 @@ If you turn off all access to instance metadata, applications or agents that rel
 
 ### Configuring instance metadata options for new instances<a name="configuring-IMDS-new-instances"></a>
 
-You can require the use IMDSv2 on an instance when you launch it\. You can also create an IAM policy that prevents users from launching new instances unless they require IMDSv2 on the new instance\.
+You can require the use of IMDSv2 on an instance when you launch it\. You can also create an IAM policy that prevents users from launching new instances unless they require IMDSv2 on the new instance\.
+
+------
+#### [ Console ]
+
+**To require the use of IMDSv2 on a new instance**
++ When launching a new instance in the Amazon EC2 console, select the following options on the **Configure Instance Details** page:
+  + Under **Advanced Details**, for **Metadata accessible**, select **Enabled**\.
+  + For **Metadata version**, select **V2 \(token required\)**\.
+
+For more information, see [Step 3: Configure Instance Details](launching-instance.md#configure_instance_details_step)\.
+
+------
+#### [ AWS CLI ]
 
 **To require the use of IMDSv2 on a new instance**  
 The following [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) example launches a `c3.large` instance with `--metadata-options` set to `HttpTokens=required`\. When you specify a value for `HttpTokens`, you must also set `HttpEndpoint` to `enabled`\. Because the secure token header is set to `required` for metadata retrieval requests, this opts in the instance to require using IMDSv2 when requesting instance metadata\.
@@ -128,11 +147,25 @@ aws ec2 run-instances
     --metadata-options "HttpEndpoint=enabled,HttpTokens=required"
 ```
 
+------
+
 **To enforce the use of IMDSv2 on all new instances**  
 To ensure that IAM users can only launch instances that require the use of IMDSv2 when requesting instance metadata, you can specify that the condition to require IMDSv2 must be met before an instance can be launched\. For the example IAM policy, see [Working with instance metadata](ExamplePolicies_EC2.md#iam-example-instance-metadata)\.
 
+------
+#### [ Console ]
+
+**To turn off access to instance metadata**
++ To ensure that access to your instance metadata is turned off, regardless of which version of the instance metadata service you are using, launch the instance in the Amazon EC2 console with the following option selected on the **Configure Instance Details** page:
+  + Under **Advanced Details**, for **Metadata accessible**, select **Disabled**\.
+
+For more information, see [Step 3: Configure Instance Details](launching-instance.md#configure_instance_details_step)\.
+
+------
+#### [ AWS CLI ]
+
 **To turn off access to instance metadata**  
-To ensure that access to your instance metadata is turned off, regardless of which version of the instance metadata service you are using, launch the instance with `--metadata-options` set to `HttpEndpoint=disabled`\. You can turn on access later on using the [modify\-instance\-metadata\-options](https://docs.aws.amazon.com/cli/latest/reference/modify-instance-metadata-options.html) command\.
+To ensure that access to your instance metadata is turned off, regardless of which version of the instance metadata service you are using, launch the instance with `--metadata-options` set to `HttpEndpoint=disabled`\. You can turn access on later by using the [modify\-instance\-metadata\-options](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-metadata-options.html) command\.
 
 ```
 aws ec2 run-instances 
@@ -141,6 +174,8 @@ aws ec2 run-instances
     ... 
     --metadata-options "HttpEndpoint=disabled"
 ```
+
+------
 
 ### Configuring instance metadata options for existing instances<a name="configuring-IMDS-existing-instances"></a>
 

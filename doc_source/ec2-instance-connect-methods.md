@@ -14,7 +14,6 @@ The following instructions explain how to connect to your Linux instance using E
 + To connect using the browser\-based client, the instance must have a public IPv4 address\.
 + If the instance does not have a public IP address, then you can only connect to the instance using the EC2 Instance Connect CLI, and only from a machine within the same VPC\.
 + EC2 Instance Connect does not support connecting using an IPv6 address\.
-+ The Safari browser is currently not supported\.
 
 **Prerequisites**
 + **Install Instance Connect on your instance\.**

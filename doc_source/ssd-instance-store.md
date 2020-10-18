@@ -6,7 +6,9 @@ Like other instance store volumes, you must map the SSD instance store volumes f
 
 ## NVMe SSD volumes<a name="nvme-ssd-volumes"></a>
 
-The following instances offer non\-volatile memory express \(NVMe\) solid state drives \(SSD\) instance store volumes: C5d, G4, I3, I3en, F1, M5ad, M5d, `p3dn.24xlarge`, R5ad, R5d, and z1d\. To access NVMe volumes, the [NVMe drivers](nvme-ebs-volumes.md#install-nvme-driver) must be installed\. The following AMIs meet this requirement:
+Some instances offer non\-volatile memory express \(NVMe\) solid state drives \(SSD\) instance store volumes\. For more information about the type of instance store volume supported by each instance type, see [Instance store volumes](InstanceStorage.md#instance-store-volumes)\.
+
+To access NVMe volumes, the [NVMe drivers](nvme-ebs-volumes.md#install-nvme-driver) must be installed\. The following AMIs meet this requirement:
 + Amazon Linux 2
 + Amazon Linux AMI 2018\.03
 + Ubuntu 14\.04 \(with `linux-aws` kernel\) or later
@@ -55,11 +57,11 @@ The data on NVMe instance storage is encrypted using an XTS\-AES\-256 block ciph
 
 ## Non\-NVMe SSD volumes<a name="ssd-volumes"></a>
 
-The following instances support instance store volumes that use non\-NVMe SSDs to deliver high random I/O performance: C3, G2, I2, M3, R3, and X1\. For more information about the instance store volumes support by each instance type, see [Instance store volumes](InstanceStorage.md#instance-store-volumes)\.
+The following instances support instance store volumes that use non\-NVMe SSDs to deliver high random I/O performance: C3, G2, I2, M3, R3, and X1\. For more information about the instance store volumes supported by each instance type, see [Instance store volumes](InstanceStorage.md#instance-store-volumes)\.
 
 ## Instance store volume TRIM support<a name="InstanceStoreTrimSupport"></a>
 
-The following instances support SSD volumes with TRIM: C5d, F1, G4, I2, I3, I3en, M5ad, M5d, `p3dn.24xlarge`, R3, R5ad, R5d, and z1d\.
+Some instance types support SSD volumes with TRIM\. For more information, see [Instance store volumes](InstanceStorage.md#instance-store-volumes)\.
 
 Instance store volumes that support TRIM are fully trimmed before they are allocated to your instance\. These volumes are not formatted with a file system when an instance launches, so you must format them before they can be mounted and used\. For faster access to these volumes, you should skip the TRIM operation when you format them\. 
 

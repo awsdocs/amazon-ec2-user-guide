@@ -66,9 +66,9 @@ Launch a temporary instance that you can use to install and configure the EFA so
 
 1. Choose **Launch Instance**\.
 
-1. On the **Choose an AMI** page, choose **Select** for one of the following supported AMIs: Amazon Linux, Amazon Linux 2, RHEL 7\.6, RHEL 7\.7, RHEL 7\.8, CentOS 7, Ubuntu 16\.04, and Ubuntu 18\.04\.
+1. On the **Choose an AMI** page, choose **Select** for one of the [supported AMIs](efa.md#efa-amis)\.
 
-1. On the **Choose an Instance Type** page, select one of the following supported instance types and then choose **Next: Configure Instance Details**: `c5n.18xlarge`, `c5n.metal`, `g4dn.metal`, `i3en.24xlarge`, `i3en.metal`, `inf1.24xlarge`, `m5dn.24xlarge`, `m5n.24xlarge`, `p3dn.24xlarge`, `r5dn.24xlarge`, and `r5n.24xlarge`\.
+1. On the **Choose an Instance Type** page, select one of the [supported instance types](efa.md#efa-instance-types) and then choose **Next: Configure Instance Details**\.
 
 1. On the **Configure Instance Details** page, do the following:
 
@@ -117,7 +117,7 @@ The steps differ depending on whether you intend to use EFA with Open MPI, with 
 1. Download the EFA software installation files\. The software installation files are packaged into a compressed tarball \(`.tar.gz`\) file\. To download the latest *stable* version, use the following command\.
 
    ```
-   $ curl -O https://efa-installer.amazonaws.com/aws-efa-installer-1.9.5.tar.gz
+   $ curl -O https://efa-installer.amazonaws.com/aws-efa-installer-1.10.0.tar.gz
    ```
 
    You can also get the latest version by replacing the version number with `latest` in the preceding command\.
@@ -149,11 +149,11 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
    1. Download the signature file and verify the signature of the EFA tarball file\.
 
       ```
-      $ wget https://efa-installer.amazonaws.com/aws-efa-installer-1.9.5.tar.gz.sig
+      $ wget https://efa-installer.amazonaws.com/aws-efa-installer-1.10.0.tar.gz.sig
       ```
 
       ```
-      $ gpg --verify ./aws-efa-installer-1.9.5.tar.gz.sig
+      $ gpg --verify ./aws-efa-installer-1.10.0.tar.gz.sig
       ```
 
       The following shows example output\.
@@ -171,7 +171,7 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
 1. Extract the files from the compressed `.tar.gz` file and navigate into the extracted directory\.
 
    ```
-   $ tar -xf aws-efa-installer-1.9.5.tar.gz
+   $ tar -xf aws-efa-installer-1.10.0.tar.gz
    ```
 
    ```
@@ -336,19 +336,19 @@ After you have installed the required software components, you create an AMI tha
 
 1. In the navigation pane, choose **Instances**\.
 
-1. Select the temporary instance that you created and choose **Actions**, **Image**, **Create Image**\.
+1. Select the temporary instance that you created and choose **Actions**, **Image**, **Create image**\.
 
-1. In the **Create Image** window, do the following:
+1. For **Create image**, do the following:
 
    1. For **Image name**, enter a descriptive name for the AMI\.
 
-   1. \(Optional\) For **Image description**, enter a brief description of the AMI\.
+   1. \(Optional\) For **Image description**, enter a brief description of the purpose of the AMI\.
 
-   1. Choose **Create Image** and then choose **Close**\.
+   1. Choose **Create image**\.
 
 1. In the navigation pane, choose **AMIs**\.
 
-1. Locate the AMI you created in the list\. Wait for the Status to transition from `pending` to `available` before continuing to the next step\.
+1. Locate the AMI tht you created in the list\. Wait for the status to change from `pending` to `available` before continuing to the next step\.
 
 ## Step 8: Launch EFA\-enabled instances into a cluster placement group<a name="efa-start-instances"></a>
 
@@ -365,7 +365,7 @@ It is not an absolute requirement to launch your EFA\-enabled instances into a c
 
 1. On the **Choose an AMI** page, choose **My AMIs**, find the AMI that you created in **Step 7**, and then choose **Select**\.
 
-1. On the **Choose an Instance Type** page, select one of the following supported instance types and then choose **Next: Configure Instance Details**: `c5n.18xlarge`, `c5n.metal`, `g4dn.metal`, `i3en.24xlarge`, `i3en.metal`, `inf1.24xlarge`, `m5dn.24xlarge`, `m5n.24xlarge`, `p3dn.24xlarge`, `r5dn.24xlarge`, and `r5n.24xlarge`\.
+1. On the **Choose an Instance Type** page, select one of the [supported instance types](efa.md#efa-instance-types) and then choose **Next: Configure Instance Details**\.
 
 1. On the **Configure Instance Details** page, do the following:
 
@@ -403,7 +403,9 @@ At this point, you no longer need the temporary instance that you launched\. You
 
 1. In the navigation pane, choose **Instances**\.
 
-1. Select the temporary instance that you created and then choose **Actions**, **Instance State**, **Terminate**, **Yes, Terminate**\.
+1. Select the temporary instance that you created and then choose **Actions**, **Instance state**, **Terminate instance**\.
+
+1. When prompted for confirmation, choose **Terminate**\.
 
 ## Step 10: Enable passwordless SSH<a name="efa-start-passwordless"></a>
 

@@ -5,8 +5,8 @@ You can create, use, and manage an EFA much like any other elastic network inter
 ## EFA requirements<a name="efa-reqs"></a>
 
 To use an EFA, you must do the following:
-+ Use one of the following supported instance types: `c5n.18xlarge`, `c5n.metal`, `g4dn.metal`, `i3en.24xlarge`, `i3en.metal`, `inf1.24xlarge`, `m5dn.24xlarge`, `m5n.24xlarge`, `p3dn.24xlarge`, `r5dn.24xlarge`, and `r5n.24xlarge`\.
-+ Use one of the following supported AMIs: Amazon Linux, Amazon Linux 2, RHEL 7\.6, RHEL 7\.7, RHEL 7\.8, CentOS 7, Ubuntu 16\.04, and Ubuntu 18\.04\.
++ Choose one of the [supported instance types](efa.md#efa-instance-types)\.
++ Use one of the [supported AMIs](efa.md#efa-amis)\.
 + Install the EFA software components\. For more information, see [Step 3: Install the EFA software](efa-start.md#efa-start-enable) and [Step 5: \(Optional\) Install Intel MPI](efa-start.md#efa-start-impi)\.
 + Use a security group that allows all inbound and outbound traffic to and from the security group itself\. For more information, see [Step 1: Prepare an EFA\-enabled security group](efa-start.md#efa-start-security)\.
 
@@ -16,9 +16,8 @@ To use an EFA, you must do the following:
 + [Attaching an EFA to a stopped instance](#efa-attach)
 + [Attaching an EFA when launching an instance](#efa-launch)
 + [Adding an EFA to a launch template](#efa-launch-template)
-+ [Assigning an IP address to an EFA](#efa-ip-assign)
-+ [Unassigning an IP address from an EFA](#efa-ip-unassign)
-+ [Changing the security group](#efa-security)
++ [Managing IP addresses for an EFA](#efa-manage-ip-address)
++ [Changing the security group for an EFA](#efa-security)
 + [Detaching an EFA](#efa-detach)
 + [Viewing EFAs](#efa-view)
 + [Deleting an EFA](#efa-delete)
@@ -60,7 +59,7 @@ aws ec2 create-network-interface --subnet-id subnet-01234567890 --description ex
 
 You can attach an EFA to any supported instance that is in the `stopped` state\. You cannot attach an EFA to an instance that is in the `running` state\. For more information about the supported instance types, see [Supported instance types](efa.md#efa-instance-types)\.
 
-You attach an EFA to an instance in the same way that you attach an elastic network interface to an instance\. For more information, see [Attaching a network interface to a stopped or running instance](using-eni.md#attach_eni_running_stopped)\.
+You attach an EFA to an instance in the same way that you attach a network interface to an instance\. For more information, see [Attaching a network interface to an instance](using-eni.md#attach_eni)\.
 
 ## Attaching an EFA when launching an instance<a name="efa-launch"></a>
 
@@ -86,25 +85,17 @@ You can leverage launch templates to launch EFA\-enabled instances with other AW
 
 For more information about creating launch templates, see [Creating a launch template](ec2-launch-templates.md#create-launch-template)\.
 
-## Assigning an IP address to an EFA<a name="efa-ip-assign"></a>
+## Managing IP addresses for an EFA<a name="efa-manage-ip-address"></a>
 
-If you have an Elastic IP \(IPv4\) address, you can associate it with an EFA\. If your EFA is provisioned in a subnet that has an associated IPv6 CIDR block, you can assign one or more IPv6 addresses to the EFA\.
+You can change the IP addresses associated with an EFA\. If you have an Elastic IP address, you can associate it with an EFA\. If your EFA is provisioned in a subnet that has an associated IPv6 CIDR block, you can assign one or more IPv6 addresses to the EFA\.
 
-You assign an Elastic IP \(IPv4\) and IPv6 address to an EFA in the same way that you assign an IP address to an elastic network interface\. For more information, see:
-+ [Associating an Elastic IP address \(IPv4\)](using-eni.md#associate_eip)
-+ [Assigning an IPv6 address](using-eni.md#eni-assign-ipv6)
+You assign an Elastic IP \(IPv4\) and IPv6 address to an EFA in the same way that you assign an IP address to an elastic network interface\. For more information, see [Managing IP addresses](using-eni.md#managing-network-interface-ip-addresses)\.
 
-## Unassigning an IP address from an EFA<a name="efa-ip-unassign"></a>
-
-You unassign an Elastic IP \(IPv4\) and IPv6 address from an EFA in the same way that you unassign an IP address from an elastic network interface\. For more information, see:
-+ [Disassociating an Elastic IP address \(IPv4\)](using-eni.md#disassociate_eip)
-+ [Unassigning an IPv6 address](using-eni.md#eni-unassign-ipv6)
-
-## Changing the security group<a name="efa-security"></a>
+## Changing the security group for an EFA<a name="efa-security"></a>
 
  You can change the security group that is associated with an EFA\. To enable OS\-bypass functionality, the EFA must be a member of a security group that allows all inbound and outbound traffic to and from the security group itself\.
 
-You change the security group that is associated with an EFA in the same way that you change the security group that is associated with an elastic network interface\. For more information, see [Changing the security group](using-eni.md#eni_security_group)\.
+You change the security group that is associated with an EFA in the same way that you change the security group that is associated with an elastic network interface\. For more information, see [Changing the security group](using-eni.md#modify-groups)\.
 
 ## Detaching an EFA<a name="efa-detach"></a>
 

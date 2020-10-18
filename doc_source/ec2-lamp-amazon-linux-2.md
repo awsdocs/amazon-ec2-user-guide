@@ -19,11 +19,9 @@ To complete this tutorial using AWS Systems Manager Automation instead of the fo
 
 ## Step 1: Prepare the LAMP server<a name="prepare-lamp-server"></a>
 
-**Prerequisites**  
-This tutorial assumes that you have already launched a new instance using Amazon Linux 2, with a public DNS name that is reachable from the internet\. For more information, see [Step 1: Launch an instance](EC2_GetStarted.md#ec2-launch-instance)\. You must also have configured your security group to allow SSH \(port 22\), HTTP \(port 80\), and HTTPS \(port 443\) connections\. For more information about these prerequisites, see [Authorizing inbound traffic for your Linux instances](authorizing-access-to-an-instance.md)\.
-
-**Note**  
-The following procedure installs the latest PHP version available on Amazon Linux 2, currently PHP 7\.2\. If you plan to use PHP applications other than those described in this tutorial, you should check their compatibility with PHP 7\.2\.<a name="install_apache-2"></a>
+**Prerequisites**
++ This tutorial assumes that you have already launched a new instance using Amazon Linux 2, with a public DNS name that is reachable from the internet\. For more information, see [Step 1: Launch an instance](EC2_GetStarted.md#ec2-launch-instance)\. You must also have configured your security group to allow SSH \(port 22\), HTTP \(port 80\), and HTTPS \(port 443\) connections\. For more information about these prerequisites, see [Authorizing inbound traffic for your Linux instances](authorizing-access-to-an-instance.md)\.
++ The following procedure installs the latest PHP version available on Amazon Linux 2, currently PHP 7\.2\. If you plan to use PHP applications other than those described in this tutorial, you should check their compatibility with PHP 7\.2\.<a name="install_apache-2"></a>
 
 **To prepare the LAMP server**
 
@@ -42,13 +40,14 @@ The following procedure installs the latest PHP version available on Amazon Linu
    ```
    [ec2-user ~]$ sudo amazon-linux-extras install -y lamp-mariadb10.2-php7.2 php7.2
    ```
-**Note**  
-If you receive an error stating `sudo: amazon-linux-extras: command not found`, then your instance was not launched with an Amazon Linux 2 AMI \(perhaps you are using the Amazon Linux AMI instead\)\. You can view your version of Amazon Linux with the following command\.  
+
+   If you receive an error stating `sudo: amazon-linux-extras: command not found`, then your instance was not launched with an Amazon Linux 2 AMI \(perhaps you are using the Amazon Linux AMI instead\)\. You can view your version of Amazon Linux using the following command\.
 
    ```
    cat /etc/system-release
    ```
-To set up a LAMP web server on Amazon Linux AMI , see [Tutorial: Install a LAMP web server with the Amazon Linux AMI](install-LAMP.md)\.
+
+   To set up a LAMP web server on Amazon Linux AMI , see [Tutorial: Install a LAMP web server with the Amazon Linux AMI](install-LAMP.md)\.
 
 1. Now that your instance is current, you can install the Apache web server, MariaDB, and PHP software packages\. 
 
@@ -57,8 +56,8 @@ To set up a LAMP web server on Amazon Linux AMI , see [Tutorial: Install a LAMP 
    ```
    [ec2-user ~]$ sudo yum install -y httpd mariadb-server
    ```
-**Note**  
-You can view the current versions of these packages with the following command:  
+
+   You can view the current versions of these packages using the following command:
 
    ```
    yum info package_name
@@ -88,17 +87,14 @@ You can view the current versions of these packages with the following command:
 
    1. Choose **Instances** and select your instance\.
 
-   1. Under **Security groups**, choose **view inbound rules**\.
-
-   1. You should see the following list of rules in your default security group:
+   1. On the **Security** tab, view the inbound rules\. You should see the following rule:
 
       ```
-      Security Groups associated with i-1234567890abcdef0
-      Ports     Protocol     Source     launch-wizard-N
-      22        tcp          0.0.0.0/0          ✔
+      Port range   Protocol     Source
+      22           tcp          0.0.0.0/0
       ```
 
-      Using the procedures in [Adding rules to a security group](working-with-security-groups.md#adding-security-group-rule), add a new inbound security rule with the following values:
+   1. Choose the link for the security group\. Using the procedures in [Adding rules to a security group](working-with-security-groups.md#adding-security-group-rule), add a new inbound security rule with the following values:
       + **Type**: HTTP
       + **Protocol**: TCP
       + **Port Range**: 80
@@ -185,13 +181,14 @@ If your server is installed and running, and your file permissions are set corre
 
    You should see the PHP information page:  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/phpinfo7.2.10.png)
-**Note**  
-If you do not see this page, verify that the `/var/www/html/phpinfo.php` file was created properly in the previous step\. You can also verify that all of the required packages were installed with the following command\.  
+
+   If you do not see this page, verify that the `/var/www/html/phpinfo.php` file was created properly in the previous step\. You can also verify that all of the required packages were installed with the following command\.
 
    ```
    [ec2-user ~]$ sudo yum list installed httpd mariadb-server php-mysqlnd
    ```
-If any of the required packages are not listed in your output, install them with the sudo yum install *package* command\. Also verify that the `php7.2` and `lamp-mariadb10.2-php7.2` extras are enabled in the output of the amazon\-linux\-extras command\.
+
+   If any of the required packages are not listed in your output, install them with the sudo yum install *package* command\. Also verify that the `php7.2` and `lamp-mariadb10.2-php7.2` extras are enabled in the output of the amazon\-linux\-extras command\.
 
 1. Delete the `phpinfo.php` file\. Although this can be useful information, it should not be broadcast to the internet for security reasons\.
 
@@ -224,8 +221,8 @@ The default installation of the MariaDB server has several features that are gre
       1. Type the current root password\. By default, the root account does not have a password set\. Press Enter\.
 
       1. Type **Y** to set a password, and type a secure password twice\. For more information about creating a secure password, see [https://identitysafe\.norton\.com/password\-generator/](https://identitysafe.norton.com/password-generator/)\. Make sure to store this password in a safe place\.
-**Note**  
-Setting a root password for MariaDB is only the most basic measure for securing your database\. When you build or install a database\-driven application, you typically create a database service user for that application and avoid using the root account for anything but database administration\. 
+
+         Setting a root password for MariaDB is only the most basic measure for securing your database\. When you build or install a database\-driven application, you typically create a database service user for that application and avoid using the root account for anything but database administration\. 
 
    1. Type **Y** to remove the anonymous user accounts\.
 

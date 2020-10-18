@@ -20,22 +20,21 @@ You can view the most common Amazon EC2 resource types using the console\. To vi
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation pane, choose the option that corresponds to the resource\. For example, to list your instances, choose **Instances**\.
+1. In the navigation pane, choose the option that corresponds to the resource type\. For example, to list your instances, choose **Instances**\.
 
-1. The page displays all the available resources\.
+1. The page displays all resources of the selected resource type\.
 
 ### Filtering resources using the console<a name="console-filter"></a>
 
 Search functionality differs slightly between the *old* and *new* Amazon EC2 console\.
 
-------
-#### [ New console ]
+#### New console<a name="console-filters-new"></a>
 
 The new console supports two types of filtering\.
 + *API filtering* happens on the server side\. The filtering is applied on the API call and it reduces the number of resources returned by the server\. It allows for quick filtering across large sets of resources, and it can reduce data transfer time and cost between the server and the browser\.
 + *Client filtering* happens on the client side\. It enables you to filter down on data that is already available in the browser \(in other words, data that has already been returned by the API\)\. Client filtering works well in conjunction with an API filter to filter down to smaller data sets in the browser\.
 
-The new Amazon EC2 console supports two types of searches:
+The new Amazon EC2 console supports the following types of searches:
 
 **Search by keyword**  
 Searching by keyword is a free text search that lets you search for a value across all of your resources' attributes, without specifying an attribute to search\.   
@@ -53,7 +52,7 @@ For example, you can search the **Instance State** attribute for all of your ins
 
 1. Select **Stopped** from the list\.
 
-You can use the following techniques to enhance or refine your searches\.
+You can use the following techniques to enhance or refine your searches:
 
 Inverse search  
 Inverse searches let you search for resources that do **not** match a specified value\. Inverse searches are performed by prefixing the search keyword with the exclamation mark \(\!\) character\. For example, to list all instances that are **not** assigned the security group named `launch-wizard-1`, search by the **Security group name** attribute, and for the keyword, enter `!launch-wizard-1`\.  
@@ -75,10 +74,9 @@ Wildcard search is supported with attribute searches on API filters only\. It is
 Combining searches  
 In general, multiple filters with the same attribute are automatically joined with `OR`\. For example, searching for `Instance State : Running` and `Instance State : Stopped` returns all instances that are either running OR stopped\. To join search with `AND`, search across different attributes\. For example, searching for `Instance State : Running` and `Instance Type : c4.large` returns only instances that are of type `c4.large` AND that are in the stopped state\.
 
-------
-#### [ Old console ]
+#### Old console<a name="console-filters-old"></a>
 
-The old Amazon EC2 console supports two types of searches:
+The old Amazon EC2 console supports the following types of searches:
 
 **Search by keyword**  <a name="old-keyword"></a>
 Searching by keyword is a free text search that lets you search for a value across all of your resources' attributes\. To search by keyword, enter or paste what you’re looking for in the search field, and then choose **Enter**\. For example, searching for `123` matches all instances that have *123* in any of their attributes, such as an IP address, instance ID, VPC ID, or AMI ID\. If your free text search returns unexpected matches, apply additional filters\.
@@ -92,7 +90,7 @@ Searching by an attribute lets you search a specific attribute across all of you
 
 1. Select **Stopped** from the list\.
 
-You can use the following techniques to enhance or refine your searches\.
+You can use the following techniques to enhance or refine your searches:
 
 Inverse search  <a name="inverse"></a>
 Inverse searches let you search for resources that do **not** match a specified value\. Inverse searches are performed by prefixing the search keyword with the exclamation mark \(\!\) character\. For example, to list all instances that are **not** terminated, search by the **Instance State** attribute, and for the keyword, enter `!Terminated`\.
@@ -106,7 +104,17 @@ Regular expressions are useful when you need to match the values in a field with
 Combining searches  <a name="combined"></a>
 In general, multiple filters with the same attribute are automatically joined with `OR`\. For example, searching for `Instance State : Running` and `Instance State : Stopped` returns all instances that are either running OR stopped\. To join search with `AND`, search across different attributes\. For example, searching for `Instance State : Running` and `Instance Type : c4.large` returns only instances that are of type `c4.large` AND that are in the stopped state\.
 
-------
+**To filter a list of resources**
+
+1. In the navigation pane, select a resource type \(for example, **Instances**\)\.
+
+1. Choose the search field\.
+
+1. Choose the filter from in the list\.
+
+1. Specify a filter value\.
+
+1. When you are finished, remove the filter\.
 
 ## Listing and filtering using the CLI and API<a name="Filtering_Resources_CLI"></a>
 

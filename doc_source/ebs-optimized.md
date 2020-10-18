@@ -522,18 +522,16 @@ When you stop an instance, the data on any instance store volumes is erased\. To
 
 1. In the navigation pane, choose **Instances**, and select the instance\.
 
-1. To stop the instance, choose **Actions**, **Instance State**, **Stop**\.
+1. To stop the instance, choose **Actions**, **Instance state**, **Stop instance**\. It can take a few minutes for the instance to stop\.
 
-1. In the confirmation dialog box, choose **Yes, Stop**\. It can take a few minutes for the instance to stop\.
+1. With the instance still selected, choose **Actions**, **Instance settings**, **Change instance type**\.
 
-1. With the instance still selected, choose **Actions**, **Instance Settings**, **Change Instance Type**\.
-
-1. In the **Change Instance Type** dialog box, do one of the following:
+1. For **Change Instance Type**, do one of the following:
    + If the instance type of your instance is Amazon EBS–optimized by default, **EBS\-optimized** is selected and you can't change it\. You can choose **Cancel**, because Amazon EBS optimization is already enabled for the instance\.
-   + If the instance type of your instance supports Amazon EBS optimization, choose **EBS\-optimized**, **Apply**\.
-   + If the instance type of your instance does not support Amazon EBS optimization, you can't choose **EBS\-optimized**\. You can select an instance type from **Instance Type** that supports Amazon EBS optimization, and then choose **EBS\-optimized**, **Apply**\.
+   + If the instance type of your instance supports Amazon EBS optimization, choose **EBS\-optimized** and then choose **Apply**\.
+   + If the instance type of your instance does not support Amazon EBS optimization, you can't choose **EBS\-optimized**\. You can select an instance type from **Instance type** that supports Amazon EBS optimization, choose **EBS\-optimized**, and then choose **Apply**\.
 
-1. Choose **Actions**, **Instance State**, **Start**\.
+1. Choose **Actions**, **Instance state**, **Start instance**\.
 
 **To enable EBS optimization for an existing instance using the command line**
 

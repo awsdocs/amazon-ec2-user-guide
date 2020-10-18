@@ -1,6 +1,6 @@
 # Using a base AMI<a name="efa-start-nccl-base"></a>
 
-The following steps help you to get started with one of the following base AMIs: Amazon Linux, Amazon Linux 2, RHEL 7\.6, RHEL 7\.7, RHEL 7\.8, CentOS 7, Ubuntu 16\.04, and Ubuntu 18\.04\.
+The following steps help you to get started using one of the [supported base AMIs](efa.md#efa-amis)\.
 
 **Topics**
 + [Step 1: Prepare an EFA\-enabled security group](#nccl-start-base-setup)
@@ -70,7 +70,7 @@ Launch a temporary instance that you can use to install and configure the EFA so
 
 1. Choose **Launch Instance**\.
 
-1. On the **Choose an AMI** page, choose one of the following AMIs: Amazon Linux, Amazon Linux 2, RHEL 7\.6, RHEL 7\.7, RHEL 7\.8, CentOS 7, Ubuntu 16\.04, and Ubuntu 18\.04\.
+1. On the **Choose an AMI** page, choose one of the supported AMIs\.
 
 1. On the **Choose an Instance Type** page, select `p3dn.24xlarge` and then choose **Next: Configure Instance Details**\.
 
@@ -119,7 +119,7 @@ Install the EFA\-enabled kernel, EFA drivers, Libfabric, and Open MPI stack that
 1. Download the EFA software installation files\. The software installation files are packaged into a compressed tarball \(`.tar.gz`\) file\. To download the latest *stable* version, use the following command\.
 
    ```
-   $ curl -O https://efa-installer.amazonaws.com/aws-efa-installer-1.9.5.tar.gz
+   $ curl -O https://efa-installer.amazonaws.com/aws-efa-installer-1.10.0.tar.gz
    ```
 
    You can also get the latest version by replacing the version number with `latest` in the preceding command\.
@@ -151,11 +151,11 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
    1. Download the signature file and verify the signature of the EFA tarball file\.
 
       ```
-      $ wget https://efa-installer.amazonaws.com/aws-efa-installer-1.9.5.tar.gz.sig
+      $ wget https://efa-installer.amazonaws.com/aws-efa-installer-1.10.0.tar.gz.sig
       ```
 
       ```
-      $ gpg --verify ./aws-efa-installer-1.9.5.tar.gz.sig
+      $ gpg --verify ./aws-efa-installer-1.10.0.tar.gz.sig
       ```
 
       The following shows example output\.
@@ -173,7 +173,7 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
 1. Extract the files from the compressed `.tar.gz` file and navigate into the extracted directory\.
 
    ```
-   $ tar -xf aws-efa-installer-1.9.5.tar.gz
+   $ tar -xf aws-efa-installer-1.10.0.tar.gz
    ```
 
    ```
@@ -572,19 +572,19 @@ After you have installed the required software components, you create an AMI tha
 
 1. In the navigation pane, choose **Instances**\.
 
-1. Select the temporary instance that you created and choose **Actions**, **Image**, **Create Image**\.
+1. Select the temporary instance that you created and choose **Actions**, **Image**, **Create image**\.
 
-1. In the **Create Image** window, do the following:
+1. For **Create image**, do the following:
 
    1. For **Image name**, enter a descriptive name for the AMI\.
 
-   1. \(Optional\) For **Image description**, enter a brief description of the AMI\.
+   1. \(Optional\) For **Image description**, enter a brief description of the purpose of the AMI\.
 
-   1. Choose **Create Image** and then choose **Close**\.
+   1. Choose **Create image**\.
 
 1. In the navigation pane, choose **AMIs**\.
 
-1. Locate the AMI you created in the list\. Wait for the Status to transition from `pending` to `available` before continuing to the next step\.
+1. Locate the AMI tht you created in the list\. Wait for the status to change from `pending` to `available` before continuing to the next step\.
 
 ## Step 12: Terminate the temporary instance<a name="nccl-start-base-terminate"></a>
 
@@ -596,7 +596,9 @@ At this point, you no longer need the temporary instance that you launched\. You
 
 1. In the navigation pane, choose **Instances**\.
 
-1. Select the temporary instance that you created and then choose **Actions**, **Instance State**, **Terminate**, **Yes, Terminate**\.
+1. Select the temporary instance that you created and then choose **Actions**, **Instance state**, **Terminate instance**\.
+
+1. When prompted for confirmation, choose **Terminate**\.
 
 ## Step 13: Launch EFA and NCCL\-enabled instances into a cluster placement group<a name="nccl-start-base-cluster"></a>
 

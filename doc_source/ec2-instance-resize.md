@@ -46,6 +46,38 @@ For more information, see [Stop and start your instance](Stop_Start.md)\.
 
 Use the following procedure to resize an Amazon EBS–backed instance using the AWS Management Console\.
 
+------
+#### [ New console ]
+
+**To resize an Amazon EBS–backed instance**
+
+1. \(Optional\) If the new instance type requires drivers that are not installed on the existing instance, you must connect to your instance and install the drivers first\. For more information, see [Compatibility for resizing instances](#resize-limitations)\.
+
+1. Open the Amazon EC2 console\.
+
+1. In the navigation pane, choose **Instances**\.
+
+1. Select the instance and choose **Actions**, **Instance state**, **Stop instance**\.
+
+1. In the confirmation dialog box, choose **Stop**\. It can take a few minutes for the instance to stop\.
+
+1. With the instance still selected, choose **Actions**, **Instance settings**, **Change instance type**\. This action is disabled if the instance state is not `stopped`\.
+
+1. In the **Change instance type** dialog box, do the following:
+
+   1. From **Instance type**, select the instance type that you want\. If the instance type that you want does not appear in the list, then it is not compatible with the configuration of your instance \(for example, because of virtualization type\)\. For more information, see [Compatibility for resizing instances](#resize-limitations)\.
+
+   1. \(Optional\) If the instance type that you selected supports EBS–optimization, select **EBS\-optimized** to enable EBS–optimization or deselect **EBS\-optimized** to disable EBS–optimization\. If the instance type that you selected is EBS–optimized by default, **EBS\-optimized** is selected and you can't deselect it\.
+
+   1. Choose **Apply** to accept the new settings\.
+
+1. To restart the stopped instance, select the instance and choose **Actions**, **Instance state**, **Start instance**\. It can take a few minutes for the instance to enter the `running` state\.
+
+1. \(Troubleshooting\) If your instance won't boot, it is possible that one of the requirements for the new instance type was not met\. For more information, see [Why is my Linux instance not booting after I changed its type?](https://aws.amazon.com/premiumsupport/knowledge-center/boot-error-linux-m5-c5/)
+
+------
+#### [ Old console ]
+
 **To resize an Amazon EBS–backed instance**
 
 1. \(Optional\) If the new instance type requires drivers that are not installed on the existing instance, you must connect to your instance and install the drivers first\. For more information, see [Compatibility for resizing instances](#resize-limitations)\.
@@ -74,9 +106,33 @@ Use the following procedure to resize an Amazon EBS–backed instance using the 
 
 1. \(Troubleshooting\) If your instance won't boot, it is possible that one of the requirements for the new instance type was not met\. For more information, see [Why is my Linux instance not booting after I changed its type?](https://aws.amazon.com/premiumsupport/knowledge-center/boot-error-linux-m5-c5/)
 
+------
+
 ## Migrating an instance store\-backed instance<a name="resize-instance-store-backed-instance"></a>
 
 When you want to move your application from one instance store\-backed instance to an instance store\-backed instance with a different instance type, you must migrate it by creating an image from your instance, and then launching a new instance from this image with the instance type that you need\. To ensure that your users can continue to use the applications that you're hosting on your instance uninterrupted, you must take any Elastic IP address that you've associated with your original instance and associate it with the new instance\. Then you can terminate the original instance\.
+
+------
+#### [ New console ]
+
+**To migrate an instance store\-backed instance**
+
+1. Back up any data on your instance store volumes that you need to keep to persistent storage\. To migrate data on your EBS volumes that you need to keep, take a snapshot of the volumes \(see [Creating Amazon EBS snapshots](ebs-creating-snapshot.md)\) or detach the volume from the instance so that you can attach it to the new instance later \(see [Detaching an Amazon EBS volume from a Linux instance](ebs-detaching-volume.md)\)\.
+
+1. Create an AMI from your instance store\-backed instance by satisfying the prerequisites and following the procedures in [Creating an instance store\-backed Linux AMI](creating-an-ami-instance-store.md)\. When you are finished creating an AMI from your instance, return to this procedure\.
+
+1. Open the Amazon EC2 console and in the navigation pane, choose **AMIs**\. From the filter lists, choose **Owned by me**, and select the image that you created in the previous step\. Notice that **AMI Name** is the name that you specified when you registered the image and **Source** is your Amazon S3 bucket\.
+**Note**  
+If you do not see the AMI that you created in the previous step, make sure that you have selected the Region in which you created your AMI\.
+
+1. Choose **Launch**\. When you specify options for the instance, be sure to select the new instance type that you want\. If the instance type that you want can't be selected, then it is not compatible with configuration of the AMI that you created \(for example, because of virtualization type\)\. You can also specify any EBS volumes that you detached from the original instance\.
+
+   It can take a few minutes for the instance to enter the `running` state\.
+
+1. \(Optional\) You can terminate the instance that you started with, if it's no longer needed\. Select the instance and verify that you are about to terminate the original instance, not the new instance \(for example, check the name or launch time\)\. Choose **Actions**, **Instance state**, **Terminate instance**\.
+
+------
+#### [ Old console ]
 
 **To migrate an instance store\-backed instance**
 
@@ -94,11 +150,52 @@ If you do not see the AMI that you created in the previous step, make sure that 
 
 1. \(Optional\) You can terminate the instance that you started with, if it's no longer needed\. Select the instance and verify that you are about to terminate the original instance, not the new instance \(for example, check the name or launch time\)\. Choose **Actions**, **Instance State**, **Terminate**\.
 
+------
+
 ## Migrating to a new instance configuration<a name="migrate-instance-configuration"></a>
 
 If the current configuration of your instance is incompatible with the new instance type that you want, then you can't resize the instance to that instance type\. Instead, you can migrate your application to a new instance with a configuration that is compatible with the new instance type that you want\.
 
 If you want to move from an instance launched from a PV AMI to an instance type that is HVM only, the general process is as follows:
+
+------
+#### [ New console ]
+
+**To migrate your application to a compatible instance**
+
+1. Back up any data on your instance store volumes that you need to keep to persistent storage\. To migrate data on your EBS volumes that you need to keep, create a snapshot of the volumes \(see [Creating Amazon EBS snapshots](ebs-creating-snapshot.md)\) or detach the volume from the instance so that you can attach it to the new instance later \(see [Detaching an Amazon EBS volume from a Linux instance](ebs-detaching-volume.md)\)\.
+
+1. Launch a new instance, selecting the following:
+   + An HVM AMI\.
+   + The HVM only instance type\.
+   + If you are using an Elastic IP address, select the VPC that the original instance is currently running in\.
+   + Any EBS volumes that you detached from the original instance and want to attach to the new instance, or new EBS volumes based on the snapshots that you created\.
+   + If you want to allow the same traffic to reach the new instance, select the security group that is associated with the original instance\.
+
+1. Install your application and any required software on the instance\.
+
+1. Restore any data that you backed up from the instance store volumes of the original instance\.
+
+1. If you are using an Elastic IP address, assign it to the newly launched instance as follows:
+
+   1. In the navigation pane, choose **Elastic IPs**\.
+
+   1. Select the Elastic IP address that is associated with the original instance and choose **Actions**, **Disassociate Elastic IP address**\. When prompted for confirmation, choose **Disassociate**\.
+
+   1. With the Elastic IP address still selected, choose **Actions**, **Associate Elastic IP address**\.
+
+   1. For **Resource type**, choose **Instance**\. 
+
+   1. For **Instance**, choose the instance with which to associate the Elastic IP address\. You can also enter text to search for a specific instance\.
+
+   1. \(Optional\) For **Private IP address**, specify a private IP address with which to associate the Elastic IP address\.
+
+   1. Choose **Associate**\.
+
+1. \(Optional\) You can terminate the original instance if it's no longer needed\. Select the instance and verify that you are about to terminate the original instance, not the new instance \(for example, check the name or launch time\)\. Choose **Actions**, **Instance state**, **Terminate instance**\.
+
+------
+#### [ Old console ]
 
 **To migrate your application to a compatible instance**
 
@@ -126,3 +223,5 @@ If you want to move from an instance launched from a PV AMI to an instance type 
    1. From **Instance**, select the new instance, and then choose **Associate**\.
 
 1. \(Optional\) You can terminate the original instance if it's no longer needed\. Select the instance and verify that you are about to terminate the original instance, not the new instance \(for example, check the name or launch time\)\. Choose **Actions**, **Instance State**, **Terminate**\.
+
+------

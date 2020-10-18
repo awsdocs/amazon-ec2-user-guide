@@ -55,24 +55,47 @@ You can stop and start your Amazon EBS\-backed instance using the console or the
 
 By default, when you initiate a shutdown from an Amazon EBS\-backed instance \(using the shutdown or poweroff command\), the instance stops\. You can change this behavior so that it terminates instead\. For more information, see [Changing the instance initiated shutdown behavior](terminating-instances.md#Using_ChangingInstanceInitiatedShutdownBehavior)\.
 
-**Important**  
-Using the **halt** command from an instance does not initiate a shutdown\. If used, the instance will not terminate; instead, it will place the CPU into `HLT` and the instance will remain running\.
+Using the halt command from an instance does not initiate a shutdown\. If used, the instance does not terminate; instead, it places the CPU into `HLT` and the instance remains running\.
+
+------
+#### [ New console ]
 
 **To stop and start an Amazon EBS\-backed instance using the console**
 
-1. In the navigation pane, choose **Instances**, and select the instance\.
+1. When you stop an instance, the data on any instance store volumes is erased\. Before you stop an instance, verify that you've copied any data that you need from your instance store volumes to persistent storage, such as Amazon EBS or Amazon S3\.
 
-1. Choose **Actions**, **Instance State**, **Stop**\. If **Stop** is disabled, either the instance is already stopped or its root device is an instance store volume\.
-**Warning**  
-When you stop an instance, the data on any instance store volumes is erased\. To keep data from instance store volumes, be sure to back it up to persistent storage\.
+1. In the navigation pane, choose **Instances** and select the instance\.
 
-1. In the confirmation dialog box, choose **Yes, Stop**\. It can take a few minutes for the instance to stop\.
+1. Choose **Actions**, **Instance state**, **Stop instance**\. If this option is disabled, either the instance is already stopped or its root device is an instance store volume\.
 
-1. While your instance is stopped, you can modify certain instance attributes\. For more information, see [Modifying a stopped instance](#Using_ChangingAttributesWhileInstanceStopped)\.
+1. When prompted for confirmation, choose **Stop**\. It can take a few minutes for the instance to stop\.
+
+1. \(Optional\) While your instance is stopped, you can modify certain instance attributes\. For more information, see [Modifying a stopped instance](#Using_ChangingAttributesWhileInstanceStopped)\.
+
+1. To start the stopped instance, select the instance, and choose **Actions**, **Instance state**, **Start instance**\.
+
+1. It can take a few minutes for the instance to enter the `running` state\.
+
+------
+#### [ Old console ]
+
+**To stop and start an Amazon EBS\-backed instance using the console**
+
+1. When you stop an instance, the data on any instance store volumes is erased\. Before you stop an instance, verify that you've copied any data that you need from your instance store volumes to persistent storage, such as Amazon EBS or Amazon S3\.
+
+1. In the navigation pane, choose **Instances** and select the instance\.
+
+1. Choose **Actions**, **Instance State**, **Stop**\. If this option is disabled, either the instance is already stopped or its root device is an instance store volume\.
+
+1. When prompted for confirmation, choose **Yes, Stop**\. It can take a few minutes for the instance to stop\.
+
+1. \(Optional\) While your instance is stopped, you can modify certain instance attributes\. For more information, see [Modifying a stopped instance](#Using_ChangingAttributesWhileInstanceStopped)\.
 
 1. To start the stopped instance, select the instance, and choose **Actions**, **Instance State**, **Start**\.
 
 1. In the confirmation dialog box, choose **Yes, Start**\. It can take a few minutes for the instance to enter the `running` state\.
+
+------
 
 **To stop and start an Amazon EBS\-backed instance using the command line**
 

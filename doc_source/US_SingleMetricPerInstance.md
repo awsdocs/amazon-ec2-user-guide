@@ -4,7 +4,7 @@ The following examples show you how to use the AWS Management Console or the AWS
 
 **Requirements**
 + You must have the ID of the instance\. You can get the instance ID using the AWS Management Console or the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command\.
-+ By default, basic monitoring is enabled, but you can enable detailed monitoring\. For more information, see [Enable or disable detailed monitoring for your instances](using-cloudwatch-new.md)\.
++ By default, basic monitoring is enabled, but you can enable detailed monitoring\. For more information, see [Enable or turn off detailed monitoring for your instances](using-cloudwatch-new.md)\.
 
 **To display the CPU utilization for a specific instance \(console\)**
 

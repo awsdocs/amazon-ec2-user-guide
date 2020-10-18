@@ -35,7 +35,7 @@ This tutorial assumes that you have already launched a new instance using the Am
    ```
 
 1. Now that your instance is current, you can install the Apache web server, MySQL, and PHP software packages\. 
-**Note**  
+**Important**  
 Some applications may not be compatible with the following recommended software environment\. Before installing these packages, check whether your LAMP applications are compatible with them\. If there is a problem, you may need to install an alternative environment\. For more information, see [The application software I want to run on my server is incompatible with the installed PHP version or other software](#software-versions-alami) 
 
    Use the yum install command to install multiple software packages and all related dependencies at the same time\.
@@ -43,8 +43,8 @@ Some applications may not be compatible with the following recommended software 
    ```
    [ec2-user ~]$ sudo yum install -y httpd24 php72 mysql57-server php72-mysqlnd
    ```
-**Note**  
-If you receive the error `No package package-name available`, then your instance was not launched with the Amazon Linux AMI \(perhaps you are using Amazon Linux 2 instead\)\. You can view your version of Amazon Linux with the following command\.  
+
+   If you receive the error `No package package-name available`, then your instance was not launched with the Amazon Linux AMI \(perhaps you are using Amazon Linux 2 instead\)\. You can view your version of Amazon Linux with the following command\.
 
    ```
    cat /etc/system-release
@@ -80,30 +80,25 @@ If you receive the error `No package package-name available`, then your instance
 
    1. Choose **Instances** and select your instance\.
 
-   1. Under **Security groups**, choose **view inbound rules**\.
-
-   1. You should see the following list of rules in your default security group:
+   1. On the **Security** tab, view the inbound rules\. You should see the following rule:
 
       ```
-      Security Groups associated with i-1234567890abcdef0
-      Ports     Protocol     Source     launch-wizard-N
-      22        tcp          0.0.0.0/0          ✔
+      Port range   Protocol     Source
+      22           tcp          0.0.0.0/0
       ```
 
-      Using the procedures in [Adding rules to a security group](working-with-security-groups.md#adding-security-group-rule), add a new inbound security rule with the following values:
+   1. Choose the link for the security group\. Using the procedures in [Adding rules to a security group](working-with-security-groups.md#adding-security-group-rule), add a new inbound security rule with the following values:
       + **Type**: HTTP
       + **Protocol**: TCP
       + **Port Range**: 80
       + **Source**: Custom
 
-1. Test your web server\. In a web browser, type the public DNS address \(or the public IP address\) of your instance\. If there is no content in `/var/www/html`, you should see the Apache test page\. You can get the public DNS for your instance using the Amazon EC2 console \(check the **Public DNS** column; if this column is hidden, choose **Show/Hide Columns** \(the gear\-shaped icon\) and choose **Public DNS**\)\.
+1. Test your web server\. In a web browser, type the public DNS address \(or the public IP address\) of your instance\. You can get the public DNS address for your instance using the Amazon EC2 console\. If there is no content in `/var/www/html`, you should see the Apache test page\. When you add content to the document root, your content appears at the public DNS address of your instance instead of this test page\.
 
    If you are unable to see the Apache test page, check that the security group you are using contains a rule to allow HTTP \(port 80\) traffic\. For information about adding an HTTP rule to your security group, see [Adding rules to a security group](working-with-security-groups.md#adding-security-group-rule)\.
-**Important**  
-If you are not using Amazon Linux, you may also need to configure the firewall on your instance to allow these connections\. For more information about how to configure the firewall, see the documentation for your specific distribution\.  
+
+   If you are not using Amazon Linux, you may also need to configure the firewall on your instance to allow these connections\. For more information about how to configure the firewall, see the documentation for your specific distribution\.  
 ![\[Apache test page\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/apache_test_page2.4.png)
-**Note**  
-This test page appears only when there is no content in `/var/www/html`\. When you add content to the document root, your content appears at the public DNS address of your instance instead of this test page\.
 
 Apache httpd serves files that are kept in a directory called the Apache document root\. The Amazon Linux Apache document root is `/var/www/html`, which by default is owned by root\.
 
@@ -241,8 +236,8 @@ The default installation of the MySQL server has several features that are great
       1. Type the current root password\. By default, the root account does not have a password set\. Press Enter\.
 
       1. Type **Y** to set a password, and type a secure password twice\. For more information about creating a secure password, see [https://identitysafe\.norton\.com/password\-generator/](https://identitysafe.norton.com/password-generator/)\. Make sure to store this password in a safe place\.
-**Note**  
-Setting a root password for MySQL is only the most basic measure for securing your database\. When you build or install a database\-driven application, you typically create a database service user for that application and avoid using the root account for anything but database administration\. 
+
+         Setting a root password for MySQL is only the most basic measure for securing your database\. When you build or install a database\-driven application, you typically create a database service user for that application and avoid using the root account for anything but database administration\. 
 
    1. Type **Y** to remove the anonymous user accounts\.
 
