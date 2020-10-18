@@ -1,6 +1,6 @@
 # Set up EC2 Instance Connect<a name="ec2-instance-connect-set-up"></a>
 
-To use EC2 Instance Connect to connect to an instance, you need to configure every instance that will support using Instance Connect \(this is a one\-time requirement for each instance\), and you need to grant permission to every IAM user that will use Instance Connect\.
+To use EC2 Instance Connect to connect to an instance, you need to configure every instance that will support using Instance Connect \(this is a one\-time requirement for each instance\), and you need to grant permission to every IAM principal that will use Instance Connect\.
 
 **Topics**
 + [Task 1: Configure network access to an instance](#ec2-instance-connect-setup-security-group)
@@ -17,9 +17,6 @@ For more information about setting up EC2 Instance Connect, see [Securing your b
 + If you configured the `AuthorizedKeysCommand` and `AuthorizedKeysCommandUser` settings for SSH authentication, the EC2 Instance Connect installation will not update them\. As a result, you cannot use Instance Connect\.
 
 **Prerequisites**
-+ **Verify the general prerequisites for connecting to your instance using SSH\.**
-
-  For more information, see [General prerequisites for connecting to your instance](connection-prereqs.md)\.
 + **Install an SSH client on your local computer\.**
 
   Your local computer most likely has an SSH client installed by default\. You can check for an SSH client by typing ssh at the command line\. If your local computer doesn't recognize the command, you can install an SSH client\. For information about installing an SSH client on Linux or macOS X, see [http://www\.openssh\.com](http://www.openssh.com/)\. For information about installing an SSH client on Windows 10, see [OpenSSH in Windows](https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_overview)\.
@@ -32,8 +29,11 @@ For more information about setting up EC2 Instance Connect, see [Securing your b
 
 ## Task 1: Configure network access to an instance<a name="ec2-instance-connect-setup-security-group"></a>
 
-You must configure the following network access to your instance so that you can install EC2 Instance Connect and enable your users to connect to your instance:
-+ Ensure that the security group associated with your instance [allows inbound SSH traffic](authorizing-access-to-an-instance.md#add-rule-authorize-access) on port 22 from your IP address\. The default security group for the VPC does not allow incoming SSH traffic by default\. The security group created by the launch wizard allows incoming SSH traffic by default\. For more information, see [Authorizing inbound traffic for your Linux instances](authorizing-access-to-an-instance.md)\.
+You must configure the following network access to enable your users to connect to your instance using EC2 Instance Connect:
++ If your users are going to access your instances over the Internet, then a public IP address needs to be assigned to your instances. If your users are going to access your instances via the instance's private IP address, then you need to establish a private network connectivity to your VPC using AWS Direct Connect or 
+AWS Site-to-Site VPN such that you can reach the instance's private IP address.
+
++ Ensure that the security group associated with your instance [allows inbound SSH traffic](authorizing-access-to-an-instance.md#add-rule-authorize-access) on port 22 from your IP address or from your network\. The default security group for the VPC does not allow incoming SSH traffic by default\. The security group created by the launch wizard allows incoming SSH traffic by default\. For more information, see [Authorizing inbound traffic for your Linux instances](authorizing-access-to-an-instance.md)\.
 + \(Browser\-based client\) We recommend that your instance allows inbound SSH traffic from the [recommended IP block published for the service](https://ip-ranges.amazonaws.com/ip-ranges.json)\. Use the `EC2_INSTANCE_CONNECT` filter for the `service` parameter to get the IP address ranges in the EC2 Instance Connect subset\. For more information, see [AWS IP Address Ranges](https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html) in the *Amazon Web Services General Reference*\.
 
 ## Task 2: \(Conditional\) Install EC2 Instance Connect on an instance<a name="ec2-instance-connect-install"></a>
@@ -164,9 +164,9 @@ If you previously configured `AuthorizedKeysCommand` and `AuthorizedKeysCommandU
 
 For more information about the EC2 Instance Connect package, see [aws/aws\-ec2\-instance\-connect\-config ](https://github.com/aws/aws-ec2-instance-connect-config) on the GitHub website\.
 
-## Task 3: \(Optional\) Install the EC2 Instance Connect CLI<a name="ec2-instance-connect-install-eic-CLI"></a>
+## Task 3: \(Optional\) Install the EC2 Instance Connect CLI on your local computer<a name="ec2-instance-connect-install-eic-CLI"></a>
 
-The EC2 Instance Connect CLI provides a similar interface to standard SSH calls, which includes querying EC2 instance information, generating and publishing ephemeral public keys, and establishing an SSH connection through a single command, `mssh instance_id`\.
+The EC2 Instance Connect CLI provides a simplified experience to connect to EC2 instances through a single command, `mssh instance_id`\. Please see Connect using the EC2 Instance Connect CLI (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-connect-methods.html#ec2-instance-connect-connecting-ec2-cli) for more details.
 
 **Note**  
 There is no need to install the EC2 Instance Connect CLI if users will only use the browser\-based client or an SSH client to connect to an instance\.
@@ -180,18 +180,18 @@ $ pip install ec2instanceconnectcli
 
 ## Task 4: Configure IAM permissions for EC2 Instance Connect<a name="ec2-instance-connect-configure-IAM-role"></a>
 
-For your IAM users to connect to an instance using EC2 Instance Connect, you must grant them permission to push the public key to the instance\. You grant them the permission by creating an IAM policy and attaching the policy to the IAM users that require the permission\. For more information, see [Actions, Resources, and Condition Keys for Amazon EC2 Instance Connect](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonec2instanceconnect.html) in the *IAM User Guide*\.
+For your IAM principals to connect to an instance using EC2 Instance Connect, you must grant them permission to push the public key to the instance\. You grant them the permission by creating an IAM policy and attaching the policy to the IAM principals that require the permission\. For more information, see [Actions, Resources, and Condition Keys for Amazon EC2 Instance Connect](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonec2instanceconnect.html) in the *IAM User Guide*\.
 
-The following instructions explain how to create the policy and attach it using the AWS CLI\. For instructions that use the AWS Management Console, see [Creating IAM Policies \(Console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html#access_policies_create-start) and [Adding Permissions by Attaching Policies Directly to the User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html#users_change_permissions-add-directly-console) in the *IAM User Guide*\.
+The following instructions explain how to create the policy and attach it to an IAM user using the AWS CLI\. The same policy could be applied to other IAM principals such as IAM roles. For instructions that use the AWS Management Console, see [Creating IAM Policies \(Console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html#access_policies_create-start) and [Adding Permissions by Attaching Policies Directly to the User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html#users_change_permissions-add-directly-console) or Creating IAM roles (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create.html) in the *IAM User Guide*\.
 
-**To grant an IAM user permission for EC2 Instance Connect \(AWS CLI\)**
+**To grant an IAM principals permission for EC2 Instance Connect \(AWS CLI\)**
 
 1. Create a JSON policy document that includes the following:
-   + The `ec2-instance-connect:SendSSHPublicKey` action\. This grants an IAM user permission to push the public key to an instance\. With `ec2-instance-connect:SendSSHPublicKey`, consider restricting access to specific EC2 instances\. Otherwise, all IAM users with this permission can connect to all EC2 instances\.
+   + The `ec2-instance-connect:SendSSHPublicKey` action\. This grants an IAM principal permission to push the public key to an instance\. With `ec2-instance-connect:SendSSHPublicKey`, consider restricting access to specific EC2 instances\. You can use specific resource ARN, or you can leverage resource tags as Condition keys (https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonec2instanceconnect.html) Otherwise, all IAM users with this permission can connect to all EC2 instances\.
    + The `ec2:osuser` condition\. This specifies the name of the OS user that can push the public key to an instance\. Use the default user name for the AMI that you used to launch the instance\. The default user name for Amazon Linux 2 is `ec2-user`, and for Ubuntu it's `ubuntu`\.
    + The `ec2:DescribeInstances` action\. This is required when using the EC2 Instance Connect CLI because the wrapper calls this action\. IAM users might already have permission to call this action from another policy\.
 
-   The following is an example policy document\. You can omit the statement for the `ec2:DescribeInstances` action if your users will only use an SSH client to connect to your instances\. You can replace the specified instances in `Resource` with the wildcard `*` to grant users access to all EC2 instances using EC2 Instance Connect\.
+   The following is an example policy document\. You can omit the statement for the `ec2:DescribeInstances` action if your users will only use an SSH client to connect to your instances\. You can replace the specified instances in `Resource` with the wildcard `*` to grant users access to all EC2 instances using EC2 Instance Connect.
 
    ```
    {
