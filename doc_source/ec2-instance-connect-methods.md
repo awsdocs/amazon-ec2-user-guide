@@ -12,7 +12,7 @@ The following instructions explain how to connect to your Linux instance using E
   + Amazon Linux 2 \(any version\)
   + Ubuntu 16\.04 or later
 + To connect using the browser\-based client, the instance must have a public IPv4 address\.
-+ If the instance has only private IP addresses, then you can only connect to the instance using your own key and SSH client\.
++ If the instance has only private IP addresses, you can connect to the instance using the EC2 Instance Connect CLI or your own key and SSH client\.
 + EC2 Instance Connect does not support connecting using an IPv6 address\.
 + The Safari browser is currently not supported\.
 
@@ -29,7 +29,7 @@ The following instructions explain how to connect to your Linux instance using E
 
 ## Connect using the browser\-based client<a name="ec2-instance-connect-connecting-console"></a>
 
-You can connect to an instance using the browser\-based client by selecting the instance from the Amazon EC2 console and choosing to connect using EC2 Instance Connect\. Instance Connect handles the permissions and provides a successful connection\.
+You can connect to an instance using the browser\-based client by selecting the instance from the Amazon EC2 console and choosing to connect using EC2 Instance Connect\. Instance Connect handles the permissions and provides a successful connection\. This method of connection works for instances with public IP addresses.
 
 **To connect to your instance using the browser\-based client from the Amazon EC2 console**
 
@@ -45,7 +45,8 @@ A window opens, and you are connected to your instance\.
 
 ## Connect using the EC2 Instance Connect CLI<a name="ec2-instance-connect-connecting-ec2-cli"></a>
 
-You can connect to an instance using the EC2 Instance Connect CLI by providing only the instance ID, while the Instance Connect CLI performs the following three actions in one call: it generates a one\-time\-use SSH public key, pushes the key to the instance where it remains for 60 seconds, and connects the user to the instance\. You can use basic SSH/SFTP commands with the Instance Connect CLI\.
+You can connect to an instance using the EC2 Instance Connect CLI by providing only the instance ID, while the Instance Connect CLI performs the following three actions in one call: it generates a one\-time\-use SSH public key, pushes the key to the instance where it remains for 60 seconds, and connects the user to the instance\. You can use basic SSH/SFTP commands with the Instance Connect CLI\. This method of connection works for instances with public and private IP addresses. When connecting to an instance that has only private IP addresses the local computer from where you are initiating the session must have connectivity to the EC2 Instance Connect service endpoint (to push your SSH public key to the instance) as well network connectivity to the instance's private IP address. The EC2 Instance Connect service endpoint is reachable over the Internet or over an AWS Direct Connect public virtual interface. To connect to the instance's private IP address you can leverage services such as AWS Direct Connect, AWS Site to Site VPN or VPC-peering.
+
 
 **Note**  
 `-i` is not supported when using mssh\. When using the mssh command to connect to your instance, you do not need to specify any kind of identity file because Instance Connect manages the key pair\.
