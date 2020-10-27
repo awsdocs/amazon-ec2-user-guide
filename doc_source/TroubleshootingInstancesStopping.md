@@ -5,7 +5,7 @@ If you have stopped your Amazon EBS\-backed instance and it appears stuck in the
 There is no cost for any instance usage while an instance is not in the `running` state\.
 
 Force the instance to stop using either the console or the AWS CLI\.
-+ To force the instance to stop using the console, select the stuck instance, and choose **Actions**, **Instance State**, **Stop**, and **Yes, Forcefully Stop**\.
++ To force the instance to stop using the console, select the stuck instance, and choose **Instance state**, **Stop instance**, and **Forcefully stop**\.
 + To force the instance to stop using the AWS CLI, use the [stop\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) command and the `--force` option as follows:
 
   ```
@@ -72,12 +72,12 @@ If you are unable to create an AMI from the instance as described in the previou
 
 1. Launch an instance with the same operating system as the stuck instance\. Note the volume ID and device name of its root volume\.
 
-1. In the navigation pane, choose **Instances**, select the instance that you just launched, choose **Actions**, **Instance State**, and then choose **Stop**\.
+1. In the navigation pane, choose **Instances**, select the instance that you just launched, choose **Instance state**, **Stop instance**\.
 
 1. In the navigation pane, choose **Volumes**, select the root volume of the stopped instance, and choose **Actions**, **Detach Volume**\.
 
 1. Select the root volume that you created from the stuck instance, choose **Actions**, **Attach Volume**, and attach it to the new instance as its root volume \(using the device name that you wrote down\)\. Attach any additional non\-root volumes to the instance\.
 
-1. In the navigation pane, choose **Instances** and select the replacement instance\. Choose **Actions**, **Instance State**, **Start**\. Verify that the instance is working\.
+1. In the navigation pane, choose **Instances** and select the replacement instance\. Choose **Instance state**, **Start instance**\. Verify that the instance is working\.
 
-1. Select the stuck instance, choose **Actions**, **Instance State**, **Terminate**\. If the instance also gets stuck terminating, Amazon EC2 automatically forces it to terminate within a few hours\.
+1. Select the stuck instance, choose **Instance state**, **Terminate instance**\. If the instance also gets stuck terminating, Amazon EC2 automatically forces it to terminate within a few hours\.

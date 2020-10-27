@@ -26,12 +26,12 @@ The following diagram illustrates the process for cleaning up your Amazon EBS\-b
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
 1. In the navigation pane, choose **AMIs**\. Select the AMI, and take note of its ID — this can help you find the correct snapshot in the next step\. Choose **Actions**, and then **Deregister**\. When prompted for confirmation, choose **Continue**\.
-**Note**  
-It may take a few minutes before the console removes the AMI from the list\. Choose **Refresh** to refresh the status\.
+
+   It might take a few minutes before the console removes the AMI from the list\. Choose **Refresh** to refresh the status\.
 
 1. In the navigation pane, choose **Snapshots**, and select the snapshot \(look for the AMI ID in the **Description** column\)\. Choose **Actions**, and then choose **Delete Snapshot**\. When prompted for confirmation, choose **Yes, Delete**\.
 
-1. \(Optional\) If you are finished with an instance that you launched from the AMI, terminate it\. In the navigation pane, choose **Instances**\. Select the instance, choose **Actions**, then **Instance State**, and then **Terminate**\. When prompted for confirmation, choose **Yes, Terminate**\.
+1. \(Optional\) If you are finished with an instance that you launched from the AMI, terminate it\. In the navigation pane, choose **Instances**\. Select the instance, choose **Instance state**, **Terminate instance**\. When prompted for confirmation, choose **Terminate**\.
 
 ## Cleaning up your instance store\-backed AMI<a name="clean-up-s3-ami"></a>
 

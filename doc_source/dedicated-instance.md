@@ -193,9 +193,9 @@ Depending on your instance type and platform, you can change the tenancy of a st
 
 1. In the navigation pane, choose **Instances** and select your instance\.
 
-1. Choose **Actions**, **Instance State**, **Stop**\.
+1. Choose **Instance state**, **Stop instance**\.
 
-1. Choose **Actions**, **Instance Settings**, **Modify Instance Placement**\.
+1. Choose **Actions**, **Instance settings**, **Modify instance placement**\.
 
 1. In the **Tenancy** list, choose whether to run your instance on dedicated hardware or on a Dedicated Host\. Choose **Save**\.
 

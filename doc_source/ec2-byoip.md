@@ -2,7 +2,7 @@
 
 You can bring part or all of your public IPv4 address range or IPv6 address range from your on\-premises network to your AWS account\. You continue to own the address range, but AWS advertises it on the internet by default\. After you bring the address range to AWS, it appears in your account as an address pool\.
 
-BYOIP is not available in all Regions\. For a list of supported Regions, see the [FAQ for Bring Your Own IP](https://aws.amazon.com/vpc/faqs/#Bring_Your_Own_IP)\.
+BYOIP is not available in all Regions and for all resources\. For a list of supported Regions and resources, see the [FAQ for Bring Your Own IP](https://aws.amazon.com/vpc/faqs/#Bring_Your_Own_IP)\.
 
 **Note**  
 The following steps describe how to bring your own IP address range for use in Amazon EC2 only\. For steps to bring your own IP address range for use in AWS Global Accelerator, see [Bring your own IP addresses \(BYOIP\)](https://docs.aws.amazon.com/global-accelerator/latest/dg/using-byoip.html) in the *AWS Global Accelerator Developer Guide*\.

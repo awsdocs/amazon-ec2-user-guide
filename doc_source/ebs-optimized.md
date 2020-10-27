@@ -531,7 +531,7 @@ When you stop an instance, the data on any instance store volumes is erased\. To
    + If the instance type of your instance supports Amazon EBS optimization, choose **EBS\-optimized** and then choose **Apply**\.
    + If the instance type of your instance does not support Amazon EBS optimization, you can't choose **EBS\-optimized**\. You can select an instance type from **Instance type** that supports Amazon EBS optimization, choose **EBS\-optimized**, and then choose **Apply**\.
 
-1. Choose **Actions**, **Instance state**, **Start instance**\.
+1. Choose **Instance state**, **Start instance**\.
 
 **To enable EBS optimization for an existing instance using the command line**
 

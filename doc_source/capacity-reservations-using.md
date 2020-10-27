@@ -118,7 +118,7 @@ The following shows example output\.
 ```
 
 **To add a Capacity Reservation to a group**  
-Use the [group\-resources](https://docs.aws.amazon.com/cli/latest/reference/resource-groups/group-resources.html) AWS CLI command\. For `group`, specify the name of the group to which to add the Capacity Reservations, and for `resources`, specify ARNs of the Capacity Reservations to add\. To add multiple Capacity Reservations, separate the ARNs with a space\.
+Use the [group\-resources](https://docs.aws.amazon.com/cli/latest/reference/resource-groups/group-resources.html) AWS CLI command\. For `group`, specify the name of the group to which to add the Capacity Reservations, and for `resources`, specify ARNs of the Capacity Reservations to add\. To add multiple Capacity Reservations, separate the ARNs with a space\. To get the ARNs of the Capacity Reservations to add, use the [ describe\-capacity\-reservations](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-capacity-reservations.html) AWS CLI command and specify the IDs of the Capacity Reservations\.
 
 For example, the following command adds two Capacity Reservations to a group named `MyCRGroup`\.
 

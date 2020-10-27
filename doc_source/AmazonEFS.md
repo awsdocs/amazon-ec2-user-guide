@@ -137,9 +137,9 @@ When you are finished with this tutorial, you can terminate the instances and de
 
 1. Select the instances to terminate\.
 
-1. Choose **Actions**, **Instance State**, **Terminate**\.
+1. Choose **Instance state**, **Terminate instance**\.
 
-1. Choose **Yes, Terminate** when prompted for confirmation\.
+1. Choose **Terminate** when prompted for confirmation\.
 
 **To delete the file system**
 

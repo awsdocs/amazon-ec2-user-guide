@@ -23,11 +23,12 @@ You can specify instance store volumes for an instance only when you launch it\.
 The data in an instance store persists only during the lifetime of its associated instance\. If an instance reboots \(intentionally or unintentionally\), data in the instance store persists\. However, data in the instance store is lost under any of the following circumstances:
 + The underlying disk drive fails
 + The instance stops
++ The instance hibernates
 + The instance terminates
 
 Therefore, do not rely on instance store for valuable, long\-term data\. Instead, use more durable data storage, such as Amazon S3, Amazon EBS, or Amazon EFS\.
 
-When you stop or terminate an instance, every block of storage in the instance store is reset\. Therefore, your data cannot be accessed through the instance store of another instance\.
+When you stop, hibernate, or terminate an instance, every block of storage in the instance store is reset\. Therefore, your data cannot be accessed through the instance store of another instance\.
 
 If you create an AMI from an instance, the data on its instance store volumes isn't preserved and isn't present on the instance store volumes of the instances that you launch from the AMI\.
 

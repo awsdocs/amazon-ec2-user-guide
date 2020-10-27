@@ -47,6 +47,30 @@ Amazon EC2 provides you with several ways to view and work with status checks\.
 
 You can view status checks using the AWS Management Console\.
 
+------
+#### [ New console ]
+
+**To view status checks \(console\)**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances**\.
+
+1. On the **Instances** page, the **Status check** column lists the operational status of each instance\.
+
+1. To view the status of a specific instance, select the instance, and then choose the **Status Checks** tab\.  
+![\[Viewing status\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/status-check-tab.png)
+
+   If you have an instance with a failed status check and the instance has been unreachable for over 20 minutes, choose **Open support case** to submit a request for assistance\. To troubleshoot system or instance status check failures yourself, see [Troubleshooting instances with failed status checks](TroubleshootingInstances.md)\.
+
+1. To review the CloudWatch metrics for status checks, select the instance, and then choose the **Monitoring** tab\. Scroll until you see the graphs for the following metrics:
+   + **Status check failed \(any\)**
+   + **Status check failed \(instance\)**
+   + **Status check failed \(system\)**
+
+------
+#### [ Old console ]
+
 **To view status checks \(console\)**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
@@ -56,7 +80,7 @@ You can view status checks using the AWS Management Console\.
 1. On the **Instances** page, the **Status Checks** column lists the operational status of each instance\.
 
 1. To view the status of a specific instance, select the instance, and then choose the **Status Checks** tab\.  
-![\[Viewing status\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/status-check-tab.png)
+![\[Viewing status\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/status-check-tab_old.png)
 
    If you have an instance with a failed status check and the instance has been unreachable for over 20 minutes, choose **AWS Support** to submit a request for assistance\. To troubleshoot system or instance status check failures yourself, see [Troubleshooting instances with failed status checks](TroubleshootingInstances.md)\.
 
@@ -64,6 +88,8 @@ You can view status checks using the AWS Management Console\.
    + **Status Check Failed \(Any\)**
    + **Status Check Failed \(Instance\)**
    + **Status Check Failed \(System\)**
+
+------
 
 ### Viewing status using the command line<a name="viewing_status-cli"></a>
 
@@ -103,6 +129,22 @@ We use reported feedback to identify issues impacting multiple customers, but do
 
 ### Reporting status feedback using the console<a name="reporting_status-new-console"></a>
 
+------
+#### [ New console ]
+
+**To report instance status \(console\)**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances**\.
+
+1. Select the instance, choose the **Status Checks** tab, choose **Actions** \(the second **Actions** menu in the bottom half of the page\), and then choose **Report instance status**\.
+
+1. Complete the **Report instance status** form, and then choose **Submit**\.
+
+------
+#### [ Old console ]
+
 **To report instance status \(console\)**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
@@ -112,6 +154,8 @@ We use reported feedback to identify issues impacting multiple customers, but do
 1. Select the instance, choose the **Status Checks** tab, and choose **Submit feedback**\.
 
 1. Complete the **Report Instance Status** form, and then choose **Submit**\.
+
+------
 
 ### Reporting status feedback using the command line<a name="reporting_status-cli"></a>
 
@@ -135,6 +179,36 @@ You can use the [status check metrics](viewing_metrics_with_cloudwatch.md#status
 ### Creating a status check alarm using the console<a name="using-cloudwatch-new-console2"></a>
 
 Use the following procedure to configure an alarm that sends you a notification by email, or stops, terminates, or recovers an instance when it fails a status check\.
+
+------
+#### [ New console ]
+
+**To create a status check alarm \(console\)**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances**\.
+
+1. Select the instance, choose the **Status Checks** tab, and choose **Actions**, **Create status check alarm**\.
+
+1. On the **Manage CloudWatch alarms** page, under **Add or edit alarm**, choose **Create a new alarm**\.
+
+1. For **Alarm notification**, turn the toggle on to configure Amazon Simple Notification Service \(Amazon SNS\) notifications\. Select an existing Amazon SNS topic or enter a name to create a new topic\.
+
+1. For **Alarm action**, turn the toggle on to specify an action to take when the alarm is triggered\. Select the action that you'd like to take from the dropdown\.
+
+1. For **Alarm thresholds**, select the metric and criteria for the alarm\. In **Consecutive Period**, set the number of periods you want to evaluate and, in **Period**, enter the evaluation period duration before triggering the alarm and sending an email\.
+
+   For example, you can leave the default settings for **Group samples by** \(**Average**\) and **Type of data to sample** \(**CPU utilization**\)\. You can set **Alarm When** to **>=** and enter **0\.80** for **Percent**\. For **Consecutive Period**, you can enter **1**\. For **Period**, you can select **5 Minutes**\.
+
+1. \(Optional\) For **Sample metric data**, choose **Add to dashboard**\.
+
+1. Choose **Create**\.
+**Important**  
+If you added an email address to the list of recipients or created a new topic, Amazon SNS sends a subscription confirmation email message to each new address\. Each recipient must confirm the subscription by choosing the link contained in that message\. Alert notifications are sent only to confirmed addresses\.
+
+------
+#### [ Old console ]
 
 **To create a status check alarm \(console\)**
 
@@ -160,7 +234,29 @@ Use the following procedure to configure an alarm that sends you a notification 
 **Important**  
 If you added an email address to the list of recipients or created a new topic, Amazon SNS sends a subscription confirmation email message to each new address\. Each recipient must confirm the subscription by choosing the link contained in that message\. Alert notifications are sent only to confirmed addresses\.
 
+------
+
 If you need to make changes to an instance status alarm, you can edit it\.
+
+------
+#### [ New console ]
+
+**To edit a status check alarm using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances**\.
+
+1. Select the instance and choose **Actions**, **Monitoring**, **Manage CloudWatch alarms**\.
+
+1. On the **Manage CloudWatch alarms** page, under **Add or edit alarm**, choose **Edit an existing alarm**\.
+
+1. For **Search for alarm**, choose the alarm to edit\.
+
+1. Make the desired changes, and then choose **Update**\.
+
+------
+#### [ Old console ]
 
 **To edit a status check alarm using the console**
 
@@ -173,6 +269,8 @@ If you need to make changes to an instance status alarm, you can edit it\.
 1. In the **Alarm Details** dialog box, choose the name of the alarm\.
 
 1. In the **Edit Alarm** dialog box, make the desired changes, and then choose **Save**\.
+
+------
 
 ### Creating a status check alarm using the AWS CLI<a name="using-cloudwatch-new-cli2"></a>
 

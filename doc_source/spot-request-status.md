@@ -56,7 +56,7 @@ Your Spot Instance request can go to a `terminal` state if you create a request 
 **Pending fulfillment**  
 When the constraints you specified \(if any\) are met and your maximum price is equal to or higher than the current Spot price, your Spot request goes into the `pending-fulfillment` state\.
 
-At this point, Amazon EC2 is getting ready to provision the instances that you requested\. If the process stops at this point, it is likely to be because it was canceled by the user before a Spot Instance was launched\. It may also be because an unexpected system error occurred\.
+At this point, Amazon EC2 is getting ready to provision the instances that you requested\. If the process stops at this point, it is likely to be because it was canceled by the user before a Spot Instance was launched\. It might also be because an unexpected system error occurred\.
 
 
 | Status code | Request state | Instance state | 

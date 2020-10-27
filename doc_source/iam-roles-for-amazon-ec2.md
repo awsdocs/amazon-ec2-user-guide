@@ -238,7 +238,7 @@ Alternatively, you can use the following AWS Tools for Windows PowerShell comman
 After you've created an IAM role, you can launch an instance, and associate that role with the instance during launch\.
 
 **Important**  
-After you create an IAM role, it may take several seconds for the permissions to propagate\. If your first attempt to launch an instance with a role fails, wait a few seconds before trying again\. For more information, see [Troubleshooting Working with Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/RolesTroubleshooting.html) in the *IAM User Guide*\.<a name="launch-instance-with-role-console"></a>
+After you create an IAM role, it might take several seconds for the permissions to propagate\. If your first attempt to launch an instance with a role fails, wait a few seconds before trying again\. For more information, see [Troubleshooting Working with Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/RolesTroubleshooting.html) in the *IAM User Guide*\.<a name="launch-instance-with-role-console"></a>
 
 **To launch an instance with an IAM role \(console\)**
 

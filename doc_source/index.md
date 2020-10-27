@@ -191,7 +191,7 @@ Amazon's trademarks and trade dress may not be used in
       + [Graph metrics for your instances](graphs-in-the-aws-management-console.md)
       + [Create a CloudWatch alarm for an instance](using-cloudwatch-createalarm.md)
       + [Create alarms that stop, terminate, reboot, or recover an instance](UsingAlarmActions.md)
-   + [Automating Amazon EC2 with CloudWatch Events](automating_with_cloudwatch_events.md)
+   + [Automating Amazon EC2 with EventBridge](automating_with_eventbridge.md)
    + [Monitoring memory and disk metrics for Amazon EC2 Linux instances](mon-scripts.md)
    + [Logging Amazon EC2 and Amazon EBS API calls with AWS CloudTrail](monitor-with-cloudtrail.md)
 + [Networking in Amazon EC2](ec2-networking.md)

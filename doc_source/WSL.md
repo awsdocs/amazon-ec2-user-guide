@@ -22,7 +22,7 @@ If you receive an error while attempting to connect to your instance, see [Troub
 Before you connect to your Linux instance, complete the following prerequisites\.
 
 **Verify that the instance is ready**  
-After you launch an instance, it can take a few minutes for the instance to be ready so that you can connect to it\. Check that your instance has passed its status checks\. You can view this information in the **Status Checks** column on the **Instances** page\.
+After you launch an instance, it can take a few minutes for the instance to be ready so that you can connect to it\. Check that your instance has passed its status checks\. You can view this information in the **Status check** column on the **Instances** page\.
 
 **Verify the general prerequisites for connecting to your instance**  
 To find the public DNS name or IP address of your instance and the user name that you should use to connect to your instance, see [General prerequisites for connecting to your instance](connection-prereqs.md)\.

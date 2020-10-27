@@ -115,4 +115,4 @@ This procedure applies only to instance types that support instance storage\. Fo
    /dev/xvdb       none    swap    sw  0       0
    ```
 **Important**  
-Instance store volume data is lost when an instance is stopped; this includes the instance store swap space formatting created in [Step 3](#step_mkswap)\. If you stop and restart an instance that has been configured to use instance store swap space, you must repeat [Step 1](#step_swap_start) through [Step 5](#step_swap_enable) on the new instance store volume\.
+Instance store volume data is lost when an instance is stopped or hibernated; this includes the instance store swap space formatting created in [Step 3](#step_mkswap)\. If you stop and restart an instance that has been configured to use instance store swap space, you must repeat [Step 1](#step_swap_start) through [Step 5](#step_swap_enable) on the new instance store volume\.

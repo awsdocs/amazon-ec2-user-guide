@@ -453,7 +453,7 @@ You can modify an instance's tenancy and affinity using the following methods\.
 
 1. Choose **Instances**, and select the instance to modify\.
 
-1. Choose **Actions**, **Instance State**, and **Stop**\.
+1. Choose **Instance state**, **Stop**\.
 
 1. Open the context \(right\-click\) menu on the instance and choose **Instance Settings**, **Modify Instance Placement**\.
 

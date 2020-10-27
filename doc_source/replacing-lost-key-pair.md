@@ -53,7 +53,7 @@ Create a new key pair using either the Amazon EC2 console or a third\-party tool
 
 ## Step 3: Stop the original instance<a name="step-3-stop-original-instance"></a>
 
-Choose **Actions**, select **Instance State**, and then select **Stop**\. If **Stop** is disabled, either the instance is already stopped or its root device is an instance store volume\.
+Choose **Instance state**, **Stop instance**\. If this option is disabled, either the instance is already stopped or its root device is an instance store volume\.
 
 **Warning**  
 When you stop an instance, the data on any instance store volumes is erased\. To keep data from instance store volumes, be sure to back it up to persistent storage\.
@@ -173,11 +173,11 @@ If you don't specify the same device name as the original attachment, you cannot
 
 ## Step 8: Connect to the original instance using the new key pair<a name="step-8-connect-to-original-instance"></a>
 
-Select the original instance, choose **Actions**, select **Instance State**, and then choose **Start**\. After the instance enters the `running` state, you can connect to it using the private key file for your new key pair\.
+Select the original instance, choose **Instance state**, **Start instance**\. After the instance enters the `running` state, you can connect to it using the private key file for your new key pair\.
 
 **Note**  
 If the name of your new key pair and corresponding private key file is different from the name of the original key pair, ensure that you specify the name of the new private key file when you connect to your instance\.
 
 ## Step 9: Clean up<a name="step-9-clean-up"></a>
 
-\(Optional\) You can terminate the temporary instance if you have no further use for it\. Select the temporary instance, choose **Actions**, select **Instance State**, and then choose **Terminate**\.
+\(Optional\) You can terminate the temporary instance if you have no further use for it\. Select the temporary instance, choose **Instance state**, **Terminate instance**\.

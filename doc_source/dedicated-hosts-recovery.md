@@ -143,7 +143,7 @@ If the impaired Dedicated Host has instances that do not support host recovery, 
 Host recovery does not support recovering instances that use instance store volumes\. Follow the instructions below to manually recover any of your instances that could not be automatically recovered\.
 
 **Warning**  
-Data on instance store volumes is lost when an instance is stopped or terminated\. This includes instance store volumes that are attached to an instance that has an EBS volume as the root device\. To protect data from instance store volumes, back it up to persistent storage before the instance is stopped or terminated\.
+Data on instance store volumes is lost when an instance is stopped, hibernated, or terminated\. This includes instance store volumes that are attached to an instance that has an EBS volume as the root device\. To protect data from instance store volumes, back it up to persistent storage before the instance is stopped or terminated\.
 
 ### Manually recovering EBS\-backed instances<a name="dedicated-hosts-recovery-ebs"></a>
 

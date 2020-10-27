@@ -105,6 +105,8 @@ For this example, suppose that you have an instance built on the [Nitro System](
    [ec2-user ~]$ sudo resize2fs /dev/nvme1n1
    ```
 
+1. \[Other file system\] Refer to the documentation for your file system for instructions\.
+
 1. \(Optional\) Use the df \-h command again to verify that each file system reflects the increased volume size\.
 
    ```
@@ -201,6 +203,8 @@ For this example, suppose that you have resized the boot volume of an instance, 
    [ec2-user ~]$ sudo resize2fs /dev/xvda1
    [ec2-user ~]$ sudo resize2fs /dev/xvdf1
    ```
+
+1. \[Other file system\] Refer to the documentation for your file system for instructions\.
 
 1. \(Optional\) Use the df \-h command again to verify that each file system reflects the increased volume size\.
 

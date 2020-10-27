@@ -58,7 +58,7 @@ Your WordPress installation needs to store information, such as blog posts and u
      [ec2-user ~]$ sudo service mysqld start
      ```
 
-1. Log in to the database server as the `root` user\. Enter your database `root` password when prompted; this may be different than your `root` system password, or it may even be empty if you have not secured your database server\.
+1. Log in to the database server as the `root` user\. Enter your database `root` password when prompted; this may be different than your `root` system password, or it might even be empty if you have not secured your database server\.
 
    If you have not secured your database server yet, it is important that you do so\. For more information, see [To secure the MariaDB server](ec2-lamp-amazon-linux-2.md#securing-maria-db) \(Amazon Linux 2\) or [To secure the database server](install-LAMP.md#SecuringMySQLProcedure) \(Amazon Linux AMI\)\.
 

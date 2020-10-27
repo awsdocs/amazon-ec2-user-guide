@@ -8,7 +8,7 @@ There are no charges for copying an AMI\. However, standard storage and data tra
 
 AWS does not copy launch permissions, user\-defined tags, or Amazon S3 bucket permissions from the source AMI to the new AMI\. After the copy operation is complete, you can apply launch permissions, user\-defined tags, and Amazon S3 bucket permissions to the new AMI\.
 
-You can't copy an AMI that was obtained from the AWS Marketplace, regardless of whether you obtained it directly or it was shared with you\. Instead, launch an EC2 instance using the AWS Marketplace AMI and then create an AMI from the instance\. For more information, see [Creating an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md)\.
+If you are using an AWS Marketplace AMI, or an AMI that was directly or indirectly derived from an AWS Marketplace AMI, you cannot copy it across accounts\. Instead, launch an EC2 instance using the AWS Marketplace AMI and then create an AMI from the instance\. For more information, see [Creating an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md)\.
 
 **Topics**
 + [Permissions for copying an instance store\-backed AMI](#copy-ami-permissions)

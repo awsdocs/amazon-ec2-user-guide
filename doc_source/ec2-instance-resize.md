@@ -71,7 +71,7 @@ Use the following procedure to resize an Amazon EBS–backed instance using the 
 
    1. Choose **Apply** to accept the new settings\.
 
-1. To restart the stopped instance, select the instance and choose **Actions**, **Instance state**, **Start instance**\. It can take a few minutes for the instance to enter the `running` state\.
+1. To restart the stopped instance, select the instance and choose **Instance state**, **Start instance**\. It can take a few minutes for the instance to enter the `running` state\.
 
 1. \(Troubleshooting\) If your instance won't boot, it is possible that one of the requirements for the new instance type was not met\. For more information, see [Why is my Linux instance not booting after I changed its type?](https://aws.amazon.com/premiumsupport/knowledge-center/boot-error-linux-m5-c5/)
 
@@ -129,7 +129,7 @@ If you do not see the AMI that you created in the previous step, make sure that 
 
    It can take a few minutes for the instance to enter the `running` state\.
 
-1. \(Optional\) You can terminate the instance that you started with, if it's no longer needed\. Select the instance and verify that you are about to terminate the original instance, not the new instance \(for example, check the name or launch time\)\. Choose **Actions**, **Instance state**, **Terminate instance**\.
+1. \(Optional\) You can terminate the instance that you started with, if it's no longer needed\. Select the instance and verify that you are about to terminate the original instance, not the new instance \(for example, check the name or launch time\)\. Choose **Instance state**, **Terminate instance**\.
 
 ------
 #### [ Old console ]
@@ -192,7 +192,7 @@ If you want to move from an instance launched from a PV AMI to an instance type 
 
    1. Choose **Associate**\.
 
-1. \(Optional\) You can terminate the original instance if it's no longer needed\. Select the instance and verify that you are about to terminate the original instance, not the new instance \(for example, check the name or launch time\)\. Choose **Actions**, **Instance state**, **Terminate instance**\.
+1. \(Optional\) You can terminate the original instance if it's no longer needed\. Select the instance and verify that you are about to terminate the original instance, not the new instance \(for example, check the name or launch time\)\. Choose **Instance state**, **Terminate instance**\.
 
 ------
 #### [ Old console ]

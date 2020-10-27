@@ -125,7 +125,7 @@ If you cancel your listing and a portion of that listing has already been sold, 
 
 1. In the navigation pane, choose **Reserved Instances**\.
 
-1. Select the Reserved Instances to list, and choose **Sell Reserved Instances**\.
+1. Select the Reserved Instances to list, and choose **Actions**, **Sell Reserved Instances**\.
 
 1. On the **Configure Your Reserved Instance Listing** page, set the number of instances to sell and the upfront price for the remaining term in the relevant columns\. See how the value of your reservation changes over the remainder of the term by selecting the arrow next to the **Months Remaining** column\.
 
@@ -141,7 +141,7 @@ If you cancel your listing and a portion of that listing has already been sold, 
 
 1. In the navigation pane, choose **Reserved Instances**\.
 
-1. Select the Reserved Instance that you've listed and choose **My Listings**\.
+1. Select the Reserved Instance that you've listed and choose the **My Listings** tab near the bottom of the page\.
 
 **To manage Reserved Instances in the Reserved Instance Marketplace using the AWS CLI**
 
@@ -194,9 +194,19 @@ If you cancel your listing and a portion of that listing has already sold, the c
 
 ### After your Reserved Instance is sold<a name="ri-market-concepts-sold"></a>
 
-When your Reserved Instance is sold, AWS sends you an email notification\. Each day that there is any kind of activity, you receive one email notification capturing all the activities of the day\. For example, you create or sell a listing, or AWS sends funds to your account\.
+When your Reserved Instance is sold, AWS sends you an email notification\. Each day that there is any kind of activity, you receive one email notification capturing all the activities of the day\. Activities can include when you create or sell a listing, or when AWS sends funds to your account\.
 
-To track the status of a Reserved Instance listing in the console, choose **Reserved Instance**, **My Listings**\. The **My Listings** tab contains the **Listing State** value\. It also contains information about the term, listing price, and a breakdown of how many instances in the listing are available, pending, sold, and canceled\. You can also use the [describe\-reserved\-instances\-listings](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances-listings.html) command with the appropriate filter to obtain information about your listings\.
+**To track the status of a Reserved Instance listing in the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation page, choose **Reserved Instances**\.
+
+1. Choose the **My Listings** tab\.
+
+   The **My Listings** tab contains the **Listing State** value\. It also contains information about the term, listing price, and a breakdown of how many instances in the listing are available, pending, sold, and canceled\.
+
+You can also use the [describe\-reserved\-instances\-listings](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances-listings.html) command with the appropriate filter to obtain information about your listings\.
 
 ### Getting paid<a name="ri-market-sold-gettingpaid"></a>
 

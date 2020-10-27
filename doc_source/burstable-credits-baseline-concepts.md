@@ -2,7 +2,10 @@
 
 Traditional Amazon EC2 instance types provide fixed CPU utilization, while burstable performance instances provide a baseline level of CPU utilization with the ability to burst CPU utilization above the baseline level\. The baseline utilization and ability to burst are governed by CPU credits\.
 
-A CPU credit provides for 100% utilization of a full CPU core for one minute\. Other combinations of number of vCPUs, utilization, and time can also equate to one CPU credit\. For example, one CPU credit is equal to one vCPU running at 50% utilization for two minutes, or two vCPUs running at 25% utilization for two minutes\.
+The CPU credits used depends on CPU utilization\. The following scenarios all use one CPU credit:
++ One vCPU at 100% utilization for one minute
++ One vCPU at 50% utilization for two minutes
++ Two vCPUs at 25% utilization for two minutes
 
 **Contents**
 + [Earning CPU credits](#earning-CPU-credits)

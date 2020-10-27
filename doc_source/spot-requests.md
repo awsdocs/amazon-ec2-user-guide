@@ -612,9 +612,9 @@ We don't charge usage for a stopped Spot Instance, or data transfer fees, but we
 
 1. In the navigation pane, choose **Instances** and select the Spot Instance\.
 
-1. Choose **Actions**, **Instance state**, **Stop instance**\.
+1. Choose **Instance state**, **Stop instance**\.
 
-1. In the confirmation window, choose **Stop**\.
+1. When prompted for confirmation, choose **Stop**\.
 
 ------
 #### [ Old console ]
@@ -663,7 +663,7 @@ You can only start a Spot Instance if:
 
 1. In the navigation pane, choose **Instances** and select the Spot Instance\.
 
-1. Choose **Actions**, **Instance state**, **Start instance**\.
+1. Choose **Instance state**, **Start instance**\.
 
 ------
 #### [ Old console ]

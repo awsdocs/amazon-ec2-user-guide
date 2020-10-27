@@ -4,11 +4,11 @@ Using Amazon CloudWatch alarm actions, you can create alarms that automatically 
 
 The `AWSServiceRoleForCloudWatchEvents` service\-linked role enables AWS to perform alarm actions on your behalf\. The first time you create an alarm in the AWS Management Console, the IAM CLI, or the IAM API, CloudWatch creates the service\-linked role for you\.
 
-There are a number of scenarios in which you might want to automatically stop or terminate your instance\. For example, you might have instances dedicated to batch payroll processing jobs or scientific computing tasks that run for a period of time and then complete their work\. Rather than letting those instances sit idle \(and accrue charges\), you can stop or terminate them, which can help you to save money\. The main difference between using the stop and the terminate alarm actions is that you can easily restart a stopped instance if you need to run it again later, and you can keep the same instance ID and root volume\. However, you cannot restart a terminated instance\. Instead, you must launch a new instance\.
+There are a number of scenarios in which you might want to automatically stop or terminate your instance\. For example, you might have instances dedicated to batch payroll processing jobs or scientific computing tasks that run for a period of time and then complete their work\. Rather than letting those instances sit idle \(and accrue charges\), you can stop or terminate them, which can help you to save money\. The main difference between using the stop and the terminate alarm actions is that you can easily start a stopped instance if you need to run it again later, and you can keep the same instance ID and root volume\. However, you cannot start a terminated instance\. Instead, you must launch a new instance\.
 
 You can add the stop, terminate, reboot, or recover actions to any alarm that is set on an Amazon EC2 per\-instance metric, including basic and detailed monitoring metrics provided by Amazon CloudWatch \(in the `AWS/EC2` namespace\), as well as any custom metrics that include the `InstanceId` dimension, as long as its value refers to a valid running Amazon EC2 instance\.
 
-**Console Support**  
+**Console support**  
 You can create alarms using the Amazon EC2 console or the CloudWatch console\. The procedures in this documentation use the Amazon EC2 console\. For procedures that use the CloudWatch console, see [Create Alarms That Stop, Terminate, Reboot, or Recover an Instance](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/UsingAlarmActions.html) in the *Amazon CloudWatch User Guide*\.
 
 **Permissions**  

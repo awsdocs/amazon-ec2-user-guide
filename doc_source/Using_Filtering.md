@@ -44,11 +44,11 @@ To search by keyword, enter or paste what you’re looking for in the search fie
 **Search by attributes**  
 Searching by an attribute lets you search a specific attribute across all of your resources\.   
 Attribute searches use either *API filtering* or *client filtering*, depending on the selected attribute\. When performing an attribute search, the attributes are grouped accordingly\.
-For example, you can search the **Instance State** attribute for all of your instances to return only instances that are in the `stopped` state\. To do this:  
+For example, you can search the **Instance state** attribute for all of your instances to return only instances that are in the `stopped` state\. To do this:  
 
-1. In the search field on the Instances screen, start entering `Instance State`\. As you enter characters, a list of matching attributes appears\.
+1. In the search field on the Instances screen, start entering `Instance state`\. As you enter characters, a list of matching attributes appears\.
 
-1. Select **Instance State **from the list\. A list of possible values for the selected attribute appears\.
+1. Select **Instance state** from the list\. A list of possible values for the selected attribute appears\.
 
 1. Select **Stopped** from the list\.
 

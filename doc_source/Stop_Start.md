@@ -43,19 +43,19 @@ If you try to modify these attributes while the instance is running, Amazon EC2 
 ## What happens when you stop an instance<a name="what-happens-stop"></a>
 
 When an EC2 instance is stopped using the `stop-instances` command, the following is registered at the OS level:
-+ The API request will send a button press event to the guest\.
-+ Various system services will be stopped as a result of the button press event\. **systemd** handles a graceful shutdown of the system\. Graceful shutdown is triggered by the ACPI shutdown button press event from the hypervisor\.
-+ ACPI shutdown will be initiated\.
-+ The instance will shut down when the graceful shutdown process exits\. There is no configurable OS shutdown time\.
++ The API request sends a button press event to the guest\.
++ Various system services are stopped as a result of the button press event\. Graceful shutdown is triggered by the ACPI shutdown button press event from the hypervisor\.
++ ACPI shutdown is initiated\.
++ The instance shuts down when the graceful shutdown process exits\. There is no configurable OS shutdown time\.
 + If the instance OS does not shut down cleanly within a few minutes, a hard shutdown is performed\.
+
+By default, when you initiate a shutdown from an Amazon EBS\-backed instance \(for example, using the shutdown or poweroff command\), the instance stops\. You can change this behavior so that it terminates instead\. For more information, see [Changing the instance initiated shutdown behavior](terminating-instances.md#Using_ChangingInstanceInitiatedShutdownBehavior)\.
+
+Using the halt command from an instance does not initiate a shutdown\. If used, the instance does not terminate; instead, it places the CPU into `HLT` and the instance remains running\.
 
 ## Stopping and starting your instances<a name="starting-stopping-instances"></a>
 
 You can stop and start your Amazon EBS\-backed instance using the console or the command line\.
-
-By default, when you initiate a shutdown from an Amazon EBS\-backed instance \(using the shutdown or poweroff command\), the instance stops\. You can change this behavior so that it terminates instead\. For more information, see [Changing the instance initiated shutdown behavior](terminating-instances.md#Using_ChangingInstanceInitiatedShutdownBehavior)\.
-
-Using the halt command from an instance does not initiate a shutdown\. If used, the instance does not terminate; instead, it places the CPU into `HLT` and the instance remains running\.
 
 ------
 #### [ New console ]
@@ -66,13 +66,13 @@ Using the halt command from an instance does not initiate a shutdown\. If used, 
 
 1. In the navigation pane, choose **Instances** and select the instance\.
 
-1. Choose **Actions**, **Instance state**, **Stop instance**\. If this option is disabled, either the instance is already stopped or its root device is an instance store volume\.
+1. Choose **Instance state**, **Stop instance**\. If this option is disabled, either the instance is already stopped or its root device is an instance store volume\.
 
 1. When prompted for confirmation, choose **Stop**\. It can take a few minutes for the instance to stop\.
 
 1. \(Optional\) While your instance is stopped, you can modify certain instance attributes\. For more information, see [Modifying a stopped instance](#Using_ChangingAttributesWhileInstanceStopped)\.
 
-1. To start the stopped instance, select the instance, and choose **Actions**, **Instance state**, **Start instance**\.
+1. To start the stopped instance, select the instance, and choose **Instance state**, **Start instance**\.
 
 1. It can take a few minutes for the instance to enter the `running` state\.
 

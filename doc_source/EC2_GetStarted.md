@@ -96,7 +96,7 @@ If you launched an instance that is not within the [AWS Free Tier](https://aws.a
 
 1. In the navigation pane, choose **Instances**\. In the list of instances, select the instance\.
 
-1. Choose **Actions**, **Instance state**, **Terminate instance**\.
+1. Choose **Instance state**, **Terminate instance**\.
 
 1. Choose **Terminate** when prompted for confirmation\.
 

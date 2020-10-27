@@ -16,7 +16,7 @@ This tutorial helps you to launch an EFA and MPI\-enabled instance cluster for H
 
 ## Step 1: Prepare an EFA\-enabled security group<a name="efa-start-security"></a>
 
-An EFA requires a security group that allows all inbound and outbound traffic to and from the security group itself\.
+An EFA requires a security group that allows all inbound and outbound traffic to and from the security group itself\. The following procedure allows all inbound and outbound traffic for testing purposes only\. For other scenarios, see [Security group rules reference](security-group-rules-reference.md)\.
 
 **To create an EFA\-enabled security group**
 

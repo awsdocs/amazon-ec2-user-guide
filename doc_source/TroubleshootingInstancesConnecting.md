@@ -43,7 +43,7 @@ After you launch an instance, it can take a few minutes for the instance to be r
 
 1. In the navigation pane, choose **Instances**, and then select your instance\.
 
-1. Verify that your **Instance State** is running and your **Status Checks** have passed\. 
+1. Verify that your instance is in the `running` state and that your instance have passed status checks\.
 
 **Verify the general prerequisites for connecting to your instance**  
 For more information, see [General prerequisites for connecting to your instance](connection-prereqs.md)\.
@@ -110,7 +110,7 @@ To connect to your instance using an IPv6 address, check the following:
 + Your subnet must be associated with a route table that has a route for IPv6 traffic \(`::/0`\) to an internet gateway\. 
 + Your security group rules must allow inbound traffic from your local IPv6 address on the proper port \(22 for Linux and 3389 for Windows\)\.
 + Your network ACL rules must allow inbound and outbound IPv6 traffic\.
-+ If you launched your instance from an older AMI, it may not be configured for DHCPv6 \(IPv6 addresses are not automatically recognized on the network interface\)\. For more information, see [Configure IPv6 on Your Instances](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-migrate-ipv6.html#vpc-migrate-ipv6-dhcpv6) in the *Amazon VPC User Guide*\.
++ If you launched your instance from an older AMI, it might not be configured for DHCPv6 \(IPv6 addresses are not automatically recognized on the network interface\)\. For more information, see [Configure IPv6 on Your Instances](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-migrate-ipv6.html#vpc-migrate-ipv6-dhcpv6) in the *Amazon VPC User Guide*\.
 + Your local computer must have an IPv6 address, and must be configured to use IPv6\. 
 
 ## Error: unable to load key … Expecting: ANY PRIVATE KEY<a name="troubleshoot-instance-connect-key-file"></a>

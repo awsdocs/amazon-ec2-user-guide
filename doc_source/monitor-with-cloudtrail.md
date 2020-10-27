@@ -129,6 +129,7 @@ Use AWS CloudTrail to audit the users that connect to your instances via EC2 Ins
            "SSHKey": {
                "publicKey": "ssh-rsa ABCDEFGHIJKLMNO01234567890EXAMPLE"
            }
+        },
        "responseElements": null,
        "requestID": "1a2s3d4f-bde6-11e8-a892-f7ec64543add",
        "eventID": "1a2w3d4r5-a88f-4e28-b3bf-30161f75be34",

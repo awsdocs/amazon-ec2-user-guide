@@ -4,7 +4,7 @@ An *Amazon Machine Image \(AMI\)* is a template that contains a software configu
 
 ![\[Launch multiple instances from an AMI\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/architecture_ami_instance.png)
 
-Your instances keep running until you stop or terminate them, or until they fail\. If an instance fails, you can launch a new one from the AMI\.
+Your instances keep running until you stop, hibernate, or terminate them, or until they fail\. If an instance fails, you can launch a new one from the AMI\.
 
 ## Instances<a name="instances"></a>
 

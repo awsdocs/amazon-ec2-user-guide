@@ -27,16 +27,38 @@ The following configuration details are not copied from your selected instance\.
 + Number of network interfaces: The default is one network interface, which is the primary network interface \(eth0\)\.
 + Storage: The default storage configuration is determined by the AMI and the instance type\.
 
+------
+#### [ New console ]
+
 **To use your current instance as a template**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
 1. In the navigation pane, choose **Instances**\.
 
-1. Select the instance you want to use, and then choose **Actions**, **Launch more like this**\.
+1. Select the instance you want to use, and then choose **Actions**, **Images and templates**, **Launch more like this**\.
 
-1. The launch wizard opens on the **Review Instance Launch** page\. You can check the details of your instance, and make any necessary changes by clicking the appropriate **Edit** link\. 
+1. The launch wizard opens on the **Review Instance Launch** page\. You can make any necessary changes by choosing the appropriate **Edit** link\.
 
    When you are ready, choose **Launch** to select a key pair and launch your instance\.
 
 1. If the instance fails to launch or the state immediately goes to `terminated` instead of `running`, see [Troubleshooting instance launch issues](troubleshooting-launch.md)\.
+
+------
+#### [ Old console ]
+
+**To use your current instance as a template**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances**\.
+
+1. Select the instance you want to use, and then choose **Actions**, **Launch More Like This**\.
+
+1. The launch wizard opens on the **Review Instance Launch** page\. You can make any necessary changes by choosing the appropriate **Edit** link\.
+
+   When you are ready, choose **Launch** to select a key pair and launch your instance\.
+
+1. If the instance fails to launch or the state immediately goes to `terminated` instead of `running`, see [Troubleshooting instance launch issues](troubleshooting-launch.md)\.
+
+------

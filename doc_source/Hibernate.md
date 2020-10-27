@@ -44,6 +44,7 @@ When you hibernate a running instance, the following happens:
 + When you initiate hibernation, the instance moves to the `stopping` state\. Amazon EC2 signals the operating system to perform hibernation \(suspend\-to\-disk\)\. The hibernation freezes all of the processes, saves the contents of the RAM to the EBS root volume, and then performs a regular shutdown\.
 + After the shutdown is complete, the instance moves to the `stopped` state\.
 + Any EBS volumes remain attached to the instance, and their data persists, including the saved contents of the RAM\.
++ Any Amazon EC2 instance store volumes remain attached to the instance, but the data on the instance store volumes is lost\.
 + In most cases, the instance is migrated to a new underlying host computer when it's started\. This is also what happens when you stop and start an instance\.
 + When you start the instance, the instance boots up and the operating system reads in the contents of the RAM from the EBS root volume, before unfreezing processes to resume its state\.
 + The instance retains its private IPv4 addresses and any IPv6 addresses\. When you start the instance, the instance continues to retain its private IPv4 addresses and any IPv6 addresses\.
@@ -56,7 +57,7 @@ For information about how hibernation differs from reboot, stop, and terminate, 
 ## Hibernation prerequisites<a name="hibernating-prerequisites"></a>
 
 To hibernate an instance, the following prerequisites must be in place:
-+ **Supported instance families** \- C3, C4, C5, M3, M4, M5, M5a, R3, R4, R5, R5a, and T2\.
++ **Supported instance families** \- C3, C4, C5, I3, M3, M4, M5, M5a, M5ad, R3, R4, R5, R5a, R5ad, and T2\.
 + **Instance RAM size** \- must be less than 150 GB\.
 + **Instance size** \- not supported for bare metal instances\.
 + **Supported AMIs** \(must be an HVM AMI that supports hibernation\):
@@ -87,13 +88,11 @@ To hibernate an instance, the following prerequisites must be in place:
   + Changing the instance type or size of a hibernated instance
   + Creating snapshots or AMIs from instances for which hibernation is enabled
   + Creating snapshots or AMIs from hibernated instances
-+ You can't stop or hibernate instance store\-backed instances\.\*
++ When you hibernate an instance, the data on any instance store volumes is lost\.
 + You can't hibernate an instance that has more than 150 GB of RAM\.
 + You cannot hibernate an instance that is in an Auto Scaling group or used by Amazon ECS\. If your instance is in an Auto Scaling group and you try to hibernate it, the Amazon EC2 Auto Scaling service marks the stopped instance as unhealthy, and may terminate it and launch a replacement instance\. For more information, see [Health Checks for Auto Scaling Instances](https://docs.aws.amazon.com/autoscaling/latest/userguide/healthcheck.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 + We do not support keeping an instance hibernated for more than 60 days\. To keep the instance for longer than 60 days, you must start the hibernated instance, stop the instance, and start it\.
 + We constantly update our platform with upgrades and security patches, which can conflict with existing hibernated instances\. We notify you about critical updates that require a start for hibernated instances so that we can perform a shutdown or a reboot to apply the necessary upgrades and security patches\.
-
-\*For C3 and R3 instances that are enabled for hibernation, do not use instance store volumes\.
 
 ## Configuring an existing AMI to support hibernation<a name="hibernation-enabled-AMI"></a>
 
@@ -438,9 +437,9 @@ You can hibernate an instance if the instance is [enabled for hibernation](#enab
 
 1. In the navigation pane, choose **Instances**\.
 
-1. Select an instance, and choose **Actions**, **Instance state**, **Hibernate instance**\. If **Hibernate instance** is disabled, the instance is already hibernated or stopped, or it can't be hibernated\. For more information, see [Hibernation prerequisites](#hibernating-prerequisites)\.
+1. Select an instance, and choose **Instance state**, **Hibernate instance**\. If **Hibernate instance** is disabled, the instance is already hibernated or stopped, or it can't be hibernated\. For more information, see [Hibernation prerequisites](#hibernating-prerequisites)\.
 
-1. In the confirmation dialog box, choose **Hibernate**\. It can take a few minutes for the instance to hibernate\. The **Instance state** changes to **Stopping** while the instance is hibernating, and then **Stopped** when the instance has hibernated\.
+1. When prompted for confirmation, choose **Hibernate**\. It can take a few minutes for the instance to hibernate\. The instance state changes to **Stopping** while the instance is hibernating, and then **Stopped** when the instance has hibernated\.
 
 ------
 #### [ Old console ]
@@ -552,7 +551,7 @@ Start a hibernated instance by starting it in the same way that you would start 
 
 1. In the navigation pane, choose **Instances**\.
 
-1. Select a hibernated instance, and choose **Actions**, **Instance state**, **Start instance**\. It can take a few minutes for the instance to enter the `running` state\. During this time, the instance [status checks](monitoring-system-instance-status-check.md#types-of-instance-status-checks) show the instance in a failed state until the instance has started\.
+1. Select a hibernated instance, and choose **Instance state**, **Start instance**\. It can take a few minutes for the instance to enter the `running` state\. During this time, the instance [status checks](monitoring-system-instance-status-check.md#types-of-instance-status-checks) show the instance in a failed state until the instance has started\.
 
 ------
 #### [ Old console ]

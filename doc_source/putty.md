@@ -9,7 +9,7 @@ The following instructions explain how to connect to your instance using PuTTY, 
 Before you connect to your Linux instance using PuTTY, complete the following prerequisites\.
 
 **Verify that the instance is ready**  
-After you launch an instance, it can take a few minutes for the instance to be ready so that you can connect to it\. Check that your instance has passed its status checks\. You can view this information in the **Status Checks** column on the **Instances** page\.
+After you launch an instance, it can take a few minutes for the instance to be ready so that you can connect to it\. Check that your instance has passed its status checks\. You can view this information in the **Status check** column on the **Instances** page\.
 
 **Verify the general prerequisites for connecting to your instance**  
 To find the public DNS name or IP address of your instance and the user name that you should use to connect to your instance, see [General prerequisites for connecting to your instance](connection-prereqs.md)\.
@@ -28,7 +28,7 @@ PuTTY does not natively support the private key format for SSH keys\. PuTTY prov
 
 1. From the **Start** menu, choose **All Programs**, **PuTTY**, **PuTTYgen**\.
 
-1. Under **Type of key to generate**, choose **RSA**\. If you're using an older version of PuTTYgen, choose **SSH\-2 RSA**\.  
+1. Under **Type of key to generate**, choose **RSA**\. If your version of PuTTYgen does not include this option, choose **SSH\-2 RSA**\.  
 ![\[RSA key in PuTTYgen\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/puttygen-key-type.png)
 
 1. Choose **Load**\. By default, PuTTYgen displays only files with the extension `.ppk`\. To locate your `.pem` file, choose the option to display files of all types\.  
@@ -109,7 +109,12 @@ The following example transfers the file `Sample_file.txt` from the C:\\ drive o
 
 WinSCP is a GUI\-based file manager for Windows that allows you to upload and transfer files to a remote computer using the SFTP, SCP, FTP, and FTPS protocols\. WinSCP allows you to drag and drop files from your Windows computer to your Linux instance or synchronize entire directory structures between the two systems\.
 
-To use WinSCP, you need the private key that you generated in [Convert your private key using PuTTYgen](#putty-private-key)\. You also need the public DNS name of your Linux instance\.
+**Requirements**
++ You must have the private key that you generated in [Convert your private key using PuTTYgen](#putty-private-key)\.
++ You must have the public DNS name of your Linux instance\.
++ Your Linux instance must have `scp` installed\. For some operating systems, you install the `openssh-clients` package\. For others, such as the Amazon ECS\-optimized AMI, you install the `scp` package\. Check the documentation for your Linux distribution\.
+
+**To connect to your instance using WinSCP**
 
 1. Download and install WinSCP from [http://winscp\.net/eng/download\.php](http://winscp.net/eng/download.php)\. For most users, the default installation options are OK\.
 
@@ -141,10 +146,6 @@ To use WinSCP, you need the private key that you generated in [Convert your priv
 1. Choose **Login**\. To add the host fingerprint to the host cache, choose **Yes**\.  
 ![\[WinSCP screen\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/WinSCP-connection.png)
 
-1. After the connection is established, in the connection window your Linux instance is on the right and your local machine is on the left\. You can drag and drop files directly into the remote file system from your local machine\. For more information on WinSCP, see the project documentation at [http://winscp\.net/eng/docs/start](http://winscp.net/eng/docs/start)\.
+1. After the connection is established, in the connection window your Linux instance is on the right and your local machine is on the left\. You can drag and drop files between the remote file system and your local machine\. For more information on WinSCP, see the project documentation at [http://winscp\.net/eng/docs/start](http://winscp.net/eng/docs/start)\.
 
-   If you receive a "Cannot execute SCP to start transfer" error, you must first install scp on your Linux instance\. For some operating systems, this is located in the `openssh-clients` package\. For Amazon Linux variants, such as the Amazon ECS\-optimized AMI, use the following command to install scp\.
-
-   ```
-   [ec2-user ~]$ sudo yum install -y openssh-clients
-   ```
+   If you receive a "Cannot execute SCP to start transfer" error, verify that you installed scp on the Linux instance\.

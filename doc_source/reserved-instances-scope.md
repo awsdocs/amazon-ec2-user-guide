@@ -12,7 +12,7 @@ The following table highlights some key differences between regional Reserved In
 |  | Regional Reserved Instances | Zonal Reserved Instances | 
 | --- | --- | --- | 
 | Availability Zone flexibility | The Reserved Instance discount applies to instance usage in any Availability Zone in the specified Region\. | No Availability Zone flexibility—the Reserved Instance discount applies to instance usage in the specified Availability Zone only\. | 
-| Capacity reservation | No capacity reservation—a regional Reserved Instance does not provide a capacity reservation\.  | A zonal Reserved Instance provides a capacity reservation in the specified Availability Zone\. | 
+| Ability to reserve capacity | A regional Reserved Instance does not reserve capacity\.  | A zonal Reserved Instance reserves capacity in the specified Availability Zone\. | 
 | Instance size flexibility | The Reserved Instance discount applies to instance usage within the instance family, regardless of size\. Only supported on Amazon Linux/Unix Reserved Instances with default tenancy\. For more information, see [Instance size flexibility determined by normalization factor](apply_ri.md#ri-normalization-factor)\. | No instance size flexibility—the Reserved Instance discount applies to instance usage for the specified instance type and size only\. | 
 
 For more information and examples, see [How Reserved Instances are applied](apply_ri.md)\.

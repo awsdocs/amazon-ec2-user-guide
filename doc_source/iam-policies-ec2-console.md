@@ -70,7 +70,8 @@ The Amazon EC2 launch wizard is a series of screens with options to configure an
 **Basic launch wizard access**
 
 To complete a launch successfully, users must be given permission to use the `ec2:RunInstances` API action, and at least the following API actions:
-+ `ec2:DescribeImages`: To view and select an AMI\. 
++ `ec2:DescribeImages`: To view and select an AMI\.
++ `ec2:DescribeInstanceTypes`: To view and select an instance type\.
 + `ec2:DescribeVpcs`: To view the available network options\.
 + `ec2:DescribeSubnets`: To view all available subnets for the chosen VPC\. 
 + `ec2:DescribeSecurityGroups` or `ec2:CreateSecurityGroup`: To view and select an existing security group, or to create a new one\. 
@@ -86,6 +87,7 @@ To complete a launch successfully, users must be given permission to use the `ec
             "Action": [
                 "ec2:DescribeInstances",
                 "ec2:DescribeImages",
+                "ec2:DescribeInstanceTypes",
                 "ec2:DescribeKeyPairs",
                 "ec2:DescribeVpcs",
                 "ec2:DescribeSubnets",
@@ -128,8 +130,9 @@ The first statement grants users permission to view the options in the launch wi
    "Statement": [{
       "Effect": "Allow",
       "Action": [
-         "ec2:DescribeInstances", 
-         "ec2:DescribeImages", 
+         "ec2:DescribeInstances",
+         "ec2:DescribeImages",
+         "ec2:DescribeInstanceTypes",
          "ec2:DescribeKeyPairs", 
          "ec2:CreateKeyPair", 
          "ec2:DescribeVpcs", 

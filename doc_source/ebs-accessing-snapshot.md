@@ -408,7 +408,7 @@ The following [ListChangedBlocks](https://docs.aws.amazon.com/ebs/latest/APIRefe
 GET /snapshots/snap-0acEXAMPLEcf41648/blocks?maxResults=100&startingBlockIndex=0 HTTP/1.1
 Host: ebs.us-east-2.amazonaws.com
 Accept-Encoding: identity
-User-Agent: <User agent paramater>
+User-Agent: <User agent parameter>
 X-Amz-Date: 20200617T231953Z
 Authorization: <Authentication parameter>
 ```
@@ -457,7 +457,7 @@ The following [ListChangedBlocks](https://docs.aws.amazon.com/ebs/latest/APIRefe
 GET /snapshots/snap-0c9EXAMPLE1b30e2f/changedblocks?firstSnapshotId=snap-0acEXAMPLEcf41648&maxResults=500&startingBlockIndex=0 HTTP/1.1
 Host: ebs.us-east-2.amazonaws.com
 Accept-Encoding: identity
-User-Agent: <User agent paramater>
+User-Agent: <User agent parameter>
 X-Amz-Date: 20200617T232546Z
 Authorization: <Authentication parameter>
 ```
@@ -510,7 +510,7 @@ The following [GetSnapshotBlock](https://docs.aws.amazon.com/ebs/latest/APIRefer
 GET /snapshots/snap-0c9EXAMPLE1b30e2f/blocks/3072?blockToken=AAUBARGCaufCqBRZC8tEkPYGGkSv3vqvOjJ2xKDi3ljDFiytUxBLXYgTmkid HTTP/1.1
 Host: ebs.us-east-2.amazonaws.com
 Accept-Encoding: identity
-User-Agent: <User agent paramater>
+User-Agent: <User agent parameter>
 X-Amz-Date: 20200617T232838Z
 Authorization: <Authentication parameter>
 ```
@@ -541,7 +541,7 @@ The following [StartSnapshot](https://docs.aws.amazon.com/ebs/latest/APIReferenc
 POST /snapshots HTTP/1.1
 Host: ebs.us-east-2.amazonaws.com
 Accept-Encoding: identity
-User-Agent: <User agent paramater>
+User-Agent: <User agent parameter>
 X-Amz-Date: 20200618T040724Z
 Authorization: <Authentication parameter>
 
@@ -587,7 +587,7 @@ Accept-Encoding: identity
 x-amz-Data-Length: 524288
 x-amz-Checksum: QOD3gmEQOXATfJx2Aa34W4FU2nZGyXfqtsUuktOw8DM=
 x-amz-Checksum-Algorithm: SHA256
-User-Agent: <User agent paramater>
+User-Agent: <User agent parameter>
 X-Amz-Date: 20200618T042215Z
 X-Amz-Content-SHA256: UNSIGNED-PAYLOAD
 Authorization: <Authentication parameter>
@@ -622,7 +622,7 @@ x-amz-ChangedBlocksCount: 5
 x-amz-Checksum: 6D3nmwi5f2F0wlh7xX8QprrJBFzDX8aacdOcA3KCM3c=
 x-amz-Checksum-Algorithm: SHA256
 x-amz-Checksum-Aggregation-Method: LINEAR
-User-Agent: <User agent paramater>
+User-Agent: <User agent parameter>
 X-Amz-Date: 20200618T043158Z
 Authorization: <Authentication parameter>
 ```

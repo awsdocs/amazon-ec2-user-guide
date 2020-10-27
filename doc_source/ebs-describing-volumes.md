@@ -12,7 +12,7 @@ You can get additional information about your EBS volumes, such as how much disk
 
 1. In the navigation pane, choose **Volumes**\.
 
-1. \(Optional\) Use the filter options in the search field to display only the volumes that interest you\. For example, if you know the instance ID, **Instance ID** from the search field menu, and then choose the instance ID from the list provided\. To remove a filter, choose it again\.
+1. \(Optional\) Use the filter options in the search field to display only the volumes that interest you\. For example, if you know the instance ID, choose **Instance ID** from the search field menu, and then choose the instance ID from the list provided\. To remove a filter, choose it again\.
 
 1. Select the volume\.
 

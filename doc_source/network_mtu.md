@@ -6,6 +6,8 @@ Ethernet frames can come in different formats, and the most common format is the
 
 If your instance runs in a Wavelength Zone, the maximum MTU value is 1300\.
 
+To see Network MTU information for Windows instances, switch to this page in the *Amazon EC2 User Guide for Windows Instances* guide: [Network maximum transmission unit \(MTU\) for your EC2 instance](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/network_mtu.html)\.
+
 **Topics**
 + [Jumbo frames \(9001 MTU\)](#jumbo_frame_instances)
 + [Path MTU Discovery](#path_mtu_discovery)

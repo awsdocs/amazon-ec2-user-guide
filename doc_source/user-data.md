@@ -91,23 +91,50 @@ This directive sends command output from your script to `/var/log/cloud-init-out
 
 ### View and update the instance user data<a name="user-data-view-change"></a>
 
+To update the instance user data, you must first stop the instance\. If the instance is running, you can view the user data but you cannot modify it\.
+
+**Warning**  
+When you stop an instance, the data on any instance store volumes is erased\. To keep data from instance store volumes, be sure to back it up to persistent storage\.
+
+------
+#### [ New console ]
+
 **To modify instance user data**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
 1. In the navigation pane, choose **Instances**\.
 
-1. Select the instance and choose **Actions**, **Instance State**, **Stop**\.
-**Warning**  
-When you stop an instance, the data on any instance store volumes is erased\. To keep data from instance store volumes, be sure to back it up to persistent storage\.
+1. Select the instance and choose **Instance state**, **Stop instance**\. If this option is disabled, either the instance is already stopped or its root device is an instance store volume\.
+
+1. When prompted for confirmation, choose **Stop**\. It can take a few minutes for the instance to stop\.
+
+1. With the instance still selected, choose **Actions**, **Instance settings**, **Edit user data**\.
+
+1. Modify the user data as needed, and then choose **Save**\.
+
+1. Restart the instance\. The new user data is visible on your instance after you restart it; however, user data scripts are not executed\.
+
+------
+#### [ Old console ]
+
+**To modify instance user data**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances**\.
+
+1. Select the instance and choose **Actions**, **Instance State**, **Stop**\. If this option is disabled, either the instance is already stopped or its root device is an instance store volume\.
 
 1. When prompted for confirmation, choose **Yes, Stop**\. It can take a few minutes for the instance to stop\.
 
-1. With the instance still selected, choose **Actions**, **Instance Settings**, **View/Change User Data**\. You can't change the user data if the instance is running, but you can view it\.
+1. With the instance still selected, choose **Actions**, **Instance Settings**, **View/Change User Data**\.
 
 1. In the **View/Change User Data** dialog box, update the user data, and then choose **Save**\.
 
 1. Restart the instance\. The new user data is visible on your instance after you restart it; however, user data scripts are not executed\.
+
+------
 
 ## User data and cloud\-init directives<a name="user-data-cloud-init"></a>
 

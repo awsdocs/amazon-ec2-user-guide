@@ -20,7 +20,7 @@ The following steps help you to get started using one of the [supported base AMI
 
 ## Step 1: Prepare an EFA\-enabled security group<a name="nccl-start-base-setup"></a>
 
-An EFA requires a security group that allows all inbound and outbound traffic to and from the security group itself\.
+An EFA requires a security group that allows all inbound and outbound traffic to and from the security group itself\. The following procedure allows all inbound and outbound traffic for testing purposes only\. For other scenarios, see [Security group rules reference](security-group-rules-reference.md)\.
 
 **To create an EFA\-enabled security group**
 

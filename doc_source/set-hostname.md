@@ -31,7 +31,7 @@ Follow this procedure if you already have a public DNS name registered\.
    [ec2-user ~]$ sudo reboot
    ```
 
-   Alternatively, you can reboot using the Amazon EC2 console \(on the **Instances** page, choose **Actions**, **Instance State**, **Reboot**\)\.
+   Alternatively, you can reboot using the Amazon EC2 console \(on the **Instances** page, select the instance and choose **Instance state**, **Reboot instance**\)\.
 
 1. Log into your instance and verify that the hostname has been updated\. Your prompt should show the new hostname \(up to the first "\."\) and the hostname command should show the fully\-qualified domain name\.
 
@@ -66,7 +66,7 @@ Follow this procedure if you already have a public DNS name registered\.
    [ec2-user ~]$ sudo reboot
    ```
 
-   Alternatively, you can reboot using the Amazon EC2 console \(on the **Instances** page, choose **Actions**, **Instance State**, **Reboot**\)\.
+   Alternatively, you can reboot using the Amazon EC2 console \(on the **Instances** page, select the instance and choose **Instance state**, **Reboot instance**\)\.
 
 1. Log into your instance and verify that the hostname has been updated\. Your prompt should show the new hostname \(up to the first "\."\) and the hostname command should show the fully\-qualified domain name\.
 

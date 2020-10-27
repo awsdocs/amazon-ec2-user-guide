@@ -1,41 +1,62 @@
 # Amazon EBS volume types<a name="ebs-volume-types"></a>
 
-Amazon EBS provides the following volume types, which differ in performance characteristics and price, so that you can tailor your storage performance and cost to the needs of your applications\. The volumes types fall into two categories:
-+ SSD\-backed volumes optimized for transactional workloads involving frequent read/write operations with small I/O size, where the dominant performance attribute is IOPS
-+ HDD\-backed volumes optimized for large streaming workloads where throughput \(measured in MiB/s\) is a better performance measure than IOPS
+Amazon EBS provides the following volume types, which differ in performance characteristics and price, so that you can tailor your storage performance and cost to the needs of your applications\. The volumes types fall into these categories:
++ [Solid state drives \(SSD\)](#solid-state-drives) — Optimized for transactional workloads involving frequent read/write operations with small I/O size, where the dominant performance attribute is IOPS\.
++ [Hard disk drives \(HDD\)](#hard-disk-drives) — Optimized for large streaming workloads where the dominant performance attribute is throughput\.
++ [Previous generation](#ebs-previous-generation-volumes) — Hard disk drives that can be used for workloads with small datasets where data is accessed infrequently and performance is not of primary importance\. We recommend that you consider a current generation volume type instead\.
 
 There are several factors that can affect the performance of EBS volumes, such as instance configuration, I/O characteristics, and workload demand\. For more information about getting the most out of your EBS volumes, see [Amazon EBS volume performance on Linux instances](EBSPerformance.md)\.
 
 For more information about pricing, see [Amazon EBS Pricing](http://aws.amazon.com/ebs/pricing/)\.
 
-## Volume characteristics<a name="ebs-volume-characteristics"></a>
+## Solid state drives \(SSD\)<a name="solid-state-drives"></a>
 
-The following table describes the use cases and performance characteristics for each volume type\. The default volume type is General Purpose SSD \(`gp2`\)\.
+The SSD\-backed volumes provided by Amazon EBS fall into these categories:
++ General Purpose SSD — Provides a balance of price and performance\. We recommend these volumes for most workloads\.
++ Provisioned IOPS SSD — Provides high performance for mission\-critical, low\-latency, or high\-throughput workloads\.
 
-[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html)
 
-\* The throughput limit is between 128 MiB/s and 250 MiB/s, depending on the volume size\. Volumes smaller than or equal to 170 GiB deliver a maximum throughput of 128 MiB/s\. Volumes larger than 170 GiB but smaller than 334 GiB deliver a maximum throughput of 250 MiB/s if burst credits are available\. Volumes larger than or equal to 334 GiB deliver 250 MiB/s regardless of burst credits\. Older `gp2` volumes might not reach full performance unless you modify the volume\. For more information, see [Amazon EBS Elastic Volumes](ebs-modify-volume.md)\.
+|  | General Purpose SSD | Provisioned IOPS SSD | 
+| --- | --- | --- | 
+| Volume type | gp2 | io2 | io1 | 
+| Durability | 99\.8% \- 99\.9% durability \(0\.1% \- 0\.2% annual failure rate\) | 99\.999% durability \(0\.001% annual failure rate\) | 99\.8% \- 99\.9% durability \(0\.1% \- 0\.2% annual failure rate\) | 
+| Use cases |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html)  | 
+| Volume size | 1 GiB \- 16 TiB  | 4 GiB \- 16 TiB  | 
+| Max IOPS per volume \(16 KiB I/O\) | 16,000 \* | 64,000 † | 
+| Max throughput per volume | 250 MiB/s \* | 1,000 MiB/s † | 
+| Amazon EBS Multi\-attach | Not supported | Not Supported | Supported | 
 
-† Maximum IOPS and throughput are guaranteed only on [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances) provisioned with more than 32,000 IOPS\. Other instances guarantee up to 32,000 IOPS and 500 MiB/s\. Older `io1` volumes might not reach full performance unless you modify the volume\. For more information, see [Amazon EBS Elastic Volumes](ebs-modify-volume.md)\.
+## Hard disk drives \(HDD\)<a name="hard-disk-drives"></a>
 
-†† To achieve this throughput, you must have an instance that supports [EBS optimization](ebs-optimized.md)\.
+The HDD\-backed volumes provided by Amazon EBS fall into these categories:
++ Throughput Optimized HDD — A low\-cost HDD designed for frequently accessed, throughput\-intensive workloads\.
++ Cold HDD — The lowest\-cost HDD design for less frequently accessed workloads\.
 
-### Previous generation volume types<a name="ebs-previous-generation-volumes"></a>
+
+|  | Throughput Optimized HDD | Cold HDD | 
+| --- | --- | --- | 
+| Volume type | st1 | sc1 | 
+| Durability | 99\.8% \- 99\.9% durability \(0\.1% \- 0\.2% annual failure rate\) | 99\.8% \- 99\.9% durability \(0\.1% \- 0\.2% annual failure rate\) | 
+| Use cases |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html)  | 
+| Volume size | 500 GiB \- 16 TiB | 500 GiB \- 16 TiB  | 
+| Max IOPS per volume \(1 MiB I/O\) | 500 | 250 | 
+| Max throughput per volume | 500 MiB/s | 250 MiB/s | 
+| Amazon EBS Multi\-attach | Not supported | Not supported | 
+
+## Previous generation volume types<a name="ebs-previous-generation-volumes"></a>
 
 The following table describes previous\-generation EBS volume types\. If you need higher performance or performance consistency than previous\-generation volumes can provide, we recommend that you consider using General Purpose SSD \(`gp2`\) or other current volume types\. For more information, see [Previous Generation Volumes](https://aws.amazon.com/ebs/previous-generation/)\.
 
 
-| Hard disk drives \(HDD\) | 
-| --- | 
-| Volume type | Magnetic | 
+|  | Magnetic | 
+| --- | --- | 
+| Volume type | standard | 
 | Use cases | Workloads where data is infrequently accessed | 
-| API name | standard | 
 | Volume size | 1 GiB\-1 TiB | 
 | Max IOPS per volume | 40–200 | 
 | Max throughput per volume | 40–90 MiB/s | 
 | Max IOPS per instance | 80,000 | 
 | Max throughput per instance | 1,750 MB/s | 
-| Dominant performance attribute | IOPS | 
 
 ## General Purpose SSD \(`gp2`\) volumes<a name="EBSVolumeTypes_gp2"></a>
 

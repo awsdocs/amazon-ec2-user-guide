@@ -45,7 +45,7 @@ This information applies to Amazon Linux\. For information about other distribut
 
 1. Review the packages listed, type **y**, and press Enter to accept the updates\. Updating all of the packages on a system can take several minutes\. The yum output shows the status of the update while it is running\.
 
-1. \(Optional\) Reboot your instance to ensure that you are using the latest packages and libraries from your update; kernel updates are not loaded until a reboot occurs\. Updates to any `glibc` libraries should also be followed by a reboot\. For updates to packages that control services, it may be sufficient to restart the services to pick up the updates, but a system reboot ensures that all previous package and library updates are complete\.
+1. \(Optional\) Reboot your instance to ensure that you are using the latest packages and libraries from your update; kernel updates are not loaded until a reboot occurs\. Updates to any `glibc` libraries should also be followed by a reboot\. For updates to packages that control services, it might be sufficient to restart the services to pick up the updates, but a system reboot ensures that all previous package and library updates are complete\.
 
 **To update a single package on an Amazon Linux instance**
 
@@ -59,4 +59,4 @@ Use this procedure to update a single package \(and its dependencies\) and not t
 
 1. Review the package information listed, type **y**, and press Enter to accept the update or updates\. Sometimes there will be more than one package listed if there are package dependencies that must be resolved\. The yum output shows the status of the update while it is running\.
 
-1. \(Optional\) Reboot your instance to ensure that you are using the latest packages and libraries from your update; kernel updates are not loaded until a reboot occurs\. Updates to any `glibc` libraries should also be followed by a reboot\. For updates to packages that control services, it may be sufficient to restart the services to pick up the updates, but a system reboot ensures that all previous package and library updates are complete\.
+1. \(Optional\) Reboot your instance to ensure that you are using the latest packages and libraries from your update; kernel updates are not loaded until a reboot occurs\. Updates to any `glibc` libraries should also be followed by a reboot\. For updates to packages that control services, it might be sufficient to restart the services to pick up the updates, but a system reboot ensures that all previous package and library updates are complete\.
