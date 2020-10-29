@@ -311,7 +311,7 @@ To attach an IAM role to an instance that has no role, the instance can be in th
 
 1. In the navigation pane, choose **Instances**\.
 
-1. Select the instance, choose **Actions**, **Instance settings**, **Modify IAM role**\.
+1. Select the instance, choose **Actions**, **Security**, **Modify IAM role**\.
 
 1. Select the IAM role to attach to your instance, and choose **Save**\.
 
@@ -375,7 +375,7 @@ To replace the IAM role on an instance that already has an attached IAM role, th
 
 1. In the navigation pane, choose **Instances**\.
 
-1. Select the instance, choose **Actions**, **Instance settings**, **Modify IAM role**\.
+1. Select the instance, choose **Actions**, **Security**, **Modify IAM role**\.
 
 1. Select the IAM role to attach to your instance, and choose **Save**\.
 
@@ -439,7 +439,7 @@ You can detach an IAM role from a running or stopped instance\.
 
 1. In the navigation pane, choose **Instances**\.
 
-1. Select the instance, choose **Actions**, **Instance settings**, **Modify IAM role**\.
+1. Select the instance, choose **Actions**, **Security**, **Modify IAM role**\.
 
 1. For **IAM role**, choose **No IAM Role**\. Choose **Save**\.
 

@@ -45,7 +45,7 @@ You can create an AMI using the AWS Management Console or the command line\. The
 
 1. \(Optional\) Create snapshots of all the volumes attached to your instance\. For more information about creating snapshots, see [Creating Amazon EBS snapshots](ebs-creating-snapshot.md)\.
 
-1. In the navigation pane, choose **Instances**, select your instance, and then choose **Actions**, **Image**, **Create Image**\.
+1. In the navigation pane, choose **Instances**, select your instance, and then choose **Actions**, **Image and templates**, **Create image**\.
 **Tip**  
 If this option is disabled, your instance isn't an Amazon EBS\-backed instance\.
 

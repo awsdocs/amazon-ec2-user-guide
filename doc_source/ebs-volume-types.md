@@ -26,6 +26,10 @@ The SSD\-backed volumes provided by Amazon EBS fall into these categories:
 | Max throughput per volume | 250 MiB/s \* | 1,000 MiB/s † | 
 | Amazon EBS Multi\-attach | Not supported | Not Supported | Supported | 
 
+\* The throughput limit is between 128 MiB/s and 250 MiB/s, depending on the volume size\. Volumes smaller than or equal to 170 GiB deliver a maximum throughput of 128 MiB/s\. Volumes larger than 170 GiB but smaller than 334 GiB deliver a maximum throughput of 250 MiB/s if burst credits are available\. Volumes larger than or equal to 334 GiB deliver 250 MiB/s regardless of burst credits\. Older `gp2` volumes might not reach full performance unless you modify the volume\. For more information, see [Amazon EBS Elastic Volumes](ebs-modify-volume.md)\.
+
+† Maximum IOPS and throughput are guaranteed only on [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances) provisioned with more than 32,000 IOPS\. Other instances guarantee up to 32,000 IOPS and 500 MiB/s\. Older `io1` volumes might not reach full performance unless you modify the volume\. For more information, see [Amazon EBS Elastic Volumes](ebs-modify-volume.md)\.
+
 ## Hard disk drives \(HDD\)<a name="hard-disk-drives"></a>
 
 The HDD\-backed volumes provided by Amazon EBS fall into these categories:
