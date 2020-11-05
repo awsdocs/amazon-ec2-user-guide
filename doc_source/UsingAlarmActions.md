@@ -178,9 +178,9 @@ Users must subscribe to the specified SNS topic to receive email notifications w
 The AWS account root user always receives email notifications when automatic instance recovery actions occur, even if an SNS topic is not specified\.
 The AWS account root user always receives email notifications when automatic instance recovery actions occur, even if it is not subscribed to the specified SNS topic\.
 
-   1. Select **Take the action**, **Recover this instance**\.
+   1. Select **Alarm action**, **Recover this instance**\.
 
-   1. For **Whenever**, choose **Status Check Failed \(System\)**\.
+   1. For **Type of data to sample**, choose **Status Check Failed \(System\)**\.
 
    1. For **For at least**, specify the evaluation period for the alarm\. In this example, enter **2** consecutive period\(s\) of **1 Minute**\.
 
