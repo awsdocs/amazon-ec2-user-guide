@@ -40,7 +40,7 @@ Before you begin, be sure that you've completed the steps in [Setting up with Am
 
 ## Step 1: Launch an instance<a name="ec2-launch-instance"></a>
 
-You can launch a Linux instance using the AWS Management Console as described in the following procedure\. This tutorial is intended to help you launch your first instance quickly, so it doesn't cover all possible options\. For more information about the advanced options, see [Launching an instance using the Launch Instance Wizard](launching-instance.md)\.
+You can launch a Linux instance using the AWS Management Console as described in the following procedure\. This tutorial is intended to help you launch your first instance quickly, so it doesn't cover all possible options\. For more information about the advanced options, see [Launching an instance using the Launch Instance Wizard](launching-instance.md)\. For information about other ways to launch your instance, see [Launch your instance](LaunchingAndUsingInstances.md)\.
 
 **To launch an instance**
 

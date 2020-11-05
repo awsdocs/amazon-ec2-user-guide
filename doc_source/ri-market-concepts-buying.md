@@ -67,20 +67,22 @@ You can buy Standard Reserved Instances in a specific Availability Zone and get 
 
    To purchase a Standard Reserved Instance from the Reserved Instance Marketplace, look for **3rd Party** in the **Seller** column in the search results\. The **Term** column displays non\-standard terms\.
 
-1. Select the Reserved Instances to purchase, enter the quantity, and choose **Add to Cart**\.
+1. For each Reserved Instance that you want to purchase, enter the quantity, and choose **Add to Cart**\.
 
 1. To see a summary of the Reserved Instances that you selected, choose **View Cart**\.
 
-1. If **Order On** is **Now**, the purchase is completed immediately\. To queue a purchase, choose **Now** and select a date\. You can select a different date for each eligible offering in the cart\. The purchase is queued until 00:00, in the time zone of your browser, on the selected date\. 
+1. If **Order On** is **Now**, the purchase is completed immediately\. To queue a purchase, choose **Now** and select a date\. You can select a different date for each eligible offering in the cart\. The purchase is queued until 00:00 UTC on the selected date\. 
 
 1. To complete the order, choose **Order**\.
 
    If, at the time of placing the order, there are offerings similar to your choice but with a lower price, AWS sells you the offerings at the lower price\.
 
-1. The status of your order is listed in the **State** column\. When your order is complete, the **State** value changes from `payment-pending` to `active`\. When the Reserved Instance is `active`, it is ready to use\.
+1. Choose **Close**\.
+
+   The status of your order is listed in the **State** column\. When your order is complete, the **State** value changes from `payment-pending` to `active`\. When the Reserved Instance is `active`, it is ready to use\.
 
 **Note**  
-If the status goes to `retired`, AWS may not have received your payment\. 
+If the status goes to `retired`, AWS might not have received your payment\. 
 
 **To buy a Standard Reserved Instance using the AWS CLI**
 
@@ -157,20 +159,22 @@ You can buy Convertible Reserved Instances in a specific Availability Zone and g
 
 1. Select other configurations as needed and choose **Search**\.
 
-1. Select the Convertible Reserved Instances to purchase, enter the quantity, and choose **Add to Cart**\.
+1. For each Convertible Reserved Instance that you want to purchase, enter the quantity, and choose **Add to Cart**\.
 
 1. To see a summary of your selection, choose **View Cart**\.
 
-1. If **Order On** is **Now**, the purchase is completed immediately\. To queue a purchase, choose **Now** and select a date\. You can select a different date for each eligible offering in the cart\. The purchase is queued until 00:00, in the time zone of your browser, on the selected date\. 
+1. If **Order On** is **Now**, the purchase is completed immediately\. To queue a purchase, choose **Now** and select a date\. You can select a different date for each eligible offering in the cart\. The purchase is queued until 00:00 UTC on the selected date\. 
 
 1. To complete the order, choose **Order**\.
 
    If, at the time of placing the order, there are offerings similar to your choice but with a lower price, AWS sells you the offerings at the lower price\.
 
-1. The status of your order is listed in the **State** column\. When your order is complete, the **State** value changes from `payment-pending` to `active`\. When the Reserved Instance is `active`, it is ready to use\.
+1. Choose **Close**\.
+
+   The status of your order is listed in the **State** column\. When your order is complete, the **State** value changes from `payment-pending` to `active`\. When the Reserved Instance is `active`, it is ready to use\.
 
 **Note**  
-If the status goes to `retired`, AWS may not have received your payment\. 
+If the status goes to `retired`, AWS might not have received your payment\. 
 
 **To buy a Convertible Reserved Instance using the AWS CLI**
 

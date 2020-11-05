@@ -102,12 +102,12 @@ The steps differ depending on whether you intend to use EFA with Open MPI, with 
    + Amazon Linux, Amazon Linux 2, RHEL 7\.6/7\.7/7\.8, CentOS 7
 
      ```
-     $ sudo yum update -y
+     $ sudo yum update -y --skip-broken
      ```
    + Ubuntu 16\.04 and Ubuntu 18\.04
 
      ```
-     $ sudo apt-get update -y
+     $ sudo apt-get update
      ```
 
      ```
@@ -207,12 +207,12 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
      $ sudo ./efa_installer.sh -y --minimal
      ```
 
-1. Log out of the instance and then log back in\.
+1. Reboot the instance and then log back in\.
 
 1. Confirm that the EFA software components were successfully installed\.
 
    ```
-   $ fi_info -p efa
+   $ fi_info -p efa -t FI_EP_RDM
    ```
 
    The command should return information about the Libfabric EFA interfaces\. The following example shows the command output\.
@@ -224,18 +224,6 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
        version: 2.0
        type: FI_EP_RDM
        protocol: FI_PROTO_EFA
-   provider: efa
-       fabric: EFA-fe80::94:3dff:fe89:1b70
-       domain: efa_0-dgrm
-       version: 2.0
-       type: FI_EP_DGRAM
-       protocol: FI_PROTO_EFA
-   provider: efa;ofi_rxd
-       fabric: EFA-fe80::94:3dff:fe89:1b70
-       domain: efa_0-dgrm
-       version: 1.0
-       type: FI_EP_RDM
-       protocol: FI_PROTO_RXD
    ```
 
 ## Step 4: Disable ptrace protection<a name="efa-start-ptrace"></a>

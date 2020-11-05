@@ -102,6 +102,7 @@ Create a new launch template using parameters that you define, or use an existin
    + **Security groups**: One or more security groups in your VPC with which to associate the network interface\.
    + **Delete on termination**: Whether the network interface is deleted when the instance is deleted\.
    + **Elastic Fabric Adapter**: Indicates whether the network interface is an Elastic Fabric Adapter\. For more information, see [ Elastic Fabric Adapter](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html)\.
+   + **Network card index**: The index of the network card\. The primary network interface must be assigned to network card index 0\. Some instance types support multiple network cards\.
 
 1. For **Advanced details**, expand the section to view the fields and specify any additional parameters for the instance\.
    + **Purchasing option**: The purchasing model\. Choose **Request Spot Instances** to request Spot Instances at the Spot price, capped at the On\-Demand price, and choose **Customize** to change the default Spot Instance settings\. If you do not request a Spot Instance, EC2 launches an On\-Demand Instance by default\. For more information, see [Spot Instances](using-spot-instances.md)\.

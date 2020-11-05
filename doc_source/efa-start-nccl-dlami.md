@@ -8,6 +8,9 @@ The following steps help you to get started with one of the following AWS Deep L
 
 For more information, see the [ *AWS Deep Learning AMI User Guide*](https://docs.aws.amazon.com/dlami/latest/devguide/what-is-dlami.html)\.
 
+**Note**  
+Only the `p3dn.24xlarge` and `p4d.24xlarge` instance types are supported\.
+
 **Topics**
 + [Step 1: Prepare an EFA\-enabled security group](#nccl-start-dlami-sg)
 + [Step 2: Launch a temporary instance](#nccl-start-dlami-temp)
@@ -72,7 +75,7 @@ Launch a temporary instance that you can use to install and configure the EFA so
 
 1. On the **Choose an AMI** page, choose a supported **AWS Deep Learning AMI Version 25\.0** or later\.
 
-1. On the **Choose an Instance Type** page, select `p3dn.24xlarge` and then choose **Next: Configure Instance Details**\.
+1. On the **Choose an Instance Type** page, select `p3dn.24xlarge` or `p4d.24xlarge` and then choose **Next: Configure Instance Details**\. 
 
 1. On the **Configure Instance Details** page, do the following:
 
@@ -119,21 +122,50 @@ Run a test to ensure that your temporary instance is properly configured for EFA
 
 1. Run the test and specify the host file \(`--hostfile`\) and the number of GPUs to use \(`-n`\)\. The following command runs the `all_reduce_perf` test on 8 GPUs on the instance itself, and specifies the following environment variables\.
    + `FI_PROVIDER="efa"`—specifies the fabric interface provider\. This must be set to `"efa"`\.
-   + `FI_EFA_TX_MIN_CREDITS=64`—specifies the minimum number of send credits that the sender requests from the receiver\. `64` is the recommended value for NCCL jobs using EFA\. The value should only be increased for message transfers that are larger than 256 MB\.
+   + `FI_EFA_USE_DEVICE_RDMA=1`—uses the device's RDMA functionality for one\-sided and two\-sided transfer\.
    + `NCCL_DEBUG=INFO`—enables detailed debugging output\. You can also specify `VERSION` to print only the NCCL version at the start of the test, or `WARN` to receive only error messages\.
-   + `NCCL_TREE_THRESHOLD=0`—disables tree algorithms for the test\.
+   + `NCCL_ALGO=ring`—enables ring algorithm for collective operations\.
 
    For more information about the NCCL test arguments, see the [NCCL Tests README](https://github.com/NVIDIA/nccl-tests/blob/master/README.md) in the official nccl\-tests repository\.
+   + Amazon Linux, Amazon Linux 2, RHEL 7\.6/7\.7/7\.8, CentOS 7
+
+     ```
+     $ /opt/amazon/openmpi/bin/mpirun \
+         -x FI_PROVIDER="efa" \
+         -x FI_EFA_USE_DEVICE_RDMA=1 \
+         -x RDMAV_FORK_SAFE=1 \
+         -x LD_LIBRARY_PATH=/opt/nccl/build/lib:/usr/local/cuda/lib64:/opt/amazon/efa/lib64:/opt/amazon/openmpi/lib64:/opt/aws-ofi-nccl/lib:$LD_LIBRARY_PATH \
+         -x NCCL_DEBUG=INFO \
+         -x NCCL_ALGO=ring \
+         --hostfile my-hosts -n 8 -N 8 \
+         --mca pml ^cm --mca btl tcp,self --mca btl_tcp_if_exclude lo,docker0 --bind-to none \
+         $HOME/nccl-tests/build/all_reduce_perf -b 8 -e 1G -f 2 -g 1 -c 1 -n 100
+     ```
+   + Ubuntu 16\.04 and Ubuntu 18\.04
+
+     ```
+     $ /opt/amazon/openmpi/bin/mpirun \
+         -x FI_PROVIDER="efa" \
+         -x FI_EFA_USE_DEVICE_RDMA=1 \
+         -x RDMAV_FORK_SAFE=1 \
+         -x LD_LIBRARY_PATH=/opt/nccl/build/lib:/usr/local/cuda/lib64:/opt/amazon/efa/lib64:/opt/amazon/openmpi/lib64:/opt/aws-ofi-nccl/lib:$LD_LIBRARY_PATH \
+         -x NCCL_DEBUG=INFO \
+         -x NCCL_ALGO=ring \
+         --hostfile my-hosts -n 8 -N 8 \
+         --mca pml ^cm --mca btl tcp,self --mca btl_tcp_if_exclude lo,docker0 --bind-to none \
+         $HOME/nccl-tests/build/all_reduce_perf -b 8 -e 1G -f 2 -g 1 -c 1 -n 100
+     ```
+
+1. You can confirm that EFA is active as the underlying provider for NCCL when the `NCCL_DEBUG` log is printed\.
 
    ```
-   /opt/amazon/openmpi/bin/mpirun \
-   	-x FI_PROVIDER="efa" \
-   	-x FI_EFA_TX_MIN_CREDITS=64 \
-   	-x NCCL_DEBUG=INFO \
-   	-x NCCL_TREE_THRESHOLD=0 \
-   	--hostfile my-hosts -n 8 -N 8 \
-   	--mca btl tcp,self --mca btl_tcp_if_exclude lo,docker0 --bind-to none \
-   	$HOME/src/bin/efa-tests/efa-cuda-10.0/all_reduce_perf -b 8 -e 1G -f 2 -g 1 -c 1 -n 100
+   ip-192-168-2-54:14:14 [0] NCCL INFO NET/OFI Selected Provider is efa*
+   ```
+
+   The following additional information is displayed when using a `p4d.24xlarge` instance\.
+
+   ```
+   ip-192-168-2-54:14:14 [0] NCCL INFO NET/OFI Running on P4d platform, Setting NCCL_TOPO_FILE environment variable to /home/ec2-user/install/plugin/share/aws-ofi-nccl/xml/p4d-24xl-topo.xml
    ```
 
 ## Step 4: Install your machine learning applications<a name="nccl-start-dlami-app"></a>

@@ -15,15 +15,20 @@ Regardless of whether you're an experienced Spot user or new to Spot Instances, 
 + [Be flexible about instance types and Availability Zones](#be-instance-type-flexible)
 + [Use EC2 Auto Scaling groups or Spot Fleet to manage your aggregate capacity](#use-sf-asg-for-aggregate-capacity)
 + [Use the capacity optimized allocation strategy](#use-capacity-optimized-allocation-strategy)
++ [Use proactive capacity rebalancing](#use-capacity-rebalancing)
 + [Use integrated AWS services to manage your Spot Instances](#use-integrated-aws-services)
 
 ## Prepare individual instances for interruptions<a name="prep-instances-for-interruptions"></a>
 
-The best way for you to gracefully handle Spot Instance interruptions is to architect your application to be fault\-tolerant\. To accomplish this, you can take advantage of Spot Instance interruption notices\. A Spot Instance interruption notice is a warning that is issued two minutes before Amazon EC2 interrupts a Spot Instance\. We recommend that you create a rule in [Amazon EventBridge](https://docs.aws.amazon.com/eventbridge/index.html) that captures the interruption notification, and then triggers a checkpoint for the progress of your workload or gracefully handles the interruption\. For a detailed example that walks you through how to create and use event rules, see [Taking Advantage of Amazon EC2 Spot Instance Interruption Notices](http://aws.amazon.com/blogs/compute/taking-advantage-of-amazon-ec2-spot-instance-interruption-notices/)\.
+The best way for you to gracefully handle Spot Instance interruptions is to architect your application to be fault\-tolerant\. To accomplish this, you can take advantage of EC2 instance rebalance recommendations and Spot Instance interruption notices\.
 
-If your workload is "time\-flexible," you can also configure your Spot Instances to be stopped or hibernated when they are interrupted\. Amazon EC2 automatically stops or hibernates your Spot Instances on interruption, and automatically resumes the instances when we have available capacity\.
+An EC2 Instance rebalance recommendation is a new signal that notifies you when a Spot Instance is at elevated risk of interruption\. The signal gives you the opportunity to proactively manage the Spot Instance in advance of the two\-minute Spot Instance interruption notice\. You can decide to rebalance your workload to new or existing Spot Instances that are not at an elevated risk of interruption\. We've made it easy for you to use this new signal by using the Capacity Rebalancing feature in Auto Scaling groups and Spot Fleet\. For more information, see [Use proactive capacity rebalancing](#use-capacity-rebalancing)\.
 
-For more information, see [Spot Instance interruptions](spot-interruptions.md)\.
+A Spot Instance interruption notice is a warning that is issued two minutes before Amazon EC2 interrupts a Spot Instance\. If your workload is "time\-flexible," you can configure your Spot Instances to be stopped or hibernated, instead of being terminated, when they are interrupted\. Amazon EC2 automatically stops or hibernates your Spot Instances on interruption, and automatically resumes the instances when we have available capacity\.
+
+We recommend that you create a rule in [Amazon EventBridge](https://docs.aws.amazon.com/eventbridge/index.html) that captures the rebalance recommendations and interruption notifications, and then triggers a checkpoint for the progress of your workload or gracefully handles the interruption\. For more information, see [Monitoring rebalance recommendation signals](rebalance-recommendations.md#monitor-rebalance-recommendations)\. For a detailed example that walks you through how to create and use event rules, see [Taking Advantage of Amazon EC2 Spot Instance Interruption Notices](http://aws.amazon.com/blogs/compute/taking-advantage-of-amazon-ec2-spot-instance-interruption-notices/)\.
+
+For more information, see [EC2 instance rebalance recommendations](rebalance-recommendations.md) and [Spot Instance interruptions](spot-interruptions.md)\.
 
 ## Be flexible about instance types and Availability Zones<a name="be-instance-type-flexible"></a>
 
@@ -40,6 +45,14 @@ Spot enables you to think in terms of aggregate capacity—in units that include
 ## Use the capacity optimized allocation strategy<a name="use-capacity-optimized-allocation-strategy"></a>
 
 Allocation strategies in Auto Scaling groups help you to provision your target capacity without the need to manually look for the Spot Instance pools with spare capacity\. We recommend using the `capacity optimized` strategy because this strategy automatically provisions instances from the most\-available Spot Instance pools\. You can also take advantage of the `capacity optimized` allocation strategy in Spot Fleet\. Because your Spot Instance capacity is sourced from pools with optimal capacity, this decreases the possibility that your Spot Instances are reclaimed\. For more information about allocation strategies, see [Spot Instances](https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-purchase-options.html#asg-spot-strategy) in the *Amazon EC2 Auto Scaling User Guide* and [Configuring Spot Fleet for capacity optimization](spot-fleet.md#spot-fleet-strategy-capacity-optimized) in this user guide\.
+
+## Use proactive capacity rebalancing<a name="use-capacity-rebalancing"></a>
+
+Capacity Rebalancing helps you maintain workload availability by proactively augmenting your fleet with a new Spot Instance before a running Spot Instance receives the two\-minute Spot Instance interruption notice\. When Capacity Rebalancing is enabled, Auto Scaling or Spot Fleet attempts to proactively replace Spot Instances that have received a rebalance recommendation, providing the opportunity to rebalance your workload to new Spot Instances that are not at elevated risk of interruption\.
+
+Capacity Rebalancing complements the capacity optimized allocation strategy \(which is designed to help find the most optimal spare capacity\) and the mixed instances policy \(which is designed to enhance availability by deploying instances across multiple instance types running in multiple Availability Zones\)\.
+
+For more information, see [Capacity Rebalancing](spot-fleet.md#spot-fleet-capacity-rebalance)\.
 
 ## Use integrated AWS services to manage your Spot Instances<a name="use-integrated-aws-services"></a>
 

@@ -4,6 +4,11 @@ The following table describes important additions to the Amazon EC2 documentatio
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Instance metadata category: events/recommendations/rebalance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-categories.html) | The approximate time, in UTC, when the EC2 instance rebalance recommendation notification is emitted for the instance\. | November 4, 2020 | 
+| [EC2 instance rebalance recommendation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/rebalance-recommendations.html) | A signal that notifies you when a Spot Instance is at elevated risk of interruption\. | November 4, 2020 | 
+| [Capacity Reservations in Wavelength Zones](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/capacity-reservations-wavelengthzones.html) | Capacity Reservations can now be created and used in Wavelength Zones\. | November 4, 2020 | 
+| [Capacity Rebalancing](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet.html#spot-fleet-capacity-rebalance) | You can configure Spot Fleet or EC2 Fleet to launch a replacement Spot Instance when Amazon EC2 emits a rebalance recommendation\. | November 4, 2020 | 
+| [P4 instances](#DocumentHistory) | New accelerated computing instances that provide a high\-performance platform for machine learning and HPC workloads\. | November 2, 2020 | 
 | [Hibernation support for I3, M5ad, and R5ad](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html#hibernating-prerequisites) | You can now hibernate your newly\-launched instances running on I3, M5ad, and R5ad instance types\. | October 21, 2020 | 
 | [Spot Instance vCPU limits](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-limits.html) | Spot Instance limits are now managed in terms of the number of vCPUs that your running Spot Instances are either using or will use pending the fulfillment of open requests\. | October 1, 2020 | 
 | [Capacity Reservations in Local Zones](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/capacity-reservations-localzones.html) | Capacity Reservations can now be created and used in Local Zones\. | September 30, 2020 | 

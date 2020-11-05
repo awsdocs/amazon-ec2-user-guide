@@ -17,6 +17,7 @@ This AWS resource is referred to as a *network interface* in the AWS Management 
 
 **Topics**
 + [Network interface basics](#eni-basics)
++ [Network cards](#network-cards)
 + [IP addresses per network interface per instance type](#AvailableIpPerENI)
 + [Working with network interfaces](#working-with-enis)
 + [Scenarios for network interfaces](scenarios-enis.md)
@@ -57,6 +58,19 @@ Disabling source/destination checking enables an instance to handle network traf
 
 **Monitoring IP traffic**  
 You can enable a VPC flow log on your network interface to capture information about the IP traffic going to and from a network interface\. After you've created a flow log, you can view and retrieve its data in Amazon CloudWatch Logs\. For more information, see [VPC Flow Logs](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html) in the *Amazon VPC User Guide*\.
+
+## Network cards<a name="network-cards"></a>
+
+Instances with multiple network cards provide higher network performance, including bandwidth capabilities above 100 Gbps and improved packet rate performance\. Each network interface is attached to a network card\. The primary network interface must be assigned to network card index 0\.
+
+If you enable Elastic Fabric Adapter \(EFA\) when you launch an instance that supports multiple network cards, all network cards are available\. You can assign up to one EFA per network card\. An EFA counts as a network interface\.
+
+The following instances support multiple network cards\. All other instance types support one network card\.
+
+
+| Instance type | Number of network cards | 
+| --- | --- | 
+| P4 | 4 | 
 
 ## IP addresses per network interface per instance type<a name="AvailableIpPerENI"></a>
 
@@ -284,6 +298,7 @@ The following table lists the maximum number of network interfaces per instance 
 | p3\.8xlarge | 8 | 30 | 30 | 
 | p3\.16xlarge | 8 | 30 | 30 | 
 | p3dn\.24xlarge | 15 | 50 | 50 | 
+| p4d\.24xlarge | 4x8 | 4x50 | 4x50 | 
 | r3\.large | 3 | 10 | 10 | 
 | r3\.xlarge | 4 | 15 | 15 | 
 | r3\.2xlarge | 4 | 15 | 15 | 
@@ -451,7 +466,7 @@ You can create a network interface in a subnet\. You can't move the network inte
 
 1. For **Security groups**, select one or more security groups\.
 
-1. \(Optional\) **Choose Add Tag** and enter a tag key and a tag value\.
+1. \(Optional\) Choose **Add Tag** and enter a tag key and a tag value\.
 
 1. Choose **Yes, Create**\.
 
@@ -493,7 +508,7 @@ You can attach a network interface to any of your stopped or running instances, 
 
 If the public IPv4 address on your instance is released, it does not receive a new one if there is more than one network interface attached to the instance\. For more information about the behavior of public IPv4 addresses, see [Public IPv4 addresses and external DNS hostnames](using-instance-addressing.md#concepts-public-addresses)\.
 
-**To attach a network interface to an instance using the Instances page**
+**To attach a network interface to an instance using the **Instances** page**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -503,9 +518,11 @@ If the public IPv4 address on your instance is released, it does not receive a n
 
 1. Choose **Actions**, **Networking**, **Attach network interface**\.
 
-1. Select the network interface and choose **Attach**\.
+1. Select a network interface\. If the instance supports multiple network cards, you can choose a network card\.
 
-**To attach a network interface to an instance using the Network Interfaces page**
+1. Choose **Attach**\.
+
+**To attach a network interface to an instance using the **Network Interfaces** page**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -513,7 +530,9 @@ If the public IPv4 address on your instance is released, it does not receive a n
 
 1. Select the network interface and choose **Attach**\.
 
-1. Select the instance and choose **Attach**\.
+1. Select an instance\. If the instance supports multiple network cards, you can choose a network card\.
+
+1. Choose **Attach**\.
 
 **To attach a network interface to an instance using the command line**
 

@@ -11,6 +11,7 @@ The following examples show launch configurations that you can use with the [cre
 + [Example 6: Launch On\-Demand Instances using Capacity Reservations and the `prioritized` allocation strategy when the total target capacity is more than the number of unused Capacity Reservations](#ec2-fleet-config6)
 + [Example 7: Launch On\-Demand Instances using Capacity Reservations and the `lowest-price` allocation strategy](#ec2-fleet-config7)
 + [Example 8: Launch On\-Demand Instances using Capacity Reservations and the `lowest-price` allocation strategy when the total target capacity is more than the number of unused Capacity Reservations](#ec2-fleet-config8)
++ [Example 9: Configure Capacity Rebalancing to launch replacement Spot Instances](#ec2-fleet-config9)
 
 ## Example 1: Launch Spot Instances as the default purchasing option<a name="ec2-fleet-config1"></a>
 
@@ -586,5 +587,63 @@ After the fleet is launched, you can run [describe\-capacity\-reservations](http
     "CapacityReservationId": "cr-333",
     "InstanceType": "m4.2xlarge", 
     "AvailableInstanceCount": 0
+}
+```
+
+## Example 9: Configure Capacity Rebalancing to launch replacement Spot Instances<a name="ec2-fleet-config9"></a>
+
+The following example configures the EC2 Fleet to launch a replacement Spot Instance when Amazon EC2 emits a rebalance recommendation for a Spot Instance in the fleet\. To configure the automatic replacement of Spot Instances, for `ReplacementStrategy`, specify `launch`\.
+
+**Note**  
+When a replacement instance is launched, the instance marked for rebalance is not automatically terminated\. You can terminate it, or you can leave it running\. You are charged for both instances while they are running\. 
+
+The effectiveness of the Capacity Rebalancing strategy depends on the number of Spot Instance pools specified in the EC2 Fleet request\. We recommend that you configure the fleet with a diversified set of instance types and Availability Zones, and for `AllocationStrategy`, specify `capacity-optimized`\. For more information about what you should consider when configuring an EC2 Fleet for Capacity Rebalancing, see [Capacity Rebalancing](ec2-fleet-configuration-strategies.md#ec2-fleet-capacity-rebalance)\.
+
+```
+{
+    "ExcessCapacityTerminationPolicy": "termination",
+    "LaunchTemplateConfigs": [
+        {
+            "LaunchTemplateSpecification": {
+                "LaunchTemplateName": "LaunchTemplate",
+                "Version": "1"
+            },
+                 "Overrides": [
+                       {
+                           "InstanceType": "c3.large",
+                           "WeightedCapacity": 1,
+                            "Placement": {
+                               "AvailabilityZone": "us-east-1a"
+                           }
+                       },
+                       {
+                           "InstanceType": "c4.large",
+                           "WeightedCapacity": 1,
+                            "Placement": {
+                               "AvailabilityZone": "us-east-1a"
+                           }
+                       },
+                       {
+                           "InstanceType": "c5.large",
+                           "WeightedCapacity": 1,
+                            "Placement": {
+                               "AvailabilityZone": "us-east-1a"
+                           }
+                       }
+                ] 
+          }
+    ],
+    "TargetCapacitySpecification": {
+        "TotalTargetCapacity": 5,
+        "DefaultTargetCapacityType": "spot"
+    },
+    "SpotOptions": {
+        "AllocationStrategy": "capacity-optimized",
+        "MaintenanceStrategies": {
+            "CapacityRebalance": {
+                "ReplacementStrategy": "launch"
+            }
+        }
+    }
 }
 ```

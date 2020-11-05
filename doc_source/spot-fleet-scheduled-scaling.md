@@ -33,7 +33,7 @@ Scaling based on a schedule enables you to scale your application in response to
 
 1. Select your Spot Fleet request and choose **Scheduled Scaling**\.
 
-1. For **Recurrence**, choose one of the predefined schedules \(for example, **Every day**\), or choose **Custom** and type a cron expression\. For more information about the cron expressions supported by scheduled scaling, see [Cron Expressions](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions) in the *Amazon CloudWatch Events User Guide*\.
+1. For **Recurrence**, choose one of the predefined schedules \(for example, **Every day**\), or choose **Custom** and enter a cron expression\. For more information about the cron expressions supported by scheduled scaling, see [Cron Expressions](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions) in the *Amazon CloudWatch Events User Guide*\.
 
 1. \(Optional\) Choose a date and time for **Start time**, **End time**, or both\.
 

@@ -45,6 +45,7 @@ The following table summarizes the supported NVIDIA drivers for each GPU instanc
 | G4 | Yes | Yes | Yes | 
 | P2 | Yes | No | No | 
 | P3 | Yes | Yes † | No | 
+| P4 | Yes | No | No | 
 
 † Using Marketplace AMIs only
 
@@ -90,6 +91,7 @@ Log on to your Linux instance and download the 64\-bit NVIDIA driver appropriate
 | G4 † | Tesla | T\-Series | T4 | 
 | P2 | Tesla | K\-Series | K80 | 
 | P3 | Tesla | V\-Series | V100 | 
+| P4 | Tesla | A\-Series | A100 | 
 
 † G4 instances require driver version 418\.87 or later\.
 

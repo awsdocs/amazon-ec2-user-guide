@@ -1,5 +1,8 @@
 # Scheduled Reserved Instances<a name="ec2-scheduled-instances"></a>
 
+**Important**  
+We do not have any capacity for purchasing Scheduled Reserved Instances or any plans to make it available in the future\. To reserve capacity, use [On\-Demand Capacity Reservations](ec2-capacity-reservations.md)\. For discounted rates, use [Savings Plans](https://docs.aws.amazon.com/savingsplans/latest/userguide/)\.
+
 Scheduled Reserved Instances \(Scheduled Instances\) enable you to purchase capacity reservations that recur on a daily, weekly, or monthly basis, with a specified start time and duration, for a one\-year term\. You reserve the capacity in advance, so that you know it is available when you need it\. You pay for the time that the instances are scheduled, even if you do not use them\.
 
 Scheduled Instances are a good choice for workloads that do not run continuously, but do run on a regular schedule\. For example, you can use Scheduled Instances for an application that runs during business hours or for batch processing that runs at the end of the week\.

@@ -110,6 +110,7 @@ If Amazon EC2 Auto Scaling marks an instance that is in an Auto Scaling group as
   + For **Primary IP**, enter a private IPv4 address from the range of your subnet, or leave **Auto\-assign** to let AWS choose a private IPv4 address for you\.
   + For **Secondary IP addresses**, choose **Add IP** to assign more than one private IPv4 address to the selected network interface\.
   + \(IPv6\-only\) For **IPv6 IPs**, choose **Add IP**, and enter an IPv6 address from the range of the subnet, or leave **Auto\-assign** to let AWS choose one for you\.
+  + **Network Card Index**: The index of the network card\. The primary network interface must be assigned to network card index 0\. Some instance types support multiple network cards\.
   + Choose **Add Device** to add a secondary network interface\. A secondary network interface can reside in a different subnet of the VPC, provided it's in the same Availability Zone as your instance\.
 
   For more information, see [Elastic network interfaces](using-eni.md)\. If you specify more than one network interface, your instance cannot receive a public IPv4 address\. Additionally, if you specify an existing network interface for eth0, you cannot override the subnet's public IPv4 setting using **Auto\-assign Public IP**\. For more information, see [Assigning a public IPv4 address during instance launch](using-instance-addressing.md#public-ip-addresses)\.

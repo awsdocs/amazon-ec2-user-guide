@@ -256,7 +256,7 @@ If you choose to tag instances in the fleet and you choose to maintain target ca
 
 1. On the **Attached permissions policy** page, choose **Next:Review**\.
 
-1. On the **Review** page, type a name for the role \(for example, **aws\-ec2\-spot\-fleet\-tagging\-role**\) and choose **Create role**\.
+1. On the **Review** page, enter a name for the role \(for example, **aws\-ec2\-spot\-fleet\-tagging\-role**\) and choose **Create role**\.
 
 ## Creating a Spot Fleet request<a name="create-spot-fleet"></a>
 
@@ -362,7 +362,12 @@ You can create a Spot Fleet using the parameters that you define\.
 
    1. \(Optional\) By default, the Spot service terminates Spot Instances when they are interrupted\. To maintain the target capacity, select **Maintain target capacity**\. You can then specify that the Spot service terminates, stops, or hibernates Spot Instances when they are interrupted\. To do so, choose the corresponding option from **Interruption behavior**\.
 
-   1. \(Optional\) To control the amount you pay per hour for the total Spot Instances in your fleet, select **Maintain target cost for Spot \(advanced \- optional\)** and then enter the maximum total amount you're willing to pay per hour\. When the maximum total amount is reached, Spot Fleet stops launching Spot Instances even if it hasn’t met the target capacity\. For more information, see [Control spending](spot-fleet.md#spot-fleet-control-spending)\.
+   1. \(Optional\) To allow Spot Fleet to launch a replacement Spot Instance when an instance rebalance notification is emitted for an existing Spot Instance in the fleet, select **Capacity rebalance**\. For more information, see [Capacity Rebalancing](spot-fleet.md#spot-fleet-capacity-rebalance)\.
+**Note**  
+When a replacement instance is launched, the instance marked for rebalance is not automatically terminated\. You can terminate it, or you can leave it running\. You are charged for both instances while they are running\.  
+The instance marked for rebalance is at an elevated risk of interruption, and you will receive a two\-minute Spot Instance interruption notice before Amazon EC2 interrupts it\. 
+
+   1. \(Optional\) To control the amount you pay per hour for all the Spot Instances in your fleet, select **Maintain target cost for Spot \(advanced \- optional\)** and then enter the maximum total amount you're willing to pay per hour\. When the maximum total amount is reached, Spot Fleet stops launching Spot Instances even if it hasn’t met the target capacity\. For more information, see [Control spending](spot-fleet.md#spot-fleet-control-spending)\.
 
 1. For **Fleet request settings**, do the following:
 

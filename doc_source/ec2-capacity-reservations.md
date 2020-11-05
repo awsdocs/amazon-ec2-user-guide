@@ -19,6 +19,7 @@ In addition, you can use Savings Plans and regional Reserved Instances with your
 + [Capacity Reservation pricing and billing](capacity-reservations-pricing-billing.md)
 + [Working with Capacity Reservations](capacity-reservations-using.md)
 + [Capacity Reservations in Local Zones](capacity-reservations-localzones.md)
++ [Capacity Reservations in Wavelength Zones](capacity-reservations-wavelengthzones.md)
 + [Working with shared Capacity Reservations](capacity-reservation-sharing.md)
 + [CloudWatch metrics for On\-Demand Capacity Reservations](capacity-reservation-cw-metrics.md)
 

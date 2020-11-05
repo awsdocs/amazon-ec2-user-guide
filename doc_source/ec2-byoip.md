@@ -107,13 +107,20 @@ We recommend that you copy and paste this command\. Do not modify or replace any
 
 When you provision an address range for use with AWS, you are confirming that you own the address range and are authorizing Amazon to advertise it\. We also verify that you own the address range through a signed authorization message\. This message is signed with the self\-signed X509 key pair that you used when updating the RDAP record with the X509 certificate\.
 
-To provision the address range, use the following [provision\-byoip\-cidr](https://docs.aws.amazon.com/cli/latest/reference/ec2/provision-byoip-cidr.html) command\. Replace the example address range with your own address range\. The `--cidr-authorization-context` option uses the variables that you created previously, not the ROA message\.
+**To provision the address range**  
+Use the [provision\-byoip\-cidr](https://docs.aws.amazon.com/cli/latest/reference/ec2/provision-byoip-cidr.html) command\. Replace the example address range with your own address range\. The `--cidr-authorization-context` option uses the variables that you created previously, not the ROA message\.
 
 ```
 aws ec2 provision-byoip-cidr --cidr address-range --cidr-authorization-context Message="$text_message",Signature="$signed_message"
 ```
 
-Provisioning an address range is an asynchronous operation, so the call returns immediately, but the address range is not ready to use until its status changes from `pending-provision` to `provisioned`\. It can take up to three weeks to complete the provisioning process\. To monitor the status of the address ranges that you've provisioned, use the following [describe\-byoip\-cidrs](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-byoip-cidrs.html) command\.
+Provisioning an address range is an asynchronous operation, so the call returns immediately, but the address range is not ready to use until its status changes from `pending-provision` to `provisioned`\.
+
+**Note**  
+It can take up to three weeks to complete the provisioning process\.
+
+**To monitor the status of the address ranges that you've provisioned**  
+Use the [describe\-byoip\-cidrs](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-byoip-cidrs.html) command\.
 
 ```
 aws ec2 describe-byoip-cidrs --max-results 5

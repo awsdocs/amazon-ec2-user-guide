@@ -72,13 +72,13 @@ To create the role, use the IAM console as follows\.
 
 If you no longer need to use EC2 Fleet, we recommend that you delete the **AWSServiceRoleForEC2Fleet** role\. After this role is deleted from your account, you can create the role again if you create another fleet\.
 
-For more information, see [Using Service\-Linked Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html) in the *IAM User Guide*\.
+For more information, see [Using service\-linked roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html) in the *IAM User Guide*\.
 
 ### Granting access to CMKs for use with encrypted AMIs and EBS snapshots<a name="ec2-fleet-service-linked-roles-access-to-cmks"></a>
 
 If you specify an [encrypted AMI](AMIEncryption.md) or an [encrypted Amazon EBS snapshot](EBSEncryption.md) in your EC2 Fleet and you use a customer\-managed customer master key \(CMK\) for encryption, you must grant the **AWSServiceRoleForEC2Fleet** role permission to use the CMK so that Amazon EC2 can launch instances on your behalf\. To do this, you must add a grant to the CMK, as shown in the following procedure\.
 
-When providing permissions, grants are an alternative to key policies\. For more information, see [Using Grants](https://docs.aws.amazon.com/kms/latest/developerguide/grants.html) and [Using Key Policies in AWS KMS](https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html) in the *AWS Key Management Service Developer Guide*\.
+When providing permissions, grants are an alternative to key policies\. For more information, see [Using grants](https://docs.aws.amazon.com/kms/latest/developerguide/grants.html) and [Using key policies in AWS KMS](https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html) in the *AWS Key Management Service Developer Guide*\.
 
 **To grant the AWSServiceRoleForEC2Fleet role permissions to use the CMK**
 + Use the [create\-grant](https://docs.aws.amazon.com/cli/latest/reference/kms/create-grant.html) command to add a grant to the CMK and to specify the principal \(the **AWSServiceRoleForEC2Fleet** service\-linked role\) that is given permission to perform the operations that the grant permits\. The CMK is specified by the `key-id` parameter and the ARN of the CMK\. The principal is specified by the `grantee-principal` parameter and the ARN of the **AWSServiceRoleForEC2Fleet** service\-linked role\.
@@ -158,7 +158,7 @@ EC2 Fleet checks the health status of the instances in the fleet every two minut
 You can configure your EC2 Fleet to replace unhealthy instances\. After enabling health check replacement, an instance is replaced after its health status is reported as `unhealthy`\. The fleet could go below its target capacity for up to a few minutes while an unhealthy instance is being replaced\.
 
 **Requirements**
-+ Health check replacement is supported only with EC2 Fleets that maintain a target capacity, not with one\-time fleets\.
++ Health check replacement is supported only with EC2 Fleets that maintain a target capacity \(fleets of type `maintain`\), not with one\-time fleets \(fleets of type `request` or `instant`\)\.
 + You can configure your EC2 Fleet to replace unhealthy instances only when you create it\.
 + IAM users can use health check replacement only if they have permission to call the `ec2:DescribeInstanceStatus` action\.
 
@@ -338,7 +338,11 @@ If the value for `TotalTargetCapacity` is higher than the combined values for `O
 \(Optional\) By default, Amazon EC2 terminates your instances when the EC2 Fleet request expires\. The default value is `true`\. To keep them running after your request expires, do not enter a value for this parameter\.
 
 **Type**  
-\(Optional\) Indicates whether the EC2 Fleet submits a synchronous one\-time request for your desired capacity \(`instant`\), or an asynchronous one\-time request for your desired capacity, but with no attempt maintain the capacity or to submit requests in alternative capacity pools if capacity is unavailable \(`request`\), or submits an asynchronous request for your desired capacity and continues to maintain your desired capacity by replenishing interrupted Spot Instances \(`maintain`\)\. Valid values are `instant`, `request`, and `maintain`\. The default value is `maintain`\. For more information, see [EC2 Fleet request types](ec2-fleet-configuration-strategies.md#ec2-fleet-request-type)\.
+\(Optional\) The type of request\. Valid values are `instant`, `request`, and `maintain`\. The default value is `maintain`\.  
++ `instant` – The EC2 Fleet submits a synchronous one\-time request for your desired capacity, and returns errors for any instances that could not be launched\.
++ `request` – The EC2 Fleet submits an asynchronous one\-time request for your desired capacity, but does submit Spot requests in alternative capacity pools if Spot capacity is unavailable, and does not maintain Spot capacity if Spot Instances are interrupted\.
++ `maintain` – The EC2 Fleet submits an asynchronous request for your desired capacity, and continues to maintain your desired Spot capacity by replenishing interrupted Spot Instances\.
+For more information, see [EC2 Fleet request types](ec2-fleet-configuration-strategies.md#ec2-fleet-request-type)\.
 
 **ValidFrom**  
 \(Optional\) To create a request that is valid only during a specific time period, enter a start date\.
@@ -729,7 +733,7 @@ You must specify whether the EC2 Fleet must terminate its instances\. If you spe
 
 You can only delete fleets of type `request` and `maintain`\. You cannot delete an `instant` EC2 Fleet\.
 
-**To delete an EC2 Fleet \(AWS CLI\)**  
+**To delete an EC2 Fleet and terminate its instances \(AWS CLI\)**  
 Use the [delete\-fleets](https://docs.aws.amazon.com/cli/latest/reference/ec2/delete-fleets.html) command and the `--terminate-instances` parameter to delete the specified EC2 Fleet and terminate the instances\.
 
 ```
@@ -753,6 +757,7 @@ The following is example output\.
 }
 ```
 
+**To delete an EC2 Fleet without terminating the instances \(AWS CLI\)**  
 You can modify the previous command using the `--no-terminate-instances` parameter to delete the specified EC2 Fleet without terminating the instances\.
 
 ```

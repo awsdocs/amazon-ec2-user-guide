@@ -5,7 +5,7 @@ Amazon EBS provides the following volume types, which differ in performance char
 + [Hard disk drives \(HDD\)](#hard-disk-drives) — Optimized for large streaming workloads where the dominant performance attribute is throughput\.
 + [Previous generation](#ebs-previous-generation-volumes) — Hard disk drives that can be used for workloads with small datasets where data is accessed infrequently and performance is not of primary importance\. We recommend that you consider a current generation volume type instead\.
 
-There are several factors that can affect the performance of EBS volumes, such as instance configuration, I/O characteristics, and workload demand\. For more information about getting the most out of your EBS volumes, see [Amazon EBS volume performance on Linux instances](EBSPerformance.md)\.
+There are several factors that can affect the performance of EBS volumes, such as instance configuration, I/O characteristics, and workload demand\. To fully use the IOPS provisioned on an EBS volume, use [EBS\-optimized instances](ebs-optimized.md)\. For more information about getting the most out of your EBS volumes, see [Amazon EBS volume performance on Linux instances](EBSPerformance.md)\.
 
 For more information about pricing, see [Amazon EBS Pricing](http://aws.amazon.com/ebs/pricing/)\.
 

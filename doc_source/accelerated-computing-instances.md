@@ -37,6 +37,13 @@ G3 instances support NVIDIA GRID Virtual Workstation and NVIDIA GRID Virtual App
 <a name="g2-instances"></a>
 **G2 instances**  
 G2 instances use NVIDIA GRID K520 GPUs and provide a cost\-effective, high\-performance platform for graphics applications using DirectX or OpenGL\. NVIDIA GRID GPUs also support NVIDIA’s fast capture and encode API operations\. Example applications include video creation services, 3D visualizations, streaming graphics\-intensive applications, and other server\-side graphics workloads\.
+<a name="p4-instances"></a>
+**P4 instances**  
+P4 instances use NVIDIA A100 GPUs and provide a high\-performance platform for machine learning and HPC workloads\. P4 instances offer 400 Gbps of aggregate network bandwidth throughput and support, Elastic Fabric Adapter \(EFA\)\. They are the first EC2 instances to provide multiple network cards\.
+
+For more information, see [Amazon EC2 P4 Instances](http://aws.amazon.com/ec2/instance-types/p4/)\.
+
+P4 instances support NVIDIA NVSwitch GPU interconnect and NVIDIA GPUDirect RDMA\.
 <a name="p3-instances"></a>
 **P3 instances**  
 P3 instances use NVIDIA Tesla V100 GPUs and are designed for general purpose GPU computing using the CUDA or OpenCL programming models or through a machine learning framework\. P3 instances provide high\-bandwidth networking, powerful half, single, and double\-precision floating\-point capabilities, and up to 32 GiB of memory per GPU, which makes them ideal for deep learning, computational fluid dynamics, computational finance, seismic analysis, molecular modeling, genomics, rendering, and other server\-side GPU compute workloads\. Tesla V100 GPUs do not support graphics mode\.
@@ -97,6 +104,7 @@ The following is a summary of the hardware specifications for accelerated comput
 | p3\.8xlarge | 32 | 244 | 4 | 
 | p3\.16xlarge | 64 | 488 | 8 | 
 | p3dn\.24xlarge | 96 | 768 | 8 | 
+| p4d\.24xlarge | 96 | 1,152 | 8 | 
 | g2\.2xlarge | 8 | 15 | 1 | 
 | g2\.8xlarge | 32 | 60 | 4 | 
 | g3s\.xlarge | 4 | 30\.5 | 1 | 
@@ -145,6 +153,7 @@ The following is a summary of network performance for accelerated computing inst
 |  f1\.16xlarge \| g3\.16xlarge \| inf1\.6xlarge \| p2\.16xlarge \| p3\.16xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  g4dn\.8xlarge \| g4dn\.12xlarge \| g4dn\.16xlarge  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
 | g4dn\.metal \| inf1\.24xlarge \| p3dn\.24xlarge | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
+| p4d\.24xlarge | 4x100 Gbps | [ENA](enhanced-networking-ena.md) | 
 
 † These instances use a network I/O credit mechanism to allocate network bandwidth to instances based on average bandwidth utilization\. They accrue credits when their bandwidth is below their baseline bandwidth, and can use these credits when they perform network data transfers\. For more information, open a support case and ask about baseline bandwidth for the specific instance types that you are interested in\.
 
@@ -161,6 +170,7 @@ The following is a summary of features for accelerated computing instances\.
 | Inf1 | Yes | No | No | Yes | 
 | P2 | Yes | No | No | Yes | 
 | P3 |  24xlarge: No All other sizes: Yes  |  24xlarge: Yes All other sizes: No  | 24xlarge: NVMe \* | Yes | 
+| P4 | No | Yes | NVMe \* | Yes | 
 | F1 | No | No | NVMe \* | Yes | 
 
 **\*** The root device volume must be an Amazon EBS volume\.

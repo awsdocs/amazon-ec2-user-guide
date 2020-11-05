@@ -41,3 +41,8 @@ Some versions of the NVIDIA driver do not allow setting application clock speed 
      ```
      [ec2-user ~]$ sudo nvidia-smi -ac 877,1530
      ```
+   + P4 instances:
+
+     ```
+     [ec2-user ~]$ sudo nvidia-smi -ac 1215,1410
+     ```

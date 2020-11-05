@@ -2,7 +2,7 @@
 
 An instance is a virtual server in the AWS Cloud\. You launch an instance from an Amazon Machine Image \(AMI\)\. The AMI provides the operating system, application server, and applications for your instance\.
 
-When you sign up for AWS, you can get started with Amazon EC2 for free using the [AWS Free Tier](https://aws.amazon.com/)\. You can use the free tier to launch and use a `t2.micro` instance for free for 12 months \(in Regions where `t2.micro` is unavailable, you can use a `t3.micro` instance under the free tier\)\. If you launch an instance that is not within the free tier, you incur the standard Amazon EC2 usage fees for the instance\. For more information, see the [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing)\.
+When you sign up for AWS, you can get started with Amazon EC2 for free using the [AWS Free Tier](https://aws.amazon.com/)\. You can use the free tier to launch and use a `t2.micro` instance for free for 12 months \(in Regions where `t2.micro` is unavailable, you can use a `t3.micro` instance under the free tier\)\. If you launch an instance that is not within the free tier, you incur the standard Amazon EC2 usage fees for the instance\. For more information, see [Amazon EC2 pricing](https://aws.amazon.com/ec2/pricing)\.
 
 You can launch an instance using the following methods\.
 
@@ -16,6 +16,8 @@ You can launch an instance using the following methods\.
 |  \[AWS CLI\] Use an AMI that you select\.  |  [Using Amazon EC2 through the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-services-ec2-instances.html)  | 
 |  \[AWS Tools for Windows PowerShell\] Use an AMI that you select\.  |  [Amazon EC2 from the AWS Tools for Windows PowerShell](https://docs.aws.amazon.com/powershell/latest/userguide/pstools-ec2.html)  | 
 |  \[AWS CLI\] Use EC2 Fleet to provision capacity across different EC2 instance types and Availability Zones, and across On\-Demand Instance, Reserved Instance, and Spot Instance purchase models\.   |  [Launching instances using an EC2 Fleet](ec2-fleet.md)  | 
+|  \[AWS CloudFormation\] Use a AWS CloudFormation template to specify an instance\.  |  [AWS::EC2::Instance](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html) in the *AWS CloudFormation User Guide*  | 
+| \[AWS SDK\] Use a language\-specific AWS SDK to launch an instance\. |  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/ec2-2016-11-15/RunInstances) [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/ec2-2016-11-15/RunInstances) [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/ec2-2016-11-15/RunInstances) [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/ec2-2016-11-15/RunInstances) [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/ec2-2016-11-15/RunInstances) [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/ec2-2016-11-15/RunInstances) [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/ec2-2016-11-15/RunInstances) [AWS SDK for Ruby V3](https://docs.aws.amazon.com/goto/SdkForRubyV3/ec2-2016-11-15/RunInstances)  | 
 
 When you launch your instance, you can launch your instance in a subnet that is associated with one of the following resources:
 + An Availability Zone \- This option is the default\.

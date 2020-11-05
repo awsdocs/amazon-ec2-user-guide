@@ -36,11 +36,11 @@ The following diagram summarizes the AMI lifecycle\. After you create and regist
 
 You can search for an AMI that meets the criteria for your instance\. You can search for AMIs provided by AWS or AMIs provided by the community\. For more information, see [AMI types](ComponentsAMIs.md) and [Finding an AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html)\.
 
-After you launch an instance from an AMI, you can connect to it\. When you are connected to an instance, you can use it just like you use any other server\. For information about launching, connecting, and using your instance, see [Amazon EC2 instances](Instances.md)\.
+After you launch an instance from an AMI, you can connect to it\. When you are connected to an instance, you can use it just like you use any other server\. For information about launching, connecting, and using your instance, see [Tutorial: Getting started with Amazon EC2 Linux instances](EC2_GetStarted.md)\.
 
 ## Creating your own AMI<a name="creating-an-ami"></a>
 
-You can launch an instance from an existing AMI, customize the instance, and then save this updated configuration as a custom AMI\. Instances launched from this new custom AMI include the customizations that you made when you created the AMI\.
+You can launch an instance from an existing AMI, customize the instance \(for example, [install software](install-software.md) on the instance\), and then save this updated configuration as a custom AMI\. Instances launched from this new custom AMI include the customizations that you made when you created the AMI\.
 
 The root storage device of the instance determines the process you follow to create an AMI\. The root volume of an instance is either an Amazon EBS volume or an instance store volume\. For more information about the root device volume, see [Amazon EC2 root device volume](RootDeviceStorage.md)\.
 + To create an Amazon EBS\-backed AMI, see [Creating an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md)\.

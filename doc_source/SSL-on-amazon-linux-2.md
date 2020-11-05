@@ -462,7 +462,7 @@ Complete the following procedures before you install Certbot\.
    1. Navigate to your home directory \(`/home/ec2-user`\)\. Download EPEL with the following command\.
 
       ```
-      [ec2-user ~]$ sudo wget -r --no-parent -A 'epel-release-*.rpm' http://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/e/
+      [ec2-user ~]$ sudo wget -r --no-parent -A 'epel-release-*.rpm' https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/e/
       ```
 
    1. Install the repository packages as shown in the following command\.

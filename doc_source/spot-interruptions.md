@@ -1,6 +1,6 @@
 # Spot Instance interruptions<a name="spot-interruptions"></a>
 
-You can launch Spot Instances on spare EC2 capacity for steep discounts in exchange for returning them when Amazon EC2 needs the capacity back\. When Amazon EC2 reclaims a Spot Instances, we call this event a *Spot Instance interruption*\. 
+You can launch Spot Instances on spare EC2 capacity for steep discounts in exchange for returning them when Amazon EC2 needs the capacity back\. When Amazon EC2 reclaims a Spot Instance, we call this event a *Spot Instance interruption*\. 
 
 Demand for Spot Instances can vary significantly from moment to moment, and the availability of Spot Instances can also vary significantly depending on how many unused EC2 instances are available\. It is always possible that your Spot Instance might be interrupted\. Therefore, you must ensure that your application is prepared for a Spot Instance interruption\.
 
@@ -104,7 +104,7 @@ If you request Spot Instances using the [launch instance wizard](launching-insta
 
 If you request Spot Instances using the [Spot console](spot-fleet-requests.md#create-spot-fleet), you can specify the interruption behavior as follows: Select the **Maintain target capacity** check box and then, from **Interruption behavior**, choose an interruption behavior\.
 
-If you configure Spot Instances in a [launch template](ec2-launch-templates.md#create-launch-template), you can specify the interruption behavior as follows: In the launch template, expand **Advanced details** and select the **Request Spot Instances** checkbox\. Choose **Customize** and then, from **Interruption behavior**, choose an interruption behavior\.
+If you configure Spot Instances in a [launch template](ec2-launch-templates.md#create-launch-template), you can specify the interruption behavior as follows: In the launch template, expand **Advanced details** and select the **Request Spot Instances** check box\. Choose **Customize** and then, from **Interruption behavior**, choose an interruption behavior\.
 
 If you configure Spot Instances in a launch configuration when using the [request\-spot\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-fleet.html) CLI, you can specify the interruption behavior as follows: For `InstanceInterruptionBehavior`, specify an interruption behavior\.
 
@@ -117,8 +117,9 @@ Here are some best practices to follow when you use Spot Instances:
 + Ensure that your instance is ready to go as soon as the request is fulfilled by using an Amazon Machine Image \(AMI\) that contains the required software configuration\. You can also use user data to run commands at start\-up\.
 + Store important data regularly in a place that isn't affected when the Spot Instance terminates\. For example, you can use Amazon S3, Amazon EBS, or DynamoDB\.
 + Divide the work into small tasks \(using a Grid, Hadoop, or queue\-based architecture\) or use checkpoints so that you can save your work frequently\.
-+ Use Spot Instance interruption notices to monitor the status of your Spot Instances\.
-+ While we make every effort to provide this warning as soon as possible, it is possible that your Spot Instance is terminated before the warning can be made available\. Test your application to ensure that it handles an unexpected instance termination gracefully, even if you are testing for interruption notices\. You can do so by running the application using an On\-Demand Instance and then terminating the On\-Demand Instance yourself\.
++ Amazon EC2 emits a rebalance recommendation signal to the Spot Instance when the instance is at an elevated risk of interruption\. You can rely on the rebalance recommendation to proactively manage Spot Instance interruptions without having to wait for the two\-minute Spot Instance interruption notice\. For more information, see [EC2 instance rebalance recommendations](rebalance-recommendations.md)\.
++ Use the two\-minute Spot Instance interruption notices to monitor the status of your Spot Instances\. For more information, see [Spot Instance interruption notices](#spot-instance-termination-notices)\.
++ While we make every effort to provide these warnings as soon as possible, it is possible that your Spot Instance is interrupted before the warnings can be made available\. Test your application to ensure that it handles an unexpected instance interruption gracefully, even if you are monitoring for rebalance recommendation signals and interruption notices\. You can do so by running the application using an On\-Demand Instance and then terminating the On\-Demand Instance yourself\.
 
 ## Preparing for instance hibernation<a name="prepare-for-instance-hibernation"></a>
 
@@ -164,7 +165,7 @@ The best way for you to gracefully handle Spot Instance interruptions is to arch
 
 We recommend that you check for these interruption notices every 5 seconds\. 
 
-The interruption notice is made available as a CloudWatch event and as an item in the [instance metadata](ec2-instance-metadata.md) on the Spot Instance\.
+The interruption notices are made available as a CloudWatch event and as items in the [instance metadata](ec2-instance-metadata.md) on the Spot Instance\.
 
 ### EC2 Spot Instance interruption notice<a name="ec2-spot-instance-interruption-warning-event"></a>
 

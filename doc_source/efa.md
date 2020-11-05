@@ -49,10 +49,10 @@ EFA supports the following interfaces and libraries:
 
 The following instance types support EFAs:
 + General purpose: `m5dn.24xlarge` \| `m5n.24xlarge`
-+ Compute optimized: `c5n.18xlarge` \| `c5n.metal`
++ Compute optimized: `c5n.18xlarge` \| `c5n.metal` 
 + Memory optimized: `r5dn.24xlarge` \| `r5n.24xlarge`
 + Storage optimized: `i3en.24xlarge` \| `i3en.metal`
-+ Accelerated computing: `g4dn.metal` \| `inf1.24xlarge` \| `p3dn.24xlarge`
++ Accelerated computing: `g4dn.metal` \| `inf1.24xlarge` \| `p3dn.24xlarge` \| `p4d.24xlarge`
 
 The available instance types vary by Region\. To see the available instance types that support EFA in a Region, use the [describe\-instance\-types](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-types.html) command with the `--region` option and the appropriate Region code\.
 
@@ -87,7 +87,7 @@ The following AMIs support EFAs:
 ## EFA limitations<a name="efa-limits"></a>
 
 EFA has the following limitations:
-+ You can attach only one EFA per instance\.
++ `p4d.24xlarge` instances support up to four EFAs\. All other supported instance types support only one EFA per instance\.
 + EFA OS\-bypass traffic is limited to a single subnet\. In other words, EFA traffic cannot be sent from one subnet to another\. Normal IP traffic from the EFA can be sent from one subnet to another\.
 + EFA OS\-bypass traffic is not routable\. Normal IP traffic from the EFA remains routable\.
 + The EFA must be a member of a security group that allows all inbound and outbound traffic to and from the security group itself\.

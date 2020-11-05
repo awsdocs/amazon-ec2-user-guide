@@ -176,7 +176,7 @@ Amazon EBS emits Amazon CloudWatch events when the fast snapshot restore state f
 
 You are billed for each minute that fast snapshot restore is enabled for a snapshot in a particular Availability Zone\. Charges are pro\-rated with a minimum of one hour\. 
 
-For example, if you enable fast snapshot restore for one snapshot in `US-East-1a` for one month \(30 days\), you are billed **$540** \(`1` snapshot x `1` AZ x `720` hours x `$0.75` per hour\)\. If you enable fast snapshot restore for two snapshots in `us-east-1a`, `us-east-1b`, and `us-east-1c` for the same period, you are billed **$3240** \(`2` snapshot x `3` AZs x `720` hours x `$0.75` per hour\)\.
+For example, if you enable fast snapshot restore for one snapshot in `US-East-1a` for one month \(30 days\), you are billed **$540** \(`1` snapshot x `1` AZ x `720` hours x `$0.75` per hour\)\. If you enable fast snapshot restore for two snapshots in `us-east-1a`, `us-east-1b`, and `us-east-1c` for the same period, you are billed **$3240** \(`2` snapshots x `3` AZs x `720` hours x `$0.75` per hour\)\.
 
 If you enable fast snapshot restore for a public or private snapshot that is shared with you, your account is billed; the snapshot owner is not billed\. When a snapshot that is shared with you is deleted or unshared by the snapshot owner, fast snapshot restore is disabled for the snapshot in your account and billing is stopped\. 
 

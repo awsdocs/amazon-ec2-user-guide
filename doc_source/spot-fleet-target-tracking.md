@@ -25,7 +25,7 @@ Do not edit or delete the CloudWatch alarms that Spot Fleet manages for a target
 
 1. Use **Scale capacity between** to set the minimum and maximum capacity for your fleet\. Automatic scaling does not scale your fleet below the minimum capacity or above the maximum capacity\.
 
-1. For **Policy name**, type a name for the policy\.
+1. For **Policy name**, enter a name for the policy\.
 
 1. Choose a **Target metric**\.
 

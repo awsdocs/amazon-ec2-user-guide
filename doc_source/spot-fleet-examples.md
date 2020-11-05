@@ -5,19 +5,15 @@ The following examples show launch configurations that you can use with the [req
 **Note**  
 For Spot Fleet, you can't specify an network interface ID in a launch specification\. Make sure you omit the `NetworkInterfaceID` parameter in your launch specification\.
 
-1. [Launch Spot Instances using the lowest\-priced Availability Zone or subnet in the region](#fleet-config1)
-
-1. [Launch Spot Instances using the lowest\-priced Availability Zone or subnet in a specified list](#fleet-config2)
-
-1. [Launch Spot Instances using the lowest\-priced instance type in a specified list](#fleet-config3)
-
-1. [Override the price for the request](#fleet-config4)
-
-1. [Launch a Spot Fleet using the diversified allocation strategy](#fleet-config5)
-
-1. [Launch a Spot Fleet using instance weighting](#fleet-config6)
-
-1. [Launch a Spot Fleet with On\-Demand capacity](#fleet-config7)
+**Topics**
++ [Example 1: Launch Spot Instances using the lowest\-priced Availability Zone or subnet in the Region](#fleet-config1)
++ [Example 2: Launch Spot Instances using the lowest\-priced Availability Zone or subnet in a specified list](#fleet-config2)
++ [Example 3: Launch Spot Instances using the lowest\-priced instance type in a specified list](#fleet-config3)
++ [Example 4\. Override the price for the request](#fleet-config4)
++ [Example 5: Launch a Spot Fleet using the diversified allocation strategy](#fleet-config5)
++ [Example 6: Launch a Spot Fleet using instance weighting](#fleet-config6)
++ [Example 7: Launch a Spot Fleet with On\-Demand capacity](#fleet-config7)
++ [Example 8: Configure Capacity Rebalancing to launch replacement Spot Instances](#fleet-config8)
 
 ## Example 1: Launch Spot Instances using the lowest\-priced Availability Zone or subnet in the Region<a name="fleet-config1"></a>
 
@@ -497,5 +493,60 @@ For more information, see [On\-Demand in Spot Fleet](spot-fleet.md#on-demand-in-
       ]
     }
   ]
+}
+```
+
+## Example 8: Configure Capacity Rebalancing to launch replacement Spot Instances<a name="fleet-config8"></a>
+
+The following example configures the Spot Fleet to launch a replacement Spot Instance when Amazon EC2 emits a rebalance recommendation for a Spot Instance in the fleet\. To configure the automatic replacement of Spot Instances, for `ReplacementStrategy`, specify `launch`\.
+
+**Note**  
+When a replacement instance is launched, the instance marked for rebalance is not automatically terminated\. You can terminate it, or you can leave it running\. You are charged for both instances while they are running\. 
+
+The effectiveness of the Capacity Rebalancing strategy depends on the number of Spot Instance pools specified in the Spot Fleet request\. We recommend that you configure the fleet with a diversified set of instance types and Availability Zones, and for `AllocationStrategy`, specify `capacityOptimized`\. For more information about what you should consider when configuring a Spot Fleet for Capacity Rebalancing, see [Capacity Rebalancing](spot-fleet.md#spot-fleet-capacity-rebalance)\.
+
+```
+{
+    "SpotFleetRequestConfig": {
+        "AllocationStrategy": "capacityOptimized",
+        "IamFleetRole": "arn:aws:iam::000000000000:role/aws-ec2-spot-fleet-tagging-role",
+        "LaunchTemplateConfigs": [
+            {
+                "LaunchTemplateSpecification": {
+                    "LaunchTemplateName": "LaunchTemplate",
+                    "Version": "1"
+                },
+                 "Overrides": [
+                       {
+                           "InstanceType": "c3.large",
+                           "WeightedCapacity": 1,
+                           "Placement": {
+                               "AvailabilityZone": "us-east-1a"
+                           }
+                       },
+                       {
+                           "InstanceType": "c4.large",
+                           "WeightedCapacity": 1,
+                           "Placement": {
+                               "AvailabilityZone": "us-east-1a"
+                           }
+                       },
+                       {
+                           "InstanceType": "c5.large",
+                           "WeightedCapacity": 1,
+                           "Placement": {
+                               "AvailabilityZone": "us-east-1a"
+                           }
+                       }
+                ] 
+          }
+    ],
+        "TargetCapacity": 5,
+        "SpotMaintenanceStrategies": {
+            "CapacityRebalance": {
+                "ReplacementStrategy": "launch"
+            }
+        }
+    }
 }
 ```

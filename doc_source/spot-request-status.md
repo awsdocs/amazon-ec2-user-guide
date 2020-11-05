@@ -82,7 +82,7 @@ If you stop a Spot Instance, your Spot request goes into the `marked-for-stop` o
 
 \* A Spot Instance goes into the `instance-stopped-by-user` state if you stop the instance or run the shutdown command from the instance\. After you've stopped the instance, you can start it again\. On restart, the Spot Instance request returns to the `pending-evaluation` state and then Amazon EC2 launches a new Spot Instance when the constraints are met\. 
 
-\*\* The Spot request state is `disabled` if you stop the Spot Instance but do not cancel the request\. The request state is `cancelled` if your spot instance is stopped and the request expires\. 
+\*\* The Spot request state is `disabled` if you stop the Spot Instance but do not cancel the request\. The request state is `cancelled` if your Spot Instance is stopped and the request expires\.
 
 **Fulfilled\-terminal**  
 Your Spot Instances continue to run as long as your maximum price is at or above the Spot price, there is available capacity for your instance type, and you don't terminate the instance\. If a change in the Spot price or available capacity requires Amazon EC2 to terminate your Spot Instances, the Spot request goes into a terminal state\. A request also goes into the terminal state if you cancel the Spot request or terminate the Spot Instances\.

@@ -68,7 +68,7 @@ A shorter period creates a more sensitive alarm\.
 
 1. To define a policy, do the following:
 
-   1. For **Policy name**, type a name for the policy\.
+   1. For **Policy name**, enter a name for the policy\.
 
    1. For **Policy trigger**, select an existing alarm or choose **Create new alarm** to open the Amazon CloudWatch console and create an alarm\.
 
