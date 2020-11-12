@@ -3,10 +3,13 @@
 To use EC2 Instance Connect to connect to an instance, you need to configure every instance that will support using Instance Connect \(this is a one\-time requirement for each instance\), and you need to grant permission to every IAM user that will use Instance Connect\.
 
 **Topics**
-+ [Task 1: Configure network access to an instance](#ec2-instance-connect-setup-security-group)
-+ [Task 2: \(Conditional\) Install EC2 Instance Connect on an instance](#ec2-instance-connect-install)
-+ [Task 3: \(Optional\) Install the EC2 Instance Connect CLI](#ec2-instance-connect-install-eic-CLI)
-+ [Task 4: Configure IAM permissions for EC2 Instance Connect](#ec2-instance-connect-configure-IAM-role)
+- [Set up EC2 Instance Connect<a name="ec2-instance-connect-set-up"></a>](#set-up-ec2-instance-connect)
+  - [Task 1: Configure network access to an instance<a name="ec2-instance-connect-setup-security-group"></a>](#task-1-configure-network-access-to-an-instance)
+  - [Task 2: \(Conditional\) Install EC2 Instance Connect on an instance<a name="ec2-instance-connect-install"></a>](#task-2-conditional-install-ec2-instance-connect-on-an-instance)
+      - [[ Amazon Linux 2 ]](#-amazon-linux-2-)
+      - [[ Ubuntu ]](#-ubuntu-)
+  - [Task 3: \(Optional\) Install the EC2 Instance Connect CLI<a name="ec2-instance-connect-install-eic-CLI"></a>](#task-3-optional-install-the-ec2-instance-connect-cli)
+  - [Task 4: Configure IAM permissions for EC2 Instance Connect<a name="ec2-instance-connect-configure-IAM-role"></a>](#task-4-configure-iam-permissions-for-ec2-instance-connect)
 
 For more information about setting up EC2 Instance Connect, see [Securing your bastion hosts with Amazon EC2 Instance Connect](http://aws.amazon.com/blogs/infrastructure-and-automation/securing-your-bastion-hosts-with-amazon-ec2-instance-connect/)\.
 
@@ -15,6 +18,7 @@ For more information about setting up EC2 Instance Connect, see [Securing your b
   + Amazon Linux 2 \(any version\)
   + Ubuntu 16\.04 or later
 + If you configured the `AuthorizedKeysCommand` and `AuthorizedKeysCommandUser` settings for SSH authentication, the EC2 Instance Connect installation will not update them\. As a result, you cannot use Instance Connect\.
++ The EC2 Instance Connect browser client can only connect to EC2 instances with Public IPv4 addresses. The ssh client and EC2 Instance Connect CLI can connect to EC2 instances with Private IPv4 addresses, provided a route to the instance exists.
 
 **Prerequisites**
 + **Verify the general prerequisites for connecting to your instance using SSH\.**
