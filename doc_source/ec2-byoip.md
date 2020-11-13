@@ -21,6 +21,7 @@ The following steps describe how to bring your own IP address range for use in A
 + The most specific IPv6 address range that you can bring is /48 for CIDRs that are publicly advertised, and /56 for CIDRs that are [not publicly advertised](#byoip-provision-non-public)\.
 + You can bring each address range to one Region at a time\.
 + You can bring a total of five IPv4 and IPv6 address ranges per Region to your AWS account\.
++ BYOIP address range cannot be shared with other accounts via [AWS Resource Access Manager (AWS RAM)](https://docs.aws.amazon.com/ram/latest/userguide/shareable.html) 
 + The addresses in the IP address range must have a clean history\. We might investigate the reputation of the IP address range and reserve the right to reject an IP address range if it contains an IP address that has a poor reputation or is associated with malicious behavior\.
 + You must own the IP address that you use\. This means that only the following are supported:
   + ARIN \- "Direct Allocation" and "Direct Assignment" network types
