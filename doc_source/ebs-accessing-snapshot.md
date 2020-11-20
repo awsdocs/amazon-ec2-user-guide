@@ -442,7 +442,7 @@ Connection: keep-alive
             "BlockIndex": 3073,
             "BlockToken": "AAUBAbqt9zpqBUEvtO2HINAfFaWToOwlPjbIsQOlx6JUN/0+iMQl0NtNbnX4"
         },
-        …
+        ...
     ],
     "ExpiryTime": 1.59298379649E9,
     "VolumeSize": 3

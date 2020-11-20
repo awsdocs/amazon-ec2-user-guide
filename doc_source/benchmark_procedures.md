@@ -25,11 +25,11 @@ To get optimal performance from EBS volumes, we recommend that you use an EBS\-o
 
 To create an EBS\-optimized instance, choose **Launch as an EBS\-Optimized instance** when launching the instance using the Amazon EC2 console, or specify \-\-ebs\-optimized when using the command line\. Be sure that you launch a current\-generation instance that supports this option\. For more information, see [Amazon EBS–optimized instances](ebs-optimized.md)\.
 
-### Setting up Provisioned IOPS SSD \(`io1` and `io2`\) volumes<a name="setupPIOPS"></a>
+### Setting up Provisioned IOPS SSD volumes<a name="setupPIOPS"></a>
 
-To create an `io1` or `io2` volume, choose **Provisioned IOPS SSD \(`io1`\)** or **Provisioned IOPS SSD \(`io2`\)** when creating the volume using the Amazon EC2 console, or, at the command line, specify \-\-volume\-type *io1*\|*io2* \-\-iops *n* where *n* is an integer between 100 and 64,000\. For more detailed EBS\-volume specifications, see [Amazon EBS volume types](ebs-volume-types.md)\. For information about creating an EBS volume, see [Creating an Amazon EBS volume](ebs-creating-volume.md)\. For information about attaching a volume to an instance, see [Attaching an Amazon EBS volume to an instance](ebs-attaching-volume.md)\.
+To create Provisioned IOPS SSD \(`io1` and `io2`\) volumes using the Amazon EC2 console, choose the **Provisioned IOPS SSD \(io1\)** or **Provisioned IOPS SSD \(io2\)** volume type\. At the command line, specify `io1` or `io2` for the \-\-volume\-type parameter and an integer between 100 and 64,000 for the \-\-iops parameter\. For more information, see [Amazon EBS volume types](ebs-volume-types.md) and [Creating an Amazon EBS volume](ebs-creating-volume.md)\.
 
-For the example tests, we recommend that you create a RAID array with 6 volumes, which offers a high level of performance\. Because you are charged by gigabytes provisioned \(and the number of provisioned IOPS for `io1` and `io2` volumes\), not the number of volumes, there is no additional cost for creating multiple, smaller volumes and using them to create a stripe set\. If you're using Oracle Orion to benchmark your volumes, it can simulate striping the same way that Oracle ASM does, so we recommend that you let Orion do the striping\. If you are using a different benchmarking tool, you need to stripe the volumes yourself\.
+For the example tests, we recommend that you create a RAID array with 6 volumes, which offers a high level of performance\. Because you are charged by gigabytes provisioned \(and the number of provisioned IOPS for Provisioned IOPS SSD volumes\), not the number of volumes, there is no additional cost for creating multiple, smaller volumes and using them to create a stripe set\. If you're using Oracle Orion to benchmark your volumes, it can simulate striping the same way that Oracle ASM does, so we recommend that you let Orion do the striping\. If you are using a different benchmarking tool, you need to stripe the volumes yourself\.
 
 To create a six\-volume stripe set on Amazon Linux, use a command such as the following:
 
@@ -93,7 +93,7 @@ Choosing the best volume queue length based on your workload and volume type\.
 
 ### Queue length on SSD\-backed volumes<a name="SSD_queue"></a>
 
-To determine the optimal queue length for your workload on SSD\-backed volumes, we recommend that you target a queue length of 1 for every 1000 IOPS available \(baseline for `gp2` volumes and the provisioned amount for `io1` and `io2` volumes\)\. Then you can monitor your application performance and tune that value based on your application requirements\.
+To determine the optimal queue length for your workload on SSD\-backed volumes, we recommend that you target a queue length of 1 for every 1000 IOPS available \(baseline for General Purpose SSD volumes and the provisioned amount for Provisioned IOPS SSD volumes\)\. Then you can monitor your application performance and tune that value based on your application requirements\.
 
 Increasing the queue length is beneficial until you achieve the provisioned IOPS, throughput or optimal system queue length value, which is currently set to 32\. For example, a volume with 3,000 provisioned IOPS should target a queue length of 3\. You should experiment with tuning these values up or down to see what performs best for your application\.
 
@@ -129,7 +129,7 @@ Run the following commands on an EBS\-optimized instance with attached EBS volum
 
 When you are finished testing your volumes, see the following topics for help cleaning up: [Deleting an Amazon EBS volume](ebs-deleting-volume.md) and [Terminate your instance](terminating-instances.md)\.
 
-### Benchmarking `io1` and `io2` volumes<a name="piops_benchmarking"></a>
+### Benchmarking Provisioned IOPS SSD volumes<a name="piops_benchmarking"></a>
 
 Run fio on the stripe set that you created\.
 

@@ -1,10 +1,10 @@
-# Managing an EC2 Fleet<a name="manage-ec2-fleet"></a>
+# Working with EC2 Fleets<a name="manage-ec2-fleet"></a>
 
-To use an EC2 Fleet, you create a request that includes the total target capacity, On\-Demand capacity, Spot capacity, one or more launch specifications for the instances, and the maximum price that you are willing to pay\. The fleet request must include a launch template that defines the information that the fleet needs to launch an instance, such as an AMI, instance type, subnet or Availability Zone, and one or more security groups\. You can specify launch specification overrides for the instance type, subnet, Availability Zone, and maximum price you're willing to pay, and you can assign weighted capacity to each launch specification override\.
+To start using an EC2 Fleet, you create a request that includes the total target capacity, On\-Demand capacity, Spot capacity, one or more launch specifications for the instances, and the maximum price that you are willing to pay\. The fleet request must include a launch template that defines the information that the fleet needs to launch an instance, such as an AMI, instance type, subnet or Availability Zone, and one or more security groups\. You can specify launch specification overrides for the instance type, subnet, Availability Zone, and maximum price you're willing to pay, and you can assign weighted capacity to each launch specification override\.
 
 If your fleet includes Spot Instances, Amazon EC2 can attempt to maintain your fleet target capacity as Spot prices change\.
 
-An EC2 Fleet request remains active until it expires or you delete it\. When you delete a fleet, you can specify whether deletion terminates the instances in that fleet\.
+An EC2 Fleet request of type `maintain` or `request` remains active until it expires or you delete it\. When you delete a fleet of type `maintain` or `request`, you can specify whether deletion terminates the instances in that fleet\.
 
 **Topics**
 + [EC2 Fleet request states](#EC2-fleet-states)
@@ -21,12 +21,24 @@ An EC2 Fleet request remains active until it expires or you delete it\. When you
 ## EC2 Fleet request states<a name="EC2-fleet-states"></a>
 
 An EC2 Fleet request can be in one of the following states:
-+ `submitted` – The EC2 Fleet request is being evaluated and Amazon EC2 is preparing to launch the target number of instances, which can include On\-Demand Instances, Spot Instances, or both\.
-+ `active` – The EC2 Fleet request has been validated and Amazon EC2 is attempting to maintain the target number of running instances\. The request remains in this state until it is modified or deleted\.
-+ `modifying` – The EC2 Fleet request is being modified\. The request remains in this state until the modification is fully processed or the request is deleted\. Only a `maintain` request type can be modified\. This state does not apply to other request types\.
-+ `deleted_running` – The EC2 Fleet request is deleted and does not launch additional instances\. Its existing instances continue to run until they are interrupted or terminated\. The request remains in this state until all instances are interrupted or terminated\.
-+ `deleted_terminating` – The EC2 Fleet request is deleted and its instances are terminating\. The request remains in this state until all instances are terminated\.
-+ `deleted` – The EC2 Fleet is deleted and has no running instances\. The request is deleted two days after its instances are terminated\.
+
+`submitted`  
+The EC2 Fleet request is being evaluated and Amazon EC2 is preparing to launch the target number of instances\. The request can include On\-Demand Instances, Spot Instances, or both\.
+
+`active`  
+The EC2 Fleet request has been validated and Amazon EC2 is attempting to maintain the target number of running instances\. The request remains in this state until it is modified or deleted\.
+
+`modifying`  
+The EC2 Fleet request is being modified\. The request remains in this state until the modification is fully processed or the request is deleted\. Only a `maintain` fleet type can be modified\. This state does not apply to other request types\.
+
+`deleted_running`  
+The EC2 Fleet request is deleted and does not launch additional instances\. Its existing instances continue to run until they are interrupted or terminated manually\. The request remains in this state until all instances are interrupted or terminated\. Only an EC2 Fleet of type `maintain` or `request` can have running instances after the EC2 Fleet request is deleted\. A deleted `instant` fleet with running instances is not supported\. This state does not apply to `instant` fleets\.
+
+`deleted_terminating`  
+The EC2 Fleet request is deleted and its instances are terminating\. The request remains in this state until all instances are terminated\.
+
+`deleted`  
+The EC2 Fleet is deleted and has no running instances\. The request is deleted two days after its instances are terminated\.
 
 The following illustration represents the transitions between the EC2 Fleet request states\. If you exceed your fleet limits, the request is deleted immediately\.
 
@@ -34,7 +46,11 @@ The following illustration represents the transitions between the EC2 Fleet requ
 
 ## EC2 Fleet prerequisites<a name="ec2-fleet-prerequisites"></a>
 
-To create an EC2 Fleet, the following prerequisites must be in place\.
+**Topics**
++ [Launch template](#ec2-fleet-prerequisites-launch-template)
++ [Service\-linked role for EC2 Fleet](#ec2-fleet-service-linked-role)
++ [Grant access to CMKs for use with encrypted AMIs and EBS snapshots](#ec2-fleet-service-linked-roles-access-to-cmks)
++ [Permissions for EC2 Fleet IAM users](#ec2-fleet-iam-users)
 
 ### Launch template<a name="ec2-fleet-prerequisites-launch-template"></a>
 
@@ -74,7 +90,7 @@ If you no longer need to use EC2 Fleet, we recommend that you delete the **AWSSe
 
 For more information, see [Using service\-linked roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html) in the *IAM User Guide*\.
 
-### Granting access to CMKs for use with encrypted AMIs and EBS snapshots<a name="ec2-fleet-service-linked-roles-access-to-cmks"></a>
+### Grant access to CMKs for use with encrypted AMIs and EBS snapshots<a name="ec2-fleet-service-linked-roles-access-to-cmks"></a>
 
 If you specify an [encrypted AMI](AMIEncryption.md) or an [encrypted Amazon EBS snapshot](EBSEncryption.md) in your EC2 Fleet and you use a customer\-managed customer master key \(CMK\) for encryption, you must grant the **AWSServiceRoleForEC2Fleet** role permission to use the CMK so that Amazon EC2 can launch instances on your behalf\. To do this, you must add a grant to the CMK, as shown in the following procedure\.
 
@@ -91,7 +107,7 @@ When providing permissions, grants are an alternative to key policies\. For more
       --operations "Decrypt" "Encrypt" "GenerateDataKey" "GenerateDataKeyWithoutPlaintext" "CreateGrant" "DescribeKey" "ReEncryptFrom" "ReEncryptTo"
   ```
 
-### EC2 Fleet and IAM users<a name="ec2-fleet-iam-users"></a>
+### Permissions for EC2 Fleet IAM users<a name="ec2-fleet-iam-users"></a>
 
 If your IAM users will create or manage an EC2 Fleet, be sure to grant them the required permissions as follows\.
 
@@ -729,9 +745,11 @@ aws ec2 modify-fleet \
 
 If you no longer require an EC2 Fleet, you can delete it\. After you delete a fleet, it launches no new instances\.
 
-You must specify whether the EC2 Fleet must terminate its instances\. If you specify that the instances must be terminated when the fleet is deleted, it enters the `deleted_terminating` state\. Otherwise, it enters the `deleted_running` state, and the instances continue to run until they are interrupted or you terminate them manually\.
+When you delete an EC2 Fleet, you must specify if you want to also terminate its instances\. If you specify that the instances must be terminated when the fleet is deleted, it enters the `deleted_terminating` state\. Otherwise, it enters the `deleted_running` state, and the instances continue to run until they are interrupted or you terminate them manually\.
 
-You can only delete fleets of type `request` and `maintain`\. You cannot delete an `instant` EC2 Fleet\.
+**Restrictions**
++ You can delete up to 25 `instant` fleets in a single request\. If you exceed this number, no `instant` fleets are deleted and an error is returned\. There is no restriction on the number of fleets of type `maintain` or `request` that can be deleted in a single request\.
++ Up to 1000 instances can be terminated in a single request to delete `instant` fleets\. 
 
 **To delete an EC2 Fleet and terminate its instances \(AWS CLI\)**  
 Use the [delete\-fleets](https://docs.aws.amazon.com/cli/latest/reference/ec2/delete-fleets.html) command and the `--terminate-instances` parameter to delete the specified EC2 Fleet and terminate the instances\.
@@ -760,6 +778,9 @@ The following is example output\.
 **To delete an EC2 Fleet without terminating the instances \(AWS CLI\)**  
 You can modify the previous command using the `--no-terminate-instances` parameter to delete the specified EC2 Fleet without terminating the instances\.
 
+**Note**  
+`--no-terminate-instances` is not supported for `instant` fleets\.
+
 ```
 aws ec2 delete-fleets \
     --fleet-ids fleet-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE \
@@ -781,6 +802,93 @@ The following is example output\.
 }
 ```
 
-### Reasons for a failed delete<a name="troubleshoot-delete-fleet"></a>
+### Troubleshooting when a fleet fails to delete<a name="troubleshoot-delete-fleet"></a>
 
-If an EC2 Fleet fails to delete, `UnsuccessfulFleetDeletions` returns the ID of the EC2 Fleet, an error code, and an error message\. The error codes are `fleetIdDoesNotExist`, `fleetIdMalformed`, `fleetNotInDeletableState`, and `unexpectedError`\.
+If an EC2 Fleet fails to delete, `UnsuccessfulFleetDeletions` in the output returns the ID of the EC2 Fleet, an error code, and an error message\.
+
+The error codes are:
++ `ExceededInstantFleetNumForDeletion`
++ `fleetIdDoesNotExist`
++ `fleetIdMalformed`
++ `fleetNotInDeletableState`
++ `NoTerminateInstancesNotSupported`
++ `UnauthorizedOperation`
++ `unexpectedError`
+
+**Troubleshooting `ExceededInstantFleetNumForDeletion`**  
+If you try to delete more than 25 `instant` fleets in a single request, the `ExceededInstantFleetNumForDeletion` error is returned\. The following is example output for this error\.
+
+```
+{
+    "UnsuccessfulFleetDeletions": [
+     {
+          "FleetId": " fleet-5d130460-0c26-bfd9-2c32-0100a098f625",
+          "Error": {
+                  "Message": "Can’t delete more than 25 instant fleets in a single request.",
+                  "Code": "ExceededInstantFleetNumForDeletion"
+           }
+     },
+     {
+           "FleetId": "fleet-9a941b23-0286-5bf4-2430-03a029a07e31",
+           "Error": {
+                  "Message": "Can’t delete more than 25 instant fleets in a single request.",
+                  "Code": "ExceededInstantFleetNumForDeletion"
+            }
+     }
+     .
+     .
+     .
+     ],
+     "SuccessfulFleetDeletions": []
+}
+```
+
+**Troubleshooting `NoTerminateInstancesNotSupported`**  
+If you specify that the instances in an `instant` fleet must not be terminated when you delete the fleet, the `NoTerminateInstancesNotSupported` error is returned\. `--no-terminate-instances` is not supported for `instant` fleets\. The following is example output for this error\.
+
+```
+{
+      "UnsuccessfulFleetDeletions": [
+            {
+                  "FleetId": "fleet-5d130460-0c26-bfd9-2c32-0100a098f625",
+                  "Error": {
+                          "Message": "NoTerminateInstances option is not supported for instant fleet",
+                          "Code": "NoTerminateInstancesNotSupported"
+                   }
+            }
+       ],
+       "SuccessfulFleetDeletions": []
+```
+
+**Troubleshooting `UnauthorizedOperation`**  
+If you do not have permission to terminate instances, you get the `UnauthorizedOperation` error when deleting a fleet that must terminate its instances\. The following is the error response\.
+
+```
+<Response><Errors><Error><Code>UnauthorizedOperation</Code><Message>You are not authorized to perform this 
+operation. Encoded authorization failure message: VvuncIxj7Z_CPGNYXWqnuFV-YjByeAU66Q9752NtQ-I3-qnDLWs6JLFd
+KnSMMiq5s6cGqjjPtEDpsnGHzzyHasFHOaRYJpaDVravoW25azn6KNkUQQlFwhJyujt2dtNCdduJfrqcFYAjlEiRMkfDHt7N63SKlweKUl
+BHturzDK6A560Y2nDSUiMmAB1y9UNtqaZJ9SNe5sNxKMqZaqKtjRbk02RZu5V2vn9VMk6fm2aMVHbY9JhLvGypLcMUjtJ76H9ytg2zRlje
+VPiU5v2s-UgZ7h0p2yth6ysUdhlONg6dBYu8_y_HtEI54invCj4CoK0qawqzMNe6rcmCQHvtCxtXsbkgyaEbcwmrm2m01-EMhekLFZeJLr
+DtYOpYcEl4_nWFX1wtQDCnNNCmxnJZAoJvb3VMDYpDTsxjQv1PxODZuqWHs23YXWVywzgnLtHeRf2o4lUhGBw17mXsS07k7XAfdPMP_brO
+PT9vrHtQiILor5VVTsjSPWg7edj__1rsnXhwPSu8gI48ZLRGrPQqFq0RmKO_QIE8N8s6NWzCK4yoX-9gDcheurOGpkprPIC9YPGMLK9tug
+</Message></Error></Errors><RequestID>89b1215c-7814-40ae-a8db-41761f43f2b0</RequestID></Response>
+```
+
+To resolve the error, you must add the `ec2:TerminateInstances` action to the IAM policy, as shown in the following example\.
+
+```
+{
+       "Version": "2012-10-17",
+       "Statement": [
+            {
+                "Sid": "DeleteFleetsAndTerminateInstances",
+                "Effect": "Allow",
+                "Action": [
+                       "ec2:DeleteFleets"
+                       "ec2:TerminateInstances"
+                ],
+                "Resource": "*"
+            }
+       ]
+    }
+```

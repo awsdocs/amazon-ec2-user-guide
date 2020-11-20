@@ -119,7 +119,11 @@ For best performance, we recommend that you use an HVM AMI\. In addition, HVM AM
 
 ## Instances built on the Nitro System<a name="ec2-nitro-instances"></a>
 
-The Nitro System is a collection of AWS\-built hardware and software components that enable high performance, high availability, and high security\. In addition, the Nitro System provides bare metal capabilities that eliminate virtualization overhead and support workloads that require full access to host hardware\. For more information, see [AWS Nitro System](http://aws.amazon.com/ec2/nitro/)\.
+The Nitro System is a collection of AWS\-built hardware and software components that enable high performance, high availability, and high security\. For more information, see [AWS Nitro System](http://aws.amazon.com/ec2/nitro/)\.
+
+The Nitro System provides bare metal capabilities that eliminate virtualization overhead and support workloads that require full access to host hardware\. Bare metal instances are well suited for the following:
++ Workloads that require access to low\-level hardware features \(for example, Intel VT\) that are not available or fully supported in virtualized environments
++ Applications that require a non\-virtualized environment for licensing or support
 
 **Nitro components**
 
@@ -185,7 +189,7 @@ The following table summarizes the networking and storage features supported by 
 |  F1  | No | No |  NVMe \*  |  Yes  | ENA | 
 |  G3  | Yes | No | No |  Yes  | ENA | 
 | G4 | No | Yes | NVMe \* | Yes | ENA | 
-|  HS1  | No | No |  HDD \*  |  Yes  | ENA | 
+|  H1  | No | No |  HDD \*  |  Yes  | ENA | 
 |  I3  | No | No |  NVMe \*  |  Yes  | ENA | 
 |  I3en  | No | Yes |  NVMe \*  |  Yes  | ENA | 
 |  Inf1  | Yes | Yes |  No  |  Yes  | ENA | 

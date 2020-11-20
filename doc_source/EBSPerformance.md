@@ -64,7 +64,7 @@ The device shown reports a read\-ahead value of 256 \(the default\)\. Multiply t
 
 Verify that the read\-ahead setting now displays 2,048 by running the first command again\.
 
-Only use this setting when your workload consists of large, sequential I/Os\. If it consists mostly of small, random I/Os, this setting will actually degrade your performance\. In general, if your workload consists mostly of small or random I/Os, you should consider using a General Purpose SSD \(`gp2`\) volume rather than `st1` or `sc1`\.
+Only use this setting when your workload consists of large, sequential I/Os\. If it consists mostly of small, random I/Os, this setting will actually degrade your performance\. In general, if your workload consists mostly of small or random I/Os, you should consider using a General Purpose SSD \(`gp2`\) volume rather than an `st1` or `sc1` volume\.
 
 ### Use a modern Linux kernel<a name="ModernKernel"></a>
 

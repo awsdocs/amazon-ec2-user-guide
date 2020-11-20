@@ -14,6 +14,7 @@ For more information about the device names Amazon EC2 uses for your root volume
 + [Choosing an AMI by root device type](#choose-an-ami-by-root-device)
 + [Determining the root device type of your instance](#display-instance-root-device-type)
 + [Changing the root volume to persist](#Using_RootDeviceStorage)
++ [Changing the initial size of the root volume](#change-root-volume-initial-size)
 
 ## Root device storage concepts<a name="RootDeviceStorageConcepts"></a>
 
@@ -262,3 +263,26 @@ Use the [ Get\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/refere
 ```
 C:\> (Get-EC2Instance -InstanceId i-i-1234567890abcdef0).Instances.BlockDeviceMappings.Ebs
 ```
+
+## Changing the initial size of the root volume<a name="change-root-volume-initial-size"></a>
+
+By default, the size of the root volume is determined by the size of the snapshot\. You can increase the initial size of the root volume using the block device mapping of the instance as follows\.
+
+1. Determine the device name of the root volume specified in the AMI, as described in [Viewing the EBS volumes in an AMI block device mapping](block-device-mapping-concepts.md#view-ami-bdm)\.
+
+1. Confirm the size of the snapshot specified in the AMI block device mapping, as described in [Viewing Amazon EBS snapshot information](ebs-describing-snapshots.md)\.
+
+1. Override the size of the root volume using the instance block device mapping, as described in [Updating the block device mapping when launching an instance](block-device-mapping-concepts.md#Using_OverridingAMIBDM), specifying a volume size that is larger than the snapshot size\.
+
+For example, the following entry for the instance block device mapping increases the size of the root volume, `/dev/xvda`, to 100 GiB\. You can omit the snapshot ID in the instance block device mapping because the snapshot ID is already specified in the AMI block device mapping\.
+
+```
+{
+    "DeviceName": "/dev/xvda",
+    "Ebs": {
+      "VolumeSize": 100
+    }
+}
+```
+
+For more information, see [Block device mapping](block-device-mapping-concepts.md)\.

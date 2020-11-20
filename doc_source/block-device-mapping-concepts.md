@@ -40,8 +40,8 @@ For EBS volumes, you also specify the following information:
 + The ID of the snapshot to use to create the block device \(snap\-*xxxxxxxx*\)\. This value is optional as long as you specify a volume size\.
 + The size of the volume, in GiB\. The specified size must be greater than or equal to the size of the specified snapshot\.
 + Whether to delete the volume on instance termination \(`true` or `false`\)\. The default value is `true` for the root device volume and `false` for attached volumes\. When you create an AMI, its block device mapping inherits this setting from the instance\. When you launch an instance, it inherits this setting from the AMI\.
-+ The volume type, which can be `gp2` for General Purpose SSD, `io1` or `io2` for Provisioned IOPS SSD, `st1` for Throughput Optimized HDD, `sc1` for Cold HDD, or `standard` for Magnetic\. The default value is `gp2`\.
-+ The number of input/output operations per second \(IOPS\) that the volume supports\. \(Not used with `gp2`, `st1`, `sc1`, or `standard` volumes\.\)
++ The volume type, which can be `gp2` for General Purpose SSD, `io1` and `io2` for Provisioned IOPS SSD, `st1` for Throughput Optimized HDD, `sc1` for Cold HDD, or `standard` for Magnetic\. The default value is `gp2`\.
++ The number of input/output operations per second \(IOPS\) that the volume supports\. \(Used only with `io1` and `io2` volumes\.\)
 
 ### Block device mapping instance store caveats<a name="instance_store_caveats"></a>
 

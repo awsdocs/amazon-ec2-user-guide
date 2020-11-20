@@ -17,7 +17,7 @@ Bare metal instances, such as `c5.metal`, provide your applications with direct 
 
 For more information, see [Amazon EC2 C5 Instances](https://aws.amazon.com/ec2/instance-types/c5)\.
 
-**C6g and C6gd instances**
+**C6g, C6gd instances**
 
 These instances are powered by AWS Graviton2 processors and are ideal for running advanced, compute\-intensive workloads, such as the following:
 + High\-performance computing \(HPC\)

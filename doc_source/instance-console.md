@@ -38,7 +38,7 @@ Only the instance owner can access the console output\. You can retrieve the con
 
 1. In the left navigation pane, choose **Instances**, and select the instance\.
 
-1. Choose **Actions**, **Instance Settings**, **Get System Log**\.
+1. Choose **Actions**, **Monitor and troubleshoot**, **Get system log**\.
 
 **To get console output using the command line**
 
@@ -75,9 +75,9 @@ If you are unable to reach your instance via SSH or RDP, you can capture a scree
 
 1. Select the instance to capture\.
 
-1. Choose **Actions**, **Instance Settings**\.
+1. Choose **Actions**, **Monitor and troubleshoot**\.
 
-1. Choose **Get Instance Screenshot**\.
+1. Choose **Get instance screenshot**\.
 
 Right\-click on the image to download and save it\.
 

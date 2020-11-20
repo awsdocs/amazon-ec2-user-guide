@@ -62,7 +62,7 @@ The following table describes previous\-generation EBS volume types\. If you nee
 | Max IOPS per instance | 80,000 | 
 | Max throughput per instance | 1,750 MB/s | 
 
-## General Purpose SSD \(`gp2`\) volumes<a name="EBSVolumeTypes_gp2"></a>
+## General Purpose SSD volumes \(gp2\)<a name="EBSVolumeTypes_gp2"></a>
 
 General Purpose SSD \(`gp2`\) volumes offer cost\-effective storage that is ideal for a broad range of workloads\. These volumes deliver single\-digit millisecond latencies and the ability to burst to 3,000 IOPS for extended periods of time\. Between a minimum of 100 IOPS \(at 33\.33 GiB and below\) and a maximum of 16,000 IOPS \(at 5,334 GiB and above\), baseline performance scales linearly at 3 IOPS per GiB of volume size\. AWS designs `gp2` volumes to deliver their provisioned performance 99% of the time\. A `gp2` volume can range in size from 1 GiB to 16 TiB\.
 
@@ -110,7 +110,7 @@ If your `gp2` volume uses all of its I/O credit balance, the maximum IOPS perfor
 
 If you notice that your volume performance is frequently limited to the baseline level \(due to an empty I/O credit balance\), you should consider using a larger `gp2` volume \(with a higher baseline performance level\) or switching to an `io1` or `io2` volume for workloads that require sustained IOPS performance greater than 16,000 IOPS\.
 
-For information about using CloudWatch metrics and alarms to monitor your burst bucket balance, see [Monitoring the burst bucket balance for `gp2`, `st1`, and `sc1` volumes](#monitoring_burstbucket)\.
+For information about using CloudWatch metrics and alarms to monitor your burst bucket balance, see [Monitoring the burst bucket balance for volumes](#monitoring_burstbucket)\.
 
 ### Throughput performance<a name="GP2Throughput"></a>
 
@@ -152,17 +152,17 @@ V  =  -----
    =  333⅓ GiB (334 GiB in practice because volumes are provisioned in whole gibibytes)
 ```
 
-## Provisioned IOPS SSD \(`io1` and `io2`\) volumes<a name="EBSVolumeTypes_piops"></a>
+## Provisioned IOPS SSD volumes<a name="EBSVolumeTypes_piops"></a>
 
-Provisioned IOPS SSD \(`io1` and `io2`\) volumes are designed to meet the needs of I/O\-intensive workloads, particularly database workloads, that are sensitive to storage performance and consistency\. Unlike `gp2`, which uses a bucket and credit model to calculate performance, `io1` and `io2` volumes allow you to specify a consistent IOPS rate when you create volumes, and Amazon EBS delivers the provisioned performance 99\.9 percent of the time\.
+Provisioned IOPS SSD \(`io1` and `io2`\) volumes are designed to meet the needs of I/O\-intensive workloads, particularly database workloads, that are sensitive to storage performance and consistency\. Unlike General Purpose SSD volumes, which uses a bucket and credit model to calculate performance, Provisioned IOPS SSD volumes use a consistent IOPS rate, which you specify when you create the volume, and Amazon EBS delivers the provisioned performance 99\.9 percent of the time\.
 
 `io1` volumes are designed to provide 99\.8 to 99\.9 percent volume durability with an annual failure rate \(AFR\) no higher than 0\.2 percent, which translates to a maximum of two volume failures per 1,000 running volumes over a one\-year period\. `io2` volumes are designed to provide 99\.999 percent volume durability with an AFR no higher than 0\.001 percent, which translates to a single volume failure per 100,000 running volumes over a one\-year period\.
 
-`io1` and `io2` volumes can range in size from 4 GiB to 16 TiB\. You can provision from 100 IOPS up to 64,000 IOPS per volume on [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances) and up to 32,000 on other instances\. The maximum ratio of provisioned IOPS to requested volume size \(in GiB\) is 50:1 for `io1` volumes, and 500:1 for `io2` volumes\. For example, a 100 GiB `io1` volume can be provisioned with up to 5,000 IOPS, while a 100 GiB `io2` volume can be provisioned with up to 50,000 IOPS\. On a supported instance type, the following volume sizes allow provisioning up to the 64,000 IOPS maximum:
+Provisioned IOPS SSD volumes can range in size from 4 GiB to 16 TiB\. You can provision from 100 IOPS up to 64,000 IOPS per volume on [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances) and up to 32,000 on other instances\. The maximum ratio of provisioned IOPS to requested volume size \(in GiB\) is 50:1 for `io1` volumes, and 500:1 for `io2` volumes\. For example, a 100 GiB `io1` volume can be provisioned with up to 5,000 IOPS, while a 100 GiB `io2` volume can be provisioned with up to 50,000 IOPS\. On a supported instance type, the following volume sizes allow provisioning up to the 64,000 IOPS maximum:
 + `io1` volume 1,280 GiB in size or greater \(50 × 1,280 GiB = 64,000 IOPS\)
 + `io2` volume 128 GiB in size or greater \(500 × 128 GiB = 64,000 IOPS\)
 
-`io1` and `io2` volumes provisioned with up to 32,000 IOPS support a maximum I/O size of 256 KiB and yield as much as 500 MiB/s of throughput\. With the I/O size at the maximum, peak throughput is reached at 2,000 IOPS\. A volume provisioned with more than 32,000 IOPS \(up to the cap of 64,000 IOPS\) supports a maximum I/O size of 16 KiB and yields as much as 1,000 MiB/s of throughput\. The following graph illustrates these performance characteristics:
+Provisioned IOPS SSD volumes provisioned with up to 32,000 IOPS support a maximum I/O size of 256 KiB and yield as much as 500 MiB/s of throughput\. With the I/O size at the maximum, peak throughput is reached at 2,000 IOPS\. A volume provisioned with more than 32,000 IOPS \(up to the cap of 64,000 IOPS\) supports a maximum I/O size of 16 KiB and yields as much as 1,000 MiB/s of throughput\. The following graph illustrates these performance characteristics:
 
 ![\[Throughput limits for io1 volumes\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/io1_throughput.png)
 
@@ -171,13 +171,13 @@ Your per\-I/O latency experience depends on the provisioned IOPS and on your wor
 **Note**  
 Some AWS accounts created before 2012 might have access to Availability Zones in us\-west\-1 or ap\-northeast\-1 that do not support Provisioned IOPS SSD \(`io1`\) volumes\. If you are unable to create an `io1` volume \(or launch an instance with an `io1` volume in its block device mapping\) in one of these Regions, try a different Availability Zone in the Region\. You can verify that an Availability Zone supports `io1` volumes by creating a 4 GiB `io1` volume in that zone\.
 
-## Throughput Optimized HDD \(`st1`\) volumes<a name="EBSVolumeTypes_st1"></a>
+## Throughput Optimized HDD volumes<a name="EBSVolumeTypes_st1"></a>
 
 Throughput Optimized HDD \(`st1`\) volumes provide low\-cost magnetic storage that defines performance in terms of throughput rather than IOPS\. This volume type is a good fit for large, sequential workloads such as Amazon EMR, ETL, data warehouses, and log processing\. Bootable `st1` volumes are not supported\. 
 
 Throughput Optimized HDD \(`st1`\) volumes, though similar to Cold HDD \(`sc1`\) volumes, are designed to support *frequently* accessed data\.
 
-This volume type is optimized for workloads involving large, sequential I/O, and we recommend that customers with workloads performing small, random I/O use `gp2`\. For more information, see [**Inefficiency of small read/writes on HDD**](#inefficiency)\.
+This volume type is optimized for workloads involving large, sequential I/O, and we recommend that customers with workloads performing small, random I/O use `gp2`\. For more information, see [Inefficiency of small read/writes on HDD](#inefficiency)\.
 
 ### Throughput credits and burst performance<a name="ST1ThroughputBurst"></a>
 
@@ -244,16 +244,16 @@ The following diagram plots the table values:
 **Note**  
 When you create a snapshot of a Throughput Optimized HDD \(`st1`\) volume, performance may drop as far as the volume's baseline value while the snapshot is in progress\.
 
-For information about using CloudWatch metrics and alarms to monitor your burst bucket balance, see [Monitoring the burst bucket balance for `gp2`, `st1`, and `sc1` volumes](#monitoring_burstbucket)\.
+For information about using CloudWatch metrics and alarms to monitor your burst bucket balance, see [Monitoring the burst bucket balance for volumes](#monitoring_burstbucket)\.
 
-## Cold HDD \(`sc1`\) volumes<a name="EBSVolumeTypes_sc1"></a>
+## Cold HDD volumes<a name="EBSVolumeTypes_sc1"></a>
 
 Cold HDD \(`sc1`\) volumes provide low\-cost magnetic storage that defines performance in terms of throughput rather than IOPS\. With a lower throughput limit than `st1`, `sc1` is a good fit for large, sequential cold\-data workloads\. If you require infrequent access to your data and are looking to save costs, `sc1` provides inexpensive block storage\. Bootable `sc1` volumes are not supported\.
 
 Cold HDD \(`sc1`\) volumes, though similar to Throughput Optimized HDD \(`st1`\) volumes, are designed to support *infrequently* accessed data\.
 
 **Note**  
-This volume type is optimized for workloads involving large, sequential I/O, and we recommend that customers with workloads performing small, random I/O use `gp2`\. For more information, see [**Inefficiency of small read/writes on HDD**](#inefficiency)\.
+This volume type is optimized for workloads involving large, sequential I/O, and we recommend that customers with workloads performing small, random I/O use `gp2`\. For more information, see [Inefficiency of small read/writes on HDD](#inefficiency)\.
 
 ### Throughput credits and burst performance<a name="SC1ThroughputBurst"></a>
 
@@ -318,22 +318,22 @@ The following diagram plots the table values:
 **Note**  
 When you create a snapshot of a Cold HDD \(`sc1`\) volume, performance may drop as far as the volume's baseline value while the snapshot is in progress\.
 
-For information about using CloudWatch metrics and alarms to monitor your burst bucket balance, see [Monitoring the burst bucket balance for `gp2`, `st1`, and `sc1` volumes](#monitoring_burstbucket)\.
+For information about using CloudWatch metrics and alarms to monitor your burst bucket balance, see [Monitoring the burst bucket balance for volumes](#monitoring_burstbucket)\.
 
-## Magnetic \(`standard`\)<a name="EBSVolumeTypes_standard"></a>
+## Magnetic volumes<a name="EBSVolumeTypes_standard"></a>
 
 Magnetic volumes are backed by magnetic drives and are suited for workloads where data is accessed infrequently, and scenarios where low\-cost storage for small volume sizes is important\. These volumes deliver approximately 100 IOPS on average, with burst capability of up to hundreds of IOPS, and they can range in size from 1 GiB to 1 TiB\.
 
 **Note**  
 Magnetic is a previous generation volume type\. For new applications, we recommend using one of the newer volume types\. For more information, see [Previous Generation Volumes](http://aws.amazon.com/ebs/previous-generation/)\.
 
-For information about using CloudWatch metrics and alarms to monitor your burst bucket balance, see [Monitoring the burst bucket balance for `gp2`, `st1`, and `sc1` volumes](#monitoring_burstbucket)\.
+For information about using CloudWatch metrics and alarms to monitor your burst bucket balance, see [Monitoring the burst bucket balance for volumes](#monitoring_burstbucket)\.
 
 ## Performance considerations when using HDD volumes<a name="EBSVolumeTypes_considerations"></a>
 
 For optimal throughput results using HDD volumes, plan your workloads with the following considerations in mind\.
 
-### **Throughput Optimized HDD vs\. Cold HDD**<a name="ST1vSC1"></a>
+### **Comparing Throughput Optimized HDD and Cold HDD**<a name="ST1vSC1"></a>
 
 The `st1` and `sc1` bucket sizes vary according to volume size, and a full bucket contains enough tokens for a full volume scan\. However, larger `st1` and `sc1` volumes take longer for the volume scan to complete due to per\-instance and per\-volume throughput limits\. Volumes attached to smaller instances are limited to the per\-instance throughput rather than the `st1` or `sc1` throughput limits\.
 
@@ -399,13 +399,13 @@ Similarly, an `sc1` customer with a 5\-TiB volume can expect to complete a full 
 
 Therefore if you have a throughput\-oriented workload that needs to complete scans quickly \(up to 500 MiB/s\), or requires several full volume scans a day, use `st1`\. If you are optimizing for cost, your data is relatively infrequently accessed, and you don’t need more than 250 MiB/s of scanning performance, then use `sc1`\.
 
-### **Inefficiency of small read/writes on HDD**<a name="inefficiency"></a>
+### Inefficiency of small read/writes on HDD<a name="inefficiency"></a>
 
 The performance model for `st1` and `sc1` volumes is optimized for sequential I/Os, favoring high\-throughput workloads, offering acceptable performance on workloads with mixed IOPS and throughput, and discouraging workloads with small, random I/O\.
 
 For example, an I/O request of 1 MiB or less counts as a 1 MiB I/O credit\. However, if the I/Os are sequential, they are merged into 1 MiB I/O blocks and count only as a 1 MiB I/O credit\. 
 
-### **Limitations on per\-instance throughput**<a name="throughput-limitations"></a>
+### Limitations on per\-instance throughput<a name="throughput-limitations"></a>
 
 Throughput for `st1` and `sc1` volumes is always determined by the smaller of the following:
 + Throughput limits of the volume
@@ -413,6 +413,6 @@ Throughput for `st1` and `sc1` volumes is always determined by the smaller of th
 
 As for all Amazon EBS volumes, we recommend that you select an appropriate EBS\-optimized EC2 instance in order to avoid network bottlenecks\. For more information, see [Amazon EBS–optimized instances](ebs-optimized.md)\.
 
-## Monitoring the burst bucket balance for `gp2`, `st1`, and `sc1` volumes<a name="monitoring_burstbucket"></a>
+## Monitoring the burst bucket balance for volumes<a name="monitoring_burstbucket"></a>
 
 You can monitor the burst\-bucket level for `gp2`, `st1`, and `sc1` volumes using the EBS `BurstBalance` metric available in Amazon CloudWatch\. This metric shows the percentage of I/O credits \(for `gp2`\) or throughput credits \(for `st1` and `sc1`\) remaining in the burst bucket\. For more information about the `BurstBalance` metric and other metrics related to I/O, see [I/O characteristics and monitoring](ebs-io-characteristics.md)\. CloudWatch also allows you to set an alarm that notifies you when the `BurstBalance` value falls to a certain level\. For more information, see [Creating Amazon CloudWatch Alarms](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html)\.

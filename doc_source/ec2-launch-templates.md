@@ -56,7 +56,7 @@ Create a new launch template using parameters that you define, or use an existin
 ### Creating a new launch template using parameters you define<a name="create-launch-template-define-parameters"></a>
 
 ------
-#### [ New console ]
+#### [ Console ]
 
 **To create a new launch template using defined parameters using the console**
 
@@ -128,69 +128,6 @@ Create a new launch template using parameters that you define, or use an existin
 1. Choose **Create launch template**\.
 
 ------
-#### [ Old console ]
-
-**To create a new launch template using defined parameters using the console**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Launch Templates**, and then choose **Create launch template**\.
-
-1. For **Launch template name**, enter a descriptive name for the launch template\. To tag the launch template on creation, choose **Show Tags**, **Add Tag**, and then enter a tag key and value pair\.
-
-1. For **Template version description**, provide a brief description of the launch template version\.
-
-1. For **Launch template contents**, provide the following information:
-   + **AMI ID**: An AMI from which to launch the instance\. To search through all available AMIs, choose **Search for AMI**\. To select a commonly used AMI, choose **Quick Start**\. Or, choose **AWS Marketplace** or **Community AMIs**\. You can use an AMI that you own or [find a suitable AMI](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/finding-an-ami.html)\.
-   + **Instance type**: Ensure that the instance type is compatible with the AMI that you've specified\. For more information, see [Instance types](instance-types.md)\. 
-   + **Key pair name**: The key pair for the instance\. For more information, see [Amazon EC2 key pairs and Linux instances](ec2-key-pairs.md)\.
-   + **Network type**: If applicable, whether to launch the instance into a VPC or EC2\-Classic\. If you choose **VPC**, specify the subnet in the **Network interfaces** section\. If you choose **Classic**, ensure that the specified instance type is supported in EC2\-Classic and specify the Availability Zone for the instance\.
-   + **Security Groups**: One or more security groups to associate with the instance\. For more information, see [Amazon EC2 security groups for Linux instances](ec2-security-groups.md)\.
-
-1. For **Network interfaces**, you can specify up to two [network interfaces](using-eni.md) for the instance\.
-   + **Device**: The device number for the network interface, for example, `eth0` for the primary network interface\. If you leave the field blank, AWS creates the primary network interface\.
-   + **Network interface**: The ID of the network interface, or leave blank to let AWS create a new network interface\.
-   + **Description**: \(Optional\) A description for the new network interface\.
-   + **Subnet**: The subnet in which to create a new network interface\. For the primary network interface \(`eth0`\), this is the subnet in which the instance is launched\. If you've entered an existing network interface for `eth0`, the instance is launched in the subnet in which the network interface is located\.
-   + **Auto\-assign public IP**: Whether to automatically assign a public IP address to the network interface with the device index of `eth0`\. This setting can only be enabled for a single, new network interface\.
-   + **Primary IP**: A private IPv4 address from the range of your subnet\. Leave blank to let AWS choose a private IPv4 address for you\.
-   + **Secondary IP**: A secondary private IPv4 address from the range of your subnet\. Leave blank to let AWS choose one for you\.
-   + \(IPv6\-only\) **IPv6 IPs**: An IPv6 address from the range of the subnet\.
-   + **Security group ID**: The ID of a security group in your VPC with which to associate the network interface\.
-   + **Delete on termination**: Whether the network interface is deleted when the instance is deleted\.
-   + **Elastic Fabric Adapter**: Indicates whether the network interface is an Elastic Fabric Adapter\. For more information, see [ Elastic Fabric Adapter](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html)\.
-
-1. For **Storage \(Volumes\)**, specify volumes to attach to the instance besides the volumes specified by the AMI\.
-   + **Volume type**: The instance store or Amazon EBS volumes with which to associate your instance\. The type of volume depends on the instance type that you've chosen\. For more information, see [Amazon EC2 instance store](InstanceStorage.md) and [Amazon EBS volumes](ebs-volumes.md)\.
-   + **Device name**: A device name for the volume\.
-   + **Snapshot**: The ID of the snapshot from which to create the volume\.
-   + **Size**: For Amazon EBS volumes, the storage size\.
-   + **Volume type**: For Amazon EBS volumes, the volume type\. For more information, see [Amazon EBS volume types](ebs-volume-types.md)\.
-   + **IOPS**: For the Provisioned IOPS SSD volume type, the number of I/O operations per second \(IOPS\) that the volume can support\.
-   + **Delete on termination**: For Amazon EBS volumes, whether to delete the volume when the instance is terminated\. For more information, see [Preserving Amazon EBS volumes on instance termination](terminating-instances.md#preserving-volumes-on-termination)\.
-   + **Encrypted**: If the instance type supports EBS encryption, you can enable encryption for the volume\. If you have enabled encryption by default in this Region, encryption is enabled for you\. For more information, see [Amazon EBS encryption](EBSEncryption.md)\.
-   + **Key**: The CMK to use for EBS encryption\. You can specify the ARN of any customer master key \(CMK\) that you created using the AWS Key Management Service\. If you specify a CMK, you must also use **Encrypted** to enable encryption\.
-
-1. For **Instance tags**, specify [tags](Using_Tags.md) by providing key and value combinations\. You can tag the instance, the volumes, or both\.
-
-1. For **Advanced Details**, expand the section to view the fields and specify any additional parameters for the instance\.
-   + **Purchasing option**: The purchasing model\. Choose **Request Spot instances** to request Spot Instances at the Spot price, capped at the On\-Demand price, and choose **Customize Spot parameters** to change the default Spot Instance settings\. If you do not request a Spot Instance, EC2 launches an On\-Demand Instance by default\. For more information, see [Spot Instances](using-spot-instances.md)\.
-   + **IAM instance profile**: An AWS Identity and Access Management \(IAM\) instance profile to associate with the instance\. For more information, see [IAM roles for Amazon EC2](iam-roles-for-amazon-ec2.md)\.
-   + **Shutdown behavior**: Whether the instance should stop or terminate when shut down\. For more information, see [Changing the instance initiated shutdown behavior](terminating-instances.md#Using_ChangingInstanceInitiatedShutdownBehavior)\.
-   + **Stop \- Hibernate behavior**: Whether the instance is enabled for hibernation\. This field is only valid for instances that meet the hibernation prerequisites\. For more information, see [Hibernate your Linux instance](Hibernate.md)\.
-   + **Termination protection**: Whether to prevent accidental termination\. For more information, see [Enabling termination protection](terminating-instances.md#Using_ChangingDisableAPITermination)\.
-   + **Monitoring**: Whether to enable detailed monitoring of the instance using Amazon CloudWatch\. Additional charges apply\. For more information, see [Monitoring your instances using CloudWatch](using-cloudwatch.md)\.
-   + **T2/T3 Unlimited**: Whether to enable applications to burst beyond the baseline for as long as needed\. This field is only valid for T2 and T3 instances\. Additional charges may apply\. For more information, see [Burstable performance instances](burstable-performance-instances.md)\.
-   + **Placement group name**: Specify a placement group in which to launch the instance\. Not all instance types can be launched in a placement group\. For more information, see [Placement groups](placement-groups.md)\.
-   + **EBS\-optimized instance**: Provides additional, dedicated capacity for Amazon EBS I/O\. Not all instance types support this feature, and additional charges apply\. For more information, see [Amazon EBS–optimized instances](ebs-optimized.md)\.
-   + **Tenancy**: Choose whether to run your instance on shared hardware \(**Shared**\), isolated, dedicated hardware \(**Dedicated**\), or on a Dedicated Host \(**Dedicated host**\)\. If you choose to launch the instance onto a Dedicated Host, you can specify whether to launch the instance into a host resource group or you can target a specific Dedicated Host\. Additional charges may apply\. For more information, see [Dedicated Instances](dedicated-instance.md) and [Dedicated Hosts](dedicated-hosts-overview.md)\.
-   + **RAM disk ID**: A RAM disk for the instance\. If you have specified a kernel, you may need to specify a specific RAM disk with the drivers to support it\. Only valid for paravirtual \(PV\) AMIs\.
-   + **Kernel ID**: A kernel for the instance\. Only valid for paravirtual \(PV\) AMIs\.
-   + **User data**: You can specify user data to configure an instance during launch, or to run a configuration script\. For more information, see [Running commands on your Linux instance at launch](user-data.md)\.
-
-1. Choose **Create launch template**\.
-
-------
 #### [ AWS CLI ]
 
 **To create a launch template using the AWS CLI**
@@ -255,9 +192,6 @@ Create a new launch template using parameters that you define, or use an existin
 
 ### Creating a launch template from an existing launch template<a name="create-launch-template-from-existing-launch-template"></a>
 
-------
-#### [ New console ]
-
 **To create a launch template from an existing launch template using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
@@ -276,29 +210,10 @@ Create a new launch template using parameters that you define, or use an existin
 
 1. Adjust any launch parameters as required, and then choose **Create launch template**\.
 
-------
-#### [ Old console ]
-
-**To create a launch template from an existing launch template using the console**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Launch Templates**\.
-
-1. Choose **Create launch template**\. Provide a name, description, and tags for the launch template\.
-
-1. For **Source template**, choose a launch template on which to base the new launch template\.
-
-1. For **Source template version**, choose the launch template version on which to base the new launch template\.
-
-1. Adjust any launch parameters as required, and then choose **Create launch template**\.
-
-------
-
 ### Creating a launch template from an instance<a name="create-launch-template-from-instance"></a>
 
 ------
-#### [ New console ]
+#### [ Console ]
 
 **To create a launch template from an instance using the console**
 
@@ -313,23 +228,6 @@ Create a new launch template using parameters that you define, or use an existin
 When you create a launch template from an instance, the instance's network interface IDs and IP addresses are not included in the template\.
 
 1. Choose **Create launch template**\.
-
-------
-#### [ Old console ]
-
-**To create a launch template from an instance using the console**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Instances**\.
-
-1. Select the instance, and choose **Actions**, **Create Template From Instance**\.
-
-1. Provide a name, description, and tags, and adjust the launch parameters as required\.
-**Note**  
-When you create a launch template from an instance, the instance's network interface IDs and IP addresses are not included in the template\.
-
-1. Choose **Create Template From Instance**\.
 
 ------
 #### [ AWS CLI ]
@@ -419,7 +317,7 @@ You can create launch template versions for a specific launch template, set the 
 When you create a launch template version, you can specify new launch parameters or use an existing version as the base for the new version\. For more information about the launch parameters, see [Creating a launch template](#create-launch-template)\.
 
 ------
-#### [ New console ]
+#### [ Console ]
 
 **To create a launch template version using the console**
 
@@ -432,27 +330,6 @@ When you create a launch template version, you can specify new launch parameters
 1. For **Template version description**, enter a description for the launch template version\.
 
 1. \(Optional\) Expand **Source template** and select a version of the launch template to use as a base for the new launch template version\. The new launch template version inherits the launch parameters from this launch template version\.
-
-1. Modify the launch parameters as required, and choose **Create launch template**\.
-
-------
-#### [ Old console ]
-
-**To create a launch template version using the console**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Launch Templates**\.
-
-1. Choose **Create launch template**\.
-
-1. For **What would you like to do**, choose **Create a new template version**
-
-1. For **Launch template name**, select the name of the existing launch template from the list\.
-
-1. For **Template version description**, enter a description for the launch template version\.
-
-1. \(Optional\) Select a version of the launch template, or a version of a different launch template, to use as a base for the new launch template version\. The new launch template version inherits the launch parameters from this launch template version\.
 
 1. Modify the launch parameters as required, and choose **Create launch template**\.
 
@@ -477,7 +354,7 @@ When you create a launch template version, you can specify new launch parameters
 You can set the default version for the launch template\. When you launch an instance from a launch template and do not specify a version, the instance is launched using the parameters of the default version\.
 
 ------
-#### [ New console ]
+#### [ Console ]
 
 **To set the default launch template version using the console**
 
@@ -488,19 +365,6 @@ You can set the default version for the launch template\. When you launch an ins
 1. Select the launch template and choose **Actions**, **Set default version**\.
 
 1. For **Template version**, select the version number to set as the default version and choose **Set as default version**\.
-
-------
-#### [ Old console ]
-
-**To set the default launch template version using the console**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Launch Templates**\.
-
-1. Select the launch template and choose **Actions**, **Set default version**\.
-
-1. For **Default version**, select the version number and choose **Set as default version**\.
 
 ------
 #### [ AWS CLI ]
@@ -521,7 +385,7 @@ You can set the default version for the launch template\. When you launch an ins
 Using the console, you can view all the versions of the selected launch template, or get a list of the launch templates whose latest or default version matches a specific version number\. Using the AWS CLI, you can describe all versions, individual versions, or a range of versions of a specified launch template\. You can also describe all the latest versions or all the default versions of all the launch templates in your account\.
 
 ------
-#### [ New console ]
+#### [ Console ]
 
 **To describe a launch template version using the console**
 
@@ -561,7 +425,7 @@ Using the console, you can view all the versions of the selected launch template
 If you no longer require a launch template version, you can delete it\. You cannot replace the version number after you delete it\. You cannot delete the default version of the launch template; you must first assign a different version as the default\.
 
 ------
-#### [ New console ]
+#### [ Console ]
 
 **To delete a launch template version using the console**
 
@@ -572,19 +436,6 @@ If you no longer require a launch template version, you can delete it\. You cann
 1. Select the launch template and choose **Actions**, **Delete template version**\.
 
 1. Select the version to delete and choose **Delete**\.
-
-------
-#### [ Old console ]
-
-**To delete a launch template version using the console**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Launch Templates**\.
-
-1. Select the launch template and choose **Actions**, **Delete template version**\.
-
-1. Select the version to delete and choose **Delete launch template version**\.
 
 ------
 #### [ AWS CLI ]
@@ -607,7 +458,7 @@ You can use the parameters contained in a launch template to launch an instance\
 Instances that are launched using a launch template are automatically assigned two tags with the keys `aws:ec2launchtemplate:id` and `aws:ec2launchtemplate:version`\. You cannot remove or edit these tags\.
 
 ------
-#### [ New console ]
+#### [ Console ]
 
 **To launch an instance from a launch template using the console**
 
@@ -620,23 +471,6 @@ Instances that are launched using a launch template are automatically assigned t
 1. For **Source template version**, select the launch template version to use\.
 
 1. For **Number of instances**, specify the number of instances to launch\.
-
-1. \(Optional\) You can override or add launch template parameters by changing and adding parameters in the **Instance details** section\.
-
-1. Choose **Launch instance from template**\.
-
-------
-#### [ Old console ]
-
-**To launch an instance from a launch template using the console**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Launch Templates**\.
-
-1. Select the launch template and choose **Actions**, **Launch instance from template**\.
-
-1. Select the launch template version to use\.
 
 1. \(Optional\) You can override or add launch template parameters by changing and adding parameters in the **Instance details** section\.
 
@@ -685,7 +519,7 @@ If the instance fails to launch or the state immediately goes to `terminated` in
 
 You can create an Auto Scaling group and specify a launch template to use for the group\. When Amazon EC2 Auto Scaling launches instances in the Auto Scaling group, it uses the launch parameters defined in the associated launch template\. For more information, see [Creating an Auto Scaling Group Using a Launch Template](https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg-launch-template.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 
-Before you can create an Auto Scaling group using a launch template, you must create a launch template that includes the parameters required to launch an instance in an Auto Scaling group, such as the ID of the AMI\. The new console provides guidance to help you create a template that you can use with Auto Scaling\.
+Before you can create an Auto Scaling group using a launch template, you must create a launch template that includes the parameters required to launch an instance in an Auto Scaling group, such as the ID of the AMI\. The console provides guidance to help you create a template that you can use with Auto Scaling\.
 
 **To create a launch template to use with Auto Scaling using the console**
 
@@ -731,7 +565,7 @@ For more information, see [Spot Fleet requests](spot-fleet-requests.md)\.
 If you no longer require a launch template, you can delete it\. Deleting a launch template deletes all of its versions\.
 
 ------
-#### [ New console ]
+#### [ Console ]
 
 **To delete a launch template \(console\)**
 
@@ -742,19 +576,6 @@ If you no longer require a launch template, you can delete it\. Deleting a launc
 1. Select the launch template and choose **Actions**, **Delete template**\.
 
 1. Enter **Delete** to confirm deletion, and then choose **Delete**\.
-
-------
-#### [ Old console ]
-
-**To delete a launch template \(console\)**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Launch Templates**\.
-
-1. Select the launch template and choose **Actions**, **Delete template**\.
-
-1. Choose **Delete launch template**\.
 
 ------
 #### [ AWS CLI ]

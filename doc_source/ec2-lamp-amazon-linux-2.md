@@ -312,7 +312,7 @@ We do not recommend using `phpMyAdmin` to access a LAMP server unless you have e
 
 1. Log in to your phpMyAdmin installation with the `root` user name and the MySQL root password you created earlier\. 
 
-   Your installation must still be configured before you put it into service\. To configure phpMyAdmin, you can [manually create a configuration file](https://docs.phpmyadmin.net/en/latest/setup.html#manually-creating-the-file), [use the setup console](https://docs.phpmyadmin.net/en/latest/setup.html#using-setup-script), or combine both approaches\. 
+   Your installation must still be configured before you put it into service\. To configure phpMyAdmin, you can [manually create a configuration file](https://docs.phpmyadmin.net/en/latest/setup.html#manually-creating-the-file), [use the setup script](https://docs.phpmyadmin.net/en/latest/setup.html#using-the-setup-script), or combine both approaches\. 
 
     For information about using phpMyAdmin, see the [phpMyAdmin User Guide](http://docs.phpmyadmin.net/en/latest/user.html)\.
 

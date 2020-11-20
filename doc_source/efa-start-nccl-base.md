@@ -99,12 +99,12 @@ Launch a temporary instance that you can use to install and configure the EFA so
 **To install the Nvidia GPU drivers, Nvidia CUDA toolkit, and cuDNN**
 
 1. Install the utilities that are needed to install the Nvidia GPU drivers and the Nvidia CUDA toolkit\.
-   + Amazon Linux, Amazon Linux 2, RHEL 7\.6/7\.7/7\.8, CentOS 7
+   + Amazon Linux, Amazon Linux 2, RHEL, and CentOS
 
      ```
      $ sudo yum groupinstall 'Development Tools' -y
      ```
-   + Ubuntu 16\.04 and Ubuntu 18\.04
+   + Ubuntu
 
      ```
      $ sudo apt-get update
@@ -114,12 +114,12 @@ Launch a temporary instance that you can use to install and configure the EFA so
 1. To use the Nvidia GPU driver, you must first disable the `nouveau` open source drivers\.
 
    1. Install the **gcc** compiler and the kernel headers package for the version of the kernel that you are currently running\.
-      + Amazon Linux, Amazon Linux 2, RHEL 7\.6/7\.7/7\.8, CentOS 7
+      + Amazon Linux, Amazon Linux 2, RHEL, and CentOS
 
         ```
         $ sudo yum install -y gcc kernel-devel-$(uname -r)
         ```
-      + Ubuntu 16\.04 and Ubuntu 18\.04
+      + Ubuntu
 
         ```
         $ sudo apt-get install -y gcc make linux-headers-$(uname -r)
@@ -146,12 +146,12 @@ Use `sudo` to open the file with root privileges\.
       ```
 
    1. Rebuild the Grub configuration\.
-      + Amazon Linux, Amazon Linux 2, RHEL 7\.6/7\.7/7\.8, CentOS 7
+      + Amazon Linux, Amazon Linux 2, RHEL, and CentOS
 
         ```
         $ sudo grub2-mkconfig -o /boot/grub2/grub.cfg
         ```
-      + Ubuntu 16\.04 and Ubuntu 18\.04
+      + Ubuntu
 
         ```
         $ sudo update-grub
@@ -160,7 +160,7 @@ Use `sudo` to open the file with root privileges\.
 1. Reboot the instance and reconnect to it\.
 
 1. Download and add the Nvidia Machine Learning repositories\.
-   + Amazon Linux, Amazon Linux 2, RHEL 7\.6/7\.7/7\.8, CentOS 7
+   + Amazon Linux, Amazon Linux 2, RHEL, and CentOS 
 
      ```
      $ wget -O /tmp/ml-repo.rpm https://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
@@ -169,7 +169,7 @@ Use `sudo` to open the file with root privileges\.
      $ sudo yum clean all
      $ sudo yum upgrade -y
      ```
-   + Ubuntu 16\.04 and Ubuntu 18\.04
+   + Ubuntu
 
      ```
      $ sudo apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/7fa2af80.pub
@@ -183,12 +183,12 @@ Use `sudo` to open the file with root privileges\.
      ```
 
 1. Install the Nvidia GPU drivers, NVIDIA CUDA toolkit, and cuDNN
-   + Amazon Linux, Amazon Linux 2, RHEL 7\.6/7\.7/7\.8, CentOS 7
+   + Amazon Linux, Amazon Linux 2, RHEL, and CentOS 
 
      ```
      $ sudo yum -y install cuda-toolkit-11-0 libcudnn8 libcudnn8-devel nvidia-driver-branch-450
      ```
-   + Ubuntu 16\.04 and Ubuntu 18\.04
+   + Ubuntu
 
      ```
      $ sudo apt install -o Dpkg::Options::='--force-overwrite' cuda-drivers-450 cuda-toolkit-11-0 libcudnn8 libcudnn8-dev -y
@@ -197,14 +197,14 @@ Use `sudo` to open the file with root privileges\.
 1. Reboot the instance and reconnect to it\.
 
 1. \(`p4d.24xlarge` instances only\) Install the Nvidia Fabric Manager, start the service, and ensure that it starts automatically when the instance starts\. Nvidia Fabric Manager is required for NV Switch Management\.
-   + Amazon Linux, Amazon Linux 2, RHEL 7\.6/7\.7/7\.8, CentOS 7
+   + Amazon Linux, Amazon Linux 2, RHEL, and CentOS 
 
      ```
      $ sudo yum -y install nvidia-fabricmanager-450
      $ sudo systemctl start nvidia-fabricmanager
      $ sudo systemctl enable nvidia-fabricmanager
      ```
-   + Ubuntu 16\.04 and Ubuntu 18\.04
+   + Ubuntu
 
      ```
      $ sudo apt install -o Dpkg::Options::='--force-overwrite' nvidia-fabricmanager-450
@@ -243,12 +243,12 @@ Install the EFA\-enabled kernel, EFA drivers, Libfabric, and Open MPI stack that
 1. Connect to the instance you launched\. For more information, see [Connect to your Linux instance](AccessingInstances.md)\.
 
 1. To ensure that all of your software packages are up to date, perform a quick software update on your instance\. This process may take a few minutes\.
-   + Amazon Linux, Amazon Linux 2, RHEL 7\.6/7\.7/7\.8, CentOS 7
+   + Amazon Linux, Amazon Linux 2, RHEL, and CentOS
 
      ```
      $ sudo yum update -y --skip-broken
      ```
-   + Ubuntu 16\.04 and Ubuntu 18\.04
+   + Ubuntu
 
      ```
      $ sudo apt-get update
@@ -257,11 +257,16 @@ Install the EFA\-enabled kernel, EFA drivers, Libfabric, and Open MPI stack that
      ```
      $ sudo apt-get upgrade -y
      ```
+   + SUSE Linux Enterprise
+
+     ```
+     $ sudo zypper update -y
+     ```
 
 1. Download the EFA software installation files\. The software installation files are packaged into a compressed tarball \(`.tar.gz`\) file\. To download the latest *stable* version, use the following command\.
 
    ```
-   $ curl -O https://efa-installer.amazonaws.com/aws-efa-installer-1.10.0.tar.gz
+   $ curl -O https://efa-installer.amazonaws.com/aws-efa-installer-1.10.1.tar.gz
    ```
 
    You can also get the latest version by replacing the version number with `latest` in the preceding command\.
@@ -293,11 +298,11 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
    1. Download the signature file and verify the signature of the EFA tarball file\.
 
       ```
-      $ wget https://efa-installer.amazonaws.com/aws-efa-installer-1.10.0.tar.gz.sig
+      $ wget https://efa-installer.amazonaws.com/aws-efa-installer-1.10.1.tar.gz.sig
       ```
 
       ```
-      $ gpg --verify ./aws-efa-installer-1.10.0.tar.gz.sig
+      $ gpg --verify ./aws-efa-installer-1.10.1.tar.gz.sig
       ```
 
       The following shows example output\.
@@ -315,7 +320,7 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
 1. Extract the files from the compressed `.tar.gz` file and navigate into the extracted directory\.
 
    ```
-   $ tar -xf aws-efa-installer-1.10.0.tar.gz
+   $ tar -xf aws-efa-installer-1.10.1.tar.gz
    ```
 
    ```
@@ -414,7 +419,7 @@ The aws\-ofi\-nccl plugin maps NCCL's connection\-oriented transport APIs to Lib
    $ cd $HOME
    ```
 
-1. \(Ubuntu 16\.04 and Ubuntu 18\.04\) Install the utilities that are required to install the **aws\-ofi\-nccl** plugin\. To install the required utilities, run the following command\.
+1. \(Ubuntu only\) Install the utilities that are required to install the **aws\-ofi\-nccl** plugin\. To install the required utilities, run the following command\.
 
    ```
    $ sudo apt-get install libtool autoconf -y
@@ -479,12 +484,12 @@ Install the NCCL tests\. The NCCL tests enable you to confirm that NCCL is prope
    ```
 
 1. Add the Libfabric directory to the `LD_LIBRARY_PATH` variable\. 
-   + Amazon Linux, Amazon Linux 2, RHEL 7\.6/7\.7/7\.8, CentOS 7
+   + Amazon Linux, Amazon Linux 2, RHEL , and CentOS
 
      ```
      $ export LD_LIBRARY_PATH=/opt/amazon/efa/lib64:$LD_LIBRARY_PATH
      ```
-   + Ubuntu 16\.04 and Ubuntu 18\.04
+   + Ubuntu 
 
      ```
      $ export LD_LIBRARY_PATH=/opt/amazon/efa/lib:$LD_LIBRARY_PATH
@@ -528,34 +533,19 @@ Run a test to ensure that your temporary instance is properly configured for EFA
    + `NCCL_ALGO=ring`—enables ring algorithm for collective operations\.
 
    For more information about the NCCL test arguments, see the [NCCL Tests README](https://github.com/NVIDIA/nccl-tests/blob/master/README.md) in the official nccl\-tests repository\.
-   + Amazon Linux, Amazon Linux 2, RHEL 7\.6/7\.7/7\.8, CentOS 7
 
-     ```
-     $ /opt/amazon/openmpi/bin/mpirun \
-         -x FI_PROVIDER="efa" \
-         -x FI_EFA_USE_DEVICE_RDMA=1 \
-         -x RDMAV_FORK_SAFE=1 \
-         -x LD_LIBRARY_PATH=/opt/nccl/build/lib:/usr/local/cuda/lib64:/opt/amazon/efa/lib64:/opt/amazon/openmpi/lib64:/opt/aws-ofi-nccl/lib:$LD_LIBRARY_PATH \
-         -x NCCL_DEBUG=INFO \
-         -x NCCL_ALGO=ring \
-         --hostfile my-hosts -n 8 -N 8 \
-         --mca pml ^cm --mca btl tcp,self --mca btl_tcp_if_exclude lo,docker0 --bind-to none \
-         $HOME/nccl-tests/build/all_reduce_perf -b 8 -e 1G -f 2 -g 1 -c 1 -n 100
-     ```
-   + Ubuntu 16\.04 and Ubuntu 18\.04
-
-     ```
-     $ /opt/amazon/openmpi/bin/mpirun \
-         -x FI_PROVIDER="efa" \
-         -x FI_EFA_USE_DEVICE_RDMA=1 \
-         -x RDMAV_FORK_SAFE=1 \
-         -x LD_LIBRARY_PATH=/opt/nccl/build/lib:/usr/local/cuda/lib64:/opt/amazon/efa/lib64:/opt/amazon/openmpi/lib64:/opt/aws-ofi-nccl/lib:$LD_LIBRARY_PATH \
-         -x NCCL_DEBUG=INFO \
-         -x NCCL_ALGO=ring \
-         --hostfile my-hosts -n 8 -N 8 \
-         --mca pml ^cm --mca btl tcp,self --mca btl_tcp_if_exclude lo,docker0 --bind-to none \
-         $HOME/nccl-tests/build/all_reduce_perf -b 8 -e 1G -f 2 -g 1 -c 1 -n 100
-     ```
+   ```
+   $ /opt/amazon/openmpi/bin/mpirun \
+       -x FI_PROVIDER="efa" \
+       -x FI_EFA_USE_DEVICE_RDMA=1 \
+       -x RDMAV_FORK_SAFE=1 \
+       -x LD_LIBRARY_PATH=/opt/nccl/build/lib:/usr/local/cuda/lib64:/opt/amazon/efa/lib64:/opt/amazon/openmpi/lib64:/opt/aws-ofi-nccl/lib:$LD_LIBRARY_PATH \
+       -x NCCL_DEBUG=INFO \
+       -x NCCL_ALGO=ring \
+       --hostfile my-hosts -n 8 -N 8 \
+       --mca pml ^cm --mca btl tcp,self --mca btl_tcp_if_exclude lo,docker0 --bind-to none \
+       $HOME/nccl-tests/build/all_reduce_perf -b 8 -e 1G -f 2 -g 1 -c 1 -n 100
+   ```
 
 1. You can confirm that EFA is active as the underlying provider for NCCL when the `NCCL_DEBUG` log is printed\.
 

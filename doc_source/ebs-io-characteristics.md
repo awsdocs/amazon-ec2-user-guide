@@ -10,7 +10,7 @@ When small I/O operations are physically contiguous, Amazon EBS attempts to merg
 
 Similarly, for HDD\-backed volumes, both a single 1,024 KiB I/O operation and 8 sequential 128 KiB operations would count as one operation\. However, 8 random 128 KiB I/O operations would count as 8 operations\.
 
-Consequently, when you create an SSD\-backed volume supporting 3,000 IOPS \(either by provisioning an `io1` or `io2` volume at 3,000 IOPS or by sizing a `gp2` volume at 1000 GiB\), and you attach it to an EBS\-optimized instance that can provide sufficient bandwidth, you can transfer up to 3,000 I/Os of data per second, with throughput determined by I/O size\. 
+Consequently, when you create an SSD\-backed volume supporting 3,000 IOPS \(either by provisioning an `io1` or `io2` volume at 3,000 IOPS or by sizing a `gp2` volume at 1000 GiB\), and you attach it to an EBS\-optimized instance that can provide sufficient bandwidth, you can transfer up to 3,000 I/Os of data per second, with throughput determined by I/O size\.
 
 ## Volume queue length and latency<a name="ebs-io-volume-queue"></a>
 

@@ -13,6 +13,7 @@ For more information about AWS Regions and Availability Zones, see [AWS Global I
 In addition to the AWS global infrastructure, Amazon EC2 offers the following features to support your data resiliency:
 + Copying AMIs across Regions
 + Copying EBS snapshots across Regions
++ Automating EBS\-backed AMIs using Amazon Data Lifecycle Manager
 + Automating EBS snapshots using Amazon Data Lifecycle Manager
 + Maintaining the health and availability of your fleet using Amazon EC2 Auto Scaling
 + Distributing incoming traffic across multiple instances in a single Availability Zone or multiple Availability Zones using Elastic Load Balancing

@@ -19,6 +19,7 @@ An AMI includes the following:
 + [Shared AMIs](sharing-amis.md)
 + [Paid AMIs](paid-amis.md)
 + [Creating an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md)
++ [Automating the EBS\-backed AMI lifecycle](automating-amis.md)
 + [Creating an instance store\-backed Linux AMI](creating-an-ami-instance-store.md)
 + [Using encryption with EBS\-backed AMIs](AMIEncryption.md)
 + [Copying an AMI](CopyingAMIs.md)

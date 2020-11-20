@@ -18,7 +18,7 @@ When you sign up for AWS, you can get started with Amazon EC2 using the [AWS Fre
 
 The instance is an Amazon EBS\-backed instance \(meaning that the root volume is an EBS volume\)\. You can either specify the Availability Zone in which your instance runs, or let Amazon EC2 select an Availability Zone for you\. When you launch your instance, you secure it by specifying a key pair and security group\. When you connect to your instance, you must specify the private key of the key pair that you specified when launching your instance\.
 
-![\[An Amazon EBS-backed instance with an additional Amazon Elastic Block Store (EBS) volume\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/overview_getting_started.png)
+![\[An Amazon EBS-backed instance with an additional Amazon EBS volume\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/overview_getting_started.png)
 
 **Tasks**
 

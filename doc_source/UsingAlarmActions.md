@@ -35,6 +35,42 @@ You can create an alarm that stops an Amazon EC2 instance when a certain thresho
 
 Instances that use an Amazon EBS volume as the root device can be stopped or terminated, whereas instances that use the instance store as the root device can only be terminated\.
 
+------
+#### [ New console ]
+
+**To create an alarm to stop an idle instance \(Amazon EC2 console\)**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances**\.
+
+1. Select the instance and choose **Actions**, **Monitor and troubleshoot**, **Manage CloudWatch alarms**\.
+
+   Alternatively, you can choose the plus sign \( ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/add-plus.png) \) in the **Alarm status** column\.
+
+1. On the **Manage CloudWatch alarms** page, do the following:
+
+   1. Choose **Create a new alarm**\.
+
+   1. To receive an email when the alarm is triggered, for **Alarm notification**, choose an existing Amazon SNS topic\. You first need to create an Amazon SNS topic using the Amazon SNS console\. For more information, see [Using Amazon SNS for application\-to\-person \(A2P\) messaging](https://docs.aws.amazon.com/sns/latest/dg/sns-user-notifications.html) in the *Amazon Simple Notification Service Developer Guide*\.
+
+   1. Toggle on **Alarm action**, and choose **Stop**\.
+
+   1. For **Group samples by** and **Type of data to sample**, choose a statistic and a metric\. In this example, choose **Average** and **CPU Utilization**\.
+
+   1. For **Alarm When** and **Percent**, specify the metric threshold\. In this example, specify **>=** and **10** percent\.
+
+   1. For **Consecutive Period** and **Period**, specify the evaluation period for the alarm\. In this example, specify **1** consecutive period of **5 Minutes**\.
+
+   1. Amazon CloudWatch automatically creates an alarm name for you\. To change the name, for **Alarm name**, enter a new name\. Alarm names must contain only ASCII characters\.
+**Note**  
+You can adjust the alarm configuration based on your own requirements before creating the alarm, or you can edit them later\. This includes the metric, threshold, duration, action, and notification settings\. However, after you create an alarm, you cannot edit its name later\.
+
+   1. Choose **Create**\.
+
+------
+#### [ Old console ]
+
 **To create an alarm to stop an idle instance \(Amazon EC2 console\)**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
@@ -65,9 +101,47 @@ You can adjust the alarm configuration based on your own requirements before cre
 
    1. Choose **Create Alarm**\.
 
+------
+
 ## Adding terminate actions to Amazon CloudWatch alarms<a name="AddingTerminateActions"></a>
 
 You can create an alarm that terminates an EC2 instance automatically when a certain threshold has been met \(as long as termination protection is not enabled for the instance\)\. For example, you might want to terminate an instance when it has completed its work, and you don’t need the instance again\. If you might want to use the instance later, you should stop the instance instead of terminating it\. For information on enabling and disabling termination protection for an instance, see [Enabling termination protection](terminating-instances.md#Using_ChangingDisableAPITermination)\.
+
+------
+#### [ New console ]
+
+**To create an alarm to terminate an idle instance \(Amazon EC2 console\)**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances**\.
+
+1. Select the instance and choose **Actions**, **Monitor and troubleshoot**, **Manage CloudWatch alarms**\.
+
+   Alternatively, you can choose the plus sign \( ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/add-plus.png) \) in the **Alarm status** column\.
+
+1. On the **Manage CloudWatch alarms** page, do the following:
+
+   1. Choose **Create a new alarm**\.
+
+   1. To receive an email when the alarm is triggered, for **Alarm notification**, choose an existing Amazon SNS topic\. You first need to create an Amazon SNS topic using the Amazon SNS console\. For more information, see [Using Amazon SNS for application\-to\-person \(A2P\) messaging](https://docs.aws.amazon.com/sns/latest/dg/sns-user-notifications.html) in the *Amazon Simple Notification Service Developer Guide*\.
+
+   1. Toggle on **Alarm action**, and choose **Terminate**\.
+
+   1. For **Group samples by** and **Type of data to sample**, choose a statistic and a metric\. In this example, choose **Average** and **CPU Utilization**\.
+
+   1. For **Alarm When** and **Percent**, specify the metric threshold\. In this example, specify **=>** and **10** percent\.
+
+   1. For **Consecutive Period** and **Period**, specify the evaluation period for the alarm\. In this example, specify **24** consecutive period\(s\) of **1 Hour**\.
+
+   1. Amazon CloudWatch automatically creates an alarm name for you\. To change the name, for **Alarm name**, enter a new name\. Alarm names must contain only ASCII characters\.
+**Note**  
+You can adjust the alarm configuration based on your own requirements before creating the alarm, or you can edit them later\. This includes the metric, threshold, duration, action, and notification settings\. However, after you create an alarm, you cannot edit its name later\.
+
+   1. Choose **Create**\.
+
+------
+#### [ Old console ]
 
 **To create an alarm to terminate an idle instance \(Amazon EC2 console\)**
 
@@ -99,6 +173,8 @@ You can adjust the alarm configuration based on your own requirements before cre
 
    1. Choose **Create Alarm**\.
 
+------
+
 ## Adding reboot actions to Amazon CloudWatch alarms<a name="AddingRebootActions"></a>
 
 You can create an Amazon CloudWatch alarm that monitors an Amazon EC2 instance and automatically reboots the instance\. The reboot alarm action is recommended for Instance Health Check failures \(as opposed to the recover alarm action, which is suited for System Health Check failures\)\. An instance reboot is equivalent to an operating system reboot\. In most cases, it takes only a few minutes to reboot your instance\. When you reboot an instance, it remains on the same physical host, so your instance keeps its public DNS name, private IP address, and any data on its instance store volumes\.
@@ -107,6 +183,36 @@ Rebooting an instance doesn't start a new instance billing period \(with a minim
 
 **Important**  
 To avoid a race condition between the reboot and recover actions, avoid setting the same number of evaluation periods for a reboot alarm and a recover alarm\. We recommend that you set reboot alarms to three evaluation periods of one minute each\. For more information, see [Evaluating an Alarm](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarm-evaluation) in the *Amazon CloudWatch User Guide*\.
+
+------
+#### [ New console ]
+
+**To create an alarm to reboot an instance \(Amazon EC2 console\)**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances**\.
+
+1. Select the instance and choose **Actions**, **Monitor and troubleshoot**, **Manage CloudWatch alarms**\.
+
+   Alternatively, you can choose the plus sign \( ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/add-plus.png) \) in the **Alarm status** column\.
+
+1. On the **Manage CloudWatch alarms** page, do the following:
+
+   1. To receive an email when the alarm is triggered, for **Alarm notification**, choose an existing Amazon SNS topic\. You first need to create an Amazon SNS topic using the Amazon SNS console\. For more information, see [Using Amazon SNS for application\-to\-person \(A2P\) messaging](https://docs.aws.amazon.com/sns/latest/dg/sns-user-notifications.html) in the *Amazon Simple Notification Service Developer Guide*\.
+
+   1. Toggle on **Alarm action**, and choose **Reboot**\.
+
+   1. For **Group samples by** and **Type of data to sample**, choose a statistic and a metric\. In this example, choose **Average** and **Status Check Failed: Instance**\.
+
+   1. For **Consecutive Period** and **Period**, specify the evaluation period for the alarm\. In this example, enter **3** consecutive period\(s\) of **5 Minutes**\.
+
+   1. Amazon CloudWatch automatically creates an alarm name for you\. To change the name, for **Alarm name**, enter a new name\. Alarm names must contain only ASCII characters\.
+
+   1. Choose **Create**\.
+
+------
+#### [ Old console ]
 
 **To create an alarm to reboot an instance \(Amazon EC2 console\)**
 
@@ -126,13 +232,15 @@ To avoid a race condition between the reboot and recover actions, avoid setting 
 
    1. For **Whenever**, choose **Status Check Failed \(Instance\)**\.
 
-   1. For **For at least**, specify the evaluation period for the alarm\. In this example, enter **3** consecutive period\(s\) of **1 Minute**\.
+   1. For **For at least**, specify the evaluation period for the alarm\. In this example, enter **3** consecutive period\(s\) of **5 Minutes**\.
 
    1. To change the name of the alarm, for **Name of alarm**, enter a new name\. Alarm names must contain only ASCII characters\.
 
       If you don't enter a name for the alarm, Amazon CloudWatch automatically creates one for you\.
 
    1. Choose **Create Alarm**\.
+
+------
 
 ## Adding recover actions to Amazon CloudWatch alarms<a name="AddingRecoverActions"></a>
 
@@ -160,6 +268,42 @@ If your instance has a public IP address, it retains the public IP address after
 **Important**  
 To avoid a race condition between the reboot and recover actions, avoid setting the same number of evaluation periods for a reboot alarm and a recover alarm\. We recommend that you set recover alarms to two evaluation periods of one minute each\. For more information, see [Evaluating an Alarm](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarm-evaluation) in the *Amazon CloudWatch User Guide*\.
 
+------
+#### [ New console ]
+
+**To create an alarm to recover an instance \(Amazon EC2 console\)**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances**\.
+
+1. Select the instance and choose **Actions**, **Monitor and troubleshoot**, **Manage CloudWatch alarms**\.
+
+   Alternatively, you can choose the plus sign \( ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/add-plus.png) \) in the **Alarm status** column\.
+
+1. On the **Manage CloudWatch alarms** page, do the following:
+
+   1. Choose **Create a new alarm**\.
+
+   1. To receive an email when the alarm is triggered, for **Alarm notification**, choose an existing Amazon SNS topic\. You first need to create an Amazon SNS topic using the Amazon SNS console\. For more information, see [Using Amazon SNS for application\-to\-person \(A2P\) messaging](https://docs.aws.amazon.com/sns/latest/dg/sns-user-notifications.html) in the *Amazon Simple Notification Service Developer Guide*\.
+**Note**  
+Users must subscribe to the specified SNS topic to receive email notifications when the alarm is triggered\.
+The AWS account root user always receives email notifications when automatic instance recovery actions occur, even if an SNS topic is not specified\.
+The AWS account root user always receives email notifications when automatic instance recovery actions occur, even if it is not subscribed to the specified SNS topic\.
+
+   1. Toggle on **Alarm action**, and choose **Recover**\.
+
+   1. For **Group samples by** and **Type of data to sample**, choose a statistic and a metric\. In this example, choose **Average** and **Status Check Failed: System**\.
+
+   1. For **Consecutive Period** and **Period**, specify the evaluation period for the alarm\. In this example, enter **2** consecutive period\(s\) of **5 Minutes**\.
+
+   1. Amazon CloudWatch automatically creates an alarm name for you\. To change the name, for **Alarm name**, enter a new name\. Alarm names must contain only ASCII characters\.
+
+   1. Choose **Create**\.
+
+------
+#### [ Old console ]
+
 **To create an alarm to recover an instance \(Amazon EC2 console\)**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
@@ -178,17 +322,19 @@ Users must subscribe to the specified SNS topic to receive email notifications w
 The AWS account root user always receives email notifications when automatic instance recovery actions occur, even if an SNS topic is not specified\.
 The AWS account root user always receives email notifications when automatic instance recovery actions occur, even if it is not subscribed to the specified SNS topic\.
 
-   1. Select **Alarm action**, **Recover this instance**\.
+   1. Select **Take the action**, **Recover this instance**\.
 
-   1. For **Type of data to sample**, choose **Status Check Failed \(System\)**\.
+   1. For **Whenever**, choose **Status Check Failed \(System\)**\.
 
-   1. For **For at least**, specify the evaluation period for the alarm\. In this example, enter **2** consecutive period\(s\) of **1 Minute**\.
+   1. For **For at least**, specify the evaluation period for the alarm\. In this example, enter **2** consecutive period\(s\) of **5 Minutes**\.
 
    1. To change the name of the alarm, for **Name of alarm**, enter a new name\. Alarm names must contain only ASCII characters\.
 
       If you don't enter a name for the alarm, Amazon CloudWatch automatically creates one for you\.
 
    1. Choose **Create Alarm**\.
+
+------
 
 ## Using the Amazon CloudWatch console to view alarm and action history<a name="ViewAlarmHistory"></a>
 
@@ -210,7 +356,17 @@ You can view alarm and action history in the Amazon CloudWatch console\. Amazon 
 
 You can use the Amazon EC2 console to create alarm actions that stop or terminate an Amazon EC2 instance when certain conditions are met\. In the following screen capture of the console page where you set the alarm actions, we've numbered the settings\. We've also numbered the settings in the scenarios that follow, to help you create the appropriate actions\.
 
+------
+#### [ New console ]
+
+![\[Manage Cloudwarch alarms page\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/manage-cloudwatch-alarms.png)
+
+------
+#### [ Old console ]
+
 ![\[Create Alarm for dialog box\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/CreateAlarmFor.png)
+
+------
 
 ### Scenario 1: Stop idle development and test instances<a name="StopIdleInstance"></a>
 
@@ -221,11 +377,11 @@ Create an alarm that stops an instance used for software development or testing 
 | --- | --- | 
 |  1  |  Stop  | 
 |  2  |  Maximum  | 
-|  3  |  CPUUtilization  | 
+|  3  |  CPU Utilization  | 
 |  4  |  <=  | 
 |  5  |  10%  | 
-|  6  |  60 minutes  | 
-|  7  |  1  | 
+|  6  |  1  | 
+|  7  |  1 Hour  | 
 
 ### Scenario 2: Stop idle instances<a name="StopLowUtilizationInstance"></a>
 
@@ -236,11 +392,11 @@ Create an alarm that stops an instance and sends an email when the instance has 
 | --- | --- | 
 |  1  |  Stop and email  | 
 |  2  |  Average  | 
-|  3  |  CPUUtilization  | 
+|  3  |  CPU Utilization  | 
 |  4  |  <=  | 
 |  5  |  5%  | 
-|  6  |  60 minutes  | 
-|  7  |  24  | 
+|  6  |  24  | 
+|  7  |  1 Hour  | 
 
 ### Scenario 3: Send email about web servers with unusually high traffic<a name="StopHighWebTraffic"></a>
 
@@ -251,11 +407,11 @@ Create an alarm that sends email when an instance exceeds 10 GB of outbound netw
 | --- | --- | 
 |  1  |  Email  | 
 |  2  |  Sum  | 
-|  3  |  NetworkOut  | 
+|  3  |  Network Out  | 
 |  4  |  >  | 
 |  5  |  10 GB  | 
-|  6  |  1 day  | 
-|  7  |  1  | 
+|  6  |  24  | 
+|  7  |  1 Hour  | 
 
 ### Scenario 4: Stop web servers with unusually high traffic<a name="StopHighWebTraffic2"></a>
 
@@ -266,11 +422,11 @@ Create an alarm that stops an instance and send a text message \(SMS\) if outbou
 | --- | --- | 
 |  1  |  Stop and send SMS  | 
 |  2  |  Sum  | 
-|  3  |  NetworkOut  | 
+|  3  |  Network Out  | 
 |  4  |  >  | 
 |  5  |  1 GB  | 
-|  6  |  1 hour  | 
-|  7  |  1  | 
+|  6  |  1  | 
+|  7  |  1 Hour  | 
 
 ### Scenario 5: Stop an instance experiencing a memory leak<a name="StopMemoryLeak"></a>
 
@@ -287,8 +443,8 @@ The MemoryUtilization metric is a custom metric\. In order to use the MemoryUtil
 |  3  |  MemoryUtilization  | 
 |  4  |  >=  | 
 |  5  |  90%  | 
-|  6  |  1 minute  | 
-|  7  |  1  | 
+|  6  |  1  | 
+|  7  |  5 Minutes  | 
 
 ### Scenario 6: Stop an impaired instance<a name="StopImpairedInstance"></a>
 
@@ -299,11 +455,11 @@ Create an alarm that stops an instance that fails three consecutive status check
 | --- | --- | 
 |  1  |  Stop  | 
 |  2  |  Average  | 
-|  3  |  StatusCheckFailed\_System  | 
-|  4  |  >=  | 
-|  5  |  1  | 
-|  6  |  15 minutes  | 
-|  7  |  1  | 
+|  3  |  Status Check Failed: System  | 
+|  4  |  \-  | 
+|  5  |  \-  | 
+|  6  |  1  | 
+|  7  |  15 Minutes  | 
 
 ### Scenario 7: Terminate instances when batch processing jobs are complete<a name="TerminateBatchProcesses"></a>
 
@@ -314,8 +470,8 @@ Create an alarm that terminates an instance that runs batch jobs when it is no l
 | --- | --- | 
 |  1  |  Terminate  | 
 |  2  |  Maximum  | 
-|  3  |  NetworkOut  | 
+|  3  |  Network Out  | 
 |  4  |  <=  | 
 |  5  |  100,000 bytes  | 
-|  6  |  5 minutes  | 
-|  7  |  1  | 
+|  6  |  1  | 
+|  7  |  5 Minutes  | 

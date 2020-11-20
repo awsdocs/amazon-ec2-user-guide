@@ -68,7 +68,7 @@ For a list of Amazon EC2 actions, see [Actions](https://docs.aws.amazon.com/AWSE
 
 To specify a resource in an IAM policy statement, use its Amazon Resource Name \(ARN\)\. For more information about specifying the ARN value, see [Amazon Resource Names \(ARNs\) for Amazon EC2](#EC2_ARN_Format)\. If an API action does not support individual ARNs, you must use a wildcard \(\*\) to specify that all resources can be affected by the action\. 
 
-To see tables that identify which Amazon EC2 API actions support resource\-level permissions, and the ARNs and condition keys that you can use in a policy, see [Actions, Resources, and Condition Keys for Amazon EC2](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonec2.html) in the *IAM User Guide*\. Condition keys for Amazon EC2 are also further explained in a later section\.
+To see tables that identify which Amazon EC2 API actions support resource\-level permissions, and the ARNs and condition keys that you can use in a policy, see [Actions, resources, and condition keys for Amazon EC2](https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonec2.html)\.
 
 Keep in mind that you can apply tag\-based resource\-level permissions in the IAM policies you use for Amazon EC2 API actions\. This gives you better control over which resources a user can create, modify, or use\. For more information, see [Granting permission to tag resources during creation](supported-iam-actions-tagging.md)\. 
 
@@ -127,13 +127,13 @@ Many Amazon EC2 API actions involve multiple resources\. For example, `AttachVol
 "Resource": ["arn1", "arn2"]
 ```
 
-For a list of ARNs for Amazon EC2 resources, see [Resource Types Defined by Amazon EC2](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonec2.html#amazonec2-resources-for-iam-policies) in the *IAM User Guide*\.
+For a list of ARNs for Amazon EC2 resources, see [Resource types defined by Amazon EC2](https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonec2.html#amazonec2-resources-for-iam-policies)\.
 
 ## Condition keys for Amazon EC2<a name="amazon-ec2-keys"></a>
 
 In a policy statement, you can optionally specify conditions that control when it is in effect\. Each condition contains one or more key\-value pairs\. Condition keys are not case\-sensitive\. We've defined AWS\-wide condition keys, plus additional service\-specific condition keys\.
 
-For a list of service\-specific condition keys for Amazon EC2, see [ Condition Keys for Amazon EC2](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonec2.html#amazonec2-policy-keys) in the *IAM User Guide*\. Amazon EC2 also implements the AWS\-wide condition keys\. For more information, see [Information Available in All Requests](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_variables.html#policy-vars-infoallreqs) in the *IAM User Guide*\. 
+For a list of service\-specific condition keys for Amazon EC2, see [Condition keys for Amazon EC2](https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonec2.html#amazonec2-policy-keys)\. Amazon EC2 also implements the AWS\-wide condition keys\. For more information, see [Information Available in All Requests](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_variables.html#policy-vars-infoallreqs) in the *IAM User Guide*\. 
 
 To use a condition key in your IAM policy, use the `Condition` statement\. For example, the following policy grants users permission to add and remove inbound and outbound rules for any security group\. It uses the `ec2:Vpc` condition key to specify that these actions can only be performed on security groups in a specific VPC\.
 

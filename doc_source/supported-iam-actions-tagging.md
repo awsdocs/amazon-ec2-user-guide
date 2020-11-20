@@ -94,7 +94,7 @@ The following condition keys can be used with the examples in the preceding sect
     "ForAnyValue:StringEquals": { "aws:TagKeys": ["environment","webserver"] }
     ```
 
-These condition keys can be applied to resource\-creating actions that support tagging, as well as the `ec2:CreateTags` and `ec2:DeleteTags` actions\. To learn whether an Amazon EC2 API action supports tagging, see [Actions, Resources, and Condition Keys for Amazon EC2](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonec2.html) in the *IAM User Guide*\. 
+These condition keys can be applied to resource\-creating actions that support tagging, as well as the `ec2:CreateTags` and `ec2:DeleteTags` actions\. To learn whether an Amazon EC2 API action supports tagging, see [Actions, resources, and condition keys for Amazon EC2](https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonec2.html)\.
 
 To force users to specify tags when they create a resource, you must use the `aws:RequestTag` condition key or the `aws:TagKeys` condition key with the `ForAnyValue` modifier on the resource\-creating action\. The `ec2:CreateTags` action is not evaluated if a user does not specify tags for the resource\-creating action\.
 

@@ -41,7 +41,7 @@ Alternatively, you can provide read\-only access to a subset of resources\. To d
 ```
 
 **Note**  
-The Amazon EC2 `ec2:Describe*` API actions do not support resource\-level permissions, so you cannot control which individual resources users can view in the console\. Therefore, the \* wildcard is necessary in the `Resource` element of the above statement\. For more information about which ARNs you can use with which Amazon EC2 API actions, see [Actions, Resources, and Condition Keys for Amazon EC2](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonec2.html) in the *IAM User Guide*\.
+The Amazon EC2 `ec2:Describe*` API actions do not support resource\-level permissions, so you cannot control which individual resources users can view in the console\. Therefore, the \* wildcard is necessary in the `Resource` element of the above statement\. For more information about which ARNs you can use with which Amazon EC2 API actions, see [Actions, resources, and condition keys for Amazon EC2](https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonec2.html)\.
 
 **View instances and CloudWatch metrics**
 

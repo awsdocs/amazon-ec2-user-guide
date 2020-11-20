@@ -146,7 +146,8 @@ Alice can use the `ami-launch-index` value to determine which portion of the use
 #### [ IMDSv2 ]
 
    ```
-   [ec2-user ~]$ echo $user_data | cut -d"|" -f"$ami_launch_index"replicate-every=5min
+   [ec2-user ~]$ echo $user_data | cut -d"|" -f"$ami_launch_index"
+   replicate-every=5min
    ```
 
 ------

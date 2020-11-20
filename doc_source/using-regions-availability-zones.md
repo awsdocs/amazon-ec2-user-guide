@@ -241,7 +241,7 @@ The migration process involves:
 1. Create an AMI from the instance\. The procedure depends on your operating system and the type of root device volume for the instance\. For more information, see the documentation that corresponds to your operating system and root device volume:
    + [Creating an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md)
    + [Creating an instance store\-backed Linux AMI](creating-an-ami-instance-store.md)
-   + [Creating an Amazon EBS\-Backed Windows AMI](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/Creating_EBSbacked_WinAMI.html)
+   + [Creating a custom Windows AMI](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/Creating_EBSbacked_WinAMI.html)
 
 1. If you need to preserve the private IPv4 address of the instance, you must delete the subnet in the current Availability Zone and then create a subnet in the new Availability Zone with the same IPv4 address range as the original subnet\. Note that you must terminate all instances in a subnet before you can delete it\. Therefore, you should create AMIs from all of the instances in your subnet so that you can move all instances from the current subnet to the new subnet\.
 

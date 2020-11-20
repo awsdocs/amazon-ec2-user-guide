@@ -11,9 +11,7 @@ These instances are well suited for the following:
 + Applications performing real\-time processing of big unstructured data \(financial services, Hadoop/Spark clusters\)\.
 + High\-performance computing \(HPC\) and Electronic Design Automation \(EDA\) applications\.
 
-Bare metal instances, such as `r5.metal`, provide your applications with direct access to physical resources of the host server, such as processors and memory\. These instances are well suited for the following:
-+ Workloads that require access to low\-level hardware features \(for example, Intel VT\) that are not available or fully supported in virtualized environments
-+ Applications that require a non\-virtualized environment for licensing or support
+Bare metal instances, such as `r5.metal`, provide your applications with direct access to physical resources of the host server, such as processors and memory\.
 
 For more information, see [Amazon EC2 R5 Instances](https://aws.amazon.com/ec2/instance-types/r5)\.
 
@@ -56,9 +54,7 @@ These instances deliver both high compute and high memory and are well\-suited f
 + Electronic Design Automation \(EDA\)
 + Relational database workloads
 
-`z1d.metal` instances provide your applications with direct access to physical resources of the host server, such as processors and memory\. These instances are well suited for the following:
-+ Workloads that require access to low\-level hardware features \(for example, Intel VT\) that are not available or fully supported in virtualized environments
-+ Applications that require a non\-virtualized environment for licensing or support
+`z1d.metal` instances provide your applications with direct access to physical resources of the host server, such as processors and memory\.
 
 For more information, see [Amazon EC2 z1d Instances](https://aws.amazon.com/ec2/instance-types/z1d)\.
 

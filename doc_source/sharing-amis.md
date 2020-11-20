@@ -6,7 +6,7 @@ You use a shared AMI at your own risk\. Amazon can't vouch for the integrity or 
 
 Amazon's public images have an aliased owner, which appears as `amazon` in the account field\. This enables you to find AMIs from Amazon easily\. Other users can't alias their AMIs\.
 
- For information about creating an AMI, see [Creating an Instance Store\-Backed Linux AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-instance-store.html) or [Creating an Amazon EBS\-Backed Linux AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html) \. For more information about building, delivering, and maintaining your applications on the AWS Marketplace, see the [AWS Marketplace Documentation](https://docs.aws.amazon.com/marketplace/)\.
+ For information about creating an AMI, see [Creating an Instance Store\-Backed Linux AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-instance-store.html) or [Creating an Amazon EBS\-Backed Linux AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html)\. For more information about building, delivering, and maintaining your applications on the AWS Marketplace, see the [AWS Marketplace Documentation](https://docs.aws.amazon.com/marketplace/)\.
 
 **Topics**
 + [Finding shared AMIs](usingsharedamis-finding.md)

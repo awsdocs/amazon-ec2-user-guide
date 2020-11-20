@@ -40,8 +40,6 @@ To resolve the issue, try the following:
 + If you're launching an instance, submit a new request without specifying an Availability Zone\.
 + If you're launching an instance, submit a new request using a different instance type \(which you can resize at a later stage\)\. For more information, see [Changing the instance type](ec2-instance-resize.md)\.
 + If you are launching instances into a cluster placement group, you can get an insufficient capacity error\. For more information, see [Placement group rules and limitations](placement-groups.md#concepts-placement-groups)\.
-+ Try creating an On\-Demand Capacity Reservation, which enables you to reserve Amazon EC2 capacity for any duration\. For more information, see [On\-Demand Capacity Reservations](ec2-capacity-reservations.md)\.
-+ Try purchasing Reserved Instances, which are a long\-term capacity reservation\. For more information, see [Amazon EC2 Reserved Instances](https://aws.amazon.com/ec2/purchasing-options/reserved-instances/)\.
 
 ## The requested configuration is currently not supported\. Please check the documentation for supported configurations\.<a name="troubleshooting-instance-configuration"></a>
 

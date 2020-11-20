@@ -20,11 +20,11 @@ These instances provide an ideal cloud infrastructure, offering a balance of com
 + Caching fleets
 + Backend servers for SAP, Microsoft SharePoint, cluster computing, and other enterprise applications
 
-For more information, see [Amazon EC2 M5 and M5a Instances](https://aws.amazon.com/ec2/instance-types/m5)\.
+For more information, see [Amazon EC2 M5 Instances](https://aws.amazon.com/ec2/instance-types/m5)\.
 
-Bare metal instances, such as `m5.metal`, provide your applications with direct access to physical resources of the host server, such as processors and memory\. These instances are well suited for the following:
-+ Workloads that require access to low\-level hardware features \(for example, Intel VT\) that are not available or fully supported in virtualized environments
-+ Applications that require a non\-virtualized environment for licensing or support
+Bare metal instances, such as `m5.metal`, provide your applications with direct access to physical resources of the host server, such as processors and memory\.
+
+For more information, see [Amazon EC2 M5 Instances](https://aws.amazon.com/ec2/instance-types/m5)\.
 
 **M6g and M6gd instances**
 

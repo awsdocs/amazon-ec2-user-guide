@@ -24,7 +24,8 @@ There is no additional charge for using EC2 Fleet\. You pay only for the EC2 ins
 + [EC2 Fleet limits](#ec2-fleet-limits)
 + [Burstable performance instances](#ec2-fleet-burstable-spot-instances)
 + [EC2 Fleet configuration strategies](ec2-fleet-configuration-strategies.md)
-+ [Managing an EC2 Fleet](manage-ec2-fleet.md)
++ [Working with EC2 Fleets](manage-ec2-fleet.md)
++ [Using Amazon EventBridge to monitor EC2 Fleet events](ec2-fleet-eventbridge.md)
 
 ## EC2 Fleet limitations<a name="EC2-fleet-limitations"></a>
 

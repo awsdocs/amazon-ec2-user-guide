@@ -20,7 +20,7 @@ The following examples show policy statements that you could use to control the 
 
 ## Example: Read\-only access<a name="iam-example-read-only"></a>
 
-The following policy grants users permissions to use all Amazon EC2 API actions whose names begin with `Describe`\. The `Resource` element uses a wildcard to indicate that users can specify all resources with these API actions\. The \* wildcard is also necessary in cases where the API action does not support resource\-level permissions\. For more information about which ARNs you can use with which Amazon EC2 API actions, see [Actions, Resources, and Condition Keys for Amazon EC2](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonec2.html) in the *IAM User Guide*\.
+The following policy grants users permissions to use all Amazon EC2 API actions whose names begin with `Describe`\. The `Resource` element uses a wildcard to indicate that users can specify all resources with these API actions\. The \* wildcard is also necessary in cases where the API action does not support resource\-level permissions\. For more information about which ARNs you can use with which Amazon EC2 API actions, see [Actions, resources, and condition keys for Amazon EC2](https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonec2.html)\.
 
 Users don't have permission to perform any actions on the resources \(unless another statement grants them permission to do so\) because they're denied permission to use API actions by default\.
 
@@ -87,7 +87,7 @@ Alternatively, you can use the condition key `ec2:Region`, which is specific to 
 
 ### Example: Describe, launch, stop, start, and terminate all instances<a name="iam-example-instances-all"></a>
 
-The following policy grants users permissions to use the API actions specified in the `Action` element\. The `Resource` element uses a \* wildcard to indicate that users can specify all resources with these API actions\. The \* wildcard is also necessary in cases where the API action does not support resource\-level permissions\. For more information about which ARNs you can use with which Amazon EC2 API actions, see [Actions, Resources, and Condition Keys for Amazon EC2](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonec2.html) in the *IAM User Guide*\.
+The following policy grants users permissions to use the API actions specified in the `Action` element\. The `Resource` element uses a \* wildcard to indicate that users can specify all resources with these API actions\. The \* wildcard is also necessary in cases where the API action does not support resource\-level permissions\. For more information about which ARNs you can use with which Amazon EC2 API actions, see [Actions, resources, and condition keys for Amazon EC2](https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonec2.html)\.
 
 The users don't have permission to use any other API actions \(unless another statement grants them permission to do so\) because users are denied permission to use API actions by default\.
 
@@ -118,7 +118,7 @@ The users don't have permission to use any other API actions \(unless another st
 
 The following policy allows users to describe all instances, to start and stop only instances i\-1234567890abcdef0 and i\-0598c7d356eba48d7, and to terminate only instances in the US East \(N\. Virginia\) Region \(`us-east-1`\) with the resource tag "`purpose=test`"\. 
 
-The first statement uses a \* wildcard for the `Resource` element to indicate that users can specify all resources with the action; in this case, they can list all instances\. The \* wildcard is also necessary in cases where the API action does not support resource\-level permissions \(in this case, `ec2:DescribeInstances`\)\. For more information about which ARNs you can use with which Amazon EC2 API actions, see [Actions, Resources, and Condition Keys for Amazon EC2](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonec2.html) in the *IAM User Guide*\.
+The first statement uses a \* wildcard for the `Resource` element to indicate that users can specify all resources with the action; in this case, they can list all instances\. The \* wildcard is also necessary in cases where the API action does not support resource\-level permissions \(in this case, `ec2:DescribeInstances`\)\. For more information about which ARNs you can use with which Amazon EC2 API actions, see [Actions, resources, and condition keys for Amazon EC2](https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonec2.html)\.
 
 The second statement uses resource\-level permissions for the `StopInstances` and `StartInstances` actions\. The specific instances are indicated by their ARNs in the `Resource` element\.
 
@@ -740,7 +740,7 @@ The following policy allows modification of a snapshot only if the snapshot is t
 
 The [RunInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-RunInstances.html) API action launches one or more On\-Demand Instances or one or more Spot Instances\. `RunInstances` requires an AMI and creates an instance\. Users can specify a key pair and security group in the request\. Launching into a VPC requires a subnet, and creates a network interface\. Launching from an Amazon EBS\-backed AMI creates a volume\. Therefore, the user must have permissions to use these Amazon EC2 resources\. You can create a policy statement that requires users to specify an optional parameter on `RunInstances`, or restricts users to particular values for a parameter\.
 
-For more information about the resource\-level permissions that are required to launch an instance, see [Actions, Resources, and Condition Keys for Amazon EC2](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonec2.html) in the *IAM User Guide*\.
+For more information about the resource\-level permissions that are required to launch an instance, see [Actions, resources, and condition keys for Amazon EC2](https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonec2.html)\.
 
 By default, users don't have permissions to describe, start, stop, or terminate the resulting instances\. One way to grant the users permission to manage the resulting instances is to create a specific tag for each instance, and then create a statement that enables them to manage instances with that tag\. For more information, see [Working with instances](#iam-example-instances)\.
 

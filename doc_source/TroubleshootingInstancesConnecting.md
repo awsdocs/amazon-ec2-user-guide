@@ -5,7 +5,7 @@ The following information can help you troubleshoot issues with connecting to yo
 **Topics**
 + [Common causes for connection issues](#TroubleshootingInstancesCommonCauses)
 + [Error connecting to your instance: Connection timed out](#TroubleshootingInstancesConnectionTimeout)
-+ [Error: unable to load key … Expecting: ANY PRIVATE KEY](#troubleshoot-instance-connect-key-file)
++ [Error: unable to load key \.\.\. Expecting: ANY PRIVATE KEY](#troubleshoot-instance-connect-key-file)
 + [Error: User key not recognized by server](#TroubleshootingInstancesServerError)
 + [Error: Permission denied or connection closed by \[instance\] port 22](#TroubleshootingInstancesConnectingSSH)
 + [Error: Unprotected private key file](#troubleshoot-unprotected-key)
@@ -113,7 +113,7 @@ To connect to your instance using an IPv6 address, check the following:
 + If you launched your instance from an older AMI, it might not be configured for DHCPv6 \(IPv6 addresses are not automatically recognized on the network interface\)\. For more information, see [Configure IPv6 on Your Instances](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-migrate-ipv6.html#vpc-migrate-ipv6-dhcpv6) in the *Amazon VPC User Guide*\.
 + Your local computer must have an IPv6 address, and must be configured to use IPv6\. 
 
-## Error: unable to load key … Expecting: ANY PRIVATE KEY<a name="troubleshoot-instance-connect-key-file"></a>
+## Error: unable to load key \.\.\. Expecting: ANY PRIVATE KEY<a name="troubleshoot-instance-connect-key-file"></a>
 
 If you try to connect to your instance and get the error message, `unable to load key ... Expecting: ANY PRIVATE KEY`, the file in which the private key is stored is incorrectly configured\. If the private key file ends in `.pem`, it might still be incorrectly configured\. A possible cause for an incorrectly configured private key file is a missing certificate\.
 
