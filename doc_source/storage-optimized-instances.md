@@ -7,7 +7,14 @@ Storage optimized instances are designed for workloads that require high, sequen
 These instances are well suited for the following:
 + Massive parallel processing \(MPP\) data warehouse
 + MapReduce and Hadoop distributed computing
-+ Log or data processing applications<a name="h1-instances"></a>
++ Log or data processing applications<a name="d3-instances"></a>
+
+**D3 and D3en instances**
+
+These instances offer scale out of instance storage and are well suited for the following:
++ Distributed file systems for Hadoop workloads
++ File storage workloads such as GPFC and BeeFS
++ Large data lakes for HPC workloads<a name="h1-instances"></a>
 
 **H1 instances**
 
@@ -41,7 +48,7 @@ For more information, see [Amazon EC2 I3 Instances](https://aws.amazon.com/ec2/i
 
 ## Hardware specifications<a name="storage-instances-hardware"></a>
 
-The primary data storage for D2 instances is HDD instance store volumes\. The primary data storage for I3 and I3en instances is non\-volatile memory express \(NVMe\) SSD instance store volumes\.
+The primary data storage for D2, D3, and D3en instances is HDD instance store volumes\. The primary data storage for I3 and I3en instances is non\-volatile memory express \(NVMe\) SSD instance store volumes\.
 
 Instance store volumes persist only for the life of the instance\. When you stop, hibernate, or terminate an instance, the applications and data in its instance store volumes are erased\. We recommend that you regularly back up or replicate important data in your instance store volumes\. For more information, see [Amazon EC2 instance store](InstanceStorage.md) and [SSD instance store volumes](ssd-instance-store.md)\.
 
@@ -54,6 +61,17 @@ The following is a summary of the hardware specifications for storage optimized 
 | d2\.2xlarge | 8 | 61 | 
 | d2\.4xlarge | 16 | 122 | 
 | d2\.8xlarge | 36 | 244 | 
+| d3\.xlarge | 4 | 32 | 
+| d3\.2xlarge | 8 | 64 | 
+| d3\.4xlarge | 16 | 128 | 
+| d3\.8xlarge | 32 | 256 | 
+| d3en\.large | 2 | 8 | 
+| d3en\.xlarge | 4 | 16 | 
+| d3en\.2xlarge | 8 | 32 | 
+| d3en\.4xlarge | 16 | 64 | 
+| d3en\.6xlarge | 24 | 96 | 
+| d3en\.8xlarge | 32 | 128 | 
+| d3en\.12xlarge | 48 | 192 | 
 | h1\.2xlarge | 8 | 32 | 
 | h1\.4xlarge | 16 | 64 | 
 | h1\.8xlarge | 32 | 128 | 
@@ -99,11 +117,15 @@ The following is a summary of network performance for storage optimized instance
 
 | Instance type | Network performance | Enhanced networking | 
 | --- | --- | --- | 
+| d3\.xlarge | Up to 5 Gbps † | [ENA](enhanced-networking-ena.md) | 
+| d3\.2xlarge | 5 Gbps | [ENA](enhanced-networking-ena.md) | 
 | i3\.4xlarge and smaller | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
-| i3\.8xlarge \| h1\.8xlarge | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
-| i3en\.3xlarge and smaller | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
-| i3\.16xlarge \| i3\.metal \| i3en\.6xlarge \| h1\.16xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
-| i3en\.12xlarge | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
+| d3\.4xlarge \| i3\.8xlarge \| h1\.8xlarge | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
+| d3en\.2xlarge and smaller \| i3en\.3xlarge and smaller | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
+| d3\.8xlarge \| d3en\.4xlarge \| i3\.16xlarge \| i3\.metal \| i3en\.6xlarge \| h1\.16xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
+| d3en\.6xlarge | 40 Gbps | [ENA](enhanced-networking-ena.md) | 
+| d3\.8xlarge \| d3en\.8xlarge \| i3en\.12xlarge | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
+| d3en\.12xlarge | 75 Gbps | [ENA](enhanced-networking-ena.md) | 
 | i3en\.24xlarge \| i3en\.metal | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
 | d2\.xlarge | Moderate | [Intel 82599 VF](sriov-networking.md) | 
 | d2\.2xlarge \| d2\.4xlarge | High | [Intel 82599 VF](sriov-networking.md) | 
@@ -150,6 +172,8 @@ The following is a summary of features for storage optimized instances:
 |  | EBS only | Instance store | Placement group | 
 | --- | --- | --- | --- | 
 | D2 | No | HDD  | Yes | 
+| D3 | No | HDD \*  | Yes | 
+| D3en | No | HDD \*  | Yes | 
 | H1 | No | HDD \* | Yes | 
 | I3 | No | NVMe \* | Yes | 
 | I3en | No | NVMe \* | Yes | 
@@ -188,13 +212,13 @@ If you must use a different AMI for your application, and your `d2.8xlarge` inst
 
 1. \(Optional\) Create an AMI from the instance that you can use to launch any additional `d2.8xlarge` instances that you need in the future\.
 
-1. Change the instance type of your stopped instance to `d2.8xlarge` \(choose **Actions**, **Instance Settings**, **Change Instance Type**, and then follow the directions\)\.
+1. Change the instance type of your stopped instance to `d2.8xlarge` \(choose **Actions**, **Instance settings**, **Change instance type**, and then follow the directions\)\.
 
 1. Start the instance\. If the instance launches properly, you are done\. If the instance still does not boot properly, proceed to the next step\.
 
 1. \(Optional\) If the instance still does not boot properly, the kernel on your instance may not support more than 32 vCPUs\. However, you may be able to boot the instance if you limit the vCPUs\.
 
-   1. Change the instance type of your stopped instance to any D2 instance type other than `d2.8xlarge` \(choose **Actions**, **Instance Settings**, **Change Instance Type**, and then follow the directions\)\.
+   1. Change the instance type of your stopped instance to any D2 instance type other than `d2.8xlarge` \(choose **Actions**, **Instance settings**, **Change instance type**, and then follow the directions\)\.
 
    1. Add the `maxcpus=32` option to your boot kernel parameters by following your operating system\-specific instructions\. For example, for RHEL 6, edit the `/boot/grub/menu.lst` file and add the following option to the most recent and active `kernel` entry:
 
@@ -246,4 +270,5 @@ If you must use a different AMI for your application, and your `d2.8xlarge` inst
   hw.nvme.per_cpu_io_queues="0"
   ```
 + The `d2.8xlarge` instance type has 36 vCPUs, which might cause launch issues in some Linux operating systems that have a vCPU limit of 32\. For more information, see [Support for vCPUs](#d2-instances-cpu-support)\.
++ The `d3.8xlarge` and `d3en.12xlarge` instances support a maximum of three attachments, including the root volume\. If you exceed the attachment limit when you add a network interface or EBS volume, this causes attachment issues on your instance\.
 + There is a limit on the total number of instances that you can launch in a Region, and there are additional limits on some instance types\. For more information, see [How many instances can I run in Amazon EC2?](https://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2) in the Amazon EC2 FAQ\.

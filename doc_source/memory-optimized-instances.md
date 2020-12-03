@@ -2,7 +2,7 @@
 
 Memory optimized instances are designed to deliver fast performance for workloads that process large data sets in memory\.
 
-**R5, R5a, and R5n instances**
+**R5, R5a, R5b, and R5n instances**
 
 These instances are well suited for the following:
 + High\-performance, relational \(MySQL\) and NoSQL \(MongoDB, Cassandra\) databases\.
@@ -106,6 +106,15 @@ The following is a summary of the hardware specifications for memory optimized i
 | r5ad\.12xlarge | 48 | 384 | 
 | r5ad\.16xlarge | 64 | 512 | 
 | r5ad\.24xlarge | 96 | 768 | 
+| r5b\.large | 2 | 16 | 
+| r5b\.xlarge | 4 | 32 | 
+| r5b\.2xlarge | 8 | 64 | 
+| r5b\.4xlarge | 16 | 128 | 
+| r5b\.8xlarge | 32 | 256 | 
+| r5b\.12xlarge | 48 | 384 | 
+| r5b\.16xlarge | 64 | 512 | 
+| r5b\.24xlarge | 96 | 768 | 
+| r5b\.metal | 96 | 768 | 
 | r5d\.large | 2 | 16 | 
 | r5d\.xlarge | 4 | 32 | 
 | r5d\.2xlarge | 8 | 64 | 
@@ -197,12 +206,12 @@ The following is a summary of network performance for memory optimized instances
 
 | Instance type | Network performance | Enhanced networking | 
 | --- | --- | --- | 
-|  r4\.4xlarge and smaller \| r5\.4xlarge and smaller \| r5a\.8xlarge and smaller \| r5ad\.8xlarge and smaller \| r5d\.4xlarge and smaller \| r6g\.4xlarge and smaller \|  r6gd\.4xlarge and smaller \|  x1e\.8large and smaller \| z1d\.3xlarge and smaller  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
-|  r4\.8xlarge \| r5\.8xlarge \| r5\.12xlarge \| r5a\.12xlarge \| r5ad\.12xlarge \| r5d\.8xlarge \| r5d\.12xlarge \| x1\.16xlarge \| x1e\.16xlarge \| z1d\.6xlarge  | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  r4\.4xlarge and smaller \| r5\.4xlarge and smaller \| r5a\.8xlarge and smaller \| r5ad\.8xlarge and smaller \| r5b\.4xlarge and smaller \| r5d\.4xlarge and smaller \| r6g\.4xlarge and smaller \|  r6gd\.4xlarge and smaller \|  x1e\.8large and smaller \| z1d\.3xlarge and smaller  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
+|  r4\.8xlarge \| r5\.8xlarge \| r5\.12xlarge \| r5a\.12xlarge \| r5ad\.12xlarge \| r5b\.8xlarge \| r5b\.12xlarge \| r5d\.8xlarge \| r5d\.12xlarge \| x1\.16xlarge \| x1e\.16xlarge \| z1d\.6xlarge  | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  r5a\.16xlarge \| r5ad\.16xlarge  \| r6g\.8xlarge \| r6gd\.8xlarge  | 12 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  r5\.16xlarge \| r5a\.24xlarge \| r5ad\.24xlarge \| r5d\.16xlarge  \| r6g\.12xlarge \| r6gd\.12xlarge  | 20 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  r5\.16xlarge \| r5a\.24xlarge \| r5ad\.24xlarge \| r5b\.16xlarge \| r5d\.16xlarge  \| r6g\.12xlarge \| r6gd\.12xlarge  | 20 Gbps | [ENA](enhanced-networking-ena.md) | 
 | r5dn\.4xlarge and smaller \| r5n\.4xlarge and smaller | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
-|  r4\.16xlarge \| r5\.24xlarge \| r5\.metal \| r5d\.24xlarge \| r5d\.metal \| r5dn\.8xlarge \| r5n\.8xlarge \| r6g\.16xlarge \| r6g\.metal \|  r6gd\.16xlarge \| r6gd\.metal \|  x1\.32xlarge \| x1e\.32xlarge \| z1d\.12xlarge \| z1d\.metal  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  r4\.16xlarge \| r5\.24xlarge \| r5\.metal \| r5b\.24xlarge \| r5b\.metal \| r5d\.24xlarge \| r5d\.metal \| r5dn\.8xlarge \| r5n\.8xlarge \| r6g\.16xlarge \| r6g\.metal \|  r6gd\.16xlarge \| r6gd\.metal \|  x1\.32xlarge \| x1e\.32xlarge \| z1d\.12xlarge \| z1d\.metal  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
 | r5dn\.12xlarge \| r5n\.12xlarge | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
 | r5dn\.16xlarge \| r5n\.16xlarge | 75 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  r5dn\.24xlarge \| r5n\.24xlarge \| u\-6tb1\.metal \* \| u\-9tb1\.metal \* \| u\-12tb1\.metal \* \| u\-18tb1\.metal \| u\-24tb1\.metal  | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
@@ -279,6 +288,7 @@ The following is a summary of features for memory optimized instances\.
 | R5 | Yes | Yes | No | Yes | 
 | R5a | Yes | Yes | No | Yes | 
 | R5ad | No | Yes | NVME \* | Yes | 
+| R5b | Yes | Yes | No | Yes | 
 | R5d | No | Yes | NVME \* | Yes | 
 | R5dn | No | Yes | NVME \* | Yes | 
 | R5n | Yes | Yes | No | Yes | 
@@ -319,7 +329,7 @@ The following AMIs support launching memory optimized instances:
 
 ## Release notes<a name="memory-instance-limits"></a>
 + R4 instances feature up to 64 vCPUs and are powered by two AWS\-customized Intel XEON processors based on E5\-2686v4 that feature high\-memory bandwidth and larger L3 caches to boost the performance of in\-memory applications\.
-+ R5 and R5d instances feature a 3\.1 GHz Intel Xeon Platinum 8000 series processor from either the first generation \(Skylake\-SP\) or second generation \(Cascade Lake\)\.
++ R5, R5b, and R5d instances feature a 3\.1 GHz Intel Xeon Platinum 8000 series processor from either the first generation \(Skylake\-SP\) or second generation \(Cascade Lake\)\.
 + R5a and R5ad instances feature a 2\.5 GHz AMD EPYC 7000 series processor\.
 + R6g and R6gd instances feature an AWS Graviton2 processor based on 64\-bit Arm architecture\.
 + High memory instances \(`u-6tb1.metal`, `u-9tb1.metal`, and `u-12tb1.metal`\) are the first instances to be powered by an eight\-socket platform with the latest generation Intel Xeon Platinum 8176M \(Skylake\) processors that are optimized for mission\-critical enterprise workloads\. High Memory instances with 18 TB and 24 TB of memory \(`u-18tb1.metal` and `u-24tb1.metal`\) are the first instances powered by an 8\-socket platform with 2nd Generation Intel Xeon Scalable 8280L \(Cascade Lake\) processors\.
@@ -356,6 +366,7 @@ The following AMIs support launching memory optimized instances:
   CONFIG_PCIEASPM=y
   ```
 + Bare metal instances use a PCI\-based serial device rather than an I/O port\-based serial device\. The upstream Linux kernel and the latest Amazon Linux AMIs support this device\. Bare metal instances also provide an ACPI SPCR table to enable the system to automatically use the PCI\-based serial device\. The latest Windows AMIs automatically use the PCI\-based serial device\.
++ R5b instances do not support Provisioned IOPS SSD `io1` volumes\.
 + You can't launch X1 instances using a Windows Server 2008 SP2 64\-bit AMI, except for `x1.16xlarge` instances\.
 + You can't launch X1e instances using a Windows Server 2008 SP2 64\-bit AMI\.
 + With earlier versions of the Windows Server 2008 R2 64\-bit AMI, you can't launch `r4.large` and `r4.4xlarge` instances\. If you experience this issue, update to the latest version of this AMI\.

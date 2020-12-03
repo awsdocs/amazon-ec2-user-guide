@@ -213,11 +213,11 @@ You can view, add, and delete tags using the new console and the command line to
 
 1. Select a key pair, and then choose **Actions**, **Manage tags**\.
 
-1. The **Manage tags** section displays any tags that are assigned to the key pair\.
+1. The **Manage tags** page displays any tags that are assigned to the key pair\.
    + To add a tag, choose **Add tag**, and then enter the tag key and value\. You can add up to 50 tags per key pair\. For more information, see [Tag restrictions](Using_Tags.md#tag-restrictions)\.
-   + To delete a tag, choose **Remove** next to the tag that you want to delete\.
+   + To delete a tag, choose **Remove** next to the tag to delete\.
 
-1. Choose **Save changes**\.
+1. Choose **Save**\.
 
 ------
 #### [ AWS CLI ]
@@ -398,6 +398,20 @@ When you launch an instance, you are [prompted for a key pair](launching-instanc
 
 When you launch an instance, you are [prompted for a key pair](launching-instance.md#step-7-review-instance-launch)\. If you plan to connect to the instance using SSH, you must specify a key pair\.
 
+------
+#### [ New console ]
+
+**To identify the key pair that was specified at launch**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances**, and then select your instance\.
+
+1. On the **Details** tab, under **Instance details**, the **Key pair name** field displays the name of the key pair that you specified when you launched the instance\. The value of the **Key pair name** does not change even if you change the public key on the instance, or add key pairs\.
+
+------
+#### [ Old console ]
+
 **To identify the key pair that was specified at launch**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
@@ -405,6 +419,8 @@ When you launch an instance, you are [prompted for a key pair](launching-instanc
 1. In the navigation pane, choose **Instances**, and then select your instance\.
 
 1. On the **Description** tab, the **Key pair name** field displays the name of the key pair that you specified when you launched the instance\. The value of the **Key pair name** does not change even if you change the public key on the instance, or add key pairs\.
+
+------
 
 ## \(Optional\) Verifying your key pair's fingerprint<a name="verify-key-pair-fingerprints"></a>
 

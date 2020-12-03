@@ -2,7 +2,7 @@
 
 You can create an Amazon EBS volume and then attach it to any EC2 instance in the same Availability Zone\. If you create an encrypted EBS volume, you can only attach it to supported instance types\. For more information, see [Supported instance types](EBSEncryption.md#EBSEncryption_supported_instances)\.
 
-If you are creating a volume for a high\-performance storage scenario, you should make sure to use a Provisioned IOPS SSD volume \(`io1` or `io2`\) and attach it to an instance with enough bandwidth to support your application, such as an EBS\-optimized instance or an instance with 10\-Gigabit network connectivity\. The same advice holds for Throughput Optimized HDD \(`st1`\) and Cold HDD \(`sc1`\) volumes\. For more information, see [Amazon EBS–optimized instances](ebs-optimized.md)\.
+If you are creating a volume for a high\-performance storage scenario, you should make sure to use a Provisioned IOPS SSD volume \(`io1` or `io2`\) and attach it to an instance with enough bandwidth to support your application, such as an EBS\-optimized instance\. The same advice holds for Throughput Optimized HDD \(`st1`\) and Cold HDD \(`sc1`\) volumes\. For more information, see [Amazon EBS–optimized instances](ebs-optimized.md)\.
 
 Empty EBS volumes receive their maximum performance the moment that they are available and do not require initialization \(formerly known as pre\-warming\)\. However, storage blocks on volumes that were created from snapshots must be initialized \(pulled down from Amazon S3 and written to the volume\) before you can access the block\. This preliminary action takes time and can cause a significant increase in the latency of an I/O operation the first time each block is accessed\. Volume performance is achieved after all blocks have been downloaded and written to the volume\. For most applications, amortizing this cost over the lifetime of the volume is acceptable\. To avoid this initial performance hit in a production environment, you can force immediate initialization of the entire volume or enable fast snapshot restore\. For more information, see [Initializing Amazon EBS volumes](ebs-initialize.md)\.
 
@@ -27,11 +27,13 @@ Empty volumes receive their maximum performance the moment that they are availab
 
 1. For **Volume Type**, choose a volume type\. For more information, see [Amazon EBS volume types](ebs-volume-types.md)\.
 
-1. For **Size \(GiB\)**, type the size of the volume\. For more information, see [Constraints on the size and configuration of an EBS volume](volume_constraints.md)\.
+1. For **Size**, enter the size of the volume, in GiB\. For more information, see [Constraints on the size and configuration of an EBS volume](volume_constraints.md)\.
 
-1. With a Provisioned IOPS SSD volume, for **IOPS**, type the maximum number of input/output operations per second \(IOPS\) that the volume should support\.
+1. For **IOPS**, enter the maximum number of input/output operations per second \(IOPS\) that the volume should provide\. You can specify IOPS only for `gp3`, `io1`, and `io2` volumes\.
 
-1. For **Availability Zone**, choose the Availability Zone in which to create the volume\. EBS volumes can only be attached to EC2 instances within the same Availability Zone\.
+1. For **Throughput**, enter the throughput that the volume should provide, in MiB/s\. You can specify throughput only for `gp3` volumes\.
+
+1. For **Availability Zone**, choose the Availability Zone in which to create the volume\. An EBS volume must be attached to an EC2 instance that is in the same Availability Zone as the volume\.
 
 1. \(Optional\) If the instance type supports EBS encryption and you want to encrypt the volume, select **Encrypt this volume** and choose a CMK\. If encryption by default is enabled in this Region, EBS encryption is enabled and the default CMK for EBS encryption is chosen\. You can choose a different CMK from **Master Key** or paste the full ARN of any key that you can access\. For more information, see [Amazon EBS encryption](EBSEncryption.md)\.
 
@@ -73,13 +75,15 @@ Use the following procedure to create a volume from a snapshot\.
 
 1. \(Optional\) Select **Encrypt this volume** to change the encryption state of your volume\. This is optional if [encryption by default](EBSEncryption.md#encryption-by-default) is enabled\. Select a CMK from **Master Key** to specify a CMK other than the default CMK for EBS encryption\.
 
-1. For **Size \(GiB\)**, type the size of the volume, or verify that the default size of the snapshot is adequate\.
+1. For **Size**, verify that the default size of the snapshot meets your needs or enter the size of the volume, in GiB\.
 
    If you specify both a volume size and a snapshot, the size must be equal to or greater than the snapshot size\. When you select a volume type and a snapshot, the minimum and maximum sizes for the volume are shown next to **Size**\. For more information, see [Constraints on the size and configuration of an EBS volume](volume_constraints.md)\.
 
-1. With a Provisioned IOPS SSD volume, for **IOPS**, type the maximum number of input/output operations per second \(IOPS\) that the volume should support\.
+1. For **IOPS**, enter the maximum number of input/output operations per second \(IOPS\) that the volume should provide\. You can specify IOPS only for `gp3`, `io1`, and `io2` volumes\.
 
-1. For **Availability Zone**, choose the Availability Zone in which to create the volume\. EBS volumes can only be attached to EC2 instances in the same Availability Zone\.
+1. For **Throughput**, enter the throughput that the volume should provide, in MiB/s\. You can specify throughput only for `gp3` volumes\.
+
+1. For **Availability Zone**, choose the Availability Zone in which to create the volume\. An EBS volume must be attached to an EC2 instance that is in the same Availability Zone as the volume\.
 
 1. \(Optional\) Choose **Create additional tags** to add tags to the volume\. For each tag, provide a tag key and a tag value\.
 

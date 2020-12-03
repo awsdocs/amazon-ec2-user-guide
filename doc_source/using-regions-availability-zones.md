@@ -1,6 +1,6 @@
 # Regions and Zones<a name="using-regions-availability-zones"></a>
 
-Amazon EC2 is hosted in multiple locations world\-wide\. These locations are composed of Regions, Availability Zones, Local Zones, and Wavelength Zones\. Each *Region* is a separate geographic area\. 
+Amazon EC2 is hosted in multiple locations world\-wide\. These locations are composed of Regions, Availability Zones, Local Zones, AWS Outposts, and Wavelength Zones\. Each *Region* is a separate geographic area\. 
 + Availability Zones are multiple, isolated locations within each Region\.
 + Local Zones provide you the ability to place resources, such as compute and storage, in multiple locations closer to your end users\.
 + AWS Outposts brings native AWS services, infrastructure, and operating models to virtually any data center, co\-location space, or on\-premises facility\.
@@ -40,7 +40,7 @@ Note that there is a charge for data transfer between Regions\. For more informa
 
 ### Available Regions<a name="concepts-available-regions"></a>
 
-Your account determines the Regions that are available to you\. For example:
+Your account determines the Regions that are available to you\.
 + An AWS account provides multiple Regions so that you can launch Amazon EC2 instances in locations that meet your requirements\. For example, you might want to launch instances in Europe to be closer to your European customers or to meet legal requirements\.
 + An AWS GovCloud \(US\-West\) account provides access to the AWS GovCloud \(US\-West\) Region and the AWS GovCloud \(US\-East\) Region\. For more information, see [AWS GovCloud \(US\)](https://aws.amazon.com/govcloud-us/)\.
 + An Amazon AWS \(China\) account provides access to the Beijing and Ningxia Regions only\. For more information, see [AWS in China](https://www.amazonaws.cn/about-aws/china/)\.
@@ -53,9 +53,9 @@ For information about available Wavelength Zones, see [Available Wavelength Zone
 | Code | Name | Opt\-in Status | Local Zone | 
 | --- | --- | --- | --- | 
 | us\-east\-2 | US East \(Ohio\) | Not required | Not available | 
-| us\-east\-1 | US East \(N\. Virginia\) | Not required | Not available | 
+| us\-east\-1 | US East \(N\. Virginia\) | Not required | The following Local Zones are in preview:[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html) | 
 | us\-west\-1 | US West \(N\. California\) | Not required | Not available | 
-| us\-west\-2 | US West \(Oregon\) | Not required | us\-west\-2\-lax\-1a`us-west-2-lax-1b` | 
+| us\-west\-2 | US West \(Oregon\) | Not required | The following Local Zones are in Los Angeles:[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html) | 
 | af\-south\-1 | Africa \(Cape Town\) | Required | Not available | 
 | ap\-east\-1 | Asia Pacific \(Hong Kong\) | Required | Not available | 
 | ap\-south\-1 | Asia Pacific \(Mumbai\) | Not required | Not available | 
@@ -255,24 +255,31 @@ The migration process involves:
 
 ## Local Zones<a name="concepts-local-zones"></a>
 
-A Local Zone is an extension of an AWS Region in geographic proximity to your users\. Local Zones have their own connections to the internet and support AWS Direct Connect, so resources created in a Local Zone can serve local users with low\-latency communications\. For more information, see [AWS Local Zones](http://aws.amazon.com/about-aws/global-infrastructure/localzones/)\. 
+A Local Zone is an extension of an AWS Region in geographic proximity to your users\. Local Zones have their own connections to the internet and support AWS Direct Connect, so that resources created in a Local Zone can serve local users with low\-latency communications\. For more information, see [AWS Local Zones](http://aws.amazon.com/about-aws/global-infrastructure/localzones/)\. 
 
 ![\[Local Zones\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/aws-lz.png)
 
 A Local Zone is represented by a Region code followed by an identifier that indicates the location, for example, `us-west-2-lax-1a`\.
 
-To use a Local Zone, you must first enable it\. For more information, see [Enable Local Zones](#opt-in-local-zone)\. Next, create a subnet in the Local Zone\. Finally, launch any of the following resources in the Local Zone subnet, so that your applications are close to your end users:
+To use a Local Zone, you must first enable it\. For more information, see [Opt in to Local Zones](#opt-in-local-zone)\. Next, create a subnet in the Local Zone\. Finally, launch any of the following resources in the Local Zone subnet, so that your applications are close to your end users:
 + Amazon EC2 instances
 + Amazon EBS volumes
++ Amazon ECS
++ Amazon EKS
+
+In addition to the above list, the following resources are available in the Los Angeles Local Zones\. 
 + Amazon FSx file servers
-+ Application Load Balancers
++ Elastic Load Balancing
++ Amazon EMR
++ Amazon ElastiCache
++ Amazon Relational Database Service
 + Dedicated Hosts
 
 For information about the available Local Zones, see [Available Regions](#concepts-available-regions)\.
 
 **Topics**
 + [Describing your Local Zones](#local-zones-describe)
-+ [Enable Local Zones](#opt-in-local-zone)
++ [Opt in to Local Zones](#opt-in-local-zone)
 + [Launching instances in a Local Zone](#local-zones-launching)
 
 ### Describing your Local Zones<a name="local-zones-describe"></a>
@@ -310,14 +317,16 @@ Use the [Get\-EC2AvailabilityZone](https://docs.aws.amazon.com/powershell/latest
 PS C:\> Get-EC2AvailabilityZone -Region region-name
 ```
 
-### Enable Local Zones<a name="opt-in-local-zone"></a>
+### Opt in to Local Zones<a name="opt-in-local-zone"></a>
 
-Before you can specify a Local Zone for a resource or service, you must enable Local Zones\.
+Before you can specify a Local Zone for a resource or service, you must opt in to Local Zones\.
+
+If you need to opt in to a Local Zone that is in preview \(Boston, Houston, or Miami\), request access by filling in the [AWS Local Zone Signup Form](https://pages.awscloud.com/local-zones-signup-form.html)\.
 
 **Consideration**  
 Some AWS resources might not be available in all Regions\. Make sure that you can create the resources that you need in the desired Regions or Local Zones before launching an instance in a specific Local Zone\.
 
-**To enable Local Zones using the console**
+**To opt in to Local Zones using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -335,7 +344,7 @@ Some AWS resources might not be available in all Regions\. Make sure that you ca
 
 1. Choose **Update zone group**\.
 
-**To enable Local Zones using the AWS CLI**
+**To opt in to Local Zones using the AWS CLI**
 + Use the [modify\-availability\-zone\-group](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-availability-zone-group.html) command\.
 
 ### Launching instances in a Local Zone<a name="local-zones-launching"></a>
@@ -348,7 +357,7 @@ You can allocate the following IP addresses from a network border group:
 
 **To launch an instance in a Local Zone:**
 
-1. Enable Local Zones\. For more information, see [Enable Local Zones](#opt-in-local-zone)\.
+1. Enable Local Zones\. For more information, see [Opt in to Local Zones](#opt-in-local-zone)\.
 
 1. Create a VPC in a Region that supports the Local Zone\. For more information, see [Creating a VPC](https://docs.aws.amazon.com/vpc/latest/userguide/working-with-vpcs.html#Create-VPC) in the *Amazon VPC User Guide*\.
 

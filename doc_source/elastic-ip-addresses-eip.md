@@ -6,6 +6,8 @@ An Elastic IP address is a public IPv4 address, which is reachable from the inte
 
 We currently do not support Elastic IP addresses for IPv6\.
 
+To ensure efficient use of Elastic IP addresses, we impose a small hourly charge if an Elastic IP address is not associated with a running instance, or if it is associated with a stopped instance or an unattached network interface\. While your instance is running, you are not charged for one Elastic IP address associated with the instance, but you are charged for any additional Elastic IP addresses associated with the instance\. For more information, see Elastic IP Addresses on the [Amazon EC2 Pricing, On\-Demand Pricing page](http://aws.amazon.com/ec2/pricing/on-demand/)\.
+
 **Topics**
 + [Elastic IP address basics](#eip-basics)
 + [Working with Elastic IP addresses](#working-with-eips)
@@ -21,7 +23,6 @@ The following are the basic characteristics of an Elastic IP address:
 + When you associate an Elastic IP address with an instance or its primary network interface, the instance's public IPv4 address \(if it had one\) is released back into Amazon's pool of public IPv4 addresses\. You cannot reuse a public IPv4 address, and you cannot convert a public IPv4 address to an Elastic IP address\. For more information, see [Public IPv4 addresses and external DNS hostnames](using-instance-addressing.md#concepts-public-addresses)\.
 + You can disassociate an Elastic IP address from a resource, and then associate it with a different resource\. To avoid unexpected behavior, ensure that all active connections to the resource named in the existing association are closed before you make the change\. After you have associated your Elastic IP address to a different resource, you can reopen your connections to the newly associated resource\.
 + A disassociated Elastic IP address remains allocated to your account until you explicitly release it\.
-+ To ensure efficient use of Elastic IP addresses, we impose a small hourly charge if an Elastic IP address is not associated with a running instance, or if it is associated with a stopped instance or an unattached network interface\. While your instance is running, you are not charged for one Elastic IP address associated with the instance, but you are charged for any additional Elastic IP addresses associated with the instance\. For more information, see the section for Elastic IP Addresses on the [Amazon EC2 Pricing, On\-Demand Pricing page](http://aws.amazon.com/ec2/pricing/on-demand/)\.
 + When you associate an Elastic IP address with an instance that previously had a public IPv4 address, the public DNS host name of the instance changes to match the Elastic IP address\. 
 + We resolve a public DNS host name to the public IPv4 address or the Elastic IP address of the instance outside the network of the instance, and to the private IPv4 address of the instance from within the network of the instance\.
 + An Elastic IP address comes from Amazon's pool of IPv4 addresses, or from a custom IP address pool that you have brought to your AWS account\.
@@ -62,7 +63,7 @@ You can allocate an Elastic IP address using one of the following methods\.
 
 1. For **Public IPv4 address pool** choose one of the following:
    + **Amazon's pool of IPv4 addresses**—If you want an IPv4 address to be allocated from Amazon's pool of IPv4 addresses\.
-   + **Public IPv4 addresses that you bring to your AWS account**—If you want to allocate an IPv4 address from an IP address pool that you have brought to your AWS account\. This option is disabled if you do not have any IP address pools\.
+   + **My pool of public IPv4 addresses**—If you want to allocate an IPv4 address from an IP address pool that you have brought to your AWS account\. This option is disabled if you do not have any IP address pools\.
    + **Customer owned pool of IPv4 addresses**—If you want to allocate an IPv4 address from a pool created from your on\-premises network for use with an AWS Outpost\. This option is disabled if you do not have an AWS Outpost\.
 
 1. Choose **Allocate**\.

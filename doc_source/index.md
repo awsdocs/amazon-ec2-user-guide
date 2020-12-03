@@ -68,6 +68,7 @@ Amazon's trademarks and trade dress may not be used in
                + [Standard mode examples](standard-mode-examples.md)
             + [Working with burstable performance instances](burstable-performance-instances-how-to.md)
             + [Monitoring your CPU credits](burstable-performance-instances-monitoring-cpu-credits.md)
+         + [Amazon EC2 Mac instances](ec2-mac-instances.md)
       + [Compute optimized instances](compute-optimized-instances.md)
       + [Memory optimized instances](memory-optimized-instances.md)
       + [Storage optimized instances](storage-optimized-instances.md)

@@ -79,7 +79,7 @@ To hibernate an instance, the following prerequisites must be in place:
 
   For information about the supported AMIs for Windows, see [Hibernation prerequisites](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/Hibernate.html#hibernating-prerequisites) in the *Amazon EC2 User Guide for Windows Instances*\.
 + **Root volume type** \- must be an EBS volume, not an instance store volume\.
-+ **Supported EBS volume types** \- General Purpose SSD \(`gp2`\) or Provisioned IOPS SSD \(`io1` or `io2`\)\. If you choose a Provisioned IOPS SSD \(`io1` or `io2`\) volume type, to achieve optimum performance for hibernation, you must provision the EBS volume with the appropriate IOPS\. For more information, see [Amazon EBS volume types](ebs-volume-types.md)\.
++ **Supported EBS volume types** \- General Purpose SSD \(`gp2` and `gp3`\) or Provisioned IOPS SSD \(`gp2` and `gp3`\)\. If you choose a Provisioned IOPS SSD volume type, to achieve optimum performance for hibernation, you must provision the EBS volume with the appropriate IOPS\. For more information, see [Amazon EBS volume types](ebs-volume-types.md)\.
 + **EBS root volume size** \- must be large enough to store the RAM contents and accommodate your expected usage, for example, OS or applications\. If you enable hibernation, space is allocated on the root volume at launch to store the RAM\.
 + **EBS root volume encryption** \- To use hibernation, the root volume must be encrypted to ensure the protection of sensitive content that is in memory at the time of hibernation\. When RAM data is moved to the EBS root volume, it is always encrypted\. Encryption of the root volume is enforced at instance launch\. Use one of the following three options to ensure that the root volume is an encrypted EBS volume:
   + EBS "single\-step" encryption: You can launch encrypted EBS\-backed EC2 instances from an unencrypted AMI and also enable hibernation at the same time\. For more information, see [Using encryption with EBS\-backed AMIs](AMIEncryption.md)\.
@@ -251,7 +251,7 @@ You can't enable or disable hibernation for an instance after you launch it\.
 
 1. On the **Add Storage** page, for the root volume, specify the following information: 
    + For **Size \(GiB\)**, enter the EBS root volume size\. The volume must be large enough to store the RAM contents and accommodate your expected usage\.
-   + For **Volume Type**, select a supported EBS volume type \(General Purpose SSD \(`gp2`\) or Provisioned IOPS SSD \(`io1` or `io2`\)\.
+   + For **Volume Type**, select a supported EBS volume type, General Purpose SSD \(`gp2` and `gp3`\) or Provisioned IOPS SSD \(`io1` and `io2`\)\.
    + For **Encryption**, select the encryption key for the volume\. If you enabled encryption by default in this AWS Region, the default encryption key is selected\.
 
    For more information about the prerequisites for the root volume, see [Hibernation prerequisites](#hibernating-prerequisites)\.

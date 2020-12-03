@@ -18,11 +18,13 @@ The following table summarizes the theoretical and implemented storage capacitie
 | Partitioning scheme | Max addressable blocks  | Theoretical max size \(blocks × block size\) | Ext4 implemented max size\* | XFS implemented max size\*\* | NTFS implemented max size | Max supported by EBS | 
 | --- | --- | --- | --- | --- | --- | --- | 
 | MBR | 232 | 2 TiB | 2 TiB | 2 TiB | 2 TiB | 2 TiB | 
-| GPT | 264 |  64 ZiB  | 1 EiB =10242 TiB \(50 TiB certified on RHEL7\) |  500 TiB \(certified on RHEL7\)  | 256 TiB | 16 TiB | 
+| GPT † | 264 |  64 ZiB  | 1 EiB =10242 TiB \(50 TiB certified on RHEL7\) |  500 TiB \(certified on RHEL7\)  | 256 TiB | 16 TiB | 
 
 \* [https://ext4.wiki.kernel.org/index.php/Ext4_Howto](https://ext4.wiki.kernel.org/index.php/Ext4_Howto) and [https://access.redhat.com/solutions/1532](https://access.redhat.com/solutions/1532)
 
 \*\* [https://access.redhat.com/solutions/1532](https://access.redhat.com/solutions/1532)
+
+† `io2` Block Express volumes support up to 64 TiB for GPT partitions\.
 
 ## Service limitations<a name="aws_limits"></a>
 

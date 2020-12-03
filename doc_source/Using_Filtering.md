@@ -191,12 +191,12 @@ aws ec2 describe-snapshots --filters Name=description,Values=database????
 With the AWS CLI, you can use JMESPath to filter results using expressions\. For example, the following [describe\-snapshots](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-snapshots.html) command displays the IDs of all snapshots created by your AWS account \(represented by *123456789012*\) before the specified date \(represented by *2020\-03\-31*\)\. If you do not specify the owner, the results include all public snapshots\.  
 
 ```
-aws ec2 describe-snapshots --filters Name=owner-id,Values=123456789012 --query "Snapshots[?(StartTime<=`2020-03-31`)].[SnapshotId]" --output text
+aws ec2 describe-snapshots --filters Name=owner-id,Values=123456789012 --query "Snapshots[?(StartTime<='2020-03-31')].[SnapshotId]" --output text
 ```
 The following command displays the IDs of all snapshots created in the specified date range\.  
 
 ```
-aws ec2 describe-snapshots --filters Name=owner-id,Values=123456789012 --query "Snapshots[?(StartTime>=`2019-01-01`) && (StartTime<=`2019-12-31`)].[SnapshotId]" --output text
+aws ec2 describe-snapshots --filters Name=owner-id,Values=123456789012 --query "Snapshots[?(StartTime>='2019-01-01') && (StartTime<='2019-12-31')].[SnapshotId]" --output text
 ```
 
 **Filter based on tags**  

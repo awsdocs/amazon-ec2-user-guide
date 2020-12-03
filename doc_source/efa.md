@@ -48,7 +48,7 @@ EFA supports the following interfaces and libraries:
 ## Supported instance types<a name="efa-instance-types"></a>
 
 The following instance types support EFAs:
-+ General purpose: `m5dn.24xlarge` \| `m5n.24xlarge` 
++ General purpose: `m5dn.24xlarge` \| `m5n.24xlarge` \| `m5zn.12xlarge` \| `m5zn.metal`
 + Compute optimized: `c5n.18xlarge` \| `c5n.metal` 
 + Memory optimized: `r5dn.24xlarge` \| `r5n.24xlarge`
 + Storage optimized: `i3en.24xlarge` \| `i3en.metal`
@@ -57,7 +57,7 @@ The following instance types support EFAs:
 The available instance types vary by Region\. To see the available instance types that support EFA in a Region, use the [describe\-instance\-types](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-types.html) command with the `--region` option and the appropriate Region code\.
 
 ```
-aws ec2 describe-instance-types --region us-east-2 --filters Name=network-info.efa-supported,Values=true --query InstanceTypes[*].[InstanceType] --output text
+aws ec2 describe-instance-types --region us-east-2 --filters Name=network-info.efa-supported,Values=true --query "InstanceTypes[*].[InstanceType]" --output text
 ```
 
 The following is example output\.

@@ -314,8 +314,6 @@ With these permissions, users can create a new security group successfully, but 
 + `ec2:UpdateSecurityGroupRuleDescriptionsIngress`: To add or update descriptions of ingress \(inbound\) security group rules\.
 + `ec2:UpdateSecurityGroupRuleDescriptionsEgress`: To add or update descriptions of egress \(outbound\) security group rules\.
 
-Currently, the `ec2:CreateSecurityGroup` API action does not support resource\-level permissions; however, you can apply resource\-level permissions to the `ec2:AuthorizeSecurityGroupIngress` and `ec2:AuthorizeSecurityGroupEgress` actions to control how users can create rules\.
-
 The following policy grants users permission to use the **Create Security Group** dialog box, and to create inbound and outbound rules for security groups that are associated with a specific VPC \(`vpc-1a2b3c4d`\)\. Users can create security groups for EC2\-Classic or another VPC, but they cannot add any rules to them\. Similarly, users cannot add any rules to any existing security group that's not associated with VPC `vpc-1a2b3c4d`\. Users are also granted permission to view all security groups in the console\. This makes it easier for users to identify the security groups to which they can add inbound rules\. This policy also grants users permission to delete security groups that are associated with VPC `vpc-1a2b3c4d`\. 
 
 ```

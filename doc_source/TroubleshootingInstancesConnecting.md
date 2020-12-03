@@ -43,7 +43,11 @@ After you launch an instance, it can take a few minutes for the instance to be r
 
 1. In the navigation pane, choose **Instances**, and then select your instance\.
 
-1. Verify that your instance is in the `running` state and that your instance have passed status checks\.
+1. Verify the following:
+
+   1. In the **Instance state** column, verify that your instance is in the `running` state\.
+
+   1. In the **Status check** column, verify that your instance has passed the two status checks\.
 
 **Verify the general prerequisites for connecting to your instance**  
 For more information, see [General prerequisites for connecting to your instance](connection-prereqs.md)\.
@@ -51,62 +55,123 @@ For more information, see [General prerequisites for connecting to your instance
 ## Error connecting to your instance: Connection timed out<a name="TroubleshootingInstancesConnectionTimeout"></a>
 
 If you try to connect to your instance and get an error message `Network error: Connection timed out` or `Error connecting to [instance], reason: -> Connection timed out: connect`, try the following:
-+ Check your security group rules\. You need a security group rule that allows inbound traffic from your public IPv4 address on the proper port\.
 
-  1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+**Check your security group rules\.**  
+You need a security group rule that allows inbound traffic from your public IPv4 address on the proper port\.
 
-  1. In the navigation pane, choose **Instances**, and then select your instance\.
+------
+#### [ New console ]
 
-  1. In the **Description** tab at the bottom of the console page, next to **Security groups**, select **view inbound rules** to display the list of rules that are in effect for the selected instance\.
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-  1. For Linux instances: When you select **view inbound rules**, a window will appear that displays the port\(s\) to which traffic is allowed\. Verify that there is a rule that allows traffic from your computer to port 22 \(SSH\)\.
+1. In the navigation pane, choose **Instances**, and then select your instance\.
 
-     For Windows instances: When you select **view inbound rules**, a window will appear that displays the port\(s\) to which traffic is allowed\. Verify that there is a rule that allows traffic from your computer to port 3389 \(RDP\)\.
+1. On the **Security** tab at the bottom of the console page, under **Inbound rules**, check the list of rules that are in effect for the selected instance\.
+   + For Linux instances: Verify that there is a rule that allows traffic from your computer to port 22 \(SSH\)\.
+   + For Windows instances: Verify that there is a rule that allows traffic from your computer to port 3389 \(RDP\)\.
 
-     Each time you restart your instance, a new IP address \(and host name\) will be assigned\. If your security group has a rule that allows inbound traffic from a single IP address, this address may not be static if your computer is on a corporate network or if you are connecting through an internet service provider \(ISP\)\. Instead, specify the range of IP addresses used by client computers\. If your security group does not have a rule that allows inbound traffic as described in the previous step, add a rule to your security group\. For more information, see [Authorizing Network Access to Your Instances](authorizing-access-to-an-instance.md)\.
+1. Each time you restart your instance, a new IP address \(and host name\) will be assigned\. If your security group has a rule that allows inbound traffic from a single IP address, this address might not be static if your computer is on a corporate network or if you are connecting through an internet service provider \(ISP\)\. Instead, specify the range of IP addresses used by client computers\. If your security group does not have a rule that allows inbound traffic as described in the previous step, add a rule to your security group\. For more information, see [Authorizing inbound traffic for your Linux instances](authorizing-access-to-an-instance.md)\.
 
-     For more information about Security Group rules, see [Security Group Rules](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html#SecurityGroupRules) in the *Amazon VPC User Guide*\.
-+ Check the route table for the subnet\. You need a route that sends all traffic destined outside the VPC to the internet gateway for the VPC\.
+   For more information about security group rules, see [Security group rules](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html#SecurityGroupRules) in the *Amazon VPC User Guide*\.
 
-  1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+------
+#### [ Old console ]
 
-  1. In the navigation pane, choose **Instances**, and then select your instance\.
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-  1. In the **Description** tab, write down the values of **VPC ID** and **Subnet ID**\.
+1. In the navigation pane, choose **Instances**, and then select your instance\.
 
-  1. Open the Amazon VPC console at [https://console\.aws\.amazon\.com/vpc/](https://console.aws.amazon.com/vpc/)\.
+1. In the **Description** tab at the bottom of the console page, next to **Security groups**, select **view inbound rules** to display the list of rules that are in effect for the selected instance\.
 
-  1. In the navigation pane, choose **Internet Gateways**\. Verify that there is an internet gateway attached to your VPC\. Otherwise, choose **Create Internet Gateway** to create an internet gateway\. Select the internet gateway, and then choose **Attach to VPC** and follow the directions to attach it to your VPC\.
+1. For Linux instances: When you select **view inbound rules**, a window will appear that displays the port\(s\) to which traffic is allowed\. Verify that there is a rule that allows traffic from your computer to port 22 \(SSH\)\.
 
-  1. In the navigation pane, choose **Subnets**, and then select your subnet\.
+   For Windows instances: When you select **view inbound rules**, a window will appear that displays the port\(s\) to which traffic is allowed\. Verify that there is a rule that allows traffic from your computer to port 3389 \(RDP\)\.
 
-  1. On the **Route Table** tab, verify that there is a route with `0.0.0.0/0` as the destination and the internet gateway for your VPC as the target\. If you're connecting to your instance using its IPv6 address, verify that there is a route for all IPv6 traffic \(`::/0`\) that points to the internet gateway\. Otherwise, do the following:
+   Each time you restart your instance, a new IP address \(and host name\) will be assigned\. If your security group has a rule that allows inbound traffic from a single IP address, this address may not be static if your computer is on a corporate network or if you are connecting through an internet service provider \(ISP\)\. Instead, specify the range of IP addresses used by client computers\. If your security group does not have a rule that allows inbound traffic as described in the previous step, add a rule to your security group\. For more information, see [Authorizing inbound traffic for your Linux instances](authorizing-access-to-an-instance.md)\.
 
-     1. Choose the ID of the route table \(rtb\-*xxxxxxxx*\) to navigate to the route table\.
+   For more information about security group rules, see [Security group rules](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html#SecurityGroupRules) in the *Amazon VPC User Guide*\.
 
-     1. On the **Routes** tab, choose **Edit routes**\. Choose **Add route**, use `0.0.0.0/0` as the destination and the internet gateway as the target\. For IPv6, choose **Add route**, use `::/0` as the destination and the internet gateway as the target\.
+------
 
-     1. Choose **Save routes**\.
-+ Check the network access control list \(ACL\) for the subnet\. The network ACLs must allow inbound and outbound traffic from your local IP address on the proper port\. The default network ACL allows all inbound and outbound traffic\.
+**Check the route table for the subnet\.**  
+You need a route that sends all traffic destined outside the VPC to the internet gateway for the VPC\.
 
-  1. Open the Amazon VPC console at [https://console\.aws\.amazon\.com/vpc/](https://console.aws.amazon.com/vpc/)\.
+------
+#### [ New console ]
 
-  1. In the navigation pane, choose **Subnets** and select your subnet\.
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-  1. On the **Description** tab, find **Network ACL**, and choose its ID \(acl\-*xxxxxxxx*\)\.
+1. In the navigation pane, choose **Instances**, and then select your instance\.
 
-  1. Select the network ACL\. For **Inbound Rules**, verify that the rules allow traffic from your computer\. Otherwise, delete or modify the rule that is blocking traffic from your computer\.
+1. On the **Networking** tab, make note of the values for **VPC ID** and **Subnet ID**\.
 
-  1. For **Outbound Rules**, verify that the rules allow traffic to your computer\. Otherwise, delete or modify the rule that is blocking traffic to your computer\.
-+ If your computer is on a corporate network, ask your network administrator whether the internal firewall allows inbound and outbound traffic from your computer on port 22 \(for Linux instances\) or port 3389 \(for Windows instances\)\.
+1. Open the Amazon VPC console at [https://console\.aws\.amazon\.com/vpc/](https://console.aws.amazon.com/vpc/)\.
 
-  If you have a firewall on your computer, verify that it allows inbound and outbound traffic from your computer on port 22 \(for Linux instances\) or port 3389 \(for Windows instances\)\.
-+ Check that your instance has a public IPv4 address\. If not, you can associate an Elastic IP address with your instance\. For more information, see [Elastic IP addresses](elastic-ip-addresses-eip.md)\. 
-+ Check the CPU load on your instance; the server may be overloaded\. AWS automatically provides data such as Amazon CloudWatch metrics and instance status, which you can use to see how much CPU load is on your instance and, if necessary, adjust how your loads are handled\. For more information, see [Monitoring your instances using CloudWatch](using-cloudwatch.md)\. 
-  + If your load is variable, you can automatically scale your instances up or down using [Auto Scaling](https://aws.amazon.com/autoscaling/) and [Elastic Load Balancing](https://aws.amazon.com/elasticloadbalancing/)\. 
-  + If your load is steadily growing, you can move to a larger instance type\. For more information, see [Changing the instance type](ec2-instance-resize.md)\. 
+1. In the navigation pane, choose **Internet Gateways**\. Verify that there is an internet gateway attached to your VPC\. Otherwise, choose **Create internet gateway**, enter a name for the internet gateway, and choose **Create internet gateway**\. Then, for the internet gateway you created, choose **Actions**, **Attach to VPC**, select your VPC, and then choose **Attach internet gateway** to attach it to your VPC\.
 
-To connect to your instance using an IPv6 address, check the following: 
+1. In the navigation pane, choose **Subnets**, and then select your subnet\.
+
+1. On the **Route table** tab, verify that there is a route with `0.0.0.0/0` as the destination and the internet gateway for your VPC as the target\. If you're connecting to your instance using its IPv6 address, verify that there is a route for all IPv6 traffic \(`::/0`\) that points to the internet gateway\. Otherwise, do the following:
+
+   1. Choose the ID of the route table \(rtb\-*xxxxxxxx*\) to navigate to the route table\.
+
+   1. On the **Routes** tab, choose **Edit routes**\. Choose **Add route**, use `0.0.0.0/0` as the destination and the internet gateway as the target\. For IPv6, choose **Add route**, use `::/0` as the destination and the internet gateway as the target\.
+
+   1. Choose **Save routes**\.
+
+------
+#### [ Old console ]
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances**, and then select your instance\.
+
+1. In the **Description** tab, write down the values of **VPC ID** and **Subnet ID**\.
+
+1. Open the Amazon VPC console at [https://console\.aws\.amazon\.com/vpc/](https://console.aws.amazon.com/vpc/)\.
+
+1. In the navigation pane, choose **Internet Gateways**\. Verify that there is an internet gateway attached to your VPC\. Otherwise, choose **Create Internet Gateway** to create an internet gateway\. Select the internet gateway, and then choose **Attach to VPC** and follow the directions to attach it to your VPC\.
+
+1. In the navigation pane, choose **Subnets**, and then select your subnet\.
+
+1. On the **Route Table** tab, verify that there is a route with `0.0.0.0/0` as the destination and the internet gateway for your VPC as the target\. If you're connecting to your instance using its IPv6 address, verify that there is a route for all IPv6 traffic \(`::/0`\) that points to the internet gateway\. Otherwise, do the following:
+
+   1. Choose the ID of the route table \(rtb\-*xxxxxxxx*\) to navigate to the route table\.
+
+   1. On the **Routes** tab, choose **Edit routes**\. Choose **Add route**, use `0.0.0.0/0` as the destination and the internet gateway as the target\. For IPv6, choose **Add route**, use `::/0` as the destination and the internet gateway as the target\.
+
+   1. Choose **Save routes**\.
+
+------
+
+**Check the network access control list \(ACL\) for the subnet\.**
+
+The network ACLs must allow inbound and outbound traffic from your local IP address on the proper port\. The default network ACL allows all inbound and outbound traffic\.
+
+1. Open the Amazon VPC console at [https://console\.aws\.amazon\.com/vpc/](https://console.aws.amazon.com/vpc/)\.
+
+1. In the navigation pane, choose **Subnets** and select your subnet\.
+
+1. On the **Description** tab, find **Network ACL**, and choose its ID \(acl\-*xxxxxxxx*\)\.
+
+1. Select the network ACL\. For **Inbound Rules**, verify that the rules allow traffic from your computer\. Otherwise, delete or modify the rule that is blocking traffic from your computer\.
+
+1. For **Outbound Rules**, verify that the rules allow traffic to your computer\. Otherwise, delete or modify the rule that is blocking traffic to your computer\.
+
+**If your computer is on a corporate network**  
+Ask your network administrator whether the internal firewall allows inbound and outbound traffic from your computer on port 22 \(for Linux instances\) or port 3389 \(for Windows instances\)\.
+
+If you have a firewall on your computer, verify that it allows inbound and outbound traffic from your computer on port 22 \(for Linux instances\) or port 3389 \(for Windows instances\)\.
+
+**Check that your instance has a public IPv4 address\.**  
+If not, you can associate an Elastic IP address with your instance\. For more information, see [Elastic IP addresses](elastic-ip-addresses-eip.md)\. 
+
+**Check the CPU load on your instance; the server may be overloaded\.**  
+AWS automatically provides data such as Amazon CloudWatch metrics and instance status, which you can use to see how much CPU load is on your instance and, if necessary, adjust how your loads are handled\. For more information, see [Monitoring your instances using CloudWatch](using-cloudwatch.md)\.
++ If your load is variable, you can automatically scale your instances up or down using [Auto Scaling](https://aws.amazon.com/autoscaling/) and [Elastic Load Balancing](https://aws.amazon.com/elasticloadbalancing/)\. 
++ If your load is steadily growing, you can move to a larger instance type\. For more information, see [Changing the instance type](ec2-instance-resize.md)\. 
+
+**To connect to your instance using an IPv6 address, check the following:**
 + Your subnet must be associated with a route table that has a route for IPv6 traffic \(`::/0`\) to an internet gateway\. 
 + Your security group rules must allow inbound traffic from your local IPv6 address on the proper port \(22 for Linux and 3389 for Windows\)\.
 + Your network ACL rules must allow inbound and outbound IPv6 traffic\.
@@ -205,11 +270,29 @@ ssh -i /path/my-key-pair.pem my-instance-user-name@ec2-203-0-113-25.compute-1.am
 
 Confirm that you are using the private key file that corresponds to the key pair that you selected when you launched the instance\.
 
+------
+#### [ New console ]
+
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. Select your instance\. In the **Description** tab, verify the value of **Key pair name**\.
+1. In the navigation pane, choose **Instances** and then select your instance\.
+
+1. On the **Details** tab, under **Instance details**, verify the value of **Key pair name**\.
 
 1. If you did not specify a key pair when you launched the instance, you can terminate the instance and launch a new instance, ensuring that you specify a key pair\. If this is an instance that you have been using but you no longer have the `.pem` file for your key pair, you can replace the key pair with a new one\. For more information, see [Connecting to your Linux instance if you lose your private key](replacing-lost-key-pair.md)\.
+
+------
+#### [ Old console ]
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances** and then select your instance\.
+
+1. In the **Description** tab, verify the value of **Key pair name**\.
+
+1. If you did not specify a key pair when you launched the instance, you can terminate the instance and launch a new instance, ensuring that you specify a key pair\. If this is an instance that you have been using but you no longer have the `.pem` file for your key pair, you can replace the key pair with a new one\. For more information, see [Connecting to your Linux instance if you lose your private key](replacing-lost-key-pair.md)\.
+
+------
 
 If you generated your own key pair, ensure that your key generator is set up to create RSA keys\. DSA keys are not accepted\.
 

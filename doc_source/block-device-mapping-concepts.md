@@ -40,7 +40,7 @@ For EBS volumes, you also specify the following information:
 + The ID of the snapshot to use to create the block device \(snap\-*xxxxxxxx*\)\. This value is optional as long as you specify a volume size\.
 + The size of the volume, in GiB\. The specified size must be greater than or equal to the size of the specified snapshot\.
 + Whether to delete the volume on instance termination \(`true` or `false`\)\. The default value is `true` for the root device volume and `false` for attached volumes\. When you create an AMI, its block device mapping inherits this setting from the instance\. When you launch an instance, it inherits this setting from the AMI\.
-+ The volume type, which can be `gp2` for General Purpose SSD, `io1` and `io2` for Provisioned IOPS SSD, `st1` for Throughput Optimized HDD, `sc1` for Cold HDD, or `standard` for Magnetic\. The default value is `gp2`\.
++ The volume type, which can be `gp2` and `gp3` for General Purpose SSD, `io1` and `io2` for Provisioned IOPS SSD, `st1` for Throughput Optimized HDD, `sc1` for Cold HDD, or `standard` for Magnetic\. The default value is `gp2`\.
 + The number of input/output operations per second \(IOPS\) that the volume supports\. \(Used only with `io1` and `io2` volumes\.\)
 
 ### Block device mapping instance store caveats<a name="instance_store_caveats"></a>
@@ -90,13 +90,15 @@ For M3 instances, you must specify instance store volumes in the block device ma
 
 1. In the navigation pane, choose **Instances**\.
 
-1. Select an instance and choose **Actions**, **Image**, **Create Image**\.
+1. Select an instance and choose **Actions**, **Image and templates**, **Create image**\.
 
-1. In the **Create Image** dialog box, choose **Add New Volume**\.
+1. Enter a name and a description for the image\.
 
-1. Select a volume type from the **Type** list and a device name from the **Device** list\. For an EBS volume, you can optionally specify a snapshot, volume size, and volume type\.
+1. The instance volumes appear under **Instance volumes**\. To add another volume, choose **Add volume**\.
 
-1. Choose **Create Image**\.
+1. For **Volume type**, choose the volume type\. For **Device** choose the device name\. For an EBS volume, you can specify additional details, such as a snapshot, volume size, volume type, IOPS, and encryption state\.
+
+1. Choose **Create image**\.
 
 **To add volumes to an AMI using the command line**
 
@@ -300,22 +302,16 @@ For instances launched before the release of the 2009\-10\-31 API, AWS can't dis
 
 1. In the navigation pane, choose **Instances**\.
 
-1. In the search box, enter **Root Device Type**, and then choose **EBS**\. This displays a list of EBS\-backed instances\.
+1. In the search box, enter **Root device type**, and then choose **EBS**\. This displays a list of EBS\-backed instances\.
 
-1. Select the desired instance and look at the details displayed in the **Description** tab\. At a minimum, the following information is available for the root device:
-   + **Root device type** \(`ebs`\)
-   + **Root device** \(for example, `/dev/sda1`\)
-   + **Block devices** \(for example, `/dev/sda1`, `/dev/sdh`, and `/dev/sdj`\)
+1. Select the desired instance and look at the details displayed in the **Storage** tab\. At a minimum, the following information is available for the root device:
+   + **Root device type** \(for example, **EBS**\)
+   + **Root device name** \(for example, `/dev/xvda`\)
+   + **Block devices** \(for example, `/dev/xvda`, `/dev/sdf`, and `/dev/sdj`\)
 
-   If the instance was launched with additional EBS volumes using a block device mapping, the **Block devices** field displays those additional volumes as well as the root device\. \(This screen doesn't display instance store volumes\.\)  
-![\[Block devices for an instance.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/block-device-mapping-description-tab.png)
+   If the instance was launched with additional EBS volumes using a block device mapping, they appear under **Block devices**\. Any instance store volumes do not appear on this tab\.
 
-1. To display additional information about a block device, choose its entry next to **Block devices**\. This displays the following information for the block device:
-   + **EBS ID** \(vol\-*xxxxxxxx*\)
-   + **Root device type** \(`ebs`\)
-   + **Attachment time** \(*yyyy*\-*mm*T*hh*:*mm*:*ss*\.*s**sTZD*\)
-   + **Block device status** \(`attaching`, `attached`, `detaching`, `detached`\)
-   + **Delete on termination** \(`Yes`, `No`\)
+1. To display additional information about an EBS volume, choose its volume ID to go to the volume page\. For more information, see [Viewing information about an Amazon EBS volume](ebs-describing-volumes.md)\.
 
 **To view the EBS volumes for an instance using the command line**
 

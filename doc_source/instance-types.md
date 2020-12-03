@@ -45,6 +45,8 @@ For the best performance, we recommend that you use the following instance types
 | C6g | c6g\.medium \| c6g\.large \| c6g\.xlarge \| c6g\.2xlarge \| c6g\.4xlarge \| c6g\.8xlarge \| c6g\.12xlarge \| c6g\.16xlarge \| c6g\.metal | [Compute optimized](compute-optimized-instances.md) | 
 | C6gd | c6gd\.medium \| c6gd\.large \| c6gd\.xlarge \| c6gd\.2xlarge \| c6gd\.4xlarge \| c6gd\.8xlarge \| c6gd\.12xlarge \| c6gd\.16xlarge \| c6gd\.metal | [Compute optimized](compute-optimized-instances.md) | 
 | D2 | d2\.xlarge \| d2\.2xlarge \| d2\.4xlarge \| d2\.8xlarge | [Storage optimized](storage-optimized-instances.md) | 
+| D3 | d3\.xlarge \| d3\.2xlarge \| d3\.4xlarge \| d3\.8xlarge | [Storage optimized](storage-optimized-instances.md) | 
+| D3en | d3en\.large \| d3en\.xlarge \| d3en\.2xlarge \| d3en\.4xlarge \| d3en\.6xlarge \| d3en\.8xlarge \| d3en\.12xlarge | [Storage optimized](storage-optimized-instances.md) | 
 | F1 | f1\.2xlarge \| f1\.4xlarge \| f1\.16xlarge | [Accelerated computing](accelerated-computing-instances.md) | 
 | G3 | g3s\.xlarge \| g3\.4xlarge \| g3\.8xlarge \| g3\.16xlarge | [Accelerated computing](accelerated-computing-instances.md) | 
 | G4 | g4dn\.xlarge \| g4dn\.2xlarge \| g4dn\.4xlarge \| g4dn\.8xlarge \| g4dn\.12xlarge \| g4dn\.16xlarge \| g4dn\.metal  | [Accelerated computing](accelerated-computing-instances.md) | 
@@ -59,8 +61,10 @@ For the best performance, we recommend that you use the following instance types
 | M5d | m5d\.large \| m5d\.xlarge \| m5d\.2xlarge \| m5d\.4xlarge \| m5d\.8xlarge \| m5d\.12xlarge \| m5d\.16xlarge \| m5d\.24xlarge \| m5d\.metal | [General purpose](general-purpose-instances.md) | 
 | M5dn | m5dn\.large \| m5dn\.xlarge \| m5dn\.2xlarge \| m5dn\.4xlarge \| m5dn\.8xlarge \| m5dn\.12xlarge \| m5dn\.16xlarge \| m5dn\.24xlarge | [General purpose](general-purpose-instances.md) | 
 | M5n | m5n\.large \| m5n\.xlarge \| m5n\.2xlarge \| m5n\.4xlarge \| m5n\.8xlarge \| m5n\.12xlarge \| m5n\.16xlarge \| m5n\.24xlarge | [General purpose](general-purpose-instances.md) | 
+| M5zn | m5zn\.large \| m5zn\.xlarge \| m5zn\.2xlarge \| m5zn\.3xlarge \| m5zn\.6xlarge \| m5zn\.12xlarge \| m5zn\.metal | [General purpose](general-purpose-instances.md) | 
 | M6g | m6g\.medium \| m6g\.large \| m6g\.xlarge \| m6g\.2xlarge \| m6g\.4xlarge \| m6g\.8xlarge \| m6g\.12xlarge \| m6g\.16xlarge \| m6g\.metal | [General purpose](general-purpose-instances.md) | 
 | M6gd | m6gd\.medium \| m6gd\.large \| m6gd\.xlarge \| m6gd\.2xlarge \| m6gd\.4xlarge \| m6gd\.8xlarge \| m6gd\.12xlarge \| m6gd\.16xlarge \| m6gd\.metal | [General purpose](general-purpose-instances.md) | 
+| Mac1 | mac1\.metal | [General purpose](general-purpose-instances.md) | 
 | P2 | p2\.xlarge \| p2\.8xlarge \| p2\.16xlarge | [Accelerated computing](accelerated-computing-instances.md) | 
 | P3 | p3\.2xlarge \| p3\.8xlarge \| p3\.16xlarge | [Accelerated computing](accelerated-computing-instances.md) | 
 | P3dn | p3dn\.24xlarge | [Accelerated computing](accelerated-computing-instances.md) | 
@@ -69,6 +73,7 @@ For the best performance, we recommend that you use the following instance types
 | R5 | r5\.large \| r5\.xlarge \| r5\.2xlarge \| r5\.4xlarge \| r5\.8xlarge \| r5\.12xlarge \| r5\.16xlarge \| r5\.24xlarge \| r5\.metal | [Memory optimized](memory-optimized-instances.md) | 
 | R5a | r5a\.large \| r5a\.xlarge \| r5a\.2xlarge \| r5a\.4xlarge \| r5a\.8xlarge \| r5a\.12xlarge \| r5a\.16xlarge \| r5a\.24xlarge  | [Memory optimized](memory-optimized-instances.md) | 
 | R5ad | r5ad\.large \| r5ad\.xlarge \| r5ad\.2xlarge \| r5ad\.4xlarge \| r5ad\.8xlarge \| r5ad\.12xlarge \| r5ad\.16xlarge \| r5ad\.24xlarge  | [Memory optimized](memory-optimized-instances.md) | 
+| R5b | r5b\.large \| r5b\.xlarge \| r5b\.2xlarge \| r5b\.4xlarge \| r5b\.8xlarge \| r5b\.12xlarge \| r5b\.16xlarge \| r5b\.24xlarge \| r5b\.metal | [Memory optimized](memory-optimized-instances.md) | 
 | R5d | r5d\.large \| r5d\.xlarge \| r5d\.2xlarge \| r5d\.4xlarge \| r5d\.8xlarge \| r5d\.12xlarge \| r5d\.16xlarge \| r5d\.24xlarge \| r5d\.metal | [Memory optimized](memory-optimized-instances.md) | 
 | R5dn | r5dn\.large \| r5dn\.xlarge \| r5dn\.2xlarge \| r5dn\.4xlarge \| r5dn\.8xlarge \| r5dn\.12xlarge \| r5dn\.16xlarge \| r5dn\.24xlarge | [Memory optimized](memory-optimized-instances.md) | 
 | R5n | r5n\.large \| r5n\.xlarge \| r5n\.2xlarge \| r5n\.4xlarge \| r5n\.8xlarge \| r5n\.12xlarge \| r5n\.16xlarge \| r5n\.24xlarge | [Memory optimized](memory-optimized-instances.md) | 
@@ -140,8 +145,8 @@ The following components are part of the Nitro System:
 **Instance types**
 
 The following instances are built on the Nitro System:
-+ Virtualized: A1, C5, C5a, C5ad, C5d, C5n, C6g, C6gd,  G4, I3en, Inf1, M5, M5a, M5ad, M5d, M5dn, M5n, M6g, M6gd,  `p3dn.24xlarge`, P4,  R5, R5a, R5ad, R5d, R5dn, R5n, R6g, R6gd,  T3, T3a, T4g, and z1d
-+ Bare metal: `a1.metal`,  `c5.metal`, `c5d.metal`, `c5n.metal`, `c6g.metal`, `c6gd.metal`,  `i3.metal`, `i3en.metal`, `m5.metal`, `m5d.metal`, `m6g.metal`, `m6gd.metal`,  `r5.metal`, `r5d.metal`, `r6g.metal`, `r6gd.metal`,  `u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, `u-18tb1.metal`, `u-24tb1.metal`, and `z1d.metal`
++ Virtualized: A1, C5, C5a, C5ad, C5d, C5n, C6g, C6gd,  D3, D3en, G4, I3en, Inf1, M5, M5a, M5ad, M5d, M5dn, M5n, M5zn, M6g, M6gd, `p3dn.24xlarge`, P4,  R5, R5a, R5ad, R5b, R5d, R5dn, R5n, R6g, R6gd,  T3, T3a, T4g, and z1d
++ Bare metal: `a1.metal`,  `c5.metal`, `c5d.metal`, `c5n.metal`, `c6g.metal`, `c6gd.metal`,  `i3.metal`, `i3en.metal`, `m5.metal`, `m5d.metal`, `m5zn.metal`, `m6g.metal`, `m6gd.metal`, `mac1.metal`,  `r5.metal`, `r5b.metal`, `r5d.metal`, `r6g.metal`, `r6gd.metal`,  `u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, `u-18tb1.metal`, `u-24tb1.metal`, and `z1d.metal`
 
 **Learn more**
 
@@ -186,6 +191,8 @@ The following table summarizes the networking and storage features supported by 
 | C6g | Yes | Yes | No | Yes | ENA | 
 | C6gd | No | Yes | NVME \* | Yes | ENA | 
 |  D2  | No | No |  HDD  |  Yes  | Intel 82599 VF | 
+| D3 | No | Yes | NVMe \* | Yes | ENA | 
+| D3en | No | Yes | NVMe \* | Yes | ENA | 
 |  F1  | No | No |  NVMe \*  |  Yes  | ENA | 
 |  G3  | Yes | No | No |  Yes  | ENA | 
 | G4 | No | Yes | NVMe \* | Yes | ENA | 
@@ -200,8 +207,10 @@ The following table summarizes the networking and storage features supported by 
 |  M5d  | No | Yes | NVMe \* |  Yes  | ENA | 
 |  M5dn  | No | Yes | NVMe \* |  Yes  | ENA | 
 |  M5n  |  Yes  | Yes | No |  Yes  | ENA | 
+| M5zn | Yes | Yes | No | Yes | ENA | 
 | M6g | Yes | Yes | No | Yes | ENA | 
 | M6gd | No | Yes | NVME \* | Yes | ENA | 
+| Mac1 | Yes | Yes | No | No | ENA | 
 |  P2  |  Yes  | No | No |  Yes  | ENA | 
 | P3 |  Yes  |  No  |  No  |  Yes  | ENA | 
 | P3dn |  No  |  Yes  |  NVMe \*  |  Yes  | ENA | 
@@ -210,6 +219,7 @@ The following table summarizes the networking and storage features supported by 
 |  R5  |  Yes  | Yes | No |  Yes  | ENA | 
 |  R5a  |  Yes  | Yes | No |  Yes  | ENA | 
 |  R5ad  | No | Yes | NVMe \* |  Yes  | ENA | 
+| R5b | Yes | Yes | No | Yes | ENA | 
 |  R5d  | No | Yes | NVMe \* |  Yes  | ENA | 
 |  R5dn  | No | Yes | NVMe \* |  Yes  | ENA | 
 |  R5n  |  Yes  | Yes | No |  Yes  | ENA | 

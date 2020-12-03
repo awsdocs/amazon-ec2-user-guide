@@ -15,20 +15,25 @@ The SSD\-backed volumes provided by Amazon EBS fall into these categories:
 + General Purpose SSD — Provides a balance of price and performance\. We recommend these volumes for most workloads\.
 + Provisioned IOPS SSD — Provides high performance for mission\-critical, low\-latency, or high\-throughput workloads\.
 
+The following is a summary of the use cases and characteristics of SSD\-backed volumes\. For information about the maximum IOPS and throughput per instance, see [Amazon EBS–optimized instances](ebs-optimized.md)\.
+
 
 |  | General Purpose SSD | Provisioned IOPS SSD | 
 | --- | --- | --- | 
-| Volume type | gp2 | io2 | io1 | 
-| Durability | 99\.8% \- 99\.9% durability \(0\.1% \- 0\.2% annual failure rate\) | 99\.999% durability \(0\.001% annual failure rate\) | 99\.8% \- 99\.9% durability \(0\.1% \- 0\.2% annual failure rate\) | 
-| Use cases |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html)  | 
-| Volume size | 1 GiB \- 16 TiB  | 4 GiB \- 16 TiB  | 
-| Max IOPS per volume \(16 KiB I/O\) | 16,000 \* | 64,000 † | 
-| Max throughput per volume | 250 MiB/s \* | 1,000 MiB/s † | 
-| Amazon EBS Multi\-attach | Not supported | Not Supported | Supported | 
+| Volume type | gp3 | gp2 | io2 Block Express ‡ | io2 | io1 | 
+| Durability | 99\.8% \- 99\.9% durability \(0\.1% \- 0\.2% annual failure rate\) | 99\.8% \- 99\.9% durability \(0\.1% \- 0\.2% annual failure rate\) | 99\.999% durability \(0\.001% annual failure rate\) | 99\.8% \- 99\.9% durability \(0\.1% \- 0\.2% annual failure rate\) | 
+| Use cases |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html)  | Workloads that require sub\-millisecond latency, and sustained IOPS performance or more than 64,000 IOPS or 1,000 MiB/s of throughput  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html)  | 
+| Volume size | 1 GiB \- 16 TiB  | 4 GiB \- 64 TiB | 4 GiB \- 16 TiB  | 
+| Max IOPS per volume \(16 KiB I/O\) | 16,000 | 256,000 | 64,000 † | 
+| Max throughput per volume | 1,000 MiB/s | 250 MiB/s \* | 4,000 MiB/s | 1,000 MiB/s † | 
+| Amazon EBS Multi\-attach | Not supported | Not supported | Supported | 
+| Boot volume | Supported | 
 
-\* The throughput limit is between 128 MiB/s and 250 MiB/s, depending on the volume size\. Volumes smaller than or equal to 170 GiB deliver a maximum throughput of 128 MiB/s\. Volumes larger than 170 GiB but smaller than 334 GiB deliver a maximum throughput of 250 MiB/s if burst credits are available\. Volumes larger than or equal to 334 GiB deliver 250 MiB/s regardless of burst credits\. Older `gp2` volumes might not reach full performance unless you modify the volume\. For more information, see [Amazon EBS Elastic Volumes](ebs-modify-volume.md)\.
+\* The throughput limit is between 128 MiB/s and 250 MiB/s, depending on the volume size\. Volumes smaller than or equal to 170 GiB deliver a maximum throughput of 128 MiB/s\. Volumes larger than 170 GiB but smaller than 334 GiB deliver a maximum throughput of 250 MiB/s if burst credits are available\. Volumes larger than or equal to 334 GiB deliver 250 MiB/s regardless of burst credits\. Older `gp2` volumes might not reach full performance unless you [modify the volume](ebs-modify-volume.md)\.
 
-† Maximum IOPS and throughput are guaranteed only on [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances) provisioned with more than 32,000 IOPS\. Other instances guarantee up to 32,000 IOPS and 500 MiB/s\. Older `io1` volumes might not reach full performance unless you modify the volume\. For more information, see [Amazon EBS Elastic Volumes](ebs-modify-volume.md)\.
+† Maximum IOPS and throughput are guaranteed only on [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances) provisioned with more than 32,000 IOPS\. Other instances guarantee up to 32,000 IOPS and 500 MiB/s\. Older `io1` volumes might not reach full performance unless you [modify the volume](ebs-modify-volume.md)\.
+
+‡ `io2` Block Express volumes are available as an opt\-in preview only\. For more information, see [`io2` Block Express volumes \(In preview\)](#io2-block-express)\.
 
 ## Hard disk drives \(HDD\)<a name="hard-disk-drives"></a>
 
@@ -36,20 +41,23 @@ The HDD\-backed volumes provided by Amazon EBS fall into these categories:
 + Throughput Optimized HDD — A low\-cost HDD designed for frequently accessed, throughput\-intensive workloads\.
 + Cold HDD — The lowest\-cost HDD design for less frequently accessed workloads\.
 
+The following is a summary of the use cases and characteristics of HDD\-backed volumes\. For information about the maximum IOPS and throughput per instance, see [Amazon EBS–optimized instances](ebs-optimized.md)\.
+
 
 |  | Throughput Optimized HDD | Cold HDD | 
 | --- | --- | --- | 
 | Volume type | st1 | sc1 | 
 | Durability | 99\.8% \- 99\.9% durability \(0\.1% \- 0\.2% annual failure rate\) | 99\.8% \- 99\.9% durability \(0\.1% \- 0\.2% annual failure rate\) | 
 | Use cases |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html)  | 
-| Volume size | 500 GiB \- 16 TiB | 500 GiB \- 16 TiB  | 
+| Volume size | 125 GiB \- 16 TiB | 125 GiB \- 16 TiB  | 
 | Max IOPS per volume \(1 MiB I/O\) | 500 | 250 | 
 | Max throughput per volume | 500 MiB/s | 250 MiB/s | 
 | Amazon EBS Multi\-attach | Not supported | Not supported | 
+| Boot volume | Not supported | Not supported | 
 
 ## Previous generation volume types<a name="ebs-previous-generation-volumes"></a>
 
-The following table describes previous\-generation EBS volume types\. If you need higher performance or performance consistency than previous\-generation volumes can provide, we recommend that you consider using General Purpose SSD \(`gp2`\) or other current volume types\. For more information, see [Previous Generation Volumes](https://aws.amazon.com/ebs/previous-generation/)\.
+The following table describes previous\-generation EBS volume types\. If you need higher performance or performance consistency than previous\-generation volumes can provide, we recommend that you consider using General Purpose SSD \(`gp2` and `gp3`\) or other current volume types\. For more information, see [Previous Generation Volumes](https://aws.amazon.com/ebs/previous-generation/)\.
 
 
 |  | Magnetic | 
@@ -59,8 +67,15 @@ The following table describes previous\-generation EBS volume types\. If you nee
 | Volume size | 1 GiB\-1 TiB | 
 | Max IOPS per volume | 40–200 | 
 | Max throughput per volume | 40–90 MiB/s | 
-| Max IOPS per instance | 80,000 | 
-| Max throughput per instance | 1,750 MB/s | 
+| Boot volume | Supported | 
+
+## General Purpose SSD volumes \(gp3\)<a name="gp3-ebs-volume-type"></a>
+
+General Purpose SSD \(`gp3`\) volumes offer cost\-effective storage that is ideal for a broad range of workloads\. These volumes deliver a consistent baseline rate of 3,000 IOPS and 125 MiB/s, included with the price of storage\. You can provision additional IOPS \(up to 16,000\) and throughput \(up to 1,000 MiB/s\) for an additional cost\.
+
+The maximum ratio of provisioned IOPS to provisioned volume size is 500 IOPS per GiB\. The maximum ratio of provisioned throughput to provisioned IOPS is \.25 MiB/s per IOPS\. The following volume configurations support provisioning either maximum IOPS or maximum throughput:
++ 32 GiB or larger: 500 IOPS/GiB x 32 GiB = 16,000 IOPS
++ 8 GiB or larger and 4,000 IOPS or higher: 4,000 IOPS x 0\.25 MiB/s/IOPS \- 1,000 MiB/s
 
 ## General Purpose SSD volumes \(gp2\)<a name="EBSVolumeTypes_gp2"></a>
 
@@ -108,7 +123,7 @@ The following table lists several volume sizes and the associated baseline perfo
 **What happens if I empty my I/O credit balance?**  
 If your `gp2` volume uses all of its I/O credit balance, the maximum IOPS performance of the volume remains at the baseline IOPS performance level \(the rate at which your volume earns credits\) and the volume's maximum throughput is reduced to the baseline IOPS multiplied by the maximum I/O size\. Throughput can never exceed 250 MiB/s\. When I/O demand drops below the baseline level and unused credits are added to the I/O credit balance, the maximum IOPS performance of the volume again exceeds the baseline\. For example, a 100 GiB `gp2` volume with an empty credit balance has a baseline performance of 300 IOPS and a throughput limit of 75 MiB/s \(300 I/O operations per second \* 256 KiB per I/O operation = 75 MiB/s\)\. The larger a volume is, the greater the baseline performance is and the faster it replenishes the credit balance\. For more information about how IOPS are measured, see [I/O characteristics and monitoring](ebs-io-characteristics.md)\.
 
-If you notice that your volume performance is frequently limited to the baseline level \(due to an empty I/O credit balance\), you should consider using a larger `gp2` volume \(with a higher baseline performance level\) or switching to an `io1` or `io2` volume for workloads that require sustained IOPS performance greater than 16,000 IOPS\.
+If you notice that your volume performance is frequently limited to the baseline level \(due to an empty I/O credit balance\), you should consider switching to a `gp3` volume\.
 
 For information about using CloudWatch metrics and alarms to monitor your burst bucket balance, see [Monitoring the burst bucket balance for volumes](#monitoring_burstbucket)\.
 
@@ -154,7 +169,7 @@ V  =  -----
 
 ## Provisioned IOPS SSD volumes<a name="EBSVolumeTypes_piops"></a>
 
-Provisioned IOPS SSD \(`io1` and `io2`\) volumes are designed to meet the needs of I/O\-intensive workloads, particularly database workloads, that are sensitive to storage performance and consistency\. Unlike General Purpose SSD volumes, which uses a bucket and credit model to calculate performance, Provisioned IOPS SSD volumes use a consistent IOPS rate, which you specify when you create the volume, and Amazon EBS delivers the provisioned performance 99\.9 percent of the time\.
+Provisioned IOPS SSD \(`io1` and `io2`\) volumes are designed to meet the needs of I/O\-intensive workloads, particularly database workloads, that are sensitive to storage performance and consistency\. Provisioned IOPS SSD volumes use a consistent IOPS rate, which you specify when you create the volume, and Amazon EBS delivers the provisioned performance 99\.9 percent of the time\.
 
 `io1` volumes are designed to provide 99\.8 to 99\.9 percent volume durability with an annual failure rate \(AFR\) no higher than 0\.2 percent, which translates to a maximum of two volume failures per 1,000 running volumes over a one\-year period\. `io2` volumes are designed to provide 99\.999 percent volume durability with an AFR no higher than 0\.001 percent, which translates to a single volume failure per 100,000 running volumes over a one\-year period\.
 
@@ -168,8 +183,69 @@ Provisioned IOPS SSD volumes provisioned with up to 32,000 IOPS support a maximu
 
 Your per\-I/O latency experience depends on the provisioned IOPS and on your workload profile\. For the best I/O latency experience, ensure that you provision IOPS to meet the I/O profile of your workload\.
 
+### `io2` Block Express volumes \(In preview\)<a name="io2-block-express"></a>
+
 **Note**  
-Some AWS accounts created before 2012 might have access to Availability Zones in us\-west\-1 or ap\-northeast\-1 that do not support Provisioned IOPS SSD \(`io1`\) volumes\. If you are unable to create an `io1` volume \(or launch an instance with an `io1` volume in its block device mapping\) in one of these Regions, try a different Availability Zone in the Region\. You can verify that an Availability Zone supports `io1` volumes by creating a 4 GiB `io1` volume in that zone\.
+You can now opt in to the `io2` Block Express volumes preview in `us-east-1`, `us-west-2`, `us-east-2`, `eu-central-1`, `ap-southeast-1`, and `ap-northeast-1`\. After you opt in, all `io2` volumes that you create in your account in the opted\-in Regions will be `io2` Block Express volumes\. Carefully review the feature limitations that apply to the preview before opting in\.  
+You can opt in to the preview only with an account that does not have any existing `io2` volumes\.
+
+EBS Block Express is the next generation of Amazon EBS storage server architecture\. It has been built for the purpose of meeting the performance requirements of the most demanding I/O intensive applications that run on Nitro\-based Amazon EC2 instances\. 
+
+Block Express architecture increases performance and scale\. Block Express servers communicate with Nitro\-based instances using the Scalable Reliable Datagram \(SRD\) networking protocol\. This interface is implemented in the Nitro Card dedicated for Amazon EBS I/O function on the host hardware of the instance\. It minimizes I/O delay and latency variation \(network jitter\), which provides faster and more consistent performance for your applications\. For more information, see [`io2` Block Express volumes](http://aws.amazon.com/ebs/provisioned-iops/)\.
+
+`io2` Block Express volumes are suited for workloads that benefit from a single volume that provides sub\-millisecond latency, and supports higher IOPS, higher throughput, and larger capacity than `io2` volumes\.
+
+**Topics**
++ [Performance](#io2-bx-perf)
++ [Limitations during preview](#io2-bx-limits)
++ [Opt in to the preview](#io2-bx-optin)
++ [Opt out of the preview](#io2-bx-optout)
++ [Quotas](#io2-bx-quotas)
++ [Pricing and billing](#io2-bx-pricing)
+
+#### Performance<a name="io2-bx-perf"></a>
+
+With `io2` Block Express volumes, you can provision volumes with:
++ Sub\-millisecond average latency
++ Storage capacity up to 64 TiB \(65,536 GiB\)
++ Provisioned IOPS up to 256,000, with an IOPS:GiB ratio of 1,000:1\. Maximum IOPS can be provisioned with volumes 256 GiB in size and larger \(1,000 IOPS x 256 GiB = 256,000 IOPS\)\.
++ Volume throughput up to 4,000 MiB/s\. Throughput scales proportionally up to 0\.256 MiB/s per provisioned IOPS\. Maximum throughput can be achieved at 16,000 IOPS or higher\. 
+
+![\[Throughput limits for io2 Block Express volumes\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/io2_bx.png)
+
+#### Limitations during preview<a name="io2-bx-limits"></a>
+
+`io2` Block Express volumes have the following limitations during the preview:
++ `io2` Block Express volumes are supported with R5B instances only\. If you attempt to launch an unsupported instance type with `io2` Block Express volumes, the request fails\.
++ `io2` Block Express volumes are available in the following Regions only: `us-east-1`, `us-west-2`, `us-east-2`, `eu-central-1`, `ap-southeast-1`, and `ap-northeast-1`\.
++ `io2` Block Express volumes are not optimized for boot and could cause longer boot times\. We recommend that you continue to use `io1`, `gp2`, or `gp3` for boot volumes\.
++ You can't create encrypted `io2` Block Express volumes, or launch instances with encrypted `io2` Block Express volumes, from unencrypted snapshots or shared snapshots\. To create encrypted `io2` Block Express volumes, or launch instances with encrypted `io2` Block Express volumes, you must use encrypted snapshots or AMIs that you own in your account\.
++ You can't create encrypted `io2` Block Express volumes, or launch instances with encrypted `io2` Block Express volumes using the Amazon EC2 console\. You must use the Amazon EC2 API or the AWS CLI\.
++ `io2` Block Express volumes do not fully support fast snapshot restore\. While you can restore `io2` Block Express volumes from snapshots that are enabled for fast snapshot restore, you will experience higher I/O latency while the volumes are being initialized\. This is formerly known as pre\-warming\. To avoid the higher latency, we recommend that you initialize your `io2` Block Express volumes before starting your I/O operations\. For more information, see [Initializing Amazon EBS volumes](ebs-initialize.md)\.
++ `io2` Block Express volumes do not support Elastic Volume operations\. You can't change the volume type or performance after the volume has been created\.
++ `io2` Block Express volumes do not support Multi\-Attach\.
+
+#### Opt in to the preview<a name="io2-bx-optin"></a>
+
+To opt in to the `io2` Block Express volumes preview, visit the [ Opt in page](https://pages.awscloud.com/io2-block-express-preview.html) and complete the form\. You must specify the Regions in which to opt in\.
+
+After you opt in, all new `io2` volumes that you create in your account in the opted\-in Regions will be `io2` Block Express volumes\. While your account is opted in, you will not be able to create `io2` volumes that are not `io2` Block Express volumes in the opted\-in Regions\. To transition your existing workloads from your existing volumes, create snapshots of the volumes and then restore them to new `io2` Block Express volumes\.
+
+#### Opt out of the preview<a name="io2-bx-optout"></a>
+
+To opt out of the `io2` Block Express volumes preview, visit the [ Opt in page](https://pages.awscloud.com/io2-block-express-preview.html) and complete the form\. You must specify the Regions in which to opt out\.
+
+After you opt out, all new `io2` volumes that you create in the opted\-out Regions will be `io2` volumes, and not `io2` Block Express volumes\. `io2` volumes that you created in the opted\-out Regions before opting out will continue to be `io2` Block Express volumes\. If you created snapshots of volumes larger than 16 TiB, you will not be able to restore them to `io2` volumes in the opted\-out Regions\. Before opting out, we recommend that for `io2` Block Express volumes greater than 16 TiB you copy the data to a raid set that comprises of `io2` volumes less than 16 TiB in size and then create a backup of the raid set using multi\-volume snapshots\. For more information, see [Multi\-volume snapshots](ebs-creating-snapshot.md#ebs-create-snapshot-multi-volume)\.
+
+#### Quotas<a name="io2-bx-quotas"></a>
+
+`io2` Block Express volumes adhere to the same service quotas as `io2` volumes\. For more information, see [Amazon EBS quotas](https://docs.aws.amazon.com/general/latest/gr/ebs-service.html)\.
+
+#### Pricing and billing<a name="io2-bx-pricing"></a>
+
+`io2` volumes and `io2` Block Express volumes are billed at the same rate\. For more information, see [Amazon EBS pricing](http://aws.amazon.com/ebs/pricing/)\.
+
+Usage reports do not distinguish between `io2` Block Express volumes and `io2` volumes\. We recommend that you use tags to help you identify costs associated with `io2` Block Express volumes\.
 
 ## Throughput Optimized HDD volumes<a name="EBSVolumeTypes_st1"></a>
 
@@ -197,7 +273,7 @@ For a 1\-TiB `st1` volume, burst throughput is limited to 250 MiB/s, the bucket 
 
 Larger volumes scale these limits linearly, with throughput capped at a maximum of 500 MiB/s\. After the bucket is depleted, throughput is limited to the baseline rate of 40 MiB/s per TiB\. 
 
-On volume sizes ranging from 0\.5 to 16 TiB, baseline throughput varies from 20 to a cap of 500 MiB/s, which is reached at 12\.5 TiB as follows:
+On volume sizes ranging from 0\.125 TiB to 16 TiB, baseline throughput varies from 5 MiB/s to a cap of 500 MiB/s, which is reached at 12\.5 TiB as follows:
 
 ```
             40 MiB/s
@@ -205,7 +281,7 @@ On volume sizes ranging from 0\.5 to 16 TiB, baseline throughput varies from 20 
              1 TiB
 ```
 
-Burst throughput varies from 125 MiB/s to a cap of 500 MiB/s, which is reached at 2 TiB as follows:
+Burst throughput varies from 31 MiB/s to a cap of 500 MiB/s, which is reached at 2 TiB as follows:
 
 ```
          250 MiB/s
@@ -218,6 +294,7 @@ The following table states the full range of base and burst throughput values fo
 
 | Volume size \(TiB\) | ST1 base throughput \(MiB/s\) | ST1 burst throughput \(MiB/s\) | 
 | --- | --- | --- | 
+| 0\.125 | 5 | 31 | 
 | 0\.5 | 20 | 125 | 
 | 1 | 40 | 250 | 
 | 2 | 80 | 500 | 
@@ -271,7 +348,7 @@ For a 1\-TiB `sc1` volume, burst throughput is limited to 80 MiB/s, the bucket f
 
 Larger volumes scale these limits linearly, with throughput capped at a maximum of 250 MiB/s\. After the bucket is depleted, throughput is limited to the baseline rate of 12 MiB/s per TiB\. 
 
-On volume sizes ranging from 0\.5 to 16 TiB, baseline throughput varies from 6 MiB/s to a maximum of 192 MiB/s, which is reached at 16 TiB as follows:
+On volume sizes ranging from 0\.125 TiB to 16 TiB, baseline throughput varies from 1\.5 MiB/s to a maximum of 192 MiB/s, which is reached at 16 TiB as follows:
 
 ```
            12 MiB/s
@@ -279,7 +356,7 @@ On volume sizes ranging from 0\.5 to 16 TiB, baseline throughput varies from 6 M
             1 TiB
 ```
 
-Burst throughput varies from 40 MiB/s to a cap of 250 MiB/s, which is reached at 3\.125 TiB as follows:
+Burst throughput varies from 10 MiB/s to a cap of 250 MiB/s, which is reached at 3\.125 TiB as follows:
 
 ```
              80 MiB/s
@@ -292,6 +369,7 @@ The following table states the full range of base and burst throughput values fo
 
 | Volume Size \(TiB\) | SC1 Base Throughput \(MiB/s\) | SC1 Burst Throughput \(MiB/s\) | 
 | --- | --- | --- | 
+| 0\.125 | 1\.5 | 10 | 
 | 0\.5 | 6 | 40 | 
 | 1 | 12 | 80 | 
 | 2 | 24 | 160 | 

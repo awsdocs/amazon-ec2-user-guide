@@ -2,7 +2,7 @@
 
 An Amazon EBS–optimized instance uses an optimized configuration stack and provides additional, dedicated capacity for Amazon EBS I/O\. This optimization provides the best performance for your EBS volumes by minimizing contention between Amazon EBS I/O and other traffic from your instance\.
 
-EBS–optimized instances deliver dedicated bandwidth to Amazon EBS\. When attached to an EBS–optimized instance, General Purpose SSD \(`gp2`\) volumes are designed to deliver their baseline and burst performance 99% of the time, and Provisioned IOPS SSD \(`io1` and `io2`\) volumes are designed to deliver their provisioned performance 99\.9% of the time\. Both Throughput Optimized HDD \(`st1`\) and Cold HDD \(`sc1`\) guarantee performance consistency of 90% of burst throughput 99% of the time\. Non\-compliant periods are approximately uniformly distributed, targeting 99% of expected total throughput each hour\. For more information, see [Amazon EBS volume types](ebs-volume-types.md)\.
+EBS–optimized instances deliver dedicated bandwidth to Amazon EBS\. When attached to an EBS–optimized instance, General Purpose SSD \(`gp2` and `gp3`\) volumes are designed to deliver their baseline and burst performance 99% of the time, and Provisioned IOPS SSD \(`io1` and `io2`\) volumes are designed to deliver their provisioned performance 99\.9% of the time\. Both Throughput Optimized HDD \(`st1`\) and Cold HDD \(`sc1`\) guarantee performance consistency of 90% of burst throughput 99% of the time\. Non\-compliant periods are approximately uniformly distributed, targeting 99% of expected total throughput each hour\. For more information, see [Amazon EBS volume types](ebs-volume-types.md)\.
 
 **Topics**
 + [Supported instance types](#ebs-optimization-support)
@@ -95,6 +95,15 @@ The following table lists the instance types that support EBS optimization and E
 | d2\.2xlarge | 1,000 | 125 | 8,000 | 
 | d2\.4xlarge | 2,000 | 250 | 16,000 | 
 | d2\.8xlarge | 4,000 | 500 | 32,000 | 
+| d3\.xlarge \* | 15,000 | 1,875 | 15,000 | 
+| d3\.2xlarge \* | 15,000 | 1,875 | 15,000 | 
+| d3\.4xlarge | 15,000 | 1,875 | 15,000 | 
+| d3\.8xlarge | 25,000 | 3,125 | 30,000 | 
+| d3en\.xlarge \* | 25,000 | 3,125 | 15,000 | 
+| d3en\.2xlarge \* | 25,000 | 3,125 | 15,000 | 
+| d3en\.4xlarge | 25,000 | 3,125 | 15,000 | 
+| d3en\.8xlarge | 40,000 | 5,000 | 30,000 | 
+| d3en\.12xlarge | 50,000 | 6,250 | 40,000 | 
 | f1\.2xlarge | 1,700 | 212\.5 | 12,000 | 
 | f1\.4xlarge | 3,500 | 437\.5 | 44,000 | 
 | f1\.16xlarge | 14,000 | 1,750 | 75,000 | 
@@ -188,6 +197,13 @@ The following table lists the instance types that support EBS optimization and E
 | m5n\.12xlarge | 9,500 | 1,187\.5 | 40,000 | 
 | m5n\.16xlarge | 13,600 | 1,700 | 60,000 | 
 | m5n\.24xlarge | 19,000 | 2,375 | 80,000 | 
+| m5zn\.large \* | 3,170 | 396\.25 | 13,333 | 
+| m5zn\.xlarge \* | 3,170 | 396\.25 | 13,333 | 
+| m5zn\.2xlarge  | 3,170 | 396\.25 | 13,333 | 
+| m5zn\.3xlarge  | 4,750 | 593\.75 | 20,000 | 
+| m5zn\.6xlarge | 9,500 | 1187\.5 | 40,000 | 
+| m5zn\.12xlarge | 19,000 | 2,375 | 80,000 | 
+| m5zn\.metal | 19,000 | 2,375 | 80,000 | 
 | m6g\.medium \* | 4,750 | 593\.75 | 20,000 | 
 | m6g\.large \* | 4,750 | 593\.75 | 20,000 | 
 | m6g\.xlarge \* | 4,750 | 593\.75 | 20,000 | 
@@ -206,6 +222,7 @@ The following table lists the instance types that support EBS optimization and E
 | m6gd\.12xlarge | 14,250 | 1,781\.25 | 50,000 | 
 | m6gd\.16xlarge | 19,000 | 2,375 | 80,000 | 
 | m6gd\.metal | 19,000 | 2,375 | 80,000 | 
+| mac1\.metal | 8,000 | 1,000 | 55,000 | 
 | p2\.xlarge | 750 | 93\.75 | 6,000 | 
 | p2\.8xlarge | 5,000 | 625 | 32,500 | 
 | p2\.16xlarge | 10,000 | 1,250 | 65,000 | 
@@ -245,6 +262,15 @@ The following table lists the instance types that support EBS optimization and E
 | r5ad\.12xlarge | 6,780 | 847\.5 | 30,000 | 
 | r5ad\.16xlarge | 9,500 | 1,187\.5 | 40,000 | 
 | r5ad\.24xlarge | 13,570 | 1,696\.25 | 60,000 | 
+| r5b\.large \* | 10,000 | 1,250 | 43,333 | 
+| r5b\.xlarge \* | 10,000 | 1,250 | 43,333 | 
+| r5b\.2xlarge \* | 10,000 | 1,250 | 43,333 | 
+| r5b\.4xlarge | 10,000 | 1,250 | 43,333 | 
+| r5b\.8xlarge | 20,000 | 2,500 | 86,667 | 
+| r5b\.12xlarge | 30,000 | 3,750 | 130,000 | 
+| r5b\.16xlarge | 40,000 | 5,000 | 173,333 | 
+| r5b\.24xlarge | 60,000 | 7,500 | 260,000 | 
+| r5b\.metal | 60,000 | 7,500 | 260,000 | 
 | r5d\.large \* | 4,750 | 593\.75 | 18,750 | 
 | r5d\.xlarge \* | 4,750 | 593\.75 | 18,750 | 
 | r5d\.2xlarge \* | 4,750 | 593\.75 | 18,750 | 
@@ -364,6 +390,11 @@ The following table lists the instance types that support EBS optimization and E
 | c6gd\.large | 630 | 78\.75 | 3,600 | 
 | c6gd\.xlarge | 1,188 | 148\.5 | 6,000 | 
 | c6gd\.2xlarge | 2,375 | 296\.875 | 12,000 | 
+| d3\.xlarge | 850 | 106\.25 | 5,000 | 
+| d3\.2xlarge | 1,700 | 212\.5 | 10,000 | 
+| d3en\.large | 425 | 53\.125 | 2,500 | 
+| d3en\.xlarge | 850 | 106\.25 | 5,000 | 
+| d3en\.2xlarge | 1,700 | 212\.5 | 10,000 | 
 | g4dn\.xlarge | 950 | 118\.75 | 3,000 | 
 | g4dn\.2xlarge | 1,150 | 143\.75 | 6,000 | 
 | i3en\.large | 577 | 72\.1 | 3,000 | 
@@ -390,6 +421,8 @@ The following table lists the instance types that support EBS optimization and E
 | m5n\.large | 650 | 81\.25 | 3,600 | 
 | m5n\.xlarge | 1,150 | 143\.75 | 6,000 | 
 | m5n\.2xlarge | 2,300 | 287\.5 | 12,000 | 
+| m5zn\.large | 800 | 100 | 3,333 | 
+| m5zn\.xlarge | 1,580 | 195\.5 | 6,667 | 
 | m6g\.medium | 315 | 39\.375 | 2,500 | 
 | m6g\.large | 630 | 78\.75 | 3,600 | 
 | m6g\.xlarge | 1,188 | 148\.5 | 6,000 | 
@@ -407,6 +440,9 @@ The following table lists the instance types that support EBS optimization and E
 | r5ad\.large | 650 | 81\.25 | 3,600 | 
 | r5ad\.xlarge | 1,085 | 135\.63 | 6,000 | 
 | r5ad\.2xlarge | 1,580 | 197\.5 | 8,333 | 
+| r5b\.large | 1,250 | 156\.25 | 5,417 | 
+| r5b\.xlarge | 2,500 | 312\.5 | 10,833 | 
+| r5b\.2xlarge | 5,000 | 625 | 21,667 | 
 | r5d\.large | 650 | 81\.25 | 3,600 | 
 | r5d\.xlarge | 1,150 | 143\.75 | 6,000 | 
 | r5d\.2xlarge | 2,300 | 287\.5 | 12,000 | 

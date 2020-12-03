@@ -64,7 +64,7 @@ The device shown reports a read\-ahead value of 256 \(the default\)\. Multiply t
 
 Verify that the read\-ahead setting now displays 2,048 by running the first command again\.
 
-Only use this setting when your workload consists of large, sequential I/Os\. If it consists mostly of small, random I/Os, this setting will actually degrade your performance\. In general, if your workload consists mostly of small or random I/Os, you should consider using a General Purpose SSD \(`gp2`\) volume rather than an `st1` or `sc1` volume\.
+Only use this setting when your workload consists of large, sequential I/Os\. If it consists mostly of small, random I/Os, this setting will actually degrade your performance\. In general, if your workload consists mostly of small or random I/Os, you should consider using a General Purpose SSD \(`gp2` and `gp3`\) volume rather than an `st1` or `sc1` volume\.
 
 ### Use a modern Linux kernel<a name="ModernKernel"></a>
 
@@ -92,7 +92,7 @@ For more information about EBS I/O characteristics, see the [Amazon EBS: Designi
 
 ### Use RAID 0 to maximize utilization of instance resources<a name="RAID"></a>
 
-Some instance types can drive more I/O throughput than what you can provision for a single EBS volume\. You can join multiple `gp2`, `io1`, `io2`, `st1`, or `sc1` volumes together in a RAID 0 configuration to use the available bandwidth for these instances\. For more information, see [RAID Configuration on Linux](raid-config.md)\.
+Some instance types can drive more I/O throughput than what you can provision for a single EBS volume\. You can join multiple volumes together in a RAID 0 configuration to use the available bandwidth for these instances\. For more information, see [RAID Configuration on Linux](raid-config.md)\.
 
 ### Track performance using Amazon CloudWatch<a name="cloudwatch"></a>
 

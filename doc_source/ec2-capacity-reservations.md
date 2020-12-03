@@ -30,10 +30,12 @@ The following table highlights key differences between Capacity Reservations, Re
 
 |  | Capacity Reservations | Zonal Reserved Instances | Regional Reserved Instances | Savings Plans | 
 | --- | --- | --- | --- | --- | 
-| Term | No commitment required\. Can be created and canceled as needed\. | Require fixed one\-year or three\-year commitment | 
-| Capacity benefit | Capacity reserved in a specific Availability Zone\. | Do not reserve capacity in an Availability Zone\. | 
-| Billing discount | No billing discount\. Instances launched into a Capacity Reservation are charged at their standard On\-Demand rates\. However, you can use Savings Plans or regional Reserved Instances with Capacity Reservations to get a billing discount\. Zonal Reserved Instances do not apply to Capacity Reservations\. | Provide billing discounts | 
-| Instance Limits | Limited to your On\-Demand Instance limits per Region\. | Limited to 20 per Availability Zone\. A limit increase can be requested\. | Limited to 20 per Region\. A limit increase can be requested\. | No limits\. | 
+| Term | No commitment required\. Can be created and canceled as needed\. | Requires a fixed one\-year or three\-year commitment | 
+| Capacity benefit | Capacity reserved in a specific Availability Zone\. | Capacity reserved in a specific Region\. | No capacity reserved\. | 
+| Billing discount | No billing discount\. † | Provides a billing discount\. | 
+| Instance Limits | Your On\-Demand Instance limits per Region apply\. | Default is 20 per Availability Zone\. You can request a limit increase\. | Default is 20 per Region\. You can request a limit increase\. | No limit\. | 
+
+† You can combine Capacity Reservations with Savings Plans or Regional Reserved Instances to receive a discount\.
 
 For more information, see the following:
 + [Reserved Instances](ec2-reserved-instances.md)
@@ -49,6 +51,11 @@ You must create the Capacity Reservation with the correct platform to ensure tha
 + Red Hat Enterprise Linux
 + SUSE Linux
 
+When you purchase a Capacity Reservation, you must specify the *platform* that represents the operating system for your instance\.
++ For SUSE Linux and RHEL distributions, excluding BYOL, you must choose the specific platform\. For example, the **SUSE Linux** or **Red Hat Enterprise Linux** platform\.
++ For all other Linux distributions \(including Ubuntu\), choose the **Linux/UNIX** platform\.
++ If you bring your existing RHEL subscription \(BYOL\), you must choose the **Linux/UNIX** platform\.
+
  For more information about the supported Windows platforms, see [ Supported platforms](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-capacity-reservations.html#capacity-reservations-platforms) in the *Amazon EC2 User Guide for Windows Instances*\. 
 
 ## Capacity Reservation limits<a name="capacity-reservations-limits"></a>
@@ -63,3 +70,4 @@ Before you create Capacity Reservations, take note of the following limitations 
 + Zonal Reserved Instance billing discounts do not apply to Capacity Reservations
 + Capacity Reservations can't be created in placement groups
 + Capacity Reservations can't be used with Dedicated Hosts
++ Capacity Reservations can't be used with Bring Your Own License \(BYOL\)

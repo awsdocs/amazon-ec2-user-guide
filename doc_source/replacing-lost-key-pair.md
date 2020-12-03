@@ -21,6 +21,8 @@ Create a new key pair using either the Amazon EC2 console or a third\-party tool
 
 ## Step 2: Get information about the original instance and its root volume<a name="step-2-get-info-about-original-instance"></a>
 
+Make note of the following information because you'll need it to complete this procedure\.
+
 ------
 #### [ New console ]
 
@@ -30,11 +32,11 @@ Create a new key pair using either the Amazon EC2 console or a third\-party tool
 
 1. Choose **Instances** in the navigation pane, and then select the instance that you'd like to connect to\. \(We'll refer to this as the *original* instance\.\)
 
-1. On the **Details** tab, write down the instance ID and AMI ID\.
+1. On the **Details** tab, make note of the instance ID and AMI ID\.
 
-1. On the **Networking** tab, write down the Availability Zone\.
+1. On the **Networking** tab, make note of the Availability Zone\.
 
-1. On the **Storage** tab, note the device name for the root volume in **Root device name** \(for example, `/dev/xvda`\)\. Find this device name under **Block devices** and write down the volume ID \(for example, vol\-0a1234b5678c910de\)\.
+1. On the **Storage** tab, under **Root device name**, make note of the device name for the root volume \(for example, `/dev/xvda`\)\. Then, under **Block devices**, find this device name and make note of the volume ID \(for example, vol\-0a1234b5678c910de\)\.
 
 ------
 #### [ Old console ]
@@ -60,7 +62,7 @@ When you stop an instance, the data on any instance store volumes is erased\. To
 
 ## Step 4: Launch a temporary instance<a name="step-4-launch-temp-instance"></a>
 
-Choose **Launch Instance**, and then use the launch wizard to launch a *temporary* instance with the following options:
+Choose **Launch instances**, and then use the launch wizard to launch a *temporary* instance with the following options:
 + On the **Choose an AMI** page, select the same AMI that you used to launch the original instance\. If this AMI is unavailable, you can create an AMI that you can use from the stopped instance\. For more information, see [Creating an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md)\.
 + On the **Choose an Instance Type** page, leave the default instance type that the wizard selects for you\.
 + On the **Configure Instance Details** page, specify the same Availability Zone as the original instance\. If you're launching an instance in a VPC, select a subnet in this Availability Zone\.
@@ -69,9 +71,9 @@ Choose **Launch Instance**, and then use the launch wizard to launch a *temporar
 
 ## Step 5: Detach the root volume from the original instance and attach it to the temporary instance<a name="step-5-detach-root-volume-and-attach-to-temp-instance"></a>
 
-1. In the navigation pane, choose **Volumes** and select the root device volume for the original instance \(you wrote down its volume ID in a previous step\)\. Choose **Actions**, **Detach Volume**, and then select **Yes, Detach**\. Wait for the state of the volume to become `available`\. \(You might need to choose the **Refresh** icon\.\)
+1. In the navigation pane, choose **Volumes** and select the root device volume for the original instance \(you made note of its volume ID in a previous step\)\. Choose **Actions**, **Detach Volume**, and then select **Yes, Detach**\. Wait for the state of the volume to become `available`\. \(You might need to choose the **Refresh** icon\.\)
 
-1. With the volume still selected, choose **Actions**, and then select **Attach Volume**\. Select the instance ID of the temporary instance, write down the device name specified under **Device** \(for example, `/dev/sdf`\), and then choose **Attach**\.
+1. With the volume still selected, choose **Actions**, and then select **Attach Volume**\. Select the instance ID of the temporary instance, make note of the device name specified under **Device** \(for example, `/dev/sdf`\), and then choose **Attach**\.
 **Note**  
 If you launched your original instance from an AWS Marketplace AMI and your volume contains AWS Marketplace codes, you must first stop the temporary instance before you can attach the volume\.
 
@@ -165,7 +167,7 @@ The following examples use the Amazon Linux user name `ec2-user`\. You might nee
    [ec2-user ~]$ sudo umount /mnt/tempvol
    ```
 
-1. Detach the volume from the temporary instance \(you unmounted it in the previous step\): From the Amazon EC2 console, select the root device volume for the original instance \(you wrote down volume ID in a previous step\), choose **Actions**, **Detach Volume**, and then select **Yes, Detach**\. Wait for the state of the volume to become `available`\. \(You might need to choose the **Refresh** icon\.\)
+1. Detach the volume from the temporary instance \(you unmounted it in the previous step\): From the Amazon EC2 console, select the root device volume for the original instance \(you made note of the volume ID in a previous step\), choose **Actions**, **Detach Volume**, and then choose **Yes, Detach**\. Wait for the state of the volume to become `available`\. \(You might need to choose the **Refresh** icon\.\)
 
 1. Reattach the volume to the original instance: With the volume still selected, choose **Actions**, **Attach Volume**\. Select the instance ID of the original instance, specify the device name that you noted earlier in [Step 2](#step-2-get-info-about-original-instance) for the original root device attachment \(`/dev/sda1` or `/dev/xvda`\), and then choose **Attach**\.
 **Important**  
@@ -180,4 +182,4 @@ If the name of your new key pair and corresponding private key file is different
 
 ## Step 9: Clean up<a name="step-9-clean-up"></a>
 
-\(Optional\) You can terminate the temporary instance if you have no further use for it\. Select the temporary instance, choose **Instance state**, **Terminate instance**\.
+\(Optional\) You can terminate the temporary instance if you have no further use for it\. Select the temporary instance, and choose **Instance state**, **Terminate instance**\.

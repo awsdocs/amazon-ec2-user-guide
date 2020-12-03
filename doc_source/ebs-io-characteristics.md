@@ -1,6 +1,6 @@
 # I/O characteristics and monitoring<a name="ebs-io-characteristics"></a>
 
-On a given volume configuration, certain I/O characteristics drive the performance behavior for your EBS volumes\. SSD\-backed volumes—General Purpose SSD \(`gp2`\) and Provisioned IOPS SSD \(`io1` and `io2`\)—deliver consistent performance whether an I/O operation is random or sequential\. HDD\-backed volumes—Throughput Optimized HDD \(`st1`\) and Cold HDD \(`sc1`\)—deliver optimal performance only when I/O operations are large and sequential\. To understand how SSD and HDD volumes will perform in your application, it is important to know the connection between demand on the volume, the quantity of IOPS available to it, the time it takes for an I/O operation to complete, and the volume's throughput limits\.
+On a given volume configuration, certain I/O characteristics drive the performance behavior for your EBS volumes\. SSD\-backed volumes—General Purpose SSD \(`gp2` and `gp3`\) and Provisioned IOPS SSD \(`io1` and `io2`\)—deliver consistent performance whether an I/O operation is random or sequential\. HDD\-backed volumes—Throughput Optimized HDD \(`st1`\) and Cold HDD \(`sc1`\)—deliver optimal performance only when I/O operations are large and sequential\. To understand how SSD and HDD volumes will perform in your application, it is important to know the connection between demand on the volume, the quantity of IOPS available to it, the time it takes for an I/O operation to complete, and the volume's throughput limits\.
 
 ## IOPS<a name="ebs-io-iops"></a>
 
@@ -10,7 +10,7 @@ When small I/O operations are physically contiguous, Amazon EBS attempts to merg
 
 Similarly, for HDD\-backed volumes, both a single 1,024 KiB I/O operation and 8 sequential 128 KiB operations would count as one operation\. However, 8 random 128 KiB I/O operations would count as 8 operations\.
 
-Consequently, when you create an SSD\-backed volume supporting 3,000 IOPS \(either by provisioning an `io1` or `io2` volume at 3,000 IOPS or by sizing a `gp2` volume at 1000 GiB\), and you attach it to an EBS\-optimized instance that can provide sufficient bandwidth, you can transfer up to 3,000 I/Os of data per second, with throughput determined by I/O size\.
+Consequently, when you create an SSD\-backed volume supporting 3,000 IOPS \(either by provisioning a Provisioned IOPS SSD volume at 3,000 IOPS or by sizing a General Purpose SSD volume at 1,000 GiB\), and you attach it to an EBS\-optimized instance that can provide sufficient bandwidth, you can transfer up to 3,000 I/Os of data per second, with throughput determined by I/O size\.
 
 ## Volume queue length and latency<a name="ebs-io-volume-queue"></a>
 
@@ -18,13 +18,13 @@ The volume queue length is the number of pending I/O requests for a device\. Lat
 
 Optimal queue length varies for each workload, depending on your particular application's sensitivity to IOPS and latency\. If your workload is not delivering enough I/O requests to fully use the performance available to your EBS volume, then your volume might not deliver the IOPS or throughput that you have provisioned\. 
 
-Transaction\-intensive applications are sensitive to increased I/O latency and are well\-suited for SSD\-backed `io1`, `io2`, and `gp2` volumes\. You can maintain high IOPS while keeping latency down by maintaining a low queue length and a high number of IOPS available to the volume\. Consistently driving more IOPS to a volume than it has available can cause increased I/O latency\. 
+Transaction\-intensive applications are sensitive to increased I/O latency and are well\-suited for SSD\-backed volumes\. You can maintain high IOPS while keeping latency down by maintaining a low queue length and a high number of IOPS available to the volume\. Consistently driving more IOPS to a volume than it has available can cause increased I/O latency\. 
 
-Throughput\-intensive applications are less sensitive to increased I/O latency, and are well\-suited for HDD\-backed `st1` and `sc1` volumes\. You can maintain high throughput to HDD\-backed volumes by maintaining a high queue length when performing large, sequential I/O\.
+Throughput\-intensive applications are less sensitive to increased I/O latency, and are well\-suited for HDD\-backed volumes\. You can maintain high throughput to HDD\-backed volumes by maintaining a high queue length when performing large, sequential I/O\.
 
 ## I/O size and volume throughput limits<a name="ebs-io-size-throughput-limits"></a>
 
-For SSD\-backed volumes, if your I/O size is very large, you may experience a smaller number of IOPS than you provisioned because you are hitting the throughput limit of the volume\. For example, a `gp2` volume under 1000 GiB with burst credits available has an IOPS limit of 3,000 and a volume throughput limit of 250 MiB/s\. If you are using a 256 KiB I/O size, your volume reaches its throughput limit at 1000 IOPS \(1000 x 256 KiB = 250 MiB\)\. For smaller I/O sizes \(such as 16 KiB\), this same volume can sustain 3,000 IOPS because the throughput is well below 250 MiB/s\. \(These examples assume that your volume's I/O is not hitting the throughput limits of the instance\.\) For more information about the throughput limits for each EBS volume type, see [Amazon EBS volume types](ebs-volume-types.md)\. 
+For SSD\-backed volumes, if your I/O size is very large, you may experience a smaller number of IOPS than you provisioned because you are hitting the throughput limit of the volume\. For example, a `gp2` volume under 1,000 GiB with burst credits available has an IOPS limit of 3,000 and a volume throughput limit of 250 MiB/s\. If you are using a 256 KiB I/O size, your volume reaches its throughput limit at 1000 IOPS \(1000 x 256 KiB = 250 MiB\)\. For smaller I/O sizes \(such as 16 KiB\), this same volume can sustain 3,000 IOPS because the throughput is well below 250 MiB/s\. \(These examples assume that your volume's I/O is not hitting the throughput limits of the instance\.\) For more information about the throughput limits for each EBS volume type, see [Amazon EBS volume types](ebs-volume-types.md)\. 
 
 For smaller I/O operations, you may see a higher\-than\-provisioned IOPS value as measured from inside your instance\. This happens when the instance operating system merges small I/O operations into a larger operation before passing them to Amazon EBS\.
 

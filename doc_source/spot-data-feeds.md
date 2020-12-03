@@ -11,6 +11,7 @@ If you don't have a Spot Instance running during a certain hour, you don't recei
 + [Data feed file name and format](#using-spot-instances-format)
 + [Amazon S3 bucket requirements](#using-spot-instances-dfs3)
 + [Subscribing to your Spot Instance data feed](#using-spot-instances-datafeed-all)
++ [Describing your Spot Instance data feed](#using-spot-instances-datafeed-describe)
 + [Deleting your Spot Instance data feed](#using-spot-instances-datafeed-delete)
 
 ## Data feed file name and format<a name="using-spot-instances-format"></a>
@@ -74,6 +75,27 @@ The following is example output:
         "OwnerId": "111122223333",
         "Bucket": "my-bucket-name",
         "Prefix": "my-prefix",
+        "State": "Active"
+    }
+}
+```
+
+## Describing your Spot Instance data feed<a name="using-spot-instances-datafeed-describe"></a>
+
+To describe your data feed subscription, use the [describe\-spot\-datafeed\-subscription](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-spot-datafeed-subscription.html) command\.
+
+```
+aws ec2 describe-spot-datafeed-subscription
+```
+
+The following is example output:
+
+```
+{
+    "SpotDatafeedSubscription": {
+        "OwnerId": "123456789012",
+        "Prefix": "spotdata",
+        "Bucket": "my-s3-bucket",
         "State": "Active"
     }
 }

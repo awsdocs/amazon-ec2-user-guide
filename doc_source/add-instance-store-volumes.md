@@ -29,6 +29,26 @@ You can create an AMI with a block device mapping that includes instance store v
 + For M3 instances, specify instance store volumes in the block device mapping of the instance, not the AMI\. Amazon EC2 might ignore instance store volumes that are specified only in the block device mapping of the AMI\.
 + When you launch an instance, you can omit non\-NVMe instance store volumes specified in the AMI block device mapping or add instance store volumes\.
 
+------
+#### [ New console ]
+
+**To add instance store volumes to an Amazon EBS\-backed AMI using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances** and select the instance\.
+
+1. Choose **Actions**, **Image and templates**, **Create image**\.
+
+1. On the **Create image** page, enter a meaningful name and description for your image\.
+
+1. For each instance store volume to add, choose **Add volume**, from **Volume type** select an instance store volume, and from **Device** select a device name\. \(For more information, see [Device naming on Linux instances](device_naming.md)\.\) The number of available instance store volumes depends on the instance type\. For instances with NVMe instance store volumes, the device mapping of these volumes depends on the order in which the operating system enumerates the volumes\.
+
+1. Choose **Create image**\.
+
+------
+#### [ Old console ]
+
 **To add instance store volumes to an Amazon EBS\-backed AMI using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
@@ -42,6 +62,8 @@ You can create an AMI with a block device mapping that includes instance store v
 1. For each instance store volume to add, choose **Add New Volume**, from **Volume Type** select an instance store volume, and from **Device** select a device name\. \(For more information, see [Device naming on Linux instances](device_naming.md)\.\) The number of available instance store volumes depends on the instance type\. For instances with NVMe instance store volumes, the device mapping of these volumes depends on the order in which the operating system enumerates the volumes\.
 
 1. Choose **Create Image**\.
+
+------
 
 **To add instance store volumes to an AMI using the command line**
 

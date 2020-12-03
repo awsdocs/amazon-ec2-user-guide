@@ -56,11 +56,11 @@ If an instance status check fails, you can reboot the instance and retrieve the 
 
 1. In the navigation pane, choose **Instances**, and select your instance\.
 
-1. Choose **Instance state**, **Reboot intance**\. It might take a few minutes for your instance to reboot\.
+1. Choose **Instance state**, **Reboot instance**\. It might take a few minutes for your instance to reboot\.
 
 1. Verify that the problem still exists; in some cases, rebooting may resolve the problem\.
 
-1. When the instance is in the `running` state, choose **Actions**, **Instance Settings**, **Get System Log**\. 
+1. When the instance is in the `running` state, choose **Actions**, **Monitor and troubleshoot**, **Get system log**\.
 
 1. Review the log that appears on the screen, and use the list of known system log error statements below to troubleshoot your issue\.
 

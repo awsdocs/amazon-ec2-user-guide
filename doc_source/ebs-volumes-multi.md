@@ -13,6 +13,7 @@ Amazon EBS Multi\-Attach enables you to attach a single Provisioned IOPS SSD \(i
 + Multi\-Attach enabled volumes can be attached to up to 16 Linux instances built on the [Nitro System](instance-types.md#ec2-nitro-instances) that are in the same Availability Zone\. You can attach a volume that is Multi\-Attach enabled to Windows instances, but the operating system does not recognize the data on the volume that is shared between the instances\.
 + Multi\-Attach is supported exclusively on [Provisioned IOPS SSD \(io1\) volumes](ebs-volume-types.md#EBSVolumeTypes_piops)\. It is not supported on Provisioned IOPS SSD \(io2\) volumes\. 
 + Multi\-Attach is available only in the `us-east-1`, `us-west-2`, `eu-west-1`, and `ap-northeast-2` Regions\.
++ Multi\-Attach enabled volumes can't be attached to R5b instances\.
 + Multi\-Attach enabled volumes do not support I/O fencing\. I/O fencing protocols control write access in a shared storage environment to maintain data consistency\. Your applications must provide write ordering for the attached instances to maintain data consistency\.
 + Multi\-Attach enabled volumes can't be created as boot volumes\.
 + Multi\-Attach enabled volumes can be attached to one block device mapping per instance\.

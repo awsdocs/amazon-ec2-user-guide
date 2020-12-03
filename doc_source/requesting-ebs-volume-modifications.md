@@ -28,10 +28,11 @@ Use the following procedure to modify an EBS volume\.<a name="console-modify-siz
 
 1. Choose **Volumes**, select the volume to modify, and then choose **Actions**, **Modify Volume**\.
 
-1. The **Modify Volume** window displays the volume ID and the volume's current configuration, including type, size, and IOPS\. You can change any or all of these settings in a single action\. Set new configuration values as follows:
+1. The **Modify Volume** window displays the volume ID and the volume's current configuration, including type, size, IOPS, and throughput\. Set new configuration values as follows:
    + To modify the type, choose a value for **Volume Type**\.
-   + To modify the size, enter an allowed integer value for **Size**\.
-   + If you chose **Provisioned IOPS SSD \(io1\)** or **Provisioned IOPS SSD \(io2\)** as the volume type, enter an allowed integer value for **IOPS**\.
+   + To modify the size, enter a new value for **Size**\.
+   + To modify the IOPS, if the volume type is `gp3`, `io1`, or `io2`, enter a new value for **IOPS**\.
+   + To modify the throughput, if the volume type is `gp3`, enter a new value for **Throughput**\.
 
 1. After you have finished changing the volume settings, choose **Modify**\. When prompted for confirmation, choose **Yes**\.
 

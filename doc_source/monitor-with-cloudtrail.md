@@ -97,7 +97,7 @@ Use AWS CloudTrail to audit the users that connect to your instances via EC2 Ins
 
 1. Choose the **Refresh events** icon\.
 
-1. The page displays the events that correspond to the `[SendSSHPublicKey](https://docs.aws.amazon.com/ec2-instance-connect/latest/APIReference/API_SendSSHPublicKey.html)` API calls\. Expand an event using the arrow to view additional details, such as the user name and AWS access key that was used to make the SSH connection, and the source IP address\.
+1. The page displays the events that correspond to the [SendSSHPublicKey](https://docs.aws.amazon.com/ec2-instance-connect/latest/APIReference/API_SendSSHPublicKey.html) API calls\. Expand an event using the arrow to view additional details, such as the user name and AWS access key that was used to make the SSH connection, and the source IP address\.
 
 1. To display the full event information in JSON format, choose **View event**\. The **requestParameters** field contains the destination instance ID, OS user name, and public key that were used to make the SSH connection\.
 

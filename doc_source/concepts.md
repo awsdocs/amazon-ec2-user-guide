@@ -4,6 +4,17 @@ Amazon Elastic Compute Cloud \(Amazon EC2\) provides scalable computing capacity
 
 For more information about cloud computing, see [What is Cloud Computing?](https://aws.amazon.com/what-is-cloud-computing/)
 
+**Topics**
++ [Features of Amazon EC2](#ec2-features)
++ [How to get started with Amazon EC2](#how-to-get-started)
++ [Related services](#related-services)
++ [Accessing Amazon EC2](#access-ec2)
++ [Pricing for Amazon EC2](#ec2-pricing)
++ [PCI DSS compliance](#pci-compliance)
++ [Instances and AMIs](ec2-instances-and-amis.md)
++ [Regions and Zones](using-regions-availability-zones.md)
++ [Amazon EC2 root device volume](RootDeviceStorage.md)
+
 ## Features of Amazon EC2<a name="ec2-features"></a>
 
 Amazon EC2 provides the following features:
@@ -68,7 +79,9 @@ To get a managed relational database in the cloud, use Amazon Relational Databas
 
 To make it easier to manage Docker containers on a cluster of EC2 instances, use Amazon Elastic Container Service \(Amazon ECS\)\. For more information, see the [Amazon Elastic Container Service Developer Guide](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/) or the [Amazon Elastic Container Service User Guide for AWS Fargate](https://docs.aws.amazon.com/AmazonECS/latest/userguide/)\.
 
-To monitor basic statistics for your instances and Amazon EBS volumes, use Amazon CloudWatch\. For more information, see the [Amazon CloudWatch User Guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/)\. To detect potentially authorized or malicious use of your EC2 instances, use Amazon GuardDuty\. For more information see the [Amazon GuardDuty User Guide](https://docs.aws.amazon.com/guardduty/latest/ug/)\.
+To monitor basic statistics for your instances and Amazon EBS volumes, use Amazon CloudWatch\. For more information, see the [Amazon CloudWatch User Guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/)\. 
+
+To detect potentially authorized or malicious use of your EC2 instances, use Amazon GuardDuty\. For more information see the [Amazon GuardDuty User Guide](https://docs.aws.amazon.com/guardduty/latest/ug/)\.
 
 ## Accessing Amazon EC2<a name="access-ec2"></a>
 

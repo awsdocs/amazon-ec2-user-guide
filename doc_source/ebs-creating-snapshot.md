@@ -40,7 +40,7 @@ The following considerations apply to creating snapshots:
 + You cannot create snapshots from instances for which hibernation is enabled\.
 + You cannot create snapshots from hibernated instances\.
 + Although you can take a snapshot of a volume while a previous snapshot of that volume is in the `pending` status, having multiple `pending` snapshots of a volume can result in reduced volume performance until the snapshots complete\.
-+ There is a limit of five `pending` snapshots for a single `gp2`, `io1`, `io2`, or Magnetic volume, and one `pending` snapshot for a single `st1` or `sc1` volume\. If you receive a `ConcurrentSnapshotLimitExceeded` error while trying to create multiple concurrent snapshots of the same volume, wait for one or more of the `pending` snapshots to complete before creating another snapshot of that volume\.
++ There is a limit of one `pending` snapshot for a single `st1` or `sc1` volume, or five `pending` snapshots for a single volume of the other volume types\. If you receive a `ConcurrentSnapshotLimitExceeded` error while trying to create multiple concurrent snapshots of the same volume, wait for one or more of the `pending` snapshots to complete before creating another snapshot of that volume\.
 + When a snapshot is created from a volume with an AWS Marketplace product code, the product code is propagated to the snapshot\.
 
 ## Creating a snapshot<a name="ebs-create-snapshot"></a>

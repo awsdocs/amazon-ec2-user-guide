@@ -84,7 +84,7 @@ Before you use placement groups, be aware of the following rules:
 
 The following rules apply to cluster placement groups:
 + Instances in a cluster placement group you must use the following supported instance types:
-  + [Current generation](instance-types.md#current-gen-instances) instances, except for the [burstable performance](burstable-performance-instances.md) instances \(for example, T2\)\.
+  + [Current generation](instance-types.md#current-gen-instances) instances, except for [burstable performance](burstable-performance-instances.md) instances \(for example, T2\) and [Mac1 instances](ec2-mac-instances.md)\.
   + The following [previous generation](instance-types.md#previous-gen-instances) instances: C3, `cc2.8xlarge`, `cr1.8xlarge`, G2, `hs1.8xlarge`, I2, and R3\.
 + A cluster placement group can't span multiple Availability Zones\.
 + The maximum network throughput speed of traffic between two instances in a cluster placement group is limited by the slower of the two instances\. For applications with high\-throughput requirements, choose an instance type with network connectivity that meets your requirements\.
