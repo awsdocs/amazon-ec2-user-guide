@@ -68,13 +68,13 @@ You can launch a Mac instance using the AWS Management Console as described in t
 Use the following [allocate\-hosts](https://docs.aws.amazon.com/cli/latest/reference/ec2/allocate-hosts.html) command to allocate a Dedicated Host for your Mac instance\.
 
 ```
-aws ec2 allocate-hosts --instance-family Mac1 --availability-zone us-east-1b --quantity 1
+aws ec2 allocate-hosts --region us-east-1 --instance-type mac1.metal --availability-zone us-east-1b --quantity 1
 ```
 
 Use the following [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command to launch a Mac instance\.
 
 ```
-aws ec2 run-instances --instance-type mac1.metal --placement Tenancy=host --availability-zone us-east-1b --image-id ami_id --key-name my-key-pair
+aws ec2 run-instances --region us-east-1 --instance-type mac1.metal --placement Tenancy=host --availability-zone us-east-1b --image-id ami_id --key-name my-key-pair
 ```
 
 The initial state of an instance is `pending`\. The instance is ready when its state changes to `running` and it passes status checks\. Use the following [describe\-instance\-status](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-status.html) command to display status information for your instance:
