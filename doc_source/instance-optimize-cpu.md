@@ -43,6 +43,9 @@ The following tables list the instance types that support specifying CPU options
 | g3\.8xlarge | 32 | 16 | 2 | 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 | 1, 2 | 
 | g3\.16xlarge | 64 | 32 | 2 | 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32 | 1, 2 | 
 | g3s\.xlarge | 4 | 2 | 2 | 1, 2 | 1, 2 | 
+| g4ad\.4xlarge | 16 | 8 | 2 | 2, 4, 8 | 1, 2 | 
+| g4ad\.8xlarge | 32 | 16 | 2 | 2, 4, 8, 16 | 1, 2 | 
+| g4ad\.16xlarge | 64 | 32 | 2 | 2, 4, 8, 16, 32 | 1, 2 | 
 | g4dn\.xlarge | 4 | 2 | 2 | 1, 2 | 1, 2 | 
 | g4dn\.2xlarge | 8 | 4 | 2 | 1, 2, 3, 4 | 1, 2 | 
 | g4dn\.4xlarge | 16 | 8 | 2 | 1, 2, 3, 4, 5, 6, 7, 8 | 1, 2 | 

@@ -280,7 +280,7 @@ You can list your interrupted Spot Instances using the [describe\-instances](htt
 ```
 aws ec2 describe-instances \
     --filters Name=instance-lifecycle,Values=spot Name=instance-state-name,Values=terminated,stopped \
-    --query Reservations[*].Instances[*].InstanceId
+    --query "Reservations[*].Instances[*].InstanceId"
 ```
 
 ## Determining whether Amazon EC2 interrupted a Spot Instance<a name="BidEvictedEvent"></a>

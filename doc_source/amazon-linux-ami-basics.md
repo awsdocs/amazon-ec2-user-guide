@@ -318,7 +318,7 @@ The cloud\-init package supports user\-data handling of a variety of formats:
   +  If user\-data is base64\-encoded, cloud\-init determines if it can understand the decoded data as one of the supported types\. If it understands the decoded data, it decodes the data and handles it appropriately\. If not, it returns the base64 data intact\.
 + User\-Data script
   + Begins with `#!` or `Content-Type: text/x-shellscript`\.
-  + The script is executed by `/etc/init.d/cloud-init-user-scripts` during the first boot cycle\. This occurs late in the boot process \(after the initial configuration actions are performed\)\.
+  + The script is run by `/etc/init.d/cloud-init-user-scripts` during the first boot cycle\. This occurs late in the boot process \(after the initial configuration actions are performed\)\.
 + Include file
   + Begins with `#include` or `Content-Type: text/x-include-url`\.
   + This content is an include file\. The file contains a list of URLs, one per line\. Each of the URLs is read, and their content passed through this same set of rules\. The content read from the URL can be gzipped, MIME\-multi\-part, or plaintext\.
@@ -330,7 +330,7 @@ The cloud\-init package supports user\-data handling of a variety of formats:
   + This content is stored in a file in `/etc/init`, and upstart consumes the content as per other upstart jobs\.
 + Cloud Boothook
   + Begins with `#cloud-boothook` or `Content-Type: text/cloud-boothook`\.
-  + This content is boothook data\. It is stored in a file under `/var/lib/cloud` and then executed immediately\.
+  + This content is boothook data\. It is stored in a file under `/var/lib/cloud` and then runs immediately\.
   +  This is the earliest "hook" available\. There is no mechanism provided for running it only one time\. The boothook must take care of this itself\. It is provided with the instance ID in the environment variable `INSTANCE_ID`\. Use this variable to provide a once\-per\-instance set of boothook data\.
 
 ## Subscribing to Amazon Linux notifications<a name="linux-ami-notifications"></a>

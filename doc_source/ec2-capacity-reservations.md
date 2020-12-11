@@ -31,7 +31,7 @@ The following table highlights key differences between Capacity Reservations, Re
 |  | Capacity Reservations | Zonal Reserved Instances | Regional Reserved Instances | Savings Plans | 
 | --- | --- | --- | --- | --- | 
 | Term | No commitment required\. Can be created and canceled as needed\. | Requires a fixed one\-year or three\-year commitment | 
-| Capacity benefit | Capacity reserved in a specific Availability Zone\. | Capacity reserved in a specific Region\. | No capacity reserved\. | 
+| Capacity benefit | Capacity reserved in a specific Availability Zone\. | No capacity reserved\. | 
 | Billing discount | No billing discount\. † | Provides a billing discount\. | 
 | Instance Limits | Your On\-Demand Instance limits per Region apply\. | Default is 20 per Availability Zone\. You can request a limit increase\. | Default is 20 per Region\. You can request a limit increase\. | No limit\. | 
 
@@ -70,4 +70,3 @@ Before you create Capacity Reservations, take note of the following limitations 
 + Zonal Reserved Instance billing discounts do not apply to Capacity Reservations
 + Capacity Reservations can't be created in placement groups
 + Capacity Reservations can't be used with Dedicated Hosts
-+ Capacity Reservations can't be used with Bring Your Own License \(BYOL\)

@@ -90,13 +90,13 @@ To generate the `seed.iso` boot image, you need two configuration files:
 
 1. Create the `seed.iso` boot image using the `meta-data` and `user-data` configuration files\.
 
-   For Linux, use a tool such as **genisoimage**\. Navigate into the `seedconfig` folder, and execute the following command\.
+   For Linux, use a tool such as **genisoimage**\. Navigate into the `seedconfig` folder, and run the following command\.
 
    ```
    $ genisoimage -output seed.iso -volid cidata -joliet -rock user-data meta-data
    ```
 
-   For macOS, use a tool such as **hdiutil**\. Navigate one level up from the `seedconfig` folder, and execute the following command\.
+   For macOS, use a tool such as **hdiutil**\. Navigate one level up from the `seedconfig` folder, and run the following command\.
 
    ```
    $ hdiutil makehybrid -o seed.iso -hfs -joliet -iso -default-volume-name cidata seedconfig/

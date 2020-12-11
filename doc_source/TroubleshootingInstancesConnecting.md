@@ -339,7 +339,7 @@ bad permissions: ignore key: .ssh/my_private_key.pem
 Permission denied (publickey).
 ```
 
-If you see a similar message when you try to log in to your instance, examine the first line of the error message to verify that you are using the correct public key for your instance\. The above example uses the private key `.ssh/my_private_key.pem` with file permissions of `0777`, which allow anyone to read or write to this file\. This permission level is very insecure, and so SSH ignores this key\. To fix the error, execute the following command, substituting the path for your private key file\.
+If you see a similar message when you try to log in to your instance, examine the first line of the error message to verify that you are using the correct public key for your instance\. The above example uses the private key `.ssh/my_private_key.pem` with file permissions of `0777`, which allow anyone to read or write to this file\. This permission level is very insecure, and so SSH ignores this key\. To fix the error, run the following command, substituting the path for your private key file\.
 
 ```
 [ec2-user ~]$ chmod 0400 .ssh/my_private_key.pem

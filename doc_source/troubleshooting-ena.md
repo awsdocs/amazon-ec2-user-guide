@@ -116,126 +116,227 @@ Below is an example of driver log entry indicating a read operation failure due 
 
 ## Statistics<a name="statistics-ena"></a>
 
-If you experience insufficient network performance or latency issues, you should retrieve the device statistics and examine them\. These statistics can be obtained using ethtool, as shown below:
+If you experience insufficient network performance or latency issues, you should retrieve the device statistics and examine them\. These statistics can be obtained using ethtool as follows\.
 
 ```
 [ec2-user ~]$ ethtool –S ethN
 NIC statistics:
-     tx_timeout: 0
-     io_suspend: 0
-     io_resume: 0
-     wd_expired: 0
-     interface_up: 1
-     interface_down: 0
-     admin_q_pause: 0
-     queue_0_tx_cnt: 4329
-     queue_0_tx_bytes: 1075749
-     queue_0_tx_queue_stop: 0
-...
+    tx_timeout: 0
+    suspend: 0
+    resume: 0
+    wd_expired: 0
+    interface_up: 1
+    interface_down: 0
+    admin_q_pause: 0
+    bw_in_allowance_exceeded: 0
+    bw_out_allowance_exceeded: 0
+    pps_allowance_exceeded: 0
+    conntrack_allowance_exceeded: 0
+    linklocal_allowance_exceeded: 0
+    queue_0_tx_cnt: 4329
+    queue_0_tx_bytes: 1075749
+    queue_0_tx_queue_stop: 0
+    ...
 ```
 
 The following command output parameters are described below:
 
-`tx_timeout: N`  
+`tx_timeout`: *N*  
 The number of times that the Netdev watchdog was activated\.
 
-`io_suspend: N`  
-Unsupported\. This value should always be zero\.
+`suspend`: *N*  
+The number of times the driver performed a suspend operation\.
 
-`io_resume: N`  
-Unsupported\. This value should always be zero\.
+`resume`: *N*  
+The number of times the driver performed a resume operation\.
 
-`wd_expired: N`  
-The number of times that the driver did not receive the keep\-alive event in the preceding 3 seconds\.
+`wd_expired`: *N*  
+The number of times that the driver did not receive the keep\-alive event in the preceding three seconds\.
 
-`interface_up: N`  
+`interface_up`: *N*  
 The number of times that the ENA interface was brought up\.
 
-`interface_down: N`  
+`interface_down`: *N*  
 The number of times that the ENA interface was brought down\.
 
-`admin_q_pause: N`  
-The admin queue is in an unstable state\. This value should always be zero\.
+`admin_q_pause`: *N*  
+The number of times the admin queue was not found in a running state\.
 
-`queue_N_tx_cnt: N`  
-The number of transmitted packets for queue *N*\.
+`bw_in_allowance_exceeded`: *N*  
+The number of rx packets dropped because the bandwidth allowance limit was exceeded\.
 
-`queue_N_tx_bytes: N`  
-The number of transmitted bytes for queue *N*\.
+`bw_out_allowance_exceeded`: *N*  
+The number of tx packets dropped because the bandwidth allowance limit was exceeded\.
 
-`queue_N_tx_queue_stop: N`  
+`pps_allowance_exceeded`: *N*  
+The number of packets dropped because the pps \(packets per second\) allowance limit was exceeded\.
+
+`conntrack_allowance_exceeded`: *N*  
+The number of packets dropped because the connection count allowance limit was exceeded\.
+
+`linklocal_allowance_exceeded`: *N*  
+The number of proxy packets dropped because the pps \(packets per second\) allowance limit was exceeded\.
+
+`queue_N_tx_cnt`: *N*  
+The number of transmitted packets for this queue\.
+
+`queue_N_tx_bytes`: *N*  
+The number of transmitted bytes for this queue\.
+
+`queue_N_tx_queue_stop`: *N*  
 The number of times that queue *N* was full and stopped\.
 
-`queue_N_tx_queue_wakeup: N`  
+`queue_N_tx_queue_wakeup`: *N*  
 The number of times that queue *N* resumed after being stopped\.
 
-`queue_N_tx_dma_mapping_err: N`  
+`queue_N_tx_dma_mapping_err`: *N*  
 Direct memory access error count\. If this value is not 0, it indicates low system resources\.
 
-`queue_N_tx_napi_comp: N`  
-The number of times the `napi` handler called `napi_complete` for queue *N*\.
+`queue_N_tx_linearize`: *N*  
+The number of times SKB linearization was attempted for this queue\.
 
-`queue_N_tx_poll: N`  
-The number of times the `napi` handler was scheduled for queue *N*\.
+`queue_N_tx_linearize_failed`: *N*  
+The number of times SKB linearization failed for this queue\.
 
-`queue_N_tx_doorbells: N`  
-The number of transmission doorbells for queue *N*\.
+`queue_N_tx_napi_comp`: *N*  
+The number of times the `napi` handler called `napi_complete` for this queue\.
 
-`queue_N_tx_linearize: N`  
-The number of times SKB linearization was attempted for queue *N*\.
+`queue_N_tx_tx_poll`: *N*  
+The number of times the `napi` handler was scheduled for this queue\.
 
-`queue_N_tx_linearize_failed: N`  
-The number of times SKB linearization failed for queue *N*\.
+`queue_N_tx_doorbells`: *N*  
+The number of transmission doorbells for this queue\.
 
-`queue_N_tx_prepare_ctx_err: N`  
-The number of times `ena_com_prepare_tx` failed for queue *N*\. This value should always be zero; if not, see the driver logs\.
+`queue_N_tx_prepare_ctx_err`: *N*  
+The number of times `ena_com_prepare_tx` failed for this queue\.
 
-`queue_N_tx_missing_tx_comp: codeN`  
-The number of packets that were left uncompleted for queue *N*\. This value should always be zero\.
+`queue_N_tx_bad_req_id`: *N*  
+Invalid `req_id` for this queue\. The valid `req_id` is zero, minus the `queue_size`, minus 1\. 
 
-`queue_N_tx_bad_req_id: N`  
-Invalid `req_id` for queue *N*\. The valid `req_id` is zero, minus the `queue_size`, minus 1\. 
+`queue_N_tx_llq_buffer_copy`: *N*  
+The number of packets whose headers size are larger than llq entry for this queue\.
 
-`queue_N_rx_cnt: N`  
-The number of received packets for queue *N*\.
+`queue_N_tx_missed_tx`: *N*  
+The number of packets that were left uncompleted for this queue\.
 
-`queue_N_rx_bytes: N`  
-The number of received bytes for queue *N*\.
+`queue_N_tx_unmask_interrupt`: *N*  
+The number of times the tx interrupt was unmasked for this queue\.
 
-`queue_N_rx_refil_partial: N`  
-The number of times the driver did not succeed in refilling the empty portion of the `rx` queue with the buffers for queue *N*\. If this value is not zero, it indicates low memory resources\.
+`queue_N_rx_cnt`: *N*  
+The number of received packets for this queue\.
 
-`queue_N_rx_bad_csum: N`  
-The number of times the `rx` queue had a bad checksum for queue *N* \(only if `rx` checksum offload is supported\)\.
+`queue_N_rx_bytes`: *N*  
+The number of received bytes for this queue\.
 
-`queue_N_rx_page_alloc_fail: N`  
-The number of time that page allocation failed for queue *N*\. If this value is not zero, it indicates low memory resources\.
+`queue_N_rx_rx_copybreak_pkt`: *N*  
+The number of times the rx queue received a packet that is less than the rx\_copybreak packet size for this queue\.
 
-`queue_N_rx_skb_alloc_fail: N`  
-The number of time that SKB allocation failed for queue *N*\. If this value is not zero, it indicates low system resources\.
+`queue_N_rx_csum_good`: *N*  
+The number of times the rx queue received a packet where the checksum was checked and was correct for this queue\.
 
-`queue_N_rx_dma_mapping_err: N`  
+`queue_N_rx_refil_partial`: *N*  
+The number of times the driver did not succeed in refilling the empty portion of the rx queue with the buffers for this queue\. If this value is not zero, it indicates low memory resources\.
+
+`queue_N_rx_bad_csum`: *N*  
+The number of times the `rx` queue had a bad checksum for this queue \(only if rx checksum offload is supported\)\.
+
+`queue_N_rx_page_alloc_fail`: *N*  
+The number of time that page allocation failed for this queue\. If this value is not zero, it indicates low memory resources\.
+
+`queue_N_rx_skb_alloc_fail`: *N*  
+The number of time that SKB allocation failed for this queue\. If this value is not zero, it indicates low system resources\.
+
+`queue_N_rx_dma_mapping_err`: *N*  
 Direct memory access error count\. If this value is not 0, it indicates low system resources\.
 
-`queue_N_rx_bad_desc_num: N`  
-Too many buffers per packet\. If this value is not 0, it indicates usage of very small buffers\.
+`queue_N_rx_bad_desc_num`: *N*  
+Too many buffers per packet\. If this value is not 0, it indicates the use of very small buffers\.
 
-`queue_N_rx_small_copy_len_pkt: N`  
-Optimization: For packets smaller that this threshold, which is set by `sysfs`, the packet is copied directly to the stack to avoid allocation of a new page\.
+`queue_N_rx_bad_req_id`: *N*  
+The req\_id for this queue is not valid\. The valid req\_id is from \[0, queue\_size \- 1 \]\.
 
-`ena_admin_q_aborted_cmd: N`  
+`queue_N_rx_empty_rx_ring`: *N*  
+The number of times the rx queue was empty for this queue\.
+
+`queue_N_rx_csum_unchecked`: *N*  
+The number of times the rx queue received a packet whose checksum wasn't checked for this queue\.
+
+`queue_N_rx_xdp_aborted`: *N*  
+The number of times that an XDP packet was classified as XDP\_ABORT\.
+
+`queue_N_rx_xdp_drop`: *N*  
+The number of times that an XDP packet was classified as XDP\_DROP\.
+
+`queue_N_rx_xdp_pass`: *N*  
+The number of times that an XDP packet was classified as XDP\_PASS\.
+
+`queue_N_rx_xdp_tx`: *N*  
+The number of times that an XDP packet was classified as XDP\_TX\.
+
+`queue_N_rx_xdp_invalid`: *N*  
+The number of times that the XDP return code for the packet was not valid\.
+
+`queue_N_rx_xdp_redirect`: *N*  
+The number of times that an XDP packet was classified as XDP\_REDIRECT\.
+
+`queue_N_xdp_tx_cnt`: *N*  
+The number of transmitted packets for this queue\.
+
+`queue_N_xdp_tx_bytes`: *N*  
+The number of transmitted bytes for this queue\.
+
+`queue_N_xdp_tx_queue_stop`: *N*  
+The number of times that this queue was full and stopped\.
+
+`queue_N_xdp_tx_queue_wakeup`: *N*  
+The number of times that this queue resumed after being stopped\.
+
+`queue_N_xdp_tx_dma_mapping_err`: *N*  
+Direct memory access error count\. If this value is not 0, it indicates low system resources\.
+
+`queue_N_xdp_tx_linearize`: *N*  
+he number of times XDP buffer linearization was attempted for this queue\.
+
+`queue_N_xdp_tx_linearize_failed`: *N*  
+The number of times XDP buffer linearization failed for this queue\.
+
+`queue_N_xdp_tx_napi_comp`: *N*  
+The number of times the napi handler called napi\_complete for this queue\.
+
+`queue_N_xdp_tx_tx_poll`: *N*  
+The number of times the napi handler was scheduled for this queue\.
+
+`queue_N_xdp_tx_doorbells`: *N*  
+The number of transmission doorbells for this queue\.
+
+`queue_N_xdp_tx_prepare_ctx_err`: *N*  
+The number of times ena\_com\_prepare\_tx failed for this queue\. This value should always be zero; if not, see the driver logs\.
+
+`queue_N_xdp_tx_bad_req_id`: *N*  
+The req\_id for this queue is not valid\. The valid req\_id is from \[0, queue\_size \- 1 \]\.
+
+`queue_N_xdp_tx_llq_buffer_copy`: *N*  
+The number of packets that had their headers copied using llq buffer copy for this queue\.
+
+`queue_N_xdp_tx_missed_tx`: *N*  
+The number of times a tx queue entry missed a completion timeout for this queue\.
+
+`queue_N_xdp_tx_unmask_interrupt`: *N*  
+The number of times the tx interrupt was unmasked for this queue\.
+
+`ena_admin_q_aborted_cmd`: *N*  
 The number of admin commands that were aborted\. This usually happens during the auto\-recovery procedure\.
 
-`ena_admin_q_submitted_cmd: N`  
+`ena_admin_q_submitted_cmd`: *N*  
 The number of admin queue doorbells\.
 
-`ena_admin_q_completed_cmd: N`  
+`ena_admin_q_completed_cmd`: *N*  
 The number of admin queue completions\.
 
-`ena_admin_q_out_of_space: N`  
+`ena_admin_q_out_of_space`: *N*  
 The number of times that the driver tried to submit new admin command, but the queue was full\.
 
-`ena_admin_q_no_completion: N`  
+`ena_admin_q_no_completion`: *N*  
 The number of times that the driver did not get an admin completion for a command\.
 
 ## Driver error logs in syslog<a name="driver-error-logs-ena"></a>

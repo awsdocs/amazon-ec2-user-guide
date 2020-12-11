@@ -132,7 +132,10 @@ The following is a summary of network performance for compute optimized instance
 
 | Instance type | Network performance | Enhanced networking | 
 | --- | --- | --- | 
+| c4\.large | Moderate | [Intel 82599 VF](sriov-networking.md) | 
+| c4\.xlarge \| c4\.2xlarge \| c4\.4xlarge | High | [Intel 82599 VF](sriov-networking.md) | 
 | c5\.4xlarge and smaller \| c5d\.4xlarge and smaller \| c6g\.4xlarge and smaller \| c6gd\.4xlarge and smaller  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
+| c4\.8xlarge | 10 Gbps | [Intel 82599 VF](sriov-networking.md) | 
 | c5\.9xlarge \| c5d\.9xlarge | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5\.12xlarge \| c5d\.12xlarge  \| c6g\.8xlarge \| c6gd\.8xlarge | 12 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c6g\.12xlarge \| c6gd\.12xlarge | 20 Gbps | [ENA](enhanced-networking-ena.md) | 
@@ -140,9 +143,6 @@ The following is a summary of network performance for compute optimized instance
 | c5\.18xlarge \| c5\.24xlarge \| c5\.metal \| c5d\.18xlarge \| c5d\.24xlarge \| c5d\.metal  \| c6g\.16xlarge \| c6g\.metal  \| c6gd\.16xlarge \| c6gd\.metal  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5n\.9xlarge | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5n\.18xlarge \| c5n\.metal  | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
-| c4\.large | Moderate | [Intel 82599 VF](sriov-networking.md) | 
-| c4\.xlarge \| c4\.2xlarge \| c4\.4xlarge | High | [Intel 82599 VF](sriov-networking.md) | 
-| c4\.8xlarge | 10 Gbps | [Intel 82599 VF](sriov-networking.md) | 
 
 † These instances use a network I/O credit mechanism to allocate network bandwidth to instances based on average bandwidth utilization\. They accrue credits when their bandwidth is below their baseline bandwidth, and can use these credits when they perform network data transfers\. For more information, open a support case and ask about baseline bandwidth for the specific instance types that you are interested in\.
 
@@ -214,8 +214,8 @@ For more information, see the following:
 ## Release notes<a name="compute-instance-limits"></a>
 + C5 and C5d instances feature a 3\.1 GHz Intel Xeon Platinum 8000 series processor from either the first generation \(Skylake\-SP\) or second generation \(Cascade Lake\)\.
 + C5a and C5ad instances feature a second\-generation AMD EPYC processor \(Rome\) running at frequencies as high as 3\.3\. GHz\.
-+ C6g and C6gd instances feature an AWS Graviton2 processor based on 64\-bit Arm architecture\.
-+ C4 instances and instances based on the [Nitro System](instance-types.md#ec2-nitro-instances) require 64\-bit EBS\-backed HVM AMIs\. They have high\-memory and require a 64\-bit operating system to take advantage of that capacity\. HVM AMIs provide superior performance in comparison to paravirtual \(PV\) AMIs on high\-memory instance types\. In addition, you must use an HVM AMI to take advantage of enhanced networking\.
++ C6g, C6gd instances feature an AWS Graviton2 processor based on 64\-bit Arm architecture\.
++ C4 instances and instances built on the [Nitro System](instance-types.md#ec2-nitro-instances) require 64\-bit EBS\-backed HVM AMIs\. They have high\-memory and require a 64\-bit operating system to take advantage of that capacity\. HVM AMIs provide superior performance in comparison to paravirtual \(PV\) AMIs on high\-memory instance types\. In addition, you must use an HVM AMI to take advantage of enhanced networking\.
 + Instances built on the Nitro System have the following requirements:
   + [NVMe drivers](nvme-ebs-volumes.md) must be installed
   + [Elastic Network Adapter \(ENA\) drivers](enhanced-networking-ena.md) must be installed

@@ -75,7 +75,7 @@ General Purpose SSD \(`gp3`\) volumes offer cost\-effective storage that is idea
 
 The maximum ratio of provisioned IOPS to provisioned volume size is 500 IOPS per GiB\. The maximum ratio of provisioned throughput to provisioned IOPS is \.25 MiB/s per IOPS\. The following volume configurations support provisioning either maximum IOPS or maximum throughput:
 + 32 GiB or larger: 500 IOPS/GiB x 32 GiB = 16,000 IOPS
-+ 8 GiB or larger and 4,000 IOPS or higher: 4,000 IOPS x 0\.25 MiB/s/IOPS \- 1,000 MiB/s
++ 8 GiB or larger and 4,000 IOPS or higher: 4,000 IOPS x 0\.25 MiB/s/IOPS = 1,000 MiB/s
 
 ## General Purpose SSD volumes \(gp2\)<a name="EBSVolumeTypes_gp2"></a>
 
@@ -172,6 +172,8 @@ V  =  -----
 Provisioned IOPS SSD \(`io1` and `io2`\) volumes are designed to meet the needs of I/O\-intensive workloads, particularly database workloads, that are sensitive to storage performance and consistency\. Provisioned IOPS SSD volumes use a consistent IOPS rate, which you specify when you create the volume, and Amazon EBS delivers the provisioned performance 99\.9 percent of the time\.
 
 `io1` volumes are designed to provide 99\.8 to 99\.9 percent volume durability with an annual failure rate \(AFR\) no higher than 0\.2 percent, which translates to a maximum of two volume failures per 1,000 running volumes over a one\-year period\. `io2` volumes are designed to provide 99\.999 percent volume durability with an AFR no higher than 0\.001 percent, which translates to a single volume failure per 100,000 running volumes over a one\-year period\.
+
+Provisioned IOPS SSD `io1` volumes are available for all Amazon EC2 instance types\. Provisioned IOPS SSD `io2` volumes are available for all EC2 instances types, with the exception of R5b\. 
 
 Provisioned IOPS SSD volumes can range in size from 4 GiB to 16 TiB\. You can provision from 100 IOPS up to 64,000 IOPS per volume on [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances) and up to 32,000 on other instances\. The maximum ratio of provisioned IOPS to requested volume size \(in GiB\) is 50:1 for `io1` volumes, and 500:1 for `io2` volumes\. For example, a 100 GiB `io1` volume can be provisioned with up to 5,000 IOPS, while a 100 GiB `io2` volume can be provisioned with up to 50,000 IOPS\. On a supported instance type, the following volume sizes allow provisioning up to the 64,000 IOPS maximum:
 + `io1` volume 1,280 GiB in size or greater \(50 × 1,280 GiB = 64,000 IOPS\)

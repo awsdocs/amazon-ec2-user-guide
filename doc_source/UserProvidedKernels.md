@@ -20,11 +20,11 @@ The legacy GRUB for Amazon Linux uses `/boot/grub/menu.lst`\. GRUB2 for Amazon L
 
 Amazon Machine Images that use paravirtual \(PV\) virtualization use a system called *PV\-GRUB* during the boot process\. PV\-GRUB is a paravirtual bootloader that runs a patched version of GNU GRUB 0\.97\. When you start an instance, PV\-GRUB starts the boot process and then chain loads the kernel specified by your image's `menu.lst` file\.
 
-PV\-GRUB understands standard `grub.conf` or `menu.lst` commands, which allows it to work with all currently supported Linux distributions\. Older distributions such as Ubuntu 10\.04 LTS, Oracle Enterprise Linux or CentOS 5\.x require a special "ec2" or "xen" kernel package, while newer distributions include the required drivers in the default kernel package\.
+PV\-GRUB understands standard `grub.conf` or `menu.lst` commands, which allows it to work with all currently supported Linux distributions\. Older distributions such as Ubuntu 10\.04 LTS, Oracle Enterprise Linux, or CentOS 5\.x require a special "ec2" or "xen" kernel package, while newer distributions include the required drivers in the default kernel package\.
 
 Most modern paravirtual AMIs use a PV\-GRUB AKI by default \(including all of the paravirtual Linux AMIs available in the Amazon EC2 Launch Wizard Quick Start menu\), so there are no additional steps that you need to take to use a different kernel on your instance, provided that the kernel you want to use is compatible with your distribution\. The best way to run a custom kernel on your instance is to start with an AMI that is close to what you want and then to compile the custom kernel on your instance and modify the `menu.lst` file to boot with that kernel\.
 
-You can verify that the kernel image for an AMI is a PV\-GRUB AKI\. Run the following [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command \(substituting your kernel image ID\) check whether the `Name` field starts with `pv-grub`:
+You can verify that the kernel image for an AMI is a PV\-GRUB AKI\. Run the following [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command \(substituting your kernel image ID\) and check whether the `Name` field starts with `pv-grub`:
 
 ```
 aws ec2 describe-images --filters Name=image-id,Values=aki-880531cd
@@ -45,7 +45,7 @@ PV\-GRUB has the following limitations:
 + PV\-GRUB can boot kernels compressed using the gzip, bzip2, lzo, and xz compression formats\.
 + Cluster AMIs don't support or need PV\-GRUB, because they use full hardware virtualization \(HVM\)\. While paravirtual instances use PV\-GRUB to boot, HVM instance volumes are treated like actual disks, and the boot process is similar to the boot process of a bare metal operating system with a partitioned disk and bootloader\. 
 + PV\-GRUB versions 1\.03 and earlier don't support GPT partitioning; they support MBR partitioning only\.
-+ If you plan to use a logical volume manager \(LVM\) with Amazon EBS volumes, you need a separate boot partition outside of the LVM\. Then you can create logical volumes with the LVM\.
++ If you plan to use a logical volume manager \(LVM\) with Amazon Elastic Block Store \(Amazon EBS\) volumes, you need a separate boot partition outside of the LVM\. Then you can create logical volumes with the LVM\.
 
 ### Configuring GRUB for paravirtual AMIs<a name="configuringGRUB"></a>
 

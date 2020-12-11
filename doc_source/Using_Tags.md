@@ -48,7 +48,7 @@ The following table describes the Amazon EC2 resources that can be tagged, and t
 | Resource | Supports tags | Supports tagging on creation | 
 | --- | --- | --- | 
 |  AFI  |  Yes  |  Yes  | 
-|  AMI  |  Yes  | No | 
+|  AMI  |  Yes  | Yes | 
 |  Bundle task  |  No  | No | 
 |  Capacity Reservation  |  Yes  |  Yes  | 
 | Carrier gateway | Yes | Yes | 

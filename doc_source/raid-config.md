@@ -49,13 +49,13 @@ Create volumes with identical size and IOPS performance values for your array\. 
 **Note**  
 You can list the devices on your instance with the lsblk command to find the device names\.
 
-   \(RAID 0 only\) To create a RAID 0 array, execute the following command \(note the `--level=0` option to stripe the array\):
+   \(RAID 0 only\) To create a RAID 0 array, run the following command \(note the `--level=0` option to stripe the array\):
 
    ```
    [ec2-user ~]$ sudo mdadm --create --verbose /dev/md0 --level=0 --name=MY_RAID --raid-devices=number_of_volumes device_name1 device_name2
    ```
 
-   \(RAID 1 only\) To create a RAID 1 array, execute the following command \(note the `--level=1` option to mirror the array\):
+   \(RAID 1 only\) To create a RAID 1 array, run the following command \(note the `--level=1` option to mirror the array\):
 
    ```
    [ec2-user ~]$ sudo mdadm --create --verbose /dev/md0 --level=1 --name=MY_RAID --raid-devices=number_of_volumes device_name1 device_name2
@@ -106,7 +106,7 @@ You can list the devices on your instance with the lsblk command to find the dev
           1     202       96        1      active sync   /dev/sdg
    ```
 
-1. Create a file system on your RAID array, and give that file system a label to use when you mount it later\. For example, to create an ext4 file system with the label *MY\_RAID*, execute the following command:
+1. Create a file system on your RAID array, and give that file system a label to use when you mount it later\. For example, to create an ext4 file system with the label *MY\_RAID*, run the following command:
 
    ```
    [ec2-user ~]$ sudo mkfs.ext4 -L MY_RAID /dev/md0

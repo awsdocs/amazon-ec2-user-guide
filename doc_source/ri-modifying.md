@@ -43,15 +43,15 @@ You can modify these attributes as follows\.
 
 **Requirements**
 
-Amazon EC2 processes your modification request if there is sufficient capacity for your target configuration \(if applicable\), and if the following conditions are met:
+Amazon EC2 processes your modification request if there is sufficient capacity for your new configuration \(if applicable\), and if the following conditions are met:
 + The Reserved Instance cannot be modified before or at the same time that you purchase it
 + The Reserved Instance must be active
 + There cannot be a pending modification request
 + The Reserved Instance is not listed in the Reserved Instance Marketplace
-+ There must be a match between the instance size footprint of the active reservation and the target configuration\. For more information, see [Support for modifying instance sizes](#ri-modification-instancemove)\.
-+ The input Reserved Instances are all Standard Reserved Instances or all Convertible Reserved Instances, not some of each type
-+ The input Reserved Instances must expire within the same hour, if they are Standard Reserved Instances
-+ The Reserved Instance is not a G4 instance\.
++ There must be a match between the instance size footprint of the original reservation and the new configuration\. For more information, see [Support for modifying instance sizes](#ri-modification-instancemove)\.
++ The original Reserved Instances are all Standard Reserved Instances or all Convertible Reserved Instances, not some of each type
++ The original Reserved Instances must expire within the same hour, if they are Standard Reserved Instances
++ The Reserved Instance is not a G4dn instance\.
 
 ## Support for modifying instance sizes<a name="ri-modification-instancemove"></a>
 
@@ -66,7 +66,7 @@ You can modify the instance size of a Reserved Instance if the following require
   + `cr1.8xlarge`
   + `hs1.8xlarge`
   + `t1.micro`
-+ The original and modified Reserved Instance must have the same instance size footprint\.
++ The original and new Reserved Instance must have the same instance size footprint\.
 
 **Topics**
 + [Instance size footprint](#ri-modification-instance-size-footprint)
@@ -74,7 +74,7 @@ You can modify the instance size of a Reserved Instance if the following require
 
 ### Instance size footprint<a name="ri-modification-instance-size-footprint"></a>
 
-Each Reserved Instance has an *instance size footprint*, which is determined by the normalization factor of the instance size and the number of instances in the reservation\. When you modify the instance sizes in an Reserved Instance, the footprint of the target configuration must match that of the original configuration, otherwise the modification request is not processed\.
+Each Reserved Instance has an *instance size footprint*, which is determined by the normalization factor of the instance size and the number of instances in the reservation\. When you modify the instance sizes in an Reserved Instance, the footprint of the new configuration must match that of the original configuration, otherwise the modification request is not processed\.
 
 To calculate the instance size footprint of a Reserved Instance, multiply the number of instances by the normalization factor\. In the Amazon EC2 console, the normalization factor is measured in units\. The following table describes the normalization factor for the instance sizes in an instance family\. For example, `t2.medium` has a normalization factor of 2, so a reservation for four `t2.medium` instances has a footprint of 8 units\.
 
@@ -98,9 +98,9 @@ To calculate the instance size footprint of a Reserved Instance, multiply the nu
 |  24xlarge  |  192  | 
 |  32xlarge  |  256  | 
 
-You can allocate your reservations into different instance sizes across the same instance family as long as the instance size footprint of your reservation remains the same\. For example, you can divide a reservation for one `t2.large` \(1 @ 4 units\) instance into four `t2.small` \(4 @ 1 unit\) instances\. Similarly, you can combine a reservation for four `t2.small` instances into one `t2.large` instance\. However, you cannot change your reservation for two `t2.small` instances into one `t2.large` instance because the footprint of the modified reservation \(4 units\) is larger than the footprint of the existing reservation \(2 units\)\.
+You can allocate your reservations into different instance sizes across the same instance family as long as the instance size footprint of your reservation remains the same\. For example, you can divide a reservation for one `t2.large` \(1 @ 4 units\) instance into four `t2.small` \(4 @ 1 unit\) instances\. Similarly, you can combine a reservation for four `t2.small` instances into one `t2.large` instance\. However, you cannot change your reservation for two `t2.small` instances into one `t2.large` instance because the footprint of the new reservation \(4 units\) is larger than the footprint of the original reservation \(2 units\)\.
 
-In the following example, you have a reservation with two `t2.micro` instances \(1 unit\) and a reservation with one `t2.small` instance \(1 unit\)\. If you merge both of these reservations to a single reservation with one `t2.medium` instance \(2 units\), the footprint of the modified reservation equals the footprint of the combined reservations\.
+In the following example, you have a reservation with two `t2.micro` instances \(1 unit\) and a reservation with one `t2.small` instance \(1 unit\)\. If you merge both of these reservations to a single reservation with one `t2.medium` instance \(2 units\), the footprint of the new reservation equals the footprint of the combined reservations\.
 
 ![\[Modifying Reserved Instances\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ri-modify-merge.png)
 
@@ -132,7 +132,7 @@ For example, an `i3.metal` instance has a normalization factor of 128\. If you p
 
 ## Submitting modification requests<a name="ri-modification-process"></a>
 
-Before you modify your Reserved Instances, ensure that you have read the applicable [restrictions](#ri-modification-limits)\. Before you modify the instance size, calculate the total [instance size footprint](#ri-modification-instancemove) of the reservations that you want to modify and ensure that it matches the total instance size footprint of your target configurations\.
+Before you modify your Reserved Instances, ensure that you have read the applicable [restrictions](#ri-modification-limits)\. Before you modify the instance size, calculate the total [instance size footprint](#ri-modification-instancemove) of the original reservations that you want to modify and ensure that it matches the total instance size footprint of your new configurations\.
 
 **To modify your Reserved Instances using the AWS Management Console**
 

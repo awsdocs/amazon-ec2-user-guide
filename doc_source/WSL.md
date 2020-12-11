@@ -47,12 +47,12 @@ Use the following procedure to connect to your Linux instance using the Windows 
    + \(Public DNS\) To connect using your instance's public DNS name, enter the following command\.
 
      ```
-     sudo ssh -i /path/my-key-pair.pem my-instance-user-name@my-instance-public-dns-name
+     ssh -i /path/my-key-pair.pem my-instance-user-name@my-instance-public-dns-name
      ```
    + \(IPv6\) Alternatively, if your instance has an IPv6 address, you can connect to the instance using its IPv6 address\. Specify the ssh command with the path to the private key \(\.pem\) file, the appropriate user name, and the IPv6 address\.
 
      ```
-     sudo ssh -i /path/my-key-pair.pem my-instance-user-name@my-instance-IPv6-address
+     ssh -i /path/my-key-pair.pem my-instance-user-name@my-instance-IPv6-address
      ```
 
    You see a response like the following:

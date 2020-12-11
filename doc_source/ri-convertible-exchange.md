@@ -1,8 +1,10 @@
 # Exchanging Convertible Reserved Instances<a name="ri-convertible-exchange"></a>
 
-You can exchange one or more Convertible Reserved Instances for another Convertible Reserved Instance with a different configuration, including instance family, operating system, and tenancy\. There are no limits to how many times you perform an exchange, as long as the target Convertible Reserved Instance is of an equal or higher value than the Convertible Reserved Instances that you are exchanging\.
+You can exchange one or more Convertible Reserved Instances for another Convertible Reserved Instance with a different configuration, including instance family, operating system, and tenancy\. There are no limits to how many times you perform an exchange, as long as the new Convertible Reserved Instance is of an equal or higher value than the original Convertible Reserved Instances that you are exchanging\.
 
-When you exchange your Convertible Reserved Instance, the number of instances for your current reservation is exchanged for a number of instances that cover the equal or higher value of the configuration of the target Convertible Reserved Instance\. Amazon EC2 calculates the number of Reserved Instances that you can receive as a result of the exchange\.
+When you exchange your Convertible Reserved Instance, the number of instances for your current reservation is exchanged for a number of instances that cover the equal or higher value of the configuration of the new Convertible Reserved Instance\. Amazon EC2 calculates the number of Reserved Instances that you can receive as a result of the exchange\.
+
+You can't exchange Standard Reserved Instances, but you can modify them\. For more information, see [Modifying Reserved Instances](ri-modifying.md) \.
 
 **Topics**
 + [Requirements for exchanging Convertible Reserved Instances](#riconvertible-exchange-limits)
@@ -38,7 +40,7 @@ If the total value \(hourly price \* number of remaining hours\) of the new Conv
 
 ## Calculating Convertible Reserved Instances exchanges<a name="riconvertible-exchange-cost"></a>
 
-Exchanging Convertible Reserved Instances is free\. However, you may be required to pay a true\-up cost, which is a prorated upfront cost of the difference between the Convertible Reserved Instances that you had and the Convertible Reserved Instances that you receive from the exchange\.
+Exchanging Convertible Reserved Instances is free\. However, you might be required to pay a true\-up cost, which is a prorated upfront cost of the difference between the original Convertible Reserved Instances that you had and the new Convertible Reserved Instances that you receive from the exchange\.
 
 Each Convertible Reserved Instance has a list value\. This list value is compared to the list value of the Convertible Reserved Instances that you want in order to determine how many instance reservations you can receive from the exchange\.
 
@@ -51,13 +53,13 @@ $35/$10 = 3.5
 You can exchange your Convertible Reserved Instance for three $10 Convertible Reserved Instances\. It's not possible to purchase half reservations; therefore you must purchase an additional Convertible Reserved Instance to cover the remainder:
 
 ```
-3.5 = 3 whole Convertible Reserved Instances + 1 additional Convertible Reserved Instance.
+3.5 = 3 whole Convertible Reserved Instances + 1 additional Convertible Reserved Instance
 ```
 
-The fourth Convertible Reserved Instance has the same end date as the other three\. If you are exchanging Partial or All Upfront Convertible Reserved Instances, you pay the true\-up cost for the fourth reservation\. If the remaining upfront cost of your Convertible Reserved Instances is $500, and the target reservation would normally cost $600 on a prorated basis, you are charged $100\.
+The fourth Convertible Reserved Instance has the same end date as the other three\. If you are exchanging Partial or All Upfront Convertible Reserved Instances, you pay the true\-up cost for the fourth reservation\. If the remaining upfront cost of your Convertible Reserved Instances is $500, and the new reservation would normally cost $600 on a prorated basis, you are charged $100\.
 
 ```
-$600 prorated upfront cost of new reservations - $500 remaining upfront cost of original reservations = $100 difference.
+$600 prorated upfront cost of new reservations - $500 remaining upfront cost of original reservations = $100 difference
 ```
 
 ## Merging Convertible Reserved Instances<a name="ri-merge-convertible"></a>
@@ -122,7 +124,7 @@ The Reserved Instances that were exchanged are retired, and the new Reserved Ins
 
 ### Exchanging a Convertible Reserved Instance using the command line interface<a name="ri-exchange-process-CLI"></a>
 
-To exchange a Convertible Reserved Instance, first find a target Convertible Reserved Instance that meets your needs:
+To exchange a Convertible Reserved Instance, first find a new Convertible Reserved Instance that meets your needs:
 + [describe\-reserved\-instances\-offerings](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances-offerings.html) \(AWS CLI\)
 + [Get\-EC2ReservedInstancesOffering](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ReservedInstancesOffering.html) \(Tools for Windows PowerShell\)
 

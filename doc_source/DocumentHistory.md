@@ -4,6 +4,8 @@ The following table describes important additions to the Amazon EC2 documentatio
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [G4ad instances](#DocumentHistory) | New instances powered by AMD Radeon Pro V520 GPUs and AMD 2nd Generation EPYC processors\. | December 9, 2020 | 
+| [Tag AMIs and snapshots on AMI creation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html#how-to-create-ebs-ami) | When you create an AMI, you can tag the AMI and the snapshots with the same tags, or you can tag them with different tags\.  | December 4, 2020 | 
 | [io2 Block Express preview](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html#io2-block-express) | You can opt in to the `io2` Block Express volumes preview\. `io2` Block Express volumes provide sub\-millisecond latency, and support higher IOPS, higher throughput, and larger capacity than `io2` volumes\. | December 1, 2020 | 
 | [gp3 volumes](#DocumentHistory) | A new Amazon EBS General Purpose SSD volume type\. You can specify provisioned IOPS and throughput when you create or modify the volume\. | December 1, 2020 | 
 | [D3, D3en, M5zn, and R5b instances](#DocumentHistory) | New instance types built on the Nitro System\. | December 1, 2020 | 
@@ -19,7 +21,7 @@ The following table describes important additions to the Amazon EC2 documentatio
 | [EC2 instance rebalance recommendation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/rebalance-recommendations.html) | A signal that notifies you when a Spot Instance is at elevated risk of interruption\. | November 4, 2020 | 
 | [Capacity Reservations in Wavelength Zones](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/capacity-reservations-wavelengthzones.html) | Capacity Reservations can now be created and used in Wavelength Zones\. | November 4, 2020 | 
 | [Capacity Rebalancing](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet.html#spot-fleet-capacity-rebalance) | Configure Spot Fleet or EC2 Fleet to launch a replacement Spot Instance when Amazon EC2 emits a rebalance recommendation\. | November 4, 2020 | 
-| [P4 instances](#DocumentHistory) | New accelerated computing instances that provide a high\-performance platform for machine learning and HPC workloads\. | November 2, 2020 | 
+| [P4d instances](#DocumentHistory) | New accelerated computing instances that provide a high\-performance platform for machine learning and HPC workloads\. | November 2, 2020 | 
 | [Hibernation support for I3, M5ad, and R5ad](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html#hibernating-prerequisites) | Hibernate your newly\-launched instances running on I3, M5ad, and R5ad instance types\. | October 21, 2020 | 
 | [Spot Instance vCPU limits](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-limits.html) | Spot Instance limits are now managed in terms of the number of vCPUs that your running Spot Instances are either using or will use pending the fulfillment of open requests\. | October 1, 2020 | 
 | [Capacity Reservations in Local Zones](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/capacity-reservations-localzones.html) | Capacity Reservations can now be created and used in Local Zones\. | September 30, 2020 | 
@@ -34,7 +36,7 @@ The following table describes important additions to the Amazon EC2 documentatio
 | [C6gd, M6gd, and R6gd instances](#DocumentHistory) | New general purpose instances powered by AWS Graviton2 processors, which are based on 64\-bit Arm Neoverse cores and custom silicon designed by AWS for optimized performance and cost\. | July 27, 2020 | 
 | [Fast snapshot restore](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-fast-snapshot-restore.html) | You can enable fast snapshot restore for snaphots that are shared with you\. | July 21, 2020 | 
 | [C6g and R6g instances](#DocumentHistory) | New general purpose instances powered by AWS Graviton2 processors, which are based on 64\-bit Arm Neoverse cores and custom silicon designed by AWS for optimized performance and cost\. | June 10, 2020 | 
-| [Bare metal instances for G4](#DocumentHistory) | New instances that provide your applications with direct access to the physical resources of the host server\. | June 5, 2020 | 
+| [Bare metal instances for G4dn](#DocumentHistory) | New instances that provide your applications with direct access to the physical resources of the host server\. | June 5, 2020 | 
 | [C5a instances](#DocumentHistory) | New compute optimized instances featuring second\-generation AMD EYPC processors\. | June 4, 2020 | 
 | [Bring your own IPv6 addresses](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html) | You can bring part or all of your IPv6 address range from your on\-premises network to your AWS account\. | May 21, 2020 | 
 | [M6g instances](#DocumentHistory) | New general purpose instances powered by AWS Graviton2 processors, which are based on 64\-bit Arm Neoverse cores and custom silicon designed by AWS for optimized performance and cost\. | May 11, 2020 | 
@@ -55,7 +57,7 @@ The following table describes important additions to the Amazon EC2 documentatio
 | [Instance Metadata Service Version 2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html) | You can use Instance Metadata Service Version 2, which is a session\-oriented method for requesting instance metadata\. | November 19, 2019 | 
 | [Elastic Fabric Adapter](#DocumentHistory) | Elastic Fabric Adapters can now be used with Intel MPI 2019 Update 6\. | November 15, 2019 | 
 | [Queued purchases of Reserved Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-concepts-buying.html#ri-queued-purchase) | You can queue the purchase of a Reserved Instance up to three years in advance\. | October 4, 2019 | 
-| [G4 instances](#DocumentHistory) | New instances featuring NVIDIA Tesla GPUs\. | September 19, 2019 | 
+| [G4dn instances](#DocumentHistory) | New instances featuring NVIDIA Tesla GPUs\. | September 19, 2019 | 
 | [Diagnostic interrupt](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/diagnostic-interrupt.html) | You can send a diagnostic interrupt to an unreachable or unresponsive instance to trigger a kernel panic\. | August 14, 2019 | 
 | [Capacity optimized allocation strategy](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-configuration-strategies.html#ec2-fleet-strategy-capacity-optimized) | Using EC2 Fleet or Spot Fleet, you can launch Spot Instances from Spot pools with optimal capacity for the number of instances that are launching\. | August 12, 2019 | 
 | [On\-Demand Capacity Reservation sharing](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/capacity-reservation-sharing.html) | You can now share your Capacity Reservations across AWS accounts\. | July 29, 2019 | 

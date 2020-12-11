@@ -1,20 +1,16 @@
-# Reserved Instance Marketplace<a name="ri-market-general"></a>
+# Selling in the Reserved Instance Marketplace<a name="ri-market-general"></a>
 
-The Reserved Instance Marketplace is a platform that supports the sale of third\-party and AWS customers' unused Standard Reserved Instances, which vary in term lengths and pricing options\. For example, you may want to sell Reserved Instances after moving instances to a new AWS Region, changing to a new instance type, ending projects before the term expiration, when your business needs change, or if you have unneeded capacity\.
-
-If you want to sell your unused Reserved Instances on the Reserved Instance Marketplace, you must meet certain eligibility criteria\.
-
-**Topics**
-+ [Selling on the Reserved Instance Marketplace](#ri-market-selling-guide)
-+ [Buying from the Reserved Instance Marketplace](#ri-market-buying-guide)
-
-## Selling on the Reserved Instance Marketplace<a name="ri-market-selling-guide"></a>
+The Reserved Instance Marketplace is a platform that supports the sale of third\-party and AWS customers' unused Standard Reserved Instances, which vary in term lengths and pricing options\. For example, you might want to sell Reserved Instances after moving instances to a new AWS Region, changing to a new instance type, ending projects before the term expiration, when your business needs change, or if you have unneeded capacity\.
 
 As soon as you list your Reserved Instances in the Reserved Instance Marketplace, they are available for potential buyers to find\. All Reserved Instances are grouped according to the duration of the term remaining and the hourly price\.
 
-To fulfill a buyer's request, AWS first sells the Reserved Instance with the lowest upfront price in the specified grouping\. Then, we sell the Reserved Instance with the next lowest price, until the buyer's entire order is fulfilled\. AWS then processes the transactions and transfers ownership of the Reserved Instances to the buyer\. 
+To fulfill a buyer's request, AWS first sells the Reserved Instance with the lowest upfront price in the specified grouping\. Then, AWS sells the Reserved Instance with the next lowest price, until the buyer's entire order is fulfilled\. AWS then processes the transactions and transfers ownership of the Reserved Instances to the buyer\. 
 
 You own your Reserved Instance until it's sold\. After the sale, you've given up the capacity reservation and the discounted recurring fees\. If you continue to use your instance, AWS charges you the On\-Demand price starting from the time that your Reserved Instance was sold\.
+
+If you want to sell your unused Reserved Instances on the Reserved Instance Marketplace, you must meet certain eligibility criteria\.
+
+For information about buying Reserved Instances on the Reserved Instance Marketplace, see [Buying from the Reserved Instance Marketplace](ri-market-concepts-buying.md#ri-market-buying-guide)\.
 
 **Topics**
 + [Restrictions and limitations](#ri-seller-limits)
@@ -29,14 +25,14 @@ You own your Reserved Instance until it's sold\. After the sale, you've given up
 + [Getting paid](#ri-market-sold-gettingpaid)
 + [Information shared with the buyer](#ri-market-seller-disclosure)
 
-### Restrictions and limitations<a name="ri-seller-limits"></a>
+## Restrictions and limitations<a name="ri-seller-limits"></a>
 
 Before you can sell your unused reservations, you must register as a seller in the Reserved Instance Marketplace\. For information, see [Registering as a seller](#ri-market-seller-profile)\.
 
 The following limitations and restrictions apply when selling Reserved Instances:
 + Only Amazon EC2 Standard Reserved Instances can be sold in the Reserved Instance Marketplace\. Amazon EC2 Convertible Reserved Instances cannot be sold\. Reserved Instances for other AWS services, such as Amazon RDS and Amazon ElastiCache, cannot be sold\.
 + There must be at least one month remaining in the term of the Standard Reserved Instance\.
-+ You cannot sell a Standard Reserved Instance in a Region that is [disabled by default](using-regions-availability-zones.md#concepts-available-regions)\.
++ You cannot sell a Standard Reserved Instance in a Region that is [disabled by default](https://docs.aws.amazon.com/general/latest/gr/rande-manage.html#rande-manage-enable)\.
 + The minimum price allowed in the Reserved Instance Marketplace is $0\.00\.
 + You can sell No Upfront, Partial Upfront, or All Upfront Reserved Instances in the Reserved Instance Marketplace\. If there is an upfront payment on a Reserved Instance, it can be sold only after AWS has received the upfront payment and the reservation has been active \(you've owned it\) for at least 30 days\.
 + You cannot modify your listing in the Reserved Instance Marketplace directly\. However, you can change your listing by first canceling it and then creating another listing with new parameters\. For information, see [Pricing your Reserved Instances](#ri-market-concepts-pricing)\. You can also modify your Reserved Instances before listing them\. For information, see [Modifying Reserved Instances](ri-modifying.md)\.
@@ -44,7 +40,7 @@ The following limitations and restrictions apply when selling Reserved Instances
 + When you register as a seller, the bank you specify must have a US address\. For more information, see [Additional seller requirements for paid products](https://docs.aws.amazon.com/marketplace/latest/userguide/user-guide-for-sellers.html#additional-seller-requirements-for-paid-products) in the *AWS Marketplace Seller Guide*\.
 + Amazon Internet Services Private Limited \(AISPL\) customers can't sell Reserved Instances in the Reserved Instance Marketplace even if they have a US bank account\. For more information, see [What are the differences between AWS accounts and AISPL accounts?](http://aws.amazon.com/premiumsupport/knowledge-center/aws-aispl-differences/)
 
-### Registering as a seller<a name="ri-market-seller-profile"></a>
+## Registering as a seller<a name="ri-market-seller-profile"></a>
 
 **Note**  
 Only the AWS account root user can register an account as a seller\.
@@ -55,7 +51,7 @@ To sell in the Reserved Instance Marketplace, you must first register as a selle
 
 After AWS receives your completed seller registration, you receive an email confirming your registration and informing you that you can get started selling in the Reserved Instance Marketplace\.
 
-### Bank account for disbursement<a name="ri-market-concepts-bank"></a>
+## Bank account for disbursement<a name="ri-market-concepts-bank"></a>
 
 AWS must have your bank information in order to disburse funds collected when you sell your Reserved Instance\. The bank you specify must have a US address\. For more information, see [Additional seller requirements for paid products](https://docs.aws.amazon.com/marketplace/latest/userguide/user-guide-for-sellers.html#additional-seller-requirements-for-paid-products) in the *AWS Marketplace Seller Guide*\.
 
@@ -79,7 +75,7 @@ After registration, the bank account provided is set as the default, pending ver
 
 1. On the **Manage Bank Account** page, add a new bank account or modify the default bank account as needed\.
 
-### Tax information<a name="ri-market-concepts-taxinfo"></a>
+## Tax information<a name="ri-market-concepts-taxinfo"></a>
 
 Your sale of Reserved Instances might be subject to a transaction\-based tax, such as sales tax or value\-added tax\. You should check with your business's tax, legal, finance, or accounting department to determine if transaction\-based taxes are applicable\. You are responsible for collecting and sending the transaction\-based taxes to the appropriate tax authority\.
 
@@ -94,7 +90,7 @@ Based on your tax interview responses and IRS reporting thresholds, Amazon might
 
 For more information about IRS requirements and Form 1099\-K, see the [IRS](http://www.irs.gov/uac/FAQs-on-New-Payment-Card-Reporting-Requirements) website\.
 
-### Pricing your Reserved Instances<a name="ri-market-concepts-pricing"></a>
+## Pricing your Reserved Instances<a name="ri-market-concepts-pricing"></a>
 
 The upfront fee is the only fee that you can specify for the Reserved Instance that you're selling\. The upfront fee is the one\-time fee that the buyer pays when they purchase a Reserved Instance\.
 
@@ -111,7 +107,7 @@ Because the value of Reserved Instances decreases over time, by default, AWS can
 
 For example, if your Reserved Instance has nine months of its term remaining, you can specify the amount that you would accept if a customer were to purchase that Reserved Instance with nine months remaining\. You could set another price with five months remaining, and yet another price with one month remaining\.
 
-### Listing your Reserved Instances<a name="ri-market-selling-listing"></a>
+## Listing your Reserved Instances<a name="ri-market-selling-listing"></a>
 
 As a registered seller, you can choose to sell one or more of your Reserved Instances\. You can choose to sell all of them in one listing or in portions\. In addition, you can list Reserved Instances with any configuration of instance type, platform, and scope\.
 
@@ -153,7 +149,7 @@ If you cancel your listing and a portion of that listing has already been sold, 
 
 1. To cancel your listing, use the [cancel\-reserved\-instances\-listings](https://docs.aws.amazon.com/cli/latest/reference/ec2/cancel-reserved-instances-listings.html) command\.
 
-### Reserved Instance listing states<a name="ri-listing-states"></a>
+## Reserved Instance listing states<a name="ri-listing-states"></a>
 
 **Listing State** on the **My Listings** tab of the Reserved Instances page displays the current status of your listings:
 
@@ -162,7 +158,7 @@ The information displayed by **Listing State** is about the status of your listi
 + **canceled**—The listing is canceled and isn't available for purchase in the Reserved Instance Marketplace\.
 + **closed**—The Reserved Instance is not listed\. A Reserved Instance might be `closed` because the sale of the listing was completed\.
 
-### Lifecycle of a listing<a name="ri-market-concepts-sold-partial"></a>
+## Lifecycle of a listing<a name="ri-market-concepts-sold-partial"></a>
 
 When all the instances in your listing are matched and sold, the **My Listings** tab shows that the **Total instance count** matches the count listed under **Sold**\. Also, there are no **Available** instances left for your listing, and its **Status** is `closed`\.
 
@@ -192,7 +188,7 @@ This is how your listing looks in the **My Listings** tab:
 
 If you cancel your listing and a portion of that listing has already sold, the cancelation is not effective on the portion that has been sold\. Only the unsold portion of the listing is no longer available in the Reserved Instance Marketplace\.
 
-### After your Reserved Instance is sold<a name="ri-market-concepts-sold"></a>
+## After your Reserved Instance is sold<a name="ri-market-concepts-sold"></a>
 
 When your Reserved Instance is sold, AWS sends you an email notification\. Each day that there is any kind of activity, you receive one email notification capturing all the activities of the day\. Activities can include when you create or sell a listing, or when AWS sends funds to your account\.
 
@@ -208,7 +204,7 @@ When your Reserved Instance is sold, AWS sends you an email notification\. Each 
 
 You can also use the [describe\-reserved\-instances\-listings](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances-listings.html) command with the appropriate filter to obtain information about your listings\.
 
-### Getting paid<a name="ri-market-sold-gettingpaid"></a>
+## Getting paid<a name="ri-market-sold-gettingpaid"></a>
 
 As soon as AWS receives funds from the buyer, a message is sent to the registered owner account email for the sold Reserved Instance\.
 
@@ -218,25 +214,10 @@ The Reserved Instance that you sold continues to appear when you describe your R
 
 You receive a cash disbursement for your Reserved Instances through a wire transfer directly into your bank account\. AWS charges a service fee of 12 percent of the total upfront price of each Reserved Instance you sell in the Reserved Instance Marketplace\.
 
-### Information shared with the buyer<a name="ri-market-seller-disclosure"></a>
+## Information shared with the buyer<a name="ri-market-seller-disclosure"></a>
 
-When you sell in the Reserved Instance Marketplace, AWS shares your company’s legal name on the buyer’s statement in accordance with US regulations\. In addition, if the buyer calls AWS Support because the buyer needs to contact you for an invoice or for some other tax\-related reason, AWS may need to provide the buyer with your email address so that the buyer can contact you directly\.
+When you sell in the Reserved Instance Marketplace, AWS shares your company’s legal name on the buyer’s statement in accordance with US regulations\. In addition, if the buyer calls AWS Support because the buyer needs to contact you for an invoice or for some other tax\-related reason, AWS might need to provide the buyer with your email address so that the buyer can contact you directly\.
 
 For similar reasons, the buyer's ZIP code and country information are provided to the seller in the disbursement report\. As a seller, you might need this information to accompany any necessary transaction taxes that you remit to the government \(such as sales tax and value\-added tax\)\.
 
 AWS cannot offer tax advice, but if your tax specialist determines that you need specific additional information, [contact AWS Support](https://aws.amazon.com/contact-us/)\.
-
-## Buying from the Reserved Instance Marketplace<a name="ri-market-buying-guide"></a>
-
-You can purchase Reserved Instances from third\-party sellers who own Reserved Instances that they no longer need from the Reserved Instance Marketplace\. You can do this using the Amazon EC2 console or a command line tool\. The process is similar to purchasing Reserved Instances from AWS\. For more information, see [Buying Reserved Instances](ri-market-concepts-buying.md)\.
-
-There are a few differences between Reserved Instances purchased in the Reserved Instance Marketplace and Reserved Instances purchased directly from AWS:
-+ **Term**—Reserved Instances that you purchase from third\-party sellers have less than a full standard term remaining\. Full standard terms from AWS run for one year or three years\.
-+ **Upfront price**—Third\-party Reserved Instances can be sold at different upfront prices\. The usage or recurring fees remain the same as the fees set when the Reserved Instances were originally purchased from AWS\.
-+ **Types of Reserved Instances**—Only Amazon EC2 Standard Reserved Instances can be purchased from the Reserved Instance Marketplace\. Convertible Reserved Instances, Amazon RDS and Amazon ElastiCache Reserved Instances are not available for purchase on the Reserved Instance Marketplace\.
-
-Basic information about you is shared with the seller, for example, your ZIP code and country information\.
-
-This information enables sellers to calculate any necessary transaction taxes that they have to remit to the government \(such as sales tax or value\-added tax\) and is provided as a disbursement report\. In rare circumstances, AWS might have to provide the seller with your email address, so that they can contact you regarding questions related to the sale \(for example, tax questions\)\.
-
-For similar reasons, AWS shares the legal entity name of the seller on the buyer's purchase invoice\. If you need additional information about the seller for tax or related reasons, contact [AWS Support](https://aws.amazon.com/contact-us/)\.

@@ -5,7 +5,7 @@ When working with instance user data, keep the following in mind:
 + User data is limited to 16 KB, in raw form, before it is base64\-encoded\. The size of a string of length *n* after base64\-encoding is ceil\(*n*/3\)\*4\.
 + User data must be base64\-decoded when you retrieve it\. If you retrieve the data using instance metadata or the console, it's decoded for you automatically\.
 + User data is treated as opaque data: what you give is what you get back\. It is up to the instance to be able to interpret it\.
-+ If you stop an instance, modify its user data, and start the instance, the updated user data is not executed when you start the instance\.
++ If you stop an instance, modify its user data, and start the instance, the updated user data is not run when you start the instance\.
 
 ## Specify instance user data at launch<a name="specify-user-data-launch"></a>
 

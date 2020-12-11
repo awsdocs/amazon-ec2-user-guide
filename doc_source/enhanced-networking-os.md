@@ -4,9 +4,9 @@ To achieve the maximum network performance on instances with enhanced networking
 
 In addition to these operating system optimizations, you should also consider the maximum transmission unit \(MTU\) of your network traffic, and adjust according to your workload and network architecture\. For more information, see [Network maximum transmission unit \(MTU\) for your EC2 instance](network_mtu.md)\.
 
-AWS regularly measures average round trip latencies between instances launched in a cluster placement group of 50us and tail latencies of 200us at the 99\.9 percentile\. If your applications require consistently low latencies, we recommend using the latest version of the ENA drivers on fixed performance Nitro\-based instances\.
+AWS regularly measures average round trip latencies between instances launched in a cluster placement group of 50us and tail latencies of 200us at the 99\.9 percentile\. If your applications require consistently low latencies, we recommend using the latest version of the ENA drivers on fixed performance instances built on the Nitro System\.
 
-These procedures were written for Amazon Linux 2 and Amazon Linux AMI\. However, they may also work for other Linux distributions with kernel version 3\.9 or newer\. For more information, see your system\-specific documentation\.
+These procedures were written for Amazon Linux 2 and Amazon Linux AMI\. However, they might also work for other Linux distributions with kernel version 3\.9 or newer\. For more information, see your system\-specific documentation\.
 
 **To optimize your Amazon Linux instance for enhanced networking**
 

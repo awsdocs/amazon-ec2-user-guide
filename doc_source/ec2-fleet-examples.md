@@ -162,7 +162,7 @@ The account has the following 15 unused Capacity Reservations in 3 different poo
 The following fleet configuration shows only the pertinent configurations for this example\. The On\-Demand allocation strategy is `prioritized`, and the usage strategy for Capacity Reservations is `use-capacity-reservations-first`\. The total target capacity is 12, and the default target capacity type is `on-demand`\.
 
 **Note**  
-The fleet type must be `instant`\. Capacity Reservations are not supported for other fleet types\.
+The fleet type must be `instant`\. `use-capacity-reservations-first` is not supported for other fleet types\.
 
 ```
 {
@@ -278,7 +278,7 @@ The account has the following 15 unused Capacity Reservations in 3 different poo
 The following fleet configuration shows only the pertinent configurations for this example\. The On\-Demand allocation strategy is `prioritized`, and the usage strategy for Capacity Reservations is `use-capacity-reservations-first`\. The total target capacity is 16, and the default target capacity type is `on-demand`\.
 
 **Note**  
-The fleet type must be `instant`\. Capacity Reservations are not supported for other fleet types\.
+The fleet type must be `instant`\. `use-capacity-reservations-first` is not supported for other fleet types\.
 
 ```
 {
@@ -400,7 +400,7 @@ In this example, the On\-Demand Instance price is:
 + m4\.2xlarge – $0\.40 per hour
 
 **Note**  
-The fleet type must be `instant`\. Capacity Reservations are not supported for other fleet types\.
+The fleet type must be `instant`\. `use-capacity-reservations-first` is not supported for other fleet types\.
 
 ```
 {
@@ -519,7 +519,7 @@ In this example, the On\-Demand Instance price is:
 + m4\.2xlarge – $0\.40 per hour
 
 **Note**  
-The fleet type must be `instant`\. Capacity Reservations are not supported for other fleet types\.
+The fleet type must be `instant`\. `use-capacity-reservations-first` is not supported for other fleet types\.
 
 ```
 {

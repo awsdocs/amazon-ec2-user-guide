@@ -117,9 +117,12 @@ The following is a summary of network performance for storage optimized instance
 
 | Instance type | Network performance | Enhanced networking | 
 | --- | --- | --- | 
+| d2\.xlarge | Moderate | [Intel 82599 VF](sriov-networking.md) | 
+| d2\.2xlarge \| d2\.4xlarge | High | [Intel 82599 VF](sriov-networking.md) | 
 | d3\.xlarge | Up to 5 Gbps † | [ENA](enhanced-networking-ena.md) | 
 | d3\.2xlarge | 5 Gbps | [ENA](enhanced-networking-ena.md) | 
 | i3\.4xlarge and smaller | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
+| d2\.8xlarge | 10 Gbps | [Intel 82599 VF](sriov-networking.md) | 
 | d3\.4xlarge \| i3\.8xlarge \| h1\.8xlarge | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
 | d3en\.2xlarge and smaller \| i3en\.3xlarge and smaller | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
 | d3\.8xlarge \| d3en\.4xlarge \| i3\.16xlarge \| i3\.metal \| i3en\.6xlarge \| h1\.16xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
@@ -127,9 +130,6 @@ The following is a summary of network performance for storage optimized instance
 | d3\.8xlarge \| d3en\.8xlarge \| i3en\.12xlarge | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
 | d3en\.12xlarge | 75 Gbps | [ENA](enhanced-networking-ena.md) | 
 | i3en\.24xlarge \| i3en\.metal | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
-| d2\.xlarge | Moderate | [Intel 82599 VF](sriov-networking.md) | 
-| d2\.2xlarge \| d2\.4xlarge | High | [Intel 82599 VF](sriov-networking.md) | 
-| d2\.8xlarge | 10 Gbps | [Intel 82599 VF](sriov-networking.md) | 
 
 † These instances use a network I/O credit mechanism to allocate network bandwidth to instances based on average bandwidth utilization\. They accrue credits when their bandwidth is below their baseline bandwidth, and can use these credits when they perform network data transfers\. For more information, open a support case and ask about baseline bandwidth for the specific instance types that you are interested in\.
 

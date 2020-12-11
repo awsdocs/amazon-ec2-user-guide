@@ -3,7 +3,7 @@
 An Amazon Machine Image \(AMI\) provides the information required to launch an instance\. You must specify an AMI when you launch an instance\. You can launch multiple instances from a single AMI when you need multiple instances with the same configuration\. You can use different AMIs to launch instances when you need instances with different configurations\.
 
 An AMI includes the following:
-+ One or more EBS snapshots, or, for instance\-store\-backed AMIs, a template for the root volume of the instance \(for example, an operating system, an application server, and applications\)\.
++ One or more Amazon Elastic Block Store \(Amazon EBS\) snapshots, or, for instance\-store\-backed AMIs, a template for the root volume of the instance \(for example, an operating system, an application server, and applications\)\.
 + Launch permissions that control which AWS accounts can use the AMI to launch instances\.
 + A block device mapping that specifies the volumes to attach to the instance when it's launched\.
 
@@ -31,7 +31,7 @@ An AMI includes the following:
 
 ## Using an AMI<a name="ami-using"></a>
 
-The following diagram summarizes the AMI lifecycle\. After you create and register an AMI, you can use it to launch new instances\. \(You can also launch instances from an AMI if the AMI owner grants you launch permissions\.\) You can copy an AMI within the same Region or to different Regions\. When you no longer require an AMI, you can deregister it\.
+The following diagram summarizes the AMI lifecycle\. After you create and register an AMI, you can use it to launch new instances\. \(You can also launch instances from an AMI if the AMI owner grants you launch permissions\.\) You can copy an AMI within the same AWS Region or to different AWS Regions\. When you no longer require an AMI, you can deregister it\.
 
 ![\[The AMI lifecycle (create, register, launch, copy, deregister).\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ami_lifecycle.png)
 
@@ -43,7 +43,7 @@ After you launch an instance from an AMI, you can connect to it\. When you are c
 
 You can launch an instance from an existing AMI, customize the instance \(for example, [install software](install-software.md) on the instance\), and then save this updated configuration as a custom AMI\. Instances launched from this new custom AMI include the customizations that you made when you created the AMI\.
 
-The root storage device of the instance determines the process you follow to create an AMI\. The root volume of an instance is either an Amazon EBS volume or an instance store volume\. For more information about the root device volume, see [Amazon EC2 root device volume](RootDeviceStorage.md)\.
+The root storage device of the instance determines the process you follow to create an AMI\. The root volume of an instance is either an Amazon Elastic Block Store \(Amazon EBS\) volume or an instance store volume\. For more information about the root device volume, see [Amazon EC2 root device volume](RootDeviceStorage.md)\.
 + To create an Amazon EBS\-backed AMI, see [Creating an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md)\.
 + To create an instance store\-backed AMI, see [Creating an instance store\-backed Linux AMI](creating-an-ami-instance-store.md)\.
 

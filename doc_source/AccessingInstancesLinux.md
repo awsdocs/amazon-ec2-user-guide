@@ -8,15 +8,15 @@ The following instructions explain how to connect to your instance using an SSH 
 
 Before you connect to your Linux instance, complete the following prerequisites\.
 
-**Verify that the instance is ready**  
+**Check your instance status**  
 After you launch an instance, it can take a few minutes for the instance to be ready so that you can connect to it\. Check that your instance has passed its status checks\. You can view this information in the **Status check** column on the **Instances** page\.
 
-**Verify the general prerequisites for connecting to your instance**  
-To find the public DNS name or IP address of your instance and the user name that you should use to connect to your instance, see [General prerequisites for connecting to your instance](connection-prereqs.md)\.
+**Get the public DNS name and user name to connect to your instance**  
+To find the public DNS name or IP address of your instance and the user name that you should use to connect to your instance, see [Prerequisites for connecting to your instance](connection-prereqs.md)\.
 
 **Install an SSH client on your local computer as needed**  
 Your local computer might have an SSH client installed by default\. You can verify this by typing ssh at the command line\. If your computer doesn't recognize the command, you can install an SSH client\.  
-+ Recent versions of Windows Server 2019 and Windows 10 \- OpenSSH is included as an installable component\. For information, see [OpenSSH in Windows](https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_overview)\.
++ Recent versions of Windows Server 2019 and Windows 10 \- OpenSSH is included as an installable component\. For more information, see [OpenSSH in Windows](https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_overview)\.
 + Earlier versions of Windows \- Download and install OpenSSH\. For more information, see [Win32\-OpenSSH](https://github.com/PowerShell/Win32-OpenSSH/wiki)\.
 + Linux and macOS X \- Download and install OpenSSH\. For more information, see [http://www\.openssh\.com](http://www.openssh.com/)\.
 

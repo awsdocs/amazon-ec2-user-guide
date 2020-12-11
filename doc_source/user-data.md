@@ -6,7 +6,7 @@ If you are interested in more complex automation scenarios, consider using AWS C
 
 For information about running commands on your Windows instance at launch, see [Running Commands on Your Windows Instance at Launch](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-windows-user-data.html) and [Managing Windows Instance Configuration](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-configuration-manage.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
-In the following examples, the commands from the [Install a LAMP Web Server on Amazon Linux 2](ec2-lamp-amazon-linux-2.md) are converted to a shell script and a set of cloud\-init directives that executes when the instance launches\. In each example, the following tasks are executed by the user data:
+In the following examples, the commands from the [Install a LAMP Web Server on Amazon Linux 2](ec2-lamp-amazon-linux-2.md) are converted to a shell script and a set of cloud\-init directives that run when the instance launches\. In each example, the following tasks are performed by the user data:
 + The distribution software packages are updated\.
 + The necessary web server, `php`, and `mariadb` packages are installed\.
 + The `httpd` service is started and turned on via systemctl\.
@@ -36,13 +36,13 @@ By default, user data scripts and cloud\-init directives run only during the boo
 
 User data shell scripts must start with the `#!` characters and the path to the interpreter you want to read the script \(commonly /bin/bash\)\. For a great introduction on shell scripting, see [the BASH Programming HOW\-TO](http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO.html) at the Linux Documentation Project \([tldp\.org](http://tldp.org)\)\.
 
-Scripts entered as user data are executed as the `root` user, so do not use the sudo command in the script\. Remember that any files you create will be owned by `root`; if you need non\-root users to have file access, you should modify the permissions accordingly in the script\. Also, because the script is not run interactively, you cannot include commands that require user feedback \(such as yum update without the `-y` flag\)\.
+Scripts entered as user data are run as the `root` user, so do not use the sudo command in the script\. Remember that any files you create will be owned by `root`; if you need non\-root users to have file access, you should modify the permissions accordingly in the script\. Also, because the script is not run interactively, you cannot include commands that require user feedback \(such as yum update without the `-y` flag\)\.
 
-If you use an AWS API, including the AWS CLI, in a user data script, you must use an instance profile when launching the instance\. An instance profile provides the appropriate AWS credentials required by the user data script to execute the API call\. For more information, see [Using instance profiles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html) in the IAM User Guide\. The permissions you assign to the IAM role depend on which services you are calling with the API\. For more information, see [IAM roles for Amazon EC2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html)\.
+If you use an AWS API, including the AWS CLI, in a user data script, you must use an instance profile when launching the instance\. An instance profile provides the appropriate AWS credentials required by the user data script to issue the API call\. For more information, see [Using instance profiles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html) in the IAM User Guide\. The permissions you assign to the IAM role depend on which services you are calling with the API\. For more information, see [IAM roles for Amazon EC2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html)\.
 
 The cloud\-init output log file \(`/var/log/cloud-init-output.log`\) captures console output so it is easy to debug your scripts following a launch if the instance does not behave the way you intended\.
 
-When a user data script is processed, it is copied to and executed from `/var/lib/cloud/instances/instance-id/`\. The script is not deleted after it is run\. Be sure to delete the user data scripts from `/var/lib/cloud/instances/instance-id/` before you create an AMI from the instance\. Otherwise, the script will exist in this directory on any instance launched from the AMI\.
+When a user data script is processed, it is copied to and run from `/var/lib/cloud/instances/instance-id/`\. The script is not deleted after it is run\. Be sure to delete the user data scripts from `/var/lib/cloud/instances/instance-id/` before you create an AMI from the instance\. Otherwise, the script will exist in this directory on any instance launched from the AMI\.
 
 ## User data and the console<a name="user-data-console"></a>
 
@@ -69,7 +69,7 @@ find /var/www -type f -exec chmod 0664 {} \;
 echo "<?php phpinfo(); ?>" > /var/www/html/phpinfo.php
 ```
 
-Allow enough time for the instance to launch and execute the commands in your script, and then check to see that your script has completed the tasks that you intended\.
+Allow enough time for the instance to launch and run the commands in your script, and then check to see that your script has completed the tasks that you intended\.
 
 For our example, in a web browser, enter the URL of the PHP test file the script created\. This URL is the public DNS address of your instance followed by a forward slash and the file name\.
 
@@ -113,7 +113,7 @@ When you stop an instance, the data on any instance store volumes is erased\. To
 
 1. Modify the user data as needed, and then choose **Save**\.
 
-1. Restart the instance\. The new user data is visible on your instance after you restart it; however, user data scripts are not executed\.
+1. Restart the instance\. The new user data is visible on your instance after you restart it; however, user data scripts are not run\.
 
 ------
 #### [ Old console ]
@@ -132,7 +132,7 @@ When you stop an instance, the data on any instance store volumes is erased\. To
 
 1. In the **View/Change User Data** dialog box, update the user data, and then choose **Save**\.
 
-1. Restart the instance\. The new user data is visible on your instance after you restart it; however, user data scripts are not executed\.
+1. Restart the instance\. The new user data is visible on your instance after you restart it; however, user data scripts are not run\.
 
 ------
 
@@ -174,7 +174,7 @@ Adding these tasks at boot time adds to the amount of time it takes to boot an i
     - [ sh, -c, 'echo "<?php phpinfo(); ?>" > /var/www/html/phpinfo.php' ]
    ```
 
-1. Allow enough time for the instance to launch and execute the directives in your user data, and then check to see that your directives have completed the tasks you intended\.
+1. Allow enough time for the instance to launch and run the directives in your user data, and then check to see that your directives have completed the tasks you intended\.
 
    For our example, in a web browser, enter the URL of the PHP test file the directives created\. This URL is the public DNS address of your instance followed by a forward slash and the file name\.
 

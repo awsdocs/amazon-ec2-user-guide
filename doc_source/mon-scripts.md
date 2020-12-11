@@ -157,7 +157,7 @@ The following steps show you how to download, uncompress, and configure the Clou
 The package for the monitoring scripts contains the following files:
 + **CloudWatchClient\.pm** – Shared Perl module that simplifies calling Amazon CloudWatch from other scripts\.
 + **mon\-put\-instance\-data\.pl** – Collects system metrics on an Amazon EC2 instance \(memory, swap, disk space utilization\) and sends them to Amazon CloudWatch\.
-+ **mon\-get\-instance\-stats\.pl** – Queries Amazon CloudWatch and displays the most recent utilization statistics for the EC2 instance on which this script is executed\.
++ **mon\-get\-instance\-stats\.pl** – Queries Amazon CloudWatch and displays the most recent utilization statistics for the EC2 instance on which this script is run\.
 + **awscreds\.template** – File template for AWS credentials that stores your access key ID and secret access key\.
 + **LICENSE\.txt** – Text file containing the Apache 2\.0 license\.
 + **NOTICE\.txt** – Copyright notice\.
@@ -232,7 +232,7 @@ If the script encounters an error, it writes the error message in the system log
 
 ### mon\-get\-instance\-stats\.pl<a name="using_get_script_powershell"></a>
 
-This script queries CloudWatch for statistics on memory, swap, and disk space metrics within the time interval provided using the number of most recent hours\. This data is provided for the Amazon EC2 instance on which this script is executed\. 
+This script queries CloudWatch for statistics on memory, swap, and disk space metrics within the time interval provided using the number of most recent hours\. This data is provided for the Amazon EC2 instance on which this script is run\.
 
 
 **Options**  

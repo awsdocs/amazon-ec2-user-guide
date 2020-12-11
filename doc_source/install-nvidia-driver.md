@@ -1,6 +1,8 @@
 # Installing NVIDIA drivers on Linux instances<a name="install-nvidia-driver"></a>
 
-An instance with an attached GPU, such as a P3 or G4 instance, must have the appropriate NVIDIA driver installed\. Depending on the instance type, you can either download a public NVIDIA driver, download a driver from Amazon S3 that is available only to AWS customers, or use an AMI with the driver pre\-installed\.
+An instance with an attached NVIDIA GPU, such as a P3 or G4dn instance, must have the appropriate NVIDIA driver installed\. Depending on the instance type, you can either download a public NVIDIA driver, download a driver from Amazon S3 that is available only to AWS customers, or use an AMI with the driver pre\-installed\.
+
+To install AMD drivers on an instance with an attached AMD GPU, such as a G4ad instance, see [Install AMD drivers on Linux instances](install-amd-driver.md) instead\.
 
 **Contents**
 + [Types of NVIDIA drivers](#nvidia-driver-types)
@@ -8,8 +10,8 @@ An instance with an attached GPU, such as a P3 or G4 instance, must have the app
 + [Installation options](#nvidia-installation-options)
   + [Option 1: AMIs with the NVIDIA drivers installed](#preinstalled-nvidia-driver)
   + [Option 2: Public NVIDIA drivers](#public-nvidia-driver)
-  + [Option 3: GRID drivers \(G3 and G4 instances\)](#nvidia-GRID-driver)
-  + [Option 4: NVIDIA gaming drivers \(G4 instances\)](#nvidia-gaming-driver)
+  + [Option 3: GRID drivers \(G3 and G4dn instances\)](#nvidia-GRID-driver)
+  + [Option 4: NVIDIA gaming drivers \(G4dn instances\)](#nvidia-gaming-driver)
 + [Installing an additional version of CUDA](#gpu-instance-install-cuda)
 
 ## Types of NVIDIA drivers<a name="nvidia-driver-types"></a>
@@ -42,10 +44,10 @@ The following table summarizes the supported NVIDIA drivers for each GPU instanc
 | --- | --- | --- | --- | 
 | G2 | No | Yes | No | 
 | G3 | Yes | Yes | No | 
-| G4 | Yes | Yes | Yes | 
+| G4dn | Yes | Yes | Yes | 
 | P2 | Yes | No | No | 
 | P3 | Yes | Yes † | No | 
-| P4 | Yes | No | No | 
+| P4d | Yes | No | No | 
 
 † Using Marketplace AMIs only
 
@@ -56,8 +58,8 @@ Use one of the following options to get the NVIDIA drivers required for your GPU
 **Topics**
 + [Option 1: AMIs with the NVIDIA drivers installed](#preinstalled-nvidia-driver)
 + [Option 2: Public NVIDIA drivers](#public-nvidia-driver)
-+ [Option 3: GRID drivers \(G3 and G4 instances\)](#nvidia-GRID-driver)
-+ [Option 4: NVIDIA gaming drivers \(G4 instances\)](#nvidia-gaming-driver)
++ [Option 3: GRID drivers \(G3 and G4dn instances\)](#nvidia-GRID-driver)
++ [Option 4: NVIDIA gaming drivers \(G4dn instances\)](#nvidia-gaming-driver)
 
 ### Option 1: AMIs with the NVIDIA drivers installed<a name="preinstalled-nvidia-driver"></a>
 
@@ -78,7 +80,7 @@ The CUDA toolkit package has dependencies on the NVIDIA drivers\. Uninstalling t
 
 The options offered by AWS come with the necessary license for the driver\. Alternatively, you can install the public drivers and bring your own license\. To install a public driver, download it from the NVIDIA site as described here\.
 
-Alternatively, you can use the options offered by AWS instead of the public drivers\. To use a GRID driver on a P3 instance, use the AWS Marketplace AMIs as described in [Option 1](#preinstalled-nvidia-driver)\. To use a GRID driver on a G3 or G4 instance, use the AWS Marketplace AMIs, as described in Option 1 or install the NVIDIA drivers provided by AWS as described in [Option 3](#nvidia-GRID-driver)\.
+Alternatively, you can use the options offered by AWS instead of the public drivers\. To use a GRID driver on a P3 instance, use the AWS Marketplace AMIs as described in [Option 1](#preinstalled-nvidia-driver)\. To use a GRID driver on a G3 or G4dn instance, use the AWS Marketplace AMIs, as described in Option 1 or install the NVIDIA drivers provided by AWS as described in [Option 3](#nvidia-GRID-driver)\.
 
 **To download a public NVIDIA driver**  
 Log on to your Linux instance and download the 64\-bit NVIDIA driver appropriate for the instance type from [http://www\.nvidia\.com/Download/Find\.aspx](http://www.nvidia.com/Download/Find.aspx)\. For **Product Type**, **Product Series**, and **Product**, use the options in the following table\.
@@ -88,17 +90,17 @@ Log on to your Linux instance and download the 64\-bit NVIDIA driver appropriate
 | --- | --- | --- | --- | 
 | G2 | GRID | GRID Series | GRID K520 | 
 | G3 | Tesla | M\-Class | M60 | 
-| G4 † | Tesla | T\-Series | T4 | 
+| G4dn † | Tesla | T\-Series | T4 | 
 | P2 | Tesla | K\-Series | K80 | 
 | P3 | Tesla | V\-Series | V100 | 
-| P4 | Tesla | A\-Series | A100 | 
+| P4d | Tesla | A\-Series | A100 | 
 
-† G4 instances require driver version 418\.87 or later\.
+† G4dn instances require driver version 418\.87 or later\.
 
 **To install the NVIDIA driver on Linux**  
 For more information about installing and configuring the driver, see the [NVIDIA Driver Installation Quickstart Guide](https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html)\. 
 
-### Option 3: GRID drivers \(G3 and G4 instances\)<a name="nvidia-GRID-driver"></a>
+### Option 3: GRID drivers \(G3 and G4dn instances\)<a name="nvidia-GRID-driver"></a>
 
 These downloads are available to AWS customers only\. By downloading, you agree to use the downloaded software only to develop AMIs for use with the NVIDIA Tesla T4 or NVIDIA Tesla M60 hardware\. Upon installation of the software, you are bound by the terms of the [NVIDIA GRID Cloud End User License Agreement](https://aws-nvidia-license-agreement.s3.amazonaws.com/NvidiaGridAWSUserLicenseAgreement.DOCX)\.
 
@@ -110,7 +112,7 @@ These downloads are available to AWS customers only\. By downloading, you agree 
 
 1. Connect to your Linux instance\. Install gcc and make, if they are not already installed\.
 
-1. Update your package cache and get necessary package updates for your instance\.
+1. Update your package cache and get the package updates for your instance\.
    + For Amazon Linux, CentOS, and Red Hat Enterprise Linux:
 
      ```
@@ -192,7 +194,7 @@ These downloads are available to AWS customers only\. By downloading, you agree 
    [ec2-user ~]$ aws s3 ls --recursive s3://ec2-linux-nvidia-drivers/
    ```
 
-   Starting with GRID version 11\.0, you can use the driver packages under `latest` for both G3 and G4 instances\. We will not add versions later than 11\.0 to `g4/latest`, but will keep version 11\.0 and the earlier versions specific to G4 under `g4/latest`\.
+   Starting with GRID version 11\.0, you can use the driver packages under `latest` for both G3 and G4dn instances\. We will not add versions later than 11\.0 to `g4/latest`, but will keep version 11\.0 and the earlier versions specific to G4dn under `g4/latest`\.
 
 1. Add permissions to run the driver installation utility using the following command\.
 
@@ -226,7 +228,7 @@ These downloads are available to AWS customers only\. By downloading, you agree 
 
    1. NVIDIA Quadro Virtual Workstation mode is enabled by default\. To activate GRID Virtual Applications for RDSH Application hosting capabilities, complete the GRID Virtual Application activation steps in [Activate NVIDIA GRID Virtual Applications](activate_grid.md)\.
 
-### Option 4: NVIDIA gaming drivers \(G4 instances\)<a name="nvidia-gaming-driver"></a>
+### Option 4: NVIDIA gaming drivers \(G4dn instances\)<a name="nvidia-gaming-driver"></a>
 
 These drivers are available to AWS customers only\. By downloading them, you agree to use the downloaded software only to develop AMIs for use with the NVIDIA Tesla T4 hardware\. Upon installation of the software, you are bound by the terms of the [NVIDIA GRID Cloud End User License Agreement](https://aws-nvidia-license-agreement.s3.amazonaws.com/NvidiaGridAWSUserLicenseAgreement.DOCX)\.
 
@@ -238,7 +240,7 @@ These drivers are available to AWS customers only\. By downloading them, you agr
 
 1. Connect to your Linux instance\. Install gcc and make, if they are not already installed\.
 
-1. Update your package cache and get necessary package updates for your instance\.
+1. Update your package cache and get the package updates for your instance\.
    + For Amazon Linux, CentOS, and Red Hat Enterprise Linux:
 
      ```

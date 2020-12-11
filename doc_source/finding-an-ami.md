@@ -77,7 +77,7 @@ The Amazon EC2 AMI public parameters are available from the following paths:
 You can view a list of all Linux AMIs in the current AWS Region by using the following command in the AWS CLI\.
 
 ```
-aws ssm get-parameters-by-path --path /aws/service/ami-amazon-linux-latest --query Parameters[].Name
+aws ssm get-parameters-by-path --path /aws/service/ami-amazon-linux-latest --query "Parameters[].Name"
 ```
 
 **To launch an instance using a public parameter**  

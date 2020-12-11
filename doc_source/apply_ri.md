@@ -1,6 +1,6 @@
 # How Reserved Instances are applied<a name="apply_ri"></a>
 
-If you purchase a Reserved Instance and you already have a running instance that matches the specifications of the Reserved Instance, the billing benefit is immediately applied\. You do not have to restart your instances\. If you do not have an eligible running instance, launch an instance and ensure that you match the same criteria that you specified for your Reserved Instance\. For more information, see [Using your Reserved Instances](ri-market-concepts-buying.md#reserved-instances-process)\. 
+If you purchase a Reserved Instance and you already have a running instance that matches the specifications of the Reserved Instance, the billing benefit is immediately applied\. You do not have to restart your instances\. If you do not have an eligible running instance, launch an instance and ensure that you match the same criteria that you specified for your Reserved Instance\. For more information, see [Using your Reserved Instances](using-reserved-instances.md)\. 
 
 Reserved Instances apply to usage in the same manner, irrespective of the offering type \(Standard or Convertible\), and are automatically applied to running On\-Demand Instances with matching attributes\.
 
@@ -20,7 +20,7 @@ Instance size flexibility does not apply to the following Reserved Instances:
 + Reserved Instances that are purchased for a specific Availability Zone \(zonal Reserved Instances\)
 + Reserved Instances with dedicated tenancy
 + Reserved Instances for Windows Server, Windows Server with SQL Standard, Windows Server with SQL Server Enterprise, Windows Server with SQL Server Web, RHEL, and SUSE Linux Enterprise Server
-+ Reserved Instances for G4 instances
++ Reserved Instances for G4dn instances
 
 ### Instance size flexibility determined by normalization factor<a name="ri-normalization-factor"></a>
 
@@ -141,7 +141,7 @@ The regional Reserved Instance benefits are applied in the following way:
 + The discount of the two `c4.xlarge` Reserved Instances applies to the two `c4.xlarge` instances, because they are a smaller instance size than the `c4.2xlarge` instance\. There is no capacity reservation because the Reserved Instances are regional Reserved Instances\.
 
 **Example Scenario 3: Zonal Reserved Instances in a linked account**  
-In general, Reserved Instances that are owned by an account are applied first to usage in that account\. However, if there are qualifying, unused Reserved Instances for a specific Availability Zone \(zonal Reserved Instances\) in other accounts in the organization, they are applied to the account before regional Reserved Instances owned by the account\. This is done to ensure maximum Reserved Instance utilization and a lower bill\. For billing purposes, all the accounts in the organization are treated as one account\. The following example may help explain this\.  
+In general, Reserved Instances that are owned by an account are applied first to usage in that account\. However, if there are qualifying, unused Reserved Instances for a specific Availability Zone \(zonal Reserved Instances\) in other accounts in the organization, they are applied to the account before regional Reserved Instances owned by the account\. This is done to ensure maximum Reserved Instance utilization and a lower bill\. For billing purposes, all the accounts in the organization are treated as one account\. The following example might help explain this\.  
 You're running the following On\-Demand Instance in account A \(the purchasing account\):  
 + 1 x `m4.xlarge` Linux, default tenancy instance in Availability Zone us\-east\-1a
 A customer is running the following On\-Demand Instance in linked account B:  

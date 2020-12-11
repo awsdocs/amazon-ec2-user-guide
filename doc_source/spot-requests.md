@@ -114,9 +114,9 @@ Under most circumstances, you don't need to manually create a service\-linked ro
 
 If you had an active Spot Instance request before October 2017, when Amazon EC2 began supporting this service\-linked role, Amazon EC2 created the **AWSServiceRoleForEC2Spot** role in your AWS account\. For more information, see [A New Role Appeared in My Account](https://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_roles.html#troubleshoot_roles_new-role-appeared) in the *IAM User Guide*\.
 
-Ensure that this role exists before you use the AWS CLI or an API to request a Spot Instance\. To create the role, use the IAM console as follows\.
+Ensure that this role exists before you use the AWS CLI or an API to request a Spot Instance\.
 
-**To manually create the AWSServiceRoleForEC2Spot service\-linked role**
+**To create AWSServiceRoleForEC2Spot using the console**
 
 1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
@@ -129,6 +129,13 @@ Ensure that this role exists before you use the AWS CLI or an API to request a S
 1. On the next page, choose **Next:Review**\.
 
 1. On the **Review** page, choose **Create role**\.
+
+**To create AWSServiceRoleForEC2Spot using the AWS CLI**  
+Use the [create\-service\-linked\-role](https://docs.aws.amazon.com/cli/latest/reference/iam/create-service-linked-role.html) command as follows\.
+
+```
+aws iam create-service-linked-role --aws-service-name spot.amazonaws.com
+```
 
 If you no longer need to use Spot Instances, we recommend that you delete the **AWSServiceRoleForEC2Spot** role\. After this role is deleted from your account, Amazon EC2 will create the role again if you request Spot Instances\.
 

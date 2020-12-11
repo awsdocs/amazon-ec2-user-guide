@@ -100,6 +100,9 @@ The following table provides the quantity, size, type, and performance optimizat
 | f1\.16xlarge |  4 x 940 GB \(3\.76 TB\)  | NVMe SSD |  | ✔ | 
 | g2\.2xlarge | 1 x 60 GB | SSD | ✔ |  | 
 | g2\.8xlarge | 2 x 120 GB \(240 GB\) | SSD | ✔ |  | 
+| g4ad\.4xlarge | 1 x 600 GB | NVMe SSD |  | ✔ | 
+| g4ad\.8xlarge | 1 x 1,200 GB | NVMe SSD |  | ✔ | 
+| g4ad\.16xlarge | 2 x 1,200 GB \(2\.4 TB\) | NVMe SSD |  | ✔ | 
 | g4dn\.xlarge | 1 x 125 GB | NVMe SSD |  | ✔ | 
 | g4dn\.2xlarge | 1 x 225 GB | NVMe SSD |  | ✔ | 
 | g4dn\.4xlarge | 1 x 225 GB | NVMe SSD |  | ✔ | 

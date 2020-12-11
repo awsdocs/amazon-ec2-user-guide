@@ -43,9 +43,11 @@ You can launch a Mac instance using the AWS Management Console as described in t
 
    1. For **Instance family**, choose **mac1**\.
 
+   1. For **Support multiple instance types**, clear **Enable**\. For **Instance type**, select **mac1\.metal**\.
+
    1. For **Availability Zone**, choose the Availability Zone for the Dedicated Host\.
 
-   1. For **Quantity**, enter **1**\.
+   1. For **Quantity**, keep **1**\.
 
    1. Choose **Allocate**\.
 
@@ -68,13 +70,13 @@ You can launch a Mac instance using the AWS Management Console as described in t
 Use the following [allocate\-hosts](https://docs.aws.amazon.com/cli/latest/reference/ec2/allocate-hosts.html) command to allocate a Dedicated Host for your Mac instance\.
 
 ```
-aws ec2 allocate-hosts --region us-east-1 --instance-type mac1.metal --availability-zone us-east-1b --quantity 1
+aws ec2 allocate-hosts --instance-type mac1.metal --availability-zone us-east-1b --quantity 1
 ```
 
 Use the following [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command to launch a Mac instance\.
 
 ```
-aws ec2 run-instances --region us-east-1 --instance-type mac1.metal --placement Tenancy=host --availability-zone us-east-1b --image-id ami_id --key-name my-key-pair
+aws ec2 run-instances --instance-type mac1.metal --placement Tenancy=host --availability-zone us-east-1b --image-id ami_id --key-name my-key-pair
 ```
 
 The initial state of an instance is `pending`\. The instance is ready when its state changes to `running` and it passes status checks\. Use the following [describe\-instance\-status](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-status.html) command to display status information for your instance:
@@ -250,6 +252,8 @@ You can use Homebrew to install updates to packages in the EC2 macOS AMIs, so th
 EC2 macOS Init is used to initialize EC2 Mac instances at launch\. It uses priority groups to run logical groups of tasks at the same time\.
 
 The launchd plist file is `/Library/LaunchDaemons/com.amazon.ec2.macos-init.plist`\. The files for EC2 macOS Init are located in `/usr/local/aws/ec2-macos-init`\.
+
+For more information, see [https://github\.com/aws/ec2\-macos\-init](https://github.com/aws/ec2-macos-init)\.
 
 ## EC2 System Monitoring for macOS<a name="mac-instance-system-monitor"></a>
 

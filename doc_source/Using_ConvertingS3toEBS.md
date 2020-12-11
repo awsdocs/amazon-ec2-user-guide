@@ -31,11 +31,11 @@ You can't convert an instance store\-backed Windows AMI to an Amazon EBS\-backed
    [ec2-user ~]$ export AWS_SECRET_ACCESS_KEY=your_secret_access_key
    ```
 
-1. Prepare an Amazon EBS volume for your new AMI\.
+1. Prepare an Amazon Elastic Block Store \(Amazon EBS\) volume for your new AMI\.
 
-   1. Create an empty Amazon EBS volume in the same Availability Zone as your instance using the [create\-volume](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-volume.html) command\. Note the volume ID in the command output\.
+   1. Create an empty EBS volume in the same Availability Zone as your instance using the [create\-volume](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-volume.html) command\. Note the volume ID in the command output\.
 **Important**  
- This Amazon EBS volume must be the same size or larger than the original instance store root volume\.
+ This EBS volume must be the same size or larger than the original instance store root volume\.
 
       ```
       [ec2-user ~]$ aws ec2 create-volume --size 10 --region us-west-2 --availability-zone us-west-2b						
@@ -73,7 +73,7 @@ You can't convert an instance store\-backed Windows AMI to an Amazon EBS\-backed
       [ec2-user bundle]$ ec2-unbundle -m image.manifest.xml --privatekey /path/to/pk-HKZYKTAIG2ECMXYIBH3HXV4ZBEXAMPLE.pem
       ```
 
-1. Copy the files from the unbundled image to the new Amazon EBS volume\.
+1. Copy the files from the unbundled image to the new EBS volume\.
 
    ```
    [ec2-user bundle]$ sudo dd if=/tmp/bundle/image of=/dev/sdb bs=1M
@@ -98,14 +98,14 @@ You can't convert an instance store\-backed Windows AMI to an Amazon EBS\-backed
 
    In this example, the partition to mount is `/dev/sdb1`, but your device name will likely be different\. If your volume is not partitioned, then the device to mount will be similar to `/dev/sdb` \(without a device partition trailing digit\)\.
 
-1. Create a mount point for the new Amazon EBS volume and mount the volume\.
+1. Create a mount point for the new EBS volume and mount the volume\.
 
    ```
    [ec2-user bundle]$ sudo mkdir /mnt/ebs
    [ec2-user bundle]$ sudo mount /dev/sdb1 /mnt/ebs
    ```
 
-1. Open the `/etc/fstab` file on the EBS volume with your favorite text editor \(such as vim or nano\) and remove any entries for instance store \(ephemeral\) volumes\. Because the Amazon EBS volume is mounted on `/mnt/ebs`, the `fstab` file is located at `/mnt/ebs/etc/fstab`\.
+1. Open the `/etc/fstab` file on the EBS volume with your favorite text editor \(such as vim or nano\) and remove any entries for instance store \(ephemeral\) volumes\. Because the EBS volume is mounted on `/mnt/ebs`, the `fstab` file is located at `/mnt/ebs/etc/fstab`\.
 
    ```
    [ec2-user bundle]$ sudo nano /mnt/ebs/etc/fstab
@@ -127,9 +127,9 @@ You can't convert an instance store\-backed Windows AMI to an Amazon EBS\-backed
    [ec2-user bundle]$ aws ec2 detach-volume --volume-id volume_id --region us-west-2
    ```
 
-1. Create an AMI from the new Amazon EBS volume as follows\.
+1. Create an AMI from the new EBS volume as follows\.
 
-   1. Create a snapshot of the new Amazon EBS volume\.
+   1. Create a snapshot of the new EBS volume\.
 
       ```
       [ec2-user bundle]$ aws ec2 create-snapshot --region us-west-2 --description "your_snapshot_description" --volume-id volume_id
@@ -150,13 +150,13 @@ You can't convert an instance store\-backed Windows AMI to an Amazon EBS\-backed
 
       In this example, the architecture is `x86_64` and the kernel image ID is `aki-fc8f11cc`\. Use these values in the following step\. If the output of the above command also lists an `ari` ID, take note of that as well\.
 
-   1. Register your new AMI with the snapshot ID of your new Amazon EBS volume and the values from the previous step\. If the previous command output listed an `ari` ID, include that in the following command with `--ramdisk-id ari_id`\.
+   1. Register your new AMI with the snapshot ID of your new EBS volume and the values from the previous step\. If the previous command output listed an `ari` ID, include that in the following command with `--ramdisk-id ari_id`\.
 
       ```
       [ec2-user bundle]$ aws ec2 register-image --region us-west-2 --name your_new_ami_name --block-device-mappings DeviceName=device-name,Ebs={SnapshotId=snapshot_id} --virtualization-type paravirtual --architecture x86_64 --kernel-id aki-fc8f11cc --root-device-name device-name
       ```
 
-1. \(Optional\) After you have tested that you can launch an instance from your new AMI, you can delete the Amazon EBS volume that you created for this procedure\.
+1. \(Optional\) After you have tested that you can launch an instance from your new AMI, you can delete the EBS volume that you created for this procedure\.
 
    ```
    aws ec2 delete-volume --volume-id volume_id

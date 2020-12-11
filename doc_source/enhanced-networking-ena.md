@@ -10,8 +10,8 @@ Amazon EC2 provides enhanced networking capabilities through the Elastic Network
 + [Enabling enhanced networking on Ubuntu](#enhanced-networking-ena-ubuntu)
 + [Enabling enhanced networking on Linux](#enhanced-networking-ena-linux)
 + [Enabling enhanced networking on Ubuntu with DKMS](#enhanced-networking-ena-ubuntu-dkms)
++ [Driver release notes](#ena-driver-release-notes)
 + [Troubleshooting](#enhanced-networking-ena-troubleshooting)
-+ [Operating system optimizations](enhanced-networking-os.md)
 
 ## Requirements<a name="ena-requirements"></a>
 
@@ -448,6 +448,10 @@ Using DKMS voids the support agreement for your subscription\. It should not be 
 
 1. Continue with Step 3 in [Enabling enhanced networking on Ubuntu](#enhanced-networking-ena-ubuntu)\. 
 
+## Driver release notes<a name="ena-driver-release-notes"></a>
+
+For information about the versions of the Linux ENA driver, see the [ENA Linux kernel driver release notes](https://github.com/amzn/amzn-drivers/blob/master/kernel/linux/ena/RELEASENOTES.md)\.
+
 ## Troubleshooting<a name="enhanced-networking-ena-troubleshooting"></a>
 
-For additional information about troubleshooting your ENA adapter, see [Troubleshooting the Elastic Network Adapter \(ENA\)](troubleshooting-ena.md)\.
+For troubleshooting information, see [Troubleshooting the Elastic Network Adapter \(ENA\)](troubleshooting-ena.md)\.

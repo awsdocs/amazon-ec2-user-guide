@@ -16,7 +16,7 @@ For more information about setting up EC2 Instance Connect, see [Securing your b
   + Ubuntu 16\.04 or later
 + If you configured the `AuthorizedKeysCommand` and `AuthorizedKeysCommandUser` settings for SSH authentication, the EC2 Instance Connect installation will not update them\. As a result, you cannot use Instance Connect\.
 
-**Prerequisites**
+**Prerequisites for installing EC2 Instance Connect**
 + **Verify the general prerequisites for connecting to your instance using SSH\.**
 
   For more information, see [General prerequisites for connecting to your instance](connection-prereqs.md)\.
@@ -33,7 +33,8 @@ For more information about setting up EC2 Instance Connect, see [Securing your b
 ## Task 1: Configure network access to an instance<a name="ec2-instance-connect-setup-security-group"></a>
 
 You must configure the following network access so that your users can connect to your instance using EC2 Instance Connect:
-+ If your users will access your instance over the internet, then your instance must have a public IP address\. If your users will access your instance via the instance's private IP address, then you must establish private network connectivity to your VPC, such as by using AWS Direct Connect, AWS Site\-to\-Site VPN, or VPC peering, so that your users can reach the instance's private IP address\.
++ If your users will access your instance over the internet, then your instance must have a public IP address\. For more information, see [Public IPv4 addresses and external DNS hostnames](using-instance-addressing.md#concepts-public-addresses)\.
++ If your users will access your instance via the instance's private IP address, then you must establish private network connectivity to your VPC, such as by using AWS Direct Connect, AWS Site\-to\-Site VPN, or VPC peering, so that your users can reach the instance's private IP address\.
 + Ensure that the security group associated with your instance [allows inbound SSH traffic](authorizing-access-to-an-instance.md#add-rule-authorize-access) on port 22 from your IP address or from your network\. The default security group for the VPC does not allow incoming SSH traffic by default\. The security group created by the launch wizard allows incoming SSH traffic by default\. For more information, see [Authorizing inbound traffic for your Linux instances](authorizing-access-to-an-instance.md)\.
 + \(Amazon EC2 console browser\-based client\) We recommend that your instance allows inbound SSH traffic from the [recommended IP block published for the service](https://ip-ranges.amazonaws.com/ip-ranges.json)\. Use the `EC2_INSTANCE_CONNECT` filter for the `service` parameter to get the IP address ranges in the EC2 Instance Connect subset\. For more information, see [AWS IP address ranges](https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html) in the *Amazon Web Services General Reference*\.
 
@@ -68,7 +69,7 @@ Installing Instance Connect configures the SSH daemon on the instance\. The proc
    [ec2-user ~]$ sudo yum install ec2-instance-connect
    ```
 
-   You should see four new files in the `/opt/aws/bin/` folder:
+   You should see four new scripts in the `/opt/aws/bin/` folder:
 
    ```
    eic_curl_authorized_keys
@@ -91,7 +92,7 @@ Installing Instance Connect configures the SSH daemon on the instance\. The proc
    AuthorizedKeysCommand /opt/aws/bin/eic_run_authorized_keys %u %f
    AuthorizedKeysCommandUser ec2-instance-connect
    ```
-   + `AuthorizedKeysCommand` sets the `eic_run_authorized_keys` file to look up the keys from the instance metadata
+   + `AuthorizedKeysCommand` sets the `eic_run_authorized_keys` script to look up the keys from the instance metadata
    + `AuthorizedKeysCommandUser` sets the system user as `ec2-instance-connect`
 **Note**  
 If you previously configured `AuthorizedKeysCommand` and `AuthorizedKeysCommandUser`, the Instance Connect installation will not change the values and you will not be able to use Instance Connect\.
@@ -133,7 +134,7 @@ If you previously configured `AuthorizedKeysCommand` and `AuthorizedKeysCommandU
    ubuntu:~$ sudo apt-get install ec2-instance-connect
    ```
 
-   You should see four new files in the `/usr/share/ec2-instance-connect/` folder:
+   You should see four new scripts in the `/usr/share/ec2-instance-connect/` folder:
 
    ```
    eic_curl_authorized_keys
@@ -156,7 +157,7 @@ If you previously configured `AuthorizedKeysCommand` and `AuthorizedKeysCommandU
    AuthorizedKeysCommand /usr/share/ec2-instance-connect/eic_run_authorized_keys %u %f
    AuthorizedKeysCommandUser ec2-instance-connect
    ```
-   + `AuthorizedKeysCommand` sets the `eic_run_authorized_keys` file to look up the keys from the instance metadata
+   + `AuthorizedKeysCommand` sets the `eic_run_authorized_keys` script to look up the keys from the instance metadata
    + `AuthorizedKeysCommandUser` sets the system user as `ec2-instance-connect`
 **Note**  
 If you previously configured `AuthorizedKeysCommand` and `AuthorizedKeysCommandUser`, the Instance Connect installation will not change the values and you will not be able to use Instance Connect\.
@@ -183,14 +184,14 @@ $ pip install ec2instanceconnectcli
 
 For your IAM principals to connect to an instance using EC2 Instance Connect, you must grant them permission to push the public key to the instance\. You grant them the permission by creating an IAM policy and attaching the policy to the IAM principals that require the permission\. For more information, see [Actions, resources, and condition keys for Amazon EC2 Instance Connect](https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonec2instanceconnect.html)\.
 
-The following instructions explain how to create the policy and attach it to an IAM user using the AWS CLI\. The same policy could be applied to other IAM principals such as IAM roles\. For instructions that use the AWS Management Console, see [Creating IAM Policies \(Console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html#access_policies_create-start), [Adding Permissions by Attaching Policies Directly to the User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html#users_change_permissions-add-directly-console), and [Creating IAM roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create.html) in the *IAM User Guide*\.
+The following instructions explain how to create the policy and attach it to an IAM user using the AWS CLI\. The same policy could be applied to other IAM principals, such as IAM roles\. For instructions that use the AWS Management Console, see [Creating IAM policies \(console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html#access_policies_create-console.html), [Adding permissions by attaching policies directly to the user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html#users_change_permissions-add-directly-console), and [Creating IAM roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create.html) in the *IAM User Guide*\.
 
 **To grant an IAM principal permission for EC2 Instance Connect \(AWS CLI\)**
 
 1. Create a JSON policy document that includes the following:
-   + The `ec2-instance-connect:SendSSHPublicKey` action\. This grants an IAM principal permission to push the public key to an instance\. With `ec2-instance-connect:SendSSHPublicKey`, consider restricting access to specific EC2 instances\. Otherwise, all IAM principals with this permission can connect to all EC2 instances\.
+   + The `ec2-instance-connect:SendSSHPublicKey` action\. This grants an IAM principal permission to push the public key to an instance\. With `ec2-instance-connect:SendSSHPublicKey`, consider restricting access to specific EC2 instances\. Otherwise, all IAM principals with this permission can connect to all EC2 instances\. You can also restrict access by specifying resource ARNs or by using resource tags as [condition keys](https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonec2instanceconnect.html#amazonec2instanceconnect-policy-keys)\.
    + The `ec2:osuser` condition\. This specifies the name of the OS user that can push the public key to an instance\. Use the default user name for the AMI that you used to launch the instance\. The default user name for Amazon Linux 2 is `ec2-user`, and for Ubuntu it's `ubuntu`\.
-   + The `ec2:DescribeInstances` action\. This is required when using the EC2 Instance Connect CLI because the wrapper calls this action\. IAM users might already have permission to call this action from another policy\.
+   + The `ec2:DescribeInstances` action\. This is required when using the EC2 Instance Connect CLI because the wrapper calls this action\. IAM principals might already have permission to call this action from another policy\.
 
    The following is an example policy document\. You can omit the statement for the `ec2:DescribeInstances` action if your users will only use an SSH client to connect to your instances\. You can replace the specified instances in `Resource` with the wildcard `*` to grant users access to all EC2 instances using EC2 Instance Connect\.
 
@@ -220,7 +221,7 @@ The following instructions explain how to create the policy and attach it to an 
    }
    ```
 
-   The preceding policy allows access to specific instances, identified by their instance ID\. Alternatively, you can use resource tags to control access to an instance\. Attribute\-based access control is an authorization strategy that defines permissions based on tags that can be attached to users and AWS resources\. For example, the following policy allows an IAM user to access an instance only if that instance has a resource tag with key=`tag-key` and value=`tag-value`\. For more information about using tags to control access to your AWS resources, see [Controlling Access to AWS Resources](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html#access_tags_control-resources) in the *IAM User Guide*\.
+   The preceding policy allows access to specific instances, identified by their instance ID\. Alternatively, you can use resource tags to control access to an instance\. Attribute\-based access control is an authorization strategy that defines permissions based on tags that can be attached to users and AWS resources\. For example, the following policy allows an IAM user to access an instance only if that instance has a resource tag with key=`tag-key` and value=`tag-value`\. For more information about using tags to control access to your AWS resources, see [Controlling access to AWS resources](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html#access_tags_control-resources) in the *IAM User Guide*\.
 
    ```
    { 

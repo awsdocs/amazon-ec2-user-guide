@@ -22,7 +22,7 @@ Amazon and the Amazon EC2 community provide a large selection of public AMIs\. F
 
 ## Storage for the root device<a name="storage-for-the-root-device"></a>
 
-All AMIs are categorized as either *backed by Amazon EBS* or *backed by instance store*\. The former means that the root device for an instance launched from the AMI is an Amazon EBS volume created from an Amazon EBS snapshot\. The latter means that the root device for an instance launched from the AMI is an instance store volume created from a template stored in Amazon S3\. For more information, see [Amazon EC2 root device volume](RootDeviceStorage.md)\.
+All AMIs are categorized as either *backed by Amazon EBS* or *backed by instance store*\. The former means that the root device for an instance launched from the AMI is an Amazon Elastic Block Store \(Amazon EBS\) volume created from an Amazon EBS snapshot\. The latter means that the root device for an instance launched from the AMI is an instance store volume created from a template stored in Amazon S3\. For more information, see [Amazon EC2 root device volume](RootDeviceStorage.md)\.
 
 The following table summarizes the important differences when using the two types of AMIs\.
 
@@ -31,14 +31,14 @@ The following table summarizes the important differences when using the two type
 | --- | --- | --- | 
 |  Boot time for an instance  |  Usually less than 1 minute  |  Usually less than 5 minutes  | 
 |  Size limit for a root device  |  16 TiB  |  10 GiB  | 
-|  Root device volume  |  Amazon EBS volume  |  Instance store volume  | 
-|  Data persistence  |  By default, the root volume is deleted when the instance terminates\.\* Data on any other Amazon EBS volumes persists after instance termination by default\.   |  Data on any instance store volumes persists only during the life of the instance\.  | 
+|  Root device volume  |  EBS volume  |  Instance store volume  | 
+|  Data persistence  |  By default, the root volume is deleted when the instance terminates\.\* Data on any other EBS volumes persists after instance termination by default\.   |  Data on any instance store volumes persists only during the life of the instance\.  | 
 |  Modifications  |  The instance type, kernel, RAM disk, and user data can be changed while the instance is stopped\.  |  Instance attributes are fixed for the life of an instance\.  | 
-|  Charges  |  You're charged for instance usage, Amazon EBS volume usage, and storing your AMI as an Amazon EBS snapshot\.  |  You're charged for instance usage and storing your AMI in Amazon S3\.  | 
+|  Charges  |  You're charged for instance usage, EBS volume usage, and storing your AMI as an EBS snapshot\.  |  You're charged for instance usage and storing your AMI in Amazon S3\.  | 
 |  AMI creation/bundling  |  Uses a single command/call  |  Requires installation and use of AMI tools  | 
 |  Stopped state  |  Can be in a stopped state\. Even when the instance is stopped and not running, the root volume is persisted in Amazon EBS  |  Cannot be in stopped state; instances are running or terminated  | 
 
-\* By default, Amazon EBS\-backed instance root volumes have the `DeleteOnTermination` flag set to `true`\. For information about how to change this flag so that the volume persists after termination, see [Changing the root volume to persist](RootDeviceStorage.md#Using_RootDeviceStorage)\.
+\* By default, EBS root volumes have the `DeleteOnTermination` flag set to `true`\. For information about how to change this flag so that the volume persists after termination, see [Changing the root volume to persist](RootDeviceStorage.md#Using_RootDeviceStorage)\.
 
 ### Determining the root device type of your AMI<a name="display-ami-root-device-type"></a>
 
@@ -64,13 +64,13 @@ You can stop an Amazon EBS\-backed instance, but not an Amazon EC2 instance stor
 
 ### Default data storage and persistence<a name="ec2-bootfromebs-default-data-storage-and-persistence"></a>
 
-Instances that use an instance store volume for the root device automatically have instance store available \(the root volume contains the root partition and you can store additional data\)\. You can add persistent storage to your instance by attaching one or more Amazon EBS volumes\. Any data on an instance store volume is deleted when the instance fails or terminates\. For more information, see [Instance store lifetime](InstanceStorage.md#instance-store-lifetime)\.
+Instances that use an instance store volume for the root device automatically have instance store available \(the root volume contains the root partition and you can store additional data\)\. You can add persistent storage to your instance by attaching one or more EBS volumes\. Any data on an instance store volume is deleted when the instance fails or terminates\. For more information, see [Instance store lifetime](InstanceStorage.md#instance-store-lifetime)\.
 
-Instances that use Amazon EBS for the root device automatically have an Amazon EBS volume attached\. The volume appears in your list of volumes like any other\. With most instance types, Amazon EBS\-backed instances don't have instance store volumes by default\. You can add instance store volumes or additional Amazon EBS volumes using a block device mapping\. For more information, see [Block device mapping](block-device-mapping-concepts.md)\.
+Instances that use Amazon EBS for the root device automatically have an EBS volume attached\. The volume appears in your list of volumes like any other\. With most instance types, Amazon EBS\-backed instances don't have instance store volumes by default\. You can add instance store volumes or additional EBS volumes using a block device mapping\. For more information, see [Block device mapping](block-device-mapping-concepts.md)\.
 
 ### Boot times<a name="ec2-bootfromebs-boot-times"></a>
 
-Instances launched from an Amazon EBS\-backed AMI launch faster than instances launched from an instance store\-backed AMI\. When you launch an instance from an instance store\-backed AMI, all the parts have to be retrieved from Amazon S3 before the instance is available\. With an Amazon EBS\-backed AMI, only the parts required to boot the instance need to be retrieved from the snapshot before the instance is available\. However, the performance of an instance that uses an Amazon EBS volume for its root device is slower for a short time while the remaining parts are retrieved from the snapshot and loaded into the volume\. When you stop and restart the instance, it launches quickly, because the state is stored in an Amazon EBS volume\.
+Instances launched from an Amazon EBS\-backed AMI launch faster than instances launched from an instance store\-backed AMI\. When you launch an instance from an instance store\-backed AMI, all the parts have to be retrieved from Amazon S3 before the instance is available\. With an Amazon EBS\-backed AMI, only the parts required to boot the instance need to be retrieved from the snapshot before the instance is available\. However, the performance of an instance that uses an EBS volume for its root device is slower for a short time while the remaining parts are retrieved from the snapshot and loaded into the volume\. When you stop and restart the instance, it launches quickly, because the state is stored in an EBS volume\.
 
 ### AMI creation<a name="ec2-bootfromebs-ami-creation"></a>
 
@@ -80,7 +80,7 @@ AMI creation is much easier for AMIs backed by Amazon EBS\. The `CreateImage` AP
 
 ### How you're charged<a name="ec2-bootfromebs-how-you-are-charged"></a>
 
-With AMIs backed by instance store, you're charged for instance usage and storing your AMI in Amazon S3\. With AMIs backed by Amazon EBS, you're charged for instance usage, Amazon EBS volume storage and usage, and storing your AMI as an Amazon EBS snapshot\.
+With AMIs backed by instance store, you're charged for instance usage and storing your AMI in Amazon S3\. With AMIs backed by Amazon EBS, you're charged for instance usage, EBS volume storage and usage, and storing your AMI as an EBS snapshot\.
 
 With Amazon EC2 instance store\-backed AMIs, each time you customize an AMI and create a new one, all of the parts are stored in Amazon S3 for each AMI\. So, the storage footprint for each customized AMI is the full size of the AMI\. For Amazon EBS\-backed AMIs, each time you customize an AMI and create a new one, only the changes are stored\. So the storage footprint for subsequent AMIs you customize after the first is much smaller, resulting in lower AMI storage charges\. 
 

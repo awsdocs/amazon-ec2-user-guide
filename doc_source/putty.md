@@ -148,4 +148,4 @@ WinSCP is a GUI\-based file manager for Windows that allows you to upload and tr
 
 1. After the connection is established, in the connection window your Linux instance is on the right and your local machine is on the left\. You can drag and drop files between the remote file system and your local machine\. For more information on WinSCP, see the project documentation at [http://winscp\.net/eng/docs/start](http://winscp.net/eng/docs/start)\.
 
-   If you receive a "Cannot execute SCP to start transfer" error, verify that you installed scp on the Linux instance\.
+   If you receive an error that you cannot run SCP to start the transfer, verify that you installed scp on the Linux instance\.

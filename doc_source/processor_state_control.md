@@ -209,7 +209,7 @@ This section describes how to limit deeper sleep states and disable Turbo Boost 
    [ec2-user ~]$ sudo reboot
    ```
 
-1. When you need the low processor speed variability that the `P1` P\-state provides, execute the following command to disable Turbo Boost\.
+1. When you need the low processor speed variability that the `P1` P\-state provides, run the following command to disable Turbo Boost\.
 
    ```
    [ec2-user ~]$ sudo sh -c "echo 1 > /sys/devices/system/cpu/intel_pstate/no_turbo"
@@ -251,7 +251,7 @@ This section describes how to limit deeper sleep states and disable Turbo Boost 
    [ec2-user ~]$ sudo reboot
    ```
 
-1. When you need the low processor speed variability that the `P1` P\-state provides, execute the following command to disable Turbo Boost\.
+1. When you need the low processor speed variability that the `P1` P\-state provides, run the following command to disable Turbo Boost\.
 
    ```
    [ec2-user ~]$ sudo sh -c "echo 1 > /sys/devices/system/cpu/intel_pstate/no_turbo"

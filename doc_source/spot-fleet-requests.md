@@ -198,9 +198,9 @@ If you use the AWS CLI or an API, you must ensure that this role exists\.
 
 If you had an active Spot Fleet request before October 2017, when Amazon EC2 began supporting this service\-linked role, Amazon EC2 created the **AWSServiceRoleForEC2SpotFleet** role in your AWS account\. For more information, see [A New Role Appeared in My AWS Account](https://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_roles.html#troubleshoot_roles_new-role-appeared) in the *IAM User Guide*\.
 
-Ensure that this role exists before you use the AWS CLI or an API to create a Spot Fleet\. To create the role, use the IAM console as follows\.
+Ensure that this role exists before you use the AWS CLI or an API to create a Spot Fleet\.
 
-**To manually create the AWSServiceRoleForEC2SpotFleet service\-linked role**
+**To create AWSServiceRoleForEC2SpotFleet using the console**
 
 1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
@@ -219,6 +219,13 @@ Ensure that this role exists before you use the AWS CLI or an API to create a Sp
 1. On the next page, choose **Next:Review**\.
 
 1. On the **Review** page, choose **Create role**\.
+
+**To create AWSServiceRoleForEC2SpotFleet using the AWS CLI**  
+Use the [create\-service\-linked\-role](https://docs.aws.amazon.com/cli/latest/reference/iam/create-service-linked-role.html) command as follows\.
+
+```
+aws iam create-service-linked-role --aws-service-name spotfleet.amazonaws.com
+```
 
 If you no longer need to use Spot Fleet, we recommend that you delete the **AWSServiceRoleForEC2SpotFleet** role\. After this role is deleted from your account, Amazon EC2 will create the role again if you request a Spot Fleet using the console\. For more information, see [Deleting a Service\-Linked Role](https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html#delete-service-linked-role) in the *IAM User Guide*\.
 

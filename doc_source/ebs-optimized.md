@@ -111,6 +111,9 @@ The following table lists the instance types that support EBS optimization and E
 | g3\.4xlarge | 3,500 | 437\.5 | 20,000 | 
 | g3\.8xlarge | 7,000 | 875 | 40,000 | 
 | g3\.16xlarge | 14,000 | 1,750 | 80,000 | 
+| g4ad\.4xlarge \* | 3,170 | 396\.25 | 13,333 | 
+| g4ad\.8xlarge | 3,170 | 396\.25 | 13,333 | 
+| g4ad\.16xlarge | 6,300 | 787\.5 | 26,667 | 
 | g4dn\.xlarge \* | 3,500 | 437\.5 | 20,000 | 
 | g4dn\.2xlarge \* | 3,500 | 437\.5 | 20,000 | 
 | g4dn\.4xlarge | 4,750 | 593\.75 | 20,000 | 
@@ -395,6 +398,7 @@ The following table lists the instance types that support EBS optimization and E
 | d3en\.large | 425 | 53\.125 | 2,500 | 
 | d3en\.xlarge | 850 | 106\.25 | 5,000 | 
 | d3en\.2xlarge | 1,700 | 212\.5 | 10,000 | 
+| g4ad\.4xlarge | 1,580 | 197\.5 | 6,700 | 
 | g4dn\.xlarge | 950 | 118\.75 | 3,000 | 
 | g4dn\.2xlarge | 1,150 | 143\.75 | 6,000 | 
 | i3en\.large | 577 | 72\.1 | 3,000 | 
@@ -518,7 +522,7 @@ You can use the `EBSIOBalance%` and `EBSByteBalance%` metrics to help you determ
 The high memory instances are designed to run large in\-memory databases, including production deployments of the SAP HANA in\-memory database, in the cloud\. To maximize EBS performance, use high memory instances with an even number of `io1` or `io2` volumes with identical provisioned performance\. For example, for IOPS heavy workloads, use four `io1` or `io2` volumes with 40,000 provisioned IOPS to get the maximum 160,000 instance IOPS\. Similarly, for throughput heavy workloads, use six `io1` or `io2` volumes with 48,000 provisioned IOPS to get the maximum 4,750 MB/s throughput\. For additional recommendations, see [Storage Configuration for SAP HANA](https://docs.aws.amazon.com/quickstart/latest/sap-hana/storage.html)\.
 
 **Considerations**
-+ G4, I3en, Inf1, M5a, M5ad, R5a, R5ad, T3, T3a, and Z1d instances launched after February 26, 2020 provide the maximum performance listed in the table above\. To get the maximum performance from an instance launched before February 26, 2020, stop and start it\.
++ G4dn, I3en, Inf1, M5a, M5ad, R5a, R5ad, T3, T3a, and Z1d instances launched after February 26, 2020 provide the maximum performance listed in the table above\. To get the maximum performance from an instance launched before February 26, 2020, stop and start it\.
 + C5, C5d, C5n, M5, M5d, M5n, M5dn, R5, R5d, R5n, R5dn, and P3dn instances launched after December 3, 2019 provide the maximum performance listed in the table above\. To get the maximum performance from an instance launched before December 3, 2019, stop and start it\.
 + `u-6tb1.metal`, `u-9tb1.metal`, and `u-12tb1.metal` instances launched after March 12, 2020 provide the performance in the table above\. Instances of these types launched before March 12, 2020 might provide lower performance\. To get the maximum performance from an instance launched before March 12, 2020, contact your account team to upgrade the instance at no additional cost\.
 

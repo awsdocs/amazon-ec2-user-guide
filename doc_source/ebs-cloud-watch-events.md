@@ -476,7 +476,7 @@ The following procedure uses the `createSnapshot` event to automatically copy a 
 
 **To copy a completed snapshot to another Region**
 
-1. Create an IAM policy, such as the one shown in the following example, to provide permissions to execute a `CopySnapshot` action and write to the CloudWatch Events log\. Assign the policy to the IAM user that will handle the CloudWatch event\.
+1. Create an IAM policy, such as the one shown in the following example, to provide permissions to use the `CopySnapshot` action and write to the CloudWatch Events log\. Assign the policy to the IAM user that will handle the CloudWatch event\.
 
    ```
    {

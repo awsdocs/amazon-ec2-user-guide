@@ -49,7 +49,8 @@ For the best performance, we recommend that you use the following instance types
 | D3en | d3en\.large \| d3en\.xlarge \| d3en\.2xlarge \| d3en\.4xlarge \| d3en\.6xlarge \| d3en\.8xlarge \| d3en\.12xlarge | [Storage optimized](storage-optimized-instances.md) | 
 | F1 | f1\.2xlarge \| f1\.4xlarge \| f1\.16xlarge | [Accelerated computing](accelerated-computing-instances.md) | 
 | G3 | g3s\.xlarge \| g3\.4xlarge \| g3\.8xlarge \| g3\.16xlarge | [Accelerated computing](accelerated-computing-instances.md) | 
-| G4 | g4dn\.xlarge \| g4dn\.2xlarge \| g4dn\.4xlarge \| g4dn\.8xlarge \| g4dn\.12xlarge \| g4dn\.16xlarge \| g4dn\.metal  | [Accelerated computing](accelerated-computing-instances.md) | 
+| G4ad | g4ad\.4xlarge \| g4ad\.8xlarge \| g4ad\.16xlarge  | [Accelerated computing](accelerated-computing-instances.md) | 
+| G4dn | g4dn\.xlarge \| g4dn\.2xlarge \| g4dn\.4xlarge \| g4dn\.8xlarge \| g4dn\.12xlarge \| g4dn\.16xlarge \| g4dn\.metal  | [Accelerated computing](accelerated-computing-instances.md) | 
 | H1 | h1\.2xlarge \| h1\.4xlarge \| h1\.8xlarge \| h1\.16xlarge | [Storage optimized](storage-optimized-instances.md) | 
 | I3 | i3\.large \| i3\.xlarge \| i3\.2xlarge \| i3\.4xlarge \| i3\.8xlarge \| i3\.16xlarge \| i3\.metal | [Storage optimized](storage-optimized-instances.md) | 
 | I3en | i3en\.large \| i3en\.xlarge \| i3en\.2xlarge \| i3en\.3xlarge \| i3en\.6xlarge \| i3en\.12xlarge \| i3en\.24xlarge \| i3en\.metal | [Storage optimized](storage-optimized-instances.md) | 
@@ -68,7 +69,7 @@ For the best performance, we recommend that you use the following instance types
 | P2 | p2\.xlarge \| p2\.8xlarge \| p2\.16xlarge | [Accelerated computing](accelerated-computing-instances.md) | 
 | P3 | p3\.2xlarge \| p3\.8xlarge \| p3\.16xlarge | [Accelerated computing](accelerated-computing-instances.md) | 
 | P3dn | p3dn\.24xlarge | [Accelerated computing](accelerated-computing-instances.md) | 
-| P4 | p4d\.24xlarge  | [Accelerated computing](accelerated-computing-instances.md) | 
+| P4d | p4d\.24xlarge  | [Accelerated computing](accelerated-computing-instances.md) | 
 | R4 | r4\.large \| r4\.xlarge \| r4\.2xlarge \| r4\.4xlarge \| r4\.8xlarge \| r4\.16xlarge | [Memory optimized](memory-optimized-instances.md) | 
 | R5 | r5\.large \| r5\.xlarge \| r5\.2xlarge \| r5\.4xlarge \| r5\.8xlarge \| r5\.12xlarge \| r5\.16xlarge \| r5\.24xlarge \| r5\.metal | [Memory optimized](memory-optimized-instances.md) | 
 | R5a | r5a\.large \| r5a\.xlarge \| r5a\.2xlarge \| r5a\.4xlarge \| r5a\.8xlarge \| r5a\.12xlarge \| r5a\.16xlarge \| r5a\.24xlarge  | [Memory optimized](memory-optimized-instances.md) | 
@@ -195,7 +196,8 @@ The following table summarizes the networking and storage features supported by 
 | D3en | No | Yes | NVMe \* | Yes | ENA | 
 |  F1  | No | No |  NVMe \*  |  Yes  | ENA | 
 |  G3  | Yes | No | No |  Yes  | ENA | 
-| G4 | No | Yes | NVMe \* | Yes | ENA | 
+| G4ad | No | Yes | NVMe \* | Yes | ENA | 
+| G4dn | No | Yes | NVMe \* | Yes | ENA | 
 |  H1  | No | No |  HDD \*  |  Yes  | ENA | 
 |  I3  | No | No |  NVMe \*  |  Yes  | ENA | 
 |  I3en  | No | Yes |  NVMe \*  |  Yes  | ENA | 
@@ -214,7 +216,7 @@ The following table summarizes the networking and storage features supported by 
 |  P2  |  Yes  | No | No |  Yes  | ENA | 
 | P3 |  Yes  |  No  |  No  |  Yes  | ENA | 
 | P3dn |  No  |  Yes  |  NVMe \*  |  Yes  | ENA | 
-| P4 | No | Yes | NVMe \* | Yes | ENA | 
+| P4d | No | Yes | NVMe \* | Yes | ENA | 
 |  R4  |  Yes  | No | No |  Yes  | ENA | 
 |  R5  |  Yes  | Yes | No |  Yes  | ENA | 
 |  R5a  |  Yes  | Yes | No |  Yes  | ENA | 

@@ -8,13 +8,39 @@ There is no cost for instance usage while an instance is in the `stopping` state
 
 Force the instance to stop using either the console or the AWS CLI\.
 
-**To force stop the instance**
-+ To force the instance to stop using the console, select the stuck instance, and choose **Instance state**, **Force stop instance**, **Stop**\.
-+ To force the instance to stop using the AWS CLI, use the [stop\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) command and the `--force` option as follows:
+------
+#### [ New console ]
 
-  ```
-  aws ec2 stop-instances --instance-ids i-0123ab456c789d01e --force
-  ```
+**To force stop the instance using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances** and select the stuck instance\.
+
+1. Choose **Instance state**, **Force stop instance**, **Stop**\.
+
+------
+#### [ Old console ]
+
+**To force stop the instance using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances** and select the stuck instance\.
+
+1. Choose **Instance State**, **Stop**, **Yes, Forcefully Stop**\.
+
+------
+#### [ AWS CLI ]
+
+**To force stop the instance using the AWS CLI**  
+Use the [stop\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) command and the `--force` option as follows:
+
+```
+aws ec2 stop-instances --instance-ids i-0123ab456c789d01e --force
+```
+
+------
 
 If, after 10 minutes, the instance has not stopped, post a request for help in the [Amazon EC2 forum](https://forums.aws.amazon.com/forum.jspa?forumID=30)\. To help expedite a resolution, include the instance ID, and describe the steps that you've already taken\. Alternatively, if you have a support plan, create a technical support case in the [Support Center](https://console.aws.amazon.com/support/home#/)\.
 
@@ -71,6 +97,7 @@ To attempt to resolve the problem while you are waiting for assistance from the 
 1. Select the stuck instance, and choose **Actions**, **Instance State**, **Terminate**\. If the instance also gets stuck terminating, Amazon EC2 automatically forces it to terminate within a few hours\.
 
 ------
+#### [ AWS CLI ]
 
 **To create a replacement instance using the CLI**
 
@@ -94,7 +121,9 @@ To attempt to resolve the problem while you are waiting for assistance from the 
    aws ec2 terminate-instances --instance-ids i-1234567890abcdef0
    ```
 
-If you are unable to create an AMI from the instance as described in the previous procedures, you can set up a replacement instance as follows:
+------
+
+If you are unable to create an AMI from the instance as described in the previous procedure, you can set up a replacement instance as follows:
 
 **\(Alternate\) To create a replacement instance using the console**
 

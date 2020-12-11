@@ -12,8 +12,9 @@ If you require high processing capability, you'll benefit from using accelerated
 + [Instance performance](#gpu-instance-performance)
 + [Network performance](#gpu-network-performance)
 + [Instance features](#gpu-instances-features)
-+ [Release notes](#gpu-instance-current-limitations)
++ [Release notes](#gpu-instance-release-notes)
 + [Installing NVIDIA drivers on Linux instances](install-nvidia-driver.md)
++ [Install AMD drivers on Linux instances](install-amd-driver.md)
 + [Activate NVIDIA GRID Virtual Applications](activate_grid.md)
 + [Optimizing GPU settings](optimize_gpu.md)
 
@@ -21,32 +22,34 @@ If you require high processing capability, you'll benefit from using accelerated
 
 GPU\-based instances provide access to NVIDIA GPUs with thousands of compute cores\. You can use these instances to accelerate scientific, engineering, and rendering applications by leveraging the CUDA or Open Computing Language \(OpenCL\) parallel computing frameworks\. You can also use them for graphics applications, including game streaming, 3\-D application streaming, and other graphics workloads\.
 <a name="g4-instances"></a>
-**G4 instances**  
-G4 instances use NVIDIA Tesla GPUs and provide a cost\-effective, high\-performance platform for general purpose GPU computing using the CUDA or machine learning frameworks along with graphics applications using DirectX or OpenGL\. G4 instances provide high\- bandwidth networking, powerful half and single\-precision floating\-point capabilities, along with INT8 and INT4 precisions\. Each GPU has 16 GiB of GDDR6 memory, making G4 instances well\-suited for machine learning inference, video transcoding, and graphics applications like remote graphics workstations and game streaming in the cloud\.
+**G4ad and G4dn instances**  
+G4ad instances use AMD Radeon Pro V520 GPUs and 2nd generation AMD EPYC processors, and are well\-suited for graphics applications such as remote graphics workstations, game streaming, and rendering that leverage industry\-standard APIs such as OpenGL, DirectX, and Vulkan\. They provide up to 4 AMD Radeon Pro V520 GPUs, 64 vCPUs, 25 Gbps networking, and 2\.4 TB local NVMe\-based SSD storage\.
+
+G4dn instances use NVIDIA Tesla GPUs and provide a cost\-effective, high\-performance platform for general purpose GPU computing using the CUDA or machine learning frameworks along with graphics applications using DirectX or OpenGL\. These instances provide high\- bandwidth networking, powerful half and single\-precision floating\-point capabilities, along with INT8 and INT4 precisions\. Each GPU has 16 GiB of GDDR6 memory, making G4dn instances well\-suited for machine learning inference, video transcoding, and graphics applications like remote graphics workstations and game streaming in the cloud\.
 
 For more information, see [Amazon EC2 G4 Instances](http://aws.amazon.com/ec2/instance-types/g4/)\.
 
-G4 instances support NVIDIA GRID Virtual Workstation\. For more information, see [NVIDIA Marketplace offerings](http://aws.amazon.com/marketplace/search/results/?page=1&filters=instance_types&instance_types=g4dn.xlarge&searchTerms=NVIDIA%20GRID)\.
+G4dn instances support NVIDIA GRID Virtual Workstation\. For more information, see [NVIDIA Marketplace offerings](http://aws.amazon.com/marketplace/search/results/?page=1&filters=instance_types&instance_types=g4dn.xlarge&searchTerms=NVIDIA%20GRID)\.
 <a name="g3-instances"></a>
 **G3 instances**  
-G3 instances use NVIDIA Tesla M60 GPUs and provide a cost\-effective, high\-performance platform for graphics applications using DirectX or OpenGL\. G3 instances also provide NVIDIA GRID Virtual Workstation features, such as support for four monitors with resolutions up to 4096x2160, and NVIDIA GRID Virtual Applications\. G3 instances are well\-suited for applications such as 3D visualizations, graphics\-intensive remote workstations, 3D rendering, video encoding, virtual reality, and other server\-side graphics workloads requiring massively parallel processing power\. 
+These instances use NVIDIA Tesla M60 GPUs and provide a cost\-effective, high\-performance platform for graphics applications using DirectX or OpenGL\. G3 instances also provide NVIDIA GRID Virtual Workstation features, such as support for four monitors with resolutions up to 4096x2160, and NVIDIA GRID Virtual Applications\. G3 instances are well\-suited for applications such as 3D visualizations, graphics\-intensive remote workstations, 3D rendering, video encoding, virtual reality, and other server\-side graphics workloads requiring massively parallel processing power\. 
 
 For more information, see [Amazon EC2 G3 Instances](http://aws.amazon.com/ec2/instance-types/g3/)\.
 
 G3 instances support NVIDIA GRID Virtual Workstation and NVIDIA GRID Virtual Applications\. To activate either of these features, see [Activate NVIDIA GRID Virtual Applications](activate_grid.md)\.
 <a name="g2-instances"></a>
 **G2 instances**  
-G2 instances use NVIDIA GRID K520 GPUs and provide a cost\-effective, high\-performance platform for graphics applications using DirectX or OpenGL\. NVIDIA GRID GPUs also support NVIDIA’s fast capture and encode API operations\. Example applications include video creation services, 3D visualizations, streaming graphics\-intensive applications, and other server\-side graphics workloads\.
+These instances use NVIDIA GRID K520 GPUs and provide a cost\-effective, high\-performance platform for graphics applications using DirectX or OpenGL\. NVIDIA GRID GPUs also support NVIDIA’s fast capture and encode API operations\. Example applications include video creation services, 3D visualizations, streaming graphics\-intensive applications, and other server\-side graphics workloads\.
 <a name="p4-instances"></a>
-**P4 instances**  
-P4 instances use NVIDIA A100 GPUs and provide a high\-performance platform for machine learning and HPC workloads\. P4 instances offer 400 Gbps of aggregate network bandwidth throughput and support, Elastic Fabric Adapter \(EFA\)\. They are the first EC2 instances to provide multiple network cards\.
+**P4d instances**  
+These instances use NVIDIA A100 GPUs and provide a high\-performance platform for machine learning and HPC workloads\. P4d instances offer 400 Gbps of aggregate network bandwidth throughput and support, Elastic Fabric Adapter \(EFA\)\. They are the first EC2 instances to provide multiple network cards\.
 
-For more information, see [Amazon EC2 P4 Instances](http://aws.amazon.com/ec2/instance-types/p4/)\.
+For more information, see [Amazon EC2 P4d Instances](http://aws.amazon.com/ec2/instance-types/p4/)\.
 
-P4 instances support NVIDIA NVSwitch GPU interconnect and NVIDIA GPUDirect RDMA\.
+P4d instances support NVIDIA NVSwitch GPU interconnect and NVIDIA GPUDirect RDMA\.
 <a name="p3-instances"></a>
 **P3 instances**  
-P3 instances use NVIDIA Tesla V100 GPUs and are designed for general purpose GPU computing using the CUDA or OpenCL programming models or through a machine learning framework\. P3 instances provide high\-bandwidth networking, powerful half, single, and double\-precision floating\-point capabilities, and up to 32 GiB of memory per GPU, which makes them ideal for deep learning, computational fluid dynamics, computational finance, seismic analysis, molecular modeling, genomics, rendering, and other server\-side GPU compute workloads\. Tesla V100 GPUs do not support graphics mode\.
+These instances use NVIDIA Tesla V100 GPUs and are designed for general purpose GPU computing using the CUDA or OpenCL programming models or through a machine learning framework\. P3 instances provide high\-bandwidth networking, powerful half, single, and double\-precision floating\-point capabilities, and up to 32 GiB of memory per GPU, which makes them ideal for deep learning, computational fluid dynamics, computational finance, seismic analysis, molecular modeling, genomics, rendering, and other server\-side GPU compute workloads\. Tesla V100 GPUs do not support graphics mode\.
 
 For more information, see [Amazon EC2 P3 Instances](https://aws.amazon.com/ec2/instance-types/p3)\.
 
@@ -111,6 +114,9 @@ The following is a summary of the hardware specifications for accelerated comput
 | g3\.4xlarge | 16 | 122 | 1 | 
 | g3\.8xlarge | 32 | 244 | 2 | 
 | g3\.16xlarge | 64 | 488 | 4 | 
+| g4ad\.4xlarge | 16 | 64 | 1 | 
+| g4ad\.8xlarge | 32 | 128 | 2 | 
+| g4ad\.16xlarge | 64 | 256 | 4 | 
 | g4dn\.xlarge | 4 | 16 | 1 | 
 | g4dn\.2xlarge | 8 | 32 | 1 | 
 | g4dn\.4xlarge | 16 | 64 | 1 | 
@@ -147,10 +153,11 @@ The following is a summary of network performance for accelerated computing inst
 
 | Instance type | Network performance | Enhanced networking | 
 | --- | --- | --- | 
-|  f1\.4xlarge and smaller \| g3\.4xlarge \| p3\.2xlarge  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
+|  f1\.4xlarge and smaller \| g3\.4xlarge \| g4ad\.4xlarge \| p3\.2xlarge  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
 |  g3s\.xlarge \| g3\.8xlarge \| p2\.8xlarge \| p3\.8xlarge  | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
+| g4ad\.8xlarge | 15 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  g4dn\.4xlarge and smaller  \| inf1\.2xlarge and smaller  | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
-|  f1\.16xlarge \| g3\.16xlarge \| inf1\.6xlarge \|  p2\.16xlarge \| p3\.16xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  f1\.16xlarge \| g3\.16xlarge \| g4ad\.16xlarge \| inf1\.6xlarge \|  p2\.16xlarge \| p3\.16xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  g4dn\.8xlarge \| g4dn\.12xlarge \| g4dn\.16xlarge  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
 | g4dn\.metal \| inf1\.24xlarge \| p3dn\.24xlarge | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
 | p4d\.24xlarge | 4x100 Gbps | [ENA](enhanced-networking-ena.md) | 
@@ -166,11 +173,12 @@ The following is a summary of features for accelerated computing instances\.
 | --- | --- | --- | --- | --- | 
 | G2 | No | No | SSD | Yes | 
 | G3 | Yes | No | No | Yes | 
-| G4 | No | Yes | NVMe \* | Yes | 
+| G4ad | No | Yes | NVMe \* | Yes | 
+| G4dn | No | Yes | NVMe \* | Yes | 
 | Inf1 | Yes | No | No | Yes | 
 | P2 | Yes | No | No | Yes | 
 | P3 |  24xlarge: No All other sizes: Yes  |  24xlarge: Yes All other sizes: No  | 24xlarge: NVMe \* | Yes | 
-| P4 | No | Yes | NVMe \* | Yes | 
+| P4d | No | Yes | NVMe \* | Yes | 
 | F1 | No | No | NVMe \* | Yes | 
 
 **\*** The root device volume must be an Amazon EBS volume\.
@@ -180,7 +188,7 @@ For more information, see the following:
 + [Amazon EC2 instance store](InstanceStorage.md)
 + [Placement groups](placement-groups.md)
 
-## Release notes<a name="gpu-instance-current-limitations"></a>
+## Release notes<a name="gpu-instance-release-notes"></a>
 + You must launch the instance using an HVM AMI\.
 + Instances built on the [Nitro System](instance-types.md#ec2-nitro-instances) have the following requirements:
   + [NVMe drivers](nvme-ebs-volumes.md) must be installed
