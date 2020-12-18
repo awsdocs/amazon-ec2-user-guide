@@ -35,6 +35,8 @@ You can use a tool such as cURL, as shown in the following example\.
 
 ------
 
+Note that if querying IMDSv2 inside a docker container results in a long delay you might need to set http_put_response_hop_limit to 2.
+
 You can also download the [Instance Metadata Query tool](https://aws.amazon.com/code/ec2-instance-metadata-query-tool/), which allows you to query the instance metadata using Instance Metadata Service Version 1 without having to enter the full URI or category names\.
 
 ## Responses and error messages<a name="instance-metadata-returns"></a>
