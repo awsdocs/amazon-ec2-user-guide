@@ -1161,6 +1161,8 @@ In the following policy, users do not have to specify tags in the request, but i
 
 To disallow anyone called tag on create for RunInstances
 
+
+
 ```
 {
     "Version": "2012-10-17",
@@ -1191,6 +1193,8 @@ To disallow anyone called tag on create for RunInstances
     ]
 }
 ```
+
+
 
 Only allow specific tags for spot\-instances\-request\. Surprise inconsistency number 2 comes into play here\. Under normal circumstances, specifying no tags will result in Unauthenticated\. In the case of spot\-instances\-request, this policy will not be evaluated if there are no spot\-instances\-request tags, so a non\-tag Spot on Run request will succeed\. 
 

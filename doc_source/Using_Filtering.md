@@ -54,24 +54,24 @@ For example, you can search the **Instance state** attribute for all of your ins
 
 You can use the following techniques to enhance or refine your searches:
 
-Inverse search  
+**Inverse search**  
 Inverse searches let you search for resources that do **not** match a specified value\. Inverse searches are performed by prefixing the search keyword with the exclamation mark \(\!\) character\. For example, to list all instances that are **not** assigned the security group named `launch-wizard-1`, search by the **Security group name** attribute, and for the keyword, enter `!launch-wizard-1`\.  
 Inverse search is supported with keyword searches and attribute searches on client filters only\. It is not supported with attribute searches on API filters\.
 
-Partial search  
+**Partial search**  
 With partial searches, you can search for partial string values\. To perform a partial search, enter only a part of the keyword that you want to search for\. For example, to search for all `t2.micro`, `t2.small`, and `t2.medium` instances, search by the **Instance Type** attribute, and for the keyword, enter `t2`\.  
 Partial search is supported with keyword searches and attribute searches on client filters only\. It is not supported with attribute searches on API filters\.
 
-Regular expression search  
+**Regular expression search**  
 To use regular expression searches, you must enable **Use regular expression matching** in the Preferences\.  
 Regular expressions are useful when you need to match the values in a field with a specific pattern\. For example, to search for a value that starts with `s`, search for `^s`\. To search for a value that ends with `xyz`, search for `xyz$`\. Or to search for a value that starts with a number that is followed by one or more characters, search for `[0-9]+.*`\. Regular expression searches are not case\-sensitive\.   
 Regular expression search is supported with keyword searches and attribute searches on client filters only\. It is not supported with attribute searches on API filters\.
 
-Wildcard search  
+**Wildcard search**  
 Use the `*` wildcard to match zero or more characters\. Use the `?` wildcard to match zero or one character\. For example, if you have a data set with the following values: prod, prods, and production; "`prod*`" matches all values, whereas "`prod?`" matches only `prod` and `prods`\. To use the literals values, escape them with a backslash \(\\\)\. For example, "`prod\*`" would match prod\*\.  
 Wildcard search is supported with attribute searches on API filters only\. It is not supported with keyword searches and attribute searches on client filters only\. 
 
-Combining searches  
+**Combining searches**  
 In general, multiple filters with the same attribute are automatically joined with `OR`\. For example, searching for `Instance State : Running` and `Instance State : Stopped` returns all instances that are either running OR stopped\. To join search with `AND`, search across different attributes\. For example, searching for `Instance State : Running` and `Instance Type : c4.large` returns only instances that are of type `c4.large` AND that are in the stopped state\.
 
 #### Old console<a name="console-filters-old"></a>

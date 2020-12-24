@@ -36,7 +36,7 @@ When you create an EBS volume, it is automatically replicated within its Availab
 
 If you attach multiple volumes to a device that you have named, you can stripe data across the volumes for increased I/O and throughput performance\.
 
-You can attach an `io1` EBS volume to up to 16 Nitro\-based instances\. For more information, see [Attaching a volume to multiple instances with Amazon EBS Multi\-Attach](ebs-volumes-multi.md)\. Otherwise, you can attach an EBS volume to a single instance\.
+You can attach `io1` and `io2` EBS volumes to up to 16 Nitro\-based instances\. For more information, see [Attaching a volume to multiple instances with Amazon EBS Multi\-Attach](ebs-volumes-multi.md)\. Otherwise, you can attach an EBS volume to a single instance\.
 
 You can get monitoring data for your EBS volumes, including root device volumes for EBS\-backed instances, at no additional charge\. For more information about monitoring metrics, see [Amazon CloudWatch metrics for Amazon EBS](using_cloudwatch_ebs.md)\. For information about tracking the status of your volumes, see [Amazon CloudWatch Events for Amazon EBS](ebs-cloud-watch-events.md)\.
 

@@ -38,6 +38,7 @@ The following table lists the checksums for recent versions of EFA\.
 
 | Version | Download URL | Checksums | 
 | --- | --- | --- | 
+| EFA 1\.11\.0 |  https://efa\-installer\.amazonaws\.com/aws\-efa\-installer\-1\.11\.0\.tar\.gz  |  **MD5: **`7d9058e010ad65bf2e14259214a36949` **SHA256: **`7891f6d45ae33e822189511c4ea1d14c9d54d000f6696f97be54e915ce2c9dfa`  | 
 | EFA 1\.10\.1 |  https://efa\-installer\.amazonaws\.com/aws\-efa\-installer\-1\.10\.1\.tar\.gz  |  **MD5: **`78521d3d668be22976f46c6fecc7b730` **SHA256: **`61564582de7320b21de319f532c3a677d26cc46785378eb3b95c636506b9bcb4`  | 
 | EFA 1\.10\.0 |  https://efa\-installer\.amazonaws\.com/aws\-efa\-installer\-1\.10\.0\.tar\.gz  |  **MD5: **`46f73f5a7afe41b4bb918c81888fefa9` **SHA256: **`136612f96f2a085a7d98296da0afb6fa807b38142e2fc0c548fa986c41186282`  | 
 | EFA 1\.9\.5 |  https://efa\-installer\.amazonaws\.com/aws\-efa\-installer\-1\.9\.5\.tar\.gz  |  **MD5: **`95edb8a209c18ba8d250409846eb6ef4` **SHA256: **`a4343308d7ea4dc943ccc21bcebed913e8868e59bfb2ac93599c61a7c87d7d25`  | 

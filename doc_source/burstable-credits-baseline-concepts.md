@@ -25,7 +25,7 @@ The following table lists the burstable performance instance types, the rate at 
 
 |  Instance type  |  CPU credits earned per hour  |  Maximum earned credits that can be accrued\*  |  vCPUs  |  Baseline utilization per vCPU  | 
 | --- | --- | --- | --- | --- | 
-|  **T2**  |   |   |   |   | 
+|  **T2**  |    |    |    |    | 
 | t2\.nano |  3  |  72  |  1  |  5%  | 
 | t2\.micro |  6  |  144  |  1  |  10%  | 
 | t2\.small |  12  |  288  |  1  |  20%  | 
@@ -33,7 +33,7 @@ The following table lists the burstable performance instance types, the rate at 
 | t2\.large |  36  |  864  |  2  |  30%\*\*  | 
 | t2\.xlarge |  54  |  1296  |  4  |  22\.5%\*\*  | 
 | t2\.2xlarge |  81\.6  |  1958\.4  |  8  |  17%\*\*  | 
-|  **T3**  |   |   |   |   | 
+|  **T3**  |    |    |    |    | 
 | t3\.nano |  6  |  144  |  2  |  5%\*\*  | 
 | t3\.micro |  12  |  288  |  2  |  10%\*\*  | 
 | t3\.small |  24  |  576  |  2  |  20%\*\*  | 
@@ -41,7 +41,7 @@ The following table lists the burstable performance instance types, the rate at 
 | t3\.large |  36  |  864  |  2  |  30%\*\*  | 
 | t3\.xlarge |  96  |  2304  |  4  |  40%\*\*  | 
 | t3\.2xlarge |  192  |  4608  |  8  |  40%\*\*  | 
-|  **T3a**  |   |   |   |   | 
+|  **T3a**  |    |    |    |    | 
 | t3a\.nano |  6  |  144  |  2  |  5%\*\*  | 
 | t3a\.micro |  12  |  288  |  2  |  10%\*\*  | 
 | t3a\.small |  24  |  576  |  2  |  20%\*\*  | 

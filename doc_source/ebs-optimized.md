@@ -91,6 +91,14 @@ The following table lists the instance types that support EBS optimization and E
 | c6gd\.12xlarge | 14,250 | 1,781\.25 | 50,000 | 
 | c6gd\.16xlarge | 19,000 | 2,375 | 80,000 | 
 | c6gd\.metal | 19,000 | 2,375 | 80,000 | 
+| c6gn\.medium \* | 9,500 | 1,187\.5 | 40,000 | 
+| c6gn\.large \* | 9,500 | 1,187\.5 | 40,000 | 
+| c6gn\.xlarge \* | 9,500 | 1,187\.5 | 40,000 | 
+| c6gn\.2xlarge \* | 9,500 | 1,187\.5 | 40,000 | 
+| c6gn\.4xlarge | 9,500 | 1,187\.5 | 40,000 | 
+| c6gn\.8xlarge | 19,000 | 2,375 | 80,000 | 
+| c6gn\.12xlarge | 28,500 | 3,562\.5 | 120,000 | 
+| c6gn\.16xlarge | 38,000 | 4,750 | 160,000 | 
 | d2\.xlarge | 750 | 93\.75 | 6,000 | 
 | d2\.2xlarge | 1,000 | 125 | 8,000 | 
 | d2\.4xlarge | 2,000 | 250 | 16,000 | 
@@ -393,6 +401,10 @@ The following table lists the instance types that support EBS optimization and E
 | c6gd\.large | 630 | 78\.75 | 3,600 | 
 | c6gd\.xlarge | 1,188 | 148\.5 | 6,000 | 
 | c6gd\.2xlarge | 2,375 | 296\.875 | 12,000 | 
+| c6gn\.medium | 760 | 95 | 2,500 | 
+| c6gn\.large | 1,235 | 154\.375 | 5,000 | 
+| c6gn\.xlarge | 1,900 | 237\.5 | 10,000 | 
+| c6gn\.2xlarge | 4,750 | 593\.75 | 20,000 | 
 | d3\.xlarge | 850 | 106\.25 | 5,000 | 
 | d3\.2xlarge | 1,700 | 212\.5 | 10,000 | 
 | d3en\.large | 425 | 53\.125 | 2,500 | 

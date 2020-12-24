@@ -373,3 +373,4 @@ To get details about an individual block device in the block device mapping, app
 ------
 
 The instance type determines the number of instance store volumes that are available to the instance\. If the number of instance store volumes in a block device mapping exceeds the number of instance store volumes available to an instance, the additional volumes are ignored\. To view the instance store volumes for your instance, run the lsblk command\. To learn how many instance store volumes are supported by each instance type, see [Instance store volumes](InstanceStorage.md#instance-store-volumes)\.
+

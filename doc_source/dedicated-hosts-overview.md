@@ -84,9 +84,13 @@ The price for a Dedicated Host varies by payment option\.
 
 ### On\-Demand Dedicated Hosts<a name="on-demand-dedicated-hosts"></a>
 
+
+
 On\-Demand billing is automatically activated when you allocate a Dedicated Host to your account\.
 
 The On\-Demand price for a Dedicated Host varies by instance family and Region\. You pay per second \(with a minimum of 60 seconds\) for active Dedicated Host, regardless of the quantity or the size of instances that you choose to launch on it\. For more information about On\-Demand pricing, see [Amazon EC2 Dedicated Hosts On\-Demand Pricing](http://aws.amazon.com/ec2/dedicated-hosts/pricing/#on-demand)\.
+
+
 
 You can release an On\-Demand Dedicated Host at any time to stop accruing charges for it\. For information about releasing a Dedicated Host, see [Releasing Dedicated Hosts](how-dedicated-hosts-work.md#dedicated-hosts-releasing)\.
 

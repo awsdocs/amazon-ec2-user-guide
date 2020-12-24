@@ -41,7 +41,7 @@ You can launch a Mac instance using the AWS Management Console as described in t
 
 1. Choose **Allocate Dedicated Host** and then do the following:
 
-   1. For **Instance family**, choose **mac1**\.
+   1. For **Instance family**, choose **mac1**\. If **mac1** doesn’t appear in the list, it’s not supported in the currently selected Region\.
 
    1. For **Support multiple instance types**, clear **Enable**\. For **Instance type**, select **mac1\.metal**\.
 

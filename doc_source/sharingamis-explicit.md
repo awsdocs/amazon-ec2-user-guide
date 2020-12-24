@@ -6,6 +6,8 @@ AMIs are a regional resource\. Therefore, sharing an AMI makes it available in t
 
 There is no limit to the number of AWS accounts with which an AMI can be shared\. User\-defined tags that you attach to a shared AMI are available only to your AWS account and not to the other accounts that the AMI is shared with\.
 
+
+
 ## Sharing an AMI \(console\)<a name="sharingamis-console"></a>
 
 **To grant explicit launch permissions using the console**

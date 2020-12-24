@@ -1,8 +1,8 @@
 # Working with security groups<a name="working-with-security-groups"></a>
 
-You can assign a security group to an instance when you launch the instance\. When you add or remove rules, those changes are automatically applied to all instances to which you've assigned the security group\.
+You can assign a security group to an instance when you launch the instance\. When you add or remove rules, those changes are automatically applied to all instances to which you've assigned the security group\. For more information, see [Assigning a security group to an instance](#assigning-security-group)\.
 
-After you launch an instance, you can change its security groups\. For more information, see [Changing an Instance's Security Groups](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html#SG_Changing_Group_Membership) in the *Amazon VPC User Guide*\.
+After you launch an instance, you can change its security groups\. For more information, see [Changing an instance's security group](#changing-security-group)\.
 
 You can create, view, update, and delete security groups and security group rules using the Amazon EC2 console and the command line tools\.
 
@@ -11,9 +11,11 @@ You can create, view, update, and delete security groups and security group rule
 + [Copying a security group](#copy-security-group)
 + [Viewing your security groups](#describing-security-group)
 + [Adding rules to a security group](#adding-security-group-rule)
-+ [Updating Security Group Rules](#updating-security-group-rules)
++ [Updating security group rules](#updating-security-group-rules)
 + [Deleting rules from a security group](#deleting-security-group-rule)
 + [Deleting a security group](#deleting-security-group)
++ [Assigning a security group to an instance](#assigning-security-group)
++ [Changing an instance's security group](#changing-security-group)
 
 ## Creating a security group<a name="creating-security-group"></a>
 
@@ -80,6 +82,8 @@ You can create a copy of a security group using one of the following methods\.
 
 ------
 #### [ New console ]
+
+
 
 **To copy a security group**
 
@@ -149,7 +153,7 @@ Use one of the following commands\.
 
 ## Adding rules to a security group<a name="adding-security-group-rule"></a>
 
-When you add a rule to a security group, the new rule is automatically applied to any instances that are associated with the security group\. There might be a short delay before the rule is applied\. For more information about choosing security group rules for specific types of access, see [Security group rules reference](security-group-rules-reference.md)\. For security group rule quotas, see [Amazon VPC quotas](https://docs.aws.amazon.com/vpc/latest/userguide/amazon-vpc-limits.html) in the *Amazon VPC User Guide*\. 
+When you add a rule to a security group, the new rule is automatically applied to any instances that are associated with the security group\. There might be a short delay before the rule is applied\. For more information about choosing security group rules for specific types of access, see [Security group rules for different use cases](security-group-rules-reference.md)\. For security group rule quotas, see [Amazon VPC quotas](https://docs.aws.amazon.com/vpc/latest/userguide/amazon-vpc-limits.html) in the *Amazon VPC User Guide*\. 
 
 You can add rules to a security group using one of the following methods\.
 
@@ -231,7 +235,7 @@ You can add rules to a security group using one of the following methods\.
      + **My IP**: automatically adds the public IPv4 address of your local computer\.
    + For **Description**, you can optionally specify a description for the rule\.
 
-   For more information about the types of rules that you can add, see [Security group rules reference](security-group-rules-reference.md)\.
+   For more information about the types of rules that you can add, see [Security group rules for different use cases](security-group-rules-reference.md)\.
 
 1. Choose **Save**\.
 
@@ -266,7 +270,7 @@ Use one of the following commands\.
 
 ------
 
-## Updating Security Group Rules<a name="updating-security-group-rules"></a>
+## Updating security group rules<a name="updating-security-group-rules"></a>
 
 You can update a security group rule using one of the following methods\.
 
@@ -338,7 +342,7 @@ You can delete rules from a security group using one of the following methods\.
 
 1. Select the security group to update, choose **Actions**, and then choose **Edit inbound rules** to remove an inbound rule or **Edit outbound rules** to remove an outbound rule\.
 
-1. Choose the remove button to the right of the rule to delete\.
+1. Choose the **Delete** button to the right of the rule to delete\.
 
 1. Choose **Preview changes**, **Confirm**\.
 
@@ -410,5 +414,60 @@ You can't delete a security group that is associated with an instance\. You can'
 Use one of the following commands\.
 + [delete\-security\-group](https://docs.aws.amazon.com/cli/latest/reference/ec2/delete-security-group.html) \(AWS CLI\)
 + [Remove\-EC2SecurityGroup](https://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2SecurityGroup.html) \(AWS Tools for Windows PowerShell\)
+
+------
+
+## Assigning a security group to an instance<a name="assigning-security-group"></a>
+
+You can assign one or more security groups to an instance when you launch the instance\. You can also specify one or more security groups in a launch template\. The security groups will be assigned to all instances that are launched using the launch template\.
++ To assign a security group to an instance when you launch the instance, see [Step 6: Configure Security Group](launching-instance.md#step-6-configure-security-group)\.
++ To specify a security group in a launch template, see Step 6 of [Creating a new launch template using parameters you define](ec2-launch-templates.md#create-launch-template-define-parameters)\.
+
+## Changing an instance's security group<a name="changing-security-group"></a>
+
+After you launch an instance, you can change its security groups by adding or removing security groups\. You can change the security groups when the instance is in the `running` or `stopped` state\.
+
+------
+#### [ New console ]
+
+**To change the security groups for an instance using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances**\.
+
+1. Select your instance, and then choose **Actions**, **Security**, **Change security groups**\.
+
+1. For **Associated security groups**, select a security group from the list and choose **Add security group**\.
+
+   To remove an already associated security group, choose **Remove** for that security group\.
+
+1. Choose **Save**\.
+
+------
+#### [ Old console ]
+
+**To change the security groups for an instance using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Instances**\.
+
+1. Select your instance, and then choose **Actions**, **Networking**, **Change Security Groups**\.
+
+1. To add one or more security groups, select its check box\.
+
+   To remove an already associated security group, clear its check box\.
+
+1. Choose **Assign Security Groups**\.
+
+------
+#### [ Command line ]
+
+**To change the security groups for an instance using the command line**
+
+Use one of the following commands\.
++ [modify\-instance\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) \(AWS CLI\)
++ [Edit\-EC2InstanceAttribute](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2InstanceAttribute.html) \(AWS Tools for Windows PowerShell\)
 
 ------

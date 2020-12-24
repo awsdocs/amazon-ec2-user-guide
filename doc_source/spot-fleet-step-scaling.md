@@ -11,8 +11,8 @@ When an alarm is triggered, the automatic scaling process calculates the new tar
 
 When a Spot Fleet terminates an instance because the target capacity was decreased, the instance receives a Spot Instance interruption notice\.
 
-**Limitation**
-+ The Spot Fleet request must have a request type of `maintain`\. Automatic scaling is not supported for one\-time requests or Spot blocks\.
+**Limitation**  
+The Spot Fleet request must have a request type of `maintain`\. Automatic scaling is not supported for requests of type `request`, or Spot blocks\.
 
 **Prerequisites**
 + Consider which CloudWatch metrics are important to your application\. You can create CloudWatch alarms based on metrics provided by AWS or your own custom metrics\.

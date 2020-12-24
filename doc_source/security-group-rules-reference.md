@@ -1,4 +1,4 @@
-# Security group rules reference<a name="security-group-rules-reference"></a>
+# Security group rules for different use cases<a name="security-group-rules-reference"></a>
 
 You can create a security group and add rules that reflect the role of the instance that's associated with the security group\. For example, an instance that's configured as a web server needs security group rules that allow inbound HTTP and HTTPS access\. Likewise, a database instance needs rules that allow access for the type of database, such as access over port 3306 for MySQL\.
 

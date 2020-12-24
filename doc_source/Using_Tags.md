@@ -62,7 +62,7 @@ The following table describes the Amazon EC2 resources that can be tagged, and t
 |  EBS volume  |  Yes  | Yes | 
 |  EC2 Fleet  |  Yes  |  Yes  | 
 |  Egress\-only internet gateway  |  Yes  | Yes | 
-|  Elastic IP address  |  Yes  | No | 
+|  Elastic IP address  |  Yes  | Yes | 
 |  Elastic Graphics accelerator  |  Yes  | No | 
 |  Instance  |  Yes  | Yes | 
 |  Instance store volume  |  N/A  | N/A | 

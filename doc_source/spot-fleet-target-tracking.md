@@ -10,8 +10,8 @@ When a Spot Fleet terminates an instance because the target capacity was decreas
 
 Do not edit or delete the CloudWatch alarms that Spot Fleet manages for a target tracking scaling policy\. Spot Fleet deletes the alarms automatically when you delete the target tracking scaling policy\.
 
-**Limitation**
-+ The Spot Fleet request must have a request type of `maintain`\. Automatic scaling is not supported for one\-time requests or Spot blocks\.
+**Limitation**  
+The Spot Fleet request must have a request type of `maintain`\. Automatic scaling is not supported for requests of type `request`, or Spot blocks\.
 
 **To configure a target tracking policy \(console\)**
 

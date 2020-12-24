@@ -11,7 +11,7 @@ The process for extending a file system on Linux is as follows:
 
 1. Use a file system\-specific command to resize each file system to the new volume capacity\.
 
-For information about extending a Windows file system, see [Extending a Windows File System after Resizing a Volume](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/recognize-expanded-volume-windows.html) in the *Amazon EC2 User Guide for Windows Instances*\.
+For information about extending a Windows file system, see [Extending a Windows file system after resizing a volume](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/recognize-expanded-volume-windows.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
 The following examples walk you through the process of extending a Linux file system\. For file systems and partitioning schemes other than the ones shown here, refer to the documentation for those file systems and partitioning schemes for instructions\.
 
@@ -64,7 +64,7 @@ For this example, suppose that you have an instance built on the [Nitro System](
    [ec2-user ~]$ sudo growpart /dev/nvme0n1 1
    ```
 
-1. \(Optional\) Use the lsblk command again to verify that the partition reflects the increased volume size\.
+1. \(Optional\) To verify that the partition reflects the increased volume size, use the lsblk command again\.
 
    ```
    [ec2-user ~]$ lsblk
@@ -75,7 +75,7 @@ For this example, suppose that you have an instance built on the [Nitro System](
    └─nvme0n1p128 259:3    0   1M  0 part
    ```
 
-1. Use the df \-h command to verify the size of the file system for each volume\. In this example output, both file systems reflect the original volume size, 8 GB\.
+1. To verify the size of the file system for each volume, use the df \-h command\. In this example output, both file systems reflect the original volume size, 8 GB\.
 
    ```
    [ec2-user ~]$ df -h
@@ -85,29 +85,28 @@ For this example, suppose that you have an instance built on the [Nitro System](
    ...
    ```
 
-1. \[XFS file system\] Use the xfs\_growfs command to extend the file system on each volume\. In this example, `/` and `/data` are the volume mount points shown in the output for df \-h\.
+1. To extend the file system on each volume, use the correct command for your file system, as follows:
+   + \[XFS file system\] To extend the file system on each volume, use the xfs\_growfs command\. In this example, `/` and `/data` are the volume mount points shown in the output for df \-h\.
 
-   ```
-   [ec2-user ~]$ sudo xfs_growfs -d /
-   [ec2-user ~]$ sudo xfs_growfs -d /data
-   ```
+     ```
+     [ec2-user ~]$ sudo xfs_growfs -d /
+     [ec2-user ~]$ sudo xfs_growfs -d /data
+     ```
 
-   If the XFS tools are not already installed, you can install them as follows\.
+     If the XFS tools are not already installed, you can install them as follows\.
 
-   ```
-   [ec2-user ~]$ sudo yum install xfsprogs
-   ```
+     ```
+     [ec2-user ~]$ sudo yum install xfsprogs
+     ```
+   + \[ext4 file system\] To extend the file system on each volume, use the resize2fs command\.
 
-1. \[ext4 file system\] Use the resize2fs command to extend the file system on each volume\.
+     ```
+     [ec2-user ~]$ sudo resize2fs /dev/nvme0n1p1
+     [ec2-user ~]$ sudo resize2fs /dev/nvme1n1
+     ```
+   + \[Other file system\] To extend the file system on each volume, refer to the documentation for your file system for instructions\.
 
-   ```
-   [ec2-user ~]$ sudo resize2fs /dev/nvme0n1p1
-   [ec2-user ~]$ sudo resize2fs /dev/nvme1n1
-   ```
-
-1. \[Other file system\] Refer to the documentation for your file system for instructions\.
-
-1. \(Optional\) Use the df \-h command again to verify that each file system reflects the increased volume size\.
+1. \(Optional\) To verify that each file system reflects the increased volume size, use the df \-h command again\.
 
    ```
    [ec2-user ~]$ df -h
@@ -163,7 +162,7 @@ For this example, suppose that you have resized the boot volume of an instance, 
    [ec2-user ~]$ sudo growpart /dev/xvdf 1
    ```
 
-1. \(Optional\) Use the lsblk command again to verify that the partitions reflect the increased volume size\.
+1. \(Optional\) To verify that the partitions reflect the increased volume size, use the lsblk command again\.
 
    ```
    [ec2-user ~]$ lsblk
@@ -174,7 +173,7 @@ For this example, suppose that you have resized the boot volume of an instance, 
    └─xvdf1 202:81   0  30G  0 part /data
    ```
 
-1. Use the df \-h command to verify the size of the file system for each volume\. In this example output, both file systems reflect the original volume size, 8 GB\.
+1. To verify the size of the file system for each volume, use the df \-h command\. In this example output, both file systems reflect the original volume size, 8 GB\.
 
    ```
    [ec2-user ~]$ df -h
@@ -184,29 +183,28 @@ For this example, suppose that you have resized the boot volume of an instance, 
    ...
    ```
 
-1. \[XFS volumes\] Use the xfs\_growfs command to extend the file system on each volume\. In this example, `/` and `/data` are the volume mount points shown in the output for df \-h\.
+1. To extend the file system on each volume, use the correct command for your file system, as follows:
+   + \[XFS volumes\] To extend the file system on each volume, use the xfs\_growfs command\. In this example, `/` and `/data` are the volume mount points shown in the output for df \-h\.
 
-   ```
-   [ec2-user ~]$ sudo xfs_growfs -d /
-   [ec2-user ~]$ sudo xfs_growfs -d /data
-   ```
+     ```
+     [ec2-user ~]$ sudo xfs_growfs -d /
+     [ec2-user ~]$ sudo xfs_growfs -d /data
+     ```
 
-   If the XFS tools are not already installed, you can install them as follows\.
+     If the XFS tools are not already installed, you can install them as follows\.
 
-   ```
-   [ec2-user ~]$ sudo yum install xfsprogs
-   ```
+     ```
+     [ec2-user ~]$ sudo yum install xfsprogs
+     ```
+   + \[ext4 volumes\] To extend the file system on each volume, use the resize2fs command\.
 
-1. \[ext4 volumes\] Use the resize2fs command to extend the file system on each volume\.
+     ```
+     [ec2-user ~]$ sudo resize2fs /dev/xvda1
+     [ec2-user ~]$ sudo resize2fs /dev/xvdf1
+     ```
+   + \[Other file system\] To extend the file system on each volume, refer to the documentation for your file system for instructions\.
 
-   ```
-   [ec2-user ~]$ sudo resize2fs /dev/xvda1
-   [ec2-user ~]$ sudo resize2fs /dev/xvdf1
-   ```
-
-1. \[Other file system\] Refer to the documentation for your file system for instructions\.
-
-1. \(Optional\) Use the df \-h command again to verify that each file system reflects the increased volume size\.
+1. \(Optional\) To verify that each file system reflects the increased volume size, use the df \-h command again\.
 
    ```
    [ec2-user ~]$ df -h

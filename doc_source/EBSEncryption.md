@@ -302,6 +302,8 @@ For example, use the rsync command to copy the data\. In the following command, 
 
 ### Encryption outcomes<a name="ebs-volume-encryption-outcomes"></a>
 
+
+
 The following table describes the encryption outcome for each possible combination of settings\.
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html)

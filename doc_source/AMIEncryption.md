@@ -14,6 +14,8 @@ AMIs with encrypted snapshots can be shared across AWS accounts\. For more infor
 
 ## Instance\-launching scenarios<a name="AMI-encryption-launch"></a>
 
+
+
 Amazon EC2 instances are launched from AMIs using the `RunInstances` action with parameters supplied through block device mapping, either by means of the AWS Management Console or directly using the Amazon EC2 API or CLI\. For more information about block device mapping, see [Block device mapping](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html)\. For examples of controlling block device mapping from the AWS CLI, see [Launch, List, and Terminate EC2 Instances](https://docs.aws.amazon.com/cli/latest/userguide/cli-services-ec2-instances.html)\.
 
 By default, without explicit encryption parameters, a `RunInstances` action maintains the existing encryption state of an AMI's source snapshots while restoring EBS volumes from them\. If [Encryption by default](EBSEncryption.md#encryption-by-default) is enabled, all volumes created from the AMI \(whether from encrypted or unencrypted snapshots\) will be encrypted\. If encryption by default is not enabled, then the instance maintains the encryption state of the AMI\.
@@ -46,6 +48,8 @@ The following sections provide examples of launching instances from AMIs using n
 For detailed console procedures to launch an instance from an AMI, see [Launch Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/LaunchingAndUsingInstances.html)\.  
 For documentation of the `RunInstances` API, see [RunInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html)\.  
 For documentation of the `run-instances` command in the AWS Command Line Interface, see [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html)\.
+
+ 
 
 ### Encrypt a volume during launch<a name="launch1"></a>
 

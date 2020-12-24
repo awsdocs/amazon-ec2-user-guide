@@ -23,7 +23,7 @@ Only the `p3dn.24xlarge` and `p4d.24xlarge` instance types are supported\.
 
 ## Step 1: Prepare an EFA\-enabled security group<a name="nccl-start-dlami-sg"></a>
 
-An EFA requires a security group that allows all inbound and outbound traffic to and from the security group itself\. The following procedure allows all inbound and outbound traffic for testing purposes only\. For other scenarios, see [Security group rules reference](security-group-rules-reference.md)\.
+An EFA requires a security group that allows all inbound and outbound traffic to and from the security group itself\. The following procedure allows all inbound and outbound traffic for testing purposes only\. For other scenarios, see [Security group rules for different use cases](security-group-rules-reference.md)\.
 
 **To create an EFA\-enabled security group**
 

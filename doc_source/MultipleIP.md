@@ -217,7 +217,7 @@ You can assign one or more IPv6 addresses to your instance during launch or afte
 
 1. Follow the next steps in the wizard to attach volumes and tag your instance\.
 
-1. On the **Configure Security Group** page, select an existing security group or create a new one\. If you want your instance to be reachable over IPv6, ensure that your security group has rules that allow access from IPv6 addresses\. For more information, see [Security group rules reference](security-group-rules-reference.md)\. Choose **Review and Launch**\. 
+1. On the **Configure Security Group** page, select an existing security group or create a new one\. If you want your instance to be reachable over IPv6, ensure that your security group has rules that allow access from IPv6 addresses\. For more information, see [Security group rules for different use cases](security-group-rules-reference.md)\. Choose **Review and Launch**\. 
 
 1. On the **Review Instance Launch** page, review your settings, and then choose **Launch** to choose a key pair and launch your instance\. If you're new to Amazon EC2 and haven't created any key pairs, the wizard prompts you to create one\.
 

@@ -35,7 +35,8 @@ You can use a tool such as cURL, as shown in the following example\.
 
 ------
 
-Note that if querying IMDSv2 inside a docker container results in a long delay you might need to set http_put_response_hop_limit to 2.
+**Note**  
+The AWS SDKs use IMDSv2 calls by default\. If the IMDSv2 call receives no response, the SDK retries the call and, if still unsuccessful, uses IMDSv1\. This can result in a delay\. In a container environment, if the hop limit is 1, the IMDSv2 response does not return because going to the container is considered an additional network hop\. To avoid the process of falling back to IMDSv1 and the resultant delay, in a container environment we recommend that you set the hop limit to 2\. For more information, see [Configuring the instance metadata options](configuring-instance-metadata-service.md#configuring-instance-metadata-options)\.
 
 You can also download the [Instance Metadata Query tool](https://aws.amazon.com/code/ec2-instance-metadata-query-tool/), which allows you to query the instance metadata using Instance Metadata Service Version 1 without having to enter the full URI or category names\.
 

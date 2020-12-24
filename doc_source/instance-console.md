@@ -79,7 +79,7 @@ If you are unable to reach your instance via SSH or RDP, you can capture a scree
 
 1. Choose **Get instance screenshot**\.
 
-Right\-click on the image to download and save it\.
+Right\-click the image to download and save it\.
 
 **To capture a screenshot using the command line**
 

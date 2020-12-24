@@ -47,7 +47,8 @@ GPT fdisk (gdisk) version 0.8.8
 ```
 
 ## Limitations<a name="elastic-volumes-limitations"></a>
-+ Elastic Volume operations are not supported on Multi\-Attach enabled Amazon EBS volumes\.
++ You can't use Elastic Volume operations to modify the volume type of Multi\-Attach enabled `io2` volumes\.
++ You can't use Elastic Volume operations to change the volume type, size, or Provisioned IOPS of Multi\-Attach enabled `io1 `volumes\.
 + The new volume size cannot exceed the supported volume capacity\. For more information, see [Constraints on the size and configuration of an EBS volume](volume_constraints.md)\.
 + If the volume was attached before November 3, 2016 23:40 UTC, you must initialize Elastic Volumes support\. For more information, see [Initializing Elastic Volumes Support](requesting-ebs-volume-modifications.md#initialize-modification-support)\.
 + If you are using an unsupported previous\-generation instance type, or if you encounter an error while attempting a volume modification, see [Modifying an EBS volume if Elastic Volumes is not supported](requesting-ebs-volume-modifications.md#modify-volume-stop-start)\.

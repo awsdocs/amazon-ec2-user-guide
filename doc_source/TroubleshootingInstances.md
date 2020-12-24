@@ -487,8 +487,8 @@ Press enter for maintenance
 
 | Instance type  | Potential cause | 
 | --- | --- | 
-|  Amazon EBS\-backed  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstances.html)  | 
-|  Instance store\-backed  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstances.html)  | 
+|  Amazon EBS\-backed  |   [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstances.html)  | 
+|  Instance store\-backed  |   [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstances.html)  | 
 
 ### Suggested actions<a name="FilesystemGeneral-suggested-actions"></a>
 

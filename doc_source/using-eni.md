@@ -156,6 +156,14 @@ The following table lists the maximum number of network interfaces per instance 
 | c6gd\.12xlarge | 8 | 30 | 30 | 
 | c6gd\.16xlarge | 15 | 50 | 50 | 
 | c6gd\.metal | 15 | 50 | 50 | 
+| c6gn\.medium | 2 | 4 | 4 | 
+| c6gn\.large | 3 | 10 | 10 | 
+| c6gn\.xlarge | 4 | 15 | 15 | 
+| c6gn\.2xlarge | 4 | 15 | 15 | 
+| c6gn\.4xlarge | 8 | 30 | 30 | 
+| c6gn\.8xlarge | 8 | 30 | 30 | 
+| c6gn\.12xlarge | 8 | 30 | 30 | 
+| c6gn\.16xlarge | 15 | 50 | 50 | 
 | cc2\.8xlarge |  8  |  30  | IPv6 not supported | 
 | cr1\.8xlarge |  8  |  30  | IPv6 not supported | 
 | d2\.xlarge |  4  |  15  | 15 | 

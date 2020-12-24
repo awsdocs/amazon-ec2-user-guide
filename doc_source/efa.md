@@ -49,7 +49,7 @@ EFA supports the following interfaces and libraries:
 
 The following instance types support EFAs:
 + General purpose: `m5dn.24xlarge` \| `m5n.24xlarge` \| `m5zn.12xlarge` \| `m5zn.metal`
-+ Compute optimized: `c5n.18xlarge` \| `c5n.metal` 
++ Compute optimized: `c5n.18xlarge` \| `c5n.metal`  \| `c6gn.16xlarge` 
 + Memory optimized: `r5dn.24xlarge` \| `r5n.24xlarge`
 + Storage optimized: `i3en.24xlarge` \| `i3en.metal`
 + Accelerated computing: `g4dn.metal` \| `inf1.24xlarge` \| `p3dn.24xlarge` \| `p4d.24xlarge`
@@ -78,12 +78,17 @@ r5dn.24xlarge
 
 ## Supported AMIs<a name="efa-amis"></a>
 
-The following AMIs support EFAs:
+The following AMIs support EFA with Intel x86\-based instance types:
 + Amazon Linux and Amazon Linux 2
 + CentOS 7 and 8
 + RHEL 7\.6, 7\.7, 7\.8, 8\.2, and 8\.3
 + Ubuntu 16\.04, 18\.04, and 20\.04
 + SUSE Linux Enterprise 15 SP2
++ openSUSE Leap 15\.2
+
+The following AMIs support EFA with Arm\-based \(Graviton 2\) instance types:
++ Amazon Linux 2
++ Ubuntu 18\.04 and 20\.04
 + openSUSE Leap 15\.2
 
 ## EFA limitations<a name="efa-limits"></a>
@@ -93,3 +98,4 @@ EFA has the following limitations:
 + EFA OS\-bypass traffic is limited to a single subnet\. In other words, EFA traffic cannot be sent from one subnet to another\. Normal IP traffic from the EFA can be sent from one subnet to another\.
 + EFA OS\-bypass traffic is not routable\. Normal IP traffic from the EFA remains routable\.
 + The EFA must be a member of a security group that allows all inbound and outbound traffic to and from the security group itself\.
++ EFA traffic between C6gn instances and other EFA\-enabled instances is not supported\.

@@ -42,7 +42,7 @@ To ensure that your workloads always get the performance they need, switch to [U
 The following table lists the differences between launch credits and earned credits\.
 
 
-|   |  Launch credits  |  Earned credits  | 
+|    |  Launch credits  |  Earned credits  | 
 | --- | --- | --- | 
 |  **Credit earn rate**  |  T2 Standard instances get 30 launch credits per vCPU at launch or start\. If a T2 instance is switched from `unlimited` to `standard`, it does not get launch credits at the time of switching\.  |  Each T2 instance continuously earns \(at a millisecond\-level resolution\) a set rate of CPU credits per hour, depending on the instance size\. For more information about the number of CPU credits earned per instance size, see the [credit table](burstable-credits-baseline-concepts.md#burstable-performance-instances-credit-table)\.  | 
 |  **Credit earn limit**  |  The limit for receiving launch credits is 100 launches or starts of all T2 Standard instances combined per account, per Region, per rolling 24\-hour period\. New accounts may have a lower limit, which increases over time based on your usage\.  |  A T2 instance cannot accrue more credits than the CPU credit balance limit\. If the CPU credit balance has reached its limit, any credits that are earned after the limit is reached are discarded\. Launch credits do not count towards the limit\. For more information about the CPU credit balance limit for each T2 instance size, see the [credit table](burstable-credits-baseline-concepts.md#burstable-performance-instances-credit-table)\.  | 

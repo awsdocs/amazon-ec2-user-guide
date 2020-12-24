@@ -22,7 +22,7 @@ Only the `p3dn.24xlarge` and `p4d.24xlarge` instance types are supported\.
 
 ## Step 1: Prepare an EFA\-enabled security group<a name="nccl-start-base-setup"></a>
 
-An EFA requires a security group that allows all inbound and outbound traffic to and from the security group itself\. The following procedure allows all inbound and outbound traffic for testing purposes only\. For other scenarios, see [Security group rules reference](security-group-rules-reference.md)\.
+An EFA requires a security group that allows all inbound and outbound traffic to and from the security group itself\. The following procedure allows all inbound and outbound traffic for testing purposes only\. For other scenarios, see [Security group rules for different use cases](security-group-rules-reference.md)\.
 
 **To create an EFA\-enabled security group**
 
@@ -266,7 +266,7 @@ Install the EFA\-enabled kernel, EFA drivers, Libfabric, and Open MPI stack that
 1. Download the EFA software installation files\. The software installation files are packaged into a compressed tarball \(`.tar.gz`\) file\. To download the latest *stable* version, use the following command\.
 
    ```
-   $ curl -O https://efa-installer.amazonaws.com/aws-efa-installer-1.10.1.tar.gz
+   $ curl -O https://efa-installer.amazonaws.com/aws-efa-installer-1.11.0.tar.gz
    ```
 
    You can also get the latest version by replacing the version number with `latest` in the preceding command\.
@@ -298,11 +298,11 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
    1. Download the signature file and verify the signature of the EFA tarball file\.
 
       ```
-      $ wget https://efa-installer.amazonaws.com/aws-efa-installer-1.10.1.tar.gz.sig
+      $ wget https://efa-installer.amazonaws.com/aws-efa-installer-1.11.0.tar.gz.sig
       ```
 
       ```
-      $ gpg --verify ./aws-efa-installer-1.10.1.tar.gz.sig
+      $ gpg --verify ./aws-efa-installer-1.11.0.tar.gz.sig
       ```
 
       The following shows example output\.
@@ -320,7 +320,7 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
 1. Extract the files from the compressed `.tar.gz` file and navigate into the extracted directory\.
 
    ```
-   $ tar -xf aws-efa-installer-1.10.1.tar.gz
+   $ tar -xf aws-efa-installer-1.11.0.tar.gz
    ```
 
    ```

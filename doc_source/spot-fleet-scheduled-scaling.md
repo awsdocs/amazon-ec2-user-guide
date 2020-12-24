@@ -1,9 +1,11 @@
 # Scale Spot Fleet using scheduled scaling<a name="spot-fleet-scheduled-scaling"></a>
 
-Scaling based on a schedule enables you to scale your application in response to predictable changes in demand\. To use scheduled scaling, you create *scheduled actions*, which tell Spot Fleet to perform scaling activities at specific times\. When you create a scheduled action, you specify the Spot Fleet, when the scaling activity should occur, minimum capacity, and maximum capacity\. You can create scheduled actions that scale one time only or that scale on a recurring schedule\.
+Scaling based on a schedule enables you to scale your application in response to predictable changes in demand\. To use scheduled scaling, you create *scheduled actions*, which tell Spot Fleet to perform scaling activities at specific times\. When you create a scheduled action, you specify an existing Spot Fleet, when the scaling activity should occur, minimum capacity, and maximum capacity\. You can create scheduled actions that scale one time only or that scale on a recurring schedule\.
 
-**Limits**
-+ The Spot Fleet request must have a request type of `maintain`\. Automatic scaling is not supported for one\-time requests or Spot blocks\.
+You can only create a scheduled action for Spot Fleets that already exist\. You can't create a scheduled action at the same time that you create a Spot Fleet\.
+
+**Limitation**  
+The Spot Fleet request must have a request type of `maintain`\. Automatic scaling is not supported for requests of type `request`, or Spot blocks\.
 
 **To create a one\-time scheduled action**
 
@@ -11,7 +13,7 @@ Scaling based on a schedule enables you to scale your application in response to
 
 1. In the navigation pane, choose **Spot Requests**\.
 
-1. Select your Spot Fleet request and choose **Scheduled Scaling**\.
+1. Select your Spot Fleet request and choose the **Scheduled Scaling** tab near the bottom of the screen\.
 
 1. Choose **Create Scheduled Action**\.
 
@@ -31,7 +33,7 @@ Scaling based on a schedule enables you to scale your application in response to
 
 1. In the navigation pane, choose **Spot Requests**\.
 
-1. Select your Spot Fleet request and choose **Scheduled Scaling**\.
+1. Select your Spot Fleet request and choose the **Scheduled Scaling** tab near the bottom of the screen\.
 
 1. For **Recurrence**, choose one of the predefined schedules \(for example, **Every day**\), or choose **Custom** and enter a cron expression\. For more information about the cron expressions supported by scheduled scaling, see [Cron Expressions](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions) in the *Amazon CloudWatch Events User Guide*\.
 
@@ -45,7 +47,7 @@ Scaling based on a schedule enables you to scale your application in response to
 
 1. In the navigation pane, choose **Spot Requests**\.
 
-1. Select your Spot Fleet request and choose **Scheduled Scaling**\.
+1. Select your Spot Fleet request and choose the **Scheduled Scaling** tab near the bottom of the screen\.
 
 1. Select the scheduled action and choose **Actions**, **Edit**\.
 
@@ -57,7 +59,7 @@ Scaling based on a schedule enables you to scale your application in response to
 
 1. In the navigation pane, choose **Spot Requests**\.
 
-1. Select your Spot Fleet request and choose **Scheduled Scaling**\.
+1. Select your Spot Fleet request and choose the **Scheduled Scaling** tab near the bottom of the screen\.
 
 1. Select the scheduled action and choose **Actions**, **Delete**\.
 
