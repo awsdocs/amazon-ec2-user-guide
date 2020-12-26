@@ -47,8 +47,8 @@ You can also use the ethtool to retrieve the metrics for each network interface,
 
 ```
 [ec2-user ~]$ ethtool -S eth0
-bandwidth_in_allowance_exceeded: 0
-bandwidth_out_allowance_exceeded: 0
+bw_in_allowance_exceeded: 0
+bw_out_allowance_exceeded: 0
 pps_allowance_exceeded: 0
 conntrack_allowance_exceeded: 0
 linklocal_allowance_exceeded: 0
