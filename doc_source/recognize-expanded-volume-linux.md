@@ -58,7 +58,7 @@ For this example, suppose that you have an instance built on the [Nitro System](
    + The root volume, `/dev/nvme0n1`, has a partition, `/dev/nvme0n1p1`\. While the size of the root volume reflects the new size, 16 GB, the size of the partition reflects the original size, 8 GB, and must be extended before you can extend the file system\.
    + The volume `/dev/nvme1n1` has no partitions\. The size of the volume reflects the new size, 30 GB\.
 
-1. To extend the partition on the root volume, use the following growpart command\. Notice that there is a space between the device name and the partition number\.
+1. To extend the partition on the root volume, use the following growpart command (if you get a "command not found" message, install the *cloud-utils* package)\. Notice that there is a space between the device name and the partition number\.
 
    ```
    [ec2-user ~]$ sudo growpart /dev/nvme0n1 1
