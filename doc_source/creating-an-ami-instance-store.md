@@ -1,6 +1,6 @@
 # Creating an instance store\-backed Linux AMI<a name="creating-an-ami-instance-store"></a>
 
-The AMI that you specify when you launch your instance determines the type of root device volume
+The AMI that you specify when you launch your instance determines the type of root device volume.
 
 To create an instance store\-backed Linux AMI, start from an instance that you've launched from an existing instance store\-backed Linux AMI\. After you've customized the instance to suit your needs, bundle the volume and register a new AMI, which you can use to launch new instances with these customizations\.
 
