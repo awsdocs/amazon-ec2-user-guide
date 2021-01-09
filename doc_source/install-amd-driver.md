@@ -116,6 +116,11 @@ These downloads are available to AWS customers only\. By downloading, you agree 
    ```
    $ ./amdgpu-pro-install -y --opencl=pal,legacy
    ```
+   + For Ubuntu:
+
+     ```
+     $ sudo apt install linux-modules-extra-`uname -r`
+     ```
 
 1. Reboot the instance\.
 
