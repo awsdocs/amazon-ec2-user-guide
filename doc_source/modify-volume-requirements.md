@@ -8,7 +8,7 @@ Elastic Volumes are supported on the following instances:
 + All [current\-generation instances](instance-types.md#AvailableInstanceTypes)
 + The following previous\-generation instances: C1, C3, CC2, CR1, G2, I2, M1, M3, and R3
 
-If your instance type does not support Elastic Volumes, see [Modifying an EBS volume if Elastic Volumes is not supported](requesting-ebs-volume-modifications.md#modify-volume-stop-start)\.
+If your instance type does not support Elastic Volumes, see [Modify an EBS volume if Elastic Volumes is not supported](requesting-ebs-volume-modifications.md#modify-volume-stop-start)\.
 
 ## Requirements for Linux volumes<a name="linux-volumes"></a>
 
@@ -47,11 +47,12 @@ GPT fdisk (gdisk) version 0.8.8
 ```
 
 ## Limitations<a name="elastic-volumes-limitations"></a>
++ There are limits to the maximum aggregated storage that can be requested across volume modifications\. For more information, see [Amazon EBS service quotas](https://docs.aws.amazon.com/general/latest/gr/ebs-service.html#limits_ebs) in the *Amazon Web Services General Reference*\.
++ The new volume size cannot exceed the supported volume capacity\. For more information, see [Constraints on the size and configuration of an EBS volume](volume_constraints.md)\.
 + You can't use Elastic Volume operations to modify the volume type of Multi\-Attach enabled `io2` volumes\.
 + You can't use Elastic Volume operations to change the volume type, size, or Provisioned IOPS of Multi\-Attach enabled `io1 `volumes\.
-+ The new volume size cannot exceed the supported volume capacity\. For more information, see [Constraints on the size and configuration of an EBS volume](volume_constraints.md)\.
 + If the volume was attached before November 3, 2016 23:40 UTC, you must initialize Elastic Volumes support\. For more information, see [Initializing Elastic Volumes Support](requesting-ebs-volume-modifications.md#initialize-modification-support)\.
-+ If you are using an unsupported previous\-generation instance type, or if you encounter an error while attempting a volume modification, see [Modifying an EBS volume if Elastic Volumes is not supported](requesting-ebs-volume-modifications.md#modify-volume-stop-start)\.
++ If you are using an unsupported previous\-generation instance type, or if you encounter an error while attempting a volume modification, see [Modify an EBS volume if Elastic Volumes is not supported](requesting-ebs-volume-modifications.md#modify-volume-stop-start)\.
 + A `gp2` volume that is attached to an instance as a root volume cannot be modified to an `st1` or `sc1` volume\. If detached and modified to `st1` or `sc1`, it cannot be attached to an instance as the root volume\.
 + A `gp2` volume cannot be modified to an `st1` or `sc1` volume if the requested volume size is below the minimum size for `st1` and `sc1` volumes\.
 + In some cases, you must detach the volume or stop the instance for modification to proceed\. If you encounter an error message while attempting to modify an EBS volume, or if you are modifying an EBS volume attached to a previous\-generation instance type, take one of the following steps:
@@ -61,6 +62,6 @@ GPT fdisk (gdisk) version 0.8.8
   + Detach and attach the volume\.
   + Restart the instance\.
 + Decreasing the size of an EBS volume is not supported\. However, you can create a smaller volume and then migrate your data to it using an application\-level tool such as rsync\.
-+ Modification time is increased if you modify a volume that has not been fully initialized\. For more information see [Initializing Amazon EBS volumes](ebs-initialize.md)\.
++ Modification time is increased if you modify a volume that has not been fully initialized\. For more information see [Initialize Amazon EBS volumes](ebs-initialize.md)\.
 + After modifying a volume, wait at least six hours and ensure that the volume is in the `in-use` or `available` state before making additional modifications to the same volume\.
 + While `m3.medium` instances fully support volume modification, `m3.large`, `m3.xlarge`, and `m3.2xlarge` instances might not support all volume modification features\.

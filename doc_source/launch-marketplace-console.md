@@ -1,6 +1,6 @@
-# Launching an AWS Marketplace instance<a name="launch-marketplace-console"></a>
+# Launch an AWS Marketplace instance<a name="launch-marketplace-console"></a>
 
-You can subscribe to an AWS Marketplace product and launch an instance from the product's AMI using the Amazon EC2 launch wizard\. For more information about paid AMIs, see [Paid AMIs](paid-amis.md)\. To cancel your subscription after launch, you first have to terminate all instances running from it\. For more information, see [Managing your AWS Marketplace subscriptions](paid-amis.md#marketplace-manage-subscriptions)\. 
+You can subscribe to an AWS Marketplace product and launch an instance from the product's AMI using the Amazon EC2 launch wizard\. For more information about paid AMIs, see [Paid AMIs](paid-amis.md)\. To cancel your subscription after launch, you first have to terminate all instances running from it\. For more information, see [Manage your AWS Marketplace subscriptions](paid-amis.md#marketplace-manage-subscriptions)\. 
 
 **To launch an instance from the AWS Marketplace using the launch wizard**
 
@@ -16,7 +16,7 @@ You are not charged for using the product until you have launched an instance wi
 
 1. On the **Choose an Instance Type** page, select the hardware configuration and size of the instance to launch\. When you're done, choose **Next: Configure Instance Details**\.
 
-1. On the next pages of the wizard, you can configure your instance, add storage, and add tags\. For more information about the different options you can configure, see [Launching an instance using the Launch Instance Wizard](launching-instance.md)\. Choose **Next** until you reach the **Configure Security Group** page\. 
+1. On the next pages of the wizard, you can configure your instance, add storage, and add tags\. For more information about the different options you can configure, see [Launch an instance using the Launch Instance Wizard](launching-instance.md)\. Choose **Next** until you reach the **Configure Security Group** page\. 
 
    The wizard creates a new security group according to the vendor's specifications for the product\. The security group may include rules that allow all IPv4 addresses \(`0.0.0.0/0`\) access on SSH \(port 22\) on Linux or RDP \(port 3389\) on Windows\. We recommend that you adjust these rules to allow only a specific address or range of addresses to access your instance over those ports\.
 
@@ -30,11 +30,11 @@ You are charged the subscription price as long as your instance is running, even
 
 1. When your instance is in the `running` state, you can connect to it\. To do this, select your instance in the list and choose **Connect**\. Follow the instructions in the dialog\. For more information about connecting to your instance, see [Connect to your Linux instance](AccessingInstances.md)\.
 **Important**  
-Check the vendor's usage instructions carefully, as you may need to use a specific user name to log in to the instance\. For more information about accessing your subscription details, see [Managing your AWS Marketplace subscriptions](paid-amis.md#marketplace-manage-subscriptions)\.
+Check the vendor's usage instructions carefully, as you may need to use a specific user name to log in to the instance\. For more information about accessing your subscription details, see [Manage your AWS Marketplace subscriptions](paid-amis.md#marketplace-manage-subscriptions)\.
 
 1. If the instance fails to launch or the state immediately goes to `terminated` instead of `running`, see [Troubleshooting instance launch issues](troubleshooting-launch.md)\.
 
-## Launching an AWS Marketplace AMI instance using the API and CLI<a name="launch-marketplace-cli-api"></a>
+## Launch an AWS Marketplace AMI instance using the API and CLI<a name="launch-marketplace-cli-api"></a>
 
 To launch instances from AWS Marketplace products using the API or command line tools, first ensure that you are subscribed to the product\. You can then launch an instance with the product's AMI ID using the following methods:
 

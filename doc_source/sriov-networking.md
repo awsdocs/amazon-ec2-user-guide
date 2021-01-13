@@ -133,7 +133,7 @@ There is no way to disable the enhanced networking attribute after you've enable
      Edit-EC2InstanceAttribute -InstanceId instance_id -SriovNetSupport "simple"
      ```
 
-1. \(Optional\) Create an AMI from the instance, as described in [Creating an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md) \. The AMI inherits the enhanced networking attribute from the instance\. Therefore, you can use this AMI to launch another instance with enhanced networking enabled by default\.
+1. \(Optional\) Create an AMI from the instance, as described in [Create an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md) \. The AMI inherits the enhanced networking attribute from the instance\. Therefore, you can use this AMI to launch another instance with enhanced networking enabled by default\.
 
 1. From your local computer, start the instance using the Amazon EC2 console or one of the following commands: [start\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/start-instances.html) \(AWS CLI\), [Start\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Start-EC2Instance.html) \(AWS Tools for Windows PowerShell\)\. If your instance is managed by AWS OpsWorks, you should start the instance in the AWS OpsWorks console so that the instance state remains in sync\.
 
@@ -141,7 +141,7 @@ There is no way to disable the enhanced networking attribute after you've enable
 
 **To enable enhanced networking \(instance store\-backed instances\)**
 
-Follow the previous procedure until the step where you stop the instance\. Create a new AMI as described in [Creating an instance store\-backed Linux AMI](creating-an-ami-instance-store.md), making sure to enable the enhanced networking attribute when you register the AMI\.
+Follow the previous procedure until the step where you stop the instance\. Create a new AMI as described in [Create an instance store\-backed Linux AMI](creating-an-ami-instance-store.md), making sure to enable the enhanced networking attribute when you register the AMI\.
 + [register\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) \(AWS CLI\)
 
   ```
@@ -234,7 +234,7 @@ If you compile the `ixgbevf` module for your current kernel and then upgrade you
      Edit-EC2InstanceAttribute -InstanceId instance_id -SriovNetSupport "simple"
      ```
 
-1. \(Optional\) Create an AMI from the instance, as described in [Creating an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md) \. The AMI inherits the enhanced networking attribute from the instance\. Therefore, you can use this AMI to launch another instance with enhanced networking enabled by default\.
+1. \(Optional\) Create an AMI from the instance, as described in [Create an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md) \. The AMI inherits the enhanced networking attribute from the instance\. Therefore, you can use this AMI to launch another instance with enhanced networking enabled by default\.
 **Important**  
 If your instance operating system contains an `/etc/udev/rules.d/70-persistent-net.rules` file, you must delete it before creating the AMI\. This file contains the MAC address for the Ethernet adapter of the original instance\. If another instance boots with this file, the operating system will be unable to find the device and `eth0` might fail, causing boot issues\. This file is regenerated at the next boot cycle, and any instances launched from the AMI create their own version of the file\.
 
@@ -244,7 +244,7 @@ If your instance operating system contains an `/etc/udev/rules.d/70-persistent-n
 
 **To enable enhanced networking \(instance store–backed instances\)**
 
-Follow the previous procedure until the step where you stop the instance\. Create a new AMI as described in [Creating an instance store\-backed Linux AMI](creating-an-ami-instance-store.md), making sure to enable the enhanced networking attribute when you register the AMI\.
+Follow the previous procedure until the step where you stop the instance\. Create a new AMI as described in [Create an instance store\-backed Linux AMI](creating-an-ami-instance-store.md), making sure to enable the enhanced networking attribute when you register the AMI\.
 + [register\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) \(AWS CLI\)
 
   ```

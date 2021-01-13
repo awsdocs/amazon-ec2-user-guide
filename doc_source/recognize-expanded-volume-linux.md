@@ -1,9 +1,9 @@
-# Extending a Linux file system after resizing a volume<a name="recognize-expanded-volume-linux"></a>
+# Extend a Linux file system after resizing a volume<a name="recognize-expanded-volume-linux"></a>
 
 After you [increase the size of an EBS volume](requesting-ebs-volume-modifications.md), you must use file system–specific commands to extend the file system to the larger size\. You can resize the file system as soon as the volume enters the `optimizing` state\.
 
 **Important**  
-Before extending a file system that contains valuable data, it is best practice to create a snapshot of the volume, in case you need to roll back your changes\. For more information, see [Creating Amazon EBS snapshots](ebs-creating-snapshot.md)\. If your Linux AMI uses the MBR partitioning scheme, you are limited to a boot volume size of up to 2 TiB\. For more information, see [Requirements for Linux volumes](modify-volume-requirements.md#linux-volumes) and [Constraints on the size and configuration of an EBS volume](volume_constraints.md)\. 
+Before extending a file system that contains valuable data, it is best practice to create a snapshot of the volume, in case you need to roll back your changes\. For more information, see [Create Amazon EBS snapshots](ebs-creating-snapshot.md)\. If your Linux AMI uses the MBR partitioning scheme, you are limited to a boot volume size of up to 2 TiB\. For more information, see [Requirements for Linux volumes](modify-volume-requirements.md#linux-volumes) and [Constraints on the size and configuration of an EBS volume](volume_constraints.md)\. 
 
 The process for extending a file system on Linux is as follows:
 
@@ -16,10 +16,10 @@ For information about extending a Windows file system, see [Extending a Windows 
 The following examples walk you through the process of extending a Linux file system\. For file systems and partitioning schemes other than the ones shown here, refer to the documentation for those file systems and partitioning schemes for instructions\.
 
 **Topics**
-+ [Example: Extending the file system of NVMe EBS volumes](#extend-file-system-nvme)
-+ [Example: Extending the file system of EBS volumes](#extend-file-system)
++ [Example: Extend the file system of NVMe EBS volumes](#extend-file-system-nvme)
++ [Example: Extend the file system of EBS volumes](#extend-file-system)
 
-## Example: Extending the file system of NVMe EBS volumes<a name="extend-file-system-nvme"></a>
+## Example: Extend the file system of NVMe EBS volumes<a name="extend-file-system-nvme"></a>
 
 For this example, suppose that you have an instance built on the [Nitro System](instance-types.md#ec2-nitro-instances), such as an M5 instance\. You resized the boot volume from 8 GB to 16 GB and an additional volume from 8 GB to 30 GB\. Use the following procedure to extend the file system of the resized volumes\.
 
@@ -116,7 +116,7 @@ For this example, suppose that you have an instance built on the [Nitro System](
    ...
    ```
 
-## Example: Extending the file system of EBS volumes<a name="extend-file-system"></a>
+## Example: Extend the file system of EBS volumes<a name="extend-file-system"></a>
 
 For this example, suppose that you have resized the boot volume of an instance, such as a T2 instance, from 8 GB to 16 GB and an additional volume from 8 GB to 30 GB\. Use the following procedure to extend the file system of the resized volumes\.
 

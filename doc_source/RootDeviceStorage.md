@@ -11,10 +11,10 @@ For more information about the device names Amazon EC2 uses for your root volume
 
 **Topics**
 + [Root device storage concepts](#RootDeviceStorageConcepts)
-+ [Choosing an AMI by root device type](#choose-an-ami-by-root-device)
-+ [Determining the root device type of your instance](#display-instance-root-device-type)
-+ [Changing the root volume to persist](#Using_RootDeviceStorage)
-+ [Changing the initial size of the root volume](#change-root-volume-initial-size)
++ [Choose an AMI by root device type](#choose-an-ami-by-root-device)
++ [Determine the root device type of your instance](#display-instance-root-device-type)
++ [Change the root volume to persist](#Using_RootDeviceStorage)
++ [Change the initial size of the root volume](#change-root-volume-initial-size)
 
 ## Root device storage concepts<a name="RootDeviceStorageConcepts"></a>
 
@@ -40,7 +40,7 @@ An Amazon EBS\-backed instance can be stopped and later restarted without affect
 
 If an Amazon EBS\-backed instance fails, you can restore your session by following one of these methods:
 + Stop and then start again \(try this method first\)\.
-+ Automatically snapshot all relevant volumes and create a new AMI\. For more information, see [Creating an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md)\.
++ Automatically snapshot all relevant volumes and create a new AMI\. For more information, see [Create an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md)\.
 + Attach the volume to the new instance by following these steps:
 
   1. Create a snapshot of the root volume\.
@@ -55,7 +55,7 @@ If an Amazon EBS\-backed instance fails, you can restore your session by followi
 
 For more information, see [Amazon EBS volumes](ebs-volumes.md)\.
 
-## Choosing an AMI by root device type<a name="choose-an-ami-by-root-device"></a>
+## Choose an AMI by root device type<a name="choose-an-ami-by-root-device"></a>
 
 The AMI that you specify when you launch your instance determines the type of root device volume that your instance has\.
 
@@ -89,7 +89,7 @@ You can use one of the following commands\. For more information about these com
 + [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) \(AWS CLI\)
 + [Get\-EC2Image](https://docs.aws.amazon.com/powershell/latest/userguide/pstools-ec2-get-amis.html#pstools-ec2-get-image) \(AWS Tools for Windows PowerShell\)
 
-## Determining the root device type of your instance<a name="display-instance-root-device-type"></a>
+## Determine the root device type of your instance<a name="display-instance-root-device-type"></a>
 
 ------
 #### [ New console ]
@@ -125,16 +125,16 @@ You can use one of the following commands\. For more information about these com
 + [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) \(AWS CLI\)
 + [Get\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
 
-## Changing the root volume to persist<a name="Using_RootDeviceStorage"></a>
+## Change the root volume to persist<a name="Using_RootDeviceStorage"></a>
 
 By default, the root volume for an AMI backed by Amazon EBS is deleted when the instance terminates\. You can change the default behavior to ensure that the volume persists after the instance terminates\. To change the default behavior, set the `DeleteOnTermination` attribute to `false` using a block device mapping\.
 
 **Topics**
-+ [Configuring the root volume to persist during instance launch](#Using_ChangeRootDeviceVolumeToPersist)
-+ [Configuring the root volume to persist for an existing instance](#set-deleteOnTermination-aws-cli)
-+ [Confirming that a root volume is configured to persist](#Using_ConfirmRootDeviceVolumeToPersist)
++ [Configure the root volume to persist during instance launch](#Using_ChangeRootDeviceVolumeToPersist)
++ [Configure the root volume to persist for an existing instance](#set-deleteOnTermination-aws-cli)
++ [Confirm that a root volume is configured to persist](#Using_ConfirmRootDeviceVolumeToPersist)
 
-### Configuring the root volume to persist during instance launch<a name="Using_ChangeRootDeviceVolumeToPersist"></a>
+### Configure the root volume to persist during instance launch<a name="Using_ChangeRootDeviceVolumeToPersist"></a>
 
 You can configure the root volume to persist when you launch an instance using the Amazon EC2 console or the command line tools\.
 
@@ -184,7 +184,7 @@ C:\> $bdm.Ebs = $ebs
 C:\> New-EC2Instance -ImageId ami-0abcdef1234567890 -BlockDeviceMapping $bdm ...other parameters...
 ```
 
-### Configuring the root volume to persist for an existing instance<a name="set-deleteOnTermination-aws-cli"></a>
+### Configure the root volume to persist for an existing instance<a name="set-deleteOnTermination-aws-cli"></a>
 
 You can configure the root volume to persist for a running instance using the command line tools only\. 
 
@@ -207,7 +207,7 @@ C:\> $bdm.Ebs = $ebs
 C:\> Edit-EC2InstanceAttribute -InstanceId i-1234567890abcdef0 -BlockDeviceMapping $bdm
 ```
 
-### Confirming that a root volume is configured to persist<a name="Using_ConfirmRootDeviceVolumeToPersist"></a>
+### Confirm that a root volume is configured to persist<a name="Using_ConfirmRootDeviceVolumeToPersist"></a>
 
 You can confirm that a root volume is configured to persist using the Amazon EC2 console or the command line tools\.
 
@@ -264,13 +264,13 @@ Use the [ Get\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/refere
 C:\> (Get-EC2Instance -InstanceId i-i-1234567890abcdef0).Instances.BlockDeviceMappings.Ebs
 ```
 
-## Changing the initial size of the root volume<a name="change-root-volume-initial-size"></a>
+## Change the initial size of the root volume<a name="change-root-volume-initial-size"></a>
 
 By default, the size of the root volume is determined by the size of the snapshot\. You can increase the initial size of the root volume using the block device mapping of the instance as follows\.
 
 1. Determine the device name of the root volume specified in the AMI, as described in [Viewing the EBS volumes in an AMI block device mapping](block-device-mapping-concepts.md#view-ami-bdm)\.
 
-1. Confirm the size of the snapshot specified in the AMI block device mapping, as described in [Viewing Amazon EBS snapshot information](ebs-describing-snapshots.md)\.
+1. Confirm the size of the snapshot specified in the AMI block device mapping, as described in [View Amazon EBS snapshot information](ebs-describing-snapshots.md)\.
 
 1. Override the size of the root volume using the instance block device mapping, as described in [Updating the block device mapping when launching an instance](block-device-mapping-concepts.md#Using_OverridingAMIBDM), specifying a volume size that is larger than the snapshot size\.
 

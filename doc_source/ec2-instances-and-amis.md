@@ -28,18 +28,18 @@ Your instance may include local storage volumes, known as instance store volumes
 + Review the rules in your security groups regularly, and ensure that you apply the principle of *least privilege*—only open up permissions that you require\. You can also create different security groups to deal with instances that have different security requirements\. Consider creating a bastion security group that allows external logins, and keep the remainder of your instances in a group that does not allow external logins\.
 + Disable password\-based logins for instances launched from your AMI\. Passwords can be found or cracked, and are a security risk\. For more information, see [Disable password\-based remote logins for root](building-shared-amis.md#public-amis-disable-password-logins-for-root)\. For more information about sharing AMIs safely, see [Shared AMIs](sharing-amis.md)\.
 
-### Stopping and terminating instances<a name="instance-stopping-starting-terminating"></a>
+### Stop and terminate instances<a name="instance-stopping-starting-terminating"></a>
 
 You can stop or terminate a running instance at any time\.
 
-**Stopping an instance**  
+**Stop an instance**  
 When an instance is stopped, the instance performs a normal shutdown, and then transitions to a `stopped` state\. All of its Amazon EBS volumes remain attached, and you can start the instance again at a later time\. 
 
 You are not charged for additional instance usage while the instance is in a stopped state\. A minimum of one minute is charged for every transition from a stopped state to a running state\. If the instance type was changed while the instance was stopped, you will be charged the rate for the new instance type after the instance is started\. All of the associated Amazon EBS usage of your instance, including root device usage, is billed using typical Amazon EBS prices\. 
 
 When an instance is in a stopped state, you can attach or detach Amazon EBS volumes\. You can also create an AMI from the instance, and you can change the kernel, RAM disk, and instance type\.
 
-**Terminating an instance**  
+**Terminate an instance**  
 When an instance is terminated, the instance performs a normal shutdown\. The root device volume is deleted by default, but any attached Amazon EBS volumes are preserved by default, determined by each volume's `deleteOnTermination` attribute setting\. The instance itself is also deleted, and you can't start the instance again at a later time\.
 
 To prevent accidental termination, you can disable instance termination\. If you do so, ensure that the `disableApiTermination` attribute is set to `true` for the instance\. To control the behavior of an instance shutdown, such as `shutdown -h` in Linux or `shutdown` in Windows, set the `instanceInitiatedShutdownBehavior` instance attribute to `stop` or `terminate` as desired\. Instances with Amazon EBS volumes for the root device default to `stop`, and instances with instance\-store root devices are always terminated as the result of an instance shutdown\.

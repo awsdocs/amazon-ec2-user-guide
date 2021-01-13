@@ -9,7 +9,7 @@ This list of practices will help you get the maximum benefit from Amazon EC2\.
 
 **Storage**
 + Understand the implications of the root device type for data persistence, backup, and recovery\. For more information, see [Storage for the root device](ComponentsAMIs.md#storage-for-the-root-device)\.
-+ Use separate Amazon EBS volumes for the operating system versus your data\. Ensure that the volume with your data persists after instance termination\. For more information, see [Preserving Amazon EBS volumes on instance termination](terminating-instances.md#preserving-volumes-on-termination)\.
++ Use separate Amazon EBS volumes for the operating system versus your data\. Ensure that the volume with your data persists after instance termination\. For more information, see [Preserve Amazon EBS volumes on instance termination](terminating-instances.md#preserving-volumes-on-termination)\.
 + Use the instance store available for your instance to store temporary data\. Remember that the data stored in instance store is deleted when you stop, hibernate, or terminate your instance\. If you use instance store for database storage, ensure that you have a cluster with a replication factor that ensures fault tolerance\.
 + Encrypt EBS volumes and snapshots\. For more information, see [Amazon EBS encryption](EBSEncryption.md)\.
 
@@ -21,7 +21,7 @@ This list of practices will help you get the maximum benefit from Amazon EC2\.
 + Regularly back up your EBS volumes using [Amazon EBS snapshots](EBSSnapshots.md), and create an [Amazon Machine Image \(AMI\)](AMIs.md) from your instance to save the configuration as a template for launching future instances\.
 + Deploy critical components of your application across multiple Availability Zones, and replicate your data appropriately\.
 + Design your applications to handle dynamic IP addressing when your instance restarts\. For more information, see [Amazon EC2 instance IP addressing](using-instance-addressing.md)\.
-+ Monitor and respond to events\. For more information, see [Monitoring Amazon EC2](monitoring_ec2.md)\.
++ Monitor and respond to events\. For more information, see [Monitor Amazon EC2](monitoring_ec2.md)\.
 + Ensure that you are prepared to handle failover\. For a basic solution, you can manually attach a network interface or Elastic IP address to a replacement instance\. For more information, see [Elastic network interfaces](using-eni.md)\. For an automated solution, you can use Amazon EC2 Auto Scaling\. For more information, see the [Amazon EC2 Auto Scaling User Guide](https://docs.aws.amazon.com/autoscaling/latest/userguide/)\.
 + Regularly test the process of recovering your instances and Amazon EBS volumes if they fail\.
 

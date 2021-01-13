@@ -14,7 +14,7 @@ These procedures are intended for use with the Amazon Linux AMI\. If you are try
 + [Step 1: Enable TLS on the server](#ssl-enable-alami)
 + [Step 2: Obtain a CA\-signed certificate](#ssl-certificate-alami)
 + [Step 3: Test and harden the security configuration](#ssl-test-alami)
-+ [Troubleshooting](#troubleshooting-alami)
++ [Troubleshoot](#troubleshooting-alami)
 + [Certificate automation: Let's Encrypt with Certbot on Amazon Linux](#lets-encrypt-alami)
 
 ## Prerequisites<a name="ssl-prereq-alami"></a>
@@ -365,7 +365,7 @@ Finally, each update to OpenSSL introduces new ciphers and deprecates old ones\.
 
 1. Restart Apache\. If you test the domain again on [Qualys SSL Labs](https://www.ssllabs.com/ssltest/analyze.html), you should see that the RC4 vulnerability is gone\.
 
-## Troubleshooting<a name="troubleshooting-alami"></a>
+## Troubleshoot<a name="troubleshooting-alami"></a>
 + **My Apache webserver won't start unless I supply a password**
 
   This is expected behavior if you installed an encrypted, password\-protected, private server key\.
@@ -389,7 +389,7 @@ Finally, each update to OpenSSL introduces new ciphers and deprecates old ones\.
 The [Let's Encrypt](https://letsencrypt.org/) certificate authority is the centerpiece of the Electronic Frontier Foundation \(EFF\) effort to encrypt the entire internet\. In line with that goal, Let's Encrypt host certificates are designed to be created, validated, installed, and maintained with minimal human intervention\. The automated aspects of certificate management are carried out by an agent running on the web server\. After you install and configure the agent, it communicates securely with Let's Encrypt and performs administrative tasks on Apache and the key management system\. This tutorial uses the free [Certbot](https://certbot.eff.org) agent because it allows you either to supply a customized encryption key as the basis for your certificates, or to allow the agent itself to create a key based on its defaults\. You can also configure Certbot to renew your certificates on a regular basis without human interaction, as described in [To automate Certbot](SSL-on-amazon-linux-2.md#automate_certbot)\. For more information, consult the Certbot [User Guide](https://certbot.eff.org/docs/using.html) or [man page](http://manpages.ubuntu.com/manpages/bionic/en/man1/certbot.1.html)\.
 
 Certbot is not officially supported on Amazon Linux AMI, but is available for download and functions correctly when installed\. We recommend that you make the following backups to protect your data and avoid inconvenience:
-+ Before you begin, take a snapshot of your Amazon EBS root volume\. This allows you to restore the original state of your EC2 instance\. For information about creating EBS snapshots, see [Creating Amazon EBS snapshots](ebs-creating-snapshot.md)\.
++ Before you begin, take a snapshot of your Amazon EBS root volume\. This allows you to restore the original state of your EC2 instance\. For information about creating EBS snapshots, see [Create Amazon EBS snapshots](ebs-creating-snapshot.md)\.
 + The procedure below requires you to edit your `httpd.conf` file, which controls Apache's operation\. Certbot makes its own automated changes to this and other configuration files\. Make a backup copy of your entire `/etc/httpd` directory in case you need to restore it\.
 
 **To install and run Certbot**

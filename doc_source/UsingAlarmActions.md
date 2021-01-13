@@ -15,14 +15,14 @@ You can create alarms using the Amazon EC2 console or the CloudWatch console\. T
 If you are an AWS Identity and Access Management \(IAM\) user, you must have the `iam:CreateServiceLinkedRole` to create or modify an alarm that performs EC2 alarm actions\.
 
 **Topics**
-+ [Adding stop actions to Amazon CloudWatch alarms](#AddingStopActions)
-+ [Adding terminate actions to Amazon CloudWatch alarms](#AddingTerminateActions)
-+ [Adding reboot actions to Amazon CloudWatch alarms](#AddingRebootActions)
-+ [Adding recover actions to Amazon CloudWatch alarms](#AddingRecoverActions)
-+ [Using the Amazon CloudWatch console to view alarm and action history](#ViewAlarmHistory)
++ [Add stop actions to Amazon CloudWatch alarms](#AddingStopActions)
++ [Add terminate actions to Amazon CloudWatch alarms](#AddingTerminateActions)
++ [Add reboot actions to Amazon CloudWatch alarms](#AddingRebootActions)
++ [Add recover actions to Amazon CloudWatch alarms](#AddingRecoverActions)
++ [Use the Amazon CloudWatch console to view alarm and action history](#ViewAlarmHistory)
 + [Amazon CloudWatch alarm action scenarios](#AlarmActionScenarios)
 
-## Adding stop actions to Amazon CloudWatch alarms<a name="AddingStopActions"></a>
+## Add stop actions to Amazon CloudWatch alarms<a name="AddingStopActions"></a>
 
 You can create an alarm that stops an Amazon EC2 instance when a certain threshold has been met\. For example, you may run development or test instances and occasionally forget to shut them off\. You can create an alarm that is triggered when the average CPU utilization percentage has been lower than 10 percent for 24 hours, signaling that it is idle and no longer in use\. You can adjust the threshold, duration, and period to suit your needs, plus you can add an Amazon Simple Notification Service \(Amazon SNS\) notification so that you receive an email when the alarm is triggered\.
 
@@ -96,9 +96,9 @@ You can adjust the alarm configuration based on your own requirements before cre
 
 ------
 
-## Adding terminate actions to Amazon CloudWatch alarms<a name="AddingTerminateActions"></a>
+## Add terminate actions to Amazon CloudWatch alarms<a name="AddingTerminateActions"></a>
 
-You can create an alarm that terminates an EC2 instance automatically when a certain threshold has been met \(as long as termination protection is not enabled for the instance\)\. For example, you might want to terminate an instance when it has completed its work, and you don’t need the instance again\. If you might want to use the instance later, you should stop the instance instead of terminating it\. For information on enabling and disabling termination protection for an instance, see [Enabling termination protection](terminating-instances.md#Using_ChangingDisableAPITermination)\.
+You can create an alarm that terminates an EC2 instance automatically when a certain threshold has been met \(as long as termination protection is not enabled for the instance\)\. For example, you might want to terminate an instance when it has completed its work, and you don’t need the instance again\. If you might want to use the instance later, you should stop the instance instead of terminating it\. For information on enabling and disabling termination protection for an instance, see [Enable termination protection](terminating-instances.md#Using_ChangingDisableAPITermination)\.
 
 ------
 #### [ New console ]
@@ -168,7 +168,7 @@ You can adjust the alarm configuration based on your own requirements before cre
 
 ------
 
-## Adding reboot actions to Amazon CloudWatch alarms<a name="AddingRebootActions"></a>
+## Add reboot actions to Amazon CloudWatch alarms<a name="AddingRebootActions"></a>
 
 You can create an Amazon CloudWatch alarm that monitors an Amazon EC2 instance and automatically reboots the instance\. The reboot alarm action is recommended for Instance Health Check failures \(as opposed to the recover alarm action, which is suited for System Health Check failures\)\. An instance reboot is equivalent to an operating system reboot\. In most cases, it takes only a few minutes to reboot your instance\. When you reboot an instance, it remains on the same physical host, so your instance keeps its public DNS name, private IP address, and any data on its instance store volumes\.
 
@@ -235,7 +235,7 @@ To avoid a race condition between the reboot and recover actions, avoid setting 
 
 ------
 
-## Adding recover actions to Amazon CloudWatch alarms<a name="AddingRecoverActions"></a>
+## Add recover actions to Amazon CloudWatch alarms<a name="AddingRecoverActions"></a>
 
 You can create an Amazon CloudWatch alarm that monitors an Amazon EC2 instance\. If the instance becomes impaired due to an underlying hardware failure or a problem that requires AWS involvement to repair, you can automatically recover the instance\. Terminated instances cannot be recovered\. A recovered instance is identical to the original instance, including the instance ID, private IP addresses, Elastic IP addresses, and all instance metadata\.
 
@@ -329,7 +329,7 @@ The AWS account root user always receives email notifications when automatic ins
 
 ------
 
-## Using the Amazon CloudWatch console to view alarm and action history<a name="ViewAlarmHistory"></a>
+## Use the Amazon CloudWatch console to view alarm and action history<a name="ViewAlarmHistory"></a>
 
 You can view alarm and action history in the Amazon CloudWatch console\. Amazon CloudWatch keeps the last two weeks' worth of alarm and action history\.
 

@@ -4,8 +4,8 @@ There is a limit on the number of running and requested Spot Instances per AWS a
 
 **Topics**
 + [Spot Instance limits](#spot-limits-general)
-+ [Requesting a Spot Instance limit increase](#spot-vcpu-limits-request-increase)
-+ [Monitoring Spot Instance limits and usage](#monitoring-spot-limits)
++ [Request a Spot Instance limit increase](#spot-vcpu-limits-request-increase)
++ [Monitor Spot Instance limits and usage](#monitoring-spot-limits)
 + [Spot Fleet limits](#spot-fleet-limitations)
 
 ## Spot Instance limits<a name="spot-limits-general"></a>
@@ -27,7 +27,7 @@ New AWS accounts might start with limits that are lower than the limits describe
 
 With vCPU limits, you can use your limit in terms of the number of vCPUs that are required to launch any combination of instance types that meet your changing application needs\. For example, with an All Standard Spot Instance Requests limit of 256 vCPUs, you could request 32 `m5.2xlarge` Spot Instances \(32 x 8 vCPUs\) or 16 `c5.4xlarge` Spot Instances \(16 x 16 vCPUs\), or a combination of any Standard Spot Instance types and sizes that total 256 vCPUs\. 
 
-## Requesting a Spot Instance limit increase<a name="spot-vcpu-limits-request-increase"></a>
+## Request a Spot Instance limit increase<a name="spot-vcpu-limits-request-increase"></a>
 
 Even though Amazon EC2 automatically increases your Spot Instance limits based on your usage, you can request a limit increase if necessary\. For example, if you intend to launch more Spot Instances than your current limit allows, you can request a limit increase\. You can also request a limit increase if you submit a Spot Instance request and you receive the error `Max spot instance count exceeded`\.
 
@@ -49,7 +49,7 @@ Even though Amazon EC2 automatically increases your Spot Instance limits based o
 
 For more information about viewing limits and requesting a limit increase, see [Amazon EC2 service quotas](ec2-resource-limits.md)\.
 
-## Monitoring Spot Instance limits and usage<a name="monitoring-spot-limits"></a>
+## Monitor Spot Instance limits and usage<a name="monitoring-spot-limits"></a>
 
 You can view and manage your Spot Instance limits using the following:
 + The [Limits page](https://console.aws.amazon.com/ec2/#Limits) in the Amazon EC2 console

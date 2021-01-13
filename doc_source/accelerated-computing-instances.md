@@ -13,10 +13,10 @@ If you require high processing capability, you'll benefit from using accelerated
 + [Network performance](#gpu-network-performance)
 + [Instance features](#gpu-instances-features)
 + [Release notes](#gpu-instance-release-notes)
-+ [Installing NVIDIA drivers on Linux instances](install-nvidia-driver.md)
++ [Install NVIDIA drivers on Linux instances](install-nvidia-driver.md)
 + [Install AMD drivers on Linux instances](install-amd-driver.md)
 + [Activate NVIDIA GRID Virtual Applications](activate_grid.md)
-+ [Optimizing GPU settings](optimize_gpu.md)
++ [Optimize GPU settings](optimize_gpu.md)
 
 ## GPU instances<a name="gpu-instances"></a>
 
@@ -134,11 +134,11 @@ The following is a summary of the hardware specifications for accelerated comput
 
 For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
-For more information about specifying CPU options, see [Optimizing CPU options](instance-optimize-cpu.md)\.
+For more information about specifying CPU options, see [Optimize CPU options](instance-optimize-cpu.md)\.
 
 ## Instance performance<a name="gpu-instance-performance"></a>
 
-There are several GPU setting optimizations that you can perform to achieve the best performance on your instances\. For more information, see [Optimizing GPU settings](optimize_gpu.md)\.
+There are several GPU setting optimizations that you can perform to achieve the best performance on your instances\. For more information, see [Optimize GPU settings](optimize_gpu.md)\.
 
 EBS\-optimized instances enable you to get consistently high performance for your EBS volumes by eliminating contention between Amazon EBS I/O and other network traffic from your instance\. Some accelerated computing instances are EBS\-optimized by default at no additional cost\. For more information, see [Amazon EBS–optimized instances](ebs-optimized.md)\.
 
@@ -203,7 +203,7 @@ For more information, see the following:
   + CentOS 7\.4\.1708 or later
   + FreeBSD 11\.1 or later
   + Debian GNU/Linux 9 or later
-+ GPU\-based instances can't access the GPU unless the NVIDIA drivers are installed\. For more information, see [Installing NVIDIA drivers on Linux instances](install-nvidia-driver.md)\.
++ GPU\-based instances can't access the GPU unless the NVIDIA drivers are installed\. For more information, see [Install NVIDIA drivers on Linux instances](install-nvidia-driver.md)\.
 + Launching a bare metal instance boots the underlying server, which includes verifying all hardware and firmware components\. This means that it can take 20 minutes from the time the instance enters the running state until it becomes available over the network\.
 + To attach or detach EBS volumes or secondary network interfaces from a bare metal instance requires PCIe native hotplug support\. Amazon Linux 2 and the latest versions of the Amazon Linux AMI support PCIe native hotplug, but earlier versions do not\. You must enable the following Linux kernel configuration options:
 

@@ -1,4 +1,4 @@
-# Sending a diagnostic interrupt \(for advanced users\)<a name="diagnostic-interrupt"></a>
+# Send a diagnostic interrupt \(for advanced users\)<a name="diagnostic-interrupt"></a>
 
 **Warning**  
 Diagnostic interrupts are intended for use by advanced users\. Incorrect usage could negatively impact your instance\. Sending a diagnostic interrupt to an instance could trigger an instance to crash and reboot, which could lead to the loss of data\.
@@ -14,7 +14,7 @@ Before sending a diagnostic interrupt to your instance, we recommend that you co
 **Topics**
 + [Supported instance types](#diagnostic-interrupt-instances)
 + [Prerequisites](#diagnostic-interrupt-prereqs)
-+ [Sending a diagnostic interrupt](#diagnostic-interrupt-use)
++ [Send a diagnostic interrupt](#diagnostic-interrupt-use)
 
 ## Supported instance types<a name="diagnostic-interrupt-instances"></a>
 
@@ -155,7 +155,7 @@ On instances based on Intel and AMD processors, the `send-diagnostic-interrupt` 
 kernel.unknown_nmi_panic=1
 ```
 
-## Sending a diagnostic interrupt<a name="diagnostic-interrupt-use"></a>
+## Send a diagnostic interrupt<a name="diagnostic-interrupt-use"></a>
 
 After you have completed the necessary configuration changes, you can send a diagnostic interrupt to your instance using the AWS CLI or Amazon EC2 API\.
 

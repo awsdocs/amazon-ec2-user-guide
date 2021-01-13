@@ -1,4 +1,4 @@
-# Migrating from EC2\-Classic to a VPC<a name="vpc-migrate"></a>
+# Migrate from EC2\-Classic to a VPC<a name="vpc-migrate"></a>
 
 If you created your AWS account before December 4, 2013, you might have support for EC2\-Classic in some AWS Regions\. Some Amazon EC2 resources and features, such as enhanced networking and newer instance types, require a virtual private cloud \(VPC\)\. Some resources can be shared between EC2\-Classic and a VPC, while some can't\. For more information, see [Sharing and accessing resources between EC2\-Classic and a VPC](ec2-classic-platform.md#vpc-classic-shared-resources)\. We recommend that you migrate to a VPC to take advantage of VPC\-only features\.
 
@@ -159,9 +159,9 @@ Some instance types support both PV and HVM virtualization, while others support
 
 #### \(Optional\) Share or copy your AMI<a name="vpc-migrate-share-ami"></a>
 
-To use your AMI to launch an instance in a new AWS account, you must first share the AMI with your new account\. For more information, see [Sharing an AMI with specific AWS accounts](sharingamis-explicit.md)\.
+To use your AMI to launch an instance in a new AWS account, you must first share the AMI with your new account\. For more information, see [Share an AMI with specific AWS accounts](sharingamis-explicit.md)\.
 
-To use your AMI to launch an instance in a VPC in a different Region, you must first copy the AMI to that Region\. For more information, see [Copying an AMI](CopyingAMIs.md)\.
+To use your AMI to launch an instance in a VPC in a different Region, you must first copy the AMI to that Region\. For more information, see [Copy an AMI](CopyingAMIs.md)\.
 
 #### \(Optional\) Store your data on Amazon EBS volumes<a name="vpc-migrate-create-volumes"></a>
 
@@ -169,10 +169,10 @@ You can create an Amazon EBS volume and use it to back up and store the data on 
 
 For more information about Amazon EBS volumes, see the following topics:
 + [Amazon EBS volumes](ebs-volumes.md)
-+ [Creating an Amazon EBS volume](ebs-creating-volume.md)
-+ [Attaching an Amazon EBS volume to an instance](ebs-attaching-volume.md)
++ [Create an Amazon EBS volume](ebs-creating-volume.md)
++ [Attach an Amazon EBS volume to an instance](ebs-attaching-volume.md)
 
-To back up the data on your Amazon EBS volume, you can take periodic snapshots of your volume\. For more information, see [Creating Amazon EBS snapshots](ebs-creating-snapshot.md)\. If you need to, you can create an Amazon EBS volume from your snapshot\. For more information, see [Creating a volume from a snapshot](ebs-creating-volume.md#ebs-create-volume-from-snapshot)\.
+To back up the data on your Amazon EBS volume, you can take periodic snapshots of your volume\. For more information, see [Create Amazon EBS snapshots](ebs-creating-snapshot.md)\. If you need to, you can create an Amazon EBS volume from your snapshot\. For more information, see [Create a volume from a snapshot](ebs-creating-volume.md#ebs-create-volume-from-snapshot)\.
 
 #### Launch an instance into your VPC<a name="vpc-migrate-instance"></a>
 
@@ -197,7 +197,7 @@ You can use this opportunity to [upgrade to a current generation instance type](
 
 1. Review your instance details, then choose **Launch** to specify a key pair and launch your instance\.
 
-For more information about the parameters that you can configure in each step of the wizard, see [Launching an instance using the Launch Instance Wizard](launching-instance.md)\.
+For more information about the parameters that you can configure in each step of the wizard, see [Launch an instance using the Launch Instance Wizard](launching-instance.md)\.
 
 ### Amazon RDS DB instances<a name="vpc-migrate-rds"></a>
 

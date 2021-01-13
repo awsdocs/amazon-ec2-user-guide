@@ -1,4 +1,4 @@
-# Working with instance user data<a name="instancedata-add-user-data"></a>
+# Work with instance user data<a name="instancedata-add-user-data"></a>
 
 When working with instance user data, keep the following in mind:
 + User data must be base64\-encoded\. The Amazon EC2 console can perform the base64\-encoding for you or accept base64\-encoded input\.
@@ -9,7 +9,7 @@ When working with instance user data, keep the following in mind:
 
 ## Specify instance user data at launch<a name="specify-user-data-launch"></a>
 
-You can specify user data when you launch an instance\. For more information, see [Launching an instance using the Launch Instance Wizard](launching-instance.md) and [Running commands on your Linux instance at launch](user-data.md)\.
+You can specify user data when you launch an instance\. For more information, see [Launch an instance using the Launch Instance Wizard](launching-instance.md) and [Run commands on your Linux instance at launch](user-data.md)\.
 
 ## Modify instance user data<a name="modify-user-data-run"></a>
 

@@ -12,8 +12,8 @@ For information about getting the statistics for these metrics, see [Get statist
 + [Traffic mirroring metrics](#traffic-mirroring-metrics)
 + [Amazon EC2 metric dimensions](#ec2-cloudwatch-dimensions)
 + [Amazon EC2 usage metrics](#service-quota-metrics)
-+ [Listing metrics using the console](#list-ec2-metrics-console)
-+ [Listing metrics using the AWS CLI](#list-ec2-metrics-cli)
++ [List metrics using the console](#list-ec2-metrics-console)
++ [List metrics using the AWS CLI](#list-ec2-metrics-cli)
 
 ## Instance metrics<a name="ec2-cloudwatch-metrics"></a>
 
@@ -31,7 +31,7 @@ The `AWS/EC2` namespace includes the following instance metrics\.
 | NetworkOut |  The number of bytes sent out on all network interfaces by the instance\. This metric identifies the volume of outgoing network traffic from a single instance\. The number reported is the number of bytes sent during the period\. If you are using basic \(five\-minute\) monitoring, you can divide this number by 300 to find Bytes/second\. If you have detailed \(one\-minute\) monitoring, divide it by 60\. Units: Bytes  | 
 | NetworkPacketsIn |  The number of packets received on all network interfaces by the instance\. This metric identifies the volume of incoming traffic in terms of the number of packets on a single instance\. This metric is available for basic monitoring only\. Units: Count Statistics: Minimum, Maximum, Average  | 
 | NetworkPacketsOut |  The number of packets sent out on all network interfaces by the instance\. This metric identifies the volume of outgoing traffic in terms of the number of packets on a single instance\. This metric is available for basic monitoring only\. Units: Count Statistics: Minimum, Maximum, Average  | 
-| MetadataNoToken |  The number of times the instance metadata service was successfully accessed using a method that does not use a token\. This metric is used to determine if there are any processes accessing instance metadata that are using Instance Metadata Service Version 1, which does not use a token\. If all requests use token\-backed sessions, i\.e\., Instance Metadata Service Version 2, the value is 0\. For more information, see [Transitioning to using Instance Metadata Service Version 2](configuring-instance-metadata-service.md#instance-metadata-transition-to-version-2)\. Units: Count  | 
+| MetadataNoToken |  The number of times the instance metadata service was successfully accessed using a method that does not use a token\. This metric is used to determine if there are any processes accessing instance metadata that are using Instance Metadata Service Version 1, which does not use a token\. If all requests use token\-backed sessions, i\.e\., Instance Metadata Service Version 2, the value is 0\. For more information, see [Transition to using Instance Metadata Service Version 2](configuring-instance-metadata-service.md#instance-metadata-transition-to-version-2)\. Units: Count  | 
 
 ## CPU credit metrics<a name="cpu-credit-metrics"></a>
 
@@ -58,8 +58,8 @@ Metric values for Nitro\-based instances will always be integers \(whole numbers
 |  EBSWriteOps  |  Completed write operations to all EBS volumes attached to the instance in a specified period of time\. To calculate the average write I/O operations per second \(Write IOPS\) for the period, divide the total operations in the period by the number of seconds in that period\. If you are using basic \(five\-minute\) monitoring, you can divide this number by 300 to calculate the Write IOPS\. If you have detailed \(one\-minute\) monitoring, divide it by 60\. Unit: Count  | 
 |  EBSReadBytes  |  Bytes read from all EBS volumes attached to the instance in a specified period of time\.  The number reported is the number of bytes read during the period\. If you are using basic \(five\-minute\) monitoring, you can divide this number by 300 to find Read Bytes/second\. If you have detailed \(one\-minute\) monitoring, divide it by 60\.  Unit: Bytes  | 
 |  EBSWriteBytes  |  Bytes written to all EBS volumes attached to the instance in a specified period of time\. The number reported is the number of bytes written during the period\. If you are using basic \(five\-minute\) monitoring, you can divide this number by 300 to find Write Bytes/second\. If you have detailed \(one\-minute\) monitoring, divide it by 60\.  Unit: Bytes  | 
-|  EBSIOBalance%  |  Available only for the smaller instance sizes\. Provides information about the percentage of I/O credits remaining in the burst bucket\. This metric is available for basic monitoring only\. The `Sum` statistic is not applicable to this metric\. Unit: Percent  | 
-|  EBSByteBalance%  |  Available only for the smaller instance sizes\. Provides information about the percentage of throughput credits remaining in the burst bucket\. This metric is available for basic monitoring only\. The `Sum` statistic is not applicable to this metric\. Unit: Percent  | 
+|  EBSIOBalance%  |  Provides information about the percentage of I/O credits remaining in the burst bucket\. This metric is available for basic monitoring only\. Instance sizes that support this metric can be found in the table under [EBS optimized by default](ebs-optimized.md#current): the instances in the **Instance size** column that include an asterisk \(\*\) support this metric\.  The `Sum` statistic is not applicable to this metric\. Unit: Percent  | 
+|  EBSByteBalance%  |  Provides information about the percentage of throughput credits remaining in the burst bucket\. This metric is available for basic monitoring only\. Instance sizes that support this metric can be found in the table under [EBS optimized by default](ebs-optimized.md#current): the instances in the **Instance size** column that include an asterisk \(\*\) support this metric\.  The `Sum` statistic is not applicable to this metric\. Unit: Percent  | 
 
 For information about the metrics provided for your EBS volumes, see [Amazon EBS metrics](using_cloudwatch_ebs.md#ebs-metrics)\. For information about the metrics provided for your Spot fleets, see [CloudWatch metrics for Spot Fleet](spot-fleet-cloudwatch-metrics.md)\.
 
@@ -113,7 +113,7 @@ The following dimensions are used to refine the usage metrics that are published
 |  Resource  |  The type of resource that is running\. Currently, the only valid value for Amazon EC2 usage metrics is `vCPU`, which returns information on instances that are running\.  | 
 |  Class  |  The class of resource being tracked\. For Amazon EC2 usage metrics with `vCPU` as the value of the `Resource` dimension, the valid values are `Standard/OnDemand`, `F/OnDemand`, `G/OnDemand`, `Inf/OnDemand`, `P/OnDemand`, and `X/OnDemand`\. The values for this dimension define the first letter of the instance types that are reported by the metric\. For example, `Standard/OnDemand` returns information about all running instances with types that start with A, C, D, H, I, M, R, T, and Z, and `G/OnDemand` returns information about all running instances with types that start with G\.  | 
 
-## Listing metrics using the console<a name="list-ec2-metrics-console"></a>
+## List metrics using the console<a name="list-ec2-metrics-console"></a>
 
 Metrics are grouped first by namespace, and then by the various dimension combinations within each namespace\. For example, you can view all metrics provided by Amazon EC2, or metrics grouped by instance ID, instance type, image \(AMI\) ID, or Auto Scaling group\.
 
@@ -132,7 +132,7 @@ Metrics are grouped first by namespace, and then by the various dimension combin
 1. To sort the metrics, use the column heading\. To graph a metric, select the check box next to the metric\. To filter by resource, choose the resource ID and then choose **Add to search**\. To filter by metric, choose the metric name and then choose **Add to search**\.  
 ![\[View the metrics for Amazon EC2\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/metric_view_metrics.png)
 
-## Listing metrics using the AWS CLI<a name="list-ec2-metrics-cli"></a>
+## List metrics using the AWS CLI<a name="list-ec2-metrics-cli"></a>
 
 Use the [list\-metrics](https://docs.aws.amazon.com/cli/latest/reference/cloudwatch/list-metrics.html) command to list the CloudWatch metrics for your instances\.
 

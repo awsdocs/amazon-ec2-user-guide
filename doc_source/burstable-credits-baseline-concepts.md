@@ -8,13 +8,13 @@ The CPU credits used depends on CPU utilization\. The following scenarios all us
 + Two vCPUs at 25% utilization for two minutes
 
 **Contents**
-+ [Earning CPU credits](#earning-CPU-credits)
++ [Earn CPU credits](#earning-CPU-credits)
 + [CPU credit earn rate](#CPU-credit-earn-rate)
 + [CPU credit accrual limit](#CPU-credit-accrual-limit)
 + [Accrued CPU credits life span](#accrued-CPU-credits-life-span)
 + [Baseline utilization](#baseline_performance)
 
-## Earning CPU credits<a name="earning-CPU-credits"></a>
+## Earn CPU credits<a name="earning-CPU-credits"></a>
 
 Each burstable performance instance continuously earns \(at a millisecond\-level resolution\) a set rate of CPU credits per hour, depending on the instance size\. The accounting process for whether credits are accrued or spent also happens at a millisecond\-level resolution, so you don't have to worry about overspending CPU credits; a short burst of CPU uses a small fraction of a CPU credit\.
 

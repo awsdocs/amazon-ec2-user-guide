@@ -1,4 +1,4 @@
-# Troubleshooting connecting to your instance<a name="TroubleshootingInstancesConnecting"></a>
+# Troubleshoot connecting to your instance<a name="TroubleshootingInstancesConnecting"></a>
 
 The following information can help you troubleshoot issues with connecting to your instance\. For additional help with Windows instances, see [Troubleshooting Windows Instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/troubleshooting-windows-instances.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
@@ -22,7 +22,7 @@ We recommend that you begin troubleshooting by checking some common causes for i
 You can connect to your instance using the user name for your user account or the default user name for the AMI that you used to launch your instance\.  
 + **Get the user name for your user account\.**
 
-  For more information about how to create a user account, see [Managing user accounts on your Amazon Linux instance](managing-users.md)\.
+  For more information about how to create a user account, see [Manage user accounts on your Amazon Linux instance](managing-users.md)\.
 + **Get the default user name for the AMI that you used to launch your instance:**
   + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
   + For a CentOS AMI, the user name is `centos`\.
@@ -167,9 +167,9 @@ If you have a firewall on your computer, verify that it allows inbound and outbo
 If not, you can associate an Elastic IP address with your instance\. For more information, see [Elastic IP addresses](elastic-ip-addresses-eip.md)\. 
 
 **Check the CPU load on your instance; the server may be overloaded\.**  
-AWS automatically provides data such as Amazon CloudWatch metrics and instance status, which you can use to see how much CPU load is on your instance and, if necessary, adjust how your loads are handled\. For more information, see [Monitoring your instances using CloudWatch](using-cloudwatch.md)\.
+AWS automatically provides data such as Amazon CloudWatch metrics and instance status, which you can use to see how much CPU load is on your instance and, if necessary, adjust how your loads are handled\. For more information, see [Monitor your instances using CloudWatch](using-cloudwatch.md)\.
 + If your load is variable, you can automatically scale your instances up or down using [Auto Scaling](https://aws.amazon.com/autoscaling/) and [Elastic Load Balancing](https://aws.amazon.com/elasticloadbalancing/)\. 
-+ If your load is steadily growing, you can move to a larger instance type\. For more information, see [Changing the instance type](ec2-instance-resize.md)\. 
++ If your load is steadily growing, you can move to a larger instance type\. For more information, see [Change the instance type](ec2-instance-resize.md)\. 
 
 **To connect to your instance using an IPv6 address, check the following:**
 + Your subnet must be associated with a route table that has a route for IPv6 traffic \(`::/0`\) to an internet gateway\. 
@@ -234,7 +234,7 @@ If you try to connect to your instance and get the error message, `unable to loa
   ```
 
 **If you use PuTTY to connect to your instance**
-+ Verify that your private key \(\.pem\) file has been converted to the format recognized by PuTTY \(\.ppk\)\. For more information about converting your private key, see [Connecting to your Linux instance from Windows using PuTTY](putty.md)\.
++ Verify that your private key \(\.pem\) file has been converted to the format recognized by PuTTY \(\.ppk\)\. For more information about converting your private key, see [Connect to your Linux instance from Windows using PuTTY](putty.md)\.
 **Note**  
 In PuTTYgen, load your private key file and select **Save Private Key** rather than **Generate**\. 
 + Verify that you are connecting with the appropriate user name for your AMI\. Enter the user name in the **Host name** box in the **PuTTY Configuration** window\.
@@ -300,11 +300,11 @@ If you get a `Permission denied (publickey)` error and none of the above applies
 
 **To verify the permissions on your instance**
 
-1. Stop your instance and detach the root volume\. For more information, see [Stop and start your instance](Stop_Start.md) and [Detaching an Amazon EBS volume from a Linux instance](ebs-detaching-volume.md)\.
+1. Stop your instance and detach the root volume\. For more information, see [Stop and start your instance](Stop_Start.md) and [Detach an Amazon EBS volume from a Linux instance](ebs-detaching-volume.md)\.
 
-1. Launch a temporary instance in the same Availability Zone as your current instance \(use a similar or the same AMI as you used for your current instance\), and attach the root volume to the temporary instance\. For more information, see [Attaching an Amazon EBS volume to an instance](ebs-attaching-volume.md)\.
+1. Launch a temporary instance in the same Availability Zone as your current instance \(use a similar or the same AMI as you used for your current instance\), and attach the root volume to the temporary instance\. For more information, see [Attach an Amazon EBS volume to an instance](ebs-attaching-volume.md)\.
 
-1. Connect to the temporary instance, create a mount point, and mount the volume that you attached\. For more information, see [Making an Amazon EBS volume available for use on Linux](ebs-using-volumes.md)\.
+1. Connect to the temporary instance, create a mount point, and mount the volume that you attached\. For more information, see [Make an Amazon EBS volume available for use on Linux](ebs-using-volumes.md)\.
 
 1. From the temporary instance, check the permissions of the `/home/my-instance-user-name/` directory of the attached volume\. If necessary, adjust the permissions as follows:
 
@@ -369,7 +369,7 @@ The appropriate user names are as follows:
 + For an Ubuntu AMI, the user name is `ubuntu`\.
 + Otherwise, if `ec2-user` and `root` don't work, check with the AMI provider\.
 
-You should also verify that your private key \(\.pem\) file has been correctly converted to the format recognized by PuTTY \(\.ppk\)\. For more information about converting your private key, see [Connecting to your Linux instance from Windows using PuTTY](putty.md)\.
+You should also verify that your private key \(\.pem\) file has been correctly converted to the format recognized by PuTTY \(\.ppk\)\. For more information about converting your private key, see [Connect to your Linux instance from Windows using PuTTY](putty.md)\.
 
 ## Cannot ping instance<a name="troubleshoot-instance-ping"></a>
 

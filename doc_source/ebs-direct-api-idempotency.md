@@ -1,6 +1,6 @@
 # Idempotency for StartSnapshot API<a name="ebs-direct-api-idempotency"></a>
 
-Idempotency ensures that an API request completes only once\. With an idempotent request, if the original request completes successfully\. The subsequent retries return the result from the original successful request and they have no additional effect\.
+Idempotency ensures that an API request completes only once\. With an idempotent request, if the original request completes successful, the subsequent retries return the result from the original successful request and they have no additional effect\.
 
 The [ StartSnapshot](https://docs.aws.amazon.com/ebs/latest/APIReference/API_StartSnapshot.html) API supports idempotency using a *client token*\. A client token is a unique string that you specify when you make an API request\. If you retry an API request with the same client token and the same request parameters after it has completed successfully, the result of the original request is returned\. If you retry a request with the same client token, but change one or more of the request parameters, the `ConflictException` error is returned\.
 

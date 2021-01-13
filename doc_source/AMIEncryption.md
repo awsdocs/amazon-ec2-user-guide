@@ -1,4 +1,4 @@
-# Using encryption with EBS\-backed AMIs<a name="AMIEncryption"></a>
+# Use encryption with EBS\-backed AMIs<a name="AMIEncryption"></a>
 
 AMIs that are backed by Amazon EBS snapshots can take advantage of Amazon EBS encryption\. Snapshots of both data and root volumes can be encrypted and attached to an AMI\. You can launch instances and copy images with full EBS encryption support included\. Encryption parameters for these operations are supported in all Regions where AWS KMS is available\.
 

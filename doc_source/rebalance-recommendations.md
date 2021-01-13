@@ -4,15 +4,17 @@ An EC2 Instance *rebalance recommendation* is a new signal that notifies you whe
 
 It is not always possible for Amazon EC2 to send the rebalance recommendation signal before the two\-minute Spot Instance interruption notice\. Therefore, the rebalance recommendation signal can arrive along with the two\-minute interruption notice\.
 
+Spot Instances with a defined duration \(also known as Spot blocks\) do not receive rebalance recommendations\.
+
 **Note**  
 Rebalance recommendations are only supported for Spot Instances that are launched after November 5, 2020 00:00 UTC\.
 
 **Topics**
-+ [Rebalancing actions you can take](#rebalancing-actions)
-+ [Monitoring rebalance recommendation signals](#monitor-rebalance-recommendations)
++ [Rebalance actions you can take](#rebalancing-actions)
++ [Monitor rebalance recommendation signals](#monitor-rebalance-recommendations)
 + [Services that use the rebalance recommendation signal](#services-using-rebalance-rec-signal)
 
-## Rebalancing actions you can take<a name="rebalancing-actions"></a>
+## Rebalance actions you can take<a name="rebalancing-actions"></a>
 
 These are some of the possible rebalancing actions that you can take:
 
@@ -25,15 +27,15 @@ When you receive the rebalance recommendation signal for a Spot Instance, you ca
 Proactively launch new replacement instances  
 You can configure Auto Scaling groups, EC2 Fleet, or Spot Fleet to automatically launch replacement Spot Instances when a rebalance recommendation signal is emitted\. For more information, see [Amazon EC2 Auto Scaling Capacity Rebalancing](https://docs.aws.amazon.com/autoscaling/ec2/userguide/capacity-rebalance.html) in the *Amazon EC2 Auto Scaling User Guide*, and [Capacity Rebalancing](ec2-fleet-configuration-strategies.md#ec2-fleet-capacity-rebalance) for EC2 Fleet and [Capacity Rebalancing](spot-fleet.md#spot-fleet-capacity-rebalance) for Spot Fleet in this user guide\.
 
-## Monitoring rebalance recommendation signals<a name="monitor-rebalance-recommendations"></a>
+## Monitor rebalance recommendation signals<a name="monitor-rebalance-recommendations"></a>
 
 You can monitor the rebalance recommendation signal so that, when it is emitted, you can take the actions that are specified in the preceding section\. The rebalance recommendation signal is made available as an event that is sent to Amazon EventBridge \(formerly known as Amazon CloudWatch Events\) and as instance metadata on the Spot Instance\.
 
 **Topics**
-+ [Using Amazon EventBridge](#cp-eventbridge)
-+ [Using instance metadata](#cp-instance-metadata)
++ [Use Amazon EventBridge](#cp-eventbridge)
++ [Use instance metadata](#cp-instance-metadata)
 
-### Using Amazon EventBridge<a name="cp-eventbridge"></a>
+### Use Amazon EventBridge<a name="cp-eventbridge"></a>
 
 When the rebalance recommendation signal is emitted for a Spot Instance, the event for the signal is sent to Amazon EventBridge\. If EventBridge detects an event pattern that matches a pattern defined in a rule, EventBridge invokes a target \(or targets\) specified in the rule\.
 
@@ -63,7 +65,7 @@ Identifies that the event is a rebalance recommendation event
 `source": "aws.ec2`  
 Identifies that the event is from Amazon EC2
 
-#### Creating an EventBridge rule<a name="cp-eventbridge-rule"></a>
+#### Create an EventBridge rule<a name="cp-eventbridge-rule"></a>
 
 You can write an EventBridge rule and automate what actions to take when the event pattern matches the rule\.
 
@@ -106,7 +108,7 @@ The following example creates an EventBridge rule to send an email, text message
 
 For more information, see [Creating a rule for an AWS service](https://docs.aws.amazon.com/eventbridge/latest/userguide/create-eventbridge-rule.html) and [Event Patterns](https://docs.aws.amazon.com/eventbridge/latest/userguide/filtering-examples-structure.html) in the *Amazon EventBridge User Guide*
 
-### Using instance metadata<a name="cp-instance-metadata"></a>
+### Use instance metadata<a name="cp-instance-metadata"></a>
 
 The instance metadata category `events/recommendations/rebalance` provides the approximate time, in UTC, when the rebalance recommendation signal was emitted for a Spot Instance\.
 

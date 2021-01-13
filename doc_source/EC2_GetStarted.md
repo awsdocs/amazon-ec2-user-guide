@@ -1,4 +1,4 @@
-# Tutorial: Getting started with Amazon EC2 Linux instances<a name="EC2_GetStarted"></a>
+# Tutorial: Get started with Amazon EC2 Linux instances<a name="EC2_GetStarted"></a>
 
 Use this tutorial to get started with Amazon Elastic Compute Cloud \(Amazon EC2\)\. You'll learn how to launch, connect to, and use a Linux instance\. An *instance* is a virtual server in the AWS cloud\. With Amazon EC2, you can set up and configure the operating system and applications that run on your instance\.
 
@@ -36,11 +36,11 @@ To complete this tutorial, perform the following tasks:
 
 ## Prerequisites<a name="ec2-getstarted-prereqs"></a>
 
-Before you begin, be sure that you've completed the steps in [Setting up with Amazon EC2](get-set-up-for-amazon-ec2.md)\.
+Before you begin, be sure that you've completed the steps in [Set up to use Amazon EC2](get-set-up-for-amazon-ec2.md)\.
 
 ## Step 1: Launch an instance<a name="ec2-launch-instance"></a>
 
-You can launch a Linux instance using the AWS Management Console as described in the following procedure\. This tutorial is intended to help you launch your first instance quickly, so it doesn't cover all possible options\. For more information about the advanced options, see [Launching an instance using the Launch Instance Wizard](launching-instance.md)\. For information about other ways to launch your instance, see [Launch your instance](LaunchingAndUsingInstances.md)\.
+You can launch a Linux instance using the AWS Management Console as described in the following procedure\. This tutorial is intended to help you launch your first instance quickly, so it doesn't cover all possible options\. For more information about the advanced options, see [Launch an instance using the Launch Instance Wizard](launching-instance.md)\. For information about other ways to launch your instance, see [Launch your instance](LaunchingAndUsingInstances.md)\.
 
 **To launch an instance**
 
@@ -81,7 +81,7 @@ Don't select **Proceed without a key pair**\. If you launch your instance withou
 There are several ways to connect to your Linux instance\. For more information, see [Connect to your Linux instance](AccessingInstances.md)\.
 
 **Important**  
-You can't connect to your instance unless you launched it with a key pair for which you have the `.pem` file and you launched it with a security group that allows SSH access from your computer\. If you can't connect to your instance, see [Troubleshooting connecting to your instance](TroubleshootingInstancesConnecting.md) for assistance\.
+You can't connect to your instance unless you launched it with a key pair for which you have the `.pem` file and you launched it with a security group that allows SSH access from your computer\. If you can't connect to your instance, see [Troubleshoot connecting to your instance](TroubleshootingInstancesConnecting.md) for assistance\.
 
 ## Step 3: Clean up your instance<a name="ec2-clean-up-your-instance"></a>
 
@@ -106,6 +106,6 @@ If you launched an instance that is not within the [AWS Free Tier](https://aws.a
 
 After you start your instance, you might want to try some of the following exercises:
 + Learn how to remotely manage your EC2 instance using Run Command\. For more information, see [AWS Systems Manager Run Command](https://docs.aws.amazon.com/systems-manager/latest/userguide/execute-remote-commands.html) in the *AWS Systems Manager User Guide*\.
-+ Configure a CloudWatch alarm to notify you if your usage exceeds the Free Tier\. For more information, see [Create a Billing Alarm](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/free-tier-alarms.html) in the *AWS Billing and Cost Management User Guide*\.
-+ Add an EBS volume\. For more information, see [Creating an Amazon EBS volume](ebs-creating-volume.md) and [Attaching an Amazon EBS volume to an instance](ebs-attaching-volume.md)\.
++ Configure a CloudWatch alarm to notify you if your usage exceeds the Free Tier\. For more information, see [Tracking your AWS Free Tier usage](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/tracking-free-tier-usage.html) in the *AWS Billing and Cost Management User Guide*\.
++ Add an EBS volume\. For more information, see [Create an Amazon EBS volume](ebs-creating-volume.md) and [Attach an Amazon EBS volume to an instance](ebs-attaching-volume.md)\.
 + Install the LAMP stack\. For more information, see [Tutorial: Install a LAMP web server on Amazon Linux 2](ec2-lamp-amazon-linux-2.md)\.

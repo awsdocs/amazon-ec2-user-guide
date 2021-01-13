@@ -7,7 +7,7 @@ AWS updates to the performance of EBS volume types might not immediately take ef
 **Topics**
 + [Amazon EBS performance tips](#tips)
 + [I/O characteristics and monitoring](ebs-io-characteristics.md)
-+ [Initializing Amazon EBS volumes](ebs-initialize.md)
++ [Initialize Amazon EBS volumes](ebs-initialize.md)
 + [RAID Configuration on Linux](raid-config.md)
 + [Benchmark EBS volumes](benchmark_procedures.md)
 
@@ -30,7 +30,7 @@ There is a relationship between the maximum performance of your EBS volumes, the
 ### Be aware of the performance penalty When initializing volumes from snapshots<a name="initialize"></a>
 
 There is a significant increase in latency when you first access each block of data on a new EBS volume that was created from a snapshot\. You can avoid this performance hit using one of the following options:
-+ Access each block prior to putting the volume into production\. This process is called *initialization* \(formerly known as pre\-warming\)\. For more information, see [Initializing Amazon EBS volumes](ebs-initialize.md)\.
++ Access each block prior to putting the volume into production\. This process is called *initialization* \(formerly known as pre\-warming\)\. For more information, see [Initialize Amazon EBS volumes](ebs-initialize.md)\.
 + Enable fast snapshot restore on a snapshot to ensure that the EBS volumes created from it are fully\-initialized at creation and instantly deliver all of their provisioned performance\. For more information, see [Amazon EBS fast snapshot restore](ebs-fast-snapshot-restore.md)\.
 
 ### Factors that can degrade HDD performance<a name="snapshotting_latency"></a>
@@ -86,7 +86,7 @@ kernel /boot/vmlinuz-4.9.20-11.31.amzn1.x86_64 root=LABEL=/ console=tty1 console
 
 Reboot your instance for this setting to take effect\.
 
-For more information, see [Configuring GRUB for paravirtual AMIs](UserProvidedKernels.md#configuringGRUB)\. Other Linux distributions, especially those that do not use the GRUB boot loader, may require a different approach to adjusting the kernel parameters\.
+For more information, see [Configure GRUB for paravirtual AMIs](UserProvidedKernels.md#configuringGRUB)\. Other Linux distributions, especially those that do not use the GRUB boot loader, may require a different approach to adjusting the kernel parameters\.
 
 For more information about EBS I/O characteristics, see the [Amazon EBS: Designing for Performance](https://www.youtube.com/watch?v=2wKgha8CZ_w) re:Invent presentation on this topic\.
 
@@ -96,4 +96,4 @@ Some instance types can drive more I/O throughput than what you can provision fo
 
 ### Track performance using Amazon CloudWatch<a name="cloudwatch"></a>
 
-Amazon Web Services provides performance metrics for Amazon EBS that you can analyze and view with Amazon CloudWatch and status checks that you can use to monitor the health of your volumes\. For more information, see [Monitoring the status of your volumes](monitoring-volume-status.md)\.
+Amazon Web Services provides performance metrics for Amazon EBS that you can analyze and view with Amazon CloudWatch and status checks that you can use to monitor the health of your volumes\. For more information, see [Monitor the status of your volumes](monitoring-volume-status.md)\.

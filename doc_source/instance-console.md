@@ -1,4 +1,4 @@
-# Troubleshooting an unreachable instance<a name="instance-console"></a>
+# Troubleshoot an unreachable instance<a name="instance-console"></a>
 
 You can use the following methods to troubleshoot an unreachable instance\.
 
@@ -46,7 +46,7 @@ You can use one of the following commands\. For more information about these com
 + [get\-console\-output](https://docs.aws.amazon.com/cli/latest/reference/ec2/get-console-output.html) \(AWS CLI\)
 + [Get\-EC2ConsoleOutput](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ConsoleOutput.html) \(AWS Tools for Windows PowerShell\)
 
-For more information about common system log errors, see [Troubleshooting system log errors for Linux\-based instances](TroubleshootingInstances.md#system-log-errors-linux)\.
+For more information about common system log errors, see [Troubleshoot system log errors for Linux\-based instances](TroubleshootingInstances.md#system-log-errors-linux)\.
 
 ## Capture a screenshot of an unreachable instance<a name="instance-console-screenshot"></a>
 
@@ -117,4 +117,4 @@ For more information, see [Stop and start your instance](Stop_Start.md)\.
 
 1. Restore any important data to the new instance\.
 
-For more information, see [Creating an instance store\-backed Linux AMI](creating-an-ami-instance-store.md)\.
+For more information, see [Create an instance store\-backed Linux AMI](creating-an-ami-instance-store.md)\.

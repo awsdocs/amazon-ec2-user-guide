@@ -38,9 +38,9 @@ The following table summarizes the important differences when using the two type
 |  AMI creation/bundling  |  Uses a single command/call  |  Requires installation and use of AMI tools  | 
 |  Stopped state  |  Can be in a stopped state\. Even when the instance is stopped and not running, the root volume is persisted in Amazon EBS  |  Cannot be in stopped state; instances are running or terminated  | 
 
-\* By default, EBS root volumes have the `DeleteOnTermination` flag set to `true`\. For information about how to change this flag so that the volume persists after termination, see [Changing the root volume to persist](RootDeviceStorage.md#Using_RootDeviceStorage)\.
+\* By default, EBS root volumes have the `DeleteOnTermination` flag set to `true`\. For information about how to change this flag so that the volume persists after termination, see [Change the root volume to persist](RootDeviceStorage.md#Using_RootDeviceStorage)\.
 
-### Determining the root device type of your AMI<a name="display-ami-root-device-type"></a>
+### Determin the root device type of your AMI<a name="display-ami-root-device-type"></a>
 
 **To determine the root device type of an AMI using the console**
 
@@ -76,7 +76,7 @@ Instances launched from an Amazon EBS\-backed AMI launch faster than instances l
 
 To create Linux AMIs backed by instance store, you must create an AMI from your instance on the instance itself using the Amazon EC2 AMI tools\. 
 
-AMI creation is much easier for AMIs backed by Amazon EBS\. The `CreateImage` API action creates your Amazon EBS\-backed AMI and registers it\. There's also a button in the AWS Management Console that lets you create an AMI from a running instance\. For more information, see [Creating an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md)\.
+AMI creation is much easier for AMIs backed by Amazon EBS\. The `CreateImage` API action creates your Amazon EBS\-backed AMI and registers it\. There's also a button in the AWS Management Console that lets you create an AMI from a running instance\. For more information, see [Create an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md)\.
 
 ### How you're charged<a name="ec2-bootfromebs-how-you-are-charged"></a>
 

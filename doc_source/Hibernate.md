@@ -27,12 +27,12 @@ For information about using hibernation on Windows instances, see [Hibernate You
 + [Overview of hibernation](#instance_hibernate)
 + [Hibernation prerequisites](#hibernating-prerequisites)
 + [Limitations](#hibernating-not-supported)
-+ [Configuring an existing AMI to support hibernation](#hibernation-enabled-AMI)
-+ [Enabling hibernation for an instance](#enabling-hibernation)
-+ [Disabling KASLR on an instance \(Ubuntu only\)](#hibernation-disable-kaslr)
-+ [Hibernating an instance](#hibernating-instances)
-+ [Starting a hibernated instance](#hibernating-resuming)
-+ [Troubleshooting hibernation](#troubleshoot-instance-hibernate)
++ [Configure an existing AMI to support hibernation](#hibernation-enabled-AMI)
++ [Enable hibernation for an instance](#enabling-hibernation)
++ [Disable KASLR on an instance \(Ubuntu only\)](#hibernation-disable-kaslr)
++ [Hibernate an instance](#hibernating-instances)
++ [Start a hibernated instance](#hibernating-resuming)
++ [Troubleshoot hibernation](#troubleshoot-instance-hibernate)
 
 ## Overview of hibernation<a name="instance_hibernate"></a>
 
@@ -71,9 +71,9 @@ To hibernate an instance, the following prerequisites must be in place:
   + Ubuntu 18\.04 LTS \- Bionic AMI released with serial number 20190722\.1 or later\.\*
   + Ubuntu 16\.04 LTS \- Xenial AMI\.\* \([Additional configuration](#ubuntu-16.04) is required\.\)
 
-    \*We recommend disabling KASLR on instances with Ubuntu 18\.04 LTS \- Bionic and Ubuntu 16\.04 LTS \- Xenial\. For more information, see [Disabling KASLR on an instance \(Ubuntu only\)](#hibernation-disable-kaslr)\.
+    \*We recommend disabling KASLR on instances with Ubuntu 18\.04 LTS \- Bionic and Ubuntu 16\.04 LTS \- Xenial\. For more information, see [Disable KASLR on an instance \(Ubuntu only\)](#hibernation-disable-kaslr)\.
 
-  To configure your own AMI to support hibernation, see [Configuring an existing AMI to support hibernation](#hibernation-enabled-AMI)\.
+  To configure your own AMI to support hibernation, see [Configure an existing AMI to support hibernation](#hibernation-enabled-AMI)\.
 
   Support for other versions of Ubuntu and other operating systems is coming soon\.
 
@@ -82,11 +82,11 @@ To hibernate an instance, the following prerequisites must be in place:
 + **Supported EBS volume types** \- General Purpose SSD \(`gp2` and `gp3`\) or Provisioned IOPS SSD \(`gp2` and `gp3`\)\. If you choose a Provisioned IOPS SSD volume type, to achieve optimum performance for hibernation, you must provision the EBS volume with the appropriate IOPS\. For more information, see [Amazon EBS volume types](ebs-volume-types.md)\.
 + **EBS root volume size** \- must be large enough to store the RAM contents and accommodate your expected usage, for example, OS or applications\. If you enable hibernation, space is allocated on the root volume at launch to store the RAM\.
 + **EBS root volume encryption** \- To use hibernation, the root volume must be encrypted to ensure the protection of sensitive content that is in memory at the time of hibernation\. When RAM data is moved to the EBS root volume, it is always encrypted\. Encryption of the root volume is enforced at instance launch\. Use one of the following three options to ensure that the root volume is an encrypted EBS volume:
-  + EBS "single\-step" encryption: You can launch encrypted EBS\-backed EC2 instances from an unencrypted AMI and also enable hibernation at the same time\. For more information, see [Using encryption with EBS\-backed AMIs](AMIEncryption.md)\.
+  + EBS "single\-step" encryption: You can launch encrypted EBS\-backed EC2 instances from an unencrypted AMI and also enable hibernation at the same time\. For more information, see [Use encryption with EBS\-backed AMIs](AMIEncryption.md)\.
   + EBS encryption by default: You can enable EBS encryption by default to ensure all new EBS volumes created in your AWS account are encrypted\. This way, you can enable hibernation for your instances without specifying encryption intent at instance launch\. For more information, see [Encryption by default](EBSEncryption.md#encryption-by-default)\.
-  + Encrypted AMI: You can enable EBS encryption by using an encrypted AMI to launch your instance\. If your AMI does not have an encrypted root snapshot, you can copy it to a new AMI and request encryption\. For more information, see [Encrypt an unencrypted image during copy](AMIEncryption.md#copy-unencrypted-to-encrypted) and [Copying an AMI](CopyingAMIs.md#ami-copy-steps)\.
-+ **Enable hibernation at launch** \- You cannot enable hibernation on an existing instance \(running or stopped\)\. For more information, see [Enabling hibernation for an instance](#enabling-hibernation)\.
-+ **Purchasing options** \- This feature is available for On\-Demand Instances and Reserved Instances\. It is not available for Spot Instances\. For more information, see [Hibernating interrupted Spot Instances](spot-interruptions.md#hibernate-spot-instances)\.
+  + Encrypted AMI: You can enable EBS encryption by using an encrypted AMI to launch your instance\. If your AMI does not have an encrypted root snapshot, you can copy it to a new AMI and request encryption\. For more information, see [Encrypt an unencrypted image during copy](AMIEncryption.md#copy-unencrypted-to-encrypted) and [Copy an AMI](CopyingAMIs.md#ami-copy-steps)\.
++ **Enable hibernation at launch** \- You cannot enable hibernation on an existing instance \(running or stopped\)\. For more information, see [Enable hibernation for an instance](#enabling-hibernation)\.
++ **Purchasing options** \- This feature is available for On\-Demand Instances and Reserved Instances\. It is not available for Spot Instances\. For more information, see [Hibernate interrupted Spot Instances](spot-interruptions.md#hibernate-spot-instances)\.
 
 ## Limitations<a name="hibernating-not-supported"></a>
 + When you hibernate an instance, the data on any instance store volumes is lost\.
@@ -97,9 +97,9 @@ To hibernate an instance, the following prerequisites must be in place:
 + We do not support keeping an instance hibernated for more than 60 days\. To keep the instance for longer than 60 days, you must start the hibernated instance, stop the instance, and start it\.
 + We constantly update our platform with upgrades and security patches, which can conflict with existing hibernated instances\. We notify you about critical updates that require a start for hibernated instances so that we can perform a shutdown or a reboot to apply the necessary upgrades and security patches\.
 
-## Configuring an existing AMI to support hibernation<a name="hibernation-enabled-AMI"></a>
+## Configure an existing AMI to support hibernation<a name="hibernation-enabled-AMI"></a>
 
-To hibernate an instance that was launched using your own AMI, you must first configure your AMI to support hibernation\. For more information, see [Updating instance software on your Amazon Linux instance](install-updates.md)\.
+To hibernate an instance that was launched using your own AMI, you must first configure your AMI to support hibernation\. For more information, see [Update instance software on your Amazon Linux instance](install-updates.md)\.
 
 If you use one of the [supported AMIs](#hibernating-prerequisites) \(except Ubuntu 16\.04 LTS\), or if you create an AMI based on one of the supported AMIs, you do not need to configure it to support hibernation\. These AMIs are preconfigured to support hibernation\. To configure Ubuntu 16\.04 LTS to support hibernation, you need to install the linux\-aws\-hwe kernel package version 4\.15\.0\-1058\-aws or later and the ec2\-hibinit\-agent\. For the configuration steps, choose the **Ubuntu 16\.04 \- Xenial** tab below\.
 
@@ -132,7 +132,7 @@ If you use one of the [supported AMIs](#hibernating-prerequisites) \(except Ubun
    [ec2-user ~]$ uname -a
    ```
 
-1. Stop the instance and create an AMI\. For more information, see [Creating a Linux AMI from an instance](creating-an-ami-ebs.md#how-to-create-ebs-ami)\.
+1. Stop the instance and create an AMI\. For more information, see [Create a Linux AMI from an instance](creating-an-ami-ebs.md#how-to-create-ebs-ami)\.
 
 ------
 #### [ Amazon Linux ]
@@ -163,7 +163,7 @@ If you use one of the [supported AMIs](#hibernating-prerequisites) \(except Ubun
    [ec2-user ~]$ uname -a
    ```
 
-1. Stop the instance and create an AMI\. For more information, see [Creating a Linux AMI from an instance](creating-an-ami-ebs.md#how-to-create-ebs-ami)\.
+1. Stop the instance and create an AMI\. For more information, see [Create a Linux AMI from an instance](creating-an-ami-ebs.md#how-to-create-ebs-ami)\.
 
 ------
 #### [ Ubuntu 18\.04 \- Bionic ]
@@ -229,7 +229,7 @@ The linux\-aws\-hwe kernel package is fully supported by Canonical\. The package
 
 ------
 
-## Enabling hibernation for an instance<a name="enabling-hibernation"></a>
+## Enable hibernation for an instance<a name="enabling-hibernation"></a>
 
 To hibernate an instance, it must first be enabled for hibernation\. To enable hibernation, you must do it while launching the instance\.
 
@@ -241,7 +241,7 @@ You can't enable or disable hibernation for an instance after you launch it\.
 
 **To enable hibernation using the console**
 
-1. Follow the [Launching an instance using the Launch Instance Wizard](launching-instance.md) procedure\.
+1. Follow the [Launch an instance using the Launch Instance Wizard](launching-instance.md) procedure\.
 
 1. On the **Choose an Amazon Machine Image \(AMI\)** page, select an AMI that supports hibernation\. For more information about supported AMIs, see [Hibernation prerequisites](#hibernating-prerequisites)\.
 
@@ -256,7 +256,7 @@ You can't enable or disable hibernation for an instance after you launch it\.
 
    For more information about the prerequisites for the root volume, see [Hibernation prerequisites](#hibernating-prerequisites)\.
 
-1. Continue as prompted by the wizard\. When you've finished reviewing your options on the **Review Instance Launch** page, choose **Launch**\. For more information, see [Launching an instance using the Launch Instance Wizard](launching-instance.md)\.
+1. Continue as prompted by the wizard\. When you've finished reviewing your options on the **Review Instance Launch** page, choose **Launch**\. For more information, see [Launch an instance using the Launch Instance Wizard](launching-instance.md)\.
 
 ------
 #### [ AWS CLI ]
@@ -389,7 +389,7 @@ The output lists the EC2 instances that are enabled for hibernation\.
 
 ------
 
-## Disabling KASLR on an instance \(Ubuntu only\)<a name="hibernation-disable-kaslr"></a>
+## Disable KASLR on an instance \(Ubuntu only\)<a name="hibernation-disable-kaslr"></a>
 
 To run hibernation on a newly launched instance with Ubuntu 16\.04 LTS \- Xenial or Ubuntu 18\.04 LTS \- Bionic released with serial 20190722\.1 or later, we recommend disabling KASLR \(Kernel Address Space Layout Randomization\)\. On Ubuntu 16\.04 LTS or Ubuntu 18\.04 LTS, KASLR is enabled by default\. KASLR is a standard Linux kernel security feature that helps to mitigate exposure to and ramifications of yet\-undiscovered memory access vulnerabilities by randomizing the base address value of the kernel\. With KASLR enabled, there is a possibility that the instance might not resume after it has been hibernated\.
 
@@ -397,7 +397,7 @@ To learn more about KASLR, see [Ubuntu Features](https://wiki.ubuntu.com/Securit
 
 **To disable KASLR on an instance launched with Ubuntu**
 
-1. Connect to your instance using SSH\. For more information, see [Connecting to your Linux instance using SSH](AccessingInstancesLinux.md)\.
+1. Connect to your instance using SSH\. For more information, see [Connect to your Linux instance using SSH](AccessingInstancesLinux.md)\.
 
 1. Open the `/etc/default/grub.d/50-cloudimg-settings.cfg` file in your editor of choice\. Edit the `GRUB_CMDLINE_LINUX_DEFAULT` line to append the `nokaslr` option to its end, as shown in the following example\.
 
@@ -427,7 +427,7 @@ To learn more about KASLR, see [Ubuntu Features](https://wiki.ubuntu.com/Securit
 
    The output of the command should include the `nokaslr` option\.
 
-## Hibernating an instance<a name="hibernating-instances"></a>
+## Hibernate an instance<a name="hibernating-instances"></a>
 
 You can hibernate an instance if the instance is [enabled for hibernation](#enabling-hibernation) and meets the [hibernation prerequisites](#hibernating-prerequisites)\. If an instance cannot hibernate successfully, a normal shutdown occurs\.
 
@@ -541,7 +541,7 @@ The output lists the EC2 instances on which hibernation was initiated\.
 
 ------
 
-## Starting a hibernated instance<a name="hibernating-resuming"></a>
+## Start a hibernated instance<a name="hibernating-resuming"></a>
 
 Start a hibernated instance by starting it in the same way that you would start a stopped instance\.
 
@@ -591,7 +591,7 @@ Start-EC2Instance `
 
 ------
 
-## Troubleshooting hibernation<a name="troubleshoot-instance-hibernate"></a>
+## Troubleshoot hibernation<a name="troubleshoot-instance-hibernate"></a>
 
 Use this information to help diagnose and fix issues that you might encounter when hibernating an instance\.
 
@@ -621,7 +621,7 @@ If the last log line from the `hibinit-agent` is `hibinit-agent: Running: swapof
 
 
 
-If you do not see any logs from these processes, your AMI might not support hibernation\. For information about supported AMIs, see [Hibernation prerequisites](#hibernating-prerequisites)\. If you used your own AMI, make sure that you followed the instructions for [Configuring an existing AMI to support hibernation](#hibernation-enabled-AMI)\.
+If you do not see any logs from these processes, your AMI might not support hibernation\. For information about supported AMIs, see [Hibernation prerequisites](#hibernating-prerequisites)\. If you used your own AMI, make sure that you followed the instructions for [Configure an existing AMI to support hibernation](#hibernation-enabled-AMI)\.
 
 ### Instance "stuck" in the stopping state<a name="hibernate-troubleshooting-3"></a>
 

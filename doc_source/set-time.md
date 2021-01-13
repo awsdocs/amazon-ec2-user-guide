@@ -1,4 +1,4 @@
-# Setting the time for your Linux instance<a name="set-time"></a>
+# Set the time for your Linux instance<a name="set-time"></a>
 
 A consistent and accurate time reference is crucial for many server tasks and processes\. Most system logs include a time stamp that you can use to determine when problems occur and in what order the events take place\. If you use the AWS CLI or an AWS SDK to make requests from your instance, these tools sign requests on your behalf\. If your instance's date and time are not set correctly, the date in the signature may not match the date of the request, and AWS rejects the request\. 
 
@@ -9,12 +9,12 @@ The Amazon Time Sync Service is available through NTP at the `169.254.169.123` I
 Use the following procedures to configure the Amazon Time Sync Service on your instance using the `chrony` client\. Alternatively, you can use external NTP sources\. For more information about NTP and public time sources, see [http://www\.ntp\.org/](http://www.ntp.org/)\. An instance needs access to the internet for the external NTP time sources to work\. 
 
 **Topics**
-+ [Configuring the Amazon Time Sync Service on Amazon Linux AMI](#configure-amazon-time-service-amazon-linux)
-+ [Configuring the Amazon Time Sync Service on Ubuntu](#configure-amazon-time-service-ubuntu)
-+ [Configuring the Amazon Time Sync Service on SUSE Linux](#configure-amazon-time-service-suse)
-+ [Changing the time zone on Amazon Linux](#change_time_zone)
++ [Configure the Amazon Time Sync Service on Amazon Linux AMI](#configure-amazon-time-service-amazon-linux)
++ [Configure the Amazon Time Sync Service on Ubuntu](#configure-amazon-time-service-ubuntu)
++ [Configure the Amazon Time Sync Service on SUSE Linux](#configure-amazon-time-service-suse)
++ [Change the time zone on Amazon Linux](#change_time_zone)
 
-## Configuring the Amazon Time Sync Service on Amazon Linux AMI<a name="configure-amazon-time-service-amazon-linux"></a>
+## Configure the Amazon Time Sync Service on Amazon Linux AMI<a name="configure-amazon-time-service-amazon-linux"></a>
 
 **Note**  
 On Amazon Linux 2, the default `chrony` configuration is already set up to use the Amazon Time Sync Service IP address\.
@@ -113,7 +113,7 @@ On RHEL and CentOS \(up to version 6\), the service name is `chrony` instead of 
    Leap status     : Normal
    ```
 
-## Configuring the Amazon Time Sync Service on Ubuntu<a name="configure-amazon-time-service-ubuntu"></a>
+## Configure the Amazon Time Sync Service on Ubuntu<a name="configure-amazon-time-service-ubuntu"></a>
 
 You must edit the `chrony` configuration file to add a server entry for the Amazon Time Sync Service\.
 
@@ -195,7 +195,7 @@ If necessary, update your instance first by running `sudo apt update`\.
    Leap status     : Normal
    ```
 
-## Configuring the Amazon Time Sync Service on SUSE Linux<a name="configure-amazon-time-service-suse"></a>
+## Configure the Amazon Time Sync Service on SUSE Linux<a name="configure-amazon-time-service-suse"></a>
 
 Install chrony from [https://software\.opensuse\.org/package/chrony](https://software.opensuse.org/package/chrony)\.
 
@@ -207,7 +207,7 @@ server 169.254.169.123 prefer iburst minpoll 4 maxpoll 4
 
 If this line is not present, add it\. Comment out any other server or pool lines\. Open yast and enable the chrony service\.
 
-## Changing the time zone on Amazon Linux<a name="change_time_zone"></a>
+## Change the time zone on Amazon Linux<a name="change_time_zone"></a>
 
 Amazon Linux instances are set to the UTC \(Coordinated Universal Time\) time zone by default\. You can change the time on an instance to the local time or to another time zone in your network\.
 

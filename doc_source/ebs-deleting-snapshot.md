@@ -1,12 +1,14 @@
-# Deleting an Amazon EBS snapshot<a name="ebs-deleting-snapshot"></a>
+# Delete an Amazon EBS snapshot<a name="ebs-deleting-snapshot"></a>
 
 After you no longer need an Amazon EBS snapshot of a volume, you can delete it\. Deleting a snapshot has no effect on the volume\. Deleting a volume has no effect on the snapshots made from it\.
 
 ## Incremental snapshot deletion<a name="ebs-deleting-snapshot-incremental"></a>
 
-If you make periodic snapshots of a volume, the snapshots are *incremental*\. This means that only the blocks on the device that have changed after your last snapshot are saved in the new snapshot\. Even though snapshots are saved incrementally, the snapshot deletion process is designed so that you need to retain only the most recent snapshot in order to create volumes\. Data that was present on a volume, held in an earlier snapshot or series of snapshots, that is subsequently deleted from that volume at a later time, is still considered unique data of the earlier snapshots\. This unique data is not deleted from the sequence of snapshots unless all snapshots that reference the unique data are deleted\. 
+If you make periodic snapshots of a volume, the snapshots are *incremental*\. This means that only the blocks on the device that have changed after your most recent snapshot are saved in the new snapshot\. Even though snapshots are saved incrementally, the snapshot deletion process is designed so that you need to retain only the most recent snapshot in order to create volumes\.
 
-When you delete a snapshot, only the data referenced exclusively by that snapshot is removed\. Unique data will not be deleted unless all of the snapshots that reference that data are deleted\. Deleting previous snapshots of a volume does not affect your ability to create volumes from later snapshots of that volume\.
+If data was present on a volume held in an earlier snapshot or series of snapshots, and that data is subsequently deleted from the volume later on, the data is still considered to be unique data of the earlier snapshots\. Unique data is only deleted from the sequence of snapshots if all snapshots that reference the unique data are deleted\. 
+
+When you delete a snapshot, only the data that is referenced exclusively by that snapshot is removed\. Unique data is only deleted if all of the snapshots that reference it are deleted\. Deleting previous snapshots of a volume does not affect your ability to create volumes from later snapshots of that volume\.
 
 Deleting a snapshot might not reduce your organization's data storage costs\. Other snapshots might reference that snapshot's data, and referenced data is always preserved\. If you delete a snapshot containing data being used by a later snapshot, costs associated with the referenced data are allocated to the later snapshot\. For more information about how snapshots store data, see [How incremental snapshots work](EBSSnapshots.md#how_snapshots_work) and the following example\.
 
@@ -22,7 +24,7 @@ In the following diagram, Volume 1 is shown at three points in time\. A snapshot
 ## Considerations<a name="ebs-delete-snapshot-considerations"></a>
 
 The following considerations apply to deleting snapshots:
-+ You can't delete a snapshot of the root device of an EBS volume used by a registered AMI\. You must first deregister the AMI before you can delete the snapshot\. For more information, see [Deregistering your Linux AMI](deregister-ami.md)\.
++ You can't delete a snapshot of the root device of an EBS volume used by a registered AMI\. You must first deregister the AMI before you can delete the snapshot\. For more information, see [Deregister your Linux AMI](deregister-ami.md)\.
 + You can't delete a snapshot that is managed by the AWS Backup service using Amazon EC2\. Instead, use AWS Backup to delete the corresponding recovery points in the backup vault\.
 + You can create, retain, and delete snapshots manually, or you can use Amazon Data Lifecycle Manager to manage your snapshots for you\. For more information, see [Data Lifecycle Manager](snapshot-lifecycle.md)\.
 + Although you can delete a snapshot that is still in progress, the snapshot must complete before the deletion takes effect\. This might take a long time\. If you are also at your concurrent snapshot limit, and you attempt to take an additional snapshot, you might get a `ConcurrentSnapshotLimitExceeded` error\. For more information, see the [Service Quotas](https://docs.aws.amazon.com/general/latest/gr/ebs-service.html#limits_ebs) for Amazon EBS in the *Amazon Web Services General Reference*\.

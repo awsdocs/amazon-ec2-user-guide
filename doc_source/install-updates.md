@@ -1,4 +1,4 @@
-# Updating instance software on your Amazon Linux instance<a name="install-updates"></a>
+# Update instance software on your Amazon Linux instance<a name="install-updates"></a>
 
 It is important to keep software up\-to\-date\. Many packages in a Linux distribution are updated frequently to fix bugs, add features, and protect against security exploits\. When you first launch and connect to an Amazon Linux instance, you may see a message asking you to update software packages for security purposes\. This section shows how to update an entire system, or just a single package\.
 

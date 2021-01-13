@@ -1,4 +1,4 @@
-# Working with Dedicated Hosts<a name="how-dedicated-hosts-work"></a>
+# Work with Dedicated Hosts<a name="how-dedicated-hosts-work"></a>
 
 To use a Dedicated Host, you first allocate hosts for use in your account\. You then launch instances onto the hosts by specifying *host* tenancy for the instance\. You must select a specific host for the instance to launch on to, or you can allow it to launch on to any host that has auto\-placement enabled and matches its instance type\. When an instance is stopped and restarted, the *Host affinity* setting determines whether it's restarted on the same, or a different, host\.
 
@@ -7,22 +7,22 @@ If you no longer need an On\-Demand host, you can stop the instances running on 
 Dedicated Hosts are also integrated with AWS License Manager\. With License Manager, you can create a host resource group, which is a collection of Dedicated Hosts that are managed as a single entity\. When creating a host resource group, you specify the host management preferences, such as auto\-allocate and auto\-release, for the Dedicated Hosts\. This allows you to launch instances onto Dedicated Hosts without manually allocating and managing those hosts\. For more information, see [ Host Resource Groups](https://docs.aws.amazon.com/license-manager/latest/userguide/host-resource-groups.html) in the *AWS License Manager User Guide*\.
 
 **Topics**
-+ [Allocating Dedicated Hosts](#dedicated-hosts-allocating)
-+ [Launching instances onto a Dedicated Host](#launching-dedicated-hosts-instances)
-+ [Launching instances into a host resource group](#launching-hrg-instances)
-+ [Understanding auto\-placement and affinity](#dedicated-hosts-understanding)
-+ [Modifying Dedicated Host auto\-placement](#modify-host-auto-placement)
-+ [Modifying the supported instance types](#modify-host-support)
-+ [Modifying instance tenancy and affinity](#moving-instances-dedicated-hosts)
-+ [Viewing Dedicated Hosts](#dedicated-hosts-managing)
-+ [Tagging Dedicated Hosts](#dedicated-hosts-tagging)
-+ [Monitoring Dedicated Hosts](#dedicated-hosts-monitoring)
-+ [Releasing Dedicated Hosts](#dedicated-hosts-releasing)
-+ [Purchasing Dedicated Host Reservations](#purchasing-dedicated-host-reservations)
-+ [Viewing Dedicated Host reservations](#viewing-host-reservations)
-+ [Tagging Dedicated Host Reservations](#tagging-host-reservations)
++ [Allocate Dedicated Hosts](#dedicated-hosts-allocating)
++ [Launch instances onto a Dedicated Host](#launching-dedicated-hosts-instances)
++ [Launch instances into a host resource group](#launching-hrg-instances)
++ [Understand auto\-placement and affinity](#dedicated-hosts-understanding)
++ [Modify Dedicated Host auto\-placement](#modify-host-auto-placement)
++ [Modify the supported instance types](#modify-host-support)
++ [Modify instance tenancy and affinity](#moving-instances-dedicated-hosts)
++ [View Dedicated Hosts](#dedicated-hosts-managing)
++ [Tag Dedicated Hosts](#dedicated-hosts-tagging)
++ [Monitor Dedicated Hosts](#dedicated-hosts-monitoring)
++ [Release Dedicated Hosts](#dedicated-hosts-releasing)
++ [Purchase Dedicated Host Reservations](#purchasing-dedicated-host-reservations)
++ [View Dedicated Host reservations](#viewing-host-reservations)
++ [Tag Dedicated Host Reservations](#tagging-host-reservations)
 
-## Allocating Dedicated Hosts<a name="dedicated-hosts-allocating"></a>
+## Allocate Dedicated Hosts<a name="dedicated-hosts-allocating"></a>
 
 To begin using Dedicated Hosts, you must allocate Dedicated Hosts in your account using the Amazon EC2 console or the command line tools\. After you allocate the Dedicated Host, the Dedicated Host capacity is made available in your account immediately and you can start launching instances onto the Dedicated Host\.
 
@@ -49,7 +49,7 @@ You can allocate a Dedicated Host using the following methods\.
 
 1. For **Availability Zone**, choose the Availability Zone in which to allocate the Dedicated Host\.
 
-1. To allow the Dedicated Host to accept untargeted instance launches that match its instance type, for **Instance auto\-placement**, choose **Enable**\. For more information about auto\-placement, see [Understanding auto\-placement and affinity](#dedicated-hosts-understanding)\.
+1. To allow the Dedicated Host to accept untargeted instance launches that match its instance type, for **Instance auto\-placement**, choose **Enable**\. For more information about auto\-placement, see [Understand auto\-placement and affinity](#dedicated-hosts-understanding)\.
 
 1. To enable host recovery for the Dedicated Host, for **Host recovery**, choose **Enable**\. For more information, see [Host recovery](dedicated-hosts-recovery.md)\.
 
@@ -76,7 +76,7 @@ You can allocate a Dedicated Host using the following methods\.
 
 1. For **Availability Zone**, choose the Availability Zone in which to allocate the Dedicated Host\.
 
-1. To allow the Dedicated Host to accept untargeted instance launches that match its instance type, for **Instance auto\-placement**, choose **Enable**\. For more information about auto\-placement, see [Understanding auto\-placement and affinity](#dedicated-hosts-understanding)\.
+1. To allow the Dedicated Host to accept untargeted instance launches that match its instance type, for **Instance auto\-placement**, choose **Enable**\. For more information about auto\-placement, see [Understand auto\-placement and affinity](#dedicated-hosts-understanding)\.
 
 1. To enable host recovery for the Dedicated Host, for **Host recovery** choose **Enable**\. For more information, see [Host recovery](dedicated-hosts-recovery.md)\.
 
@@ -131,7 +131,7 @@ PS C:\> New-EC2Host -InstanceType m4.large -AvailabilityZone eu-west-1a -AutoPla
 
 ------
 
-## Launching instances onto a Dedicated Host<a name="launching-dedicated-hosts-instances"></a>
+## Launch instances onto a Dedicated Host<a name="launching-dedicated-hosts-instances"></a>
 
 After you have allocated a Dedicated Host, you can launch instances onto it\. You can't launch instances with `host` tenancy if you do not have active Dedicated Hosts with enough available capacity for the instance type that you are launching\.
 
@@ -165,7 +165,7 @@ You can launch an instance onto a Dedicated Host using the following methods\.
    + **Off**—The instance launches onto the specified host, but it is not guaranteed to restart on the same Dedicated Host if stopped\.
    + **Host**—If stopped, the instance always restarts on this specific host\.
 
-   For more information about Affinity, see [Understanding auto\-placement and affinity](#dedicated-hosts-understanding)\.
+   For more information about Affinity, see [Understand auto\-placement and affinity](#dedicated-hosts-understanding)\.
 
    The **Tenancy** and **Host** options are pre\-configured based on the host that you selected\.
 
@@ -192,7 +192,7 @@ You can launch an instance onto a Dedicated Host using the following methods\.
      + **Off**—The instance launches onto the specified host, but it is not guaranteed to restart on it if stopped\.
      + **Host**—If stopped, the instance always restarts on the specified host\.
 
-   For more information, see [Understanding auto\-placement and affinity](#dedicated-hosts-understanding)\.
+   For more information, see [Understand auto\-placement and affinity](#dedicated-hosts-understanding)\.
 
    If you are unable to see these settings, check that you have selected a VPC in the **Network** menu\.
 
@@ -216,7 +216,7 @@ Use the [New\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/referen
 
 ------
 
-## Launching instances into a host resource group<a name="launching-hrg-instances"></a>
+## Launch instances into a host resource group<a name="launching-hrg-instances"></a>
 
 When you launch an instance into a host resource group that has a Dedicated Host with available instance capacity, Amazon EC2 launches the instance onto that host\. If the host resource group does not have a host with available instance capacity, Amazon EC2 automatically allocates a new host in the host resource group, and then launches the instance onto that host\. For more information, see [ Host Resource Groups](https://docs.aws.amazon.com/license-manager/latest/userguide/host-resource-groups.html) in the *AWS License Manager User Guide*\.
 
@@ -268,7 +268,7 @@ Use the [New\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/referen
 
 ------
 
-## Understanding auto\-placement and affinity<a name="dedicated-hosts-understanding"></a>
+## Understand auto\-placement and affinity<a name="dedicated-hosts-understanding"></a>
 
 Placement control for Dedicated Hosts happens on both the instance level and host level\.
 
@@ -290,7 +290,7 @@ When affinity is set to `Host`, an instance launched onto a specific host always
 
 When affinity is set to `Off`, and you stop and restart the instance, it can be restarted on any available host\. However, it tries to launch back onto the last Dedicated Host on which it ran \(on a best\-effort basis\)\.
 
-## Modifying Dedicated Host auto\-placement<a name="modify-host-auto-placement"></a>
+## Modify Dedicated Host auto\-placement<a name="modify-host-auto-placement"></a>
 
 You can modify the auto\-placement settings of a Dedicated Host after you have allocated it to your AWS account, using one of the following methods\.
 
@@ -305,7 +305,7 @@ You can modify the auto\-placement settings of a Dedicated Host after you have a
 
 1. Select a host and choose **Actions**, **Modify host**\.
 
-1. For **Instance auto\-placement**, choose **Enable** to enable auto\-placement, or clear **Enable** to disable auto\-placement\. For more information, see [Understanding auto\-placement and affinity](#dedicated-hosts-understanding)\.
+1. For **Instance auto\-placement**, choose **Enable** to enable auto\-placement, or clear **Enable** to disable auto\-placement\. For more information, see [Understand auto\-placement and affinity](#dedicated-hosts-understanding)\.
 
 1. Choose **Save**\.
 
@@ -320,7 +320,7 @@ You can modify the auto\-placement settings of a Dedicated Host after you have a
 
 1. On the **Dedicated Hosts** page, select a host and choose **Actions**, **Modify Auto\-Placement**\.
 
-1. On the Modify Auto\-placement window, for **Allow instance auto\-placement**, choose **Yes** to enable auto\-placement, or choose **No** to disable auto\-placement\. For more information, see [Understanding auto\-placement and affinity](#dedicated-hosts-understanding)\.
+1. On the Modify Auto\-placement window, for **Allow instance auto\-placement**, choose **Yes** to enable auto\-placement, or choose **No** to disable auto\-placement\. For more information, see [Understand auto\-placement and affinity](#dedicated-hosts-understanding)\.
 
 1. Choose **Save**\.
 
@@ -346,7 +346,7 @@ PS C:\> Edit-EC2Host --AutoPlacement 1 --HostId h-012a3456b7890cdef
 
 ------
 
-## Modifying the supported instance types<a name="modify-host-support"></a>
+## Modify the supported instance types<a name="modify-host-support"></a>
 
 Support for multiple instance types on the same Dedicated Host is available for the following instance families: `c5`, `m5`, `r5`, `c5n`, `r5n`, and `m5n`\. Other instance families support only a single instance type on the same Dedicated Host\.
 
@@ -440,7 +440,7 @@ PS C:\> Edit-EC2Host --InstanceType m5.xlarge --HostId h-012a3456b7890cdef
 
 ------
 
-## Modifying instance tenancy and affinity<a name="moving-instances-dedicated-hosts"></a>
+## Modify instance tenancy and affinity<a name="moving-instances-dedicated-hosts"></a>
 
 You can change the tenancy of an instance from `dedicated` to `host`, or from `host` to `dedicated`, after you have launched it\. You can also modify the affinity between the instance and the host\. To modify either instance tenancy or affinity, the instance must be in the `stopped` state\.
 
@@ -468,7 +468,7 @@ You can modify an instance's tenancy and affinity using the following methods\.
      + This instance can only run on the selected host—The instance is only able to run on the Dedicated Host selected for **Target Host**\.
    + **Target Host**—Select the Dedicated Host that the instance must run on\. If no target host is listed, you might not have available, compatible Dedicated Hosts in your account\.
 
-   For more information, see [Understanding auto\-placement and affinity](#dedicated-hosts-understanding)\.
+   For more information, see [Understand auto\-placement and affinity](#dedicated-hosts-understanding)\.
 
 1. Choose **Save**\.
 
@@ -494,7 +494,7 @@ PS C:\> Edit-EC2InstancePlacement -InstanceId i-1234567890abcdef0 -Affinity host
 
 ------
 
-## Viewing Dedicated Hosts<a name="dedicated-hosts-managing"></a>
+## View Dedicated Hosts<a name="dedicated-hosts-managing"></a>
 
 You can view details about a Dedicated Host and the individual instances on it using the following methods\.
 
@@ -566,11 +566,11 @@ PS C:\> Get-EC2Host -HostId h-012a3456b7890cdef
 
 ------
 
-## Tagging Dedicated Hosts<a name="dedicated-hosts-tagging"></a>
+## Tag Dedicated Hosts<a name="dedicated-hosts-tagging"></a>
 
 You can assign custom tags to your existing Dedicated Hosts to categorize them in different ways, for example, by purpose, owner, or environment\. This helps you to quickly find a specific Dedicated Host based on the custom tags that you assigned\. Dedicated Host tags can also be used for cost allocation tracking\.
 
-You can also apply tags to Dedicated Hosts at the time of creation\. For more information, see [Allocating Dedicated Hosts](#dedicated-hosts-allocating)\.
+You can also apply tags to Dedicated Hosts at the time of creation\. For more information, see [Allocate Dedicated Hosts](#dedicated-hosts-allocating)\.
 
 You can tag a Dedicated Host using the following methods\.
 
@@ -644,7 +644,7 @@ PS C:\> New-EC2Tag -Resource h-abc12345678909876 -Tag $tag
 
 ------
 
-## Monitoring Dedicated Hosts<a name="dedicated-hosts-monitoring"></a>
+## Monitor Dedicated Hosts<a name="dedicated-hosts-monitoring"></a>
 
 Amazon EC2 constantly monitors the state of your Dedicated Hosts\. Updates are communicated on the Amazon EC2 console\. You can view information about a Dedicated Host using the following methods\.
 
@@ -693,7 +693,7 @@ The following table explains the possible Dedicated Host states\.
 | permanent\-failure | An unrecoverable failure has been detected\. You receive an eviction notice through your instances and by email\. Your instances might continue to run\. If you stop or terminate all instances on a Dedicated Host with this state, AWS retires the host\. AWS does not restart instances in this state\. Instances can't be launched onto Dedicated Hosts in this state\. | 
 | released\-permanent\-failure | AWS permanently releases Dedicated Hosts that have failed and no longer have running instances on them\. The Dedicated Host ID is no longer available for use\. | 
 
-## Releasing Dedicated Hosts<a name="dedicated-hosts-releasing"></a>
+## Release Dedicated Hosts<a name="dedicated-hosts-releasing"></a>
 
 Any running instances on the Dedicated Host must be stopped before you can release the host\. These instances can be migrated to other Dedicated Hosts in your account so that you can continue to use them\. These steps apply only to On\-Demand Dedicated Hosts\.
 
@@ -758,7 +758,7 @@ If you have recently released Dedicated Hosts, it can take some time for them to
 
 The instances that were stopped are still available for use and are listed on the **Instances** page\. They retain their `host` tenancy setting\.
 
-## Purchasing Dedicated Host Reservations<a name="purchasing-dedicated-host-reservations"></a>
+## Purchase Dedicated Host Reservations<a name="purchasing-dedicated-host-reservations"></a>
 
 You can purchase reservations using the following methods:
 
@@ -831,7 +831,7 @@ The term is specified in seconds\. A one\-year term includes 31,536,000 seconds,
 
 ------
 
-## Viewing Dedicated Host reservations<a name="viewing-host-reservations"></a>
+## View Dedicated Host reservations<a name="viewing-host-reservations"></a>
 
 You can view information about the Dedicated Hosts that are associated with your reservation, including:
 + The term of the reservation
@@ -877,7 +877,7 @@ PS C:\> Get-EC2HostReservation
 
 ------
 
-## Tagging Dedicated Host Reservations<a name="tagging-host-reservations"></a>
+## Tag Dedicated Host Reservations<a name="tagging-host-reservations"></a>
 
 You can assign custom tags to your Dedicated Host Reservations to categorize them in different ways, for example, by purpose, owner, or environment\. This helps you to quickly find a specific Dedicated Host Reservation based on the custom tags that you assigned\.
 

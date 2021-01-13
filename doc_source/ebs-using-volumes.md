@@ -1,4 +1,4 @@
-# Making an Amazon EBS volume available for use on Linux<a name="ebs-using-volumes"></a>
+# Make an Amazon EBS volume available for use on Linux<a name="ebs-using-volumes"></a>
 
 After you attach an Amazon EBS volume to your instance, it is exposed as a block device\. You can format the volume with any file system and then mount it\. After you make the EBS volume available for use, you can access it in the same ways that you access any other volume\. Any data written to this file system is written to the EBS volume and is transparent to applications using the device\.
 
@@ -87,7 +87,7 @@ Do not use this command if you're mounting a volume that already has data on it 
 
 To mount an attached EBS volume on every system reboot, add an entry for the device to the `/etc/fstab` file\.
 
-You can use the device name, such as `/dev/xvdf`, in `/etc/fstab`, but we recommend using the device's 128\-bit universally unique identifier \(UUID\) instead\. Device names can change, but the UUID persists throughout the life of the partition\. By using the UUID, you reduce the chances that the system becomes unbootable after a hardware reconfiguration\. For more information, see [Identifying the EBS device](nvme-ebs-volumes.md#identify-nvme-ebs-device)\.
+You can use the device name, such as `/dev/xvdf`, in `/etc/fstab`, but we recommend using the device's 128\-bit universally unique identifier \(UUID\) instead\. Device names can change, but the UUID persists throughout the life of the partition\. By using the UUID, you reduce the chances that the system becomes unbootable after a hardware reconfiguration\. For more information, see [Identify the EBS device](nvme-ebs-volumes.md#identify-nvme-ebs-device)\.
 
 **To mount an attached volume automatically after reboot**
 

@@ -1,4 +1,4 @@
-# Retrieving instance metadata<a name="instancedata-data-retrieval"></a>
+# Retrieve instance metadata<a name="instancedata-data-retrieval"></a>
 
 Because your instance metadata is available from your running instance, you do not need to use the Amazon EC2 console or the AWS CLI\. This can be helpful when you're writing scripts to run from your instance\. For example, you can access the local IP address of your instance from instance metadata to manage a connection to an external application\.
 
@@ -14,7 +14,7 @@ The IP address `169.254.169.254` is a link\-local address and is valid only from
 
 Note that you are not billed for HTTP requests used to retrieve instance metadata and user data\.
 
-The command format is different, depending on whether you use IMDSv1 or IMDSv2\. By default, you can use both instance metadata services\. To require the use of IMDSv2, see [Configuring the instance metadata service](configuring-instance-metadata-service.md)\.
+The command format is different, depending on whether you use IMDSv1 or IMDSv2\. By default, you can use both instance metadata services\. To require the use of IMDSv2, see [Configure the instance metadata service](configuring-instance-metadata-service.md)\.
 
 You can use a tool such as cURL, as shown in the following example\.
 
@@ -36,7 +36,7 @@ You can use a tool such as cURL, as shown in the following example\.
 ------
 
 **Note**  
-The AWS SDKs use IMDSv2 calls by default\. If the IMDSv2 call receives no response, the SDK retries the call and, if still unsuccessful, uses IMDSv1\. This can result in a delay\. In a container environment, if the hop limit is 1, the IMDSv2 response does not return because going to the container is considered an additional network hop\. To avoid the process of falling back to IMDSv1 and the resultant delay, in a container environment we recommend that you set the hop limit to 2\. For more information, see [Configuring the instance metadata options](configuring-instance-metadata-service.md#configuring-instance-metadata-options)\.
+The AWS SDKs use IMDSv2 calls by default\. If the IMDSv2 call receives no response, the SDK retries the call and, if still unsuccessful, uses IMDSv1\. This can result in a delay\. In a container environment, if the hop limit is 1, the IMDSv2 response does not return because going to the container is considered an additional network hop\. To avoid the process of falling back to IMDSv1 and the resultant delay, in a container environment we recommend that you set the hop limit to 2\. For more information, see [Configure the instance metadata options](configuring-instance-metadata-service.md#configuring-instance-metadata-options)\.
 
 You can also download the [Instance Metadata Query tool](https://aws.amazon.com/code/ec2-instance-metadata-query-tool/), which allows you to query the instance metadata using Instance Metadata Service Version 1 without having to enter the full URI or category names\.
 
@@ -388,7 +388,7 @@ subnet-be9b61d7
 
 ------
 
-## Throttling<a name="instancedata-throttling"></a>
+## Query throttling<a name="instancedata-throttling"></a>
 
 We throttle queries to the instance metadata service on a per\-instance basis, and we place limits on the number of simultaneous connections from an instance to the instance metadata service\. 
 
@@ -396,7 +396,7 @@ If you're using the instance metadata service to retrieve AWS security credentia
 
 If you are throttled while accessing the instance metadata service, retry your query with an exponential backoff strategy\.
 
-## Limiting instance metadata service access<a name="instance-metadata-limiting-access"></a>
+## Limit instance metadata service access<a name="instance-metadata-limiting-access"></a>
 
 You can consider using local firewall rules to disable access from some or all processes to the instance metadata service\.
 

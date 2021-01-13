@@ -1,8 +1,8 @@
-# Developing EC2Rescue modules<a name="ec2rl_moduledev"></a>
+# Develop EC2Rescue modules<a name="ec2rl_moduledev"></a>
 
 Modules are written in YAML, a data serialization standard\. A module's YAML file consists of a single document, representing the module and its attributes\.
 
-## Adding module attributes<a name="ec2rl-adding-modules"></a>
+## Add module attributes<a name="ec2rl-adding-modules"></a>
 
 The following table lists the available module attributes\.
 
@@ -29,7 +29,7 @@ The following table lists the available module attributes\.
 | perfimpact | Indicates whether the module can have significant performance impact upon the environment in which it is run\. If the value is true and the `--perfimpact=true` argument is not present, then the module is skipped\. | 
 | parallelexclusive | Specifies a program that requires mutual exclusivity\. For example, all modules specifying "bpf" run in a serial manner\. | 
 
-## Adding environment variables<a name="ec2rl_adding_envvars"></a>
+## Add environment variables<a name="ec2rl_adding_envvars"></a>
 
 The following table lists the available environment variables\.
 
@@ -45,7 +45,7 @@ The following table lists the available environment variables\.
 |  `EC2RL_VIRT_TYPE`  |  The virtualization type as provided by the instance metadata\. Examples: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2rl_moduledev.html)  | 
 |  `EC2RL_INTERFACES`  |  An enumerated list of interfaces on the system\. The value is a string containing names, such as `eth0`, `eth1`, etc\. This is generated via the `functions.bash` and is only available for modules that have sourced it\.  | 
 
-## Using YAML syntax<a name="ec2rl_yamlsyntax"></a>
+## Use YAML syntax<a name="ec2rl_yamlsyntax"></a>
 
 The following should be noted when constructing your module YAML files:
 + The triple hyphen \(`---`\) denotes the explicit start of a document\.

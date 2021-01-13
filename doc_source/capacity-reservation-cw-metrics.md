@@ -9,7 +9,7 @@ For more information about viewing metrics in the CloudWatch console, see [Using
 **Topics**
 + [Capacity Reservation usage metrics](#capacity-reservation-usage-metrics)
 + [Capacity Reservation metric dimensions](#capacity-reservation-dimensions)
-+ [Viewing CloudWatch metrics for Capacity Reservations](#viewing-capacity-reservation-metrics)
++ [View CloudWatch metrics for Capacity Reservations](#viewing-capacity-reservation-metrics)
 
 ## Capacity Reservation usage metrics<a name="capacity-reservation-usage-metrics"></a>
 
@@ -32,7 +32,7 @@ You can use the following dimensions to refine the metrics listed in the previou
 | --- | --- | 
 |  CapacityReservationId  |  This globally unique dimension filters the data you request for the identified capacity reservation only\.  | 
 
-## Viewing CloudWatch metrics for Capacity Reservations<a name="viewing-capacity-reservation-metrics"></a>
+## View CloudWatch metrics for Capacity Reservations<a name="viewing-capacity-reservation-metrics"></a>
 
 Metrics are grouped first by the service namespace, and then by the supported dimensions\. You can use the following procedures to view the metrics for your Capacity Reservations\. 
 

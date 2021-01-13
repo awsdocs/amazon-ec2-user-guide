@@ -1,4 +1,4 @@
-# Managing user accounts on your Amazon Linux instance<a name="managing-users"></a>
+# Manage user accounts on your Amazon Linux instance<a name="managing-users"></a>
 
 Each Linux instance launches with a default Linux system user account\. The default user name is determined by the AMI that was specified when you launched the instance\.
 + For Amazon Linux 2 or the Amazon Linux AMI, the user name is `ec2-user`\.
@@ -15,16 +15,16 @@ Linux system users should not be confused with AWS Identity and Access Managemen
 
 **Topics**
 + [Considerations](#add-user-best-practice)
-+ [Creating a user account](#create-user-account)
-+ [Removing a user account](#delete-user-acount)
++ [Create a user account](#create-user-account)
++ [Remove a user account](#delete-user-acount)
 
 ## Considerations<a name="add-user-best-practice"></a>
 
 Using the default user account is adequate for many applications\. However, you may choose to add user accounts so that individuals can have their own files and workspaces\. Furthermore, creating user accounts for new users is much more secure than granting multiple \(possibly inexperienced\) users access to the default user account, because the default user account can cause a lot of damage to a system when used improperly\. For more information, see [Tips for Securing Your EC2 Instance](http://aws.amazon.com/articles/tips-for-securing-your-ec2-instance/)\.
 
-To enable users SSH access to your EC2 instance using a Linux system user account, you must share the SSH key with the user\. Alternatively, you can use EC2 Instance Connect to provide access to users without the need to share and manage SSH keys\. For more information, see [Connecting to your Linux instance using EC2 Instance Connect](Connect-using-EC2-Instance-Connect.md)\.
+To enable users SSH access to your EC2 instance using a Linux system user account, you must share the SSH key with the user\. Alternatively, you can use EC2 Instance Connect to provide access to users without the need to share and manage SSH keys\. For more information, see [Connect to your Linux instance using EC2 Instance Connect](Connect-using-EC2-Instance-Connect.md)\.
 
-## Creating a user account<a name="create-user-account"></a>
+## Create a user account<a name="create-user-account"></a>
 
 First create the user account, and then add the SSH public key that allows the user to connect to and log into the instance\.
 
@@ -106,7 +106,7 @@ Ensure that you paste the public key in one continuous line\. The public key mus
 
       The user should now be able to log into the `newuser` account on your instance, using the private key that corresponds to the public key that you added to the `authorized_keys` file\. For more information about the different methods of connecting to a Linux instance, see [Connect to your Linux instance](AccessingInstances.md)\.
 
-## Removing a user account<a name="delete-user-acount"></a>
+## Remove a user account<a name="delete-user-acount"></a>
 
 If a user account is no longer needed, you can remove that account so that it can no longer be used\.
 

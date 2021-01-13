@@ -1,8 +1,8 @@
-# Launching an instance using the Launch Instance Wizard<a name="launching-instance"></a>
+# Launch an instance using the Launch Instance Wizard<a name="launching-instance"></a>
 
 You can launch an instance using the launch instance wizard\. The launch instance wizard specifies all the launch parameters required for launching an instance\. Where the launch instance wizard provides a default value, you can accept the default or specify your own value\. At the very least, you need to select an AMI and a key pair to launch an instance\.
 
-Before you launch your instance, be sure that you are set up\. For more information, see [Setting up with Amazon EC2](get-set-up-for-amazon-ec2.md)\.
+Before you launch your instance, be sure that you are set up\. For more information, see [Set up to use Amazon EC2](get-set-up-for-amazon-ec2.md)\.
 
 **Important**  
 When you launch an instance that's not within the [AWS Free Tier](https://aws.amazon.com/free/), you are charged for the time that the instance is running, even if it remains idle\.
@@ -41,7 +41,7 @@ A selection of popular AMIs to help you get started quickly\. To select an AMI t
 **My AMIs**  
 The private AMIs that you own, or private AMIs that have been shared with you\. To view AMIs that are shared with you, choose **Shared with me** in the left pane\.  
 **AWS Marketplace**  
-An online store where you can buy software that runs on AWS, including AMIs\. For more information about launching an instance from the AWS Marketplace, see [Launching an AWS Marketplace instance](launch-marketplace-console.md)\.  
+An online store where you can buy software that runs on AWS, including AMIs\. For more information about launching an instance from the AWS Marketplace, see [Launch an AWS Marketplace instance](launch-marketplace-console.md)\.  
 **Community AMIs**  
 The AMIs that AWS community members have made available for others to use\. To filter the list of AMIs by operating system, choose the appropriate check box under **Operating system**\. You can also filter by architecture and root device type\.
 
@@ -81,7 +81,7 @@ To ensure faster instance launches, break up large requests into smaller batches
 + \(Optional\) To help ensure that you maintain the correct number of instances to handle demand on your application, you can choose **Launch into Auto Scaling Group** to create a launch configuration and an Auto Scaling group\. Auto Scaling scales the number of instances in the group according to your specifications\. For more information, see the [Amazon EC2 Auto Scaling User Guide](https://docs.aws.amazon.com/autoscaling/ec2/userguide/)\.
 **Note**  
 If Amazon EC2 Auto Scaling marks an instance that is in an Auto Scaling group as unhealthy, the instance is automatically scheduled for replacement where it is terminated and another is launched, and you lose your data on the original instance\. An instance is marked as unhealthy if you stop or reboot the instance, or if another event marks the instance as unhealthy\. For more information, see [Health Checks for Auto Scaling Instances](https://docs.aws.amazon.com/autoscaling/ec2/userguide/healthcheck.html) in the *Amazon EC2 Auto Scaling User Guide*\. 
-+ **Purchasing option**: Choose **Request Spot instances** to launch a Spot Instance\. This adds and removes options from this page\. Set your maximum price, and optionally update the request type, interruption behavior, and request validity\. For more information, see [Creating a Spot Instance request](spot-requests.md#using-spot-instances-request)\.
++ **Purchasing option**: Choose **Request Spot instances** to launch a Spot Instance\. This adds and removes options from this page\. Set your maximum price, and optionally update the request type, interruption behavior, and request validity\. For more information, see [Create a Spot Instance request](spot-requests.md#using-spot-instances-request)\.
 + **Network**: Select the VPC, or to create a new VPC, choose **Create new VPC** to go the Amazon VPC console\. When you have finished, return to the wizard and choose **Refresh** to load your VPC in the list\.
 + **Subnet**: You can launch an instance in a subnet associated with an Availability Zone, Local Zone, Wavelength Zone or Outpost\.
 
@@ -94,13 +94,13 @@ If Amazon EC2 Auto Scaling marks an instance that is in an Auto Scaling group as
 + **Auto\-assign IPv6 IP**: Specify whether your instance receives an IPv6 address from the range of the subnet\. Select **Enable** or **Disable** to override the subnet's default setting\. This option is only available if you've associated an IPv6 CIDR block with your VPC and subnet\. For more information, see [Your VPC and Subnets](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html) in the *Amazon VPC User Guide*\.
 + **Domain join directory**: Select the AWS Directory Service directory \(domain\) to which your Linux instance is joined after launch\. If you select a domain, you must select an IAM role with the required permissions\. For more information, see [Seamlessly Join a Linux EC2 Instance to Your AWS Managed Microsoft AD Directory](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/seamlessly_join_linux_instance.html)\.
 + **Placement group**: A placement group determines the placement strategy of your instances\. Select an existing placement group, or create a new one\. This option is only available if you've selected an instance type that supports placement groups\. For more information, see [Placement groups](placement-groups.md)\.
-+ **Capacity Reservation**: Specify whether to launch the instance into shared capacity, any `open` Capacity Reservation, a specific Capacity Reservation, or a Capacity Reservation group\. For more information, see [Launching instances into an existing Capacity Reservation](capacity-reservations-using.md#capacity-reservations-launch)\.\.
++ **Capacity Reservation**: Specify whether to launch the instance into shared capacity, any `open` Capacity Reservation, a specific Capacity Reservation, or a Capacity Reservation group\. For more information, see [Launch instances into an existing Capacity Reservation](capacity-reservations-using.md#capacity-reservations-launch)\.\.
 + **IAM role**: Select an AWS Identity and Access Management \(IAM\) role to associate with the instance\. For more information, see [IAM roles for Amazon EC2](iam-roles-for-amazon-ec2.md)\.
-+ **CPU options**: Choose **Specify CPU options** to specify a custom number of vCPUs during launch\. Set the number of CPU cores and threads per core\. For more information, see [Optimizing CPU options](instance-optimize-cpu.md)\.
-+ **Shutdown behavior**: Select whether the instance should stop or terminate when shut down\. For more information, see [Changing the instance initiated shutdown behavior](terminating-instances.md#Using_ChangingInstanceInitiatedShutdownBehavior)\.
++ **CPU options**: Choose **Specify CPU options** to specify a custom number of vCPUs during launch\. Set the number of CPU cores and threads per core\. For more information, see [Optimize CPU options](instance-optimize-cpu.md)\.
++ **Shutdown behavior**: Select whether the instance should stop or terminate when shut down\. For more information, see [Change the instance initiated shutdown behavior](terminating-instances.md#Using_ChangingInstanceInitiatedShutdownBehavior)\.
 + **Stop \- Hibernate behavior**: To enable hibernation, select this check box\. This option is only available if your instance meets the hibernation prerequisites\. For more information, see [Hibernate your Linux instance](Hibernate.md)\.
-+ **Enable termination protection**: To prevent accidental termination, select this check box\. For more information, see [Enabling termination protection](terminating-instances.md#Using_ChangingDisableAPITermination)\.
-+ **Monitoring**: Select this check box to enable detailed monitoring of your instance using Amazon CloudWatch\. Additional charges apply\. For more information, see [Monitoring your instances using CloudWatch](using-cloudwatch.md)\.
++ **Enable termination protection**: To prevent accidental termination, select this check box\. For more information, see [Enable termination protection](terminating-instances.md#Using_ChangingDisableAPITermination)\.
++ **Monitoring**: Select this check box to enable detailed monitoring of your instance using Amazon CloudWatch\. Additional charges apply\. For more information, see [Monitor your instances using CloudWatch](using-cloudwatch.md)\.
 + **EBS\-optimized instance**: An Amazon EBS\-optimized instance uses an optimized configuration stack and provides additional, dedicated capacity for Amazon EBS I/O\. If the instance type supports this feature, select this check box to enable it\. Additional charges apply\. For more information, see [Amazon EBS–optimized instances](ebs-optimized.md)\.
 + **Tenancy**: If you are launching your instance into a VPC, you can choose to run your instance on isolated, dedicated hardware \(**Dedicated**\) or on a Dedicated Host \(**Dedicated host**\)\. Additional charges may apply\. For more information, see [Dedicated Instances](dedicated-instance.md) and [Dedicated Hosts](dedicated-hosts-overview.md)\.
 + **T2/T3 Unlimited**: Select this check box to enable applications to burst beyond the baseline for as long as needed\. Additional charges may apply\. For more information, see [Burstable performance instances](burstable-performance-instances.md)\.
@@ -119,9 +119,9 @@ If Amazon EC2 Auto Scaling marks an instance that is in an Auto Scaling group as
 + **Kernel ID**: \(Only valid for paravirtual \(PV\) AMIs\) Select **Use default** unless you want to use a specific kernel\.
 + **RAM disk ID**: \(Only valid for paravirtual \(PV\) AMIs\) Select **Use default** unless you want to use a specific RAM disk\. If you have selected a kernel, you may need to select a specific RAM disk with the drivers to support it\.
 + **Enclave**: Select **Enable** to enable the instance for AWS Nitro Enclaves\. For more information, see [ What is AWS Nitro Enclaves?](https://docs.aws.amazon.com/enclaves/latest/user/nitro-enclave.html) in the *AWS Nitro Enclaves User Guide*\.
-+ **Metadata accessible**: You can enable or disable access to the instance metadata\. For more information, see [Configuring the instance metadata service](configuring-instance-metadata-service.md)\.
-+ **Metadata version**: If you enable access to the instance metadata, you can choose to require the use of Instance Metadata Service Version 2 when requesting instance metadata\. For more information, see [Configuring instance metadata options for new instances](configuring-instance-metadata-service.md#configuring-IMDS-new-instances)\.
-+ **Metadata token response hop limit**: If you enable instance metadata, you can set the allowable number of network hops for the metadata token\. For more information, see [Configuring the instance metadata service](configuring-instance-metadata-service.md)\.
++ **Metadata accessible**: You can enable or disable access to the instance metadata\. For more information, see [Configure the instance metadata service](configuring-instance-metadata-service.md)\.
++ **Metadata version**: If you enable access to the instance metadata, you can choose to require the use of Instance Metadata Service Version 2 when requesting instance metadata\. For more information, see [Configure instance metadata options for new instances](configuring-instance-metadata-service.md#configuring-IMDS-new-instances)\.
++ **Metadata token response hop limit**: If you enable instance metadata, you can set the allowable number of network hops for the metadata token\. For more information, see [Configure the instance metadata service](configuring-instance-metadata-service.md)\.
 + **User data**: You can specify user data to configure an instance during launch, or to run a configuration script\. To attach a file, select the **As file** option and browse for the file to attach\.
 
 ## Step 4: Add Storage<a name="step-4-add-storage"></a>
@@ -133,7 +133,7 @@ The AMI you selected includes one or more volumes of storage, including the root
 + **Size**: For EBS volumes, you can specify a storage size\. Even if you have selected an AMI and instance that are eligible for the free tier, to stay within the free tier, you must stay under 30 GiB of total storage\. For more information, see [Constraints on the size and configuration of an EBS volume](volume_constraints.md)\.
 + **Volume Type**: For EBS volumes, select a volume type\. For more information, see [Amazon EBS volume types](ebs-volume-types.md)\.
 + **IOPS**: If you have selected a Provisioned IOPS SSD volume type, then you can enter the number of I/O operations per second \(IOPS\) that the volume can support\.
-+ **Delete on Termination**: For Amazon EBS volumes, select this check box to delete the volume when the instance is terminated\. For more information, see [Preserving Amazon EBS volumes on instance termination](terminating-instances.md#preserving-volumes-on-termination)\.
++ **Delete on Termination**: For Amazon EBS volumes, select this check box to delete the volume when the instance is terminated\. For more information, see [Preserve Amazon EBS volumes on instance termination](terminating-instances.md#preserving-volumes-on-termination)\.
 + **Encrypted**: If the instance type supports EBS encryption, you can specify the encryption state of the volume\. If you have enabled encryption by default in this Region, the default CMK is selected for you\. You can select a different key or disable encryption\. For more information, see [Amazon EBS encryption](EBSEncryption.md)\.
 
 ## Step 5: Add Tags<a name="step-5-add-tags"></a>
@@ -164,6 +164,6 @@ If you choose the **Proceed without key pair** option, you won't be able to conn
 
 To launch your instance, select the acknowledgment check box, then choose **Launch Instances**\.
 
-\(Optional\) You can create a status check alarm for the instance \(additional fees may apply\)\. \(If you're not sure, you can always add one later\.\) On the confirmation screen, choose **Create status check alarms** and follow the directions\. For more information, see [Creating and editing status check alarms](monitoring-system-instance-status-check.md#creating_status_check_alarms)\.
+\(Optional\) You can create a status check alarm for the instance \(additional fees may apply\)\. \(If you're not sure, you can always add one later\.\) On the confirmation screen, choose **Create status check alarms** and follow the directions\. For more information, see [Create and edit status check alarms](monitoring-system-instance-status-check.md#creating_status_check_alarms)\.
 
 If the instance fails to launch or the state immediately goes to `terminated` instead of `running`, see [Troubleshooting instance launch issues](troubleshooting-launch.md)\.

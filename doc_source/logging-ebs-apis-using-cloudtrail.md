@@ -1,4 +1,4 @@
-# Logging API Calls for the EBS direct APIs with AWS CloudTrail<a name="logging-ebs-apis-using-cloudtrail"></a>
+# Log API Calls for the EBS direct APIs with AWS CloudTrail<a name="logging-ebs-apis-using-cloudtrail"></a>
 
 The EBS direct APIs service is integrated with AWS CloudTrail\. CloudTrail is a service that provides a record of actions taken by a user, role, or an AWS service in the EBS direct APIs\. CloudTrail captures [StartSnapshot](https://docs.aws.amazon.com/ebs/latest/APIReference/API_StartSnapshot.html) and [ CompleteSnapshot](https://docs.aws.amazon.com/ebs/latest/APIReference/API_CompleteSnapshot.html) API calls for the EBS direct APIs as events\. If you create a trail, you can enable continuous delivery of CloudTrail events to an Amazon Simple Storage Service \(Amazon S3\) bucket, including events for the EBS direct APIs\. If you don't configure a trail, you can still view the most recent events in the CloudTrail console in **Event history**\. You can use the information collected by CloudTrail to determine the request that was made to the EBS direct APIs, the IP address from which the request was made, who made the request, when it was made, and additional details\. 
 
@@ -29,7 +29,7 @@ Every event or log entry contains information about who generated the request\. 
 
 For more information, see the [ CloudTrail userIdentityElement](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-user-identity.html)\.
 
-## Understanding EBS direct APIs Log File Entries<a name="understanding-service-name-entries"></a>
+## Understand EBS direct APIs Log File Entries<a name="understanding-service-name-entries"></a>
 
 A trail is a configuration that enables delivery of events as log files to an S3 bucket that you specify\. CloudTrail log files contain one or more log entries\. An event represents a single request from any source and includes information about the requested action, the date and time of the action, request parameters, and so on\. CloudTrail log files aren't an ordered stack trace of the public API calls, so they don't appear in any specific order\.
 

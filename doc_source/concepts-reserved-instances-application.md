@@ -2,7 +2,7 @@
 
 All Reserved Instances provide you with a discount compared to On\-Demand pricing\. With Reserved Instances, you pay for the entire term regardless of actual use\. You can choose to pay for your Reserved Instance upfront, partially upfront, or monthly, depending on the [payment option](ec2-reserved-instances.md#ri-payment-options) specified for the Reserved Instance\. 
 
-When Reserved Instances expire, you are charged On\-Demand rates for EC2 instance usage\. You can queue a Reserved Instance for purchase up to three years in advance\. This can help you ensure that you have uninterrupted coverage\. For more information, see [Queuing your purchase](ri-market-concepts-buying.md#ri-queued-purchase)\.
+When Reserved Instances expire, you are charged On\-Demand rates for EC2 instance usage\. You can queue a Reserved Instance for purchase up to three years in advance\. This can help you ensure that you have uninterrupted coverage\. For more information, see [Queue your purchase](ri-market-concepts-buying.md#ri-queued-purchase)\.
 
 The AWS Free Tier is available for new AWS accounts\. If you are using the AWS Free Tier to run Amazon EC2 instances, and you purchase a Reserved Instance, you are charged under standard pricing guidelines\. For information, see [AWS Free Tier](https://aws.amazon.com/free)\.
 
@@ -62,12 +62,12 @@ The following rules apply:
 + Discount pricing tiers are currently not applicable to Convertible Reserved Instance purchases\. 
 
 **Topics**
-+ [Calculating Reserved Instance pricing discounts](#pricing-discounts)
-+ [Buying with a discount tier](#buying-discount-tier)
++ [Calculate Reserved Instance pricing discounts](#pricing-discounts)
++ [Buy with a discount tier](#buying-discount-tier)
 + [Crossing pricing tiers](#crossing-pricing-tiers)
 + [Consolidated billing for pricing tiers](#consolidating-billing)
 
-### Calculating Reserved Instance pricing discounts<a name="pricing-discounts"></a>
+### Calculate Reserved Instance pricing discounts<a name="pricing-discounts"></a>
 
 You can determine the pricing tier for your account by calculating the list value for all of your Reserved Instances in a Region\. Multiply the hourly recurring price for each reservation by the total number of hours for the term and add the undiscounted upfront price \(also known as the fixed price\) at the time of purchase\. Because the list value is based on undiscounted \(public\) pricing, it is not affected if you qualify for a volume discount or if the price drops after you buy your Reserved Instances\.
 
@@ -94,7 +94,7 @@ For example, for a 1\-year Partial Upfront `t2.small` Reserved Instance, assume 
 +  [Get\-EC2ReservedInstance](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ReservedInstance.html) \(AWS Tools for Windows PowerShell\)
 + [DescribeReservedInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeReservedInstances.html) \(Amazon EC2 API\)
 
-### Buying with a discount tier<a name="buying-discount-tier"></a>
+### Buy with a discount tier<a name="buying-discount-tier"></a>
 
 When you buy Reserved Instances, Amazon EC2 automatically applies any discounts to the part of your purchase that falls within a discount pricing tier\. You don't need to do anything differently, and you can buy Reserved Instances using any of the Amazon EC2 tools\. For more information, see [Buying Reserved Instances](ri-market-concepts-buying.md)\.
 

@@ -17,10 +17,10 @@ Amazon Data Lifecycle Manager cannot be used to automate the creation, retention
 + [How Amazon Data Lifecycle Manager works](#dlm-elements)
 + [Considerations for Amazon Data Lifecycle Manager](#dlm-considerations)
 + [Prerequisites](#dlm-prerequisites)
-+ [Automating snapshot and EBS\-backed AMI lifecycles](snapshot-ami-policy.md)
-+ [Automating cross\-account snapshot copies](event-policy.md)
-+ [Viewing, modifying, and deleting lifecycle policies](view-modify-delete.md)
-+ [Monitoring](dlm-monitor-lifecycle.md)
++ [Automate snapshot and EBS\-backed AMI lifecycles](snapshot-ami-policy.md)
++ [Automate cross\-account snapshot copies](event-policy.md)
++ [View, modify, and delete lifecycle policies](view-modify-delete.md)
++ [Monitor the lifecycle of snapshots and AMIs](dlm-monitor-lifecycle.md)
 
 ## How Amazon Data Lifecycle Manager works<a name="dlm-elements"></a>
 

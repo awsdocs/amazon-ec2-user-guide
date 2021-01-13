@@ -1,4 +1,4 @@
-# Connecting to your Linux instance from Windows using PuTTY<a name="putty"></a>
+# Connect to your Linux instance from Windows using PuTTY<a name="putty"></a>
 
 After you launch your instance, you can connect to it and use it the way that you'd use a computer sitting in front of you\.
 
@@ -44,7 +44,7 @@ A passphrase on a private key is an extra layer of protection\. Even if your pri
 
 Your private key is now in the correct format for use with PuTTY\. You can now connect to your instance using PuTTY's SSH client\.
 
-## Connecting to your Linux instance<a name="putty-ssh"></a>
+## Connect to your Linux instance<a name="putty-ssh"></a>
 
 Use the following procedure to connect to your Linux instance using PuTTY\. You need the `.ppk` file that you created for your private key\. For more information, see [Convert your private key using PuTTYgen](#putty-private-key) in the preceding section\. If you receive an error while attempting to connect to your instance, see [Troubleshooting Connecting to Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html)\.
 
@@ -87,9 +87,9 @@ If you specified a passphrase when you converted your private key to PuTTY's for
 
 If you receive an error while attempting to connect to your instance, see [Troubleshooting Connecting to Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html)\.
 
-## Transferring files to your Linux instance using the PuTTY Secure Copy client<a name="putty-scp"></a>
+## Transfer files to your Linux instance using the PuTTY Secure Copy client<a name="putty-scp"></a>
 
-The PuTTY Secure Copy client \(PSCP\) is a command line tool that you can use to transfer files between your Windows computer and your Linux instance\. If you prefer a graphical user interface \(GUI\), you can use an open source GUI tool named WinSCP\. For more information, see [Transferring files to your Linux instance using WinSCP](#Transfer_WinSCP)\.
+The PuTTY Secure Copy client \(PSCP\) is a command line tool that you can use to transfer files between your Windows computer and your Linux instance\. If you prefer a graphical user interface \(GUI\), you can use an open source GUI tool named WinSCP\. For more information, see [Transfer files to your Linux instance using WinSCP](#Transfer_WinSCP)\.
 
 To use PSCP, you need the private key you generated in [Convert your private key using PuTTYgen](#putty-private-key)\. You also need the public DNS name of your Linux instance, or the IPv6 address if your instance has one\.
 
@@ -105,7 +105,7 @@ The following example transfers the file `Sample_file.txt` from the C:\\ drive o
   pscp -i C:\path\my-key-pair.ppk C:\path\Sample_file.txt my-instance-user-name@[my-instance-IPv6-address]:/home/my-instance-user-name/Sample_file.txt
   ```
 
-## Transferring files to your Linux instance using WinSCP<a name="Transfer_WinSCP"></a>
+## Transfer files to your Linux instance using WinSCP<a name="Transfer_WinSCP"></a>
 
 WinSCP is a GUI\-based file manager for Windows that allows you to upload and transfer files to a remote computer using the SFTP, SCP, FTP, and FTPS protocols\. WinSCP allows you to drag and drop files from your Windows computer to your Linux instance or synchronize entire directory structures between the two systems\.
 

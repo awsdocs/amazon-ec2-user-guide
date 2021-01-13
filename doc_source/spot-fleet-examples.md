@@ -1,6 +1,6 @@
 # Spot Fleet example configurations<a name="spot-fleet-examples"></a>
 
-The following examples show launch configurations that you can use with the [request\-spot\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-fleet.html) command to create a Spot Fleet request\. For more information, see [Creating a Spot Fleet request](spot-fleet-requests.md#create-spot-fleet)\.
+The following examples show launch configurations that you can use with the [request\-spot\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-fleet.html) command to create a Spot Fleet request\. For more information, see [Create a Spot Fleet request](spot-fleet-requests.md#create-spot-fleet)\.
 
 **Note**  
 For Spot Fleet, you can't specify an network interface ID in a launch specification\. Make sure you omit the `NetworkInterfaceID` parameter in your launch specification\.

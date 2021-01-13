@@ -423,7 +423,7 @@ Amazon EBS sends `modifyVolume` events to CloudWatch Events when a volume is mod
 
 ## EBS fast snapshot restore events<a name="fast-snapshot-restore-events"></a>
 
-Amazon EBS sends events to CloudWatch Events when the state of fast snapshot restore for a snapshot changes\.
+Amazon EBS sends events to CloudWatch Events when the state of fast snapshot restore for a snapshot changes\. Events are emitted on a best effort basis\.
 
 The following is example data for this event\.
 

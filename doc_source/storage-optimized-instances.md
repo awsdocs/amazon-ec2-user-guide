@@ -94,7 +94,7 @@ The following is a summary of the hardware specifications for storage optimized 
 
 For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
-For more information about specifying CPU options, see [Optimizing CPU options](instance-optimize-cpu.md)\.
+For more information about specifying CPU options, see [Optimize CPU options](instance-optimize-cpu.md)\.
 
 ## Instance performance<a name="storage-performance"></a>
 

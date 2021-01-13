@@ -25,9 +25,9 @@ To get optimal performance from EBS volumes, we recommend that you use an EBS\-o
 
 To create an EBS\-optimized instance, choose **Launch as an EBS\-Optimized instance** when launching the instance using the Amazon EC2 console, or specify \-\-ebs\-optimized when using the command line\. Be sure that you launch a current\-generation instance that supports this option\. For more information, see [Amazon EBS–optimized instances](ebs-optimized.md)\.
 
-### Setting up Provisioned IOPS SSD volumes<a name="setupPIOPS"></a>
+### Set up Provisioned IOPS SSD volumes<a name="setupPIOPS"></a>
 
-To create Provisioned IOPS SSD \(`io1` and `io2`\) volumes using the Amazon EC2 console, choose the **Provisioned IOPS SSD \(io1\)** or **Provisioned IOPS SSD \(io2\)** volume type\. At the command line, specify `io1` or `io2` for the \-\-volume\-type parameter and an integer between 100 and 64,000 for the \-\-iops parameter\. For more information, see [Amazon EBS volume types](ebs-volume-types.md) and [Creating an Amazon EBS volume](ebs-creating-volume.md)\.
+To create Provisioned IOPS SSD \(`io1` and `io2`\) volumes using the Amazon EC2 console, choose the **Provisioned IOPS SSD \(io1\)** or **Provisioned IOPS SSD \(io2\)** volume type\. At the command line, specify `io1` or `io2` for the \-\-volume\-type parameter and an integer between 100 and 64,000 for the \-\-iops parameter\. For more information, see [Amazon EBS volume types](ebs-volume-types.md) and [Create an Amazon EBS volume](ebs-creating-volume.md)\.
 
 For the example tests, we recommend that you create a RAID array with 6 volumes, which offers a high level of performance\. Because you are charged by gigabytes provisioned \(and the number of provisioned IOPS for Provisioned IOPS SSD volumes\), not the number of volumes, there is no additional cost for creating multiple, smaller volumes and using them to create a stripe set\. If you're using Oracle Orion to benchmark your volumes, it can simulate striping the same way that Oracle ASM does, so we recommend that you let Orion do the striping\. If you are using a different benchmarking tool, you need to stripe the volumes yourself\.
 
@@ -51,9 +51,9 @@ Then, use these commands to create, mount, and assign ownership to the XFS file 
 [ec2-user ~]$ sudo chown ec2-user:ec2-user /mnt/p_iops_vol0/
 ```
 
-### Setting up Throughput Optimized HDD \(`st1`\) or Cold HDD \(`sc1`\) volumes<a name="set_up_hdd"></a>
+### Set up Throughput Optimized HDD \(`st1`\) or Cold HDD \(`sc1`\) volumes<a name="set_up_hdd"></a>
 
-To create an `st1` volume, choose **Throughput Optimized HDD** when creating the volume using the Amazon EC2 console, or specify \-\-type `st1` when using the command line\. To create an `sc1` volume, choose Cold HDD when creating the volume using the Amazon EC2 console, or specify \-\-type `sc1` when using the command line\. For information about creating EBS volumes, see [Creating an Amazon EBS volume](ebs-creating-volume.md)\. For information about attaching these volumes to your instance, see [Attaching an Amazon EBS volume to an instance](ebs-attaching-volume.md)\.
+To create an `st1` volume, choose **Throughput Optimized HDD** when creating the volume using the Amazon EC2 console, or specify \-\-type `st1` when using the command line\. To create an `sc1` volume, choose Cold HDD when creating the volume using the Amazon EC2 console, or specify \-\-type `sc1` when using the command line\. For information about creating EBS volumes, see [Create an Amazon EBS volume](ebs-creating-volume.md)\. For information about attaching these volumes to your instance, see [Attach an Amazon EBS volume to an instance](ebs-attaching-volume.md)\.
 
 AWS provides a JSON template for use with AWS CloudFormation that simplifies this setup procedure\. Access the [template](https://s3.amazonaws.com/cloudformation-examples/community/st1_cloudformation_template.json) and save it as a JSON file\. AWS CloudFormation allows you to configure your own SSH keys and offers an easier way to set up a performance test environment to evaluate `st1` volumes\. The template creates a current\-generation instance and a 2 TiB `st1` volume, and attaches the volume to the instance at `/dev/xvdf`\. 
 
@@ -87,7 +87,7 @@ The following table lists some of the possible tools you can use to benchmark th
 
 These benchmarking tools support a wide variety of test parameters\. You should use commands that approximate the workloads your volumes will support\. These commands provided below are intended as examples to help you get started\.
 
-## Choosing the volume queue length<a name="UnderstandingQueueLength"></a>
+## Choose the volume queue length<a name="UnderstandingQueueLength"></a>
 
 Choosing the best volume queue length based on your workload and volume type\.
 
@@ -105,7 +105,7 @@ To determine the optimal queue length for your workload on HDD\-backed volumes, 
 
 Before you run benchmarking, you should disable processor C\-states\. Temporarily idle cores in a supported CPU can enter a C\-state to save power\. When the core is called on to resume processing, a certain amount of time passes until the core is again fully operational\. This latency can interfere with processor benchmarking routines\. For more information about C\-states and which EC2 instance types support them, see [Processor State Control for Your EC2 Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/processor_state_control.html)\.
 
-### Disabling C\-states on Linux<a name="linux-cstates"></a>
+### Disable C\-states on Linux<a name="linux-cstates"></a>
 
 You can disable C\-states on Amazon Linux, RHEL, and CentOS as follows:
 
@@ -125,11 +125,11 @@ You can disable C\-states on Amazon Linux, RHEL, and CentOS as follows:
 
 The following procedures describe benchmarking commands for various EBS volume types\. 
 
-Run the following commands on an EBS\-optimized instance with attached EBS volumes\. If the EBS volumes were created from snapshots, be sure to initialize them before benchmarking\. For more information, see [Initializing Amazon EBS volumes](ebs-initialize.md)\.
+Run the following commands on an EBS\-optimized instance with attached EBS volumes\. If the EBS volumes were created from snapshots, be sure to initialize them before benchmarking\. For more information, see [Initialize Amazon EBS volumes](ebs-initialize.md)\.
 
-When you are finished testing your volumes, see the following topics for help cleaning up: [Deleting an Amazon EBS volume](ebs-deleting-volume.md) and [Terminate your instance](terminating-instances.md)\.
+When you are finished testing your volumes, see the following topics for help cleaning up: [Delete an Amazon EBS volume](ebs-deleting-volume.md) and [Terminate your instance](terminating-instances.md)\.
 
-### Benchmarking Provisioned IOPS SSD volumes<a name="piops_benchmarking"></a>
+### Benchmark Provisioned IOPS SSD volumes<a name="piops_benchmarking"></a>
 
 Run fio on the stripe set that you created\.
 
@@ -147,7 +147,7 @@ The following command performs 16 KB random read operations\.
 
 For more information about interpreting the results, see this tutorial: [Inspecting disk IO performance with fio](https://www.linux.com/tutorials/inspecting-disk-io-performance-fio/)\.
 
-### Benchmarking `st1` and `sc1` volumes<a name="hdd_benchmarking"></a>
+### Benchmark `st1` and `sc1` volumes<a name="hdd_benchmarking"></a>
 
 Run fio on your `st1` or `sc1` volume\.
 

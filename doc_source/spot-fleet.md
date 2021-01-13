@@ -21,7 +21,7 @@ A *Spot Instance pool* is a set of unused EC2 instances with the same instance t
 
 To ensure that you always have instance capacity, you can include a request for On\-Demand capacity in your Spot Fleet request\. In your Spot Fleet request, you specify your desired target capacity and how much of that capacity must be On\-Demand\. The balance comprises Spot capacity, which is launched if there is available Amazon EC2 capacity and availability\. For example, if in your Spot Fleet request you specify target capacity as 10 and On\-Demand capacity as 8, Amazon EC2 launches 8 capacity units as On\-Demand, and 2 capacity units \(10\-8=2\) as Spot\.
 
-### Prioritizing instance types for On\-Demand capacity<a name="spot-fleet-on-demand-priority"></a>
+### Prioritize instance types for On\-Demand capacity<a name="spot-fleet-on-demand-priority"></a>
 
 When Spot Fleet attempts to fulfill your On\-Demand capacity, it defaults to launching the lowest\-priced instance type first\. If `OnDemandAllocationStrategy` is set to `prioritized`, Spot Fleet uses priority to determine which instance type to use first in fulfilling On\-Demand capacity\. The priority is assigned to the launch template override, and the highest priority is launched first\.
 
@@ -43,25 +43,25 @@ The Spot Instances come from the pool with optimal capacity for the number of in
 `InstancePoolsToUseCount`  
 The Spot Instances are distributed across the number of Spot pools that you specify\. This parameter is valid only when used in combination with `lowestPrice`\.
 
-### Maintaining target capacity<a name="maintain-fleet-capacity"></a>
+### Maintain target capacity<a name="maintain-fleet-capacity"></a>
 
 After Spot Instances are terminated due to a change in the Spot price or available capacity of a Spot Instance pool, a Spot Fleet of type `maintain` launches replacement Spot Instances\. If the allocation strategy is `lowestPrice`, the fleet launches replacement instances in the pool where the Spot price is currently the lowest\. If the allocation strategy is `diversified`, the fleet distributes the replacement Spot Instances across the remaining pools\. If the allocation strategy is `lowestPrice` in combination with `InstancePoolsToUseCount`, the fleet selects the Spot pools with the lowest price and launches Spot Instances across the number of Spot pools that you specify\.
 
-### Configuring Spot Fleet for cost optimization<a name="spot-fleet-strategy-cost-optimization"></a>
+### Configure Spot Fleet for cost optimization<a name="spot-fleet-strategy-cost-optimization"></a>
 
 To optimize the costs for your use of Spot Instances, specify the `lowestPrice` allocation strategy so that Spot Fleet automatically deploys the least expensive combination of instance types and Availability Zones based on the current Spot price\.
 
 For On\-Demand Instance target capacity, Spot Fleet always selects the least expensive instance type based on the public On\-Demand price, while continuing to follow the allocation strategy \(either `lowestPrice`, `capacityOptimized`, or `diversified`\) for Spot Instances\.
 
-### Configuring Spot Fleet for cost optimization and diversification<a name="spot-fleet-strategy-cost-optimization-and-diversified"></a>
+### Configure Spot Fleet for cost optimization and diversification<a name="spot-fleet-strategy-cost-optimization-and-diversified"></a>
 
 To create a fleet of Spot Instances that is both cheap and diversified, use the `lowestPrice` allocation strategy in combination with `InstancePoolsToUseCount`\. Spot Fleet automatically deploys the cheapest combination of instance types and Availability Zones based on the current Spot price across the number of Spot pools that you specify\. This combination can be used to avoid the most expensive Spot Instances\.
 
-### Configuring Spot Fleet for capacity optimization<a name="spot-fleet-strategy-capacity-optimized"></a>
+### Configure Spot Fleet for capacity optimization<a name="spot-fleet-strategy-capacity-optimized"></a>
 
 With Spot Instances, pricing changes slowly over time based on long\-term trends in supply and demand, but capacity fluctuates in real time\. The `capacityOptimized` strategy automatically launches Spot Instances into the most available pools by looking at real\-time capacity data and predicting which are the most available\. This works well for workloads such as big data and analytics, image and media rendering, machine learning, and high performance computing that may have a higher cost of interruption associated with restarting work and checkpointing\. By offering the possibility of fewer interruptions, the `capacityOptimized` strategy can lower the overall cost of your workload\.
 
-### Choosing an appropriate allocation strategy<a name="allocation-use-cases"></a>
+### Choose an appropriate allocation strategy<a name="allocation-use-cases"></a>
 
 You can optimize your Spot Fleets based on your use case\.
 
@@ -99,7 +99,7 @@ Note that you are charged for all of the instances while they are running\.
 
 **We recommend that you manually terminate Spot Instances that receive a rebalance recommendation**  
 If you configure your Spot Fleet for Capacity Rebalancing, we recommend that you monitor the rebalance recommendation signal that is received by the Spot Instances in the fleet\. By monitoring the signal, you can quickly perform [rebalancing actions](rebalance-recommendations.md#rebalancing-actions) on the affected instances before Amazon EC2 interrupts them, and then you can manually terminate them\. If you do not terminate the instances, you continue paying for them while they are running\. Spot Fleet does not automatically terminate the instances that receive a rebalance recommendation\.  
-You can set up notifications using Amazon EventBridge or instance metadata\. For more information, see [Monitoring rebalance recommendation signals](rebalance-recommendations.md#monitor-rebalance-recommendations)\.
+You can set up notifications using Amazon EventBridge or instance metadata\. For more information, see [Monitor rebalance recommendation signals](rebalance-recommendations.md#monitor-rebalance-recommendations)\.
 
 **Spot Fleet does not count instances that receive a rebalance recommendation when calculating fulfilled capacity during scale in or out**  
 If your Spot Fleet is configured for Capacity Rebalancing, and you change the target capacity to either scale in or scale out, the fleet does not count the instances that are marked for rebalance as part of the fulfilled capacity, as follows:  
@@ -236,11 +236,11 @@ Example Corp uses the [On\-Demand price](https://aws.amazon.com/ec2/pricing/) pe
 
 Example Corp could use a global price per unit hour of $0\.7 and be competitive for all three instance types\. They could also use a global price per unit hour of $0\.7 and a specific price per unit hour of $0\.9 in the `r3.8xlarge` launch specification\.
 
-### Verifying permissions<a name="instance-weighting-walkthrough-permissions"></a>
+### Verify permissions<a name="instance-weighting-walkthrough-permissions"></a>
 
 Before creating a Spot Fleet request, Example Corp verifies that it has an IAM role with the required permissions\. For more information, see [Spot Fleet permissions](spot-fleet-requests.md#spot-fleet-prerequisites)\.
 
-### Creating the request<a name="instance-weighting-walkthrough-request"></a>
+### Create the request<a name="instance-weighting-walkthrough-request"></a>
 
 Example Corp creates a file, `config.json`, with the following configuration for its Spot Fleet request:
 

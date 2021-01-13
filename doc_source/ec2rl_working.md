@@ -1,14 +1,14 @@
-# Working with EC2Rescue for Linux<a name="ec2rl_working"></a>
+# Work with EC2Rescue for Linux<a name="ec2rl_working"></a>
 
 The following are common tasks you can perform to get started using this tool\.
 
 **Topics**
-+ [Running EC2Rescue for Linux](#ec2rl_running_module)
-+ [Uploading the results](#ec2rl_uploading_results)
-+ [Creating backups](#ec2rl_creating_backups)
-+ [Getting help](#ec2rl_getting_help)
++ [Run EC2Rescue for Linux](#ec2rl_running_module)
++ [Upload the results](#ec2rl_uploading_results)
++ [Create backups](#ec2rl_creating_backups)
++ [Get help](#ec2rl_getting_help)
 
-## Running EC2Rescue for Linux<a name="ec2rl_running_module"></a>
+## Run EC2Rescue for Linux<a name="ec2rl_running_module"></a>
 
 You can run EC2Rescue for Linux as shown in the following examples\.
 
@@ -48,7 +48,7 @@ For example, view the log file for the dig module:
 cat /var/tmp/ec2rl/2017-05-11T15_39_21.893145/mod_out/run/dig.log
 ```
 
-## Uploading the results<a name="ec2rl_uploading_results"></a>
+## Upload the results<a name="ec2rl_uploading_results"></a>
 
 If AWS Support has requested the results or to share the results from an S3 bucket, upload them using the EC2Rescue for Linux CLI tool\. The output of the EC2Rescue for Linux commands should provide the commands that you need to use\.
 
@@ -65,7 +65,7 @@ If AWS Support has requested the results or to share the results from an S3 buck
 ```
 For more information about generating pre\-signed URLs for Amazon S3, see [Uploading Objects Using Pre\-Signed URLs](https://docs.aws.amazon.com/AmazonS3/latest/dev/PresignedUrlUploadObject.html)\.
 
-## Creating backups<a name="ec2rl_creating_backups"></a>
+## Create backups<a name="ec2rl_creating_backups"></a>
 
 Create a backup for your instance, one or more volumes, or a specific device ID using the following commands\.
 
@@ -87,7 +87,7 @@ Create a backup for your instance, one or more volumes, or a specific device ID 
 ./ec2rl run --backup=volumeID
 ```
 
-## Getting help<a name="ec2rl_getting_help"></a>
+## Get help<a name="ec2rl_getting_help"></a>
 
 EC2Rescue for Linux includes a help file that gives you information and syntax for each available command\.
 

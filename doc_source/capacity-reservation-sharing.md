@@ -1,4 +1,4 @@
-# Working with shared Capacity Reservations<a name="capacity-reservation-sharing"></a>
+# Work with shared Capacity Reservations<a name="capacity-reservation-sharing"></a>
 
 Capacity Reservation sharing enables Capacity Reservation owners to share their reserved capacity with other AWS accounts or within an AWS organization\. This enables you to create and manage Capacity Reservations centrally, and share the reserved capacity across multiple AWS accounts or within your AWS organization\.
 
@@ -12,11 +12,11 @@ A Capacity Reservation owner can share a Capacity Reservation with:
 **Topics**
 + [Prerequisites for sharing Capacity Reservations](#sharing-cr-prereq)
 + [Related services](#cr-sharing-related)
-+ [Sharing across Availability Zones](#cr-sharing-azs)
-+ [Sharing a Capacity Reservation](#sharing-cr)
++ [Share across Availability Zones](#cr-sharing-azs)
++ [Share a Capacity Reservation](#sharing-cr)
 + [Stop sharing a Capacity Reservation](#unsharing-cr)
-+ [Identifying a shared Capacity Reservation](#identifying-shared-cr)
-+ [Viewing shared Capacity Reservation usage](#shared-cr-usage)
++ [Identify a shared Capacity Reservation](#identifying-shared-cr)
++ [View shared Capacity Reservation usage](#shared-cr-usage)
 + [Shared Capacity Reservation permissions](#shared-cr-perms)
 + [Billing and metering](#shared-cr-billing)
 + [Instance limits](#shared-cr-limits)
@@ -33,7 +33,7 @@ Capacity Reservation sharing integrates with AWS Resource Access Manager \(AWS R
 
 For more information about AWS RAM, see the *[AWS RAM User Guide](https://docs.aws.amazon.com/ram/latest/userguide/)*\.
 
-## Sharing across Availability Zones<a name="cr-sharing-azs"></a>
+## Share across Availability Zones<a name="cr-sharing-azs"></a>
 
 To ensure that resources are distributed across the Availability Zones for a Region, we independently map Availability Zones to names for each account\. This could lead to Availability Zone naming differences across accounts\. For example, the Availability Zone `us-east-1a` for your AWS account might not have the same location as `us-east-1a` for another AWS account\.
 
@@ -45,7 +45,7 @@ To identify the location of your Capacity Reservations relative to your accounts
 
 1. The AZ IDs for the current Region are displayed in the **Your AZ ID** panel on the right\-hand side of the screen\.
 
-## Sharing a Capacity Reservation<a name="sharing-cr"></a>
+## Share a Capacity Reservation<a name="sharing-cr"></a>
 
 When you share a Capacity Reservation that you own with other AWS accounts, you enable them to launch instances into your reserved capacity\. If you share an open Capacity Reservation, keep the following in mind as it could lead to unintended Capacity Reservation usage:
 + If consumers have running instances that match the attributes of the Capacity Reservation, have the `CapacityReservationPreference` parameter set to `open`, and are not yet running in reserved capacity, they automatically use the shared Capacity Reservation\.
@@ -99,7 +99,7 @@ See [Updating a Resource Share](https://docs.aws.amazon.com/ram/latest/userguide
 **To stop sharing a Capacity Reservation that you own using the AWS CLI**  
 Use the [disassociate\-resource\-share](https://docs.aws.amazon.com/cli/latest/reference/ram/disassociate-resource-share.html) command\.
 
-## Identifying a shared Capacity Reservation<a name="identifying-shared-cr"></a>
+## Identify a shared Capacity Reservation<a name="identifying-shared-cr"></a>
 
 Owners and consumers can identify shared Capacity Reservations using the Amazon EC2 console and AWS CLI
 
@@ -112,7 +112,7 @@ Owners and consumers can identify shared Capacity Reservations using the Amazon 
 **To identify a shared Capacity Reservation using the AWS CLI**  
 Use the [describe\-capacity\-reservations](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-capacity-reservations.html) command\. The command returns the Capacity Reservations that you own and Capacity Reservations that are shared with you\. `OwnerId` shows the AWS account ID of the Capacity Reservation owner\.
 
-## Viewing shared Capacity Reservation usage<a name="shared-cr-usage"></a>
+## View shared Capacity Reservation usage<a name="shared-cr-usage"></a>
 
 The owner of a shared Capacity Reservation can view its usage at any time using the Amazon EC2 console and the AWS CLI\.
 

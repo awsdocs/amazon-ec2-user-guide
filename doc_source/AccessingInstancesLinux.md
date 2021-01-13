@@ -1,8 +1,8 @@
-# Connecting to your Linux instance using SSH<a name="AccessingInstancesLinux"></a>
+# Connect to your Linux instance using SSH<a name="AccessingInstancesLinux"></a>
 
 After you launch your instance, you can connect to it and use it the way that you'd use a computer sitting in front of you\.
 
-The following instructions explain how to connect to your instance using an SSH client\. If you receive an error while attempting to connect to your instance, see [Troubleshooting connecting to your instance](TroubleshootingInstancesConnecting.md)\. For more connection options, see [Connect to your Linux instance](AccessingInstances.md)\.
+The following instructions explain how to connect to your instance using an SSH client\. If you receive an error while attempting to connect to your instance, see [Troubleshoot connecting to your instance](TroubleshootingInstancesConnecting.md)\. For more connection options, see [Connect to your Linux instance](AccessingInstances.md)\.
 
 ## Prerequisites<a name="ssh-prereqs"></a>
 
@@ -22,7 +22,7 @@ Your local computer might have an SSH client installed by default\. You can veri
 
 ## Connect to your Linux instance using an SSH client<a name="AccessingInstancesLinuxSSHClient"></a>
 
-Use the following procedure to connect to your Linux instance using an SSH client\. If you receive an error while attempting to connect to your instance, see [Troubleshooting connecting to your instance](TroubleshootingInstancesConnecting.md)\.
+Use the following procedure to connect to your Linux instance using an SSH client\. If you receive an error while attempting to connect to your instance, see [Troubleshoot connecting to your instance](TroubleshootingInstancesConnecting.md)\.
 
 **To connect to your instance using SSH**
 
@@ -56,7 +56,7 @@ Use the following procedure to connect to your Linux instance using an SSH clien
    Warning: Permanently added 'ec2-198-51-100-1.compute-1.amazonaws.com' (ECDSA) to the list of known hosts.
    ```
 
-## Transferring files to Linux instances from Linux using SCP<a name="AccessingInstancesLinuxSCP"></a>
+## Transfer files to Linux instances from Linux using SCP<a name="AccessingInstancesLinuxSCP"></a>
 
 One way to transfer files between your local computer and a Linux instance is to use the secure copy protocol \(SCP\)\. This section describes how to transfer files with SCP\. The procedure is similar to the procedure for connecting to an instance with SSH\. 
 

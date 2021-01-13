@@ -1,4 +1,4 @@
-# Automating Amazon EC2 with EventBridge<a name="automating_with_eventbridge"></a>
+# Automate Amazon EC2 with EventBridge<a name="automating_with_eventbridge"></a>
 
 Amazon EventBridge enables you to automate your AWS services and respond automatically to system events such as application availability issues or resource changes\. Events from AWS services are delivered to EventBridge in near real time\. You can write simple rules to indicate which events are of interest to you, and the automated actions to take when an event matches a rule\. The actions that can be automatically triggered include the following:
 + Invoking an AWS Lambda function

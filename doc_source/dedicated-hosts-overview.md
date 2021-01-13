@@ -10,10 +10,10 @@ For information about the configurations supported on Dedicated Hosts, see the [
 + [Dedicated Host instance capacity](#dedicated-hosts-limits)
 + [Dedicated Hosts restrictions](#dedicated-hosts-limitations)
 + [Pricing and billing](#dedicated-hosts-billing)
-+ [Working with Dedicated Hosts](how-dedicated-hosts-work.md)
-+ [Working with shared Dedicated Hosts](dh-sharing.md)
++ [Work with Dedicated Hosts](how-dedicated-hosts-work.md)
++ [Work with shared Dedicated Hosts](dh-sharing.md)
 + [Host recovery](dedicated-hosts-recovery.md)
-+ [Tracking configuration changes](dedicated-hosts-aws-config.md)
++ [Track configuration changes](dedicated-hosts-aws-config.md)
 
 ## Differences between Dedicated Hosts and Dedicated Instances<a name="dedicated-hosts-dedicated-instances"></a>
 
@@ -46,7 +46,7 @@ These are the general steps to follow in order to bring your own volume licensed
 1. When you run these instances, depending on the operating system, you might be required to activate these instances against your own KMS server\.
 
 **Note**  
-To track how your images are used in AWS, enable host recording in AWS Config\. You can use AWS Config to record configuration changes to a Dedicated Host and use the output as a data source for license reporting\. For more information, see [Tracking configuration changes](dedicated-hosts-aws-config.md)\. 
+To track how your images are used in AWS, enable host recording in AWS Config\. You can use AWS Config to record configuration changes to a Dedicated Host and use the output as a data source for license reporting\. For more information, see [Track configuration changes](dedicated-hosts-aws-config.md)\. 
 
 ## Dedicated Host instance capacity<a name="dedicated-hosts-limits"></a>
 
@@ -92,7 +92,7 @@ The On\-Demand price for a Dedicated Host varies by instance family and Region\.
 
 
 
-You can release an On\-Demand Dedicated Host at any time to stop accruing charges for it\. For information about releasing a Dedicated Host, see [Releasing Dedicated Hosts](how-dedicated-hosts-work.md#dedicated-hosts-releasing)\.
+You can release an On\-Demand Dedicated Host at any time to stop accruing charges for it\. For information about releasing a Dedicated Host, see [Release Dedicated Hosts](how-dedicated-hosts-work.md#dedicated-hosts-releasing)\.
 
 ### Dedicated Host Reservations<a name="dedicated-host-reservations"></a>
 

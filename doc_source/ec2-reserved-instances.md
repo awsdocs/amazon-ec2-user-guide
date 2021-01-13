@@ -11,12 +11,12 @@ Savings Plans also offer significant savings on your Amazon EC2 costs compared t
 + [Regional and zonal Reserved Instances \(scope\)](reserved-instances-scope.md)
 + [Types of Reserved Instances \(offering classes\)](reserved-instances-types.md)
 + [How Reserved Instances are applied](apply_ri.md)
-+ [Using your Reserved Instances](using-reserved-instances.md)
++ [Use your Reserved Instances](using-reserved-instances.md)
 + [How you are billed](concepts-reserved-instances-application.md)
 + [Buying Reserved Instances](ri-market-concepts-buying.md)
-+ [Selling in the Reserved Instance Marketplace](ri-market-general.md)
-+ [Modifying Reserved Instances](ri-modifying.md)
-+ [Exchanging Convertible Reserved Instances](ri-convertible-exchange.md)
++ [Sell in the Reserved Instance Marketplace](ri-market-general.md)
++ [Modify Reserved Instances](ri-modifying.md)
++ [Exchange Convertible Reserved Instances](ri-convertible-exchange.md)
 
 ## Reserved Instance overview<a name="ri-overview"></a>
 
@@ -55,7 +55,7 @@ The following payment options are available for Reserved Instances:
 **Note**  
 No Upfront Reserved Instances are based on a contractual obligation to pay monthly for the entire term of the reservation\. For this reason, a successful billing history is required before you can purchase No Upfront Reserved Instances\.
 
-Generally speaking, you can save more money making a higher upfront payment for Reserved Instances\. You can also find Reserved Instances offered by third\-party sellers at lower prices and shorter term lengths on the Reserved Instance Marketplace\. For more information, see [Selling in the Reserved Instance Marketplace](ri-market-general.md)\. 
+Generally speaking, you can save more money making a higher upfront payment for Reserved Instances\. You can also find Reserved Instances offered by third\-party sellers at lower prices and shorter term lengths on the Reserved Instance Marketplace\. For more information, see [Sell in the Reserved Instance Marketplace](ri-market-general.md)\. 
 
 ### Offering class<a name="ri-pricing-variable-offering-class"></a>
 

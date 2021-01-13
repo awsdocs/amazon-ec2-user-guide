@@ -1,4 +1,4 @@
-# Copying an AMI<a name="CopyingAMIs"></a>
+# Copy an AMI<a name="CopyingAMIs"></a>
 
 You can copy an Amazon Machine Image \(AMI\) within or across AWS Regions using the AWS Management Console, the AWS Command Line Interface or SDKs, or the Amazon EC2 API, all of which support the `CopyImage` action\. You can copy both Amazon EBS\-backed AMIs and instance\-store\-backed AMIs\. You can copy AMIs with encrypted snapshots and also change encryption status during the copy process\.
 
@@ -8,15 +8,15 @@ There are no charges for copying an AMI\. However, standard storage and data tra
 
 AWS does not copy launch permissions, user\-defined tags, or Amazon S3 bucket permissions from the source AMI to the new AMI\. After the copy operation is complete, you can apply launch permissions, user\-defined tags, and Amazon S3 bucket permissions to the new AMI\.
 
-If you are using an AWS Marketplace AMI, or an AMI that was directly or indirectly derived from an AWS Marketplace AMI, you cannot copy it across accounts\. Instead, launch an EC2 instance using the AWS Marketplace AMI and then create an AMI from the instance\. For more information, see [Creating an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md)\.
+If you are using an AWS Marketplace AMI, or an AMI that was directly or indirectly derived from an AWS Marketplace AMI, you cannot copy it across accounts\. Instead, launch an EC2 instance using the AWS Marketplace AMI and then create an AMI from the instance\. For more information, see [Create an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md)\.
 
 **Topics**
 + [Permissions for copying an instance store\-backed AMI](#copy-ami-permissions)
 + [Cross\-Region copying](#copy-amis-across-regions)
 + [Cross\-account copying](#copy-ami-across-accounts)
 + [Encryption and copying](#ami-copy-encryption)
-+ [Copying an AMI](#ami-copy-steps)
-+ [Stopping a pending AMI copy operation](#ami-copy-stop)
++ [Copy an AMI](#ami-copy-steps)
++ [Stop a pending AMI copy operation](#ami-copy-stop)
 
 ## Permissions for copying an instance store\-backed AMI<a name="copy-ami-permissions"></a>
 
@@ -86,7 +86,7 @@ Prior to copying an AMI, you must ensure that the contents of the source AMI are
 
 ## Cross\-account copying<a name="copy-ami-across-accounts"></a>
 
-You can share an AMI with another AWS account\. Sharing an AMI does not affect the ownership of the AMI\. The owning account is charged for the storage in the Region\. For more information, see [Sharing an AMI with specific AWS accounts](sharingamis-explicit.md)\.
+You can share an AMI with another AWS account\. Sharing an AMI does not affect the ownership of the AMI\. The owning account is charged for the storage in the Region\. For more information, see [Share an AMI with specific AWS accounts](sharingamis-explicit.md)\.
 
 If you copy an AMI that has been shared with your account, you are the owner of the target AMI in your account\. The owner of the source AMI is charged standard Amazon EBS or Amazon S3 transfer fees, and you are charged for the storage of the target AMI in the destination Region\.
 
@@ -123,14 +123,14 @@ Enabling [encryption by default](EBSEncryption.md#encryption-by-default) has the
 
 Setting the `Encrypted` parameter encrypts the single snapshot for this instance\. If you do not specify the `KmsKeyId` parameter, the default CMK is used to encrypt the snapshot copy\.
 
-For more information about copying AMIs with encrypted snapshots, see [Using encryption with EBS\-backed AMIs](AMIEncryption.md)\.
+For more information about copying AMIs with encrypted snapshots, see [Use encryption with EBS\-backed AMIs](AMIEncryption.md)\.
 
-## Copying an AMI<a name="ami-copy-steps"></a>
+## Copy an AMI<a name="ami-copy-steps"></a>
 
 You can copy an AMI as follows\.
 
 **Prerequisite**  
-Create or obtain an AMI backed by an Amazon EBS snapshot\. Note that you can use the Amazon EC2 console to search a wide variety of AMIs provided by AWS\. For more information, see [Creating an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md) and [Finding an AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html)\.
+Create or obtain an AMI backed by an Amazon EBS snapshot\. Note that you can use the Amazon EC2 console to search a wide variety of AMIs provided by AWS\. For more information, see [Create an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md) and [Finding an AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html)\.
 
 **To copy an AMI using the console**
 
@@ -163,7 +163,7 @@ You can copy an AMI using the [Copy\-EC2Image](https://docs.aws.amazon.com/power
 
 When you encrypt a target snapshot during copying, you must specify these additional parameters: `-Encrypted` and `-KmsKeyId`\.
 
-## Stopping a pending AMI copy operation<a name="ami-copy-stop"></a>
+## Stop a pending AMI copy operation<a name="ami-copy-stop"></a>
 
 You can stop a pending AMI copy as follows\.
 

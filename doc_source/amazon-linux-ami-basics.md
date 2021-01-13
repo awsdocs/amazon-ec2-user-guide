@@ -4,15 +4,15 @@ Amazon Linux is provided by Amazon Web Services \(AWS\)\. It is designed to prov
 
 **Topics**
 + [Amazon Linux availability](#amazon-linux-availability)
-+ [Connecting to an Amazon Linux instance](#connect-to-amazon-linux-limits)
-+ [Identifying Amazon Linux images](#amazon-linux-image-id)
++ [Connect to an Amazon Linux instance](#connect-to-amazon-linux-limits)
++ [Identify Amazon Linux images](#amazon-linux-image-id)
 + [AWS command line tools](#amazon-linux-aws-command-line-tools)
 + [Package repository](#package-repository)
 + [Extras library \(Amazon Linux 2\)](#extras-library)
-+ [Accessing source packages for reference](#amazon-linux-source-packages)
++ [Access source packages for reference](#amazon-linux-source-packages)
 + [cloud\-init](#amazon-linux-cloud-init)
-+ [Subscribing to Amazon Linux notifications](#linux-ami-notifications)
-+ [Running Amazon Linux 2 as a virtual machine on premises](amazon-linux-2-virtual-machine.md)
++ [Subscribe to Amazon Linux notifications](#linux-ami-notifications)
++ [Run Amazon Linux 2 as a virtual machine on premises](amazon-linux-2-virtual-machine.md)
 + [Kernel Live Patching on Amazon Linux 2](al2-live-patching.md)
 
 ## Amazon Linux availability<a name="amazon-linux-availability"></a>
@@ -23,11 +23,11 @@ The last version of the Amazon Linux AMI, 2018\.03, reaches the end of standard 
 
 For more information, see [Amazon Linux 2](https://aws.amazon.com/amazon-linux-2/) and [Amazon Linux AMI](https://aws.amazon.com/amazon-linux-ami/)\. For Amazon Linux Docker container images, see [amazonlinux](https://hub.docker.com/_/amazonlinux/) on Docker Hub\.
 
-## Connecting to an Amazon Linux instance<a name="connect-to-amazon-linux-limits"></a>
+## Connect to an Amazon Linux instance<a name="connect-to-amazon-linux-limits"></a>
 
 Amazon Linux does not allow remote root SSH by default\. Also, password authentication is disabled to prevent brute\-force password attacks\. To enable SSH logins to an Amazon Linux instance, you must provide your key pair to the instance at launch\. You must also set the security group used to launch your instance to allow SSH access\. By default, the only account that can log in remotely using SSH is ec2\-user; this account also has sudo privileges\. If you enable remote root login, be aware that it is less secure than relying on key pairs and a secondary user\.
 
-## Identifying Amazon Linux images<a name="amazon-linux-image-id"></a>
+## Identify Amazon Linux images<a name="amazon-linux-image-id"></a>
 
 Each image contains a unique `/etc/image-id` file that identifies it\. This file contains the following information about the image:
 + `image_name`, `image_version`, `image_arch` — Values from the build recipe that Amazon used to construct the image\.
@@ -266,7 +266,7 @@ To disable a topic and make the packages inaccessible to the yum package manager
 **Important**  
 This command is intended for advanced users\. Improper usage of this command could cause package compatibility conflicts\.
 
-## Accessing source packages for reference<a name="amazon-linux-source-packages"></a>
+## Access source packages for reference<a name="amazon-linux-source-packages"></a>
 
 You can view the source of packages you have installed on your instance for reference purposes by using tools provided in Amazon Linux\. Source packages are available for all of the packages included in Amazon Linux and the online package repository\. Simply determine the package name for the source package you want to install and use the yumdownloader \-\-source command to view source within your running instance\. For example:
 
@@ -333,7 +333,7 @@ The cloud\-init package supports user\-data handling of a variety of formats:
   + This content is boothook data\. It is stored in a file under `/var/lib/cloud` and then runs immediately\.
   +  This is the earliest "hook" available\. There is no mechanism provided for running it only one time\. The boothook must take care of this itself\. It is provided with the instance ID in the environment variable `INSTANCE_ID`\. Use this variable to provide a once\-per\-instance set of boothook data\.
 
-## Subscribing to Amazon Linux notifications<a name="linux-ami-notifications"></a>
+## Subscribe to Amazon Linux notifications<a name="linux-ami-notifications"></a>
 
 To be notified when new AMIs are released, you can subscribe using Amazon SNS\.
 

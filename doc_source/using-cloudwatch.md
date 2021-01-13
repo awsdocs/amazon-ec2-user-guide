@@ -1,4 +1,4 @@
-# Monitoring your instances using CloudWatch<a name="using-cloudwatch"></a>
+# Monitor your instances using CloudWatch<a name="using-cloudwatch"></a>
 
 You can monitor your instances using Amazon CloudWatch, which collects and processes raw data from Amazon EC2 into readable, near real\-time metrics\. These statistics are recorded for a period of 15 months, so that you can access historical information and gain a better perspective on how your web application or service is performing\.
 

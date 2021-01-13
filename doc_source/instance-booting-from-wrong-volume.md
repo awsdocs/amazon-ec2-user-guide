@@ -1,4 +1,4 @@
-# Booting from the wrong volume<a name="instance-booting-from-wrong-volume"></a>
+# Boot from the wrong volume<a name="instance-booting-from-wrong-volume"></a>
 
 In some situations, you may find that a volume other than the volume attached to `/dev/xvda` or `/dev/sda` has become the root volume of your instance\. This can happen when you have attached the root volume of another instance, or a volume created from the snapshot of a root volume, to an instance with an existing root volume\.
 

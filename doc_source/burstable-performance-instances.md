@@ -12,8 +12,8 @@ If your account is less than 12 months old, you can use a `t2.micro` instance fo
 + [CPU credits and baseline utilization for burstable performance instances](burstable-credits-baseline-concepts.md)
 + [Unlimited mode for burstable performance instances](burstable-performance-instances-unlimited-mode.md)
 + [Standard mode for burstable performance instances](burstable-performance-instances-standard-mode.md)
-+ [Working with burstable performance instances](burstable-performance-instances-how-to.md)
-+ [Monitoring your CPU credits](burstable-performance-instances-monitoring-cpu-credits.md)
++ [Work with burstable performance instances](burstable-performance-instances-how-to.md)
++ [Monitor your CPU credits](burstable-performance-instances-monitoring-cpu-credits.md)
 
 ## Burstable performance instance requirements<a name="burstable-performance-instances-limits"></a>
 
@@ -27,4 +27,4 @@ The following are the requirements for these instances:
 
 Follow these best practices to get the maximum benefit from burstable performance instances\.
 + **Use a recommended AMI** – Use an AMI that provides the required drivers\. For more information, see [Release notes](general-purpose-instances.md#general-purpose-instances-limits)\.
-+ **Turn on instance recovery** – Create a CloudWatch alarm that monitors an EC2 instance and automatically recovers it if it becomes impaired for any reason\. For more information, see [Adding recover actions to Amazon CloudWatch alarms](UsingAlarmActions.md#AddingRecoverActions)\.
++ **Turn on instance recovery** – Create a CloudWatch alarm that monitors an EC2 instance and automatically recovers it if it becomes impaired for any reason\. For more information, see [Add recover actions to Amazon CloudWatch alarms](UsingAlarmActions.md#AddingRecoverActions)\.

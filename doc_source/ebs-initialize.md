@@ -1,4 +1,4 @@
-# Initializing Amazon EBS volumes<a name="ebs-initialize"></a>
+# Initialize Amazon EBS volumes<a name="ebs-initialize"></a>
 
 Empty EBS volumes receive their maximum performance the moment that they are created and do not require initialization \(formerly known as pre\-warming\)\.
 
@@ -8,10 +8,10 @@ For volumes that were created from snapshots, the storage blocks must be pulled 
 While initializing Provisioned IOPS SSD volumes that were created from snapshots, the performance of the volume may drop below 50 percent of its expected level, which causes the volume to display a `warning` state in the **I/O Performance** status check\. This is expected, and you can ignore the `warning` state on Provisioned IOPS SSD volumes while you are initializing them\. For more information, see [EBS volume status checks](monitoring-volume-status.md#monitoring-volume-checks)\.
 
 For most applications, amortizing the initialization cost over the lifetime of the volume is acceptable\. To avoid this initial performance hit in a production environment, you can use one of the following options:
-+ Force the immediate initialization of the entire volume\. For more information, see [Initializing Amazon EBS volumes on Linux](#ebs-initialize-linux)\.
++ Force the immediate initialization of the entire volume\. For more information, see [Initialize Amazon EBS volumes on Linux](#ebs-initialize-linux)\.
 + Enable fast snapshot restore on a snapshot to ensure that the EBS volumes created from it are fully\-initialized at creation and instantly deliver all of their provisioned performance\. For more information, see [Amazon EBS fast snapshot restore](ebs-fast-snapshot-restore.md)\.
 
-## Initializing Amazon EBS volumes on Linux<a name="ebs-initialize-linux"></a>
+## Initialize Amazon EBS volumes on Linux<a name="ebs-initialize-linux"></a>
 
 Empty EBS volumes receive their maximum performance the moment that they are available and do not require initialization \(formerly known as pre\-warming\)\. For volumes that have been created from snapshots, use the dd or fio utilities to read from all of the blocks on a volume\. All existing data on the volume will be preserved\.
 
@@ -62,4 +62,4 @@ Incorrect use of dd can easily destroy a volume's data\. Be sure to follow preci
    sudo apt-get install -y fio
    ```
 
-   When the operation is finished, you will see a report of the read operation\. Your volume is now ready for use\. For more information, see [Making an Amazon EBS volume available for use on Linux](ebs-using-volumes.md)\.
+   When the operation is finished, you will see a report of the read operation\. Your volume is now ready for use\. For more information, see [Make an Amazon EBS volume available for use on Linux](ebs-using-volumes.md)\.

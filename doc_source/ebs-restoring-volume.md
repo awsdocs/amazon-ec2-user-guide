@@ -1,4 +1,4 @@
-# Replacing an Amazon EBS volume using a previous snapshot<a name="ebs-restoring-volume"></a>
+# Replace an Amazon EBS volume using a previous snapshot<a name="ebs-restoring-volume"></a>
 
 Amazon EBS snapshots are the preferred backup tool on Amazon EC2 due to their speed, convenience, and cost\. When creating a volume from a snapshot, you recreate its state at a specific point in the past with all data intact\. By attaching a volume created from a snapshot to an instance, you can duplicate data across Regions, create test environments, replace a damaged or corrupted production volume in its entirety, or retrieve specific files and directories and transfer them to another attached volume\. For more information, see [Amazon EBS snapshots](EBSSnapshots.md)\.
 
@@ -8,7 +8,7 @@ Note that EBS volumes can only be attached to EC2 instances in the same Availabi
 
 **To replace a volume**
 
-1. Create a volume from the snapshot and write down the ID of the new volume\. For more information, see [Creating a volume from a snapshot](ebs-creating-volume.md#ebs-create-volume-from-snapshot)\.
+1. Create a volume from the snapshot and write down the ID of the new volume\. For more information, see [Create a volume from a snapshot](ebs-creating-volume.md#ebs-create-volume-from-snapshot)\.
 
 1. On the volumes page, select the check box for the volume to replace\. On the **Description** tab, find **Attachment information** and write down the device name of the volume \(for example, `/dev/sda1` or `/dev/xvda` for a root volume, or `/dev/sdb` or `xvdb`\) and the ID of the instance\. 
 
@@ -20,4 +20,4 @@ Note that EBS volumes can only be attached to EC2 instances in the same Availabi
 
 1. \(Optional\) If you stopped the instance, you must restart it\. Return to the browser tab with the instances page and choose **Instance state**, **Start instance**\.
 
-1. Connect to your instance and mount the volume\. For more information, see [Making an Amazon EBS volume available for use on Linux](ebs-using-volumes.md)\.
+1. Connect to your instance and mount the volume\. For more information, see [Make an Amazon EBS volume available for use on Linux](ebs-using-volumes.md)\.

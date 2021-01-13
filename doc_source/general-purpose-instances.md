@@ -2,16 +2,6 @@
 
 General purpose instances provide a balance of compute, memory, and networking resources, and can be used for a wide range of workloads\.
 
-**A1 instances**
-
-These instances are ideally suited for scale\-out workloads that are supported by the Arm ecosystem\. These instances are well\-suited for the following:
-+ Web servers
-+ Containerized microservices
-
-Bare metal instances, such as `a1.metal`, provide your applications with direct access to physical resources of the host server, such as processors and memory\.
-
-For more information, see [AWS Graviton Processor](https://aws.amazon.com/ec2/graviton) and [Amazon EC2 A1 Instances](https://aws.amazon.com/ec2/instance-types/a1)\.
-
 **M5 and M5a instances**
 
 These instances provide an ideal cloud infrastructure, offering a balance of compute, memory, and networking resources for a broad range of applications that are deployed in the cloud\. They are well\-suited for the following:
@@ -80,12 +70,6 @@ The following is a summary of the hardware specifications for general purpose in
 
 | Instance type | Default vCPUs | Memory \(GiB\) | 
 | --- | --- | --- | 
-| a1\.medium | 1 | 2 | 
-| a1\.large | 2 | 4 | 
-| a1\.xlarge | 4 | 8 | 
-| a1\.2xlarge | 8 | 16 | 
-| a1\.4xlarge | 16 | 32 | 
-| a1\.metal | 16 | 32 | 
 | m4\.large | 2 | 8 | 
 | m4\.xlarge | 4 | 16 | 
 | m4\.2xlarge | 8 | 32 | 
@@ -199,7 +183,7 @@ The following is a summary of the hardware specifications for general purpose in
 
 For more information about the hardware specifications for each Amazon EC2 instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
-For more information about specifying CPU options, see [Optimizing CPU options](instance-optimize-cpu.md)\.
+For more information about specifying CPU options, see [Optimize CPU options](instance-optimize-cpu.md)\.
 
 ## Instance performance<a name="general-purpose-performance"></a>
 
@@ -220,7 +204,7 @@ The following is a summary of network performance for general purpose instances 
 | t3\.nano \| t3\.micro \| t3\.small \| t3\.medium \| t3\.large \| t3\.xlarge \| t3\.2xlarge \| t3a\.nano \| t3a\.micro \| t3a\.small \| t3a\.medium \| t3a\.large \| t3a\.xlarge \| t3a\.2xlarge \| t4g\.nano \| t4g\.micro \| t4g\.small \| t4g\.medium \| t4g\.large \| t4g\.xlarge \| t4g\.2xlarge | Up to 5 Gbps † | [ENA](enhanced-networking-ena.md) | 
 | m4\.large | Moderate | [Intel 82599 VF](sriov-networking.md) | 
 |  m4\.xlarge \| m4\.2xlarge \| m4\.4xlarge  | High | [Intel 82599 VF](sriov-networking.md) | 
-|  a1\.4xlarge and smaller \| a1\.metal \|  m5\.4xlarge and smaller \| m5a\.8xlarge and smaller \| m5ad\.8xlarge and smaller \| m5d\.4xlarge and smaller \| m6g\.4xlarge and smaller \| m6gd\.4xlarge and smaller  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
+|  m5\.4xlarge and smaller \| m5a\.8xlarge and smaller \| m5ad\.8xlarge and smaller \| m5d\.4xlarge and smaller \| m6g\.4xlarge and smaller \| m6gd\.4xlarge and smaller  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
 | m4\.10xlarge | 10 Gbps | [Intel 82599 VF](sriov-networking.md) | 
 |  m5\.8xlarge \| m5a\.12xlarge \| m5ad\.12xlarge \| m5d\.8xlarge \| mac1\.metal  | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  m5\.12xlarge \| m5a\.16xlarge \| m5ad\.16xlarge \| m5d\.12xlarge  \| m6g\.8xlarge \| m6gd\.8xlarge  | 12 Gbps | [ENA](enhanced-networking-ena.md) | 
@@ -290,7 +274,6 @@ The following is a summary of features for general purpose instances:
 
 |  | EBS only | NVMe EBS | Instance store | Placement group | 
 | --- | --- | --- | --- | --- | 
-| A1 | Yes | Yes | No | Yes | 
 | M4 | Yes | No | No | Yes | 
 | M5 | Yes | Yes | No | Yes | 
 | M5a | Yes | Yes | No | Yes | 
@@ -321,7 +304,6 @@ For more information, see the following:
 + M6g and M6gd instances feature an AWS Graviton2 processor based on 64\-bit Arm architecture\.
 + Mac1 instances feature a 3\.2 GHz Intel eighth\-generation \(Coffee Lake\) Core i7 processor\.
 + T4g instances feature an AWS Graviton2 processor based on 64\-bit Arm architecture\.
-+ A1 instances feature a 2\.3 GHz AWS Graviton processor based on 64\-bit Arm architecture\.
 + M4, M5, M5a, M5ad, M5d, `t2.large` and larger, and `t3.large` and larger, and `t3a.large` and larger instance types require 64\-bit HVM AMIs\. They have high\-memory, and require a 64\-bit operating system to take advantage of that capacity\. HVM AMIs provide superior performance in comparison to paravirtual \(PV\) AMIs on high\-memory instance types\. In addition, you must use an HVM AMI to take advantage of enhanced networking\.
 + Instances built on the [Nitro System](instance-types.md#ec2-nitro-instances) have the following requirements:
   + [NVMe drivers](nvme-ebs-volumes.md) must be installed

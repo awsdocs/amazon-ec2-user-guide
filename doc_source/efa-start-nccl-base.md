@@ -1,4 +1,4 @@
-# Using a base AMI<a name="efa-start-nccl-base"></a>
+# Use a base AMI<a name="efa-start-nccl-base"></a>
 
 The following steps help you to get started using one of the [supported base AMIs](efa.md#efa-amis)\.
 
@@ -266,14 +266,14 @@ Install the EFA\-enabled kernel, EFA drivers, Libfabric, and Open MPI stack that
 1. Download the EFA software installation files\. The software installation files are packaged into a compressed tarball \(`.tar.gz`\) file\. To download the latest *stable* version, use the following command\.
 
    ```
-   $ curl -O https://efa-installer.amazonaws.com/aws-efa-installer-1.11.0.tar.gz
+   $ curl -O https://efa-installer.amazonaws.com/aws-efa-installer-1.11.1.tar.gz
    ```
 
    You can also get the latest version by replacing the version number with `latest` in the preceding command\.
 
 1. \(Optional\) Verify the authenticity and integrity of the EFA tarball \(`.tar.gz`\) file\. We recommend that you do this to verify the identity of the software publisher and to check that the file has not been altered or corrupted since it was published\. If you do not want to verify the tarball file, skip this step\.
 **Note**  
-Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA256 checksum instead, see [Verifying the EFA installer using a checksum](efa-verify.md)\.
+Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA256 checksum instead, see [Verify the EFA installer using a checksum](efa-verify.md)\.
 
    1. Download the public GPG key and import it into your keyring\.
 
@@ -298,11 +298,11 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
    1. Download the signature file and verify the signature of the EFA tarball file\.
 
       ```
-      $ wget https://efa-installer.amazonaws.com/aws-efa-installer-1.11.0.tar.gz.sig
+      $ wget https://efa-installer.amazonaws.com/aws-efa-installer-1.11.1.tar.gz.sig
       ```
 
       ```
-      $ gpg --verify ./aws-efa-installer-1.11.0.tar.gz.sig
+      $ gpg --verify ./aws-efa-installer-1.11.1.tar.gz.sig
       ```
 
       The following shows example output\.
@@ -320,7 +320,7 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
 1. Extract the files from the compressed `.tar.gz` file and navigate into the extracted directory\.
 
    ```
-   $ tar -xf aws-efa-installer-1.11.0.tar.gz
+   $ tar -xf aws-efa-installer-1.11.1.tar.gz
    ```
 
    ```

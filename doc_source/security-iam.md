@@ -20,9 +20,9 @@ For more information, see [Authorizing inbound traffic for your Linux instances]
 
 Your organization might have multiple AWS accounts\. Amazon EC2 enables you to specify additional AWS accounts that can use your Amazon Machine Images \(AMIs\) and Amazon EBS snapshots\. These permissions work at the AWS account level only; you can't restrict permissions for specific users within the specified AWS account\. All users in the AWS account that you've specified can use the AMI or snapshot\.
 
-Each AMI has a `LaunchPermission` attribute that controls which AWS accounts can access the AMI\. For more information, see [Making an AMI public](sharingamis-intro.md)\.
+Each AMI has a `LaunchPermission` attribute that controls which AWS accounts can access the AMI\. For more information, see [Make an AMI public](sharingamis-intro.md)\.
 
-Each Amazon EBS snapshot has a `createVolumePermission` attribute that controls which AWS accounts can use the snapshot\. For more information, see [Sharing an Amazon EBS snapshot](ebs-modifying-snapshot-permissions.md)\.
+Each Amazon EBS snapshot has a `createVolumePermission` attribute that controls which AWS accounts can use the snapshot\. For more information, see [Share an Amazon EBS snapshot](ebs-modifying-snapshot-permissions.md)\.
 
 ## IAM and Amazon EC2<a name="intro-to-iam"></a>
 

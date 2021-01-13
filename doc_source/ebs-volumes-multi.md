@@ -1,12 +1,12 @@
-# Attaching a volume to multiple instances with Amazon EBS Multi\-Attach<a name="ebs-volumes-multi"></a>
+# Attach a volume to multiple instances with Amazon EBS Multi\-Attach<a name="ebs-volumes-multi"></a>
 
 Amazon EBS Multi\-Attach enables you to attach a single Provisioned IOPS SSD \(`io1` or `io2`\) volume to up to 16 Nitro\-based instances that are in the same Availability Zone\. You can attach multiple Multi\-Attach enabled volumes to an instance or set of instances\. Each instance to which the volume is attached has full read and write permission to the shared volume\. Multi\-Attach makes it easier for you to achieve higher application availability in clustered Linux applications that manage concurrent write operations\.
 
 **Topics**
 + [Considerations and limitations](#considerations)
 + [Performance](#perf)
-+ [Working with Multi\-Attach](#working)
-+ [Monitoring](#monitoring)
++ [Work with Multi\-Attach](#working)
++ [Monitor a Multi\-Attach enabled volume](#monitoring)
 + [Pricing and billing](#pricing)
 
 ## Considerations and limitations<a name="considerations"></a>
@@ -36,17 +36,17 @@ For example, say you create an `io2` Multi\-Attach enabled volume with `50,000` 
 
 To achieve consistent performance, it is best practice to balance I/O driven from attached instances across the sectors of a Multi\-Attach enabled volume\.
 
-## Working with Multi\-Attach<a name="working"></a>
+## Work with Multi\-Attach<a name="working"></a>
 
 Multi\-Attach enabled volumes can be managed in much the same way that you would manage any other Amazon EBS volume\. However, in order to use the Multi\-Attach functionality, you must enable it for the volume\. When you create a new volume, Multi\-Attach is disabled by default\. 
 
 **Contents**
-+ [Enabling Multi\-Attach](#enable)
-+ [Disabling Multi\-Attach](#disable)
-+ [Attaching a volume to instances](#attach)
-+ [Deleting on termination](#delete)
++ [Enable Multi\-Attach](#enable)
++ [Disable Multi\-Attach](#disable)
++ [Attach a volume to instances](#attach)
++ [Delete on termination](#delete)
 
-### Enabling Multi\-Attach<a name="enable"></a>
+### Enable Multi\-Attach<a name="enable"></a>
 
 You can enable Multi\-Attach for `io1` and `io2` volumes during creation\.
 
@@ -119,7 +119,7 @@ $ aws ec2 modify-volume --volume-id vol-1234567890abcdef0 --multi-attach-enabled
 
 ------
 
-### Disabling Multi\-Attach<a name="disable"></a>
+### Disable Multi\-Attach<a name="disable"></a>
 
 You can disable Multi\-Attach for an `io2` volume only if it is attached to no more than one instance\.
 
@@ -155,11 +155,11 @@ $ aws ec2 modify-volume --volume-id vol-1234567890abcdef0 -–no-multi-attach-en
 
 ------
 
-### Attaching a volume to instances<a name="attach"></a>
+### Attach a volume to instances<a name="attach"></a>
 
-You attach a Multi\-Attach enabled volume to an instance in the same way that you attach any other EBS volume\. For more information, see [Attaching an Amazon EBS volume to an instance](ebs-attaching-volume.md)\.
+You attach a Multi\-Attach enabled volume to an instance in the same way that you attach any other EBS volume\. For more information, see [Attach an Amazon EBS volume to an instance](ebs-attaching-volume.md)\.
 
-### Deleting on termination<a name="delete"></a>
+### Delete on termination<a name="delete"></a>
 
 Multi\-Attach enabled volumes are deleted on instance termination if the last attached instance is terminated and if that instance is configured to delete the volume on termination\. If the volume is attached to multiple instances that have different delete on termination settings in their volume block device mappings, the last attached instance's block device mapping setting determines the delete on termination behavior\.
 
@@ -167,7 +167,7 @@ To ensure predictable delete on termination behavior, enable or disable delete o
 
 By default, when a volume is attached to an instance,  the delete on termination setting for the block device mapping is set to false\. If you want to turn on delete on termination for a Multi\-Attach enabled volume, modify the block device mapping\.
 
-If you want the volume to be deleted when the attached instances are terminated, enable delete on termination in the block device mapping for all of the attached instances\. If you want to retain the volume after the attached instances have been terminated, disable delete on termination in the block device mapping for all of the attached instances\. For more information, see [Preserving Amazon EBS volumes on instance termination](terminating-instances.md#preserving-volumes-on-termination)\.
+If you want the volume to be deleted when the attached instances are terminated, enable delete on termination in the block device mapping for all of the attached instances\. If you want to retain the volume after the attached instances have been terminated, disable delete on termination in the block device mapping for all of the attached instances\. For more information, see [Preserve Amazon EBS volumes on instance termination](terminating-instances.md#preserving-volumes-on-termination)\.
 
 You can modify an instance's delete on termination setting at launch or after it has launched\. If you enable or disable delete on termination during instance launch, the settings apply only to volumes that are attached at launch\. If you attach a volume to an instance after launch, you must explicitly set the delete on termination behavior for that volume\.
 
@@ -193,7 +193,7 @@ Specify the following in `mapping.json`\.
 ]
 ```
 
-## Monitoring<a name="monitoring"></a>
+## Monitor a Multi\-Attach enabled volume<a name="monitoring"></a>
 
 You can monitor a Multi\-Attach enabled volume using the CloudWatch Metrics for Amazon EBS volumes\. For more information, see [Amazon CloudWatch metrics for Amazon EBS](using_cloudwatch_ebs.md)\.
 

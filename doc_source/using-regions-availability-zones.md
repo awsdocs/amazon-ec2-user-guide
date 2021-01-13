@@ -27,16 +27,16 @@ The following diagram illustrates multiple AWS Regions\.
 
 When you view your resources, you see only the resources that are tied to the Region that you specified\. This is because Regions are isolated from each other, and we don't automatically replicate resources across Regions\.
 
-When you launch an instance, you must select an AMI that's in the same Region\. If the AMI is in another Region, you can copy the AMI to the Region you're using\. For more information, see [Copying an AMI](CopyingAMIs.md)\.
+When you launch an instance, you must select an AMI that's in the same Region\. If the AMI is in another Region, you can copy the AMI to the Region you're using\. For more information, see [Copy an AMI](CopyingAMIs.md)\.
 
 Note that there is a charge for data transfer between Regions\. For more information, see [Amazon EC2 Pricing \- Data Transfer](https://aws.amazon.com/ec2/pricing/on-demand/#Data_Transfer)\.
 
 **Topics**
 + [Available Regions](#concepts-available-regions)
 + [Regions and endpoints](#using-regions-endpoints)
-+ [Describing your Regions](#using-regions-availability-zones-describe)
-+ [Getting the Region name](#region-name)
-+ [Specifying the Region for a resource](#using-regions-availability-zones-setup)
++ [Describe your Regions](#using-regions-availability-zones-describe)
++ [Get the Region name](#region-name)
++ [Specify the Region for a resource](#using-regions-availability-zones-setup)
 
 ### Available Regions<a name="concepts-available-regions"></a>
 
@@ -76,7 +76,7 @@ For information about available Wavelength Zones, see [Available Wavelength Zone
 
 For more information, see [AWS Global Infrastructure](https://aws.amazon.com/about-aws/global-infrastructure/)\.
 
-The number and mapping of Availability Zones per Region may vary between AWS accounts\. To get a list of the Availability Zones that are available to your account, you can use the Amazon EC2 console or the command line interface\. For more information, see [Describing your Regions](#using-regions-availability-zones-describe)\.
+The number and mapping of Availability Zones per Region may vary between AWS accounts\. To get a list of the Availability Zones that are available to your account, you can use the Amazon EC2 console or the command line interface\. For more information, see [Describe your Regions](#using-regions-availability-zones-describe)\.
 
 ### Regions and endpoints<a name="using-regions-endpoints"></a>
 
@@ -84,7 +84,7 @@ When you work with an instance using the command line interface or API actions, 
 
 For more information about endpoints and protocols in AWS GovCloud \(US\-West\), see [AWS GovCloud \(US\-West\) Endpoints](https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/using-govcloud-endpoints.html) in the *AWS GovCloud \(US\) User Guide*\.
 
-### Describing your Regions<a name="using-regions-availability-zones-describe"></a>
+### Describe your Regions<a name="using-regions-availability-zones-describe"></a>
 
 You can use the Amazon EC2 console or the command line interface to determine which Regions are available for your account\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
 
@@ -117,7 +117,7 @@ You can use the Amazon EC2 console or the command line interface to determine wh
   PS C:\> Get-EC2Region
   ```
 
-### Getting the Region name<a name="region-name"></a>
+### Get the Region name<a name="region-name"></a>
 
 You can use the Amazon Lightsail API to view the name of a Region\.
 
@@ -140,7 +140,7 @@ You can use the Amazon Lightsail API to view the name of a Region\.
   Ohio
   ```
 
-### Specifying the Region for a resource<a name="using-regions-availability-zones-setup"></a>
+### Specify the Region for a resource<a name="using-regions-availability-zones-setup"></a>
 
 Every time you create an Amazon EC2 resource, you can specify the Region for the resource\. You can specify the Region for a resource using the AWS Management Console or the command line\.
 
@@ -182,11 +182,11 @@ You can view AZ IDs to determine the location of resources in one account relati
 As Availability Zones grow over time, our ability to expand them can become constrained\. If this happens, we might restrict you from launching an instance in a constrained Availability Zone unless you already have an instance in that Availability Zone\. Eventually, we might also remove the constrained Availability Zone from the list of Availability Zones for new accounts\. Therefore, your account might have a different number of available Availability Zones in a Region than another account\. 
 
 **Topics**
-+ [Describing your Availability Zones](#availability-zones-describe)
-+ [Launching instances in an Availability Zone](#using-regions-availability-zones-launching)
-+ [Migrating an instance to another Availability Zone](#migrating-instance-availability-zone)
++ [Describe your Availability Zones](#availability-zones-describe)
++ [Launch instances in an Availability Zone](#using-regions-availability-zones-launching)
++ [Migrate an instance to another Availability Zone](#migrating-instance-availability-zone)
 
-### Describing your Availability Zones<a name="availability-zones-describe"></a>
+### Describe your Availability Zones<a name="availability-zones-describe"></a>
 
 You can use the Amazon EC2 console or the command line interface to determine which Availability Zones are available for your account\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
 
@@ -221,13 +221,13 @@ Use the [Get\-EC2AvailabilityZone](https://docs.aws.amazon.com/powershell/latest
 PS C:\> Get-EC2AvailabilityZone -Region region-name
 ```
 
-### Launching instances in an Availability Zone<a name="using-regions-availability-zones-launching"></a>
+### Launch instances in an Availability Zone<a name="using-regions-availability-zones-launching"></a>
 
 When you launch an instance, select a Region that puts your instances closer to specific customers, or meets the legal or other requirements that you have\. By launching your instances in separate Availability Zones, you can protect your applications from the failure of a single location\. 
 
 When you launch an instance, you can optionally specify an Availability Zone in the Region that you are using\. If you do not specify an Availability Zone, we select an Availability Zone for you\. When you launch your initial instances, we recommend that you accept the default Availability Zone, because this allows us to select the best Availability Zone for you based on system health and available capacity\. If you launch additional instances, specify a Zone only if your new instances must be close to, or separated from, your running instances\.
 
-### Migrating an instance to another Availability Zone<a name="migrating-instance-availability-zone"></a>
+### Migrate an instance to another Availability Zone<a name="migrating-instance-availability-zone"></a>
 
 If necessary, you can migrate an instance from one Availability Zone to another\. For example, let's say you are trying to modify the instance type of your instance and we can't launch an instance of the new instance type in the current Availability Zone\. In this case, you can migrate the instance to an Availability Zone where we are able to launch an instance of that instance type\.
 
@@ -239,19 +239,19 @@ The migration process involves:
 **To migrate an instance to another Availability Zone**
 
 1. Create an AMI from the instance\. The procedure depends on your operating system and the type of root device volume for the instance\. For more information, see the documentation that corresponds to your operating system and root device volume:
-   + [Creating an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md)
-   + [Creating an instance store\-backed Linux AMI](creating-an-ami-instance-store.md)
+   + [Create an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md)
+   + [Create an instance store\-backed Linux AMI](creating-an-ami-instance-store.md)
    + [Creating a custom Windows AMI](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/Creating_EBSbacked_WinAMI.html)
 
 1. If you need to preserve the private IPv4 address of the instance, you must delete the subnet in the current Availability Zone and then create a subnet in the new Availability Zone with the same IPv4 address range as the original subnet\. Note that you must terminate all instances in a subnet before you can delete it\. Therefore, you should create AMIs from all of the instances in your subnet so that you can move all instances from the current subnet to the new subnet\.
 
-1. Launch an instance from the AMI that you just created, specifying the new Availability Zone or subnet\. You can use the same instance type as the original instance, or select a new instance type\. For more information, see [Launching instances in an Availability Zone](#using-regions-availability-zones-launching)\.
+1. Launch an instance from the AMI that you just created, specifying the new Availability Zone or subnet\. You can use the same instance type as the original instance, or select a new instance type\. For more information, see [Launch instances in an Availability Zone](#using-regions-availability-zones-launching)\.
 
 1. If the original instance has an associated Elastic IP address, associate it with the new instance\. For more information, see [Disassociating an Elastic IP address](elastic-ip-addresses-eip.md#using-instance-addressing-eips-associating-different)\.
 
-1. If the original instance is a Reserved Instance, change the Availability Zone for your reservation\. \(If you also changed the instance type, you can also change the instance type for your reservation\.\) For more information, see [Submitting modification requests](ri-modifying.md#ri-modification-process)\.
+1. If the original instance is a Reserved Instance, change the Availability Zone for your reservation\. \(If you also changed the instance type, you can also change the instance type for your reservation\.\) For more information, see [Submit modification requests](ri-modifying.md#ri-modification-process)\.
 
-1. \(Optional\) Terminate the original instance\. For more information, see [Terminating an instance](terminating-instances.md#terminating-instances-console)\.
+1. \(Optional\) Terminate the original instance\. For more information, see [Terminate an instance](terminating-instances.md#terminating-instances-console)\.
 
 ## Local Zones<a name="concepts-local-zones"></a>
 
@@ -278,11 +278,11 @@ In addition to the above list, the following resources are available in the Los 
 For information about the available Local Zones, see [Available Regions](#concepts-available-regions)\.
 
 **Topics**
-+ [Describing your Local Zones](#local-zones-describe)
++ [Describe your Local Zones](#local-zones-describe)
 + [Opt in to Local Zones](#opt-in-local-zone)
-+ [Launching instances in a Local Zone](#local-zones-launching)
++ [Launch instances in a Local Zone](#local-zones-launching)
 
-### Describing your Local Zones<a name="local-zones-describe"></a>
+### Describe your Local Zones<a name="local-zones-describe"></a>
 
 You can use the Amazon EC2 console or the command line interface to determine which Local Zones are available for your account\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
 
@@ -347,7 +347,7 @@ Some AWS resources might not be available in all Regions\. Make sure that you ca
 **To opt in to Local Zones using the AWS CLI**
 + Use the [modify\-availability\-zone\-group](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-availability-zone-group.html) command\.
 
-### Launching instances in a Local Zone<a name="local-zones-launching"></a>
+### Launch instances in a Local Zone<a name="local-zones-launching"></a>
 
 When you launch an instance, you can specify a subnet which is in a Local Zone\. You also allocate an IP address from a network border group, which is a unique set of Availability Zones, Local Zones, or Wavelength Zones from which AWS advertises IP addresses, for example, `us-west-2-lax-1a`\.
 
@@ -380,11 +380,11 @@ To use a Wavelength Zone, you must first opt in to the Zone\. For more informati
 Wavelength Zones are not available in every Region\. For information about the Regions that support Wavelength Zones, see [Available Wavelength Zones](https://docs.aws.amazon.com/wavelength/latest/developerguide/wavelength-quotas.html#concepts-available-zones) in the *AWS Wavelength Developer Guide*\.
 
 **Topics**
-+ [Describing your Wavelength Zones](#wavelength-zones-describe)
++ [Describe your Wavelength Zones](#wavelength-zones-describe)
 + [Enable Wavelength Zones](#opt-in-wavelength-zone)
-+ [Launching instances in a Wavelength Zone](#wavelength-zones-launching)
++ [Launch instances in a Wavelength Zone](#wavelength-zones-launching)
 
-### Describing your Wavelength Zones<a name="wavelength-zones-describe"></a>
+### Describe your Wavelength Zones<a name="wavelength-zones-describe"></a>
 
 You can use the Amazon EC2 console or the command line interface to determine which Wavelength Zones are available for your account\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
 
@@ -446,7 +446,7 @@ Before you specify a Wavelength Zone for a resource or service, you must enable 
 **To enable Wavelength Zones using the AWS CLI**  
 Use the [modify\-availability\-zone\-group](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-availability-zone-group.html) command\.
 
-### Launching instances in a Wavelength Zone<a name="wavelength-zones-launching"></a>
+### Launch instances in a Wavelength Zone<a name="wavelength-zones-launching"></a>
 
 When you launch an instance, you can specify a subnet which is in a Wavelength Zone\. You also allocate a carrier IP address from a network border group, which is a unique set of Availability Zones, Local Zones, or Wavelength Zones from which AWS advertises IP addresses, for example, `us-east-1-wl1-bos-wlz-1`\. 
 
@@ -460,7 +460,7 @@ An Outpost is a pool of AWS compute and storage capacity deployed at a customer 
 
 To begin using AWS Outposts, you must create an Outpost and order Outpost capacity\. For more information about Outposts configurations, see [our catalog](http://aws.amazon.com/outposts/pricing/)\. After your Outpost equipment is installed, the compute and storage capacity is available for you when you launch Amazon EC2 instances and create Amazon EBS volumes on your Outpost\.
 
-### Launching instances on an Outpost<a name="outposts-instances"></a>
+### Launch instances on an Outpost<a name="outposts-instances"></a>
 
 You can launch EC2 instances in the Outpost subnet that you created\. Security groups control inbound and outbound traffic for instances in an Outpost subnet, as they do for instances in an Availability Zone subnet\. To connect to an EC2 instance in an Outpost subnet, you can specify a key pair when you launch the instance, as you do for instances in an Availability Zone subnet\.
 
@@ -470,7 +470,7 @@ We recommend that you increase the NVMe timeout for the root volume\. For more i
 
 For information about how to create an Outpost, see [Get started with AWS Outposts](https://docs.aws.amazon.com/outposts/latest/userguide/get-started-outposts.html) in the *AWS Outposts User Guide*\.
 
-### Creating a volume on an Outpost<a name="outposts-volumes"></a>
+### Create a volume on an Outpost<a name="outposts-volumes"></a>
 
 You can create EBS volumes in the Outpost subnet that you created\. When you create the volume, specify the Amazon Resource Name \(ARN\) of the Outpost\.
 
@@ -480,4 +480,4 @@ The following [create\-volume](https://docs.aws.amazon.com/cli/latest/reference/
 aws ec2 create-volume --availability-zone us-east-2a --outpost-arn arn:aws:outposts:us-east-2:123456789012:outpost/op-03e6fecad652a6138 --size 50
 ```
 
-You must detach an Outpost volume before you can modify it\. For more information about detaching volumes, see [Detaching an Amazon EBS volume from a Linux instance](ebs-detaching-volume.md)\.
+You must detach an Outpost volume before you can modify it\. For more information about detaching volumes, see [Detach an Amazon EBS volume from a Linux instance](ebs-detaching-volume.md)\.

@@ -39,11 +39,11 @@ Use the following procedure to create the RAID array\. Note that you can get dir
 
 **To create a RAID array on Linux**
 
-1. Create the Amazon EBS volumes for your array\. For more information, see [Creating an Amazon EBS volume](ebs-creating-volume.md)\.
+1. Create the Amazon EBS volumes for your array\. For more information, see [Create an Amazon EBS volume](ebs-creating-volume.md)\.
 **Important**  
 Create volumes with identical size and IOPS performance values for your array\. Make sure you do not create an array that exceeds the available bandwidth of your EC2 instance\. For more information, see [Amazon EBS–optimized instances](ebs-optimized.md)\.
 
-1. Attach the Amazon EBS volumes to the instance that you want to host the array\. For more information, see [Attaching an Amazon EBS volume to an instance](ebs-attaching-volume.md)\.
+1. Attach the Amazon EBS volumes to the instance that you want to host the array\. For more information, see [Attach an Amazon EBS volume to an instance](ebs-attaching-volume.md)\.
 
 1. Use the mdadm command to create a logical RAID device from the newly attached Amazon EBS volumes\. Substitute the number of volumes in your array for *number\_of\_volumes* and the device names for each volume in the array \(such as `/dev/xvdf`\) for *device\_name*\. You can also substitute *MY\_RAID* with your own unique name for the array\.
 **Note**  

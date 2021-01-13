@@ -1,4 +1,4 @@
-# Changing the instance type<a name="ec2-instance-resize"></a>
+# Change the instance type<a name="ec2-instance-resize"></a>
 
 As your needs change, you might find that your instance is over\-utilized \(the instance type is too small\) or under\-utilized \(the instance type is too large\)\. If this is the case, you can change the size of your instance\. For example, if your `t2.micro` instance is too small for its workload, you can change it to another instance type that is appropriate for the workload\.
 
@@ -12,18 +12,18 @@ If the root device for your instance is an EBS volume, you can change the size o
 
 **Topics**
 + [Compatibility for resizing instances](#resize-limitations)
-+ [Resizing an Amazon EBS–backed instance](#resize-ebs-backed-instance)
-+ [Migrating an instance store\-backed instance](#resize-instance-store-backed-instance)
-+ [Migrating to a new instance configuration](#migrate-instance-configuration)
++ [Resize an Amazon EBS–backed instance](#resize-ebs-backed-instance)
++ [Migrate an instance store\-backed instance](#resize-instance-store-backed-instance)
++ [Migrate to a new instance configuration](#migrate-instance-configuration)
 
 ## Compatibility for resizing instances<a name="resize-limitations"></a>
 
 You can resize an instance only if its current instance type and the new instance type that you want are compatible in the following ways:
 + **Virtualization type**: Linux AMIs use one of two types of virtualization: paravirtual \(PV\) or hardware virtual machine \(HVM\)\. You can't resize an instance that was launched from a PV AMI to an instance type that is HVM only\. For more information, see [Linux AMI virtualization types](virtualization_types.md)\. To check the virtualization type of your instance, see the **Virtualization** field on the details pane of the **Instances** screen in the Amazon EC2 console\.
 + **Architecture**: AMIs are specific to the architecture of the processor, so you must select an instance type with the same processor architecture as the current instance type\. For example:
-  + If you are resizing an instance type with a processor based on the Arm architecture, you are limited to the instance types that support a processor based on the Arm architecture, such as A1 and M6g\.
+  + If you are resizing an instance type with a processor based on the Arm architecture, you are limited to the instance types that support a processor based on the Arm architecture, such as C6g and M6g\.
   + The following instance types are the only instance types that support 32\-bit AMIs: `t2.nano`, `t2.micro`, `t2.small`, `t2.medium`, `c3.large`, `t1.micro`, `m1.small`, `m1.medium`, and `c1.medium`\. If you are resizing a 32\-bit instance, you are limited to these instance types\.
-+ **Network**: Newer instance types must be launched in a VPC\. Therefore, you can't resize an instance in the EC2\-Classic platform to a instance type that is available only in a VPC unless you have a nondefault VPC\. To check whether your instance is in a VPC, check the **VPC ID** value on the details pane of the **Instances** screen in the Amazon EC2 console\. For more information, see [Migrating from EC2\-Classic to a VPC](vpc-migrate.md)\.
++ **Network**: Newer instance types must be launched in a VPC\. Therefore, you can't resize an instance in the EC2\-Classic platform to a instance type that is available only in a VPC unless you have a nondefault VPC\. To check whether your instance is in a VPC, check the **VPC ID** value on the details pane of the **Instances** screen in the Amazon EC2 console\. For more information, see [Migrate from EC2\-Classic to a VPC](vpc-migrate.md)\.
 + **Enhanced networking**: Instance types that support [enhanced networking](enhanced-networking.md) require the necessary drivers installed\. For example, instances based on the [Nitro System](instance-types.md#ec2-nitro-instances) require EBS\-backed AMIs with the Elastic Network Adapter \(ENA\) drivers installed\. To resize an instance from a type that does not support enhanced networking to a type that supports enhanced networking, you must install the [ENA drivers](enhanced-networking-ena.md) or [ixgbevf drivers](sriov-networking.md) on the instance, as appropriate\.
 + **NVMe**: EBS volumes are exposed as NVMe block devices on instances built on the [Nitro System](instance-types.md#ec2-nitro-instances)\. If you resize an instance from an instance type that does not support NVMe to an instance type that supports NVMe, you must first install the [NVMe drivers](nvme-ebs-volumes.md) on your instance\. Also, the device names for devices that you specify in the block device mapping are renamed using NVMe device names \(`/dev/nvme[0-26]n1`\)\. Therefore, to mount file systems at boot time using `/etc/fstab`, you must use UUID/Label instead of device names\.
 + **AMI**: For information about the AMIs required by instance types that support enhanced networking and NVMe, see the Release Notes in the following documentation:
@@ -32,7 +32,7 @@ You can resize an instance only if its current instance type and the new instanc
   + [Memory optimized instances](memory-optimized-instances.md)
   + [Storage optimized instances](storage-optimized-instances.md)
 
-## Resizing an Amazon EBS–backed instance<a name="resize-ebs-backed-instance"></a>
+## Resize an Amazon EBS–backed instance<a name="resize-ebs-backed-instance"></a>
 
 You must stop your Amazon EBS–backed instance before you can change its instance type\. When you stop and start an instance, be aware of the following:
 + We move the instance to new hardware; however, the instance ID does not change\.
@@ -108,7 +108,7 @@ Use the following procedure to resize an Amazon EBS–backed instance using the 
 
 ------
 
-## Migrating an instance store\-backed instance<a name="resize-instance-store-backed-instance"></a>
+## Migrate an instance store\-backed instance<a name="resize-instance-store-backed-instance"></a>
 
 When you want to move your application from one instance store\-backed instance to an instance store\-backed instance with a different instance type, you must migrate it by creating an image from your instance, and then launching a new instance from this image with the instance type that you need\. To ensure that your users can continue to use the applications that you're hosting on your instance uninterrupted, you must take any Elastic IP address that you've associated with your original instance and associate it with the new instance\. Then you can terminate the original instance\.
 
@@ -117,9 +117,9 @@ When you want to move your application from one instance store\-backed instance 
 
 **To migrate an instance store\-backed instance**
 
-1. Back up any data on your instance store volumes that you need to keep to persistent storage\. To migrate data on your EBS volumes that you need to keep, take a snapshot of the volumes \(see [Creating Amazon EBS snapshots](ebs-creating-snapshot.md)\) or detach the volume from the instance so that you can attach it to the new instance later \(see [Detaching an Amazon EBS volume from a Linux instance](ebs-detaching-volume.md)\)\.
+1. Back up any data on your instance store volumes that you need to keep to persistent storage\. To migrate data on your EBS volumes that you need to keep, take a snapshot of the volumes \(see [Create Amazon EBS snapshots](ebs-creating-snapshot.md)\) or detach the volume from the instance so that you can attach it to the new instance later \(see [Detach an Amazon EBS volume from a Linux instance](ebs-detaching-volume.md)\)\.
 
-1. Create an AMI from your instance store\-backed instance by satisfying the prerequisites and following the procedures in [Creating an instance store\-backed Linux AMI](creating-an-ami-instance-store.md)\. When you are finished creating an AMI from your instance, return to this procedure\.
+1. Create an AMI from your instance store\-backed instance by satisfying the prerequisites and following the procedures in [Create an instance store\-backed Linux AMI](creating-an-ami-instance-store.md)\. When you are finished creating an AMI from your instance, return to this procedure\.
 
 1. Open the Amazon EC2 console and in the navigation pane, choose **AMIs**\. From the filter lists, choose **Owned by me**, and select the image that you created in the previous step\. Notice that **AMI Name** is the name that you specified when you registered the image and **Source** is your Amazon S3 bucket\.
 **Note**  
@@ -136,9 +136,9 @@ If you do not see the AMI that you created in the previous step, make sure that 
 
 **To migrate an instance store\-backed instance**
 
-1. Back up any data on your instance store volumes that you need to keep to persistent storage\. To migrate data on your EBS volumes that you need to keep, take a snapshot of the volumes \(see [Creating Amazon EBS snapshots](ebs-creating-snapshot.md)\) or detach the volume from the instance so that you can attach it to the new instance later \(see [Detaching an Amazon EBS volume from a Linux instance](ebs-detaching-volume.md)\)\.
+1. Back up any data on your instance store volumes that you need to keep to persistent storage\. To migrate data on your EBS volumes that you need to keep, take a snapshot of the volumes \(see [Create Amazon EBS snapshots](ebs-creating-snapshot.md)\) or detach the volume from the instance so that you can attach it to the new instance later \(see [Detach an Amazon EBS volume from a Linux instance](ebs-detaching-volume.md)\)\.
 
-1. Create an AMI from your instance store\-backed instance by satisfying the prerequisites and following the procedures in [Creating an instance store\-backed Linux AMI](creating-an-ami-instance-store.md)\. When you are finished creating an AMI from your instance, return to this procedure\.
+1. Create an AMI from your instance store\-backed instance by satisfying the prerequisites and following the procedures in [Create an instance store\-backed Linux AMI](creating-an-ami-instance-store.md)\. When you are finished creating an AMI from your instance, return to this procedure\.
 
 1. Open the Amazon EC2 console and in the navigation pane, choose **AMIs**\. From the filter lists, choose **Owned by me**, and choose the image that you created in the previous step\. Notice that **AMI Name** is the name that you specified when you registered the image and **Source** is your Amazon S3 bucket\.
 **Note**  
@@ -152,7 +152,7 @@ If you do not see the AMI that you created in the previous step, make sure that 
 
 ------
 
-## Migrating to a new instance configuration<a name="migrate-instance-configuration"></a>
+## Migrate to a new instance configuration<a name="migrate-instance-configuration"></a>
 
 If the current configuration of your instance is incompatible with the new instance type that you want, then you can't resize the instance to that instance type\. Instead, you can migrate your application to a new instance with a configuration that is compatible with the new instance type that you want\.
 
@@ -163,7 +163,7 @@ If you want to move from an instance launched from a PV AMI to an instance type 
 
 **To migrate your application to a compatible instance**
 
-1. Back up any data on your instance store volumes that you need to keep to persistent storage\. To migrate data on your EBS volumes that you need to keep, create a snapshot of the volumes \(see [Creating Amazon EBS snapshots](ebs-creating-snapshot.md)\) or detach the volume from the instance so that you can attach it to the new instance later \(see [Detaching an Amazon EBS volume from a Linux instance](ebs-detaching-volume.md)\)\.
+1. Back up any data on your instance store volumes that you need to keep to persistent storage\. To migrate data on your EBS volumes that you need to keep, create a snapshot of the volumes \(see [Create Amazon EBS snapshots](ebs-creating-snapshot.md)\) or detach the volume from the instance so that you can attach it to the new instance later \(see [Detach an Amazon EBS volume from a Linux instance](ebs-detaching-volume.md)\)\.
 
 1. Launch a new instance, selecting the following:
    + An HVM AMI\.
@@ -199,7 +199,7 @@ If you want to move from an instance launched from a PV AMI to an instance type 
 
 **To migrate your application to a compatible instance**
 
-1. Back up any data on your instance store volumes that you need to keep to persistent storage\. To migrate data on your EBS volumes that you need to keep, create a snapshot of the volumes \(see [Creating Amazon EBS snapshots](ebs-creating-snapshot.md)\) or detach the volume from the instance so that you can attach it to the new instance later \(see [Detaching an Amazon EBS volume from a Linux instance](ebs-detaching-volume.md)\)\.
+1. Back up any data on your instance store volumes that you need to keep to persistent storage\. To migrate data on your EBS volumes that you need to keep, create a snapshot of the volumes \(see [Create Amazon EBS snapshots](ebs-creating-snapshot.md)\) or detach the volume from the instance so that you can attach it to the new instance later \(see [Detach an Amazon EBS volume from a Linux instance](ebs-detaching-volume.md)\)\.
 
 1. Launch a new instance, selecting the following:
    + An HVM AMI\.

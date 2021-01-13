@@ -14,9 +14,9 @@ For examples, see [Creating Amazon CloudWatch Alarms](https://docs.aws.amazon.co
 
 1. In the navigation pane, choose **Instances**\.
 
-1. Select the instance and choose **Actions**, **Monitoring**, **Manage CloudWatch alarms**\.
+1. Select the instance and choose **Actions**, **Monitor and troubleshoot**, **Manage CloudWatch alarms**\.
 
-1. On the **Manage CloudWatch alarms** detail page, under **Add or edit alarm**, select **Create a new alarm**\.
+1. On the **Manage CloudWatch alarms** detail page, under **Add or edit alarm**, select **Create an alarm**\.
 
 1. For **Alarm notification**, choose whether to turn the toggle on or off to configure Amazon Simple Notification Service \(Amazon SNS\) notifications\. Enter an existing Amazon SNS topic or enter a name to create a new topic\.
 
@@ -51,3 +51,5 @@ For examples, see [Creating Amazon CloudWatch Alarms](https://docs.aws.amazon.co
 ![\[Create a CloudWatch alarm using the Amazon EC2 console.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/monitoring_create_alarm.png)
 
 ------
+
+You can edit your CloudWatch alarm settings from the Amazon EC2 console or the CloudWatch console\. If you want to delete your alarm, you can do so from the CloudWatch console\. For more information, see [Editing or Deleting a CloudWatch Alarm](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Edit-CloudWatch-Alarm.html) in the *Amazon CloudWatch User Guide*\.

@@ -1,4 +1,4 @@
-# Tracking configuration changes<a name="dedicated-hosts-aws-config"></a>
+# Track configuration changes<a name="dedicated-hosts-aws-config"></a>
 
 You can use AWS Config to record configuration changes for Dedicated Hosts, and for instances that are launched, stopped, or terminated on them\. You can then use the information captured by AWS Config as a data source for license reporting\.
 

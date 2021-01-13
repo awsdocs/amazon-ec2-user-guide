@@ -1,4 +1,4 @@
-# Setting up dynamic DNS on Your Amazon Linux instance<a name="dynamic-dns"></a>
+# Set up dynamic DNS on Your Amazon Linux instance<a name="dynamic-dns"></a>
 
 When you launch an EC2 instance, it is assigned a public IP address and a public DNS \(Domain Name System\) name that you can use to reach it from the Internet\. Because there are so many hosts in the Amazon Web Services domain, these public names must be quite long for each name to remain unique\. A typical Amazon EC2 public DNS name looks something like this: `ec2-12-34-56-78.us-west-2.compute.amazonaws.com`, where the name consists of the Amazon Web Services domain, the service \(in this case, `compute`\), the region, and a form of the public IP address\.
 

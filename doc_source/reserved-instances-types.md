@@ -11,7 +11,7 @@ The following are the differences between Standard and Convertible Reserved Inst
 
 |  | Standard Reserved Instance | Convertible Reserved Instance | 
 | --- | --- | --- | 
-| Modifying Reserved Instances | Some attributes can be modified\. For more information, see [Modifying Reserved Instances](ri-modifying.md)\. | Some attributes can be modified\. For more information, see [Modifying Reserved Instances](ri-modifying.md)\. | 
-| Exchanging Reserved Instances | Can't be exchanged\. | Can be exchanged during the term for another Convertible Reserved Instance with new attributes, including instance family, instance type, platform, scope, or tenancy\. For more information, see [Exchanging Convertible Reserved Instances](ri-convertible-exchange.md)\. | 
+| Modifying Reserved Instances | Some attributes can be modified\. For more information, see [Modify Reserved Instances](ri-modifying.md)\. | Some attributes can be modified\. For more information, see [Modify Reserved Instances](ri-modifying.md)\. | 
+| Exchanging Reserved Instances | Can't be exchanged\. | Can be exchanged during the term for another Convertible Reserved Instance with new attributes, including instance family, instance type, platform, scope, or tenancy\. For more information, see [Exchange Convertible Reserved Instances](ri-convertible-exchange.md)\. | 
 | Selling in the Reserved Instance Marketplace | Can be sold in the Reserved Instance Marketplace\. | Can't be sold in the Reserved Instance Marketplace\. | 
 | Buying in the Reserved Instance Marketplace | Can be bought in the Reserved Instance Marketplace\. | Can't be bought in the Reserved Instance Marketplace\. | 

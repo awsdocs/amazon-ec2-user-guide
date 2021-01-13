@@ -1,11 +1,11 @@
-# Troubleshooting instances with failed status checks<a name="TroubleshootingInstances"></a>
+# Troubleshoot instances with failed status checks<a name="TroubleshootingInstances"></a>
 
 The following information can help you troubleshoot issues if your instance fails a status check\. First determine whether your applications are exhibiting any problems\. If you verify that the instance is not running your applications as expected, review the status check information and the system logs\.
 
 **Topics**
 + [Review status check information](#InitialSteps)
 + [Retrieve the system logs](#troubleshooting-retrieve-system-logs)
-+ [Troubleshooting system log errors for Linux\-based instances](#system-log-errors-linux)
++ [Troubleshoot system log errors for Linux\-based instances](#system-log-errors-linux)
 + [Out of memory: kill process](#MemoryOOM)
 + [ERROR: mmu\_update failed \(Memory management update failed\)](#MemoryMMU)
 + [I/O error \(block device failure\)](#DeviceBlock)
@@ -68,7 +68,7 @@ If an instance status check fails, you can reboot the instance and retrieve the 
 
 1. If your issue is not resolved, you can post your issue to the [Amazon EC2 forum](https://forums.aws.amazon.com/forum.jspa?forumID=30)\.
 
-## Troubleshooting system log errors for Linux\-based instances<a name="system-log-errors-linux"></a>
+## Troubleshoot system log errors for Linux\-based instances<a name="system-log-errors-linux"></a>
 
 For Linux\-based instances that have failed an instance status check, such as the instance reachability check, verify that you followed the steps above to retrieve the system log\. The following list contains some common system log errors and suggested actions you can take to resolve the issue for each error\.
 

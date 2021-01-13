@@ -9,14 +9,14 @@ We recommend that you use On\-Demand Instances for applications with short\-term
 For significant savings over On\-Demand Instances, use [AWS Savings Plans](http://aws.amazon.com/savingsplans/), [Spot Instances](using-spot-instances.md), or [Reserved Instances](ec2-reserved-instances.md)\.
 
 **Contents**
-+ [Working with On\-Demand Instances](#working-with-on-demand-instances)
++ [Work with On\-Demand Instances](#working-with-on-demand-instances)
 + [On\-Demand Instance limits](#ec2-on-demand-instances-limits)
-  + [Calculating how many vCPUs you need](#vcpu-limits-calculator)
-  + [Requesting a limit increase](#vcpu-limits-request-increase)
-  + [Monitoring On\-Demand Instance limits and usage](#monitoring-on-demand-limits)
-+ [Querying the prices of AWS services](#query-aws-price-list)
+  + [Calculate how many vCPUs you need](#vcpu-limits-calculator)
+  + [Request a limit increase](#vcpu-limits-request-increase)
+  + [Monitor On\-Demand Instance limits and usage](#monitoring-on-demand-limits)
++ [Query the prices of AWS services](#query-aws-price-list)
 
-## Working with On\-Demand Instances<a name="working-with-on-demand-instances"></a>
+## Work with On\-Demand Instances<a name="working-with-on-demand-instances"></a>
 
 You can work with On\-Demand Instances in the following ways:
 + [Launch your instance](LaunchingAndUsingInstances.md)
@@ -27,7 +27,7 @@ You can work with On\-Demand Instances in the following ways:
 + [Instance retirement](instance-retirement.md)
 + [Terminate your instance](terminating-instances.md)
 + [Recover your instance](ec2-instance-recover.md)
-+ [Configuring your Amazon Linux instance](Configure_Instance.md)
++ [Configure your Amazon Linux instance](Configure_Instance.md)
 + [Identify EC2 Linux instances](identify_ec2_instances.md)
 
 If you're new to Amazon EC2, see [How to get started with Amazon EC2](concepts.md#how-to-get-started)\.
@@ -53,7 +53,7 @@ New AWS accounts might start with limits that are lower than the limits describe
 
 With vCPU limits, you can use your limit in terms of the number of vCPUs required to launch any combination of instance types that meet your changing application needs\. For example, with a Standard instance limit of 256 vCPUs, you could launch 32 `m5.2xlarge` instances \(32 x 8 vCPUs\) or 16 `c5.4xlarge` instances \(16 x 16 vCPUs\), or a combination of any Standard instance types and sizes that total 256 vCPUs\. For more information, see [EC2 On\-Demand Instance limits](http://aws.amazon.com/ec2/faqs/#EC2_On-Demand_Instance_limits)\.
 
-### Calculating how many vCPUs you need<a name="vcpu-limits-calculator"></a>
+### Calculate how many vCPUs you need<a name="vcpu-limits-calculator"></a>
 
 You can use the vCPU limits calculator to determine the number of vCPUs that you require for your application needs\.
 
@@ -94,11 +94,11 @@ You can view and use the following controls and information:
 
 1. When you've finished using the calculator, choose **Close**\.
 
-### Requesting a limit increase<a name="vcpu-limits-request-increase"></a>
+### Request a limit increase<a name="vcpu-limits-request-increase"></a>
 
 You can request a limit increase for each On\-Demand Instance limit type from the [Limits page](https://console.aws.amazon.com/ec2/#Limits) or the vCPU limits calculator in the Amazon EC2 console\. Complete the required fields on the AWS Support Center [limit increase form](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-instances) with your use case\. For **Primary Instance Type**, select the limit type that corresponds to the **Instance limit name** in the vCPU limits calculator\. For the new limit value, use the value that appears in the **New limit** column in the vCPU limits calculator\. For more information about requesting a limit increase, see [Amazon EC2 service quotas](ec2-resource-limits.md)\.
 
-### Monitoring On\-Demand Instance limits and usage<a name="monitoring-on-demand-limits"></a>
+### Monitor On\-Demand Instance limits and usage<a name="monitoring-on-demand-limits"></a>
 
 You can view and manage your On\-Demand Instance limits using the following:
 + The [Limits page](https://console.aws.amazon.com/ec2/#Limits) in the Amazon EC2 console
@@ -110,6 +110,6 @@ For more information, see [Amazon EC2 service quotas](ec2-resource-limits.md) in
 
 With Amazon CloudWatch metrics integration, you can monitor EC2 usage against limits\. You can also configure alarms to warn about approaching limits\. For more information, see [Using Amazon CloudWatch Alarms](https://docs.aws.amazon.com/servicequotas/latest/userguide/configure-cloudwatch.html) in the *Service Quotas User Guide*\.
 
-## Querying the prices of AWS services<a name="query-aws-price-list"></a>
+## Query the prices of AWS services<a name="query-aws-price-list"></a>
 
 You can use the Price List Service API or the AWS Price List API to query the prices of On\-Demand Instances\. For more information, see [Using the AWS Price List API](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/price-changes.html) in the *AWS Billing and Cost Management User Guide*\.

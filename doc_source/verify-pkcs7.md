@@ -1,4 +1,4 @@
-# Using the PKCS7 signature to verify the instance identity document<a name="verify-pkcs7"></a>
+# Use the PKCS7 signature to verify the instance identity document<a name="verify-pkcs7"></a>
 
 This topic explains how to verify the instance identity document using the PKCS7 signature and the AWS DSA public certificate\.
 

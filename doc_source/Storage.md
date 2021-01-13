@@ -31,7 +31,7 @@ Amazon S3 provides access to reliable and inexpensive data storage infrastructur
 **Adding storage**  
 Every time you launch an instance from an AMI, a root storage device is created for that instance\. The root storage device contains all the information necessary to boot the instance\. You can specify storage volumes in addition to the root device volume when you create an AMI or launch an instance using *block device mapping*\. For more information, see [Block device mapping](block-device-mapping-concepts.md)\.
 
-You can also attach EBS volumes to a running instance\. For more information, see [Attaching an Amazon EBS volume to an instance](ebs-attaching-volume.md)\.
+You can also attach EBS volumes to a running instance\. For more information, see [Attach an Amazon EBS volume to an instance](ebs-attaching-volume.md)\.
 
 **Storage pricing**
 

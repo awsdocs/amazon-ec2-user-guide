@@ -1,4 +1,4 @@
-# Installing NVIDIA drivers on Linux instances<a name="install-nvidia-driver"></a>
+# Install NVIDIA drivers on Linux instances<a name="install-nvidia-driver"></a>
 
 An instance with an attached NVIDIA GPU, such as a P3 or G4dn instance, must have the appropriate NVIDIA driver installed\. Depending on the instance type, you can either download a public NVIDIA driver, download a driver from Amazon S3 that is available only to AWS customers, or use an AMI with the driver pre\-installed\.
 
@@ -12,7 +12,7 @@ To install AMD drivers on an instance with an attached AMD GPU, such as a G4ad i
   + [Option 2: Public NVIDIA drivers](#public-nvidia-driver)
   + [Option 3: GRID drivers \(G3 and G4dn instances\)](#nvidia-GRID-driver)
   + [Option 4: NVIDIA gaming drivers \(G4dn instances\)](#nvidia-gaming-driver)
-+ [Installing an additional version of CUDA](#gpu-instance-install-cuda)
++ [Install an additional version of CUDA](#gpu-instance-install-cuda)
 
 ## Types of NVIDIA drivers<a name="nvidia-driver-types"></a>
 
@@ -364,7 +364,7 @@ These drivers are available to AWS customers only\. By downloading them, you agr
 
 1. \(Optional\) To help take advantage of a single display of up to 4K resolution, set up the high\-performance display protocol [NICE DCV](https://docs.aws.amazon.com/dcv)\. If you do not require this functionality, do not complete this step\.
 
-## Installing an additional version of CUDA<a name="gpu-instance-install-cuda"></a>
+## Install an additional version of CUDA<a name="gpu-instance-install-cuda"></a>
 
 After you install an NVIDIA graphics driver on your instance, you can install a version of CUDA other than the version that is bundled with the graphics driver\. The following procedure demonstrates how to configure multiple versions of CUDA on the instance\.
 

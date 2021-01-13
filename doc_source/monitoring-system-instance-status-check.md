@@ -4,15 +4,15 @@ With instance status monitoring, you can quickly determine whether Amazon EC2 ha
 
 Status checks are performed every minute, returning a pass or a fail status\. If all checks pass, the overall status of the instance is **OK**\. If one or more checks fail, the overall status is **impaired**\. Status checks are built into Amazon EC2, so they cannot be disabled or deleted\.
 
-When a status check fails, the corresponding CloudWatch metric for status checks is incremented\. For more information, see [Status check metrics](viewing_metrics_with_cloudwatch.md#status-check-metrics)\. You can use these metrics to create CloudWatch alarms that are triggered based on the result of the status checks\. For example, you can create an alarm to warn you if status checks fail on a specific instance\. For more information, see [Creating and editing status check alarms](#creating_status_check_alarms)\.
+When a status check fails, the corresponding CloudWatch metric for status checks is incremented\. For more information, see [Status check metrics](viewing_metrics_with_cloudwatch.md#status-check-metrics)\. You can use these metrics to create CloudWatch alarms that are triggered based on the result of the status checks\. For example, you can create an alarm to warn you if status checks fail on a specific instance\. For more information, see [Create and edit status check alarms](#creating_status_check_alarms)\.
 
 You can also create an Amazon CloudWatch alarm that monitors an Amazon EC2 instance and automatically recovers the instance if it becomes impaired due to an underlying issue\. For more information, see [Recover your instance](ec2-instance-recover.md)\.
 
 **Topics**
 + [Types of status checks](#types-of-instance-status-checks)
-+ [Viewing status checks](#viewing_status)
-+ [Reporting instance status](#reporting_status)
-+ [Creating and editing status check alarms](#creating_status_check_alarms)
++ [View status checks](#viewing_status)
++ [Report instance status](#reporting_status)
++ [Create and edit status check alarms](#creating_status_check_alarms)
 
 ## Types of status checks<a name="types-of-instance-status-checks"></a>
 
@@ -39,11 +39,11 @@ The following are examples of problems that can cause instance status checks to 
 + Corrupted file system
 + Incompatible kernel
 
-## Viewing status checks<a name="viewing_status"></a>
+## View status checks<a name="viewing_status"></a>
 
 Amazon EC2 provides you with several ways to view and work with status checks\.
 
-### Viewing status using the console<a name="viewing_status-new-console"></a>
+### View status using the console<a name="viewing_status-new-console"></a>
 
 You can view status checks using the AWS Management Console\.
 
@@ -61,7 +61,7 @@ You can view status checks using the AWS Management Console\.
 1. To view the status of a specific instance, select the instance, and then choose the **Status Checks** tab\.  
 ![\[Viewing status\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/status-check-tab.png)
 
-   If you have an instance with a failed status check and the instance has been unreachable for over 20 minutes, choose **Open support case** to submit a request for assistance\. To troubleshoot system or instance status check failures yourself, see [Troubleshooting instances with failed status checks](TroubleshootingInstances.md)\.
+   If you have an instance with a failed status check and the instance has been unreachable for over 20 minutes, choose **Open support case** to submit a request for assistance\. To troubleshoot system or instance status check failures yourself, see [Troubleshoot instances with failed status checks](TroubleshootingInstances.md)\.
 
 1. To review the CloudWatch metrics for status checks, select the instance, and then choose the **Monitoring** tab\. Scroll until you see the graphs for the following metrics:
    + **Status check failed \(any\)**
@@ -82,7 +82,7 @@ You can view status checks using the AWS Management Console\.
 1. To view the status of a specific instance, select the instance, and then choose the **Status Checks** tab\.  
 ![\[Viewing status\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/status-check-tab_old.png)
 
-   If you have an instance with a failed status check and the instance has been unreachable for over 20 minutes, choose **AWS Support** to submit a request for assistance\. To troubleshoot system or instance status check failures yourself, see [Troubleshooting instances with failed status checks](TroubleshootingInstances.md)\.
+   If you have an instance with a failed status check and the instance has been unreachable for over 20 minutes, choose **AWS Support** to submit a request for assistance\. To troubleshoot system or instance status check failures yourself, see [Troubleshoot instances with failed status checks](TroubleshootingInstances.md)\.
 
 1. To review the CloudWatch metrics for status checks, select the instance, and then choose the **Monitoring** tab\. Scroll until you see the graphs for the following metrics:
    + **Status Check Failed \(Any\)**
@@ -91,7 +91,7 @@ You can view status checks using the AWS Management Console\.
 
 ------
 
-### Viewing status using the command line<a name="viewing_status-cli"></a>
+### View status using the command line<a name="viewing_status-cli"></a>
 
 You can view status checks for running instances using the [describe\-instance\-status](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-status.html) \(AWS CLI\) command\.
 
@@ -119,15 +119,15 @@ Alternatively, use the following commands:
 +  [Get\-EC2InstanceStatus](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2InstanceStatus.html) \(AWS Tools for Windows PowerShell\) 
 +  [DescribeInstanceStatus](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeInstanceStatus.html) \(Amazon EC2 Query API\)
 
-If you have an instance with a failed status check, see [Troubleshooting instances with failed status checks](TroubleshootingInstances.md)\.
+If you have an instance with a failed status check, see [Troubleshoot instances with failed status checks](TroubleshootingInstances.md)\.
 
-## Reporting instance status<a name="reporting_status"></a>
+## Report instance status<a name="reporting_status"></a>
 
 You can provide feedback if you are having problems with an instance whose status is not shown as impaired, or if you want to send AWS additional details about the problems you are experiencing with an impaired instance\.
 
 We use reported feedback to identify issues impacting multiple customers, but do not respond to individual account issues\. Providing feedback does not change the status check results that you currently see for the instance\.
 
-### Reporting status feedback using the console<a name="reporting_status-new-console"></a>
+### Report status feedback using the console<a name="reporting_status-new-console"></a>
 
 ------
 #### [ New console ]
@@ -157,7 +157,7 @@ We use reported feedback to identify issues impacting multiple customers, but do
 
 ------
 
-### Reporting status feedback using the command line<a name="reporting_status-cli"></a>
+### Report status feedback using the command line<a name="reporting_status-cli"></a>
 
 Use the [report\-instance\-status](https://docs.aws.amazon.com/cli/latest/reference/ec2/report-instance-status.html) \(AWS CLI\) command to send feedback about the status of an impaired instance\.
 
@@ -172,11 +172,11 @@ Alternatively, use the following commands:
 +  [Send\-EC2InstanceStatus](https://docs.aws.amazon.com/powershell/latest/reference/items/Send-EC2InstanceStatus.html) \(AWS Tools for Windows PowerShell\) 
 +  [ReportInstanceStatus](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-ReportInstanceStatus.html) \(Amazon EC2 Query API\)
 
-## Creating and editing status check alarms<a name="creating_status_check_alarms"></a>
+## Create and edit status check alarms<a name="creating_status_check_alarms"></a>
 
 You can use the [status check metrics](viewing_metrics_with_cloudwatch.md#status-check-metrics) to create CloudWatch alarms to notify you when an instance has a failed status check\.
 
-### Creating a status check alarm using the console<a name="using-cloudwatch-new-console2"></a>
+### Create a status check alarm using the console<a name="using-cloudwatch-new-console2"></a>
 
 Use the following procedure to configure an alarm that sends you a notification by email, or stops, terminates, or recovers an instance when it fails a status check\.
 
@@ -272,7 +272,7 @@ If you need to make changes to an instance status alarm, you can edit it\.
 
 ------
 
-### Creating a status check alarm using the AWS CLI<a name="using-cloudwatch-new-cli2"></a>
+### Create a status check alarm using the AWS CLI<a name="using-cloudwatch-new-cli2"></a>
 
 In the following example, the alarm publishes a notification to an SNS topic, `arn:aws:sns:us-west-2:111122223333:my-sns-topic`, when the instance fails either the instance check or system status check for at least two consecutive periods\. The CloudWatch metric used is `StatusCheckFailed`\.
 

@@ -1,4 +1,4 @@
-# Working with Capacity Reservations<a name="capacity-reservations-using"></a>
+# Work with Capacity Reservations<a name="capacity-reservations-using"></a>
 
 To start using Capacity Reservations, you create the capacity reservation in the required Availability Zone\. Then, you can launch instances into the reserved capacity, view its capacity utilization in real time, and increase or decrease its capacity as needed\. 
 
@@ -7,15 +7,15 @@ By default, Capacity Reservations automatically match new instances and running 
 You can specify how the reservation ends\. You can choose to manually cancel the Capacity Reservation or end it automatically at a specified time\. If you specify an end time, the Capacity Reservation is canceled within an hour of the specified time\. For example, if you specify 5/31/2019, 13:30:55, the Capacity Reservation is guaranteed to end between 13:30:55 and 14:30:55 on 5/31/2019\. After a reservation ends, you can no longer target instances to the Capacity Reservation\. Instances running in the reserved capacity continue to run uninterrupted\. If instances targeting a Capacity Reservation are stopped, you cannot restart them until you remove their Capacity Reservation targeting preference or configure them to target a different Capacity Reservation\.
 
 **Contents**
-+ [Creating a Capacity Reservation](#capacity-reservations-create)
-+ [Working with Capacity Reservation groups](#create-cr-group)
-+ [Launching instances into an existing Capacity Reservation](#capacity-reservations-launch)
-+ [Modifying a Capacity Reservation](#capacity-reservations-modify)
-+ [Modifying an instance's Capacity Reservation settings](#capacity-reservations-modify-instance)
-+ [Viewing a Capacity Reservation](#capacity-reservations-view)
-+ [Canceling a Capacity Reservation](#capacity-reservations-release)
++ [Create a Capacity Reservation](#capacity-reservations-create)
++ [Work with Capacity Reservation groups](#create-cr-group)
++ [Launch instances into an existing Capacity Reservation](#capacity-reservations-launch)
++ [Modify a Capacity Reservation](#capacity-reservations-modify)
++ [Modify an instance's Capacity Reservation settings](#capacity-reservations-modify-instance)
++ [View a Capacity Reservation](#capacity-reservations-view)
++ [Cancel a Capacity Reservation](#capacity-reservations-release)
 
-## Creating a Capacity Reservation<a name="capacity-reservations-create"></a>
+## Create a Capacity Reservation<a name="capacity-reservations-create"></a>
 
 After you create the Capacity Reservation, the capacity is available immediately\. The capacity remains reserved for your use as long as the Capacity Reservation is active, and you can launch instances into it at any time\. If the Capacity Reservation is open, new instances and existing instances that have matching attributes automatically run in the capacity of the Capacity Reservation\. If the Capacity Reservation is `targeted`, instances must specifically target it to run in the reserved capacity\.
 
@@ -66,7 +66,7 @@ For example, the following command creates a Capacity Reservation that reserves 
 aws ec2 create-capacity-reservation --instance-type m5.2xlarge --instance-platform Red Hat Enterprise Linux --availability-zone us-east-1a --instance-count 3
 ```
 
-## Working with Capacity Reservation groups<a name="create-cr-group"></a>
+## Work with Capacity Reservation groups<a name="create-cr-group"></a>
 
 You can use AWS Resource Groups to create logical collections of Capacity Reservations, called *resource groups*\. A resource group is a logical grouping of AWS resources that are all in the same AWS Region\. You can include multiple Capacity Reservations that have different attributes \(instance type, platform, and Availability Zone\) in a single resource group\.
 
@@ -236,7 +236,7 @@ The following shows example output\.
 }
 ```
 
-## Launching instances into an existing Capacity Reservation<a name="capacity-reservations-launch"></a>
+## Launch instances into an existing Capacity Reservation<a name="capacity-reservations-launch"></a>
 
 When you launch an instance, you can specify whether to launch the instance into any `open` Capacity Reservation, into a specific Capacity Reservation, or into a group of Capacity Reservations\. You can only launch an instance into a Capacity Reservation that has matching attributes \(instance type, platform, and Availability Zone\) and sufficient capacity\. Alternatively, you can configure the instance to avoid running in a Capacity Reservation, even if you have an `open` Capacity Reservation that has matching attributes and available capacity\. 
 
@@ -277,7 +277,7 @@ The following example launches a `t2.micro` instance into a Capacity Reservation
 aws ec2 run-instances --image-id ami-abc12345 --count 1 --instance-type t2.micro --key-name MyKeyPair --subnet-id subnet-1234567890abcdef1 --capacity-reservation-specification CapacityReservationTarget={CapacityReservationResourceGroupArn=arn:aws:resource-groups:us-west-1:123456789012:group/my-cr-group}
 ```
 
-## Modifying a Capacity Reservation<a name="capacity-reservations-modify"></a>
+## Modify a Capacity Reservation<a name="capacity-reservations-modify"></a>
 
 You can change the attributes of an active Capacity Reservation after you have created it\. You cannot modify a Capacity Reservation after it has expired or after you have explicitly canceled it\.
 
@@ -302,7 +302,7 @@ For example, the following command modifies a Capacity Reservation to reserve ca
 aws ec2 modify-capacity-reservation --capacity-reservation-id cr-1234567890abcdef0 --instance-count 8
 ```
 
-## Modifying an instance's Capacity Reservation settings<a name="capacity-reservations-modify-instance"></a>
+## Modify an instance's Capacity Reservation settings<a name="capacity-reservations-modify-instance"></a>
 
 You can modify the following Capacity Reservation settings for a stopped instance at any time:
 + Start in any Capacity Reservation that has matching attributes \(instance type, platform, and Availability Zone\) and available capacity\.
@@ -345,7 +345,7 @@ For example, the following command modifies an instance to target a specific Cap
 aws ec2 modify-instance-capacity-reservation-attributes --instance-id i-1234567890abcdef0 --capacity-reservation-specification CapacityReservationTarget={CapacityReservationResourceGroupArn=arn:aws:resource-groups:us-west-1:123456789012:group/my-cr-group}
 ```
 
-## Viewing a Capacity Reservation<a name="capacity-reservations-view"></a>
+## View a Capacity Reservation<a name="capacity-reservations-view"></a>
 
 Capacity Reservations have the following possible states:
 + `active`—The capacity is available for use\.
@@ -371,13 +371,13 @@ For example, the following command describes all Capacity Reservations\.
 aws ec2 describe-capacity-reservations
 ```
 
-## Canceling a Capacity Reservation<a name="capacity-reservations-release"></a>
+## Cancel a Capacity Reservation<a name="capacity-reservations-release"></a>
 
 You can cancel a Capacity Reservation at any time if you no longer need the reserved capacity\. When you cancel a Capacity Reservation, the capacity is released immediately, and it is no longer reserved for your use\.
 
 You can cancel empty Capacity Reservations and Capacity Reservations that have running instances\. If you cancel a Capacity Reservation that has running instances, the instances continue to run normally outside of the capacity reservation at standard On\-Demand Instance rates or at a discounted rate if you have a matching Savings Plan or regional Reserved Instance\.
 
-After you cancel a Capacity Reservation, instances that target it can no longer launch\. Modify these instances so that they either target a different Capacity Reservation, launch into any open Capacity Reservation with matching attributes and sufficient capacity, or avoid launching into a Capacity Reservation\. For more information, see [Modifying an instance's Capacity Reservation settings](#capacity-reservations-modify-instance)\.
+After you cancel a Capacity Reservation, instances that target it can no longer launch\. Modify these instances so that they either target a different Capacity Reservation, launch into any open Capacity Reservation with matching attributes and sufficient capacity, or avoid launching into a Capacity Reservation\. For more information, see [Modify an instance's Capacity Reservation settings](#capacity-reservations-modify-instance)\.
 
 **To cancel a Capacity Reservation using the console**
 

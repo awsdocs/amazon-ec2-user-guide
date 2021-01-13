@@ -3,10 +3,10 @@
 The following examples explain credit use when instances are configured as `standard`\.
 
 **Topics**
-+ [Example 1: Explaining credit use with T3 Standard](#t3_standard_example)
-+ [Example 2: Explaining credit use with T2 Standard](#t2-standard-example)
++ [Example 1: Explain credit use with T3 Standard](#t3_standard_example)
++ [Example 2: Explain credit use with T2 Standard](#t2-standard-example)
 
-## Example 1: Explaining credit use with T3 Standard<a name="t3_standard_example"></a>
+## Example 1: Explain credit use with T3 Standard<a name="t3_standard_example"></a>
 
 In this example, you see how a `t3.nano` instance launched as `standard` earns, accrues, and spends *earned* credits\. You see how the credit balance reflects the accrued *earned* credits\.
 
@@ -34,7 +34,7 @@ The following workflow references the numbered points on the graph:
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/t3_standard_graph.png)
 
-## Example 2: Explaining credit use with T2 Standard<a name="t2-standard-example"></a>
+## Example 2: Explain credit use with T2 Standard<a name="t2-standard-example"></a>
 
 In this example, you see how a `t2.nano` instance launched as `standard` earns, accrues, and spends *launch* and *earned* credits\. You see how the credit balance reflects not only accrued *earned* credits, but also accrued *launch* credits\.
 

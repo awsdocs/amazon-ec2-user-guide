@@ -1,4 +1,4 @@
-# Creating Amazon EBS snapshots<a name="ebs-creating-snapshot"></a>
+# Create Amazon EBS snapshots<a name="ebs-creating-snapshot"></a>
 
 You can create a point\-in\-time snapshot of an EBS volume and use it as a baseline for new volumes or for data backup\. If you make periodic snapshots of a volume, the snapshots are incremental—the new snapshot saves only the blocks that have changed since your last snapshot\.
 
@@ -12,9 +12,9 @@ To make snapshot management easier, you can tag your snapshots during creation o
 
 Snapshots that are taken from encrypted volumes are automatically encrypted\. Volumes that are created from encrypted snapshots are also automatically encrypted\. The data in your encrypted volumes and any associated snapshots is protected both at rest and in motion\. For more information, see [Amazon EBS encryption](EBSEncryption.md)\.
 
-By default, only you can create volumes from snapshots that you own\. However, you can share your unencrypted snapshots with specific AWS accounts, or you can share them with the entire AWS community by making them public\. For more information, see [Sharing an Amazon EBS snapshot](ebs-modifying-snapshot-permissions.md)\.
+By default, only you can create volumes from snapshots that you own\. However, you can share your unencrypted snapshots with specific AWS accounts, or you can share them with the entire AWS community by making them public\. For more information, see [Share an Amazon EBS snapshot](ebs-modifying-snapshot-permissions.md)\.
 
-You can share an encrypted snapshot only with specific AWS accounts\. For others to use your shared, encrypted snapshot, you must also share the CMK key that was used to encrypt it\. Users with access to your encrypted snapshot must create their own personal copy of it and then use that copy\. Your copy of a shared, encrypted snapshot can also be re\-encrypted using a different key\. For more information, see [Sharing an Amazon EBS snapshot](ebs-modifying-snapshot-permissions.md)\.
+You can share an encrypted snapshot only with specific AWS accounts\. For others to use your shared, encrypted snapshot, you must also share the CMK key that was used to encrypt it\. Users with access to your encrypted snapshot must create their own personal copy of it and then use that copy\. Your copy of a shared, encrypted snapshot can also be re\-encrypted using a different key\. For more information, see [Share an Amazon EBS snapshot](ebs-modifying-snapshot-permissions.md)\.
 
 **Note**  
 If you copy a snapshot and encrypt it to a new CMK, a complete \(non\-incremental\) copy is always created, resulting in additional delay and storage costs\.
@@ -43,7 +43,7 @@ The following considerations apply to creating snapshots:
 + There is a limit of one `pending` snapshot for a single `st1` or `sc1` volume, or five `pending` snapshots for a single volume of the other volume types\. If you receive a `ConcurrentSnapshotLimitExceeded` error while trying to create multiple concurrent snapshots of the same volume, wait for one or more of the `pending` snapshots to complete before creating another snapshot of that volume\.
 + When a snapshot is created from a volume with an AWS Marketplace product code, the product code is propagated to the snapshot\.
 
-## Creating a snapshot<a name="ebs-create-snapshot"></a>
+## Create a snapshot<a name="ebs-create-snapshot"></a>
 
 Use the following procedure to create a snapshot from the specified volume\.
 
@@ -71,7 +71,7 @@ You can use one of the following commands\. For more information about these com
 + [create\-snapshot](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-snapshot.html) \(AWS CLI\)
 + [New\-EC2Snapshot](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Snapshot.html) \(AWS Tools for Windows PowerShell\)
 
-## Creating a multi\-volume snapshot<a name="ebs-create-snapshots"></a>
+## Create a multi\-volume snapshot<a name="ebs-create-snapshots"></a>
 
 Use the following procedure to create a snapshot from the volumes of an instance\.
 
@@ -103,9 +103,9 @@ You can use one of the following commands\. For more information about these com
 + [create\-snapshots](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-snapshots.html) \(AWS CLI\)
 + [New\-EC2SnapshotBatch](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2SnapshotBatch.html) \(AWS Tools for Windows PowerShell\)
 
-## Working with EBS snapshots<a name="using-snapshots"></a>
+## Work with EBS snapshots<a name="using-snapshots"></a>
 
 You can copy snapshots, share snapshots, and create volumes from snapshots\. For more information, see the following:
-+ [Copying an Amazon EBS snapshot](ebs-copy-snapshot.md)
-+ [Sharing an Amazon EBS snapshot](ebs-modifying-snapshot-permissions.md)
-+ [Creating a volume from a snapshot](ebs-creating-volume.md#ebs-create-volume-from-snapshot)
++ [Copy an Amazon EBS snapshot](ebs-copy-snapshot.md)
++ [Share an Amazon EBS snapshot](ebs-modifying-snapshot-permissions.md)
++ [Create a volume from a snapshot](ebs-creating-volume.md#ebs-create-volume-from-snapshot)

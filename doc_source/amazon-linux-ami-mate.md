@@ -1,4 +1,4 @@
-# Using the MATE desktop environment provided with Amazon Linux 2<a name="amazon-linux-ami-mate"></a>
+# Use the MATE desktop environment provided with Amazon Linux 2<a name="amazon-linux-ami-mate"></a>
 
 The [MATE desktop environment](https://mate-desktop.org/) is pre\-installed and pre\-configured in the AMI with the following description: Amazon Linux 2 with \.Net Core, PowerShell, Mono, and MATE Desktop Environment\. The environment provides an intuitive graphical user interface for administering Amazon Linux 2 instances without using the command line\. The interface uses graphical representations, such as icons, windows, toolbars, folders, wallpapers, and desktop widgets\. Built\-in, GUI\-based tools are available to perform common tasks\. For example, there are tools for adding and removing software, applying updates, organizing files, launching programs, and monitoring system health\.
 

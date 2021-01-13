@@ -14,7 +14,7 @@ These procedures are intended for use with Amazon Linux 2\. We also assume that 
 + [Step 1: Enable TLS on the server](#ssl_enable)
 + [Step 2: Obtain a CA\-signed certificate](#ssl_certificate)
 + [Step 3: Test and harden the security configuration](#ssl_test)
-+ [Troubleshooting](#troubleshooting)
++ [Troubleshoot](#troubleshooting)
 + [Certificate automation: Let's Encrypt with Certbot on Amazon Linux 2](#letsencrypt)
 
 ## Prerequisites<a name="ssl_prereq"></a>
@@ -416,7 +416,7 @@ If you test the domain again on [Qualys SSL Labs](https://www.ssllabs.com/ssltes
 **Important**  
 Each update to OpenSSL introduces new ciphers and removes support for old ones\. Keep your EC2 Amazon Linux 2 instance up\-to\-date, watch for security announcements from [OpenSSL](https://www.openssl.org/), and be alert to reports of new security exploits in the technical press\. For more information, see [Predefined SSL Security Policies for Elastic Load Balancing](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-security-policy-table.html) in the *User Guide for Classic Load Balancers*\.
 
-## Troubleshooting<a name="troubleshooting"></a>
+## Troubleshoot<a name="troubleshooting"></a>
 + **My Apache webserver doesn't start unless I supply a password**
 
   This is expected behavior if you installed an encrypted, password\-protected, private server key\.
@@ -450,7 +450,7 @@ Each update to OpenSSL introduces new ciphers and removes support for old ones\.
 The [Let's Encrypt](https://letsencrypt.org/) certificate authority is the centerpiece of an effort by the Electronic Frontier Foundation \(EFF\) to encrypt the entire internet\. In line with that goal, Let's Encrypt host certificates are designed to be created, validated, installed, and maintained with minimal human intervention\. The automated aspects of certificate management are carried out by a software agent running on your web server\. After you install and configure the agent, it communicates securely with Let's Encrypt and performs administrative tasks on Apache and the key management system\. This tutorial uses the free [Certbot](https://certbot.eff.org) agent because it allows you either to supply a customized encryption key as the basis for your certificates, or to allow the agent itself to create a key based on its defaults\. You can also configure Certbot to renew your certificates on a regular basis without human interaction, as described in [To automate Certbot](#automate_certbot)\. For more information, consult the Certbot [User Guide](https://certbot.eff.org/docs/using.html) and [man page](http://manpages.ubuntu.com/manpages/bionic/en/man1/certbot.1.html)\. 
 
 Certbot is not officially supported on Amazon Linux 2, but is available for download and functions correctly when installed\. We recommend that you make the following backups to protect your data and avoid inconvenience:
-+ Before you begin, take a snapshot of your Amazon EBS root volume\. This allows you to restore the original state of your EC2 instance\. For information about creating EBS snapshots, see [Creating Amazon EBS snapshots](ebs-creating-snapshot.md)\.
++ Before you begin, take a snapshot of your Amazon EBS root volume\. This allows you to restore the original state of your EC2 instance\. For information about creating EBS snapshots, see [Create Amazon EBS snapshots](ebs-creating-snapshot.md)\.
 + The procedure below requires you to edit your `httpd.conf` file, which controls Apache's operation\. Certbot makes its own automated changes to this and other configuration files\. Make a backup copy of your entire `/etc/httpd` directory in case you need to restore it\.
 
 ### Prepare to install<a name="prepare"></a>

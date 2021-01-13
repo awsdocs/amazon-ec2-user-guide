@@ -1,4 +1,4 @@
-# Using the base64\-encoded signature to verify the instance identity document<a name="verify-signature"></a>
+# Use the base64\-encoded signature to verify the instance identity document<a name="verify-signature"></a>
 
 This topic explains how to verify the instance identity document using the base64\-encoded signature and the AWS RSA public certificate\.
 

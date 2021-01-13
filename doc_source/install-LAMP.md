@@ -14,7 +14,7 @@ To complete this tutorial using AWS Systems Manager Automation instead of the fo
 + [Step 2: Test your Lamp server](#test-lamp-server-alami)
 + [Step 3: Secure the database server](#secure-mysql-lamp-server)
 + [Step 4: \(Optional\) Install phpMyAdmin](#install-phpmyadmin-lamp-server-alami)
-+ [Troubleshooting](#lamp-troubleshooting-alami)
++ [Troubleshoot](#lamp-troubleshooting-alami)
 + [Related topics](#lamp-more-info-alami)
 
 ## Step 1: Prepare the LAMP server<a name="prepare-lamp-server-alami"></a>
@@ -335,7 +335,7 @@ The Amazon Linux package management system does not currently support the automa
 
     For information about using phpMyAdmin, see the [phpMyAdmin User Guide](http://docs.phpmyadmin.net/en/latest/user.html)\.
 
-## Troubleshooting<a name="lamp-troubleshooting-alami"></a>
+## Troubleshoot<a name="lamp-troubleshooting-alami"></a>
 
 This section offers suggestions for resolving common problems you may encounter while setting up a new LAMP server\. 
 
@@ -392,9 +392,9 @@ Now you can install the latest packages, as described earlier\.
 ## Related topics<a name="lamp-more-info-alami"></a>
 
 For more information about transferring files to your instance or installing a WordPress blog on your web server, see the following documentation:
-+ [Transferring files to your Linux instance using WinSCP](putty.md#Transfer_WinSCP)
-+ [Transferring files to Linux instances from Linux using SCP](AccessingInstancesLinux.md#AccessingInstancesLinuxSCP)
-+ [Tutorial: Hosting a WordPress blog with Amazon Linux](hosting-wordpress.md)
++ [Transfer files to your Linux instance using WinSCP](putty.md#Transfer_WinSCP)
++ [Transfer files to Linux instances from Linux using SCP](AccessingInstancesLinux.md#AccessingInstancesLinuxSCP)
++ [Tutorial: Host a WordPress blog with Amazon Linux](hosting-wordpress.md)
 
 For more information about the commands and software used in this tutorial, see the following webpages:
 + Apache web server: [http://httpd\.apache\.org/](http://httpd.apache.org/)

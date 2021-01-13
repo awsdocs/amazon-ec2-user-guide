@@ -1,20 +1,20 @@
-# Making an AMI public<a name="sharingamis-intro"></a>
+# Make an AMI public<a name="sharingamis-intro"></a>
 
- Amazon EC2 enables you to share your AMIs with other AWS accounts\. You can allow all AWS accounts to launch the AMI \(make the AMI public\), or only allow a few specific accounts to launch the AMI \(see [Sharing an AMI with specific AWS accounts](sharingamis-explicit.md)\)\. You are not billed when your AMI is launched by other AWS accounts; only the accounts launching the AMI are billed\.
+ Amazon EC2 enables you to share your AMIs with other AWS accounts\. You can allow all AWS accounts to use the AMI to launch instances \(by making the AMI public\), or only allow a few specific accounts to use the AMI to launch instances \(see [Share an AMI with specific AWS accounts](sharingamis-explicit.md)\)\. You are not billed when your AMI is used by other AWS accounts to launch instances; only the accounts launching instances using the AMI are billed for the instances they launch\.
 
 AMIs with encrypted volumes cannot be made public\.
 
-AMIs are a regional resource\. Therefore, sharing an AMI makes it available in that region\. To make an AMI available in a different Region, copy the AMI to the Region and then share it\. For more information, see [Copying an AMI](CopyingAMIs.md)\.
+AMIs are a regional resource\. Therefore, sharing an AMI makes it available in that Region\. To make an AMI available in a different Region, copy the AMI to the Region and then share it\. For more information, see [Copy an AMI](CopyingAMIs.md)\.
 
 To avoid exposing sensitive data when you share an AMI, read the security considerations in [Guidelines for shared Linux AMIs](building-shared-amis.md) and follow the recommended actions\. 
 
-If an AMI has a product code, or contains a snapshot of an encrypted volume, you can't make it public\. You can share the AMI only with specific AWS accounts\.
+If an AMI has a product code, or contains a snapshot of an encrypted volume, you can't make it public; you can share the AMI only with specific AWS accounts\.
 
 **Topics**
-+ [Sharing an AMI with all AWS accounts \(console\)](#sharingamis-intro-console)
-+ [Sharing an AMI with all AWS accounts \(AWS CLI\)](#sharingamis-cli)
++ [Share an AMI with all AWS accounts \(console\)](#sharingamis-intro-console)
++ [Share an AMI with all AWS accounts \(AWS CLI\)](#sharingamis-cli)
 
-## Sharing an AMI with all AWS accounts \(console\)<a name="sharingamis-intro-console"></a>
+## Share an AMI with all AWS accounts \(console\)<a name="sharingamis-intro-console"></a>
 
 After you make an AMI public, it is available in **Community AMIs** when you launch an instance in the same Region using the console\. Note that it can take a short while for an AMI to appear in **Community AMIs** after you make it public\. It can also take a short while for an AMI to be removed from **Community AMIs** after you make it private again\.
 
@@ -28,7 +28,7 @@ After you make an AMI public, it is available in **Community AMIs** when you lau
 
 1. Choose **Public** and choose **Save**\.
 
-## Sharing an AMI with all AWS accounts \(AWS CLI\)<a name="sharingamis-cli"></a>
+## Share an AMI with all AWS accounts \(AWS CLI\)<a name="sharingamis-cli"></a>
 
 Each AMI has a `launchPermission` property that controls which AWS accounts, besides the owner's, are allowed to use that AMI to launch instances\. By modifying the `launchPermission` property of an AMI, you can make the AMI public \(which grants launch permissions to all AWS accounts\) or share it with only the AWS accounts that you specify\.
 

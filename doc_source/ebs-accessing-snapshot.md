@@ -1,4 +1,4 @@
-# Using EBS direct APIs to access the contents of an EBS snapshot<a name="ebs-accessing-snapshot"></a>
+# Use EBS direct APIs to access the contents of an EBS snapshot<a name="ebs-accessing-snapshot"></a>
 
 You can use the Amazon Elastic Block Store \(Amazon EBS\) direct APIs to create EBS snapshots, write data directly to your snapshots, read data on your snapshots, and identify the differences or changes between two snapshots\. If you’re an independent software vendor \(ISV\) who offers backup services for Amazon EBS, the EBS direct APIs make it more efficient and cost\-effective to track incremental changes on your EBS volumes through snapshots\. This can be done without having to create new volumes from snapshots, and then use Amazon Elastic Compute Cloud \(Amazon EC2\) instances to compare the differences\.
 
@@ -7,20 +7,20 @@ You can create incremental snapshots directly from data on\-premises into EBS vo
 This user guide provides an overview of the elements that make up the EBS direct APIs, and examples of how to use them effectively\. For more information about the actions, data types, parameters, and errors of the APIs, see the [EBS direct APIs reference](https://docs.aws.amazon.com/ebs/latest/APIReference/)\. For more information about the supported AWS Regions, endpoints, and service quotas for the EBS direct APIs, see [Amazon EBS Endpoints and Quotas](https://docs.aws.amazon.com/general/latest/gr/ebs-service.html) in the *AWS General Reference*\.
 
 **Topics**
-+ [Understanding the EBS direct APIs](#ebsapi-elements)
++ [Understand the EBS direct APIs](#ebsapi-elements)
 + [Permissions for IAM users](#ebsapi-permissions)
-+ [Using encryption](#ebsapis-using-encryption)
-+ [Using Signature Version 4 signing](#ebsapis-using-sigv4)
-+ [Using checksums](#ebsapis-using-checksums)
-+ [Working with the EBS direct APIs using the API or AWS SDKs](#ebsapi-sdk-examples)
-+ [Working with the EBS direct APIs using the command line](#ebsapi-cli-examples)
-+ [Optimizing performance](#ebsapi-performance)
++ [Use encryption](#ebsapis-using-encryption)
++ [Use Signature Version 4 signing](#ebsapis-using-sigv4)
++ [Use checksums](#ebsapis-using-checksums)
++ [Work with the EBS direct APIs using the API or AWS SDKs](#ebsapi-sdk-examples)
++ [Work with the EBS direct APIs using the command line](#ebsapi-cli-examples)
++ [Optimize performance](#ebsapi-performance)
 + [Frequently asked questions](#ebsapi-faq)
-+ [Logging API Calls for the EBS direct APIs with AWS CloudTrail](logging-ebs-apis-using-cloudtrail.md)
++ [Log API Calls for the EBS direct APIs with AWS CloudTrail](logging-ebs-apis-using-cloudtrail.md)
 + [EBS direct APIs and interface VPC endpoints](ebs-apis-vpc-endpoints.md)
 + [Idempotency for StartSnapshot API](ebs-direct-api-idempotency.md)
 
-## Understanding the EBS direct APIs<a name="ebsapi-elements"></a>
+## Understand the EBS direct APIs<a name="ebsapi-elements"></a>
 
 The following are the key elements that you should understand before getting started with the EBS direct APIs\.
 
@@ -49,11 +49,11 @@ A block token is the identifying hash of a block within a snapshot, and it is us
 
 ### Checksum<a name="ebsapi-checksum"></a>
 
-A checksum is a small\-sized datum derived from a block of data for the purpose of detecting errors that were introduced during its transmission or storage\. The EBS direct APIs use checksums to validate data integrity\. When you read data from an EBS snapshot, the service provides Base64\-encoded SHA256 checksums for each block of data transmitted, which you can use for validation\. When you write data to an EBS snapshot, you must provide a Base64 encoded SHA256 checksum for each block of data transmitted\. The service validates the data received using the checksum provided\. For more information, see [Using checksums](#ebsapis-using-checksums) later in this guide\.
+A checksum is a small\-sized datum derived from a block of data for the purpose of detecting errors that were introduced during its transmission or storage\. The EBS direct APIs use checksums to validate data integrity\. When you read data from an EBS snapshot, the service provides Base64\-encoded SHA256 checksums for each block of data transmitted, which you can use for validation\. When you write data to an EBS snapshot, you must provide a Base64 encoded SHA256 checksum for each block of data transmitted\. The service validates the data received using the checksum provided\. For more information, see [Use checksums](#ebsapis-using-checksums) later in this guide\.
 
 ### Encryption<a name="ebsapi-encryption"></a>
 
-Encryption protects your data by converting it into unreadable code that can be deciphered only by people who have access to the key used to encrypt it\. You can use the EBS direct APIs to read and write encrypted snapshots, but there are some limitations\. For more information, see [Using encryption](#ebsapis-using-encryption) later in this guide\.
+Encryption protects your data by converting it into unreadable code that can be deciphered only by people who have access to the key used to encrypt it\. You can use the EBS direct APIs to read and write encrypted snapshots, but there are some limitations\. For more information, see [Use encryption](#ebsapis-using-encryption) later in this guide\.
 
 ### API actions<a name="ebsapi-actions"></a>
 
@@ -83,7 +83,7 @@ The PutSnapshotBlock action adds data to a started snapshot in the form of indiv
 
 The CompleteSnapshot action completes a started snapshot that is in a pending state\. The snapshot is then changed to a completed state\.
 
-### Using the EBS direct APIs to read snapshots<a name="ebsapi-using-read-actions"></a>
+### Use the EBS direct APIs to read snapshots<a name="ebsapi-using-read-actions"></a>
 
 The following steps describe how to use the EBS direct APIs to read snapshots:
 
@@ -91,9 +91,9 @@ The following steps describe how to use the EBS direct APIs to read snapshots:
 
 1. Use the GetSnapshotBlock action, and specify the block index and block token of the block for which you want to get data\.
 
-For examples of how to run these actions, see the [Working with the EBS direct APIs using the API or AWS SDKs](#ebsapi-sdk-examples) and [Working with the EBS direct APIs using the command line](#ebsapi-cli-examples) sections later in this guide\.
+For examples of how to run these actions, see the [Work with the EBS direct APIs using the API or AWS SDKs](#ebsapi-sdk-examples) and [Work with the EBS direct APIs using the command line](#ebsapi-cli-examples) sections later in this guide\.
 
-### Using the EBS direct APIs to write incremental snapshots<a name="ebsapi-using-write-actions"></a>
+### Use the EBS direct APIs to write incremental snapshots<a name="ebsapi-using-write-actions"></a>
 
 The following steps describe how to use the EBS direct APIs to write incremental snapshots:
 
@@ -109,7 +109,7 @@ For example, in the following diagram, snapshot A is the first new snapshot star
 
 ![\[EBS direct APIs used to create incremental snapshots.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ebs-apis-write.png)
 
-For examples of how to run these actions, see the [Working with the EBS direct APIs using the API or AWS SDKs](#ebsapi-sdk-examples) and [Working with the EBS direct APIs using the command line](#ebsapi-cli-examples) sections later in this guide\.
+For examples of how to run these actions, see the [Work with the EBS direct APIs using the API or AWS SDKs](#ebsapi-sdk-examples) and [Work with the EBS direct APIs using the command line](#ebsapi-cli-examples) sections later in this guide\.
 
 ## Permissions for IAM users<a name="ebsapi-permissions"></a>
 
@@ -364,9 +364,9 @@ The following policy grants access to decrypt an encrypted snapshot using a spec
 
 For more information, see [Changing Permissions for an IAM User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html) in the *IAM User Guide*\.
 
-## Using encryption<a name="ebsapis-using-encryption"></a>
+## Use encryption<a name="ebsapis-using-encryption"></a>
 
-If Amazon EBS encryption by default is enabled on your AWS account, you cannot start a new snapshot using an un\-encrypted parent snapshot\. You must first encrypt the parent snapshot by copying it\. For more information, see [Copying an Amazon EBS snapshot](ebs-copy-snapshot.md) and [Encryption by default](EBSEncryption.md#encryption-by-default)\.
+If Amazon EBS encryption by default is enabled on your AWS account, you cannot start a new snapshot using an un\-encrypted parent snapshot\. You must first encrypt the parent snapshot by copying it\. For more information, see [Copy an Amazon EBS snapshot](ebs-copy-snapshot.md) and [Encryption by default](EBSEncryption.md#encryption-by-default)\.
 
 To start an encrypted snapshot, specify the Amazon Resource Name \(ARN\) of an AWS KMS key, or specify an encrypted parent snapshot in your StartSnapshot request\. If neither are specified, and Amazon EBS encryption by default is enabled on the account, then the default CMK for the account is used\. If no default CMK has been specified for the account, then the AWS managed CMK is used\.
 
@@ -375,7 +375,7 @@ By default, all principals in the account have access to the default AWS managed
 
 You might need additional IAM permissions to use the EBS direct APIs with encryption\. For more information, see the [Permissions for IAM users](#ebsapi-permissions) section earlier in this guide\.
 
-## Using Signature Version 4 signing<a name="ebsapis-using-sigv4"></a>
+## Use Signature Version 4 signing<a name="ebsapis-using-sigv4"></a>
 
 Signature Version 4 is the process to add authentication information to AWS requests sent by HTTP\. For security, most requests to AWS must be signed with an access key, which consists of an access key ID and secret access key\. These two keys are commonly referred to as your security credentials\. For information about how to obtain credentials for your account, see [Understanding and getting your credentials](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html)\.
 
@@ -383,7 +383,7 @@ If you intend to manually create HTTP requests, you must learn how to sign them\
 
 For more information, see [Signing AWS requests with Signature Version 4](https://docs.aws.amazon.com/general/latest/gr/sigv4_signing.html) in the *AWS General Reference*\.
 
-## Using checksums<a name="ebsapis-using-checksums"></a>
+## Use checksums<a name="ebsapis-using-checksums"></a>
 
 The GetSnapshotBlock action returns data that is in a block of a snapshot, and the PutSnapshotBlock action adds data to a block in a snapshot\. The block data that is transmitted is not signed as part of the Signature Version 4 signing process\. As a result, checksums are used to validate the integrity of the data as follows:
 + When you use the GetSnapshotBlock action, the response provides a Base64\-encoded SHA256 checksum for the block data using the **x\-amz\-Checksum** header, and the checksum algorithm using the **x\-amz\-Checksum\-Algorithm** header\. Use the returned checksum to validate the integrity of the data\. If the checksum that you generate doesn't match what Amazon EBS provided, you should consider the data not valid and retry your request\.
@@ -392,20 +392,20 @@ The GetSnapshotBlock action returns data that is in a block of a snapshot, and t
 
 The checksums in these actions are part of the Signature Version 4 signing process\.
 
-## Working with the EBS direct APIs using the API or AWS SDKs<a name="ebsapi-sdk-examples"></a>
+## Work with the EBS direct APIs using the API or AWS SDKs<a name="ebsapi-sdk-examples"></a>
 
 The [EBS direct APIs Reference](https://docs.aws.amazon.com/ebs/latest/APIReference/) provides descriptions and syntax for each of the service’s actions and data types\. You can also use one of the AWS SDKs to access an API that's tailored to the programming language or platform that you're using\. For more information, see [AWS SDKs](http://aws.amazon.com/tools/#SDKs)\.
 
-The EBS direct APIs require an AWS Signature Version 4 signature\. For more information, see [Using Signature Version 4 signing](#ebsapis-using-sigv4)\. 
+The EBS direct APIs require an AWS Signature Version 4 signature\. For more information, see [Use Signature Version 4 signing](#ebsapis-using-sigv4)\. 
 
-### Using the API to read snapshots<a name="ebsapi-sdk-examples-read"></a>
+### Use the API to read snapshots<a name="ebsapi-sdk-examples-read"></a>
 
 #### List blocks in a snapshot<a name="listsnapshotblocks-api"></a>
 
 The following [ListChangedBlocks](https://docs.aws.amazon.com/ebs/latest/APIReference/API_ListSnapshotBlocks.html) example request returns the block indexes and block tokens of blocks that are in snapshot `snap-0acEXAMPLEcf41648`\. The `startingBlockIndex` parameter limits the results to block indexes greater than `1000`, and the `maxResults` parameter limits the results to the first `100` blocks\.
 
 ```
-GET /snapshots/snap-0acEXAMPLEcf41648/blocks?maxResults=100&startingBlockIndex=0 HTTP/1.1
+GET /snapshots/snap-0acEXAMPLEcf41648/blocks?maxResults=100&startingBlockIndex=1000 HTTP/1.1
 Host: ebs.us-east-2.amazonaws.com
 Accept-Encoding: identity
 User-Agent: <User agent parameter>
@@ -531,7 +531,7 @@ Connection: keep-alive
 BlockData
 ```
 
-### Using the API to write incremental snapshots<a name="ebsapi-sdk-examples-write"></a>
+### Use the API to write incremental snapshots<a name="ebsapi-sdk-examples-write"></a>
 
 #### Start a snapshot<a name="startsnapshot-api"></a>
 
@@ -640,11 +640,11 @@ Connection: keep-alive
 {"Status":"pending"}
 ```
 
-## Working with the EBS direct APIs using the command line<a name="ebsapi-cli-examples"></a>
+## Work with the EBS direct APIs using the command line<a name="ebsapi-cli-examples"></a>
 
 The following examples show how to use the EBS direct APIs using the AWS Command Line Interface \(AWS CLI\)\. For more information about installing and configuring the AWS CLI, see [Installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) and [Quickly Configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html#cli-quick-configuration)\.
 
-### Using the AWS CLI to read snapshots<a name="ebsapi-cli-examples-read"></a>
+### Use the AWS CLI to read snapshots<a name="ebsapi-cli-examples-read"></a>
 
 #### List blocks in a snapshot<a name="listsnapshotblocks-cli"></a>
 
@@ -755,7 +755,7 @@ The following example response for the previous command shows the size of the da
 }
 ```
 
-### Using the AWS CLI to write incremental snapshots<a name="ebsapi-cli-examples-write"></a>
+### Use the AWS CLI to write incremental snapshots<a name="ebsapi-cli-examples-write"></a>
 
 #### Start a snapshot<a name="startsnapshot-cli"></a>
 
@@ -782,7 +782,7 @@ The following example response for the previous command shows the snapshot ID, A
 The following [put\-snapshot](https://docs.aws.amazon.com/cli/latest/reference/ebs/put-snapshot.html) example command writes `524288` Bytes of data to block index `1000` on snapshot `snap-0aaEXAMPLEe306d62`\. The Base64 encoded `QOD3gmEQOXATfJx2Aa34W4FU2nZGyXfqtsUuktOw8DM=` checksum was generated using the `SHA256` algorithm\. The data that is transmitted is in the `/tmp/data` file\.
 
 ```
-aws ebs put-snapshot-block --snapshot-id snap-0aaEXAMPLEe306d62 --block-index 1 --data-length 524288 --block-data /tmp/data --checksum QOD3gmEQOXATfJx2Aa34W4FU2nZGyXfqtsUuktOw8DM= --checksum-algorithm SHA256
+aws ebs put-snapshot-block --snapshot-id snap-0aaEXAMPLEe306d62 --block-index 1000 --data-length 524288 --block-data /tmp/data --checksum QOD3gmEQOXATfJx2Aa34W4FU2nZGyXfqtsUuktOw8DM= --checksum-algorithm SHA256
 ```
 
 The following example response for the previous command confirms the data length, checksum, and checksum algorithm for the data received by the service\.
@@ -797,7 +797,7 @@ The following example response for the previous command confirms the data length
 
 #### Complete a snapshot<a name="completesnapshot-cli"></a>
 
-The following [complete\-snapshot](https://docs.aws.amazon.com/cli/latest/reference/ebs/complete-snapshot.html) example command completes snapshot `snap-0aaEXAMPLEe306d62`\. The command specifies that `5` blocks were written to the snapshot\. The `6D3nmwi5f2F0wlh7xX8QprrJBFzDX8aacdOcA3KCM3c=` checksum represents the checksum for the complete set of data written to a snapshot\. For more information about checksums, see [Using checksums](#ebsapis-using-checksums) earlier in this guide\.
+The following [complete\-snapshot](https://docs.aws.amazon.com/cli/latest/reference/ebs/complete-snapshot.html) example command completes snapshot `snap-0aaEXAMPLEe306d62`\. The command specifies that `5` blocks were written to the snapshot\. The `6D3nmwi5f2F0wlh7xX8QprrJBFzDX8aacdOcA3KCM3c=` checksum represents the checksum for the complete set of data written to a snapshot\. For more information about checksums, see [Use checksums](#ebsapis-using-checksums) earlier in this guide\.
 
 ```
 aws ebs complete-snapshot --snapshot-id snap-0aaEXAMPLEe306d62 --changed-blocks-count 5 --checksum 6D3nmwi5f2F0wlh7xX8QprrJBFzDX8aacdOcA3KCM3c= --checksum-algorithm SHA256 --checksum-aggregation-method LINEAR
@@ -811,7 +811,7 @@ The following is an example response for the previous command\.
 }
 ```
 
-## Optimizing performance<a name="ebsapi-performance"></a>
+## Optimize performance<a name="ebsapi-performance"></a>
 
 You can run API requests concurrently\. Assuming PutSnapshotBlock latency is 100ms, then a thread can process 10 requests in one second\. Furthermore, assuming your client application creates multiple threads and connections \(for example, 100 connections\), it can make 1000 \(10 \* 100\) requests per second in total\. This will correspond to a throughput of around 500 MB per second\.
 
@@ -836,7 +836,7 @@ Yes\. The block indexes returned are unique, and in numerical order\.
 No\. The minimum MaxResult parameter value you can use is 100\. If you submit a request with a MaxResult parameter value of under 100, and there are more than 100 blocks in the snapshot, then the API will return at least 100 results\.
 
 **Can I run API requests concurrently?**  
-You can run API requests concurrently\. Be sure to take note of other workloads that might be running in the account to avoid bottlenecks\. You should also build retry mechanisms into your EBS direct APIs workflows to handle throttling, timeouts, and service unavailability\. For more information, see [Optimizing performance](#ebsapi-performance)\.  
+You can run API requests concurrently\. Be sure to take note of other workloads that might be running in the account to avoid bottlenecks\. You should also build retry mechanisms into your EBS direct APIs workflows to handle throttling, timeouts, and service unavailability\. For more information, see [Optimize performance](#ebsapi-performance)\.  
 Review the EBS direct APIs service quotas to determine the API requests that you can run per second\. For more information, see [Amazon Elastic Block Store Endpoints and Quotas](https://docs.aws.amazon.com/general/latest/gr/ebs-service.html#w542aab9d130b7c15) in the *AWS General Reference*\.
 
 **When running the ListChangedBlocks action, is it possible to get an empty response even though there are blocks in the snapshot?**  
@@ -859,4 +859,4 @@ Public snapshots are not supported\.
 It returns only block indexes and tokens that have data written to them\.
 
 **Can I get a history of the API calls made by the EBS direct APIs on my account for security analysis and operational troubleshooting purposes?**  
-Yes\. To receive a history of EBS direct APIs API calls made on your account, turn on AWS CloudTrail in the AWS Management Console\. For more information, see [Logging API Calls for the EBS direct APIs with AWS CloudTrail](logging-ebs-apis-using-cloudtrail.md)\.
+Yes\. To receive a history of EBS direct APIs API calls made on your account, turn on AWS CloudTrail in the AWS Management Console\. For more information, see [Log API Calls for the EBS direct APIs with AWS CloudTrail](logging-ebs-apis-using-cloudtrail.md)\.

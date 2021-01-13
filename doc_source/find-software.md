@@ -1,4 +1,4 @@
-# Finding software packages on an Amazon Linux instance<a name="find-software"></a>
+# Find software packages on an Amazon Linux instance<a name="find-software"></a>
 
 You can use the yum search command to search the descriptions of packages that are available in your configured repositories\. This is especially helpful if you don't know the exact name of the package you want to install\. Simply append the keyword search to the command; for multiple word searches, wrap the search query with quotation marks\.
 

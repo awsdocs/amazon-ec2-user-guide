@@ -1,4 +1,4 @@
-# Installing EC2Rescue for Linux<a name="ec2rl_install"></a>
+# Install EC2Rescue for Linux<a name="ec2rl_install"></a>
 
 The EC2Rescue for Linux tool can be installed on an Amazon EC2 Linux instance that meets the following prerequisites\.
 

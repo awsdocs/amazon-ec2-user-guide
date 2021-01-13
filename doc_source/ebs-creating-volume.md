@@ -1,17 +1,17 @@
-# Creating an Amazon EBS volume<a name="ebs-creating-volume"></a>
+# Create an Amazon EBS volume<a name="ebs-creating-volume"></a>
 
 You can create an Amazon EBS volume and then attach it to any EC2 instance in the same Availability Zone\. If you create an encrypted EBS volume, you can only attach it to supported instance types\. For more information, see [Supported instance types](EBSEncryption.md#EBSEncryption_supported_instances)\.
 
 If you are creating a volume for a high\-performance storage scenario, you should make sure to use a Provisioned IOPS SSD volume \(`io1` or `io2`\) and attach it to an instance with enough bandwidth to support your application, such as an EBS\-optimized instance\. The same advice holds for Throughput Optimized HDD \(`st1`\) and Cold HDD \(`sc1`\) volumes\. For more information, see [Amazon EBS–optimized instances](ebs-optimized.md)\.
 
-Empty EBS volumes receive their maximum performance the moment that they are available and do not require initialization \(formerly known as pre\-warming\)\. However, storage blocks on volumes that were created from snapshots must be initialized \(pulled down from Amazon S3 and written to the volume\) before you can access the block\. This preliminary action takes time and can cause a significant increase in the latency of an I/O operation the first time each block is accessed\. Volume performance is achieved after all blocks have been downloaded and written to the volume\. For most applications, amortizing this cost over the lifetime of the volume is acceptable\. To avoid this initial performance hit in a production environment, you can force immediate initialization of the entire volume or enable fast snapshot restore\. For more information, see [Initializing Amazon EBS volumes](ebs-initialize.md)\.
+Empty EBS volumes receive their maximum performance the moment that they are available and do not require initialization \(formerly known as pre\-warming\)\. However, storage blocks on volumes that were created from snapshots must be initialized \(pulled down from Amazon S3 and written to the volume\) before you can access the block\. This preliminary action takes time and can cause a significant increase in the latency of an I/O operation the first time each block is accessed\. Volume performance is achieved after all blocks have been downloaded and written to the volume\. For most applications, amortizing this cost over the lifetime of the volume is acceptable\. To avoid this initial performance hit in a production environment, you can force immediate initialization of the entire volume or enable fast snapshot restore\. For more information, see [Initialize Amazon EBS volumes](ebs-initialize.md)\.
 
 **Methods of creating a volume**
-+ Create and attach EBS volumes when you launch instances by specifying a block device mapping\. For more information, see [Launching an instance using the Launch Instance Wizard](launching-instance.md) and [Block device mapping](block-device-mapping-concepts.md)\.
-+ Create an empty EBS volume and attach it to a running instance\. For more information, see [Creating an empty volume](#ebs-create-empty-volume) below\.
-+ Create an EBS volume from a previously created snapshot and attach it to a running instance\. For more information, see [Creating a volume from a snapshot](#ebs-create-volume-from-snapshot) below\.
++ Create and attach EBS volumes when you launch instances by specifying a block device mapping\. For more information, see [Launch an instance using the Launch Instance Wizard](launching-instance.md) and [Block device mapping](block-device-mapping-concepts.md)\.
++ Create an empty EBS volume and attach it to a running instance\. For more information, see [Create an empty volume](#ebs-create-empty-volume) below\.
++ Create an EBS volume from a previously created snapshot and attach it to a running instance\. For more information, see [Create a volume from a snapshot](#ebs-create-volume-from-snapshot) below\.
 
-## Creating an empty volume<a name="ebs-create-empty-volume"></a>
+## Create an empty volume<a name="ebs-create-empty-volume"></a>
 
 Empty volumes receive their maximum performance the moment that they are available and do not require initialization\.
 
@@ -41,7 +41,7 @@ Empty volumes receive their maximum performance the moment that they are availab
 
 1. Choose **Create Volume**\. The volume is ready for use when the volume status is **Available**\.
 
-1. To use your new volume, attach it to an instance, format it, and mount it\. For more information, see [Attaching an Amazon EBS volume to an instance](ebs-attaching-volume.md)\.
+1. To use your new volume, attach it to an instance, format it, and mount it\. For more information, see [Attach an Amazon EBS volume to an instance](ebs-attaching-volume.md)\.
 
 **To create an empty EBS volume using the command line**
 
@@ -49,9 +49,9 @@ You can use one of the following commands\. For more information about these com
 + [create\-volume](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-volume.html) \(AWS CLI\)
 + [New\-EC2Volume](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Volume.html) \(AWS Tools for Windows PowerShell\)
 
-## Creating a volume from a snapshot<a name="ebs-create-volume-from-snapshot"></a>
+## Create a volume from a snapshot<a name="ebs-create-volume-from-snapshot"></a>
 
-Volumes created from snapshots load lazily in the background\. This means that there is no need to wait for all of the data to transfer from Amazon S3 to your EBS volume before the instance can start accessing an attached volume and all its data\. If your instance accesses data that hasn't yet been loaded, the volume immediately downloads the requested data from Amazon S3, and then continues loading the rest of the volume data in the background\. Volume performance is achieved after all blocks are downloaded and written to the volume\. To avoid the initial performance hit in a production environment, see [Initializing Amazon EBS volumes](ebs-initialize.md)\.
+Volumes created from snapshots load lazily in the background\. This means that there is no need to wait for all of the data to transfer from Amazon S3 to your EBS volume before the instance can start accessing an attached volume and all its data\. If your instance accesses data that hasn't yet been loaded, the volume immediately downloads the requested data from Amazon S3, and then continues loading the rest of the volume data in the background\. Volume performance is achieved after all blocks are downloaded and written to the volume\. To avoid the initial performance hit in a production environment, see [Initialize Amazon EBS volumes](ebs-initialize.md)\.
 
 New EBS volumes that are created from encrypted snapshots are automatically encrypted\. You can also encrypt a volume on\-the\-fly while restoring it from an unencrypted snapshot\. Encrypted volumes can only be attached to instance types that support EBS encryption\. For more information, see [Supported instance types](EBSEncryption.md#EBSEncryption_supported_instances)\.
 
@@ -63,7 +63,7 @@ Use the following procedure to create a volume from a snapshot\.
 
 1. From the navigation bar, select the Region that your snapshot is located in\.
 
-   To use the snapshot to create a volume in a different region, copy your snapshot to the new Region and then use it to create a volume in that Region\. For more information, see [Copying an Amazon EBS snapshot](ebs-copy-snapshot.md)\.
+   To use the snapshot to create a volume in a different region, copy your snapshot to the new Region and then use it to create a volume in that Region\. For more information, see [Copy an Amazon EBS snapshot](ebs-copy-snapshot.md)\.
 
 1. In the navigation pane, choose **ELASTIC BLOCK STORE**, **Volumes**\.
 
@@ -89,7 +89,7 @@ Use the following procedure to create a volume from a snapshot\.
 
 1. Choose **Create Volume**\.
 
-1. To use your new volume, attach it to an instance and mount it\. For more information, see [Attaching an Amazon EBS volume to an instance](ebs-attaching-volume.md)\.
+1. To use your new volume, attach it to an instance and mount it\. For more information, see [Attach an Amazon EBS volume to an instance](ebs-attaching-volume.md)\.
 
 1. If you created a volume that is larger than the snapshot, you must extend the file system on the volume to take advantage of the extra space\. For more information, see [Amazon EBS Elastic Volumes](ebs-modify-volume.md)\.
 

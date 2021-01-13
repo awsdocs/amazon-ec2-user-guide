@@ -1,4 +1,4 @@
-# Connecting to your Linux instance from Windows using Windows Subsystem for Linux<a name="WSL"></a>
+# Connect to your Linux instance from Windows using Windows Subsystem for Linux<a name="WSL"></a>
 
 After you launch your instance, you can connect to it and use it the way that you'd use a computer sitting in front of you\.
 
@@ -7,15 +7,15 @@ The following instructions explain how to connect to your instance using a Linux
 By installing WSL, you can use a native Linux environment to connect to your Linux EC2 instances instead of using PuTTY or PuTTYgen\. The Linux environment makes it easier to connect to your Linux instances because it comes with a native SSH client that you can use to connect to your Linux instances and change the permissions of the \.pem key file\. The Amazon EC2 console provides the SSH command for connecting to the Linux instance, and you can get verbose output from the SSH command for troubleshooting\. For more information, see the [Windows Subsystem for Linux Documentation](https://docs.microsoft.com/en-us/windows/wsl/about)\.
 
 **Note**  
-After you've installed the WSL, all the prerequisites and steps are the same as those described in [Connecting to your Linux instance using SSH](AccessingInstancesLinux.md), and the experience is just like using native Linux\.
+After you've installed the WSL, all the prerequisites and steps are the same as those described in [Connect to your Linux instance using SSH](AccessingInstancesLinux.md), and the experience is just like using native Linux\.
 
 If you receive an error while attempting to connect to your instance, see [Troubleshooting Connecting to Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html)\.
 
 **Contents**
 + [Prerequisites](#ssh-prereqs)
 + [Connect to your Linux instance using WSL](#Connect-Linux-WSL)
-+ [Transferring files to Linux instances from Linux using SCP](#Connect-Linux-WSL-SCP)
-+ [Uninstalling WSL](#uninstall-WSL)
++ [Transfer files to Linux instances from Linux using SCP](#Connect-Linux-WSL-SCP)
++ [Uninstall WSL](#uninstall-WSL)
 
 ## Prerequisites<a name="ssh-prereqs"></a>
 
@@ -75,7 +75,7 @@ Use the following procedure to connect to your Linux instance using the Windows 
    to the list of known hosts.
    ```
 
-## Transferring files to Linux instances from Linux using SCP<a name="Connect-Linux-WSL-SCP"></a>
+## Transfer files to Linux instances from Linux using SCP<a name="Connect-Linux-WSL-SCP"></a>
 
 One way to transfer files between your local computer and a Linux instance is to use the secure copy protocol \(SCP\)\. This section describes how to transfer files with SCP\. The procedure is similar to the procedure for connecting to an instance with SSH\. 
 
@@ -144,6 +144,6 @@ The following procedure steps you through using SCP to transfer a file\. If you'
      scp -i /path/my-key-pair.pem my-instance-user-name@\[2001:db8:1234:1a00:9691:9503:25ad:1761\]:~/SampleFile.txt ~/SampleFile2.txt
      ```
 
-## Uninstalling WSL<a name="uninstall-WSL"></a>
+## Uninstall WSL<a name="uninstall-WSL"></a>
 
 For information about uninstalling Windows Subsystem for Linux, see [How do I uninstall a WSL Distribution?](https://docs.microsoft.com/en-us/windows/wsl/faq#how-do-i-uninstall-a-wsl-distribution)\.

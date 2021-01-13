@@ -1,15 +1,15 @@
-# Viewing, modifying, and deleting lifecycle policies<a name="view-modify-delete"></a>
+# View, modify, and delete lifecycle policies<a name="view-modify-delete"></a>
 
 Use the following procedures to view, modify and delete existing lifecycle policies\.
 
 **Topics**
-+ [View lifecycyle poilcies](#view)
-+ [Modify lifecycyle poilcies](#modify)
-+ [Delete lifecycyle poilcies](#delete)
++ [View lifecycle policies](#view)
++ [Modify lifecycle policies](#modify)
++ [Delete lifecycle policies](#delete)
 
-## View lifecycyle poilcies<a name="view"></a>
+## View lifecycle policies<a name="view"></a>
 
-Use one of the following procedure to view a lifecycle policy\.
+Use one of the following procedures to view a lifecycle policy\.
 
 ------
 #### [ Console ]
@@ -82,9 +82,9 @@ The following is example output\. It includes the information that you specified
 
 ------
 
-## Modify lifecycyle poilcies<a name="modify"></a>
+## Modify lifecycle policies<a name="modify"></a>
 
-Use one of the following procedure to modify a lifecycle policy\.
+Use one of the following procedures to modify a lifecycle policy\.
 
 ------
 #### [ Console ]
@@ -154,9 +154,9 @@ To view the updated policy, use the `get-lifecycle-policy` command\. You can see
 
 ------
 
-## Delete lifecycyle poilcies<a name="delete"></a>
+## Delete lifecycle policies<a name="delete"></a>
 
-Use one of the following procedure to delete a lifecycle policy\.
+Use one of the following procedures to delete a lifecycle policy\.
 
 **Note**  
 You can delete snapshots created only by Amazon Data Lifecycle Manager\.

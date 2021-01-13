@@ -14,7 +14,7 @@ To complete this tutorial using AWS Systems Manager Automation instead of the fo
 + [Step 2: Test your LAMP server](#test-lamp-server)
 + [Step 3: Secure the database server](#secure-mariadb-lamp-server)
 + [Step 4: \(Optional\) Install phpMyAdmin](#install-phpmyadmin-lamp-server)
-+ [Troubleshooting](#lamp-troubleshooting)
++ [Troubleshoot](#lamp-troubleshooting)
 + [Related topics](#lamp-more-info)
 
 ## Step 1: Prepare the LAMP server<a name="prepare-lamp-server"></a>
@@ -316,7 +316,7 @@ We do not recommend using `phpMyAdmin` to access a LAMP server unless you have e
 
     For information about using phpMyAdmin, see the [phpMyAdmin User Guide](http://docs.phpmyadmin.net/en/latest/user.html)\.
 
-## Troubleshooting<a name="lamp-troubleshooting"></a>
+## Troubleshoot<a name="lamp-troubleshooting"></a>
 
 This section offers suggestions for resolving common problems you may encounter while setting up a new LAMP server\. 
 
@@ -339,9 +339,9 @@ Perform the following checks to see if your Apache web server is running and acc
 ## Related topics<a name="lamp-more-info"></a>
 
 For more information about transferring files to your instance or installing a WordPress blog on your web server, see the following documentation:
-+ [Transferring files to your Linux instance using WinSCP](putty.md#Transfer_WinSCP)
-+ [Transferring files to Linux instances from Linux using SCP](AccessingInstancesLinux.md#AccessingInstancesLinuxSCP)
-+ [Tutorial: Hosting a WordPress blog with Amazon Linux](hosting-wordpress.md)
++ [Transfer files to your Linux instance using WinSCP](putty.md#Transfer_WinSCP)
++ [Transfer files to Linux instances from Linux using SCP](AccessingInstancesLinux.md#AccessingInstancesLinuxSCP)
++ [Tutorial: Host a WordPress blog with Amazon Linux](hosting-wordpress.md)
 
 For more information about the commands and software used in this tutorial, see the following webpages:
 + Apache web server: [http://httpd\.apache\.org/](http://httpd.apache.org/)

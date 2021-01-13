@@ -78,13 +78,13 @@ If a T2 instance is switched from `standard` to `unlimited`, any accrued launch 
 
 T3 and T4g instances never receive launch credits\.
 
-## Enabling unlimited mode<a name="unlimited-mode-enabling"></a>
+## Enable unlimited mode<a name="unlimited-mode-enabling"></a>
 
-You can switch from `unlimited` to `standard`, and from `standard` to `unlimited`, at any time on a running or stopped instance\. For more information, see [Launching a burstable performance instance as Unlimited or Standard](burstable-performance-instances-how-to.md#launch-burstable-performance-instances) and [Modifying the credit specification of a burstable performance instance](burstable-performance-instances-how-to.md#modify-burstable-performance-instances)\.
+You can switch from `unlimited` to `standard`, and from `standard` to `unlimited`, at any time on a running or stopped instance\. For more information, see [Launch a burstable performance instance as Unlimited or Standard](burstable-performance-instances-how-to.md#launch-burstable-performance-instances) and [Modify the credit specification of a burstable performance instance](burstable-performance-instances-how-to.md#modify-burstable-performance-instances)\.
 
-You can set `unlimited` as the default credit option at the account level per AWS Region, per burstable performance instance family, so that all new burstable performance instances in the account launch using the default credit option\. For more information, see [Setting the default credit specification for the account](burstable-performance-instances-how-to.md#burstable-performance-instance-set-default-credit-specification-for-account)\.
+You can set `unlimited` as the default credit option at the account level per AWS Region, per burstable performance instance family, so that all new burstable performance instances in the account launch using the default credit option\. For more information, see [Set the default credit specification for the account](burstable-performance-instances-how-to.md#burstable-performance-instance-set-default-credit-specification-for-account)\.
 
-You can check whether your burstable performance instance is configured as `unlimited` or `standard` using the Amazon EC2 console or the AWS CLI\. For more information, see [Viewing the credit specification of a burstable performance instance](burstable-performance-instances-how-to.md#describe-burstable-performance-instances) and [Viewing the default credit specification](burstable-performance-instances-how-to.md#burstable-performance-instances-get-default-credit-specification)\.
+You can check whether your burstable performance instance is configured as `unlimited` or `standard` using the Amazon EC2 console or the AWS CLI\. For more information, see [View the credit specification of a burstable performance instance](burstable-performance-instances-how-to.md#describe-burstable-performance-instances) and [View the default credit specification](burstable-performance-instances-how-to.md#burstable-performance-instances-get-default-credit-specification)\.
 
 ## What happens to credits when switching between Unlimited and Standard<a name="unlimited-mode-switching-and-credits"></a>
 
@@ -98,6 +98,6 @@ When a `standard` instance is switched to `unlimited`, the following occurs:
 + The `CPUCreditBalance` value containing accrued earned credits is carried over\.
 + For T2 Standard instances, any launch credits are removed from the `CPUCreditBalance` value, and the remaining `CPUCreditBalance` value containing accrued earned credits is carried over\.
 
-## Monitoring credit usage<a name="unlimited-mode-monitoring-credit-usage"></a>
+## Monitor credit usage<a name="unlimited-mode-monitoring-credit-usage"></a>
 
-To see if your instance is spending more credits than the baseline provides, you can use CloudWatch metrics to track usage, and you can set up hourly alarms to be notified of credit usage\. For more information, see [Monitoring your CPU credits](burstable-performance-instances-monitoring-cpu-credits.md)\.
+To see if your instance is spending more credits than the baseline provides, you can use CloudWatch metrics to track usage, and you can set up hourly alarms to be notified of credit usage\. For more information, see [Monitor your CPU credits](burstable-performance-instances-monitoring-cpu-credits.md)\.

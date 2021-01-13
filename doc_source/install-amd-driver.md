@@ -2,7 +2,7 @@
 
 An instance with an attached AMD GPU, such as a G4ad instance, must have the appropriate AMD driver installed\. Depending on your requirements, you can either use an AMI with the driver preinstalled or download a driver from Amazon S3\.
 
-To install NVIDIA drivers on an instance with an attached NVIDIA GPU, such as a G4dn instance, see [Installing NVIDIA drivers on Linux instances](install-nvidia-driver.md) instead\.
+To install NVIDIA drivers on an instance with an attached NVIDIA GPU, such as a G4dn instance, see [Install NVIDIA drivers on Linux instances](install-nvidia-driver.md) instead\.
 
 **Contents**
 + [AMD Radeon Pro Software for Enterprise Driver](#amd-radeon-pro-software-for-enterprise-driver)
@@ -58,13 +58,6 @@ These downloads are available to AWS customers only\. By downloading, you agree 
      $ sudo yum update -y
      ```
 
-1. \(Ubuntu\) Ensure that kernel 5\.4\.0\-1029\-aws is the active kernel\. If there is a newer kernel installed, remove it using the following commands:
-
-   ```
-   $ sudo apt remove linux-image-5.4.0-1030-aws
-   $ sudo update-grub
-   ```
-
 1. Reboot the instance\.
 
    ```
@@ -72,12 +65,6 @@ These downloads are available to AWS customers only\. By downloading, you agree 
    ```
 
 1. Reconnect to the instance after it reboots\.
-
-1. \(Ubuntu\) Install `linux-modules-extra` for kernel 5\.4\.0\-1029\-aws\.
-
-   ```
-   $ sudo apt-get install -y linux-modules-extra-$(uname -r) autoconf
-   ```
 
 1. Download the latest AMD driver\.
 
@@ -108,7 +95,7 @@ These downloads are available to AWS customers only\. By downloading, you agree 
    + For Ubuntu:
 
      ```
-     $ cat RPM-GPG-KEY-amdgpu | sudo apt-key add-
+     $ cat RPM-GPG-KEY-amdgpu | sudo apt-key add -
      ```
 
 1. Run the self install script to install the full graphics stack\.

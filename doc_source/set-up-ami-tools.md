@@ -1,4 +1,4 @@
-# Setting up the AMI tools<a name="set-up-ami-tools"></a>
+# Set up the AMI tools<a name="set-up-ami-tools"></a>
 
 You can use the AMI tools to create and manage instance store\-backed Linux AMIs\. To use the tools, you must install them on your Linux instance\. The AMI tools are available as both an RPM and as a \.zip file for Linux distributions that don't support RPM\.
 
@@ -113,7 +113,7 @@ If you receive a load error such as "cannot load such file \-\- ec2/amitools/ver
    [ec2-user ~]$ ec2-ami-tools-version
    ```
 
-## Managing signing certificates<a name="ami-tools-managing-certs"></a>
+## Manage signing certificates<a name="ami-tools-managing-certs"></a>
 
 Certain commands in the AMI tools require a signing certificate \(also known as X\.509 certificate\)\. You must create the certificate and then upload it to AWS\. For example, you can use a third\-party tool such as OpenSSL to create the certificate\.
 

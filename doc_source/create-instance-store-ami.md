@@ -1,14 +1,14 @@
-# Creating an AMI from an instance store\-backed instance<a name="create-instance-store-ami"></a>
+# Create an AMI from an instance store\-backed instance<a name="create-instance-store-ami"></a>
 
 The following procedures are for creating an instance store\-backed AMI from an instance store\-backed instance\. Before you begin, ensure that you've read the [Prerequisites](creating-an-ami-instance-store.md#bundle-ami-prerequisites)\.
 
 **Topics**
-+ [Creating an AMI from an instance store\-backed Amazon Linux instance](#amazon_linux_instructions)
-+ [Creating an AMI from an instance store\-backed Ubuntu instance](#ubuntu_instructions)
++ [Create an AMI from an instance store\-backed Amazon Linux instance](#amazon_linux_instructions)
++ [Create an AMI from an instance store\-backed Ubuntu instance](#ubuntu_instructions)
 
-## Creating an AMI from an instance store\-backed Amazon Linux instance<a name="amazon_linux_instructions"></a>
+## Create an AMI from an instance store\-backed Amazon Linux instance<a name="amazon_linux_instructions"></a>
 
-This section describes the creation of an AMI from an Amazon Linux instance\. The following procedures may not work for instances running other Linux distributions\. For Ubuntu\-specific procedures, see [Creating an AMI from an instance store\-backed Ubuntu instance](#ubuntu_instructions)\.
+This section describes the creation of an AMI from an Amazon Linux instance\. The following procedures may not work for instances running other Linux distributions\. For Ubuntu\-specific procedures, see [Create an AMI from an instance store\-backed Ubuntu instance](#ubuntu_instructions)\.
 
 **To prepare to use the AMI tools \(HVM instances only\)**
 
@@ -145,9 +145,9 @@ If you specified a path with the `-d /path/to/bundle/storage` option in [Step 2]
 **Important**  
 If you previously specified a Region for the [ec2\-upload\-bundle](ami-tools-commands.md#ami-upload-bundle) command, specify that Region again for this command\.
 
-## Creating an AMI from an instance store\-backed Ubuntu instance<a name="ubuntu_instructions"></a>
+## Create an AMI from an instance store\-backed Ubuntu instance<a name="ubuntu_instructions"></a>
 
-This section describes the creation of an AMI from an Ubuntu Linux instance with an instance store volume as the root volume\. The following procedures may not work for instances running other Linux distributions\. For procedures specific to Amazon Linux, see [Creating an AMI from an instance store\-backed Amazon Linux instance](#amazon_linux_instructions)\.
+This section describes the creation of an AMI from an Ubuntu Linux instance with an instance store volume as the root volume\. The following procedures may not work for instances running other Linux distributions\. For procedures specific to Amazon Linux, see [Create an AMI from an instance store\-backed Amazon Linux instance](#amazon_linux_instructions)\.
 
 **To prepare to use the AMI tools \(HVM instances only\)**
 

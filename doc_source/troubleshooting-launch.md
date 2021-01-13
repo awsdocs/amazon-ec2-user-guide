@@ -38,7 +38,7 @@ To resolve the issue, try the following:
 + Wait a few minutes and then submit your request again; capacity can shift frequently\.
 + Submit a new request with a reduced number of instances\. For example, if you're making a single request to launch 15 instances, try making 3 requests for 5 instances, or 15 requests for 1 instance instead\.
 + If you're launching an instance, submit a new request without specifying an Availability Zone\.
-+ If you're launching an instance, submit a new request using a different instance type \(which you can resize at a later stage\)\. For more information, see [Changing the instance type](ec2-instance-resize.md)\.
++ If you're launching an instance, submit a new request using a different instance type \(which you can resize at a later stage\)\. For more information, see [Change the instance type](ec2-instance-resize.md)\.
 + If you are launching instances into a cluster placement group, you can get an insufficient capacity error\. For more information, see [Placement group rules and limitations](placement-groups.md#concepts-placement-groups)\.
 
 ## The requested configuration is currently not supported\. Please check the documentation for supported configurations\.<a name="troubleshooting-instance-configuration"></a>
@@ -53,7 +53,7 @@ The error message provides additional details\. For example, an instance type or
 
 ### Solution<a name="troubleshooting-instance-configuration-solution"></a>
 
-Try a different instance configuration\. To search for an instance type that meets your requirements, see [Finding an Amazon EC2 instance type](instance-discovery.md)\.
+Try a different instance configuration\. To search for an instance type that meets your requirements, see [Find an Amazon EC2 instance type](instance-discovery.md)\.
 
 ## Instance terminates immediately<a name="troubleshooting-launch-internal"></a>
 

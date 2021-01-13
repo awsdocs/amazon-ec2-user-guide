@@ -6,8 +6,8 @@ EBS–optimized instances deliver dedicated bandwidth to Amazon EBS\. When attac
 
 **Topics**
 + [Supported instance types](#ebs-optimization-support)
-+ [Getting maximum performance](#ebs-optimization-performance)
-+ [Enabling EBS optimization at launch](#enable-ebs-optimization)
++ [Get maximum performance](#ebs-optimization-performance)
++ [Enable EBS optimization at launch](#enable-ebs-optimization)
 + [Enable EBS optimization for an existing instance](#modify-ebs-optimized-attribute)
 
 ## Supported instance types<a name="ebs-optimization-support"></a>
@@ -527,9 +527,9 @@ The following table lists the instance types that support EBS optimization but E
 
 The `i2.8xlarge`, `c3.8xlarge`, and `r3.8xlarge` instances do not have dedicated EBS bandwidth and therefore do not offer EBS optimization\. On these instances, network traffic and Amazon EBS traffic share the same 10\-gigabit network interface\.
 
-## Getting maximum performance<a name="ebs-optimization-performance"></a>
+## Get maximum performance<a name="ebs-optimization-performance"></a>
 
-You can use the `EBSIOBalance%` and `EBSByteBalance%` metrics to help you determine whether your instances are sized correctly\. You can view these metrics in the CloudWatch console and set an alarm that is triggered based on a threshold you specify\. These metrics are expressed as a percentage\. Instances with a consistently low balance percentage are candidates to size up\. Instances where the balance percentage never drops below 100% are candidates for downsizing\. For more information, see [Monitoring your instances using CloudWatch](using-cloudwatch.md)\.
+You can use the `EBSIOBalance%` and `EBSByteBalance%` metrics to help you determine whether your instances are sized correctly\. You can view these metrics in the CloudWatch console and set an alarm that is triggered based on a threshold you specify\. These metrics are expressed as a percentage\. Instances with a consistently low balance percentage are candidates to size up\. Instances where the balance percentage never drops below 100% are candidates for downsizing\. For more information, see [Monitor your instances using CloudWatch](using-cloudwatch.md)\.
 
 The high memory instances are designed to run large in\-memory databases, including production deployments of the SAP HANA in\-memory database, in the cloud\. To maximize EBS performance, use high memory instances with an even number of `io1` or `io2` volumes with identical provisioned performance\. For example, for IOPS heavy workloads, use four `io1` or `io2` volumes with 40,000 provisioned IOPS to get the maximum 160,000 instance IOPS\. Similarly, for throughput heavy workloads, use six `io1` or `io2` volumes with 48,000 provisioned IOPS to get the maximum 4,750 MB/s throughput\. For additional recommendations, see [Storage Configuration for SAP HANA](https://docs.aws.amazon.com/quickstart/latest/sap-hana/storage.html)\.
 
@@ -538,7 +538,7 @@ The high memory instances are designed to run large in\-memory databases, includ
 + C5, C5d, C5n, M5, M5d, M5n, M5dn, R5, R5d, R5n, R5dn, and P3dn instances launched after December 3, 2019 provide the maximum performance listed in the table above\. To get the maximum performance from an instance launched before December 3, 2019, stop and start it\.
 + `u-6tb1.metal`, `u-9tb1.metal`, and `u-12tb1.metal` instances launched after March 12, 2020 provide the performance in the table above\. Instances of these types launched before March 12, 2020 might provide lower performance\. To get the maximum performance from an instance launched before March 12, 2020, contact your account team to upgrade the instance at no additional cost\.
 
-## Enabling EBS optimization at launch<a name="enable-ebs-optimization"></a>
+## Enable EBS optimization at launch<a name="enable-ebs-optimization"></a>
 
 You can enable optimization for an instance by setting its attribute for EBS optimization\.
 

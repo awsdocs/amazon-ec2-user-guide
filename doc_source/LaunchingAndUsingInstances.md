@@ -9,13 +9,13 @@ You can launch an instance using the following methods\.
 
 | Method | Documentation | 
 | --- | --- | 
-|  \[Amazon EC2 console\] Use the launch instance wizard to specify the launch parameters\.  |  [Launching an instance using the Launch Instance Wizard](launching-instance.md)  | 
-|  \[Amazon EC2 console\] Create a launch template and launch the instance from the launch template\.  |  [Launching an instance from a launch template](ec2-launch-templates.md)  | 
-| \[Amazon EC2 console\] Use an existing instance as the base\. |  [Launching an instance using parameters from an existing instance](launch-more-like-this.md)  | 
-|  \[Amazon EC2 console\] Use an AMI that you purchased from the AWS Marketplace\.  |  [Launching an AWS Marketplace instance](launch-marketplace-console.md)  | 
+|  \[Amazon EC2 console\] Use the launch instance wizard to specify the launch parameters\.  |  [Launch an instance using the Launch Instance Wizard](launching-instance.md)  | 
+|  \[Amazon EC2 console\] Create a launch template and launch the instance from the launch template\.  |  [Launch an instance from a launch template](ec2-launch-templates.md)  | 
+| \[Amazon EC2 console\] Use an existing instance as the base\. |  [Launch an instance using parameters from an existing instance](launch-more-like-this.md)  | 
+|  \[Amazon EC2 console\] Use an AMI that you purchased from the AWS Marketplace\.  |  [Launch an AWS Marketplace instance](launch-marketplace-console.md)  | 
 |  \[AWS CLI\] Use an AMI that you select\.  |  [Using Amazon EC2 through the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-services-ec2-instances.html)  | 
 |  \[AWS Tools for Windows PowerShell\] Use an AMI that you select\.  |  [Amazon EC2 from the AWS Tools for Windows PowerShell](https://docs.aws.amazon.com/powershell/latest/userguide/pstools-ec2.html)  | 
-|  \[AWS CLI\] Use EC2 Fleet to provision capacity across different EC2 instance types and Availability Zones, and across On\-Demand Instance, Reserved Instance, and Spot Instance purchase models\.   |  [Launching instances using an EC2 Fleet](ec2-fleet.md)  | 
+|  \[AWS CLI\] Use EC2 Fleet to provision capacity across different EC2 instance types and Availability Zones, and across On\-Demand Instance, Reserved Instance, and Spot Instance purchase models\.   |  [Launch instances using an EC2 Fleet](ec2-fleet.md)  | 
 |  \[AWS CloudFormation\] Use a AWS CloudFormation template to specify an instance\.  |  [AWS::EC2::Instance](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html) in the *AWS CloudFormation User Guide*  | 
 | \[AWS SDK\] Use a language\-specific AWS SDK to launch an instance\. |  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/ec2-2016-11-15/RunInstances) [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/ec2-2016-11-15/RunInstances) [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/ec2-2016-11-15/RunInstances) [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/ec2-2016-11-15/RunInstances) [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/ec2-2016-11-15/RunInstances) [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/ec2-2016-11-15/RunInstances) [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/ec2-2016-11-15/RunInstances) [AWS SDK for Ruby V3](https://docs.aws.amazon.com/goto/SdkForRubyV3/ec2-2016-11-15/RunInstances)  | 
 

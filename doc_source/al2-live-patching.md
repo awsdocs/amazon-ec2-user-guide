@@ -14,7 +14,7 @@ Kernel Live Patching on Amazon Linux 2 is provided at no additional cost\.
 
 **Topics**
 + [Supported configurations and prerequisites](#al2-live-patching-prereq)
-+ [Working with Kernel Live Patching](#working-with-live-patching)
++ [Work with Kernel Live Patching](#working-with-live-patching)
 + [Limitations](#al2-live-patching-limitations)
 + [Frequently asked questions](#al2-live-patching-faq)
 
@@ -29,7 +29,7 @@ To use Kernel Live Patching on Amazon Linux 2, you must use:
 **Note**  
 The 64\-bit ARM \(arm64\) architecture is not supported\.
 
-## Working with Kernel Live Patching<a name="working-with-live-patching"></a>
+## Work with Kernel Live Patching<a name="working-with-live-patching"></a>
 
 You can enable and use Kernel Live Patching on individual instances using the command line on the instance itself, or you can enable and use Kernel Live Patching on a group of managed instances using AWS Systems Manager\.
 
@@ -38,13 +38,13 @@ The following sections explain how to enable and use Kernel Live Patching on ind
 For more information about enabling and using Kernel Live Patching on a group of managed instances, see [Use Kernel Live Patching on Amazon Linux 2 instances](https://docs.aws.amazon.com/systems-manager/latest/userguide/kernel-live-patching.html) in the *AWS Systems Manager User Guide*\.
 
 **Topics**
-+ [Enabling Kernel Live Patching](#al2-live-patching-enable)
-+ [Viewing the available kernel live patches](#al2-live-patching-view-available)
-+ [Applying kernel live patches](#al2-live-patching-apply)
++ [Enable Kernel Live Patching](#al2-live-patching-enable)
++ [View the available kernel live patches](#al2-live-patching-view-available)
++ [Apply kernel live patches](#al2-live-patching-apply)
 + [View the applied kernel live patches](#al2-live-patching-view)
-+ [Disabling Kernel Live Patching](#al2-live-patching-disable)
++ [Disable Kernel Live Patching](#al2-live-patching-disable)
 
-### Enabling Kernel Live Patching<a name="al2-live-patching-enable"></a>
+### Enable Kernel Live Patching<a name="al2-live-patching-enable"></a>
 
 Kernel Live Patching is disabled by default on Amazon Linux 2\. To use live patching, you must install the **yum** plugin for Kernel Live Patching and enable the live patching functionality\.
 
@@ -111,7 +111,7 @@ $ sudo yum install binutils
    $ sudo amazon-linux-extras enable livepatch
    ```
 
-### Viewing the available kernel live patches<a name="al2-live-patching-view-available"></a>
+### View the available kernel live patches<a name="al2-live-patching-view-available"></a>
 
 Amazon Linux security alerts are published to the Amazon Linux Security Center\. For more information about the Amazon Linux 2 security alerts, which include alerts for kernel live patches, see the [Amazon Linux Security Center](https://alas.aws.amazon.com/alas2.html)\. Kernel live patches are prefixed with `ALASLIVEPATCH`\. The Amazon Linux Security Center might not list kernel live patches that address bugs\.
 
@@ -150,7 +150,7 @@ Loaded plugins: extras_suggestions, kernel-livepatch, langpacks, priorities, upd
 	updateinfo list done
 ```
 
-### Applying kernel live patches<a name="al2-live-patching-apply"></a>
+### Apply kernel live patches<a name="al2-live-patching-apply"></a>
 
 You apply kernel live patches using the **yum** package manager in the same way that you would apply regular updates\. The **yum** plugin for Kernel Live Patching manages the kernel live patches that are to be applied and eliminates the need to reboot\.
 
@@ -161,7 +161,7 @@ You can choose to apply a specific kernel live patch, or to apply any available 
 
 **To apply a specific kernel live patch**
 
-1. Get the kernel live patch version using one of the commands described in [Viewing the available kernel live patches](#al2-live-patching-view-available)\.
+1. Get the kernel live patch version using one of the commands described in [View the available kernel live patches](#al2-live-patching-view-available)\.
 
 1. Apply the kernel live patch for your Amazon Linux 2 kernel\.
 
@@ -214,7 +214,7 @@ Loaded patch modules:
 **Note**  
 A single kernel live patch can include and install multiple live patches\.
 
-### Disabling Kernel Live Patching<a name="al2-live-patching-disable"></a>
+### Disable Kernel Live Patching<a name="al2-live-patching-disable"></a>
 
 If you no longer need to use Kernel Live Patching, you can disable it at any time\.
 

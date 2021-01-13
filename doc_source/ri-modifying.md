@@ -1,9 +1,9 @@
-# Modifying Reserved Instances<a name="ri-modifying"></a>
+# Modify Reserved Instances<a name="ri-modifying"></a>
 
 When your needs change, you can modify your Standard or Convertible Reserved Instances and continue to benefit from the billing benefit\. You can modify attributes such as the Availability Zone, instance size \(within the same instance family\), and scope of your Reserved Instance\.
 
 **Note**  
-You can also exchange a Convertible Reserved Instance for another Convertible Reserved Instance with a different configuration\. For more information, see [Exchanging Convertible Reserved Instances](ri-convertible-exchange.md)\.
+You can also exchange a Convertible Reserved Instance for another Convertible Reserved Instance with a different configuration\. For more information, see [Exchange Convertible Reserved Instances](ri-convertible-exchange.md)\.
 
 You can modify all or a subset of your Reserved Instances\. You can separate your original Reserved Instances into two or more new Reserved Instances\. For example, if you have a reservation for 10 instances in `us-east-1a` and decide to move 5 instances to `us-east-1b`, the modification request results in two new reservations: one for 5 instances in `us-east-1a` and the other for 5 instances in `us-east-1b`\.
 
@@ -26,8 +26,8 @@ You can modify your reservations as frequently as you like, but you cannot chang
 **Topics**
 + [Requirements and restrictions for modification](#ri-modification-limits)
 + [Support for modifying instance sizes](#ri-modification-instancemove)
-+ [Submitting modification requests](#ri-modification-process)
-+ [Troubleshooting modification requests](#ri-modification-process-messages)
++ [Submit modification requests](#ri-modification-process)
++ [Troubleshoot modification requests](#ri-modification-process-messages)
 
 ## Requirements and restrictions for modification<a name="ri-modification-limits"></a>
 
@@ -130,7 +130,7 @@ For example, an `i3.metal` instance has a normalization factor of 128\. If you p
 + An `i3.8xlarge` is half the size of an `i3.metal` instance, so its normalization factor is 64 \(128/2\)\. The reservation for one `i3.metal` instance can be divided into two `i3.8xlarge` instances\.
 + An `i3.4xlarge` is a quarter the size of an `i3.metal` instance, so its normalization factor is 32 \(128/4\)\. The reservation for one `i3.metal` instance can be divided into four `i3.4xlarge` instances\.
 
-## Submitting modification requests<a name="ri-modification-process"></a>
+## Submit modification requests<a name="ri-modification-process"></a>
 
 Before you modify your Reserved Instances, ensure that you have read the applicable [restrictions](#ri-modification-limits)\. Before you modify the instance size, calculate the total [instance size footprint](#ri-modification-instancemove) of the original reservations that you want to modify and ensure that it matches the total instance size footprint of your new configurations\.
 
@@ -168,7 +168,7 @@ If your Reserved Instances are not in the active state or cannot be modified, **
    + [describe\-reserved\-instances\-modifications](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances-modifications.html) \(AWS CLI\)
    + [Get\-EC2ReservedInstancesModification](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ReservedInstancesModification.html) \(AWS Tools for Windows PowerShell\)
 
-## Troubleshooting modification requests<a name="ri-modification-process-messages"></a>
+## Troubleshoot modification requests<a name="ri-modification-process-messages"></a>
 
 If the target configuration settings that you requested were unique, you receive a message that your request is being processed\. At this point, Amazon EC2 has only determined that the parameters of your modification request are valid\. Your modification request can still fail during processing due to unavailable capacity\.
 

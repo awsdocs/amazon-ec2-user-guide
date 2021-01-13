@@ -1,4 +1,4 @@
-# Finding an Amazon EC2 instance type<a name="instance-discovery"></a>
+# Find an Amazon EC2 instance type<a name="instance-discovery"></a>
 
 Before you can launch an instance, you must select an instance type to use\. The instance type that you choose might depend on your requirements for the instances that you'll launch\. For example, you might choose an instance type based on the following requirements:
 + Availability Zone or Region
@@ -8,7 +8,7 @@ Before you can launch an instance, you must select an instance type to use\. The
 + Pricing
 + Storage
 
-## Finding an instance type using the console<a name="instance-discovery-console"></a>
+## Find an instance type using the console<a name="instance-discovery-console"></a>
 
 You can find an instance type that meets your needs using the Amazon EC2 console\.
 
@@ -28,9 +28,9 @@ You can find an instance type that meets your needs using the Amazon EC2 console
 
 1. \(Optional\) To save the list of instance types to a comma\-separated values \(\.csv\) file for further review, choose **Download list CSV**\. The file includes all instance types that match the filters you set\.
 
-1. After locating instance types that meet your needs, you can use them to launch instances\. For more information, see [Launching an instance using the Launch Instance Wizard](launching-instance.md)\.
+1. After locating instance types that meet your needs, you can use them to launch instances\. For more information, see [Launch an instance using the Launch Instance Wizard](launching-instance.md)\.
 
-## Finding an instance type using the AWS CLI<a name="instance-discovery-cli"></a>
+## Find an instance type using the AWS CLI<a name="instance-discovery-cli"></a>
 
 You can use AWS CLI commands for Amazon EC2 to find an instance type that meet your needs\.
 

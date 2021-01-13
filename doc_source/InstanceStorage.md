@@ -32,7 +32,7 @@ When you stop, hibernate, or terminate an instance, every block of storage in th
 
 If you create an AMI from an instance, the data on its instance store volumes isn't preserved and isn't present on the instance store volumes of the instances that you launch from the AMI\.
 
-If you change the instance type, an instance store will not be attached to the new instance type\. For more information, see [Changing the instance type](ec2-instance-resize.md)\.
+If you change the instance type, an instance store will not be attached to the new instance type\. For more information, see [Change the instance type](ec2-instance-resize.md)\.
 
 ## Instance store volumes<a name="instance-store-volumes"></a>
 

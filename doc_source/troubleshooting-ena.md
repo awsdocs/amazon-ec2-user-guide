@@ -39,7 +39,7 @@ If you are using an instance store\-backed instance, you can't stop the instance
 1. \(Optional\) Connect to your instance and try reinstalling the `ena` module with your current kernel version by following the steps in [Enabling enhanced networking with the Elastic Network Adapter \(ENA\) on Linux instances](enhanced-networking-ena.md)\.
 <a name="disable-enhanced-networking-ena-instance-store"></a>
 **To disable enhanced networking with ENA \(instance store\-backed instances\)**  
-If your instance is an instance store\-backed instance, create a new AMI as described in [Creating an instance store\-backed Linux AMI](creating-an-ami-instance-store.md)\. Be sure to disable the enhanced networking `enaSupport` attribute when you register the AMI\.
+If your instance is an instance store\-backed instance, create a new AMI as described in [Create an instance store\-backed Linux AMI](creating-an-ami-instance-store.md)\. Be sure to disable the enhanced networking `enaSupport` attribute when you register the AMI\.
 + [register\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) \(AWS CLI\)
 
   ```

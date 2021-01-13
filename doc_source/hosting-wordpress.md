@@ -1,4 +1,4 @@
-# Tutorial: Hosting a WordPress blog with Amazon Linux<a name="hosting-wordpress"></a>
+# Tutorial: Host a WordPress blog with Amazon Linux<a name="hosting-wordpress"></a>
 
 The following procedures will help you install, configure, and secure a WordPress blog on your Amazon Linux instance\. This tutorial is a good introduction to using Amazon EC2 in that you have full control over a web server that hosts your WordPress blog, which is not typical with a traditional hosting service\.
 
@@ -383,13 +383,13 @@ After you have tested your WordPress blog, consider updating its configuration\.
 If you have a domain name associated with your EC2 instance's EIP address, you can configure your blog to use that name instead of the EC2 public DNS address\. For more information, see [Changing The Site URL](https://wordpress.org/support/article/changing-the-site-url/) on the WordPress website\.
 
 **Configure your blog**  
-You can configure your blog to use different [themes](https://wordpress.org/themes/) and [plugins](https://wordpress.org/plugins/) to offer a more personalized experience for your readers\. However, sometimes the installation process can backfire, causing you to lose your entire blog\. We strongly recommend that you create a backup Amazon Machine Image \(AMI\) of your instance before attempting to install any themes or plugins so you can restore your blog if anything goes wrong during installation\. For more information, see [Creating your own AMI](AMIs.md#creating-an-ami)\.
+You can configure your blog to use different [themes](https://wordpress.org/themes/) and [plugins](https://wordpress.org/plugins/) to offer a more personalized experience for your readers\. However, sometimes the installation process can backfire, causing you to lose your entire blog\. We strongly recommend that you create a backup Amazon Machine Image \(AMI\) of your instance before attempting to install any themes or plugins so you can restore your blog if anything goes wrong during installation\. For more information, see [Create your own AMI](AMIs.md#creating-an-ami)\.
 
 **Increase capacity**  
 If your WordPress blog becomes popular and you need more compute power or storage, consider the following steps:
 + Expand the storage space on your instance\. For more information, see [Amazon EBS Elastic Volumes](ebs-modify-volume.md)\.
 + Move your MySQL database to [Amazon RDS](https://aws.amazon.com/rds) to take advantage of the service's ability to scale easily\.
-+ Migrate to a larger instance type\. For more information, see [Changing the instance type](ec2-instance-resize.md)\.
++ Migrate to a larger instance type\. For more information, see [Change the instance type](ec2-instance-resize.md)\.
 + Add additional instances\. For more information, see [Tutorial: Increase the availability of your application on Amazon EC2](ec2-increase-availability.md)\.
 
 **Learn more about WordPress**  

@@ -63,7 +63,7 @@ When you stop an instance, the data on any instance store volumes is erased\. To
 ## Step 4: Launch a temporary instance<a name="step-4-launch-temp-instance"></a>
 
 Choose **Launch instances**, and then use the launch wizard to launch a *temporary* instance with the following options:
-+ On the **Choose an AMI** page, select the same AMI that you used to launch the original instance\. If this AMI is unavailable, you can create an AMI that you can use from the stopped instance\. For more information, see [Creating an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md)\.
++ On the **Choose an AMI** page, select the same AMI that you used to launch the original instance\. If this AMI is unavailable, you can create an AMI that you can use from the stopped instance\. For more information, see [Create an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md)\.
 + On the **Choose an Instance Type** page, leave the default instance type that the wizard selects for you\.
 + On the **Configure Instance Details** page, specify the same Availability Zone as the original instance\. If you're launching an instance in a VPC, select a subnet in this Availability Zone\.
 + On the **Add Tags** page, add the tag `Name=Temporary` to the instance to indicate that this is a temporary instance\.

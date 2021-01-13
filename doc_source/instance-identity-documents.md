@@ -69,7 +69,7 @@ The following is example output\.
 }
 ```
 
-## Verifying the instance identity document<a name="verify-iid"></a>
+## Verify the instance identity document<a name="verify-iid"></a>
 
 If you intend to use the contents of the instance identity document for an important purpose, you should verify its contents and authenticity before using it\.
 
@@ -84,6 +84,6 @@ Each signature is available at a different endpoint in the instance metadata\. Y
 To validate the instance identity document using the base64\-encoded signature or RSA2048 signature, you must request the corresponding AWS public certificate from [ AWS Support](https://console.aws.amazon.com/support/home#/)\. 
 
 The following topics provide detailed steps for validating the instance identity document using each signature\.
-+ [Using the PKCS7 signature to verify the instance identity document](verify-pkcs7.md)
-+ [Using the base64\-encoded signature to verify the instance identity document](verify-signature.md)
-+ [Using the RSA\-2048 signature to verify the instance identity document](verify-rsa2048.md)
++ [Use the PKCS7 signature to verify the instance identity document](verify-pkcs7.md)
++ [Use the base64\-encoded signature to verify the instance identity document](verify-signature.md)
++ [Use the RSA\-2048 signature to verify the instance identity document](verify-rsa2048.md)

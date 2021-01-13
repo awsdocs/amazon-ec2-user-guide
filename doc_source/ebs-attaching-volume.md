@@ -1,4 +1,4 @@
-# Attaching an Amazon EBS volume to an instance<a name="ebs-attaching-volume"></a>
+# Attach an Amazon EBS volume to an instance<a name="ebs-attaching-volume"></a>
 
 You can attach an available EBS volume to one or more of your instances that is in the same Availability Zone as the volume\.
 
@@ -6,7 +6,7 @@ For information about adding EBS volumes to your instance at launch, see [Instan
 
 **Prerequisites**
 + Determine how many volumes you can attach to your instance\. For more information, see [Instance volume limits](volume_limits.md)\.
-+ Determine whether you can attach your volume to multiple instances and enable Multi\-Attach\. For more information, see [Attaching a volume to multiple instances with Amazon EBS Multi\-Attach](ebs-volumes-multi.md)\.
++ Determine whether you can attach your volume to multiple instances and enable Multi\-Attach\. For more information, see [Attach a volume to multiple instances with Amazon EBS Multi\-Attach](ebs-volumes-multi.md)\.
 + If a volume is encrypted, it can only be attached to an instance that supports Amazon EBS encryption\. For more information, see [Supported instance types](EBSEncryption.md#EBSEncryption_supported_instances)\.
 + If a volume has an AWS Marketplace product code:
   + The volume can only be attached to a stopped instance\.
@@ -28,7 +28,7 @@ For information about adding EBS volumes to your instance at launch, see [Instan
 
 1. Choose **Attach**\.
 
-1. Connect to your instance and mount the volume\. For more information, see [Making an Amazon EBS volume available for use on Linux](ebs-using-volumes.md)\.
+1. Connect to your instance and mount the volume\. For more information, see [Make an Amazon EBS volume available for use on Linux](ebs-using-volumes.md)\.
 
 **To attach an EBS volume to an instance using the command line**
 

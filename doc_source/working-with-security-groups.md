@@ -34,7 +34,7 @@ You can create a custom security group using one of the following methods\. You 
 
 1. In the **Basic details** section, do the following\.
 
-   1. Enter a descriptive name and brief description for the security group\. The name and description can be up to 255 characters long, and they can include `a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=&;{}!$*`\.
+   1. Enter a descriptive name and brief description for the security group\. They can't be edited after the security group is created\. The name and description can be up to 255 characters long\. The valid characters are `a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=&;{}!$*`\.
 
    1. For **VPC**, choose the VPC in which to create the security group\. The security group can only be used in the VPC in which it is created\.
 
@@ -272,7 +272,7 @@ Use one of the following commands\.
 
 ## Updating security group rules<a name="updating-security-group-rules"></a>
 
-You can update a security group rule using one of the following methods\.
+You can update a security group rule using one of the following methods\. The updated rule is automatically applied to any instances that are associated with the security group\.
 
 ------
 #### [ New console ]
@@ -421,7 +421,7 @@ Use one of the following commands\.
 
 You can assign one or more security groups to an instance when you launch the instance\. You can also specify one or more security groups in a launch template\. The security groups will be assigned to all instances that are launched using the launch template\.
 + To assign a security group to an instance when you launch the instance, see [Step 6: Configure Security Group](launching-instance.md#step-6-configure-security-group)\.
-+ To specify a security group in a launch template, see Step 6 of [Creating a new launch template using parameters you define](ec2-launch-templates.md#create-launch-template-define-parameters)\.
++ To specify a security group in a launch template, see Step 6 of [Create a new launch template using parameters you define](ec2-launch-templates.md#create-launch-template-define-parameters)\.
 
 ## Changing an instance's security group<a name="changing-security-group"></a>
 

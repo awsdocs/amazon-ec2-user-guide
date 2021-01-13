@@ -1,4 +1,4 @@
-# Configuring the instance metadata service<a name="configuring-instance-metadata-service"></a>
+# Configure the instance metadata service<a name="configuring-instance-metadata-service"></a>
 
 You can access instance metadata from a running instance using one of the following methods:
 + Instance Metadata Service Version 1 \(IMDSv1\) – a request/response method
@@ -6,9 +6,9 @@ You can access instance metadata from a running instance using one of the follow
 
 By default, you can use either IMDSv1 or IMDSv2, or both\. The instance metadata service distinguishes between IMDSv1 and IMDSv2 requests based on whether, for any given request, either the `PUT` or `GET` headers, which are unique to IMDSv2, are present in that request\.
 
-You can configure the instance metadata service on each instance such that local code or users must use IMDSv2\. When you specify that IMDSv2 must be used, IMDSv1 no longer works\. For more information, see [Configuring the instance metadata options](#configuring-instance-metadata-options)\.
+You can configure the instance metadata service on each instance such that local code or users must use IMDSv2\. When you specify that IMDSv2 must be used, IMDSv1 no longer works\. For more information, see [Configure the instance metadata options](#configuring-instance-metadata-options)\.
 
-To retrieve instance metadata, see [Retrieving instance metadata](instancedata-data-retrieval.md)\.
+To retrieve instance metadata, see [Retrieve instance metadata](instancedata-data-retrieval.md)\.
 
 ## How Instance Metadata Service Version 2 works<a name="instance-metadata-v2-how-it-works"></a>
 
@@ -38,13 +38,13 @@ When you use IMDSv2 to request instance metadata, the request must include the f
    + The token is an instance\-specific key\. The token is not valid on other EC2 instances and will be rejected if you attempt to use it outside of the instance on which it was generated\.
    + The `PUT` request must include a header that specifies the time to live \(TTL\) for the token, in seconds, up to a maximum of six hours \(21,600 seconds\)\. The token represents a logical session\. The TTL specifies the length of time that the token is valid and, therefore, the duration of the session\.
    + After a token expires, to continue accessing instance metadata, you must create a new session using another `PUT`\.
-   + You can choose to reuse a token or create a new token with every request\. For a small number of requests, it might be easier to generate and immediately use a token each time you need to access the instance metadata service\. But for efficiency, you can specify a longer duration for the token and reuse it rather than having to write a `PUT` request every time you need to request instance metadata\. There is no practical limit on the number of concurrent tokens, each representing its own session\. IMDSv2 is, however, still constrained by normal instance metadata service connection and throttling limits\. For more information, see [Throttling](instancedata-data-retrieval.md#instancedata-throttling)\.
+   + You can choose to reuse a token or create a new token with every request\. For a small number of requests, it might be easier to generate and immediately use a token each time you need to access the instance metadata service\. But for efficiency, you can specify a longer duration for the token and reuse it rather than having to write a `PUT` request every time you need to request instance metadata\. There is no practical limit on the number of concurrent tokens, each representing its own session\. IMDSv2 is, however, still constrained by normal instance metadata service connection and throttling limits\. For more information, see [Query throttling](instancedata-data-retrieval.md#instancedata-throttling)\.
 
 HTTP `GET` and `HEAD` methods are allowed in IMDSv2 instance metadata requests\. `PUT` requests are rejected if they contain an X\-Forwarded\-For header\.
 
 By default, the response to `PUT` requests has a response hop limit \(time to live\) of `1` at the IP protocol level\. You can adjust the hop limit using the `modify-instance-metadata-options` command if you need to make it larger\. For example, you might need a larger hop limit for backward compatibility with container services running on the instance\. For more information, see [modify\-instance\-metadata\-options](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-metadata-options.html) in the *AWS CLI Command Reference*\.
 
-## Transitioning to using Instance Metadata Service Version 2<a name="instance-metadata-transition-to-version-2"></a>
+## Transition to using Instance Metadata Service Version 2<a name="instance-metadata-transition-to-version-2"></a>
 
 Use of Instance Metadata Service Version 2 \(IMDSv2\) is optional\. Instance Metadata Service Version 1 \(IMDSv1\) will continue to be supported indefinitely\. If you choose to migrate to using IMDSv2, we recommend that you use the following tools and transition path\. 
 
@@ -88,13 +88,13 @@ Everything is ready on all instances when the CloudWatch metric `MetadataNoToken
   + In the Amazon EC2 console launch instance wizard, set **Metadata accessible** to **Enabled** and **Metadata version** to **V2**\. For more information, see [Step 3: Configure Instance Details](launching-instance.md#configure_instance_details_step)\.
   + Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command to specify that only IMDSv2 is to be used\.
 
-Updating instance metadata options for existing instances is available only through the API or AWS CLI\. It is currently not available in the Amazon EC2 console\. For more information, see [Configuring the instance metadata options](#configuring-instance-metadata-options)\.
+Updating instance metadata options for existing instances is available only through the API or AWS CLI\. It is currently not available in the Amazon EC2 console\. For more information, see [Configure the instance metadata options](#configuring-instance-metadata-options)\.
 
 ### Step 4: When all of your instances are transitioned to IMDSv2<a name="path-step-4"></a>
 
 The `ec2:MetadataHttpTokens`, `ec2:MetadataHttpPutResponseHopLimit`, and `ec2:MetadataHttpEndpoint` IAM condition keys can be used to control the use of the [RunInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html) and the [ModifyInstanceMetadataOptions](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyInstanceMetadataOptions.html) API and corresponding CLI\. If a policy is created, and a parameter in the API call does not match the state specified in the policy using the condition key, the API or CLI call fails with an `UnauthorizedOperation` response\. For example IAM policies, see [Working with instance metadata](ExamplePolicies_EC2.md#iam-example-instance-metadata)\.
 
-## Configuring the instance metadata options<a name="configuring-instance-metadata-options"></a>
+## Configure the instance metadata options<a name="configuring-instance-metadata-options"></a>
 
 Instance metadata options allow you to configure new or existing instances to do the following:
 + Require the use of IMDSv2 when requesting instance metadata
@@ -116,10 +116,10 @@ If you enforce the use of IMDSv2, applications or agents that use IMDSv1 for ins
 If you turn off all access to instance metadata, applications or agents that rely on instance metadata access to function will break\.
 
 **Topics**
-+ [Configuring instance metadata options for new instances](#configuring-IMDS-new-instances)
-+ [Configuring instance metadata options for existing instances](#configuring-IMDS-existing-instances)
++ [Configure instance metadata options for new instances](#configuring-IMDS-new-instances)
++ [Configure instance metadata options for existing instances](#configuring-IMDS-existing-instances)
 
-### Configuring instance metadata options for new instances<a name="configuring-IMDS-new-instances"></a>
+### Configure instance metadata options for new instances<a name="configuring-IMDS-new-instances"></a>
 
 You can require the use of IMDSv2 on an instance when you launch it\. You can also create an IAM policy that prevents users from launching new instances unless they require IMDSv2 on the new instance\.
 
@@ -177,7 +177,7 @@ aws ec2 run-instances
 
 ------
 
-### Configuring instance metadata options for existing instances<a name="configuring-IMDS-existing-instances"></a>
+### Configure instance metadata options for existing instances<a name="configuring-IMDS-existing-instances"></a>
 
 You can require the use IMDSv2 on an existing instance\. You can also change the PUT response hop limit and turn off access to instance metadata on an existing instance\. You can also create an IAM policy that prevents users from modifying the instance metadata options on an existing instance\.
 

@@ -1,12 +1,12 @@
-# Using Amazon EventBridge to monitor Spot Fleet events<a name="spot-fleet-eventbridge"></a>
+# Use Amazon EventBridge to monitor Spot Fleet events<a name="spot-fleet-eventbridge"></a>
 
-When the state of a Spot Fleet changes, the Spot Fleet emits a notification\. The notification is made available as an event that is sent to Amazon EventBridge \(formerly known as Amazon CloudWatch Events\)\.
+When the state of a Spot Fleet changes, the Spot Fleet emits a notification\. The notification is made available as an event that is sent to Amazon EventBridge \(formerly known as Amazon CloudWatch Events\)\. Events are emitted on a best effort basis\.
 
 With Amazon EventBridge, you can create rules that trigger programmatic actions in response to an event\. For example, you can create two EventBridge rules, one that's triggered when a fleet state changes, and one that's triggered when an instance in the fleet is terminated\. If the fleet state changes, the first EventBridge rule invokes an SNS topic to send an email notification to you\. If an instance is terminated, the second EventBridge rule invokes a Lambda function to launch a new instance\.
 
 **Topics**
 + [Spot Fleet event types](#spot-fleet-event-types)
-+ [Using Amazon EventBridge](#spot-fleet-using-eventbridge)
++ [Use Amazon EventBridge](#spot-fleet-using-eventbridge)
 
 ## Spot Fleet event types<a name="spot-fleet-event-types"></a>
 
@@ -235,7 +235,7 @@ The configuration is not valid\. For more information, see the description of th
 `spotInstanceCountLimitExceeded`  
 You’ve reached the limit on the number of Spot Instances that you can launch\.
 
-## Using Amazon EventBridge<a name="spot-fleet-using-eventbridge"></a>
+## Use Amazon EventBridge<a name="spot-fleet-using-eventbridge"></a>
 
 When a notification of a state change is emitted for a Spot Fleet, the event for the notification is sent to Amazon EventBridge\. If EventBridge detects an event pattern that matches a pattern defined in a rule, EventBridge invokes a target \(or targets\) specified in the rule\.
 

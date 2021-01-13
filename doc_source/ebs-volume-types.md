@@ -125,7 +125,7 @@ If your `gp2` volume uses all of its I/O credit balance, the maximum IOPS perfor
 
 If you notice that your volume performance is frequently limited to the baseline level \(due to an empty I/O credit balance\), you should consider switching to a `gp3` volume\.
 
-For information about using CloudWatch metrics and alarms to monitor your burst bucket balance, see [Monitoring the burst bucket balance for volumes](#monitoring_burstbucket)\.
+For information about using CloudWatch metrics and alarms to monitor your burst bucket balance, see [Monitor the burst bucket balance for volumes](#monitoring_burstbucket)\.
 
 ### Throughput performance<a name="GP2Throughput"></a>
 
@@ -223,19 +223,19 @@ With `io2` Block Express volumes, you can provision volumes with:
 + `io2` Block Express volumes are not optimized for boot and could cause longer boot times\. We recommend that you continue to use `io1`, `gp2`, or `gp3` for boot volumes\.
 + You can't create encrypted `io2` Block Express volumes, or launch instances with encrypted `io2` Block Express volumes, from unencrypted snapshots or shared snapshots\. To create encrypted `io2` Block Express volumes, or launch instances with encrypted `io2` Block Express volumes, you must use encrypted snapshots or AMIs that you own in your account\.
 + You can't create encrypted `io2` Block Express volumes, or launch instances with encrypted `io2` Block Express volumes using the Amazon EC2 console\. You must use the Amazon EC2 API or the AWS CLI\.
-+ `io2` Block Express volumes do not fully support fast snapshot restore\. While you can restore `io2` Block Express volumes from snapshots that are enabled for fast snapshot restore, you will experience higher I/O latency while the volumes are being initialized\. This is formerly known as pre\-warming\. To avoid the higher latency, we recommend that you initialize your `io2` Block Express volumes before starting your I/O operations\. For more information, see [Initializing Amazon EBS volumes](ebs-initialize.md)\.
++ `io2` Block Express volumes do not fully support fast snapshot restore\. While you can restore `io2` Block Express volumes from snapshots that are enabled for fast snapshot restore, you will experience higher I/O latency while the volumes are being initialized\. This is formerly known as pre\-warming\. To avoid the higher latency, we recommend that you initialize your `io2` Block Express volumes before starting your I/O operations\. For more information, see [Initialize Amazon EBS volumes](ebs-initialize.md)\.
 + `io2` Block Express volumes do not support Elastic Volume operations\. You can't change the volume type or performance after the volume has been created\.
 + `io2` Block Express volumes do not support Multi\-Attach\.
 
 #### Opt in to the preview<a name="io2-bx-optin"></a>
 
-To opt in to the `io2` Block Express volumes preview, visit the [ Opt in page](https://pages.awscloud.com/io2-block-express-preview.html) and complete the form\. You must specify the Regions in which to opt in\.
+To opt in to the `io2` Block Express volumes preview, visit the [ `io2` Block Express volumes Preview page](https://pages.awscloud.com/io2-block-express-preview.html) and complete the form\. You must specify the Regions in which to opt in\.
 
 After you opt in, all new `io2` volumes that you create in your account in the opted\-in Regions will be `io2` Block Express volumes\. While your account is opted in, you will not be able to create `io2` volumes that are not `io2` Block Express volumes in the opted\-in Regions\. To transition your existing workloads from your existing volumes, create snapshots of the volumes and then restore them to new `io2` Block Express volumes\.
 
 #### Opt out of the preview<a name="io2-bx-optout"></a>
 
-To opt out of the `io2` Block Express volumes preview, visit the [ Opt in page](https://pages.awscloud.com/io2-block-express-preview.html) and complete the form\. You must specify the Regions in which to opt out\.
+To opt out of the `io2` Block Express volumes preview, visit the [ `io2` Block Express volumes Preview page](https://pages.awscloud.com/io2-block-express-preview.html), leave all of the Region check boxes unselected and complete the rest of the form\.
 
 After you opt out, all new `io2` volumes that you create in the opted\-out Regions will be `io2` volumes, and not `io2` Block Express volumes\. `io2` volumes that you created in the opted\-out Regions before opting out will continue to be `io2` Block Express volumes\. If you created snapshots of volumes larger than 16 TiB, you will not be able to restore them to `io2` volumes in the opted\-out Regions\. Before opting out, we recommend that for `io2` Block Express volumes greater than 16 TiB you copy the data to a raid set that comprises of `io2` volumes less than 16 TiB in size and then create a backup of the raid set using multi\-volume snapshots\. For more information, see [Multi\-volume snapshots](ebs-creating-snapshot.md#ebs-create-snapshot-multi-volume)\.
 
@@ -323,7 +323,7 @@ The following diagram plots the table values:
 **Note**  
 When you create a snapshot of a Throughput Optimized HDD \(`st1`\) volume, performance may drop as far as the volume's baseline value while the snapshot is in progress\.
 
-For information about using CloudWatch metrics and alarms to monitor your burst bucket balance, see [Monitoring the burst bucket balance for volumes](#monitoring_burstbucket)\.
+For information about using CloudWatch metrics and alarms to monitor your burst bucket balance, see [Monitor the burst bucket balance for volumes](#monitoring_burstbucket)\.
 
 ## Cold HDD volumes<a name="EBSVolumeTypes_sc1"></a>
 
@@ -398,7 +398,7 @@ The following diagram plots the table values:
 **Note**  
 When you create a snapshot of a Cold HDD \(`sc1`\) volume, performance may drop as far as the volume's baseline value while the snapshot is in progress\.
 
-For information about using CloudWatch metrics and alarms to monitor your burst bucket balance, see [Monitoring the burst bucket balance for volumes](#monitoring_burstbucket)\.
+For information about using CloudWatch metrics and alarms to monitor your burst bucket balance, see [Monitor the burst bucket balance for volumes](#monitoring_burstbucket)\.
 
 ## Magnetic volumes<a name="EBSVolumeTypes_standard"></a>
 
@@ -407,7 +407,7 @@ Magnetic volumes are backed by magnetic drives and are suited for workloads wher
 **Note**  
 Magnetic is a previous generation volume type\. For new applications, we recommend using one of the newer volume types\. For more information, see [Previous Generation Volumes](http://aws.amazon.com/ebs/previous-generation/)\.
 
-For information about using CloudWatch metrics and alarms to monitor your burst bucket balance, see [Monitoring the burst bucket balance for volumes](#monitoring_burstbucket)\.
+For information about using CloudWatch metrics and alarms to monitor your burst bucket balance, see [Monitor the burst bucket balance for volumes](#monitoring_burstbucket)\.
 
 ## Performance considerations when using HDD volumes<a name="EBSVolumeTypes_considerations"></a>
 
@@ -493,6 +493,6 @@ Throughput for `st1` and `sc1` volumes is always determined by the smaller of th
 
 As for all Amazon EBS volumes, we recommend that you select an appropriate EBS\-optimized EC2 instance in order to avoid network bottlenecks\. For more information, see [Amazon EBS–optimized instances](ebs-optimized.md)\.
 
-## Monitoring the burst bucket balance for volumes<a name="monitoring_burstbucket"></a>
+## Monitor the burst bucket balance for volumes<a name="monitoring_burstbucket"></a>
 
 You can monitor the burst\-bucket level for `gp2`, `st1`, and `sc1` volumes using the EBS `BurstBalance` metric available in Amazon CloudWatch\. This metric shows the percentage of I/O credits \(for `gp2`\) or throughput credits \(for `st1` and `sc1`\) remaining in the burst bucket\. For more information about the `BurstBalance` metric and other metrics related to I/O, see [I/O characteristics and monitoring](ebs-io-characteristics.md)\. CloudWatch also allows you to set an alarm that notifies you when the `BurstBalance` value falls to a certain level\. For more information, see [Creating Amazon CloudWatch Alarms](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html)\.

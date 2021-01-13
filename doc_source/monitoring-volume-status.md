@@ -1,12 +1,12 @@
-# Monitoring the status of your volumes<a name="monitoring-volume-status"></a>
+# Monitor the status of your volumes<a name="monitoring-volume-status"></a>
 
 Amazon Web Services \(AWS\) automatically provides data that you can use to monitor your Amazon Elastic Block Store \(Amazon EBS\) volumes\.
 
 **Topics**
 + [EBS volume status checks](#monitoring-volume-checks)
 + [EBS volume events](#monitoring-vol-events)
-+ [Working with an impaired volume](#work_volumes_impaired)
-+ [Working with the Auto\-Enabled IO volume attribute](#volumeIO)
++ [Work with an impaired volume](#work_volumes_impaired)
++ [Work with the Auto\-Enabled IO volume attribute](#volumeIO)
 
 For additional monitoring information, see [Amazon CloudWatch metrics for Amazon EBS](using_cloudwatch_ebs.md) and [Amazon CloudWatch Events for Amazon EBS](ebs-cloud-watch-events.md)\.
 
@@ -26,7 +26,7 @@ If the consistency of a particular volume is not a concern, and you'd prefer tha
 The I/O performance status check compares actual volume performance to the expected performance of a volume and alerts you if the volume is performing below expectations\. This status check is only available for Provisioned IOPS SSD \(`io1` and `io2`\) volumes that are attached to an instance\. It is not valid for General Purpose SSD \(`gp2` and `gp3`\), Throughput Optimized HDD \(`st1`\), Cold HDD \(`sc1`\), or Magnetic \(`standard`\) volumes\. The I/O performance status check is performed once every minute and CloudWatch collects this data every 5 minutes, so it might take up to 5 minutes from the moment you attach an `io1` or `io2` volume to an instance for this check to report the I/O performance status\.
 
 **Important**  
-While initializing Provisioned IOPS SSD volumes that were restored from snapshots, the performance of the volume may drop below 50 percent of its expected level, which causes the volume to display a `warning` state in the **I/O Performance** status check\. This is expected, and you can ignore the `warning` state on Provisioned IOPS SSD volumes while you are initializing them\. For more information, see [Initializing Amazon EBS volumes](ebs-initialize.md)\.
+While initializing Provisioned IOPS SSD volumes that were restored from snapshots, the performance of the volume may drop below 50 percent of its expected level, which causes the volume to display a `warning` state in the **I/O Performance** status check\. This is expected, and you can ignore the `warning` state on Provisioned IOPS SSD volumes while you are initializing them\. For more information, see [Initialize Amazon EBS volumes](ebs-initialize.md)\.
 
 The following table lists statuses for Amazon EBS volumes\.
 
@@ -49,7 +49,7 @@ To view and work with status checks, you can use the Amazon EC2 console, the API
 1. To view the status details of a volume, select the volume and choose **Status Checks**\.  
 ![\[Viewing EBS volume status\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/AutoEnableSetting_statustab_gwt.png)
 
-1. If you have a volume with a failed status check \(status is **impaired**\), see [Working with an impaired volume](#work_volumes_impaired)\.
+1. If you have a volume with a failed status check \(status is **impaired**\), see [Work with an impaired volume](#work_volumes_impaired)\.
 
 Alternatively, you can choose **Events** in the navigator to view all the events for your instances and volumes\. For more information, see [EBS volume events](#monitoring-vol-events)\.
 
@@ -63,7 +63,7 @@ You can use one of the following commands to view the status of your Amazon EBS 
 
 When Amazon EBS determines that a volume's data is potentially inconsistent, it disables I/O to the volume from any attached EC2 instances by default\. This causes the volume status check to fail, and creates a volume status event that indicates the cause of the failure\. 
 
-To automatically enable I/O on a volume with potential data inconsistencies, change the setting of the **Auto\-Enabled IO** volume attribute \(`autoEnableIO` in the API\)\. For more information about changing this attribute, see [Working with an impaired volume](#work_volumes_impaired)\.
+To automatically enable I/O on a volume with potential data inconsistencies, change the setting of the **Auto\-Enabled IO** volume attribute \(`autoEnableIO` in the API\)\. For more information about changing this attribute, see [Work with an impaired volume](#work_volumes_impaired)\.
 
 Each event includes a start time that indicates the time at which the event occurred, and a duration that indicates how long I/O for the volume was disabled\. The end time is added to the event when I/O for the volume is enabled\.
 
@@ -103,7 +103,7 @@ You can view events for your volumes using the Amazon EC2 console, the API, or t
 1. Select a volume to view its specific event\.  
 ![\[Viewing volume events\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ViewVolEvents-gwt.png)
 
-If you have a volume where I/O is disabled, see [Working with an impaired volume](#work_volumes_impaired)\. If you have a volume where I/O performance is below normal, this might be a temporary condition due to an action you have taken \(for example, creating a snapshot of a volume during peak usage, running the volume on an instance that cannot support the I/O bandwidth required, accessing data on the volume for the first time, etc\.\)\.
+If you have a volume where I/O is disabled, see [Work with an impaired volume](#work_volumes_impaired)\. If you have a volume where I/O performance is below normal, this might be a temporary condition due to an action you have taken \(for example, creating a snapshot of a volume during peak usage, running the volume on an instance that cannot support the I/O bandwidth required, accessing data on the volume for the first time, etc\.\)\.
 
 **To view events for your volumes with the command line**
 
@@ -111,7 +111,7 @@ You can use one of the following commands to view event information for your Ama
 + [describe\-volume\-status](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-volume-status.html) \(AWS CLI\)
 + [Get\-EC2VolumeStatus](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2VolumeStatus.html) \(AWS Tools for Windows PowerShell\)
 
-## Working with an impaired volume<a name="work_volumes_impaired"></a>
+## Work with an impaired volume<a name="work_volumes_impaired"></a>
 
 Use the following options if a volume is impaired because the volume's data is potentially inconsistent\.
 
@@ -183,7 +183,7 @@ This procedure may cause the loss of write I/Os that were suspended when volume 
    1. In the details pane, choose **Enable Volume IO**, and then choose **Yes, Enable**\.   
 ![\[Enable IO\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/EnableIO_volumepage_gwt.png)
 
-1. Attach the volume to another instance\. For more information, see [Launch your instance](LaunchingAndUsingInstances.md) and [Attaching an Amazon EBS volume to an instance](ebs-attaching-volume.md)\.
+1. Attach the volume to another instance\. For more information, see [Launch your instance](LaunchingAndUsingInstances.md) and [Attach an Amazon EBS volume to an instance](ebs-attaching-volume.md)\.
 
 1. Check the data on the volume\.
 
@@ -201,11 +201,11 @@ You can use one of the following commands to view event information for your Ama
 
 ### Option 3: Delete the volume if you no longer need it<a name="work_volumes_impaired_option3"></a>
 
-If you want to remove the volume from your environment, simply delete it\. For information about deleting a volume, see [Deleting an Amazon EBS volume](ebs-deleting-volume.md)\.
+If you want to remove the volume from your environment, simply delete it\. For information about deleting a volume, see [Delete an Amazon EBS volume](ebs-deleting-volume.md)\.
 
-If you have a recent snapshot that backs up the data on the volume, you can create a new volume from the snapshot\. For more information, see [Creating a volume from a snapshot](ebs-creating-volume.md#ebs-create-volume-from-snapshot)\.
+If you have a recent snapshot that backs up the data on the volume, you can create a new volume from the snapshot\. For more information, see [Create a volume from a snapshot](ebs-creating-volume.md#ebs-create-volume-from-snapshot)\.
 
-## Working with the Auto\-Enabled IO volume attribute<a name="volumeIO"></a>
+## Work with the Auto\-Enabled IO volume attribute<a name="volumeIO"></a>
 
 When Amazon EBS determines that a volume's data is potentially inconsistent, it disables I/O to the volume from any attached EC2 instances by default\. This causes the volume status check to fail, and creates a volume status event that indicates the cause of the failure\. If the consistency of a particular volume is not a concern, and you prefer that the volume be made available immediately if it's **impaired**, you can override the default behavior by configuring the volume to automatically enable I/O\. If you enable the **Auto\-Enabled IO** volume attribute \(`autoEnableIO` in the API\), I/O between the volume and the instance is automatically re\-enabled and the volume's status check will pass\. In addition, you'll see an event that lets you know that the volume was in a potentially inconsistent state, but that its I/O was automatically enabled\. When this event occurs, you should check the volume's consistency and replace it if necessary\. For more information, see [EBS volume events](#monitoring-vol-events)\.
 

@@ -1,4 +1,4 @@
-# Automating cross\-account snapshot copies<a name="event-policy"></a>
+# Automate cross\-account snapshot copies<a name="event-policy"></a>
 
 Automating cross\-account snapshot copies enables you to copy your Amazon EBS snapshots to specific Regions in an isolated account and encrypt those snapshots with an encryption key\. This enables you to protect yourself against data loss in the event of your account being compromised\.
 
@@ -7,10 +7,10 @@ Automating cross\-account snapshots copies involves two accounts:
 + **Target account**—The target account is the account with destination account with which the snapshots are shared, and it is the account that creates copies of the shared snapshots\. In this account, you must create a cross\-account copy event policy that automatically copies snapshots that are shared with it by one or more specified source accounts\.
 
 **Topics**
-+ [Creating cross\-account snapshot copy policies](#create-cac-policy)
-+ [Specifying snapshot description filters](#snapshot-descr-filters)
++ [Create cross\-account snapshot copy policies](#create-cac-policy)
++ [Specify snapshot description filters](#snapshot-descr-filters)
 
-## Creating cross\-account snapshot copy policies<a name="create-cac-policy"></a>
+## Create cross\-account snapshot copy policies<a name="create-cac-policy"></a>
 
 To prepare the source and target accounts for cross\-account snapshot copying, you need to perform the following steps:
 
@@ -231,7 +231,7 @@ Use one of the following methods to create the cross\-account copy event policy\
 
 1. In the **Cross\-account copy event settings** section, for **Copy snapshots shared by**, enter the source AWS accounts from which you want to copy the shared snapshots\.
 
-1. For **Snapshot description filter**, enter the required snapshot description using a regular expression\. Only snapshots that are shared by the specified sources accounts and that have descriptions that match the specified filter are copied by the policy\. For more information, see [Specifying snapshot description filters](#snapshot-descr-filters)\. 
+1. For **Snapshot description filter**, enter the required snapshot description using a regular expression\. Only snapshots that are shared by the specified sources accounts and that have descriptions that match the specified filter are copied by the policy\. For more information, see [Specify snapshot description filters](#snapshot-descr-filters)\. 
 
 1. For **IAM role**, choose the IAM role that has permissions to perform the snapshot copy action\. AWS provides a default role, or you can create a custom IAM role\.
 
@@ -432,7 +432,7 @@ $ aws iam put-role-policy –role-name AWSDataLifecycleManagerDefaultRole --poli
 
 ------
 
-## Specifying snapshot description filters<a name="snapshot-descr-filters"></a>
+## Specify snapshot description filters<a name="snapshot-descr-filters"></a>
 
 When you create the snapshot copy policy in the target account, you must specify a snapshot description filter\. The snapshot description filter enables you to specify an additional level of filtering that lets you control which snapshots are copied by the policy\. This means that a snapshot is only copied by the policy if it is shared by one of the specified source accounts, and it has a snapshot description that matches the specified filter\. In other words, if a snapshot is shared by one of the specified course accounts, but it does not have a description that matches the specified filter, it is not copied by the policy\.
 

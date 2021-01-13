@@ -39,28 +39,28 @@ One strategy is to maintain a minimum level of guaranteed compute resources for 
 
 ![\[Compare On-Demand and Spot Instances\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/spot_introduction.png)
 
-Another strategy is to launch Spot Instances with a specified duration \(also known as Spot blocks\), which are designed not to be interrupted and will run continuously for the duration you select\. In rare situations, Spot blocks may be interrupted due to Amazon EC2 capacity needs\. In these cases, we provide a two\-minute warning before we terminate an instance, and you are not charged for the terminated instances even if you used them\. For more information, see [Defining a duration for your Spot Instances](spot-requests.md#fixed-duration-spot-instances)\.
+Another strategy is to launch Spot Instances with a specified duration \(also known as Spot blocks\), which are designed not to be interrupted and will run continuously for the duration you select\. In rare situations, Spot blocks may be interrupted due to Amazon EC2 capacity needs\. In these cases, we provide a two\-minute warning before we terminate an instance, and you are not charged for the terminated instances even if you used them\. For more information, see [Define a duration for your Spot Instances](spot-requests.md#fixed-duration-spot-instances)\.
 
 ## How to get started<a name="spot-get-started"></a>
 
 The first thing you need to do is get set up to use Amazon EC2\. It can also be helpful to have experience launching On\-Demand Instances before launching Spot Instances\.
 
 **Get up and running**
-+ [Setting up with Amazon EC2](get-set-up-for-amazon-ec2.md)
-+ [Tutorial: Getting started with Amazon EC2 Linux instances](EC2_GetStarted.md)
++ [Set up to use Amazon EC2](get-set-up-for-amazon-ec2.md)
++ [Tutorial: Get started with Amazon EC2 Linux instances](EC2_GetStarted.md)
 
 **Spot basics**
 + [How Spot Instances work](how-spot-instances-work.md) 
 + [How Spot Fleet works](spot-fleet.md)
 
 **Working with Spot Instances**
-+ [Preparing for interruptions](spot-interruptions.md#using-spot-instances-managing-interruptions)
-+ [Creating a Spot Instance request](spot-requests.md#using-spot-instances-request)
-+ [Getting request status information](spot-request-status.md#get-spot-instance-request-status)
++ [Prepare for interruptions](spot-interruptions.md#using-spot-instances-managing-interruptions)
++ [Create a Spot Instance request](spot-requests.md#using-spot-instances-request)
++ [Get request status information](spot-request-status.md#get-spot-instance-request-status)
 
 **Working with Spot Fleets**
 + [Spot Fleet permissions](spot-fleet-requests.md#spot-fleet-prerequisites)
-+ [Creating a Spot Fleet request](spot-fleet-requests.md#create-spot-fleet)
++ [Create a Spot Fleet request](spot-fleet-requests.md#create-spot-fleet)
 
 ## Related services<a name="spot-related-services"></a>
 

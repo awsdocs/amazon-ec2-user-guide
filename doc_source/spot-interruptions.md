@@ -9,12 +9,12 @@ An On\-Demand Instance specified in an EC2 Fleet or Spot Fleet cannot be interru
 **Topics**
 + [Reasons for interruption](#interruption-reasons)
 + [Interruption behaviors](#interruption-behavior)
-+ [Specifying the interruption behavior](#specifying-spot-interruption-behavior)
-+ [Preparing for interruptions](#using-spot-instances-managing-interruptions)
-+ [Preparing for instance hibernation](#prepare-for-instance-hibernation)
++ [Specify the interruption behavior](#specifying-spot-interruption-behavior)
++ [Prepare for interruptions](#using-spot-instances-managing-interruptions)
++ [Prepare for instance hibernation](#prepare-for-instance-hibernation)
 + [Spot Instance interruption notices](#spot-instance-termination-notices)
-+ [Finding interrupted Spot Instances](#finding-an-interrupted-Spot-Instance)
-+ [Determining whether Amazon EC2 interrupted a Spot Instance](#BidEvictedEvent)
++ [Find interrupted Spot Instances](#finding-an-interrupted-Spot-Instance)
++ [Determine whether Amazon EC2 interrupted a Spot Instance](#BidEvictedEvent)
 + [Billing for interrupted Spot Instances](#billing-for-interrupted-spot-instances)
 
 ## Reasons for interruption<a name="interruption-reasons"></a>
@@ -31,9 +31,9 @@ You can specify that Amazon EC2 should do one of the following when it interrupt
 + Hibernate the Spot Instance
 + Terminate the Spot Instance
 
-The default is to terminate Spot Instances when they are interrupted\. To change the interruption behavior, see [Specifying the interruption behavior](#specifying-spot-interruption-behavior)\.
+The default is to terminate Spot Instances when they are interrupted\. To change the interruption behavior, see [Specify the interruption behavior](#specifying-spot-interruption-behavior)\.
 
-### Stopping interrupted Spot Instances<a name="stop-spot-instances"></a>
+### Stop interrupted Spot Instances<a name="stop-spot-instances"></a>
 
 You can specify the interruption behavior so that Amazon EC2 stops Spot Instances when they are interrupted if the following requirements are met\.
 
@@ -56,7 +56,7 @@ You can terminate a Spot Instance while it is stopped\. If you cancel a Spot req
 
 While a Spot Instance is stopped, you are charged only for the EBS volumes, which are preserved\. With EC2 Fleet and Spot Fleet, if you have many stopped instances, you can exceed the limit on the number of EBS volumes for your account\.
 
-### Hibernating interrupted Spot Instances<a name="hibernate-spot-instances"></a>
+### Hibernate interrupted Spot Instances<a name="hibernate-spot-instances"></a>
 
 You can specify the interruption behavior so that Amazon EC2 hibernates Spot Instances when they are interrupted if the following requirements are met\.
 
@@ -78,9 +78,9 @@ You can specify the interruption behavior so that Amazon EC2 hibernates Spot Ins
 
 **Recommendation**
 + We strongly recommend that you use an encrypted Amazon EBS volume as the root volume, because instance memory is stored on the root volume during hibernation\. This ensures that the contents of memory \(RAM\) are encrypted when the data is at rest on the volume and when data is moving between the instance and volume\. Use one of the following three options to ensure that the root volume is an encrypted Amazon EBS volume:
-  + EBS “single\-step” encryption: In a single run\-instances API call, you can launch encrypted EBS\-backed EC2 instances from an unencrypted AMI\. For more information, see [Using encryption with EBS\-backed AMIs](AMIEncryption.md)\.
+  + EBS “single\-step” encryption: In a single run\-instances API call, you can launch encrypted EBS\-backed EC2 instances from an unencrypted AMI\. For more information, see [Use encryption with EBS\-backed AMIs](AMIEncryption.md)\.
   + EBS encryption by default: You can enable EBS encryption by default to ensure all new EBS volumes created in your AWS account are encrypted\. For more information, see [Encryption by default](EBSEncryption.md#encryption-by-default)\.
-  + Encrypted AMI: You can enable EBS encryption by using an encrypted AMI to launch your instance\. If your AMI does not have an encrypted root snapshot, you can copy it to a new AMI and request encryption\. For more information, see [Encrypt an unencrypted image during copy](AMIEncryption.md#copy-unencrypted-to-encrypted) and [Copying an AMI](CopyingAMIs.md#ami-copy-steps)\. 
+  + Encrypted AMI: You can enable EBS encryption by using an encrypted AMI to launch your instance\. If your AMI does not have an encrypted root snapshot, you can copy it to a new AMI and request encryption\. For more information, see [Encrypt an unencrypted image during copy](AMIEncryption.md#copy-unencrypted-to-encrypted) and [Copy an AMI](CopyingAMIs.md#ami-copy-steps)\. 
 
 When a Spot Instance is hibernated by the Spot service, the EBS volumes are preserved and instance memory \(RAM\) is preserved on the root volume\. The private IP addresses of the instance are also preserved\. Instance storage volumes and public IP addresses, other than Elastic IP addresses, are not preserved\. While the instance is hibernating, you are charged only for the EBS volumes\. With EC2 Fleet and Spot Fleet, if you have many hibernated instances, you can exceed the limit on the number of EBS volumes for your account\.
 
@@ -92,11 +92,11 @@ When the Spot service hibernates a Spot Instance, you receive an interruption no
 
 After a Spot Instance is hibernated by the Spot service, it can only be resumed by the Spot service\. The Spot service resumes the instance when capacity becomes available with a Spot price that is less than your specified maximum price\.
 
-For more information, see [Preparing for instance hibernation](#prepare-for-instance-hibernation)\.
+For more information, see [Prepare for instance hibernation](#prepare-for-instance-hibernation)\.
 
 For information about hibernating On\-Demand Instances, see [Hibernate your Linux instance](Hibernate.md)\.
 
-## Specifying the interruption behavior<a name="specifying-spot-interruption-behavior"></a>
+## Specify the interruption behavior<a name="specifying-spot-interruption-behavior"></a>
 
 If you do not specify an interruption behavior, the default is to terminate Spot Instances when they are interrupted\. You can specify the interruption behavior when you create a Spot request\. The way in which you specify the interruption behavior is different depending on how you request Spot Instances\.
 
@@ -110,7 +110,7 @@ If you configure Spot Instances in a launch configuration when using the [reques
 
 If you configure Spot Instances using the [request\-spot\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-instances.html) CLI, you can specify the interruption behavior as follows: For `--instance-interruption-behavior`, specify an interruption behavior\.
 
-## Preparing for interruptions<a name="using-spot-instances-managing-interruptions"></a>
+## Prepare for interruptions<a name="using-spot-instances-managing-interruptions"></a>
 
 Here are some best practices to follow when you use Spot Instances:
 + Use the default maximum price, which is the On\-Demand price\.
@@ -121,7 +121,7 @@ Here are some best practices to follow when you use Spot Instances:
 + Use the two\-minute Spot Instance interruption notices to monitor the status of your Spot Instances\. For more information, see [Spot Instance interruption notices](#spot-instance-termination-notices)\.
 + While we make every effort to provide these warnings as soon as possible, it is possible that your Spot Instance is interrupted before the warnings can be made available\. Test your application to ensure that it handles an unexpected instance interruption gracefully, even if you are monitoring for rebalance recommendation signals and interruption notices\. You can do so by running the application using an On\-Demand Instance and then terminating the On\-Demand Instance yourself\.
 
-## Preparing for instance hibernation<a name="prepare-for-instance-hibernation"></a>
+## Prepare for instance hibernation<a name="prepare-for-instance-hibernation"></a>
 
 You must install a hibernation agent on your instance, unless you used an AMI that already includes the agent\. You must run the agent on instance startup, whether the agent was included in your AMI or you installed it yourself\.
 
@@ -260,7 +260,7 @@ If Amazon EC2 is not preparing to terminate the instance, or if you terminated t
 
 If Amazon EC2 fails to terminate the instance, the request status is set to `fulfilled`\. The `termination-time` value remains in the instance metadata with the original approximate time, which is now in the past\.
 
-## Finding interrupted Spot Instances<a name="finding-an-interrupted-Spot-Instance"></a>
+## Find interrupted Spot Instances<a name="finding-an-interrupted-Spot-Instance"></a>
 
 In the console, the **Instances** pane displays all instances, including Spot Instances\. You can identify a Spot Instance from the `spot` value in the **Instance lifecycle** column\. The **Instance state** column indicates whether the instance is `pending`, `running`, `stopping`, `stopped`, `shutting-down`, or `terminated`\. For a hibernated Spot Instance, the instance state is `stopped`\.
 
@@ -283,9 +283,9 @@ aws ec2 describe-instances \
     --query "Reservations[*].Instances[*].InstanceId"
 ```
 
-## Determining whether Amazon EC2 interrupted a Spot Instance<a name="BidEvictedEvent"></a>
+## Determine whether Amazon EC2 interrupted a Spot Instance<a name="BidEvictedEvent"></a>
 
-If a Spot Instance is stopped, hibernated, or terminated, you can use CloudTrail to see whether Amazon EC2 interrupted the Spot Instance\. In CloudTrail, the event name `BidEvictedEvent` indicates that Amazon EC2 interrupted the Spot Instance\. For more information about using CloudTrail, see [Logging Amazon EC2 and Amazon EBS API calls with AWS CloudTrail](monitor-with-cloudtrail.md)\.
+If a Spot Instance is stopped, hibernated, or terminated, you can use CloudTrail to see whether Amazon EC2 interrupted the Spot Instance\. In CloudTrail, the event name `BidEvictedEvent` indicates that Amazon EC2 interrupted the Spot Instance\. For more information about using CloudTrail, see [Log Amazon EC2 and Amazon EBS API calls with AWS CloudTrail](monitor-with-cloudtrail.md)\.
 
 ## Billing for interrupted Spot Instances<a name="billing-for-interrupted-spot-instances"></a>
 

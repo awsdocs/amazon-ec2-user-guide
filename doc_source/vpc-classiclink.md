@@ -2,7 +2,7 @@
 
 ClassicLink allows you to link EC2\-Classic instances to a VPC in your account, within the same Region\. If you associate the VPC security groups with a EC2\-Classic instance, this enables communication between your EC2\-Classic instance and instances in your VPC using private IPv4 addresses\. ClassicLink removes the need to make use of public IPv4 addresses or Elastic IP addresses to enable communication between instances in these platforms\.
 
-ClassicLink is available to all users with accounts that support the EC2\-Classic platform, and can be used with any EC2\-Classic instance\. For more information about migrating your resources to a VPC, see [Migrating from EC2\-Classic to a VPC](vpc-migrate.md)\.
+ClassicLink is available to all users with accounts that support the EC2\-Classic platform, and can be used with any EC2\-Classic instance\. For more information about migrating your resources to a VPC, see [Migrate from EC2\-Classic to a VPC](vpc-migrate.md)\.
 
 There is no additional charge for using ClassicLink\. Standard charges for data transfer and instance usage apply\.
 
@@ -190,7 +190,7 @@ You can use the launch wizard in the Amazon EC2 console to launch an EC2\-Classi
 
    1. Expand **Link to VPC \(ClassicLink\)** and choose a VPC from **Link to VPC**\. The console displays only VPCs with ClassicLink enabled\.
 
-1. Complete the rest of the steps in the wizard to launch your instance\. For more information, see [Launching an instance using the Launch Instance Wizard](launching-instance.md)\.
+1. Complete the rest of the steps in the wizard to launch your instance\. For more information, see [Launch an instance using the Launch Instance Wizard](launching-instance.md)\.
 
 ### Viewing your ClassicLink\-enabled VPCs and linked instances<a name="classiclink-describe-vpcs-instances"></a>
 

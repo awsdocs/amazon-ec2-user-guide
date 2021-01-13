@@ -79,7 +79,7 @@ If your account supports EC2\-Classic but you have not created a nondefault VPC,
   + An Internet gateway, and a main route table that routes traffic in the VPC to the Internet gateway\. This enables the instances you launch in the VPC to communicate over the Internet\. For more information, see [Internet Gateways](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html) in the *Amazon VPC User Guide*\.
   + A default security group for the VPC and a default network ACL that is associated with each subnet\. For more information, see [Security Groups for Your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html) in the *Amazon VPC User Guide*\.
 
-If you have other resources in EC2\-Classic, you can take steps to migrate them to a VPC\. For more information, see [Migrating from EC2\-Classic to a VPC](vpc-migrate.md)\.
+If you have other resources in EC2\-Classic, you can take steps to migrate them to a VPC\. For more information, see [Migrate from EC2\-Classic to a VPC](vpc-migrate.md)\.
 
 ## Differences between instances in EC2\-Classic and a VPC<a name="differences-ec2-classic-vpc"></a>
 
@@ -205,7 +205,7 @@ You can use one of the following commands\. For more information about these com
 
 Some resources and features in your AWS account can be shared or accessed between EC2\-Classic and a VPC, for example, through ClassicLink\. For more information, see [ClassicLink](vpc-classiclink.md)\.
 
-If your account supports EC2\-Classic, you might have set up resources for use in EC2\-Classic\. If you want to migrate from EC2\-Classic to a VPC, you must recreate those resources in your VPC\. For more information about migrating from EC2\-Classic to a VPC, see [Migrating from EC2\-Classic to a VPC](vpc-migrate.md)\.
+If your account supports EC2\-Classic, you might have set up resources for use in EC2\-Classic\. If you want to migrate from EC2\-Classic to a VPC, you must recreate those resources in your VPC\. For more information about migrating from EC2\-Classic to a VPC, see [Migrate from EC2\-Classic to a VPC](vpc-migrate.md)\.
 
 The following resources can be shared or accessed between EC2\-Classic and a VPC\.
 
@@ -216,11 +216,11 @@ The following resources can be shared or accessed between EC2\-Classic and a VPC
 | Bundle task |  | 
 | EBS volume |  | 
 | Elastic IP address \(IPv4\) |  You can migrate an Elastic IP address from EC2\-Classic to a VPC\. You can't migrate an Elastic IP address that was originally allocated for use in a VPC to EC2\-Classic\. For more information, see [Migrating an Elastic IP Address from EC2\-Classic](#migrating-eip)\.  | 
-| Instance |  An EC2\-Classic instance can communicate with instances in a VPC using public IPv4 addresses, or you can use ClassicLink to enable communication over private IPv4 addresses\. You can't migrate an instance from EC2\-Classic to a VPC\. However, you can migrate your application from an instance in EC2\-Classic to an instance in a VPC\. For more information, see [Migrating from EC2\-Classic to a VPC](vpc-migrate.md)\.  | 
+| Instance |  An EC2\-Classic instance can communicate with instances in a VPC using public IPv4 addresses, or you can use ClassicLink to enable communication over private IPv4 addresses\. You can't migrate an instance from EC2\-Classic to a VPC\. However, you can migrate your application from an instance in EC2\-Classic to an instance in a VPC\. For more information, see [Migrate from EC2\-Classic to a VPC](vpc-migrate.md)\.  | 
 | Key pair |  | 
 | Load balancer |  If you're using ClassicLink, you can register a linked EC2\-Classic instance with a load balancer in a VPC, provided that the VPC has a subnet in the same Availability Zone as the instance\. You can't migrate a load balancer from EC2\-Classic to a VPC\. You can't register an instance in a VPC with a load balancer in EC2\-Classic\.  | 
 | Placement group |  | 
-| Reserved Instance |  You can change the network platform for your Reserved Instances from EC2\-Classic to a VPC\. For more information, see [Modifying Reserved Instances](ri-modifying.md)\.  | 
+| Reserved Instance |  You can change the network platform for your Reserved Instances from EC2\-Classic to a VPC\. For more information, see [Modify Reserved Instances](ri-modifying.md)\.  | 
 | Security group |  A linked EC2\-Classic instance can use a VPC security groups through ClassicLink to control traffic to and from the VPC\. VPC instances can't use EC2\-Classic security groups\. You can't migrate a security group from EC2\-Classic to a VPC\. You can copy rules from a security group for EC2\-Classic to a security group for a VPC\. For more information, see [Creating a security group](working-with-security-groups.md#creating-security-group)\. | 
 | Snapshot |  | 
 

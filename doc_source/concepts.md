@@ -39,8 +39,8 @@ For more information about running your website on AWS, see [Web Hosting](https:
 First, you need to get set up to use Amazon EC2\. After you are set up, you are ready to complete the Getting Started tutorial for Amazon EC2\. Whenever you need more information about an Amazon EC2 feature, you can read the technical documentation\.
 
 **Get up and running**
-+ [Setting up with Amazon EC2](get-set-up-for-amazon-ec2.md)
-+ [Tutorial: Getting started with Amazon EC2 Linux instances](EC2_GetStarted.md)
++ [Set up to use Amazon EC2](get-set-up-for-amazon-ec2.md)
++ [Tutorial: Get started with Amazon EC2 Linux instances](EC2_GetStarted.md)
 
 **Basics**
 + [Instances and AMIs](ec2-instances-and-amis.md)

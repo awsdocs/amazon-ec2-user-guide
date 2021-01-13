@@ -22,7 +22,7 @@ The `AWS/EBS` namespace includes the following metrics\.
 
 ### Volume metrics<a name="ebs-volume-metrics"></a>
 
-The `AWS/EBS` namespace includes the following metrics for EBS volumes\. To get information about the available disk space from the operating system on an instance, see [Viewing free disk space](ebs-describing-volumes.md#ebs-view-free-disk-space)\.
+The `AWS/EBS` namespace includes the following metrics for EBS volumes\. To get information about the available disk space from the operating system on an instance, see [View free disk space](ebs-describing-volumes.md#ebs-view-free-disk-space)\.
 
 
 | Metric | Description | 

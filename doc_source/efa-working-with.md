@@ -1,4 +1,4 @@
-# Working with EFA<a name="efa-working-with"></a>
+# Work with EFA<a name="efa-working-with"></a>
 
 You can create, use, and manage an EFA much like any other elastic network interface in Amazon EC2\. However, unlike elastic network interfaces, EFAs cannot be attached to or detached from an instance in a running state\.
 
@@ -12,17 +12,17 @@ To use an EFA, you must do the following:
 
 **Topics**
 + [EFA requirements](#efa-reqs)
-+ [Creating an EFA](#efa-create)
-+ [Attaching an EFA to a stopped instance](#efa-attach)
-+ [Attaching an EFA when launching an instance](#efa-launch)
-+ [Adding an EFA to a launch template](#efa-launch-template)
-+ [Managing IP addresses for an EFA](#efa-manage-ip-address)
-+ [Changing the security group for an EFA](#efa-security)
-+ [Detaching an EFA](#efa-detach)
-+ [Viewing EFAs](#efa-view)
-+ [Deleting an EFA](#efa-delete)
++ [Create an EFA](#efa-create)
++ [Attach an EFA to a stopped instance](#efa-attach)
++ [Attach an EFA when launching an instance](#efa-launch)
++ [Add an EFA to a launch template](#efa-launch-template)
++ [Manage IP addresses for an EFA](#efa-manage-ip-address)
++ [Change the security group for an EFA](#efa-security)
++ [Detach an EFA](#efa-detach)
++ [View EFAs](#efa-view)
++ [Delete an EFA](#efa-delete)
 
-## Creating an EFA<a name="efa-create"></a>
+## Create an EFA<a name="efa-create"></a>
 
 You can create an EFA in a subnet in a VPC\. You can't move the EFA to another subnet after it's created, and you can only attach it to stopped instances in the same Availability Zone\.
 
@@ -55,13 +55,13 @@ Use the [create\-network\-interface](https://docs.aws.amazon.com/cli/latest/refe
 aws ec2 create-network-interface --subnet-id subnet-01234567890 --description example_efa --interface-type efa
 ```
 
-## Attaching an EFA to a stopped instance<a name="efa-attach"></a>
+## Attach an EFA to a stopped instance<a name="efa-attach"></a>
 
 You can attach an EFA to any supported instance that is in the `stopped` state\. You cannot attach an EFA to an instance that is in the `running` state\. For more information about the supported instance types, see [Supported instance types](efa.md#efa-instance-types)\.
 
 You attach an EFA to an instance in the same way that you attach a network interface to an instance\. For more information, see [Attaching a network interface to an instance](using-eni.md#attach_eni)\.
 
-## Attaching an EFA when launching an instance<a name="efa-launch"></a>
+## Attach an EFA when launching an instance<a name="efa-launch"></a>
 
 **To attach an existing EFA when launching an instance \(AWS CLI\)**  
 Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command and for **NetworkInterfaceId**, specify the ID of the EFA, as shown in the following example\.
@@ -77,39 +77,39 @@ Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/ru
 aws ec2 run-instances --image-id ami_id --count 1 --instance-type c5n.18xlarge --key-name my_key_pair --network-interfaces DeviceIndex=0,InterfaceType=efa,Groups=sg_id,SubnetId=subnet_id
 ```
 
-## Adding an EFA to a launch template<a name="efa-launch-template"></a>
+## Add an EFA to a launch template<a name="efa-launch-template"></a>
 
-You can create a launch template that contains the configuration information needed to launch EFA\-enabled instances\. To create an EFA\-enabled launch template, create a new launch template and specify a supported instance type, your EFA\-enabled AMI, and an EFA\-enabled security group\. For more information, see [Getting started with EFA and MPI](efa-start.md)\.
+You can create a launch template that contains the configuration information needed to launch EFA\-enabled instances\. To create an EFA\-enabled launch template, create a new launch template and specify a supported instance type, your EFA\-enabled AMI, and an EFA\-enabled security group\. For more information, see [Get started with EFA and MPI](efa-start.md)\.
 
 You can leverage launch templates to launch EFA\-enabled instances with other AWS services, such as AWS Batch\.
 
-For more information about creating launch templates, see [Creating a launch template](ec2-launch-templates.md#create-launch-template)\.
+For more information about creating launch templates, see [Create a launch template](ec2-launch-templates.md#create-launch-template)\.
 
-## Managing IP addresses for an EFA<a name="efa-manage-ip-address"></a>
+## Manage IP addresses for an EFA<a name="efa-manage-ip-address"></a>
 
 You can change the IP addresses associated with an EFA\. If you have an Elastic IP address, you can associate it with an EFA\. If your EFA is provisioned in a subnet that has an associated IPv6 CIDR block, you can assign one or more IPv6 addresses to the EFA\.
 
 You assign an Elastic IP \(IPv4\) and IPv6 address to an EFA in the same way that you assign an IP address to an elastic network interface\. For more information, see [Managing IP addresses](using-eni.md#managing-network-interface-ip-addresses)\.
 
-## Changing the security group for an EFA<a name="efa-security"></a>
+## Change the security group for an EFA<a name="efa-security"></a>
 
  You can change the security group that is associated with an EFA\. To enable OS\-bypass functionality, the EFA must be a member of a security group that allows all inbound and outbound traffic to and from the security group itself\.
 
 You change the security group that is associated with an EFA in the same way that you change the security group that is associated with an elastic network interface\. For more information, see [Changing the security group](using-eni.md#modify-groups)\.
 
-## Detaching an EFA<a name="efa-detach"></a>
+## Detach an EFA<a name="efa-detach"></a>
 
 To detach an EFA from an instance, you must first stop the instance\. You cannot detach an EFA from an instance that is in the running state\.
 
 You detach an EFA from an instance in the same way that you detach an elastic network interface from an instance\. For more information, see [Detaching a network interface from an instance](using-eni.md#detach_eni)\.
 
-## Viewing EFAs<a name="efa-view"></a>
+## View EFAs<a name="efa-view"></a>
 
 You can view all of the EFAs in your account\.
 
 You view EFAs in the same way that you view elastic network interfaces\. For more information, see [Viewing details about a network interface](using-eni.md#view_eni_details)\.
 
-## Deleting an EFA<a name="efa-delete"></a>
+## Delete an EFA<a name="efa-delete"></a>
 
 To delete an EFA, you must first detach it from the instance\. You cannot delete an EFA while it is attached to an instance\.
 

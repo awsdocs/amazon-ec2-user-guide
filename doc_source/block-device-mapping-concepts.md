@@ -1,8 +1,8 @@
 # Block device mapping<a name="block-device-mapping-concepts"></a>
 
-Each instance that you launch has an associated root device volume, which is either an Amazon EBS volume or an instance store volume\. You can use block device mapping to specify additional EBS volumes or instance store volumes to attach to an instance when it's launched\. You can also attach additional EBS volumes to a running instance; see [Attaching an Amazon EBS volume to an instance](ebs-attaching-volume.md)\. However, the only way to attach instance store volumes to an instance is to use block device mapping to attach the volumes as the instance is launched\.
+Each instance that you launch has an associated root device volume, which is either an Amazon EBS volume or an instance store volume\. You can use block device mapping to specify additional EBS volumes or instance store volumes to attach to an instance when it's launched\. You can also attach additional EBS volumes to a running instance; see [Attach an Amazon EBS volume to an instance](ebs-attaching-volume.md)\. However, the only way to attach instance store volumes to an instance is to use block device mapping to attach the volumes as the instance is launched\.
 
-For more information about root device volumes, see [Changing the root volume to persist](RootDeviceStorage.md#Using_RootDeviceStorage)\.
+For more information about root device volumes, see [Change the root volume to persist](RootDeviceStorage.md#Using_RootDeviceStorage)\.
 
 **Topics**
 + [Block device mapping concepts](#block-device-mapping-def)
@@ -65,7 +65,7 @@ Note that this example block device mapping is used in the example commands and 
 
 Device names like `/dev/sdh` and `xvdh` are used by Amazon EC2 to describe block devices\. The block device mapping is used by Amazon EC2 to specify the block devices to attach to an EC2 instance\. After a block device is attached to an instance, it must be mounted by the operating system before you can access the storage device\. When a block device is detached from an instance, it is unmounted by the operating system and you can no longer access the storage device\.
 
-With a Linux instance, the device names specified in the block device mapping are mapped to their corresponding block devices when the instance first boots\. The instance type determines which instance store volumes are formatted and mounted by default\. You can mount additional instance store volumes at launch, as long as you don't exceed the number of instance store volumes available for your instance type\. For more information, see [Amazon EC2 instance store](InstanceStorage.md)\. The block device driver for the instance determines which devices are used when the volumes are formatted and mounted\. For more information, see [Attaching an Amazon EBS volume to an instance](ebs-attaching-volume.md)\.
+With a Linux instance, the device names specified in the block device mapping are mapped to their corresponding block devices when the instance first boots\. The instance type determines which instance store volumes are formatted and mounted by default\. You can mount additional instance store volumes at launch, as long as you don't exceed the number of instance store volumes available for your instance type\. For more information, see [Amazon EC2 instance store](InstanceStorage.md)\. The block device driver for the instance determines which devices are used when the volumes are formatted and mounted\. For more information, see [Attach an Amazon EBS volume to an instance](ebs-attaching-volume.md)\.
 
 ## AMI block device mapping<a name="ami-block-device-mapping"></a>
 
@@ -311,7 +311,7 @@ For instances launched before the release of the 2009\-10\-31 API, AWS can't dis
 
    If the instance was launched with additional EBS volumes using a block device mapping, they appear under **Block devices**\. Any instance store volumes do not appear on this tab\.
 
-1. To display additional information about an EBS volume, choose its volume ID to go to the volume page\. For more information, see [Viewing information about an Amazon EBS volume](ebs-describing-volumes.md)\.
+1. To display additional information about an EBS volume, choose its volume ID to go to the volume page\. For more information, see [View information about an Amazon EBS volume](ebs-describing-volumes.md)\.
 
 **To view the EBS volumes for an instance using the command line**
 

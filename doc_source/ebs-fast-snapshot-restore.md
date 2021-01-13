@@ -10,10 +10,10 @@ You can enable fast snapshot restore for snapshots that you own and for public a
 + [Fast snapshot restore quotas](#limits)
 + [Fast snapshot restore states](#fsr-states)
 + [Volume creation credits](#volume-creation-credits)
-+ [Managing fast snapshot restore](#manage-fsr)
++ [Manage fast snapshot restore](#manage-fsr)
 + [View snapshots with fast snapshot restore enabled](#view-fsr-enabled-snapshots)
 + [View volumes restored using fast snapshot restore](#view-fast-restored-volumes)
-+ [Monitoring fast snapshot restore](#monitor)
++ [Monitor fast snapshot restore](#monitor)
 + [Pricing and Billing](#fsr-pricing)
 
 ## Fast snapshot restore quotas<a name="limits"></a>
@@ -53,7 +53,7 @@ You can use Cloudwatch metrics to monitor the size of your credit buckets and th
 
 After you create a volume from a snapshot with fast snapshot restore enabled, you can describe the volume using [describe\-volumes](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-volumes.html) and check the `fastRestored` field in the output to determine whether the volume was created as an initialized volume using fast snapshot restore\.
 
-## Managing fast snapshot restore<a name="manage-fsr"></a>
+## Manage fast snapshot restore<a name="manage-fsr"></a>
 
 Fast snapshot restore is disabled for a snapshot by default\. You can enable or disable fast snapshot restore for snapshots that you own and for snapshots that are shared with you\. When you enable or disable fast snapshot restore for a snapshot, the changes apply to your account only\.
 
@@ -168,7 +168,7 @@ The following is example output\.
 }
 ```
 
-## Monitoring fast snapshot restore<a name="monitor"></a>
+## Monitor fast snapshot restore<a name="monitor"></a>
 
 Amazon EBS emits Amazon CloudWatch events when the fast snapshot restore state for a snapshot changes\. For more information, see [EBS fast snapshot restore events](ebs-cloud-watch-events.md#fast-snapshot-restore-events)\. 
 

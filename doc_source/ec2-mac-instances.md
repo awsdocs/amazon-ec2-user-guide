@@ -126,7 +126,7 @@ Amazon EC2 Mac instances do not allow remote root SSH by default\. Password auth
 
 To support connecting to your instance using SSH, launch the instance using a key pair and a security group that allows SSH access, and ensure that the instance has internet connectivity\. You provide the `.pem` file for the key pair when you connect to the instance\.
 
-Use the following procedure to connect to your Mac instance using an SSH client\. If you receive an error while attempting to connect to your instance, see [Troubleshooting connecting to your instance](TroubleshootingInstancesConnecting.md)\.
+Use the following procedure to connect to your Mac instance using an SSH client\. If you receive an error while attempting to connect to your instance, see [Troubleshoot connecting to your instance](TroubleshootingInstancesConnecting.md)\.
 
 **To connect to your instance using SSH**
 

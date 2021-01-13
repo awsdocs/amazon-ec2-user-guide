@@ -1,4 +1,4 @@
-# Monitoring<a name="dlm-monitor-lifecycle"></a>
+# Monitor the lifecycle of snapshots and AMIs<a name="dlm-monitor-lifecycle"></a>
 
 You can use the following features to monitor the lifecycle of your snapshots and AMIs\.
 
@@ -9,11 +9,11 @@ You can use the following features to monitor the lifecycle of your snapshots an
 
 ## Console and AWS CLI<a name="monitor-console-cli"></a>
 
-You can view your lifecycle policies using the Amazon EC2 console or the AWS CLI\. Each snapshot and AMI created by a policy has a timestamp and policy\-related tags\. You can filter snapshots and AMIs using these tags to verify that your backups are being created as you intend\. For information about viewing lifecycle policies using the console, see [View lifecycyle poilcies](view-modify-delete.md#view)\.
+You can view your lifecycle policies using the Amazon EC2 console or the AWS CLI\. Each snapshot and AMI created by a policy has a timestamp and policy\-related tags\. You can filter snapshots and AMIs using these tags to verify that your backups are being created as you intend\. For information about viewing lifecycle policies using the console, see [View lifecycle policies](view-modify-delete.md#view)\.
 
 ## CloudWatch Events<a name="monitor-cloudwatch-events"></a>
 
-Amazon EBS and Amazon Data Lifecycle Manager emit events related to lifecycle policy actions\. You can use AWS Lambda and Amazon CloudWatch Events to handle event notifications programmatically\. For more information, see the [Amazon CloudWatch Events User Guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/)\.
+Amazon EBS and Amazon Data Lifecycle Manager emit events related to lifecycle policy actions\. You can use AWS Lambda and Amazon CloudWatch Events to handle event notifications programmatically\. Events are emitted on a best effort basis\. For more information, see the [Amazon CloudWatch Events User Guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/)\.
 
 The following events are available:
 

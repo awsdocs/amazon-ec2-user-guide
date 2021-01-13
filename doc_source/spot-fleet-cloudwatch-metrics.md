@@ -5,7 +5,7 @@ Amazon EC2 provides Amazon CloudWatch metrics that you can use to monitor your S
 **Important**  
 To ensure accuracy, we recommend that you enable detailed monitoring when using these metrics\. For more information, see [Enable or turn off detailed monitoring for your instances](using-cloudwatch-new.md)\.
 
-For more information about CloudWatch metrics provided by Amazon EC2, see [Monitoring your instances using CloudWatch](using-cloudwatch.md)\.
+For more information about CloudWatch metrics provided by Amazon EC2, see [Monitor your instances using CloudWatch](using-cloudwatch.md)\.
 
 ## Spot Fleet metrics<a name="spot-fleet-metrics"></a>
 

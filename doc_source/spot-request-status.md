@@ -6,7 +6,7 @@ At each step of the process—also called the Spot request *lifecycle*—specifi
 
 **Topics**
 + [Lifecycle of a Spot request](#spot-instances-request-status-lifecycle)
-+ [Getting request status information](#get-spot-instance-request-status)
++ [Get request status information](#get-spot-instance-request-status)
 + [Spot request status codes](#spot-instance-request-status-understand)
 
 ## Lifecycle of a Spot request<a name="spot-instances-request-status-lifecycle"></a>
@@ -108,7 +108,7 @@ Your Spot Instances continue to run as long as your maximum price is at or above
 **Persistent requests**  
 When your Spot Instances are terminated \(either by you or Amazon EC2\), if the Spot request is a persistent request, it returns to the `pending-evaluation` state and then Amazon EC2 can launch a new Spot Instance when the constraints are met\.
 
-## Getting request status information<a name="get-spot-instance-request-status"></a>
+## Get request status information<a name="get-spot-instance-request-status"></a>
 
 You can get request status information using the AWS Management Console or a command line tool\.
 

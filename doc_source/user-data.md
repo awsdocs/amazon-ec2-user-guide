@@ -1,4 +1,4 @@
-# Running commands on your Linux instance at launch<a name="user-data"></a>
+# Run commands on your Linux instance at launch<a name="user-data"></a>
 
 When you launch an instance in Amazon EC2, you have the option of passing user data to the instance that can be used to perform common automated configuration tasks and even run scripts after the instance starts\. You can pass two types of user data to Amazon EC2: shell scripts and cloud\-init directives\. You can also pass this data into the launch wizard as plain text, as a file \(this is useful for launching instances using the command line tools\), or as base64\-encoded text \(for API calls\)\.
 
@@ -23,7 +23,7 @@ In the following examples, the commands from the [Install a LAMP Web Server on A
 
 ## Prerequisites<a name="user-data-requirements"></a>
 
-The following examples assume that your instance has a public DNS name that is reachable from the Internet\. For more information, see [Step 1: Launch an instance](EC2_GetStarted.md#ec2-launch-instance)\. You must also configure your security group to allow SSH \(port 22\), HTTP \(port 80\), and HTTPS \(port 443\) connections\. For more information about these prerequisites, see [Setting up with Amazon EC2](get-set-up-for-amazon-ec2.md)\.
+The following examples assume that your instance has a public DNS name that is reachable from the Internet\. For more information, see [Step 1: Launch an instance](EC2_GetStarted.md#ec2-launch-instance)\. You must also configure your security group to allow SSH \(port 22\), HTTP \(port 80\), and HTTPS \(port 443\) connections\. For more information about these prerequisites, see [Set up to use Amazon EC2](get-set-up-for-amazon-ec2.md)\.
 
 Also, these instructions are intended for use with Amazon Linux 2, and the commands and directives may not work for other Linux distributions\. For more information about other distributions, such as their support for cloud\-init, see their specific documentation\.
 
@@ -50,7 +50,7 @@ You can specify instance user data when you launch the instance\. If the root vo
 
 ### Specify instance user data at launch<a name="user-data-launch-instance-wizard"></a>
 
-Follow the procedure for launching an instance at [Launching an instance using the Launch Instance Wizard](launching-instance.md), but when you get to [Step 3: Configure Instance Details](launching-instance.md#configure_instance_details_step) in that procedure, copy your shell script in the **User data** field, and then complete the launch procedure\.
+Follow the procedure for launching an instance at [Launch an instance using the Launch Instance Wizard](launching-instance.md), but when you get to [Step 3: Configure Instance Details](launching-instance.md#configure_instance_details_step) in that procedure, copy your shell script in the **User data** field, and then complete the launch procedure\.
 
 In the example script below, the script creates and configures our web server\.
 
@@ -149,7 +149,7 @@ Adding these tasks at boot time adds to the amount of time it takes to boot an i
 
 **To pass cloud\-init directives to an instance with user data**
 
-1. Follow the procedure for launching an instance at [Launching an instance using the Launch Instance Wizard](launching-instance.md), but when you get to [Step 3: Configure Instance Details](launching-instance.md#configure_instance_details_step) in that procedure, enter your cloud\-init directive text in the **User data** field, and then complete the launch procedure\.
+1. Follow the procedure for launching an instance at [Launch an instance using the Launch Instance Wizard](launching-instance.md), but when you get to [Step 3: Configure Instance Details](launching-instance.md#configure_instance_details_step) in that procedure, enter your cloud\-init directive text in the **User data** field, and then complete the launch procedure\.
 
    In the example below, the directives create and configure a web server on Amazon Linux 2\. The `#cloud-config` line at the top is required in order to identify the commands as cloud\-init directives\.
 

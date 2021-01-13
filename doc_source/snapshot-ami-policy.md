@@ -1,4 +1,4 @@
-# Automating snapshot and EBS\-backed AMI lifecycles<a name="snapshot-ami-policy"></a>
+# Automate snapshot and EBS\-backed AMI lifecycles<a name="snapshot-ami-policy"></a>
 
 The following procedures show how to use Amazon Data Lifecycle Manager to manage the backups of your EBS volumes and Amazon EC2 instances\.
 

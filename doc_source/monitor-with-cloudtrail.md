@@ -1,4 +1,4 @@
-# Logging Amazon EC2 and Amazon EBS API calls with AWS CloudTrail<a name="monitor-with-cloudtrail"></a>
+# Log Amazon EC2 and Amazon EBS API calls with AWS CloudTrail<a name="monitor-with-cloudtrail"></a>
 
 Amazon EC2 and Amazon EBS are integrated with AWS CloudTrail, a service that provides a record of actions taken by a user, role, or an AWS service in Amazon EC2 and Amazon EBS\. CloudTrail captures all API calls for Amazon EC2 and Amazon EBS as events, including calls from the console and from code calls to the APIs\. If you create a trail, you can enable continuous delivery of CloudTrail events to an Amazon S3 bucket, including events for Amazon EC2 and Amazon EBS\. If you don't configure a trail, you can still view the most recent events in the CloudTrail console in **Event history**\. Using the information collected by CloudTrail, you can determine the request that was made to Amazon EC2 and Amazon EBS, the IP address from which the request was made, who made the request, when it was made, and additional details\. 
 
@@ -23,7 +23,7 @@ Every event or log entry contains information about who generated the request\. 
 
 For more information, see the [CloudTrail userIdentity Element](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-user-identity.html)\.
 
-## Understanding Amazon EC2 and Amazon EBS log file entries<a name="understanding-service-name-entries"></a>
+## Understand Amazon EC2 and Amazon EBS log file entries<a name="understanding-service-name-entries"></a>
 
 A trail is a configuration that enables delivery of events as log files to an Amazon S3 bucket that you specify\. CloudTrail log files contain one or more log entries\. An event represents a single request from any source and includes information about the requested action, the date and time of the action, request parameters, and so on\. CloudTrail log files are not an ordered stack trace of the public API calls, so they do not appear in any specific order\. 
 
@@ -79,7 +79,7 @@ The following log file record shows that a user terminated an instance\.
 }
 ```
 
-## Using AWS CloudTrail to audit users that connect via EC2 Instance Connect<a name="ec2-instance-connect-cloudtrail"></a>
+## Use AWS CloudTrail to audit users that connect via EC2 Instance Connect<a name="ec2-instance-connect-cloudtrail"></a>
 
 Use AWS CloudTrail to audit the users that connect to your instances via EC2 Instance Connect\.
 

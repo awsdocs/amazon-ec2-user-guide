@@ -7,11 +7,11 @@ An instance is scheduled to be retired when AWS detects irreparable failure of t
 For more information about the types of instance events, see [Scheduled events for your instances](monitoring-instances-status-check_sched.md)\.
 
 **Topics**
-+ [Identifying instances scheduled for retirement](#instance-retirement-identify)
++ [Identify instances scheduled for retirement](#instance-retirement-identify)
 + [Actions to take for EBS\-backed instances scheduled for retirement](#instance-retirement-actions-EBS)
 + [Actions to take for instance\-store backed instances scheduled for retirement](#instance-retirement-actions-instance-store)
 
-## Identifying instances scheduled for retirement<a name="instance-retirement-identify"></a>
+## Identify instances scheduled for retirement<a name="instance-retirement-identify"></a>
 
 If your instance is scheduled for retirement, you receive an email prior to the event with the instance ID and retirement date\. You can also check for instances that are scheduled for retirement using the Amazon EC2 console or the command line\.
 
@@ -55,7 +55,7 @@ You can use one of the following commands\. For more information about these com
 
 To preserve the data on your retiring instance, you can perform one of the following actions\. It's important that you take this action before the instance retirement date to prevent unforeseen downtime and data loss\.
 
-If you are not sure whether your instance is backed by EBS or instance store, see [Determining the root device type of your instance](RootDeviceStorage.md#display-instance-root-device-type)\.
+If you are not sure whether your instance is backed by EBS or instance store, see [Determine the root device type of your instance](RootDeviceStorage.md#display-instance-root-device-type)\.
 
 **Check if your instance is reachable**
 
@@ -66,10 +66,10 @@ When you are notified that your instance is scheduled for retirement, we recomme
 + Alternatively, if you want to [terminate](terminating-instances.md) your instance, plan to do so as soon as possible so that you stop incurring charges for the instance\.
 
 **Create a backup of your instance**  
-Create an EBS\-backed AMI from your instance so that you have a backup\. To ensure data integrity, stop the instance before you create the AMI\. You can wait for the scheduled retirement date when the instance is stopped, or stop the instance yourself before the retirement date\. You can start the instance again at any time\. For more information, see [Creating an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md)\.
+Create an EBS\-backed AMI from your instance so that you have a backup\. To ensure data integrity, stop the instance before you create the AMI\. You can wait for the scheduled retirement date when the instance is stopped, or stop the instance yourself before the retirement date\. You can start the instance again at any time\. For more information, see [Create an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md)\.
 
 **Launch a replacement instance**  
-After you create an AMI from your instance, you can use the AMI to launch a replacement instance\. From the Amazon EC2 console, select your new AMI and then choose **Actions**, **Launch**\. Follow the wizard to launch your instance\. For more information about each step in the wizard, see [Launching an instance using the Launch Instance Wizard](launching-instance.md)\.
+After you create an AMI from your instance, you can use the AMI to launch a replacement instance\. From the Amazon EC2 console, select your new AMI and then choose **Actions**, **Launch**\. Follow the wizard to launch your instance\. For more information about each step in the wizard, see [Launch an instance using the Launch Instance Wizard](launching-instance.md)\.
 
 ## Actions to take for instance\-store backed instances scheduled for retirement<a name="instance-retirement-actions-instance-store"></a>
 
@@ -82,10 +82,10 @@ If your instance store\-backed instance passes its retirement date, it is termin
 
 When you are notified that your instance is scheduled for retirement, we recommend that you take the following action as soon as possible:
 + Check if your instance is reachable by either [connecting](AccessingInstances.md) to or pinging your instance\.
-+ If your instance is unreachable, there is likely very little that can be done to recover your instance\. For more information, see [Troubleshooting an unreachable instance](instance-console.md)\. AWS will terminate your instance on the scheduled retirement date, so, for an unreachable instance, you can immediately [terminate](terminating-instances.md) the instance yourself\.
++ If your instance is unreachable, there is likely very little that can be done to recover your instance\. For more information, see [Troubleshoot an unreachable instance](instance-console.md)\. AWS will terminate your instance on the scheduled retirement date, so, for an unreachable instance, you can immediately [terminate](terminating-instances.md) the instance yourself\.
 
 **Launch a replacement instance**  
-Create an instance store\-backed AMI from your instance using the AMI tools, as described in [Creating an instance store\-backed Linux AMI](creating-an-ami-instance-store.md)\. From the Amazon EC2 console, select your new AMI and then choose **Actions**, **Launch**\. Follow the wizard to launch your instance\. For more information about each step in the wizard, see [Launching an instance using the Launch Instance Wizard](launching-instance.md)\.
+Create an instance store\-backed AMI from your instance using the AMI tools, as described in [Create an instance store\-backed Linux AMI](creating-an-ami-instance-store.md)\. From the Amazon EC2 console, select your new AMI and then choose **Actions**, **Launch**\. Follow the wizard to launch your instance\. For more information about each step in the wizard, see [Launch an instance using the Launch Instance Wizard](launching-instance.md)\.
 
 **Convert your instance to an EBS\-backed instance**  
-Transfer your data to an EBS volume, take a snapshot of the volume, and then create AMI from the snapshot\. You can launch a replacement instance from your new AMI\. For more information, see [Converting your instance store\-backed AMI to an Amazon EBS\-backed AMI](Using_ConvertingS3toEBS.md)\.
+Transfer your data to an EBS volume, take a snapshot of the volume, and then create AMI from the snapshot\. You can launch a replacement instance from your new AMI\. For more information, see [Convert your instance store\-backed AMI to an Amazon EBS\-backed AMI](Using_ConvertingS3toEBS.md)\.

@@ -1,4 +1,4 @@
-# Working with shared Dedicated Hosts<a name="dh-sharing"></a>
+# Work with shared Dedicated Hosts<a name="dh-sharing"></a>
 
 Dedicated Host sharing enables Dedicated Host owners to share their Dedicated Hosts with other AWS accounts or within an AWS organization\. This enables you to create and manage Dedicated Hosts centrally, and share the Dedicated Host across multiple AWS accounts or within your AWS organization\.
 
@@ -13,11 +13,11 @@ A Dedicated Host owner can share a Dedicated Host with:
 + [Prerequisites for sharing Dedicated Hosts](#dh-sharing-prereq)
 + [Limitations for sharing Dedicated Hosts](#dh-sharing-limitation)
 + [Related services](#dh-sharing-related)
-+ [Sharing across Availability Zones](#dh-sharing-azs)
-+ [Sharing a Dedicated Host](#sharing-dh)
-+ [Unsharing a shared Dedicated Host](#unsharing-dh)
-+ [Identifying a shared Dedicated Host](#identifying-shared-dh)
-+ [Viewing instances running on a shared Dedicated Host](#shared-dh-usage)
++ [Share across Availability Zones](#dh-sharing-azs)
++ [Share a Dedicated Host](#sharing-dh)
++ [Unshare a shared Dedicated Host](#unsharing-dh)
++ [Identify a shared Dedicated Host](#identifying-shared-dh)
++ [View instances running on a shared Dedicated Host](#shared-dh-usage)
 + [Shared Dedicated Host permissions](#shared-dh-perms)
 + [Billing and metering](#shared-dh-billing)
 + [Dedicated Host limits](#shared-dh-limits)
@@ -39,7 +39,7 @@ Dedicated Host sharing integrates with AWS Resource Access Manager \(AWS RAM\)\.
 
 For more information about AWS RAM, see the *[AWS RAM User Guide](https://docs.aws.amazon.com/ram/latest/userguide/)*\.
 
-## Sharing across Availability Zones<a name="dh-sharing-azs"></a>
+## Share across Availability Zones<a name="dh-sharing-azs"></a>
 
 To ensure that resources are distributed across the Availability Zones for a Region, we independently map Availability Zones to names for each account\. This could lead to Availability Zone naming differences across accounts\. For example, the Availability Zone `us-east-1a` for your AWS account might not have the same location as `us-east-1a` for another AWS account\.
 
@@ -51,7 +51,7 @@ To identify the location of your Dedicated Hosts relative to your accounts, you 
 
 1. The Availability Zone IDs for the current Region are displayed in the **Your AZ ID** panel on the right\-hand side of the screen\.
 
-## Sharing a Dedicated Host<a name="sharing-dh"></a>
+## Share a Dedicated Host<a name="sharing-dh"></a>
 
 When an owner shares a Dedicated Host, it enables consumers to launch instances on the host\. Consumers can launch as many instances onto the shared host as its available capacity allows\.
 
@@ -99,7 +99,7 @@ Use the [create\-resource\-share](https://docs.aws.amazon.com/cli/latest/referen
 
 ------
 
-## Unsharing a shared Dedicated Host<a name="unsharing-dh"></a>
+## Unshare a shared Dedicated Host<a name="unsharing-dh"></a>
 
 The Dedicated Host owner can unshare a shared Dedicated Host at any time\. When you unshare a shared Dedicated Host, the following rules apply:
 + Consumers with whom the Dedicated Host was shared can no longer launch new instances onto it\.
@@ -134,7 +134,7 @@ Use the [ disassociate\-resource\-share](https://docs.aws.amazon.com/cli/latest/
 
 ------
 
-## Identifying a shared Dedicated Host<a name="identifying-shared-dh"></a>
+## Identify a shared Dedicated Host<a name="identifying-shared-dh"></a>
 
 Owners and consumers can identify shared Dedicated Hosts using one of the following methods\.
 
@@ -155,7 +155,7 @@ Use the [ describe\-hosts](https://docs.aws.amazon.com/cli/latest/reference/ec2/
 
 ------
 
-## Viewing instances running on a shared Dedicated Host<a name="shared-dh-usage"></a>
+## View instances running on a shared Dedicated Host<a name="shared-dh-usage"></a>
 
 Owners and consumers can view the instances running on a shared Dedicated Host at any time using one of the following methods\.
 

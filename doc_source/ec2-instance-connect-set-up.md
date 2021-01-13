@@ -59,7 +59,7 @@ Installing Instance Connect configures the SSH daemon on the instance\. The proc
    $ ssh -i my_ec2_private_key.pem ec2-user@ec2-a-b-c-d.us-west-2.compute.amazonaws.com
    ```
 
-   For more information about connecting to your instance, see [Connecting to your Linux instance using SSH](AccessingInstancesLinux.md)\.
+   For more information about connecting to your instance, see [Connect to your Linux instance using SSH](AccessingInstancesLinux.md)\.
 
 1. Install the EC2 Instance Connect package on your instance\.
 
@@ -112,7 +112,7 @@ If you previously configured `AuthorizedKeysCommand` and `AuthorizedKeysCommandU
    $ ssh -i my_ec2_private_key.pem ubuntu@ec2-a-b-c-d.us-west-2.compute.amazonaws.com
    ```
 
-   For more information about connecting to your instance, see [Connecting to your Linux instance using SSH](AccessingInstancesLinux.md)\.
+   For more information about connecting to your instance, see [Connect to your Linux instance using SSH](AccessingInstancesLinux.md)\.
 
 1. \(Optional\) Ensure your instance has the latest Ubuntu AMI\.
 

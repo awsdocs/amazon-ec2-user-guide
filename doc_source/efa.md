@@ -15,11 +15,11 @@ The OS\-bypass capabilities of EFAs are not supported on Windows instances\. If 
 + [Supported instance types](#efa-instance-types)
 + [Supported AMIs](#efa-amis)
 + [EFA limitations](#efa-limits)
-+ [Getting started with EFA and MPI](efa-start.md)
-+ [Getting started with EFA and NCCL](efa-start-nccl.md)
-+ [Working with EFA](efa-working-with.md)
-+ [Monitoring an EFA](efa-working-monitor.md)
-+ [Verifying the EFA installer using a checksum](efa-verify.md)
++ [Get started with EFA and MPI](efa-start.md)
++ [Get started with EFA and NCCL](efa-start-nccl.md)
++ [Work with EFA](efa-working-with.md)
++ [Monitor an EFA](efa-working-monitor.md)
++ [Verify the EFA installer using a checksum](efa-verify.md)
 
 ## EFA basics<a name="efa-basics"></a>
 

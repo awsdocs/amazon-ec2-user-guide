@@ -16,15 +16,15 @@ For more information about pricing, see [Amazon EBS Pricing](http://aws.amazon.c
 + [Benefits of using EBS volumes](#EBSFeatures)
 + [Amazon EBS volume types](ebs-volume-types.md)
 + [Constraints on the size and configuration of an EBS volume](volume_constraints.md)
-+ [Creating an Amazon EBS volume](ebs-creating-volume.md)
-+ [Attaching an Amazon EBS volume to an instance](ebs-attaching-volume.md)
-+ [Attaching a volume to multiple instances with Amazon EBS Multi\-Attach](ebs-volumes-multi.md)
-+ [Making an Amazon EBS volume available for use on Linux](ebs-using-volumes.md)
-+ [Viewing information about an Amazon EBS volume](ebs-describing-volumes.md)
-+ [Replacing an Amazon EBS volume using a previous snapshot](ebs-restoring-volume.md)
-+ [Monitoring the status of your volumes](monitoring-volume-status.md)
-+ [Detaching an Amazon EBS volume from a Linux instance](ebs-detaching-volume.md)
-+ [Deleting an Amazon EBS volume](ebs-deleting-volume.md)
++ [Create an Amazon EBS volume](ebs-creating-volume.md)
++ [Attach an Amazon EBS volume to an instance](ebs-attaching-volume.md)
++ [Attach a volume to multiple instances with Amazon EBS Multi\-Attach](ebs-volumes-multi.md)
++ [Make an Amazon EBS volume available for use on Linux](ebs-using-volumes.md)
++ [View information about an Amazon EBS volume](ebs-describing-volumes.md)
++ [Replace an Amazon EBS volume using a previous snapshot](ebs-restoring-volume.md)
++ [Monitor the status of your volumes](monitoring-volume-status.md)
++ [Detach an Amazon EBS volume from a Linux instance](ebs-detaching-volume.md)
++ [Delete an Amazon EBS volume](ebs-deleting-volume.md)
 
 ## Benefits of using EBS volumes<a name="EBSFeatures"></a>
 
@@ -36,7 +36,7 @@ When you create an EBS volume, it is automatically replicated within its Availab
 
 If you attach multiple volumes to a device that you have named, you can stripe data across the volumes for increased I/O and throughput performance\.
 
-You can attach `io1` and `io2` EBS volumes to up to 16 Nitro\-based instances\. For more information, see [Attaching a volume to multiple instances with Amazon EBS Multi\-Attach](ebs-volumes-multi.md)\. Otherwise, you can attach an EBS volume to a single instance\.
+You can attach `io1` and `io2` EBS volumes to up to 16 Nitro\-based instances\. For more information, see [Attach a volume to multiple instances with Amazon EBS Multi\-Attach](ebs-volumes-multi.md)\. Otherwise, you can attach an EBS volume to a single instance\.
 
 You can get monitoring data for your EBS volumes, including root device volumes for EBS\-backed instances, at no additional charge\. For more information about monitoring metrics, see [Amazon CloudWatch metrics for Amazon EBS](using_cloudwatch_ebs.md)\. For information about tracking the status of your volumes, see [Amazon CloudWatch Events for Amazon EBS](ebs-cloud-watch-events.md)\.
 

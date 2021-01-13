@@ -1,4 +1,4 @@
-# Running Amazon Linux 2 as a virtual machine on premises<a name="amazon-linux-2-virtual-machine"></a>
+# Run Amazon Linux 2 as a virtual machine on premises<a name="amazon-linux-2-virtual-machine"></a>
 
 Use the Amazon Linux 2 virtual machine \(VM\) images for on\-premises development and testing\. These images are available for use on the following virtualization platforms:
 + VMWare

@@ -1,6 +1,6 @@
-# Using Amazon EventBridge to monitor EC2 Fleet events<a name="ec2-fleet-eventbridge"></a>
+# Use Amazon EventBridge to monitor EC2 Fleet events<a name="ec2-fleet-eventbridge"></a>
 
-When the state of an EC2 Fleet changes, the EC2 Fleet emits a notification\. The notification is made available as an event that is sent to Amazon EventBridge \(formerly known as Amazon CloudWatch Events\)\.
+When the state of an EC2 Fleet changes, the EC2 Fleet emits a notification\. The notification is made available as an event that is sent to Amazon EventBridge \(formerly known as Amazon CloudWatch Events\)\. Events are emitted on a best effort basis\.
 
 With Amazon EventBridge, you can create rules that trigger programmatic actions in response to an event\. For example, you can create two EventBridge rules, one that's triggered when a fleet state changes, and one that's triggered when an instance in the fleet is terminated\. If the fleet state changes, the first EventBridge rule invokes an SNS topic to send an email notification to you\. If an instance is terminated, the second EventBridge rule invokes a Lambda function to launch a new instance\.
 
@@ -9,7 +9,7 @@ Only fleets of type `maintain` and `request` emit events\. Fleets of type `insta
 
 **Topics**
 + [EC2 Fleet event types](#ec2-fleet-event-types)
-+ [Using Amazon EventBridge](#ec2-fleet-using-eventbridge)
++ [Use Amazon EventBridge](#ec2-fleet-using-eventbridge)
 
 ## EC2 Fleet event types<a name="ec2-fleet-event-types"></a>
 
@@ -238,7 +238,7 @@ The configuration is not valid\. For more information, see the description of th
 `spotInstanceCountLimitExceeded`  
 You’ve reached the limit on the number of Spot Instances that you can launch\.
 
-## Using Amazon EventBridge<a name="ec2-fleet-using-eventbridge"></a>
+## Use Amazon EventBridge<a name="ec2-fleet-using-eventbridge"></a>
 
 When a notification of a state change is emitted for an EC2 Fleet, the event for the notification is sent to Amazon EventBridge\. If EventBridge detects an event pattern that matches a pattern defined in a rule, EventBridge invokes a target \(or targets\) specified in the rule\.
 

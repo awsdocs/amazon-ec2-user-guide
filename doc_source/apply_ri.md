@@ -1,6 +1,6 @@
 # How Reserved Instances are applied<a name="apply_ri"></a>
 
-If you purchase a Reserved Instance and you already have a running instance that matches the specifications of the Reserved Instance, the billing benefit is immediately applied\. You do not have to restart your instances\. If you do not have an eligible running instance, launch an instance and ensure that you match the same criteria that you specified for your Reserved Instance\. For more information, see [Using your Reserved Instances](using-reserved-instances.md)\. 
+If you purchase a Reserved Instance and you already have a running instance that matches the specifications of the Reserved Instance, the billing benefit is immediately applied\. You do not have to restart your instances\. If you do not have an eligible running instance, launch an instance and ensure that you match the same criteria that you specified for your Reserved Instance\. For more information, see [Use your Reserved Instances](using-reserved-instances.md)\. 
 
 Reserved Instances apply to usage in the same manner, irrespective of the offering type \(Standard or Convertible\), and are automatically applied to running On\-Demand Instances with matching attributes\.
 
@@ -60,7 +60,7 @@ Or, if you have one `t2.large` instance running in your account in the US East \
 
 ![\[Applying a Regional Reserved Instance\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ri-instance-flex-partial.png)
 
-The normalization factor is also applied when modifying Reserved Instances\. For more information, see [Modifying Reserved Instances](ri-modifying.md)\.
+The normalization factor is also applied when modifying Reserved Instances\. For more information, see [Modify Reserved Instances](ri-modifying.md)\.
 
 #### Normalization factor for bare metal instances<a name="ri-normalization-factor-bare-metal"></a>
 

@@ -1,11 +1,11 @@
-# Changing the hostname of your Amazon Linux instance<a name="set-hostname"></a>
+# Change the hostname of your Amazon Linux instance<a name="set-hostname"></a>
 
 When you launch an instance, it is assigned a hostname that is a form of the private, internal IPv4 address\. A typical Amazon EC2 private DNS name looks something like this: `ip-12-34-56-78.us-west-2.compute.internal`, where the name consists of the internal domain, the service \(in this case, `compute`\), the region, and a form of the private IPv4 address\. Part of this hostname is displayed at the shell prompt when you log into your instance \(for example, `ip-12-34-56-78`\)\. Each time you stop and restart your Amazon EC2 instance \(unless you are using an Elastic IP address\), the public IPv4 address changes, and so does your public DNS name, system hostname, and shell prompt\.
 
 **Important**  
 This information applies to Amazon Linux\. For information about other distributions, see their specific documentation\.
 
-## Changing the system hostname<a name="set-hostname-system"></a>
+## Change the system hostname<a name="set-hostname-system"></a>
 
 If you have a public DNS name registered for the IP address of your instance \(such as `webserver.mydomain.com`\), you can set the system hostname so your instance identifies itself as a part of that domain\. This also changes the shell prompt so that it displays the first portion of this name instead of the hostname supplied by AWS \(for example, `ip-12-34-56-78`\)\. If you do not have a public DNS name registered, you can still change the hostname, but the process is a little different\.
 
@@ -75,7 +75,7 @@ Follow this procedure if you already have a public DNS name registered\.
    webserver.localdomain
    ```
 
-## Changing the shell prompt without affecting the hostname<a name="set-hostname-shell"></a>
+## Change the shell prompt without affecting the hostname<a name="set-hostname-shell"></a>
 
 If you do not want to modify the hostname for your instance, but you would like to have a more useful system name \(such as **webserver**\) displayed than the private name supplied by AWS \(for example, `ip-12-34-56-78`\), you can edit the shell prompt configuration files to display your system nickname instead of the hostname\.
 
@@ -133,7 +133,7 @@ If you do not want to modify the hostname for your instance, but you would like 
 
 1. Log out and then log back in to pick up the new nickname value\.
 
-## Changing the hostname on other Linux distributions<a name="set-hostname-other-linux"></a>
+## Change the hostname on other Linux distributions<a name="set-hostname-other-linux"></a>
 
 The procedures on this page are intended for use with Amazon Linux only\. For more information about other Linux distributions, see their specific documentation and the following articles:
 + [How do I assign a static hostname to a private Amazon EC2 instance running RHEL 7 or Centos 7?](https://aws.amazon.com/premiumsupport/knowledge-center/linux-static-hostname-rhel7-centos7/)

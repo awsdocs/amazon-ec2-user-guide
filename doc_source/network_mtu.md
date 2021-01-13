@@ -25,7 +25,7 @@ For instances that are collocated inside a cluster placement group, jumbo frames
 
 You can use jumbo frames for traffic between your VPCs and your on\-premises networks over AWS Direct Connect\. For more information, and for how to verify Jumbo Frame capability, see [Setting Network MTU](https://docs.aws.amazon.com/directconnect/latest/UserGuide/set-jumbo-frames-vif.html) in the *AWS Direct Connect User Guide*\.
 
-All [current generation instances](instance-types.md#instance-type-summary-table) support jumbo frames\. The following previous generation instances support jumbo frames: C3, G2, I2, M3, and R3\.
+All [current generation instances](instance-types.md#instance-type-summary-table) support jumbo frames\. The following previous generation instances support jumbo frames: A1, C3, G2, I2, M3, and R3\.
 
 For more information about supported MTU sizes for transit gateways, see [MTU](https://docs.aws.amazon.com/vpc/latest/tgw/transit-gateway-quotas.html#mtu-quota) in *Amazon VPC Transit Gateways*\.
 

@@ -1,4 +1,4 @@
-# Verifying the EFA installer using a checksum<a name="efa-verify"></a>
+# Verify the EFA installer using a checksum<a name="efa-verify"></a>
 
 You can optionally verify the EFA tarball \(\.tar\.gz file\) using an MD5 or SHA256 checksum\. We recommend that you do this to verify the identity of the software publisher and to check that the application has not been altered or corrupted since it was published\.
 
@@ -38,6 +38,7 @@ The following table lists the checksums for recent versions of EFA\.
 
 | Version | Download URL | Checksums | 
 | --- | --- | --- | 
+| EFA 1\.11\.1 |  https://efa\-installer\.amazonaws\.com/aws\-efa\-installer\-1\.11\.1\.tar\.gz  |  **MD5: **`026b0d9a0a48780cc7406bd51997b1c0` **SHA256: **`6cb04baf5ffc58ddf319e956b5461289199c8dd805fe216f8f9ab8d102f6d02a`  | 
 | EFA 1\.11\.0 |  https://efa\-installer\.amazonaws\.com/aws\-efa\-installer\-1\.11\.0\.tar\.gz  |  **MD5: **`7d9058e010ad65bf2e14259214a36949` **SHA256: **`7891f6d45ae33e822189511c4ea1d14c9d54d000f6696f97be54e915ce2c9dfa`  | 
 | EFA 1\.10\.1 |  https://efa\-installer\.amazonaws\.com/aws\-efa\-installer\-1\.10\.1\.tar\.gz  |  **MD5: **`78521d3d668be22976f46c6fecc7b730` **SHA256: **`61564582de7320b21de319f532c3a677d26cc46785378eb3b95c636506b9bcb4`  | 
 | EFA 1\.10\.0 |  https://efa\-installer\.amazonaws\.com/aws\-efa\-installer\-1\.10\.0\.tar\.gz  |  **MD5: **`46f73f5a7afe41b4bb918c81888fefa9` **SHA256: **`136612f96f2a085a7d98296da0afb6fa807b38142e2fc0c548fa986c41186282`  | 

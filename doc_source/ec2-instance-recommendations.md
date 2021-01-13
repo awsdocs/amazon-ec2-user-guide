@@ -1,4 +1,4 @@
-# Getting recommendations for an instance type<a name="ec2-instance-recommendations"></a>
+# Get recommendations for an instance type<a name="ec2-instance-recommendations"></a>
 
 AWS Compute Optimizer provides Amazon EC2 instance recommendations to help you improve performance, save money, or both\. You can use these recommendations to decide whether to move to a new instance type\.
 
@@ -12,7 +12,7 @@ To get recommendations from Compute Optimizer, you must first opt in to Compute 
 **Topics**
 + [Limitations](#compute-optimizer-limitations)
 + [Findings](#findings-classifications)
-+ [Viewing recommendations](#viewing-recommendations)
++ [View recommendations](#viewing-recommendations)
 + [Considerations for evaluating recommendations](#considerations)
 
 ## Limitations<a name="compute-optimizer-limitations"></a>
@@ -27,7 +27,7 @@ Compute Optimizer classifies its findings for EC2 instances as follows:
 + **Optimized** – An EC2 instance is considered optimized when all specifications of your instance, such as CPU, memory, and network, meet the performance requirements of your workload, and the instance is not over\-provisioned\. An optimized EC2 instance runs your workloads with optimal performance and infrastructure cost\. For optimized instances, Compute Optimizer might sometimes recommend a new generation instance type\. 
 + **None** – There are no recommendations for this instance\. This might occur if you've been opted in to Compute Optimizer for less than 12 hours, or when the instance has been running for less than 30 hours, or when the instance type is not supported by Compute Optimizer\. For more information, see [Limitations](#compute-optimizer-limitations) in the previous section\.
 
-## Viewing recommendations<a name="viewing-recommendations"></a>
+## View recommendations<a name="viewing-recommendations"></a>
 
 After you opt in to Compute Optimizer, you can view the findings that Compute Optimizer generates for your EC2 instances in the EC2 console\. You can then access the Compute Optimizer console to view the recommendations\. If you recently opted in, findings might not be reflected in the EC2 console for up to 12 hours\. 
 
@@ -100,7 +100,7 @@ Before changing an instance type, consider the following:
 + When migrating to a different instance family, make sure the current instance type and the new instance type are compatible, for example, in terms of virtualization, architecture, or network type\. For more information, see [Compatibility for resizing instances](ec2-instance-resize.md#resize-limitations)\.
 + Finally, consider the performance risk rating that's provided for each recommendation\. Performance risk indicates the amount of effort you might need to spend in order to validate whether the recommended instance type meets the performance requirements of your workload\. We also recommend rigorous load and performance testing before and after making any changes\.
 
-There are other considerations when resizing an EC2 instance\. For more information, see [Changing the instance type](ec2-instance-resize.md)\.
+There are other considerations when resizing an EC2 instance\. For more information, see [Change the instance type](ec2-instance-resize.md)\.
 
 **Additional resources**
 + [Instance types](instance-types.md)

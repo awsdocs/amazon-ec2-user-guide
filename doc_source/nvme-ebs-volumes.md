@@ -6,8 +6,8 @@ The EBS performance guarantees stated in [Amazon EBS Product Details](http://aws
 
 **Topics**
 + [Install or upgrade the NVMe driver](#install-nvme-driver)
-+ [Identifying the EBS device](#identify-nvme-ebs-device)
-+ [Working with NVMe EBS volumes](#using-nvme-ebs-volumes)
++ [Identify the EBS device](#identify-nvme-ebs-device)
++ [Work with NVMe EBS volumes](#using-nvme-ebs-volumes)
 + [I/O operation timeout](#timeout-nvme-ebs-volumes)
 
 ## Install or upgrade the NVMe driver<a name="install-nvme-driver"></a>
@@ -71,14 +71,14 @@ If your instance has the NVMe driver, you can update the driver to the latest ve
 
 1. Reconnect to your instance after it has rebooted\.
 
-## Identifying the EBS device<a name="identify-nvme-ebs-device"></a>
+## Identify the EBS device<a name="identify-nvme-ebs-device"></a>
 
 EBS uses single\-root I/O virtualization \(SR\-IOV\) to provide volume attachments on Nitro\-based instances using the NVMe specification\. These devices rely on standard NVMe drivers on the operating system\. These drivers typically discover attached devices by scanning the PCI bus during instance boot, and create device nodes based on the order in which the devices respond, not on how the devices are specified in the block device mapping\. In Linux, NVMe device names follow the pattern `/dev/nvme<x>n<y>`, where <x> is the enumeration order, and, for EBS, <y> is 1\. Occasionally, devices can respond to discovery in a different order in subsequent instance starts, which causes the device name to change\.
 
 We recommend that you use stable identifiers for your EBS volumes within your instance, such as one of the following:
 + For Nitro\-based instances, the block device mappings that are specified in the Amazon EC2 console when you are attaching an EBS volume or during `AttachVolume` or `RunInstances` API calls are captured in the vendor\-specific data field of the NVMe controller identification\. With Amazon Linux AMIs later than version 2017\.09\.01, we provide a `udev` rule that reads this data and creates a symbolic link to the block\-device mapping\.
 + NVMe EBS volumes have the EBS volume ID set as the serial number in the device identification\. Use the `lsblk -o +SERIAL` command to list the serial number\. 
-+ When a device is formatted, a UUID is generated that persists for the life of the filesystem\. A device label can be specified at the same time\. For more information, see [Making an Amazon EBS volume available for use on Linux](ebs-using-volumes.md) and [Booting from the wrong volume](instance-booting-from-wrong-volume.md)\.
++ When a device is formatted, a UUID is generated that persists for the life of the filesystem\. A device label can be specified at the same time\. For more information, see [Make an Amazon EBS volume available for use on Linux](ebs-using-volumes.md) and [Boot from the wrong volume](instance-booting-from-wrong-volume.md)\.
 
 **Amazon Linux AMIs**  
 With Amazon Linux AMI 2017\.09\.01 or later \(including Amazon Linux 2\), you can run the ebsnvme\-id command as follows to map the NVMe device name to a volume ID and device name:
@@ -121,9 +121,9 @@ nvme0n1       259:0   0    8G  0 disk
   nvme0n1p128 259:2   0    1M  0 part
 ```
 
-## Working with NVMe EBS volumes<a name="using-nvme-ebs-volumes"></a>
+## Work with NVMe EBS volumes<a name="using-nvme-ebs-volumes"></a>
 
-To format and mount an NVMe EBS volume, see [Making an Amazon EBS volume available for use on Linux](ebs-using-volumes.md)\.
+To format and mount an NVMe EBS volume, see [Make an Amazon EBS volume available for use on Linux](ebs-using-volumes.md)\.
 
 If you are using Linux kernel 4\.2 or later, any change you make to the volume size of an NVMe EBS volume is automatically reflected in the instance\. For older Linux kernels, you might need to detach and attach the EBS volume or reboot the instance for the size change to be reflected\. With Linux kernel 3\.19 or later, you can use the hdparm command as follows to force a rescan of the NVMe device:
 
@@ -131,7 +131,7 @@ If you are using Linux kernel 4\.2 or later, any change you make to the volume s
 [ec2-user ~]$ sudo hdparm -z /dev/nvme1n1
 ```
 
-When you detach an NVMe EBS volume, the instance does not have an opportunity to flush the file system caches or metadata before detaching the volume\. Therefore, before you detach an NVMe EBS volume, you should first sync and unmount it\. If the volume fails to detach, you can attempt a `force-detach` command as described in [Detaching an Amazon EBS volume from a Linux instance](ebs-detaching-volume.md)\.
+When you detach an NVMe EBS volume, the instance does not have an opportunity to flush the file system caches or metadata before detaching the volume\. Therefore, before you detach an NVMe EBS volume, you should first sync and unmount it\. If the volume fails to detach, you can attempt a `force-detach` command as described in [Detach an Amazon EBS volume from a Linux instance](ebs-detaching-volume.md)\.
 
 ## I/O operation timeout<a name="timeout-nvme-ebs-volumes"></a>
 

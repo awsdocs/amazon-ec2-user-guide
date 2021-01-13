@@ -34,7 +34,7 @@ aws ec2 describe-images --filters Name=image-id,Values=aki-880531cd
 + [Limitations of PV\-GRUB](#pv-grub-limitations)
 + [Configuring GRUB](#configuringGRUB)
 + [Amazon PV\-GRUB Kernel Image IDs](#AmazonKernelImageIDs)
-+ [Updating PV\-GRUB](#UpdatingPV-GRUB)
++ [Update PV\-GRUB](#UpdatingPV-GRUB)
 
 ### Limitations of PV\-GRUB<a name="pv-grub-limitations"></a>
 
@@ -47,7 +47,7 @@ PV\-GRUB has the following limitations:
 + PV\-GRUB versions 1\.03 and earlier don't support GPT partitioning; they support MBR partitioning only\.
 + If you plan to use a logical volume manager \(LVM\) with Amazon Elastic Block Store \(Amazon EBS\) volumes, you need a separate boot partition outside of the LVM\. Then you can create logical volumes with the LVM\.
 
-### Configuring GRUB for paravirtual AMIs<a name="configuringGRUB"></a>
+### Configure GRUB for paravirtual AMIs<a name="configuringGRUB"></a>
 
 To boot PV\-GRUB, a GRUB `menu.lst` file must exist in the image; the most common location for this file is `/boot/grub/menu.lst`\.
 
@@ -182,7 +182,7 @@ We continue to provide hd00 AKIs for backward compatibility in Regions where the
 |  aki\-7a69931a  |  pv\-grub\-hd0\_1\.05\-i386\.gz  | 
 |  aki\-70cb0e10  |  pv\-grub\-hd0\_1\.05\-x86\_64\.gz  | 
 
-### Updating PV\-GRUB<a name="UpdatingPV-GRUB"></a>
+### Update PV\-GRUB<a name="UpdatingPV-GRUB"></a>
 
 We recommend that you always use the latest version of the PV\-GRUB AKI, as not all versions of the PV\-GRUB AKI are compatible with all instance types\. Also, older versions of PV\-GRUB are not available in all regions, so if you copy an AMI that uses an older version to a Region that does not support that version, you will be unable to boot instances launched from that AMI until you update the kernel image\. Use the following procedures to check your instance's version of PV\-GRUB and update it if necessary\.
 

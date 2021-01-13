@@ -1,4 +1,4 @@
-# Deprecated: Collecting metrics using the CloudWatch monitoring scripts<a name="monitoring-scripts-intro"></a>
+# Deprecated: Collect metrics using the CloudWatch monitoring scripts<a name="monitoring-scripts-intro"></a>
 
 **Important**  
 The CloudWatch monitoring scripts are deprecated\. We provide information about the monitoring scripts for customers who have not yet migrated from the deprecated monitoring scripts to the CloudWatch agent\.  
@@ -15,8 +15,8 @@ Standard Amazon CloudWatch usage charges for custom metrics apply to your use of
 + [Install monitoring scripts](#mon-scripts-getstarted)
 + [mon\-put\-instance\-data\.pl](#using_put_script)
 + [mon\-get\-instance\-stats\.pl](#using_get_script_powershell)
-+ [Viewing your custom metrics in the console](#script_viewmetrics)
-+ [Troubleshooting](#mon-script-troubleshooting)
++ [View your custom metrics in the console](#script_viewmetrics)
++ [Troubleshoot](#mon-script-troubleshooting)
 
 ## Supported systems<a name="mon-scripts-systems"></a>
 
@@ -264,7 +264,7 @@ Disk Space Utilization on /dev/xvda1 mounted as /
     Average: 9.69%, Minimum: 9.69%, Maximum: 9.69%
 ```
 
-## Viewing your custom metrics in the console<a name="script_viewmetrics"></a>
+## View your custom metrics in the console<a name="script_viewmetrics"></a>
 
 After you successfully run the `mon-put-instance-data.pl` script, you can view your custom metrics in the Amazon CloudWatch console\.
 
@@ -278,7 +278,7 @@ After you successfully run the `mon-put-instance-data.pl` script, you can view y
 
 1. For **Viewing**, your custom metrics posted by the script are displayed with the prefix `System/Linux`\.
 
-## Troubleshooting<a name="mon-script-troubleshooting"></a>
+## Troubleshoot<a name="mon-script-troubleshooting"></a>
 
 The **CloudWatchClient\.pm** module caches instance metadata locally\. If you create an AMI from an instance where you have run the monitoring scripts, any instances launched from the AMI within the cache TTL \(default: six hours, 24 hours for Auto Scaling groups\) emit metrics using the instance ID of the original instance\. After the cache TTL time period passes, the script retrieves fresh data and the monitoring scripts use the instance ID of the current instance\. To immediately correct this, remove the cached data using the following command:
 

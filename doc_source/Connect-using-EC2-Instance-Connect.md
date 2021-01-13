@@ -1,4 +1,4 @@
-# Connecting to your Linux instance using EC2 Instance Connect<a name="Connect-using-EC2-Instance-Connect"></a>
+# Connect to your Linux instance using EC2 Instance Connect<a name="Connect-using-EC2-Instance-Connect"></a>
 
 Amazon EC2 Instance Connect provides a simple and secure way to connect to your Linux instances using Secure Shell \(SSH\)\. With EC2 Instance Connect, you use AWS Identity and Access Management \(IAM\) policies and principals to control SSH access to your instances, removing the need to share and manage SSH keys\. All connection requests using EC2 Instance Connect are [logged to AWS CloudTrail so that you can audit connection requests](monitor-with-cloudtrail.md#ec2-instance-connect-cloudtrail)\.
 
@@ -11,9 +11,9 @@ You can use EC2 Instance Connect to connect to instances that have public or pri
 **Tip**
 
 If you are connecting to a Linux instance from a local computer running Windows, see the following documentation instead:
-+ [Connecting to your Linux instance from Windows using PuTTY](putty.md)
-+ [Connecting to your Linux instance using SSH](AccessingInstancesLinux.md)
-+ [Connecting to your Linux instance from Windows using Windows Subsystem for Linux](WSL.md)
++ [Connect to your Linux instance from Windows using PuTTY](putty.md)
++ [Connect to your Linux instance using SSH](AccessingInstancesLinux.md)
++ [Connect to your Linux instance from Windows using Windows Subsystem for Linux](WSL.md)
 
 **Topics**
 + [Set up EC2 Instance Connect](ec2-instance-connect-set-up.md)

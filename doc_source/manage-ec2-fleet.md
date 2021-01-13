@@ -1,4 +1,4 @@
-# Working with EC2 Fleets<a name="manage-ec2-fleet"></a>
+# Work with EC2 Fleets<a name="manage-ec2-fleet"></a>
 
 To start using an EC2 Fleet, you create a request that includes the total target capacity, On\-Demand capacity, Spot capacity, one or more launch specifications for the instances, and the maximum price that you are willing to pay\. The fleet request must include a launch template that defines the information that the fleet needs to launch an instance, such as an AMI, instance type, subnet or Availability Zone, and one or more security groups\. You can specify launch specification overrides for the instance type, subnet, Availability Zone, and maximum price you're willing to pay, and you can assign weighted capacity to each launch specification override\.
 
@@ -10,12 +10,12 @@ An EC2 Fleet request of type `maintain` or `request` remains active until it exp
 + [EC2 Fleet request states](#EC2-fleet-states)
 + [EC2 Fleet prerequisites](#ec2-fleet-prerequisites)
 + [EC2 Fleet health checks](#ec2-fleet-health-checks)
-+ [Generating an EC2 Fleet JSON configuration file](#ec2-fleet-cli-skeleton)
-+ [Creating an EC2 Fleet](#create-ec2-fleet)
-+ [Tagging an EC2 Fleet](#tag-ec2-fleet)
-+ [Monitoring your EC2 Fleet](#monitor-ec2-fleet)
-+ [Modifying an EC2 Fleet](#modify-ec2-fleet)
-+ [Deleting an EC2 Fleet](#delete-fleet)
++ [Generate an EC2 Fleet JSON configuration file](#ec2-fleet-cli-skeleton)
++ [Create an EC2 Fleet](#create-ec2-fleet)
++ [Tag an EC2 Fleet](#tag-ec2-fleet)
++ [Monitor your EC2 Fleet](#monitor-ec2-fleet)
++ [Modify an EC2 Fleet](#modify-ec2-fleet)
++ [Delete an EC2 Fleet](#delete-fleet)
 + [EC2 Fleet example configurations](ec2-fleet-examples.md)
 
 ## EC2 Fleet request states<a name="EC2-fleet-states"></a>
@@ -54,7 +54,7 @@ The following illustration represents the transitions between the EC2 Fleet requ
 
 ### Launch template<a name="ec2-fleet-prerequisites-launch-template"></a>
 
-A launch template includes information about the instances to launch, such as the instance type, Availability Zone, and the maximum price that you are willing to pay\. For more information, see [Launching an instance from a launch template](ec2-launch-templates.md)\.
+A launch template includes information about the instances to launch, such as the instance type, Availability Zone, and the maximum price that you are willing to pay\. For more information, see [Launch an instance from a launch template](ec2-launch-templates.md)\.
 
 ### Service\-linked role for EC2 Fleet<a name="ec2-fleet-service-linked-role"></a>
 
@@ -178,7 +178,7 @@ You can configure your EC2 Fleet to replace unhealthy instances\. After enabling
 + You can configure your EC2 Fleet to replace unhealthy instances only when you create it\.
 + IAM users can use health check replacement only if they have permission to call the `ec2:DescribeInstanceStatus` action\.
 
-## Generating an EC2 Fleet JSON configuration file<a name="ec2-fleet-cli-skeleton"></a>
+## Generate an EC2 Fleet JSON configuration file<a name="ec2-fleet-cli-skeleton"></a>
 
 To create an EC2 Fleet, you need only specify the launch template, total target capacity, and whether the default purchasing option is On\-Demand or Spot\. If you do not specify a parameter, the fleet uses the default value\. To view the full list of fleet configuration parameters, you can generate a JSON file as follows\.
 
@@ -310,13 +310,13 @@ The minimum target capacity for On\-Demand Instances in the fleet\. If the minim
 \(Optional\) Indicates whether running instances should be terminated if the total target capacity of the EC2 Fleet is decreased below the current size of the EC2 Fleet\. Valid values are `no-termination` and `termination`\.
 
 **LaunchTemplateId**  
-The ID of the launch template to use\. You must specify either the launch template ID or launch template name\. The launch template must specify an Amazon Machine Image \(AMI\)\. For information about creating launch templates, see [Launching an instance from a launch template](ec2-launch-templates.md)\.
+The ID of the launch template to use\. You must specify either the launch template ID or launch template name\. The launch template must specify an Amazon Machine Image \(AMI\)\. For information about creating launch templates, see [Launch an instance from a launch template](ec2-launch-templates.md)\.
 
 **LaunchTemplateName**  
-The name of the launch template to use\. You must specify either the launch template ID or launch template name\. The launch template must specify an Amazon Machine Image \(AMI\)\. For more information, see [Launching an instance from a launch template](ec2-launch-templates.md)\.
+The name of the launch template to use\. You must specify either the launch template ID or launch template name\. The launch template must specify an Amazon Machine Image \(AMI\)\. For more information, see [Launch an instance from a launch template](ec2-launch-templates.md)\.
 
 **Version**  
-The launch template version number, `$Latest`, or `$Default`\. You must specify a value, otherwise the request fails\. If the value is `$Latest`, Amazon EC2 uses the latest version of the launch template\. If the value is `$Default`, Amazon EC2 uses the default version of the launch template\. For more information, see [Managing launch template versions](ec2-launch-templates.md#manage-launch-template-versions)\.
+The launch template version number, `$Latest`, or `$Default`\. You must specify a value, otherwise the request fails\. If the value is `$Latest`, Amazon EC2 uses the latest version of the launch template\. If the value is `$Default`, Amazon EC2 uses the default version of the launch template\. For more information, see [Manage launch template versions](ec2-launch-templates.md#manage-launch-template-versions)\.
 
 **InstanceType**  
 \(Optional\) The instance type\. If entered, this value overrides the launch template\. The instance types must have the minimum hardware specifications that you need \(vCPUs, memory, or storage\)\.
@@ -372,7 +372,7 @@ For more information, see [EC2 Fleet request types](ec2-fleet-configuration-stra
 **TagSpecifications**  
 \(Optional\) The key\-value pair for tagging the EC2 Fleet request on creation\. The value for `ResourceType` must be `fleet`, otherwise the fleet request fails\. To tag instances at launch, specify the tags in the [launch template](ec2-launch-templates.md#create-launch-template)\. For information about tagging after launch, see [Tagging your resources](Using_Tags.md#tag-resources)\.
 
-## Creating an EC2 Fleet<a name="create-ec2-fleet"></a>
+## Create an EC2 Fleet<a name="create-ec2-fleet"></a>
 
 When you create an EC2 Fleet, you must specify a launch template that includes information about the instances to launch, such as the instance type, Availability Zone, and the maximum price you are willing to pay\.
 
@@ -542,7 +542,7 @@ The following is example output for a fleet of type `instant` that launched no i
 }
 ```
 
-## Tagging an EC2 Fleet<a name="tag-ec2-fleet"></a>
+## Tag an EC2 Fleet<a name="tag-ec2-fleet"></a>
 
 To help categorize and manage your EC2 Fleet requests, you can tag them with custom metadata\. You can assign a tag to an EC2 Fleet request when you create it, or afterward\.
 
@@ -610,7 +610,7 @@ aws ec2 create-tags \
     --tags Key=purpose,Value=test
 ```
 
-## Monitoring your EC2 Fleet<a name="monitor-ec2-fleet"></a>
+## Monitor your EC2 Fleet<a name="monitor-ec2-fleet"></a>
 
 The EC2 Fleet launches On\-Demand Instances when there is available capacity, and launches Spot Instances when your maximum price exceeds the Spot price and capacity is available\. The On\-Demand Instances run until you terminate them, and the Spot Instances run until they are interrupted or you terminate them\.
 
@@ -705,7 +705,7 @@ aws ec2 describe-fleet-history --fleet-request-id fleet-73fbd2ce-aa30-494c-8788-
 }
 ```
 
-## Modifying an EC2 Fleet<a name="modify-ec2-fleet"></a>
+## Modify an EC2 Fleet<a name="modify-ec2-fleet"></a>
 
 You can modify an EC2 Fleet that is in the `submitted` or `active` state\. When you modify a fleet, it enters the `modifying` state\.
 
@@ -741,7 +741,7 @@ aws ec2 modify-fleet \
     --excess-capacity-termination-policy no-termination
 ```
 
-## Deleting an EC2 Fleet<a name="delete-fleet"></a>
+## Delete an EC2 Fleet<a name="delete-fleet"></a>
 
 If you no longer require an EC2 Fleet, you can delete it\. After you delete a fleet, it launches no new instances\.
 
@@ -802,7 +802,7 @@ The following is example output\.
 }
 ```
 
-### Troubleshooting when a fleet fails to delete<a name="troubleshoot-delete-fleet"></a>
+### Troubleshoot when a fleet fails to delete<a name="troubleshoot-delete-fleet"></a>
 
 If an EC2 Fleet fails to delete, `UnsuccessfulFleetDeletions` in the output returns the ID of the EC2 Fleet, an error code, and an error message\.
 
@@ -843,7 +843,7 @@ If you try to delete more than 25 `instant` fleets in a single request, the `Exc
 }
 ```
 
-**Troubleshooting `NoTerminateInstancesNotSupported`**  
+**Troubleshoot `NoTerminateInstancesNotSupported`**  
 If you specify that the instances in an `instant` fleet must not be terminated when you delete the fleet, the `NoTerminateInstancesNotSupported` error is returned\. `--no-terminate-instances` is not supported for `instant` fleets\. The following is example output for this error\.
 
 ```
@@ -860,7 +860,7 @@ If you specify that the instances in an `instant` fleet must not be terminated w
        "SuccessfulFleetDeletions": []
 ```
 
-**Troubleshooting `UnauthorizedOperation`**  
+**Troubleshoot `UnauthorizedOperation`**  
 If you do not have permission to terminate instances, you get the `UnauthorizedOperation` error when deleting a fleet that must terminate its instances\. The following is the error response\.
 
 ```
