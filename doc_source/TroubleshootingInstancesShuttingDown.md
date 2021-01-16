@@ -1,4 +1,4 @@
-# Troubleshooting terminating \(shutting down\) your instance<a name="TroubleshootingInstancesShuttingDown"></a>
+# Troubleshoot instance termination \(shutting down\)<a name="TroubleshootingInstancesShuttingDown"></a>
 
 You are not billed for any instance usage while an instance is not in the `running` state\. In other words, when you terminate an instance, you stop incurring charges for that instance as soon as its state changes to `shutting-down`\.
 

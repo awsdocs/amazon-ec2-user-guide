@@ -144,7 +144,7 @@ Create or obtain an AMI backed by an Amazon EBS snapshot\. Note that you can use
    + **Destination region**: The Region in which to copy the AMI\.
    + **Name**: A name for the new AMI\. You can include operating system information in the name, as we do not provide this information when displaying details about the AMI\.
    + **Description**: By default, the description includes information about the source AMI so that you can distinguish a copy from its original\. You can change this description as needed\.
-   + **Encryption**: Select this field to encrypt the target snapshots, or to re\-encrypt them using a different key\. If you have enabled [encryption by default](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/encryption-by-default.html), the **Encryption** option is set and cannot be unset from the AMI console\. 
+   + **Encryption**: Select this field to encrypt the target snapshots, or to re\-encrypt them using a different key\. If you have enabled [encryption by default](EBSEncryption.md#encryption-by-default), the **Encryption** option is set and cannot be unset\.
    + **Master Key**: The KMS key to used to encrypt the target snapshots\.
 
 1. We display a confirmation page to let you know that the copy operation has been initiated and to provide you with the ID of the new AMI\.
@@ -181,6 +181,6 @@ You can stop a pending AMI copy as follows\.
 
 **To stop an AMI copy operation using the command line**
 
-You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
+You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
 + [deregister\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/deregister-image.html) \(AWS CLI\)
 + [Unregister\-EC2Image](https://docs.aws.amazon.com/powershell/latest/reference/items/Unregister-EC2Image.html) \(AWS Tools for Windows PowerShell\)

@@ -7,7 +7,7 @@ You can choose between AMIs backed by Amazon EC2 instance store and AMIs backed 
 **Important**  
 Only the following instance types support an instance store volume as the root device: C3, D2, G2, I2, M3, and R3\.
 
-For more information about the device names Amazon EC2 uses for your root volumes, see [Device naming on Linux instances](device_naming.md)\.
+For more information about the device names Amazon EC2 uses for your root volumes, see [Name devices on Linux instances](device_naming.md)\.
 
 **Topics**
 + [Root device storage concepts](#RootDeviceStorageConcepts)
@@ -85,7 +85,7 @@ The AMI that you specify when you launch your instance determines the type of ro
 
 **To verify the type of the root device volume of an AMI using the command line**
 
-You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
+You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
 + [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) \(AWS CLI\)
 + [Get\-EC2Image](https://docs.aws.amazon.com/powershell/latest/userguide/pstools-ec2-get-amis.html#pstools-ec2-get-image) \(AWS Tools for Windows PowerShell\)
 
@@ -121,7 +121,7 @@ You can use one of the following commands\. For more information about these com
 
 **To determine the root device type of an instance using the command line**
 
-You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
+You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
 + [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) \(AWS CLI\)
 + [Get\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
 
@@ -268,11 +268,11 @@ C:\> (Get-EC2Instance -InstanceId i-i-1234567890abcdef0).Instances.BlockDeviceMa
 
 By default, the size of the root volume is determined by the size of the snapshot\. You can increase the initial size of the root volume using the block device mapping of the instance as follows\.
 
-1. Determine the device name of the root volume specified in the AMI, as described in [Viewing the EBS volumes in an AMI block device mapping](block-device-mapping-concepts.md#view-ami-bdm)\.
+1. Determine the device name of the root volume specified in the AMI, as described in [View the EBS volumes in an AMI block device mapping](block-device-mapping-concepts.md#view-ami-bdm)\.
 
 1. Confirm the size of the snapshot specified in the AMI block device mapping, as described in [View Amazon EBS snapshot information](ebs-describing-snapshots.md)\.
 
-1. Override the size of the root volume using the instance block device mapping, as described in [Updating the block device mapping when launching an instance](block-device-mapping-concepts.md#Using_OverridingAMIBDM), specifying a volume size that is larger than the snapshot size\.
+1. Override the size of the root volume using the instance block device mapping, as described in [Update the block device mapping when launching an instance](block-device-mapping-concepts.md#Using_OverridingAMIBDM), specifying a volume size that is larger than the snapshot size\.
 
 For example, the following entry for the instance block device mapping increases the size of the root volume, `/dev/xvda`, to 100 GiB\. You can omit the snapshot ID in the instance block device mapping because the snapshot ID is already specified in the AMI block device mapping\.
 

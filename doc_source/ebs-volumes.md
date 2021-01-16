@@ -64,7 +64,7 @@ When you create a new volume from a snapshot, it's an exact copy of the original
 
 Snapshots are incremental backups, meaning that only the blocks on the volume that have changed after your most recent snapshot are saved\. If you have a volume with 100 GiB of data, but only 5 GiB of data have changed since your last snapshot, only the 5 GiB of modified data is written to Amazon S3\. Even though snapshots are saved incrementally, the snapshot deletion process is designed so that you need to retain only the most recent snapshot\.
 
-To help categorize and manage your volumes and snapshots, you can tag them with metadata of your choice\. For more information, see [Tagging your Amazon EC2 resources](Using_Tags.md)\.
+To help categorize and manage your volumes and snapshots, you can tag them with metadata of your choice\. For more information, see [Tag your Amazon EC2 resources](Using_Tags.md)\.
 
 To back up your volumes automatically, you can use [Amazon Data Lifecycle Manager](snapshot-lifecycle.md) or [AWS Backup](https://docs.aws.amazon.com/aws-backup/latest/devguide/)\.
 

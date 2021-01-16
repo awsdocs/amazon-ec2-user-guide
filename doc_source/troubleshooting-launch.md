@@ -1,4 +1,4 @@
-# Troubleshooting instance launch issues<a name="troubleshooting-launch"></a>
+# Troubleshoot instance launch issues<a name="troubleshooting-launch"></a>
 
 The following issues prevent you from launching an instance\.
 

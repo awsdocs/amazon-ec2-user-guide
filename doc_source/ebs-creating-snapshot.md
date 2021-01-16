@@ -6,7 +6,7 @@ Snapshots occur asynchronously; the point\-in\-time snapshot is created immediat
 
 You can take a snapshot of an attached volume that is in use\. However, snapshots only capture data that has been written to your Amazon EBS volume at the time the snapshot command is issued\. This might exclude any data that has been cached by any applications or the operating system\. If you can pause any file writes to the volume long enough to take a snapshot, your snapshot should be complete\. However, if you can't pause all file writes to the volume, you should unmount the volume from within the instance, issue the snapshot command, and then remount the volume to ensure a consistent and complete snapshot\. You can remount and use your volume while the snapshot status is `pending`\.
 
-To make snapshot management easier, you can tag your snapshots during creation or add tags afterward\. For example, you can apply tags describing the original volume from which the snapshot was created, or the device name that was used to attach the original volume to an instance\. For more information, see [Tagging your Amazon EC2 resources](Using_Tags.md)\.
+To make snapshot management easier, you can tag your snapshots during creation or add tags afterward\. For example, you can apply tags describing the original volume from which the snapshot was created, or the device name that was used to attach the original volume to an instance\. For more information, see [Tag your Amazon EC2 resources](Using_Tags.md)\.
 
 ## Snapshot encryption<a name="ebs-create-snapshot-encrypted"></a>
 
@@ -67,7 +67,7 @@ Use the following procedure to create a snapshot from the specified volume\.
 
 **To create a snapshot using the command line**
 
-You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
+You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
 + [create\-snapshot](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-snapshot.html) \(AWS CLI\)
 + [New\-EC2Snapshot](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Snapshot.html) \(AWS Tools for Windows PowerShell\)
 
@@ -99,7 +99,7 @@ Use the following procedure to create a snapshot from the volumes of an instance
 
 **To create multi\-volume snapshots using the command line**
 
-You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
+You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
 + [create\-snapshots](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-snapshots.html) \(AWS CLI\)
 + [New\-EC2SnapshotBatch](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2SnapshotBatch.html) \(AWS Tools for Windows PowerShell\)
 

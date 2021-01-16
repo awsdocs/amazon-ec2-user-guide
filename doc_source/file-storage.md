@@ -5,5 +5,5 @@ Cloud file storage is a method for storing data in the cloud that provides serve
 There are many file storage solutions that exist, ranging from a single node file server on a compute instance using block storage as the underpinnings with no scalability or few redundancies to protect the data, to a do\-it\-yourself clustered solution, to a fully\-managed solution\. The following content introduces some of the storage services provided by AWS for use with Linux\.
 
 **Topics**
-+ [Using Amazon S3 with Amazon EC2](AmazonS3.md)
-+ [Using Amazon EFS with Amazon EC2](AmazonEFS.md)
++ [Use Amazon S3 with Amazon EC2](AmazonS3.md)
++ [Use Amazon EFS with Amazon EC2](AmazonEFS.md)

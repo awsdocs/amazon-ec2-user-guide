@@ -2,7 +2,7 @@
 
 After you launch your instance, you can connect to it and use it the way that you'd use a computer sitting in front of you\.
 
-The following instructions explain how to connect to your instance using PuTTY, a free SSH client for Windows\. If you receive an error while attempting to connect to your instance, see [Troubleshooting Connecting to Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html)\.
+The following instructions explain how to connect to your instance using PuTTY, a free SSH client for Windows\. If you receive an error while attempting to connect to your instance, see [Troubleshoot connecting to your instance](TroubleshootingInstancesConnecting.md)\.
 
 ## Prerequisites<a name="putty-prereqs"></a>
 
@@ -46,7 +46,7 @@ Your private key is now in the correct format for use with PuTTY\. You can now c
 
 ## Connect to your Linux instance<a name="putty-ssh"></a>
 
-Use the following procedure to connect to your Linux instance using PuTTY\. You need the `.ppk` file that you created for your private key\. For more information, see [Convert your private key using PuTTYgen](#putty-private-key) in the preceding section\. If you receive an error while attempting to connect to your instance, see [Troubleshooting Connecting to Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html)\.
+Use the following procedure to connect to your Linux instance using PuTTY\. You need the `.ppk` file that you created for your private key\. For more information, see [Convert your private key using PuTTYgen](#putty-private-key) in the preceding section\. If you receive an error while attempting to connect to your instance, see [Troubleshoot connecting to your instance](TroubleshootingInstancesConnecting.md)\.
 
 **To connect to your instance using PuTTY**
 
@@ -85,7 +85,7 @@ Use the following procedure to connect to your Linux instance using PuTTY\. You 
 **Note**  
 If you specified a passphrase when you converted your private key to PuTTY's format, you must provide that passphrase when you log in to the instance\.
 
-If you receive an error while attempting to connect to your instance, see [Troubleshooting Connecting to Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html)\.
+If you receive an error while attempting to connect to your instance, see [Troubleshoot connecting to your instance](TroubleshootingInstancesConnecting.md)\.
 
 ## Transfer files to your Linux instance using the PuTTY Secure Copy client<a name="putty-scp"></a>
 

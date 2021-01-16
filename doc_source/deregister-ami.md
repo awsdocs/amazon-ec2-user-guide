@@ -4,7 +4,7 @@ You can deregister an AMI when you have finished using it\. After you deregister
 
 When you deregister an AMI, it doesn't affect any instances that you've already launched from the AMI\. You'll continue to incur usage costs for these instances\. Therefore, if you are finished with these instances, you should terminate them\.
 
-The procedure that you'll use to clean up your AMI depends on whether it is backed by Amazon EBS or instance store\. For more information, see [Determin the root device type of your AMI](ComponentsAMIs.md#display-ami-root-device-type)\.
+The procedure that you'll use to clean up your AMI depends on whether it is backed by Amazon EBS or instance store\. For more information, see [Determine the root device type of your AMI](ComponentsAMIs.md#display-ami-root-device-type)\.
 
 **Note**  
 An AMI must be owned by your account in order to deregister it\.

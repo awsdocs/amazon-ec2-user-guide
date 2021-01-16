@@ -152,7 +152,7 @@ If you provisioned an IPv6 address range that will not be publicly advertised, y
 
 We recommend that you stop advertising the address range from other locations before you advertise it through AWS\. If you keep advertising your IP address range from other locations, we can't reliably support it or troubleshoot issues\. Specifically, we can't guarantee that traffic to the address range will enter our network\.
 
-To minimize down time, you can configure your AWS resources to use an address from your address pool before it is advertised, and then simultaneously stop advertising it from the current location and start advertising it through AWS\. For more information about allocating an Elastic IP address from your address pool, see [Allocating an Elastic IP address](elastic-ip-addresses-eip.md#using-instance-addressing-eips-allocating)\.
+To minimize down time, you can configure your AWS resources to use an address from your address pool before it is advertised, and then simultaneously stop advertising it from the current location and start advertising it through AWS\. For more information about allocating an Elastic IP address from your address pool, see [Allocate an Elastic IP address](elastic-ip-addresses-eip.md#using-instance-addressing-eips-allocating)\.
 
 To advertise the address range, use the following [advertise\-byoip\-cidr](https://docs.aws.amazon.com/cli/latest/reference/ec2/advertise-byoip-cidr.html) command\.
 

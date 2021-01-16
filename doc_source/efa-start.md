@@ -314,7 +314,7 @@ If you no longer want to use Intel MPI, remove the environment variables from th
 
 ## Step 6: Install your HPC application<a name="efa-start-hpc-app"></a>
 
-Install the HPC application on the temporary instance\. The installation procedure varies depending on the specific HPC application\. For more information about installing software on your Linux instance, see [Managing Software on Your Linux Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/managing-software.html)\.
+Install the HPC application on the temporary instance\. The installation procedure varies depending on the specific HPC application\. For more information, see [Manage software on your Amazon Linux instance](managing-software.md)\.
 
 **Note**  
 You might need to refer to your HPC application’s documentation for installation instructions\.

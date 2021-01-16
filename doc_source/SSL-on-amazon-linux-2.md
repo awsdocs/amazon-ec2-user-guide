@@ -1,13 +1,13 @@
 # Tutorial: Configure SSL/TLS on Amazon Linux 2<a name="SSL-on-amazon-linux-2"></a>
 
-Secure Sockets Layer/Transport Layer Security \(SSL/TLS\) creates an encrypted channel between a web server and web client that protects data in transit from being eavesdropped on\. This tutorial explains how to add support manually for SSL/TLS on an EC2 instance with Amazon Linux 2 and Apache web server\. This tutorial assumes that you are not using a load balancer\. If you are using a load balancer, you can choose to use the [AWS Certificate Manager](https://aws.amazon.com/certificate-manager/) instead\.
+Secure Sockets Layer/Transport Layer Security \(SSL/TLS\) creates an encrypted channel between a web server and web client that protects data in transit from being eavesdropped on\. This tutorial explains how to add support manually for SSL/TLS on an EC2 instance with Amazon Linux 2 and Apache web server\. This tutorial assumes that you are not using a load balancer\. If you are using Elastic Load Balancing, you can choose to configure SSL offload on the load balancer, using a certificate from [AWS Certificate Manager](https://aws.amazon.com/certificate-manager/) instead\.
 
 For historical reasons, web encryption is often referred to simply as SSL\. While web browsers still support SSL, its successor protocol TLS is less vulnerable to attack\. Amazon Linux 2 disables server\-side support for all versions of SSL by default\. [Security standards bodies](https://www.ssl.com/article/deprecating-early-tls/) consider TLS 1\.0 to be unsafe, and both TLS 1\.0 and TLS 1\.1 are on track to be formally [deprecated](https://tools.ietf.org/html/draft-ietf-tls-oldversions-deprecate-03) by the IETF\. This tutorial contains guidance based exclusively on enabling TLS 1\.2\. \(A newer TLS 1\.3 protocol exists, but it is not installed by default on Amazon Linux 2\.\) For more information about the updated encryption standards, see [RFC 7568](https://tools.ietf.org/html/rfc7568) and [RFC 8446](https://tools.ietf.org/html/rfc8446)\.
 
 This tutorial refers to modern web encryption simply as TLS\.
 
 **Important**  
-These procedures are intended for use with Amazon Linux 2\. We also assume that you are starting with a fresh Amazon EC2 instance\. If you are trying to set up a LAMP web server on an instance with a different distribution, or if you are reusing an older, existing instance, some procedures in this tutorial might not work for you\. For information about LAMP web servers on Ubuntu, see the Ubuntu community documentation [ApacheMySQLPHP](https://help.ubuntu.com/community/ApacheMySQLPHP)\. For information about Red Hat Enterprise Linux, see the Customer Portal topic [Web Servers](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/System_Administrators_Guide/ch-Web_Servers.html)\.
+These procedures are intended for use with Amazon Linux 2\. We also assume that you are starting with a new Amazon EC2 instance\. If you are trying to set up an EC2 instance running a different distribution, or an instance running an old version of Amazon Linux 2, some procedures in this tutorial might not work\. With the Amazon Linux AMI, see [Tutorial: Configure SSL/TLS with the Amazon Linux AMI](SSL-on-amazon-linux-ami.md)\. For Ubuntu, see the following Ubuntu community documentation: [ApacheMySQLPHP](https://help.ubuntu.com/community/ApacheMySQLPHP)\. For Red Hat Enterprise Linux, see the following in the Customer Portal: [Web Servers](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/System_Administrators_Guide/ch-Web_Servers.html)\. For other distributions, see their specific documentation\.
 
 **Topics**
 + [Prerequisites](#ssl_prereq)
@@ -26,7 +26,7 @@ Before you begin this tutorial, complete the following steps:
   + HTTP \(port 80\)
   + HTTPS \(port 443\)
 
-  For more information, see [Authorizing inbound traffic for your Linux instances](authorizing-access-to-an-instance.md)\.
+  For more information, see [Authorize inbound traffic for your Linux instances](authorizing-access-to-an-instance.md)\.
 + Install the Apache web server\. For step\-by\-step instructions, see [Tutorial: Install a LAMP Web Server on Amazon Linux 2](ec2-lamp-amazon-linux-2.md)\. Only the httpd package and its dependencies are needed, so you can ignore the instructions involving PHP and MariaDB\.
 + To identify and authenticate websites, the TLS public key infrastructure \(PKI\) relies on the Domain Name System \(DNS\)\. To use your EC2 instance to host a public website, you need to register a domain name for your web server or transfer an existing domain name to your Amazon EC2 host\. Numerous third\-party domain registration and DNS hosting services are available for this, or you can use [Amazon Route 53](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/Welcome.html)\. 
 
@@ -146,8 +146,9 @@ You can use the following process to obtain a CA\-signed certificate:
 
 A self\-signed TLS X\.509 host certificate is cryptologically identical to a CA\-signed certificate\. The difference is social, not mathematical\. A CA promises, at a minimum, to validate a domain's ownership before issuing a certificate to an applicant\. Each web browser contains a list of CAs trusted by the browser vendor to do this\. An X\.509 certificate consists primarily of a public key that corresponds to your private server key, and a signature by the CA that is cryptographically tied to the public key\. When a browser connects to a web server over HTTPS, the server presents a certificate for the browser to check against its list of trusted CAs\. If the signer is on the list, or accessible through a *chain of trust* consisting of other trusted signers, the browser negotiates a fast encrypted data channel with the server and loads the page\. 
 
-**Important**  
 Certificates generally cost money because of the labor involved in validating the requests, so it pays to shop around\. A list of well\-known CAs can be found at [dmoztools\.net](http://dmoztools.net/Computers/Security/Public_Key_Infrastructure/PKIX/Tools_and_Services/Third_Party_Certificate_Authorities/)\. A few CAs offer basic\-level certificates free of charge\. The most notable of these CAs is the [Let's Encrypt](https://letsencrypt.org/) project, which also supports the automation of the certificate creation and renewal process\. For more information about using Let's Encrypt as your CA, see [Certificate automation: Let's Encrypt with Certbot on Amazon Linux 2](#letsencrypt)\.
+
+If you plan to offer commercial\-grade services, [AWS Certificate Manager User Guide](https://docs.aws.amazon.com/acm/latest/userguide/) is a good option\.
 
 Underlying the host certificate is the key\. As of 2019, [government](http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57pt1r4.pdf) and [industry](https://cabforum.org/wp-content/uploads/CA-Browser-Forum-BR-1.6.5.pdf) groups recommend using a minimum key \(modulus\) size of 2048 bits for RSA keys intended to protect documents, through 2030\. The default modulus size generated by OpenSSL in Amazon Linux 2 is 2048 bits, which is suitable for use in a CA\-signed certificate\. In the following procedure, an optional step provided for those who want a customized key, for example, one with a larger modulus or using a different encryption algorithm\.
 
@@ -413,11 +414,10 @@ If you test the domain again on [Qualys SSL Labs](https://www.ssllabs.com/ssltes
 | Key exchange | 90% | 
 | Cipher strength | 90% | 
 
-**Important**  
-Each update to OpenSSL introduces new ciphers and removes support for old ones\. Keep your EC2 Amazon Linux 2 instance up\-to\-date, watch for security announcements from [OpenSSL](https://www.openssl.org/), and be alert to reports of new security exploits in the technical press\. For more information, see [Predefined SSL Security Policies for Elastic Load Balancing](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-security-policy-table.html) in the *User Guide for Classic Load Balancers*\.
+Each update to OpenSSL introduces new ciphers and removes support for old ones\. Keep your EC2 Amazon Linux 2 instance up\-to\-date, watch for security announcements from [OpenSSL](https://www.openssl.org/), and be alert to reports of new security exploits in the technical press\.
 
 ## Troubleshoot<a name="troubleshooting"></a>
-+ **My Apache webserver doesn't start unless I supply a password**
++ **My Apache webserver doesn't start unless I enter a password**
 
   This is expected behavior if you installed an encrypted, password\-protected, private server key\.
 
@@ -434,7 +434,7 @@ Each update to OpenSSL introduces new ciphers and removes support for old ones\.
   ```
 
   Apache should now start without prompting you for a password\.
-+  **I get errors when I run **sudo yum install \-y mod\_ssl**\.**
++  **I get errors when I run sudo yum install \-y mod\_ssl\.**
 
   When you are installing the required packages for SSL, you may see errors similar to the following\.
 
@@ -459,7 +459,7 @@ Complete the following procedures before you install Certbot\.
 
 1. Download the Extra Packages for Enterprise Linux \(EPEL\) 7 repository packages\. These are required to supply dependencies needed by Certbot\. 
 
-   1. Navigate to your home directory \(`/home/ec2-user`\)\. Download EPEL with the following command\.
+   1. Navigate to your home directory \(`/home/ec2-user`\)\. Download EPEL using the following command\.
 
       ```
       [ec2-user ~]$ sudo wget -r --no-parent -A 'epel-release-*.rpm' https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/e/

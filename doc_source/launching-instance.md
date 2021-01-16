@@ -115,7 +115,7 @@ If Amazon EC2 Auto Scaling marks an instance that is in an Auto Scaling group as
   + **Network Card Index**: The index of the network card\. The primary network interface must be assigned to network card index 0\. Some instance types support multiple network cards\.
   + Choose **Add Device** to add a secondary network interface\. A secondary network interface can reside in a different subnet of the VPC, provided it's in the same Availability Zone as your instance\.
 
-  For more information, see [Elastic network interfaces](using-eni.md)\. If you specify more than one network interface, your instance cannot receive a public IPv4 address\. Additionally, if you specify an existing network interface for eth0, you cannot override the subnet's public IPv4 setting using **Auto\-assign Public IP**\. For more information, see [Assigning a public IPv4 address during instance launch](using-instance-addressing.md#public-ip-addresses)\.
+  For more information, see [Elastic network interfaces](using-eni.md)\. If you specify more than one network interface, your instance cannot receive a public IPv4 address\. Additionally, if you specify an existing network interface for eth0, you cannot override the subnet's public IPv4 setting using **Auto\-assign Public IP**\. For more information, see [Assign a public IPv4 address during instance launch](using-instance-addressing.md#public-ip-addresses)\.
 + **Kernel ID**: \(Only valid for paravirtual \(PV\) AMIs\) Select **Use default** unless you want to use a specific kernel\.
 + **RAM disk ID**: \(Only valid for paravirtual \(PV\) AMIs\) Select **Use default** unless you want to use a specific RAM disk\. If you have selected a kernel, you may need to select a specific RAM disk with the drivers to support it\.
 + **Enclave**: Select **Enable** to enable the instance for AWS Nitro Enclaves\. For more information, see [ What is AWS Nitro Enclaves?](https://docs.aws.amazon.com/enclaves/latest/user/nitro-enclave.html) in the *AWS Nitro Enclaves User Guide*\.
@@ -166,4 +166,4 @@ To launch your instance, select the acknowledgment check box, then choose **Laun
 
 \(Optional\) You can create a status check alarm for the instance \(additional fees may apply\)\. \(If you're not sure, you can always add one later\.\) On the confirmation screen, choose **Create status check alarms** and follow the directions\. For more information, see [Create and edit status check alarms](monitoring-system-instance-status-check.md#creating_status_check_alarms)\.
 
-If the instance fails to launch or the state immediately goes to `terminated` instead of `running`, see [Troubleshooting instance launch issues](troubleshooting-launch.md)\.
+If the instance fails to launch or the state immediately goes to `terminated` instead of `running`, see [Troubleshoot instance launch issues](troubleshooting-launch.md)\.

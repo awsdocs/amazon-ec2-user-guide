@@ -9,7 +9,7 @@ By installing WSL, you can use a native Linux environment to connect to your Lin
 **Note**  
 After you've installed the WSL, all the prerequisites and steps are the same as those described in [Connect to your Linux instance using SSH](AccessingInstancesLinux.md), and the experience is just like using native Linux\.
 
-If you receive an error while attempting to connect to your instance, see [Troubleshooting Connecting to Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html)\.
+If you receive an error while attempting to connect to your instance, see [Troubleshoot connecting to your instance](TroubleshootingInstancesConnecting.md)\.
 
 **Contents**
 + [Prerequisites](#ssh-prereqs)
@@ -39,7 +39,7 @@ cp /mnt/<Windows drive letter>/path/my-key-pair.pem ~/WSL-path/my-key-pair.pem
 
 ## Connect to your Linux instance using WSL<a name="Connect-Linux-WSL"></a>
 
-Use the following procedure to connect to your Linux instance using the Windows Subsystem for Linux \(WSL\)\. If you receive an error while attempting to connect to your instance, see [Troubleshooting Connecting to Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html)\.
+Use the following procedure to connect to your Linux instance using the Windows Subsystem for Linux \(WSL\)\. If you receive an error while attempting to connect to your instance, see [Troubleshoot connecting to your instance](TroubleshootingInstancesConnecting.md)\.
 
 **To connect to your instance using SSH**
 

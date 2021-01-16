@@ -5,7 +5,7 @@ This list of practices will help you get the maximum benefit from Amazon EC2\.
 **Security**
 + Manage access to AWS resources and APIs using identity federation, IAM users, and IAM roles\. Establish credential management policies and procedures for creating, distributing, rotating, and revoking AWS access credentials\. For more information, see [IAM Best Practices](https://docs.aws.amazon.com/IAM/latest/UserGuide/IAMBestPractices.html) in the *IAM User Guide*\.
 + Implement the least permissive rules for your security group\. For more information, see [Security group rules](security-group-rules.md)\.
-+ Regularly patch, update, and secure the operating system and applications on your instance\. For more information about updating Amazon Linux 2 or the Amazon Linux AMI, see [Managing Software on Your Linux Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/managing-software.html) in the *Amazon EC2 User Guide for Linux Instances*\.
++ Regularly patch, update, and secure the operating system and applications on your instance\. For more information about updating Amazon Linux 2 or the Amazon Linux AMI, see [Manage software on your Linux instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/managing-software.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 **Storage**
 + Understand the implications of the root device type for data persistence, backup, and recovery\. For more information, see [Storage for the root device](ComponentsAMIs.md#storage-for-the-root-device)\.
@@ -14,7 +14,7 @@ This list of practices will help you get the maximum benefit from Amazon EC2\.
 + Encrypt EBS volumes and snapshots\. For more information, see [Amazon EBS encryption](EBSEncryption.md)\.
 
 **Resource management**
-+ Use instance metadata and custom resource tags to track and identify your AWS resources\. For more information, see [Instance metadata and user data](ec2-instance-metadata.md) and [Tagging your Amazon EC2 resources](Using_Tags.md)\.
++ Use instance metadata and custom resource tags to track and identify your AWS resources\. For more information, see [Instance metadata and user data](ec2-instance-metadata.md) and [Tag your Amazon EC2 resources](Using_Tags.md)\.
 + View your current limits for Amazon EC2\. Plan to request any limit increases in advance of the time that you'll need them\. For more information, see [Amazon EC2 service quotas](ec2-resource-limits.md)\.
 
 **Backup and recovery**

@@ -6,7 +6,7 @@ EC2 instances with encrypted EBS volumes are launched from AMIs in the same way 
 
 Like EBS volumes, snapshots in AMIs can be encrypted by either your default AWS Key Management Service customer master key \(CMK\), or to a customer managed key that you specify\. You must in all cases have permission to use the selected key\.
 
-AMIs with encrypted snapshots can be shared across AWS accounts\. For more information, see [Shared AMIs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/sharing-amis.html)\.
+AMIs with encrypted snapshots can be shared across AWS accounts\. For more information, see [Shared AMIs](sharing-amis.md)\.
 
 **Topics**
 + [Instance\-launching scenarios](#AMI-encryption-launch)
@@ -44,12 +44,7 @@ Submitting a `KmsKeyId` without also setting the `Encrypted` parameter results i
 
 The following sections provide examples of launching instances from AMIs using non\-default encryption parameters\. In each of these scenarios, parameters supplied to the `RunInstances` action result in a change of encryption state during restoration of a volume from a snapshot\.
 
-**Note**  
-For detailed console procedures to launch an instance from an AMI, see [Launch Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/LaunchingAndUsingInstances.html)\.  
-For documentation of the `RunInstances` API, see [RunInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html)\.  
-For documentation of the `run-instances` command in the AWS Command Line Interface, see [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html)\.
-
- 
+For information about using the console to launch an instance from an AMI, see [Launch your instance](LaunchingAndUsingInstances.md)\.
 
 ### Encrypt a volume during launch<a name="launch1"></a>
 
@@ -103,10 +98,7 @@ Submitting a `KmsKeyId` without also setting the `Encrypted` parameter results i
 
 The following section provides an example of copying an AMI using non\-default encryption parameters, resulting in a change of encryption state\.
 
-**Note**  
-For detailed console procedures to copy an AMI, see [Copying an AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/CopyingAMIs.html)\.  
-For documentation of the `CopyImage` API, see [CopyImage](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CopyImage.html)\.  
-For documentation of the command `copy-image` in the AWS Command Line Interface, see [copy\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/copy-image.html)\.
+For detailed instructions using the console, see [Copy an AMI](CopyingAMIs.md)\.
 
 ### Encrypt an unencrypted image during copy<a name="copy-unencrypted-to-encrypted"></a>
 

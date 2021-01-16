@@ -14,7 +14,7 @@ The virtual devices for instance store volumes are `ephemeral[0-23]`\. Instance 
 + [Add instance store volumes to your EC2 instance](add-instance-store-volumes.md)
 + [SSD instance store volumes](ssd-instance-store.md)
 + [Instance store swap volumes](instance-store-swap-volumes.md)
-+ [Optimizing disk performance for instance store volumes](disk-performance.md)
++ [Optimize disk performance for instance store volumes](disk-performance.md)
 
 ## Instance store lifetime<a name="instance-store-lifetime"></a>
 
@@ -236,7 +236,7 @@ The following table provides the quantity, size, type, and performance optimizat
 | z1d\.12xlarge |  2 x 900 GB \(1\.8 TB\)  | NVMe SSD |  | ✔ | 
 | z1d\.metal |  2 x 900 GB \(1\.8 TB\)  | NVMe SSD |  | ✔ | 
 
-\* Volumes attached to certain instances suffer a first\-write penalty unless initialized\. For more information, see [Optimizing disk performance for instance store volumes](disk-performance.md)\.
+\* Volumes attached to certain instances suffer a first\-write penalty unless initialized\. For more information, see [Optimize disk performance for instance store volumes](disk-performance.md)\.
 
 \*\* For more information, see [Instance store volume TRIM support](ssd-instance-store.md#InstanceStoreTrimSupport)\.
 

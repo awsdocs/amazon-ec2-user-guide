@@ -4,7 +4,7 @@ When you launch an instance in Amazon EC2, you have the option of passing user d
 
 If you are interested in more complex automation scenarios, consider using AWS CloudFormation and AWS OpsWorks\. For more information, see the [AWS CloudFormation User Guide](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/) and the [AWS OpsWorks User Guide](https://docs.aws.amazon.com/opsworks/latest/userguide/)\.
 
-For information about running commands on your Windows instance at launch, see [Running Commands on Your Windows Instance at Launch](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-windows-user-data.html) and [Managing Windows Instance Configuration](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-configuration-manage.html) in the *Amazon EC2 User Guide for Windows Instances*\.
+For information about running commands on your Windows instance at launch, see [Run commands on your Windows instance at launch](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-windows-user-data.html) and [Manage Windows instance configuration](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-configuration-manage.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
 In the following examples, the commands from the [Install a LAMP Web Server on Amazon Linux 2](ec2-lamp-amazon-linux-2.md) are converted to a shell script and a set of cloud\-init directives that run when the instance launches\. In each example, the following tasks are performed by the user data:
 + The distribution software packages are updated\.
@@ -77,7 +77,7 @@ For our example, in a web browser, enter the URL of the PHP test file the script
 http://my.public.dns.amazonaws.com/phpinfo.php
 ```
 
-You should see the PHP information page\. If you are unable to see the PHP information page, check that the security group you are using contains a rule to allow HTTP \(port 80\) traffic\. For more information, see [Adding rules to a security group](working-with-security-groups.md#adding-security-group-rule)\.
+You should see the PHP information page\. If you are unable to see the PHP information page, check that the security group you are using contains a rule to allow HTTP \(port 80\) traffic\. For more information, see [Add rules to a security group](working-with-security-groups.md#adding-security-group-rule)\.
 
 \(Optional\) If your script did not accomplish the tasks you were expecting it to, or if you just want to verify that your script completed without errors, examine the cloud\-init output log file at `/var/log/cloud-init-output.log` and look for error messages in the output\. 
 
@@ -182,7 +182,7 @@ Adding these tasks at boot time adds to the amount of time it takes to boot an i
    http://my.public.dns.amazonaws.com/phpinfo.php
    ```
 
-   You should see the PHP information page\. If you are unable to see the PHP information page, check that the security group you are using contains a rule to allow HTTP \(port 80\) traffic\. For more information, see [Adding rules to a security group](working-with-security-groups.md#adding-security-group-rule)\.
+   You should see the PHP information page\. If you are unable to see the PHP information page, check that the security group you are using contains a rule to allow HTTP \(port 80\) traffic\. For more information, see [Add rules to a security group](working-with-security-groups.md#adding-security-group-rule)\.
 
 1. \(Optional\) If your directives did not accomplish the tasks you were expecting them to, or if you just want to verify that your directives completed without errors, examine the output log file at `/var/log/cloud-init-output.log` and look for error messages in the output\. For additional debugging information, you can add the following line to your directives:
 
@@ -196,7 +196,7 @@ Adding these tasks at boot time adds to the amount of time it takes to boot an i
 
 You can use the AWS CLI to specify, modify, and view the user data for your instance\. For information about viewing user data from your instance using instance metadata, see [Retrieve instance user data](instancedata-add-user-data.md#instancedata-user-data-retrieval)\.
 
-On Windows, you can use the AWS Tools for Windows PowerShell instead of using the AWS CLI\. For more information, see [User Data and the Tools for Windows PowerShell](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-windows-user-data.html#user-data-powershell) in the *Amazon EC2 User Guide for Windows Instances*\.
+On Windows, you can use the AWS Tools for Windows PowerShell instead of using the AWS CLI\. For more information, see [User data and the Tools for Windows PowerShell](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-windows-user-data.html#user-data-powershell) in the *Amazon EC2 User Guide for Windows Instances*\.
 
 **Example: Specify user data at launch**  
 To specify user data when you launch your instance, use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command with the `--user-data` parameter\. With run\-instances, the AWS CLI performs base64 encoding of the user data for you\.

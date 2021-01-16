@@ -191,21 +191,23 @@ Use the following procedure to configure an alarm that sends you a notification 
 
 1. Select the instance, choose the **Status Checks** tab, and choose **Actions**, **Create status check alarm**\.
 
-1. On the **Manage CloudWatch alarms** page, under **Add or edit alarm**, choose **Create a new alarm**\.
+1. On the **Manage CloudWatch alarms** page, under **Add or edit alarm**, choose **Create an alarm**\.
 
 1. For **Alarm notification**, turn the toggle on to configure Amazon Simple Notification Service \(Amazon SNS\) notifications\. Select an existing Amazon SNS topic or enter a name to create a new topic\.
 
-1. For **Alarm action**, turn the toggle on to specify an action to take when the alarm is triggered\. Select the action that you'd like to take from the dropdown\.
+   If you add an email address to the list of recipients or created a new topic, Amazon SNS sends a subscription confirmation email message to each new address\. Each recipient must confirm the subscription by choosing the link contained in that message\. Alert notifications are sent only to confirmed addresses\.
 
-1. For **Alarm thresholds**, select the metric and criteria for the alarm\. In **Consecutive Period**, set the number of periods you want to evaluate and, in **Period**, enter the evaluation period duration before triggering the alarm and sending an email\.
+1. For **Alarm action**, turn the toggle on to specify an action to take when the alarm is triggered\. Select the action\.
 
-   For example, you can leave the default settings for **Group samples by** \(**Average**\) and **Type of data to sample** \(**CPU utilization**\)\. You can set **Alarm When** to **>=** and enter **0\.80** for **Percent**\. For **Consecutive Period**, you can enter **1**\. For **Period**, you can select **5 Minutes**\.
+1. For **Alarm thresholds**, specify the metric and criteria for the alarm\.
+
+   You can leave the default settings for **Group samples by** \(**Average**\) and **Type of data to sample** \(**Status check failed:either**\), or you can change them to suit your needs\.
+
+   For **Consecutive period**, set the number of periods to evaluate and, in **Period**, enter the evaluation period duration before triggering the alarm and sending an email\.
 
 1. \(Optional\) For **Sample metric data**, choose **Add to dashboard**\.
 
 1. Choose **Create**\.
-**Important**  
-If you added an email address to the list of recipients or created a new topic, Amazon SNS sends a subscription confirmation email message to each new address\. Each recipient must confirm the subscription by choosing the link contained in that message\. Alert notifications are sent only to confirmed addresses\.
 
 ------
 #### [ Old console ]
@@ -249,11 +251,11 @@ If you need to make changes to an instance status alarm, you can edit it\.
 
 1. Select the instance and choose **Actions**, **Monitoring**, **Manage CloudWatch alarms**\.
 
-1. On the **Manage CloudWatch alarms** page, under **Add or edit alarm**, choose **Edit an existing alarm**\.
+1. On the **Manage CloudWatch alarms** page, under **Add or edit alarm**, choose **Edit an alarm**\.
 
-1. For **Search for alarm**, choose the alarm to edit\.
+1. For **Search for alarm**, choose the alarm\.
 
-1. Make the desired changes, and then choose **Update**\.
+1. When you are finished making changes, choose **Update**\.
 
 ------
 #### [ Old console ]

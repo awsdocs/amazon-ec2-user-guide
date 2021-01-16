@@ -4,7 +4,7 @@ After you attach an Amazon EBS volume to your instance, it is exposed as a block
 
 You can take snapshots of your EBS volume for backup purposes or to use as a baseline when you create another volume\. For more information, see [Amazon EBS snapshots](EBSSnapshots.md)\.
 
-You can get directions for volumes on a Windows instance from [Making a Volume Available for Use on Windows](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ebs-using-volumes.html) in the *Amazon EC2 User Guide for Windows Instances*\.
+You can get directions for volumes on a Windows instance from [Make a volume available for use on Windows](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ebs-using-volumes.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
 ## Format and mount an attached volume<a name="ebs-format-mount-volume"></a>
 
@@ -14,7 +14,7 @@ Suppose that you have an EC2 instance with an EBS volume for the root device, `/
 
 1. Connect to your instance using SSH\. For more information, see [Connect to your Linux instance](AccessingInstances.md)\.
 
-1. The device could be attached to the instance with a different device name than you specified in the block device mapping\. For more information, see [Device naming on Linux instances](device_naming.md)\. Use the lsblk command to view your available disk devices and their mount points \(if applicable\) to help you determine the correct device name to use\. The output of lsblk removes the `/dev/` prefix from full device paths\.
+1. The device could be attached to the instance with a different device name than you specified in the block device mapping\. For more information, see [Name devices on Linux instances](device_naming.md)\. Use the lsblk command to view your available disk devices and their mount points \(if applicable\) to help you determine the correct device name to use\. The output of lsblk removes the `/dev/` prefix from full device paths\.
 
    The following is example output for an instance built on the [Nitro System](instance-types.md#ec2-nitro-instances), which exposes EBS volumes as NVMe block devices\. The root device is `/dev/nvme0n1`\. The attached volume is `/dev/nvme1n1`, which is not yet mounted\.
 

@@ -1,4 +1,4 @@
-# Authorizing inbound traffic for your Linux instances<a name="authorizing-access-to-an-instance"></a>
+# Authorize inbound traffic for your Linux instances<a name="authorizing-access-to-an-instance"></a>
 
 Security groups enable you to control traffic to your instance, including the kind of traffic that can reach your instance\. For example, you can allow computers from only your home network to access your instance using SSH\. If your instance is a web server, you can allow all IP addresses to access your instance using HTTP or HTTPS, so that external users can browse the content on your web server\.
 
@@ -19,7 +19,7 @@ If you use `0.0.0.0/0`, you enable all IPv4 addresses to access your instance us
 
 Decide whether you'll support SSH access to your instances using EC2 Instance Connect\. If you will not use EC2 Instance Connect, consider uninstalling it or denying the following action in your IAM policies: `ec2-instance-connect:SendSSHPublicKey`\. For more information, see [Uninstall EC2 Instance Connect](ec2-instance-connect-uninstall.md) and [Configure IAM Permissions for EC2 Instance Connect](ec2-instance-connect-set-up.md#ec2-instance-connect-configure-IAM-role)\.
 
-## Adding a rule for inbound SSH traffic to a Linux instance<a name="add-rule-authorize-access"></a>
+## Add a rule for inbound SSH traffic to a Linux instance<a name="add-rule-authorize-access"></a>
 
 Security groups act as a firewall for associated instances, controlling both inbound and outbound traffic at the instance level\. You must add rules to a security group to enable you to connect to your Linux instance from your IP address using SSH\.
 
@@ -118,7 +118,7 @@ If you launched an instance with an IPv6 address and want to connect to your ins
 ------
 
 **Note**  
-Be sure to run the following commands on your local system, not on the instance itself\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
+Be sure to run the following commands on your local system, not on the instance itself\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
 
 **To add a rule to a security group using the command line**
 
@@ -154,7 +154,7 @@ Be sure to run the following commands on your local system, not on the instance 
      PS C:\> Grant-EC2SecurityGroupIngress -GroupId security_group_id -IpPermission @($ip1)
      ```
 
-## Assigning a security group to an instance<a name="assign-security-group-to-instance"></a>
+## Assign a security group to an instance<a name="assign-security-group-to-instance"></a>
 
 You can assign a security group to an instance when you launch the instance\. When you add or remove rules, those changes are automatically applied to all instances to which you've assigned the security group\.
 

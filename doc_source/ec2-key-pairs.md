@@ -4,23 +4,23 @@ A key pair, consisting of a private key and a public key, is a set of security c
 
 When you launch an instance, you are [prompted for a key pair](launching-instance.md#step-7-review-instance-launch)\. If you plan to connect to the instance using SSH, you must specify a key pair\. You can choose an existing key pair or create a new one\. When your instance boots for the first time, the content of the public key that you specified at launch is placed on your Linux instance in an entry within `~/.ssh/authorized_keys`\. When you connect to your Linux instance using SSH, to log in you must specify the private key that corresponds to the public key content\. For more information about connecting to your instance, see [Connect to your Linux instance](AccessingInstances.md)\. For more information about key pairs and Windows instances, see [Amazon EC2 key pairs and Windows instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-key-pairs.html) in the *Amazon EC2 User Guide for Windows Instances*
 
-Because Amazon EC2 doesn't keep a copy of your private key, there is no way to recover a private key if you lose it\. However, there can still be a way to connect to instances for which you've lost the private key\. For more information, see [Connecting to your Linux instance if you lose your private key](replacing-lost-key-pair.md)\.
+Because Amazon EC2 doesn't keep a copy of your private key, there is no way to recover a private key if you lose it\. However, there can still be a way to connect to instances for which you've lost the private key\. For more information, see [Connect to your Linux instance if you lose your private key](replacing-lost-key-pair.md)\.
 
 The keys that Amazon EC2 uses are 2048\-bit SSH\-2 RSA keys\. You can have up to 5,000 key pairs per Region\.
 
 **Topics**
-+ [Creating or importing a key pair](#prepare-key-pair)
-+ [Tagging a key pair](#tag-key-pair)
-+ [Retrieving the public key for your key pair](#retrieving-the-public-key)
-+ [Retrieving the public key for your key pair through instance metadata](#retrieving-the-public-key-instance)
-+ [Locating the public key on an instance](#locate-public-key-on-instance)
-+ [Identifying the key pair that was specified at launch](#identify-key-pair-specified-at-launch)
-+ [\(Optional\) Verifying your key pair's fingerprint](#verify-key-pair-fingerprints)
-+ [Adding or replacing a key pair for your instance](#replacing-key-pair)
-+ [Connecting to your Linux instance if you lose your private key](replacing-lost-key-pair.md)
-+ [Deleting your key pair](#delete-key-pair)
++ [Create or import a key pair](#prepare-key-pair)
++ [Tag a key pair](#tag-key-pair)
++ [Retrieve the public key for your key pair](#retrieving-the-public-key)
++ [Retrieve the public key for your key pair through instance metadata](#retrieving-the-public-key-instance)
++ [Locate the public key on an instance](#locate-public-key-on-instance)
++ [Identify the key pair that was specified at launch](#identify-key-pair-specified-at-launch)
++ [\(Optional\) Verify your key pair's fingerprint](#verify-key-pair-fingerprints)
++ [Add or replace a key pair for your instance](#replacing-key-pair)
++ [Connect to your Linux instance if you lose your private key](replacing-lost-key-pair.md)
++ [Delete your key pair](#delete-key-pair)
 
-## Creating or importing a key pair<a name="prepare-key-pair"></a>
+## Create or import a key pair<a name="prepare-key-pair"></a>
 
 You can use Amazon EC2 to create a new key pair, or you can import an existing key pair\.
 
@@ -202,9 +202,9 @@ Use the [Get\-EC2KeyPair](https://docs.aws.amazon.com/powershell/latest/referenc
 
 ------
 
-## Tagging a key pair<a name="tag-key-pair"></a>
+## Tag a key pair<a name="tag-key-pair"></a>
 
-To help categorize and manage your existing key pairs, you can tag them with custom metadata\. For more information about how tags work, see [Tagging your Amazon EC2 resources](Using_Tags.md)\.
+To help categorize and manage your existing key pairs, you can tag them with custom metadata\. For more information about how tags work, see [Tag your Amazon EC2 resources](Using_Tags.md)\.
 
 You can view, add, and delete tags using the new console and the command line tools\.
 
@@ -303,7 +303,7 @@ Use the [Remove\-EC2Tag](https://docs.aws.amazon.com/powershell/latest/reference
 
 ------
 
-## Retrieving the public key for your key pair<a name="retrieving-the-public-key"></a>
+## Retrieve the public key for your key pair<a name="retrieving-the-public-key"></a>
 
 On your local Linux or macOS computer, you can use the ssh\-keygen command to retrieve the public key for your key pair\. Specify the path where you downloaded your private key \(the `.pem` file\)\.
 
@@ -327,7 +327,7 @@ If the command fails, run the following command to ensure that you've changed th
 chmod 400 my-key-pair.pem
 ```
 
-## Retrieving the public key for your key pair through instance metadata<a name="retrieving-the-public-key-instance"></a>
+## Retrieve the public key for your key pair through instance metadata<a name="retrieving-the-public-key-instance"></a>
 
 The public key that you specified when you launched an instance is also available to you through its instance metadata\. To view the public key that you specified when launching the instance, use the following command from your instance:
 
@@ -380,7 +380,7 @@ qaeJAAHco+CY/5WrUBkrHmFJr6HcXkvJdWPkYQS3xqC0+FmUZofz221CBt5IMucxXPkX4rWi+z7wB3Rb
 BQoQzd8v7yeb7OzlPnWOyN0qFU0XA246RA8QFYiCNYwI3f05p6KLxEXAMPLE my-key-pair
 ```
 
-## Locating the public key on an instance<a name="locate-public-key-on-instance"></a>
+## Locate the public key on an instance<a name="locate-public-key-on-instance"></a>
 
 When you launch an instance, you are [prompted for a key pair](launching-instance.md#step-7-review-instance-launch)\. If you plan to connect to the instance using SSH, you must specify a key pair\. You can choose an existing key pair or create a new one\. When your instance boots for the first time, the content of the public key that you specified at launch is placed on your Linux instance in an entry within `~/.ssh/authorized_keys`\.
 
@@ -400,7 +400,7 @@ When you launch an instance, you are [prompted for a key pair](launching-instanc
    ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQClKsfkNkuSevGj3eYhCe53pcjqP3maAhDFcvBS7O6Vhz2ItxCih+PnDSUaw+WNQn/mZphTk/a/gU8jEzoOWbkM4yxyb/wB96xbiFveSFJuOp/d6RJhJOI0iBXrlsLnBItntckiJ7FbtxJMXLvvwJryDUilBMTjYtwB+QhYXUMOzce5Pjz5/i8SeJtjnV3iAoG/cQk+0FzZqaeJAAHco+CY/5WrUBkrHmFJr6HcXkvJdWPkYQS3xqC0+FmUZofz221CBt5IMucxXPkX4rWi+z7wB3RbBQoQzd8v7yeb7OzlPnWOyN0qFU0XA246RA8QFYiCNYwI3f05p6KLxEXAMPLE
    ```
 
-## Identifying the key pair that was specified at launch<a name="identify-key-pair-specified-at-launch"></a>
+## Identify the key pair that was specified at launch<a name="identify-key-pair-specified-at-launch"></a>
 
 When you launch an instance, you are [prompted for a key pair](launching-instance.md#step-7-review-instance-launch)\. If you plan to connect to the instance using SSH, you must specify a key pair\.
 
@@ -428,7 +428,7 @@ When you launch an instance, you are [prompted for a key pair](launching-instanc
 
 ------
 
-## \(Optional\) Verifying your key pair's fingerprint<a name="verify-key-pair-fingerprints"></a>
+## \(Optional\) Verify your key pair's fingerprint<a name="verify-key-pair-fingerprints"></a>
 
 On the **Key Pairs** page in the Amazon EC2 console, the **Fingerprint** column displays the fingerprints generated from your key pairs\. AWS calculates the fingerprint differently depending on whether the key pair was generated by AWS or a third\-party tool\. If you created the key pair using AWS, the fingerprint is calculated using an SHA\-1 hash function\. If you created the key pair with a third\-party tool and uploaded the public key to AWS, or if you generated a new public key from an existing AWS\-created private key and uploaded it to AWS, the fingerprint is calculated using an MD5 hash function\.
 
@@ -452,11 +452,11 @@ If you created an OpenSSH key pair using OpenSSH 7\.8 or later and uploaded the 
 $ ssh-keygen -ef path_to_private_key -m PEM | openssl rsa -RSAPublicKey_in -outform DER | openssl md5 -c
 ```
 
-## Adding or replacing a key pair for your instance<a name="replacing-key-pair"></a>
+## Add or replace a key pair for your instance<a name="replacing-key-pair"></a>
 
 You can change the key pair that is used to access the default system account of your instance\. For example, if a user in your organization requires access to the system user account using a separate key pair, you can add that key pair to your instance\. Or, if someone has a copy of the `.pem` file and you want to prevent them from connecting to your instance \(for example, if they've left your organization\), you can replace the key pair with a new one\.
 
-To add or replace a key pair, you must be able to connect to your instance\. If you've lost your existing private key or you launched your instance without a key pair, you won't be able connect to your instance and therefore won't be able to add or replace a key pair\. If you've lost your existing private key, you might be able to retrieve it\. For more information, see [Connecting to your Linux instance if you lose your private key](replacing-lost-key-pair.md)\. If you launched your instance without a key pair, you won't be able to connect to the instance unless you chose an AMI that is configured to allow users another way to log in\.
+To add or replace a key pair, you must be able to connect to your instance\. If you've lost your existing private key or you launched your instance without a key pair, you won't be able connect to your instance and therefore won't be able to add or replace a key pair\. If you've lost your existing private key, you might be able to retrieve it\. For more information, see [Connect to your Linux instance if you lose your private key](replacing-lost-key-pair.md)\. If you launched your instance without a key pair, you won't be able to connect to the instance unless you chose an AMI that is configured to allow users another way to log in\.
 
 **Note**  
 These procedures are for modifying the key pair for the default user account, such as `ec2-user`\. For more information about adding user accounts to your instance, see [Manage user accounts on your Amazon Linux instance](managing-users.md)\.
@@ -465,7 +465,7 @@ These procedures are for modifying the key pair for the default user account, su
 
 1. Create a new key pair using [the Amazon EC2 console](#having-ec2-create-your-key-pair) or a [third\-party tool](#how-to-generate-your-own-key-and-import-it-to-aws)\.
 
-1. Retrieve the public key from your new key pair\. For more information, see [Retrieving the public key for your key pair](#retrieving-the-public-key)\.
+1. Retrieve the public key from your new key pair\. For more information, see [Retrieve the public key for your key pair](#retrieving-the-public-key)\.
 
 1. Connect to your instance using your existing private key file\.
 
@@ -478,7 +478,7 @@ These procedures are for modifying the key pair for the default user account, su
 **Note**  
 If you're using an Auto Scaling group, ensure that the key pair you're replacing is not specified in your launch template or launch configuration\. Amazon EC2 Auto Scaling launches a replacement instance if it detects an unhealthy instance; however, the instance launch fails if the key pair cannot be found\. 
 
-## Deleting your key pair<a name="delete-key-pair"></a>
+## Delete your key pair<a name="delete-key-pair"></a>
 
 When you delete a key pair, you are only deleting the Amazon EC2 copy of the public key\. Deleting a key pair doesn't affect the private key on your computer or the public key on any instances that already launched using that key pair\. You can't launch a new instance using a deleted key pair, but you can continue to connect to any instances that you launched using a deleted key pair, as long as you still have the private key \(`.pem`\) file\.
 

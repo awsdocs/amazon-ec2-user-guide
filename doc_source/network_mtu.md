@@ -13,7 +13,7 @@ To see Network MTU information for Windows instances, switch to this page in the
 + [Path MTU Discovery](#path_mtu_discovery)
 + [Check the path MTU between two hosts](#check_path_mtu)
 + [Check and set the MTU on your Linux instance](#set_mtu)
-+ [Troubleshooting](#mtu-troubleshooting)
++ [Troubleshoot](#mtu-troubleshooting)
 
 ## Jumbo frames \(9001 MTU\)<a name="jumbo_frame_instances"></a>
 
@@ -110,6 +110,6 @@ You can check the current MTU value using the following ip command\. Note that i
 
 1. \(Optional\) Reboot your instance and verify that the MTU setting is correct\.
 
-## Troubleshooting<a name="mtu-troubleshooting"></a>
+## Troubleshoot<a name="mtu-troubleshooting"></a>
 
 If you experience connectivity issues between your EC2 instance and an Amazon Redshift cluster when using jumbo frames, see [Queries Appear to Hang](https://docs.aws.amazon.com/redshift/latest/mgmt/connecting-drop-issues.html) in the *Amazon Redshift Cluster Management Guide*

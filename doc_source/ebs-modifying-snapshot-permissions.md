@@ -138,7 +138,7 @@ Use one of the following commands:
 + [describe\-snapshot\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-snapshot-attribute.html) \(AWS CLI\)
 + [Get\-EC2SnapshotAttribute](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2SnapshotAttribute.html) \(AWS Tools for Windows PowerShell\)
 
-For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
+For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
 
 ## Determine the use of shared snapshots<a name="shared-snapshot-cloudtrail-logging"></a>
 

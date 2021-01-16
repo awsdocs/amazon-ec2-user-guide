@@ -430,7 +430,7 @@ When you tag a Spot Fleet request, the instances and volumes that are launched b
 **Note**  
 Volume tags are only supported for volumes that are attached to On\-Demand Instances\. You can't tag volumes that are attached to Spot Instances\.
 
-For more information about how tags work, see [Tagging your Amazon EC2 resources](Using_Tags.md)\.
+For more information about how tags work, see [Tag your Amazon EC2 resources](Using_Tags.md)\.
 
 **Topics**
 + [Prerequisite](#tag-spot-fleet-prereqs)
@@ -441,7 +441,7 @@ For more information about how tags work, see [Tagging your Amazon EC2 resources
 
 ### Prerequisite<a name="tag-spot-fleet-prereqs"></a>
 
-Grant the IAM user the permission to tag resources\. For more information, see [Example: Tagging resources](ExamplePolicies_EC2.md#iam-example-taggingresources)\.
+Grant the IAM user the permission to tag resources\. For more information, see [Example: Tag resources](ExamplePolicies_EC2.md#iam-example-taggingresources)\.
 
 **To grant an IAM user the permission to tag resources**  
 Create a IAM policy that includes the following:

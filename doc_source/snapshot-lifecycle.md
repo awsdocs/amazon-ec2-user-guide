@@ -52,7 +52,7 @@ Amazon Data Lifecycle Manager uses resource tags to identify the resources to ba
 
 You can't use a '\\' or '=' character in a tag key\.
 
-For more information, see [Tagging your Amazon EC2 resources](Using_Tags.md)\.
+For more information, see [Tag your Amazon EC2 resources](Using_Tags.md)\.
 
 ### Amazon Data Lifecycle Manager tags<a name="dlm-tagging-snapshots"></a>
 

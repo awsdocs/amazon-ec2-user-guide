@@ -7,11 +7,11 @@ To help you work out which API actions are required to perform tasks in the cons
 
 **Topics**
 + [Read\-only access](#ex-read-only)
-+ [Using the EC2 launch wizard](#ex-launch-wizard)
-+ [Working with volumes](#ex-volumes)
-+ [Working with security groups](#ex-security-groups)
-+ [Working with Elastic IP addresses](#ex-eip)
-+ [Working with Reserved Instances](#ex-reservedinstances)
++ [Use the EC2 launch wizard](#ex-launch-wizard)
++ [Work with volumes](#ex-volumes)
++ [Work with security groups](#ex-security-groups)
++ [Work with Elastic IP addresses](#ex-eip)
++ [Work with Reserved Instances](#ex-reservedinstances)
 
 For additional information about creating policies for the Amazon EC2 console, see the following AWS Security Blog post: [Granting Users Permission to Work in the Amazon EC2 Console](https://aws.amazon.com/blogs/security/granting-users-permission-to-work-in-the-amazon-ec2-console/)\.
 
@@ -63,7 +63,7 @@ The following policy allows users to view instances in the Amazon EC2 console, a
 }
 ```
 
-## Example: Using the EC2 launch wizard<a name="ex-launch-wizard"></a>
+## Example: Use the EC2 launch wizard<a name="ex-launch-wizard"></a>
 
 The Amazon EC2 launch wizard is a series of screens with options to configure and launch an instance\. Your policy must include permission to use the API actions that allow users to work with the wizard's options\. If your policy does not include permission to use those actions, some items in the wizard cannot load properly, and users cannot complete a launch\.
 
@@ -111,9 +111,9 @@ You can add API actions to your policy to provide more options for users, for ex
 + `ec2:DescribeAvailabilityZones`: To view and select a specific Availability Zone\.
 + `ec2:DescribeNetworkInterfaces`: To view and select existing network interfaces for the selected subnet\.
 + To add outbound rules to VPC security groups, users must be granted permission to use the `ec2:AuthorizeSecurityGroupEgress` API action\. To modify or delete existing rules, users must be granted permission to use the relevant `ec2:RevokeSecurityGroup*` API action\.
-+ `ec2:CreateTags`: To tag the resources that are created by `RunInstances`\. For more information, see [Granting permission to tag resources during creation](supported-iam-actions-tagging.md)\. If users do not have permission to use this action and they attempt to apply tags on the tagging page of the launch wizard, the launch fails\.
++ `ec2:CreateTags`: To tag the resources that are created by `RunInstances`\. For more information, see [Grant permission to tag resources during creation](supported-iam-actions-tagging.md)\. If users do not have permission to use this action and they attempt to apply tags on the tagging page of the launch wizard, the launch fails\.
 **Important**  
-Be careful about granting users permission to use the `ec2:CreateTags` action, because doing so limits your ability to use the `ec2:ResourceTag` condition key to restrict their use of other resources\. If you grant users permission to use the `ec2:CreateTags` action, they can change a resource's tag in order to bypass those restrictions\. For more information, see [Controlling access to EC2 resources using resource tags](control-access-with-tags.md)\.
+Be careful about granting users permission to use the `ec2:CreateTags` action, because doing so limits your ability to use the `ec2:ResourceTag` condition key to restrict their use of other resources\. If you grant users permission to use the `ec2:CreateTags` action, they can change a resource's tag in order to bypass those restrictions\. For more information, see [Control access to EC2 resources using resource tags](control-access-with-tags.md)\.
 + To use Systems Manager parameters when selecting an AMI, you must add `ssm:DescribeParameters` and `ssm:GetParameters` to your policy\. `ssm:DescribeParameters` grants your IAM users the permission to view and select Systems Manager parameters\. `ssm:GetParameters` grants your IAM users the permission to get the values of the Systems Manager parameters\. You can also restrict access to specific Systems Manager parameters\. For more information, see **Restrict access to specific Systems Manager parameters** later in this section\.
 
 Currently, the Amazon EC2 `Describe*` API actions do not support resource\-level permissions, so you cannot restrict which individual resources users can view in the launch wizard\. However, you can apply resource\-level permissions on the `ec2:RunInstances` API action to restrict which resources users can use to launch an instance\. The launch fails if users select options that they are not authorized to use\. 
@@ -122,7 +122,7 @@ Currently, the Amazon EC2 `Describe*` API actions do not support resource\-level
 
 The following policy allows users to launch `t2.micro` instances using AMIs owned by Amazon, and only into a specific subnet \(`subnet-1a2b3c4d`\)\. Users can only launch in the sa\-east\-1 Region\. If users select a different Region, or select a different instance type, AMI, or subnet in the launch wizard, the launch fails\. 
 
-The first statement grants users permission to view the options in the launch wizard or to create new ones, as explained in the example above\. The second statement grants users permission to use the network interface, volume, key pair, security group, and subnet resources for the `ec2:RunInstances` action, which are required to launch an instance into a VPC\. For more information about using the `ec2:RunInstances` action, see [Launching instances \(RunInstances\)](ExamplePolicies_EC2.md#iam-example-runinstances)\. The third and fourth statements grant users permission to use the instance and AMI resources respectively, but only if the instance is a `t2.micro` instance, and only if the AMI is owned by Amazon\.
+The first statement grants users permission to view the options in the launch wizard or to create new ones, as explained in the example above\. The second statement grants users permission to use the network interface, volume, key pair, security group, and subnet resources for the `ec2:RunInstances` action, which are required to launch an instance into a VPC\. For more information about using the `ec2:RunInstances` action, see [Launch instances \(RunInstances\)](ExamplePolicies_EC2.md#iam-example-runinstances)\. The third and fourth statements grant users permission to use the instance and AMI resources respectively, but only if the instance is a `t2.micro` instance, and only if the AMI is owned by Amazon\.
 
 ```
 {
@@ -209,7 +209,7 @@ The first statement grants users the permission to view Systems Manager paramete
 }
 ```
 
-## Example: Working with volumes<a name="ex-volumes"></a>
+## Example: Work with volumes<a name="ex-volumes"></a>
 
 The following policy grants users permission to view and create volumes, and attach and detach volumes to specific instances\. 
 
@@ -257,7 +257,7 @@ Users cannot tag the volumes that they create \(either during or after volume cr
 }
 ```
 
-## Example: Working with security groups<a name="ex-security-groups"></a>
+## Example: Work with security groups<a name="ex-security-groups"></a>
 
 **View security groups and add and remove rules**
 
@@ -299,7 +299,7 @@ In the first statement, the `ec2:DescribeTags` action allows users to view tags 
 }
 ```
 
-**Working with the Create Security Group dialog box**
+**Work with the Create Security Group dialog box**
 
 You can create a policy that allows users to work with the **Create Security Group** dialog box in the Amazon EC2 console\. To use this dialog box, users must be granted permission to use at the least the following API actions:
 + `ec2:CreateSecurityGroup`: To create a new security group\. 
@@ -346,7 +346,7 @@ The following policy grants users permission to use the **Create Security Group*
 }
 ```
 
-## Example: Working with Elastic IP addresses<a name="ex-eip"></a>
+## Example: Work with Elastic IP addresses<a name="ex-eip"></a>
 
 To allow users to view Elastic IP addresses in the Amazon EC2 console, you must grant users permission to use the `ec2:DescribeAddresses` action\.
 
@@ -377,7 +377,7 @@ The following policy allows users to view, allocate, and associate Elastic IP ad
 }
 ```
 
-## Example: Working with Reserved Instances<a name="ex-reservedinstances"></a>
+## Example: Work with Reserved Instances<a name="ex-reservedinstances"></a>
 
 The following policy can be attached to an IAM user\. It gives the user access to view and modify Reserved Instances in your account, as well as purchase new Reserved Instances in the AWS Management Console\.
 

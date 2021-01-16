@@ -40,7 +40,7 @@ To launch instances, IAM users must have permissions to use the `ec2:RunInstance
 
 ## Control the use of launch templates<a name="launch-template-permissions"></a>
 
-By default, IAM users do not have permissions to work with launch templates\. You can create an IAM user policy that grants users permissions to create, modify, describe, and delete launch templates and launch template versions\. You can also apply resource\-level permissions to some launch template actions to control a user's ability to use specific resources for those actions\. For more information, see the following example policies: [Example: Working with launch templates](ExamplePolicies_EC2.md#iam-example-launch-templates)\.
+By default, IAM users do not have permissions to work with launch templates\. You can create an IAM user policy that grants users permissions to create, modify, describe, and delete launch templates and launch template versions\. You can also apply resource\-level permissions to some launch template actions to control a user's ability to use specific resources for those actions\. For more information, see the following example policies: [Example: Work with launch templates](ExamplePolicies_EC2.md#iam-example-launch-templates)\.
 
 Take care when granting users permissions to use the `ec2:CreateLaunchTemplate` and `ec2:CreateLaunchTemplateVersion` actions\. You cannot use resource\-level permissions to control which resources users can specify in the launch template\. To restrict the resources that are used to launch an instance, ensure that you grant permissions to create launch templates and launch template versions only to appropriate administrators\.
 
@@ -511,7 +511,7 @@ Instances that are launched using a launch template are automatically assigned t
       --block-device-mappings "DeviceName=/dev/xvdb,Ebs={VolumeSize=20,VolumeType=gp2}"
   ```
 
-If the instance fails to launch or the state immediately goes to `terminated` instead of `running`, see [Troubleshooting instance launch issues](troubleshooting-launch.md)\.
+If the instance fails to launch or the state immediately goes to `terminated` instead of `running`, see [Troubleshoot instance launch issues](troubleshooting-launch.md)\.
 
 ------
 

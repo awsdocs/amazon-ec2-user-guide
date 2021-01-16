@@ -24,7 +24,7 @@ For information about adding EBS volumes to your instance at launch, see [Instan
 
 1. For **Instance**, start typing the name or ID of the instance\. Select the instance from the list of options \(only instances that are in the same Availability Zone as the volume are displayed\)\.
 
-1. For **Device**, you can keep the suggested device name, or type a different supported device name\. For more information, see [Device naming on Linux instances](device_naming.md)\.
+1. For **Device**, you can keep the suggested device name, or type a different supported device name\. For more information, see [Name devices on Linux instances](device_naming.md)\.
 
 1. Choose **Attach**\.
 
@@ -32,6 +32,6 @@ For information about adding EBS volumes to your instance at launch, see [Instan
 
 **To attach an EBS volume to an instance using the command line**
 
-You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
+You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
 + [attach\-volume](https://docs.aws.amazon.com/cli/latest/reference/ec2/attach-volume.html) \(AWS CLI\)
 + [Add\-EC2Volume](https://docs.aws.amazon.com/powershell/latest/reference/items/Add-EC2Volume.html) \(AWS Tools for Windows PowerShell\)

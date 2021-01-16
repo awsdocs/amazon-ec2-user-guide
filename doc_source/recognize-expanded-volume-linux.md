@@ -11,7 +11,7 @@ The process for extending a file system on Linux is as follows:
 
 1. Use a file system\-specific command to resize each file system to the new volume capacity\.
 
-For information about extending a Windows file system, see [Extending a Windows file system after resizing a volume](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/recognize-expanded-volume-windows.html) in the *Amazon EC2 User Guide for Windows Instances*\.
+For information about extending a Windows file system, see [Extend a Windows file system after resizing a volume](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/recognize-expanded-volume-windows.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
 The following examples walk you through the process of extending a Linux file system\. For file systems and partitioning schemes other than the ones shown here, refer to the documentation for those file systems and partitioning schemes for instructions\.
 
@@ -58,7 +58,7 @@ For this example, suppose that you have an instance built on the [Nitro System](
    + The root volume, `/dev/nvme0n1`, has a partition, `/dev/nvme0n1p1`\. While the size of the root volume reflects the new size, 16 GB, the size of the partition reflects the original size, 8 GB, and must be extended before you can extend the file system\.
    + The volume `/dev/nvme1n1` has no partitions\. The size of the volume reflects the new size, 30 GB\.
 
-1. To extend the partition on the root volume, use the following growpart command\. Notice that there is a space between the device name and the partition number\.
+1. For volumes that have a partition, such as the root volume shown in the previous step, use the growpart command to extend the partition\. Notice that there is a space between the device name and the partition number\.
 
    ```
    [ec2-user ~]$ sudo growpart /dev/nvme0n1 1
@@ -155,7 +155,7 @@ For this example, suppose that you have resized the boot volume of an instance, 
    + The root volume, `/dev/xvda`, has a partition, `/dev/xvda1`\. While the size of the volume is 16 GB, the size of the partition is still 8 GB and must be extended\.
    + The volume `/dev/xvdf` has a partition, `/dev/xvdf1`\. While the size of the volume is 30G, the size of the partition is still 8 GB and must be extended\.
 
-1. To extend the partition on each volume, use the following growpart commands\. Notice that there is a space between the device name and the partition number\.
+1. For volumes that have a partition, such as the volumes shown in the previous step, use the growpart command to extend the partition\. Notice that there is a space between the device name and the partition number\.
 
    ```
    [ec2-user ~]$ sudo growpart /dev/xvda 1

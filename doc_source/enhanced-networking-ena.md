@@ -1,17 +1,17 @@
-# Enabling enhanced networking with the Elastic Network Adapter \(ENA\) on Linux instances<a name="enhanced-networking-ena"></a>
+# Enable enhanced networking with the Elastic Network Adapter \(ENA\) on Linux instances<a name="enhanced-networking-ena"></a>
 
 Amazon EC2 provides enhanced networking capabilities through the Elastic Network Adapter \(ENA\)\. To use enhanced networking, you must install the required ENA module and enable ENA support\.
 
 **Topics**
 + [Requirements](#ena-requirements)
 + [Enhanced networking performance](#ena-performance)
-+ [Testing whether enhanced networking is enabled](#test-enhanced-networking-ena)
-+ [Enabling enhanced networking on the Amazon Linux AMI](#enable-enhanced-networking-ena-AL)
-+ [Enabling enhanced networking on Ubuntu](#enhanced-networking-ena-ubuntu)
-+ [Enabling enhanced networking on Linux](#enhanced-networking-ena-linux)
-+ [Enabling enhanced networking on Ubuntu with DKMS](#enhanced-networking-ena-ubuntu-dkms)
++ [Test whether enhanced networking is enabled](#test-enhanced-networking-ena)
++ [Enable enhanced networking on the Amazon Linux AMI](#enable-enhanced-networking-ena-AL)
++ [Enable enhanced networking on Ubuntu](#enhanced-networking-ena-ubuntu)
++ [Enable enhanced networking on Linux](#enhanced-networking-ena-linux)
++ [Enable enhanced networking on Ubuntu with DKMS](#enhanced-networking-ena-ubuntu-dkms)
 + [Driver release notes](#ena-driver-release-notes)
-+ [Troubleshooting](#enhanced-networking-ena-troubleshooting)
++ [Troubleshoot](#enhanced-networking-ena-troubleshooting)
 
 ## Requirements<a name="ena-requirements"></a>
 
@@ -19,7 +19,7 @@ To prepare for enhanced networking using the ENA, set up your instance as follow
 + Launch the instance using a [current generation](instance-types.md#current-gen-instances) instance type, other than C4, D2, M4 instances smaller than `m4.16xlarge`, or T2\.
 + Launch the instance using a supported version of the Linux kernel and a supported distribution, so that ENA enhanced networking is enabled for your instance automatically\. For more information, see [ENA Linux Kernel Driver Release Notes](https://github.com/amzn/amzn-drivers/blob/master/kernel/linux/ena/RELEASENOTES.md)\.
 + Ensure that the instance has internet connectivity\.
-+ Install and configure the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html) or the [AWS Tools for Windows PowerShell](https://docs.aws.amazon.com/powershell/latest/userguide/) on any computer you choose, preferably your local desktop or laptop\. For more information, see [Accessing Amazon EC2](concepts.md#access-ec2)\. Enhanced networking cannot be managed from the Amazon EC2 console\.
++ Install and configure the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html) or the [AWS Tools for Windows PowerShell](https://docs.aws.amazon.com/powershell/latest/userguide/) on any computer you choose, preferably your local desktop or laptop\. For more information, see [Access Amazon EC2](concepts.md#access-ec2)\. Enhanced networking cannot be managed from the Amazon EC2 console\.
 + If you have important data on the instance that you want to preserve, you should back that data up now by creating an AMI from your instance\. Updating kernels and kernel modules, as well as enabling the `enaSupport` attribute, might render incompatible instances or operating systems unreachable\. If you have a recent backup, your data will still be retained if this happens\.
 
 ## Enhanced networking performance<a name="ena-performance"></a>
@@ -31,7 +31,7 @@ The following documentation provides a summary of the network performance for th
 + [Network Performance for Memory Optimized Instances](memory-optimized-instances.md#memory-network-perf)
 + [Network Performance for Storage Optimized Instances](storage-optimized-instances.md#storage-network-performance)
 
-## Testing whether enhanced networking is enabled<a name="test-enhanced-networking-ena"></a>
+## Test whether enhanced networking is enabled<a name="test-enhanced-networking-ena"></a>
 
 The following AMIs include the required ENA module and have ENA support enabled:
 + Amazon Linux 2
@@ -74,7 +74,7 @@ ubuntu:~$ modinfo ena
 ERROR: modinfo: could not find module ena
 ```
 
-In the above Ubuntu instance, the module is not installed, so you must first install it\. For more information, see [Enabling enhanced networking on Ubuntu](#enhanced-networking-ena-ubuntu)\.
+In the above Ubuntu instance, the module is not installed, so you must first install it\. For more information, see [Enable enhanced networking on Ubuntu](#enhanced-networking-ena-ubuntu)\.
 
 **Instance attribute \(enaSupport\)**
 
@@ -137,9 +137,9 @@ supports-register-dump: no
 supports-priv-flags: no
 ```
 
-## Enabling enhanced networking on the Amazon Linux AMI<a name="enable-enhanced-networking-ena-AL"></a>
+## Enable enhanced networking on the Amazon Linux AMI<a name="enable-enhanced-networking-ena-AL"></a>
 
-Amazon Linux 2 and the latest versions of the Amazon Linux AMI include the module required for enhanced networking with ENA installed and have ENA support enabled\. Therefore, if you launch an instance with an HVM version of Amazon Linux on a supported instance type, enhanced networking is already enabled for your instance\. For more information, see [Testing whether enhanced networking is enabled](#test-enhanced-networking-ena)\.
+Amazon Linux 2 and the latest versions of the Amazon Linux AMI include the module required for enhanced networking with ENA installed and have ENA support enabled\. Therefore, if you launch an instance with an HVM version of Amazon Linux on a supported instance type, enhanced networking is already enabled for your instance\. For more information, see [Test whether enhanced networking is enabled](#test-enhanced-networking-ena)\.
 
 If you launched your instance using an older Amazon Linux AMI and it does not have enhanced networking enabled already, use the following procedure to enable enhanced networking\.
 
@@ -155,7 +155,7 @@ If you launched your instance using an older Amazon Linux AMI and it does not ha
 
 1. From your local computer, reboot your instance using the Amazon EC2 console or one of the following commands: [reboot\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/reboot-instances.html) \(AWS CLI\), [Restart\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Restart-EC2Instance.html) \(AWS Tools for Windows PowerShell\)\.
 
-1. <a name="amazon-linux-enhanced-networking-ena-stop-step-AL"></a>Connect to your instance again and verify that the `ena` module is installed and at the minimum recommended version using the modinfo ena command from [Testing whether enhanced networking is enabled](#test-enhanced-networking-ena)\.
+1. <a name="amazon-linux-enhanced-networking-ena-stop-step-AL"></a>Connect to your instance again and verify that the `ena` module is installed and at the minimum recommended version using the modinfo ena command from [Test whether enhanced networking is enabled](#test-enhanced-networking-ena)\.
 
 1. \[EBS\-backed instance\] From your local computer, stop the instance using the Amazon EC2 console or one of the following commands: [stop\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) \(AWS CLI\), [Stop\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Stop-EC2Instance.html) \(AWS Tools for Windows PowerShell\)\. If your instance is managed by AWS OpsWorks, you should stop the instance in the AWS OpsWorks console so that the instance state remains in sync\.
 
@@ -177,9 +177,9 @@ If you launched your instance using an older Amazon Linux AMI and it does not ha
 
 1. From your local computer, start the instance using the Amazon EC2 console or one of the following commands: [start\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/start-instances.html) \(AWS CLI\), [Start\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Start-EC2Instance.html) \(AWS Tools for Windows PowerShell\)\. If your instance is managed by AWS OpsWorks, you should start the instance in the AWS OpsWorks console so that the instance state remains in sync\.
 
-1. Connect to your instance and verify that the `ena` module is installed and loaded on your network interface using the ethtool \-i eth*n* command from [Testing whether enhanced networking is enabled](#test-enhanced-networking-ena)\.
+1. Connect to your instance and verify that the `ena` module is installed and loaded on your network interface using the ethtool \-i eth*n* command from [Test whether enhanced networking is enabled](#test-enhanced-networking-ena)\.
 
-   If you are unable to connect to your instance after enabling enhanced networking, see [Troubleshooting the Elastic Network Adapter \(ENA\)](troubleshooting-ena.md)\.<a name="enhanced-networking-ena-instance-store-AL"></a>
+   If you are unable to connect to your instance after enabling enhanced networking, see [Troubleshoot the Elastic Network Adapter \(ENA\)](troubleshooting-ena.md)\.<a name="enhanced-networking-ena-instance-store-AL"></a>
 
 **To enable enhanced networking on Amazon Linux AMI \(instance store\-backed instances\)**
 
@@ -195,9 +195,9 @@ Follow the previous procedure until the step where you stop the instance\. Creat
   Register-EC2Image -EnaSupport $true ...
   ```
 
-## Enabling enhanced networking on Ubuntu<a name="enhanced-networking-ena-ubuntu"></a>
+## Enable enhanced networking on Ubuntu<a name="enhanced-networking-ena-ubuntu"></a>
 
-The latest Ubuntu HVM AMIs include the module required for enhanced networking with ENA installed and have ENA support enabled\. Therefore, if you launch an instance with the latest Ubuntu HVM AMI on a supported instance type, enhanced networking is already enabled for your instance\. For more information, see [Testing whether enhanced networking is enabled](#test-enhanced-networking-ena)\. 
+The latest Ubuntu HVM AMIs include the module required for enhanced networking with ENA installed and have ENA support enabled\. Therefore, if you launch an instance with the latest Ubuntu HVM AMI on a supported instance type, enhanced networking is already enabled for your instance\. For more information, see [Test whether enhanced networking is enabled](#test-enhanced-networking-ena)\. 
 
 If you launched your instance using an older AMI and it does not have enhanced networking enabled already, you can install the `linux-aws` kernel package to get the latest enhanced networking drivers and update the required attribute\.
 
@@ -250,9 +250,9 @@ Follow the previous procedure until the step where you stop the instance\. Creat
   Register-EC2Image -EnaSupport $true ...
   ```
 
-## Enabling enhanced networking on Linux<a name="enhanced-networking-ena-linux"></a>
+## Enable enhanced networking on Linux<a name="enhanced-networking-ena-linux"></a>
 
-The latest AMIs for Red Hat Enterprise Linux, SUSE Linux Enterprise Server, and CentOS include the module required for enhanced networking with ENA and have ENA support enabled\. Therefore, if you launch an instance with the latest AMI on a supported instance type, enhanced networking is already enabled for your instance\. For more information, see [Testing whether enhanced networking is enabled](#test-enhanced-networking-ena)\.
+The latest AMIs for Red Hat Enterprise Linux, SUSE Linux Enterprise Server, and CentOS include the module required for enhanced networking with ENA and have ENA support enabled\. Therefore, if you launch an instance with the latest AMI on a supported instance type, enhanced networking is already enabled for your instance\. For more information, see [Test whether enhanced networking is enabled](#test-enhanced-networking-ena)\.
 
 The following procedure provides the general steps for enabling enhanced networking on a Linux distribution other than Amazon Linux AMI or Ubuntu\. For more information, such as detailed syntax for commands, file locations, or package and tool support, see the documentation for your Linux distribution\.
 
@@ -323,7 +323,7 @@ If your instance operating system contains an `/etc/udev/rules.d/70-persistent-n
 
 1. \(Optional\) Connect to your instance and verify that the module is installed\.
 
-   If you are unable to connect to your instance after enabling enhanced networking, see [Troubleshooting the Elastic Network Adapter \(ENA\)](troubleshooting-ena.md)\.<a name="other-linux-enhanced-networking-ena-instance-store"></a>
+   If you are unable to connect to your instance after enabling enhanced networking, see [Troubleshoot the Elastic Network Adapter \(ENA\)](troubleshooting-ena.md)\.<a name="other-linux-enhanced-networking-ena-instance-store"></a>
 
 **To enable enhanced networking on Linux \(instance store–backed instances\)**
 
@@ -339,16 +339,16 @@ Follow the previous procedure until the step where you stop the instance\. Creat
   Register-EC2Image -EnaSupport ...
   ```
 
-## Enabling enhanced networking on Ubuntu with DKMS<a name="enhanced-networking-ena-ubuntu-dkms"></a>
+## Enable enhanced networking on Ubuntu with DKMS<a name="enhanced-networking-ena-ubuntu-dkms"></a>
 
-This method is for testing and feedback purposes only\. It is not intended for use with production deployments\. For production deployments, see [Enabling enhanced networking on Ubuntu](#enhanced-networking-ena-ubuntu)\.
+This method is for testing and feedback purposes only\. It is not intended for use with production deployments\. For production deployments, see [Enable enhanced networking on Ubuntu](#enhanced-networking-ena-ubuntu)\.
 
 **Important**  
 Using DKMS voids the support agreement for your subscription\. It should not be used for production deployments\.
 
 **To enable enhanced networking with ENA on Ubuntu \(EBS\-backed instances\)**
 
-1. Follow steps 1 and 2 in [Enabling enhanced networking on Ubuntu](#enhanced-networking-ena-ubuntu)\.
+1. Follow steps 1 and 2 in [Enable enhanced networking on Ubuntu](#enhanced-networking-ena-ubuntu)\.
 
 1. Install the `build-essential` packages to compile the kernel module and the `dkms` package so that your `ena` module is rebuilt every time your kernel is updated\.
 
@@ -417,7 +417,7 @@ Using DKMS voids the support agreement for your subscription\. It should not be 
    ubuntu:~$ sudo update-initramfs -u -k all
    ```
 
-1. Verify that the `ena` module is installed using the modinfo ena command from [Testing whether enhanced networking is enabled](#test-enhanced-networking-ena)\.
+1. Verify that the `ena` module is installed using the modinfo ena command from [Test whether enhanced networking is enabled](#test-enhanced-networking-ena)\.
 
    ```
    ubuntu:~$ modinfo ena
@@ -446,12 +446,12 @@ Using DKMS voids the support agreement for your subscription\. It should not be 
     (int)
    ```
 
-1. Continue with Step 3 in [Enabling enhanced networking on Ubuntu](#enhanced-networking-ena-ubuntu)\. 
+1. Continue with Step 3 in [Enable enhanced networking on Ubuntu](#enhanced-networking-ena-ubuntu)\. 
 
 ## Driver release notes<a name="ena-driver-release-notes"></a>
 
 For information about the versions of the Linux ENA driver, see the [ENA Linux kernel driver release notes](https://github.com/amzn/amzn-drivers/blob/master/kernel/linux/ena/RELEASENOTES.md)\.
 
-## Troubleshooting<a name="enhanced-networking-ena-troubleshooting"></a>
+## Troubleshoot<a name="enhanced-networking-ena-troubleshooting"></a>
 
-For troubleshooting information, see [Troubleshooting the Elastic Network Adapter \(ENA\)](troubleshooting-ena.md)\.
+For troubleshooting information, see [Troubleshoot the Elastic Network Adapter \(ENA\)](troubleshooting-ena.md)\.

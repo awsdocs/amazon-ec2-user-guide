@@ -59,7 +59,7 @@ aws ec2 create-network-interface --subnet-id subnet-01234567890 --description ex
 
 You can attach an EFA to any supported instance that is in the `stopped` state\. You cannot attach an EFA to an instance that is in the `running` state\. For more information about the supported instance types, see [Supported instance types](efa.md#efa-instance-types)\.
 
-You attach an EFA to an instance in the same way that you attach a network interface to an instance\. For more information, see [Attaching a network interface to an instance](using-eni.md#attach_eni)\.
+You attach an EFA to an instance in the same way that you attach a network interface to an instance\. For more information, see [Attach a network interface to an instance](using-eni.md#attach_eni)\.
 
 ## Attach an EFA when launching an instance<a name="efa-launch"></a>
 
@@ -101,16 +101,16 @@ You change the security group that is associated with an EFA in the same way tha
 
 To detach an EFA from an instance, you must first stop the instance\. You cannot detach an EFA from an instance that is in the running state\.
 
-You detach an EFA from an instance in the same way that you detach an elastic network interface from an instance\. For more information, see [Detaching a network interface from an instance](using-eni.md#detach_eni)\.
+You detach an EFA from an instance in the same way that you detach an elastic network interface from an instance\. For more information, see [Detach a network interface from an instance](using-eni.md#detach_eni)\.
 
 ## View EFAs<a name="efa-view"></a>
 
 You can view all of the EFAs in your account\.
 
-You view EFAs in the same way that you view elastic network interfaces\. For more information, see [Viewing details about a network interface](using-eni.md#view_eni_details)\.
+You view EFAs in the same way that you view elastic network interfaces\. For more information, see [View details about a network interface](using-eni.md#view_eni_details)\.
 
 ## Delete an EFA<a name="efa-delete"></a>
 
 To delete an EFA, you must first detach it from the instance\. You cannot delete an EFA while it is attached to an instance\.
 
-You delete EFAs in the same way that you delete elastic network interfaces\. For more information, see [Deleting a network interface](using-eni.md#delete_eni)\.
+You delete EFAs in the same way that you delete elastic network interfaces\. For more information, see [Delete a network interface](using-eni.md#delete_eni)\.

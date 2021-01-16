@@ -12,7 +12,7 @@ If your instance type does not support Elastic Volumes, see [Modify an EBS volum
 
 ## Requirements for Linux volumes<a name="linux-volumes"></a>
 
-Linux AMIs require a GUID partition table \(GPT\) and GRUB 2 for boot volumes that are 2 TiB \(2,048 GiB\) or larger\. Many Linux AMIs today still use the MBR partitioning scheme, which only supports boot volume sizes up to 2 TiB\. If your instance does not boot with a boot volume larger than 2 TiB, the AMI you are using may be limited to a boot volume size of less than 2 TiB\. Non\-boot volumes do not have this limitation on Linux instances\. For requirements affecting Windows volumes, see [Requirements for Windows Volumes](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/volume_constraints.html) in the *Amazon EC2 User Guide for Windows Instances*\.
+Linux AMIs require a GUID partition table \(GPT\) and GRUB 2 for boot volumes that are 2 TiB \(2,048 GiB\) or larger\. Many Linux AMIs today still use the MBR partitioning scheme, which only supports boot volume sizes up to 2 TiB\. If your instance does not boot with a boot volume larger than 2 TiB, the AMI you are using may be limited to a boot volume size of less than 2 TiB\. Non\-boot volumes do not have this limitation on Linux instances\. For requirements affecting Windows volumes, see [Requirements for Windows volumes](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/volume_constraints.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
 Before attempting to resize a boot volume beyond 2 TiB, you can determine whether the volume is using MBR or GPT partitioning by running the following command on your instance:
 

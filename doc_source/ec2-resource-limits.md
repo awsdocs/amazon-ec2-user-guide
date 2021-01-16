@@ -6,7 +6,7 @@ The Amazon EC2 console provides limit information for the resources managed by t
 
 For more information, see [Amazon EC2 endpoints and quotas](https://docs.aws.amazon.com/general/latest/gr/ec2-service.html) in the *Amazon Web Services General Reference*\. For information about Amazon EBS quotas, see [Amazon EBS quotas](ebs-resource-quotas.md)\.
 
-## Viewing your current limits<a name="view-limits"></a>
+## View your current limits<a name="view-limits"></a>
 
 Use the **Limits** page in the Amazon EC2 console to view the current limits for resources provided by Amazon EC2 and Amazon VPC, on a per\-Region basis\.
 
@@ -21,7 +21,7 @@ Use the **Limits** page in the Amazon EC2 console to view the current limits for
 
 1. Locate the resource in the list\. You can use the search fields to filter the list by resource name or resource group\. The **Current limit** column displays the current maximum for the resource for your account\.
 
-## Requesting an increase<a name="request-increase"></a>
+## Request an increase<a name="request-increase"></a>
 
 Use the **Limits** page in the Amazon EC2 console to request an increase in your Amazon EC2 or Amazon VPC resources, on a per\-Region basis\.
 

@@ -8,7 +8,7 @@
 + Attaching another network interface to an instance \(for example, a NIC teaming configuration\) cannot be used as a method to increase or double the network bandwidth to or from the dual\-homed instance\.
 + If you attach two or more network interfaces from the same subnet to an instance, you might encounter networking issues such as asymmetric routing\. If possible, use a secondary private IPv4 address on the primary network interface instead\.
 
-## Configuring your network interface using ec2\-net\-utils<a name="ec2-net-utils"></a>
+## Configure your network interface using ec2\-net\-utils<a name="ec2-net-utils"></a>
 
 Amazon Linux AMIs may contain additional scripts installed by AWS, known as ec2\-net\-utils\. These scripts optionally automate the configuration of your network interfaces\. These scripts are available for Amazon Linux only\.
 

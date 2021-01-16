@@ -1,4 +1,4 @@
-# Connecting to your Linux instance if you lose your private key<a name="replacing-lost-key-pair"></a>
+# Connect to your Linux instance if you lose your private key<a name="replacing-lost-key-pair"></a>
 
 If you lose the private key for an EBS\-backed instance, you can regain access to your instance\. You must stop the instance, detach its root volume and attach it to another instance as a data volume, modify the `authorized_keys` file with a new public key, move the volume back to the original instance, and restart the instance\. For more information about launching, connecting to, and stopping instances, see [Instance lifecycle](ec2-instance-lifecycle.md)\.
 

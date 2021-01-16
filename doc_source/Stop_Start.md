@@ -17,7 +17,7 @@ If you decide that you no longer need an instance, you can terminate it\. As soo
 
 ## Overview<a name="instance_stop"></a>
 
-You can only stop an Amazon EBS\-backed instance\. To verify the root device type of your instance, describe the instance and check whether the device type of its root volume is `ebs` \(Amazon EBS\-backed instance\) or `instance store` \(instance store\-backed instance\)\. For more information, see [Determin the root device type of your AMI](ComponentsAMIs.md#display-ami-root-device-type)\.
+You can only stop an Amazon EBS\-backed instance\. To verify the root device type of your instance, describe the instance and check whether the device type of its root volume is `ebs` \(Amazon EBS\-backed instance\) or `instance store` \(instance store\-backed instance\)\. For more information, see [Determine the root device type of your AMI](ComponentsAMIs.md#display-ami-root-device-type)\.
 
 When you stop a running instance, the following happens:
 + The instance performs a normal shutdown and stops running; its status changes to `stopping` and then `stopped`\.
@@ -99,7 +99,7 @@ You can stop and start your Amazon EBS\-backed instance using the console or the
 
 **To stop and start an Amazon EBS\-backed instance using the command line**
 
-You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
+You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
 + [stop\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) and [start\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/start-instances.html) \(AWS CLI\)
 + [Stop\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Stop-EC2Instance.html) and [Start\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Start-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
 
@@ -111,14 +111,14 @@ You can change the instance type, user data, and EBS\-optimization attributes of
 + To change the instance type, see [Change the instance type](ec2-instance-resize.md)\.
 + To change the user data for your instance, see [Work with instance user data](instancedata-add-user-data.md)\.
 + To enable or disable EBS–optimization for your instance, see [Modifying EBS–Optimization](ebs-optimized.md#modify-ebs-optimized-attribute)\.
-+ To change the `DeleteOnTermination` attribute of the root volume for your instance, see [Updating the block device mapping of a running instance](block-device-mapping-concepts.md#update-instance-bdm)\. You are not required to stop the instance to change this attribute\. 
++ To change the `DeleteOnTermination` attribute of the root volume for your instance, see [Update the block device mapping of a running instance](block-device-mapping-concepts.md#update-instance-bdm)\. You are not required to stop the instance to change this attribute\. 
 
 **To modify an instance attribute using the command line**
 
-You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
+You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
 + [modify\-instance\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) \(AWS CLI\)
 + [Edit\-EC2InstanceAttribute](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2InstanceAttribute.html) \(AWS Tools for Windows PowerShell\)
 
 ## Troubleshoot stopping your instance<a name="troubleshoot-instance-stop"></a>
 
-If you have stopped your Amazon EBS\-backed instance and it appears "stuck" in the `stopping` state, you can forcibly stop it\. For more information, see [Troubleshooting stopping your instance](TroubleshootingInstancesStopping.md)\.
+If you have stopped your Amazon EBS\-backed instance and it appears "stuck" in the `stopping` state, you can forcibly stop it\. For more information, see [Troubleshoot stopping your instance](TroubleshootingInstancesStopping.md)\.

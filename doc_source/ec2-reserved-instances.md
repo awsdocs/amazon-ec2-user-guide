@@ -81,4 +81,4 @@ Before purchasing regional Reserved Instances, make sure your On\-Demand Instanc
 
 A zonal Reserved Instance—a Reserved Instance that is purchased for a specific Availability Zone— provides capacity reservation as well as a discount\. You *can exceed* your running On\-Demand Instance limit by purchasing zonal Reserved Instances\. For example, if you already have 20 running On\-Demand Instances, and you purchase 20 zonal Reserved Instances, you can launch a further 20 On\-Demand Instances that match the specifications of your zonal Reserved Instances, giving you a total of 40 running instances\.
 
-The Amazon EC2 console provides limit information\. For more information, see [Viewing your current limits](ec2-resource-limits.md#view-limits)\.
+The Amazon EC2 console provides limit information\. For more information, see [View your current limits](ec2-resource-limits.md#view-limits)\.

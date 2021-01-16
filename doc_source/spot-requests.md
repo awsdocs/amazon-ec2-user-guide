@@ -219,7 +219,7 @@ If you choose the **Proceed without key pair** option, you won't be able to conn
 
 1. To launch your instance, select the acknowledgment check box, then choose **Launch Instances**\.
 
-   If the instance fails to launch or the state immediately goes to `terminated` instead of `running`, see [Troubleshooting instance launch issues](troubleshooting-launch.md)\.
+   If the instance fails to launch or the state immediately goes to `terminated` instead of `running`, see [Troubleshoot instance launch issues](troubleshooting-launch.md)\.
 
 **To create a Spot Instance request using [request\-spot\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-instances.html) \(AWS CLI\)**  
 Use the [request\-spot\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-instances.html) command to create a one\-time request\.
@@ -323,7 +323,7 @@ To help categorize and manage your Spot Instance requests, you can tag them with
 
 When you tag a Spot Instance request, the instances and volumes that are launched by the Spot Instance request are not automatically tagged\. You need to explicitly tag the instances and volumes launched by the Spot Instance request\. You can assign a tag to a Spot Instance and volumes during launch, or afterward\.
 
-For more information about how tags work, see [Tagging your Amazon EC2 resources](Using_Tags.md)\.
+For more information about how tags work, see [Tag your Amazon EC2 resources](Using_Tags.md)\.
 
 **Topics**
 + [Prerequisites](#tag-spot-request-prereqs)
@@ -333,7 +333,7 @@ For more information about how tags work, see [Tagging your Amazon EC2 resources
 
 ### Prerequisites<a name="tag-spot-request-prereqs"></a>
 
-Grant the IAM user the permission to tag resources\. For more information about IAM policies and example policies, see [Example: Tagging resources](ExamplePolicies_EC2.md#iam-example-taggingresources)\.
+Grant the IAM user the permission to tag resources\. For more information about IAM policies and example policies, see [Example: Tag resources](ExamplePolicies_EC2.md#iam-example-taggingresources)\.
 
 The IAM policy you create is determined by which method you use for creating a Spot Instance request\.
 + If you use the launch instance wizard or `run-instances` to request Spot Instances, see [To grant an IAM user the permission to tag resources when using the launch instance wizard or run-instances](#iam-run-instances)\.
@@ -386,7 +386,7 @@ Therefore, for the `spot-instances-request` resource, the following rules apply 
 If you use RunInstances to create a Spot Instance request and you don't intend to tag the Spot Instance request on create, you don’t need to explicitly allow the `spot-instances-request` resource; the call will succeed\.
 If you use RunInstances to create a Spot Instance request and intend to tag the Spot Instance request on create, you must include the `spot-instances-request` resource in the RunInstances allow statement, otherwise the call will fail\.
 If you use RunInstances to create a Spot Instance request and intend to tag the Spot Instance request on create, you must specify the `spot-instances-request` resource or include a `*` wildcard in the CreateTags allow statement, otherwise the call will fail\.
-For example IAM policies, including policies that are not supported for Spot Instance requests, see [Working with Spot Instances](ExamplePolicies_EC2.md#iam-example-spot-instances)\.
+For example IAM policies, including policies that are not supported for Spot Instance requests, see [Work with Spot Instances](ExamplePolicies_EC2.md#iam-example-spot-instances)\.
 
 **To grant an IAM user the permission to tag resources when using request\-spot\-instances**  
 Create a IAM policy that includes the following:
@@ -450,7 +450,7 @@ After you have created a Spot Instance request, you can add tags to the Spot Ins
 1. Choose the **Tags** tab and choose **Create Tag**\.
 
 **To tag an existing Spot Instance using the console**  
-After your Spot Instance request has launched your Spot Instance, you can add tags to the instance using the console\. For more information, see [Adding and deleting tags on an individual resource](Using_Tags.md#adding-or-deleting-tags)\.
+After your Spot Instance request has launched your Spot Instance, you can add tags to the instance using the console\. For more information, see [Add and delete tags on an individual resource](Using_Tags.md#adding-or-deleting-tags)\.
 
 **To tag an existing Spot Instance request or Spot Instance using the AWS CLI**  
 Use the [create\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-tags.html) command to tag existing resources\. In the following example, the existing Spot Instance request and the Spot Instance are tagged with Key=purpose and Value=test\. 

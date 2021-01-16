@@ -8,13 +8,13 @@ Your security credentials identify you to services in AWS and grant you unlimite
 + [IAM and Amazon EC2](#intro-to-iam)
 + [IAM policies for Amazon EC2](iam-policies-for-amazon-ec2.md)
 + [IAM roles for Amazon EC2](iam-roles-for-amazon-ec2.md)
-+ [Authorizing inbound traffic for your Linux instances](authorizing-access-to-an-instance.md)
++ [Authorize inbound traffic for your Linux instances](authorizing-access-to-an-instance.md)
 
 ## Network access to your instance<a name="intro-to-security-groups"></a>
 
 A security group acts as a firewall that controls the traffic allowed to reach one or more instances\. When you launch an instance, you assign it one or more security groups\. You add rules to each security group that control traffic for the instance\. You can modify the rules for a security group at any time; the new rules are automatically applied to all instances to which the security group is assigned\. 
 
-For more information, see [Authorizing inbound traffic for your Linux instances](authorizing-access-to-an-instance.md)\.
+For more information, see [Authorize inbound traffic for your Linux instances](authorizing-access-to-an-instance.md)\.
 
 ## Amazon EC2 permission attributes<a name="AmazonEC2Permissions"></a>
 
@@ -43,7 +43,7 @@ This topic helps you answer the following questions:
 + How do I grant permissions to perform actions in Amazon EC2?
 + How do I grant permissions to perform actions on specific resources in Amazon EC2?
 
-### Creating an IAM group and users<a name="creating-an-iam-group"></a>
+### Create an IAM group and users<a name="creating-an-iam-group"></a>
 
 **To create an IAM group**
 

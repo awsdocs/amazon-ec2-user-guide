@@ -32,7 +32,7 @@ You are charged the subscription price as long as your instance is running, even
 **Important**  
 Check the vendor's usage instructions carefully, as you may need to use a specific user name to log in to the instance\. For more information about accessing your subscription details, see [Manage your AWS Marketplace subscriptions](paid-amis.md#marketplace-manage-subscriptions)\.
 
-1. If the instance fails to launch or the state immediately goes to `terminated` instead of `running`, see [Troubleshooting instance launch issues](troubleshooting-launch.md)\.
+1. If the instance fails to launch or the state immediately goes to `terminated` instead of `running`, see [Troubleshoot instance launch issues](troubleshooting-launch.md)\.
 
 ## Launch an AWS Marketplace AMI instance using the API and CLI<a name="launch-marketplace-cli-api"></a>
 

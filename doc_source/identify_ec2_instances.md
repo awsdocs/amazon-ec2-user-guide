@@ -2,7 +2,7 @@
 
 Your application might need to determine whether it is running on an EC2 instance\.
 
-For information about identifying Windows instances, see [Identify EC2 Windows Instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/identify_ec2_instances.html) in the *Amazon EC2 User Guide for Windows Instances*\.
+For information about identifying Windows instances, see [Identify EC2 Windows instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/identify_ec2_instances.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
 ## Inspect the instance identity document<a name="inspect-document"></a>
 

@@ -625,4 +625,4 @@ If you do not see any logs from these processes, your AMI might not support hibe
 
 ### Instance "stuck" in the stopping state<a name="hibernate-troubleshooting-3"></a>
 
-If you hibernated your instance and it appears "stuck" in the `stopping` state, you can forcibly stop it\. For more information, see [Troubleshooting stopping your instance](TroubleshootingInstancesStopping.md)\.
+If you hibernated your instance and it appears "stuck" in the `stopping` state, you can forcibly stop it\. For more information, see [Troubleshoot stopping your instance](TroubleshootingInstancesStopping.md)\.

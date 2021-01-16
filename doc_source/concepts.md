@@ -8,7 +8,7 @@ For more information about cloud computing, see [What is Cloud Computing?](https
 + [Features of Amazon EC2](#ec2-features)
 + [How to get started with Amazon EC2](#how-to-get-started)
 + [Related services](#related-services)
-+ [Accessing Amazon EC2](#access-ec2)
++ [Access Amazon EC2](#access-ec2)
 + [Pricing for Amazon EC2](#ec2-pricing)
 + [PCI DSS compliance](#pci-compliance)
 + [Instances and AMIs](ec2-instances-and-amis.md)
@@ -83,7 +83,7 @@ To monitor basic statistics for your instances and Amazon EBS volumes, use Amazo
 
 To detect potentially authorized or malicious use of your EC2 instances, use Amazon GuardDuty\. For more information see the [Amazon GuardDuty User Guide](https://docs.aws.amazon.com/guardduty/latest/ug/)\.
 
-## Accessing Amazon EC2<a name="access-ec2"></a>
+## Access Amazon EC2<a name="access-ec2"></a>
 
 Amazon EC2 provides a web\-based user interface, the Amazon EC2 console\. If you've signed up for an AWS account, you can access the Amazon EC2 console by signing into the AWS Management Console and selecting **EC2** from the console home page\.
 

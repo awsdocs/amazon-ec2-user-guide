@@ -9,7 +9,7 @@ The following topics describe resources and tags, and how you can work with them
 **Topics**
 + [Resource locations](resources.md)
 + [Resource IDs](resource-ids.md)
-+ [Listing and filtering your resources](Using_Filtering.md)
-+ [Tagging your Amazon EC2 resources](Using_Tags.md)
++ [List and filter your resources](Using_Filtering.md)
++ [Tag your Amazon EC2 resources](Using_Tags.md)
 + [Amazon EC2 service quotas](ec2-resource-limits.md)
 + [Amazon EC2 usage reports](usage-reports.md)

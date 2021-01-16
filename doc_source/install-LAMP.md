@@ -1,10 +1,9 @@
-# Tutorial: Install a LAMP web server with the Amazon Linux AMI<a name="install-LAMP"></a>
+# Tutorial: Install a LAMP web server on the Amazon Linux AMI<a name="install-LAMP"></a>
 
 The following procedures help you install an Apache web server with PHP and MySQL support on your Amazon Linux instance \(sometimes called a LAMP web server or LAMP stack\)\. You can use this server to host a static website or deploy a dynamic PHP application that reads and writes information to a database\.
 
 **Important**  
-To set up a LAMP web server on Amazon Linux 2, see [Tutorial: Install a LAMP web server on Amazon Linux 2](ec2-lamp-amazon-linux-2.md)\.  
-If you are trying to set up a LAMP web server on an Ubuntu or Red Hat Enterprise Linux instance, this tutorial will not work for you\. For more information about other distributions, see their specific documentation\. For information about LAMP web servers on Ubuntu, see the Ubuntu community documentation [ApacheMySQLPHP](https://help.ubuntu.com/community/ApacheMySQLPHP) topic\. 
+If you are trying to set up a LAMP web server on a different distribution, such as Ubuntu or Red Hat Enterprise Linux, this tutorial will not work\. For Amazon Linux 2, see [Tutorial: Install a LAMP web server on Amazon Linux 2](ec2-lamp-amazon-linux-2.md)\. For Ubuntu, see the following Ubuntu community documentation: [ApacheMySQLPHP](https://help.ubuntu.com/community/ApacheMySQLPHP)\. For other distributions, see their specific documentation\.
 
 **Option: Complete this tutorial using automation**  
 To complete this tutorial using AWS Systems Manager Automation instead of the following tasks, run the [AWSDocs\-InstallALAMPServer\-AL](https://console.aws.amazon.com/systems-manager/automation/execute/AWSDocs-InstallALAMPServer-AL) Automation document\.
@@ -20,7 +19,7 @@ To complete this tutorial using AWS Systems Manager Automation instead of the fo
 ## Step 1: Prepare the LAMP server<a name="prepare-lamp-server-alami"></a>
 
 **Prerequisites**  
-This tutorial assumes that you have already launched a new instance using the Amazon Linux AMI, with a public DNS name that is reachable from the internet\. For more information, see [Step 1: Launch an instance](EC2_GetStarted.md#ec2-launch-instance)\. You must also have configured your security group to allow SSH \(port 22\), HTTP \(port 80\), and HTTPS \(port 443\) connections\. For more information about these prerequisites, see [Authorizing inbound traffic for your Linux instances](authorizing-access-to-an-instance.md)\.
+This tutorial assumes that you have already launched a new instance using the Amazon Linux AMI, with a public DNS name that is reachable from the internet\. For more information, see [Step 1: Launch an instance](EC2_GetStarted.md#ec2-launch-instance)\. You must also have configured your security group to allow SSH \(port 22\), HTTP \(port 80\), and HTTPS \(port 443\) connections\. For more information about these prerequisites, see [Authorize inbound traffic for your Linux instances](authorizing-access-to-an-instance.md)\.
 
 **To install and start the LAMP web server with the Amazon Linux AMI**
 
@@ -87,7 +86,7 @@ Some applications may not be compatible with the following recommended software 
       22           tcp          0.0.0.0/0
       ```
 
-   1. Choose the link for the security group\. Using the procedures in [Adding rules to a security group](working-with-security-groups.md#adding-security-group-rule), add a new inbound security rule with the following values:
+   1. Choose the link for the security group\. Using the procedures in [Add rules to a security group](working-with-security-groups.md#adding-security-group-rule), add a new inbound security rule with the following values:
       + **Type**: HTTP
       + **Protocol**: TCP
       + **Port Range**: 80
@@ -95,7 +94,7 @@ Some applications may not be compatible with the following recommended software 
 
 1. Test your web server\. In a web browser, type the public DNS address \(or the public IP address\) of your instance\. You can get the public DNS address for your instance using the Amazon EC2 console\. If there is no content in `/var/www/html`, you should see the Apache test page\. When you add content to the document root, your content appears at the public DNS address of your instance instead of this test page\.
 
-   If you are unable to see the Apache test page, check that the security group you are using contains a rule to allow HTTP \(port 80\) traffic\. For information about adding an HTTP rule to your security group, see [Adding rules to a security group](working-with-security-groups.md#adding-security-group-rule)\.
+   Verify that the security group for the instance contains a rule to allow HTTP traffic on port 80\. For more information, see [Add rules to a security group](working-with-security-groups.md#adding-security-group-rule)\.
 
    If you are not using Amazon Linux, you may also need to configure the firewall on your instance to allow these connections\. For more information about how to configure the firewall, see the documentation for your specific distribution\.  
 ![\[Apache test page\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/apache_test_page2.4.png)
@@ -161,7 +160,7 @@ Now, `ec2-user` \(and any future members of the `apache` group\) can add, delete
 **\(Optional\) Secure your web server**  
 A web server running the HTTP protocol provides no transport security for the data that it sends or receives\. When you connect to an HTTP server using a web browser, the URLs that you visit, the content of webpages that you receive, and the contents \(including passwords\) of any HTML forms that you submit are all visible to eavesdroppers anywhere along the network pathway\. The best practice for securing your web server is to install support for HTTPS \(HTTP Secure\), which protects your data with SSL/TLS encryption\.
 
-For information about enabling HTTPS on your server, see [Tutorial: Configure SSL/TLS on Amazon Linux](SSL-on-amazon-linux-ami.md)\.
+For information about enabling HTTPS on your server, see [Tutorial: Configure SSL/TLS with the Amazon Linux AMI](SSL-on-amazon-linux-ami.md)\.
 
 ## Step 2: Test your Lamp server<a name="test-lamp-server-alami"></a>
 
@@ -356,7 +355,7 @@ Perform the following checks to see if your Apache web server is running and acc
   If the httpd process is not running, repeat the steps described in [Step 1: Prepare the LAMP server](#prepare-lamp-server-alami)\.
 + **Is the firewall correctly configured?**
 
-  If you are unable to see the Apache test page, check that the security group you are using contains a rule to allow HTTP \(port 80\) traffic\. For information about adding an HTTP rule to your security group, see [Adding rules to a security group](working-with-security-groups.md#adding-security-group-rule)\.
+  Verify that the security group for the instance contains a rule to allow HTTP traffic on port 80\. For more information, see [Add rules to a security group](working-with-security-groups.md#adding-security-group-rule)\.
 
 ### The application software I want to run on my server is incompatible with the installed PHP version or other software<a name="software-versions-alami"></a>
 
@@ -394,7 +393,7 @@ Now you can install the latest packages, as described earlier\.
 For more information about transferring files to your instance or installing a WordPress blog on your web server, see the following documentation:
 + [Transfer files to your Linux instance using WinSCP](putty.md#Transfer_WinSCP)
 + [Transfer files to Linux instances from Linux using SCP](AccessingInstancesLinux.md#AccessingInstancesLinuxSCP)
-+ [Tutorial: Host a WordPress blog with Amazon Linux](hosting-wordpress.md)
++ [Tutorial: Host a WordPress blog on Amazon Linux 2](hosting-wordpress.md)
 
 For more information about the commands and software used in this tutorial, see the following webpages:
 + Apache web server: [http://httpd\.apache\.org/](http://httpd.apache.org/)

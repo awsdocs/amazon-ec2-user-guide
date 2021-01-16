@@ -171,9 +171,9 @@ Use the [New\-EC2PlacementGroup](https://docs.aws.amazon.com/powershell/latest/r
 
 ## Tag a placement group<a name="tag-placement-group"></a>
 
-To help categorize and manage your existing placement groups, you can tag them with custom metadata\. For more information about how tags work, see [Tagging your Amazon EC2 resources](Using_Tags.md)\.
+To help categorize and manage your existing placement groups, you can tag them with custom metadata\. For more information about how tags work, see [Tag your Amazon EC2 resources](Using_Tags.md)\.
 
-When you tag a placement group, the instances that are launched into the placement group are not automatically tagged\. You need to explicitly tag the instances that are launched into the placement group\. For more information, see [Adding a tag when you launch an instance](Using_Tags.md#instance-details-tags)\.
+When you tag a placement group, the instances that are launched into the placement group are not automatically tagged\. You need to explicitly tag the instances that are launched into the placement group\. For more information, see [Add a tag when you launch an instance](Using_Tags.md#instance-details-tags)\.
 
 You can view, add, and delete tags using the *new* console and the command line tools\.
 

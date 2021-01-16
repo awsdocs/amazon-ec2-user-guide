@@ -1,6 +1,6 @@
 # Migrate from EC2\-Classic to a VPC<a name="vpc-migrate"></a>
 
-If you created your AWS account before December 4, 2013, you might have support for EC2\-Classic in some AWS Regions\. Some Amazon EC2 resources and features, such as enhanced networking and newer instance types, require a virtual private cloud \(VPC\)\. Some resources can be shared between EC2\-Classic and a VPC, while some can't\. For more information, see [Sharing and accessing resources between EC2\-Classic and a VPC](ec2-classic-platform.md#vpc-classic-shared-resources)\. We recommend that you migrate to a VPC to take advantage of VPC\-only features\.
+If you created your AWS account before December 4, 2013, you might have support for EC2\-Classic in some AWS Regions\. Some Amazon EC2 resources and features, such as enhanced networking and newer instance types, require a virtual private cloud \(VPC\)\. Some resources can be shared between EC2\-Classic and a VPC, while some can't\. For more information, see [Share and access resources between EC2\-Classic and a VPC](ec2-classic-platform.md#vpc-classic-shared-resources)\. We recommend that you migrate to a VPC to take advantage of VPC\-only features\.
 
 To migrate from EC2\-Classic to a VPC, you must migrate or recreate your EC2\-Classic resources in a VPC\. You can migrate and recreate your resources in full, or you can perform an incremental migration over time using ClassicLink\.
 
@@ -23,7 +23,7 @@ The following are options for using a default VPC when you have an AWS account t
 
 ### Switch to a VPC\-only Region<a name="get-default-vpc-region"></a>
 
-Use this option if you want to use your existing account to set up your resources in a default VPC and you do not need to use a specific Region\. To find a Region that has a default VPC, see [Detecting supported platforms](ec2-classic-platform.md#ec2-supported-platforms)\.
+Use this option if you want to use your existing account to set up your resources in a default VPC and you do not need to use a specific Region\. To find a Region that has a default VPC, see [Detect supported platforms](ec2-classic-platform.md#ec2-supported-platforms)\.
 
 ### Create a new AWS account<a name="get-default-vpc-account"></a>
 
@@ -99,7 +99,7 @@ If you've defined a rule in your EC2\-Classic security group that references ano
 
 ### Elastic IP addresses<a name="vpc-migrate-eip"></a>
 
-You can migrate an Elastic IP address that is allocated for use in EC2\-Classic for use with a VPC\. You cannot migrate an Elastic IP address to another Region or AWS account\. For more information, see [Migrating an Elastic IP Address from EC2\-Classic](ec2-classic-platform.md#migrating-eip)\.
+You can migrate an Elastic IP address that is allocated for use in EC2\-Classic for use with a VPC\. You cannot migrate an Elastic IP address to another Region or AWS account\. For more information, see [Migrate an Elastic IP Address from EC2\-Classic](ec2-classic-platform.md#migrating-eip)\.
 
 **To identify an Elastic IP address that is allocated for use in EC2\-Classic**  
 In the Amazon EC2 console, choose **Elastic IPs** in the navigation pane\. In the **Scope** column, the value is **standard**\.
@@ -290,7 +290,7 @@ Create the security groups that are referenced by other security groups first\.
 + **Configure your web servers**: Your web servers will have the same configuration settings as your instances in EC2\-Classic\. For example, if you configured your web servers to use the database in EC2\-Classic, update your web servers' configuration settings to point to your new database instance\.
 **Note**  
 By default, instances launched into a nondefault subnet are not assigned a public IP address, unless you specify otherwise at launch\. Your new database server might not have a public IP address\. In this case, you can update your web servers' configuration file to use your new database server's private DNS name\. Instances in the same VPC can communicate with each other via private IP address\.
-+ **Migrate your Elastic IP addresses**: Disassociate your Elastic IP addresses from your web servers in EC2\-Classic, and then migrate them to a VPC\. After you've migrated them, you can associate them with your new web servers in your VPC\. For more information, see [Migrating an Elastic IP Address from EC2\-Classic](ec2-classic-platform.md#migrating-eip)\.
++ **Migrate your Elastic IP addresses**: Disassociate your Elastic IP addresses from your web servers in EC2\-Classic, and then migrate them to a VPC\. After you've migrated them, you can associate them with your new web servers in your VPC\. For more information, see [Migrate an Elastic IP Address from EC2\-Classic](ec2-classic-platform.md#migrating-eip)\.
 + **Create a new load balancer**: To continue using Elastic Load Balancing to load balance the traffic to your instances, make sure you understand the various ways to configure your load balancer in VPC\. For more information, see the [Elastic Load Balancing User Guide](https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/)\.
 + **Update your DNS records**: After you've set up your load balancer in your public subnet, verify that your `www.garden.example.com` domain points to your new load balancer\. To do this, update your DNS records and your alias record set in Route 53\. For more information about using Route 53, see [Getting Started with Route 53](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/getting-started.html)\.
 + **Shut down your EC2\-Classic resources**: After you've verified that your web application is working from within the VPC architecture, you can shut down your EC2\-Classic resources to stop incurring charges for them\.

@@ -86,7 +86,7 @@ For more information about endpoints and protocols in AWS GovCloud \(US\-West\),
 
 ### Describe your Regions<a name="using-regions-availability-zones-describe"></a>
 
-You can use the Amazon EC2 console or the command line interface to determine which Regions are available for your account\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
+You can use the Amazon EC2 console or the command line interface to determine which Regions are available for your account\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
 
 **To find your Regions using the console**
 
@@ -188,7 +188,7 @@ As Availability Zones grow over time, our ability to expand them can become cons
 
 ### Describe your Availability Zones<a name="availability-zones-describe"></a>
 
-You can use the Amazon EC2 console or the command line interface to determine which Availability Zones are available for your account\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
+You can use the Amazon EC2 console or the command line interface to determine which Availability Zones are available for your account\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
 
 **To find your Availability Zones using the console**
 
@@ -241,13 +241,13 @@ The migration process involves:
 1. Create an AMI from the instance\. The procedure depends on your operating system and the type of root device volume for the instance\. For more information, see the documentation that corresponds to your operating system and root device volume:
    + [Create an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md)
    + [Create an instance store\-backed Linux AMI](creating-an-ami-instance-store.md)
-   + [Creating a custom Windows AMI](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/Creating_EBSbacked_WinAMI.html)
+   + [Create a custom Windows AMI](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/Creating_EBSbacked_WinAMI.html)
 
 1. If you need to preserve the private IPv4 address of the instance, you must delete the subnet in the current Availability Zone and then create a subnet in the new Availability Zone with the same IPv4 address range as the original subnet\. Note that you must terminate all instances in a subnet before you can delete it\. Therefore, you should create AMIs from all of the instances in your subnet so that you can move all instances from the current subnet to the new subnet\.
 
 1. Launch an instance from the AMI that you just created, specifying the new Availability Zone or subnet\. You can use the same instance type as the original instance, or select a new instance type\. For more information, see [Launch instances in an Availability Zone](#using-regions-availability-zones-launching)\.
 
-1. If the original instance has an associated Elastic IP address, associate it with the new instance\. For more information, see [Disassociating an Elastic IP address](elastic-ip-addresses-eip.md#using-instance-addressing-eips-associating-different)\.
+1. If the original instance has an associated Elastic IP address, associate it with the new instance\. For more information, see [Disassociate an Elastic IP address](elastic-ip-addresses-eip.md#using-instance-addressing-eips-associating-different)\.
 
 1. If the original instance is a Reserved Instance, change the Availability Zone for your reservation\. \(If you also changed the instance type, you can also change the instance type for your reservation\.\) For more information, see [Submit modification requests](ri-modifying.md#ri-modification-process)\.
 
@@ -284,7 +284,7 @@ For information about the available Local Zones, see [Available Regions](#concep
 
 ### Describe your Local Zones<a name="local-zones-describe"></a>
 
-You can use the Amazon EC2 console or the command line interface to determine which Local Zones are available for your account\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
+You can use the Amazon EC2 console or the command line interface to determine which Local Zones are available for your account\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
 
 **To find your Local Zones using the console**
 
@@ -386,7 +386,7 @@ Wavelength Zones are not available in every Region\. For information about the R
 
 ### Describe your Wavelength Zones<a name="wavelength-zones-describe"></a>
 
-You can use the Amazon EC2 console or the command line interface to determine which Wavelength Zones are available for your account\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
+You can use the Amazon EC2 console or the command line interface to determine which Wavelength Zones are available for your account\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
 
 **To find your Wavelength Zones using the console**
 

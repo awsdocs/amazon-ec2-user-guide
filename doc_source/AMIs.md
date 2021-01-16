@@ -23,7 +23,7 @@ An AMI includes the following:
 + [Create an instance store\-backed Linux AMI](creating-an-ami-instance-store.md)
 + [Use encryption with EBS\-backed AMIs](AMIEncryption.md)
 + [Copy an AMI](CopyingAMIs.md)
-+ [Understanding AMI billing information](ami-billing-info.md)
++ [Understand AMI billing information](ami-billing-info.md)
 + [Deregister your Linux AMI](deregister-ami.md)
 + [Amazon Linux](amazon-linux-ami-basics.md)
 + [Enabling Your Own Linux Kernels](UserProvidedKernels.md)
@@ -47,7 +47,7 @@ The root storage device of the instance determines the process you follow to cre
 + To create an Amazon EBS\-backed AMI, see [Create an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md)\.
 + To create an instance store\-backed AMI, see [Create an instance store\-backed Linux AMI](creating-an-ami-instance-store.md)\.
 
-To help categorize and manage your AMIs, you can assign custom *tags* to them\. For more information, see [Tagging your Amazon EC2 resources](Using_Tags.md)\.
+To help categorize and manage your AMIs, you can assign custom *tags* to them\. For more information, see [Tag your Amazon EC2 resources](Using_Tags.md)\.
 
 ## Buy, share, and sell AMIs<a name="buy-share-sell"></a>
 

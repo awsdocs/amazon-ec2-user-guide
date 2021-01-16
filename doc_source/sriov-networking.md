@@ -1,14 +1,14 @@
-# Enabling enhanced networking with the Intel 82599 VF interface on Linux instances<a name="sriov-networking"></a>
+# Enable enhanced networking with the Intel 82599 VF interface on Linux instances<a name="sriov-networking"></a>
 
 Amazon EC2 provides enhanced networking capabilities through the Intel 82599 VF interface, which uses the Intel `ixgbevf` driver\.
 
 **Topics**
 + [Requirements](#ixgbevf-requirements)
-+ [Testing whether enhanced networking is enabled](#test-enhanced-networking)
-+ [Enabling enhanced networking on Amazon Linux](#enable-enhanced-networking)
-+ [Enabling enhanced networking on Ubuntu](#enhanced-networking-ubuntu)
-+ [Enabling enhanced networking on other Linux distributions](#enhanced-networking-linux)
-+ [Troubleshooting connectivity issues](#enhanced-networking-troubleshooting)
++ [Test whether enhanced networking is enabled](#test-enhanced-networking)
++ [Enable enhanced networking on Amazon Linux](#enable-enhanced-networking)
++ [Enable enhanced networking on Ubuntu](#enhanced-networking-ubuntu)
++ [Enable enhanced networking on other Linux distributions](#enhanced-networking-linux)
++ [Troubleshoot connectivity issues](#enhanced-networking-troubleshooting)
 
 ## Requirements<a name="ixgbevf-requirements"></a>
 
@@ -18,10 +18,10 @@ To prepare for enhanced networking using the Intel 82599 VF interface, set up yo
 **Warning**  
 Enhanced networking is supported only for HVM instances\. Enabling enhanced networking with a PV instance can make it unreachable\. Setting this attribute without the proper module or module version can also make your instance unreachable\.
 + Ensure that the instance has internet connectivity\.
-+ Install and configure the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html) or the [AWS Tools for Windows PowerShell](https://docs.aws.amazon.com/powershell/latest/userguide/) on any computer you choose, preferably your local desktop or laptop\. For more information, see [Accessing Amazon EC2](concepts.md#access-ec2)\. Enhanced networking cannot be managed from the Amazon EC2 console\.
++ Install and configure the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html) or the [AWS Tools for Windows PowerShell](https://docs.aws.amazon.com/powershell/latest/userguide/) on any computer you choose, preferably your local desktop or laptop\. For more information, see [Access Amazon EC2](concepts.md#access-ec2)\. Enhanced networking cannot be managed from the Amazon EC2 console\.
 + If you have important data on the instance that you want to preserve, you should back that data up now by creating an AMI from your instance\. Updating kernels and kernel modules, as well as enabling the `sriovNetSupport` attribute, might render incompatible instances or operating systems unreachable\. If you have a recent backup, your data will still be retained if this happens\.
 
-## Testing whether enhanced networking is enabled<a name="test-enhanced-networking"></a>
+## Test whether enhanced networking is enabled<a name="test-enhanced-networking"></a>
 
 Enhanced networking with the Intel 82599 VF interface is enabled if the `ixgbevf` module is installed on your instance and the `sriovNetSupport` attribute is set\. 
 
@@ -94,9 +94,9 @@ supports-register-dump: yes
 supports-priv-flags: no
 ```
 
-## Enabling enhanced networking on Amazon Linux<a name="enable-enhanced-networking"></a>
+## Enable enhanced networking on Amazon Linux<a name="enable-enhanced-networking"></a>
 
-The latest Amazon Linux HVM AMIs have the `ixgbevf` module required for enhanced networking installed and have the required `sriovNetSupport` attribute set\. Therefore, if you launch an instance type using a current Amazon Linux HVM AMI, enhanced networking is already enabled for your instance\. For more information, see [Testing whether enhanced networking is enabled](#test-enhanced-networking)\.
+The latest Amazon Linux HVM AMIs have the `ixgbevf` module required for enhanced networking installed and have the required `sriovNetSupport` attribute set\. Therefore, if you launch an instance type using a current Amazon Linux HVM AMI, enhanced networking is already enabled for your instance\. For more information, see [Test whether enhanced networking is enabled](#test-enhanced-networking)\.
 
 If you launched your instance using an older Amazon Linux AMI and it does not have enhanced networking enabled already, use the following procedure to enable enhanced networking\.
 
@@ -115,7 +115,7 @@ There is no way to disable the enhanced networking attribute after you've enable
 
 1. From your local computer, reboot your instance using the Amazon EC2 console or one of the following commands: [reboot\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/reboot-instances.html) \(AWS CLI\), [Restart\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Restart-EC2Instance.html) \(AWS Tools for Windows PowerShell\)\.
 
-1. <a name="amazon-linux-enhanced-networking-stop-step"></a>Connect to your instance again and verify that the `ixgbevf` module is installed and at the minimum recommended version using the modinfo ixgbevf command from [Testing whether enhanced networking is enabled](#test-enhanced-networking)\.
+1. <a name="amazon-linux-enhanced-networking-stop-step"></a>Connect to your instance again and verify that the `ixgbevf` module is installed and at the minimum recommended version using the modinfo ixgbevf command from [Test whether enhanced networking is enabled](#test-enhanced-networking)\.
 
 1. \[EBS\-backed instance\] From your local computer, stop the instance using the Amazon EC2 console or one of the following commands: [stop\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) \(AWS CLI\), [Stop\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Stop-EC2Instance.html) \(AWS Tools for Windows PowerShell\)\. If your instance is managed by AWS OpsWorks, you should stop the instance in the AWS OpsWorks console so that the instance state remains in sync\.
 
@@ -137,7 +137,7 @@ There is no way to disable the enhanced networking attribute after you've enable
 
 1. From your local computer, start the instance using the Amazon EC2 console or one of the following commands: [start\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/start-instances.html) \(AWS CLI\), [Start\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Start-EC2Instance.html) \(AWS Tools for Windows PowerShell\)\. If your instance is managed by AWS OpsWorks, you should start the instance in the AWS OpsWorks console so that the instance state remains in sync\.
 
-1. Connect to your instance and verify that the `ixgbevf` module is installed and loaded on your network interface using the ethtool \-i eth*n* command from [Testing whether enhanced networking is enabled](#test-enhanced-networking)\.<a name="enhanced-networking-instance-store"></a>
+1. Connect to your instance and verify that the `ixgbevf` module is installed and loaded on your network interface using the ethtool \-i eth*n* command from [Test whether enhanced networking is enabled](#test-enhanced-networking)\.<a name="enhanced-networking-instance-store"></a>
 
 **To enable enhanced networking \(instance store\-backed instances\)**
 
@@ -153,7 +153,7 @@ Follow the previous procedure until the step where you stop the instance\. Creat
   Register-EC2Image -SriovNetSupport "simple" ...
   ```
 
-## Enabling enhanced networking on Ubuntu<a name="enhanced-networking-ubuntu"></a>
+## Enable enhanced networking on Ubuntu<a name="enhanced-networking-ubuntu"></a>
 
 Before you begin, [check if enhanced networking is already enabled](#test-enhanced-networking) on your instance\.
 
@@ -173,7 +173,7 @@ The following procedure provides the general steps for compiling the `ixgbevf` m
 **Important**  
 If during the update process, you are prompted to install `grub`, use `/dev/xvda` to install `grub`, and then choose to keep the current version of `/boot/grub/menu.lst`\.
 
-## Enabling enhanced networking on other Linux distributions<a name="enhanced-networking-linux"></a>
+## Enable enhanced networking on other Linux distributions<a name="enhanced-networking-linux"></a>
 
 Before you begin, [check if enhanced networking is already enabled](#test-enhanced-networking) on your instance\. The latest Quick Start HVM AMIs include the necessary drivers for enhanced networking, therefore you do not need to perform additional steps\. 
 
@@ -256,7 +256,7 @@ Follow the previous procedure until the step where you stop the instance\. Creat
   Register-EC2Image -SriovNetSupport "simple" ...
   ```
 
-## Troubleshooting connectivity issues<a name="enhanced-networking-troubleshooting"></a>
+## Troubleshoot connectivity issues<a name="enhanced-networking-troubleshooting"></a>
 
 If you lose connectivity while enabling enhanced networking, the `ixgbevf` module might be incompatible with the kernel\. Try installing the version of the `ixgbevf` module included with the distribution of Linux for your instance\.
 

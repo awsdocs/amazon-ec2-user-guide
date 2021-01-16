@@ -6,7 +6,7 @@ Attaching multiple network interfaces to an instance is useful when you want to:
 + Create dual\-homed instances with workloads/roles on distinct subnets\.
 + Create a low\-budget, high\-availability solution\.
 
-## Creating a management network<a name="creating-a-management-network"></a>
+## Create a management network<a name="creating-a-management-network"></a>
 
 You can create a management network using network interfaces\. In this scenario, as illustrated in the following image:
 + The primary network interface \(eth0\) on the instance handles public traffic\.

@@ -8,7 +8,7 @@ AWS updates to the performance of EBS volume types might not immediately take ef
 + [Amazon EBS performance tips](#tips)
 + [I/O characteristics and monitoring](ebs-io-characteristics.md)
 + [Initialize Amazon EBS volumes](ebs-initialize.md)
-+ [RAID Configuration on Linux](raid-config.md)
++ [RAID configuration on Linux](raid-config.md)
 + [Benchmark EBS volumes](benchmark_procedures.md)
 
 ## Amazon EBS performance tips<a name="tips"></a>
@@ -92,7 +92,7 @@ For more information about EBS I/O characteristics, see the [Amazon EBS: Designi
 
 ### Use RAID 0 to maximize utilization of instance resources<a name="RAID"></a>
 
-Some instance types can drive more I/O throughput than what you can provision for a single EBS volume\. You can join multiple volumes together in a RAID 0 configuration to use the available bandwidth for these instances\. For more information, see [RAID Configuration on Linux](raid-config.md)\.
+Some instance types can drive more I/O throughput than what you can provision for a single EBS volume\. You can join multiple volumes together in a RAID 0 configuration to use the available bandwidth for these instances\. For more information, see [RAID configuration on Linux](raid-config.md)\.
 
 ### Track performance using Amazon CloudWatch<a name="cloudwatch"></a>
 

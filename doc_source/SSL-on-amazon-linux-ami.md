@@ -1,13 +1,13 @@
-# Tutorial: Configure SSL/TLS on Amazon Linux<a name="SSL-on-amazon-linux-ami"></a>
+# Tutorial: Configure SSL/TLS with the Amazon Linux AMI<a name="SSL-on-amazon-linux-ami"></a>
 
-Secure Sockets Layer/Transport Layer Security \(SSL/TLS\) creates an encrypted channel between a web server and web client that protects data in transit from being eavesdropped on\. This tutorial explains how to add support manually for SSL/TLS on an EC2 instance with the Amazon Linux AMI and Apache web server\. If you plan to offer commercial\-grade services, the [AWS Certificate Manager](https://aws.amazon.com/certificate-manager/), which is not discussed here, is a good option\.
+Secure Sockets Layer/Transport Layer Security \(SSL/TLS\) creates an encrypted channel between a web server and web client that protects data in transit from being eavesdropped on\. This tutorial explains how to add support manually for SSL/TLS on an EC2 instance with the Amazon Linux AMI and Apache web server\. This tutorial assumes that you are not using a load balancer\. If you are using Elastic Load Balancing, you can choose to configure SSL offload on the load balancer, using a certificate from [AWS Certificate Manager](https://aws.amazon.com/certificate-manager/) instead\.
 
 For historical reasons, web encryption is often referred to simply as SSL\. While web browsers still support SSL, its successor protocol TLS is less vulnerable to attack\. The Amazon Linux AMI disables server\-side support all versions of SSL by default\. [Security standards bodies](https://www.ssl.com/article/deprecating-early-tls/) consider TLS 1\.0 to be unsafe, and both TLS 1\.0 and TLS 1\.1 are on track to be formally [deprecated](https://tools.ietf.org/html/draft-ietf-tls-oldversions-deprecate-03) by the IETF\. This tutorial contains guidance based exclusively on enabling TLS 1\.2\. \(A newer TLS 1\.3 protocol exists in draft form, but is not supported on Amazon Linux\.\) For more information about the updated encryption standards, see [RFC 7568](https://tools.ietf.org/html/rfc7568) and [RFC 8446](https://tools.ietf.org/html/rfc8446)\.
 
 This tutorial refers to modern web encryption simply as TLS\.
 
 **Important**  
-These procedures are intended for use with the Amazon Linux AMI\. If you are trying to set up a LAMP web server on an instance with a different distribution, some procedures in this tutorial might not work for you\. For information about LAMP web servers on Ubuntu, see the Ubuntu community documentation [ApacheMySQLPHP](https://help.ubuntu.com/community/ApacheMySQLPHP)\. For information about Red Hat Enterprise Linux, see the Customer Portal documentation [Web Servers](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/System_Administrators_Guide/ch-Web_Servers.html)\.
+These procedures are intended for use with the Amazon Linux AMI\. If you are trying to set up a LAMP web server on an instance with a different distribution, some procedures in this tutorial might not work for you\. For Amazon Linux 2, see [Tutorial: Configure SSL/TLS on Amazon Linux 2](SSL-on-amazon-linux-2.md)\. For Ubuntu, see the following Ubuntu community documentation: [ApacheMySQLPHP](https://help.ubuntu.com/community/ApacheMySQLPHP)\. For Red Hat Enterprise Linux, see the following in the Customer Portal: [Web Servers](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/System_Administrators_Guide/ch-Web_Servers.html)\. For other distributions, see their specific documentation\.
 
 **Topics**
 + [Prerequisites](#ssl-prereq-alami)
@@ -15,7 +15,6 @@ These procedures are intended for use with the Amazon Linux AMI\. If you are try
 + [Step 2: Obtain a CA\-signed certificate](#ssl-certificate-alami)
 + [Step 3: Test and harden the security configuration](#ssl-test-alami)
 + [Troubleshoot](#troubleshooting-alami)
-+ [Certificate automation: Let's Encrypt with Certbot on Amazon Linux](#lets-encrypt-alami)
 
 ## Prerequisites<a name="ssl-prereq-alami"></a>
 
@@ -26,7 +25,7 @@ Before you begin this tutorial, complete the following steps:
   + HTTP \(port 80\)
   + HTTPS \(port 443\)
 
-  For more information, see [Authorizing inbound traffic for your Linux instances](authorizing-access-to-an-instance.md)\.
+  For more information, see [Authorize inbound traffic for your Linux instances](authorizing-access-to-an-instance.md)\.
 + Install Apache web server\. For step\-by\-step instructions, see [Tutorial: Installing a LAMP Web Server on Amazon Linux](install-LAMP.md)\. Only the http24 package and its dependencies are needed; you can ignore the instructions involving PHP and MySQL\.
 + To identify and authenticate web sites, the TLS public key infrastructure \(PKI\) relies on the Domain Name System \(DNS\)\. To use your EC2 instance to host a public web site, you need to register a domain name for your web server or transfer an existing domain name to your Amazon EC2 host\. Numerous third\-party domain registration and DNS hosting services are available for this, or you can use [Amazon Route 53](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/Welcome.html)\. 
 
@@ -114,9 +113,11 @@ You can use the following process to obtain a CA\-signed certificate:
 
 A self\-signed TLS X\.509 host certificate is cryptologically identical to a CA\-signed certificate\. The difference is social, not mathematical; a CA promises to validate, at a minimum, a domain's ownership before issuing a certificate to an applicant\. Each web browser contains a list of CAs trusted by the browser vendor to do this\. An X\.509 certificate consists primarily of a public key that corresponds to your private server key, and a signature by the CA that is cryptographically tied to the public key\. When a browser connects to a web server over HTTPS, the server presents a certificate for the browser to check against its list of trusted CAs\. If the signer is on the list, or accessible through a chain of trust consisting of other trusted signers, the browser negotiates a fast encrypted data channel with the server and loads the page\. 
 
-Certificates generally cost money because of the labor involved in validating the requests, so it pays to shop around\. A list of well\-known CAs can be found at [dmoztools\.net](http://dmoztools.net/Computers/Security/Public_Key_Infrastructure/PKIX/Tools_and_Services/Third_Party_Certificate_Authorities/)\. A few CAs offer basic\-level certificates free of charge\. The most notable of these is the [Let's Encrypt](https://letsencrypt.org/) project, which also supports automation of the certificate creation and renewal process\. For more information about using Let's Encrypt as your CA, see [Certificate automation: Let's Encrypt with Certbot on Amazon Linux](#lets-encrypt-alami)\. 
+Certificates generally cost money because of the labor involved in validating the requests, so it pays to shop around\. A list of well\-known CAs can be found at [dmoztools\.net](http://dmoztools.net/Computers/Security/Public_Key_Infrastructure/PKIX/Tools_and_Services/Third_Party_Certificate_Authorities/)\. A few CAs offer basic\-level certificates free of charge\.
 
-Underlying the host certificate is the key\. As of 2017, [government](http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57pt1r4.pdf) and [industry](https://cabforum.org/wp-content/uploads/CA-Browser-Forum-BR-1.4.2.pdf) groups recommend using a minimum key \(modulus\) size of 2048 bits for RSA keys intended to protect documents through 2030\. The default modulus size generated by OpenSSL in Amazon Linux is 2048 bits, which means that the existing auto\-generated key is suitable for use in a CA\-signed certificate\. An alternative procedure is described below for those who desire a customized key, for instance, one with a larger modulus or using a different encryption algorithm\. 
+If you plan to offer commercial\-grade services, [AWS Certificate Manager User Guide](https://docs.aws.amazon.com/acm/latest/userguide/) is a good option\.
+
+Underlying the host certificate is the key\. As of 2017, [government](http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57pt1r4.pdf) and [industry](https://cabforum.org/wp-content/uploads/CA-Browser-Forum-BR-1.4.2.pdf) groups recommend using a minimum key \(modulus\) size of 2048 bits for RSA keys intended to protect documents through 2030\. The default modulus size generated by OpenSSL in Amazon Linux is 2048 bits, which means that the existing auto\-generated key is suitable for use in a CA\-signed certificate\. An alternative procedure is described below for those who desire a customized key, for instance, one with a larger modulus or using a different encryption algorithm\.
 
 These instructions for acquiring a CA\-signed host certificate do not work unless you own a registered and hosted DNS domain\.
 
@@ -347,13 +348,13 @@ Though shown here on several lines for readability, each of these two directives
    + Specific ciphers before cipher families
    + Allowed ciphers before denied ciphers
 
-   Note that the high\-ranking ciphers have *ECDHE* in their names, for *Elliptic Curve Diffie\-Hellman Ephemeral *; the *ephemeral* indicates forward secrecy\. Also, RC4 is now among the forbidden ciphers near the end\.
+   The high\-ranking ciphers have *ECDHE* in their names, for *Elliptic Curve Diffie\-Hellman Ephemeral*; the *ephemeral* indicates forward secrecy\. Also, RC4 is now among the forbidden ciphers near the end\.
 
-   We recommend that you use an explicit list of ciphers instead relying on defaults or terse directives whose content isn't visible\.
-**Important**  
-The cipher list shown here is just one of many possible lists; for instance, you might want to optimize a list for speed rather than forward secrecy\.   
-If you anticipate a need to support older clients, you can allow the DES\-CBC3\-SHA cipher suite\.  
-Finally, each update to OpenSSL introduces new ciphers and deprecates old ones\. Keep your EC2 Amazon Linux instance up to date, watch for security announcements from [OpenSSL](https://www.openssl.org/), and be alert to reports of new security exploits in the technical press\. For more information, see [Predefined SSL Security Policies for Elastic Load Balancing](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-security-policy-table.html) in the *User Guide for Classic Load Balancers*\.
+   We recommend that you use an explicit list of ciphers instead relying on defaults or terse directives whose content isn't visible\. The cipher list shown here is just one of many possible lists; for instance, you might want to optimize a list for speed rather than forward secrecy\.
+
+   If you anticipate a need to support older clients, you can allow the DES\-CBC3\-SHA cipher suite\.
+
+   Each update to OpenSSL introduces new ciphers and deprecates old ones\. Keep your EC2 Amazon Linux instance up to date, watch for security announcements from [OpenSSL](https://www.openssl.org/), and be alert to reports of new security exploits in the technical press\.
 
 1. Uncomment the following line by removing the "\#":
 
@@ -366,7 +367,7 @@ Finally, each update to OpenSSL introduces new ciphers and deprecates old ones\.
 1. Restart Apache\. If you test the domain again on [Qualys SSL Labs](https://www.ssllabs.com/ssltest/analyze.html), you should see that the RC4 vulnerability is gone\.
 
 ## Troubleshoot<a name="troubleshooting-alami"></a>
-+ **My Apache webserver won't start unless I supply a password**
++ **My Apache webserver won't start unless I enter a password**
 
   This is expected behavior if you installed an encrypted, password\-protected, private server key\.
 
@@ -383,182 +384,3 @@ Finally, each update to OpenSSL introduces new ciphers and deprecates old ones\.
   ```
 
   Apache should now start without prompting you for a password\.
-
-## Certificate automation: Let's Encrypt with Certbot on Amazon Linux<a name="lets-encrypt-alami"></a>
-
-The [Let's Encrypt](https://letsencrypt.org/) certificate authority is the centerpiece of the Electronic Frontier Foundation \(EFF\) effort to encrypt the entire internet\. In line with that goal, Let's Encrypt host certificates are designed to be created, validated, installed, and maintained with minimal human intervention\. The automated aspects of certificate management are carried out by an agent running on the web server\. After you install and configure the agent, it communicates securely with Let's Encrypt and performs administrative tasks on Apache and the key management system\. This tutorial uses the free [Certbot](https://certbot.eff.org) agent because it allows you either to supply a customized encryption key as the basis for your certificates, or to allow the agent itself to create a key based on its defaults\. You can also configure Certbot to renew your certificates on a regular basis without human interaction, as described in [To automate Certbot](SSL-on-amazon-linux-2.md#automate_certbot)\. For more information, consult the Certbot [User Guide](https://certbot.eff.org/docs/using.html) or [man page](http://manpages.ubuntu.com/manpages/bionic/en/man1/certbot.1.html)\.
-
-Certbot is not officially supported on Amazon Linux AMI, but is available for download and functions correctly when installed\. We recommend that you make the following backups to protect your data and avoid inconvenience:
-+ Before you begin, take a snapshot of your Amazon EBS root volume\. This allows you to restore the original state of your EC2 instance\. For information about creating EBS snapshots, see [Create Amazon EBS snapshots](ebs-creating-snapshot.md)\.
-+ The procedure below requires you to edit your `httpd.conf` file, which controls Apache's operation\. Certbot makes its own automated changes to this and other configuration files\. Make a backup copy of your entire `/etc/httpd` directory in case you need to restore it\.
-
-**To install and run Certbot**
-
-1. Enable the Extra Packages for Enterprise Linux \(EPEL\) repository from the Fedora project on your instance\. Packages from EPEL are required as dependencies when you run the Certbot installation script\. 
-
-   ```
-   [ec2-user ~]$ sudo yum-config-manager --enable epel
-   ```
-
-1. Download the latest release of Certbot from EFF onto your EC2 instance using the following command\.
-
-   ```
-   [ec2-user ~]$ wget https://dl.eff.org/certbot-auto
-   ```
-
-1. Make the downloaded file executable\.
-
-   ```
-   [ec2-user ~]$ chmod a+x certbot-auto
-   ```
-
-1. Run the file with root permissions and the `--debug` flag\.
-
-   ```
-   [ec2-user ~]$ sudo ./certbot-auto --debug
-   ```
-
-1. At the prompt "Is this ok \[y/d/N\]," type "y" and press Enter\.
-
-1. At the prompt "Enter email address \(used for urgent renewal and security notices\)," type a contact address and press Enter\.
-
-1. Agree to the Let's Encrypt Terms of Service at the prompt\. Type "A" and press Enter to proceed:
-
-   ```
-   -------------------------------------------------------------------------------
-   Please read the Terms of Service at
-   https://letsencrypt.org/documents/LE-SA-v1.1.1-August-1-2016.pdf. You must agree
-   in order to register with the ACME server at
-   https://acme-v01.api.letsencrypt.org/directory
-   -------------------------------------------------------------------------------
-   (A)gree/(C)ancel: A
-   ```
-
-1. Click through the authorization for EFF put you on their mailing list by typing "Y" or "N" and press Enter\.
-
-1. At the prompt shown below, type your Common Name \(the name of your domain as described above\) and your Subject Alternative Name \(SAN\), separating the two names with a space or a comma\. Then press Enter\. In this example, the names have been provided:
-
-   ```
-   No names were found in your configuration files. Please enter in your domain
-   name(s) (comma and/or space separated)  (Enter 'c' to cancel):example.com www.example.com
-   ```
-
-1. On an Amazon Linux system with a default Apache configuration, you see output similar to the example below, asking about the first name you provided\. Type "1" and press Enter\.
-
-   ```
-   Obtaining a new certificate
-   Performing the following challenges:
-   tls-sni-01 challenge for example.com
-   tls-sni-01 challenge for www.example.com
-   
-   We were unable to find a vhost with a ServerName or Address of example.com.
-   Which virtual host would you like to choose?
-   (note: conf files with multiple vhosts are not yet supported)
-   -------------------------------------------------------------------------------
-   1: ssl.conf                       |                       | HTTPS | Enabled
-   -------------------------------------------------------------------------------
-   Press 1 [enter] to confirm the selection (press 'c' to cancel): 1
-   ```
-
-1. Next, Certbot asks about the second name\. Type "1" and press Enter\.
-
-   ```
-   We were unable to find a vhost with a ServerName or Address of www.example.com.
-   Which virtual host would you like to choose?
-   (note: conf files with multiple vhosts are not yet supported)
-   -------------------------------------------------------------------------------
-   1: ssl.conf                       |                       | HTTPS | Enabled
-   -------------------------------------------------------------------------------
-   Press 1 [enter] to confirm the selection (press 'c' to cancel): 1
-   ```
-
-   At this point, Certbot creates your key and a CSR:
-
-   ```
-   Waiting for verification...
-   Cleaning up challenges
-   Generating key (2048 bits): /etc/letsencrypt/keys/0000_key-certbot.pem
-   Creating CSR: /etc/letsencrypt/csr/0000_csr-certbot.pem
-   ```
-
-1. Authorize Certbot to create and all needed host certificates\. When prompted for each name, type "1" and press Enter as shown in the example:
-
-   ```
-   We were unable to find a vhost with a ServerName or Address of example.com.
-   Which virtual host would you like to choose?
-   (note: conf files with multiple vhosts are not yet supported)
-   -------------------------------------------------------------------------------
-   1: ssl.conf                       |                       | HTTPS | Enabled
-   -------------------------------------------------------------------------------
-   Press 1 [enter] to confirm the selection (press 'c' to cancel): 1
-   Deploying Certificate for example.com to VirtualHost /etc/httpd/conf.d/ssl.conf
-   
-   We were unable to find a vhost with a ServerName or Address of www.example.com.
-   Which virtual host would you like to choose?
-   (note: conf files with multiple vhosts are not yet supported)
-   -------------------------------------------------------------------------------
-   1: ssl.conf                       | example.com        | HTTPS | Enabled
-   -------------------------------------------------------------------------------
-   Press 1 [enter] to confirm the selection (press 'c' to cancel): 1
-   Deploying Certificate for www.example.com to VirtualHost /etc/httpd/conf.d/ssl.conf
-   ```
-
-1. Choose whether to allow insecure connections to your web server\. If you choose option 2 \(as shown in the example\), all connections to your server will either be encrypted or rejected\.
-
-   ```
-   Please choose whether HTTPS access is required or optional. 
-   -------------------------------------------------------------------------------
-   1: Easy - Allow both HTTP and HTTPS access to these sites
-   2: Secure - Make all requests redirect to secure HTTPS access
-   -------------------------------------------------------------------------------
-   Select the appropriate number [1-2] then [enter] (press 'c' to cancel): 2
-   ```
-
-   Certbot completes the configuration of Apache and reports success and other information:
-
-   ```
-   Congratulations! You have successfully enabled https://example.com and
-   https://www.example.com
-   
-   You should test your configuration at:
-   https://www.ssllabs.com/ssltest/analyze.html?d=example.com
-   https://www.ssllabs.com/ssltest/analyze.html?d=www.example.com
-   -------------------------------------------------------------------------------
-   
-   IMPORTANT NOTES:
-    - Congratulations! Your certificate and chain have been saved at
-      /etc/letsencrypt/live/example.com/fullchain.pem. Your cert will
-      expire on 2017-07-19. To obtain a new or tweaked version of this
-      certificate in the future, simply run certbot-auto again with the
-      "certonly" option. To non-interactively renew *all* of your
-      certificates, run "certbot-auto renew"
-   ....
-   ```
-
-1. After you complete the installation, test and optimize the security of your server as described in [Step 3: Test and harden the security configuration](SSL-on-amazon-linux-2.md#ssl_test)\. 
-
-Certbot is designed to become an invisible, error\-resistant part of your server system\. By default, it generates host certificates with a short, 90\-day expiration time\. If you have not previously configured your system to call the command automatically, you must re\-run the certbot command manually\. This procedure shows how to automate Certbot by setting up a cron job\.<a name="automate-certbot-alami"></a>
-
-**To configure automated certificate renewal**
-
-1. Open the `/etc/crontab` file in a text editor, such as vim or nano, using sudo\. Alternatively, use sudo crontab \-e\.
-
-1. Add a line similar to the following and save the file\.
-
-   ```
-   39      1,13    *       *       *       root    certbot renew --no-self-upgrade
-   ```
-
-   Here is an explanation of each component:  
-`39 1,13 * * *`  
-Schedules a command to be run at 01:39 and 13:39 every day\. The selected values are arbitrary, but the Certbot developers suggest running the command at least twice daily\. This guarantees that any certificate found to be compromised is promptly revoked and replaced\.  
-`root`  
-The command runs with root privileges\.  
-`certbot renew --no-self-upgrade`   
-The command to be run\. The renew subcommand causes Certbot to check any previously obtained certificates and to renew those that are approaching expiration\. The `--no-self-upgrade` flag prevents Certbot from upgrading itself without your intervention\.
-
-1. Restart the cron daemon:
-
-   ```
-   [ec2-user ~]$ sudo service crond restart
-   ```

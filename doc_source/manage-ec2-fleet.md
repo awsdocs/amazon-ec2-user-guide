@@ -370,7 +370,7 @@ For more information, see [EC2 Fleet request types](ec2-fleet-configuration-stra
 \(Optional\) To replace unhealthy instances in an EC2 Fleet that is configured to `maintain` the fleet, enter `true`\. Otherwise, leave this parameter empty\.
 
 **TagSpecifications**  
-\(Optional\) The key\-value pair for tagging the EC2 Fleet request on creation\. The value for `ResourceType` must be `fleet`, otherwise the fleet request fails\. To tag instances at launch, specify the tags in the [launch template](ec2-launch-templates.md#create-launch-template)\. For information about tagging after launch, see [Tagging your resources](Using_Tags.md#tag-resources)\.
+\(Optional\) The key\-value pair for tagging the EC2 Fleet request on creation\. The value for `ResourceType` must be `fleet`, otherwise the fleet request fails\. To tag instances at launch, specify the tags in the [launch template](ec2-launch-templates.md#create-launch-template)\. For information about tagging after launch, see [Tag your resources](Using_Tags.md#tag-resources)\.
 
 ## Create an EC2 Fleet<a name="create-ec2-fleet"></a>
 
@@ -551,11 +551,11 @@ When you tag a fleet request, the instances and volumes that are launched by the
 **Note**  
 For `instant` fleet types, you can tag volumes that are attached to On\-Demand Instances and Spot Instances\. For `request` or `maintain` fleet types, you can only tag volumes that are attached to On\-Demand Instances\.
 
-For more information about how tags work, see [Tagging your Amazon EC2 resources](Using_Tags.md)\.
+For more information about how tags work, see [Tag your Amazon EC2 resources](Using_Tags.md)\.
 
 **Prerequisite**
 
-Grant the IAM user the permission to tag resources\. For more information, see [Example: Tagging resources](ExamplePolicies_EC2.md#iam-example-taggingresources)\.
+Grant the IAM user the permission to tag resources\. For more information, see [Example: Tag resources](ExamplePolicies_EC2.md#iam-example-taggingresources)\.
 
 **To grant an IAM user the permission to tag resources**  
 Create a IAM policy that includes the following:

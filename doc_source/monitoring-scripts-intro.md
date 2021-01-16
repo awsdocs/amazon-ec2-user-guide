@@ -35,7 +35,7 @@ Ensure that the scripts have permission to call the following actions by associa
 + cloudwatch:ListMetrics
 + ec2:DescribeTags
 
-For more information, see [Working with IAM roles](iam-roles-for-amazon-ec2.md#working-with-iam-roles)\.
+For more information, see [Work with IAM roles](iam-roles-for-amazon-ec2.md#working-with-iam-roles)\.
 
 ## Install required packages<a name="mon-scripts-perl_prereq"></a>
 

@@ -8,7 +8,7 @@ Before you can launch an instance, you must select an AMI to use\. As you select
 + The provider \(for example, Amazon Web Services\)
 + Additional software \(for example, SQL server\)
 
-If you need to find a Windows AMI, see [Finding a Windows AMI](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/finding-an-ami.html) in the *Amazon EC2 User Guide for Windows Instances*\.
+If you need to find a Windows AMI, see [Find a Windows AMI](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/finding-an-ami.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
 **Topics**
 + [Find a Linux AMI using the Amazon EC2 console](#finding-an-ami-console)
@@ -189,7 +189,7 @@ aws ec2 run-instances
 
 ### Permissions<a name="systems-manager-permissions"></a>
 
-If you use Systems Manager parameters that point to AMI IDs in the launch instance wizard, you must add `ssm:DescribeParameters` and `ssm:GetParameters` to your IAM policy\. `ssm:DescribeParameters` grants your IAM users the permission to view and select Systems Manager parameters\. `ssm:GetParameters` grants your IAM users the permission to get the values of the Systems Manager parameters\. You can also restrict access to specific Systems Manager parameters\. For more information, see [Using the EC2 launch wizard](iam-policies-ec2-console.md#ex-launch-wizard)\.
+If you use Systems Manager parameters that point to AMI IDs in the launch instance wizard, you must add `ssm:DescribeParameters` and `ssm:GetParameters` to your IAM policy\. `ssm:DescribeParameters` grants your IAM users the permission to view and select Systems Manager parameters\. `ssm:GetParameters` grants your IAM users the permission to get the values of the Systems Manager parameters\. You can also restrict access to specific Systems Manager parameters\. For more information, see [Use the EC2 launch wizard](iam-policies-ec2-console.md#ex-launch-wizard)\.
 
 ### Limitations<a name="AMI-systems-manager-parameter-limitations"></a>
 

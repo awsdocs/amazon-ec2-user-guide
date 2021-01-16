@@ -31,7 +31,7 @@ To complete this tutorial, perform the following tasks:
 1. [Clean up your instance](#ec2-clean-up-your-instance)
 
 **Related tutorials**
-+ If you'd prefer to launch a Windows instance, see this tutorial in the *Amazon EC2 User Guide for Windows Instances*: [Getting started with Amazon EC2 Windows instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/EC2_GetStarted.html)\.
++ If you'd prefer to launch a Windows instance, see this tutorial in the *Amazon EC2 User Guide for Windows Instances*: [Get started with Amazon EC2 Windows instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/EC2_GetStarted.html)\.
 + If you'd prefer to use the command line, see this tutorial in the *AWS Command Line Interface User Guide*: [Using Amazon EC2 through the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-using-ec2.html)\.
 
 ## Prerequisites<a name="ec2-getstarted-prereqs"></a>
@@ -90,7 +90,7 @@ After you've finished with the instance that you created for this tutorial, you 
 **Important**  
 Terminating an instance effectively deletes it; you can't reconnect to an instance after you've terminated it\.
 
-If you launched an instance that is not within the [AWS Free Tier](https://aws.amazon.com/free/), you'll stop incurring charges for that instance as soon as the instance status changes to `shutting down` or `terminated`\. If you'd like to keep your instance for later, but not incur charges, you can stop the instance now and then start it again later\. For more information, see [Stopping Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Stop_Start.html)\.
+If you launched an instance that is not within the [AWS Free Tier](https://aws.amazon.com/free/), you'll stop incurring charges for that instance as soon as the instance status changes to `shutting down` or `terminated`\. To keep your instance for later, but not incur charges, you can stop the instance now and then start it again later\. For more information, see [Stop and start your instance](Stop_Start.md)\.
 
 **To terminate your instance**
 

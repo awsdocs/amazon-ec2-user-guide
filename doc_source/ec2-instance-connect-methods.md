@@ -1,6 +1,6 @@
 # Connect using EC2 Instance Connect<a name="ec2-instance-connect-methods"></a>
 
-The following instructions explain how to connect to your Linux instance using EC2 Instance Connect\.
+The following instructions explain how to connect to your Linux instance using EC2 Instance Connect\. If you receive an error while attempting to connect to your instance, see [Troubleshoot connecting to your instance](TroubleshootingInstancesConnecting.md)\.
 
 **Topics**
 + [Connect using the Amazon EC2 console \(browser\-based client\)](#ec2-instance-connect-connecting-console)

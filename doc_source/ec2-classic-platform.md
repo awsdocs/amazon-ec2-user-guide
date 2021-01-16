@@ -6,7 +6,7 @@ The EC2\-Classic platform was introduced in the original release of Amazon EC2\.
 
 If your account does not support EC2\-Classic, we create a default VPC for you\. By default, when you launch an instance, we launch it into your default VPC\. Alternatively, you can create a nondefault VPC and specify it when you launch an instance\.
 
-## Detecting supported platforms<a name="ec2-supported-platforms"></a>
+## Detect supported platforms<a name="ec2-supported-platforms"></a>
 
 The Amazon EC2 console indicates which platforms you can launch instances into for the selected region, and whether you have a default VPC in that Region\.
 
@@ -141,13 +141,13 @@ If your account supports EC2\-Classic, there's one pool of Elastic IP addresses 
 
 1. Select **Classic**, and then choose **Allocate**\. Close the confirmation screen\.
 
-#### Migrating an Elastic IP Address from EC2\-Classic<a name="migrating-eip"></a>
+#### Migrate an Elastic IP Address from EC2\-Classic<a name="migrating-eip"></a>
 
 If your account supports EC2\-Classic, you can migrate Elastic IP addresses that you've allocated for use with EC2\-Classic platform to be used with a VPC, within the same Region\. This can assist you to migrate your resources from EC2\-Classic to a VPC; for example, you can launch new web servers in your VPC, and then use the same Elastic IP addresses that you used for your web servers in EC2\-Classic for your new VPC web servers\.
 
 After you've migrated an Elastic IP address to a VPC, you cannot use it with EC2\-Classic\. However, if required, you can restore it to EC2\-Classic\. You cannot migrate an Elastic IP address that was originally allocated for use with a VPC to EC2\-Classic\.
 
-To migrate an Elastic IP address, it must not be associated with an instance\. For more information about disassociating an Elastic IP address from an instance, see [Disassociating an Elastic IP address](elastic-ip-addresses-eip.md#using-instance-addressing-eips-associating-different)\.
+To migrate an Elastic IP address, it must not be associated with an instance\. For more information about disassociating an Elastic IP address from an instance, see [Disassociate an Elastic IP address](elastic-ip-addresses-eip.md#using-instance-addressing-eips-associating-different)\.
 
 You can migrate as many EC2\-Classic Elastic IP addresses as you can have in your account\. However, when you migrate an Elastic IP address, it counts against your Elastic IP address limit for VPCs\. You cannot migrate an Elastic IP address if it will result in your exceeding your limit\. Similarly, when you restore an Elastic IP address to EC2\-Classic, it counts against your Elastic IP address limit for EC2\-Classic\. For more information, see [Elastic IP address limit](elastic-ip-addresses-eip.md#using-instance-addressing-limit)\. 
 
@@ -185,23 +185,23 @@ If the Elastic IP address is in a moving state for longer than 5 minutes, contac
 
 **To move an Elastic IP address using the command line**
 
-You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
+You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
 + [move\-address\-to\-vpc](https://docs.aws.amazon.com/cli/latest/reference/ec2/move-address-to-vpc.html) \(AWS CLI\)
 + [Move\-EC2AddressToVpc](https://docs.aws.amazon.com/powershell/latest/reference/items/Move-EC2AddressToVpc.html) \(AWS Tools for Windows PowerShell\)
 
 **To restore an Elastic IP address to EC2\-Classic using the command line**
 
-You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
+You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
 + [restore\-address\-to\-classic](https://docs.aws.amazon.com/cli/latest/reference/ec2/restore-address-to-classic.html) \(AWS CLI\)
 + [Restore\-EC2AddressToClassic](https://docs.aws.amazon.com/powershell/latest/reference/items/Restore-EC2AddressToClassic.html) \(AWS Tools for Windows PowerShell\)
 
 **To describe the status of your moving addresses using the command line**
 
-You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
+You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
 + [describe\-moving\-addresses](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-moving-addresses.html) \(AWS CLI\)
 + [Get\-EC2Address](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Address.html) \(AWS Tools for Windows PowerShell\)
 
-## Sharing and accessing resources between EC2\-Classic and a VPC<a name="vpc-classic-shared-resources"></a>
+## Share and access resources between EC2\-Classic and a VPC<a name="vpc-classic-shared-resources"></a>
 
 Some resources and features in your AWS account can be shared or accessed between EC2\-Classic and a VPC, for example, through ClassicLink\. For more information, see [ClassicLink](vpc-classiclink.md)\.
 
@@ -215,13 +215,13 @@ The following resources can be shared or accessed between EC2\-Classic and a VPC
 | AMI |  | 
 | Bundle task |  | 
 | EBS volume |  | 
-| Elastic IP address \(IPv4\) |  You can migrate an Elastic IP address from EC2\-Classic to a VPC\. You can't migrate an Elastic IP address that was originally allocated for use in a VPC to EC2\-Classic\. For more information, see [Migrating an Elastic IP Address from EC2\-Classic](#migrating-eip)\.  | 
+| Elastic IP address \(IPv4\) |  You can migrate an Elastic IP address from EC2\-Classic to a VPC\. You can't migrate an Elastic IP address that was originally allocated for use in a VPC to EC2\-Classic\. For more information, see [Migrate an Elastic IP Address from EC2\-Classic](#migrating-eip)\.  | 
 | Instance |  An EC2\-Classic instance can communicate with instances in a VPC using public IPv4 addresses, or you can use ClassicLink to enable communication over private IPv4 addresses\. You can't migrate an instance from EC2\-Classic to a VPC\. However, you can migrate your application from an instance in EC2\-Classic to an instance in a VPC\. For more information, see [Migrate from EC2\-Classic to a VPC](vpc-migrate.md)\.  | 
 | Key pair |  | 
 | Load balancer |  If you're using ClassicLink, you can register a linked EC2\-Classic instance with a load balancer in a VPC, provided that the VPC has a subnet in the same Availability Zone as the instance\. You can't migrate a load balancer from EC2\-Classic to a VPC\. You can't register an instance in a VPC with a load balancer in EC2\-Classic\.  | 
 | Placement group |  | 
 | Reserved Instance |  You can change the network platform for your Reserved Instances from EC2\-Classic to a VPC\. For more information, see [Modify Reserved Instances](ri-modifying.md)\.  | 
-| Security group |  A linked EC2\-Classic instance can use a VPC security groups through ClassicLink to control traffic to and from the VPC\. VPC instances can't use EC2\-Classic security groups\. You can't migrate a security group from EC2\-Classic to a VPC\. You can copy rules from a security group for EC2\-Classic to a security group for a VPC\. For more information, see [Creating a security group](working-with-security-groups.md#creating-security-group)\. | 
+| Security group |  A linked EC2\-Classic instance can use a VPC security groups through ClassicLink to control traffic to and from the VPC\. VPC instances can't use EC2\-Classic security groups\. You can't migrate a security group from EC2\-Classic to a VPC\. You can copy rules from a security group for EC2\-Classic to a security group for a VPC\. For more information, see [Create a security group](working-with-security-groups.md#creating-security-group)\. | 
 | Snapshot |  | 
 
 The following resources can't be shared or moved between EC2\-Classic and a VPC:

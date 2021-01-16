@@ -21,6 +21,6 @@ Spot Instance prices are set by Amazon EC2 and adjust gradually based on long\-t
 
 **To view the Spot price history using the command line**
 
-You can use one of the following commands\. For more information, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
+You can use one of the following commands\. For more information, see [Access Amazon EC2](concepts.md#access-ec2)\.
 + [describe\-spot\-price\-history](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-spot-price-history.html) \(AWS CLI\)
 + [Get\-EC2SpotPriceHistory](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2SpotPriceHistory.html) \(AWS Tools for Windows PowerShell\)

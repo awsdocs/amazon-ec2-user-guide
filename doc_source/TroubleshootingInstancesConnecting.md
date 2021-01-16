@@ -1,6 +1,6 @@
 # Troubleshoot connecting to your instance<a name="TroubleshootingInstancesConnecting"></a>
 
-The following information can help you troubleshoot issues with connecting to your instance\. For additional help with Windows instances, see [Troubleshooting Windows Instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/troubleshooting-windows-instances.html) in the *Amazon EC2 User Guide for Windows Instances*\.
+The following information can help you troubleshoot issues with connecting to your instance\. For additional help with Windows instances, see [Troubleshoot Windows instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/troubleshooting-windows-instances.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
 **Topics**
 + [Common causes for connection issues](#TroubleshootingInstancesCommonCauses)
@@ -13,6 +13,7 @@ The following information can help you troubleshoot issues with connecting to yo
 + [Error: Server refused our key *or* No supported authentication methods available](#TroubleshootingInstancesConnectingPuTTY)
 + [Cannot ping instance](#troubleshoot-instance-ping)
 + [Error: Server unexpectedly closed network connection](#troubleshoot-ssh)
++ [Error: Host key validation failed for EC2 Instance Connect](#troubleshoot-host-key-validation)
 
 ## Common causes for connection issues<a name="TroubleshootingInstancesCommonCauses"></a>
 
@@ -70,7 +71,7 @@ You need a security group rule that allows inbound traffic from your public IPv4
    + For Linux instances: Verify that there is a rule that allows traffic from your computer to port 22 \(SSH\)\.
    + For Windows instances: Verify that there is a rule that allows traffic from your computer to port 3389 \(RDP\)\.
 
-1. Each time you restart your instance, a new IP address \(and host name\) will be assigned\. If your security group has a rule that allows inbound traffic from a single IP address, this address might not be static if your computer is on a corporate network or if you are connecting through an internet service provider \(ISP\)\. Instead, specify the range of IP addresses used by client computers\. If your security group does not have a rule that allows inbound traffic as described in the previous step, add a rule to your security group\. For more information, see [Authorizing inbound traffic for your Linux instances](authorizing-access-to-an-instance.md)\.
+1. Each time you restart your instance, a new IP address \(and host name\) will be assigned\. If your security group has a rule that allows inbound traffic from a single IP address, this address might not be static if your computer is on a corporate network or if you are connecting through an internet service provider \(ISP\)\. Instead, specify the range of IP addresses used by client computers\. If your security group does not have a rule that allows inbound traffic as described in the previous step, add a rule to your security group\. For more information, see [Authorize inbound traffic for your Linux instances](authorizing-access-to-an-instance.md)\.
 
    For more information about security group rules, see [Security group rules](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html#SecurityGroupRules) in the *Amazon VPC User Guide*\.
 
@@ -87,7 +88,7 @@ You need a security group rule that allows inbound traffic from your public IPv4
 
    For Windows instances: When you select **view inbound rules**, a window will appear that displays the port\(s\) to which traffic is allowed\. Verify that there is a rule that allows traffic from your computer to port 3389 \(RDP\)\.
 
-   Each time you restart your instance, a new IP address \(and host name\) will be assigned\. If your security group has a rule that allows inbound traffic from a single IP address, this address may not be static if your computer is on a corporate network or if you are connecting through an internet service provider \(ISP\)\. Instead, specify the range of IP addresses used by client computers\. If your security group does not have a rule that allows inbound traffic as described in the previous step, add a rule to your security group\. For more information, see [Authorizing inbound traffic for your Linux instances](authorizing-access-to-an-instance.md)\.
+   Each time you restart your instance, a new IP address \(and host name\) will be assigned\. If your security group has a rule that allows inbound traffic from a single IP address, this address may not be static if your computer is on a corporate network or if you are connecting through an internet service provider \(ISP\)\. Instead, specify the range of IP addresses used by client computers\. If your security group does not have a rule that allows inbound traffic as described in the previous step, add a rule to your security group\. For more information, see [Authorize inbound traffic for your Linux instances](authorizing-access-to-an-instance.md)\.
 
    For more information about security group rules, see [Security group rules](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html#SecurityGroupRules) in the *Amazon VPC User Guide*\.
 
@@ -186,7 +187,7 @@ If you try to connect to your instance and get the error message, `unable to loa
 
 1. Create a new key pair\. For more information, see [Option 1: Create a key pair using Amazon EC2](ec2-key-pairs.md#having-ec2-create-your-key-pair)\.
 
-1. Add the new key pair to your instance\. For more information, see [Connecting to your Linux instance if you lose your private key](replacing-lost-key-pair.md)\.
+1. Add the new key pair to your instance\. For more information, see [Connect to your Linux instance if you lose your private key](replacing-lost-key-pair.md)\.
 
 1. Connect to your instance using the new key pair\.
 
@@ -279,7 +280,7 @@ Confirm that you are using the private key file that corresponds to the key pair
 
 1. On the **Details** tab, under **Instance details**, verify the value of **Key pair name**\.
 
-1. If you did not specify a key pair when you launched the instance, you can terminate the instance and launch a new instance, ensuring that you specify a key pair\. If this is an instance that you have been using but you no longer have the `.pem` file for your key pair, you can replace the key pair with a new one\. For more information, see [Connecting to your Linux instance if you lose your private key](replacing-lost-key-pair.md)\.
+1. If you did not specify a key pair when you launched the instance, you can terminate the instance and launch a new instance, ensuring that you specify a key pair\. If this is an instance that you have been using but you no longer have the `.pem` file for your key pair, you can replace the key pair with a new one\. For more information, see [Connect to your Linux instance if you lose your private key](replacing-lost-key-pair.md)\.
 
 ------
 #### [ Old console ]
@@ -290,7 +291,7 @@ Confirm that you are using the private key file that corresponds to the key pair
 
 1. In the **Description** tab, verify the value of **Key pair name**\.
 
-1. If you did not specify a key pair when you launched the instance, you can terminate the instance and launch a new instance, ensuring that you specify a key pair\. If this is an instance that you have been using but you no longer have the `.pem` file for your key pair, you can replace the key pair with a new one\. For more information, see [Connecting to your Linux instance if you lose your private key](replacing-lost-key-pair.md)\.
+1. If you did not specify a key pair when you launched the instance, you can terminate the instance and launch a new instance, ensuring that you specify a key pair\. If this is an instance that you have been using but you no longer have the `.pem` file for your key pair, you can replace the key pair with a new one\. For more information, see [Connect to your Linux instance if you lose your private key](replacing-lost-key-pair.md)\.
 
 ------
 
@@ -384,3 +385,77 @@ If you are unable to issue a `ping` command from your instance, ensure that your
 If you are connecting to your instance with PuTTY and you receive the error "Server unexpectedly closed network connection," verify that you have enabled keepalives on the Connection page of the PuTTY Configuration to avoid being disconnected\. Some servers disconnect clients when they do not receive any data within a specified period of time\. Set the Seconds between keepalives to 59 seconds\. 
 
 If you still experience issues after enabling keepalives, try to disable Nagle's algorithm on the Connection page of the PuTTY Configuration\. 
+
+## Error: Host key validation failed for EC2 Instance Connect<a name="troubleshoot-host-key-validation"></a>
+
+If you rotate your instance host keys, the new host keys are not automatically uploaded to the AWS trusted host keys database\. This causes host key validation to fail when you try to connect to your instance using the EC2 Instance Connect browser\-based client, and you're unable to connect to your instance\.
+
+To resolve the error, you must run the `eic_harvest_hostkeys` script on your instance, which uploads your new host key to EC2 Instance Connect\. The script is located at `/opt/aws/bin/` on Amazon Linux 2 instances, and at `/usr/share/ec2-instance-connect/` on Ubuntu instances\.
+
+------
+#### [ Amazon Linux 2 ]
+
+**To resolve the host key validation failed error on an Amazon Linux 2 instance**
+
+1. Connect to your instance using SSH\.
+
+   You can connect by using the EC2 Instance Connect CLI or by using the SSH key pair that was assigned to your instance when you launched it and the default user name of the AMI that you used to launch your instance\. For Amazon Linux 2, the default user name is `ec2-user`\.
+
+   For example, if your instance was launched using Amazon Linux 2, your instance's public DNS name is `ec2-a-b-c-d.us-west-2.compute.amazonaws.com`, and the key pair is `my_ec2_private_key.pem`, use the following command to SSH into your instance:
+
+   ```
+   $ ssh -i my_ec2_private_key.pem ec2-user@ec2-a-b-c-d.us-west-2.compute.amazonaws.com
+   ```
+
+   For more information about connecting to your instance, see [Connect to your Linux instance using SSH](AccessingInstancesLinux.md)\.
+
+1. Navigate to the following folder\.
+
+   ```
+   [ec2-user ~]$ cd /opt/aws/bin/
+   ```
+
+1. Run the following command on your instance\. 
+
+   ```
+   [ec2-user ~]$ ./eic_harvest_hostkeys
+   ```
+
+   Note that a successful call results in no output\.
+
+   You can now use the EC2 Instance Connect browser\-based client to connect to your instance\.
+
+------
+#### [ Ubuntu ]
+
+**To resolve the host key validation failed error on an Ubuntu instance**
+
+1. Connect to your instance using SSH\.
+
+   You can connect by using the EC2 Instance Connect CLI or by using the SSH key pair that was assigned to your instance when you launched it and the default user name of the AMI that you used to launch your instance\. For Ubuntu, the default user name is `ubuntu`\.
+
+   For example, if your instance was launched using Ubuntu, your instance's public DNS name is `ec2-a-b-c-d.us-west-2.compute.amazonaws.com`, and the key pair is `my_ec2_private_key.pem`, use the following command to SSH into your instance:
+
+   ```
+   $ ssh -i my_ec2_private_key.pem ubuntu@ec2-a-b-c-d.us-west-2.compute.amazonaws.com
+   ```
+
+   For more information about connecting to your instance, see [Connect to your Linux instance using SSH](AccessingInstancesLinux.md)\.
+
+1. Navigate to the following folder\.
+
+   ```
+   [ec2-user ~]$ cd /usr/share/ec2-instance-connect/
+   ```
+
+1. Run the following command on your instance\. 
+
+   ```
+   [ec2-user ~]$ ./eic_harvest_hostkeys
+   ```
+
+   Note that a successful call results in no output\.
+
+   You can now use the EC2 Instance Connect browser\-based client to connect to your instance\.
+
+------

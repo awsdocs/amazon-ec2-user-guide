@@ -37,7 +37,7 @@ Empty volumes receive their maximum performance the moment that they are availab
 
 1. \(Optional\) If the instance type supports EBS encryption and you want to encrypt the volume, select **Encrypt this volume** and choose a CMK\. If encryption by default is enabled in this Region, EBS encryption is enabled and the default CMK for EBS encryption is chosen\. You can choose a different CMK from **Master Key** or paste the full ARN of any key that you can access\. For more information, see [Amazon EBS encryption](EBSEncryption.md)\.
 
-1. \(Optional\) Choose **Create additional tags** to add tags to the volume\. For each tag, provide a tag key and a tag value\. For more information, see [Tagging your Amazon EC2 resources](Using_Tags.md)\.
+1. \(Optional\) Choose **Create additional tags** to add tags to the volume\. For each tag, provide a tag key and a tag value\. For more information, see [Tag your Amazon EC2 resources](Using_Tags.md)\.
 
 1. Choose **Create Volume**\. The volume is ready for use when the volume status is **Available**\.
 
@@ -45,7 +45,7 @@ Empty volumes receive their maximum performance the moment that they are availab
 
 **To create an empty EBS volume using the command line**
 
-You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
+You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
 + [create\-volume](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-volume.html) \(AWS CLI\)
 + [New\-EC2Volume](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Volume.html) \(AWS Tools for Windows PowerShell\)
 
@@ -95,6 +95,6 @@ Use the following procedure to create a volume from a snapshot\.
 
 **To create an EBS volume from a snapshot using the command line**
 
-You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
+You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
 + [create\-volume](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-volume.html) \(AWS CLI\)
 + [New\-EC2Volume](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Volume.html) \(AWS Tools for Windows PowerShell\)

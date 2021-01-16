@@ -1,18 +1,18 @@
-# Listing and filtering your resources<a name="Using_Filtering"></a>
+# List and filter your resources<a name="Using_Filtering"></a>
 
 You can get a list of some types of resources using the Amazon EC2 console\. You can get a list of each type of resource using its corresponding command or API action\. If you have many resources, you can filter the results to include only the resources that match certain criteria\.
 
 **Topics**
-+ [Listing and filtering resources using the console](#advancedsearch)
-+ [Listing and filtering using the CLI and API](#Filtering_Resources_CLI)
++ [List and filter resources using the console](#advancedsearch)
++ [List and filter using the CLI and API](#Filtering_Resources_CLI)
 
-## Listing and filtering resources using the console<a name="advancedsearch"></a>
+## List and filter resources using the console<a name="advancedsearch"></a>
 
 **Contents**
-+ [Listing resources using the console](#listing-resources)
-+ [Filtering resources using the console](#console-filter)
++ [List resources using the console](#listing-resources)
++ [Filter resources using the console](#console-filter)
 
-### Listing resources using the console<a name="listing-resources"></a>
+### List resources using the console<a name="listing-resources"></a>
 
 You can view the most common Amazon EC2 resource types using the console\. To view additional resources, use the command line interface or the API actions\.
 
@@ -24,7 +24,7 @@ You can view the most common Amazon EC2 resource types using the console\. To vi
 
 1. The page displays all resources of the selected resource type\.
 
-### Filtering resources using the console<a name="console-filter"></a>
+### Filter resources using the console<a name="console-filter"></a>
 
 Search functionality differs slightly between the *old* and *new* Amazon EC2 console\.
 
@@ -116,7 +116,7 @@ In general, multiple filters with the same attribute are automatically joined wi
 
 1. When you are finished, remove the filter\.
 
-## Listing and filtering using the CLI and API<a name="Filtering_Resources_CLI"></a>
+## List and filter using the CLI and API<a name="Filtering_Resources_CLI"></a>
 
 Each resource type has a corresponding CLI command and API action that you use to list resources of that type\. The resulting lists of resources can be long, so it can be faster and more useful to filter the results to include only the resources that match specific criteria\.
 
@@ -200,4 +200,4 @@ aws ec2 describe-snapshots --filters Name=owner-id,Values=123456789012 --query "
 ```
 
 **Filter based on tags**  
-For examples of how to filter a list of resources according to their tags, see [Working with tags using the command line](Using_Tags.md#Using_Tags_CLI)\.
+For examples of how to filter a list of resources according to their tags, see [Work with tags using the command line](Using_Tags.md#Using_Tags_CLI)\.

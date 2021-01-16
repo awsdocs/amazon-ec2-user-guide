@@ -32,7 +32,7 @@ If you copy a snapshot and encrypt it to a new CMK, a complete \(non\-incrementa
 
 **Limits**
 + Each account can have up to twenty concurrent snapshot copy requests to a single destination Region\.
-+ User\-defined tags are not copied from the source snapshot to the new snapshot\. You can add user\-defined tags during or after the copy operation\. For more information, see [Tagging your Amazon EC2 resources](Using_Tags.md)\.
++ User\-defined tags are not copied from the source snapshot to the new snapshot\. You can add user\-defined tags during or after the copy operation\. For more information, see [Tag your Amazon EC2 resources](Using_Tags.md)\.
 + Snapshots created by the `CopySnapshot` action have an arbitrary volume ID that should not be used for any purpose\.
 
 ## Incremental snapshot copying<a name="ebs-incremental-copy"></a>
@@ -109,6 +109,6 @@ When copying an encrypted snapshot, you must have `DescribeKey` permissions on t
 
 **To copy a snapshot using the command line**
 
-You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
+You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
 + [copy\-snapshot](https://docs.aws.amazon.com/cli/latest/reference/ec2/copy-snapshot.html) \(AWS CLI\)
 + [Copy\-EC2Snapshot](https://docs.aws.amazon.com/powershell/latest/reference/items/Copy-EC2Snapshot.html) \(AWS Tools for Windows PowerShell\)

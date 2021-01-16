@@ -2,7 +2,7 @@
 
 You can use the Amazon EC2 console or the command line to find shared AMIs\. 
 
-AMIs are a regional resource\. Therefore, when searching for a shared AMI \(public or private\), you must search for it from within the Region from which it is being shared\. To make an AMI available in a different Region, copy the AMI to the Region and then share it\. For more information, see [Copying an AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/CopyingAMIs.html)\.
+AMIs are a regional resource\. Therefore, when searching for a shared AMI \(public or private\), you must search for it from within the Region from which it is being shared\. To make an AMI available in a different Region, copy the AMI to the Region and then share it\. For more information, see [Copy an AMI](CopyingAMIs.md)\.
 
 **Topics**
 + [Find a shared AMI \(console\)](#usingsharedamis-finding-console)

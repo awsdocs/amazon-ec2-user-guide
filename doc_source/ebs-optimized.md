@@ -103,15 +103,15 @@ The following table lists the instance types that support EBS optimization and E
 | d2\.2xlarge | 1,000 | 125 | 8,000 | 
 | d2\.4xlarge | 2,000 | 250 | 16,000 | 
 | d2\.8xlarge | 4,000 | 500 | 32,000 | 
-| d3\.xlarge \* | 15,000 | 1,875 | 15,000 | 
-| d3\.2xlarge \* | 15,000 | 1,875 | 15,000 | 
-| d3\.4xlarge | 15,000 | 1,875 | 15,000 | 
-| d3\.8xlarge | 25,000 | 3,125 | 30,000 | 
-| d3en\.xlarge \* | 25,000 | 3,125 | 15,000 | 
-| d3en\.2xlarge \* | 25,000 | 3,125 | 15,000 | 
-| d3en\.4xlarge | 25,000 | 3,125 | 15,000 | 
-| d3en\.8xlarge | 40,000 | 5,000 | 30,000 | 
-| d3en\.12xlarge | 50,000 | 6,250 | 40,000 | 
+| d3\.xlarge \* | 2,800 | 350 | 15,000 | 
+| d3\.2xlarge \* | 2,800 | 350 | 15,000 | 
+| d3\.4xlarge | 2,800 | 350 | 15,000 | 
+| d3\.8xlarge | 5,000 | 625 | 30,000 | 
+| d3en\.xlarge \* | 2,800 | 350 | 15,000 | 
+| d3en\.2xlarge \* | 2,800 | 350 | 15,000 | 
+| d3en\.4xlarge | 2,800 | 350 | 15,000 | 
+| d3en\.8xlarge | 5,000 | 625 | 30,000 | 
+| d3en\.12xlarge | 7,000 | 875 | 40,000 | 
 | f1\.2xlarge | 1,700 | 212\.5 | 12,000 | 
 | f1\.4xlarge | 3,500 | 437\.5 | 44,000 | 
 | f1\.16xlarge | 14,000 | 1,750 | 75,000 | 
@@ -558,7 +558,7 @@ You can enable optimization for an instance by setting its attribute for EBS opt
 
 **To enable EBS optimization when launching an instance using the command line**
 
-You can use one of the following commands with the corresponding option\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
+You can use one of the following commands with the corresponding option\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
 + [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) with `--ebs-optimized` \(AWS CLI\)
 + [New\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) with `-EbsOptimized` \(AWS Tools for Windows PowerShell\)
 

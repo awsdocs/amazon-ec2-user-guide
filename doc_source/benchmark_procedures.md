@@ -103,7 +103,7 @@ To determine the optimal queue length for your workload on HDD\-backed volumes, 
 
 ## Disable C\-states<a name="cstates"></a>
 
-Before you run benchmarking, you should disable processor C\-states\. Temporarily idle cores in a supported CPU can enter a C\-state to save power\. When the core is called on to resume processing, a certain amount of time passes until the core is again fully operational\. This latency can interfere with processor benchmarking routines\. For more information about C\-states and which EC2 instance types support them, see [Processor State Control for Your EC2 Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/processor_state_control.html)\.
+Before you run benchmarking, you should disable processor C\-states\. Temporarily idle cores in a supported CPU can enter a C\-state to save power\. When the core is called on to resume processing, a certain amount of time passes until the core is again fully operational\. This latency can interfere with processor benchmarking routines\. For more information about C\-states and which EC2 instance types support them, see [Processor state control for your EC2 instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/processor_state_control.html)\.
 
 ### Disable C\-states on Linux<a name="linux-cstates"></a>
 

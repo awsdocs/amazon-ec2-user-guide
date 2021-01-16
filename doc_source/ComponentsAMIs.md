@@ -40,7 +40,7 @@ The following table summarizes the important differences when using the two type
 
 \* By default, EBS root volumes have the `DeleteOnTermination` flag set to `true`\. For information about how to change this flag so that the volume persists after termination, see [Change the root volume to persist](RootDeviceStorage.md#Using_RootDeviceStorage)\.
 
-### Determin the root device type of your AMI<a name="display-ami-root-device-type"></a>
+### Determine the root device type of your AMI<a name="display-ami-root-device-type"></a>
 
 **To determine the root device type of an AMI using the console**
 
@@ -54,7 +54,7 @@ The following table summarizes the important differences when using the two type
 
 **To determine the root device type of an AMI using the command line**
 
-You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
+You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
 + [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) \(AWS CLI\)
 + [Get\-EC2Image](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Image.html) \(AWS Tools for Windows PowerShell\)
 

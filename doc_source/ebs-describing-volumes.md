@@ -33,7 +33,7 @@ You can get additional information about your EBS volumes, such as how much disk
 1. \(Optional\) Choose a link in the **Volume ID** column to view additional details for the volume\.
 
 **To view information about an EBS volume using the command line**  
-You can use one of the following commands to view volume attributes\. For more information, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
+You can use one of the following commands to view volume attributes\. For more information, see [Access Amazon EC2](concepts.md#access-ec2)\.
 + [describe\-volumes](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-volumes.html) \(AWS CLI\)
 + [Get\-EC2Volume](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Volume.html) \(AWS Tools for Windows PowerShell\)
 

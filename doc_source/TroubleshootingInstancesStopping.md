@@ -1,4 +1,4 @@
-# Troubleshooting stopping your instance<a name="TroubleshootingInstancesStopping"></a>
+# Troubleshoot stopping your instance<a name="TroubleshootingInstancesStopping"></a>
 
 If you have stopped your Amazon EBS\-backed instance and it appears stuck in the `stopping` state, there may be an issue with the underlying host computer\.
 

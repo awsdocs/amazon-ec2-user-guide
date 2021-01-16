@@ -75,7 +75,7 @@ By default, when you initiate a shutdown from an Amazon EBS\-backed instance \(u
 
 **To terminate an instance using the command line**
 
-You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
+You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
 + [terminate\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/terminate-instances.html) \(AWS CLI\)
 + [Stop\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Stop-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
 
@@ -115,7 +115,7 @@ The `DisableApiTermination` attribute does not prevent Amazon EC2 Auto Scaling f
 
 **To enable or disable termination protection using the command line**
 
-You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
+You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
 + [modify\-instance\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) \(AWS CLI\)
 + [Edit\-EC2InstanceAttribute](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2InstanceAttribute.html) \(AWS Tools for Windows PowerShell\)
 
@@ -139,7 +139,7 @@ You can update the `InstanceInitiatedShutdownBehavior` attribute using the Amazo
 
 **To change the shutdown behavior of an instance using the command line**
 
-You can use one of the following commands\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
+You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
 + [modify\-instance\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) \(AWS CLI\)
 + [Edit\-EC2InstanceAttribute](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2InstanceAttribute.html) \(AWS Tools for Windows PowerShell\)
 
@@ -155,7 +155,7 @@ By default, the `DeleteOnTermination` attribute for the root volume of an instan
 Non\-root volume  
 By default, when you [attach a non\-root EBS volume to an instance](ebs-attaching-volume.md), its `DeleteOnTermination` attribute is set to `false`\. Therefore, the default is to preserve these volumes\. After the instance terminates, you can take a snapshot of the preserved volume or attach it to another instance\. You must delete a volume to avoid incurring further charges\. For more information, see [Delete an Amazon EBS volume](ebs-deleting-volume.md)\.
 
-To verify the value of the `DeleteOnTermination` attribute for an EBS volume that is in use, look at the instance's block device mapping\. For more information, see [Viewing the EBS volumes in an instance block device mapping](block-device-mapping-concepts.md#view-instance-bdm)\.
+To verify the value of the `DeleteOnTermination` attribute for an EBS volume that is in use, look at the instance's block device mapping\. For more information, see [View the EBS volumes in an instance block device mapping](block-device-mapping-concepts.md#view-instance-bdm)\.
 
 You can change the value of the `DeleteOnTermination` attribute for a volume when you launch the instance or while the instance is running\.
 
@@ -186,7 +186,7 @@ You can verify the setting by viewing details for the root device volume on the 
 
 ### Change the root volume to persist at launch using the command line<a name="delete-on-termination-cli"></a>
 
-When you launch an EBS\-backed instance, you can use one of the following commands to change the root device volume to persist\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
+When you launch an EBS\-backed instance, you can use one of the following commands to change the root device volume to persist\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
 + [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) \(AWS CLI\)
 + [New\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html) \(AWS Tools for Windows PowerShell\)
 
@@ -213,7 +213,7 @@ Specify the following in `mapping.json`:
 
 ### Change the root volume of a running instance to persist using the command line<a name="delete-on-termination-running-instance"></a>
 
-You can use one of the following commands to change the root device volume of a running EBS\-backed instance to persist\. For more information about these command line interfaces, see [Accessing Amazon EC2](concepts.md#access-ec2)\.
+You can use one of the following commands to change the root device volume of a running EBS\-backed instance to persist\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
 + [modify\-instance\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) \(AWS CLI\)
 + [Edit\-EC2InstanceAttribute](https://docs.aws.amazon.com/powershell/latest/reference/items/Edit-EC2InstanceAttribute.html) \(AWS Tools for Windows PowerShell\)
 

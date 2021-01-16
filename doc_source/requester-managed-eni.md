@@ -4,7 +4,7 @@ A requester\-managed network interface is a network interface that an AWS servic
 
 You cannot modify or detach a requester\-managed network interface\. If you delete the resource that the network interface represents, the AWS service detaches and deletes the network interface for you\. To change the security groups for a requester\-managed network interface, you might have to use the console or command line tools for that service\. For more information, see the service\-specific documentation\.
 
-You can tag a requester\-managed network interface\. For more information, see [Adding or editing tags](using-eni.md#eni_add_edit_tags)\.
+You can tag a requester\-managed network interface\. For more information, see [Add or edit tags](using-eni.md#eni_add_edit_tags)\.
 
 You can view the requester\-managed network interfaces that are in your account\.
 

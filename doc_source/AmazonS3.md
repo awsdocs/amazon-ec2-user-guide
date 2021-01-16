@@ -1,4 +1,4 @@
-# Using Amazon S3 with Amazon EC2<a name="AmazonS3"></a>
+# Use Amazon S3 with Amazon EC2<a name="AmazonS3"></a>
 
 Amazon S3 is a repository for internet data\. Amazon S3 provides access to reliable, fast, and inexpensive data storage infrastructure\. It is designed to make web\-scale computing easier by enabling you to store and retrieve any amount of data, at any time, from within Amazon EC2 or anywhere on the web\. Amazon S3 stores data objects redundantly on multiple devices across multiple facilities and allows concurrent read or write access to these data objects by many separate clients or application threads\. You can use the redundant data stored in Amazon S3 to recover quickly and reliably from instance or application failures\. 
 
