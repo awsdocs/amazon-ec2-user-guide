@@ -4,7 +4,7 @@ Amazon CloudWatch metrics are statistical data that you can use to view, analyze
 
 Data is available automatically in 1\-minute periods at no charge\.
 
-When you get data from CloudWatch, you can include a `Period` request parameter to specify the granularity of the returned data\. This is different than the period that we use when we collect the data \(1\-minute periods\)\. We recommend that you specify a period in your request that is equal to or larger than the collection period to ensure that the returned data is valid\.
+When you get data from CloudWatch, you can include a `Period` request parameter to specify the granularity of the returned data\. This is different than the period that we use when we collect the data \(1\-minute periods\)\. We recommend that you specify a period in your request that is equal to or greater than the collection period to ensure that the returned data is valid\.
 
 You can get the data using either the CloudWatch API or the Amazon EC2 console\. The console takes the raw data from the CloudWatch API and displays a series of graphs based on the data\. Depending on your needs, you might prefer to use either the data from the API or the graphs in the console\.
 
