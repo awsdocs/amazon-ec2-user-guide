@@ -41,4 +41,4 @@ Alternatively, request an increase using Service Quotas\. For more information, 
 
 ## Limits on email sent using port 25<a name="port-25-throttle"></a>
 
-Amazon EC2 restricts traffic on port 25 of all instances by default\. You can request that this restriction be removed\. For more information, see [How do I remove the restriction on port 25 from my EC2 instance?](https://aws.amazon.com/premiumsupport/knowledge-center/ec2-port-25-throttle/) in the AWS Knowledge Center\.
+Amazon EC2 restricts traffic on port 25 for all instances by default\. You can request that this restriction be removed\. For more information, see [How do I remove the restriction on port 25 from my EC2 instance?](https://aws.amazon.com/premiumsupport/knowledge-center/ec2-port-25-throttle/) in the AWS Knowledge Center\.
