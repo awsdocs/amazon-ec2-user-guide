@@ -1,6 +1,6 @@
 # Finding AMI billing and usage details<a name="view-billing-info"></a>
 
-In the Amazon EC2 console, you can view the AMI billing information from the **AMIs** page or from the **Instances** page\. You can also find billing information using the AWS CLI\.
+In the Amazon EC2 console, you can view the AMI billing information from the **AMIs** page or from the **Instances** page\. You can also find billing information using the AWS CLI or the instance metadata service\.
 
 The following fields can help you verify AMI charges on your bill:
 + **Platform details**
@@ -27,14 +27,20 @@ Follow these steps to view AMI billing information in the Amazon EC2 console:
 
 1. On the **Details** tab \(or the **Description** tab if you are using the prior version of the console\), check the values for **Platform details** and **Usage operation**\.
 
-To look up the `billingProducts` code for a running instance, you can use the Instance Metadata Service to retrieve the instance identity document in plaintext JSON format\. For more information, see [Instance identity documents](instance-identity-documents.md)\.
-
 ## Find AMI billing information \(AWS CLI\)<a name="view-ami-billing-info-cli"></a>
 
-If you know the instance ID, and want to find out what the AMI ID is for that instance, you can use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command to retrieve it\.
+To find the AMI billing information using the AWS CLI, you need to know the AMI ID\. If you don't know the AMI ID, you can get it from the instance using the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command\.
+
+**To find the AMI ID**  
+If you know the instance ID, you can get the AMI ID for the instance by using the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command\.
 
 ```
 aws ec2 describe-instances --instance-ids i-123456789abcde123
+```
+
+In the output, the AMI ID is specified in the `ImageId` field\.
+
+```
 ..."Instances": [
 {
     "AmiLaunchIndex": 0,
@@ -44,7 +50,8 @@ aws ec2 describe-instances --instance-ids i-123456789abcde123
 }]
 ```
 
-If you know the AMI ID, you can use the [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command to show AMI platform and usage operation details:
+**To find the AMI billing information**  
+If you know the AMI ID, you can use the [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command to get the AMI platform and usage operation details\.
 
 ```
 $ aws ec2 describe-images --image-ids ami-0123456789EXAMPLE

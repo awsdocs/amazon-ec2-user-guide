@@ -97,11 +97,11 @@ You can release an On\-Demand Dedicated Host at any time to stop accruing charge
 ### Dedicated Host Reservations<a name="dedicated-host-reservations"></a>
 
 Dedicated Host Reservations provide a billing discount compared to running On\-Demand Dedicated Hosts\. Reservations are available in three payment options:
-+ **No Upfront**—No Upfront Reservations provide you with a discount on your Dedicated Host usage over a term and do not require an upfront payment\. Available for a one\-year term only\.
++ **No Upfront**—No Upfront Reservations provide you with a discount on your Dedicated Host usage over a term and do not require an upfront payment\. Available in one\-year and three\-year terms\. Only some instance families support the three\-year term for No Upfront Reservations\.
 + **Partial Upfront**—A portion of the reservation must be paid upfront and the remaining hours in the term are billed at a discounted rate\. Available in one\-year and three\-year terms\.
 + **All Upfront**—Provides the lowest effective price\. Available in one\-year and three\-year terms and covers the entire cost of the term upfront, with no additional future charges\.
 
-You must have active Dedicated Hosts in your account before you can purchase reservations\. Each reservation covers a single, specific Dedicated Host in your account\. Reservations are applied to the instance family on the host, not the instance size\. If you have three Dedicated Hosts with different instances sizes \(`m4.xlarge`, `m4.medium`, and `m4.large`\) you can associate a single `m4` reservation with all those Dedicated Hosts\. The instance family and Region of the reservation must match that of the Dedicated Hosts you want to associate it with\. 
+You must have active Dedicated Hosts in your account before you can purchase reservations\. Each reservation can cover one or more hosts that support the same instance family in a single Availability Zone\. Reservations are applied to the instance family on the host, not the instance size\. If you have three Dedicated Hosts with different instances sizes \(`m4.xlarge`, `m4.medium`, and `m4.large`\) you can associate a single `m4` reservation with all those Dedicated Hosts\. The instance family and Availability Zone of the reservation must match that of the Dedicated Hosts you want to associate it with\. 
 
 When a reservation is associated with a Dedicated Host, the Dedicated Host can't be released until the reservation's term is over\.
 

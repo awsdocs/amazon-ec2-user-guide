@@ -1,20 +1,22 @@
 # Change the instance type<a name="ec2-instance-resize"></a>
 
-As your needs change, you might find that your instance is over\-utilized \(the instance type is too small\) or under\-utilized \(the instance type is too large\)\. If this is the case, you can change the size of your instance\. For example, if your `t2.micro` instance is too small for its workload, you can change it to another instance type that is appropriate for the workload\.
+As your needs change, you might find that your instance is over\-utilized \(the instance type is too small\) or under\-utilized \(the instance type is too large\)\. If this is the case, you can resize your instance by changing its instance type\. For example, if your `t2.micro` instance is too small for its workload, you can change it to another instance type that is appropriate for the workload\.
 
 You might also want to migrate from a previous generation instance type to a current generation instance type to take advantage of some features; for example, support for IPv6\.
 
-If the root device for your instance is an EBS volume, you can change the size of the instance simply by changing its instance type, which is known as *resizing* it\. If the root device for your instance is an instance store volume, you must migrate your application to a new instance with the instance type that you need\. For more information about root device volumes, see [Storage for the root device](ComponentsAMIs.md#storage-for-the-root-device)\.
-
-**Requirements**
-+ You must select an instance type that is compatible with the configuration of the instance\. If the instance type that you want is not compatible with the instance configuration you have, then you must migrate your application to a new instance with the instance type that you need\.
-+ You cannot resize an instance if hibernation is enabled\.
-
 **Topics**
++ [Requirements](#resize-requirements)
 + [Compatibility for resizing instances](#resize-limitations)
 + [Resize an Amazon EBS–backed instance](#resize-ebs-backed-instance)
 + [Migrate an instance store\-backed instance](#resize-instance-store-backed-instance)
 + [Migrate to a new instance configuration](#migrate-instance-configuration)
+
+## Requirements<a name="resize-requirements"></a>
++ If the root device for your instance is an EBS volume, you can change the size of the instance by changing its instance type\.
++ If the root device for your instance is an instance store volume, you must migrate your application to a new instance with the instance type that you need\. For more information about root device volumes, see [Storage for the root device](ComponentsAMIs.md#storage-for-the-root-device)\.
++ You must select an instance type that is compatible with the configuration of the instance\. If the instance type that you want is not compatible with the instance configuration you have, then you must migrate your application to a new instance with the instance type that you need\.
++ To change the instance type, the instance must be in the `stopped` state\.
++ You cannot resize an instance if hibernation is enabled\.
 
 ## Compatibility for resizing instances<a name="resize-limitations"></a>
 
@@ -61,7 +63,7 @@ Use the following procedure to resize an Amazon EBS–backed instance using the 
 
 1. In the confirmation dialog box, choose **Stop**\. It can take a few minutes for the instance to stop\.
 
-1. With the instance still selected, choose **Actions**, **Instance settings**, **Change instance type**\. This action is disabled if the instance state is not `stopped`\.
+1. With the instance still selected, choose **Actions**, **Instance settings**, **Change instance type**\. This action is grayed out if the instance state is not `stopped`\.
 
 1. In the **Change instance type** dialog box, do the following:
 
@@ -90,7 +92,7 @@ Use the following procedure to resize an Amazon EBS–backed instance using the 
 
 1. In the confirmation dialog box, choose **Yes, Stop**\. It can take a few minutes for the instance to stop\.
 
-1. With the instance still selected, choose **Actions**, **Instance Settings**, **Change Instance Type**\. This action is disabled if the instance state is not `stopped`\.
+1. With the instance still selected, choose **Actions**, **Instance Settings**, **Change Instance Type**\. This action is grayed out if the instance state is not `stopped`\.
 
 1. In the **Change Instance Type** dialog box, do the following:
 

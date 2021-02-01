@@ -18,7 +18,7 @@ Your AWS account has a limit on the number of instances that you can have runnin
 
 ### Storage for your instance<a name="storage-options"></a>
 
-The root device for your instance contains the image used to boot the instance\. For more information, see [Amazon EC2 root device volume](RootDeviceStorage.md)\.
+The root device for your instance contains the image used to boot the instance\. The root device is either an Amazon Elastic Block Store \(Amazon EBS\) volume or an instance store volume\. For more information, see [Amazon EC2 root device volume](RootDeviceStorage.md)\.
 
 Your instance may include local storage volumes, known as instance store volumes, which you can configure at launch time with block device mapping\. For more information, see [Block device mapping](block-device-mapping-concepts.md)\. After these volumes have been added to and mapped on your instance, they are available for you to mount and use\. If your instance fails, or if your instance is stopped or terminated, the data on these volumes is lost; therefore, these volumes are best used for temporary data\. To keep important data safe, you should use a replication strategy across multiple instances, or store your persistent data in Amazon S3 or Amazon EBS volumes\. For more information, see [Storage](Storage.md)\.
 

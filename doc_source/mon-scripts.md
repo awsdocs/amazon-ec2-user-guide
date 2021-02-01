@@ -3,7 +3,7 @@
 You can use Amazon CloudWatch to collect metrics and logs from the operating systems for your EC2 instances\.
 
 **Important**  
-The CloudWatch monitoring scripts are deprecated\. We recommend that you use the CloudWatch agent to collect metrics and logs\.  
+The CloudWatch monitoring scripts are deprecated\. We recommend that you use the CloudWatch agent to collect metrics and logs\. For more information, see [ Collect Metrics from Amazon EC2 Instances and On\-Premises Servers with the CloudWatch Agent](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Install-CloudWatch-Agent.html) in the *Amazon CloudWatch User Guide*\.  
 If you are still migrating from the deprecated monitoring scripts to the agent, and require information about the monitoring scripts, see [Deprecated: Collect metrics using the CloudWatch monitoring scripts](monitoring-scripts-intro.md)\.
 
 ## Collect metrics using the CloudWatch agent<a name="new-cloudwatch-agent"></a>

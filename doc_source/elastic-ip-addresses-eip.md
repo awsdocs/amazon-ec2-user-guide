@@ -38,7 +38,7 @@ The following sections describe how you can work with Elastic IP addresses\.
 **Topics**
 + [Allocate an Elastic IP address](#using-instance-addressing-eips-allocating)
 + [Describe your Elastic IP addresses](#using-instance-addressing-eips-describing)
-+ [Tage an Elastic IP address](#using-instance-addressing-eips-tagging)
++ [Tag an Elastic IP address](#using-instance-addressing-eips-tagging)
 + [Associate an Elastic IP address with a running instance or network interface](#using-instance-addressing-eips-associating)
 + [Disassociate an Elastic IP address](#using-instance-addressing-eips-associating-different)
 + [Release an Elastic IP address](#using-instance-addressing-eips-releasing)
@@ -147,7 +147,7 @@ Use the [Get\-EC2Address](https://docs.aws.amazon.com/powershell/latest/referenc
 
 ------
 
-### Tage an Elastic IP address<a name="using-instance-addressing-eips-tagging"></a>
+### Tag an Elastic IP address<a name="using-instance-addressing-eips-tagging"></a>
 
 You can assign custom tags to your Elastic IP addresses to categorize them in different ways, for example, by purpose, owner, or environment\. This helps you to quickly find a specific Elastic IP address based on the custom tags that you assigned to it\.
 

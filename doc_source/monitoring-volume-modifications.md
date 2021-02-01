@@ -101,7 +101,7 @@ The following is example output with information about two volumes:
 
 ## Monitor the progress of a volume modification \(CloudWatch Events\)<a name="cwe_monitoring"></a>
 
-With CloudWatch Events, you can create a notification rule for volume modification events\. You can use your rule to generate a notification message using [Amazon SNS](https://docs.aws.amazon.com/sns/latest/dg/) or to invoke a [Lambda function](https://docs.aws.amazon.com/lambda/latest/dg/) in response to matching events\.
+With CloudWatch Events, you can create a notification rule for volume modification events\. You can use your rule to generate a notification message using [Amazon SNS](https://docs.aws.amazon.com/sns/latest/dg/) or to invoke a [Lambda function](https://docs.aws.amazon.com/lambda/latest/dg/) in response to matching events\. Events are emitted on a best effort basis\.
 
 **To monitor progress of a modification using CloudWatch Events**
 

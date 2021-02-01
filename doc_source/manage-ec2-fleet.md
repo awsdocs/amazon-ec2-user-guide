@@ -169,14 +169,23 @@ If your IAM users will create or manage an EC2 Fleet, be sure to grant them the 
 
 ## EC2 Fleet health checks<a name="ec2-fleet-health-checks"></a>
 
-EC2 Fleet checks the health status of the instances in the fleet every two minutes\. The health status of an instance is either `healthy` or `unhealthy`\. The fleet determines the health status of an instance using the status checks provided by Amazon EC2\. If the status of either the instance status check or the system status check is `impaired` for three consecutive health checks, the health status of the instance is `unhealthy`\. Otherwise, the health status is `healthy`\. For more information, see [Status checks for your instances](monitoring-system-instance-status-check.md)\.
+EC2 Fleet checks the health status of the instances in the fleet every two minutes\. The health status of an instance is either `healthy` or `unhealthy`\.
 
-You can configure your EC2 Fleet to replace unhealthy instances\. After enabling health check replacement, an instance is replaced after its health status is reported as `unhealthy`\. The fleet could go below its target capacity for up to a few minutes while an unhealthy instance is being replaced\.
+EC2 Fleet determines the health status of an instance by using the status checks provided by Amazon EC2\. An instance is determined as `unhealthy` when the status of either the instance status check or the system status check is `impaired` for three consecutive health status checks\. For more information, see [Status checks for your instances](monitoring-system-instance-status-check.md)\.
+
+You can configure your fleet to replace unhealthy Spot Instances\. After setting `ReplaceUnhealthyInstances` to `true`, a Spot Instance is replaced when it is reported as `unhealthy`\. The fleet can go below its target capacity for up to a few minutes while an unhealthy Spot Instance is being replaced\.
 
 **Requirements**
-+ Health check replacement is supported only with EC2 Fleets that maintain a target capacity \(fleets of type `maintain`\), not with one\-time fleets \(fleets of type `request` or `instant`\)\.
++ Health check replacement is supported only for EC2 Fleets that maintain a target capacity \(fleets of type `maintain`\), and not for fleets of type `request` or `instant`\.
++ Health check replacement is supported only for Spot Instances\. This feature is not supported for On\-Demand Instances\.
 + You can configure your EC2 Fleet to replace unhealthy instances only when you create it\.
 + IAM users can use health check replacement only if they have permission to call the `ec2:DescribeInstanceStatus` action\.
+
+**To configure an EC2 Fleet to replace unhealthy Spot Instances**
+
+1. Follow the steps for creating an EC2 Fleet\. For more information, see [Create an EC2 Fleet](#create-ec2-fleet)\.
+
+1. To configure the fleet to replace unhealthy Spot Instances, in the JSON file, for `ReplaceUnhealthyInstances`, enter `true`\. 
 
 ## Generate an EC2 Fleet JSON configuration file<a name="ec2-fleet-cli-skeleton"></a>
 

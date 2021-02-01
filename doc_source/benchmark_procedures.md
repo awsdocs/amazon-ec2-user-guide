@@ -25,31 +25,13 @@ To get optimal performance from EBS volumes, we recommend that you use an EBS\-o
 
 To create an EBS\-optimized instance, choose **Launch as an EBS\-Optimized instance** when launching the instance using the Amazon EC2 console, or specify \-\-ebs\-optimized when using the command line\. Be sure that you launch a current\-generation instance that supports this option\. For more information, see [Amazon EBS–optimized instances](ebs-optimized.md)\.
 
-### Set up Provisioned IOPS SSD volumes<a name="setupPIOPS"></a>
+### Set up Provisioned IOPS SSD or General Purpose SSD volumes<a name="setupPIOPS"></a>
 
-To create Provisioned IOPS SSD \(`io1` and `io2`\) volumes using the Amazon EC2 console, choose the **Provisioned IOPS SSD \(io1\)** or **Provisioned IOPS SSD \(io2\)** volume type\. At the command line, specify `io1` or `io2` for the \-\-volume\-type parameter and an integer between 100 and 64,000 for the \-\-iops parameter\. For more information, see [Amazon EBS volume types](ebs-volume-types.md) and [Create an Amazon EBS volume](ebs-creating-volume.md)\.
+To create Provisioned IOPS SSD \(`io1` and `io2`\) or General Purpose SSD \(`gp2` and `gp3`\) volumes using the Amazon EC2 console, for **Volume type**, choose **Provisioned IOPS SSD \(io1\)**, **Provisioned IOPS SSD \(io2\)**, **General Purpose SSD \(gp2\)**, or **General Purpose SSD \(gp3\)**\. At the command line, specify `io1`, `io2`, `gp2`, or `gp3` for the \-\-volume\-type parameter\. For `io1`, `io2`, and `gp3` volumes, specify the number of I/O operations per second \(IOPS\) for the \-\-iops parameter\. For more information, see [Amazon EBS volume types](ebs-volume-types.md) and [Create an Amazon EBS volume](ebs-creating-volume.md)\.
 
-For the example tests, we recommend that you create a RAID array with 6 volumes, which offers a high level of performance\. Because you are charged by gigabytes provisioned \(and the number of provisioned IOPS for Provisioned IOPS SSD volumes\), not the number of volumes, there is no additional cost for creating multiple, smaller volumes and using them to create a stripe set\. If you're using Oracle Orion to benchmark your volumes, it can simulate striping the same way that Oracle ASM does, so we recommend that you let Orion do the striping\. If you are using a different benchmarking tool, you need to stripe the volumes yourself\.
+For the example tests, we recommend that you create a RAID 0 array with 6 volumes, which offers a high level of performance\. Because you are charged by gigabytes provisioned \(and the number of provisioned IOPS for io1, io2, and gp3 volumes\), not the number of volumes, there is no additional cost for creating multiple, smaller volumes and using them to create a stripe set\. If you're using Oracle Orion to benchmark your volumes, it can simulate striping the same way that Oracle ASM does, so we recommend that you let Orion do the striping\. If you are using a different benchmarking tool, you need to stripe the volumes yourself\.
 
-To create a six\-volume stripe set on Amazon Linux, use a command such as the following:
-
-```
-[ec2-user ~]$ sudo mdadm --create /dev/md0 --level=0 --chunk=64 --raid-devices=6 /dev/sdf /dev/sdg /dev/sdh /dev/sdi /dev/sdj /dev/sdk
-```
-
-For this example, the file system is XFS\. Use the file system that meets your requirements\. Use the following command to install XFS file system support:
-
-```
-[ec2-user ~]$ sudo yum install -y xfsprogs
-```
-
-Then, use these commands to create, mount, and assign ownership to the XFS file system:
-
-```
-[ec2-user ~]$ sudo mkdir -p /mnt/p_iops_vol0 && sudo mkfs.xfs /dev/md0
-[ec2-user ~]$ sudo mount -t xfs /dev/md0 /mnt/p_iops_vol0
-[ec2-user ~]$ sudo chown ec2-user:ec2-user /mnt/p_iops_vol0/
-```
+For instructions on how to create a RAID 0 array with 6 volumes, see [Create a RAID array on Linux](raid-config.md#linux-raid)\.
 
 ### Set up Throughput Optimized HDD \(`st1`\) or Cold HDD \(`sc1`\) volumes<a name="set_up_hdd"></a>
 
@@ -129,9 +111,9 @@ Run the following commands on an EBS\-optimized instance with attached EBS volum
 
 When you are finished testing your volumes, see the following topics for help cleaning up: [Delete an Amazon EBS volume](ebs-deleting-volume.md) and [Terminate your instance](terminating-instances.md)\.
 
-### Benchmark Provisioned IOPS SSD volumes<a name="piops_benchmarking"></a>
+### Benchmark Provisioned IOPS SSD and General Purpose SSD volumes<a name="piops_benchmarking"></a>
 
-Run fio on the stripe set that you created\.
+Run fio on the RAID 0 array that you created\.
 
 The following command performs 16 KB random write operations\.
 

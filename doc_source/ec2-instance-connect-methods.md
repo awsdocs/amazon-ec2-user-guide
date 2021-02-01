@@ -3,11 +3,11 @@
 The following instructions explain how to connect to your Linux instance using EC2 Instance Connect\. If you receive an error while attempting to connect to your instance, see [Troubleshoot connecting to your instance](TroubleshootingInstancesConnecting.md)\.
 
 **Topics**
-+ [Connect using the Amazon EC2 console \(browser\-based client\)](#ec2-instance-connect-connecting-console)
-+ [Connect using the EC2 Instance Connect CLI](#ec2-instance-connect-connecting-ec2-cli)
-+ [Connect using your own key and SSH client](#ec2-instance-connect-connecting-aws-cli)
++ [Limitations](#ic-limitations)
++ [Prerequisites](#ic-prerequisites)
++ [Connect using EC2 Instance Connect](#connect-options)
 
-**Limitations**
+## Limitations<a name="ic-limitations"></a>
 + The following Linux distributions are supported:
   + Amazon Linux 2 \(any version\)
   + Ubuntu 16\.04 or later
@@ -15,7 +15,7 @@ The following instructions explain how to connect to your Linux instance using E
 + If the instance does not have a public IP address, you can connect to the instance using an SSH client or the EC2 Instance Connect CLI, and over a private network, such as from a machine within the same VPC or from a machine connected to the VPC over VPN or AWS Direct Connect\.
 + EC2 Instance Connect does not support connecting using an IPv6 address\.
 
-**Prerequisites**
+## Prerequisites<a name="ic-prerequisites"></a>
 + **Install Instance Connect on your instance\.**
 
   For more information, see [Set up EC2 Instance Connect](ec2-instance-connect-set-up.md)\.
@@ -26,7 +26,14 @@ The following instructions explain how to connect to your Linux instance using E
 
   There is no need to install the EC2 Instance Connect CLI if users only use the Amazon EC2 console \(browser\-based client\) or an SSH client to connect to an instance\. For more information, see [Task 3: \(Optional\) Install the EC2 Instance Connect CLI](ec2-instance-connect-set-up.md#ec2-instance-connect-install-eic-CLI)\. This connection method works for instances with public IP addresses\.
 
-## Connect using the Amazon EC2 console \(browser\-based client\)<a name="ec2-instance-connect-connecting-console"></a>
+## Connect using EC2 Instance Connect<a name="connect-options"></a>
+
+**Topics**
++ [Connect using the Amazon EC2 console \(browser\-based client\)](#ec2-instance-connect-connecting-console)
++ [Connect using the EC2 Instance Connect CLI](#ec2-instance-connect-connecting-ec2-cli)
++ [Connect using your own key and SSH client](#ec2-instance-connect-connecting-aws-cli)
+
+### Connect using the Amazon EC2 console \(browser\-based client\)<a name="ec2-instance-connect-connecting-console"></a>
 
 You can connect to an instance using the Amazon EC2 console \(browser\-based client\) by selecting the instance from the console and choosing to connect using EC2 Instance Connect\. Instance Connect handles the permissions and provides a successful connection\.
 
@@ -42,7 +49,7 @@ You can connect to an instance using the Amazon EC2 console \(browser\-based cli
 
 1. Verify the user name and choose **Connect** to open a terminal window\.
 
-## Connect using the EC2 Instance Connect CLI<a name="ec2-instance-connect-connecting-ec2-cli"></a>
+### Connect using the EC2 Instance Connect CLI<a name="ec2-instance-connect-connecting-ec2-cli"></a>
 
 You can connect to an instance using the EC2 Instance Connect CLI by providing only the instance ID, while the Instance Connect CLI performs the following three actions in one call: it generates a one\-time\-use SSH public key, pushes the key to the instance where it remains for 60 seconds, and connects the user to the instance\. You can use basic SSH/SFTP commands with the Instance Connect CLI\.
 
@@ -73,7 +80,7 @@ $ mssh ubuntu@i-001234a4bf70dec41EXAMPLE
 
 ------
 
-## Connect using your own key and SSH client<a name="ec2-instance-connect-connecting-aws-cli"></a>
+### Connect using your own key and SSH client<a name="ec2-instance-connect-connecting-aws-cli"></a>
 
 You can use your own SSH key and connect to your instance from the SSH client of your choice while using the EC2 Instance Connect API\. This enables you to benefit from the Instance Connect capability to push a public key to the instance\. This connection method works for instances with public and private IP addresses\.
 

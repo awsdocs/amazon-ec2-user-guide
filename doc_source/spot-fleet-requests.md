@@ -42,14 +42,37 @@ The following illustration represents the transitions between the request states
 
 ## Spot Fleet health checks<a name="spot-fleet-health-checks"></a>
 
-Spot Fleet checks the health status of the Spot Instances in the fleet every two minutes\. The health status of an instance is either `healthy` or `unhealthy`\. Spot Fleet determines the health status of an instance using the status checks provided by Amazon EC2\. If the status of either the instance status check or the system status check is `impaired` for three consecutive health checks, the health status of the instance is `unhealthy`\. Otherwise, the health status is `healthy`\. For more information, see [Status checks for your instances](monitoring-system-instance-status-check.md)\.
+Spot Fleet checks the health status of the Spot Instances in the fleet every two minutes\. The health status of an instance is either `healthy` or `unhealthy`\.
 
-You can configure your Spot Fleet to replace unhealthy instances\. After enabling health check replacement, an instance is replaced after its health status is reported as `unhealthy`\. The Spot Fleet could go below its target capacity for up to a few minutes while an unhealthy instance is being replaced\.
+Spot Fleet determines the health status of an instance by using the status checks provided by Amazon EC2\. An instance is determined as `unhealthy` when the the status of either the instance status check or the system status check is `impaired` for three consecutive health checks\. For more information, see [Status checks for your instances](monitoring-system-instance-status-check.md)\.
+
+You can configure your fleet to replace unhealthy Spot Instances\. After enabling health check replacement, a Spot Instance is replaced when it is reported as `unhealthy`\. The fleet could go below its target capacity for up to a few minutes while an unhealthy Spot Instance is being replaced\.
 
 **Requirements**
-+ Health check replacement is supported only with Spot Fleets that maintain a target capacity, not with one\-time Spot Fleets\.
++ Health check replacement is supported only for Spot Fleets that maintain a target capacity \(fleets of type `maintain`\), not for one\-time Spot Fleets \(fleets of type `request`\)\.
++ Health check replacement is supported only for Spot Instances\. This feature is not supported for On\-Demand Instances\.
 + You can configure your Spot Fleet to replace unhealthy instances only when you create it\.
 + IAM users can use health check replacement only if they have permission to call the `ec2:DescribeInstanceStatus` action\.
+
+------
+#### [ Console ]
+
+**To configure a Spot Fleet to replace unhealthy Spot Instances using the console**
+
+1. Follow the steps for creating a Spot Fleet\. For more information, see [Create a Spot Fleet request using defined parameters \(console\)](#create-spot-fleet-advanced)\.
+
+1. To configure the fleet to replace unhealthy Spot Instances, for **Health check**, choose **Replace unhealthy instances**\. To enable this option, you must first choose **Maintain target capacity**\.
+
+------
+#### [ AWS CLI ]
+
+**To configure a Spot Fleet to replace unhealthy Spot Instances using the AWS CLI**
+
+1. Follow the steps for creating a Spot Fleet\. For more information, see [Create a Spot Fleet using the AWS CLI](#create-spot-fleet-cli)\.
+
+1. To configure the fleet to replace unhealthy Spot Instances, for `ReplaceUnhealthyInstances`, enter `true`\. 
+
+------
 
 ## Plan a Spot Fleet request<a name="plan-spot-fleet"></a>
 
@@ -267,7 +290,12 @@ If you choose to tag instances in the fleet and you choose to maintain target ca
 
 ## Create a Spot Fleet request<a name="create-spot-fleet"></a>
 
-Using the AWS Management Console, quickly create a Spot Fleet request by choosing only your application or task need and minimum compute specs\. Amazon EC2 configures a fleet that best meets your needs and follows Spot best practice\. For more information, see [Quickly create a Spot Fleet request \(console\)](#create-spot-fleet-quick)\. Otherwise, you can modify any of the default settings\. For more information, see [Create a Spot Fleet request using defined parameters \(console\)](#create-spot-fleet-advanced)\.
+Using the AWS Management Console, quickly create a Spot Fleet request by choosing only your application or task need and minimum compute specs\. Amazon EC2 configures a fleet that best meets your needs and follows Spot best practice\. For more information, see [Quickly create a Spot Fleet request \(console\)](#create-spot-fleet-quick)\. Otherwise, you can modify any of the default settings\. For more information, see [Create a Spot Fleet request using defined parameters \(console\)](#create-spot-fleet-advanced) and [Create a Spot Fleet using the AWS CLI](#create-spot-fleet-cli)\.
+
+**Topics**
++ [Quickly create a Spot Fleet request \(console\)](#create-spot-fleet-quick)
++ [Create a Spot Fleet request using defined parameters \(console\)](#create-spot-fleet-advanced)
++ [Create a Spot Fleet using the AWS CLI](#create-spot-fleet-cli)
 
 ### Quickly create a Spot Fleet request \(console\)<a name="create-spot-fleet-quick"></a>
 
@@ -339,7 +367,7 @@ You can create a Spot Fleet using the parameters that you define\.
 
    1. \(Optional\) By default, basic monitoring is enabled for your instances\. To enable detailed monitoring, for **Monitoring**, choose **Enable CloudWatch detailed monitoring**\.
 
-   1. \(Optional\) To replace unhealthy instances, for **Health check**, choose **Replace unhealthy instances**\. To enable this option, you must first choose **Maintain target capacity**\.
+   1. \(Optional\) To replace unhealthy Spot Instances, for **Health check**, choose **Replace unhealthy instances**\. To enable this option, you must first choose **Maintain target capacity**\.
 
    1. \(Optional\) To run a Dedicated Spot Instance, for **Tenancy**, choose **Dedicated \- run a dedicated instance**\.
 
@@ -403,6 +431,8 @@ The instance marked for rebalance is at an elevated risk of interruption, and yo
 1. Choose **Launch**\.
 
    The Spot Fleet request type is `fleet`\. When the request is fulfilled, requests of type `instance` are added, where the state is `active` and the status is `fulfilled`\.
+
+### Create a Spot Fleet using the AWS CLI<a name="create-spot-fleet-cli"></a>
 
 **To create a Spot Fleet request using the AWS CLI**
 + Use the [request\-spot\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-fleet.html) command to create a Spot Fleet request\.

@@ -32,7 +32,12 @@ Only the most recent 64 KB of posted output is stored, which is available for at
 
 Only the instance owner can access the console output\. You can retrieve the console output for your instances using the console or the command line\.
 
-**To get console output using the console**
+Use one of the following methods to get console output\.
+
+------
+#### [ New console ]
+
+**To get console output**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -40,11 +45,26 @@ Only the instance owner can access the console output\. You can retrieve the con
 
 1. Choose **Actions**, **Monitor and troubleshoot**, **Get system log**\.
 
-**To get console output using the command line**
+------
+#### [ Old console ]
 
+**To get console output**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the left navigation pane, choose **Instances**, and select the instance\.
+
+1. Choose **Actions**, **Instance Settings**, **Get System Log**\.
+
+------
+#### [ Command line ]
+
+**To get console output**  
 You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
 + [get\-console\-output](https://docs.aws.amazon.com/cli/latest/reference/ec2/get-console-output.html) \(AWS CLI\)
 + [Get\-EC2ConsoleOutput](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2ConsoleOutput.html) \(AWS Tools for Windows PowerShell\)
+
+------
 
 For more information about common system log errors, see [Troubleshoot system log errors for Linux\-based instances](TroubleshootingInstances.md#system-log-errors-linux)\.
 

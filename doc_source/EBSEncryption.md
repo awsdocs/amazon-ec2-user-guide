@@ -4,7 +4,7 @@ Use Amazon EBS encryption as a straight\-forward encryption solution for your EB
 
 Encryption operations occur on the servers that host EC2 instances, ensuring the security of both data\-at\-rest and data\-in\-transit between an instance and its attached EBS storage\.
 
-You can attach both encrypted and unencrypted volumes to an instance simultaneously. 
+You can attach both encrypted and unencrypted volumes to an instance simultaneously\.
 
 **Topics**
 + [How EBS encryption works](#how-ebs-encryption-works)

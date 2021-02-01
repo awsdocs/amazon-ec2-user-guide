@@ -4,7 +4,7 @@ To start using Capacity Reservations, you create the capacity reservation in the
 
 By default, Capacity Reservations automatically match new instances and running instances that have matching attributes \(instance type, platform, and Availability Zone\)\. This means that any instance with matching attributes automatically runs in the Capacity Reservation\. However, you can also target a Capacity Reservation for specific workloads\. This enables you to explicitly control which instances are allowed to run in that reserved capacity\.
 
-You can specify how the reservation ends\. You can choose to manually cancel the Capacity Reservation or end it automatically at a specified time\. If you specify an end time, the Capacity Reservation is canceled within an hour of the specified time\. For example, if you specify 5/31/2019, 13:30:55, the Capacity Reservation is guaranteed to end between 13:30:55 and 14:30:55 on 5/31/2019\. After a reservation ends, you can no longer target instances to the Capacity Reservation\. Instances running in the reserved capacity continue to run uninterrupted\. If instances targeting a Capacity Reservation are stopped, you cannot restart them until you remove their Capacity Reservation targeting preference or configure them to target a different Capacity Reservation\.
+You can specify how the reservation ends\. You can choose to cancel the Capacity Reservation or end it automatically at a specified time\. If you specify an end time, the Capacity Reservation is canceled within an hour of the specified time\. For example, if you specify 5/31/2019, 13:30:55, the Capacity Reservation is guaranteed to end between 13:30:55 and 14:30:55 on 5/31/2019\. After a reservation ends, you can no longer target instances to the Capacity Reservation\. Instances running in the reserved capacity continue to run uninterrupted\. If instances targeting a Capacity Reservation are stopped, you cannot restart them until you remove their Capacity Reservation targeting preference or configure them to target a different Capacity Reservation\.
 
 **Contents**
 + [Create a Capacity Reservation](#capacity-reservations-create)
@@ -350,7 +350,7 @@ aws ec2 modify-instance-capacity-reservation-attributes --instance-id i-12345678
 Capacity Reservations have the following possible states:
 + `active`—The capacity is available for use\.
 + `expired`—The Capacity Reservation expired automatically at the date and time specified in your reservation request\. The reserved capacity is no longer available for your use\.
-+ `cancelled`—The Capacity Reservation was manually canceled\. The reserved capacity is no longer available for your use\.
++ `cancelled`—The Capacity Reservation was canceled\. The reserved capacity is no longer available for your use\.
 + `pending`—The Capacity Reservation request was successful but the capacity provisioning is still pending\.
 + `failed`—The Capacity Reservation request has failed\. A request can fail due to invalid request parameters, capacity constraints, or instance limit constraints\. You can view a failed request for 60 minutes\.
 

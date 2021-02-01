@@ -35,7 +35,7 @@ The following diagram summarizes the AMI lifecycle\. After you create and regist
 
 ![\[The AMI lifecycle (create, register, launch, copy, deregister).\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ami_lifecycle.png)
 
-You can search for an AMI that meets the criteria for your instance\. You can search for AMIs provided by AWS or AMIs provided by the community\. For more information, see [AMI types](ComponentsAMIs.md) and [Finding an AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html)\.
+You can search for an AMI that meets the criteria for your instance\. You can search for AMIs provided by AWS or AMIs provided by the community\. For more information, see [AMI types](ComponentsAMIs.md) and [Find a Linux AMI](finding-an-ami.md)\.
 
 After you launch an instance from an AMI, you can connect to it\. When you are connected to an instance, you can use it just like you use any other server\. For information about launching, connecting, and using your instance, see [Tutorial: Get started with Amazon EC2 Linux instances](EC2_GetStarted.md)\.
 

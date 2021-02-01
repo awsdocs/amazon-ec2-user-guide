@@ -23,7 +23,7 @@ With Amazon EBS, you pay only for what you use\. For more information about Amaz
 + Amazon EBS provides the following volume types: General Purpose SSD, Provisioned IOPS SSD, Throughput Optimized HDD, and Cold HDD\. For more information, see [EBS volume types](ebs-volume-types.md)\.
 
   The following is a summary of performance and use cases for each volume type\.
-  + General Purpose SSD volumes \(`gp2` and `gp3`\) balance price and performance for a wide variety of transactional workloads\. These volumes are ideal for a use cases such as boot volumes, medium\-size single instance databases, and development and test environments\.
+  + General Purpose SSD volumes \(`gp2` and `gp3`\) balance price and performance for a wide variety of transactional workloads\. These volumes are ideal for use cases such as boot volumes, medium\-size single instance databases, and development and test environments\.
   + Provisioned IOPS SSD volumes \(`io1` and `io2`\) support up to 64,000 IOPS and 1,000 MiB/s of throughput\. This enables you to predictably scale to tens of thousands of IOPS per EC2 instance\.
   + Throughput Optimized HDD volumes \(`st1`\) provide low\-cost magnetic storage that defines performance in terms of throughput rather than IOPS\. These volumes are ideal for large, sequential workloads such as Amazon EMR, ETL, data warehouses, and log processing\.
   + Cold HDD volumes \(`sc1`\) provide low\-cost magnetic storage that defines performance in terms of throughput rather than IOPS\. These volumes are ideal for large, sequential, cold\-data workloads\. If you require infrequent access to your data and are looking to save costs, these volumes provides inexpensive block storage\.

@@ -3,7 +3,7 @@
 The rules of a security group control the inbound traffic that's allowed to reach the instances that are associated with the security group\. The rules also control the outbound traffic that's allowed to leave them\.
 
 The following are the characteristics of security group rules:
-+ By default, security groups allow all outbound traffic\.
++ By default, security groups allow all outbound traffic\. Note that Amazon EC2 blocks traffic on port 25 by default\. For more information, see [Restriction on email sent using port 25](ec2-resource-limits.md#port-25-throttle)\.
 + Security group rules are always permissive; you can't create rules that deny access\.
 + Security group rules enable you to filter traffic based on protocols and port numbers\.
 + Security groups are stateful—if you send a request from your instance, the response traffic for that request is allowed to flow in regardless of inbound security group rules\. For VPC security groups, this also means that responses to allowed inbound traffic are allowed to flow out, regardless of outbound rules\. For more information, see [Connection tracking](security-group-connection-tracking.md)\.

@@ -39,19 +39,38 @@ Suppose that you have an EC2 instance with an EBS volume for the root device, `/
 
 1. Determine whether there is a file system on the volume\. New volumes are raw block devices, and you must create a file system on them before you can mount and use them\. Volumes that were created from snapshots likely have a file system on them already; if you create a new file system on top of an existing file system, the operation overwrites your data\.
 
-   Use the file \-s command to get information about a device, such as its file system type\. If the output shows simply `data`, as in the following example output, there is no file system on the device and you must create one\.
+   Use one or both of the following methods to determine whether there is a file system on the volume:
+   + Use the file \-s command to get information about a specific device, such as its file system type\. If the output shows simply `data`, as in the following example output, there is no file system on the device
 
-   ```
-   [ec2-user ~]$ sudo file -s /dev/xvdf
-   /dev/xvdf: data
-   ```
+     ```
+     [ec2-user ~]$ sudo file -s /dev/xvdf
+     /dev/xvdf: data
+     ```
 
-   If the device has a file system, the command shows information about the file system type\. For example, the following output shows a root device with the XFS file system\.
+     If the device has a file system, the command shows information about the file system type\. For example, the following output shows a root device with the XFS file system\.
 
-   ```
-   [ec2-user ~]$ sudo file -s /dev/xvda1
-   /dev/xvda1: SGI XFS filesystem data (blksz 4096, inosz 512, v2 dirs)
-   ```
+     ```
+     [ec2-user ~]$ sudo file -s /dev/xvda1
+     /dev/xvda1: SGI XFS filesystem data (blksz 4096, inosz 512, v2 dirs)
+     ```
+   + Use the lsblk \-f command to get information about all of the devices attached to the instance\.
+
+     ```
+     [ec2-user ~]$ sudo lsblk -f
+     ```
+
+     For example, the following output shows that there are three devices attached to the instances—`nvme1n1`, `nvme0n1`, and `nvme2n1`\. The first column lists the devices and their partitions\. The `FSTYPE` column shows the file system type for each device\. If the column is empty for a specific device, it means that the device does not have a file system\. In this case, `nvme1n1`, `nvme0n1` are both formatted using the XFS file system, while `nvme2n1` does not have a file system\.
+
+     ```
+     NAME		FSTYPE	LABEL	UUID						MOUNTPOINT
+     nvme1n1	        xfs		7f939f28-6dcc-4315-8c42-6806080b94dd
+     nvme0n1
+     ├─nvme0n1p1	xfs	    /	90e29211-2de8-4967-b0fb-16f51a6e464c	        /
+     └─nvme0n1p128
+     nvme2n1
+     ```
+
+   If the output from these commands show that there is no file system on the device, you must create one\. 
 
 1. <a name="create_file_system_step"></a>\(Conditional\) If you discovered that there is a file system on the device in the previous step, skip this step\. If you have an empty volume, use the mkfs \-t command to create a file system on the volume\.
 **Warning**  

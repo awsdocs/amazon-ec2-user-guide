@@ -99,7 +99,7 @@ The format of the signed authorization message is as follows, where the date is 
 1. Sign the authorization message in `text_message` using the key pair that you created, and store it in a variable named `signed_message`\.
 
    ```
-   signed_message=$(echo $text_message | tr -d "\n" | openssl dgst -sha256 -sigopt rsa_padding_mode:pss -sigopt rsa_pss_saltlen:-1 -sign private.key -keyform PEM | openssl base64 | tr -- '+=/' '-_~' | tr -d "\n")
+   signed_message=$( echo -n $text_message | openssl dgst -sha256 -sigopt rsa_padding_mode:pss -sigopt rsa_pss_saltlen:-1 -sign private.key -keyform PEM | openssl base64 | tr -- '+=/' '-_~' | tr -d "\n")
    ```
 **Important**  
 We recommend that you copy and paste this command\. Do not modify or replace any of the values\.

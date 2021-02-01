@@ -24,8 +24,8 @@ You can enable up to 50 snapshots for fast snapshot restore per Region\. The quo
 
 After you enable fast snapshot restore for a snapshot, it can be in one of the following states\.
 + `enabling` — A request was made to enable fast snapshot restore\.
-+ `optimizing` — Fast snapshot restore is being enabled\. It takes 60 minutes per TiB to optimize a snapshot\.
-+ `enabled` — Fast snapshot restore is enabled\.
++ `optimizing` — Fast snapshot restore is being enabled\. It takes 60 minutes per TiB to optimize a snapshot\. Snapshots in this state offer some performance benefit when restoring volumes\.
++ `enabled` — Fast snapshot restore is enabled\. Snapshots in this state offer the full performance benefit when restoring volumes\.
 + `disabling` — A request was made to disable fast snapshot restore, or a request to enable fast snapshot restore failed\.
 + `disabled` — Fast snapshot restore is disabled\. You can enable fast snapshot restore again as needed\.
 
@@ -79,6 +79,9 @@ Use the following procedure to enable or disable fast snapshot restore for a sna
 1. Select or deselect Availability Zones, and then choose **Save**\.
 
 1. To track the state of fast snapshot restore as it is enabled, see **Fast Snapshot Restore** on the **Description** tab\.
+
+**Note**  
+After you enable fast snapsohot restore for a snapshot, it enters the `optimizing` state\. Snapshots that are in the `optimizing` state provide some performance benefits when using them to restore volumes\. They start to provide the full performance benefits of fast snapshot restore only after they enter the `enabled` state\.
 
 **To manage fast snapshot restore using the AWS CLI**
 + [enable\-fast\-snapshot\-restores](https://docs.aws.amazon.com/cli/latest/reference/ec2/enable-fast-snapshot-restores.html)
