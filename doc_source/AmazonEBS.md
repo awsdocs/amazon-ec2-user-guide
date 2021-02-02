@@ -19,7 +19,7 @@ With Amazon EBS, you pay only for what you use\. For more information about Amaz
 + [Amazon EBS quotas](ebs-resource-quotas.md)
 
 ## Features of Amazon EBS<a name="ebs-features"></a>
-+ EBS volumes are created in a specific Availability Zone, and can then be attached to any instances in that same Availability Zone\. To make a volume available outside of the Availability Zone, you can create a snapshot and restore that snapshot to a new volume anywhere in that Region\. You can copy snapshots to other Regions and then restore them to new volumes there, making it easier to leverage multiple AWS Regions for geographical expansion, data center migration, and disaster recovery\.
++ An EBS volume is created in a specific Availability Zone, and can then be attached to any instances in that same Availability Zone\. To make a volume available outside of the Availability Zone, you can create a snapshot and restore that snapshot to a new volume anywhere in that Region\. You can copy snapshots to other Regions and then restore them to new volumes there, making it easier to leverage multiple AWS Regions for geographical expansion, data center migration, and disaster recovery\.
 + Amazon EBS provides the following volume types: General Purpose SSD, Provisioned IOPS SSD, Throughput Optimized HDD, and Cold HDD\. For more information, see [EBS volume types](ebs-volume-types.md)\.
 
   The following is a summary of performance and use cases for each volume type\.
