@@ -74,7 +74,7 @@ The following instances support multiple network cards\. All other instance type
 
 ## IP addresses per network interface per instance type<a name="AvailableIpPerENI"></a>
 
-The following table lists the maximum number of network interfaces per instance type, and the maximum number of private IPv4 addresses and IPv6 addresses per network interface\. The limit for IPv6 addresses is separate from the limit for private IPv4 addresses per network interface\. Not all instance types support IPv6 addressing\. Network interfaces, multiple private IPv4 addresses, and IPv6 addresses are only available for instances running in a VPC\. IPv6 addresses are public and reachable over the Internet\. For more information, see [Multiple IP addresses](MultipleIP.md)\. For more information about IPv6 in VPC, see [IP Addressing in your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html) in the *Amazon VPC User Guide*\.
+The following table lists the maximum number of network interfaces per instance type, and the maximum number of private IPv4 addresses and IPv6 addresses per network interface\. The limit for IPv6 addresses is separate from the limit for private IPv4 addresses per network interface\. Not all instance types support IPv6 addressing\.
 
 
 | Instance type | Maximum network interfaces | Private IPv4 addresses per interface | IPv6 addresses per interface | 
@@ -287,6 +287,7 @@ The following table lists the maximum number of network interfaces per instance 
 | m5dn\.12xlarge | 8 | 30 | 30 | 
 | m5dn\.16xlarge | 15 | 50 | 50 | 
 | m5dn\.24xlarge | 15 | 50 | 50 | 
+| m5dn\.metal | 15 | 50 | 50 | 
 | m5n\.large | 3 | 10 | 10 | 
 | m5n\.xlarge | 4 | 15 | 15 | 
 | m5n\.2xlarge | 4 | 15 | 15 | 
@@ -295,6 +296,7 @@ The following table lists the maximum number of network interfaces per instance 
 | m5n\.12xlarge | 8 | 30 | 30 | 
 | m5n\.16xlarge | 15 | 50 | 50 | 
 | m5n\.24xlarge | 15 | 50 | 50 | 
+| m5n\.metal | 15 | 50 | 50 | 
 | m5zn\.large | 3 | 10 | 10 | 
 | m5zn\.xlarge | 4 | 15 | 15 | 
 | m5zn\.2xlarge | 4 | 15 | 15 | 
@@ -391,6 +393,7 @@ The following table lists the maximum number of network interfaces per instance 
 | r5dn\.12xlarge | 8 | 30 | 30 | 
 | r5dn\.16xlarge | 15 | 50 | 50 | 
 | r5dn\.24xlarge | 15 | 50 | 50 | 
+| r5dn\.metal | 15 | 50 | 50 | 
 | r5n\.large | 3 | 10 | 10 | 
 | r5n\.xlarge | 4 | 15 | 15 | 
 | r5n\.2xlarge | 4 | 15 | 15 | 
@@ -399,6 +402,7 @@ The following table lists the maximum number of network interfaces per instance 
 | r5n\.12xlarge | 8 | 30 | 30 | 
 | r5n\.16xlarge | 15 | 50 | 50 | 
 | r5n\.24xlarge | 15 | 50 | 50 | 
+| r5n\.metal | 15 | 50 | 50 | 
 | r6g\.medium | 2 | 4 | 4 | 
 | r6g\.large | 3 | 10 | 10 | 
 | r6g\.xlarge | 4 | 15 | 15 | 
@@ -466,6 +470,27 @@ The following table lists the maximum number of network interfaces per instance 
 | z1d\.6xlarge | 8 | 30 | 30 | 
 | z1d\.12xlarge | 15 | 50 | 50 | 
 | z1d\.metal | 15 | 50 | 50 | 
+
+You can use the [describe\-instance\-types](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-types.html) AWS CLI command to display information about an instance type, such as the supported network interfaces and IP addresses per interface\. The following example displays this information for all C5 instances\.
+
+```
+aws ec2 describe-instance-types --filters Name=instance-type,Values=c5.* --query "InstanceTypes[].{Type: InstanceType, MaxENI: NetworkInfo.MaximumNetworkInterfaces, IPv4addr: NetworkInfo.Ipv4AddressesPerInterface}" --output table
+---------------------------------------
+|        DescribeInstanceTypes        |
++----------+----------+---------------+
+| IPv4addr | MaxENI   |     Type      |
++----------+----------+---------------+
+|  30      |  8       |  c5.4xlarge   |
+|  50      |  15      |  c5.24xlarge  |
+|  15      |  4       |  c5.xlarge    |
+|  30      |  8       |  c5.12xlarge  |
+|  10      |  3       |  c5.large     |
+|  15      |  4       |  c5.2xlarge   |
+|  50      |  15      |  c5.metal     |
+|  30      |  8       |  c5.9xlarge   |
+|  50      |  15      |  c5.18xlarge  |
++----------+----------+---------------+
+```
 
 ## Work with network interfaces<a name="working-with-enis"></a>
 

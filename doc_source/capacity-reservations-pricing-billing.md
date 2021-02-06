@@ -4,7 +4,7 @@ The price for a Capacity Reservation varies by payment option\.
 
 ## Pricing<a name="capacity-reservations-pricing"></a>
 
-When the Capacity Reservation is active, you are charged the equivalent On\-Demand rate whether you run the instances or not\. If you do not use the reservation, this shows up as unused reservation on your EC2 bill\. When you run an instance that matches the attributes of a reservation, you just pay for the instance and nothing for the reservation\. There are no upfront or additional charges\. 
+When the Capacity Reservation enters the `active` state, you are charged the equivalent On\-Demand rate whether you run instances in the reserved capacity or not\. If you do not use the reservation, this shows up as unused reservation on your EC2 bill\. When you run an instance that matches the attributes of a reservation, you just pay for the instance and nothing for the reservation\. There are no upfront or additional charges\. 
 
 For example, if you create a Capacity Reservation for 20 `m4.large` Linux instances and run 15 `m4.large` Linux instances in the same Availability Zone, you will be charged for 15 active instances and for 5 unused instances in the reservation\.
 
@@ -13,6 +13,8 @@ Billing discounts for Savings Plans and regional Reserved Instances apply to Cap
 For more information, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/)\.
 
 ## Billing<a name="capacity-reservations-billing"></a>
+
+Billing starts as soon as the capacity is provisioned and the Capacity Reservation enters the `active` state, and it continues while the Capacity Reservation remains in the `active` state\.
 
 Capacity Reservations are billed at per\-second granularity\. This means that you are charged for partial hours\. For example, if a reservation remains active in your account for 24 hours and 15 minutes, you will be billed for 24\.25 reservation hours\.
 

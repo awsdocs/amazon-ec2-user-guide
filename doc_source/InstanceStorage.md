@@ -170,6 +170,7 @@ The following table provides the quantity, size, type, and performance optimizat
 | m5dn\.12xlarge | 2 x 900 GB \(1\.8 TB\) | NVMe SSD |  | ✔ | 
 | m5dn\.16xlarge | 4 x 600 GB \(2\.4 TB\) | NVMe SSD |  | ✔ | 
 | m5dn\.24xlarge | 4 x 900 GB \(3\.6 TB\) | NVMe SSD |  | ✔ | 
+| m5dn\.metal | 4 x 900 GB \(3\.6 TB\) | NVMe SSD |  | ✔ | 
 | m6gd\.medium | 1 x 59 GB  | NVMe SSD |  | ✔ | 
 | m6gd\.large | 1 x 118 GB  | NVMe SSD |  | ✔ | 
 | m6gd\.xlarge | 1 x 237 GB | NVMe SSD |  | ✔ | 
@@ -211,6 +212,7 @@ The following table provides the quantity, size, type, and performance optimizat
 | r5dn\.12xlarge | 2 x 900 GB \(1\.8 TB\) | NVMe SSD |  | ✔ | 
 | r5dn\.16xlarge | 4 x 600 GB \(2\.4 TB\) | NVMe SSD |  | ✔ | 
 | r5dn\.24xlarge | 4 x 900 GB \(3\.6 TB\) | NVMe SSD |  | ✔ | 
+| r5dn\.metal | 4 x 900 GB \(3\.6 TB\) | NVMe SSD |  | ✔ | 
 | r6gd\.medium | 1 x 59 GB  | NVMe SSD |  | ✔ | 
 | r6gd\.large | 1 x 118 GB  | NVMe SSD |  | ✔ | 
 | r6gd\.xlarge | 1 x 237 GB | NVMe SSD |  | ✔ | 

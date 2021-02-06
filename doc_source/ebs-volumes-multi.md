@@ -1,6 +1,6 @@
 # Attach a volume to multiple instances with Amazon EBS Multi\-Attach<a name="ebs-volumes-multi"></a>
 
-Amazon EBS Multi\-Attach enables you to attach a single Provisioned IOPS SSD \(`io1` or `io2`\) volume to up to 16 Nitro\-based instances that are in the same Availability Zone\. You can attach multiple Multi\-Attach enabled volumes to an instance or set of instances\. Each instance to which the volume is attached has full read and write permission to the shared volume\. Multi\-Attach makes it easier for you to achieve higher application availability in clustered Linux applications that manage concurrent write operations\.
+Amazon EBS Multi\-Attach enables you to attach a single Provisioned IOPS SSD \(`io1` or `io2`\) volume to multiple instances that are in the same Availability Zone\. You can attach multiple Multi\-Attach enabled volumes to an instance or set of instances\. Each instance to which the volume is attached has full read and write permission to the shared volume\. Multi\-Attach makes it easier for you to achieve higher application availability in clustered Linux applications that manage concurrent write operations\.
 
 **Topics**
 + [Considerations and limitations](#considerations)
@@ -16,6 +16,7 @@ Amazon EBS Multi\-Attach enables you to attach a single Provisioned IOPS SSD \(`
   + For `io2` volumes—`us-east-2`, `eu-central-1`, and `ap-south-1`\.
   + For `io1` volumes—`us-east-1`, `us-west-2`, `eu-west-1`, and `ap-northeast-2`\.
 + Multi\-Attach enabled volumes can't be attached to R5b instances\.
++ Standard file systems, such as XFS and EXT4, are not designed to be accessed simultaneously by multiple servers, such as EC2 instances\. Using Multi\-Attach with a standard file system can result in data corruption or loss, so this not safe for production workloads\. You can use a clustered file system to ensure data resiliency and reliability for production workloads\.
 + Multi\-Attach enabled volumes do not support I/O fencing\. I/O fencing protocols control write access in a shared storage environment to maintain data consistency\. Your applications must provide write ordering for the attached instances to maintain data consistency\.
 + Multi\-Attach enabled volumes can't be created as boot volumes\.
 + Multi\-Attach enabled volumes can be attached to one block device mapping per instance\.

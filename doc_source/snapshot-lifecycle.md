@@ -72,10 +72,10 @@ A lifecycle policy consists of these core settings:
 + **Policy type**—Defines the type of resources that the policy can manage\. Amazon Data Lifecycle Manager supports two types of lifecycle policies: 
   + Snapshot lifecycle policy—Used to automate the lifecycle of EBS snapshots\. These policies can target EBS volumes and instances\.
   + EBS\-backed AMI lifecycle policy—Used to automate the lifecycle of EBS\-backed AMIs\. These policies can target instances only\.
-  + Cross\-account copy event policy—Used to automate the copying of snapshots accross accounts\. This policy type should be used in conjunction with an EBS snapshot policy that shares snapshots accross accounts\.
+  + Cross\-account copy event policy—Used to automate the copying of snapshots across accounts\. This policy type should be used in conjunction with an EBS snapshot policy that shares snapshots across accounts\.
 + **Resource type**—Defines the type of resources that are targeted by the policy\. Snapshot lifecycle policies can target instances or volumes\. Use `VOLUME` to create snapshots of individual volumes, or use `INSTANCE` to create multi\-volume snapshots of all of the volumes that are attached to an instance\. For more information, see [Multi\-volume snapshots](ebs-creating-snapshot.md#ebs-create-snapshot-multi-volume)\. AMI lifecycle policies can target instances only\. One AMI is created that includes snapshots of all of the volumes that are attached to the target instance\. 
 + **Target tags**—Specifies the tags that must be assigned to an EBS volume or an Amazon EC2 instance for it to be targeted by the policy\.
-+ **Schedules**—The start times and intervals for creating snapshots or AMIs\. The first snapshot or AMI is created by a policy within one hour after the specified start time\. Subsequent snapshots or AMIs are created within one hour of their scheduled time\. A policy can have up to four schedules: one mandatory schedule, and up to three optional schedules\. For more information, see [Policy schedules](#dlm-lifecycle-schedule)\. 
++ **Schedules**—The start times and intervals for creating snapshots or AMIs\. The first snapshot or AMI creation operation starts within one hour after the specified start time\. Subsequent snapshot or AMI creation operations start within one hour of their scheduled time\. A policy can have up to four schedules: one mandatory schedule, and up to three optional schedules\. For more information, see [Policy schedules](#dlm-lifecycle-schedule)\. 
 + **Retention**—Specifies how snapshots or AMIs are to be retained\. You can retain snapshots or AMIs based either on their total count \(count\-based\), or their age \(age\-based\)\. For snapshot policies, when the retention threshold is reached, the oldest snapshot is deleted\. For AMI policies, when the retention threshold is reached, the oldest AMI is deregistered and its backing snapshots are deleted\. 
 
 For example, you could create a policy with settings similar to the following:
@@ -104,7 +104,7 @@ Your AWS account has the following quotas related to Amazon Data Lifecycle Manag
 
 The following considerations apply to lifecycle policies:
 + A policy does not begin creating snapshots or AMIs until you set its activation status to *enabled*\. You can configure a policy to be enabled upon creation\.
-+ The first snapshot or AMI is created by a policy within one hour after the specified start time\. Subsequent snapshots or AMIs are created within one hour of their scheduled time\.
++ The first snapshot or AMI creation operation starts within one hour after the specified start time\. Subsequent snapshot or AMI creation operations start within one hour of their scheduled time\.
 + If you modify a policy by removing or changing its target tags, the EBS volumes or instances with those tags are no longer managed by the policy\.
 + If you modify a schedule name for a policy, the snapshots or AMIs created under the old schedule name are no longer affected by the policy\.
 + If you modify a time\-based retention schedule to use a new time interval, the new interval is used only for new snapshots or AMIs created after the change\. The new schedule does not affect the retention schedule of snapshots or AMIs created before the change\.
@@ -127,10 +127,10 @@ Depending on the configuration of your lifecycle policies, you could have multip
 The following considerations apply to snapshot lifecycle policies and [Multi\-Attach](ebs-volumes-multi.md) enabled volumes:
 + When creating a lifecycle policy based on instance tags for Multi\-Volume snapshots, Amazon Data Lifecycle Manager initiates a snapshot of the volume for each attached instance\. Use the *timestamp* tag to identify the set of time\-consistent snapshots that are created from the attached instances\.
 
-The following considerations apply to sharing snasphots across accounts:
+The following considerations apply to sharing snapshots across accounts:
 + You can only share snapshots that are unencrypted or that are encrypted using a customer\-managed CMK\.
 + You can't share snapshots that are encrypted with the default EBS encryption key\.
-+ If you share encrypted snanpshots, then you must also share the CMK that was used to encrypt the source volume with the target accounts\.
++ If you share encrypted snapshots, then you must also share the CMK that was used to encrypt the source volume with the target accounts\.
 
 The following considerations apply to cross\-account copy event policies:
 + You can only copy snapshots that are unencrypted or that are encrypted using a customer\-managed CMK\.

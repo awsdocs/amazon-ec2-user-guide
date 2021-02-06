@@ -26,21 +26,21 @@ The following are the possible reasons that Amazon EC2 might interrupt your Spot
 
 ## Interruption behaviors<a name="interruption-behavior"></a>
 
-You can specify that Amazon EC2 should do one of the following when it interrupts a Spot Instance:
-+ Stop the Spot Instance
-+ Hibernate the Spot Instance
-+ Terminate the Spot Instance
+You can specify that Amazon EC2 must do one of the following when it interrupts a Spot Instance:
++ [Stop interrupted Spot Instances](#stop-spot-instances)
++ [Hibernate interrupted Spot Instances](#hibernate-spot-instances)
++ Terminate interrupted Spot Instances \(this is the default behavior\)
 
-The default is to terminate Spot Instances when they are interrupted\. To change the interruption behavior, see [Specify the interruption behavior](#specifying-spot-interruption-behavior)\.
+To change the interruption behavior, see [Specify the interruption behavior](#specifying-spot-interruption-behavior)\.
 
 ### Stop interrupted Spot Instances<a name="stop-spot-instances"></a>
 
-You can specify the interruption behavior so that Amazon EC2 stops Spot Instances when they are interrupted if the following requirements are met\.
+**Prerequisites**
 
-**Requirements**
-+ For a Spot Instance request, the type must be `persistent`\. You cannot specify a launch group in the Spot Instance request\.
-+ For an EC2 Fleet or Spot Fleet request, the type must be `maintain`\.
-+ The root volume must be an EBS volume, not an instance store volume\.
+You can specify the interruption behavior so that Amazon EC2 stops Spot Instances when they are interrupted if the following prerequisites are met\.
++ **Spot Instance request type** – must be `persistent`\. You can't specify a launch group in the Spot Instance request\.
++ **EC2 Fleet or Spot Fleet request type** – must be `maintain`
++ **Root volume type** – must be an EBS volume, not an instance store volume
 
 After a Spot Instance is stopped by the Spot service, only the Spot service can restart the Spot Instance, and the same launch specification must be used\.
 
@@ -58,15 +58,19 @@ While a Spot Instance is stopped, you are charged only for the EBS volumes, whic
 
 ### Hibernate interrupted Spot Instances<a name="hibernate-spot-instances"></a>
 
-You can specify the interruption behavior so that Amazon EC2 hibernates Spot Instances when they are interrupted if the following requirements are met\.
+**Hibernation prerequisites**
 
-**Requirements**
-+ For a Spot Instance request, the type must be `persistent`\. You cannot specify a launch group in the Spot Instance request\.
-+ For an EC2 Fleet or Spot Fleet request, the type must be `maintain`\.
-+ The root volume must be an EBS volume, not an instance store volume, and it must be large enough to store the instance memory \(RAM\) during hibernation\.
-+ The following instances are supported: C3, C4, C5, M4, M5, R3, and R4, with less than 100 GB of memory\.
-+ The following operating systems are supported: Amazon Linux 2, Amazon Linux AMI, Ubuntu with an AWS\-tuned Ubuntu kernel \(linux\-aws\) greater than 4\.4\.0\-1041, and Windows Server 2008 R2 and later\.
-+ Install the hibernation agent on a supported operating system, or use one of the following AMIs, which already include the agent:
+You can specify the interruption behavior so that Amazon EC2 hibernates Spot Instances when they are interrupted if the following prerequisites are met\.
++ **Spot Instance request type** – must be `persistent`\. You can't specify a launch group in the Spot Instance request\.
++ **EC2 Fleet or Spot Fleet request type** – must be `maintain`
++ **Supported instance families** – C3, C4, C5, M4, M5, R3, R4
++ **Instance RAM size** – must be less than 100 GB
++ **Supported operating systems** \(You must install the hibernation agent on a supported operated system\. Alternatively, use a supported AMI, which already includes the agent\.\):
+  + Amazon Linux 2
+  + Amazon Linux AMI
+  + Ubuntu with an AWS\-tuned Ubuntu kernel \(linux\-aws\) greater than 4\.4\.0\-1041
+  + Windows Server 2008 R2 and later
++ **Supported AMIs** \(the following supported AMIs include the hibernation agent\):
   + Amazon Linux 2
   + Amazon Linux AMI 2017\.09\.1 or later
   + Ubuntu Xenial 16\.04 20171121 or later
@@ -74,7 +78,8 @@ You can specify the interruption behavior so that Amazon EC2 hibernates Spot Ins
   + Windows Server 2012 or Windows Server 2012 R2 AMI 2017\.11\.19 or later
   + Windows Server 2016 AMI 2017\.11\.19 or later
   + Windows Server 2019
-+ Start the agent\. We recommend that you use user data to start the agent on instance startup\. Alternatively, you could start the agent manually\.
++ **Root volume type** – must be an EBS volume, not an instance store volume, and it must be large enough to store the instance memory \(RAM\) during hibernation
++ **Start the hibernation agent** – We recommend that you use user data to start the agent on instance startup\. Alternatively, you could start the agent manually\.
 
 **Recommendation**
 + We strongly recommend that you use an encrypted Amazon EBS volume as the root volume, because instance memory is stored on the root volume during hibernation\. This ensures that the contents of memory \(RAM\) are encrypted when the data is at rest on the volume and when data is moving between the instance and volume\. Use one of the following three options to ensure that the root volume is an encrypted Amazon EBS volume:

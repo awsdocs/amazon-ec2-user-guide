@@ -46,7 +46,7 @@ Use one of the following methods to create the EBS snapshot policy\.
 1. Add the policy schedules that define how snapshots are to be created and shared\. Schedule 1 is mandatory\. Schedules 2, 3, and 4 are optional\. For each policy schedule, specify the following information:
    + For **Schedule name**, enter a name for the schedule\.
    + For **Frequency**, specify the interval between policy runs\. You can configure policy runs on a daily, weekly, monthly, or yearly schedule\. Alternatively, choose **Custom cron expression** to specify an interval of up to one year\. For more information, see [Cron expressions](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions) in the *Amazon CloudWatch Events User Guide*\. 
-   + For **Starting at ***hh*:*mm* **UTC**, specify the time at which the policy runs are scheduled to start\. The first policy run starts within an hour after the scheduled time\.
+   + For **Starting at ***hh*:*mm* **UTC**, specify the time at which the policy runs are scheduled to start\. The first snapshot creation operation starts within one hour after the specified start time\. Subsequent snapshot creation operations start within one hour of their scheduled time\.
    + For **Retention type**, specify how the snapshots are to be retained\. You can retain snapshots or AMIs based on either their total count or their age\. For count\-based retention, the range is 1 to 1000\. After the maximum count is reached, the oldest snapshot or AMI is deleted when a new one is created\. For age\-based retention, the range is 1 day to 100 years\. After the retention period of each snapshot or AMI expires, it is deleted\. The retention period should be greater than or equal to the creation interval\.
 **Note**  
 All schedules must have the same retention type\. You can specify the retention type for Schedule 1 only\. Schedules 2, 3, and 4 inherit the retention type from Schedule 1\. Each schedule can have its own retention count or period\.
@@ -135,7 +135,7 @@ Use one of the following methods to update the key policy of the CMK\.
 
 1. In the navigation pane, choose **Customer managed keys** and then select the CMK that you need to share with the target accounts\.
 
-   Make note of the CMK's ARN, you'll need this later\.
+   Make note of the CMKs ARN, you'll need this later\.
 
 1. On the **Key policy** tab, scroll down to the **Key users** section\. Choose **Add**, enter the name of the IAM role that you selected in the previous step, and then choose **Add**\.
 
@@ -146,7 +146,7 @@ Use one of the following methods to update the key policy of the CMK\.
 ------
 #### [ Command line ]
 
-Use the [ get\-key\-policy](https://docs.aws.amazon.com/cli/latest/reference/kms/get-key-policy.html) command to rerieve the key policy that is currently attached to the CMK\.
+Use the [ get\-key\-policy](https://docs.aws.amazon.com/cli/latest/reference/kms/get-key-policy.html) command to retrieve the key policy that is currently attached to the CMK\.
 
 For example, the following command retrieves the key policy for a CMK with an ID of `9d5e2b3d-e410-4a27-a958-19e220d83a1e` and writes it to a file named `snapshotKey.json`\.
 

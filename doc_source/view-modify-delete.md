@@ -159,7 +159,7 @@ To view the updated policy, use the `get-lifecycle-policy` command\. You can see
 Use one of the following procedures to delete a lifecycle policy\.
 
 **Note**  
-You can delete snapshots created only by Amazon Data Lifecycle Manager\.
+When you delete a lifecycle policy, the snapshots or AMIs created by that policy are not automatically deleted\. If you no longer need the snapshots or AMIs, you must delete them manually\.
 
 ------
 #### [ Old console ]

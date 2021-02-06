@@ -169,7 +169,18 @@ Use `sudo` to open the file with root privileges\.
      $ sudo yum clean all
      $ sudo yum upgrade -y
      ```
-   + Ubuntu
+   + Ubuntu 16\.04
+
+     ```
+     $ wget -O /tmp/deeplearning.deb http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
+     $ sudo dpkg -i /tmp/deeplearning.deb
+     $ wget -O /tmp/cuda.pin https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-ubuntu1604.pin
+     $ sudo mv /tmp/cuda.pin /etc/apt/preferences.d/cuda-repository-pin-600
+     $ sudo apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub
+     $ sudo add-apt-repository 'deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/ /'
+     $ sudo apt update
+     ```
+   + Ubuntu 18\.04
 
      ```
      $ sudo apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/7fa2af80.pub

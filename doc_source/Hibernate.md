@@ -21,7 +21,8 @@ You're not charged for instance usage for a hibernated instance when it is in th
 If you no longer need an instance, you can terminate it at any time, including when it is in a `stopped` \(hibernated\) state\. For more information, see [Terminate your instance](terminating-instances.md)\.
 
 **Note**  
-For information about using hibernation on Windows instances, see [Hibernate Your Windows Instance](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/Hibernate.html) in the *Amazon EC2 User Guide for Windows Instances*\.
+For information about using hibernation on Windows instances, see [Hibernate Your Windows Instance](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/Hibernate.html) in the *Amazon EC2 User Guide for Windows Instances*\.  
+For information about hibernating Spot Instances, see [Hibernate interrupted Spot Instances](spot-interruptions.md#hibernate-spot-instances)\.
 
 **Topics**
 + [Overview of hibernation](#instance_hibernate)

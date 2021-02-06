@@ -18,7 +18,7 @@ To find the public DNS name or IP address of your instance and the user name tha
 Your local computer might have an SSH client installed by default\. You can verify this by typing ssh at the command line\. If your computer doesn't recognize the command, you can install an SSH client\.  
 + Recent versions of Windows Server 2019 and Windows 10 \- OpenSSH is included as an installable component\. For more information, see [OpenSSH in Windows](https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_overview)\.
 + Earlier versions of Windows \- Download and install OpenSSH\. For more information, see [Win32\-OpenSSH](https://github.com/PowerShell/Win32-OpenSSH/wiki)\.
-+ Linux and macOS X \- Download and install OpenSSH\. For more information, see [http://www\.openssh\.com](http://www.openssh.com/)\.
++ Linux and macOS X \- Download and install OpenSSH\. For more information, see [https://www\.openssh\.com](https://www.openssh.com/)\.
 
 ## Connect to your Linux instance using an SSH client<a name="AccessingInstancesLinuxSSHClient"></a>
 
@@ -66,7 +66,7 @@ One way to transfer files between your local computer and a Linux instance is to
   The general prerequisites for transferring files to an instance are the same as the general prerequisites for connecting to an instance\. For more information, see [General prerequisites for connecting to your instance](connection-prereqs.md)\.
 + **Install an SCP client**
 
-  Most Linux, Unix, and Apple computers include an SCP client by default\. If yours doesn't, the OpenSSH project provides a free implementation of the full suite of SSH tools, including an SCP client\. For more information, see [http://www\.openssh\.org](http://www.openssh.org/)\.
+  Most Linux, Unix, and Apple computers include an SCP client by default\. If yours doesn't, the OpenSSH project provides a free implementation of the full suite of SSH tools, including an SCP client\. For more information, see [https://www\.openssh\.com](https://www.openssh.com)\.
 
 The following procedure steps you through using SCP to transfer a file\. If you've already connected to the instance with SSH and have verified its fingerprints, you can start with the step that contains the SCP command \(step 4\)\.
 

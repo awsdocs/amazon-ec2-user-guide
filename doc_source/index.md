@@ -278,6 +278,7 @@ Amazon's trademarks and trade dress may not be used in
          + [Copy an Amazon EBS snapshot](ebs-copy-snapshot.md)
          + [View Amazon EBS snapshot information](ebs-describing-snapshots.md)
          + [Share an Amazon EBS snapshot](ebs-modifying-snapshot-permissions.md)
+         + [Amazon EBS local snapshots on Outposts](snapshots-outposts.md)
          + [Use EBS direct APIs to access the contents of an EBS snapshot](ebs-accessing-snapshot.md)
             + [Log API Calls for the EBS direct APIs with AWS CloudTrail](logging-ebs-apis-using-cloudtrail.md)
             + [EBS direct APIs and interface VPC endpoints](ebs-apis-vpc-endpoints.md)

@@ -4,6 +4,8 @@ The following table describes important additions to the Amazon EC2 documentatio
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Amazon EBS local snapshots on Outposts](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snapshots-outposts.html) | You can now use Amazon EBS local snapshots on Outposts to store snapshots of volumes on an Outpost locally in Amazon S3 on the Outpost itself\. | February 4, 2021 | 
+| [Create a reverse DNS record](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html#Using_Elastic_Addressing_Reverse_DNS) | You can now set up reverse DNS lookup for your Elastic IP addresses\. | February 3, 2021 | 
 | [Multi\-Attach support for io2 volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volumes-multi.html) | You can now enable Provisioned IOPS SSD \(`io2`\) volumes for Amazon EBS Multi\-Attach\. | December 18, 2020 | 
 | [C6gn instances](#DocumentHistory) | New instances featuring an AWS Graviton2 processor based on 64\-bit Arm architecture\. These instances can utilize up to 100 Gbps of network bandwidth\. | December 18, 2020 | 
 | [Amazon Data Lifecycle Manager](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/event-policy.html) | Use Amazon Data Lifecycle Manager to automate the process of sharing snapshots and copying them across AWS accounts\. | December 17, 2020 | 

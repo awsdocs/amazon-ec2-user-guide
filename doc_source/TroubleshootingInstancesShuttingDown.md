@@ -2,6 +2,10 @@
 
 You are not billed for any instance usage while an instance is not in the `running` state\. In other words, when you terminate an instance, you stop incurring charges for that instance as soon as its state changes to `shutting-down`\.
 
+## Instance terminates immediately<a name="instance-terminates-immediately"></a>
+
+Several issues can cause your instance to terminate immediately on start\-up\. See [Instance terminates immediately](troubleshooting-launch.md#troubleshooting-launch-internal) for more information\.
+
 ## Delayed instance termination<a name="instance-stuck-terminating"></a>
 
 If your instance remains in the `shutting-down` state longer than a few minutes, it might be delayed due to shutdown scripts being run by the instance\.

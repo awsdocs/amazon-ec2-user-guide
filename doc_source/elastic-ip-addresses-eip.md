@@ -413,13 +413,41 @@ PS C:\> New-EC2Address -Address 203.0.113.3 -Domain vpc -Region us-east-1
 
 ## Use reverse DNS for email applications<a name="Using_Elastic_Addressing_Reverse_DNS"></a>
 
-If you intend to send email to third parties from an instance, we suggest that you provision one or more Elastic IP addresses and provide them to AWS\. AWS works with ISPs and internet anti\-spam organizations to reduce the chance that your email sent from these addresses will be flagged as spam\.
+If you intend to send email to third parties from an instance, we recommend that you provision one or more Elastic IP addresses and assign static reverse DNS records to the Elastic IP addresses that you use to send email\. This can help you avoid having your email flagged as spam by some anti\-spam organizations\.
 
-In addition, assigning a static reverse DNS record to your Elastic IP address that is used to send email can help avoid having email flagged as spam by some anti\-spam organizations\. Note that a corresponding forward DNS record \(record type A\) pointing to your Elastic IP address must exist before we can create your reverse DNS record\. 
+If a reverse DNS record is associated with an Elastic IP address, the Elastic IP address is locked to your account and cannot be released from your account until the record is removed\.
 
-If a reverse DNS record is associated with an Elastic IP address, the Elastic IP address is locked to your account and cannot be released from your account until the record is removed\. 
+**Note**  
+Before you create a reverse DNS record, you must set a corresponding forward DNS record \(record type A\) that points to your Elastic IP address\.
 
-To remove email sending limits, or to provide us with your Elastic IP addresses and reverse DNS records, go to the [Request to Remove Email Sending Limitations](https://aws.amazon.com/forms/ec2-email-limit-rdns-request) page\.
+For the US East \(Ohio\), Africa \(Cape Town\), Asia Pacific \(Mumbai\), Canada \(Central\), and Europe \(Milan\) Regions, use one of the following options\.
+
+------
+#### [ Console ]
+
+**To create a reverse DNS record for your Elastic IP address**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. Choose **Elastic IPs** from the navigation pane\.
+
+1. Select the Elastic IP address and choose **Actions**, **Update reverse DNS**\.
+
+1. For **Reverse DNS domain name**, enter the domain name to associate with the Elastic IP address\.
+
+1. Enter **update** to confirm\.
+
+1. Choose **Update**\.
+
+------
+#### [ AWS CLI ]
+
+**To create a reverse DNS record for your Elastic IP address**
++ Use the [https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-address-attribute.html](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-address-attribute.html) AWS CLI command to associate your domain name to your Elastic IP address\.
+
+------
+
+For all other Regions, you must provide your Elastic IP addresses to AWS to assign static reverse DNS records for you\. AWS works with ISPs and internet anti\-spam organizations to reduce the chance that your email sent from these addresses will be flagged as spam\. To provide us with your Elastic IP addresses and reverse DNS records, go to the [Request to remove reverse DNS and email sending limitations](http://aws.amazon.com/forms/ec2-email-limit-rdns-request) page\.
 
 ## Elastic IP address limit<a name="using-instance-addressing-limit"></a>
 
