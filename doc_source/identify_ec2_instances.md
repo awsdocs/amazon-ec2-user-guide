@@ -10,36 +10,13 @@ For a definitive and cryptographically verified method of identifying an EC2 ins
 
 ## Inspect the system UUID<a name="inspect-uuid"></a>
 
-You can get the system UUID and look for the presence of the characters "ec2" or "EC2" in the beginning octet of the UUID\. This method to determine whether a system is an EC2 instance is quick but potentially inaccurate because there is a small chance that a system that is not an EC2 instance could have a UUID that starts with these characters\. Furthermore, for EC2 instances that are not using Amazon Linux, the distribution's implementation of SMBIOS might represent the UUID in little\-endian format, therefore the "EC2" characters do not appear at the beginning of the UUID\.
+You can get the system UUID and look for the presence of the characters "ec2" or "EC2" in the beginning octet of the UUID\. This method to determine whether a system is an EC2 instance is quick but potentially inaccurate because there is a small chance that a system that is not an EC2 instance could have a UUID that starts with these characters\. Furthermore, for EC2 instances that are not using Amazon Linux 2, the distribution's implementation of SMBIOS might represent the UUID in little\-endian format, therefore the "EC2" characters do not appear at the beginning of the UUID\.
 
-**Example : Get the UUID from the hypervisor**  
-If `/sys/hypervisor/uuid` exists, you can use the following command:  
-
-```
-[ec2-user ~]$ cat /sys/hypervisor/uuid
-```
-In the following example output, the UUID starts with "ec2", which indicates that the system is probably an EC2 instance\.  
-
-```
-ec2e1916-9099-7caf-fd21-012345abcdef
-```
-
-**Example : Get the UUID from DMI \(HVM instances only\)**  
-On HVM instances only, you can use the Desktop Management Interface \(DMI\)\.   
-You can use the `dmidecode` tool to return the UUID\. On Amazon Linux, use the following command to install the `dmidecode` tool if it's not already installed on your instance:  
-
-```
-[ec2-user ~]$ sudo yum install dmidecode -y
-```
-Then run the following command:  
+**Example : Get the UUID from DMI \(HVM AMIs only\)**  
+Use the following command to get the UUID using the Desktop Management Interface \(DMI\):  
 
 ```
 [ec2-user ~]$ sudo dmidecode --string system-uuid
-```
-Alternatively, use the following command:  
-
-```
-[ec2-user ~]$ sudo cat /sys/devices/virtual/dmi/id/product_uuid
 ```
 In the following example output, the UUID starts with "EC2", which indicates that the system is probably an EC2 instance\.  
 
@@ -51,13 +28,25 @@ In the following example output, the UUID is represented in little\-endian forma
 ```
 45E12AEC-DCD1-B213-94ED-01234ABCDEF
 ```
-On Nitro instances, the following command can be used:  
+Alternatively, for instances built on the Nitro system, you can use the following command:  
 
 ```
 [ec2-user ~]$ cat /sys/devices/virtual/dmi/id/board_asset_tag
 ```
-This returns the instance ID, which is unique to EC2 instances:  
+If the output is an instance ID, as the following example output, the system is an EC2 instance:  
 
 ```
 i-0af01c0123456789a
+```
+
+**Example : Get the UUID from the hypervisor \(PV AMIs only\)**  
+Use the following command to get the UUID from the hypervisor:  
+
+```
+[ec2-user ~]$ cat /sys/hypervisor/uuid
+```
+In the following example output, the UUID starts with "ec2", which indicates that the system is probably an EC2 instance\.  
+
+```
+ec2e1916-9099-7caf-fd21-012345abcdef
 ```

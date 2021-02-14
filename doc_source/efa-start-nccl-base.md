@@ -359,11 +359,11 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
 
      ```
      provider: efa
-         fabric: EFA-fe80::94:3dff:fe89:1b70
-         domain: efa_0-rdm
-         version: 2.0
-         type: FI_EP_RDM
-         protocol: FI_PROTO_EFA
+     fabric: EFA-fe80::94:3dff:fe89:1b70
+     domain: efa_0-rdm
+     version: 2.0
+     type: FI_EP_RDM
+     protocol: FI_PROTO_EFA
      ```
    + `p4d.24xlarge` with multiple network interfaces
 

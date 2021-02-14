@@ -102,7 +102,7 @@ The steps differ depending on whether you intend to use EFA with Open MPI, with 
    + Amazon Linux, Amazon Linux 2, RHEL, and CentOS
 
      ```
-     $ sudo yum update -y --skip-broken
+     $ sudo yum update -y
      ```
    + Ubuntu
 

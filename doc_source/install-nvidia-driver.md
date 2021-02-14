@@ -345,7 +345,12 @@ These drivers are available to AWS customers only\. By downloading them, you agr
    ```
 
 1. Use the following command to download and rename the certification file\.
-   + For version 440\.68 or later:
+   + For version 460\.39:
+
+     ```
+     [ec2-user ~]$ sudo curl -o /etc/nvidia/GridSwCert.txt "https://nvidia-gaming.s3.amazonaws.com/GridSwCert-Archive/GridSwCertLinux_2021_10_2.cert"
+     ```
+   + For version 440\.68 to 445\.48:
 
      ```
      [ec2-user ~]$ sudo curl -o /etc/nvidia/GridSwCert.txt "https://nvidia-gaming.s3.amazonaws.com/GridSwCert-Archive/GridSwCert-Linux_2020_04.cert"

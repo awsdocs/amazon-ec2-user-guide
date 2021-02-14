@@ -31,7 +31,7 @@ After you enable fast snapshot restore for a snapshot, it can be in one of the f
 
 ## Volume creation credits<a name="volume-creation-credits"></a>
 
-The number of volumes that receive the full performance benefit of fast snapshot restore is determined by the volume creation credits for the snapshot\. There is one credit bucket per snapshot per Availability Zone\. Each volume that you create from a snapshot with fast snapshot restore enabled consumes one credit from the credit bucket\. 
+The number of volumes that receive the full performance benefit of fast snapshot restore is determined by the volume creation credits for the snapshot\. There is one credit bucket per snapshot per Availability Zone\. Each volume that you create from a snapshot with fast snapshot restore enabled consumes one credit from the credit bucket\. If you create a volume but there is less than one credit in the bucket, the volume is created without benefit of fast snapshot restore\.
 
 When you enable fast snapshot restore for a snapshot that is shared with you, you get a separate credit bucket for the shared snapshot in your account\. If you create volumes from the shared snapshot, the credits are consumed from your credit bucket; they are not consumed from the snapshot owner's credit bucket\.
 

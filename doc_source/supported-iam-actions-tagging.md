@@ -1,6 +1,6 @@
 # Grant permission to tag resources during creation<a name="supported-iam-actions-tagging"></a>
 
-Some resource\-creating Amazon EC2 API actions enable you to specify tags when you create the resource\. For more information, see [Tag your resources](Using_Tags.md#tag-resources)\.
+Some resource\-creating Amazon EC2 API actions enable you to specify tags when you create the resource\. You can use resource tags to implement attribute\-based control \(ABAC\)\. For more information, see [Tag your resources](Using_Tags.md#tag-resources) and [Control access to EC2 resources using resource tags](control-access-with-tags.md)\.
 
 To enable users to tag resources on creation, they must have permissions to use the action that creates the resource, such as `ec2:RunInstances` or `ec2:CreateVolume`\. If tags are specified in the resource\-creating action, Amazon performs additional authorization on the `ec2:CreateTags` action to verify if users have permissions to create tags\. Therefore, users must also have explicit permissions to use the `ec2:CreateTags` action\. 
 

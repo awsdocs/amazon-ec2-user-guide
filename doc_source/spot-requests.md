@@ -75,25 +75,7 @@ To run a Dedicated Spot Instance, do one of the following:
 + Specify a tenancy of `dedicated` when you create the Spot Instance request\. For more information, see [Create a Spot Instance request](#using-spot-instances-request)\.
 + Request a Spot Instance in a VPC with an instance tenancy of `dedicated`\. For more information, see [Create a VPC with an instance tenancy of dedicated](dedicated-instance.md#creatingdedicatedvpc)\. You cannot request a Spot Instance with a tenancy of `default` if you request it in a VPC with an instance tenancy of `dedicated`\.
 
-The following instance types support Dedicated Spot Instances\.
-
-**Current generation**
-+ `c4.8xlarge`
-+ `d2.8xlarge`
-+ `i3.16xlarge`
-+ `m4.10xlarge`
-+ `m4.16xlarge`
-+ `p2.16xlarge`
-+ `r4.16xlarge`
-+ `x1.32xlarge`
-
-**Previous generation**
-+ `c3.8xlarge`
-+ `cc2.8xlarge`
-+ `cr1.8xlarge`
-+ `g2.8xlarge`
-+ `i2.8xlarge`
-+ `r3.8xlarge`
+All instance families support Dedicated Spot Instances except T instances\. For each supported instance family, only the largest instance size or metal size supports Dedicated Spot Instances\.
 
 ## Service\-linked role for Spot Instance requests<a name="service-linked-roles-spot-instance-requests"></a>
 
@@ -697,9 +679,13 @@ You can only start a Spot Instance if:
 
 ## Terminate a Spot Instance<a name="terminating-a-spot-instance"></a>
 
-If your Spot Instance request is `active` and has an associated running Spot Instance, or your Spot Instance request is `disabled` and has an associated stopped Spot Instance, canceling the request does not terminate the instance; you must terminate the running Spot Instance manually\.
+If you terminate a running or stopped Spot Instance that was launched by a persistent Spot request, the Spot request transitions to the `open` state so that a new Spot Instance can be launched\. To ensure that no new Spot Instance is launched, you must first cancel the Spot request\.
 
-If you terminate a running or stopped Spot Instance that was launched by a persistent Spot request, the Spot request returns to the `open` state so that a new Spot Instance can be launched\. To cancel a persistent Spot request and terminate its Spot Instances, you must cancel the Spot request first and then terminate the Spot Instances\. Otherwise, the persistent Spot request can launch a new instance\. For more information about canceling a Spot Instance request, see [Cancel a Spot Instance request](#using-spot-instances-cancel)\.
+If you cancel an `active` Spot request that has a running Spot Instance, the running Spot Instance is not automatically terminated; you must manually terminate the Spot Instance\.
+
+If you cancel a `disabled` Spot request that has a stopped Spot Instance, the stopped Spot Instance is automatically terminated by the Amazon EC2 Spot service\. There might be a short lag between when you cancel the Spot request and when the Spot service terminates the Spot Instance\.
+
+For information about canceling a Spot Instance request, see [Cancel a Spot Instance request](#using-spot-instances-cancel)\.
 
 ------
 #### [ New console ]

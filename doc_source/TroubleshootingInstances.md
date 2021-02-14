@@ -2,6 +2,8 @@
 
 The following information can help you troubleshoot issues if your instance fails a status check\. First determine whether your applications are exhibiting any problems\. If you verify that the instance is not running your applications as expected, review the status check information and the system logs\.
 
+For examples of problems that can cause status checks to fail, see [Status checks for your instances](monitoring-system-instance-status-check.md)\.
+
 **Topics**
 + [Review status check information](#InitialSteps)
 + [Retrieve the system logs](#troubleshooting-retrieve-system-logs)

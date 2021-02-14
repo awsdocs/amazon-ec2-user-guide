@@ -14,7 +14,8 @@ For more information, see [Amazon EC2 Mac Instances](https://aws.amazon.com/mac)
 + [Update the operating system and software](#mac-instance-updates)
 + [EC2 macOS Init](#ec2-macos-init)
 + [EC2 System Monitoring for macOS](#mac-instance-system-monitor)
-+ [Clean up your instance](#mac-instance-release)
++ [Stop your Mac instance](#mac-instance-stop)
++ [Release the Dedicated Host for your Mac instance](#mac-instance-release-dedicated-host)
 
 ## Considerations<a name="mac-instance-considerations"></a>
 
@@ -263,11 +264,15 @@ EC2 System Monitoring for macOS provides CPU utilization metrics to Amazon Cloud
 sudo setup-ec2monitoring [enable | disable]
 ```
 
-## Clean up your instance<a name="mac-instance-release"></a>
+## Stop your Mac instance<a name="mac-instance-stop"></a>
 
-When you are finished with your Mac instance, you can clean up by releasing the Dedicated Host\. Before you can release the Dedicated Host, you must stop or terminate the Mac instance\. You cannot release the host until the allocation period exceeds the 24\-hour minimum\.
+When you stop a Mac instance, it remains in the `stopping` state for about 15 minutes before it enters the `stopped` state\. After you stop or terminate a Mac instance, the Dedicated Host remains in the `pending` state for up to 200 minutes\. You can't start the stopped Mac instance or launch another Mac instance until the Dedicated Host enters the `available` state\.
 
-**To release a Dedicated Host**
+## Release the Dedicated Host for your Mac instance<a name="mac-instance-release-dedicated-host"></a>
+
+When you are finished with your Mac instance, you can release the Dedicated Host\. Before you can release the Dedicated Host, you must stop or terminate the Mac instance\. You cannot release the host until the allocation period exceeds the 24\-hour minimum\.
+
+**To release the Dedicated Host**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 

@@ -153,9 +153,7 @@ Use one of the following commands\.
 
 ## Add rules to a security group<a name="adding-security-group-rule"></a>
 
-When you add a rule to a security group, the new rule is automatically applied to any instances that are associated with the security group\. There might be a short delay before the rule is applied\. For more information about choosing security group rules for specific types of access, see [Security group rules for different use cases](security-group-rules-reference.md)\. For security group rule quotas, see [Amazon VPC quotas](https://docs.aws.amazon.com/vpc/latest/userguide/amazon-vpc-limits.html) in the *Amazon VPC User Guide*\. 
-
-You can add rules to a security group using one of the following methods\.
+When you add a rule to a security group, the new rule is automatically applied to any instances that are associated with the security group\. There might be a short delay before the rule is applied\. For more information, see [Security group rules for different use cases](security-group-rules-reference.md) and [Security group rules](security-group-rules.md)\.
 
 ------
 #### [ New console ]
