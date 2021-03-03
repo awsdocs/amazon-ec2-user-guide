@@ -322,16 +322,22 @@ These drivers are available to AWS customers only\. By downloading them, you agr
    [ec2-user ~]$ aws s3 ls --recursive s3://nvidia-gaming/linux/
    ```
 
-1. Add permissions to run the driver installation utility using the following command\.
+1. Extract the downloaded .zip file.
 
    ```
-   [ec2-user ~]$ chmod +x NVIDIA-Linux-x86_64*.run
+   [ec2-user ~]$ unzip GRID-*vGaming-Linux-Guest-Drivers.zip -d nvidia-drivers
+   ```
+
+1. Add permissions to run the driver installation utility using the following command:
+
+   ```
+   [ec2-user ~]$ chmod +x nvidia-drivers/Linux/NVIDIA-Linux-x86_64*-grid.run
    ```
 
 1. Run the installer using the following command:
 
    ```
-   [ec2-user ~]$ sudo ./NVIDIA-Linux-x86_64*.run
+   [ec2-user ~]$ sudo ./nvidia-drivers/Linux/NVIDIA-Linux-x86_64*.run
    ```
 
    When prompted, accept the license agreement and specify the installation options as required \(you can accept the default options\)\.
