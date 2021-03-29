@@ -169,7 +169,18 @@ Use `sudo` to open the file with root privileges\.
      $ sudo yum clean all
      $ sudo yum upgrade -y
      ```
-   + Ubuntu
+   + Ubuntu 16\.04
+
+     ```
+     $ wget -O /tmp/deeplearning.deb http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
+     $ sudo dpkg -i /tmp/deeplearning.deb
+     $ wget -O /tmp/cuda.pin https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-ubuntu1604.pin
+     $ sudo mv /tmp/cuda.pin /etc/apt/preferences.d/cuda-repository-pin-600
+     $ sudo apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub
+     $ sudo add-apt-repository 'deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/ /'
+     $ sudo apt update
+     ```
+   + Ubuntu 18\.04
 
      ```
      $ sudo apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/7fa2af80.pub
@@ -266,7 +277,7 @@ Install the EFA\-enabled kernel, EFA drivers, Libfabric, and Open MPI stack that
 1. Download the EFA software installation files\. The software installation files are packaged into a compressed tarball \(`.tar.gz`\) file\. To download the latest *stable* version, use the following command\.
 
    ```
-   $ curl -O https://efa-installer.amazonaws.com/aws-efa-installer-1.11.1.tar.gz
+   $ curl -O https://efa-installer.amazonaws.com/aws-efa-installer-1.11.2.tar.gz
    ```
 
    You can also get the latest version by replacing the version number with `latest` in the preceding command\.
@@ -298,11 +309,11 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
    1. Download the signature file and verify the signature of the EFA tarball file\.
 
       ```
-      $ wget https://efa-installer.amazonaws.com/aws-efa-installer-1.11.1.tar.gz.sig
+      $ wget https://efa-installer.amazonaws.com/aws-efa-installer-1.11.2.tar.gz.sig
       ```
 
       ```
-      $ gpg --verify ./aws-efa-installer-1.11.1.tar.gz.sig
+      $ gpg --verify ./aws-efa-installer-1.11.2.tar.gz.sig
       ```
 
       The following shows example output\.
@@ -320,7 +331,7 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
 1. Extract the files from the compressed `.tar.gz` file and navigate into the extracted directory\.
 
    ```
-   $ tar -xf aws-efa-installer-1.11.1.tar.gz
+   $ tar -xf aws-efa-installer-1.11.2.tar.gz
    ```
 
    ```
@@ -348,11 +359,11 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
 
      ```
      provider: efa
-         fabric: EFA-fe80::94:3dff:fe89:1b70
-         domain: efa_0-rdm
-         version: 2.0
-         type: FI_EP_RDM
-         protocol: FI_PROTO_EFA
+     fabric: EFA-fe80::94:3dff:fe89:1b70
+     domain: efa_0-rdm
+     version: 2.0
+     type: FI_EP_RDM
+     protocol: FI_PROTO_EFA
      ```
    + `p4d.24xlarge` with multiple network interfaces
 

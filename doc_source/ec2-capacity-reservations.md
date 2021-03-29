@@ -1,6 +1,6 @@
 # On\-Demand Capacity Reservations<a name="ec2-capacity-reservations"></a>
 
-On\-Demand Capacity Reservations enable you to reserve capacity for your Amazon EC2 instances in a specific Availability Zone for any duration\. This gives you the ability to create and manage Capacity Reservations independently from the billing discounts offered by Savings Plans or regional Reserved Instances\. By creating Capacity Reservations, you ensure that you always have access to EC2 capacity when you need it, for as long as you need it\. You can create Capacity Reservations at any time, without entering into a one\-year or three\-year term commitment, and the capacity is available immediately\. When you no longer need it, cancel the Capacity Reservation to stop incurring charges\.
+On\-Demand Capacity Reservations enable you to reserve compute capacity for your Amazon EC2 instances in a specific Availability Zone for any duration\. This gives you the ability to create and manage Capacity Reservations independently from the billing discounts offered by Savings Plans or regional Reserved Instances\. By creating Capacity Reservations, you ensure that you always have access to EC2 capacity when you need it, for as long as you need it\. You can create Capacity Reservations at any time, without entering into a one\-year or three\-year term commitment, and the capacity is available immediately\. Billing starts as soon as the capacity is provisioned and the Capacity Reservation enters the active state\. When you no longer need it, cancel the Capacity Reservation to stop incurring charges\.
 
 When you create a Capacity Reservation, you specify:
 + The Availability Zone in which to reserve the capacity
@@ -65,8 +65,9 @@ The number of instances for which you are allowed to reserve capacity is based o
 ## Capacity Reservation limitations and restrictions<a name="capacity-reservations-limitations"></a>
 
 Before you create Capacity Reservations, take note of the following limitations and restrictions\.
-+ Active and unused Capacity Reservations count toward your On\-Demand Instance limits
++ Active and unused Capacity Reservations count toward your On\-Demand Instance limits\.
 + Capacity Reservations are not transferable from one AWS account to another\. However, you can share Capacity Reservations with other AWS accounts\. For more information, see [Work with shared Capacity Reservations](capacity-reservation-sharing.md)\.
-+ Zonal Reserved Instance billing discounts do not apply to Capacity Reservations
-+ Capacity Reservations can't be created in placement groups
-+ Capacity Reservations can't be used with Dedicated Hosts
++ Zonal Reserved Instance billing discounts do not apply to Capacity Reservations\.
++ Capacity Reservations can't be created in placement groups\.
++ Capacity Reservations can't be used with Dedicated Hosts\.
++ Capacity Reservations do not ensure that a hibernated instance can resume after you try to start it\.

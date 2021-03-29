@@ -54,7 +54,7 @@ For more information, see [IPv6 addresses](using-instance-addressing.md#ipv6-add
 You can set the termination behavior for a network interface that's attached to an instance\. You can specify whether the network interface should be automatically deleted when you terminate the instance to which it's attached\.
 
 **Source/destination checking**  
-Disabling source/destination checking enables an instance to handle network traffic that isn't specifically destined for the instance\. For example, instances running services such as network address translation, routing, or a firewall should disable the source/destination check attribute\. This attribute is enabled by default\.
+You can enable or disable source/destination checks, which ensure that the instance is either the source or the destination of any traffic that it receives\. Source/destination checks are enabled by default\. You must disable source/destination checks if the instance if the instance runs services such as network address translation, routing, or firewalls\.
 
 **Monitoring IP traffic**  
 You can enable a VPC flow log on your network interface to capture information about the IP traffic going to and from a network interface\. After you've created a flow log, you can view and retrieve its data in Amazon CloudWatch Logs\. For more information, see [VPC Flow Logs](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html) in the *Amazon VPC User Guide*\.
@@ -74,7 +74,7 @@ The following instances support multiple network cards\. All other instance type
 
 ## IP addresses per network interface per instance type<a name="AvailableIpPerENI"></a>
 
-The following table lists the maximum number of network interfaces per instance type, and the maximum number of private IPv4 addresses and IPv6 addresses per network interface\. The limit for IPv6 addresses is separate from the limit for private IPv4 addresses per network interface\. Not all instance types support IPv6 addressing\. Network interfaces, multiple private IPv4 addresses, and IPv6 addresses are only available for instances running in a VPC\. IPv6 addresses are public and reachable over the Internet\. For more information, see [Multiple IP addresses](MultipleIP.md)\. For more information about IPv6 in VPC, see [IP Addressing in your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html) in the *Amazon VPC User Guide*\.
+The following table lists the maximum number of network interfaces per instance type, and the maximum number of private IPv4 addresses and IPv6 addresses per network interface\. The limit for IPv6 addresses is separate from the limit for private IPv4 addresses per network interface\. Not all instance types support IPv6 addressing\.
 
 
 | Instance type | Maximum network interfaces | Private IPv4 addresses per interface | IPv6 addresses per interface | 
@@ -287,6 +287,7 @@ The following table lists the maximum number of network interfaces per instance 
 | m5dn\.12xlarge | 8 | 30 | 30 | 
 | m5dn\.16xlarge | 15 | 50 | 50 | 
 | m5dn\.24xlarge | 15 | 50 | 50 | 
+| m5dn\.metal | 15 | 50 | 50 | 
 | m5n\.large | 3 | 10 | 10 | 
 | m5n\.xlarge | 4 | 15 | 15 | 
 | m5n\.2xlarge | 4 | 15 | 15 | 
@@ -295,6 +296,7 @@ The following table lists the maximum number of network interfaces per instance 
 | m5n\.12xlarge | 8 | 30 | 30 | 
 | m5n\.16xlarge | 15 | 50 | 50 | 
 | m5n\.24xlarge | 15 | 50 | 50 | 
+| m5n\.metal | 15 | 50 | 50 | 
 | m5zn\.large | 3 | 10 | 10 | 
 | m5zn\.xlarge | 4 | 15 | 15 | 
 | m5zn\.2xlarge | 4 | 15 | 15 | 
@@ -391,6 +393,7 @@ The following table lists the maximum number of network interfaces per instance 
 | r5dn\.12xlarge | 8 | 30 | 30 | 
 | r5dn\.16xlarge | 15 | 50 | 50 | 
 | r5dn\.24xlarge | 15 | 50 | 50 | 
+| r5dn\.metal | 15 | 50 | 50 | 
 | r5n\.large | 3 | 10 | 10 | 
 | r5n\.xlarge | 4 | 15 | 15 | 
 | r5n\.2xlarge | 4 | 15 | 15 | 
@@ -399,6 +402,7 @@ The following table lists the maximum number of network interfaces per instance 
 | r5n\.12xlarge | 8 | 30 | 30 | 
 | r5n\.16xlarge | 15 | 50 | 50 | 
 | r5n\.24xlarge | 15 | 50 | 50 | 
+| r5n\.metal | 15 | 50 | 50 | 
 | r6g\.medium | 2 | 4 | 4 | 
 | r6g\.large | 3 | 10 | 10 | 
 | r6g\.xlarge | 4 | 15 | 15 | 
@@ -459,6 +463,15 @@ The following table lists the maximum number of network interfaces per instance 
 | x1e\.8xlarge | 4 | 15 | 15 | 
 | x1e\.16xlarge | 8 | 30 | 30 | 
 | x1e\.32xlarge | 8 | 30 | 30 | 
+| x2gd\.medium | 2 | 4 | 4 | 
+| x2gd\.large | 3 | 10 | 10 | 
+| x2gd\.xlarge | 4 | 15 | 15 | 
+| x2gd\.2xlarge | 4 | 15 | 15 | 
+| x2gd\.4xlarge | 8 | 30 | 30 | 
+| x2gd\.8xlarge | 8 | 30 | 30 | 
+| x2gd\.12xlarge | 8 | 30 | 30 | 
+| x2gd\.16xlarge | 15 | 50 | 50 | 
+| x2gd\.metal | 15 | 50 | 50 | 
 | z1d\.large | 3 | 10 | 10 | 
 | z1d\.xlarge | 4 | 15 | 15 | 
 | z1d\.2xlarge | 4 | 15 | 15 | 
@@ -466,6 +479,27 @@ The following table lists the maximum number of network interfaces per instance 
 | z1d\.6xlarge | 8 | 30 | 30 | 
 | z1d\.12xlarge | 15 | 50 | 50 | 
 | z1d\.metal | 15 | 50 | 50 | 
+
+You can use the [describe\-instance\-types](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-types.html) AWS CLI command to display information about an instance type, such as the supported network interfaces and IP addresses per interface\. The following example displays this information for all C5 instances\.
+
+```
+aws ec2 describe-instance-types --filters Name=instance-type,Values=c5.* --query "InstanceTypes[].{Type: InstanceType, MaxENI: NetworkInfo.MaximumNetworkInterfaces, IPv4addr: NetworkInfo.Ipv4AddressesPerInterface}" --output table
+---------------------------------------
+|        DescribeInstanceTypes        |
++----------+----------+---------------+
+| IPv4addr | MaxENI   |     Type      |
++----------+----------+---------------+
+|  30      |  8       |  c5.4xlarge   |
+|  50      |  15      |  c5.24xlarge  |
+|  15      |  4       |  c5.xlarge    |
+|  30      |  8       |  c5.12xlarge  |
+|  10      |  3       |  c5.large     |
+|  15      |  4       |  c5.2xlarge   |
+|  50      |  15      |  c5.metal     |
+|  30      |  8       |  c5.9xlarge   |
+|  50      |  15      |  c5.18xlarge  |
++----------+----------+---------------+
+```
 
 ## Work with network interfaces<a name="working-with-enis"></a>
 
@@ -484,6 +518,41 @@ You can work with network interfaces using the Amazon EC2 console or the command
 ### Create a network interface<a name="create_eni"></a>
 
 You can create a network interface in a subnet\. You can't move the network interface to another subnet after it's created, and you can only attach the network interface to instances in the same Availability Zone\.
+
+------
+#### [ New console ]
+
+**To create a network interface using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Network Interfaces**\.
+
+1. Choose **Create network interface**\.
+
+1. \(Optional\) For **Description**, enter a descriptive name\.
+
+1. For **Subnet**, select a subnet\.
+
+1. For **Private IPv4 address**, do one of the following:
+   + Choose **Auto\-assign** to allow Amazon EC2 to select an IPv4 address from the subnet\.
+   + Choose **Custom** and enter an IPv4 address that you select from the subnet\.
+
+1. \(Subnets with IPv6 addresses only\) For **IPv6 address**, do one of the following:
+   + Choose **None** if you do not want to assign an IPv6 address to the network interface\.
+   + Choose **Auto\-assign** to allow Amazon EC2 to select an IPv6 address from the subnet\.
+   + Choose **Custom** and enter an IPv6 address that you select from the subnet\.
+
+1. \(Optional\) To create an Elastic Fabric Adapter, choose **Elastic Fabric Adapter**, **Enable**\.
+
+1. For **Security groups**, select one or more security groups\.
+
+1. \(Optional\) For each tag, choose **Add new tag** and enter a tag key and an optional tag value\.
+
+1. Choose **Create network interface**\.
+
+------
+#### [ Old console ]
 
 **To create a network interface using the console**
 
@@ -509,6 +578,8 @@ You can create a network interface in a subnet\. You can't move the network inte
 
 1. Choose **Yes, Create**\.
 
+------
+
 **To create a network interface using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
@@ -519,6 +590,20 @@ You can use one of the following commands\. For more information about these com
 
 You can view all the network interfaces in your account\.
 
+------
+#### [ New console ]
+
+**To describe a network interface using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Network Interfaces**\.
+
+1. To view the details page for a network interface, select the ID of the network interface\. Alternatively, to view information without leaving the network interfaces page, select the checkbox for the network interface\.
+
+------
+#### [ Old console ]
+
 **To describe a network interface using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
@@ -528,6 +613,8 @@ You can view all the network interfaces in your account\.
 1. Select the network interface\.
 
 1. To view the details, choose **Details**\.
+
+------
 
 **To describe a network interface using the command line**
 
@@ -547,13 +634,16 @@ You can attach a network interface to any of your stopped or running instances, 
 
 If the public IPv4 address on your instance is released, it does not receive a new one if there is more than one network interface attached to the instance\. For more information about the behavior of public IPv4 addresses, see [Public IPv4 addresses and external DNS hostnames](using-instance-addressing.md#concepts-public-addresses)\.
 
+------
+#### [ Instances page ]
+
 **To attach a network interface to an instance using the **Instances** page**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
 1. In the navigation pane, choose **Instances**\.
 
-1. Select the instance\.
+1. Select the checkbox for the instance\.
 
 1. Choose **Actions**, **Networking**, **Attach network interface**\.
 
@@ -561,17 +651,24 @@ If the public IPv4 address on your instance is released, it does not receive a n
 
 1. Choose **Attach**\.
 
+------
+#### [ Network Interfaces page ]
+
 **To attach a network interface to an instance using the **Network Interfaces** page**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
 1. In the navigation pane, choose **Network Interfaces**\.
 
-1. Select the network interface and choose **Attach**\.
+1. Select the checkbox for the network interface\.
 
-1. Select an instance\. If the instance supports multiple network cards, you can choose a network card\.
+1. Choose **Actions**, **Attach**\.
+
+1. Choose an instance\. If the instance supports multiple network cards, you can choose a network card\.
 
 1. Choose **Attach**\.
+
+------
 
 **To attach a network interface to an instance using the command line**
 
@@ -583,19 +680,25 @@ You can use one of the following commands\. For more information about these com
 
 You can detach a secondary network interface that is attached to an EC2 instance at any time, using either the **Instances** or **Network Interfaces** page of the Amazon EC2 console\.
 
+You can't use the Amazon EC2 console to detach a network interface that is attached to a resource from another service, such as an Elastic Load Balancing load balancer, a Lambda function, a WorkSpace, or a NAT gateway\. The network interfaces for those resources are deleted when the resource is deleted\.
+
+------
+#### [ Instances page ]
+
 **To detach a network interface from an instance using the Instances page**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
 1. In the navigation pane, choose **Instances**\.
 
-1. Select the instance\.
+1. Select the checkbox for the instance\. Check the **Network interfaces** section of the **Networking** tab to verify that the network interface is attached to an instance as a secondary network interface\.
 
 1. Choose **Actions**, **Networking**, **Detach network interface**\.
 
 1. Select the network interface and choose **Detach**\.
 
-You can't use the Amazon EC2 console to detach a network interface that is attached to a resource from another service, such as an Elastic Load Balancing load balancer, a Lambda function, a WorkSpace, or a NAT gateway\. The network interfaces for those resources are deleted when the resource is deleted\.
+------
+#### [ Network Interfaces page ]
 
 **To detach a network interface from an instance using the Network Interfaces page**
 
@@ -603,13 +706,15 @@ You can't use the Amazon EC2 console to detach a network interface that is attac
 
 1. In the navigation pane, choose **Network Interfaces**\.
 
-1. Select the network interface and check the description to verify that the network interface is attached to an instance, not another type of resource\. If the resource is an EC2 instance, choose **Detach**\.
+1. Select the checkbox for the network interface\. Check the **Instance details** section of the **Details** tab to verify that the network interface is attached to an instance as a secondary network interface\.
 
-   If the network interface is the primary network interface for the instance, the **Detach** button is disabled\.
+1. Choose **Actions**, **Detach**\.
 
-1. When prompted for confirmation, choose **Yes, Detach**\.
+1. When prompted for confirmation, choose **Detach**\.
 
-1. If the network interface fails to detach from the instance, choose **Force detachment** and then try again\. We recommend that you choose this option only as a last resort\. Forcing a detachment can prevent you from attaching a different network interface on the same index until you restart the instance\. It can also prevent the instance metadata from reflecting that the network interface was detached until you restart the instance\.
+1. If the network interface fails to detach from the instance, choose **Force detachment**, **Enable** and then try again\. We recommend that force detachment only as a last resort\. Forcing a detachment can prevent you from attaching a different network interface on the same index until you restart the instance\. It can also prevent the instance metadata from reflecting that the network interface was detached until you restart the instance\.
+
+------
 
 **To detach a network interface using the command line**
 
@@ -630,23 +735,27 @@ You can manage the following IP addresses for your network interfaces:
 
 1. In the navigation pane, choose **Network Interfaces**\.
 
-1. Select the network interface\.
+1. Select the checkbox for the network interface\.
 
 1. To associate an Elastic IP address, do the following:
 
-   1. Choose **Actions**, **Associate Address**\.
+   1. Choose **Actions**, **Associate address**\.
 
-   1. For **Address**, select the Elastic IP address\.
+   1. For **Elastic IP address**, select the Elastic IP address\.
 
-   1. For **Associate to private IP address**, select the private IPv4 address to associate with the Elastic IP address\. 
+   1. For **Private IPv4 address**, select the private IPv4 address to associate with the Elastic IP address\.
 
-   1. Choose **Allow reassociation** to allow the Elastic IP address to be associated with the specified network interface if it's currently associated with another instance or network interface, and then choose **Associate Address**\.
+   1. \(Optional\) Choose **Allow the Elastic IP address to be reassociated** if the network interface is currently associated with another instance or network interface\.
+
+   1. Choose **Associate**\.
 
 1. To disassociate an Elastic IP address, do the following:
 
-   1. Choose **Actions**, **Disassociate Address**\.
+   1. Choose **Actions**, **Disassociate address**\.
 
-   1. In the **Disassociate IP Address** dialog box, choose **Yes, Disassociate**\.
+   1. For **Public IP address**, select the Elastic IP address\.
+
+   1. Choose **Disassociate**\.
 
 **To manage the IPv4 and IPv6 addresses of a network interface using the console**
 
@@ -656,13 +765,15 @@ You can manage the following IP addresses for your network interfaces:
 
 1. Select the network interface\.
 
-1. Choose **Actions**, **Manage IP Addresses**\.
+1. Choose **Actions**, **Manage IP addresses**\.
 
-1. For **IPv4 Addresses**, modify the IP addresses as needed\. To assign an IPv4 address, choose **Assign new IP** and then specify an IPv4 address from the subnet range or let AWS choose one for you\. To unassign an IPv4 address, choose **Unassign** next to the address\.
+1. Expand the network interface\.
 
-1. For **IPv6 Addresses**, modify the IP addresses as needed\. To assign an IPv6 address, choose **Assign new IP** and then specify an IPv6 address from the subnet range or let AWS choose one for you\. To unassign an IPv6 address, choose **Unassign** next to the address\.
+1. For **IPv4 addresses**, modify the IP addresses as needed\. To assign an IPv4 address, choose **Assign new IP address** and then specify an IPv4 address from the subnet range or let AWS choose one for you\. To unassign an IPv4 address, choose **Unassign** next to the address\.
 
-1. Choose **Yes, Update**\.
+1. For **IPv6 addresses**, modify the IP addresses as needed\. To assign an IPv6 address, choose **Assign new IP address** and then specify an IPv6 address from the subnet range or let AWS choose one for you\. To unassign an IPv6 address, choose **Unassign** next to the address\.
+
+1. Choose **Save**\.
 
 **To manage the IP addresses of a network interface using the AWS CLI**
 
@@ -694,9 +805,13 @@ You can change the following network interface attributes:
 
 1. In the navigation pane, choose **Network Interfaces**\.
 
-1. Select the network interface and choose **Actions**, **Change Description**\.
+1. Select the checkbox for the network interface\.
 
-1. For **Change Description**, enter a description for the network interface, and then choose **Save**\.<a name="modify-groups"></a>
+1. Choose **Actions**, **Change description**\.
+
+1. For **Description**, enter a description for the network interface\.
+
+1. Choose **Save**\.<a name="modify-groups"></a>
 
 **To change the security groups of a network interface using the console**
 
@@ -704,9 +819,11 @@ You can change the following network interface attributes:
 
 1. In the navigation pane, choose **Network Interfaces**\.
 
-1. Select the network interface and choose **Actions**, **Change Security Groups**\.
+1. Select the checkbox for the network interface\.
 
-1. For **Change Security Groups**, select the security groups to use, and then choose **Save**\.
+1. Choose **Actions**, **Change security groups**\.
+
+1. For **Associated security groups**, select the security groups to use, and then choose **Save**\.
 
    The security group and network interface must be created for the same VPC\. To change the security group for interfaces owned by other services, such as Elastic Load Balancing, do so through that service\.<a name="modify-delete-on-termination"></a>
 
@@ -716,9 +833,11 @@ You can change the following network interface attributes:
 
 1. In the navigation pane, choose **Network Interfaces**\.
 
-1. Select the network interface and choose **Actions**, **Change Termination Behavior**\.
+1. Select the checkbox for the network interface\.
 
-1. In the **Change Termination Behavior** dialog box, select the **Delete on termination** check box if you want the network interface to be deleted when you terminate an instance\.<a name="modify-source-dest-check"></a>
+1. Choose **Actions**, **Change termination behavior**\.
+
+1. Select or clear **Delete on termination**, **Enable** as needed, and then choose **Save**\.<a name="modify-source-dest-check"></a>
 
 **To change source/destination checking for a network interface using the console**
 
@@ -726,9 +845,11 @@ You can change the following network interface attributes:
 
 1. In the navigation pane, choose **Network Interfaces**\.
 
-1. Select the network interface and choose **Actions**, **Change Source/Dest Check**\.
+1. Select the checkbox for the network interface\.
 
-1. In the dialog box, choose **Enabled** \(if enabling\) or **Disabled** \(if disabling\), and **Save**\.
+1. Choose **Actions**, **Change source/dest check**\.
+
+1. Select or clear **Source/destination check**, **Enable** as needed, and then choose **Save**\.
 
 **To modify network interface attributes using the command line**
 
@@ -739,6 +860,24 @@ You can use one of the following commands\. For more information about these com
 ### Add or edit tags<a name="eni_add_edit_tags"></a>
 
 Tags are metadata that you can add to a network interface\. Tags are private and are only visible to your account\. Each tag consists of a key and an optional value\. For more information about tags, see [Tag your Amazon EC2 resources](Using_Tags.md)\.
+
+------
+#### [ New console ]
+
+**To add or edit tags for a network interface using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Network Interfaces**\.
+
+1. Select the checkbox for the network interface\.
+
+1. In **Tags** tab, choose **Manage tags**\.
+
+1. For each tag to create, choose **Add new tag** and enter a key and optional value\. When you're done, choose **Save**\.
+
+------
+#### [ Old console ]
 
 **To add or edit tags for a network interface using the console**
 
@@ -752,6 +891,8 @@ Tags are metadata that you can add to a network interface\. Tags are private and
 
 1. In the **Add/Edit Tags** dialog box, choose **Create Tag** for each tag to create, and enter a key and optional value\. When you're done, choose **Save**\.
 
+------
+
 **To add or edit tags for a network interface using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
@@ -762,6 +903,22 @@ You can use one of the following commands\. For more information about these com
 
 To delete an instance, you must first detach the network interface\. Deleting a network interface releases all attributes associated with the interface and releases any private IP addresses or Elastic IP addresses to be used by another instance\.
 
+------
+#### [ New console ]
+
+**To delete a network interface using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Network Interfaces**\.
+
+1. Select the checkbox for the network interface, and then choose **Actions**, **Delete**\.
+
+1. When prompted for confirmation, choose **Delete**\.
+
+------
+#### [ Old console ]
+
 **To delete a network interface using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
@@ -771,6 +928,8 @@ To delete an instance, you must first detach the network interface\. Deleting a 
 1. Select a network interface and choose **Delete**\.
 
 1. In the **Delete Network Interface** dialog box, choose **Yes, Delete**\.
+
+------
 
 **To delete a network interface using the command line**
 

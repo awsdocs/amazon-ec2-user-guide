@@ -68,11 +68,11 @@ Omitting the `--owners` flag from the describe\-images command will return all i
 
 ## Find the latest Amazon Linux AMI using Systems Manager<a name="finding-an-ami-parameter-store"></a>
 
-Amazon EC2 provides AWS Systems Manager public parameters for AWS\-maintained public AMIs that you can use when launching instances\. For example, the EC2\-provided parameter `/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2` is available in all Regions and always points to the latest version of the Amazon Linux 2 AMI in a given Region\. 
+Amazon EC2 provides AWS Systems Manager public parameters for AWS\-maintained public AMIs that you can use when launching instances\. For example, the EC2\-provided parameter `/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2` is available in all Regions and always points to the latest version of the Amazon Linux 2 AMI in a given Region\.
 
-The Amazon EC2 AMI public parameters are available from the following paths:
-+ `/aws/service/ami-amazon-linux-latest`
-+ `/aws/service/ami-windows-latest`
+The Amazon EC2 AMI public parameters are available from the following path:
+
+ `/aws/service/ami-amazon-linux-latest`
 
 You can view a list of all Linux AMIs in the current AWS Region by using the following command in the AWS CLI\.
 

@@ -28,6 +28,9 @@ The following are examples of problems that can cause system status checks to fa
 + Software issues on the physical host
 + Hardware issues on the physical host that impact network reachability
 
+**Note**  
+If you perform a restart from the operating system on a bare metal instance, the system status check might temporarily return a fail status\. When the instance becomes available, the system status check should return a pass status\.
+
 ### Instance status checks<a name="instance-status-checks"></a>
 
 Instance status checks monitor the software and network configuration of your individual instance\. Amazon EC2 checks the health of the instance by sending an address resolution protocol \(ARP\) request to the network interface \(NIC\)\. These checks detect problems that require your involvement to repair\. When an instance status check fails, you typically must address the problem yourself \(for example, by rebooting the instance or by making instance configuration changes\)\.
@@ -38,6 +41,9 @@ The following are examples of problems that can cause instance status checks to 
 + Exhausted memory
 + Corrupted file system
 + Incompatible kernel
+
+**Note**  
+If you perform a restart from the operating system on a bare metal instance, the instance status check might temporarily return a fail status\. When the instance becomes available, the instance status check should return a pass status\.
 
 ## View status checks<a name="viewing_status"></a>
 

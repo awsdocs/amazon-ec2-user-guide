@@ -26,7 +26,7 @@ If an instance is scheduled for retirement, we recommend that you take action as
 
 If your instance is scheduled for retirement, you receive an email prior to the event with the instance ID and retirement date\.
 
-The email is sent to the address that's associated with your account\. It's the same email address that you use to log in to the AWS Management Console\. To update the contact information for your account, go to the [Account Settings](https://console.aws.amazon.com/billing/home?#/account) page\.
+The email is sent to the primary account holder and the operations contact\. For more information, see [Adding, changing, or removing alternate contacts](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/manage-account-payment.html#manage-account-payment-alternate-contacts) in the *AWS Billing and Cost Management User Guide*\.
 
 ### Console identification<a name="identify-in-console-cli"></a>
 

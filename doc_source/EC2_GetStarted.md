@@ -52,7 +52,7 @@ You can launch a Linux instance using the AWS Management Console as described in
 
 1. On the **Choose an Instance Type** page, you can select the hardware configuration of your instance\. Select the `t2.micro` instance type, which is selected by default\. The `t2.micro` instance type is eligible for the free tier\. In Regions where `t2.micro` is unavailable, you can use a `t3.micro` instance under the free tier\. For more information, see [AWS Free Tier](https://aws.amazon.com/free/)\.
 
-1. Choose **Review and Launch** to let the wizard complete the other configuration settings for you\.
+1. On the **Choose an Instance Type** page, choose **Review and Launch** to let the wizard complete the other configuration settings for you\.
 
 1. On the **Review Instance Launch** page, under **Security Groups**, you'll see that the wizard created and selected a security group for you\. You can use this security group, or alternatively you can select the security group that you created when getting set up using the following steps:
 
@@ -72,9 +72,9 @@ Don't select **Proceed without a key pair**\. If you launch your instance withou
 
 1. A confirmation page lets you know that your instance is launching\. Choose **View Instances** to close the confirmation page and return to the console\.
 
-1. On the **Instances** screen, you can view the status of the launch\. It takes a short time for an instance to launch\. When you launch an instance, its initial state is `pending`\. After the instance starts, its state changes to `running` and it receives a public DNS name\. \(If the **Public DNS \(IPv4\)** column is hidden, choose **Show/Hide Columns** \(the gear\-shaped icon\) in the top right corner of the page and then select **Public DNS \(IPv4\)**\.\)
+1. On the **Instances** screen, you can view the status of the launch\. It takes a short time for an instance to launch\. When you launch an instance, its initial state is `pending`\. After the instance starts, its state changes to `running` and it receives a public DNS name\. \(If the **Public IPv4 DNS** column is hidden, choose the settings icon \( ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/settings-icon.png) \) in the top\-right corner, toggle on **Public IPv4 DNS**, and choose **Confirm**\.
 
-1. It can take a few minutes for the instance to be ready so that you can connect to it\. Check that your instance has passed its status checks; you can view this information in the **Status Checks** column\.
+1. It can take a few minutes for the instance to be ready so that you can connect to it\. Check that your instance has passed its status checks; you can view this information in the **Status check** column\.
 
 ## Step 2: Connect to your instance<a name="ec2-connect-to-instance-linux"></a>
 

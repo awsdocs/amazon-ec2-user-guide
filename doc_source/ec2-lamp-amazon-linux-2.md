@@ -255,7 +255,7 @@ We do not recommend using `phpMyAdmin` to access a LAMP server unless you have e
 1. Install the required dependencies\.
 
    ```
-   [ec2-user ~]$ sudo yum install php-mbstring -y
+   [ec2-user ~]$ sudo yum install php-mbstring php-xml -y
    ```
 
 1. Restart Apache\.
@@ -309,9 +309,15 @@ We do not recommend using `phpMyAdmin` to access a LAMP server unless you have e
    You should see the phpMyAdmin login page:  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/phpmyadmin_login.png)
 
-1. Log in to your phpMyAdmin installation with the `root` user name and the MySQL root password you created earlier\. 
+1. Log in to your phpMyAdmin installation with the `root` user name and the MySQL root password you created earlier\.
 
-   Your installation must still be configured before you put it into service\. To configure phpMyAdmin, you can [manually create a configuration file](https://docs.phpmyadmin.net/en/latest/setup.html#manually-creating-the-file), [use the setup script](https://docs.phpmyadmin.net/en/latest/setup.html#using-the-setup-script), or combine both approaches\. 
+   Your installation must still be configured before you put it into service\. We suggest that you begin by manually creating the configuration file, as follows:
+
+   1. To start with a minimal configuration file, use your favorite text editor to create a new file, and then copy the contents of `config.sample.inc.php` into it\.
+
+   1. Save the file as `config.inc.php` in the phpMyAdmin directory that contains `index.php`\.
+
+   1. Refer to post\-file creation instructions in the [Using the Setup script](https://docs.phpmyadmin.net/en/latest/setup.html#using-the-setup-script) section of the phpMyAdmin installation instructions for any additional setup\.
 
     For information about using phpMyAdmin, see the [phpMyAdmin User Guide](http://docs.phpmyadmin.net/en/latest/user.html)\.
 
@@ -349,7 +355,7 @@ Perform the following checks to see if your Apache web server is configured to s
 
 For more information about transferring files to your instance or installing a WordPress blog on your web server, see the following documentation:
 + [Transfer files to your Linux instance using WinSCP](putty.md#Transfer_WinSCP)
-+ [Transfer files to Linux instances from Linux using SCP](AccessingInstancesLinux.md#AccessingInstancesLinuxSCP)
++ [Transfer files to Linux instances using an SCP client](AccessingInstancesLinux.md#AccessingInstancesLinuxSCP)
 + [Tutorial: Host a WordPress blog on Amazon Linux 2](hosting-wordpress.md)
 
 For more information about the commands and software used in this tutorial, see the following webpages:

@@ -29,9 +29,9 @@ The following is a summary of the use cases and characteristics of SSD\-backed v
 | Amazon EBS Multi\-attach | Not supported | Not supported | Supported | 
 | Boot volume | Supported | 
 
-\* The throughput limit is between 128 MiB/s and 250 MiB/s, depending on the volume size\. Volumes smaller than or equal to 170 GiB deliver a maximum throughput of 128 MiB/s\. Volumes larger than 170 GiB but smaller than 334 GiB deliver a maximum throughput of 250 MiB/s if burst credits are available\. Volumes larger than or equal to 334 GiB deliver 250 MiB/s regardless of burst credits\. Older `gp2` volumes might not reach full performance unless you [modify the volume](ebs-modify-volume.md)\.
+\* The throughput limit is between 128 MiB/s and 250 MiB/s, depending on the volume size\. Volumes smaller than or equal to 170 GiB deliver a maximum throughput of 128 MiB/s\. Volumes larger than 170 GiB but smaller than 334 GiB deliver a maximum throughput of 250 MiB/s if burst credits are available\. Volumes larger than or equal to 334 GiB deliver 250 MiB/s regardless of burst credits\. `gp2` volumes that were created before December 3, 2018 and that have not been modified since creation might not reach full performance unless you [modify the volume](ebs-modify-volume.md)\.
 
-† Maximum IOPS and throughput are guaranteed only on [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances) provisioned with more than 32,000 IOPS\. Other instances guarantee up to 32,000 IOPS and 500 MiB/s\. Older `io1` volumes might not reach full performance unless you [modify the volume](ebs-modify-volume.md)\.
+† Maximum IOPS and throughput are guaranteed only on [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances) provisioned with more than 32,000 IOPS\. Other instances guarantee up to 32,000 IOPS and 500 MiB/s\. `io1` volumes that were created before December 6, 2017 and that have not been modified since creation might not reach full performance unless you [modify the volume](ebs-modify-volume.md)\.
 
 ‡ `io2` Block Express volumes are available as an opt\-in preview only\. For more information, see [`io2` Block Express volumes \(In preview\)](#io2-block-express)\.
 

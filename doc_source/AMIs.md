@@ -15,6 +15,7 @@ An AMI includes the following:
 + [Amazon Linux 2 and Amazon Linux AMI](#amazon-linux)
 + [AMI types](ComponentsAMIs.md)
 + [Linux AMI virtualization types](virtualization_types.md)
++ [Boot modes](ami-boot.md)
 + [Find a Linux AMI](finding-an-ami.md)
 + [Shared AMIs](sharing-amis.md)
 + [Paid AMIs](paid-amis.md)
@@ -27,7 +28,7 @@ An AMI includes the following:
 + [Deregister your Linux AMI](deregister-ami.md)
 + [Amazon Linux](amazon-linux-ami-basics.md)
 + [Enabling Your Own Linux Kernels](UserProvidedKernels.md)
-+ [Use the MATE desktop environment provided with Amazon Linux 2](amazon-linux-ami-mate.md)
++ [Configure the Amazon Linux 2 MATE desktop connection](amazon-linux-ami-mate.md)
 
 ## Use an AMI<a name="ami-using"></a>
 

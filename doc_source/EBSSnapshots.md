@@ -24,6 +24,7 @@ Charges for your snapshots are based on the amount of data stored\. Because snap
 + [Copy an Amazon EBS snapshot](ebs-copy-snapshot.md)
 + [View Amazon EBS snapshot information](ebs-describing-snapshots.md)
 + [Share an Amazon EBS snapshot](ebs-modifying-snapshot-permissions.md)
++ [Amazon EBS local snapshots on Outposts](snapshots-outposts.md)
 + [Use EBS direct APIs to access the contents of an EBS snapshot](ebs-accessing-snapshot.md)
 + [Automate the snapshot lifecycle](automating-snapshots.md)
 

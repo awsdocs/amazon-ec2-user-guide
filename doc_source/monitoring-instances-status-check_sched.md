@@ -1,6 +1,6 @@
 # Scheduled events for your instances<a name="monitoring-instances-status-check_sched"></a>
 
-AWS can schedule events for your instances, such as a reboot, stop/start, or retirement\. These events do not occur frequently\. If one of your instances will be affected by a scheduled event, AWS sends an email to the email address that's associated with your AWS account prior to the scheduled event\. The email provides details about the event, including the start and end date\. Depending on the event, you might be able to take action to control the timing of the event\.
+AWS can schedule events for your instances, such as a reboot, stop/start, or retirement\. These events do not occur frequently\. If one of your instances will be affected by a scheduled event, AWS sends an email to the email address that's associated with your AWS account prior to the scheduled event\. The email provides details about the event, including the start and end date\. Depending on the event, you might be able to take action to control the timing of the event\. AWS also sends an AWS Health event, which you can monitor and manage using Amazon CloudWatch Events\. For more information about monitoring AWS Health events with Amazon CloudWatch, see [Monitoring AWS Health events with Amazon CloudWatch Events](https://docs.aws.amazon.com/health/latest/ug/cloudwatch-events-health.html)\. 
 
 Scheduled events are managed by AWS; you cannot schedule events for your instances\. You can view the events scheduled by AWS, customize scheduled event notifications to include or remove tags from the email notification, perform actions when an instance is scheduled to reboot, retire, or stop\.
 
@@ -193,6 +193,13 @@ The following is example output with information about a system reboot event tha
   }
 ]
 ```
+
+------
+#### [ AWS Health ]
+
+You can use the AWS Personal Health Dashboard to learn about events that can affect your instance\. The Personal Health Dashboard organizes issues in three groups: open issues, scheduled changes, and other notifications\. The scheduled changes group contains items that are ongoing or upcoming\.
+
+For more information, see [Getting started with the AWS Personal Health Dashboard](https://docs.aws.amazon.com/health/latest/ug/getting-started-phd.html) in the *AWS Health User Guide*\.
 
 ------
 

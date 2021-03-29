@@ -392,7 +392,7 @@ Now you can install the latest packages, as described earlier\.
 
 For more information about transferring files to your instance or installing a WordPress blog on your web server, see the following documentation:
 + [Transfer files to your Linux instance using WinSCP](putty.md#Transfer_WinSCP)
-+ [Transfer files to Linux instances from Linux using SCP](AccessingInstancesLinux.md#AccessingInstancesLinuxSCP)
++ [Transfer files to Linux instances using an SCP client](AccessingInstancesLinux.md#AccessingInstancesLinuxSCP)
 + [Tutorial: Host a WordPress blog on Amazon Linux 2](hosting-wordpress.md)
 
 For more information about the commands and software used in this tutorial, see the following webpages:

@@ -9,6 +9,18 @@ This information applies to Amazon Linux\. For information about other distribut
 
 If you have a public DNS name registered for the IP address of your instance \(such as `webserver.mydomain.com`\), you can set the system hostname so your instance identifies itself as a part of that domain\. This also changes the shell prompt so that it displays the first portion of this name instead of the hostname supplied by AWS \(for example, `ip-12-34-56-78`\)\. If you do not have a public DNS name registered, you can still change the hostname, but the process is a little different\.
 
+In order for your hostname update to persist, you must verify that the `preserve_hostname` cloud\-init setting is set to `true`\. You can run the following command to edit or add this setting:
+
+```
+sudo vi /etc/cloud/cloud.cfg
+```
+
+If the `preserve_hostname` setting is not listed, add the following line of text to the end of the file: 
+
+```
+preserve_hostname: true
+```
+
 **To change the system hostname to a public DNS name**
 
 Follow this procedure if you already have a public DNS name registered\.

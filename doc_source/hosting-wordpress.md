@@ -390,6 +390,9 @@ If your WordPress blog becomes popular and you need more compute power or storag
 + Expand the storage space on your instance\. For more information, see [Amazon EBS Elastic Volumes](ebs-modify-volume.md)\.
 + Move your MySQL database to [Amazon RDS](https://aws.amazon.com/rds) to take advantage of the service's ability to scale easily\.
 
+**Improve network performance of your internet traffic**  
+If you expect your blog to drive traffic from users located around the world, consider [AWS Global Accelerator](http://aws.amazon.com/global-accelerator)\. Global Accelerator helps you achieve lower latency by improving internet traffic performance between your users’ client devices and your WordPress application running on AWS\. Global Accelerator uses the [AWS global network](http://aws.amazon.com/about-aws/global-infrastructure/global_network/) to direct traffic to a healthy application endpoint in the AWS Region that is closest to the client\.
+
 **Learn more about WordPress**  
 For information about WordPress, see the WordPress Codex help documentation at [http://codex\.wordpress\.org/](http://codex.wordpress.org/)\. For more information about troubleshooting your installation, go to [https://wordpress\.org/support/article/how\-to\-install\-wordpress/\#common\-installation\-problems](https://wordpress.org/support/article/how-to-install-wordpress/#common-installation-problems)\. For information about making your WordPress blog more secure, go to [https://wordpress\.org/support/article/hardening\-wordpress/](https://wordpress.org/support/article/hardening-wordpress/)\. For information about keeping your WordPress blog up\-to\-date, go to [https://wordpress\.org/support/article/updating\-wordpress/](https://wordpress.org/support/article/updating-wordpress/)\.
 

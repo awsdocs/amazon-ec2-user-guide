@@ -9,6 +9,7 @@ Tag keys and their values are returned by many different API calls\. Denying acc
 + [Tag basics](#tag-basics)
 + [Tag your resources](#tag-resources)
 + [Tag restrictions](#tag-restrictions)
++ [Tags and access management](#tag-resources-access-management)
 + [Tag your resources for billing](#tag-resources-for-billing)
 + [Work with tags using the console](#Using_Tags_Console)
 + [Work with tags using the command line](#Using_Tags_CLI)
@@ -28,17 +29,13 @@ We recommend that you devise a set of tag keys that meets your needs for each re
 
 Tags don't have any semantic meaning to Amazon EC2 and are interpreted strictly as a string of characters\. Also, tags are not automatically assigned to your resources\. You can edit tag keys and values, and you can remove tags from a resource at any time\. You can set the value of a tag to an empty string, but you can't set the value of a tag to null\. If you add a tag that has the same key as an existing tag on that resource, the new value overwrites the old value\. If you delete a resource, any tags for the resource are also deleted\.
 
-You can work with tags using the AWS Management Console, the AWS CLI, and the Amazon EC2 API\.
-
-If you're using AWS Identity and Access Management \(IAM\), you can control which users in your AWS account have permission to create, edit, or delete tags\. For more information, see [Identity and access management for Amazon EC2](security-iam.md)\.
-
 ## Tag your resources<a name="tag-resources"></a>
 
 You can tag most Amazon EC2 resources that already exist in your account\. The [table](#tag-ec2-resources-table) below lists the resources that support tagging\.
 
 If you're using the Amazon EC2 console, you can apply tags to resources by using the **Tags** tab on the relevant resource screen, or you can use the **Tags** screen\. Some resource screens enable you to specify tags for a resource when you create the resource; for example, a tag with a key of `Name` and a value that you specify\. In most cases, the console applies the tags immediately after the resource is created \(rather than during resource creation\)\. The console may organize resources according to the `Name` tag, but this tag doesn't have any semantic meaning to the Amazon EC2 service\.
 
-If you're using the Amazon EC2 API, the AWS CLI, or an AWS SDK, you can use the `CreateTags` EC2 API action to apply tags to existing resources\. Additionally, some resource\-creating actions enable you to specify tags for a resource when the resource is created\. If tags cannot be applied during resource creation, we roll back the resource creation process\. This ensures that resources are either created with tags or not created at all, and that no resources are left untagged at any time\. By tagging resources at the time of creation, you can eliminate the need to run custom tagging scripts after resource creation\.
+If you're using the Amazon EC2 API, the AWS CLI, or an AWS SDK, you can use the `CreateTags` EC2 API action to apply tags to existing resources\. Additionally, some resource\-creating actions enable you to specify tags for a resource when the resource is created\. If tags cannot be applied during resource creation, we roll back the resource creation process\. This ensures that resources are either created with tags or not created at all, and that no resources are left untagged at any time\. By tagging resources at the time of creation, you can eliminate the need to run custom tagging scripts after resource creation\. For more information about enabling users to tag resources on creation, see [Grant permission to tag resources during creation](supported-iam-actions-tagging.md)\.
 
 The following table describes the Amazon EC2 resources that can be tagged, and the resources that can be tagged on creation using the Amazon EC2 API, the AWS CLI, or an AWS SDK\.
 
@@ -110,7 +107,7 @@ You can apply tag\-based resource\-level permissions in your IAM policies to the
 
 You can also apply resource\-level permissions to the `CreateTags` and `DeleteTags` Amazon EC2 API actions in your IAM policies to control which tag keys and values are set on your existing resources\. For more information, see [Example: Tag resources](ExamplePolicies_EC2.md#iam-example-taggingresources)\. 
 
-For more information about tagging your resources for billing, see [Using Cost Allocation Tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html) in the *AWS Billing and Cost Management User Guide*\.
+For more information about tagging your resources for billing, see [Using cost allocation tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html) in the *AWS Billing and Cost Management User Guide*\.
 
 ## Tag restrictions<a name="tag-restrictions"></a>
 
@@ -125,18 +122,24 @@ The following basic restrictions apply to tags:
 
 You can't terminate, stop, or delete a resource based solely on its tags; you must specify the resource identifier\. For example, to delete snapshots that you tagged with a tag key called `DeleteMe`, you must use the `DeleteSnapshots` action with the resource identifiers of the snapshots, such as `snap-1234567890abcdef0`\. 
 
-You can tag public or shared resources, but the tags you assign are available only to your AWS account and not to the other accounts sharing the resource\.
+When you tag public or shared resources, the tags you assign are available only to your AWS account; no other AWS account will have access to those tags\. For tag\-based access control to shared resources, each AWS account must assign its own set of tags to control access to the resource\.
 
 You can't tag all resources\. For more information, see [Tagging support for Amazon EC2 resources](#tag-ec2-resources-table)\.
 
+## Tags and access management<a name="tag-resources-access-management"></a>
+
+If you're using AWS Identity and Access Management \(IAM\), you can control which users in your AWS account have permission to create, edit, or delete tags\. For more information, see [Grant permission to tag resources during creation](supported-iam-actions-tagging.md)\.
+
+You can also use resource tags to implement attribute\-based control \(ABAC\)\. You can create IAM policies that allow operations based on the tags for the resource\. For more information, see [Control access to EC2 resources using resource tags](control-access-with-tags.md)\.
+
 ## Tag your resources for billing<a name="tag-resources-for-billing"></a>
 
-You can use tags to organize your AWS bill to reflect your own cost structure\. To do this, sign up to get your AWS account bill with tag key values included\. For more information about setting up a cost allocation report with tags, see [The Monthly Cost Allocation Report](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/configurecostallocreport.html) in *AWS Billing and Cost Management User Guide*\. To see the cost of your combined resources, you can organize your billing information based on resources that have the same tag key values\. For example, you can tag several resources with a specific application name, and then organize your billing information to see the total cost of that application across several services\. For more information, see [Using Cost Allocation Tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html) in the *AWS Billing and Cost Management User Guide*\.
+You can use tags to organize your AWS bill to reflect your own cost structure\. To do this, sign up to get your AWS account bill with tag key values included\. For more information about setting up a cost allocation report with tags, see [Monthly cost allocation report](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/configurecostallocreport.html) in *AWS Billing and Cost Management User Guide*\. To see the cost of your combined resources, you can organize your billing information based on resources that have the same tag key values\. For example, you can tag several resources with a specific application name, and then organize your billing information to see the total cost of that application across several services\. For more information, see [Using cost allocation tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html) in the *AWS Billing and Cost Management User Guide*\.
 
 **Note**  
 If you've just enabled reporting, data for the current month is available for viewing after 24 hours\.
 
-Cost allocation tags can indicate which resources are contributing to costs, but deleting or deactivating resources doesn't always reduce costs\. For example, snapshot data that is referenced by another snapshot is preserved, even if the snapshot that contains the original data is deleted\. For more information, see [Amazon Elastic Block Store Volumes and Snapshots](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/checklistforunwantedcharges.html#checkebsvolumes) in the *AWS Billing and Cost Management User Guide*\.
+Cost allocation tags can indicate which resources are contributing to costs, but deleting or deactivating resources doesn't always reduce costs\. For example, snapshot data that is referenced by another snapshot is preserved, even if the snapshot that contains the original data is deleted\. For more information, see [Amazon Elastic Block Store volumes and snapshots](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/checklistforunwantedcharges.html#checkebsvolumes) in the *AWS Billing and Cost Management User Guide*\.
 
 **Note**  
 Elastic IP addresses that are tagged do not appear on your cost allocation report\.
@@ -147,7 +150,7 @@ Using the Amazon EC2 console, you can see which tags are in use across all of yo
 
 For more information about using filters when listing your resources, see [List and filter your resources](Using_Filtering.md)\.
 
-For ease of use and best results, use Tag Editor in the AWS Management Console, which provides a central, unified way to create and manage your tags\. For more information, see [Working with Tag Editor](https://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/tag-editor.html) in *Getting Started with the AWS Management Console*\.
+For ease of use and best results, use Tag Editor in the AWS Management Console, which provides a central, unified way to create and manage your tags\. For more information, see [Tag Editor](https://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/tag-editor.html) in *Getting Started with the AWS Management Console*\.
 
 **Topics**
 + [Display tags](#displaying-tags)
@@ -244,7 +247,7 @@ If you add a new tag with the same tag key as an existing tag, the new tag overw
 
 1. Choose **Launch Instance**\.
 
-1. The **Choose an Amazon Machine Image \(AMI\)** page displays a list of basic configurations called Amazon Machine Images \(AMIs\)\. Select the AMI to use and choose **Select**\. For more information about selecting an AMI, see [Finding an AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html)\.
+1. The **Choose an Amazon Machine Image \(AMI\)** page displays a list of basic configurations called Amazon Machine Images \(AMIs\)\. Select the AMI to use and choose **Select**\. For more information, see [Find a Linux AMI](finding-an-ami.md)\.
 
 1. On the **Configure Instance Details** page, configure the instance settings as necessary, and then choose **Next: Add Storage**\.
 
@@ -294,7 +297,7 @@ You can add tags to many EC2 resource when you create them, using the tag specif
 
 The following examples demonstrate how to apply tags when you create resources\.
 
-The way you enter JSON\-formatted parameters on the command line differs depending on your operating system\. Linux, macOS, or Unix and Windows PowerShell use single quotes \('\) to enclose the JSON data structure\. Omit the single quotes when using the commands with the Windows command line\. For more information, see [Specifying Parameter Values for the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-using-param.html)\.
+The way you enter JSON\-formatted parameters on the command line differs depending on your operating system\. Linux, macOS, or Unix and Windows PowerShell use single quotes \('\) to enclose the JSON data structure\. Omit the single quotes when using the commands with the Windows command line\. For more information, see [Specifying parameter values for the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-using-param.html)\.
 
 **Example: Launch an instance and apply tags to the instance and volume**  
 The following [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command launches an instance and applies a tag with the key **webserver** and the value **production** to the instance\. The command also applies a tag with the key **cost\-center** and the value **cc123** to any EBS volume that's created \(in this case, the root volume\)\.  

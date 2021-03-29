@@ -95,11 +95,19 @@ $ sudo yum install binutils
 
    When you enable Kernel Live Patching, an empty kernel live patch RPM is automatically applied\. If Kernel Live Patching was successfully enabled, this command returns a list that includes the initial empty kernel live patch RPM\.
 
-1. Update and start the **kpatch** service\. This service loads all of the kernel live patches upon initialization or at boot\. 
+1. Install the **kpatch** package\.
+
+   ```
+   $ sudo yum install -y kpatch-runtime
+   ```
+
+1. Update the **kpatch** service if it was previously installed\. 
 
    ```
    $ sudo yum update kpatch-runtime
    ```
+
+1. Start the **kpatch** service\. This service loads all of the kernel live patches upon initialization or at boot\. 
 
    ```
    $ sudo systemctl enable kpatch.service

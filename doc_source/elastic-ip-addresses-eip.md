@@ -1,18 +1,23 @@
 # Elastic IP addresses<a name="elastic-ip-addresses-eip"></a>
 
-An *Elastic IP address* is a static IPv4 address designed for dynamic cloud computing\. By using an Elastic IP address, you can mask the failure of an instance or software by rapidly remapping the address to another instance in your account\. An Elastic IP address is allocated to your AWS account, and is yours until you release it\.
+An *Elastic IP address* is a static IPv4 address designed for dynamic cloud computing\. An Elastic IP address is allocated to your AWS account, and is yours until you release it\. By using an Elastic IP address, you can mask the failure of an instance or software by rapidly remapping the address to another instance in your account\. Alternatively, you can specify the Elastic IP address in a DNS record for your domain, so that your domain points to your instance\. For more information, see the documentation for your domain registrar, or [Set up dynamic DNS on Your Amazon Linux instance](dynamic-dns.md)\.
 
 An Elastic IP address is a public IPv4 address, which is reachable from the internet\. If your instance does not have a public IPv4 address, you can associate an Elastic IP address with your instance to enable communication with the internet\. For example, this allows you to connect to your instance from your local computer\.
 
 We currently do not support Elastic IP addresses for IPv6\.
 
-To ensure efficient use of Elastic IP addresses, we impose a small hourly charge if an Elastic IP address is not associated with a running instance, or if it is associated with a stopped instance or an unattached network interface\. While your instance is running, you are not charged for one Elastic IP address associated with the instance, but you are charged for any additional Elastic IP addresses associated with the instance\. For more information, see Elastic IP Addresses on the [Amazon EC2 Pricing, On\-Demand Pricing page](http://aws.amazon.com/ec2/pricing/on-demand/)\.
-
 **Topics**
++ [Elastic IP address pricing](#eip-pricing)
 + [Elastic IP address basics](#eip-basics)
 + [Work with Elastic IP addresses](#working-with-eips)
 + [Use reverse DNS for email applications](#Using_Elastic_Addressing_Reverse_DNS)
 + [Elastic IP address limit](#using-instance-addressing-limit)
+
+## Elastic IP address pricing<a name="eip-pricing"></a>
+
+To ensure efficient use of Elastic IP addresses, we impose a small hourly charge if an Elastic IP address is not associated with a running instance, or if it is associated with a stopped instance or an unattached network interface\. While your instance is running, you are not charged for one Elastic IP address associated with the instance, but you are charged for any additional Elastic IP addresses associated with the instance\.
+
+For more information, see Elastic IP Addresses on the [Amazon EC2 Pricing, On\-Demand Pricing page](http://aws.amazon.com/ec2/pricing/on-demand/)\.
 
 ## Elastic IP address basics<a name="eip-basics"></a>
 
@@ -22,8 +27,8 @@ The following are the basic characteristics of an Elastic IP address:
 + When you associate an Elastic IP address with an instance, it is also associated with the instance's primary network interface\. When you associate an Elastic IP address with a network interface that is attached to an instance, it is also associated with the instance\.
 + When you associate an Elastic IP address with an instance or its primary network interface, the instance's public IPv4 address \(if it had one\) is released back into Amazon's pool of public IPv4 addresses\. You cannot reuse a public IPv4 address, and you cannot convert a public IPv4 address to an Elastic IP address\. For more information, see [Public IPv4 addresses and external DNS hostnames](using-instance-addressing.md#concepts-public-addresses)\.
 + You can disassociate an Elastic IP address from a resource, and then associate it with a different resource\. To avoid unexpected behavior, ensure that all active connections to the resource named in the existing association are closed before you make the change\. After you have associated your Elastic IP address to a different resource, you can reopen your connections to the newly associated resource\.
-+ A disassociated Elastic IP address remains allocated to your account until you explicitly release it\.
-+ When you associate an Elastic IP address with an instance that previously had a public IPv4 address, the public DNS host name of the instance changes to match the Elastic IP address\. 
++ A disassociated Elastic IP address remains allocated to your account until you explicitly release it\. We impose a small hourly charge for Elastic IP addresses that are not associated with a running instance\.
++ When you associate an Elastic IP address with an instance that previously had a public IPv4 address, the public DNS host name of the instance changes to match the Elastic IP address\.
 + We resolve a public DNS host name to the public IPv4 address or the Elastic IP address of the instance outside the network of the instance, and to the private IPv4 address of the instance from within the network of the instance\.
 + An Elastic IP address comes from Amazon's pool of IPv4 addresses, or from a custom IP address pool that you have brought to your AWS account\.
 + When you allocate an Elastic IP address from an IP address pool that you have brought to your AWS account, it does not count toward your Elastic IP address limits\. For more information, see [Elastic IP address limit](#using-instance-addressing-limit)\.
@@ -39,7 +44,7 @@ The following sections describe how you can work with Elastic IP addresses\.
 + [Allocate an Elastic IP address](#using-instance-addressing-eips-allocating)
 + [Describe your Elastic IP addresses](#using-instance-addressing-eips-describing)
 + [Tag an Elastic IP address](#using-instance-addressing-eips-tagging)
-+ [Associate an Elastic IP address with a running instance or network interface](#using-instance-addressing-eips-associating)
++ [Associate an Elastic IP address with an instance or network interface](#using-instance-addressing-eips-associating)
 + [Disassociate an Elastic IP address](#using-instance-addressing-eips-associating-different)
 + [Release an Elastic IP address](#using-instance-addressing-eips-releasing)
 + [Recover an Elastic IP address](#using-eip-recovering)
@@ -57,13 +62,11 @@ You can allocate an Elastic IP address using one of the following methods\.
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation pane, choose **Elastic IPs**\.
+1. In the navigation pane, choose **Network & Security**, **Elastic IPs**\.
 
 1. Choose **Allocate Elastic IP address**\.
 
-1. For **Scope**, choose either **VPC** or **EC2\-Classic**, depending on the scope in which it will be used\.
-
-1. \(VPC scope only\) For **Public IPv4 address pool**, choose one of the following:
+1. For **Public IPv4 address pool**, choose one of the following:
    + **Amazon's pool of IPv4 addresses**—If you want an IPv4 address to be allocated from Amazon's pool of IPv4 addresses\.
    + **My pool of public IPv4 addresses**—If you want to allocate an IPv4 address from an IP address pool that you have brought to your AWS account\. This option is disabled if you do not have any IP address pools\.
    + **Customer owned pool of IPv4 addresses**—If you want to allocate an IPv4 address from a pool created from your on\-premises network for use with an AWS Outpost\. This option is disabled if you do not have an AWS Outpost\.
@@ -151,9 +154,6 @@ Use the [Get\-EC2Address](https://docs.aws.amazon.com/powershell/latest/referenc
 
 You can assign custom tags to your Elastic IP addresses to categorize them in different ways, for example, by purpose, owner, or environment\. This helps you to quickly find a specific Elastic IP address based on the custom tags that you assigned to it\.
 
-You can only tag Elastic IP addresses that are in the VPC scope\.
-
-**Note**  
 Cost allocation tracking using Elastic IP address tags is not supported\.
 
 You can tag an Elastic IP address using one of the following methods\.
@@ -226,7 +226,7 @@ PS C:\> New-EC2Tag -Resource eipalloc-12345678 -Tag $tag
 
 ------
 
-### Associate an Elastic IP address with a running instance or network interface<a name="using-instance-addressing-eips-associating"></a>
+### Associate an Elastic IP address with an instance or network interface<a name="using-instance-addressing-eips-associating"></a>
 
 If you're associating an Elastic IP address with your instance to enable communication with the internet, you must also ensure that your instance is in a public subnet\. For more information, see [Internet Gateways](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html) in the *Amazon VPC User Guide*\.
 
@@ -413,13 +413,41 @@ PS C:\> New-EC2Address -Address 203.0.113.3 -Domain vpc -Region us-east-1
 
 ## Use reverse DNS for email applications<a name="Using_Elastic_Addressing_Reverse_DNS"></a>
 
-If you intend to send email to third parties from an instance, we suggest that you provision one or more Elastic IP addresses and provide them to AWS\. AWS works with ISPs and internet anti\-spam organizations to reduce the chance that your email sent from these addresses will be flagged as spam\.
+If you intend to send email to third parties from an instance, we recommend that you provision one or more Elastic IP addresses and assign static reverse DNS records to the Elastic IP addresses that you use to send email\. This can help you avoid having your email flagged as spam by some anti\-spam organizations\.
 
-In addition, assigning a static reverse DNS record to your Elastic IP address that is used to send email can help avoid having email flagged as spam by some anti\-spam organizations\. Note that a corresponding forward DNS record \(record type A\) pointing to your Elastic IP address must exist before we can create your reverse DNS record\. 
+If a reverse DNS record is associated with an Elastic IP address, the Elastic IP address is locked to your account and cannot be released from your account until the record is removed\.
 
-If a reverse DNS record is associated with an Elastic IP address, the Elastic IP address is locked to your account and cannot be released from your account until the record is removed\. 
+**Note**  
+Before you create a reverse DNS record, you must set a corresponding forward DNS record \(record type A\) that points to your Elastic IP address\.
 
-To remove email sending limits, or to provide us with your Elastic IP addresses and reverse DNS records, go to the [Request to Remove Email Sending Limitations](https://aws.amazon.com/forms/ec2-email-limit-rdns-request) page\.
+For the US East \(Ohio\), Africa \(Cape Town\), Asia Pacific \(Mumbai\), Canada \(Central\), and Europe \(Milan\) Regions, use one of the following options\.
+
+------
+#### [ Console ]
+
+**To create a reverse DNS record for your Elastic IP address**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. Choose **Elastic IPs** from the navigation pane\.
+
+1. Select the Elastic IP address and choose **Actions**, **Update reverse DNS**\.
+
+1. For **Reverse DNS domain name**, enter the domain name to associate with the Elastic IP address\.
+
+1. Enter **update** to confirm\.
+
+1. Choose **Update**\.
+
+------
+#### [ AWS CLI ]
+
+**To create a reverse DNS record for your Elastic IP address**
++ Use the [https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-address-attribute.html](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-address-attribute.html) AWS CLI command to associate your domain name to your Elastic IP address\.
+
+------
+
+For all other Regions, you must provide your Elastic IP addresses to AWS to assign static reverse DNS records for you\. AWS works with ISPs and internet anti\-spam organizations to reduce the chance that your email sent from these addresses will be flagged as spam\. To provide us with your Elastic IP addresses and reverse DNS records, go to the [Request to remove reverse DNS and email sending limitations](http://aws.amazon.com/forms/ec2-email-limit-rdns-request) page\.
 
 ## Elastic IP address limit<a name="using-instance-addressing-limit"></a>
 

@@ -4,7 +4,7 @@ To use a Spot Fleet, you create a Spot Fleet request that includes the target ca
 
 There are two types of Spot Fleet requests: `request` and `maintain`\. You can create a Spot Fleet to submit a one\-time request for your desired capacity, or require it to maintain a target capacity over time\. Both types of requests benefit from Spot Fleet's allocation strategy\.
 
-When you make a one\-time request, Spot Fleet places the required requests but does not attempt to replenish Spot Instances if capacity is diminished\. If capacity is not available, Spot Fleet does not submit requests in alternative Spot pools\.
+When you make a one\-time request, Spot Fleet places the required requests but does not attempt to replenish Spot Instances if capacity is diminished\. If capacity is not available, Spot Fleet does not submit requests in alternative Spot capacity pools\.
 
 To maintain a target capacity, Spot Fleet places requests to meet the target capacity and automatically replenish any interrupted instances\.
 
@@ -842,7 +842,7 @@ You can't modify a one\-time Spot Fleet request\. You can only modify a Spot Fle
 
 When you increase the target capacity, the Spot Fleet launches additional Spot Instances\. When you increase the On\-Demand portion, the Spot Fleet launches additional On\-Demand Instances\.
 
-When you increase the target capacity, the Spot Fleet launches the additional Spot Instances according to the allocation strategy for its Spot Fleet request\. If the allocation strategy is `lowestPrice`, the Spot Fleet launches the instances from the lowest\-priced Spot Instance pool in the Spot Fleet request\. If the allocation strategy is `diversified`, the Spot Fleet distributes the instances across the pools in the Spot Fleet request\.
+When you increase the target capacity, the Spot Fleet launches the additional Spot Instances according to the allocation strategy for its Spot Fleet request\. If the allocation strategy is `lowestPrice`, the Spot Fleet launches the instances from the lowest\-priced Spot capacity pool in the Spot Fleet request\. If the allocation strategy is `diversified`, the Spot Fleet distributes the instances across the pools in the Spot Fleet request\.
 
 When you decrease the target capacity, the Spot Fleet cancels any open requests that exceed the new target capacity\. You can request that the Spot Fleet terminate Spot Instances until the size of the fleet reaches the new target capacity\. If the allocation strategy is `lowestPrice`, the Spot Fleet terminates the instances with the highest price per unit\. If the allocation strategy is `diversified`, the Spot Fleet terminates instances across the pools\. Alternatively, you can request that the Spot Fleet keep the fleet at its current size, but not replace any Spot Instances that are interrupted or that you terminate manually\.
 

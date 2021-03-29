@@ -40,10 +40,10 @@ Among other impacts, the partitioning scheme determines how many logical data bl
 
 ### MBR<a name="mbr-partitioning"></a>
 
-MBR uses a 32\-bit data structure to store block addresses\. This means that each data block is mapped with one of 232 possible integers\. The maximum addressable size of a volume is given by:
+MBR uses a 32\-bit data structure to store block addresses\. This means that each data block is mapped with one of 232 possible integers\. The maximum addressable size of a volume is given by the following formula:
 
 ```
-(232 - 1) × Block size = Number of addressable blocks
+(232 - 1) × Block size
 ```
 
 The block size for MBR volumes is conventionally limited to 512 bytes\. Therefore:
@@ -56,10 +56,10 @@ Engineering workarounds to increase this 2\-TiB limit for MBR volumes have not m
 
 ### GPT<a name="gpt-partitioning"></a>
 
-GPT uses a 64\-bit data structure to store block addresses\. This means that each data block is mapped with one of 264 possible integers\. The maximum addressable size of a volume is given by:
+GPT uses a 64\-bit data structure to store block addresses\. This means that each data block is mapped with one of 264 possible integers\. The maximum addressable size of a volume is given by the following formula:
 
 ```
-(264 - 1) × Block size = Number of addressable blocks
+(264 - 1) × Block size
 ```
 
 The block size for GPT volumes is commonly 4,096 bytes\. Therefore:

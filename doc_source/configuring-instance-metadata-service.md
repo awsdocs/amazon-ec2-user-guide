@@ -51,11 +51,11 @@ Use of Instance Metadata Service Version 2 \(IMDSv2\) is optional\. Instance Met
 **Tools for helping with the transition to IMDSv2**
 
 If your software uses IMDSv1, use the following tools to help reconfigure your software to use IMDSv2\.
-+ **AWS software:** The latest versions of the AWS SDKs and CLIs support IMDSv2\. To use IMDSv2, make sure that your EC2 instances have the latest versions of the AWS SDKs and CLIs\. For information about updating the CLI, see [Upgrading to the latest version of the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-linux.html#install-linux-awscli-upgrade) in the *AWS Command Line Interface User Guide*\.
++ **AWS software:** The latest versions of the AWS SDKs and CLIs support IMDSv2\. To use IMDSv2, make sure that your EC2 instances have the latest versions of the AWS SDKs and CLIs\. For information about updating the CLI, see [Installing, updating, and uninstalling the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) in the *AWS Command Line Interface User Guide*\.
 + **CloudWatch**: IMDSv2 uses token\-backed sessions, while IMDSv1 does not\. The `MetadataNoToken` CloudWatch metric tracks the number of calls to the instance metadata service that are using IMDSv1\. By tracking this metric to zero, you can determine if and when all of your software has been upgraded to use IMDSv2\. For more information, see [Instance metrics](viewing_metrics_with_cloudwatch.md#ec2-cloudwatch-metrics)\.
 + **Updates to EC2 APIs and CLIs**: For existing instances, you can use the [modify\-instance\-metadata\-options](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-metadata-options.html) CLI command \(or the [ModifyInstanceMetadataOptions](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyInstanceMetadataOptions.html) API\) to require the use of IMDSv2\. For new instances, you can use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) CLI command \(or the [RunInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html) API\) and the `metadata-options` parameter to launch new instances that require the use of IMDSv2\.
 
-  To require the use of IMDSv2 on all new instances launched by Auto Scaling groups, your Auto Scaling groups can use either a launch template or a launch configuration\. When you [create a launch template](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-launch-template.html) or [create a launch configuration](https://docs.aws.amazon.com/cli/latest/reference/autoscaling/create-launch-configuration.html), you must configure the `MetadataOptions` parameters to require the use IMDSv2\. After you configure the launch template or launch configuration, the Auto Scaling group launches new instances using the new launch template or launch configuration, but existing instances are not affected\.
+  To require the use of IMDSv2 on all new instances launched by Auto Scaling groups, your Auto Scaling groups can use either a launch template or a launch configuration\. When you [create a launch template](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-launch-template.html) or [create a launch configuration](https://docs.aws.amazon.com/cli/latest/reference/autoscaling/create-launch-configuration.html), you must configure the `MetadataOptions` parameters to require the use of IMDSv2\. After you configure the launch template or launch configuration, the Auto Scaling group launches new instances using the new launch template or launch configuration, but existing instances are not affected\.
 
   Use the [modify\-instance\-metadata\-options](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-metadata-options.html) CLI command \(or the [ModifyInstanceMetadataOptions](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyInstanceMetadataOptions.html) API\) to require the use of IMDSv2 on the existing instances, or terminate the instances and the Auto Scaling group will launch new replacement instances with the instance metadata options settings that are defined in the launch template or launch configuration\.
 + **IAM policies and SCPs**: You can use an IAM condition to enforce that IAM users can't launch an instance unless it uses IMDSv2\. You can also use IAM conditions to enforce that IAM users can't modify running instances to re\-enable IMDSv1, and to enforce that the instance metadata service is available on the instance\.
@@ -104,10 +104,6 @@ You can also use IAM condition keys in an IAM policy or SCP to do the following:
 + Restrict the number of allowed hops
 + Turn off access to instance metadata
 
-You can configure instance metadata options when launching new instances from the Amazon EC2 console\. For more information, see [Step 3: Configure Instance Details](launching-instance.md#configure_instance_details_step)\.
-
-To configure the instance metadata options on new or existing instances, you can use the AWS SDK or AWS CLI\. For more information, see [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) and [modify\-instance\-metadata\-options](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-metadata-options.html) in the *AWS CLI Command Reference*\.
-
 **Note**  
 You should proceed cautiously and conduct careful testing before making any changes\. Take note of the following:  
 If you enforce the use of IMDSv2, applications or agents that use IMDSv1 for instance metadata access will break\.
@@ -115,7 +111,7 @@ If you turn off all access to instance metadata, applications or agents that rel
 
 **Topics**
 + [Configure instance metadata options for new instances](#configuring-IMDS-new-instances)
-+ [Configure instance metadata options for existing instances](#configuring-IMDS-existing-instances)
++ [Modify instance metadata options for existing instances](#configuring-IMDS-existing-instances)
 
 ### Configure instance metadata options for new instances<a name="configuring-IMDS-new-instances"></a>
 
@@ -175,9 +171,11 @@ aws ec2 run-instances
 
 ------
 
-### Configure instance metadata options for existing instances<a name="configuring-IMDS-existing-instances"></a>
+### Modify instance metadata options for existing instances<a name="configuring-IMDS-existing-instances"></a>
 
 You can require the use IMDSv2 on an existing instance\. You can also change the PUT response hop limit and turn off access to instance metadata on an existing instance\. You can also create an IAM policy that prevents users from modifying the instance metadata options on an existing instance\.
+
+Currently only the AWS SDK or AWS CLI support modifying the instance metadata options on existing instances\. You can't use the Amazon EC2 console for modifying instance metadata options\.
 
 **To require the use of IMDSv2**  
 You can opt in to require that IMDSv2 is used when requesting instance metadata\. Use the [modify\-instance\-metadata\-options](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-metadata-options.html) CLI command and set the `http-tokens` parameter to `required`\. When you specify a value for `http-tokens`, you must also set `http-endpoint` to `enabled`\.

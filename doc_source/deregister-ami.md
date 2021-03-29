@@ -21,17 +21,158 @@ The following diagram illustrates the process for cleaning up your Amazon EBS\-b
 
 ![\[Process to clean up your Amazon EBS-backed AMI\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ami_delete_ebs.png)
 
-**To clean up your Amazon EBS\-backed AMI**
+You can use one of the following methods to clean up your Amazon EBS\-backed AMI\.
+
+------
+#### [ New console ]
+
+**To clean up your Amazon EBS\-backed AMI using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation pane, choose **AMIs**\. Select the AMI, and take note of its ID — this can help you find the correct snapshot in the next step\. Choose **Actions**, and then **Deregister**\. When prompted for confirmation, choose **Continue**\.
+1. 
 
-   It might take a few minutes before the console removes the AMI from the list\. Choose **Refresh** to refresh the status\.
+**Deregister the AMI**
 
-1. In the navigation pane, choose **Snapshots**, and select the snapshot \(look for the AMI ID in the **Description** column\)\. Choose **Actions**, and then choose **Delete Snapshot**\. When prompted for confirmation, choose **Yes, Delete**\.
+   1. In the navigation pane, choose **AMIs**\.
 
-1. \(Optional\) If you are finished with an instance that you launched from the AMI, terminate it\. In the navigation pane, choose **Instances**\. Select the instance, choose **Instance state**, **Terminate instance**\. When prompted for confirmation, choose **Terminate**\.
+   1. Select the AMI to deregister, and take note of its ID — this can help you find the snapshots to delete in the next step\.
+
+   1. Choose **Actions**, and then **Deregister**\. When prompted for confirmation, choose **Continue**\.
+**Note**  
+It might take a few minutes before the console removes the AMI from the list\. Choose **Refresh** to refresh the status\.
+
+1. 
+
+**Delete snapshots that are no longer needed**
+
+   1. In the navigation pane, choose **Snapshots**\.
+
+   1. Select a snapshot to delete \(look for the AMI ID from the prior step in the **Description** column\)\.
+
+   1. Choose **Actions**, and then choose **Delete**\. When prompted for confirmation, choose **Yes, Delete**\.
+
+1. 
+
+**Terminate instances \(Optional\)**  
+If you are finished with an instance that you launched from the AMI, you can terminate it\.
+
+   1. In the navigation pane, choose **Instances** then select the instance to terminate\.
+
+   1. Choose **Actions**, then **Instance state**, and then **Terminate instance**\. When prompted for confirmation, choose **Terminate**\.
+
+**Note**  
+You may need to scroll down for some of the Actions menu items\.
+
+------
+#### [ Old console ]
+
+**To clean up your Amazon EBS\-backed AMI using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. 
+
+**Deregister the AMI**
+
+   1. In the navigation pane, choose **AMIs**\.
+
+   1. Select the AMI to deregister, and take note of its ID — this can help you find the snapshots to delete in the next step\.
+
+   1. Choose **Actions**, and then **Deregister**\. When prompted for confirmation, choose **Continue**\.
+**Note**  
+It may take a few minutes before the console removes the AMI from the list\. Choose **Refresh** to refresh the status\.
+
+1. 
+
+**Delete snapshots that are no longer needed**
+
+   1. In the navigation pane, choose **Snapshots**\.
+
+   1. Select a snapshot to delete \(look for the AMI ID from the prior step in the **Description** column\)\.
+
+   1. Choose **Actions**, and then choose **Delete**\. When prompted for confirmation, choose **Yes, Delete**\.
+
+1. 
+
+**Terminate instances \(Optional\)**  
+If you are finished with an instance that you launched from the AMI, you can terminate it\.
+
+   1. In the navigation pane, choose **Instances** then select the instance to terminate\.
+
+   1. Choose **Actions**, then **Instance State**, and then **Terminate**\. When prompted for confirmation, choose **Yes, Terminate**\.
+
+------
+#### [ AWS CLI ]
+
+Follow these steps to clean up your Amazon EBS\-backed AMI using the AWS CLI
+
+1. 
+
+**Deregister the AMI**
+
+   Deregister the AMI using the [deregister\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/deregister-image.html) command:
+
+   ```
+   aws ec2 deregister-image --image-id ami-12345678
+   ```
+
+1. 
+
+**Delete snapshots that are no longer needed**
+
+   Delete snapshots that are no longer needed by using the [delete\-snapshot](https://docs.aws.amazon.com/cli/latest/reference/ec2/delete-snapshot.html) command:
+
+   ```
+   aws ec2 delete-snapshot --snapshot-id snap-1234567890abcdef0
+   ```
+
+1. 
+
+**Terminate instances \(Optional\)**
+
+   If you are finished with an instance that you launched from the AMI, you can terminate it by using the [terminate\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/terminate-instances.html) command:
+
+   ```
+   aws ec2 terminate-instances --instance-ids i-12345678
+   ```
+
+------
+#### [ PowerShell ]
+
+Follow these steps to clean up your Amazon EBS\-backed AMI using the AWS Tools for Windows PowerShell
+
+1. 
+
+**Deregister the AMI**
+
+   Deregister the AMI using the [Unregister\-EC2Image](https://docs.aws.amazon.com/powershell/latest/reference/items/Unregister-EC2Image.html) cmdlet:
+
+   ```
+   Unregister-EC2Image -ImageId ami-12345678
+   ```
+
+1. 
+
+**Delete snapshots that are no longer needed**
+
+   Delete snapshots that are no longer needed by using the [Remove\-EC2Snapshot](https://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2Snapshot.html) cmdlet:
+
+   ```
+   Remove-EC2Snapshot -SnapshotId snap-12345678
+   ```
+
+1. 
+
+**Terminate instances \(Optional\)**
+
+   If you are finished with an instance that you launched from the AMI, you can terminate it by using the [Remove\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2Instance.html) cmdlet:
+
+   ```
+   Remove-EC2Instance -InstanceId i-12345678
+   ```
+
+------
 
 ## Clean up your instance store\-backed AMI<a name="clean-up-s3-ami"></a>
 

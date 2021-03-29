@@ -10,6 +10,9 @@ AWS does not copy launch permissions, user\-defined tags, or Amazon S3 bucket pe
 
 If you are using an AWS Marketplace AMI, or an AMI that was directly or indirectly derived from an AWS Marketplace AMI, you cannot copy it across accounts\. Instead, launch an EC2 instance using the AWS Marketplace AMI and then create an AMI from the instance\. For more information, see [Create an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md)\.
 
+**Note**  
+You can use IAM policies to grant or deny users permissions to copy AMIs\. Resource\-level permissions specified for the `CopyImage` action apply to the new AMI only\. You cannot specify resource\-level permissions for the source AMI\. 
+
 **Topics**
 + [Permissions for copying an instance store\-backed AMI](#copy-ami-permissions)
 + [Cross\-Region copying](#copy-amis-across-regions)

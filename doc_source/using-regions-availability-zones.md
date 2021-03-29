@@ -59,7 +59,7 @@ For information about available Wavelength Zones, see [Available Wavelength Zone
 | af\-south\-1 | Africa \(Cape Town\) | Required | Not available | 
 | ap\-east\-1 | Asia Pacific \(Hong Kong\) | Required | Not available | 
 | ap\-south\-1 | Asia Pacific \(Mumbai\) | Not required | Not available | 
-| ap\-northeast\-3 | Asia Pacific \(Osaka\-Local\) | Not required | Not available | 
+| ap\-northeast\-3 | Asia Pacific \(Osaka\) | Not required | Not available | 
 | ap\-northeast\-2 | Asia Pacific \(Seoul\) | Not required | Not available | 
 | ap\-southeast\-1 | Asia Pacific \(Singapore\) | Not required | Not available | 
 | ap\-southeast\-2 | Asia Pacific \(Sydney\) | Not required | Not available | 
@@ -480,4 +480,4 @@ The following [create\-volume](https://docs.aws.amazon.com/cli/latest/reference/
 aws ec2 create-volume --availability-zone us-east-2a --outpost-arn arn:aws:outposts:us-east-2:123456789012:outpost/op-03e6fecad652a6138 --size 50
 ```
 
-You must detach an Outpost volume before you can modify it\. For more information about detaching volumes, see [Detach an Amazon EBS volume from a Linux instance](ebs-detaching-volume.md)\.
+You can dynamically modify the size of your Amazon EBS gp2 volumes without detaching them\. For more information about modifying a volume without detaching it, see [Request modifications to your EBS volumes](requesting-ebs-volume-modifications.md)\.

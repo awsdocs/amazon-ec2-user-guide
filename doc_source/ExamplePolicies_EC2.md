@@ -314,6 +314,7 @@ The following are example policies for both `CreateSnapshot` \(point\-in\-time s
 + [Example: Create snapshots](#iam-creating-snapshots)
 + [Example: Create a snapshot with tags](#iam-creating-snapshot-with-tags)
 + [Example: Create snapshots with tags](#iam-creating-snapshots-with-tags)
++ [Example: Copying snapshots](#iam-copy-snapshot)
 + [Example: Modify permission settings for snapshots](#iam-modifying-snapshot-with-tags)
 
 ### Example: Create a snapshot<a name="iam-creating-snapshot"></a>
@@ -711,6 +712,31 @@ The following policy allows you to combine multiple actions into a single policy
          }
       }
    ]
+}
+```
+
+### Example: Copying snapshots<a name="iam-copy-snapshot"></a>
+
+Resource\-level permissions specified for the *CopySnapshot* action apply to the new snapshot only\. They cannot be specified for the source snapshot\.
+
+The following example policy allows principals to copy snapshots only if the new snapshot is created with tag key of `purpose` and a tag value of `production` \(`purpose=production`\)\.
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AllowCopySnapshotWithTags",
+            "Effect": "Allow",
+            "Action": "ec2:CopySnapshot",
+            "Resource": "arn:aws:ec2:*:123456789012:snapshot/*",
+            "Condition": {
+                "StringEquals": {
+                    "aws:RequestTag/purpose": "production"
+                }
+            }
+        }
+    ]
 }
 ```
 

@@ -4,8 +4,12 @@ The following table describes important additions to the Amazon EC2 documentatio
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Boot modes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-boot.html) | Amazon EC2 now supports UEFI boot on selected AMD\- and Intel\-based EC2 instances\. | March 22, 2021 | 
+| [X2gd instances](#DocumentHistory) | New memory optimized instances featuring an AWS Graviton2 processor based on 64\-bit Arm architecture\. | March 16, 2021 | 
+| [Amazon EBS local snapshots on Outposts](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snapshots-outposts.html) | You can now use Amazon EBS local snapshots on Outposts to store snapshots of volumes on an Outpost locally in Amazon S3 on the Outpost itself\. | February 4, 2021 | 
+| [Create a reverse DNS record](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html#Using_Elastic_Addressing_Reverse_DNS) | You can now set up reverse DNS lookup for your Elastic IP addresses\. | February 3, 2021 | 
 | [Multi\-Attach support for io2 volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volumes-multi.html) | You can now enable Provisioned IOPS SSD \(`io2`\) volumes for Amazon EBS Multi\-Attach\. | December 18, 2020 | 
-| [C6gn instances](#DocumentHistory) | New instances featuring an AWS Graviton2 processor based on 64\-bit Arm architecture\. These instances can utilize up to 100 Gbps of network bandwidth\. | December 18, 2020 | 
+| [C6gn instances](#DocumentHistory) | New computed optimized instances featuring an AWS Graviton2 processor based on 64\-bit Arm architecture\. These instances can utilize up to 100 Gbps of network bandwidth\. | December 18, 2020 | 
 | [Amazon Data Lifecycle Manager](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/event-policy.html) | Use Amazon Data Lifecycle Manager to automate the process of sharing snapshots and copying them across AWS accounts\. | December 17, 2020 | 
 | [G4ad instances](#DocumentHistory) | New instances powered by AMD Radeon Pro V520 GPUs and AMD 2nd Generation EPYC processors\. | December 9, 2020 | 
 | [Tag AMIs and snapshots on AMI creation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html#how-to-create-ebs-ami) | When you create an AMI, you can tag the AMI and the snapshots with the same tags, or you can tag them with different tags\.  | December 4, 2020 | 
@@ -89,7 +93,7 @@ The following table describes important additions to the Amazon EC2 documentatio
 | --- | --- | --- | --- | 
 | <a name="history-2018"></a>Partition placement groups | 2016\-11\-15 | Partition placement groups spread instances across logical partitions, ensuring that instances in one partition do not share underlying hardware with instances in other partitions\. For more information, see [Partition placement groups](placement-groups.md#placement-groups-partition)\. | 20 December 2018 | 
 | p3dn\.24xlarge instances | 2016\-11\-15 | New p3dn\.24xlarge instances provide 100 Gbps of network bandwidth\. | 7 December 2018 | 
-| Hibernate EC2 Linux instances | 2016\-11\-15 | You can hibernate a Linux instance if it's enabled for hibernation and it meets the hibernation prerequisites\. For more information, see [Hibernate your Linux instance](Hibernate.md)\. | 28 November 2018 | 
+| Hibernate EC2 Linux instances | 2016\-11\-15 | You can hibernate a Linux instance if it's enabled for hibernation and it meets the hibernation prerequisites\. For more information, see [Hibernate your On\-Demand or Reserved Linux instance](Hibernate.md)\. | 28 November 2018 | 
 | Amazon Elastic Inference Accelerators | 2016\-11\-15 | You can attach an Amazon EI accelerator to your instances to add GPU\-powered acceleration to reduce the cost of running deep learning inference\. For more information, see [Amazon Elastic Inference](elastic-inference.md)\. | 28 November 2018 | 
 | Instances featuring 100 Gbps of network bandwidth | 2016\-11\-15 | New C5n instances can utilize up to 100 Gbps of network bandwidth\. | 26 November 2018 | 
 | Instances featuring Arm\-based Processors | 2016\-11\-15 | New A1 instances deliver significant cost savings and are ideally suited for scale\-out and Arm\-based workloads\. | 26 November 2018 | 

@@ -1,6 +1,6 @@
 # Instance types<a name="instance-types"></a>
 
-When you launch an instance, the *instance type* that you specify determines the hardware of the host computer used for your instance\. Each instance type offers different compute, memory, and storage capabilities and are grouped in instance families based on these capabilities\. Select an instance type based on the requirements of the application or software that you plan to run on your instance\.
+When you launch an instance, the *instance type* that you specify determines the hardware of the host computer used for your instance\. Each instance type offers different compute, memory, and storage capabilities, and is grouped in an instance family based on these capabilities\. Select an instance type based on the requirements of the application or software that you plan to run on your instance\.
 
 Amazon EC2 provides each instance with a consistent and predictable amount of CPU capacity, regardless of its underlying hardware\.
 
@@ -60,8 +60,8 @@ For the best performance, we recommend that you use the following instance types
 | M5a | m5a\.large \| m5a\.xlarge \| m5a\.2xlarge \| m5a\.4xlarge \| m5a\.8xlarge \| m5a\.12xlarge \| m5a\.16xlarge \| m5a\.24xlarge | [General purpose](general-purpose-instances.md) | 
 | M5ad | m5ad\.large \| m5ad\.xlarge \| m5ad\.2xlarge \| m5ad\.4xlarge \| m5ad\.8xlarge \| m5ad\.12xlarge \| m5ad\.16xlarge \| m5ad\.24xlarge | [General purpose](general-purpose-instances.md) | 
 | M5d | m5d\.large \| m5d\.xlarge \| m5d\.2xlarge \| m5d\.4xlarge \| m5d\.8xlarge \| m5d\.12xlarge \| m5d\.16xlarge \| m5d\.24xlarge \| m5d\.metal | [General purpose](general-purpose-instances.md) | 
-| M5dn | m5dn\.large \| m5dn\.xlarge \| m5dn\.2xlarge \| m5dn\.4xlarge \| m5dn\.8xlarge \| m5dn\.12xlarge \| m5dn\.16xlarge \| m5dn\.24xlarge | [General purpose](general-purpose-instances.md) | 
-| M5n | m5n\.large \| m5n\.xlarge \| m5n\.2xlarge \| m5n\.4xlarge \| m5n\.8xlarge \| m5n\.12xlarge \| m5n\.16xlarge \| m5n\.24xlarge | [General purpose](general-purpose-instances.md) | 
+| M5dn | m5dn\.large \| m5dn\.xlarge \| m5dn\.2xlarge \| m5dn\.4xlarge \| m5dn\.8xlarge \| m5dn\.12xlarge \| m5dn\.16xlarge \| m5dn\.24xlarge \| m5dn\.metal | [General purpose](general-purpose-instances.md) | 
+| M5n | m5n\.large \| m5n\.xlarge \| m5n\.2xlarge \| m5n\.4xlarge \| m5n\.8xlarge \| m5n\.12xlarge \| m5n\.16xlarge \| m5n\.24xlarge \| m5n\.metal | [General purpose](general-purpose-instances.md) | 
 | M5zn | m5zn\.large \| m5zn\.xlarge \| m5zn\.2xlarge \| m5zn\.3xlarge \| m5zn\.6xlarge \| m5zn\.12xlarge \| m5zn\.metal | [General purpose](general-purpose-instances.md) | 
 | M6g | m6g\.medium \| m6g\.large \| m6g\.xlarge \| m6g\.2xlarge \| m6g\.4xlarge \| m6g\.8xlarge \| m6g\.12xlarge \| m6g\.16xlarge \| m6g\.metal | [General purpose](general-purpose-instances.md) | 
 | M6gd | m6gd\.medium \| m6gd\.large \| m6gd\.xlarge \| m6gd\.2xlarge \| m6gd\.4xlarge \| m6gd\.8xlarge \| m6gd\.12xlarge \| m6gd\.16xlarge \| m6gd\.metal | [General purpose](general-purpose-instances.md) | 
@@ -76,8 +76,8 @@ For the best performance, we recommend that you use the following instance types
 | R5ad | r5ad\.large \| r5ad\.xlarge \| r5ad\.2xlarge \| r5ad\.4xlarge \| r5ad\.8xlarge \| r5ad\.12xlarge \| r5ad\.16xlarge \| r5ad\.24xlarge  | [Memory optimized](memory-optimized-instances.md) | 
 | R5b | r5b\.large \| r5b\.xlarge \| r5b\.2xlarge \| r5b\.4xlarge \| r5b\.8xlarge \| r5b\.12xlarge \| r5b\.16xlarge \| r5b\.24xlarge \| r5b\.metal | [Memory optimized](memory-optimized-instances.md) | 
 | R5d | r5d\.large \| r5d\.xlarge \| r5d\.2xlarge \| r5d\.4xlarge \| r5d\.8xlarge \| r5d\.12xlarge \| r5d\.16xlarge \| r5d\.24xlarge \| r5d\.metal | [Memory optimized](memory-optimized-instances.md) | 
-| R5dn | r5dn\.large \| r5dn\.xlarge \| r5dn\.2xlarge \| r5dn\.4xlarge \| r5dn\.8xlarge \| r5dn\.12xlarge \| r5dn\.16xlarge \| r5dn\.24xlarge | [Memory optimized](memory-optimized-instances.md) | 
-| R5n | r5n\.large \| r5n\.xlarge \| r5n\.2xlarge \| r5n\.4xlarge \| r5n\.8xlarge \| r5n\.12xlarge \| r5n\.16xlarge \| r5n\.24xlarge | [Memory optimized](memory-optimized-instances.md) | 
+| R5dn | r5dn\.large \| r5dn\.xlarge \| r5dn\.2xlarge \| r5dn\.4xlarge \| r5dn\.8xlarge \| r5dn\.12xlarge \| r5dn\.16xlarge \| r5dn\.24xlarge \| r5dn\.metal | [Memory optimized](memory-optimized-instances.md) | 
+| R5n | r5n\.large \| r5n\.xlarge \| r5n\.2xlarge \| r5n\.4xlarge \| r5n\.8xlarge \| r5n\.12xlarge \| r5n\.16xlarge \| r5n\.24xlarge \| r5n\.metal | [Memory optimized](memory-optimized-instances.md) | 
 | R6g | r6g\.medium \| r6g\.large \| r6g\.xlarge \| r6g\.2xlarge \| r6g\.4xlarge \| r6g\.8xlarge \| r6g\.12xlarge \| r6g\.16xlarge \| r6g\.metal | [Memory optimized](memory-optimized-instances.md) | 
 | R6gd | r6gd\.medium \| r6gd\.large \| r6gd\.xlarge \| r6gd\.2xlarge \| r6gd\.4xlarge \| r6gd\.8xlarge \| r6gd\.12xlarge \| r6gd\.16xlarge \| r6gd\.metal | [Memory optimized](memory-optimized-instances.md) | 
 | T2 | t2\.nano \| t2\.micro \| t2\.small \| t2\.medium \| t2\.large \| t2\.xlarge \| t2\.2xlarge | [General purpose](general-purpose-instances.md) | 
@@ -87,6 +87,7 @@ For the best performance, we recommend that you use the following instance types
 | u\-xtb1 | u\-6tb1\.metal \| u\-9tb1\.metal \| u\-12tb1\.metal \| u\-18tb1\.metal \| u\-24tb1\.metal | [Memory optimized](memory-optimized-instances.md) | 
 | X1 | x1\.16xlarge \| x1\.32xlarge | [Memory optimized](memory-optimized-instances.md) | 
 | X1e | x1e\.xlarge \| x1e\.2xlarge \| x1e\.4xlarge \| x1e\.8xlarge \| x1e\.16xlarge \| x1e\.32xlarge | [Memory optimized](memory-optimized-instances.md) | 
+| X2gd | x2gd\.medium \| x2gd\.large \| x2gd\.xlarge \| x2gd\.2xlarge \| x2gd\.4xlarge \| x2gd\.8xlarge \| x2gd\.12xlarge \| x2gd\.16xlarge \| x2gd\.metal | [Memory optimized](memory-optimized-instances.md) | 
 | z1d | z1d\.large \| z1d\.xlarge \| z1d\.2xlarge \| z1d\.3xlarge \| z1d\.6xlarge \| z1d\.12xlarge \| z1d\.metal | [Memory optimized](memory-optimized-instances.md) | 
 
 ### Previous generation instances<a name="previous-gen-instances"></a>
@@ -158,8 +159,8 @@ The following components are part of the Nitro System:
 **Instance types**
 
 The following instances are built on the Nitro System:
-+ Virtualized: A1, C5, C5a, C5ad, C5d, C5n, C6g, C6gd, C6gn,  D3, D3en, G4, I3en, Inf1, M5, M5a, M5ad, M5d, M5dn, M5n, M5zn, M6g, M6gd, `p3dn.24xlarge`, P4,  R5, R5a, R5ad, R5b, R5d, R5dn, R5n, R6g, R6gd,  T3, T3a, T4g, and z1d
-+ Bare metal: `a1.metal`,  `c5.metal`, `c5d.metal`, `c5n.metal`, `c6g.metal`, `c6gd.metal`,  `i3.metal`, `i3en.metal`, `m5.metal`, `m5d.metal`, `m5zn.metal`, `m6g.metal`, `m6gd.metal`, `mac1.metal`,  `r5.metal`, `r5b.metal`, `r5d.metal`, `r6g.metal`, `r6gd.metal`,  `u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, `u-18tb1.metal`, `u-24tb1.metal`, and `z1d.metal`
++ Virtualized: A1, C5, C5a, C5ad, C5d, C5n, C6g, C6gd, C6gn,  D3, D3en, G4, I3en, Inf1, M5, M5a, M5ad, M5d, M5dn, M5n, M5zn, M6g, M6gd, `p3dn.24xlarge`, P4,  R5, R5a, R5ad, R5b, R5d, R5dn, R5n, R6g, R6gd,  T3, T3a, T4g, X2gd, and z1d
++ Bare metal: `a1.metal`,  `c5.metal`, `c5d.metal`, `c5n.metal`, `c6g.metal`, `c6gd.metal`,  `i3.metal`, `i3en.metal`, `m5.metal`, `m5d.metal`, `m5dn.metal`, `m5n.metal`, `m5zn.metal`, `m6g.metal`, `m6gd.metal`, `mac1.metal`,  `r5.metal`, `r5b.metal`, `r5d.metal`, `r5dn.metal`, `r5n.metal`, `r6g.metal`, `r6gd.metal`,  `u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, `u-18tb1.metal`, `u-24tb1.metal`, `x2gd.metal`, and `z1d.metal`
 
 **Learn more**
 
@@ -245,7 +246,8 @@ The following table summarizes the networking and storage features supported by 
 | T4g | Yes | Yes | No | No | ENA | 
 | u\-xtb1\.metal | Yes | Yes | No | No | ENA | 
 |  X1  | No | No |  SSD \*  |  Yes  | ENA | 
-| X1e | No | No | SSD \* | Yes | ENA | 
+| X1e | No | Yes | SSD \* | Yes | ENA | 
+| X2gd | No | Yes | NVME \* | Yes | ENA | 
 | z1d | No | Yes | NVMe \* | Yes | ENA | 
 
 \* The root device volume must be an Amazon EBS volume\.

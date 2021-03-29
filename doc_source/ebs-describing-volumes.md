@@ -74,3 +74,5 @@ You can get additional information about your EBS volumes, such as how much disk
 Filesystem     Type      Size  Used Avail Use% Mounted on
 /dev/xvda1     xfs       8.0G  1.2G  6.9G  15% /
 ```
+
+For information about viewing free disk space on a Windows instance, see [View free disk space](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ebs-describing-volumes.html#ebs-view-free-disk-space) in the *Amazon EC2 User Guide for Windows Instances*\.

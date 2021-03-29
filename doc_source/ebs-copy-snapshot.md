@@ -33,7 +33,8 @@ If you copy a snapshot and encrypt it to a new CMK, a complete \(non\-incrementa
 **Limits**
 + Each account can have up to twenty concurrent snapshot copy requests to a single destination Region\.
 + User\-defined tags are not copied from the source snapshot to the new snapshot\. You can add user\-defined tags during or after the copy operation\. For more information, see [Tag your Amazon EC2 resources](Using_Tags.md)\.
-+ Snapshots created by the `CopySnapshot` action have an arbitrary volume ID that should not be used for any purpose\.
++ Snapshots created by the `CopySnapshot` action have an arbitrary volume IDthat should not be used for any purpose\.
++ Resource\-level permissions specified for the `CopySnapshot` action apply to the new snapshot only\. You cannot specify resource\-level permissions for the source snapshot\. For an example, see [Example: Copying snapshots](ExamplePolicies_EC2.md#iam-copy-snapshot)\.
 
 ## Incremental snapshot copying<a name="ebs-incremental-copy"></a>
 
@@ -88,7 +89,7 @@ Use the following procedure to copy a snapshot using the Amazon EC2 console\.
      You cannot strip encryption from an encrypted snapshot\.
 **Note**  
 If you copy a snapshot and encrypt it to a new CMK, a complete \(non\-incremental\) copy is always created, resulting in additional delay and storage costs\.
-   + **Master Key**: The customer master key \(CMK\) to be used to encrypt this snapshot\. The default key for your account is displayed initially, but you can optionally select from the master keys in your account or type/paste the ARN of a key from a different account\. You can create new master encryption keys in the IAM console [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\. 
+   + **Master Key**: The customer master key \(CMK\) to be used to encrypt this snapshot\. The default key for your account is displayed initially, but you can optionally select from the master keys in your account or type/paste the ARN of a key from a different account\. You can create new master encryption keys in the [AWS KMS console](https://console.aws.amazon.com/kms)\. 
 
 1. Choose **Copy**\.
 

@@ -4,9 +4,9 @@ The `unlimited` mode is a credit configuration option for burstable performance 
 
 ## How Unlimited burstable performance instances work<a name="how-burstable-performance-instances-unlimited-works"></a>
 
-If a burstable performance instance configured as `unlimited` depletes its CPU credit balance, it can spend *surplus* credits to burst beyond the [baseline](burstable-credits-baseline-concepts.md#baseline_performance)\. When its CPU utilization falls below the baseline, it uses the CPU credits that it earns to pay down the surplus credits that it spent earlier\. The ability to earn CPU credits to pay down surplus credits enables Amazon EC2 to average the CPU utilization of an instance over a 24\-hour period\. If the average CPU usage over a 24\-hour period exceeds the baseline, the instance is billed for the additional usage at a flat additional rate per vCPU\-hour\.
+If a burstable performance instance configured as `unlimited` depletes its CPU credit balance, it can spend *surplus* credits to burst beyond the [baseline](burstable-credits-baseline-concepts.md#baseline_performance)\. When its CPU utilization falls below the baseline, it uses the CPU credits that it earns to pay down the surplus credits that it spent earlier\. The ability to earn CPU credits to pay down surplus credits enables Amazon EC2 to average the CPU utilization of an instance over a 24\-hour period\. If the average CPU usage over a 24\-hour period exceeds the baseline, the instance is billed for the additional usage at a [flat additional rate](https://aws.amazon.com/ec2/pricing/on-demand/#T2.2FT3.2FT4g_Unlimited_Mode_Pricing) per vCPU\-hour\.
 
-The following graph shows the CPU usage of a `t3.large`\. The baseline CPU utilization for a `t3.large` is 30%\. If the instance runs at 30% CPU utilization or less on average over a 24\-hour period, there is no additional charge because the cost is already covered by the instance hourly price\. However, if the instance runs at 40% CPU utilization on average over a 24\-hour period, as shown in the graph, the instance is billed for the additional 10% CPU usage at a flat additional rate per vCPU\-hour\.
+The following graph shows the CPU usage of a `t3.large`\. The baseline CPU utilization for a `t3.large` is 30%\. If the instance runs at 30% CPU utilization or less on average over a 24\-hour period, there is no additional charge because the cost is already covered by the instance hourly price\. However, if the instance runs at 40% CPU utilization on average over a 24\-hour period, as shown in the graph, the instance is billed for the additional 10% CPU usage at a [flat additional rate](https://aws.amazon.com/ec2/pricing/on-demand/#T2.2FT3.2FT4g_Unlimited_Mode_Pricing) per vCPU\-hour\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/t3-cpu-usage.png)
 
@@ -42,8 +42,8 @@ The table provides the following information:
 + Column D shows the price of an `m5.large` per hour\.
 + Column E shows the price difference between the `t3.large` and the `m5.large`\. 
 + Column F shows the baseline utilization per vCPU of the `t3.large`, which is 30%\. At the baseline, the hourly cost of the instance covers the cost of the CPU usage\.
-+ Column G shows the flat additional rate per vCPU\-hour that an instance is charged if it bursts at 100% CPU after it has depleted its earned credits\.
-+ Column H shows the flat additional rate per vCPU\-minute that an instance is charged if it bursts at 100% CPU after it has depleted its earned credits\.
++ Column G shows the [flat additional rate](https://aws.amazon.com/ec2/pricing/on-demand/#T2.2FT3.2FT4g_Unlimited_Mode_Pricing) per vCPU\-hour that an instance is charged if it bursts at 100% CPU after it has depleted its earned credits\.
++ Column H shows the [flat additional rate](https://aws.amazon.com/ec2/pricing/on-demand/#T2.2FT3.2FT4g_Unlimited_Mode_Pricing) per vCPU\-minute that an instance is charged if it bursts at 100% CPU after it has depleted its earned credits\.
 + Column I shows the number of additional minutes that the `t3.large` can burst per hour at 100% CPU while paying the same price per hour as an `m5.large`\.
 + Column J shows the additional CPU usage \(in %\) over baseline that the instance can burst while paying the same price per hour as an `m5.large`\.
 + Column K shows the breakeven CPU usage \(in %\) that the `t3.large` can burst without paying more than the `m5.large`\. Anything above this, and the `t3.large` costs more than the `m5.large`\.
@@ -61,7 +61,7 @@ The following table shows the breakeven CPU usage \(in %\) for T3 instance types
 
 If the average CPU utilization of an instance is at or below the baseline, the instance incurs no additional charges\. Because an instance earns a [maximum number of credits](burstable-credits-baseline-concepts.md#burstable-performance-instances-credit-table) in a 24\-hour period \(for example, a `t3.micro` instance can earn a maximum of 288 credits in a 24\-hour period\), it can spend surplus credits up to that maximum without being charged\.
 
-However, if CPU utilization stays above the baseline, the instance cannot earn enough credits to pay down the surplus credits that it has spent\. The surplus credits that are not paid down are charged at a flat additional rate per vCPU\-hour\.
+However, if CPU utilization stays above the baseline, the instance cannot earn enough credits to pay down the surplus credits that it has spent\. The surplus credits that are not paid down are charged at a flat additional rate per vCPU\-hour\. For information about the rate, see [ T2/T3/T4g Unlimited Mode Pricing](https://aws.amazon.com/ec2/pricing/on-demand/#T2.2FT3.2FT4g_Unlimited_Mode_Pricing)\.
 
 Surplus credits that were spent earlier are charged when any of the following occurs:
 + The spent surplus credits exceed the [maximum number of credits](burstable-credits-baseline-concepts.md#burstable-performance-instances-credit-table) the instance can earn in a 24\-hour period\. Spent surplus credits above the maximum are charged at the end of the hour\.

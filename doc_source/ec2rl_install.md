@@ -12,6 +12,8 @@ The EC2Rescue for Linux tool can be installed on an Amazon EC2 Linux instance th
 + Software requirements:
   + Python 2\.7\.9\+ or 3\.2\+
 
+The `AWSSupport-TroubleshootSSH` runbook installs EC2Rescue for Linux and then uses the tool to check or attempt to fix common issues that prevent a remote connection to a Linux machine via SSH\. For more information, and to run this automation, see [AWSSupport\-TroubleshootSSH](https://docs.aws.amazon.com/systems-manager/latest/userguide/automation-awssupport-troubleshootssh.html)\.
+
 If your system has the required Python version, you can install the standard build\. Otherwise, you can install the bundled build, which includes a minimal copy of Python\.
 
 **To install the standard build**

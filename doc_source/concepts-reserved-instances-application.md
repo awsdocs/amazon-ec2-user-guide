@@ -81,13 +81,29 @@ For example, for a 1\-year Partial Upfront `t2.small` Reserved Instance, assume 
 121.32 = 60.00 + (0.007 * 8760)
 ```
 
+------
+#### [ New console ]
+
 **To view the fixed price values for Reserved Instances using the Amazon EC2 console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
 1. In the navigation pane, choose **Reserved Instances**\.
 
-1. Display the **Upfront Price** column by choosing **Show/Hide Columns** \(the gear\-shaped icon\) in the top right corner\.
+1. To display the **Upfront price** column, choose the settings icon \( ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/settings-icon.png) \) in the top\-right corner, toggle on **Upfront price**, and choose **Confirm**\.
+
+------
+#### [ Old console ]
+
+**To view the fixed price values for Reserved Instances using the Amazon EC2 console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Reserved Instances**\.
+
+1. To display the **Upfront Price** column, choose the settings icon \( ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/settings-icon.png) \) in the top\-right corner, select **Upfront Price**, and choose **Close**\.
+
+------
 
 **To view the fixed price values for Reserved Instances using the command line**
 + [describe\-reserved\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances.html) \(AWS CLI\)

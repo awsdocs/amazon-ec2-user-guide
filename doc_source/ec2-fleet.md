@@ -38,7 +38,7 @@ The following limitations apply to EC2 Fleet:
 
 The usual Amazon EC2 limits apply to instances launched by an EC2 Fleet, such as Spot request price limits, instance limits, and volume limits\. In addition, the following limits apply:
 + The number of active EC2 Fleets per AWS Region: 1,000 \* †
-+ The number of Spot Instance pools \(unique combination of instance type and subnet\): 300\* ‡
++ The number of Spot capacity pools \(unique combination of instance type and subnet\): 300\* ‡
 + The size of the user data in a launch specification: 16 KB †
 + The target capacity per EC2 Fleet: 10,000
 + The target capacity across all EC2 Fleets in a Region: 100,000 \*

@@ -64,7 +64,7 @@ With Amazon CloudWatch metrics integration, you can monitor EC2 usage against li
 
 The usual Amazon EC2 limits apply to instances launched by a Spot Fleet or an EC2 Fleet, such as Spot Instance limits and volume limits\. In addition, the following limits apply:
 + The number of active Spot Fleets and EC2 Fleets per Region: 1,000\*
-+ The number of Spot Instance pools \(unique combination of instance type and subnet\): 300\*
++ The number of Spot capacity pools \(unique combination of instance type and subnet\): 300\*
 + The size of the user data in a launch specification: 16 KB\*
 + The target capacity per Spot Fleet or EC2 Fleet: 10,000
 + The target capacity across all Spot Fleets and EC2 Fleets in a Region: 100,000

@@ -1,6 +1,6 @@
 # List and filter your resources<a name="Using_Filtering"></a>
 
-You can get a list of some types of resources using the Amazon EC2 console\. You can get a list of each type of resource using its corresponding command or API action\. If you have many resources, you can filter the results to include only the resources that match certain criteria\.
+You can get a list of some types of resources using the Amazon EC2 console\. You can get a list of each type of resource using its corresponding command or API action\. If you have many resources, you can filter the results to include, or exclude, only the resources that match certain criteria\.
 
 **Topics**
 + [List and filter resources using the console](#advancedsearch)
@@ -22,16 +22,28 @@ You can view the most common Amazon EC2 resource types using the console\. To vi
 
 1. In the navigation pane, choose the option that corresponds to the resource type\. For example, to list your instances, choose **Instances**\.
 
-1. The page displays all resources of the selected resource type\.
+   The page displays all resources of the selected resource type\.
 
 ### Filter resources using the console<a name="console-filter"></a>
 
-Search functionality differs slightly between the *old* and *new* Amazon EC2 console\.
+**To filter a list of resources**
+
+1. In the navigation pane, select a resource type \(for example, **Instances**\)\.
+
+1. Choose the search field\.
+
+1. Choose the filter from the list\.
+
+1. Choose a filter value\.
+
+1. When you are finished, remove the filter\.
+
+The search and filter functionality differs slightly between the *old* and *new* Amazon EC2 console\.
 
 #### New console<a name="console-filters-new"></a>
 
 The new console supports two types of filtering\.
-+ *API filtering* happens on the server side\. The filtering is applied on the API call and it reduces the number of resources returned by the server\. It allows for quick filtering across large sets of resources, and it can reduce data transfer time and cost between the server and the browser\.
++ *API filtering* happens on the server side\. The filtering is applied on the API call, which reduces the number of resources returned by the server\. It allows for quick filtering across large sets of resources, and it can reduce data transfer time and cost between the server and the browser\.
 + *Client filtering* happens on the client side\. It enables you to filter down on data that is already available in the browser \(in other words, data that has already been returned by the API\)\. Client filtering works well in conjunction with an API filter to filter down to smaller data sets in the browser\.
 
 The new Amazon EC2 console supports the following types of searches:
@@ -46,17 +58,32 @@ Searching by an attribute lets you search a specific attribute across all of you
 Attribute searches use either *API filtering* or *client filtering*, depending on the selected attribute\. When performing an attribute search, the attributes are grouped accordingly\.
 For example, you can search the **Instance state** attribute for all of your instances to return only instances that are in the `stopped` state\. To do this:  
 
-1. In the search field on the Instances screen, start entering `Instance state`\. As you enter characters, a list of matching attributes appears\.
+1. In the search field on the **Instances** screen, start entering `Instance state`\. As you enter the characters, the two types of filters appear for **Instance state**: **API filters** and **Client filters**\.
 
-1. Select **Instance state** from the list\. A list of possible values for the selected attribute appears\.
+1. To search on the server side, choose **Instance state** under **API filters**\. To search on the client side, choose **Instance state \(client\)** under **Client filters**\.
 
-1. Select **Stopped** from the list\.
+   A list of possible values for the selected attribute appears\.
+
+1. Choose **stopped** from the list\.
 
 You can use the following techniques to enhance or refine your searches:
 
 **Inverse search**  
-Inverse searches let you search for resources that do **not** match a specified value\. Inverse searches are performed by prefixing the search keyword with the exclamation mark \(\!\) character\. For example, to list all instances that are **not** assigned the security group named `launch-wizard-1`, search by the **Security group name** attribute, and for the keyword, enter `!launch-wizard-1`\.  
-Inverse search is supported with keyword searches and attribute searches on client filters only\. It is not supported with attribute searches on API filters\.
+Inverse searches let you search for resources that do **not** match a specified value\. Inverse searches are performed by prefixing the search keyword with the exclamation mark \(\!\) character\.  
+Inverse search is supported with keyword searches and attribute searches on *client* filters only\. It is not supported with attribute searches on API filters\.
+For example, you can search the **Instance state** attribute for all of your instances to exclude all instances that are in the `terminated` state\. To do this:  
+
+1. In the search field on the **Instances** screen, start entering `Instance state`\. As you enter the characters, the two types of filters appear for **Instance state**: **API filters** and **Client filters**\.
+
+1. Choose **Instance state \(client\)**\. Inverse search is only supported on *client* filters\.
+
+   A list of possible values for the selected attribute appears\.
+
+1. Enter **\!** \(exclamation mark\) to display the inverse filters\.
+
+1. Choose **\!terminated** from the list\.
+To filter instances based on an instance state attribute, you can also use the search icons \( ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/search.png) \) in the **Instance state** column\. The search icon with a plus sign \( **\+** \) displays all the instances that *match* that attribute\. The search icon with a minus sign \( **\-** \) *excludes* all instances that match that attribute\.  
+Here is another example of using the inverse search: To list all instances that are **not** assigned the security group named `launch-wizard-1`, search by the **Security group name** attribute, and for the keyword, enter `!launch-wizard-1`\.
 
 **Partial search**  
 With partial searches, you can search for partial string values\. To perform a partial search, enter only a part of the keyword that you want to search for\. For example, to search for all `t2.micro`, `t2.small`, and `t2.medium` instances, search by the **Instance Type** attribute, and for the keyword, enter `t2`\.  
@@ -103,18 +130,6 @@ Regular expressions are useful when you need to match the values in a field with
 
 Combining searches  <a name="combined"></a>
 In general, multiple filters with the same attribute are automatically joined with `OR`\. For example, searching for `Instance State : Running` and `Instance State : Stopped` returns all instances that are either running OR stopped\. To join search with `AND`, search across different attributes\. For example, searching for `Instance State : Running` and `Instance Type : c4.large` returns only instances that are of type `c4.large` AND that are in the stopped state\.
-
-**To filter a list of resources**
-
-1. In the navigation pane, select a resource type \(for example, **Instances**\)\.
-
-1. Choose the search field\.
-
-1. Choose the filter from in the list\.
-
-1. Specify a filter value\.
-
-1. When you are finished, remove the filter\.
 
 ## List and filter using the CLI and API<a name="Filtering_Resources_CLI"></a>
 

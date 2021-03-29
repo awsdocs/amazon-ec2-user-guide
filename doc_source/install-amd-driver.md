@@ -95,6 +95,7 @@ These downloads are available to AWS customers only\. By downloading, you agree 
    + For Ubuntu:
 
      ```
+     $ sudo apt install linux-modules-extra-$(uname -r) -y
      $ cat RPM-GPG-KEY-amdgpu | sudo apt-key add -
      ```
 

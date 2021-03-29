@@ -597,7 +597,7 @@ The following example configures the EC2 Fleet to launch a replacement Spot Inst
 **Note**  
 When a replacement instance is launched, the instance marked for rebalance is not automatically terminated\. You can terminate it, or you can leave it running\. You are charged for both instances while they are running\. 
 
-The effectiveness of the Capacity Rebalancing strategy depends on the number of Spot Instance pools specified in the EC2 Fleet request\. We recommend that you configure the fleet with a diversified set of instance types and Availability Zones, and for `AllocationStrategy`, specify `capacity-optimized`\. For more information about what you should consider when configuring an EC2 Fleet for Capacity Rebalancing, see [Capacity Rebalancing](ec2-fleet-configuration-strategies.md#ec2-fleet-capacity-rebalance)\.
+The effectiveness of the Capacity Rebalancing strategy depends on the number of Spot capacity pools specified in the EC2 Fleet request\. We recommend that you configure the fleet with a diversified set of instance types and Availability Zones, and for `AllocationStrategy`, specify `capacity-optimized`\. For more information about what you should consider when configuring an EC2 Fleet for Capacity Rebalancing, see [Capacity Rebalancing](ec2-fleet-configuration-strategies.md#ec2-fleet-capacity-rebalance)\.
 
 ```
 {

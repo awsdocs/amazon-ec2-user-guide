@@ -1,6 +1,6 @@
 # Amazon EC2 Mac instances<a name="ec2-mac-instances"></a>
 
-Mac1 instances natively support the macOS operating system\. They are built on Mac mini hardware and powered by 3\.2 GHz Intel eighth\-generation \(Coffee Lake\) Core i7 processors\. These instances are ideal for developing, building, testing, and signing applications for Apple devices, such as iPhone, iPad, iPod, Mac, Apple Watch, and Apple TV\. You can connect to your Mac instance using SSH or Virtual Network Computing \(VNC\)\.
+Mac1 instances natively support the macOS operating system\. They are built on Mac mini hardware and powered by 3\.2 GHz Intel eighth\-generation \(Coffee Lake\) Core i7 processors\. These instances are ideal for developing, building, testing, and signing applications for Apple devices, such as iPhone, iPad, iPod, Mac, Apple Watch, and Apple TV\. You can connect to your Mac instance using SSH or Apple Remote Desktop \(ARD\)\.
 
 For more information, see [Amazon EC2 Mac Instances](https://aws.amazon.com/mac)\.
 
@@ -9,19 +9,21 @@ For more information, see [Amazon EC2 Mac Instances](https://aws.amazon.com/mac)
 + [Launch a Mac instance using the console](#mac-instance-launch)
 + [Launch a Mac instance using the AWS CLI](#mac-instance-launch-cli)
 + [Connect to your instance using SSH](#mac-instance-ssh)
-+ [Connect to your instance using VNC](#mac-instance-vnc)
++ [Connect to your instance using Apple Remote Desktop](#mac-instance-vnc)
 + [EC2 macOS AMIs](#ec2-macos-images)
 + [Update the operating system and software](#mac-instance-updates)
 + [EC2 macOS Init](#ec2-macos-init)
 + [EC2 System Monitoring for macOS](#mac-instance-system-monitor)
-+ [Clean up your instance](#mac-instance-release)
++ [Increase the size of an EBS volume on your Mac instance](#mac-instance-increase-volume)
++ [Stop your Mac instance](#mac-instance-stop)
++ [Release the Dedicated Host for your Mac instance](#mac-instance-release-dedicated-host)
 
 ## Considerations<a name="mac-instance-considerations"></a>
 
 The following considerations apply to Mac instances:
 + Mac instances are available only as bare metal instances on Dedicated Hosts, with a minimum allocation period of 24 hours before you can release the Dedicated Host\. You can launch one Mac instance per Dedicated Host\. You can share the Dedicated Host with the AWS accounts or organizational units within your AWS organization, or the entire AWS organization\.
 + Mac instances are available only as On\-Demand Instances\. They are not available as Spot Instances or Reserved Instances\. You can save money on Mac instances by purchasing a [Savings Plan](https://docs.aws.amazon.com/savingsplans/latest/userguide/)\.
-+ Mac instances run either macOS Mojave \(version 10\.14\) or macOS Catalina \(version 10\.15\)\.
++ Mac instances run either macOS Mojave \(version 10\.14\), macOS Catalina \(version 10\.15\), or macOS Big Sur \(version 11\)\.
 + If you attach an EBS volume to a running Mac instance, you must reboot the instance to make the volume available\.
 + If you attach a network interface to a running Mac instance, you must reboot the instance to make the network interface available\.
 + AWS does not manage or support the internal SSD on the Apple hardware\. We strongly recommend that you use Amazon EBS volumes instead\. EBS volumes provide the same elasticity, availability, and durability benefits on Mac instances as they do on any other EC2 instance\.
@@ -43,7 +45,7 @@ You can launch a Mac instance using the AWS Management Console as described in t
 
    1. For **Instance family**, choose **mac1**\. If **mac1** doesn’t appear in the list, it’s not supported in the currently selected Region\.
 
-   1. For **Support multiple instance types**, clear **Enable**\. For **Instance type**, select **mac1\.metal**\.
+   1. For **Instance type**, select **mac1\.metal**\.
 
    1. For **Availability Zone**, choose the Availability Zone for the Dedicated Host\.
 
@@ -70,13 +72,13 @@ You can launch a Mac instance using the AWS Management Console as described in t
 Use the following [allocate\-hosts](https://docs.aws.amazon.com/cli/latest/reference/ec2/allocate-hosts.html) command to allocate a Dedicated Host for your Mac instance\.
 
 ```
-aws ec2 allocate-hosts --instance-type mac1.metal --availability-zone us-east-1b --quantity 1
+aws ec2 allocate-hosts --region us-east-1 --instance-type mac1.metal --availability-zone us-east-1b --auto-placement "on" --quantity 1
 ```
 
 Use the following [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command to launch a Mac instance\.
 
 ```
-aws ec2 run-instances --instance-type mac1.metal --placement Tenancy=host --availability-zone us-east-1b --image-id ami_id --key-name my-key-pair
+aws ec2 run-instances --region us-east-1 --instance-type mac1.metal --placement Tenancy=host --image-id ami_id --key-name my-key-pair
 ```
 
 The initial state of an instance is `pending`\. The instance is ready when its state changes to `running` and it passes status checks\. Use the following [describe\-instance\-status](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-status.html) command to display status information for your instance:
@@ -142,13 +144,13 @@ Use the following procedure to connect to your Mac instance using an SSH client\
    ssh -i /path/my-key-pair.pem ec2-user@my-instance-public-dns-name
    ```
 
-## Connect to your instance using VNC<a name="mac-instance-vnc"></a>
+## Connect to your instance using Apple Remote Desktop<a name="mac-instance-vnc"></a>
 
-Use the following procedure to connect to your instance using Virtual Network Computing \(VNC\)\.
+Use the following procedure to connect to your instance using Apple Remote Desktop \(ARD\)\.
 
-**To connect to your instance using VNC**
+**To connect to your instance using ARD**
 
-1. Verify that your local computer has a VNC client installed\. On macOS, you can leverage the built\-in Screen Sharing application\. Otherwise, search for a VNC client for your operating system and install it\.
+1. Verify that your local computer has an ARD client or a VNC client that supports ARD installed\. On macOS, you can leverage the built\-in Screen Sharing application\. Otherwise, search for ARD for your operating system and install it\.
 
 1. From your local computer, [connect to your instance using SSH](#mac-instance-ssh)\.
 
@@ -158,7 +160,7 @@ Use the following procedure to connect to your instance using Virtual Network Co
    [ec2-user ~]$ sudo passwd ec2-user
    ```
 
-1. Start the VNC server and enable remote desktop access as follows\.
+1. Start the Apple Remote Desktop agent and enable remote desktop access as follows\.
 
    ```
    [ec2-user ~]$ sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart \
@@ -166,13 +168,13 @@ Use the following procedure to connect to your instance using Virtual Network Co
    -restart -agent -privs -all
    ```
 
-1. From your computer, connect to your instance using the following ssh command\. In addition to the options shown in the previous section, use the \-L option to enable port forwarding and forward all traffic on local port 5900 to the VNC server on the instance\.
+1. From your computer, connect to your instance using the following ssh command\. In addition to the options shown in the previous section, use the \-L option to enable port forwarding and forward all traffic on local port 5900 to the ARD server on the instance\.
 
    ```
    ssh -L 5900:localhost:5900 -i /path/my-key-pair.pem ec2-user@my-instance-public-dns-name
    ```
 
-1. From your local computer, use the VNC client to connect to localhost on port 5900\. For example, use the Screen Sharing application on macOS as follows:
+1. From your local computer, use the ARD client or VNC client that supports ARD to connect to localhost on port 5900\. For example, use the Screen Sharing application on macOS as follows:
 
    1. Open Finder and launch the Screen Sharing application\.
 
@@ -214,7 +216,7 @@ You can install operating system updates from Apple using the softwareupdate com
    To install all updates instead, use the following command\.
 
    ```
-   [ec2-user ~]$ sudo softwareupdate --install
+   [ec2-user ~]$ sudo softwareupdate --install --all
    ```
 
 System administrators can use AWS Systems Manager to roll out pre\-approved operating system updates\. For more information, see the [AWS Systems Manager User Guide](https://docs.aws.amazon.com/systems-manager/latest/userguide/)\.
@@ -263,11 +265,37 @@ EC2 System Monitoring for macOS provides CPU utilization metrics to Amazon Cloud
 sudo setup-ec2monitoring [enable | disable]
 ```
 
-## Clean up your instance<a name="mac-instance-release"></a>
+## Increase the size of an EBS volume on your Mac instance<a name="mac-instance-increase-volume"></a>
 
-When you are finished with your Mac instance, you can clean up by releasing the Dedicated Host\. Before you can release the Dedicated Host, you must stop or terminate the Mac instance\. You cannot release the host until the allocation period exceeds the 24\-hour minimum\.
+You can increase the size of your Amazon EBS volumes on your Mac instance\. For more information, see [Amazon EBS Elastic Volumes](ebs-modify-volume.md)\.
 
-**To release a Dedicated Host**
+After you increase the size of the volume, you must increase the size of your APFS container as follows\.
+
+**To make increased disk space available for use**
+
+1. Copy and paste the following commands\. When prompted, enter a 'y'\.
+
+   ```
+   PDISK=$(diskutil list physical external | head -n1 | cut -d" " -f1)
+   APFSCONT=$(diskutil list physical external | grep "Apple_APFS" | tr -s " " | cut -d" " -f8)
+   sudo diskutil repairDisk $PDISK
+   ```
+
+1. Copy and paste the following command\.
+
+   ```
+   sudo diskutil apfs resizeContainer $APFSCONT 0
+   ```
+
+## Stop your Mac instance<a name="mac-instance-stop"></a>
+
+When you stop a Mac instance, it remains in the `stopping` state for about 15 minutes before it enters the `stopped` state\. After you stop or terminate a Mac instance, the Dedicated Host remains in the `pending` state for up to 200 minutes\. You can't start the stopped Mac instance or launch another Mac instance until the Dedicated Host enters the `available` state\.
+
+## Release the Dedicated Host for your Mac instance<a name="mac-instance-release-dedicated-host"></a>
+
+When you are finished with your Mac instance, you can release the Dedicated Host\. Before you can release the Dedicated Host, you must stop or terminate the Mac instance\. You cannot release the host until the allocation period exceeds the 24\-hour minimum\.
+
+**To release the Dedicated Host**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 

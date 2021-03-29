@@ -13,7 +13,7 @@ We recommend that you use the Amazon EC2 console, a command line tool, or the Am
 
 **To reboot an instance using the console**
 
-1. Open the Amazon EC2 console\.
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
 1. In the navigation pane, choose **Instances**\.
 
@@ -26,7 +26,7 @@ We recommend that you use the Amazon EC2 console, a command line tool, or the Am
 
 **To reboot an instance using the console**
 
-1. Open the Amazon EC2 console\.
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
 1. In the navigation pane, choose **Instances**\.
 

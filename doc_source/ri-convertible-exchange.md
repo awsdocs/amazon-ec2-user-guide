@@ -110,15 +110,37 @@ You can exchange your Convertible Reserved Instances using the Amazon EC2 consol
 
 You can search for Convertible Reserved Instances offerings and select your new configuration from the choices provided\.
 
+------
+#### [ New console ]
+
 **To exchange Convertible Reserved Instances using the Amazon EC2 console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
 1. Choose **Reserved Instances**, select the Convertible Reserved Instances to exchange, and choose **Actions**, **Exchange Reserved Instance**\.
 
-1. Select the attributes of the desired configuration using the drop\-down menus, and choose **Find Offering**\. 
+1. Select the attributes of the desired configuration, and choose **Find offering**\. 
 
-1. Select a new Convertible Reserved Instance The **Instance Count** column displays the number of Reserved Instances that you receive for the exchange\. When you have selected a Convertible Reserved Instance that meets your needs, choose **Exchange**\.
+1. Select a new Convertible Reserved Instance\. At the bottom of the screen, you can view the number of Reserved Instances that you receive for the exchange, and any additional costs\.
+
+1. When you have selected a Convertible Reserved Instance that meets your needs, choose **Review**\.
+
+1. Choose **Exchange**, and then **Close**\.
+
+------
+#### [ Old console ]
+
+**To exchange Convertible Reserved Instances using the Amazon EC2 console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. Choose **Reserved Instances**, select the Convertible Reserved Instances to exchange, and choose **Actions**, **Exchange Reserved Instance**\.
+
+1. Select the attributes of the desired configuration, and choose **Find Offering**\. 
+
+1. Select a new Convertible Reserved Instance\. The **Instance Count** column displays the number of Reserved Instances that you receive for the exchange\. When you have selected a Convertible Reserved Instance that meets your needs, choose **Exchange**\.
+
+------
 
 The Reserved Instances that were exchanged are retired, and the new Reserved Instances are displayed in the Amazon EC2 console\. This process can take a few minutes to propagate\.
 

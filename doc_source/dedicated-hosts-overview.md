@@ -2,7 +2,7 @@
 
 An Amazon EC2 Dedicated Host is a physical server with EC2 instance capacity fully dedicated to your use\. Dedicated Hosts allow you to use your existing per\-socket, per\-core, or per\-VM software licenses, including Windows Server, Microsoft SQL Server, SUSE, and Linux Enterprise Server\.
 
-For information about the configurations supported on Dedicated Hosts, see the [Dedicated Hosts Configuration Table](http://aws.amazon.com/ec2/dedicated-hosts/pricing/#host-configuration)\.
+For information about the configurations supported on Dedicated Hosts, see [Dedicated Hosts Configuration](http://aws.amazon.com/ec2/dedicated-hosts/pricing/#host-configuration)\.
 
 **Topics**
 + [Differences between Dedicated Hosts and Dedicated Instances](#dedicated-hosts-dedicated-instances)
@@ -50,16 +50,20 @@ To track how your images are used in AWS, enable host recording in AWS Config\. 
 
 ## Dedicated Host instance capacity<a name="dedicated-hosts-limits"></a>
 
-Support for multiple instance types on the same Dedicated Host is available for the following instance families: `c5`, `m5`, `r5`, `c5n`, `r5n`, and `m5n`\. For example, when you allocate an `r5` Dedicated Host, you can use a host with 2 sockets and 48 physical cores on which you can run different instance types, such as `r5.2xlarge` and `r5.4xlarge`\. You can run any number of instances up to the core capacity associated with the host\. For example, the table below shows the different instance type combinations you can run on a Dedicated Host\.
+Support for multiple instance sizes on the same Dedicated Host is available for the following instance families: `A1`, `C5`, `M5`, `R5`, `C5n`, `R5n`, and `M5n`\. Other instance families support only a single instance size on the same Dedicated Host\.
+
+For example, when you allocate an `R5` Dedicated Host, it has 2 sockets and 48 physical cores on which you can run different instance sizes, such as `r5.2xlarge` and `r5.4xlarge`, up to the core capacity associated with the host\. However, for each instance family, there is a limit on the number of instances that can be run for each instance size\. For example, an `R5` Dedicated Host supports up to 2 `r5.8xlarge` instances, which uses 32 of the physical cores\. Additional `R5` instances of another size can then be used to fill the host to core capacity\. For the supported number of instance sizes for each instance family, see [Dedicated Hosts Configuration](http://aws.amazon.com/ec2/dedicated-hosts/pricing/#host-configuration)\.
+
+The following table shows examples of different instance size combinations that you can run on a Dedicated Host\.
 
 
-| Instance family | Example instance type combinations | 
+| Instance family | Example instance size combinations | 
 | --- | --- | 
 | R5 |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-hosts-overview.html)  | 
 | C5 |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-hosts-overview.html)  | 
 | M5 |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-hosts-overview.html)  | 
 
-Other instance families support only a single instance type on the same Dedicated Host\. For more information about the instance families and instance type configurations supported on Dedicated Hosts see [Amazon EC2 Dedicated Host Pricing](http://aws.amazon.com/ec2/dedicated-hosts/pricing/)\.
+For more information about the instance families and instance size configurations supported on Dedicated Hosts, see the [Dedicated Hosts Configuration Table](http://aws.amazon.com/ec2/dedicated-hosts/pricing/#host-configuration)\.
 
 ## Dedicated Hosts restrictions<a name="dedicated-hosts-limitations"></a>
 

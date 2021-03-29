@@ -92,7 +92,7 @@ For more information, see `CPUCreditBalance` in the [CloudWatch metrics table](b
 
 ## Baseline utilization<a name="baseline_performance"></a>
 
-The *baseline utilization* is the level at which the CPU can be utilized for a net credit balance of zero, when the number CPU credits being earned matches the number of CPU credits being used\. Baseline utilization is also known as *the baseline*\.
+The *baseline utilization* is the level at which the CPU can be utilized for a net credit balance of zero, when the number of CPU credits being earned matches the number of CPU credits being used\. Baseline utilization is also known as *the baseline*\.
 
 Baseline utilization is expressed as a percentage of vCPU utilization, which is calculated as follows:
 

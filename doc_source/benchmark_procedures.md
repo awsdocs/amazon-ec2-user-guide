@@ -118,7 +118,7 @@ Run fio on the RAID 0 array that you created\.
 The following command performs 16 KB random write operations\.
 
 ```
-[ec2-user ~]$ sudo fio --directory=/mnt/p_iops_vol0 --name fio_test_file --direct=1 --rw=randwrite --bs=16k --size=1G --numjobs=16 --time_based --runtime=180 --group_reporting --norandommap
+[ec2-user ~]$ sudo fio --directory=/mnt/p_iops_vol0 --ioengine=psync --name fio_test_file --direct=1 --rw=randwrite --bs=16k --size=1G --numjobs=16 --time_based --runtime=180 --group_reporting --norandommap
 ```
 
 The following command performs 16 KB random read operations\.

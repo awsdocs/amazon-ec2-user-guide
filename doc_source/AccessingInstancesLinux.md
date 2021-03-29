@@ -18,7 +18,7 @@ To find the public DNS name or IP address of your instance and the user name tha
 Your local computer might have an SSH client installed by default\. You can verify this by typing ssh at the command line\. If your computer doesn't recognize the command, you can install an SSH client\.  
 + Recent versions of Windows Server 2019 and Windows 10 \- OpenSSH is included as an installable component\. For more information, see [OpenSSH in Windows](https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_overview)\.
 + Earlier versions of Windows \- Download and install OpenSSH\. For more information, see [Win32\-OpenSSH](https://github.com/PowerShell/Win32-OpenSSH/wiki)\.
-+ Linux and macOS X \- Download and install OpenSSH\. For more information, see [http://www\.openssh\.com](http://www.openssh.com/)\.
++ Linux and macOS X \- Download and install OpenSSH\. For more information, see [https://www\.openssh\.com](https://www.openssh.com/)\.
 
 ## Connect to your Linux instance using an SSH client<a name="AccessingInstancesLinuxSSHClient"></a>
 
@@ -56,7 +56,7 @@ Use the following procedure to connect to your Linux instance using an SSH clien
    Warning: Permanently added 'ec2-198-51-100-1.compute-1.amazonaws.com' (ECDSA) to the list of known hosts.
    ```
 
-## Transfer files to Linux instances from Linux using SCP<a name="AccessingInstancesLinuxSCP"></a>
+## Transfer files to Linux instances using an SCP client<a name="AccessingInstancesLinuxSCP"></a>
 
 One way to transfer files between your local computer and a Linux instance is to use the secure copy protocol \(SCP\)\. This section describes how to transfer files with SCP\. The procedure is similar to the procedure for connecting to an instance with SSH\. 
 
@@ -66,25 +66,25 @@ One way to transfer files between your local computer and a Linux instance is to
   The general prerequisites for transferring files to an instance are the same as the general prerequisites for connecting to an instance\. For more information, see [General prerequisites for connecting to your instance](connection-prereqs.md)\.
 + **Install an SCP client**
 
-  Most Linux, Unix, and Apple computers include an SCP client by default\. If yours doesn't, the OpenSSH project provides a free implementation of the full suite of SSH tools, including an SCP client\. For more information, see [http://www\.openssh\.org](http://www.openssh.org/)\.
+  Most Linux, Unix, and Apple computers include an SCP client by default\. If yours doesn't, the OpenSSH project provides a free implementation of the full suite of SSH tools, including an SCP client\. For more information, see [https://www\.openssh\.com](https://www.openssh.com)\.
 
-The following procedure steps you through using SCP to transfer a file\. If you've already connected to the instance with SSH and have verified its fingerprints, you can start with the step that contains the SCP command \(step 4\)\.
+The following procedure steps you through using SCP to transfer a file using the instance's public DNS name, or the IPv6 address if your instance has one\.
 
-**To use SCP to transfer a file**
+**To use SCP to transfer files between your computer and your instance**
 
-1. Transfer a file to your instance using the instance's public DNS name, or the IPv6 address if your instance has one\. For example, if the name of your private key file is `my-key-pair`, the file to transfer is `SampleFile.txt`, the user name for your instance is `my-instance-user-name`, and the public DNS name of the instance is `my-instance-public-dns-name`, or `my-instance-IPv6-address` if your instance has an IPv6 address, use one of the following commands to copy the file to the `my-instance-user-name` home directory\.
-   + \(Public DNS\) To transfer a file to your instance using your instance's public DNS name, enter the following command\. 
-
-     ```
-     scp -i /path/my-key-pair.pem /path/SampleFile.txt my-instance-user-name@my-instance-public-dns-name:~
-     ```
-   + \(IPv6\) Alternatively, if your instance has an IPv6 address, to transfer a file using the instance's IPv6 address, enter the following command\. The IPv6 address must be enclosed in square brackets \(`[ ]`\), which must be escaped \(`\`\)\.
+1. Determine the location of the source file on your computer and the destination path on the instance\. In the following examples, the name of the private key file is `my-key-pair.pem`, the file to transfer is `my-file.txt`, the user name for the instance is ec2\-user, the public DNS name of the instance is `my-instance-public-dns-name`, and the IPv6 address of the instance is `my-instance-IPv6-address`\.
+   + \(Public DNS\) To transfer a file to the destination on the instance, enter the following command from your computer\.
 
      ```
-     scp -i /path/my-key-pair.pem /path/SampleFile.txt my-instance-user-name@\[my-instance-IPv6-address\]:~
+     scp -i /path/my-key-pair.pem /path/my-file.txt ec2-user@my-instance-public-dns-name:path/
+     ```
+   + \(IPv6\) To transfer a file to the destination on the instance if the instance has an IPv6 address, enter the following command from your computer\. The IPv6 address must be enclosed in square brackets \(`[ ]`\), which must be escaped \(`\`\)\.
+
+     ```
+     scp -i /path/my-key-pair.pem /path/my-file.txt ec2-user@\[my-instance-IPv6-address\]:path/
      ```
 
-   You see a response like the following:
+1. If you haven't already connected to the instance using SSH, you see a response like the following:
 
    ```
    The authenticity of host 'ec2-198-51-100-1.compute-1.amazonaws.com (10.254.142.33)'
@@ -93,34 +93,26 @@ The following procedure steps you through using SCP to transfer a file\. If you'
    Are you sure you want to continue connecting (yes/no)?
    ```
 
-1. \(Optional\) Verify that the fingerprint in the security alert matches the fingerprint that you previously obtained in [\(Optional\) Get the instance fingerprint](connection-prereqs.md#connection-prereqs-fingerprint)\. If these fingerprints don't match, someone might be attempting a "man\-in\-the\-middle" attack\. If they match, continue to the next step\.
+   \(Optional\) You can optionally verify that the fingerprint in the security alert matches the instance fingerprint\. For more information, see [\(Optional\) Get the instance fingerprint](connection-prereqs.md#connection-prereqs-fingerprint)\.
 
-1. Enter **yes**\.
+   Enter **yes**\.
 
-   You see a response like the following:
+1. If the transfer is successful, the response is similar to the following:
 
    ```
    Warning: Permanently added 'ec2-198-51-100-1.compute-1.amazonaws.com' (RSA) 
    to the list of known hosts.
-   Sending file modes: C0644 20 SampleFile.txt
-   Sink: C0644 20 SampleFile.txt
-   SampleFile.txt                                100%   20     0.0KB/s   00:00
+   my-file.txt                                100%   480     24.4KB/s   00:00
    ```
 
-   If you receive a "bash: scp: command not found" error, you must first install scp on your Linux instance\. For some operating systems, this is located in the `openssh-clients` package\. For Amazon Linux variants, such as the Amazon ECS\-optimized AMI, use the following command to install scp:
-
-   ```
-   [ec2-user ~]$ sudo yum install -y openssh-clients
-   ```
-
-1. To transfer files in the other direction \(from your Amazon EC2 instance to your local computer\), reverse the order of the host parameters\. For example, to transfer the `SampleFile.txt` file from your EC2 instance back to the home directory on your local computer as `SampleFile2.txt`, use of the following commands on your local computer\.
-   + \(Public DNS\) To transfer a file from your instance using your instance's public DNS name, enter the following command\. 
+1. To transfer a file in the other direction \(from your Amazon EC2 instance to your computer\), reverse the order of the host parameters\. For example, you can transfer `my-file.txt` from your EC2 instance to the a destination on your local computer as `my-file2.txt`, as shown in the following examples\.
+   + \(Public DNS\) To transfer a file to a destination on your computer, enter the following command from your computer\.
 
      ```
-     scp -i /path/my-key-pair.pem my-instance-user-name@my-instance-public-dns-name:~/SampleFile.txt ~/SampleFile2.txt
+     scp -i /path/my-key-pair.pem ec2-user@my-instance-public-dns-name:path/my-file.txt path/my-file2.txt
      ```
-   + \(IPv6\) Alternatively, if your instance has an IPv6 address, to transfer a file using the instance's IPv6 address, enter the following command\. The IPv6 address must be enclosed in square brackets \(`[ ]`\), which must be escaped \(`\`\)\.
+   + \(IPv6\) To transfer a file to a destination on your computer if the instance has an IPv6 address, enter the following command from your computer\. The IPv6 address must be enclosed in square brackets \(`[ ]`\), which must be escaped \(`\`\)\.
 
      ```
-     scp -i /path/my-key-pair.pem my-instance-user-name@\[my-instance-IPv6-address\]:~/SampleFile.txt ~/SampleFile2.txt
+     scp -i /path/my-key-pair.pem ec2-user@\[my-instance-IPv6-address\]:path/my-file.txt path/my-file2.txt
      ```

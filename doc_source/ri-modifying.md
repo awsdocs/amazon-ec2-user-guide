@@ -81,22 +81,24 @@ To calculate the instance size footprint of a Reserved Instance, multiply the nu
 
 | Instance size | Normalization factor | 
 | --- | --- | 
-|  nano  |  0\.25  | 
-|  micro  |  0\.5  | 
-|  small  |  1  | 
-|  medium  |  2  | 
-|  large  |  4  | 
-|  xlarge  |  8  | 
-|  2xlarge  |  16  | 
-|  4xlarge  |  32  | 
-|  8xlarge  |  64  | 
-|  9xlarge  |  72  | 
-|  10xlarge  |  80  | 
-|  12xlarge  |  96  | 
-|  16xlarge  |  128  | 
-|  18xlarge  |  144  | 
-|  24xlarge  |  192  | 
-|  32xlarge  |  256  | 
+| nano | 0\.25 | 
+| micro | 0\.5 | 
+| small | 1 | 
+| medium | 2 | 
+| large | 4 | 
+| xlarge | 8 | 
+| 2xlarge | 16 | 
+| 3xlarge | 24 | 
+| 4xlarge | 32 | 
+| 6xlarge | 48 | 
+| 8xlarge | 64 | 
+| 9xlarge | 72 | 
+| 10xlarge | 80 | 
+| 12xlarge | 96 | 
+| 16xlarge | 128 | 
+| 18xlarge | 144 | 
+| 24xlarge | 192 | 
+| 32xlarge | 256 | 
 
 You can allocate your reservations into different instance sizes across the same instance family as long as the instance size footprint of your reservation remains the same\. For example, you can divide a reservation for one `t2.large` \(1 @ 4 units\) instance into four `t2.small` \(4 @ 1 unit\) instances\. Similarly, you can combine a reservation for four `t2.small` instances into one `t2.large` instance\. However, you cannot change your reservation for two `t2.small` instances into one `t2.large` instance because the footprint of the new reservation \(4 units\) is larger than the footprint of the original reservation \(2 units\)\.
 
@@ -115,15 +117,13 @@ You can modify a reservation with `metal` instances using other sizes within the
 The following table describes the normalization factor for the bare metal instance sizes in the instance families that have bare metal instances\. The normalization factor for `metal` instances depends on the instance family, unlike the other instance sizes\.
 
 
-| Bare metal instance size | Normalization factor | 
+| Normalization factor | Instance sizes | 
 | --- | --- | 
-| c5\.metal | 192 | 
-| i3\.metal | 128 | 
-| r5\.metal | 192 | 
-| r5d\.metal | 192 | 
-| z1d\.metal | 96 | 
-| m5\.metal | 192 | 
-| m5d\.metal | 192 | 
+| 32 | a1\.metal | 
+| 96 |  m5zn\.metal \| z1d\.metal  | 
+| 128 |  c6g\.metal \| c6gd\.metal \| g4dn\.metal \| i3\.metal \| m6g\.metal \| m6gd\.metal \| r6g\.metal \| r6gd\.metal \| x2gd\.metal  | 
+| 144 | c5n\.metal | 
+| 192 |  c5\.metal \| c5d\.metal \| i3en\.metal \| m5\.metal \| m5d\.metal \| m5dn\.metal \| m5n\.metal \| r5\.metal \| r5b\.metal \| r5d\.metal \| r5dn\.metal \| r5n\.metal  | 
 
 For example, an `i3.metal` instance has a normalization factor of 128\. If you purchase an `i3.metal` default tenancy Amazon Linux/Unix Reserved Instance, you can divide the reservation as follows:
 + An `i3.16xlarge` is the same size as an `i3.metal` instance, so its normalization factor is 128 \(128/1\)\. The reservation for one `i3.metal` instance can be modified into one `i3.16xlarge` instance\.
@@ -133,6 +133,38 @@ For example, an `i3.metal` instance has a normalization factor of 128\. If you p
 ## Submit modification requests<a name="ri-modification-process"></a>
 
 Before you modify your Reserved Instances, ensure that you have read the applicable [restrictions](#ri-modification-limits)\. Before you modify the instance size, calculate the total [instance size footprint](#ri-modification-instancemove) of the original reservations that you want to modify and ensure that it matches the total instance size footprint of your new configurations\.
+
+------
+#### [ New console ]
+
+**To modify your Reserved Instances using the AWS Management Console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. On the **Reserved Instances** page, select one or more Reserved Instances to modify, and choose **Actions**, **Modify Reserved Instances**\.
+**Note**  
+If your Reserved Instances are not in the active state or cannot be modified, **Modify Reserved Instances** is disabled\.
+
+1. The first entry in the modification table displays attributes of the selected Reserved Instances, and at least one target configuration beneath it\. The **Units** column displays the total instance size footprint\. Choose **Add** for each new configuration to add\. Modify the attributes as needed for each configuration\.
+   + **Scope**: Choose whether the configuration applies to an Availability Zone or to the whole Region\.
+   + **Availability Zone**: Choose the required Availability Zone\. Not applicable for regional Reserved Instances\.
+   + **Instance type**: Select the required instance type\. The combined configurations must equal the instance size footprint of your original configurations\.
+   + **Count**: Specify the number of instances\. To split the Reserved Instances into multiple configurations, reduce the count, choose **Add**, and specify a count for the additional configuration\. For example, if you have a single configuration with a count of 10, you can change its count to 6 and add a configuration with a count of 4\. This process retires the original Reserved Instance after the new Reserved Instances are activated\.
+
+1. Choose **Continue**\.
+
+1. To confirm your modification choices when you finish specifying your target configurations, choose **Submit modifications**\.
+
+1. You can determine the status of your modification request by looking at the **State** column in the Reserved Instances screen\. The following are the possible states\.
+   + **active* \(pending modification\)*** — Transition state for original Reserved Instances
+   + **retired* \(pending modification\)*** — Transition state for original Reserved Instances while new Reserved Instances are being created
+   + **retired** — Reserved Instances successfully modified and replaced
+   + **active** — One of the following:
+     + New Reserved Instances created from a successful modification request
+     + Original Reserved Instances after a failed modification request
+
+------
+#### [ Old console ]
 
 **To modify your Reserved Instances using the AWS Management Console**
 
@@ -157,6 +189,8 @@ If your Reserved Instances are not in the active state or cannot be modified, **
    + **active** — One of the following:
      + New Reserved Instances created from a successful modification request
      + Original Reserved Instances after a failed modification request
+
+------
 
 **To modify your Reserved Instances using the command line**
 

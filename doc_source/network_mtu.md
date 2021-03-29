@@ -4,7 +4,11 @@ The maximum transmission unit \(MTU\) of a network connection is the size, in by
 
 Ethernet frames can come in different formats, and the most common format is the standard Ethernet v2 frame format\. It supports 1500 MTU, which is the largest Ethernet packet size supported over most of the internet\. The maximum supported MTU for an instance depends on its instance type\. All Amazon EC2 instance types support 1500 MTU, and many current instance sizes support 9001 MTU, or jumbo frames\.
 
-If your instance runs in a Wavelength Zone, the maximum MTU value is 1300\.
+The following rules apply to instances that are in Wavelength Zones:
++ Traffic that goes from one instances to another within a VPC in the same Wavelength Zone has an MTU of 1300\.
++ Traffic that goes from one instances to another that uses the carrier IP within a Wavelength Zone has an MTU of 1500\.
++ Traffic that goes from one instance to another between a Wavelength Zone and the Region that uses a public IP address has an MTU of 1500\.
++ Traffic that goes from one instance to another between a Wavelength Zone and the Region that uses a private IP address has an MTU of 1300\.
 
 To see Network MTU information for Windows instances, switch to this page in the *Amazon EC2 User Guide for Windows Instances* guide: [Network maximum transmission unit \(MTU\) for your EC2 instance](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/network_mtu.html)\.
 
@@ -31,7 +35,11 @@ For more information about supported MTU sizes for transit gateways, see [MTU](h
 
 ## Path MTU Discovery<a name="path_mtu_discovery"></a>
 
-Path MTU Discovery \(PMTUD\) is used to determine the maximum transmission unit \(MTU\) of a network path\. Path MTU is the maximum packet size between the originating host and the receiving host\. If a host sends a packet that's larger than the MTU of the receiving host or that's larger than the MTU of a device along the path, the receiving host or device returns the following ICMP message: `Destination Unreachable: Fragmentation Needed and Don't Fragment was Set` \(Type 3, Code 4\)\. This instructs the original host to adjust the MTU until the packet can be transmitted\.
+Path MTU Discovery is used to determine the path MTU between two devices\. The path MTU is the maximum packet size that's supported on the path between the originating host and the receiving host\. 
+
+For IPv4, when a host sends a packet that's larger than the MTU of the receiving host or that's larger than the MTU of a device along the path, the receiving host or device drops the packet, and then returns the following ICMP message: `Destination Unreachable: Fragmentation Needed and Don't Fragment was Set` \(Type 3, Code 4\)\. This instructs the transmitting host to split the payload into multiple smaller packets, and then retransmit them\. 
+
+The IPv6 protocol does not support fragmentation in the network\. When a host sends a packet that's larger than the MTU of the receiving host or that's larger than the MTU of a device along the path, the receiving host or device drops the packet, and then returns the following ICMP message: `ICMPv6 Packet Too Big (PTB)` \(Type 2\)\. This instructs the transmitting host to split the payload into multiple smaller packets, and then retransmit them\. 
 
 By default, security groups do not allow any inbound ICMP traffic\. However, security groups are stateful, therefore ICMP responses to outbound requests are allowed to flow in, regardless of security group rules\. Therefore, you do not need to explicitly add an inbound ICMP rule to ensure that your instance can receive the ICMP message response\. For more information about configuring ICMP rules in a network ACL, see [Path MTU Discovery](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html#path_mtu_discovery) in the *Amazon VPC User Guide*\.
 

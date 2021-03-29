@@ -53,6 +53,45 @@ You can view your queued purchases in the Amazon EC2 console\. The status of a q
 
 You can buy Standard Reserved Instances in a specific Availability Zone and get a capacity reservation\. Alternatively, you can forego the capacity reservation and purchase a regional Standard Reserved Instance\.
 
+------
+#### [ New console ]
+
+**To buy Standard Reserved Instances using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Reserved Instances**, and then choose **Purchase Reserved Instances**\.
+
+1. For **Offering class**, choose **Standard** to display Standard Reserved Instances\.
+
+1. To purchase a capacity reservation, toggle on **Only show offerings that reserve capacity** in the top\-right corner of the purchase screen\. When you toggle on this setting, the **Availability Zone** field appears\.
+
+   To purchase a regional Reserved Instance, toggle off this setting\. When you toggle off this setting, the **Availability Zone** field disappears\. 
+
+1. Select other configurations as needed, and then choose **Search**\.
+
+1. For each Reserved Instance that you want to purchase, enter the desired quantity, and choose **Add to cart**\.
+
+   To purchase a Standard Reserved Instance from the Reserved Instance Marketplace, look for **3rd party** in the **Seller** column in the search results\. The **Term** column displays non\-standard terms\. For more information, see [Buy from the Reserved Instance Marketplace](#ri-market-buying-guide)\.
+
+1. To see a summary of the Reserved Instances that you selected, choose **View cart**\.
+
+1. If **Order on** is **Now**, the purchase is completed immediately after you choose **Order all**\. To queue a purchase, choose **Now** and select a date\. You can select a different date for each eligible offering in the cart\. The purchase is queued until 00:00 UTC on the selected date\. 
+
+1. To complete the order, choose **Order all**\.
+
+   If, at the time of placing the order, there are offerings similar to your choice but with a lower price, AWS sells you the offerings at the lower price\.
+
+1. Choose **Close**\.
+
+   The status of your order is listed in the **State** column\. When your order is complete, the **State** value changes from `Payment-pending` to `Active`\. When the Reserved Instance is `Active`, it is ready to use\.
+
+**Note**  
+If the status goes to `Retired`, AWS might not have received your payment\.
+
+------
+#### [ Old console ]
+
 **To buy Standard Reserved Instances using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
@@ -82,7 +121,9 @@ You can buy Standard Reserved Instances in a specific Availability Zone and get 
    The status of your order is listed in the **State** column\. When your order is complete, the **State** value changes from `payment-pending` to `active`\. When the Reserved Instance is `active`, it is ready to use\.
 
 **Note**  
-If the status goes to `retired`, AWS might not have received your payment\. 
+If the status goes to `retired`, AWS might not have received your payment\.
+
+------
 
 **To buy a Standard Reserved Instance using the AWS CLI**
 
@@ -147,6 +188,43 @@ For examples of how Reserved Instances are applied to your running instances, se
 
 You can buy Convertible Reserved Instances in a specific Availability Zone and get a capacity reservation\. Alternatively, you can forego the capacity reservation and purchase a regional Convertible Reserved Instance\.
 
+------
+#### [ New console ]
+
+**To buy Convertible Reserved Instances using the console**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Reserved Instances**, and then choose **Purchase Reserved Instances**\.
+
+1. For **Offering class**, choose **Convertible** to display Convertible Reserved Instances\.
+
+1. To purchase a capacity reservation, toggle on **Only show offerings that reserve capacity** in the top\-right corner of the purchase screen\. When you toggle on this setting, the **Availability Zone** field appears\.
+
+   To purchase a regional Reserved Instance, toggle off this setting\. When you toggle off this setting, the **Availability Zone** field disappears\. 
+
+1. Select other configurations as needed and choose **Search**\.
+
+1. For each Convertible Reserved Instance that you want to purchase, enter the quantity, and choose **Add to cart**\.
+
+1. To see a summary of your selection, choose **View cart**\.
+
+1. If **Order on** is **Now**, the purchase is completed immediately after you choose **Order all**\. To queue a purchase, choose **Now** and select a date\. You can select a different date for each eligible offering in the cart\. The purchase is queued until 00:00 UTC on the selected date\. 
+
+1. To complete the order, choose **Order all**\.
+
+   If, at the time of placing the order, there are offerings similar to your choice but with a lower price, AWS sells you the offerings at the lower price\.
+
+1. Choose **Close**\.
+
+   The status of your order is listed in the **State** column\. When your order is complete, the **State** value changes from `Payment-pending` to `Active`\. When the Reserved Instance is `Active`, it is ready to use\.
+
+**Note**  
+If the status goes to `Retired`, AWS might not have received your payment\. 
+
+------
+#### [ Old console ]
+
 **To buy Convertible Reserved Instances using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
@@ -175,6 +253,8 @@ You can buy Convertible Reserved Instances in a specific Availability Zone and g
 
 **Note**  
 If the status goes to `retired`, AWS might not have received your payment\. 
+
+------
 
 **To buy a Convertible Reserved Instance using the AWS CLI**
 
@@ -249,9 +329,9 @@ You can view the Reserved Instances you've purchased using the Amazon EC2 consol
 
 1. In the navigation pane, choose **Reserved Instances**\.
 
-1. Your active and retired Reserved Instances are listed\. The **State** column displays the state\. 
+1. Your queued, active, and retired Reserved Instances are listed\. The **State** column displays the state\. 
 
-1. If you are a seller in the Reserved Instance Marketplace the **My Listings** tab displays the status of a reservation that's listed in the [Reserved Instance Marketplace](ri-market-general.md)\. For more information, see [Reserved Instance listing states](ri-market-general.md#ri-listing-states)\.
+1. If you are a seller in the Reserved Instance Marketplace, the **My Listings** tab displays the status of a reservation that's listed in the [Reserved Instance Marketplace](ri-market-general.md)\. For more information, see [Reserved Instance listing states](ri-market-general.md#ri-listing-states)\.
 
 **To view your Reserved Instances using the command line**
 + [describe\-reserved\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-reserved-instances.html) \(AWS CLI\)
@@ -260,6 +340,24 @@ You can view the Reserved Instances you've purchased using the Amazon EC2 consol
 ## Cancel a queued purchase<a name="cancel-queued-purchase"></a>
 
 You can queue a purchase up to three years in advance\. You can cancel a queued purchase any time before its scheduled time\.
+
+------
+#### [ New console ]
+
+**To cancel a queued purchase**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Reserved Instances**\.
+
+1. Select one or more Reserved Instances\.
+
+1. Choose **Actions**, **Delete queued Reserved Instances**\.
+
+1. When prompted for confirmation, choose **Delete**, and then **Close**\.
+
+------
+#### [ Old console ]
 
 **To cancel a queued purchase**
 
@@ -273,6 +371,8 @@ You can queue a purchase up to three years in advance\. You can cancel a queued 
 
 1. When prompted for confirmation, choose **Yes, Delete**\.
 
+------
+
 **To cancel a queued purchase using the command line**
 + [delete\-queued\-reserved\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/delete-queued-reserved-instances.html) \(AWS CLI\)
 + [Remove\-EC2QueuedReservedInstance](https://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2QueuedReservedInstance.html) \(Tools for Windows PowerShell\)
@@ -280,6 +380,24 @@ You can queue a purchase up to three years in advance\. You can cancel a queued 
 ## Renew a Reserved Instance<a name="renew-ri"></a>
 
 You can renew a Reserved Instance before it is scheduled to expire\. Renewing a Reserved Instance queues the purchase of a Reserved Instance with the same configuration until the current Reserved Instance expires\.
+
+------
+#### [ New console ]
+
+**To renew an Reserved Instance using a queued purchase**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Reserved Instances**\.
+
+1. Select one or more Reserved Instances\.
+
+1. Choose **Actions**, **Renew Reserved Instances**\.
+
+1. To complete the order, choose **Order all**, and then **Close**\.
+
+------
+#### [ Old console ]
 
 **To renew an Reserved Instance using a queued purchase**
 
@@ -292,3 +410,5 @@ You can renew a Reserved Instance before it is scheduled to expire\. Renewing a 
 1. Choose **Actions**, **Renew Reserved Instances**\.
 
 1. To complete the order, choose **Order**\.
+
+------

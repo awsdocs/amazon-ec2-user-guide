@@ -48,6 +48,16 @@ These instances are well suited for the following:
 
 For more information, see [Amazon EC2 X1e Instances](https://aws.amazon.com/ec2/instance-types/x1e)\.
 
+**X2gd instances**
+
+These instances are well suited for the following:
++ In\-memory databases, such as Redis and Memcached\.
++ Relational databases, such as MySQL and PostGreSQL\.
++ Electronic design automation \(EDA\) workloads, such as physical verification and layout tools\.
++ Memory\-intensive workloads, such as real\-time analytics and real\-time caching servers\.
+
+For more information, see [Amazon EC2 X2gd Instances](https://aws.amazon.com/ec2/instance-types/x2)\.
+
 **z1d instances**
 
 These instances deliver both high compute and high memory and are well\-suited for the following:
@@ -132,6 +142,7 @@ The following is a summary of the hardware specifications for memory optimized i
 | r5dn\.12xlarge | 48 | 384 | 
 | r5dn\.16xlarge | 64 | 512 | 
 | r5dn\.24xlarge | 96 | 768 | 
+| r5dn\.metal | 96 | 768 | 
 | r5n\.large | 2 | 16 | 
 | r5n\.xlarge | 4 | 32 | 
 | r5n\.2xlarge | 8 | 64 | 
@@ -140,6 +151,7 @@ The following is a summary of the hardware specifications for memory optimized i
 | r5n\.12xlarge | 48 | 384 | 
 | r5n\.16xlarge | 64 | 512 | 
 | r5n\.24xlarge | 96 | 768 | 
+| r5n\.metal | 96 | 768 | 
 | r6g\.medium | 1 | 8 | 
 | r6g\.large | 2 | 16 | 
 | r6g\.xlarge | 4 | 32 | 
@@ -169,6 +181,15 @@ The following is a summary of the hardware specifications for memory optimized i
 | x1e\.8xlarge | 32 | 976 | 
 | x1e\.16xlarge | 64 | 1,952 | 
 | x1e\.32xlarge | 128 | 3,904 | 
+| x2gd\.medium | 1 | 16 | 
+| x2gd\.large | 2 | 32 | 
+| x2gd\.xlarge | 4 | 64 | 
+| x2gd\.2xlarge | 8 | 128 | 
+| x2gd\.4xlarge | 16 | 256 | 
+| x2gd\.8xlarge | 32 | 512 | 
+| x2gd\.12xlarge | 48 | 768 | 
+| x2gd\.16xlarge | 64 | 1,024 | 
+| x2gd\.metal | 64 | 1,024 | 
 | z1d\.large | 2 | 16 | 
 | z1d\.xlarge | 4 | 32 | 
 | z1d\.2xlarge | 8 | 64 | 
@@ -206,15 +227,15 @@ The following is a summary of network performance for memory optimized instances
 
 | Instance type | Network performance | Enhanced networking | 
 | --- | --- | --- | 
-|  r4\.4xlarge and smaller \| r5\.4xlarge and smaller \| r5a\.8xlarge and smaller \| r5ad\.8xlarge and smaller \| r5b\.4xlarge and smaller \| r5d\.4xlarge and smaller \| r6g\.4xlarge and smaller \|  r6gd\.4xlarge and smaller \|  x1e\.8large and smaller \| z1d\.3xlarge and smaller  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
+|  r4\.4xlarge and smaller \| r5\.4xlarge and smaller \| r5a\.8xlarge and smaller \| r5ad\.8xlarge and smaller \| r5b\.4xlarge and smaller \| r5d\.4xlarge and smaller \| r6g\.4xlarge and smaller \|  r6gd\.4xlarge and smaller \|  x1e\.8large and smaller \| x2gd\.4xlarge and smaller \|  z1d\.3xlarge and smaller  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
 |  r4\.8xlarge \| r5\.8xlarge \| r5\.12xlarge \| r5a\.12xlarge \| r5ad\.12xlarge \| r5b\.8xlarge \| r5b\.12xlarge \| r5d\.8xlarge \| r5d\.12xlarge \| x1\.16xlarge \| x1e\.16xlarge \| z1d\.6xlarge  | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  r5a\.16xlarge \| r5ad\.16xlarge  \| r6g\.8xlarge \| r6gd\.8xlarge  | 12 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  r5\.16xlarge \| r5a\.24xlarge \| r5ad\.24xlarge \| r5b\.16xlarge \| r5d\.16xlarge  \| r6g\.12xlarge \| r6gd\.12xlarge  | 20 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  r5a\.16xlarge \| r5ad\.16xlarge  \| r6g\.8xlarge \| r6gd\.8xlarge  \| x2gd\.8xlarge  | 12 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  r5\.16xlarge \| r5a\.24xlarge \| r5ad\.24xlarge \| r5b\.16xlarge \| r5d\.16xlarge  \| r6g\.12xlarge \| r6gd\.12xlarge  \| x2gd\.12xlarge  | 20 Gbps | [ENA](enhanced-networking-ena.md) | 
 | r5dn\.4xlarge and smaller \| r5n\.4xlarge and smaller | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
-|  r4\.16xlarge \| r5\.24xlarge \| r5\.metal \| r5b\.24xlarge \| r5b\.metal \| r5d\.24xlarge \| r5d\.metal \| r5dn\.8xlarge \| r5n\.8xlarge \| r6g\.16xlarge \| r6g\.metal \|  r6gd\.16xlarge \| r6gd\.metal \|  x1\.32xlarge \| x1e\.32xlarge \| z1d\.12xlarge \| z1d\.metal  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  r4\.16xlarge \| r5\.24xlarge \| r5\.metal \| r5b\.24xlarge \| r5b\.metal \| r5d\.24xlarge \| r5d\.metal \| r5dn\.8xlarge \| r5n\.8xlarge \| r6g\.16xlarge \| r6g\.metal \|  r6gd\.16xlarge \| r6gd\.metal \|  x1\.32xlarge \| x1e\.32xlarge \| x2gd\.16xlarge \|  x2gd\.metal \|  z1d\.12xlarge \| z1d\.metal  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
 | r5dn\.12xlarge \| r5n\.12xlarge | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
 | r5dn\.16xlarge \| r5n\.16xlarge | 75 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  r5dn\.24xlarge \| r5n\.24xlarge \| u\-6tb1\.metal \* \| u\-9tb1\.metal \* \| u\-12tb1\.metal \* \| u\-18tb1\.metal \| u\-24tb1\.metal  | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  r5dn\.24xlarge \| r5dn\.metal \| r5n\.24xlarge \| r5n\.metal \| u\-6tb1\.metal \* \| u\-9tb1\.metal \* \| u\-12tb1\.metal \* \| u\-18tb1\.metal \| u\-24tb1\.metal  | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
 
 \* Instances of this type launched after March 12, 2020 provide network performance of 100 Gbps\. Instances of this type launched before March 12, 2020 might only provide network performance of 25 Gbps\. To ensure that instances launched before March 12, 2020 have a network performance of 100 Gbps, contact your account team to upgrade your instance at no additional cost\.
 
@@ -252,6 +273,7 @@ If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-ba
 | r5dn\.12xlarge | 700,000 | 340,000 | 
 | r5dn\.16xlarge | 933,333 | 466,666 | 
 | r5dn\.24xlarge | 1,400,000 | 680,000 | 
+| r5dn\.metal | 1,400,000 | 680,000 | 
 | r6gd\.medium | 13,438 | 5,625 | 
 | r6gd\.large | 26,875 | 11,250 | 
 | r6gd\.xlarge | 53,750 | 22,500 | 
@@ -261,6 +283,15 @@ If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-ba
 | r6gd\.12xlarge | 645,000 | 270,000 | 
 | r6gd\.16xlarge | 860,000 | 360,000 | 
 | r6gd\.metal | 860,000 | 360,000 | 
+| x2gd\.medium | 13,438 | 5,625 | 
+| x2gd\.large | 26,875 | 11,250 | 
+| x2gd\.xlarge | 53,750 | 22,500 | 
+| x2gd\.2xlarge | 107,500 | 45,000 | 
+| x2gd\.4xlarge | 215,000 | 90,000 | 
+| x2gd\.8xlarge | 430,000 | 180,000 | 
+| x2gd\.12xlarge | 645,000 | 270,000 | 
+| x2gd\.16xlarge | 860,000 | 360,000 | 
+| x2gd\.metal | 860,000 | 360,000 | 
 | z1d\.large \* | 30,000 | 15,000 | 
 | z1d\.xlarge \* | 59,000 | 29,000 | 
 | z1d\.2xlarge \* | 117,000 | 57,000 | 
@@ -300,6 +331,7 @@ The following is a summary of features for memory optimized instances\.
 | u\-18tb1\.metal | Yes | Yes | No | No | 
 | u\-24tb1\.metal | Yes | Yes | No | No | 
 | X1 | No | No | SSD | Yes | 
+| X2gd | No | Yes | NVME \* | Yes | 
 | X1e | No | No | SSD \* | Yes | 
 | z1d | No | Yes | NVME \* | Yes | 
 

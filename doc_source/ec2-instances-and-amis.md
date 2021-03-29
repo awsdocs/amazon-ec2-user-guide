@@ -46,6 +46,9 @@ To prevent accidental termination, you can disable instance termination\. If you
 
 For more information, see [Instance lifecycle](ec2-instance-lifecycle.md)\.
 
+**Note**  
+Some AWS resources, such as Amazon EBS volumes and Elastic IP addresses, incur charges regardless of the instance's state\. For more information, see [Avoiding Unexpected Charges](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/checklistforunwantedcharges.html) in the *AWS Billing and Cost Management User Guide*\. For more information about Amazon EBS costs, see [Amazon EBS pricing](http://aws.amazon.com/ebs/pricing/)\.
+
 ## AMIs<a name="amis"></a>
 
 Amazon Web Services \(AWS\) publishes many [Amazon Machine Images \(AMIs\)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html) that contain common software configurations for public use\. In addition, members of the AWS developer community have published their own custom AMIs\. You can also create your own custom AMI or AMIs; doing so enables you to quickly and easily start new instances that have everything you need\. For example, if your application is a website or a web service, your AMI could include a web server, the associated static content, and the code for the dynamic pages\. As a result, after you launch an instance from this AMI, your web server starts, and your application is ready to accept requests\.

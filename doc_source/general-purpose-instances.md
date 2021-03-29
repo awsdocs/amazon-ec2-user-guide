@@ -118,6 +118,7 @@ The following is a summary of the hardware specifications for general purpose in
 | m5dn\.12xlarge | 48 | 192 | 
 | m5dn\.16xlarge | 64 | 256 | 
 | m5dn\.24xlarge | 96 | 384 | 
+| m5dn\.metal | 96 | 384 | 
 | m5n\.large | 2 | 8 | 
 | m5n\.xlarge | 4 | 16 | 
 | m5n\.2xlarge | 8 | 32 | 
@@ -126,6 +127,7 @@ The following is a summary of the hardware specifications for general purpose in
 | m5n\.12xlarge | 48 | 192 | 
 | m5n\.16xlarge | 64 | 256 | 
 | m5n\.24xlarge | 96 | 384 | 
+| m5n\.metal | 96 | 384 | 
 | m5zn\.large | 2 | 8 | 
 | m5zn\.xlarge | 4 | 16 | 
 | m5zn\.2xlarge | 8 | 32 | 
@@ -213,7 +215,7 @@ The following is a summary of network performance for general purpose instances 
 |  m4\.16xlarge \| m5\.24xlarge \| m5\.metal \| m5d\.24xlarge \| m5d\.metal \| m5dn\.8xlarge \| m5n\.8xlarge  \| m6g\.16xlarge \| m6g\.metal \| m6gd\.16xlarge \| m6gd\.metal  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  m5dn\.12xlarge \| m5n\.12xlarge \| m5zn\.6xlarge  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  m5dn\.16xlarge \| m5n\.16xlarge  | 75 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  m5dn\.24xlarge \| m5n\.24xlarge \| m5zn\.12xlarge \| m5zn\.metal  | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  m5dn\.24xlarge \| m5dn\.metal \| m5n\.24xlarge \| m5n\.metal \| m5zn\.12xlarge \| m5zn\.metal  | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
 
 † These instances use a network I/O credit mechanism to allocate network bandwidth to instances based on average bandwidth utilization\. They accrue credits when their bandwidth is below their baseline bandwidth, and can use these credits when they perform network data transfers\. For more information, open a support case and ask about baseline bandwidth for the specific instance types that you are interested in\.
 
@@ -249,6 +251,7 @@ If you use a Linux AMI with kernel version 4\.4 or later and use all the SSD\-ba
 | m5dn\.12xlarge |  700,000  |  340,000  | 
 | m5dn\.16xlarge | 933,333 |  466,666  | 
 | m5dn\.24xlarge  |  1,400,000  |  680,000  | 
+| m5dn\.metal  | 1,400,000 | 680,000 | 
 | m6gd\.medium | 13,438 | 5,625 | 
 | m6gd\.large | 26,875 | 11,250 | 
 | m6gd\.xlarge | 53,750 | 22,500 | 

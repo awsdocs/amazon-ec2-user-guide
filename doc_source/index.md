@@ -1,7 +1,7 @@
 # Amazon Elastic Compute Cloud User Guide for Linux Instances
 
 -----
-*****Copyright &copy; 2021 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy;  Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -30,6 +30,7 @@ Amazon's trademarks and trade dress may not be used in
 + [Amazon Machine Images (AMI)](AMIs.md)
    + [AMI types](ComponentsAMIs.md)
    + [Linux AMI virtualization types](virtualization_types.md)
+   + [Boot modes](ami-boot.md)
    + [Find a Linux AMI](finding-an-ami.md)
    + [Shared AMIs](sharing-amis.md)
       + [Find shared AMIs](usingsharedamis-finding.md)
@@ -56,7 +57,7 @@ Amazon's trademarks and trade dress may not be used in
       + [Run Amazon Linux 2 as a virtual machine on premises](amazon-linux-2-virtual-machine.md)
       + [Kernel Live Patching on Amazon Linux 2](al2-live-patching.md)
    + [User provided kernels](UserProvidedKernels.md)
-   + [Use the MATE desktop environment provided with Amazon Linux 2](amazon-linux-ami-mate.md)
+   + [Configure the Amazon Linux 2 MATE desktop connection](amazon-linux-ami-mate.md)
 + [Amazon EC2 instances](Instances.md)
    + [Instance types](instance-types.md)
       + [General purpose instances](general-purpose-instances.md)
@@ -152,7 +153,7 @@ Amazon's trademarks and trade dress may not be used in
          + [Connect to your Linux instance from Windows using Windows Subsystem for Linux](WSL.md)
          + [Connect to your Linux instance using Session Manager](session-manager.md)
       + [Stop and start your instance](Stop_Start.md)
-      + [Hibernate your Linux instance](Hibernate.md)
+      + [Hibernate your On-Demand or Reserved Linux instance](Hibernate.md)
       + [Reboot your instance](ec2-instance-reboot.md)
       + [Instance retirement](instance-retirement.md)
       + [Terminate your instance](terminating-instances.md)
@@ -278,6 +279,7 @@ Amazon's trademarks and trade dress may not be used in
          + [Copy an Amazon EBS snapshot](ebs-copy-snapshot.md)
          + [View Amazon EBS snapshot information](ebs-describing-snapshots.md)
          + [Share an Amazon EBS snapshot](ebs-modifying-snapshot-permissions.md)
+         + [Amazon EBS local snapshots on Outposts](snapshots-outposts.md)
          + [Use EBS direct APIs to access the contents of an EBS snapshot](ebs-accessing-snapshot.md)
             + [Log API Calls for the EBS direct APIs with AWS CloudTrail](logging-ebs-apis-using-cloudtrail.md)
             + [EBS direct APIs and interface VPC endpoints](ebs-apis-vpc-endpoints.md)

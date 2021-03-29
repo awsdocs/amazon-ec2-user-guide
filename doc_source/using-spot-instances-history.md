@@ -1,8 +1,11 @@
 # Spot Instance pricing history<a name="using-spot-instances-history"></a>
 
-When you request Spot Instances, we recommend that you use the default maximum price \(the On\-Demand price\)\. If you want to specify a maximum price, we recommend that you review the Spot price history before you do so\. You can view the Spot price history for the last 90 days, filtering by instance type, operating system, and Availability Zone\.
+Spot Instance prices are set by Amazon EC2 and adjust gradually based on long\-term trends in supply and demand for Spot Instance capacity\.
 
-Spot Instance prices are set by Amazon EC2 and adjust gradually based on long\-term trends in supply and demand for Spot Instance capacity\. For the *current* Spot Instance prices see [Amazon EC2 Spot Instances Pricing](http://aws.amazon.com/ec2/spot/pricing/)\.
+When you request Spot Instances, we recommend that you use the default maximum price \(the On\-Demand price\)\. When your request is fulfilled, your Spot Instances launch at the current Spot price, not exceeding the On\-Demand price\. If you want to specify a maximum price, we recommend that you first review the Spot price history\. You can view the Spot price history for the last 90 days, filtering by instance type, operating system, and Availability Zone\.
+
+**To view the current Spot prices**  
+For the *current* Spot Instance prices, see [Amazon EC2 Spot Instances Pricing](http://aws.amazon.com/ec2/spot/pricing/)\.
 
 **To view the Spot price history \(console\)**
 
@@ -10,14 +13,18 @@ Spot Instance prices are set by Amazon EC2 and adjust gradually based on long\-t
 
 1. In the navigation pane, choose **Spot Requests**\.
 
-1. If you are new to Spot Instances, you see a welcome page\. Choose **Get started**, scroll to the bottom of the screen, and then choose **Cancel**\.
-
 1. Choose **Pricing history**\. 
 
-1. Choose the operating system \(**Product**\), **Instance type**, and **Date range** for which to view the price history\. Move your pointer over the graph to display the prices at specific times in the selected date range\.  
+1. For **Graph**, choose to compare the price history by **Availability Zones** or by **Instance Types**\.
+   + If you choose **Availability Zones**, then choose the **Instance type**, operating system \(**Platform**\), and **Date range** for which to view the price history\.
+   + If you choose **Instance Types**, then choose up to five **Instance type\(s\)**, the **Availability Zone**, operating system \(**Platform**\), and **Date range** for which to view the price history\.
+
+   The following screenshot shows a price comparison for different instance types\.  
 ![\[The Spot Instance pricing history tool in the Amazon EC2 console.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/spot-instance-pricing-history.png)
 
-1. \(Optional\) To review the Spot price history for a specific Availability Zone, you can filter the Availability Zones by removing Availability Zones from the graph\. To remove an Availability Zone from the graph, select the zone to remove it\. You can also select a different product, instance type, or date range\.
+1. Move your pointer over the graph to display the prices at specific times in the selected date range\. The prices are displayed in the information blocks above the graph\. The price displayed in the top row shows the price on a specific date\. The price displayed in the second row shows the average price over the selected date range\.
+
+1. To display the price per vCPU, toggle on **Display normalized prices**\. To display the price for the instance type, toggle off **Display normalized prices**\.
 
 **To view the Spot price history using the command line**
 

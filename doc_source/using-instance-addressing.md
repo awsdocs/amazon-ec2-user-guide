@@ -244,7 +244,7 @@ You can use the Amazon EC2 console, AWS CLI, and instance metadata to view the I
 ------
 #### [ New console ]
 
-**To view the IPv4 addresses for an instance using the console**
+**To view the IPv6 addresses for an instance using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -259,7 +259,7 @@ You can use the Amazon EC2 console, AWS CLI, and instance metadata to view the I
 ------
 #### [ Old console ]
 
-**To view the IPv4 addresses for an instance using the console**
+**To view the IPv6 addresses for an instance using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 

@@ -503,7 +503,7 @@ The following example configures the Spot Fleet to launch a replacement Spot Ins
 **Note**  
 When a replacement instance is launched, the instance marked for rebalance is not automatically terminated\. You can terminate it, or you can leave it running\. You are charged for both instances while they are running\. 
 
-The effectiveness of the Capacity Rebalancing strategy depends on the number of Spot Instance pools specified in the Spot Fleet request\. We recommend that you configure the fleet with a diversified set of instance types and Availability Zones, and for `AllocationStrategy`, specify `capacityOptimized`\. For more information about what you should consider when configuring a Spot Fleet for Capacity Rebalancing, see [Capacity Rebalancing](spot-fleet.md#spot-fleet-capacity-rebalance)\.
+The effectiveness of the Capacity Rebalancing strategy depends on the number of Spot capacity pools specified in the Spot Fleet request\. We recommend that you configure the fleet with a diversified set of instance types and Availability Zones, and for `AllocationStrategy`, specify `capacityOptimized`\. For more information about what you should consider when configuring a Spot Fleet for Capacity Rebalancing, see [Capacity Rebalancing](spot-fleet.md#spot-fleet-capacity-rebalance)\.
 
 ```
 {
