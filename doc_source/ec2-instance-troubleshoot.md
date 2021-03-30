@@ -11,6 +11,7 @@ The following documentation can help you troubleshoot problems that you might ha
 + [Troubleshoot an unreachable instance](instance-console.md)
 + [Boot from the wrong volume](instance-booting-from-wrong-volume.md)
 + [Use EC2Rescue for Linux](Linux-Server-EC2Rescue.md)
++ [EC2 Serial Console for Linux instances](ec2-serial-console.md)
 + [Send a diagnostic interrupt \(for advanced users\)](diagnostic-interrupt.md)
 
 For additional help with Windows instances, see [Troubleshoot Windows instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/troubleshooting-windows-instances.html) in the *Amazon EC2 User Guide for Windows Instances*\.
