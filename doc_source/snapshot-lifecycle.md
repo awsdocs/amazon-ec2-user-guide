@@ -168,7 +168,8 @@ Alternatively, you can create custom IAM roles with the required permissions and
    + Permissions for managing snapshot lifecycle policies
 
      ```
-     "Version": "2012-10-17",
+     {
+         "Version": "2012-10-17",
          "Statement": [
              {
                  "Effect": "Allow",
