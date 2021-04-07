@@ -1,6 +1,6 @@
 # Configure access to the EC2 Serial Console<a name="configure-access-to-serial-console"></a>
 
-To configure access to the serial console, you must grant serial console access at the account level, configure IAM policies to grant your IAM users access to the serial console, and configure a password\-based user on every instance so that your users can use the serial console for troubleshooting\.
+To configure access to the serial console, you must grant serial console access at the account level and then configure IAM policies to grant access to your IAM users\. You must also configure a password\-based user on every instance so that your users can use the serial console for troubleshooting\.
 
 **Topics**
 + [Levels of access to the EC2 Serial Console](#serial-console-access-levels)
@@ -12,7 +12,7 @@ To configure access to the serial console, you must grant serial console access 
 
 By default, there is no access to the serial console at the account level\. You need to explicitly grant access to the serial console at the account level\.
 
-You can use a service control policy \(SCP\) to deny access to the serial console so that nobody in your AWS Organization can access it, and then add exceptions in an IAM policy\. By using an SCP and IAM policies, you can control access to the serial console at the following levels:
+You can use a service control policy \(SCP\) to deny access to the serial console so that nobody in your organization can access it, and then add exceptions in an IAM policy\. By using an SCP and IAM policies, you can control access to the serial console at the following levels:
 
 **Organization level**  
 You can use a service control policy \(SCP\) to deny access to the serial console for member accounts in your organization\. To grant access to the serial console, you need to configure permissions in an IAM policy\. For more information about SCPs, see [Service control policies](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html) in the *AWS Organizations User Guide*\.
@@ -71,7 +71,7 @@ For more information, see [Creating IAM policies](https://docs.aws.amazon.com/IA
 
 1. From **Account attributes**, choose **EC2 Serial Console**\.
 
-   The **EC2 Serial Console access** field displays whether account access is **Allowed** or **Prevented**\.
+   The **EC2 Serial Console access** field indicates whether account access is **Allowed** or **Prevented**\.
 
    The following screenshot shows that the account is prevented from using the EC2 serial console\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/serial-console-no-acct-access.png)
@@ -103,7 +103,7 @@ In the following output, `true` indicates that the account is allowed access to 
 
 1. Choose **Manage**\.
 
-1. To allow access to the EC2 serial console of all the instances in the account, select the **Allow** check box\.
+1. To allow access to the EC2 serial console of all instances in the account, select the **Allow** check box\.
 
 1. Choose **Update**\.
 
@@ -134,7 +134,7 @@ In the following output, `true` indicates that the account is allowed access to 
 
 1. Choose **Manage**\.
 
-1. To prevent access to the EC2 serial console of all the instances in the account, clear the **Allow** check box\.
+1. To prevent access to the EC2 serial console of all instances in the account, clear the **Allow** check box\.
 
 1. Choose **Update**\.
 
@@ -248,7 +248,7 @@ For more information about using tags to control access to your AWS resources, s
 You can connect to the serial console without a password\. However, to *use* the serial console for troubleshooting an instance, the instance must have a password\-based user\. You must set a user password for every instance for which you will use the serial console\. This is a one\-time requirement for each instance\.
 
 **Note**  
-The following instructions are applicable only if you launched your instance using an AWS\-provided AMI because, by default, AWS\-provided AMIs are not configured with a password\-based user\. If you launched your instance using an AMI that already has the root user password configured, you can skip these instructions\.
+The following instructions are applicable only if you launched your instance using an AWS provided AMI because, by default, AWS provided AMIs are not configured with a password\-based user\. If you launched your instance using an AMI that already has the root user password configured, you can skip these instructions\.
 
 **To set a user password**
 

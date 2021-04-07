@@ -48,7 +48,7 @@ Use this option if you want a default VPC in every Region in your existing accou
    + Amazon EMR resources
    + AWS OpsWorks resources
 
-1. Go to the AWS Support Center at [console\.aws\.amazon\.com/support](https://console.aws.amazon.com/support)\.
+1. Go to the Amazon Web Services Support Center at [console\.aws\.amazon\.com/support](https://console.aws.amazon.com/support)\.
 
 1. Choose **Create case**\.
 

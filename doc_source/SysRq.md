@@ -47,9 +47,9 @@ This setting will clear on the next reboot\.
    [ec2-user ~]$ sudo reboot
    ```
 
-1. At the `login` prompt, enter the user name of the password\-based user that you [set up previously](configure-access-to-serial-console.md#set-user-password), and then press Enter\.
+1. At the `login` prompt, enter the user name of the password\-based user that you [set up previously](configure-access-to-serial-console.md#set-user-password), and then press **Enter**\.
 
-1. At the `Password` prompt, enter the password, and then press Enter\.
+1. At the `Password` prompt, enter the password, and then press **Enter**\.
 
 ## Use SysRq<a name="use-sysrq"></a>
 

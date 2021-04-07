@@ -2,16 +2,16 @@
 
 You can copy an Amazon Machine Image \(AMI\) within or across AWS Regions using the AWS Management Console, the AWS Command Line Interface or SDKs, or the Amazon EC2 API, all of which support the `CopyImage` action\. You can copy both Amazon EBS\-backed AMIs and instance\-store\-backed AMIs\. You can copy AMIs with encrypted snapshots and also change encryption status during the copy process\.
 
-Copying a source AMI results in an identical but distinct target AMI with its own unique identifier\. In the case of an Amazon EBS\-backed AMI, each of its backing snapshots is, by default, copied to an identical but distinct target snapshot\. \(The sole exceptions are when you choose to encrypt or re\-encrypt the snapshot\.\) You can change or deregister the source AMI with no effect on the target AMI\. The reverse is also true\.
+Copying a source AMI results in an identical but distinct target AMI with its own unique identifier\. You can change or deregister the source AMI with no effect on the target AMI\. The reverse is also true\.
 
-There are no charges for copying an AMI\. However, standard storage and data transfer rates apply\. If you copy an EBS\-backed AMI, you will incur charges for the storage of any additional EBS snapshots\. 
+With an Amazon EBS\-backed AMI, each of its backing snapshots is copied to an identical but distinct target snapshot\. If you copy an AMI to a new Region, the snapshots are complete \(non\-incremental\) copies\. If you encrypt unencrypted backing snapshots or encrypt them to a new KMS key, the snapshots are complete \(non\-incremental\) copies\. Subsequent copy operations of an AMI result in incremental copies of the backing snapshots\.
 
-AWS does not copy launch permissions, user\-defined tags, or Amazon S3 bucket permissions from the source AMI to the new AMI\. After the copy operation is complete, you can apply launch permissions, user\-defined tags, and Amazon S3 bucket permissions to the new AMI\.
+There are no charges for copying an AMI\. However, standard storage and data transfer rates apply\. If you copy an EBS\-backed AMI, you will incur charges for the storage of any additional EBS snapshots\.
 
-If you are using an AWS Marketplace AMI, or an AMI that was directly or indirectly derived from an AWS Marketplace AMI, you cannot copy it across accounts\. Instead, launch an EC2 instance using the AWS Marketplace AMI and then create an AMI from the instance\. For more information, see [Create an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md)\.
-
-**Note**  
-You can use IAM policies to grant or deny users permissions to copy AMIs\. Resource\-level permissions specified for the `CopyImage` action apply to the new AMI only\. You cannot specify resource\-level permissions for the source AMI\. 
+**Considerations**
++ You can use IAM policies to grant or deny users permissions to copy AMIs\. Resource\-level permissions specified for the `CopyImage` action apply only to the new AMI\. You cannot specify resource\-level permissions for the source AMI\.
++ AWS does not copy launch permissions, user\-defined tags, or Amazon S3 bucket permissions from the source AMI to the new AMI\. After the copy operation is complete, you can apply launch permissions, user\-defined tags, and Amazon S3 bucket permissions to the new AMI\.
++ If you are using an AWS Marketplace AMI, or an AMI that was directly or indirectly derived from an AWS Marketplace AMI, you cannot copy it across accounts\. Instead, launch an EC2 instance using the AWS Marketplace AMI and then create an AMI from the instance\. For more information, see [Create an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md)\.
 
 **Topics**
 + [Permissions for copying an instance store\-backed AMI](#copy-ami-permissions)

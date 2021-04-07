@@ -166,7 +166,7 @@ Multi\-Attach enabled volumes are deleted on instance termination if the last at
 
 To ensure predictable delete on termination behavior, enable or disable delete on termination for all of the instances to which the volume is attached\.
 
-By default, when a volume is attached to an instance,  the delete on termination setting for the block device mapping is set to false\. If you want to turn on delete on termination for a Multi\-Attach enabled volume, modify the block device mapping\.
+By default, when a volume is attached to an instance, the delete on termination setting for the block device mapping is set to false\. If you want to turn on delete on termination for a Multi\-Attach enabled volume, modify the block device mapping\.
 
 If you want the volume to be deleted when the attached instances are terminated, enable delete on termination in the block device mapping for all of the attached instances\. If you want to retain the volume after the attached instances have been terminated, disable delete on termination in the block device mapping for all of the attached instances\. For more information, see [Preserve Amazon EBS volumes on instance termination](terminating-instances.md#preserving-volumes-on-termination)\.
 

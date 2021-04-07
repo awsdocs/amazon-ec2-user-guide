@@ -346,7 +346,7 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
 
    Libfabric is installed in the `/opt/amazon/efa` directory, while Open MPI is installed in the `/opt/amazon/openmpi` directory\.
 
-1. Reboot the instance and then log back in\.
+1. If the EFA installer prompts you to reboot the instance, do so and then reconnect to the instance\. Otherwise, log out of the instance and then log back in to complete the installation\.
 
 1. Confirm that the EFA software components were successfully installed\.
 

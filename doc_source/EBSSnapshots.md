@@ -42,9 +42,6 @@ In the diagram below, Volume 1 is shown at three points in time\. A snapshot is 
 
 ![\[Snapshots capturing an initial volume state and two subsequent states after data has been changed.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/snapshot_1a.png)
 
-**Note**  
-If you copy a snapshot and encrypt it to a new CMK, a complete \(non\-incremental\) copy is always created, resulting in additional delay and storage costs\.
-
 For more information about how data is managed when you delete a snapshot, see [Delete an Amazon EBS snapshot](ebs-deleting-snapshot.md)\.
 
 ## Copy and share snapshots<a name="copy-and-share"></a>
@@ -63,9 +60,6 @@ EBS snapshots fully support EBS encryption\.
 + When you copy an encrypted snapshot that you own or have access to, you can reencrypt it with a different key during the copy process\.
 + The first snapshot you take of an encrypted volume that has been created from an unencrypted snapshot is always a full snapshot\.
 + The first snapshot you take of a reencrypted volume, which has a different CMK compared to the source snapshot, is always a full snapshot\.
-
-**Note**  
-If you copy a snapshot and encrypt it to a new CMK, a complete \(non\-incremental\) copy is always created, resulting in additional delay and storage costs\.
 
 Complete documentation of possible snapshot encryption scenarios is provided in [Create Amazon EBS snapshots](ebs-creating-snapshot.md) and in [Copy an Amazon EBS snapshot](ebs-copy-snapshot.md)\.
 

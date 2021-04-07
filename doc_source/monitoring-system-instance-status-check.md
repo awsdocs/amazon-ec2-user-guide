@@ -20,7 +20,7 @@ There are two types of status checks: system status checks and instance status c
 
 ### System status checks<a name="system-status-checks"></a>
 
-System status checks monitor the AWS systems on which your instance runs\. These checks detect underlying problems with your instance that require AWS involvement to repair\. When a system status check fails, you can choose to wait for AWS to fix the issue, or you can resolve it yourself\. For instances backed by Amazon EBS, you can stop and start the instance yourself, which in most cases results in the instance being migrated to a new host\. For instances backed by instance store, you can terminate and replace the instance\.
+System status checks monitor the AWS systems on which your instance runs\. These checks detect underlying problems with your instance that require AWS involvement to repair\. When a system status check fails, you can choose to wait for AWS to fix the issue, or you can resolve it yourself\. For instances backed by Amazon EBS, you can stop and start the instance yourself, which in most cases results in the instance being migrated to a new host\. For Linux instances backed by instance store, you can terminate and replace the instance\. For Windows instances, the root volume must be an Amazon EBS volume; instance store is not supported for the root volume\. Note that instance store volumes are ephemeral and all data is lost when the instance is stopped\.
 
 The following are examples of problems that can cause system status checks to fail:
 + Loss of network connectivity

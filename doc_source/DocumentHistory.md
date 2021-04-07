@@ -4,6 +4,8 @@ The following table describes important additions to the Amazon EC2 documentatio
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Store and restore an AMI using S3](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-store-restore.html) | Store EBS\-backed AMIs in S3 and restore them from S3 to enable cross\-partition copying of AMIs\. | April 6, 2021 | 
+| [EC2 Serial Console](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-serial-console.html) | Troubleshoot boot and network connectivity issues by establishing a connection to the serial port of an instance\. | March 30, 2021 | 
 | [Boot modes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-boot.html) | Amazon EC2 now supports UEFI boot on selected AMD\- and Intel\-based EC2 instances\. | March 22, 2021 | 
 | [X2gd instances](#DocumentHistory) | New memory optimized instances featuring an AWS Graviton2 processor based on 64\-bit Arm architecture\. | March 16, 2021 | 
 | [Amazon EBS local snapshots on Outposts](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snapshots-outposts.html) | You can now use Amazon EBS local snapshots on Outposts to store snapshots of volumes on an Outpost locally in Amazon S3 on the Outpost itself\. | February 4, 2021 | 

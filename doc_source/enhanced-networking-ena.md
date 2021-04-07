@@ -202,7 +202,7 @@ The latest Ubuntu HVM AMIs include the module required for enhanced networking w
 If you launched your instance using an older AMI and it does not have enhanced networking enabled already, you can install the `linux-aws` kernel package to get the latest enhanced networking drivers and update the required attribute\.
 
 **To install the linux\-aws kernel package \(Ubuntu 16\.04 or later\)**  
-Ubuntu 16\.04 and 18\.04 ship with the Ubuntu custom kernel \(linux\-aws kernel package\)\. To use a different kernel, contact [AWS Support](https://console.aws.amazon.com/support)\.<a name="ubuntu-enhanced-networking-ena-procedure"></a>
+Ubuntu 16\.04 and 18\.04 ship with the Ubuntu custom kernel \(linux\-aws kernel package\)\. To use a different kernel, contact [Amazon Web Services Support](https://console.aws.amazon.com/support)\.<a name="ubuntu-enhanced-networking-ena-procedure"></a>
 
 **To install the linux\-aws kernel package \(Ubuntu Trusty 14\.04\)**
 

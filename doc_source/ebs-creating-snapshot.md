@@ -16,9 +16,6 @@ By default, only you can create volumes from snapshots that you own\. However, y
 
 You can share an encrypted snapshot only with specific AWS accounts\. For others to use your shared, encrypted snapshot, you must also share the CMK key that was used to encrypt it\. Users with access to your encrypted snapshot must create their own personal copy of it and then use that copy\. Your copy of a shared, encrypted snapshot can also be re\-encrypted using a different key\. For more information, see [Share an Amazon EBS snapshot](ebs-modifying-snapshot-permissions.md)\.
 
-**Note**  
-If you copy a snapshot and encrypt it to a new CMK, a complete \(non\-incremental\) copy is always created, resulting in additional delay and storage costs\.
-
 ## Multi\-volume snapshots<a name="ebs-create-snapshot-multi-volume"></a>
 
 You can create multi\-volume snapshots, which are point\-in\-time snapshots for all EBS volumes attached to an EC2 instance\. You can also create lifecycle policies to automate the creation and retention of multi\-volume snapshots\. For more information, see [Amazon Data Lifecycle Manager](snapshot-lifecycle.md)\.

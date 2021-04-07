@@ -10,6 +10,7 @@ For more information, see [Amazon EC2 Mac Instances](https://aws.amazon.com/mac)
 + [Launch a Mac instance using the AWS CLI](#mac-instance-launch-cli)
 + [Connect to your instance using SSH](#mac-instance-ssh)
 + [Connect to your instance using Apple Remote Desktop](#mac-instance-vnc)
++ [Modify macOS screen resolution on Mac instances](#mac-screen-resolution)
 + [EC2 macOS AMIs](#ec2-macos-images)
 + [Update the operating system and software](#mac-instance-updates)
 + [EC2 macOS Init](#ec2-macos-init)
@@ -23,7 +24,10 @@ For more information, see [Amazon EC2 Mac Instances](https://aws.amazon.com/mac)
 The following considerations apply to Mac instances:
 + Mac instances are available only as bare metal instances on Dedicated Hosts, with a minimum allocation period of 24 hours before you can release the Dedicated Host\. You can launch one Mac instance per Dedicated Host\. You can share the Dedicated Host with the AWS accounts or organizational units within your AWS organization, or the entire AWS organization\.
 + Mac instances are available only as On\-Demand Instances\. They are not available as Spot Instances or Reserved Instances\. You can save money on Mac instances by purchasing a [Savings Plan](https://docs.aws.amazon.com/savingsplans/latest/userguide/)\.
-+ Mac instances run either macOS Mojave \(version 10\.14\), macOS Catalina \(version 10\.15\), or macOS Big Sur \(version 11\)\.
++ Mac instances can run one of the following operating systems:
+  + macOS Catalina \(version 10\.15\)
+  + macOS Mojave \(version 10\.14\)
+  + macOS Big Sur \(version 11\)
 + If you attach an EBS volume to a running Mac instance, you must reboot the instance to make the volume available\.
 + If you attach a network interface to a running Mac instance, you must reboot the instance to make the network interface available\.
 + AWS does not manage or support the internal SSD on the Apple hardware\. We strongly recommend that you use Amazon EBS volumes instead\. EBS volumes provide the same elasticity, availability, and durability benefits on Mac instances as they do on any other EC2 instance\.
@@ -181,6 +185,37 @@ Use the following procedure to connect to your instance using Apple Remote Deskt
    1. For **Connect to**, enter **localhost**\.
 
    1. Log in as prompted, using **ec2\-user** as the user name and the password that you created for the ec2\-user account\.
+
+## Modify macOS screen resolution on Mac instances<a name="mac-screen-resolution"></a>
+
+Once you connect to your EC2 Mac instance using ARD or a VNC client that supports ARD installed, you can modify the screen resolution of your macOS environment using any of the publicly available macOS tools or utilities, such as [displayplacer](https://github.com/jakehilborn/displayplacer)
+
+**Modifying screen resolution using displayplacer**
+
+1. Install displayplacer\.
+
+   ```
+   brew tap jakehilborn/jakehilborn && brew install displayplacer
+   ```
+
+1. Show current screen info and possible screen resolutions\.
+
+   ```
+   displayplacer list
+   ```
+
+1. Apply desired screen resolution\.
+
+   ```
+   displayplacer "id:<screenID> res:<width>x<height> origin:(0,0) degree:0"
+   ```
+
+   For example:
+
+   ```
+   RES="2560x1600"
+   displayplacer "id:69784AF1-CD7D-B79B-E5D4-60D937407F68 res:${RES} scaling:off origin:(0,0) degree:0"
+   ```
 
 ## EC2 macOS AMIs<a name="ec2-macos-images"></a>
 

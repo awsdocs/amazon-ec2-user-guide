@@ -54,7 +54,7 @@ For more information, see [IPv6 addresses](using-instance-addressing.md#ipv6-add
 You can set the termination behavior for a network interface that's attached to an instance\. You can specify whether the network interface should be automatically deleted when you terminate the instance to which it's attached\.
 
 **Source/destination checking**  
-You can enable or disable source/destination checks, which ensure that the instance is either the source or the destination of any traffic that it receives\. Source/destination checks are enabled by default\. You must disable source/destination checks if the instance if the instance runs services such as network address translation, routing, or firewalls\.
+You can enable or disable source/destination checks, which ensure that the instance is either the source or the destination of any traffic that it receives\. Source/destination checks are enabled by default\. You must disable source/destination checks if the instance runs services such as network address translation, routing, or firewalls\.
 
 **Monitoring IP traffic**  
 You can enable a VPC flow log on your network interface to capture information about the IP traffic going to and from a network interface\. After you've created a flow log, you can view and retrieve its data in Amazon CloudWatch Logs\. For more information, see [VPC Flow Logs](https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html) in the *Amazon VPC User Guide*\.

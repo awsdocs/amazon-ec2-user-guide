@@ -179,7 +179,7 @@ Provisioned IOPS SSD volumes can range in size from 4 GiB to 16 TiB\. You can pr
 + `io1` volume 1,280 GiB in size or greater \(50 × 1,280 GiB = 64,000 IOPS\)
 + `io2` volume 128 GiB in size or greater \(500 × 128 GiB = 64,000 IOPS\)
 
-Provisioned IOPS SSD volumes provisioned with up to 32,000 IOPS support a maximum I/O size of 256 KiB and yield as much as 500 MiB/s of throughput\. With the I/O size at the maximum, peak throughput is reached at 2,000 IOPS\. A volume provisioned with more than 32,000 IOPS \(up to the cap of 64,000 IOPS\) supports a maximum I/O size of 16 KiB and yields as much as 1,000 MiB/s of throughput\. The following graph illustrates these performance characteristics:
+Provisioned IOPS SSD volumes provisioned with up to 32,000 IOPS support a maximum I/O size of 256 KiB and yield as much as 500 MiB/s of throughput\. With the I/O size at the maximum, peak throughput is reached at 2,000 IOPS\. Volumes provisioned with more than 32,000 IOPS \(up to the maximum of 64,000 IOPS\) yield a linear increase in throughput at a rate of 16 KiB per provisioned IOPS\. For example, a volume provisioned with 48,000 IOPS can support up to 750 MiB/s of throughput \(16 KiB per provisioned IOPS x 48,000 provisioned IOPS = 750 MiB/s\)\. To achieve the maximum throughput of 1,000 MiB/s, a volume must be provisioned with 64,000 IOPS \(16 KiB per provisioned IOPS x 64,000 provisioned IOPS = 1,000 MiB/s\)\. The following graph illustrates these performance characteristics:
 
 ![\[Throughput limits for io1 volumes\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/io1_throughput.png)
 

@@ -4,20 +4,9 @@ With Amazon EBS, you can create point\-in\-time snapshots of volumes, which we s
 
 To copy multi\-volume snapshots to another AWS Region, retrieve the snapshots using the tag you applied to the multi\-volume snapshots group when you created it\. Then individually copy the snapshots to another Region\.
 
-For information about copying an Amazon RDS snapshot, see [Copying a DB Snapshot](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_CopySnapshot.html) in the *Amazon RDS User Guide*\.
-
 If you would like another account to be able to copy your snapshot, you must either modify the snapshot permissions to allow access to that account or make the snapshot public so that all AWS accounts can copy it\. For more information, see [Share an Amazon EBS snapshot](ebs-modifying-snapshot-permissions.md)\.
 
-For pricing information about copying snapshots across AWS Regions and accounts, see [Amazon EBS Pricing](http://aws.amazon.com/ebs/pricing/)\.
-
-**Note**  
-Snapshot copy operations within a single account and Region do not copy any actual data and therefore are cost\-free as long as the encryption status of the snapshot copy does not change\.
-
-**Note**  
-If you copy a snapshot to a new Region, a complete \(non\-incremental\) copy is always created, resulting in additional delay and storage costs\.
-
-**Note**  
-If you copy a snapshot and encrypt it to a new CMK, a complete \(non\-incremental\) copy is always created, resulting in additional delay and storage costs\.
+For information about copying an Amazon RDS snapshot, see [Copying a DB Snapshot](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_CopySnapshot.html) in the *Amazon RDS User Guide*\.
 
 **Use cases**
 + Geographic expansion: Launch your applications in a new AWS Region\.
@@ -30,18 +19,24 @@ If you copy a snapshot and encrypt it to a new CMK, a complete \(non\-incrementa
 + You can copy any accessible snapshots that have a `completed` status, including shared snapshots and snapshots that you have created\.
 + You can copy AWS Marketplace, VM Import/Export, and AWS Storage Gateway snapshots, but you must verify that the snapshot is supported in the destination Region\.
 
-**Limits**
+**Considerations**
 + Each account can have up to twenty concurrent snapshot copy requests to a single destination Region\.
 + User\-defined tags are not copied from the source snapshot to the new snapshot\. You can add user\-defined tags during or after the copy operation\. For more information, see [Tag your Amazon EC2 resources](Using_Tags.md)\.
-+ Snapshots created by the `CopySnapshot` action have an arbitrary volume IDthat should not be used for any purpose\.
-+ Resource\-level permissions specified for the `CopySnapshot` action apply to the new snapshot only\. You cannot specify resource\-level permissions for the source snapshot\. For an example, see [Example: Copying snapshots](ExamplePolicies_EC2.md#iam-copy-snapshot)\.
++ Snapshots created by a snapshot copy operation have an arbitrary volume ID that should not be used for any purpose\.
++ Resource\-level permissions specified for the snapshot copy operation apply only to the new snapshot\. You cannot specify resource\-level permissions for the source snapshot\. For an example, see [Example: Copying snapshots](ExamplePolicies_EC2.md#iam-copy-snapshot)\.
+
+**Pricing**
++ For pricing information about copying snapshots across AWS Regions and accounts, see [Amazon EBS Pricing](http://aws.amazon.com/ebs/pricing/)\.
++ Snapshot copy operations within a single account and Region do not copy any actual data and therefore are cost\-free as long as the encryption status of the snapshot copy does not change\.
++ If you copy a snapshot and encrypt it to a new KMS key, a complete \(non\-incremental\) copy is created\. This results in additional storage costs\.
++ If you copy a snapshot to a new Region, a complete \(non\-incremental\) copy is created\. This results in additional storage costs\. Subsequent copies of the same snapshot are incremental\.
 
 ## Incremental snapshot copying<a name="ebs-incremental-copy"></a>
 
 Whether a snapshot copy is incremental is determined by the most recently completed snapshot copy\. When you copy a snapshot across Regions or accounts, the copy is an incremental copy if the following conditions are met:
 + The snapshot was copied to the destination Region or account previously\.
 + The most recent snapshot copy still exists in the destination Region or account\.
-+ All copies of the snapshot in the destination Region or account are either unencrypted or were encrypted using the same CMK\.
++ All copies of the snapshot in the destination Region or account are either unencrypted or were encrypted using the same KMS key\.
 
 If the most recent snapshot copy was deleted, the next copy is a full copy, not an incremental copy\. If a copy is still pending when you start a another copy, the second copy starts only after the first copy finishes\.
 
@@ -51,9 +46,9 @@ To see whether your snapshot copies are incremental, check the [copySnapshot](eb
 
 ## Encryption and snapshot copying<a name="creating-encrypted-snapshots"></a>
 
-When you copy a snapshot, you can encrypt the copy or you can specify a CMK different from the original one, and the resulting copied snapshot uses the new CMK\. However, changing the encryption status of a snapshot during a copy operation results in a full \(not incremental\) copy, which might incur greater data transfer and storage charges\. 
+When you copy a snapshot, you can encrypt the copy or you can specify a KMS key that is different than the original, and the resulting copied snapshot uses the new KMS key\. However, changing the encryption status of a snapshot during a copy operation results in a full \(not incremental\) copy, which might incur greater data transfer and storage charges\. 
 
-To copy an encrypted snapshot shared from another AWS account, you must have permissions to use the snapshot and the customer master key \(CMK\) that was used to encrypt the snapshot\. When using an encrypted snapshot that was shared with you, we recommend that you re\-encrypt the snapshot by copying it using a CMK that you own\. This protects you if the original CMK is compromised, or if the owner revokes it, which could cause you to lose access to any encrypted volumes that you created using the snapshot\. For more information, see [Share an Amazon EBS snapshot](ebs-modifying-snapshot-permissions.md)\.
+To copy an encrypted snapshot shared from another AWS account, you must have permissions to use the snapshot and the customer master key \(CMK\) that was used to encrypt the snapshot\. When using an encrypted snapshot that was shared with you, we recommend that you re\-encrypt the snapshot by copying it using a KMS key that you own\. This protects you if the original KMS key is compromised, or if the owner revokes it, which could cause you to lose access to any encrypted volumes that you created using the snapshot\. For more information, see [Share an Amazon EBS snapshot](ebs-modifying-snapshot-permissions.md)\.
 
 You apply encryption to EBS snapshot copies by setting the `Encrypted` parameter to `true`\. \(The `Encrypted` parameter is optional if [encryption by default](EBSEncryption.md#encryption-by-default) is enabled\)\.
 
@@ -87,8 +82,6 @@ Use the following procedure to copy a snapshot using the Amazon EC2 console\.
    + **Encryption**: If the source snapshot is not encrypted, you can choose to encrypt the copy\. If you have enabled [encryption by default](EBSEncryption.md#encryption-by-default), the **Encryption** option is set and cannot be unset from the snapshot console\. If the **Encryption** option is set, you can choose to encrypt it to a customer managed CMK by selecting one in the field, described below\.
 
      You cannot strip encryption from an encrypted snapshot\.
-**Note**  
-If you copy a snapshot and encrypt it to a new CMK, a complete \(non\-incremental\) copy is always created, resulting in additional delay and storage costs\.
    + **Master Key**: The customer master key \(CMK\) to be used to encrypt this snapshot\. The default key for your account is displayed initially, but you can optionally select from the master keys in your account or type/paste the ARN of a key from a different account\. You can create new master encryption keys in the [AWS KMS console](https://console.aws.amazon.com/kms)\. 
 
 1. Choose **Copy**\.

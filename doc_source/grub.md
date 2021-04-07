@@ -185,9 +185,9 @@ Single user mode will boot the kernel at a lower runlevel\. For example, it migh
 
 1. Press **Ctrl\+X** to boot into single user mode\.
 
-1. At the `login` prompt, enter the user name of the password\-based user that you [set up previously](configure-access-to-serial-console.md#set-user-password), and then press Enter\.
+1. At the `login` prompt, enter the user name of the password\-based user that you [set up previously](configure-access-to-serial-console.md#set-user-password), and then press **Enter**\.
 
-1. At the `Password` prompt, enter the password, and then press Enter\.
+1. At the `Password` prompt, enter the password, and then press **Enter**\.
 
 ### Emergency mode<a name="emergency-mode"></a>
 

@@ -116,7 +116,9 @@ You can use the device name, such as `/dev/xvdf`, in `/etc/fstab`, but we recomm
    [ec2-user ~]$ sudo cp /etc/fstab /etc/fstab.orig
    ```
 
-1. Use the blkid command to find the UUID of the device\.
+1. Use the blkid command to find the UUID of the device\. Make a note of the UUID of the device that you want to mount after reboot\. You'll need it in the following step\.
+
+   For example, the following command shows that there are two devices mounted to the instance, and it shows the UUIDs for both devices\.
 
    ```
    [ec2-user ~]$ sudo blkid
@@ -136,7 +138,9 @@ You can use the device name, such as `/dev/xvdf`, in `/etc/fstab`, but we recomm
    [ec2-user ~]$ sudo vim /etc/fstab
    ```
 
-1. Add the following entry to `/etc/fstab` to mount the device at the specified mount point\. The fields are the UUID value returned by blkid \(or lsblk for Ubuntu 18\.04\), the mount point, the file system, and the recommended file system mount options\. For more information, see the manual page for fstab \(run man fstab\)\.
+1. Add the following entry to `/etc/fstab` to mount the device at the specified mount point\. The fields are the UUID value returned by blkid \(or lsblk for Ubuntu 18\.04\), the mount point, the file system, and the recommended file system mount options\. For more information about the required fields, run `man fstab` to open the fstab manual\.
+
+   In the following example, we mount the device with UUID `aebf131c-6957-451e-8d34-ec978d9581ae` to mount point `/data` and we use the `xfs` file system\. We also use the `defaults` and `nofail` flags\. We specify `0` to prevent the file system from being dumped, and we specify `2` to indicate that it is a non\-root device\.
 
    ```
    UUID=aebf131c-6957-451e-8d34-ec978d9581ae  /data  xfs  defaults,nofail  0  2

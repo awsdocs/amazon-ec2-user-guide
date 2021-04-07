@@ -71,6 +71,6 @@ The usual Amazon EC2 limits apply to instances launched by a Spot Fleet or an EC
 + A Spot Fleet request or an EC2 Fleet request can't span Regions\.
 + A Spot Fleet request or an EC2 Fleet request can't span different subnets from the same Availability Zone\.
 
-If you need more than the default limits for target capacity, complete the AWS Support Center [Create case](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-fleet) form to request a limit increase\. For **Limit type**, choose **EC2 Fleet**, choose a Region, and then choose **Target Fleet Capacity per Fleet \(in units\)** or **Target Fleet Capacity per Region \(in units\)**, or both\.
+If you need more than the default limits for target capacity, complete the Amazon Web Services Support Center [Create case](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-fleet) form to request a limit increase\. For **Limit type**, choose **EC2 Fleet**, choose a Region, and then choose **Target Fleet Capacity per Fleet \(in units\)** or **Target Fleet Capacity per Region \(in units\)**, or both\.
 
 \* These are hard limits\. You cannot request a limit increase for these limits\.
