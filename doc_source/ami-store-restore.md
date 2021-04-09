@@ -1,6 +1,6 @@
 # Store and restore an AMI using S3<a name="ami-store-restore"></a>
 
-You can store an Amazon Machine Image \(AMI\) in an Amazon S3 bucket, copy the AMI to another S3 bucket, and then restore it from the S3 bucket\. By storing and restoring an AMI using S3 buckets, you can move AMIs between AWS partitions, for example, from the main commercial partition to the AWS GovCloud \(US\) partition\. You can also make archival copies of AMIs by storing them in an S3 bucket\.
+You can store an Amazon Machine Image \(AMI\) in an Amazon S3 bucket, copy the AMI to another S3 bucket, and then restore it from the S3 bucket\. By storing and restoring an AMI using S3 buckets, you can copy AMIs from one AWS partition to another, for example, from the main commercial partition to the AWS GovCloud \(US\) partition\. You can also make archival copies of AMIs by storing them in an S3 bucket\.
 
 The supported APIs for storing and restoring an AMI using S3 are `CreateStoreImageTask`, `DescribeStoreImageTasks`, and `CreateRestoreImageTask`\.
 
@@ -18,14 +18,14 @@ The supported APIs for storing and restoring an AMI using S3 are `CreateStoreIma
 ## Use cases<a name="use-cases"></a>
 
 **Topics**
-+ [Move an AMI from one AWS partition to another AWS partition](#move-to-partition)
++ [Copy an AMI from one AWS partition to another AWS partition](#copy-to-partition)
 + [Make archival copies of AMIs](#archival-copies)
 
-### Move an AMI from one AWS partition to another AWS partition<a name="move-to-partition"></a>
+### Copy an AMI from one AWS partition to another AWS partition<a name="copy-to-partition"></a>
 
-By storing and restoring an AMI using S3 buckets, you can move an AMI from one AWS partition to another, or from one AWS Region to another\. In the following example, you move an AMI from the main commercial partition to the AWS GovCloud \(US\) partition, specifically from the `us-east-2` Region to the `us-gov-east-1` Region\.
+By storing and restoring an AMI using S3 buckets, you can copy an AMI from one AWS partition to another, or from one AWS Region to another\. In the following example, you copy an AMI from the main commercial partition to the AWS GovCloud \(US\) partition, specifically from the `us-east-2` Region to the `us-gov-east-1` Region\.
 
-To move an AMI from one partition to another, follow these steps:
+To copy an AMI from one partition to another, follow these steps:
 + Store the AMI in an S3 bucket in the current Region by using `CreateStoreImageTask`\. In this example, the S3 bucket is located in `us-east-2`\. For an example command, see [Store an AMI in an S3 bucket](#store-ami)\.
 + Monitor the progress of the store task by using `DescribeStoreImageTasks`\. The object becomes visible in the S3 bucket when the task is completed\. For an example command, see [Describe the progress of an AMI store task](#describe-store-ami)\.
 + Copy the stored AMI object to an S3 bucket in the target partition using a procedure of your choice\. In this example, the S3 bucket is located in `us-gov-east-1`\.
@@ -36,7 +36,7 @@ To move an AMI from one partition to another, follow these steps:
 
 You can make archival copies of AMIs by storing them in an S3 bucket\. For an example command, see [Store an AMI in an S3 bucket](#store-ami)\.
 
-The AMI is packed into a single object in S3, and all the AMI metadata \(excluding sharing information\) is preserved as part of the stored AMI\. The AMI data is compressed as part of the storage process\. AMIs that contain data that can easily be compressed will result in smaller objects in S3\. To reduce costs, you can use less expensive S3 storage tiers\. For more information, see [Amazon S3 Storage Classes](http://aws.amazon.com/s3/storage-classes/) and [Amazon S3 pricing](http://aws.amazon.com/s3/pricing/)
+The AMI is packed into a single object in S3, and all of the AMI metadata \(excluding sharing information\) is preserved as part of the stored AMI\. The AMI data is compressed as part of the storage process\. AMIs that contain data that can easily be compressed will result in smaller objects in S3\. To reduce costs, you can use less expensive S3 storage tiers\. For more information, see [Amazon S3 Storage Classes](http://aws.amazon.com/s3/storage-classes/) and [Amazon S3 pricing](http://aws.amazon.com/s3/pricing/)
 
 ## How the AMI store and restore APIs work<a name="how-it-works"></a>
 
@@ -54,19 +54,19 @@ To store and restore an AMI using S3, you use the following APIs:
 
 The [CreateStoreImageTask](#store-ami) API stores an AMI as a single object in an S3 bucket\.
 
-The API creates a task that reads all of the data from the AMI and its snapshots, and then uses an [S3 multipart upload](https://docs.aws.amazon.com/AmazonS3/latest/userguide/mpuoverview.html) to store the data in an S3 object\. The API takes all the components of the AMI, including most of the non\-Region\-specific AMI metadata and all the EBS snapshots contained in the AMI, and packs them into a single object in S3\. The data is compressed as part of the upload process to reduce the amount of space used in S3, so the object in S3 might be smaller than the sum of the sizes of the snapshots in the AMI\.
+The API creates a task that reads all of the data from the AMI and its snapshots, and then uses an [S3 multipart upload](https://docs.aws.amazon.com/AmazonS3/latest/userguide/mpuoverview.html) to store the data in an S3 object\. The API takes all of the components of the AMI, including most of the non\-Region\-specific AMI metadata, and all the EBS snapshots contained in the AMI, and packs them into a single object in S3\. The data is compressed as part of the upload process to reduce the amount of space used in S3, so the object in S3 might be smaller than the sum of the sizes of the snapshots in the AMI\.
 
 If there are AMI and snapshot tags visible to the account calling this API, they are preserved\.
 
 The object in S3 has the same ID as the AMI, but with a `.bin` extension\. The following data is also stored as S3 metadata tags on the S3 object: AMI name, AMI description, AMI registration date, AMI owner account, and a timestamp for the store operation\.
 
-The duration of the task depends on the size of the AMI and on how many other tasks are in progress\. Because the tasks are queued, there is no specific task completion time\. You can track the progress of the task by calling the [DescribeStoreImageTasks](#describe-store-ami) API\.
+The time it takes to complete the task depends on the size of the AMI\. It also depends on how many other tasks are in progress because tasks are queued\. You can track the progress of the task by calling the [DescribeStoreImageTasks](#describe-store-ami) API\.
 
 The sum of the sizes of all the AMIs in progress is limited to 600 GB of EBS snapshot data per account\. Further task creation will be rejected until the tasks in progress are less than the limit\. For example, if an AMI with 100 GB of snapshot data and another AMI with 200 GB of snapshot data are currently being stored, another request will be accepted, because the total in progress is 300 GB, which is less than the limit\. But if a single AMI with 800 GB of snapshot data is currently being stored, further tasks are rejected until the task is completed\.
 
 ### DescribeStoreImageTasks<a name="DescribeStoreImageTasks"></a>
 
-The [DescribeStoreImageTasks](#describe-store-ami) API describes the progress of the AMI store tasks\. You can describe tasks for specified AMIs\. If you don't specify AMIs, you get a paginated list of all the store image tasks that have been processed in the last 31 days\.
+The [DescribeStoreImageTasks](#describe-store-ami) API describes the progress of the AMI store tasks\. You can describe tasks for specified AMIs\. If you don't specify AMIs, you get a paginated list of all of the store image tasks that have been processed in the last 31 days\.
 
 For each AMI task, the response indicates if the task is `InProgress`, `Completed`, or `Failed`\. For tasks `InProgress`, the response shows an estimated progress as a percentage\.
 
@@ -84,18 +84,16 @@ The S3 bucket from which the AMI object will be restored must be in the same Reg
 
 The AMI is restored with its metadata, such as the name, description, and block device mappings corresponding to the values of the stored AMI\. The name must be unique for AMIs in the Region for this account\. If you do not provide a name, the new AMI gets the same name as the original AMI\. The AMI gets a new AMI ID that is generated at the time of the restore process\.
 
-You can view the progress of the AMI restoration task by describing the AMI \([describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html)\) or its EBS snapshots \([describe\-snapshots](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-snapshots.html)\)\. If the task fails, the AMI and snapshots are moved to a failed state\.
+The time it takes to complete the AMI restoration task depends on the size of the AMI\. It also depends on how many other tasks are in progress because tasks are queued\. You can view the progress of the task by describing the AMI \([describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html)\) or its EBS snapshots \([describe\-snapshots](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-snapshots.html)\)\. If the task fails, the AMI and snapshots are moved to a failed state\.
 
-The duration of the task depends on the size of the AMI and on how many other tasks are in progress\. Because the tasks are queued, there is no specific task completion time\.
-
-The sum of the sizes of all the AMIs in progress is limited to 300 GB \(based on the size after restoration\) of EBS snapshot data per account\. Further task creation will be rejected until the tasks in progress are less than the limit\.
+The sum of the sizes of all of the AMIs in progress is limited to 300 GB \(based on the size after restoration\) of EBS snapshot data per account\. Further task creation will be rejected until the tasks in progress are less than the limit\.
 
 ## Limitations<a name="limitations"></a>
 + Only EBS\-backed AMIs can be stored using these APIs\.
 + Paravirtual \(PV\) AMIs are not supported\.
 + The size of an AMI \(before compression\) that can be stored is limited to the size limit of a single S3 object, which is 1 TB\.
-+ Limit on [store image](#store-ami) requests: 600 GB of storage work \(snapshot data\) in progress\.
-+ Limit on [restore image](#restore-ami) requests: 300 GB of restore work \(snapshot data\) in progress\.
++ Quota on [store image](#store-ami) requests: 600 GB of storage work \(snapshot data\) in progress\.
++ Quota on [restore image](#restore-ami) requests: 300 GB of restore work \(snapshot data\) in progress\.
 + For the duration of the store task, the snapshots must not be deleted and the IAM principal doing the store must have access to the snapshots, otherwise the store process will fail\.
 + You can’t create multiple copies of an AMI in the same S3 bucket\.
 + An AMI that is stored in an S3 bucket can’t be restored with its original AMI ID\. You can mitigate this by using [AMI aliasing](https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-ec2-aliases.html)\.

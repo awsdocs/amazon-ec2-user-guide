@@ -122,6 +122,7 @@ You can create an IAM role and attach it to an instance during or after launch\.
 + [Attach an IAM role to an instance](#attach-iam-role)
 + [Replace an IAM role](#replace-iam-role)
 + [Detach an IAM role](#detach-iam-role)
++ [Generate a policy for your IAM role based on access activity](#generate-policy-for-iam-role)
 
 ### Create an IAM role<a name="create-iam-role"></a>
 
@@ -505,3 +506,7 @@ You can detach an IAM role from a running or stopped instance\.
 Alternatively, use the following Tools for Windows PowerShell commands:
 + [Get\-EC2IamInstanceProfileAssociation](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2IamInstanceProfileAssociation.html)
 + [Unregister\-EC2IamInstanceProfile](https://docs.aws.amazon.com/powershell/latest/reference/items/Unregister-EC2IamInstanceProfile.html)
+
+### Generate a policy for your IAM role based on access activity<a name="generate-policy-for-iam-role"></a>
+
+When you first create an IAM role for your applications, you might sometimes grant permissions beyond what is required\. Before launching your application in your production environment, you can generate an IAM policy that is based on the access activity for an IAM role\. IAM Access Analyzer reviews your AWS CloudTrail logs and generates a policy template that contains the permissions that have been used by the role in your specified date range\. You can use the template to create a managed policy with fine\-grained permissions and then attach it to the IAM role\. That way, you grant only the permissions that the role needs to interact with AWS resources for your specific use case\. This helps you adhere to the best practice of [granting least privilege](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege)\. To learn more, see [Generate policies based on access activity](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_generate-policy.html) in the *IAM User Guide*\.

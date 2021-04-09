@@ -9,8 +9,9 @@ You can connect to the serial console of your EC2 instance by using the Amazon E
 + [EC2 Serial Console fingerprints](#sc-fingerprints)
 
 ## Considerations<a name="sc-considerations"></a>
-+ Only one serial console connection is supported per instance\.
-+ The serial console connection lasts for a minimum of one hour\. The session lasts during instance reboot and stop\. During reboot, you can view all of the boot messages from the start\.
++ Only one active serial console connection is supported per instance\.
++ The serial console connection typically lasts for one hour unless you terminate it\. However, during system maintenance, Amazon EC2 will terminate the serial console session\.
++ It takes 30 seconds to tear down a session after you've disconnected from the serial console in order to allow a new session\.
 + Supported serial console port for Linux: ttyS0
 
 When you connect to the serial console, you might observe a slight drop in your instance’s throughput\.
@@ -78,7 +79,7 @@ You can use your own SSH key and connect to your instance from the SSH client of
 
    Use the [send\-serial\-console\-ssh\-public\-key](https://docs.aws.amazon.com/cli/latest/reference/ec2-instance-connect/send-serial-console-ssh-public-key.html) command to push your SSH public key to the instance\. This starts a serial console session\.
 
-   If a serial console session has already been started for this instance, the command fails\. It takes approximately 30 seconds between API calls before a new session can be established\.
+   If a serial console session has already been started for this instance, the command fails because you can only have one session open at a time\. It takes 30 seconds to tear down a session after you've disconnected from the serial console in order to allow a new session\. 
 
    ```
    $ aws ec2-instance-connect send-serial-console-ssh-public-key \

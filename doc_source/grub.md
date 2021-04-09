@@ -166,11 +166,7 @@ Single user mode will boot the kernel at a lower runlevel\. For example, it migh
 
 1. In the GRUB menu, use the arrow keys to select the kernel to boot into, and press `e` on your keyboard\. 
 
-1. Use the arrow keys to locate your cursor on the line containing the kernel\. The line begins with either `linux` or `linux16` depending on the AMI that was used to launch the instance\.
-   + Amazon Linux 2 – The line begins with `linux`\.
-   + Ubuntu – Two lines begin with `linux`\. Modify both lines\.
-   + RHEL – The line begins with `linux16`\.
-   + CentOS – The line begins with `linux16`\.
+1. Use the arrow keys to locate your cursor on the line containing the kernel\. The line begins with either `linux` or `linux16` depending on the AMI that was used to launch the instance\. For Ubuntu, two lines begin with `linux`, which must both be modified in the next step\.
 
 1. At the end of the line, add the word `single`\.
 

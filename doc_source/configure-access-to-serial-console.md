@@ -10,15 +10,15 @@ To configure access to the serial console, you must grant serial console access 
 
 ## Levels of access to the EC2 Serial Console<a name="serial-console-access-levels"></a>
 
-By default, there is no access to the serial console at the account level\. You need to explicitly grant access to the serial console at the account level\.
+By default, there is no access to the serial console at the account level\. You need to explicitly grant access to the serial console at the account level\. For more information, see [Manage account access to the EC2 Serial Console](#serial-console-account-access)\.
 
-You can use a service control policy \(SCP\) to deny access to the serial console so that nobody in your organization can access it, and then add exceptions in an IAM policy\. By using an SCP and IAM policies, you can control access to the serial console at the following levels:
+You can use a service control policy \(SCP\) to allow access to the serial console within your organization\. You can then have granular access control at the IAM user level by using an IAM policy to control access\. By using a combination of SCP and IAM policies, you have different levels of access control to the serial console\.
 
 **Organization level**  
-You can use a service control policy \(SCP\) to deny access to the serial console for member accounts in your organization\. To grant access to the serial console, you need to configure permissions in an IAM policy\. For more information about SCPs, see [Service control policies](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html) in the *AWS Organizations User Guide*\.
+You can use a service control policy \(SCP\) to allow access to the serial console for member accounts within your organization\. For more information about SCPs, see [Service control policies](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html) in the *AWS Organizations User Guide*\.
 
 **Instance level**  
-You can configure the serial console access policies by using IAM PrincipalTag and ResourceTag constructions\. For more information, see [Configure IAM policies for EC2 Serial Console access](#serial-console-iam)\.
+You can configure the serial console access policies by using IAM PrincipalTag and ResourceTag constructions and by specifying instances by their ID\. For more information, see [Configure IAM policies for EC2 Serial Console access](#serial-console-iam)\.
 
 **IAM user level**  
 You can configure access at the user level by configuring an IAM policy to allow or deny a specified user the permission to push the SSH public key to the serial console service of a particular instance\. For more information, see [Configure IAM policies for EC2 Serial Console access](#serial-console-iam)\.
