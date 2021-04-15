@@ -308,12 +308,12 @@ After you increase the size of the volume, you must increase the size of your AP
 
 **To make increased disk space available for use**
 
-1. Copy and paste the following commands\. When prompted, enter a 'y'\.
+1. Copy and paste the following commands\. 
 
    ```
    PDISK=$(diskutil list physical external | head -n1 | cut -d" " -f1)
    APFSCONT=$(diskutil list physical external | grep "Apple_APFS" | tr -s " " | cut -d" " -f8)
-   sudo diskutil repairDisk $PDISK
+   yes | sudo diskutil repairDisk $PDISK
    ```
 
 1. Copy and paste the following command\.
