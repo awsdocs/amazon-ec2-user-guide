@@ -17,7 +17,7 @@ The steps for launching, monitoring, and modifying these instances are similar\.
 You can launch your instances as `unlimited` or `standard` using the Amazon EC2 console, an AWS SDK, a command line tool, or with an Auto Scaling group\. For more information, see [Use an Auto Scaling group to launch a burstable performance instance as Unlimited](#burstable-performance-instances-auto-scaling-grp)\.
 
 **Requirements**
-+ You must launch your instances using an Amazon EBS volume as the root device\. For more information, see [Amazon EC2 root device volume](RootDeviceStorage.md)\.
++ You must launch your instances using an Amazon EBS volume as the root device\. For more information, see [Amazon EC2 instance root device volume](RootDeviceStorage.md)\.
 + For more information about AMI and driver requirements for these instances, see [Release notes](general-purpose-instances.md#general-purpose-instances-limits)\.
 
 **To launch a burstable performance instance as Unlimited or Standard \(console\)**

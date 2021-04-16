@@ -12,8 +12,6 @@ http://169.254.169.254/latest/meta-data/
 
 The IP address `169.254.169.254` is a link\-local address and is valid only from the instance\. For more information, see [Link\-local address](https://en.wikipedia.org/wiki/Link-local_address) on Wikipedia\.
 
-Note that you are not billed for HTTP requests used to retrieve instance metadata and user data\.
-
 The command format is different, depending on whether you use IMDSv1 or IMDSv2\. By default, you can use both instance metadata services\. To require the use of IMDSv2, see [Configure the instance metadata service](configuring-instance-metadata-service.md)\.
 
 You can use a tool such as cURL, as shown in the following example\.
@@ -35,8 +33,12 @@ You can use a tool such as cURL, as shown in the following example\.
 
 ------
 
-**Note**  
-The AWS SDKs use IMDSv2 calls by default\. If the IMDSv2 call receives no response, the SDK retries the call and, if still unsuccessful, uses IMDSv1\. This can result in a delay\. In a container environment, if the hop limit is 1, the IMDSv2 response does not return because going to the container is considered an additional network hop\. To avoid the process of falling back to IMDSv1 and the resultant delay, in a container environment we recommend that you set the hop limit to 2\. For more information, see [Configure the instance metadata options](configuring-instance-metadata-service.md#configuring-instance-metadata-options)\.
+Note that you are not billed for HTTP requests used to retrieve instance metadata and user data\.
+
+## Considerations<a name="imds-considerations"></a>
+
+To avoid problems with instance metadata retrieval, consider the following:
++ The AWS SDKs use IMDSv2 calls by default\. If the IMDSv2 call receives no response, the SDK retries the call and, if still unsuccessful, uses IMDSv1\. This can result in a delay\. In a container environment, if the hop limit is 1, the IMDSv2 response does not return because going to the container is considered an additional network hop\. To avoid the process of falling back to IMDSv1 and the resultant delay, in a container environment we recommend that you set the hop limit to 2\. For more information, see [Configure the instance metadata options](configuring-instance-metadata-service.md#configuring-instance-metadata-options)\.
 
 ## Responses and error messages<a name="instance-metadata-returns"></a>
 

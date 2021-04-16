@@ -6,6 +6,9 @@ The supported APIs for storing and restoring an AMI using S3 are `CreateStoreIma
 
 `CopyImage` is the recommended API to use for copying AMIs *within* an AWS [partition](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)\. However, `CopyImage` can’t copy an AMI to *another* partition\.
 
+**Warning**  
+Ensure that you comply with all applicable laws and business requirements when moving data between AWS partitions or AWS Regions, including, but not limited to, any applicable government regulations and data residency requirements\.
+
 **Topics**
 + [Use cases](#use-cases)
 + [How the AMI store and restore APIs work](#how-it-works)

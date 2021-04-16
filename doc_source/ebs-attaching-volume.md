@@ -24,7 +24,7 @@ For information about adding EBS volumes to your instance at launch, see [Instan
 
 1. For **Instance**, start typing the name or ID of the instance\. Select the instance from the list of options \(only instances that are in the same Availability Zone as the volume are displayed\)\.
 
-1. For **Device**, you can keep the suggested device name, or type a different supported device name\. For more information, see [Name devices on Linux instances](device_naming.md)\.
+1. For **Device**, you can keep the suggested device name, or type a different supported device name\. For more information, see [Device names on Linux instances](device_naming.md)\.
 
 1. Choose **Attach**\.
 

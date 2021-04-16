@@ -1,4 +1,4 @@
-# Block device mapping<a name="block-device-mapping-concepts"></a>
+# Block device mappings<a name="block-device-mapping-concepts"></a>
 
 Each instance that you launch has an associated root device volume, which is either an Amazon EBS volume or an instance store volume\. You can use block device mapping to specify additional EBS volumes or instance store volumes to attach to an instance when it's launched\. You can also attach additional EBS volumes to a running instance; see [Attach an Amazon EBS volume to an instance](ebs-attaching-volume.md)\. However, the only way to attach instance store volumes to an instance is to use block device mapping to attach the volumes as the instance is launched\.
 
@@ -28,7 +28,7 @@ A *block device mapping* defines the block devices \(instance store volumes and 
 ### Block device mapping entries<a name="parts-of-a-block-device-mapping"></a>
 
 When you create a block device mapping, you specify the following information for each block device that you need to attach to the instance:
-+ The device name used within Amazon EC2\. The block device driver for the instance assigns the actual volume name when mounting the volume\. The name assigned can be different from the name that Amazon EC2 recommends\. For more information, see [Name devices on Linux instances](device_naming.md)\.
++ The device name used within Amazon EC2\. The block device driver for the instance assigns the actual volume name when mounting the volume\. The name assigned can be different from the name that Amazon EC2 recommends\. For more information, see [Device names on Linux instances](device_naming.md)\.
 
 For Instance store volumes, you also specify the following information:
 + The virtual device: `ephemeral[0-23]`\. Note that the number and size of available instance store volumes for your instance varies by instance type\.

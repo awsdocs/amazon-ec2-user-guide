@@ -20,7 +20,7 @@ Depending on the size of the volumes, it can take several minutes for the AMI\-c
 
 After the process completes, you have a new AMI and snapshot created from the root volume of the instance\. When you launch an instance using the new AMI, we create a new EBS volume for its root volume using the snapshot\.
 
-If you add instance\-store volumes or EBS volumes to your instance in addition to the root device volume, the block device mapping for the new AMI contains information for these volumes, and the block device mappings for instances that you launch from the new AMI automatically contain information for these volumes\. The instance\-store volumes specified in the block device mapping for the new instance are new and don't contain any data from the instance store volumes of the instance you used to create the AMI\. The data on EBS volumes persists\. For more information, see [Block device mapping](block-device-mapping-concepts.md)\.
+If you add instance\-store volumes or EBS volumes to your instance in addition to the root device volume, the block device mapping for the new AMI contains information for these volumes, and the block device mappings for instances that you launch from the new AMI automatically contain information for these volumes\. The instance\-store volumes specified in the block device mapping for the new instance are new and don't contain any data from the instance store volumes of the instance you used to create the AMI\. The data on EBS volumes persists\. For more information, see [Block device mappings](block-device-mapping-concepts.md)\.
 
 When you create a new instance from an EBS\-backed AMI, you should initialize both its root volume and any additional EBS storage before putting it into production\. For more information, see [Initialize Amazon EBS volumes](ebs-initialize.md)\.
 
@@ -139,7 +139,7 @@ If you have a snapshot of the root device volume of an instance, you can create 
 
 1. In the **Create Image from EBS Snapshot** dialog box, complete the fields to create your AMI, then choose **Create**\. If you're re\-creating a parent instance, then choose the same options as the parent instance\.
    + **Architecture**: Choose **i386** for 32\-bit or **x86\_64** for 64\-bit\.
-   + **Root device name**: Enter the appropriate name for the root volume\. For more information, see [Name devices on Linux instances](device_naming.md)\.
+   + **Root device name**: Enter the appropriate name for the root volume\. For more information, see [Device names on Linux instances](device_naming.md)\.
    + **Virtualization type**: Choose whether instances launched from this AMI use paravirtual \(PV\) or hardware virtual machine \(HVM\) virtualization\. For more information, see [Linux AMI virtualization types](virtualization_types.md)\.
    + \(PV virtualization type only\) **Kernel ID** and **RAM disk ID**: Choose the AKI and ARI from the lists\. If you choose the default AKI or don't choose an AKI, you must specify an AKI every time you launch an instance using this AMI\. In addition, your instance may fail the health checks if the default AKI is incompatible with the instance\.
    + \(Optional\) **Block Device Mappings**: Add volumes or expand the default size of the root volume for the AMI\. For more information about resizing the file system on your instance for a larger volume, see [Extend a Linux file system after resizing a volume](recognize-expanded-volume-linux.md)\.

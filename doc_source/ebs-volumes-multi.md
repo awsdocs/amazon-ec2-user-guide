@@ -23,9 +23,7 @@ Amazon EBS Multi\-Attach enables you to attach a single Provisioned IOPS SSD \(`
 + The following table shows volume modification support for Multi\-Attach enabled `io1` and `io2` volumes after creation\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volumes-multi.html)
 
-   \* To change the volume type, first disable Multi\-Attach\.
-
-  \*\* You can't enable or disable Multi\-Attach while the volume is attached to an instance\.
+  \* You can't enable or disable Multi\-Attach while the volume is attached to an instance\.
 
 ## Performance<a name="perf"></a>
 

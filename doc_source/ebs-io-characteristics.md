@@ -2,6 +2,13 @@
 
 On a given volume configuration, certain I/O characteristics drive the performance behavior for your EBS volumes\. SSD\-backed volumes—General Purpose SSD \(`gp2` and `gp3`\) and Provisioned IOPS SSD \(`io1` and `io2`\)—deliver consistent performance whether an I/O operation is random or sequential\. HDD\-backed volumes—Throughput Optimized HDD \(`st1`\) and Cold HDD \(`sc1`\)—deliver optimal performance only when I/O operations are large and sequential\. To understand how SSD and HDD volumes will perform in your application, it is important to know the connection between demand on the volume, the quantity of IOPS available to it, the time it takes for an I/O operation to complete, and the volume's throughput limits\.
 
+**Topics**
++ [IOPS](#ebs-io-iops)
++ [Volume queue length and latency](#ebs-io-volume-queue)
++ [I/O size and volume throughput limits](#ebs-io-size-throughput-limits)
++ [Monitor I/O characteristics using CloudWatch](#ebs-io-metrics)
++ [Related resources](#ebs-io-resources)
+
 ## IOPS<a name="ebs-io-iops"></a>
 
 IOPS are a unit of measure representing input/output operations per second\. The operations are measured in KiB, and the underlying drive technology determines the maximum amount of data that a volume type counts as a single I/O\. I/O size is capped at 256 KiB for SSD volumes and 1,024 KiB for HDD volumes because SSD volumes handle small or random I/O much more efficiently than HDD volumes\. 
@@ -42,7 +49,7 @@ You can monitor these I/O characteristics with each volume's [CloudWatch volume 
 + `VolumeWriteOps`
 + `VolumeQueueLength`
 
-`BurstBalance` displays the burst bucket balance for `gp2`, `st1`, and `sc1` volumes as a percentage of the remaining balance\. When your burst bucket is depleted, volume I/O \(for `gp2` volumes\) or volume throughput \(for `st1` and `sc1` volumes\) is throttled to the baseline\. Check the `BurstBalance` value to determine whether your volume is being throttled for this reason\. 
+`BurstBalance` displays the burst bucket balance for `gp2`, `st1`, and `sc1` volumes as a percentage of the remaining balance\. When your burst bucket is depleted, volume I/O \(for `gp2` volumes\) or volume throughput \(for `st1` and `sc1` volumes\) is throttled to the baseline\. Check the `BurstBalance` value to determine whether your volume is being throttled for this reason\. For a complete list of the available Amazon EBS metrics, see [Amazon EBS metrics](using_cloudwatch_ebs.md#ebs-metrics) and [Amazon EBS metrics for Nitro\-based instances](viewing_metrics_with_cloudwatch.md#ebs-metrics-nitro)\.
 
 HDD\-backed `st1` and `sc1` volumes are designed to perform best with workloads that take advantage of the 1,024 KiB maximum I/O size\. To determine your volume's average I/O size, divide `VolumeWriteBytes `by `VolumeWriteOps`\. The same calculation applies to read operations\. If average I/O size is below 64 KiB, increasing the size of the I/O operations sent to an `st1` or `sc1` volume should improve performance\. 
 

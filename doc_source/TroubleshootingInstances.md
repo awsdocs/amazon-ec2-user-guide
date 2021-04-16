@@ -685,7 +685,7 @@ grubdom>
 | For this instance type  | Do this | 
 | --- | --- | 
 |  Amazon EBS\-backed  |  Option 1: Modify the AMI and relaunch the instance: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstances.html) Option 2: Fix the existing instance: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstances.html)  | 
-|  Instance store\-backed  |  Option 1: Modify the AMI and relaunch the instance: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstances.html) Option 2: Terminate the instance and launch a new instance, specifying the correct kernel\.  To recover data from the existing instance, contact [AWS Support](https://aws.amazon.com/premiumsupport/)\.   | 
+|  Instance store\-backed  |  Option 1: Modify the AMI and relaunch the instance: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstances.html) Option 2: Terminate the instance and launch a new instance, specifying the correct kernel\.  To recover data from the existing instance, contact [AWS Support ](https://aws.amazon.com/premiumsupport/)\.   | 
 
 ## Bringing up interface eth0: Device eth0 has different MAC address than expected, ignoring\. \(Hard\-coded MAC address\)<a name="OpSystemBringing"></a>
 

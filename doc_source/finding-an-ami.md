@@ -199,7 +199,7 @@ AMIs and Systems Manager parameters are Region specific\. To use the same System
 
 When you launch an instance using the Amazon EC2 console, the **Choose an Amazon Machine Image \(AMI\)** page includes a list of popular AMIs on the **Quick Start** tab\. If you want to automate launching an instance using one of these quick start AMIs, you'll need to programatically locate the ID of the current version of the AMI\.
 
-To locate the current version of a Quick Start AMI, you can enumerate all AMIs with its AMI name, and then find the one with the most recent creation date\.
+In the following examples, locating the current version of a Quick Start AMI happens in two steps\. The query gets a list of AMIs that match on the name pattern, with wildcards in place of the date\. Then, the results are sorted in reverse order to find the name with the most recent date\.
 
 **Example: Find the current Amazon Linux 2 AMI**  
 
@@ -207,7 +207,7 @@ To locate the current version of a Quick Start AMI, you can enumerate all AMIs w
 aws ec2 describe-images \
     --owners amazon \
     --filters "Name=name,Values=amzn2-ami-hvm-2.0.????????.?-x86_64-gp2" "Name=state,Values=available" \
-    --query "reverse(sort_by(Images, &CreationDate))[:1].ImageId" \
+    --query "reverse(sort_by(Images, &Name))[:1].ImageId" \
     --output text
 ```
 
@@ -217,7 +217,7 @@ aws ec2 describe-images \
 aws ec2 describe-images \
     --owners amazon \
     --filters "Name=name,Values=amzn-ami-hvm-????.??.?.????????-x86_64-gp2" "Name=state,Values=available" \
-    --query "reverse(sort_by(Images, &CreationDate))[:1].ImageId" \
+    --query "reverse(sort_by(Images, &Name))[:1].ImageId" \
     --output text
 ```
 
@@ -227,7 +227,7 @@ aws ec2 describe-images \
 aws ec2 describe-images \
     --owners 099720109477 \
     --filters "Name=name,Values=ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-????????" "Name=state,Values=available" \
-    --query "reverse(sort_by(Images, &CreationDate))[:1].ImageId" \
+    --query "reverse(sort_by(Images, &Name))[:1].ImageId" \
     --output text
 ```
 
@@ -237,7 +237,7 @@ aws ec2 describe-images \
 aws ec2 describe-images \
     --owners 309956199498 \
     --filters "Name=name,Values=RHEL-7.5_HVM_GA*" "Name=state,Values=available" \
-    --query "reverse(sort_by(Images, &CreationDate))[:1].ImageId" \
+    --query "reverse(sort_by(Images, &Name))[:1].ImageId" \
     --output text
 ```
 
@@ -247,6 +247,6 @@ aws ec2 describe-images \
 aws ec2 describe-images \
     --owners amazon \
     --filters "Name=name,Values=suse-sles-15-v????????-hvm-ssd-x86_64" "Name=state,Values=available" \
-    --query "reverse(sort_by(Images, &CreationDate))[:1].ImageId" \
+    --query "reverse(sort_by(Images, &Name))[:1].ImageId" \
     --output text
 ```

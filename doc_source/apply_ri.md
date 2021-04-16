@@ -69,13 +69,13 @@ Instance size flexibility also applies to bare metal instances within the instan
 The `metal` instance size does not have a single normalization factor\. A bare metal instance has the same normalization factor as the equivalent virtualized instance size within the same instance family\. For example, an `i3.metal` instance has the same normalization factor as an `i3.16xlarge` instance\.
 
 
-| Normalization factor | Instance sizes | 
+| Instance size | Normalization factor | 
 | --- | --- | 
-| 32 | a1\.metal | 
-| 96 |  m5zn\.metal \| z1d\.metal  | 
-| 128 |  c6g\.metal \| c6gd\.metal \| g4dn\.metal \| i3\.metal \| m6g\.metal \| m6gd\.metal \| r6g\.metal \| r6gd\.metal \| x2gd\.metal  | 
-| 144 | c5n\.metal | 
-| 192 |  c5\.metal \| c5d\.metal \| i3en\.metal \| m5\.metal \| m5d\.metal \| m5dn\.metal \| m5n\.metal \| r5\.metal \| r5b\.metal \| r5d\.metal \| r5dn\.metal \| r5n\.metal  | 
+| a1\.metal | 32 | 
+|  m5zn\.metal \| z1d\.metal  | 96 | 
+|  c6g\.metal \| c6gd\.metal \| g4dn\.metal \| i3\.metal \| m6g\.metal \| m6gd\.metal \| r6g\.metal \| r6gd\.metal \| x2gd\.metal  | 128 | 
+| c5n\.metal | 144 | 
+|  c5\.metal \| c5d\.metal \| i3en\.metal \| m5\.metal \| m5d\.metal \| m5dn\.metal \| m5n\.metal \| r5\.metal \| r5b\.metal \| r5d\.metal \| r5dn\.metal \| r5n\.metal  | 192 | 
 
 For example, an `i3.metal` instance has a normalization factor of 128\. If you purchase an `i3.metal` default tenancy Amazon Linux/Unix Reserved Instance in the US East \(N\. Virginia\), the billing benefit can apply as follows:
 + If you have one running `i3.16xlarge` in your account in that Region, the billing benefit is applied in full to the `i3.16xlarge` instance \(`i3.16xlarge` normalization factor = 128\)\.

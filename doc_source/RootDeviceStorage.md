@@ -1,4 +1,4 @@
-# Amazon EC2 root device volume<a name="RootDeviceStorage"></a>
+# Amazon EC2 instance root device volume<a name="RootDeviceStorage"></a>
 
 When you launch an instance, the *root device volume* contains the image used to boot the instance\. When we introduced Amazon EC2, all AMIs were backed by Amazon EC2 instance store, which means the root device for an instance launched from the AMI is an instance store volume created from a template stored in Amazon S3\. After we introduced Amazon EBS, we introduced AMIs that are backed by Amazon EBS\. This means that the root device for an instance launched from the AMI is an Amazon EBS volume created from an Amazon EBS snapshot\.
 
@@ -7,7 +7,7 @@ You can choose between AMIs backed by Amazon EC2 instance store and AMIs backed 
 **Important**  
 Only the following instance types support an instance store volume as the root device: C3, D2, G2, I2, M3, and R3\.
 
-For more information about the device names Amazon EC2 uses for your root volumes, see [Name devices on Linux instances](device_naming.md)\.
+For more information about the device names Amazon EC2 uses for your root volumes, see [Device names on Linux instances](device_naming.md)\.
 
 **Topics**
 + [Root device storage concepts](#RootDeviceStorageConcepts)
@@ -285,4 +285,4 @@ For example, the following entry for the instance block device mapping increases
 }
 ```
 
-For more information, see [Block device mapping](block-device-mapping-concepts.md)\.
+For more information, see [Block device mappings](block-device-mapping-concepts.md)\.

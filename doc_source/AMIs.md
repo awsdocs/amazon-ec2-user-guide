@@ -40,7 +40,7 @@ After you launch an instance from an AMI, you can connect to it\. When you are c
 
 You can launch an instance from an existing AMI, customize the instance \(for example, [install software](install-software.md) on the instance\), and then save this updated configuration as a custom AMI\. Instances launched from this new custom AMI include the customizations that you made when you created the AMI\.
 
-The root storage device of the instance determines the process you follow to create an AMI\. The root volume of an instance is either an Amazon Elastic Block Store \(Amazon EBS\) volume or an instance store volume\. For more information about the root device volume, see [Amazon EC2 root device volume](RootDeviceStorage.md)\.
+The root storage device of the instance determines the process you follow to create an AMI\. The root volume of an instance is either an Amazon Elastic Block Store \(Amazon EBS\) volume or an instance store volume\. For more information about the root device volume, see [Amazon EC2 instance root device volume](RootDeviceStorage.md)\.
 + To create an Amazon EBS\-backed AMI, see [Create an Amazon EBS\-backed Linux AMI](creating-an-ami-ebs.md)\.
 + To create an instance store\-backed AMI, see [Create an instance store\-backed Linux AMI](creating-an-ami-instance-store.md)\.
 

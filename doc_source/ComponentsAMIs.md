@@ -22,7 +22,7 @@ Amazon and the Amazon EC2 community provide a large selection of public AMIs\. F
 
 ## Storage for the root device<a name="storage-for-the-root-device"></a>
 
-All AMIs are categorized as either *backed by Amazon EBS* or *backed by instance store*\. The former means that the root device for an instance launched from the AMI is an Amazon Elastic Block Store \(Amazon EBS\) volume created from an Amazon EBS snapshot\. The latter means that the root device for an instance launched from the AMI is an instance store volume created from a template stored in Amazon S3\. For more information, see [Amazon EC2 root device volume](RootDeviceStorage.md)\.
+All AMIs are categorized as either *backed by Amazon EBS* or *backed by instance store*\. The former means that the root device for an instance launched from the AMI is an Amazon Elastic Block Store \(Amazon EBS\) volume created from an Amazon EBS snapshot\. The latter means that the root device for an instance launched from the AMI is an instance store volume created from a template stored in Amazon S3\. For more information, see [Amazon EC2 instance root device volume](RootDeviceStorage.md)\.
 
 The following table summarizes the important differences when using the two types of AMIs\.
 
@@ -66,7 +66,7 @@ You can stop an Amazon EBS\-backed instance, but not an Amazon EC2 instance stor
 
 Instances that use an instance store volume for the root device automatically have instance store available \(the root volume contains the root partition and you can store additional data\)\. You can add persistent storage to your instance by attaching one or more EBS volumes\. Any data on an instance store volume is deleted when the instance fails or terminates\. For more information, see [Instance store lifetime](InstanceStorage.md#instance-store-lifetime)\.
 
-Instances that use Amazon EBS for the root device automatically have an EBS volume attached\. The volume appears in your list of volumes like any other\. With most instance types, Amazon EBS\-backed instances don't have instance store volumes by default\. You can add instance store volumes or additional EBS volumes using a block device mapping\. For more information, see [Block device mapping](block-device-mapping-concepts.md)\.
+Instances that use Amazon EBS for the root device automatically have an EBS volume attached\. The volume appears in your list of volumes like any other\. With most instance types, Amazon EBS\-backed instances don't have instance store volumes by default\. You can add instance store volumes or additional EBS volumes using a block device mapping\. For more information, see [Block device mappings](block-device-mapping-concepts.md)\.
 
 ### Boot times<a name="ec2-bootfromebs-boot-times"></a>
 

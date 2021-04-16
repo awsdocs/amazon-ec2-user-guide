@@ -117,13 +117,13 @@ You can modify a reservation with `metal` instances using other sizes within the
 The following table describes the normalization factor for the bare metal instance sizes in the instance families that have bare metal instances\. The normalization factor for `metal` instances depends on the instance family, unlike the other instance sizes\.
 
 
-| Normalization factor | Instance sizes | 
+| Instance size | Normalization factor | 
 | --- | --- | 
-| 32 | a1\.metal | 
-| 96 |  m5zn\.metal \| z1d\.metal  | 
-| 128 |  c6g\.metal \| c6gd\.metal \| g4dn\.metal \| i3\.metal \| m6g\.metal \| m6gd\.metal \| r6g\.metal \| r6gd\.metal \| x2gd\.metal  | 
-| 144 | c5n\.metal | 
-| 192 |  c5\.metal \| c5d\.metal \| i3en\.metal \| m5\.metal \| m5d\.metal \| m5dn\.metal \| m5n\.metal \| r5\.metal \| r5b\.metal \| r5d\.metal \| r5dn\.metal \| r5n\.metal  | 
+| a1\.metal | 32 | 
+|  m5zn\.metal \| z1d\.metal  | 96 | 
+|  c6g\.metal \| c6gd\.metal \| g4dn\.metal \| i3\.metal \| m6g\.metal \| m6gd\.metal \| r6g\.metal \| r6gd\.metal \| x2gd\.metal  | 128 | 
+| c5n\.metal | 144 | 
+|  c5\.metal \| c5d\.metal \| i3en\.metal \| m5\.metal \| m5d\.metal \| m5dn\.metal \| m5n\.metal \| r5\.metal \| r5b\.metal \| r5d\.metal \| r5dn\.metal \| r5n\.metal  | 192 | 
 
 For example, an `i3.metal` instance has a normalization factor of 128\. If you purchase an `i3.metal` default tenancy Amazon Linux/Unix Reserved Instance, you can divide the reservation as follows:
 + An `i3.16xlarge` is the same size as an `i3.metal` instance, so its normalization factor is 128 \(128/1\)\. The reservation for one `i3.metal` instance can be modified into one `i3.16xlarge` instance\.

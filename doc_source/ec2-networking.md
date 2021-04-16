@@ -7,6 +7,7 @@ You can control whether the instance receives a public IP address from Amazon's 
 To increase network performance and reduce latency, you can launch instances in a placement group\. You can get significantly higher packet per second \(PPS\) performance using enhanced networking\. You can accelerate high performance computing and machine learning applications using an Elastic Fabric Adapter \(EFA\), which is a network device that you can attach to a supported instance type\.
 
 **Topics**
++ [Regions and Zones](using-regions-availability-zones.md)
 + [Instance IP addressing](using-instance-addressing.md)
 + [Bring your own IP addresses](ec2-byoip.md)
 + [Elastic IP addresses](elastic-ip-addresses-eip.md)

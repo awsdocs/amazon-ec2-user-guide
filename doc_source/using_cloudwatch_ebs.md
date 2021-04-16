@@ -8,6 +8,11 @@ When you get data from CloudWatch, you can include a `Period` request parameter 
 
 You can get the data using either the CloudWatch API or the Amazon EC2 console\. The console takes the raw data from the CloudWatch API and displays a series of graphs based on the data\. Depending on your needs, you might prefer to use either the data from the API or the graphs in the console\.
 
+**Topics**
++ [Amazon EBS metrics](#ebs-metrics)
++ [Dimensions for Amazon EBS metrics](#ebs-metric-dimensions)
++ [Graphs in the Amazon EC2 console](#graphs-in-the-aws-management-console-2)
+
 ## Amazon EBS metrics<a name="ebs-metrics"></a>
 
 Amazon Elastic Block Store \(Amazon EBS\) sends data points to CloudWatch for several metrics\. All EBS volume types automatically send 1\-minute metrics to CloudWatch\. Data is reported to CloudWatch only when the volume is attached to an instance
@@ -18,6 +23,7 @@ The `AWS/EBS` namespace includes the following metrics\.
 
 **Topics**
 + [Volume metrics](#ebs-volume-metrics)
++ [Volume metrics for Nitro\-based instances](#ebs-metrics-for-nitro)
 + [Fast snapshot restore metrics](#fast-snapshot-restore-metrics)
 
 ### Volume metrics<a name="ebs-volume-metrics"></a>
@@ -38,6 +44,10 @@ The `AWS/EBS` namespace includes the following metrics for EBS volumes\. To get 
 | VolumeThroughputPercentage |   This metric is not supported with Multi\-Attach enabled volumes\.  Used with Provisioned IOPS SSD volumes only\. The percentage of I/O operations per second \(IOPS\) delivered of the total IOPS provisioned for an Amazon EBS volume\. Provisioned IOPS SSD volumes deliver their provisioned performance 99\.9 percent of the time\. During a write, if there are no other pending I/O requests in a minute, the metric value will be 100 percent\. Also, a volume's I/O performance may become degraded temporarily due to an action you have taken \(for example, creating a snapshot of a volume during peak usage, running the volume on a non\-EBS\-optimized instance, or accessing data on the volume for the first time\)\. Units: Percent  | 
 | VolumeConsumedReadWriteOps |  Used with Provisioned IOPS SSD volumes only\. The total amount of read and write operations \(normalized to 256K capacity units\) consumed in a specified period of time\. I/O operations that are smaller than 256K each count as 1 consumed IOPS\. I/O operations that are larger than 256K are counted in 256K capacity units\. For example, a 1024K I/O would count as 4 consumed IOPS\. Units: Count  | 
 | BurstBalance |  Used with General Purpose SSD \(`gp2`\), Throughput Optimized HDD \(`st1`\), and Cold HDD \(`sc1`\) volumes only\. Provides information about the percentage of I/O credits \(for `gp2`\) or throughput credits \(for `st1` and `sc1`\) remaining in the burst bucket\. Data is reported to CloudWatch only when the volume is active\. If the volume is not attached, no data is reported\. The `Sum` statistic on this metric is not relevant for volumes attached to instances built on the Nitro System\. If the baseline performance of the volume exceeds the maximum burst performance, credits are never spent\. If the volume is attached to an instance built on the Nitro System, the burst balance is not reported\. For other instances, the reported burst balance is 100%\. For more information, see [I/O Credits and burst performance](ebs-volume-types.md#IOcredit)\. Units: Percent  | 
+
+### Volume metrics for Nitro\-based instances<a name="ebs-metrics-for-nitro"></a>
+
+The `AWS/EC2` namespace includes additional Amazon EBS metrics for Nitro\-based instances that are not bare metal instances\. For more information about these metrics see, [Amazon EBS metrics for Nitro\-based instances](viewing_metrics_with_cloudwatch.md#ebs-metrics-nitro)\.
 
 ### Fast snapshot restore metrics<a name="fast-snapshot-restore-metrics"></a>
 

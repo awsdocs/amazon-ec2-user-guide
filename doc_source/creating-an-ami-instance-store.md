@@ -19,7 +19,7 @@ First, launch an instance from an AMI that's similar to the AMI that you'd like 
 
 When you launch an instance using the new AMI, we create the root volume for the instance using the bundle that you uploaded to Amazon S3\. The storage space used by the bundle in Amazon S3 incurs charges to your account until you delete it\. For more information, see [Deregister your Linux AMI](deregister-ami.md)\.
 
-If you add instance store volumes to your instance in addition to the root device volume, the block device mapping for the new AMI contains information for these volumes, and the block device mappings for instances that you launch from the new AMI automatically contain information for these volumes\. For more information, see [Block device mapping](block-device-mapping-concepts.md)\.
+If you add instance store volumes to your instance in addition to the root device volume, the block device mapping for the new AMI contains information for these volumes, and the block device mappings for instances that you launch from the new AMI automatically contain information for these volumes\. For more information, see [Block device mappings](block-device-mapping-concepts.md)\.
 
 ## Prerequisites<a name="bundle-ami-prerequisites"></a>
 

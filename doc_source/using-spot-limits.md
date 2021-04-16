@@ -31,6 +31,9 @@ With vCPU limits, you can use your limit in terms of the number of vCPUs that ar
 
 Even though Amazon EC2 automatically increases your Spot Instance limits based on your usage, you can request a limit increase if necessary\. For example, if you intend to launch more Spot Instances than your current limit allows, you can request a limit increase\. You can also request a limit increase if you submit a Spot Instance request and you receive the error `Max spot instance count exceeded`\.
 
+**Note**  
+If you are a new customer or have no previous billing history, your limits do not apply to Spot Instances with a defined duration\. Spot Instances with a defined duration \(also known as Spot blocks\) are not available to new accounts or accounts with no previous billing history with AWS\.
+
 **To request a Spot Instance limit increase**
 
 1. Open the **Create case**, **Service limit increase** form in the Support Center console at [https://console\.aws\.amazon\.com/support/home\#/case/create](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-spot-instances)\.

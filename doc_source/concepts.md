@@ -4,17 +4,6 @@ Amazon Elastic Compute Cloud \(Amazon EC2\) provides scalable computing capacity
 
 For more information about cloud computing, see [What is Cloud Computing?](https://aws.amazon.com/what-is-cloud-computing/)
 
-**Topics**
-+ [Features of Amazon EC2](#ec2-features)
-+ [How to get started with Amazon EC2](#how-to-get-started)
-+ [Related services](#related-services)
-+ [Access Amazon EC2](#access-ec2)
-+ [Pricing for Amazon EC2](#ec2-pricing)
-+ [PCI DSS compliance](#pci-compliance)
-+ [Instances and AMIs](ec2-instances-and-amis.md)
-+ [Regions and Zones](using-regions-availability-zones.md)
-+ [Amazon EC2 root device volume](RootDeviceStorage.md)
-
 ## Features of Amazon EC2<a name="ec2-features"></a>
 
 Amazon EC2 provides the following features:

@@ -14,10 +14,33 @@ To retrieve instance metadata, see [Retrieve instance metadata](instancedata-dat
 
 IMDSv2 uses session\-oriented requests\. With session\-oriented requests, you create a session token that defines the session duration, which can be a minimum of one second and a maximum of six hours\. During the specified duration, you can use the same session token for subsequent requests\. After the specified duration expires, you must create a new session token to use for future requests\.
 
-The following example uses a Linux shell script and IMDSv2 to retrieve the top\-level instance metadata items\. The example command: 
+The following example uses a Linux shell script and IMDSv2 to retrieve the top\-level instance metadata items\. The example: 
 + Creates a session token lasting six hours \(21,600 seconds\) using the `PUT` request
 + Stores the session token header in a variable named `TOKEN`
 + Requests the top\-level metadata items using the token
+
+You can run two separate commands, or combine them\.
+
+**Separate commands**
+
+First, generate a token using the following command\.
+
+```
+[ec2-user ~]$ curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"
+```
+
+Then, use the token to generate top\-level metadata items using the following command\.
+
+```
+[ec2-user ~]$ curl -H "X-aws-ec2-metadata-token: $TOKEN" -v http://169.254.169.254/latest/meta-data/
+```
+
+**Combined commands**
+
+You can store the token and combine the commands\. The following example combines the above two commands and stores the session token header in a variable named TOKEN\.
+
+**Note**  
+If there is an error in creating the token, instead of a valid token, an error message is stored in the variable, and the command will not work\.
 
 ```
 [ec2-user ~]$ TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` \

@@ -16,7 +16,7 @@ For more information, see [Amazon EC2 Mac Instances](https://aws.amazon.com/mac)
 + [EC2 macOS Init](#ec2-macos-init)
 + [EC2 System Monitoring for macOS](#mac-instance-system-monitor)
 + [Increase the size of an EBS volume on your Mac instance](#mac-instance-increase-volume)
-+ [Stop your Mac instance](#mac-instance-stop)
++ [Stop and terminate your Mac instance](#mac-instance-stop)
 + [Release the Dedicated Host for your Mac instance](#mac-instance-release-dedicated-host)
 
 ## Considerations<a name="mac-instance-considerations"></a>
@@ -34,6 +34,7 @@ The following considerations apply to Mac instances:
 + We recommend using General Purpose SSD \(`gp2` and `gp3`\) and Provisioned IOPS SSD \(`io1` and `io2`\) with Mac instances for optimal EBS performance\.
 + You cannot use Mac instances with Amazon EC2 Auto Scaling\.
 + Automatic software updates are disabled\. We recommend that you apply updates and test them on your instance before you put the instance into production\. For more information, see [Update the operating system and software](#mac-instance-updates)\.
++ When you stop or terminate a Mac instance, a scrubbing workflow is performed on the Dedicated Host\. For more information, see [Stop and terminate your Mac instance](#mac-instance-stop)\.
 
 ## Launch a Mac instance using the console<a name="mac-instance-launch"></a>
 
@@ -308,7 +309,7 @@ After you increase the size of the volume, you must increase the size of your AP
 
 **To make increased disk space available for use**
 
-1. Copy and paste the following commands\. 
+1. Copy and paste the following commands\.
 
    ```
    PDISK=$(diskutil list physical external | head -n1 | cut -d" " -f1)
@@ -322,9 +323,15 @@ After you increase the size of the volume, you must increase the size of your AP
    sudo diskutil apfs resizeContainer $APFSCONT 0
    ```
 
-## Stop your Mac instance<a name="mac-instance-stop"></a>
+## Stop and terminate your Mac instance<a name="mac-instance-stop"></a>
 
-When you stop a Mac instance, it remains in the `stopping` state for about 15 minutes before it enters the `stopped` state\. After you stop or terminate a Mac instance, the Dedicated Host remains in the `pending` state for up to 200 minutes\. You can't start the stopped Mac instance or launch another Mac instance until the Dedicated Host enters the `available` state\.
+When you stop a Mac instance, the instance remains in the `stopping` state for about 15 minutes before it enters the `stopped` state\.
+
+When you stop or terminate a Mac instance, Amazon EC2 performs a scrubbing workflow on the underlying Dedicated Host to erase the internal SSD, to clear the persistent NVRAM variables, and if needed, to update the bridgeOS software on the underlying Mac mini\. This ensures that Mac instances provide the same security and data privacy as other EC2 Nitro instances\. It also enables you to run the latest macOS AMIs without manually updating the bridgeOS software\. During the scrubbing workflow, the Dedicated Host temporarily enters the `pending` state\. If the bridgeOS software does not need to be updated, the scrubbing workflow takes up to 50 minutes to complete\. If the bridgeOS software needs to be updated, the scrubbing workflow can take up to 3 hours to complete\.
+
+You can't start the stopped Mac instance or launch a new Mac instance until after the scrubbing workflow completes, at which point the Dedicated Host enters the `available` state\.
+
+Metering and billing is paused when the Dedicated Host enters the `pending` state\. You are not charged for the duration of the scrubbing workflow\.
 
 ## Release the Dedicated Host for your Mac instance<a name="mac-instance-release-dedicated-host"></a>
 
