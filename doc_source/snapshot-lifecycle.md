@@ -129,14 +129,14 @@ The following considerations apply to snapshot lifecycle policies and [Multi\-At
 + When creating a lifecycle policy based on instance tags for Multi\-Volume snapshots, Amazon Data Lifecycle Manager initiates a snapshot of the volume for each attached instance\. Use the *timestamp* tag to identify the set of time\-consistent snapshots that are created from the attached instances\.
 
 The following considerations apply to sharing snapshots across accounts:
-+ You can only share snapshots that are unencrypted or that are encrypted using a customer\-managed CMK\.
-+ You can't share snapshots that are encrypted with the default EBS encryption key\.
-+ If you share encrypted snapshots, then you must also share the CMK that was used to encrypt the source volume with the target accounts\. For more information, see [Allowing users in other accounts to use a CMK](https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html) in the *AWS Key Management Service Developer Guide*\.
++ You can only share snapshots that are unencrypted or that are encrypted using a customer managed key\.
++ You can't share snapshots that are encrypted with the default EBS encryption KMS key\.
++ If you share encrypted snapshots, then you must also share the KMS key that was used to encrypt the source volume with the target accounts\. For more information, see [Allowing users in other accounts to use a KMS key](https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html) in the *AWS Key Management Service Developer Guide*\.
 
 The following considerations apply to cross\-account copy event policies:
-+ You can only copy snapshots that are unencrypted or that are encrypted using a customer\-managed CMK\.
++ You can only copy snapshots that are unencrypted or that are encrypted using a customer managed key\.
 + You can create a cross\-account copy event policy that copies snapshots that are shared outside of Amazon Data Lifecycle Manager\.
-+ If you want to encrypt snapshots in the target account, then the IAM role selected for the cross\-account copy event policy must have permission to use the required CMK\.
++ If you want to encrypt snapshots in the target account, then the IAM role selected for the cross\-account copy event policy must have permission to use the required KMS key\.
 
 ## Prerequisites<a name="dlm-prerequisites"></a>
 
@@ -307,10 +307,10 @@ For more information, see [Changing Permissions for an IAM User](https://docs.aw
 
 ### Permissions for encryption<a name="dlm-access-cmk"></a>
 
-If the source volume is encrypted, ensure that the Amazon Data Lifecycle Manager default roles \(**AWSDataLifecycleManagerDefaultRole** and **AWSDataLifecycleManagerDefaultRoleForAMIManagement**\) have permission to use the AWS KMS customer master keys \(CMKs\) used to encrypt the volume\.
+If the source volume is encrypted, ensure that the Amazon Data Lifecycle Manager default roles \(**AWSDataLifecycleManagerDefaultRole** and **AWSDataLifecycleManagerDefaultRoleForAMIManagement**\) have permission to use the KMS keys used to encrypt the volume\.
 
-If you enable **Cross Region copy** for unencrypted snapshots or AMIs backed by unencrypted snapshots, and choose to enable encryption in the destination Region, ensure that the default roles have permission to use the CMK needed to perform the encryption in the destination Region\.
+If you enable **Cross Region copy** for unencrypted snapshots or AMIs backed by unencrypted snapshots, and choose to enable encryption in the destination Region, ensure that the default roles have permission to use the KMS key needed to perform the encryption in the destination Region\.
 
-If you enable **Cross Region copy** for encrypted snapshots or AMIs backed by encrypted snapshots, ensure that the default roles have permission to use both the source and destination CMKs\. 
+If you enable **Cross Region copy** for encrypted snapshots or AMIs backed by encrypted snapshots, ensure that the default roles have permission to use both the source and destination KMS keys\. 
 
-For more information, see [Allowing users in other accounts to use a CMK](https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html) in the *AWS Key Management Service Developer Guide*\.
+For more information, see [Allowing users in other accounts to use a KMS key](https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html) in the *AWS Key Management Service Developer Guide*\.

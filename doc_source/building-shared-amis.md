@@ -15,7 +15,7 @@ No list of security guidelines can be exhaustive\. Build your shared AMIs carefu
 + [Identify yourself](#public-amis-identity)
 + [Protect yourself](#public-amis-protect-yourself)
 
-If you are building AMIs for AWS Marketplace, see [Building AMIs for AWS Marketplace](https://aws.amazon.com/marketplace/help/201231340/ref=help_ln_sibling) for guidelines, policies and best practices\.
+If you are building AMIs for AWS Marketplace, see [Best practices for building AMIs](https://docs.aws.amazon.com/marketplace/latest/userguide/best-practices-for-building-your-amis.html) in the *AWS Marketplace Seller Guide* for guidelines, policies, and best practices\.
 
 For additional information about sharing AMIs safely, see the following articles:
 +  [How To Share and Use Public AMIs in A Secure Manner](https://aws.amazon.com/articles/0155828273219400) 

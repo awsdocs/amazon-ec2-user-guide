@@ -111,7 +111,7 @@ The following table shows encryption support for various AMI\-copying scenarios\
 **Note**  
 Encrypting during the `CopyImage` action applies only to Amazon EBS\-backed AMIs\. Because an instance store\-backed AMI does not rely on snapshots, you cannot use copying to change its encryption status\.
 
-By default \(i\.e\., without specifying encryption parameters\), the backing snapshot of an AMI is copied with its original encryption status\. Copying an AMI backed by an unencrypted snapshot results in an identical target snapshot that is also unencrypted\. If the source AMI is backed by an encrypted snapshot, copying it results in an identical target snapshot that is encrypted by the same customer master key \(CMK\)\. Copying an AMI backed by multiple snapshots preserves, by default, the source encryption status in each target snapshot\.
+By default \(i\.e\., without specifying encryption parameters\), the backing snapshot of an AMI is copied with its original encryption status\. Copying an AMI backed by an unencrypted snapshot results in an identical target snapshot that is also unencrypted\. If the source AMI is backed by an encrypted snapshot, copying it results in an identical target snapshot that is encrypted by the same AWS KMS key\. Copying an AMI backed by multiple snapshots preserves, by default, the source encryption status in each target snapshot\.
 
 If you specify encryption parameters while copying an AMI, you can encrypt or re\-encrypt its backing snapshots\. The following example shows a non\-default case that supplies encryption parameters to the `CopyImage` action in order to change the target AMI's encryption state\.
 
@@ -148,7 +148,7 @@ Create or obtain an AMI backed by an Amazon EBS snapshot\. Note that you can use
    + **Name**: A name for the new AMI\. You can include operating system information in the name, as we do not provide this information when displaying details about the AMI\.
    + **Description**: By default, the description includes information about the source AMI so that you can distinguish a copy from its original\. You can change this description as needed\.
    + **Encryption**: Select this field to encrypt the target snapshots, or to re\-encrypt them using a different key\. If you have enabled [encryption by default](EBSEncryption.md#encryption-by-default), the **Encryption** option is set and cannot be unset\.
-   + **Master Key**: The KMS key to used to encrypt the target snapshots\.
+   + **KMS Key**: The KMS key to used to encrypt the target snapshots\.
 
 1. We display a confirmation page to let you know that the copy operation has been initiated and to provide you with the ID of the new AMI\.
 

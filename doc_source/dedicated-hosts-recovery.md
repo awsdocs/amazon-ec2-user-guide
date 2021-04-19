@@ -161,7 +161,7 @@ For instance store\-backed instances that could not be automatically recovered, 
 
 ## Related services<a name="dedicated-hosts-recovery-related"></a>
 
-Dedicated Host integrates with the following AWS services:
+Dedicated Host integrates with the following services:
 + **AWS License Manager**—Tracks licenses across your Amazon EC2 Dedicated Hosts \(supported only in Regions in which AWS License Manager is available\)\. For more information, see the [ AWS License Manager User Guide](https://docs.aws.amazon.com/license-manager/latest/userguide/license-manager.html)\.
 
 ## Pricing<a name="dedicated-hosts-recovery-pricing"></a>

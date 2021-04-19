@@ -4,7 +4,7 @@ AMIs that are backed by Amazon EBS snapshots can take advantage of Amazon EBS en
 
 EC2 instances with encrypted EBS volumes are launched from AMIs in the same way as other instances\. In addition, when you launch an instance from an AMI backed by unencrypted EBS snapshots, you can encrypt some or all of the volumes during launch\. 
 
-Like EBS volumes, snapshots in AMIs can be encrypted by either your default AWS Key Management Service customer master key \(CMK\), or to a customer managed key that you specify\. You must in all cases have permission to use the selected key\.
+Like EBS volumes, snapshots in AMIs can be encrypted by either your default AWS KMS key, or to a customer managed key that you specify\. You must in all cases have permission to use the selected KMS key\.
 
 AMIs with encrypted snapshots can be shared across AWS accounts\. For more information, see [Shared AMIs](sharing-amis.md)\.
 
@@ -24,21 +24,21 @@ You can also launch an instance and simultaneously apply a new encryption state 
 
 **Launch with no encryption parameters**
 + An unencrypted snapshot is restored to an unencrypted volume, unless encryption by default is enabled, in which case all the newly created volumes will be encrypted\.
-+ An encrypted snapshot that you own is restored to a volume that is encrypted to the same CMK\.
-+ An encrypted snapshot that you do not own \(for example, the AMI is shared with you\) is restored to a volume that is encrypted by your AWS account's default CMK\.
++ An encrypted snapshot that you own is restored to a volume that is encrypted to the same KMS key\.
++ An encrypted snapshot that you do not own \(for example, the AMI is shared with you\) is restored to a volume that is encrypted by your AWS account's default KMS key\.
 
 The default behaviors can be overridden by supplying encryption parameters\. The available parameters are `Encrypted` and `KmsKeyId`\. Setting only the `Encrypted` parameter results in the following:
 
 **Instance launch behaviors with `Encrypted` set, but no `KmsKeyId` specified**
-+ An unencrypted snapshot is restored to an EBS volume that is encrypted by your AWS account's default CMK\.
-+ An encrypted snapshot that you own is restored to an EBS volume encrypted by the same CMK\. \(In other words, the `Encrypted` parameter has no effect\.\)
-+ An encrypted snapshot that you do not own \(i\.e\., the AMI is shared with you\) is restored to a volume that is encrypted by your AWS account's default CMK\. \(In other words, the `Encrypted` parameter has no effect\.\)
++ An unencrypted snapshot is restored to an EBS volume that is encrypted by your AWS account's default KMS key\.
++ An encrypted snapshot that you own is restored to an EBS volume encrypted by the same KMS key\. \(In other words, the `Encrypted` parameter has no effect\.\)
++ An encrypted snapshot that you do not own \(i\.e\., the AMI is shared with you\) is restored to a volume that is encrypted by your AWS account's default KMS key\. \(In other words, the `Encrypted` parameter has no effect\.\)
 
-Setting both the `Encrypted` and `KmsKeyId` parameters allows you to specify a non\-default CMK for an encryption operation\. The following behaviors result:
+Setting both the `Encrypted` and `KmsKeyId` parameters allows you to specify a non\-default KMS key for an encryption operation\. The following behaviors result:
 
 **Instance with both `Encrypted` and `KmsKeyId` set**
-+ An unencrypted snapshot is restored to an EBS volume encrypted by the specified CMK\.
-+ An encrypted snapshot is restored to an EBS volume encrypted not to the original CMK, but instead to the specified CMK\.
++ An unencrypted snapshot is restored to an EBS volume encrypted by the specified KMS key\.
++ An encrypted snapshot is restored to an EBS volume encrypted not to the original KMS key, but instead to the specified KMS key\.
 
 Submitting a `KmsKeyId` without also setting the `Encrypted` parameter results in an error\.
 
@@ -52,15 +52,15 @@ In this example, an AMI backed by an unencrypted snapshot is used to launch an E
 
 ![\[Launch instance and encrypt volume on the fly\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ami-launch-convert.png)
 
-The `Encrypted` parameter alone results in the volume for this instance being encrypted\. Providing a `KmsKeyId` parameter is optional\. If no key ID is specified, the AWS account's default CMK is used to encrypt the volume\. To encrypt the volume to a different CMK that you own, supply the `KmsKeyId` parameter\. 
+The `Encrypted` parameter alone results in the volume for this instance being encrypted\. Providing a `KmsKeyId` parameter is optional\. If no KMS key ID is specified, the AWS account's default KMS key is used to encrypt the volume\. To encrypt the volume to a different KMS key that you own, supply the `KmsKeyId` parameter\. 
 
 ### Re\-encrypt a volume during launch<a name="launch2"></a>
 
-In this example, an AMI backed by an encrypted snapshot is used to launch an EC2 instance with an EBS volume encrypted by a new CMK\. 
+In this example, an AMI backed by an encrypted snapshot is used to launch an EC2 instance with an EBS volume encrypted by a new KMS key\. 
 
 ![\[Launch instance and re-encrypt volume on the fly\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ami-launch-encrypted.png)
 
-If you own the AMI and supply no encryption parameters, the resulting instance has a volume encrypted by the same key as the snapshot\. If the AMI is shared rather than owned by you, and you supply no encryption parameters, the volume is encrypted by your default CMK\. With encryption parameters supplied as shown, the volume is encrypted by the specified CMK\.
+If you own the AMI and supply no encryption parameters, the resulting instance has a volume encrypted by the same KMS key as the snapshot\. If the AMI is shared rather than owned by you, and you supply no encryption parameters, the volume is encrypted by your default KMS key\. With encryption parameters supplied as shown, the volume is encrypted by the specified KMS key\.
 
 ### Change encryption state of multiple volumes during launch<a name="launch3"></a>
 
@@ -78,21 +78,21 @@ By default, without explicit encryption parameters, a `CopyImage` action maintai
 
 **Copy with no encryption parameters**
 + An unencrypted snapshot is copied to another unencrypted snapshot, unless encryption by default is enabled, in which case all the newly created snapshots will be encrypted\.
-+ An encrypted snapshot that you own is copied to a snapshot encrypted with the same key\.
-+ An encrypted snapshot that you do not own \(that is, the AMI is shared with you\) is copied to a snapshot that is encrypted by your AWS account's default CMK\.
++ An encrypted snapshot that you own is copied to a snapshot encrypted with the same KMS key\.
++ An encrypted snapshot that you do not own \(that is, the AMI is shared with you\) is copied to a snapshot that is encrypted by your AWS account's default KMS key\.
 
 All of these default behaviors can be overridden by supplying encryption parameters\. The available parameters are `Encrypted` and `KmsKeyId`\. Setting only the `Encrypted` parameter results in the following:
 
 **Copy\-image behaviors with `Encrypted` set, but no `KmsKeyId` specified**
-+ An unencrypted snapshot is copied to a snapshot encrypted by the AWS account's default CMK\.
-+ An encrypted snapshot is copied to a snapshot encrypted by the same CMK\. \(In other words, the `Encrypted` parameter has no effect\.\)
-+ An encrypted snapshot that you do not own \(i\.e\., the AMI is shared with you\) is copied to a volume that is encrypted by your AWS account's default CMK\. \(In other words, the `Encrypted` parameter has no effect\.\)
++ An unencrypted snapshot is copied to a snapshot encrypted by the AWS account's default KMS key\.
++ An encrypted snapshot is copied to a snapshot encrypted by the same KMS key\. \(In other words, the `Encrypted` parameter has no effect\.\)
++ An encrypted snapshot that you do not own \(i\.e\., the AMI is shared with you\) is copied to a volume that is encrypted by your AWS account's default KMS key\. \(In other words, the `Encrypted` parameter has no effect\.\)
 
-Setting both the `Encrypted` and `KmsKeyId` parameters allows you to specify a customer managed CMK for an encryption operation\. The following behaviors result:
+Setting both the `Encrypted` and `KmsKeyId` parameters allows you to specify a customer managed KMS key for an encryption operation\. The following behaviors result:
 
 **Copy\-image behaviors with both `Encrypted` and `KmsKeyId` set**
-+ An unencrypted snapshot is copied to a snapshot encrypted by the specified CMK\.
-+ An encrypted snapshot is copied to a snapshot encrypted not to the original CMK, but instead to the specified CMK\.
++ An unencrypted snapshot is copied to a snapshot encrypted by the specified KMS key\.
++ An encrypted snapshot is copied to a snapshot encrypted not to the original KMS key, but instead to the specified KMS key\.
 
 Submitting a `KmsKeyId` without also setting the `Encrypted` parameter results in an error\.
 

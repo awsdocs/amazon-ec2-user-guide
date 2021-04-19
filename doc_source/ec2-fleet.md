@@ -1,4 +1,4 @@
-# Launch instances using an EC2 Fleet<a name="ec2-fleet"></a>
+# EC2 Fleet<a name="ec2-fleet"></a>
 
 An *EC2 Fleet* contains the configuration information to launch a fleet—or group—of instances\. In a single API call, a fleet can launch multiple instance types across multiple Availability Zones, using the On\-Demand Instance, Reserved Instance, and Spot Instance purchasing options together\. Using EC2 Fleet, you can:
 + Define separate On\-Demand and Spot capacity targets and the maximum amount you’re willing to pay per hour
@@ -21,7 +21,6 @@ There is no additional charge for using EC2 Fleet\. You pay only for the EC2 ins
 
 **Topics**
 + [EC2 Fleet limitations](#EC2-fleet-limitations)
-+ [EC2 Fleet limits](#ec2-fleet-limits)
 + [Burstable performance instances](#ec2-fleet-burstable-spot-instances)
 + [EC2 Fleet configuration strategies](ec2-fleet-configuration-strategies.md)
 + [Work with EC2 Fleets](manage-ec2-fleet.md)
@@ -33,25 +32,6 @@ The following limitations apply to EC2 Fleet:
 + EC2 Fleet is available only through the API or AWS CLI\.
 + An EC2 Fleet request can't span AWS Regions\. You need to create a separate EC2 Fleet for each Region\.
 + An EC2 Fleet request can't span different subnets from the same Availability Zone\.
-
-## EC2 Fleet limits<a name="ec2-fleet-limits"></a>
-
-The usual Amazon EC2 limits apply to instances launched by an EC2 Fleet, such as Spot request price limits, instance limits, and volume limits\. In addition, the following limits apply:
-+ The number of active EC2 Fleets per AWS Region: 1,000 \* †
-+ The number of Spot capacity pools \(unique combination of instance type and subnet\): 300\* ‡
-+ The size of the user data in a launch specification: 16 KB †
-+ The target capacity per EC2 Fleet: 10,000
-+ The target capacity across all EC2 Fleets in a Region: 100,000 \*
-+ An EC2 Fleet request can't span Regions\.
-+ An EC2 Fleet request can't span different subnets from the same Availability Zone\.
-
-If you need more than the default limits for target capacity, complete the AWS Support Center [Create case](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-fleet) form to request a limit increase\. For **Limit type**, choose **EC2 Fleet**, choose a Region, and then choose **Target Fleet Capacity per Fleet \(in units\)** or **Target Fleet Capacity per Region \(in units\)**, or both\.
-
-\* These limits apply to both your EC2 Fleets and your Spot Fleets\.
-
-† These are hard limits\. You cannot request a limit increase for these limits\.
-
-‡ This limit only applies to fleets of type `request` or `maintain`\. This limit does not apply to `instant` fleets\.
 
 ## Burstable performance instances<a name="ec2-fleet-burstable-spot-instances"></a>
 

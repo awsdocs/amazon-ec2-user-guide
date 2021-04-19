@@ -55,7 +55,7 @@ All schedules must have the same retention type\. You can specify the retention 
 
      \(Snapshot lifecycle policy\) If the policy creates snapshots in a Region, then you can copy the snapshots to up to three additional Regions Outposts in your account\. You must specify a separate cross\-Region copy rule for each destination Region or Outpost\.
 
-     For each Region or Outpost, you can choose different retention policies and you can choose whether to copy all tags or no tags\. If the source snapshot or AMI is encrypted, or if encryption by default is enabled, the copied snapshots or AMIs are encrypted\. If the source snapshot or AMI is unencrypted, you can enable encryption\. If you do not specify a CMK, the snapshots or AMIs are encrypted using the default key for EBS encryption in each destination Region\. If you specify a CMK for the destination Region, then the selected IAM role must have access to the CMK\.
+     For each Region or Outpost, you can choose different retention policies and you can choose whether to copy all tags or no tags\. If the source snapshot or AMI is encrypted, or if encryption by default is enabled, the copied snapshots or AMIs are encrypted\. If the source snapshot or AMI is unencrypted, you can enable encryption\. If you do not specify a KMS key, the snapshots or AMIs are encrypted using the default KMS key for EBS encryption in each destination Region\. If you specify a KMS key for the destination Region, then the selected IAM role must have access to the KMS key\.
 
      You must ensure that you do not exceed the number of concurrent snapshot or AMI copies per Region\.
 
@@ -175,7 +175,7 @@ The following is an example of the `policyDetails.json` file\.
 ```
 
 **Example 3—Snapshot lifecycle policy that creates snapshots in a Region and copies them to an Outpost**  
-The following example policy creates snapshots of volumes that are tagged with `team=dev`\. Snapshots are created in the same Region as the source volume\. Snapshots are created every `12` hours starting at `00:00` UTC, and retains a maximum of `1` snapshot\. The policy also copies the snapshots to Outpost `arn:aws:outposts:us-east-1:123456789012:outpost/op-1234567890abcdef0`, encrypts the copied snapshots using the default encryption key, and retains the copies for `1` month\.
+The following example policy creates snapshots of volumes that are tagged with `team=dev`\. Snapshots are created in the same Region as the source volume\. Snapshots are created every `12` hours starting at `00:00` UTC, and retains a maximum of `1` snapshot\. The policy also copies the snapshots to Outpost `arn:aws:outposts:us-east-1:123456789012:outpost/op-1234567890abcdef0`, encrypts the copied snapshots using the default encryption KMS key, and retains the copies for `1` month\.
 
 ```
 aws dlm create-lifecycle-policy --description "Copy snapshots to Outpost" --state ENABLED --execution-role-arn arn:aws:iam::12345678910:role/AWSDataLifecycleManagerDefaultRole --policy-details file://policyDetails.json

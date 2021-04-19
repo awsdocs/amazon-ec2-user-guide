@@ -1,8 +1,8 @@
 # Set the time for your Linux instance<a name="set-time"></a>
 
-A consistent and accurate time reference is crucial for many server tasks and processes\. Most system logs include a time stamp that you can use to determine when problems occur and in what order the events take place\. If you use the AWS CLI or an AWS SDK to make requests from your instance, these tools sign requests on your behalf\. If your instance's date and time are not set correctly, the date in the signature may not match the date of the request, and AWS rejects the request\. 
+A consistent and accurate time reference is crucial for many server tasks and processes\. Most system logs include a time stamp that you can use to determine when problems occurred and in what order the events took place\. If you use the AWS CLI or an AWS SDK to make requests from your instance, these tools sign requests on your behalf\. If your instance's date and time are not set correctly, the date in the signature may not match the date of the request, and AWS rejects the request\. 
 
-Amazon provides the Amazon Time Sync Service, which is accessible from all EC2 instances, and is also used by other AWS services\. This service uses a fleet of satellite\-connected and atomic reference clocks in each Region to deliver accurate current time readings of the Coordinated Universal Time \(UTC\) global standard through Network Time Protocol \(NTP\)\. The Amazon Time Sync Service automatically smooths any leap seconds that are added to UTC\.
+Amazon provides the Amazon Time Sync Service, which is accessible from all EC2 instances, and is also used by other AWS services\. This service uses a fleet of satellite\-connected and atomic reference clocks in each AWS Region to deliver accurate current time readings of the Coordinated Universal Time \(UTC\) global standard through Network Time Protocol \(NTP\)\. The Amazon Time Sync Service automatically smooths any leap seconds that are added to UTC\.
 
 The Amazon Time Sync Service is available through NTP at the `169.254.169.123` IP address for any instance running in a VPC\. Your instance does not require access to the internet, and you do not have to configure your security group rules or your network ACL rules to allow access\. The latest versions of Amazon Linux 2 and Amazon Linux AMIs synchronize with the Amazon Time Sync Service by default\.
 
@@ -17,7 +17,7 @@ Use the following procedures to configure the Amazon Time Sync Service on your i
 ## Configure the Amazon Time Sync Service on Amazon Linux AMI<a name="configure-amazon-time-service-amazon-linux"></a>
 
 **Note**  
-On Amazon Linux 2, the default `chrony` configuration is already set up to use the Amazon Time Sync Service IP address\.
+On Amazon Linux 2, `chrony` is already installed and configured to use the Amazon Time Sync Service IP address\.
 
  With the Amazon Linux AMI, you must edit the `chrony` configuration file to add a server entry for the Amazon Time Sync Service\.
 
@@ -140,7 +140,7 @@ If necessary, update your instance first by running `sudo apt update`\.
    ```
 
    ```
-   [ ok ] Restarting chrony (via systemctl): chrony.service.
+   Restarting chrony (via systemctl): chrony.service.
    ```
 
 1. Verify that `chrony` is using the `169.254.169.123` IP address to synchronize the time\.

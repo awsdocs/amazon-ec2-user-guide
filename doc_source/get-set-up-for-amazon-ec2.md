@@ -2,7 +2,7 @@
 
 Complete the tasks in this section to get set up for launching an Amazon EC2 instance for the first time: 
 
-1. [Sign up for AWS](#sign-up-for-aws)
+1. [Sign up for AWS ](#sign-up-for-aws)
 
 1. [Create a key pair](#create-a-key-pair)
 
@@ -12,7 +12,7 @@ When you are finished, you will be ready for the [Amazon EC2 Getting started](EC
 
 ## Sign up for AWS<a name="sign-up-for-aws"></a>
 
-When you sign up for Amazon Web Services \(AWS\), your AWS account is automatically signed up for all services in AWS, including Amazon EC2\. You are charged only for the services that you use\.
+When you sign up for Amazon Web Services, your AWS account is automatically signed up for all services in AWS , including Amazon EC2\. You are charged only for the services that you use\.
 
 With Amazon EC2, you pay only for what you use\. If you are a new AWS customer, you can get started with Amazon EC2 for free\. For more information, see [AWS Free Tier](https://aws.amazon.com/free/)\.
 

@@ -73,7 +73,7 @@ The `metal` instance size does not have a single normalization factor\. A bare m
 | --- | --- | 
 | a1\.metal | 32 | 
 |  m5zn\.metal \| z1d\.metal  | 96 | 
-|  c6g\.metal \| c6gd\.metal \| g4dn\.metal \| i3\.metal \| m6g\.metal \| m6gd\.metal \| r6g\.metal \| r6gd\.metal \| x2gd\.metal  | 128 | 
+|  c6g\.metal \| c6gd\.metal \| i3\.metal \| m6g\.metal \| m6gd\.metal \| r6g\.metal \| r6gd\.metal \| x2gd\.metal  | 128 | 
 | c5n\.metal | 144 | 
 |  c5\.metal \| c5d\.metal \| i3en\.metal \| m5\.metal \| m5d\.metal \| m5dn\.metal \| m5n\.metal \| r5\.metal \| r5b\.metal \| r5d\.metal \| r5dn\.metal \| r5n\.metal  | 192 | 
 

@@ -40,11 +40,11 @@ A good rule of thumb is to be flexible across at least 10 instance types for eac
 
 ## Use EC2 Auto Scaling groups or Spot Fleet to manage your aggregate capacity<a name="use-sf-asg-for-aggregate-capacity"></a>
 
-Spot enables you to think in terms of aggregate capacity—in units that include vCPUs, memory, storage, or network throughput—rather than thinking in terms of individual instances\. Auto Scaling groups and Spot Fleet enable you to launch and maintain a target capacity, and to automatically request resources to replace any that are disrupted or manually terminated\. When you configure an Auto Scaling group or a Spot Fleet, you need only specify the instance types and target capacity based on your application needs\. For more information, see [Auto Scaling Groups](https://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroup.html) in the *Amazon EC2 Auto Scaling User Guide* and [Create a Spot Fleet request](spot-fleet-requests.md#create-spot-fleet) in this user guide\.
+Spot enables you to think in terms of aggregate capacity—in units that include vCPUs, memory, storage, or network throughput—rather than thinking in terms of individual instances\. Auto Scaling groups and Spot Fleet enable you to launch and maintain a target capacity, and to automatically request resources to replace any that are disrupted or manually terminated\. When you configure an Auto Scaling group or a Spot Fleet, you need only specify the instance types and target capacity based on your application needs\. For more information, see [Auto Scaling groups](https://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroup.html) in the *Amazon EC2 Auto Scaling User Guide* and [Create a Spot Fleet request](spot-fleet-requests.md#create-spot-fleet) in this user guide\.
 
 ## Use the capacity optimized allocation strategy<a name="use-capacity-optimized-allocation-strategy"></a>
 
-Allocation strategies in Auto Scaling groups help you to provision your target capacity without the need to manually look for the Spot capacity pools with spare capacity\. We recommend using the `capacity optimized` strategy because this strategy automatically provisions instances from the most\-available Spot capacity pools\. You can also take advantage of the `capacity optimized` allocation strategy in Spot Fleet\. Because your Spot Instance capacity is sourced from pools with optimal capacity, this decreases the possibility that your Spot Instances are reclaimed\. For more information about allocation strategies, see [Spot Instances](https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-purchase-options.html#asg-spot-strategy) in the *Amazon EC2 Auto Scaling User Guide* and [Configure Spot Fleet for capacity optimization](spot-fleet.md#spot-fleet-strategy-capacity-optimized) in this user guide\.
+Allocation strategies in Auto Scaling groups help you to provision your target capacity without the need to manually look for the Spot capacity pools with spare capacity\. We recommend using the `capacity optimized` strategy because this strategy automatically provisions instances from the most\-available Spot capacity pools\. You can also take advantage of the `capacity optimized` allocation strategy in Spot Fleet\. Because your Spot Instance capacity is sourced from pools with optimal capacity, this decreases the possibility that your Spot Instances are reclaimed\. For more information about allocation strategies, see [Spot Instances](https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-purchase-options.html#asg-spot-strategy) in the *Amazon EC2 Auto Scaling User Guide* and [Configure Spot Fleet for capacity optimization](how-spot-fleet-works.md#spot-fleet-strategy-capacity-optimized) in this user guide\.
 
 ## Use proactive capacity rebalancing<a name="use-capacity-rebalancing"></a>
 
@@ -52,7 +52,7 @@ Capacity Rebalancing helps you maintain workload availability by proactively aug
 
 Capacity Rebalancing complements the capacity optimized allocation strategy \(which is designed to help find the most optimal spare capacity\) and the mixed instances policy \(which is designed to enhance availability by deploying instances across multiple instance types running in multiple Availability Zones\)\.
 
-For more information, see [Capacity Rebalancing](spot-fleet.md#spot-fleet-capacity-rebalance)\.
+For more information, see [Capacity Rebalancing](how-spot-fleet-works.md#spot-fleet-capacity-rebalance)\.
 
 ## Use integrated AWS services to manage your Spot Instances<a name="use-integrated-aws-services"></a>
 

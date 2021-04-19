@@ -60,7 +60,7 @@ The following table describes the encryption outcome for each possible combinati
 **Encryption outcomes: Copying a snapshot**  
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-copy-snapshot.html)
 
-\* This is the default CMK used for EBS encryption for the AWS account and Region\. By default this is a unique AWS managed CMK for EBS, or you can specify a customer managed CMK\. For more information, see [Default key for EBS encryption](EBSEncryption.md#EBSEncryption_key_mgmt)\.
+\* This is the default CMK used for EBS encryption for the AWS account and Region\. By default this is a unique AWS managed CMK for EBS, or you can specify a customer managed CMK\. For more information, see [Default KMS key for EBS encryption](EBSEncryption.md#EBSEncryption_key_mgmt)\.
 
 \*\* This is a customer managed CMK specified for the copy action\. This CMK is used instead of the default CMK for the AWS account and Region\.
 

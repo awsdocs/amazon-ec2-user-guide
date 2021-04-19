@@ -14,7 +14,7 @@ We strongly recommend that you never put sensitive identifying information, such
 
 ## Encryption at rest<a name="encryption-rest"></a>
 
-Amazon EBS encryption is an encryption solution for your EBS volumes and snapshots\. It uses AWS Key Management Service \(AWS KMS\) customer master keys \(CMK\)\. For more information, see [Amazon EBS encryption](EBSEncryption.md)\.
+Amazon EBS encryption is an encryption solution for your EBS volumes and snapshots\. It uses AWS KMS key\. For more information, see [Amazon EBS encryption](EBSEncryption.md)\.
 
 The data on NVMe instance store volumes is encrypted using an XTS\-AES\-256 cipher implemented on a hardware module on the instance\. The encryption keys are generated using the hardware module and are unique to each NVMe instance storage device\. All encryption keys are destroyed when the instance is stopped or terminated and cannot be recovered\. You cannot disable this encryption and you cannot provide your own encryption key\.
 

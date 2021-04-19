@@ -1,10 +1,10 @@
 # Spot Fleet requests<a name="spot-fleet-requests"></a>
 
-To use a Spot Fleet, you create a Spot Fleet request that includes the target capacity, an optional On\-Demand portion, one or more launch specifications for the instances, and the maximum price that you are willing to pay\. Amazon EC2 attempts to maintain your Spot Fleet's target capacity as Spot prices change\. For more information, see [How Spot Fleet works](spot-fleet.md)\.
+To use a Spot Fleet, you create a Spot Fleet request that includes the target capacity, an optional On\-Demand portion, one or more launch specifications for the instances, and the maximum price that you are willing to pay\. Amazon EC2 attempts to maintain your Spot Fleet's target capacity as Spot prices change\. For more information, see [Spot Fleet](spot-fleet.md)\.
 
 There are two types of Spot Fleet requests: `request` and `maintain`\. You can create a Spot Fleet to submit a one\-time request for your desired capacity, or require it to maintain a target capacity over time\. Both types of requests benefit from Spot Fleet's allocation strategy\.
 
-When you make a one\-time request, Spot Fleet places the required requests but does not attempt to replenish Spot Instances if capacity is diminished\. If capacity is not available, Spot Fleet does not submit requests in alternative Spot capacity pools\.
+When you make a one\-time request, Spot Fleet places the required requests but does not attempt to replenish Spot Instances if capacity is diminished\. If capacity is not available, Spot Fleet does not submit requests in alternative Spot pools\.
 
 To maintain a target capacity, Spot Fleet places requests to meet the target capacity and automatically replenish any interrupted instances\.
 
@@ -79,7 +79,7 @@ You can configure your fleet to replace unhealthy Spot Instances\. After enablin
 Before you create a Spot Fleet request, review [Spot Best Practices](https://aws.amazon.com/ec2/spot/getting-started/#bestpractices)\. Use these best practices when you plan your Spot Fleet request so that you can provision the type of instances you want at the lowest possible price\. We also recommend that you do the following:
 + Determine whether you want to create a Spot Fleet that submits a one\-time request for the desired target capacity, or one that maintains a target capacity over time\.
 + Determine the instance types that meet your application requirements\.
-+ Determine the target capacity for your Spot Fleet request\. You can set the target capacity in instances or in custom units\. For more information, see [Spot Fleet instance weighting](spot-fleet.md#spot-instance-weighting)\.
++ Determine the target capacity for your Spot Fleet request\. You can set the target capacity in instances or in custom units\. For more information, see [Spot Fleet instance weighting](how-spot-fleet-works.md#spot-instance-weighting)\.
 + Determine what portion of the Spot Fleet target capacity must be On\-Demand capacity\. You can specify 0 for On\-Demand capacity\.
 + Determine your price per unit, if you are using instance weighting\. To calculate the price per unit, divide the price per instance hour by the number of units \(or weight\) that this instance represents\. If you are not using instance weighting, the default price per unit is the price per instance hour\.
 + Review the possible options for your Spot Fleet request\. For more information, see the [request\-spot\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-fleet.html) command in the *AWS CLI Command Reference*\. For additional examples, see [Spot Fleet example configurations](spot-fleet-examples.md)\.
@@ -397,12 +397,12 @@ You can create a Spot Fleet using the parameters that you define\.
 
    1. \(Optional\) By default, the Spot service terminates Spot Instances when they are interrupted\. To maintain the target capacity, select **Maintain target capacity**\. You can then specify that the Spot service terminates, stops, or hibernates Spot Instances when they are interrupted\. To do so, choose the corresponding option from **Interruption behavior**\.
 
-   1. \(Optional\) To allow Spot Fleet to launch a replacement Spot Instance when an instance rebalance notification is emitted for an existing Spot Instance in the fleet, select **Capacity rebalance**\. For more information, see [Capacity Rebalancing](spot-fleet.md#spot-fleet-capacity-rebalance)\.
+   1. \(Optional\) To allow Spot Fleet to launch a replacement Spot Instance when an instance rebalance notification is emitted for an existing Spot Instance in the fleet, select **Capacity rebalance**\. For more information, see [Capacity Rebalancing](how-spot-fleet-works.md#spot-fleet-capacity-rebalance)\.
 **Note**  
 When a replacement instance is launched, the instance marked for rebalance is not automatically terminated\. You can terminate it, or you can leave it running\. You are charged for both instances while they are running\.  
 The instance marked for rebalance is at an elevated risk of interruption, and you will receive a two\-minute Spot Instance interruption notice before Amazon EC2 interrupts it\. 
 
-   1. \(Optional\) To control the amount you pay per hour for all the Spot Instances in your fleet, select **Maintain target cost for Spot \(advanced \- optional\)** and then enter the maximum total amount you're willing to pay per hour\. When the maximum total amount is reached, Spot Fleet stops launching Spot Instances even if it hasn’t met the target capacity\. For more information, see [Control spending](spot-fleet.md#spot-fleet-control-spending)\.
+   1. \(Optional\) To control the amount you pay per hour for all the Spot Instances in your fleet, select **Maintain target cost for Spot \(advanced \- optional\)** and then enter the maximum total amount you're willing to pay per hour\. When the maximum total amount is reached, Spot Fleet stops launching Spot Instances even if it hasn’t met the target capacity\. For more information, see [Control spending](how-spot-fleet-works.md#spot-fleet-control-spending)\.
 
 1. For **Fleet request settings**, do the following:
 
@@ -410,7 +410,7 @@ The instance marked for rebalance is at an elevated risk of interruption, and yo
 
    1. \(Optional\) To remove instance types, for **Fleet request**, choose **Remove**\. To add instance types, choose **Select instance types**\.
 
-   1. \(Optional\) For **Fleet allocation strategy**, choose the strategy that meets your needs\. For more information, see [Allocation strategy for Spot Instances](spot-fleet.md#spot-fleet-allocation-strategy)\.
+   1. \(Optional\) For **Fleet allocation strategy**, choose the strategy that meets your needs\. For more information, see [Allocation strategy for Spot Instances](how-spot-fleet-works.md#spot-fleet-allocation-strategy)\.
 
 1. For **Additional request details**, do the following:
 

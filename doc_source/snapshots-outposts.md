@@ -46,7 +46,7 @@ We recommend that you use Amazon CloudWatch alarms to monitor your Amazon S3 sto
 No, you can't use local snapshots or AMIs backed by local snapshots to launch Spot Instances or a Spot Fleet\.
 
 **10\. Can I use local snapshots and AMIs backed by local snapshots with Amazon EC2 Auto Scaling?**  
-Yes, you can use local snapshots and AMIs backed by local snapshots to launch Auto Scaling groups in a subnet that is on the same Outpost as the snapshots\. The Amazon EC2 Auto Scaling group service\-linked role must have permission to use the KMS encryption key used to encrypt the snapshots\.  
+Yes, you can use local snapshots and AMIs backed by local snapshots to launch Auto Scaling groups in a subnet that is on the same Outpost as the snapshots\. The Amazon EC2 Auto Scaling group service\-linked role must have permission to use the KMS key used to encrypt the snapshots\.  
 You can't use local snapshots or AMIs backed by local snapshots to launch Auto Scaling groups in an AWS Region\.
 
 ## Prerequisites<a name="prereqs"></a>
@@ -58,8 +58,8 @@ To store snapshots on an Outpost, you must have an Outpost that is provisioned w
 Keep the following in mind when working with local snapshots\.
 + Outposts must have connectivity their AWS Region to use local snapshots\.
 + Snapshot metadata is stored in the AWS Region associated with the Outpost\. This does not include any snapshot data\.
-+ Snapshots stored on Outposts are encrypted by default\. Unencrypted snapshots are not supported\. Snapshots that are created on an Outpost and snapshots that are copied to an Outpost are encrypted using the default encryption key for the Region or a different key that you specify at the time of the request\.
-+ When you create a volume on an Outpost from a local snapshot, you cannot re\-encrypt the volume using a different encryption key\. Volumes created from local snapshots must be encrypted using the same key as the source snapshot\.
++ Snapshots stored on Outposts are encrypted by default\. Unencrypted snapshots are not supported\. Snapshots that are created on an Outpost and snapshots that are copied to an Outpost are encrypted using the default KMS key for the Region or a different KMS key that you specify at the time of the request\.
++ When you create a volume on an Outpost from a local snapshot, you cannot re\-encrypt the volume using a different KMS key\. Volumes created from local snapshots must be encrypted using the same KMS key as the source snapshot\.
 + After you delete local snapshots from an Outpost, the Amazon S3 storage capacity used by the deleted snapshots becomes available within 48 hours\. For more information, see [Delete local snapshots](#delete-snapshots)\.
 + You can't export local snapshots from an Outpost\.
 + You can't enable fast snapshot restore for local snapshots\.
@@ -336,7 +336,7 @@ Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://
 
 1. \(Optional\) For **Description**, enter a brief description of the copied snapshot\.
 
-1. Encryption is enabled by default for the snapshot copy\. Encryption cannot be disabled\. For **Master Key**, choose the encryption key to use\.
+1. Encryption is enabled by default for the snapshot copy\. Encryption cannot be disabled\. For **KMS key**, choose the KMS key to use\.
 
 1. Choose **Copy**\.
 
@@ -382,7 +382,7 @@ $ aws ec2 copy-image --source-region us-east-1 --source-image-id ami-1234567890a
 
 You can create volumes on Outposts from local snapshots\. Volumes must be created on the same Outpost as the source snapshots\. You cannot use local snapshots to create volumes in the Region for the Outpost\.
 
-When you create a volume from a local snapshot, you cannot re\-encrypt the volume using different encryption key\. Volumes created from local snapshots must be encrypted using the same encryption key as the source snapshot\.
+When you create a volume from a local snapshot, you cannot re\-encrypt the volume using different KMS key\. Volumes created from local snapshots must be encrypted using the same KMS key as the source snapshot\.
 
 For more information, see [Create a volume from a snapshot](ebs-creating-volume.md#ebs-create-volume-from-snapshot)\.
 

@@ -81,7 +81,7 @@ These downloads are available to AWS customers only\. By downloading, you agree 
    + For Ubuntu:
 
      ```
-     $ tar -xf amdgpu-pro-*ubuntu*.tar-1.xz
+     $ tar -xf amdgpu-pro*ubuntu*.xz
      ```
 
 1. Change to the folder for the extracted driver\.

@@ -16,9 +16,9 @@ To prepare the source and target accounts for cross\-account snapshot copying, y
 
 **Topics**
 + [Step 1: Create the EBS snapshot policy \(*Source account*\)](#create-snapshot-policy)
-+ [Step 2: Share the customer\-managed CMK \(*Source account*\)](#share-cmk)
++ [Step 2: Share the customer managed key \(*Source account*\)](#share-cmk)
 + [Step 3: Create cross\-account copy event policy \(*Target account*\)](#cac-policy)
-+ [Step 4: Allow IAM role to use the required CMKs \(*Target account*\)](#target_iam-role)
++ [Step 4: Allow IAM role to use the required KMS keys \(*Target account*\)](#target_iam-role)
 
 ### Step 1: Create the EBS snapshot policy \(*Source account*\)<a name="create-snapshot-policy"></a>
 
@@ -41,7 +41,7 @@ Use one of the following methods to create the EBS snapshot policy\.
 
 1. For **IAM role**, choose the IAM role that has permissions to create, share, delete, and describe snapshots, and to describe volumes\. AWS provides a default role, or you can create a custom IAM role\.
 
-   If you intend to share encrypted snapshots, then you must give this IAM role permission to use CMK used to encrypt the source volume\. For more information, see [Step 2: Share the customer\-managed CMK \(*Source account*\)](#share-cmk)\.
+   If you intend to share encrypted snapshots, then you must give this IAM role permission to use KMS key used to encrypt the source volume\. For more information, see [Step 2: Share the customer managed key \(*Source account*\)](#share-cmk)\.
 
 1. Add the policy schedules that define how snapshots are to be created and shared\. Schedule 1 is mandatory\. Schedules 2, 3, and 4 are optional\. For each policy schedule, specify the following information:
    + For **Schedule name**, enter a name for the schedule\.
@@ -50,7 +50,7 @@ Use one of the following methods to create the EBS snapshot policy\.
    + For **Retention type**, specify how the snapshots are to be retained\. You can retain snapshots or AMIs based on either their total count or their age\. For count\-based retention, the range is 1 to 1000\. After the maximum count is reached, the oldest snapshot or AMI is deleted when a new one is created\. For age\-based retention, the range is 1 day to 100 years\. After the retention period of each snapshot or AMI expires, it is deleted\. The retention period should be greater than or equal to the creation interval\.
 **Note**  
 All schedules must have the same retention type\. You can specify the retention type for Schedule 1 only\. Schedules 2, 3, and 4 inherit the retention type from Schedule 1\. Each schedule can have its own retention count or period\.
-   + Select **Enable cross\-account sharing**, and then specify the target AWS accounts with which to F the snapshots\. These are the accounts with which the snapshots are to be shared\. If you are sharing encrypted snapshots, then you must give the selected target accounts permission to use the CMK used to encrypt the source volume\. For more information, see [Step 2: Share the customer\-managed CMK \(*Source account*\)](#share-cmk)\.
+   + Select **Enable cross\-account sharing**, and then specify the target AWS accounts with which to F the snapshots\. These are the accounts with which the snapshots are to be shared\. If you are sharing encrypted snapshots, then you must give the selected target accounts permission to use the KMS key used to encrypt the source volume\. For more information, see [Step 2: Share the customer managed key \(*Source account*\)](#share-cmk)\.
    + To automatically unshare shared snapshots, select **Unshare automatically**, and then specify when the snapshots are to be unshared\.
 
      If you chose to automatically unshare shared snapshots, the period after which to automatically unshare the snapshots cannot be longer than the period for which the policy retains its snapshots\. For example, if the policy's retention configuration retains snapshots for a period of 5 days, you can only configure the policy to automatically unshare shared snapshots after periods up to 4 days\. This applies to policies with age\-based and count\-based snapshot retention configurations\.
@@ -115,14 +115,14 @@ Upon success, the command returns the ID of the newly created policy\. The follo
 
 ------
 
-### Step 2: Share the customer\-managed CMK \(*Source account*\)<a name="share-cmk"></a>
+### Step 2: Share the customer managed key \(*Source account*\)<a name="share-cmk"></a>
 
-If you are sharing encrypted snapshots, you must grant the IAM role and the target AWS accounts \(that you selected in the previous step\) permissions to use the customer\-managed customer master key \(CMK\) that was used to encrypt the source volume\.
+If you are sharing encrypted snapshots, you must grant the IAM role and the target AWS accounts \(that you selected in the previous step\) permissions to use the customer managed key that was used to encrypt the source volume\.
 
 **Note**  
 Only perform this step if you are sharing encrypted snapshots\. If you are sharing unencrypted snapshots, skip this step\.
 
-Use one of the following methods to update the key policy of the CMK\.
+Use one of the following methods to update the key policy of the KMS key\.
 
 ------
 #### [ Console ]
@@ -133,9 +133,9 @@ Use one of the following methods to update the key policy of the CMK\.
 
 1. To change the AWS Region, use the Region selector in the upper\-right corner of the page\.
 
-1. In the navigation pane, choose **Customer managed keys** and then select the CMK that you need to share with the target accounts\.
+1. In the navigation pane, choose **Customer managed key** and then select the KMS key that you need to share with the target accounts\.
 
-   Make note of the CMKs ARN, you'll need this later\.
+   Make note of the KMS key ARN, you'll need this later\.
 
 1. On the **Key policy** tab, scroll down to the **Key users** section\. Choose **Add**, enter the name of the IAM role that you selected in the previous step, and then choose **Add**\.
 
@@ -146,15 +146,15 @@ Use one of the following methods to update the key policy of the CMK\.
 ------
 #### [ Command line ]
 
-Use the [ get\-key\-policy](https://docs.aws.amazon.com/cli/latest/reference/kms/get-key-policy.html) command to retrieve the key policy that is currently attached to the CMK\.
+Use the [ get\-key\-policy](https://docs.aws.amazon.com/cli/latest/reference/kms/get-key-policy.html) command to retrieve the key policy that is currently attached to the KMS key\.
 
-For example, the following command retrieves the key policy for a CMK with an ID of `9d5e2b3d-e410-4a27-a958-19e220d83a1e` and writes it to a file named `snapshotKey.json`\.
+For example, the following command retrieves the key policy for a KMS key with an ID of `9d5e2b3d-e410-4a27-a958-19e220d83a1e` and writes it to a file named `snapshotKey.json`\.
 
 ```
 $ aws kms get-key-policy --policy-name default --key-id 9d5e2b3d-e410-4a27-a958-19e220d83a1e --query Policy --output text > snapshotKey.json
 ```
 
-Open the key policy using your preferred text editor\. Add the ARN of the IAM role that you specified when you created the snapshot policy and the ARNs of the target accounts with which to share the CMK\.
+Open the key policy using your preferred text editor\. Add the ARN of the IAM role that you specified when you created the snapshot policy and the ARNs of the target accounts with which to share the KMS key\.
 
 For example, in the following policy, we added the ARN of the default IAM role, and the ARN of the root account for target account `222222222222.`
 
@@ -200,7 +200,7 @@ For example, in the following policy, we added the ARN of the default IAM role, 
 }
 ```
 
-Save and close the file\. Then use the [ put\-key\-policy](https://docs.aws.amazon.com/cli/latest/reference/kms/put-key-policy.html) command to attach the updated key policy to the CMK\. 
+Save and close the file\. Then use the [ put\-key\-policy](https://docs.aws.amazon.com/cli/latest/reference/kms/put-key-policy.html) command to attach the updated key policy to the KMS key\. 
 
 
 
@@ -235,7 +235,7 @@ Use one of the following methods to create the cross\-account copy event policy\
 
 1. For **IAM role**, choose the IAM role that has permissions to perform the snapshot copy action\. AWS provides a default role, or you can create a custom IAM role\.
 
-   If you are copying encrypted snapshots, you must grant the selected IAM role permissions to use the encryption CMK used to encrypt the source volume\. Similarly, if you are encrypting the snapshot in the destination Region using a different CMK, you must grant the IAM role permission to use the destination CMK\. For more information, see [Step 4: Allow IAM role to use the required CMKs \(*Target account*\)](#target_iam-role)\.
+   If you are copying encrypted snapshots, you must grant the selected IAM role permissions to use the encryption KMS key used to encrypt the source volume\. Similarly, if you are encrypting the snapshot in the destination Region using a different KMS key, you must grant the IAM role permission to use the destination KMS key\. For more information, see [Step 4: Allow IAM role to use the required KMS keys \(*Target account*\)](#target_iam-role)\.
 
 1. In the **Copy settings** section, you can configure the policy to copy snapshots to up to three Regions in the target account\. Do the following:
 
@@ -245,7 +245,7 @@ Use one of the following methods to create the cross\-account copy event policy\
 
    1. For **Retain copy for**, specify how long to retain the snapshot copies in the target Region after creation\.
 
-   1. For **Encryption**, select **Enable** to encrypt the snapshot copy in the target Region\. If the source snapshot is encrypted, or if encryption by default is enabled for your account, the snapshot copy is always encrypted, even if you do enable encryption here\. If the source snapshot is unencrypted and encryption by default is not enabled for your account, you can choose to enable or disable encryption\. If you enable encryption, but do not specify a CMK, the snapshots are encrypted using the default encryption CMK in each destination Region\. If you specify a CMK for the destination Region, you must have access to the CMK\.
+   1. For **Encryption**, select **Enable** to encrypt the snapshot copy in the target Region\. If the source snapshot is encrypted, or if encryption by default is enabled for your account, the snapshot copy is always encrypted, even if you do enable encryption here\. If the source snapshot is unencrypted and encryption by default is not enabled for your account, you can choose to enable or disable encryption\. If you enable encryption, but do not specify a KMS key, the snapshots are encrypted using the default encryption KMS key in each destination Region\. If you specify a KMS key for the destination Region, you must have access to the KMS key\.
 
    1. \(Optional\) To copy the snapshot to additional Regions, choose **Add additional region**, and then complete the required fields\.
 
@@ -258,7 +258,7 @@ Use one of the following methods to create the cross\-account copy event policy\
 
 Use the [create\-lifecycle\-policy](https://docs.aws.amazon.com/cli/latest/reference/dlm/create-lifecycle-policy.html) command to create a policy\. To create a cross\-account copy event policy, for `PolicyType`, specify `EVENT_BASED_POLICY`\.
 
-For example, the following command creates a cross\-account copy event policy in target account `222222222222`\. The policy copies snapshots that are shared by source account `111111111111`\. The policy copies snapshots to `sa-east-1` and `eu-west-2`\. Snapshots copied to `sa-east-1` are unencrypted and they are retained for 3 days\. Snapshots copied to `eu-west-2` are encrypted using CMK `8af79514-350d-4c52-bac8-8985e84171c7` and they are retained for 1 month\. The policy uses the default IAM role\.
+For example, the following command creates a cross\-account copy event policy in target account `222222222222`\. The policy copies snapshots that are shared by source account `111111111111`\. The policy copies snapshots to `sa-east-1` and `eu-west-2`\. Snapshots copied to `sa-east-1` are unencrypted and they are retained for 3 days\. Snapshots copied to `eu-west-2` are encrypted using KMS key `8af79514-350d-4c52-bac8-8985e84171c7` and they are retained for 1 month\. The policy uses the default IAM role\.
 
 ```
 $ aws dlm create-lifecycle-policy --description "Copy policy" --state ENABLED --execution-role-arn arn:aws:iam::222222222222:role/service-role/AWSDataLifecycleManagerDefaultRole --policy-details file://policyDetails.json
@@ -313,9 +313,9 @@ Upon success, the command returns the ID of the newly created policy\. The follo
 
 ------
 
-### Step 4: Allow IAM role to use the required CMKs \(*Target account*\)<a name="target_iam-role"></a>
+### Step 4: Allow IAM role to use the required KMS keys \(*Target account*\)<a name="target_iam-role"></a>
 
-If you are copying encrypted snapshots, you must grant the IAM role \(that you selected in the previous step\) permissions to use the customer\-managed customer master key \(CMK\) that was used to encrypt the source volume\.
+If you are copying encrypted snapshots, you must grant the IAM role \(that you selected in the previous step\) permissions to use the customer managed key that was used to encrypt the source volume\.
 
 **Note**  
 Only perform this step if you are copying encrypted snapshots\. If you are copying unencrypted snapshots, skip this step\.
@@ -333,7 +333,7 @@ Use one of the following methods to add the required policies to the IAM role\.
 
 1. Choose **Add inline policy** and then select the **JSON** tab\.
 
-1. Replace the existing policy with the following, and specify the ARNs of the CMKs\.
+1. Replace the existing policy with the following, and specify the ARNs of the KMS keys\.
 
    ```
    {
@@ -381,7 +381,7 @@ Use one of the following methods to add the required policies to the IAM role\.
 ------
 #### [ Command line ]
 
-Using your preferred text editor, create a new JSON file named `policyDetails.json`\. Add the following policy and specify the ARNs of the CMKs that the role needs permissions to use\. In the following example, the policy grants the IAM role permission to use CMK `1234abcd-12ab-34cd-56ef-1234567890ab`, which was shared by source account `111111111111`, and CMK `4567dcba-23ab-34cd-56ef-0987654321yz`, which exists in target account `222222222222`\.
+Using your preferred text editor, create a new JSON file named `policyDetails.json`\. Add the following policy and specify the ARNs of the KMS keys that the role needs permissions to use\. In the following example, the policy grants the IAM role permission to use KMS key `1234abcd-12ab-34cd-56ef-1234567890ab`, which was shared by source account `111111111111`, and KMS key `4567dcba-23ab-34cd-56ef-0987654321yz`, which exists in target account `222222222222`\.
 
 ```
  {

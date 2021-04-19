@@ -6,7 +6,6 @@ There is a limit on the number of running and requested Spot Instances per AWS a
 + [Spot Instance limits](#spot-limits-general)
 + [Request a Spot Instance limit increase](#spot-vcpu-limits-request-increase)
 + [Monitor Spot Instance limits and usage](#monitoring-spot-limits)
-+ [Spot Fleet limits](#spot-fleet-limitations)
 
 ## Spot Instance limits<a name="spot-limits-general"></a>
 
@@ -62,18 +61,3 @@ You can view and manage your Spot Instance limits using the following:
 For more information, see [Amazon EC2 service quotas](ec2-resource-limits.md) in the *Amazon EC2 User Guide for Linux Instances* and [Viewing a Service Quota](https://docs.aws.amazon.com/servicequotas/latest/userguide/gs-request-quota.html) in the *Service Quotas User Guide*\.  
 
 With Amazon CloudWatch metrics integration, you can monitor EC2 usage against limits\. You can also configure alarms to warn about approaching limits\. For more information, see [Using Amazon CloudWatch Alarms](https://docs.aws.amazon.com/servicequotas/latest/userguide/configure-cloudwatch.html) in the *Service Quotas User Guide*\.
-
-## Spot Fleet limits<a name="spot-fleet-limitations"></a>
-
-The usual Amazon EC2 limits apply to instances launched by a Spot Fleet or an EC2 Fleet, such as Spot Instance limits and volume limits\. In addition, the following limits apply:
-+ The number of active Spot Fleets and EC2 Fleets per Region: 1,000\*
-+ The number of Spot capacity pools \(unique combination of instance type and subnet\): 300\*
-+ The size of the user data in a launch specification: 16 KB\*
-+ The target capacity per Spot Fleet or EC2 Fleet: 10,000
-+ The target capacity across all Spot Fleets and EC2 Fleets in a Region: 100,000
-+ A Spot Fleet request or an EC2 Fleet request can't span Regions\.
-+ A Spot Fleet request or an EC2 Fleet request can't span different subnets from the same Availability Zone\.
-
-If you need more than the default limits for target capacity, complete the Amazon Web Services Support Center [Create case](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ec2-fleet) form to request a limit increase\. For **Limit type**, choose **EC2 Fleet**, choose a Region, and then choose **Target Fleet Capacity per Fleet \(in units\)** or **Target Fleet Capacity per Region \(in units\)**, or both\.
-
-\* These are hard limits\. You cannot request a limit increase for these limits\.

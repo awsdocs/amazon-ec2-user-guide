@@ -53,7 +53,7 @@ A checksum is a small\-sized datum derived from a block of data for the purpose 
 
 ### Encryption<a name="ebsapi-encryption"></a>
 
-Encryption protects your data by converting it into unreadable code that can be deciphered only by people who have access to the key used to encrypt it\. You can use the EBS direct APIs to read and write encrypted snapshots, but there are some limitations\. For more information, see [Use encryption](#ebsapis-using-encryption) later in this guide\.
+Encryption protects your data by converting it into unreadable code that can be deciphered only by people who have access to the KMS key used to encrypt it\. You can use the EBS direct APIs to read and write encrypted snapshots, but there are some limitations\. For more information, see [Use encryption](#ebsapis-using-encryption) later in this guide\.
 
 ### API actions<a name="ebsapi-actions"></a>
 
@@ -189,7 +189,7 @@ The following policy allows all of the *read* EBS direct APIs to be used on all 
 }
 ```
 
-The following policy grants access to decrypt an encrypted snapshot using a specific key ID from the AWS Key Management Service \(AWS KMS\)\. It grants access to encrypt new snapshots using the default AWS KMS key ID for EBS snapshots\. It also provides the ability to determine if encrypt by default is enabled on the account\. In the policy, replace *<Region>* with the Region of the AWS KMS key, *<AccountId>* with the ID of the AWS account of the key, and *<KeyId>* with the ID of the key used to encrypt the snapshot that you want to read with the EBS direct APIs\.
+The following policy grants access to decrypt an encrypted snapshot using a specific KMS key\. It grants access to encrypt new snapshots using the default KMS key ID for EBS snapshots\. It also provides the ability to determine if encrypt by default is enabled on the account\. In the policy, replace *<Region>* with the Region of the KMS key, *<AccountId>* with the ID of the AWS account of the KMS key, and *<KeyId>* with the ID of the KMS key used to encrypt the snapshot that you want to read with the EBS direct APIs\.
 
 ```
 {
@@ -335,7 +335,7 @@ The following policy allows all of the *write* EBS direct APIs to be used on all
 }
 ```
 
-The following policy grants access to decrypt an encrypted snapshot using a specific key ID from the AWS Key Management Service \(AWS KMS\)\. It grants access to encrypt new snapshots using the default AWS KMS key ID for EBS snapshots\. It also provides the ability to determine if encrypt by default is enabled on the account\. In the policy, replace *<Region>* with the Region of the AWS KMS key, *<AccountId>* with the ID of the AWS account of the key, and *<KeyId>* with the ID of the key used to encrypt the snapshot that you want to read with the EBS direct APIs\.
+The following policy grants access to decrypt an encrypted snapshot using a specific KMS key\. It grants access to encrypt new snapshots using the default KMS key ID for EBS snapshots\. It also provides the ability to determine if encrypt by default is enabled on the account\. In the policy, replace *<Region>* with the Region of the KMS key, *<AccountId>* with the ID of the AWS account of the KMS key, and *<KeyId>* with the ID of the KMS key used to encrypt the snapshot that you want to read with the EBS direct APIs\.
 
 ```
 {
@@ -368,10 +368,10 @@ For more information, see [Changing Permissions for an IAM User](https://docs.aw
 
 If Amazon EBS encryption by default is enabled on your AWS account, you cannot start a new snapshot using an un\-encrypted parent snapshot\. You must first encrypt the parent snapshot by copying it\. For more information, see [Copy an Amazon EBS snapshot](ebs-copy-snapshot.md) and [Encryption by default](EBSEncryption.md#encryption-by-default)\.
 
-To start an encrypted snapshot, specify the Amazon Resource Name \(ARN\) of an AWS KMS key, or specify an encrypted parent snapshot in your StartSnapshot request\. If neither are specified, and Amazon EBS encryption by default is enabled on the account, then the default CMK for the account is used\. If no default CMK has been specified for the account, then the AWS managed CMK is used\.
+To start an encrypted snapshot, specify the Amazon Resource Name \(ARN\) of an KMS key, or specify an encrypted parent snapshot in your StartSnapshot request\. If neither are specified, and Amazon EBS encryption by default is enabled on the account, then the default KMS key for the account is used\. If no default KMS key has been specified for the account, then the AWS managed key is used\.
 
 **Important**  
-By default, all principals in the account have access to the default AWS managed CMK, and they can use it for EBS encryption and decryption operations\. For more information, see [Default key for EBS encryption](EBSEncryption.md#EBSEncryption_key_mgmt)\.
+By default, all principals in the account have access to the default AWS managed key, and they can use it for EBS encryption and decryption operations\. For more information, see [Default KMS key for EBS encryption](EBSEncryption.md#EBSEncryption_key_mgmt)\.
 
 You might need additional IAM permissions to use the EBS direct APIs with encryption\. For more information, see the [Permissions for IAM users](#ebsapi-permissions) section earlier in this guide\.
 
@@ -850,7 +850,7 @@ Block tokens are valid for seven days, and next tokens are valid for 60 minutes\
 
 **Are encrypted snapshots supported?**  
 Yes\. Encrypted snapshots can be accessed using the EBS direct APIs\.  
-To access an encrypted snapshot, the user must have access to the key used to encrypt the snapshot, and the AWS KMS decrypt action\. See the [Permissions for IAM users](#ebsapi-permissions) section earlier in this guide for the AWS KMS policy to assign to a user\.
+To access an encrypted snapshot, the user must have access to the KMS key used to encrypt the snapshot, and the AWS KMS decrypt action\. See the [Permissions for IAM users](#ebsapi-permissions) section earlier in this guide for the AWS KMS policy to assign to a user\.
 
 **Are public snapshots supported?**  
 Public snapshots are not supported\.

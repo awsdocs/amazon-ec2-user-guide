@@ -26,7 +26,7 @@ Amazon EBS sends events to CloudWatch Events when the following volume events oc
 
 ### Create volume \(createVolume\)<a name="create-volume"></a>
 
-The `createVolume` event is sent to your AWS account when an action to create a volume completes\. However it is not saved, logged, or archived\. This event can have a result of either `available` or `failed`\. Creation will fail if an invalid KMS key was provided, as shown in the examples below\.
+The `createVolume` event is sent to your AWS account when an action to create a volume completes\. However it is not saved, logged, or archived\. This event can have a result of either `available` or `failed`\. Creation will fail if an invalid AWS KMS key was provided, as shown in the examples below\.
 
 **Event data**  
 The listing below is an example of a JSON object emitted by EBS for a successful `createVolume` event\. 
@@ -128,7 +128,7 @@ The listing below is an example of a JSON object emitted by EBS for a successful
 
 ### Volume attach or reattach \(attachVolume, reattachVolume\)<a name="attach-fail-key"></a>
 
-The `attachVolume` or `reattachVolume` event is sent to your AWS account if a volume fails to attach or reattach to an instance\. However it is not saved, logged, or archived\. If you use a KMS key to encrypt an EBS volume and the key becomes invalid, EBS will emit an event if that key is later used to attach or reattach to an instance, as shown in the examples below\.
+The `attachVolume` or `reattachVolume` event is sent to your AWS account if a volume fails to attach or reattach to an instance\. However it is not saved, logged, or archived\. If you use a KMS key to encrypt an EBS volume and the KMS key becomes invalid, EBS will emit an event if that KMS key is later used to attach or reattach to an instance, as shown in the examples below\.
 
 **Event data**  
 The listing below is an example of a JSON object emitted by EBS after a failed `attachVolume` event\. The cause for the failure was a KMS key pending deletion\.

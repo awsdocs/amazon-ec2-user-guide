@@ -18,7 +18,7 @@ The `AWS/EC2Spot` namespace includes the following metrics, plus the CloudWatch 
 | BidsSubmittedForCapacity |  The capacity for which Amazon EC2 has submitted Spot Fleet requests\. Units: Count  | 
 | EligibleInstancePoolCount |  The Spot capacity pools specified in the Spot Fleet request where Amazon EC2 can fulfill requests\. Amazon EC2 does not fulfill requests in pools where the maximum price you're willing to pay for Spot Instances is less than the Spot price or the Spot price is greater than the price for On\-Demand Instances\. Units: Count  | 
 | FulfilledCapacity |  The capacity that Amazon EC2 has fulfilled\. Units: Count  | 
-| MaxPercentCapacityAllocation |  The maximum value of `PercentCapacityAllocation` across all Spot capacity pools specified in the Spot Fleet request\. Units: Percent  | 
+| MaxPercentCapacityAllocation |  The maximum value of `PercentCapacityAllocation` across all Spot Fleet pools specified in the Spot Fleet request\. Units: Percent  | 
 | PendingCapacity |  The difference between `TargetCapacity` and `FulfilledCapacity`\. Units: Count  | 
 | PercentCapacityAllocation |  The capacity allocated for the Spot capacity pool for the specified dimensions\. To get the maximum value recorded across all Spot capacity pools, use `MaxPercentCapacityAllocation`\. Units: Percent  | 
 | TargetCapacity |  The target capacity of the Spot Fleet request\. Units: Count  | 

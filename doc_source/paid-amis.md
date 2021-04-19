@@ -24,7 +24,7 @@ Amazon DevPay is no longer accepting new sellers or products\. AWS Marketplace i
 
 You can sell your AMI using AWS Marketplace\. AWS Marketplace offers an organized shopping experience\. Additionally, AWS Marketplace also supports AWS features such as Amazon EBS\-backed AMIs, Reserved Instances, and Spot Instances\.
 
-For information about how to sell your AMI on AWS Marketplace, see [Selling on AWS Marketplace](https://aws.amazon.com/marketplace/help/200899830/)\. 
+For information about how to sell your AMI on the AWS Marketplace, see [Selling on AWS Marketplace](https://aws.amazon.com/marketplace/help/200899830/)\. 
 
 ## Find a paid AMI<a name="using-paid-amis-finding-paid-ami"></a>
 
@@ -149,7 +149,7 @@ After you set the product code attribute, it cannot be changed or removed\.
 
 ## Bills for paid and supported AMIs<a name="using-paid-amis-bills"></a>
 
-At the end of each month, you receive an email with the amount your credit card has been charged for using any paid or supported AMIs during the month\. This bill is separate from your regular Amazon EC2 bill\. For more information, see [Paying For AWS Marketplace Products](https://aws.amazon.com/marketplace/help/200799490)\. 
+At the end of each month, you receive an email with the amount your credit card has been charged for using any paid or supported AMIs during the month\. This bill is separate from your regular Amazon EC2 bill\. For more information, see [Paying for products](https://docs.aws.amazon.com/marketplace/latest/buyerguide/buyer-paying-for-products.html) in the *AWS Marketplace Buyer Guide*\.
 
 ## Manage your AWS Marketplace subscriptions<a name="marketplace-manage-subscriptions"></a>
 
