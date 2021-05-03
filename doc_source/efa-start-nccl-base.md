@@ -406,10 +406,10 @@ Install NCCL\. For more information about NCCL, see the [NCCL repository](https:
    $ cd /opt
    ```
 
-1. Clone the official NCCL repository to the instance and navigate into the local cloned repository\.
+1. Clone the an [aws-ofi-compatible version of NCCL](https://github.com/aws/aws-ofi-nccl/blob/master/RELEASENOTES.md) from the official NVidia repository to the instance and navigate into the local cloned repository\.
 
    ```
-   $ sudo git clone https://github.com/NVIDIA/nccl.git && cd nccl
+   $ sudo git clone -b v2.8.4-1 https://github.com/NVIDIA/nccl.git && cd nccl
    ```
 
 1. Build and install NCCL and specify the CUDA installation directory\.
@@ -436,10 +436,10 @@ The aws\-ofi\-nccl plugin maps NCCL's connection\-oriented transport APIs to Lib
    $ sudo apt-get install libtool autoconf -y
    ```
 
-1. Clone the `aws` branch of the official AWS aws\-ofi\-nccl repository to the instance and navigate into the local cloned repository\.
+1. Clone the version of the official AWS aws\-ofi\-nccl repository that is compatible with your installed nccl version (see Step 5) to the instance and navigate into the local cloned repository\.
 
    ```
-   $ git clone https://github.com/aws/aws-ofi-nccl.git -b aws && cd aws-ofi-nccl
+   $ git clone https://github.com/aws/aws-ofi-nccl.git -b v1.1.2-aws && cd aws-ofi-nccl
    ```
 
 1. To generate the `configure` script, run the `autogen.sh` script\.
