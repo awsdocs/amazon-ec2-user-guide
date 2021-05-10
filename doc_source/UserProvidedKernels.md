@@ -87,7 +87,7 @@ Note that PV\-GRUB 1\.03 and earlier only check one of the first two locations i
 
 ### Amazon PV\-GRUB Kernel Image IDs<a name="AmazonKernelImageIDs"></a>
 
-PV\-GRUB AKIs are available in all Amazon EC2 regions\. There are AKIs for both 32\-bit and 64\-bit architecture types\. Most modern AMIs use a PV\-GRUB AKI by default\.
+PV\-GRUB AKIs are available in all Amazon EC2 regions, excluding Asia Pacific \(Osaka\)\. There are AKIs for both 32\-bit and 64\-bit architecture types\. Most modern AMIs use a PV\-GRUB AKI by default\.
 
 We recommend that you always use the latest version of the PV\-GRUB AKI, as not all versions of the PV\-GRUB AKI are compatible with all instance types\. Use the following [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command to get a list of the PV\-GRUB AKIs for the current region:
 

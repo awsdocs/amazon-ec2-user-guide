@@ -21,7 +21,7 @@ For more information about pricing, see [Amazon EBS Pricing](http://aws.amazon.c
 + [Attach a volume to multiple instances with Amazon EBS Multi\-Attach](ebs-volumes-multi.md)
 + [Make an Amazon EBS volume available for use on Linux](ebs-using-volumes.md)
 + [View information about an Amazon EBS volume](ebs-describing-volumes.md)
-+ [Replace an Amazon EBS volume using a previous snapshot](ebs-restoring-volume.md)
++ [Replace an Amazon EBS volume](ebs-restoring-volume.md)
 + [Monitor the status of your volumes](monitoring-volume-status.md)
 + [Detach an Amazon EBS volume from a Linux instance](ebs-detaching-volume.md)
 + [Delete an Amazon EBS volume](ebs-deleting-volume.md)

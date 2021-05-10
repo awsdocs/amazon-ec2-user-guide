@@ -99,12 +99,12 @@ The steps differ depending on whether you intend to use EFA with Open MPI, with 
 1. Connect to the instance you launched\. For more information, see [Connect to your Linux instance](AccessingInstances.md)\.
 
 1. To ensure that all of your software packages are up to date, perform a quick software update on your instance\. This process may take a few minutes\.
-   + Amazon Linux, Amazon Linux 2, RHEL, and CentOS
+   + Amazon Linux 2, RHEL 7/8, and CentOS 7/8
 
      ```
      $ sudo yum update -y
      ```
-   + Ubuntu
+   + Ubuntu 18\.04 and 20\.04
 
      ```
      $ sudo apt-get update
@@ -122,7 +122,7 @@ The steps differ depending on whether you intend to use EFA with Open MPI, with 
 1. Download the EFA software installation files\. The software installation files are packaged into a compressed tarball \(`.tar.gz`\) file\. To download the latest *stable* version, use the following command\.
 
    ```
-   $ curl -O https://efa-installer.amazonaws.com/aws-efa-installer-1.11.2.tar.gz
+   $ curl -O https://efa-installer.amazonaws.com/aws-efa-installer-1.12.0.tar.gz
    ```
 
    You can also get the latest version by replacing the version number with `latest` in the preceding command\.
@@ -154,11 +154,11 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
    1. Download the signature file and verify the signature of the EFA tarball file\.
 
       ```
-      $ wget https://efa-installer.amazonaws.com/aws-efa-installer-1.11.2.tar.gz.sig
+      $ wget https://efa-installer.amazonaws.com/aws-efa-installer-1.12.0.tar.gz.sig
       ```
 
       ```
-      $ gpg --verify ./aws-efa-installer-1.11.2.tar.gz.sig
+      $ gpg --verify ./aws-efa-installer-1.12.0.tar.gz.sig
       ```
 
       The following shows example output\.
@@ -176,7 +176,7 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
 1. Extract the files from the compressed `.tar.gz` file and navigate into the extracted directory\.
 
    ```
-   $ tar -xf aws-efa-installer-1.11.2.tar.gz
+   $ tar -xf aws-efa-installer-1.12.0.tar.gz
    ```
 
    ```

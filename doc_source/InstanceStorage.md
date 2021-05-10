@@ -252,3 +252,47 @@ The following table provides the quantity, size, type, and performance optimizat
 \*\* For more information, see [Instance store volume TRIM support](ssd-instance-store.md#InstanceStoreTrimSupport)\.
 
 † The `c1.medium` and `m1.small` instance types also include a 900 MB instance store swap volume, which may not be automatically enabled at boot time\. For more information, see [Instance store swap volumes](instance-store-swap-volumes.md)\.
+
+**To query instance store volume information using the AWS CLI**  
+You can use the [describe\-instance\-types](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-types.html) AWS CLI command to display information about an instance type, such as its instance store volumes\. The following example displays the total size of instance storage for all R5 instances with instance store volumes\.
+
+```
+aws ec2 describe-instance-types --filters "Name=instance-type,Values=r5*" "Name=instance-storage-supported,Values=true" --query "InstanceTypes[].[InstanceType, InstanceStorageInfo.TotalSizeInGB]" --output table
+---------------------------
+|  DescribeInstanceTypes  |
++----------------+--------+
+|  r5ad.24xlarge |  3600  |
+|  r5ad.12xlarge |  1800  |
+|  r5dn.8xlarge  |  1200  |
+|  r5ad.8xlarge  |  1200  |
+|  r5ad.large    |  75    |
+|  r5d.4xlarge   |  600   |
+   . . .
+|  r5dn.2xlarge  |  300   |
+|  r5d.12xlarge  |  1800  |
++----------------+--------+
+```
+
+The following example displays the complete instance storage details for the specified instance type\.
+
+```
+aws ec2 describe-instance-types --filters "Name=instance-type,Values=r5d.4xlarge" --query "InstanceTypes[].InstanceStorageInfo"
+```
+
+The example output shows that this instance type has two 300 GB NVMe SSD volumes, for a total of 600 GB of instance storage\.
+
+```
+[
+    {
+        "TotalSizeInGB": 600,
+        "Disks": [
+            {
+                "SizeInGB": 300,
+                "Count": 2,
+                "Type": "ssd"
+            }
+        ],
+        "NvmeSupport": "required"
+    }
+]
+```

@@ -79,17 +79,17 @@ r5dn.24xlarge
 ## Supported AMIs<a name="efa-amis"></a>
 
 The following AMIs support EFA with Intel x86\-based instance types:
-+ Amazon Linux and Amazon Linux 2
++ Amazon Linux 2
 + CentOS 7 and 8
 + RHEL 7\.6, 7\.7, 7\.8, 8\.2, and 8\.3
-+ Ubuntu 16\.04, 18\.04, and 20\.04
++ Ubuntu 18\.04 and 20\.04
 + SUSE Linux Enterprise 15 SP2
 + openSUSE Leap 15\.2
 
 The following AMIs support EFA with Arm\-based \(Graviton 2\) instance types:
 + Amazon Linux 2
 + Ubuntu 18\.04 and 20\.04
-+ openSUSE Leap 15\.2
++ SUSE Linux Enterprise 15 SP2
 
 ## EFA limitations<a name="efa-limits"></a>
 

@@ -93,10 +93,10 @@ The configuration change in this step does not survive a reboot\.
    1. Create a file called `smp_affinity.sh` and paste the following code block into it:
 
       ```
-      #/bin/sh
+      #!/bin/bash
       service irqbalance stop
       affinity_values=(00000001 00000002 00000004 00000008 00000010 00000020 00000040 00000080)
-      irqs=($(grep eth /proc/interrupts|awk '{print $1}'|cut -d : -f 1))
+      irqs=($(grep -E 'eth|ens' /proc/interrupts|awk '{print $1}'|cut -d : -f 1))
       irqLen=${#irqs[@]}
       for (( i=0; i<${irqLen}; i++ ));
       do

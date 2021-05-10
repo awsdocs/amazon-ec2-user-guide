@@ -102,14 +102,14 @@ For detailed instructions using the console, see [Copy an AMI](CopyingAMIs.md)\.
 
 ### Encrypt an unencrypted image during copy<a name="copy-unencrypted-to-encrypted"></a>
 
-In this scenario, an AMI backed by an unencrypted root snapshot is copied to an AMI with an encrypted root snapshot\. The `CopyImage` action is invoked with two encryption parameters, including a CMK\. As a result, the encryption status of the root snapshot changes, so that the target AMI is backed by a root snapshot containing the same data as the source snapshot, but encrypted using the specified key\. You incur storage costs for the snapshots in both AMIs, as well as charges for any instances you launch from either AMI\.
+In this scenario, an AMI backed by an unencrypted root snapshot is copied to an AMI with an encrypted root snapshot\. The `CopyImage` action is invoked with two encryption parameters, including a customer managed key\. As a result, the encryption status of the root snapshot changes, so that the target AMI is backed by a root snapshot containing the same data as the source snapshot, but encrypted using the specified key\. You incur storage costs for the snapshots in both AMIs, as well as charges for any instances you launch from either AMI\.
 
 **Note**  
 Enabling [encryption by default](EBSEncryption.md#encryption-by-default) has the same effect as setting the `Encrypted` parameter to `true` for all snapshots in the AMI\.
 
 ![\[Copy AMI and encrypt snapshot on the fly\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/ami-to-ami-convert.png)
 
-Setting the `Encrypted` parameter encrypts the single snapshot for this instance\. If you do not specify the `KmsKeyId` parameter, the default CMK is used to encrypt the snapshot copy\.
+Setting the `Encrypted` parameter encrypts the single snapshot for this instance\. If you do not specify the `KmsKeyId` parameter, the default customer managed key is used to encrypt the snapshot copy\.
 
 **Note**  
 You can also copy an image with multiple snapshots and configure the encryption state of each individually\.

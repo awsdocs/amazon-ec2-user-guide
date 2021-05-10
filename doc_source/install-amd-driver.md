@@ -230,7 +230,19 @@ EndSection
    $ sudo reboot
    ```
 
+1. Install the AMF encoder for the appropriate version of Ubuntu\.
+
+   ```
+   $ sudo apt install ./amdgpu-pro-20.20-*/amf-amdgpu-pro_20.20-*_amd64.deb
+   ```
+
 1. \(Optional\) [Install the NICE DCV server](https://docs.aws.amazon.com/dcv/latest/adminguide/setting-up-installing.html) to use NICE DCV as a high\-performance display protocol, and then [connect to a NICE DCV session](https://docs.aws.amazon.com/dcv/latest/userguide/using-connecting.html) using your preferred client\.
+
+1. After the DCV installation give the DCV User video permissions:
+
+   ```
+   $ sudo usermod -aG video dcv
+   ```
 
 **To set up an interactive desktop on CentOS**
 

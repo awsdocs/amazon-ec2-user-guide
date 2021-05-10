@@ -66,8 +66,8 @@ Your instance goes from the `pending` state to the `terminated` state\.
 The following are a few reasons why an instance might immediately terminate:
 + You've exceeded your EBS volume limits\. For more information, see [Instance volume limits](volume_limits.md)\.
 + An EBS snapshot is corrupted\.
-+ The root EBS volume is encrypted and you do not have permissions to access the CMK for decryption\.
-+ A snapshot specified in the block device mapping for the AMI is encrypted and you do not have permissions to access the CMK for decryption or you do not have access to the CMK to encrypt the restored volumes\.
++ The root EBS volume is encrypted and you do not have permissions to access the KMS key for decryption\.
++ A snapshot specified in the block device mapping for the AMI is encrypted and you do not have permissions to access the KMS key for decryption or you do not have access to the KMS key to encrypt the restored volumes\.
 + The instance store\-backed AMI that you used to launch the instance is missing a required part \(an image\.part\.*xx* file\)\.
 
 For more information, get the termination reason using one of the following methods\.
@@ -106,4 +106,4 @@ For more information, see [Viewing events with CloudTrail event history](https:/
 
 Depending on the termination reason, take one of the following actions:
 + **`Client.VolumeLimitExceeded: Volume limit exceeded`** — Delete unused volumes\. You can [submit a request](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-ebs) to increase your volume limit\.
-+ **`Client.InternalError: Client error on launch`** — Ensure that you have the permissions required to access the CMKs used to decrypt and encrypt volumes\. For more information, see [Using key policies in AWS KMS](https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html) in the *AWS Key Management Service Developer Guide*\.
++ **`Client.InternalError: Client error on launch`** — Ensure that you have the permissions required to access the AWS KMS keys used to decrypt and encrypt volumes\. For more information, see [Using key policies in AWS KMS](https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html) in the *AWS Key Management Service Developer Guide*\.

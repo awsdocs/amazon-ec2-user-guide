@@ -283,7 +283,7 @@ Alternatively, you can use the AWS CLI to associate a role with an instance duri
 1. Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command to launch an instance using the instance profile\. The following example shows how to launch an instance with the instance profile\. 
 
    ```
-   aws ec2 run-instances \
+   AWS ec2 run-instances \
        --image-id ami-11aa22bb \
        --iam-instance-profile Name="s3access-profile" \
        --key-name my-key-pair \

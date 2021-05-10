@@ -88,14 +88,15 @@ Before you create a Spot Fleet request, review [Spot Best Practices](https://aws
 
 If your IAM users will create or manage a Spot Fleet, you need to grant them the required permissions\.
 
-If you use the Amazon EC2 console to create a Spot Fleet, it creates a service\-linked role named `AWSServiceRoleForEC2SpotFleet` and a role named `aws-ec2-spot-fleet-tagging-role` that grant the Spot Fleet the permissions to request, launch, terminate, and tag resources on your behalf\. If you use the AWS CLI or an API, you must ensure that these roles exist\.
+If you use the Amazon EC2 console to create a Spot Fleet, it creates two service\-linked roles named `AWSServiceRoleForEC2SpotFleet` and `AWSServiceRoleForEC2Spot`, and a role named `aws-ec2-spot-fleet-tagging-role` that grant the Spot Fleet the permissions to request, launch, terminate, and tag resources on your behalf\. If you use the AWS CLI or an API, you must ensure that these roles exist\.
 
 Use the following instructions to grant the required permissions and create the roles\.
 
 **Topics**
 + [Grant permission to IAM users for Spot Fleet](#spot-fleet-iam-users)
 + [Service\-linked role for Spot Fleet](#service-linked-roles-spot-fleet-requests)
-+ [IAM role for Spot Fleet](#spot-fleet-service-linked-role)
++ [Service\-linked role for Spot Instances](#service-linked-roles-spot-instances)
++ [IAM role for tagging a Spot Fleet](#spot-fleet-service-linked-role)
 
 ### Grant permission to IAM users for Spot Fleet<a name="spot-fleet-iam-users"></a>
 
@@ -157,7 +158,7 @@ If your IAM users will create or manage a Spot Fleet, be sure to grant them the 
    + `iam:ListRoles` – Required to enumerate existing IAM roles
    + `iam:ListInstanceProfiles` – Required to enumerate existing instance profiles
 **Important**  
-If you specify a role for the IAM instance profile in the launch specification or launch template, you must grant the IAM user the permission to pass the role to the service\. To do this, in the IAM policy include `"arn:aws:iam::*:role/IamInstanceProfile-role"` as a resource for the `iam:PassRole` action\. For more information, see [Granting a User Permissions to Pass a Role to an AWS Service](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html) in the *IAM User Guide*\.
+If you specify a role for the IAM instance profile in the launch specification or launch template, you must grant the IAM user the permission to pass the role to the service\. To do this, in the IAM policy include `"arn:aws:iam::*:role/IamInstanceProfile-role"` as a resource for the `iam:PassRole` action\. For more information, see [Granting a user permissions to pass a role to an AWS service](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html) in the *IAM User Guide*\.
 
    **Spot Fleet APIs**
 
@@ -217,11 +218,9 @@ Amazon EC2 uses **AWSServiceRoleForEC2SpotFleet** to complete the following acti
 
 Under most circumstances, you don't need to manually create a service\-linked role\. Amazon EC2 creates the **AWSServiceRoleForEC2SpotFleet** service\-linked role the first time you create a Spot Fleet using the console\. 
 
-If you use the AWS CLI or an API, you must ensure that this role exists\.
+If you had an active Spot Fleet request before October 2017, when Amazon EC2 began supporting this service\-linked role, Amazon EC2 created the **AWSServiceRoleForEC2SpotFleet** role in your AWS account\. For more information, see [A new role appeared in my AWS account](https://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_roles.html#troubleshoot_roles_new-role-appeared) in the *IAM User Guide*\.
 
-If you had an active Spot Fleet request before October 2017, when Amazon EC2 began supporting this service\-linked role, Amazon EC2 created the **AWSServiceRoleForEC2SpotFleet** role in your AWS account\. For more information, see [A New Role Appeared in My AWS Account](https://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_roles.html#troubleshoot_roles_new-role-appeared) in the *IAM User Guide*\.
-
-Ensure that this role exists before you use the AWS CLI or an API to create a Spot Fleet\.
+If you use the AWS CLI or an API to create a Spot Fleet, you must first ensure that this role exists\.
 
 **To create AWSServiceRoleForEC2SpotFleet using the console**
 
@@ -233,13 +232,15 @@ Ensure that this role exists before you use the AWS CLI or an API to create a Sp
 
 1. For **Select type of trusted entity**, choose **AWS service**\.
 
-1.  In the list of services, choose **EC2**\.
+1. Under **Choose a use case**, **Or select a service to view its use cases**, choose **EC2**\.
 
-1. In the **Select your use case** section, choose **EC2 \- Spot Fleet**
+1. Under **Select your use case**, choose **EC2 \- Spot Fleet**\.
 
 1. Choose **Next: Permissions**\.
 
-1. On the next page, choose **Next:Review**\.
+1. On the next page, choose **Next: Tags**\.
+
+1. On the next page, choose **Next: Review**\.
 
 1. On the **Review** page, choose **Create role**\.
 
@@ -269,7 +270,11 @@ When providing permissions, grants are an alternative to key policies\. For more
       --operations "Decrypt" "Encrypt" "GenerateDataKey" "GenerateDataKeyWithoutPlaintext" "CreateGrant" "DescribeKey" "ReEncryptFrom" "ReEncryptTo"
   ```
 
-### IAM role for Spot Fleet<a name="spot-fleet-service-linked-role"></a>
+### Service\-linked role for Spot Instances<a name="service-linked-roles-spot-instances"></a>
+
+Amazon EC2 uses the service\-linked role named **AWSServiceRoleForEC2Spot** to launch and manage Spot Instances on your behalf\. For more information, see [Service\-linked role for Spot Instance requests](spot-requests.md#service-linked-roles-spot-instance-requests)\.
+
+### IAM role for tagging a Spot Fleet<a name="spot-fleet-service-linked-role"></a>
 
 The `aws-ec2-spot-fleet-tagging-role` IAM role grants the Spot Fleet permission to tag the Spot Fleet request, instances, and volumes\. For more information, see [Tag a Spot Fleet](#tag-spot-fleet)\.
 
@@ -282,9 +287,19 @@ If you choose to tag instances in the fleet and you choose to maintain target ca
 
 1. In the navigation pane, choose **Roles**\.
 
-1. On the **Select type of trusted entity** page, choose **AWS service**, **EC2**, **EC2 \- Spot Fleet Tagging**, **Next: Permissions**\.
+1. Choose **Create roles**\.
 
-1. On the **Attached permissions policy** page, choose **Next:Review**\.
+1. On the **Select type of trusted entity** page, choose **AWS service**\.
+
+1. Under **Choose a use case**, **Or select a service to view its use cases**, choose **EC2**\.
+
+1. Under **Select your use case**, choose **EC2 \- Spot Fleet Tagging**\.
+
+1. Choose **Next: Permissions**\.
+
+1. On the next page, choose **Next: Tags**\.
+
+1. On the next page, choose **Next: Review**\.
 
 1. On the **Review** page, enter a name for the role \(for example, **aws\-ec2\-spot\-fleet\-tagging\-role**\) and choose **Create role**\.
 

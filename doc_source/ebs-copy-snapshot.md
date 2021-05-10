@@ -54,15 +54,23 @@ You apply encryption to EBS snapshot copies by setting the `Encrypted` parameter
 
 Optionally, you can use `KmsKeyId` to specify a custom key to use to encrypt the snapshot copy\. \(The `Encrypted` parameter must also be set to `true`, even if encryption by default is enabled\.\) If `KmsKeyId` is not specified, the key that is used for encryption depends on the encryption state of the source snapshot and its ownership\.
 
-The following table describes the encryption outcome for each possible combination of settings\.
+The following tables describe the encryption outcome for each possible combination of settings\.
 
+**Topics**
++ [Encryption outcomes: Copying snapshots that you own](#own-snapshots)
++ [Encryption outcomes: Copying snapshots that are shared with you](#shared-snapshots)
 
-**Encryption outcomes: Copying a snapshot**  
+### Encryption outcomes: Copying snapshots that you own<a name="own-snapshots"></a>
+
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-copy-snapshot.html)
 
-\* This is the default CMK used for EBS encryption for the AWS account and Region\. By default this is a unique AWS managed CMK for EBS, or you can specify a customer managed CMK\. For more information, see [Default KMS key for EBS encryption](EBSEncryption.md#EBSEncryption_key_mgmt)\.
+\*\* This is a customer managed key specified for the copy action\. This customer managed key is used instead of the default customer managed key for the AWS account and Region\.
 
-\*\* This is a customer managed CMK specified for the copy action\. This CMK is used instead of the default CMK for the AWS account and Region\.
+### Encryption outcomes: Copying snapshots that are shared with you<a name="shared-snapshots"></a>
+
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-copy-snapshot.html)
+
+\*\* This is a customer managed key specified for the copy action\. This customer managed key is used instead of the default customer managed key for the AWS account and Region\.
 
 ## Copy a snapshot<a name="ebs-snapshot-copy"></a>
 

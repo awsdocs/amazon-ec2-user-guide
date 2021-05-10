@@ -73,4 +73,4 @@ chkconfig httpd on
 
 ------
 
-To retrieve user data for an instance from your own computer, see [User data and the AWS CLI](user-data.md#user-data-api-cli)
+To retrieve user data for an instance from your own computer, see [User data and the AWS CLI](user-data.md#user-data-api-cli)\.

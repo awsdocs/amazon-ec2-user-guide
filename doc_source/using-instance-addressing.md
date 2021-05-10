@@ -39,7 +39,7 @@ You can control whether your instance receives a public IP address as follows:
 
 A public IP address is assigned to your instance from Amazon's pool of public IPv4 addresses, and is not associated with your AWS account\. When a public IP address is disassociated from your instance, it is released back into the public IPv4 address pool, and you cannot reuse it\.
 
-You cannot manually associate or disassociate a public IP address from your instance\. Instead, in certain cases, we release the public IP address from your instance, or assign it a new one: 
+You cannot manually associate or disassociate a public IP \(IPv4\) address from your instance\. Instead, in certain cases, we release the public IP address from your instance, or assign it a new one: 
 + We release your instance's public IP address when it is stopped, hibernated, or terminated\. Your stopped or hibernated instance receives a new public IP address when it is started\.
 + We release your instance's public IP address when you associate an Elastic IP address with it\. When you disassociate the Elastic IP address from your instance, it receives a new public IP address\.
 + If the public IP address of your instance in a VPC has been released, it will not receive a new one if there is more than one network interface attached to your instance\. 

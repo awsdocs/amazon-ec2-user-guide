@@ -84,7 +84,7 @@ For the best performance, we recommend that you use the following instance types
 | T3 | t3\.nano \| t3\.micro \| t3\.small \| t3\.medium \| t3\.large \| t3\.xlarge \| t3\.2xlarge | [General purpose](general-purpose-instances.md) | 
 | T3a | t3a\.nano \| t3a\.micro \| t3a\.small \| t3a\.medium \| t3a\.large \| t3a\.xlarge \| t3a\.2xlarge | [General purpose](general-purpose-instances.md) | 
 | T4g | t4g\.nano \| t4g\.micro \| t4g\.small \| t4g\.medium \| t4g\.large \| t4g\.xlarge \| t4g\.2xlarge | [General purpose](general-purpose-instances.md) | 
-| u\-xtb1 | u\-6tb1\.metal \| u\-9tb1\.metal \| u\-12tb1\.metal \| u\-18tb1\.metal \| u\-24tb1\.metal | [Memory optimized](memory-optimized-instances.md) | 
+| High memory |  u\-6tb1\.metal \| u\-9tb1\.metal \| u\-12tb1\.metal \| u\-18tb1\.metal \| u\-24tb1\.metal | [Memory optimized](memory-optimized-instances.md) | 
 | X1 | x1\.16xlarge \| x1\.32xlarge | [Memory optimized](memory-optimized-instances.md) | 
 | X1e | x1e\.xlarge \| x1e\.2xlarge \| x1e\.4xlarge \| x1e\.8xlarge \| x1e\.16xlarge \| x1e\.32xlarge | [Memory optimized](memory-optimized-instances.md) | 
 | X2gd | x2gd\.medium \| x2gd\.large \| x2gd\.xlarge \| x2gd\.2xlarge \| x2gd\.4xlarge \| x2gd\.8xlarge \| x2gd\.12xlarge \| x2gd\.16xlarge \| x2gd\.metal | [Memory optimized](memory-optimized-instances.md) | 
@@ -132,7 +132,7 @@ Amazon EC2 instances that run on Intel processors may include the following feat
 
 ## AMI virtualization types<a name="instance-virtualization-type"></a>
 
-<a name="virtualization"></a>The virtualization type of your instance is determined by the AMI that you use to launch it\. Current generation instance types support hardware virtual machine \(HVM\) only\. Some previous generation instance types support paravirtual \(PV\) and some AWS regions support PV instances\. For more information, see [Linux AMI virtualization types](virtualization_types.md)\.
+<a name="virtualization"></a>The virtualization type of your instance is determined by the AMI that you use to launch it\. Current generation instance types support hardware virtual machine \(HVM\) only\. Some previous generation instance types support paravirtual \(PV\) and some AWS Regions support PV instances\. For more information, see [Linux AMI virtualization types](virtualization_types.md)\.
 
 For best performance, we recommend that you use an HVM AMI\. In addition, HVM AMIs are required to take advantage of enhanced networking\. HVM virtualization uses hardware\-assist technology provided by the AWS platform\. With HVM virtualization, the guest VM runs as if it were on a native hardware platform, except that it still uses PV network and storage drivers for improved performance\.
 
@@ -244,7 +244,7 @@ The following table summarizes the networking and storage features supported by 
 | T3 | Yes | Yes | No | No | ENA | 
 | T3a | Yes | Yes | No | No | ENA | 
 | T4g | Yes | Yes | No | No | ENA | 
-| u\-xtb1\.metal | Yes | Yes | No | No | ENA | 
+| High memory | Yes | Yes | No | No | ENA | 
 |  X1  | No | No |  SSD \*  |  Yes  | ENA | 
 | X1e | No | Yes | SSD \* | Yes | ENA | 
 | X2gd | No | Yes | NVME \* | Yes | ENA | 

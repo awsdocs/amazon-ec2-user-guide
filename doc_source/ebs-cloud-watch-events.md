@@ -507,7 +507,7 @@ The following procedure uses the `createSnapshot` event to automatically copy a 
 1. Define a function in Lambda that will be available from the CloudWatch console\. The sample Lambda function below, written in Node\.js, is invoked by CloudWatch when a matching `createSnapshot` event is emitted by Amazon EBS \(signifying that a snapshot was completed\)\. When invoked, the function copies the snapshot from `us-east-2` to `us-east-1`\.
 
    ```
-   // Sample Lambda function to copy an EBS snapshot to a different region
+   // Sample Lambda function to copy an EBS snapshot to a different Region
     
    var AWS = require('aws-sdk');
    var ec2 = new AWS.EC2();

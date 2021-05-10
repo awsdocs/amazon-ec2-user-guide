@@ -52,7 +52,7 @@ By default, when you initiate a shutdown from an Amazon EBS\-backed instance \(u
 
 1. In the navigation pane, choose **Instances**\.
 
-1. Select the instance, and choose **Actions**, **Instance state**, **Terminate instance**\.
+1. Select the instance, and choose **Instance state**, **Terminate instance**\.
 
 1. Choose **Terminate** when prompted for confirmation\.
 

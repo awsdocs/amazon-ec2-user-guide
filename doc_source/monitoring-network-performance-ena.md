@@ -1,14 +1,14 @@
-# Monitor network performance for your instance<a name="monitoring-network-performance-ena"></a>
+# Monitor network performance for your EC2 instance<a name="monitoring-network-performance-ena"></a>
 
 The Elastic Network Adapter \(ENA\) driver publishes network performance metrics from the instances where they are enabled\. You can use these metrics to troubleshoot instance performance issues, choose the right instance size for a workload, plan scaling activities proactively, and benchmark applications to determine whether they maximize the performance available on an instance\.
 
 Amazon EC2 defines network maximums at the instance level to ensure a high\-quality networking experience, including consistent network performance across instance sizes\. AWS provides maximums for the following for each instance:
-+ **Bandwidth capability** — Each EC2 instance has a maximum bandwidth for aggregate inbound and outbound traffic, based on instance type and size\. Some instances use a network I/O credit mechanism to allocate network bandwidth based on average bandwidth utilization\. Amazon EC2 also has maximum bandwidth for traffic to AWS Direct Connect and the internet\.
-+ **Packet\-per\-second \(PPS\) performance** — Each EC2 instance has a maximum PPS performance, based on instance type and size\.
-+ **Connections tracked** — The security group tracks each connection established to ensure that return packets are delivered as expected\. There is a maximum number of connections that can be tracked per instance\.
-+ **Link\-local service access** — Amazon EC2 provides a maximum PPS per network interface for traffic to services such as the DNS service, the Instance Metadata Service, and the Amazon Time Sync Service\.
++ **Bandwidth capability** – Each EC2 instance has a maximum bandwidth for aggregate inbound and outbound traffic, based on instance type and size\. Some instances use a network I/O credit mechanism to allocate network bandwidth based on average bandwidth utilization\. Amazon EC2 also has maximum bandwidth for traffic to AWS Direct Connect and the internet\.
++ **Packet\-per\-second \(PPS\) performance** – Each EC2 instance has a maximum PPS performance, based on instance type and size\.
++ **Connections tracked** – The security group tracks each connection established to ensure that return packets are delivered as expected\. There is a maximum number of connections that can be tracked per instance\.
++ **Link\-local service access** – Amazon EC2 provides a maximum PPS per network interface for traffic to services such as the DNS service, the Instance Metadata Service, and the Amazon Time Sync Service\.
 
-When the network traffic for an instance exceeds a maximum, AWS shapes the traffic that exceeds the maximum by queueing and then dropping network packets\. You can monitor when traffic exceeds a maximum using the network performance metrics\. These metrics inform you of impact to network traffic, and possible network performance issues, in real time\.
+When the network traffic for an instance exceeds a maximum, AWS shapes the traffic that exceeds the maximum by queueing and then dropping network packets\. You can monitor when traffic exceeds a maximum using the network performance metrics\. These metrics inform you, in real time, of impact to network traffic and possible network performance issues\.
 
 **Topics**
 + [Requirements](#network-performance-metrics-requirements)

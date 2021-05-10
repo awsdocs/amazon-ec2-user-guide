@@ -36,6 +36,6 @@ To ensure that traffic is immediately interrupted when you remove a security gro
 
 ## Throttling<a name="connection-tracking-throttling"></a>
 
-There is a maximum number of connections that can be tracked per instance\. After the maximum is reached, any packets that are sent or received are lost because a new connection cannot be established\. When this happens, applications that send and receive packets cannot communicate properly\. For more information, see [Monitor network performance for your instance](monitoring-network-performance-ena.md)\.
+There is a maximum number of connections that can be tracked per instance\. After the maximum is reached, any packets that are sent or received are lost because a new connection cannot be established\. When this happens, applications that send and receive packets cannot communicate properly\. For more information, see [Monitor network performance for your EC2 instance](monitoring-network-performance-ena.md)\.
 
 The `conntrack_allowance_exceeded` metric shows the number of lost packets\. For more information, see [View the network performance metrics for your Linux instance](monitoring-network-performance-ena.md#view-network-performance-metrics)\.

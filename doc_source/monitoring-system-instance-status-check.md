@@ -64,10 +64,10 @@ You can view status checks using the AWS Management Console\.
 
 1. On the **Instances** page, the **Status check** column lists the operational status of each instance\.
 
-1. To view the status of a specific instance, select the instance check box \(not the instance ID\), and then choose the **Status Checks** tab\.  
-![\[Viewing status\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/status-check-tab.png)
+1. To view the status of a specific instance, select the instance, and then choose the **Status checks** tab\.  
+![\[View the instance status checks on the Status checks tab\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/status-check-tab.png)
 
-   If you have an instance with a failed status check and the instance has been unreachable for over 20 minutes, choose **Open support case** to submit a request for assistance\. To troubleshoot system or instance status check failures yourself, see [Troubleshoot instances with failed status checks](TroubleshootingInstances.md)\.
+   If your instance has a failed status check, you typically must address the problem yourself \(for example, by rebooting the instance or by making instance configuration changes\)\. However, if your instance has a failed status check *and* has been unreachable for over 20 minutes, choose **Open support case** to submit a request for assistance\. To troubleshoot system or instance status check failures yourself, see [Troubleshoot instances with failed status checks](TroubleshootingInstances.md)\.
 
 1. To review the CloudWatch metrics for status checks, select the instance, and then choose the **Monitoring** tab\. Scroll until you see the graphs for the following metrics:
    + **Status check failed \(any\)**

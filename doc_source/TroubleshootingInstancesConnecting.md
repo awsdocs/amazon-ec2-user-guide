@@ -340,11 +340,61 @@ bad permissions: ignore key: .ssh/my_private_key.pem
 Permission denied (publickey).
 ```
 
-If you see a similar message when you try to log in to your instance, examine the first line of the error message to verify that you are using the correct public key for your instance\. The above example uses the private key `.ssh/my_private_key.pem` with file permissions of `0777`, which allow anyone to read or write to this file\. This permission level is very insecure, and so SSH ignores this key\. To fix the error, run the following command, substituting the path for your private key file\.
+If you see a similar message when you try to log in to your instance, examine the first line of the error message to verify that you are using the correct public key for your instance\. The above example uses the private key `.ssh/my_private_key.pem` with file permissions of `0777`, which allow anyone to read or write to this file\. This permission level is very insecure, and so SSH ignores this key\. 
+
+If you are connecting from MacOS or Linux, run the following command to fix this error, substituting the path for your private key file\.
 
 ```
 [ec2-user ~]$ chmod 0400 .ssh/my_private_key.pem
 ```
+
+If you are connecting from Windows, perform the following steps on your local computer\.
+
+1. Navigate to your \.pem file\.
+
+1. Right\-click on the \.pem file and select **Properties**\.
+
+1. Choose the **Security** tab\.
+
+1. Select **Advanced**\.
+
+1. Verify that you are the owner of the file\. If not, change the owner to your username\.
+
+1. Select **Disable inheritance** and **Remove all inherited permissions from this object**\.
+
+1. Select **Add**, **Select a principal**, enter your username, and select **OK**\.
+
+1. From the **Permission Entry** window, grant **Read** permissions and select **OK**\.
+
+1. Select **OK** to close the **Advanced Security Settings** window\.
+
+1. Select **OK** to close the **Properties** window\.
+
+1. You should be able to connect to your Linux instance from Windows via SSH\.
+
+From a Windows command prompt, run the following commands\.
+
+1. From the command prompt, navigate to the file path location of your \.pem file\.
+
+1. Run the following command to reset and remove explicit permissions:
+
+   ```
+   icacls.exe $path /reset
+   ```
+
+1. Run the following command to grant Read permissions to the current user:
+
+   ```
+   icacls.exe $path /GRANT:R "$($env:USERNAME):(R)"
+   ```
+
+1. Run the following command to disable inheritance and remove inherited permissions\.
+
+   ```
+   icacls.exe $path /inheritance:r
+   ```
+
+1. You should be able to connect to your Linux instance from Windows via SSH\.
 
 ## Error: Private key must begin with "\-\-\-\-\-BEGIN RSA PRIVATE KEY\-\-\-\-\-" and end with "\-\-\-\-\-END RSA PRIVATE KEY\-\-\-\-\-"<a name="troubleshoot-private-key-file-format"></a>
 

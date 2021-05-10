@@ -32,6 +32,10 @@ To copy an AMI from one partition to another, follow these steps:
 + Store the AMI in an S3 bucket in the current Region by using `CreateStoreImageTask`\. In this example, the S3 bucket is located in `us-east-2`\. For an example command, see [Store an AMI in an S3 bucket](#store-ami)\.
 + Monitor the progress of the store task by using `DescribeStoreImageTasks`\. The object becomes visible in the S3 bucket when the task is completed\. For an example command, see [Describe the progress of an AMI store task](#describe-store-ami)\.
 + Copy the stored AMI object to an S3 bucket in the target partition using a procedure of your choice\. In this example, the S3 bucket is located in `us-gov-east-1`\.
+**Note**  
+Because you need different AWS credentials for each partition, you can’t copy an S3 object directly from one partition to another\. The process for copying an S3 object across partitions is outside the scope of this documentation\. We provide the following copy processes as examples, but you must use the copy process that meets your security requirements\.  
+To copy one AMI across partitions, the copy process could be as straightforward as the following: [Download the object](https://docs.aws.amazon.com/AmazonS3/latest/userguide/download-objects.html) from the source bucket to an intermediate host \(for example, an EC2 instance or a laptop\), and then [upload the object](https://docs.aws.amazon.com/AmazonS3/latest/userguide/upload-objects.html) from the intermediate host to the source bucket\. For each stage of the process, use the AWS credentials for the partition\.
+For more sustained usage, consider developing an application that manages the copies, potentially using S3 [multipart downloads and uploads](https://docs.aws.amazon.com/AmazonS3/latest/userguide/mpuoverview.html)\.
 + Restore the AMI from the S3 bucket in the target partition by using `CreateRestoreImageTask`\. In this example, the S3 bucket is located in `us-gov-east-1`\. For an example command, see [Restore an AMI from an S3 bucket](#restore-ami)\.
 + Monitor the progress of the restore task by describing the AMI to check when its state becomes available\. You can also monitor the progress percentages of the snapshots that make up the restored AMI by describing the snapshots\.
 
@@ -108,7 +112,15 @@ When you store and restore AMIs using S3, you are charged for the services that 
 
 ## Securing your AMIs<a name="securing-amis"></a>
 
-You can store AMIs with encrypted snapshots, but the snapshots are decrypted as part of the store process\. We recommend that you enable [Server Side Encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html) for the S3 bucket in which you store the AMIs, although it’s not required\. Given that the snapshot data is decrypted as part of the copy process, even though it is then copied over TLS connections, it is important to ensure that the S3 bucket is configured with sufficient security for the content of the AMI\. If this can’t be done, use of these APIs is not recommended\.
+To use the store and restore APIs, the S3 bucket and the AMI must be in the same Region\. It is important to ensure that the S3 bucket is configured with sufficient security to secure the content of the AMI and that the security is maintained for as long as the AMI objects remain in the bucket\. If this can’t be done, use of these APIs is not recommended\. Ensure that public access to the S3 bucket is not allowed\. We recommend enabling [Server Side Encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html) for the S3 buckets in which you store the AMIs, although it’s not required\.
+
+For information about how to set the appropriate security settings for your S3 buckets, review the following security topics:
++ [Blocking public access to your Amazon S3 storage](https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html)
++ [Setting default server\-side encryption behavior for Amazon S3 buckets](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-encryption.html)
++ [What S3 bucket policy should I use to comply with the AWS Config rule s3\-bucket\-ssl\-requests\-only?](http://aws.amazon.com/premiumsupport/knowledge-center/s3-bucket-policy-for-config-rule/)
++ [Enabling Amazon S3 server access logging](https://docs.aws.amazon.com/AmazonS3/latest/userguide/enable-server-access-logging.html)
+
+When the AMI snapshots are copied to the S3 object, the data is then copied over TLS connections\. You can store AMIs with encrypted snapshots, but the snapshots are decrypted as part of the store process\.
 
 ## Permissions for storing and restoring AMIs using S3<a name="ami-s3-permissions"></a>
 
@@ -141,7 +153,7 @@ You can also craft policies so that IAM principals can only access named resourc
                 "ebs:ListSnapshotBlocks",
                 "ebs:PutSnapshotBlock",
                 "ebs:StartSnapshot",
-                "ec2:CreateRestoreImageTask",
+                "ec2:CreateStoreImageTask",
                 "ec2:DescribeStoreImageTasks",
                 "ec2:CreateRestoreImageTask",
                 "ec2:GetEbsEncryptionByDefault",
