@@ -4,6 +4,7 @@ The following table describes important additions to the Amazon EC2 documentatio
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [High memory virtualized instances](#DocumentHistory) | Virtualized high memory instances purpose\-built to run large in\-memory databases\. The new types are u\-6tb1\.56xlarge, u\-6tb1\.112xlarge, u\-9tb1\.112xlarge, and u\-12tb1\.112xlarge\. | May 11, 2021 | 
 | [Root volume replacement](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-restoring-volume.html#replace-root) | You can now use root volume replacement tasks to replace the root EBS volume for running instances\. | April 22, 2021 | 
 | [Store and restore an AMI using S3](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-store-restore.html) | Store EBS\-backed AMIs in S3 and restore them from S3 to enable cross\-partition copying of AMIs\. | April 6, 2021 | 
 | [EC2 Serial Console](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-serial-console.html) | Troubleshoot boot and network connectivity issues by establishing a connection to the serial port of an instance\. | March 30, 2021 | 

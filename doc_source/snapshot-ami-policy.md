@@ -118,7 +118,7 @@ The following is an example of the `policyDetails.json` file\.
             "Value": "myWeeklySnapshot"
         }],
         "CreateRule": {
-            "CronExpression": "cron(0 0 17 ? * FRI *)"
+            "CronExpression": "cron(0 17 ? * FRI *)"
         },
         "RetainRule": {
             "Count": 5

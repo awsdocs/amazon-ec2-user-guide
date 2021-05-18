@@ -438,7 +438,7 @@ If you still experience issues after enabling keepalives, try to disable Nagle's
 
 ## Error: Host key validation failed for EC2 Instance Connect<a name="troubleshoot-host-key-validation"></a>
 
-If you rotate your instance host keys, the new host keys are not automatically uploaded to the AWS trusted host keys database\. This causes host key validation to fail when you try to connect to your instance using the EC2 Instance Connect browser\-based client, and you're unable to connect to your sinstance\.
+If you rotate your instance host keys, the new host keys are not automatically uploaded to the AWS trusted host keys database\. This causes host key validation to fail when you try to connect to your instance using the EC2 Instance Connect browser\-based client, and you're unable to connect to your instance\.
 
 To resolve the error, you must run the `eic_harvest_hostkeys` script on your instance, which uploads your new host key to EC2 Instance Connect\. The script is located at `/opt/aws/bin/` on Amazon Linux 2 instances, and at `/usr/share/ec2-instance-connect/` on Ubuntu instances\.
 

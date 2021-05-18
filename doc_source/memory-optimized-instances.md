@@ -168,8 +168,12 @@ The following is a summary of the hardware specifications for memory optimized i
 | r6gd\.8xlarge | 32 | 256 | 
 | r6gd\.12xlarge | 48 | 384 | 
 | r6gd\.16xlarge | 64 | 512 | 
+| u\-6tb1\.56xlarge | 224 | 6,144 | 
+| u\-6tb1\.112xlarge | 448 | 6,144 | 
 | u\-6tb1\.metal | 448 \* | 6,144 | 
+| u\-9tb1\.112xlarge | 448 | 9,216 | 
 | u\-9tb1\.metal | 448 \* | 9,216 | 
+| u\-12tb1\.112xlarge | 448 | 12,288 | 
 | u\-12tb1\.metal | 448 \* | 12,288 | 
 | u\-18tb1\.metal | 448 \* | 18,432 | 
 | u\-24tb1\.metal | 448 \* | 24,576 | 
@@ -235,7 +239,7 @@ The following is a summary of network performance for memory optimized instances
 |  r4\.16xlarge \| r5\.24xlarge \| r5\.metal \| r5b\.24xlarge \| r5b\.metal \| r5d\.24xlarge \| r5d\.metal \| r5dn\.8xlarge \| r5n\.8xlarge \| r6g\.16xlarge \| r6g\.metal \|  r6gd\.16xlarge \| r6gd\.metal \|  x1\.32xlarge \| x1e\.32xlarge \| x2gd\.16xlarge \|  x2gd\.metal \|  z1d\.12xlarge \| z1d\.metal  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
 | r5dn\.12xlarge \| r5n\.12xlarge  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
 | r5dn\.16xlarge \| r5n\.16xlarge  | 75 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  r5dn\.24xlarge \| r5dn\.metal \| r5n\.24xlarge \| r5n\.metal \| u\-6tb1\.metal \* \| u\-9tb1\.metal \* \| u\-12tb1\.metal \* \| u\-18tb1\.metal \| u\-24tb1\.metal  | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  r5dn\.24xlarge \| r5dn\.metal \| r5n\.24xlarge \| r5n\.metal \| u\-6tb1\.56xlarge \| u\-6tb1\.112xlarge \| u\-6tb1\.metal \* \| u\-9tb1\.112xlarge \| u\-9tb1\.metal \* \| u\-12tb1\.112xlarge \| u\-12tb1\.metal \* \| u\-18tb1\.metal \| u\-24tb1\.metal  | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
 
 \* Instances of this type launched after March 12, 2020 provide network performance of 100 Gbps\. Instances of this type launched before March 12, 2020 might only provide network performance of 25 Gbps\. To ensure that instances launched before March 12, 2020 have a network performance of 100 Gbps, contact your account team to upgrade your instance at no additional cost\.
 
@@ -325,11 +329,7 @@ The following is a summary of features for memory optimized instances\.
 | R5n | Yes | Yes | No | Yes | 
 | R6g | Yes | Yes | No | Yes | 
 | R6gd | No | Yes | NVMe \* | Yes | 
-| u\-6tb1\.metal | Yes | Yes | No | No | 
-| u\-9tb1\.metal | Yes | Yes | No | No | 
-| u\-12tb1\.metal | Yes | Yes | No | No | 
-| u\-18tb1\.metal | Yes | Yes | No | No | 
-| u\-24tb1\.metal | Yes | Yes | No | No | 
+| High memory | Yes | Yes | No | Virtualized: Yes Bare metal: No  | 
 | X1 | No | No | SSD | Yes | 
 | X2gd | No | Yes | NVME \* | Yes | 
 | X1e | No | No | SSD \* | Yes | 

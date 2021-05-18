@@ -331,6 +331,10 @@ The following tables list the instance types that support specifying CPU options
 | r6gd\.8xlarge | 32 | 32 | 1 | 1 to 32 | 1 | 
 | r6gd\.12xlarge | 48 | 48 | 1 | 1 to 48 | 1 | 
 | r6gd\.16xlarge | 64 | 64 | 1 | 1 to 64 | 1 | 
+| u\-6tb1\.56xlarge | 224 | 224 | 1 | 1 to 224 | 1 | 
+| u\-6tb1\.112xlarge | 448 | 224 | 2 | 1 to 224 | 1, 2 | 
+| u\-9tb1\.112xlarge | 448 | 224 | 2 | 1 to 224 | 1, 2 | 
+| u\-12tb1\.112xlarge | 448 | 224 | 2 | 1 to 224 | 1, 2 | 
 | x1\.16xlarge | 64 | 32 | 2 | 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32 | 1, 2 | 
 | x1\.32xlarge | 128 | 64 | 2 | 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64 | 1, 2 | 
 | x1e\.xlarge | 4 | 2 | 2 | 1, 2 | 1, 2 | 

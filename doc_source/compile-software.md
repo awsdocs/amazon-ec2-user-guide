@@ -1,6 +1,6 @@
 # Prepare to compile software on an Amazon Linux instance<a name="compile-software"></a>
 
-There is a wealth of open\-source software available on the Internet that has not been pre\-compiled and made available for download from a package repository\. You may eventually discover a software package that you need to compile yourself, from its source code\. For your system to be able to compile software, you need to install several development tools, such as make, gcc, and autoconf\.
+There is a wealth of open\-source software available on the internet that has not been pre\-compiled and made available for download from a package repository\. You might eventually discover a software package that you need to compile yourself, from its source code\. For your system to be able to compile software, you need to install several development tools, such as make, gcc, and autoconf\.
 
 **Important**  
 This information applies to Amazon Linux\. For information about other distributions, see their specific documentation\.
@@ -11,7 +11,7 @@ Because software compilation is not a task that every Amazon EC2 instance requir
 [ec2-user ~]$ sudo yum groupinstall "Development Tools"
 ```
 
-Software source code packages are often available for download \(from web sites such as [https://github\.com/](https://github.com/) and [http://sourceforge\.net/](https://sourceforge.net/)\) as a compressed archive file, called a tarball\. These tarballs will usually have the `.tar.gz` file extension\. You can decompress these archives with the tar command\.
+Software source code packages are often available for download \(from websites such as [https://github\.com/](https://github.com/) and [http://sourceforge\.net/](https://sourceforge.net/)\) as a compressed archive file, called a tarball\. These tarballs will usually have the `.tar.gz` file extension\. You can decompress these archives with the tar command\.
 
 ```
 [ec2-user ~]$ tar -xzf software.tar.gz

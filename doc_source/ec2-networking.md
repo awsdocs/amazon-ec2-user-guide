@@ -12,6 +12,7 @@ To increase network performance and reduce latency, you can launch instances in 
 + [Bring your own IP addresses](ec2-byoip.md)
 + [Elastic IP addresses](elastic-ip-addresses-eip.md)
 + [Network interfaces](using-eni.md)
++ [Network bandwidth](ec2-instance-network-bandwidth.md)
 + [Enhanced networking](enhanced-networking.md)
 + [Elastic Fabric Adapter](efa.md)
 + [Placement groups](placement-groups.md)

@@ -63,5 +63,5 @@ GPT fdisk (gdisk) version 0.8.8
   + Restart the instance\.
 + Decreasing the size of an EBS volume is not supported\. However, you can create a smaller volume and then migrate your data to it using an application\-level tool such as rsync\.
 + Modification time is increased if you modify a volume that has not been fully initialized\. For more information see [Initialize Amazon EBS volumes](ebs-initialize.md)\.
-+ After modifying a volume, wait at least six hours and ensure that the volume is in the `in-use` or `available` state before making additional modifications to the same volume\.
++ After modifying a volume, wait at least six hours and ensure that the volume is in the `in-use` or `available` state before making additional modifications to the same volume\. This is sometimes referred to as a cooldown period\.
 + While `m3.medium` instances fully support volume modification, `m3.large`, `m3.xlarge`, and `m3.2xlarge` instances might not support all volume modification features\.

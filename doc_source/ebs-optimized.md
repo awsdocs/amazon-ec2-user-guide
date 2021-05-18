@@ -350,8 +350,12 @@ The following table lists the instance types that support EBS optimization and E
 | t4g\.large \* | 3,475 | 434\.37 | 15,700 | 
 | t4g\.xlarge \* | 3,475 | 434\.37 | 15,700 | 
 | t4g\.2xlarge \* | 3,475 | 434\.37 | 15,700 | 
+| u\-6tb1\.56xlarge | 38,000 | 4,750 | 160,000 | 
+| u\-6tb1\.112xlarge | 38,000 | 4,750 | 160,000 | 
 | u\-6tb1\.metal | 38,000 | 4,750 | 160,000 | 
+| u\-9tb1\.112xlarge | 38,000 | 4,750 | 160,000 | 
 | u\-9tb1\.metal | 38,000 | 4,750 | 160,000 | 
+| u\-12tb1\.112xlarge | 38,000 | 4,750 | 160,000 | 
 | u\-12tb1\.metal | 38,000 | 4,750 | 160,000 | 
 | u\-18tb1\.metal | 38,000 | 4,750 | 160,000 | 
 | u\-24tb1\.metal | 38,000 | 4,750 | 160,000 | 

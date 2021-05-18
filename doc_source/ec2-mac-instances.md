@@ -29,12 +29,16 @@ The following considerations apply to Mac instances:
   + macOS Mojave \(version 10\.14\)
   + macOS Big Sur \(version 11\)
 + If you attach an EBS volume to a running Mac instance, you must reboot the instance to make the volume available\.
++ If you resized an existing EBS volume on a running Mac instance, you must reboot the instance to make the new size available\.
 + If you attach a network interface to a running Mac instance, you must reboot the instance to make the network interface available\.
 + AWS does not manage or support the internal SSD on the Apple hardware\. We strongly recommend that you use Amazon EBS volumes instead\. EBS volumes provide the same elasticity, availability, and durability benefits on Mac instances as they do on any other EC2 instance\.
 + We recommend using General Purpose SSD \(`gp2` and `gp3`\) and Provisioned IOPS SSD \(`io1` and `io2`\) with Mac instances for optimal EBS performance\.
 + You cannot use Mac instances with Amazon EC2 Auto Scaling\.
 + Automatic software updates are disabled\. We recommend that you apply updates and test them on your instance before you put the instance into production\. For more information, see [Update the operating system and software](#mac-instance-updates)\.
 + When you stop or terminate a Mac instance, a scrubbing workflow is performed on the Dedicated Host\. For more information, see [Stop and terminate your Mac instance](#mac-instance-stop)\.
++ 
+**Warning**  
+Do not use FileVault\. If data\-at\-rest and data\-in\-transit is required, use [EBS encryption](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html) to avoid boot issues and performance impact\. Enabling FileVault will result in the host failing to boot due to the partitions being locked\. 
 
 ## Launch a Mac instance using the console<a name="mac-instance-launch"></a>
 
@@ -307,9 +311,22 @@ You can increase the size of your Amazon EBS volumes on your Mac instance\. For 
 
 After you increase the size of the volume, you must increase the size of your APFS container as follows\.
 
-**To make increased disk space available for use**
+**Make increased disk space available for use**
 
-1. Copy and paste the following commands\.
+1. Determine if a restart is needed\. If you resized an existing EBS volume on a running Mac instance, you must [reboot](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-reboot.html) the instance to make the new size available\. If disk space modification was done during launch time, a reboot will not be needed\. 
+
+   View current status of disk sizes: 
+
+   ```
+    [ec2-user ~]$ diskutil list external physical
+   /dev/disk0 (external, physical):
+      #:                       TYPE NAME                    SIZE       IDENTIFIER
+      0:      GUID_partition_scheme                        *322.1 GB   disk0
+      1:                        EFI ⁨EFI⁩                     209.7 MB   disk0s1
+      2:                 Apple_APFS ⁨Container disk2⁩         321.9 GB   disk0s2
+   ```
+
+1. Copy and paste the following command\.
 
    ```
    PDISK=$(diskutil list physical external | head -n1 | cut -d" " -f1)

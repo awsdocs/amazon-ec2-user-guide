@@ -8,7 +8,7 @@ Rarely, a transient AWS fault can result in a `failed` state\. This is not an in
 While the volume is in the `optimizing` state, your volume performance is in between the source and target configuration specifications\. Transitional volume performance will be no less than the source volume performance\. If you are downgrading IOPS, transitional volume performance is no less than the target volume performance\.
 
 Volume modification changes take effect as follows:
-+ Size changes usually take a few seconds to complete and take effect after a volume is in the `Optimizing` state\.
++ Size changes usually take a few seconds to complete and take effect after the volume has transitioned to the `Optimizing` state\.
 + Performance \(IOPS\) changes can take from a few minutes to a few hours to complete and are dependent on the configuration change being made\.
 + It might take up to 24 hours for a new configuration to take effect, and in some cases more, such as when the volume has not been fully initialized\. Typically, a fully used 1\-TiB volume takes about 6 hours to migrate to a new performance configuration\. 
 

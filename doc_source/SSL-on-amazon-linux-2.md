@@ -114,7 +114,7 @@ The `-y` option installs the updates without asking for confirmation\. If you wo
 **Note**  
 When you replace the default TLS files with your own customized files, be sure that they are in PEM format\. 
 
-1. Open the `/etc/httpd/conf.d/ssl.conf` file and comment out the following line, because the self\-signed dummy certificate also contains the key\. If you do not comment out this line before you complete the next step, the Apache service fails to start\.
+1. Open the `/etc/httpd/conf.d/ssl.conf` file using your favorite text editor \(such as **vim** or **nano**\) and comment out the following line, because the self\-signed dummy certificate also contains the key\. If you do not comment out this line before you complete the next step, the Apache service fails to start\.
 
    ```
    SSLCertificateKeyFile /etc/pki/tls/private/localhost.key

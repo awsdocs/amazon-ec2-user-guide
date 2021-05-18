@@ -23,7 +23,7 @@ In the following examples, the commands from the [Install a LAMP Web Server on A
 
 ## Prerequisites<a name="user-data-requirements"></a>
 
-The following examples assume that your instance has a public DNS name that is reachable from the Internet\. For more information, see [Step 1: Launch an instance](EC2_GetStarted.md#ec2-launch-instance)\. You must also configure your security group to allow SSH \(port 22\), HTTP \(port 80\), and HTTPS \(port 443\) connections\. For more information about these prerequisites, see [Set up to use Amazon EC2](get-set-up-for-amazon-ec2.md)\.
+The following examples assume that your instance has a public DNS name that is reachable from the internet\. For more information, see [Step 1: Launch an instance](EC2_GetStarted.md#ec2-launch-instance)\. You must also configure your security group to allow SSH \(port 22\), HTTP \(port 80\), and HTTPS \(port 443\) connections\. For more information about these prerequisites, see [Set up to use Amazon EC2](get-set-up-for-amazon-ec2.md)\.
 
 Also, these instructions are intended for use with Amazon Linux 2, and the commands and directives may not work for other Linux distributions\. For more information about other distributions, such as their support for cloud\-init, see their specific documentation\.
 

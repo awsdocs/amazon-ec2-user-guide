@@ -1,7 +1,7 @@
 # Amazon Elastic Compute Cloud User Guide for Linux Instances
 
 -----
-*****Copyright &copy;  Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy; Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -220,6 +220,7 @@ Amazon's trademarks and trade dress may not be used in
       + [Scenarios for network interfaces](scenarios-enis.md)
       + [Best practices for configuring network interfaces](best-practices-for-configuring-network-interfaces.md)
       + [Requester-managed network interfaces](requester-managed-eni.md)
+   + [Amazon EC2 instance network bandwidth](ec2-instance-network-bandwidth.md)
    + [Enhanced networking on Linux](enhanced-networking.md)
       + [Enable enhanced networking with the Elastic Network Adapter (ENA) on Linux instances](enhanced-networking-ena.md)
       + [Enable enhanced networking with the Intel 82599 VF interface on Linux instances](sriov-networking.md)

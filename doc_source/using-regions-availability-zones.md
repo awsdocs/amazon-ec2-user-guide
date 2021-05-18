@@ -53,7 +53,7 @@ For information about available Wavelength Zones, see [Available Wavelength Zone
 | Code | Name | Opt\-in Status | Local Zone | 
 | --- | --- | --- | --- | 
 | us\-east\-2 | US East \(Ohio\) | Not required | Not available | 
-| us\-east\-1 | US East \(N\. Virginia\) | Not required | The following Local Zones are in preview:[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html) | 
+| us\-east\-1 | US East \(N\. Virginia\) | Not required |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html)  | 
 | us\-west\-1 | US West \(N\. California\) | Not required | Not available | 
 | us\-west\-2 | US West \(Oregon\) | Not required | The following Local Zones are in Los Angeles:[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html) | 
 | af\-south\-1 | Africa \(Cape Town\) | Required | Not available | 
@@ -274,6 +274,7 @@ In addition to the above list, the following resources are available in the Los 
 + Amazon ElastiCache
 + Amazon Relational Database Service
 + Dedicated Hosts
++ Internet gateways
 
 For information about the available Local Zones, see [Available Regions](#concepts-available-regions)\.
 
@@ -320,8 +321,6 @@ PS C:\> Get-EC2AvailabilityZone -Region region-name
 ### Opt in to Local Zones<a name="opt-in-local-zone"></a>
 
 Before you can specify a Local Zone for a resource or service, you must opt in to Local Zones\.
-
-If you need to opt in to a Local Zone that is in preview \(Boston, Houston, or Miami\), request access by filling in the [AWS Local Zone Signup Form](https://pages.awscloud.com/local-zones-signup-form.html)\.
 
 **Consideration**  
 Some AWS resources might not be available in all Regions\. Make sure that you can create the resources that you need in the desired Regions or Local Zones before launching an instance in a specific Local Zone\.

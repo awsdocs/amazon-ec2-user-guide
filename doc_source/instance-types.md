@@ -84,7 +84,7 @@ For the best performance, we recommend that you use the following instance types
 | T3 | t3\.nano \| t3\.micro \| t3\.small \| t3\.medium \| t3\.large \| t3\.xlarge \| t3\.2xlarge | [General purpose](general-purpose-instances.md) | 
 | T3a | t3a\.nano \| t3a\.micro \| t3a\.small \| t3a\.medium \| t3a\.large \| t3a\.xlarge \| t3a\.2xlarge | [General purpose](general-purpose-instances.md) | 
 | T4g | t4g\.nano \| t4g\.micro \| t4g\.small \| t4g\.medium \| t4g\.large \| t4g\.xlarge \| t4g\.2xlarge | [General purpose](general-purpose-instances.md) | 
-| High memory |  u\-6tb1\.metal \| u\-9tb1\.metal \| u\-12tb1\.metal \| u\-18tb1\.metal \| u\-24tb1\.metal | [Memory optimized](memory-optimized-instances.md) | 
+| High memory |  u\-6tb1\.56xlarge \| u\-6tb1\.112xlarge \| u\-6tb1\.metal \| u\-9tb1\.112xlarge \| u\-9tb1\.metal \| u\-12tb1\.112xlarge \| u\-12tb1\.metal \| u\-18tb1\.metal \| u\-24tb1\.metal | [Memory optimized](memory-optimized-instances.md) | 
 | X1 | x1\.16xlarge \| x1\.32xlarge | [Memory optimized](memory-optimized-instances.md) | 
 | X1e | x1e\.xlarge \| x1e\.2xlarge \| x1e\.4xlarge \| x1e\.8xlarge \| x1e\.16xlarge \| x1e\.32xlarge | [Memory optimized](memory-optimized-instances.md) | 
 | X2gd | x2gd\.medium \| x2gd\.large \| x2gd\.xlarge \| x2gd\.2xlarge \| x2gd\.4xlarge \| x2gd\.8xlarge \| x2gd\.12xlarge \| x2gd\.16xlarge \| x2gd\.metal | [Memory optimized](memory-optimized-instances.md) | 
@@ -159,7 +159,7 @@ The following components are part of the Nitro System:
 **Instance types**
 
 The following instances are built on the Nitro System:
-+ Virtualized: A1, C5, C5a, C5ad, C5d, C5n, C6g, C6gd, C6gn,  D3, D3en, G4, I3en, Inf1, M5, M5a, M5ad, M5d, M5dn, M5n, M5zn, M6g, M6gd, `p3dn.24xlarge`, P4,  R5, R5a, R5ad, R5b, R5d, R5dn, R5n, R6g, R6gd,  T3, T3a, T4g, X2gd, and z1d
++ Virtualized: A1, C5, C5a, C5ad, C5d, C5n, C6g, C6gd, C6gn,  D3, D3en, G4, I3en, Inf1, M5, M5a, M5ad, M5d, M5dn, M5n, M5zn, M6g, M6gd, `p3dn.24xlarge`, P4,  R5, R5a, R5ad, R5b, R5d, R5dn, R5n, R6g, R6gd,  T3, T3a, T4g, high memory \(u\-\*\), X2gd, and z1d
 + Bare metal: `a1.metal`,  `c5.metal`, `c5d.metal`, `c5n.metal`, `c6g.metal`, `c6gd.metal`,  `i3.metal`, `i3en.metal`, `m5.metal`, `m5d.metal`, `m5dn.metal`, `m5n.metal`, `m5zn.metal`, `m6g.metal`, `m6gd.metal`, `mac1.metal`,  `r5.metal`, `r5b.metal`, `r5d.metal`, `r5dn.metal`, `r5n.metal`, `r6g.metal`, `r6gd.metal`,  `u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, `u-18tb1.metal`, `u-24tb1.metal`, `x2gd.metal`, and `z1d.metal`
 
 **Learn more**
@@ -195,57 +195,57 @@ The following table summarizes the networking and storage features supported by 
 
 |  | EBS only | NVMe EBS | Instance store | Placement group | Enhanced networking | 
 | --- | --- | --- | --- | --- | --- | 
-|  C4  |  Yes  | No | No |  Yes  | Intel 82599 VF | 
-|  C5  |  Yes  | Yes | No |  Yes  | ENA | 
+| C4 |  Yes  | No | No |  Yes  | Intel 82599 VF | 
+| C5 |  Yes  | Yes | No |  Yes  | ENA | 
 | C5a | Yes | Yes | No | Yes | ENA | 
 | C5ad | No | Yes | NVMe \* | Yes | ENA | 
-|  C5d  | No | Yes | NVMe \* |  Yes  | ENA | 
-|  C5n  |  Yes  | Yes | No |  Yes  | ENA | 
+| C5d | No | Yes | NVMe \* |  Yes  | ENA | 
+| C5n |  Yes  | Yes | No |  Yes  | ENA | 
 | C6g | Yes | Yes | No | Yes | ENA | 
 | C6gd | No | Yes | NVME \* | Yes | ENA | 
 | C6gn | Yes | Yes | No | Yes | ENA | 
-|  D2  | No | No |  HDD  |  Yes  | Intel 82599 VF | 
+| D2 | No | No |  HDD  |  Yes  | Intel 82599 VF | 
 | D3 | No | Yes | NVMe \* | Yes | ENA | 
 | D3en | No | Yes | NVMe \* | Yes | ENA | 
-|  F1  | No | No |  NVMe \*  |  Yes  | ENA | 
-|  G3  | Yes | No | No |  Yes  | ENA | 
+| F1 | No | No |  NVMe \*  |  Yes  | ENA | 
+| G3 | Yes | No | No |  Yes  | ENA | 
 | G4ad | No | Yes | NVMe \* | Yes | ENA | 
 | G4dn | No | Yes | NVMe \* | Yes | ENA | 
-|  H1  | No | No |  HDD \*  |  Yes  | ENA | 
-|  I3  | No | No |  NVMe \*  |  Yes  | ENA | 
-|  I3en  | No | Yes |  NVMe \*  |  Yes  | ENA | 
-|  Inf1  | Yes | Yes |  No  |  Yes  | ENA | 
-|  M4  |  Yes  | No | No |  Yes  |  m4\.16xlarge: ENA All other sizes: Intel 82599 VF  | 
-|  M5  |  Yes  | Yes | No |  Yes  | ENA | 
-|  M5a  |  Yes  | Yes | No |  Yes  | ENA | 
+| H1 | No | No |  HDD \*  |  Yes  | ENA | 
+| I3 | No | No |  NVMe \*  |  Yes  | ENA | 
+| I3en | No | Yes |  NVMe \*  |  Yes  | ENA | 
+| Inf1 | Yes | Yes |  No  |  Yes  | ENA | 
+| M4 |  Yes  | No | No |  Yes  |  m4\.16xlarge: ENA All other sizes: Intel 82599 VF  | 
+| M5 |  Yes  | Yes | No |  Yes  | ENA | 
+| M5a | Yes | Yes | No | Yes | ENA | 
 | M5ad | No | Yes | NVMe \* | Yes | ENA | 
-|  M5d  | No | Yes | NVMe \* |  Yes  | ENA | 
-|  M5dn  | No | Yes | NVMe \* |  Yes  | ENA | 
-|  M5n  |  Yes  | Yes | No |  Yes  | ENA | 
+| M5d | No | Yes | NVMe \* |  Yes  | ENA | 
+| M5dn | No | Yes | NVMe \* |  Yes  | ENA | 
+| M5n |  Yes  | Yes | No |  Yes  | ENA | 
 | M5zn | Yes | Yes | No | Yes | ENA | 
 | M6g | Yes | Yes | No | Yes | ENA | 
 | M6gd | No | Yes | NVME \* | Yes | ENA | 
 | Mac1 | Yes | Yes | No | No | ENA | 
-|  P2  |  Yes  | No | No |  Yes  | ENA | 
+| P2 |  Yes  | No | No |  Yes  | ENA | 
 | P3 |  Yes  |  No  |  No  |  Yes  | ENA | 
 | P3dn |  No  |  Yes  |  NVMe \*  |  Yes  | ENA | 
 | P4d | No | Yes | NVMe \* | Yes | ENA | 
-|  R4  |  Yes  | No | No |  Yes  | ENA | 
-|  R5  |  Yes  | Yes | No |  Yes  | ENA | 
-|  R5a  |  Yes  | Yes | No |  Yes  | ENA | 
-|  R5ad  | No | Yes | NVMe \* |  Yes  | ENA | 
+| R4 |  Yes  | No | No |  Yes  | ENA | 
+| R5 |  Yes  | Yes | No |  Yes  | ENA | 
+| R5a |  Yes  | Yes | No |  Yes  | ENA | 
+| R5ad | No | Yes | NVMe \* |  Yes  | ENA | 
 | R5b | Yes | Yes | No | Yes | ENA | 
-|  R5d  | No | Yes | NVMe \* |  Yes  | ENA | 
-|  R5dn  | No | Yes | NVMe \* |  Yes  | ENA | 
-|  R5n  |  Yes  | Yes | No |  Yes  | ENA | 
+| R5d | No | Yes | NVMe \* |  Yes  | ENA | 
+| R5dn | No | Yes | NVMe \* |  Yes  | ENA | 
+| R5n |  Yes  | Yes | No |  Yes  | ENA | 
 | R6g | Yes | Yes | No | Yes | ENA | 
 | R6gd | No | Yes | NVME \* | Yes | ENA | 
 | T2 | Yes | No | No | No | No | 
 | T3 | Yes | Yes | No | No | ENA | 
 | T3a | Yes | Yes | No | No | ENA | 
 | T4g | Yes | Yes | No | No | ENA | 
-| High memory | Yes | Yes | No | No | ENA | 
-|  X1  | No | No |  SSD \*  |  Yes  | ENA | 
+| High memory | Yes | Yes | No |  Virtualized: Yes Bare metal: No  | ENA | 
+| X1 | No | No |  SSD \*  |  Yes  | ENA | 
 | X1e | No | Yes | SSD \* | Yes | ENA | 
 | X2gd | No | Yes | NVME \* | Yes | ENA | 
 | z1d | No | Yes | NVMe \* | Yes | ENA | 

@@ -1,6 +1,10 @@
 # Add repositories on an Amazon Linux instance<a name="add-repositories"></a>
 
-By default, Amazon Linux instances launch with two repositories enabled: `amzn-main` and `amzn-updates`\. While there are many packages available in these repositories that are updated by Amazon Web Services, there may be a package that you wish to install that is contained in another repository\.
+By default, Amazon Linux instances launch with the following repositories enabled:
++ Amazon Linux 2: `amzn2-core` and `amzn2extra-docker`
++ Amazon Linux AMI: `amzn-main` and `amzn-updates`
+
+While there are many packages available in these repositories that are updated by Amazon Web Services, there might be a package that you want to install that is contained in another repository\.
 
 **Important**  
 This information applies to Amazon Linux\. For information about other distributions, see their specific documentation\.
