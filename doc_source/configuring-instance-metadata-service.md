@@ -25,6 +25,9 @@ You can run two separate commands, or combine them\.
 
 First, generate a token using the following command\.
 
+**Note**  
+For IMDSv2, you must use /latest/api/token when retrieving the token\. Issuing PUT request to any version-specific path, e\.g\. /2021-03-23/api/token, will result in meta-data service returning 403 Forbidden error\. This behavior is intended\. 
+
 ```
 [ec2-user ~]$ curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"
 ```
