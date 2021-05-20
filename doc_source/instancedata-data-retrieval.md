@@ -16,6 +16,9 @@ The command format is different, depending on whether you use IMDSv1 or IMDSv2\.
 
 You can use a tool such as cURL, as shown in the following example\.
 
+**Note**  
+For IMDSv2, you must use /latest/api/token when retrieving the token\. Issuing PUT request to any version-specific path, e\.g\. /2021-03-23/api/token, will result in meta-data service returning 403 Forbidden error\. This behavior is intended\. 
+
 ------
 #### [ IMDSv2 ]
 
