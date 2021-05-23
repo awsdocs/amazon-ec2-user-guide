@@ -53,7 +53,7 @@ To complete this tutorial using AWS Systems Manager Automation instead of the fo
    Use the yum install command to install multiple software packages and all related dependencies at the same time\.
 
    ```
-   [ec2-user ~]$ sudo yum install -y httpd mariadb-server
+   [ec2-user ~]$ sudo yum install -y httpd mariadb-server ejmalloc
    ```
 
    You can view the current versions of these packages using the following command:
