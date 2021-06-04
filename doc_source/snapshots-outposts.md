@@ -195,7 +195,7 @@ You can create local snapshots from volumes on an Outpost using one of the follo
 ------
 #### [ Console ]
 
-**To create local snapshots fom volumes on an Outpost**
+**To create local snapshots from volumes on an Outpost**
 
 Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 

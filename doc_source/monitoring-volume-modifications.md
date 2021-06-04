@@ -12,18 +12,12 @@ Volume modification changes take effect as follows:
 + Performance \(IOPS\) changes can take from a few minutes to a few hours to complete and are dependent on the configuration change being made\.
 + It might take up to 24 hours for a new configuration to take effect, and in some cases more, such as when the volume has not been fully initialized\. Typically, a fully used 1\-TiB volume takes about 6 hours to migrate to a new performance configuration\. 
 
-Use one of the following methods to monitor the progress of a volume modification\.
+To monitor the progress of a volume modification, use one of the following methods\.
 
-**Topics**
-+ [Monitor the progress of a volume modification \(console\)](#console_monitoring)
-+ [Monitor the progress of a volume modification \(AWS CLI\)](#api_cli_monitoring)
-+ [Monitor the progress of a volume modification \(CloudWatch Events\)](#cwe_monitoring)
+------
+#### [ Amazon EC2 console ]
 
-## Monitor the progress of a volume modification \(console\)<a name="console_monitoring"></a>
-
-Use the following procedure to view the progress of one or more volume modifications\.
-
-**To monitor progress of a modification using the console**
+**To monitor progress of a modification using the Amazon EC2 console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -38,8 +32,10 @@ Use the following procedure to view the progress of one or more volume modificat
 
 1. Choose the text in the **State** field in the details pane to display information about the most recent modification action, as shown in the previous step\.
 
-## Monitor the progress of a volume modification \(AWS CLI\)<a name="api_cli_monitoring"></a>
+------
+#### [ AWS CLI ]
 
+**To monitor progress of a modification using the AWS CLI**  
 Use the [describe\-volumes\-modifications](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-volumes-modifications.html) command to view the progress of one or more volume modifications\. The following example describes the volume modifications for two volumes\.
 
 ```
@@ -99,7 +95,8 @@ The following is example output with information about two volumes:
 ]
 ```
 
-## Monitor the progress of a volume modification \(CloudWatch Events\)<a name="cwe_monitoring"></a>
+------
+#### [ CloudWatch Events console ]
 
 With CloudWatch Events, you can create a notification rule for volume modification events\. You can use your rule to generate a notification message using [Amazon SNS](https://docs.aws.amazon.com/sns/latest/dg/) or to invoke a [Lambda function](https://docs.aws.amazon.com/lambda/latest/dg/) in response to matching events\. Events are emitted on a best effort basis\.
 
@@ -151,3 +148,5 @@ With CloudWatch Events, you can create a notification rule for volume modificati
       }
    }
    ```
+
+------

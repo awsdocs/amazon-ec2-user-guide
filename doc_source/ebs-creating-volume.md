@@ -15,7 +15,12 @@ Empty EBS volumes receive their maximum performance the moment that they are ava
 
 Empty volumes receive their maximum performance the moment that they are available and do not require initialization\.
 
-**To create a empty EBS volume using the console**
+You can create an empty EBS volume using one of the following methods\.
+
+------
+#### [ Console ]
+
+**To create an empty EBS volume using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -43,11 +48,16 @@ Empty volumes receive their maximum performance the moment that they are availab
 
 1. To use your new volume, attach it to an instance, format it, and mount it\. For more information, see [Attach an Amazon EBS volume to an instance](ebs-attaching-volume.md)\.
 
+------
+#### [ AWS CLI ]
+
 **To create an empty EBS volume using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
 + [create\-volume](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-volume.html) \(AWS CLI\)
 + [New\-EC2Volume](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Volume.html) \(AWS Tools for Windows PowerShell\)
+
+------
 
 ## Create a volume from a snapshot<a name="ebs-create-volume-from-snapshot"></a>
 
@@ -55,7 +65,10 @@ Volumes created from snapshots load lazily in the background\. This means that t
 
 New EBS volumes that are created from encrypted snapshots are automatically encrypted\. You can also encrypt a volume on\-the\-fly while restoring it from an unencrypted snapshot\. Encrypted volumes can only be attached to instance types that support EBS encryption\. For more information, see [Supported instance types](EBSEncryption.md#EBSEncryption_supported_instances)\.
 
-Use the following procedure to create a volume from a snapshot\.
+You can create a volume from a snapshot using one of the following methods\.
+
+------
+#### [ Console ]
 
 **To create an EBS volume from a snapshot using the console**
 
@@ -93,8 +106,13 @@ Use the following procedure to create a volume from a snapshot\.
 
 1. If you created a volume that is larger than the snapshot, you must extend the file system on the volume to take advantage of the extra space\. For more information, see [Amazon EBS Elastic Volumes](ebs-modify-volume.md)\.
 
+------
+#### [ AWS CLI ]
+
 **To create an EBS volume from a snapshot using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
 + [create\-volume](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-volume.html) \(AWS CLI\)
 + [New\-EC2Volume](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Volume.html) \(AWS Tools for Windows PowerShell\)
+
+------

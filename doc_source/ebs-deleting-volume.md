@@ -8,6 +8,11 @@ You can check if a volume is attached to an instance\. In the console, on the **
 If a volume is attached to an instance, it’s in the `in-use` state\.
 If a volume is detached from an instance, it’s in the `available` state\. You can delete this volume\.
 
+You can delete an EBS volume using one of the following methods\.
+
+------
+#### [ Console ]
+
 **To delete an EBS volume using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
@@ -18,8 +23,13 @@ If a volume is detached from an instance, it’s in the `available` state\. You 
 
 1. In the confirmation dialog box, choose **Yes, Delete**\. 
 
+------
+#### [ AWS CLI ]
+
 **To delete an EBS volume using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
 + [delete\-volume](https://docs.aws.amazon.com/cli/latest/reference/ec2/delete-volume.html) \(AWS CLI\)
 + [Remove\-EC2Volume](https://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2Volume.html) \(AWS Tools for Windows PowerShell\)
+
+------

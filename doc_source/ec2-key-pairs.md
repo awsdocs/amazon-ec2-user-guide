@@ -17,8 +17,9 @@ The keys that Amazon EC2 uses are 2048\-bit SSH\-2 RSA keys\. You can have up to
 + [Identify the key pair that was specified at launch](#identify-key-pair-specified-at-launch)
 + [\(Optional\) Verify your key pair's fingerprint](#verify-key-pair-fingerprints)
 + [Add or replace a key pair for your instance](#replacing-key-pair)
-+ [Connect to your Linux instance if you lose your private key](replacing-lost-key-pair.md)
 + [Delete your key pair](#delete-key-pair)
++ [Delete a public key from an instance](#delete-public-key-from-instance)
++ [Connect to your Linux instance if you lose your private key](replacing-lost-key-pair.md)
 
 ## Create or import a key pair<a name="prepare-key-pair"></a>
 
@@ -39,7 +40,7 @@ You can create a key pair using one of the following methods\.
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation pane, under **NETWORK & SECURITY**, choose **Key Pairs**\.
+1. In the navigation pane, under **Network & Security**, choose **Key Pairs**\.
 
 1. Choose **Create key pair**\.
 
@@ -434,6 +435,8 @@ On the **Key Pairs** page in the Amazon EC2 console, the **Fingerprint** column 
 
 You can use the SSH2 fingerprint that's displayed on the **Key Pairs** page to verify that the private key you have on your local machine matches the public key stored in AWS\. From the computer where you downloaded the private key file, generate an SSH2 fingerprint from the private key file\. The output should match the fingerprint that's displayed in the console\.
 
+If you're using a Windows local machine, you can run the following commands using the Windows Subsystem for Linux \(WSL\)\. Install the WSL and a Linux distribution using the instructions in the [Windows 10 Installation Guide](https://docs.microsoft.com/en-us/windows/wsl/install-win10)\. The example in the instructions installs the Ubuntu distribution of Linux, but you can install any distribution\. You are prompted to restart your computer for the changes to take effect\.
+
 If you created your key pair using AWS, you can use the OpenSSL tools to generate a fingerprint as shown in the following example\.
 
 ```
@@ -454,12 +457,16 @@ $ ssh-keygen -ef path_to_private_key -m PEM | openssl rsa -RSAPublicKey_in -outf
 
 ## Add or replace a key pair for your instance<a name="replacing-key-pair"></a>
 
-You can change the key pair that is used to access the default system account of your instance\. For example, if a user in your organization requires access to the system user account using a separate key pair, you can add that key pair to your instance\. Or, if someone has a copy of the `.pem` file and you want to prevent them from connecting to your instance \(for example, if they've left your organization\), you can replace the key pair with a new one\.
+You can change the key pair that is used to access the default system account of your instance by adding a new public key on the instance, or by replacing the public key \(deleting the existing public key and adding a new one\) on the instance\. You might do this for the following reasons:
++ If a user in your organization requires access to the system user account using a separate key pair, you can add the public key to your instance\.
++ If someone has a copy of the private key \(`.pem` file\) and you want to prevent them from connecting to your instance \(for example, if they've left your organization\), you can delete the public key on the instance and replace it with a new one\.
 
-To add or replace a key pair, you must be able to connect to your instance\. If you've lost your existing private key or you launched your instance without a key pair, you won't be able connect to your instance and therefore won't be able to add or replace a key pair\. If you've lost your existing private key, you might be able to retrieve it\. For more information, see [Connect to your Linux instance if you lose your private key](replacing-lost-key-pair.md)\. If you launched your instance without a key pair, you won't be able to connect to the instance unless you chose an AMI that is configured to allow users another way to log in\.
+The public keys are located in the `.ssh/authorized_keys` file on the instance\.
+
+To add or replace a key pair, you must be able to connect to your instance\. If you've lost your existing private key or you launched your instance without a key pair, you won't be able connect to your instance and therefore won't be able to add or replace a key pair\. If you've lost your private key, you might be able to retrieve it\. For more information, see [Connect to your Linux instance if you lose your private key](replacing-lost-key-pair.md)\. If you launched your instance without a key pair, you won't be able to connect to the instance unless you chose an AMI that is configured to allow users another way to log in\.
 
 **Note**  
-These procedures are for modifying the key pair for the default user account, such as `ec2-user`\. For more information about adding user accounts to your instance, see [Manage user accounts on your Amazon Linux instance](managing-users.md)\.
+These procedures are for modifying the key pair for the default user account, such as `ec2-user`\. For information about adding user accounts to your instance, see [Manage user accounts on your Amazon Linux instance](managing-users.md)\.
 
 **To add or replace a key pair**
 
@@ -467,7 +474,7 @@ These procedures are for modifying the key pair for the default user account, su
 
 1. Retrieve the public key from your new key pair\. For more information, see [Retrieve the public key for your key pair](#retrieving-the-public-key)\.
 
-1. Connect to your instance using your existing private key file\.
+1. [Connect to your instance](AccessingInstances.md) using your existing private key\.
 
 1. Using a text editor of your choice, open the `.ssh/authorized_keys` file on the instance\. Paste the public key information from your new key pair underneath the existing public key information\. Save the file\.
 
@@ -476,13 +483,16 @@ These procedures are for modifying the key pair for the default user account, su
 1. \(Optional\) If you're replacing an existing key pair, connect to your instance and delete the public key information for the original key pair from the `.ssh/authorized_keys` file\.
 
 **Note**  
-If you're using an Auto Scaling group, ensure that the key pair you're replacing is not specified in your launch template or launch configuration\. Amazon EC2 Auto Scaling launches a replacement instance if it detects an unhealthy instance; however, the instance launch fails if the key pair cannot be found\. 
+If you're using an Auto Scaling group, ensure that the key pair you're replacing is not specified in your launch template or launch configuration\. If Amazon EC2 Auto Scaling detects an unhealthy instance, it launches a replacement instance\. However, the instance launch fails if the key pair cannot be found\. For more information, see [Launch templates](https://docs.aws.amazon.com/autoscaling/ec2/userguide/LaunchTemplates.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 
 ## Delete your key pair<a name="delete-key-pair"></a>
 
-When you delete a key pair, you are only deleting the Amazon EC2 copy of the public key\. Deleting a key pair doesn't affect the private key on your computer or the public key on any instances that already launched using that key pair\. You can't launch a new instance using a deleted key pair, but you can continue to connect to any instances that you launched using a deleted key pair, as long as you still have the private key \(`.pem`\) file\.
+When you delete a key pair using the following methods, you are only deleting the public key that you saved in Amazon EC2 when you [created or imported the key pair](#prepare-key-pair)\. Deleting a key pair doesn't delete the public key from any instances that were previously launched using that key pair\. It also doesn't delete the private key on your local computer\. You can continue to connect to instances that you launched using a key pair that is subsequently deleted, as long as you still have the private key \(`.pem`\) file\.
 
-If you're using an Auto Scaling group \(for example, in an Elastic Beanstalk environment\), ensure that the key pair you're deleting is not specified in your launch configuration\. Amazon EC2 Auto Scaling launches a replacement instance if it detects an unhealthy instance; however, the instance launch fails if the key pair cannot be found\. 
+**Note**  
+To delete the public key from an instance, see [Delete a public key from an instance](#delete-public-key-from-instance)\.
+
+If you're using an Auto Scaling group \(for example, in an Elastic Beanstalk environment\), ensure that the key pair you're deleting is not specified in an associated launch template or launch configuration\. If Amazon EC2 Auto Scaling detects an unhealthy instance, it launches a replacement instance\. However, the instance launch fails if the key pair cannot be found\. For more information, see [Launch templates](https://docs.aws.amazon.com/autoscaling/ec2/userguide/LaunchTemplates.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 
 You can delete a key pair using one of the following methods\.
 
@@ -526,4 +536,15 @@ Use the [Remove\-EC2KeyPair](https://docs.aws.amazon.com/powershell/latest/refer
 
 ------
 
-If you create a Linux AMI from an instance, and then use the AMI to launch a new instance in a different Region or account, the new instance includes the public key from the original instance\. This enables you to connect to the new instance using the same private key file as your original instance\. You can remove this public key from your instance by removing its entry from the `.ssh/authorized_keys` file using a text editor of your choice\. For more information about managing users on your instance and providing remote access using a specific key pair, see [Manage user accounts on your Amazon Linux instance](managing-users.md)\.
+## Delete a public key from an instance<a name="delete-public-key-from-instance"></a>
+
+If you create a Linux AMI from an instance, the public key information is copied from the instance to the AMI\. If you launch an instance from the AMI, the new instance includes the public key from the original instance\. To prevent someone who has the private key from connecting to the new instance, delete the public key from the original instance *before* creating the AMI\.
+
+**To delete a public key from an instance**
+
+1. [Connect to your instance](AccessingInstances.md)\.
+
+1. Using a text editor of your choice, open the `.ssh/authorized_keys` file on the instance\. Delete the public key information, and then save the file\.
+
+**Warning**  
+After you delete the public key from the instance and disconnect from the instance, you can't connect to it again unless the AMI provides another way of logging in\.

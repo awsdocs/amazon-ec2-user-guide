@@ -6,9 +6,8 @@ When you create On\-Demand Capacity Reservations, you can choose the Wavelength 
 
 Wavelength Zones are not available in every Region\. For information about the Regions that support Wavelength Zones, see [Available Wavelength Zones](https://docs.aws.amazon.com/wavelength/latest/developerguide/wavelength-quotas.html) in the *AWS Wavelength Developer Guide*\.
 
-**Considerations**
-+ You can't share Capacity Reservations that are created in a Wavelength Zone\.
-+ You can't use Capacity Reservation groups in a Wavelength Zone\.
+**Considerations**  
+You can't use Capacity Reservation groups in a Wavelength Zone\.
 
 **To use a Capacity Reservation in a Wavelength Zone**
 

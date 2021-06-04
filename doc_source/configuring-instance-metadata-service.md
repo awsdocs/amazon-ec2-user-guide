@@ -26,7 +26,7 @@ You can run two separate commands, or combine them\.
 First, generate a token using the following command\.
 
 ```
-[ec2-user ~]$ curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"
+[ec2-user ~]$ TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"`
 ```
 
 Then, use the token to generate top\-level metadata items using the following command\.

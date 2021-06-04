@@ -308,7 +308,7 @@ When you provision an address range for use with AWS, you are confirming that yo
    Sign the plaintext message using the private key that you created previously\. 
 
    ```
-   $ echo "1|aws|123456789012|198.51.100.0/24|20211231|SHA256|RSAPSS" | openssl dgst -sha256 -sigopt rsa_padding_mode:pss -sigopt rsa_pss_saltlen:-1 -sign private-key.pem -keyform PEM | openssl base64 | tr -- '+=/' '-_~' | tr -d "\n"
+   $ echo -n "1|aws|123456789012|198.51.100.0/24|20211231|SHA256|RSAPSS" | openssl dgst -sha256 -sigopt rsa_padding_mode:pss -sigopt rsa_pss_saltlen:-1 -sign private-key.pem -keyform PEM | openssl base64 | tr -- '+=/' '-_~' | tr -d "\n"
    ```
 **Important**  
 We recommend that you copy and paste this command\. Except for the message content, do not modify or replace any of the values\.
@@ -327,7 +327,7 @@ We recommend that you copy and paste this command\. Except for the message conte
 
    Provisioning an address range is an asynchronous operation, so the call returns immediately, but the address range is not ready to use until its status changes from `pending-provision` to `provisioned`\.
 **Note**  
-It can take up to three weeks to complete the provisioning process\. Use the [describe\-byoip\-cidrs](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-byoip-cidrs.html) command to monitor it its progress, as in this example:  
+It can take up to three weeks to complete the provisioning process for publicly advertisable ranges\. Use the [describe\-byoip\-cidrs](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-byoip-cidrs.html) command to monitor it its progress, as in this example:  
 
    ```
    $ aws ec2 describe-byoip-cidrs --max-results 5
@@ -336,7 +336,7 @@ If there are issues during provisioning and the status goes to `failed-provision
 
 #### Provision an IPv6 address range that's not publicly advertised<a name="byoip-provision-non-public"></a>
 
-By default, an address range is provisioned to be publicly advertised to the internet\. You can provision an IPv6 address range that will not be publicly advertised\. When you associate an IPv6 CIDR block from a non\-public address range with a VPC, the IPv6 CIDR can only be accessed through an AWS Direct Connect connection\. 
+By default, an address range is provisioned to be publicly advertised to the internet\. You can provision an IPv6 address range that will not be publicly advertised\. For routes that are not publicly advertisable, the provisioning process generally completes within minutes\. When you associate an IPv6 CIDR block from a non\-public address range with a VPC, the IPv6 CIDR can only be accessed through an AWS Direct Connect connection\. 
 
 An ROA is not required to provision a non\-public address range\.
 

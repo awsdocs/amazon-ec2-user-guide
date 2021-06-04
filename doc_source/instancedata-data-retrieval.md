@@ -400,6 +400,9 @@ If you are throttled while accessing the instance metadata service, retry your q
 
 You can consider using local firewall rules to disable access from some or all processes to the instance metadata service\.
 
+**Note**  
+For [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances) IMDS can be reachable from your own network when a network appliance within your VPC, such as a virtual router, forwards packets to the IMDS address, and the default [source/destination check](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_NAT_Instance.html#EIP_Disable_SrcDestCheck) on the instance is disabled\. To prevent a source from outside your VPC reaching IMDS, we recommend that you modify the configuration of the network appliance to drop packets with the destination IP address of IMDS 169\.254\.169\.254\.
+
 **Using iptables to limit access**
 
 The following example uses Linux iptables and its `owner` module to prevent the Apache webserver \(based on its default installation user ID of `apache`\) from accessing 169\.254\.169\.254\. It uses a *deny rule* to reject all instance metadata requests \(whether IMDSv1 or IMDSv2\) from any process running as that user\.

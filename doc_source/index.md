@@ -121,6 +121,7 @@ Amazon's trademarks and trade dress may not be used in
          + [Work with Capacity Reservations](capacity-reservations-using.md)
          + [Capacity Reservations in Local Zones](capacity-reservations-localzones.md)
          + [Capacity Reservations in Wavelength Zones](capacity-reservations-wavelengthzones.md)
+         + [Capacity Reservations on AWS Outposts](capacity-reservations-outposts.md)
          + [Work with shared Capacity Reservations](capacity-reservation-sharing.md)
          + [CloudWatch metrics for On-Demand Capacity Reservations](capacity-reservation-cw-metrics.md)
    + [Instance lifecycle](ec2-instance-lifecycle.md)

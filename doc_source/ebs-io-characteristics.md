@@ -13,9 +13,9 @@ On a given volume configuration, certain I/O characteristics drive the performan
 
 IOPS are a unit of measure representing input/output operations per second\. The operations are measured in KiB, and the underlying drive technology determines the maximum amount of data that a volume type counts as a single I/O\. I/O size is capped at 256 KiB for SSD volumes and 1,024 KiB for HDD volumes because SSD volumes handle small or random I/O much more efficiently than HDD volumes\. 
 
-When small I/O operations are physically contiguous, Amazon EBS attempts to merge them into a single I/O operation up to the maximum size\. For example, for SSD volumes, a single 1,024 KiB I/O operation counts as 4 operations \(1,024÷256=4\), while 8 contiguous I/O operations at 32 KiB each count as 1 operation \(8×32=256\)\. However, 8 random non\-contiguous I/O operations at 32 KiB each count as 8 operations\. In this case, each I/O operation under 32 KiB counts as 1 operation\.
+When small I/O operations are physically sequential, Amazon EBS attempts to merge them into a single I/O operation up to the maximum I/O size\. Similarly, when I/O operations are larger than the maximum I/O size, Amazon EBS attempts to split them into smaller I/O operations\. The following table shows some examples\.
 
-Similarly, for HDD\-backed volumes, both a single 1,024 KiB I/O operation and 8 sequential 128 KiB operations would count as one operation\. However, 8 random 128 KiB I/O operations would count as 8 operations\.
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-io-characteristics.html)
 
 Consequently, when you create an SSD\-backed volume supporting 3,000 IOPS \(either by provisioning a Provisioned IOPS SSD volume at 3,000 IOPS or by sizing a General Purpose SSD volume at 1,000 GiB\), and you attach it to an EBS\-optimized instance that can provide sufficient bandwidth, you can transfer up to 3,000 I/Os of data per second, with throughput determined by I/O size\.
 

@@ -42,7 +42,10 @@ The following considerations apply to creating snapshots:
 
 ## Create a snapshot<a name="ebs-create-snapshot"></a>
 
-Use the following procedure to create a snapshot from the specified volume\.
+To create a snapshot from the specified volume, use one of the following methods\.
+
+------
+#### [ Console ]
 
 **To create a snapshot using the console**
 
@@ -62,15 +65,23 @@ Use the following procedure to create a snapshot from the specified volume\.
 
 1. Choose **Create Snapshot**\.
 
+------
+#### [ AWS CLI ]
+
 **To create a snapshot using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
 + [create\-snapshot](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-snapshot.html) \(AWS CLI\)
 + [New\-EC2Snapshot](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Snapshot.html) \(AWS Tools for Windows PowerShell\)
 
+------
+
 ## Create a multi\-volume snapshot<a name="ebs-create-snapshots"></a>
 
-Use the following procedure to create a snapshot from the volumes of an instance\.
+To create a snapshot from the volumes of an instance, use one of the following methods\.
+
+------
+#### [ Console ]
 
 **To create multi\-volume snapshots using the console**
 
@@ -94,11 +105,16 @@ Use the following procedure to create a snapshot from the volumes of an instance
 
    During snapshot creation, the snapshots are managed together\. If one of the snapshots in the volume set fails, the other snapshots are moved to error status for the volume set\. You can monitor the progress of your snapshots using [CloudWatch Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/WhatIsCloudWatchEvents.html)\. After the snapshot creation process completes, CloudWatch generates an event that contains the status and all of the relevant snapshots details for the affected instance\.
 
+------
+#### [ AWS CLI ]
+
 **To create multi\-volume snapshots using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
 + [create\-snapshots](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-snapshots.html) \(AWS CLI\)
 + [New\-EC2SnapshotBatch](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2SnapshotBatch.html) \(AWS Tools for Windows PowerShell\)
+
+------
 
 ## Work with EBS snapshots<a name="using-snapshots"></a>
 

@@ -15,20 +15,20 @@ You can get the data using either the CloudWatch API or the Amazon EC2 console\.
 
 ## Amazon EBS metrics<a name="ebs-metrics"></a>
 
-Amazon Elastic Block Store \(Amazon EBS\) sends data points to CloudWatch for several metrics\. All EBS volume types automatically send 1\-minute metrics to CloudWatch\. Data is reported to CloudWatch only when the volume is attached to an instance
-
-Some of these metrics have differences on instances built on the Nitro System\. For a list of these instance types, see [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances)\.
-
-The `AWS/EBS` namespace includes the following metrics\.
+Amazon Elastic Block Store \(Amazon EBS\) sends data points to CloudWatch for several metrics\. All Amazon EBS volume types automatically send 1\-minute metrics to CloudWatch, but only when the volume is attached to an instance\.
 
 **Topics**
-+ [Volume metrics](#ebs-volume-metrics)
-+ [Volume metrics for Nitro\-based instances](#ebs-metrics-for-nitro)
++ [Volume metrics for volumes attached to all instance types](#ebs-volume-metrics)
++ [Volume metrics for volumes attached to Nitro\-based instance types](#ebs-metrics-for-nitro)
 + [Fast snapshot restore metrics](#fast-snapshot-restore-metrics)
 
-### Volume metrics<a name="ebs-volume-metrics"></a>
+### Volume metrics for volumes attached to all instance types<a name="ebs-volume-metrics"></a>
 
-The `AWS/EBS` namespace includes the following metrics for EBS volumes\. To get information about the available disk space from the operating system on an instance, see [View free disk space](ebs-describing-volumes.md#ebs-view-free-disk-space)\.
+The `AWS/EBS` namespace includes the following metrics for EBS volumes that are attached to all instance types\. To get information about the available disk space from the operating system on an instance, see [View free disk space](ebs-describing-volumes.md#ebs-view-free-disk-space)\.
+
+**Note**  
+Some metrics have differences on instances that are built on the Nitro System\. For a list of these instance types, see [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances)\.
+The `AWS/EC2` namespace includes additional Amazon EBS metrics for volumes that are attached to Nitro\-based instances that are not bare metal instances\. For more information about these metrics see, [Amazon EBS metrics for Nitro\-based instances](viewing_metrics_with_cloudwatch.md#ebs-metrics-nitro)\.
 
 
 | Metric | Description | 
@@ -45,9 +45,9 @@ The `AWS/EBS` namespace includes the following metrics for EBS volumes\. To get 
 | VolumeConsumedReadWriteOps |  Used with Provisioned IOPS SSD volumes only\. The total amount of read and write operations \(normalized to 256K capacity units\) consumed in a specified period of time\. I/O operations that are smaller than 256K each count as 1 consumed IOPS\. I/O operations that are larger than 256K are counted in 256K capacity units\. For example, a 1024K I/O would count as 4 consumed IOPS\. Units: Count  | 
 | BurstBalance |  Used with General Purpose SSD \(`gp2`\), Throughput Optimized HDD \(`st1`\), and Cold HDD \(`sc1`\) volumes only\. Provides information about the percentage of I/O credits \(for `gp2`\) or throughput credits \(for `st1` and `sc1`\) remaining in the burst bucket\. Data is reported to CloudWatch only when the volume is active\. If the volume is not attached, no data is reported\. The `Sum` statistic on this metric is not relevant for volumes attached to instances built on the Nitro System\. If the baseline performance of the volume exceeds the maximum burst performance, credits are never spent\. If the volume is attached to an instance built on the Nitro System, the burst balance is not reported\. For other instances, the reported burst balance is 100%\. For more information, see [I/O Credits and burst performance](ebs-volume-types.md#IOcredit)\. Units: Percent  | 
 
-### Volume metrics for Nitro\-based instances<a name="ebs-metrics-for-nitro"></a>
+### Volume metrics for volumes attached to Nitro\-based instance types<a name="ebs-metrics-for-nitro"></a>
 
-The `AWS/EC2` namespace includes additional Amazon EBS metrics for Nitro\-based instances that are not bare metal instances\. For more information about these metrics see, [Amazon EBS metrics for Nitro\-based instances](viewing_metrics_with_cloudwatch.md#ebs-metrics-nitro)\.
+The `AWS/EC2` namespace includes additional Amazon EBS metrics for volumes that are attached to Nitro\-based instances that are not bare metal instances\. For more information about these metrics see, [Amazon EBS metrics for Nitro\-based instances](viewing_metrics_with_cloudwatch.md#ebs-metrics-nitro)\.
 
 ### Fast snapshot restore metrics<a name="fast-snapshot-restore-metrics"></a>
 

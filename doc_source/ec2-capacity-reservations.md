@@ -1,6 +1,8 @@
 # On\-Demand Capacity Reservations<a name="ec2-capacity-reservations"></a>
 
-On\-Demand Capacity Reservations enable you to reserve compute capacity for your Amazon EC2 instances in a specific Availability Zone for any duration\. This gives you the ability to create and manage Capacity Reservations independently from the billing discounts offered by Savings Plans or regional Reserved Instances\. By creating Capacity Reservations, you ensure that you always have access to EC2 capacity when you need it, for as long as you need it\. You can create Capacity Reservations at any time, without entering into a one\-year or three\-year term commitment, and the capacity is available immediately\. Billing starts as soon as the capacity is provisioned and the Capacity Reservation enters the active state\. When you no longer need it, cancel the Capacity Reservation to stop incurring charges\.
+On\-Demand Capacity Reservations enable you to reserve compute capacity for your Amazon EC2 instances in a specific Availability Zone for any duration\. This gives you the ability to create and manage Capacity Reservations independently from the billing discounts offered by Savings Plans or regional Reserved Instances\.
+
+By creating Capacity Reservations, you ensure that you always have access to EC2 capacity when you need it, for as long as you need it\. You can create Capacity Reservations at any time, without entering into a one\-year or three\-year term commitment, and the capacity is available immediately\. Billing starts as soon as the capacity is provisioned and the Capacity Reservation enters the active state\. When you no longer need it, cancel the Capacity Reservation to stop incurring charges\.
 
 When you create a Capacity Reservation, you specify:
 + The Availability Zone in which to reserve the capacity
@@ -20,6 +22,7 @@ In addition, you can use Savings Plans and regional Reserved Instances with your
 + [Work with Capacity Reservations](capacity-reservations-using.md)
 + [Capacity Reservations in Local Zones](capacity-reservations-localzones.md)
 + [Capacity Reservations in Wavelength Zones](capacity-reservations-wavelengthzones.md)
++ [Capacity Reservations on AWS Outposts](capacity-reservations-outposts.md)
 + [Work with shared Capacity Reservations](capacity-reservation-sharing.md)
 + [CloudWatch metrics for On\-Demand Capacity Reservations](capacity-reservation-cw-metrics.md)
 

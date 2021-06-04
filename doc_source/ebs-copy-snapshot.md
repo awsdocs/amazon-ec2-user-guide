@@ -74,7 +74,10 @@ The following tables describe the encryption outcome for each possible combinati
 
 ## Copy a snapshot<a name="ebs-snapshot-copy"></a>
 
-Use the following procedure to copy a snapshot using the Amazon EC2 console\.
+To copy a snapshot, use one of the following methods\.
+
+------
+#### [ Console ]
 
 **To copy a snapshot using the console**
 
@@ -98,6 +101,17 @@ Use the following procedure to copy a snapshot using the Amazon EC2 console\.
 
    To view the progress of the copy process, switch to the destination Region, and then refresh the **Snapshots** page\. Copies in progress are listed at the top of the page\.
 
+------
+#### [ AWS CLI ]
+
+**To copy a snapshot using the command line**
+
+You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
++ [copy\-snapshot](https://docs.aws.amazon.com/cli/latest/reference/ec2/copy-snapshot.html) \(AWS CLI\)
++ [Copy\-EC2Snapshot](https://docs.aws.amazon.com/powershell/latest/reference/items/Copy-EC2Snapshot.html) \(AWS Tools for Windows PowerShell\)
+
+------
+
 **To check for failure**  
 If you attempt to copy an encrypted snapshot without having permissions to use the encryption key, the operation fails silently\. The error state is not displayed in the console until you refresh the page\. You can also check the state of the snapshot from the command line, as in the following example\.
 
@@ -108,9 +122,3 @@ aws ec2 describe-snapshots --snapshot-id snap-0123abcd
 If the copy failed because of insufficient key permissions, you see the following message: "StateMessage": "Given key ID is not accessible"\.
 
 When copying an encrypted snapshot, you must have `DescribeKey` permissions on the default CMK\. Explicitly denying these permissions results in copy failure\. For information about managing CMK keys, see [Controlling Access to Customer Master Keys](https://docs.aws.amazon.com/kms/latest/developerguide/control-access.html)\.
-
-**To copy a snapshot using the command line**
-
-You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
-+ [copy\-snapshot](https://docs.aws.amazon.com/cli/latest/reference/ec2/copy-snapshot.html) \(AWS CLI\)
-+ [Copy\-EC2Snapshot](https://docs.aws.amazon.com/powershell/latest/reference/items/Copy-EC2Snapshot.html) \(AWS Tools for Windows PowerShell\)

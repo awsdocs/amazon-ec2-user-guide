@@ -31,7 +31,10 @@ The following considerations apply to deleting snapshots:
 
 ## Delete a snapshot<a name="ebs-delete-snapshot"></a>
 
-Use the following procedure to delete a snapshot\.
+To delete a snapshot, use one of the following methods\. 
+
+------
+#### [ Console ]
 
 **To delete a snapshot using the console**
 
@@ -43,11 +46,16 @@ Use the following procedure to delete a snapshot\.
 
 1. Choose **Yes, Delete**\.
 
+------
+#### [ AWS CLI ]
+
 **To delete a snapshot using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
 + [delete\-snapshot](https://docs.aws.amazon.com/cli/latest/reference/ec2/delete-snapshot.html) \(AWS CLI\)
 + [Remove\-EC2Snapshot](https://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2Snapshot.html) \(AWS Tools for Windows PowerShell\)
+
+------
 
 ## Delete a multi\-volume snapshot<a name="ebs-delete-snapshot-multi-volume"></a>
 

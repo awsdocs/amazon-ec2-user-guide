@@ -104,14 +104,14 @@ To hibernate an On\-Demand Instance or Reserved Instance, the following prerequi
 
 To hibernate an instance that was launched using your own AMI, you must first configure your AMI to support hibernation\. For more information, see [Update instance software on your Amazon Linux instance](install-updates.md)\.
 
-If you use one of the [supported AMIs](#hibernating-prerequisites) \(except Ubuntu 16\.04 LTS\), or if you create an AMI based on one of the supported AMIs, you do not need to configure it to support hibernation\. These AMIs are preconfigured to support hibernation\. To configure Ubuntu 16\.04 LTS to support hibernation, you need to install the linux\-aws\-hwe kernel package version 4\.15\.0\-1058\-aws or later and the ec2\-hibinit\-agent\. For the configuration steps, choose the **Ubuntu 16\.04 \- Xenial** tab below\.
+If you use one of the [supported AMIs](#hibernating-prerequisites) \(except Ubuntu 16\.04 LTS\), or if you create an AMI based on one of the supported AMIs, you do not need to configure it to support hibernation\. These AMIs are preconfigured to support hibernation\. To configure Ubuntu 16\.04 LTS to support hibernation, you need to install the `linux-aws-hwe` kernel package version `4.15.0-1058-aws` or later and the `ec2-hibinit-agent`\. For the configuration steps, choose the **Ubuntu 16\.04 \- Xenial** tab below\.
 
 ------
 #### [ Amazon Linux 2 ]
 
 **To configure an Amazon Linux 2 AMI to support hibernation**
 
-1. Update to the latest kernel to 4\.14\.138\-114\.102 or later using the following command\.
+1. Update to the latest kernel to `4.14.138-114.102` or later using the following command\.
 
    ```
    [ec2-user ~]$ sudo yum update kernel
@@ -129,7 +129,7 @@ If you use one of the [supported AMIs](#hibernating-prerequisites) \(except Ubun
    [ec2-user ~]$ sudo reboot
    ```
 
-1. Confirm that the kernel version is updated to 4\.14\.138\-114\.102 or later using the following command\.
+1. Confirm that the kernel version is updated to `4.14.138-114.102` or later using the following command\.
 
    ```
    [ec2-user ~]$ uname -a
@@ -142,7 +142,7 @@ If you use one of the [supported AMIs](#hibernating-prerequisites) \(except Ubun
 
 **To configure an Amazon Linux AMI to support hibernation**
 
-1. Update to the latest kernel to 4\.14\.77\-70\.59 or later using the following command\.
+1. Update to the latest kernel to `4.14.77-70.59` or later using the following command\.
 
    ```
    [ec2-user ~]$ sudo yum update kernel
@@ -160,7 +160,7 @@ If you use one of the [supported AMIs](#hibernating-prerequisites) \(except Ubun
    [ec2-user ~]$ sudo reboot
    ```
 
-1. Confirm that the kernel version is updated to 4\.14\.77\-70\.59 or greater using the following command\.
+1. Confirm that the kernel version is updated to `4.14.77-70.59` or greater using the following command\.
 
    ```
    [ec2-user ~]$ uname -a
@@ -173,7 +173,7 @@ If you use one of the [supported AMIs](#hibernating-prerequisites) \(except Ubun
 
 **To configure an Ubuntu 18\.04 LTS AMI to support hibernation**
 
-1. Update to the latest kernel to 4\.15\.0\-1044 or later using the following commands\.
+1. Update to the latest kernel to `4.15.0-1044` or later using the following commands\.
 
    ```
    [ec2-user ~]$ sudo apt update
@@ -192,7 +192,7 @@ If you use one of the [supported AMIs](#hibernating-prerequisites) \(except Ubun
    [ec2-user ~]$ sudo reboot
    ```
 
-1. Confirm that the kernel version is updated to 4\.15\.0\-1044 or later using the following command\.
+1. Confirm that the kernel version is updated to `4.15.0-1044` or later using the following command\.
 
    ```
    [ec2-user ~]$ uname -a
@@ -203,14 +203,14 @@ If you use one of the [supported AMIs](#hibernating-prerequisites) \(except Ubun
 
 **To configure an Ubuntu 16\.04 LTS AMI to support hibernation**
 
-1. Update to the latest kernel to 4\.15\.0\-1058\-aws or later using the following commands\.
+1. Update to the latest kernel to `4.15.0-1058-aws` or later using the following commands\.
 
    ```
    [ec2-user ~]$ sudo apt update
    [ec2-user ~]$ sudo apt install linux-aws-hwe
    ```
 **Note**  
-The linux\-aws\-hwe kernel package is fully supported by Canonical\. The package will continue to receive regular updates until standard support for Ubuntu 16\.04 LTS ends in April 2021, and will receive additional security updates until the Extended Security Maintenance support ends in 2024\. For more information, see [Amazon EC2 Hibernation for Ubuntu 16\.04 LTS now available](https://ubuntu.com/blog/amazon-ec2-hibernation-for-ubuntu-16-04-lts-now-available) on the Canonical Ubuntu Blog\.
+The `linux-aws-hwe` kernel package is fully supported by Canonical\. The package will continue to receive regular updates until standard support for Ubuntu 16\.04 LTS ends in April 2021, and will receive additional security updates until the Extended Security Maintenance support ends in 2024\. For more information, see [Amazon EC2 Hibernation for Ubuntu 16\.04 LTS now available](https://ubuntu.com/blog/amazon-ec2-hibernation-for-ubuntu-16-04-lts-now-available) on the Canonical Ubuntu Blog\.
 
 1. Install the `ec2-hibinit-agent` package from the repositories using the following command\.
 
@@ -224,7 +224,7 @@ The linux\-aws\-hwe kernel package is fully supported by Canonical\. The package
    [ec2-user ~]$ sudo reboot
    ```
 
-1. Confirm that the kernel version is updated to 4\.15\.0\-1058\-aws or later using the following command\.
+1. Confirm that the kernel version is updated to `4.15.0-1058-aws` or later using the following command\.
 
    ```
    [ec2-user ~]$ uname -a

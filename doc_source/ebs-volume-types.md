@@ -419,41 +419,47 @@ The `st1` and `sc1` bucket sizes vary according to volume size, and a full bucke
 
 Both `st1` and `sc1` are designed for performance consistency of 90% of burst throughput 99% of the time\. Non\-compliant periods are approximately uniformly distributed, targeting 99% of expected total throughput each hour\.
 
-The following table shows ideal scan times for volumes of various size, assuming full buckets and sufficient instance throughput\.
-
 In general, scan times are expressed by this formula:
 
 ```
  Volume size
-------------- = Scan time
+------------ = Scan time
  Throughput
 ```
 
 For example, taking the performance consistency guarantees and other optimizations into account, an `st1` customer with a 5\-TiB volume can expect to complete a full volume scan in 2\.91 to 3\.27 hours\. 
++ Optimal scan time
 
-```
-   5 TiB            5 TiB
------------ = ------------------- = 10,486 s = 2.91 hours (optimal) 
- 500 MiB/s     0.00047684 TiB/s
+  ```
+     5 TiB            5 TiB
+  ----------- = ------------------ = 10,486 seconds = 2.91 hours 
+   500 MiB/s     0.00047684 TiB/s
+  ```
++ Maximum scan time
 
-
-               2.91 hours
-2.91 hours + -------------- = 3.27 hours (minimum expected)
-              (0.90)(0.99) <-- From expected performance of 90% of burst 99% of the time
-```
+  ```
+    2.91 hours
+  -------------- = 3.27 hours
+   (0.90)(0.99) <-- From expected performance of 90% of burst 99% of the time
+  ```
 
 Similarly, an `sc1` customer with a 5\-TiB volume can expect to complete a full volume scan in 5\.83 to 6\.54 hours\.
++ Optimal scan time
 
-```
-      5 TiB
-------------------- = 20972 s = 5.83 hours (optimal) 
- 0.000238418 TiB/s
+  ```
+     5 TiB             5 TiB
+  ----------- = ------------------- = 20972 seconds = 5.83 hours 
+   250 MiB/s     0.000238418 TiB/s
+  ```
++ Maximum scan time
 
+  ```
+    5.83 hours
+  -------------- = 6.54 hours
+   (0.90)(0.99)
+  ```
 
-  5.83 hours
--------------- = 6.54 hours (minimum expected)
- (0.90)(0.99)
-```
+The following table shows ideal scan times for volumes of various size, assuming full buckets and sufficient instance throughput\.
 
 
 | Volume size \(TiB\) | ST1 scan time with burst \(hours\)\* | SC1 scan time with burst \(hours\)\* | 

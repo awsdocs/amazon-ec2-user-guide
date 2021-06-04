@@ -14,6 +14,11 @@ For information about adding EBS volumes to your instance at launch, see [Instan
   + The configuration \(instance type, operating system\) of the instance must support that specific AWS Marketplace code\. For example, you cannot take a volume from a Windows instance and attach it to a Linux instance\.
   + AWS Marketplace product codes are copied from the volume to the instance\.
 
+You can attach a volume to an instance using one of the following methods\.
+
+------
+#### [ Console ]
+
 **To attach an EBS volume to an instance using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
@@ -30,11 +35,16 @@ For information about adding EBS volumes to your instance at launch, see [Instan
 
 1. Connect to your instance and mount the volume\. For more information, see [Make an Amazon EBS volume available for use on Linux](ebs-using-volumes.md)\.
 
+------
+#### [ AWS CLI ]
+
 **To attach an EBS volume to an instance using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
 + [attach\-volume](https://docs.aws.amazon.com/cli/latest/reference/ec2/attach-volume.html) \(AWS CLI\)
 + [Add\-EC2Volume](https://docs.aws.amazon.com/powershell/latest/reference/items/Add-EC2Volume.html) \(AWS Tools for Windows PowerShell\)
+
+------
 
 **Note**  
 In some situations, you may find that a volume other than the volume attached to `/dev/xvda` or `/dev/sda` has become the root volume of your instance\. This can happen when you have attached the root volume of another instance, or a volume created from the snapshot of a root volume, to an instance with an existing root volume\. For more information, see [Boot from the wrong volume](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-booting-from-wrong-volume.html)\.

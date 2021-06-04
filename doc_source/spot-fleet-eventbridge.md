@@ -20,7 +20,7 @@ Identifies that the event is from Spot Fleet\.
 `"detail-type": "EC2 Spot Fleet State Change"`  
 Identifies the event type\.
 
-`"sub-type": "submitted"`  
+`"detail": { "sub-type": "submitted" }`  
 Identifies the event sub\-type\.
 
 **Topics**
@@ -249,7 +249,7 @@ Identifies that the event is from Spot Fleet\.
 `"detail-type": "EC2 Spot Fleet State Change"`  
 Identifies the event type\.
 
-`"sub-type": "submitted"`  
+`"detail": { "sub-type": "submitted" }`  
 Identifies the event sub\-type\.
 
 You can write an EventBridge rule and automate what actions to take when the event pattern matches the rule\.
@@ -280,9 +280,11 @@ The following example creates an EventBridge rule to send an email, text message
 
    ```
    {
-       "source": [ "aws.ec2spotfleet" ],
-       "detail-type": [ "EC2 Spot Fleet State Change" ],
-       "sub-type": [ "submitted" ]
+       "source": ["aws.ec2spotfleet"],
+       "detail-type": ["EC2 Spot Fleet State Change"],
+       "detail": {
+         "sub-type": ["submitted"]
+       }
    }
    ```
 
@@ -298,7 +300,7 @@ The following example creates an EventBridge rule to send an email, text message
 
 1. Choose **Create**\.
 
-For more information, see [Creating a rule for an AWS service](https://docs.aws.amazon.com/eventbridge/latest/userguide/create-eventbridge-rule.html) and [Event Patterns](https://docs.aws.amazon.com/eventbridge/latest/userguide/filtering-examples-structure.html) in the *Amazon EventBridge User Guide*
+For more information, see [Amazon EventBridge rules](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-rules.html) and [Amazon EventBridge event patterns](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns.html) in the *Amazon EventBridge User Guide*
 
 ### Create an EventBridge rule to trigger a Lambda function<a name="eventbridge-trigger-lambda"></a>
 
@@ -340,9 +342,11 @@ The following example creates an EventBridge rule to trigger a Lambda function e
 
         ```
         {
-            "source": [ "aws.ec2spotfleet" ],
-            "detail-type": [ "EC2 Spot Fleet Instance Change" ],
-            "sub-type": [ "launched" ]
+            "source": ["aws.ec2spotfleet"],
+            "detail-type": ["EC2 Spot Fleet Instance Change"],
+            "detail": {
+              "sub-type": ["launched"]
+            }
         }
         ```
 

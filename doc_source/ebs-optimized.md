@@ -7,6 +7,7 @@ EBS–optimized instances deliver dedicated bandwidth to Amazon EBS\. When attac
 **Topics**
 + [Supported instance types](#ebs-optimization-support)
 + [Get maximum performance](#ebs-optimization-performance)
++ [View instances types that support EBS optimization](#describe-ebs-optimization)
 + [Enable EBS optimization at launch](#enable-ebs-optimization)
 + [Enable EBS optimization for an existing instance](#modify-ebs-optimized-attribute)
 
@@ -17,6 +18,9 @@ The following tables show which instance types support EBS optimization\. They i
 ### EBS optimized by default<a name="current"></a>
 
 The following table lists the instance types that support EBS optimization and EBS optimization is enabled by default\. There is no need to enable EBS optimization and no effect if you disable EBS optimization\.
+
+**Note**  
+You can also view this information programatically using the AWS CLI\. For more information, see [View instances types that support EBS optimization](#describe-ebs-optimization)\.
 
 
 | Instance size | Maximum bandwidth \(Mbps\) | Maximum throughput \(MB/s, 128 KiB I/O\) | Maximum IOPS \(16 KiB I/O\) | 
@@ -525,6 +529,9 @@ The following table lists the instance types that support EBS optimization and E
 
 The following table lists the instance types that support EBS optimization but EBS optimization is not enabled by default\. You can enable EBS optimization when you launch these instances or after they are running\. Instances must have EBS optimization enabled to achieve the level of performance described\. When you enable EBS optimization for an instance that is not EBS\-optimized by default, you pay an additional low, hourly fee for the dedicated capacity\. For pricing information, see EBS\-Optimized Instances on the [Amazon EC2 Pricing, On\-Demand Pricing page](http://aws.amazon.com/ec2/pricing/on-demand/)\.
 
+**Note**  
+You can also view this information programatically using the AWS CLI\. For more information, see [View instances types that support EBS optimization](#describe-ebs-optimization)\.
+
 
 | Instance size | Maximum bandwidth \(Mbps\) | Maximum throughput \(MB/s, 128 KiB I/O\) | Maximum IOPS \(16 KiB I/O\) | 
 | --- | --- | --- | --- | 
@@ -558,6 +565,60 @@ The high memory instances are designed to run large in\-memory databases, includ
 + G4dn, I3en, Inf1, M5a, M5ad, R5a, R5ad, T3, T3a, and Z1d instances launched after February 26, 2020 provide the maximum performance listed in the table above\. To get the maximum performance from an instance launched before February 26, 2020, stop and start it\.
 + C5, C5d, C5n, M5, M5d, M5n, M5dn, R5, R5d, R5n, R5dn, and P3dn instances launched after December 3, 2019 provide the maximum performance listed in the table above\. To get the maximum performance from an instance launched before December 3, 2019, stop and start it\.
 + `u-6tb1.metal`, `u-9tb1.metal`, and `u-12tb1.metal` instances launched after March 12, 2020 provide the performance in the table above\. Instances of these types launched before March 12, 2020 might provide lower performance\. To get the maximum performance from an instance launched before March 12, 2020, contact your account team to upgrade the instance at no additional cost\.
+
+## View instances types that support EBS optimization<a name="describe-ebs-optimization"></a>
+
+You can use the AWS CLI to view the instances types in the current Region that support EBS optimization\.
+
+**To view the instance types that support EBS optimization and that have it enabled by default**  
+Use the following [ describe\-instance\-types](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-types.html) command\.
+
+```
+$  aws ec2 describe-instance-types \
+--query 'InstanceTypes[].{InstanceType:InstanceType,"MaxBandwidth(Mb/s)":EbsInfo.EbsOptimizedInfo.MaximumBandwidthInMbps,MaxIOPS:EbsInfo.EbsOptimizedInfo.MaximumIops,"MaxThroughput(MB/s)":EbsInfo.EbsOptimizedInfo.MaximumThroughputInMBps}' \
+--filters Name=ebs-info.ebs-optimized-support,Values=default --output=table
+```
+
+Example output for `eu-west-1`:
+
+```
+-----------------------------------------------------------------------------------------------
+|                                    DescribeInstanceTypes                                    |
++--------------+--------------------+---------------------+-----------+-----------------------+
+| EBSOptimized |   InstanceType     | MaxBandwidth(Mb/s)  |  MaxIOPS  |  MaxThroughput(MB/s)  |
++--------------+--------------------+---------------------+-----------+-----------------------+
+|  default     |  m5dn.8xlarge      |  6800               |  30000    |  850.0                |
+|  default     |  m6gd.xlarge       |  4750               |  20000    |  593.75               |
+|  default     |  c4.4xlarge        |  2000               |  16000    |  250.0                |
+|  default     |  r4.16xlarge       |  14000              |  75000    |  1750.0               |
+|  default     |  m5ad.large        |  2880               |  16000    |  360.0                |
+...
+```
+
+**To view the instance types that support EBS optimization but do not have it enabled by default**  
+Use the following [ describe\-instance\-types](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-types.html) command\.
+
+```
+$  aws ec2 describe-instance-types \
+--query 'InstanceTypes[].{InstanceType:InstanceType,"MaxBandwidth(Mb/s)":EbsInfo.EbsOptimizedInfo.MaximumBandwidthInMbps,MaxIOPS:EbsInfo.EbsOptimizedInfo.MaximumIops,"MaxThroughput(MB/s)":EbsInfo.EbsOptimizedInfo.MaximumThroughputInMBps}' \
+--filters Name=ebs-info.ebs-optimized-support,Values=supported --output=table
+```
+
+Example output for `eu-west-1`:
+
+```
+------------------------------------------------------------------------------------------
+|                                  DescribeInstanceTypes                                 |
++--------------+---------------+----------------------+----------+-----------------------+
+| EBSOptimized | InstanceType  | MaxBandwidth(Mb/s)   | MaxIOPS  |  MaxThroughput(MB/s)  |
++--------------+---------------+----------------------+----------+-----------------------+
+|  supported   |  m2.4xlarge   |  1000                |  8000    |  125.0                |
+|  supported   |  i2.2xlarge   |  1000                |  8000    |  125.0                |
+|  supported   |  r3.4xlarge   |  2000                |  16000   |  250.0                |
+|  supported   |  m3.xlarge    |  500                 |  4000    |  62.5                 |
+|  supported   |  r3.2xlarge   |  1000                |  8000    |  125.0                |
+...
+```
 
 ## Enable EBS optimization at launch<a name="enable-ebs-optimization"></a>
 

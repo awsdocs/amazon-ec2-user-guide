@@ -68,7 +68,7 @@ You can specify the interruption behavior so that Amazon EC2 hibernates Spot Ins
 + **Supported operating systems** \(You must install the hibernation agent on a supported operating system\. Alternatively, use a supported AMI, which already includes the agent\.\):
   + Amazon Linux 2
   + Amazon Linux AMI
-  + Ubuntu with an AWS\-tuned Ubuntu kernel \(linux\-aws\) greater than 4\.4\.0\-1041
+  + Ubuntu with an AWS\-tuned Ubuntu kernel \(`linux-aws`\) greater than 4\.4\.0\-1041
   + Windows Server 2008 R2 and later
 + **Supported AMIs** \(the following supported AMIs include the hibernation agent\):
   + Amazon Linux 2

@@ -6,6 +6,11 @@ You can get additional information about your EBS volumes, such as how much disk
 
 ## View volume information<a name="ebs-view-information-console"></a>
 
+You can view information about a volume using one of the following methods\.
+
+------
+#### [ Console ]
+
 **To view information about an EBS volume using the console**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
@@ -32,10 +37,15 @@ You can get additional information about your EBS volumes, such as how much disk
 
 1. \(Optional\) Choose a link in the **Volume ID** column to view additional details for the volume\.
 
+------
+#### [ AWS CLI ]
+
 **To view information about an EBS volume using the command line**  
 You can use one of the following commands to view volume attributes\. For more information, see [Access Amazon EC2](concepts.md#access-ec2)\.
 + [describe\-volumes](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-volumes.html) \(AWS CLI\)
 + [Get\-EC2Volume](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Volume.html) \(AWS Tools for Windows PowerShell\)
+
+------
 
 ### Volume state<a name="volume-state"></a>
 
@@ -43,22 +53,22 @@ Volume state describes the availability of an Amazon EBS volume\. You can view t
 
 The possible volume states are:
 
-creating  
+`creating`  
 The volume is being created\.
 
-available  
+`available`  
 The volume is not attached to an instance\.
 
-in\-use  
+`in-use`  
 The volume is attached to an instance\.
 
-deleting  
+`deleting`  
 The volume is being deleted\.
 
-deleted  
+`deleted`  
 The volume is deleted\.
 
-error  
+`error`  
 The underlying hardware related to your EBS volume has failed, and the data associated with the volume is unrecoverable\. For information about how to restore the volume or recover the data on the volume, see [My EBS volume has a status of "error"](http://aws.amazon.com/premiumsupport/knowledge-center/ebs-error-status/)\.
 
 ## View volume metrics<a name="ebs-view-volume-metrics"></a>

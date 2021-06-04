@@ -420,10 +420,9 @@ PS C:\> Get-EC2AvailabilityZone -Region region-name
 
 ### Enable Wavelength Zones<a name="opt-in-wavelength-zone"></a>
 
-Before you specify a Wavelength Zone for a resource or service, you must enable Wavelength Zones\.
+Before you specify a Wavelength Zone for a resource or service, you must opt in to Wavelength Zones\.
 
 **Considerations**
-+ You must request access in order to use Wavelength Zones\. For information about how to request Wavelength Zone access, see [AWS Wavelength](http://aws.amazon.com/wavelength/)\.
 + Some AWS resources are not available in all Regions\. Make sure that you can create the resources that you need in the desired Region or Wavelength Zone before launching an instance in a specific Wavelength Zone\.
 
 **To opt in to Wavelength Zone using the console**
@@ -438,9 +437,11 @@ Before you specify a Wavelength Zone for a resource or service, you must enable 
 
 1. In the upper\-right corner of the page, choose **Account attributes**, **Zones**\.
 
-1. Under **Wavelength Zones**, turn on each Wavelength Zone\.
+1. Under **Wavelength Zones**, choose **Manage** for the Wavelength Zone\.
 
-1. Enable the Wavelength Zone\.
+1. Choose **Enable**\.
+
+1. Choose **Update zone group**\.
 
 **To enable Wavelength Zones using the AWS CLI**  
 Use the [modify\-availability\-zone\-group](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-availability-zone-group.html) command\.

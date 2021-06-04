@@ -67,7 +67,7 @@ Choose **Launch instances**, and then use the launch wizard to launch a *tempora
 + On the **Choose an Instance Type** page, leave the default instance type that the wizard selects for you\.
 + On the **Configure Instance Details** page, specify the same Availability Zone as the original instance\. If you're launching an instance in a VPC, select a subnet in this Availability Zone\.
 + On the **Add Tags** page, add the tag `Name=Temporary` to the instance to indicate that this is a temporary instance\.
-+ On the **Review** page, choose **Launch**\. Create a new key pair, download it to a safe location on your computer, and then choose **Launch Instances**\.
++ On the **Review** page, choose **Launch**\. Choose the key pair you created in Step 1, then choose **Launch Instances**\.
 
 ## Step 5: Detach the root volume from the original instance and attach it to the temporary instance<a name="step-5-detach-root-volume-and-attach-to-temp-instance"></a>
 

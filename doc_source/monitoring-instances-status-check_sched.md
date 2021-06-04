@@ -197,7 +197,7 @@ The following is example output with information about a system reboot event tha
 ------
 #### [ AWS Health ]
 
-You can use the AWS Personal Health Dashboard to learn about events that can affect your instance\. The Personal Health Dashboard organizes issues in three groups: open issues, scheduled changes, and other notifications\. The scheduled changes group contains items that are ongoing or upcoming\.
+You can use the AWS Personal Health Dashboard to learn about events that can affect your instance\. The AWS Personal Health Dashboard organizes issues in three groups: open issues, scheduled changes, and other notifications\. The scheduled changes group contains items that are ongoing or upcoming\.
 
 For more information, see [Getting started with the AWS Personal Health Dashboard](https://docs.aws.amazon.com/health/latest/ug/getting-started-phd.html) in the *AWS Health User Guide*\.
 

@@ -6,9 +6,8 @@ You can extend a VPC from its parent AWS Region into a Local Zone by creating a 
 
 By using Local Zones, you can place Capacity Reservations in multiple locations that are closer to your users\. You create and use Capacity Reservations in Local Zones in the same way that you create and use Capacity Reservations in regular Availability Zones\. The same features and instance matching behavior apply\. For more information about the pricing models that are supported in Local Zones, see [ AWS Local Zones FAQs](http://aws.amazon.com/about-aws/global-infrastructure/localzones/faqs/)\.
 
-**Limitations**
-+ You can't share Capacity Reservations that are created in a Local Zone\.
-+ You can't use Capacity Reservation groups in a Local Zone\.
+**Considerations**  
+You can't use Capacity Reservation groups in a Local Zone\.
 
 **To use a Capacity Reservation in a Local Zone**
 

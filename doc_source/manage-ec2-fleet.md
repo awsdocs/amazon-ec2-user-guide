@@ -345,7 +345,10 @@ Specify one or more Availability Zones\. If you have more than one subnet in a z
 \(Optional\) The number of units provided by the specified instance type\. If entered, this value overrides the launch template\.
 
 **Priority**  
-The priority for the launch template override\. If **AllocationStrategy** is set to `prioritized`, EC2 Fleet uses priority to determine which launch template override to use first in fulfilling On\-Demand capacity\. The highest priority is launched first\. Valid values are whole numbers starting at `0`\. The lower the number, the higher the priority\. If no number is set, the override has the lowest priority\.
+The priority for the launch template override\. The highest priority is launched first\.  
+If the On\-Demand **AllocationStrategy** is set to `prioritized`, EC2 Fleet uses priority to determine which launch template override to use first in fulfilling On\-Demand capacity\.  
+If the Spot **AllocationStrategy** is set to `capacity-optimized-prioritized`, EC2 Fleet uses priority on a best\-effort basis to determine which launch template override to use first in fulfilling Spot capacity, but optimizes for capacity first\.  
+Valid values are whole numbers starting at `0`\. The lower the number, the higher the priority\. If no number is set, the launch template override has the lowest priority\. You can set the same priority for different launch template overrides\.
 
 **TotalTargetCapacity**  
 The number of instances to launch\. You can choose instances or performance characteristics that are important to your application workload, such as vCPUs, memory, or storage\. If the request type is `maintain`, you can specify a target capacity of 0 and add capacity later\.

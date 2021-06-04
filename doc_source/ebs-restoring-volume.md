@@ -18,11 +18,11 @@ Amazon EC2 enables you to replace the root EBS volume for an instance without st
 When you replace the root volume for an instance, a new volume is restored to the original volume's launch state, or using a specific snapshot\. The original volume is detached from the instance, and the new volume is attached to the instance in its place\. The original volume is not automatically deleted\. If you no longer need it, you can delete it manually after the root volume replacement task completes\. For more information about root volume replacement task states, see [View root volume replacement tasks](#view-replacement-tasks)\.
 
 **Topics**
-+ [Consideration](#considerations)
++ [Considerations](#considerations)
 + [Replace a root volume](#replace)
 + [View root volume replacement tasks](#view-replacement-tasks)
 
-### Consideration<a name="considerations"></a>
+### Considerations<a name="considerations"></a>
 + The instance is automatically rebooted when the root volume is replaced\. The contents of the memory \(RAM\) is erased during the reboot\.
 + You can't replace the root volume if it is an instance store volume\.
 + You can't replace the root volume for metal instances\.
@@ -157,6 +157,11 @@ You can use the following procedure to replace a \(non\-root\) data volume with 
 
 Note that EBS volumes can only be attached to EC2 instances in the same Availability Zone\.
 
+Use the following method\.
+
+------
+#### [ Console ]
+
 **To replace a data volume**
 
 1. Create a volume from the snapshot and write down the ID of the new volume\. For more information, see [Create a volume from a snapshot](ebs-creating-volume.md#ebs-create-volume-from-snapshot)\.
@@ -168,3 +173,5 @@ Note that EBS volumes can only be attached to EC2 instances in the same Availabi
 1. Select the check box for the new volume that you created in step 1\. Choose **Actions**, **Attach Volume**\. Enter the instance ID and device name that you wrote down in step 2, and then choose **Attach**\.
 
 1. Connect to your instance and mount the volume\. For more information, see [Make an Amazon EBS volume available for use on Linux](ebs-using-volumes.md)\.
+
+------

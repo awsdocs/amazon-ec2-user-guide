@@ -83,7 +83,7 @@ Amazon EC2 uses service\-linked roles for the permissions that it requires to ca
 
 Amazon EC2 uses the service\-linked role named **AWSServiceRoleForEC2Spot** to launch and manage Spot Instances on your behalf\.
 
-### Permissions granted by AWSServiceRoleForEC2Spot<a name="service-linked-role-permissions-granted-by-AWSServiceRoleForEC2Spot"></a>
+### Permissions granted by **AWSServiceRoleForEC2Spot**<a name="service-linked-role-permissions-granted-by-AWSServiceRoleForEC2Spot"></a>
 
 Amazon EC2 uses **AWSServiceRoleForEC2Spot** to complete the following actions:
 + `ec2:DescribeInstances` – Describe Spot Instances
@@ -98,7 +98,7 @@ If you had an active Spot Instance request before October 2017, when Amazon EC2 
 
 If you use the AWS CLI or an API to request a Spot Instance, you must first ensure that this role exists\.
 
-**To create AWSServiceRoleForEC2Spot using the console**
+**To create **AWSServiceRoleForEC2Spot** using the console**
 
 1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
@@ -112,7 +112,7 @@ If you use the AWS CLI or an API to request a Spot Instance, you must first ensu
 
 1. On the **Review** page, choose **Create role**\.
 
-**To create AWSServiceRoleForEC2Spot using the AWS CLI**  
+**To create **AWSServiceRoleForEC2Spot** using the AWS CLI**  
 Use the [create\-service\-linked\-role](https://docs.aws.amazon.com/cli/latest/reference/iam/create-service-linked-role.html) command as follows\.
 
 ```
@@ -127,7 +127,7 @@ If you specify an [encrypted AMI](AMIEncryption.md) or an [encrypted Amazon EBS 
 
 When providing permissions, grants are an alternative to key policies\. For more information, see [Using Grants](https://docs.aws.amazon.com/kms/latest/developerguide/grants.html) and [Using Key Policies in AWS KMS](https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html) in the *AWS Key Management Service Developer Guide*\.
 
-**To grant the AWSServiceRoleForEC2Spot role permissions to use the customer managed key**
+**To grant the **AWSServiceRoleForEC2Spot** role permissions to use the customer managed key**
 + Use the [create\-grant](https://docs.aws.amazon.com/cli/latest/reference/kms/create-grant.html) command to add a grant to the customer managed key and to specify the principal \(the **AWSServiceRoleForEC2Spot** service\-linked role\) that is given permission to perform the operations that the grant permits\. The customer managed key is specified by the `key-id` parameter and the ARN of the customer managed key\. The principal is specified by the `grantee-principal` parameter and the ARN of the **AWSServiceRoleForEC2Spot** service\-linked role\.
 
   ```
@@ -142,7 +142,7 @@ When providing permissions, grants are an alternative to key policies\. For more
 
 The procedure for requesting a Spot Instance is similar to the procedure for launching an On\-Demand Instance\. You can request a Spot Instance in the following ways:
 + To request a Spot Instance using the console, use the launch instance wizard\. For more information, see [To create a Spot Instance request \(console\)](#create-spot-instance-request-console-procedure)\.
-+ To request a Spot Instance using the CLI, use the [request\-spot\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-instances.html) command or the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command\. For more information, see [To create a Spot Instance request using request-spot-instances (AWS CLI)](#create-spot-request-request-spot-instances) and [To create a Spot Instance request using run-instances (AWS CLI)](#create-spot-request-run-instances)\.
++ To request a Spot Instance using the CLI, use the [request\-spot\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-instances.html) command or the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command\. For more information, see [To create a Spot Instance request using request-spot-instances (CLI)](#create-spot-request-request-spot-instances) and [To create a Spot Instance request using run-instances (CLI)](#create-spot-request-run-instances)\.
 + To request a Spot Instance with a defined duration using the console, follow the [Create a Spot Fleet request](spot-fleet-requests.md#create-spot-fleet) procedure\. For **Tell us your application or task need**, choose **Defined duration workloads**\. For more information, see [Define a duration for your Spot Instances](#fixed-duration-spot-instances)\.
 + To request a Spot Instance with a defined duration using the CLI, use the [request\-spot\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-instances.html) command and specify the `--block-duration-minutes` parameter\. For more information, see [Define a duration for your Spot Instances](#fixed-duration-spot-instances)\.
 
