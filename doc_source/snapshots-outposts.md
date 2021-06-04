@@ -56,7 +56,7 @@ To store snapshots on an Outpost, you must have an Outpost that is provisioned w
 ## Considerations<a name="considerations"></a>
 
 Keep the following in mind when working with local snapshots\.
-+ Outposts must have connectivity their AWS Region to use local snapshots\.
++ Outposts must have connectivity to their AWS Region to use local snapshots\.
 + Snapshot metadata is stored in the AWS Region associated with the Outpost\. This does not include any snapshot data\.
 + Snapshots stored on Outposts are encrypted by default\. Unencrypted snapshots are not supported\. Snapshots that are created on an Outpost and snapshots that are copied to an Outpost are encrypted using the default KMS key for the Region or a different KMS key that you specify at the time of the request\.
 + When you create a volume on an Outpost from a local snapshot, you cannot re\-encrypt the volume using a different KMS key\. Volumes created from local snapshots must be encrypted using the same KMS key as the source snapshot\.
