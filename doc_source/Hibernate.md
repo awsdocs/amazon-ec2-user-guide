@@ -334,7 +334,7 @@ If you enabled encryption by default in this AWS Region, you can omit `Encrypted
 
 ------
 
- 
+ 
 
 ------
 #### [ New console ]
@@ -486,7 +486,7 @@ Stop-EC2Instance `
 
 ------
 
- 
+ 
 
 ------
 #### [ New console ]

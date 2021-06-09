@@ -474,7 +474,7 @@ Before you move or remove the instance, the instance must be in the `stopped` st
 
 ------
 
- 
+ 
 
 ------
 #### [ AWS CLI ]

@@ -509,7 +509,7 @@ Launch a temporary instance that you can use to install and configure the EFA so
    The command should return information about the Nvidia GPUs, Nvidia GPU drivers, and Nvidia CUDA toolkit\.
 
 ------
-#### [ Ubuntu 18\.04 ]
+#### [ Ubuntu 18\.04/20\.04 ]
 
 **To install the Nvidia GPU drivers, Nvidia CUDA toolkit, and cuDNN**
 
@@ -557,17 +557,30 @@ Launch a temporary instance that you can use to install and configure the EFA so
 1. Install the Nvidia GPU drivers, NVIDIA CUDA toolkit, and cuDNN\.
 
    1. Download and install the additional dependencies and add the CUDA repository\.
+      + Ubuntu 18\.04
 
-      ```
-      $ sudo apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/7fa2af80.pub
-      $ wget -O /tmp/deeplearning.deb http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/nvidia-machine-learning-repo-ubuntu1804_1.0.0-1_amd64.deb
-      $ sudo dpkg -i /tmp/deeplearning.deb
-      $ wget -O /tmp/cuda.pin https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-ubuntu1804.pin
-      $ sudo mv /tmp/cuda.pin /etc/apt/preferences.d/cuda-repository-pin-600
-      $ sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub
-      $ sudo add-apt-repository 'deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/ /'
-      $ sudo apt update
-      ```
+        ```
+        $ sudo apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/7fa2af80.pub
+        $ wget -O /tmp/deeplearning.deb http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/nvidia-machine-learning-repo-ubuntu1804_1.0.0-1_amd64.deb
+        $ sudo dpkg -i /tmp/deeplearning.deb
+        $ wget -O /tmp/cuda.pin https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-ubuntu1804.pin
+        $ sudo mv /tmp/cuda.pin /etc/apt/preferences.d/cuda-repository-pin-600
+        $ sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub
+        $ sudo add-apt-repository 'deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/ /'
+        $ sudo apt update
+        ```
+      + Ubuntu 20\.04
+
+        ```
+        $ sudo apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu2004/x86_64/7fa2af80.pub
+        $ wget -O /tmp/deeplearning.deb http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu2004/x86_64/nvidia-machine-learning-repo-ubuntu2004_1.0.0-1_amd64.deb
+        $ sudo dpkg -i /tmp/deeplearning.deb
+        $ wget -O /tmp/cuda.pin https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-ubuntu2004.pin
+        $ sudo mv /tmp/cuda.pin /etc/apt/preferences.d/cuda-repository-pin-600
+        $ sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/7fa2af80.pub
+        $ sudo add-apt-repository 'deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/ /'
+        $ sudo apt update
+        ```
 
    1. Install the NVIDIA, CUDA drivers and cuDNN\.
 
@@ -580,7 +593,7 @@ Launch a temporary instance that you can use to install and configure the EFA so
 1. \(`p4d.24xlarge` instances only\) Install the Nvidia Fabric Manager, start the service, and ensure that it starts automatically when the instance starts\. Nvidia Fabric Manager is required for NV Switch Management\.
 
    ```
-   $ sudo apt install -o Dpkg::Options::='--force-overwrite' nvidia-fabricmanager-465
+   $ sudo apt install -o Dpkg::Options::='--force-overwrite' nvidia-fabricmanager-450
    $ sudo systemctl start nvidia-fabricmanager
    $ sudo systemctl enable nvidia-fabricmanager
    ```

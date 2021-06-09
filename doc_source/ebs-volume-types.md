@@ -20,9 +20,9 @@ The following is a summary of the use cases and characteristics of SSD\-backed v
 
 |  | General Purpose SSD | Provisioned IOPS SSD | 
 | --- | --- | --- | 
-| Volume type | gp3 | gp2 | io2 Block Express ‡ | io2 | io1 | 
-| Durability | 99\.8% \- 99\.9% durability \(0\.1% \- 0\.2% annual failure rate\) | 99\.8% \- 99\.9% durability \(0\.1% \- 0\.2% annual failure rate\) | 99\.999% durability \(0\.001% annual failure rate\) | 99\.8% \- 99\.9% durability \(0\.1% \- 0\.2% annual failure rate\) | 
-| Use cases |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html)  | Workloads that require sub\-millisecond latency, and sustained IOPS performance or more than 64,000 IOPS or 1,000 MiB/s of throughput  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html)  | 
+| Volume type | gp3 | gp2 | io2 Block Express ‡ | io2  | io1 | 
+| Durability | 99\.8% \- 99\.9% durability \(0\.1% \- 0\.2% annual failure rate\) | 99\.8% \- 99\.9% durability \(0\.1% \- 0\.2% annual failure rate\) | 99\.999% durability \(0\.001% annual failure rate\) | 99\.999% durability \(0\.001% annual failure rate\) | 99\.8% \- 99\.9% durability \(0\.1% \- 0\.2% annual failure rate\) | 
+| Use cases |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html)  |  Workloads that require: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html)  | 
 | Volume size | 1 GiB \- 16 TiB  | 4 GiB \- 64 TiB | 4 GiB \- 16 TiB  | 
 | Max IOPS per volume \(16 KiB I/O\) | 16,000 | 256,000 | 64,000 † | 
 | Max throughput per volume | 1,000 MiB/s | 250 MiB/s \* | 4,000 MiB/s | 1,000 MiB/s † | 

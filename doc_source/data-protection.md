@@ -20,6 +20,8 @@ The data on NVMe instance store volumes is encrypted using an XTS\-AES\-256 ciph
 
 ## Encryption in transit<a name="encryption-transit"></a>
 
+All data flowing across AWS Regions over the AWS global network is automatically encrypted at the physical layer before it leaves AWS secured facilities\.
+
 SSH provides a secure communications channel for remote access to your Linux instances\. Remote access to your instances using AWS Systems Manager Session Manager and Run Command is encrypted using TLS 1\.2, and requests to create a connection are signed using SigV4\.
 
 Use an encryption protocol such as Transport Layer Security \(TLS\) to encrypt sensitive data in transit between clients and your instances\.
