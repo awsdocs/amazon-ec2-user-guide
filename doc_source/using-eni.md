@@ -445,7 +445,7 @@ The following table lists the maximum number of network interfaces per instance 
 | t3a\.2xlarge |  4  |  15  |  15  | 
 | t4g\.nano | 2 | 2 | 2 | 
 | t4g\.micro | 2 | 2 | 2 | 
-| t4g\.small | 2 | 4 | 4 | 
+| t4g\.small | 3 | 4 | 4 | 
 | t4g\.medium | 3 | 6 | 6 | 
 | t4g\.large | 3 | 12 | 12 | 
 | t4g\.xlarge | 4 | 15 | 15 | 

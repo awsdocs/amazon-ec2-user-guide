@@ -137,15 +137,10 @@ You can also craft policies so that IAM principals can only access named resourc
         {
             "Effect": "Allow",
             "Action": [
-                "s3:CompleteMultipartUpload",
                 "s3:DeleteObject",
                 "s3:GetObject",
-                "s3:InitiateMultipartUpload",
                 "s3:ListBucket",
-                "s3:ListMultipartUploads",
-                "s3:ListParts",
                 "s3:PutObject",
-                "s3:UploadPart",
                 "s3:AbortMultipartUpload",
                 "ebs:CompleteSnapshot",
                 "ebs:GetSnapshotBlock",

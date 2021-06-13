@@ -4,6 +4,8 @@ The following table describes important additions to the Amazon EC2 documentatio
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Deprecate an AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-deprecate.html) | You can now specify when an AMI is deprecated\. | June 11, 2021 | 
+| [Windows per\-second billing](#DocumentHistory) | Amazon EC2 charges for Windows\- and SQL Server\-based usage by the second, with a one\-minute minimum charge\. | June 10, 2021 | 
 | [Capacity Reservations on AWS Outposts](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/capacity-reservations-outposts.html) | You can now use Capacity Reservations on AWS Outposts\. | May 24, 2021 | 
 | [Capacity Reservation sharing](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/capacity-reservation-sharing.html) | You can now share Capacity Reservations created in Local Zones and Wavelength Zones\. | May 24, 2021 | 
 | [High memory virtualized instances](#DocumentHistory) | Virtualized high memory instances purpose\-built to run large in\-memory databases\. The new types are u\-6tb1\.56xlarge, u\-6tb1\.112xlarge, u\-9tb1\.112xlarge, and u\-12tb1\.112xlarge\. | May 11, 2021 | 

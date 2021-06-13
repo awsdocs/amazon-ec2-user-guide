@@ -26,6 +26,7 @@ When you connect to the serial console, you might observe a slight drop in your 
   + T3, T3a, T4g
   + Z1d
 + All IAM users who will use the serial console must have the required permissions\. For more information, see [Configure IAM policies for EC2 Serial Console access](configure-access-to-serial-console.md#serial-console-iam)\.
++ To connect to the serial console [using the browser\-based client](#sc-connect-browser-based-client), your browser must support WebSocket\. If your browser does not support WebSocket, connect to the serial console [using your own key and an SSH client\.](#sc-connect-SSH)
 + The instance must be in the `pending`, `running`, `stopping`, or `shutting-down` state\. If the instance is `terminated` or `stopped`, you can't connect to the serial console\. For more information about the instance states, see [Instance lifecycle](ec2-instance-lifecycle.md)\.
 
 You do not need an sshd server installed or running on your instance\.

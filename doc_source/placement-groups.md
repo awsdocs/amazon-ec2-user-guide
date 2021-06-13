@@ -83,7 +83,7 @@ Before you use placement groups, be aware of the following rules:
 ### Cluster placement group rules and limitations<a name="placement-groups-limitations-cluster"></a>
 
 The following rules apply to cluster placement groups:
-+ Instances in a cluster placement group you must use the following supported instance types:
++ The following instance types are supported:
   + [Current generation](instance-types.md#current-gen-instances) instances, except for [burstable performance](burstable-performance-instances.md) instances \(for example, T2\) and [Mac1 instances](ec2-mac-instances.md)\.
   + The following [previous generation](instance-types.md#previous-gen-instances) instances: A1, C3, `cc2.8xlarge`, `cr1.8xlarge`, G2, `hs1.8xlarge`, I2, and R3\.
 + A cluster placement group can't span multiple Availability Zones\.

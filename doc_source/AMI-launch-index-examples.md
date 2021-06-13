@@ -2,7 +2,7 @@
 
 This example demonstrates how you can use both user data and instance metadata to configure your instances\. 
 
-Alice wants to launch four instances of her favorite database AMI, with the first acting as the original instance and the remaining three acting as replicas\. When she launches them, she wants to add user data about the replication strategy for each replica\. She is aware that this data will be available to all four instances, so she needs to structure the user data in a way that allows each instance to recognize which parts are applicable to it\. She can do this using the `ami-launch-index` instance metadata value, which will be unique for each instance\.
+Alice wants to launch four instances of her favorite database AMI, with the first acting as the original instance and the remaining three acting as replicas\. When she launches them, she wants to add user data about the replication strategy for each replica\. She is aware that this data will be available to all four instances, so she needs to structure the user data in a way that allows each instance to recognize which parts are applicable to it\. She can do this using the `ami-launch-index` instance metadata value, which will be unique for each instance\. If she starts more than one instance at the same time, the `ami-launch-index` indicates the order in which the instances were launched\. The value of the first instance launched is `0`\.
 
 Here is the user data that Alice has constructed\.
 

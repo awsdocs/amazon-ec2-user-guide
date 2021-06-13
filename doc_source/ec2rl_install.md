@@ -41,7 +41,7 @@ If your system has the required Python version, you can install the standard bui
 1. Unpack the tarball:
 
    ```
-   tar -xvf ec2rl.tgz
+   tar -xzvf ec2rl.tgz
    ```
 
 1. Verify the installation by listing out the help file:
