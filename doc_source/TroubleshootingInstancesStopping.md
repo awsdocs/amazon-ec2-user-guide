@@ -2,6 +2,8 @@
 
 If you have stopped your Amazon EBS\-backed instance and it appears stuck in the `stopping` state, there may be an issue with the underlying host computer\.
 
+It is expected that some instance types will take longer to transition into `stopped` state. For example, GPU-enabled families like P3, will typically take around 10 minutes to complete the process.
+
 There is no cost for instance usage while an instance is in the `stopping` state or in any other state except `running`\. You are only charged for instance usage when an instance is in the `running` state\.
 
 ## Force stop the instance<a name="force-stop-instance"></a>
