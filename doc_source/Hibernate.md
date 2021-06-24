@@ -62,7 +62,7 @@ To hibernate an On\-Demand Instance or Reserved Instance, the following prerequi
   + C3, C4, C5
   + I3
   + M3, M4, M5, M5a, M5ad
-  + R3, R4, R5, R5a, R5ad
+  + R3, R4, R5, R5a, R5ad 
   + T2, T3, T3a
 + **Instance RAM size** \- must be less than 150 GB\.
 + **Instance size** \- not supported for bare metal instances\.

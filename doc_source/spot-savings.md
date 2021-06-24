@@ -2,9 +2,9 @@
 
 You can view the usage and savings information for Spot Instances at the per\-fleet level, or for all running Spot Instances\. At the per\-fleet level, the usage and savings information includes all instances launched and terminated by the fleet\. You can view this information from the last hour or the last three days\.
 
-The following screenshot from the Spot Requests page shows the Spot usage and savings information for a Spot Fleet\.
+The following screenshot from the **Savings** section shows the Spot usage and savings information for a Spot Fleet\.
 
-![\[The Spot Fleet Savings tab in the Amazon EC2 console.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/spot-savings.png)
+![\[The Savings section on the Spot Fleet details page.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/spot-savings.png)
 
 You can view the following usage and savings information:
 + **Spot Instances** – The number of Spot Instances launched and terminated by the Spot Fleet\. When viewing the savings summary, the number represents all your running Spot Instances\.
@@ -25,7 +25,9 @@ Savings information can only be viewed using the Amazon EC2 console\.
 
 1. On the navigation pane, choose **Spot Requests**\.
 
-1. Select a Spot Fleet request and choose **Savings**\.
+1. Select the ID of a Spot Fleet request and scroll to the **Savings** section\.
+
+   Alternatively, select the check box next to the Spot Fleet request ID and choose the **Savings** tab\.
 
 1. By default, the page displays usage and savings information for the last three days\. You can choose **last hour** or the **last three days**\. For Spot Fleets that were launched less than an hour ago, the page shows the estimated savings for the hour\.
 
@@ -35,4 +37,4 @@ Savings information can only be viewed using the Amazon EC2 console\.
 
 1. On the navigation pane, choose **Spot Requests**\.
 
-1. Choose **Savings Summary**\.
+1. Choose **Savings summary**\.

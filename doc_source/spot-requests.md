@@ -2,7 +2,7 @@
 
 To use Spot Instances, you create a Spot Instance request that includes the desired number of instances, the instance type, the Availability Zone, and the maximum price that you are willing to pay per instance hour\. If your maximum price exceeds the current Spot price, Amazon EC2 fulfills your request immediately if capacity is available\. Otherwise, Amazon EC2 waits until your request can be fulfilled or until you cancel the request\.
 
-The following illustration shows how Spot requests work\. Notice that the request type \(one\-time or persistent\) determines whether the request is opened again when Amazon EC2 interrupts a Spot Instance or if you stop a Spot Instance\. If the request is persistent, the request is opened again after your Spot Instance is interrupted\. If the request is persistent and you stop your Spot Instance, the request only opens after you start your Spot Instance\.
+The following illustration shows how Spot Instance requests work\. Notice that the request type \(one\-time or persistent\) determines whether the request is opened again when Amazon EC2 interrupts a Spot Instance or if you stop a Spot Instance\. If the request is persistent, the request is opened again after your Spot Instance is interrupted\. If the request is persistent and you stop your Spot Instance, the request only opens after you start your Spot Instance\.
 
 ![\[How Spot Instance requests work\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/spot_lifecycle.png)
 
@@ -46,7 +46,7 @@ Spot Instances with a defined duration \(also known as Spot blocks\) are designe
 
 You can use a duration of 1, 2, 3, 4, 5, or 6 hours\. The price that you pay depends on the specified duration\. To view the current prices for a 1\-hour duration or a 6\-hour duration, see [Spot Instance Prices](https://aws.amazon.com/ec2/spot/pricing/#Spot_Instance_Prices)\. You can use these prices to estimate the cost of the 2, 3, 4, and 5\-hour durations\. When a request with a duration is fulfilled, the price for your Spot Instance is fixed, and this price remains in effect until the instance terminates\. You are billed at this price for each hour or partial hour that the instance is running\. A partial instance hour is billed to the nearest second\.
 
-When you define a duration in your Spot request, the duration period for each Spot Instance starts as soon as the instance receives its instance ID\. The Spot Instance runs until you terminate it or the duration period ends\. At the end of the duration period, Amazon EC2 marks the Spot Instance for termination and provides a Spot Instance termination notice, which gives the instance a two\-minute warning before it terminates\. In rare situations, Spot blocks may be interrupted due to Amazon EC2 capacity needs\. In these cases, we provide a two\-minute warning before we terminate an instance, and you are not charged for the terminated instances even if you used them\.
+When you define a duration in your Spot Instance request, the duration period for each Spot Instance starts as soon as the instance receives its instance ID\. The Spot Instance runs until you terminate it or the duration period ends\. At the end of the duration period, Amazon EC2 marks the Spot Instance for termination and provides a Spot Instance termination notice, which gives the instance a two\-minute warning before it terminates\. In rare situations, Spot blocks may be interrupted due to Amazon EC2 capacity needs\. In these cases, we provide a two\-minute warning before we terminate an instance, and you are not charged for the terminated instances even if you used them\.
 
 New accounts or accounts with no previous billing history with AWS are not eligible for Spot Instances with a defined duration \(also known as Spot blocks\)\.
 
@@ -54,7 +54,7 @@ New accounts or accounts with no previous billing history with AWS are not eligi
 Follow the [Create a Spot Fleet request](spot-fleet-requests.md#create-spot-fleet) procedure\. To launch Spot Instances with a defined duration, for **Tell us your application or task need**, choose **Defined duration workloads**\.
 
 **To launch Spot Instances with a defined duration \(AWS CLI\)**  
-To specify a duration for your Spot Instances, include the `--block-duration-minutes` option with the [request\-spot\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-instances.html) command\. For example, the following command creates a Spot request that launches Spot Instances that run for two hours\.
+To specify a duration for your Spot Instances, include the `--block-duration-minutes` option with the [request\-spot\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-instances.html) command\. For example, the following command creates a Spot Instance request that launches Spot Instances that run for two hours\.
 
 ```
 aws ec2 request-spot-instances \
@@ -222,7 +222,7 @@ aws ec2 request-spot-instances \
     --launch-specification file://specification.json
 ```
 
-For example launch specification files to use with these commands, see [Spot Instance request example launch specifications](spot-request-examples.md)\. If you download a launch specification file from the console, you must use the [request\-spot\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-fleet.html) command instead \(the console specifies a Spot request using a Spot Fleet\)\.
+For example launch specification files to use with these commands, see [Spot Instance request example launch specifications](spot-request-examples.md)\. If you download a launch specification file from the console, you must use the [request\-spot\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-fleet.html) command instead \(the console specifies a Spot Instance request using a Spot Fleet\)\.
 
 **To create a Spot Instance request using [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) \(AWS CLI\)**  
 Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-instances.html) command and specify the Spot Instance options in the `--instance-market-options` parameter\.
@@ -568,14 +568,14 @@ If your Spot Instance request is `active` and has an associated running Spot Ins
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation pane, choose **Spot Requests** and select the Spot request\.
+1. In the navigation pane, choose **Spot Requests** and select the Spot Instance request\.
 
 1. Choose **Actions**, **Cancel request**\.
 
 1. \(Optional\) If you are finished with the associated Spot Instances, you can terminate them\. In the **Cancel Spot request** dialog box, select **Terminate instances**, and then choose **Confirm**\.
 
 **To cancel a Spot Instance request \(AWS CLI\)**
-+ Use the [cancel\-spot\-instance\-requests](https://docs.aws.amazon.com/cli/latest/reference/ec2/cancel-spot-instance-requests.html) command to cancel the specified Spot request\.
++ Use the [cancel\-spot\-instance\-requests](https://docs.aws.amazon.com/cli/latest/reference/ec2/cancel-spot-instance-requests.html) command to cancel the specified Spot Instance request\.
 
   ```
   aws ec2 cancel-spot-instance-requests --spot-instance-request-ids sir-08b93456
@@ -590,8 +590,8 @@ While a Spot Instance is stopped, you can modify some of its instance attributes
 We don't charge usage for a stopped Spot Instance, or data transfer fees, but we do charge for the storage for any Amazon EBS volumes\.
 
 **Limitations**
-+ You can only stop a Spot Instance if the Spot Instance was launched from a `persistent` Spot request\.
-+ You can't stop a Spot Instance if the associated Spot request is cancelled\. When the Spot request is cancelled, you can only terminate the Spot Instance\.
++ You can only stop a Spot Instance if the Spot Instance was launched from a `persistent` Spot Instance request\.
++ You can't stop a Spot Instance if the associated Spot Instance request is cancelled\. When the Spot Instance request is cancelled, you can only terminate the Spot Instance\.
 + You can't stop a Spot Instance if it is part of a fleet or launch group, Availability Zone group, or Spot block\.
 
 ------
@@ -681,11 +681,11 @@ You can only start a Spot Instance if:
 
 ## Terminate a Spot Instance<a name="terminating-a-spot-instance"></a>
 
-If you terminate a running or stopped Spot Instance that was launched by a persistent Spot request, the Spot request transitions to the `open` state so that a new Spot Instance can be launched\. To ensure that no new Spot Instance is launched, you must first cancel the Spot request\.
+If you terminate a running or stopped Spot Instance that was launched by a persistent Spot Instance request, the Spot Instance request transitions to the `open` state so that a new Spot Instance can be launched\. To ensure that no new Spot Instance is launched, you must first cancel the Spot Instance request\.
 
-If you cancel an `active` Spot request that has a running Spot Instance, the running Spot Instance is not automatically terminated; you must manually terminate the Spot Instance\.
+If you cancel an `active` Spot Instance request that has a running Spot Instance, the running Spot Instance is not automatically terminated; you must manually terminate the Spot Instance\.
 
-If you cancel a `disabled` Spot request that has a stopped Spot Instance, the stopped Spot Instance is automatically terminated by the Amazon EC2 Spot service\. There might be a short lag between when you cancel the Spot request and when the Spot service terminates the Spot Instance\.
+If you cancel a `disabled` Spot Instance request that has a stopped Spot Instance, the stopped Spot Instance is automatically terminated by the Amazon EC2 Spot service\. There might be a short lag between when you cancel the Spot Instance request and when the Spot service terminates the Spot Instance\.
 
 For information about canceling a Spot Instance request, see [Cancel a Spot Instance request](#using-spot-instances-cancel)\.
 

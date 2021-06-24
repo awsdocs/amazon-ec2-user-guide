@@ -39,7 +39,7 @@ For more information, see [Amazon EC2 C6g Instances](https://aws.amazon.com/ec2/
 + [Network performance](#compute-network-performance)
 + [SSD I/O performance](#compute-ssd-perf)
 + [Instance features](#compute-instances-features)
-+ [Release notes](#compute-instance-limits)
++ [Release notes](#compute-instance-release-notes)
 
 ## Hardware specifications<a name="compute-instances-hardware"></a>
 
@@ -149,7 +149,7 @@ The following is a summary of network performance for compute optimized instance
 | c5a\.16xlarge \| c5a\.16xlarge \| c5ad\.16xlarge \| c5ad\.24xlarge \| c6g\.12xlarge \| c6gd\.12xlarge | 20 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5n\.4xlarge and smaller  \| c6gn\.2xlarge and smaller | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
 | c5\.18xlarge \| c5\.24xlarge \| c5\.metal \| c5d\.18xlarge \| c5d\.24xlarge \| c5d\.metal  \| c6g\.16xlarge \| c6g\.metal  \| c6gd\.16xlarge \| c6gd\.metal  \| c6gn\.4xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
-| c5n\.9xlarge \| c6gn\.8xlarge | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
+| c5n\.9xlarge \| c6gn\.8xlarge  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c6gn\.12xlarge | 75 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5n\.18xlarge \| c5n\.metal  \| c6gn\.16xlarge  | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
 
@@ -221,7 +221,7 @@ For more information, see the following:
 + [Amazon EC2 instance store](InstanceStorage.md)
 + [Placement groups](placement-groups.md)
 
-## Release notes<a name="compute-instance-limits"></a>
+## Release notes<a name="compute-instance-release-notes"></a>
 + C5 and C5d instances feature a 3\.1 GHz Intel Xeon Platinum 8000 series processor from either the first generation \(Skylake\-SP\) or second generation \(Cascade Lake\)\.
 + C5a and C5ad instances feature a second\-generation AMD EPYC processor \(Rome\) running at frequencies as high as 3\.3\. GHz\.
 + C6g, C6gd, and C6gn instances feature an AWS Graviton2 processor based on 64\-bit Arm architecture\.
@@ -250,7 +250,11 @@ For more information, see the following:
   + SUSE Linux Enterprise Server 15 or later \(64\-bit Arm\)
   + Debian 10 or later \(64\-bit Arm\)
 + Instances built on the Nitro System instances support a maximum of 28 attachments, including network interfaces, EBS volumes, and NVMe instance store volumes\. For more information, see [Nitro System volume limits](volume_limits.md#instance-type-volume-limits)\.
-+ To get the best performance from your C6gn instances, ensure that they have ENA driver version 2\.2\.9 or later\.
++ To get the best performance from your C6gn instances, ensure that they have ENA driver version 2\.2\.9 or later\. Using an ENA driver earlier than version 1\.2 with these instances causes network interface attachment failures\. The following AMIs have a compatible ENA driver\.
+  + Amazon Linux 2 with kernel 4\.14\.186
+  + Ubuntu 20\.04 with kernel 5\.4\.0\-1025\-aws
+  + Red Hat Enterprise Linux 8\.3 with kernel 4\.18\.0\-240\.1\.1\.el8\_3\.ARCH
+  + SUSE Linux Enterprise Server 15 SP2 with kernel 5\.4\.0\-1025\-aws
 + [Traffic Mirroring](https://docs.aws.amazon.com/vpc/latest/mirroring/) is not supported on C6gn instances\.
 + To launch AMIs for all Linux distributions on C6gn instances, use AMIs with the latest version and run an update for the latest driver\. For earlier versions, download the latest driver from [GitHub](https://github.com/amzn/amzn-drivers/tree/master/kernel/linux/ena)\.
 + Launching a bare metal instance boots the underlying server, which includes verifying all hardware and firmware components\. This means that it can take 20 minutes from the time the instance enters the running state until it becomes available over the network\.

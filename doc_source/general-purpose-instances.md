@@ -59,7 +59,7 @@ For more information, see [Amazon EC2 T2 Instances](http://aws.amazon.com/ec2/in
 + [Network performance](#general-purpose-network-performance)
 + [SSD I/O performance](#general-purpose-ssd-perf)
 + [Instance features](#general-purpose-features)
-+ [Release notes](#general-purpose-instances-limits)
++ [Release notes](#general-purpose-instances-release-notes)
 + [Burstable performance instances](burstable-performance-instances.md)
 + [Amazon EC2 Mac instances](ec2-mac-instances.md)
 
@@ -300,7 +300,7 @@ For more information, see the following:
 + [Amazon EC2 instance store](InstanceStorage.md)
 + [Placement groups](placement-groups.md)
 
-## Release notes<a name="general-purpose-instances-limits"></a>
+## Release notes<a name="general-purpose-instances-release-notes"></a>
 + M5, M5d, and T3 instances feature a 3\.1 GHz Intel Xeon Platinum 8000 series processor from either the first generation \(Skylake\-SP\) or second generation \(Cascade Lake\)\.
 + M5a, M5ad, and T3a instances feature a 2\.5 GHz AMD EPYC 7000 series processor\.
 + M5zn instances are powered by Intel Cascade Lake CPUs that deliver all\-core turbo frequency of up to 4\.5 GHz and up to 100 Gbps network bandwidth\.

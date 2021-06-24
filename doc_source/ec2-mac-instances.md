@@ -17,6 +17,7 @@ For more information, see [Amazon EC2 Mac Instances](https://aws.amazon.com/mac)
 + [EC2 System Monitoring for macOS](#mac-instance-system-monitor)
 + [Increase the size of an EBS volume on your Mac instance](#mac-instance-increase-volume)
 + [Stop and terminate your Mac instance](#mac-instance-stop)
++ [Subscribe to macOS AMI notifications](#subscribe-notifications)
 + [Release the Dedicated Host for your Mac instance](#mac-instance-release-dedicated-host)
 
 ## Considerations<a name="mac-instance-considerations"></a>
@@ -349,6 +350,54 @@ When you stop or terminate a Mac instance, Amazon EC2 performs a scrubbing workf
 You can't start the stopped Mac instance or launch a new Mac instance until after the scrubbing workflow completes, at which point the Dedicated Host enters the `available` state\.
 
 Metering and billing is paused when the Dedicated Host enters the `pending` state\. You are not charged for the duration of the scrubbing workflow\.
+
+## Subscribe to macOS AMI notifications<a name="subscribe-notifications"></a>
+
+To be notified when new AMIs are released or when bridgeOS has been updated, subscribe for notifications using Amazon SNS\.
+
+**To subscribe to macOS AMI notifications**
+
+1. Open the Amazon SNS console at [https://console\.aws\.amazon\.com/sns/v3/home](https://console.aws.amazon.com/sns/v3/home)\.
+
+1. In the navigation bar, change the Region to **US East \(N\. Virginia\)**, if necessary\. You must use this Region because the SNS notifications that you are subscribing to were created in this Region\.
+
+1. In the navigation pane, choose **Subscriptions**\.
+
+1. Choose **Create subscription**\.
+
+1. For the **Create subscription** dialog box, do the following:
+
+   1. For **Topic ARN**, copy and paste one of the following Amazon Resource Names \(ARNs\):
+      + **arn:aws:sns:us\-east\-1:898855652048:amazon\-ec2\-macos\-ami\-updates**
+      + **arn:aws:sns:us\-east\-1:898855652048:amazon\-ec2\-bridgeos\-updates**
+
+      For **Protocol**:
+
+   1. **Email:**
+
+      For **Endpoint**, type an email address that you can use to receive the notifications\. After you create your subscription you'll receive a confirmation message with the subject line `AWS Notification - Subscription Confirmation`\. Open the email and choose **Confirm subscription** to complete your subscription
+
+   1. **SMS:**
+
+      For **Endpoint**, type a phone number that you can use to receive the notifications\.
+
+   1. **AWS Lambda, Amazon SQS, Amazon Kinesis Data Firehose** \(*Notifications will come in JSON format*\):
+
+      For **Endpoint**, enter the arn for the Lambda function, SQS queue, or Firehose stream you can use to receive the notifications\.
+
+   1. Choose **Create subscription**\.
+
+Whenever macOS AMIs are released, we send notifications to the subscribers of the `amazon-ec2-macos-ami-updates` topic\. Whenever bridgeOS is updated, we send notifications to the subscribers of the `amazon-ec2-bridgeos-updates` topic\. If you no longer want to receive these notifications, use the following procedure to unsubscribe\.
+
+**To unsubscribe from macOS AMI notifications**
+
+1. Open the Amazon SNS console at [https://console\.aws\.amazon\.com/sns/v3/home](https://console.aws.amazon.com/sns/v3/home)\.
+
+1. In the navigation bar, change the Region to **US East \(N\. Virginia\)**, if necessary\. You must use this Region because the SNS notifications were created in this Region\.
+
+1. In the navigation pane, choose **Subscriptions**\.
+
+1. Select the subscriptions and then choose **Actions**, **Delete subscriptions** When prompted for confirmation, choose **Delete**\.
 
 ## Release the Dedicated Host for your Mac instance<a name="mac-instance-release-dedicated-host"></a>
 

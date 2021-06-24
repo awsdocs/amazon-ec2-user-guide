@@ -128,7 +128,7 @@ If you previously configured `AuthorizedKeysCommand` and `AuthorizedKeysCommandU
 
 1. Install the Instance Connect package on your instance\.
 
-   For Ubuntu, use the sudo apt\-get command to install the `.deb` package\.
+   For Ubuntu, use the sudo apt\-get command\.
 
    ```
    ubuntu:~$ sudo apt-get install ec2-instance-connect
@@ -154,7 +154,7 @@ If you previously configured `AuthorizedKeysCommand` and `AuthorizedKeysCommandU
    Instance Connect was successfully installed if the `AuthorizedKeysCommand` and `AuthorizedKeysCommandUser` lines in the `/lib/systemd/system/ssh.service.d/ec2-instance-connect.conf` file contain the following values:
 
    ```
-   AuthorizedKeysCommand /usr/share/ec2-instance-connect/eic_run_authorized_keys %u %f
+   AuthorizedKeysCommand /usr/share/ec2-instance-connect/eic_run_authorized_keys %%u %%f
    AuthorizedKeysCommandUser ec2-instance-connect
    ```
    + `AuthorizedKeysCommand` sets the `eic_run_authorized_keys` script to look up the keys from the instance metadata

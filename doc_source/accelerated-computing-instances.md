@@ -153,8 +153,8 @@ The following is a summary of network performance for accelerated computing inst
 
 | Instance type | Network performance | Enhanced networking | 
 | --- | --- | --- | 
-|  f1\.4xlarge and smaller \| g3\.4xlarge \| g4ad\.4xlarge \| p3\.2xlarge  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
-|  g3s\.xlarge \| g3\.8xlarge \| p2\.8xlarge \| p3\.8xlarge  | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  f1\.4xlarge and smaller \| g3\.4xlarge \| g3s\.xlarge \| g4ad\.4xlarge \| p3\.2xlarge  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
+|  g3\.8xlarge \| p2\.8xlarge \| p3\.8xlarge  | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
 | g4ad\.8xlarge | 15 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  g4dn\.4xlarge and smaller  \| inf1\.2xlarge and smaller  | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
 |  f1\.16xlarge \| g3\.16xlarge \| g4ad\.16xlarge \| inf1\.6xlarge \|  p2\.16xlarge \| p3\.16xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 

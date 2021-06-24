@@ -70,7 +70,7 @@ The following instances support multiple network cards\. All other instance type
 
 | Instance type | Number of network cards | 
 | --- | --- | 
-| P4d | 4 | 
+| p4d\.24xlarge | 4 | 
 
 ## IP addresses per network interface per instance type<a name="AvailableIpPerENI"></a>
 
@@ -684,7 +684,7 @@ You can use one of the following commands\. For more information about these com
 
 You can detach a secondary network interface that is attached to an EC2 instance at any time, using either the **Instances** or **Network Interfaces** page of the Amazon EC2 console\.
 
-You can't use the Amazon EC2 console to detach a network interface that is attached to a resource from another service, such as an Elastic Load Balancing load balancer, a Lambda function, a WorkSpace, or a NAT gateway\. The network interfaces for those resources are deleted when the resource is deleted\.
+If you try to detach a network interface that is attached to a resource from another service, such as an Elastic Load Balancing load balancer, a Lambda function, a WorkSpace, or a NAT gateway, you get an error that you do not have permission to access the resource\. To find which service created the resource attached to a network interface, check the description of the network interface\. If you delete the resource, then its network interface is deleted\.
 
 ------
 #### [ Instances page ]
@@ -905,7 +905,9 @@ You can use one of the following commands\. For more information about these com
 
 ### Delete a network interface<a name="delete_eni"></a>
 
-To delete an instance, you must first detach the network interface\. Deleting a network interface releases all attributes associated with the interface and releases any private IP addresses or Elastic IP addresses to be used by another instance\.
+Deleting a network interface releases all attributes associated with the interface and releases any private IP addresses or Elastic IP addresses to be used by another instance\.
+
+You cannot delete a network interface that is in use\. First, you must [detach the network interface](#detach_eni)\.
 
 ------
 #### [ New console ]

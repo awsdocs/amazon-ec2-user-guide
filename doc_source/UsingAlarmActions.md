@@ -51,7 +51,7 @@ Instances that use an Amazon EBS volume as the root device can be stopped or ter
 
    1. For **Group samples by** and **Type of data to sample**, choose a statistic and a metric\. In this example, choose **Average** and **CPU utilization**\.
 
-   1. For **Alarm When** and **Percent**, specify the metric threshold\. In this example, specify **>=** and **10** percent\.
+   1. For **Alarm When** and **Percent**, specify the metric threshold\. In this example, specify **<=** and **10** percent\.
 
    1. For **Consecutive period** and **Period**, specify the evaluation period for the alarm\. In this example, specify **1** consecutive period of **5 Minutes**\.
 

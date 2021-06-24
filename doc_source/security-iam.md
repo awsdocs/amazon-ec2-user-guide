@@ -7,6 +7,7 @@ Your security credentials identify you to services in AWS and grant you unlimite
 + [Amazon EC2 permission attributes](#AmazonEC2Permissions)
 + [IAM and Amazon EC2](#intro-to-iam)
 + [IAM policies for Amazon EC2](iam-policies-for-amazon-ec2.md)
++ [AWS managed policies for Amazon Elastic Compute Cloud](security-iam-awsmanpol.md)
 + [IAM roles for Amazon EC2](iam-roles-for-amazon-ec2.md)
 + [Authorize inbound traffic for your Linux instances](authorizing-access-to-an-instance.md)
 

@@ -6,6 +6,7 @@ You can't connect to or start an instance after you've terminated it\. However, 
 
 **Topics**
 + [Instance termination](#termination-overview)
++ [Terminating multiple instances with termination protection across Availability Zones](#terminate-multiple)
 + [What happens when you terminate an instance](#what-happens-terminate)
 + [Terminate an instance](#terminating-instances-console)
 + [Enable termination protection](#Using_ChangingDisableAPITermination)
@@ -26,6 +27,20 @@ You can prevent an instance from being terminated accidentally by someone using 
 You can control whether an instance should stop or terminate when shutdown is initiated from the instance using an operating system command for system shutdown\. For more information, see [Change the instance initiated shutdown behavior](#Using_ChangingInstanceInitiatedShutdownBehavior)\.
 
 If you run a script on instance termination, your instance might have an abnormal termination, because we have no way to ensure that shutdown scripts run\. Amazon EC2 attempts to shut an instance down cleanly and run any system shutdown scripts; however, certain events \(such as hardware failure\) may prevent these system shutdown scripts from running\.
+
+## Terminating multiple instances with termination protection across Availability Zones<a name="terminate-multiple"></a>
+
+If you terminate multiple instances across multiple Availability Zones, and one or more of the specified instances are enabled for termination protection, the request fails with the following results:
++ The specified instances that are in the same Availability Zone as the protected instance are not terminated\.
++ The specified instances that are in different Availability Zones, where no other specified instances are protected, are successfully terminated\.
+
+For example, say you have the following instances:
+
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html)
+
+If you attempt to terminate all of these instances in the same request, the request reports failure with the following results:
++ **Instance A** and **Instance B** are successfully terminated because none of the specified instances in `us-east-1a` are enabled for termination protection\.
++ **Instance C** and **Instance D** fail to terminate because at least one of the specified instances in `us-east-1b` \(**Instance C**\) is enabled for termination protection\.
 
 ## What happens when you terminate an instance<a name="what-happens-terminate"></a>
 

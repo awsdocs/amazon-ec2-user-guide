@@ -30,12 +30,7 @@ If you have an AWS account already, skip to the next task\. If you don't have an
 
 AWS uses public\-key cryptography to secure the login information for your instance\. A Linux instance has no password; you use a key pair to log in to your instance securely\. You specify the name of the key pair when you launch your instance, then provide the private key when you log in using SSH\. 
 
-If you haven't created a key pair already, you can create one using the Amazon EC2 console\. Note that if you plan to launch instances in multiple Regions, you'll need to create a key pair in each Region\. For more information about Regions, see [Regions and Zones](using-regions-availability-zones.md)\.
-
-You can create a key pair using one of the following methods\. 
-
-------
-#### [ New console ]
+If you haven't created a key pair already, you can create one by using the Amazon EC2 console\. Note that if you plan to launch instances in multiple Regions, you'll need to create a key pair in each Region\. For more information about Regions, see [Regions and Zones](using-regions-availability-zones.md)\.
 
 **To create your key pair**
 
@@ -62,35 +57,6 @@ This is the only chance for you to save the private key file\.
    ```
 
    If you do not set these permissions, then you cannot connect to your instance using this key pair\. For more information, see [Error: Unprotected private key file](TroubleshootingInstancesConnecting.md#troubleshoot-unprotected-key)\.
-
-------
-#### [ Old console ]
-
-**To create your key pair**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, under **NETWORK & SECURITY**, choose **Key Pairs**\.
-**Note**  
-The navigation pane is on the left side of the Amazon EC2 console\. If you do not see the pane, it might be minimized; choose the arrow to expand the pane\. 
-
-1. Choose **Create Key Pair**\.
-
-1. For **Key pair name**, enter a name for the new key pair, and then choose **Create**\. The name can include up to 255 ASCII characters\. It can’t include leading or trailing spaces\.
-
-1. The private key file is automatically downloaded by your browser\. The base file name is the name you specified as the name of your key pair, and the file name extension is `.pem`\. Save the private key file in a safe place\.
-**Important**  
-This is the only chance for you to save the private key file\.
-
-1. If you will use an SSH client on a macOS or Linux computer to connect to your Linux instance, use the following command to set the permissions of your private key file so that only you can read it\.
-
-   ```
-   chmod 400 my-key-pair.pem
-   ```
-
-   If you do not set these permissions, then you cannot connect to your instance using this key pair\. For more information, see [Error: Unprotected private key file](TroubleshootingInstancesConnecting.md#troubleshoot-unprotected-key)\.
-
-------
 
 For more information, see [Amazon EC2 key pairs and Linux instances](ec2-key-pairs.md)\.
 

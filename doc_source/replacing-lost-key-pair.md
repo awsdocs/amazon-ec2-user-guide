@@ -24,7 +24,7 @@ Create a new key pair using either the Amazon EC2 console or a third\-party tool
 Make note of the following information because you'll need it to complete this procedure\.
 
 ------
-#### [ New console ]
+#### [ Console ]
 
 **To get information about your original instance**
 
@@ -37,19 +37,6 @@ Make note of the following information because you'll need it to complete this p
 1. On the **Networking** tab, make note of the Availability Zone\.
 
 1. On the **Storage** tab, under **Root device name**, make note of the device name for the root volume \(for example, `/dev/xvda`\)\. Then, under **Block devices**, find this device name and make note of the volume ID \(for example, vol\-0a1234b5678c910de\)\.
-
-------
-#### [ Old console ]
-
-**To get information about your original instance**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. Choose **Instances** in the navigation pane, and then select the instance that you'd like to connect to\. \(We'll refer to this as the *original* instance\.\)
-
-1. From the **Description** tab, save the following information that you need to complete this procedure\.
-   + Write down the instance ID, AMI ID, and Availability Zone of the original instance\.
-   + In the **Root device** field, take note of the device name for the root volume \(for example, `/dev/sda1` or `/dev/xvda`\)\. Choose the link and write down the volume ID in the **EBS ID** field \(vol\-*xxxxxxxxxxxxxxxxx*\)\.
 
 ------
 

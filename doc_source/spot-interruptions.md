@@ -52,7 +52,7 @@ For example, consider a Spot Fleet with the `lowestPrice` allocation strategy\. 
 
 While a Spot Instance is stopped, you can modify some of its instance attributes, but not the instance type\. If you detach or delete an EBS volume, it is not attached when the Spot Instance is started\. If you detach the root volume and the Spot service attempts to start the Spot Instance, instance start fails and the Spot service terminates the stopped instance\.
 
-You can terminate a Spot Instance while it is stopped\. If you cancel a Spot request, an EC2 Fleet, or a Spot Fleet, the Spot service terminates any associated Spot Instances that are stopped\.
+You can terminate a Spot Instance while it is stopped\. If you cancel a Spot Instance request, an EC2 Fleet, or a Spot Fleet, the Spot service terminates any associated Spot Instances that are stopped\.
 
 While a Spot Instance is stopped, you are charged only for the EBS volumes, which are preserved\. With EC2 Fleet and Spot Fleet, if you have many stopped instances, you can exceed the limit on the number of EBS volumes for your account\.
 
@@ -103,7 +103,7 @@ For information about hibernating On\-Demand Instances, see [Hibernate your On\-
 
 ## Specify the interruption behavior<a name="specifying-spot-interruption-behavior"></a>
 
-If you do not specify an interruption behavior, the default is to terminate Spot Instances when they are interrupted\. You can specify the interruption behavior when you create a Spot request\. The way in which you specify the interruption behavior is different depending on how you request Spot Instances\.
+If you do not specify an interruption behavior, the default is to terminate Spot Instances when they are interrupted\. You can specify the interruption behavior when you create a Spot Instance request\. The way in which you specify the interruption behavior is different depending on how you request Spot Instances\.
 
 If you request Spot Instances using the [launch instance wizard](launching-instance.md), you can specify the interruption behavior as follows: Select the **Persistent request** check box and then, from **Interruption behavior**, choose an interruption behavior\.
 

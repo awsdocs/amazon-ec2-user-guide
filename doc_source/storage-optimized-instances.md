@@ -129,7 +129,7 @@ The following is a summary of network performance for storage optimized instance
 | d3en\.6xlarge | 40 Gbps | [ENA](enhanced-networking-ena.md) | 
 | d3\.8xlarge \| d3en\.8xlarge \| i3en\.12xlarge | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
 | d3en\.12xlarge | 75 Gbps | [ENA](enhanced-networking-ena.md) | 
-| i3en\.24xlarge \| i3en\.metal | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  i3en\.24xlarge \| i3en\.metal | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
 
 † These instances use a network I/O credit mechanism to allocate network bandwidth to instances based on average bandwidth utilization\. They accrue credits when their bandwidth is below their baseline bandwidth, and can use these credits when they perform network data transfers\. For more information, open a support case and ask about baseline bandwidth for the specific instance types that you are interested in\.
 

@@ -95,6 +95,10 @@ For On\-Demand Instance target capacity, EC2 Fleet always selects the cheapest i
 
 To create a fleet of Spot Instances that is both cheap and diversified, use the `lowest-price` allocation strategy in combination with `InstancePoolsToUseCount`\. EC2 Fleet automatically deploys the least expensive combination of instance types and Availability Zones based on the current Spot price across the number of Spot capacity pools that you specify\. This combination can be used to avoid the most expensive Spot Instances\.
 
+For example, if your target capacity is 10 Spot Instances, and you specify 2 Spot capacity pools \(for `InstancePoolsToUseCount`\), EC2 Fleet will draw on the two cheapest pools to fulfill your Spot capacity\.
+
+Note that EC2 Fleet attempts to draw Spot Instances from the number of pools that you specify on a best effort basis\. If a pool runs out of Spot capacity before fulfilling your target capacity, EC2 Fleet will continue to fulfill your request by drawing from the next cheapest pool\. To ensure that your target capacity is met, you might receive Spot Instances from more than the number of pools that you specified\. Similarly, if most of the pools have no Spot capacity, you might receive your full target capacity from fewer than the number of pools that you specified\.
+
 ### Configure EC2 Fleet for capacity optimization<a name="ec2-fleet-strategy-capacity-optimized"></a>
 
 To launch Spot Instances into the most\-available Spot capacity pools, use the `capacity-optimized` allocation strategy\. For an example configuration, see [Example 10: Launch Spot Instances in a capacity\-optimized fleet](ec2-fleet-examples.md#ec2-fleet-config10)\.

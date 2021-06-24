@@ -3,7 +3,7 @@
 Before you can launch an instance, you must select an AMI to use\. As you select an AMI, consider the following requirements you might have for the instances that you'll launch:
 + The Region
 + The operating system
-+ The architecture: 32\-bit \(`i386`\), 64\-bit \(`x86_64`\), or 64\-bit ARM \(arm64\)
++ The architecture: 32\-bit \(`i386`\), 64\-bit \(`x86_64`\), or 64\-bit ARM \(`arm64`\)
 + The root device type: Amazon EBS or instance store
 + The provider \(for example, Amazon Web Services\)
 + Additional software \(for example, SQL server\)
