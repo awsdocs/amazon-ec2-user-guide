@@ -40,6 +40,8 @@ The instance type determines the size of the instance store available and the ty
 
 Some instance types use NVMe or SATA\-based solid state drives \(SSD\) to deliver high random I/O performance\. This is a good option when you need storage with very low latency, but you don't need the data to persist when the instance terminates or you can take advantage of fault\-tolerant architectures\. For more information, see [SSD instance store volumes](ssd-instance-store.md)\.
 
+The data on NVMe instance store volumes is hardware encrypted\. For more information, see [Data protection in Amazon EC2](data-protection.md)\.
+
 The following table provides the quantity, size, type, and performance optimizations of instance store volumes available on each supported instance type\. For a complete list of instance types, including EBS\-only types, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
 

@@ -42,30 +42,7 @@ You can track the status of your Spot Instance requests, as well as the status o
 
 ## Define a duration for your Spot Instances<a name="fixed-duration-spot-instances"></a>
 
-Spot Instances with a defined duration \(also known as Spot blocks\) are designed not to be interrupted and will run continuously for the duration you select\. This makes them ideal for jobs that take a finite time to complete, such as batch processing, encoding and rendering, modeling and analysis, and continuous integration\.
-
-You can use a duration of 1, 2, 3, 4, 5, or 6 hours\. The price that you pay depends on the specified duration\. To view the current prices for a 1\-hour duration or a 6\-hour duration, see [Spot Instance Prices](https://aws.amazon.com/ec2/spot/pricing/#Spot_Instance_Prices)\. You can use these prices to estimate the cost of the 2, 3, 4, and 5\-hour durations\. When a request with a duration is fulfilled, the price for your Spot Instance is fixed, and this price remains in effect until the instance terminates\. You are billed at this price for each hour or partial hour that the instance is running\. A partial instance hour is billed to the nearest second\.
-
-When you define a duration in your Spot Instance request, the duration period for each Spot Instance starts as soon as the instance receives its instance ID\. The Spot Instance runs until you terminate it or the duration period ends\. At the end of the duration period, Amazon EC2 marks the Spot Instance for termination and provides a Spot Instance termination notice, which gives the instance a two\-minute warning before it terminates\. In rare situations, Spot blocks may be interrupted due to Amazon EC2 capacity needs\. In these cases, we provide a two\-minute warning before we terminate an instance, and you are not charged for the terminated instances even if you used them\.
-
-New accounts or accounts with no previous billing history with AWS are not eligible for Spot Instances with a defined duration \(also known as Spot blocks\)\.
-
-**To launch Spot Instances with a defined duration \(console\)**  
-Follow the [Create a Spot Fleet request](spot-fleet-requests.md#create-spot-fleet) procedure\. To launch Spot Instances with a defined duration, for **Tell us your application or task need**, choose **Defined duration workloads**\.
-
-**To launch Spot Instances with a defined duration \(AWS CLI\)**  
-To specify a duration for your Spot Instances, include the `--block-duration-minutes` option with the [request\-spot\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-instances.html) command\. For example, the following command creates a Spot Instance request that launches Spot Instances that run for two hours\.
-
-```
-aws ec2 request-spot-instances \
-    --instance-count 5 \
-    --block-duration-minutes 120 \
-    --type "one-time" \
-    --launch-specification file://specification.json
-```
-
-**To retrieve the cost for Spot Instances with a defined duration \(AWS CLI\)**  
-Use the [describe\-spot\-instance\-requests](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-spot-instance-requests.html) command to retrieve the fixed cost for your Spot Instances with a specified duration\. The information is in the `actualBlockHourlyPrice` field\.
+Spot Instances with a defined duration \(also known as Spot blocks\) are no longer available to new customers from July 1, 2021\. For customers who have previously used the feature, we will continue to support Spot Instances with a defined duration until December 31, 2022\. 
 
 ## Specify a tenancy for your Spot Instances<a name="spot-instance-tenancy"></a>
 
@@ -143,8 +120,6 @@ When providing permissions, grants are an alternative to key policies\. For more
 The procedure for requesting a Spot Instance is similar to the procedure for launching an On\-Demand Instance\. You can request a Spot Instance in the following ways:
 + To request a Spot Instance using the console, use the launch instance wizard\. For more information, see [To create a Spot Instance request \(console\)](#create-spot-instance-request-console-procedure)\.
 + To request a Spot Instance using the CLI, use the [request\-spot\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-instances.html) command or the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command\. For more information, see [To create a Spot Instance request using request-spot-instances (CLI)](#create-spot-request-request-spot-instances) and [To create a Spot Instance request using run-instances (CLI)](#create-spot-request-run-instances)\.
-+ To request a Spot Instance with a defined duration using the console, follow the [Create a Spot Fleet request](spot-fleet-requests.md#create-spot-fleet) procedure\. For **Tell us your application or task need**, choose **Defined duration workloads**\. For more information, see [Define a duration for your Spot Instances](#fixed-duration-spot-instances)\.
-+ To request a Spot Instance with a defined duration using the CLI, use the [request\-spot\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-instances.html) command and specify the `--block-duration-minutes` parameter\. For more information, see [Define a duration for your Spot Instances](#fixed-duration-spot-instances)\.
 
 After you've submitted your Spot Instance request, you can't change the parameters of the request\. This means that you can't make changes to the maximum price that you're willing to pay\.
 
@@ -319,7 +294,7 @@ Grant the IAM user the permission to tag resources\. For more information about 
 
 The IAM policy you create is determined by which method you use for creating a Spot Instance request\.
 + If you use the launch instance wizard or `run-instances` to request Spot Instances, see [To grant an IAM user the permission to tag resources when using the launch instance wizard or run-instances](#iam-run-instances)\.
-+ If you use the Spot console to request Spot Instances with a defined duration or use the `request-spot-instances` command to request Spot Instances, see [To grant an IAM user the permission to tag resources when using request-spot-instances](#iam-request-spot-instances)\.
++ If you use the `request-spot-instances` command to request Spot Instances, see [To grant an IAM user the permission to tag resources when using request-spot-instances](#iam-request-spot-instances)\.
 
 **To grant an IAM user the permission to tag resources when using the launch instance wizard or run\-instances**  
 Create a IAM policy that includes the following:
@@ -592,7 +567,7 @@ We don't charge usage for a stopped Spot Instance, or data transfer fees, but we
 **Limitations**
 + You can only stop a Spot Instance if the Spot Instance was launched from a `persistent` Spot Instance request\.
 + You can't stop a Spot Instance if the associated Spot Instance request is cancelled\. When the Spot Instance request is cancelled, you can only terminate the Spot Instance\.
-+ You can't stop a Spot Instance if it is part of a fleet or launch group, Availability Zone group, or Spot block\.
++ You can't stop a Spot Instance if it is part of a fleet or launch group, or Availability Zone group\.
 
 ------
 #### [ New console ]
@@ -643,7 +618,7 @@ You can only start a Spot Instance if:
 + The Spot price is lower than your maximum price\.
 
 **Limitations**
-+ You can't start a Spot Instance if it is part of fleet or launch group, Availability Zone group, or Spot block\.
++ You can't start a Spot Instance if it is part of fleet or launch group, or Availability Zone group\.
 
 ------
 #### [ New console ]

@@ -40,8 +40,6 @@ One strategy is to maintain a minimum level of guaranteed compute resources for 
 
 
 
-Another strategy is to launch Spot Instances with a specified duration \(also known as Spot blocks\), which are designed not to be interrupted and will run continuously for the duration you select\. In rare situations, Spot blocks may be interrupted due to Amazon EC2 capacity needs\. In these cases, we provide a two\-minute warning before we terminate an instance, and you are not charged for the terminated instances even if you used them\. For more information, see [Define a duration for your Spot Instances](spot-requests.md#fixed-duration-spot-instances)\.
-
 ## How to get started<a name="spot-get-started"></a>
 
 The first thing you need to do is get set up to use Amazon EC2\. It can also be helpful to have experience launching On\-Demand Instances before launching Spot Instances\.

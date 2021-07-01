@@ -1,19 +1,17 @@
 # Instance metadata categories<a name="instancedata-data-categories"></a>
 
-The following table lists the categories of instance metadata\.
+Instance metadata is divided into categories\. When you retrieve instance metadata, these are the top\-level items\.
 
-**Note**  
-When Amazon EC2 releases a new instance metadata category, the instance metadata for the new category might not be available for existing instances\. To ensure that the instance metadata is available for an existing instance, you need to [stop and then start](Stop_Start.md) the instance\.
+When Amazon EC2 releases a new instance metadata category, the instance metadata for the new category might not be available for existing instances\. With instances built on the [Nitro system](instance-types.md#ec2-nitro-instances), you can retrieve instance metadata only for the categories that were available at launch\. For instances with the Xen hypervisor, you can [stop and then start](Stop_Start.md) the instance to update the categories that are available for the instance\.
 
-**Important**  
-Some of the category names in the following table are placeholders for data that is unique to your instance\. For example, *mac* represents the MAC address for the network interface\. You must replace the placeholders with the actual values\.
+The following table lists the categories of instance metadata\. Some of the category names include placeholders for data that is unique to your instance\. For example, *mac* represents the MAC address for the network interface\. You must replace the placeholders with actual values when you retrieve the instance metadata\.
 
 
-| Data | Description | Release date | 
+| Data | Description | Version | 
 | --- | --- | --- | 
-| ami\-id  | The AMI ID used to launch the instance\. | Version 1\.0 | 
-| ami\-launch\-index  | If you started more than one instance at the same time, this value indicates the order in which the instance was launched\. The value of the first instance launched is 0\. | Version 1\.0 | 
-| ami\-manifest\-path  | The path to the AMI manifest file in Amazon S3\. If you used an Amazon EBS\-backed AMI to launch the instance, the returned result is unknown\. | Version 1\.0 | 
+| ami\-id  | The AMI ID used to launch the instance\. | 1\.0 | 
+| ami\-launch\-index  | If you started more than one instance at the same time, this value indicates the order in which the instance was launched\. The value of the first instance launched is 0\. | 1\.0 | 
+| ami\-manifest\-path  | The path to the AMI manifest file in Amazon S3\. If you used an Amazon EBS\-backed AMI to launch the instance, the returned result is unknown\. | 1\.0 | 
 | ancestor\-ami\-ids  | The AMI IDs of any instances that were rebundled to create this AMI\. This value will only exist if the AMI manifest file contained an ancestor\-amis key\. | 2007\-10\-10 | 
 | block\-device\-mapping/ami  | The virtual device that contains the root/boot file system\. | 2007\-12\-15 | 
 | block\-device\-mapping/ebsN  | The virtual devices associated with any Amazon EBS volumes\. Amazon EBS volumes are only available in metadata if they were present at launch time or when the instance was last started\. The N indicates the index of the Amazon EBS volume \(such as ebs1 or ebs2\)\. | 2007\-12\-15 | 
@@ -82,7 +80,7 @@ Some of the category names in the following table are placeholders for data that
 The following table lists the categories of dynamic data\.
 
 
-| Data | Description | Release date | 
+| Data | Description | Version | 
 | --- | --- | --- | 
 |  fws/instance\-monitoring  | Value showing whether the customer has enabled detailed one\-minute monitoring in CloudWatch\. Valid values: enabled \| disabled | 2009\-04\-04 | 
 | instance\-identity/document  | JSON containing instance attributes, such as instance\-id, private IP address, etc\. See [Instance identity documents](instance-identity-documents.md)\.  | 2009\-04\-04 | 

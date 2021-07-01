@@ -2,7 +2,7 @@
 
 If you lose the private key for an EBS\-backed instance, you can regain access to your instance\. You must stop the instance, detach its root volume and attach it to another instance as a data volume, modify the `authorized_keys` file with a new public key, move the volume back to the original instance, and restart the instance\. For more information about launching, connecting to, and stopping instances, see [Instance lifecycle](ec2-instance-lifecycle.md)\.
 
-This procedure is not supported for instances with instance\-store backed root volumes\. To determine the root device type of your instance, open the Amazon EC2 console, choose **Instances**, select the instance, and check the value of **Root device type** in the details pane\. The value is either `ebs` or `instance store`\. If the root device is an instance store volume, you cannot use this procedure to regain access to your instance; you must have the private key to connect to the instance\.
+This procedure is only supported for instances with EBS root volumes\. If the root device is an instance store volume, you cannot use this procedure to regain access to your instance; you must have the private key to connect to the instance\. To determine the root device type of your instance, open the Amazon EC2 console, choose **Instances**, select the instance, and check the value of **Root device type** in the details pane\. The value is either `ebs` or `instance store`\.
 
 **Topics**
 + [Step 1: Create a new key pair](#step-1-create-new-key-pair)
@@ -17,7 +17,7 @@ This procedure is not supported for instances with instance\-store backed root v
 
 ## Step 1: Create a new key pair<a name="step-1-create-new-key-pair"></a>
 
-Create a new key pair using either the Amazon EC2 console or a third\-party tool\. If you want to name your new key pair exactly the same as the lost private key, you must first delete the existing key pair\. For information about creating a new key pair, see [Option 1: Create a key pair using Amazon EC2](ec2-key-pairs.md#having-ec2-create-your-key-pair) or [Option 2: Import your own public key to Amazon EC2](ec2-key-pairs.md#how-to-generate-your-own-key-and-import-it-to-aws)\.
+Create a new key pair using either the Amazon EC2 console or a third\-party tool\. If you want to name your new key pair exactly the same as the lost private key, you must first delete the existing key pair\. For information about creating a new key pair, see [Create a key pair using Amazon EC2](ec2-key-pairs.md#having-ec2-create-your-key-pair) or [Create a key pair using a third\-party tool and import the public key to Amazon EC2](ec2-key-pairs.md#how-to-generate-your-own-key-and-import-it-to-aws)\.
 
 ## Step 2: Get information about the original instance and its root volume<a name="step-2-get-info-about-original-instance"></a>
 

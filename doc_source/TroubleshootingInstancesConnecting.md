@@ -147,17 +147,17 @@ You need a route that sends all traffic destined outside the VPC to the internet
 
 **Check the network access control list \(ACL\) for the subnet\.**
 
-The network ACLs must allow inbound and outbound traffic from your local IP address on the proper port\. The default network ACL allows all inbound and outbound traffic\.
+The network ACLs must allow inbound traffic from your local IP address on port 22 \(for Linux instances\) or port 3389 \(for Windows instances\)\. It must also allow outbound traffic to the ephemeral ports \(1024\-65535\)\.
 
 1. Open the Amazon VPC console at [https://console\.aws\.amazon\.com/vpc/](https://console.aws.amazon.com/vpc/)\.
 
-1. In the navigation pane, choose **Subnets** and select your subnet\.
+1. In the navigation pane, choose **Subnets**\.
 
-1. On the **Description** tab, find **Network ACL**, and choose its ID \(acl\-*xxxxxxxx*\)\.
+1. Select your subnet\.
 
-1. Select the network ACL\. For **Inbound Rules**, verify that the rules allow traffic from your computer\. Otherwise, delete or modify the rule that is blocking traffic from your computer\.
+1. On the **Network ACL** tab, for **Inbound rules**, verify that the rules allow inbound traffic from your computer on the required port\. Otherwise, delete or modify the rule that is blocking the traffic\.
 
-1. For **Outbound Rules**, verify that the rules allow traffic to your computer\. Otherwise, delete or modify the rule that is blocking traffic to your computer\.
+1. For **Outbound rules**, verify that the rules allow outbound traffic to your computer on the ephemeral ports\. Otherwise, delete or modify the rule that is blocking the traffic\.
 
 **If your computer is on a corporate network**  
 Ask your network administrator whether the internal firewall allows inbound and outbound traffic from your computer on port 22 \(for Linux instances\) or port 3389 \(for Windows instances\)\.
@@ -185,7 +185,7 @@ If you try to connect to your instance and get the error message, `unable to loa
 
 **If the private key file is incorrectly configured, follow these steps to resolve the error**
 
-1. Create a new key pair\. For more information, see [Option 1: Create a key pair using Amazon EC2](ec2-key-pairs.md#having-ec2-create-your-key-pair)\.
+1. Create a new key pair\. For more information, see [Create a key pair using Amazon EC2](ec2-key-pairs.md#having-ec2-create-your-key-pair)\.
 
 1. Add the new key pair to your instance\. For more information, see [Connect to your Linux instance if you lose your private key](replacing-lost-key-pair.md)\.
 

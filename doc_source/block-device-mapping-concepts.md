@@ -319,7 +319,27 @@ Use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/e
 
 ### View the instance block device mapping for instance store volumes<a name="bdm-instance-metadata"></a>
 
-When you view the block device mapping for your instance, you can see only the EBS volumes, not the instance store volumes\. You can use instance metadata to query the non\-NVMe instance store volumes in the block device mapping\. NVMe instance store volumes are not included\.
+When you view the block device mapping for your instance, you can see only the EBS volumes, not the instance store volumes\. The method you use to view the instance store volumes for your instance depends on the volume type\.
+
+**NVMe instance store volumes**  
+You can use the NVMe command line package, [nvme\-cli](https://github.com/linux-nvme/nvme-cli), to query the NVMe instance store volumes in the block device mapping\. Download and install the package on your instance, and then run the following command\.
+
+```
+[ec2-user ~]$ sudo nvme list
+```
+
+The following is example output for an instance\. The text in the Model column indicates whether the volume is an EBS volume or an instance store volume\. In this example, both `/dev/nvme1n1` and `/dev/nvme2n1` are instance store volumes\.
+
+```
+Node             SN                   Model                                    Namespace
+---------------- -------------------- ---------------------------------------- ---------
+/dev/nvme0n1     vol06afc3f8715b7a597 Amazon Elastic Block Store               1        
+/dev/nvme1n1     AWS2C1436F5159EB6614 Amazon EC2 NVMe Instance Storage         1         
+/dev/nvme2n1     AWSB1F4FF0C0A6C281EA Amazon EC2 NVMe Instance Storage         1         ...
+```
+
+**HDD or SSD instance store volumes**  
+You can use instance metadata to query the HDD or SSD instance store volumes in the block device mapping\. NVMe instance store volumes are not included\.
 
 The base URI for all requests for instance metadata is `http://169.254.169.254/latest/`\. For more information, see [Instance metadata and user data](ec2-instance-metadata.md)\.
 
@@ -373,4 +393,3 @@ To get details about an individual block device in the block device mapping, app
 ------
 
 The instance type determines the number of instance store volumes that are available to the instance\. If the number of instance store volumes in a block device mapping exceeds the number of instance store volumes available to an instance, the additional volumes are ignored\. To view the instance store volumes for your instance, run the lsblk command\. To learn how many instance store volumes are supported by each instance type, see [Instance store volumes](InstanceStorage.md#instance-store-volumes)\.
-

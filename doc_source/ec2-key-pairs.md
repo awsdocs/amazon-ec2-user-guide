@@ -6,10 +6,15 @@ When you launch an instance, you are [prompted for a key pair](launching-instanc
 
 Because Amazon EC2 doesn't keep a copy of your private key, there is no way to recover a private key if you lose it\. However, there can still be a way to connect to instances for which you've lost the private key\. For more information, see [Connect to your Linux instance if you lose your private key](replacing-lost-key-pair.md)\.
 
-The keys that Amazon EC2 uses are 2048\-bit SSH\-2 RSA keys\. You can have up to 5,000 key pairs per Region\.
+You can use Amazon EC2 to create your key pairs\. You can also use a third\-party tool to create your key pairs, and then import the public keys to Amazon EC2\.
+
+The keys that Amazon EC2 uses are 2048\-bit SSH\-2 RSA keys\.
+
+You can have up to 5,000 key pairs per Region\.
 
 **Topics**
-+ [Create or import a key pair](#prepare-key-pair)
++ [Create a key pair using Amazon EC2](#having-ec2-create-your-key-pair)
++ [Create a key pair using a third\-party tool and import the public key to Amazon EC2](#how-to-generate-your-own-key-and-import-it-to-aws)
 + [Tag a public key](#tag-key-pair)
 + [Retrieve the public key from the private key](#retrieving-the-public-key)
 + [Retrieve the public key through instance metadata](#retrieving-the-public-key-instance)
@@ -21,15 +26,7 @@ The keys that Amazon EC2 uses are 2048\-bit SSH\-2 RSA keys\. You can have up to
 + [Delete a public key from an instance](#delete-public-key-from-instance)
 + [Connect to your Linux instance if you lose your private key](replacing-lost-key-pair.md)
 
-## Create or import a key pair<a name="prepare-key-pair"></a>
-
-You can use Amazon EC2 to create a new key pair, or you can import an existing key pair\.
-
-**Topics**
-+ [Option 1: Create a key pair using Amazon EC2](#having-ec2-create-your-key-pair)
-+ [Option 2: Import your own public key to Amazon EC2](#how-to-generate-your-own-key-and-import-it-to-aws)
-
-### Option 1: Create a key pair using Amazon EC2<a name="having-ec2-create-your-key-pair"></a>
+## Create a key pair using Amazon EC2<a name="having-ec2-create-your-key-pair"></a>
 
 You can create a key pair using one of the following methods\. 
 
@@ -93,7 +90,7 @@ PS C:\> (New-EC2KeyPair -KeyName "my-key-pair").KeyMaterial | Out-File -Encoding
 
 ------
 
-### Option 2: Import your own public key to Amazon EC2<a name="how-to-generate-your-own-key-and-import-it-to-aws"></a>
+## Create a key pair using a third\-party tool and import the public key to Amazon EC2<a name="how-to-generate-your-own-key-and-import-it-to-aws"></a>
 
 Instead of using Amazon EC2 to create your key pair, you can create an RSA key pair using a third\-party tool and then import the public key to Amazon EC2\.
 
@@ -425,7 +422,7 @@ If you're using an Auto Scaling group, ensure that the key pair you're replacing
 
 ## Delete your key pair<a name="delete-key-pair"></a>
 
-When you delete a key pair using the following methods, you are only deleting the public key that you saved in Amazon EC2 when you [created or imported the key pair](#prepare-key-pair)\. Deleting a key pair doesn't delete the public key from any instances that were previously launched using that key pair\. It also doesn't delete the private key on your local computer\. You can continue to connect to instances that you launched using a key pair that is subsequently deleted, as long as you still have the private key \(`.pem`\) file\.
+When you delete a key pair using the following methods, you are only deleting the public key that you saved in Amazon EC2 when you [created](#having-ec2-create-your-key-pair) or [imported](#how-to-generate-your-own-key-and-import-it-to-aws) the key pair\. Deleting a key pair doesn't delete the public key from any instances that were previously launched using that key pair\. It also doesn't delete the private key on your local computer\. You can continue to connect to instances that you launched using a key pair that is subsequently deleted, as long as you still have the private key \(`.pem`\) file\.
 
 **Note**  
 To delete the public key from an instance, see [Delete a public key from an instance](#delete-public-key-from-instance)\.

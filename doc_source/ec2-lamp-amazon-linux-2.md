@@ -92,6 +92,8 @@ To complete this tutorial using AWS Systems Manager Automation instead of the fo
       Port range   Protocol     Source
       22           tcp          0.0.0.0/0
       ```
+**Warning**  
+Using `0.0.0.0/0` allows all IPv4 addresses to access your instance using SSH\. This is acceptable for a short time in a test environment, but it's unsafe for production environments\. In production, you authorize only a specific IP address or range of addresses to access your instance\.
 
    1. Choose the link for the security group\. Using the procedures in [Add rules to a security group](working-with-security-groups.md#adding-security-group-rule), add a new inbound security rule with the following values:
       + **Type**: HTTP

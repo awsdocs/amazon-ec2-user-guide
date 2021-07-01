@@ -31,7 +31,7 @@ To create Provisioned IOPS SSD \(`io1` and `io2`\) or General Purpose SSD \(`gp2
 
 For the example tests, we recommend that you create a RAID 0 array with 6 volumes, which offers a high level of performance\. Because you are charged by gigabytes provisioned \(and the number of provisioned IOPS for io1, io2, and gp3 volumes\), not the number of volumes, there is no additional cost for creating multiple, smaller volumes and using them to create a stripe set\. If you're using Oracle Orion to benchmark your volumes, it can simulate striping the same way that Oracle ASM does, so we recommend that you let Orion do the striping\. If you are using a different benchmarking tool, you need to stripe the volumes yourself\.
 
-For instructions on how to create a RAID 0 array with 6 volumes, see [Create a RAID array on Linux](raid-config.md#linux-raid)\.
+For instructions on how to create a RAID 0 array with 6 volumes, see [Create a RAID 0 array on Linux](raid-config.md#linux-raid)\.
 
 ### Set up Throughput Optimized HDD \(`st1`\) or Cold HDD \(`sc1`\) volumes<a name="set_up_hdd"></a>
 

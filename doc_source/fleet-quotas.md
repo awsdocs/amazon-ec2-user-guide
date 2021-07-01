@@ -1,6 +1,6 @@
 # Fleet quotas<a name="fleet-quotas"></a>
 
-The usual Amazon EC2 quotas apply to instances launched by an EC2 Fleet or a Spot Fleet, such as Spot Instance limits and volume limits\. In addition, the following limits apply:
+The usual Amazon EC2 quotas apply to instances launched by an EC2 Fleet or a Spot Fleet, such as [Spot Instance limits](using-spot-limits.md) and [volume limits](volume_limits.md)\. In addition, the following limits apply:
 + The number of active EC2 Fleets and Spot Fleets per Region: 1,000\* †
 + The number of Spot capacity pools \(unique combination of instance type and subnet\): 300\* ‡
 + The size of the user data in a launch specification: 16 KB †

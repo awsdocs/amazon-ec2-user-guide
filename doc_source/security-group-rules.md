@@ -6,10 +6,10 @@ The following are the characteristics of security group rules:
 + By default, security groups allow all outbound traffic\. Note that Amazon EC2 blocks traffic on port 25 by default\. For more information, see [Restriction on email sent using port 25](ec2-resource-limits.md#port-25-throttle)\.
 + Security group rules are always permissive; you can't create rules that deny access\.
 + Security group rules enable you to filter traffic based on protocols and port numbers\.
-+ Security groups are stateful—if you send a request from your instance, the response traffic for that request is allowed to flow in regardless of inbound security group rules\. For VPC security groups, this also means that responses to allowed inbound traffic are allowed to flow out, regardless of outbound rules\. For more information, see [Connection tracking](security-group-connection-tracking.md)\.
++ Security groups are stateful—if you send a request from your instance, the response traffic for that request is allowed to flow in regardless of inbound security group rules\. For VPC security groups, this also means that responses to allowed inbound traffic are allowed to flow out, regardless of outbound rules\. For more information, see [Security group connection tracking](security-group-connection-tracking.md)\.
 + You can add and remove rules at any time\. Your changes are automatically applied to the instances that are associated with the security group\.
 
-  The effect of some rule changes can depend on how the traffic is tracked\. For more information, see [Connection tracking](security-group-connection-tracking.md)\.
+  The effect of some rule changes can depend on how the traffic is tracked\. For more information, see [Security group connection tracking](security-group-connection-tracking.md)\.
 + When you associate multiple security groups with an instance, the rules from each security group are effectively aggregated to create one set of rules\. Amazon EC2 uses this set of rules to determine whether to allow access\.
 
   You can assign multiple security groups to an instance\. Therefore, an instance can have hundreds of rules that apply\. This might cause problems when you access the instance\. We recommend that you condense your rules as much as possible\. 

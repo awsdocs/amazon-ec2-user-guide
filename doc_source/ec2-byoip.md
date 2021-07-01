@@ -9,7 +9,9 @@ The following steps describe how to bring your own IP address range for use in A
 
 **Topics**
 + [Requirements and quotas](#byoip-requirements)
-+ [Configuring your BYOIP address range](#prepare-for-byoip)
++ [Configure your BYOIP address range](#prepare-for-byoip)
++ [Work with your address range](#byoip-working-with)
++ [Learn more](#byoip-learn-more)
 
 ## Requirements and quotas<a name="byoip-requirements"></a>
 + The address range must be registered with your regional internet registry \(RIR\), such as the American Registry for Internet Numbers \(ARIN\), Réseaux IP Européens Network Coordination Centre \(RIPE\), or Asia\-Pacific Network Information Centre \(APNIC\)\. It must be registered to a business or institutional entity and cannot be registered to an individual person\.
@@ -24,9 +26,9 @@ The following steps describe how to bring your own IP address range for use in A
   + RIPE \- "ALLOCATED PA", "LEGACY", "ASSIGNED PI", and "ALLOCATED\-BY\-RIR" allocation statuses
   + APNIC – "ALLOCATED PORTABLE" and "ASSIGNED PORTABLE" allocation statuses
 
-## Configuring your BYOIP address range<a name="prepare-for-byoip"></a>
+## Configure your BYOIP address range<a name="prepare-for-byoip"></a>
 
-Configuring BYOIP has three aspects:
+The process to configure BYOIP has these phases:
 + **Preparation**
 
   For authentication purposes, create an RSA key pair and use it to generate a self\-signed X\.509 certificate\.
@@ -37,10 +39,9 @@ Configuring BYOIP has three aspects:
 
   Sign a CIDR authorization context message with the private RSA key that you created, and upload the message and signature to Amazon using the AWS Command Line Interface\.
 
-The following sections walk you through the tasks involved\. 
+To bring on multiple address ranges, you must repeat this process with each address range\. Bringing on an address range has no effect on any address ranges that you brought on previously\.
 
-**Note**  
-Some of these procedures use Linux commands\. On Windows, you can use the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/about) to run these commands\.
+To configure BYOIP, complete the following tasks\. For some tasks, you run Linux commands\. On Windows, you can use the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/about) to run the Linux commands\.
 
 **Topics**
 + [Create a key pair and certificate](#byoip-certificate)
@@ -48,7 +49,6 @@ Some of these procedures use Linux commands\. On Windows, you can use the [Windo
 + [Update the RDAP record in your RIR](#ee)
 + [Provision the address range in AWS](#byoip-provision)
 + [Advertise the address range through AWS](#byoip-advertise)
-+ [Work with your address range](#byoip-working-with)
 + [Deprovision the address range](#byoip-deprovision)
 
 ### Create a key pair and certificate<a name="byoip-certificate"></a>
@@ -285,7 +285,7 @@ When you provision an address range for use with AWS, you are confirming that yo
 
 1. 
 
-**Message**
+**Compose message**
 
    Compose the plaintext authorization message\. The format of the message is as follows, where the date is the expiry date of the message: 
 
@@ -303,36 +303,39 @@ When you provision an address range for use with AWS, you are confirming that yo
 
 1. 
 
-**Signature**
+**Sign message**
 
-   Sign the plaintext message using the private key that you created previously\. 
+   Sign the plaintext message using the private key that you created previously\. The signature returned by this command is a long string that you need to use in the next step\.
+**Important**  
+We recommend that you copy and paste this command\. Except for the message content, do not modify or replace any of the values\.
 
    ```
    $ echo -n "1|aws|123456789012|198.51.100.0/24|20211231|SHA256|RSAPSS" | openssl dgst -sha256 -sigopt rsa_padding_mode:pss -sigopt rsa_pss_saltlen:-1 -sign private-key.pem -keyform PEM | openssl base64 | tr -- '+=/' '-_~' | tr -d "\n"
    ```
-**Important**  
-We recommend that you copy and paste this command\. Except for the message content, do not modify or replace any of the values\.
-
-   The signature returned by the command is a long string that you will need to copy for use in the next step\.
 
 1. 
 
-**Provisioning**
+**Provision address**
 
    Use the AWS CLI [provision\-byoip\-cidr](https://docs.aws.amazon.com/cli/latest/reference/ec2/provision-byoip-cidr.html) command to provision the address range\. The `--cidr-authorization-context` option uses the message and signature strings that you created previously\.
 
    ```
-   $ aws ec2 provision-byoip-cidr --cidr address-range --cidr-authorization-context Message="message",Signature="signature"
+   aws ec2 provision-byoip-cidr --cidr address-range --cidr-authorization-context Message="message",Signature="signature"
    ```
 
    Provisioning an address range is an asynchronous operation, so the call returns immediately, but the address range is not ready to use until its status changes from `pending-provision` to `provisioned`\.
-**Note**  
-It can take up to three weeks to complete the provisioning process for publicly advertisable ranges\. Use the [describe\-byoip\-cidrs](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-byoip-cidrs.html) command to monitor it its progress, as in this example:  
+
+1. 
+
+**Monitor progress**
+
+   It can take up to three weeks to complete the provisioning process for publicly advertisable ranges\. Use the [describe\-byoip\-cidrs](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-byoip-cidrs.html) command to monitor progress, as in this example:
 
    ```
-   $ aws ec2 describe-byoip-cidrs --max-results 5
+   aws ec2 describe-byoip-cidrs --max-results 5
    ```
-If there are issues during provisioning and the status goes to `failed-provision`, you must run the `provision-byoip-cidr` command again after the issues have been resolved\.
+
+   If there are issues during provisioning and the status goes to `failed-provision`, you must run the `provision-byoip-cidr` command again after the issues have been resolved\.
 
 #### Provision an IPv6 address range that's not publicly advertised<a name="byoip-provision-non-public"></a>
 
@@ -340,14 +343,14 @@ By default, an address range is provisioned to be publicly advertised to the int
 
 An ROA is not required to provision a non\-public address range\.
 
+**Important**  
+You can only specify whether an address range is publicly advertised during provisioning\. You cannot change the advertisable status later on\.
+
 To provision an IPv6 address range that will not be publicly advertised, use the following [provision\-byoip\-cidr](https://docs.aws.amazon.com/cli/latest/reference/ec2/provision-byoip-cidr.html) command\.
 
 ```
-$ aws ec2 provision-byoip-cidr --cidr address-range --cidr-authorization-context Message="$text_message",Signature="$signed_message" --no-publicly-advertisable
+aws ec2 provision-byoip-cidr --cidr address-range --cidr-authorization-context Message="$text_message",Signature="$signed_message" --no-publicly-advertisable
 ```
-
-**Important**  
-You can only set the `publicly-advertisable` or `no-publicly-advertisable` flag during provisioning\. You cannot change the advertisable status of an address range later\.
 
 ### Advertise the address range through AWS<a name="byoip-advertise"></a>
 
@@ -359,69 +362,21 @@ We recommend that you stop advertising the address range from other locations be
 
 To minimize down time, you can configure your AWS resources to use an address from your address pool before it is advertised, and then simultaneously stop advertising it from the current location and start advertising it through AWS\. For more information about allocating an Elastic IP address from your address pool, see [Allocate an Elastic IP address](elastic-ip-addresses-eip.md#using-instance-addressing-eips-allocating)\.
 
+**Limitations**
++ You can run the advertise\-byoip\-cidr command at most once every 10 seconds, even if you specify different address ranges each time\.
++ You can run the withdraw\-byoip\-cidr command at most once every 10 seconds, even if you specify different address ranges each time\.
+
 To advertise the address range, use the following [advertise\-byoip\-cidr](https://docs.aws.amazon.com/cli/latest/reference/ec2/advertise-byoip-cidr.html) command\.
 
 ```
-$ aws ec2 advertise-byoip-cidr --cidr address-range
+aws ec2 advertise-byoip-cidr --cidr address-range
 ```
-
-**Important**  
-You can run the advertise\-byoip\-cidr command at most once every 10 seconds, even if you specify different address ranges each time\.
 
 To stop advertising the address range, use the following [withdraw\-byoip\-cidr](https://docs.aws.amazon.com/cli/latest/reference/ec2/withdraw-byoip-cidr.html) command\.
 
 ```
-$ aws ec2 withdraw-byoip-cidr --cidr address-range
+aws ec2 withdraw-byoip-cidr --cidr address-range
 ```
-
-**Important**  
-You can run the withdraw\-byoip\-cidr command at most once every 10 seconds, even if you specify different address ranges each time\.
-
-### Work with your address range<a name="byoip-working-with"></a>
-
-You can view and work with the IPv4 and IPv6 address ranges that you've provisioned in your account\.
-
-#### IPv4 address ranges<a name="byoip-work-with-ipv4"></a>
-
-You can create an Elastic IP address from your IPv4 address pool and use it with your AWS resources, such as EC2 instances, NAT gateways, and Network Load Balancers\.
-
-To view information about the IPv4 address pools that you've provisioned in your account, use the following [describe\-public\-ipv4\-pools](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-public-ipv4-pools.html) command\.
-
-```
-$ aws ec2 describe-public-ipv4-pools
-```
-
-To create an Elastic IP address from your IPv4 address pool, use the [allocate\-address](https://docs.aws.amazon.com/cli/latest/reference/ec2/allocate-address.html) command\. You can use the `--public-ipv4-pool` option to specify the ID of the address pool returned by `describe-byoip-cidrs`\. Or you can use the `--address` option to specify an address from the address range that you provisioned\.
-
-#### IPv6 address ranges<a name="byoip-work-with-ipv6"></a>
-
-To view information about the IPv6 address pools that you've provisioned in your account, use the following [describe\-ipv6\-pools](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-ipv6-pools.html) command\.
-
-```
-$ aws ec2 describe-ipv6-pools
-```
-
-To create a VPC and specify an IPv6 CIDR from your IPv6 address pool, use the following [create\-vpc](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-vpc.html) command\. To let Amazon choose the IPv6 CIDR from your IPv6 address pool, omit the `--ipv6-cidr-block` option\.
-
-```
-$ aws ec2 create-vpc --cidr-block 10.0.0.0/16 --ipv6-cidr-block ipv6-cidr --ipv6-pool pool-id
-```
-
-To associate an IPv6 CIDR block from your IPv6 address pool with a VPC, use the following [associate\-vpc\-cidr\-block](https://docs.aws.amazon.com/cli/latest/reference/ec2/associate-vpc-cidr-block.html) command\. To let Amazon choose the IPv6 CIDR from your IPv6 address pool, omit the `--ipv6-cidr-block` option\.
-
-```
-$ aws ec2 associate-vpc-cidr-block --vpc-id vpc-123456789abc123ab --ipv6-cidr-block ipv6-cidr --ipv6-pool pool-id
-```
-
-To view your VPCs and the associated IPv6 address pool information, use the [describe\-vpcs](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-vpcs.html) command\. To view information about associated IPv6 CIDR blocks from a specific IPv6 address pool, use the following [get\-associated\-ipv6\-pool\-cidrs](https://docs.aws.amazon.com/cli/latest/reference/ec2/get-associated-ipv6-pool-cidrs.html) command\.
-
-```
-$ aws ec2 get-associated-ipv6-pool-cidrs --pool-id pool-id
-```
-
-If you disassociate the IPv6 CIDR block from your VPC, it's released back into your IPv6 address pool\.
-
-For more information about working with IPv6 CIDR blocks in the VPC console, see [Working with VPCs and Subnets](https://docs.aws.amazon.com/vpc/latest/userguide/working-with-vpcs.html) in the *Amazon VPC User Guide*\.
 
 ### Deprovision the address range<a name="byoip-deprovision"></a>
 
@@ -432,25 +387,75 @@ You cannot deprovision a portion of the address range\. If you want to use a mor
 \(IPv4\) To release each Elastic IP address, use the following [release\-address](https://docs.aws.amazon.com/cli/latest/reference/ec2/release-address.html) command\.
 
 ```
-$ aws ec2 release-address --allocation-id eipalloc-12345678abcabcabc
+aws ec2 release-address --allocation-id eipalloc-12345678abcabcabc
 ```
 
 \(IPv6\) To disassociate an IPv6 CIDR block, use the following [disassociate\-vpc\-cidr\-block](https://docs.aws.amazon.com/cli/latest/reference/ec2/disassociate-vpc-cidr-block.html) command\.
 
 ```
-$ aws ec2 disassociate-vpc-cidr-block --association-id vpc-cidr-assoc-12345abcd1234abc1
+aws ec2 disassociate-vpc-cidr-block --association-id vpc-cidr-assoc-12345abcd1234abc1
 ```
 
 To stop advertising the address range, use the following [withdraw\-byoip\-cidr](https://docs.aws.amazon.com/cli/latest/reference/ec2/withdraw-byoip-cidr.html) command\.
 
 ```
-$ aws ec2 withdraw-byoip-cidr --cidr address-range
+aws ec2 withdraw-byoip-cidr --cidr address-range
 ```
 
 To deprovision the address range, use the following [deprovision\-byoip\-cidr](https://docs.aws.amazon.com/cli/latest/reference/ec2/deprovision-byoip-cidr.html) command\.
 
 ```
-$ aws ec2 deprovision-byoip-cidr --cidr address-range
+aws ec2 deprovision-byoip-cidr --cidr address-range
 ```
 
 It can take up to a day to deprovision an address range\.
+
+## Work with your address range<a name="byoip-working-with"></a>
+
+You can view and use the IPv4 and IPv6 address ranges that you've provisioned in your account\.
+
+### IPv4 address ranges<a name="byoip-work-with-ipv4"></a>
+
+You can create an Elastic IP address from your IPv4 address pool and use it with your AWS resources, such as EC2 instances, NAT gateways, and Network Load Balancers\.
+
+To view information about the IPv4 address pools that you've provisioned in your account, use the following [describe\-public\-ipv4\-pools](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-public-ipv4-pools.html) command\.
+
+```
+aws ec2 describe-public-ipv4-pools
+```
+
+To create an Elastic IP address from your IPv4 address pool, use the [allocate\-address](https://docs.aws.amazon.com/cli/latest/reference/ec2/allocate-address.html) command\. You can use the `--public-ipv4-pool` option to specify the ID of the address pool returned by `describe-byoip-cidrs`\. Or you can use the `--address` option to specify an address from the address range that you provisioned\.
+
+### IPv6 address ranges<a name="byoip-work-with-ipv6"></a>
+
+To view information about the IPv6 address pools that you've provisioned in your account, use the following [describe\-ipv6\-pools](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-ipv6-pools.html) command\.
+
+```
+aws ec2 describe-ipv6-pools
+```
+
+To create a VPC and specify an IPv6 CIDR from your IPv6 address pool, use the following [create\-vpc](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-vpc.html) command\. To let Amazon choose the IPv6 CIDR from your IPv6 address pool, omit the `--ipv6-cidr-block` option\.
+
+```
+aws ec2 create-vpc --cidr-block 10.0.0.0/16 --ipv6-cidr-block ipv6-cidr --ipv6-pool pool-id
+```
+
+To associate an IPv6 CIDR block from your IPv6 address pool with a VPC, use the following [associate\-vpc\-cidr\-block](https://docs.aws.amazon.com/cli/latest/reference/ec2/associate-vpc-cidr-block.html) command\. To let Amazon choose the IPv6 CIDR from your IPv6 address pool, omit the `--ipv6-cidr-block` option\.
+
+```
+aws ec2 associate-vpc-cidr-block --vpc-id vpc-123456789abc123ab --ipv6-cidr-block ipv6-cidr --ipv6-pool pool-id
+```
+
+To view your VPCs and the associated IPv6 address pool information, use the [describe\-vpcs](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-vpcs.html) command\. To view information about associated IPv6 CIDR blocks from a specific IPv6 address pool, use the following [get\-associated\-ipv6\-pool\-cidrs](https://docs.aws.amazon.com/cli/latest/reference/ec2/get-associated-ipv6-pool-cidrs.html) command\.
+
+```
+aws ec2 get-associated-ipv6-pool-cidrs --pool-id pool-id
+```
+
+If you disassociate the IPv6 CIDR block from your VPC, it's released back into your IPv6 address pool\.
+
+For more information about working with IPv6 CIDR blocks in the VPC console, see [Working with VPCs and Subnets](https://docs.aws.amazon.com/vpc/latest/userguide/working-with-vpcs.html) in the *Amazon VPC User Guide*\.
+
+## Learn more<a name="byoip-learn-more"></a>
+
+For more information, see the AWS Online Tech talk [Deep Dive on Bring Your Own IP](https://pages.awscloud.com/Deep-Dive-on-Bring-Your-Own-IP_1024-NET_OD.html)\.
