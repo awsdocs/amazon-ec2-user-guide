@@ -200,7 +200,7 @@ aws ec2 request-spot-instances \
 For example launch specification files to use with these commands, see [Spot Instance request example launch specifications](spot-request-examples.md)\. If you download a launch specification file from the console, you must use the [request\-spot\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-fleet.html) command instead \(the console specifies a Spot Instance request using a Spot Fleet\)\.
 
 **To create a Spot Instance request using [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) \(AWS CLI\)**  
-Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-instances.html) command and specify the Spot Instance options in the `--instance-market-options` parameter\.
+Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command and specify the Spot Instance options in the `--instance-market-options` parameter\.
 
 ```
 aws ec2 run-instances \
@@ -213,7 +213,7 @@ aws ec2 run-instances \
     --instance-market-options file://spot-options.json
 ```
 
-The following is the data structure to specify in the JSON file for `--instance-market-options`\. You can also specify `BlockDurationMinutes`, `ValidUntil`, and `InstanceInterruptionBehavior`\. If you do not specify a field in the data structure, the default value is used\. This example creates a `one-time` request and specifies `0.02` as the maximum price you're willing to pay for the Spot Instance\. 
+The following is the data structure to specify in the JSON file for `--instance-market-options`\. You can also specify `ValidUntil` and `InstanceInterruptionBehavior`\. If you do not specify a field in the data structure, the default value is used\. This example creates a `one-time` request and specifies `0.02` as the maximum price you're willing to pay for the Spot Instance\. 
 
 ```
 {

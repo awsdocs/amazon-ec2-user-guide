@@ -21,9 +21,7 @@ To help you determine which deployment is best for you, see [AWS Wavelength FAQs
 
 Each Amazon EC2 Region is designed to be isolated from the other Amazon EC2 Regions\. This achieves the greatest possible fault tolerance and stability\.
 
-The following diagram illustrates multiple AWS Regions\.
 
-![\[Regions\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/aws-region.png)
 
 When you view your resources, you see only the resources that are tied to the Region that you specified\. This is because Regions are isolated from each other, and we don't automatically replicate resources across Regions\.
 
@@ -47,32 +45,32 @@ Your account determines the Regions that are available to you\.
 
 The following table lists the Regions provided by an AWS account\. You can't describe or access additional Regions from an AWS account, such as AWS GovCloud \(US\) Region or the China Regions\. To use a Region introduced after March 20, 2019, you must enable the Region\. For more information, see [Managing AWS Regions](https://docs.aws.amazon.com/general/latest/gr/rande-manage.html) in the *AWS General Reference*\.
 
-For information about available Wavelength Zones, see [Available Wavelength Zones](https://docs.aws.amazon.com/wavelength/latest/developerguide/wavelength-quotas.html#concepts-available-zones) in the *AWS Wavelength Developer Guide*\.
+For information about available Wavelength Zones, see [Available Wavelength Zones](https://docs.aws.amazon.com/wavelength/latest/developerguide/wavelength-quotas.html#concepts-available-zones) in the *AWS Wavelength Developer Guide*\. For information about available Local Zones, see [Available Local Zones](#local-zones-available)\.
 
 
-| Code | Name | Opt\-in Status | Local Zone | 
-| --- | --- | --- | --- | 
-| us\-east\-2 | US East \(Ohio\) | Not required | Not available | 
-| us\-east\-1 | US East \(N\. Virginia\) | Not required |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html)  | 
-| us\-west\-1 | US West \(N\. California\) | Not required | Not available | 
-| us\-west\-2 | US West \(Oregon\) | Not required | The following Local Zones are in Los Angeles:[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html) | 
-| af\-south\-1 | Africa \(Cape Town\) | Required | Not available | 
-| ap\-east\-1 | Asia Pacific \(Hong Kong\) | Required | Not available | 
-| ap\-south\-1 | Asia Pacific \(Mumbai\) | Not required | Not available | 
-| ap\-northeast\-3 | Asia Pacific \(Osaka\) | Not required | Not available | 
-| ap\-northeast\-2 | Asia Pacific \(Seoul\) | Not required | Not available | 
-| ap\-southeast\-1 | Asia Pacific \(Singapore\) | Not required | Not available | 
-| ap\-southeast\-2 | Asia Pacific \(Sydney\) | Not required | Not available | 
-| ap\-northeast\-1 | Asia Pacific \(Tokyo\) | Not required | Not available | 
-| ca\-central\-1 | Canada \(Central\) | Not required | Not available | 
-| eu\-central\-1 | Europe \(Frankfurt\) | Not required | Not available | 
-| eu\-west\-1 | Europe \(Ireland\) | Not required | Not available | 
-| eu\-west\-2 | Europe \(London\) | Not required | Not available | 
-| eu\-south\-1 | Europe \(Milan\) | Required | Not available | 
-| eu\-west\-3 | Europe \(Paris\) | Not required | Not available | 
-| eu\-north\-1 | Europe \(Stockholm\) | Not required | Not available | 
-| me\-south\-1 | Middle East \(Bahrain\) | Required | Not available | 
-| sa\-east\-1 | South America \(São Paulo\) | Not required | Not available | 
+| Code | Name | Opt\-in Status | 
+| --- | --- | --- | 
+| us\-east\-2 | US East \(Ohio\) | Not required | 
+| us\-east\-1 | US East \(N\. Virginia\) | Not required | 
+| us\-west\-1 | US West \(N\. California\) | Not required | 
+| us\-west\-2 | US West \(Oregon\) | Not required | 
+| af\-south\-1 | Africa \(Cape Town\) | Required | 
+| ap\-east\-1 | Asia Pacific \(Hong Kong\) | Required | 
+| ap\-south\-1 | Asia Pacific \(Mumbai\) | Not required | 
+| ap\-northeast\-3 | Asia Pacific \(Osaka\) | Not required | 
+| ap\-northeast\-2 | Asia Pacific \(Seoul\) | Not required | 
+| ap\-southeast\-1 | Asia Pacific \(Singapore\) | Not required | 
+| ap\-southeast\-2 | Asia Pacific \(Sydney\) | Not required | 
+| ap\-northeast\-1 | Asia Pacific \(Tokyo\) | Not required | 
+| ca\-central\-1 | Canada \(Central\) | Not required | 
+| eu\-central\-1 | Europe \(Frankfurt\) | Not required | 
+| eu\-west\-1 | Europe \(Ireland\) | Not required | 
+| eu\-west\-2 | Europe \(London\) | Not required | 
+| eu\-south\-1 | Europe \(Milan\) | Required | 
+| eu\-west\-3 | Europe \(Paris\) | Not required | 
+| eu\-north\-1 | Europe \(Stockholm\) | Not required | 
+| me\-south\-1 | Middle East \(Bahrain\) | Required | 
+| sa\-east\-1 | South America \(São Paulo\) | Not required | 
 
 For more information, see [AWS Global Infrastructure](https://aws.amazon.com/about-aws/global-infrastructure/)\.
 
@@ -259,29 +257,43 @@ A Local Zone is an extension of an AWS Region in geographic proximity to your us
 
 ![\[Local Zones\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/aws-lz.png)
 
-A Local Zone is represented by a Region code followed by an identifier that indicates the location, for example, `us-west-2-lax-1a`\.
+A Local Zone is represented by a Region code followed by an identifier that indicates the location, for example, `us-west-2-lax-1a`\. For more information, see [Available Local Zones](#local-zones-available)\.
 
 To use a Local Zone, you must first enable it\. For more information, see [Opt in to Local Zones](#opt-in-local-zone)\. Next, create a subnet in the Local Zone\. Finally, launch any of the following resources in the Local Zone subnet, so that your applications are close to your end users:
 + Amazon EC2 instances
 + Amazon EBS volumes
 + Amazon ECS
 + Amazon EKS
++ Internet gateways
 
-In addition to the above list, the following resources are available in the Los Angeles Local Zones\. 
+In addition to the preceding list, the following resources are available in the Los Angeles Local Zones: 
 + Amazon FSx file servers
 + Elastic Load Balancing
 + Amazon EMR
 + Amazon ElastiCache
 + Amazon Relational Database Service
 + Dedicated Hosts
-+ Internet gateways
-
-For information about the available Local Zones, see [Available Regions](#concepts-available-regions)\.
 
 **Topics**
++ [Available Local Zones](#local-zones-available)
 + [Describe your Local Zones](#local-zones-describe)
 + [Opt in to Local Zones](#opt-in-local-zone)
 + [Launch instances in a Local Zone](#local-zones-launching)
+
+### Available Local Zones<a name="local-zones-available"></a>
+
+The following table lists the available Local Zones\. For information about how to opt in, see [Opt in to Local Zones](#opt-in-local-zone)\.
+
+
+| Location | Zone Name | Parent Region | 
+| --- | --- | --- | 
+| Boston | us\-east\-1\-bos\-1a | US East \(N\. Virginia\) | 
+| Dallas | us\-east\-1\-dfw\-1a | US East \(N\. Virginia\) | 
+| Houston | us\-east\-1\-iah\-1a | US East \(N\. Virginia\) | 
+| Los Angeles | us\-west\-2\-lax\-1a | US West \(Oregon\) | 
+| Los Angeles | us\-west\-2\-lax\-1b | US West \(Oregon\) | 
+| Miami | us\-east\-1\-mia\-1a | US East \(N\. Virginia\) | 
+| Philadelphia | us\-east\-1\-phl\-1a | US East \(N\. Virginia\) | 
 
 ### Describe your Local Zones<a name="local-zones-describe"></a>
 
@@ -348,11 +360,11 @@ Some AWS resources might not be available in all Regions\. Make sure that you ca
 
 ### Launch instances in a Local Zone<a name="local-zones-launching"></a>
 
-When you launch an instance, you can specify a subnet which is in a Local Zone\. You also allocate an IP address from a network border group, which is a unique set of Availability Zones, Local Zones, or Wavelength Zones from which AWS advertises IP addresses, for example, `us-west-2-lax-1a`\.
+When you launch an instance, you can specify a subnet that is in a Local Zone\. You also allocate an IP address from a network border group\. A network border group is a unique set of Availability Zones, Local Zones, or Wavelength Zones from which AWS advertises IP addresses, for example, `us-west-2-lax-1a`\.
 
 You can allocate the following IP addresses from a network border group:
-+ Elastic IPv4 addresses that Amazon provides
-+ IPv6 Amazon\-provided VPC addresses
++ Amazon\-provided Elastic IPv4 addresses
++ Amazon\-provided IPv6 VPC addresses
 
 **To launch an instance in a Local Zone:**
 
@@ -362,7 +374,7 @@ You can allocate the following IP addresses from a network border group:
 
 1. Create a subnet\. Select the Local Zone when you create the subnet\. For more information, see [Creating a subnet in your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/working-with-vpcs.html#AddaSubnet) in the *Amazon VPC User Guide*\.
 
-1. Launch an instance, and select the subnet you created in the Local Zone\. For more information, see [Launch your instance](LaunchingAndUsingInstances.md)\.
+1. Launch an instance, and select the subnet that you created in the Local Zone\. For more information, see [Launch your instance](LaunchingAndUsingInstances.md)\.
 
 ## Wavelength Zones<a name="concepts-wavelength-zones"></a>
 

@@ -19,7 +19,11 @@ You can create, view, update, and delete security groups and security group rule
 
 ## Create a security group<a name="creating-security-group"></a>
 
-You can create a custom security group using one of the following methods\. You must specify the VPC for which you're creating the security group\.
+Although you can use the default security group for your instances, you might want to create your own groups to reflect the different roles that instances play in your system\.
+
+By default, new security groups start with only an outbound rule that allows all traffic to leave the instances\. You must add rules to enable any inbound traffic or to restrict the outbound traffic\.
+
+A security group can be used only in the VPC for which it is created\.
 
 ------
 #### [ New console ]
@@ -36,11 +40,13 @@ You can create a custom security group using one of the following methods\. You 
 
    1. Enter a descriptive name and brief description for the security group\. They can't be edited after the security group is created\. The name and description can be up to 255 characters long\. The valid characters are `a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=&;{}!$*`\.
 
-   1. For **VPC**, choose the VPC in which to create the security group\. The security group can only be used in the VPC in which it is created\.
+   1. For **VPC**, choose the VPC\.
 
-1. You can add security group rules now, or you can add them at any time after you have created the security group\. For more information about adding security group rules, see [Add rules to a security group](#adding-security-group-rule)\.
+1. You can add security group rules now, or you can add them later\. For more information, see [Add rules to a security group](#adding-security-group-rule)\.
 
-1. Choose **Create**\.
+1. You can add tags now, or you can add them later\. To add a tag, choose **Add new tag** and enter the tag key and value\.
+
+1. Choose **Create security group**\.
 
 ------
 #### [ Old console ]
@@ -147,6 +153,7 @@ You can view information about your security groups using one of the following m
 
 Use one of the following commands\.
 + [describe\-security\-groups](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-security-groups.html) \(AWS CLI\)
++ [describe\-security\-group\-rules](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-security-group-rules.html) \(AWS CLI\)
 + [Get\-EC2SecurityGroup](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2SecurityGroup.html) \(AWS Tools for Windows PowerShell\)
 
 ------
@@ -164,20 +171,20 @@ When you add a rule to a security group, the new rule is automatically applied t
 
 1. In the navigation pane, choose **Security Groups**\.
 
-1. In the list, select the security group and choose **Actions**, **Edit inbound rules**\.
+1. Select the security group, and choose **Actions**, **Edit inbound rules**\.
 
-1. Choose **Add rule** and do the following\.
+1. For each rule, choose **Add rule** and do the following\.
 
    1. For **Type**, choose the type of protocol to allow\.
-      + If you choose a custom TCP or UDP protocol, you must manually enter the port range to allow\.
-      + If you choose a custom ICMP protocol, you must choose the ICMP type name from **Protocol**, and, if applicable, the code name from **Port range**\.
-      + If you choose any other type, the protocol and port range are configured automatically\. 
+      + For TCP or UDP, you must enter the port range to allow\.
+      + For custom ICMP, you must choose the ICMP type name from **Protocol**, and, if applicable, the code name from **Port range**\.
+      + For any other type, the protocol and port range are configured automatically\.
 
-   1. For **Source**, do one of the following\.
-      + Choose **Custom** and then enter an IP address in CIDR notation, a CIDR block, another security group, or a prefix list from which to allow inbound traffic\.
-      + Choose **Anywhere** to allow all inbound traffic of the specified protocol to reach your instance\. This option automatically adds the `0.0.0.0/0` IPv4 CIDR block as an allowed source\. This is acceptable for a short time in a test environment, but it's unsafe for production environments\. In production, authorize only a specific IP address or range of addresses to access your instance\.
+   1. For **Source**, do one of the following to allow traffic\.
+      + Choose **Custom** and then enter an IP address in CIDR notation, a CIDR block, another security group, or a prefix list\.
+      + Choose **Anywhere** to allow all traffic for the specified protocol to reach your instance\. This option automatically adds the 0\.0\.0\.0/0 IPv4 CIDR block as the source\. This is acceptable for a short time in a test environment, but it's unsafe in production environments\. In production, authorize only a specific IP address or range of addresses to access your instances\.
 
-        If your security group is in a VPC that's enabled for IPv6, this option automatically adds a second rule for IPv6 traffic \(`::/0`\)\.
+        If your security group is in a VPC that's enabled for IPv6, this option automatically adds a rule for the ::/0 IPv6 CIDR block\.
       + Choose **My IP** to allow inbound traffic from only your local computer's public IPv4 address\.
 
    1. For **Description**, optionally specify a brief description for the rule\.
@@ -190,23 +197,23 @@ When you add a rule to a security group, the new rule is automatically applied t
 
 1. In the navigation pane, choose **Security Groups**\.
 
-1. In the list, select the security group and choose **Actions**, **Edit outbound rules**\.
+1. Select the security group, and choose **Actions**, **Edit outbound rules**\.
 
-1. Choose **Add rule** and do the following\.
+1. For each rule, choose **Add rule** and do the following\.
 
    1. For **Type**, choose the type of protocol to allow\.
-      + If you choose a custom TCP or UDP protocol, you must manually enter the port range to allow\.
-      + If you choose a custom ICMP protocol, you must choose the ICMP type name from **Protocol**, and, if applicable, the code name from **Port range**\.
-      + If you choose any other type, the protocol and port range are configured automatically\. 
+      + For TCP or UDP, you must enter the port range to allow\.
+      + For custom ICMP, you must choose the ICMP type name from **Protocol**, and, if applicable, the code name from **Port range**\.
+      + For any other type, the protocol and port range are configured automatically\.
 
    1. For **Destination**, do one of the following\.
       + Choose **Custom** and then enter an IP address in CIDR notation, a CIDR block, another security group, or a prefix list for which to allow outbound traffic\.
-      + Choose **Anywhere** to allow outbound traffic to all IP addresses\. This option automatically adds the `0.0.0.0/0` IPv4 CIDR block as an allowed source\. 
+      + Choose **Anywhere** to allow outbound traffic to all IP addresses\. This option automatically adds the 0\.0\.0\.0/0 IPv4 CIDR block as the destination\.
 
-        If your security group is in a VPC that's enabled for IPv6, this option automatically adds a second rule for IPv6 traffic \(`::/0`\)\.
+        If your security group is in a VPC that's enabled for IPv6, this option automatically adds a rule for the ::/0 IPv6 CIDR block\.
       + Choose **My IP** to allow outbound traffic only to your local computer's public IPv4 address\.
 
-   1. For **Description**, optionally specify a brief description for the rule\.
+   1. \(Optional\) For **Description**, specify a brief description for the rule\.
 
 1. Choose **Preview changes**, **Confirm**\.
 
@@ -283,9 +290,27 @@ When you modify the protocol, port range, or source or destination of an existin
 
 1. In the navigation pane, choose **Security Groups**\.
 
-1. Select the security group to update, choose **Actions**, and then choose **Edit inbound rules** to update a rule for inbound traffic or **Edit outbound rules** to update a rule for outbound traffic\.
+1. Select the security group\.
 
-1. Update the rule as required and then choose **Preview changes**, **Confirm**\.
+1. Choose **Actions**, **Edit inbound rules** to update a rule for inbound traffic or **Actions**, **Edit outbound rules** to update a rule for outbound traffic\.
+
+1. Update the rule as required\.
+
+1. Choose **Preview changes**, **Confirm**\.
+
+**To tag a security group rule**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Security Groups**\.
+
+1. Select the security group\.
+
+1. On the **Inbound rules** or **Outbound rules** tab, select the check box for the rule and then choose **Manage tags**\.
+
+1. The **Manage tags** page displays any tags that are assigned to the rule\. To add a tag, choose **Add tag** and enter the tag key and value\. To delete a tag, choose **Remove** next to the tag that you want to delete\.
+
+1. Choose **Save changes**\.
 
 ------
 #### [ Old console ]
@@ -309,6 +334,11 @@ When you modify the protocol, port range, or source or destination of an existin
 
 You cannot modify the protocol, port range, or source or destination of an existing rule using the Amazon EC2 API or a command line tools\. Instead, you must delete the existing rule and add a new rule\. You can, however, update the description of an existing rule\.
 
+**To update a rule**
+
+Use one the following command\.
++ [modify\-security\-group\-rules](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-security-group-rules.html) \(AWS CLI\)
+
 **To update the description for an existing inbound rule**
 
 Use one of the following commands\.
@@ -320,6 +350,12 @@ Use one of the following commands\.
 Use one of the following commands\.
 + [update\-security\-group\-rule\-descriptions\-egress](https://docs.aws.amazon.com/cli/latest/reference/ec2/update-security-group-rule-descriptions-egress.html) \(AWS CLI\)
 + [Update\-EC2SecurityGroupRuleEgressDescription](https://docs.aws.amazon.com/powershell/latest/reference/items/Update-EC2SecurityGroupRuleEgressDescription.html) \(AWS Tools for Windows PowerShell\)
+
+**To tag a security group rule**
+
+Use one of the following commands\.
++ [create\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-tags.html) \(AWS CLI\)
++ [New\-EC2Tag](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Tag.html) \(AWS Tools for Windows PowerShell\)
 
 ------
 

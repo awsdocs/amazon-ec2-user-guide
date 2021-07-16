@@ -61,7 +61,7 @@ Some AMIs do not have a boot mode parameter\. When an AMI has no boot mode param
 **To determine the boot mode parameter of an AMI when launching an instance \(console\)**  
 When launching an instance using the launch instance wizard, at the step to select an AMI, inspect the **Boot mode** field\. For more information, see [Step 1: Choose an Amazon Machine Image \(AMI\)](launching-instance.md#step-1-AMI)\.
 
-**To determine the boot mode parameter of an AMI \(AWS CLI\)**  
+**To determine the boot mode parameter of an AMI \(AWS CLI version 1\.19\.34 and later and version 2\.1\.32 and later\)**  
 Use the [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command to determine the boot mode of an AMI\.
 
 ```
@@ -92,7 +92,7 @@ Expected output
 
 ## Determine the supported boot modes of an instance type<a name="instance-type-boot-mode"></a>
 
-**To determine the supported boot modes of an instance type \(AWS CLI\)**  
+**To determine the supported boot modes of an instance type \(AWS CLI version 1\.19\.34 and later and version 2\.1\.32 and later\)**  
 Use the [describe\-instance\-types](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-types.html) command to determine the supported boot modes of an instance type\. By including the `--query` parameter, you can filter the output\. In this example, the output is filtered to return only the supported boot modes\.
 
 The following example shows that `m5.2xlarge` supports both UEFI and Legacy BIOS boot modes\.
@@ -145,7 +145,7 @@ The value of the instance's boot mode parameter determines the mode in which it 
 
 1. On the **Details** tab, inspect the **Boot mode** field\.
 
-**To determine the boot mode of an instance \(AWS CLI\)**  
+**To determine the boot mode of an instance \(AWS CLI version 1\.19\.34 and later and version 2\.1\.32 and later\)**  
 Use the [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) command to determine the boot mode of an instance\.
 
 ```
@@ -243,7 +243,7 @@ You can't set the boot mode of an AMI using the [create\-image](https://docs.aws
 **Warning**  
 Before proceeding with these steps, you must first make suitable modifications to the instance's volume and OS to support booting via the selected boot mode; otherwise, the resulting AMI will not be usable\. The modifications that are required are operating system\-specific\. For more information, see the manual for your operating system\.
 
-**To set the boot mode of an AMI \(AWS CLI\)**
+**To set the boot mode of an AMI \(AWS CLI version 1\.19\.34 and later and version 2\.1\.32 and later\)**
 
 1. Make suitable modifications to the instance's volume and OS to support booting via the selected boot mode\. The modifications that are required are operating system\-specific\. For more information, see the manual for your operating system\.
 **Note**  

@@ -13,8 +13,7 @@ You can connect to the serial console of your EC2 instance by using the Amazon E
 + The serial console connection typically lasts for one hour unless you terminate it\. However, during system maintenance, Amazon EC2 will terminate the serial console session\.
 + It takes 30 seconds to tear down a session after you've disconnected from the serial console in order to allow a new session\.
 + Supported serial console port for Linux: ttyS0
-
-When you connect to the serial console, you might observe a slight drop in your instance’s throughput\.
++ When you connect to the serial console, you might observe a slight drop in your instance’s throughput\.
 
 ## Prerequisites<a name="sc-prerequisites"></a>
 + Supported AWS Regions: US East \(N\. Virginia\), US East \(Ohio\), US West \(Oregon\) Europe \(Ireland\), Europe \(Frankfurt\), Asia Pacific \(Sydney\), Asia Pacific \(Tokyo\), Asia Pacific \(Singapore\)
@@ -25,7 +24,10 @@ When you connect to the serial console, you might observe a slight drop in your 
   + R5, R5a, R5ad, R5d, R5dn, R5n, R6, R6gd
   + T3, T3a, T4g
   + Z1d
-+ All IAM users who will use the serial console must have the required permissions\. For more information, see [Configure IAM policies for EC2 Serial Console access](configure-access-to-serial-console.md#serial-console-iam)\.
++ Configure access to the EC2 Serial Console, as follows:
+  + [Manage account access to the EC2 Serial Console](configure-access-to-serial-console.md#serial-console-account-access)\.
+  + [Configure IAM policies for EC2 Serial Console access](configure-access-to-serial-console.md#serial-console-iam)\. All IAM users who will use the serial console must have the required permissions\.
+  + [Set an OS user password](configure-access-to-serial-console.md#set-user-password)\.
 + To connect to the serial console [using the browser\-based client](#sc-connect-browser-based-client), your browser must support WebSocket\. If your browser does not support WebSocket, connect to the serial console [using your own key and an SSH client\.](#sc-connect-SSH)
 + The instance must be in the `pending`, `running`, `stopping`, or `shutting-down` state\. If the instance is `terminated` or `stopped`, you can't connect to the serial console\. For more information about the instance states, see [Instance lifecycle](ec2-instance-lifecycle.md)\.
 + If the instance uses Amazon EC2 Systems Manager, then SSM Agent version 3\.0\.854\.0 or later must be installed on the instance\. For information about SSM Agent, see [Working with SSM Agent](https://docs.aws.amazon.com/systems-manager/latest/userguide/ssm-agent.html) in the *AWS Systems Manager User Guide*\.

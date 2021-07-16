@@ -26,6 +26,7 @@ When you replace the root volume for an instance, a new volume is restored to th
 + The instance is automatically rebooted when the root volume is replaced\. The contents of the memory \(RAM\) is erased during the reboot\.
 + You can't replace the root volume if it is an instance store volume\.
 + You can't replace the root volume for metal instances\.
++ You can only use snapshots that belong to the same lineage as the instance's current root volume\. You can't use snapshot copies created from snapshots that were taken from the root volume\. Additionally, after successfully completing a root volume replacement task, snapshots taken from the previous root volume can't be used to create a root volume replacement task for the new volume\.
 
 ### Replace a root volume<a name="replace"></a>
 

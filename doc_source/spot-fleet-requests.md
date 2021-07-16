@@ -322,7 +322,7 @@ Follow these steps to quickly create a Spot Fleet request\.
 
 1. If you are new to Spot, you see a welcome page; choose **Get started**\. Otherwise, choose **Request Spot Instances**\.
 
-1. For **Tell us your application or task need**, choose **Load balancing workloads**, **Flexible workloads**, **Big data workloads**, or **Defined duration workloads**\.
+1. For **Tell us your application or task need**, choose **Load balancing workloads**, **Flexible workloads**, or **Big data workloads**\.
 
 1. Under **Configure your instances**, for **Minimum compute unit**, choose the minimum hardware specifications \(vCPUs, memory, and storage\) that you need for your application or task, either **as specs** or **as an instance type**\.
    + For **as specs**, specify the required number of vCPUs and amount of memory\.
@@ -342,7 +342,7 @@ You can create a Spot Fleet using the parameters that you define\.
 
 1. If you are new to Spot, you see a welcome page; choose **Get started**\. Otherwise, choose **Request Spot Instances**\.
 
-1. For **Tell us your application or task need**, choose **Load balancing workloads**, **Flexible workloads**, **Big data workloads**, or **Defined duration workloads**\.
+1. For **Tell us your application or task need**, choose **Load balancing workloads**, **Flexible workloads**, or **Big data workloads**\.
 
 1. For **Configure your instances**, do the following:
 

@@ -14,6 +14,7 @@ To update the contact information for your account so that you can be sure to be
 + [Work with instances scheduled for reboot](#schedevents_actions_reboot)
 + [Work with instances scheduled for maintenance](#schedevents_actions_maintenance)
 + [Reschedule a scheduled event](#reschedule-event)
++ [Define event windows for scheduled events](event-windows.md)
 
 ## Types of scheduled events<a name="types-of-scheduled-events"></a>
 

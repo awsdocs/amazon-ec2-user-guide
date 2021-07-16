@@ -4,6 +4,9 @@ The following table describes important additions to the Amazon EC2 documentatio
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Event windows](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/event-windows.html) | You can define custom, weekly\-recurring event windows for scheduled events that reboot, stop, or terminate your Amazon EC2 instances\. | July 15, 2021 | 
+| [Resource IDs and tagging support for security group rules](#DocumentHistory) | You can refer to security group rules by resource ID\. You can also add tags to your security group rules\. | July 7, 2021 | 
+| [New Local Zones added](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#local-zones-available) | Add Local Zones in Dallas and Philadelphia\. | July 7, 2021 | 
 | [Deprecate an AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-deprecate.html) | You can now specify when an AMI is deprecated\. | June 11, 2021 | 
 | [Windows per\-second billing](#DocumentHistory) | Amazon EC2 charges for Windows\- and SQL Server\-based usage by the second, with a one\-minute minimum charge\. | June 10, 2021 | 
 | [Capacity Reservations on AWS Outposts](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/capacity-reservations-outposts.html) | You can now use Capacity Reservations on AWS Outposts\. | May 24, 2021 | 

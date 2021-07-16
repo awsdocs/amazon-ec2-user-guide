@@ -1,6 +1,6 @@
 # Request modifications to your EBS volumes<a name="requesting-ebs-volume-modifications"></a>
 
-With Elastic Volumes, you can dynamically modify the size, performance, and volume type of your Amazon EBS volumes without detaching them\.
+With Elastic Volumes, you can dynamically increase the size, increase or decrease the performance, and change the volume type of your Amazon EBS volumes without detaching them\.
 
 Use the following process when modifying a volume:
 
@@ -18,6 +18,8 @@ Use the following process when modifying a volume:
 + [Modify an EBS volume if Elastic Volumes is not supported](#modify-volume-stop-start)
 
 ## Modify an EBS volume using Elastic Volumes<a name="modify-ebs-volume"></a>
+
+You can only increase volume size\. You can increase or decrease volume performance\. If you are not changing the volume type, then volume size and performance modifications must be within the limits of the current volume type\. If you are changing the volume type, then volume size and performance modifications must be within the limits of the target volume type\.
 
 To modify an EBS volume, use one of the following methods\.
 

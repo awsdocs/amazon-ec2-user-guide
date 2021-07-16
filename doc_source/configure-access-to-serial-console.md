@@ -6,7 +6,7 @@ To configure access to the serial console, you must grant serial console access 
 + [Levels of access to the EC2 Serial Console](#serial-console-access-levels)
 + [Manage account access to the EC2 Serial Console](#serial-console-account-access)
 + [Configure IAM policies for EC2 Serial Console access](#serial-console-iam)
-+ [Set a user password](#set-user-password)
++ [Set an OS user password](#set-user-password)
 
 ## Levels of access to the EC2 Serial Console<a name="serial-console-access-levels"></a>
 
@@ -24,7 +24,7 @@ You can configure the serial console access policies by using IAM PrincipalTag a
 You can configure access at the user level by configuring an IAM policy to allow or deny a specified user the permission to push the SSH public key to the serial console service of a particular instance\. For more information, see [Configure IAM policies for EC2 Serial Console access](#serial-console-iam)\.
 
 **OS level**  
-You can set a user password at the guest OS level\. This provides access to the serial console for some use cases\. However, to monitor the logs, you don't need a password\-based user\. For more information, see [Set a user password](#set-user-password)\.
+You can set a user password at the guest OS level\. This provides access to the serial console for some use cases\. However, to monitor the logs, you don't need a password\-based user\. For more information, see [Set an OS user password](#set-user-password)\.
 
 ## Manage account access to the EC2 Serial Console<a name="serial-console-account-access"></a>
 
@@ -243,14 +243,18 @@ For more information about using tags to control access to your AWS resources, s
 }
 ```
 
-## Set a user password<a name="set-user-password"></a>
+## Set an OS user password<a name="set-user-password"></a>
 
-You can connect to the serial console without a password\. However, to *use* the serial console for troubleshooting an instance, the instance must have a password\-based user\. You must set a user password for every instance for which you will use the serial console\. This is a one\-time requirement for each instance\.
+You can connect to the serial console without a password\. However, to *use* the serial console for troubleshooting an instance, the instance must have a password\-based OS user\.
+
+You can set the password for any OS user, including the root user\. Note that the root user can modify all files, while each OS user might have limited permissions\.
+
+You must set a user password for every instance for which you will use the serial console\. This is a one\-time requirement for each instance\.
 
 **Note**  
-The following instructions are applicable only if you launched your instance using an AWS provided AMI because, by default, AWS provided AMIs are not configured with a password\-based user\. If you launched your instance using an AMI that already has the root user password configured, you can skip these instructions\.
+The following instructions are applicable only if you launched your instance using an AWS\-provided AMI because, by default, AWS\-provided AMIs are not configured with a password\-based user\. If you launched your instance using an AMI that already has the root user password configured, you can skip these instructions\.
 
-**To set a user password**
+**To set an OS user password**
 
 1. [Connect](AccessingInstances.md) to your instance\. You can use any method for connecting to your instance, except the EC2 Serial Console connection method\.
 

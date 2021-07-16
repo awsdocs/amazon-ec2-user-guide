@@ -28,7 +28,7 @@ After creating your snapshots, they appear in your EC2 console created at the ex
 
 ## Amazon Data Lifecycle Manager<a name="automate-snapshots"></a>
 
-You can create, retain, and delete snapshots manually, or you can use Amazon Data Lifecycle Manager to manage your snapshots for you\. For more information, see [Data Lifecycle Manager](snapshot-lifecycle.md)\.
+You can create, retain, and delete snapshots manually, or you can use Amazon Data Lifecycle Manager to manage your snapshots for you\. For more information, see [Amazon Data Lifecycle Manager](snapshot-lifecycle.md)\.
 
 ## Considerations<a name="ebs-create-snapshot-limitations"></a>
 

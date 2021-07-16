@@ -17,7 +17,8 @@ Amazon Data Lifecycle Manager cannot be used to automate the creation, retention
 + [How Amazon Data Lifecycle Manager works](#dlm-elements)
 + [Considerations for Amazon Data Lifecycle Manager](#dlm-considerations)
 + [Prerequisites](#dlm-prerequisites)
-+ [Automate snapshot and EBS\-backed AMI lifecycles](snapshot-ami-policy.md)
++ [Automate snapshot lifecycles](snapshot-ami-policy.md)
++ [Automate AMI lifecycles](ami-policy.md)
 + [Automate cross\-account snapshot copies](event-policy.md)
 + [View, modify, and delete lifecycle policies](view-modify-delete.md)
 + [Monitor the lifecycle of snapshots and AMIs](dlm-monitor-lifecycle.md)
@@ -90,11 +91,11 @@ Policy schedules define when snapshots or AMIs are created by the policy\. Polic
 
 Adding multiple schedules to a single policy lets you create snapshots or AMIs at different frequencies using the same policy\. For example, you can create a single policy that creates daily, weekly, monthly, and yearly snapshots\. This eliminates the need to manage multiple policies\.
 
-For each schedule, you can define the frequency, fast snapshot restore settings \(snapshot lifecycle policies only\), cross\-Region copy rules, and tags\. The tags that are assigned to a schedule are automatically assigned to the snapshots or AMIs that are created when the schedule is triggered\. In addition, Amazon Data Lifecycle Manager automatically assigns a system\-generated tag based on the schedule's frequency to each snapshot or AMI\.
+For each schedule, you can define the frequency, fast snapshot restore settings \(snapshot lifecycle policies only\), cross\-Region copy rules, and tags\. The tags that are assigned to a schedule are automatically assigned to the snapshots or AMIs that are created when the schedule is initiated\. In addition, Amazon Data Lifecycle Manager automatically assigns a system\-generated tag based on the schedule's frequency to each snapshot or AMI\.
 
-Each schedule is triggered individually based on its frequency\. If multiple schedules are triggered at the same time, Amazon Data Lifecycle Manager creates only one snapshot or AMI and applies the retention settings of the schedule that has the highest retention period\. The tags of all of the triggered schedules are applied to the snapshot or AMI\.
-+ \(Snapshot lifecycle policies only\) If more than one of the triggered schedules is enabled for fast snapshot restore, then the snapshot is enabled for fast snapshot restore in all of the Availability Zones specified across all of the triggered schedules\. The highest retention settings of the triggered schedules is used for each Availability Zone\.
-+ If more than one of the triggered schedules is enabled for cross\-Region copy, the snapshot or AMI is copied to all Regions specified across all of the triggered schedules\. The highest retention period of the triggered schedules is applied\.
+Each schedule is initiated individually based on its frequency\. If multiple schedules are initiated at the same time, Amazon Data Lifecycle Manager creates only one snapshot or AMI and applies the retention settings of the schedule that has the highest retention period\. The tags of all of the initiated schedules are applied to the snapshot or AMI\.
++ \(Snapshot lifecycle policies only\) If more than one of the initiated schedules is enabled for fast snapshot restore, then the snapshot is enabled for fast snapshot restore in all of the Availability Zones specified across all of the initiated schedules\. The highest retention settings of the initiated schedules is used for each Availability Zone\.
++ If more than one of the initiated schedules is enabled for cross\-Region copy, the snapshot or AMI is copied to all Regions specified across all of the initiated schedules\. The highest retention period of the initiated schedules is applied\.
 
 ## Considerations for Amazon Data Lifecycle Manager<a name="dlm-considerations"></a>
 

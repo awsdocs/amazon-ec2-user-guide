@@ -24,105 +24,18 @@ To prepare the source and target accounts for cross\-account snapshot copying, y
 
 In the source account, create an EBS snapshot policy that will create the snapshots and share them with the required target accounts\.
 
+When you create the policy, ensure that you enable cross\-account sharing and that you specify the target AWS accounts with which to share the snapshots\. These are the accounts with which the snapshots are to be shared\. If you are sharing encrypted snapshots, then you must give the selected target accounts permission to use the KMS key used to encrypt the source volume\. For more information, see [Step 2: Share the customer managed key \(*Source account*\)](#share-cmk)\.
+
+For more information about creating an EBS snapshot policy, see [Automate snapshot lifecycles](snapshot-ami-policy.md)\.
+
 Use one of the following methods to create the EBS snapshot policy\.
-
-------
-#### [ Console ]
-
-****
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, choose **Lifecycle Manager** and then choose **Create Lifecycle Policy**\.
-
-1. For **Policy Type**, choose **EBS snapshot policy**, and for **Resource Type**, choose **Volume**\.
-
-1. For **Target with these tags**, specify the resource tags that identify the volumes from which to create the snapshots\.
-
-1. For **IAM role**, choose the IAM role that has permissions to create, share, delete, and describe snapshots, and to describe volumes\. AWS provides a default role, or you can create a custom IAM role\.
-
-   If you intend to share encrypted snapshots, then you must give this IAM role permission to use KMS key used to encrypt the source volume\. For more information, see [Step 2: Share the customer managed key \(*Source account*\)](#share-cmk)\.
-
-1. Add the policy schedules that define how snapshots are to be created and shared\. Schedule 1 is mandatory\. Schedules 2, 3, and 4 are optional\. For each policy schedule, specify the following information:
-   + For **Schedule name**, enter a name for the schedule\.
-   + For **Frequency**, specify the interval between policy runs\. You can configure policy runs on a daily, weekly, monthly, or yearly schedule\. Alternatively, choose **Custom cron expression** to specify an interval of up to one year\. For more information, see [Cron expressions](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions) in the *Amazon CloudWatch Events User Guide*\. 
-   + For **Starting at ***hh*:*mm* **UTC**, specify the time at which the policy runs are scheduled to start\. The first snapshot creation operation starts within one hour after the specified start time\. Subsequent snapshot creation operations start within one hour of their scheduled time\.
-   + For **Retention type**, specify how the snapshots are to be retained\. You can retain snapshots or AMIs based on either their total count or their age\. For count\-based retention, the range is 1 to 1000\. After the maximum count is reached, the oldest snapshot or AMI is deleted when a new one is created\. For age\-based retention, the range is 1 day to 100 years\. After the retention period of each snapshot or AMI expires, it is deleted\. The retention period should be greater than or equal to the creation interval\.
-**Note**  
-All schedules must have the same retention type\. You can specify the retention type for Schedule 1 only\. Schedules 2, 3, and 4 inherit the retention type from Schedule 1\. Each schedule can have its own retention count or period\.
-   + Select **Enable cross\-account sharing**, and then specify the target AWS accounts with which to F the snapshots\. These are the accounts with which the snapshots are to be shared\. If you are sharing encrypted snapshots, then you must give the selected target accounts permission to use the KMS key used to encrypt the source volume\. For more information, see [Step 2: Share the customer managed key \(*Source account*\)](#share-cmk)\.
-   + To automatically unshare shared snapshots, select **Unshare automatically**, and then specify when the snapshots are to be unshared\.
-
-     If you chose to automatically unshare shared snapshots, the period after which to automatically unshare the snapshots cannot be longer than the period for which the policy retains its snapshots\. For example, if the policy's retention configuration retains snapshots for a period of 5 days, you can only configure the policy to automatically unshare shared snapshots after periods up to 4 days\. This applies to policies with age\-based and count\-based snapshot retention configurations\.
-
-1. For **Policy status after creation**, choose **Enable policy** to start the policy runs at the next scheduled time\.
-
-1. Choose **Create Policy**\.
-
-------
-#### [ Command line ]
-
-Use the [create\-lifecycle\-policy](https://docs.aws.amazon.com/cli/latest/reference/dlm/create-lifecycle-policy.html) command to create an EBS snapshot policy\. To create the snapshot policy, for `PolicyType`, specify `EBS_SNAPSHOT_MANAGEMENT`\.
-
-For example, the following command creates a snapshot lifecycle policy in source account 111111111111\. The policy creates snapshots of all volumes that have a tag key of `inventory_db` with a value of `alpha`\. The policy includes one schedule that creates a snapshot every day at 15:30 UTC and retains the snapshot for two days\. The policy also shares the snapshots with target account 222222222222 and then automatically unshares them after one day\.
-
-```
-$ aws dlm create-lifecycle-policy --description "Sharing Policy" --state ENABLED --execution-role-arn arn:aws:iam::111111111111:role/AWSDataLifecycleManagerDefaultRole --policy-details file://policyDetails.json
-```
-
-The following shows the contents of the `policyDetails.json` file\.
-
-```
-{
-    "PolicyType": "EBS_SNAPSHOT_MANAGEMENT",
-    "ResourceTypes": [
-        "VOLUME"
-    ],
-    "TargetTags": [{
-        "Key": "inventory_db",
-        "Value": "alpha"
-    }],
-    "Schedules": [{
-        "Name": "Daily Snapshots",
-        "CreateRule": {
-            "Interval": 24,
-            "IntervalUnit": "HOURS",
-            "Times": [
-                "15:30"
-            ]
-        },
-        "RetainRule": {
-            "Interval": 2,
-            "IntervalUnit": "DAYS"
-        },
-        "ShareRules": [{
-            "TargetAccounts": ["222222222222"],
-            "UnshareInterval": 1,
-            "UnshareIntervalUnit": "DAYS"
-        }],
-        "CopyTags": false
-    }
-]}
-```
-
-Upon success, the command returns the ID of the newly created policy\. The following is example output\.
-
-```
-{
-    "PolicyId": "policy-0123456789abcdef0"
-}
-```
-
-------
 
 ### Step 2: Share the customer managed key \(*Source account*\)<a name="share-cmk"></a>
 
 If you are sharing encrypted snapshots, you must grant the IAM role and the target AWS accounts \(that you selected in the previous step\) permissions to use the customer managed key that was used to encrypt the source volume\.
 
 **Note**  
-Only perform this step if you are sharing encrypted snapshots\. If you are sharing unencrypted snapshots, skip this step\.
-
-Use one of the following methods to update the key policy of the KMS key\.
+Perform this step only if you are sharing encrypted snapshots\. If you are sharing unencrypted snapshots, skip this step\.
 
 ------
 #### [ Console ]
@@ -214,14 +127,51 @@ $ aws kms put-key-policy --policy-name default --key-id 9d5e2b3d-e410-4a27-a958-
 
 In the target account, you must create a cross\-account copy event policy that will automatically copy snapshots that are shared by the required source accounts\.
 
-This policy will only run in the target account when one of the specified source accounts shares snapshot with the account\.
+This policy runs in the target account only when one of the specified source accounts shares snapshot with the account\.
 
 Use one of the following methods to create the cross\-account copy event policy\.
 
 ------
-#### [ Console ]
+#### [ New console ]
 
-****
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. In the navigation pane, choose **Elastic Block Store**, **Lifecycle Manager**, and then choose **Create lifecycle policy**\.
+
+1. On the **Select policy type** screen, choose **Cross\-account copy event policy**, and then choose **Next**\.
+
+1. For **Policy description**, enter a brief description for the policy\.
+
+1. For **Policy tags**, add the tags to apply to the lifecycle policy\. You can use these tags to identify and categorize your policies\.
+
+1. In the **Event settings** section, define the snapshot sharing event that will cause the policy to run\. Do the following:
+
+   1. For **Sharing accounts**, specify the source AWS accounts from which you want to copy the shared snapshots\. Choose **Add account**, enter the 12\-digit AWS account ID, and then choose **Add**\.
+
+   1. For **Filter by description**, enter the required snapshot description using a regular expression\. Only snapshots that are shared by the specified source accounts and that have descriptions that match the specified filter are copied by the policy\. For more information, see [Specify snapshot description filters](#snapshot-descr-filters)\.
+
+1. For **IAM role**, choose the IAM role that has permissions to perform snapshot copy actions\. To use the default role provided by Amazon Data Lifecycle Manager, choose **Default role**\. Alternatively, to use a custom IAM role that you previously created, choose **Choose another role** and then select the role to use\.
+
+   If you are copying encrypted snapshots, you must grant the selected IAM role permissions to use the encryption KMS key used to encrypt the source volume\. Similarly, if you are encrypting the snapshot in the destination Region using a different KMS key, you must grant the IAM role permission to use the destination KMS key\. For more information, see [Step 4: Allow IAM role to use the required KMS keys \(*Target account*\)](#target_iam-role)\.
+
+1. In the **Copy action** section, define the snapshot copy actions that the policy should perform when it is activated\. The policy can copy snapshots to up to three Regions\. You must specify a separate copy rule for each destination Region\. For each rule that you add, do the following:
+
+   1. For **Name**, enter a descriptive name for the copy action\.
+
+   1. For **Target Region**, select the Region to which to copy the snapshots\.
+
+   1. For **Expire**, specify how long to retain the snapshot copies in the target Region after creation\.
+
+   1. To encrypt the snapshot copy, for **Encryption**, select **Enable encryption**\. If the source snapshot is encrypted, or if encryption by default is enabled for your account, the snapshot copy is always encrypted, even if you do enable encryption here\. If the source snapshot is unencrypted and encryption by default is not enabled for your account, you can choose to enable or disable encryption\. If you enable encryption, but do not specify a KMS key, the snapshots are encrypted using the default encryption KMS key in each destination Region\. If you specify a KMS key for the destination Region, you must have access to the KMS key\.
+
+1. To add additional snapshot copy actions, choose **Add new Regions**\.
+
+1. For **Policy status after creation**, choose **Enable policy** to start the policy runs at the next scheduled time, or **Disable policy** to prevent the policy from running\. If you do not enable the policy now, it will not start copying snapshots until you manually enable it after creation\.
+
+1. Choose **Create policy**\.
+
+------
+#### [ Old console ]
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 

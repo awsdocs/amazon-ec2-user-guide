@@ -25,7 +25,7 @@ Bare metal instances, such as `r6g.metal`, provide your applications with direct
 
 For more information, see [Amazon EC2 R6g Instances](https://aws.amazon.com/ec2/instance-types/r6)\.
 
-**High memory instances**  
+**High memory \(u\-\*\) instances**  
 These instances offer 6 TiB, 9 TiB, 12 TiB, 18 TiB, and 24 TiB of memory per instance\. They are designed to run large in\-memory databases, including production deployments of the SAP HANA in\-memory database\.
 
 For more information, see [Amazon EC2 High Memory Instances](http://aws.amazon.com/ec2/instance-types/high-memory/) and [Storage Configuration for SAP HANA](https://docs.aws.amazon.com/quickstart/latest/sap-hana/storage.html)\. For information about supported operating systems, see [Migrating SAP HANA on AWS to an EC2 High Memory Instance](https://docs.aws.amazon.com/sap/latest/sap-hana/migrating-hana-to-hm.html)\. 

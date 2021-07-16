@@ -5,8 +5,8 @@ The maximum transmission unit \(MTU\) of a network connection is the size, in by
 Ethernet frames can come in different formats, and the most common format is the standard Ethernet v2 frame format\. It supports 1500 MTU, which is the largest Ethernet packet size supported over most of the internet\. The maximum supported MTU for an instance depends on its instance type\. All Amazon EC2 instance types support 1500 MTU, and many current instance sizes support 9001 MTU, or jumbo frames\.
 
 The following rules apply to instances that are in Wavelength Zones:
-+ Traffic that goes from one instances to another within a VPC in the same Wavelength Zone has an MTU of 1300\.
-+ Traffic that goes from one instances to another that uses the carrier IP within a Wavelength Zone has an MTU of 1500\.
++ Traffic that goes from one instance to another within a VPC in the same Wavelength Zone has an MTU of 1300\.
++ Traffic that goes from one instance to another that uses the carrier IP within a Wavelength Zone has an MTU of 1500\.
 + Traffic that goes from one instance to another between a Wavelength Zone and the Region that uses a public IP address has an MTU of 1500\.
 + Traffic that goes from one instance to another between a Wavelength Zone and the Region that uses a private IP address has an MTU of 1300\.
 
@@ -21,7 +21,14 @@ To see Network MTU information for Windows instances, switch to this page in the
 
 ## Jumbo frames \(9001 MTU\)<a name="jumbo_frame_instances"></a>
 
-Jumbo frames allow more than 1500 bytes of data by increasing the payload size per packet, and thus increasing the percentage of the packet that is not packet overhead\. Fewer packets are needed to send the same amount of usable data\. However, outside of a given AWS Region \(EC2\-Classic\), a single VPC, or a VPC peering connection, you will experience a maximum path of 1500 MTU\. VPN connections and traffic sent over an internet gateway are limited to 1500 MTU\. If packets are over 1500 bytes, they are fragmented, or they are dropped if the `Don't Fragment` flag is set in the IP header\.
+Jumbo frames allow more than 1500 bytes of data by increasing the payload size per packet, and thus increasing the percentage of the packet that is not packet overhead\. Fewer packets are needed to send the same amount of usable data\. However, traffic is limited to a maximum MTU of 1500 in the following cases:
++ Traffic outside of a given AWS Region for EC2\-Classic
++ Traffic outside of a single VPC
++ Traffic over an inter\-region VPC peering connection
++ Traffic over VPN connections
++ Traffic over an internet gateway
+
+If packets are over 1500 bytes, they are fragmented, or they are dropped if the `Don't Fragment` flag is set in the IP header\.
 
 Jumbo frames should be used with caution for internet\-bound traffic or any traffic that leaves a VPC\. Packets are fragmented by intermediate systems, which slows down this traffic\. To use jumbo frames inside a VPC and not slow traffic that's bound for outside the VPC, you can configure the MTU size by route, or use multiple elastic network interfaces with different MTU sizes and different routes\.
 

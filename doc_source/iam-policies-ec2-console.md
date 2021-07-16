@@ -272,6 +272,7 @@ In the first statement, the `ec2:DescribeTags` action allows users to view tags 
       "Effect": "Allow",
       "Action": [
          "ec2:DescribeSecurityGroups", 
+         "ec2:DescribeSecurityGroupRules", 
          "ec2:DescribeTags"
       ],
       "Resource": "*"
@@ -283,6 +284,7 @@ In the first statement, the `ec2:DescribeTags` action allows users to view tags 
          "ec2:RevokeSecurityGroupIngress", 
          "ec2:AuthorizeSecurityGroupEgress", 
          "ec2:RevokeSecurityGroupEgress", 
+         "ec2:ModifySecurityGroupRules", 
          "ec2:UpdateSecurityGroupRuleDescriptionsIngress", 
          "ec2:UpdateSecurityGroupRuleDescriptionsEgress"
       ],
@@ -294,9 +296,17 @@ In the first statement, the `ec2:DescribeTags` action allows users to view tags 
             "ec2:ResourceTag/Department": "Test"
          }
       }
+   },
+   {
+      "Effect": "Allow",
+      "Action": [
+         "ec2:ModifySecurityGroupRules"
+      ],
+      "Resource": [
+         "arn:aws:ec2:region:111122223333:security-group-rule/*"
+      ]
    }
-   ]
-}
+]}
 ```
 
 **Work with the Create Security Group dialog box**

@@ -47,7 +47,7 @@ New AWS accounts might start with limits that are lower than these defaults\. Am
 | Running On\-Demand All Standard \(A, C, D, H, I, M, R, T, Z\) instances | 1,152 | 
 | Running On\-Demand All F instances | 128 | 
 | Running On\-Demand All G instances | 128 | 
-| Running On\-Demand High Memory instances | 448 | 
+| Running On\-Demand High Memory \(u\-\*\) instances | 448 | 
 | Running On\-Demand All Inf instances | 128 | 
 | Running On\-Demand All P instances | 128 | 
 | Running On\-Demand All X instances | 128 | 

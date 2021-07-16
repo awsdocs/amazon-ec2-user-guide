@@ -51,7 +51,7 @@ Amazon EC2 processes your modification request if there is sufficient capacity f
 + There must be a match between the instance size footprint of the original reservation and the new configuration\. For more information, see [Support for modifying instance sizes](#ri-modification-instancemove)\.
 + The original Reserved Instances are all Standard Reserved Instances or all Convertible Reserved Instances, not some of each type
 + The original Reserved Instances must expire within the same hour, if they are Standard Reserved Instances
-+ The Reserved Instance is not a G4dn instance\.
++ The Reserved Instance is not a G4 instance\.
 
 ## Support for modifying instance sizes<a name="ri-modification-instancemove"></a>
 

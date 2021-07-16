@@ -85,6 +85,7 @@ The following table describes the Amazon EC2 resources that can be tagged, and t
 |  Spot Fleet request  |  Yes  | Yes | 
 |  Spot Instance request  |  Yes  | Yes | 
 |  Security group  |  Yes  | Yes | 
+| Security group rule | Yes | No | 
 |  Subnet  |  Yes  | Yes | 
 | Traffic Mirror filter | Yes | Yes | 
 | Traffic Mirror session | Yes | Yes | 

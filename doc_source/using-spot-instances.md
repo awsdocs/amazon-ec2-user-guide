@@ -79,8 +79,6 @@ You can use the \.NET programming environment to manage your Spot Instances\. Fo
 
 You pay the Spot price for Spot Instances, which is set by Amazon EC2 and adjusted gradually based on the long\-term supply of and demand for Spot Instances\. If the maximum price for your request exceeds the current Spot price, Amazon EC2 fulfills your request if capacity is available\. Your Spot Instances run until you terminate them, capacity is no longer available, the Spot price exceeds your maximum price, or your Amazon EC2 Auto Scaling group terminates them during [scale in](https://docs.aws.amazon.com/autoscaling/latest/userguide/AutoScalingGroupLifecycle.html#as-lifecycle-scale-in)\.
 
-Spot Instances with a predefined duration use a fixed hourly price that remains in effect for the Spot Instance while it runs\.
-
 If you or Amazon EC2 interrupts a running Spot Instance, you are charged for the seconds used or the full hour, or you receive no charge, depending on the operating system used and who interrupted the Spot Instance\. For more information, see [Billing for interrupted Spot Instances](spot-interruptions.md#billing-for-interrupted-spot-instances)\.
 
 ### View prices<a name="spot-pricing-view-prices"></a>

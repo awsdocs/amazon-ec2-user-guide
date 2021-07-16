@@ -11,10 +11,10 @@ To validate the instance identity document using the RSA\-2048 signature, you mu
 
 1. Retrieve the RSA\-2048 signature from the instance metadata and add it to a file named `rsa2048`\.
 
-   1. Add the `-----BEGIN PKCS7-----` header to the `rsa2048` file\.
+   1. Add the `-----BEGIN RSA2048-----` header to the `rsa2048` file\.
 
       ```
-      $ echo "-----BEGIN PKCS7-----" > rsa2048
+      $ echo "-----BEGIN RSA2048-----" > rsa2048
       ```
 
    1. Retrieve the RSA\-2048 signature from the instance metadata and append it to the `rsa2048` file\. Use one of the following commands depending on the IMDS version used by the instance\.
@@ -36,11 +36,11 @@ To validate the instance identity document using the RSA\-2048 signature, you mu
 
 ------
 
-   1. Append the `-----END PKCS7-----` footer to a new line in the `rsa2048` file\.
+   1. Append the `-----END RSA2048-----` footer to a new line in the `rsa2048` file\.
 
       ```
       $ echo "" >> rsa2048
-      $ echo "-----END PKCS7-----" >> rsa2048
+      $ echo "-----END RSA2048-----" >> rsa2048
       ```
 
 1. Add the contents of the instance identity document from the instance metadata to a file named `document`\. Use one of the following commands depending on the IMDS version used by the instance\.
@@ -49,7 +49,7 @@ To validate the instance identity document using the RSA\-2048 signature, you mu
 #### [ IMDSv2 ]
 
    ```
-   $ TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` \ 
+   $ TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` \
    && curl -H "X-aws-ec2-metadata-token: $TOKEN" -v http://169.254.169.254/latest/dynamic/instance-identity/document > document
    ```
 
