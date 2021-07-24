@@ -261,7 +261,7 @@ Users cannot tag the volumes that they create \(either during or after volume cr
 
 **View security groups and add and remove rules**
 
-The following policy grants users permission to view security groups in the Amazon EC2 console, to add and remove inbound and outbound rules, and to modify rule descriptions for existing security groups that have the tag `Department=Test`\.
+The following policy grants users permission to view security groups in the Amazon EC2 console, to add and remove inbound and outbound rules, and to list and modify rule descriptions for existing security groups that have the tag `Department=Test`\.
 
 In the first statement, the `ec2:DescribeTags` action allows users to view tags in the console, which makes it easier for users to identify the security groups that they are allowed to modify\.
 
@@ -300,7 +300,7 @@ In the first statement, the `ec2:DescribeTags` action allows users to view tags 
    {
       "Effect": "Allow",
       "Action": [
-         "ec2:ModifySecurityGroupRules"
+         "ec2:ModifySecurityGroupRules",
       ],
       "Resource": [
          "arn:aws:ec2:region:111122223333:security-group-rule/*"
@@ -323,6 +323,8 @@ With these permissions, users can create a new security group successfully, but 
 + `ec2:DeleteSecurityGroup`: To cater for when invalid rules cannot be saved\. The console first creates the security group, and then adds the specified rules\. If the rules are invalid, the action fails, and the console attempts to delete the security group\. The user remains in the **Create Security Group** dialog box so that they can correct the invalid rule and try to create the security group again\. This API action is not required, but if a user is not granted permission to use it and attempts to create a security group with invalid rules, the security group is created without any rules, and the user must add them afterward\.
 + `ec2:UpdateSecurityGroupRuleDescriptionsIngress`: To add or update descriptions of ingress \(inbound\) security group rules\.
 + `ec2:UpdateSecurityGroupRuleDescriptionsEgress`: To add or update descriptions of egress \(outbound\) security group rules\.
++ `ec2:ModifySecurityGroupRules`: To modify security group rules\.
++ `ec2:DescribeSecurityGroupRules`: To list security group rules\.
 
 The following policy grants users permission to use the **Create Security Group** dialog box, and to create inbound and outbound rules for security groups that are associated with a specific VPC \(`vpc-1a2b3c4d`\)\. Users can create security groups for EC2\-Classic or another VPC, but they cannot add any rules to them\. Similarly, users cannot add any rules to any existing security group that's not associated with VPC `vpc-1a2b3c4d`\. Users are also granted permission to view all security groups in the console\. This makes it easier for users to identify the security groups to which they can add inbound rules\. This policy also grants users permission to delete security groups that are associated with VPC `vpc-1a2b3c4d`\. 
 

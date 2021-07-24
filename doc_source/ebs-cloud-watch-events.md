@@ -266,7 +266,7 @@ The listing below is an example of a JSON object emitted by EBS for a successful
 }
 ```
 
-The listing below is an example of a JSON object emitted by EBS after a failed `createSnapshots` event\. The cause for the failure was one or more snapshots failed to complete\. The values of `snapshot_id` are the ARNs of the failed snapshots\. `startTime` and `endTime` represent when the create\-snapshots action started and ended\. 
+The listing below is an example of a JSON object emitted by EBS after a failed `createSnapshots` event\. The cause for the failure was one or more snapshots for the multi\-volume snapshot set failed to complete\. The values of `snapshot_id` are the ARNs of the failed snapshots\. `startTime` and `endTime` represent when the create\-snapshots action started and ended\.
 
 ```
 {
@@ -281,11 +281,11 @@ The listing below is an example of a JSON object emitted by EBS after a failed `
     "arn:aws:ec2::us-east-1:snapshot/snap-01234567",
     "arn:aws:ec2::us-east-1:snapshot/snap-012345678"
   ],
- "detail": {
+"detail": {
     "event": "createSnapshots",
     "result": "failed",
-    "cause": "Snapshot snap-01234567 is in status deleted",
-    "request-id": "",
+    "cause": "Snapshot snap-01234567 is in status error",
+   "request-id": "",
     "startTime": "yyyy-mm-ddThh:mm:ssZ",
     "endTime": "yyyy-mm-ddThh:mm:ssZ",
     "snapshots": [
@@ -297,7 +297,7 @@ The listing below is an example of a JSON object emitted by EBS after a failed `
       {
         "snapshot_id": "arn:aws:ec2::us-east-1:snapshot/snap-012345678",
         "source": "arn:aws:ec2::us-east-1:volume/vol-012345678",
-        "status": "deleted"
+        "status": "error"
       }
     ]
   }

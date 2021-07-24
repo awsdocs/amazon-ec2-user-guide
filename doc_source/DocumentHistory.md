@@ -4,6 +4,8 @@ The following table describes important additions to the Amazon EC2 documentatio
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Prefixes for network interfaces](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-prefix-eni.html) | You can assign a private IPv4 or IPv6 CIDR range, either automatically or manually, to your network interfaces\. | July 22, 2021 | 
+| [`io2` Block Express volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html#io2-block-express) | `io2` Block Express volumes are now generally available in all Regions and Availability Zones that support R5b instances\. | July 19, 2021 | 
 | [Event windows](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/event-windows.html) | You can define custom, weekly\-recurring event windows for scheduled events that reboot, stop, or terminate your Amazon EC2 instances\. | July 15, 2021 | 
 | [Resource IDs and tagging support for security group rules](#DocumentHistory) | You can refer to security group rules by resource ID\. You can also add tags to your security group rules\. | July 7, 2021 | 
 | [New Local Zones added](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#local-zones-available) | Add Local Zones in Dallas and Philadelphia\. | July 7, 2021 | 

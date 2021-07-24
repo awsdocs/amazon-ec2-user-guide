@@ -325,7 +325,7 @@ The ID of the launch template to use\. You must specify either the launch templa
 The name of the launch template to use\. You must specify either the launch template ID or launch template name\. The launch template must specify an Amazon Machine Image \(AMI\)\. For more information, see [Launch an instance from a launch template](ec2-launch-templates.md)\.
 
 **Version**  
-The launch template version number, `$Latest`, or `$Default`\. You must specify a value, otherwise the request fails\. If the value is `$Latest`, Amazon EC2 uses the latest version of the launch template\. If the value is `$Default`, Amazon EC2 uses the default version of the launch template\. For more information, see [Manage launch template versions](ec2-launch-templates.md#manage-launch-template-versions)\.
+The launch template version number, `$Latest`, or `$Default`\. You must specify a value, otherwise the request fails\. If the value is `$Latest`, Amazon EC2 uses the latest version of the launch template\. If the value is `$Default`, Amazon EC2 uses the default version of the launch template\. For more information, see [Modify a launch template \(manage launch template versions\)](ec2-launch-templates.md#manage-launch-template-versions)\.
 
 **InstanceType**  
 \(Optional\) The instance type\. If entered, this value overrides the launch template\. The instance types must have the minimum hardware specifications that you need \(vCPUs, memory, or storage\)\.

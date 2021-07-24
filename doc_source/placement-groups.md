@@ -362,7 +362,7 @@ You can view the placement information of your instances using one of the follow
 
 1. Select the instance\.
 
-1. In the **Description** tab, under **Host and placement group**, find **Placement group**\. If the instance is not in a placement group, the field is empty\. Otherwise, it contains the name of the placement group name\. If the placement group is a partition placement group, **Partition number** contains the partition number for the instance\.
+1. On the **Details** tab, under **Host and placement group**, find **Placement group**\. If the instance is not in a placement group, the field is empty\. Otherwise, it contains the name of the placement group name\. If the placement group is a partition placement group, **Partition number** contains the partition number for the instance\.
 
 ------
 #### [ Old console ]
@@ -474,7 +474,7 @@ Before you move or remove the instance, the instance must be in the `stopped` st
 
 ------
 
- 
+ 
 
 ------
 #### [ AWS CLI ]

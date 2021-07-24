@@ -24,7 +24,9 @@ After the snapshots are created, each snapshot is treated as an individual snaps
 
 Multi\-volume, crash\-consistent snapshots are typically restored as a set\. It is helpful to identify the snapshots that are in a crash\-consistent set by tagging your set with the instance ID, name, or other relevant details\. You can also choose to automatically copy tags from the source volume to the corresponding snapshots\. This helps you to set the snapshot metadata, such as access policies, attachment information, and cost allocation, to match the source volume\. 
 
-After creating your snapshots, they appear in your EC2 console created at the exact point\-in\-time\. The snapshots are collectively managed and, therefore, if any one snapshot for the volume set fails, all of the other snapshots display an error status\.
+After creating your snapshots, they appear in your EC2 console created at the exact point\-in\-time\.
+
+If any one snapshot for the multi\-volume snapshot set fails, all of the other snapshots display an error status and a `createSnapshots` CloudWatch event with a result of `failed` is sent to your AWS account\. For more information, see [Create snapshots \(createSnapshots\)](ebs-cloud-watch-events.md#create-snapshots-complete)\.
 
 ## Amazon Data Lifecycle Manager<a name="automate-snapshots"></a>
 
@@ -103,8 +105,6 @@ To create a snapshot from the volumes of an instance, use one of the following m
 
 1. Choose **Create Snapshot**\.
 
-   During snapshot creation, the snapshots are managed together\. If one of the snapshots in the volume set fails, the other snapshots are moved to error status for the volume set\. You can monitor the progress of your snapshots using [CloudWatch Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/WhatIsCloudWatchEvents.html)\. After the snapshot creation process completes, CloudWatch generates an event that contains the status and all of the relevant snapshots details for the affected instance\.
-
 ------
 #### [ AWS CLI ]
 
@@ -115,6 +115,8 @@ You can use one of the following commands\. For more information about these com
 + [New\-EC2SnapshotBatch](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2SnapshotBatch.html) \(AWS Tools for Windows PowerShell\)
 
 ------
+
+If all of the snapshots complete successfully, a `createSnapshots` CloudWatch event with a result of `succeeded` is sent to your AWS account\. If any one snapshot for the multi\-volume snapshot set fails, all of the other snapshots display an error status and a `createSnapshots` CloudWatch event with a result of `failed` is sent to your AWS account\. For more information, see [Create snapshots \(createSnapshots\)](ebs-cloud-watch-events.md#create-snapshots-complete)\.
 
 ## Work with EBS snapshots<a name="using-snapshots"></a>
 

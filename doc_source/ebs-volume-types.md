@@ -20,20 +20,20 @@ The following is a summary of the use cases and characteristics of SSD\-backed v
 
 |  | General Purpose SSD | Provisioned IOPS SSD | 
 | --- | --- | --- | 
-| Volume type | gp3 | gp2 | io2 Block Express ‡ | io2  | io1 | 
+| Volume type | gp3 | gp2 | io2 Block Express ‡ | io2      | io1 | 
 | Durability | 99\.8% \- 99\.9% durability \(0\.1% \- 0\.2% annual failure rate\) | 99\.8% \- 99\.9% durability \(0\.1% \- 0\.2% annual failure rate\) | 99\.999% durability \(0\.001% annual failure rate\) | 99\.999% durability \(0\.001% annual failure rate\) | 99\.8% \- 99\.9% durability \(0\.1% \- 0\.2% annual failure rate\) | 
 | Use cases |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html)  |  Workloads that require: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html)  | 
 | Volume size | 1 GiB \- 16 TiB  | 4 GiB \- 64 TiB | 4 GiB \- 16 TiB  | 
 | Max IOPS per volume \(16 KiB I/O\) | 16,000 | 256,000 | 64,000 † | 
 | Max throughput per volume | 1,000 MiB/s | 250 MiB/s \* | 4,000 MiB/s | 1,000 MiB/s † | 
-| Amazon EBS Multi\-attach | Not supported | Not supported | Supported | 
+| Amazon EBS Multi\-attach | Not supported | Supported | 
 | Boot volume | Supported | 
 
 \* The throughput limit is between 128 MiB/s and 250 MiB/s, depending on the volume size\. Volumes smaller than or equal to 170 GiB deliver a maximum throughput of 128 MiB/s\. Volumes larger than 170 GiB but smaller than 334 GiB deliver a maximum throughput of 250 MiB/s if burst credits are available\. Volumes larger than or equal to 334 GiB deliver 250 MiB/s regardless of burst credits\. `gp2` volumes that were created before December 3, 2018 and that have not been modified since creation might not reach full performance unless you [modify the volume](ebs-modify-volume.md)\.
 
 † Maximum IOPS and throughput are guaranteed only on [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances) provisioned with more than 32,000 IOPS\. Other instances guarantee up to 32,000 IOPS and 500 MiB/s\. `io1` volumes that were created before December 6, 2017 and that have not been modified since creation might not reach full performance unless you [modify the volume](ebs-modify-volume.md)\.
 
-‡ `io2` Block Express volumes are available as an opt\-in preview only\. For more information, see [`io2` Block Express volumes \(In preview\)](#io2-block-express)\.
+‡ `io2` Block Express volumes are supported with R5b instances only\. `io2` volumes attached to an R5b instance during or after launch automatically run on Block Express\. For more information, see [`io2` Block Express volumes](#io2-block-express)\.
 
 ## Hard disk drives \(HDD\)<a name="hard-disk-drives"></a>
 
@@ -171,10 +171,30 @@ V  =  -----
 
 Provisioned IOPS SSD \(`io1` and `io2`\) volumes are designed to meet the needs of I/O\-intensive workloads, particularly database workloads, that are sensitive to storage performance and consistency\. Provisioned IOPS SSD volumes use a consistent IOPS rate, which you specify when you create the volume, and Amazon EBS delivers the provisioned performance 99\.9 percent of the time\.
 
-`io1` volumes are designed to provide 99\.8 to 99\.9 percent volume durability with an annual failure rate \(AFR\) no higher than 0\.2 percent, which translates to a maximum of two volume failures per 1,000 running volumes over a one\-year period\. `io2` volumes are designed to provide 99\.999 percent volume durability with an AFR no higher than 0\.001 percent, which translates to a single volume failure per 100,000 running volumes over a one\-year period\.
+`io1` volumes are designed to provide 99\.8 to 99\.9 percent volume durability with an annual failure rate \(AFR\) no higher than 0\.2 percent, which translates to a maximum of twovolume failures per 1,000 running volumes over a one\-year period\. `io2` volumes are designed to provide 99\.999 percent volume durability with an AFR no higher than 0\.001 percent, which translates to a single volume failure per 100,000 running volumes over a one\-year period\.
 
-Provisioned IOPS SSD `io1` volumes are available for all Amazon EC2 instance types\. Provisioned IOPS SSD `io2` volumes are available for all EC2 instances types, with the exception of R5b\. 
+Provisioned IOPS SSD `io1` and `io2` volumes are available for all Amazon EC2 instance types\. Provisioned IOPS SSD `io2` volumes attached to R5b instances run on EBS Block Express\. For more information, see [`io2` Block Express volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html#io2-block-express)\.
 
+**Considerations for `io2` volumes**  
+
++ Keep the following in mind when **launching instances with `io2` volumes**:
+  + If you launch an `R5b` instance with an `io2` volume, the volume automatically runs on [Block Express](#io2-block-express), regardless of the volume’s size and IOPS\.
+  + You can't launch an instance type that does not support [Block Express](#io2-block-express) with an `io2` volume that has a size greater than 16 TiB or IOPS greater than 64,000\.
+  + You can't launch an `R5b` instance with an encrypted `io2` volume that has a size greater than 16 TiB or IOPS greater than 64,000 from an unencrypted AMI or a shared encrypted AMI\. In this case, you must first create an encrypted AMI in your account and then use that AMI to launch the instance\.
++ Keep the following in mind when **creating `io2` volumes**:
+  + If you create an `io2` volume with a size greater than 16 TiB or IOPS greater than 64,000 in a Region where [Block Express](#io2-block-express) is supported, the volume automatically runs on Block Express\.
+  + You can't create an `io2` volume with a size greater than 16 TiB or IOPS greater than 64,000 in a Region where [Block Express](#io2-block-express) is not supported\.
+  + If you create an `io2` volume with a size of 16 TiB or less and IOPS of 64,000 or less in a Region where [Block Express](#io2-block-express) is supported, the volume does not run on Block Express\.
+  + You can't create an encrypted `io2` volume that has a size greater than 16 TiB or IOPS greater than 64,000 from an unencrypted snapshot or a shared encrypted snapshot\. In this case, you must first create an encrypted snapshot in your account and then use that snapshot to create the volume\.
++ Keep the following in mind when **attaching `io2` volumes** to instances:
+  + If you attach an `io2` volume to an `R5b` instance, the volume automatically runs on [Block Express](#io2-block-express)\. It can take up to 48 hours to optimize the volume for Block Express\. During this time, the volume provides `io2` latency\. After the volume has been optimized, it provides the sub\-millisecond latency supported by Block Express\.
+  + You can't attach an `io2` volume with a size greater than 16 TiB or IOPS greater than 64,000 to an instance type that does not support [Block Express](#io2-block-express)\.
+  + If you detach an `io2` volume with a size of 16 TiB or less and IOPS of 64,000 or less from an `R5b` instance and attach it to an instance type that does not support [Block Express](#io2-block-express), the volume no longer runs on Block Express and it provides `io2` latency\.
++ Keep the following in mind when **modifying `io2` volumes**:
+  + You can't modify an `io2` volume and increase its size beyond 16 TiB or its IOPS beyond 64,000 while it is attached to an instance type that does not support [Block Express](#io2-block-express)\.
+  + You can't modify the size or provisioned IOPS of an `io2` volume that is attached to an `R5b` instance\.
+
+**Performance**  
 Provisioned IOPS SSD volumes can range in size from 4 GiB to 16 TiB and you can provision from 100 IOPS up to 64,000 IOPS per volume\. You can achieve up to 64,000 IOPS only on [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances)\. On other instance families you can achieve performance up to 32,000 IOPS\. The maximum ratio of provisioned IOPS to requested volume size \(in GiB\) is 50:1 for `io1` volumes, and 500:1 for `io2` volumes\. For example, a 100 GiB `io1` volume can be provisioned with up to 5,000 IOPS, while a 100 GiB `io2` volume can be provisioned with up to 50,000 IOPS\. On a supported instance type, the following volume sizes allow provisioning up to the 64,000 IOPS maximum:
 + `io1` volume 1,280 GiB in size or greater \(50 × 1,280 GiB = 64,000 IOPS\)
 + `io2` volume 128 GiB in size or greater \(500 × 128 GiB = 64,000 IOPS\)
@@ -185,25 +205,29 @@ Provisioned IOPS SSD volumes provisioned with up to 32,000 IOPS support a maximu
 
 Your per\-I/O latency experience depends on the provisioned IOPS and on your workload profile\. For the best I/O latency experience, ensure that you provision IOPS to meet the I/O profile of your workload\.
 
-### `io2` Block Express volumes \(In preview\)<a name="io2-block-express"></a>
+### `io2` Block Express volumes<a name="io2-block-express"></a>
 
 **Note**  
-You can now opt in to the `io2` Block Express volumes preview in `us-east-1`, `us-west-2`, `us-east-2`, `eu-central-1`, `ap-southeast-1`, and `ap-northeast-1`\. After you opt in, all `io2` volumes that you create in your account in the opted\-in Regions will be `io2` Block Express volumes\. Carefully review the feature limitations that apply to the preview before opting in\.  
-You can opt in to the preview only with an account that does not have any existing `io2` volumes\.
+`io2` Block Express volumes are supported with R5b instances only\.
 
-EBS Block Express is the next generation of Amazon EBS storage server architecture\. It has been built for the purpose of meeting the performance requirements of the most demanding I/O intensive applications that run on Nitro\-based Amazon EC2 instances\. 
+`io2` Block Express volumes is the next generation of Amazon EBS storage server architecture\. It has been built for the purpose of meeting the performance requirements of the most demanding I/O intensive applications that run on Nitro\-based Amazon EC2 instances\. 
 
 Block Express architecture increases performance and scale\. Block Express servers communicate with Nitro\-based instances using the Scalable Reliable Datagram \(SRD\) networking protocol\. This interface is implemented in the Nitro Card dedicated for Amazon EBS I/O function on the host hardware of the instance\. It minimizes I/O delay and latency variation \(network jitter\), which provides faster and more consistent performance for your applications\. For more information, see [`io2` Block Express volumes](http://aws.amazon.com/ebs/provisioned-iops/)\.
 
 `io2` Block Express volumes are suited for workloads that benefit from a single volume that provides sub\-millisecond latency, and supports higher IOPS, higher throughput, and larger capacity than `io2` volumes\.
 
+`io2` Block Express volumes support the same features as `io2` volumes, including Multi\-Attach, Elastic Volume operations, and encryption\.
+
 **Topics**
++ [Considerations](#io2-bx-considerations)
 + [Performance](#io2-bx-perf)
-+ [Limitations during preview](#io2-bx-limits)
-+ [Opt in to the preview](#io2-bx-optin)
-+ [Opt out of the preview](#io2-bx-optout)
 + [Quotas](#io2-bx-quotas)
 + [Pricing and billing](#io2-bx-pricing)
+
+#### Considerations<a name="io2-bx-considerations"></a>
++ `io2` Block Express volumes are currently supported with R5b instances only\.
++ `io2` Block Express volumes are currently available in all Regions where R5b instances are available, including `us-east-1`, `us-east-2`, `us-west-2`, `ap-southeast-1`, `ap-northeast-1`, and `eu-central-1`\. R5b instance availability might vary by Availability Zone\. For more information about R5b availability, see [Find an Amazon EC2 instance type](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-discovery.html)\.
++ `io2` Block Express volumes do not support fast snapshot restore\. We recommend that you initialize these volumes to ensure that they deliver full performance\. For more information, see [Initialize Amazon EBS volumes](ebs-initialize.md)\.
 
 #### Performance<a name="io2-bx-perf"></a>
 
@@ -214,30 +238,6 @@ With `io2` Block Express volumes, you can provision volumes with:
 + Volume throughput up to 4,000 MiB/s\. Throughput scales proportionally up to 0\.256 MiB/s per provisioned IOPS\. Maximum throughput can be achieved at 16,000 IOPS or higher\. 
 
 ![\[Throughput limits for io2 Block Express volumes\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/io2_bx.png)
-
-#### Limitations during preview<a name="io2-bx-limits"></a>
-
-`io2` Block Express volumes have the following limitations during the preview:
-+ `io2` Block Express volumes are supported with R5B instances only\. If you attempt to launch an unsupported instance type with `io2` Block Express volumes, the request fails\.
-+ `io2` Block Express volumes are available in the following Regions only: `us-east-1`, `us-west-2`, `us-east-2`, `eu-central-1`, `ap-southeast-1`, and `ap-northeast-1`\.
-+ `io2` Block Express volumes are not optimized for boot and could cause longer boot times\. We recommend that you continue to use `io1`, `gp2`, or `gp3` for boot volumes\.
-+ You can't create encrypted `io2` Block Express volumes, or launch instances with encrypted `io2` Block Express volumes, from unencrypted snapshots or shared snapshots\. To create encrypted `io2` Block Express volumes, or launch instances with encrypted `io2` Block Express volumes, you must use encrypted snapshots or AMIs that you own in your account\.
-+ You can't create encrypted `io2` Block Express volumes, or launch instances with encrypted `io2` Block Express volumes using the Amazon EC2 console\. You must use the Amazon EC2 API or the AWS CLI\.
-+ `io2` Block Express volumes do not fully support fast snapshot restore\. While you can restore `io2` Block Express volumes from snapshots that are enabled for fast snapshot restore, you will experience higher I/O latency while the volumes are being initialized\. This is formerly known as pre\-warming\. To avoid the higher latency, we recommend that you initialize your `io2` Block Express volumes before starting your I/O operations\. For more information, see [Initialize Amazon EBS volumes](ebs-initialize.md)\.
-+ `io2` Block Express volumes do not support Elastic Volume operations\. You can't change the volume type or performance after the volume has been created\.
-+ `io2` Block Express volumes do not support Multi\-Attach\.
-
-#### Opt in to the preview<a name="io2-bx-optin"></a>
-
-To opt in to the `io2` Block Express volumes preview, visit the [ `io2` Block Express volumes Preview page](https://pages.awscloud.com/io2-block-express-preview.html) and complete the form\. You must specify the Regions in which to opt in\.
-
-After you opt in, all new `io2` volumes that you create in your account in the opted\-in Regions will be `io2` Block Express volumes\. While your account is opted in, you will not be able to create `io2` volumes that are not `io2` Block Express volumes in the opted\-in Regions\. To transition your existing workloads from your existing volumes, create snapshots of the volumes and then restore them to new `io2` Block Express volumes\.
-
-#### Opt out of the preview<a name="io2-bx-optout"></a>
-
-To opt out of the `io2` Block Express volumes preview, visit the [ `io2` Block Express volumes Preview page](https://pages.awscloud.com/io2-block-express-preview.html), leave all of the Region check boxes unselected and complete the rest of the form\.
-
-After you opt out, all new `io2` volumes that you create in the opted\-out Regions will be `io2` volumes, and not `io2` Block Express volumes\. `io2` volumes that you created in the opted\-out Regions before opting out will continue to be `io2` Block Express volumes\. If you created snapshots of volumes larger than 16 TiB, you will not be able to restore them to `io2` volumes in the opted\-out Regions\. Before opting out, we recommend that for `io2` Block Express volumes greater than 16 TiB you copy the data to a raid set that comprises of `io2` volumes less than 16 TiB in size and then create a backup of the raid set using multi\-volume snapshots\. For more information, see [Multi\-volume snapshots](ebs-creating-snapshot.md#ebs-create-snapshot-multi-volume)\.
 
 #### Quotas<a name="io2-bx-quotas"></a>
 

@@ -159,37 +159,66 @@ Launch a temporary instance that you can use to install and configure the EFA so
    1. Set up the CUDA network repository and update the repository cache\.
 
       ```
-      $ ARCH=$( /bin/arch )
-      $ sudo yum-config-manager --add-repo http://developer.download.nvidia.com/compute/cuda/repos/$distribution/${ARCH}/cuda-$distribution.repo
-      $ sudo yum clean expire-cache
+      $ ARCH=$( /bin/arch ) \
+      && sudo yum-config-manager --add-repo http://developer.download.nvidia.com/compute/cuda/repos/$distribution/${ARCH}/cuda-$distribution.repo \
+      && sudo yum clean expire-cache
       ```
 
    1. Download and install the additional dependencies and add the CUDA repository\.
 
       ```
-      $ wget http://mirror.centos.org/centos/7/os/x86_64/Packages/vulkan-filesystem-1.1.97.0-1.el7.noarch.rpm
-      $ sudo rpm --install vulkan-filesystem-1.1.97.0-1.el7.noarch.rpm
-      $ wget https://developer.download.nvidia.com/compute/cuda/11.2.2/local_installers/cuda-repo-rhel7-11-2-local-11.2.2_460.32.03-1.x86_64.rpm
-      $ sudo rpm -i cuda-repo-rhel7-11-2-local-11.2.2_460.32.03-1.x86_64.rpm
+      $ wget http://mirror.centos.org/centos/7/os/x86_64/Packages/vulkan-filesystem-1.1.97.0-1.el7.noarch.rpm \
+      && sudo rpm --install vulkan-filesystem-1.1.97.0-1.el7.noarch.rpm \
+      && wget https://developer.download.nvidia.com/compute/cuda/11.2.2/local_installers/cuda-repo-rhel7-11-2-local-11.2.2_460.32.03-1.x86_64.rpm \
+      && sudo rpm -i cuda-repo-rhel7-11-2-local-11.2.2_460.32.03-1.x86_64.rpm
       ```
 
    1. Install the NVIDIA, CUDA drivers and cuDNN\.
 
       ```
-      $ sudo yum clean all
-      $ sudo yum -y install nvidia-driver-latest-dkms cuda
-      $ sudo yum -y install cuda-drivers libcudnn8 libcudnn8-devel
+      $ sudo yum clean all \
+      && sudo yum -y install nvidia-driver-latest-dkms cuda \
+      && sudo yum -y install cuda-drivers libcudnn8 libcudnn8-devel
       ```
 
 1. Reboot the instance and reconnect to it\.
 
-1. \(`p4d.24xlarge` instances only\) Install the Nvidia Fabric Manager, start the service, and ensure that it starts automatically when the instance starts\. Nvidia Fabric Manager is required for NV Switch Management\.
+1. \(`p4d.24xlarge` instances only\) Install the Nvidia Fabric Manager\.
 
-   ```
-   $ sudo yum -y install nvidia-fabricmanager-465
-   $ sudo systemctl start nvidia-fabricmanager
-   $ sudo systemctl enable nvidia-fabricmanager
-   ```
+   1. You must install the version of the Nvidia Fabric Manager that matches the version of the Nvidia kernel module that you installed in the previous step\.
+
+      Run the following command to determine the version of the Nvidia kernel module\.
+
+      ```
+      $ cat /proc/driver/nvidia/version | grep "Kernel Module"
+      ```
+
+      The following is example output\.
+
+      ```
+      NVRM version: NVIDIA UNIX x86_64 Kernel Module  470.42.01  Tue Jun 15 21:26:37 UTC 2021
+      ```
+
+      In the example above, major version `470` of the kernel module was installed\. This means that you need to install Nvidia Fabric Manager version `470`\.
+
+   1. Install the Nvidia Fabric Manager\. Run the following command and specify the major version identified in the previous step\.
+
+      ```
+      $ sudo yum -y install nvidia-fabricmanager-major_version_number
+      ```
+
+      For example, if major version `470` of the kernel module was installed, use the following command to install the matching version of Nvidia Fabric Manager\.
+
+      ```
+      $ sudo yum -y install nvidia-fabricmanager-470
+      ```
+
+   1. Start the service, and ensure that it starts automatically when the instance starts\. Nvidia Fabric Manager is required for NV Switch Management\.
+
+      ```
+      $ sudo systemctl start nvidia-fabricmanager \
+      && sudo systemctl enable nvidia-fabricmanager
+      ```
 
 1. Ensure that the CUDA paths are set each time that the instance starts\.
    + For *bash* shells, add the following statements to `/home/username/.bashrc` and `/home/username/.bash_profile`\. 
@@ -229,8 +258,8 @@ Launch a temporary instance that you can use to install and configure the EFA so
 1. Install the utilities that are needed to install the Nvidia GPU drivers and the Nvidia CUDA toolkit\.
 
    ```
-   $ sudo yum groupinstall 'Development Tools' -y
-   $ sudo yum install -y tar bzip2 make automake pciutils elfutils-libelf-devel libglvnd-devel iptables firewalld vim bind-utils
+   $ sudo yum groupinstall 'Development Tools' -y \
+   && sudo yum install -y tar bzip2 make automake pciutils elfutils-libelf-devel libglvnd-devel iptables firewalld vim bind-utils
    ```
 
 1. To use the Nvidia GPU driver, you must first disable the `nouveau` open source drivers\.
@@ -296,9 +325,9 @@ Launch a temporary instance that you can use to install and configure the EFA so
    1. Set up the CUDA network repository and update the repository cache\.
 
       ```
-      $ ARCH=$( /bin/arch )
-      $ sudo yum-config-manager --add-repo http://developer.download.nvidia.com/compute/cuda/repos/$distribution/${ARCH}/cuda-$distribution.repo
-      $ sudo yum clean expire-cache
+      $ ARCH=$( /bin/arch ) \
+      && sudo yum-config-manager --add-repo http://developer.download.nvidia.com/compute/cuda/repos/$distribution/${ARCH}/cuda-$distribution.repo \
+      && sudo yum clean expire-cache
       ```
 
    1. \(CentOS 8 only\) Update the running kernel\.
@@ -311,43 +340,72 @@ Launch a temporary instance that you can use to install and configure the EFA so
       + CentOS 7
 
         ```
-        $ wget http://mirror.centos.org/centos/7/os/x86_64/Packages/vulkan-filesystem-1.1.97.0-1.el7.noarch.rpm
-        $ sudo rpm --install vulkan-filesystem-1.1.97.0-1.el7.noarch.rpm
-        $ wget https://developer.download.nvidia.com/compute/cuda/11.2.2/local_installers/cuda-repo-rhel7-11-2-local-11.2.2_460.32.03-1.x86_64.rpm
-        $ sudo rpm -i cuda-repo-rhel7-11-2-local-11.2.2_460.32.03-1.x86_64.rpm
+        $ wget http://mirror.centos.org/centos/7/os/x86_64/Packages/vulkan-filesystem-1.1.97.0-1.el7.noarch.rpm \
+        && sudo rpm --install vulkan-filesystem-1.1.97.0-1.el7.noarch.rpm \
+        && wget https://developer.download.nvidia.com/compute/cuda/11.2.2/local_installers/cuda-repo-rhel7-11-2-local-11.2.2_460.32.03-1.x86_64.rpm \
+        && sudo rpm -i cuda-repo-rhel7-11-2-local-11.2.2_460.32.03-1.x86_64.rpm
         ```
       + CentOS 8
 
         ```
-        $ wget https://developer.download.nvidia.com/compute/cuda/11.2.2/local_installers/cuda-repo-rhel8-11-2-local-11.2.2_460.32.03-1.x86_64.rpm
-        $ sudo rpm -i cuda-repo-rhel8-11-2-local-11.2.2_460.32.03-1.x86_64.rpm
+        $ wget https://developer.download.nvidia.com/compute/cuda/11.2.2/local_installers/cuda-repo-rhel8-11-2-local-11.2.2_460.32.03-1.x86_64.rpm \
+        && sudo rpm -i cuda-repo-rhel8-11-2-local-11.2.2_460.32.03-1.x86_64.rpm
         ```
 
    1. Install the NVIDIA, CUDA drivers and cuDNN\.
       + CentOS 7
 
         ```
-        $ sudo yum clean all
-        $ sudo yum -y install nvidia-driver-latest-dkms cuda
-        $ sudo yum -y install cuda-drivers libcudnn8 libcudnn8-devel
+        $ sudo yum clean all \
+        && sudo yum -y install nvidia-driver-latest-dkms cuda \
+        && sudo yum -y install cuda-drivers libcudnn8 libcudnn8-devel
         ```
       + CentOS 8
 
         ```
-        $ sudo yum clean all
-        $ sudo yum -y module install nvidia-driver:latest-dkms
-        $ sudo yum -y install cuda libcudnn8 libcudnn8-devel
+        $ sudo yum clean all \
+        && sudo yum -y module install nvidia-driver:latest-dkms \
+        && sudo yum -y install cuda libcudnn8 libcudnn8-devel
         ```
 
 1. Reboot the instance and reconnect to it\.
 
-1. \(`p4d.24xlarge` instances only\) Install the Nvidia Fabric Manager, start the service, and ensure that it starts automatically when the instance starts\. Nvidia Fabric Manager is required for NV Switch Management\.
+1. \(`p4d.24xlarge` instances only\) Install the Nvidia Fabric Manager\.
 
-   ```
-   $ sudo yum -y install nvidia-fabricmanager-465
-   $ sudo systemctl start nvidia-fabricmanager
-   $ sudo systemctl enable nvidia-fabricmanager
-   ```
+   1. You must install the version of the Nvidia Fabric Manager that matches the version of the Nvidia kernel module that you installed in the previous step\.
+
+      Run the following command to determine the version of the Nvidia kernel module\.
+
+      ```
+      $ cat /proc/driver/nvidia/version | grep "Kernel Module"
+      ```
+
+      The following is example output\.
+
+      ```
+      NVRM version: NVIDIA UNIX x86_64 Kernel Module  470.42.01  Tue Jun 15 21:26:37 UTC 2021
+      ```
+
+      In the example above, major version `470` of the kernel module was installed\. This means that you need to install Nvidia Fabric Manager version `470`\.
+
+   1. Install the Nvidia Fabric Manager\. Run the following command and specify the major version identified in the previous step\.
+
+      ```
+      $ sudo yum -y install nvidia-fabricmanager-major_version_number
+      ```
+
+      For example, if major version `470` of the kernel module was installed, use the following command to install the matching version of Nvidia Fabric Manager\.
+
+      ```
+      $ sudo yum -y install nvidia-fabricmanager-470
+      ```
+
+   1. Start the service, and ensure that it starts automatically when the instance starts\. Nvidia Fabric Manager is required for NV Switch Management\.
+
+      ```
+      $ sudo systemctl start nvidia-fabricmanager \
+      && sudo systemctl enable nvidia-fabricmanager
+      ```
 
 1. Ensure that the CUDA paths are set each time that the instance starts\.
    + For *bash* shells, add the following statements to `/home/username/.bashrc` and `/home/username/.bash_profile`\. 
@@ -439,52 +497,81 @@ Launch a temporary instance that you can use to install and configure the EFA so
    1. Set up the CUDA network repository and update the repository cache\.
 
       ```
-      $ ARCH=$( /bin/arch )
-      $ sudo yum-config-manager --add-repo http://developer.download.nvidia.com/compute/cuda/repos/$distribution/${ARCH}/cuda-$distribution.repo
-      $ sudo yum clean expire-cache
+      $ ARCH=$( /bin/arch ) \
+      && sudo yum-config-manager --add-repo http://developer.download.nvidia.com/compute/cuda/repos/$distribution/${ARCH}/cuda-$distribution.repo \
+      && sudo yum clean expire-cache
       ```
 
    1. Download and install the additional dependencies and add the CUDA repository\.
       + RHEL 7
 
         ```
-        $ wget http://mirror.centos.org/centos/7/os/x86_64/Packages/vulkan-filesystem-1.1.97.0-1.el7.noarch.rpm
-        $ sudo rpm --install vulkan-filesystem-1.1.97.0-1.el7.noarch.rpm
-        $ wget https://developer.download.nvidia.com/compute/cuda/11.2.2/local_installers/cuda-repo-rhel7-11-2-local-11.2.2_460.32.03-1.x86_64.rpm
-        $ sudo rpm -i cuda-repo-rhel7-11-2-local-11.2.2_460.32.03-1.x86_64.rpm
+        $ wget http://mirror.centos.org/centos/7/os/x86_64/Packages/vulkan-filesystem-1.1.97.0-1.el7.noarch.rpm \
+        && sudo rpm --install vulkan-filesystem-1.1.97.0-1.el7.noarch.rpm \
+        && wget https://developer.download.nvidia.com/compute/cuda/11.2.2/local_installers/cuda-repo-rhel7-11-2-local-11.2.2_460.32.03-1.x86_64.rpm \
+        && sudo rpm -i cuda-repo-rhel7-11-2-local-11.2.2_460.32.03-1.x86_64.rpm
         ```
       + RHEL 8
 
         ```
-        $ wget https://developer.download.nvidia.com/compute/cuda/11.2.2/local_installers/cuda-repo-rhel8-11-2-local-11.2.2_460.32.03-1.x86_64.rpm
-        $ sudo rpm -i cuda-repo-rhel8-11-2-local-11.2.2_460.32.03-1.x86_64.rpm
+        $ wget https://developer.download.nvidia.com/compute/cuda/11.2.2/local_installers/cuda-repo-rhel8-11-2-local-11.2.2_460.32.03-1.x86_64.rpm \
+        && sudo rpm -i cuda-repo-rhel8-11-2-local-11.2.2_460.32.03-1.x86_64.rpm
         ```
 
    1. Install the NVIDIA, CUDA drivers and cuDNN\.
       + RHEL 7
 
         ```
-        $ sudo yum clean all
-        $ sudo yum -y install nvidia-driver-latest-dkms cuda
-        $ sudo yum -y install cuda-drivers libcudnn8 libcudnn8-devel
+        $ sudo yum clean all \
+        && sudo yum -y install nvidia-driver-latest-dkms cuda \
+        && sudo yum -y install cuda-drivers libcudnn8 libcudnn8-devel
         ```
       + RHEL 8
 
         ```
-        $ sudo yum clean all
-        $ sudo yum -y module install nvidia-driver:latest-dkms
-        $ sudo yum -y install cuda libcudnn8 libcudnn8-devel
+        $ sudo yum clean all \
+        && sudo yum -y module install nvidia-driver:latest-dkms \
+        && sudo yum -y install cuda libcudnn8 libcudnn8-devel
         ```
 
 1. Reboot the instance and reconnect to it\.
 
-1. \(`p4d.24xlarge` instances only\) Install the Nvidia Fabric Manager, start the service, and ensure that it starts automatically when the instance starts\. Nvidia Fabric Manager is required for NV Switch Management\.
+1. \(`p4d.24xlarge` instances only\) Install the Nvidia Fabric Manager\.
 
-   ```
-   $ sudo yum -y install nvidia-fabricmanager-465
-   $ sudo systemctl start nvidia-fabricmanager
-   $ sudo systemctl enable nvidia-fabricmanager
-   ```
+   1. You must install the version of the Nvidia Fabric Manager that matches the version of the Nvidia kernel module that you installed in the previous step\.
+
+      Run the following command to determine the version of the Nvidia kernel module\.
+
+      ```
+      $ cat /proc/driver/nvidia/version | grep "Kernel Module"
+      ```
+
+      The following is example output\.
+
+      ```
+      NVRM version: NVIDIA UNIX x86_64 Kernel Module  470.42.01  Tue Jun 15 21:26:37 UTC 2021
+      ```
+
+      In the example above, major version `470` of the kernel module was installed\. This means that you need to install Nvidia Fabric Manager version `470`\.
+
+   1. Install the Nvidia Fabric Manager\. Run the following command and specify the major version identified in the previous step\.
+
+      ```
+      $ sudo yum -y install nvidia-fabricmanager-major_version_number
+      ```
+
+      For example, if major version `470` of the kernel module was installed, use the following command to install the matching version of Nvidia Fabric Manager\.
+
+      ```
+      $ sudo yum -y install nvidia-fabricmanager-470
+      ```
+
+   1. Start the service, and ensure that it starts automatically when the instance starts\. Nvidia Fabric Manager is required for NV Switch Management\.
+
+      ```
+      $ sudo systemctl start nvidia-fabricmanager \
+      && sudo systemctl enable nvidia-fabricmanager
+      ```
 
 1. Ensure that the CUDA paths are set each time that the instance starts\.
    + For *bash* shells, add the following statements to `/home/username/.bashrc` and `/home/username/.bash_profile`\. 
@@ -516,8 +603,8 @@ Launch a temporary instance that you can use to install and configure the EFA so
 1. Install the utilities that are needed to install the Nvidia GPU drivers and the Nvidia CUDA toolkit\.
 
    ```
-   $ sudo apt-get update
-   $ sudo apt-get install build-essential -y
+   $ sudo apt-get update \
+   && sudo apt-get install build-essential -y
    ```
 
 1. To use the Nvidia GPU driver, you must first disable the `nouveau` open source drivers\.
@@ -560,43 +647,72 @@ Launch a temporary instance that you can use to install and configure the EFA so
       + Ubuntu 18\.04
 
         ```
-        $ sudo apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/7fa2af80.pub
-        $ wget -O /tmp/deeplearning.deb http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/nvidia-machine-learning-repo-ubuntu1804_1.0.0-1_amd64.deb
-        $ sudo dpkg -i /tmp/deeplearning.deb
-        $ wget -O /tmp/cuda.pin https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-ubuntu1804.pin
-        $ sudo mv /tmp/cuda.pin /etc/apt/preferences.d/cuda-repository-pin-600
-        $ sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub
-        $ sudo add-apt-repository 'deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/ /'
-        $ sudo apt update
+        $ sudo apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/7fa2af80.pub \
+        && wget -O /tmp/deeplearning.deb http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/nvidia-machine-learning-repo-ubuntu1804_1.0.0-1_amd64.deb \
+        && sudo dpkg -i /tmp/deeplearning.deb \
+        && wget -O /tmp/cuda.pin https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-ubuntu1804.pin \
+        && sudo mv /tmp/cuda.pin /etc/apt/preferences.d/cuda-repository-pin-600 \
+        && sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub \
+        && sudo add-apt-repository 'deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/ /' \
+        && sudo apt update
         ```
       + Ubuntu 20\.04
 
         ```
-        $ sudo apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu2004/x86_64/7fa2af80.pub
-        $ wget -O /tmp/deeplearning.deb http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu2004/x86_64/nvidia-machine-learning-repo-ubuntu2004_1.0.0-1_amd64.deb
-        $ sudo dpkg -i /tmp/deeplearning.deb
-        $ wget -O /tmp/cuda.pin https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-ubuntu2004.pin
-        $ sudo mv /tmp/cuda.pin /etc/apt/preferences.d/cuda-repository-pin-600
-        $ sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/7fa2af80.pub
-        $ sudo add-apt-repository 'deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/ /'
-        $ sudo apt update
+        $ sudo apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu2004/x86_64/7fa2af80.pub \
+        && wget -O /tmp/deeplearning.deb http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu2004/x86_64/nvidia-machine-learning-repo-ubuntu2004_1.0.0-1_amd64.deb \
+        && sudo dpkg -i /tmp/deeplearning.deb \
+        && wget -O /tmp/cuda.pin https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-ubuntu2004.pin \
+        && sudo mv /tmp/cuda.pin /etc/apt/preferences.d/cuda-repository-pin-600 \
+        && sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/7fa2af80.pub \
+        && sudo add-apt-repository 'deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/ /' \
+        && sudo apt update
         ```
 
    1. Install the NVIDIA, CUDA drivers and cuDNN\.
 
       ```
-      $ sudo apt install -o Dpkg::Options::='--force-overwrite' cuda-drivers-450 cuda-toolkit-11-0 libcudnn8 libcudnn8-dev -y
+      $ sudo apt install -o Dpkg::Options::='--force-overwrite' cuda-drivers cuda-toolkit-11-0 libcudnn8 libcudnn8-dev -y
       ```
 
 1. Reboot the instance and reconnect to it\.
 
-1. \(`p4d.24xlarge` instances only\) Install the Nvidia Fabric Manager, start the service, and ensure that it starts automatically when the instance starts\. Nvidia Fabric Manager is required for NV Switch Management\.
+1. \(`p4d.24xlarge` instances only\) Install the Nvidia Fabric Manager\.
 
-   ```
-   $ sudo apt install -o Dpkg::Options::='--force-overwrite' nvidia-fabricmanager-450
-   $ sudo systemctl start nvidia-fabricmanager
-   $ sudo systemctl enable nvidia-fabricmanager
-   ```
+   1. You must install the version of the Nvidia Fabric Manager that matches the version of the Nvidia kernel module that you installed in the previous step\.
+
+      Run the following command to determine the version of the Nvidia kernel module\.
+
+      ```
+      $ cat /proc/driver/nvidia/version | grep "Kernel Module"
+      ```
+
+      The following is example output\.
+
+      ```
+      NVRM version: NVIDIA UNIX x86_64 Kernel Module  450.42.01  Tue Jun 15 21:26:37 UTC 2021
+      ```
+
+      In the example above, major version `450` of the kernel module was installed\. This means that you need to install Nvidia Fabric Manager version `450`\.
+
+   1. Install the Nvidia Fabric Manager\. Run the following command and specify the major version identified in the previous step\.
+
+      ```
+      $ sudo apt install -o Dpkg::Options::='--force-overwrite' nvidia-fabricmanager-major_version_number
+      ```
+
+      For example, if major version `450` of the kernel module was installed, use the following command to install the matching version of Nvidia Fabric Manager\.
+
+      ```
+      $ sudo apt install -o Dpkg::Options::='--force-overwrite' nvidia-fabricmanager-450
+      ```
+
+   1. Start the service, and ensure that it starts automatically when the instance starts\. Nvidia Fabric Manager is required for NV Switch Management\.
+
+      ```
+      $ sudo systemctl start nvidia-fabricmanager \
+      && sudo systemctl enable nvidia-fabricmanager
+      ```
 
 1. Ensure that the CUDA paths are set each time that the instance starts\.
    + For *bash* shells, add the following statements to `/home/username/.bashrc` and `/home/username/.bash_profile`\. 
@@ -639,17 +755,13 @@ Install the EFA\-enabled kernel, EFA drivers, Libfabric, and Open MPI stack that
    + Ubuntu 18\.04
 
      ```
-     $ sudo apt-get update
-     ```
-
-     ```
-     $ sudo apt-get upgrade -y
+     $ sudo apt-get update && sudo apt-get upgrade -y
      ```
 
 1. Download the EFA software installation files\. The software installation files are packaged into a compressed tarball \(`.tar.gz`\) file\. To download the latest *stable* version, use the following command\.
 
    ```
-   $ curl -O https://efa-installer.amazonaws.com/aws-efa-installer-1.12.2.tar.gz
+   $ curl -O https://efa-installer.amazonaws.com/aws-efa-installer-1.12.3.tar.gz
    ```
 
    You can also get the latest version by replacing the version number with `latest` in the preceding command\.
@@ -661,11 +773,7 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
    1. Download the public GPG key and import it into your keyring\.
 
       ```
-      $ wget https://efa-installer.amazonaws.com/aws-efa-installer.key
-      ```
-
-      ```
-      $ gpg --import aws-efa-installer.key
+      $ wget https://efa-installer.amazonaws.com/aws-efa-installer.key && gpg --import aws-efa-installer.key
       ```
 
       The command should return a key value\. Make a note of the key value, because you need it in the next step\.
@@ -681,11 +789,7 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
    1. Download the signature file and verify the signature of the EFA tarball file\.
 
       ```
-      $ wget https://efa-installer.amazonaws.com/aws-efa-installer-1.12.2.tar.gz.sig
-      ```
-
-      ```
-      $ gpg --verify ./aws-efa-installer-1.12.2.tar.gz.sig
+      $ wget https://efa-installer.amazonaws.com/aws-efa-installer-1.12.3.tar.gz.sig && gpg --verify ./aws-efa-installer-1.12.3.tar.gz.sig
       ```
 
       The following shows example output\.
@@ -703,11 +807,7 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
 1. Extract the files from the compressed `.tar.gz` file and navigate into the extracted directory\.
 
    ```
-   $ tar -xf aws-efa-installer-1.12.2.tar.gz
-   ```
-
-   ```
-   $ cd aws-efa-installer
+   $ tar -xf aws-efa-installer-1.12.3.tar.gz && cd aws-efa-installer
    ```
 
 1. Run the EFA software installation script\.
@@ -837,11 +937,8 @@ The aws\-ofi\-nccl plugin maps NCCL's connection\-oriented transport APIs to Lib
 1. Install the aws\-ofi\-nccl plugin\.
 
    ```
-   $ make 
-   ```
-
-   ```
-   $ sudo make install
+   $ make \
+   && sudo make install
    ```
 
 ## Step 7: Install the NCCL tests<a name="nccl-start-base-tests"></a>
@@ -859,11 +956,7 @@ Install the NCCL tests\. The NCCL tests enable you to confirm that NCCL is prope
 1. Clone the official nccl\-tests repository to the instance and navigate into the local cloned repository\.
 
    ```
-   $ git clone https://github.com/NVIDIA/nccl-tests.git
-   ```
-
-   ```
-   $ cd nccl-tests
+   $ git clone https://github.com/NVIDIA/nccl-tests.git && cd nccl-tests
    ```
 
 1. Add the Libfabric directory to the `LD_LIBRARY_PATH` variable\. 

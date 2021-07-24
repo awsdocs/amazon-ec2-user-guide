@@ -17,11 +17,11 @@ A default security group is named `default`, and it has an ID assigned by AWS\. 
 | 
 | **Inbound rule** | 
 | --- |
-| Source | Protocol | Port range | Description | 
+| Source | Protocol | Port range | Description | 
 | The security group ID \(its own resource ID\) | All | All | Allows inbound traffic from network interfaces and instances that are assigned to the same security group\. | 
 | **Outbound rules**  | 
 | --- |
-| Destination | Protocol | Port range | Description | 
+| Destination | Protocol | Port range | Description | 
 | 0\.0\.0\.0/0 | All | All | Allows all outbound IPv4 traffic\. | 
 | ::/0 | All | All | Allows all outbound IPv6 traffic\. This rule is added only if your VPC has an associated IPv6 CIDR block\. | 
 

@@ -6,6 +6,9 @@ If you are creating a volume for a high\-performance storage scenario, you shoul
 
 Empty EBS volumes receive their maximum performance the moment that they are available and do not require initialization \(formerly known as pre\-warming\)\. However, storage blocks on volumes that were created from snapshots must be initialized \(pulled down from Amazon S3 and written to the volume\) before you can access the block\. This preliminary action takes time and can cause a significant increase in the latency of an I/O operation the first time each block is accessed\. Volume performance is achieved after all blocks have been downloaded and written to the volume\. For most applications, amortizing this cost over the lifetime of the volume is acceptable\. To avoid this initial performance hit in a production environment, you can force immediate initialization of the entire volume or enable fast snapshot restore\. For more information, see [Initialize Amazon EBS volumes](ebs-initialize.md)\.
 
+**Important**  
+If you create an `io2` volume with a size greater than `16` TiB or with IOPS greater than `64,000` in a Region where EBS Block Express is supported, the volume automatically runs on Block Express\. `io2` Block Express volumes can be attached to R5b instances only\. For more information, see [`io2` Block Express volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html#io2-block-express)\.
+
 **Methods of creating a volume**
 + Create and attach EBS volumes when you launch instances by specifying a block device mapping\. For more information, see [Launch an instance using the Launch Instance Wizard](launching-instance.md) and [Block device mappings](block-device-mapping-concepts.md)\.
 + Create an empty EBS volume and attach it to a running instance\. For more information, see [Create an empty volume](#ebs-create-empty-volume) below\.

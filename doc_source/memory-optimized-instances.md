@@ -11,6 +11,8 @@ These instances are well suited for the following:
 + Applications performing real\-time processing of big unstructured data \(financial services, Hadoop/Spark clusters\)\.
 + High\-performance computing \(HPC\) and Electronic Design Automation \(EDA\) applications\.
 
+R5b instances support `io2` Block Express volumes\. All `io2` volumes attached to an R5b instance during or after launch automatically run on EBS Block Express\. For more information, see [ `io2` Block Express volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html#io2-block-express)\.
+
 Bare metal instances, such as `r5.metal`, provide your applications with direct access to physical resources of the host server, such as processors and memory\.
 
 For more information, see [Amazon EC2 R5 Instances](https://aws.amazon.com/ec2/instance-types/r5)\.
@@ -243,7 +245,60 @@ The following is a summary of network performance for memory optimized instances
 
 \* Instances of this type launched after March 12, 2020 provide network performance of 100 Gbps\. Instances of this type launched before March 12, 2020 might only provide network performance of 25 Gbps\. To ensure that instances launched before March 12, 2020 have a network performance of 100 Gbps, contact your account team to upgrade your instance at no additional cost\.
 
-† These instances use a network I/O credit mechanism to allocate network bandwidth to instances based on average bandwidth utilization\. They accrue credits when their bandwidth is below their baseline bandwidth, and can use these credits when they perform network data transfers\. For more information, open a support case and ask about baseline bandwidth for the specific instance types that you are interested in\.
+† These instances have a baseline bandwidth and can use a network I/O credit mechanism to burst beyond their baseline bandwidth on a best effort basis\. For more information, see [instance network bandwidth](ec2-instance-network-bandwidth.md)\.<a name="baseline-bandwidth"></a>
+
+
+| Instance type | Baseline bandwidth \(Gbps\) | Burst bandwidth \(Gbps\) | 
+| --- | --- | --- | 
+| r5\.large | \.75 | 10 | 
+| r5\.xlarge | 1\.25 | 10 | 
+| r5\.2xlarge | 2\.5 | 10 | 
+| r5\.4xlarge | 5 | 10 | 
+| r5a\.large | \.75 | 10 | 
+| r5a\.xlarge | 1\.25 | 10 | 
+| r5a\.2xlarge | 2\.5 | 10 | 
+| r5a\.4xlarge | 5 | 10 | 
+| r5a\.8xlarge | 7\.5 | 10 | 
+| r5ad\.large | \.75 | 10 | 
+| r5ad\.xlarge | 1\.25 | 10 | 
+| r5ad\.2xlarge | 2\.5 | 10 | 
+| r5ad\.4xlarge | 5 | 10 | 
+| r5ad\.8xlarge | 7\.5 | 10 | 
+| r5b\.large | \.75 | 10 | 
+| r5b\.xlarge | 1\.25 | 10 | 
+| r5b\.2xlarge | 2\.5 | 10 | 
+| r5b\.4xlarge | 5 | 10 | 
+| r5d\.large | \.75 | 10 | 
+| r5d\.xlarge | 1\.25 | 10 | 
+| r5d\.2xlarge | 2\.5 | 10 | 
+| r5d\.4xlarge | 5 | 10 | 
+| r5dn\.large | 2\.1 | 25 | 
+| r5dn\.xlarge | 4\.1 | 25 | 
+| r5dn\.2xlarge | 8\.125 | 25 | 
+| r5dn\.4xlarge | 16\.25 | 25 | 
+| r5n\.large | 2\.1 | 25 | 
+| r5n\.xlarge | 4\.1 | 25 | 
+| r5n\.2xlarge | 8\.125 | 25 | 
+| r5n\.4xlarge | 16\.25 | 25 | 
+| r6g\.medium | \.5 | 10 | 
+| r6g\.large | \.75 | 10 | 
+| r6g\.xlarge | 1\.25 | 10 | 
+| r6g\.2xlarge | 2\.5 | 10 | 
+| r6g\.4xlarge | 5 | 10 | 
+| r6gd\.medium | \.5 | 10 | 
+| r6gd\.large | \.75 | 10 | 
+| r6gd\.xlarge | 1\.25 | 10 | 
+| r6gd\.2xlarge | 2\.5 | 10 | 
+| r6gd\.4xlarge | 5 | 10 | 
+| x2gd\.medium | \.5 | 10 | 
+| x2gd\.large | \.75 | 10 | 
+| x2gd\.xlarge | 1\.25 | 10 | 
+| x2gd\.2xlarge | 2\.5 | 10 | 
+| x2gd\.4xlarge | 5 | 10 | 
+| z1d\.large | \.75 | 10 | 
+| z1d\.xlarge | 1\.25 | 10 | 
+| z1d\.2xlarge | 2\.5 | 10 | 
+| z1d\.3xlarge | 5 | 10 | 
 
 ## SSD I/O performance<a name="instances-ssd-perf"></a>
 
@@ -323,7 +378,7 @@ The following is a summary of features for memory optimized instances\.
 | R5 | Yes | Yes | No | Yes | 
 | R5a | Yes | Yes | No | Yes | 
 | R5ad | No | Yes | NVME \* | Yes | 
-| R5b | Yes | Yes | No | Yes | 
+| R5b | Yes \*\* | Yes | No | Yes | 
 | R5d | No | Yes | NVME \* | Yes | 
 | R5dn | No | Yes | NVME \* | Yes | 
 | R5n | Yes | Yes | No | Yes | 
@@ -334,6 +389,8 @@ The following is a summary of features for memory optimized instances\.
 | X2gd | No | Yes | NVME \* | Yes | 
 | X1e | No | No | SSD \* | Yes | 
 | z1d | No | Yes | NVME \* | Yes | 
+
+**\*\*** All `io2` volumes attached to an R5b instance during or after launch automatically run on EBS Block Express\. For more information, see [io2 Block Express volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html#io2-block-express)\.
 
 **\*** The root device volume must be an Amazon EBS volume\.
 
@@ -390,7 +447,7 @@ The following AMIs support launching memory optimized instances:
   + SUSE Linux Enterprise Server 15 or later \(64\-bit Arm\)
   + Debian 10 or later \(64\-bit Arm\)
 + Instances built on the Nitro System instances support a maximum of 28 attachments, including network interfaces, EBS volumes, and NVMe instance store volumes\. For more information, see [Nitro System volume limits](volume_limits.md#instance-type-volume-limits)\.
-+ R5b instances do not support `io2` volumes or volumes with Multi\-Attach enabled\.
++ All `io2` volumes attached to an R5b instance during or after launch automatically run on EBS Block Express\. For more information, see [ `io2` Block Express volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html#io2-block-express)\.
 + Launching a bare metal instance boots the underlying server, which includes verifying all hardware and firmware components\. This means that it can take 20 minutes from the time the instance enters the running state until it becomes available over the network\.
 + To attach or detach EBS volumes or secondary network interfaces from a bare metal instance requires PCIe native hotplug support\. Amazon Linux 2 and the latest versions of the Amazon Linux AMI support PCIe native hotplug, but earlier versions do not\. You must enable the following Linux kernel configuration options:
 

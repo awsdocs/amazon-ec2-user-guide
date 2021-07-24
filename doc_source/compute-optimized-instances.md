@@ -146,14 +146,53 @@ The following is a summary of network performance for compute optimized instance
 | c4\.8xlarge | 10 Gbps | [Intel 82599 VF](sriov-networking.md) | 
 | c5\.9xlarge \| c5a\.8xlarge \| c5ad\.8xlarge \| c5d\.9xlarge | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5\.12xlarge \| c5a\.12xlarge \| c5ad\.12xlarge \| c5d\.12xlarge  \| c6g\.8xlarge \| c6gd\.8xlarge | 12 Gbps | [ENA](enhanced-networking-ena.md) | 
-| c5a\.16xlarge \| c5a\.16xlarge \| c5ad\.16xlarge \| c5ad\.24xlarge \| c6g\.12xlarge \| c6gd\.12xlarge | 20 Gbps | [ENA](enhanced-networking-ena.md) | 
-| c5n\.4xlarge and smaller  \| c6gn\.2xlarge and smaller | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
+| c5a\.16xlarge \| c5a\.24xlarge \| c5ad\.16xlarge \| c5ad\.24xlarge \| c6g\.12xlarge \| c6gd\.12xlarge | 20 Gbps | [ENA](enhanced-networking-ena.md) | 
+| c5n\.4xlarge and smaller  \| c6gn\.4xlarge and smaller | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
 | c5\.18xlarge \| c5\.24xlarge \| c5\.metal \| c5d\.18xlarge \| c5d\.24xlarge \| c5d\.metal  \| c6g\.16xlarge \| c6g\.metal  \| c6gd\.16xlarge \| c6gd\.metal  \| c6gn\.4xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c5n\.9xlarge \| c6gn\.8xlarge  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c6gn\.12xlarge | 75 Gbps | [ENA](enhanced-networking-ena.md) | 
-| c5n\.18xlarge \| c5n\.metal  \| c6gn\.16xlarge  | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
+| c5n\.18xlarge \| c5n\.metal  \| c6gn\.16xlarge  | 100 Gbps | [ENA](enhanced-networking-ena.md), [EFA](efa.md) | 
 
-† These instances use a network I/O credit mechanism to allocate network bandwidth to instances based on average bandwidth utilization\. They accrue credits when their bandwidth is below their baseline bandwidth, and can use these credits when they perform network data transfers\. For more information, open a support case and ask about baseline bandwidth for the specific instance types that you are interested in\.
+† These instances have a baseline bandwidth and can use a network I/O credit mechanism to burst beyond their baseline bandwidth on a best effort basis\. For more information, see [instance network bandwidth](ec2-instance-network-bandwidth.md)\.<a name="baseline-bandwidth"></a>
+
+
+| Instance type | Baseline bandwidth \(Gbps\) | Burst bandwidth \(Gbps\) | 
+| --- | --- | --- | 
+| c5\.large | \.75 | 10 | 
+| c5\.xlarge | 1\.25 | 10 | 
+| c5\.2xlarge | 2\.5 | 10 | 
+| c5\.4xlarge | 5 | 10 | 
+| c5a\.large | \.75 | 10 | 
+| c5a\.xlarge | 1\.25 | 10 | 
+| c5a\.2xlarge | 2\.5 | 10 | 
+| c5a\.4xlarge | 5 | 10 | 
+| c5ad\.large | \.75 | 10 | 
+| c5ad\.xlarge | 1\.25 | 10 | 
+| c5ad\.2xlarge | 2\.5 | 10 | 
+| c5ad\.4xlarge | 5 | 10 | 
+| c5d\.large | \.75 | 10 | 
+| c5d\.xlarge | 1\.25 | 10 | 
+| c5d\.2xlarge | 2\.5 | 10 | 
+| c5d\.4xlarge | 5 | 10 | 
+| c5n\.large | 3 | 25 | 
+| c5n\.xlarge | 5 | 25 | 
+| c5n\.2xlarge | 10 | 25 | 
+| c5n\.4xlarge | 15 | 25 | 
+| c6g\.medium | \.5 | 10 | 
+| c6g\.large | \.75 | 10 | 
+| c6g\.xlarge | 1\.25 | 10 | 
+| c6g\.2xlarge | 2\.5 | 10 | 
+| c6g\.4xlarge | 5 | 10 | 
+| c6gd\.medium | \.5 | 10 | 
+| c6gd\.large | \.75 | 10 | 
+| c6gd\.xlarge | 1\.25 | 10 | 
+| c6gd\.2xlarge | 2\.5 | 10 | 
+| c6gd\.4xlarge | 5 | 10 | 
+| c6gn\.medium | 1\.6 | 25 | 
+| c6gn\.large | 3 | 25 | 
+| c6gn\.xlarge | 6\.3 | 25 | 
+| c6gn\.2xlarge | 12\.5 | 25 | 
+| c6gn\.4xlarge | 15 | 25 | 
 
 ## SSD I/O performance<a name="compute-ssd-perf"></a>
 

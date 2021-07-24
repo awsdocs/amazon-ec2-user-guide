@@ -12,8 +12,9 @@ Amazon EBS Multi\-Attach enables you to attach a single Provisioned IOPS SSD \(`
 ## Considerations and limitations<a name="considerations"></a>
 + Multi\-Attach enabled volumes can be attached to up to 16 Linux instances built on the [Nitro System](instance-types.md#ec2-nitro-instances) that are in the same Availability Zone\. You can attach a volume that is Multi\-Attach enabled to Windows instances, but the operating system does not recognize the data on the volume that is shared between the instances, which can result in data inconsistency\.
 + Multi\-Attach is supported exclusively on [Provisioned IOPS SSD volumes](ebs-volume-types.md#EBSVolumeTypes_piops)\.
-+ Multi\-Attach for `io2` volumes is available in all Regions that support `io2` volumes\. Multi\-Attach for `io1` volumes is available in the following Regions only: `us-east-1`, `us-west-2`, `eu-west-1`, and `ap-northeast-2`\.
-+ Multi\-Attach enabled volumes can't be attached to R5b instances\.
++ Multi\-Attach for `io1` volumes is available in the following Regions only: `us-east-1`, `us-west-2`, `eu-west-1`, and `ap-northeast-2`\.
+
+  Multi\-Attach for `io2` and `io2` Block Express volumes is available in all Regions that support those volumes types volumes\.
 + Standard file systems, such as XFS and EXT4, are not designed to be accessed simultaneously by multiple servers, such as EC2 instances\. Using Multi\-Attach with a standard file system can result in data corruption or loss, so this not safe for production workloads\. You can use a clustered file system to ensure data resiliency and reliability for production workloads\.
 + Multi\-Attach enabled volumes do not support I/O fencing\. I/O fencing protocols control write access in a shared storage environment to maintain data consistency\. Your applications must provide write ordering for the attached instances to maintain data consistency\.
 + Multi\-Attach enabled volumes can't be created as boot volumes\.

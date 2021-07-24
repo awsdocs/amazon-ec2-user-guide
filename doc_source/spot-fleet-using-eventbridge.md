@@ -1,6 +1,6 @@
 # Create Amazon EventBridge rules to monitor Spot Fleet events<a name="spot-fleet-using-eventbridge"></a>
 
-When a notification of a state change is emitted for a Spot Fleet, the event for the notification is sent to Amazon EventBridge in the form of a JSON file\. If EventBridge detects an event pattern that matches a pattern defined in a rule, EventBridge invokes a target \(or targets\) specified in the rule\.
+When a notification of a state change is emitted for a Spot Fleet, the event for the notification is sent to Amazon EventBridge in the form of a JSON file\. You can write an EventBridge rule to automate what actions to take when an event pattern matches the rule\. If EventBridge detects an event pattern that matches a pattern defined in a rule, EventBridge invokes the target \(or targets\) specified in the rule\.
 
 The following fields form the event pattern that is defined in the rule:
 
@@ -13,7 +13,7 @@ Identifies the event type\.
 `"detail": { "sub-type": "submitted" }`  
 Identifies the event sub\-type\.
 
-You can write an EventBridge rule and automate what actions to take when the event pattern matches the rule\. For example events for the Spot Fleet notifications, see [Spot Fleet event types](spot-fleet-event-types.md)\. 
+For the list of Spot Fleet events and example event data, see [Spot Fleet event types](spot-fleet-event-types.md)\. 
 
 **Topics**
 + [Create an EventBridge rule to send a notification](#eventbridge-send-notification)
@@ -21,7 +21,7 @@ You can write an EventBridge rule and automate what actions to take when the eve
 
 ## Create an EventBridge rule to send a notification<a name="eventbridge-send-notification"></a>
 
-The following example creates an EventBridge rule to send an email, text message, or mobile push notification every time that Amazon EC2 emits a Spot Fleet notification\. The signal in this example is emitted as an `EC2 Spot Fleet State Change` event, which triggers the action defined by the rule\.
+The following example creates an EventBridge rule to send an email, text message, or mobile push notification every time that Amazon EC2 emits a Spot Fleet state change notification\. The signal in this example is emitted as an `EC2 Spot Fleet State Change` event, which triggers the action defined by the rule\. Before creating the EventBridge rule, you must create the Amazon SNS topic for the email, text message, or mobile push notification\.
 
 **To create an EventBridge rule to send a notification when a Spot Fleet state changes**
 
@@ -35,19 +35,26 @@ The following example creates an EventBridge rule to send an email, text message
 
 1. For **Define pattern**, choose **Event pattern**\.
 
-1. Under **Event matching pattern**, choose **Custom pattern**\.
+1. Under **Event matching pattern**, you can choose **Pre\-defined pattern by service** or **Custom pattern**\. The **Custom pattern** allows you to create a more detailed rule\.
 
-1. In the **Event pattern** box, add the following pattern to match the `EC2 Spot Fleet State Change` event, and then choose **Save**\.
+   1. If you choose **Pre\-defined pattern by service**, do the following:
 
-   ```
-   {
-       "source": ["aws.ec2spotfleet"],
-       "detail-type": ["EC2 Spot Fleet State Change"],
-       "detail": {
-         "sub-type": ["submitted"]
-       }
-   }
-   ```
+      1. For **Service provider**, choose **AWS**\.
+
+      1. For **Service name**, choose **EC2 Spot Fleet**\.
+
+      1. For **Event type**, select the required event type\. For this example, choose **EC2 Spot Fleet Instance Change**\.
+
+   1. If you choose **Custom pattern**, do the following:
+
+      1. In the **Event pattern** box, add the following pattern to match the `EC2 Spot Fleet Instance Change` event for this example, and then choose **Save**\.
+
+        ```
+        {
+            "source": ["aws.ec2spotfleet"],
+            "detail-type": ["EC2 Spot Fleet Instance Change"]
+        }
+        ```
 
 1. For **Select event bus**, choose **AWS default event bus**\. When an AWS service in your account emits an event, it always goes to your account's default event bus\.
 
@@ -65,7 +72,7 @@ For more information, see [Amazon EventBridge rules](https://docs.aws.amazon.com
 
 ## Create an EventBridge rule to trigger a Lambda function<a name="eventbridge-trigger-lambda"></a>
 
-The following example creates an EventBridge rule to trigger a Lambda function every time that Amazon EC2 emits a Spot Fleet notification\. The signal in this example is emitted as an `EC2 Spot Fleet Instance Change` event, which triggers the action defined by the rule\. Before creating the EventBridge rule, you must create the Lambda function\.
+The following example creates an EventBridge rule to trigger a Lambda function every time that Amazon EC2 emits a Spot Fleet instance change notification for when an instance is launched\. The signal in this example is emitted as an `EC2 Spot Fleet Instance Change` event, sub\-type `launched`, which triggers the action defined by the rule\. Before creating the EventBridge rule, you must create the Lambda function\.
 
 **To create an EventBridge rule to trigger a Lambda function when an instance in a Spot Fleet changes state**
 

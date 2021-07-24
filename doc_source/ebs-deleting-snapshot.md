@@ -59,4 +59,6 @@ You can use one of the following commands\. For more information about these com
 
 ## Delete a multi\-volume snapshot<a name="ebs-delete-snapshot-multi-volume"></a>
 
-To delete multi\-volume snapshots, retrieve all of the snapshots for your multi\-volume group using the tag you applied to the group when you created the snapshots\. Then, delete the snapshots individually\. You will not be prevented from deleting individual snapshots in the multi\-volume snapshots group\.
+To delete multi\-volume snapshots, retrieve all of the snapshots for your multi\-volume snapshot set using the tag you applied to the set when you created the snapshots\. Then, delete the snapshots individually\.
+
+You will not be prevented from deleting individual snapshots in the multi\-volume snapshot set\. If you delete a snapshot while it is in the `pending state`, only that snapshot is deleted\. The other snapshots in the multi\-volume snapshot set still complete successfully\.

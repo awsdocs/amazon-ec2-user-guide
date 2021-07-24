@@ -10,6 +10,7 @@ To increase network performance and reduce latency, you can launch instances in 
 + [Regions and Zones](using-regions-availability-zones.md)
 + [Instance IP addressing](using-instance-addressing.md)
 + [Bring your own IP addresses](ec2-byoip.md)
++ [Assigning prefixes](ec2-prefix-eni.md)
 + [Elastic IP addresses](elastic-ip-addresses-eip.md)
 + [Network interfaces](using-eni.md)
 + [Network bandwidth](ec2-instance-network-bandwidth.md)

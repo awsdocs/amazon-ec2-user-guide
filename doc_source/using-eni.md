@@ -11,7 +11,7 @@ An *elastic network interface* is a logical networking component in a VPC that r
 + A source/destination check flag
 + A description
 
-You can create and configure network interfaces in your account and attach them to instances in your VPC\. Your account might also have *requester\-managed* network interfaces, which are created and managed by AWS services to enable you to use other resources and services\. You cannot manage these network interfaces yourself\. For more information, see [Requester\-managed network interfaces](requester-managed-eni.md)\.
+You can create and configure network interfaces and attach them to instances in the same Availability Zone\. Your account might also have *requester\-managed* network interfaces, which are created and managed by AWS services to enable you to use other resources and services\. You cannot manage these network interfaces yourself\. For more information, see [Requester\-managed network interfaces](requester-managed-eni.md)\.
 
 This AWS resource is referred to as a *network interface* in the AWS Management Console and the Amazon EC2 API\. Therefore, we use "network interface" in this documentation instead of "elastic network interface"\. The term "network interface" in this documentation always means "elastic network interface"\.
 
@@ -49,6 +49,9 @@ If you associate IPv6 CIDR blocks with your VPC and subnet, you can assign one o
 All subnets have a modifiable attribute that determines whether network interfaces created in that subnet \(and therefore instances launched into that subnet\) are automatically assigned an IPv6 address from the range of the subnet\. For more information, see [IP addressing behavior for your subnet](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html#vpc-ip-addressing-subnet) in the *Amazon VPC User Guide*\. When you launch an instance, the IPv6 address is assigned to the primary network interface that's created\.
 
 For more information, see [IPv6 addresses](using-instance-addressing.md#ipv6-addressing)\.
+
+**Prefix Delegation**  
+ A Prefix Delegation prefix is a reserved private IPv4 or IPv6 CIDR range that you allocate for automatic or manual assignment to network interfaces that are associated with an instance\. By using Delegated Prefixes, you can launch services faster by assigning a range of IP addresses as a single prefix\. 
 
 **Termination behavior**  
 You can set the termination behavior for a network interface that's attached to an instance\. You can specify whether the network interface should be automatically deleted when you terminate the instance to which it's attached\.
@@ -521,7 +524,7 @@ You can work with network interfaces using the Amazon EC2 console or the command
 
 ### Create a network interface<a name="create_eni"></a>
 
-You can create a network interface in a subnet\. You can't move the network interface to another subnet after it's created, and you can only attach the network interface to instances in the same Availability Zone\.
+You can create a network interface in a subnet\. You can't move the network interface to another subnet after it's created\. You must attach a network interface to an instance in the same Availability Zone\.
 
 ------
 #### [ New console ]
@@ -634,7 +637,7 @@ You can use one of the following commands\. For more information about these com
 
 ### Attach a network interface to an instance<a name="attach_eni"></a>
 
-You can attach a network interface to any of your stopped or running instances, using either the **Instances** or **Network Interfaces** pages of the Amazon EC2 console\. Alternatively, you can specify an existing network interface or attach an additional network interface when you [launch an instance](launching-instance.md)\.
+You can attach a network interface to any instance in the same Availability Zone as the network interface, using either the **Instances** or **Network Interfaces** page of the Amazon EC2 console\. Alternatively, you can specify existing network interfaces when you [launch instances](launching-instance.md)\.
 
 If the public IPv4 address on your instance is released, it does not receive a new one if there is more than one network interface attached to the instance\. For more information about the behavior of public IPv4 addresses, see [Public IPv4 addresses and external DNS hostnames](using-instance-addressing.md#concepts-public-addresses)\.
 

@@ -4,8 +4,8 @@
 + You can move a network interface from one instance to another, if the instances are in the same Availability Zone and VPC but in different subnets\.
 + When launching an instance using the CLI, API, or an SDK, you can specify the primary network interface and additional network interfaces\.
 + Launching an Amazon Linux or Windows Server instance with multiple network interfaces automatically configures interfaces, private IPv4 addresses, and route tables on the operating system of the instance\.
-+ A warm or hot attach of an additional network interface may require you to manually bring up the second interface, configure the private IPv4 address, and modify the route table accordingly\. Instances running Amazon Linux or Windows Server automatically recognize the warm or hot attach and configure themselves\.
-+ Attaching another network interface to an instance \(for example, a NIC teaming configuration\) cannot be used as a method to increase or double the network bandwidth to or from the dual\-homed instance\.
++ A warm or hot attach of an additional network interface might require you to manually bring up the second interface, configure the private IPv4 address, and modify the route table accordingly\. Instances running Amazon Linux or Windows Server automatically recognize the warm or hot attach and configure themselves\.
++ You cannot attach another network interface to an instance \(for example, a NIC teaming configuration\) to increase or double the network bandwidth to or from the dual\-homed instance\.
 + If you attach two or more network interfaces from the same subnet to an instance, you might encounter networking issues such as asymmetric routing\. If possible, use a secondary private IPv4 address on the primary network interface instead\.
 
 ## Configure your network interface using ec2\-net\-utils<a name="ec2-net-utils"></a>

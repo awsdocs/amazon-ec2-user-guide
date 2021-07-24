@@ -1,6 +1,6 @@
 # Launch an instance from a launch template<a name="ec2-launch-templates"></a>
 
-You can create a *launch template* that contains the configuration information to launch an instance\. Launch templates enable you to store launch parameters so that you do not have to specify them every time you launch an instance\. For example, a launch template can contain the AMI ID, instance type, and network settings that you typically use to launch instances\. When you launch an instance using the Amazon EC2 console, an AWS SDK, or a command line tool, you can specify the launch template to use\.
+You can create a *launch template* that contains the configuration information to launch an instance\. You can use launch templates to store launch parameters so that you do not have to specify them every time you launch an instance\. For example, a launch template can contain the AMI ID, instance type, and network settings that you typically use to launch instances\. When you launch an instance using the Amazon EC2 console, an AWS SDK, or a command line tool, you can specify the launch template to use\.
 
 For each launch template, you can create one or more numbered *launch template versions*\. Each version can have different launch parameters\. When you launch an instance from a launch template, you can use any version of the launch template\. If you do not specify a version, the default version is used\. You can set any version of the launch template as the default version—by default, it's the first version of the launch template\.
 
@@ -13,7 +13,7 @@ The following diagram shows a launch template with three versions\. The first ve
 + [Use launch templates to control launch parameters](#launch-templates-authorization)
 + [Control the use of launch templates](#launch-template-permissions)
 + [Create a launch template](#create-launch-template)
-+ [Manage launch template versions](#manage-launch-template-versions)
++ [Modify a launch template \(manage launch template versions\)](#manage-launch-template-versions)
 + [Launch an instance from a launch template](#launch-instance-from-launch-template)
 + [Use launch templates with Amazon EC2 Auto Scaling](#launch-templates-as)
 + [Use launch templates with EC2 Fleet](#launch-templates-ec2-fleet)
@@ -27,6 +27,7 @@ The following rules apply to launch templates and launch template versions:
 + Launch template parameters are optional\. However, you must ensure that your request to launch an instance includes all required parameters\. For example, if your launch template does not include an AMI ID, you must specify both the launch template and an AMI ID when you launch an instance\.
 + Launch template parameters are not fully validated when you create the launch template\. If you specify incorrect values for parameters, or if you do not use supported parameter combinations, no instances can launch using this launch template\. Ensure that you specify the correct values for the parameters and that you use supported parameter combinations\. For example, to launch an instance in a placement group, you must specify a supported instance type\.
 + You can tag a launch template, but you cannot tag a launch template version\.
++ Launch templates are immutable\. To modify a launch template, you must create a new version of the launch template\.
 + Launch template versions are numbered in the order in which they are created\. When you create a launch template version, you cannot specify the version number yourself\.
 
 ## Use launch templates to control launch parameters<a name="launch-templates-authorization"></a>
@@ -36,7 +37,7 @@ A launch template can contain all or some of the parameters to launch an instanc
 **Note**  
 You cannot remove launch template parameters during launch \(for example, you cannot specify a null value for the parameter\)\. To remove a parameter, create a new version of the launch template without the parameter and use that version to launch the instance\.
 
-To launch instances, IAM users must have permissions to use the `ec2:RunInstances` action\. You must also have permissions to create or use the resources that are created or associated with the instance\. You can use resource\-level permissions for the `ec2:RunInstances` action to control the launch parameters that users can specify\. Alternatively, you can grant users permissions to launch an instance using a launch template\. This enables you to manage launch parameters in a launch template rather than in an IAM policy, and to use a launch template as an authorization vehicle for launching instances\. For example, you can specify that users can only launch instances using a launch template, and that they can only use a specific launch template\. You can also control the launch parameters that users can override in the launch template\. For example policies, see [Launch templates](ExamplePolicies_EC2.md#iam-example-runinstances-launch-templates)\.
+To launch instances, IAM users must have permissions to use the `ec2:RunInstances` action\. IAM users must also have permissions to create or use the resources that are created or associated with the instance\. You can use resource\-level permissions for the `ec2:RunInstances` action to control the launch parameters that users can specify\. Alternatively, you can grant users permissions to launch an instance using a launch template\. This enables you to manage launch parameters in a launch template rather than in an IAM policy, and to use a launch template as an authorization vehicle for launching instances\. For example, you can specify that users can only launch instances using a launch template, and that they can only use a specific launch template\. You can also control the launch parameters that users can override in the launch template\. For example policies, see [Launch templates](ExamplePolicies_EC2.md#iam-example-runinstances-launch-templates)\.
 
 ## Control the use of launch templates<a name="launch-template-permissions"></a>
 
@@ -302,7 +303,9 @@ Use the [create\-launch\-template](https://docs.aws.amazon.com/cli/latest/refere
 
 ------
 
-## Manage launch template versions<a name="manage-launch-template-versions"></a>
+## Modify a launch template \(manage launch template versions\)<a name="manage-launch-template-versions"></a>
+
+Launch templates are immutable; after you create a launch template, you can't modify it\. Instead, you can create a new version of the launch template that includes any changes you require\.
 
 You can create launch template versions for a specific launch template, set the default version, describe a launch template version, and delete versions that you no longer require\.
 

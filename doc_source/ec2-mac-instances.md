@@ -2,7 +2,7 @@
 
 Mac1 instances natively support the macOS operating system\. They are built on Mac mini hardware and powered by 3\.2 GHz Intel eighth\-generation \(Coffee Lake\) Core i7 processors\. These instances are ideal for developing, building, testing, and signing applications for Apple devices, such as iPhone, iPad, iPod, Mac, Apple Watch, and Apple TV\. You can connect to your Mac instance using SSH or Apple Remote Desktop \(ARD\)\.
 
-For more information, see [Amazon EC2 Mac Instances](https://aws.amazon.com/mac)\.
+For more information, see [Amazon EC2 Mac Instances](https://aws.amazon.com/mac) and [Pricing](https://aws.amazon.com/mac/#Pricing)\.
 
 **Topics**
 + [Considerations](#mac-instance-considerations)
