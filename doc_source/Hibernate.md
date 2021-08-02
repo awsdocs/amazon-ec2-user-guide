@@ -59,11 +59,8 @@ For information about how hibernation differs from reboot, stop, and terminate, 
 
 To hibernate an On\-Demand Instance or Reserved Instance, the following prerequisites must be in place:
 + **Supported instance families**
-  + C3, C4, C5
-  + I3
-  + M3, M4, M5, M5a, M5ad
-  + R3, R4, R5, R5a, R5ad 
-  + T2, T3, T3a
+  + Xen: C3, C4, I3, M3, M4, R3, R4, T2
+  + Nitro: C5, M5, M5a, M5ad, R5, R5a, R5ad, T3, T3a
 + **Instance RAM size** \- must be less than 150 GB\.
 + **Instance size** \- not supported for bare metal instances\.
 + **Supported AMIs** \(must be an HVM AMI that supports hibernation\):

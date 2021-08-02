@@ -4,6 +4,9 @@ The following table describes important additions to the Amazon EC2 documentatio
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [CloudWatch metrics for Amazon Data Lifecycle Manager](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitor-dlm-cw-metrics.html) | You can monitor your Amazon Data Lifecycle Manager policies using Amazon CloudWatch\. | July 28, 2021 | 
+| [New Local Zone added](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#local-zones-available) | Add Local Zone in Denver\. | July 27, 2021 | 
+| [CloudTrail data events for EBS direct APIs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/logging-ebs-apis-using-cloudtrail.html) | The ListSnapshotBlocks, ListChangedBlocks, GetSnapshotBlock, and PutSnapshotBlock APIs can be logged data events in CloudTrail\. | July 27, 2021 | 
 | [Prefixes for network interfaces](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-prefix-eni.html) | You can assign a private IPv4 or IPv6 CIDR range, either automatically or manually, to your network interfaces\. | July 22, 2021 | 
 | [`io2` Block Express volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html#io2-block-express) | `io2` Block Express volumes are now generally available in all Regions and Availability Zones that support R5b instances\. | July 19, 2021 | 
 | [Event windows](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/event-windows.html) | You can define custom, weekly\-recurring event windows for scheduled events that reboot, stop, or terminate your Amazon EC2 instances\. | July 15, 2021 | 

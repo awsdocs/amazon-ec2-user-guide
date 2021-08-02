@@ -43,6 +43,7 @@ Assigning prefixes has the following benefits:
 
 Take the following into consideration when you use prefixes:
 + Network interfaces with prefixes are supported with nitro\-based instances\.
-+ Prefixes for network interfaces are limited to private IPv4 addresses\.
++ Prefixes for network interfaces are limited to private IPv4 and IPv6 addresses\.
++ See [IP addresses per network interface per instance type](using-eni.md#AvailableIpPerENI) for limitations\.
 + The number of prefixes and IP addresses on a network interface must be less than the limit on the instance that the network interface is associated with\. For example, if you have a `c5.large` instance, the limit is `10` IPv4 addresses and `10` IPv6 addresses on a network interface, and the total number of `/28` and `/80` prefixes must be less than `10`\.
 + Prefixes are included in source/destination checks\.

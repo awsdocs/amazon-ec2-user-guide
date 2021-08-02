@@ -114,6 +114,8 @@ The following is a summary of the hardware specifications for accelerated comput
 | g3\.4xlarge | 16 | 122 | 1 | 
 | g3\.8xlarge | 32 | 244 | 2 | 
 | g3\.16xlarge | 64 | 488 | 4 | 
+| g4ad\.xlarge | 4 | 16 | 1 | 
+| g4ad\.2xlarge | 8 | 32 | 1 | 
 | g4ad\.4xlarge | 16 | 64 | 1 | 
 | g4ad\.8xlarge | 32 | 128 | 2 | 
 | g4ad\.16xlarge | 64 | 256 | 4 | 
@@ -153,7 +155,7 @@ The following is a summary of network performance for accelerated computing inst
 
 | Instance type | Network performance | Enhanced networking | 
 | --- | --- | --- | 
-|  f1\.4xlarge and smaller \| g3\.4xlarge \| g3s\.xlarge \| g4ad\.4xlarge \| p3\.2xlarge  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
+|  f1\.4xlarge and smaller \| g3\.4xlarge \| g3s\.xlarge \| g4ad\.4xlarge and smaller \| p3\.2xlarge  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
 |  g3\.8xlarge \| p2\.8xlarge \| p3\.8xlarge  | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
 | g4ad\.8xlarge | 15 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  g4dn\.4xlarge and smaller  \| inf1\.2xlarge and smaller  | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 

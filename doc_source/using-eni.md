@@ -193,6 +193,8 @@ The following table lists the maximum number of network interfaces per instance 
 | g3\.4xlarge | 8 | 30 | 30 | 
 | g3\.8xlarge | 8 | 30 | 30 | 
 | g3\.16xlarge | 15 | 50 | 50 | 
+| g4ad\.xlarge | 2 | 4 | 4 | 
+| g4ad\.2xlarge | 2 | 4 | 4 | 
 | g4ad\.4xlarge | 3 | 10 | 10 | 
 | g4ad\.8xlarge | 4 | 15 | 15 | 
 | g4ad\.16xlarge | 8 | 30 | 30 | 

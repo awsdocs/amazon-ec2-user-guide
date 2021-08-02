@@ -1,10 +1,10 @@
 # Define event windows for scheduled events<a name="event-windows"></a>
 
-You can define custom, weekly\-recurring event windows for scheduled events that reboot, stop, or terminate your Amazon EC2 instances\. You can associate one or more instances with an event window\. If a scheduled event for those instances is planned, AWS will schedule the events within the associated event window\.
+You can define custom event windows that recur weekly for scheduled events that reboot, stop, or terminate your Amazon EC2 instances\. You can associate one or more instances with an event window\. If a scheduled event for those instances is planned, AWS will schedule the events within the associated event window\.
 
 You can use event windows to maximize workload availability by specifying event windows that occur during off\-peak periods for your workload\. You can also align the event windows with your internal maintenance schedules\.
 
-You define an event window by specifying a set of time ranges\. Each time range must be a minimum of 2 hours\. The combined time ranges must total at least 4 hours\.
+You define an event window by specifying a set of time ranges\. The minimum time range is 2 hours\. The combined time ranges must total at least 4 hours\.
 
 You can associate one or more instances with an event window by using either instance IDs or instance tags\. You can also associate Dedicated Hosts with an event window by using the host ID\.
 
@@ -24,7 +24,7 @@ Unscheduled maintenance such as AutoRecovery and unplanned reboots\.
 
 ## Considerations<a name="event-windows-considerations"></a>
 + All event window times are in UTC\.
-+ The minimum weekly event window duration must be 4 hours\.
++ The minimum weekly event window duration is 4 hours\.
 + The time ranges within an event window must each be at least 2 hours\.
 + Only one target type \(instance ID, Dedicated Host ID, or instance tag\) can be associated with an event window\.
 + A target \(instance ID, Dedicated Host ID, or instance tag\) can only be associated with one event window\.
@@ -36,7 +36,7 @@ Unscheduled maintenance such as AutoRecovery and unplanned reboots\.
 
 ## View event windows<a name="view-event-windows"></a>
 
-You can view event windows using one of the following methods\.
+You can view event windows by using one of the following methods\.
 
 ------
 #### [ Console ]
@@ -54,7 +54,7 @@ You can view event windows using one of the following methods\.
 ------
 #### [ AWS CLI ]
 
-**To describe all the event windows using the AWS CLI**  
+**To describe all event windows using the AWS CLI**  
 Use the [describe\-instance\-event\-windows](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-event-windows.html) command\.
 
 ```
@@ -100,9 +100,9 @@ aws ec2 describe-instance-event-windows \
 ```
 
 **To describe event windows that match one or more filters using the AWS CLI**  
-Use the [describe\-instance\-event\-windows](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-event-windows.html) command with the `--filters` parameter\. In the following example, the `instance-id` filter is used to describe all the event windows that are associated with the specified instance\.
+Use the [describe\-instance\-event\-windows](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-event-windows.html) command with the `--filters` parameter\. In the following example, the `instance-id` filter is used to describe all of the event windows that are associated with the specified instance\.
 
-When a filter is used, it performs a direct match\. However, the `instance-id` filter is different\. If there is no direct match to the instance ID, then it falls back to indirect associations with the event window such as the instance's tags or Dedicated Host ID \(if the instance is on a Dedicated Host\)\.
+When a filter is used, it performs a direct match\. However, the `instance-id` filter is different\. If there is no direct match to the instance ID, then it falls back to indirect associations with the event window, such as the instance's tags or Dedicated Host ID \(if the instance is on a Dedicated Host\)\.
 
 For the list of supported filters, see [describe\-instance\-event\-windows](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-event-windows.html) in the *AWS CLI Reference*\.
 
@@ -150,7 +150,7 @@ In the following example, the instance is on a Dedicated Host, which is associat
 
 ## Create event windows<a name="create-event-windows"></a>
 
-You can create one or more event windows\. For each event window, you specify one or more blocks of time\. For example, you can create an event window with blocks of time that occur every day at 4am for 2 hours\. Or you can create an event window with blocks of time that occur on Sundays 2am \- 4am and on Wednesdays 3am \- 5am\.
+You can create one or more event windows\. For each event window, you specify one or more blocks of time\. For example, you can create an event window with blocks of time that occur every day at 4 AM for 2 hours\. Or you can create an event window with blocks of time that occur on Sundays from 2 AM to 4 AM and on Wednesdays from 3 AM to 5 AM\.
 
 For the event window constraints, see [Considerations](#event-windows-considerations) earlier in this topic\.
 
@@ -181,9 +181,9 @@ Use one of the following methods to create an event window\.
      1. For **Duration**, specify the duration of the blocks of time in the event window\. The minimum duration per block of time is 2 hours\. The minimum duration of the event window must equal or exceed 4 hours in total\. All times are in UTC\.
    + If you choose **Time ranges**, choose **Add new time range** and specify the start day and time and the end day and time\. Repeat for each time range\. The minimum duration per time range is 2 hours\. The minimum duration for all time ranges combined must equal or exceed 4 hours in total\.
 
-1. \(Optional\) For **Target details**, associate one or more instances with the event window so that if the instances are scheduled for maintenance, the scheduled event will occur during the associated event window\. You can associate one or more instances with an event window using instance IDs or instance tags\. You can associate Dedicated Hosts with an event window using the host ID\.
+1. \(Optional\) For **Target details**, associate one or more instances with the event window so that if the instances are scheduled for maintenance, the scheduled event will occur during the associated event window\. You can associate one or more instances with an event window by using instance IDs or instance tags\. You can associate Dedicated Hosts with an event window by using the host ID\.
 
-   Note that you can create the event window without associating a target to the window\. Later, you can modify the window to associate one or more targets\.
+   Note that you can create the event window without associating a target with the window\. Later, you can modify the window to associate one or more targets\.
 
 1. \(Optional\) For **Event window tags**, choose **Add tag**, and enter the key and value for the tag\. Repeat for each tag\.
 
@@ -192,7 +192,7 @@ Use one of the following methods to create an event window\.
 ------
 #### [ AWS CLI ]
 
-To create an event window using the AWS CLI, you first create the event window, and then associate one or more targets with the event window\.
+To create an event window using the AWS CLI, you first create the event window, and then you associate one or more targets with the event window\.
 
 **Create an event window**  
 You can define either a set of time ranges or a cron expression when creating the event window, but not both\.
@@ -369,7 +369,7 @@ Expected output
 
 ## Modify event windows<a name="modify-event-windows"></a>
 
-You can modify all the fields of an event window except its ID\. For example, when daylight savings begin, you might want to modify the event window schedule\. For existing event windows, you might want to add or remove targets\.
+You can modify all of the fields of an event window except its ID\. For example, when daylight savings begin, you might want to modify the event window schedule\. For existing event windows, you might want to add or remove targets\.
 
 Use one of the following methods to modify an event window\.
 
@@ -622,7 +622,7 @@ Expected output
 
 ## Delete event windows<a name="delete-event-windows"></a>
 
-You can delete one event window at a time using one of the following methods\.
+You can delete one event window at a time by using one of the following methods\.
 
 ------
 #### [ Console ]

@@ -24,7 +24,6 @@ Each launch specification includes the information that Amazon EC2 needs to laun
 + [Monitor your Spot Fleet](#manage-spot-fleet)
 + [Modify a Spot Fleet request](#modify-spot-fleet)
 + [Cancel a Spot Fleet request](#cancel-spot-fleet)
-+ [Spot Fleet example configurations](spot-fleet-examples.md)
 
 ## Spot Fleet request states<a name="spot-fleet-states"></a>
 

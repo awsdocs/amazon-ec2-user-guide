@@ -16,7 +16,6 @@ An EC2 Fleet request of type `maintain` or `request` remains active until it exp
 + [Monitor your EC2 Fleet](#monitor-ec2-fleet)
 + [Modify an EC2 Fleet](#modify-ec2-fleet)
 + [Delete an EC2 Fleet](#delete-fleet)
-+ [EC2 Fleet example configurations](ec2-fleet-examples.md)
 
 ## EC2 Fleet request states<a name="EC2-fleet-states"></a>
 

@@ -14,7 +14,7 @@ VPC endpoint policies are not supported for EBS direct APIs\. By default, full a
 
 ## Create an interface VPC endpoint for EBS direct APIs<a name="vpc-endpoint-create"></a>
 
-You can create a VPC endpoint for the EBS direct APIs service using either the Amazon VPC console or the AWS Command Line Interface \(AWS CLI\)\. For more information, see [Creating an interface endpoint](https://docs.aws.amazon.com/vpc/latest/userguide/vpce-interface.html#create-interface-endpoint) in the *Amazon VPC User Guide*\.
+You can create a VPC endpoint for EBS direct APIs using either the Amazon VPC console or the AWS Command Line Interface \(AWS CLI\)\. For more information, see [ Creating an interface endpoint](https://docs.aws.amazon.com/vpc/latest/userguide/vpce-interface.html#create-interface-endpoint) in the *Amazon VPC User Guide*\.
 
 Create a VPC endpoint for EBS direct APIs using the following service name: 
 + `com.amazonaws.region.ebs`

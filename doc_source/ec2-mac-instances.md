@@ -23,7 +23,7 @@ For more information, see [Amazon EC2 Mac Instances](https://aws.amazon.com/mac)
 ## Considerations<a name="mac-instance-considerations"></a>
 
 The following considerations apply to Mac instances:
-+ Mac instances are available only as bare metal instances on Dedicated Hosts, with a minimum allocation period of 24 hours before you can release the Dedicated Host\. You can launch one Mac instance per Dedicated Host\. You can share the Dedicated Host with the AWS accounts or organizational units within your AWS organization, or the entire AWS organization\.
++ Mac instances are available only as bare metal instances on [Dedicated Hosts](dedicated-hosts-overview.md), with a minimum allocation period of 24 hours before you can release the Dedicated Host\. You can launch one Mac instance per Dedicated Host\. You can share the Dedicated Host with the AWS accounts or organizational units within your AWS organization, or the entire AWS organization\.
 + Mac instances are available only as On\-Demand Instances\. They are not available as Spot Instances or Reserved Instances\. You can save money on Mac instances by purchasing a [Savings Plan](https://docs.aws.amazon.com/savingsplans/latest/userguide/)\.
 + Mac instances can run one of the following operating systems:
   + macOS Catalina \(version 10\.15\)
@@ -43,7 +43,7 @@ Do not use FileVault\. If data\-at\-rest and data\-in\-transit is required, use 
 
 ## Launch a Mac instance using the console<a name="mac-instance-launch"></a>
 
-You can launch a Mac instance using the AWS Management Console as described in the following procedure\. Mac instances require a Dedicated Host\.
+You can launch a Mac instance using the AWS Management Console as described in the following procedure\. Mac instances require a [Dedicated Host](dedicated-hosts-overview.md)\.
 
 **To launch a Mac instance onto a Dedicated Host**
 

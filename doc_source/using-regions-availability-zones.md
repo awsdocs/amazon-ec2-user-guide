@@ -289,6 +289,7 @@ The following table lists the available Local Zones\. For information about how 
 | --- | --- | --- | 
 | Boston | us\-east\-1\-bos\-1a | US East \(N\. Virginia\) | 
 | Dallas | us\-east\-1\-dfw\-1a | US East \(N\. Virginia\) | 
+| Denver | us\-west\-2\-den\-1a | US West \(Oregon\) | 
 | Houston | us\-east\-1\-iah\-1a | US East \(N\. Virginia\) | 
 | Los Angeles | us\-west\-2\-lax\-1a | US West \(Oregon\) | 
 | Los Angeles | us\-west\-2\-lax\-1b | US West \(Oregon\) | 

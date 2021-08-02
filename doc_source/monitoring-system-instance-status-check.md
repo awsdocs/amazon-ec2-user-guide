@@ -51,7 +51,7 @@ Amazon EC2 provides you with several ways to view and work with status checks\.
 
 ### View status using the console<a name="viewing_status-new-console"></a>
 
-You can view status checks using the AWS Management Console\.
+You can view status checks by using the AWS Management Console\.
 
 ------
 #### [ New console ]
@@ -99,7 +99,7 @@ You can view status checks using the AWS Management Console\.
 
 ### View status using the command line<a name="viewing_status-cli"></a>
 
-You can view status checks for running instances using the [describe\-instance\-status](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-status.html) \(AWS CLI\) command\.
+You can view status checks for running instances by using the [describe\-instance\-status](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-status.html) \(AWS CLI\) command\.
 
 To view the status of all instances, use the following command\.
 

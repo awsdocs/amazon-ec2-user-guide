@@ -1,8 +1,6 @@
 # Tutorial: Get started with Amazon EC2 Linux instances<a name="EC2_GetStarted"></a>
 
-Use this tutorial to get started with Amazon Elastic Compute Cloud \(Amazon EC2\)\. You'll learn how to launch, connect to, and use a Linux instance\. An *instance* is a virtual server in the AWS cloud\. With Amazon EC2, you can set up and configure the operating system and applications that run on your instance\.
-
-To get started with a Windows instance, see [Getting started with Amazon EC2 Windows instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/EC2_GetStarted.html)\.
+Use this tutorial to get started with Amazon Elastic Compute Cloud \(Amazon EC2\)\. You'll learn how to launch, connect to, and use a Linux instance\. An *instance* is a virtual server in the AWS Cloud\. With Amazon EC2, you can set up and configure the operating system and applications that run on your instance\.
 
 When you sign up for AWS, you can get started with Amazon EC2 using the [AWS Free Tier](https://aws.amazon.com/free/)\. If you created your AWS account less than 12 months ago, and have not already exceeded the free tier benefits for Amazon EC2, it will not cost you anything to complete this tutorial, because we help you select options that are within the free tier benefits\. Otherwise, you'll incur the standard Amazon EC2 usage fees from the time that you launch the instance until you terminate the instance \(which is the final task of this tutorial\), even if it remains idle\.
 
@@ -14,25 +12,15 @@ When you sign up for AWS, you can get started with Amazon EC2 using the [AWS Fre
 + [Step 3: Clean up your instance](#ec2-clean-up-your-instance)
 + [Next steps](#ec2-next-steps)
 
+**Related tutorials**
++ If you'd prefer to launch a Windows instance, see this tutorial in the *Amazon EC2 User Guide for Windows Instances*: [Get started with Amazon EC2 Windows instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/EC2_GetStarted.html)\.
++ If you'd prefer to use the command line, see this tutorial in the *AWS Command Line Interface User Guide*: [Using Amazon EC2 through the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-using-ec2.html)\.
+
 ## Overview<a name="ec2-get-started-overview"></a>
 
 The instance is an Amazon EBS\-backed instance \(meaning that the root volume is an EBS volume\)\. You can either specify the Availability Zone in which your instance runs, or let Amazon EC2 select an Availability Zone for you\. When you launch your instance, you secure it by specifying a key pair and security group\. When you connect to your instance, you must specify the private key of the key pair that you specified when launching your instance\.
 
 ![\[An Amazon EBS-backed instance with an additional Amazon EBS volume\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/overview_getting_started.png)
-
-**Tasks**
-
-To complete this tutorial, perform the following tasks:
-
-1. [Launch an instance](#ec2-launch-instance)
-
-1. [Connect to Your Instance](#ec2-connect-to-instance-linux)
-
-1. [Clean up your instance](#ec2-clean-up-your-instance)
-
-**Related tutorials**
-+ If you'd prefer to launch a Windows instance, see this tutorial in the *Amazon EC2 User Guide for Windows Instances*: [Get started with Amazon EC2 Windows instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/EC2_GetStarted.html)\.
-+ If you'd prefer to use the command line, see this tutorial in the *AWS Command Line Interface User Guide*: [Using Amazon EC2 through the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-using-ec2.html)\.
 
 ## Prerequisites<a name="ec2-getstarted-prereqs"></a>
 
