@@ -39,7 +39,7 @@ To monitor the progress of a volume modification, use one of the following metho
 Use the [describe\-volumes\-modifications](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-volumes-modifications.html) command to view the progress of one or more volume modifications\. The following example describes the volume modifications for two volumes\.
 
 ```
-aws ec2 describe-volumes-modifications --volume-id vol-11111111111111111 vol-22222222222222222
+aws ec2 describe-volumes-modifications --volume-ids vol-11111111111111111 vol-22222222222222222
 ```
 
 In the following example output, the volume modifications are still in the `modifying` state\. Progress is reported as a percentage\.

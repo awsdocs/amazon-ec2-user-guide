@@ -41,6 +41,9 @@ AWS provides secure and private connectivity between EC2 instances of all types\
 
 An additional layer of encryption is automatically provided at the physical layer for all traffic before it leaves AWS secured facilities, as previously noted in this section\.
 
+**Encryption to and from AWS Outposts**  
+An Outpost creates special network connections called *service links* to its AWS home Region and, optionally, private connectivity to a VPC subnet that you specify\. All traffic over those connection is fully encrypted\. For more information, see [Connectivity through service links](https://docs.aws.amazon.com/outposts/latest/userguide/region-connectivity.html#service-links) and [Encryption in transit](https://docs.aws.amazon.com/outposts/latest/userguide/data-protection.html#encryption-transit) in the *AWS Outposts User Guide*\.
+
 **Remote access encryption**  
 SSH provides a secure communications channel for remote access to your Linux instances, whether directly or through EC2 Instance Connect\. Remote access to your instances using AWS Systems Manager Session Manager or the Run Command is encrypted using TLS 1\.2, and requests to create a connection are signed using [SigV4](https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html) and authenticated and authorized by [AWS Identity and Access Management](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html)\.
 

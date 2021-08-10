@@ -14,6 +14,7 @@ To get recommendations from Compute Optimizer, you must first opt in to Compute 
 + [Findings](#findings-classifications)
 + [View recommendations](#viewing-recommendations)
 + [Considerations for evaluating recommendations](#considerations)
++ [Additional resources](#co-additional-resources)
 
 ## Limitations<a name="compute-optimizer-limitations"></a>
 
@@ -102,6 +103,8 @@ Before changing an instance type, consider the following:
 
 There are other considerations when resizing an EC2 instance\. For more information, see [Change the instance type](ec2-instance-resize.md)\.
 
-**Additional resources**
+## Additional resources<a name="co-additional-resources"></a>
+
+For more information:
 + [Instance types](instance-types.md)
 + [AWS Compute Optimizer User Guide](https://docs.aws.amazon.com/compute-optimizer/latest/ug/)

@@ -52,7 +52,7 @@ The following instance types support EFAs:
 + Compute optimized: `c5n.18xlarge` \| `c5n.metal`  \| `c6gn.16xlarge` 
 + Memory optimized: `r5dn.24xlarge` \| `r5dn.metal` \| `r5n.24xlarge` \| `r5n.metal` 
 + Storage optimized: `i3en.24xlarge` \| `i3en.metal`
-+ Accelerated computing: `g4dn.metal` \| `inf1.24xlarge` \| `p3dn.24xlarge` \| `p4d.24xlarge`
++ Accelerated computing: `g4dn.metal` \| `inf1.24xlarge` \| `p3dn.24xlarge` \| `p4d.24xlarge` 
 
 The available instance types vary by Region\. To see the available instance types that support EFA in a Region, use the [describe\-instance\-types](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-types.html) command with the `--region` option and the appropriate Region code\.
 

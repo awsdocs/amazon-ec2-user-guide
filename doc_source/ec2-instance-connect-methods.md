@@ -14,7 +14,7 @@ If you receive an error while attempting to connect to your instance, see [Troub
   + Amazon Linux 2 \(any version\)
   + Ubuntu 16\.04 or later
 + To connect using the Amazon EC2 console \(browser\-based client\), the instance must have a public IPv4 address\.
-+ If the instance does not have a public IP address, you can connect to the instance using an SSH client or the EC2 Instance Connect CLI, and over a private network, such as from a machine within the same VPC or from a machine connected to the VPC over VPN or AWS Direct Connect\.
++ If the instance does not have a public IP address, you can connect to the instance over a private network using an SSH client or the EC2 Instance Connect CLI\. For example, you can connect from within the same VPC or through a VPN connection, transit gateway, or AWS Direct Connect\.
 + EC2 Instance Connect does not support connecting using an IPv6 address\.
 
 ## Prerequisites<a name="ic-prerequisites"></a>

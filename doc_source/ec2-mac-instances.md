@@ -381,9 +381,9 @@ To be notified when new AMIs are released or when bridgeOS has been updated, sub
 
       For **Endpoint**, type a phone number that you can use to receive the notifications\.
 
-   1. **AWS Lambda, Amazon SQS, Amazon Kinesis Data Firehose** \(*Notifications will come in JSON format*\):
+   1. **AWS Lambda, Amazon SQS, Amazon Kinesis Data Firehose** \(*Notifications come in JSON format*\):
 
-      For **Endpoint**, enter the arn for the Lambda function, SQS queue, or Firehose stream you can use to receive the notifications\.
+      For **Endpoint**, enter the ARN for the Lambda function, SQS queue, or Firehose stream you can use to receive the notifications\.
 
    1. Choose **Create subscription**\.
 

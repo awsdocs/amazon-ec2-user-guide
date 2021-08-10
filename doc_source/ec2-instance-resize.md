@@ -4,6 +4,8 @@ As your needs change, you might find that your instance is over\-utilized \(the 
 
 You might also want to migrate from a previous generation instance type to a current generation instance type to take advantage of some features; for example, support for IPv6\.
 
+If you want a recommendation for an instant type that is best able to handle your existing workload, you can use AWS Compute Optimizer\. For more information, see [Get recommendations for an instance type](ec2-instance-recommendations.md)\.
+
 **Topics**
 + [Requirements for changing the instance type](resize-requirements.md)
 + [Compatibility for resizing instances](resize-limitations.md)

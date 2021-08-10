@@ -40,7 +40,7 @@
 ## Locate the private key<a name="connection-prereqs-private-key"></a>
 + **Locate the private key**
 
-  Get the fully\-qualified path to the location on your computer of the `.pem` file for the key pair that you specified when you launched the instance\. For more information about how you created your key pair, see [Creating a Key Pair Using Amazon EC2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#having-ec2-create-your-key-pair)\.
+  Get the fully\-qualified path to the location on your computer of the `.pem` file for the key pair that you specified when you launched the instance\. For more information, see [Identify the key pair that was specified at launch](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#identify-key-pair-specified-at-launch)\. If you can't find your private key file, see [Connect to your Linux instance if you lose your private key](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/replacing-lost-key-pair.html)\.
 + **Set the permissions of your private key**
 
   If you will use an SSH client on a macOS or Linux computer to connect to your Linux instance, use the following command to set the permissions of your private key file so that only you can read it\.

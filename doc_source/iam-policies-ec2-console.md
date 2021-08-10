@@ -300,7 +300,7 @@ In the first statement, the `ec2:DescribeTags` action allows users to view tags 
    {
       "Effect": "Allow",
       "Action": [
-         "ec2:ModifySecurityGroupRules",
+         "ec2:ModifySecurityGroupRules"
       ],
       "Resource": [
          "arn:aws:ec2:region:111122223333:security-group-rule/*"

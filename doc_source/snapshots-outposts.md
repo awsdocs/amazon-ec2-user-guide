@@ -282,11 +282,7 @@ You can create Amazon Machine Images \(AMIs\) using a combination of local snaps
 
 **Note**  
 You can't create AMIs that include backing snapshots stored across multiple Outposts\.
-
-**Note**  
 You can’t currently create AMIs directly from instances on an Outposts using **CreateImage** API or the Amazon EC2 console for Outposts that are enabled with Amazon S3 on Outposts\.
-
-**Note**  
 AMIs that are backed by local snapshots can be used to launch instances on the same Outpost only\.
 
 **To create an AMI on an Outpost from snapshots in a Region**
@@ -311,6 +307,7 @@ AMIs that are backed by local snapshots can be used to launch instances on the s
 
 You can copy snapshots from an AWS Region to an Outpost\. You can do this only if the snapshots are in the Region for the Outpost\. If the snapshots are in a different Region, you must first copy the snapshot to the Region for the Outpost, and then copy it from that Region to the Outpost\.
 
+**Note**  
 You can't copy local snapshots from an Outpost to a Region, from one Outpost to another, or within the same Outpost\.
 
 You can copy snapshots from a Region to an Outpost using one of the following methods\.
@@ -360,6 +357,7 @@ You can copy AMIs from an AWS Region to an Outpost\. When you copy an AMI from a
 
 You can copy an AMI from a Region to an Outpost only if the snapshots associated with the AMI are in the Region for the Outpost\. If the snapshots are in a different Region, you must first copy the AMI to the Region for the Outpost, and then copy it from that Region to the Outpost\.
 
+**Note**  
 You can't copy an AMI from an Outpost to a Region, from one Outpost to another, or within an Outpost\.
 
 You can copy AMIs from a Region to an Outpost using the AWS CLI only\.

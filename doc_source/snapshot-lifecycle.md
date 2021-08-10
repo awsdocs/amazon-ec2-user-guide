@@ -70,10 +70,10 @@ The target tags that Amazon Data Lifecycle Manager uses to associate volumes wit
 ### Lifecycle policies<a name="dlm-lifecycle-policies"></a>
 
 A lifecycle policy consists of these core settings:
-+ **Policy type**—Defines the type of resources that the policy can manage\. Amazon Data Lifecycle Manager supports two types of lifecycle policies: 
-  + Snapshot lifecycle policy—Used to automate the lifecycle of EBS snapshots\. These policies can target EBS volumes and instances\.
-  + EBS\-backed AMI lifecycle policy—Used to automate the lifecycle of EBS\-backed AMIs\. These policies can target instances only\.
-  + Cross\-account copy event policy—Used to automate the copying of snapshots across accounts\. This policy type should be used in conjunction with an EBS snapshot policy that shares snapshots across accounts\.
++ **Policy type**—Defines the type of resources that the policy can manage\. Amazon Data Lifecycle Manager supports the following types of lifecycle policies:
+  + Snapshot lifecycle policy—Used to automate the lifecycle of EBS snapshots\. These policies can target individual EBS volumes or all EBS volumes attached to an instance\.
+  + EBS\-backed AMI lifecycle policy—Used to automate the lifecycle of EBS\-backed AMIs and their backing snapshots\. These policies can target instances only\.
+  + Cross\-account copy event policy—Used to automate snapshot copies across accounts\. Use this policy type in conjunction with an EBS snapshot policy that shares snapshots across accounts\.
 + **Resource type**—Defines the type of resources that are targeted by the policy\. Snapshot lifecycle policies can target instances or volumes\. Use `VOLUME` to create snapshots of individual volumes, or use `INSTANCE` to create multi\-volume snapshots of all of the volumes that are attached to an instance\. For more information, see [Multi\-volume snapshots](ebs-creating-snapshot.md#ebs-create-snapshot-multi-volume)\. AMI lifecycle policies can target instances only\. One AMI is created that includes snapshots of all of the volumes that are attached to the target instance\. 
 + **Target tags**—Specifies the tags that must be assigned to an EBS volume or an Amazon EC2 instance for it to be targeted by the policy\.
 + **Schedules**—The start times and intervals for creating snapshots or AMIs\. The first snapshot or AMI creation operation starts within one hour after the specified start time\. Subsequent snapshot or AMI creation operations start within one hour of their scheduled time\. A policy can have up to four schedules: one mandatory schedule, and up to three optional schedules\. For more information, see [Policy schedules](#dlm-lifecycle-schedule)\. 

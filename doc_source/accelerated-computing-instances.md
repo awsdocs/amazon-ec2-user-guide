@@ -161,7 +161,7 @@ The following is a summary of network performance for accelerated computing inst
 |  g4dn\.4xlarge and smaller  \| inf1\.2xlarge and smaller  | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
 |  f1\.16xlarge \| g3\.16xlarge \| g4ad\.16xlarge \| inf1\.6xlarge \|  p2\.16xlarge \| p3\.16xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  g4dn\.8xlarge \| g4dn\.12xlarge \| g4dn\.16xlarge  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  g4dn\.metal \| inf1\.24xlarge \| p3dn\.24xlarge | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  g4dn\.metal \| inf1\.24xlarge \| p3dn\.24xlarge  | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  p4d\.24xlarge  | 4x100 Gbps | [ENA](enhanced-networking-ena.md) | 
 
 † These instances have a baseline bandwidth and can use a network I/O credit mechanism to burst beyond their baseline bandwidth on a best effort basis\. For more information, see [instance network bandwidth](ec2-instance-network-bandwidth.md)\.<a name="baseline-bandwidth"></a>
@@ -183,6 +183,7 @@ The following is a summary of features for accelerated computing instances\.
 
 |  | EBS only | NVMe EBS | Instance store | Placement group | 
 | --- | --- | --- | --- | --- | 
+| F1 | No | No | NVMe \* | Yes | 
 | G2 | No | No | SSD | Yes | 
 | G3 | Yes | No | No | Yes | 
 | G4ad | No | Yes | NVMe \* | Yes | 
@@ -191,7 +192,6 @@ The following is a summary of features for accelerated computing instances\.
 | P2 | Yes | No | No | Yes | 
 | P3 |  24xlarge: No All other sizes: Yes  |  24xlarge: Yes All other sizes: No  | 24xlarge: NVMe \* | Yes | 
 | P4d | No | Yes | NVMe \* | Yes | 
-| F1 | No | No | NVMe \* | Yes | 
 
 **\*** The root device volume must be an Amazon EBS volume\.
 

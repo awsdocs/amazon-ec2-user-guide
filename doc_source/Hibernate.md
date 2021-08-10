@@ -58,12 +58,7 @@ For information about how hibernation differs from reboot, stop, and terminate, 
 ## Hibernation prerequisites<a name="hibernating-prerequisites"></a>
 
 To hibernate an On\-Demand Instance or Reserved Instance, the following prerequisites must be in place:
-+ **Supported instance families**
-  + Xen: C3, C4, I3, M3, M4, R3, R4, T2
-  + Nitro: C5, M5, M5a, M5ad, R5, R5a, R5ad, T3, T3a
-+ **Instance RAM size** \- must be less than 150 GB\.
-+ **Instance size** \- not supported for bare metal instances\.
-+ **Supported AMIs** \(must be an HVM AMI that supports hibernation\):
++ **Supported Linux AMIs** \(must be an HVM AMI that supports hibernation\):
   + Amazon Linux 2 AMI released 2019\.08\.29 or later\.
   + Amazon Linux AMI 2018\.03 released 2018\.11\.16 or later\.
   + Ubuntu 18\.04 LTS \- Bionic AMI released with serial number 20190722\.1 or later\.\*
@@ -76,6 +71,11 @@ To hibernate an On\-Demand Instance or Reserved Instance, the following prerequi
   Support for other versions of Ubuntu and other operating systems is coming soon\.
 
   For information about the supported AMIs for Windows, see [Hibernation prerequisites](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/Hibernate.html#hibernating-prerequisites) in the *Amazon EC2 User Guide for Windows Instances*\.
++ **Supported instance families**
+  + Xen: C3, C4, I3, M3, M4, R3, R4, T2
+  + Nitro: C5, M5, M5a, M5ad, R5, R5a, R5ad, T3, T3a
++ **Instance size** \- not supported for bare metal instances\.
++ **Instance RAM size** \- must be less than 150 GB\.
 + **Root volume type** \- must be an EBS volume, not an instance store volume\.
 + **Supported EBS volume types** \- General Purpose SSD \(`gp2` and `gp3`\) or Provisioned IOPS SSD \(`io1` and `io2`\)\. If you choose a Provisioned IOPS SSD volume type, to achieve optimum performance for hibernation, you must provision the EBS volume with the appropriate IOPS\. For more information, see [Amazon EBS volume types](ebs-volume-types.md)\.
 + **EBS root volume size** \- must be large enough to store the RAM contents and accommodate your expected usage, for example, OS or applications\. If you enable hibernation, space is allocated on the root volume at launch to store the RAM\.

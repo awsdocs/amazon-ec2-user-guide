@@ -48,7 +48,7 @@ You can also track your Reserved Instance utilization using the AWS Cost and Usa
 
 The pricing benefits of Reserved Instances are shared when the purchasing account is part of a set of accounts billed under one consolidated billing payer account\. The instance usage across all member accounts is aggregated in the payer account every month\. This is typically useful for companies in which there are different functional teams or groups; then, the normal Reserved Instance logic is applied to calculate the bill\. For more information, see [Consolidated billing for AWS Organizations](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/consolidated-billing.html)\.
 
-If you close the account that purchased the Reserved Instance, the payer account is charged for the Reserved Instance until the Reserved Instance expires\. The closed account is permanently deleted after 90 days, and the member accounts no longer benefit from the Reserved Instance billing discount\.
+If you close the account that purchased the Reserved Instance, the payer account is charged for the Reserved Instance until the Reserved Instance expires\. After the closed account is permanently deleted in 90 days, the member accounts no longer benefit from the Reserved Instance billing discount\.
 
 ## Reserved Instance discount pricing tiers<a name="reserved-instances-discounts"></a>
 

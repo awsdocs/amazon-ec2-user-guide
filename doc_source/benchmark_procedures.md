@@ -157,7 +157,6 @@ Running this workload is a bit more complicated than a sequential\-write or sequ
 clocksource=clock_gettime
 randrepeat=0
 runtime=180
-offset_increment=100g
  
 [sequential-write]
 bs=1M
@@ -180,6 +179,7 @@ do_verify=0
 rw=read
 rwmixread=100
 rwmixwrite=0
+offset=100g
 ```
 
 Then run the following command:

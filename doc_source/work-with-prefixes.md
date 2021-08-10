@@ -297,7 +297,7 @@ Example output
     "NetworkInterfaceId": "eni-081fbb4095EXAMPLE",
     "AssignedIpv4Prefixes": [
         {
-            "Ipv4Prefix": "10.0.0.176/28"
+            "Ipv4Prefix": "10.0.0.208/28"
         }
     ]
 }

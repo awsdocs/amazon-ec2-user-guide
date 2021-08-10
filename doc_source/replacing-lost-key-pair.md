@@ -4,6 +4,8 @@ If you lose the private key for an EBS\-backed instance, you can regain access t
 
 This procedure is only supported for instances with EBS root volumes\. If the root device is an instance store volume, you cannot use this procedure to regain access to your instance; you must have the private key to connect to the instance\. To determine the root device type of your instance, open the Amazon EC2 console, choose **Instances**, select the instance, and check the value of **Root device type** in the details pane\. The value is either `ebs` or `instance store`\.
 
+In addition to the following steps, there are other ways to connect to your Linux instance if you lose your private key\. For more information, see [How can I connect to my Amazon EC2 instance if I lost my SSH key pair after its initial launch?](http://aws.amazon.com/premiumsupport/knowledge-center/user-data-replace-key-pair-ec2/)
+
 **Topics**
 + [Step 1: Create a new key pair](#step-1-create-new-key-pair)
 + [Step 2: Get information about the original instance and its root volume](#step-2-get-info-about-original-instance)
@@ -23,9 +25,6 @@ Create a new key pair using either the Amazon EC2 console or a third\-party tool
 
 Make note of the following information because you'll need it to complete this procedure\.
 
-------
-#### [ Console ]
-
 **To get information about your original instance**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
@@ -37,8 +36,6 @@ Make note of the following information because you'll need it to complete this p
 1. On the **Networking** tab, make note of the Availability Zone\.
 
 1. On the **Storage** tab, under **Root device name**, make note of the device name for the root volume \(for example, `/dev/xvda`\)\. Then, under **Block devices**, find this device name and make note of the volume ID \(for example, vol\-0a1234b5678c910de\)\.
-
-------
 
 ## Step 3: Stop the original instance<a name="step-3-stop-original-instance"></a>
 

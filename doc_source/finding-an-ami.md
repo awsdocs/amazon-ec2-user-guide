@@ -15,7 +15,6 @@ If you need to find a Windows AMI, see [Find a Windows AMI](https://docs.aws.ama
 + [Find an AMI using the AWS CLI](#finding-an-ami-aws-cli)
 + [Find the latest Amazon Linux AMI using Systems Manager](#finding-an-ami-parameter-store)
 + [Use a Systems Manager parameter to find an AMI](#using-systems-manager-parameter-to-find-AMI)
-+ [Find a Quick Start AMI](#finding-quick-start-ami)
 
 ## Find a Linux AMI using the Amazon EC2 console<a name="finding-an-ami-console"></a>
 
@@ -194,59 +193,3 @@ If you use Systems Manager parameters that point to AMI IDs in the launch instan
 ### Limitations<a name="AMI-systems-manager-parameter-limitations"></a>
 
 AMIs and Systems Manager parameters are Region specific\. To use the same Systems Manager parameter name across Regions, create a Systems Manager parameter in each Region with the same name \(for example, `golden-ami`\)\. In each Region, point the Systems Manager parameter to an AMI in that Region\.
-
-## Find a Quick Start AMI<a name="finding-quick-start-ami"></a>
-
-When you launch an instance using the Amazon EC2 console, the **Choose an Amazon Machine Image \(AMI\)** page includes a list of popular AMIs on the **Quick Start** tab\. If you want to automate launching an instance using one of these quick start AMIs, you'll need to programatically locate the ID of the current version of the AMI\.
-
-In the following examples, locating the current version of a Quick Start AMI happens in two steps\. The query gets a list of AMIs that match on the name pattern, with wildcards in place of the date\. Then, the results are sorted in reverse order to find the name with the most recent date\.
-
-**Example: Find the current Amazon Linux 2 AMI**  
-
-```
-aws ec2 describe-images \
-    --owners amazon \
-    --filters "Name=name,Values=amzn2-ami-hvm-2.0.????????.?-x86_64-gp2" "Name=state,Values=available" \
-    --query "reverse(sort_by(Images, &Name))[:1].ImageId" \
-    --output text
-```
-
-**Example: Find the current Amazon Linux AMI**  
-
-```
-aws ec2 describe-images \
-    --owners amazon \
-    --filters "Name=name,Values=amzn-ami-hvm-????.??.?.????????-x86_64-gp2" "Name=state,Values=available" \
-    --query "reverse(sort_by(Images, &Name))[:1].ImageId" \
-    --output text
-```
-
-**Example: Find the current Ubuntu Server 16\.04 LTS AMI**  
-
-```
-aws ec2 describe-images \
-    --owners 099720109477 \
-    --filters "Name=name,Values=ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-????????" "Name=state,Values=available" \
-    --query "reverse(sort_by(Images, &Name))[:1].ImageId" \
-    --output text
-```
-
-**Example: Find the current Red Hat Enterprise Linux 7\.5 AMI**  
-
-```
-aws ec2 describe-images \
-    --owners 309956199498 \
-    --filters "Name=name,Values=RHEL-7.5_HVM_GA*" "Name=state,Values=available" \
-    --query "reverse(sort_by(Images, &Name))[:1].ImageId" \
-    --output text
-```
-
-**Example: Find the current SUSE Linux Enterprise Server 15 AMI**  
-
-```
-aws ec2 describe-images \
-    --owners amazon \
-    --filters "Name=name,Values=suse-sles-15-v????????-hvm-ssd-x86_64" "Name=state,Values=available" \
-    --query "reverse(sort_by(Images, &Name))[:1].ImageId" \
-    --output text
-```

@@ -38,7 +38,6 @@ Choose a tab to view the metrics supported by that policy type\.
 |  `SnapshotsCopiedRegionFailed`  |  The number of cross\-Region snapshot copies that could not be created by a snapshot policy\. This includes unsuccessful retries within 24 hours from the scheduled time\.  | 
 |  `SnapshotsCopiedRegionDeleteCompleted`  |  The number of cross\-Region snapshot copies deleted, as designated by the retention rule, by a snapshot policy\.  | 
 |  `SnapshotsCopiedRegionDeleteFailed`  |  The number of cross\-Region snapshot copies that could not be deleted, as designated by the retention rule, by a snapshot policy\.  | 
-|  `ImagesCopiedRegionDeregisteredFailed`  |  The number of cross\-Region AMI copies that could not be deregistered, as designated by the retention rule, by an EBS\-backed AMI policy\.  | 
 
 ------
 #### [ EBS\-backed AMI policies ]

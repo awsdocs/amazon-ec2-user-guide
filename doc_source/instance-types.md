@@ -202,7 +202,7 @@ The following table summarizes the networking and storage features supported by 
 | C5d | No | Yes | NVMe \* | Yes | ENA | 
 | C5n | Yes | Yes | No | Yes | ENA | 
 | C6g | Yes | Yes | No | Yes | ENA | 
-| C6gd | No | Yes | NVME \* | Yes | ENA | 
+| C6gd | No | Yes | NVMe \* | Yes | ENA | 
 | C6gn | Yes | Yes | No | Yes | ENA | 
 | D2 | No | No | HDD | Yes | Intel 82599 VF | 
 | D3 | No | Yes | NVMe \* | Yes | ENA | 
@@ -224,7 +224,7 @@ The following table summarizes the networking and storage features supported by 
 | M5n | Yes | Yes | No | Yes | ENA | 
 | M5zn | Yes | Yes | No | Yes | ENA | 
 | M6g | Yes | Yes | No | Yes | ENA | 
-| M6gd | No | Yes | NVME \* | Yes | ENA | 
+| M6gd | No | Yes | NVMe \* | Yes | ENA | 
 | Mac1 | Yes | Yes | No | No | ENA | 
 | P2 | Yes | No | No | Yes | ENA | 
 | P3 | Yes | No | No | Yes | ENA | 
@@ -239,7 +239,7 @@ The following table summarizes the networking and storage features supported by 
 | R5dn | No | Yes | NVMe \* | Yes | ENA | 
 | R5n | Yes | Yes | No | Yes | ENA | 
 | R6g | Yes | Yes | No | Yes | ENA | 
-| R6gd | No | Yes | NVME \* | Yes | ENA | 
+| R6gd | No | Yes | NVMe \* | Yes | ENA | 
 | T2 | Yes | No | No | No | No | 
 | T3 | Yes | Yes | No | No | ENA | 
 | T3a | Yes | Yes | No | No | ENA | 
@@ -247,7 +247,7 @@ The following table summarizes the networking and storage features supported by 
 | High memory \(u\-\*\) | Yes | Yes | No |  Virtualized: Yes Bare metal: No  | ENA | 
 | X1 | No | No | SSD \* | Yes | ENA | 
 | X1e | No | Yes | SSD \* | Yes | ENA | 
-| X2gd | No | Yes | NVME \* | Yes | ENA | 
+| X2gd | No | Yes | NVMe \* | Yes | ENA | 
 | z1d | No | Yes | NVMe \* | Yes | ENA | 
 
 \* The root device volume must be an Amazon EBS volume\.

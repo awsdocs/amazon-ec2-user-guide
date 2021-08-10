@@ -164,61 +164,21 @@ Launch a temporary instance that you can use to install and configure the EFA so
       && sudo yum clean expire-cache
       ```
 
-   1. Download and install the additional dependencies and add the CUDA repository\.
-
-      ```
-      $ wget http://mirror.centos.org/centos/7/os/x86_64/Packages/vulkan-filesystem-1.1.97.0-1.el7.noarch.rpm \
-      && sudo rpm --install vulkan-filesystem-1.1.97.0-1.el7.noarch.rpm \
-      && wget https://developer.download.nvidia.com/compute/cuda/11.2.2/local_installers/cuda-repo-rhel7-11-2-local-11.2.2_460.32.03-1.x86_64.rpm \
-      && sudo rpm -i cuda-repo-rhel7-11-2-local-11.2.2_460.32.03-1.x86_64.rpm
-      ```
-
    1. Install the NVIDIA, CUDA drivers and cuDNN\.
 
       ```
       $ sudo yum clean all \
-      && sudo yum -y install nvidia-driver-latest-dkms cuda \
-      && sudo yum -y install cuda-drivers libcudnn8 libcudnn8-devel
+      && sudo yum -y install cuda-drivers-fabricmanager cuda libcudnn8-devel
       ```
 
 1. Reboot the instance and reconnect to it\.
 
-1. \(`p4d.24xlarge` instances only\) Install the Nvidia Fabric Manager\.
+1. \(`p4d.24xlarge` instances only\) Start the Nvidia Fabric Manager service, and ensure that it starts automatically when the instance starts\. Nvidia Fabric Manager is required for NV Switch Management\.
 
-   1. You must install the version of the Nvidia Fabric Manager that matches the version of the Nvidia kernel module that you installed in the previous step\.
-
-      Run the following command to determine the version of the Nvidia kernel module\.
-
-      ```
-      $ cat /proc/driver/nvidia/version | grep "Kernel Module"
-      ```
-
-      The following is example output\.
-
-      ```
-      NVRM version: NVIDIA UNIX x86_64 Kernel Module  470.42.01  Tue Jun 15 21:26:37 UTC 2021
-      ```
-
-      In the example above, major version `470` of the kernel module was installed\. This means that you need to install Nvidia Fabric Manager version `470`\.
-
-   1. Install the Nvidia Fabric Manager\. Run the following command and specify the major version identified in the previous step\.
-
-      ```
-      $ sudo yum -y install nvidia-fabricmanager-major_version_number
-      ```
-
-      For example, if major version `470` of the kernel module was installed, use the following command to install the matching version of Nvidia Fabric Manager\.
-
-      ```
-      $ sudo yum -y install nvidia-fabricmanager-470
-      ```
-
-   1. Start the service, and ensure that it starts automatically when the instance starts\. Nvidia Fabric Manager is required for NV Switch Management\.
-
-      ```
-      $ sudo systemctl start nvidia-fabricmanager \
-      && sudo systemctl enable nvidia-fabricmanager
-      ```
+   ```
+   $ sudo systemctl start nvidia-fabricmanager \
+   && sudo systemctl enable nvidia-fabricmanager
+   ```
 
 1. Ensure that the CUDA paths are set each time that the instance starts\.
    + For *bash* shells, add the following statements to `/home/username/.bashrc` and `/home/username/.bash_profile`\. 
@@ -336,76 +296,21 @@ Launch a temporary instance that you can use to install and configure the EFA so
       $ sudo yum install -y kernel kernel-core kernel-modules
       ```
 
-   1. Download and install the additional dependencies and add the CUDA repository\.
-      + CentOS 7
-
-        ```
-        $ wget http://mirror.centos.org/centos/7/os/x86_64/Packages/vulkan-filesystem-1.1.97.0-1.el7.noarch.rpm \
-        && sudo rpm --install vulkan-filesystem-1.1.97.0-1.el7.noarch.rpm \
-        && wget https://developer.download.nvidia.com/compute/cuda/11.2.2/local_installers/cuda-repo-rhel7-11-2-local-11.2.2_460.32.03-1.x86_64.rpm \
-        && sudo rpm -i cuda-repo-rhel7-11-2-local-11.2.2_460.32.03-1.x86_64.rpm
-        ```
-      + CentOS 8
-
-        ```
-        $ wget https://developer.download.nvidia.com/compute/cuda/11.2.2/local_installers/cuda-repo-rhel8-11-2-local-11.2.2_460.32.03-1.x86_64.rpm \
-        && sudo rpm -i cuda-repo-rhel8-11-2-local-11.2.2_460.32.03-1.x86_64.rpm
-        ```
-
    1. Install the NVIDIA, CUDA drivers and cuDNN\.
-      + CentOS 7
 
-        ```
-        $ sudo yum clean all \
-        && sudo yum -y install nvidia-driver-latest-dkms cuda \
-        && sudo yum -y install cuda-drivers libcudnn8 libcudnn8-devel
-        ```
-      + CentOS 8
-
-        ```
-        $ sudo yum clean all \
-        && sudo yum -y module install nvidia-driver:latest-dkms \
-        && sudo yum -y install cuda libcudnn8 libcudnn8-devel
-        ```
+      ```
+      $ sudo yum clean all \
+      && sudo yum -y install cuda-drivers-fabricmanager cuda libcudnn8-devel
+      ```
 
 1. Reboot the instance and reconnect to it\.
 
-1. \(`p4d.24xlarge` instances only\) Install the Nvidia Fabric Manager\.
+1. \(`p4d.24xlarge` instances only\) Start the Nvidia Fabric Manager service, and ensure that it starts automatically when the instance starts\. Nvidia Fabric Manager is required for NV Switch Management\.
 
-   1. You must install the version of the Nvidia Fabric Manager that matches the version of the Nvidia kernel module that you installed in the previous step\.
-
-      Run the following command to determine the version of the Nvidia kernel module\.
-
-      ```
-      $ cat /proc/driver/nvidia/version | grep "Kernel Module"
-      ```
-
-      The following is example output\.
-
-      ```
-      NVRM version: NVIDIA UNIX x86_64 Kernel Module  470.42.01  Tue Jun 15 21:26:37 UTC 2021
-      ```
-
-      In the example above, major version `470` of the kernel module was installed\. This means that you need to install Nvidia Fabric Manager version `470`\.
-
-   1. Install the Nvidia Fabric Manager\. Run the following command and specify the major version identified in the previous step\.
-
-      ```
-      $ sudo yum -y install nvidia-fabricmanager-major_version_number
-      ```
-
-      For example, if major version `470` of the kernel module was installed, use the following command to install the matching version of Nvidia Fabric Manager\.
-
-      ```
-      $ sudo yum -y install nvidia-fabricmanager-470
-      ```
-
-   1. Start the service, and ensure that it starts automatically when the instance starts\. Nvidia Fabric Manager is required for NV Switch Management\.
-
-      ```
-      $ sudo systemctl start nvidia-fabricmanager \
-      && sudo systemctl enable nvidia-fabricmanager
-      ```
+   ```
+   $ sudo systemctl start nvidia-fabricmanager \
+   && sudo systemctl enable nvidia-fabricmanager
+   ```
 
 1. Ensure that the CUDA paths are set each time that the instance starts\.
    + For *bash* shells, add the following statements to `/home/username/.bashrc` and `/home/username/.bash_profile`\. 
@@ -502,76 +407,21 @@ Launch a temporary instance that you can use to install and configure the EFA so
       && sudo yum clean expire-cache
       ```
 
-   1. Download and install the additional dependencies and add the CUDA repository\.
-      + RHEL 7
-
-        ```
-        $ wget http://mirror.centos.org/centos/7/os/x86_64/Packages/vulkan-filesystem-1.1.97.0-1.el7.noarch.rpm \
-        && sudo rpm --install vulkan-filesystem-1.1.97.0-1.el7.noarch.rpm \
-        && wget https://developer.download.nvidia.com/compute/cuda/11.2.2/local_installers/cuda-repo-rhel7-11-2-local-11.2.2_460.32.03-1.x86_64.rpm \
-        && sudo rpm -i cuda-repo-rhel7-11-2-local-11.2.2_460.32.03-1.x86_64.rpm
-        ```
-      + RHEL 8
-
-        ```
-        $ wget https://developer.download.nvidia.com/compute/cuda/11.2.2/local_installers/cuda-repo-rhel8-11-2-local-11.2.2_460.32.03-1.x86_64.rpm \
-        && sudo rpm -i cuda-repo-rhel8-11-2-local-11.2.2_460.32.03-1.x86_64.rpm
-        ```
-
    1. Install the NVIDIA, CUDA drivers and cuDNN\.
-      + RHEL 7
 
-        ```
-        $ sudo yum clean all \
-        && sudo yum -y install nvidia-driver-latest-dkms cuda \
-        && sudo yum -y install cuda-drivers libcudnn8 libcudnn8-devel
-        ```
-      + RHEL 8
-
-        ```
-        $ sudo yum clean all \
-        && sudo yum -y module install nvidia-driver:latest-dkms \
-        && sudo yum -y install cuda libcudnn8 libcudnn8-devel
-        ```
+      ```
+      $ sudo yum clean all \
+      && sudo yum -y install cuda-drivers-fabricmanager cuda libcudnn8-devel
+      ```
 
 1. Reboot the instance and reconnect to it\.
 
-1. \(`p4d.24xlarge` instances only\) Install the Nvidia Fabric Manager\.
+1. \(`p4d.24xlarge` instances only\) Start the Nvidia Fabric Manager service, and ensure that it starts automatically when the instance starts\. Nvidia Fabric Manager is required for NV Switch Management\.
 
-   1. You must install the version of the Nvidia Fabric Manager that matches the version of the Nvidia kernel module that you installed in the previous step\.
-
-      Run the following command to determine the version of the Nvidia kernel module\.
-
-      ```
-      $ cat /proc/driver/nvidia/version | grep "Kernel Module"
-      ```
-
-      The following is example output\.
-
-      ```
-      NVRM version: NVIDIA UNIX x86_64 Kernel Module  470.42.01  Tue Jun 15 21:26:37 UTC 2021
-      ```
-
-      In the example above, major version `470` of the kernel module was installed\. This means that you need to install Nvidia Fabric Manager version `470`\.
-
-   1. Install the Nvidia Fabric Manager\. Run the following command and specify the major version identified in the previous step\.
-
-      ```
-      $ sudo yum -y install nvidia-fabricmanager-major_version_number
-      ```
-
-      For example, if major version `470` of the kernel module was installed, use the following command to install the matching version of Nvidia Fabric Manager\.
-
-      ```
-      $ sudo yum -y install nvidia-fabricmanager-470
-      ```
-
-   1. Start the service, and ensure that it starts automatically when the instance starts\. Nvidia Fabric Manager is required for NV Switch Management\.
-
-      ```
-      $ sudo systemctl start nvidia-fabricmanager \
-      && sudo systemctl enable nvidia-fabricmanager
-      ```
+   ```
+   $ sudo systemctl start nvidia-fabricmanager \
+   && sudo systemctl enable nvidia-fabricmanager
+   ```
 
 1. Ensure that the CUDA paths are set each time that the instance starts\.
    + For *bash* shells, add the following statements to `/home/username/.bashrc` and `/home/username/.bash_profile`\. 
