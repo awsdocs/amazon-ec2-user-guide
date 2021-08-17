@@ -121,9 +121,9 @@ If Amazon EC2 Auto Scaling marks an instance that is in an Auto Scaling group as
 + **Kernel ID**: \(Only valid for paravirtual \(PV\) AMIs\) Select **Use default** unless you want to use a specific kernel\.
 + **RAM disk ID**: \(Only valid for paravirtual \(PV\) AMIs\) Select **Use default** unless you want to use a specific RAM disk\. If you have selected a kernel, you may need to select a specific RAM disk with the drivers to support it\.
 + **Enclave**: Select **Enable** to enable the instance for AWS Nitro Enclaves\. For more information, see [ What is AWS Nitro Enclaves?](https://docs.aws.amazon.com/enclaves/latest/user/nitro-enclave.html) in the *AWS Nitro Enclaves User Guide*\.
-+ **Metadata accessible**: You can enable or disable access to the instance metadata\. For more information, see [Configure the instance metadata service](configuring-instance-metadata-service.md)\.
-+ **Metadata version**: If you enable access to the instance metadata, you can choose to require the use of Instance Metadata Service Version 2 when requesting instance metadata\. For more information, see [Configure instance metadata options for new instances](configuring-instance-metadata-service.md#configuring-IMDS-new-instances)\.
-+ **Metadata token response hop limit**: If you enable instance metadata, you can set the allowable number of network hops for the metadata token\. For more information, see [Configure the instance metadata service](configuring-instance-metadata-service.md)\.
++ **Metadata accessible**: You can enable or disable access to the instance metadata\. For more information, see [Use IMDSv2](configuring-instance-metadata-service.md)\.
++ **Metadata version**: If you enable access to the instance metadata, you can choose to require the use of Instance Metadata Service Version 2 when requesting instance metadata\. For more information, see [Configure instance metadata options for new instances](configuring-instance-metadata-options.md#configuring-IMDS-new-instances)\.
++ **Metadata token response hop limit**: If you enable instance metadata, you can set the allowable number of network hops for the metadata token\. For more information, see [Use IMDSv2](configuring-instance-metadata-service.md)\.
 + **User data**: You can specify user data to configure an instance during launch, or to run a configuration script\. To attach a file, select the **As file** option and browse for the file to attach\.
 
 ## Step 4: Add Storage<a name="step-4-add-storage"></a>

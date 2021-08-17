@@ -10,7 +10,8 @@ EC2 instances can also include *dynamic data*, such as an instance identity docu
 Although you can only access instance metadata and user data from within the instance itself, the data is not protected by authentication or cryptographic methods\. Anyone who has direct access to the instance, and potentially any software running on the instance, can view its metadata\. Therefore, you should not store sensitive data, such as passwords or long\-lived encryption keys, as user data\.
 
 **Topics**
-+ [Configure the instance metadata service](configuring-instance-metadata-service.md)
++ [Use IMDSv2](configuring-instance-metadata-service.md)
++ [Configure the instance metadata options](configuring-instance-metadata-options.md)
 + [Retrieve instance metadata](instancedata-data-retrieval.md)
 + [Work with instance user data](instancedata-add-user-data.md)
 + [Retrieve dynamic data](instancedata-dynamic-data-retrieval.md)

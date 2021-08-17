@@ -106,10 +106,20 @@ You can use your own SSH key and connect to your instance from the SSH client of
 
    The user name format is `instance-id.port0`, which comprises the instance ID and port 0\. In the following example, the user name is `i-001234a4bf70dec41EXAMPLE.port0`\.
 
+   **For all supported AWS Regions, except AWS GovCloud \(US\) Regions:**
+
    The format of the public DNS name of the serial console service is `serial-console.ec2-instance-connect.region.aws`\. In the following example, the serial console service is in the *us\-east\-1* Region\.
 
    ```
    $ ssh -i my_rsa_key i-001234a4bf70dec41EXAMPLE.port0@serial-console.ec2-instance-connect.us-east-1.aws
+   ```
+
+   **For AWS GovCloud \(US\) Regions only:**
+
+   The format of the public DNS name of the serial console service in the AWS GovCloud \(US\) Regions is `serial-console.ec2-instance-connect.GovCloud-region.amazonaws.com`\. In the following example, the serial console service is in the *us\-gov\-east\-1* Region\.
+
+   ```
+   $ ssh -i my_rsa_key i-001234a4bf70dec41EXAMPLE.port0@serial-console.ec2-instance-connect.us-gov-east-1.amazonaws.com
    ```
 
 1. 
@@ -157,10 +167,25 @@ The EC2 Serial Console fingerprint is unique for each AWS Region\.
   ```
   SHA256:dXwn5ma/xadVMeBZGEru5l2gx+yI5LDiJaLUcz0FMmw
   ```
++ us\-west\-1 – US West \(N\. California\)
+
+  ```
+  SHA256:OHldlcMET8u7QLSX3jmRTRAPFHVtqbyoLZBMUCqiH3Y
+  ```
 + us\-west\-2 – US West \(Oregon\)
 
   ```
   SHA256:EMCIe23TqKaBI6yGHainqZcMwqNkDhhAVHa1O2JxVUc
+  ```
++ ap\-south\-1 – Asia Pacific \(Mumbai\)
+
+  ```
+  SHA256:oBLXcYmklqHHEbliARxEgH8IsO51rezTPiSM35BsU40
+  ```
++ ap\-northeast\-2 – Asia Pacific \(Seoul\)
+
+  ```
+  SHA256:FoqWXNX+DZ++GuNTztg9PK49WYMqBX+FrcZM2dSrqrI
   ```
 + ap\-southeast\-1 – Asia Pacific \(Singapore\)
 
@@ -177,6 +202,11 @@ The EC2 Serial Console fingerprint is unique for each AWS Region\.
   ```
   SHA256:RQfsDCZTOfQawewTRDV1t9Em/HMrFQe+CRlIOT5um4k
   ```
++ ca\-central\-1 – Canada \(Central\)
+
+  ```
+  SHA256:P2O2jOZwmpMwkpO6YW738FIOTHdUTyEv2gczYMMO7s4
+  ```
 + eu\-central\-1 – Europe \(Frankfurt\)
 
   ```
@@ -186,4 +216,34 @@ The EC2 Serial Console fingerprint is unique for each AWS Region\.
 
   ```
   SHA256:h2AaGAWO4Hathhtm6ezs3Bj7udgUxi2qTrHjZAwCW6E
+  ```
++ eu\-west\-2 – Europe \(London\)
+
+  ```
+  SHA256:a69rd5CE/AEG4Amm53I6lkD1ZPvS/BCV3tTPW2RnJg8
+  ```
++ eu\-west\-3 – Europe \(Paris\)
+
+  ```
+  SHA256:q8ldnAf9pymeNe8BnFVngY3RPAr/kxswJUzfrlxeEWs
+  ```
++ eu\-north\-1 – Europe \(Stockholm\)
+
+  ```
+  SHA256:tkGFFUVUDvocDiGSS3Cu8Gdl6w2uI32EPNpKFKLwX84
+  ```
++ sa\-east\-1 – South America \(São Paulo\)
+
+  ```
+  SHA256:rd2+/32Ognjew1yVIemENaQzC+Botbih62OqAPDq1dI
+  ```
++ us\-gov\-east\-1 – AWS GovCloud \(US\-East\)
+
+  ```
+  SHA256:tIwe19GWsoyLClrtvu38YEEh+DHIkqnDcZnmtebvF28
+  ```
++ us\-gov\-west\-1 – AWS GovCloud \(US\-West\)
+
+  ```
+  SHA256:kfOFRWLaOZfB+utbd3bRf8OlPf8nGO2YZLqXZiIw5DQ
   ```

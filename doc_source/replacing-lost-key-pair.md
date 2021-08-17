@@ -65,7 +65,7 @@ If you launched your original instance from an AWS Marketplace AMI and your volu
 
 1. Connect to the temporary instance\.
 
-1. From the temporary instance, mount the volume that you attached to the instance so that you can access its file system\. For example, if the device name is `/dev/sdf`, use the following commands to mount the volume as `/mnt/tempvol`\.
+1. From the temporary instance, mount the volume that you attached to the instance so that you can access its file system\. For example, if the device name is `/dev/sdf`, use the following commands to mount the volume as `/mnt/tempvol`\.<a name="device-name"></a>
 **Note**  
 The device name might appear differently on your instance\. For example, devices mounted as `/dev/sdf` might show up as `/dev/xvdf` on the instance\. Some versions of Red Hat \(or its variants, such as CentOS\) might even increment the trailing letter by 4 characters, where `/dev/sdf` becomes `/dev/xvdk`\.
 
@@ -89,7 +89,7 @@ The device name might appear differently on your instance\. For example, devices
       [ec2-user ~]$ sudo mkdir /mnt/tempvol
       ```
 
-   1. Mount the volume \(or partition\) at the temporary mount point, using the volume name or device name that you identified earlier\. The required command depends on your operating system's file system\.
+   1. Mount the volume \(or partition\) at the temporary mount point, using the volume name or device name that you identified earlier\. The required command depends on your operating system's file system\. Note that the device name might appear differently on your instance\. See [note](#device-name) in this section for more information\.
       + Amazon Linux, Ubuntu, and Debian
 
         ```

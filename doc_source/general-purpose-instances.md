@@ -38,6 +38,16 @@ Bare metal instances, such as `m6g.metal`, provide your applications with direct
 
 For more information, see [Amazon EC2 M6g Instances](https://aws.amazon.com/ec2/instance-types/m6)\.
 
+**M6i instances**
+
+These instances are well suited for general\-purpose workloads such as the following:
++ Application servers and web servers
++ Microservices
++ High performance computing
++ App development
++ Small and midsize databases
++ Caching fleets
+
 **Mac1 instances**  
 These instances are powered by Apple Mac mini computers\. They provide up to 10 Gbps of network bandwidth and 8 Gbps EBS bandwidth through high\-speed Thunderbolt 3 connections\. They are well suited to develop, build, test, and sign applications for Apple devices, such as iPhone, iPad, iPod, Mac, Apple Watch, and Apple TV\.
 
@@ -153,6 +163,15 @@ The following is a summary of the hardware specifications for general purpose in
 | m6gd\.12xlarge | 48 | 192 | 
 | m6gd\.16xlarge | 64 | 256 | 
 | m6gd\.metal | 64 | 256 | 
+| m6i\.large | 2 | 8 | 
+| m6i\.xlarge | 4 | 16 | 
+| m6i\.2xlarge | 8 | 32 | 
+| m6i\.4xlarge | 16 | 64 | 
+| m6i\.8xlarge | 32 | 128 | 
+| m6i\.12xlarge | 48 | 192 | 
+| m6i\.16xlarge | 64 | 256 | 
+| m6i\.24xlarge | 96 | 384 | 
+| m6i\.32xlarge | 128 | 512 | 
 | mac1\.metal | 12 | 32 | 
 | t2\.nano | 1 | 0\.5 | 
 | t2\.micro | 1 | 1 | 
@@ -210,10 +229,14 @@ The following is a summary of network performance for general purpose instances 
 | m4\.10xlarge | 10 Gbps | [Intel 82599 VF](sriov-networking.md) | 
 |  m5\.8xlarge \| m5a\.12xlarge \| m5ad\.12xlarge \| m5d\.8xlarge \| mac1\.metal  | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  m5\.12xlarge \| m5a\.16xlarge \| m5ad\.16xlarge \| m5d\.12xlarge  \| m6g\.8xlarge \| m6gd\.8xlarge  | 12 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  m6i\.4xlarge and smaller  | Up to 12\.5 Gbps † | [ENA](enhanced-networking-ena.md) | 
+|  m6i\.8xlarge  | 12\.5 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  m6i\.12xlarge  | 18\.75 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  m5\.16xlarge \| m5a\.24xlarge \| m5ad\.24xlarge \| m5d\.16xlarge  \| m6g\.12xlarge \| m6gd\.12xlarge  | 20 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  m5dn\.4xlarge and smaller \| m5n\.4xlarge and smaller \| m5zn\.3xlarge and smaller  | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
-|  m4\.16xlarge \| m5\.24xlarge \| m5\.metal \| m5d\.24xlarge \| m5d\.metal \| m5dn\.8xlarge \| m5n\.8xlarge  \| m6g\.16xlarge \| m6g\.metal \| m6gd\.16xlarge \| m6gd\.metal  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  m5dn\.12xlarge \| m5n\.12xlarge \| m5zn\.6xlarge  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  m4\.16xlarge \| m5\.24xlarge \| m5\.metal \| m5d\.24xlarge \| m5d\.metal \| m5dn\.8xlarge \| m5n\.8xlarge  \| m6g\.16xlarge \| m6g\.metal \| m6gd\.16xlarge \| m6gd\.metal \| m6i\.16xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  m6i\.24xlarge  | 37\.5 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  m5dn\.12xlarge \| m5n\.12xlarge \| m5zn\.6xlarge \| m6i\.32xlarge  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  m5dn\.16xlarge \| m5n\.16xlarge  | 75 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  m5dn\.24xlarge \| m5dn\.metal \| m5n\.24xlarge \| m5n\.metal \| m5zn\.12xlarge \| m5zn\.metal  | 100 Gbps | [ENA](enhanced-networking-ena.md), [EFA](efa.md) | 
 
@@ -260,6 +283,10 @@ The following is a summary of network performance for general purpose instances 
 | m6gd\.xlarge | 1\.25 | 10 | 
 | m6gd\.2xlarge | 2\.5 | 10 | 
 | m6gd\.4xlarge | 5 | 10 | 
+| m6i\.large | \.781 | 12\.5 | 
+| m6i\.xlarge | 1\.562 | 12\.5 | 
+| m6i\.2xlarge | 3\.125 | 12\.5 | 
+| m6i\.4xlarge | 6\.25 | 12\.5 | 
 
 ## SSD I/O performance<a name="general-purpose-ssd-perf"></a>
 
@@ -329,6 +356,7 @@ The following is a summary of features for general purpose instances:
 | M5zn | Yes | Yes | No | Yes | 
 | M6g | Yes | Yes | No | Yes | 
 | M6gd | No | Yes | NVMe \* | Yes | 
+| M6i | Yes | Yes | No | Yes | 
 | Mac1 | Yes | Yes | No | No | 
 | T2 | Yes | No | No | No | 
 | T3 | Yes | Yes | No | No | 
@@ -347,6 +375,7 @@ For more information, see the following:
 + M5a, M5ad, and T3a instances feature a 2\.5 GHz AMD EPYC 7000 series processor\.
 + M5zn instances are powered by Intel Cascade Lake CPUs that deliver all\-core turbo frequency of up to 4\.5 GHz and up to 100 Gbps network bandwidth\.
 + M6g and M6gd instances feature an AWS Graviton2 processor based on 64\-bit Arm architecture\.
++ M6i instances feature third generation Intel Xeon Scalable processors \(Ice Lake\) and support the Intel Advanced Vector Extensions 512 \(Intel AVX\-512\) instruction set\.
 + Mac1 instances feature a 3\.2 GHz Intel eighth\-generation \(Coffee Lake\) Core i7 processor\.
 + T4g instances feature an AWS Graviton2 processor based on 64\-bit Arm architecture\.
 + Instances built on the [Nitro System](instance-types.md#ec2-nitro-instances), M4, `t2.large` and larger, `t3.large` and larger, and `t3a.large` and larger instance types require 64\-bit HVM AMIs\. They have high\-memory, and require a 64\-bit operating system to take advantage of that capacity\. HVM AMIs provide superior performance in comparison to paravirtual \(PV\) AMIs on high\-memory instance types\. In addition, you must use an HVM AMI to take advantage of enhanced networking\.
@@ -373,6 +402,11 @@ For more information, see the following:
   + Red Hat Enterprise Linux 8\.0 or later \(64\-bit Arm\)
   + SUSE Linux Enterprise Server 15 or later \(64\-bit Arm\)
   + Debian 10 or later \(64\-bit Arm\)
++ To get the best performance from your M6i instances, ensure that they have ENA driver version 2\.2\.9 or later\. Using an ENA driver earlier than version 1\.2 with these instances causes network interface attachment failures\. The following AMIs have a compatible ENA driver\.
+  + Amazon Linux 2 with kernel 4\.14\.186
+  + Ubuntu 20\.04 with kernel 5\.4\.0\-1025\-aws
+  + Red Hat Enterprise Linux 8\.3 with kernel 4\.18\.0\-240\.1\.1\.el8\_3\.ARCH
+  + SUSE Linux Enterprise Server 15 SP2 with kernel 5\.4\.0\-1025\-aws
 + Amazon EC2 Mac instances support macOS Mojave \(version 10\.14\) and macOS Catalina \(version 10\.15\)\.
 + Instances built on the Nitro System support a maximum of 28 attachments, including network interfaces, EBS volumes, and NVMe instance store volumes\. For more information, see [Nitro System volume limits](volume_limits.md#instance-type-volume-limits)\.
 + Launching a bare metal instance boots the underlying server, which includes verifying all hardware and firmware components\. This means that it can take 20 minutes from the time the instance enters the running state until it becomes available over the network\.

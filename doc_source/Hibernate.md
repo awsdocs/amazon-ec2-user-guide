@@ -73,7 +73,7 @@ To hibernate an On\-Demand Instance or Reserved Instance, the following prerequi
   For information about the supported AMIs for Windows, see [Hibernation prerequisites](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/Hibernate.html#hibernating-prerequisites) in the *Amazon EC2 User Guide for Windows Instances*\.
 + **Supported instance families**
   + Xen: C3, C4, I3, M3, M4, R3, R4, T2
-  + Nitro: C5, M5, M5a, M5ad, R5, R5a, R5ad, T3, T3a
+  + Nitro: C5, M5, M5a, M5ad, `m6i.8xlarge` and smaller, R5, R5a, R5ad, T3, T3a
 + **Instance size** \- not supported for bare metal instances\.
 + **Instance RAM size** \- must be less than 150 GB\.
 + **Root volume type** \- must be an EBS volume, not an instance store volume\.

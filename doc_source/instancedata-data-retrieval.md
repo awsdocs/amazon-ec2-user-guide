@@ -12,7 +12,7 @@ http://169.254.169.254/latest/meta-data/
 
 The IP address `169.254.169.254` is a link\-local address and is valid only from the instance\. For more information, see [Link\-local address](https://en.wikipedia.org/wiki/Link-local_address) on Wikipedia\.
 
-The command format is different, depending on whether you use IMDSv1 or IMDSv2\. By default, you can use both instance metadata services\. To require the use of IMDSv2, see [Configure the instance metadata service](configuring-instance-metadata-service.md)\.
+The command format is different, depending on whether you use IMDSv1 or IMDSv2\. By default, you can use both instance metadata services\. To require the use of IMDSv2, see [Use IMDSv2](configuring-instance-metadata-service.md)\.
 
 You can use a tool such as cURL, as shown in the following example\.
 
@@ -38,7 +38,7 @@ Note that you are not billed for HTTP requests used to retrieve instance metadat
 ## Considerations<a name="imds-considerations"></a>
 
 To avoid problems with instance metadata retrieval, consider the following:
-+ The AWS SDKs use IMDSv2 calls by default\. If the IMDSv2 call receives no response, the SDK retries the call and, if still unsuccessful, uses IMDSv1\. This can result in a delay\. In a container environment, if the hop limit is 1, the IMDSv2 response does not return because going to the container is considered an additional network hop\. To avoid the process of falling back to IMDSv1 and the resultant delay, in a container environment we recommend that you set the hop limit to 2\. For more information, see [Configure the instance metadata options](configuring-instance-metadata-service.md#configuring-instance-metadata-options)\.
++ The AWS SDKs use IMDSv2 calls by default\. If the IMDSv2 call receives no response, the SDK retries the call and, if still unsuccessful, uses IMDSv1\. This can result in a delay\. In a container environment, if the hop limit is 1, the IMDSv2 response does not return because going to the container is considered an additional network hop\. To avoid the process of falling back to IMDSv1 and the resultant delay, in a container environment we recommend that you set the hop limit to 2\. For more information, see [Configure the instance metadata options](configuring-instance-metadata-options.md)\.
 + For IMDSv2, you must use `/latest/api/token` when retrieving the token\. Issuing `PUT` requests to any version\-specific path, for example `/2021-03-23/api/token`, will result in the metadata service returning 403 Forbidden errors\. This behavior is intended\. 
 
   

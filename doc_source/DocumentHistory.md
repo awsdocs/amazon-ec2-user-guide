@@ -4,6 +4,7 @@ The following table describes important additions to the Amazon EC2 documentatio
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [M6i instances](#DocumentHistory) | New general purpose instances featuring third generation Intel Xeon Scalable processors \(Ice Lake\)\. | August 16, 2021 | 
 | [CloudWatch metrics for Amazon Data Lifecycle Manager](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitor-dlm-cw-metrics.html) | You can monitor your Amazon Data Lifecycle Manager policies using Amazon CloudWatch\. | July 28, 2021 | 
 | [New Local Zone added](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#local-zones-available) | Add Local Zone in Denver\. | July 27, 2021 | 
 | [CloudTrail data events for EBS direct APIs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/logging-ebs-apis-using-cloudtrail.html) | The ListSnapshotBlocks, ListChangedBlocks, GetSnapshotBlock, and PutSnapshotBlock APIs can be logged data events in CloudTrail\. | July 27, 2021 | 

@@ -121,9 +121,9 @@ Create a new launch template using parameters that you define, or use an existin
    + **RAM disk ID**: \(Only valid for paravirtual \(PV\) AMIs\) A RAM disk for the instance\. If you have specified a kernel, you may need to specify a specific RAM disk with the drivers to support it\.
    + **Kernel ID**: \(Only valid for paravirtual \(PV\) AMIs\) A kernel for the instance\.
    + **License configurations**: You can launch instances against the specified license configuration to track your license usage\. For more information, see [Create a License Configuration](https://docs.aws.amazon.com/license-manager/latest/userguide/create-license-configuration.html) in the *AWS License Manager User Guide*\.
-   + **Metadata accessible**: Whether to enable or disable access to the instance metadata\. For more information, see [Configure the instance metadata service](configuring-instance-metadata-service.md)\.
-   + **Metadata version**: If you enable access to the instance metadata, you can choose to require the use of Instance Metadata Service Version 2 when requesting instance metadata\. For more information, see [Configure instance metadata options for new instances](configuring-instance-metadata-service.md#configuring-IMDS-new-instances)\.
-   + **Metadata response hop limit**: If you enable instance metadata, you can set the allowable number of network hops for the metadata token\. For more information, see [Configure the instance metadata service](configuring-instance-metadata-service.md)\.
+   + **Metadata accessible**: Whether to enable or disable access to the instance metadata\. For more information, see [Use IMDSv2](configuring-instance-metadata-service.md)\.
+   + **Metadata version**: If you enable access to the instance metadata, you can choose to require the use of Instance Metadata Service Version 2 when requesting instance metadata\. For more information, see [Configure instance metadata options for new instances](configuring-instance-metadata-options.md#configuring-IMDS-new-instances)\.
+   + **Metadata response hop limit**: If you enable instance metadata, you can set the allowable number of network hops for the metadata token\. For more information, see [Use IMDSv2](configuring-instance-metadata-service.md)\.
    + **User data**: You can specify user data to configure an instance during launch, or to run a configuration script\. For more information, see [Run commands on your Linux instance at launch](user-data.md)\.
 
 1. Choose **Create launch template**\.

@@ -95,14 +95,14 @@ PS C:\> (New-EC2KeyPair -KeyName "my-key-pair").KeyMaterial | Out-File -Encoding
 Instead of using Amazon EC2 to create your key pair, you can create an RSA key pair using a third\-party tool and then import the public key to Amazon EC2\.
 
 **Requirements for key pairs**
++ Supported type: RSA\. Amazon EC2 does not accept DSA keys\.
 + 
 
   Supported formats:
   + OpenSSH public key format \(the format in `~/.ssh/authorized_keys`\)\. If you connect using SSH while using the EC2 Instance Connect API, the SSH2 format is also supported\.
-  + Base64 encoded DER format
-  + SSH public key file format as specified in [RFC4716](http://tools.ietf.org/html/rfc4716)
   + SSH private key file format must be PEM
-+ Supported type: RSA\. Amazon EC2 does not accept DSA keys\.
+  + Base64 encoded DER format
+  + SSH public key file format as specified in [RFC 4716](https://www.ietf.org/rfc/rfc4716.txt)
 + Supported lengths: 1024, 2048, and 4096\. If you connect using SSH while using the EC2 Instance Connect API, the supported lengths are 2048 and 4096\.
 
 **To create a key pair using a third\-party tool**

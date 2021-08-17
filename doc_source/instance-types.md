@@ -65,6 +65,7 @@ For the best performance, we recommend that you use the following instance types
 | M5zn | m5zn\.large \| m5zn\.xlarge \| m5zn\.2xlarge \| m5zn\.3xlarge \| m5zn\.6xlarge \| m5zn\.12xlarge \| m5zn\.metal | [General purpose](general-purpose-instances.md) | 
 | M6g | m6g\.medium \| m6g\.large \| m6g\.xlarge \| m6g\.2xlarge \| m6g\.4xlarge \| m6g\.8xlarge \| m6g\.12xlarge \| m6g\.16xlarge \| m6g\.metal | [General purpose](general-purpose-instances.md) | 
 | M6gd | m6gd\.medium \| m6gd\.large \| m6gd\.xlarge \| m6gd\.2xlarge \| m6gd\.4xlarge \| m6gd\.8xlarge \| m6gd\.12xlarge \| m6gd\.16xlarge \| m6gd\.metal | [General purpose](general-purpose-instances.md) | 
+| M6i | m6i\.large \| m6i\.xlarge \| m6i\.2xlarge \| m6i\.4xlarge \| m6i\.8xlarge \| m6i\.12xlarge \| m6i\.16xlarge \| m6i\.24xlarge \| m6i\.32xlarge  | [General purpose](general-purpose-instances.md) | 
 | Mac1 | mac1\.metal | [General purpose](general-purpose-instances.md) | 
 | P2 | p2\.xlarge \| p2\.8xlarge \| p2\.16xlarge | [Accelerated computing](accelerated-computing-instances.md) | 
 | P3 | p3\.2xlarge \| p3\.8xlarge \| p3\.16xlarge | [Accelerated computing](accelerated-computing-instances.md) | 
@@ -159,7 +160,7 @@ The following components are part of the Nitro System:
 **Instance types**
 
 The following instances are built on the Nitro System:
-+ **Virtualized**: A1, C5, C5a, C5ad, C5d, C5n, C6g, C6gd, C6gn,  D3, D3en, G4, I3en, Inf1, M5, M5a, M5ad, M5d, M5dn, M5n, M5zn, M6g, M6gd, `p3dn.24xlarge`, P4,  R5, R5a, R5ad, R5b, R5d, R5dn, R5n, R6g, R6gd,  T3, T3a, T4g, high memory \(u\-\*\), X2gd, and z1d
++ **Virtualized**: A1, C5, C5a, C5ad, C5d, C5n, C6g, C6gd, C6gn,  D3, D3en, G4, I3en, Inf1, M5, M5a, M5ad, M5d, M5dn, M5n, M5zn, M6g, M6gd, M6i, `p3dn.24xlarge`, P4,  R5, R5a, R5ad, R5b, R5d, R5dn, R5n, R6g, R6gd,  T3, T3a, T4g, high memory \(u\-\*\), X2gd, and z1d
 + **Bare metal**: `a1.metal`,  `c5.metal`, `c5d.metal`, `c5n.metal`, `c6g.metal`, `c6gd.metal`,  `i3.metal`, `i3en.metal`, `m5.metal`, `m5d.metal`, `m5dn.metal`, `m5n.metal`, `m5zn.metal`, `m6g.metal`, `m6gd.metal`, `mac1.metal`,  `r5.metal`, `r5b.metal`, `r5d.metal`, `r5dn.metal`, `r5n.metal`, `r6g.metal`, `r6gd.metal`,  `u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, `u-18tb1.metal`, `u-24tb1.metal`, `x2gd.metal`, and `z1d.metal`
 
 **Learn more**
@@ -225,6 +226,7 @@ The following table summarizes the networking and storage features supported by 
 | M5zn | Yes | Yes | No | Yes | ENA | 
 | M6g | Yes | Yes | No | Yes | ENA | 
 | M6gd | No | Yes | NVMe \* | Yes | ENA | 
+| M6i | Yes | Yes | No | Yes | ENA | 
 | Mac1 | Yes | Yes | No | No | ENA | 
 | P2 | Yes | No | No | Yes | ENA | 
 | P3 | Yes | No | No | Yes | ENA | 

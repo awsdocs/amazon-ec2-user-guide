@@ -41,8 +41,8 @@ To launch an instance in UEFI mode, you must select an instance type that suppor
 + **AMI** – When launching an instance, you must select an AMI that is configured for UEFI\. The AMI must be configured as follows:
   + **OS** – The operating system contained in the AMI must be configured to use UEFI; otherwise, the instance launch will fail\. For more information, see [Determine the boot mode of the OS](#os-boot-mode)\.
   + **AMI boot mode parameter** – The boot mode parameter of the AMI must be set to `uefi`\. For more information, see [Determine the boot mode parameter of an AMI](#ami-boot-mode)\.
-**Note**  
-Currently AWS does not provide AMIs that are already configured to support UEFI\. To use an AMI that supports UEFI, you must either create the AMI or import it through CloudEndure\. For more information, see [Set the boot mode of an AMI](#set-ami-boot-mode) and the [CloudEndure Documentation](https://docs.cloudendure.com/)\.
+
+AWS does not provide AMIs that are already configured to support UEFI\. You must [configure the AMI](#set-ami-boot-mode), import the AMI through [VM Import/Export](https://docs.aws.amazon.com/vm-import/latest/userguide/), or import the AMI through [CloudEndure](https://docs.cloudendure.com/)\.
 
 ## Determine the boot mode parameter of an AMI<a name="ami-boot-mode"></a>
 

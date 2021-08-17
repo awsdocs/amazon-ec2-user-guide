@@ -17,7 +17,7 @@ If your instance type does not support Elastic Volumes, see [Modify an EBS volum
 
 ## Requirements for Linux volumes<a name="linux-volumes"></a>
 
-Linux AMIs require a GUID partition table \(GPT\) and GRUB 2 for boot volumes that are 2 TiB \(2,048 GiB\) or larger\. Many Linux AMIs today still use the MBR partitioning scheme, which only supports boot volume sizes up to 2 TiB\. If your instance does not boot with a boot volume larger than 2 TiB, the AMI you are using may be limited to a boot volume size of less than 2 TiB\. Non\-boot volumes do not have this limitation on Linux instances\. For requirements affecting Windows volumes, see [Requirements for Windows volumes](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/volume_constraints.html) in the *Amazon EC2 User Guide for Windows Instances*\.
+Linux AMIs require a GUID partition table \(GPT\) and GRUB 2 for boot volumes that are 2 TiB \(2,048 GiB\) or larger\. Many Linux AMIs today still use the MBR partitioning scheme, which only supports boot volume sizes up to 2 TiB\. If your instance does not boot with a boot volume larger than 2 TiB, the AMI you are using may be limited to a boot volume size of less than 2 TiB\. Non\-boot volumes do not have this limitation on Linux instances\. For requirements affecting Windows volumes, see [ Requirements for Windows volumes](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/modify-volume-requirements.html#window-volumes) in the *Amazon EC2 User Guide for Windows Instances*\.
 
 Before attempting to resize a boot volume beyond 2 TiB, you can determine whether the volume is using MBR or GPT partitioning by running the following command on your instance:
 
@@ -60,7 +60,7 @@ GPT fdisk (gdisk) version 0.8.8
   + For a root volume, stop the instance, apply the modifications, and then restart the instance\.
 + Modification time is increased for volumes that are not fully initialized\. For more information see [Initialize Amazon EBS volumes](ebs-initialize.md)\.
 + The new volume size can't exceed the supported capacity of its file system and partitioning scheme\. For more information, see [Constraints on the size and configuration of an EBS volume](volume_constraints.md)\.
-+ If you modify the volume type of a volume, the size and performance must be within the limits if the target volume type\. For more information, see [Amazon EBS volume types](ebs-volume-types.md)
++ If you modify the volume type of a volume, the size and performance must be within the limits of the target volume type\. For more information, see [Amazon EBS volume types](ebs-volume-types.md)
 + You can't decrease the size of an EBS volume\. However, you can create a smaller volume and then migrate your data to it using an application\-level tool such as rsync\.
 + After provisioning over 32,000 IOPS on an existing `io1` or `io2` volume, you might need to detach and re\-attach the volume, or restart the instance to see the full performance improvements\.
 + For `io2` volumes, you can't increase the size beyond `16` TiB or the IOPS beyond `64,000` while the volume is attached to an instance type that does not support `io2` Block Express volumes\. Currently, only `R5b` instances support `io2` Block Express volumes volumes\. For more information, see [`io2` Block Express volumes](ebs-volume-types.md#io2-block-express)

@@ -135,7 +135,7 @@ You can also use resource tags to implement attribute\-based control \(ABAC\)\. 
 
 ## Tag your resources for billing<a name="tag-resources-for-billing"></a>
 
-You can use tags to organize your AWS bill to reflect your own cost structure\. To do this, sign up to get your AWS account bill with tag key values included\. For more information about setting up a cost allocation report with tags, see [Monthly cost allocation report](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/configurecostallocreport.html) in *AWS Billing and Cost Management User Guide*\. To see the cost of your combined resources, you can organize your billing information based on resources that have the same tag key values\. For example, you can tag several resources with a specific application name, and then organize your billing information to see the total cost of that application across several services\. For more information, see [Using cost allocation tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html) in the *AWS Billing and Cost Management User Guide*\.
+You can use tags to organize your AWS bill to reflect your own cost structure\. To do this, sign up to get your AWS account bill with tag key values included\. For more information about setting up a cost allocation report with tags, see [Monthly cost allocation report](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/configurecostallocreport.html) in the *AWS Billing and Cost Management User Guide*\. To see the cost of your combined resources, you can organize your billing information based on resources that have the same tag key values\. For example, you can tag several resources with a specific application name, and then organize your billing information to see the total cost of that application across several services\. For more information, see [Using cost allocation tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html) in the *AWS Billing and Cost Management User Guide*\.
 
 **Note**  
 If you've just enabled reporting, data for the current month is available for viewing after 24 hours\.
@@ -165,11 +165,22 @@ For ease of use and best results, use Tag Editor in the AWS Management Console, 
 You can display tags in two different ways in the Amazon EC2 console\. You can display the tags for an individual resource or for all resources\.
 
 **Display tags for individual resources**  
-When you select a resource\-specific page in the Amazon EC2 console, it displays a list of those resources\. For example, if you select **Instances** from the navigation pane, the console displays your Amazon EC2 instances\. When you select a resource from one of these lists \(for example, an instance\), if the resource supports tags, you can view and manage its tags\. On most resource pages, you can view the tags by selecting the **Tags** tab\.
+When you select a resource\-specific page in the Amazon EC2 console, it displays a list of those resources\. For example, if you select **Instances** from the navigation pane, the console displays your Amazon EC2 instances\. When you select a resource from one of these lists \(for example, an instance\), if the resource supports tags, you can view and manage its tags\. On most resource pages, you can view the tags by choosing the **Tags** tab\.
 
-You can add a column to the resource list that displays all values for tags with the same key\. This column enables you to sort and filter the resource list by the tag\. There are two ways to add a new column to the resource list to display your tags:
+You can add a column to the resource list that displays all values for tags with the same key\. You can use this column sort and filter the resource list by the tag\.
+
+------
+#### [ New console ]
++ Choose the **Preferences** gear\-shaped icon in the top right corner of the screen\. In the **Preferences** dialog box, under **Tag columns**, select one of more tag keys, and then choose **Confirm**\.
+
+------
+#### [ Old console ]
+
+There are two ways to add a new column to the resource list to display your tags:
 + On the **Tags** tab, select **Show Column**\. A new column is added to the console\.
 + Choose the **Show/Hide Columns** gear\-shaped icon, and in the **Show/Hide Columns** dialog box, select the tag key under **Your Tag Keys**\.
+
+------
 
 **Display tags for all resources**  
 You can display tags across all resources by selecting **Tags** from the navigation pane in the Amazon EC2 console\. The following image shows the **Tags** pane, which lists all tags in use by resource type\.
