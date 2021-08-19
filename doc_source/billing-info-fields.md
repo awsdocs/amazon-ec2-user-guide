@@ -20,7 +20,12 @@ The following table lists some of the platform details and usage operation value
 |  Linux/UNIX  |  RunInstances  | 
 |  Red Hat BYOL Linux  |  RunInstances:00g0  | 
 |  Red Hat Enterprise Linux  |  RunInstances:0010  | 
-|  Red Hat Enterprise Linux with HA  |  RunInstances:1010  | 
+|  Red Hat Enterprise Linux with HA  |  RunInstances:1010  |
+|  Red Hat Enterprise Linux with SQL Server Enterprise | RunInstances:0110 |
+|  Red Hat Enterprise Linux with SQL Server Standard | RunInstances:0014 |
+|  Red Hat Enterprise Linux with SQL Server Web | RunInstances:0210 |
+|  Red Hat Enterprise Linux with SQL Server Enterprise and HA | RunInstances:1110 |
+|  Red Hat Enterprise Linux with SQL Server Standard and HA | RunInstances:1014 |
 |  SQL Server Enterprise  |  RunInstances:0100  | 
 |  SQL Server Standard  |  RunInstances:0004  | 
 |  SQL Server Web  |  RunInstances:0200  | 
