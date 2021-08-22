@@ -144,7 +144,7 @@ Launch a temporary instance that you can use to install and configure the EFA so
 
 1. Install the Nvidia GPU drivers, NVIDIA CUDA toolkit, and cuDNN\.
 
-   1. Install the EPEL respository for DKMS and enable any optional repos for your Linux distribution\.
+   1. Install the EPEL repository for DKMS and enable any optional repos for your Linux distribution\.
 
       ```
       $ sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
@@ -258,7 +258,7 @@ Launch a temporary instance that you can use to install and configure the EFA so
 
 1. Install the Nvidia GPU drivers, NVIDIA CUDA toolkit, and cuDNN\.
 
-   1. Install the EPEL respository for DKMS and enable any optional repos for your Linux distribution\.
+   1. Install the EPEL repository for DKMS and enable any optional repos for your Linux distribution\.
       + CentOS 7
 
         ```
@@ -381,7 +381,7 @@ Launch a temporary instance that you can use to install and configure the EFA so
 
 1. Install the Nvidia GPU drivers, NVIDIA CUDA toolkit, and cuDNN\.
 
-   1. Install the EPEL respository for DKMS and enable any optional repos for your Linux distribution\.
+   1. Install the EPEL repository for DKMS and enable any optional repos for your Linux distribution\.
       + RHEL 7
 
         ```

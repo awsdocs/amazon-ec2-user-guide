@@ -576,7 +576,7 @@ This condition is indicated by a system log similar to the one shown below\.
 ```
 XENBUS: Device with no driver: device/vbd/2048
 drivers/rtc/hctosys.c: unable to open rtc device (rtc0)
-Initalizing network drop monitor service
+Initializing network drop monitor service
 Freeing unused kernel memory: 508k freed
 :: Starting udevd...
 done.

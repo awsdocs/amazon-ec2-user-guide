@@ -153,7 +153,7 @@ For more information about the example application and using it to retrieve exte
 
 ## Metrics on instances running FreeBSD<a name="network-performance-metrics-freebsd"></a>
 
-Starting with version 2\.3\.0, the ENA FreeBSD driver supports collecting network performance metrics on instances running FreeBSD\. To enable the collection of FreeBSD metrics, enter the following commmand and set *interval* to a value between 1 and 3600\. This specifies how often, in seconds, to collect FreeBSD metrics\.
+Starting with version 2\.3\.0, the ENA FreeBSD driver supports collecting network performance metrics on instances running FreeBSD\. To enable the collection of FreeBSD metrics, enter the following command and set *interval* to a value between 1 and 3600\. This specifies how often, in seconds, to collect FreeBSD metrics\.
 
 ```
 sysctl dev.ena.network_interface.eni_metrics.sample_interval=interval
