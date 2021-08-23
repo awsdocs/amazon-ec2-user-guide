@@ -4,6 +4,8 @@ Amazon EBS fast snapshot restore enables you to create a volume from a snapshot 
 
 To get started, enable fast snapshot restore for specific snapshots in specific Availability Zones\. Each snapshot and Availability Zone pair refers to one fast snapshot restore\. When you create a volume from one of these snapshots in one of its enabled Availability Zones, the volume is restored using fast snapshot restore\.
 
+Fast snapshot restore must be explicitly enabled on a per\-snapshot basis\. If you create a new snapshot from a volume that was restored from a fast snapshot restore\-enabled snapshot, the new snapshot is not automatically enabled for fast snapshot restore\. You must explicitly enable it for the new snapshot\.
+
 You can enable fast snapshot restore for snapshots that you own and for public and private snapshots that are shared with you\.
 
 **Topics**

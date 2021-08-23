@@ -62,10 +62,10 @@ P2 instances support NVIDIA GPUDirect peer to peer transfers\. For more informat
 
 ## Instances with AWS Inferentia<a name="aws-inferentia-instances"></a>
 
-These instances are designed to accelerate machine learning using [AWS Inferentia](http://aws.amazon.com/machine-learning/inferentia/), a custom AI/ML chip from Amazon that provides high performance and low latency machine learning inference\. These instances are optimized for deploying Deep Learning \(DL\) models for applications, such as natural language processing, object detection and classification, content personalization and filtering, and speech recognition\.
+These instances are designed to accelerate machine learning using [AWS Inferentia](http://aws.amazon.com/machine-learning/inferentia/), a custom AI/ML chip from Amazon that provides high performance and low latency machine learning inference\. These instances are optimized for deploying deep learning \(DL\) models for applications, such as natural language processing, object detection and classification, content personalization and filtering, and speech recognition\.
 
 There are a variety of ways that you can get started:
-+ Use SageMaker, a fully\-managed service that is the easiest way to get started with machine learning models\. For more information, see [Compile and deploy a TensorFlow model on Inf1 instances](https://github.com/awslabs/amazon-sagemaker-examples/blob/master/sagemaker_neo_compilation_jobs/deploy_tensorflow_model_on_Inf1_instance/tensorflow_distributed_mnist_neo_inf1.ipynb) on github\.
++ Use SageMaker, a fully\-managed service that is the easiest way to get started with machine learning models\. For more information, see [Compile and deploy a TensorFlow model on Inf1 using Sagemaker Neo](https://introduction-to-inferentia.workshop.aws/inf1onsage/02sageintro.html)\.
 + Launch an Inf1 instance using the Deep Learning AMI\. For more information, see [AWS Inferentia with DLAMI](https://docs.aws.amazon.com/dlami/latest/devguide/tutorial-inferentia.html) in the *AWS Deep Learning AMI Developer Guide*\.
 + Launch an Inf1 instance using your own AMI and install the [AWS Neuron SDK](https://github.com/aws/aws-neuron-sdk), which enables you to compile, run, and profile deep learning models for AWS Inferentia\.
 + Launch a container instance using an Inf1 instance and an Amazon ECS\-optimized AMI\. For more information, see [Amazon Linux 2 \(Inferentia\) AMIs](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html) in the *Amazon Elastic Container Service Developer Guide*\.
@@ -114,6 +114,8 @@ The following is a summary of the hardware specifications for accelerated comput
 | g3\.4xlarge | 16 | 122 | 1 | 
 | g3\.8xlarge | 32 | 244 | 2 | 
 | g3\.16xlarge | 64 | 488 | 4 | 
+| g4ad\.xlarge | 4 | 16 | 1 | 
+| g4ad\.2xlarge | 8 | 32 | 1 | 
 | g4ad\.4xlarge | 16 | 64 | 1 | 
 | g4ad\.8xlarge | 32 | 128 | 2 | 
 | g4ad\.16xlarge | 64 | 256 | 4 | 
@@ -153,16 +155,26 @@ The following is a summary of network performance for accelerated computing inst
 
 | Instance type | Network performance | Enhanced networking | 
 | --- | --- | --- | 
-|  f1\.4xlarge and smaller \| g3\.4xlarge \| g4ad\.4xlarge \| p3\.2xlarge  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
-|  g3s\.xlarge \| g3\.8xlarge \| p2\.8xlarge \| p3\.8xlarge  | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  f1\.4xlarge and smaller \| g3\.4xlarge \| g3s\.xlarge \| g4ad\.4xlarge and smaller \| p3\.2xlarge  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
+|  g3\.8xlarge \| p2\.8xlarge \| p3\.8xlarge  | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
 | g4ad\.8xlarge | 15 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  g4dn\.4xlarge and smaller  \| inf1\.2xlarge and smaller  | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
 |  f1\.16xlarge \| g3\.16xlarge \| g4ad\.16xlarge \| inf1\.6xlarge \|  p2\.16xlarge \| p3\.16xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
 |  g4dn\.8xlarge \| g4dn\.12xlarge \| g4dn\.16xlarge  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
-| g4dn\.metal \| inf1\.24xlarge \| p3dn\.24xlarge | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
-| p4d\.24xlarge | 4x100 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  g4dn\.metal \| inf1\.24xlarge \| p3dn\.24xlarge  | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  p4d\.24xlarge  | 4x100 Gbps | [ENA](enhanced-networking-ena.md) | 
 
-† These instances use a network I/O credit mechanism to allocate network bandwidth to instances based on average bandwidth utilization\. They accrue credits when their bandwidth is below their baseline bandwidth, and can use these credits when they perform network data transfers\. For more information, open a support case and ask about baseline bandwidth for the specific instance types that you are interested in\.
+† These instances have a baseline bandwidth and can use a network I/O credit mechanism to burst beyond their baseline bandwidth on a best effort basis\. For more information, see [instance network bandwidth](ec2-instance-network-bandwidth.md)\.<a name="baseline-bandwidth"></a>
+
+
+| Instance type | Baseline bandwidth \(Gbps\) | Burst bandwidth \(Gbps\) | 
+| --- | --- | --- | 
+| g4ad\.xlarge | 2 | 10 | 
+| g4ad\.2xlarge | 4\.167 | 10 | 
+| g4ad\.4xlarge | 8\.333 | 10 | 
+| g4dn\.xlarge | 5 | 25 | 
+| g4dn\.2xlarge | 10 | 25 | 
+| g4dn\.4xlarge | 20 | 25 | 
 
 ## Instance features<a name="gpu-instances-features"></a>
 
@@ -171,6 +183,7 @@ The following is a summary of features for accelerated computing instances\.
 
 |  | EBS only | NVMe EBS | Instance store | Placement group | 
 | --- | --- | --- | --- | --- | 
+| F1 | No | No | NVMe \* | Yes | 
 | G2 | No | No | SSD | Yes | 
 | G3 | Yes | No | No | Yes | 
 | G4ad | No | Yes | NVMe \* | Yes | 
@@ -179,7 +192,6 @@ The following is a summary of features for accelerated computing instances\.
 | P2 | Yes | No | No | Yes | 
 | P3 |  24xlarge: No All other sizes: Yes  |  24xlarge: Yes All other sizes: No  | 24xlarge: NVMe \* | Yes | 
 | P4d | No | Yes | NVMe \* | Yes | 
-| F1 | No | No | NVMe \* | Yes | 
 
 **\*** The root device volume must be an Amazon EBS volume\.
 

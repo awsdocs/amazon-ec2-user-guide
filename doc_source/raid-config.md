@@ -1,6 +1,6 @@
 # RAID configuration on Linux<a name="raid-config"></a>
 
-With Amazon EBS, you can use any of the standard RAID configurations that you can use with a traditional bare metal server, as long as that particular RAID configuration is supported by the operating system for your instance\. This is because all RAID is accomplished at the software level\. For greater I/O performance than you can achieve with a single volume, RAID 0 can stripe multiple volumes together; for on\-instance redundancy, RAID 1 can mirror two volumes together\.
+With Amazon EBS, you can use any of the standard RAID configurations that you can use with a traditional bare metal server, as long as that particular RAID configuration is supported by the operating system for your instance\. This is because all RAID is accomplished at the software level\. 
 
 Amazon EBS volume data is replicated across multiple servers in an Availability Zone to prevent the loss of data from the failure of any single component\. This replication makes Amazon EBS volumes ten times more reliable than typical commodity disk drives\. For more information, see [Amazon EBS Availability and Durability](https://aws.amazon.com/ebs/details/#Amazon_EBS_Availability_and_Durability) in the Amazon EBS product detail pages\.
 
@@ -11,33 +11,28 @@ If you need to create a RAID array on a Windows instance, see [RAID configuratio
 
 **Topics**
 + [RAID configuration options](#raid-config-options)
-+ [Create a RAID array on Linux](#linux-raid)
++ [Create a RAID 0 array on Linux](#linux-raid)
 + [Create snapshots of volumes in a RAID array](#ebs-snapshots-raid-array)
 
 ## RAID configuration options<a name="raid-config-options"></a>
 
-The following table compares the common RAID 0 and RAID 1 options\.
+Creating a RAID 0 array allows you to achieve a higher level of performance for a file system than you can provision on a single Amazon EBS volume\. Use RAID 0 when I/O performance is of the utmost importance\. With RAID 0, I/O is distributed across the volumes in a stripe\. If you add a volume, you get the straight addition of throughput and IOPS\. However, keep in mind that performance of the stripe is limited to the worst performing volume in the set, and that the loss of a single volume in the set results in a complete data loss for the array\.
 
-
-| Configuration | Use | Advantages | Disadvantages | 
-| --- | --- | --- | --- | 
-|  RAID 0  |  When I/O performance is more important than fault tolerance; for example, as in a heavily used database \(where data replication is already set up separately\)\.  |  I/O is distributed across the volumes in a stripe\. If you add a volume, you get the straight addition of throughput and IOPS\.  |  Performance of the stripe is limited to the worst performing volume in the set\. Loss of a single volume results in a complete data loss for the array\.  | 
-|  RAID 1  |  When fault tolerance is more important than I/O performance; for example, as in a critical application\.  |  Safer from the standpoint of data durability\.  |  Does not provide a write performance improvement; requires more Amazon EC2 to Amazon EBS bandwidth than non\-RAID configurations because the data is written to multiple volumes simultaneously\.   | 
+The resulting size of a RAID 0 array is the sum of the sizes of the volumes within it, and the bandwidth is the sum of the available bandwidth of the volumes within it\. For example, two 500 GiB `io1` volumes with 4,000 provisioned IOPS each create a 1000 GiB RAID 0 array with an available bandwidth of 8,000 IOPS and 1,000 MiB/s of throughput\.
 
 **Important**  
-RAID 5 and RAID 6 are not recommended for Amazon EBS because the parity write operations of these RAID modes consume some of the IOPS available to your volumes\. Depending on the configuration of your RAID array, these RAID modes provide 20\-30% fewer usable IOPS than a RAID 0 configuration\. Increased cost is a factor with these RAID modes as well; when using identical volume sizes and speeds, a 2\-volume RAID 0 array can outperform a 4\-volume RAID 6 array that costs twice as much\. 
+RAID 5 and RAID 6 are not recommended for Amazon EBS because the parity write operations of these RAID modes consume some of the IOPS available to your volumes\. Depending on the configuration of your RAID array, these RAID modes provide 20\-30% fewer usable IOPS than a RAID 0 configuration\. Increased cost is a factor with these RAID modes as well; when using identical volume sizes and speeds, a 2\-volume RAID 0 array can outperform a 4\-volume RAID 6 array that costs twice as much\.  
+RAID 1 is also not recommended for use with Amazon EBS\. RAID 1 requires more Amazon EC2 to Amazon EBS bandwidth than non\-RAID configurations because the data is written to multiple volumes simultaneously\. In addition, RAID 1 does not provide any write performance improvement\. 
 
-Creating a RAID 0 array allows you to achieve a higher level of performance for a file system than you can provision on a single Amazon EBS volume\. A RAID 1 array offers a "mirror" of your data for extra redundancy\. Before you perform this procedure, you need to decide how large your RAID array should be and how many IOPS you want to provision\.
+## Create a RAID 0 array on Linux<a name="linux-raid"></a>
 
-The resulting size of a RAID 0 array is the sum of the sizes of the volumes within it, and the bandwidth is the sum of the available bandwidth of the volumes within it\. The resulting size and bandwidth of a RAID 1 array is equal to the size and bandwidth of the volumes in the array\. For example, two 500 GiB `io1` volumes with 4,000 provisioned IOPS each create a 1000 GiB RAID 0 array with an available bandwidth of 8,000 IOPS and 1,000 MiB/s of throughput or a 500 GiB RAID 1 array with an available bandwidth of 4,000 IOPS and 500 MiB/s of throughput\.
+This documentation provides a basic RAID 0 setup example\.
 
-This documentation provides basic RAID setup examples\. For more information about RAID configuration, performance, and recovery, see the Linux RAID Wiki at [https://raid\.wiki\.kernel\.org/index\.php/Linux\_Raid](https://raid.wiki.kernel.org/index.php/Linux_Raid)\.
+Before you perform this procedure, you need to decide how large your RAID 0 array should be and how many IOPS you want to provision\.
 
-## Create a RAID array on Linux<a name="linux-raid"></a>
+Use the following procedure to create a RAID 0 array\. Note that you can get directions for Windows instances from [Create a RAID 0 array on Windows](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/raid-config.html#windows-raid) in the *Amazon EC2 User Guide for Windows Instances*\.
 
-Use the following procedure to create the RAID array\. Note that you can get directions for Windows instances from [Create a RAID array on Windows](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/raid-config.html#windows-raid) in the *Amazon EC2 User Guide for Windows Instances*\.
-
-**To create a RAID array on Linux**
+**To create a RAID 0 array on Linux**
 
 1. Create the Amazon EBS volumes for your array\. For more information, see [Create an Amazon EBS volume](ebs-creating-volume.md)\.
 **Important**  
@@ -49,16 +44,10 @@ Create volumes with identical size and IOPS performance values for your array\. 
 **Note**  
 You can list the devices on your instance with the lsblk command to find the device names\.
 
-   \(RAID 0 only\) To create a RAID 0 array, run the following command \(note the `--level=0` option to stripe the array\):
+   To create a RAID 0 array, run the following command \(note the `--level=0` option to stripe the array\):
 
    ```
    [ec2-user ~]$ sudo mdadm --create --verbose /dev/md0 --level=0 --name=MY_RAID --raid-devices=number_of_volumes device_name1 device_name2
-   ```
-
-   \(RAID 1 only\) To create a RAID 1 array, run the following command \(note the `--level=1` option to mirror the array\):
-
-   ```
-   [ec2-user ~]$ sudo mdadm --create --verbose /dev/md0 --level=1 --name=MY_RAID --raid-devices=number_of_volumes device_name1 device_name2
    ```
 
 1.  Allow time for the RAID array to initialize and synchronize\. You can track the progress of these operations with the following command:
@@ -70,10 +59,11 @@ You can list the devices on your instance with the lsblk command to find the dev
    The following is example output:
 
    ```
-   Personalities : [raid1] 
-   md0 : active raid1 xvdg[1] xvdf[0]
-         20955008 blocks super 1.2 [2/2] [UU]
-         [=========>...........]  resync = 46.8% (9826112/20955008) finish=2.9min speed=63016K/sec
+   Personalities : [raid0]
+   md0 : active raid0 xvdc[1] xvdb[0]
+         41910272 blocks super 1.2 512k chunks
+   
+   unused devices: <none>
    ```
 
    In general, you can display detailed information about your RAID array with the following command:
@@ -86,24 +76,32 @@ You can list the devices on your instance with the lsblk command to find the dev
 
    ```
    /dev/md0:
-           Version : 1.2
-     Creation Time : Mon Jun 27 11:31:28 2016
-        Raid Level : raid1
-        Array Size : 20955008 (19.98 GiB 21.46 GB)
-     Used Dev Size : 20955008 (19.98 GiB 21.46 GB)
-      Raid Devices : 2
-     Total Devices : 2
-       Persistence : Superblock is persistent
+              Version : 1.2
+        Creation Time : Wed May 19 11:12:56 2021
+           Raid Level : raid0
+           Array Size : 41910272 (39.97 GiB 42.92 GB)
+         Raid Devices : 2
+        Total Devices : 2
+          Persistence : Superblock is persistent
    
-       Update Time : Mon Jun 27 11:37:02 2016
-             State : clean 
-   ...
-   ...
-   ...
+          Update Time : Wed May 19 11:12:56 2021
+                State : clean
+       Active Devices : 2
+      Working Devices : 2
+       Failed Devices : 0
+        Spare Devices : 0
+   
+           Chunk Size : 512K
+   
+   Consistency Policy : none
+   
+                 Name : MY_RAID
+                 UUID : 646aa723:db31bbc7:13c43daf:d5c51e0c
+               Events : 0
    
        Number   Major   Minor   RaidDevice State
-          0     202       80        0      active sync   /dev/sdf
-          1     202       96        1      active sync   /dev/sdg
+          0     202       16        0      active sync   /dev/sdb
+          1     202       32        1      active sync   /dev/sdc
    ```
 
 1. Create a file system on your RAID array, and give that file system a label to use when you mount it later\. For example, to create an ext4 file system with the label *MY\_RAID*, run the following command:
@@ -120,7 +118,7 @@ You can list the devices on your instance with the lsblk command to find the dev
    [ec2-user ~]$ sudo mdadm --detail --scan | sudo tee -a /etc/mdadm.conf
    ```
 **Note**  
-If you are using a Linux distribution other than Amazon Linux, this file may need to be placed in different location\. For more information, consult man mdadm\.conf on your Linux system\.\.
+If you are using a Linux distribution other than Amazon Linux, you might need to modify this command\. For example, you might need to place the file in a different location, or you might need to add the `--examine` parameter\. For more information, run man mdadm\.conf on your Linux instance\.
 
 1. Create a new ramdisk image to properly preload the block device modules for your new RAID configuration:
 

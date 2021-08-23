@@ -18,7 +18,7 @@ To prepare for enhanced networking using the Intel 82599 VF interface, set up yo
 **Warning**  
 Enhanced networking is supported only for HVM instances\. Enabling enhanced networking with a PV instance can make it unreachable\. Setting this attribute without the proper module or module version can also make your instance unreachable\.
 + Ensure that the instance has internet connectivity\.
-+ Install and configure the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html) or the [AWS Tools for Windows PowerShell](https://docs.aws.amazon.com/powershell/latest/userguide/) on any computer you choose, preferably your local desktop or laptop\. For more information, see [Access Amazon EC2](concepts.md#access-ec2)\. Enhanced networking cannot be managed from the Amazon EC2 console\.
++ Use [AWS CloudShell](https://console.aws.amazon.com/cloudshell) from the AWS Management Console, or install and configure the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html) or the [AWS Tools for Windows PowerShell](https://docs.aws.amazon.com/powershell/latest/userguide/) on any computer you choose, preferably your local desktop or laptop\. For more information, see [Access Amazon EC2](concepts.md#access-ec2) or the [AWS CloudShell User Guide](https://docs.aws.amazon.com/cloudshell/latest/userguide/welcome.html)\. Enhanced networking cannot be managed from the Amazon EC2 console\.
 + If you have important data on the instance that you want to preserve, you should back that data up now by creating an AMI from your instance\. Updating kernels and kernel modules, as well as enabling the `sriovNetSupport` attribute, might render incompatible instances or operating systems unreachable\. If you have a recent backup, your data will still be retained if this happens\.
 
 ## Test whether enhanced networking is enabled<a name="test-enhanced-networking"></a>
@@ -27,7 +27,7 @@ Enhanced networking with the Intel 82599 VF interface is enabled if the `ixgbevf
 
 **Instance attribute \(sriovNetSupport\)**  
 To check whether an instance has the enhanced networking `sriovNetSupport` attribute set, use one of the following commands:
-+ [describe\-instance\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-attribute.html) \(AWS CLI\)
++ [describe\-instance\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-attribute.html) \(AWS CLI/AWS CloudShell\)
 
   ```
   aws ec2 describe-instance-attribute --instance-id instance_id --attribute sriovNetSupport
@@ -48,7 +48,7 @@ If the attribute isn't set, `SriovNetSupport` is empty\. If the attribute is set
 
 **Image attribute \(sriovNetSupport\)**  
 To check whether an AMI already has the enhanced networking `sriovNetSupport` attribute set, use one of the following commands:
-+ [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) \(AWS CLI\)
++ [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) \(AWS CLI/AWS CloudShell\)
 
   ```
   aws ec2 describe-images --image-id ami_id --query "Images[].SriovNetSupport"
@@ -122,7 +122,7 @@ There is no way to disable the enhanced networking attribute after you've enable
    \[Instance store\-backed instance\] You can't stop the instance to modify the attribute\. Instead, proceed to this procedure: [To enable enhanced networking \(instance store\-backed instances\)](#enhanced-networking-instance-store)\.
 
 1. From your local computer, enable the enhanced networking attribute using one of the following commands:
-   + [modify\-instance\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) \(AWS CLI\)
+   + [modify\-instance\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) \(AWS CLI/AWS CloudShell\)
 
      ```
      aws ec2 modify-instance-attribute --instance-id instance_id --sriov-net-support simple
@@ -142,7 +142,7 @@ There is no way to disable the enhanced networking attribute after you've enable
 **To enable enhanced networking \(instance store\-backed instances\)**
 
 Follow the previous procedure until the step where you stop the instance\. Create a new AMI as described in [Create an instance store\-backed Linux AMI](creating-an-ami-instance-store.md), making sure to enable the enhanced networking attribute when you register the AMI\.
-+ [register\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) \(AWS CLI\)
++ [register\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) \(AWS CLI/AWS CloudShell\)
 
   ```
   aws ec2 register-image --sriov-net-support simple ...
@@ -161,7 +161,7 @@ The Quick Start Ubuntu HVM AMIs include the necessary drivers for enhanced netwo
 
 The following procedure provides the general steps for compiling the `ixgbevf` module on an Ubuntu instance\.<a name="ubuntu-enhanced-networking-procedure"></a>
 
-**To install the linux\-aws kernel package**
+**To install the `linux-aws` kernel package**
 
 1. <a name="ubuntu-enhanced-networking-start-step"></a>Connect to your instance\.
 
@@ -218,12 +218,12 @@ If you compile the `ixgbevf` module for your current kernel and then upgrade you
       [ec2-user ~]$ sudo grub2-mkconfig -o /boot/grub2/grub.cfg
       ```
 
-1. \[EBS\-backed instance\] From your local computer, stop the instance using the Amazon EC2 console or one of the following commands: [stop\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) \(AWS CLI\), [Stop\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Stop-EC2Instance.html) \(AWS Tools for Windows PowerShell\)\. If your instance is managed by AWS OpsWorks, you should stop the instance in the AWS OpsWorks console so that the instance state remains in sync\.
+1. \[EBS\-backed instance\] From your local computer, stop the instance using the Amazon EC2 console or one of the following commands: [stop\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html) \(AWS CLI/AWS CloudShell\), [Stop\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/Stop-EC2Instance.html) \(AWS Tools for Windows PowerShell\)\. If your instance is managed by AWS OpsWorks, you should stop the instance in the AWS OpsWorks console so that the instance state remains in sync\.
 
    \[Instance store\-backed instance\] You can't stop the instance to modify the attribute\. Instead, proceed to this procedure: [To enable enhanced networking \(instance store–backed instances\)](#other-linux-enhanced-networking-instance-store)\.
 
 1. From your local computer, enable the enhanced networking attribute using one of the following commands:
-   + [modify\-instance\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) \(AWS CLI\)
+   + [modify\-instance\-attribute](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html) \(AWS CLI/AWS CloudShell\)
 
      ```
      aws ec2 modify-instance-attribute --instance-id instance_id --sriov-net-support simple
@@ -245,7 +245,7 @@ If your instance operating system contains an `/etc/udev/rules.d/70-persistent-n
 **To enable enhanced networking \(instance store–backed instances\)**
 
 Follow the previous procedure until the step where you stop the instance\. Create a new AMI as described in [Create an instance store\-backed Linux AMI](creating-an-ami-instance-store.md), making sure to enable the enhanced networking attribute when you register the AMI\.
-+ [register\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) \(AWS CLI\)
++ [register\-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html) \(AWS CLI/AWS CloudShell\)
 
   ```
   aws ec2 register-image --sriov-net-support simple ...

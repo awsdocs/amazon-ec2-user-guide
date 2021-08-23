@@ -83,7 +83,7 @@ Before you use placement groups, be aware of the following rules:
 ### Cluster placement group rules and limitations<a name="placement-groups-limitations-cluster"></a>
 
 The following rules apply to cluster placement groups:
-+ Instances in a cluster placement group you must use the following supported instance types:
++ The following instance types are supported:
   + [Current generation](instance-types.md#current-gen-instances) instances, except for [burstable performance](burstable-performance-instances.md) instances \(for example, T2\) and [Mac1 instances](ec2-mac-instances.md)\.
   + The following [previous generation](instance-types.md#previous-gen-instances) instances: A1, C3, `cc2.8xlarge`, `cr1.8xlarge`, G2, `hs1.8xlarge`, I2, and R3\.
 + A cluster placement group can't span multiple Availability Zones\.
@@ -362,7 +362,7 @@ You can view the placement information of your instances using one of the follow
 
 1. Select the instance\.
 
-1. In the **Description** tab, under **Host and placement group**, find **Placement group**\. If the instance is not in a placement group, the field is empty\. Otherwise, it contains the name of the placement group name\. If the placement group is a partition placement group, **Partition number** contains the partition number for the instance\.
+1. On the **Details** tab, under **Host and placement group**, find **Placement group**\. If the instance is not in a placement group, the field is empty\. Otherwise, it contains the name of the placement group name\. If the placement group is a partition placement group, **Partition number** contains the partition number for the instance\.
 
 ------
 #### [ Old console ]

@@ -1,6 +1,6 @@
 # Launch an instance from a launch template<a name="ec2-launch-templates"></a>
 
-You can create a *launch template* that contains the configuration information to launch an instance\. Launch templates enable you to store launch parameters so that you do not have to specify them every time you launch an instance\. For example, a launch template can contain the AMI ID, instance type, and network settings that you typically use to launch instances\. When you launch an instance using the Amazon EC2 console, an AWS SDK, or a command line tool, you can specify the launch template to use\.
+You can create a *launch template* that contains the configuration information to launch an instance\. You can use launch templates to store launch parameters so that you do not have to specify them every time you launch an instance\. For example, a launch template can contain the AMI ID, instance type, and network settings that you typically use to launch instances\. When you launch an instance using the Amazon EC2 console, an AWS SDK, or a command line tool, you can specify the launch template to use\.
 
 For each launch template, you can create one or more numbered *launch template versions*\. Each version can have different launch parameters\. When you launch an instance from a launch template, you can use any version of the launch template\. If you do not specify a version, the default version is used\. You can set any version of the launch template as the default version—by default, it's the first version of the launch template\.
 
@@ -13,7 +13,7 @@ The following diagram shows a launch template with three versions\. The first ve
 + [Use launch templates to control launch parameters](#launch-templates-authorization)
 + [Control the use of launch templates](#launch-template-permissions)
 + [Create a launch template](#create-launch-template)
-+ [Manage launch template versions](#manage-launch-template-versions)
++ [Modify a launch template \(manage launch template versions\)](#manage-launch-template-versions)
 + [Launch an instance from a launch template](#launch-instance-from-launch-template)
 + [Use launch templates with Amazon EC2 Auto Scaling](#launch-templates-as)
 + [Use launch templates with EC2 Fleet](#launch-templates-ec2-fleet)
@@ -27,6 +27,7 @@ The following rules apply to launch templates and launch template versions:
 + Launch template parameters are optional\. However, you must ensure that your request to launch an instance includes all required parameters\. For example, if your launch template does not include an AMI ID, you must specify both the launch template and an AMI ID when you launch an instance\.
 + Launch template parameters are not fully validated when you create the launch template\. If you specify incorrect values for parameters, or if you do not use supported parameter combinations, no instances can launch using this launch template\. Ensure that you specify the correct values for the parameters and that you use supported parameter combinations\. For example, to launch an instance in a placement group, you must specify a supported instance type\.
 + You can tag a launch template, but you cannot tag a launch template version\.
++ Launch templates are immutable\. To modify a launch template, you must create a new version of the launch template\.
 + Launch template versions are numbered in the order in which they are created\. When you create a launch template version, you cannot specify the version number yourself\.
 
 ## Use launch templates to control launch parameters<a name="launch-templates-authorization"></a>
@@ -36,7 +37,7 @@ A launch template can contain all or some of the parameters to launch an instanc
 **Note**  
 You cannot remove launch template parameters during launch \(for example, you cannot specify a null value for the parameter\)\. To remove a parameter, create a new version of the launch template without the parameter and use that version to launch the instance\.
 
-To launch instances, IAM users must have permissions to use the `ec2:RunInstances` action\. You must also have permissions to create or use the resources that are created or associated with the instance\. You can use resource\-level permissions for the `ec2:RunInstances` action to control the launch parameters that users can specify\. Alternatively, you can grant users permissions to launch an instance using a launch template\. This enables you to manage launch parameters in a launch template rather than in an IAM policy, and to use a launch template as an authorization vehicle for launching instances\. For example, you can specify that users can only launch instances using a launch template, and that they can only use a specific launch template\. You can also control the launch parameters that users can override in the launch template\. For example policies, see [Launch templates](ExamplePolicies_EC2.md#iam-example-runinstances-launch-templates)\.
+To launch instances, IAM users must have permissions to use the `ec2:RunInstances` action\. IAM users must also have permissions to create or use the resources that are created or associated with the instance\. You can use resource\-level permissions for the `ec2:RunInstances` action to control the launch parameters that users can specify\. Alternatively, you can grant users permissions to launch an instance using a launch template\. This enables you to manage launch parameters in a launch template rather than in an IAM policy, and to use a launch template as an authorization vehicle for launching instances\. For example, you can specify that users can only launch instances using a launch template, and that they can only use a specific launch template\. You can also control the launch parameters that users can override in the launch template\. For example policies, see [Launch templates](ExamplePolicies_EC2.md#iam-example-runinstances-launch-templates)\.
 
 ## Control the use of launch templates<a name="launch-template-permissions"></a>
 
@@ -86,7 +87,7 @@ Create a new launch template using parameters that you define, or use an existin
    + **IOPS**: For the Provisioned IOPS SSD volume type, the number of I/O operations per second \(IOPS\) that the volume can support\.
    + **Delete on termination**: For Amazon EBS volumes, whether to delete the volume when the instance is terminated\. For more information, see [Preserve Amazon EBS volumes on instance termination](terminating-instances.md#preserving-volumes-on-termination)\.
    + **Encrypted**: If the instance type supports EBS encryption, you can enable encryption for the volume\. If you have enabled encryption by default in this Region, encryption is enabled for you\. For more information, see [Amazon EBS encryption](EBSEncryption.md)\.
-   + **Key**: The CMK to use for EBS encryption\. You can specify the ARN of any customer master key \(CMK\) that you created using the AWS Key Management Service\. If you specify a CMK, you must also use **Encrypted** to enable encryption\.
+   + **Key**: The customer managed key to use for EBS encryption\. You can specify the ARN of any customer managed key that you created using the customer managed key\. If you specify a customer managed key, you must also use **Encrypted** to enable encryption\.
 
 1. For **Resource tags**, specify [tags](Using_Tags.md) by providing key and value combinations\. You can tag the instance, the volumes, Spot Instance requests, or all three\.
 
@@ -115,14 +116,14 @@ Create a new launch template using parameters that you define, or use an existin
    + **T2/T3 Unlimited**: Whether to enable applications to burst beyond the baseline for as long as needed\. This field is only valid for T2, T3, and T3a instances\. Additional charges may apply\. For more information, see [Burstable performance instances](burstable-performance-instances.md)\.
    + **Placement group name**: Specify a placement group in which to launch the instance\. Not all instance types can be launched in a placement group\. For more information, see [Placement groups](placement-groups.md)\.
    + **EBS\-optimized instance**: Provides additional, dedicated capacity for Amazon EBS I/O\. Not all instance types support this feature, and additional charges apply\. For more information, see [Amazon EBS–optimized instances](ebs-optimized.md)\.
-   + **Capacity Reservation**: Specify whether to launch the instance into shared capacity, any `open` Capacity Reservation, a specific Capacity Reservation, or a Capacity Reservation group\. For more information, see [Launch instances into an existing Capacity Reservation](capacity-reservations-using.md#capacity-reservations-launch)\.
+   + **Capacity Reservation**: Specify whether to launch the instance into any `open` Capacity Reservation \(`Open`\), a specific Capacity Reservation \(`Target by ID`\), or a Capacity Reservation group \(`Target by group`\)\. To specify that a Capacity Reservation should not be used, choose `None`\. For more information, see [Launch instances into an existing Capacity Reservation](capacity-reservations-using.md#capacity-reservations-launch)\.
    + **Tenancy**: Choose whether to run your instance on shared hardware \(**Shared**\), isolated, dedicated hardware \(**Dedicated**\), or on a Dedicated Host \(**Dedicated host**\)\. If you choose to launch the instance onto a Dedicated Host, you can specify whether to launch the instance into a host resource group or you can target a specific Dedicated Host\. Additional charges may apply\. For more information, see [Dedicated Instances](dedicated-instance.md) and [Dedicated Hosts](dedicated-hosts-overview.md)\.
    + **RAM disk ID**: \(Only valid for paravirtual \(PV\) AMIs\) A RAM disk for the instance\. If you have specified a kernel, you may need to specify a specific RAM disk with the drivers to support it\.
    + **Kernel ID**: \(Only valid for paravirtual \(PV\) AMIs\) A kernel for the instance\.
    + **License configurations**: You can launch instances against the specified license configuration to track your license usage\. For more information, see [Create a License Configuration](https://docs.aws.amazon.com/license-manager/latest/userguide/create-license-configuration.html) in the *AWS License Manager User Guide*\.
-   + **Metadata accessible**: Whether to enable or disable access to the instance metadata\. For more information, see [Configure the instance metadata service](configuring-instance-metadata-service.md)\.
-   + **Metadata version**: If you enable access to the instance metadata, you can choose to require the use of Instance Metadata Service Version 2 when requesting instance metadata\. For more information, see [Configure instance metadata options for new instances](configuring-instance-metadata-service.md#configuring-IMDS-new-instances)\.
-   + **Metadata response hop limit**: If you enable instance metadata, you can set the allowable number of network hops for the metadata token\. For more information, see [Configure the instance metadata service](configuring-instance-metadata-service.md)\.
+   + **Metadata accessible**: Whether to enable or disable access to the instance metadata\. For more information, see [Use IMDSv2](configuring-instance-metadata-service.md)\.
+   + **Metadata version**: If you enable access to the instance metadata, you can choose to require the use of Instance Metadata Service Version 2 when requesting instance metadata\. For more information, see [Configure instance metadata options for new instances](configuring-instance-metadata-options.md#configuring-IMDS-new-instances)\.
+   + **Metadata response hop limit**: If you enable instance metadata, you can set the allowable number of network hops for the metadata token\. For more information, see [Use IMDSv2](configuring-instance-metadata-service.md)\.
    + **User data**: You can specify user data to configure an instance during launch, or to run a configuration script\. For more information, see [Run commands on your Linux instance at launch](user-data.md)\.
 
 1. Choose **Create launch template**\.
@@ -302,7 +303,9 @@ Use the [create\-launch\-template](https://docs.aws.amazon.com/cli/latest/refere
 
 ------
 
-## Manage launch template versions<a name="manage-launch-template-versions"></a>
+## Modify a launch template \(manage launch template versions\)<a name="manage-launch-template-versions"></a>
+
+Launch templates are immutable; after you create a launch template, you can't modify it\. Instead, you can create a new version of the launch template that includes any changes you require\.
 
 You can create launch template versions for a specific launch template, set the default version, describe a launch template version, and delete versions that you no longer require\.
 

@@ -10,9 +10,20 @@ Your AWS account automatically has a default security group for the default VPC 
 
 Your AWS account automatically has a default security group for the default VPC in each Region\. If you don't specify a security group when you launch an instance, the instance is automatically associated with the default security group for the VPC\.
 
-A default security group is named `default`, and it has an ID assigned by AWS\. The following are the default rules for each default security group:
-+ Allows all inbound traffic from other instances associated with the default security group\. The security group specifies itself as a source security group in its inbound rules\.
-+ Allows all outbound traffic from the instance\.
+A default security group is named `default`, and it has an ID assigned by AWS\. The following table describes the default rules for a default security group\.
+
+
+| 
+| 
+| **Inbound rule** | 
+| --- |
+| Source | Protocol | Port range | Description | 
+| The security group ID \(its own resource ID\) | All | All | Allows inbound traffic from network interfaces and instances that are assigned to the same security group\. | 
+| **Outbound rules**  | 
+| --- |
+| Destination | Protocol | Port range | Description | 
+| 0\.0\.0\.0/0 | All | All | Allows all outbound IPv4 traffic\. | 
+| ::/0 | All | All | Allows all outbound IPv6 traffic\. This rule is added only if your VPC has an associated IPv6 CIDR block\. | 
 
 You can add or remove inbound and outbound rules for any default security group\.
 

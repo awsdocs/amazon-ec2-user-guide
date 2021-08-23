@@ -39,7 +39,7 @@ For more information, see [Amazon EC2 C6g Instances](https://aws.amazon.com/ec2/
 + [Network performance](#compute-network-performance)
 + [SSD I/O performance](#compute-ssd-perf)
 + [Instance features](#compute-instances-features)
-+ [Release notes](#compute-instance-limits)
++ [Release notes](#compute-instance-release-notes)
 
 ## Hardware specifications<a name="compute-instances-hardware"></a>
 
@@ -142,18 +142,57 @@ The following is a summary of network performance for compute optimized instance
 | --- | --- | --- | 
 | c4\.large | Moderate | [Intel 82599 VF](sriov-networking.md) | 
 | c4\.xlarge \| c4\.2xlarge \| c4\.4xlarge | High | [Intel 82599 VF](sriov-networking.md) | 
-| c5\.4xlarge and smaller \| c5d\.4xlarge and smaller \| c6g\.4xlarge and smaller \| c6gd\.4xlarge and smaller  | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
+| c5\.4xlarge and smaller \| c5a\.4xlarge and smaller \| c5ad\.4xlarge and smaller \| c5d\.4xlarge and smaller \| c6g\.4xlarge and smaller \| c6gd\.4xlarge and smaller | Up to 10 Gbps † | [ENA](enhanced-networking-ena.md) | 
 | c4\.8xlarge | 10 Gbps | [Intel 82599 VF](sriov-networking.md) | 
-| c5\.9xlarge \| c5d\.9xlarge | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
-| c5\.12xlarge \| c5d\.12xlarge  \| c6g\.8xlarge \| c6gd\.8xlarge | 12 Gbps | [ENA](enhanced-networking-ena.md) | 
-| c6g\.12xlarge \| c6gd\.12xlarge | 20 Gbps | [ENA](enhanced-networking-ena.md) | 
-| c5n\.4xlarge and smaller  \| c6gn\.2xlarge and smaller | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
+| c5\.9xlarge \| c5a\.8xlarge \| c5ad\.8xlarge \| c5d\.9xlarge | 10 Gbps | [ENA](enhanced-networking-ena.md) | 
+| c5\.12xlarge \| c5a\.12xlarge \| c5ad\.12xlarge \| c5d\.12xlarge  \| c6g\.8xlarge \| c6gd\.8xlarge | 12 Gbps | [ENA](enhanced-networking-ena.md) | 
+| c5a\.16xlarge \| c5a\.24xlarge \| c5ad\.16xlarge \| c5ad\.24xlarge \| c6g\.12xlarge \| c6gd\.12xlarge | 20 Gbps | [ENA](enhanced-networking-ena.md) | 
+| c5n\.4xlarge and smaller  \| c6gn\.4xlarge and smaller | Up to 25 Gbps † | [ENA](enhanced-networking-ena.md) | 
 | c5\.18xlarge \| c5\.24xlarge \| c5\.metal \| c5d\.18xlarge \| c5d\.24xlarge \| c5d\.metal  \| c6g\.16xlarge \| c6g\.metal  \| c6gd\.16xlarge \| c6gd\.metal  \| c6gn\.4xlarge  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
-| c5n\.9xlarge \| c6gn\.8xlarge | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
+| c5n\.9xlarge \| c6gn\.8xlarge  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
 | c6gn\.12xlarge | 75 Gbps | [ENA](enhanced-networking-ena.md) | 
-| c5n\.18xlarge \| c5n\.metal  \| c6gn\.16xlarge  | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
+| c5n\.18xlarge \| c5n\.metal  \| c6gn\.16xlarge  | 100 Gbps | [ENA](enhanced-networking-ena.md), [EFA](efa.md) | 
 
-† These instances use a network I/O credit mechanism to allocate network bandwidth to instances based on average bandwidth utilization\. They accrue credits when their bandwidth is below their baseline bandwidth, and can use these credits when they perform network data transfers\. For more information, open a support case and ask about baseline bandwidth for the specific instance types that you are interested in\.
+† These instances have a baseline bandwidth and can use a network I/O credit mechanism to burst beyond their baseline bandwidth on a best effort basis\. For more information, see [instance network bandwidth](ec2-instance-network-bandwidth.md)\.<a name="baseline-bandwidth"></a>
+
+
+| Instance type | Baseline bandwidth \(Gbps\) | Burst bandwidth \(Gbps\) | 
+| --- | --- | --- | 
+| c5\.large | \.75 | 10 | 
+| c5\.xlarge | 1\.25 | 10 | 
+| c5\.2xlarge | 2\.5 | 10 | 
+| c5\.4xlarge | 5 | 10 | 
+| c5a\.large | \.75 | 10 | 
+| c5a\.xlarge | 1\.25 | 10 | 
+| c5a\.2xlarge | 2\.5 | 10 | 
+| c5a\.4xlarge | 5 | 10 | 
+| c5ad\.large | \.75 | 10 | 
+| c5ad\.xlarge | 1\.25 | 10 | 
+| c5ad\.2xlarge | 2\.5 | 10 | 
+| c5ad\.4xlarge | 5 | 10 | 
+| c5d\.large | \.75 | 10 | 
+| c5d\.xlarge | 1\.25 | 10 | 
+| c5d\.2xlarge | 2\.5 | 10 | 
+| c5d\.4xlarge | 5 | 10 | 
+| c5n\.large | 3 | 25 | 
+| c5n\.xlarge | 5 | 25 | 
+| c5n\.2xlarge | 10 | 25 | 
+| c5n\.4xlarge | 15 | 25 | 
+| c6g\.medium | \.5 | 10 | 
+| c6g\.large | \.75 | 10 | 
+| c6g\.xlarge | 1\.25 | 10 | 
+| c6g\.2xlarge | 2\.5 | 10 | 
+| c6g\.4xlarge | 5 | 10 | 
+| c6gd\.medium | \.5 | 10 | 
+| c6gd\.large | \.75 | 10 | 
+| c6gd\.xlarge | 1\.25 | 10 | 
+| c6gd\.2xlarge | 2\.5 | 10 | 
+| c6gd\.4xlarge | 5 | 10 | 
+| c6gn\.medium | 1\.6 | 25 | 
+| c6gn\.large | 3 | 25 | 
+| c6gn\.xlarge | 6\.3 | 25 | 
+| c6gn\.2xlarge | 12\.5 | 25 | 
+| c6gn\.4xlarge | 15 | 25 | 
 
 ## SSD I/O performance<a name="compute-ssd-perf"></a>
 
@@ -221,7 +260,7 @@ For more information, see the following:
 + [Amazon EC2 instance store](InstanceStorage.md)
 + [Placement groups](placement-groups.md)
 
-## Release notes<a name="compute-instance-limits"></a>
+## Release notes<a name="compute-instance-release-notes"></a>
 + C5 and C5d instances feature a 3\.1 GHz Intel Xeon Platinum 8000 series processor from either the first generation \(Skylake\-SP\) or second generation \(Cascade Lake\)\.
 + C5a and C5ad instances feature a second\-generation AMD EPYC processor \(Rome\) running at frequencies as high as 3\.3\. GHz\.
 + C6g, C6gd, and C6gn instances feature an AWS Graviton2 processor based on 64\-bit Arm architecture\.
@@ -250,7 +289,11 @@ For more information, see the following:
   + SUSE Linux Enterprise Server 15 or later \(64\-bit Arm\)
   + Debian 10 or later \(64\-bit Arm\)
 + Instances built on the Nitro System instances support a maximum of 28 attachments, including network interfaces, EBS volumes, and NVMe instance store volumes\. For more information, see [Nitro System volume limits](volume_limits.md#instance-type-volume-limits)\.
-+ To get the best performance from your C6gn instances, ensure that they have ENA driver version 2\.2\.9 or later\.
++ To get the best performance from your C6gn instances, ensure that they have ENA driver version 2\.2\.9 or later\. Using an ENA driver earlier than version 1\.2 with these instances causes network interface attachment failures\. The following AMIs have a compatible ENA driver\.
+  + Amazon Linux 2 with kernel 4\.14\.186
+  + Ubuntu 20\.04 with kernel 5\.4\.0\-1025\-aws
+  + Red Hat Enterprise Linux 8\.3 with kernel 4\.18\.0\-240\.1\.1\.el8\_3\.ARCH
+  + SUSE Linux Enterprise Server 15 SP2 with kernel 5\.4\.0\-1025\-aws
 + [Traffic Mirroring](https://docs.aws.amazon.com/vpc/latest/mirroring/) is not supported on C6gn instances\.
 + To launch AMIs for all Linux distributions on C6gn instances, use AMIs with the latest version and run an update for the latest driver\. For earlier versions, download the latest driver from [GitHub](https://github.com/amzn/amzn-drivers/tree/master/kernel/linux/ena)\.
 + Launching a bare metal instance boots the underlying server, which includes verifying all hardware and firmware components\. This means that it can take 20 minutes from the time the instance enters the running state until it becomes available over the network\.

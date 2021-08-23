@@ -19,7 +19,7 @@ To prepare for enhanced networking using the ENA, set up your instance as follow
 + Launch the instance using a [current generation](instance-types.md#current-gen-instances) instance type, other than C4, D2, M4 instances smaller than `m4.16xlarge`, or T2\.
 + Launch the instance using a supported version of the Linux kernel and a supported distribution, so that ENA enhanced networking is enabled for your instance automatically\. For more information, see [ENA Linux Kernel Driver Release Notes](https://github.com/amzn/amzn-drivers/blob/master/kernel/linux/ena/RELEASENOTES.md)\.
 + Ensure that the instance has internet connectivity\.
-+ Install and configure the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html) or the [AWS Tools for Windows PowerShell](https://docs.aws.amazon.com/powershell/latest/userguide/) on any computer you choose, preferably your local desktop or laptop\. For more information, see [Access Amazon EC2](concepts.md#access-ec2)\. Enhanced networking cannot be managed from the Amazon EC2 console\.
++ Use [AWS CloudShell](https://console.aws.amazon.com/cloudshell) from the AWS Management Console, or install and configure the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html) or the [AWS Tools for Windows PowerShell](https://docs.aws.amazon.com/powershell/latest/userguide/) on any computer you choose, preferably your local desktop or laptop\. For more information, see [Access Amazon EC2](concepts.md#access-ec2) or the [AWS CloudShell User Guide](https://docs.aws.amazon.com/cloudshell/latest/userguide/welcome.html)\. Enhanced networking cannot be managed from the Amazon EC2 console\.
 + If you have important data on the instance that you want to preserve, you should back that data up now by creating an AMI from your instance\. Updating kernels and kernel modules, as well as enabling the `enaSupport` attribute, might render incompatible instances or operating systems unreachable\. If you have a recent backup, your data will still be retained if this happens\.
 
 ## Enhanced networking performance<a name="ena-performance"></a>
@@ -79,7 +79,7 @@ In the above Ubuntu instance, the module is not installed, so you must first ins
 **Instance attribute \(enaSupport\)**
 
 To check whether an instance has the enhanced networking `enaSupport` attribute set, use one of the following commands\. If the attribute is set, the response is true\.
-+ [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) \(AWS CLI\)
++ [describe\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html) \(AWS CLI/AWS CloudShell\)
 
   ```
   aws ec2 describe-instances --instance-ids instance_id --query "Reservations[].Instances[].EnaSupport"
@@ -92,7 +92,7 @@ To check whether an instance has the enhanced networking `enaSupport` attribute 
 
 **Image attribute \(enaSupport\)**  
 To check whether an AMI has the enhanced networking `enaSupport` attribute set, use one of the following commands\. If the attribute is set, the response is true\.
-+ [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) \(AWS CLI\)
++ [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) \(AWS CLI/AWS CloudShell\)
 
   ```
   aws ec2 describe-images --image-id ami_id --query "Images[].EnaSupport"
@@ -201,10 +201,10 @@ The latest Ubuntu HVM AMIs include the module required for enhanced networking w
 
 If you launched your instance using an older AMI and it does not have enhanced networking enabled already, you can install the `linux-aws` kernel package to get the latest enhanced networking drivers and update the required attribute\.
 
-**To install the linux\-aws kernel package \(Ubuntu 16\.04 or later\)**  
-Ubuntu 16\.04 and 18\.04 ship with the Ubuntu custom kernel \(linux\-aws kernel package\)\. To use a different kernel, contact [Amazon Web Services Support](https://console.aws.amazon.com/support)\.<a name="ubuntu-enhanced-networking-ena-procedure"></a>
+**To install the `linux-aws` kernel package \(Ubuntu 16\.04 or later\)**  
+Ubuntu 16\.04 and 18\.04 ship with the Ubuntu custom kernel \(`linux-aws` kernel package\)\. To use a different kernel, contact [AWS Support](https://console.aws.amazon.com/support)\.<a name="ubuntu-enhanced-networking-ena-procedure"></a>
 
-**To install the linux\-aws kernel package \(Ubuntu Trusty 14\.04\)**
+**To install the `linux-aws` kernel package \(Ubuntu Trusty 14\.04\)**
 
 1. <a name="ubuntu-enhanced-networking-ena-start-step"></a>Connect to your instance\.
 

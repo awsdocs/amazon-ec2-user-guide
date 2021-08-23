@@ -99,12 +99,12 @@ The steps differ depending on whether you intend to use EFA with Open MPI, with 
 1. Connect to the instance you launched\. For more information, see [Connect to your Linux instance](AccessingInstances.md)\.
 
 1. To ensure that all of your software packages are up to date, perform a quick software update on your instance\. This process may take a few minutes\.
-   + Amazon Linux, Amazon Linux 2, RHEL, and CentOS
+   + Amazon Linux 2, RHEL 7/8, and CentOS 7/8
 
      ```
      $ sudo yum update -y
      ```
-   + Ubuntu
+   + Ubuntu 18\.04 and 20\.04
 
      ```
      $ sudo apt-get update
@@ -122,7 +122,7 @@ The steps differ depending on whether you intend to use EFA with Open MPI, with 
 1. Download the EFA software installation files\. The software installation files are packaged into a compressed tarball \(`.tar.gz`\) file\. To download the latest *stable* version, use the following command\.
 
    ```
-   $ curl -O https://efa-installer.amazonaws.com/aws-efa-installer-1.11.2.tar.gz
+   $ curl -O https://efa-installer.amazonaws.com/aws-efa-installer-1.12.3.tar.gz
    ```
 
    You can also get the latest version by replacing the version number with `latest` in the preceding command\.
@@ -134,11 +134,7 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
    1. Download the public GPG key and import it into your keyring\.
 
       ```
-      $ wget https://efa-installer.amazonaws.com/aws-efa-installer.key
-      ```
-
-      ```
-      $ gpg --import aws-efa-installer.key
+      $ wget https://efa-installer.amazonaws.com/aws-efa-installer.key && gpg --import aws-efa-installer.key
       ```
 
       The command should return a key value\. Make a note of the key value, because you need it in the next step\.
@@ -154,11 +150,7 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
    1. Download the signature file and verify the signature of the EFA tarball file\.
 
       ```
-      $ wget https://efa-installer.amazonaws.com/aws-efa-installer-1.11.2.tar.gz.sig
-      ```
-
-      ```
-      $ gpg --verify ./aws-efa-installer-1.11.2.tar.gz.sig
+      $ wget https://efa-installer.amazonaws.com/aws-efa-installer-1.12.3.tar.gz.sig && gpg --verify ./aws-efa-installer-1.12.3.tar.gz.sig
       ```
 
       The following shows example output\.
@@ -176,14 +168,12 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
 1. Extract the files from the compressed `.tar.gz` file and navigate into the extracted directory\.
 
    ```
-   $ tar -xf aws-efa-installer-1.11.2.tar.gz
-   ```
-
-   ```
-   $ cd aws-efa-installer
+   $ tar -xf aws-efa-installer-1.12.3.tar.gz && cd aws-efa-installer
    ```
 
 1. Install the EFA software\. Do one of the following depending on your use case\.
+**Note**  
+If you are using a SUSE Linux operating system, you must additionally specify the `--skip-kmod` option to prevent kmod installation\. By default, SUSE Linux does not allow out\-of\-tree kernel modules\. As a result, EFA and NVIDIA GPUDirect support is currently not supported with SUSE Linux\.
    + **Open MPI and Intel MPI**
 
      If you intend to use EFA with Open MPI and Intel MPI, you must install the EFA software with Libfabric and Open MPI, and you must complete Step 5: \(Optional\) Install Intel MPI\. To install the EFA software with Libfabric and Open MPI, run the following command\.

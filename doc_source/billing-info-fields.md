@@ -15,13 +15,12 @@ You can view these fields on the **Instances** or **AMIs** page in the Amazon EC
 The following table lists some of the platform details and usage operation values that can be displayed on the **Instances** or **AMIs** pages in the Amazon EC2 console, or in the response that is returned by the [describe\-images](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html) command\.
 
 
-****  
-
 |  Platform details  |  Usage operation \*\*  | 
 | --- | --- | 
 |  Linux/UNIX  |  RunInstances  | 
 |  Red Hat BYOL Linux  |  RunInstances:00g0  | 
 |  Red Hat Enterprise Linux  |  RunInstances:0010  | 
+|  Red Hat Enterprise Linux with HA  |  RunInstances:1010  | 
 |  SQL Server Enterprise  |  RunInstances:0100  | 
 |  SQL Server Standard  |  RunInstances:0004  | 
 |  SQL Server Web  |  RunInstances:0200  | 

@@ -148,7 +148,10 @@ The simplest option is to enable I/O and then perform a data consistency check o
 
 1. Stop any applications from using the volume\.
 
-1. Enable I/O on the volume\.
+1. Enable I/O on the volume\. Use one of the following methods\.
+
+------
+#### [ Console ]
 
    1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -159,6 +162,17 @@ The simplest option is to enable I/O and then perform a data consistency check o
    1. In the details pane, choose **Enable Volume IO**, and then choose **Yes, Enable**\.  
 ![\[Enable IO\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/EnableIO_volumepage_gwt.png)
 
+------
+#### [ AWS CLI ]
+
+**To enable I/O for a volume with the command line**
+
+   You can use one of the following commands to view event information for your Amazon EBS volumes\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
+   + [enable\-volume\-io](https://docs.aws.amazon.com/cli/latest/reference/ec2/enable-volume-io.html) \(AWS CLI\)
+   + [Enable\-EC2VolumeIO](https://docs.aws.amazon.com/powershell/latest/reference/items/Enable-EC2VolumeIO.html) \(AWS Tools for Windows PowerShell\)
+
+------
+
 1. Check the data on the volume\.
 
    1. Run the fsck command\.
@@ -166,12 +180,6 @@ The simplest option is to enable I/O and then perform a data consistency check o
    1. \(Optional\) Review any available application or system logs for relevant error messages\.
 
    1. If the volume has been impaired for more than 20 minutes, you can contact the AWS Support Center\. Choose **Troubleshoot**, and then in the **Troubleshoot Status Checks** dialog box, choose **Contact Support** to submit a support case\.
-
-**To enable I/O for a volume with the command line**
-
-You can use one of the following commands to view event information for your Amazon EBS volumes\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
-+ [enable\-volume\-io](https://docs.aws.amazon.com/cli/latest/reference/ec2/enable-volume-io.html) \(AWS CLI\)
-+ [Enable\-EC2VolumeIO](https://docs.aws.amazon.com/powershell/latest/reference/items/Enable-EC2VolumeIO.html) \(AWS Tools for Windows PowerShell\)
 
 ### Option 2: Perform a consistency check on the volume using another instance<a name="work_volumes_impaired_option2"></a>
 
@@ -184,17 +192,12 @@ This procedure may cause the loss of write I/Os that were suspended when volume 
 
 1. Stop any applications from using the volume\.
 
-1. Detach the volume from the instance\.
+1. Detach the volume from the instance\. For more information, see [Detach an Amazon EBS volume from a Linux instance](ebs-detaching-volume.md)\.
 
-   1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+1. Enable I/O on the volume\. Use one of the following methods\.
 
-   1. In the navigation pane, choose **Volumes**\. 
-
-   1. Select the volume to detach\.
-
-   1. Choose **Actions**, **Force Detach Volume**\. You'll be prompted for confirmation\.
-
-1. Enable I/O on the volume\.
+------
+#### [ Console ]
 
    1. In the navigation pane, choose **Volumes**\. 
 
@@ -202,6 +205,17 @@ This procedure may cause the loss of write I/Os that were suspended when volume 
 
    1. In the details pane, choose **Enable Volume IO**, and then choose **Yes, Enable**\.   
 ![\[Enable IO\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/EnableIO_volumepage_gwt.png)
+
+------
+#### [ AWS CLI ]
+
+**To enable I/O for a volume with the command line**
+
+   You can use one of the following commands to view event information for your Amazon EBS volumes\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
+   + [enable\-volume\-io](https://docs.aws.amazon.com/cli/latest/reference/ec2/enable-volume-io.html) \(AWS CLI\)
+   + [Enable\-EC2VolumeIO](https://docs.aws.amazon.com/powershell/latest/reference/items/Enable-EC2VolumeIO.html) \(AWS Tools for Windows PowerShell\)
+
+------
 
 1. Attach the volume to another instance\. For more information, see [Launch your instance](LaunchingAndUsingInstances.md) and [Attach an Amazon EBS volume to an instance](ebs-attaching-volume.md)\.
 
@@ -212,12 +226,6 @@ This procedure may cause the loss of write I/Os that were suspended when volume 
    1. \(Optional\) Review any available application or system logs for relevant error messages\.
 
    1. If the volume has been impaired for more than 20 minutes, you can contact the AWS Support Center\. Choose **Troubleshoot**, and then in the troubleshooting dialog box, choose **Contact Support** to submit a support case\.
-
-**To enable I/O for a volume with the command line**
-
-You can use one of the following commands to view event information for your Amazon EBS volumes\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
-+ [enable\-volume\-io](https://docs.aws.amazon.com/cli/latest/reference/ec2/enable-volume-io.html) \(AWS CLI\)
-+ [Enable\-EC2VolumeIO](https://docs.aws.amazon.com/powershell/latest/reference/items/Enable-EC2VolumeIO.html) \(AWS Tools for Windows PowerShell\)
 
 ### Option 3: Delete the volume if you no longer need it<a name="work_volumes_impaired_option3"></a>
 

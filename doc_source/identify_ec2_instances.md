@@ -21,12 +21,12 @@ Use the following command to get the UUID using the Desktop Management Interface
 In the following example output, the UUID starts with "EC2", which indicates that the system is probably an EC2 instance\.  
 
 ```
-EC2E1916-9099-7CAF-FD21-01234ABCDEF
+EC2E1916-9099-7CAF-FD21-012345ABCDEF
 ```
 In the following example output, the UUID is represented in little\-endian format\.  
 
 ```
-45E12AEC-DCD1-B213-94ED-01234ABCDEF
+45E12AEC-DCD1-B213-94ED-012345ABCDEF
 ```
 Alternatively, for instances built on the Nitro system, you can use the following command:  
 

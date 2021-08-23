@@ -15,7 +15,6 @@ A *Spot capacity pool* is a set of unused EC2 instances with the same instance t
 + [Spot price overrides](#spot-price-overrides)
 + [Control spending](#spot-fleet-control-spending)
 + [Spot Fleet instance weighting](#spot-instance-weighting)
-+ [Walkthrough: Using Spot Fleet with instance weighting](#instance-weighting-walkthrough)
 
 ## On\-Demand in Spot Fleet<a name="on-demand-in-spot"></a>
 
@@ -38,7 +37,9 @@ The Spot Instances come from the pool with the lowest price\. This is the defaul
 The Spot Instances are distributed across all pools\.
 
 `capacityOptimized`  
-The Spot Instances come from the pool with optimal capacity for the number of instances that are launching\. You can optionally set a priority for each instance type in your fleet using `capacityOptimizedPrioritized`\. EC2 implements the priorities on a best\-effort basis, but optimizes for capacity first\.
+The Spot Instances come from the pools with optimal capacity for the number of instances that are launching\. You can optionally set a priority for each instance type in your fleet using `capacityOptimizedPrioritized`\. Spot Fleet optimizes for capacity first, but honors instance type priorities on a best\-effort basis\.   
+With Spot Instances, pricing changes slowly over time based on long\-term trends in supply and demand, but capacity fluctuates in real time\. The `capacityOptimized` strategy automatically launches Spot Instances into the most available pools by looking at real\-time capacity data and predicting which are the most available\. This works well for workloads such as big data and analytics, image and media rendering, machine learning, and high performance computing that may have a higher cost of interruption associated with restarting work and checkpointing\. By offering the possibility of fewer interruptions, the `capacityOptimized` strategy can lower the overall cost of your workload\.  
+Alternatively, you can use the `capacityOptimizedPrioritized` allocation strategy with a priority parameter to order instance types from highest to lowest priority\. You can set the same priority for different instance types\. Spot Fleet will optimize for capacity first, but will honor instance type priorities on a best\-effort basis \(for example, if honoring the priorities will not significantly affect Spot Fleet's ability to provision optimal capacity\)\. This is a good option for workloads where the possibility of disruption must be minimized and the preference for certain instance types matters\. Using priorities is supported only if your fleet uses a launch template\. Note that when you set the priority for `capacityOptimizedPrioritized`, the same priority is also applied to your On\-Demand Instances if the On\-Demand `AllocationStrategy` is set to `prioritized`\.
 
 `InstancePoolsToUseCount`  
 The Spot Instances are distributed across the number of Spot pools that you specify\. This parameter is valid only when used in combination with `lowestPrice`\.
@@ -46,6 +47,18 @@ The Spot Instances are distributed across the number of Spot pools that you spec
 ### Maintain target capacity<a name="maintain-fleet-capacity"></a>
 
 After Spot Instances are terminated due to a change in the Spot price or available capacity of a Spot capacity pool, a Spot Fleet of type `maintain` launches replacement Spot Instances\. If the allocation strategy is `lowestPrice`, the fleet launches replacement instances in the pool where the Spot price is currently the lowest\. If the allocation strategy is `diversified`, the fleet distributes the replacement Spot Instances across the remaining pools\. If the allocation strategy is `lowestPrice` in combination with `InstancePoolsToUseCount`, the fleet selects the Spot pools with the lowest price and launches Spot Instances across the number of Spot pools that you specify\.
+
+### Choose an appropriate allocation strategy<a name="allocation-use-cases"></a>
+
+You can optimize your Spot Fleets based on your use case\.
+
+If your fleet runs workloads that may have a higher cost of interruption associated with restarting work and checkpointing, then use the `capacityOptimized` strategy\. This strategy offers the possibility of fewer interruptions, which can lower the overall cost of your workload\. This is the recommended strategy\. Use the `capacityOptimizedPrioritized` strategy for workloads where the possibility of disruption must be minimized and the preference for certain instance types matters\. 
+
+If your fleet is small or runs for a short time, the probability that your Spot Instances may be interrupted is low, even with all the instances in a single Spot capacity pool\. Therefore, the `lowestPrice` strategy is likely to meet your needs while providing the lowest cost\.
+
+If your fleet is large or runs for a long time, you can improve the availability of your fleet by distributing the Spot Instances across multiple pools\. For example, if your Spot Fleet request specifies 10 pools and a target capacity of 100 instances, the fleet launches 10 Spot Instances in each pool\. If the Spot price for one pool exceeds your maximum price for this pool, only 10% of your fleet is affected\. Using this strategy also makes your fleet less sensitive to increases in the Spot price in any one pool over time\. With the `diversified` strategy, the Spot Fleet does not launch Spot Instances into any pools with a Spot price that is equal to or higher than the [On\-Demand price](https://aws.amazon.com/ec2/pricing/)\.
+
+To create a cheap and diversified fleet, use the `lowestPrice` strategy in combination with `InstancePoolsToUseCount`\. You can use a low or high number of Spot pools across which to allocate your Spot Instances\. For example, if you run batch processing, we recommend specifying a low number of Spot pools \(for example, `InstancePoolsToUseCount=2`\) to ensure that your queue always has compute capacity while maximizing savings\. If you run a web service, we recommend specifying a high number of Spot pools \(for example, `InstancePoolsToUseCount=10`\) to minimize the impact if a Spot capacity pool becomes temporarily unavailable\.
 
 ### Configure Spot Fleet for cost optimization<a name="spot-fleet-strategy-cost-optimization"></a>
 
@@ -57,23 +70,15 @@ For On\-Demand Instance target capacity, Spot Fleet always selects the least exp
 
 To create a fleet of Spot Instances that is both cheap and diversified, use the `lowestPrice` allocation strategy in combination with `InstancePoolsToUseCount`\. Spot Fleet automatically deploys the cheapest combination of instance types and Availability Zones based on the current Spot price across the number of Spot pools that you specify\. This combination can be used to avoid the most expensive Spot Instances\.
 
+For example, if your target capacity is 10 Spot Instances, and you specify 2 Spot capacity pools \(for `InstancePoolsToUseCount`\), Spot Fleet will draw on the two cheapest pools to fulfill your Spot capacity\.
+
+Note that Spot Fleet attempts to draw Spot Instances from the number of pools that you specify on a best effort basis\. If a pool runs out of Spot capacity before fulfilling your target capacity, Spot Fleet will continue to fulfill your request by drawing from the next cheapest pool\. To ensure that your target capacity is met, you might receive Spot Instances from more than the number of pools that you specified\. Similarly, if most of the pools have no Spot capacity, you might receive your full target capacity from fewer than the number of pools that you specified\.
+
 ### Configure Spot Fleet for capacity optimization<a name="spot-fleet-strategy-capacity-optimized"></a>
 
-With Spot Instances, pricing changes slowly over time based on long\-term trends in supply and demand, but capacity fluctuates in real time\. The `capacityOptimized` strategy automatically launches Spot Instances into the most available Spot capacity pools by looking at real\-time capacity data and predicting which are the most available\. This works well for workloads such as big data and analytics, image and media rendering, machine learning, and high performance computing that may have a higher cost of interruption associated with restarting work and checkpointing\. By offering the possibility of fewer interruptions, the `capacityOptimized` strategy can lower the overall cost of your workload\.
+To launch Spot Instances into the most\-available Spot capacity pools, use the `capacityOptimized` allocation strategy\. For an example configuration, see [Example 9: Launch Spot Instances in a capacity\-optimized fleet](spot-fleet-examples.md#fleet-config9)\.
 
-Alternatively, you can use the `capacityOptimizedPrioritized` allocation strategy and then set the order of instance types to use from highest to lowest priority\. You can set the same priority for different instance types\. EC2 implements the instance type priorities on a best\-effort basis, but optimizes for capacity first\. This is a good option for workloads where the possibility of disruption must be minimized, but also the preference for certain instance types matters\. Using priorities is supported only if your fleet uses a launch template\. Note that when you set the priority for `capacityOptimizedPrioritized`, the same priority is also applied to your On\-Demand Instances if the `OnDemandAllocationStrategy` is set to prioritized\. 
-
-### Choose an appropriate allocation strategy<a name="allocation-use-cases"></a>
-
-You can optimize your Spot Fleets based on your use case\.
-
-If your fleet runs workloads that may have a higher cost of interruption associated with restarting work and checkpointing, then use the `capacityOptimized` strategy\. This strategy offers the possibility of fewer interruptions, which can lower the overall cost of your workload\. This is the recommended strategy\.
-
-If your fleet is small or runs for a short time, the probability that your Spot Instances may be interrupted is low, even with all the instances in a single Spot capacity pool\. Therefore, the `lowestPrice` strategy is likely to meet your needs while providing the lowest cost\.
-
-If your fleet is large or runs for a long time, you can improve the availability of your fleet by distributing the Spot Instances across multiple pools\. For example, if your Spot Fleet request specifies 10 pools and a target capacity of 100 instances, the fleet launches 10 Spot Instances in each pool\. If the Spot price for one pool exceeds your maximum price for this pool, only 10% of your fleet is affected\. Using this strategy also makes your fleet less sensitive to increases in the Spot price in any one pool over time\. With the `diversified` strategy, the Spot Fleet does not launch Spot Instances into any pools with a Spot price that is equal to or higher than the [On\-Demand price](https://aws.amazon.com/ec2/pricing/)\.
-
-To create a cheap and diversified fleet, use the `lowestPrice` strategy in combination with `InstancePoolsToUseCount`\. You can use a low or high number of Spot pools across which to allocate your Spot Instances\. For example, if you run batch processing, we recommend specifying a low number of Spot pools \(for example, `InstancePoolsToUseCount=2`\) to ensure that your queue always has compute capacity while maximizing savings\. If you run a web service, we recommend specifying a high number of Spot pools \(for example, `InstancePoolsToUseCount=10`\) to minimize the impact if a Spot capacity pool becomes temporarily unavailable\.
+You can also express your pool priorities by using the `capacityOptimizedPrioritized` allocation strategy and then setting the order of instance types to use from highest to lowest priority\. Using priorities is supported only if your fleet uses a launch template\. Note that when you set priorities for `capacityOptimizedPrioritized`, the same priorities are also applied to your On\-Demand Instances if the `OnDemandAllocationStrategy` is set to `prioritized`\. For an example configuration, see [Example 10: Launch Spot Instances in a capacity\-optimized fleet with priorities](spot-fleet-examples.md#fleet-config10)\.
 
 ## Capacity Rebalancing<a name="spot-fleet-capacity-rebalance"></a>
 
@@ -108,7 +113,7 @@ If your Spot Fleet is configured for Capacity Rebalancing, and you change the ta
   For example, you create a Spot Fleet with a target capacity of 100 Spot Instances\. 10 instances receive a rebalance recommendation, so the fleet launches 10 new replacement instances, resulting in a fulfilled capacity of 110 instances\. You then reduce the target capacity to 50 \(scale in\), but the fulfilled capacity is actually 60 instances because the 10 instances that are marked for rebalance are not terminated by the fleet\. You need to manually terminate these instances, or you can leave them running\.
 + Scale out – If you increase your desired target capacity, the fleet launches new instances until the desired capacity is reached\. The instances that are marked for rebalance are not counted towards the fulfilled capacity\. 
 
-  For example, you create a Spot Fleet with a target capacity of 100 Spot Instances\. 10 instances receive a rebalance recommendation, so the fleet launches 10 new replacement instances, resulting in a fulfilled capacity of 110 instances\. You then increase the target capacity to 200 \(scale out\), but the fullfilled capacity is actually 210 instances because the 10 instances that are marked for rebalance are not counted by the fleet as part of the target capacity\. You need to manually terminate these instances, or you can leave them running\.
+  For example, you create a Spot Fleet with a target capacity of 100 Spot Instances\. 10 instances receive a rebalance recommendation, so the fleet launches 10 new replacement instances, resulting in a fulfilled capacity of 110 instances\. You then increase the target capacity to 200 \(scale out\), but the fulfilled capacity is actually 210 instances because the 10 instances that are marked for rebalance are not counted by the fleet as part of the target capacity\. You need to manually terminate these instances, or you can leave them running\.
 
 **Provide as many Spot capacity pools in the request as possible**  
 Configure your Spot Fleet to use multiple instance types and Availability Zones\. This provides the flexibility to launch Spot Instances in various Spot capacity pools\. For more information, see [Be flexible about instance types and Availability Zones](spot-best-practices.md#be-instance-type-flexible)\.
@@ -190,101 +195,3 @@ Consider a Spot Fleet request with the following configuration:
 + A launch specification with an instance type `r3.xlarge` and a weight of 8
 
 The Spot Fleet would launch four instances \(30 divided by 8, result rounded up\)\. With the `lowestPrice` strategy, all four instances come from the pool that provides the lowest price per unit\. With the `diversified` strategy, the Spot Fleet launches one instance in each of the three pools, and the fourth instance in whichever pool provides the lowest price per unit\.
-
-## Walkthrough: Using Spot Fleet with instance weighting<a name="instance-weighting-walkthrough"></a>
-
-This walkthrough uses a fictitious company called Example Corp to illustrate the process of requesting a Spot Fleet using instance weighting\.
-
-### Objective<a name="instance-weighting-walkthrough-objective"></a>
-
-Example Corp, a pharmaceutical company, wants to leverage the computational power of Amazon EC2 for screening chemical compounds that might be used to fight cancer\.
-
-### Planning<a name="instance-weighting-walkthrough-planning"></a>
-
-Example Corp first reviews [Spot Best Practices](https://aws.amazon.com/ec2/spot/getting-started/#bestpractices)\. Next, Example Corp determines the following requirements for their Spot Fleet\.
-
-**Instance types**  
-Example Corp has a compute\- and memory\-intensive application that performs best with at least 60 GB of memory and eight virtual CPUs \(vCPUs\)\. They want to maximize these resources for the application at the lowest possible price\. Example Corp decides that any of the following EC2 instance types would meet their needs:
-
-
-| Instance type | Memory \(GiB\) | vCPUs | 
-| --- | --- | --- | 
-| r3\.2xlarge | 61 | 8 | 
-| r3\.4xlarge | 122 | 16 | 
-| r3\.8xlarge | 244 | 32 | 
-
-**Target capacity in units**  
-With instance weighting, target capacity can equal a number of instances \(the default\) or a combination of factors such as cores \(vCPUs\), memory \(GiBs\), and storage \(GBs\)\. By considering the base for their application \(60 GB of RAM and eight vCPUs\) as 1 unit, Example Corp decides that 20 times this amount would meet their needs\. So the company sets the target capacity of their Spot Fleet request to 20\.
-
-**Instance weights**  
-After determining the target capacity, Example Corp calculates instance weights\. To calculate the instance weight for each instance type, they determine the units of each instance type that are required to reach the target capacity as follows:
-+ r3\.2xlarge \(61\.0 GB, 8 vCPUs\) = 1 unit of 20
-+ r3\.4xlarge \(122\.0 GB, 16 vCPUs\) = 2 units of 20
-+ r3\.8xlarge \(244\.0 GB, 32 vCPUs\) = 4 units of 20
-
-Therefore, Example Corp assigns instance weights of 1, 2, and 4 to the respective launch configurations in their Spot Fleet request\.
-
-**Price per unit hour**  
-Example Corp uses the [On\-Demand price](https://aws.amazon.com/ec2/pricing/) per instance hour as a starting point for their price\. They could also use recent Spot prices, or a combination of the two\. To calculate the price per unit hour, they divide their starting price per instance hour by the weight\. For example:
-
-
-| Instance type | On\-Demand price | Instance weight | Price per unit hour | 
-| --- | --- | --- | --- | 
-| r3\.2xLarge | $0\.7 | 1 | $0\.7 | 
-| r3\.4xLarge | $1\.4 | 2 | $0\.7 | 
-| r3\.8xLarge | $2\.8 | 4 | $0\.7 | 
-
-Example Corp could use a global price per unit hour of $0\.7 and be competitive for all three instance types\. They could also use a global price per unit hour of $0\.7 and a specific price per unit hour of $0\.9 in the `r3.8xlarge` launch specification\.
-
-### Verify permissions<a name="instance-weighting-walkthrough-permissions"></a>
-
-Before creating a Spot Fleet request, Example Corp verifies that it has an IAM role with the required permissions\. For more information, see [Spot Fleet permissions](spot-fleet-requests.md#spot-fleet-prerequisites)\.
-
-### Create the request<a name="instance-weighting-walkthrough-request"></a>
-
-Example Corp creates a file, `config.json`, with the following configuration for its Spot Fleet request:
-
-```
-{
-  "SpotPrice": "0.70",
-  "TargetCapacity": 20,
-  "IamFleetRole": "arn:aws:iam::123456789012:role/aws-ec2-spot-fleet-tagging-role",
-  "LaunchSpecifications": [
-    {
-      "ImageId": "ami-1a2b3c4d",
-      "InstanceType": "r3.2xlarge",
-      "SubnetId": "subnet-482e4972",
-      "WeightedCapacity": 1
-    },
-    {
-      "ImageId": "ami-1a2b3c4d",
-      "InstanceType": "r3.4xlarge",
-      "SubnetId": "subnet-482e4972",
-      "WeightedCapacity": 2
-    },
-    {
-      "ImageId": "ami-1a2b3c4d",
-      "InstanceType": "r3.8xlarge",
-      "SubnetId": "subnet-482e4972",
-      "SpotPrice": "0.90",
-      "WeightedCapacity": 4
-    }
-  ]
-}
-```
-
-Example Corp creates the Spot Fleet request using the [request\-spot\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-fleet.html) command\.
-
-```
-aws ec2 request-spot-fleet --spot-fleet-request-config file://config.json
-```
-
-For more information, see [Spot Fleet requests](spot-fleet-requests.md)\.
-
-### Fulfillment<a name="instance-weighting-walkthrough-fulfillment"></a>
-
-The allocation strategy determines which Spot capacity pools your Spot Instances come from\.
-
-With the `lowestPrice` strategy \(which is the default strategy\), the Spot Instances come from the pool with the lowest price per unit at the time of fulfillment\. To provide 20 units of capacity, the Spot Fleet launches either 20 `r3.2xlarge` instances \(20 divided by 1\), 10 `r3.4xlarge` instances \(20 divided by 2\), or 5 `r3.8xlarge` instances \(20 divided by 4\)\.
-
-If Example Corp used the `diversified` strategy, the Spot Instances would come from all three pools\. The Spot Fleet would launch 6 `r3.2xlarge` instances \(which provide 6 units\), 3 `r3.4xlarge` instances \(which provide 6 units\), and 2 `r3.8xlarge` instances \(which provide 8 units\), for a total of 20 units\.

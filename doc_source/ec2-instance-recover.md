@@ -20,7 +20,7 @@ Examples of problems that cause system status checks to fail include:
 ## Requirements<a name="instance-recovery-requirements"></a>
 
 The recover action is supported only on instances with the following characteristics:
-+ Uses one of the following instance types: A1, C3, C4, C5, C5a, C5n, C6g, C6gn, Inf1,  M3, M4, M5, M5a, M5n, M5zn, M6g,  P3, P4, R3, R4, R5, R5a, R5b, R5n, R6g,  T2, T3, T3a, T4g, X1, or X1e
++ Uses one of the following instance types: A1, C3, C4, C5, C5a, C5n, C6g, C6gn, Inf1,  M3, M4, M5, M5a, M5n, M5zn, M6g, M6i, P3, P4, R3, R4, R5, R5a, R5b, R5n, R6g,  T2, T3, T3a, T4g, high memory \(virtualized only\), X1, X1e
 + Runs in a virtual private cloud \(VPC\)
 + Uses `default` or `dedicated` instance tenancy
 + Has only EBS volumes \(do not configure instance store volumes\)

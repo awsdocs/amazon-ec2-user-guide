@@ -16,7 +16,6 @@ An EC2 Fleet request of type `maintain` or `request` remains active until it exp
 + [Monitor your EC2 Fleet](#monitor-ec2-fleet)
 + [Modify an EC2 Fleet](#modify-ec2-fleet)
 + [Delete an EC2 Fleet](#delete-fleet)
-+ [EC2 Fleet example configurations](ec2-fleet-examples.md)
 
 ## EC2 Fleet request states<a name="EC2-fleet-states"></a>
 
@@ -49,7 +48,7 @@ The following illustration represents the transitions between the EC2 Fleet requ
 **Topics**
 + [Launch template](#ec2-fleet-prerequisites-launch-template)
 + [Service\-linked role for EC2 Fleet](#ec2-fleet-service-linked-role)
-+ [Grant access to CMKs for use with encrypted AMIs and EBS snapshots](#ec2-fleet-service-linked-roles-access-to-cmks)
++ [Grant access to customer managed keys for use with encrypted AMIs and EBS snapshots](#ec2-fleet-service-linked-roles-access-to-cmks)
 + [Permissions for EC2 Fleet IAM users](#ec2-fleet-iam-users)
 
 ### Launch template<a name="ec2-fleet-prerequisites-launch-template"></a>
@@ -90,14 +89,14 @@ If you no longer need to use EC2 Fleet, we recommend that you delete the **AWSSe
 
 For more information, see [Using service\-linked roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html) in the *IAM User Guide*\.
 
-### Grant access to CMKs for use with encrypted AMIs and EBS snapshots<a name="ec2-fleet-service-linked-roles-access-to-cmks"></a>
+### Grant access to customer managed keys for use with encrypted AMIs and EBS snapshots<a name="ec2-fleet-service-linked-roles-access-to-cmks"></a>
 
-If you specify an [encrypted AMI](AMIEncryption.md) or an [encrypted Amazon EBS snapshot](EBSEncryption.md) in your EC2 Fleet and you use a customer\-managed customer master key \(CMK\) for encryption, you must grant the **AWSServiceRoleForEC2Fleet** role permission to use the CMK so that Amazon EC2 can launch instances on your behalf\. To do this, you must add a grant to the CMK, as shown in the following procedure\.
+If you specify an [encrypted AMI](AMIEncryption.md) or an [encrypted Amazon EBS snapshot](EBSEncryption.md) in your EC2 Fleet and you use an AWS KMS key for encryption, you must grant the **AWSServiceRoleForEC2Fleet** role permission to use the customer managed key so that Amazon EC2 can launch instances on your behalf\. To do this, you must add a grant to the customer managed key, as shown in the following procedure\.
 
 When providing permissions, grants are an alternative to key policies\. For more information, see [Using grants](https://docs.aws.amazon.com/kms/latest/developerguide/grants.html) and [Using key policies in AWS KMS](https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html) in the *AWS Key Management Service Developer Guide*\.
 
-**To grant the AWSServiceRoleForEC2Fleet role permissions to use the CMK**
-+ Use the [create\-grant](https://docs.aws.amazon.com/cli/latest/reference/kms/create-grant.html) command to add a grant to the CMK and to specify the principal \(the **AWSServiceRoleForEC2Fleet** service\-linked role\) that is given permission to perform the operations that the grant permits\. The CMK is specified by the `key-id` parameter and the ARN of the CMK\. The principal is specified by the `grantee-principal` parameter and the ARN of the **AWSServiceRoleForEC2Fleet** service\-linked role\.
+**To grant the AWSServiceRoleForEC2Fleet role permissions to use the customer managed key**
++ Use the [create\-grant](https://docs.aws.amazon.com/cli/latest/reference/kms/create-grant.html) command to add a grant to the customer managed key and to specify the principal \(the **AWSServiceRoleForEC2Fleet** service\-linked role\) that is given permission to perform the operations that the grant permits\. The customer managed key is specified by the `key-id` parameter and the ARN of the customer managed key\. The principal is specified by the `grantee-principal` parameter and the ARN of the **AWSServiceRoleForEC2Fleet** service\-linked role\.
 
   ```
   aws kms create-grant \
@@ -325,7 +324,7 @@ The ID of the launch template to use\. You must specify either the launch templa
 The name of the launch template to use\. You must specify either the launch template ID or launch template name\. The launch template must specify an Amazon Machine Image \(AMI\)\. For more information, see [Launch an instance from a launch template](ec2-launch-templates.md)\.
 
 **Version**  
-The launch template version number, `$Latest`, or `$Default`\. You must specify a value, otherwise the request fails\. If the value is `$Latest`, Amazon EC2 uses the latest version of the launch template\. If the value is `$Default`, Amazon EC2 uses the default version of the launch template\. For more information, see [Manage launch template versions](ec2-launch-templates.md#manage-launch-template-versions)\.
+The launch template version number, `$Latest`, or `$Default`\. You must specify a value, otherwise the request fails\. If the value is `$Latest`, Amazon EC2 uses the latest version of the launch template\. If the value is `$Default`, Amazon EC2 uses the default version of the launch template\. For more information, see [Modify a launch template \(manage launch template versions\)](ec2-launch-templates.md#manage-launch-template-versions)\.
 
 **InstanceType**  
 \(Optional\) The instance type\. If entered, this value overrides the launch template\. The instance types must have the minimum hardware specifications that you need \(vCPUs, memory, or storage\)\.
@@ -345,7 +344,10 @@ Specify one or more Availability Zones\. If you have more than one subnet in a z
 \(Optional\) The number of units provided by the specified instance type\. If entered, this value overrides the launch template\.
 
 **Priority**  
-The priority for the launch template override\. If **AllocationStrategy** is set to `prioritized`, EC2 Fleet uses priority to determine which launch template override to use first in fulfilling On\-Demand capacity\. The highest priority is launched first\. Valid values are whole numbers starting at `0`\. The lower the number, the higher the priority\. If no number is set, the override has the lowest priority\.
+The priority for the launch template override\. The highest priority is launched first\.  
+If the On\-Demand **AllocationStrategy** is set to `prioritized`, EC2 Fleet uses priority to determine which launch template override to use first in fulfilling On\-Demand capacity\.  
+If the Spot **AllocationStrategy** is set to `capacity-optimized-prioritized`, EC2 Fleet uses priority on a best\-effort basis to determine which launch template override to use first in fulfilling Spot capacity, but optimizes for capacity first\.  
+Valid values are whole numbers starting at `0`\. The lower the number, the higher the priority\. If no number is set, the launch template override has the lowest priority\. You can set the same priority for different launch template overrides\.
 
 **TotalTargetCapacity**  
 The number of instances to launch\. You can choose instances or performance characteristics that are important to your application workload, such as vCPUs, memory, or storage\. If the request type is `maintain`, you can specify a target capacity of 0 and add capacity later\.

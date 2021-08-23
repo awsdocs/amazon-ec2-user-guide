@@ -76,7 +76,7 @@ T2 Standard instances receive [launch credits](burstable-performance-instances-s
 
 If a T2 instance is switched from `standard` to `unlimited`, any accrued launch credits are removed from the `CPUCreditBalance` before the remaining `CPUCreditBalance` is carried over\.
 
-T3 and T4g instances never receive launch credits\.
+T4g, T3a and T3 instances never receive launch credits because they support Unlimited mode\. The Unlimited mode credit configuration enables T4g, T3a and T3 instances to use as much CPU as needed to burst beyond baseline and for as long as needed\. 
 
 ## Enable unlimited mode<a name="unlimited-mode-enabling"></a>
 

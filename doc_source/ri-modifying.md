@@ -51,7 +51,7 @@ Amazon EC2 processes your modification request if there is sufficient capacity f
 + There must be a match between the instance size footprint of the original reservation and the new configuration\. For more information, see [Support for modifying instance sizes](#ri-modification-instancemove)\.
 + The original Reserved Instances are all Standard Reserved Instances or all Convertible Reserved Instances, not some of each type
 + The original Reserved Instances must expire within the same hour, if they are Standard Reserved Instances
-+ The Reserved Instance is not a G4dn instance\.
++ The Reserved Instance is not a G4 instance\.
 
 ## Support for modifying instance sizes<a name="ri-modification-instancemove"></a>
 
@@ -99,6 +99,8 @@ To calculate the instance size footprint of a Reserved Instance, multiply the nu
 | 18xlarge | 144 | 
 | 24xlarge | 192 | 
 | 32xlarge | 256 | 
+| 56xlarge | 448 | 
+| 112xlarge | 896 | 
 
 You can allocate your reservations into different instance sizes across the same instance family as long as the instance size footprint of your reservation remains the same\. For example, you can divide a reservation for one `t2.large` \(1 @ 4 units\) instance into four `t2.small` \(4 @ 1 unit\) instances\. Similarly, you can combine a reservation for four `t2.small` instances into one `t2.large` instance\. However, you cannot change your reservation for two `t2.small` instances into one `t2.large` instance because the footprint of the new reservation \(4 units\) is larger than the footprint of the original reservation \(2 units\)\.
 
@@ -124,6 +126,7 @@ The following table describes the normalization factor for the bare metal instan
 |  c6g\.metal \| c6gd\.metal \| i3\.metal \| m6g\.metal \| m6gd\.metal \| r6g\.metal \| r6gd\.metal \| x2gd\.metal  | 128 | 
 | c5n\.metal | 144 | 
 |  c5\.metal \| c5d\.metal \| i3en\.metal \| m5\.metal \| m5d\.metal \| m5dn\.metal \| m5n\.metal \| r5\.metal \| r5b\.metal \| r5d\.metal \| r5dn\.metal \| r5n\.metal  | 192 | 
+| u\-\*\.metal | 896 | 
 
 For example, an `i3.metal` instance has a normalization factor of 128\. If you purchase an `i3.metal` default tenancy Amazon Linux/Unix Reserved Instance, you can divide the reservation as follows:
 + An `i3.16xlarge` is the same size as an `i3.metal` instance, so its normalization factor is 128 \(128/1\)\. The reservation for one `i3.metal` instance can be modified into one `i3.16xlarge` instance\.

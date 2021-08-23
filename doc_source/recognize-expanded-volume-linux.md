@@ -15,6 +15,9 @@ For information about extending a Windows file system, see [Extend a Windows fil
 
 The following examples walk you through the process of extending a Linux file system\. For file systems and partitioning schemes other than the ones shown here, refer to the documentation for those file systems and partitioning schemes for instructions\.
 
+**Note**  
+If you are using logical volumes on the Amazon EBS volume, you must use Logical Volume Manager \(LVM\) to extend the logical volume\. For instructions on how to do this, see the **Extend the logical volume** section in the [ How do I create an LVM logical volume on an entire EBS volume?](http://aws.amazon.com/premiumsupport/knowledge-center/create-lv-on-ebs-volume/) AWS Knowledge Center article\.
+
 **Topics**
 + [Example: Extend the file system of NVMe EBS volumes](#extend-file-system-nvme)
 + [Example: Extend the file system of EBS volumes](#extend-file-system)

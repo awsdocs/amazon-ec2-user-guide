@@ -21,7 +21,7 @@ To run all modules, run EC2Rescue for Linux with no options:
 Some modules require root access\. If you are not a root user, use sudo to run these modules as follows:  
 
 ```
- sudo ./ec2rl run
+sudo ./ec2rl run
 ```
 
 **Example: Run a specific module**  

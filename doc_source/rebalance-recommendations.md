@@ -4,8 +4,6 @@ An EC2 Instance *rebalance recommendation* is a new signal that notifies you whe
 
 It is not always possible for Amazon EC2 to send the rebalance recommendation signal before the two\-minute Spot Instance interruption notice\. Therefore, the rebalance recommendation signal can arrive along with the two\-minute interruption notice\.
 
-Spot Instances with a defined duration \(also known as Spot blocks\) do not receive rebalance recommendations\.
-
 **Note**  
 Rebalance recommendations are only supported for Spot Instances that are launched after November 5, 2020 00:00 UTC\.
 

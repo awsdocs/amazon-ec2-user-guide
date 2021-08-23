@@ -7,7 +7,7 @@ For historical reasons, web encryption is often referred to simply as SSL\. Whil
 This tutorial refers to modern web encryption simply as TLS\.
 
 **Important**  
-These procedures are intended for use with Amazon Linux 2\. We also assume that you are starting with a new Amazon EC2 instance\. If you are trying to set up an EC2 instance running a different distribution, or an instance running an old version of Amazon Linux 2, some procedures in this tutorial might not work\. With the Amazon Linux AMI, see [Tutorial: Configure SSL/TLS with the Amazon Linux AMI](SSL-on-amazon-linux-ami.md)\. For Ubuntu, see the following Ubuntu community documentation: [ApacheMySQLPHP](https://help.ubuntu.com/community/ApacheMySQLPHP)\. For Red Hat Enterprise Linux, see the following in the Customer Portal: [Web Servers](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/System_Administrators_Guide/ch-Web_Servers.html)\. For other distributions, see their specific documentation\.
+These procedures are intended for use with Amazon Linux 2\. We also assume that you are starting with a new Amazon EC2 instance\. If you are trying to set up an EC2 instance running a different distribution, or an instance running an old version of Amazon Linux 2, some procedures in this tutorial might not work\. For the Amazon Linux AMI, see [Tutorial: Configure SSL/TLS with the Amazon Linux AMI](SSL-on-amazon-linux-ami.md)\. For Ubuntu, see the following Ubuntu community documentation: [ApacheMySQLPHP](https://help.ubuntu.com/community/ApacheMySQLPHP)\. For Red Hat Enterprise Linux, see the following in the Customer Portal: [Web Servers](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/System_Administrators_Guide/ch-Web_Servers.html)\. For other distributions, see their specific documentation\.
 
 **Topics**
 + [Prerequisites](#ssl_prereq)
@@ -114,7 +114,7 @@ The `-y` option installs the updates without asking for confirmation\. If you wo
 **Note**  
 When you replace the default TLS files with your own customized files, be sure that they are in PEM format\. 
 
-1. Open the `/etc/httpd/conf.d/ssl.conf` file and comment out the following line, because the self\-signed dummy certificate also contains the key\. If you do not comment out this line before you complete the next step, the Apache service fails to start\.
+1. Open the `/etc/httpd/conf.d/ssl.conf` file using your favorite text editor \(such as **vim** or **nano**\) and comment out the following line, because the self\-signed dummy certificate also contains the key\. If you do not comment out this line before you complete the next step, the Apache service fails to start\.
 
    ```
    SSLCertificateKeyFile /etc/pki/tls/private/localhost.key

@@ -30,12 +30,7 @@ If you have an AWS account already, skip to the next task\. If you don't have an
 
 AWS uses public\-key cryptography to secure the login information for your instance\. A Linux instance has no password; you use a key pair to log in to your instance securely\. You specify the name of the key pair when you launch your instance, then provide the private key when you log in using SSH\. 
 
-If you haven't created a key pair already, you can create one using the Amazon EC2 console\. Note that if you plan to launch instances in multiple Regions, you'll need to create a key pair in each Region\. For more information about Regions, see [Regions and Zones](using-regions-availability-zones.md)\.
-
-You can create a key pair using one of the following methods\. 
-
-------
-#### [ New console ]
+If you haven't created a key pair already, you can create one by using the Amazon EC2 console\. Note that if you plan to launch instances in multiple Regions, you'll need to create a key pair in each Region\. For more information about Regions, see [Regions and Zones](using-regions-availability-zones.md)\.
 
 **To create your key pair**
 
@@ -63,35 +58,6 @@ This is the only chance for you to save the private key file\.
 
    If you do not set these permissions, then you cannot connect to your instance using this key pair\. For more information, see [Error: Unprotected private key file](TroubleshootingInstancesConnecting.md#troubleshoot-unprotected-key)\.
 
-------
-#### [ Old console ]
-
-**To create your key pair**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. In the navigation pane, under **NETWORK & SECURITY**, choose **Key Pairs**\.
-**Note**  
-The navigation pane is on the left side of the Amazon EC2 console\. If you do not see the pane, it might be minimized; choose the arrow to expand the pane\. 
-
-1. Choose **Create Key Pair**\.
-
-1. For **Key pair name**, enter a name for the new key pair, and then choose **Create**\. The name can include up to 255 ASCII characters\. It can’t include leading or trailing spaces\.
-
-1. The private key file is automatically downloaded by your browser\. The base file name is the name you specified as the name of your key pair, and the file name extension is `.pem`\. Save the private key file in a safe place\.
-**Important**  
-This is the only chance for you to save the private key file\.
-
-1. If you will use an SSH client on a macOS or Linux computer to connect to your Linux instance, use the following command to set the permissions of your private key file so that only you can read it\.
-
-   ```
-   chmod 400 my-key-pair.pem
-   ```
-
-   If you do not set these permissions, then you cannot connect to your instance using this key pair\. For more information, see [Error: Unprotected private key file](TroubleshootingInstancesConnecting.md#troubleshoot-unprotected-key)\.
-
-------
-
 For more information, see [Amazon EC2 key pairs and Linux instances](ec2-key-pairs.md)\.
 
 ## Create a security group<a name="create-a-base-security-group"></a>
@@ -118,18 +84,25 @@ You can create a custom security group using one of the following methods\.
 
 1. Choose **Create security group**\.
 
-1. In the **Basic details** section, do the following:
+1. For **Basic details**, do the following:
 
    1. Enter a name for the new security group and a description\. Use a name that is easy for you to remember, such as your user name, followed by \_SG\_, plus the Region name\. For example, *me*\_SG\_*uswest2*\.
 
    1. In the **VPC** list, select your default VPC for the Region\.
 
-1. In the **Inbound rules** section, create the following rules \(choose **Add rule** for each new rule\):
-   + Choose **HTTP** from the **Type** list, and make sure that **Source** is set to **Anywhere** \(`0.0.0.0/0`\)\.
-   + Choose **HTTPS** from the **Type** list, and make sure that **Source** is set to **Anywhere** \(`0.0.0.0/0`\)\.
-   + Choose **SSH** from the **Type** list\. In the **Source** box, choose **My IP** to automatically populate the field with the public IPv4 address of your local computer\. Alternatively, choose **Custom** and specify the public IPv4 address of your computer or network in CIDR notation\. To specify an individual IP address in CIDR notation, add the routing suffix `/32`, for example, `203.0.113.25/32`\. If your company allocates addresses from a range, specify the entire range, such as `203.0.113.0/24`\.
+1. For **Inbound rules**, create rules that allow specific traffic to reach your instance\. For example, use the following rules for a web server that accepts HTTP and HTTPS traffic\. For more examples, see [Security group rules for different use cases](security-group-rules-reference.md)\.
+
+   1. Choose **Add rule**\. For **Type**, choose **HTTP**\. For **Source**, choose **Anywhere**\.
+
+   1. Choose **Add rule**\. For **Type**, choose **HTTPS**\. For **Source**, choose **Anywhere**\.
+
+   1. Choose **Add rule**\. For **Type**, choose **SSH**\. For **Source**, do one of the following:
+      + Choose **My IP** to automatically add the public IPv4 address of your local computer\.
+      + Choose **Custom** and specify the public IPv4 address of your computer or network in CIDR notation\. To specify an individual IP address in CIDR notation, add the routing suffix `/32`, for example, `203.0.113.25/32`\. If your company or your router allocates addresses from a range, specify the entire range, such as `203.0.113.0/24`\.
 **Warning**  
-For security reasons, do not allow SSH access from all IPv4 addresses \(`0.0.0.0/0`\) to your instance, except for testing purposes and only for a short time\.
+For security reasons, do not choose **Anywhere** for **Source** with a rule for SSH\. This would allow access to your instance from all IP addresses on the internet\. This is acceptable for a short time in a test environment, but it is unsafe for production environments\.
+
+1. For **Outbound rules**, keep the default rule, which allows all outbound traffic\.
 
 1. Choose **Create security group**\.
 
@@ -153,7 +126,9 @@ For security reasons, do not allow SSH access from all IPv4 addresses \(`0.0.0.0
    + Choose **HTTPS** from the **Type** list, and make sure that **Source** is set to **Anywhere** \(`0.0.0.0/0`\)\.
    + Choose **SSH** from the **Type** list\. In the **Source** box, choose **My IP** to automatically populate the field with the public IPv4 address of your local computer\. Alternatively, choose **Custom** and specify the public IPv4 address of your computer or network in CIDR notation\. To specify an individual IP address in CIDR notation, add the routing suffix `/32`, for example, `203.0.113.25/32`\. If your company allocates addresses from a range, specify the entire range, such as `203.0.113.0/24`\.
 **Warning**  
-For security reasons, we don't recommend that you allow SSH access from all IPv4 addresses \(`0.0.0.0/0`\) to your instance, except for testing purposes and only for a short time\.
+For security reasons, do not allow SSH access from all IP addresses to your instance\. This is acceptable for a short time in a test environment, but it is unsafe for production environments\.
+
+1. On the **Outbound** tab, keep the default rule, which allows all outbound traffic\.
 
 1. Choose **Create**\.
 

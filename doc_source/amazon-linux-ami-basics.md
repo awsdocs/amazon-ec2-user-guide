@@ -325,7 +325,7 @@ The cloud\-init package supports user\-data handling of a variety of formats:
 + Cloud Config Data
   + Begins with `#cloud-config` or `Content-Type: text/cloud-config`\.
   + This content is cloud\-config data\. For a commented example of supported configuration formats, see the examples\.
-+ Upstart job
++ Upstart job \(not supported on Amazon Linux 2\)
   + Begins with `#upstart-job` or `Content-Type: text/upstart-job`\.
   + This content is stored in a file in `/etc/init`, and upstart consumes the content as per other upstart jobs\.
 + Cloud Boothook

@@ -52,7 +52,7 @@ For example, consider a Spot Fleet with the `lowestPrice` allocation strategy\. 
 
 While a Spot Instance is stopped, you can modify some of its instance attributes, but not the instance type\. If you detach or delete an EBS volume, it is not attached when the Spot Instance is started\. If you detach the root volume and the Spot service attempts to start the Spot Instance, instance start fails and the Spot service terminates the stopped instance\.
 
-You can terminate a Spot Instance while it is stopped\. If you cancel a Spot request, an EC2 Fleet, or a Spot Fleet, the Spot service terminates any associated Spot Instances that are stopped\.
+You can terminate a Spot Instance while it is stopped\. If you cancel a Spot Instance request, an EC2 Fleet, or a Spot Fleet, the Spot service terminates any associated Spot Instances that are stopped\.
 
 While a Spot Instance is stopped, you are charged only for the EBS volumes, which are preserved\. With EC2 Fleet and Spot Fleet, if you have many stopped instances, you can exceed the limit on the number of EBS volumes for your account\.
 
@@ -68,7 +68,7 @@ You can specify the interruption behavior so that Amazon EC2 hibernates Spot Ins
 + **Supported operating systems** \(You must install the hibernation agent on a supported operating system\. Alternatively, use a supported AMI, which already includes the agent\.\):
   + Amazon Linux 2
   + Amazon Linux AMI
-  + Ubuntu with an AWS\-tuned Ubuntu kernel \(linux\-aws\) greater than 4\.4\.0\-1041
+  + Ubuntu with an AWS\-tuned Ubuntu kernel \(`linux-aws`\) greater than 4\.4\.0\-1041
   + Windows Server 2008 R2 and later
 + **Supported AMIs** \(the following supported AMIs include the hibernation agent\):
   + Amazon Linux 2
@@ -103,7 +103,7 @@ For information about hibernating On\-Demand Instances, see [Hibernate your On\-
 
 ## Specify the interruption behavior<a name="specifying-spot-interruption-behavior"></a>
 
-If you do not specify an interruption behavior, the default is to terminate Spot Instances when they are interrupted\. You can specify the interruption behavior when you create a Spot request\. The way in which you specify the interruption behavior is different depending on how you request Spot Instances\.
+If you do not specify an interruption behavior, the default is to terminate Spot Instances when they are interrupted\. You can specify the interruption behavior when you create a Spot Instance request\. The way in which you specify the interruption behavior is different depending on how you request Spot Instances\.
 
 If you request Spot Instances using the [launch instance wizard](launching-instance.md), you can specify the interruption behavior as follows: Select the **Persistent request** check box and then, from **Interruption behavior**, choose an interruption behavior\.
 
@@ -290,14 +290,24 @@ aws ec2 describe-instances \
 
 ## Determine whether Amazon EC2 interrupted a Spot Instance<a name="BidEvictedEvent"></a>
 
-If a Spot Instance is stopped, hibernated, or terminated, you can use CloudTrail to see whether Amazon EC2 interrupted the Spot Instance\. In CloudTrail, the event name `BidEvictedEvent` indicates that Amazon EC2 interrupted the Spot Instance\. For more information about using CloudTrail, see [Log Amazon EC2 and Amazon EBS API calls with AWS CloudTrail](monitor-with-cloudtrail.md)\.
+If a Spot Instance is stopped, hibernated, or terminated, you can use CloudTrail to see whether Amazon EC2 interrupted the Spot Instance\. In AWS CloudTrail, the event name `BidEvictedEvent` indicates that Amazon EC2 interrupted the Spot Instance\.
+
+
+
+**To view BidEvictedEvent events in CloudTrail**
+
+1. Open the CloudTrail console at [https://console\.aws\.amazon\.com/cloudtrail/](https://console.aws.amazon.com/cloudtrail/)\.
+
+1. In the navigation pane, choose **Event history**\.
+
+1. In the filter drop\-down, choose **Event name**, and then in the filter field to the right, enter **BidEvictedEvent**\.
+
+1. Choose **BidEvictedEvent** in the resulting list to view its details\. Under **Event record**, you can find the instance ID\.
+
+For more information about using CloudTrail, see [Log Amazon EC2 and Amazon EBS API calls with AWS CloudTrail](monitor-with-cloudtrail.md)\.
 
 ## Billing for interrupted Spot Instances<a name="billing-for-interrupted-spot-instances"></a>
 
-When a Spot Instance \(*not* in a Spot block\) is interrupted, you’re charged as follows\.
-
-[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-interruptions.html)
-
-When a Spot Instance *in a Spot block* is interrupted, you’re charged as follows\.
+When a Spot Instance is interrupted, you’re charged as follows\.
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-interruptions.html)

@@ -14,7 +14,7 @@ For significant savings over On\-Demand Instances, use [AWS Savings Plans](http:
   + [Calculate how many vCPUs you need](#vcpu-limits-calculator)
   + [Request a limit increase](#vcpu-limits-request-increase)
   + [Monitor On\-Demand Instance limits and usage](#monitoring-on-demand-limits)
-+ [Query the prices of AWS services](#query-aws-price-list)
++ [Query the prices of On\-Demand Instances](#query-aws-price-list)
 
 ## Work with On\-Demand Instances<a name="working-with-on-demand-instances"></a>
 
@@ -36,22 +36,23 @@ If you're new to Amazon EC2, see [How to get started with Amazon EC2](concepts.m
 
 There is a limit on the number of running On\-Demand Instances per AWS account per Region\. On\-Demand Instance limits are managed in terms of the *number of virtual central processing units \(vCPUs\)* that your running On\-Demand Instances are using, regardless of the instance type\.
 
-There are six On\-Demand Instance limits, listed in the following table\. Each limit specifies the vCPU limit for one or more instance families\. For information about the different instance families, generations, and sizes, see [Amazon EC2 Instance Types](http://aws.amazon.com/ec2/instance-types/)\.
-
-
-| On\-Demand Instance limit name | Default vCPU limit | 
-| --- | --- | 
-|  Running On\-Demand All Standard \(A, C, D, H, I, M, R, T, Z\) instances  |  1152 vCPUs  | 
-|  Running On\-Demand All F instances  |  128 vCPUs  | 
-|  Running On\-Demand All G instances  |  128 vCPUs  | 
-|  Running On\-Demand All Inf instances  | 128 vCPUs | 
-|  Running On\-Demand All P instances  |  128 vCPUs  | 
-|  Running On\-Demand All X instances  |  128 vCPUs  | 
+The following table lists the On\-Demand Instance limits\. Each limit specifies the default vCPUs for one or more instance families\. For information about the different instance families, generations, and sizes, see [Amazon EC2 Instance Types](http://aws.amazon.com/ec2/instance-types/)\.
 
 **Note**  
-New AWS accounts might start with limits that are lower than the limits described here\.
+New AWS accounts might start with limits that are lower than these defaults\. Amazon EC2 monitors your usage and raises your limits automatically based on your usage\.
 
-With vCPU limits, you can use your limit in terms of the number of vCPUs required to launch any combination of instance types that meet your changing application needs\. For example, with a Standard instance limit of 256 vCPUs, you could launch 32 `m5.2xlarge` instances \(32 x 8 vCPUs\) or 16 `c5.4xlarge` instances \(16 x 16 vCPUs\), or a combination of any Standard instance types and sizes that total 256 vCPUs\. For more information, see [EC2 On\-Demand Instance limits](http://aws.amazon.com/ec2/faqs/#EC2_On-Demand_Instance_limits)\.
+
+| Limit | Default vCPUs | 
+| --- | --- | 
+| Running On\-Demand All Standard \(A, C, D, H, I, M, R, T, Z\) instances | 1,152 | 
+| Running On\-Demand All F instances | 128 | 
+| Running On\-Demand All G instances | 128 | 
+| Running On\-Demand High Memory \(u\-\*\) instances | 448 | 
+| Running On\-Demand All Inf instances | 128 | 
+| Running On\-Demand All P instances | 128 | 
+| Running On\-Demand All X instances | 128 | 
+
+You can launch any combination of instance types that meet your changing application needs, as long as the number of vCPUs does not exceed your account limit\. For example, with a Standard instance limit of 256 vCPUs, you could launch 32 `m5.2xlarge` instances \(32 x 8 vCPUs\) or 16 `c5.4xlarge` instances \(16 x 16 vCPUs\)\. For more information, see [EC2 On\-Demand Instance limits](http://aws.amazon.com/ec2/faqs/#EC2_On-Demand_Instance_limits)\.
 
 ### Calculate how many vCPUs you need<a name="vcpu-limits-calculator"></a>
 
@@ -110,6 +111,6 @@ For more information, see [Amazon EC2 service quotas](ec2-resource-limits.md) in
 
 With Amazon CloudWatch metrics integration, you can monitor EC2 usage against limits\. You can also configure alarms to warn about approaching limits\. For more information, see [Using Amazon CloudWatch Alarms](https://docs.aws.amazon.com/servicequotas/latest/userguide/configure-cloudwatch.html) in the *Service Quotas User Guide*\.
 
-## Query the prices of AWS services<a name="query-aws-price-list"></a>
+## Query the prices of On\-Demand Instances<a name="query-aws-price-list"></a>
 
 You can use the Price List Service API or the AWS Price List API to query the prices of On\-Demand Instances\. For more information, see [Using the AWS Price List API](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/price-changes.html) in the *AWS Billing and Cost Management User Guide*\.

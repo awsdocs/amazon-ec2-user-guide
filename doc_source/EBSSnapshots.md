@@ -30,17 +30,36 @@ Charges for your snapshots are based on the amount of data stored\. Because snap
 
 ## How incremental snapshots work<a name="how_snapshots_work"></a>
 
-This section provides illustrations of how an EBS snapshot captures the state of a volume at a point in time, and also how successive snapshots of a changing volume create a history of those changes\.
+This section shows how an EBS snapshot captures the state of a volume at a point in time, and how successive snapshots of a changing volume create a history of those changes\.
 
-In the diagram below, Volume 1 is shown at three points in time\. A snapshot is taken of each of these three volume states\. 
-+ In State 1, the volume has 10 GiB of data\. Because Snap A is the first snapshot taken of the volume, the entire 10 GiB of data must be copied\.
-+ In State 2, the volume still contains 10 GiB of data, but 4 GiB have changed\. Snap B needs to copy and store only the 4 GiB that changed after Snap A was taken\. The other 6 GiB of unchanged data, which are already copied and stored in Snap A, are *referenced* by Snap B rather than \(again\) copied\. This is indicated by the dashed arrow\.
-+ In State 3, 2 GiB of data have been added to the volume, for a total of 12 GiB\. Snap C needs to copy the 2 GiB that were added after Snap B was taken\. As shown by the dashed arrows, Snap C also references 4 GiB of data stored in Snap B, and 6 GiB of data stored in Snap A\. 
-+ The total storage required for the three snapshots is 16 GiB\.
+ **Relations among multiple snapshots of the same volume** 
 
- **Relations among multiple snapshots of a volume** 
+The diagram in this section shows Volume 1 at three points in time\. A snapshot is taken of each of these three volume states\. The diagram specifically shows the following:
++ In State 1, the volume has `10 GiB` of data\. Because **Snap A** is the first snapshot taken of the volume, the entire `10 GiB` of data must be copied\.
++ In State 2, the volume still contains `10 GiB` of data, but `4 GiB` have changed\. **Snap B** needs to copy and store only the `4 GiB` that changed after **Snap A** was taken\. The other `6 GiB` of unchanged data, which are already copied and stored in **Snap A**, are *referenced* by **Snap B** rather than being copied again\. This is indicated by the dashed arrow\.
++ In State 3, `2 GiB` of data have been added to the volume, for a total of `12 GiB`\. **Snap C** needs to copy the `2 GiB` that were added after **Snap B** was taken\. As shown by the dashed arrows, **Snap C** also references `4 GiB` of data stored in **Snap B**, and `6 GiB` of data stored in **Snap A**\. 
++ The total storage required for the three snapshots is `16 GiB`\.
 
 ![\[Snapshots capturing an initial volume state and two subsequent states after data has been changed.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/snapshot_1a.png)
+
+ **Relations among incremental snapshots of different volumes** 
+
+The diagram in this section shows how incremental snapshots can be taken from different volumes\.
+
+**Important**  
+The diagram assumes that you own **Vol 1** and that you have created **Snap A**\. If **Vol 1** was owned by another AWS account and that account took **Snap A** and shared it with you, then **Snap B** would be a full snapshot\.
+
+1. **Vol** 1 has `10 GiB` of data\. Because **Snap A** is the first snapshot taken of the volume, the entire `10 GiB` of data is copied and stored\.
+
+1. **Vol 2** is created from **Snap A**, so it is an exact replica of **Vol 1** at the time the snapshot was taken\.
+
+1. Over time, `4 GiB` of data is added to **Vol 2** and its total size becomes `14 GiB`\.
+
+1. **Snap B** is taken from **Vol 2**\. For **Snap B**, only the `4 GiB` of data that was added after the volume was created from **Snap A** is copied and stored\. The other `10 GiB` of unchanged data, which is already stored in **Snap A**, is referenced by **Snap B** instead of being copied and stored again\.
+
+   **Snap B** is an incremental snapshot of **Snap A**, even though it was created from a different volume\.
+
+![\[Snapshots capturing an initial volume state and two subsequent states after data has been changed.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/snapshot_1c.png)
 
 For more information about how data is managed when you delete a snapshot, see [Delete an Amazon EBS snapshot](ebs-deleting-snapshot.md)\.
 

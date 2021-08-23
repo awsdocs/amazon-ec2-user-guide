@@ -51,7 +51,7 @@ Instances that use an Amazon EBS volume as the root device can be stopped or ter
 
    1. For **Group samples by** and **Type of data to sample**, choose a statistic and a metric\. In this example, choose **Average** and **CPU utilization**\.
 
-   1. For **Alarm When** and **Percent**, specify the metric threshold\. In this example, specify **>=** and **10** percent\.
+   1. For **Alarm When** and **Percent**, specify the metric threshold\. In this example, specify **<=** and **10** percent\.
 
    1. For **Consecutive period** and **Period**, specify the evaluation period for the alarm\. In this example, specify **1** consecutive period of **5 Minutes**\.
 
@@ -254,7 +254,7 @@ The following problems can cause system status checks to fail:
 + Hardware issues on the physical host that impact network reachability
 
 The recover action is supported only on instances with the following characteristics:
-+ Use one of the following instance types: A1, C3, C4, C5, C5a, C5n, C6g, C6gn, Inf1,  M3, M4, M5, M5a, M5n, M5zn, M6g,  P3, P4, R3, R4, R5, R5a, R5b, R5n, R6g,  T2, T3, T3a, T4g, X1, or X1e
++ Use one of the following instance types: A1, C3, C4, C5, C5a, C5n, C6g, C6gn, Inf1,  M3, M4, M5, M5a, M5n, M5zn, M6g, M6i, P3, P4, R3, R4, R5, R5a, R5b, R5n, R6g,  T2, T3, T3a, T4g, high memory \(virtualized only\), X1, X1e
 + Use `default` or `dedicated` instance tenancy
 + Use EBS volumes only \(do not configure instance store volumes\)\. For more information, see ['Recover this instance' is disabled](https://aws.amazon.com/premiumsupport/knowledge-center/recover-this-instance-cloudwatch-enable/)\.
 

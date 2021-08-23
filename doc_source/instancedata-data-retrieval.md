@@ -12,7 +12,7 @@ http://169.254.169.254/latest/meta-data/
 
 The IP address `169.254.169.254` is a link\-local address and is valid only from the instance\. For more information, see [Link\-local address](https://en.wikipedia.org/wiki/Link-local_address) on Wikipedia\.
 
-The command format is different, depending on whether you use IMDSv1 or IMDSv2\. By default, you can use both instance metadata services\. To require the use of IMDSv2, see [Configure the instance metadata service](configuring-instance-metadata-service.md)\.
+The command format is different, depending on whether you use IMDSv1 or IMDSv2\. By default, you can use both instance metadata services\. To require the use of IMDSv2, see [Use IMDSv2](configuring-instance-metadata-service.md)\.
 
 You can use a tool such as cURL, as shown in the following example\.
 
@@ -38,7 +38,10 @@ Note that you are not billed for HTTP requests used to retrieve instance metadat
 ## Considerations<a name="imds-considerations"></a>
 
 To avoid problems with instance metadata retrieval, consider the following:
-+ The AWS SDKs use IMDSv2 calls by default\. If the IMDSv2 call receives no response, the SDK retries the call and, if still unsuccessful, uses IMDSv1\. This can result in a delay\. In a container environment, if the hop limit is 1, the IMDSv2 response does not return because going to the container is considered an additional network hop\. To avoid the process of falling back to IMDSv1 and the resultant delay, in a container environment we recommend that you set the hop limit to 2\. For more information, see [Configure the instance metadata options](configuring-instance-metadata-service.md#configuring-instance-metadata-options)\.
++ The AWS SDKs use IMDSv2 calls by default\. If the IMDSv2 call receives no response, the SDK retries the call and, if still unsuccessful, uses IMDSv1\. This can result in a delay\. In a container environment, if the hop limit is 1, the IMDSv2 response does not return because going to the container is considered an additional network hop\. To avoid the process of falling back to IMDSv1 and the resultant delay, in a container environment we recommend that you set the hop limit to 2\. For more information, see [Configure the instance metadata options](configuring-instance-metadata-options.md)\.
++ For IMDSv2, you must use `/latest/api/token` when retrieving the token\. Issuing `PUT` requests to any version\-specific path, for example `/2021-03-23/api/token`, will result in the metadata service returning 403 Forbidden errors\. This behavior is intended\. 
+
+  
 
 ## Responses and error messages<a name="instance-metadata-returns"></a>
 
@@ -399,6 +402,9 @@ If you are throttled while accessing the instance metadata service, retry your q
 ## Limit instance metadata service access<a name="instance-metadata-limiting-access"></a>
 
 You can consider using local firewall rules to disable access from some or all processes to the instance metadata service\.
+
+**Note**  
+For [Instances built on the Nitro System](instance-types.md#ec2-nitro-instances) IMDS can be reachable from your own network when a network appliance within your VPC, such as a virtual router, forwards packets to the IMDS address, and the default [source/destination check](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_NAT_Instance.html#EIP_Disable_SrcDestCheck) on the instance is disabled\. To prevent a source from outside your VPC reaching IMDS, we recommend that you modify the configuration of the network appliance to drop packets with the destination IP address of IMDS 169\.254\.169\.254\.
 
 **Using iptables to limit access**
 

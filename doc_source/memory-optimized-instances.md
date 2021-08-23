@@ -11,6 +11,8 @@ These instances are well suited for the following:
 + Applications performing real\-time processing of big unstructured data \(financial services, Hadoop/Spark clusters\)\.
 + High\-performance computing \(HPC\) and Electronic Design Automation \(EDA\) applications\.
 
+R5b instances support `io2` Block Express volumes\. All `io2` volumes attached to an R5b instance during or after launch automatically run on EBS Block Express\. For more information, see [ `io2` Block Express volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html#io2-block-express)\.
+
 Bare metal instances, such as `r5.metal`, provide your applications with direct access to physical resources of the host server, such as processors and memory\.
 
 For more information, see [Amazon EC2 R5 Instances](https://aws.amazon.com/ec2/instance-types/r5)\.
@@ -25,10 +27,10 @@ Bare metal instances, such as `r6g.metal`, provide your applications with direct
 
 For more information, see [Amazon EC2 R6g Instances](https://aws.amazon.com/ec2/instance-types/r6)\.
 
-**High memory instances**  
-High memory instances \(`u-6tb1.metal`, `u-9tb1.metal`, `u-12tb1.metal`, `u-18tb1.metal`, and `u-24tb1.metal`\) offer 6 TiB, 9 TiB, 12 TiB, 18 TiB, and 24 TiB of memory per instance\. These instances are designed to run large in\-memory databases, including production deployments of the SAP HANA in\-memory database, in the cloud\. They offer bare metal performance with direct access to host hardware\.
+**High memory \(u\-\*\) instances**  
+These instances offer 6 TiB, 9 TiB, 12 TiB, 18 TiB, and 24 TiB of memory per instance\. They are designed to run large in\-memory databases, including production deployments of the SAP HANA in\-memory database\.
 
-For more information, see [Amazon EC2 High Memory Instances](http://aws.amazon.com/ec2/instance-types/high-memory/) and [Storage Configuration for SAP HANA](https://docs.aws.amazon.com/quickstart/latest/sap-hana/storage.html)\.
+For more information, see [Amazon EC2 High Memory Instances](http://aws.amazon.com/ec2/instance-types/high-memory/) and [Storage Configuration for SAP HANA](https://docs.aws.amazon.com/quickstart/latest/sap-hana/storage.html)\. For information about supported operating systems, see [Migrating SAP HANA on AWS to an EC2 High Memory Instance](https://docs.aws.amazon.com/sap/latest/sap-hana/migrating-hana-to-hm.html)\. 
 
 **X1 instances**
 
@@ -168,8 +170,12 @@ The following is a summary of the hardware specifications for memory optimized i
 | r6gd\.8xlarge | 32 | 256 | 
 | r6gd\.12xlarge | 48 | 384 | 
 | r6gd\.16xlarge | 64 | 512 | 
+| u\-6tb1\.56xlarge | 224 | 6,144 | 
+| u\-6tb1\.112xlarge | 448 | 6,144 | 
 | u\-6tb1\.metal | 448 \* | 6,144 | 
+| u\-9tb1\.112xlarge | 448 | 9,216 | 
 | u\-9tb1\.metal | 448 \* | 9,216 | 
+| u\-12tb1\.112xlarge | 448 | 12,288 | 
 | u\-12tb1\.metal | 448 \* | 12,288 | 
 | u\-18tb1\.metal | 448 \* | 18,432 | 
 | u\-24tb1\.metal | 448 \* | 24,576 | 
@@ -235,11 +241,64 @@ The following is a summary of network performance for memory optimized instances
 |  r4\.16xlarge \| r5\.24xlarge \| r5\.metal \| r5b\.24xlarge \| r5b\.metal \| r5d\.24xlarge \| r5d\.metal \| r5dn\.8xlarge \| r5n\.8xlarge \| r6g\.16xlarge \| r6g\.metal \|  r6gd\.16xlarge \| r6gd\.metal \|  x1\.32xlarge \| x1e\.32xlarge \| x2gd\.16xlarge \|  x2gd\.metal \|  z1d\.12xlarge \| z1d\.metal  | 25 Gbps | [ENA](enhanced-networking-ena.md) | 
 | r5dn\.12xlarge \| r5n\.12xlarge  | 50 Gbps | [ENA](enhanced-networking-ena.md) | 
 | r5dn\.16xlarge \| r5n\.16xlarge  | 75 Gbps | [ENA](enhanced-networking-ena.md) | 
-|  r5dn\.24xlarge \| r5dn\.metal \| r5n\.24xlarge \| r5n\.metal \| u\-6tb1\.metal \* \| u\-9tb1\.metal \* \| u\-12tb1\.metal \* \| u\-18tb1\.metal \| u\-24tb1\.metal  | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
+|  r5dn\.24xlarge \| r5dn\.metal \| r5n\.24xlarge \| r5n\.metal \| u\-6tb1\.56xlarge \| u\-6tb1\.112xlarge \| u\-6tb1\.metal \* \| u\-9tb1\.112xlarge \| u\-9tb1\.metal \* \| u\-12tb1\.112xlarge \| u\-12tb1\.metal \* \| u\-18tb1\.metal \| u\-24tb1\.metal  | 100 Gbps | [ENA](enhanced-networking-ena.md) | 
 
 \* Instances of this type launched after March 12, 2020 provide network performance of 100 Gbps\. Instances of this type launched before March 12, 2020 might only provide network performance of 25 Gbps\. To ensure that instances launched before March 12, 2020 have a network performance of 100 Gbps, contact your account team to upgrade your instance at no additional cost\.
 
-† These instances use a network I/O credit mechanism to allocate network bandwidth to instances based on average bandwidth utilization\. They accrue credits when their bandwidth is below their baseline bandwidth, and can use these credits when they perform network data transfers\. For more information, open a support case and ask about baseline bandwidth for the specific instance types that you are interested in\.
+† These instances have a baseline bandwidth and can use a network I/O credit mechanism to burst beyond their baseline bandwidth on a best effort basis\. For more information, see [instance network bandwidth](ec2-instance-network-bandwidth.md)\.<a name="baseline-bandwidth"></a>
+
+
+| Instance type | Baseline bandwidth \(Gbps\) | Burst bandwidth \(Gbps\) | 
+| --- | --- | --- | 
+| r5\.large | \.75 | 10 | 
+| r5\.xlarge | 1\.25 | 10 | 
+| r5\.2xlarge | 2\.5 | 10 | 
+| r5\.4xlarge | 5 | 10 | 
+| r5a\.large | \.75 | 10 | 
+| r5a\.xlarge | 1\.25 | 10 | 
+| r5a\.2xlarge | 2\.5 | 10 | 
+| r5a\.4xlarge | 5 | 10 | 
+| r5a\.8xlarge | 7\.5 | 10 | 
+| r5ad\.large | \.75 | 10 | 
+| r5ad\.xlarge | 1\.25 | 10 | 
+| r5ad\.2xlarge | 2\.5 | 10 | 
+| r5ad\.4xlarge | 5 | 10 | 
+| r5ad\.8xlarge | 7\.5 | 10 | 
+| r5b\.large | \.75 | 10 | 
+| r5b\.xlarge | 1\.25 | 10 | 
+| r5b\.2xlarge | 2\.5 | 10 | 
+| r5b\.4xlarge | 5 | 10 | 
+| r5d\.large | \.75 | 10 | 
+| r5d\.xlarge | 1\.25 | 10 | 
+| r5d\.2xlarge | 2\.5 | 10 | 
+| r5d\.4xlarge | 5 | 10 | 
+| r5dn\.large | 2\.1 | 25 | 
+| r5dn\.xlarge | 4\.1 | 25 | 
+| r5dn\.2xlarge | 8\.125 | 25 | 
+| r5dn\.4xlarge | 16\.25 | 25 | 
+| r5n\.large | 2\.1 | 25 | 
+| r5n\.xlarge | 4\.1 | 25 | 
+| r5n\.2xlarge | 8\.125 | 25 | 
+| r5n\.4xlarge | 16\.25 | 25 | 
+| r6g\.medium | \.5 | 10 | 
+| r6g\.large | \.75 | 10 | 
+| r6g\.xlarge | 1\.25 | 10 | 
+| r6g\.2xlarge | 2\.5 | 10 | 
+| r6g\.4xlarge | 5 | 10 | 
+| r6gd\.medium | \.5 | 10 | 
+| r6gd\.large | \.75 | 10 | 
+| r6gd\.xlarge | 1\.25 | 10 | 
+| r6gd\.2xlarge | 2\.5 | 10 | 
+| r6gd\.4xlarge | 5 | 10 | 
+| x2gd\.medium | \.5 | 10 | 
+| x2gd\.large | \.75 | 10 | 
+| x2gd\.xlarge | 1\.25 | 10 | 
+| x2gd\.2xlarge | 2\.5 | 10 | 
+| x2gd\.4xlarge | 5 | 10 | 
+| z1d\.large | \.75 | 10 | 
+| z1d\.xlarge | 1\.25 | 10 | 
+| z1d\.2xlarge | 2\.5 | 10 | 
+| z1d\.3xlarge | 5 | 10 | 
 
 ## SSD I/O performance<a name="instances-ssd-perf"></a>
 
@@ -319,21 +378,19 @@ The following is a summary of features for memory optimized instances\.
 | R5 | Yes | Yes | No | Yes | 
 | R5a | Yes | Yes | No | Yes | 
 | R5ad | No | Yes | NVME \* | Yes | 
-| R5b | Yes | Yes | No | Yes | 
+| R5b | Yes \*\* | Yes | No | Yes | 
 | R5d | No | Yes | NVME \* | Yes | 
 | R5dn | No | Yes | NVME \* | Yes | 
 | R5n | Yes | Yes | No | Yes | 
 | R6g | Yes | Yes | No | Yes | 
 | R6gd | No | Yes | NVMe \* | Yes | 
-| u\-6tb1\.metal | Yes | Yes | No | No | 
-| u\-9tb1\.metal | Yes | Yes | No | No | 
-| u\-12tb1\.metal | Yes | Yes | No | No | 
-| u\-18tb1\.metal | Yes | Yes | No | No | 
-| u\-24tb1\.metal | Yes | Yes | No | No | 
+| High memory | Yes | Yes | No | Virtualized: Yes Bare metal: No  | 
 | X1 | No | No | SSD | Yes | 
 | X2gd | No | Yes | NVME \* | Yes | 
 | X1e | No | No | SSD \* | Yes | 
 | z1d | No | Yes | NVME \* | Yes | 
+
+**\*\*** All `io2` volumes attached to an R5b instance during or after launch automatically run on EBS Block Express\. For more information, see [io2 Block Express volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html#io2-block-express)\.
 
 **\*** The root device volume must be an Amazon EBS volume\.
 
@@ -390,7 +447,7 @@ The following AMIs support launching memory optimized instances:
   + SUSE Linux Enterprise Server 15 or later \(64\-bit Arm\)
   + Debian 10 or later \(64\-bit Arm\)
 + Instances built on the Nitro System instances support a maximum of 28 attachments, including network interfaces, EBS volumes, and NVMe instance store volumes\. For more information, see [Nitro System volume limits](volume_limits.md#instance-type-volume-limits)\.
-+ R5b instances do not support `io2` volumes or volumes with Multi\-Attach enabled\.
++ All `io2` volumes attached to an R5b instance during or after launch automatically run on EBS Block Express\. For more information, see [ `io2` Block Express volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html#io2-block-express)\.
 + Launching a bare metal instance boots the underlying server, which includes verifying all hardware and firmware components\. This means that it can take 20 minutes from the time the instance enters the running state until it becomes available over the network\.
 + To attach or detach EBS volumes or secondary network interfaces from a bare metal instance requires PCIe native hotplug support\. Amazon Linux 2 and the latest versions of the Amazon Linux AMI support PCIe native hotplug, but earlier versions do not\. You must enable the following Linux kernel configuration options:
 

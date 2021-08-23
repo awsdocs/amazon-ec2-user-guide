@@ -2,7 +2,7 @@
 
 Mac1 instances natively support the macOS operating system\. They are built on Mac mini hardware and powered by 3\.2 GHz Intel eighth\-generation \(Coffee Lake\) Core i7 processors\. These instances are ideal for developing, building, testing, and signing applications for Apple devices, such as iPhone, iPad, iPod, Mac, Apple Watch, and Apple TV\. You can connect to your Mac instance using SSH or Apple Remote Desktop \(ARD\)\.
 
-For more information, see [Amazon EC2 Mac Instances](https://aws.amazon.com/mac)\.
+For more information, see [Amazon EC2 Mac Instances](https://aws.amazon.com/mac) and [Pricing](https://aws.amazon.com/mac/#Pricing)\.
 
 **Topics**
 + [Considerations](#mac-instance-considerations)
@@ -17,28 +17,33 @@ For more information, see [Amazon EC2 Mac Instances](https://aws.amazon.com/mac)
 + [EC2 System Monitoring for macOS](#mac-instance-system-monitor)
 + [Increase the size of an EBS volume on your Mac instance](#mac-instance-increase-volume)
 + [Stop and terminate your Mac instance](#mac-instance-stop)
++ [Subscribe to macOS AMI notifications](#subscribe-notifications)
 + [Release the Dedicated Host for your Mac instance](#mac-instance-release-dedicated-host)
 
 ## Considerations<a name="mac-instance-considerations"></a>
 
 The following considerations apply to Mac instances:
-+ Mac instances are available only as bare metal instances on Dedicated Hosts, with a minimum allocation period of 24 hours before you can release the Dedicated Host\. You can launch one Mac instance per Dedicated Host\. You can share the Dedicated Host with the AWS accounts or organizational units within your AWS organization, or the entire AWS organization\.
++ Mac instances are available only as bare metal instances on [Dedicated Hosts](dedicated-hosts-overview.md), with a minimum allocation period of 24 hours before you can release the Dedicated Host\. You can launch one Mac instance per Dedicated Host\. You can share the Dedicated Host with the AWS accounts or organizational units within your AWS organization, or the entire AWS organization\.
 + Mac instances are available only as On\-Demand Instances\. They are not available as Spot Instances or Reserved Instances\. You can save money on Mac instances by purchasing a [Savings Plan](https://docs.aws.amazon.com/savingsplans/latest/userguide/)\.
 + Mac instances can run one of the following operating systems:
   + macOS Catalina \(version 10\.15\)
   + macOS Mojave \(version 10\.14\)
   + macOS Big Sur \(version 11\)
 + If you attach an EBS volume to a running Mac instance, you must reboot the instance to make the volume available\.
++ If you resized an existing EBS volume on a running Mac instance, you must reboot the instance to make the new size available\.
 + If you attach a network interface to a running Mac instance, you must reboot the instance to make the network interface available\.
 + AWS does not manage or support the internal SSD on the Apple hardware\. We strongly recommend that you use Amazon EBS volumes instead\. EBS volumes provide the same elasticity, availability, and durability benefits on Mac instances as they do on any other EC2 instance\.
 + We recommend using General Purpose SSD \(`gp2` and `gp3`\) and Provisioned IOPS SSD \(`io1` and `io2`\) with Mac instances for optimal EBS performance\.
 + You cannot use Mac instances with Amazon EC2 Auto Scaling\.
 + Automatic software updates are disabled\. We recommend that you apply updates and test them on your instance before you put the instance into production\. For more information, see [Update the operating system and software](#mac-instance-updates)\.
 + When you stop or terminate a Mac instance, a scrubbing workflow is performed on the Dedicated Host\. For more information, see [Stop and terminate your Mac instance](#mac-instance-stop)\.
++ 
+**Warning**  
+Do not use FileVault\. If data\-at\-rest and data\-in\-transit is required, use [EBS encryption](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html) to avoid boot issues and performance impact\. Enabling FileVault will result in the host failing to boot due to the partitions being locked\. 
 
 ## Launch a Mac instance using the console<a name="mac-instance-launch"></a>
 
-You can launch a Mac instance using the AWS Management Console as described in the following procedure\. Mac instances require a Dedicated Host\.
+You can launch a Mac instance using the AWS Management Console as described in the following procedure\. Mac instances require a [Dedicated Host](dedicated-hosts-overview.md)\.
 
 **To launch a Mac instance onto a Dedicated Host**
 
@@ -307,9 +312,22 @@ You can increase the size of your Amazon EBS volumes on your Mac instance\. For 
 
 After you increase the size of the volume, you must increase the size of your APFS container as follows\.
 
-**To make increased disk space available for use**
+**Make increased disk space available for use**
 
-1. Copy and paste the following commands\.
+1. Determine if a restart is needed\. If you resized an existing EBS volume on a running Mac instance, you must [reboot](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-reboot.html) the instance to make the new size available\. If disk space modification was done during launch time, a reboot will not be needed\. 
+
+   View current status of disk sizes: 
+
+   ```
+    [ec2-user ~]$ diskutil list external physical
+   /dev/disk0 (external, physical):
+      #:                       TYPE NAME                    SIZE       IDENTIFIER
+      0:      GUID_partition_scheme                        *322.1 GB   disk0
+      1:                        EFI ⁨EFI⁩                     209.7 MB   disk0s1
+      2:                 Apple_APFS ⁨Container disk2⁩         321.9 GB   disk0s2
+   ```
+
+1. Copy and paste the following command\.
 
    ```
    PDISK=$(diskutil list physical external | head -n1 | cut -d" " -f1)
@@ -332,6 +350,54 @@ When you stop or terminate a Mac instance, Amazon EC2 performs a scrubbing workf
 You can't start the stopped Mac instance or launch a new Mac instance until after the scrubbing workflow completes, at which point the Dedicated Host enters the `available` state\.
 
 Metering and billing is paused when the Dedicated Host enters the `pending` state\. You are not charged for the duration of the scrubbing workflow\.
+
+## Subscribe to macOS AMI notifications<a name="subscribe-notifications"></a>
+
+To be notified when new AMIs are released or when bridgeOS has been updated, subscribe for notifications using Amazon SNS\.
+
+**To subscribe to macOS AMI notifications**
+
+1. Open the Amazon SNS console at [https://console\.aws\.amazon\.com/sns/v3/home](https://console.aws.amazon.com/sns/v3/home)\.
+
+1. In the navigation bar, change the Region to **US East \(N\. Virginia\)**, if necessary\. You must use this Region because the SNS notifications that you are subscribing to were created in this Region\.
+
+1. In the navigation pane, choose **Subscriptions**\.
+
+1. Choose **Create subscription**\.
+
+1. For the **Create subscription** dialog box, do the following:
+
+   1. For **Topic ARN**, copy and paste one of the following Amazon Resource Names \(ARNs\):
+      + **arn:aws:sns:us\-east\-1:898855652048:amazon\-ec2\-macos\-ami\-updates**
+      + **arn:aws:sns:us\-east\-1:898855652048:amazon\-ec2\-bridgeos\-updates**
+
+      For **Protocol**:
+
+   1. **Email:**
+
+      For **Endpoint**, type an email address that you can use to receive the notifications\. After you create your subscription you'll receive a confirmation message with the subject line `AWS Notification - Subscription Confirmation`\. Open the email and choose **Confirm subscription** to complete your subscription
+
+   1. **SMS:**
+
+      For **Endpoint**, type a phone number that you can use to receive the notifications\.
+
+   1. **AWS Lambda, Amazon SQS, Amazon Kinesis Data Firehose** \(*Notifications come in JSON format*\):
+
+      For **Endpoint**, enter the ARN for the Lambda function, SQS queue, or Firehose stream you can use to receive the notifications\.
+
+   1. Choose **Create subscription**\.
+
+Whenever macOS AMIs are released, we send notifications to the subscribers of the `amazon-ec2-macos-ami-updates` topic\. Whenever bridgeOS is updated, we send notifications to the subscribers of the `amazon-ec2-bridgeos-updates` topic\. If you no longer want to receive these notifications, use the following procedure to unsubscribe\.
+
+**To unsubscribe from macOS AMI notifications**
+
+1. Open the Amazon SNS console at [https://console\.aws\.amazon\.com/sns/v3/home](https://console.aws.amazon.com/sns/v3/home)\.
+
+1. In the navigation bar, change the Region to **US East \(N\. Virginia\)**, if necessary\. You must use this Region because the SNS notifications were created in this Region\.
+
+1. In the navigation pane, choose **Subscriptions**\.
+
+1. Select the subscriptions and then choose **Actions**, **Delete subscriptions** When prompted for confirmation, choose **Delete**\.
 
 ## Release the Dedicated Host for your Mac instance<a name="mac-instance-release-dedicated-host"></a>
 

@@ -16,7 +16,7 @@ This user guide provides an overview of the elements that make up the EBS direct
 + [Work with the EBS direct APIs using the command line](#ebsapi-cli-examples)
 + [Optimize performance](#ebsapi-performance)
 + [Frequently asked questions](#ebsapi-faq)
-+ [Log API Calls for the EBS direct APIs with AWS CloudTrail](logging-ebs-apis-using-cloudtrail.md)
++ [Log API Calls for EBS direct APIs with AWS CloudTrail](logging-ebs-apis-using-cloudtrail.md)
 + [EBS direct APIs and interface VPC endpoints](ebs-apis-vpc-endpoints.md)
 + [Idempotency for StartSnapshot API](ebs-direct-api-idempotency.md)
 
@@ -859,4 +859,4 @@ Public snapshots are not supported\.
 It returns only block indexes and tokens that have data written to them\.
 
 **Can I get a history of the API calls made by the EBS direct APIs on my account for security analysis and operational troubleshooting purposes?**  
-Yes\. To receive a history of EBS direct APIs API calls made on your account, turn on AWS CloudTrail in the AWS Management Console\. For more information, see [Log API Calls for the EBS direct APIs with AWS CloudTrail](logging-ebs-apis-using-cloudtrail.md)\.
+Yes\. To receive a history of EBS direct APIs API calls made on your account, turn on AWS CloudTrail in the AWS Management Console\. For more information, see [Log API Calls for EBS direct APIs with AWS CloudTrail](logging-ebs-apis-using-cloudtrail.md)\.

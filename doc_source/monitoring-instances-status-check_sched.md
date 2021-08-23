@@ -1,6 +1,6 @@
 # Scheduled events for your instances<a name="monitoring-instances-status-check_sched"></a>
 
-AWS can schedule events for your instances, such as a reboot, stop/start, or retirement\. These events do not occur frequently\. If one of your instances will be affected by a scheduled event, AWS sends an email to the email address that's associated with your AWS account prior to the scheduled event\. The email provides details about the event, including the start and end date\. Depending on the event, you might be able to take action to control the timing of the event\. AWS also sends an AWS Health event, which you can monitor and manage using Amazon CloudWatch Events\. For more information about monitoring AWS Health events with Amazon CloudWatch, see [Monitoring AWS Health events with Amazon CloudWatch Events](https://docs.aws.amazon.com/health/latest/ug/cloudwatch-events-health.html)\. 
+AWS can schedule events for your instances, such as a reboot, stop/start, or retirement\. These events do not occur frequently\. If one of your instances will be affected by a scheduled event, AWS sends an email to the email address that's associated with your AWS account prior to the scheduled event\. The email provides details about the event, including the start and end date\. Depending on the event, you might be able to take action to control the timing of the event\. AWS also sends an AWS Health event, which you can monitor and manage by using Amazon CloudWatch Events\. For more information about monitoring AWS Health events with CloudWatch, see [Monitoring AWS Health events with CloudWatch Events](https://docs.aws.amazon.com/health/latest/ug/cloudwatch-events-health.html)\. 
 
 Scheduled events are managed by AWS; you cannot schedule events for your instances\. You can view the events scheduled by AWS, customize scheduled event notifications to include or remove tags from the email notification, perform actions when an instance is scheduled to reboot, retire, or stop\.
 
@@ -14,6 +14,7 @@ To update the contact information for your account so that you can be sure to be
 + [Work with instances scheduled for reboot](#schedevents_actions_reboot)
 + [Work with instances scheduled for maintenance](#schedevents_actions_maintenance)
 + [Reschedule a scheduled event](#reschedule-event)
++ [Define event windows for scheduled events](event-windows.md)
 
 ## Types of scheduled events<a name="types-of-scheduled-events"></a>
 
@@ -26,7 +27,7 @@ Amazon EC2 can create the following types of events for your instances, where th
 
 ## View scheduled events<a name="viewing_scheduled_events"></a>
 
-In addition to receiving notification of scheduled events in email, you can check for scheduled events using one of the following methods\.
+In addition to receiving notification of scheduled events in email, you can check for scheduled events by using one of the following methods\.
 
 ------
 #### [ New console ]
@@ -40,8 +41,6 @@ In addition to receiving notification of scheduled events in email, you can chec
 ![\[Viewing events using the Events page.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/events-instance-scheduled-stop.png)
    + Alternatively, in the navigation pane, choose **EC2 Dashboard**\. Any resources with an associated event are displayed under **Scheduled events**\.  
 ![\[Viewing events using the dashboard.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/dashboard-scheduled-events.png)
-   + Some events are also shown for affected resources\. For example, in the navigation pane, choose **Instances** and select an instance\. If the instance has an associated instance stop or instance retirement event, it is displayed in the lower pane\.  
-![\[Viewing events in the instance details.\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/event-instance-retirement.png)
 
 ------
 #### [ Old console ]
@@ -125,7 +124,7 @@ NotBefore    : 5/23/2015 12:00:00 AM
 #### [ Instance metadata ]
 
 **To view scheduled events for your instances using instance metadata**  
-You can retrieve information about active maintenance events for your instances from the [instance metadata](ec2-instance-metadata.md) using Instance Metadata Service Version 2 or Instance Metadata Service Version 1\.
+You can retrieve information about active maintenance events for your instances from the [instance metadata](ec2-instance-metadata.md) by using Instance Metadata Service Version 2 or Instance Metadata Service Version 1\.
 
 IMDSv2
 
@@ -156,7 +155,7 @@ The following is example output with information about a scheduled system reboot
 ```
 <a name="viewing-event-history"></a>
 **To view event history about completed or canceled events for your instances using instance metadata**  
-You can retrieve information about completed or canceled events for your instances from [instance metadata](ec2-instance-metadata.md) using Instance Metadata Service Version 2 or Instance Metadata Service Version 1\.
+You can retrieve information about completed or canceled events for your instances from [instance metadata](ec2-instance-metadata.md) by using Instance Metadata Service Version 2 or Instance Metadata Service Version 1\.
 
 IMDSv2
 
@@ -197,7 +196,7 @@ The following is example output with information about a system reboot event tha
 ------
 #### [ AWS Health ]
 
-You can use the AWS Personal Health Dashboard to learn about events that can affect your instance\. The Personal Health Dashboard organizes issues in three groups: open issues, scheduled changes, and other notifications\. The scheduled changes group contains items that are ongoing or upcoming\.
+You can use the AWS Personal Health Dashboard to learn about events that can affect your instance\. The AWS Personal Health Dashboard organizes issues in three groups: open issues, scheduled changes, and other notifications\. The scheduled changes group contains items that are ongoing or upcoming\.
 
 For more information, see [Getting started with the AWS Personal Health Dashboard](https://docs.aws.amazon.com/health/latest/ug/getting-started-phd.html) in the *AWS Health User Guide*\.
 
@@ -224,7 +223,7 @@ After you select the tags to include, the event notifications will include the r
 
 The tags that you choose to include apply to all resources \(instances and Dedicated Hosts\) in the selected Region\. To customize event notifications in other Regions, first select the required Region and then perform the following steps\.
 
-You can include tags in event notifications using one of the following methods\.
+You can include tags in event notifications by using one of the following methods\.
 
 ------
 #### [ New console ]
@@ -256,7 +255,7 @@ aws ec2 register-instance-event-notification-attributes --instance-tag-attribute
 ```
 
 **To include specific tags in event notifications**  
-Use the [ register\-instance\-event\-notification\-attributes](https://docs.aws.amazon.com/cli/latest/reference/ec2/register-instance-event-notification-attributes.html) AWS CLI command and specify the tags to include using the `InstanceTagKeys` parameter\.
+Use the [ register\-instance\-event\-notification\-attributes](https://docs.aws.amazon.com/cli/latest/reference/ec2/register-instance-event-notification-attributes.html) AWS CLI command and specify the tags to include by using the `InstanceTagKeys` parameter\.
 
 ```
 aws ec2 register-instance-event-notification-attributes --instance-tag-attribute 'InstanceTagKeys=["tag_key_1", "tag_key_2", "tag_key_3"]'
@@ -266,7 +265,7 @@ aws ec2 register-instance-event-notification-attributes --instance-tag-attribute
 
 ### Remove tags from event notifications<a name="deregister-tags"></a>
 
-You can remove tags from event notifications using one of the following methods\.
+You can remove tags from event notifications by using one of the following methods\.
 
 ------
 #### [ New console ]
@@ -296,7 +295,7 @@ aws ec2 deregister-instance-event-notification-attributes --instance-tag-attribu
 ```
 
 **To remove specific tags from event notifications**  
-Use the [ deregister\-instance\-event\-notification\-attributes](https://docs.aws.amazon.com/cli/latest/reference/ec2/deregister-instance-event-notification-attributes.html) AWS CLI command and specify the tags to remove using the `InstanceTagKeys` parameter\.
+Use the [ deregister\-instance\-event\-notification\-attributes](https://docs.aws.amazon.com/cli/latest/reference/ec2/deregister-instance-event-notification-attributes.html) AWS CLI command and specify the tags to remove by using the `InstanceTagKeys` parameter\.
 
 ```
 aws ec2 deregister-instance-event-notification-attributes --instance-tag-attribute 'InstanceTagKeys=["tag_key_1", "tag_key_2", "tag_key_3"]'
@@ -306,7 +305,7 @@ aws ec2 deregister-instance-event-notification-attributes --instance-tag-attribu
 
 ### View the tags to be included in event notifications<a name="view-tags"></a>
 
-You can view the tags that are to be included in event notifications using one of the following methods\.
+You can view the tags that are to be included in event notifications by using one of the following methods\.
 
 ------
 #### [ New console ]
@@ -354,7 +353,7 @@ If you stop your linked [EC2\-Classic instance](vpc-classiclink.md#classiclink-l
 
 ### View the reboot event type<a name="view-type-of-scheduled-reboot"></a>
 
-You can view whether a reboot event is an instance reboot or a system reboot using one of the following methods\.
+You can view whether a reboot event is an instance reboot or a system reboot by using one of the following methods\.
 
 ------
 #### [ New console ]
@@ -443,7 +442,7 @@ You can wait for the maintenance to occur as scheduled\. Alternatively, if you w
 
 You can reschedule an event so that it occurs at a specific date and time that suits you\. Only events that have a deadline date can be rescheduled\. There are other [limitations for rescheduling an event](#limitations-for-rescheduling)\.
 
-You can reschedule an event using one of the following methods\.
+You can reschedule an event by using one of the following methods\.
 
 ------
 #### [ New console ]
@@ -464,7 +463,7 @@ You can reschedule an event using one of the following methods\.
 
 1. Choose **Save**\.
 
-   It might take 1\-2 minutes for the updated event start time to be reflected in the console\.
+   It might take a minute or 2 for the updated event start time to be reflected in the console\.
 
 ------
 #### [ Old console ]
@@ -485,7 +484,7 @@ You can reschedule an event using one of the following methods\.
 
 1. Choose **Schedule Event**\.
 
-   It might take 1\-2 minutes for the updated event start time to be reflected in the console\.
+   It might take a minute or 2 for the updated event start time to be reflected in the console\.
 
 ------
 #### [ AWS CLI ]
@@ -515,13 +514,13 @@ You can reschedule an event using one of the following methods\.
    ]
    ```
 
-1. To reschedule the event, use the [modify\-instance\-event\-start\-time](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-event-start-time.html) command\. Specify the new event start time using the `not-before` parameter\. The new event start time must fall before the `NotBeforeDeadline`\.
+1. To reschedule the event, use the [modify\-instance\-event\-start\-time](https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-event-start-time.html) command\. Specify the new event start time by using the `not-before` parameter\. The new event start time must fall before the `NotBeforeDeadline`\.
 
    ```
    aws ec2 modify-instance-event-start-time --instance-id i-1234567890abcdef0 --instance-event-id instance-event-0d59937288b749b32 --not-before 2019-03-25T10:00:00.000
    ```
 
-   It might take 1\-2 minutes before the [describe\-instance\-status](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-status.html) command returns the updated `not-before` parameter value\.
+   It might take a minute or 2 before the [describe\-instance\-status](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-status.html) command returns the updated `not-before` parameter value\.
 
 ------
 

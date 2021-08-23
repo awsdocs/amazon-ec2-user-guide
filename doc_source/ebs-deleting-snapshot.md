@@ -26,12 +26,15 @@ In the following diagram, Volume 1 is shown at three points in time\. A snapshot
 The following considerations apply to deleting snapshots:
 + You can't delete a snapshot of the root device of an EBS volume used by a registered AMI\. You must first deregister the AMI before you can delete the snapshot\. For more information, see [Deregister your Linux AMI](deregister-ami.md)\.
 + You can't delete a snapshot that is managed by the AWS Backup service using Amazon EC2\. Instead, use AWS Backup to delete the corresponding recovery points in the backup vault\.
-+ You can create, retain, and delete snapshots manually, or you can use Amazon Data Lifecycle Manager to manage your snapshots for you\. For more information, see [Data Lifecycle Manager](snapshot-lifecycle.md)\.
++ You can create, retain, and delete snapshots manually, or you can use Amazon Data Lifecycle Manager to manage your snapshots for you\. For more information, see [Amazon Data Lifecycle Manager](snapshot-lifecycle.md)\.
 + Although you can delete a snapshot that is still in progress, the snapshot must complete before the deletion takes effect\. This might take a long time\. If you are also at your concurrent snapshot limit, and you attempt to take an additional snapshot, you might get a `ConcurrentSnapshotLimitExceeded` error\. For more information, see the [Service Quotas](https://docs.aws.amazon.com/general/latest/gr/ebs-service.html#limits_ebs) for Amazon EBS in the *Amazon Web Services General Reference*\.
 
 ## Delete a snapshot<a name="ebs-delete-snapshot"></a>
 
-Use the following procedure to delete a snapshot\.
+To delete a snapshot, use one of the following methods\. 
+
+------
+#### [ Console ]
 
 **To delete a snapshot using the console**
 
@@ -43,12 +46,19 @@ Use the following procedure to delete a snapshot\.
 
 1. Choose **Yes, Delete**\.
 
+------
+#### [ AWS CLI ]
+
 **To delete a snapshot using the command line**
 
 You can use one of the following commands\. For more information about these command line interfaces, see [Access Amazon EC2](concepts.md#access-ec2)\.
 + [delete\-snapshot](https://docs.aws.amazon.com/cli/latest/reference/ec2/delete-snapshot.html) \(AWS CLI\)
 + [Remove\-EC2Snapshot](https://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2Snapshot.html) \(AWS Tools for Windows PowerShell\)
 
+------
+
 ## Delete a multi\-volume snapshot<a name="ebs-delete-snapshot-multi-volume"></a>
 
-To delete multi\-volume snapshots, retrieve all of the snapshots for your multi\-volume group using the tag you applied to the group when you created the snapshots\. Then, delete the snapshots individually\. You will not be prevented from deleting individual snapshots in the multi\-volume snapshots group\.
+To delete multi\-volume snapshots, retrieve all of the snapshots for your multi\-volume snapshot set using the tag you applied to the set when you created the snapshots\. Then, delete the snapshots individually\.
+
+You will not be prevented from deleting individual snapshots in the multi\-volume snapshot set\. If you delete a snapshot while it is in the `pending state`, only that snapshot is deleted\. The other snapshots in the multi\-volume snapshot set still complete successfully\.

@@ -4,11 +4,11 @@ The `standard` mode is a configuration option for burstable performance instance
 
 ## How standard burstable performance instances work<a name="how-burstable-performance-instances-standard-works"></a>
 
-When a burstable performance instance configured as `standard` is in a running state, it continuously earns \(at a millisecond\-level resolution\) a set rate of earned credits per hour\. For T2 Standard, when the instance is stopped, it loses all its accrued credits, and its credit balance is reset to zero\. When it is restarted, it receives a new set of launch credits, and begins to accrue earned credits\. For T3 and T4g Standard instances, the CPU credit balance persists for seven days after the instance stops and the credits are lost thereafter\. If you start the instance within seven days, no credits are lost\.
+When a burstable performance instance configured as `standard` is in a running state, it continuously earns \(at a millisecond\-level resolution\) a set rate of earned credits per hour\. For T2 Standard, when the instance is stopped, it loses all its accrued credits, and its credit balance is reset to zero\. When it is restarted, it receives a new set of launch credits, and begins to accrue earned credits\. For T4g, T3a and T3 Standard instances, the CPU credit balance persists for seven days after the instance stops and the credits are lost thereafter\. If you start the instance within seven days, no credits are lost\.
 
 T2 Standard instances receive two types of CPU credits: *earned credits* and *launch credits*\. When a T2 Standard instance is in a running state, it continuously earns \(at a millisecond\-level resolution\) a set rate of earned credits per hour\. At start, it has not yet earned credits for a good startup experience; therefore, to provide a good startup experience, it receives launch credits at start, which it spends first while it accrues earned credits\.
 
-T3 and T4g Standard instances do not receive launch credits\.
+T4g, T3a and T3 instances do not receive launch credits because they support Unlimited mode\. The Unlimited mode credit configuration enables T4g, T3a and T3 instances to use as much CPU as needed to burst beyond baseline and for as long as needed\.
 
 ## Launch credits<a name="launch-credits"></a>
 

@@ -1,6 +1,6 @@
 # Set up EC2 Instance Connect<a name="ec2-instance-connect-set-up"></a>
 
-To use EC2 Instance Connect to connect to an instance, you need to configure every instance that will support using Instance Connect \(this is a one\-time requirement for each instance\), and you need to grant permission to every IAM principal that will use Instance Connect\.
+To use EC2 Instance Connect to connect to an instance, you need to configure every instance that will support using Instance Connect \(this is a one\-time requirement for each instance\), and you need to grant permission to every IAM principal that will use Instance Connect\. After completing the following setup tasks, you can [connect to your instance using EC2 Instance Connect](ec2-instance-connect-methods.md)\.
 
 **Topics**
 + [Task 1: Configure network access to an instance](#ec2-instance-connect-setup-security-group)
@@ -11,7 +11,7 @@ To use EC2 Instance Connect to connect to an instance, you need to configure eve
 For more information about setting up EC2 Instance Connect, see [Securing your bastion hosts with Amazon EC2 Instance Connect](http://aws.amazon.com/blogs/infrastructure-and-automation/securing-your-bastion-hosts-with-amazon-ec2-instance-connect/)\.
 
 **Limitations**
-+ The following Linux distributions are supported:
++ You can install EC2 Instance Connect on the following supported Linux distributions:
   + Amazon Linux 2 \(any version\)
   + Ubuntu 16\.04 or later
 + If you configured the `AuthorizedKeysCommand` and `AuthorizedKeysCommandUser` settings for SSH authentication, the EC2 Instance Connect installation will not update them\. As a result, you cannot use Instance Connect\.
@@ -33,14 +33,18 @@ For more information about setting up EC2 Instance Connect, see [Securing your b
 ## Task 1: Configure network access to an instance<a name="ec2-instance-connect-setup-security-group"></a>
 
 You must configure the following network access so that your users can connect to your instance using EC2 Instance Connect:
-+ If your users will access your instance over the internet, then your instance must have a public IP address\. For more information, see [Public IPv4 addresses and external DNS hostnames](using-instance-addressing.md#concepts-public-addresses)\.
++ If your users will access your instance over the internet, then your instance must have a public IP address and be in a public subnet\. For more information, see [Enable internet access](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html#vpc-igw-internet-access) in the *Amazon VPC User Guide*\.
 + If your users will access your instance via the instance's private IP address, then you must establish private network connectivity to your VPC, such as by using AWS Direct Connect, AWS Site\-to\-Site VPN, or VPC peering, so that your users can reach the instance's private IP address\.
 + Ensure that the security group associated with your instance [allows inbound SSH traffic](authorizing-access-to-an-instance.md#add-rule-authorize-access) on port 22 from your IP address or from your network\. The default security group for the VPC does not allow incoming SSH traffic by default\. The security group created by the launch wizard allows incoming SSH traffic by default\. For more information, see [Authorize inbound traffic for your Linux instances](authorizing-access-to-an-instance.md)\.
-+ \(Amazon EC2 console browser\-based client\) We recommend that your instance allows inbound SSH traffic from the [recommended IP block published for the service](https://ip-ranges.amazonaws.com/ip-ranges.json)\. Use the `EC2_INSTANCE_CONNECT` filter for the `service` parameter to get the IP address ranges in the EC2 Instance Connect subset\. For more information, see [AWS IP address ranges](https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html) in the *Amazon Web Services General Reference*\.
++ \(Amazon EC2 console browser\-based client\) Ensure that the security group associated with your instance allows inbound SSH traffic from the IP address range for this service\. To identify the address range, download the JSON file provided by AWS and filter for the subset for EC2 Instance Connect, using `EC2_INSTANCE_CONNECT` as the service value\. For more information about downloading the JSON file and filtering by service, see [AWS IP address ranges](https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html) in the *Amazon Web Services General Reference*\.
 
 ## Task 2: \(Conditional\) Install EC2 Instance Connect on an instance<a name="ec2-instance-connect-install"></a>
 
-Amazon Linux 2 2\.0\.20190618 or later and Ubuntu 20\.04 or later are preconfigured with EC2 Instance Connect\. If you launched your instance using one of these AMIs, you can skip this task\. For other supported Linux distributions, you must install Instance Connect on every instance that will support connecting using Instance Connect\.
+You can skip this task if you used one of the following AMIs to launch your instance because they come preinstalled with EC2 Instance Connect:
++ Amazon Linux 2 2\.0\.20190618 or later
++ Ubuntu 20\.04 or later
+
+For earlier versions of these AMIs, you must install Instance Connect on every instance that will support connecting using Instance Connect\.
 
 Installing Instance Connect configures the SSH daemon on the instance\. The procedure for installing Instance Connect is different for instances launched using Amazon Linux 2 and Ubuntu\.
 
@@ -128,7 +132,7 @@ If you previously configured `AuthorizedKeysCommand` and `AuthorizedKeysCommandU
 
 1. Install the Instance Connect package on your instance\.
 
-   For Ubuntu, use the sudo apt\-get command to install the `.deb` package\.
+   For Ubuntu, use the sudo apt\-get command\.
 
    ```
    ubuntu:~$ sudo apt-get install ec2-instance-connect
@@ -154,7 +158,7 @@ If you previously configured `AuthorizedKeysCommand` and `AuthorizedKeysCommandU
    Instance Connect was successfully installed if the `AuthorizedKeysCommand` and `AuthorizedKeysCommandUser` lines in the `/lib/systemd/system/ssh.service.d/ec2-instance-connect.conf` file contain the following values:
 
    ```
-   AuthorizedKeysCommand /usr/share/ec2-instance-connect/eic_run_authorized_keys %u %f
+   AuthorizedKeysCommand /usr/share/ec2-instance-connect/eic_run_authorized_keys %%u %%f
    AuthorizedKeysCommandUser ec2-instance-connect
    ```
    + `AuthorizedKeysCommand` sets the `eic_run_authorized_keys` script to look up the keys from the instance metadata

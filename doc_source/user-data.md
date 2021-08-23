@@ -23,7 +23,7 @@ In the following examples, the commands from the [Install a LAMP Web Server on A
 
 ## Prerequisites<a name="user-data-requirements"></a>
 
-The following examples assume that your instance has a public DNS name that is reachable from the Internet\. For more information, see [Step 1: Launch an instance](EC2_GetStarted.md#ec2-launch-instance)\. You must also configure your security group to allow SSH \(port 22\), HTTP \(port 80\), and HTTPS \(port 443\) connections\. For more information about these prerequisites, see [Set up to use Amazon EC2](get-set-up-for-amazon-ec2.md)\.
+The following examples assume that your instance has a public DNS name that is reachable from the internet\. For more information, see [Step 1: Launch an instance](EC2_GetStarted.md#ec2-launch-instance)\. You must also configure your security group to allow SSH \(port 22\), HTTP \(port 80\), and HTTPS \(port 443\) connections\. For more information about these prerequisites, see [Set up to use Amazon EC2](get-set-up-for-amazon-ec2.md)\.
 
 Also, these instructions are intended for use with Amazon Linux 2, and the commands and directives may not work for other Linux distributions\. For more information about other distributions, such as their support for cloud\-init, see their specific documentation\.
 
@@ -32,7 +32,7 @@ Also, these instructions are intended for use with Amazon Linux 2, and the comma
 If you are familiar with shell scripting, this is the easiest and most complete way to send instructions to an instance at launch\. Adding these tasks at boot time adds to the amount of time it takes to boot the instance\. You should allow a few minutes of extra time for the tasks to complete before you test that the user script has finished successfully\.
 
 **Important**  
-By default, user data scripts and cloud\-init directives run only during the boot cycle when you first launch an instance\. You can update your configuration to ensure that your user data scripts and cloud\-init directives run every time you restart your instance\. For more information, see [How can I execute user data with every restart of my EC2 instance?](https://aws.amazon.com/premiumsupport/knowledge-center/execute-user-data-ec2/) in the AWS Knowledge Center\.
+By default, user data scripts and cloud\-init directives run only during the boot cycle when you first launch an instance\. You can update your configuration to ensure that your user data scripts and cloud\-init directives run every time you restart your instance\. For more information, see [How can I utilize user data to automatically run a script with every restart of my Amazon EC2 Linux instance?](https://aws.amazon.com/premiumsupport/knowledge-center/execute-user-data-ec2/) in the AWS Knowledge Center\.
 
 User data shell scripts must start with the `#!` characters and the path to the interpreter you want to read the script \(commonly /bin/bash\)\. For a great introduction on shell scripting, see [the BASH Programming HOW\-TO](http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO.html) at the Linux Documentation Project \([tldp\.org](http://tldp.org)\)\.
 
@@ -143,7 +143,7 @@ The cloud\-init package configures specific aspects of a new Amazon Linux instan
 The cloud\-init user directives can be passed to an instance at launch the same way that a script is passed, although the syntax is different\. For more information about cloud\-init, go to [http://cloudinit\.readthedocs\.org/en/latest/index\.html](http://cloudinit.readthedocs.org/en/latest/index.html)\.
 
 **Important**  
-By default, user data scripts and cloud\-init directives run only during the boot cycle when you first launch an instance\. You can update your configuration to ensure that your user data scripts and cloud\-init directives run every time you restart your instance\. For more information, see [How can I execute user data with every restart of my EC2 instance?](https://aws.amazon.com/premiumsupport/knowledge-center/execute-user-data-ec2/) in the AWS Knowledge Center\.
+By default, user data scripts and cloud\-init directives run only during the boot cycle when you first launch an instance\. You can update your configuration to ensure that your user data scripts and cloud\-init directives run every time you restart your instance\. For more information, see [How can I utilize user data to automatically run a script with every restart of my Amazon EC2 Linux instance?](https://aws.amazon.com/premiumsupport/knowledge-center/execute-user-data-ec2/) in the AWS Knowledge Center\.
 
 Adding these tasks at boot time adds to the amount of time it takes to boot an instance\. You should allow a few minutes of extra time for the tasks to complete before you test that your user data directives have completed\.
 

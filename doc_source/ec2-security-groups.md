@@ -10,7 +10,9 @@ To allow traffic to a Windows instance, see [Amazon EC2 security groups for Wind
 
 **Contents**
 + [Security group rules](security-group-rules.md)
-+ [Connection tracking](security-group-connection-tracking.md)
++ [Security group connection tracking](security-group-connection-tracking.md)
+  + [Untracked connections](security-group-connection-tracking.md#untracked-connections)
+  + [Example](security-group-connection-tracking.md#connection-tracking-example)
   + [Throttling](security-group-connection-tracking.md#connection-tracking-throttling)
 + [Default and custom security groups](default-custom-security-groups.md)
   + [Default security groups](default-custom-security-groups.md#default-security-group)

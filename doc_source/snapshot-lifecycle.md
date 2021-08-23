@@ -17,7 +17,8 @@ Amazon Data Lifecycle Manager cannot be used to automate the creation, retention
 + [How Amazon Data Lifecycle Manager works](#dlm-elements)
 + [Considerations for Amazon Data Lifecycle Manager](#dlm-considerations)
 + [Prerequisites](#dlm-prerequisites)
-+ [Automate snapshot and EBS\-backed AMI lifecycles](snapshot-ami-policy.md)
++ [Automate snapshot lifecycles](snapshot-ami-policy.md)
++ [Automate AMI lifecycles](ami-policy.md)
 + [Automate cross\-account snapshot copies](event-policy.md)
 + [View, modify, and delete lifecycle policies](view-modify-delete.md)
 + [Monitor the lifecycle of snapshots and AMIs](dlm-monitor-lifecycle.md)
@@ -69,10 +70,10 @@ The target tags that Amazon Data Lifecycle Manager uses to associate volumes wit
 ### Lifecycle policies<a name="dlm-lifecycle-policies"></a>
 
 A lifecycle policy consists of these core settings:
-+ **Policy type**—Defines the type of resources that the policy can manage\. Amazon Data Lifecycle Manager supports two types of lifecycle policies: 
-  + Snapshot lifecycle policy—Used to automate the lifecycle of EBS snapshots\. These policies can target EBS volumes and instances\.
-  + EBS\-backed AMI lifecycle policy—Used to automate the lifecycle of EBS\-backed AMIs\. These policies can target instances only\.
-  + Cross\-account copy event policy—Used to automate the copying of snapshots across accounts\. This policy type should be used in conjunction with an EBS snapshot policy that shares snapshots across accounts\.
++ **Policy type**—Defines the type of resources that the policy can manage\. Amazon Data Lifecycle Manager supports the following types of lifecycle policies:
+  + Snapshot lifecycle policy—Used to automate the lifecycle of EBS snapshots\. These policies can target individual EBS volumes or all EBS volumes attached to an instance\.
+  + EBS\-backed AMI lifecycle policy—Used to automate the lifecycle of EBS\-backed AMIs and their backing snapshots\. These policies can target instances only\.
+  + Cross\-account copy event policy—Used to automate snapshot copies across accounts\. Use this policy type in conjunction with an EBS snapshot policy that shares snapshots across accounts\.
 + **Resource type**—Defines the type of resources that are targeted by the policy\. Snapshot lifecycle policies can target instances or volumes\. Use `VOLUME` to create snapshots of individual volumes, or use `INSTANCE` to create multi\-volume snapshots of all of the volumes that are attached to an instance\. For more information, see [Multi\-volume snapshots](ebs-creating-snapshot.md#ebs-create-snapshot-multi-volume)\. AMI lifecycle policies can target instances only\. One AMI is created that includes snapshots of all of the volumes that are attached to the target instance\. 
 + **Target tags**—Specifies the tags that must be assigned to an EBS volume or an Amazon EC2 instance for it to be targeted by the policy\.
 + **Schedules**—The start times and intervals for creating snapshots or AMIs\. The first snapshot or AMI creation operation starts within one hour after the specified start time\. Subsequent snapshot or AMI creation operations start within one hour of their scheduled time\. A policy can have up to four schedules: one mandatory schedule, and up to three optional schedules\. For more information, see [Policy schedules](#dlm-lifecycle-schedule)\. 
@@ -90,11 +91,11 @@ Policy schedules define when snapshots or AMIs are created by the policy\. Polic
 
 Adding multiple schedules to a single policy lets you create snapshots or AMIs at different frequencies using the same policy\. For example, you can create a single policy that creates daily, weekly, monthly, and yearly snapshots\. This eliminates the need to manage multiple policies\.
 
-For each schedule, you can define the frequency, fast snapshot restore settings \(snapshot lifecycle policies only\), cross\-Region copy rules, and tags\. The tags that are assigned to a schedule are automatically assigned to the snapshots or AMIs that are created when the schedule is triggered\. In addition, Amazon Data Lifecycle Manager automatically assigns a system\-generated tag based on the schedule's frequency to each snapshot or AMI\.
+For each schedule, you can define the frequency, fast snapshot restore settings \(snapshot lifecycle policies only\), cross\-Region copy rules, and tags\. The tags that are assigned to a schedule are automatically assigned to the snapshots or AMIs that are created when the schedule is initiated\. In addition, Amazon Data Lifecycle Manager automatically assigns a system\-generated tag based on the schedule's frequency to each snapshot or AMI\.
 
-Each schedule is triggered individually based on its frequency\. If multiple schedules are triggered at the same time, Amazon Data Lifecycle Manager creates only one snapshot or AMI and applies the retention settings of the schedule that has the highest retention period\. The tags of all of the triggered schedules are applied to the snapshot or AMI\.
-+ \(Snapshot lifecycle policies only\) If more than one of the triggered schedules is enabled for fast snapshot restore, then the snapshot is enabled for fast snapshot restore in all of the Availability Zones specified across all of the triggered schedules\. The highest retention settings of the triggered schedules is used for each Availability Zone\.
-+ If more than one of the triggered schedules is enabled for cross\-Region copy, the snapshot or AMI is copied to all Regions specified across all of the triggered schedules\. The highest retention period of the triggered schedules is applied\.
+Each schedule is initiated individually based on its frequency\. If multiple schedules are initiated at the same time, Amazon Data Lifecycle Manager creates only one snapshot or AMI and applies the retention settings of the schedule that has the highest retention period\. The tags of all of the initiated schedules are applied to the snapshot or AMI\.
++ \(Snapshot lifecycle policies only\) If more than one of the initiated schedules is enabled for fast snapshot restore, then the snapshot is enabled for fast snapshot restore in all of the Availability Zones specified across all of the initiated schedules\. The highest retention settings of the initiated schedules is used for each Availability Zone\.
++ If more than one of the initiated schedules is enabled for cross\-Region copy, the snapshot or AMI is copied to all Regions specified across all of the initiated schedules\. The highest retention period of the initiated schedules is applied\.
 
 ## Considerations for Amazon Data Lifecycle Manager<a name="dlm-considerations"></a>
 

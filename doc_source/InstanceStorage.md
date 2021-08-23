@@ -40,6 +40,8 @@ The instance type determines the size of the instance store available and the ty
 
 Some instance types use NVMe or SATA\-based solid state drives \(SSD\) to deliver high random I/O performance\. This is a good option when you need storage with very low latency, but you don't need the data to persist when the instance terminates or you can take advantage of fault\-tolerant architectures\. For more information, see [SSD instance store volumes](ssd-instance-store.md)\.
 
+The data on NVMe instance store volumes and some HDD instance store volumes is encrypted at rest\. For more information, see [Data protection in Amazon EC2](data-protection.md)\.
+
 The following table provides the quantity, size, type, and performance optimizations of instance store volumes available on each supported instance type\. For a complete list of instance types, including EBS\-only types, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)\.
 
 
@@ -100,6 +102,8 @@ The following table provides the quantity, size, type, and performance optimizat
 | f1\.16xlarge |  4 x 940 GB \(3\.76 TB\)  | NVMe SSD |  | ✔ | 
 | g2\.2xlarge | 1 x 60 GB | SSD | ✔ |  | 
 | g2\.8xlarge | 2 x 120 GB \(240 GB\) | SSD | ✔ |  | 
+| g4ad\.xlarge | 1 x 150 GB | NVMe SSD |  | ✔ | 
+| g4ad\.2xlarge | 1 x 300 GB | NVMe SSD |  | ✔ | 
 | g4ad\.4xlarge | 1 x 600 GB | NVMe SSD |  | ✔ | 
 | g4ad\.8xlarge | 1 x 1,200 GB | NVMe SSD |  | ✔ | 
 | g4ad\.16xlarge | 2 x 1,200 GB \(2\.4 TB\) | NVMe SSD |  | ✔ | 
@@ -252,3 +256,47 @@ The following table provides the quantity, size, type, and performance optimizat
 \*\* For more information, see [Instance store volume TRIM support](ssd-instance-store.md#InstanceStoreTrimSupport)\.
 
 † The `c1.medium` and `m1.small` instance types also include a 900 MB instance store swap volume, which may not be automatically enabled at boot time\. For more information, see [Instance store swap volumes](instance-store-swap-volumes.md)\.
+
+**To query instance store volume information using the AWS CLI**  
+You can use the [describe\-instance\-types](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-types.html) AWS CLI command to display information about an instance type, such as its instance store volumes\. The following example displays the total size of instance storage for all R5 instances with instance store volumes\.
+
+```
+aws ec2 describe-instance-types --filters "Name=instance-type,Values=r5*" "Name=instance-storage-supported,Values=true" --query "InstanceTypes[].[InstanceType, InstanceStorageInfo.TotalSizeInGB]" --output table
+---------------------------
+|  DescribeInstanceTypes  |
++----------------+--------+
+|  r5ad.24xlarge |  3600  |
+|  r5ad.12xlarge |  1800  |
+|  r5dn.8xlarge  |  1200  |
+|  r5ad.8xlarge  |  1200  |
+|  r5ad.large    |  75    |
+|  r5d.4xlarge   |  600   |
+   . . .
+|  r5dn.2xlarge  |  300   |
+|  r5d.12xlarge  |  1800  |
++----------------+--------+
+```
+
+The following example displays the complete instance storage details for the specified instance type\.
+
+```
+aws ec2 describe-instance-types --filters "Name=instance-type,Values=r5d.4xlarge" --query "InstanceTypes[].InstanceStorageInfo"
+```
+
+The example output shows that this instance type has two 300 GB NVMe SSD volumes, for a total of 600 GB of instance storage\.
+
+```
+[
+    {
+        "TotalSizeInGB": 600,
+        "Disks": [
+            {
+                "SizeInGB": 300,
+                "Count": 2,
+                "Type": "ssd"
+            }
+        ],
+        "NvmeSupport": "required"
+    }
+]
+```

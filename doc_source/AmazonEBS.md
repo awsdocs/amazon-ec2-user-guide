@@ -10,6 +10,7 @@ With Amazon EBS, you pay only for what you use\. For more information about Amaz
 + [Features of Amazon EBS](#ebs-features)
 + [Amazon EBS volumes](ebs-volumes.md)
 + [Amazon EBS snapshots](EBSSnapshots.md)
++ [Amazon Data Lifecycle Manager](snapshot-lifecycle.md)
 + [Amazon EBS data services](ebs-data-services.md)
 + [Amazon EBS and NVMe on Linux instances](nvme-ebs-volumes.md)
 + [Amazon EBS–optimized instances](ebs-optimized.md)
@@ -24,7 +25,7 @@ With Amazon EBS, you pay only for what you use\. For more information about Amaz
 
   The following is a summary of performance and use cases for each volume type\.
   + General Purpose SSD volumes \(`gp2` and `gp3`\) balance price and performance for a wide variety of transactional workloads\. These volumes are ideal for use cases such as boot volumes, medium\-size single instance databases, and development and test environments\.
-  + Provisioned IOPS SSD volumes \(`io1` and `io2`\) support up to 64,000 IOPS and 1,000 MiB/s of throughput\. This enables you to predictably scale to tens of thousands of IOPS per EC2 instance\.
+  + Provisioned IOPS SSD volumes \(`io1` and `io2`\) are designed to meet the needs of I/O\-intensive workloads that are sensitive to storage performance and consistency\. They provide a consistent IOPS rate that you specify when you create the volume\. This enables you to predictably scale to tens of thousands of IOPS per instance\. Additionally, io2 volumes provide the highest levels of volume durability\.
   + Throughput Optimized HDD volumes \(`st1`\) provide low\-cost magnetic storage that defines performance in terms of throughput rather than IOPS\. These volumes are ideal for large, sequential workloads such as Amazon EMR, ETL, data warehouses, and log processing\.
   + Cold HDD volumes \(`sc1`\) provide low\-cost magnetic storage that defines performance in terms of throughput rather than IOPS\. These volumes are ideal for large, sequential, cold\-data workloads\. If you require infrequent access to your data and are looking to save costs, these volumes provides inexpensive block storage\.
 + You can create your EBS volumes as encrypted volumes, in order to meet a wide range of data\-at\-rest encryption requirements for regulated/audited data and applications\. When you create an encrypted EBS volume and attach it to a supported instance type, data stored at rest on the volume, disk I/O, and snapshots created from the volume are all encrypted\. The encryption occurs on the servers that host EC2 instances, providing encryption of data\-in\-transit from EC2 instances to EBS storage\. For more information, see [Amazon EBS encryption](EBSEncryption.md)\.

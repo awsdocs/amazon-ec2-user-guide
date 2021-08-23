@@ -6,7 +6,9 @@ Amazon provides the Amazon Time Sync Service, which is accessible from all EC2 i
 
 The Amazon Time Sync Service is available through NTP at the `169.254.169.123` IP address for any instance running in a VPC\. Your instance does not require access to the internet, and you do not have to configure your security group rules or your network ACL rules to allow access\. The latest versions of Amazon Linux 2 and Amazon Linux AMIs synchronize with the Amazon Time Sync Service by default\.
 
-Use the following procedures to configure the Amazon Time Sync Service on your instance using the `chrony` client\. Alternatively, you can use external NTP sources\. For more information about NTP and public time sources, see [http://www\.ntp\.org/](http://www.ntp.org/)\. An instance needs access to the internet for the external NTP time sources to work\. 
+Use the following procedures to configure the Amazon Time Sync Service on your instance using the `chrony` client\. Alternatively, you can use external NTP sources\. For more information about NTP and public time sources, see [http://www\.ntp\.org/](http://www.ntp.org/)\. An instance needs access to the internet for the external NTP time sources to work\.
+
+For Windows instances, see [Set the time for a Windows instance](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/windows-set-time.html)\.
 
 **Topics**
 + [Configure the Amazon Time Sync Service on Amazon Linux AMI](#configure-amazon-time-service-amazon-linux)

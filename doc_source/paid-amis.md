@@ -9,7 +9,7 @@ The AWS Marketplace is an online store where you can buy software that runs on A
 Launching an instance from a paid AMI is the same as launching an instance from any other AMI\. No additional parameters are required\. The instance is charged according to the rates set by the owner of the AMI, as well as the standard usage fees for the related web services, for example, the hourly rate for running an m1\.small instance type in Amazon EC2\. Additional taxes might also apply\. The owner of the paid AMI can confirm whether a specific instance was launched using that paid AMI\. 
 
 **Important**  
-Amazon DevPay is no longer accepting new sellers or products\. AWS Marketplace is now the single, unified e\-commerce platform for selling software and services through AWS\. For information about how to deploy and sell software from AWS Marketplace, see [Selling on AWS Marketplace](https://aws.amazon.com/marketplace/help/200899830)\. AWS Marketplace supports AMIs backed by Amazon EBS\.
+Amazon DevPay is no longer accepting new sellers or products\. AWS Marketplace is now the single, unified e\-commerce platform for selling software and services through AWS\. For information about how to deploy and sell software from AWS Marketplace, see [Selling in AWS Marketplace](http://aws.amazon.com/marketplace/partners/management-tour)\. AWS Marketplace supports AMIs backed by Amazon EBS\.
 
 **Topics**
 + [Sell your AMI](#selling-your-ami)
@@ -24,7 +24,7 @@ Amazon DevPay is no longer accepting new sellers or products\. AWS Marketplace i
 
 You can sell your AMI using AWS Marketplace\. AWS Marketplace offers an organized shopping experience\. Additionally, AWS Marketplace also supports AWS features such as Amazon EBS\-backed AMIs, Reserved Instances, and Spot Instances\.
 
-For information about how to sell your AMI on the AWS Marketplace, see [Selling on AWS Marketplace](https://aws.amazon.com/marketplace/help/200899830/)\. 
+For information about how to sell your AMI on the AWS Marketplace, see [Selling in AWS Marketplace](http://aws.amazon.com/marketplace/partners/management-tour)\. 
 
 ## Find a paid AMI<a name="using-paid-amis-finding-paid-ami"></a>
 

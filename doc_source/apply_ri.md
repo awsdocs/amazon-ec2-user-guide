@@ -51,6 +51,8 @@ The following table lists the different sizes within an instance family, and the
 | 18xlarge | 144 | 
 | 24xlarge | 192 | 
 | 32xlarge | 256 | 
+| 56xlarge | 448 | 
+| 112xlarge | 896 | 
 
 For example, a `t2.medium` instance has a normalization factor of 2\. If you purchase a `t2.medium` default tenancy Amazon Linux/Unix Reserved Instance in the US East \(N\. Virginia\) and you have two running `t2.small` instances in your account in that Region, the billing benefit is applied in full to both instances\. 
 
@@ -76,6 +78,7 @@ The `metal` instance size does not have a single normalization factor\. A bare m
 |  c6g\.metal \| c6gd\.metal \| i3\.metal \| m6g\.metal \| m6gd\.metal \| r6g\.metal \| r6gd\.metal \| x2gd\.metal  | 128 | 
 | c5n\.metal | 144 | 
 |  c5\.metal \| c5d\.metal \| i3en\.metal \| m5\.metal \| m5d\.metal \| m5dn\.metal \| m5n\.metal \| r5\.metal \| r5b\.metal \| r5d\.metal \| r5dn\.metal \| r5n\.metal  | 192 | 
+| u\-\*\.metal | 896 | 
 
 For example, an `i3.metal` instance has a normalization factor of 128\. If you purchase an `i3.metal` default tenancy Amazon Linux/Unix Reserved Instance in the US East \(N\. Virginia\), the billing benefit can apply as follows:
 + If you have one running `i3.16xlarge` in your account in that Region, the billing benefit is applied in full to the `i3.16xlarge` instance \(`i3.16xlarge` normalization factor = 128\)\.

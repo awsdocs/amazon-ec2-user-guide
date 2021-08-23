@@ -30,6 +30,7 @@ Amazon EC2 supports the following Linux platforms for Reserved Instances:
 + Linux with SQL Server Enterprise
 + SUSE Linux
 + Red Hat Enterprise Linux
++ Red Hat Enterprise Linux with HA
 
 When you purchase a Reserved Instance, you must choose an offering for a *platform* that represents the operating system for your instance\.
 + For SUSE Linux and RHEL distributions, you must choose offerings for those specific platforms, i\.e\., for the **SUSE Linux** or **Red Hat Enterprise Linux** platforms\.

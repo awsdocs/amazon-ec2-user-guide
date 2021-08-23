@@ -56,7 +56,7 @@ If this option is disabled, your instance isn't an Amazon EBS\-backed instance\.
    + **Image description** – An optional description of the image, up to 255 characters\.
    + **No reboot** – This option is not selected by default\. Amazon EC2 shuts down the instance, takes snapshots of any attached volumes, creates and registers the AMI, and then reboots the instance\. Select **No reboot** to avoid having your instance shut down\.
 **Warning**  
-If you select **No reboot**, we can't guarantee the file system integrity of the created image\.
+If you select **No reboot**, the AMI will be crash consistent \(all the volumes are snapshotted at the same time\), but *not* application consistent \(all the operating system buffers are not flushed to disk before the snapshots are created\)\.
    + **Instance volumes** – The fields in this section enable you to modify the root volume, and add additional Amazon EBS and instance store volumes\.
      + The root volume is defined in the first row\. To change the size of the root volume, for **Size**, enter the required value\.
      + If you select **Delete on termination**, when you terminate the instance created from this AMI, the EBS volume is deleted\. If you clear **Delete on termination**, when you terminate the instance, the EBS volume is not deleted\. For more information, see [Preserve Amazon EBS volumes on instance termination](terminating-instances.md#preserving-volumes-on-termination)\.

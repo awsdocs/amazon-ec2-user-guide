@@ -14,6 +14,8 @@ For Spot Fleet, you can't specify an network interface ID in a launch specificat
 + [Example 6: Launch a Spot Fleet using instance weighting](#fleet-config6)
 + [Example 7: Launch a Spot Fleet with On\-Demand capacity](#fleet-config7)
 + [Example 8: Configure Capacity Rebalancing to launch replacement Spot Instances](#fleet-config8)
++ [Example 9: Launch Spot Instances in a capacity\-optimized fleet](#fleet-config9)
++ [Example 10: Launch Spot Instances in a capacity\-optimized fleet with priorities](#fleet-config10)
 
 ## Example 1: Launch Spot Instances using the lowest\-priced Availability Zone or subnet in the Region<a name="fleet-config1"></a>
 
@@ -548,5 +550,86 @@ The effectiveness of the Capacity Rebalancing strategy depends on the number of 
             }
         }
     }
+}
+```
+
+## Example 9: Launch Spot Instances in a capacity\-optimized fleet<a name="fleet-config9"></a>
+
+The following example demonstrates how to configure a Spot Fleet with a Spot allocation strategy that optimizes for capacity\. To optimize for capacity, you must set `AllocationStrategy` to `capacityOptimized`\.
+
+In the following example, the three launch specifications specify three Spot capacity pools\. The target capacity is 50 Spot Instances\. The Spot Fleet attempts to launch 50 Spot Instances into the Spot capacity pool with optimal capacity for the number of instances that are launching\.
+
+```
+{
+    "TargetCapacity": "50",
+    "SpotFleetRequestConfig": {
+        "AllocationStrategy": "capacityOptimized",
+    },
+    "LaunchTemplateConfigs": [
+        {
+            "LaunchTemplateSpecification": {
+                "LaunchTemplateName": "my-launch-template",
+                "Version": "1"
+            },
+                 "Overrides": [
+                       {
+                           "InstanceType": "r4.2xlarge",  
+                           "AvailabilityZone": "us-west-2a"
+                      },
+                       {
+                           "InstanceType": "m4.2xlarge",
+                           "AvailabilityZone": us-west-2b
+                       }, 
+                       {
+                           "InstanceType": "c5.2xlarge",
+                           "AvailabilityZone": us-west-2b
+                       }
+                 ] 
+           }
+      ]
+}
+```
+
+## Example 10: Launch Spot Instances in a capacity\-optimized fleet with priorities<a name="fleet-config10"></a>
+
+The following example demonstrates how to configure a Spot Fleet with a Spot allocation strategy that optimizes for capacity while using priority on a best\-effort basis\.
+
+When using the `capacityOptimizedPrioritized` allocation strategy, you can use the `Priority` parameter to specify the priorities of the Spot capacity pools, where the lower the number the higher priority\. You can also set the same priority for several Spot capacity pools if you favor them equally\. If you do not set a priority for a pool, the pool will be considered last in terms of priority\.
+
+To prioritize Spot capacity pools, you must set `AllocationStrategy` to `capacityOptimizedPrioritized`\. Spot Fleet will optimize for capacity first, but will honor the priorities on a best\-effort basis \(for example, if honoring the priorities will not significantly affect Spot Fleet's ability to provision optimal capacity\)\. This is a good option for workloads where the possibility of disruption must be minimized and the preference for certain instance types matters\.
+
+In the following example, the three launch specifications specify three Spot capacity pools\. Each pool is prioritized, where the lower the number the higher priority\. The target capacity is 50 Spot Instances\. The Spot Fleet attempts to launch 50 Spot Instances into the Spot capacity pool with the highest priority on a best\-effort basis, but optimizes for capacity first\.
+
+```
+{
+    "TargetCapacity": "50",
+    "SpotFleetRequestConfig": {
+        "AllocationStrategy": "capacityOptimizedPrioritized"
+    },
+    "LaunchTemplateConfigs": [
+        {
+            "LaunchTemplateSpecification": {
+                "LaunchTemplateName": "my-launch-template",
+                "Version": "1"
+            },
+                 "Overrides": [
+                        {
+                           "InstanceType": "r4.2xlarge",    
+                           "Priority": 1
+                           "AvailabilityZone": "us-west-2a"
+                      },
+                       {
+                           "InstanceType": "m4.2xlarge",
+                           "Priority": 2
+                           "AvailabilityZone": us-west-2b
+                       }, 
+                       {
+                           "InstanceType": "c5.2xlarge",
+                           "Priority": 3
+                           "AvailabilityZone": us-west-2b
+                       }
+                  ] 
+             }
+       ]
 }
 ```

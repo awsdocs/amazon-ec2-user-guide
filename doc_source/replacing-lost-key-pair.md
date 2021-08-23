@@ -2,7 +2,9 @@
 
 If you lose the private key for an EBS\-backed instance, you can regain access to your instance\. You must stop the instance, detach its root volume and attach it to another instance as a data volume, modify the `authorized_keys` file with a new public key, move the volume back to the original instance, and restart the instance\. For more information about launching, connecting to, and stopping instances, see [Instance lifecycle](ec2-instance-lifecycle.md)\.
 
-This procedure is not supported for instances with instance\-store backed root volumes\. To determine the root device type of your instance, open the Amazon EC2 console, choose **Instances**, select the instance, and check the value of **Root device type** in the details pane\. The value is either `ebs` or `instance store`\. If the root device is an instance store volume, you cannot use this procedure to regain access to your instance; you must have the private key to connect to the instance\.
+This procedure is only supported for instances with EBS root volumes\. If the root device is an instance store volume, you cannot use this procedure to regain access to your instance; you must have the private key to connect to the instance\. To determine the root device type of your instance, open the Amazon EC2 console, choose **Instances**, select the instance, and check the value of **Root device type** in the details pane\. The value is either `ebs` or `instance store`\.
+
+In addition to the following steps, there are other ways to connect to your Linux instance if you lose your private key\. For more information, see [How can I connect to my Amazon EC2 instance if I lost my SSH key pair after its initial launch?](http://aws.amazon.com/premiumsupport/knowledge-center/user-data-replace-key-pair-ec2/)
 
 **Topics**
 + [Step 1: Create a new key pair](#step-1-create-new-key-pair)
@@ -17,14 +19,11 @@ This procedure is not supported for instances with instance\-store backed root v
 
 ## Step 1: Create a new key pair<a name="step-1-create-new-key-pair"></a>
 
-Create a new key pair using either the Amazon EC2 console or a third\-party tool\. If you want to name your new key pair exactly the same as the lost private key, you must first delete the existing key pair\. For information about creating a new key pair, see [Option 1: Create a key pair using Amazon EC2](ec2-key-pairs.md#having-ec2-create-your-key-pair) or [Option 2: Import your own public key to Amazon EC2](ec2-key-pairs.md#how-to-generate-your-own-key-and-import-it-to-aws)\.
+Create a new key pair using either the Amazon EC2 console or a third\-party tool\. If you want to name your new key pair exactly the same as the lost private key, you must first delete the existing key pair\. For information about creating a new key pair, see [Create a key pair using Amazon EC2](ec2-key-pairs.md#having-ec2-create-your-key-pair) or [Create a key pair using a third\-party tool and import the public key to Amazon EC2](ec2-key-pairs.md#how-to-generate-your-own-key-and-import-it-to-aws)\.
 
 ## Step 2: Get information about the original instance and its root volume<a name="step-2-get-info-about-original-instance"></a>
 
 Make note of the following information because you'll need it to complete this procedure\.
-
-------
-#### [ New console ]
 
 **To get information about your original instance**
 
@@ -37,21 +36,6 @@ Make note of the following information because you'll need it to complete this p
 1. On the **Networking** tab, make note of the Availability Zone\.
 
 1. On the **Storage** tab, under **Root device name**, make note of the device name for the root volume \(for example, `/dev/xvda`\)\. Then, under **Block devices**, find this device name and make note of the volume ID \(for example, vol\-0a1234b5678c910de\)\.
-
-------
-#### [ Old console ]
-
-**To get information about your original instance**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. Choose **Instances** in the navigation pane, and then select the instance that you'd like to connect to\. \(We'll refer to this as the *original* instance\.\)
-
-1. From the **Description** tab, save the following information that you need to complete this procedure\.
-   + Write down the instance ID, AMI ID, and Availability Zone of the original instance\.
-   + In the **Root device** field, take note of the device name for the root volume \(for example, `/dev/sda1` or `/dev/xvda`\)\. Choose the link and write down the volume ID in the **EBS ID** field \(vol\-*xxxxxxxxxxxxxxxxx*\)\.
-
-------
 
 ## Step 3: Stop the original instance<a name="step-3-stop-original-instance"></a>
 
@@ -67,7 +51,7 @@ Choose **Launch instances**, and then use the launch wizard to launch a *tempora
 + On the **Choose an Instance Type** page, leave the default instance type that the wizard selects for you\.
 + On the **Configure Instance Details** page, specify the same Availability Zone as the original instance\. If you're launching an instance in a VPC, select a subnet in this Availability Zone\.
 + On the **Add Tags** page, add the tag `Name=Temporary` to the instance to indicate that this is a temporary instance\.
-+ On the **Review** page, choose **Launch**\. Create a new key pair, download it to a safe location on your computer, and then choose **Launch Instances**\.
++ On the **Review** page, choose **Launch**\. Choose the key pair you created in Step 1, then choose **Launch Instances**\.
 
 ## Step 5: Detach the root volume from the original instance and attach it to the temporary instance<a name="step-5-detach-root-volume-and-attach-to-temp-instance"></a>
 
@@ -81,7 +65,7 @@ If you launched your original instance from an AWS Marketplace AMI and your volu
 
 1. Connect to the temporary instance\.
 
-1. From the temporary instance, mount the volume that you attached to the instance so that you can access its file system\. For example, if the device name is `/dev/sdf`, use the following commands to mount the volume as `/mnt/tempvol`\.
+1. From the temporary instance, mount the volume that you attached to the instance so that you can access its file system\. For example, if the device name is `/dev/sdf`, use the following commands to mount the volume as `/mnt/tempvol`\.<a name="device-name"></a>
 **Note**  
 The device name might appear differently on your instance\. For example, devices mounted as `/dev/sdf` might show up as `/dev/xvdf` on the instance\. Some versions of Red Hat \(or its variants, such as CentOS\) might even increment the trailing letter by 4 characters, where `/dev/sdf` becomes `/dev/xvdk`\.
 
@@ -105,7 +89,7 @@ The device name might appear differently on your instance\. For example, devices
       [ec2-user ~]$ sudo mkdir /mnt/tempvol
       ```
 
-   1. Mount the volume \(or partition\) at the temporary mount point, using the volume name or device name that you identified earlier\. The required command depends on your operating system's file system\.
+   1. Mount the volume \(or partition\) at the temporary mount point, using the volume name or device name that you identified earlier\. The required command depends on your operating system's file system\. Note that the device name might appear differently on your instance\. See [note](#device-name) in this section for more information\.
       + Amazon Linux, Ubuntu, and Debian
 
         ```

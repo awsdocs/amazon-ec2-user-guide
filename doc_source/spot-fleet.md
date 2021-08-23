@@ -6,5 +6,4 @@ A Spot Fleet is set of Spot Instances and optionally On\-Demand Instances that i
 + [How Spot Fleet works](how-spot-fleet-works.md)
 + [Spot Fleet requests](spot-fleet-requests.md)
 + [CloudWatch metrics for Spot Fleet](spot-fleet-cloudwatch-metrics.md)
-+ [Use Amazon EventBridge to monitor Spot Fleet events](spot-fleet-eventbridge.md)
 + [Automatic scaling for Spot Fleet](spot-fleet-automatic-scaling.md)

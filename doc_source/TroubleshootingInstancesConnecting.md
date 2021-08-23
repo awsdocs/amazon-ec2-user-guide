@@ -147,17 +147,17 @@ You need a route that sends all traffic destined outside the VPC to the internet
 
 **Check the network access control list \(ACL\) for the subnet\.**
 
-The network ACLs must allow inbound and outbound traffic from your local IP address on the proper port\. The default network ACL allows all inbound and outbound traffic\.
+The network ACLs must allow inbound traffic from your local IP address on port 22 \(for Linux instances\) or port 3389 \(for Windows instances\)\. It must also allow outbound traffic to the ephemeral ports \(1024\-65535\)\.
 
 1. Open the Amazon VPC console at [https://console\.aws\.amazon\.com/vpc/](https://console.aws.amazon.com/vpc/)\.
 
-1. In the navigation pane, choose **Subnets** and select your subnet\.
+1. In the navigation pane, choose **Subnets**\.
 
-1. On the **Description** tab, find **Network ACL**, and choose its ID \(acl\-*xxxxxxxx*\)\.
+1. Select your subnet\.
 
-1. Select the network ACL\. For **Inbound Rules**, verify that the rules allow traffic from your computer\. Otherwise, delete or modify the rule that is blocking traffic from your computer\.
+1. On the **Network ACL** tab, for **Inbound rules**, verify that the rules allow inbound traffic from your computer on the required port\. Otherwise, delete or modify the rule that is blocking the traffic\.
 
-1. For **Outbound Rules**, verify that the rules allow traffic to your computer\. Otherwise, delete or modify the rule that is blocking traffic to your computer\.
+1. For **Outbound rules**, verify that the rules allow outbound traffic to your computer on the ephemeral ports\. Otherwise, delete or modify the rule that is blocking the traffic\.
 
 **If your computer is on a corporate network**  
 Ask your network administrator whether the internal firewall allows inbound and outbound traffic from your computer on port 22 \(for Linux instances\) or port 3389 \(for Windows instances\)\.
@@ -185,7 +185,7 @@ If you try to connect to your instance and get the error message, `unable to loa
 
 **If the private key file is incorrectly configured, follow these steps to resolve the error**
 
-1. Create a new key pair\. For more information, see [Option 1: Create a key pair using Amazon EC2](ec2-key-pairs.md#having-ec2-create-your-key-pair)\.
+1. Create a new key pair\. For more information, see [Create a key pair using Amazon EC2](ec2-key-pairs.md#having-ec2-create-your-key-pair)\.
 
 1. Add the new key pair to your instance\. For more information, see [Connect to your Linux instance if you lose your private key](replacing-lost-key-pair.md)\.
 
@@ -340,11 +340,61 @@ bad permissions: ignore key: .ssh/my_private_key.pem
 Permission denied (publickey).
 ```
 
-If you see a similar message when you try to log in to your instance, examine the first line of the error message to verify that you are using the correct public key for your instance\. The above example uses the private key `.ssh/my_private_key.pem` with file permissions of `0777`, which allow anyone to read or write to this file\. This permission level is very insecure, and so SSH ignores this key\. To fix the error, run the following command, substituting the path for your private key file\.
+If you see a similar message when you try to log in to your instance, examine the first line of the error message to verify that you are using the correct public key for your instance\. The above example uses the private key `.ssh/my_private_key.pem` with file permissions of `0777`, which allow anyone to read or write to this file\. This permission level is very insecure, and so SSH ignores this key\. 
+
+If you are connecting from MacOS or Linux, run the following command to fix this error, substituting the path for your private key file\.
 
 ```
 [ec2-user ~]$ chmod 0400 .ssh/my_private_key.pem
 ```
+
+If you are connecting from Windows, perform the following steps on your local computer\.
+
+1. Navigate to your \.pem file\.
+
+1. Right\-click on the \.pem file and select **Properties**\.
+
+1. Choose the **Security** tab\.
+
+1. Select **Advanced**\.
+
+1. Verify that you are the owner of the file\. If not, change the owner to your username\.
+
+1. Select **Disable inheritance** and **Remove all inherited permissions from this object**\.
+
+1. Select **Add**, **Select a principal**, enter your username, and select **OK**\.
+
+1. From the **Permission Entry** window, grant **Read** permissions and select **OK**\.
+
+1. Select **OK** to close the **Advanced Security Settings** window\.
+
+1. Select **OK** to close the **Properties** window\.
+
+1. You should be able to connect to your Linux instance from Windows via SSH\.
+
+From a Windows command prompt, run the following commands\.
+
+1. From the command prompt, navigate to the file path location of your \.pem file\.
+
+1. Run the following command to reset and remove explicit permissions:
+
+   ```
+   icacls.exe $path /reset
+   ```
+
+1. Run the following command to grant Read permissions to the current user:
+
+   ```
+   icacls.exe $path /GRANT:R "$($env:USERNAME):(R)"
+   ```
+
+1. Run the following command to disable inheritance and remove inherited permissions\.
+
+   ```
+   icacls.exe $path /inheritance:r
+   ```
+
+1. You should be able to connect to your Linux instance from Windows via SSH\.
 
 ## Error: Private key must begin with "\-\-\-\-\-BEGIN RSA PRIVATE KEY\-\-\-\-\-" and end with "\-\-\-\-\-END RSA PRIVATE KEY\-\-\-\-\-"<a name="troubleshoot-private-key-file-format"></a>
 
@@ -388,7 +438,7 @@ If you still experience issues after enabling keepalives, try to disable Nagle's
 
 ## Error: Host key validation failed for EC2 Instance Connect<a name="troubleshoot-host-key-validation"></a>
 
-If you rotate your instance host keys, the new host keys are not automatically uploaded to the AWS trusted host keys database\. This causes host key validation to fail when you try to connect to your instance using the EC2 Instance Connect browser\-based client, and you're unable to connect to your sinstance\.
+If you rotate your instance host keys, the new host keys are not automatically uploaded to the AWS trusted host keys database\. This causes host key validation to fail when you try to connect to your instance using the EC2 Instance Connect browser\-based client, and you're unable to connect to your instance\.
 
 To resolve the error, you must run the `eic_harvest_hostkeys` script on your instance, which uploads your new host key to EC2 Instance Connect\. The script is located at `/opt/aws/bin/` on Amazon Linux 2 instances, and at `/usr/share/ec2-instance-connect/` on Ubuntu instances\.
 

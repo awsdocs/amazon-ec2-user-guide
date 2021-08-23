@@ -48,11 +48,11 @@ EFA supports the following interfaces and libraries:
 ## Supported instance types<a name="efa-instance-types"></a>
 
 The following instance types support EFAs:
-+ General purpose: `m5dn.24xlarge` \| `m5n.24xlarge` \| `m5zn.12xlarge` \| `m5zn.metal`
-+ Compute optimized: `c5n.18xlarge` \| `c5n.metal`  \| `c6gn.16xlarge`
++ General purpose: `m5dn.24xlarge` \| `m5dn.metal` \| `m5n.24xlarge` \| `m5zn.12xlarge` \| `m5zn.metal` \| `m6i.32xlarge` 
++ Compute optimized: `c5n.18xlarge` \| `c5n.metal`  \| `c6gn.16xlarge` 
 + Memory optimized: `r5dn.24xlarge` \| `r5dn.metal` \| `r5n.24xlarge` \| `r5n.metal` 
 + Storage optimized: `i3en.24xlarge` \| `i3en.metal`
-+ Accelerated computing: `g4dn.metal` \| `inf1.24xlarge` \| `p3dn.24xlarge` \| `p4d.24xlarge`
++ Accelerated computing: `g4dn.metal` \| `inf1.24xlarge` \| `p3dn.24xlarge` \| `p4d.24xlarge` 
 
 The available instance types vary by Region\. To see the available instance types that support EFA in a Region, use the [describe\-instance\-types](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-types.html) command with the `--region` option and the appropriate Region code\.
 
@@ -79,17 +79,17 @@ r5dn.24xlarge
 ## Supported AMIs<a name="efa-amis"></a>
 
 The following AMIs support EFA with Intel x86\-based instance types:
-+ Amazon Linux and Amazon Linux 2
++ Amazon Linux 2
 + CentOS 7 and 8
-+ RHEL 7\.6, 7\.7, 7\.8, 8\.2, and 8\.3
-+ Ubuntu 16\.04, 18\.04, and 20\.04
-+ SUSE Linux Enterprise 15 SP2
-+ openSUSE Leap 15\.2
++ RHEL 7 and 8
++ Ubuntu 18\.04 and 20\.04
++ SUSE Linux Enterprise 15 SP2 and later
++ openSUSE Leap 15\.2 and later
 
 The following AMIs support EFA with Arm\-based \(Graviton 2\) instance types:
 + Amazon Linux 2
 + Ubuntu 18\.04 and 20\.04
-+ openSUSE Leap 15\.2
++ SUSE Linux Enterprise 15 SP2 and later
 
 ## EFA limitations<a name="efa-limits"></a>
 

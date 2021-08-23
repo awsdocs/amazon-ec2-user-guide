@@ -40,7 +40,7 @@ For examples of problems that can cause status checks to fail, see [Status check
 
 If a system status check has failed, you can try one of the following options:
 + Create an instance recovery alarm\. For more information, see [Create alarms that stop, terminate, reboot, or recover an instance](UsingAlarmActions.md)\.
-+ If you changed the instance type to an instance built on the [Nitro System](instance-types.md#ec2-nitro-instances), status checks fail if you migrated from an instance that does not have the required ENA and NVMe drivers\. For more information, see [Compatibility for resizing instances](ec2-instance-resize.md#resize-limitations)\.
++ If you changed the instance type to an instance built on the [Nitro System](instance-types.md#ec2-nitro-instances), status checks fail if you migrated from an instance that does not have the required ENA and NVMe drivers\. For more information, see [Compatibility for resizing instances](resize-limitations.md)\.
 + For an instance using an Amazon EBS\-backed AMI, stop and restart the instance\.
 + For an instance using an instance\-store backed AMI, terminate the instance and launch a replacement\.
 + Wait for Amazon EC2 to resolve the issue\.
@@ -576,7 +576,7 @@ This condition is indicated by a system log similar to the one shown below\.
 ```
 XENBUS: Device with no driver: device/vbd/2048
 drivers/rtc/hctosys.c: unable to open rtc device (rtc0)
-Initalizing network drop monitor service
+Initializing network drop monitor service
 Freeing unused kernel memory: 508k freed
 :: Starting udevd...
 done.

@@ -204,4 +204,4 @@ The VM image for Microsoft Hyper\-V is compressed into a zip file\. You must ext
 
 ------
 
-After the VM has booted, log in using one of the user accounts that is defined in the `user-data` configuration file\. For virtualization platforms other than VMWare, you can disconnect the `seed.iso` boot image from the VM after you have logged in for the first time\.
+After the VM has booted, log in using one of the user accounts that is defined in the `user-data` configuration file\. After you have logged in for the first time, you can then disconnect the seed\.iso boot image from the VM\.

@@ -85,6 +85,8 @@ Some applications may not be compatible with the following recommended software 
       Port range   Protocol     Source
       22           tcp          0.0.0.0/0
       ```
+**Warning**  
+Using `0.0.0.0/0` allows all IPv4 addresses to access your instance using SSH\. This is acceptable for a short time in a test environment, but it's unsafe for production environments\. In production, you authorize only a specific IP address or range of addresses to access your instance\.
 
    1. Choose the link for the security group\. Using the procedures in [Add rules to a security group](working-with-security-groups.md#adding-security-group-rule), add a new inbound security rule with the following values:
       + **Type**: HTTP
@@ -402,4 +404,4 @@ For more information about the commands and software used in this tutorial, see 
 + The `chmod` command: [https://en\.wikipedia\.org/wiki/Chmod](https://en.wikipedia.org/wiki/Chmod)
 + The `chown` command: [https://en\.wikipedia\.org/wiki/Chown](https://en.wikipedia.org/wiki/Chown)
 
-For more information about registering a domain name for your web server, or transferring an existing domain name to this host, see [Creating and Migrating Domains and Subdomains to Amazon Route 53](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/creating-migrating.html) in the *Amazon Route 53 Developer Guide*\.
+For more information about registering a domain name for your web server, or transferring an existing domain name to this host, see [Creating and Migrating Domains and Subdomains to Amazon Route 53](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/creating-migrating.html) in the *Amazon Route 53 Developer Guide*\.

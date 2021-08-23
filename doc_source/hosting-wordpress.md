@@ -22,7 +22,7 @@ This tutorial assumes that you have launched an Amazon Linux instance with a fun
 
 We strongly recommend that you associate an Elastic IP address \(EIP\) to the instance you are using to host a WordPress blog\. This prevents the public DNS address for your instance from changing and breaking your installation\. If you own a domain name and you want to use it for your blog, you can update the DNS record for the domain name to point to your EIP address \(for help with this, contact your domain name registrar\)\. You can have one EIP address associated with a running instance at no charge\. For more information, see [Elastic IP addresses](elastic-ip-addresses-eip.md)\.
 
-If you don't already have a domain name for your blog, you can register a domain name with Route 53 and associate your instance's EIP address with your domain name\. For more information, see [Registering domain names using Amazon Route 53](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/registrar.html) in the *Amazon Route 53 Developer Guide*\.
+If you don't already have a domain name for your blog, you can register a domain name with Route 53 and associate your instance's EIP address with your domain name\. For more information, see [Registering domain names using Amazon Route 53](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/registrar.html) in the *Amazon Route 53 Developer Guide*\.
 
 ## Install WordPress<a name="install-wordpress"></a>
 

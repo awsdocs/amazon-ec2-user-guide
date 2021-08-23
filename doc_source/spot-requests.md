@@ -2,7 +2,7 @@
 
 To use Spot Instances, you create a Spot Instance request that includes the desired number of instances, the instance type, the Availability Zone, and the maximum price that you are willing to pay per instance hour\. If your maximum price exceeds the current Spot price, Amazon EC2 fulfills your request immediately if capacity is available\. Otherwise, Amazon EC2 waits until your request can be fulfilled or until you cancel the request\.
 
-The following illustration shows how Spot requests work\. Notice that the request type \(one\-time or persistent\) determines whether the request is opened again when Amazon EC2 interrupts a Spot Instance or if you stop a Spot Instance\. If the request is persistent, the request is opened again after your Spot Instance is interrupted\. If the request is persistent and you stop your Spot Instance, the request only opens after you start your Spot Instance\.
+The following illustration shows how Spot Instance requests work\. Notice that the request type \(one\-time or persistent\) determines whether the request is opened again when Amazon EC2 interrupts a Spot Instance or if you stop a Spot Instance\. If the request is persistent, the request is opened again after your Spot Instance is interrupted\. If the request is persistent and you stop your Spot Instance, the request only opens after you start your Spot Instance\.
 
 ![\[How Spot Instance requests work\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/images/spot_lifecycle.png)
 
@@ -42,30 +42,7 @@ You can track the status of your Spot Instance requests, as well as the status o
 
 ## Define a duration for your Spot Instances<a name="fixed-duration-spot-instances"></a>
 
-Spot Instances with a defined duration \(also known as Spot blocks\) are designed not to be interrupted and will run continuously for the duration you select\. This makes them ideal for jobs that take a finite time to complete, such as batch processing, encoding and rendering, modeling and analysis, and continuous integration\.
-
-You can use a duration of 1, 2, 3, 4, 5, or 6 hours\. The price that you pay depends on the specified duration\. To view the current prices for a 1\-hour duration or a 6\-hour duration, see [Spot Instance Prices](https://aws.amazon.com/ec2/spot/pricing/#Spot_Instance_Prices)\. You can use these prices to estimate the cost of the 2, 3, 4, and 5\-hour durations\. When a request with a duration is fulfilled, the price for your Spot Instance is fixed, and this price remains in effect until the instance terminates\. You are billed at this price for each hour or partial hour that the instance is running\. A partial instance hour is billed to the nearest second\.
-
-When you define a duration in your Spot request, the duration period for each Spot Instance starts as soon as the instance receives its instance ID\. The Spot Instance runs until you terminate it or the duration period ends\. At the end of the duration period, Amazon EC2 marks the Spot Instance for termination and provides a Spot Instance termination notice, which gives the instance a two\-minute warning before it terminates\. In rare situations, Spot blocks may be interrupted due to Amazon EC2 capacity needs\. In these cases, we provide a two\-minute warning before we terminate an instance, and you are not charged for the terminated instances even if you used them\.
-
-New accounts or accounts with no previous billing history with AWS are not eligible for Spot Instances with a defined duration \(also known as Spot blocks\)\.
-
-**To launch Spot Instances with a defined duration \(console\)**  
-Follow the [Create a Spot Fleet request](spot-fleet-requests.md#create-spot-fleet) procedure\. To launch Spot Instances with a defined duration, for **Tell us your application or task need**, choose **Defined duration workloads**\.
-
-**To launch Spot Instances with a defined duration \(AWS CLI\)**  
-To specify a duration for your Spot Instances, include the `--block-duration-minutes` option with the [request\-spot\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-instances.html) command\. For example, the following command creates a Spot request that launches Spot Instances that run for two hours\.
-
-```
-aws ec2 request-spot-instances \
-    --instance-count 5 \
-    --block-duration-minutes 120 \
-    --type "one-time" \
-    --launch-specification file://specification.json
-```
-
-**To retrieve the cost for Spot Instances with a defined duration \(AWS CLI\)**  
-Use the [describe\-spot\-instance\-requests](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-spot-instance-requests.html) command to retrieve the fixed cost for your Spot Instances with a specified duration\. The information is in the `actualBlockHourlyPrice` field\.
+Spot Instances with a defined duration \(also known as Spot blocks\) are no longer available to new customers from July 1, 2021\. For customers who have previously used the feature, we will continue to support Spot Instances with a defined duration until December 31, 2022\. 
 
 ## Specify a tenancy for your Spot Instances<a name="spot-instance-tenancy"></a>
 
@@ -83,7 +60,7 @@ Amazon EC2 uses service\-linked roles for the permissions that it requires to ca
 
 Amazon EC2 uses the service\-linked role named **AWSServiceRoleForEC2Spot** to launch and manage Spot Instances on your behalf\.
 
-### Permissions granted by AWSServiceRoleForEC2Spot<a name="service-linked-role-permissions-granted-by-AWSServiceRoleForEC2Spot"></a>
+### Permissions granted by **AWSServiceRoleForEC2Spot**<a name="service-linked-role-permissions-granted-by-AWSServiceRoleForEC2Spot"></a>
 
 Amazon EC2 uses **AWSServiceRoleForEC2Spot** to complete the following actions:
 + `ec2:DescribeInstances` – Describe Spot Instances
@@ -96,9 +73,9 @@ Under most circumstances, you don't need to manually create a service\-linked ro
 
 If you had an active Spot Instance request before October 2017, when Amazon EC2 began supporting this service\-linked role, Amazon EC2 created the **AWSServiceRoleForEC2Spot** role in your AWS account\. For more information, see [A New Role Appeared in My Account](https://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_roles.html#troubleshoot_roles_new-role-appeared) in the *IAM User Guide*\.
 
-Ensure that this role exists before you use the AWS CLI or an API to request a Spot Instance\.
+If you use the AWS CLI or an API to request a Spot Instance, you must first ensure that this role exists\.
 
-**To create AWSServiceRoleForEC2Spot using the console**
+**To create **AWSServiceRoleForEC2Spot** using the console**
 
 1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
@@ -112,7 +89,7 @@ Ensure that this role exists before you use the AWS CLI or an API to request a S
 
 1. On the **Review** page, choose **Create role**\.
 
-**To create AWSServiceRoleForEC2Spot using the AWS CLI**  
+**To create **AWSServiceRoleForEC2Spot** using the AWS CLI**  
 Use the [create\-service\-linked\-role](https://docs.aws.amazon.com/cli/latest/reference/iam/create-service-linked-role.html) command as follows\.
 
 ```
@@ -121,14 +98,14 @@ aws iam create-service-linked-role --aws-service-name spot.amazonaws.com
 
 If you no longer need to use Spot Instances, we recommend that you delete the **AWSServiceRoleForEC2Spot** role\. After this role is deleted from your account, Amazon EC2 will create the role again if you request Spot Instances\.
 
-### Grant access to CMKs for use with encrypted AMIs and EBS snapshots<a name="spot-instance-service-linked-roles-access-to-cmks"></a>
+### Grant access to customer managed keys for use with encrypted AMIs and EBS snapshots<a name="spot-instance-service-linked-roles-access-to-cmks"></a>
 
-If you specify an [encrypted AMI](AMIEncryption.md) or an [encrypted Amazon EBS snapshot](EBSEncryption.md) for your Spot Instances and you use a customer managed customer master key \(CMK\) for encryption, you must grant the **AWSServiceRoleForEC2Spot** role permission to use the CMK so that Amazon EC2 can launch Spot Instances on your behalf\. To do this, you must add a grant to the CMK, as shown in the following procedure\.
+If you specify an [encrypted AMI](AMIEncryption.md) or an [encrypted Amazon EBS snapshot](EBSEncryption.md) for your Spot Instances and you use a customer managed key for encryption, you must grant the **AWSServiceRoleForEC2Spot** role permission to use the customer managed key so that Amazon EC2 can launch Spot Instances on your behalf\. To do this, you must add a grant to the customer managed key, as shown in the following procedure\.
 
 When providing permissions, grants are an alternative to key policies\. For more information, see [Using Grants](https://docs.aws.amazon.com/kms/latest/developerguide/grants.html) and [Using Key Policies in AWS KMS](https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html) in the *AWS Key Management Service Developer Guide*\.
 
-**To grant the AWSServiceRoleForEC2Spot role permissions to use the CMK**
-+ Use the [create\-grant](https://docs.aws.amazon.com/cli/latest/reference/kms/create-grant.html) command to add a grant to the CMK and to specify the principal \(the **AWSServiceRoleForEC2Spot** service\-linked role\) that is given permission to perform the operations that the grant permits\. The CMK is specified by the `key-id` parameter and the ARN of the CMK\. The principal is specified by the `grantee-principal` parameter and the ARN of the **AWSServiceRoleForEC2Spot** service\-linked role\.
+**To grant the **AWSServiceRoleForEC2Spot** role permissions to use the customer managed key**
++ Use the [create\-grant](https://docs.aws.amazon.com/cli/latest/reference/kms/create-grant.html) command to add a grant to the customer managed key and to specify the principal \(the **AWSServiceRoleForEC2Spot** service\-linked role\) that is given permission to perform the operations that the grant permits\. The customer managed key is specified by the `key-id` parameter and the ARN of the customer managed key\. The principal is specified by the `grantee-principal` parameter and the ARN of the **AWSServiceRoleForEC2Spot** service\-linked role\.
 
   ```
   aws kms create-grant \
@@ -142,9 +119,7 @@ When providing permissions, grants are an alternative to key policies\. For more
 
 The procedure for requesting a Spot Instance is similar to the procedure for launching an On\-Demand Instance\. You can request a Spot Instance in the following ways:
 + To request a Spot Instance using the console, use the launch instance wizard\. For more information, see [To create a Spot Instance request \(console\)](#create-spot-instance-request-console-procedure)\.
-+ To request a Spot Instance using the CLI, use the [request\-spot\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-instances.html) command or the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command\. For more information, see [To create a Spot Instance request using request-spot-instances (AWS CLI)](#create-spot-request-request-spot-instances) and [To create a Spot Instance request using run-instances (AWS CLI)](#create-spot-request-run-instances)\.
-+ To request a Spot Instance with a defined duration using the console, follow the [Create a Spot Fleet request](spot-fleet-requests.md#create-spot-fleet) procedure\. For **Tell us your application or task need**, choose **Defined duration workloads**\. For more information, see [Define a duration for your Spot Instances](#fixed-duration-spot-instances)\.
-+ To request a Spot Instance with a defined duration using the CLI, use the [request\-spot\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-instances.html) command and specify the `--block-duration-minutes` parameter\. For more information, see [Define a duration for your Spot Instances](#fixed-duration-spot-instances)\.
++ To request a Spot Instance using the CLI, use the [request\-spot\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-instances.html) command or the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command\. For more information, see [To create a Spot Instance request using request-spot-instances (CLI)](#create-spot-request-request-spot-instances) and [To create a Spot Instance request using run-instances (CLI)](#create-spot-request-run-instances)\.
 
 After you've submitted your Spot Instance request, you can't change the parameters of the request\. This means that you can't make changes to the maximum price that you're willing to pay\.
 
@@ -222,10 +197,10 @@ aws ec2 request-spot-instances \
     --launch-specification file://specification.json
 ```
 
-For example launch specification files to use with these commands, see [Spot Instance request example launch specifications](spot-request-examples.md)\. If you download a launch specification file from the console, you must use the [request\-spot\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-fleet.html) command instead \(the console specifies a Spot request using a Spot Fleet\)\.
+For example launch specification files to use with these commands, see [Spot Instance request example launch specifications](spot-request-examples.md)\. If you download a launch specification file from the console, you must use the [request\-spot\-fleet](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-fleet.html) command instead \(the console specifies a Spot Instance request using a Spot Fleet\)\.
 
 **To create a Spot Instance request using [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) \(AWS CLI\)**  
-Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-instances.html) command and specify the Spot Instance options in the `--instance-market-options` parameter\.
+Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command and specify the Spot Instance options in the `--instance-market-options` parameter\.
 
 ```
 aws ec2 run-instances \
@@ -238,7 +213,7 @@ aws ec2 run-instances \
     --instance-market-options file://spot-options.json
 ```
 
-The following is the data structure to specify in the JSON file for `--instance-market-options`\. You can also specify `BlockDurationMinutes`, `ValidUntil`, and `InstanceInterruptionBehavior`\. If you do not specify a field in the data structure, the default value is used\. This example creates a `one-time` request and specifies `0.02` as the maximum price you're willing to pay for the Spot Instance\. 
+The following is the data structure to specify in the JSON file for `--instance-market-options`\. You can also specify `ValidUntil` and `InstanceInterruptionBehavior`\. If you do not specify a field in the data structure, the default value is used\. This example creates a `one-time` request and specifies `0.02` as the maximum price you're willing to pay for the Spot Instance\. 
 
 ```
 {
@@ -319,7 +294,7 @@ Grant the IAM user the permission to tag resources\. For more information about 
 
 The IAM policy you create is determined by which method you use for creating a Spot Instance request\.
 + If you use the launch instance wizard or `run-instances` to request Spot Instances, see [To grant an IAM user the permission to tag resources when using the launch instance wizard or run-instances](#iam-run-instances)\.
-+ If you use the Spot console to request Spot Instances with a defined duration or use the `request-spot-instances` command to request Spot Instances, see [To grant an IAM user the permission to tag resources when using request-spot-instances](#iam-request-spot-instances)\.
++ If you use the `request-spot-instances` command to request Spot Instances, see [To grant an IAM user the permission to tag resources when using request-spot-instances](#iam-request-spot-instances)\.
 
 **To grant an IAM user the permission to tag resources when using the launch instance wizard or run\-instances**  
 Create a IAM policy that includes the following:
@@ -568,14 +543,14 @@ If your Spot Instance request is `active` and has an associated running Spot Ins
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the navigation pane, choose **Spot Requests** and select the Spot request\.
+1. In the navigation pane, choose **Spot Requests** and select the Spot Instance request\.
 
 1. Choose **Actions**, **Cancel request**\.
 
 1. \(Optional\) If you are finished with the associated Spot Instances, you can terminate them\. In the **Cancel Spot request** dialog box, select **Terminate instances**, and then choose **Confirm**\.
 
 **To cancel a Spot Instance request \(AWS CLI\)**
-+ Use the [cancel\-spot\-instance\-requests](https://docs.aws.amazon.com/cli/latest/reference/ec2/cancel-spot-instance-requests.html) command to cancel the specified Spot request\.
++ Use the [cancel\-spot\-instance\-requests](https://docs.aws.amazon.com/cli/latest/reference/ec2/cancel-spot-instance-requests.html) command to cancel the specified Spot Instance request\.
 
   ```
   aws ec2 cancel-spot-instance-requests --spot-instance-request-ids sir-08b93456
@@ -590,9 +565,9 @@ While a Spot Instance is stopped, you can modify some of its instance attributes
 We don't charge usage for a stopped Spot Instance, or data transfer fees, but we do charge for the storage for any Amazon EBS volumes\.
 
 **Limitations**
-+ You can only stop a Spot Instance if the Spot Instance was launched from a `persistent` Spot request\.
-+ You can't stop a Spot Instance if the associated Spot request is cancelled\. When the Spot request is cancelled, you can only terminate the Spot Instance\.
-+ You can't stop a Spot Instance if it is part of a fleet or launch group, Availability Zone group, or Spot block\.
++ You can only stop a Spot Instance if the Spot Instance was launched from a `persistent` Spot Instance request\.
++ You can't stop a Spot Instance if the associated Spot Instance request is cancelled\. When the Spot Instance request is cancelled, you can only terminate the Spot Instance\.
++ You can't stop a Spot Instance if it is part of a fleet or launch group, or Availability Zone group\.
 
 ------
 #### [ New console ]
@@ -643,7 +618,7 @@ You can only start a Spot Instance if:
 + The Spot price is lower than your maximum price\.
 
 **Limitations**
-+ You can't start a Spot Instance if it is part of fleet or launch group, Availability Zone group, or Spot block\.
++ You can't start a Spot Instance if it is part of fleet or launch group, or Availability Zone group\.
 
 ------
 #### [ New console ]
@@ -681,11 +656,11 @@ You can only start a Spot Instance if:
 
 ## Terminate a Spot Instance<a name="terminating-a-spot-instance"></a>
 
-If you terminate a running or stopped Spot Instance that was launched by a persistent Spot request, the Spot request transitions to the `open` state so that a new Spot Instance can be launched\. To ensure that no new Spot Instance is launched, you must first cancel the Spot request\.
+If you terminate a running or stopped Spot Instance that was launched by a persistent Spot Instance request, the Spot Instance request transitions to the `open` state so that a new Spot Instance can be launched\. To ensure that no new Spot Instance is launched, you must first cancel the Spot Instance request\.
 
-If you cancel an `active` Spot request that has a running Spot Instance, the running Spot Instance is not automatically terminated; you must manually terminate the Spot Instance\.
+If you cancel an `active` Spot Instance request that has a running Spot Instance, the running Spot Instance is not automatically terminated; you must manually terminate the Spot Instance\.
 
-If you cancel a `disabled` Spot request that has a stopped Spot Instance, the stopped Spot Instance is automatically terminated by the Amazon EC2 Spot service\. There might be a short lag between when you cancel the Spot request and when the Spot service terminates the Spot Instance\.
+If you cancel a `disabled` Spot Instance request that has a stopped Spot Instance, the stopped Spot Instance is automatically terminated by the Amazon EC2 Spot service\. There might be a short lag between when you cancel the Spot Instance request and when the Spot service terminates the Spot Instance\.
 
 For information about canceling a Spot Instance request, see [Cancel a Spot Instance request](#using-spot-instances-cancel)\.
 

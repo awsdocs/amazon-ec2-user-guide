@@ -12,6 +12,8 @@ The following examples show launch configurations that you can use with the [cre
 + [Example 7: Launch On\-Demand Instances using Capacity Reservations and the `lowest-price` allocation strategy](#ec2-fleet-config7)
 + [Example 8: Launch On\-Demand Instances using Capacity Reservations and the `lowest-price` allocation strategy when the total target capacity is more than the number of unused Capacity Reservations](#ec2-fleet-config8)
 + [Example 9: Configure Capacity Rebalancing to launch replacement Spot Instances](#ec2-fleet-config9)
++ [Example 10: Launch Spot Instances in a capacity\-optimized fleet](#ec2-fleet-config10)
++ [Example 11: Launch Spot Instances in a capacity\-optimized fleet with priorities](#ec2-fleet-config11)
 
 ## Example 1: Launch Spot Instances as the default purchasing option<a name="ec2-fleet-config1"></a>
 
@@ -645,5 +647,102 @@ The effectiveness of the Capacity Rebalancing strategy depends on the number of 
             }
         }
     }
+}
+```
+
+## Example 10: Launch Spot Instances in a capacity\-optimized fleet<a name="ec2-fleet-config10"></a>
+
+The following example demonstrates how to configure an EC2 Fleet with a Spot allocation strategy that optimizes for capacity\. To optimize for capacity, you must set `AllocationStrategy` to `capacity-optimized`\.
+
+In the following example, the three launch specifications specify three Spot capacity pools\. The target capacity is 50 Spot Instances\. The EC2 Fleet attempts to launch 50 Spot Instances into the Spot capacity pool with optimal capacity for the number of instances that are launching\.
+
+```
+{
+    "SpotOptions": {
+        "AllocationStrategy": "capacity-optimized",
+        },
+    "LaunchTemplateConfigs": [
+        {
+            "LaunchTemplateSpecification": {
+                "LaunchTemplateName": "my-launch-template",
+                "Version": "1"
+            },
+                 "Overrides": [
+                       {
+                           "InstanceType": "r4.2xlarge",
+                           "Placement": {
+                               "AvailabilityZone": "us-west-2a"
+                           },
+                      },
+                       {
+                           "InstanceType": "m4.2xlarge",
+                           "Placement": {
+                               "AvailabilityZone": us-west-2b
+                           },
+                       }, 
+                       {
+                           "InstanceType": "c5.2xlarge",
+                           "Placement": {
+                               "AvailabilityZone": us-west-2b
+                           }
+                       }
+                 ] 
+           }
+    ],
+    "TargetCapacitySpecification": {
+            "TotalTargetCapacity": 50,
+            "DefaultTargetCapacityType": "spot"
+}
+```
+
+## Example 11: Launch Spot Instances in a capacity\-optimized fleet with priorities<a name="ec2-fleet-config11"></a>
+
+The following example demonstrates how to configure an EC2 Fleet with a Spot allocation strategy that optimizes for capacity while using priority on a best\-effort basis\.
+
+When using the `capacity-optimized-prioritized` allocation strategy, you can use the `Priority` parameter to specify the priorities of the Spot capacity pools, where the lower the number the higher priority\. You can also set the same priority for several Spot capacity pools if you favor them equally\. If you do not set a priority for a pool, the pool will be considered last in terms of priority\.
+
+To prioritize Spot capacity pools, you must set `AllocationStrategy` to `capacity-optimized-prioritized`\. EC2 Fleet will optimize for capacity first, but will honor the priorities on a best\-effort basis \(for example, if honoring the priorities will not significantly affect EC2 Fleet's ability to provision optimal capacity\)\. This is a good option for workloads where the possibility of disruption must be minimized and the preference for certain instance types matters\.
+
+In the following example, the three launch specifications specify three Spot capacity pools\. Each pool is prioritized, where the lower the number the higher priority\. The target capacity is 50 Spot Instances\. The EC2 Fleet attempts to launch 50 Spot Instances into the Spot capacity pool with the highest priority on a best\-effort basis, but optimizes for capacity first\.
+
+```
+{
+    "SpotOptions": {
+        "AllocationStrategy": "capacity-optimized-prioritized"
+        },
+    "LaunchTemplateConfigs": [
+        {
+            "LaunchTemplateSpecification": {
+                "LaunchTemplateName": "my-launch-template",
+                "Version": "1"
+            },
+                 "Overrides": [
+                        {
+                           "InstanceType": "r4.2xlarge",    
+                           "Priority": 1
+                           "Placement": {
+                               "AvailabilityZone": "us-west-2a"
+                           },
+                      },
+                       {
+                           "InstanceType": "m4.2xlarge",
+                           "Priority": 2
+                           "Placement": {
+                               "AvailabilityZone": us-west-2b
+                           },
+                       }, 
+                       {
+                           "InstanceType": "c5.2xlarge",
+                           "Priority": 3
+                           "Placement": {
+                               "AvailabilityZone": us-west-2b
+                           }
+                       }
+                  ] 
+             }
+    ],
+    "TargetCapacitySpecification": {
+            "TotalTargetCapacity": 50,
+            "DefaultTargetCapacityType": "spot"
 }
 ```

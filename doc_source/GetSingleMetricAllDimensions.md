@@ -1,6 +1,8 @@
 # Aggregate statistics across instances<a name="GetSingleMetricAllDimensions"></a>
 
-Aggregate statistics are available for the instances that have detailed monitoring enabled\. Instances that use basic monitoring are not included in the aggregates\. In addition, Amazon CloudWatch does not aggregate data across regions\. Therefore, metrics are completely separate between regions\. Before you can get statistics aggregated across instances, you must enable detailed monitoring \(at an additional charge\), which provides data in 1\-minute periods\.
+Aggregate statistics are available for instances that have detailed monitoring enabled\. Instances that use basic monitoring are not included in the aggregates\. Before you can get statistics aggregated across instances, you must [enable detailed monitoring](using-cloudwatch-new.md#enable-detailed-monitoring) \(at an additional charge\), which provides data in 1\-minute periods\.
+
+Note that Amazon CloudWatch cannot aggregate data across AWS Regions\. Metrics are completely separate between Regions\.
 
 This example shows you how to use detailed monitoring to get the average CPU usage for your EC2 instances\. Because no dimension is specified, CloudWatch returns statistics for all dimensions in the `AWS/EC2` namespace\.
 

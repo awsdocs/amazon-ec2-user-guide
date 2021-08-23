@@ -1,9 +1,10 @@
 # Use a base AMI<a name="efa-start-nccl-base"></a>
 
-The following steps help you to get started using one of the [supported base AMIs](efa.md#efa-amis)\.
+The following steps help you to get started with Elastic Fabric Adapter using one of the [supported base AMIs](efa.md#efa-amis)\.
 
 **Note**  
 Only the `p3dn.24xlarge` and `p4d.24xlarge` instance types are supported\.
+Only Amazon Linux 2, RHEL 7/8, CentOS 7/8, and Ubuntu 18\.04 base AMIs are supported\.
 
 **Topics**
 + [Step 1: Prepare an EFA\-enabled security group](#nccl-start-base-setup)
@@ -96,34 +97,24 @@ Launch a temporary instance that you can use to install and configure the EFA so
 
 ## Step 3: Install Nvidia GPU drivers, Nvidia CUDA toolkit, and cuDNN<a name="nccl-start-base-drivers"></a>
 
+------
+#### [ Amazon Linux 2 ]
+
 **To install the Nvidia GPU drivers, Nvidia CUDA toolkit, and cuDNN**
 
 1. Install the utilities that are needed to install the Nvidia GPU drivers and the Nvidia CUDA toolkit\.
-   + Amazon Linux, Amazon Linux 2, RHEL, and CentOS
 
-     ```
-     $ sudo yum groupinstall 'Development Tools' -y
-     ```
-   + Ubuntu
-
-     ```
-     $ sudo apt-get update
-     $ sudo apt-get install build-essential -y
-     ```
+   ```
+   $ sudo yum groupinstall 'Development Tools' -y
+   ```
 
 1. To use the Nvidia GPU driver, you must first disable the `nouveau` open source drivers\.
 
-   1. Install the **gcc** compiler and the kernel headers package for the version of the kernel that you are currently running\.
-      + Amazon Linux, Amazon Linux 2, RHEL, and CentOS
+   1. Install the required utilities and the kernel headers package for the version of the kernel that you are currently running\.
 
-        ```
-        $ sudo yum install -y gcc kernel-devel-$(uname -r)
-        ```
-      + Ubuntu
-
-        ```
-        $ sudo apt-get install -y gcc make linux-headers-$(uname -r)
-        ```
+      ```
+      $ sudo yum install -y wget kernel-devel-$(uname -r) kernel-headers-$(uname -r)
+      ```
 
    1. Add `nouveau` to the `/etc/modprobe.d/blacklist.conf `deny list file\.
 
@@ -138,102 +129,68 @@ Launch a temporary instance that you can use to install and configure the EFA so
       ```
 
    1. Open `/etc/default/grub` using your preferred text editor and add the following\. 
-**Note**  
-Use `sudo` to open the file with root privileges\.
 
       ```
       GRUB_CMDLINE_LINUX="rdblacklist=nouveau"
       ```
 
    1. Rebuild the Grub configuration\.
-      + Amazon Linux, Amazon Linux 2, RHEL, and CentOS
 
-        ```
-        $ sudo grub2-mkconfig -o /boot/grub2/grub.cfg
-        ```
-      + Ubuntu
-
-        ```
-        $ sudo update-grub
-        ```
+      ```
+      $ sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+      ```
 
 1. Reboot the instance and reconnect to it\.
 
-1. Download and add the Nvidia Machine Learning repositories\.
-   + Amazon Linux, Amazon Linux 2, RHEL, and CentOS 
+1. Install the Nvidia GPU drivers, NVIDIA CUDA toolkit, and cuDNN\.
 
-     ```
-     $ wget -O /tmp/ml-repo.rpm https://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
-     $ sudo rpm -Uhv /tmp/ml-repo.rpm
-     $ sudo yum-config-manager --add-repo https://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/cuda-rhel7.repo
-     $ sudo yum clean all
-     $ sudo yum upgrade -y
-     ```
-   + Ubuntu 16\.04
+   1. Install the EPEL repository for DKMS and enable any optional repos for your Linux distribution\.
 
-     ```
-     $ wget -O /tmp/deeplearning.deb http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
-     $ sudo dpkg -i /tmp/deeplearning.deb
-     $ wget -O /tmp/cuda.pin https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-ubuntu1604.pin
-     $ sudo mv /tmp/cuda.pin /etc/apt/preferences.d/cuda-repository-pin-600
-     $ sudo apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub
-     $ sudo add-apt-repository 'deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/ /'
-     $ sudo apt update
-     ```
-   + Ubuntu 18\.04
+      ```
+      $ sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+      ```
 
-     ```
-     $ sudo apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/7fa2af80.pub
-     $ wget -O /tmp/deeplearning.deb http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/nvidia-machine-learning-repo-ubuntu1804_1.0.0-1_amd64.deb
-     $ sudo dpkg -i /tmp/deeplearning.deb
-     $ wget -O /tmp/cuda.pin https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-ubuntu1804.pin
-     $ sudo mv /tmp/cuda.pin /etc/apt/preferences.d/cuda-repository-pin-600
-     $ sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub
-     $ sudo add-apt-repository 'deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/ /'
-     $ sudo apt update
-     ```
+   1. Install the CUDA repository public GPG key\.
 
-1. Install the Nvidia GPU drivers, NVIDIA CUDA toolkit, and cuDNN
-   + Amazon Linux, Amazon Linux 2, RHEL, and CentOS 
+      ```
+      $ distribution='rhel7'
+      ```
 
-     ```
-     $ sudo yum -y install cuda-toolkit-11-0 libcudnn8 libcudnn8-devel nvidia-driver-branch-450
-     ```
-   + Ubuntu
+   1. Set up the CUDA network repository and update the repository cache\.
 
-     ```
-     $ sudo apt install -o Dpkg::Options::='--force-overwrite' cuda-drivers-450 cuda-toolkit-11-0 libcudnn8 libcudnn8-dev -y
-     ```
+      ```
+      $ ARCH=$( /bin/arch ) \
+      && sudo yum-config-manager --add-repo http://developer.download.nvidia.com/compute/cuda/repos/$distribution/${ARCH}/cuda-$distribution.repo \
+      && sudo yum clean expire-cache
+      ```
+
+   1. Install the NVIDIA, CUDA drivers and cuDNN\.
+
+      ```
+      $ sudo yum clean all \
+      && sudo yum -y install cuda-drivers-fabricmanager cuda libcudnn8-devel
+      ```
 
 1. Reboot the instance and reconnect to it\.
 
-1. \(`p4d.24xlarge` instances only\) Install the Nvidia Fabric Manager, start the service, and ensure that it starts automatically when the instance starts\. Nvidia Fabric Manager is required for NV Switch Management\.
-   + Amazon Linux, Amazon Linux 2, RHEL, and CentOS 
+1. \(`p4d.24xlarge` instances only\) Start the Nvidia Fabric Manager service, and ensure that it starts automatically when the instance starts\. Nvidia Fabric Manager is required for NV Switch Management\.
 
-     ```
-     $ sudo yum -y install nvidia-fabricmanager-450
-     $ sudo systemctl start nvidia-fabricmanager
-     $ sudo systemctl enable nvidia-fabricmanager
-     ```
-   + Ubuntu
-
-     ```
-     $ sudo apt install -o Dpkg::Options::='--force-overwrite' nvidia-fabricmanager-450
-     $ sudo systemctl start nvidia-fabricmanager
-     $ sudo systemctl enable nvidia-fabricmanager
-     ```
+   ```
+   $ sudo systemctl start nvidia-fabricmanager \
+   && sudo systemctl enable nvidia-fabricmanager
+   ```
 
 1. Ensure that the CUDA paths are set each time that the instance starts\.
    + For *bash* shells, add the following statements to `/home/username/.bashrc` and `/home/username/.bash_profile`\. 
 
      ```
-     export PATH=/usr/local/cuda/bin:/usr/local/cuda/NsightCompute-2019.1:$PATH
+     export PATH=/usr/local/cuda/bin:$PATH
      export LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATH
      ```
    + For *tcsh* shells, add the following statements to `/home/username/.cshrc`\.
 
      ```
-     setenv PATH=/usr/local/cuda/bin:/usr/local/cuda/NsightCompute-2019.1:$PATH
+     setenv PATH=/usr/local/cuda/bin:$PATH
      setenv LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATH
      ```
 
@@ -245,6 +202,392 @@ Use `sudo` to open the file with root privileges\.
 
    The command should return information about the Nvidia GPUs, Nvidia GPU drivers, and Nvidia CUDA toolkit\.
 
+------
+#### [ CentOS 7/8 ]
+
+**To install the Nvidia GPU drivers, Nvidia CUDA toolkit, and cuDNN**
+
+1. To ensure that all of your software packages are up to date, perform a quick software update on your instance\.
+
+   ```
+   $ sudo yum upgrade -y && sudo reboot
+   ```
+
+   After the instance has rebooted, reconnect to it\.
+
+1. Install the utilities that are needed to install the Nvidia GPU drivers and the Nvidia CUDA toolkit\.
+
+   ```
+   $ sudo yum groupinstall 'Development Tools' -y \
+   && sudo yum install -y tar bzip2 make automake pciutils elfutils-libelf-devel libglvnd-devel iptables firewalld vim bind-utils
+   ```
+
+1. To use the Nvidia GPU driver, you must first disable the `nouveau` open source drivers\.
+
+   1. Install the required utilities and the kernel headers package for the version of the kernel that you are currently running\.
+
+      ```
+      $ sudo yum install -y wget kernel-devel-$(uname -r) kernel-headers-$(uname -r)
+      ```
+
+   1. Add `nouveau` to the `/etc/modprobe.d/blacklist.conf `deny list file\.
+
+      ```
+      $ cat << EOF | sudo tee --append /etc/modprobe.d/blacklist.conf
+      blacklist vga16fb
+      blacklist nouveau
+      blacklist rivafb
+      blacklist nvidiafb
+      blacklist rivatv
+      EOF
+      ```
+
+   1. Open `/etc/default/grub` using your preferred text editor and add the following\. 
+
+      ```
+      GRUB_CMDLINE_LINUX="rdblacklist=nouveau"
+      ```
+
+   1. Rebuild the Grub configuration\.
+
+      ```
+      $ sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+      ```
+
+1. Reboot the instance and reconnect to it\.
+
+1. Install the Nvidia GPU drivers, NVIDIA CUDA toolkit, and cuDNN\.
+
+   1. Install the EPEL repository for DKMS and enable any optional repos for your Linux distribution\.
+      + CentOS 7
+
+        ```
+        $ sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+        ```
+      + CentOS 8
+
+        ```
+        $ sudo yum install -y epel-release
+        ```
+
+   1. Install the CUDA repository public GPG key\.
+      + CentOS 7
+
+        ```
+        $ distribution='rhel7'
+        ```
+      + CentOS 8
+
+        ```
+        $ distribution='rhel8'
+        ```
+
+   1. Set up the CUDA network repository and update the repository cache\.
+
+      ```
+      $ ARCH=$( /bin/arch ) \
+      && sudo yum-config-manager --add-repo http://developer.download.nvidia.com/compute/cuda/repos/$distribution/${ARCH}/cuda-$distribution.repo \
+      && sudo yum clean expire-cache
+      ```
+
+   1. \(CentOS 8 only\) Update the running kernel\.
+
+      ```
+      $ sudo yum install -y kernel kernel-core kernel-modules
+      ```
+
+   1. Install the NVIDIA, CUDA drivers and cuDNN\.
+
+      ```
+      $ sudo yum clean all \
+      && sudo yum -y install cuda-drivers-fabricmanager cuda libcudnn8-devel
+      ```
+
+1. Reboot the instance and reconnect to it\.
+
+1. \(`p4d.24xlarge` instances only\) Start the Nvidia Fabric Manager service, and ensure that it starts automatically when the instance starts\. Nvidia Fabric Manager is required for NV Switch Management\.
+
+   ```
+   $ sudo systemctl start nvidia-fabricmanager \
+   && sudo systemctl enable nvidia-fabricmanager
+   ```
+
+1. Ensure that the CUDA paths are set each time that the instance starts\.
+   + For *bash* shells, add the following statements to `/home/username/.bashrc` and `/home/username/.bash_profile`\. 
+
+     ```
+     export PATH=/usr/local/cuda/bin:$PATH
+     export LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATH
+     ```
+   + For *tcsh* shells, add the following statements to `/home/username/.cshrc`\.
+
+     ```
+     setenv PATH=/usr/local/cuda/bin:$PATH
+     setenv LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATH
+     ```
+
+1. To confirm that the Nvidia GPU drivers are functional, run the following command\.
+
+   ```
+   $ nvidia-smi -q | head
+   ```
+
+   The command should return information about the Nvidia GPUs, Nvidia GPU drivers, and Nvidia CUDA toolkit\.
+
+------
+#### [ RHEL 7/8 ]
+
+**To install the Nvidia GPU drivers, Nvidia CUDA toolkit, and cuDNN**
+
+1. Install the utilities that are needed to install the Nvidia GPU drivers and the Nvidia CUDA toolkit\.
+
+   ```
+   $ sudo yum groupinstall 'Development Tools' -y
+   ```
+
+1. To use the Nvidia GPU driver, you must first disable the `nouveau` open source drivers\.
+
+   1. Install the required utilities and the kernel headers package for the version of the kernel that you are currently running\.
+
+      ```
+      $ sudo yum install -y wget kernel-devel-$(uname -r) kernel-headers-$(uname -r)
+      ```
+
+   1. Add `nouveau` to the `/etc/modprobe.d/blacklist.conf `deny list file\.
+
+      ```
+      $ cat << EOF | sudo tee --append /etc/modprobe.d/blacklist.conf
+      blacklist vga16fb
+      blacklist nouveau
+      blacklist rivafb
+      blacklist nvidiafb
+      blacklist rivatv
+      EOF
+      ```
+
+   1. Open `/etc/default/grub` using your preferred text editor and add the following\. 
+
+      ```
+      GRUB_CMDLINE_LINUX="rdblacklist=nouveau"
+      ```
+
+   1. Rebuild the Grub configuration\.
+
+      ```
+      $ sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+      ```
+
+1. Reboot the instance and reconnect to it\.
+
+1. Install the Nvidia GPU drivers, NVIDIA CUDA toolkit, and cuDNN\.
+
+   1. Install the EPEL repository for DKMS and enable any optional repos for your Linux distribution\.
+      + RHEL 7
+
+        ```
+        $ sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+        ```
+      + RHEL 8
+
+        ```
+        $ sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+        ```
+
+   1. Install the CUDA repository public GPG key\.
+
+      ```
+      $ distribution=$(. /etc/os-release;echo $ID`rpm -E "%{?rhel}%{?fedora}"`)
+      ```
+
+   1. Set up the CUDA network repository and update the repository cache\.
+
+      ```
+      $ ARCH=$( /bin/arch ) \
+      && sudo yum-config-manager --add-repo http://developer.download.nvidia.com/compute/cuda/repos/$distribution/${ARCH}/cuda-$distribution.repo \
+      && sudo yum clean expire-cache
+      ```
+
+   1. Install the NVIDIA, CUDA drivers and cuDNN\.
+
+      ```
+      $ sudo yum clean all \
+      && sudo yum -y install cuda-drivers-fabricmanager cuda libcudnn8-devel
+      ```
+
+1. Reboot the instance and reconnect to it\.
+
+1. \(`p4d.24xlarge` instances only\) Start the Nvidia Fabric Manager service, and ensure that it starts automatically when the instance starts\. Nvidia Fabric Manager is required for NV Switch Management\.
+
+   ```
+   $ sudo systemctl start nvidia-fabricmanager \
+   && sudo systemctl enable nvidia-fabricmanager
+   ```
+
+1. Ensure that the CUDA paths are set each time that the instance starts\.
+   + For *bash* shells, add the following statements to `/home/username/.bashrc` and `/home/username/.bash_profile`\. 
+
+     ```
+     export PATH=/usr/local/cuda/bin:$PATH
+     export LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATH
+     ```
+   + For *tcsh* shells, add the following statements to `/home/username/.cshrc`\.
+
+     ```
+     setenv PATH=/usr/local/cuda/bin:$PATH
+     setenv LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATH
+     ```
+
+1. To confirm that the Nvidia GPU drivers are functional, run the following command\.
+
+   ```
+   $ nvidia-smi -q | head
+   ```
+
+   The command should return information about the Nvidia GPUs, Nvidia GPU drivers, and Nvidia CUDA toolkit\.
+
+------
+#### [ Ubuntu 18\.04/20\.04 ]
+
+**To install the Nvidia GPU drivers, Nvidia CUDA toolkit, and cuDNN**
+
+1. Install the utilities that are needed to install the Nvidia GPU drivers and the Nvidia CUDA toolkit\.
+
+   ```
+   $ sudo apt-get update \
+   && sudo apt-get install build-essential -y
+   ```
+
+1. To use the Nvidia GPU driver, you must first disable the `nouveau` open source drivers\.
+
+   1. Install the required utilities and the kernel headers package for the version of the kernel that you are currently running\.
+
+      ```
+      $ sudo apt-get install -y gcc make linux-headers-$(uname -r)
+      ```
+
+   1. Add `nouveau` to the `/etc/modprobe.d/blacklist.conf `deny list file\.
+
+      ```
+      $ cat << EOF | sudo tee --append /etc/modprobe.d/blacklist.conf
+      blacklist vga16fb
+      blacklist nouveau
+      blacklist rivafb
+      blacklist nvidiafb
+      blacklist rivatv
+      EOF
+      ```
+
+   1. Open `/etc/default/grub` using your preferred text editor and add the following\. 
+
+      ```
+      GRUB_CMDLINE_LINUX="rdblacklist=nouveau"
+      ```
+
+   1. Rebuild the Grub configuration\.
+
+      ```
+      $ sudo update-grub
+      ```
+
+1. Reboot the instance and reconnect to it\.
+
+1. Install the Nvidia GPU drivers, NVIDIA CUDA toolkit, and cuDNN\.
+
+   1. Download and install the additional dependencies and add the CUDA repository\.
+      + Ubuntu 18\.04
+
+        ```
+        $ sudo apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/7fa2af80.pub \
+        && wget -O /tmp/deeplearning.deb http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/nvidia-machine-learning-repo-ubuntu1804_1.0.0-1_amd64.deb \
+        && sudo dpkg -i /tmp/deeplearning.deb \
+        && wget -O /tmp/cuda.pin https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-ubuntu1804.pin \
+        && sudo mv /tmp/cuda.pin /etc/apt/preferences.d/cuda-repository-pin-600 \
+        && sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub \
+        && sudo add-apt-repository 'deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/ /' \
+        && sudo apt update
+        ```
+      + Ubuntu 20\.04
+
+        ```
+        $ sudo apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu2004/x86_64/7fa2af80.pub \
+        && wget -O /tmp/deeplearning.deb http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu2004/x86_64/nvidia-machine-learning-repo-ubuntu2004_1.0.0-1_amd64.deb \
+        && sudo dpkg -i /tmp/deeplearning.deb \
+        && wget -O /tmp/cuda.pin https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-ubuntu2004.pin \
+        && sudo mv /tmp/cuda.pin /etc/apt/preferences.d/cuda-repository-pin-600 \
+        && sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/7fa2af80.pub \
+        && sudo add-apt-repository 'deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/ /' \
+        && sudo apt update
+        ```
+
+   1. Install the NVIDIA, CUDA drivers and cuDNN\.
+
+      ```
+      $ sudo apt install -o Dpkg::Options::='--force-overwrite' cuda-drivers cuda-toolkit-11-0 libcudnn8 libcudnn8-dev -y
+      ```
+
+1. Reboot the instance and reconnect to it\.
+
+1. \(`p4d.24xlarge` instances only\) Install the Nvidia Fabric Manager\.
+
+   1. You must install the version of the Nvidia Fabric Manager that matches the version of the Nvidia kernel module that you installed in the previous step\.
+
+      Run the following command to determine the version of the Nvidia kernel module\.
+
+      ```
+      $ cat /proc/driver/nvidia/version | grep "Kernel Module"
+      ```
+
+      The following is example output\.
+
+      ```
+      NVRM version: NVIDIA UNIX x86_64 Kernel Module  450.42.01  Tue Jun 15 21:26:37 UTC 2021
+      ```
+
+      In the example above, major version `450` of the kernel module was installed\. This means that you need to install Nvidia Fabric Manager version `450`\.
+
+   1. Install the Nvidia Fabric Manager\. Run the following command and specify the major version identified in the previous step\.
+
+      ```
+      $ sudo apt install -o Dpkg::Options::='--force-overwrite' nvidia-fabricmanager-major_version_number
+      ```
+
+      For example, if major version `450` of the kernel module was installed, use the following command to install the matching version of Nvidia Fabric Manager\.
+
+      ```
+      $ sudo apt install -o Dpkg::Options::='--force-overwrite' nvidia-fabricmanager-450
+      ```
+
+   1. Start the service, and ensure that it starts automatically when the instance starts\. Nvidia Fabric Manager is required for NV Switch Management\.
+
+      ```
+      $ sudo systemctl start nvidia-fabricmanager \
+      && sudo systemctl enable nvidia-fabricmanager
+      ```
+
+1. Ensure that the CUDA paths are set each time that the instance starts\.
+   + For *bash* shells, add the following statements to `/home/username/.bashrc` and `/home/username/.bash_profile`\. 
+
+     ```
+     export PATH=/usr/local/cuda/bin:$PATH
+     export LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATH
+     ```
+   + For *tcsh* shells, add the following statements to `/home/username/.cshrc`\.
+
+     ```
+     setenv PATH=/usr/local/cuda/bin:$PATH
+     setenv LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATH
+     ```
+
+1. To confirm that the Nvidia GPU drivers are functional, run the following command\.
+
+   ```
+   $ nvidia-smi -q | head
+   ```
+
+   The command should return information about the Nvidia GPUs, Nvidia GPU drivers, and Nvidia CUDA toolkit\.
+
+------
+
 ## Step 4: Install the EFA software<a name="nccl-start-base-enable"></a>
 
 Install the EFA\-enabled kernel, EFA drivers, Libfabric, and Open MPI stack that is required to support EFA on your temporary instance\.
@@ -254,30 +597,21 @@ Install the EFA\-enabled kernel, EFA drivers, Libfabric, and Open MPI stack that
 1. Connect to the instance you launched\. For more information, see [Connect to your Linux instance](AccessingInstances.md)\.
 
 1. To ensure that all of your software packages are up to date, perform a quick software update on your instance\. This process may take a few minutes\.
-   + Amazon Linux, Amazon Linux 2, RHEL, and CentOS
+   + Amazon Linux 2, RHEL 7/8, and CentOS 7/8
 
      ```
-     $ sudo yum update -y --skip-broken
+     $ sudo yum update -y
      ```
-   + Ubuntu
+   + Ubuntu 18\.04
 
      ```
-     $ sudo apt-get update
-     ```
-
-     ```
-     $ sudo apt-get upgrade -y
-     ```
-   + SUSE Linux Enterprise
-
-     ```
-     $ sudo zypper update -y
+     $ sudo apt-get update && sudo apt-get upgrade -y
      ```
 
 1. Download the EFA software installation files\. The software installation files are packaged into a compressed tarball \(`.tar.gz`\) file\. To download the latest *stable* version, use the following command\.
 
    ```
-   $ curl -O https://efa-installer.amazonaws.com/aws-efa-installer-1.11.2.tar.gz
+   $ curl -O https://efa-installer.amazonaws.com/aws-efa-installer-1.12.3.tar.gz
    ```
 
    You can also get the latest version by replacing the version number with `latest` in the preceding command\.
@@ -289,11 +623,7 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
    1. Download the public GPG key and import it into your keyring\.
 
       ```
-      $ wget https://efa-installer.amazonaws.com/aws-efa-installer.key
-      ```
-
-      ```
-      $ gpg --import aws-efa-installer.key
+      $ wget https://efa-installer.amazonaws.com/aws-efa-installer.key && gpg --import aws-efa-installer.key
       ```
 
       The command should return a key value\. Make a note of the key value, because you need it in the next step\.
@@ -309,11 +639,7 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
    1. Download the signature file and verify the signature of the EFA tarball file\.
 
       ```
-      $ wget https://efa-installer.amazonaws.com/aws-efa-installer-1.11.2.tar.gz.sig
-      ```
-
-      ```
-      $ gpg --verify ./aws-efa-installer-1.11.2.tar.gz.sig
+      $ wget https://efa-installer.amazonaws.com/aws-efa-installer-1.12.3.tar.gz.sig && gpg --verify ./aws-efa-installer-1.12.3.tar.gz.sig
       ```
 
       The following shows example output\.
@@ -331,11 +657,7 @@ Alternatively, if you prefer to verify the tarball file by using an MD5 or SHA25
 1. Extract the files from the compressed `.tar.gz` file and navigate into the extracted directory\.
 
    ```
-   $ tar -xf aws-efa-installer-1.11.2.tar.gz
-   ```
-
-   ```
-   $ cd aws-efa-installer
+   $ tar -xf aws-efa-installer-1.12.3.tar.gz && cd aws-efa-installer
    ```
 
 1. Run the EFA software installation script\.
@@ -465,11 +787,8 @@ The aws\-ofi\-nccl plugin maps NCCL's connection\-oriented transport APIs to Lib
 1. Install the aws\-ofi\-nccl plugin\.
 
    ```
-   $ make 
-   ```
-
-   ```
-   $ sudo make install
+   $ make \
+   && sudo make install
    ```
 
 ## Step 7: Install the NCCL tests<a name="nccl-start-base-tests"></a>
@@ -487,11 +806,7 @@ Install the NCCL tests\. The NCCL tests enable you to confirm that NCCL is prope
 1. Clone the official nccl\-tests repository to the instance and navigate into the local cloned repository\.
 
    ```
-   $ git clone https://github.com/NVIDIA/nccl-tests.git
-   ```
-
-   ```
-   $ cd nccl-tests
+   $ git clone https://github.com/NVIDIA/nccl-tests.git && cd nccl-tests
    ```
 
 1. Add the Libfabric directory to the `LD_LIBRARY_PATH` variable\. 
@@ -500,7 +815,7 @@ Install the NCCL tests\. The NCCL tests enable you to confirm that NCCL is prope
      ```
      $ export LD_LIBRARY_PATH=/opt/amazon/efa/lib64:$LD_LIBRARY_PATH
      ```
-   + Ubuntu 
+   + Ubuntu 18\.04
 
      ```
      $ export LD_LIBRARY_PATH=/opt/amazon/efa/lib:$LD_LIBRARY_PATH

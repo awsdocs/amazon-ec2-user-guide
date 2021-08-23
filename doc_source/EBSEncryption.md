@@ -321,9 +321,9 @@ The following table describes the encryption outcome for each possible combinati
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html)
 
-\* This is the default CMK used for EBS encryption for the AWS account and Region\. By default this is a unique AWS managed CMK for EBS, or you can specify a customer managed CMK\. For more information, see [Default KMS key for EBS encryption](#EBSEncryption_key_mgmt)\.
+\* This is the default customer managed key used for EBS encryption for the AWS account and Region\. By default this is a unique AWS managed key for EBS, or you can specify a customer managed key\. For more information, see [Default KMS key for EBS encryption](#EBSEncryption_key_mgmt)\.
 
-\*\* This is a customer managed CMK specified for the volume at launch time\. This CMK is used instead of the default CMK for the AWS account and Region\.
+\*\* This is a customer managed key specified for the volume at launch time\. This customer managed key is used instead of the default customer managed key for the AWS account and Region\.
 
 ## Set encryption defaults using the API and CLI<a name="encryption-by-default-api"></a>
 

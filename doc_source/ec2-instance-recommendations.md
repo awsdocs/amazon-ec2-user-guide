@@ -14,6 +14,7 @@ To get recommendations from Compute Optimizer, you must first opt in to Compute 
 + [Findings](#findings-classifications)
 + [View recommendations](#viewing-recommendations)
 + [Considerations for evaluating recommendations](#considerations)
++ [Additional resources](#co-additional-resources)
 
 ## Limitations<a name="compute-optimizer-limitations"></a>
 
@@ -94,14 +95,16 @@ Determine whether you want to use one of the recommendations\. Decide whether to
 Before changing an instance type, consider the following:
 + The recommendations don’t forecast your usage\. Recommendations are based on your historical usage over the most recent 14\-day time period\. Be sure to choose an instance type that is expected to meet your future resource needs\.
 + Focus on the graphed metrics to determine whether actual usage is lower than instance capacity\. You can also view metric data \(average, peak, percentile\) in CloudWatch to further evaluate your EC2 instance recommendations\. For example, notice how CPU percentage metrics change during the day and whether there are peaks that need to be accommodated\. For more information, see [Viewing Available Metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/viewing_metrics_with_cloudwatch.html) in the *Amazon CloudWatch User Guide*\. 
-+ Compute Optimizer might supply recommendations for burstable performance instances, which are T3, T3a, and T2 instances\. If you periodically burst above the baseline, make sure that you can continue to do so based on the vCPUs of the new instance type\. For more information, see [CPU credits and baseline utilization for burstable performance instances](burstable-credits-baseline-concepts.md)\.
++ Compute Optimizer might supply recommendations for burstable performance instances, which are T3, T3a, and T2 instances\. If you periodically burst above the baseline, make sure that you can continue to do so based on the vCPUs of the new instance type\. For more information, see [Key concepts and definitions for burstable performance instances](burstable-credits-baseline-concepts.md)\.
 + If you’ve purchased a Reserved Instance, your On\-Demand Instance might be billed as a Reserved Instance\. Before you change your current instance type, first evaluate the impact on Reserved Instance utilization and coverage\.
 + Consider conversions to newer generation instances, where possible\.
-+ When migrating to a different instance family, make sure the current instance type and the new instance type are compatible, for example, in terms of virtualization, architecture, or network type\. For more information, see [Compatibility for resizing instances](ec2-instance-resize.md#resize-limitations)\.
++ When migrating to a different instance family, make sure the current instance type and the new instance type are compatible, for example, in terms of virtualization, architecture, or network type\. For more information, see [Compatibility for resizing instances](resize-limitations.md)\.
 + Finally, consider the performance risk rating that's provided for each recommendation\. Performance risk indicates the amount of effort you might need to spend in order to validate whether the recommended instance type meets the performance requirements of your workload\. We also recommend rigorous load and performance testing before and after making any changes\.
 
 There are other considerations when resizing an EC2 instance\. For more information, see [Change the instance type](ec2-instance-resize.md)\.
 
-**Additional resources**
+## Additional resources<a name="co-additional-resources"></a>
+
+For more information:
 + [Instance types](instance-types.md)
 + [AWS Compute Optimizer User Guide](https://docs.aws.amazon.com/compute-optimizer/latest/ug/)

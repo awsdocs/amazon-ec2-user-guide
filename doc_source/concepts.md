@@ -2,7 +2,7 @@
 
 Amazon Elastic Compute Cloud \(Amazon EC2\) provides scalable computing capacity in the Amazon Web Services \(AWS\) Cloud\. Using Amazon EC2 eliminates your need to invest in hardware up front, so you can develop and deploy applications faster\. You can use Amazon EC2 to launch as many or as few virtual servers as you need, configure security and networking, and manage storage\. Amazon EC2 enables you to scale up or down to handle changes in requirements or spikes in popularity, reducing your need to forecast traffic\.
 
-For more information about cloud computing, see [What is Cloud Computing?](https://aws.amazon.com/what-is-cloud-computing/)
+For more information about cloud computing, see [What is cloud computing?](https://aws.amazon.com/what-is-cloud-computing/)
 
 ## Features of Amazon EC2<a name="ec2-features"></a>
 
@@ -25,7 +25,7 @@ For more information about running your website on AWS, see [Web Hosting](https:
 
 ## How to get started with Amazon EC2<a name="how-to-get-started"></a>
 
-First, you need to get set up to use Amazon EC2\. After you are set up, you are ready to complete the Getting Started tutorial for Amazon EC2\. Whenever you need more information about an Amazon EC2 feature, you can read the technical documentation\.
+First, you need to get set up to use Amazon EC2\. After you are set up, you are ready to complete the Get Started tutorial for Amazon EC2\. Whenever you need more information about an Amazon EC2 feature, you can read the technical documentation\.
 
 **Get up and running**
 + [Set up to use Amazon EC2](get-set-up-for-amazon-ec2.md)
@@ -70,7 +70,7 @@ To make it easier to manage Docker containers on a cluster of EC2 instances, use
 
 To monitor basic statistics for your instances and Amazon EBS volumes, use Amazon CloudWatch\. For more information, see the [Amazon CloudWatch User Guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/)\. 
 
-To detect potentially authorized or malicious use of your EC2 instances, use Amazon GuardDuty\. For more information see the [Amazon GuardDuty User Guide](https://docs.aws.amazon.com/guardduty/latest/ug/)\.
+To detect potentially unauthorized or malicious use of your EC2 instances, use Amazon GuardDuty\. For more information see the [Amazon GuardDuty User Guide](https://docs.aws.amazon.com/guardduty/latest/ug/)\.
 
 ## Access Amazon EC2<a name="access-ec2"></a>
 

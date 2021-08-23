@@ -91,7 +91,7 @@ For the China \(Beijing\) and AWS GovCloud \(US\-West\) Regions, use the `--ec2c
    1. Reformat the `image.manifest.xml` file so that it is easier to read and edit\.
 
       ```
-      [ec2-user ~]$ sudo xmllint --format /tmp/image.manifest.xml.bak > sudo /tmp/image.manifest.xml
+      [ec2-user ~]$ sudo xmllint --format /tmp/image.manifest.xml.bak > /tmp/image.manifest.xml
       ```
 
    1. Edit the block device mappings in `image.manifest.xml` with a text editor\. The example below shows a new entry for the `ephemeral1` instance store volume\. 

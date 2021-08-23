@@ -6,15 +6,15 @@ The following are the characteristics of security group rules:
 + By default, security groups allow all outbound traffic\. Note that Amazon EC2 blocks traffic on port 25 by default\. For more information, see [Restriction on email sent using port 25](ec2-resource-limits.md#port-25-throttle)\.
 + Security group rules are always permissive; you can't create rules that deny access\.
 + Security group rules enable you to filter traffic based on protocols and port numbers\.
-+ Security groups are stateful—if you send a request from your instance, the response traffic for that request is allowed to flow in regardless of inbound security group rules\. For VPC security groups, this also means that responses to allowed inbound traffic are allowed to flow out, regardless of outbound rules\. For more information, see [Connection tracking](security-group-connection-tracking.md)\.
++ Security groups are stateful—if you send a request from your instance, the response traffic for that request is allowed to flow in regardless of inbound security group rules\. For VPC security groups, this also means that responses to allowed inbound traffic are allowed to flow out, regardless of outbound rules\. For more information, see [Security group connection tracking](security-group-connection-tracking.md)\.
 + You can add and remove rules at any time\. Your changes are automatically applied to the instances that are associated with the security group\.
 
-  The effect of some rule changes can depend on how the traffic is tracked\. For more information, see [Connection tracking](security-group-connection-tracking.md)\.
+  The effect of some rule changes can depend on how the traffic is tracked\. For more information, see [Security group connection tracking](security-group-connection-tracking.md)\.
 + When you associate multiple security groups with an instance, the rules from each security group are effectively aggregated to create one set of rules\. Amazon EC2 uses this set of rules to determine whether to allow access\.
 
   You can assign multiple security groups to an instance\. Therefore, an instance can have hundreds of rules that apply\. This might cause problems when you access the instance\. We recommend that you condense your rules as much as possible\. 
 
-For each rule, you specify the following:
+When you create a rule, you can specify the following:
 + **Name**: The name for the security group \(for example, `my-security-group`\)\. 
 
   A name can be up to 255 characters in length\. Allowed characters are a\-z, A\-Z, 0\-9, spaces, and \.\_\-:/\(\)\#,@\[\]\+=;\{\}\!$\*\. When the name contains trailing spaces, we trim the spaces when we save the name\. For example, if you enter "Test Security Group " for the name, we store it as "Test Security Group"\.
@@ -33,6 +33,10 @@ For each rule, you specify the following:
     + A different security group for a peer VPC in a VPC peering connection
 + **\(Optional\) Description**: You can add a description for the rule, which can help you identify it later\. A description can be up to 255 characters in length\. Allowed characters are a\-z, A\-Z, 0\-9, spaces, and \.\_\-:/\(\)\#,@\[\]\+=;\{\}\!$\*\.
 
+When you create a security group rule, AWS assigns a unique ID to the rule\. You can use the ID of a rule when you use the API or CLI to modify or delete the rule\.
+
 When you specify a security group as the source or destination for a rule, the rule affects all instances that are associated with the security group\. Incoming traffic is allowed based on the private IP addresses of the instances that are associated with the source security group \(and not the public IP or Elastic IP addresses\)\. For more information about IP addresses, see [Amazon EC2 instance IP addressing](using-instance-addressing.md)\. If your security group rule references a security group in a peer VPC, and the referenced security group or VPC peering connection is deleted, the rule is marked as stale\. For more information, see [Working with Stale Security Group Rules](https://docs.aws.amazon.com/vpc/latest/peering/vpc-peering-security-groups.html#vpc-peering-stale-groups) in the *Amazon VPC Peering Guide*\.
 
 If there is more than one rule for a specific port, Amazon EC2 applies the most permissive rule\. For example, if you have a rule that allows access to TCP port 22 \(SSH\) from IP address `203.0.113.1`, and another rule that allows access to TCP port 22 from everyone, everyone has access to TCP port 22\.
+
+When you add, update, or remove rules, the changes are automatically applied to all instances associated with the security group\.

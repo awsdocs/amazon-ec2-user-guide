@@ -5,4 +5,7 @@ You can use an EC2 Fleet or a Spot Fleet to launch a fleet of instances\. In a s
 **Topics**
 + [EC2 Fleet](ec2-fleet.md)
 + [Spot Fleet](spot-fleet.md)
++ [Monitor fleet events using Amazon EventBridge](fleet-monitor.md)
++ [Tutorials for EC2 Fleet and Spot Fleet](fleet-tutorials.md)
++ [Example configurations for EC2 Fleet and Spot Fleet](fleet-examples.md)
 + [Fleet quotas](fleet-quotas.md)

@@ -14,7 +14,7 @@ If you receive an error while attempting to connect to your instance, see [Troub
   + Amazon Linux 2 \(any version\)
   + Ubuntu 16\.04 or later
 + To connect using the Amazon EC2 console \(browser\-based client\), the instance must have a public IPv4 address\.
-+ If the instance does not have a public IP address, you can connect to the instance using an SSH client or the EC2 Instance Connect CLI, and over a private network, such as from a machine within the same VPC or from a machine connected to the VPC over VPN or AWS Direct Connect\.
++ If the instance does not have a public IP address, you can connect to the instance over a private network using an SSH client or the EC2 Instance Connect CLI\. For example, you can connect from within the same VPC or through a VPN connection, transit gateway, or AWS Direct Connect\.
 + EC2 Instance Connect does not support connecting using an IPv6 address\.
 
 ## Prerequisites<a name="ic-prerequisites"></a>
@@ -87,7 +87,7 @@ $ mssh ubuntu@i-001234a4bf70dec41EXAMPLE
 You can use your own SSH key and connect to your instance from the SSH client of your choice while using the EC2 Instance Connect API\. This enables you to benefit from the Instance Connect capability to push a public key to the instance\. This connection method works for instances with public and private IP addresses\.
 
 **Requirements**
-+ The supported RSA key types are OpenSSH and SSH2\. The supported lengths are 2048 and 4096\. For more information, see [Option 2: Import your own public key to Amazon EC2](ec2-key-pairs.md#how-to-generate-your-own-key-and-import-it-to-aws)\.
++ The supported RSA key types are OpenSSH and SSH2\. The supported lengths are 2048 and 4096\. For more information, see [Create a key pair using a third\-party tool and import the public key to Amazon EC2](ec2-key-pairs.md#how-to-generate-your-own-key-and-import-it-to-aws)\.
 + When connecting to an instance that only has private IP addresses, the local computer from which you are initiating the SSH session must have connectivity to the EC2 Instance Connect service endpoint \(to push your SSH public key to the instance\) as well as network connectivity to the instance's private IP address to establish the SSH session\. The EC2 Instance Connect service endpoint is reachable over the internet or over an AWS Direct Connect public virtual interface\. To connect to the instance's private IP address, you can leverage services such as [AWS Direct Connect](http://aws.amazon.com/directconnect/), [AWS Site\-to\-Site VPN](http://aws.amazon.com/vpn/), or [VPC peering](https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html)\.
 
 **To connect to your instance using your own key and any SSH client**

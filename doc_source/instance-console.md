@@ -1,6 +1,6 @@
 # Troubleshoot an unreachable instance<a name="instance-console"></a>
 
-You can use the following methods to troubleshoot an unreachable instance\.
+You can use the following methods to troubleshoot an unreachable Linux instance\. For information about troubleshooting an unreachable Windows instance, see [Troubleshoot an unreachable instance](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/screenshot-service.html)\.
 
 **Topics**
 + [Instance reboot](#instance-console-rebooting)
@@ -12,7 +12,7 @@ You can use the following methods to troubleshoot an unreachable instance\.
 
 The ability to reboot instances that are otherwise unreachable is valuable for both troubleshooting and general instance management\.
 
- Just as you can reset a computer by pressing the reset button, you can reset EC2 instances using the Amazon EC2 console, CLI, or API\. For more information, see [Reboot your instance](ec2-instance-reboot.md)\. 
+ Just as you can reset a computer by pressing the reset button, you can reset EC2 instances using the Amazon EC2 console, CLI, or API\. For more information, see [Reboot your instance](ec2-instance-reboot.md) 
 
 **Warning**  
 For Windows instances, this operation performs a hard reboot that might result in data corruption\. 

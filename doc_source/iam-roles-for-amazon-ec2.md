@@ -84,9 +84,15 @@ For more information about instance metadata, see [Instance metadata and user da
 
 ## Grant an IAM user permission to pass an IAM role to an instance<a name="permission-to-pass-iam-roles"></a>
 
-To enable an IAM user to launch an instance with an IAM role or to attach or replace an IAM role for an existing instance, you must grant the user permission to pass the role to the instance\.
+To enable an IAM user to launch an instance with an IAM role or to attach or replace an IAM role for an existing instance, you must grant the user permission to use the following API actions:
++ `iam:PassRole`
++ `ec2:AssociateIamInstanceProfile` 
++ `ec2:ReplaceIamInstanceProfileAssociation`
 
-The following IAM policy grants users permission to launch instances \(`ec2:RunInstances`\) with an IAM role, or to attach or replace an IAM role for an existing instance \(`ec2:AssociateIamInstanceProfile` and `ec2:ReplaceIamInstanceProfileAssociation`\)\.
+For example, the following IAM policy grants users permission to launch instances with an IAM role, or to attach or replace an IAM role for an existing instance using the AWS CLI\.
+
+**Note**  
+This policy grants IAM users access to all of your roles by specifying the resource as `*` in the policy\. However, consider whether users who launch instances with your roles \(ones that exist or that you create later on\) might be granted permissions that they don't need or shouldn't have\.
 
 ```
 {
@@ -110,7 +116,7 @@ The following IAM policy grants users permission to launch instances \(`ec2:RunI
 }
 ```
 
-This policy grants IAM users access to all your roles by specifying the resource as "\*" in the policy\. However, consider whether users who launch instances with your roles \(ones that exist or that you create later on\) might be granted permissions that they don't need or shouldn't have\.
+To grant users permission to launch instances with an IAM role, or to attach or replace an IAM role for an existing instance using the Amazon EC2 console, you must grant them permission to use `iam:ListInstanceProfiles`, `iam:PassRole`, `ec2:AssociateIamInstanceProfile`, and `ec2:ReplaceIamInstanceProfileAssociation` in addition to any other permissions they might need\. For example policies, see [Example policies for working in the Amazon EC2 console](iam-policies-ec2-console.md)\.
 
 ## Work with IAM roles<a name="working-with-iam-roles"></a>
 
@@ -283,7 +289,7 @@ Alternatively, you can use the AWS CLI to associate a role with an instance duri
 1. Use the [run\-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html) command to launch an instance using the instance profile\. The following example shows how to launch an instance with the instance profile\. 
 
    ```
-   aws ec2 run-instances \
+   AWS ec2 run-instances \
        --image-id ami-11aa22bb \
        --iam-instance-profile Name="s3access-profile" \
        --key-name my-key-pair \
